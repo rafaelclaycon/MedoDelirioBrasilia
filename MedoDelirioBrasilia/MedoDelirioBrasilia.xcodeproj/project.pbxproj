@@ -1,0 +1,590 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D9625E7E28238F9A00080852 /* MedoDelirioBrasiliaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9625E7D28238F9A00080852 /* MedoDelirioBrasiliaApp.swift */; };
+		D9625E8028238F9A00080852 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9625E7F28238F9A00080852 /* MainView.swift */; };
+		D9625E8228238F9B00080852 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9625E8128238F9B00080852 /* Assets.xcassets */; };
+		D9625E8528238F9B00080852 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9625E8428238F9B00080852 /* Preview Assets.xcassets */; };
+		D9625E8F28238F9B00080852 /* MedoDelirioBrasiliaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9625E8E28238F9B00080852 /* MedoDelirioBrasiliaTests.swift */; };
+		D9625E9928238F9B00080852 /* MedoDelirioBrasiliaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9625E9828238F9B00080852 /* MedoDelirioBrasiliaUITests.swift */; };
+		D9625E9B28238F9B00080852 /* MedoDelirioBrasiliaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9625E9A28238F9B00080852 /* MedoDelirioBrasiliaUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D9625E8B28238F9B00080852 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D9625E7228238F9A00080852 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D9625E7928238F9A00080852;
+			remoteInfo = MedoDelirioBrasilia;
+		};
+		D9625E9528238F9B00080852 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D9625E7228238F9A00080852 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D9625E7928238F9A00080852;
+			remoteInfo = MedoDelirioBrasilia;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D9625E7A28238F9A00080852 /* MedoDelirioBrasilia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MedoDelirioBrasilia.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9625E7D28238F9A00080852 /* MedoDelirioBrasiliaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedoDelirioBrasiliaApp.swift; sourceTree = "<group>"; };
+		D9625E7F28238F9A00080852 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		D9625E8128238F9B00080852 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D9625E8428238F9B00080852 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D9625E8A28238F9B00080852 /* MedoDelirioBrasiliaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MedoDelirioBrasiliaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9625E8E28238F9B00080852 /* MedoDelirioBrasiliaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedoDelirioBrasiliaTests.swift; sourceTree = "<group>"; };
+		D9625E9428238F9B00080852 /* MedoDelirioBrasiliaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MedoDelirioBrasiliaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9625E9828238F9B00080852 /* MedoDelirioBrasiliaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedoDelirioBrasiliaUITests.swift; sourceTree = "<group>"; };
+		D9625E9A28238F9B00080852 /* MedoDelirioBrasiliaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedoDelirioBrasiliaUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D9625E7728238F9A00080852 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9625E8728238F9B00080852 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9625E9128238F9B00080852 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D9625E7128238F9A00080852 = {
+			isa = PBXGroup;
+			children = (
+				D9625E7C28238F9A00080852 /* MedoDelirioBrasilia */,
+				D9625E8D28238F9B00080852 /* MedoDelirioBrasiliaTests */,
+				D9625E9728238F9B00080852 /* MedoDelirioBrasiliaUITests */,
+				D9625E7B28238F9A00080852 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D9625E7B28238F9A00080852 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D9625E7A28238F9A00080852 /* MedoDelirioBrasilia.app */,
+				D9625E8A28238F9B00080852 /* MedoDelirioBrasiliaTests.xctest */,
+				D9625E9428238F9B00080852 /* MedoDelirioBrasiliaUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D9625E7C28238F9A00080852 /* MedoDelirioBrasilia */ = {
+			isa = PBXGroup;
+			children = (
+				D9625E7D28238F9A00080852 /* MedoDelirioBrasiliaApp.swift */,
+				D9625E7F28238F9A00080852 /* MainView.swift */,
+				D9625E8128238F9B00080852 /* Assets.xcassets */,
+				D9625E8328238F9B00080852 /* Preview Content */,
+			);
+			path = MedoDelirioBrasilia;
+			sourceTree = "<group>";
+		};
+		D9625E8328238F9B00080852 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				D9625E8428238F9B00080852 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D9625E8D28238F9B00080852 /* MedoDelirioBrasiliaTests */ = {
+			isa = PBXGroup;
+			children = (
+				D9625E8E28238F9B00080852 /* MedoDelirioBrasiliaTests.swift */,
+			);
+			path = MedoDelirioBrasiliaTests;
+			sourceTree = "<group>";
+		};
+		D9625E9728238F9B00080852 /* MedoDelirioBrasiliaUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D9625E9828238F9B00080852 /* MedoDelirioBrasiliaUITests.swift */,
+				D9625E9A28238F9B00080852 /* MedoDelirioBrasiliaUITestsLaunchTests.swift */,
+			);
+			path = MedoDelirioBrasiliaUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D9625E7928238F9A00080852 /* MedoDelirioBrasilia */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D9625E9E28238F9B00080852 /* Build configuration list for PBXNativeTarget "MedoDelirioBrasilia" */;
+			buildPhases = (
+				D9625E7628238F9A00080852 /* Sources */,
+				D9625E7728238F9A00080852 /* Frameworks */,
+				D9625E7828238F9A00080852 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MedoDelirioBrasilia;
+			productName = MedoDelirioBrasilia;
+			productReference = D9625E7A28238F9A00080852 /* MedoDelirioBrasilia.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D9625E8928238F9B00080852 /* MedoDelirioBrasiliaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D9625EA128238F9B00080852 /* Build configuration list for PBXNativeTarget "MedoDelirioBrasiliaTests" */;
+			buildPhases = (
+				D9625E8628238F9B00080852 /* Sources */,
+				D9625E8728238F9B00080852 /* Frameworks */,
+				D9625E8828238F9B00080852 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D9625E8C28238F9B00080852 /* PBXTargetDependency */,
+			);
+			name = MedoDelirioBrasiliaTests;
+			productName = MedoDelirioBrasiliaTests;
+			productReference = D9625E8A28238F9B00080852 /* MedoDelirioBrasiliaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D9625E9328238F9B00080852 /* MedoDelirioBrasiliaUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D9625EA428238F9B00080852 /* Build configuration list for PBXNativeTarget "MedoDelirioBrasiliaUITests" */;
+			buildPhases = (
+				D9625E9028238F9B00080852 /* Sources */,
+				D9625E9128238F9B00080852 /* Frameworks */,
+				D9625E9228238F9B00080852 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D9625E9628238F9B00080852 /* PBXTargetDependency */,
+			);
+			name = MedoDelirioBrasiliaUITests;
+			productName = MedoDelirioBrasiliaUITests;
+			productReference = D9625E9428238F9B00080852 /* MedoDelirioBrasiliaUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D9625E7228238F9A00080852 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1330;
+				LastUpgradeCheck = 1330;
+				TargetAttributes = {
+					D9625E7928238F9A00080852 = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
+					D9625E8928238F9B00080852 = {
+						CreatedOnToolsVersion = 13.3.1;
+						TestTargetID = D9625E7928238F9A00080852;
+					};
+					D9625E9328238F9B00080852 = {
+						CreatedOnToolsVersion = 13.3.1;
+						TestTargetID = D9625E7928238F9A00080852;
+					};
+				};
+			};
+			buildConfigurationList = D9625E7528238F9A00080852 /* Build configuration list for PBXProject "MedoDelirioBrasilia" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D9625E7128238F9A00080852;
+			productRefGroup = D9625E7B28238F9A00080852 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D9625E7928238F9A00080852 /* MedoDelirioBrasilia */,
+				D9625E8928238F9B00080852 /* MedoDelirioBrasiliaTests */,
+				D9625E9328238F9B00080852 /* MedoDelirioBrasiliaUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D9625E7828238F9A00080852 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9625E8528238F9B00080852 /* Preview Assets.xcassets in Resources */,
+				D9625E8228238F9B00080852 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9625E8828238F9B00080852 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9625E9228238F9B00080852 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D9625E7628238F9A00080852 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9625E8028238F9A00080852 /* MainView.swift in Sources */,
+				D9625E7E28238F9A00080852 /* MedoDelirioBrasiliaApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9625E8628238F9B00080852 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9625E8F28238F9B00080852 /* MedoDelirioBrasiliaTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9625E9028238F9B00080852 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9625E9928238F9B00080852 /* MedoDelirioBrasiliaUITests.swift in Sources */,
+				D9625E9B28238F9B00080852 /* MedoDelirioBrasiliaUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D9625E8C28238F9B00080852 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D9625E7928238F9A00080852 /* MedoDelirioBrasilia */;
+			targetProxy = D9625E8B28238F9B00080852 /* PBXContainerItemProxy */;
+		};
+		D9625E9628238F9B00080852 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D9625E7928238F9A00080852 /* MedoDelirioBrasilia */;
+			targetProxy = D9625E9528238F9B00080852 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		D9625E9C28238F9B00080852 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D9625E9D28238F9B00080852 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D9625E9F28238F9B00080852 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Preview Content\"";
+				DEVELOPMENT_TEAM = L8X3H5XA82;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D9625EA028238F9B00080852 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Preview Content\"";
+				DEVELOPMENT_TEAM = L8X3H5XA82;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D9625EA228238F9B00080852 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = L8X3H5XA82;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasiliaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MedoDelirioBrasilia.app/MedoDelirioBrasilia";
+			};
+			name = Debug;
+		};
+		D9625EA328238F9B00080852 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = L8X3H5XA82;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasiliaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MedoDelirioBrasilia.app/MedoDelirioBrasilia";
+			};
+			name = Release;
+		};
+		D9625EA528238F9B00080852 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = L8X3H5XA82;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasiliaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MedoDelirioBrasilia;
+			};
+			name = Debug;
+		};
+		D9625EA628238F9B00080852 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = L8X3H5XA82;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasiliaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MedoDelirioBrasilia;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D9625E7528238F9A00080852 /* Build configuration list for PBXProject "MedoDelirioBrasilia" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D9625E9C28238F9B00080852 /* Debug */,
+				D9625E9D28238F9B00080852 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D9625E9E28238F9B00080852 /* Build configuration list for PBXNativeTarget "MedoDelirioBrasilia" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D9625E9F28238F9B00080852 /* Debug */,
+				D9625EA028238F9B00080852 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D9625EA128238F9B00080852 /* Build configuration list for PBXNativeTarget "MedoDelirioBrasiliaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D9625EA228238F9B00080852 /* Debug */,
+				D9625EA328238F9B00080852 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D9625EA428238F9B00080852 /* Build configuration list for PBXNativeTarget "MedoDelirioBrasiliaUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D9625EA528238F9B00080852 /* Debug */,
+				D9625EA628238F9B00080852 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D9625E7228238F9A00080852 /* Project object */;
+}
