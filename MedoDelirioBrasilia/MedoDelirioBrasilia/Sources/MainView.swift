@@ -3,8 +3,13 @@ import SwiftUI
 struct MainView: View {
 
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        ScrollView {
+            VStack {
+                Image("Banner")
+                    .resizable()
+                    .frame(width: 350, height: 197)
+            }
+        }
     }
 
 }
