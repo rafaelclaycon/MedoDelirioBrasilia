@@ -12,8 +12,6 @@
 		D9625E8228238F9B00080852 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9625E8128238F9B00080852 /* Assets.xcassets */; };
 		D9625E8528238F9B00080852 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9625E8428238F9B00080852 /* Preview Assets.xcassets */; };
 		D9625E8F28238F9B00080852 /* MedoDelirioBrasiliaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9625E8E28238F9B00080852 /* MedoDelirioBrasiliaTests.swift */; };
-		D9625E9928238F9B00080852 /* MedoDelirioBrasiliaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9625E9828238F9B00080852 /* MedoDelirioBrasiliaUITests.swift */; };
-		D9625E9B28238F9B00080852 /* MedoDelirioBrasiliaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9625E9A28238F9B00080852 /* MedoDelirioBrasiliaUITestsLaunchTests.swift */; };
 		D9625EAA282394BB00080852 /* Xandao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9625EA9282394BB00080852 /* Xandao.mp3 */; };
 /* End PBXBuildFile section */
 
@@ -43,8 +41,6 @@
 		D9625E8A28238F9B00080852 /* MedoDelirioBrasiliaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MedoDelirioBrasiliaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9625E8E28238F9B00080852 /* MedoDelirioBrasiliaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedoDelirioBrasiliaTests.swift; sourceTree = "<group>"; };
 		D9625E9428238F9B00080852 /* MedoDelirioBrasiliaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MedoDelirioBrasiliaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D9625E9828238F9B00080852 /* MedoDelirioBrasiliaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedoDelirioBrasiliaUITests.swift; sourceTree = "<group>"; };
-		D9625E9A28238F9B00080852 /* MedoDelirioBrasiliaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedoDelirioBrasiliaUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D9625EA9282394BB00080852 /* Xandao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Xandao.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,7 +74,6 @@
 			children = (
 				D9625E7C28238F9A00080852 /* MedoDelirioBrasilia */,
 				D9625E8D28238F9B00080852 /* MedoDelirioBrasiliaTests */,
-				D9625E9728238F9B00080852 /* MedoDelirioBrasiliaUITests */,
 				D9625E7B28238F9A00080852 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -119,15 +114,6 @@
 				D9625E8E28238F9B00080852 /* MedoDelirioBrasiliaTests.swift */,
 			);
 			path = MedoDelirioBrasiliaTests;
-			sourceTree = "<group>";
-		};
-		D9625E9728238F9B00080852 /* MedoDelirioBrasiliaUITests */ = {
-			isa = PBXGroup;
-			children = (
-				D9625E9828238F9B00080852 /* MedoDelirioBrasiliaUITests.swift */,
-				D9625E9A28238F9B00080852 /* MedoDelirioBrasiliaUITestsLaunchTests.swift */,
-			);
-			path = MedoDelirioBrasiliaUITests;
 			sourceTree = "<group>";
 		};
 		D9625EA72823949200080852 /* Sources */ = {
@@ -294,8 +280,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9625E9928238F9B00080852 /* MedoDelirioBrasiliaUITests.swift in Sources */,
-				D9625E9B28238F9B00080852 /* MedoDelirioBrasiliaUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
