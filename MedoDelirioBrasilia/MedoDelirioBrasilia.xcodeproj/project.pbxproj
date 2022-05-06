@@ -33,7 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D9625E7A28238F9A00080852 /* MedoDelirioBrasilia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MedoDelirioBrasilia.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9625E7A28238F9A00080852 /* Medo e Delírio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Medo e Delírio.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9625E7D28238F9A00080852 /* MedoDelirioBrasiliaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedoDelirioBrasiliaApp.swift; sourceTree = "<group>"; };
 		D9625E7F28238F9A00080852 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		D9625E8128238F9B00080852 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -81,7 +81,7 @@
 		D9625E7B28238F9A00080852 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D9625E7A28238F9A00080852 /* MedoDelirioBrasilia.app */,
+				D9625E7A28238F9A00080852 /* Medo e Delírio.app */,
 				D9625E8A28238F9B00080852 /* MedoDelirioBrasiliaTests.xctest */,
 				D9625E9428238F9B00080852 /* MedoDelirioBrasiliaUITests.xctest */,
 			);
@@ -149,7 +149,7 @@
 			);
 			name = MedoDelirioBrasilia;
 			productName = MedoDelirioBrasilia;
-			productReference = D9625E7A28238F9A00080852 /* MedoDelirioBrasilia.app */;
+			productReference = D9625E7A28238F9A00080852 /* Medo e Delírio.app */;
 			productType = "com.apple.product-type.application";
 		};
 		D9625E8928238F9B00080852 /* MedoDelirioBrasiliaTests */ = {
@@ -436,7 +436,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Medo e Delírio";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -466,7 +466,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Medo e Delírio";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
