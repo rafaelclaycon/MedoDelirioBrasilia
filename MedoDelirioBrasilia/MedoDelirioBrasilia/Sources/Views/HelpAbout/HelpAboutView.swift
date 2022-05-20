@@ -5,7 +5,7 @@ struct HelpAboutView: View {
     @State var showPixKeyCopiedAlert: Bool = false
     @State var showUnableToOpenPodcastsAppAlert: Bool = false
     
-    let cpf: String = "02066428060"
+    let pixKey: String = "918bd609-04d1-4df6-8697-352b62462061"
     let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? String()
     let buildVersionNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? String()
 
@@ -47,15 +47,15 @@ struct HelpAboutView: View {
                     }
                     
                     VStack(alignment: .center, spacing: 5) {
-                        Text("Ô, cara, aproveita que tá aqui e paga uma 🍺 para o desenvolvedor por Pix, morô, cara.".uppercased())
+                        Text("Ô, cara, aproveita que tá aqui e paga uma 🍺 pro desenvolvedor por Pix, morô, cara.".uppercased())
                             .font(.callout)
                             .bold()
                             .foregroundColor(.gray)
                             .multilineTextAlignment(.center)
                             .padding(.horizontal)
                         
-                        Button(cpf) {
-                            UIPasteboard.general.string = cpf
+                        Button(pixKey) {
+                            UIPasteboard.general.string = pixKey
                             
                             showPixKeyCopiedAlert = true
                         }
