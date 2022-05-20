@@ -12,24 +12,6 @@
         "filename": "deu_errado.mp3"
     },
     {
-        "id": "B6C98763-2F80-42C1-99A1-E730976E4B47",
-        "title": "Esse Neto bosta",
-        "author": "Ciro Gomes",
-        "filename": "esse_neto_bosta.mp3"
-    },
-    {
-        "id": "FD563A84-A8BE-4472-9E58-48A99F47FEF1",
-        "title": "Esse Braga Neto",
-        "author": "Ciro Gomes",
-        "filename": "esse_braga_neto_que_eh_um_bosta.mp3"
-    },
-    {
-        "id": "93FF31DE-2187-408F-8486-E989F7610361",
-        "title": "Um bosta",
-        "author": "Ciro Gomes",
-        "filename": "um_bosta_ciro.mp3"
-    },
-    {
         "id": "CFD813DA-4FFE-4D02-80A5-762C276E9872",
         "title": "O cachorro do supremo",
         "author": "Roberto Jeferson",
@@ -48,28 +30,10 @@
         "filename": "funk_do_xandao.mp3"
     },
     {
-        "id": "D2290519-936D-40AC-A7B1-47C76A12169E",
-        "title": "É um merd*",
-        "author": "Patrícia Miguez",
-        "filename": "e_um_merda.mp3"
-    },
-    {
-        "id": "F3D41F84-BC98-4DF7-8D34-7FB9EAD74F99",
-        "title": "É c*rai, receba",
-        "author": "Luva de pedreiro",
-        "filename": "LUVA DE PEDREIRO - E, caralho carai, RECEBA.mp3"
-    },
-    {
         "id": "CAAC3E6E-6BF1-4159-8555-0E892E0125C3",
         "title": "Receba",
         "author": "Luva de pedreiro",
         "filename": "O CARA DA LUVA DE PEDREIRO - Receba.mp3"
-    },
-    {
-        "id": "7631DBC9-96A0-47AA-9FAF-6396AF345E7A",
-        "title": "Receba, c*rai",
-        "author": "Luva de pedreiro",
-        "filename": "O CARA DA LUVA DE PEDREIRO - receba carai caralho.mp3"
     },
     {
         "id": "838E0D3F-0C26-4E1D-894C-8F855A5F62A9",
@@ -84,18 +48,6 @@
         "filename": "MULTISHOW_Titi_Muller_Ta_bombando_mais_do_que_o_povo_pedindo_Anitta.mp3"
     },
     {
-        "id": "4F63A14D-8623-432D-9FEE-C3DC8584EE07",
-        "title": "Não f*de, mermão",
-        "author": "Alborgeti",
-        "filename": "Away - nao fode mermao.mp3"
-    },
-    {
-        "id": "7244C448-2982-4932-9C4C-8365BACFA4DD",
-        "title": "Que merda hein",
-        "author": "Alborgeti",
-        "filename": "Alborgeti - Que Merda Hein.mp3"
-    },
-    {
         "id": "24DF3824-B1E2-44A8-AAAD-0CF7765C0526",
         "title": "Aham, sei",
         "author": "",
@@ -106,5 +58,65 @@
         "title": "Mais um crime",
         "author": "ADY",
         "filename": "ADY - oh nao mais um crime de responsabilidade.mp3"
+    },
+    {
+        "id": "B6C98763-2F80-42C1-99A1-E730976E4B47",
+        "title": "Censura nunca mais",
+        "author": "Lulu Santos",
+        "filename": "MULTISHOW - Lulu Santos - Censura nunca mais.mp3"
+    },
+    {
+        "id": "FD563A84-A8BE-4472-9E58-48A99F47FEF1",
+        "title": "Censura 2022 e Fora Bolsonaro",
+        "author": "Gloria Groove",
+        "filename": "MULTISHOW_Gloria_Groove_Quer_dizer_que_eles_querem_calar_a_gente.mp3"
+    },
+    {
+        "id": "93FF31DE-2187-408F-8486-E989F7610361",
+        "title": "Tira o título",
+        "author": "Emicida",
+        "filename": "EMICIDA_no_loolapalooza_Tira_o_título_e_bolsonaro_vai_tomar_no_cu.mp3"
+    },
+    {
+        "id": "D2290519-936D-40AC-A7B1-47C76A12169E",
+        "title": "Tu ouviu isso?",
+        "author": "Defante",
+        "filename": "tu_ouviu_isso.mp3"
+    },
+    {
+        "id": "F3D41F84-BC98-4DF7-8D34-7FB9EAD74F99",
+        "title": "Tu entendeu a pergunta?",
+        "author": "Defante",
+        "filename": "tu_entendeu_a_pergunta.mp3"
+    },
+    {
+        "id": "7631DBC9-96A0-47AA-9FAF-6396AF345E7A",
+        "title": "Calma, calma, calma",
+        "author": "Defante",
+        "filename": "calma_calma_calma.mp3"
+    },
+    {
+        "id": "4F63A14D-8623-432D-9FEE-C3DC8584EE07",
+        "title": "Passada chocada, meu Deus",
+        "author": "",
+        "filename": "Passada chocada meu Deus jesus.mp3"
+    },
+    {
+        "id": "8C436A07-5FCB-4552-B3A6-FE876B93085F",
+        "title": "Meus advogados estão estarrecidos",
+        "author": "Dallangnol",
+        "filename": "Deltan Dallangnol - Os meus advogados estão estarrecidos.mp3"
+    },
+    {
+        "id": "7A09CF79-D589-44B8-815C-6DA72AB001FE",
+        "title": "Brasileiros tem 2 iPhones",
+        "author": "Paulo Guedes",
+        "filename": "PODER36_Paulo_Guedes_Tem_mais_iPhones_no_Brasil_que_população_Brasileiros.mp3"
+    },
+    {
+        "id": "7244C448-2982-4932-9C4C-8365BACFA4DD",
+        "title": "Que m*rd* hein",
+        "author": "Alborgeti",
+        "filename": "Alborgeti - Que Merda Hein.mp3"
     }
 ]
