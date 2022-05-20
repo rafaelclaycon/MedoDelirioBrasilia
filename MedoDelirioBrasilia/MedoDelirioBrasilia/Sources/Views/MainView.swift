@@ -3,6 +3,7 @@ import SwiftUI
 struct MainView: View {
 
     @StateObject var viewModel = MainViewViewModel(sounds: soundData)
+    @State var showingHelpAboutScreen = false
     
     let columns = [
         GridItem(.flexible()),
@@ -12,6 +13,8 @@ struct MainView: View {
     var body: some View {
         NavigationView {
             VStack {
+                NavigationLink(destination: HelpAboutView(), isActive: $showingHelpAboutScreen) { EmptyView() }
+                
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 20) {
                         ForEach(viewModel.sounds) { sound in
@@ -24,7 +27,16 @@ struct MainView: View {
                     .padding()
                 }
             }
-            .navigationTitle("Medo e Delírio")
+            .navigationTitle(Text("Medo e Delírio"))
+            .navigationBarItems(leading:
+                HStack {
+                    Button(action: {
+                        showingHelpAboutScreen = true
+                    }) {
+                        Image(systemName: "info.circle")
+                    }
+                }
+            )
         }
     }
 

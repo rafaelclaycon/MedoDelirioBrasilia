@@ -16,6 +16,7 @@
 		D961D02028372CC800EFEDEB /* um_bosta_ciro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D961D01B28372CC800EFEDEB /* um_bosta_ciro.mp3 */; };
 		D961D02128372CC800EFEDEB /* esse_braga_neto_que_eh_um_bosta.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D961D01C28372CC800EFEDEB /* esse_braga_neto_que_eh_um_bosta.mp3 */; };
 		D961D02228372CC800EFEDEB /* deu_errado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D961D01D28372CC800EFEDEB /* deu_errado.mp3 */; };
+		D961D025283731AA00EFEDEB /* HelpAboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D961D024283731AA00EFEDEB /* HelpAboutView.swift */; };
 		D9625E7E28238F9A00080852 /* MedoDelirioBrasiliaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9625E7D28238F9A00080852 /* MedoDelirioBrasiliaApp.swift */; };
 		D9625E8028238F9A00080852 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9625E7F28238F9A00080852 /* MainView.swift */; };
 		D9625E8228238F9B00080852 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9625E8128238F9B00080852 /* Assets.xcassets */; };
@@ -53,6 +54,7 @@
 		D961D01B28372CC800EFEDEB /* um_bosta_ciro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = um_bosta_ciro.mp3; sourceTree = "<group>"; };
 		D961D01C28372CC800EFEDEB /* esse_braga_neto_que_eh_um_bosta.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = esse_braga_neto_que_eh_um_bosta.mp3; sourceTree = "<group>"; };
 		D961D01D28372CC800EFEDEB /* deu_errado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = deu_errado.mp3; sourceTree = "<group>"; };
+		D961D024283731AA00EFEDEB /* HelpAboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpAboutView.swift; sourceTree = "<group>"; };
 		D9625E7A28238F9A00080852 /* Medo e Delírio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Medo e Delírio.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9625E7D28238F9A00080852 /* MedoDelirioBrasiliaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedoDelirioBrasiliaApp.swift; sourceTree = "<group>"; };
 		D9625E7F28238F9A00080852 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -97,6 +99,14 @@
 				D961D015283722AB00EFEDEB /* Color+CustomColors.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D961D0232837319600EFEDEB /* HelpAbout */ = {
+			isa = PBXGroup;
+			children = (
+				D961D024283731AA00EFEDEB /* HelpAboutView.swift */,
+			);
+			path = HelpAbout;
 			sourceTree = "<group>";
 		};
 		D9625E7128238F9A00080852 = {
@@ -174,6 +184,7 @@
 		D9625EAB2824EADC00080852 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D961D0232837319600EFEDEB /* HelpAbout */,
 				D9625E7F28238F9A00080852 /* MainView.swift */,
 				D98EC5DD282596C300340BE5 /* SoundRow.swift */,
 				D98EC5E22825A45000340BE5 /* MainViewViewModel.swift */,
@@ -332,6 +343,7 @@
 				D961D01828372B1800EFEDEB /* AudioPlayer.swift in Sources */,
 				D98EC5DE282596C300340BE5 /* SoundRow.swift in Sources */,
 				D98EC5E32825A45000340BE5 /* MainViewViewModel.swift in Sources */,
+				D961D025283731AA00EFEDEB /* HelpAboutView.swift in Sources */,
 				D98EC5E12825A05900340BE5 /* Sound.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -417,7 +429,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -471,7 +483,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -507,7 +519,7 @@
 				PRODUCT_NAME = "Medo e Delírio";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -537,7 +549,7 @@
 				PRODUCT_NAME = "Medo e Delírio";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
