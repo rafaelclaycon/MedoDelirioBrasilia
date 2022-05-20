@@ -25,6 +25,19 @@
 		D98EC5DE282596C300340BE5 /* SoundRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5DD282596C300340BE5 /* SoundRow.swift */; };
 		D98EC5E12825A05900340BE5 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5E02825A05900340BE5 /* Sound.swift */; };
 		D98EC5E32825A45000340BE5 /* MainViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5E22825A45000340BE5 /* MainViewViewModel.swift */; };
+		D9B9024F2837460C00551239 /* LUVA DE PEDREIRO - E, caralho carai, RECEBA.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B902422837460C00551239 /* LUVA DE PEDREIRO - E, caralho carai, RECEBA.mp3 */; };
+		D9B902502837460C00551239 /* PORTA_DOS_FUNDOS_BALBÚRDIA_Bom_dia,_turma,_todo_mundo_tirando_a.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B902432837460C00551239 /* PORTA_DOS_FUNDOS_BALBÚRDIA_Bom_dia,_turma,_todo_mundo_tirando_a.mp3 */; };
+		D9B902512837460C00551239 /* o_cachorro_do_supremo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B902442837460C00551239 /* o_cachorro_do_supremo.mp3 */; };
+		D9B902522837460C00551239 /* funk_do_xandao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B902452837460C00551239 /* funk_do_xandao.mp3 */; };
+		D9B902532837460C00551239 /* O CARA DA LUVA DE PEDREIRO - receba carai caralho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B902462837460C00551239 /* O CARA DA LUVA DE PEDREIRO - receba carai caralho.mp3 */; };
+		D9B902542837460C00551239 /* Away - nao fode mermao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B902472837460C00551239 /* Away - nao fode mermao.mp3 */; };
+		D9B902552837460C00551239 /* e_um_merda.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B902482837460C00551239 /* e_um_merda.mp3 */; };
+		D9B902562837460C00551239 /* O CARA DA LUVA DE PEDREIRO - Receba.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B902492837460C00551239 /* O CARA DA LUVA DE PEDREIRO - Receba.mp3 */; };
+		D9B902572837460C00551239 /* ADY - oh nao mais um crime de responsabilidade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B9024A2837460C00551239 /* ADY - oh nao mais um crime de responsabilidade.mp3 */; };
+		D9B902582837460C00551239 /* ta_bom_xandao_ta_bom.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B9024B2837460C00551239 /* ta_bom_xandao_ta_bom.mp3 */; };
+		D9B902592837460C00551239 /* Alborgeti - Que Merda Hein.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B9024C2837460C00551239 /* Alborgeti - Que Merda Hein.mp3 */; };
+		D9B9025A2837460C00551239 /* Aham sei.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B9024D2837460C00551239 /* Aham sei.mp3 */; };
+		D9B9025B2837460C00551239 /* MULTISHOW_Titi_Muller_Ta_bombando_mais_do_que_o_povo_pedindo_Anitta.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B9024E2837460C00551239 /* MULTISHOW_Titi_Muller_Ta_bombando_mais_do_que_o_povo_pedindo_Anitta.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +79,19 @@
 		D98EC5DD282596C300340BE5 /* SoundRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundRow.swift; sourceTree = "<group>"; };
 		D98EC5E02825A05900340BE5 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		D98EC5E22825A45000340BE5 /* MainViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewViewModel.swift; sourceTree = "<group>"; };
+		D9B902422837460C00551239 /* LUVA DE PEDREIRO - E, caralho carai, RECEBA.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "LUVA DE PEDREIRO - E, caralho carai, RECEBA.mp3"; sourceTree = "<group>"; };
+		D9B902432837460C00551239 /* PORTA_DOS_FUNDOS_BALBÚRDIA_Bom_dia,_turma,_todo_mundo_tirando_a.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "PORTA_DOS_FUNDOS_BALBÚRDIA_Bom_dia,_turma,_todo_mundo_tirando_a.mp3"; sourceTree = "<group>"; };
+		D9B902442837460C00551239 /* o_cachorro_do_supremo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = o_cachorro_do_supremo.mp3; sourceTree = "<group>"; };
+		D9B902452837460C00551239 /* funk_do_xandao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = funk_do_xandao.mp3; sourceTree = "<group>"; };
+		D9B902462837460C00551239 /* O CARA DA LUVA DE PEDREIRO - receba carai caralho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O CARA DA LUVA DE PEDREIRO - receba carai caralho.mp3"; sourceTree = "<group>"; };
+		D9B902472837460C00551239 /* Away - nao fode mermao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Away - nao fode mermao.mp3"; sourceTree = "<group>"; };
+		D9B902482837460C00551239 /* e_um_merda.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = e_um_merda.mp3; sourceTree = "<group>"; };
+		D9B902492837460C00551239 /* O CARA DA LUVA DE PEDREIRO - Receba.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O CARA DA LUVA DE PEDREIRO - Receba.mp3"; sourceTree = "<group>"; };
+		D9B9024A2837460C00551239 /* ADY - oh nao mais um crime de responsabilidade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ADY - oh nao mais um crime de responsabilidade.mp3"; sourceTree = "<group>"; };
+		D9B9024B2837460C00551239 /* ta_bom_xandao_ta_bom.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ta_bom_xandao_ta_bom.mp3; sourceTree = "<group>"; };
+		D9B9024C2837460C00551239 /* Alborgeti - Que Merda Hein.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alborgeti - Que Merda Hein.mp3"; sourceTree = "<group>"; };
+		D9B9024D2837460C00551239 /* Aham sei.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Aham sei.mp3"; sourceTree = "<group>"; };
+		D9B9024E2837460C00551239 /* MULTISHOW_Titi_Muller_Ta_bombando_mais_do_que_o_povo_pedindo_Anitta.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MULTISHOW_Titi_Muller_Ta_bombando_mais_do_que_o_povo_pedindo_Anitta.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +197,19 @@
 		D9625EA82823949700080852 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D9B9024A2837460C00551239 /* ADY - oh nao mais um crime de responsabilidade.mp3 */,
+				D9B9024D2837460C00551239 /* Aham sei.mp3 */,
+				D9B9024C2837460C00551239 /* Alborgeti - Que Merda Hein.mp3 */,
+				D9B902472837460C00551239 /* Away - nao fode mermao.mp3 */,
+				D9B902482837460C00551239 /* e_um_merda.mp3 */,
+				D9B902452837460C00551239 /* funk_do_xandao.mp3 */,
+				D9B902422837460C00551239 /* LUVA DE PEDREIRO - E, caralho carai, RECEBA.mp3 */,
+				D9B9024E2837460C00551239 /* MULTISHOW_Titi_Muller_Ta_bombando_mais_do_que_o_povo_pedindo_Anitta.mp3 */,
+				D9B902462837460C00551239 /* O CARA DA LUVA DE PEDREIRO - receba carai caralho.mp3 */,
+				D9B902492837460C00551239 /* O CARA DA LUVA DE PEDREIRO - Receba.mp3 */,
+				D9B902442837460C00551239 /* o_cachorro_do_supremo.mp3 */,
+				D9B902432837460C00551239 /* PORTA_DOS_FUNDOS_BALBÚRDIA_Bom_dia,_turma,_todo_mundo_tirando_a.mp3 */,
+				D9B9024B2837460C00551239 /* ta_bom_xandao_ta_bom.mp3 */,
 				D961D01D28372CC800EFEDEB /* deu_errado.mp3 */,
 				D961D01C28372CC800EFEDEB /* esse_braga_neto_que_eh_um_bosta.mp3 */,
 				D961D01A28372CC800EFEDEB /* esse_neto_bosta.mp3 */,
@@ -305,13 +344,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				D961D01328371F1700EFEDEB /* sound_data.json in Resources */,
+				D9B9025B2837460C00551239 /* MULTISHOW_Titi_Muller_Ta_bombando_mais_do_que_o_povo_pedindo_Anitta.mp3 in Resources */,
 				D9625E8528238F9B00080852 /* Preview Assets.xcassets in Resources */,
+				D9B9025A2837460C00551239 /* Aham sei.mp3 in Resources */,
+				D9B902542837460C00551239 /* Away - nao fode mermao.mp3 in Resources */,
 				D961D01E28372CC800EFEDEB /* tv_senado_soraya_thronicke_a_gente_vai_cansando_sabe.mp3 in Resources */,
 				D961D02028372CC800EFEDEB /* um_bosta_ciro.mp3 in Resources */,
+				D9B902522837460C00551239 /* funk_do_xandao.mp3 in Resources */,
+				D9B9024F2837460C00551239 /* LUVA DE PEDREIRO - E, caralho carai, RECEBA.mp3 in Resources */,
 				D9625E8228238F9B00080852 /* Assets.xcassets in Resources */,
+				D9B902572837460C00551239 /* ADY - oh nao mais um crime de responsabilidade.mp3 in Resources */,
+				D9B902502837460C00551239 /* PORTA_DOS_FUNDOS_BALBÚRDIA_Bom_dia,_turma,_todo_mundo_tirando_a.mp3 in Resources */,
+				D9B902532837460C00551239 /* O CARA DA LUVA DE PEDREIRO - receba carai caralho.mp3 in Resources */,
+				D9B902582837460C00551239 /* ta_bom_xandao_ta_bom.mp3 in Resources */,
+				D9B902562837460C00551239 /* O CARA DA LUVA DE PEDREIRO - Receba.mp3 in Resources */,
 				D961D01F28372CC800EFEDEB /* esse_neto_bosta.mp3 in Resources */,
+				D9B902512837460C00551239 /* o_cachorro_do_supremo.mp3 in Resources */,
 				D961D02228372CC800EFEDEB /* deu_errado.mp3 in Resources */,
 				D961D02128372CC800EFEDEB /* esse_braga_neto_que_eh_um_bosta.mp3 in Resources */,
+				D9B902552837460C00551239 /* e_um_merda.mp3 in Resources */,
+				D9B902592837460C00551239 /* Alborgeti - Que Merda Hein.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
