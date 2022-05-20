@@ -11,7 +11,6 @@ struct HelpAboutView: View {
 
     var body: some View {
         VStack {
-            
             ScrollView {
                 VStack(alignment: .center, spacing: 40) {
                     HStack(spacing: 15) {
@@ -27,7 +26,7 @@ struct HelpAboutView: View {
                             .multilineTextAlignment(.center)
                             .padding(.horizontal)
                         
-                        Button("Ouça no Apple Podcasts") {
+                        Button(action: {
                             let podcastLinkOnApplePodcasts = "https://podcasts.apple.com/br/podcast/medo-e-del%C3%ADrio-em-bras%C3%ADlia/id1502134265"
                             let podcastAppUrl = URL(string: podcastLinkOnApplePodcasts)!
                             if UIApplication.shared.canOpenURL(podcastAppUrl) {
@@ -35,6 +34,9 @@ struct HelpAboutView: View {
                             } else {
                                 showUnableToOpenPodcastsAppAlert = true
                             }
+                        }) {
+                            Text("Ver no Apple Podcasts")
+                                .font(.callout)
                         }
                         .tint(.purple)
                         .controlSize(.large)
@@ -47,17 +49,20 @@ struct HelpAboutView: View {
                     }
                     
                     VStack(alignment: .center, spacing: 5) {
-                        Text("Ô, cara, aproveita que tá aqui e paga uma 🍺 pro desenvolvedor por Pix, morô, cara.".uppercased())
+                        Text("Ô, cara, aproveita que tá aqui e paga uma 🍺 por Pix pro desenvolvedor, morô, cara:".uppercased())
                             .font(.callout)
                             .bold()
                             .foregroundColor(.gray)
                             .multilineTextAlignment(.center)
                             .padding(.horizontal)
                         
-                        Button(pixKey) {
+                        Button(action: {
                             UIPasteboard.general.string = pixKey
-                            
                             showPixKeyCopiedAlert = true
+                        }) {
+                            Text(pixKey)
+                                .font(.footnote)
+                                .bold()
                         }
                         .tint(.accentColor)
                         .controlSize(.large)
@@ -67,6 +72,24 @@ struct HelpAboutView: View {
                         .alert(isPresented: $showPixKeyCopiedAlert) {
                             Alert(title: Text("Chave copiada com sucesso!"), dismissButton: .default(Text("OK")))
                         }
+                    }
+                    
+                    VStack(alignment: .center, spacing: 5) {
+                        Text("🧑‍💻 Quer contribuir ou entender como o app funciona? Acesse o código fonte no GitHub:")
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal)
+                        
+                        Button(action: {
+                            let githubUrl = URL(string: "https://github.com/rafaelclaycon/MedoDelirioBrasilia")!
+                            UIApplication.shared.open(githubUrl)
+                        }) {
+                            Text("Ver projeto")
+                        }
+                        .tint(.primary)
+                        .controlSize(.large)
+                        .buttonStyle(.bordered)
+                        .buttonBorderShape(.capsule)
+                        .padding(.top)
                     }
                     
                     Spacer()
