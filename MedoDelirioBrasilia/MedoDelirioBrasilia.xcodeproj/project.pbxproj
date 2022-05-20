@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D961D01128371EE800EFEDEB /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = D961D01028371EE800EFEDEB /* Data.swift */; };
+		D961D01328371F1700EFEDEB /* sound_data.json in Resources */ = {isa = PBXBuildFile; fileRef = D961D01228371F1700EFEDEB /* sound_data.json */; };
 		D9625E7E28238F9A00080852 /* MedoDelirioBrasiliaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9625E7D28238F9A00080852 /* MedoDelirioBrasiliaApp.swift */; };
 		D9625E8028238F9A00080852 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9625E7F28238F9A00080852 /* MainView.swift */; };
 		D9625E8228238F9B00080852 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9625E8128238F9B00080852 /* Assets.xcassets */; };
 		D9625E8528238F9B00080852 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9625E8428238F9B00080852 /* Preview Assets.xcassets */; };
 		D9625E8F28238F9B00080852 /* MedoDelirioBrasiliaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9625E8E28238F9B00080852 /* MedoDelirioBrasiliaTests.swift */; };
-		D9625EAA282394BB00080852 /* Xandao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9625EA9282394BB00080852 /* Xandao.mp3 */; };
+		D98EC5DE282596C300340BE5 /* SoundRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5DD282596C300340BE5 /* SoundRow.swift */; };
+		D98EC5E12825A05900340BE5 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5E02825A05900340BE5 /* Sound.swift */; };
+		D98EC5E32825A45000340BE5 /* MainViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5E22825A45000340BE5 /* MainViewViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D961D01028371EE800EFEDEB /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		D961D01228371F1700EFEDEB /* sound_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sound_data.json; sourceTree = "<group>"; };
 		D9625E7A28238F9A00080852 /* Medo e Delírio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Medo e Delírio.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9625E7D28238F9A00080852 /* MedoDelirioBrasiliaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedoDelirioBrasiliaApp.swift; sourceTree = "<group>"; };
 		D9625E7F28238F9A00080852 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -41,7 +47,9 @@
 		D9625E8A28238F9B00080852 /* MedoDelirioBrasiliaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MedoDelirioBrasiliaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9625E8E28238F9B00080852 /* MedoDelirioBrasiliaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedoDelirioBrasiliaTests.swift; sourceTree = "<group>"; };
 		D9625E9428238F9B00080852 /* MedoDelirioBrasiliaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MedoDelirioBrasiliaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D9625EA9282394BB00080852 /* Xandao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Xandao.mp3; sourceTree = "<group>"; };
+		D98EC5DD282596C300340BE5 /* SoundRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundRow.swift; sourceTree = "<group>"; };
+		D98EC5E02825A05900340BE5 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
+		D98EC5E22825A45000340BE5 /* MainViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,7 +127,9 @@
 		D9625EA72823949200080852 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				D9625E7F28238F9A00080852 /* MainView.swift */,
+				D98EC5DF2825A04000340BE5 /* Models */,
+				D9625EAB2824EADC00080852 /* Views */,
+				D961D01028371EE800EFEDEB /* Data.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -127,9 +137,27 @@
 		D9625EA82823949700080852 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				D9625EA9282394BB00080852 /* Xandao.mp3 */,
+				D961D01228371F1700EFEDEB /* sound_data.json */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		D9625EAB2824EADC00080852 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D9625E7F28238F9A00080852 /* MainView.swift */,
+				D98EC5DD282596C300340BE5 /* SoundRow.swift */,
+				D98EC5E22825A45000340BE5 /* MainViewViewModel.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D98EC5DF2825A04000340BE5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D98EC5E02825A05900340BE5 /* Sound.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,7 +264,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9625EAA282394BB00080852 /* Xandao.mp3 in Resources */,
+				D961D01328371F1700EFEDEB /* sound_data.json in Resources */,
 				D9625E8528238F9B00080852 /* Preview Assets.xcassets in Resources */,
 				D9625E8228238F9B00080852 /* Assets.xcassets in Resources */,
 			);
@@ -264,7 +292,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9625E8028238F9A00080852 /* MainView.swift in Sources */,
+				D961D01128371EE800EFEDEB /* Data.swift in Sources */,
 				D9625E7E28238F9A00080852 /* MedoDelirioBrasiliaApp.swift in Sources */,
+				D98EC5DE282596C300340BE5 /* SoundRow.swift in Sources */,
+				D98EC5E32825A45000340BE5 /* MainViewViewModel.swift in Sources */,
+				D98EC5E12825A05900340BE5 /* Sound.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
