@@ -6,7 +6,7 @@ struct Sound: Hashable, Codable, Identifiable {
     var title: String
     var authorId: String
     var authorName: String?
-    var description: String?
+    var description: String
     var filename: String
     var dateAdded: Date?
     

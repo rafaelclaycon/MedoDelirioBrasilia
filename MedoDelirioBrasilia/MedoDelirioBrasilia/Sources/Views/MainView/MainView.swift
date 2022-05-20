@@ -4,11 +4,23 @@ struct MainView: View {
 
     @StateObject var viewModel = MainViewViewModel(sounds: soundData)
     @State var showingHelpAboutScreen = false
+    @State private var searchText = ""
     
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
+    
+    var searchResults: [Sound] {
+        if searchText.isEmpty {
+            return viewModel.sounds
+        } else {
+            return viewModel.sounds.filter { sound in
+                let searchString = "\(sound.description.lowercased().withoutDiacritics()) \(sound.authorName?.lowercased().withoutDiacritics() ?? "")"
+                return searchString.contains(searchText.lowercased().withoutDiacritics())
+            }
+        }
+    }
     
     var body: some View {
         NavigationView {
@@ -17,7 +29,7 @@ struct MainView: View {
                 
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 20) {
-                        ForEach(viewModel.sounds) { sound in
+                        ForEach(searchResults) { sound in
                             SoundRow(title: sound.title, author: sound.authorName ?? "")
                                 .onTapGesture {
                                     viewModel.playSound(fromPath: sound.filename)
@@ -27,6 +39,7 @@ struct MainView: View {
                                 }
                         }
                     }
+                    .searchable(text: $searchText)
                     .padding()
                 }
             }
@@ -54,6 +67,16 @@ struct MainView: View {
                         }
                     } label: {
                         Image(systemName: "arrow.up.arrow.down")
+                    }
+                }
+            )
+            .navigationBarItems(trailing:
+                Button(action: {
+//                    subviewToOpen = .addPodcast
+//                    showingModalView = true
+                }) {
+                    HStack {
+                        Image(systemName: "magnifyingglass")
                     }
                 }
             )
