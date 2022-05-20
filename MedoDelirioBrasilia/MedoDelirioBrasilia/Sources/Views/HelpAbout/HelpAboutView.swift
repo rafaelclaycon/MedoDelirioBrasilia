@@ -74,6 +74,8 @@ struct HelpAboutView: View {
                         }
                     }
                     
+                    Divider()
+                    
                     VStack(alignment: .center, spacing: 5) {
                         Text("🧑‍💻 Quer contribuir ou entender como o app funciona? Acesse o código fonte no GitHub:")
                             .multilineTextAlignment(.center)
@@ -85,7 +87,7 @@ struct HelpAboutView: View {
                         }) {
                             Text("Ver projeto")
                         }
-                        .tint(.primary)
+                        .tint(.gray)
                         .controlSize(.large)
                         .buttonStyle(.bordered)
                         .buttonBorderShape(.capsule)
