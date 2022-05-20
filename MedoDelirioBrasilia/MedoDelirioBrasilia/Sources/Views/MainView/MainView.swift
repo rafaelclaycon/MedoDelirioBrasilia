@@ -18,7 +18,7 @@ struct MainView: View {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 20) {
                         ForEach(viewModel.sounds) { sound in
-                            SoundRow(title: sound.title, author: sound.author)
+                            SoundRow(title: sound.title, author: authorData.first(where: { $0.id == sound.authorId })?.name ?? "")
                                 .onTapGesture {
                                     viewModel.playSound(fromPath: sound.filename)
                                 }

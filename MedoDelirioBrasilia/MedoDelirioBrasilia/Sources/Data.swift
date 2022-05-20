@@ -3,6 +3,7 @@ import SwiftUI
 import ImageIO
 
 var soundData: [Sound] = load("sound_data.json")
+var authorData: [Author] = load("author_data.json")
 
 func load<T: Decodable>(_ filename: String) -> T {
     let data: Data
