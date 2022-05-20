@@ -4,11 +4,21 @@ struct MainView: View {
 
     @StateObject var viewModel = MainViewViewModel(sounds: soundData)
     
+    let columns = [
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+    
     var body: some View {
         NavigationView {
             VStack {
-                List(viewModel.sounds) { sound in
-                    SoundRow(title: sound.title, author: sound.author)
+                ScrollView {
+                    LazyVGrid(columns: columns, spacing: 20) {
+                        ForEach(viewModel.sounds) { sound in
+                            SoundRow(title: sound.title, author: sound.author)
+                        }
+                    }
+                    .padding()
                 }
             }
             .navigationTitle("Medo e Delírio")
