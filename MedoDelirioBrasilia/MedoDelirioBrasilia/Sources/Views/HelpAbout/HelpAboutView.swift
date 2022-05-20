@@ -16,7 +16,7 @@ struct HelpAboutView: View {
                     HStack(spacing: 15) {
                         Image(systemName: "questionmark.circle")
                             .font(.largeTitle)
-                            .foregroundColor(.darkGreen)
+                            .foregroundColor(.accentColor)
                         
                         Text("Para compartilhar um som, toque e segure por 2 segundos.")
                     }

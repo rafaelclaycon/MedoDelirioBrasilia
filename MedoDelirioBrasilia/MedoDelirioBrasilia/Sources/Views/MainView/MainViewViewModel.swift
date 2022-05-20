@@ -4,9 +4,17 @@ import UIKit
 class MainViewViewModel: ObservableObject {
     
     @Published var sounds: [Sound]
+    @Published var sortOption: Int
     
     init(sounds: [Sound]) {
         self.sounds = sounds
+        self.sortOption = 0 //UserSettings.getArchiveSortOption()
+        
+        for i in 0...(sounds.count - 1) {
+            self.sounds[i].authorName = authorData.first(where: { $0.id == self.sounds[i].authorId })?.name ?? "Desconhecido"
+        }
+        
+        self.sounds.sort(by: { $0.title.withoutDiacritics() < $1.title.withoutDiacritics() })
     }
     
     func playSound(fromPath filepath: String) {
