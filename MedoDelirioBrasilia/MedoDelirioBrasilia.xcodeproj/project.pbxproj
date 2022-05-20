@@ -185,9 +185,9 @@
 		D9625EA72823949200080852 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				D961D0142837229100EFEDEB /* Extensions */,
 				D98EC5DF2825A04000340BE5 /* Models */,
 				D9625EAB2824EADC00080852 /* Views */,
+				D961D0142837229100EFEDEB /* Extensions */,
 				D961D01028371EE800EFEDEB /* Data.swift */,
 				D961D01728372B1800EFEDEB /* AudioPlayer.swift */,
 			);
@@ -223,10 +223,9 @@
 		D9625EAB2824EADC00080852 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D9B9025C2837485000551239 /* MainView */,
 				D961D0232837319600EFEDEB /* HelpAbout */,
-				D9625E7F28238F9A00080852 /* MainView.swift */,
 				D98EC5DD282596C300340BE5 /* SoundRow.swift */,
-				D98EC5E22825A45000340BE5 /* MainViewViewModel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -237,6 +236,15 @@
 				D98EC5E02825A05900340BE5 /* Sound.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		D9B9025C2837485000551239 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				D9625E7F28238F9A00080852 /* MainView.swift */,
+				D98EC5E22825A45000340BE5 /* MainViewViewModel.swift */,
+			);
+			path = MainView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,6 +333,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"pt-BR",
 			);
 			mainGroup = D9625E7128238F9A00080852;
 			productRefGroup = D9625E7B28238F9A00080852 /* Products */;

@@ -22,6 +22,10 @@ struct MainView: View {
                                 .onTapGesture {
                                     viewModel.playSound(fromPath: sound.filename)
                                 }
+                                .onLongPressGesture {
+                                    viewModel.shareSound(withPath: sound.filename)
+                                }
+
                         }
                     }
                     .padding()

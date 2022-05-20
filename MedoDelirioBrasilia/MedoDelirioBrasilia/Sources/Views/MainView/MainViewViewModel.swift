@@ -26,8 +26,18 @@ class MainViewViewModel: ObservableObject {
         player?.togglePlay()
     }
 
-    func shareSound() {
-        print("Share tapped")
+    func shareSound(withPath filepath: String) {
+        guard filepath.isEmpty == false else {
+            return
+        }
+        
+        let path = Bundle.main.path(forResource: filepath, ofType: nil)!
+        let url = URL(fileURLWithPath: path)
+        
+        let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        DispatchQueue.main.async {
+            UIApplication.shared.keyWindow?.rootViewController?.present(activityVC, animated: true, completion: nil)
+        }
     }
 
 }
