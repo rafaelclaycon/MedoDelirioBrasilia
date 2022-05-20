@@ -6,6 +6,8 @@ struct HelpAboutView: View {
     @State var showUnableToOpenPodcastsAppAlert: Bool = false
     
     let cpf: String = "02066428060"
+    let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? String()
+    let buildVersionNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? String()
 
     var body: some View {
         VStack {
@@ -71,7 +73,13 @@ struct HelpAboutView: View {
                 }
             }
             
-            Text("Criado por @claycon_")
+            VStack(spacing: 15) {
+                Text("Criado por @claycon_")
+                
+                Text("Versão \(appVersion) Build \(buildVersionNumber)")
+                    .foregroundColor(.gray)
+                    .font(.footnote)
+            }
         }
         .padding()
         .navigationTitle("Ajuda e Sobre")

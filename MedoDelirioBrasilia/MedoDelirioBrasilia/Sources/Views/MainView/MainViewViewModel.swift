@@ -17,10 +17,10 @@ class MainViewViewModel: ObservableObject {
         let path = Bundle.main.path(forResource: filepath, ofType: nil)!
         let url = URL(fileURLWithPath: path)
 
-        print(url)
+        //print(url)
 
         player = AudioPlayer(url: url, update: { state in
-            print(state?.activity as Any)
+            //print(state?.activity as Any)
         })
         
         player?.togglePlay()
