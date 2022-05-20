@@ -1,21 +1,33 @@
 import SwiftUI
 
 struct SoundRow: View {
-    
+
     @State var title: String
     @State var author: String
+    
+    let gradiente = LinearGradient(gradient: Gradient(colors: [.darkGreen, .darkGreen, .brightYellow]), startPoint: .topLeading, endPoint: .bottomTrailing)
 
     var body: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 8) {
-                Text(title)
-                    .font(.body)
-                    .bold()
+        ZStack {
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .fill(gradiente)
+                .frame(height: 90)
+            
+            HStack {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(title)
+                        .foregroundColor(.white)
+                        .font(.body)
+                        .bold()
+                    
+                    Text(author)
+                        .font(.subheadline)
+                        .foregroundColor(.white)
+                }
                 
-                Text(author)
-                    .font(.subheadline)
-                    .foregroundColor(.gray)
+                Spacer()
             }
+            .padding(.leading, 20)
         }
     }
 
