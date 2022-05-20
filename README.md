@@ -4,9 +4,9 @@
 
 iOS app with sound inserts from [Medo e Delírio em Brasília](https://medoedelirioembrasilia.com.br), a Brazilian podcast chronicling the disastrous Bolsonaro presidency by Pedro Daltro and Cristiano Botafogo.
 
-✨ **Now available on the App Store:** https://apps.apple.com/br/app/medo-e-del%C3%ADrio/id1625199878 ✨
+✨ [**Now available on the App Store**](https://apps.apple.com/br/app/medo-e-del%C3%ADrio/id1625199878) ✨
 
-Also check out [Sidronio Lima's Android app 🤖](https://play.google.com/store/apps/details?id=br.com.sidroniolima.medo_e_delirio_app)
+Looking for an Android version? Check out [Sidronio Lima's Android app 🤖](https://play.google.com/store/apps/details?id=br.com.sidroniolima.medo_e_delirio_app)
 
 ## Features
 
