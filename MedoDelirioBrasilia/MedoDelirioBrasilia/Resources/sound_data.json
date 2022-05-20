@@ -158,5 +158,61 @@
         "description": "que merda em que merda hein que merda hem",
         "filename": "Alborgeti - Que Merda Hein.mp3",
         "dateAdded": "2022-05-20T00:00:00Z"
+    },
+    {
+        "id": "0136DDD8-7977-41FF-9433-C678675A3791",
+        "title": "Esse Neto",
+        "authorId": "51706210-3329-4A43-A823-2F91EBC4B546",
+        "description": "esse neto bosta com esse braga bosta neto",
+        "filename": "esse_neto_bosta.mp3",
+        "dateAdded": "2022-05-20T00:00:00Z"
+    },
+    {
+        "id": "FB04DE88-8F30-4051-93B3-DB288C8C3935",
+        "title": "Esse Braga Neto",
+        "authorId": "51706210-3329-4A43-A823-2F91EBC4B546",
+        "description": "esse braga neto que é um bosta",
+        "filename": "esse_braga_neto_que_eh_um_bosta.mp3",
+        "dateAdded": "2022-05-20T00:00:00Z"
+    },
+    {
+        "id": "1432E4A4-2D05-4439-936E-143E4B7E89B3",
+        "title": "Não f*** mermão",
+        "authorId": "17860F3D-A18C-4684-86D0-931306A6937A",
+        "description": "não fode mermão",
+        "filename": "Away - nao fode mermao.mp3",
+        "dateAdded": "2022-05-20T00:00:00Z"
+    },
+    {
+        "id": "83301B63-DD4F-4844-A96D-06FC9F02ABDC",
+        "title": "É um m****",
+        "authorId": "B8720575-50B5-4271-B425-C172D56263C8",
+        "description": "é um merda",
+        "filename": "e_um_merda.mp3",
+        "dateAdded": "2022-05-20T00:00:00Z"
+    },
+    {
+        "id": "7D03A9DA-5735-4967-8C93-9B31589943A1",
+        "title": "É c****, receba",
+        "authorId": "2C99D577-ED07-4803-8AC6-C265AF0D3093",
+        "description": "é carai receba",
+        "filename": "LUVA DE PEDREIRO - E, caralho carai, RECEBA.mp3",
+        "dateAdded": "2022-05-20T00:00:00Z"
+    },
+    {
+        "id": "AC5BF3FA-E5FF-4942-A43D-70415796538D",
+        "title": "Receba, c****",
+        "authorId": "2C99D577-ED07-4803-8AC6-C265AF0D3093",
+        "description": "receba carai",
+        "filename": "O CARA DA LUVA DE PEDREIRO - receba carai caralho.mp3",
+        "dateAdded": "2022-05-20T00:00:00Z"
+    },
+    {
+        "id": "1323C18E-DF14-45C7-9144-DE8B01B0F9C7",
+        "title": "Um b****",
+        "authorId": "51706210-3329-4A43-A823-2F91EBC4B546",
+        "description": "que é um bosta",
+        "filename": "um_bosta_ciro.mp3",
+        "dateAdded": "2022-05-20T00:00:00Z"
     }
 ]

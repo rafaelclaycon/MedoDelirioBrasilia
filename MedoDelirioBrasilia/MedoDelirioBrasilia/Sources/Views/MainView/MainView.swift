@@ -2,9 +2,10 @@ import SwiftUI
 
 struct MainView: View {
 
-    @StateObject var viewModel = MainViewViewModel(sounds: soundData)
-    @State var showingHelpAboutScreen = false
+    @StateObject private var viewModel = MainViewViewModel(sounds: soundData)
+    @State private var showingHelpAboutScreen = false
     @State private var searchText = ""
+    @State private var searchBar: UISearchBar?
     
     let columns = [
         GridItem(.flexible()),
@@ -66,7 +67,7 @@ struct MainView: View {
                             }
                         }
                     } label: {
-                        Image(systemName: "arrow.up.arrow.down")
+                        Image(systemName: "arrow.up.arrow.down.circle")
                     }
                 }
             )
@@ -76,7 +77,7 @@ struct MainView: View {
 //                    showingModalView = true
                 }) {
                     HStack {
-                        Image(systemName: "magnifyingglass")
+                        Image(systemName: "questionmark.circle")
                     }
                 }
             )

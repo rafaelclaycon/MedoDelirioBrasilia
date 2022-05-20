@@ -12,6 +12,9 @@ struct HelpAboutView: View {
     var body: some View {
         VStack {
             ScrollView {
+                Text("\(soundData.count) sons")
+                    .padding(.bottom)
+                
                 VStack(alignment: .center, spacing: 40) {
                     HStack(spacing: 15) {
                         Image(systemName: "questionmark.circle")
