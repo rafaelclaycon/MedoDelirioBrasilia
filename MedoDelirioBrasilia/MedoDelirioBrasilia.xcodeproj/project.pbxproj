@@ -10,6 +10,12 @@
 		D961D01128371EE800EFEDEB /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = D961D01028371EE800EFEDEB /* Data.swift */; };
 		D961D01328371F1700EFEDEB /* sound_data.json in Resources */ = {isa = PBXBuildFile; fileRef = D961D01228371F1700EFEDEB /* sound_data.json */; };
 		D961D016283722AB00EFEDEB /* Color+CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D961D015283722AB00EFEDEB /* Color+CustomColors.swift */; };
+		D961D01828372B1800EFEDEB /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D961D01728372B1800EFEDEB /* AudioPlayer.swift */; };
+		D961D01E28372CC800EFEDEB /* tv_senado_soraya_thronicke_a_gente_vai_cansando_sabe.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D961D01928372CC800EFEDEB /* tv_senado_soraya_thronicke_a_gente_vai_cansando_sabe.mp3 */; };
+		D961D01F28372CC800EFEDEB /* esse_neto_bosta.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D961D01A28372CC800EFEDEB /* esse_neto_bosta.mp3 */; };
+		D961D02028372CC800EFEDEB /* um_bosta_ciro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D961D01B28372CC800EFEDEB /* um_bosta_ciro.mp3 */; };
+		D961D02128372CC800EFEDEB /* esse_braga_neto_que_eh_um_bosta.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D961D01C28372CC800EFEDEB /* esse_braga_neto_que_eh_um_bosta.mp3 */; };
+		D961D02228372CC800EFEDEB /* deu_errado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D961D01D28372CC800EFEDEB /* deu_errado.mp3 */; };
 		D9625E7E28238F9A00080852 /* MedoDelirioBrasiliaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9625E7D28238F9A00080852 /* MedoDelirioBrasiliaApp.swift */; };
 		D9625E8028238F9A00080852 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9625E7F28238F9A00080852 /* MainView.swift */; };
 		D9625E8228238F9B00080852 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9625E8128238F9B00080852 /* Assets.xcassets */; };
@@ -41,6 +47,12 @@
 		D961D01028371EE800EFEDEB /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		D961D01228371F1700EFEDEB /* sound_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sound_data.json; sourceTree = "<group>"; };
 		D961D015283722AB00EFEDEB /* Color+CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+CustomColors.swift"; sourceTree = "<group>"; };
+		D961D01728372B1800EFEDEB /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		D961D01928372CC800EFEDEB /* tv_senado_soraya_thronicke_a_gente_vai_cansando_sabe.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tv_senado_soraya_thronicke_a_gente_vai_cansando_sabe.mp3; sourceTree = "<group>"; };
+		D961D01A28372CC800EFEDEB /* esse_neto_bosta.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = esse_neto_bosta.mp3; sourceTree = "<group>"; };
+		D961D01B28372CC800EFEDEB /* um_bosta_ciro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = um_bosta_ciro.mp3; sourceTree = "<group>"; };
+		D961D01C28372CC800EFEDEB /* esse_braga_neto_que_eh_um_bosta.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = esse_braga_neto_que_eh_um_bosta.mp3; sourceTree = "<group>"; };
+		D961D01D28372CC800EFEDEB /* deu_errado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = deu_errado.mp3; sourceTree = "<group>"; };
 		D9625E7A28238F9A00080852 /* Medo e Delírio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Medo e Delírio.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9625E7D28238F9A00080852 /* MedoDelirioBrasiliaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedoDelirioBrasiliaApp.swift; sourceTree = "<group>"; };
 		D9625E7F28238F9A00080852 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -141,6 +153,7 @@
 				D98EC5DF2825A04000340BE5 /* Models */,
 				D9625EAB2824EADC00080852 /* Views */,
 				D961D01028371EE800EFEDEB /* Data.swift */,
+				D961D01728372B1800EFEDEB /* AudioPlayer.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -148,6 +161,11 @@
 		D9625EA82823949700080852 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D961D01D28372CC800EFEDEB /* deu_errado.mp3 */,
+				D961D01C28372CC800EFEDEB /* esse_braga_neto_que_eh_um_bosta.mp3 */,
+				D961D01A28372CC800EFEDEB /* esse_neto_bosta.mp3 */,
+				D961D01928372CC800EFEDEB /* tv_senado_soraya_thronicke_a_gente_vai_cansando_sabe.mp3 */,
+				D961D01B28372CC800EFEDEB /* um_bosta_ciro.mp3 */,
 				D961D01228371F1700EFEDEB /* sound_data.json */,
 			);
 			path = Resources;
@@ -277,7 +295,12 @@
 			files = (
 				D961D01328371F1700EFEDEB /* sound_data.json in Resources */,
 				D9625E8528238F9B00080852 /* Preview Assets.xcassets in Resources */,
+				D961D01E28372CC800EFEDEB /* tv_senado_soraya_thronicke_a_gente_vai_cansando_sabe.mp3 in Resources */,
+				D961D02028372CC800EFEDEB /* um_bosta_ciro.mp3 in Resources */,
 				D9625E8228238F9B00080852 /* Assets.xcassets in Resources */,
+				D961D01F28372CC800EFEDEB /* esse_neto_bosta.mp3 in Resources */,
+				D961D02228372CC800EFEDEB /* deu_errado.mp3 in Resources */,
+				D961D02128372CC800EFEDEB /* esse_braga_neto_que_eh_um_bosta.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +329,7 @@
 				D961D01128371EE800EFEDEB /* Data.swift in Sources */,
 				D9625E7E28238F9A00080852 /* MedoDelirioBrasiliaApp.swift in Sources */,
 				D961D016283722AB00EFEDEB /* Color+CustomColors.swift in Sources */,
+				D961D01828372B1800EFEDEB /* AudioPlayer.swift in Sources */,
 				D98EC5DE282596C300340BE5 /* SoundRow.swift in Sources */,
 				D98EC5E32825A45000340BE5 /* MainViewViewModel.swift in Sources */,
 				D98EC5E12825A05900340BE5 /* Sound.swift in Sources */,
