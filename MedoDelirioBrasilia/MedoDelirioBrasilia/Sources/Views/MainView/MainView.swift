@@ -31,7 +31,7 @@ struct MainView: View {
                     .padding()
                 }
             }
-            .navigationTitle(Text("Medo e Delírio"))
+            .navigationTitle(Text(LocalizableStrings.MainView.title))
             .navigationBarItems(leading:
                 HStack {
                     Button(action: {

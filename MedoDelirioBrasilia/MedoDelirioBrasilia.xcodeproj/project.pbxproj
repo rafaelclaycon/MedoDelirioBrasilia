@@ -22,6 +22,8 @@
 		D9625E8228238F9B00080852 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9625E8128238F9B00080852 /* Assets.xcassets */; };
 		D9625E8528238F9B00080852 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9625E8428238F9B00080852 /* Preview Assets.xcassets */; };
 		D9625E8F28238F9B00080852 /* MedoDelirioBrasiliaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9625E8E28238F9B00080852 /* MedoDelirioBrasiliaTests.swift */; };
+		D980455C28380EFE003B2E83 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D980455E28380EFE003B2E83 /* Localizable.strings */; };
+		D980456228380F66003B2E83 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D980456128380F66003B2E83 /* LocalizableStrings.swift */; };
 		D98A15532837D097008EC21F /* Passada chocada meu Deus jesus.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98A154A2837D097008EC21F /* Passada chocada meu Deus jesus.mp3 */; };
 		D98A15542837D097008EC21F /* Deltan Dallangnol - Os meus advogados estão estarrecidos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98A154B2837D097008EC21F /* Deltan Dallangnol - Os meus advogados estão estarrecidos.mp3 */; };
 		D98A15552837D097008EC21F /* PODER36_Paulo_Guedes_Tem_mais_iPhones_no_Brasil_que_população_Brasileiros.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98A154C2837D097008EC21F /* PODER36_Paulo_Guedes_Tem_mais_iPhones_no_Brasil_que_população_Brasileiros.mp3 */; };
@@ -85,6 +87,9 @@
 		D9625E8A28238F9B00080852 /* MedoDelirioBrasiliaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MedoDelirioBrasiliaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9625E8E28238F9B00080852 /* MedoDelirioBrasiliaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedoDelirioBrasiliaTests.swift; sourceTree = "<group>"; };
 		D9625E9428238F9B00080852 /* MedoDelirioBrasiliaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MedoDelirioBrasiliaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D980455D28380EFE003B2E83 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D980455F28380F05003B2E83 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D980456128380F66003B2E83 /* LocalizableStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
 		D98A154A2837D097008EC21F /* Passada chocada meu Deus jesus.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Passada chocada meu Deus jesus.mp3"; sourceTree = "<group>"; };
 		D98A154B2837D097008EC21F /* Deltan Dallangnol - Os meus advogados estão estarrecidos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Deltan Dallangnol - Os meus advogados estão estarrecidos.mp3"; sourceTree = "<group>"; };
 		D98A154C2837D097008EC21F /* PODER36_Paulo_Guedes_Tem_mais_iPhones_no_Brasil_que_população_Brasileiros.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "PODER36_Paulo_Guedes_Tem_mais_iPhones_no_Brasil_que_população_Brasileiros.mp3"; sourceTree = "<group>"; };
@@ -180,6 +185,7 @@
 				D9625E7D28238F9A00080852 /* MedoDelirioBrasiliaApp.swift */,
 				D9625E8128238F9B00080852 /* Assets.xcassets */,
 				D9625E8328238F9B00080852 /* Preview Content */,
+				D980455E28380EFE003B2E83 /* Localizable.strings */,
 			);
 			path = MedoDelirioBrasilia;
 			sourceTree = "<group>";
@@ -206,6 +212,7 @@
 				D98EC5DF2825A04000340BE5 /* Models */,
 				D9625EAB2824EADC00080852 /* Views */,
 				D961D0142837229100EFEDEB /* Extensions */,
+				D980456028380F45003B2E83 /* AppSupport */,
 				D961D01028371EE800EFEDEB /* Data.swift */,
 				D961D01728372B1800EFEDEB /* AudioPlayer.swift */,
 			);
@@ -255,6 +262,14 @@
 				D98EC5DD282596C300340BE5 /* SoundRow.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		D980456028380F45003B2E83 /* AppSupport */ = {
+			isa = PBXGroup;
+			children = (
+				D980456128380F66003B2E83 /* LocalizableStrings.swift */,
+			);
+			path = AppSupport;
 			sourceTree = "<group>";
 		};
 		D98EC5DF2825A04000340BE5 /* Models */ = {
@@ -395,6 +410,7 @@
 				D9B902572837460C00551239 /* ADY - oh nao mais um crime de responsabilidade.mp3 in Resources */,
 				D98A15572837D097008EC21F /* MULTISHOW_Gloria_Groove_Quer_dizer_que_eles_querem_calar_a_gente.mp3 in Resources */,
 				D9B902502837460C00551239 /* PORTA_DOS_FUNDOS_BALBÚRDIA_Bom_dia,_turma,_todo_mundo_tirando_a.mp3 in Resources */,
+				D980455C28380EFE003B2E83 /* Localizable.strings in Resources */,
 				D98A155B2837D097008EC21F /* MULTISHOW - Lulu Santos - Censura nunca mais.mp3 in Resources */,
 				D9B902532837460C00551239 /* O CARA DA LUVA DE PEDREIRO - receba carai caralho.mp3 in Resources */,
 				D98A15542837D097008EC21F /* Deltan Dallangnol - Os meus advogados estão estarrecidos.mp3 in Resources */,
@@ -440,6 +456,7 @@
 				D961D01828372B1800EFEDEB /* AudioPlayer.swift in Sources */,
 				D98EC5DE282596C300340BE5 /* SoundRow.swift in Sources */,
 				D98EC5E32825A45000340BE5 /* MainViewViewModel.swift in Sources */,
+				D980456228380F66003B2E83 /* LocalizableStrings.swift in Sources */,
 				D961D025283731AA00EFEDEB /* HelpAboutView.swift in Sources */,
 				D98EC5E12825A05900340BE5 /* Sound.swift in Sources */,
 			);
@@ -474,6 +491,18 @@
 			targetProxy = D9625E9528238F9B00080852 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D980455E28380EFE003B2E83 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D980455D28380EFE003B2E83 /* en */,
+				D980455F28380F05003B2E83 /* pt-BR */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		D9625E9C28238F9B00080852 /* Debug */ = {
