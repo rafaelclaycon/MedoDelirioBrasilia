@@ -1,8 +1,8 @@
 import SwiftUI
 
-struct MainView: View {
+struct SoundView: View {
 
-    @StateObject private var viewModel = MainViewViewModel(sounds: soundData)
+    @StateObject private var viewModel = SoundViewViewModel(sounds: soundData)
     @State private var showingHelpAboutScreen = false
     @State private var searchText = ""
     @State private var searchBar: UISearchBar?
@@ -43,17 +43,17 @@ struct MainView: View {
                     .searchable(text: $searchText)
                     .padding(.horizontal)
                     .padding(.top, 7)
+                    
+                    Text("\(soundData.count) sons. Atualizado em 21/05/2022.")
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                        .padding(.top, 10)
+                        .padding(.bottom, 18)
                 }
             }
             .navigationTitle(Text(LocalizableStrings.MainView.title))
             .navigationBarItems(leading:
                 HStack {
-                    Button(action: {
-                        showingHelpAboutScreen = true
-                    }) {
-                        Image(systemName: "info.circle")
-                    }
-                
                     Menu {
                         Section {
                             Picker(selection: $viewModel.sortOption, label: Text("Ordenação")) {
@@ -74,8 +74,7 @@ struct MainView: View {
             )
             .navigationBarItems(trailing:
                 Button(action: {
-//                    subviewToOpen = .addPodcast
-//                    showingModalView = true
+                    showingHelpAboutScreen = true
                 }) {
                     HStack {
                         Image(systemName: "questionmark.circle")
@@ -90,7 +89,7 @@ struct MainView: View {
 struct ContentView_Previews: PreviewProvider {
 
     static var previews: some View {
-        MainView()
+        SoundView()
     }
 
 }
