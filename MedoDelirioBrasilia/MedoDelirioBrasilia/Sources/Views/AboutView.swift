@@ -43,9 +43,6 @@ struct AboutView: View {
                         
                         VStack(alignment: .center, spacing: 5) {
                             Text("Dinheiro! Aqui aceitas Pix. Qualquer R$ 1 ajuda o desenvolvedor a manter isso aqui. 💵⬇️")
-                                //.font(.callout)
-                                //.bold()
-                                //.foregroundColor(.gray)
                                 .multilineTextAlignment(.center)
                                 .padding(.horizontal)
                             
@@ -67,10 +64,8 @@ struct AboutView: View {
                             }
                         }
                         
-                        Text("\(soundData.count) sons")
-                            .padding(.bottom)
-                        
-                        Divider()
+//                        Text("\(soundData.count) sons")
+//                            .padding(.bottom)
                         
                         VStack(alignment: .center, spacing: 5) {
                             Text("🧑‍💻 Quer contribuir ou entender como o app funciona? Acesse o código fonte:")
@@ -89,8 +84,6 @@ struct AboutView: View {
                             .buttonBorderShape(.capsule)
                             .padding(.top)
                         }
-                        
-                        // Spacer()
                         
                         VStack(spacing: 15) {
                             Text("Criado por @claycon_")

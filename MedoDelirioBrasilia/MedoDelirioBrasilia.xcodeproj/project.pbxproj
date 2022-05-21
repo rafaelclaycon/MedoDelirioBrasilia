@@ -27,7 +27,7 @@
 		D961D02228372CC800EFEDEB /* deu_errado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D961D01D28372CC800EFEDEB /* deu_errado.mp3 */; };
 		D961D025283731AA00EFEDEB /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D961D024283731AA00EFEDEB /* HelpView.swift */; };
 		D9625E7E28238F9A00080852 /* MedoDelirioBrasiliaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9625E7D28238F9A00080852 /* MedoDelirioBrasiliaApp.swift */; };
-		D9625E8028238F9A00080852 /* SoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9625E7F28238F9A00080852 /* SoundView.swift */; };
+		D9625E8028238F9A00080852 /* SoundsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9625E7F28238F9A00080852 /* SoundsView.swift */; };
 		D9625E8228238F9B00080852 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9625E8128238F9B00080852 /* Assets.xcassets */; };
 		D9625E8528238F9B00080852 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9625E8428238F9B00080852 /* Preview Assets.xcassets */; };
 		D9625E8F28238F9B00080852 /* MedoDelirioBrasiliaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9625E8E28238F9B00080852 /* MedoDelirioBrasiliaTests.swift */; };
@@ -44,7 +44,7 @@
 		D98A155B2837D097008EC21F /* MULTISHOW - Lulu Santos - Censura nunca mais.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98A15522837D097008EC21F /* MULTISHOW - Lulu Santos - Censura nunca mais.mp3 */; };
 		D98EC5DE282596C300340BE5 /* SoundRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5DD282596C300340BE5 /* SoundRow.swift */; };
 		D98EC5E12825A05900340BE5 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5E02825A05900340BE5 /* Sound.swift */; };
-		D98EC5E32825A45000340BE5 /* SoundViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5E22825A45000340BE5 /* SoundViewViewModel.swift */; };
+		D98EC5E32825A45000340BE5 /* SoundsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5E22825A45000340BE5 /* SoundsViewViewModel.swift */; };
 		D9B9024F2837460C00551239 /* LUVA DE PEDREIRO - E, caralho carai, RECEBA.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B902422837460C00551239 /* LUVA DE PEDREIRO - E, caralho carai, RECEBA.mp3 */; };
 		D9B902502837460C00551239 /* PORTA_DOS_FUNDOS_BALBÚRDIA_Bom_dia,_turma,_todo_mundo_tirando_a.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B902432837460C00551239 /* PORTA_DOS_FUNDOS_BALBÚRDIA_Bom_dia,_turma,_todo_mundo_tirando_a.mp3 */; };
 		D9B902512837460C00551239 /* o_cachorro_do_supremo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B902442837460C00551239 /* o_cachorro_do_supremo.mp3 */; };
@@ -99,7 +99,7 @@
 		D961D024283731AA00EFEDEB /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		D9625E7A28238F9A00080852 /* Medo e Delírio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Medo e Delírio.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9625E7D28238F9A00080852 /* MedoDelirioBrasiliaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedoDelirioBrasiliaApp.swift; sourceTree = "<group>"; };
-		D9625E7F28238F9A00080852 /* SoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundView.swift; sourceTree = "<group>"; };
+		D9625E7F28238F9A00080852 /* SoundsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsView.swift; sourceTree = "<group>"; };
 		D9625E8128238F9B00080852 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D9625E8428238F9B00080852 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D9625E8A28238F9B00080852 /* MedoDelirioBrasiliaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MedoDelirioBrasiliaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,7 +119,7 @@
 		D98A15522837D097008EC21F /* MULTISHOW - Lulu Santos - Censura nunca mais.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "MULTISHOW - Lulu Santos - Censura nunca mais.mp3"; sourceTree = "<group>"; };
 		D98EC5DD282596C300340BE5 /* SoundRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundRow.swift; sourceTree = "<group>"; };
 		D98EC5E02825A05900340BE5 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
-		D98EC5E22825A45000340BE5 /* SoundViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundViewViewModel.swift; sourceTree = "<group>"; };
+		D98EC5E22825A45000340BE5 /* SoundsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsViewViewModel.swift; sourceTree = "<group>"; };
 		D9B902422837460C00551239 /* LUVA DE PEDREIRO - E, caralho carai, RECEBA.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "LUVA DE PEDREIRO - E, caralho carai, RECEBA.mp3"; sourceTree = "<group>"; };
 		D9B902432837460C00551239 /* PORTA_DOS_FUNDOS_BALBÚRDIA_Bom_dia,_turma,_todo_mundo_tirando_a.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "PORTA_DOS_FUNDOS_BALBÚRDIA_Bom_dia,_turma,_todo_mundo_tirando_a.mp3"; sourceTree = "<group>"; };
 		D9B902442837460C00551239 /* o_cachorro_do_supremo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = o_cachorro_do_supremo.mp3; sourceTree = "<group>"; };
@@ -278,7 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				D958B1A928394D400010F133 /* MainView.swift */,
-				D9B9025C2837485000551239 /* SoundView */,
+				D9B9025C2837485000551239 /* SoundsView */,
 				D961D0232837319600EFEDEB /* HelpView */,
 				D98EC5DD282596C300340BE5 /* SoundRow.swift */,
 				D958B1AB28394DCD0010F133 /* FavoritesView.swift */,
@@ -307,13 +307,13 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		D9B9025C2837485000551239 /* SoundView */ = {
+		D9B9025C2837485000551239 /* SoundsView */ = {
 			isa = PBXGroup;
 			children = (
-				D9625E7F28238F9A00080852 /* SoundView.swift */,
-				D98EC5E22825A45000340BE5 /* SoundViewViewModel.swift */,
+				D9625E7F28238F9A00080852 /* SoundsView.swift */,
+				D98EC5E22825A45000340BE5 /* SoundsViewViewModel.swift */,
 			);
-			path = SoundView;
+			path = SoundsView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -477,7 +477,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9625E8028238F9A00080852 /* SoundView.swift in Sources */,
+				D9625E8028238F9A00080852 /* SoundsView.swift in Sources */,
 				D958B1AA28394D400010F133 /* MainView.swift in Sources */,
 				D93443292838230500ADCD38 /* String+Extensions.swift in Sources */,
 				D961D01128371EE800EFEDEB /* Data.swift in Sources */,
@@ -488,7 +488,7 @@
 				D93443252838177000ADCD38 /* UserInfo.swift in Sources */,
 				D961D01828372B1800EFEDEB /* AudioPlayer.swift in Sources */,
 				D98EC5DE282596C300340BE5 /* SoundRow.swift in Sources */,
-				D98EC5E32825A45000340BE5 /* SoundViewViewModel.swift in Sources */,
+				D98EC5E32825A45000340BE5 /* SoundsViewViewModel.swift in Sources */,
 				D9344323283812AD00ADCD38 /* Author.swift in Sources */,
 				D958B1B22839534D0010F133 /* AboutView.swift in Sources */,
 				D980456228380F66003B2E83 /* LocalizableStrings.swift in Sources */,

@@ -1,8 +1,8 @@
 import SwiftUI
 
-struct SoundView: View {
+struct SoundsView: View {
 
-    @StateObject private var viewModel = SoundViewViewModel(sounds: soundData)
+    @StateObject private var viewModel = SoundsViewViewModel(sounds: soundData)
     @State private var showingHelpAboutScreen = false
     @State private var searchText = ""
     @State private var searchBar: UISearchBar?
@@ -53,26 +53,6 @@ struct SoundView: View {
             }
             .navigationTitle(Text(LocalizableStrings.MainView.title))
             .navigationBarItems(leading:
-                HStack {
-                    Menu {
-                        Section {
-                            Picker(selection: $viewModel.sortOption, label: Text("Ordenação")) {
-                                Text("Ordernar por Título")
-                                    .tag(0)
-                                
-                                Text("Ordernar por Autor")
-                                    .tag(1)
-                                
-                                Text("Adicionados por Último no Topo")
-                                    .tag(2)
-                            }
-                        }
-                    } label: {
-                        Image(systemName: "arrow.up.arrow.down.circle")
-                    }
-                }
-            )
-            .navigationBarItems(trailing:
                 Button(action: {
                     showingHelpAboutScreen = true
                 }) {
@@ -80,16 +60,33 @@ struct SoundView: View {
                         Image(systemName: "questionmark.circle")
                     }
                 }
+            , trailing:
+                Menu {
+                    Section {
+                        Picker(selection: $viewModel.sortOption, label: Text("Ordenação")) {
+                            Text("Ordernar por Título")
+                                .tag(0)
+                            
+                            Text("Ordernar por Autor")
+                                .tag(1)
+                            
+                            Text("Adicionados por Último no Topo")
+                                .tag(2)
+                        }
+                    }
+                } label: {
+                    Image(systemName: "arrow.up.arrow.down.circle")
+                }
             )
         }
     }
 
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct SoundsView_Previews: PreviewProvider {
 
     static var previews: some View {
-        SoundView()
+        SoundsView()
     }
 
 }

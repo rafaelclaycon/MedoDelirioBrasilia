@@ -1,7 +1,7 @@
 import Combine
 import UIKit
 
-class SoundViewViewModel: ObservableObject {
+class SoundsViewViewModel: ObservableObject {
     
     @Published var sounds: [Sound]
     @Published var sortOption: Int

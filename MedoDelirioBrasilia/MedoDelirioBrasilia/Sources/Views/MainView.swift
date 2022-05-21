@@ -4,7 +4,7 @@ struct MainView: View {
 
     var body: some View {
         TabView {
-            SoundView()
+            SoundsView()
                 .tabItem {
                     Label("Sons", systemImage: "speaker.wave.3.fill")
                 }
