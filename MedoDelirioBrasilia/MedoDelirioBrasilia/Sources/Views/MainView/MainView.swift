@@ -29,7 +29,7 @@ struct MainView: View {
                 NavigationLink(destination: HelpAboutView(), isActive: $showingHelpAboutScreen) { EmptyView() }
                 
                 ScrollView {
-                    LazyVGrid(columns: columns, spacing: 20) {
+                    LazyVGrid(columns: columns, spacing: 14) {
                         ForEach(searchResults) { sound in
                             SoundRow(title: sound.title, author: sound.authorName ?? "")
                                 .onTapGesture {
@@ -41,7 +41,8 @@ struct MainView: View {
                         }
                     }
                     .searchable(text: $searchText)
-                    .padding()
+                    .padding(.horizontal)
+                    .padding(.top, 7)
                 }
             }
             .navigationTitle(Text(LocalizableStrings.MainView.title))
@@ -62,7 +63,7 @@ struct MainView: View {
                                 Text("Ordernar por Autor")
                                     .tag(1)
                                 
-                                Text("Adicionados por último no topo")
+                                Text("Adicionados por Último no Topo")
                                     .tag(2)
                             }
                         }

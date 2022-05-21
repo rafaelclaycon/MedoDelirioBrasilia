@@ -17,7 +17,7 @@ struct SoundRow: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Text(title)
                         .foregroundColor(.white)
-                        .font(.body)
+                        .font(title.count > 26 ? .callout : .body)
                         .bold()
                     
                     Text(author)

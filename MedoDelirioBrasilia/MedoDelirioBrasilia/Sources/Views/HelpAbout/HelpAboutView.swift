@@ -67,7 +67,7 @@ struct HelpAboutView: View {
                                 .font(.footnote)
                                 .bold()
                         }
-                        .tint(.accentColor)
+                        .tint(.blue)
                         .controlSize(.large)
                         .buttonStyle(.bordered)
                         .buttonBorderShape(.roundedRectangle)
@@ -80,7 +80,7 @@ struct HelpAboutView: View {
                     Divider()
                     
                     VStack(alignment: .center, spacing: 5) {
-                        Text("🧑‍💻 Quer contribuir ou entender como o app funciona? Acesse o código fonte no GitHub:")
+                        Text("🧑‍💻 Quer contribuir ou entender como o app funciona? Acesse o código fonte:")
                             .multilineTextAlignment(.center)
                             .padding(.horizontal)
                         
@@ -88,7 +88,7 @@ struct HelpAboutView: View {
                             let githubUrl = URL(string: "https://github.com/rafaelclaycon/MedoDelirioBrasilia")!
                             UIApplication.shared.open(githubUrl)
                         }) {
-                            Text("Ver projeto")
+                            Text("Ver projeto no GitHub")
                         }
                         .tint(.gray)
                         .controlSize(.large)
