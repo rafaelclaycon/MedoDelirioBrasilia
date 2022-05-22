@@ -44,11 +44,13 @@ struct SoundsView: View {
                     .padding(.horizontal)
                     .padding(.top, 7)
                     
-                    Text("\(soundData.count) sons. Atualizado em 21/05/2022.")
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
-                        .padding(.top, 10)
-                        .padding(.bottom, 18)
+                    if searchText.isEmpty {
+                        Text("\(soundData.count) sons. Atualizado em \(soundsLastUpdateDate).")
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                            .padding(.top, 10)
+                            .padding(.bottom, 18)
+                    }
                 }
             }
             .navigationTitle(Text(LocalizableStrings.MainView.title))
@@ -60,23 +62,23 @@ struct SoundsView: View {
                         Image(systemName: "questionmark.circle")
                     }
                 }
-            , trailing:
-                Menu {
-                    Section {
-                        Picker(selection: $viewModel.sortOption, label: Text("Ordenação")) {
-                            Text("Ordernar por Título")
-                                .tag(0)
-                            
-                            Text("Ordernar por Autor")
-                                .tag(1)
-                            
-                            Text("Adicionados por Último no Topo")
-                                .tag(2)
-                        }
-                    }
-                } label: {
-                    Image(systemName: "arrow.up.arrow.down.circle")
-                }
+//            , trailing:
+//                Menu {
+//                    Section {
+//                        Picker(selection: $viewModel.sortOption, label: Text("Ordenação")) {
+//                            Text("Ordernar por Título")
+//                                .tag(0)
+//                            
+//                            Text("Ordernar por Autor")
+//                                .tag(1)
+//                            
+//                            Text("Adicionados por Último no Topo")
+//                                .tag(2)
+//                        }
+//                    }
+//                } label: {
+//                    Image(systemName: "arrow.up.arrow.down.circle")
+//                }
             )
         }
     }

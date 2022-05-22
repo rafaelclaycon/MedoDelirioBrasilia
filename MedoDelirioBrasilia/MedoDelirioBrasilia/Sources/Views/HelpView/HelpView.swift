@@ -23,7 +23,8 @@ struct HelpAboutView: View {
                             .foregroundColor(.accentColor)
                             .frame(width: iconFrameWidth)
                         
-                        Text("Para compartilhar, segure o card do som por 2 segundos e então escolha Compartilhar.")
+                        //Text("Para compartilhar, segure o card do som por 2 segundos e então escolha Compartilhar.")
+                        Text("Para compartilhar, segure o card do som por 2 segundos e então escolha o app pelo qual deseja enviá-lo.")
                     }
                     
                     HStack(spacing: 15) {
@@ -38,14 +39,14 @@ struct HelpAboutView: View {
                         }
                     }
                     
-                    HStack(spacing: 15) {
-                        Image(systemName: "star.fill")
-                            .font(.largeTitle)
-                            .foregroundColor(.red)
-                            .frame(width: iconFrameWidth)
-                        
-                        Text("Para favoritar um som, segure o card do som escolhido por 2 segundos e então escolha Favoritar.")
-                    }
+//                    HStack(spacing: 15) {
+//                        Image(systemName: "star.fill")
+//                            .font(.largeTitle)
+//                            .foregroundColor(.red)
+//                            .frame(width: iconFrameWidth)
+//
+//                        Text("Para favoritar um som, segure o card do som escolhido por 2 segundos e então escolha Favoritar.")
+//                    }
                 }
             }
         }

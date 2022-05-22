@@ -9,20 +9,20 @@ struct MainView: View {
                     Label("Sons", systemImage: "speaker.wave.3.fill")
                 }
             
-            FavoritesView()
-                .tabItem {
-                    Label("Favoritos", systemImage: "star.fill")
-                }
-            
-            SongsView()
-                .tabItem {
-                    Label("Músicas", systemImage: "music.quarternote.3")
-                }
-            
-            TrendsView()
-                .tabItem {
-                    Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
-                }
+//            FavoritesView()
+//                .tabItem {
+//                    Label("Favoritos", systemImage: "star.fill")
+//                }
+//            
+//            SongsView()
+//                .tabItem {
+//                    Label("Músicas", systemImage: "music.quarternote.3")
+//                }
+//            
+//            TrendsView()
+//                .tabItem {
+//                    Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
+//                }
             
             AboutView()
                 .tabItem {
