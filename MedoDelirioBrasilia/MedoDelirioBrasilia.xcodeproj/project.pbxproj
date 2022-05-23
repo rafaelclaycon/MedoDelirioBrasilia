@@ -60,6 +60,8 @@
 		D98EC5DE282596C300340BE5 /* SoundRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5DD282596C300340BE5 /* SoundRow.swift */; };
 		D98EC5E12825A05900340BE5 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5E02825A05900340BE5 /* Sound.swift */; };
 		D98EC5E32825A45000340BE5 /* SoundsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5E22825A45000340BE5 /* SoundsViewViewModel.swift */; };
+		D9C03441283AAF6100DB96E6 /* JORNAL DA RECORD - Não é coisa de deus não.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C0343F283AAF6100DB96E6 /* JORNAL DA RECORD - Não é coisa de deus não.mp3 */; };
+		D9C03442283AAF6100DB96E6 /* Tim Maia - Me Dê Motivo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C03440283AAF6100DB96E6 /* Tim Maia - Me Dê Motivo.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +139,8 @@
 		D98EC5DD282596C300340BE5 /* SoundRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundRow.swift; sourceTree = "<group>"; };
 		D98EC5E02825A05900340BE5 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		D98EC5E22825A45000340BE5 /* SoundsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsViewViewModel.swift; sourceTree = "<group>"; };
+		D9C0343F283AAF6100DB96E6 /* JORNAL DA RECORD - Não é coisa de deus não.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "JORNAL DA RECORD - Não é coisa de deus não.mp3"; sourceTree = "<group>"; };
+		D9C03440283AAF6100DB96E6 /* Tim Maia - Me Dê Motivo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tim Maia - Me Dê Motivo.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +171,8 @@
 		D940E27D283AA27D00392D1C /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9C0343F283AAF6100DB96E6 /* JORNAL DA RECORD - Não é coisa de deus não.mp3 */,
+				D9C03440283AAF6100DB96E6 /* Tim Maia - Me Dê Motivo.mp3 */,
 				D940E29A283AA2C200392D1C /* ADY - oh nao mais um crime de responsabilidade.mp3 */,
 				D940E298283AA2C200392D1C /* Aham sei.mp3 */,
 				D940E28D283AA2C200392D1C /* Alborgeti - Que Merda Hein.mp3 */,
@@ -435,6 +441,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9C03441283AAF6100DB96E6 /* JORNAL DA RECORD - Não é coisa de deus não.mp3 in Resources */,
 				D940E2B1283AA2C200392D1C /* tu_ouviu_isso.mp3 in Resources */,
 				D940E2AF283AA2C200392D1C /* O CARA DA LUVA DE PEDREIRO - Receba.mp3 in Resources */,
 				D961D01328371F1700EFEDEB /* sound_data.json in Resources */,
@@ -450,6 +457,7 @@
 				D940E2A9283AA2C200392D1C /* Alborgeti - Que Merda Hein.mp3 in Resources */,
 				D940E2A6283AA2C200392D1C /* Deltan Dallangnol - Os meus advogados estão estarrecidos.mp3 in Resources */,
 				D940E2AA283AA2C200392D1C /* deu_errado.mp3 in Resources */,
+				D9C03442283AAF6100DB96E6 /* Tim Maia - Me Dê Motivo.mp3 in Resources */,
 				D940E27F283AA29600392D1C /* Feiticeira - Não é feitiçaria, é tecnologia meme short.mp3 in Resources */,
 				D940E2A8283AA2C200392D1C /* MULTISHOW - Lulu Santos - Censura nunca mais.mp3 in Resources */,
 				D940E2B3283AA2C200392D1C /* e_um_merda.mp3 in Resources */,
@@ -677,7 +685,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				ENABLE_PREVIEWS = YES;
@@ -707,7 +715,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				ENABLE_PREVIEWS = YES;
