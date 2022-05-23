@@ -3,18 +3,26 @@ import UIKit
 
 class SoundsViewViewModel: ObservableObject {
     
-    @Published var sounds: [Sound]
-    @Published var sortOption: Int
+    @Published var sounds = [Sound]()
+    @Published var sortOption: Int = 0
     
-    init(sounds: [Sound]) {
-        self.sounds = sounds
-        self.sortOption = 0 //UserSettings.getArchiveSortOption()
-        
-        for i in 0...(sounds.count - 1) {
-            self.sounds[i].authorName = authorData.first(where: { $0.id == self.sounds[i].authorId })?.name ?? "Desconhecido"
+    func reloadList() {
+        if UserSettings.getShowOffensiveSounds() {
+            self.sounds = soundData
+        } else {
+            self.sounds = soundData.filter({ $0.isOffensive == false })
         }
         
-        self.sounds.sort(by: { $0.title.withoutDiacritics() < $1.title.withoutDiacritics() })
+        self.sortOption = 0 //UserSettings.getArchiveSortOption()
+        
+        // Needed because author names live in a different file.
+        if self.sounds.count > 0 {
+            for i in 0...(self.sounds.count - 1) {
+                self.sounds[i].authorName = authorData.first(where: { $0.id == self.sounds[i].authorId })?.name ?? "Desconhecido"
+            }
+            
+            self.sounds.sort(by: { $0.title.withoutDiacritics() < $1.title.withoutDiacritics() })
+        }
     }
     
     func playSound(fromPath filepath: String) {

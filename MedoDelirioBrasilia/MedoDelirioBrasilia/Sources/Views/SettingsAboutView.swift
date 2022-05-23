@@ -1,19 +1,33 @@
 import SwiftUI
 
-struct AboutView: View {
+struct SettingsAboutView: View {
 
-    @State var showPixKeyCopiedAlert: Bool = false
-    @State var showUnableToOpenPodcastsAppAlert: Bool = false
+    @State private var showPixKeyCopiedAlert: Bool = false
+    @State private var showUnableToOpenPodcastsAppAlert: Bool = false
+    @State private var showExplicitSounds: Bool = UserSettings.getShowOffensiveSounds()
+    @State private var showExplicitSoundsConfirmationAlert: Bool = false
     
     let pixKey: String = "918bd609-04d1-4df6-8697-352b62462061"
-    let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? String()
-    let buildVersionNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? String()
+    let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
+    let buildVersionNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""
 
     var body: some View {
         NavigationView {
             VStack {
                 ScrollView {
                     VStack(alignment: .center, spacing: 40) {
+                        Toggle("Mostrar sons com conteúdo ofensivo (18+)", isOn: $showExplicitSounds)
+                            .padding(.horizontal)
+                            .onChange(of: showExplicitSounds) { newValue in
+                                showExplicitSoundsConfirmationAlert = newValue
+                                UserSettings.setShowOffensiveSounds(to: newValue)
+                            }
+                            .alert(isPresented: $showExplicitSoundsConfirmationAlert) {
+                                Alert(title: Text("Use Sob a Sua Própria Responsabilidade"), message: Text("Alguns sons possuem conteúdos de baixo calão. Ao marcar essa opção, você concorda que tem mais de 18 anos e que deseja ver esse conteúdo."), dismissButton: .default(Text("OK")))
+                            }
+                        
+                        Divider()
+                        
                         VStack(alignment: .center, spacing: 5) {
                             Text("Esse app é uma homenagem ao brilhante trabalho de **Cristiano Botafogo** e **Pedro Daltro** no podcast **Medo e Delírio em Brasília**. Ouça no seu tocador de podcasts favorito.")
                                 .multilineTextAlignment(.center)
@@ -41,6 +55,8 @@ struct AboutView: View {
                             }
                         }
                         
+                        Divider()
+                        
                         VStack(alignment: .center, spacing: 5) {
                             Text("Dinheiro! Aqui aceitas Pix. Qualquer R$ 1 ajuda o desenvolvedor a manter isso aqui. 💵⬇️")
                                 .multilineTextAlignment(.center)
@@ -63,9 +79,6 @@ struct AboutView: View {
                                 Alert(title: Text("Chave copiada com sucesso!"), dismissButton: .default(Text("OK")))
                             }
                         }
-                        
-//                        Text("\(soundData.count) sons")
-//                            .padding(.bottom)
                         
                         VStack(alignment: .center, spacing: 5) {
                             Text("🧑‍💻 Quer contribuir ou entender como o app funciona? Acesse o código fonte:")
@@ -96,7 +109,7 @@ struct AboutView: View {
                 }
             }
             .padding()
-            .navigationTitle("Sobre")
+            .navigationTitle("Ajustes e Sobre")
         }
     }
 
@@ -105,7 +118,7 @@ struct AboutView: View {
 struct AboutView_Previews: PreviewProvider {
 
     static var previews: some View {
-        AboutView()
+        SettingsAboutView()
     }
 
 }

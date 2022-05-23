@@ -9,20 +9,22 @@ struct Sound: Hashable, Codable, Identifiable {
     var description: String
     var filename: String
     var dateAdded: Date?
+    let isOffensive: Bool
     
     init(id: String = UUID().uuidString,
          title: String,
          authorId: String,
          description: String = "",
          filename: String = "",
-         dateAdded: Date = Date()) {
+         dateAdded: Date = Date(),
+         isOffensive: Bool = false) {
         self.id = id
         self.title = title
         self.authorId = authorId
-        //self.authorName = authorData.first(where: { $0.id == authorId })?.name
         self.description = description
         self.filename = filename
         self.dateAdded = dateAdded
+        self.isOffensive = isOffensive
     }
 
 }

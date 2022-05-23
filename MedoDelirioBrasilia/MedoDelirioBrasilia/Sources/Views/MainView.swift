@@ -24,9 +24,9 @@ struct MainView: View {
 //                    Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
 //                }
             
-            AboutView()
+            SettingsAboutView()
                 .tabItem {
-                    Label("Sobre", systemImage: "info.circle")
+                    Label("Ajustes e Sobre", systemImage: "info.circle")
                 }
         }
     }

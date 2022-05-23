@@ -2,7 +2,7 @@ import SwiftUI
 
 struct SoundsView: View {
 
-    @StateObject private var viewModel = SoundsViewViewModel(sounds: soundData)
+    @StateObject private var viewModel = SoundsViewViewModel()
     @State private var showingHelpAboutScreen = false
     @State private var searchText = ""
     @State private var searchBar: UISearchBar?
@@ -45,7 +45,7 @@ struct SoundsView: View {
                     .padding(.top, 7)
                     
                     if searchText.isEmpty {
-                        Text("\(soundData.count) sons. Atualizado em \(soundsLastUpdateDate).")
+                        Text("\(viewModel.sounds.count) sons. Atualizado em \(soundsLastUpdateDate).")
                             .font(.subheadline)
                             .foregroundColor(.gray)
                             .padding(.top, 10)
@@ -80,6 +80,9 @@ struct SoundsView: View {
 //                    Image(systemName: "arrow.up.arrow.down.circle")
 //                }
             )
+            .onAppear {
+                viewModel.reloadList()
+            }
         }
     }
 

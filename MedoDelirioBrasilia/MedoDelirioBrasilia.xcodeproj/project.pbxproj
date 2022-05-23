@@ -44,7 +44,7 @@
 		D958B1AC28394DCD0010F133 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958B1AB28394DCD0010F133 /* FavoritesView.swift */; };
 		D958B1AE28394E420010F133 /* SongsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958B1AD28394E420010F133 /* SongsView.swift */; };
 		D958B1B028394EA40010F133 /* TrendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958B1AF28394EA40010F133 /* TrendsView.swift */; };
-		D958B1B22839534D0010F133 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958B1B12839534D0010F133 /* AboutView.swift */; };
+		D958B1B22839534D0010F133 /* SettingsAboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958B1B12839534D0010F133 /* SettingsAboutView.swift */; };
 		D961D01128371EE800EFEDEB /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = D961D01028371EE800EFEDEB /* Data.swift */; };
 		D961D01328371F1700EFEDEB /* sound_data.json in Resources */ = {isa = PBXBuildFile; fileRef = D961D01228371F1700EFEDEB /* sound_data.json */; };
 		D961D016283722AB00EFEDEB /* Color+CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D961D015283722AB00EFEDEB /* Color+CustomColors.swift */; };
@@ -57,6 +57,7 @@
 		D9625E8F28238F9B00080852 /* MedoDelirioBrasiliaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9625E8E28238F9B00080852 /* MedoDelirioBrasiliaTests.swift */; };
 		D980455C28380EFE003B2E83 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D980455E28380EFE003B2E83 /* Localizable.strings */; };
 		D980456228380F66003B2E83 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D980456128380F66003B2E83 /* LocalizableStrings.swift */; };
+		D988C523283C33E100D64404 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D988C522283C33E100D64404 /* UserSettings.swift */; };
 		D98EC5DE282596C300340BE5 /* SoundRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5DD282596C300340BE5 /* SoundRow.swift */; };
 		D98EC5E12825A05900340BE5 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5E02825A05900340BE5 /* Sound.swift */; };
 		D98EC5E32825A45000340BE5 /* SoundsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5E22825A45000340BE5 /* SoundsViewViewModel.swift */; };
@@ -119,7 +120,7 @@
 		D958B1AB28394DCD0010F133 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		D958B1AD28394E420010F133 /* SongsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsView.swift; sourceTree = "<group>"; };
 		D958B1AF28394EA40010F133 /* TrendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsView.swift; sourceTree = "<group>"; };
-		D958B1B12839534D0010F133 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		D958B1B12839534D0010F133 /* SettingsAboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAboutView.swift; sourceTree = "<group>"; };
 		D961D01028371EE800EFEDEB /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		D961D01228371F1700EFEDEB /* sound_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sound_data.json; sourceTree = "<group>"; };
 		D961D015283722AB00EFEDEB /* Color+CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+CustomColors.swift"; sourceTree = "<group>"; };
@@ -136,6 +137,7 @@
 		D980455D28380EFE003B2E83 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D980455F28380F05003B2E83 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D980456128380F66003B2E83 /* LocalizableStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
+		D988C522283C33E100D64404 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		D98EC5DD282596C300340BE5 /* SoundRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundRow.swift; sourceTree = "<group>"; };
 		D98EC5E02825A05900340BE5 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		D98EC5E22825A45000340BE5 /* SoundsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsViewViewModel.swift; sourceTree = "<group>"; };
@@ -304,7 +306,7 @@
 				D958B1AB28394DCD0010F133 /* FavoritesView.swift */,
 				D958B1AD28394E420010F133 /* SongsView.swift */,
 				D958B1AF28394EA40010F133 /* TrendsView.swift */,
-				D958B1B12839534D0010F133 /* AboutView.swift */,
+				D958B1B12839534D0010F133 /* SettingsAboutView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -313,6 +315,7 @@
 			isa = PBXGroup;
 			children = (
 				D980456128380F66003B2E83 /* LocalizableStrings.swift */,
+				D988C522283C33E100D64404 /* UserSettings.swift */,
 			);
 			path = AppSupport;
 			sourceTree = "<group>";
@@ -510,11 +513,12 @@
 				D958B1AC28394DCD0010F133 /* FavoritesView.swift in Sources */,
 				D961D016283722AB00EFEDEB /* Color+CustomColors.swift in Sources */,
 				D93443252838177000ADCD38 /* UserInfo.swift in Sources */,
+				D988C523283C33E100D64404 /* UserSettings.swift in Sources */,
 				D961D01828372B1800EFEDEB /* AudioPlayer.swift in Sources */,
 				D98EC5DE282596C300340BE5 /* SoundRow.swift in Sources */,
 				D98EC5E32825A45000340BE5 /* SoundsViewViewModel.swift in Sources */,
 				D9344323283812AD00ADCD38 /* Author.swift in Sources */,
-				D958B1B22839534D0010F133 /* AboutView.swift in Sources */,
+				D958B1B22839534D0010F133 /* SettingsAboutView.swift in Sources */,
 				D980456228380F66003B2E83 /* LocalizableStrings.swift in Sources */,
 				D961D025283731AA00EFEDEB /* HelpView.swift in Sources */,
 				D98EC5E12825A05900340BE5 /* Sound.swift in Sources */,
