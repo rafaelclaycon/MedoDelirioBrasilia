@@ -22,5 +22,21 @@
         "filename": "Não era fake news, era jornalismo.mp3",
         "dateAdded": "2022-04-22T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "97C87B5B-B8C0-4C37-8EEB-7D69553770AC",
+        "title": "Unidos do Medo e Delírio em Brasília",
+        "description": "",
+        "filename": "Unidos do Medo e Delírio.mp3",
+        "dateAdded": "2022-04-22T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "BE72C748-6762-44AD-B8C5-A390F0C8FE5A",
+        "title": "Bora Arrochar... E Depois... Carnavalizar!",
+        "description": "",
+        "filename": "O roque ativa.mp3",
+        "dateAdded": "2022-04-22T00:00:00Z",
+        "isOffensive": true
     }
 ]

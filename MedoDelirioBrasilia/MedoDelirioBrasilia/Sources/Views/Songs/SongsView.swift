@@ -30,9 +30,16 @@ struct SongsView: View {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 14) {
                         ForEach(searchResults) { song in
-                            SongCell(title: song.title)
+                            SongCell(songId: song.id, title: song.title, nowPlaying: $viewModel.nowPlayingKeeper)
                                 .onTapGesture {
-                                    viewModel.playSong(fromPath: song.filename)
+                                    if viewModel.nowPlayingKeeper.contains(song.id) {
+                                        player?.togglePlay()
+                                        viewModel.nowPlayingKeeper.removeAll()
+                                    } else {
+                                        viewModel.playSong(fromPath: song.filename)
+                                        viewModel.nowPlayingKeeper.removeAll()
+                                        viewModel.nowPlayingKeeper.insert(song.id)
+                                    }
                                 }
                                 .onLongPressGesture {
                                     viewModel.shareSong(withPath: song.filename)

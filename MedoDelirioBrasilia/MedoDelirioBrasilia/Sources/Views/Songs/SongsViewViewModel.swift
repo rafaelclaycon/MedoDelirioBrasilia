@@ -5,6 +5,7 @@ class SongsViewViewModel: ObservableObject {
     
     @Published var songs = [Song]()
     @Published var sortOption: Int = 0
+    @Published var nowPlayingKeeper = Set<String>()
     
     func reloadList() {
         if UserSettings.getShowOffensiveSounds() {
@@ -27,9 +28,12 @@ class SongsViewViewModel: ObservableObject {
         
         let path = Bundle.main.path(forResource: filepath, ofType: nil)!
         let url = URL(fileURLWithPath: path)
-
-        player = AudioPlayer(url: url, update: { state in
+        
+        player = AudioPlayer(url: url, update: { [weak self] state in
             //print(state?.activity as Any)
+            if state?.activity == .stopped {
+                self?.nowPlayingKeeper.removeAll()
+            }
         })
         
         player?.togglePlay()
