@@ -1,31 +1,26 @@
 import Combine
 import UIKit
 
-class SoundsViewViewModel: ObservableObject {
+class SongsViewViewModel: ObservableObject {
     
-    @Published var sounds = [Sound]()
+    @Published var songs = [Song]()
     @Published var sortOption: Int = 0
     
     func reloadList() {
         if UserSettings.getShowOffensiveSounds() {
-            self.sounds = soundData
+            self.songs = songData
         } else {
-            self.sounds = soundData.filter({ $0.isOffensive == false })
+            self.songs = songData.filter({ $0.isOffensive == false })
         }
         
         self.sortOption = 0 //UserSettings.getArchiveSortOption()
         
-        // Needed because author names live in a different file.
-        if self.sounds.count > 0 {
-            for i in 0...(self.sounds.count - 1) {
-                self.sounds[i].authorName = authorData.first(where: { $0.id == self.sounds[i].authorId })?.name ?? "Desconhecido"
-            }
-            
-            self.sounds.sort(by: { $0.title.withoutDiacritics() < $1.title.withoutDiacritics() })
+        if self.songs.count > 0 {
+            self.songs.sort(by: { $0.title.withoutDiacritics() < $1.title.withoutDiacritics() })
         }
     }
     
-    func playSound(fromPath filepath: String) {
+    func playSong(fromPath filepath: String) {
         guard filepath.isEmpty == false else {
             return
         }
@@ -40,7 +35,7 @@ class SoundsViewViewModel: ObservableObject {
         player?.togglePlay()
     }
 
-    func shareSound(withPath filepath: String) {
+    func shareSong(withPath filepath: String) {
         guard filepath.isEmpty == false else {
             return
         }

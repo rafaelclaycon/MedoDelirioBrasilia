@@ -3,7 +3,7 @@ import SwiftUI
 struct SoundsView: View {
 
     @StateObject private var viewModel = SoundsViewViewModel()
-    @State private var showingHelpAboutScreen = false
+    @State private var showingHelpScreen = false
     @State private var searchText = ""
     @State private var searchBar: UISearchBar?
     
@@ -26,12 +26,12 @@ struct SoundsView: View {
     var body: some View {
         NavigationView {
             VStack {
-                NavigationLink(destination: HelpAboutView(), isActive: $showingHelpAboutScreen) { EmptyView() }
+                NavigationLink(destination: HelpView(), isActive: $showingHelpScreen) { EmptyView() }
                 
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 14) {
                         ForEach(searchResults) { sound in
-                            SoundRow(title: sound.title, author: sound.authorName ?? "")
+                            SoundCell(title: sound.title, author: sound.authorName ?? "")
                                 .onTapGesture {
                                     viewModel.playSound(fromPath: sound.filename)
                                 }
@@ -56,7 +56,7 @@ struct SoundsView: View {
             .navigationTitle(Text(LocalizableStrings.MainView.title))
             .navigationBarItems(leading:
                 Button(action: {
-                    showingHelpAboutScreen = true
+                    showingHelpScreen = true
                 }) {
                     HStack {
                         Image(systemName: "questionmark.circle")

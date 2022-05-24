@@ -13,20 +13,20 @@ struct MainView: View {
 //                .tabItem {
 //                    Label("Favoritos", systemImage: "star.fill")
 //                }
-//            
-//            SongsView()
-//                .tabItem {
-//                    Label("Músicas", systemImage: "music.quarternote.3")
-//                }
-//            
+            
+            SongsView()
+                .tabItem {
+                    Label("Músicas", systemImage: "music.quarternote.3")
+                }
+            
 //            TrendsView()
 //                .tabItem {
 //                    Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
 //                }
             
-            SettingsAboutView()
+            SettingsView()
                 .tabItem {
-                    Label("Ajustes e Sobre", systemImage: "info.circle")
+                    Label("Ajustes", systemImage: "gearshape.fill")
                 }
         }
     }

@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct SoundRow: View {
+struct SoundCell: View {
 
     @State var title: String
     @State var author: String
@@ -36,7 +36,7 @@ struct SoundRow: View {
 struct SoundRow_Previews: PreviewProvider {
 
     static var previews: some View {
-        SoundRow(title: "A gente vai cansando", author: "Soraya Thronicke")
+        SoundCell(title: "A gente vai cansando", author: "Soraya Thronicke")
     }
 
 }

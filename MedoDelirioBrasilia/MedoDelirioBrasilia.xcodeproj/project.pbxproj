@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D92E7067283C51D20035826C /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92E7066283C51D20035826C /* Song.swift */; };
+		D92E706C283C5C2C0035826C /* Pena que não pode ver um impeachment.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92E7069283C5C2C0035826C /* Pena que não pode ver um impeachment.mp3 */; };
+		D92E706D283C5C2C0035826C /* Não era fake news, era jornalismo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92E706A283C5C2C0035826C /* Não era fake news, era jornalismo.mp3 */; };
+		D92E706E283C5C2C0035826C /* Eu volto pro ostracismo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92E706B283C5C2C0035826C /* Eu volto pro ostracismo.mp3 */; };
+		D92E7070283C5CF40035826C /* song_data.json in Resources */ = {isa = PBXBuildFile; fileRef = D92E706F283C5CF40035826C /* song_data.json */; };
+		D92E7072283C5D990035826C /* SongsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92E7071283C5D990035826C /* SongsViewViewModel.swift */; };
+		D92E7075283C5F620035826C /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92E7074283C5F620035826C /* SongCell.swift */; };
 		D9344323283812AD00ADCD38 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9344322283812AD00ADCD38 /* Author.swift */; };
 		D93443252838177000ADCD38 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93443242838177000ADCD38 /* UserInfo.swift */; };
 		D934432728381DEF00ADCD38 /* author_data.json in Resources */ = {isa = PBXBuildFile; fileRef = D934432628381DEF00ADCD38 /* author_data.json */; };
@@ -44,7 +51,7 @@
 		D958B1AC28394DCD0010F133 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958B1AB28394DCD0010F133 /* FavoritesView.swift */; };
 		D958B1AE28394E420010F133 /* SongsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958B1AD28394E420010F133 /* SongsView.swift */; };
 		D958B1B028394EA40010F133 /* TrendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958B1AF28394EA40010F133 /* TrendsView.swift */; };
-		D958B1B22839534D0010F133 /* SettingsAboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958B1B12839534D0010F133 /* SettingsAboutView.swift */; };
+		D958B1B22839534D0010F133 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958B1B12839534D0010F133 /* SettingsView.swift */; };
 		D961D01128371EE800EFEDEB /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = D961D01028371EE800EFEDEB /* Data.swift */; };
 		D961D01328371F1700EFEDEB /* sound_data.json in Resources */ = {isa = PBXBuildFile; fileRef = D961D01228371F1700EFEDEB /* sound_data.json */; };
 		D961D016283722AB00EFEDEB /* Color+CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D961D015283722AB00EFEDEB /* Color+CustomColors.swift */; };
@@ -58,7 +65,7 @@
 		D980455C28380EFE003B2E83 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D980455E28380EFE003B2E83 /* Localizable.strings */; };
 		D980456228380F66003B2E83 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D980456128380F66003B2E83 /* LocalizableStrings.swift */; };
 		D988C523283C33E100D64404 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D988C522283C33E100D64404 /* UserSettings.swift */; };
-		D98EC5DE282596C300340BE5 /* SoundRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5DD282596C300340BE5 /* SoundRow.swift */; };
+		D98EC5DE282596C300340BE5 /* SoundCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5DD282596C300340BE5 /* SoundCell.swift */; };
 		D98EC5E12825A05900340BE5 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5E02825A05900340BE5 /* Sound.swift */; };
 		D98EC5E32825A45000340BE5 /* SoundsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5E22825A45000340BE5 /* SoundsViewViewModel.swift */; };
 		D9C03441283AAF6100DB96E6 /* JORNAL DA RECORD - Não é coisa de deus não.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C0343F283AAF6100DB96E6 /* JORNAL DA RECORD - Não é coisa de deus não.mp3 */; };
@@ -83,6 +90,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D92E7066283C51D20035826C /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		D92E7069283C5C2C0035826C /* Pena que não pode ver um impeachment.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pena que não pode ver um impeachment.mp3"; sourceTree = "<group>"; };
+		D92E706A283C5C2C0035826C /* Não era fake news, era jornalismo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Não era fake news, era jornalismo.mp3"; sourceTree = "<group>"; };
+		D92E706B283C5C2C0035826C /* Eu volto pro ostracismo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu volto pro ostracismo.mp3"; sourceTree = "<group>"; };
+		D92E706F283C5CF40035826C /* song_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = song_data.json; sourceTree = "<group>"; };
+		D92E7071283C5D990035826C /* SongsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsViewViewModel.swift; sourceTree = "<group>"; };
+		D92E7074283C5F620035826C /* SongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
 		D9344322283812AD00ADCD38 /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		D93443242838177000ADCD38 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		D934432628381DEF00ADCD38 /* author_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = author_data.json; sourceTree = "<group>"; };
@@ -120,7 +134,7 @@
 		D958B1AB28394DCD0010F133 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		D958B1AD28394E420010F133 /* SongsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsView.swift; sourceTree = "<group>"; };
 		D958B1AF28394EA40010F133 /* TrendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsView.swift; sourceTree = "<group>"; };
-		D958B1B12839534D0010F133 /* SettingsAboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAboutView.swift; sourceTree = "<group>"; };
+		D958B1B12839534D0010F133 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		D961D01028371EE800EFEDEB /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		D961D01228371F1700EFEDEB /* sound_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sound_data.json; sourceTree = "<group>"; };
 		D961D015283722AB00EFEDEB /* Color+CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+CustomColors.swift"; sourceTree = "<group>"; };
@@ -138,7 +152,7 @@
 		D980455F28380F05003B2E83 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D980456128380F66003B2E83 /* LocalizableStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
 		D988C522283C33E100D64404 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
-		D98EC5DD282596C300340BE5 /* SoundRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundRow.swift; sourceTree = "<group>"; };
+		D98EC5DD282596C300340BE5 /* SoundCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundCell.swift; sourceTree = "<group>"; };
 		D98EC5E02825A05900340BE5 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		D98EC5E22825A45000340BE5 /* SoundsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsViewViewModel.swift; sourceTree = "<group>"; };
 		D9C0343F283AAF6100DB96E6 /* JORNAL DA RECORD - Não é coisa de deus não.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "JORNAL DA RECORD - Não é coisa de deus não.mp3"; sourceTree = "<group>"; };
@@ -170,6 +184,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D92E7068283C5C120035826C /* Songs */ = {
+			isa = PBXGroup;
+			children = (
+				D92E706B283C5C2C0035826C /* Eu volto pro ostracismo.mp3 */,
+				D92E706A283C5C2C0035826C /* Não era fake news, era jornalismo.mp3 */,
+				D92E7069283C5C2C0035826C /* Pena que não pode ver um impeachment.mp3 */,
+			);
+			path = Songs;
+			sourceTree = "<group>";
+		};
+		D92E7073283C5D9E0035826C /* Songs */ = {
+			isa = PBXGroup;
+			children = (
+				D958B1AD28394E420010F133 /* SongsView.swift */,
+				D92E7071283C5D990035826C /* SongsViewViewModel.swift */,
+				D92E7074283C5F620035826C /* SongCell.swift */,
+			);
+			path = Songs;
+			sourceTree = "<group>";
+		};
 		D940E27D283AA27D00392D1C /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
@@ -217,12 +251,12 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		D961D0232837319600EFEDEB /* HelpView */ = {
+		D961D0232837319600EFEDEB /* Help */ = {
 			isa = PBXGroup;
 			children = (
 				D961D024283731AA00EFEDEB /* HelpView.swift */,
 			);
-			path = HelpView;
+			path = Help;
 			sourceTree = "<group>";
 		};
 		D9625E7128238F9A00080852 = {
@@ -290,6 +324,8 @@
 			isa = PBXGroup;
 			children = (
 				D940E27D283AA27D00392D1C /* Sounds */,
+				D92E7068283C5C120035826C /* Songs */,
+				D92E706F283C5CF40035826C /* song_data.json */,
 				D934432628381DEF00ADCD38 /* author_data.json */,
 				D961D01228371F1700EFEDEB /* sound_data.json */,
 			);
@@ -300,13 +336,12 @@
 			isa = PBXGroup;
 			children = (
 				D958B1A928394D400010F133 /* MainView.swift */,
-				D9B9025C2837485000551239 /* SoundsView */,
-				D961D0232837319600EFEDEB /* HelpView */,
-				D98EC5DD282596C300340BE5 /* SoundRow.swift */,
+				D9B9025C2837485000551239 /* Sounds */,
+				D961D0232837319600EFEDEB /* Help */,
+				D92E7073283C5D9E0035826C /* Songs */,
 				D958B1AB28394DCD0010F133 /* FavoritesView.swift */,
-				D958B1AD28394E420010F133 /* SongsView.swift */,
 				D958B1AF28394EA40010F133 /* TrendsView.swift */,
-				D958B1B12839534D0010F133 /* SettingsAboutView.swift */,
+				D958B1B12839534D0010F133 /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -324,19 +359,21 @@
 			isa = PBXGroup;
 			children = (
 				D98EC5E02825A05900340BE5 /* Sound.swift */,
+				D92E7066283C51D20035826C /* Song.swift */,
 				D9344322283812AD00ADCD38 /* Author.swift */,
 				D93443242838177000ADCD38 /* UserInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		D9B9025C2837485000551239 /* SoundsView */ = {
+		D9B9025C2837485000551239 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
 				D9625E7F28238F9A00080852 /* SoundsView.swift */,
 				D98EC5E22825A45000340BE5 /* SoundsViewViewModel.swift */,
+				D98EC5DD282596C300340BE5 /* SoundCell.swift */,
 			);
-			path = SoundsView;
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -446,6 +483,7 @@
 			files = (
 				D9C03441283AAF6100DB96E6 /* JORNAL DA RECORD - Não é coisa de deus não.mp3 in Resources */,
 				D940E2B1283AA2C200392D1C /* tu_ouviu_isso.mp3 in Resources */,
+				D92E706E283C5C2C0035826C /* Eu volto pro ostracismo.mp3 in Resources */,
 				D940E2AF283AA2C200392D1C /* O CARA DA LUVA DE PEDREIRO - Receba.mp3 in Resources */,
 				D961D01328371F1700EFEDEB /* sound_data.json in Resources */,
 				D940E2AD283AA2C200392D1C /* MULTISHOW_Gloria_Groove_Quer_dizer_que_eles_querem_calar_a_gente.mp3 in Resources */,
@@ -457,10 +495,12 @@
 				D9625E8528238F9B00080852 /* Preview Assets.xcassets in Resources */,
 				D940E2A4283AA2C200392D1C /* tv_senado_soraya_thronicke_a_gente_vai_cansando_sabe.mp3 in Resources */,
 				D940E2B5283AA2C200392D1C /* Passada chocada meu Deus jesus.mp3 in Resources */,
+				D92E7070283C5CF40035826C /* song_data.json in Resources */,
 				D940E2A9283AA2C200392D1C /* Alborgeti - Que Merda Hein.mp3 in Resources */,
 				D940E2A6283AA2C200392D1C /* Deltan Dallangnol - Os meus advogados estão estarrecidos.mp3 in Resources */,
 				D940E2AA283AA2C200392D1C /* deu_errado.mp3 in Resources */,
 				D9C03442283AAF6100DB96E6 /* Tim Maia - Me Dê Motivo.mp3 in Resources */,
+				D92E706D283C5C2C0035826C /* Não era fake news, era jornalismo.mp3 in Resources */,
 				D940E27F283AA29600392D1C /* Feiticeira - Não é feitiçaria, é tecnologia meme short.mp3 in Resources */,
 				D940E2A8283AA2C200392D1C /* MULTISHOW - Lulu Santos - Censura nunca mais.mp3 in Resources */,
 				D940E2B3283AA2C200392D1C /* e_um_merda.mp3 in Resources */,
@@ -470,6 +510,7 @@
 				D940E29E283AA2C200392D1C /* um_bosta_ciro.mp3 in Resources */,
 				D940E2AE283AA2C200392D1C /* o_cachorro_do_supremo.mp3 in Resources */,
 				D940E2A7283AA2C200392D1C /* esse_neto_bosta.mp3 in Resources */,
+				D92E706C283C5C2C0035826C /* Pena que não pode ver um impeachment.mp3 in Resources */,
 				D940E2B7283AA2C200392D1C /* funk_do_xandao.mp3 in Resources */,
 				D980455C28380EFE003B2E83 /* Localizable.strings in Resources */,
 				D940E2AC283AA2C200392D1C /* PODER36_Paulo_Guedes_Tem_mais_iPhones_no_Brasil_que_população_Brasileiros.mp3 in Resources */,
@@ -508,17 +549,20 @@
 				D958B1AA28394D400010F133 /* MainView.swift in Sources */,
 				D93443292838230500ADCD38 /* String+Extensions.swift in Sources */,
 				D961D01128371EE800EFEDEB /* Data.swift in Sources */,
+				D92E7067283C51D20035826C /* Song.swift in Sources */,
 				D958B1B028394EA40010F133 /* TrendsView.swift in Sources */,
 				D9625E7E28238F9A00080852 /* MedoDelirioBrasiliaApp.swift in Sources */,
 				D958B1AC28394DCD0010F133 /* FavoritesView.swift in Sources */,
+				D92E7072283C5D990035826C /* SongsViewViewModel.swift in Sources */,
 				D961D016283722AB00EFEDEB /* Color+CustomColors.swift in Sources */,
 				D93443252838177000ADCD38 /* UserInfo.swift in Sources */,
 				D988C523283C33E100D64404 /* UserSettings.swift in Sources */,
+				D92E7075283C5F620035826C /* SongCell.swift in Sources */,
 				D961D01828372B1800EFEDEB /* AudioPlayer.swift in Sources */,
-				D98EC5DE282596C300340BE5 /* SoundRow.swift in Sources */,
+				D98EC5DE282596C300340BE5 /* SoundCell.swift in Sources */,
 				D98EC5E32825A45000340BE5 /* SoundsViewViewModel.swift in Sources */,
 				D9344323283812AD00ADCD38 /* Author.swift in Sources */,
-				D958B1B22839534D0010F133 /* SettingsAboutView.swift in Sources */,
+				D958B1B22839534D0010F133 /* SettingsView.swift in Sources */,
 				D980456228380F66003B2E83 /* LocalizableStrings.swift in Sources */,
 				D961D025283731AA00EFEDEB /* HelpView.swift in Sources */,
 				D98EC5E12825A05900340BE5 /* Sound.swift in Sources */,

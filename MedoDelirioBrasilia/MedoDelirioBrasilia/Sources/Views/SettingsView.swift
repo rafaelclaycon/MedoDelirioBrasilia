@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct SettingsAboutView: View {
+struct SettingsView: View {
 
     @State private var showPixKeyCopiedAlert: Bool = false
     @State private var showUnableToOpenPodcastsAppAlert: Bool = false
@@ -16,46 +16,47 @@ struct SettingsAboutView: View {
             VStack {
                 ScrollView {
                     VStack(alignment: .center, spacing: 40) {
-                        Toggle("Mostrar sons com conteúdo ofensivo (18+)", isOn: $showExplicitSounds)
+                        Toggle("Exibir conteúdo sensível", isOn: $showExplicitSounds)
                             .padding(.horizontal)
                             .onChange(of: showExplicitSounds) { newValue in
                                 showExplicitSoundsConfirmationAlert = newValue
                                 UserSettings.setShowOffensiveSounds(to: newValue)
                             }
                             .alert(isPresented: $showExplicitSoundsConfirmationAlert) {
-                                Alert(title: Text("Use Sob a Sua Própria Responsabilidade"), message: Text("Alguns sons possuem conteúdos de baixo calão. Ao marcar essa opção, você concorda que tem mais de 18 anos e que deseja ver esse conteúdo."), dismissButton: .default(Text("OK")))
+                                Alert(title: Text("Use Com Responsabilidade, Morô, Cara?"), message: Text("Alguns conteúdos contam com muitos palavrões, o que pode incomodar algumas pessoas.\n\nAo marcar essa opção, você concorda que tem mais de 18 anos e que deseja ver esse conteúdo."), dismissButton: .default(Text("OK")))
                             }
+                            .padding(.bottom, -10)
                         
-                        Divider()
+                        //Divider()
                         
                         VStack(alignment: .center, spacing: 5) {
                             Text("Esse app é uma homenagem ao brilhante trabalho de **Cristiano Botafogo** e **Pedro Daltro** no podcast **Medo e Delírio em Brasília**. Ouça no seu tocador de podcasts favorito.")
                                 .multilineTextAlignment(.center)
                                 .padding(.horizontal)
                             
-                            Button(action: {
-                                let podcastLinkOnApplePodcasts = "https://podcasts.apple.com/br/podcast/medo-e-del%C3%ADrio-em-bras%C3%ADlia/id1502134265"
-                                let podcastAppUrl = URL(string: podcastLinkOnApplePodcasts)!
-                                if UIApplication.shared.canOpenURL(podcastAppUrl) {
-                                    UIApplication.shared.open(podcastAppUrl)
-                                } else {
-                                    showUnableToOpenPodcastsAppAlert = true
-                                }
-                            }) {
-                                Text("Ver no Apple Podcasts")
-                                    .font(.callout)
-                            }
-                            .tint(.purple)
-                            .controlSize(.large)
-                            .buttonStyle(.bordered)
-                            .buttonBorderShape(.roundedRectangle)
-                            .padding(.top)
-                            .alert(isPresented: $showUnableToOpenPodcastsAppAlert) {
-                                Alert(title: Text("Não Pôde Abrir o App Podcasts"), message: Text("Por favor, procure pelo app Podcasts no seu iPhone para continuar."), dismissButton: .default(Text("OK")))
-                            }
+//                            Button(action: {
+//                                let podcastLinkOnApplePodcasts = "https://podcasts.apple.com/br/podcast/medo-e-del%C3%ADrio-em-bras%C3%ADlia/id1502134265"
+//                                let podcastAppUrl = URL(string: podcastLinkOnApplePodcasts)!
+//                                if UIApplication.shared.canOpenURL(podcastAppUrl) {
+//                                    UIApplication.shared.open(podcastAppUrl)
+//                                } else {
+//                                    showUnableToOpenPodcastsAppAlert = true
+//                                }
+//                            }) {
+//                                Text("Ver no Apple Podcasts")
+//                                    .font(.callout)
+//                            }
+//                            .tint(.purple)
+//                            .controlSize(.large)
+//                            .buttonStyle(.bordered)
+//                            .buttonBorderShape(.roundedRectangle)
+//                            .padding(.top)
+//                            .alert(isPresented: $showUnableToOpenPodcastsAppAlert) {
+//                                Alert(title: Text("Não Pôde Abrir o App Podcasts"), message: Text("Por favor, procure pelo app Podcasts no seu iPhone para continuar."), dismissButton: .default(Text("OK")))
+//                            }
                         }
                         
-                        Divider()
+                        //Divider()
                         
                         VStack(alignment: .center, spacing: 5) {
                             Text("Dinheiro! Aqui aceitas Pix. Qualquer R$ 1 ajuda o desenvolvedor a manter isso aqui. 💵⬇️")
@@ -106,10 +107,10 @@ struct SettingsAboutView: View {
                                 .font(.footnote)
                         }
                     }
+                    .padding()
                 }
             }
-            .padding()
-            .navigationTitle("Ajustes e Sobre")
+            .navigationTitle("Ajustes")
         }
     }
 
@@ -118,7 +119,7 @@ struct SettingsAboutView: View {
 struct AboutView_Previews: PreviewProvider {
 
     static var previews: some View {
-        SettingsAboutView()
+        SettingsView()
     }
 
 }

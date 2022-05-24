@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct HelpAboutView: View {
+struct HelpView: View {
     
     private let iconFrameWidth: CGFloat = 40
 
@@ -8,26 +8,26 @@ struct HelpAboutView: View {
         VStack {
             ScrollView {                
                 VStack(alignment: .center, spacing: 40) {
-                    HStack(spacing: 15) {
+                    HStack(alignment: .center, spacing: 15) {
                         Image(systemName: "play.fill")
                             .font(.largeTitle)
                             .foregroundColor(.accentColor)
                             .frame(width: iconFrameWidth)
                         
-                        Text("Para reproduzir um som, basta tocar em um dos cards da tela anterior.")
+                        Text("Para reproduzir um som, basta tocar sobre ele.")
                     }
                     
-                    HStack(spacing: 15) {
+                    HStack(alignment: .center, spacing: 15) {
                         Image(systemName: "square.and.arrow.up")
                             .font(.largeTitle)
                             .foregroundColor(.accentColor)
                             .frame(width: iconFrameWidth)
                         
                         //Text("Para compartilhar, segure o card do som por 2 segundos e então escolha Compartilhar.")
-                        Text("Para compartilhar, segure o card do som por 2 segundos e então escolha o app pelo qual deseja enviá-lo.")
+                        Text("Para compartilhar, segure o som por 2 segundos e então escolha o app pelo qual deseja enviá-lo.")
                     }
                     
-                    HStack(spacing: 15) {
+                    HStack(alignment: .center, spacing: 15) {
                         Image(systemName: "magnifyingglass")
                             .font(.largeTitle)
                             .foregroundColor(.accentColor)
@@ -35,7 +35,7 @@ struct HelpAboutView: View {
                         
                         VStack(spacing: 15) {
                             Text("Para pesquisar, vá até o topo da lista e **puxe mais um pouco para baixo** até revelar o campo de pesquisa.")
-                            Text("A pesquisa considera o **conteúdo** do áudio e o **autor**.")
+                            Text("A pesquisa considera o **conteúdo do áudio** e o **autor**.")
                         }
                     }
                     
@@ -56,10 +56,10 @@ struct HelpAboutView: View {
 
 }
 
-struct HelpAboutView_Previews: PreviewProvider {
+struct HelpView_Previews: PreviewProvider {
 
     static var previews: some View {
-        HelpAboutView()
+        HelpView()
     }
 
 }
