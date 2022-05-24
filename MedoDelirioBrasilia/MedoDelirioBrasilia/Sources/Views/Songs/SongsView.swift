@@ -50,6 +50,15 @@ struct SongsView: View {
                     .padding(.horizontal)
                     .padding(.top, 7)
                     
+                    if UserSettings.getShowOffensiveSounds() == false {
+                        Text("Filtrando conteúdo sensível. Você pode mudar isso na aba Ajustes.")
+                            .font(.footnote)
+                            .foregroundColor(.gray)
+                            .multilineTextAlignment(.center)
+                            .padding(.top, 15)
+                            .padding(.horizontal, 20)
+                    }
+                    
                     if searchText.isEmpty {
                         Text("\(viewModel.songs.count) músicas. Atualizado em \(songsLastUpdateDate).")
                             .font(.subheadline)

@@ -70,6 +70,10 @@
 		D98EC5E32825A45000340BE5 /* SoundsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5E22825A45000340BE5 /* SoundsViewViewModel.swift */; };
 		D9B4F73F283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B4F73D283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 */; };
 		D9B4F740283C8F4D0000EEF7 /* O roque ativa.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B4F73E283C8F4D0000EEF7 /* O roque ativa.mp3 */; };
+		D9B4F743283C92DC0000EEF7 /* Trote Luiz Pareto - TELERJ meme mas que filho da puta olhaí veja você.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B4F741283C92DC0000EEF7 /* Trote Luiz Pareto - TELERJ meme mas que filho da puta olhaí veja você.mp3 */; };
+		D9B4F744283C92DC0000EEF7 /* Fred - Cê tá falando sério.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B4F742283C92DC0000EEF7 /* Fred - Cê tá falando sério.mp3 */; };
+		D9B4F746283C939E0000EEF7 /* Olavo de Carvalho - Porra.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B4F745283C939E0000EEF7 /* Olavo de Carvalho - Porra.mp3 */; };
+		D9B4F748283C94600000EEF7 /* Cerginho da Perera Nunes - Com certeza.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B4F747283C94600000EEF7 /* Cerginho da Perera Nunes - Com certeza.mp3 */; };
 		D9C03441283AAF6100DB96E6 /* JORNAL DA RECORD - Não é coisa de deus não.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C0343F283AAF6100DB96E6 /* JORNAL DA RECORD - Não é coisa de deus não.mp3 */; };
 		D9C03442283AAF6100DB96E6 /* Tim Maia - Me Dê Motivo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C03440283AAF6100DB96E6 /* Tim Maia - Me Dê Motivo.mp3 */; };
 /* End PBXBuildFile section */
@@ -159,6 +163,10 @@
 		D98EC5E22825A45000340BE5 /* SoundsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsViewViewModel.swift; sourceTree = "<group>"; };
 		D9B4F73D283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Unidos do Medo e Delírio.mp3"; sourceTree = "<group>"; };
 		D9B4F73E283C8F4D0000EEF7 /* O roque ativa.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O roque ativa.mp3"; sourceTree = "<group>"; };
+		D9B4F741283C92DC0000EEF7 /* Trote Luiz Pareto - TELERJ meme mas que filho da puta olhaí veja você.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Trote Luiz Pareto - TELERJ meme mas que filho da puta olhaí veja você.mp3"; sourceTree = "<group>"; };
+		D9B4F742283C92DC0000EEF7 /* Fred - Cê tá falando sério.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fred - Cê tá falando sério.mp3"; sourceTree = "<group>"; };
+		D9B4F745283C939E0000EEF7 /* Olavo de Carvalho - Porra.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Olavo de Carvalho - Porra.mp3"; sourceTree = "<group>"; };
+		D9B4F747283C94600000EEF7 /* Cerginho da Perera Nunes - Com certeza.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cerginho da Perera Nunes - Com certeza.mp3"; sourceTree = "<group>"; };
 		D9C0343F283AAF6100DB96E6 /* JORNAL DA RECORD - Não é coisa de deus não.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "JORNAL DA RECORD - Não é coisa de deus não.mp3"; sourceTree = "<group>"; };
 		D9C03440283AAF6100DB96E6 /* Tim Maia - Me Dê Motivo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tim Maia - Me Dê Motivo.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -213,6 +221,10 @@
 		D940E27D283AA27D00392D1C /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9B4F747283C94600000EEF7 /* Cerginho da Perera Nunes - Com certeza.mp3 */,
+				D9B4F745283C939E0000EEF7 /* Olavo de Carvalho - Porra.mp3 */,
+				D9B4F742283C92DC0000EEF7 /* Fred - Cê tá falando sério.mp3 */,
+				D9B4F741283C92DC0000EEF7 /* Trote Luiz Pareto - TELERJ meme mas que filho da puta olhaí veja você.mp3 */,
 				D9C0343F283AAF6100DB96E6 /* JORNAL DA RECORD - Não é coisa de deus não.mp3 */,
 				D9C03440283AAF6100DB96E6 /* Tim Maia - Me Dê Motivo.mp3 */,
 				D940E29A283AA2C200392D1C /* ADY - oh nao mais um crime de responsabilidade.mp3 */,
@@ -495,9 +507,11 @@
 				D961D01328371F1700EFEDEB /* sound_data.json in Resources */,
 				D940E2AD283AA2C200392D1C /* MULTISHOW_Gloria_Groove_Quer_dizer_que_eles_querem_calar_a_gente.mp3 in Resources */,
 				D934432728381DEF00ADCD38 /* author_data.json in Resources */,
+				D9B4F743283C92DC0000EEF7 /* Trote Luiz Pareto - TELERJ meme mas que filho da puta olhaí veja você.mp3 in Resources */,
 				D940E2A3283AA2C200392D1C /* Away - nao fode mermao.mp3 in Resources */,
 				D940E2B6283AA2C200392D1C /* ADY - oh nao mais um crime de responsabilidade.mp3 in Resources */,
 				D940E29D283AA2C200392D1C /* O CARA DA LUVA DE PEDREIRO - receba carai caralho.mp3 in Resources */,
+				D9B4F746283C939E0000EEF7 /* Olavo de Carvalho - Porra.mp3 in Resources */,
 				D940E2B4283AA2C200392D1C /* Aham sei.mp3 in Resources */,
 				D9625E8528238F9B00080852 /* Preview Assets.xcassets in Resources */,
 				D940E2A4283AA2C200392D1C /* tv_senado_soraya_thronicke_a_gente_vai_cansando_sabe.mp3 in Resources */,
@@ -513,6 +527,7 @@
 				D940E2B3283AA2C200392D1C /* e_um_merda.mp3 in Resources */,
 				D940E2A5283AA2C200392D1C /* MULTISHOW_Titi_Muller_Ta_bombando_mais_do_que_o_povo_pedindo_Anitta.mp3 in Resources */,
 				D9625E8228238F9B00080852 /* Assets.xcassets in Resources */,
+				D9B4F744283C92DC0000EEF7 /* Fred - Cê tá falando sério.mp3 in Resources */,
 				D9B4F73F283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 in Resources */,
 				D940E29F283AA2C200392D1C /* EMICIDA_no_loolapalooza_Tira_o_título_e_bolsonaro_vai_tomar_no_cu.mp3 in Resources */,
 				D940E29E283AA2C200392D1C /* um_bosta_ciro.mp3 in Resources */,
@@ -526,6 +541,7 @@
 				D940E2A2283AA2C200392D1C /* LUVA DE PEDREIRO - E, caralho carai, RECEBA.mp3 in Resources */,
 				D940E29C283AA2C200392D1C /* esse_braga_neto_que_eh_um_bosta.mp3 in Resources */,
 				D940E2B2283AA2C200392D1C /* tu_entendeu_a_pergunta.mp3 in Resources */,
+				D9B4F748283C94600000EEF7 /* Cerginho da Perera Nunes - Com certeza.mp3 in Resources */,
 				D940E2B0283AA2C200392D1C /* Bolsonaro - Buscamos uma solução, quem tiver trás pra mim trás pra mim.mp3 in Resources */,
 				D940E2A0283AA2C200392D1C /* PORTA_DOS_FUNDOS_BALBÚRDIA_Bom_dia,_turma,_todo_mundo_tirando_a.mp3 in Resources */,
 				D940E2A1283AA2C200392D1C /* calma_calma_calma.mp3 in Resources */,

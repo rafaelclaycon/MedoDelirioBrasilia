@@ -27,10 +27,8 @@ struct SettingsView: View {
                             }
                             .padding(.bottom, -10)
                         
-                        //Divider()
-                        
                         VStack(alignment: .center, spacing: 5) {
-                            Text("Esse app é uma homenagem ao brilhante trabalho de **Cristiano Botafogo** e **Pedro Daltro** no podcast **Medo e Delírio em Brasília**. Ouça no seu tocador de podcasts favorito.")
+                            Text("Esse app é uma homenagem ao brilhante trabalho de **Cristiano Botafogo** e **Pedro Daltro** no podcast **Medo e Delírio em Brasília**. Ouça no seu agregador de podcasts favorito.")
                                 .multilineTextAlignment(.center)
                                 .padding(.horizontal)
                             
@@ -56,8 +54,6 @@ struct SettingsView: View {
 //                            }
                         }
                         
-                        //Divider()
-                        
                         VStack(alignment: .center, spacing: 5) {
                             Text("Dinheiro! Aqui aceitas Pix. Qualquer R$ 1 ajuda o desenvolvedor a manter isso aqui. 💵⬇️")
                                 .multilineTextAlignment(.center)
@@ -79,6 +75,66 @@ struct SettingsView: View {
                             .alert(isPresented: $showPixKeyCopiedAlert) {
                                 Alert(title: Text("Chave copiada com sucesso!"), dismissButton: .default(Text("OK")))
                             }
+                        }
+                        
+                        VStack(alignment: .center, spacing: 5) {
+                            Text("Gostou do que viu?")
+                                .multilineTextAlignment(.center)
+                                .padding(.horizontal)
+                            
+                            Button(action: {
+                                guard let emailSubject = "Bora fechar negócio".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+                                    return
+                                }
+                                guard let emailMessage = "Por favor, inclua um resumo do projeto, prazos e o investimento planejado.".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+                                    return
+                                }
+                                
+                                let mailToString = "mailto:medodeliriosuporte@gmail.com?subject=\(emailSubject)&body=\(emailMessage)"
+                                
+                                guard let mailToUrl = URL(string: mailToString) else {
+                                    return
+                                }
+                                
+                                UIApplication.shared.open(mailToUrl)
+                            }) {
+                                Text("Contrate-me para fazer o seu app iOS")
+                            }
+                            .tint(.orange)
+                            .controlSize(.large)
+                            .buttonStyle(.bordered)
+                            .buttonBorderShape(.capsule)
+                            .padding(.top)
+                        }
+                        
+                        VStack(alignment: .center, spacing: 5) {
+                            Text("Encontrou um problema ou gostaria de fazer uma sugestão?")
+                                .multilineTextAlignment(.center)
+                                .padding(.horizontal)
+                            
+                            Button(action: {
+                                guard let emailSubject = "Problema/sugestão no app iOS".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+                                    return
+                                }
+                                guard let emailMessage = "Inclua passos e prints se possível.".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+                                    return
+                                }
+                                
+                                let mailToString = "mailto:medodeliriosuporte@gmail.com?subject=\(emailSubject)&body=\(emailMessage)"
+                                
+                                guard let mailToUrl = URL(string: mailToString) else {
+                                    return
+                                }
+                                
+                                UIApplication.shared.open(mailToUrl)
+                            }) {
+                                Text("Conte-nos por e-mail")
+                            }
+                            .tint(.pink)
+                            .controlSize(.large)
+                            .buttonStyle(.bordered)
+                            .buttonBorderShape(.capsule)
+                            .padding(.top)
                         }
                         
                         VStack(alignment: .center, spacing: 5) {

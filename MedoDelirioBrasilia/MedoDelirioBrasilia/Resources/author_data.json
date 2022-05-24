@@ -86,5 +86,21 @@
     {
         "id": "0C347F20-86F2-4A85-99B5-F27DC55B9859",
         "name": "Jornal da Record"
+    },
+    {
+        "id": "D19468C5-9F69-4F1B-B47F-696D5D716764",
+        "name": "Fred"
+    },
+    {
+        "id": "B7CB79F9-4CAC-4832-BB47-2EA96A4AC576",
+        "name": "Luiz Pareto"
+    },
+    {
+        "id": "90725901-3A3F-407B-8177-159B50C60676",
+        "name": "Olavo de Carvalho"
+    },
+    {
+        "id": "A7449684-39D6-48AE-91D2-BC8E3D8133F1",
+        "name": "Cerginho da Perera Nunes"
     }
 ]

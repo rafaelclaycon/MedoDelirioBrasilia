@@ -60,7 +60,7 @@
         "description": "tá bombando mais do que o povo chamando anitta viu gente",
         "filename": "MULTISHOW_Titi_Muller_Ta_bombando_mais_do_que_o_povo_pedindo_Anitta.mp3",
         "dateAdded": "2022-05-20T00:00:00Z",
-        "isOffensive": false
+        "isOffensive": true
     },
     {
         "id": "24DF3824-B1E2-44A8-AAAD-0CF7765C0526",
@@ -96,7 +96,7 @@
         "description": "eles querem calar a gente é isso censura em 2022 é o caralho fora bolsonaro gloria groove",
         "filename": "MULTISHOW_Gloria_Groove_Quer_dizer_que_eles_querem_calar_a_gente.mp3",
         "dateAdded": "2022-05-20T00:00:00Z",
-        "isOffensive": false
+        "isOffensive": true
     },
     {
         "id": "93FF31DE-2187-408F-8486-E989F7610361",
@@ -105,7 +105,7 @@
         "description": "bolsonaro vai tomar no cu emicida",
         "filename": "EMICIDA_no_loolapalooza_Tira_o_título_e_bolsonaro_vai_tomar_no_cu.mp3",
         "dateAdded": "2022-05-20T00:00:00Z",
-        "isOffensive": false
+        "isOffensive": true
     },
     {
         "id": "D2290519-936D-40AC-A7B1-47C76A12169E",
@@ -277,5 +277,41 @@
         "filename": "um_bosta_ciro.mp3",
         "dateAdded": "2022-05-20T00:00:00Z",
         "isOffensive": true
+    },
+    {
+        "id": "E8D6960D-3484-445F-A113-2E51FAF5C2A6",
+        "title": "Cê tá falando sério?",
+        "authorId": "D19468C5-9F69-4F1B-B47F-696D5D716764",
+        "description": "você tá falando sério cê tá falando sério",
+        "filename": "Fred - Cê tá falando sério.mp3",
+        "dateAdded": "2020-11-04T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "12C9B782-2030-42AC-B2DD-2C35A9F53CE6",
+        "title": "Mas que FDP",
+        "authorId": "B7CB79F9-4CAC-4832-BB47-2EA96A4AC576",
+        "description": "mas que filho da puta olhaí veja você fdp",
+        "filename": "Trote Luiz Pareto - TELERJ meme mas que filho da puta olhaí veja você.mp3",
+        "dateAdded": "2020-11-04T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "992AD7EA-FDEE-40E1-9C04-A18B1FEBD817",
+        "title": "Porra",
+        "authorId": "90725901-3A3F-407B-8177-159B50C60676",
+        "description": "porra",
+        "filename": "Olavo de Carvalho - Porra.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "CFAB8719-BB53-4B0D-96EE-1A89E25C28EA",
+        "title": "Com certeza",
+        "authorId": "A7449684-39D6-48AE-91D2-BC8E3D8133F1",
+        "description": "com certeza",
+        "filename": "Cerginho da Perera Nunes - Com certeza.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
     }
 ]
