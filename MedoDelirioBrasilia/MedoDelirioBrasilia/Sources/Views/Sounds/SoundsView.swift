@@ -31,7 +31,7 @@ struct SoundsView: View {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 14) {
                         ForEach(searchResults) { sound in
-                            SoundCell(title: sound.title, author: sound.authorName ?? "")
+                            SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", favorites: $viewModel.favoritesKeeper)
                                 .onTapGesture {
                                     viewModel.playSound(fromPath: sound.filename)
                                 }

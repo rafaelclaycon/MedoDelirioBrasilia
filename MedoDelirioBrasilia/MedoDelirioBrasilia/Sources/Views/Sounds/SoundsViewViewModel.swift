@@ -2,9 +2,10 @@ import Combine
 import UIKit
 
 class SoundsViewViewModel: ObservableObject {
-    
+
     @Published var sounds = [Sound]()
     @Published var sortOption: Int = 0
+    @Published var favoritesKeeper = Set<String>()
     
     func reloadList() {
         if UserSettings.getShowOffensiveSounds() {
@@ -19,6 +20,14 @@ class SoundsViewViewModel: ObservableObject {
             // Needed because author names live in a different file.
             for i in 0...(self.sounds.count - 1) {
                 self.sounds[i].authorName = authorData.first(where: { $0.id == self.sounds[i].authorId })?.name ?? "Desconhecido"
+            }
+            
+            if let favorites = try? database.getAllFavorites(), favorites.count > 0 {
+                for favorite in favorites {
+                    favoritesKeeper.insert(favorite.contentId)
+                }
+            } else {
+                favoritesKeeper.removeAll()
             }
             
             self.sounds.sort(by: { $0.title.withoutDiacritics() < $1.title.withoutDiacritics() })

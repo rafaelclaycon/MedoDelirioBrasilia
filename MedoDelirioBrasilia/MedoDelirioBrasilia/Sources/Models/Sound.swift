@@ -16,7 +16,7 @@ struct Sound: Hashable, Codable, Identifiable {
          authorId: String,
          description: String = "",
          filename: String = "",
-         dateAdded: Date = Date(),
+         dateAdded: Date? = Date(),
          isOffensive: Bool = false) {
         self.id = id
         self.title = title
