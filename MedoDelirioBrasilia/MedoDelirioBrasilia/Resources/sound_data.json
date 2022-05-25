@@ -208,7 +208,7 @@
     },
     {
         "id": "0136DDD8-7977-41FF-9433-C678675A3791",
-        "title": "Esse Neto",
+        "title": "Esse Neto Bosta",
         "authorId": "51706210-3329-4A43-A823-2F91EBC4B546",
         "description": "esse neto bosta com esse braga bosta neto",
         "filename": "esse_neto_bosta.mp3",
@@ -226,7 +226,7 @@
     },
     {
         "id": "7244C448-2982-4932-9C4C-8365BACFA4DD",
-        "title": "Que m*rd* hein",
+        "title": "Que merda hein",
         "authorId": "2982E359-0A6C-4005-AED8-2D5BB7F39599",
         "description": "que merda em que merda hein que merda hem",
         "filename": "Alborgeti - Que Merda Hein.mp3",
@@ -235,7 +235,7 @@
     },
     {
         "id": "1432E4A4-2D05-4439-936E-143E4B7E89B3",
-        "title": "Não f*** mermão",
+        "title": "Não fode, mermão",
         "authorId": "17860F3D-A18C-4684-86D0-931306A6937A",
         "description": "não fode mermão",
         "filename": "Away - nao fode mermao.mp3",
@@ -244,7 +244,7 @@
     },
     {
         "id": "83301B63-DD4F-4844-A96D-06FC9F02ABDC",
-        "title": "É um m****",
+        "title": "É um merda",
         "authorId": "B8720575-50B5-4271-B425-C172D56263C8",
         "description": "é um merda",
         "filename": "e_um_merda.mp3",
@@ -253,7 +253,7 @@
     },
     {
         "id": "7D03A9DA-5735-4967-8C93-9B31589943A1",
-        "title": "É c****, receba",
+        "title": "É carai, receba",
         "authorId": "2C99D577-ED07-4803-8AC6-C265AF0D3093",
         "description": "é carai receba",
         "filename": "LUVA DE PEDREIRO - E, caralho carai, RECEBA.mp3",
@@ -262,7 +262,7 @@
     },
     {
         "id": "AC5BF3FA-E5FF-4942-A43D-70415796538D",
-        "title": "Receba, c****",
+        "title": "Receba, carai",
         "authorId": "2C99D577-ED07-4803-8AC6-C265AF0D3093",
         "description": "receba carai",
         "filename": "O CARA DA LUVA DE PEDREIRO - receba carai caralho.mp3",
@@ -271,7 +271,7 @@
     },
     {
         "id": "1323C18E-DF14-45C7-9144-DE8B01B0F9C7",
-        "title": "Um b****",
+        "title": "Um bosta",
         "authorId": "51706210-3329-4A43-A823-2F91EBC4B546",
         "description": "que é um bosta",
         "filename": "um_bosta_ciro.mp3",
@@ -311,6 +311,447 @@
         "authorId": "A7449684-39D6-48AE-91D2-BC8E3D8133F1",
         "description": "com certeza",
         "filename": "Cerginho da Perera Nunes - Com certeza.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "A699240C-73AD-4155-A77E-95BC235CA354",
+        "title": "Porra",
+        "authorId": "EA9B678C-B7AC-4A7F-8D5A-FA21CB3468F4",
+        "description": "porra",
+        "filename": "Leo Stronda Porra.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "78496ED2-27D3-4819-8B0F-430A4D77CE28",
+        "title": "Filhotes da ditadura",
+        "authorId": "6CBDBB4C-15AD-4C97-91DF-97FCFAAE46D6",
+        "description": "Filhotes da ditadura",
+        "filename": "Brizola - Filhotes da ditadura.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "BD2492B1-6561-4B55-8C8B-FD862AB3B121",
+        "title": "Porra",
+        "authorId": "19F699FE-FFE1-4A9C-B19F-9C29D58A862E",
+        "description": "Porra",
+        "filename": "Boulos Porra short.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "2CEEB59B-8FB0-4CA9-8229-FFF987EB578A",
+        "title": "Esse é o boldo bão",
+        "authorId": "F0A2EC08-8C98-42E8-8C23-C4EBD9314E14",
+        "description": "Esse é o boldo bão",
+        "filename": "Boldo - Esse é o boldo bão.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "E6D61C37-3FFD-447B-952B-BB570B774BD5",
+        "title": "Queima quengaral wooo",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "Queima quengaral wooo",
+        "filename": "Queima quengaral wooo short.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "6F65562F-89D0-4452-8D49-2CE2B1822E25",
+        "title": "Atenção Paulo Guedes",
+        "authorId": "51706210-3329-4A43-A823-2F91EBC4B546",
+        "description": "Atenção Paulo Guedes",
+        "filename": "Ciro Gomes  - Atenção Paulo Guedes.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "CF36D8A6-6449-4714-A6AD-7241E4389530",
+        "title": "Paulo Guedes mentiroso!",
+        "authorId": "51706210-3329-4A43-A823-2F91EBC4B546",
+        "description": "Paulo Guedes mentiroso tá enganando a rapazeada paulo guedes",
+        "filename": "CIRO GOMES - Paulo Guedes mentiroso tá enganando a rapazeada paulo guedes.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "A2888E2C-B784-4047-9D90-8147EB62FE1C",
+        "title": "Temos ódio à ditadura, ódio e nojo",
+        "authorId": "9598A083-571E-4E75-B610-B0C1DE01542B",
+        "description": "Temos ódio à ditadura, ódio e nojo",
+        "filename": "Ulysses Guimarães - Temos ódio à ditadura, ódio e nojo.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "2669E270-8830-406E-8944-08A40652B6BB",
+        "title": "Para com essa porra aí, mermão",
+        "authorId": "17860F3D-A18C-4684-86D0-931306A6937A",
+        "description": "Para com essa porra aí mermão",
+        "filename": "Away - Para com essa porra aí mermão short.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "0EE61E88-959F-45D5-9F79-524CAE248CFA",
+        "title": "Se fudeu",
+        "authorId": "628381D9-9218-48EE-A9F1-22AB78EFBACE",
+        "description": "Se fudeu",
+        "filename": "Costinha - Se fudeu short.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "809B2C2F-4A80-49DD-9828-178D0FF28412",
+        "title": "Mermão, na moral",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "Mermão na moral",
+        "filename": "Mermão na moral short.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "913F51D3-4B75-4D4A-88D1-6205D93E8416",
+        "title": "Que merda hein",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "Que merda hein",
+        "filename": "Que merda hein short.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "F4B72843-4D72-4EF1-9369-092F44BB88E8",
+        "title": "Vai chorar é? Vai chorar é?",
+        "authorId": "D8738C87-8962-418E-ADBF-9B1DC3D30528",
+        "description": "Vai chorar é? vai chorar é? chore na minha",
+        "filename": "Saiddy Bamba - Vai chorar é vai chorar é chore na minha.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "6E8F3CC9-C17E-4193-BED1-07792BC59B1A",
+        "title": "É paradoxo que chama isso aí",
+        "authorId": "924B9331-E479-4644-82F4-8DB6C7574DC7",
+        "description": "Renan É paradoxo que chama isso aí",
+        "filename": "Choque de Cultura - Renan - É Paradoxo que chama isso aí.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "A1EEE1F3-FED5-46D5-9BD3-D13C0715E634",
+        "title": "Puta que pariu",
+        "authorId": "7E1ED3FF-82AA-4047-B0A9-292D63FC4711",
+        "description": "Puta que pariu",
+        "filename": "Hassum - PUTA QUE PARIU.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "1C85C12B-7C0C-4DF9-B889-7FAC05D5547D",
+        "title": "Calma, filha da puta, calma",
+        "authorId": "CFA8FC2A-3CB5-4B5B-8454-B29B5FE1B904",
+        "description": "Calma filha da puta calma",
+        "filename": "Trote Pareto - Calma filha da puta calma.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "A97EF51F-C49D-4460-A159-F82CD9639E4E",
+        "title": "Às vezes o ódio é a única emoção possível",
+        "authorId": "924B9331-E479-4644-82F4-8DB6C7574DC7",
+        "description": "Rogerinho Às vezes o ódio é a única emoção possível",
+        "filename": "CHOQUE DE CULTURA - Rogerinho Às vezes o ódio é a única emoção possível short.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "7A05C973-E8A0-4D68-A1E9-C602A7898C05",
+        "title": "Não",
+        "authorId": "3959FC8B-DB6F-4926-8610-7161A322E700",
+        "description": "Não",
+        "filename": "Caetano - Não short.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "0842F0CB-C423-46D9-9FD5-DF9FC2445E5C",
+        "title": "Que loucura, que coisa absurda",
+        "authorId": "3959FC8B-DB6F-4926-8610-7161A322E700",
+        "description": "Que loucura que coisa absurda",
+        "filename": "Caetano - Que loucura, que coisa absurda short.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "0469BA5D-287B-4F88-A218-0FC95E00C166",
+        "title": "Falo com tranquilidade",
+        "authorId": "924B9331-E479-4644-82F4-8DB6C7574DC7",
+        "description": "Falo com tranquilidade",
+        "filename": "Choque de Cultura - Falo com tranquilidade.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "29DAC1C1-8097-40E0-AE9B-2FEC16E6839A",
+        "title": "Aqui tem informação",
+        "authorId": "924B9331-E479-4644-82F4-8DB6C7574DC7",
+        "description": "Rogerinho Aqui tem informação",
+        "filename": "Choque de Cultura - Rogerinho - Aqui tem informação.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "5B4453DF-2736-461D-B731-12D3B9C095E1",
+        "title": "Ó a informação aí",
+        "authorId": "924B9331-E479-4644-82F4-8DB6C7574DC7",
+        "description": "Rogerinho Ó a informação aí",
+        "filename": "Choque de Cultura - Rogerinho - Ó a informação aí.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "301B1EB5-1D6D-4AF1-8E8D-6CFBD9E95569",
+        "title": "Não vamos falar de pornô aqui não",
+        "authorId": "924B9331-E479-4644-82F4-8DB6C7574DC7",
+        "description": "Rogerinho Não vamos falar de pornô aqui não",
+        "filename": "Choque de cultura - Rogerinho - Não vamos falar de pornô aqui não.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "19CAEBDD-2B29-48C9-943B-18535A6E82BC",
+        "title": "Bom dia",
+        "authorId": "28B86BE0-5475-49E9-9ADD-1AA39630869D",
+        "description": "General Mourão Bom Dia",
+        "filename": "General Mourão Bom Dia short.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "EC44CE74-E684-4364-B84B-07C38958E86E",
+        "title": "Tu tava fora do Brasil, irmão?",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "Tu tava fora do brasil irmão",
+        "filename": "Tu tava fora do brasil irmão short.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "90A83AEB-302B-4B29-891A-B2FCE868D24C",
+        "title": "Puta que pariu, Marquinho",
+        "authorId": "F0A2EC08-8C98-42E8-8C23-C4EBD9314E14",
+        "description": "Puta que pariu marquinho",
+        "filename": "Boldo - Puta que pariu marquinho.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "36BB5E1E-782B-4502-B395-0552635E510E",
+        "title": "Muito bom, muito bom",
+        "authorId": "F0A2EC08-8C98-42E8-8C23-C4EBD9314E14",
+        "description": "Muito bom muito bom",
+        "filename": "Boldo - Muito bom, muito bom.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "A74FB576-3840-48F1-8A82-1160529668E1",
+        "title": "Que boldo bão",
+        "authorId": "F0A2EC08-8C98-42E8-8C23-C4EBD9314E14",
+        "description": "Que boldo bão",
+        "filename": "Boldo - Que boldo bão.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "521FB542-46D1-49B1-96C5-ED69C9B2A4DA",
+        "title": "Carrralho caralho",
+        "authorId": "F0A2EC08-8C98-42E8-8C23-C4EBD9314E14",
+        "description": "Carrralho caralho",
+        "filename": "Boldo - Carrralho caralho.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "2E2857DA-C888-4F0E-9B15-51C55C841E22",
+        "title": "Deixa com a cara magoada",
+        "authorId": "F0A2EC08-8C98-42E8-8C23-C4EBD9314E14",
+        "description": "Deixa com a cara magoada",
+        "filename": "Boldo - Deixa com a cara magoada.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "34094538-9AF5-42F7-BF96-372BCD7C4801",
+        "title": "Então tudo bem",
+        "authorId": "DBC3A1FF-E536-40F0-B869-2ED3E11DF5F7",
+        "description": "Então tudo bem",
+        "filename": "Futurama - Então tudo bem short.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "0944BA0D-6A7E-44B7-A878-BCA7B8669842",
+        "title": "Parece até que um helicóptero pousou",
+        "authorId": "F0A2EC08-8C98-42E8-8C23-C4EBD9314E14",
+        "description": "Parece até que um helicóptero pousou em cima da tua cara",
+        "filename": "Boldo - Parece até que um helicóptero pousou em cima da tua cara.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "C4075191-EEE2-4FD5-BDAA-A0869852C80F",
+        "title": "Vamos fazer essa crítica aí",
+        "authorId": "924B9331-E479-4644-82F4-8DB6C7574DC7",
+        "description": "Renan Vamos fazer essa critica ai",
+        "filename": "Choque de Cultura - Renan - Vamos fazer essa critica ai.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "2A8238B6-E2B8-4871-9F8B-ADD7B0551C99",
+        "title": "Cabô cabô cabô",
+        "authorId": "924B9331-E479-4644-82F4-8DB6C7574DC7",
+        "description": "Cabo cabo cabo ja ta desvirtuando ja short",
+        "filename": "Choque de Cultura - Cabo cabo cabo ja ta desvirtuando ja short.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "114C89EA-E5B4-4AC9-9B05-B08C35569442",
+        "title": "Ahh, agora eu entendi",
+        "authorId": "CFCC4FD4-8F9D-4515-AFE0-A79F41C1FC01",
+        "description": "Ahh agora eu entendi",
+        "filename": "BENDER Ahh, agora eu entendi short.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "2119DF34-0802-4421-90CB-BF42CA7C448D",
+        "title": "Rapaz",
+        "authorId": "FD6976FA-83E8-4B03-AF35-B358D12AD84A",
+        "description": "Rapaz Rapaaaz",
+        "filename": "Xaropinho - Rapaz short.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "6243C604-BB75-4CC7-A961-6FC5B890DAA7",
+        "title": "Todo mundo se fudeu",
+        "authorId": "051E1352-4CDD-4881-AD5C-09FD3B43E33C",
+        "description": "todo mundo se fudeu",
+        "filename": "Gustavo mendes dilma todo mundo se fudeu.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "6269A611-BDA9-4DF0-9B0C-959FC6739DA1",
+        "title": "Pigarro",
+        "authorId": "56CCBFFD-04CA-4EDF-A88F-80E0B2618864",
+        "description": "Pigarro",
+        "filename": "Michel Temer - Pigarro.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "42582A29-BFCF-4834-B0B3-9BE4959B3B63",
+        "title": "Tem que pedir uma pastilha",
+        "authorId": "56CCBFFD-04CA-4EDF-A88F-80E0B2618864",
+        "description": "Tem que pedir uma pastilha",
+        "filename": "Michel Temer - Tem que pedir uma pastilha.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "6DDA9C2F-CC0F-40FE-B540-E776F20449E0",
+        "title": "Odeio, odeio, odeio",
+        "authorId": "0D944922-7E50-4DED-A8FD-F44EFCAE82A2",
+        "description": "Odeio, odeio, odeio",
+        "filename": "Abraham Weintraub - Odeio, odeio, odeio short.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "9E3E62D0-B34D-47EF-9003-3716616FDBB2",
+        "title": "Que isso, francamente",
+        "authorId": "51706210-3329-4A43-A823-2F91EBC4B546",
+        "description": "Que isso francamente",
+        "filename": "Ciro Gomes - Que isso, francamente.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "378D82BC-1C47-46F7-BA5F-F7160F293A74",
+        "title": "Tomar no cu, rapaz",
+        "authorId": "FD772147-0CA9-4D48-A1E4-B121DB3D4D73",
+        "description": "Tomar no cu rapaz",
+        "filename": "Opaio - Tomar no cu rapaz.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "8642D1D8-5BC0-4163-A822-08F07916D849",
+        "title": "Conspirador filho da puta",
+        "authorId": "51706210-3329-4A43-A823-2F91EBC4B546",
+        "description": "Conspirador filho da puta",
+        "filename": "Ciro Gomes - Conspirador filho da puta.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "B92D1E46-DA90-4ACA-B11D-AFCFD9933E0C",
+        "title": "Veja bem, se eu estiver errado me corrija",
+        "authorId": "51706210-3329-4A43-A823-2F91EBC4B546",
+        "description": "Veja bem se eu estiver errado me corrija",
+        "filename": "Ciro Gomes - Veja bem, se eu estiver errado me corrija.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "7DD2D90F-CE82-482D-9794-62FA47DF5F1F",
+        "title": "Não renunciarei",
+        "authorId": "56CCBFFD-04CA-4EDF-A88F-80E0B2618864",
+        "description": "Não renunciarei",
+        "filename": "Temer - Não renunciarei short.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "3AF33D58-1CB3-43EC-BE89-88513B082A17",
+        "title": "Essa conta irá para as Forças Armadas",
+        "authorId": "28B86BE0-5475-49E9-9ADD-1AA39630869D",
+        "description": "Essa conta irá para as Forças Armadas",
+        "filename": "Mourão - Essa conta irá para as Forças Armadas trecho short.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "D8BDFB7C-EC94-4851-B431-5A7264081B0E",
+        "title": "Eu tenho pena",
+        "authorId": "C066E971-8702-4261-955D-00CF642A465A",
+        "description": "Eu tenho pena",
+        "filename": "Silas Malafaia - Eu tenho pena short.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "AA108026-66D5-4E1D-8436-CD4F212074B1",
+        "title": "Mentiroso sem vergonha, vai pro inferno",
+        "authorId": "C066E971-8702-4261-955D-00CF642A465A",
+        "description": "Mentiroso sem vergonha vai pro inferno",
+        "filename": "Silas Malafaia - Mentiroso sem vergonha vai pro inferno short.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "82141C49-8622-49CD-A64A-CA94FB7FCBAF",
+        "title": "É mentira",
+        "authorId": "BC2818F5-4FA5-46FC-90C3-075691F3E979",
+        "description": "É mentira",
+        "filename": "Reinaldo Azevedo - E mentira.mp3",
         "dateAdded": "2021-02-19T00:00:00Z",
         "isOffensive": false
     }
