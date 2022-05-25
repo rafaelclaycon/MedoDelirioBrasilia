@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D92879E4283EEE1D00369CE5 /* Bolsonaro - Buscamos uma solucao, quem tiver tras pra mim tras pra mim.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879E3283EEE1D00369CE5 /* Bolsonaro - Buscamos uma solucao, quem tiver tras pra mim tras pra mim.mp3 */; };
+		D92879E7283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879E5283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 */; };
+		D92879E8283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879E6283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 */; };
 		D92E7067283C51D20035826C /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92E7066283C51D20035826C /* Song.swift */; };
-		D92E706C283C5C2C0035826C /* Pena que não pode ver um impeachment.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92E7069283C5C2C0035826C /* Pena que não pode ver um impeachment.mp3 */; };
-		D92E706D283C5C2C0035826C /* Não era fake news, era jornalismo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92E706A283C5C2C0035826C /* Não era fake news, era jornalismo.mp3 */; };
 		D92E706E283C5C2C0035826C /* Eu volto pro ostracismo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92E706B283C5C2C0035826C /* Eu volto pro ostracismo.mp3 */; };
 		D92E7070283C5CF40035826C /* song_data.json in Resources */ = {isa = PBXBuildFile; fileRef = D92E706F283C5CF40035826C /* song_data.json */; };
 		D92E7072283C5D990035826C /* SongsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92E7071283C5D990035826C /* SongsViewViewModel.swift */; };
@@ -107,7 +108,6 @@
 		D9E11744283EDE5C0043E2F2 /* General Mourão Bom Dia short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E11735283EDE5C0043E2F2 /* General Mourão Bom Dia short.mp3 */; };
 		D9E11745283EDE5C0043E2F2 /* Boldo - Que boldo bão.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E11736283EDE5C0043E2F2 /* Boldo - Que boldo bão.mp3 */; };
 		D9E11746283EDE5C0043E2F2 /* Caetano - Não short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E11737283EDE5C0043E2F2 /* Caetano - Não short.mp3 */; };
-		D9E11748283EDF500043E2F2 /* Bolsonaro - Buscamos uma solução, quem tiver trás pra mim trás pra mim.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E11747283EDF500043E2F2 /* Bolsonaro - Buscamos uma solução, quem tiver trás pra mim trás pra mim.mp3 */; };
 		D9E1174C283EE12A0043E2F2 /* BENDER Ahh, agora eu entendi short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E11749283EE12A0043E2F2 /* BENDER Ahh, agora eu entendi short.mp3 */; };
 		D9E1174D283EE12A0043E2F2 /* Choque de Cultura - Renan - Vamos fazer essa critica ai.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E1174A283EE12A0043E2F2 /* Choque de Cultura - Renan - Vamos fazer essa critica ai.mp3 */; };
 		D9E1174E283EE12A0043E2F2 /* Choque de Cultura - Cabo cabo cabo ja ta desvirtuando ja short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E1174B283EE12A0043E2F2 /* Choque de Cultura - Cabo cabo cabo ja ta desvirtuando ja short.mp3 */; };
@@ -141,9 +141,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D92879E3283EEE1D00369CE5 /* Bolsonaro - Buscamos uma solucao, quem tiver tras pra mim tras pra mim.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Buscamos uma solucao, quem tiver tras pra mim tras pra mim.mp3"; sourceTree = "<group>"; };
+		D92879E5283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Nao era fake news era jornalismo.mp3"; sourceTree = "<group>"; };
+		D92879E6283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pena que nao pode ver um impeachment.mp3"; sourceTree = "<group>"; };
 		D92E7066283C51D20035826C /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
-		D92E7069283C5C2C0035826C /* Pena que não pode ver um impeachment.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pena que não pode ver um impeachment.mp3"; sourceTree = "<group>"; };
-		D92E706A283C5C2C0035826C /* Não era fake news, era jornalismo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Não era fake news, era jornalismo.mp3"; sourceTree = "<group>"; };
 		D92E706B283C5C2C0035826C /* Eu volto pro ostracismo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu volto pro ostracismo.mp3"; sourceTree = "<group>"; };
 		D92E706F283C5CF40035826C /* song_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = song_data.json; sourceTree = "<group>"; };
 		D92E7071283C5D990035826C /* SongsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsViewViewModel.swift; sourceTree = "<group>"; };
@@ -244,7 +245,6 @@
 		D9E11735283EDE5C0043E2F2 /* General Mourão Bom Dia short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "General Mourão Bom Dia short.mp3"; sourceTree = "<group>"; };
 		D9E11736283EDE5C0043E2F2 /* Boldo - Que boldo bão.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Boldo - Que boldo bão.mp3"; sourceTree = "<group>"; };
 		D9E11737283EDE5C0043E2F2 /* Caetano - Não short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Caetano - Não short.mp3"; sourceTree = "<group>"; };
-		D9E11747283EDF500043E2F2 /* Bolsonaro - Buscamos uma solução, quem tiver trás pra mim trás pra mim.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Buscamos uma solução, quem tiver trás pra mim trás pra mim.mp3"; sourceTree = "<group>"; };
 		D9E11749283EE12A0043E2F2 /* BENDER Ahh, agora eu entendi short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "BENDER Ahh, agora eu entendi short.mp3"; sourceTree = "<group>"; };
 		D9E1174A283EE12A0043E2F2 /* Choque de Cultura - Renan - Vamos fazer essa critica ai.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Choque de Cultura - Renan - Vamos fazer essa critica ai.mp3"; sourceTree = "<group>"; };
 		D9E1174B283EE12A0043E2F2 /* Choque de Cultura - Cabo cabo cabo ja ta desvirtuando ja short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Choque de Cultura - Cabo cabo cabo ja ta desvirtuando ja short.mp3"; sourceTree = "<group>"; };
@@ -288,11 +288,11 @@
 		D92E7068283C5C120035826C /* Songs */ = {
 			isa = PBXGroup;
 			children = (
+				D92879E5283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 */,
+				D92879E6283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 */,
 				D9B4F73E283C8F4D0000EEF7 /* O roque ativa.mp3 */,
 				D9B4F73D283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 */,
 				D92E706B283C5C2C0035826C /* Eu volto pro ostracismo.mp3 */,
-				D92E706A283C5C2C0035826C /* Não era fake news, era jornalismo.mp3 */,
-				D92E7069283C5C2C0035826C /* Pena que não pode ver um impeachment.mp3 */,
 			);
 			path = Songs;
 			sourceTree = "<group>";
@@ -310,6 +310,7 @@
 		D940E27D283AA27D00392D1C /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D92879E3283EEE1D00369CE5 /* Bolsonaro - Buscamos uma solucao, quem tiver tras pra mim tras pra mim.mp3 */,
 				D9E11752283EE4F30043E2F2 /* Abraham Weintraub - odeio, odeio, odeio short.mp3 */,
 				D9E1174F283EE4F30043E2F2 /* Ciro Gomes - Conspirador filho da puta.mp3 */,
 				D9E1175B283EE4F40043E2F2 /* Ciro Gomes - Que isso, francamente.mp3 */,
@@ -327,7 +328,6 @@
 				D9E11749283EE12A0043E2F2 /* BENDER Ahh, agora eu entendi short.mp3 */,
 				D9E1174B283EE12A0043E2F2 /* Choque de Cultura - Cabo cabo cabo ja ta desvirtuando ja short.mp3 */,
 				D9E1174A283EE12A0043E2F2 /* Choque de Cultura - Renan - Vamos fazer essa critica ai.mp3 */,
-				D9E11747283EDF500043E2F2 /* Bolsonaro - Buscamos uma solução, quem tiver trás pra mim trás pra mim.mp3 */,
 				D9E11732283EDE5C0043E2F2 /* Boldo - Carrralho caralho.mp3 */,
 				D9E1172D283EDE5C0043E2F2 /* Boldo - Muito bom, muito bom.mp3 */,
 				D9E1172F283EDE5C0043E2F2 /* Boldo - Parece até que um helicóptero pousou em cima da tua cara.mp3 */,
@@ -669,7 +669,6 @@
 				D940E29D283AA2C200392D1C /* O CARA DA LUVA DE PEDREIRO - receba carai caralho.mp3 in Resources */,
 				D94A4261283E85D500A504BD /* Boulos Porra short.mp3 in Resources */,
 				D9E11746283EDE5C0043E2F2 /* Caetano - Não short.mp3 in Resources */,
-				D9E11748283EDF500043E2F2 /* Bolsonaro - Buscamos uma solução, quem tiver trás pra mim trás pra mim.mp3 in Resources */,
 				D9B4F746283C939E0000EEF7 /* Olavo de Carvalho - Porra.mp3 in Resources */,
 				D94A426E283E87E100A504BD /* Mermão na moral short.mp3 in Resources */,
 				D940E2B4283AA2C200392D1C /* Aham sei.mp3 in Resources */,
@@ -684,9 +683,11 @@
 				D940E2B5283AA2C200392D1C /* Passada chocada meu Deus jesus.mp3 in Resources */,
 				D94A4270283E87E100A504BD /* Costinha - Se fudeu short.mp3 in Resources */,
 				D9E11769283EE4F40043E2F2 /* Ciro Gomes - Que isso, francamente.mp3 in Resources */,
+				D92879E4283EEE1D00369CE5 /* Bolsonaro - Buscamos uma solucao, quem tiver tras pra mim tras pra mim.mp3 in Resources */,
 				D9E1175D283EE4F40043E2F2 /* Ciro Gomes - Conspirador filho da puta.mp3 in Resources */,
 				D92E7070283C5CF40035826C /* song_data.json in Resources */,
 				D9E1173B283EDE5C0043E2F2 /* Choque de Cultura - Falo com tranquilidade.mp3 in Resources */,
+				D92879E7283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 in Resources */,
 				D940E2A9283AA2C200392D1C /* Alborgeti - Que Merda Hein.mp3 in Resources */,
 				D94A4260283E85D500A504BD /* Queima quengaral wooo short.mp3 in Resources */,
 				D9E1173D283EDE5C0043E2F2 /* Choque de cultura - Rogerinho - Não vamos falar de pornô aqui não.mp3 in Resources */,
@@ -699,7 +700,6 @@
 				D9E11739283EDE5C0043E2F2 /* Tu tava fora do brasil irmão short.mp3 in Resources */,
 				D940E2AA283AA2C200392D1C /* deu_errado.mp3 in Resources */,
 				D9C03442283AAF6100DB96E6 /* Tim Maia - Me Dê Motivo.mp3 in Resources */,
-				D92E706D283C5C2C0035826C /* Não era fake news, era jornalismo.mp3 in Resources */,
 				D940E27F283AA29600392D1C /* Feiticeira - Não é feitiçaria, é tecnologia meme short.mp3 in Resources */,
 				D9E1175F283EE4F40043E2F2 /* Michel Temer - Pigarro.mp3 in Resources */,
 				D940E2A8283AA2C200392D1C /* MULTISHOW - Lulu Santos - Censura nunca mais.mp3 in Resources */,
@@ -716,7 +716,6 @@
 				D940E2AE283AA2C200392D1C /* o_cachorro_do_supremo.mp3 in Resources */,
 				D940E2A7283AA2C200392D1C /* esse_neto_bosta.mp3 in Resources */,
 				D94A4271283E87E100A504BD /* CIRO GOMES - Paulo Guedes mentiroso tá enganando a rapazeada paulo guedes.mp3 in Resources */,
-				D92E706C283C5C2C0035826C /* Pena que não pode ver um impeachment.mp3 in Resources */,
 				D940E2B7283AA2C200392D1C /* funk_do_xandao.mp3 in Resources */,
 				D980455C28380EFE003B2E83 /* Localizable.strings in Resources */,
 				D94A426D283E87E100A504BD /* Ulysses Guimarães - Temos ódio à ditadura, ódio e nojo.mp3 in Resources */,
@@ -735,6 +734,7 @@
 				D9E11765283EE4F40043E2F2 /* Mourão - Essa conta irá para as Forças Armadas trecho short.mp3 in Resources */,
 				D94A4262283E85D500A504BD /* Boldo - Esse é o boldo bão.mp3 in Resources */,
 				D9B4F748283C94600000EEF7 /* Cerginho da Perera Nunes - Com certeza.mp3 in Resources */,
+				D92879E8283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 in Resources */,
 				D9E11743283EDE5C0043E2F2 /* Caetano - Que loucura, que coisa absurda short.mp3 in Resources */,
 				D940E2A0283AA2C200392D1C /* PORTA_DOS_FUNDOS_BALBÚRDIA_Bom_dia,_turma,_todo_mundo_tirando_a.mp3 in Resources */,
 				D94A4263283E85D500A504BD /* Ciro Gomes  - Atenção Paulo Guedes.mp3 in Resources */,
