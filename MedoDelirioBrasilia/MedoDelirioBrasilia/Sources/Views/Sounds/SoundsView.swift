@@ -36,7 +36,9 @@ struct SoundsView: View {
                                     viewModel.playSound(fromPath: sound.filename)
                                 }
                                 .onLongPressGesture {
-                                    viewModel.shareSound(withPath: sound.filename)
+                                    //viewModel.shareSound(withPath: sound.filename)
+                                    viewModel.soundForConfirmationDialog = sound
+                                    viewModel.showConfirmationDialog = true
                                 }
                         }
                     }
@@ -91,6 +93,26 @@ struct SoundsView: View {
             )
             .onAppear {
                 viewModel.reloadList()
+            }
+            .confirmationDialog("", isPresented: $viewModel.showConfirmationDialog) {
+                Button(viewModel.favoritesKeeper.contains(viewModel.soundForConfirmationDialog?.id ?? "") ? "🗑  Remover dos Favoritos" : "⭐️  Adicionar aos Favoritos") {
+                    guard let sound = viewModel.soundForConfirmationDialog else {
+                        return
+                    }
+                    let isFavorite = viewModel.favoritesKeeper.contains(viewModel.soundForConfirmationDialog?.id ?? "")
+                    if isFavorite {
+                        viewModel.removeFromFavorites(soundId: sound.id)
+                    } else {
+                        viewModel.addToFavorites(soundId: sound.id)
+                    }
+                }
+                
+                Button("Compartilhar") {
+                    guard let sound = viewModel.soundForConfirmationDialog else {
+                        return
+                    }
+                    viewModel.shareSound(withPath: sound.filename)
+                }
             }
         }
     }

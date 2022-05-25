@@ -10,18 +10,33 @@ struct SoundCell: View {
         favorites.contains(soundId)
     }
     
-    let gradiente = LinearGradient(gradient: Gradient(colors: [.darkGreen, .darkGreen, .brightYellow]), startPoint: .topLeading, endPoint: .bottomTrailing)
+    let regularGradient = LinearGradient(gradient: Gradient(colors: [.green, .green, .brightYellow]), startPoint: .topLeading, endPoint: .bottomTrailing)
+    let favoriteGradient = LinearGradient(gradient: Gradient(colors: [.red, .red, .red]), startPoint: .topLeading, endPoint: .bottomTrailing)
 
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20, style: .continuous)
-                .fill(gradiente)
+                .fill(isFavorite ? favoriteGradient : regularGradient)
                 .frame(height: 90)
+            
+            if isFavorite {
+                HStack {
+                    Spacer()
+                    
+                    Image(systemName: "star.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 24)
+                        .foregroundColor(.yellow)
+                        .offset(y: -22)
+                }
+                .padding(.trailing, 10)
+            }
             
             HStack {
                 VStack(alignment: .leading, spacing: 8) {
                     Text(title)
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                         .font(title.count > 26 ? .callout : .body)
                         .bold()
                     
@@ -33,20 +48,6 @@ struct SoundCell: View {
                 Spacer()
             }
             .padding(.leading, 20)
-            
-            if isFavorite {
-                HStack {
-                    Spacer()
-                    
-                    Image(systemName: "star.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 24)
-                        .foregroundColor(.red)
-                        .offset(y: -22)
-                }
-                .padding(.trailing, 10)
-            }
         }
     }
 
