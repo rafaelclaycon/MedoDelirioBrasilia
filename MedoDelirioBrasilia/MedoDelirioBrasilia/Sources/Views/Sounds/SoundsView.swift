@@ -26,7 +26,7 @@ struct SoundsView: View {
     var body: some View {
         NavigationView {
             VStack {
-                NavigationLink(destination: HelpView(), isActive: $showingHelpScreen) { EmptyView() }
+                NavigationLink(destination: SoundHelpView(), isActive: $showingHelpScreen) { EmptyView() }
                 
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 14) {
@@ -95,12 +95,11 @@ struct SoundsView: View {
                 viewModel.reloadList()
             }
             .confirmationDialog("", isPresented: $viewModel.showConfirmationDialog) {
-                Button(viewModel.favoritesKeeper.contains(viewModel.soundForConfirmationDialog?.id ?? "") ? "🗑  Remover dos Favoritos" : "⭐️  Adicionar aos Favoritos") {
+                Button(viewModel.getFavoriteButtonTitle()) {
                     guard let sound = viewModel.soundForConfirmationDialog else {
                         return
                     }
-                    let isFavorite = viewModel.favoritesKeeper.contains(viewModel.soundForConfirmationDialog?.id ?? "")
-                    if isFavorite {
+                    if viewModel.isSelectedSoundAlreadyAFavorite() {
                         viewModel.removeFromFavorites(soundId: sound.id)
                     } else {
                         viewModel.addToFavorites(soundId: sound.id)

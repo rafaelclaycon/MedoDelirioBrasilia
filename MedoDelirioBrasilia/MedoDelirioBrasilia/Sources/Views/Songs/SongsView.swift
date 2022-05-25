@@ -25,7 +25,7 @@ struct SongsView: View {
     var body: some View {
         NavigationView {
             VStack {
-                NavigationLink(destination: HelpView(), isActive: $showingHelpScreen) { EmptyView() }
+                NavigationLink(destination: SongHelpView(), isActive: $showingHelpScreen) { EmptyView() }
                 
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 14) {

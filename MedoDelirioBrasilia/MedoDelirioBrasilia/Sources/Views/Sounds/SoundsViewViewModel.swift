@@ -2,6 +2,8 @@ import Combine
 import UIKit
 
 class SoundsViewViewModel: ObservableObject {
+    
+    let removeFromFavoritesEmojis = ["🍗","🐂","👴🏻🇧🇷"]
 
     @Published var sounds = [Sound]()
     @Published var sortOption: Int = 0
@@ -41,7 +43,9 @@ class SoundsViewViewModel: ObservableObject {
             return
         }
         
-        let path = Bundle.main.path(forResource: filepath, ofType: nil)!
+        guard let path = Bundle.main.path(forResource: filepath, ofType: nil) else {
+            return
+        }
         let url = URL(fileURLWithPath: path)
 
         player = AudioPlayer(url: url, update: { state in
@@ -83,6 +87,18 @@ class SoundsViewViewModel: ObservableObject {
         } catch {
             print("Problem removing favorite \(soundId)")
         }
+    }
+    
+    func isSelectedSoundAlreadyAFavorite() -> Bool {
+        guard let soundId = soundForConfirmationDialog?.id else {
+            return false
+        }
+        return favoritesKeeper.contains(soundId)
+    }
+    
+    func getFavoriteButtonTitle() -> String {
+        let emoji = removeFromFavoritesEmojis.randomElement() ?? ""
+        return isSelectedSoundAlreadyAFavorite() ? "\(emoji)  Remover dos Favoritos" : "⭐️  Adicionar aos Favoritos"
     }
 
 }
