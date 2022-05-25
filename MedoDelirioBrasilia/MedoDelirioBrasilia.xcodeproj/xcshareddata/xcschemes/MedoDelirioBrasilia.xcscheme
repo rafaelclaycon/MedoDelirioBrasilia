@@ -29,22 +29,13 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
-            skipped = "NO">
+            skipped = "NO"
+            testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D9625E8928238F9B00080852"
                BuildableName = "MedoDelirioBrasiliaTests.xctest"
                BlueprintName = "MedoDelirioBrasiliaTests"
-               ReferencedContainer = "container:MedoDelirioBrasilia.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D9625E9328238F9B00080852"
-               BuildableName = "MedoDelirioBrasiliaUITests.xctest"
-               BlueprintName = "MedoDelirioBrasiliaUITests"
                ReferencedContainer = "container:MedoDelirioBrasilia.xcodeproj">
             </BuildableReference>
          </TestableReference>

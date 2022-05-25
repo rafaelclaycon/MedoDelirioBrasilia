@@ -26,7 +26,9 @@ class SongsViewViewModel: ObservableObject {
             return
         }
         
-        let path = Bundle.main.path(forResource: filepath, ofType: nil)!
+        guard let path = Bundle.main.path(forResource: filepath, ofType: nil) else {
+            return
+        }
         let url = URL(fileURLWithPath: path)
         
         player = AudioPlayer(url: url, update: { [weak self] state in

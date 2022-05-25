@@ -3,8 +3,13 @@ import UIKit
 
 class SoundsViewViewModel: ObservableObject {
     
+    let removeFromFavoritesEmojis = ["🍗","🐂","👴🏻🇧🇷"]
+
     @Published var sounds = [Sound]()
     @Published var sortOption: Int = 0
+    @Published var favoritesKeeper = Set<String>()
+    @Published var showConfirmationDialog = false
+    @Published var soundForConfirmationDialog: Sound? = nil
     
     func reloadList() {
         if UserSettings.getShowOffensiveSounds() {
@@ -21,6 +26,14 @@ class SoundsViewViewModel: ObservableObject {
                 self.sounds[i].authorName = authorData.first(where: { $0.id == self.sounds[i].authorId })?.name ?? "Desconhecido"
             }
             
+            if let favorites = try? database.getAllFavorites(), favorites.count > 0 {
+                for favorite in favorites {
+                    favoritesKeeper.insert(favorite.contentId)
+                }
+            } else {
+                favoritesKeeper.removeAll()
+            }
+            
             self.sounds.sort(by: { $0.title.withoutDiacritics() < $1.title.withoutDiacritics() })
         }
     }
@@ -30,7 +43,9 @@ class SoundsViewViewModel: ObservableObject {
             return
         }
         
-        let path = Bundle.main.path(forResource: filepath, ofType: nil)!
+        guard let path = Bundle.main.path(forResource: filepath, ofType: nil) else {
+            return
+        }
         let url = URL(fileURLWithPath: path)
 
         player = AudioPlayer(url: url, update: { state in
@@ -52,6 +67,38 @@ class SoundsViewViewModel: ObservableObject {
         DispatchQueue.main.async {
             UIApplication.shared.keyWindow?.rootViewController?.present(activityVC, animated: true, completion: nil)
         }
+    }
+    
+    func addToFavorites(soundId: String) {
+        let newFavorite = Favorite(contentId: soundId, dateAdded: Date())
+        
+        do {
+            try database.insert(favorite: newFavorite)
+            favoritesKeeper.insert(newFavorite.contentId)
+        } catch {
+            print("Problem saving favorite \(newFavorite.contentId)")
+        }
+    }
+    
+    func removeFromFavorites(soundId: String) {
+        do {
+            try database.deleteFavorite(withId: soundId)
+            favoritesKeeper.remove(soundId)
+        } catch {
+            print("Problem removing favorite \(soundId)")
+        }
+    }
+    
+    func isSelectedSoundAlreadyAFavorite() -> Bool {
+        guard let soundId = soundForConfirmationDialog?.id else {
+            return false
+        }
+        return favoritesKeeper.contains(soundId)
+    }
+    
+    func getFavoriteButtonTitle() -> String {
+        let emoji = removeFromFavoritesEmojis.randomElement() ?? ""
+        return isSelectedSoundAlreadyAFavorite() ? "\(emoji)  Remover dos Favoritos" : "⭐️  Adicionar aos Favoritos"
     }
 
 }

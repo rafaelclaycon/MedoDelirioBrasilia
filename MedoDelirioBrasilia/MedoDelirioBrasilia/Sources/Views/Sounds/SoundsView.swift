@@ -26,17 +26,19 @@ struct SoundsView: View {
     var body: some View {
         NavigationView {
             VStack {
-                NavigationLink(destination: HelpView(), isActive: $showingHelpScreen) { EmptyView() }
+                NavigationLink(destination: SoundHelpView(), isActive: $showingHelpScreen) { EmptyView() }
                 
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 14) {
                         ForEach(searchResults) { sound in
-                            SoundCell(title: sound.title, author: sound.authorName ?? "")
+                            SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", favorites: $viewModel.favoritesKeeper)
                                 .onTapGesture {
                                     viewModel.playSound(fromPath: sound.filename)
                                 }
                                 .onLongPressGesture {
-                                    viewModel.shareSound(withPath: sound.filename)
+                                    //viewModel.shareSound(withPath: sound.filename)
+                                    viewModel.soundForConfirmationDialog = sound
+                                    viewModel.showConfirmationDialog = true
                                 }
                         }
                     }
@@ -91,6 +93,25 @@ struct SoundsView: View {
             )
             .onAppear {
                 viewModel.reloadList()
+            }
+            .confirmationDialog("", isPresented: $viewModel.showConfirmationDialog) {
+                Button(viewModel.getFavoriteButtonTitle()) {
+                    guard let sound = viewModel.soundForConfirmationDialog else {
+                        return
+                    }
+                    if viewModel.isSelectedSoundAlreadyAFavorite() {
+                        viewModel.removeFromFavorites(soundId: sound.id)
+                    } else {
+                        viewModel.addToFavorites(soundId: sound.id)
+                    }
+                }
+                
+                Button("Compartilhar") {
+                    guard let sound = viewModel.soundForConfirmationDialog else {
+                        return
+                    }
+                    viewModel.shareSound(withPath: sound.filename)
+                }
             }
         }
     }

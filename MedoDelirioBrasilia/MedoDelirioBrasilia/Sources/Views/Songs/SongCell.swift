@@ -9,7 +9,7 @@ struct SongCell: View {
         nowPlaying.contains(songId)
     }
     
-    let gradient = LinearGradient(gradient: Gradient(colors: [.darkGreen, .darkGreen, .darkGreen, .brightYellow]), startPoint: .topLeading, endPoint: .bottomTrailing)
+    let gradient = LinearGradient(gradient: Gradient(colors: [.green, .green, .green, .brightYellow]), startPoint: .topLeading, endPoint: .bottomTrailing)
     
     var body: some View {
         ZStack {
@@ -21,7 +21,7 @@ struct SongCell: View {
             VStack(alignment: .leading, spacing: 8) {
                 HStack(spacing: 10) {
                     Text(title)
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                         .font(.body)
                         .bold()
                         .multilineTextAlignment(.leading)
@@ -32,7 +32,7 @@ struct SongCell: View {
                     if isPlaying {
                         Image(systemName: "stop.circle")
                             .font(.largeTitle)
-                            .foregroundColor(.white)
+                            .foregroundColor(.black)
                             .padding(.trailing)
                     }
                 }

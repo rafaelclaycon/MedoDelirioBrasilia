@@ -1,12 +1,12 @@
 import SwiftUI
 
-struct HelpView: View {
+struct SongHelpView: View {
     
     private let iconFrameWidth: CGFloat = 40
 
     var body: some View {
         VStack {
-            ScrollView {                
+            ScrollView {
                 VStack(alignment: .center, spacing: 40) {
                     HStack(alignment: .center, spacing: 15) {
                         Image(systemName: "play.fill")
@@ -14,7 +14,7 @@ struct HelpView: View {
                             .foregroundColor(.accentColor)
                             .frame(width: iconFrameWidth)
                         
-                        Text("Para reproduzir um som, basta tocar sobre ele.")
+                        Text("Para reproduzir uma música, basta tocar sobre ela.")
                     }
                     
                     HStack(alignment: .center, spacing: 15) {
@@ -23,8 +23,7 @@ struct HelpView: View {
                             .foregroundColor(.accentColor)
                             .frame(width: iconFrameWidth)
                         
-                        //Text("Para compartilhar, segure o card do som por 2 segundos e então escolha Compartilhar.")
-                        Text("Para compartilhar, segure o som por 2 segundos e então escolha o app pelo qual deseja enviá-lo.")
+                        Text("Para compartilhar, segure a música por 2 segundos e então escolha o app pelo qual deseja enviá-la.")
                     }
                     
                     HStack(alignment: .center, spacing: 15) {
@@ -35,18 +34,9 @@ struct HelpView: View {
                         
                         VStack(spacing: 15) {
                             Text("Para pesquisar, vá até o topo da lista e **puxe mais um pouco para baixo** até revelar o campo de pesquisa.")
-                            Text("A pesquisa considera o **conteúdo do áudio** e o **autor**.")
+                            Text("A pesquisa considera apenas o título da música.")
                         }
                     }
-                    
-//                    HStack(spacing: 15) {
-//                        Image(systemName: "star.fill")
-//                            .font(.largeTitle)
-//                            .foregroundColor(.red)
-//                            .frame(width: iconFrameWidth)
-//
-//                        Text("Para favoritar um som, segure o card do som escolhido por 2 segundos e então escolha Favoritar.")
-//                    }
                 }
             }
         }
@@ -56,10 +46,10 @@ struct HelpView: View {
 
 }
 
-struct HelpView_Previews: PreviewProvider {
+struct SongHelpView_Previews: PreviewProvider {
 
     static var previews: some View {
-        HelpView()
+        SongHelpView()
     }
 
 }
