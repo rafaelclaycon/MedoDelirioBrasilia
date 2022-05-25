@@ -54,28 +54,28 @@ struct SettingsView: View {
 //                            }
                         }
                         
-                        VStack(alignment: .center, spacing: 5) {
-                            Text("Dinheiro! Aqui aceitas Pix. Qualquer R$ 1 ajuda o desenvolvedor a manter isso aqui. 💵⬇️")
-                                .multilineTextAlignment(.center)
-                                .padding(.horizontal)
-                            
-                            Button(action: {
-                                UIPasteboard.general.string = pixKey
-                                showPixKeyCopiedAlert = true
-                            }) {
-                                Text(pixKey)
-                                    .font(.footnote)
-                                    .bold()
-                            }
-                            .tint(.blue)
-                            .controlSize(.large)
-                            .buttonStyle(.bordered)
-                            .buttonBorderShape(.roundedRectangle)
-                            .padding(.top)
-                            .alert(isPresented: $showPixKeyCopiedAlert) {
-                                Alert(title: Text("Chave copiada com sucesso!"), dismissButton: .default(Text("OK")))
-                            }
-                        }
+//                        VStack(alignment: .center, spacing: 5) {
+//                            Text("Dinheiro! Aqui aceitas Pix. Qualquer R$ 1 ajuda o desenvolvedor a manter isso aqui. 💵⬇️")
+//                                .multilineTextAlignment(.center)
+//                                .padding(.horizontal)
+//
+//                            Button(action: {
+//                                UIPasteboard.general.string = pixKey
+//                                showPixKeyCopiedAlert = true
+//                            }) {
+//                                Text(pixKey)
+//                                    .font(.footnote)
+//                                    .bold()
+//                            }
+//                            .tint(.blue)
+//                            .controlSize(.large)
+//                            .buttonStyle(.bordered)
+//                            .buttonBorderShape(.roundedRectangle)
+//                            .padding(.top)
+//                            .alert(isPresented: $showPixKeyCopiedAlert) {
+//                                Alert(title: Text("Chave copiada com sucesso!"), dismissButton: .default(Text("OK")))
+//                            }
+//                        }
                         
                         VStack(alignment: .center, spacing: 5) {
                             Text("Gostou do que viu?")
@@ -157,6 +157,13 @@ struct SettingsView: View {
                         
                         VStack(spacing: 15) {
                             Text("Criado por @claycon_")
+                                .onTapGesture {
+                                    UIPasteboard.general.string = pixKey
+                                    showPixKeyCopiedAlert = true
+                                }
+                                .alert(isPresented: $showPixKeyCopiedAlert) {
+                                    Alert(title: Text("Chave Pix Copiada com Sucesso"), message: Text("Qualquer R$ 1 me ajuda a manter isso aqui."), dismissButton: .default(Text("OK")))
+                                }
                             
                             Text("Versão \(appVersion) Build \(buildVersionNumber)")
                                 .foregroundColor(.gray)
