@@ -10,6 +10,24 @@
 		D92879E4283EEE1D00369CE5 /* Bolsonaro - Buscamos uma solucao, quem tiver tras pra mim tras pra mim.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879E3283EEE1D00369CE5 /* Bolsonaro - Buscamos uma solucao, quem tiver tras pra mim tras pra mim.mp3 */; };
 		D92879E7283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879E5283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 */; };
 		D92879E8283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879E6283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 */; };
+		D92879F1283EF35800369CE5 /* Silas Malafaia - Não seja um mentiroso short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879E9283EF35700369CE5 /* Silas Malafaia - Não seja um mentiroso short.mp3 */; };
+		D92879F2283EF35800369CE5 /* Fernando Collor - Tres vezes dizendo que e mentira.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879EA283EF35700369CE5 /* Fernando Collor - Tres vezes dizendo que e mentira.mp3 */; };
+		D92879F3283EF35800369CE5 /* Bonitinha mas ordinaria - E mentira dele meme short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879EB283EF35700369CE5 /* Bonitinha mas ordinaria - E mentira dele meme short.mp3 */; };
+		D92879F4283EF35800369CE5 /* Mourão - Você é muito mais físico do que intelectual short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879EC283EF35700369CE5 /* Mourão - Você é muito mais físico do que intelectual short.mp3 */; };
+		D92879F5283EF35800369CE5 /* Bonitinha mas ordinaria - Mentira.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879ED283EF35800369CE5 /* Bonitinha mas ordinaria - Mentira.mp3 */; };
+		D92879F6283EF35800369CE5 /* Quercia - E mentira, e tudo mentira.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879EE283EF35800369CE5 /* Quercia - E mentira, e tudo mentira.mp3 */; };
+		D92879F7283EF35800369CE5 /* Fernando Collor - Isso e uma mentira uma pantomima uma patuscada short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879EF283EF35800369CE5 /* Fernando Collor - Isso e uma mentira uma pantomima uma patuscada short.mp3 */; };
+		D92879F8283EF35800369CE5 /* Quercia - Mentiroso e caluniador, caluniador e mentiroso.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879F0283EF35800369CE5 /* Quercia - Mentiroso e caluniador, caluniador e mentiroso.mp3 */; };
+		D92879FD283EF57000369CE5 /* Hassum - Nem fodendo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879F9283EF57000369CE5 /* Hassum - Nem fodendo.mp3 */; };
+		D92879FE283EF57000369CE5 /* Neto - Cês tão de brincadeira.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879FA283EF57000369CE5 /* Neto - Cês tão de brincadeira.mp3 */; };
+		D92879FF283EF57000369CE5 /* MIDCAST - Teu cu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879FB283EF57000369CE5 /* MIDCAST - Teu cu.mp3 */; };
+		D9287A00283EF57000369CE5 /* Craque Neto - E cuidado com a cueca hein, cuidado com a cueca.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879FC283EF57000369CE5 /* Craque Neto - E cuidado com a cueca hein, cuidado com a cueca.mp3 */; };
+		D9287A02283EF57D00369CE5 /* Que porra e essa batata.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9287A01283EF57D00369CE5 /* Que porra e essa batata.mp3 */; };
+		D9287A04283EF59F00369CE5 /* Neto - Vocês estão de sacanagem short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9287A03283EF59F00369CE5 /* Neto - Vocês estão de sacanagem short.mp3 */; };
+		D9287A08283EF62E00369CE5 /* Abraham Weintraub - odeio odeio odeio short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9287A07283EF62E00369CE5 /* Abraham Weintraub - odeio odeio odeio short.mp3 */; };
+		D9287A0A283EF6C300369CE5 /* Boldo - Deixa com a cara magoada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9287A09283EF6C300369CE5 /* Boldo - Deixa com a cara magoada.mp3 */; };
+		D9287A0D283EF77F00369CE5 /* Sabe que voce e muito petulante.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9287A0B283EF77F00369CE5 /* Sabe que voce e muito petulante.mp3 */; };
+		D9287A0E283EF77F00369CE5 /* Silas Malafaia - Nunca vi tu e burro cara.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9287A0C283EF77F00369CE5 /* Silas Malafaia - Nunca vi tu e burro cara.mp3 */; };
 		D92E7067283C51D20035826C /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92E7066283C51D20035826C /* Song.swift */; };
 		D92E706E283C5C2C0035826C /* Eu volto pro ostracismo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92E706B283C5C2C0035826C /* Eu volto pro ostracismo.mp3 */; };
 		D92E7070283C5CF40035826C /* song_data.json in Resources */ = {isa = PBXBuildFile; fileRef = D92E706F283C5CF40035826C /* song_data.json */; };
@@ -114,7 +132,6 @@
 		D9E1175D283EE4F40043E2F2 /* Ciro Gomes - Conspirador filho da puta.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E1174F283EE4F30043E2F2 /* Ciro Gomes - Conspirador filho da puta.mp3 */; };
 		D9E1175E283EE4F40043E2F2 /* Silas Malafaia - Mentiroso sem vergonha vai pro inferno short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E11750283EE4F30043E2F2 /* Silas Malafaia - Mentiroso sem vergonha vai pro inferno short.mp3 */; };
 		D9E1175F283EE4F40043E2F2 /* Michel Temer - Pigarro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E11751283EE4F30043E2F2 /* Michel Temer - Pigarro.mp3 */; };
-		D9E11760283EE4F40043E2F2 /* Abraham Weintraub - odeio, odeio, odeio short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E11752283EE4F30043E2F2 /* Abraham Weintraub - odeio, odeio, odeio short.mp3 */; };
 		D9E11761283EE4F40043E2F2 /* Gustavo mendes dilma todo mundo se fudeu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E11753283EE4F30043E2F2 /* Gustavo mendes dilma todo mundo se fudeu.mp3 */; };
 		D9E11762283EE4F40043E2F2 /* Michel Temer - Tem que pedir uma pastilha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E11754283EE4F30043E2F2 /* Michel Temer - Tem que pedir uma pastilha.mp3 */; };
 		D9E11763283EE4F40043E2F2 /* Temer - Não renunciarei short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E11755283EE4F40043E2F2 /* Temer - Não renunciarei short.mp3 */; };
@@ -144,6 +161,24 @@
 		D92879E3283EEE1D00369CE5 /* Bolsonaro - Buscamos uma solucao, quem tiver tras pra mim tras pra mim.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Buscamos uma solucao, quem tiver tras pra mim tras pra mim.mp3"; sourceTree = "<group>"; };
 		D92879E5283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Nao era fake news era jornalismo.mp3"; sourceTree = "<group>"; };
 		D92879E6283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pena que nao pode ver um impeachment.mp3"; sourceTree = "<group>"; };
+		D92879E9283EF35700369CE5 /* Silas Malafaia - Não seja um mentiroso short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Silas Malafaia - Não seja um mentiroso short.mp3"; sourceTree = "<group>"; };
+		D92879EA283EF35700369CE5 /* Fernando Collor - Tres vezes dizendo que e mentira.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fernando Collor - Tres vezes dizendo que e mentira.mp3"; sourceTree = "<group>"; };
+		D92879EB283EF35700369CE5 /* Bonitinha mas ordinaria - E mentira dele meme short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bonitinha mas ordinaria - E mentira dele meme short.mp3"; sourceTree = "<group>"; };
+		D92879EC283EF35700369CE5 /* Mourão - Você é muito mais físico do que intelectual short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mourão - Você é muito mais físico do que intelectual short.mp3"; sourceTree = "<group>"; };
+		D92879ED283EF35800369CE5 /* Bonitinha mas ordinaria - Mentira.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bonitinha mas ordinaria - Mentira.mp3"; sourceTree = "<group>"; };
+		D92879EE283EF35800369CE5 /* Quercia - E mentira, e tudo mentira.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Quercia - E mentira, e tudo mentira.mp3"; sourceTree = "<group>"; };
+		D92879EF283EF35800369CE5 /* Fernando Collor - Isso e uma mentira uma pantomima uma patuscada short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fernando Collor - Isso e uma mentira uma pantomima uma patuscada short.mp3"; sourceTree = "<group>"; };
+		D92879F0283EF35800369CE5 /* Quercia - Mentiroso e caluniador, caluniador e mentiroso.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Quercia - Mentiroso e caluniador, caluniador e mentiroso.mp3"; sourceTree = "<group>"; };
+		D92879F9283EF57000369CE5 /* Hassum - Nem fodendo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Hassum - Nem fodendo.mp3"; sourceTree = "<group>"; };
+		D92879FA283EF57000369CE5 /* Neto - Cês tão de brincadeira.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Neto - Cês tão de brincadeira.mp3"; sourceTree = "<group>"; };
+		D92879FB283EF57000369CE5 /* MIDCAST - Teu cu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "MIDCAST - Teu cu.mp3"; sourceTree = "<group>"; };
+		D92879FC283EF57000369CE5 /* Craque Neto - E cuidado com a cueca hein, cuidado com a cueca.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Craque Neto - E cuidado com a cueca hein, cuidado com a cueca.mp3"; sourceTree = "<group>"; };
+		D9287A01283EF57D00369CE5 /* Que porra e essa batata.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Que porra e essa batata.mp3"; sourceTree = "<group>"; };
+		D9287A03283EF59F00369CE5 /* Neto - Vocês estão de sacanagem short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Neto - Vocês estão de sacanagem short.mp3"; sourceTree = "<group>"; };
+		D9287A07283EF62E00369CE5 /* Abraham Weintraub - odeio odeio odeio short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Abraham Weintraub - odeio odeio odeio short.mp3"; sourceTree = "<group>"; };
+		D9287A09283EF6C300369CE5 /* Boldo - Deixa com a cara magoada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Boldo - Deixa com a cara magoada.mp3"; sourceTree = "<group>"; };
+		D9287A0B283EF77F00369CE5 /* Sabe que voce e muito petulante.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Sabe que voce e muito petulante.mp3"; sourceTree = "<group>"; };
+		D9287A0C283EF77F00369CE5 /* Silas Malafaia - Nunca vi tu e burro cara.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Silas Malafaia - Nunca vi tu e burro cara.mp3"; sourceTree = "<group>"; };
 		D92E7066283C51D20035826C /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		D92E706B283C5C2C0035826C /* Eu volto pro ostracismo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu volto pro ostracismo.mp3"; sourceTree = "<group>"; };
 		D92E706F283C5CF40035826C /* song_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = song_data.json; sourceTree = "<group>"; };
@@ -251,7 +286,6 @@
 		D9E1174F283EE4F30043E2F2 /* Ciro Gomes - Conspirador filho da puta.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ciro Gomes - Conspirador filho da puta.mp3"; sourceTree = "<group>"; };
 		D9E11750283EE4F30043E2F2 /* Silas Malafaia - Mentiroso sem vergonha vai pro inferno short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Silas Malafaia - Mentiroso sem vergonha vai pro inferno short.mp3"; sourceTree = "<group>"; };
 		D9E11751283EE4F30043E2F2 /* Michel Temer - Pigarro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Michel Temer - Pigarro.mp3"; sourceTree = "<group>"; };
-		D9E11752283EE4F30043E2F2 /* Abraham Weintraub - odeio, odeio, odeio short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Abraham Weintraub - odeio, odeio, odeio short.mp3"; sourceTree = "<group>"; };
 		D9E11753283EE4F30043E2F2 /* Gustavo mendes dilma todo mundo se fudeu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gustavo mendes dilma todo mundo se fudeu.mp3"; sourceTree = "<group>"; };
 		D9E11754283EE4F30043E2F2 /* Michel Temer - Tem que pedir uma pastilha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Michel Temer - Tem que pedir uma pastilha.mp3"; sourceTree = "<group>"; };
 		D9E11755283EE4F40043E2F2 /* Temer - Não renunciarei short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Temer - Não renunciarei short.mp3"; sourceTree = "<group>"; };
@@ -310,8 +344,25 @@
 		D940E27D283AA27D00392D1C /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9287A0B283EF77F00369CE5 /* Sabe que voce e muito petulante.mp3 */,
+				D9287A0C283EF77F00369CE5 /* Silas Malafaia - Nunca vi tu e burro cara.mp3 */,
+				D9287A09283EF6C300369CE5 /* Boldo - Deixa com a cara magoada.mp3 */,
+				D9287A07283EF62E00369CE5 /* Abraham Weintraub - odeio odeio odeio short.mp3 */,
+				D9287A03283EF59F00369CE5 /* Neto - Vocês estão de sacanagem short.mp3 */,
+				D9287A01283EF57D00369CE5 /* Que porra e essa batata.mp3 */,
+				D92879FC283EF57000369CE5 /* Craque Neto - E cuidado com a cueca hein, cuidado com a cueca.mp3 */,
+				D92879F9283EF57000369CE5 /* Hassum - Nem fodendo.mp3 */,
+				D92879FB283EF57000369CE5 /* MIDCAST - Teu cu.mp3 */,
+				D92879FA283EF57000369CE5 /* Neto - Cês tão de brincadeira.mp3 */,
+				D92879EB283EF35700369CE5 /* Bonitinha mas ordinaria - E mentira dele meme short.mp3 */,
+				D92879ED283EF35800369CE5 /* Bonitinha mas ordinaria - Mentira.mp3 */,
+				D92879EF283EF35800369CE5 /* Fernando Collor - Isso e uma mentira uma pantomima uma patuscada short.mp3 */,
+				D92879EA283EF35700369CE5 /* Fernando Collor - Tres vezes dizendo que e mentira.mp3 */,
+				D92879EC283EF35700369CE5 /* Mourão - Você é muito mais físico do que intelectual short.mp3 */,
+				D92879EE283EF35800369CE5 /* Quercia - E mentira, e tudo mentira.mp3 */,
+				D92879F0283EF35800369CE5 /* Quercia - Mentiroso e caluniador, caluniador e mentiroso.mp3 */,
+				D92879E9283EF35700369CE5 /* Silas Malafaia - Não seja um mentiroso short.mp3 */,
 				D92879E3283EEE1D00369CE5 /* Bolsonaro - Buscamos uma solucao, quem tiver tras pra mim tras pra mim.mp3 */,
-				D9E11752283EE4F30043E2F2 /* Abraham Weintraub - odeio, odeio, odeio short.mp3 */,
 				D9E1174F283EE4F30043E2F2 /* Ciro Gomes - Conspirador filho da puta.mp3 */,
 				D9E1175B283EE4F40043E2F2 /* Ciro Gomes - Que isso, francamente.mp3 */,
 				D9E11758283EE4F40043E2F2 /* Ciro Gomes - Veja bem, se eu estiver errado me corrija.mp3 */,
@@ -648,6 +699,7 @@
 				D9C03441283AAF6100DB96E6 /* JORNAL DA RECORD - Não é coisa de deus não.mp3 in Resources */,
 				D9E1174D283EE12A0043E2F2 /* Choque de Cultura - Renan - Vamos fazer essa critica ai.mp3 in Resources */,
 				D9E11745283EDE5C0043E2F2 /* Boldo - Que boldo bão.mp3 in Resources */,
+				D92879FF283EF57000369CE5 /* MIDCAST - Teu cu.mp3 in Resources */,
 				D9E11728283EDA3D0043E2F2 /* Trote Pareto - Calma filha da puta calma.mp3 in Resources */,
 				D940E2B1283AA2C200392D1C /* tu_ouviu_isso.mp3 in Resources */,
 				D9E1173A283EDE5C0043E2F2 /* Choque de Cultura - Rogerinho - Aqui tem informação.mp3 in Resources */,
@@ -665,10 +717,13 @@
 				D9E11742283EDE5C0043E2F2 /* Futurama - Então tudo bem short.mp3 in Resources */,
 				D9E1173E283EDE5C0043E2F2 /* Boldo - Parece até que um helicóptero pousou em cima da tua cara.mp3 in Resources */,
 				D940E2A3283AA2C200392D1C /* Away - nao fode mermao.mp3 in Resources */,
+				D92879F4283EF35800369CE5 /* Mourão - Você é muito mais físico do que intelectual short.mp3 in Resources */,
 				D940E2B6283AA2C200392D1C /* ADY - oh nao mais um crime de responsabilidade.mp3 in Resources */,
 				D940E29D283AA2C200392D1C /* O CARA DA LUVA DE PEDREIRO - receba carai caralho.mp3 in Resources */,
 				D94A4261283E85D500A504BD /* Boulos Porra short.mp3 in Resources */,
 				D9E11746283EDE5C0043E2F2 /* Caetano - Não short.mp3 in Resources */,
+				D9287A04283EF59F00369CE5 /* Neto - Vocês estão de sacanagem short.mp3 in Resources */,
+				D9287A0D283EF77F00369CE5 /* Sabe que voce e muito petulante.mp3 in Resources */,
 				D9B4F746283C939E0000EEF7 /* Olavo de Carvalho - Porra.mp3 in Resources */,
 				D94A426E283E87E100A504BD /* Mermão na moral short.mp3 in Resources */,
 				D940E2B4283AA2C200392D1C /* Aham sei.mp3 in Resources */,
@@ -679,8 +734,12 @@
 				D9E11766283EE4F40043E2F2 /* Ciro Gomes - Veja bem, se eu estiver errado me corrija.mp3 in Resources */,
 				D940E2A4283AA2C200392D1C /* tv_senado_soraya_thronicke_a_gente_vai_cansando_sabe.mp3 in Resources */,
 				D94A426C283E87E100A504BD /* Que merda hein short.mp3 in Resources */,
+				D92879F1283EF35800369CE5 /* Silas Malafaia - Não seja um mentiroso short.mp3 in Resources */,
 				D9E1174E283EE12A0043E2F2 /* Choque de Cultura - Cabo cabo cabo ja ta desvirtuando ja short.mp3 in Resources */,
+				D92879FE283EF57000369CE5 /* Neto - Cês tão de brincadeira.mp3 in Resources */,
+				D9287A0A283EF6C300369CE5 /* Boldo - Deixa com a cara magoada.mp3 in Resources */,
 				D940E2B5283AA2C200392D1C /* Passada chocada meu Deus jesus.mp3 in Resources */,
+				D92879F6283EF35800369CE5 /* Quercia - E mentira, e tudo mentira.mp3 in Resources */,
 				D94A4270283E87E100A504BD /* Costinha - Se fudeu short.mp3 in Resources */,
 				D9E11769283EE4F40043E2F2 /* Ciro Gomes - Que isso, francamente.mp3 in Resources */,
 				D92879E4283EEE1D00369CE5 /* Bolsonaro - Buscamos uma solucao, quem tiver tras pra mim tras pra mim.mp3 in Resources */,
@@ -693,16 +752,19 @@
 				D9E1173D283EDE5C0043E2F2 /* Choque de cultura - Rogerinho - Não vamos falar de pornô aqui não.mp3 in Resources */,
 				D9E11768283EE4F40043E2F2 /* Xaropinho - Rapaz short.mp3 in Resources */,
 				D9E11744283EDE5C0043E2F2 /* General Mourão Bom Dia short.mp3 in Resources */,
+				D92879F2283EF35800369CE5 /* Fernando Collor - Tres vezes dizendo que e mentira.mp3 in Resources */,
 				D9E11767283EE4F40043E2F2 /* Opaio - Tomar no cu rapaz.mp3 in Resources */,
 				D940E2A6283AA2C200392D1C /* Deltan Dallangnol - Os meus advogados estão estarrecidos.mp3 in Resources */,
 				D9E11762283EE4F40043E2F2 /* Michel Temer - Tem que pedir uma pastilha.mp3 in Resources */,
 				D9E1173F283EDE5C0043E2F2 /* Choque de Cultura - Rogerinho - Ó a informação aí.mp3 in Resources */,
 				D9E11739283EDE5C0043E2F2 /* Tu tava fora do brasil irmão short.mp3 in Resources */,
+				D92879FD283EF57000369CE5 /* Hassum - Nem fodendo.mp3 in Resources */,
 				D940E2AA283AA2C200392D1C /* deu_errado.mp3 in Resources */,
 				D9C03442283AAF6100DB96E6 /* Tim Maia - Me Dê Motivo.mp3 in Resources */,
 				D940E27F283AA29600392D1C /* Feiticeira - Não é feitiçaria, é tecnologia meme short.mp3 in Resources */,
 				D9E1175F283EE4F40043E2F2 /* Michel Temer - Pigarro.mp3 in Resources */,
 				D940E2A8283AA2C200392D1C /* MULTISHOW - Lulu Santos - Censura nunca mais.mp3 in Resources */,
+				D92879F5283EF35800369CE5 /* Bonitinha mas ordinaria - Mentira.mp3 in Resources */,
 				D940E2B3283AA2C200392D1C /* e_um_merda.mp3 in Resources */,
 				D94A426F283E87E100A504BD /* Away - Para com essa porra aí mermão short.mp3 in Resources */,
 				D940E2A5283AA2C200392D1C /* MULTISHOW_Titi_Muller_Ta_bombando_mais_do_que_o_povo_pedindo_Anitta.mp3 in Resources */,
@@ -717,22 +779,28 @@
 				D940E2A7283AA2C200392D1C /* esse_neto_bosta.mp3 in Resources */,
 				D94A4271283E87E100A504BD /* CIRO GOMES - Paulo Guedes mentiroso tá enganando a rapazeada paulo guedes.mp3 in Resources */,
 				D940E2B7283AA2C200392D1C /* funk_do_xandao.mp3 in Resources */,
+				D9287A02283EF57D00369CE5 /* Que porra e essa batata.mp3 in Resources */,
 				D980455C28380EFE003B2E83 /* Localizable.strings in Resources */,
 				D94A426D283E87E100A504BD /* Ulysses Guimarães - Temos ódio à ditadura, ódio e nojo.mp3 in Resources */,
 				D940E2AC283AA2C200392D1C /* PODER36_Paulo_Guedes_Tem_mais_iPhones_no_Brasil_que_população_Brasileiros.mp3 in Resources */,
 				D9E11763283EE4F40043E2F2 /* Temer - Não renunciarei short.mp3 in Resources */,
+				D92879F8283EF35800369CE5 /* Quercia - Mentiroso e caluniador, caluniador e mentiroso.mp3 in Resources */,
 				D94A4274283E895F00A504BD /* Choque de Cultura - Renan - É Paradoxo que chama isso aí.mp3 in Resources */,
 				D940E2AB283AA2C200392D1C /* ta_bom_xandao_ta_bom.mp3 in Resources */,
 				D940E2A2283AA2C200392D1C /* LUVA DE PEDREIRO - E, caralho carai, RECEBA.mp3 in Resources */,
 				D940E29C283AA2C200392D1C /* esse_braga_neto_que_eh_um_bosta.mp3 in Resources */,
+				D9287A0E283EF77F00369CE5 /* Silas Malafaia - Nunca vi tu e burro cara.mp3 in Resources */,
+				D9287A08283EF62E00369CE5 /* Abraham Weintraub - odeio odeio odeio short.mp3 in Resources */,
 				D940E2B2283AA2C200392D1C /* tu_entendeu_a_pergunta.mp3 in Resources */,
+				D9287A00283EF57000369CE5 /* Craque Neto - E cuidado com a cueca hein, cuidado com a cueca.mp3 in Resources */,
 				D9E1176A283EE4F40043E2F2 /* Reinaldo Azevedo - E mentira.mp3 in Resources */,
 				D9E1173C283EDE5C0043E2F2 /* Boldo - Muito bom, muito bom.mp3 in Resources */,
 				D9E11764283EE4F40043E2F2 /* Silas Malafaia - Eu tenho pena short.mp3 in Resources */,
-				D9E11760283EE4F40043E2F2 /* Abraham Weintraub - odeio, odeio, odeio short.mp3 in Resources */,
 				D9E11761283EE4F40043E2F2 /* Gustavo mendes dilma todo mundo se fudeu.mp3 in Resources */,
+				D92879F7283EF35800369CE5 /* Fernando Collor - Isso e uma mentira uma pantomima uma patuscada short.mp3 in Resources */,
 				D9E11765283EE4F40043E2F2 /* Mourão - Essa conta irá para as Forças Armadas trecho short.mp3 in Resources */,
 				D94A4262283E85D500A504BD /* Boldo - Esse é o boldo bão.mp3 in Resources */,
+				D92879F3283EF35800369CE5 /* Bonitinha mas ordinaria - E mentira dele meme short.mp3 in Resources */,
 				D9B4F748283C94600000EEF7 /* Cerginho da Perera Nunes - Com certeza.mp3 in Resources */,
 				D92879E8283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 in Resources */,
 				D9E11743283EDE5C0043E2F2 /* Caetano - Que loucura, que coisa absurda short.mp3 in Resources */,

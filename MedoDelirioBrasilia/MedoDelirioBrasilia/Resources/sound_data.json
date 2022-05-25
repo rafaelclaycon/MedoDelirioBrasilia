@@ -670,7 +670,7 @@
         "title": "Odeio, odeio, odeio",
         "authorId": "0D944922-7E50-4DED-A8FD-F44EFCAE82A2",
         "description": "Odeio, odeio, odeio",
-        "filename": "Abraham Weintraub - Odeio, odeio, odeio short.mp3",
+        "filename": "Abraham Weintraub - odeio odeio odeio short.mp3",
         "dateAdded": "2021-02-19T00:00:00Z",
         "isOffensive": false
     },
@@ -752,6 +752,150 @@
         "authorId": "BC2818F5-4FA5-46FC-90C3-075691F3E979",
         "description": "É mentira",
         "filename": "Reinaldo Azevedo - E mentira.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "263EEB26-B0E9-450E-9793-74372727A33A",
+        "title": "Não seja um mentiroso",
+        "authorId": "C066E971-8702-4261-955D-00CF642A465A",
+        "description": "Não seja um mentiroso",
+        "filename": "Silas Malafaia - Não seja um mentiroso short.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "80A2C669-C26B-42DA-ACDB-44231AA4429D",
+        "title": "É mentira dele",
+        "authorId": "34B0EC7E-9E61-49F8-B407-C034693C97FC",
+        "description": "E mentira dele",
+        "filename": "Bonitinha mas ordinaria - E mentira dele meme short.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "7E3FCD06-2AAB-4708-9FE7-0756D518550A",
+        "title": "Isso é uma mentira, uma pantomima",
+        "authorId": "C85B6755-6598-47C4-BDAF-DD8E8FFEDBE3",
+        "description": "Isso e uma mentira uma pantomima uma patuscada",
+        "filename": "Fernando Collor - Isso e uma mentira uma pantomima uma patuscada short.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "CAE211F3-1E5B-4D66-B93C-ABCD72EDE14C",
+        "title": "Você é muito mais físico do que intelectual",
+        "authorId": "28B86BE0-5475-49E9-9ADD-1AA39630869D",
+        "description": "Você é muito mais físico do que intelectual",
+        "filename": "Mourão - Você é muito mais físico do que intelectual short.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "509CF915-A9B8-4E77-8E4A-474172F34F98",
+        "title": "Mentira",
+        "authorId": "34B0EC7E-9E61-49F8-B407-C034693C97FC",
+        "description": "Mentira",
+        "filename": "Bonitinha mas ordinaria - Mentira.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "2DA3FCD0-3C95-4194-9DD0-923B82EC338A",
+        "title": "Três vezes dizendo que é mentira",
+        "authorId": "C85B6755-6598-47C4-BDAF-DD8E8FFEDBE3",
+        "description": "Tres vezes dizendo que e mentira",
+        "filename": "Fernando Collor - Tres vezes dizendo que e mentira.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "88950DB7-3FC8-41F5-910E-52B5BDFD9BA2",
+        "title": "É mentira, é tudo mentira",
+        "authorId": "3D4DE6F1-7052-420F-980C-8EB3D5D7C994",
+        "description": "E mentira, e tudo mentira",
+        "filename": "Quercia - E mentira, e tudo mentira.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "3C7CF212-7CA9-46D1-AF55-F19BA9567D03",
+        "title": "Mentiroso e caluniador",
+        "authorId": "3D4DE6F1-7052-420F-980C-8EB3D5D7C994",
+        "description": "Mentiroso e caluniador, caluniador e mentiroso",
+        "filename": "Quercia - Mentiroso e caluniador, caluniador e mentiroso.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "805D0666-CBB4-404B-8B9C-70E0FF773618",
+        "title": "Nem fodendo",
+        "authorId": "7E1ED3FF-82AA-4047-B0A9-292D63FC4711",
+        "description": "Nem fodendo",
+        "filename": "Hassum - Nem fodendo.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "30FE5A5C-E907-4DC5-A704-7488A7A33451",
+        "title": "Vocês estão de sacanagem",
+        "authorId": "C85E2912-F171-46E7-8EF8-3014AF30D3F5",
+        "description": "Vocês estão de sacanagem",
+        "filename": "Neto - Vocês estão de sacanagem short.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "8262A59B-F287-4F13-B9E8-FC79D01761AB",
+        "title": "E cuidado com a cueca hein",
+        "authorId": "C85E2912-F171-46E7-8EF8-3014AF30D3F5",
+        "description": "E cuidado com a cueca hein cuidado com a cueca",
+        "filename": "Craque Neto - E cuidado com a cueca hein, cuidado com a cueca.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "16A09860-F41A-4031-9675-3D96ED8ACDEE",
+        "title": "Teu cu",
+        "authorId": "39FA164E-7618-480E-8881-BC3AA5E862F7",
+        "description": "Teu cu",
+        "filename": "MIDCAST - Teu cu.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "BA030EBA-A725-4B26-84C4-FE63F676DB22",
+        "title": "Cês tão de brincadeira",
+        "authorId": "C85E2912-F171-46E7-8EF8-3014AF30D3F5",
+        "description": "Cês tão de brincadeira",
+        "filename": "Neto - Cês tão de brincadeira.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "23721A8D-B2CD-4B29-93F7-C23EDDF27E77",
+        "title": "Que porra é essa batata",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "Que porra e essa batata",
+        "filename": "Que porra e essa batata.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "C8C98D2E-CC59-4BBC-8265-AB9362AA043A",
+        "title": "Nunca vi... Tu é burro, cara?",
+        "authorId": "C066E971-8702-4261-955D-00CF642A465A",
+        "description": "Nunca vi tu e burro cara",
+        "filename": "Silas Malafaia - Nunca vi tu e burro cara.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "4A57A5D3-9A05-46DE-8FD2-7A573BF84887",
+        "title": "Sabe que você é muito petulante",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "Sabe que voce e muito petulante",
+        "filename": "Sabe que voce e muito petulante.mp3",
         "dateAdded": "2021-02-19T00:00:00Z",
         "isOffensive": false
     }
