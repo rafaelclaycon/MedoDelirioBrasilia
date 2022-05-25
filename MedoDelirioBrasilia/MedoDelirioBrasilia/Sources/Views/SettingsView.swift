@@ -135,6 +135,14 @@ struct SettingsView: View {
                             .buttonStyle(.bordered)
                             .buttonBorderShape(.capsule)
                             .padding(.top)
+                            
+                            Text("medodeliriosuporte@gmail.com".uppercased())
+                                .font(.footnote)
+                                .bold()
+                                .foregroundColor(.gray)
+                                .multilineTextAlignment(.center)
+                                .padding(.top)
+                                .padding(.horizontal)
                         }
                         
                         VStack(alignment: .center, spacing: 5) {

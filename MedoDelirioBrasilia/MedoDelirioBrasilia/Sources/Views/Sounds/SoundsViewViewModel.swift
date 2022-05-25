@@ -11,6 +11,11 @@ class SoundsViewViewModel: ObservableObject {
     @Published var showConfirmationDialog = false
     @Published var soundForConfirmationDialog: Sound? = nil
     
+    // Alerts
+    @Published var alertTitle: String = ""
+    @Published var alertMessage: String = ""
+    @Published var showAlert: Bool = false
+    
     func reloadList() {
         if UserSettings.getShowOffensiveSounds() {
             self.sounds = soundData
@@ -44,7 +49,7 @@ class SoundsViewViewModel: ObservableObject {
         }
         
         guard let path = Bundle.main.path(forResource: filepath, ofType: nil) else {
-            return
+            return showUnableToGetSoundAlert()
         }
         let url = URL(fileURLWithPath: path)
 
@@ -60,7 +65,9 @@ class SoundsViewViewModel: ObservableObject {
             return
         }
         
-        let path = Bundle.main.path(forResource: filepath, ofType: nil)!
+        guard let path = Bundle.main.path(forResource: filepath, ofType: nil) else {
+            return showUnableToGetSoundAlert()
+        }
         let url = URL(fileURLWithPath: path)
         
         let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
@@ -99,6 +106,12 @@ class SoundsViewViewModel: ObservableObject {
     func getFavoriteButtonTitle() -> String {
         let emoji = removeFromFavoritesEmojis.randomElement() ?? ""
         return isSelectedSoundAlreadyAFavorite() ? "\(emoji)  Remover dos Favoritos" : "⭐️  Adicionar aos Favoritos"
+    }
+    
+    func showUnableToGetSoundAlert() {
+        alertTitle = "Não Foi Possível Localizar Esse Som"
+        alertMessage = "Devido a um problema técnico, o som que você quer acessar não está disponível.\n\nPor favor, nos avise através do botão Conte-nos Por E-mail na aba Ajustes."
+        showAlert = true
     }
 
 }
