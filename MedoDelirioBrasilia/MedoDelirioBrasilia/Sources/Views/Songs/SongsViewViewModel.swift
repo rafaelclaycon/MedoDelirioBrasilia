@@ -46,7 +46,9 @@ class SongsViewViewModel: ObservableObject {
             return
         }
         
-        let path = Bundle.main.path(forResource: filepath, ofType: nil)!
+        guard let path = Bundle.main.path(forResource: filepath, ofType: nil) else {
+            return
+        }
         let url = URL(fileURLWithPath: path)
         
         let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
