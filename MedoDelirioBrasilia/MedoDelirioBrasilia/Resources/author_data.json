@@ -206,5 +206,29 @@
     {
         "id": "39FA164E-7618-480E-8881-BC3AA5E862F7",
         "name": "MIDCast"
+    },
+    {
+        "id": "321C3F81-51C6-4AB2-917C-81DCAF13A515",
+        "name": "Carl Orff"
+    },
+    {
+        "id": "71128756-78A9-4B31-A7D8-CE120147C481",
+        "name": "Pazuello"
+    },
+    {
+        "id": "DF927B93-F8C7-426B-BDBD-EE4AAD6D06AC",
+        "name": "Ivete Sangalo"
+    },
+    {
+        "id": "BEA0DEE5-4732-424C-9AE6-744EF7F2DEDA",
+        "name": "Cidade Oculta"
+    },
+    {
+        "id": "45DF3205-8349-4303-9B5E-363D1297B3C9",
+        "name": "Drauzio"
+    },
+    {
+        "id": "FE38F5D4-116C-4407-8BAB-0C868B52412E",
+        "name": "Ricardo Salles"
     }
 ]
