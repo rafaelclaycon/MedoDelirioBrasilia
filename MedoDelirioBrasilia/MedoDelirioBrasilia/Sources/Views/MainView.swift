@@ -9,10 +9,10 @@ struct MainView: View {
                     Label("Sons", systemImage: "speaker.wave.3.fill")
                 }
             
-//            FavoritesView()
-//                .tabItem {
-//                    Label("Favoritos", systemImage: "star.fill")
-//                }
+            AuthorsView()
+                .tabItem {
+                    Label("Autores", systemImage: "person.fill")
+                }
             
             SongsView()
                 .tabItem {

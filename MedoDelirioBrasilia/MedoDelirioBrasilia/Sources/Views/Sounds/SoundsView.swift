@@ -76,6 +76,21 @@ struct SoundsView: View {
             , trailing:
                 Menu {
                     Section {
+//                        Button(action: {
+//                            //viewModel.toggleEpisodeListSorting()
+//                            print("Exibir apenas favoritos tocado")
+//                        }) {
+//                            Label("Mostrar Apenas Favoritos", systemImage: "star.fill")
+//                            // , systemImage: viewModel.episodeListSorting == .fromNewToOld ? "chevron.down" : "chevron.up"
+//                        }
+                        
+                        Picker(selection: $viewModel.sortOption, label: Text("Favoritos")) {
+                            Text("Mostrar Apenas Favoritos")
+                                .tag(1)
+                        }
+                    }
+                
+                    Section {
                         Picker(selection: $viewModel.sortOption, label: Text("Ordenação")) {
                             Text("Ordenar por Título")
                                 .tag(0)

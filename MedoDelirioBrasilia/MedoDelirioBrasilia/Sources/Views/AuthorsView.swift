@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct FavoritesView: View {
+struct AuthorsView: View {
 
     var body: some View {
         NavigationView {
@@ -18,7 +18,7 @@ struct FavoritesView: View {
 struct FavoritesView_Previews: PreviewProvider {
 
     static var previews: some View {
-        FavoritesView()
+        AuthorsView()
     }
 
 }

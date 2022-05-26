@@ -81,7 +81,7 @@
 		D94A4274283E895F00A504BD /* Choque de Cultura - Renan - É Paradoxo que chama isso aí.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94A4272283E895F00A504BD /* Choque de Cultura - Renan - É Paradoxo que chama isso aí.mp3 */; };
 		D94A4275283E895F00A504BD /* Saiddy Bamba - Vai chorar é vai chorar é chore na minha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94A4273283E895F00A504BD /* Saiddy Bamba - Vai chorar é vai chorar é chore na minha.mp3 */; };
 		D958B1AA28394D400010F133 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958B1A928394D400010F133 /* MainView.swift */; };
-		D958B1AC28394DCD0010F133 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958B1AB28394DCD0010F133 /* FavoritesView.swift */; };
+		D958B1AC28394DCD0010F133 /* AuthorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958B1AB28394DCD0010F133 /* AuthorsView.swift */; };
 		D958B1AE28394E420010F133 /* SongsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958B1AD28394E420010F133 /* SongsView.swift */; };
 		D958B1B028394EA40010F133 /* TrendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958B1AF28394EA40010F133 /* TrendsView.swift */; };
 		D958B1B22839534D0010F133 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958B1B12839534D0010F133 /* SettingsView.swift */; };
@@ -250,7 +250,7 @@
 		D94A4272283E895F00A504BD /* Choque de Cultura - Renan - É Paradoxo que chama isso aí.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Choque de Cultura - Renan - É Paradoxo que chama isso aí.mp3"; sourceTree = "<group>"; };
 		D94A4273283E895F00A504BD /* Saiddy Bamba - Vai chorar é vai chorar é chore na minha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Saiddy Bamba - Vai chorar é vai chorar é chore na minha.mp3"; sourceTree = "<group>"; };
 		D958B1A928394D400010F133 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		D958B1AB28394DCD0010F133 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
+		D958B1AB28394DCD0010F133 /* AuthorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorsView.swift; sourceTree = "<group>"; };
 		D958B1AD28394E420010F133 /* SongsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsView.swift; sourceTree = "<group>"; };
 		D958B1AF28394EA40010F133 /* TrendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsView.swift; sourceTree = "<group>"; };
 		D958B1B12839534D0010F133 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -599,7 +599,7 @@
 				D9B9025C2837485000551239 /* Sounds */,
 				D961D0232837319600EFEDEB /* Help */,
 				D92E7073283C5D9E0035826C /* Songs */,
-				D958B1AB28394DCD0010F133 /* FavoritesView.swift */,
+				D958B1AB28394DCD0010F133 /* AuthorsView.swift */,
 				D958B1AF28394EA40010F133 /* TrendsView.swift */,
 				D958B1B12839534D0010F133 /* SettingsView.swift */,
 			);
@@ -904,7 +904,7 @@
 				D958B1B028394EA40010F133 /* TrendsView.swift in Sources */,
 				D9E69597283D551500C341B2 /* LocalDatabase.swift in Sources */,
 				D9625E7E28238F9A00080852 /* MedoDelirioBrasiliaApp.swift in Sources */,
-				D958B1AC28394DCD0010F133 /* FavoritesView.swift in Sources */,
+				D958B1AC28394DCD0010F133 /* AuthorsView.swift in Sources */,
 				D92E7072283C5D990035826C /* SongsViewViewModel.swift in Sources */,
 				D961D016283722AB00EFEDEB /* Color+CustomColors.swift in Sources */,
 				D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */,
