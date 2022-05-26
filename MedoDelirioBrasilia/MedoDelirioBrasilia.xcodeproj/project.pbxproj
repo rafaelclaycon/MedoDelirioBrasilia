@@ -543,8 +543,6 @@
 			children = (
 				D9625EA72823949200080852 /* Sources */,
 				D9625EA82823949700080852 /* Resources */,
-				D9625E7D28238F9A00080852 /* MedoDelirioBrasiliaApp.swift */,
-				D9625E8128238F9B00080852 /* Assets.xcassets */,
 				D9625E8328238F9B00080852 /* Preview Content */,
 				D980455E28380EFE003B2E83 /* Localizable.strings */,
 			);
@@ -583,6 +581,7 @@
 		D9625EA82823949700080852 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D9625E8128238F9B00080852 /* Assets.xcassets */,
 				D940E27D283AA27D00392D1C /* Sounds */,
 				D92E7068283C5C120035826C /* Songs */,
 				D92E706F283C5CF40035826C /* song_data.json */,
@@ -609,6 +608,7 @@
 		D980456028380F45003B2E83 /* AppSupport */ = {
 			isa = PBXGroup;
 			children = (
+				D9625E7D28238F9A00080852 /* MedoDelirioBrasiliaApp.swift */,
 				D980456128380F66003B2E83 /* LocalizableStrings.swift */,
 				D988C522283C33E100D64404 /* UserSettings.swift */,
 			);
