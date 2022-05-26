@@ -100,7 +100,7 @@ struct SettingsView: View {
                             }) {
                                 Text("Contrate-me para fazer o seu app iOS")
                             }
-                            .tint(.orange)
+                            .tint(.accentColor)
                             .controlSize(.large)
                             .buttonStyle(.bordered)
                             .buttonBorderShape(.capsule)
@@ -113,7 +113,7 @@ struct SettingsView: View {
                                 .padding(.horizontal)
                             
                             Button(action: {
-                                guard let emailSubject = "Problema/sugestão no app iOS".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+                                guard let emailSubject = "Problema/sugestão no app iOS \(appVersion) Build \(buildVersionNumber)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
                                     return
                                 }
                                 guard let emailMessage = "Inclua passos e prints se possível.".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
@@ -156,7 +156,7 @@ struct SettingsView: View {
                             }) {
                                 Text("Ver projeto no GitHub")
                             }
-                            .tint(.gray)
+                            .tint(.blue)
                             .controlSize(.large)
                             .buttonStyle(.bordered)
                             .buttonBorderShape(.capsule)
