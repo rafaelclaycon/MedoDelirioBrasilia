@@ -1060,5 +1060,122 @@
         "filename": "SALLES - E ir passando a boiada.mp3",
         "dateAdded": "2021-02-21T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "08B6CB06-28E1-4A6D-934E-B5E715D56C05",
+        "title": "E daí",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "E dai",
+        "filename": "Bolsonaro - E dai.mp3",
+        "dateAdded": "2021-02-21T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "2E0B04FF-DB2B-4872-836A-40C61B7A5896",
+        "title": "Eu não errei nenhuma",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Eu não errei nenhuma",
+        "filename": "Bolsonaro - Eu não errei nenhuma.mp3",
+        "dateAdded": "2021-02-21T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "1BC1AEBA-1E1D-4354-BF1F-94C564F5E677",
+        "title": "Lamento, quer que eu faça o quê?",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Lamento quer que eu faca o que",
+        "filename": "Bolsonaro - Lamento, quer que eu faca o que.mp3",
+        "dateAdded": "2021-02-21T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "D49A23BC-2EBA-42CF-B0AD-86DC17B042F6",
+        "title": "Comunista do Inferno!",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "Comunista do inferno",
+        "filename": "COMUNISTA DO INFERNO meme.mp3",
+        "dateAdded": "2021-02-25T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "599E91CD-DDA1-44AA-B3A9-C295397F3103",
+        "title": "Comunista",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "Comunista",
+        "filename": "COMUNISTA MEME.mp3",
+        "dateAdded": "2021-02-25T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "73122D6B-7B14-4412-9BEC-6BB9E6BF2920",
+        "title": "Problemas",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Problemas",
+        "filename": "Bolsonaro - Problemas.mp3",
+        "dateAdded": "2021-03-02T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "6760379F-DFEE-4B59-A73D-EBAEDBB43791",
+        "title": "Há controvérsias",
+        "authorId": "D451D2B8-B7FE-4A57-A777-8D6BC741AEF0",
+        "description": "Há controvérsias",
+        "filename": "Pedro Pedreira - Pedra 90 ha controversias.mp3",
+        "dateAdded": "2021-03-02T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "DF9D9D4C-0140-467F-B5FE-3531821BB3D5",
+        "title": "Etcetera",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "Etcetera",
+        "filename": "Etcetera.mp3",
+        "dateAdded": "2021-03-04T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "E0C0983B-0D5E-4D92-8A2B-B953F58EFD97",
+        "title": "É desesperador",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "E desesperador",
+        "filename": "E desesperador.mp3",
+        "dateAdded": "2021-03-04T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "07D68835-9AC6-4B78-AADB-D2F2B0FFF707",
+        "title": "Quase ninguém de máscara",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "Quase ninguem de mascara",
+        "filename": "Quase ninguem de mascara.mp3",
+        "dateAdded": "2021-03-04T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "957FDD34-96DE-4226-881D-BE387CAE797B",
+        "title": "Winter is coming, this one will be long",
+        "authorId": "FB2C9DDC-3FF3-4551-B6A1-A605C5E51B7D",
+        "description": "Winter is coming this one will be long",
+        "filename": "Winter is coming, this one will be long.mp3",
+        "dateAdded": "2021-03-04T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "10B210F4-5BAA-4506-868F-CCAAFE867718",
+        "title": "Vocês têm desânimo? Eu tenho às vezes",
+        "authorId": "B68A894C-8412-444B-B81F-ADC44DF128DC",
+        "description": "Voces tem desanimo eu tenho as vezes",
+        "filename": "Pedro Doria - Voces tem desanimo eu tenho as vezes.mp3",
+        "dateAdded": "2021-03-04T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "14B33018-4DE7-41E7-A088-10EEAB2C9AA5",
+        "title": "Não delira, não patina no omelete",
+        "authorId": "4671ABB8-0E27-4D27-AC6A-FD9E1A0959A0",
+        "description": "Não delira, não patina no omelete",
+        "filename": "Pedro Pedreira (Pedra 90) - Não delira, não patina no omelete.mp3",
+        "dateAdded": "2021-03-04T00:00:00Z",
+        "isOffensive": false
     }
 ]
