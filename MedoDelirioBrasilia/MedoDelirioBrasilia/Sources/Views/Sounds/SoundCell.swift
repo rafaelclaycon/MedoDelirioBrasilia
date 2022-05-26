@@ -9,6 +9,15 @@ struct SoundCell: View {
     var isFavorite: Bool {
         favorites.contains(soundId)
     }
+    var titleFont: Font {
+        if title.count <= 26 {
+            return .body
+        } else if title.count >= 27 && title.count <= 40 {
+            return .callout
+        } else {
+            return .footnote
+        }
+    }
     
     let regularGradient = LinearGradient(gradient: Gradient(colors: [.green, .green, .brightYellow]), startPoint: .topLeading, endPoint: .bottomTrailing)
     let favoriteGradient = LinearGradient(gradient: Gradient(colors: [.red, .red, .red]), startPoint: .topLeading, endPoint: .bottomTrailing)
@@ -37,7 +46,7 @@ struct SoundCell: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Text(title)
                         .foregroundColor(.black)
-                        .font(title.count > 26 ? .callout : .body)
+                        .font(titleFont)
                         .bold()
                     
                     Text(author)
@@ -59,7 +68,10 @@ struct SoundRow_Previews: PreviewProvider {
         Group {
             // Regular
             SoundCell(soundId: "ABC", title: "A gente vai cansando", author: "Soraya Thronicke", favorites: .constant(Set<String>()))
-            SoundCell(soundId: "ABC", title: "Funk do Xandão", author: "Roberto Jeferson", favorites: .constant(Set<String>()))
+            //SoundCell(soundId: "ABC", title: "Funk do Xandão", author: "Roberto Jeferson", favorites: .constant(Set<String>()))
+            SoundCell(soundId: "ABC", title: "Às vezes o ódio é a única emoção possível", author: "Soraya Thronicke", favorites: .constant(Set<String>()))
+            SoundCell(soundId: "ABC", title: "É simples assim, um manda e o outro obedece", author: "Soraya Thronicke", favorites: .constant(Set<String>()))
+            SoundCell(soundId: "ABC", title: "Você tá falando isso porque você é a putinha do Bozo", author: "Soraya Thronicke", favorites: .constant(Set<String>()))
             
             // Favorite
             SoundCell(soundId: "DEF", title: "A gente vai cansando", author: "Soraya Thronicke", favorites: .constant(Set<String>(arrayLiteral: "DEF")))

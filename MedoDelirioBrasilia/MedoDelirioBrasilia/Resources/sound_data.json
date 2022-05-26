@@ -898,5 +898,167 @@
         "filename": "Sabe que voce e muito petulante.mp3",
         "dateAdded": "2021-02-19T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "A7BD53E5-23E3-409A-A0D0-7F838A2D0B45",
+        "title": "Será mesmo",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "Sera mesmo",
+        "filename": "Sera mesmo.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "06FFEB75-C437-405D-A471-670602BF7034",
+        "title": "Gente que vive tanto na mentira",
+        "authorId": "C066E971-8702-4261-955D-00CF642A465A",
+        "description": "gente que vive tanto na mentira que faz dela a sua verdade",
+        "filename": "Silas Malafaia - gente que vive tanto na mentira que faz dela a sua verdade.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "82F1303D-4233-40AE-A531-7A319484A454",
+        "title": "Carmina Burana",
+        "authorId": "321C3F81-51C6-4AB2-917C-81DCAF13A515",
+        "description": "Carmina burana",
+        "filename": "Carmina burana trecho.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "D845E294-4234-46F7-AC76-D459F80DAAE2",
+        "title": "É por isso que Deus te escolheu",
+        "authorId": "C066E971-8702-4261-955D-00CF642A465A",
+        "description": "É por isso que Deus te escolheu",
+        "filename": "Silas Malafaia - E por isso que Deus te escolheu.mp3",
+        "dateAdded": "2021-02-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "0EDE577F-4755-4955-A726-D99993C3C479",
+        "title": "Não tem o que fazer",
+        "authorId": "71128756-78A9-4B31-A7D8-CE120147C481",
+        "description": "Não tem o que fazer",
+        "filename": "Pazuello - Não tem o que fazer.mp3",
+        "dateAdded": "2021-02-21T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "07A7CB0E-8259-4692-9E7C-E9EC16C37FB9",
+        "title": "É simples assim, um manda e o outro obedece",
+        "authorId": "71128756-78A9-4B31-A7D8-CE120147C481",
+        "description": "E simples assim um manda e o outro obedece",
+        "filename": "Pazuello - E simples assim, um manda e o outro obedece.mp3",
+        "dateAdded": "2021-02-21T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "B1FC9530-91C9-44DD-BC3C-D9AF44EB8643",
+        "title": "Chupa toda",
+        "authorId": "DF927B93-F8C7-426B-BDBD-EE4AAD6D06AC",
+        "description": "Chupa toda",
+        "filename": "Ivete Sangalo - Chupa Toda short meme.mp3",
+        "dateAdded": "2021-02-21T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "7E00DAA2-6C93-4779-A3A3-44423D4FB85F",
+        "title": "Que que cê vai fazer? Nada",
+        "authorId": "71128756-78A9-4B31-A7D8-CE120147C481",
+        "description": "Que que ce vai fazer nada",
+        "filename": "Pazuello - Que que ce vai fazer nada.mp3",
+        "dateAdded": "2021-02-21T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "6AEBAF2C-3919-4968-B99A-187C3BE28173",
+        "title": "Será que eu tô errando ao falar isso daí",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Sera que eu to errando ao falar isso dai",
+        "filename": "Bolsonaro - Sera que eu to errando ao falar isso dai.mp3",
+        "dateAdded": "2021-02-21T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "5D8666A5-8527-4E6F-B52A-64102B505A56",
+        "title": "Não tem como não dar errado, vai dar errado",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Não tem como não dar errado vai dar errado",
+        "filename": "Bolsonaro - Não tem como não dar errado vai dar errado.mp3",
+        "dateAdded": "2021-02-21T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "53AAA444-D0F5-45B3-B721-50111F3DF810",
+        "title": "Porra",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Porra",
+        "filename": "Bolsonaro - Porra.mp3",
+        "dateAdded": "2021-02-21T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "E62670C9-1D15-4A17-ACB7-CD40CBD3A331",
+        "title": "Você tá falando isso porque você é a putinha do Bozo",
+        "authorId": "BEA0DEE5-4732-424C-9AE6-744EF7F2DEDA",
+        "description": "Voce ta falando isso porque voce e a putinha do bozo",
+        "filename": "Cidade Oculta - Voce fala isso porque e a putinha do bozo.mp3",
+        "dateAdded": "2021-02-21T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "F1044B05-1AD0-4957-8033-22D6445B5D5B",
+        "title": "É verdade quer dizer às vezes não",
+        "authorId": "45DF3205-8349-4303-9B5E-363D1297B3C9",
+        "description": "É verdade quer dizer as vezes não",
+        "filename": "Drauzio - É verdade quer dizer as vezes não meme short.mp3",
+        "dateAdded": "2021-02-21T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "75E8F438-E20B-406B-8C49-BC4705A69F8B",
+        "title": "Procura um psiquiatra, você não tá legal",
+        "authorId": "45DF3205-8349-4303-9B5E-363D1297B3C9",
+        "description": "procura um psiquiatra você não tá legal",
+        "filename": "Dráuzio - procura um psiquiatra, você não tá legal.mp3",
+        "dateAdded": "2021-02-21T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "FB089E02-8F48-4E96-8C37-663FEA8C9EBB",
+        "title": "Porrrrra",
+        "authorId": "90725901-3A3F-407B-8177-159B50C60676",
+        "description": "Porrrrra",
+        "filename": "Olavo - Porrrrra.mp3",
+        "dateAdded": "2021-02-21T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "9CB12A4F-01E0-4E18-936B-55E0A96C9561",
+        "title": "Pum",
+        "authorId": "90725901-3A3F-407B-8177-159B50C60676",
+        "description": "Pum",
+        "filename": "Regina Duarte - Pum.mp3",
+        "dateAdded": "2021-02-21T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "3BAC0A9E-F462-49D5-92A7-81B745563A23",
+        "title": "Parte Terminal do Aparelho Digestivo",
+        "authorId": "BC2818F5-4FA5-46FC-90C3-075691F3E979",
+        "description": "Parte Terminal do Aparelho Digestivo",
+        "filename": "Reinaldo Azevedo - Parte Terminal do Aparelho Digestivo.mp3",
+        "dateAdded": "2021-02-21T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "19DE07D2-E3CC-488E-86AF-C02BD42E3964",
+        "title": "E ir passando a boiada",
+        "authorId": "FE38F5D4-116C-4407-8BAB-0C868B52412E",
+        "description": "E ir passando a boiada",
+        "filename": "SALLES - E ir passando a boiada.mp3",
+        "dateAdded": "2021-02-21T00:00:00Z",
+        "isOffensive": false
     }
 ]
