@@ -36,7 +36,6 @@ struct SoundsView: View {
                                     viewModel.playSound(fromPath: sound.filename)
                                 }
                                 .onLongPressGesture {
-                                    //viewModel.shareSound(withPath: sound.filename)
                                     viewModel.soundForConfirmationDialog = sound
                                     viewModel.showConfirmationDialog = true
                                 }
@@ -83,22 +82,7 @@ struct SoundsView: View {
                     }
                 }
             , trailing:
-                Menu {
-//                    Section {
-//                        Button(action: {
-//                            //viewModel.toggleEpisodeListSorting()
-//                            print("Exibir apenas favoritos tocado")
-//                        }) {
-//                            Label("Mostrar Apenas Favoritos", systemImage: "star.fill")
-//                            // , systemImage: viewModel.episodeListSorting == .fromNewToOld ? "chevron.down" : "chevron.up"
-//                        }
-//
-//                        Picker(selection: $viewModel.sortOption, label: Text("Favoritos")) {
-//                            Text("Mostrar Apenas Favoritos")
-//                                .tag(1)
-//                        }
-//                    }
-                
+                                    Menu {
                     Section {
                         Picker(selection: $viewModel.sortOption, label: Text("Ordenação")) {
                             Text("Ordenar por Título")
@@ -116,7 +100,10 @@ struct SoundsView: View {
                 }
             )
             .onAppear {
-                viewModel.reloadList()
+                viewModel.reloadList(withSounds: soundData,
+                                     allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+                                     favoritesOnly: viewModel.showOnlyFavorites,
+                                     sortedBy: ContentSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
             }
             .confirmationDialog("", isPresented: $viewModel.showConfirmationDialog) {
                 Button(viewModel.getFavoriteButtonTitle()) {

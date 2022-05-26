@@ -28,6 +28,8 @@
 		D9287A0A283EF6C300369CE5 /* Boldo - Deixa com a cara magoada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9287A09283EF6C300369CE5 /* Boldo - Deixa com a cara magoada.mp3 */; };
 		D9287A0D283EF77F00369CE5 /* Sabe que voce e muito petulante.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9287A0B283EF77F00369CE5 /* Sabe que voce e muito petulante.mp3 */; };
 		D9287A0E283EF77F00369CE5 /* Silas Malafaia - Nunca vi tu e burro cara.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9287A0C283EF77F00369CE5 /* Silas Malafaia - Nunca vi tu e burro cara.mp3 */; };
+		D92C0CA62840125B009CF19A /* SoundsViewViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92C0CA52840125B009CF19A /* SoundsViewViewModelTests.swift */; };
+		D92C0CA82840162F009CF19A /* ContentSortOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92C0CA72840162F009CF19A /* ContentSortOption.swift */; };
 		D92E7067283C51D20035826C /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92E7066283C51D20035826C /* Song.swift */; };
 		D92E706E283C5C2C0035826C /* Eu volto pro ostracismo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92E706B283C5C2C0035826C /* Eu volto pro ostracismo.mp3 */; };
 		D92E7070283C5CF40035826C /* song_data.json in Resources */ = {isa = PBXBuildFile; fileRef = D92E706F283C5CF40035826C /* song_data.json */; };
@@ -212,6 +214,8 @@
 		D9287A09283EF6C300369CE5 /* Boldo - Deixa com a cara magoada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Boldo - Deixa com a cara magoada.mp3"; sourceTree = "<group>"; };
 		D9287A0B283EF77F00369CE5 /* Sabe que voce e muito petulante.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Sabe que voce e muito petulante.mp3"; sourceTree = "<group>"; };
 		D9287A0C283EF77F00369CE5 /* Silas Malafaia - Nunca vi tu e burro cara.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Silas Malafaia - Nunca vi tu e burro cara.mp3"; sourceTree = "<group>"; };
+		D92C0CA52840125B009CF19A /* SoundsViewViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsViewViewModelTests.swift; sourceTree = "<group>"; };
+		D92C0CA72840162F009CF19A /* ContentSortOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSortOption.swift; sourceTree = "<group>"; };
 		D92E7066283C51D20035826C /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		D92E706B283C5C2C0035826C /* Eu volto pro ostracismo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu volto pro ostracismo.mp3"; sourceTree = "<group>"; };
 		D92E706F283C5CF40035826C /* song_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = song_data.json; sourceTree = "<group>"; };
@@ -385,6 +389,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D92C0CA328401220009CF19A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D92C0CA428401229009CF19A /* Sounds */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D92C0CA428401229009CF19A /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				D92C0CA52840125B009CF19A /* SoundsViewViewModelTests.swift */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		D92E7068283C5C120035826C /* Songs */ = {
 			isa = PBXGroup;
 			children = (
@@ -676,6 +696,7 @@
 				D9344322283812AD00ADCD38 /* Author.swift */,
 				D93443242838177000ADCD38 /* UserInfo.swift */,
 				D9E69593283D2F2F00C341B2 /* Favorite.swift */,
+				D92C0CA72840162F009CF19A /* ContentSortOption.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -702,6 +723,7 @@
 		D9E69598283D581700C341B2 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				D92C0CA328401220009CF19A /* Views */,
 				D9E69599283D581E00C341B2 /* DataHandlers */,
 			);
 			path = Sources;
@@ -968,6 +990,7 @@
 				D961D01128371EE800EFEDEB /* FixedLocalData.swift in Sources */,
 				D98622E0283FC57100E9F630 /* AuthorDetailView.swift in Sources */,
 				D92E7067283C51D20035826C /* Song.swift in Sources */,
+				D92C0CA82840162F009CF19A /* ContentSortOption.swift in Sources */,
 				D958B1B028394EA40010F133 /* TrendsView.swift in Sources */,
 				D9E69597283D551500C341B2 /* LocalDatabase.swift in Sources */,
 				D9625E7E28238F9A00080852 /* MedoDelirioBrasiliaApp.swift in Sources */,
@@ -997,6 +1020,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9625E8F28238F9B00080852 /* LocalDatabaseTests.swift in Sources */,
+				D92C0CA62840125B009CF19A /* SoundsViewViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

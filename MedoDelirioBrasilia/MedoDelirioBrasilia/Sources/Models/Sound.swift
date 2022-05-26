@@ -13,7 +13,7 @@ struct Sound: Hashable, Codable, Identifiable {
     
     init(id: String = UUID().uuidString,
          title: String,
-         authorId: String,
+         authorId: String = UUID().uuidString,
          description: String = "",
          filename: String = "",
          dateAdded: Date? = Date(),
