@@ -10,6 +10,7 @@ class SoundsViewViewModel: ObservableObject {
     @Published var favoritesKeeper = Set<String>()
     @Published var showConfirmationDialog = false
     @Published var soundForConfirmationDialog: Sound? = nil
+    @Published var showOnlyFavorites = false
     
     // Alerts
     @Published var alertTitle: String = ""
@@ -23,7 +24,7 @@ class SoundsViewViewModel: ObservableObject {
             self.sounds = soundData.filter({ $0.isOffensive == false })
         }
         
-        self.sortOption = 0 //UserSettings.getArchiveSortOption()
+        self.sortOption = UserSettings.getSoundSortOption()
         
         if self.sounds.count > 0 {
             // Needed because author names live in a different file.

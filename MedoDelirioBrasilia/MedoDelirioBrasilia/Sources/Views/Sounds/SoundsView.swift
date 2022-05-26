@@ -66,16 +66,25 @@ struct SoundsView: View {
             }
             .navigationTitle(Text(LocalizableStrings.MainView.title))
             .navigationBarItems(leading:
-                Button(action: {
-                    showingHelpScreen = true
-                }) {
-                    HStack {
-                        Image(systemName: "questionmark.circle")
+                HStack {
+                    Button(action: {
+                        showingHelpScreen = true
+                    }) {
+                        HStack {
+                            Image(systemName: "questionmark.circle")
+                        }
+                    }
+                    Button(action: {
+                        viewModel.showOnlyFavorites.toggle()
+                    }) {
+                        HStack {
+                            Image(systemName: viewModel.showOnlyFavorites ? "star.fill" : "star")
+                        }
                     }
                 }
             , trailing:
                 Menu {
-                    Section {
+//                    Section {
 //                        Button(action: {
 //                            //viewModel.toggleEpisodeListSorting()
 //                            print("Exibir apenas favoritos tocado")
@@ -83,12 +92,12 @@ struct SoundsView: View {
 //                            Label("Mostrar Apenas Favoritos", systemImage: "star.fill")
 //                            // , systemImage: viewModel.episodeListSorting == .fromNewToOld ? "chevron.down" : "chevron.up"
 //                        }
-                        
-                        Picker(selection: $viewModel.sortOption, label: Text("Favoritos")) {
-                            Text("Mostrar Apenas Favoritos")
-                                .tag(1)
-                        }
-                    }
+//
+//                        Picker(selection: $viewModel.sortOption, label: Text("Favoritos")) {
+//                            Text("Mostrar Apenas Favoritos")
+//                                .tag(1)
+//                        }
+//                    }
                 
                     Section {
                         Picker(selection: $viewModel.sortOption, label: Text("Ordenação")) {
@@ -103,7 +112,7 @@ struct SoundsView: View {
                         }
                     }
                 } label: {
-                    Image(systemName: "arrow.up.arrow.down.circle")
+                    Image(systemName: "arrow.up.arrow.down")
                 }
             )
             .onAppear {
