@@ -99,6 +99,19 @@
 		D980456228380F66003B2E83 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D980456128380F66003B2E83 /* LocalizableStrings.swift */; };
 		D98622E0283FC57100E9F630 /* AuthorDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98622DF283FC57100E9F630 /* AuthorDetailView.swift */; };
 		D98622E2283FCEDC00E9F630 /* AuthorsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98622E1283FCEDC00E9F630 /* AuthorsViewViewModel.swift */; };
+		D98622E828400AB600E9F630 /* Bolsonaro - Lamento, quer que eu faca o que.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98622E328400AB600E9F630 /* Bolsonaro - Lamento, quer que eu faca o que.mp3 */; };
+		D98622E928400AB600E9F630 /* Bolsonaro - Eu não errei nenhuma.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98622E428400AB600E9F630 /* Bolsonaro - Eu não errei nenhuma.mp3 */; };
+		D98622EA28400AB600E9F630 /* COMUNISTA MEME.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98622E528400AB600E9F630 /* COMUNISTA MEME.mp3 */; };
+		D98622EB28400AB600E9F630 /* Bolsonaro - E dai.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98622E628400AB600E9F630 /* Bolsonaro - E dai.mp3 */; };
+		D98622EC28400AB600E9F630 /* COMUNISTA DO INFERNO meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98622E728400AB600E9F630 /* COMUNISTA DO INFERNO meme.mp3 */; };
+		D98622F028400C4A00E9F630 /* Pedro Pedreira - Pedra 90 ha controversias.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98622ED28400C4A00E9F630 /* Pedro Pedreira - Pedra 90 ha controversias.mp3 */; };
+		D98622F128400C4A00E9F630 /* Etcetera.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98622EE28400C4A00E9F630 /* Etcetera.mp3 */; };
+		D98622F228400C4A00E9F630 /* Bolsonaro - Problemas.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98622EF28400C4A00E9F630 /* Bolsonaro - Problemas.mp3 */; };
+		D98622F828400E7800E9F630 /* Winter is coming, this one will be long.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98622F328400E7700E9F630 /* Winter is coming, this one will be long.mp3 */; };
+		D98622F928400E7800E9F630 /* Pedro Pedreira (Pedra 90) - Não delira, não patina no omelete.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98622F428400E7700E9F630 /* Pedro Pedreira (Pedra 90) - Não delira, não patina no omelete.mp3 */; };
+		D98622FA28400E7800E9F630 /* E desesperador.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98622F528400E7800E9F630 /* E desesperador.mp3 */; };
+		D98622FB28400E7800E9F630 /* Quase ninguem de mascara.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98622F628400E7800E9F630 /* Quase ninguem de mascara.mp3 */; };
+		D98622FC28400E7800E9F630 /* Pedro Doria - Voces tem desanimo eu tenho as vezes.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98622F728400E7800E9F630 /* Pedro Doria - Voces tem desanimo eu tenho as vezes.mp3 */; };
 		D988C523283C33E100D64404 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D988C522283C33E100D64404 /* UserSettings.swift */; };
 		D98EC5DE282596C300340BE5 /* SoundCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5DD282596C300340BE5 /* SoundCell.swift */; };
 		D98EC5E12825A05900340BE5 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5E02825A05900340BE5 /* Sound.swift */; };
@@ -273,6 +286,19 @@
 		D980456128380F66003B2E83 /* LocalizableStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
 		D98622DF283FC57100E9F630 /* AuthorDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorDetailView.swift; sourceTree = "<group>"; };
 		D98622E1283FCEDC00E9F630 /* AuthorsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorsViewViewModel.swift; sourceTree = "<group>"; };
+		D98622E328400AB600E9F630 /* Bolsonaro - Lamento, quer que eu faca o que.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Lamento, quer que eu faca o que.mp3"; sourceTree = "<group>"; };
+		D98622E428400AB600E9F630 /* Bolsonaro - Eu não errei nenhuma.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Eu não errei nenhuma.mp3"; sourceTree = "<group>"; };
+		D98622E528400AB600E9F630 /* COMUNISTA MEME.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "COMUNISTA MEME.mp3"; sourceTree = "<group>"; };
+		D98622E628400AB600E9F630 /* Bolsonaro - E dai.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - E dai.mp3"; sourceTree = "<group>"; };
+		D98622E728400AB600E9F630 /* COMUNISTA DO INFERNO meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "COMUNISTA DO INFERNO meme.mp3"; sourceTree = "<group>"; };
+		D98622ED28400C4A00E9F630 /* Pedro Pedreira - Pedra 90 ha controversias.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pedro Pedreira - Pedra 90 ha controversias.mp3"; sourceTree = "<group>"; };
+		D98622EE28400C4A00E9F630 /* Etcetera.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Etcetera.mp3; sourceTree = "<group>"; };
+		D98622EF28400C4A00E9F630 /* Bolsonaro - Problemas.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Problemas.mp3"; sourceTree = "<group>"; };
+		D98622F328400E7700E9F630 /* Winter is coming, this one will be long.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Winter is coming, this one will be long.mp3"; sourceTree = "<group>"; };
+		D98622F428400E7700E9F630 /* Pedro Pedreira (Pedra 90) - Não delira, não patina no omelete.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pedro Pedreira (Pedra 90) - Não delira, não patina no omelete.mp3"; sourceTree = "<group>"; };
+		D98622F528400E7800E9F630 /* E desesperador.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "E desesperador.mp3"; sourceTree = "<group>"; };
+		D98622F628400E7800E9F630 /* Quase ninguem de mascara.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Quase ninguem de mascara.mp3"; sourceTree = "<group>"; };
+		D98622F728400E7800E9F630 /* Pedro Doria - Voces tem desanimo eu tenho as vezes.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pedro Doria - Voces tem desanimo eu tenho as vezes.mp3"; sourceTree = "<group>"; };
 		D988C522283C33E100D64404 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		D98EC5DD282596C300340BE5 /* SoundCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundCell.swift; sourceTree = "<group>"; };
 		D98EC5E02825A05900340BE5 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
@@ -384,6 +410,19 @@
 		D940E27D283AA27D00392D1C /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D98622F528400E7800E9F630 /* E desesperador.mp3 */,
+				D98622F728400E7800E9F630 /* Pedro Doria - Voces tem desanimo eu tenho as vezes.mp3 */,
+				D98622F428400E7700E9F630 /* Pedro Pedreira (Pedra 90) - Não delira, não patina no omelete.mp3 */,
+				D98622F628400E7800E9F630 /* Quase ninguem de mascara.mp3 */,
+				D98622F328400E7700E9F630 /* Winter is coming, this one will be long.mp3 */,
+				D98622EF28400C4A00E9F630 /* Bolsonaro - Problemas.mp3 */,
+				D98622EE28400C4A00E9F630 /* Etcetera.mp3 */,
+				D98622ED28400C4A00E9F630 /* Pedro Pedreira - Pedra 90 ha controversias.mp3 */,
+				D98622E628400AB600E9F630 /* Bolsonaro - E dai.mp3 */,
+				D98622E428400AB600E9F630 /* Bolsonaro - Eu não errei nenhuma.mp3 */,
+				D98622E328400AB600E9F630 /* Bolsonaro - Lamento, quer que eu faca o que.mp3 */,
+				D98622E728400AB600E9F630 /* COMUNISTA DO INFERNO meme.mp3 */,
+				D98622E528400AB600E9F630 /* COMUNISTA MEME.mp3 */,
 				D9F117B8283F4E39005D6BA3 /* SALLES - E ir passando a boiada.mp3 */,
 				D9F117AF283F4E00005D6BA3 /* Drauzio - É verdade quer dizer as vezes não meme short.mp3 */,
 				D9F117B2283F4E00005D6BA3 /* Dráuzio - procura um psiquiatra, você não tá legal.mp3 */,
@@ -779,6 +818,7 @@
 				D9B4F740283C8F4D0000EEF7 /* O roque ativa.mp3 in Resources */,
 				D9E11741283EDE5C0043E2F2 /* Boldo - Carrralho caralho.mp3 in Resources */,
 				D940E2AF283AA2C200392D1C /* O CARA DA LUVA DE PEDREIRO - Receba.mp3 in Resources */,
+				D98622F128400C4A00E9F630 /* Etcetera.mp3 in Resources */,
 				D961D01328371F1700EFEDEB /* sound_data.json in Resources */,
 				D9E11738283EDE5C0043E2F2 /* Boldo - Puta que pariu marquinho.mp3 in Resources */,
 				D940E2AD283AA2C200392D1C /* MULTISHOW_Gloria_Groove_Quer_dizer_que_eles_querem_calar_a_gente.mp3 in Resources */,
@@ -797,6 +837,7 @@
 				D9F117B3283F4E01005D6BA3 /* Regina Duarte - Pum.mp3 in Resources */,
 				D9F117AA283F4927005D6BA3 /* Pazuello - E simples assim, um manda e o outro obedece.mp3 in Resources */,
 				D9287A0D283EF77F00369CE5 /* Sabe que voce e muito petulante.mp3 in Resources */,
+				D98622F928400E7800E9F630 /* Pedro Pedreira (Pedra 90) - Não delira, não patina no omelete.mp3 in Resources */,
 				D9B4F746283C939E0000EEF7 /* Olavo de Carvalho - Porra.mp3 in Resources */,
 				D94A426E283E87E100A504BD /* Mermão na moral short.mp3 in Resources */,
 				D940E2B4283AA2C200392D1C /* Aham sei.mp3 in Resources */,
@@ -826,20 +867,24 @@
 				D9E1173B283EDE5C0043E2F2 /* Choque de Cultura - Falo com tranquilidade.mp3 in Resources */,
 				D92879E7283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 in Resources */,
 				D940E2A9283AA2C200392D1C /* Alborgeti - Que Merda Hein.mp3 in Resources */,
+				D98622EC28400AB600E9F630 /* COMUNISTA DO INFERNO meme.mp3 in Resources */,
 				D9F117AC283F4927005D6BA3 /* Pazuello - Que que ce vai fazer nada.mp3 in Resources */,
 				D94A4260283E85D500A504BD /* Queima quengaral wooo short.mp3 in Resources */,
 				D9E1173D283EDE5C0043E2F2 /* Choque de cultura - Rogerinho - Não vamos falar de pornô aqui não.mp3 in Resources */,
 				D9E11768283EE4F40043E2F2 /* Xaropinho - Rapaz short.mp3 in Resources */,
 				D9E11744283EDE5C0043E2F2 /* General Mourão Bom Dia short.mp3 in Resources */,
+				D98622FA28400E7800E9F630 /* E desesperador.mp3 in Resources */,
 				D92879F2283EF35800369CE5 /* Fernando Collor - Tres vezes dizendo que e mentira.mp3 in Resources */,
 				D9E11767283EE4F40043E2F2 /* Opaio - Tomar no cu rapaz.mp3 in Resources */,
 				D940E2A6283AA2C200392D1C /* Deltan Dallangnol - Os meus advogados estão estarrecidos.mp3 in Resources */,
 				D9E11762283EE4F40043E2F2 /* Michel Temer - Tem que pedir uma pastilha.mp3 in Resources */,
+				D98622EA28400AB600E9F630 /* COMUNISTA MEME.mp3 in Resources */,
 				D9E1173F283EDE5C0043E2F2 /* Choque de Cultura - Rogerinho - Ó a informação aí.mp3 in Resources */,
 				D9E11739283EDE5C0043E2F2 /* Tu tava fora do brasil irmão short.mp3 in Resources */,
 				D92879FD283EF57000369CE5 /* Hassum - Nem fodendo.mp3 in Resources */,
 				D940E2AA283AA2C200392D1C /* deu_errado.mp3 in Resources */,
 				D9C03442283AAF6100DB96E6 /* Tim Maia - Me Dê Motivo.mp3 in Resources */,
+				D98622F228400C4A00E9F630 /* Bolsonaro - Problemas.mp3 in Resources */,
 				D940E27F283AA29600392D1C /* Feiticeira - Não é feitiçaria, é tecnologia meme short.mp3 in Resources */,
 				D9E1175F283EE4F40043E2F2 /* Michel Temer - Pigarro.mp3 in Resources */,
 				D940E2A8283AA2C200392D1C /* MULTISHOW - Lulu Santos - Censura nunca mais.mp3 in Resources */,
@@ -852,6 +897,7 @@
 				D9E11727283EDA3D0043E2F2 /* Hassum - PUTA QUE PARIU.mp3 in Resources */,
 				D9B4F744283C92DC0000EEF7 /* Fred - Cê tá falando sério.mp3 in Resources */,
 				D9B4F73F283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 in Resources */,
+				D98622EB28400AB600E9F630 /* Bolsonaro - E dai.mp3 in Resources */,
 				D940E29F283AA2C200392D1C /* EMICIDA_no_loolapalooza_Tira_o_título_e_bolsonaro_vai_tomar_no_cu.mp3 in Resources */,
 				D940E29E283AA2C200392D1C /* um_bosta_ciro.mp3 in Resources */,
 				D94A4264283E85D500A504BD /* Brizola - Filhotes da ditadura.mp3 in Resources */,
@@ -859,6 +905,8 @@
 				D940E2A7283AA2C200392D1C /* esse_neto_bosta.mp3 in Resources */,
 				D9F117A8283F4927005D6BA3 /* Bolsonaro - Sera que eu to errando ao falar isso dai.mp3 in Resources */,
 				D94A4271283E87E100A504BD /* CIRO GOMES - Paulo Guedes mentiroso tá enganando a rapazeada paulo guedes.mp3 in Resources */,
+				D98622E928400AB600E9F630 /* Bolsonaro - Eu não errei nenhuma.mp3 in Resources */,
+				D98622FC28400E7800E9F630 /* Pedro Doria - Voces tem desanimo eu tenho as vezes.mp3 in Resources */,
 				D940E2B7283AA2C200392D1C /* funk_do_xandao.mp3 in Resources */,
 				D9287A02283EF57D00369CE5 /* Que porra e essa batata.mp3 in Resources */,
 				D980455C28380EFE003B2E83 /* Localizable.strings in Resources */,
@@ -866,6 +914,7 @@
 				D940E2AC283AA2C200392D1C /* PODER36_Paulo_Guedes_Tem_mais_iPhones_no_Brasil_que_população_Brasileiros.mp3 in Resources */,
 				D9F117A9283F4927005D6BA3 /* Pazuello - Não tem o que fazer.mp3 in Resources */,
 				D9E11763283EE4F40043E2F2 /* Temer - Não renunciarei short.mp3 in Resources */,
+				D98622FB28400E7800E9F630 /* Quase ninguem de mascara.mp3 in Resources */,
 				D92879F8283EF35800369CE5 /* Quercia - Mentiroso e caluniador, caluniador e mentiroso.mp3 in Resources */,
 				D94A4274283E895F00A504BD /* Choque de Cultura - Renan - É Paradoxo que chama isso aí.mp3 in Resources */,
 				D940E2AB283AA2C200392D1C /* ta_bom_xandao_ta_bom.mp3 in Resources */,
@@ -886,10 +935,13 @@
 				D94A4262283E85D500A504BD /* Boldo - Esse é o boldo bão.mp3 in Resources */,
 				D92879F3283EF35800369CE5 /* Bonitinha mas ordinaria - E mentira dele meme short.mp3 in Resources */,
 				D9B4F748283C94600000EEF7 /* Cerginho da Perera Nunes - Com certeza.mp3 in Resources */,
+				D98622F028400C4A00E9F630 /* Pedro Pedreira - Pedra 90 ha controversias.mp3 in Resources */,
 				D92879E8283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 in Resources */,
 				D9E11743283EDE5C0043E2F2 /* Caetano - Que loucura, que coisa absurda short.mp3 in Resources */,
 				D940E2A0283AA2C200392D1C /* PORTA_DOS_FUNDOS_BALBÚRDIA_Bom_dia,_turma,_todo_mundo_tirando_a.mp3 in Resources */,
+				D98622F828400E7800E9F630 /* Winter is coming, this one will be long.mp3 in Resources */,
 				D94A4263283E85D500A504BD /* Ciro Gomes  - Atenção Paulo Guedes.mp3 in Resources */,
+				D98622E828400AB600E9F630 /* Bolsonaro - Lamento, quer que eu faca o que.mp3 in Resources */,
 				D9F117A3283F4927005D6BA3 /* Ivete Sangalo - Chupa Toda short meme.mp3 in Resources */,
 				D940E2A1283AA2C200392D1C /* calma_calma_calma.mp3 in Resources */,
 				D9F117AB283F4927005D6BA3 /* Bolsonaro - Não tem como não dar errado vai dar errado.mp3 in Resources */,
