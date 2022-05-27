@@ -95,16 +95,24 @@ struct SoundsView: View {
                             Text("Ordenar por Título")
                                 .tag(0)
 
-                            Text("Ordenar por Autor")
+                            Text("Ordenar por Nome do Autor")
                                 .tag(1)
 
-                            Text("Adicionados por Último no Topo")
+                            Text("Mais Recentes no Topo")
                                 .tag(2)
                         }
                     }
                 } label: {
                     Image(systemName: "arrow.up.arrow.down")
                 }
+                .onChange(of: viewModel.sortOption, perform: { newValue in
+                    viewModel.reloadList(withSounds: soundData,
+                                         andFavorites: try? database.getAllFavorites(),
+                                         allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+                                         favoritesOnly: viewModel.showOnlyFavorites,
+                                         sortedBy: ContentSortOption(rawValue: newValue) ?? .titleAscending)
+                    UserSettings.setSoundSortOption(to: newValue)
+                })
             )
             .onAppear {
                 viewModel.reloadList(withSounds: soundData,
