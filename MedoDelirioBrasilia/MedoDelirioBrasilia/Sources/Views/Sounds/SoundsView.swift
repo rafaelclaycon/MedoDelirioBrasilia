@@ -45,7 +45,7 @@ struct SoundsView: View {
                     .padding(.horizontal)
                     .padding(.top, 7)
                     
-                    if UserSettings.getShowOffensiveSounds() == false {
+                    if UserSettings.getShowOffensiveSounds() == false, viewModel.showOnlyFavorites == false {
                         Text("Filtrando conteúdo sensível. Você pode mudar isso na aba Ajustes.")
                             .font(.footnote)
                             .foregroundColor(.gray)
@@ -54,7 +54,7 @@ struct SoundsView: View {
                             .padding(.horizontal, 20)
                     }
                     
-                    if searchText.isEmpty {
+                    if searchText.isEmpty, viewModel.showOnlyFavorites == false {
                         Text("\(viewModel.sounds.count) sons. Atualizado em \(soundsLastUpdateDate).")
                             .font(.subheadline)
                             .foregroundColor(.gray)
@@ -80,9 +80,16 @@ struct SoundsView: View {
                             Image(systemName: viewModel.showOnlyFavorites ? "star.fill" : "star")
                         }
                     }
+                    .onChange(of: viewModel.showOnlyFavorites) { newValue in
+                        viewModel.reloadList(withSounds: soundData,
+                                             andFavorites: try? database.getAllFavorites(),
+                                             allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+                                             favoritesOnly: newValue,
+                                             sortedBy: ContentSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
+                    }
                 }
             , trailing:
-                                    Menu {
+                Menu {
                     Section {
                         Picker(selection: $viewModel.sortOption, label: Text("Ordenação")) {
                             Text("Ordenar por Título")

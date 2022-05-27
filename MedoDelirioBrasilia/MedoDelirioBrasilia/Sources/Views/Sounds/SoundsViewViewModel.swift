@@ -25,7 +25,7 @@ class SoundsViewViewModel: ObservableObject {
                     sortedBy sortOption: ContentSortOption) {
         var soundsCopy = allSounds
         
-        if favoritesOnly, let favorites = favorites, favorites.count > 0 {
+        if favoritesOnly, let favorites = favorites {
             soundsCopy = soundsCopy.filter({ sound in
                 favorites.contains(where: { $0.contentId == sound.id })
             })

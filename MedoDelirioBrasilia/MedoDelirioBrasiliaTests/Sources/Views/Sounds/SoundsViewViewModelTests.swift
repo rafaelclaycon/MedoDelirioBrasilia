@@ -51,7 +51,7 @@ class SoundsViewViewModelTests: XCTestCase {
         XCTAssertEqual(sut.sounds.last?.title, "Deu errado")
     }
     
-    func test_reloadList_whenAllowsOffensiveContent_favoritesOnly_andSortedByTitle_shouldDisplay5Sounds() throws {
+    func test_reloadList_whenAllowsOffensiveContent_favoritesOnly_andSortedByTitle_shouldDisplay1Sound() throws {
         sut = SoundsViewViewModel()
         
         var mockSounds = [Sound]()
@@ -68,6 +68,23 @@ class SoundsViewViewModelTests: XCTestCase {
         
         XCTAssertEqual(sut.sounds.count, 1)
         XCTAssertEqual(sut.sounds.first?.title, "Cabô cabô cabô")
+    }
+    
+    func test_reloadList_whenAllowsOffensiveContent_favoritesOnly_andSortedByTitle_butNoFavoritesExist_shouldDisplayNoSounds() throws {
+        sut = SoundsViewViewModel()
+        
+        var mockSounds = [Sound]()
+        mockSounds.append(Sound(title: "Deu errado", isOffensive: false))
+        mockSounds.append(Sound(title: "A gente vai cansando", isOffensive: true))
+        mockSounds.append(Sound(title: "Aham, sei", isOffensive: false))
+        mockSounds.append(Sound(id: "ABC", title: "Cabô cabô cabô", isOffensive: false))
+        mockSounds.append(Sound(title: "Bom dia", isOffensive: false))
+        
+        let mockFavorites = [Favorite]()
+        
+        sut.reloadList(withSounds: mockSounds, andFavorites: mockFavorites, allowSensitiveContent: true, favoritesOnly: true, sortedBy: .titleAscending)
+        
+        XCTAssertEqual(sut.sounds.count, 0)
     }
 
 }
