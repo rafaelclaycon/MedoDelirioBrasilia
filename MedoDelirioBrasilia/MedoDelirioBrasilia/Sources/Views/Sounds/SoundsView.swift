@@ -23,43 +23,52 @@ struct SoundsView: View {
         }
     }
     
+    var showNoFavoritesView: Bool {
+        searchResults.isEmpty && viewModel.showOnlyFavorites
+    }
+    
     var body: some View {
         NavigationView {
             VStack {
                 NavigationLink(destination: SoundHelpView(), isActive: $showingHelpScreen) { EmptyView() }
                 
-                ScrollView {
-                    LazyVGrid(columns: columns, spacing: 14) {
-                        ForEach(searchResults) { sound in
-                            SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", favorites: $viewModel.favoritesKeeper)
-                                .onTapGesture {
-                                    viewModel.playSound(fromPath: sound.filename)
-                                }
-                                .onLongPressGesture {
-                                    viewModel.soundForConfirmationDialog = sound
-                                    viewModel.showConfirmationDialog = true
-                                }
+                if showNoFavoritesView {
+                    NoFavoritesView()
+                        .padding(.horizontal, 25)
+                } else {
+                    ScrollView {
+                        LazyVGrid(columns: columns, spacing: 14) {
+                            ForEach(searchResults) { sound in
+                                SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", favorites: $viewModel.favoritesKeeper)
+                                    .onTapGesture {
+                                        viewModel.playSound(fromPath: sound.filename)
+                                    }
+                                    .onLongPressGesture {
+                                        viewModel.soundForConfirmationDialog = sound
+                                        viewModel.showConfirmationDialog = true
+                                    }
+                            }
                         }
-                    }
-                    .searchable(text: $searchText)
-                    .padding(.horizontal)
-                    .padding(.top, 7)
-                    
-                    if UserSettings.getShowOffensiveSounds() == false, viewModel.showOnlyFavorites == false {
-                        Text("Filtrando conteúdo sensível. Você pode mudar isso na aba Ajustes.")
-                            .font(.footnote)
-                            .foregroundColor(.gray)
-                            .multilineTextAlignment(.center)
-                            .padding(.top, 15)
-                            .padding(.horizontal, 20)
-                    }
-                    
-                    if searchText.isEmpty, viewModel.showOnlyFavorites == false {
-                        Text("\(viewModel.sounds.count) sons. Atualizado em \(soundsLastUpdateDate).")
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
-                            .padding(.top, 10)
-                            .padding(.bottom, 18)
+                        .searchable(text: $searchText)
+                        .padding(.horizontal)
+                        .padding(.top, 7)
+                        
+                        if UserSettings.getShowOffensiveSounds() == false, viewModel.showOnlyFavorites == false {
+                            Text("Filtrando conteúdo sensível. Você pode mudar isso na aba Ajustes.")
+                                .font(.footnote)
+                                .foregroundColor(.gray)
+                                .multilineTextAlignment(.center)
+                                .padding(.top, 15)
+                                .padding(.horizontal, 20)
+                        }
+                        
+                        if searchText.isEmpty, viewModel.showOnlyFavorites == false {
+                            Text("\(viewModel.sounds.count) sons. Atualizado em \(soundsLastUpdateDate).")
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                                .padding(.top, 10)
+                                .padding(.bottom, 18)
+                        }
                     }
                 }
             }
@@ -128,6 +137,13 @@ struct SoundsView: View {
                     }
                     if viewModel.isSelectedSoundAlreadyAFavorite() {
                         viewModel.removeFromFavorites(soundId: sound.id)
+                        if viewModel.showOnlyFavorites {
+                            viewModel.reloadList(withSounds: soundData,
+                                                 andFavorites: try? database.getAllFavorites(),
+                                                 allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+                                                 favoritesOnly: viewModel.showOnlyFavorites,
+                                                 sortedBy: ContentSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
+                        }
                     } else {
                         viewModel.addToFavorites(soundId: sound.id)
                     }

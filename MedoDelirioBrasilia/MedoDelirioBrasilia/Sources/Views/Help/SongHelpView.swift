@@ -7,14 +7,14 @@ struct SongHelpView: View {
     var body: some View {
         VStack {
             ScrollView {
-                VStack(alignment: .center, spacing: 40) {
+                VStack(alignment: .leading, spacing: 40) {
                     HStack(alignment: .center, spacing: 15) {
                         Image(systemName: "play.fill")
                             .font(.largeTitle)
                             .foregroundColor(.accentColor)
                             .frame(width: iconFrameWidth)
                         
-                        Text("Para reproduzir uma música, basta tocar sobre ela.")
+                        Text("Para reproduzir uma música, basta tocar nela.")
                     }
                     
                     HStack(alignment: .center, spacing: 15) {

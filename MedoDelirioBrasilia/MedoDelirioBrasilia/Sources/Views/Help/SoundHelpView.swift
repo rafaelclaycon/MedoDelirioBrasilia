@@ -7,14 +7,14 @@ struct SoundHelpView: View {
     var body: some View {
         VStack {
             ScrollView {                
-                VStack(alignment: .center, spacing: 40) {
+                VStack(alignment: .leading, spacing: 40) {
                     HStack(alignment: .center, spacing: 15) {
                         Image(systemName: "play.fill")
                             .font(.largeTitle)
                             .foregroundColor(.accentColor)
                             .frame(width: iconFrameWidth)
                         
-                        Text("Para reproduzir um som, basta tocar sobre ele.")
+                        Text("Para reproduzir um som, basta tocar nele.")
                     }
                     
                     HStack(alignment: .center, spacing: 15) {
@@ -34,7 +34,7 @@ struct SoundHelpView: View {
                         
                         VStack(spacing: 15) {
                             Text("Para pesquisar, vá até o topo da lista e **puxe mais um pouco para baixo** até revelar o campo de pesquisa.")
-                            Text("A pesquisa considera o **conteúdo do áudio** e o **autor**.")
+                            Text("A pesquisa considera o **conteúdo do áudio** e o **nome do autor**.")
                         }
                     }
                     
