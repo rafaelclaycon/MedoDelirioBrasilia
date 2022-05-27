@@ -101,6 +101,7 @@ struct SoundsView: View {
             )
             .onAppear {
                 viewModel.reloadList(withSounds: soundData,
+                                     andFavorites: try? database.getAllFavorites(),
                                      allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
                                      favoritesOnly: viewModel.showOnlyFavorites,
                                      sortedBy: ContentSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)

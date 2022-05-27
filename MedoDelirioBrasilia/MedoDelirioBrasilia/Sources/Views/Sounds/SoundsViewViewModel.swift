@@ -19,13 +19,11 @@ class SoundsViewViewModel: ObservableObject {
     @Published var showAlert: Bool = false
     
     func reloadList(withSounds allSounds: [Sound],
+                    andFavorites favorites: [Favorite]?,
                     allowSensitiveContent: Bool,
                     favoritesOnly: Bool,
                     sortedBy sortOption: ContentSortOption) {
         var soundsCopy = allSounds
-        
-        var favorites: [Favorite]?
-        favorites = try? database.getAllFavorites()
         
         if favoritesOnly, let favorites = favorites, favorites.count > 0 {
             soundsCopy = soundsCopy.filter({ sound in
@@ -49,7 +47,7 @@ class SoundsViewViewModel: ObservableObject {
             }
             
             // Populate Favorites Keeper to display favorite cells accordingly
-            if let favorites = try? database.getAllFavorites(), favorites.count > 0 {
+            if let favorites = favorites, favorites.count > 0 {
                 for favorite in favorites {
                     favoritesKeeper.insert(favorite.contentId)
                 }
