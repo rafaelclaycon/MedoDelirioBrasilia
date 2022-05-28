@@ -5,7 +5,6 @@ struct SoundsView: View {
     @StateObject private var viewModel = SoundsViewViewModel()
     @State private var showingHelpScreen = false
     @State private var searchText = ""
-    @State private var searchBar: UISearchBar?
     
     let columns = [
         GridItem(.flexible()),

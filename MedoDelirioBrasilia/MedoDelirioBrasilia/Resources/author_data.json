@@ -232,10 +232,6 @@
         "name": "Ricardo Salles"
     },
     {
-        "id": "D451D2B8-B7FE-4A57-A777-8D6BC741AEF0",
-        "name": "Pedro Pedreira"
-    },
-    {
         "id": "FB2C9DDC-3FF3-4551-B6A1-A605C5E51B7D",
         "name": "Game of Thrones"
     },
@@ -270,5 +266,37 @@
     {
         "id": "58382B3D-4014-42C0-B0A7-D02733E9BCE3",
         "name": "Samira Close"
+    },
+    {
+        "id": "A641DDF3-E419-4488-8F1F-20A823218212",
+        "name": "Natalie Wynn (ContraPoints)"
+    },
+    {
+        "id": "5908EC21-A47D-49A0-A081-651B702D95C9",
+        "name": "Bolsonaro e Pazuello"
+    },
+    {
+        "id": "A2B291D5-2D8B-481D-BB74-AAB734C65014",
+        "name": "Bolsonaro e Ratinho"
+    },
+    {
+        "id": "D7FE35D0-F269-40D3-B865-45B6183931D6",
+        "name": "Pedro Daltro e Bolsonaro"
+    },
+    {
+        "id": "994E7B6C-FB8D-49D3-8865-1F1EF9F90F72",
+        "name": "A Mãe Copilota"
+    },
+    {
+        "id": "79AF542F-72A5-43F3-A77A-20656C173890",
+        "name": "É o Tchan!"
+    },
+    {
+        "id": "9DD28494-F33B-471F-8AD6-D4F86978DD42",
+        "name": "Atila Iamarino"
+    },
+    {
+        "id": "0B6E906E-CF91-4705-A65A-72C96A4813FC",
+        "name": "Zé Gotinha"
     }
 ]

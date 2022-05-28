@@ -1,15 +1,13 @@
 import Combine
 import UIKit
 
-class SoundsViewViewModel: ObservableObject {
+class AuthorDetailViewViewModel: ObservableObject {
 
     @Published var sounds = [Sound]()
     
-    @Published var sortOption: Int = 0
     @Published var favoritesKeeper = Set<String>()
     @Published var showConfirmationDialog = false
     @Published var soundForConfirmationDialog: Sound? = nil
-    @Published var showOnlyFavorites = false
     
     // Alerts
     @Published var alertTitle: String = ""
@@ -18,16 +16,8 @@ class SoundsViewViewModel: ObservableObject {
     
     func reloadList(withSounds allSounds: [Sound],
                     andFavorites favorites: [Favorite]?,
-                    allowSensitiveContent: Bool,
-                    favoritesOnly: Bool,
-                    sortedBy sortOption: ContentSortOption) {
+                    allowSensitiveContent: Bool) {
         var soundsCopy = allSounds
-        
-        if favoritesOnly, let favorites = favorites {
-            soundsCopy = soundsCopy.filter({ sound in
-                favorites.contains(where: { $0.contentId == sound.id })
-            })
-        }
         
         if allowSensitiveContent == false {
             soundsCopy = soundsCopy.filter({ $0.isOffensive == false })
@@ -36,8 +26,6 @@ class SoundsViewViewModel: ObservableObject {
         self.sounds = soundsCopy
         
         // From here the sounds array is already set
-        self.sortOption = sortOption.rawValue
-        
         if self.sounds.count > 0 {
             // Needed because author names live in a different file.
             for i in 0...(self.sounds.count - 1) {
@@ -52,28 +40,13 @@ class SoundsViewViewModel: ObservableObject {
             } else {
                 favoritesKeeper.removeAll()
             }
-            
-            switch sortOption {
-            case .titleAscending:
-                sortSoundsInPlaceByTitleAscending()
-            case .authorNameAscending:
-                sortSoundsInPlaceByAuthorNameAscending()
-            case .dateAddedDescending:
-                sortSoundsInPlaceByDateAddedDescending()
-            }
+
+            sortSoundsInPlaceByTitleAscending()
         }
     }
     
     private func sortSoundsInPlaceByTitleAscending() {
         self.sounds.sort(by: { $0.title.withoutDiacritics() < $1.title.withoutDiacritics() })
-    }
-    
-    private func sortSoundsInPlaceByAuthorNameAscending() {
-        self.sounds.sort(by: { $0.authorName?.withoutDiacritics() ?? "" < $1.authorName?.withoutDiacritics() ?? "" })
-    }
-    
-    private func sortSoundsInPlaceByDateAddedDescending() {
-        self.sounds.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
     }
     
     func playSound(fromPath filepath: String) {
