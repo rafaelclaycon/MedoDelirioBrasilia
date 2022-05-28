@@ -3,7 +3,7 @@ import SwiftUI
 var player: AudioPlayer?
 var database = LocalDatabase()
 
-let soundsLastUpdateDate: String = "26/05/2022"
+let soundsLastUpdateDate: String = "28/05/2022"
 let songsLastUpdateDate: String = "23/05/2022"
 
 @main
