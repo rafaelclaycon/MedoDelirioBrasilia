@@ -151,6 +151,7 @@
 		D9BF9091284257F500BDDD7D /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF9090284257F500BDDD7D /* Shared.swift */; };
 		D9BF90942842835200BDDD7D /* Natalie Wynn Contrapoints - Let's get started.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BF90922842835200BDDD7D /* Natalie Wynn Contrapoints - Let's get started.mp3 */; };
 		D9BF90952842835200BDDD7D /* Natalie Wynn Contrapoints - Cancel culture.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BF90932842835200BDDD7D /* Natalie Wynn Contrapoints - Cancel culture.mp3 */; };
+		D9BF90972842D3CB00BDDD7D /* NoSoundsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF90962842D3CB00BDDD7D /* NoSoundsView.swift */; };
 		D9C03441283AAF6100DB96E6 /* JORNAL DA RECORD - Não é coisa de deus não.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C0343F283AAF6100DB96E6 /* JORNAL DA RECORD - Não é coisa de deus não.mp3 */; };
 		D9C03442283AAF6100DB96E6 /* Tim Maia - Me Dê Motivo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C03440283AAF6100DB96E6 /* Tim Maia - Me Dê Motivo.mp3 */; };
 		D9E11727283EDA3D0043E2F2 /* Hassum - PUTA QUE PARIU.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E11725283EDA3D0043E2F2 /* Hassum - PUTA QUE PARIU.mp3 */; };
@@ -367,6 +368,7 @@
 		D9BF9090284257F500BDDD7D /* Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shared.swift; sourceTree = "<group>"; };
 		D9BF90922842835200BDDD7D /* Natalie Wynn Contrapoints - Let's get started.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Natalie Wynn Contrapoints - Let's get started.mp3"; sourceTree = "<group>"; };
 		D9BF90932842835200BDDD7D /* Natalie Wynn Contrapoints - Cancel culture.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Natalie Wynn Contrapoints - Cancel culture.mp3"; sourceTree = "<group>"; };
+		D9BF90962842D3CB00BDDD7D /* NoSoundsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSoundsView.swift; sourceTree = "<group>"; };
 		D9C0343F283AAF6100DB96E6 /* JORNAL DA RECORD - Não é coisa de deus não.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "JORNAL DA RECORD - Não é coisa de deus não.mp3"; sourceTree = "<group>"; };
 		D9C03440283AAF6100DB96E6 /* Tim Maia - Me Dê Motivo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tim Maia - Me Dê Motivo.mp3"; sourceTree = "<group>"; };
 		D9E11725283EDA3D0043E2F2 /* Hassum - PUTA QUE PARIU.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Hassum - PUTA QUE PARIU.mp3"; sourceTree = "<group>"; };
@@ -764,6 +766,7 @@
 				D98622DF283FC57100E9F630 /* AuthorDetailView.swift */,
 				D98622E1283FCEDC00E9F630 /* AuthorsViewViewModel.swift */,
 				D99DC19C28423AD7002B03B6 /* AuthorDetailViewViewModel.swift */,
+				D9BF90962842D3CB00BDDD7D /* NoSoundsView.swift */,
 			);
 			path = Authors;
 			sourceTree = "<group>";
@@ -1120,6 +1123,7 @@
 				D961D025283731AA00EFEDEB /* SoundHelpView.swift in Sources */,
 				D98EC5E12825A05900340BE5 /* Sound.swift in Sources */,
 				D958B1AE28394E420010F133 /* SongsView.swift in Sources */,
+				D9BF90972842D3CB00BDDD7D /* NoSoundsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

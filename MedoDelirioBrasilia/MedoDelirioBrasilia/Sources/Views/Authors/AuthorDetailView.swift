@@ -12,27 +12,32 @@ struct AuthorDetailView: View {
     
     var body: some View {
         VStack {
-            ScrollView {
-                LazyVGrid(columns: columns, spacing: 14) {
-                    ForEach(viewModel.sounds) { sound in
-                        SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", favorites: $viewModel.favoritesKeeper)
-                            .onTapGesture {
-                                viewModel.playSound(fromPath: sound.filename)
-                            }
-                            .onLongPressGesture {
-                                viewModel.soundForConfirmationDialog = sound
-                                viewModel.showConfirmationDialog = true
-                            }
+            if viewModel.sounds.count == 0 {
+                NoSoundsView()
+                    .padding(.horizontal, 25)
+            } else {
+                ScrollView {
+                    LazyVGrid(columns: columns, spacing: 14) {
+                        ForEach(viewModel.sounds) { sound in
+                            SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", favorites: $viewModel.favoritesKeeper)
+                                .onTapGesture {
+                                    viewModel.playSound(fromPath: sound.filename)
+                                }
+                                .onLongPressGesture {
+                                    viewModel.soundForConfirmationDialog = sound
+                                    viewModel.showConfirmationDialog = true
+                                }
+                        }
                     }
+                    .padding(.horizontal)
+                    .padding(.top, 7)
+                    
+                    Text("\(viewModel.sounds.count) sons")
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                        .padding(.top, 10)
+                        .padding(.bottom, 18)
                 }
-                .padding(.horizontal)
-                .padding(.top, 7)
-                
-                Text("\(viewModel.sounds.count) sons")
-                    .font(.subheadline)
-                    .foregroundColor(.gray)
-                    .padding(.top, 10)
-                    .padding(.bottom, 18)
             }
         }
         .navigationTitle(author.name)
