@@ -7,6 +7,14 @@ struct TrendsView: View {
             VStack {
                 ScrollView {
                     Text("Em Breve")
+                    
+                    Button("Get share logs") {
+                        guard let logs = try? database.getAllShareLogs() else {
+                            return
+                        }
+                        print(logs.count)
+                        print(logs[0])
+                    }
                 }
             }
             .navigationTitle("Tendências")

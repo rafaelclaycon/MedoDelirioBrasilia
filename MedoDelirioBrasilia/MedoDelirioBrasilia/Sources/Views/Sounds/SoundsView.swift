@@ -153,7 +153,7 @@ struct SoundsView: View {
                     guard let sound = viewModel.soundForConfirmationDialog else {
                         return
                     }
-                    viewModel.shareSound(withPath: sound.filename)
+                    viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
                 }
             }
             .alert(isPresented: $viewModel.showAlert) {

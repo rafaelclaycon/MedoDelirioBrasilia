@@ -95,7 +95,7 @@ class SoundsViewViewModel: ObservableObject {
         player?.togglePlay()
     }
 
-    func shareSound(withPath filepath: String) {
+    func shareSound(withPath filepath: String, andContentId contentId: String) {
         guard filepath.isEmpty == false else {
             return
         }
@@ -109,6 +109,15 @@ class SoundsViewViewModel: ObservableObject {
         DispatchQueue.main.async {
             UIApplication.shared.keyWindow?.rootViewController?.present(activityVC, animated: true, completion: nil)
         }
+//        activityVC.completionWithItemsHandler = { activity, completed, items, error in
+//            if completed {
+//                guard let activity = activity else {
+//                    return
+//                }
+//                let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
+//                Logger.logSharedSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
+//            }
+//        }
     }
     
     func addToFavorites(soundId: String) {
