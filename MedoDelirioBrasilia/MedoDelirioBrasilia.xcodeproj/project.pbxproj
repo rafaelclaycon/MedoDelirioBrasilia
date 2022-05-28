@@ -31,6 +31,8 @@
 		D92C0CA62840125B009CF19A /* SoundsViewViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92C0CA52840125B009CF19A /* SoundsViewViewModelTests.swift */; };
 		D92C0CA82840162F009CF19A /* ContentSortOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92C0CA72840162F009CF19A /* ContentSortOption.swift */; };
 		D92C0CAA28405B2D009CF19A /* NoFavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92C0CA928405B2D009CF19A /* NoFavoritesView.swift */; };
+		D92C0CAC28406EA5009CF19A /* ShareLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92C0CAB28406EA5009CF19A /* ShareLog.swift */; };
+		D92C0CAE284076CD009CF19A /* UIApplication+KeyWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92C0CAD284076CD009CF19A /* UIApplication+KeyWindow.swift */; };
 		D92E7067283C51D20035826C /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92E7066283C51D20035826C /* Song.swift */; };
 		D92E706E283C5C2C0035826C /* Eu volto pro ostracismo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92E706B283C5C2C0035826C /* Eu volto pro ostracismo.mp3 */; };
 		D92E7070283C5CF40035826C /* song_data.json in Resources */ = {isa = PBXBuildFile; fileRef = D92E706F283C5CF40035826C /* song_data.json */; };
@@ -40,6 +42,7 @@
 		D93443252838177000ADCD38 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93443242838177000ADCD38 /* UserInfo.swift */; };
 		D934432728381DEF00ADCD38 /* author_data.json in Resources */ = {isa = PBXBuildFile; fileRef = D934432628381DEF00ADCD38 /* author_data.json */; };
 		D93443292838230500ADCD38 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93443282838230500ADCD38 /* String+Extensions.swift */; };
+		D93AC08B28414EEE00E38A63 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AC08A28414EEE00E38A63 /* Logger.swift */; };
 		D940E27F283AA29600392D1C /* Feiticeira - Não é feitiçaria, é tecnologia meme short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D940E27E283AA29600392D1C /* Feiticeira - Não é feitiçaria, é tecnologia meme short.mp3 */; };
 		D940E29C283AA2C200392D1C /* esse_braga_neto_que_eh_um_bosta.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D940E280283AA2C200392D1C /* esse_braga_neto_que_eh_um_bosta.mp3 */; };
 		D940E29D283AA2C200392D1C /* O CARA DA LUVA DE PEDREIRO - receba carai caralho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D940E281283AA2C200392D1C /* O CARA DA LUVA DE PEDREIRO - receba carai caralho.mp3 */; };
@@ -218,6 +221,8 @@
 		D92C0CA52840125B009CF19A /* SoundsViewViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsViewViewModelTests.swift; sourceTree = "<group>"; };
 		D92C0CA72840162F009CF19A /* ContentSortOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSortOption.swift; sourceTree = "<group>"; };
 		D92C0CA928405B2D009CF19A /* NoFavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFavoritesView.swift; sourceTree = "<group>"; };
+		D92C0CAB28406EA5009CF19A /* ShareLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareLog.swift; sourceTree = "<group>"; };
+		D92C0CAD284076CD009CF19A /* UIApplication+KeyWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+KeyWindow.swift"; sourceTree = "<group>"; };
 		D92E7066283C51D20035826C /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		D92E706B283C5C2C0035826C /* Eu volto pro ostracismo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu volto pro ostracismo.mp3"; sourceTree = "<group>"; };
 		D92E706F283C5CF40035826C /* song_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = song_data.json; sourceTree = "<group>"; };
@@ -227,6 +232,7 @@
 		D93443242838177000ADCD38 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		D934432628381DEF00ADCD38 /* author_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = author_data.json; sourceTree = "<group>"; };
 		D93443282838230500ADCD38 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		D93AC08A28414EEE00E38A63 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		D940E27E283AA29600392D1C /* Feiticeira - Não é feitiçaria, é tecnologia meme short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Feiticeira - Não é feitiçaria, é tecnologia meme short.mp3"; sourceTree = "<group>"; };
 		D940E280283AA2C200392D1C /* esse_braga_neto_que_eh_um_bosta.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = esse_braga_neto_que_eh_um_bosta.mp3; sourceTree = "<group>"; };
 		D940E281283AA2C200392D1C /* O CARA DA LUVA DE PEDREIRO - receba carai caralho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O CARA DA LUVA DE PEDREIRO - receba carai caralho.mp3"; sourceTree = "<group>"; };
@@ -572,6 +578,7 @@
 			children = (
 				D961D015283722AB00EFEDEB /* Color+CustomColors.swift */,
 				D93443282838230500ADCD38 /* String+Extensions.swift */,
+				D92C0CAD284076CD009CF19A /* UIApplication+KeyWindow.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -637,6 +644,7 @@
 				D961D0142837229100EFEDEB /* Extensions */,
 				D980456028380F45003B2E83 /* AppSupport */,
 				D961D01728372B1800EFEDEB /* AudioPlayer.swift */,
+				D93AC08A28414EEE00E38A63 /* Logger.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -700,6 +708,7 @@
 				D93443242838177000ADCD38 /* UserInfo.swift */,
 				D9E69593283D2F2F00C341B2 /* Favorite.swift */,
 				D92C0CA72840162F009CF19A /* ContentSortOption.swift */,
+				D92C0CAB28406EA5009CF19A /* ShareLog.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -996,10 +1005,13 @@
 				D92C0CA82840162F009CF19A /* ContentSortOption.swift in Sources */,
 				D958B1B028394EA40010F133 /* TrendsView.swift in Sources */,
 				D9E69597283D551500C341B2 /* LocalDatabase.swift in Sources */,
+				D92C0CAE284076CD009CF19A /* UIApplication+KeyWindow.swift in Sources */,
 				D9625E7E28238F9A00080852 /* MedoDelirioBrasiliaApp.swift in Sources */,
 				D958B1AC28394DCD0010F133 /* AuthorsView.swift in Sources */,
 				D92E7072283C5D990035826C /* SongsViewViewModel.swift in Sources */,
+				D92C0CAC28406EA5009CF19A /* ShareLog.swift in Sources */,
 				D961D016283722AB00EFEDEB /* Color+CustomColors.swift in Sources */,
+				D93AC08B28414EEE00E38A63 /* Logger.swift in Sources */,
 				D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */,
 				D93443252838177000ADCD38 /* UserInfo.swift in Sources */,
 				D988C523283C33E100D64404 /* UserSettings.swift in Sources */,
