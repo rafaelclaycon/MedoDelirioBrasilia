@@ -46,6 +46,28 @@ struct AuthorDetailView: View {
                                  andFavorites: try? database.getAllFavorites(),
                                  allowSensitiveContent: UserSettings.getShowOffensiveSounds())
         }
+        .confirmationDialog("", isPresented: $viewModel.showConfirmationDialog) {
+            Button(viewModel.getFavoriteButtonTitle()) {
+                guard let sound = viewModel.soundForConfirmationDialog else {
+                    return
+                }
+                if viewModel.isSelectedSoundAlreadyAFavorite() {
+                    viewModel.removeFromFavorites(soundId: sound.id)
+                } else {
+                    viewModel.addToFavorites(soundId: sound.id)
+                }
+            }
+            
+            Button("Compartilhar") {
+                guard let sound = viewModel.soundForConfirmationDialog else {
+                    return
+                }
+                viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
+            }
+        }
+        .alert(isPresented: $viewModel.showAlert) {
+            Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
+        }
     }
 
 }
