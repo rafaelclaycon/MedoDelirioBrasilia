@@ -9,10 +9,11 @@ struct TrendsView: View {
                     Text("Em Breve")
                     
                     Button("Get share logs") {
-                        //print(UIDevice.current.identifierForVendor?.uuidString ?? "")
-                        let logs = try? database.getAllShareLogs()
-                        print(logs?.count)
-                        print(logs?[0])
+                        guard let logs = try? database.getAllShareLogs() else {
+                            return
+                        }
+                        print(logs.count)
+                        print(logs[0])
                     }
                 }
             }
