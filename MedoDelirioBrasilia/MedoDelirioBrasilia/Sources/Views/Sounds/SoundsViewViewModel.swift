@@ -3,7 +3,7 @@ import UIKit
 
 class SoundsViewViewModel: ObservableObject {
     
-    let removeFromFavoritesEmojis = ["🍗","🐂","👴🏻🇧🇷"]
+    let removeFromFavoritesEmojis = ["🍗","🐂","👴🏻🇧🇷","💩","🤖","🔫","⛽️","🚜","🍌","🍫🤑","🛥🤳🏻"]
 
     @Published var sounds = [Sound]()
     
