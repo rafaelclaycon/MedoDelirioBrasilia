@@ -1118,7 +1118,7 @@
     {
         "id": "6760379F-DFEE-4B59-A73D-EBAEDBB43791",
         "title": "Há controvérsias",
-        "authorId": "D451D2B8-B7FE-4A57-A777-8D6BC741AEF0",
+        "authorId": "4671ABB8-0E27-4D27-AC6A-FD9E1A0959A0",
         "description": "Há controvérsias",
         "filename": "Pedro Pedreira - Pedra 90 ha controversias.mp3",
         "dateAdded": "2021-03-02T00:00:00Z",
@@ -1347,6 +1347,24 @@
         "description": "Ô cara ô cara",
         "filename": "Bolsonaro - Ô cara ô cara.mp3",
         "dateAdded": "2021-03-04T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "BA526615-DEF3-4A10-BD13-36B69139B02E",
+        "title": "Let's get started",
+        "authorId": "A641DDF3-E419-4488-8F1F-20A823218212",
+        "description": "Let's get started",
+        "filename": "Natalie Wynn Contrapoints - Let's get started.mp3",
+        "dateAdded": "2022-02-22T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "19F6909E-F8AC-4E3E-8480-AC990A86B32F",
+        "title": "Cancel culture",
+        "authorId": "A641DDF3-E419-4488-8F1F-20A823218212",
+        "description": "Cancel culture",
+        "filename": "Natalie Wynn Contrapoints - Cancel culture.mp3",
+        "dateAdded": "2022-02-22T00:00:00Z",
         "isOffensive": false
     }
 ]

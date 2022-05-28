@@ -232,10 +232,6 @@
         "name": "Ricardo Salles"
     },
     {
-        "id": "D451D2B8-B7FE-4A57-A777-8D6BC741AEF0",
-        "name": "Pedro Pedreira"
-    },
-    {
         "id": "FB2C9DDC-3FF3-4551-B6A1-A605C5E51B7D",
         "name": "Game of Thrones"
     },
@@ -270,5 +266,9 @@
     {
         "id": "58382B3D-4014-42C0-B0A7-D02733E9BCE3",
         "name": "Samira Close"
+    },
+    {
+        "id": "A641DDF3-E419-4488-8F1F-20A823218212",
+        "name": "Natalie Wynn (ContraPoints)"
     }
 ]

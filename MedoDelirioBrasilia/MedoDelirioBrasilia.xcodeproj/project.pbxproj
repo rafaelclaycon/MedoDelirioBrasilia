@@ -141,12 +141,16 @@
 		D99DC1992842203E002B03B6 /* Bolsonaro - Ô cara ô cara.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99DC1862842203E002B03B6 /* Bolsonaro - Ô cara ô cara.mp3 */; };
 		D99DC19A2842203E002B03B6 /* MC Creu - E creu, e creu neles.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99DC1872842203E002B03B6 /* MC Creu - E creu, e creu neles.mp3 */; };
 		D99DC19B2842203E002B03B6 /* De cair o cu da bunda short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99DC1882842203E002B03B6 /* De cair o cu da bunda short meme.mp3 */; };
+		D99DC19D28423AD7002B03B6 /* AuthorDetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99DC19C28423AD7002B03B6 /* AuthorDetailViewViewModel.swift */; };
 		D9B4F73F283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B4F73D283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 */; };
 		D9B4F740283C8F4D0000EEF7 /* O roque ativa.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B4F73E283C8F4D0000EEF7 /* O roque ativa.mp3 */; };
 		D9B4F743283C92DC0000EEF7 /* Trote Luiz Pareto - TELERJ meme mas que filho da puta olhaí veja você.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B4F741283C92DC0000EEF7 /* Trote Luiz Pareto - TELERJ meme mas que filho da puta olhaí veja você.mp3 */; };
 		D9B4F744283C92DC0000EEF7 /* Fred - Cê tá falando sério.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B4F742283C92DC0000EEF7 /* Fred - Cê tá falando sério.mp3 */; };
 		D9B4F746283C939E0000EEF7 /* Olavo de Carvalho - Porra.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B4F745283C939E0000EEF7 /* Olavo de Carvalho - Porra.mp3 */; };
 		D9B4F748283C94600000EEF7 /* Cerginho da Perera Nunes - Com certeza.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B4F747283C94600000EEF7 /* Cerginho da Perera Nunes - Com certeza.mp3 */; };
+		D9BF9091284257F500BDDD7D /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF9090284257F500BDDD7D /* Shared.swift */; };
+		D9BF90942842835200BDDD7D /* Natalie Wynn Contrapoints - Let's get started.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BF90922842835200BDDD7D /* Natalie Wynn Contrapoints - Let's get started.mp3 */; };
+		D9BF90952842835200BDDD7D /* Natalie Wynn Contrapoints - Cancel culture.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BF90932842835200BDDD7D /* Natalie Wynn Contrapoints - Cancel culture.mp3 */; };
 		D9C03441283AAF6100DB96E6 /* JORNAL DA RECORD - Não é coisa de deus não.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C0343F283AAF6100DB96E6 /* JORNAL DA RECORD - Não é coisa de deus não.mp3 */; };
 		D9C03442283AAF6100DB96E6 /* Tim Maia - Me Dê Motivo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C03440283AAF6100DB96E6 /* Tim Maia - Me Dê Motivo.mp3 */; };
 		D9E11727283EDA3D0043E2F2 /* Hassum - PUTA QUE PARIU.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E11725283EDA3D0043E2F2 /* Hassum - PUTA QUE PARIU.mp3 */; };
@@ -353,12 +357,16 @@
 		D99DC1862842203E002B03B6 /* Bolsonaro - Ô cara ô cara.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Ô cara ô cara.mp3"; sourceTree = "<group>"; };
 		D99DC1872842203E002B03B6 /* MC Creu - E creu, e creu neles.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "MC Creu - E creu, e creu neles.mp3"; sourceTree = "<group>"; };
 		D99DC1882842203E002B03B6 /* De cair o cu da bunda short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "De cair o cu da bunda short meme.mp3"; sourceTree = "<group>"; };
+		D99DC19C28423AD7002B03B6 /* AuthorDetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorDetailViewViewModel.swift; sourceTree = "<group>"; };
 		D9B4F73D283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Unidos do Medo e Delírio.mp3"; sourceTree = "<group>"; };
 		D9B4F73E283C8F4D0000EEF7 /* O roque ativa.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O roque ativa.mp3"; sourceTree = "<group>"; };
 		D9B4F741283C92DC0000EEF7 /* Trote Luiz Pareto - TELERJ meme mas que filho da puta olhaí veja você.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Trote Luiz Pareto - TELERJ meme mas que filho da puta olhaí veja você.mp3"; sourceTree = "<group>"; };
 		D9B4F742283C92DC0000EEF7 /* Fred - Cê tá falando sério.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fred - Cê tá falando sério.mp3"; sourceTree = "<group>"; };
 		D9B4F745283C939E0000EEF7 /* Olavo de Carvalho - Porra.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Olavo de Carvalho - Porra.mp3"; sourceTree = "<group>"; };
 		D9B4F747283C94600000EEF7 /* Cerginho da Perera Nunes - Com certeza.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cerginho da Perera Nunes - Com certeza.mp3"; sourceTree = "<group>"; };
+		D9BF9090284257F500BDDD7D /* Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shared.swift; sourceTree = "<group>"; };
+		D9BF90922842835200BDDD7D /* Natalie Wynn Contrapoints - Let's get started.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Natalie Wynn Contrapoints - Let's get started.mp3"; sourceTree = "<group>"; };
+		D9BF90932842835200BDDD7D /* Natalie Wynn Contrapoints - Cancel culture.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Natalie Wynn Contrapoints - Cancel culture.mp3"; sourceTree = "<group>"; };
 		D9C0343F283AAF6100DB96E6 /* JORNAL DA RECORD - Não é coisa de deus não.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "JORNAL DA RECORD - Não é coisa de deus não.mp3"; sourceTree = "<group>"; };
 		D9C03440283AAF6100DB96E6 /* Tim Maia - Me Dê Motivo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tim Maia - Me Dê Motivo.mp3"; sourceTree = "<group>"; };
 		D9E11725283EDA3D0043E2F2 /* Hassum - PUTA QUE PARIU.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Hassum - PUTA QUE PARIU.mp3"; sourceTree = "<group>"; };
@@ -476,6 +484,8 @@
 		D940E27D283AA27D00392D1C /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9BF90932842835200BDDD7D /* Natalie Wynn Contrapoints - Cancel culture.mp3 */,
+				D9BF90922842835200BDDD7D /* Natalie Wynn Contrapoints - Let's get started.mp3 */,
 				D99DC17C2842203E002B03B6 /* Bolsonaro - Ah nhem nhem nhem nhem olha o problema ai.mp3 */,
 				D99DC17D2842203E002B03B6 /* Bolsonaro - ah o o cara quem fala disso eu não sou coveiro tá ok.mp3 */,
 				D99DC1802842203E002B03B6 /* Bolsonaro - Assim como na China, a curva ja esta na descendente, nos vamos passar por isso tambem.mp3 */,
@@ -742,6 +752,7 @@
 				D9625E7D28238F9A00080852 /* MedoDelirioBrasiliaApp.swift */,
 				D980456128380F66003B2E83 /* LocalizableStrings.swift */,
 				D988C522283C33E100D64404 /* UserSettings.swift */,
+				D9BF9090284257F500BDDD7D /* Shared.swift */,
 			);
 			path = AppSupport;
 			sourceTree = "<group>";
@@ -752,6 +763,7 @@
 				D958B1AB28394DCD0010F133 /* AuthorsView.swift */,
 				D98622DF283FC57100E9F630 /* AuthorDetailView.swift */,
 				D98622E1283FCEDC00E9F630 /* AuthorsViewViewModel.swift */,
+				D99DC19C28423AD7002B03B6 /* AuthorDetailViewViewModel.swift */,
 			);
 			path = Authors;
 			sourceTree = "<group>";
@@ -914,6 +926,7 @@
 				D98622F128400C4A00E9F630 /* Etcetera.mp3 in Resources */,
 				D99DC1912842203E002B03B6 /* Dráuzio - E os outros problema deles não tenho nada a ver com isso.mp3 in Resources */,
 				D99DC18B2842203E002B03B6 /* Samira Close - Deixa eu te falar uma coisa voce tem quantos anos menino.mp3 in Resources */,
+				D9BF90942842835200BDDD7D /* Natalie Wynn Contrapoints - Let's get started.mp3 in Resources */,
 				D961D01328371F1700EFEDEB /* sound_data.json in Resources */,
 				D9E11738283EDE5C0043E2F2 /* Boldo - Puta que pariu marquinho.mp3 in Resources */,
 				D940E2AD283AA2C200392D1C /* MULTISHOW_Gloria_Groove_Quer_dizer_que_eles_querem_calar_a_gente.mp3 in Resources */,
@@ -1012,6 +1025,7 @@
 				D99DC18A2842203E002B03B6 /* Mourão - Heróis matam short.mp3 in Resources */,
 				D98622FC28400E7800E9F630 /* Pedro Doria - Voces tem desanimo eu tenho as vezes.mp3 in Resources */,
 				D99DC1902842203E002B03B6 /* Bolsonaro - ah o o cara quem fala disso eu não sou coveiro tá ok.mp3 in Resources */,
+				D9BF90952842835200BDDD7D /* Natalie Wynn Contrapoints - Cancel culture.mp3 in Resources */,
 				D940E2B7283AA2C200392D1C /* funk_do_xandao.mp3 in Resources */,
 				D9287A02283EF57D00369CE5 /* Que porra e essa batata.mp3 in Resources */,
 				D980455C28380EFE003B2E83 /* Localizable.strings in Resources */,
@@ -1076,6 +1090,7 @@
 				D958B1AA28394D400010F133 /* MainView.swift in Sources */,
 				D93443292838230500ADCD38 /* String+Extensions.swift in Sources */,
 				D961D01128371EE800EFEDEB /* FixedLocalData.swift in Sources */,
+				D9BF9091284257F500BDDD7D /* Shared.swift in Sources */,
 				D98622E0283FC57100E9F630 /* AuthorDetailView.swift in Sources */,
 				D92E7067283C51D20035826C /* Song.swift in Sources */,
 				D92C0CA82840162F009CF19A /* ContentSortOption.swift in Sources */,
@@ -1088,6 +1103,7 @@
 				D92C0CAC28406EA5009CF19A /* ShareLog.swift in Sources */,
 				D961D016283722AB00EFEDEB /* Color+CustomColors.swift in Sources */,
 				D93AC08B28414EEE00E38A63 /* Logger.swift in Sources */,
+				D99DC19D28423AD7002B03B6 /* AuthorDetailViewViewModel.swift in Sources */,
 				D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */,
 				D93443252838177000ADCD38 /* UserInfo.swift in Sources */,
 				D988C523283C33E100D64404 /* UserSettings.swift in Sources */,
