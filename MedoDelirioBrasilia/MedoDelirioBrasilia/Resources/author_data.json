@@ -201,7 +201,7 @@
     },
     {
         "id": "C85E2912-F171-46E7-8EF8-3014AF30D3F5",
-        "name": "Neto"
+        "name": "Craque Neto"
     },
     {
         "id": "39FA164E-7618-480E-8881-BC3AA5E862F7",
@@ -298,5 +298,37 @@
     {
         "id": "0B6E906E-CF91-4705-A65A-72C96A4813FC",
         "name": "Zé Gotinha"
+    },
+    {
+        "id": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "name": "Desconhecido"
+    },
+    {
+        "id": "2D21E421-7020-4287-B345-988091BC3A71",
+        "name": "Vera Magalhães"
+    },
+    {
+        "id": "845BEF9F-9DA4-4764-B35A-A86BEE216A0A",
+        "name": "Meteoro"
+    },
+    {
+        "id": "859DB6CD-B1CB-4FFC-95B9-E8BD7F8CC7A1",
+        "name": "João Doria"
+    },
+    {
+        "id": "96BDE4FA-E1BE-408A-A8EC-8014BCED7699",
+        "name": "Jonathan Frakes"
+    },
+    {
+        "id": "3C41E7C2-BA19-456E-90DC-97ADC57B81C0",
+        "name": "Gilmar Mendes"
+    },
+    {
+        "id": "CCD571EF-00FF-47F0-B6CE-429518BEDFF1",
+        "name": "Érick Jacquin"
+    },
+    {
+        "id": "025AE8A1-8154-4529-9C3D-CFDFF9AE02E5",
+        "name": "Falha de Cobertura (Cerginho da Pereira Nunes)"
     }
 ]
