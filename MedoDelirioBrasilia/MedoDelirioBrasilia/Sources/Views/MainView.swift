@@ -19,10 +19,10 @@ struct MainView: View {
                     Label("Músicas", systemImage: "music.quarternote.3")
                 }
             
-            TrendsView()
-                .tabItem {
-                    Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
-                }
+//            TrendsView()
+//                .tabItem {
+//                    Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
+//                }
             
             SettingsView()
                 .tabItem {
