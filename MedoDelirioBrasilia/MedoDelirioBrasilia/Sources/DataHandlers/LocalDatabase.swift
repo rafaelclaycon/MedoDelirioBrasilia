@@ -41,7 +41,7 @@ class LocalDatabase {
         let destination = Expression<Int>("destination")
         let destination_bundle_id = Expression<String>("destinationBundleId")
 
-        try db.run(favorite.create(ifNotExists: true) { t in
+        try db.run(shareLog.create(ifNotExists: true) { t in
             t.column(install_id)
             t.column(content_id)
             t.column(content_type)
@@ -95,7 +95,11 @@ class LocalDatabase {
         return queriedFavorites.count > 0
     }
     
-    // MARK: - Favorite
+    // MARK: - Share Log
+    
+    func getShareLogCount() throws -> Int {
+        try db.scalar(shareLog.count)
+    }
     
     func insert(shareLog newLog: ShareLog) throws {
         let insert = try shareLog.insert(newLog)
@@ -109,6 +113,10 @@ class LocalDatabase {
             queriedItems.append(try queriedItem.decode())
         }
         return queriedItems
+    }
+    
+    func deleteAllShareLogs() throws {
+        try db.run(shareLog.delete())
     }
 
 }

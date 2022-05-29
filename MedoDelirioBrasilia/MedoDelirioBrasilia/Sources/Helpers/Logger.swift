@@ -11,5 +11,9 @@ class Logger {
                                 destinationBundleId: destinationBundleId)
         try? database.insert(shareLog: shareLog)
     }
+    
+//    static func getTop5() -> [TopChartItem] {
+//        
+//    }
 
 }

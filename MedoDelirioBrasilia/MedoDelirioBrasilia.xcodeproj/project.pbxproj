@@ -583,6 +583,22 @@
 			path = Songs;
 			sourceTree = "<group>";
 		};
+		D9351C5D28441DDE00D4317E /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D93AC08A28414EEE00E38A63 /* Logger.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		D9351C5E28441DF200D4317E /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				D961D01728372B1800EFEDEB /* AudioPlayer.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
 		D940E27D283AA27D00392D1C /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
@@ -858,10 +874,10 @@
 				D98EC5DF2825A04000340BE5 /* Models */,
 				D9625EAB2824EADC00080852 /* Views */,
 				D9E69595283D54EA00C341B2 /* DataHandlers */,
+				D9351C5D28441DDE00D4317E /* Helpers */,
 				D961D0142837229100EFEDEB /* Extensions */,
+				D9351C5E28441DF200D4317E /* Core */,
 				D980456028380F45003B2E83 /* AppSupport */,
-				D961D01728372B1800EFEDEB /* AudioPlayer.swift */,
-				D93AC08A28414EEE00E38A63 /* Logger.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -910,8 +926,8 @@
 			isa = PBXGroup;
 			children = (
 				D958B1AB28394DCD0010F133 /* AuthorsView.swift */,
-				D98622DF283FC57100E9F630 /* AuthorDetailView.swift */,
 				D98622E1283FCEDC00E9F630 /* AuthorsViewViewModel.swift */,
+				D98622DF283FC57100E9F630 /* AuthorDetailView.swift */,
 				D99DC19C28423AD7002B03B6 /* AuthorDetailViewViewModel.swift */,
 				D9BF90962842D3CB00BDDD7D /* NoSoundsView.swift */,
 			);
