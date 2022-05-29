@@ -32,7 +32,7 @@ struct AuthorDetailView: View {
                     .padding(.horizontal)
                     .padding(.top, 7)
                     
-                    Text("\(viewModel.sounds.count) sons")
+                    Text(viewModel.getSoundCount())
                         .font(.subheadline)
                         .foregroundColor(.gray)
                         .padding(.top, 10)

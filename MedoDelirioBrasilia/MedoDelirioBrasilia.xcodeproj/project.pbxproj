@@ -72,6 +72,7 @@
 		D9351C582844068400D4317E /* Jonathan Frakes - pure fiction.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9351C3A2844068400D4317E /* Jonathan Frakes - pure fiction.mp3 */; };
 		D9351C592844068400D4317E /* Gilmar Mendes - O exercito esta se associando a esse genocidio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9351C3B2844068400D4317E /* Gilmar Mendes - O exercito esta se associando a esse genocidio.mp3 */; };
 		D9351C5A2844068400D4317E /* Craque Neto - Vacina eu Tomo short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9351C3C2844068400D4317E /* Craque Neto - Vacina eu Tomo short meme.mp3 */; };
+		D9351C5C2844094E00D4317E /* TopChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9351C5B2844094E00D4317E /* TopChartItem.swift */; };
 		D93AC08B28414EEE00E38A63 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AC08A28414EEE00E38A63 /* Logger.swift */; };
 		D940E27F283AA29600392D1C /* Feiticeira - Não é feitiçaria, é tecnologia meme short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D940E27E283AA29600392D1C /* Feiticeira - Não é feitiçaria, é tecnologia meme short.mp3 */; };
 		D940E29C283AA2C200392D1C /* esse_braga_neto_que_eh_um_bosta.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D940E280283AA2C200392D1C /* esse_braga_neto_que_eh_um_bosta.mp3 */; };
@@ -335,6 +336,7 @@
 		D9351C3A2844068400D4317E /* Jonathan Frakes - pure fiction.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jonathan Frakes - pure fiction.mp3"; sourceTree = "<group>"; };
 		D9351C3B2844068400D4317E /* Gilmar Mendes - O exercito esta se associando a esse genocidio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gilmar Mendes - O exercito esta se associando a esse genocidio.mp3"; sourceTree = "<group>"; };
 		D9351C3C2844068400D4317E /* Craque Neto - Vacina eu Tomo short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Craque Neto - Vacina eu Tomo short meme.mp3"; sourceTree = "<group>"; };
+		D9351C5B2844094E00D4317E /* TopChartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartItem.swift; sourceTree = "<group>"; };
 		D93AC08A28414EEE00E38A63 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		D940E27E283AA29600392D1C /* Feiticeira - Não é feitiçaria, é tecnologia meme short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Feiticeira - Não é feitiçaria, é tecnologia meme short.mp3"; sourceTree = "<group>"; };
 		D940E280283AA2C200392D1C /* esse_braga_neto_que_eh_um_bosta.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = esse_braga_neto_que_eh_um_bosta.mp3; sourceTree = "<group>"; };
@@ -926,6 +928,7 @@
 				D9E69593283D2F2F00C341B2 /* Favorite.swift */,
 				D92C0CA72840162F009CF19A /* ContentSortOption.swift */,
 				D92C0CAB28406EA5009CF19A /* ShareLog.swift */,
+				D9351C5B2844094E00D4317E /* TopChartItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1325,6 +1328,7 @@
 				D94A4214283DC52800A504BD /* SongHelpView.swift in Sources */,
 				D980456228380F66003B2E83 /* LocalizableStrings.swift in Sources */,
 				D961D025283731AA00EFEDEB /* SoundHelpView.swift in Sources */,
+				D9351C5C2844094E00D4317E /* TopChartItem.swift in Sources */,
 				D98EC5E12825A05900340BE5 /* Sound.swift in Sources */,
 				D958B1AE28394E420010F133 /* SongsView.swift in Sources */,
 				D9BF90972842D3CB00BDDD7D /* NoSoundsView.swift in Sources */,

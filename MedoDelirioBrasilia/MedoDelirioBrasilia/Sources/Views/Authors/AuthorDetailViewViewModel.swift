@@ -123,6 +123,14 @@ class AuthorDetailViewViewModel: ObservableObject {
         return isSelectedSoundAlreadyAFavorite() ? "\(emoji)  Remover dos Favoritos" : "⭐️  Adicionar aos Favoritos"
     }
     
+    func getSoundCount() -> String {
+        if sounds.count == 1 {
+            return "1 som"
+        } else {
+            return "\(sounds.count) sons"
+        }
+    }
+    
     func showUnableToGetSoundAlert() {
         alertTitle = "Não Foi Possível Localizar Esse Som"
         alertMessage = "Devido a um problema técnico, o som que você quer acessar não está disponível.\n\nPor favor, nos avise através do botão Conte-nos Por E-mail na aba Ajustes."
