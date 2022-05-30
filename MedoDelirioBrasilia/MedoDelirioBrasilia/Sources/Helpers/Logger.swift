@@ -18,12 +18,12 @@ class Logger {
         var filteredAuthors: [Author]
         var itemInPreparation: TopChartItem
         
-        guard let dimItems = try? database.getTop5SharedContent() else {
+        guard let dimItems = try? database.getTop5SharedContent(), dimItems.count > 0 else {
             return nil
         }
         
-        for item in dimItems {
-            filteredSounds = soundData.filter({ $0.id == item.contentId })
+        for i in 0...(dimItems.count - 1) {
+            filteredSounds = soundData.filter({ $0.id == dimItems[i].contentId })
             
             guard filteredSounds.count > 0 else {
                 continue
@@ -35,7 +35,7 @@ class Logger {
                 continue
             }
             
-            itemInPreparation = TopChartItem(id: "1", contentId: item.contentId, contentName: filteredSounds[0].title, contentAuthorId: filteredSounds[0].authorId, contentAuthorName: filteredAuthors[0].name, shareCount: item.shareCount)
+            itemInPreparation = TopChartItem(id: "\(i + 1)", contentId: dimItems[i].contentId, contentName: filteredSounds[0].title, contentAuthorId: filteredSounds[0].authorId, contentAuthorName: filteredAuthors[0].name, shareCount: dimItems[i].shareCount)
             
             result.append(itemInPreparation)
         }

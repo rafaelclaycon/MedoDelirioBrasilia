@@ -126,11 +126,13 @@ class LocalDatabase {
         let content_id = Expression<String>("contentId")
         
         let contentCount = content_id.count
-        for row in try db.prepare(shareLog.select(content_id,contentCount).group(content_id)) {
-            print(row)
-            print(row[contentCount])
-            print("HERMIONE 1")
-            result.append(TopChartItem(id: "1", contentId: row[content_id], contentName: "", contentAuthorId: "", contentAuthorName: "", shareCount: row[contentCount]))
+        for row in try db.prepare(shareLog.select(content_id,contentCount).group(content_id).order(contentCount.desc).limit(5)) {
+            result.append(TopChartItem(id: .empty,
+                                       contentId: row[content_id],
+                                       contentName: .empty,
+                                       contentAuthorId: .empty,
+                                       contentAuthorName: .empty,
+                                       shareCount: row[contentCount]))
         }
         return result
     }
