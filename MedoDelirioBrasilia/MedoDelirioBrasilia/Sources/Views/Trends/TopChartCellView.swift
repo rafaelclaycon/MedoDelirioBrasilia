@@ -15,7 +15,7 @@ struct TopChartCellView: View {
                     .opacity(0.5)
                 
                 Text(item.id)
-                    .foregroundColor(.white)
+                    .foregroundColor(.primary)
                     .bold()
             }
             

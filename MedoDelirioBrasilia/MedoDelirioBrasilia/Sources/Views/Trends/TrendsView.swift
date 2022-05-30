@@ -64,10 +64,10 @@ struct TrendsView: View {
                             
                             Spacer()
                         }
-                        
-                        Text("Apps Pelos Quais Você Mais Compartilha")
-                            .font(.title2)
-                            .padding(.horizontal)
+
+//                        Text("Apps Pelos Quais Você Mais Compartilha")
+//                            .font(.title2)
+//                            .padding(.horizontal)
                     }
                 }
             }

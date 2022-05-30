@@ -41,6 +41,7 @@ struct AuthorDetailView: View {
             }
         }
         .navigationTitle(author.name)
+        .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             viewModel.reloadList(withSounds: soundData.filter({ $0.authorId == author.id }),
                                  andFavorites: try? database.getAllFavorites(),
