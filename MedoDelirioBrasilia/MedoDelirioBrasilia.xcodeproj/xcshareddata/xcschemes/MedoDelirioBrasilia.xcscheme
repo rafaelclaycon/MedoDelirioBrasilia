@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D9625E7928238F9A00080852"
-               BuildableName = "Medo e Deli&#x301;rio.app"
+               BuildableName = "MedoDelirioBrasilia.app"
                BlueprintName = "MedoDelirioBrasilia"
                ReferencedContainer = "container:MedoDelirioBrasilia.xcodeproj">
             </BuildableReference>
@@ -56,7 +56,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D9625E7928238F9A00080852"
-            BuildableName = "Medo e Deli&#x301;rio.app"
+            BuildableName = "MedoDelirioBrasilia.app"
             BlueprintName = "MedoDelirioBrasilia"
             ReferencedContainer = "container:MedoDelirioBrasilia.xcodeproj">
          </BuildableReference>
@@ -73,7 +73,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D9625E7928238F9A00080852"
-            BuildableName = "Medo e Deli&#x301;rio.app"
+            BuildableName = "MedoDelirioBrasilia.app"
             BlueprintName = "MedoDelirioBrasilia"
             ReferencedContainer = "container:MedoDelirioBrasilia.xcodeproj">
          </BuildableReference>

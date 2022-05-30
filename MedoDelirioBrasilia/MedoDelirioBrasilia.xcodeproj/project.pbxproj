@@ -73,6 +73,7 @@
 		D9351C592844068400D4317E /* Gilmar Mendes - O exercito esta se associando a esse genocidio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9351C3B2844068400D4317E /* Gilmar Mendes - O exercito esta se associando a esse genocidio.mp3 */; };
 		D9351C5A2844068400D4317E /* Craque Neto - Vacina eu Tomo short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9351C3C2844068400D4317E /* Craque Neto - Vacina eu Tomo short meme.mp3 */; };
 		D9351C5C2844094E00D4317E /* TopChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9351C5B2844094E00D4317E /* TopChartItem.swift */; };
+		D9351C6128441FA400D4317E /* LoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9351C6028441FA400D4317E /* LoggerTests.swift */; };
 		D93AC08B28414EEE00E38A63 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AC08A28414EEE00E38A63 /* Logger.swift */; };
 		D940E27F283AA29600392D1C /* Feiticeira - Não é feitiçaria, é tecnologia meme short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D940E27E283AA29600392D1C /* Feiticeira - Não é feitiçaria, é tecnologia meme short.mp3 */; };
 		D940E29C283AA2C200392D1C /* esse_braga_neto_que_eh_um_bosta.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D940E280283AA2C200392D1C /* esse_braga_neto_que_eh_um_bosta.mp3 */; };
@@ -117,6 +118,7 @@
 		D94A4271283E87E100A504BD /* CIRO GOMES - Paulo Guedes mentiroso tá enganando a rapazeada paulo guedes.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94A426B283E87E100A504BD /* CIRO GOMES - Paulo Guedes mentiroso tá enganando a rapazeada paulo guedes.mp3 */; };
 		D94A4274283E895F00A504BD /* Choque de Cultura - Renan - É Paradoxo que chama isso aí.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94A4272283E895F00A504BD /* Choque de Cultura - Renan - É Paradoxo que chama isso aí.mp3 */; };
 		D94A4275283E895F00A504BD /* Saiddy Bamba - Vai chorar é vai chorar é chore na minha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94A4273283E895F00A504BD /* Saiddy Bamba - Vai chorar é vai chorar é chore na minha.mp3 */; };
+		D9575092284427C70094AEA6 /* DummyShareLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9575091284427C70094AEA6 /* DummyShareLogs.swift */; };
 		D958B1AA28394D400010F133 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958B1A928394D400010F133 /* MainView.swift */; };
 		D958B1AC28394DCD0010F133 /* AuthorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958B1AB28394DCD0010F133 /* AuthorsView.swift */; };
 		D958B1AE28394E420010F133 /* SongsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958B1AD28394E420010F133 /* SongsView.swift */; };
@@ -337,6 +339,7 @@
 		D9351C3B2844068400D4317E /* Gilmar Mendes - O exercito esta se associando a esse genocidio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gilmar Mendes - O exercito esta se associando a esse genocidio.mp3"; sourceTree = "<group>"; };
 		D9351C3C2844068400D4317E /* Craque Neto - Vacina eu Tomo short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Craque Neto - Vacina eu Tomo short meme.mp3"; sourceTree = "<group>"; };
 		D9351C5B2844094E00D4317E /* TopChartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartItem.swift; sourceTree = "<group>"; };
+		D9351C6028441FA400D4317E /* LoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerTests.swift; sourceTree = "<group>"; };
 		D93AC08A28414EEE00E38A63 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		D940E27E283AA29600392D1C /* Feiticeira - Não é feitiçaria, é tecnologia meme short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Feiticeira - Não é feitiçaria, é tecnologia meme short.mp3"; sourceTree = "<group>"; };
 		D940E280283AA2C200392D1C /* esse_braga_neto_que_eh_um_bosta.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = esse_braga_neto_que_eh_um_bosta.mp3; sourceTree = "<group>"; };
@@ -381,6 +384,7 @@
 		D94A426B283E87E100A504BD /* CIRO GOMES - Paulo Guedes mentiroso tá enganando a rapazeada paulo guedes.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "CIRO GOMES - Paulo Guedes mentiroso tá enganando a rapazeada paulo guedes.mp3"; sourceTree = "<group>"; };
 		D94A4272283E895F00A504BD /* Choque de Cultura - Renan - É Paradoxo que chama isso aí.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Choque de Cultura - Renan - É Paradoxo que chama isso aí.mp3"; sourceTree = "<group>"; };
 		D94A4273283E895F00A504BD /* Saiddy Bamba - Vai chorar é vai chorar é chore na minha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Saiddy Bamba - Vai chorar é vai chorar é chore na minha.mp3"; sourceTree = "<group>"; };
+		D9575091284427C70094AEA6 /* DummyShareLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyShareLogs.swift; sourceTree = "<group>"; };
 		D958B1A928394D400010F133 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		D958B1AB28394DCD0010F133 /* AuthorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorsView.swift; sourceTree = "<group>"; };
 		D958B1AD28394E420010F133 /* SongsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsView.swift; sourceTree = "<group>"; };
@@ -391,7 +395,7 @@
 		D961D015283722AB00EFEDEB /* Color+CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+CustomColors.swift"; sourceTree = "<group>"; };
 		D961D01728372B1800EFEDEB /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		D961D024283731AA00EFEDEB /* SoundHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundHelpView.swift; sourceTree = "<group>"; };
-		D9625E7A28238F9A00080852 /* Medo e Delírio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Medo e Delírio.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9625E7A28238F9A00080852 /* MedoDelirioBrasilia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MedoDelirioBrasilia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9625E7D28238F9A00080852 /* MedoDelirioBrasiliaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedoDelirioBrasiliaApp.swift; sourceTree = "<group>"; };
 		D9625E7F28238F9A00080852 /* SoundsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsView.swift; sourceTree = "<group>"; };
 		D9625E8128238F9B00080852 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -597,6 +601,15 @@
 				D961D01728372B1800EFEDEB /* AudioPlayer.swift */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		D9351C5F28441F8E00D4317E /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D9575094284428260094AEA6 /* Doubles */,
+				D9351C6028441FA400D4317E /* LoggerTests.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		D940E27D283AA27D00392D1C /* Sounds */ = {
@@ -806,6 +819,14 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
+		D9575094284428260094AEA6 /* Doubles */ = {
+			isa = PBXGroup;
+			children = (
+				D9575091284427C70094AEA6 /* DummyShareLogs.swift */,
+			);
+			path = Doubles;
+			sourceTree = "<group>";
+		};
 		D961D0142837229100EFEDEB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -837,7 +858,7 @@
 		D9625E7B28238F9A00080852 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D9625E7A28238F9A00080852 /* Medo e Delírio.app */,
+				D9625E7A28238F9A00080852 /* MedoDelirioBrasilia.app */,
 				D9625E8A28238F9B00080852 /* MedoDelirioBrasiliaTests.xctest */,
 			);
 			name = Products;
@@ -983,6 +1004,7 @@
 			children = (
 				D92C0CA328401220009CF19A /* Views */,
 				D9E69599283D581E00C341B2 /* DataHandlers */,
+				D9351C5F28441F8E00D4317E /* Helpers */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -1015,7 +1037,7 @@
 				D9E69591283D2E2C00C341B2 /* SQLite */,
 			);
 			productName = MedoDelirioBrasilia;
-			productReference = D9625E7A28238F9A00080852 /* Medo e Delírio.app */;
+			productReference = D9625E7A28238F9A00080852 /* MedoDelirioBrasilia.app */;
 			productType = "com.apple.product-type.application";
 		};
 		D9625E8928238F9B00080852 /* MedoDelirioBrasiliaTests */ = {
@@ -1356,7 +1378,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9625E8F28238F9B00080852 /* LocalDatabaseTests.swift in Sources */,
+				D9351C6128441FA400D4317E /* LoggerTests.swift in Sources */,
 				D92C0CA62840125B009CF19A /* SoundsViewViewModelTests.swift in Sources */,
+				D9575092284427C70094AEA6 /* DummyShareLogs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1520,7 +1544,7 @@
 				);
 				MARKETING_VERSION = 1.3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
-				PRODUCT_NAME = "Medo e Delírio";
+				PRODUCT_NAME = MedoDelirioBrasilia;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1550,7 +1574,7 @@
 				);
 				MARKETING_VERSION = 1.3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
-				PRODUCT_NAME = "Medo e Delírio";
+				PRODUCT_NAME = MedoDelirioBrasilia;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1573,7 +1597,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Medo e Delírio.app/Medo e Delírio";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MedoDelirioBrasilia.app/MedoDelirioBrasilia";
 			};
 			name = Debug;
 		};
@@ -1593,7 +1617,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Medo e Delírio.app/Medo e Delírio";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MedoDelirioBrasilia.app/MedoDelirioBrasilia";
 			};
 			name = Release;
 		};
