@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D90F6A6628446C250050FFFF /* TrendsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */; };
 		D92879E4283EEE1D00369CE5 /* Bolsonaro - Buscamos uma solucao, quem tiver tras pra mim tras pra mim.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879E3283EEE1D00369CE5 /* Bolsonaro - Buscamos uma solucao, quem tiver tras pra mim tras pra mim.mp3 */; };
 		D92879E7283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879E5283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 */; };
 		D92879E8283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879E6283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 */; };
@@ -119,6 +120,7 @@
 		D94A4274283E895F00A504BD /* Choque de Cultura - Renan - É Paradoxo que chama isso aí.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94A4272283E895F00A504BD /* Choque de Cultura - Renan - É Paradoxo que chama isso aí.mp3 */; };
 		D94A4275283E895F00A504BD /* Saiddy Bamba - Vai chorar é vai chorar é chore na minha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94A4273283E895F00A504BD /* Saiddy Bamba - Vai chorar é vai chorar é chore na minha.mp3 */; };
 		D9575092284427C70094AEA6 /* DummyShareLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9575091284427C70094AEA6 /* DummyShareLogs.swift */; };
+		D957509628445EC30094AEA6 /* TrendsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957509528445EC30094AEA6 /* TrendsViewViewModel.swift */; };
 		D958B1AA28394D400010F133 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958B1A928394D400010F133 /* MainView.swift */; };
 		D958B1AC28394DCD0010F133 /* AuthorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958B1AB28394DCD0010F133 /* AuthorsView.swift */; };
 		D958B1AE28394E420010F133 /* SongsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958B1AD28394E420010F133 /* SongsView.swift */; };
@@ -273,6 +275,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsSettingsView.swift; sourceTree = "<group>"; };
 		D92879E3283EEE1D00369CE5 /* Bolsonaro - Buscamos uma solucao, quem tiver tras pra mim tras pra mim.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Buscamos uma solucao, quem tiver tras pra mim tras pra mim.mp3"; sourceTree = "<group>"; };
 		D92879E5283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Nao era fake news era jornalismo.mp3"; sourceTree = "<group>"; };
 		D92879E6283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pena que nao pode ver um impeachment.mp3"; sourceTree = "<group>"; };
@@ -385,6 +388,7 @@
 		D94A4272283E895F00A504BD /* Choque de Cultura - Renan - É Paradoxo que chama isso aí.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Choque de Cultura - Renan - É Paradoxo que chama isso aí.mp3"; sourceTree = "<group>"; };
 		D94A4273283E895F00A504BD /* Saiddy Bamba - Vai chorar é vai chorar é chore na minha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Saiddy Bamba - Vai chorar é vai chorar é chore na minha.mp3"; sourceTree = "<group>"; };
 		D9575091284427C70094AEA6 /* DummyShareLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyShareLogs.swift; sourceTree = "<group>"; };
+		D957509528445EC30094AEA6 /* TrendsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsViewViewModel.swift; sourceTree = "<group>"; };
 		D958B1A928394D400010F133 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		D958B1AB28394DCD0010F133 /* AuthorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorsView.swift; sourceTree = "<group>"; };
 		D958B1AD28394E420010F133 /* SongsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsView.swift; sourceTree = "<group>"; };
@@ -827,6 +831,15 @@
 			path = Doubles;
 			sourceTree = "<group>";
 		};
+		D957509728446BEC0094AEA6 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				D958B1B12839534D0010F133 /* SettingsView.swift */,
+				D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		D961D0142837229100EFEDEB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -926,7 +939,7 @@
 				D92E7073283C5D9E0035826C /* Songs */,
 				D961D0232837319600EFEDEB /* Help */,
 				D9BF90BC2842EAB100BDDD7D /* Trends */,
-				D958B1B12839534D0010F133 /* SettingsView.swift */,
+				D957509728446BEC0094AEA6 /* Settings */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -985,6 +998,7 @@
 			isa = PBXGroup;
 			children = (
 				D958B1AF28394EA40010F133 /* TrendsView.swift */,
+				D957509528445EC30094AEA6 /* TrendsViewViewModel.swift */,
 				D9BF90BD2842EAED00BDDD7D /* TopChartCellView.swift */,
 			);
 			path = Trends;
@@ -1350,6 +1364,7 @@
 				D92C0CAC28406EA5009CF19A /* ShareLog.swift in Sources */,
 				D961D016283722AB00EFEDEB /* Color+CustomColors.swift in Sources */,
 				D93AC08B28414EEE00E38A63 /* Logger.swift in Sources */,
+				D957509628445EC30094AEA6 /* TrendsViewViewModel.swift in Sources */,
 				D99DC19D28423AD7002B03B6 /* AuthorDetailViewViewModel.swift in Sources */,
 				D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */,
 				D93443252838177000ADCD38 /* UserInfo.swift in Sources */,
@@ -1361,6 +1376,7 @@
 				D9344323283812AD00ADCD38 /* Author.swift in Sources */,
 				D98622E2283FCEDC00E9F630 /* AuthorsViewViewModel.swift in Sources */,
 				D958B1B22839534D0010F133 /* SettingsView.swift in Sources */,
+				D90F6A6628446C250050FFFF /* TrendsSettingsView.swift in Sources */,
 				D92C0CAA28405B2D009CF19A /* NoFavoritesView.swift in Sources */,
 				D9BF90BE2842EAED00BDDD7D /* TopChartCellView.swift in Sources */,
 				D94A4214283DC52800A504BD /* SongHelpView.swift in Sources */,

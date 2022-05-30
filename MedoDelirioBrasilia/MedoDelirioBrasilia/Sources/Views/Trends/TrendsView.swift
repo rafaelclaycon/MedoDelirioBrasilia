@@ -2,26 +2,57 @@ import SwiftUI
 
 struct TrendsView: View {
 
+    @StateObject private var viewModel = TrendsViewViewModel()
+    
+    let columns = [
+        GridItem(.flexible())
+    ]
+    
     var body: some View {
         NavigationView {
             VStack {
                 ScrollView {
-                    VStack(alignment: .leading, spacing: 40) {
+                    VStack(alignment: .leading) {
                         Text("Sons Mais Compartilhados Por Mim")
                             .font(.title2)
                             .padding(.horizontal)
                         
-                        Button("Get share logs") {
-                            guard let logs = try? database.getAllShareLogs() else {
-                                return
+                        if viewModel.topChartItems == nil {
+                            HStack {
+                                Spacer()
+                                
+                                Text("Sem Dados")
+                                    .font(.headline)
+                                    .padding(.vertical, 40)
+                                
+                                Spacer()
                             }
-                            print(logs.count)
-                            print(logs)
+                        } else {
+                            HStack {
+                                Spacer()
+                                
+                                Button {
+                                    viewModel.reloadList(withTopChartItems: Logger.getTop5Sounds())
+                                } label: {
+                                    HStack {
+                                        Image(systemName: "arrow.triangle.2.circlepath")
+                                        Text("Atualizar")
+                                    }
+                                }
+                                .padding(.trailing)
+                                .padding(.top, 1)
+                            }
+                            
+                            LazyVGrid(columns: columns, spacing: 14) {
+                                ForEach(viewModel.topChartItems!) { item in
+                                    TopChartCellView(item: item)
+                                }
+                            }
+                            .padding(.bottom)
                         }
                         
                         Text("Sons Mais Compartilhados Pela Audiência (iOS)")
                             .font(.title2)
-                            //.multilineTextAlignment(.leading)
                             .padding(.horizontal)
                         
                         HStack {
@@ -41,6 +72,9 @@ struct TrendsView: View {
                 }
             }
             .navigationTitle("Tendências")
+            .onAppear {
+                viewModel.reloadList(withTopChartItems: Logger.getTop5Sounds())
+            }
         }
     }
 
