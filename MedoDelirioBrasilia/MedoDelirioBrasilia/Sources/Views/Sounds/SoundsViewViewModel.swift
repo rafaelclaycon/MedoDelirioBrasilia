@@ -1,5 +1,6 @@
 import Combine
 import UIKit
+import StoreKit
 
 class SoundsViewViewModel: ObservableObject {
 
@@ -107,15 +108,21 @@ class SoundsViewViewModel: ObservableObject {
         DispatchQueue.main.async {
             UIApplication.shared.keyWindow?.rootViewController?.present(activityVC, animated: true, completion: nil)
         }
-//        activityVC.completionWithItemsHandler = { activity, completed, items, error in
-//            if completed {
+        activityVC.completionWithItemsHandler = { activity, completed, items, error in
+            if completed {
 //                guard let activity = activity else {
 //                    return
 //                }
 //                let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
 //                Logger.logSharedSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
-//            }
-//        }
+                
+                //let twoSecondsFromNow = DispatchTime.now() + 2.0
+                /*DispatchQueue.main.async {
+                    SKStoreReviewController.requestReviewInCurrentScene()
+                    UserDefaults.standard.set(currentVersion, forKey: UserDefaultsKeys.lastVersionPromptedForReviewKey)
+                }*/
+            }
+        }
     }
     
     func addToFavorites(soundId: String) {
