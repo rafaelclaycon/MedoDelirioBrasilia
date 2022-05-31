@@ -1,4 +1,4 @@
-@testable import MedoDelirioBrasilia
+@testable import Medo_e_Delírio
 import XCTest
 
 class SoundsViewViewModelTests: XCTestCase {

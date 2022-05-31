@@ -11,6 +11,8 @@ class SoundsViewViewModel: ObservableObject {
     @Published var soundForConfirmationDialog: Sound? = nil
     @Published var showOnlyFavorites = false
     
+    @Published var currentActivity: NSUserActivity? = nil
+    
     // Alerts
     @Published var alertTitle: String = ""
     @Published var alertMessage: String = ""
@@ -149,6 +151,13 @@ class SoundsViewViewModel: ObservableObject {
         let emoji = Shared.removeFromFavoritesEmojis.randomElement() ?? ""
         return isSelectedSoundAlreadyAFavorite() ? "\(emoji)  Remover dos Favoritos" : "⭐️  Adicionar aos Favoritos"
     }
+    
+    func donateActivity() {
+        self.currentActivity = UserActivityWaiter.getDonatableActivity(withType: Shared.playAndShareSoundsActivityTypeName, andTitle: "Tocar e compartilhar sons")
+        self.currentActivity?.becomeCurrent()
+    }
+    
+    // MARK: - Alerts
     
     func showUnableToGetSoundAlert() {
         alertTitle = "Não Foi Possível Localizar Esse Som"

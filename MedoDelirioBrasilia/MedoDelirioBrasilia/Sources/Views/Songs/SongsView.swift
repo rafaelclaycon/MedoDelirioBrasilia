@@ -80,6 +80,7 @@ struct SongsView: View {
             )
             .onAppear {
                 viewModel.reloadList()
+                viewModel.donateActivity()
             }
         }
     }

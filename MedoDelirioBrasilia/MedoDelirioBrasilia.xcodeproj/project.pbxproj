@@ -104,6 +104,7 @@
 		D940E2B5283AA2C200392D1C /* Passada chocada meu Deus jesus.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D940E299283AA2C200392D1C /* Passada chocada meu Deus jesus.mp3 */; };
 		D940E2B6283AA2C200392D1C /* ADY - oh nao mais um crime de responsabilidade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D940E29A283AA2C200392D1C /* ADY - oh nao mais um crime de responsabilidade.mp3 */; };
 		D940E2B7283AA2C200392D1C /* funk_do_xandao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D940E29B283AA2C200392D1C /* funk_do_xandao.mp3 */; };
+		D94656D928450535008B4785 /* SQLiteMigrationManager in Frameworks */ = {isa = PBXBuildFile; productRef = D94656D828450535008B4785 /* SQLiteMigrationManager */; };
 		D94A4214283DC52800A504BD /* SongHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A4213283DC52800A504BD /* SongHelpView.swift */; };
 		D94A4260283E85D500A504BD /* Queima quengaral wooo short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94A425A283E85D500A504BD /* Queima quengaral wooo short.mp3 */; };
 		D94A4261283E85D500A504BD /* Boulos Porra short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94A425B283E85D500A504BD /* Boulos Porra short.mp3 */; };
@@ -136,6 +137,7 @@
 		D9625E8228238F9B00080852 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9625E8128238F9B00080852 /* Assets.xcassets */; };
 		D9625E8528238F9B00080852 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9625E8428238F9B00080852 /* Preview Assets.xcassets */; };
 		D9625E8F28238F9B00080852 /* LocalDatabaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9625E8E28238F9B00080852 /* LocalDatabaseTests.swift */; };
+		D96E115D28459D8800306859 /* UserActivityWaiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96E115C28459D8800306859 /* UserActivityWaiter.swift */; };
 		D980455C28380EFE003B2E83 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D980455E28380EFE003B2E83 /* Localizable.strings */; };
 		D980456228380F66003B2E83 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D980456128380F66003B2E83 /* LocalizableStrings.swift */; };
 		D98622E0283FC57100E9F630 /* AuthorDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98622DF283FC57100E9F630 /* AuthorDetailView.swift */; };
@@ -399,13 +401,14 @@
 		D961D015283722AB00EFEDEB /* Color+CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+CustomColors.swift"; sourceTree = "<group>"; };
 		D961D01728372B1800EFEDEB /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		D961D024283731AA00EFEDEB /* SoundHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundHelpView.swift; sourceTree = "<group>"; };
-		D9625E7A28238F9A00080852 /* MedoDelirioBrasilia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MedoDelirioBrasilia.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9625E7A28238F9A00080852 /* Medo e Delírio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Medo e Delírio.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9625E7D28238F9A00080852 /* MedoDelirioBrasiliaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedoDelirioBrasiliaApp.swift; sourceTree = "<group>"; };
 		D9625E7F28238F9A00080852 /* SoundsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsView.swift; sourceTree = "<group>"; };
 		D9625E8128238F9B00080852 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D9625E8428238F9B00080852 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D9625E8A28238F9B00080852 /* MedoDelirioBrasiliaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MedoDelirioBrasiliaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9625E8E28238F9B00080852 /* LocalDatabaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDatabaseTests.swift; sourceTree = "<group>"; };
+		D96E115C28459D8800306859 /* UserActivityWaiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserActivityWaiter.swift; sourceTree = "<group>"; };
 		D980455D28380EFE003B2E83 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D980455F28380F05003B2E83 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D980456128380F66003B2E83 /* LocalizableStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
@@ -540,6 +543,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9E69592283D2E2C00C341B2 /* SQLite in Frameworks */,
+				D94656D928450535008B4785 /* SQLiteMigrationManager in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -595,6 +599,7 @@
 			isa = PBXGroup;
 			children = (
 				D93AC08A28414EEE00E38A63 /* Logger.swift */,
+				D96E115C28459D8800306859 /* UserActivityWaiter.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -871,7 +876,7 @@
 		D9625E7B28238F9A00080852 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D9625E7A28238F9A00080852 /* MedoDelirioBrasilia.app */,
+				D9625E7A28238F9A00080852 /* Medo e Delírio.app */,
 				D9625E8A28238F9B00080852 /* MedoDelirioBrasiliaTests.xctest */,
 			);
 			name = Products;
@@ -1049,9 +1054,10 @@
 			name = MedoDelirioBrasilia;
 			packageProductDependencies = (
 				D9E69591283D2E2C00C341B2 /* SQLite */,
+				D94656D828450535008B4785 /* SQLiteMigrationManager */,
 			);
 			productName = MedoDelirioBrasilia;
-			productReference = D9625E7A28238F9A00080852 /* MedoDelirioBrasilia.app */;
+			productReference = D9625E7A28238F9A00080852 /* Medo e Delírio.app */;
 			productType = "com.apple.product-type.application";
 		};
 		D9625E8928238F9B00080852 /* MedoDelirioBrasiliaTests */ = {
@@ -1103,6 +1109,7 @@
 			mainGroup = D9625E7128238F9A00080852;
 			packageReferences = (
 				D9E69590283D2E2C00C341B2 /* XCRemoteSwiftPackageReference "SQLite" */,
+				D94656D728450535008B4785 /* XCRemoteSwiftPackageReference "SQLiteMigrationManager" */,
 			);
 			productRefGroup = D9625E7B28238F9A00080852 /* Products */;
 			projectDirPath = "";
@@ -1382,6 +1389,7 @@
 				D94A4214283DC52800A504BD /* SongHelpView.swift in Sources */,
 				D980456228380F66003B2E83 /* LocalizableStrings.swift in Sources */,
 				D961D025283731AA00EFEDEB /* SoundHelpView.swift in Sources */,
+				D96E115D28459D8800306859 /* UserActivityWaiter.swift in Sources */,
 				D9351C5C2844094E00D4317E /* TopChartItem.swift in Sources */,
 				D98EC5E12825A05900340BE5 /* Sound.swift in Sources */,
 				D958B1AE28394E420010F133 /* SongsView.swift in Sources */,
@@ -1560,7 +1568,7 @@
 				);
 				MARKETING_VERSION = 1.3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
-				PRODUCT_NAME = MedoDelirioBrasilia;
+				PRODUCT_NAME = "Medo e Delírio";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1590,7 +1598,7 @@
 				);
 				MARKETING_VERSION = 1.3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
-				PRODUCT_NAME = MedoDelirioBrasilia;
+				PRODUCT_NAME = "Medo e Delírio";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1613,7 +1621,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MedoDelirioBrasilia.app/MedoDelirioBrasilia";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Medo e Delírio.app/Medo e Delírio";
 			};
 			name = Debug;
 		};
@@ -1633,7 +1641,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MedoDelirioBrasilia.app/MedoDelirioBrasilia";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Medo e Delírio.app/Medo e Delírio";
 			};
 			name = Release;
 		};
@@ -1670,6 +1678,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D94656D728450535008B4785 /* XCRemoteSwiftPackageReference "SQLiteMigrationManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/garriguv/SQLiteMigrationManager.swift?utm_source=pocket_mylist";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.8.0;
+			};
+		};
 		D9E69590283D2E2C00C341B2 /* XCRemoteSwiftPackageReference "SQLite" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/stephencelis/SQLite.swift";
@@ -1681,6 +1697,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D94656D828450535008B4785 /* SQLiteMigrationManager */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D94656D728450535008B4785 /* XCRemoteSwiftPackageReference "SQLiteMigrationManager" */;
+			productName = SQLiteMigrationManager;
+		};
 		D9E69591283D2E2C00C341B2 /* SQLite */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D9E69590283D2E2C00C341B2 /* XCRemoteSwiftPackageReference "SQLite" */;

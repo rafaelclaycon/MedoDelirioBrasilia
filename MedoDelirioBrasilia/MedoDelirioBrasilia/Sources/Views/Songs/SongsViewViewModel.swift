@@ -7,6 +7,8 @@ class SongsViewViewModel: ObservableObject {
     @Published var sortOption: Int = 0
     @Published var nowPlayingKeeper = Set<String>()
     
+    @Published var currentActivity: NSUserActivity? = nil
+    
     func reloadList() {
         if UserSettings.getShowOffensiveSounds() {
             self.songs = songData
@@ -55,6 +57,11 @@ class SongsViewViewModel: ObservableObject {
         DispatchQueue.main.async {
             UIApplication.shared.keyWindow?.rootViewController?.present(activityVC, animated: true, completion: nil)
         }
+    }
+    
+    func donateActivity() {
+        self.currentActivity = UserActivityWaiter.getDonatableActivity(withType: Shared.playAndShareSongsActivityTypeName, andTitle: "Tocar e compartilhar músicas")
+        self.currentActivity?.becomeCurrent()
     }
 
 }

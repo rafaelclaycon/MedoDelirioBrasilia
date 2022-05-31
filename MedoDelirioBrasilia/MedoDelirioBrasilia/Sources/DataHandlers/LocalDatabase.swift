@@ -1,5 +1,6 @@
 import Foundation
 import SQLite
+import SQLiteMigrationManager
 
 class LocalDatabase {
 
@@ -21,6 +22,16 @@ class LocalDatabase {
         } catch {
             fatalError(error.localizedDescription)
         }
+        
+        /*let manager = SQLiteMigrationManager(db: self.db)
+        
+        do {
+            if !manager.hasMigrationsTable() {
+                try manager.createMigrationsTable()
+            }
+        } catch {
+            fatalError(error.localizedDescription)
+        }*/
     }
 
     private func createFavoriteTable() throws {

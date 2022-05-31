@@ -24,6 +24,7 @@ struct AuthorsView: View {
             .navigationTitle("Autores")
             .onAppear {
                 viewModel.reloadList()
+                viewModel.donateActivity()
             }
         }
     }

@@ -74,6 +74,7 @@ struct TrendsView: View {
             .navigationTitle("Tendências")
             .onAppear {
                 viewModel.reloadList(withTopChartItems: Logger.getTop5Sounds())
+                viewModel.donateActivity()
             }
         }
     }

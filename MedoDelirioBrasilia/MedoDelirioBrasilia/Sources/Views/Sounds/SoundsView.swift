@@ -128,6 +128,7 @@ struct SoundsView: View {
                                      allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
                                      favoritesOnly: viewModel.showOnlyFavorites,
                                      sortedBy: ContentSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
+                viewModel.donateActivity()
             }
             .confirmationDialog("", isPresented: $viewModel.showConfirmationDialog) {
                 Button(viewModel.getFavoriteButtonTitle()) {
