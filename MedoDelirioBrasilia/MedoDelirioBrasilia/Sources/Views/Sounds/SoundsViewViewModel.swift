@@ -118,11 +118,7 @@ class SoundsViewViewModel: ObservableObject {
 //                let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
 //                Logger.logSharedSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
                 
-                //let twoSecondsFromNow = DispatchTime.now() + 2.0
-                /*DispatchQueue.main.async {
-                    SKStoreReviewController.requestReviewInCurrentScene()
-                    UserDefaults.standard.set(currentVersion, forKey: UserDefaultsKeys.lastVersionPromptedForReviewKey)
-                }*/
+                AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
             }
         }
     }

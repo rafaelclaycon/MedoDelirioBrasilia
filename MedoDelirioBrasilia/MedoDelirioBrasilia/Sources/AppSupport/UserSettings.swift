@@ -1,7 +1,7 @@
 import Foundation
 
 class UserSettings {
-    
+
     // MARK: - Getters
     
     static func getShowOffensiveSounds() -> Bool {
