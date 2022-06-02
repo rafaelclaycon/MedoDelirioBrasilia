@@ -161,6 +161,7 @@
 		D98EC5DE282596C300340BE5 /* SoundCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5DD282596C300340BE5 /* SoundCell.swift */; };
 		D98EC5E12825A05900340BE5 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5E02825A05900340BE5 /* Sound.swift */; };
 		D98EC5E32825A45000340BE5 /* SoundsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5E22825A45000340BE5 /* SoundsViewViewModel.swift */; };
+		D99B9DCA2848148600897930 /* ServerLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99B9DC92848148600897930 /* ServerLog.swift */; };
 		D99DC1892842203E002B03B6 /* Datena - Gol do presidente Bolsonaro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99DC1762842203E002B03B6 /* Datena - Gol do presidente Bolsonaro.mp3 */; };
 		D99DC18A2842203E002B03B6 /* Mourão - Heróis matam short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99DC1772842203E002B03B6 /* Mourão - Heróis matam short.mp3 */; };
 		D99DC18B2842203E002B03B6 /* Samira Close - Deixa eu te falar uma coisa voce tem quantos anos menino.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99DC1782842203E002B03B6 /* Samira Close - Deixa eu te falar uma coisa voce tem quantos anos menino.mp3 */; };
@@ -439,6 +440,7 @@
 		D98EC5DD282596C300340BE5 /* SoundCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundCell.swift; sourceTree = "<group>"; };
 		D98EC5E02825A05900340BE5 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		D98EC5E22825A45000340BE5 /* SoundsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsViewViewModel.swift; sourceTree = "<group>"; };
+		D99B9DC92848148600897930 /* ServerLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerLog.swift; sourceTree = "<group>"; };
 		D99DC1762842203E002B03B6 /* Datena - Gol do presidente Bolsonaro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Datena - Gol do presidente Bolsonaro.mp3"; sourceTree = "<group>"; };
 		D99DC1772842203E002B03B6 /* Mourão - Heróis matam short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mourão - Heróis matam short.mp3"; sourceTree = "<group>"; };
 		D99DC1782842203E002B03B6 /* Samira Close - Deixa eu te falar uma coisa voce tem quantos anos menino.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Samira Close - Deixa eu te falar uma coisa voce tem quantos anos menino.mp3"; sourceTree = "<group>"; };
@@ -1002,6 +1004,7 @@
 				D92C0CA72840162F009CF19A /* ContentSortOption.swift */,
 				D92C0CAB28406EA5009CF19A /* ShareLog.swift */,
 				D9351C5B2844094E00D4317E /* TopChartItem.swift */,
+				D99B9DC92848148600897930 /* ServerLog.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1382,6 +1385,7 @@
 				D9BF9091284257F500BDDD7D /* Shared.swift in Sources */,
 				D98622E0283FC57100E9F630 /* AuthorDetailView.swift in Sources */,
 				D92E7067283C51D20035826C /* Song.swift in Sources */,
+				D99B9DCA2848148600897930 /* ServerLog.swift in Sources */,
 				D960AF292845C82E00ADF1F6 /* AppStoreReviewSteward.swift in Sources */,
 				D92C0CA82840162F009CF19A /* ContentSortOption.swift in Sources */,
 				D958B1B028394EA40010F133 /* TrendsView.swift in Sources */,
