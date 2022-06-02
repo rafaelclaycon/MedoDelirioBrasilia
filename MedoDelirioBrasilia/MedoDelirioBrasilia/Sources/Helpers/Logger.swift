@@ -46,5 +46,9 @@ class Logger {
             return nil
         }
     }
+    
+    static func getShareCountStatsForServer() -> [ServerShareCountStat]? {
+        return nil
+    }
 
 }

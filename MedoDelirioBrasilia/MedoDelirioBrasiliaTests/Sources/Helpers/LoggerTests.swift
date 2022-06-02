@@ -93,5 +93,40 @@ class LoggerTests: XCTestCase {
         XCTAssertEqual(logs![4].contentAuthorName, "Meme")
         XCTAssertEqual(logs![4].shareCount, 38)
     }
+    
+    // MARK: - Server Logs
+    
+    func test_getShareStatsForServer_whenHasALotOfData_shouldReturnShareCountsByUniqueContentId() throws {
+        for log in DummyShareLogs.getTwelveNaoFodeMermaoSoundShareLogs() {
+            try sut.insert(shareLog: log)
+        }
+        for log in DummyShareLogs.getFortySixBomDiaSoundShareLogs() {
+            try sut.insert(shareLog: log)
+        }
+        for log in DummyShareLogs.getThirtyEightComunistaSoundShareLogs() {
+            try sut.insert(shareLog: log)
+        }
+        for log in DummyShareLogs.getSixtySixEuNaoErreiNenhumaSoundShareLogs() {
+            try sut.insert(shareLog: log)
+        }
+        for log in DummyShareLogs.getSeventySixNaoVamosFalarSoundShareLogs() {
+            try sut.insert(shareLog: log)
+        }
+        for log in DummyShareLogs.getFortyFourDeuErradoSoundShareLogs() {
+            try sut.insert(shareLog: log)
+        }
+        for log in DummyShareLogs.getFortyTwoEMentiraSoundShareLogs() {
+            try sut.insert(shareLog: log)
+        }
+        
+        let logs = Logger.getShareCountStatsForServer()
+        XCTAssertNotNil(logs)
+        /*XCTAssertEqual(logs!.count, 5)
+        
+        XCTAssertEqual(logs![0].id, "1")
+        XCTAssertEqual(logs![0].contentName, "Não vamos falar de pornô aqui não")
+        XCTAssertEqual(logs![0].contentAuthorName, "Choque de Cultura")
+        XCTAssertEqual(logs![0].shareCount, 76)*/
+    }
 
 }

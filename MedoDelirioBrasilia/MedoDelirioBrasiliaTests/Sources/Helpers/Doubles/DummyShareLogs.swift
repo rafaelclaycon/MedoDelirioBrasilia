@@ -11,6 +11,7 @@ class DummyShareLogs {
     private static let bomDiaContentId = "19CAEBDD-2B29-48C9-943B-18535A6E82BC"
     private static let euNaoErreiNenhumaContentId = "2E0B04FF-DB2B-4872-836A-40C61B7A5896"
     private static let naoVamosFalarDePornoAquiNaoContentId = "301B1EB5-1D6D-4AF1-8E8D-6CFBD9E95569"
+    private static let eMentiraContentId = "82141C49-8622-49CD-A64A-CA94FB7FCBAF"
     
     static func getTwelveNaoFodeMermaoSoundShareLogs() -> [ShareLog] {
         var result = [ShareLog]()
@@ -56,6 +57,14 @@ class DummyShareLogs {
         var result = [ShareLog]()
         for _ in 0...75 {
             result.append(ShareLog(installId: installId, contentId: naoVamosFalarDePornoAquiNaoContentId, contentType: 0, dateTime: Date(), destination: 0, destinationBundleId: .empty))
+        }
+        return result
+    }
+    
+    static func getFortyTwoEMentiraSoundShareLogs() -> [ShareLog] {
+        var result = [ShareLog]()
+        for _ in 0...41 {
+            result.append(ShareLog(installId: installId, contentId: eMentiraContentId, contentType: 0, dateTime: Date(), destination: 0, destinationBundleId: .empty))
         }
         return result
     }

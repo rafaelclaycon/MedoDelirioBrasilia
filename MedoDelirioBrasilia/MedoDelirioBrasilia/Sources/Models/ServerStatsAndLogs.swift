@@ -1,6 +1,6 @@
 import Foundation
 
-struct ServerShareLog: Hashable, Codable {
+struct ServerShareCountStat: Hashable, Codable {
 
     var installId: String
     var contentId: String
@@ -9,7 +9,7 @@ struct ServerShareLog: Hashable, Codable {
 
 }
 
-struct ServerShareDestinationLog: Hashable, Codable {
+struct ServerShareDestinationStat: Hashable, Codable {
 
     var installId: String
     var whatsAppCount: Int
