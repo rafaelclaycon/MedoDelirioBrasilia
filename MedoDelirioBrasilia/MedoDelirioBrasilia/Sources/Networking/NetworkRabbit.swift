@@ -30,6 +30,20 @@ class NetworkRabbit {
         task.resume()
     }
     
+    func checkServerStatus(completionHandler: @escaping (String) -> Void) {
+        let url = URL(string: serverPath)!
+
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            if let data = data {
+                completionHandler(String(data: data, encoding: .utf8)!)
+            } else if let error = error {
+                completionHandler("A requisição HTTP falhou: \(error.localizedDescription)")
+            }
+        }
+
+        task.resume()
+    }
+    
     func post(shareCountStat: ServerShareCountStat, completionHandler: @escaping (String) -> Void) {
         let url = URL(string: "\(serverPath)/api/ShareCountStat")!
 

@@ -78,6 +78,21 @@ struct TrendsView: View {
                             .font(.title2)
                             .padding(.horizontal)
                         
+                        HStack {
+                            Spacer()
+                            
+                            Button {
+                                //viewModel.reloadPersonalList(withTopChartItems: Logger.getTop5Sounds())
+                            } label: {
+                                HStack {
+                                    Image(systemName: "arrow.triangle.2.circlepath")
+                                    Text("Atualizar")
+                                }
+                            }
+                            .padding(.trailing)
+                            .padding(.top, 1)
+                        }
+                        
                         if viewModel.audienceTop5 == nil {
                             HStack {
                                 Spacer()
@@ -89,21 +104,6 @@ struct TrendsView: View {
                                 Spacer()
                             }
                         } else {
-                            HStack {
-                                Spacer()
-                                
-                                Button {
-                                    //viewModel.reloadPersonalList(withTopChartItems: Logger.getTop5Sounds())
-                                } label: {
-                                    HStack {
-                                        Image(systemName: "arrow.triangle.2.circlepath")
-                                        Text("Atualizar")
-                                    }
-                                }
-                                .padding(.trailing)
-                                .padding(.top, 1)
-                            }
-                            
                             LazyVGrid(columns: columns, spacing: 14) {
                                 ForEach(viewModel.audienceTop5!) { item in
                                     TopChartCellView(item: item)

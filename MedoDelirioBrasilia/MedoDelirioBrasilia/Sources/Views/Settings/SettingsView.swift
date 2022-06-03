@@ -42,7 +42,7 @@ struct SettingsView: View {
                         .padding(.top, 4)
                         
                         NavigationLink {
-                            TrendsSettingsView()
+                            DiagnosticsView()
                         } label: {
                             HStack {
                                 Text("Diagnóstico")

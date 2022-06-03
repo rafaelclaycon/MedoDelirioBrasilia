@@ -12,8 +12,10 @@ class TrendsViewViewModel: ObservableObject {
         self.personalTop5 = topChartItems
     }
     
-    func reloadAudienceList(withTopChartItems topChartItems: [TopChartItem]?) {
-        self.personalTop5 = topChartItems
+    func reloadAudienceList() {
+        
+        
+        //self.audienceTop5 =
     }
     
     func donateActivity() {

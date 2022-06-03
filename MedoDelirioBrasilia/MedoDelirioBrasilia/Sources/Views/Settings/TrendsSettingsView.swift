@@ -35,7 +35,7 @@ struct TrendsSettingsView: View {
             
             Section("Apagar logs") {
                 Button("Limpar todos os registros locais") {
-                    try? database.deleteAllShareLogs()
+                    try? database.deleteAllUserShareLogs()
                 }
             }
         }

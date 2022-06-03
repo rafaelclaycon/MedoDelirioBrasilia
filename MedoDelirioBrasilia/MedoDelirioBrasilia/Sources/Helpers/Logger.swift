@@ -9,7 +9,7 @@ class Logger {
                                 dateTime: Date(),
                                 destination: destination.rawValue,
                                 destinationBundleId: destinationBundleId)
-        try? database.insert(shareLog: shareLog)
+        try? database.insert(userShareLog: shareLog)
     }
     
     static func getTop5Sounds() -> [TopChartItem]? {

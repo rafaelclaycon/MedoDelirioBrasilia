@@ -6,7 +6,7 @@ class LocalDatabase {
 
     private var db: Connection
     private var favorite = Table("favorite")
-    private var shareLog = Table("shareLog")
+    private var userShareLog = Table("userShareLog")
 
     // MARK: - Init
 
@@ -18,7 +18,7 @@ class LocalDatabase {
         do {
             db = try Connection("\(path)/medo_db.sqlite3")
             try createFavoriteTable()
-            try createShareLogTable()
+            try createUserShareLogTable()
         } catch {
             fatalError(error.localizedDescription)
         }
@@ -44,7 +44,7 @@ class LocalDatabase {
         })
     }
     
-    private func createShareLogTable() throws {
+    private func createUserShareLogTable() throws {
         let install_id = Expression<String>("installId")
         let content_id = Expression<String>("contentId")
         let content_type = Expression<Int>("contentType")
@@ -52,7 +52,7 @@ class LocalDatabase {
         let destination = Expression<Int>("destination")
         let destination_bundle_id = Expression<String>("destinationBundleId")
 
-        try db.run(shareLog.create(ifNotExists: true) { t in
+        try db.run(userShareLog.create(ifNotExists: true) { t in
             t.column(install_id)
             t.column(content_id)
             t.column(content_type)
@@ -106,38 +106,38 @@ class LocalDatabase {
         return queriedFavorites.count > 0
     }
     
-    // MARK: - Share Log
+    // MARK: - User Share Log
     
-    func getShareLogCount() throws -> Int {
-        try db.scalar(shareLog.count)
+    func getUserShareLogCount() throws -> Int {
+        try db.scalar(userShareLog.count)
     }
     
-    func insert(shareLog newLog: ShareLog) throws {
-        let insert = try shareLog.insert(newLog)
+    func insert(userShareLog newLog: ShareLog) throws {
+        let insert = try userShareLog.insert(newLog)
         try db.run(insert)
     }
     
-    func getAllShareLogs() throws -> [ShareLog] {
+    func getAllUserShareLogs() throws -> [ShareLog] {
         var queriedItems = [ShareLog]()
 
-        for queriedItem in try db.prepare(shareLog) {
+        for queriedItem in try db.prepare(userShareLog) {
             queriedItems.append(try queriedItem.decode())
         }
         return queriedItems
     }
     
-    func deleteAllShareLogs() throws {
-        try db.run(shareLog.delete())
+    func deleteAllUserShareLogs() throws {
+        try db.run(userShareLog.delete())
     }
     
-    // MARK: - Logger
+    // MARK: - Personal Logs
     
     func getTop5SharedContent() throws -> [TopChartItem] {
         var result = [TopChartItem]()
         let content_id = Expression<String>("contentId")
         
         let contentCount = content_id.count
-        for row in try db.prepare(shareLog.select(content_id,contentCount).group(content_id).order(contentCount.desc).limit(5)) {
+        for row in try db.prepare(userShareLog.select(content_id,contentCount).group(content_id).order(contentCount.desc).limit(5)) {
             result.append(TopChartItem(id: .empty,
                                        contentId: row[content_id],
                                        contentName: .empty,
@@ -148,6 +148,8 @@ class LocalDatabase {
         return result
     }
     
+    // MARK: - User statistics to be sent to the server
+    
     func getShareCountByUniqueContentId() throws -> [ServerShareCountStat] {
         var result = [ServerShareCountStat]()
         
@@ -156,7 +158,7 @@ class LocalDatabase {
         let content_type = Expression<Int>("contentType")
         
         let contentCount = content_id.count
-        for row in try db.prepare(shareLog.select(install_id,content_id,content_type,contentCount).group(content_id).order(contentCount.desc)) {
+        for row in try db.prepare(userShareLog.select(install_id,content_id,content_type,contentCount).group(content_id).order(contentCount.desc)) {
             result.append(ServerShareCountStat(installId: row[install_id],
                                                contentId: row[content_id],
                                                contentType: row[content_type],
@@ -164,6 +166,10 @@ class LocalDatabase {
         }
         return result
     }
+    
+    // MARK: - Audience statistics from the server
+    
+    
 
 }
 
