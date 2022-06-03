@@ -119,14 +119,14 @@ class LoggerTests: XCTestCase {
             try sut.insert(shareLog: log)
         }
         
-        let logs = Logger.getShareCountStatsForServer()
-        XCTAssertNotNil(logs)
-        /*XCTAssertEqual(logs!.count, 5)
+        let stats = Logger.getShareCountStatsForServer()
+        XCTAssertNotNil(stats)
+        XCTAssertEqual(stats!.count, 7)
         
-        XCTAssertEqual(logs![0].id, "1")
-        XCTAssertEqual(logs![0].contentName, "Não vamos falar de pornô aqui não")
-        XCTAssertEqual(logs![0].contentAuthorName, "Choque de Cultura")
-        XCTAssertEqual(logs![0].shareCount, 76)*/
+        XCTAssertEqual(stats![0].installId, DummyShareLogs.installId)
+        XCTAssertEqual(stats![0].contentId, DummyShareLogs.naoVamosFalarDePornoAquiNaoContentId)
+        XCTAssertEqual(stats![0].contentType, 0)
+        XCTAssertEqual(stats![0].shareCount, 76)
     }
 
 }

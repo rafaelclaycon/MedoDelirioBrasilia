@@ -112,11 +112,11 @@ class SoundsViewViewModel: ObservableObject {
         }
         activityVC.completionWithItemsHandler = { activity, completed, items, error in
             if completed {
-//                guard let activity = activity else {
-//                    return
-//                }
-//                let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
-//                Logger.logSharedSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
+                guard let activity = activity else {
+                    return
+                }
+                let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
+                Logger.logSharedSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
                 
                 AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
             }

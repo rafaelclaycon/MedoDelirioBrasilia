@@ -48,7 +48,10 @@ class Logger {
     }
     
     static func getShareCountStatsForServer() -> [ServerShareCountStat]? {
-        return nil
+        guard let items = try? database.getShareCountByUniqueContentId(), items.count > 0 else {
+            return nil
+        }
+        return items
     }
 
 }

@@ -3,12 +3,17 @@ import UIKit
 
 class TrendsViewViewModel: ObservableObject {
 
-    @Published var topChartItems: [TopChartItem]? = nil
+    @Published var personalTop5: [TopChartItem]? = nil
+    @Published var audienceTop5: [TopChartItem]? = nil
     
     @Published var currentActivity: NSUserActivity? = nil
     
-    func reloadList(withTopChartItems topChartItems: [TopChartItem]?) {
-        self.topChartItems = topChartItems
+    func reloadPersonalList(withTopChartItems topChartItems: [TopChartItem]?) {
+        self.personalTop5 = topChartItems
+    }
+    
+    func reloadAudienceList(withTopChartItems topChartItems: [TopChartItem]?) {
+        self.personalTop5 = topChartItems
     }
     
     func donateActivity() {

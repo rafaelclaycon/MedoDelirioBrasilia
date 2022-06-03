@@ -147,6 +147,23 @@ class LocalDatabase {
         }
         return result
     }
+    
+    func getShareCountByUniqueContentId() throws -> [ServerShareCountStat] {
+        var result = [ServerShareCountStat]()
+        
+        let install_id = Expression<String>("installId")
+        let content_id = Expression<String>("contentId")
+        let content_type = Expression<Int>("contentType")
+        
+        let contentCount = content_id.count
+        for row in try db.prepare(shareLog.select(install_id,content_id,content_type,contentCount).group(content_id).order(contentCount.desc)) {
+            result.append(ServerShareCountStat(installId: row[install_id],
+                                               contentId: row[content_id],
+                                               contentType: row[content_type],
+                                               shareCount: row[contentCount]))
+        }
+        return result
+    }
 
 }
 
