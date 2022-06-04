@@ -8,6 +8,8 @@ class NetworkRabbit {
         self.serverPath = serverPath
     }
     
+    // MARK: - GET
+    
     func getHelloFromServer(completionHandler: @escaping (String) -> Void) {
         let url = URL(string: "\(serverPath)/hello/MedoDelirioBrasilia")!
 
@@ -44,6 +46,34 @@ class NetworkRabbit {
         task.resume()
     }
     
+    func getSoundShareCountStats(completionHandler: @escaping ([ServerShareCountStat]?, NetworkRabbitError?) -> Void) {
+        let url = URL(string: "\(serverPath)/api/SoundShareCountStats")!
+
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let httpResponse = response as? HTTPURLResponse else {
+                return completionHandler(nil, .responseWasNotAnHTTPURLResponse)
+            }
+             
+            guard httpResponse.statusCode == 200 else {
+                return completionHandler(nil, .unexpectedStatusCode)
+            }
+            
+            if let data = data {
+                if let stats = try? JSONDecoder().decode([ServerShareCountStat].self, from: data) {
+                    completionHandler(stats, nil)
+                } else {
+                    completionHandler(nil, .invalidResponse)
+                }
+            } else if error != nil {
+                completionHandler(nil, .httpRequestFailed)
+            }
+        }
+
+        task.resume()
+    }
+    
+    // MARK: - POST
+    
     func post(shareCountStat: ServerShareCountStat, completionHandler: @escaping (String) -> Void) {
         let url = URL(string: "\(serverPath)/api/ShareCountStat")!
 
@@ -77,5 +107,14 @@ class NetworkRabbit {
 
         task.resume()
     }
+
+}
+
+enum NetworkRabbitError: Error {
+
+    case unexpectedStatusCode
+    case responseWasNotAnHTTPURLResponse
+    case invalidResponse
+    case httpRequestFailed
 
 }

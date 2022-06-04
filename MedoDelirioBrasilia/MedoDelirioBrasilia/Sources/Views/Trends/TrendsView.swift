@@ -34,7 +34,7 @@ struct TrendsView: View {
                                 Spacer()
                                 
                                 Button {
-                                    viewModel.reloadPersonalList(withTopChartItems: Logger.getTop5Sounds())
+                                    viewModel.reloadPersonalList(withTopChartItems: Podium.getTop5SoundsSharedByTheUser())
                                 } label: {
                                     HStack {
                                         Image(systemName: "arrow.triangle.2.circlepath")
@@ -53,7 +53,7 @@ struct TrendsView: View {
                             .padding(.bottom)
                         }
                         
-                        HStack {
+                        /*HStack {
                             Spacer()
                             
                             Button("Testar Servidor") {
@@ -72,7 +72,7 @@ struct TrendsView: View {
                             .padding()
                             
                             Spacer()
-                        }
+                        }*/
                         
                         Text("Sons Mais Compartilhados Pela Audiência (iOS)")
                             .font(.title2)
@@ -82,7 +82,7 @@ struct TrendsView: View {
                             Spacer()
                             
                             Button {
-                                //viewModel.reloadPersonalList(withTopChartItems: Logger.getTop5Sounds())
+                                viewModel.reloadAudienceList()
                             } label: {
                                 HStack {
                                     Image(systemName: "arrow.triangle.2.circlepath")
@@ -130,7 +130,7 @@ struct TrendsView: View {
             }
             .navigationTitle("Tendências (Beta)")
             .onAppear {
-                viewModel.reloadPersonalList(withTopChartItems: Logger.getTop5Sounds())
+                viewModel.reloadPersonalList(withTopChartItems: Podium.getTop5SoundsSharedByTheUser())
                 viewModel.donateActivity()
             }
         }

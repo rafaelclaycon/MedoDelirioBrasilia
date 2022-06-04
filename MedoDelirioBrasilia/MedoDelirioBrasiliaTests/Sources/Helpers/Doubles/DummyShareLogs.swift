@@ -13,58 +13,58 @@ class DummyShareLogs {
     public static let naoVamosFalarDePornoAquiNaoContentId = "301B1EB5-1D6D-4AF1-8E8D-6CFBD9E95569"
     public static let eMentiraContentId = "82141C49-8622-49CD-A64A-CA94FB7FCBAF"
     
-    static func getTwelveNaoFodeMermaoSoundShareLogs() -> [ShareLog] {
-        var result = [ShareLog]()
+    static func getTwelveNaoFodeMermaoSoundShareLogs() -> [UserShareLog] {
+        var result = [UserShareLog]()
         for _ in 0...11 {
-            result.append(ShareLog(installId: installId, contentId: naoFodeMermaoContentId, contentType: 0, dateTime: Date(), destination: 0, destinationBundleId: .empty))
+            result.append(UserShareLog(installId: installId, contentId: naoFodeMermaoContentId, contentType: 0, dateTime: Date(), destination: 0, destinationBundleId: .empty))
         }
         return result
     }
     
-    static func getThirtyEightComunistaSoundShareLogs() -> [ShareLog] {
-        var result = [ShareLog]()
+    static func getThirtyEightComunistaSoundShareLogs() -> [UserShareLog] {
+        var result = [UserShareLog]()
         for _ in 0...37 {
-            result.append(ShareLog(installId: installId, contentId: comunistaContentId, contentType: 0, dateTime: Date(), destination: 0, destinationBundleId: .empty))
+            result.append(UserShareLog(installId: installId, contentId: comunistaContentId, contentType: 0, dateTime: Date(), destination: 0, destinationBundleId: .empty))
         }
         return result
     }
     
-    static func getFortyFourDeuErradoSoundShareLogs() -> [ShareLog] {
-        var result = [ShareLog]()
+    static func getFortyFourDeuErradoSoundShareLogs() -> [UserShareLog] {
+        var result = [UserShareLog]()
         for _ in 0...43 {
-            result.append(ShareLog(installId: installId, contentId: deuErradoContentId, contentType: 0, dateTime: Date(), destination: 0, destinationBundleId: .empty))
+            result.append(UserShareLog(installId: installId, contentId: deuErradoContentId, contentType: 0, dateTime: Date(), destination: 0, destinationBundleId: .empty))
         }
         return result
     }
     
-    static func getFortySixBomDiaSoundShareLogs() -> [ShareLog] {
-        var result = [ShareLog]()
+    static func getFortySixBomDiaSoundShareLogs() -> [UserShareLog] {
+        var result = [UserShareLog]()
         for _ in 0...45 {
-            result.append(ShareLog(installId: installId, contentId: bomDiaContentId, contentType: 0, dateTime: Date(), destination: 0, destinationBundleId: .empty))
+            result.append(UserShareLog(installId: installId, contentId: bomDiaContentId, contentType: 0, dateTime: Date(), destination: 0, destinationBundleId: .empty))
         }
         return result
     }
     
-    static func getSixtySixEuNaoErreiNenhumaSoundShareLogs() -> [ShareLog] {
-        var result = [ShareLog]()
+    static func getSixtySixEuNaoErreiNenhumaSoundShareLogs() -> [UserShareLog] {
+        var result = [UserShareLog]()
         for _ in 0...65 {
-            result.append(ShareLog(installId: installId, contentId: euNaoErreiNenhumaContentId, contentType: 0, dateTime: Date(), destination: 0, destinationBundleId: .empty))
+            result.append(UserShareLog(installId: installId, contentId: euNaoErreiNenhumaContentId, contentType: 0, dateTime: Date(), destination: 0, destinationBundleId: .empty))
         }
         return result
     }
     
-    static func getSeventySixNaoVamosFalarSoundShareLogs() -> [ShareLog] {
-        var result = [ShareLog]()
+    static func getSeventySixNaoVamosFalarSoundShareLogs() -> [UserShareLog] {
+        var result = [UserShareLog]()
         for _ in 0...75 {
-            result.append(ShareLog(installId: installId, contentId: naoVamosFalarDePornoAquiNaoContentId, contentType: 0, dateTime: Date(), destination: 0, destinationBundleId: .empty))
+            result.append(UserShareLog(installId: installId, contentId: naoVamosFalarDePornoAquiNaoContentId, contentType: 0, dateTime: Date(), destination: 0, destinationBundleId: .empty))
         }
         return result
     }
     
-    static func getFortyTwoEMentiraSoundShareLogs() -> [ShareLog] {
-        var result = [ShareLog]()
+    static func getFortyTwoEMentiraSoundShareLogs() -> [UserShareLog] {
+        var result = [UserShareLog]()
         for _ in 0...41 {
-            result.append(ShareLog(installId: installId, contentId: eMentiraContentId, contentType: 0, dateTime: Date(), destination: 0, destinationBundleId: .empty))
+            result.append(UserShareLog(installId: installId, contentId: eMentiraContentId, contentType: 0, dateTime: Date(), destination: 0, destinationBundleId: .empty))
         }
         return result
     }
