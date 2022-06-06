@@ -11,7 +11,7 @@ class NetworkRabbit {
     // MARK: - GET
     
     func getHelloFromServer(completionHandler: @escaping (String) -> Void) {
-        let url = URL(string: "\(serverPath)/hello/MedoDelirioBrasilia")!
+        let url = URL(string: serverPath + "hello/MedoDelirioBrasilia")!
 
         //var request = URLRequest(url: url)
 
@@ -33,7 +33,7 @@ class NetworkRabbit {
     }
     
     func checkServerStatus(completionHandler: @escaping (String) -> Void) {
-        let url = URL(string: serverPath)!
+        let url = URL(string: serverPath + "status-check")!
 
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             if let data = data {
@@ -47,7 +47,7 @@ class NetworkRabbit {
     }
     
     func getSoundShareCountStats(completionHandler: @escaping ([ServerShareCountStat]?, NetworkRabbitError?) -> Void) {
-        let url = URL(string: "\(serverPath)/api/SoundShareCountStats")!
+        let url = URL(string: serverPath + "sound-share-count-stats")!
 
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             guard let httpResponse = response as? HTTPURLResponse else {
@@ -75,7 +75,7 @@ class NetworkRabbit {
     // MARK: - POST
     
     func post(shareCountStat: ServerShareCountStat, completionHandler: @escaping (String) -> Void) {
-        let url = URL(string: "\(serverPath)/api/ShareCountStat")!
+        let url = URL(string: serverPath + "share-count-stat")!
 
         var request = URLRequest(url: url)
         request.httpMethod = "POST"

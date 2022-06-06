@@ -7,7 +7,7 @@ class NetworkRabbitTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        sut = NetworkRabbit(serverPath: "http://170.187.145.233:8080")
+        sut = NetworkRabbit(serverPath: "http://170.187.145.233:8080/api/v1/")
     }
     
     override func tearDown() {

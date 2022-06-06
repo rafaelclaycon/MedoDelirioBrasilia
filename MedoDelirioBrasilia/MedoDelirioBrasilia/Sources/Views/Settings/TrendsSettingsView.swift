@@ -29,11 +29,11 @@ struct TrendsSettingsView: View {
             } header: {
                 Text("Escolha o que deseja usar")
             } footer: {
-                Text("Confira os dados enviados, SE a opção acima estivar ativada: ID de instalação, ID do conteúdo compartilhado, tipo do conteúdo (som ou música), data e hora do compartilhamento, nome do app pelo qual o conteúdo foi compartilhado.")
+                Text("Confira os dados enviados SE a opção acima estivar ativada: ID de instalação, ID do conteúdo compartilhado, tipo do conteúdo (som ou música), quantidade total de compartilhamentos, nome do app pelo qual o conteúdo foi compartilhado.")
             }
             //.disabled(trendsEnabled == false)
             
-            Section("Apagar logs") {
+            Section("Apagar histórico local de compartilhamento") {
                 Button("Limpar todos os registros locais") {
                     try? database.deleteAllUserShareLogs()
                 }

@@ -10,7 +10,7 @@
       }
     },
     {
-      "identity" : "sqlitemigrationmanager.swift?utm_source=pocket_mylist",
+      "identity" : "sqlitemigrationmanager.swift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/garriguv/SQLiteMigrationManager.swift",
       "state" : {

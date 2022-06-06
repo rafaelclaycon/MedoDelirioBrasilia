@@ -9,6 +9,22 @@ struct UserShareLog: Hashable, Codable {
     var destination: Int
     var destinationBundleId: String
     var sentToServer: Bool
+    
+    init(installId: String,
+         contentId: String,
+         contentType: Int,
+         dateTime: Date,
+         destination: Int,
+         destinationBundleId: String,
+         sentToServer: Bool = false) {
+        self.installId = installId
+        self.contentId = contentId
+        self.contentType = contentType
+        self.dateTime = dateTime
+        self.destination = destination
+        self.destinationBundleId = destinationBundleId
+        self.sentToServer = sentToServer
+    }
 
 }
 

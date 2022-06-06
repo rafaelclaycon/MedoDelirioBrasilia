@@ -14,7 +14,7 @@ class LoggerTests: XCTestCase {
     }
     
     func test_getTop5Sounds_whenNoSoundSharedYet_shouldReturnNil() {
-        XCTAssertNil(Logger.getTop5Sounds())
+        XCTAssertNil(Podium.getTop5SoundsSharedByTheUser())
     }
     
     func test_getTop5Sounds_whenHasJustTwoSharedSounds_shouldReturn2TopChartItems() throws {
@@ -29,7 +29,7 @@ class LoggerTests: XCTestCase {
                                                   destination: ShareDestination.whatsApp.rawValue,
                                                   destinationBundleId: "net.whatsapp.WhatsApp.ShareExtension"))
         
-        let logs = Logger.getTop5Sounds()
+        let logs = Podium.getTop5SoundsSharedByTheUser()
         XCTAssertNotNil(logs)
         XCTAssertEqual(logs!.count, 2)
         
@@ -64,7 +64,7 @@ class LoggerTests: XCTestCase {
             try sut.insert(userShareLog: log)
         }
         
-        let logs = Logger.getTop5Sounds()
+        let logs = Podium.getTop5SoundsSharedByTheUser()
         XCTAssertNotNil(logs)
         XCTAssertEqual(logs!.count, 5)
         
