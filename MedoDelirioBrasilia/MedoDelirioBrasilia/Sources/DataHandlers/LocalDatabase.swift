@@ -5,8 +5,10 @@ import SQLiteMigrationManager
 class LocalDatabase {
 
     private var db: Connection
+    
     private var favorite = Table("favorite")
-    private var shareLog = Table("shareLog")
+    private var userShareLog = Table("userShareLog")
+    private var audienceSharingStatistic = Table("audienceSharingStatistic")
 
     // MARK: - Init
 
@@ -18,7 +20,8 @@ class LocalDatabase {
         do {
             db = try Connection("\(path)/medo_db.sqlite3")
             try createFavoriteTable()
-            //try createShareLogTable()
+            try createUserShareLogTable()
+            try createAudienceSharingStatisticTable()
         } catch {
             fatalError(error.localizedDescription)
         }
@@ -44,21 +47,35 @@ class LocalDatabase {
         })
     }
     
-    private func createShareLogTable() throws {
+    private func createUserShareLogTable() throws {
         let install_id = Expression<String>("installId")
         let content_id = Expression<String>("contentId")
         let content_type = Expression<Int>("contentType")
         let date_time = Expression<Date>("dateTime")
         let destination = Expression<Int>("destination")
         let destination_bundle_id = Expression<String>("destinationBundleId")
+        let sent_to_server = Expression<Bool>("sentToServer")
 
-        try db.run(shareLog.create(ifNotExists: true) { t in
+        try db.run(userShareLog.create(ifNotExists: true) { t in
             t.column(install_id)
             t.column(content_id)
             t.column(content_type)
             t.column(date_time)
             t.column(destination)
             t.column(destination_bundle_id)
+            t.column(sent_to_server)
+        })
+    }
+    
+    private func createAudienceSharingStatisticTable() throws {
+        let content_id = Expression<String>("contentId")
+        let content_type = Expression<Int>("contentType")
+        let share_count = Expression<Int>("shareCount")
+
+        try db.run(audienceSharingStatistic.create(ifNotExists: true) { t in
+            t.column(content_id)
+            t.column(content_type)
+            t.column(share_count)
         })
     }
     
@@ -106,38 +123,44 @@ class LocalDatabase {
         return queriedFavorites.count > 0
     }
     
-    // MARK: - Share Log
+    // MARK: - User Share Log
     
-    func getShareLogCount() throws -> Int {
-        try db.scalar(shareLog.count)
+    func getUserShareLogCount() throws -> Int {
+        try db.scalar(userShareLog.count)
     }
     
-    func insert(shareLog newLog: ShareLog) throws {
-        let insert = try shareLog.insert(newLog)
+    func insert(userShareLog newLog: UserShareLog) throws {
+        let insert = try userShareLog.insert(newLog)
         try db.run(insert)
     }
     
-    func getAllShareLogs() throws -> [ShareLog] {
-        var queriedItems = [ShareLog]()
+    func getAllUserShareLogs() throws -> [UserShareLog] {
+        var queriedItems = [UserShareLog]()
 
-        for queriedItem in try db.prepare(shareLog) {
+        for queriedItem in try db.prepare(userShareLog) {
             queriedItems.append(try queriedItem.decode())
         }
         return queriedItems
     }
     
-    func deleteAllShareLogs() throws {
-        try db.run(shareLog.delete())
+    func deleteAllUserShareLogs() throws {
+        try db.run(userShareLog.delete())
     }
     
-    // MARK: - Logger
+    // MARK: - Personal Top Chart
     
-    func getTop5SharedContent() throws -> [TopChartItem] {
+    func getTop5SoundsSharedByTheUser() throws -> [TopChartItem] {
         var result = [TopChartItem]()
         let content_id = Expression<String>("contentId")
+        let content_type = Expression<Int>("contentType")
         
         let contentCount = content_id.count
-        for row in try db.prepare(shareLog.select(content_id,contentCount).group(content_id).order(contentCount.desc).limit(5)) {
+        for row in try db.prepare(userShareLog
+                                      .select(content_id,contentCount)
+                                      .where(content_type == 0)
+                                      .group(content_id)
+                                      .order(contentCount.desc)
+                                      .limit(5)) {
             result.append(TopChartItem(id: .empty,
                                        contentId: row[content_id],
                                        contentName: .empty,
@@ -146,6 +169,66 @@ class LocalDatabase {
                                        shareCount: row[contentCount]))
         }
         return result
+    }
+    
+    // MARK: - Audience Top Chart
+    
+    func getTop5SoundsSharedByTheAudience() throws -> [TopChartItem] {
+        var result = [TopChartItem]()
+        let content_id = Expression<String>("contentId")
+        let content_type = Expression<Int>("contentType")
+        let share_count = Expression<Int>("shareCount")
+        
+        let totalShareCount = share_count.sum
+        for row in try db.prepare(audienceSharingStatistic
+                                      .select(content_id,totalShareCount)
+                                      .where(content_type == 0)
+                                      .group(content_id)
+                                      .order(totalShareCount.desc)
+                                      .limit(5)) {
+            result.append(TopChartItem(id: .empty,
+                                       contentId: row[content_id],
+                                       contentName: .empty,
+                                       contentAuthorId: .empty,
+                                       contentAuthorName: .empty,
+                                       shareCount: row[totalShareCount] ?? 0))
+        }
+        return result
+    }
+    
+    // MARK: - User statistics to be sent to the server
+    
+    func getShareCountByUniqueContentId() throws -> [ServerShareCountStat] {
+        var result = [ServerShareCountStat]()
+        
+        let install_id = Expression<String>("installId")
+        let content_id = Expression<String>("contentId")
+        let content_type = Expression<Int>("contentType")
+        let sent_to_server = Expression<Bool>("sentToServer")
+        
+        let contentCount = content_id.count
+        for row in try db.prepare(userShareLog
+                                      .select(install_id,content_id,content_type,contentCount)
+                                      .where(sent_to_server == false)
+                                      .group(content_id)
+                                      .order(contentCount.desc)) {
+            result.append(ServerShareCountStat(installId: row[install_id],
+                                               contentId: row[content_id],
+                                               contentType: row[content_type],
+                                               shareCount: row[contentCount]))
+        }
+        return result
+    }
+    
+    // MARK: - Audience statistics from the server
+    
+    func insert(audienceStat newAudienceStat: AudienceShareCountStat) throws {
+        let insert = try audienceSharingStatistic.insert(newAudienceStat)
+        try db.run(insert)
+    }
+    
+    func getAudienceSharingStatCount() throws -> Int {
+        try db.scalar(audienceSharingStatistic.count)
     }
 
 }

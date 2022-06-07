@@ -1,6 +1,6 @@
 import Foundation
 
-struct ShareLog: Hashable, Codable {
+struct UserShareLog: Hashable, Codable {
 
     var installId: String
     var contentId: String
@@ -8,6 +8,23 @@ struct ShareLog: Hashable, Codable {
     var dateTime: Date
     var destination: Int
     var destinationBundleId: String
+    var sentToServer: Bool
+    
+    init(installId: String,
+         contentId: String,
+         contentType: Int,
+         dateTime: Date,
+         destination: Int,
+         destinationBundleId: String,
+         sentToServer: Bool = false) {
+        self.installId = installId
+        self.contentId = contentId
+        self.contentType = contentType
+        self.dateTime = dateTime
+        self.destination = destination
+        self.destinationBundleId = destinationBundleId
+        self.sentToServer = sentToServer
+    }
 
 }
 

@@ -27,7 +27,7 @@ struct SettingsView: View {
                             }
                             .padding(.bottom, -10)
                         
-                        /*NavigationLink {
+                        NavigationLink {
                             TrendsSettingsView()
                         } label: {
                             HStack {
@@ -39,8 +39,22 @@ struct SettingsView: View {
                             }
                             .padding(.horizontal)
                         }
+                        .padding(.top, 4)
                         
-                        Divider()*/
+                        NavigationLink {
+                            DiagnosticsView()
+                        } label: {
+                            HStack {
+                                Text("Diagnóstico")
+                                
+                                Spacer()
+                                
+                                Image(systemName: "chevron.forward")
+                            }
+                            .padding(.horizontal)
+                        }
+                        
+                        Divider()
                         
                         VStack(alignment: .center, spacing: 5) {
                             Text("Esse app é uma homenagem ao brilhante trabalho de **Cristiano Botafogo** e **Pedro Daltro** no podcast **Medo e Delírio em Brasília**. Ouça no seu agregador de podcasts favorito.")

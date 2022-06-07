@@ -8,12 +8,12 @@ class LocalDatabaseTests: XCTestCase {
 
     override func setUpWithError() throws {
         XCTAssertEqual(try sut.getFavoriteCount(), 0)
-        XCTAssertEqual(try sut.getShareLogCount(), 0)
+        XCTAssertEqual(try sut.getUserShareLogCount(), 0)
     }
 
     override func tearDownWithError() throws {
         XCTAssertNoThrow(try sut.deleteAllFavorites())
-        XCTAssertNoThrow(try sut.deleteAllShareLogs())
+        XCTAssertNoThrow(try sut.deleteAllUserShareLogs())
     }
     
     // MARK: - Favorites
@@ -48,17 +48,27 @@ class LocalDatabaseTests: XCTestCase {
         XCTAssertThrowsError(try sut.insert(favorite: favorite))
     }
     
-    // MARK: - Share Logs
+    // MARK: - User Share Logs
     
-    func test_insertShareLog_whenInsertIsSuccessful_shouldReturnShareLogCount1() {
-        let log = ShareLog(installId: "76BE9811-D3D6-4DFC-8B37-6A8B83A1DF9A",
-                           contentId: "6E4251F8-FE50-46E1-B8ED-6E24CEA1EB15",
-                           contentType: ContentType.sound.rawValue,
-                           dateTime: Date(),
-                           destination: ShareDestination.whatsApp.rawValue,
-                           destinationBundleId: "net.whatsapp.WhatsApp.ShareExtension")
-        XCTAssertNoThrow(try sut.insert(shareLog: log))
-        XCTAssertEqual(try sut.getShareLogCount(), 1)
+    func test_insertUserShareLog_whenInsertIsSuccessful_shouldReturnShareLogCount1() {
+        let log = UserShareLog(installId: "76BE9811-D3D6-4DFC-8B37-6A8B83A1DF9A",
+                               contentId: "6E4251F8-FE50-46E1-B8ED-6E24CEA1EB15",
+                               contentType: ContentType.sound.rawValue,
+                               dateTime: Date(),
+                               destination: ShareDestination.whatsApp.rawValue,
+                               destinationBundleId: "net.whatsapp.WhatsApp.ShareExtension")
+        XCTAssertNoThrow(try sut.insert(userShareLog: log))
+        XCTAssertEqual(try sut.getUserShareLogCount(), 1)
+    }
+    
+    // MARK: - User Share Logs
+    
+    func test_insertAudienceSharingStat_whenInsertIsSuccessful_shouldReturnSharingStatCount1() {
+        let stat = AudienceShareCountStat(contentId: "6E4251F8-FE50-46E1-B8ED-6E24CEA1EB15",
+                                          contentType: ContentType.sound.rawValue,
+                                          shareCount: 16)
+        XCTAssertNoThrow(try sut.insert(audienceStat: stat))
+        XCTAssertEqual(try sut.getAudienceSharingStatCount(), 1)
     }
 
 }

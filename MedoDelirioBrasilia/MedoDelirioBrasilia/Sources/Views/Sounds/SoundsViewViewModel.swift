@@ -110,15 +110,17 @@ class SoundsViewViewModel: ObservableObject {
         DispatchQueue.main.async {
             UIApplication.shared.keyWindow?.rootViewController?.present(activityVC, animated: true, completion: nil)
         }
-//        activityVC.completionWithItemsHandler = { activity, completed, items, error in
-//            if completed {
-//                guard let activity = activity else {
-//                    return
-//                }
-//                let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
-//                Logger.logSharedSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
-//            }
-//        }
+        activityVC.completionWithItemsHandler = { activity, completed, items, error in
+            if completed {
+                guard let activity = activity else {
+                    return
+                }
+                let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
+                Logger.logSharedSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
+                
+                AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
+            }
+        }
     }
     
     func addToFavorites(soundId: String) {
