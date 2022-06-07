@@ -20,8 +20,8 @@ class LocalDatabase {
         do {
             db = try Connection("\(path)/medo_db.sqlite3")
             try createFavoriteTable()
-            try createUserShareLogTable()
-            try createAudienceSharingStatisticTable()
+            /*try createUserShareLogTable()
+            try createAudienceSharingStatisticTable()*/
         } catch {
             fatalError(error.localizedDescription)
         }

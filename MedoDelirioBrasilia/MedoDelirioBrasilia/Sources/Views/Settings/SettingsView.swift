@@ -27,7 +27,7 @@ struct SettingsView: View {
                             }
                             .padding(.bottom, -10)
                         
-                        NavigationLink {
+                        /*NavigationLink {
                             TrendsSettingsView()
                         } label: {
                             HStack {
@@ -54,34 +54,11 @@ struct SettingsView: View {
                             .padding(.horizontal)
                         }
                         
-                        Divider()
+                        Divider()*/
                         
-                        VStack(alignment: .center, spacing: 5) {
-                            Text("Esse app é uma homenagem ao brilhante trabalho de **Cristiano Botafogo** e **Pedro Daltro** no podcast **Medo e Delírio em Brasília**. Ouça no seu agregador de podcasts favorito.")
-                                .multilineTextAlignment(.center)
-                                .padding(.horizontal)
-                            
-//                            Button(action: {
-//                                let podcastLinkOnApplePodcasts = "https://podcasts.apple.com/br/podcast/medo-e-del%C3%ADrio-em-bras%C3%ADlia/id1502134265"
-//                                let podcastAppUrl = URL(string: podcastLinkOnApplePodcasts)!
-//                                if UIApplication.shared.canOpenURL(podcastAppUrl) {
-//                                    UIApplication.shared.open(podcastAppUrl)
-//                                } else {
-//                                    showUnableToOpenPodcastsAppAlert = true
-//                                }
-//                            }) {
-//                                Text("Ver no Apple Podcasts")
-//                                    .font(.callout)
-//                            }
-//                            .tint(.purple)
-//                            .controlSize(.large)
-//                            .buttonStyle(.bordered)
-//                            .buttonBorderShape(.roundedRectangle)
-//                            .padding(.top)
-//                            .alert(isPresented: $showUnableToOpenPodcastsAppAlert) {
-//                                Alert(title: Text("Não Pôde Abrir o App Podcasts"), message: Text("Por favor, procure pelo app Podcasts no seu iPhone para continuar."), dismissButton: .default(Text("OK")))
-//                            }
-                        }
+                        Text("Esse app é uma homenagem ao brilhante trabalho de **Cristiano Botafogo** e **Pedro Daltro** no podcast **Medo e Delírio em Brasília**. Ouça no seu agregador de podcasts favorito.")
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal)
                         
                         VStack(alignment: .center, spacing: 5) {
                             Text("**Ô, CARA, APROVEITA QUE TÁ AQUI E PAGA UMA 🍺 PARA O DESENVOLVEDOR POR PIX, MORÔ, CARA.**")
