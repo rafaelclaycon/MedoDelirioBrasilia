@@ -1798,5 +1798,50 @@
         "filename": "Bolsonaro - O problema ta ai, lamentamos.mp3",
         "dateAdded": "2021-03-05T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "166B52AF-1ED2-4E12-AB88-F7CD7A5919D3",
+        "title": "Por que será?!",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "por que sera",
+        "filename": "Por que sera short meme.mp3",
+        "dateAdded": "2022-05-30T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "BBF34F8A-A485-4D76-A10A-998A032F0182",
+        "title": "Sai, Alexandre de Moraes!",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "sai alexandre de moraes",
+        "filename": "SBT NEWS - Bolsonaro - Sai, Alexandre de Moraes.mp3",
+        "dateAdded": "2022-05-30T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "DEC2E39A-061F-4E11-AD0B-E074EAD78A8D",
+        "title": "Sai, Alexandre de Moraes! Deixa de ser canalha!",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "sai alexandre de moraes deixa de ser canalha",
+        "filename": "SBT NEWS - Bolsonaro - Sai alexandre de moraes deixa de ser canalha.mp3",
+        "dateAdded": "2022-05-30T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "B34B7427-517C-42BE-84A8-90E3E94EC244",
+        "title": "Ah, vá à merda, porra!",
+        "authorId": "2982E359-0A6C-4005-AED8-2D5BB7F39599",
+        "description": "ah va a merda porra",
+        "filename": "Alborghetti - Ah, va a merda porra.mp3",
+        "dateAdded": "2022-06-07T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "A1948C58-24AE-468E-A5B8-9F8541E647AA",
+        "title": "Não lhe dou o aparte",
+        "authorId": "C3846559-8B51-4A0E-89F6-46FA2910600E",
+        "description": "Não lhe dou o aparte",
+        "filename": "Maluf - Não lhe dou o aparte.mp3",
+        "dateAdded": "2022-06-07T00:00:00Z",
+        "isOffensive": false
     }
 ]

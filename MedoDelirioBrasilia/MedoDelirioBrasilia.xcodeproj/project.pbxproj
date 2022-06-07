@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		D90F6A6628446C250050FFFF /* TrendsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */; };
+		D911EF60284EF6EA00562608 /* Por que sera short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D911EF5D284EF6EA00562608 /* Por que sera short meme.mp3 */; };
+		D911EF61284EF6EA00562608 /* SBT NEWS - Bolsonaro - Sai, Alexandre de Moraes.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D911EF5E284EF6EA00562608 /* SBT NEWS - Bolsonaro - Sai, Alexandre de Moraes.mp3 */; };
+		D911EF62284EF6EA00562608 /* SBT NEWS - Bolsonaro - Sai alexandre de moraes deixa de ser canalha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D911EF5F284EF6EA00562608 /* SBT NEWS - Bolsonaro - Sai alexandre de moraes deixa de ser canalha.mp3 */; };
+		D911EF65284EFAE800562608 /* Alborghetti - Ah, va a merda porra.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D911EF63284EFAE800562608 /* Alborghetti - Ah, va a merda porra.mp3 */; };
+		D911EF66284EFAE800562608 /* Maluf - Não lhe dou o aparte.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D911EF64284EFAE800562608 /* Maluf - Não lhe dou o aparte.mp3 */; };
 		D92879E4283EEE1D00369CE5 /* Bolsonaro - Buscamos uma solucao, quem tiver tras pra mim tras pra mim.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879E3283EEE1D00369CE5 /* Bolsonaro - Buscamos uma solucao, quem tiver tras pra mim tras pra mim.mp3 */; };
 		D92879E7283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879E5283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 */; };
 		D92879E8283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879E6283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 */; };
@@ -278,6 +283,11 @@
 
 /* Begin PBXFileReference section */
 		D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsSettingsView.swift; sourceTree = "<group>"; };
+		D911EF5D284EF6EA00562608 /* Por que sera short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Por que sera short meme.mp3"; sourceTree = "<group>"; };
+		D911EF5E284EF6EA00562608 /* SBT NEWS - Bolsonaro - Sai, Alexandre de Moraes.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "SBT NEWS - Bolsonaro - Sai, Alexandre de Moraes.mp3"; sourceTree = "<group>"; };
+		D911EF5F284EF6EA00562608 /* SBT NEWS - Bolsonaro - Sai alexandre de moraes deixa de ser canalha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "SBT NEWS - Bolsonaro - Sai alexandre de moraes deixa de ser canalha.mp3"; sourceTree = "<group>"; };
+		D911EF63284EFAE800562608 /* Alborghetti - Ah, va a merda porra.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alborghetti - Ah, va a merda porra.mp3"; sourceTree = "<group>"; };
+		D911EF64284EFAE800562608 /* Maluf - Não lhe dou o aparte.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Maluf - Não lhe dou o aparte.mp3"; sourceTree = "<group>"; };
 		D92879E3283EEE1D00369CE5 /* Bolsonaro - Buscamos uma solucao, quem tiver tras pra mim tras pra mim.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Buscamos uma solucao, quem tiver tras pra mim tras pra mim.mp3"; sourceTree = "<group>"; };
 		D92879E5283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Nao era fake news era jornalismo.mp3"; sourceTree = "<group>"; };
 		D92879E6283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pena que nao pode ver um impeachment.mp3"; sourceTree = "<group>"; };
@@ -624,6 +634,11 @@
 		D940E27D283AA27D00392D1C /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D911EF63284EFAE800562608 /* Alborghetti - Ah, va a merda porra.mp3 */,
+				D911EF64284EFAE800562608 /* Maluf - Não lhe dou o aparte.mp3 */,
+				D911EF5D284EF6EA00562608 /* Por que sera short meme.mp3 */,
+				D911EF5F284EF6EA00562608 /* SBT NEWS - Bolsonaro - Sai alexandre de moraes deixa de ser canalha.mp3 */,
+				D911EF5E284EF6EA00562608 /* SBT NEWS - Bolsonaro - Sai, Alexandre de Moraes.mp3 */,
 				D9351C342844068400D4317E /* ÁTILA IAMARINO - A gente está basicamente sabotando a campanha de vacinação do mundo.mp3 */,
 				D9351C312844068400D4317E /* ÁTILA IAMARINO - E vão empilhar sequela em cima de sequela.mp3 */,
 				D9351C2E2844068400D4317E /* ÁTILA IAMARINO - Ele faz sexo.mp3 */,
@@ -1139,6 +1154,7 @@
 				D9E1173A283EDE5C0043E2F2 /* Choque de Cultura - Rogerinho - Aqui tem informação.mp3 in Resources */,
 				D9351C472844068400D4317E /* Bolsonaro - Que e a maneira que voce tem de realmente pensar em coisa seria no pais.mp3 in Resources */,
 				D94A4265283E85D500A504BD /* Leo Stronda Porra.mp3 in Resources */,
+				D911EF66284EFAE800562608 /* Maluf - Não lhe dou o aparte.mp3 in Resources */,
 				D92E706E283C5C2C0035826C /* Eu volto pro ostracismo.mp3 in Resources */,
 				D94A4275283E895F00A504BD /* Saiddy Bamba - Vai chorar é vai chorar é chore na minha.mp3 in Resources */,
 				D9F117B6283F4E01005D6BA3 /* Reinaldo Azevedo - Parte Terminal do Aparelho Digestivo.mp3 in Resources */,
@@ -1166,6 +1182,7 @@
 				D99DC1992842203E002B03B6 /* Bolsonaro - Ô cara ô cara.mp3 in Resources */,
 				D9E11746283EDE5C0043E2F2 /* Caetano - Não short.mp3 in Resources */,
 				D9F117B7283F4E01005D6BA3 /* Dráuzio - procura um psiquiatra, você não tá legal.mp3 in Resources */,
+				D911EF60284EF6EA00562608 /* Por que sera short meme.mp3 in Resources */,
 				D9287A04283EF59F00369CE5 /* Neto - Vocês estão de sacanagem short.mp3 in Resources */,
 				D9F117B3283F4E01005D6BA3 /* Regina Duarte - Pum.mp3 in Resources */,
 				D9F117AA283F4927005D6BA3 /* Pazuello - E simples assim, um manda e o outro obedece.mp3 in Resources */,
@@ -1182,6 +1199,7 @@
 				D9F117A2283F4927005D6BA3 /* Cidade Oculta - Voce fala isso porque e a putinha do bozo.mp3 in Resources */,
 				D9F117AD283F4927005D6BA3 /* Sera mesmo.mp3 in Resources */,
 				D9351C4B2844068400D4317E /* Bolsonaro - O problema ta ai, lamentamos.mp3 in Resources */,
+				D911EF65284EFAE800562608 /* Alborghetti - Ah, va a merda porra.mp3 in Resources */,
 				D9E11740283EDE5C0043E2F2 /* CHOQUE DE CULTURA - Rogerinho Às vezes o ódio é a única emoção possível short.mp3 in Resources */,
 				D9E1175E283EE4F40043E2F2 /* Silas Malafaia - Mentiroso sem vergonha vai pro inferno short.mp3 in Resources */,
 				D9F117A5283F4927005D6BA3 /* Silas Malafaia - gente que vive tanto na mentira que faz dela a sua verdade.mp3 in Resources */,
@@ -1269,6 +1287,7 @@
 				D940E2A7283AA2C200392D1C /* esse_neto_bosta.mp3 in Resources */,
 				D9F117A8283F4927005D6BA3 /* Bolsonaro - Sera que eu to errando ao falar isso dai.mp3 in Resources */,
 				D94A4271283E87E100A504BD /* CIRO GOMES - Paulo Guedes mentiroso tá enganando a rapazeada paulo guedes.mp3 in Resources */,
+				D911EF61284EF6EA00562608 /* SBT NEWS - Bolsonaro - Sai, Alexandre de Moraes.mp3 in Resources */,
 				D9BF90AE2842DEFB00BDDD7D /* ÁTILA IAMARINO - É um vírus mais transmissível que mata mais.mp3 in Resources */,
 				D98622E928400AB600E9F630 /* Bolsonaro - Eu não errei nenhuma.mp3 in Resources */,
 				D99DC18A2842203E002B03B6 /* Mourão - Heróis matam short.mp3 in Resources */,
@@ -1289,6 +1308,7 @@
 				D9351C442844068400D4317E /* Falha de Cobertura - Cerginho da Pereira Nunes - Doidera.mp3 in Resources */,
 				D9BF90B22842DEFB00BDDD7D /* Bolsonaro - Na ordem de 800 pessoas a previsão é não chegar a isso no tocante ao coronavírus.mp3 in Resources */,
 				D9351C422844068400D4317E /* Gilmar Mendes - Não é razoável.mp3 in Resources */,
+				D911EF62284EF6EA00562608 /* SBT NEWS - Bolsonaro - Sai alexandre de moraes deixa de ser canalha.mp3 in Resources */,
 				D9E11763283EE4F40043E2F2 /* Temer - Não renunciarei short.mp3 in Resources */,
 				D9BF90AF2842DEFB00BDDD7D /* Bolsonaro - Ta sendo superdimensionado o poder destruidor desse virus.mp3 in Resources */,
 				D98622FB28400E7800E9F630 /* Quase ninguem de mascara.mp3 in Resources */,
@@ -1551,7 +1571,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				ENABLE_PREVIEWS = YES;
@@ -1566,7 +1586,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.2;
+				MARKETING_VERSION = 1.3.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = "Medo e Delírio";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1581,7 +1601,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				ENABLE_PREVIEWS = YES;
@@ -1596,7 +1616,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.2;
+				MARKETING_VERSION = 1.3.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = "Medo e Delírio";
 				SWIFT_EMIT_LOC_STRINGS = YES;
