@@ -1825,5 +1825,23 @@
         "filename": "SBT NEWS - Bolsonaro - Sai alexandre de moraes deixa de ser canalha.mp3",
         "dateAdded": "2022-05-30T00:00:00Z",
         "isOffensive": true
+    },
+    {
+        "id": "B34B7427-517C-42BE-84A8-90E3E94EC244",
+        "title": "Ah, vá à merda, porra!",
+        "authorId": "2982E359-0A6C-4005-AED8-2D5BB7F39599",
+        "description": "ah va a merda porra",
+        "filename": "Alborghetti - Ah, va a merda porra.mp3",
+        "dateAdded": "2022-06-07T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "A1948C58-24AE-468E-A5B8-9F8541E647AA",
+        "title": "Não lhe dou o aparte",
+        "authorId": "C3846559-8B51-4A0E-89F6-46FA2910600E",
+        "description": "Não lhe dou o aparte",
+        "filename": "Maluf - Não lhe dou o aparte.mp3",
+        "dateAdded": "2022-06-07T00:00:00Z",
+        "isOffensive": false
     }
 ]
