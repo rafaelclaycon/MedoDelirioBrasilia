@@ -165,6 +165,7 @@
 		D98EC5E12825A05900340BE5 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5E02825A05900340BE5 /* Sound.swift */; };
 		D98EC5E32825A45000340BE5 /* SoundsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5E22825A45000340BE5 /* SoundsViewViewModel.swift */; };
 		D991E598284A94F70005705F /* Podium.swift in Sources */ = {isa = PBXBuildFile; fileRef = D991E597284A94F70005705F /* Podium.swift */; };
+		D998F28F284F177B0013E709 /* TrendsDisabledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998F28E284F177B0013E709 /* TrendsDisabledView.swift */; };
 		D99B9DCA2848148600897930 /* ServerStatsAndLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99B9DC92848148600897930 /* ServerStatsAndLogs.swift */; };
 		D99DC1892842203E002B03B6 /* Datena - Gol do presidente Bolsonaro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99DC1762842203E002B03B6 /* Datena - Gol do presidente Bolsonaro.mp3 */; };
 		D99DC18A2842203E002B03B6 /* Mourão - Heróis matam short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99DC1772842203E002B03B6 /* Mourão - Heróis matam short.mp3 */; };
@@ -446,6 +447,7 @@
 		D98EC5E02825A05900340BE5 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		D98EC5E22825A45000340BE5 /* SoundsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsViewViewModel.swift; sourceTree = "<group>"; };
 		D991E597284A94F70005705F /* Podium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Podium.swift; sourceTree = "<group>"; };
+		D998F28E284F177B0013E709 /* TrendsDisabledView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsDisabledView.swift; sourceTree = "<group>"; };
 		D99B9DC92848148600897930 /* ServerStatsAndLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerStatsAndLogs.swift; sourceTree = "<group>"; };
 		D99DC1762842203E002B03B6 /* Datena - Gol do presidente Bolsonaro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Datena - Gol do presidente Bolsonaro.mp3"; sourceTree = "<group>"; };
 		D99DC1772842203E002B03B6 /* Mourão - Heróis matam short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mourão - Heróis matam short.mp3"; sourceTree = "<group>"; };
@@ -1046,6 +1048,7 @@
 				D958B1AF28394EA40010F133 /* TrendsView.swift */,
 				D957509528445EC30094AEA6 /* TrendsViewViewModel.swift */,
 				D9BF90BD2842EAED00BDDD7D /* TopChartCellView.swift */,
+				D998F28E284F177B0013E709 /* TrendsDisabledView.swift */,
 			);
 			path = Trends;
 			sourceTree = "<group>";
@@ -1434,6 +1437,7 @@
 				D92C0CAA28405B2D009CF19A /* NoFavoritesView.swift in Sources */,
 				D9BF90BE2842EAED00BDDD7D /* TopChartCellView.swift in Sources */,
 				D94A4214283DC52800A504BD /* SongHelpView.swift in Sources */,
+				D998F28F284F177B0013E709 /* TrendsDisabledView.swift in Sources */,
 				D991E598284A94F70005705F /* Podium.swift in Sources */,
 				D980456228380F66003B2E83 /* LocalizableStrings.swift in Sources */,
 				D961D025283731AA00EFEDEB /* SoundHelpView.swift in Sources */,
