@@ -11,7 +11,7 @@ class NetworkRabbit {
     // MARK: - GET
     
     func getHelloFromServer(completionHandler: @escaping (String) -> Void) {
-        let url = URL(string: serverPath + "hello/MedoDelirioBrasilia")!
+        let url = URL(string: serverPath + "v1/hello/MedoDelirioBrasilia")!
 
         //var request = URLRequest(url: url)
 
@@ -33,7 +33,7 @@ class NetworkRabbit {
     }
     
     func checkServerStatus(completionHandler: @escaping (String) -> Void) {
-        let url = URL(string: serverPath + "status-check")!
+        let url = URL(string: serverPath + "v1/status-check")!
 
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             if let data = data {
@@ -47,7 +47,7 @@ class NetworkRabbit {
     }
     
     func getSoundShareCountStats(completionHandler: @escaping ([ServerShareCountStat]?, NetworkRabbitError?) -> Void) {
-        let url = URL(string: serverPath + "sound-share-count-stats")!
+        let url = URL(string: serverPath + "v1/sound-share-count-stats")!
 
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             guard let httpResponse = response as? HTTPURLResponse else {
@@ -75,7 +75,7 @@ class NetworkRabbit {
     // MARK: - POST
     
     func post(shareCountStat: ServerShareCountStat, completionHandler: @escaping (String) -> Void) {
-        let url = URL(string: serverPath + "share-count-stat")!
+        let url = URL(string: serverPath + "v1/share-count-stat")!
 
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -102,6 +102,40 @@ class NetworkRabbit {
                 }
             } else if let error = error {
                 completionHandler("HTTP Request Failed \(error.localizedDescription)")
+            }
+        }
+
+        task.resume()
+    }
+    
+    func post(clientDeviceInfo: ClientDeviceInfo, completionHandler: @escaping (Bool?, NetworkRabbitError?) -> Void) {
+        let url = URL(string: serverPath + "v1/client-device-info")!
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let jsonEncoder = JSONEncoder()
+        let jsonData = try? jsonEncoder.encode(clientDeviceInfo)
+        request.httpBody = jsonData
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let httpResponse = response as? HTTPURLResponse else {
+                return completionHandler(nil, .responseWasNotAnHTTPURLResponse)
+            }
+             
+            guard httpResponse.statusCode == 200 else {
+                return completionHandler(nil, .unexpectedStatusCode)
+            }
+            
+            if let data = data {
+                if (try? JSONDecoder().decode(ClientDeviceInfo.self, from: data)) != nil {
+                    completionHandler(true, nil)
+                } else {
+                    completionHandler(nil, .invalidResponse)
+                }
+            } else if error != nil {
+                completionHandler(nil, .httpRequestFailed)
             }
         }
 
