@@ -4,6 +4,8 @@
 
 iOS app with sound inserts from [Medo e Delírio em Brasília](https://medoedelirioembrasilia.com.br), a Brazilian podcast chronicling the disastrous Bolsonaro presidency by Pedro Daltro and Cristiano Botafogo.
 
+![The app running on an iPhone simulator on a Mac.](MedoDelirioBrasilia/MedoDelirioBrasilia/Resources/readme_demo.gif)
+
 ✨ [**Now available on the App Store**](https://apps.apple.com/br/app/medo-e-del%C3%ADrio/id1625199878) ✨
 
 Looking for an Android version? Check out [Sidronio Lima's Android app 🤖](https://play.google.com/store/apps/details?id=br.com.sidroniolima.medo_e_delirio_app)
@@ -12,13 +14,18 @@ Looking for an Android version? Check out [Sidronio Lima's Android app 🤖](htt
 
 1. Play sound.
 1. Share sound.
+1. Favorite sound.
+1. View sounds sorted by title, author name or date added.
+1. View sounds grouped by author.
+1. Play songs from the podcast.
+1. Filter by Favorites.
 
 ## How to run
 
 ### Prerequisites
 
 - iOS 15.0+
-- Xcode 13+
+- Xcode 13.4+
 
 ## App support
 
