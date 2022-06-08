@@ -1843,5 +1843,50 @@
         "filename": "Maluf - Nao lhe dou o aparte.mp3",
         "dateAdded": "2022-06-07T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "B2766ED9-89CD-4AC3-9A22-81C8AC2ECD00",
+        "title": "Cê num tinha nem que tá aqui linda",
+        "authorId": "716DB19B-1DC3-4826-855B-B480DB9E6D53",
+        "description": "cê num tinha nem que tá aqui linda",
+        "filename": "Tati Quebra Barraco - Ce num tinha nem que ta aqui linda.mp3",
+        "dateAdded": "2022-06-08T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "D70C7F82-0A40-4D86-8634-17693D2108EB",
+        "title": "Mas cê tá brava",
+        "authorId": "6760904C-3D19-4173-8FC9-191ED0692BFF",
+        "description": "Mas ce ta brava",
+        "filename": "SUPERPOP - Luciana Gimenez - Mas ce ta brava.mp3",
+        "dateAdded": "2022-06-08T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "746D9940-33FB-4680-A471-686B35C207FD",
+        "title": "Vou esquecer disso jamais",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Vou esquecer disso jamais",
+        "filename": "Vou esquecer disso jamais.mp3",
+        "dateAdded": "2022-06-08T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "E3A435B2-DD0D-418C-8B5B-52E16A9D0FBA",
+        "title": "Eu não suporto mais",
+        "authorId": "D9D14C58-E5C4-4479-82BE-E00D9A38AB3A",
+        "description": "Eu nao suporto mais",
+        "filename": "Valdemiro Santiago - Eu nao suporto mais.mp3",
+        "dateAdded": "2022-06-08T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "8490C3E6-2DA0-4B13-AD70-9EDA1F4E8C41",
+        "title": "Diga lá, Tino",
+        "authorId": "C5126821-321C-4705-AB9A-2785995DFABF",
+        "description": "diga la tino",
+        "filename": "Galvao Bueno - Diga la Tino meme short.mp3",
+        "dateAdded": "2022-06-08T00:00:00Z",
+        "isOffensive": false
     }
 ]
