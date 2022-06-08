@@ -25,7 +25,6 @@ struct SettingsView: View {
                             .alert(isPresented: $showExplicitSoundsConfirmationAlert) {
                                 Alert(title: Text("Use Com Responsabilidade, Morô, Cara?"), message: Text("Alguns conteúdos contam com muitos palavrões, o que pode incomodar algumas pessoas.\n\nAo marcar essa opção, você concorda que tem mais de 18 anos e que deseja ver esse conteúdo."), dismissButton: .default(Text("OK")))
                             }
-                            .padding(.bottom, -10)
                         
                         /*NavigationLink {
                             TrendsSettingsView()
@@ -39,35 +38,26 @@ struct SettingsView: View {
                             }
                             .padding(.horizontal)
                         }
+                        .padding(.top, 4)*/
                         
-                        Divider()*/
-                        
-                        VStack(alignment: .center, spacing: 5) {
-                            Text("Esse app é uma homenagem ao brilhante trabalho de **Cristiano Botafogo** e **Pedro Daltro** no podcast **Medo e Delírio em Brasília**. Ouça no seu agregador de podcasts favorito.")
-                                .multilineTextAlignment(.center)
-                                .padding(.horizontal)
-                            
-//                            Button(action: {
-//                                let podcastLinkOnApplePodcasts = "https://podcasts.apple.com/br/podcast/medo-e-del%C3%ADrio-em-bras%C3%ADlia/id1502134265"
-//                                let podcastAppUrl = URL(string: podcastLinkOnApplePodcasts)!
-//                                if UIApplication.shared.canOpenURL(podcastAppUrl) {
-//                                    UIApplication.shared.open(podcastAppUrl)
-//                                } else {
-//                                    showUnableToOpenPodcastsAppAlert = true
-//                                }
-//                            }) {
-//                                Text("Ver no Apple Podcasts")
-//                                    .font(.callout)
-//                            }
-//                            .tint(.purple)
-//                            .controlSize(.large)
-//                            .buttonStyle(.bordered)
-//                            .buttonBorderShape(.roundedRectangle)
-//                            .padding(.top)
-//                            .alert(isPresented: $showUnableToOpenPodcastsAppAlert) {
-//                                Alert(title: Text("Não Pôde Abrir o App Podcasts"), message: Text("Por favor, procure pelo app Podcasts no seu iPhone para continuar."), dismissButton: .default(Text("OK")))
-//                            }
+                        NavigationLink {
+                            DiagnosticsView()
+                        } label: {
+                            HStack {
+                                Text("Diagnóstico")
+                                
+                                Spacer()
+                                
+                                Image(systemName: "chevron.forward")
+                            }
+                            .padding(.horizontal)
                         }
+                        
+                        Divider()
+                        
+                        Text("Esse app é uma homenagem ao brilhante trabalho de **Cristiano Botafogo** e **Pedro Daltro** no podcast **Medo e Delírio em Brasília**. Ouça no seu agregador de podcasts favorito.")
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal)
                         
                         VStack(alignment: .center, spacing: 5) {
                             Text("**Ô, CARA, APROVEITA QUE TÁ AQUI E PAGA UMA 🍺 PARA O DESENVOLVEDOR POR PIX, MORÔ, CARA.**")

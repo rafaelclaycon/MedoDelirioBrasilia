@@ -1,5 +1,6 @@
 import Combine
 import UIKit
+import StoreKit
 
 class SoundsViewViewModel: ObservableObject {
 
@@ -109,15 +110,17 @@ class SoundsViewViewModel: ObservableObject {
         DispatchQueue.main.async {
             UIApplication.shared.keyWindow?.rootViewController?.present(activityVC, animated: true, completion: nil)
         }
-//        activityVC.completionWithItemsHandler = { activity, completed, items, error in
-//            if completed {
+        activityVC.completionWithItemsHandler = { activity, completed, items, error in
+            if completed {
 //                guard let activity = activity else {
 //                    return
 //                }
 //                let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
 //                Logger.logSharedSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
-//            }
-//        }
+                
+                AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
+            }
+        }
     }
     
     func addToFavorites(soundId: String) {
@@ -155,6 +158,21 @@ class SoundsViewViewModel: ObservableObject {
     func donateActivity() {
         self.currentActivity = UserActivityWaiter.getDonatableActivity(withType: Shared.playAndShareSoundsActivityTypeName, andTitle: "Tocar e compartilhar sons")
         self.currentActivity?.becomeCurrent()
+    }
+    
+    func sendDeviceModelNameToServer() {
+        if UserSettings.getHasSentDeviceModelToServer() == false {
+            guard UIDevice.modelName.contains("Simulator") == false else {
+                return
+            }
+            
+            let info = ClientDeviceInfo(installId: UIDevice.current.identifierForVendor?.uuidString ?? "", modelName: UIDevice.modelName)
+            networkRabbit.post(clientDeviceInfo: info) { success, error in
+                if let success = success, success {
+                    UserSettings.setHasSentDeviceModelToServer(to: true)
+                }
+            }
+        }
     }
     
     // MARK: - Alerts
