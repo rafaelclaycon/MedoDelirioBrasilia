@@ -231,6 +231,7 @@
 		D9351C6128441FA400D4317E /* LoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9351C6028441FA400D4317E /* LoggerTests.swift */; };
 		D93AC08B28414EEE00E38A63 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AC08A28414EEE00E38A63 /* Logger.swift */; };
 		D93D24E02849DAAB00300541 /* DiagnosticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D24DF2849DAAB00300541 /* DiagnosticsView.swift */; };
+		D941556228507E6300B6B09E /* Por que sera short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D941556128507E6300B6B09E /* Por que sera short meme.mp3 */; };
 		D94656D928450535008B4785 /* SQLiteMigrationManager in Frameworks */ = {isa = PBXBuildFile; productRef = D94656D828450535008B4785 /* SQLiteMigrationManager */; };
 		D94A4214283DC52800A504BD /* SongHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A4213283DC52800A504BD /* SongHelpView.swift */; };
 		D9575092284427C70094AEA6 /* DummyShareLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9575091284427C70094AEA6 /* DummyShareLogs.swift */; };
@@ -514,6 +515,7 @@
 		D9351C6028441FA400D4317E /* LoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerTests.swift; sourceTree = "<group>"; };
 		D93AC08A28414EEE00E38A63 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		D93D24DF2849DAAB00300541 /* DiagnosticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticsView.swift; sourceTree = "<group>"; };
+		D941556128507E6300B6B09E /* Por que sera short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Por que sera short meme.mp3"; sourceTree = "<group>"; };
 		D94A4213283DC52800A504BD /* SongHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongHelpView.swift; sourceTree = "<group>"; };
 		D9575091284427C70094AEA6 /* DummyShareLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyShareLogs.swift; sourceTree = "<group>"; };
 		D957509528445EC30094AEA6 /* TrendsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsViewViewModel.swift; sourceTree = "<group>"; };
@@ -587,6 +589,7 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D941556128507E6300B6B09E /* Por que sera short meme.mp3 */,
 				D9EA771628503939006B7811 /* ATILA IAMARINO - E um virus mais transmissivel que mata mais.mp3 */,
 				D920394128503771009B8486 /* Xo drogado short meme.mp3 */,
 				D920394228503772009B8486 /* Ze Gotinha - Ola meu nome e Ze Gotinha.mp3 */,
@@ -1243,6 +1246,7 @@
 				D92038EF28503739009B8486 /* Pazuello - E simples assim, um manda e o outro obedece.mp3 in Resources */,
 				D92038B028503715009B8486 /* Mermão na moral short.mp3 in Resources */,
 				D920393E2850376A009B8486 /* Vera Magalhães - Pensamento Mágico.mp3 in Resources */,
+				D941556228507E6300B6B09E /* Por que sera short meme.mp3 in Resources */,
 				D92037CF28503693009B8486 /* Boldo - Muito bom, muito bom.mp3 in Resources */,
 				D92037D328503693009B8486 /* Boldo - Deixa com a cara magoada.mp3 in Resources */,
 				D92039282850375E009B8486 /* Silas Malafaia - Nunca vi tu e burro cara.mp3 in Resources */,
