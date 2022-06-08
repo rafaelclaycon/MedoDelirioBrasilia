@@ -25,7 +25,6 @@ struct SettingsView: View {
                             .alert(isPresented: $showExplicitSoundsConfirmationAlert) {
                                 Alert(title: Text("Use Com Responsabilidade, Morô, Cara?"), message: Text("Alguns conteúdos contam com muitos palavrões, o que pode incomodar algumas pessoas.\n\nAo marcar essa opção, você concorda que tem mais de 18 anos e que deseja ver esse conteúdo."), dismissButton: .default(Text("OK")))
                             }
-                            .padding(.bottom, -10)
                         
                         /*NavigationLink {
                             TrendsSettingsView()
@@ -39,7 +38,7 @@ struct SettingsView: View {
                             }
                             .padding(.horizontal)
                         }
-                        .padding(.top, 4)
+                        .padding(.top, 4)*/
                         
                         NavigationLink {
                             DiagnosticsView()
@@ -54,7 +53,7 @@ struct SettingsView: View {
                             .padding(.horizontal)
                         }
                         
-                        Divider()*/
+                        Divider()
                         
                         Text("Esse app é uma homenagem ao brilhante trabalho de **Cristiano Botafogo** e **Pedro Daltro** no podcast **Medo e Delírio em Brasília**. Ouça no seu agregador de podcasts favorito.")
                             .multilineTextAlignment(.center)

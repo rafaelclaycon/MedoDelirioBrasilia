@@ -68,6 +68,14 @@ class UserSettings {
         return Bool(value as! Bool)
     }
     
+    static func getHasSentDeviceModelToServer() -> Bool {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "hasSentDeviceModelToServer") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
+    
     // MARK: - Setters
     
     static func setShowOffensiveSounds(to newValue: Bool) {
@@ -108,6 +116,11 @@ class UserSettings {
     static func setEnableShareUserPersonalTrends(to newValue: Bool) {
         let userDefaults = UserDefaults.standard
         userDefaults.set(newValue, forKey: "enableShareUserPersonalTrends")
+    }
+    
+    static func setHasSentDeviceModelToServer(to newValue: Bool) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(newValue, forKey: "hasSentDeviceModelToServer")
     }
 
 }

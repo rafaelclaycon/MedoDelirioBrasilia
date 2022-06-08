@@ -129,6 +129,7 @@ struct SoundsView: View {
                                      favoritesOnly: viewModel.showOnlyFavorites,
                                      sortedBy: ContentSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
                 viewModel.donateActivity()
+                viewModel.sendDeviceModelNameToServer()
             }
             .confirmationDialog("", isPresented: $viewModel.showConfirmationDialog) {
                 Button(viewModel.getFavoriteButtonTitle()) {
