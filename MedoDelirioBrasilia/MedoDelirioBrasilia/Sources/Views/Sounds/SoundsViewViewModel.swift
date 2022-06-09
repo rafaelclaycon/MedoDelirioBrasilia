@@ -150,20 +150,9 @@ class SoundsViewViewModel: ObservableObject {
         return favoritesKeeper.contains(soundId)
     }
     
-    func isSelectedSoundOfUnknownAuthor() -> Bool {
-        guard let authorId = soundForConfirmationDialog?.authorId else {
-            return false
-        }
-        return authorId == "40947930-E7D9-45A7-991B-DB8F8CC0BA01"
-    }
-    
     func getFavoriteButtonTitle() -> String {
         let emoji = Shared.removeFromFavoritesEmojis.randomElement() ?? ""
         return isSelectedSoundAlreadyAFavorite() ? "\(emoji)  Remover dos Favoritos" : "⭐️  Adicionar aos Favoritos"
-    }
-    
-    func getSuggestOtherAuthorNameButtonTitle() -> String {
-        return isSelectedSoundOfUnknownAuthor() ? "🙋  Eu Sei o Nome do Autor!" : "Sugerir Outro Nome de Autor"
     }
     
     func donateActivity() {

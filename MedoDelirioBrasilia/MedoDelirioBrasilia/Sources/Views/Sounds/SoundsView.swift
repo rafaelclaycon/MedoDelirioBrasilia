@@ -150,7 +150,7 @@ struct SoundsView: View {
                     }
                 }
                 
-                Button(viewModel.getSuggestOtherAuthorNameButtonTitle()) {
+                Button(SoundOptionsHelper.getSuggestOtherAuthorNameButtonTitle(authorId: viewModel.soundForConfirmationDialog?.authorId ?? .empty)) {
                     guard let sound = viewModel.soundForConfirmationDialog else {
                         return
                     }

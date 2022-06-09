@@ -59,7 +59,7 @@ struct AuthorDetailView: View {
                 }
             }
             
-            Button("Sugerir Outro Nome de Autor") {
+            Button(SoundOptionsHelper.getSuggestOtherAuthorNameButtonTitle(authorId: viewModel.soundForConfirmationDialog?.authorId ?? .empty)) {
                 guard let sound = viewModel.soundForConfirmationDialog else {
                     return
                 }
