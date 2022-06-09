@@ -150,6 +150,13 @@ struct SoundsView: View {
                     }
                 }
                 
+                Button(SoundOptionsHelper.getSuggestOtherAuthorNameButtonTitle(authorId: viewModel.soundForConfirmationDialog?.authorId ?? .empty)) {
+                    guard let sound = viewModel.soundForConfirmationDialog else {
+                        return
+                    }
+                    SoundOptionsHelper.suggestOtherAuthorName(soundId: sound.id, soundTitle: sound.title, currentAuthorName: sound.authorName ?? .empty)
+                }
+                
                 Button("Compartilhar") {
                     guard let sound = viewModel.soundForConfirmationDialog else {
                         return
