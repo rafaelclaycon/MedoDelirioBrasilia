@@ -3,6 +3,7 @@ import SwiftUI
 struct SettingsView: View {
 
     @State private var showPixKeyCopiedAlert: Bool = false
+    @State private var showPixKeyCopiedCreatedByAlert: Bool = false
     @State private var showUnableToOpenPodcastsAppAlert: Bool = false
     @State private var showExplicitSounds: Bool = UserSettings.getShowOffensiveSounds()
     @State private var showExplicitSoundsConfirmationAlert: Bool = false
@@ -173,9 +174,9 @@ struct SettingsView: View {
                             Text("Criado por @claycon_")
                                 .onTapGesture {
                                     UIPasteboard.general.string = pixKey
-                                    showPixKeyCopiedAlert = true
+                                    showPixKeyCopiedCreatedByAlert = true
                                 }
-                                .alert(isPresented: $showPixKeyCopiedAlert) {
+                                .alert(isPresented: $showPixKeyCopiedCreatedByAlert) {
                                     Alert(title: Text("Chave Pix Copiada com Sucesso"), message: Text("Qualquer R$ 1 me ajuda a manter isso aqui."), dismissButton: .default(Text("OK")))
                                 }
                             
