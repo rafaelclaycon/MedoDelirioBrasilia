@@ -30,6 +30,7 @@
 		D93D24E02849DAAB00300541 /* DiagnosticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D24DF2849DAAB00300541 /* DiagnosticsView.swift */; };
 		D94656D928450535008B4785 /* SQLiteMigrationManager in Frameworks */ = {isa = PBXBuildFile; productRef = D94656D828450535008B4785 /* SQLiteMigrationManager */; };
 		D94A4214283DC52800A504BD /* SongHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A4213283DC52800A504BD /* SongHelpView.swift */; };
+		D95561E228517537001E2725 /* Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95561E128517537001E2725 /* Delegates.swift */; };
 		D955690F285137800072E3FC /* ADY - oh nao mais um crime de responsabilidade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95568422851377E0072E3FC /* ADY - oh nao mais um crime de responsabilidade.mp3 */; };
 		D9556910285137800072E3FC /* Bolsonaro - Duas letras PF e policia federal o cara.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95568432851377E0072E3FC /* Bolsonaro - Duas letras PF e policia federal o cara.mp3 */; };
 		D9556911285137800072E3FC /* MULTISHOW_Titi_Muller_Ta_bombando_mais_do_que_o_povo_pedindo_Anitta.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95568442851377E0072E3FC /* MULTISHOW_Titi_Muller_Ta_bombando_mais_do_que_o_povo_pedindo_Anitta.mp3 */; };
@@ -320,6 +321,7 @@
 		D93AC08A28414EEE00E38A63 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		D93D24DF2849DAAB00300541 /* DiagnosticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticsView.swift; sourceTree = "<group>"; };
 		D94A4213283DC52800A504BD /* SongHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongHelpView.swift; sourceTree = "<group>"; };
+		D95561E128517537001E2725 /* Delegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delegates.swift; sourceTree = "<group>"; };
 		D95568422851377E0072E3FC /* ADY - oh nao mais um crime de responsabilidade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ADY - oh nao mais um crime de responsabilidade.mp3"; sourceTree = "<group>"; };
 		D95568432851377E0072E3FC /* Bolsonaro - Duas letras PF e policia federal o cara.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Duas letras PF e policia federal o cara.mp3"; sourceTree = "<group>"; };
 		D95568442851377E0072E3FC /* MULTISHOW_Titi_Muller_Ta_bombando_mais_do_que_o_povo_pedindo_Anitta.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MULTISHOW_Titi_Muller_Ta_bombando_mais_do_que_o_povo_pedindo_Anitta.mp3; sourceTree = "<group>"; };
@@ -977,6 +979,7 @@
 				D961D0142837229100EFEDEB /* Extensions */,
 				D9351C5E28441DF200D4317E /* Core */,
 				D980456028380F45003B2E83 /* AppSupport */,
+				D95561E128517537001E2725 /* Delegates.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -1470,6 +1473,7 @@
 				D98DBD35284919B1008544F8 /* NetworkRabbit.swift in Sources */,
 				D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */,
 				D93443252838177000ADCD38 /* UserInfo.swift in Sources */,
+				D95561E228517537001E2725 /* Delegates.swift in Sources */,
 				D960AF272845BFE700ADF1F6 /* UserDefaultsKeys.swift in Sources */,
 				D988C523283C33E100D64404 /* UserSettings.swift in Sources */,
 				D92E7075283C5F620035826C /* SongCell.swift in Sources */,

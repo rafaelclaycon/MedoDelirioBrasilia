@@ -7,5 +7,24 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeFavorite</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Mostrar Favoritos</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>favorites</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemType</key>
+			<string>randomSound</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Som Aleatório</string>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeShuffle</string>
+		</dict>
+	</array>
 </dict>
 </plist>
