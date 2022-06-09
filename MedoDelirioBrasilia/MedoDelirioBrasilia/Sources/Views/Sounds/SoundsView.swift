@@ -150,11 +150,11 @@ struct SoundsView: View {
                     }
                 }
                 
-                Button(viewModel.getReportButtonTitle()) {
+                Button(viewModel.getSuggestOtherAuthorNameButtonTitle()) {
                     guard let sound = viewModel.soundForConfirmationDialog else {
                         return
                     }
-                    viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
+                    SoundOptionsHelper.suggestOtherAuthorName(soundId: sound.id, soundTitle: sound.title, currentAuthorName: sound.authorName ?? .empty)
                 }
                 
                 Button("Compartilhar") {

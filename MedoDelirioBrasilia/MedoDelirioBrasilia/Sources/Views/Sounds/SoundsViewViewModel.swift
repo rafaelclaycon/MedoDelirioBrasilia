@@ -162,8 +162,8 @@ class SoundsViewViewModel: ObservableObject {
         return isSelectedSoundAlreadyAFavorite() ? "\(emoji)  Remover dos Favoritos" : "⭐️  Adicionar aos Favoritos"
     }
     
-    func getReportButtonTitle() -> String {
-        return isSelectedSoundOfUnknownAuthor() ? "🙋  Eu Sei o Nome do Autor!" : "Relatar Título/Autor Diferente"
+    func getSuggestOtherAuthorNameButtonTitle() -> String {
+        return isSelectedSoundOfUnknownAuthor() ? "🙋  Eu Sei o Nome do Autor!" : "Sugerir Outro Nome de Autor"
     }
     
     func donateActivity() {
