@@ -34,7 +34,7 @@ struct SoundHelpView: View {
                         
                         VStack(spacing: 15) {
                             Text("Para pesquisar, vá até o topo da lista e **puxe mais um pouco para baixo** até revelar o campo de pesquisa.")
-                            Text("A pesquisa considera o **conteúdo do áudio** e o **nome do autor**.")
+                            Text("A pesquisa considera o **conteúdo do áudio** e o **nome do autor**. Evite vírgulas.")
                         }
                     }
                     
