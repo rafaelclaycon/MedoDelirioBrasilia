@@ -48,6 +48,7 @@
 		D927C41F28523F5D0041970A /* SBT NEWS - Jair Renan - Acabou que nao fiz nada la.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D927C41728523F5D0041970A /* SBT NEWS - Jair Renan - Acabou que nao fiz nada la.mp3 */; };
 		D927C42028523F5D0041970A /* Away - Bom dia, boa tarde, boa noite... por enquanto.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D927C41828523F5D0041970A /* Away - Bom dia, boa tarde, boa noite... por enquanto.mp3 */; };
 		D927C42228523FAC0041970A /* Xuxa - Aham Claudia Senta la short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D927C42128523FAC0041970A /* Xuxa - Aham Claudia Senta la short meme.mp3 */; };
+		D927C424285245CE0041970A /* SoundOptionsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D927C423285245CE0041970A /* SoundOptionsHelper.swift */; };
 		D92879E7283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879E5283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 */; };
 		D92879E8283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879E6283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 */; };
 		D92C0CA62840125B009CF19A /* SoundsViewViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92C0CA52840125B009CF19A /* SoundsViewViewModelTests.swift */; };
@@ -379,6 +380,7 @@
 		D927C41728523F5D0041970A /* SBT NEWS - Jair Renan - Acabou que nao fiz nada la.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "SBT NEWS - Jair Renan - Acabou que nao fiz nada la.mp3"; sourceTree = "<group>"; };
 		D927C41828523F5D0041970A /* Away - Bom dia, boa tarde, boa noite... por enquanto.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Away - Bom dia, boa tarde, boa noite... por enquanto.mp3"; sourceTree = "<group>"; };
 		D927C42128523FAC0041970A /* Xuxa - Aham Claudia Senta la short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Xuxa - Aham Claudia Senta la short meme.mp3"; sourceTree = "<group>"; };
+		D927C423285245CE0041970A /* SoundOptionsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundOptionsHelper.swift; sourceTree = "<group>"; };
 		D92879E5283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Nao era fake news era jornalismo.mp3"; sourceTree = "<group>"; };
 		D92879E6283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pena que nao pode ver um impeachment.mp3"; sourceTree = "<group>"; };
 		D92C0CA52840125B009CF19A /* SoundsViewViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsViewViewModelTests.swift; sourceTree = "<group>"; };
@@ -982,6 +984,7 @@
 				D96E115C28459D8800306859 /* UserActivityWaiter.swift */,
 				D960AF282845C82E00ADF1F6 /* AppStoreReviewSteward.swift */,
 				D991E597284A94F70005705F /* Podium.swift */,
+				D927C423285245CE0041970A /* SoundOptionsHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1655,6 +1658,7 @@
 				D93D24E02849DAAB00300541 /* DiagnosticsView.swift in Sources */,
 				D958B1AE28394E420010F133 /* SongsView.swift in Sources */,
 				D9BF90972842D3CB00BDDD7D /* NoSoundsView.swift in Sources */,
+				D927C424285245CE0041970A /* SoundOptionsHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
