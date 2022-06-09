@@ -150,6 +150,13 @@ struct SoundsView: View {
                     }
                 }
                 
+                Button(viewModel.getReportButtonTitle()) {
+                    guard let sound = viewModel.soundForConfirmationDialog else {
+                        return
+                    }
+                    viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
+                }
+                
                 Button("Compartilhar") {
                     guard let sound = viewModel.soundForConfirmationDialog else {
                         return
