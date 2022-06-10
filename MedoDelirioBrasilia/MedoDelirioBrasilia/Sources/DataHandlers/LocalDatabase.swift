@@ -5,78 +5,32 @@ import SQLiteMigrationManager
 class LocalDatabase {
 
     private var db: Connection
+    private var migrationManager: SQLiteMigrationManager
     
     private var favorite = Table("favorite")
     private var userShareLog = Table("userShareLog")
     private var audienceSharingStatistic = Table("audienceSharingStatistic")
 
-    // MARK: - Init
+    // MARK: - Setup
 
     init() {
-        let path = NSSearchPathForDirectoriesInDomains(
-            .cachesDirectory, .userDomainMask, true
-        ).first!
-
         do {
-            db = try Connection("\(path)/medo_db.sqlite3")
-            try createFavoriteTable()
-            /*try createUserShareLogTable()
-            try createAudienceSharingStatisticTable()*/
+            db = try Connection(LocalDatabase.databaseFilepath())
         } catch {
             fatalError(error.localizedDescription)
         }
         
-        /*let manager = SQLiteMigrationManager(db: self.db)
-        
-        do {
-            if !manager.hasMigrationsTable() {
-                try manager.createMigrationsTable()
-            }
-        } catch {
-            fatalError(error.localizedDescription)
-        }*/
-    }
-
-    private func createFavoriteTable() throws {
-        let content_id = Expression<String>("contentId")
-        let date_added = Expression<Date>("dateAdded")
-
-        try db.run(favorite.create(ifNotExists: true) { t in
-            t.column(content_id, primaryKey: true)
-            t.column(date_added)
-        })
+        self.migrationManager = SQLiteMigrationManager(db: self.db, migrations: LocalDatabase.migrations(), bundle: LocalDatabase.migrationsBundle())
     }
     
-    private func createUserShareLogTable() throws {
-        let install_id = Expression<String>("installId")
-        let content_id = Expression<String>("contentId")
-        let content_type = Expression<Int>("contentType")
-        let date_time = Expression<Date>("dateTime")
-        let destination = Expression<Int>("destination")
-        let destination_bundle_id = Expression<String>("destinationBundleId")
-        let sent_to_server = Expression<Bool>("sentToServer")
+    func migrateIfNeeded() throws {
+        if !migrationManager.hasMigrationsTable() {
+            try migrationManager.createMigrationsTable()
+        }
 
-        try db.run(userShareLog.create(ifNotExists: true) { t in
-            t.column(install_id)
-            t.column(content_id)
-            t.column(content_type)
-            t.column(date_time)
-            t.column(destination)
-            t.column(destination_bundle_id)
-            t.column(sent_to_server)
-        })
-    }
-    
-    private func createAudienceSharingStatisticTable() throws {
-        let content_id = Expression<String>("contentId")
-        let content_type = Expression<Int>("contentType")
-        let share_count = Expression<Int>("shareCount")
-
-        try db.run(audienceSharingStatistic.create(ifNotExists: true) { t in
-            t.column(content_id)
-            t.column(content_type)
-            t.column(share_count)
-        })
+        if migrationManager.needsMigration() {
+            try migrationManager.migrateDatabase()
+        }
     }
     
     // MARK: - Favorite
@@ -229,6 +183,48 @@ class LocalDatabase {
     
     func getAudienceSharingStatCount() throws -> Int {
         try db.scalar(audienceSharingStatistic.count)
+    }
+
+}
+
+extension LocalDatabase {
+
+    static func databaseFilepath() -> String {
+        let path = NSSearchPathForDirectoriesInDomains(
+            .cachesDirectory, .userDomainMask, true
+        ).first!
+        return "\(path)/medo_db.sqlite3"
+    }
+    
+    static func migrations() -> [Migration] {
+        return [SeedDB()]
+    }
+    
+    static func migrationsBundle() -> Bundle {
+        guard let bundleURL = Bundle.main.url(forResource: "Migrations", withExtension: "bundle") else {
+            fatalError("Could not find migrations bundle.")
+        }
+        guard let bundle = Bundle(url: bundleURL) else {
+            fatalError("Could not load migrations bundle.")
+        }
+
+        return bundle
+    }
+
+}
+
+extension LocalDatabase: CustomStringConvertible {
+
+    var description: String {
+        return "Database:\n" +
+        "url: \(LocalDatabase.databaseFilepath())\n" +
+        "migration state:\n" +
+        "  hasMigrationsTable() \(migrationManager.hasMigrationsTable())\n" +
+        "  currentVersion()     \(migrationManager.currentVersion())\n" +
+        "  originVersion()      \(migrationManager.originVersion())\n" +
+        "  appliedVersions()    \(migrationManager.appliedVersions())\n" +
+        "  pendingMigrations()  \(migrationManager.pendingMigrations())\n" +
+        "  needsMigration()     \(migrationManager.needsMigration())"
     }
 
 }
