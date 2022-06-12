@@ -1927,7 +1927,7 @@
     },
     {
         "id": "82EEEB9B-9C20-40F7-8945-B61CB6B88214",
-        "title": "Uma bosta, não sabe, uma merda",
+        "title": "Uma bosta, não, sabe, uma merda",
         "authorId": "5328EB33-A71C-4A07-94CE-B374AC937319",
         "description": "Uma bosta não sabe uma merda",
         "filename": "Gaucho Puto - Uma bosta, nao sabe, uma merda.mp3",
@@ -2247,6 +2247,33 @@
         "description": "Bom dia boa tarde boa noite por enquanto",
         "filename": "Away - Bom dia, boa tarde, boa noite... por enquanto.mp3",
         "dateAdded": "2022-06-09T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "71BB9A0F-53D9-4220-81D6-097AEC7E08D6",
+        "title": "Eu sou um cara de negócios. Eu faço dinheiro, eu faço.",
+        "authorId": "745CE871-B6F7-4278-B7D5-CA065D5DD946",
+        "description": "Eu sou um cara de negocios eu faco dinheiro eu faco",
+        "filename": "Queiroz - Eu sou um cara de negocios, eu faco dinheiro eu faco.mp3",
+        "dateAdded": "2022-06-12T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "A2938553-6A87-4997-A964-6F23C7EA7AB8",
+        "title": "Esposa, né. Tem que aguentar, mas tá tudo bem.",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Esposa ne tem que aguentar mas ta tudo bem",
+        "filename": "Bolsonaro - Esposa, ne, tem que aguentar, mas ta tudo bem.mp3",
+        "dateAdded": "2022-06-12T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "464810A2-B4EC-414C-B917-1CB12BD7DC6D",
+        "title": "Presidente, por que sua esposa recebeu 89 mil de Queiroz?",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "Presidente por que sua esposa Michele recebeu 89 mil de Fabricio Queiroz",
+        "filename": "Cristiano Botafogo - Presidente por que sua esposa Michele recebeu 89 mil de Fabricio Queiroz.mp3",
+        "dateAdded": "2022-06-12T00:00:00Z",
         "isOffensive": false
     }
 ]
