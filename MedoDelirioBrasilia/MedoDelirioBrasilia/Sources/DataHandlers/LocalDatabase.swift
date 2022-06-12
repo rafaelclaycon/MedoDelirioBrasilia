@@ -197,7 +197,7 @@ extension LocalDatabase {
     }
     
     static func migrations() -> [Migration] {
-        return [SeedDB()]
+        return [SwiftMigration()]
     }
     
     static func migrationsBundle() -> Bundle {

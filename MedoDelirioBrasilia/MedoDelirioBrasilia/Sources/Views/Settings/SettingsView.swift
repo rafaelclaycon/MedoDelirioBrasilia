@@ -2,6 +2,9 @@ import SwiftUI
 
 struct SettingsView: View {
 
+    @State private var showingTrendsSettingsScreen: Bool = false
+    @State private var showingDiagnosticsScreen: Bool = false
+    
     @State private var showPixKeyCopiedAlert: Bool = false
     @State private var showPixKeyCopiedCreatedByAlert: Bool = false
     @State private var showUnableToOpenPodcastsAppAlert: Bool = false
@@ -15,6 +18,9 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             VStack {
+                NavigationLink(destination: TrendsSettingsView(), isActive: $showingTrendsSettingsScreen) { EmptyView() }
+                NavigationLink(destination: DiagnosticsView(), isActive: $showingDiagnosticsScreen) { EmptyView() }
+                
                 ScrollView {
                     VStack(alignment: .center, spacing: 40) {
                         Toggle("Exibir conteúdo sensível", isOn: $showExplicitSounds)
@@ -27,32 +33,23 @@ struct SettingsView: View {
                                 Alert(title: Text("Use Com Responsabilidade, Morô, Cara?"), message: Text("Alguns conteúdos contam com muitos palavrões, o que pode incomodar algumas pessoas.\n\nAo marcar essa opção, você concorda que tem mais de 18 anos e que deseja ver esse conteúdo."), dismissButton: .default(Text("OK")))
                             }
                         
-                        /*NavigationLink {
-                            TrendsSettingsView()
-                        } label: {
+                        Button(action: {
+                            showingTrendsSettingsScreen = true
+                        }) {
                             HStack {
-                                Text("Ajustes das Tendências")
-                                
-                                Spacer()
-                                
-                                Image(systemName: "chevron.forward")
+                                HStack {
+                                    Text("Ajustes das Tendências")
+                                    Spacer()
+                                    Image(systemName: "chevron.forward")
+                                }
                             }
-                            .padding(.horizontal)
                         }
-                        .padding(.top, 4)*/
-                        
-                        NavigationLink {
-                            DiagnosticsView()
-                        } label: {
-                            HStack {
-                                Text("Diagnóstico")
-                                
-                                Spacer()
-                                
-                                Image(systemName: "chevron.forward")
-                            }
-                            .padding(.horizontal)
-                        }
+                        .tint(.accentColor)
+                        .controlSize(.large)
+                        .buttonStyle(.bordered)
+                        .buttonBorderShape(.roundedRectangle)
+                        .padding(.top, -6)
+                        .padding(.horizontal, 5)
                         
                         Divider()
                         
@@ -93,7 +90,7 @@ struct SettingsView: View {
                                 guard let emailSubject = "Bora fechar negócio".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
                                     return
                                 }
-                                guard let emailMessage = "Por favor, inclua um resumo do projeto, prazos e o investimento planejado.".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+                                guard let emailMessage = "Por favor, inclua um resumo do projeto, prazos e o orçamento.".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
                                     return
                                 }
                                 
@@ -123,7 +120,7 @@ struct SettingsView: View {
                                 guard let emailSubject = "Problema/sugestão no app iOS \(appVersion) Build \(buildVersionNumber)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
                                     return
                                 }
-                                guard let emailMessage = "Inclua passos e prints se possível.".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+                                guard let emailMessage = "Para um problema, inclua passos para reproduzir e prints se possível.".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
                                     return
                                 }
                                 
@@ -189,6 +186,15 @@ struct SettingsView: View {
                 }
             }
             .navigationTitle("Ajustes")
+            .navigationBarItems(trailing:
+                Button(action: {
+                    showingDiagnosticsScreen = true
+                }) {
+                    HStack {
+                        Image(systemName: "eyeglasses")
+                    }
+                }
+            )
         }
     }
 

@@ -5,6 +5,8 @@ struct DiagnosticsView: View {
     @State var showAlert = false
     @State var alertTitle = ""
     @State var installId = UIDevice.current.identifierForVendor?.uuidString ?? ""
+    @State var shareLogs: [UserShareLog]?
+    @State var networkLogs: [UserShareLog]?
     
     var body: some View {
         Form {
@@ -21,25 +23,57 @@ struct DiagnosticsView: View {
             }
             
             Section {
-                HStack {
-                    Text("ID da instalação")
-                    
-                    Spacer()
-                    
-                    Text(installId)
-                        .font(.monospaced(.caption)())
-                        .multilineTextAlignment(.trailing)
-                        .foregroundColor(.gray)
-                        .onTapGesture {
-                            UIPasteboard.general.string = installId
-                        }
-                }
+                Text(installId)
+                    .font(.monospaced(.subheadline)())
+                    .multilineTextAlignment(.center)
+                    //foregroundColor(.gray)
+                    .onTapGesture {
+                        UIPasteboard.general.string = installId
+                    }
+            } header: {
+                Text("ID da instalação")
             } footer: {
                 Text("Esse código identifica apenas a instalação do app e é renovado caso você o desinstale e instale novamente.")
+            }
+            
+            Section("Logs de compartilhamento") {
+                if shareLogs == nil || shareLogs?.count == 0 {
+                    Text("Sem Dados")
+                } else {
+                    List(shareLogs!) { log in
+                        SharingLogCell(destination: ShareDestination(rawValue: log.destination) ?? .other, contentType: ContentType(rawValue: log.contentType) ?? .sound, contentTitle: getContentName(contentId: log.contentId), dateTime: log.dateTime.toString())
+                    }
+                }
+            }
+            
+            Section("Logs de rede") {
+                if networkLogs == nil || networkLogs?.count == 0 {
+                    Text("Sem Dados")
+                } else {
+                    List(networkLogs!) { log in
+                        Text(log.contentId)
+                    }
+                }
             }
         }
         .navigationTitle("Diagnóstico")
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            shareLogs = try? database.getAllUserShareLogs()
+            shareLogs?.sort(by: { $0.dateTime > $1.dateTime })
+        }
+    }
+    
+    func getContentName(contentId: String) -> String {
+        let sounds = soundData.filter({ $0.id == contentId })
+        let songs = songData.filter({ $0.id == contentId })
+        var contentTitle = ""
+        if sounds.count == 1 {
+            contentTitle = sounds.first!.title
+        } else if songs.count == 1 {
+            contentTitle = songs.first!.title
+        }
+        return contentTitle
     }
 
 }

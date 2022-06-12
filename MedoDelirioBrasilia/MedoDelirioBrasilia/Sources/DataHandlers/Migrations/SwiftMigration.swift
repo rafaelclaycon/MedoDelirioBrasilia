@@ -2,7 +2,7 @@ import Foundation
 import SQLiteMigrationManager
 import SQLite
 
-struct SeedDB: Migration {
+struct SwiftMigration: Migration {
 
     var version: Int64 = 2022_06_10_17_05_00
     
@@ -27,6 +27,7 @@ struct SeedDB: Migration {
     }
     
     private func createUserShareLogTable(_ db: Connection) throws {
+        let id = Expression<String>("id")
         let install_id = Expression<String>("installId")
         let content_id = Expression<String>("contentId")
         let content_type = Expression<Int>("contentType")
@@ -36,6 +37,7 @@ struct SeedDB: Migration {
         let sent_to_server = Expression<Bool>("sentToServer")
 
         try db.run(userShareLog.create(ifNotExists: true) { t in
+            t.column(id, primaryKey: true)
             t.column(install_id)
             t.column(content_id)
             t.column(content_type)
