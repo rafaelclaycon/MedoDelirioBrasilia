@@ -14,19 +14,16 @@ struct AuthorsView: View {
     }
     
     var body: some View {
-        NavigationView {
-            List(searchResults) { author in
-                NavigationLink(destination: AuthorDetailView(author: author)) {
-                    Text(author.name)
-                }
+        List(searchResults) { author in
+            NavigationLink(destination: AuthorDetailView(author: author)) {
+                Text(author.name)
             }
-            .searchable(text: $searchText)
-            .disableAutocorrection(true)
-            .navigationTitle("Autores")
-            .onAppear {
-                viewModel.reloadList()
-                viewModel.donateActivity()
-            }
+        }
+        .searchable(text: $searchText)
+        .disableAutocorrection(true)
+        .onAppear {
+            viewModel.reloadList()
+            viewModel.donateActivity()
         }
     }
 
