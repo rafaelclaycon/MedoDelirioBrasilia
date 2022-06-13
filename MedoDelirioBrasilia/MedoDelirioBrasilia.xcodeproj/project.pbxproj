@@ -336,6 +336,15 @@
 		D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E69593283D2F2F00C341B2 /* Favorite.swift */; };
 		D9E69597283D551500C341B2 /* LocalDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E69596283D551500C341B2 /* LocalDatabase.swift */; };
 		D9EB189028577AE000A2F8A8 /* GAVETA - Voce merece tomar Nokul no cu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9EB188F28577AE000A2F8A8 /* GAVETA - Voce merece tomar Nokul no cu.mp3 */; };
+		D9EB189228577BFD00A2F8A8 /* Bolsonaro - Paralelepipedo de crack.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9EB189128577BFC00A2F8A8 /* Bolsonaro - Paralelepipedo de crack.mp3 */; };
+		D9EB189428577D2D00A2F8A8 /* DIOGO DEFANTE - Calma, ces tao de cabeca quente.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9EB189328577D2D00A2F8A8 /* DIOGO DEFANTE - Calma, ces tao de cabeca quente.mp3 */; };
+		D9EB189628577DEF00A2F8A8 /* Atencao e agora que o bicho vai pegar short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9EB189528577DEF00A2F8A8 /* Atencao e agora que o bicho vai pegar short meme.mp3 */; };
+		D9EB189928577EC400A2F8A8 /* Eu fico muito triste com uma noticia dessas filha da puta fogos short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9EB189728577EC400A2F8A8 /* Eu fico muito triste com uma noticia dessas filha da puta fogos short.mp3 */; };
+		D9EB189A28577EC400A2F8A8 /* Eu nao entendi o que ele falou.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9EB189828577EC400A2F8A8 /* Eu nao entendi o que ele falou.mp3 */; };
+		D9EB189C285780BD00A2F8A8 /* Eu sou RICA! short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9EB189B285780BD00A2F8A8 /* Eu sou RICA! short meme.mp3 */; };
+		D9EB189E285781AD00A2F8A8 /* Bom dia e o caralho parceiro short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9EB189D285781AC00A2F8A8 /* Bom dia e o caralho parceiro short meme.mp3 */; };
+		D9EB18A12857907800A2F8A8 /* Eduardo Sterblitch - E mais ou menos longo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9EB189F2857907800A2F8A8 /* Eduardo Sterblitch - E mais ou menos longo.mp3 */; };
+		D9EB18A22857907800A2F8A8 /* Eduardo Sterblitch - E mais ou menos curto.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9EB18A02857907800A2F8A8 /* Eduardo Sterblitch - E mais ou menos curto.mp3 */; };
 		D9FA0CD728508590000F6ADE /* UIDevice+ModelName.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FA0CD628508590000F6ADE /* UIDevice+ModelName.swift */; };
 		D9FA0CD92850864C000F6ADE /* ClientDeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FA0CD82850864C000F6ADE /* ClientDeviceInfo.swift */; };
 /* End PBXBuildFile section */
@@ -682,6 +691,15 @@
 		D9E69593283D2F2F00C341B2 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		D9E69596283D551500C341B2 /* LocalDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDatabase.swift; sourceTree = "<group>"; };
 		D9EB188F28577AE000A2F8A8 /* GAVETA - Voce merece tomar Nokul no cu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "GAVETA - Voce merece tomar Nokul no cu.mp3"; sourceTree = "<group>"; };
+		D9EB189128577BFC00A2F8A8 /* Bolsonaro - Paralelepipedo de crack.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Paralelepipedo de crack.mp3"; sourceTree = "<group>"; };
+		D9EB189328577D2D00A2F8A8 /* DIOGO DEFANTE - Calma, ces tao de cabeca quente.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "DIOGO DEFANTE - Calma, ces tao de cabeca quente.mp3"; sourceTree = "<group>"; };
+		D9EB189528577DEF00A2F8A8 /* Atencao e agora que o bicho vai pegar short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Atencao e agora que o bicho vai pegar short meme.mp3"; sourceTree = "<group>"; };
+		D9EB189728577EC400A2F8A8 /* Eu fico muito triste com uma noticia dessas filha da puta fogos short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu fico muito triste com uma noticia dessas filha da puta fogos short.mp3"; sourceTree = "<group>"; };
+		D9EB189828577EC400A2F8A8 /* Eu nao entendi o que ele falou.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu nao entendi o que ele falou.mp3"; sourceTree = "<group>"; };
+		D9EB189B285780BD00A2F8A8 /* Eu sou RICA! short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu sou RICA! short meme.mp3"; sourceTree = "<group>"; };
+		D9EB189D285781AC00A2F8A8 /* Bom dia e o caralho parceiro short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bom dia e o caralho parceiro short meme.mp3"; sourceTree = "<group>"; };
+		D9EB189F2857907800A2F8A8 /* Eduardo Sterblitch - E mais ou menos longo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eduardo Sterblitch - E mais ou menos longo.mp3"; sourceTree = "<group>"; };
+		D9EB18A02857907800A2F8A8 /* Eduardo Sterblitch - E mais ou menos curto.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eduardo Sterblitch - E mais ou menos curto.mp3"; sourceTree = "<group>"; };
 		D9FA0CD628508590000F6ADE /* UIDevice+ModelName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+ModelName.swift"; sourceTree = "<group>"; };
 		D9FA0CD82850864C000F6ADE /* ClientDeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientDeviceInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -709,6 +727,15 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9EB18A02857907800A2F8A8 /* Eduardo Sterblitch - E mais ou menos curto.mp3 */,
+				D9EB189F2857907800A2F8A8 /* Eduardo Sterblitch - E mais ou menos longo.mp3 */,
+				D9EB189D285781AC00A2F8A8 /* Bom dia e o caralho parceiro short meme.mp3 */,
+				D9EB189B285780BD00A2F8A8 /* Eu sou RICA! short meme.mp3 */,
+				D9EB189728577EC400A2F8A8 /* Eu fico muito triste com uma noticia dessas filha da puta fogos short.mp3 */,
+				D9EB189828577EC400A2F8A8 /* Eu nao entendi o que ele falou.mp3 */,
+				D9EB189528577DEF00A2F8A8 /* Atencao e agora que o bicho vai pegar short meme.mp3 */,
+				D9EB189328577D2D00A2F8A8 /* DIOGO DEFANTE - Calma, ces tao de cabeca quente.mp3 */,
+				D9EB189128577BFC00A2F8A8 /* Bolsonaro - Paralelepipedo de crack.mp3 */,
 				D9EB188F28577AE000A2F8A8 /* GAVETA - Voce merece tomar Nokul no cu.mp3 */,
 				D91964F32856BC860067B430 /* GALAS FEIOS - Moro desafinando no corrupcao.mp3 */,
 				D91964F12856BBE10067B430 /* Moro dizendo que nao seria ministro nem candidato a presidencia.mp3 */,
@@ -1368,6 +1395,7 @@
 			files = (
 				D955692B285137800072E3FC /* funk_do_xandao.mp3 in Resources */,
 				D9556922285137800072E3FC /* Cerginho da Perera Nunes - Com certeza.mp3 in Resources */,
+				D9EB189A28577EC400A2F8A8 /* Eu nao entendi o que ele falou.mp3 in Resources */,
 				D9556930285137800072E3FC /* jonathan frakes - not this time.mp3 in Resources */,
 				D9556949285137800072E3FC /* Away - Para com essa porra ai mermao short.mp3 in Resources */,
 				D955698C285137800072E3FC /* Funk meme - Ele mesmo, ele mesmo, ele mesmo.mp3 in Resources */,
@@ -1396,6 +1424,7 @@
 				D9556966285137800072E3FC /* Drauzio - procura um psiquiatra, voce nao ta legal.mp3 in Resources */,
 				D9556972285137800072E3FC /* MC Creu - E creu, e creu neles.mp3 in Resources */,
 				D9B4F740283C8F4D0000EEF7 /* O roque ativa.mp3 in Resources */,
+				D9EB189C285780BD00A2F8A8 /* Eu sou RICA! short meme.mp3 in Resources */,
 				D95569C1285137800072E3FC /* Pazuello - E simples assim, um manda e o outro obedece.mp3 in Resources */,
 				D95569B1285137800072E3FC /* Pedro Pedreira - Pedra 90 ha controversias.mp3 in Resources */,
 				D95569B8285137800072E3FC /* Natalia Pasternak - Tem gente morrendo.mp3 in Resources */,
@@ -1466,6 +1495,7 @@
 				D95569A8285137800072E3FC /* calma_calma_calma.mp3 in Resources */,
 				D9556960285137800072E3FC /* Bolsonaro - Pra midia, o virus sou eu.mp3 in Resources */,
 				D934432728381DEF00ADCD38 /* author_data.json in Resources */,
+				D9EB189928577EC400A2F8A8 /* Eu fico muito triste com uma noticia dessas filha da puta fogos short.mp3 in Resources */,
 				D9556955285137800072E3FC /* Que merda hein short.mp3 in Resources */,
 				D9556941285137800072E3FC /* Ciro Gomes - Conspirador filho da puta.mp3 in Resources */,
 				D90483DC2851A66200885739 /* HENRY BUGALHO - Os reacas piram.mp3 in Resources */,
@@ -1537,9 +1567,12 @@
 				D927C41F28523F5D0041970A /* SBT NEWS - Jair Renan - Acabou que nao fiz nada la.mp3 in Resources */,
 				D955692E285137800072E3FC /* Tu tava fora do brasil irmao short.mp3 in Resources */,
 				D90483D12851A19F00885739 /* Galo Cego - Nada a ver irmao.mp3 in Resources */,
+				D9EB18A12857907800A2F8A8 /* Eduardo Sterblitch - E mais ou menos longo.mp3 in Resources */,
+				D9EB18A22857907800A2F8A8 /* Eduardo Sterblitch - E mais ou menos curto.mp3 in Resources */,
 				D955699B285137800072E3FC /* Malafaia - Jair Messias Bolsonaro sem respostas.mp3 in Resources */,
 				D95569A4285137800072E3FC /* Fernando Collor - Tres vezes dizendo que e mentira.mp3 in Resources */,
 				D95569BA285137800072E3FC /* esse_braga_neto_que_eh_um_bosta.mp3 in Resources */,
+				D9EB189628577DEF00A2F8A8 /* Atencao e agora que o bicho vai pegar short meme.mp3 in Resources */,
 				D9556996285137800072E3FC /* Passada chocada meu Deus jesus.mp3 in Resources */,
 				D955695B285137800072E3FC /* Craque Neto - Vacina eu Tomo short meme.mp3 in Resources */,
 				D927C41A28523F5D0041970A /* PLANALTO - Bolsonaro - Mente.mp3 in Resources */,
@@ -1590,6 +1623,7 @@
 				D9556965285137800072E3FC /* Quercia - E mentira, e tudo mentira.mp3 in Resources */,
 				D95569B4285137800072E3FC /* Mourao - Coronel Brilhante Ustra Meu heroi short meme.mp3 in Resources */,
 				D9556997285137800072E3FC /* SBT NEWS - Bolsonaro - Sai alexandre de moraes deixa de ser canalha.mp3 in Resources */,
+				D9EB189E285781AD00A2F8A8 /* Bom dia e o caralho parceiro short meme.mp3 in Resources */,
 				D955693E285137800072E3FC /* Bonitinha mas ordinaria - Mentira.mp3 in Resources */,
 				D927C40D28523A050041970A /* OS DONOS DA BOLA - CRAQUE NETO - Ai depois fala que ta bebado.mp3 in Resources */,
 				D95569D9285137800072E3FC /* JORNAL DA RECORD - Nao e coisa de deus nao.mp3 in Resources */,
@@ -1626,6 +1660,7 @@
 				D95569B9285137800072E3FC /* Malafaia - JAIR MESSIAS BOLSONARO.mp3 in Resources */,
 				D95569C2285137800072E3FC /* Ciro Gomes - Veja bem, se eu estiver errado me corrija.mp3 in Resources */,
 				D9556985285137800072E3FC /* EMICIDA_no_loolapalooza_Tira_o_titulo_e_bolsonaro_vai_tomar_no_cu.mp3 in Resources */,
+				D9EB189428577D2D00A2F8A8 /* DIOGO DEFANTE - Calma, ces tao de cabeca quente.mp3 in Resources */,
 				D9556975285137800072E3FC /* ATILA IAMARINO - Voce vai morrer (resumo da live).mp3 in Resources */,
 				D90483DF2851A66200885739 /* Joao Kleber - Comeca o teste de fidelidade short meme.mp3 in Resources */,
 				D95569DA285137800072E3FC /* Brizola - Filhotes da ditadura.mp3 in Resources */,
@@ -1637,6 +1672,7 @@
 				D92879E8283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 in Resources */,
 				D955698D285137800072E3FC /* Sera mesmo.mp3 in Resources */,
 				D9556948285137800072E3FC /* Silas Malafaia - Eu tenho pena short.mp3 in Resources */,
+				D9EB189228577BFD00A2F8A8 /* Bolsonaro - Paralelepipedo de crack.mp3 in Resources */,
 				D955695D285137800072E3FC /* SALLES - E ir passando a boiada.mp3 in Resources */,
 				D955694C285137800072E3FC /* O CARA DA LUVA DE PEDREIRO - Receba.mp3 in Resources */,
 			);
@@ -1867,7 +1903,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				ENABLE_PREVIEWS = YES;
@@ -1883,7 +1919,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.6;
+				MARKETING_VERSION = 1.3.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = "Medo e Delírio";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1898,7 +1934,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				ENABLE_PREVIEWS = YES;
@@ -1914,7 +1950,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.6;
+				MARKETING_VERSION = 1.3.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = "Medo e Delírio";
 				SWIFT_EMIT_LOC_STRINGS = YES;
