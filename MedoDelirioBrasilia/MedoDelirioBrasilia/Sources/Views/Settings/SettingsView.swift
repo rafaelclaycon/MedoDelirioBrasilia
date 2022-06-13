@@ -3,7 +3,6 @@ import SwiftUI
 struct SettingsView: View {
 
     @State private var showPixKeyCopiedAlert: Bool = false
-    @State private var showPixKeyCopiedCreatedByAlert: Bool = false
     @State private var showUnableToOpenPodcastsAppAlert: Bool = false
     @State private var showExplicitSounds: Bool = UserSettings.getShowOffensiveSounds()
     @State private var showExplicitSoundsConfirmationAlert: Bool = false
@@ -71,7 +70,7 @@ struct SettingsView: View {
                                 showPixKeyCopiedAlert = true
                             }) {
                                 Text(pixKey)
-                                    .font(.footnote)
+                                    .font(.subheadline)
                                     .bold()
                             }
                             .tint(.blue)
@@ -82,9 +81,14 @@ struct SettingsView: View {
                             .alert(isPresented: $showPixKeyCopiedAlert) {
                                 Alert(title: Text("Chave copiada com sucesso!"), dismissButton: .default(Text("OK")))
                             }
+                            
+                            Text("**ÚLTIMA DOAÇÃO: SÉRGIO M. O.   R$ 20,00**")
+                                .foregroundColor(.gray)
+                                .multilineTextAlignment(.center)
+                                .padding(.top, 15)
                         }
                         
-                        VStack(alignment: .center, spacing: 5) {
+                        /*VStack(alignment: .center, spacing: 5) {
                             Text("Gostou do que viu?")
                                 .multilineTextAlignment(.center)
                                 .padding(.horizontal)
@@ -112,10 +116,10 @@ struct SettingsView: View {
                             .buttonStyle(.bordered)
                             .buttonBorderShape(.capsule)
                             .padding(.top)
-                        }
+                        }*/
                         
                         VStack(alignment: .center, spacing: 5) {
-                            Text("Encontrou um problema ou gostaria de fazer uma sugestão?")
+                            Text("Encontrou um problema, gostaria de fazer uma sugestão ou pedir um som?")
                                 .multilineTextAlignment(.center)
                                 .padding(.horizontal)
                             
@@ -135,7 +139,7 @@ struct SettingsView: View {
                                 
                                 UIApplication.shared.open(mailToUrl)
                             }) {
-                                Text("Conte-nos por e-mail")
+                                Text("Fale com a gente por e-mail")
                             }
                             .tint(.pink)
                             .controlSize(.large)
@@ -173,11 +177,8 @@ struct SettingsView: View {
                         VStack(spacing: 15) {
                             Text("Criado por @claycon_")
                                 .onTapGesture {
-                                    UIPasteboard.general.string = pixKey
-                                    showPixKeyCopiedCreatedByAlert = true
-                                }
-                                .alert(isPresented: $showPixKeyCopiedCreatedByAlert) {
-                                    Alert(title: Text("Chave Pix Copiada com Sucesso"), message: Text("Qualquer R$ 1 me ajuda a manter isso aqui."), dismissButton: .default(Text("OK")))
+                                    guard let url = URL(string: "https://twitter.com/claycon_") else { return }
+                                    UIApplication.shared.open(url)
                                 }
                             
                             Text("Versão \(appVersion) Build \(buildVersionNumber)")
