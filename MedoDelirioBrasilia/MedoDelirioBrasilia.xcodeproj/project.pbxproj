@@ -335,6 +335,7 @@
 		D9E69592283D2E2C00C341B2 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = D9E69591283D2E2C00C341B2 /* SQLite */; };
 		D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E69593283D2F2F00C341B2 /* Favorite.swift */; };
 		D9E69597283D551500C341B2 /* LocalDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E69596283D551500C341B2 /* LocalDatabase.swift */; };
+		D9EB18A52857CDFF00A2F8A8 /* CollectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EB18A42857CDFF00A2F8A8 /* CollectionsView.swift */; };
 		D9FA0CD728508590000F6ADE /* UIDevice+ModelName.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FA0CD628508590000F6ADE /* UIDevice+ModelName.swift */; };
 		D9FA0CD92850864C000F6ADE /* ClientDeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FA0CD82850864C000F6ADE /* ClientDeviceInfo.swift */; };
 /* End PBXBuildFile section */
@@ -680,6 +681,7 @@
 		D9BF90BD2842EAED00BDDD7D /* TopChartCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartCellView.swift; sourceTree = "<group>"; };
 		D9E69593283D2F2F00C341B2 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		D9E69596283D551500C341B2 /* LocalDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDatabase.swift; sourceTree = "<group>"; };
+		D9EB18A42857CDFF00A2F8A8 /* CollectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsView.swift; sourceTree = "<group>"; };
 		D9FA0CD628508590000F6ADE /* UIDevice+ModelName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+ModelName.swift"; sourceTree = "<group>"; };
 		D9FA0CD82850864C000F6ADE /* ClientDeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientDeviceInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1006,6 +1008,7 @@
 				D958B1AD28394E420010F133 /* SongsView.swift */,
 				D92E7071283C5D990035826C /* SongsViewViewModel.swift */,
 				D92E7074283C5F620035826C /* SongCell.swift */,
+				D94A4213283DC52800A504BD /* SongHelpView.swift */,
 			);
 			path = Songs;
 			sourceTree = "<group>";
@@ -1067,15 +1070,6 @@
 				D9FA0CD628508590000F6ADE /* UIDevice+ModelName.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		D961D0232837319600EFEDEB /* Help */ = {
-			isa = PBXGroup;
-			children = (
-				D961D024283731AA00EFEDEB /* SoundHelpView.swift */,
-				D94A4213283DC52800A504BD /* SongHelpView.swift */,
-			);
-			path = Help;
 			sourceTree = "<group>";
 		};
 		D9625E7128238F9A00080852 = {
@@ -1156,9 +1150,8 @@
 			children = (
 				D958B1A928394D400010F133 /* MainView.swift */,
 				D9B9025C2837485000551239 /* Sounds */,
-				D98622DE283FC53B00E9F630 /* Authors */,
+				D9EB18A32857CDE200A2F8A8 /* Collections */,
 				D92E7073283C5D9E0035826C /* Songs */,
-				D961D0232837319600EFEDEB /* Help */,
 				D9BF90BC2842EAB100BDDD7D /* Trends */,
 				D957509728446BEC0094AEA6 /* Settings */,
 			);
@@ -1230,6 +1223,8 @@
 				D98EC5E22825A45000340BE5 /* SoundsViewViewModel.swift */,
 				D98EC5DD282596C300340BE5 /* SoundCell.swift */,
 				D92C0CA928405B2D009CF19A /* NoFavoritesView.swift */,
+				D961D024283731AA00EFEDEB /* SoundHelpView.swift */,
+				D98622DE283FC53B00E9F630 /* Authors */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -1271,6 +1266,14 @@
 				D9625E8E28238F9B00080852 /* LocalDatabaseTests.swift */,
 			);
 			path = DataHandlers;
+			sourceTree = "<group>";
+		};
+		D9EB18A32857CDE200A2F8A8 /* Collections */ = {
+			isa = PBXGroup;
+			children = (
+				D9EB18A42857CDFF00A2F8A8 /* CollectionsView.swift */,
+			);
+			path = Collections;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1682,6 +1685,7 @@
 				D92E7075283C5F620035826C /* SongCell.swift in Sources */,
 				D961D01828372B1800EFEDEB /* AudioPlayer.swift in Sources */,
 				D98EC5DE282596C300340BE5 /* SoundCell.swift in Sources */,
+				D9EB18A52857CDFF00A2F8A8 /* CollectionsView.swift in Sources */,
 				D98EC5E32825A45000340BE5 /* SoundsViewViewModel.swift in Sources */,
 				D9344323283812AD00ADCD38 /* Author.swift in Sources */,
 				D98622E2283FCEDC00E9F630 /* AuthorsViewViewModel.swift in Sources */,

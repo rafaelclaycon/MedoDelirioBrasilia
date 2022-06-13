@@ -12,11 +12,11 @@ struct MainView: View {
                 }
                 .tag(1)
             
-            AuthorsView()
-                .tabItem {
-                    Label("Autores", systemImage: "person.fill")
-                }
-                .tag(2)
+//            CollectionsView()
+//                .tabItem {
+//                    Label("Coleções", systemImage: "rectangle.grid.2x2.fill")
+//                }
+//                .tag(2)
             
             SongsView()
                 .tabItem {

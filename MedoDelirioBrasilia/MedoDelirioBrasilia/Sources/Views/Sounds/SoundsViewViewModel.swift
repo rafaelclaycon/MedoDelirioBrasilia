@@ -10,7 +10,6 @@ class SoundsViewViewModel: ObservableObject {
     @Published var favoritesKeeper = Set<String>()
     @Published var showConfirmationDialog = false
     @Published var soundForConfirmationDialog: Sound? = nil
-    @Published var showOnlyFavorites = false
     
     @Published var currentActivity: NSUserActivity? = nil
     

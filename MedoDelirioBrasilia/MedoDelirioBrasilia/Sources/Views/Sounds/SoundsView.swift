@@ -2,7 +2,12 @@ import SwiftUI
 
 struct SoundsView: View {
 
+    enum Mode: Int {
+        case allSounds, favorites, byAuthor
+    }
+    
     @StateObject private var viewModel = SoundsViewViewModel()
+    @State private var currentMode: Mode = .allSounds
     @State private var showingHelpScreen = false
     @State private var searchText = ""
     
@@ -23,7 +28,18 @@ struct SoundsView: View {
     }
     
     var showNoFavoritesView: Bool {
-        searchResults.isEmpty && viewModel.showOnlyFavorites
+        searchResults.isEmpty && currentMode == .favorites && searchText.isEmpty
+    }
+    
+    var dropDownText: String {
+        switch currentMode {
+        case .allSounds:
+            return "Todos"
+        case .favorites:
+            return "Favoritos"
+        case .byAuthor:
+            return "Por autor"
+        }
     }
     
     var body: some View {
@@ -34,6 +50,8 @@ struct SoundsView: View {
                 if showNoFavoritesView {
                     NoFavoritesView()
                         .padding(.horizontal, 25)
+                } else if currentMode == .byAuthor {
+                    AuthorsView()
                 } else {
                     ScrollView {
                         LazyVGrid(columns: columns, spacing: 14) {
@@ -53,7 +71,7 @@ struct SoundsView: View {
                         .padding(.horizontal)
                         .padding(.top, 7)
                         
-                        if UserSettings.getShowOffensiveSounds() == false, viewModel.showOnlyFavorites == false {
+                        if UserSettings.getShowOffensiveSounds() == false, currentMode != .favorites {
                             Text("Filtrando conteúdo sensível. Você pode mudar isso na aba Ajustes.")
                                 .font(.footnote)
                                 .foregroundColor(.gray)
@@ -62,7 +80,7 @@ struct SoundsView: View {
                                 .padding(.horizontal, 20)
                         }
                         
-                        if searchText.isEmpty, viewModel.showOnlyFavorites == false {
+                        if searchText.isEmpty, currentMode != .favorites {
                             Text("\(viewModel.sounds.count) sons. Atualizado em \(soundsLastUpdateDate).")
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
@@ -82,18 +100,37 @@ struct SoundsView: View {
                             Image(systemName: "questionmark.circle")
                         }
                     }
-                    Button(action: {
-                        viewModel.showOnlyFavorites.toggle()
-                    }) {
+                    
+                    Menu {
+                        Section {
+                            Picker(selection: $currentMode, label: Text("Exibição")) {
+                                Text("Todos os sons")
+                                    .tag(Mode.allSounds)
+
+                                Text("Favoritos")
+                                    .tag(Mode.favorites)
+
+                                Text("Agrupados por autor")
+                                    .tag(Mode.byAuthor)
+                            }
+                        }
+                    } label: {
                         HStack {
-                            Image(systemName: viewModel.showOnlyFavorites ? "star.fill" : "star")
+                            Text(dropDownText)
+                            Image(systemName: "chevron.down")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 15)
                         }
                     }
-                    .onChange(of: viewModel.showOnlyFavorites) { newValue in
+                    .onChange(of: currentMode) { newValue in
+                        guard newValue != .byAuthor else {
+                            return
+                        }
                         viewModel.reloadList(withSounds: soundData,
                                              andFavorites: try? database.getAllFavorites(),
                                              allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
-                                             favoritesOnly: newValue,
+                                             favoritesOnly: newValue == .favorites,
                                              sortedBy: ContentSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
                     }
                 }
@@ -118,16 +155,17 @@ struct SoundsView: View {
                     viewModel.reloadList(withSounds: soundData,
                                          andFavorites: try? database.getAllFavorites(),
                                          allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
-                                         favoritesOnly: viewModel.showOnlyFavorites,
+                                         favoritesOnly: currentMode == .favorites,
                                          sortedBy: ContentSortOption(rawValue: newValue) ?? .titleAscending)
                     UserSettings.setSoundSortOption(to: newValue)
                 })
+                .disabled(currentMode == .byAuthor)
             )
             .onAppear {
                 viewModel.reloadList(withSounds: soundData,
                                      andFavorites: try? database.getAllFavorites(),
                                      allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
-                                     favoritesOnly: viewModel.showOnlyFavorites,
+                                     favoritesOnly: currentMode == .favorites,
                                      sortedBy: ContentSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
                 viewModel.donateActivity()
                 viewModel.sendDeviceModelNameToServer()
@@ -139,11 +177,11 @@ struct SoundsView: View {
                     }
                     if viewModel.isSelectedSoundAlreadyAFavorite() {
                         viewModel.removeFromFavorites(soundId: sound.id)
-                        if viewModel.showOnlyFavorites {
+                        if currentMode == .favorites {
                             viewModel.reloadList(withSounds: soundData,
                                                  andFavorites: try? database.getAllFavorites(),
                                                  allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
-                                                 favoritesOnly: viewModel.showOnlyFavorites,
+                                                 favoritesOnly: currentMode == .favorites,
                                                  sortedBy: ContentSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
                         }
                     } else {
