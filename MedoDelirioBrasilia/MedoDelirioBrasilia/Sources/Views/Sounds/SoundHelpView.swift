@@ -7,7 +7,7 @@ struct SoundHelpView: View {
     var body: some View {
         VStack {
             ScrollView {                
-                VStack(alignment: .leading, spacing: 40) {
+                VStack(alignment: .leading, spacing: 30) {
                     HStack(alignment: .center, spacing: 15) {
                         Image(systemName: "play.fill")
                             .font(.largeTitle)
@@ -26,30 +26,32 @@ struct SoundHelpView: View {
                         Text("Para compartilhar, segure o som por 2 segundos e então escolha Compartilhar.")
                     }
                     
+                    Divider()
+                    
                     HStack(alignment: .center, spacing: 15) {
                         Image(systemName: "magnifyingglass")
                             .font(.largeTitle)
                             .foregroundColor(.accentColor)
                             .frame(width: iconFrameWidth)
                         
-                        VStack(spacing: 15) {
-                            Text("Para pesquisar, vá até o topo da lista e **puxe mais um pouco para baixo** até revelar o campo de pesquisa.")
-                            Text("A pesquisa considera o **conteúdo do áudio** e o **nome do autor**. Evite vírgulas.")
-                        }
+                        Text("Para pesquisar, vá até o topo da lista e **puxe mais um pouco para baixo** até revelar o campo de pesquisa.\n\nA pesquisa considera o **conteúdo do áudio** e o **nome do autor**. Não use vírgulas.")
                     }
                     
-                    HStack(spacing: 15) {
+                    Divider()
+                    
+                    HStack(alignment: .center, spacing: 15) {
                         Image(systemName: "star.fill")
                             .font(.largeTitle)
                             .foregroundColor(.red)
                             .frame(width: iconFrameWidth)
 
-                        Text("Para favoritar, segure o som por 2 segundos e então escolha Adicionar aos Favoritos.")
+                        Text("Para favoritar, segure o som por 2 segundos e então escolha **Adicionar aos Favoritos**.\n\nPara ver apenas os favoritos, toque na estrela no topo da tela anterior.\n\nÉ possível pesquisar apenas entre os favoritos usando a barra de Busca. Na lista de favoritos, vá até o topo e puxe mais um pouco para baixo para ver a barra.")
                     }
+                    .padding(.bottom, 15)
                 }
+                .padding()
             }
         }
-        .padding()
         .navigationTitle("Ajuda")
     }
 
