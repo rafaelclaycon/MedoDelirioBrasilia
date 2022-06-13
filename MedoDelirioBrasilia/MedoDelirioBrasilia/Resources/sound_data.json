@@ -2275,5 +2275,77 @@
         "filename": "Cristiano Botafogo - Presidente por que sua esposa Michele recebeu 89 mil de Fabricio Queiroz.mp3",
         "dateAdded": "2022-06-12T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "B631DC7B-ECF0-46F1-A520-97ED0AF63A32",
+        "title": "Dá um tapa na minha cara *som de tapa*",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Da um tapa na minha cara",
+        "filename": "Bolsonaro - Da um tapa na minha cara slap sound.mp3",
+        "dateAdded": "2022-06-12T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "67D0773D-6822-4102-BCE9-77C7AD45BEC9",
+        "title": "Um jumento, um jumento",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Um jumento um jumento",
+        "filename": "Bolsonaro - Um jumento, um jumento.mp3",
+        "dateAdded": "2022-06-12T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "98BBB788-EC4F-4932-BA33-6CD5360758FF",
+        "title": "Yeah science!",
+        "authorId": "24F2C199-3AD3-4F2B-A68A-FF4A6873DC33",
+        "description": "Yeah science",
+        "filename": "BREAKING BAD - Yeah Science meme.mp3",
+        "dateAdded": "2022-06-12T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "82688740-C4E3-414C-A452-B4E696327CE9",
+        "title": "Amado ou amada",
+        "authorId": "F1683588-F547-4F2F-B3E4-8A328FAFC1AB",
+        "description": "Amado ou amada",
+        "filename": "CASIMIRO - Amado ou amada.mp3",
+        "dateAdded": "2022-06-12T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "2A8F0A53-1C9D-4076-8184-998B87727980",
+        "title": "Coitado",
+        "authorId": "94004C99-7373-4880-B551-1BC283992BDC",
+        "description": "Coitado",
+        "filename": "Chico Bento - Coitado.mp3",
+        "dateAdded": "2022-06-12T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "F3E04778-534C-4C09-ABE2-E654CD3524A8",
+        "title": "Então bundão é o Jair",
+        "authorId": "5CC4D589-5C07-4909-9EC4-AB6BFD16CFF4",
+        "description": "Entao bundao e o Jair",
+        "filename": "Datena - Entao bundao e o Jair.mp3",
+        "dateAdded": "2022-06-12T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "6E148CB9-1320-4C8A-949F-7F18A1B043DE",
+        "title": "Moro dizendo que não seria ministro nem candidato à presidência",
+        "authorId": "AA4313EE-E9E1-4EDB-9D40-3A9C5C286DA6",
+        "description": "Moro dizendo que nao seria ministro nem candidato a presidencia",
+        "filename": "Moro dizendo que nao seria ministro nem candidato a presidencia.mp3",
+        "dateAdded": "2022-06-12T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "B20DC9EF-7BF4-45AA-827C-E253DCC7718D",
+        "title": "Moro desafinando no corrupção",
+        "authorId": "63126808-C5C0-4492-9B21-AF800C5E0AFB",
+        "description": "Moro desafinando no corrupcao",
+        "filename": "GALAS FEIOS - Moro desafinando no corrupcao.mp3",
+        "dateAdded": "2022-06-12T00:00:00Z",
+        "isOffensive": true
     }
 ]
