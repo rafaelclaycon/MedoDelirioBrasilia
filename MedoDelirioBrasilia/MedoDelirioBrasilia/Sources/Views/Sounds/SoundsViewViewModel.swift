@@ -165,6 +165,9 @@ class SoundsViewViewModel: ObservableObject {
             guard UIDevice.modelName.contains("Simulator") == false else {
                 return
             }
+            guard CommandLine.arguments.contains("-UNDER_DEVELOPMENT") == false else {
+                return
+            }
             
             let info = ClientDeviceInfo(installId: UIDevice.current.identifierForVendor?.uuidString ?? "", modelName: UIDevice.modelName)
             networkRabbit.post(clientDeviceInfo: info) { success, error in

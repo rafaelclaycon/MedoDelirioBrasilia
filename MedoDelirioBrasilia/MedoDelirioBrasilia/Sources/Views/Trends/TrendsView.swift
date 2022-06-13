@@ -40,6 +40,7 @@ struct TrendsView: View {
                                 Text("Sons Mais Compartilhados Por Mim")
                                     .font(.title2)
                                     .padding(.horizontal)
+                                    .padding(.top, 10)
                                 
                                 if viewModel.personalTop5 == nil {
                                     HStack {
@@ -86,6 +87,7 @@ struct TrendsView: View {
                                 Text("Sons Mais Compartilhados Pela Audiência (iOS)")
                                     .font(.title2)
                                     .padding(.horizontal)
+                                    .padding(.top, 10)
                                 
                                 HStack {
                                     Spacer()
@@ -122,11 +124,11 @@ struct TrendsView: View {
                                 }
                             }
                             
-                            if showAppsThroughWhichTheUserSharesTheMost {
+                            /*if showAppsThroughWhichTheUserSharesTheMost {
                                 Text("Apps Pelos Quais Você Mais Compartilha")
                                     .font(.title2)
                                     .padding(.horizontal)
-                            }
+                            }*/
                         }
                     }
                 } else {
