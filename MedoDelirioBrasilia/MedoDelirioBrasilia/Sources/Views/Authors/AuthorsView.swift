@@ -21,6 +21,7 @@ struct AuthorsView: View {
                 }
             }
             .searchable(text: $searchText)
+            .disableAutocorrection(true)
             .navigationTitle("Autores")
             .onAppear {
                 viewModel.reloadList()
