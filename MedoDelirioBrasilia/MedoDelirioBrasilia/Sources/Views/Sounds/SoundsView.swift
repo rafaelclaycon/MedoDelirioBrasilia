@@ -63,7 +63,7 @@ struct SoundsView: View {
                         }
                         
                         if searchText.isEmpty, viewModel.showOnlyFavorites == false {
-                            Text("\(viewModel.sounds.count) sons. Atualizado em \(soundsLastUpdateDate).")
+                            Text("\(viewModel.sounds.count) sons. Atualizado \(soundsLastUpdateDate.isoStringDateToDate().toRelativeDateString()).")
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
                                 .padding(.top, 10)

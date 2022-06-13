@@ -61,7 +61,7 @@ struct SongsView: View {
                     }
                     
                     if searchText.isEmpty {
-                        Text("\(viewModel.songs.count) músicas. Atualizado em \(songsLastUpdateDate).")
+                        Text("\(viewModel.songs.count) músicas. Atualizado em \(songsLastUpdateDate.isoStringDateToDate().toRelativeDateString()).")
                             .font(.subheadline)
                             .foregroundColor(.gray)
                             .padding(.top, 10)
