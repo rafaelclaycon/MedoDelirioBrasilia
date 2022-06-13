@@ -6,6 +6,7 @@ struct SoundCell: View {
     @State var title: String
     @State var author: String
     @Binding var favorites: Set<String>
+    
     var isFavorite: Bool {
         favorites.contains(soundId)
     }
@@ -18,6 +19,10 @@ struct SoundCell: View {
             return .footnote
         }
     }
+    var is4InchDevice: Bool {
+        let model = UIDevice.modelName
+        return model == "iPhone SE" || model == "iPod touch (7th generation)" || model == "Simulator iPod touch (7th generation)"
+    }
     
     let regularGradient = LinearGradient(gradient: Gradient(colors: [.green, .green, .brightYellow]), startPoint: .topLeading, endPoint: .bottomTrailing)
     let favoriteGradient = LinearGradient(gradient: Gradient(colors: [.red, .red, .red]), startPoint: .topLeading, endPoint: .bottomTrailing)
@@ -26,7 +31,7 @@ struct SoundCell: View {
         ZStack {
             RoundedRectangle(cornerRadius: 20, style: .continuous)
                 .fill(isFavorite ? favoriteGradient : regularGradient)
-                .frame(height: 90)
+                .frame(height: is4InchDevice ? 120 : 90)
             
             if isFavorite {
                 HStack {
@@ -50,13 +55,13 @@ struct SoundCell: View {
                         .bold()
                     
                     Text(author)
-                        .font(.subheadline)
+                        .font(is4InchDevice ? .footnote : .subheadline)
                         .foregroundColor(.white)
                 }
                 
                 Spacer()
             }
-            .padding(.leading, 20)
+            .padding(.leading, is4InchDevice ? 10 : 20)
         }
     }
 
