@@ -47,6 +47,7 @@ struct SongsView: View {
                         }
                     }
                     .searchable(text: $searchText)
+                    .disableAutocorrection(true)
                     .padding(.horizontal)
                     .padding(.top, 7)
                     
