@@ -34,6 +34,17 @@
 		D90483FA2851B0F500885739 /* O Terrivel Editorialista do Estadao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90483F02851B0F500885739 /* O Terrivel Editorialista do Estadao.mp3 */; };
 		D90483FB2851B0F500885739 /* O Terrivel Homem do Broche de Caveira.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90483F12851B0F500885739 /* O Terrivel Homem do Broche de Caveira.mp3 */; };
 		D90F6A6628446C250050FFFF /* TrendsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */; };
+		D91964E128563B680067B430 /* Queiroz - Eu sou um cara de negocios, eu faco dinheiro eu faco.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964DF28563B680067B430 /* Queiroz - Eu sou um cara de negocios, eu faco dinheiro eu faco.mp3 */; };
+		D91964E228563B680067B430 /* Bolsonaro - Esposa, ne, tem que aguentar, mas ta tudo bem.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964E028563B680067B430 /* Bolsonaro - Esposa, ne, tem que aguentar, mas ta tudo bem.mp3 */; };
+		D91964E4285641640067B430 /* Cristiano Botafogo - Presidente por que sua esposa Michele recebeu 89 mil de Fabricio Queiroz.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964E3285641640067B430 /* Cristiano Botafogo - Presidente por que sua esposa Michele recebeu 89 mil de Fabricio Queiroz.mp3 */; };
+		D91964E62856B7920067B430 /* Bolsonaro - Da um tapa na minha cara slap sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964E52856B7920067B430 /* Bolsonaro - Da um tapa na minha cara slap sound.mp3 */; };
+		D91964EA2856B97A0067B430 /* CASIMIRO - Amado ou amada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964E72856B97A0067B430 /* CASIMIRO - Amado ou amada.mp3 */; };
+		D91964EB2856B97A0067B430 /* Bolsonaro - Um jumento, um jumento.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964E82856B97A0067B430 /* Bolsonaro - Um jumento, um jumento.mp3 */; };
+		D91964EC2856B97A0067B430 /* BREAKING BAD - Yeah Science meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964E92856B97A0067B430 /* BREAKING BAD - Yeah Science meme.mp3 */; };
+		D91964EF2856BB3F0067B430 /* Datena - Entao bundao e o Jair.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964ED2856BB3F0067B430 /* Datena - Entao bundao e o Jair.mp3 */; };
+		D91964F02856BB3F0067B430 /* Chico Bento - Coitado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964EE2856BB3F0067B430 /* Chico Bento - Coitado.mp3 */; };
+		D91964F22856BBE10067B430 /* Moro dizendo que nao seria ministro nem candidato a presidencia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964F12856BBE10067B430 /* Moro dizendo que nao seria ministro nem candidato a presidencia.mp3 */; };
+		D91964F42856BC860067B430 /* GALAS FEIOS - Moro desafinando no corrupcao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964F32856BC860067B430 /* GALAS FEIOS - Moro desafinando no corrupcao.mp3 */; };
 		D927C40C28523A050041970A /* Nunca foi meritocracia, sempre foi desigualdade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D927C40728523A050041970A /* Nunca foi meritocracia, sempre foi desigualdade.mp3 */; };
 		D927C40D28523A050041970A /* OS DONOS DA BOLA - CRAQUE NETO - Ai depois fala que ta bebado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D927C40828523A050041970A /* OS DONOS DA BOLA - CRAQUE NETO - Ai depois fala que ta bebado.mp3 */; };
 		D927C40E28523A050041970A /* Omar Aziz - Ah, me erre.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D927C40928523A050041970A /* Omar Aziz - Ah, me erre.mp3 */; };
@@ -371,6 +382,17 @@
 		D90483F02851B0F500885739 /* O Terrivel Editorialista do Estadao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O Terrivel Editorialista do Estadao.mp3"; sourceTree = "<group>"; };
 		D90483F12851B0F500885739 /* O Terrivel Homem do Broche de Caveira.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O Terrivel Homem do Broche de Caveira.mp3"; sourceTree = "<group>"; };
 		D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsSettingsView.swift; sourceTree = "<group>"; };
+		D91964DF28563B680067B430 /* Queiroz - Eu sou um cara de negocios, eu faco dinheiro eu faco.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Queiroz - Eu sou um cara de negocios, eu faco dinheiro eu faco.mp3"; sourceTree = "<group>"; };
+		D91964E028563B680067B430 /* Bolsonaro - Esposa, ne, tem que aguentar, mas ta tudo bem.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Esposa, ne, tem que aguentar, mas ta tudo bem.mp3"; sourceTree = "<group>"; };
+		D91964E3285641640067B430 /* Cristiano Botafogo - Presidente por que sua esposa Michele recebeu 89 mil de Fabricio Queiroz.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano Botafogo - Presidente por que sua esposa Michele recebeu 89 mil de Fabricio Queiroz.mp3"; sourceTree = "<group>"; };
+		D91964E52856B7920067B430 /* Bolsonaro - Da um tapa na minha cara slap sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Da um tapa na minha cara slap sound.mp3"; sourceTree = "<group>"; };
+		D91964E72856B97A0067B430 /* CASIMIRO - Amado ou amada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "CASIMIRO - Amado ou amada.mp3"; sourceTree = "<group>"; };
+		D91964E82856B97A0067B430 /* Bolsonaro - Um jumento, um jumento.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Um jumento, um jumento.mp3"; sourceTree = "<group>"; };
+		D91964E92856B97A0067B430 /* BREAKING BAD - Yeah Science meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "BREAKING BAD - Yeah Science meme.mp3"; sourceTree = "<group>"; };
+		D91964ED2856BB3F0067B430 /* Datena - Entao bundao e o Jair.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Datena - Entao bundao e o Jair.mp3"; sourceTree = "<group>"; };
+		D91964EE2856BB3F0067B430 /* Chico Bento - Coitado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Chico Bento - Coitado.mp3"; sourceTree = "<group>"; };
+		D91964F12856BBE10067B430 /* Moro dizendo que nao seria ministro nem candidato a presidencia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Moro dizendo que nao seria ministro nem candidato a presidencia.mp3"; sourceTree = "<group>"; };
+		D91964F32856BC860067B430 /* GALAS FEIOS - Moro desafinando no corrupcao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "GALAS FEIOS - Moro desafinando no corrupcao.mp3"; sourceTree = "<group>"; };
 		D927C40728523A050041970A /* Nunca foi meritocracia, sempre foi desigualdade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Nunca foi meritocracia, sempre foi desigualdade.mp3"; sourceTree = "<group>"; };
 		D927C40828523A050041970A /* OS DONOS DA BOLA - CRAQUE NETO - Ai depois fala que ta bebado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "OS DONOS DA BOLA - CRAQUE NETO - Ai depois fala que ta bebado.mp3"; sourceTree = "<group>"; };
 		D927C40928523A050041970A /* Omar Aziz - Ah, me erre.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Omar Aziz - Ah, me erre.mp3"; sourceTree = "<group>"; };
@@ -695,6 +717,17 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D91964F32856BC860067B430 /* GALAS FEIOS - Moro desafinando no corrupcao.mp3 */,
+				D91964F12856BBE10067B430 /* Moro dizendo que nao seria ministro nem candidato a presidencia.mp3 */,
+				D91964EE2856BB3F0067B430 /* Chico Bento - Coitado.mp3 */,
+				D91964ED2856BB3F0067B430 /* Datena - Entao bundao e o Jair.mp3 */,
+				D91964E82856B97A0067B430 /* Bolsonaro - Um jumento, um jumento.mp3 */,
+				D91964E92856B97A0067B430 /* BREAKING BAD - Yeah Science meme.mp3 */,
+				D91964E72856B97A0067B430 /* CASIMIRO - Amado ou amada.mp3 */,
+				D91964E52856B7920067B430 /* Bolsonaro - Da um tapa na minha cara slap sound.mp3 */,
+				D91964E3285641640067B430 /* Cristiano Botafogo - Presidente por que sua esposa Michele recebeu 89 mil de Fabricio Queiroz.mp3 */,
+				D91964E028563B680067B430 /* Bolsonaro - Esposa, ne, tem que aguentar, mas ta tudo bem.mp3 */,
+				D91964DF28563B680067B430 /* Queiroz - Eu sou um cara de negocios, eu faco dinheiro eu faco.mp3 */,
 				D927C42128523FAC0041970A /* Xuxa - Aham Claudia Senta la short meme.mp3 */,
 				D927C41528523F5D0041970A /* Amigo Pedro Daltro - Que delicia, cara.mp3 */,
 				D927C41828523F5D0041970A /* Away - Bom dia, boa tarde, boa noite... por enquanto.mp3 */,
@@ -1391,6 +1424,7 @@
 				D95569C4285137800072E3FC /* Por que sera short meme.mp3 in Resources */,
 				D9556986285137800072E3FC /* Quercia - Mentiroso e caluniador, caluniador e mentiroso.mp3 in Resources */,
 				D90483F92851B0F500885739 /* Raca Negra - Que Pena short meme.mp3 in Resources */,
+				D91964EC2856B97A0067B430 /* BREAKING BAD - Yeah Science meme.mp3 in Resources */,
 				D95569E428513FAB0072E3FC /* SUPERPOP - Luciana Gimenez - Mas ce ta brava.mp3 in Resources */,
 				D955699F285137800072E3FC /* e_um_merda.mp3 in Resources */,
 				D9556993285137800072E3FC /* Bolsonaro - Eu nao errei nenhuma.mp3 in Resources */,
@@ -1398,6 +1432,7 @@
 				D9556959285137800072E3FC /* Choque de Cultura - Cabo cabo cabo ja ta desvirtuando ja short.mp3 in Resources */,
 				D961D01328371F1700EFEDEB /* sound_data.json in Resources */,
 				D9556921285137800072E3FC /* Bolsonaro - Eu sou favoravel a tortura, tu sabe disso.mp3 in Resources */,
+				D91964EA2856B97A0067B430 /* CASIMIRO - Amado ou amada.mp3 in Resources */,
 				D9556937285137800072E3FC /* MULTISHOW_Gloria_Groove_Quer_dizer_que_eles_querem_calar_a_gente.mp3 in Resources */,
 				D90483F42851B0F500885739 /* Ronnie Von - Significa short.mp3 in Resources */,
 				D95569C5285137800072E3FC /* Bolsonaro - trabalho excepcional do pazuello.mp3 in Resources */,
@@ -1419,6 +1454,7 @@
 				D95569CF285137800072E3FC /* Queima quengaral wooo short.mp3 in Resources */,
 				D9556987285137800072E3FC /* Fernando Collor - Isso e uma mentira uma pantomima uma patuscada short.mp3 in Resources */,
 				D955697A285137800072E3FC /* Boldo - Carrralho caralho.mp3 in Resources */,
+				D91964EF2856BB3F0067B430 /* Datena - Entao bundao e o Jair.mp3 in Resources */,
 				D90483E62851A87D00885739 /* Leandro Hassum - Pra caralho pra caraaaalho.mp3 in Resources */,
 				D955691C285137800072E3FC /* Caetano - Nao short.mp3 in Resources */,
 				D9556956285137800072E3FC /* Sabe que voce e muito petulante.mp3 in Resources */,
@@ -1426,6 +1462,7 @@
 				D955697E285137800072E3FC /* COMUNISTA MEME.mp3 in Resources */,
 				D95569DB285137800072E3FC /* Bolsonaro - Lamento, quer que eu faca o que.mp3 in Resources */,
 				D955691D285137800072E3FC /* Pazuello - Que que ce vai fazer nada.mp3 in Resources */,
+				D91964E4285641640067B430 /* Cristiano Botafogo - Presidente por que sua esposa Michele recebeu 89 mil de Fabricio Queiroz.mp3 in Resources */,
 				D9556983285137800072E3FC /* Silas Malafaia - gente que vive tanto na mentira que faz dela a sua verdade.mp3 in Resources */,
 				D90483F32851B0F500885739 /* MAICON KISTER - Isso foi especifico demais.mp3 in Resources */,
 				D95569BF285137800072E3FC /* Vera Magalhaes - Pensamento Magico.mp3 in Resources */,
@@ -1434,6 +1471,7 @@
 				D9556952285137800072E3FC /* CHOQUE DE CULTURA - Rogerinho As vezes o odio e a unica emocao possivel short.mp3 in Resources */,
 				D90483FB2851B0F500885739 /* O Terrivel Homem do Broche de Caveira.mp3 in Resources */,
 				D955696B285137800072E3FC /* Trote Luiz Pareto - TELERJ meme mas que filho da puta olhai veja voce.mp3 in Resources */,
+				D91964F02856BB3F0067B430 /* Chico Bento - Coitado.mp3 in Resources */,
 				D9556992285137800072E3FC /* Joao Doria - Isso exige medidas urgentes.mp3 in Resources */,
 				D9556925285137800072E3FC /* Nunca as funerarias trabalharam tanto.mp3 in Resources */,
 				D95569A3285137800072E3FC /* Natalia Pasternak - E um pedaco de pano no rosto, e uma porra de um pedaco de pano na cara.mp3 in Resources */,
@@ -1504,6 +1542,7 @@
 				D9556912285137800072E3FC /* esse_neto_bosta.mp3 in Resources */,
 				D955695A285137800072E3FC /* Boldo - Parece ate que um helicoptero pousou em cima da tua cara.mp3 in Resources */,
 				D95569BC285137800072E3FC /* Bolsonaro - O problema ta ai, lamentamos.mp3 in Resources */,
+				D91964F42856BC860067B430 /* GALAS FEIOS - Moro desafinando no corrupcao.mp3 in Resources */,
 				D95569E328513FAB0072E3FC /* Tati Quebra Barraco - Ce num tinha nem que ta aqui linda.mp3 in Resources */,
 				D955698B285137800072E3FC /* Mourao - Herois matam short.mp3 in Resources */,
 				D95569A2285137800072E3FC /* E O TCHAN - Loop.mp3 in Resources */,
@@ -1531,6 +1570,7 @@
 				D95569C0285137800072E3FC /* Hassum - PUTA QUE PARIU.mp3 in Resources */,
 				D9625E8228238F9B00080852 /* Assets.xcassets in Resources */,
 				D90483DE2851A66200885739 /* Handel - Aleluia short.mp3 in Resources */,
+				D91964E228563B680067B430 /* Bolsonaro - Esposa, ne, tem que aguentar, mas ta tudo bem.mp3 in Resources */,
 				D90483F72851B0F500885739 /* Pronto, falei short.mp3 in Resources */,
 				D955692D285137800072E3FC /* Choque de Cultura - Renan - E Paradoxo que chama isso ai.mp3 in Resources */,
 				D9556974285137800072E3FC /* tv_senado_soraya_thronicke_a_gente_vai_cansando_sabe.mp3 in Resources */,
@@ -1577,11 +1617,13 @@
 				D95569CB285137800072E3FC /* Silas Malafaia - E por isso que Deus te escolheu.mp3 in Resources */,
 				D955696F285137800072E3FC /* jonathan frakes - It's a total fabrication.mp3 in Resources */,
 				D95569AF285137800072E3FC /* Trote Pareto - Calma filha da puta calma.mp3 in Resources */,
+				D91964E128563B680067B430 /* Queiroz - Eu sou um cara de negocios, eu faco dinheiro eu faco.mp3 in Resources */,
 				D95569CE285137800072E3FC /* Bolsonaro - Na ordem de 800 pessoas a previsao e nao chegar a isso no tocante ao coronavirus.mp3 in Resources */,
 				D90483F82851B0F500885739 /* Pedro Daltro - Fala direito, Cristiano, porra.mp3 in Resources */,
 				D95569C6285137800072E3FC /* Alborghetti - Ah, va a merda porra.mp3 in Resources */,
 				D90483F62851B0F500885739 /* Lula - Chupa que a cana e doce meu filho.mp3 in Resources */,
 				D9556998285137800072E3FC /* Pedro Pedreira (Pedra 90) - Nao delira, nao patina no omelete.mp3 in Resources */,
+				D91964F22856BBE10067B430 /* Moro dizendo que nao seria ministro nem candidato a presidencia.mp3 in Resources */,
 				D90483DD2851A66200885739 /* Idosa - Ah! Peste grito idosa vacina.mp3 in Resources */,
 				D9556936285137800072E3FC /* Futurama - Entao tudo bem short.mp3 in Resources */,
 				D95569D8285137800072E3FC /* General Mourao Bom Dia short.mp3 in Resources */,
@@ -1594,6 +1636,7 @@
 				D95569AC285137800072E3FC /* Bolsonaro - Que e a maneira que voce tem de realmente pensar em coisa seria no pais.mp3 in Resources */,
 				D9556982285137800072E3FC /* E desesperador.mp3 in Resources */,
 				D95569B0285137800072E3FC /* Xo drogado short meme.mp3 in Resources */,
+				D91964EB2856B97A0067B430 /* Bolsonaro - Um jumento, um jumento.mp3 in Resources */,
 				D9556927285137800072E3FC /* um_bosta_ciro.mp3 in Resources */,
 				D95569CA285137800072E3FC /* Falha de Cobertura - Cerginho da Pereira Nunes - Doidera.mp3 in Resources */,
 				D95569C3285137800072E3FC /* PORTA_DOS_FUNDOS_BALBURDIA_Bom_dia,_turma,_todo_mundo_tirando_a.mp3 in Resources */,
@@ -1609,6 +1652,7 @@
 				D955697D285137800072E3FC /* Danca do Creu - 30 mil passou a meta em 8x.mp3 in Resources */,
 				D955693F285137800072E3FC /* Jonathan Frakes - pure fiction.mp3 in Resources */,
 				D9556938285137800072E3FC /* Jacquin - Cala a boca short.mp3 in Resources */,
+				D91964E62856B7920067B430 /* Bolsonaro - Da um tapa na minha cara slap sound.mp3 in Resources */,
 				D9556932285137800072E3FC /* Choque de cultura - Rogerinho - Nao vamos falar de porno aqui nao.mp3 in Resources */,
 				D92879E8283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 in Resources */,
 				D955698D285137800072E3FC /* Sera mesmo.mp3 in Resources */,
@@ -1847,7 +1891,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				ENABLE_PREVIEWS = YES;
@@ -1878,7 +1922,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				ENABLE_PREVIEWS = YES;
