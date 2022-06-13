@@ -335,6 +335,7 @@
 		D9E69592283D2E2C00C341B2 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = D9E69591283D2E2C00C341B2 /* SQLite */; };
 		D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E69593283D2F2F00C341B2 /* Favorite.swift */; };
 		D9E69597283D551500C341B2 /* LocalDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E69596283D551500C341B2 /* LocalDatabase.swift */; };
+		D9EB189028577AE000A2F8A8 /* GAVETA - Voce merece tomar Nokul no cu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9EB188F28577AE000A2F8A8 /* GAVETA - Voce merece tomar Nokul no cu.mp3 */; };
 		D9FA0CD728508590000F6ADE /* UIDevice+ModelName.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FA0CD628508590000F6ADE /* UIDevice+ModelName.swift */; };
 		D9FA0CD92850864C000F6ADE /* ClientDeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FA0CD82850864C000F6ADE /* ClientDeviceInfo.swift */; };
 /* End PBXBuildFile section */
@@ -680,6 +681,7 @@
 		D9BF90BD2842EAED00BDDD7D /* TopChartCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartCellView.swift; sourceTree = "<group>"; };
 		D9E69593283D2F2F00C341B2 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		D9E69596283D551500C341B2 /* LocalDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDatabase.swift; sourceTree = "<group>"; };
+		D9EB188F28577AE000A2F8A8 /* GAVETA - Voce merece tomar Nokul no cu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "GAVETA - Voce merece tomar Nokul no cu.mp3"; sourceTree = "<group>"; };
 		D9FA0CD628508590000F6ADE /* UIDevice+ModelName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+ModelName.swift"; sourceTree = "<group>"; };
 		D9FA0CD82850864C000F6ADE /* ClientDeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientDeviceInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -707,6 +709,7 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9EB188F28577AE000A2F8A8 /* GAVETA - Voce merece tomar Nokul no cu.mp3 */,
 				D91964F32856BC860067B430 /* GALAS FEIOS - Moro desafinando no corrupcao.mp3 */,
 				D91964F12856BBE10067B430 /* Moro dizendo que nao seria ministro nem candidato a presidencia.mp3 */,
 				D91964EE2856BB3F0067B430 /* Chico Bento - Coitado.mp3 */,
@@ -1598,6 +1601,7 @@
 				D95569CE285137800072E3FC /* Bolsonaro - Na ordem de 800 pessoas a previsao e nao chegar a isso no tocante ao coronavirus.mp3 in Resources */,
 				D90483F82851B0F500885739 /* Pedro Daltro - Fala direito, Cristiano, porra.mp3 in Resources */,
 				D95569C6285137800072E3FC /* Alborghetti - Ah, va a merda porra.mp3 in Resources */,
+				D9EB189028577AE000A2F8A8 /* GAVETA - Voce merece tomar Nokul no cu.mp3 in Resources */,
 				D90483F62851B0F500885739 /* Lula - Chupa que a cana e doce meu filho.mp3 in Resources */,
 				D9556998285137800072E3FC /* Pedro Pedreira (Pedra 90) - Nao delira, nao patina no omelete.mp3 in Resources */,
 				D91964F22856BBE10067B430 /* Moro dizendo que nao seria ministro nem candidato a presidencia.mp3 in Resources */,
