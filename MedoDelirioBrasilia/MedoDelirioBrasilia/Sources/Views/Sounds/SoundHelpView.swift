@@ -45,7 +45,7 @@ struct SoundHelpView: View {
                             .foregroundColor(.red)
                             .frame(width: iconFrameWidth)
 
-                        Text("Para favoritar, segure o som por 2 segundos e então escolha **Adicionar aos Favoritos**.\n\nPara ver apenas os favoritos, toque na estrela no topo da tela anterior.\n\nÉ possível pesquisar apenas entre os favoritos usando a barra de Busca. Na lista de favoritos, vá até o topo e puxe mais um pouco para baixo para ver a barra.")
+                        Text("Para favoritar, segure o som por 2 segundos e então escolha **Adicionar aos Favoritos**.\n\nPara ver apenas os favoritos, toque em **Todos** no topo da tela anterior e escolha **Favoritos**.\n\nÉ possível pesquisar entre os favoritos usando a barra de Busca. Para isso, na lista de favoritos, vá até o topo e puxe mais um pouco para baixo para ver a barra.")
                     }
                     .padding(.bottom, 15)
                 }
