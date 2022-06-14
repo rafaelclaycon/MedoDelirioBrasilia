@@ -197,7 +197,7 @@ extension LocalDatabase {
     }
     
     static func migrations() -> [Migration] {
-        return [SwiftMigration()]
+        return [InitialMigration(), AddNetworkCallLogTable()]
     }
     
     static func migrationsBundle() -> Bundle {
