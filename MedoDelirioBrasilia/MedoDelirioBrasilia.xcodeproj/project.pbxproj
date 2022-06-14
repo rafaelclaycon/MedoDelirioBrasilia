@@ -328,7 +328,6 @@
 		D99B9DCA2848148600897930 /* ServerStatsAndLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99B9DC92848148600897930 /* ServerStatsAndLogs.swift */; };
 		D99DC19D28423AD7002B03B6 /* AuthorDetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99DC19C28423AD7002B03B6 /* AuthorDetailViewViewModel.swift */; };
 		D9A8AB212853EB5500B5A94B /* InitialMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A8AB202853EB5500B5A94B /* InitialMigration.swift */; };
-		D9A8AB232853FF5A00B5A94B /* Migrations.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D9A8AB222853FF5A00B5A94B /* Migrations.bundle */; };
 		D9A8AB2528543F8E00B5A94B /* SharingLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A8AB2428543F8E00B5A94B /* SharingLogCell.swift */; };
 		D9A8AB282854436500B5A94B /* Date+ToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A8AB272854436500B5A94B /* Date+ToString.swift */; };
 		D9A8AB2A28544FAE00B5A94B /* NetworkCallLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A8AB2928544FAE00B5A94B /* NetworkCallLog.swift */; };
@@ -691,7 +690,6 @@
 		D99B9DC92848148600897930 /* ServerStatsAndLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerStatsAndLogs.swift; sourceTree = "<group>"; };
 		D99DC19C28423AD7002B03B6 /* AuthorDetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorDetailViewViewModel.swift; sourceTree = "<group>"; };
 		D9A8AB202853EB5500B5A94B /* InitialMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialMigration.swift; sourceTree = "<group>"; };
-		D9A8AB222853FF5A00B5A94B /* Migrations.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Migrations.bundle; sourceTree = "<group>"; };
 		D9A8AB2428543F8E00B5A94B /* SharingLogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingLogCell.swift; sourceTree = "<group>"; };
 		D9A8AB272854436500B5A94B /* Date+ToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ToString.swift"; sourceTree = "<group>"; };
 		D9A8AB2928544FAE00B5A94B /* NetworkCallLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCallLog.swift; sourceTree = "<group>"; };
@@ -1297,7 +1295,6 @@
 		D9E69595283D54EA00C341B2 /* DataHandlers */ = {
 			isa = PBXGroup;
 			children = (
-				D9A8AB222853FF5A00B5A94B /* Migrations.bundle */,
 				D9A8AB1E2853D80200B5A94B /* Migrations */,
 				D961D01028371EE800EFEDEB /* FixedLocalData.swift */,
 				D9E69596283D551500C341B2 /* LocalDatabase.swift */,
@@ -1684,7 +1681,6 @@
 				D9556927285137800072E3FC /* um_bosta_ciro.mp3 in Resources */,
 				D95569CA285137800072E3FC /* Falha de Cobertura - Cerginho da Pereira Nunes - Doidera.mp3 in Resources */,
 				D95569C3285137800072E3FC /* PORTA_DOS_FUNDOS_BALBURDIA_Bom_dia,_turma,_todo_mundo_tirando_a.mp3 in Resources */,
-				D9A8AB232853FF5A00B5A94B /* Migrations.bundle in Resources */,
 				D95569BD285137800072E3FC /* Feiticeira - Nao e feiticaria, e tecnologia meme short.mp3 in Resources */,
 				D980455C28380EFE003B2E83 /* Localizable.strings in Resources */,
 				D95569B9285137800072E3FC /* Malafaia - JAIR MESSIAS BOLSONARO.mp3 in Resources */,

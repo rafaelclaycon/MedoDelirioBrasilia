@@ -20,7 +20,7 @@ class LocalDatabase {
             fatalError(error.localizedDescription)
         }
         
-        self.migrationManager = SQLiteMigrationManager(db: self.db, migrations: LocalDatabase.migrations(), bundle: LocalDatabase.migrationsBundle())
+        self.migrationManager = SQLiteMigrationManager(db: self.db, migrations: LocalDatabase.migrations())
     }
     
     func migrateIfNeeded() throws {
@@ -198,17 +198,6 @@ extension LocalDatabase {
     
     static func migrations() -> [Migration] {
         return [InitialMigration(), AddNetworkCallLogTable()]
-    }
-    
-    static func migrationsBundle() -> Bundle {
-        guard let bundleURL = Bundle.main.url(forResource: "Migrations", withExtension: "bundle") else {
-            fatalError("Could not find migrations bundle.")
-        }
-        guard let bundle = Bundle(url: bundleURL) else {
-            fatalError("Could not load migrations bundle.")
-        }
-
-        return bundle
     }
 
 }
