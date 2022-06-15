@@ -46,6 +46,7 @@
 		D91964F02856BB3F0067B430 /* Chico Bento - Coitado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964EE2856BB3F0067B430 /* Chico Bento - Coitado.mp3 */; };
 		D91964F22856BBE10067B430 /* Moro dizendo que nao seria ministro nem candidato a presidencia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964F12856BBE10067B430 /* Moro dizendo que nao seria ministro nem candidato a presidencia.mp3 */; };
 		D91964F42856BC860067B430 /* GALAS FEIOS - Moro desafinando no corrupcao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964F32856BC860067B430 /* GALAS FEIOS - Moro desafinando no corrupcao.mp3 */; };
+		D9265741285A1EE700947165 /* LocalDatabase+Logs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9265740285A1EE700947165 /* LocalDatabase+Logs.swift */; };
 		D927C40C28523A050041970A /* Nunca foi meritocracia, sempre foi desigualdade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D927C40728523A050041970A /* Nunca foi meritocracia, sempre foi desigualdade.mp3 */; };
 		D927C40D28523A050041970A /* OS DONOS DA BOLA - CRAQUE NETO - Ai depois fala que ta bebado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D927C40828523A050041970A /* OS DONOS DA BOLA - CRAQUE NETO - Ai depois fala que ta bebado.mp3 */; };
 		D927C40E28523A050041970A /* Omar Aziz - Ah, me erre.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D927C40928523A050041970A /* Omar Aziz - Ah, me erre.mp3 */; };
@@ -68,6 +69,7 @@
 		D92C0CAA28405B2D009CF19A /* NoFavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92C0CA928405B2D009CF19A /* NoFavoritesView.swift */; };
 		D92C0CAC28406EA5009CF19A /* UserShareLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92C0CAB28406EA5009CF19A /* UserShareLog.swift */; };
 		D92C0CAE284076CD009CF19A /* UIApplication+KeyWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92C0CAD284076CD009CF19A /* UIApplication+KeyWindow.swift */; };
+		D92CAA4128593B1700D6C1EA /* NetworkLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92CAA4028593B1700D6C1EA /* NetworkLogCell.swift */; };
 		D92E7067283C51D20035826C /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92E7066283C51D20035826C /* Song.swift */; };
 		D92E706E283C5C2C0035826C /* Eu volto pro ostracismo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92E706B283C5C2C0035826C /* Eu volto pro ostracismo.mp3 */; };
 		D92E7070283C5CF40035826C /* song_data.json in Resources */ = {isa = PBXBuildFile; fileRef = D92E706F283C5CF40035826C /* song_data.json */; };
@@ -405,6 +407,7 @@
 		D91964EE2856BB3F0067B430 /* Chico Bento - Coitado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Chico Bento - Coitado.mp3"; sourceTree = "<group>"; };
 		D91964F12856BBE10067B430 /* Moro dizendo que nao seria ministro nem candidato a presidencia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Moro dizendo que nao seria ministro nem candidato a presidencia.mp3"; sourceTree = "<group>"; };
 		D91964F32856BC860067B430 /* GALAS FEIOS - Moro desafinando no corrupcao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "GALAS FEIOS - Moro desafinando no corrupcao.mp3"; sourceTree = "<group>"; };
+		D9265740285A1EE700947165 /* LocalDatabase+Logs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+Logs.swift"; sourceTree = "<group>"; };
 		D927C40728523A050041970A /* Nunca foi meritocracia, sempre foi desigualdade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Nunca foi meritocracia, sempre foi desigualdade.mp3"; sourceTree = "<group>"; };
 		D927C40828523A050041970A /* OS DONOS DA BOLA - CRAQUE NETO - Ai depois fala que ta bebado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "OS DONOS DA BOLA - CRAQUE NETO - Ai depois fala que ta bebado.mp3"; sourceTree = "<group>"; };
 		D927C40928523A050041970A /* Omar Aziz - Ah, me erre.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Omar Aziz - Ah, me erre.mp3"; sourceTree = "<group>"; };
@@ -427,6 +430,7 @@
 		D92C0CA928405B2D009CF19A /* NoFavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFavoritesView.swift; sourceTree = "<group>"; };
 		D92C0CAB28406EA5009CF19A /* UserShareLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserShareLog.swift; sourceTree = "<group>"; };
 		D92C0CAD284076CD009CF19A /* UIApplication+KeyWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+KeyWindow.swift"; sourceTree = "<group>"; };
+		D92CAA4028593B1700D6C1EA /* NetworkLogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLogCell.swift; sourceTree = "<group>"; };
 		D92E7066283C51D20035826C /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		D92E706B283C5C2C0035826C /* Eu volto pro ostracismo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu volto pro ostracismo.mp3"; sourceTree = "<group>"; };
 		D92E706F283C5CF40035826C /* song_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = song_data.json; sourceTree = "<group>"; };
@@ -1097,6 +1101,7 @@
 				D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */,
 				D93D24DF2849DAAB00300541 /* DiagnosticsView.swift */,
 				D9A8AB2428543F8E00B5A94B /* SharingLogCell.swift */,
+				D92CAA4028593B1700D6C1EA /* NetworkLogCell.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1298,6 +1303,7 @@
 				D9A8AB1E2853D80200B5A94B /* Migrations */,
 				D961D01028371EE800EFEDEB /* FixedLocalData.swift */,
 				D9E69596283D551500C341B2 /* LocalDatabase.swift */,
+				D9265740285A1EE700947165 /* LocalDatabase+Logs.swift */,
 			);
 			path = DataHandlers;
 			sourceTree = "<group>";
@@ -1761,9 +1767,11 @@
 				D9BF90BE2842EAED00BDDD7D /* TopChartCellView.swift in Sources */,
 				D94A4214283DC52800A504BD /* SongHelpView.swift in Sources */,
 				D9A8AB212853EB5500B5A94B /* InitialMigration.swift in Sources */,
+				D92CAA4128593B1700D6C1EA /* NetworkLogCell.swift in Sources */,
 				D998F28F284F177B0013E709 /* TrendsDisabledView.swift in Sources */,
 				D991E598284A94F70005705F /* Podium.swift in Sources */,
 				D9FA0CD92850864C000F6ADE /* ClientDeviceInfo.swift in Sources */,
+				D9265741285A1EE700947165 /* LocalDatabase+Logs.swift in Sources */,
 				D980456228380F66003B2E83 /* LocalizableStrings.swift in Sources */,
 				D961D025283731AA00EFEDEB /* SoundHelpView.swift in Sources */,
 				D96E115D28459D8800306859 /* UserActivityWaiter.swift in Sources */,

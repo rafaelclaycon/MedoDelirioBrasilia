@@ -43,7 +43,7 @@ struct SettingsView: View {
                                 }
                             }
                         }
-                        //.tint(.accentColor)
+                        .tint(.accentColor)
                         .controlSize(.large)
                         .buttonStyle(.bordered)
                         .buttonBorderShape(.roundedRectangle)

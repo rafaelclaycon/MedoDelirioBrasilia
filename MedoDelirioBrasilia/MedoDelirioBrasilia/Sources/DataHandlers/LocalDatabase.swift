@@ -4,13 +4,14 @@ import SQLiteMigrationManager
 
 class LocalDatabase {
 
-    private var db: Connection
-    private var migrationManager: SQLiteMigrationManager
+    var db: Connection
+    var migrationManager: SQLiteMigrationManager
     
-    private var favorite = Table("favorite")
-    private var userShareLog = Table("userShareLog")
-    private var audienceSharingStatistic = Table("audienceSharingStatistic")
-
+    var favorite = Table("favorite")
+    var userShareLog = Table("userShareLog")
+    var audienceSharingStatistic = Table("audienceSharingStatistic")
+    var networkCallLog = Table("networkCallLog")
+    
     // MARK: - Setup
 
     init() {
@@ -75,30 +76,6 @@ class LocalDatabase {
             queriedFavorites.append(try queriedFavorite.decode())
         }
         return queriedFavorites.count > 0
-    }
-    
-    // MARK: - User Share Log
-    
-    func getUserShareLogCount() throws -> Int {
-        try db.scalar(userShareLog.count)
-    }
-    
-    func insert(userShareLog newLog: UserShareLog) throws {
-        let insert = try userShareLog.insert(newLog)
-        try db.run(insert)
-    }
-    
-    func getAllUserShareLogs() throws -> [UserShareLog] {
-        var queriedItems = [UserShareLog]()
-
-        for queriedItem in try db.prepare(userShareLog) {
-            queriedItems.append(try queriedItem.decode())
-        }
-        return queriedItems
-    }
-    
-    func deleteAllUserShareLogs() throws {
-        try db.run(userShareLog.delete())
     }
     
     // MARK: - Personal Top Chart

@@ -6,7 +6,7 @@ struct DiagnosticsView: View {
     @State var alertTitle = ""
     @State var installId = UIDevice.current.identifierForVendor?.uuidString ?? ""
     @State var shareLogs: [UserShareLog]?
-    @State var networkLogs: [UserShareLog]?
+    @State var networkLogs: [NetworkCallLog]?
     
     var body: some View {
         Form {
@@ -25,8 +25,6 @@ struct DiagnosticsView: View {
             Section {
                 Text(installId)
                     .font(.monospaced(.subheadline)())
-                    .multilineTextAlignment(.center)
-                    //foregroundColor(.gray)
                     .onTapGesture {
                         UIPasteboard.general.string = installId
                     }
@@ -41,7 +39,7 @@ struct DiagnosticsView: View {
                     Text("Sem Dados")
                 } else {
                     List(shareLogs!) { log in
-                        SharingLogCell(destination: ShareDestination(rawValue: log.destination) ?? .other, contentType: ContentType(rawValue: log.contentType) ?? .sound, contentTitle: getContentName(contentId: log.contentId), dateTime: log.dateTime.toString())
+                        SharingLogCell(destination: ShareDestination(rawValue: log.destination) ?? .other, contentType: ContentType(rawValue: log.contentType) ?? .sound, contentTitle: getContentName(contentId: log.contentId), dateTime: log.dateTime.toString(), sentToServer: log.sentToServer)
                     }
                 }
             }
@@ -51,7 +49,7 @@ struct DiagnosticsView: View {
                     Text("Sem Dados")
                 } else {
                     List(networkLogs!) { log in
-                        Text(log.contentId)
+                        NetworkLogCell(callType: NetworkCallType(rawValue: log.callType) ?? .checkServerStatus, dateTime: log.dateTime.toString(), wasSuccessful: log.wasSuccessful)
                     }
                 }
             }
@@ -61,6 +59,8 @@ struct DiagnosticsView: View {
         .onAppear {
             shareLogs = try? database.getAllUserShareLogs()
             shareLogs?.sort(by: { $0.dateTime > $1.dateTime })
+            networkLogs = try? database.getAllNetworkCallLogs()
+            networkLogs?.sort(by: { $0.dateTime > $1.dateTime })
         }
     }
     

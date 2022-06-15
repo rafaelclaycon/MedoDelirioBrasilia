@@ -6,6 +6,7 @@ struct SharingLogCell: View {
     @State var contentType: ContentType
     @State var contentTitle: String
     @State var dateTime: String
+    @State var sentToServer: Bool
     
     var symbolColor: Color {
         switch destination {
@@ -53,6 +54,15 @@ struct SharingLogCell: View {
                     .foregroundColor(.gray)
                     .font(.footnote)
             }
+            
+            Spacer()
+            
+            Image(systemName: sentToServer ? "circle.fill" : "circle.dashed")
+                .resizable()
+                .scaledToFit()
+                .frame(height: 10)
+                .foregroundColor(sentToServer ? .green : .primary)
+                .padding(.trailing, 5)
         }
     }
 
@@ -61,7 +71,11 @@ struct SharingLogCell: View {
 struct SharingLogCell_Previews: PreviewProvider {
 
     static var previews: some View {
-        SharingLogCell(destination: .whatsApp, contentType: .sound, contentTitle: "Adora falar rebuscado", dateTime: "11/06/2022 00:23")
+        Group {
+            SharingLogCell(destination: .whatsApp, contentType: .sound, contentTitle: "Adora falar rebuscado", dateTime: "11/06/2022 00:23", sentToServer: false)
+            SharingLogCell(destination: .whatsApp, contentType: .sound, contentTitle: "Adora falar rebuscado", dateTime: "11/06/2022 00:23", sentToServer: true)
+        }
+        .previewLayout(.fixed(width: 375, height: 100))
     }
 
 }

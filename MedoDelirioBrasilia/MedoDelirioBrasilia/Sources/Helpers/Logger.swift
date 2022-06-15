@@ -30,5 +30,18 @@ class Logger {
         }
         return items
     }
+    
+    static func logNetworkCall(callType: Int,
+                               requestUrl: String,
+                               requestBody: String?,
+                               response: String,
+                               wasSuccessful: Bool) {
+        let log = NetworkCallLog(callType: callType,
+                                 requestBody: requestBody ?? .empty,
+                                 response: response,
+                                 dateTime: Date(),
+                                 wasSuccessful: wasSuccessful)
+        try? database.insert(networkCallLog: log)
+    }
 
 }

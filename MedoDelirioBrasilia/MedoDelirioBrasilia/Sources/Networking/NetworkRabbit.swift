@@ -10,39 +10,20 @@ class NetworkRabbit {
     
     // MARK: - GET
     
-    func getHelloFromServer(completionHandler: @escaping (String) -> Void) {
-        let url = URL(string: serverPath + "v1/hello/MedoDelirioBrasilia")!
-
-        //var request = URLRequest(url: url)
-
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            /*guard let httpResponse = response as? HTTPURLResponse else {
-                return
-            }
-             
-            httpResponse.statusCode*/
-            
-            if let data = data {
-                completionHandler(String(data: data, encoding: .utf8)!)
-            } else if let error = error {
-                completionHandler("HTTP Request Failed \(error.localizedDescription)")
-            }
-        }
-
-        task.resume()
-    }
-    
     func checkServerStatus(completionHandler: @escaping (String) -> Void) {
         let url = URL(string: serverPath + "v1/status-check")!
 
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             if let data = data {
-                completionHandler(String(data: data, encoding: .utf8)!)
+                let response = String(data: data, encoding: .utf8)!
+                Logger.logNetworkCall(callType: NetworkCallType.checkServerStatus.rawValue, requestUrl: url.absoluteString, requestBody: nil, response: response, wasSuccessful: true)
+                completionHandler(response)
             } else if let error = error {
+                Logger.logNetworkCall(callType: NetworkCallType.checkServerStatus.rawValue, requestUrl: url.absoluteString, requestBody: nil, response: "A requisição HTTP falhou: \(error.localizedDescription)", wasSuccessful: false)
                 completionHandler("A requisição HTTP falhou: \(error.localizedDescription)")
             }
         }
-
+        
         task.resume()
     }
     
@@ -60,6 +41,7 @@ class NetworkRabbit {
             
             if let data = data {
                 if let stats = try? JSONDecoder().decode([ServerShareCountStat].self, from: data) {
+                    Logger.logNetworkCall(callType: NetworkCallType.getSoundShareCountStats.rawValue, requestUrl: url.absoluteString, requestBody: nil, response: String(data: data, encoding: .utf8)!, wasSuccessful: true)
                     completionHandler(stats, nil)
                 } else {
                     completionHandler(nil, .invalidResponse)
