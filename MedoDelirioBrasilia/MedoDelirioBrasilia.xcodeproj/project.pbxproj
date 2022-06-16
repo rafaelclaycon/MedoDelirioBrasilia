@@ -91,6 +91,9 @@
 		D93443292838230500ADCD38 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93443282838230500ADCD38 /* String+Extensions.swift */; };
 		D9351C5C2844094E00D4317E /* TopChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9351C5B2844094E00D4317E /* TopChartItem.swift */; };
 		D9351C6128441FA400D4317E /* LoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9351C6028441FA400D4317E /* LoggerTests.swift */; };
+		D9376C10285B7348001216DC /* Bolsonaro - E so voce fazer coco dia sim, dia nao, que melhora bastante.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9376C0F285B7348001216DC /* Bolsonaro - E so voce fazer coco dia sim, dia nao, que melhora bastante.mp3 */; };
+		D9376C12285B7510001216DC /* Cocorico - Ah coitado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9376C11285B7510001216DC /* Cocorico - Ah coitado.mp3 */; };
+		D9376C14285B78A3001216DC /* Sirigueijo - Dinheiro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9376C13285B78A3001216DC /* Sirigueijo - Dinheiro.mp3 */; };
 		D93AC08B28414EEE00E38A63 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AC08A28414EEE00E38A63 /* Logger.swift */; };
 		D93D24E02849DAAB00300541 /* DiagnosticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D24DF2849DAAB00300541 /* DiagnosticsView.swift */; };
 		D94656D928450535008B4785 /* SQLiteMigrationManager in Frameworks */ = {isa = PBXBuildFile; productRef = D94656D828450535008B4785 /* SQLiteMigrationManager */; };
@@ -458,6 +461,9 @@
 		D93443282838230500ADCD38 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		D9351C5B2844094E00D4317E /* TopChartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartItem.swift; sourceTree = "<group>"; };
 		D9351C6028441FA400D4317E /* LoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerTests.swift; sourceTree = "<group>"; };
+		D9376C0F285B7348001216DC /* Bolsonaro - E so voce fazer coco dia sim, dia nao, que melhora bastante.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - E so voce fazer coco dia sim, dia nao, que melhora bastante.mp3"; sourceTree = "<group>"; };
+		D9376C11285B7510001216DC /* Cocorico - Ah coitado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cocorico - Ah coitado.mp3"; sourceTree = "<group>"; };
+		D9376C13285B78A3001216DC /* Sirigueijo - Dinheiro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Sirigueijo - Dinheiro.mp3"; sourceTree = "<group>"; };
 		D93AC08A28414EEE00E38A63 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		D93D24DF2849DAAB00300541 /* DiagnosticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticsView.swift; sourceTree = "<group>"; };
 		D94A4213283DC52800A504BD /* SongHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongHelpView.swift; sourceTree = "<group>"; };
@@ -755,6 +761,9 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9376C13285B78A3001216DC /* Sirigueijo - Dinheiro.mp3 */,
+				D9376C11285B7510001216DC /* Cocorico - Ah coitado.mp3 */,
+				D9376C0F285B7348001216DC /* Bolsonaro - E so voce fazer coco dia sim, dia nao, que melhora bastante.mp3 */,
 				D92272FF285AAD3D00A98CAE /* Bolsonaro - Igularidades no ministerio irregularidades paralelepipi pretiputi.mp3 */,
 				D9227304285AAD3D00A98CAE /* Bolsonaro - Presente Puti prentiputi pretiputi presidente putin.mp3 */,
 				D92272FE285AAD3D00A98CAE /* Bolsonaro - Pretendo beneficiar um filho meu sim pretendo.mp3 */,
@@ -1519,6 +1528,7 @@
 				D95569DB285137800072E3FC /* Bolsonaro - Lamento, quer que eu faca o que.mp3 in Resources */,
 				D955691D285137800072E3FC /* Pazuello - Que que ce vai fazer nada.mp3 in Resources */,
 				D91964E4285641640067B430 /* Cristiano Botafogo - Presidente por que sua esposa Michele recebeu 89 mil de Fabricio Queiroz.mp3 in Resources */,
+				D9376C12285B7510001216DC /* Cocorico - Ah coitado.mp3 in Resources */,
 				D9556983285137800072E3FC /* Silas Malafaia - gente que vive tanto na mentira que faz dela a sua verdade.mp3 in Resources */,
 				D90483F32851B0F500885739 /* MAICON KISTER - Isso foi especifico demais.mp3 in Resources */,
 				D95569BF285137800072E3FC /* Vera Magalhaes - Pensamento Magico.mp3 in Resources */,
@@ -1600,6 +1610,8 @@
 				D90483D72851A4A100885739 /* Harry e Helen - I've heard that song before short meme.mp3 in Resources */,
 				D9227309285AAD3E00A98CAE /* Pretty please meme infantil crianca begging.mp3 in Resources */,
 				D9556946285137800072E3FC /* Alborgeti - Que Merda Hein.mp3 in Resources */,
+				D9376C14285B78A3001216DC /* Sirigueijo - Dinheiro.mp3 in Resources */,
+				D9376C10285B7348001216DC /* Bolsonaro - E so voce fazer coco dia sim, dia nao, que melhora bastante.mp3 in Resources */,
 				D955699A285137800072E3FC /* tu_ouviu_isso.mp3 in Resources */,
 				D9556912285137800072E3FC /* esse_neto_bosta.mp3 in Resources */,
 				D955695A285137800072E3FC /* Boldo - Parece ate que um helicoptero pousou em cima da tua cara.mp3 in Resources */,
@@ -1975,7 +1987,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.1;
+				MARKETING_VERSION = 1.4.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = "Medo e Delírio";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2006,7 +2018,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.1;
+				MARKETING_VERSION = 1.4.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = "Medo e Delírio";
 				SWIFT_EMIT_LOC_STRINGS = YES;

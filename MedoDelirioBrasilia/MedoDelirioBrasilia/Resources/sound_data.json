@@ -2554,5 +2554,32 @@
         "filename": "Calcinha Preta - Pega Fogo Cabare short meme.mp3",
         "dateAdded": "2022-06-15T00:00:00Z",
         "isOffensive": true
+    },
+    {
+        "id": "677824F1-5D04-4264-BE5F-4017E03C186B",
+        "title": "É só você fazer cocô dia sim, dia não",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "E so voce fazer coco dia sim dia nao que melhora bastante",
+        "filename": "Bolsonaro - E so voce fazer coco dia sim, dia nao, que melhora bastante.mp3",
+        "dateAdded": "2022-06-16T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "2776A934-52D8-4068-A402-7A5C8033873F",
+        "title": "Aaaah, coitado",
+        "authorId": "52D30F16-A1CB-451D-AA4F-95C509CE2FC3",
+        "description": "Ah coitado",
+        "filename": "Cocorico - Ah coitado.mp3",
+        "dateAdded": "2022-06-16T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "C8AE3751-F307-4C3A-9CC8-E2C3CCF480FE",
+        "title": "Dinheiro!",
+        "authorId": "6155A533-D5F5-4491-9F1D-A1B95FC5FC84",
+        "description": "Dinheiro",
+        "filename": "Sirigueijo - Dinheiro.mp3",
+        "dateAdded": "2022-06-16T00:00:00Z",
+        "isOffensive": false
     }
 ]
