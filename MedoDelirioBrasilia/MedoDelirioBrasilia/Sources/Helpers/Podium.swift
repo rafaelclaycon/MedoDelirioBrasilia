@@ -71,5 +71,38 @@ class Podium {
             return nil
         }
     }
+    
+    func exchangeShareCountStatsWithTheServer(completionHandler: @escaping (Bool, String) -> Void) {
+        networkRabbit.checkServerStatus { serverIsAvailable, _ in
+            guard serverIsAvailable else {
+                return
+            }
+            
+            // Prepare local stats to be sent
+            //let stat = ServerShareCountStat(installId: <#T##String#>, contentId: <#T##String#>, contentType: <#T##Int#>, shareCount: <#T##Int#>)
+            
+            // Send them
+            //networkRabbit.post(shareCountStat: , completionHandler: <#T##(String) -> Void#>)
+            
+            // Get remote stats
+            networkRabbit.getSoundShareCountStats { stats, error in
+                guard error == nil else {
+                    return
+                }
+                guard let stats = stats else {
+                    return
+                }
+                // Save them
+                var audienceStat: AudienceShareCountStat? = nil
+                stats.forEach { stat in
+                    audienceStat = AudienceShareCountStat(contentId: stat.contentId, contentType: stat.contentType, shareCount: stat.shareCount)
+                    try? database.insert(audienceStat: audienceStat!)
+                }
+                
+                // Let the caller now 
+                //self.audienceTop5 = Podium.getTop5SoundsSharedByTheAudience()
+            }
+        }
+    }
 
 }

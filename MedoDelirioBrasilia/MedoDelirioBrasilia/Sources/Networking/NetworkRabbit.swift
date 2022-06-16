@@ -10,17 +10,17 @@ class NetworkRabbit {
     
     // MARK: - GET
     
-    func checkServerStatus(completionHandler: @escaping (String) -> Void) {
+    func checkServerStatus(completionHandler: @escaping (Bool, String) -> Void) {
         let url = URL(string: serverPath + "v1/status-check")!
 
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             if let data = data {
                 let response = String(data: data, encoding: .utf8)!
                 Logger.logNetworkCall(callType: NetworkCallType.checkServerStatus.rawValue, requestUrl: url.absoluteString, requestBody: nil, response: response, wasSuccessful: true)
-                completionHandler(response)
+                completionHandler(true, response)
             } else if let error = error {
                 Logger.logNetworkCall(callType: NetworkCallType.checkServerStatus.rawValue, requestUrl: url.absoluteString, requestBody: nil, response: "A requisição HTTP falhou: \(error.localizedDescription)", wasSuccessful: false)
-                completionHandler("A requisição HTTP falhou: \(error.localizedDescription)")
+                completionHandler(false, "A requisição HTTP falhou: \(error.localizedDescription)")
             }
         }
         

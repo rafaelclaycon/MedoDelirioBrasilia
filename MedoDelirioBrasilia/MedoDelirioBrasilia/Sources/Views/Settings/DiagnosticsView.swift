@@ -12,7 +12,7 @@ struct DiagnosticsView: View {
         Form {
             Section {
                 Button("Testar conexão com o servidor") {
-                    networkRabbit.checkServerStatus { response in
+                    networkRabbit.checkServerStatus { _, response in
                         alertTitle = response
                         showAlert = true
                     }

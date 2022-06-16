@@ -13,10 +13,11 @@ class TrendsViewViewModel: ObservableObject {
     }
     
     func reloadAudienceList() {
-        networkRabbit.checkServerStatus { result in
-            guard result == "Conexão com o servidor OK." else {
+        networkRabbit.checkServerStatus { serverIsAvailable, _ in
+            guard serverIsAvailable else {
                 return
             }
+            
             networkRabbit.getSoundShareCountStats { stats, error in
                 guard error == nil else {
                     return

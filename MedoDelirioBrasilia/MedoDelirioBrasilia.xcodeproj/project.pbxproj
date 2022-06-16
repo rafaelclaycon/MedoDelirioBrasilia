@@ -46,7 +46,6 @@
 		D91964F02856BB3F0067B430 /* Chico Bento - Coitado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964EE2856BB3F0067B430 /* Chico Bento - Coitado.mp3 */; };
 		D91964F22856BBE10067B430 /* Moro dizendo que nao seria ministro nem candidato a presidencia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964F12856BBE10067B430 /* Moro dizendo que nao seria ministro nem candidato a presidencia.mp3 */; };
 		D91964F42856BC860067B430 /* GALAS FEIOS - Moro desafinando no corrupcao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964F32856BC860067B430 /* GALAS FEIOS - Moro desafinando no corrupcao.mp3 */; };
-		D9265741285A1EE700947165 /* LocalDatabase+Logs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9265740285A1EE700947165 /* LocalDatabase+Logs.swift */; };
 		D9227309285AAD3E00A98CAE /* Pretty please meme infantil crianca begging.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92272FC285AAD3D00A98CAE /* Pretty please meme infantil crianca begging.mp3 */; };
 		D922730A285AAD3E00A98CAE /* FUP - Marcele - Nao esta nem ai pro preto, pobre, favelado so esta ai por ele mesmo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92272FD285AAD3D00A98CAE /* FUP - Marcele - Nao esta nem ai pro preto, pobre, favelado so esta ai por ele mesmo.mp3 */; };
 		D922730B285AAD3E00A98CAE /* Bolsonaro - Pretendo beneficiar um filho meu sim pretendo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92272FE285AAD3D00A98CAE /* Bolsonaro - Pretendo beneficiar um filho meu sim pretendo.mp3 */; };
@@ -60,6 +59,7 @@
 		D9227313285AAD3E00A98CAE /* PLANALTO - Bolsonaro - Presidente Putin Pretiputi remix house.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9227306285AAD3E00A98CAE /* PLANALTO - Bolsonaro - Presidente Putin Pretiputi remix house.mp3 */; };
 		D9227314285AAD3E00A98CAE /* METEORO BRASIL - Antonio Tabet - Pretos, gays, lesbicas, trans tem familias e fazem familias.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9227307285AAD3E00A98CAE /* METEORO BRASIL - Antonio Tabet - Pretos, gays, lesbicas, trans tem familias e fazem familias.mp3 */; };
 		D9227315285AAD3E00A98CAE /* ROY ORBISON - Oh Pretty Woman Pretiputi parodia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9227308285AAD3E00A98CAE /* ROY ORBISON - Oh Pretty Woman Pretiputi parodia.mp3 */; };
+		D9265741285A1EE700947165 /* LocalDatabase+Logs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9265740285A1EE700947165 /* LocalDatabase+Logs.swift */; };
 		D927C40C28523A050041970A /* Nunca foi meritocracia, sempre foi desigualdade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D927C40728523A050041970A /* Nunca foi meritocracia, sempre foi desigualdade.mp3 */; };
 		D927C40D28523A050041970A /* OS DONOS DA BOLA - CRAQUE NETO - Ai depois fala que ta bebado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D927C40828523A050041970A /* OS DONOS DA BOLA - CRAQUE NETO - Ai depois fala que ta bebado.mp3 */; };
 		D927C40E28523A050041970A /* Omar Aziz - Ah, me erre.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D927C40928523A050041970A /* Omar Aziz - Ah, me erre.mp3 */; };
@@ -342,6 +342,7 @@
 		D998F28F284F177B0013E709 /* TrendsDisabledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998F28E284F177B0013E709 /* TrendsDisabledView.swift */; };
 		D99B9DCA2848148600897930 /* ServerStatsAndLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99B9DC92848148600897930 /* ServerStatsAndLogs.swift */; };
 		D99DC19D28423AD7002B03B6 /* AuthorDetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99DC19C28423AD7002B03B6 /* AuthorDetailViewViewModel.swift */; };
+		D9A32DC7285ACE880038A370 /* PodiumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A32DC6285ACE880038A370 /* PodiumTests.swift */; };
 		D9A8AB212853EB5500B5A94B /* InitialMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A8AB202853EB5500B5A94B /* InitialMigration.swift */; };
 		D9A8AB2528543F8E00B5A94B /* SharingLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A8AB2428543F8E00B5A94B /* SharingLogCell.swift */; };
 		D9A8AB282854436500B5A94B /* Date+ToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A8AB272854436500B5A94B /* Date+ToString.swift */; };
@@ -420,7 +421,6 @@
 		D91964EE2856BB3F0067B430 /* Chico Bento - Coitado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Chico Bento - Coitado.mp3"; sourceTree = "<group>"; };
 		D91964F12856BBE10067B430 /* Moro dizendo que nao seria ministro nem candidato a presidencia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Moro dizendo que nao seria ministro nem candidato a presidencia.mp3"; sourceTree = "<group>"; };
 		D91964F32856BC860067B430 /* GALAS FEIOS - Moro desafinando no corrupcao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "GALAS FEIOS - Moro desafinando no corrupcao.mp3"; sourceTree = "<group>"; };
-		D9265740285A1EE700947165 /* LocalDatabase+Logs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+Logs.swift"; sourceTree = "<group>"; };
 		D92272FC285AAD3D00A98CAE /* Pretty please meme infantil crianca begging.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pretty please meme infantil crianca begging.mp3"; sourceTree = "<group>"; };
 		D92272FD285AAD3D00A98CAE /* FUP - Marcele - Nao esta nem ai pro preto, pobre, favelado so esta ai por ele mesmo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "FUP - Marcele - Nao esta nem ai pro preto, pobre, favelado so esta ai por ele mesmo.mp3"; sourceTree = "<group>"; };
 		D92272FE285AAD3D00A98CAE /* Bolsonaro - Pretendo beneficiar um filho meu sim pretendo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Pretendo beneficiar um filho meu sim pretendo.mp3"; sourceTree = "<group>"; };
@@ -434,6 +434,7 @@
 		D9227306285AAD3E00A98CAE /* PLANALTO - Bolsonaro - Presidente Putin Pretiputi remix house.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "PLANALTO - Bolsonaro - Presidente Putin Pretiputi remix house.mp3"; sourceTree = "<group>"; };
 		D9227307285AAD3E00A98CAE /* METEORO BRASIL - Antonio Tabet - Pretos, gays, lesbicas, trans tem familias e fazem familias.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "METEORO BRASIL - Antonio Tabet - Pretos, gays, lesbicas, trans tem familias e fazem familias.mp3"; sourceTree = "<group>"; };
 		D9227308285AAD3E00A98CAE /* ROY ORBISON - Oh Pretty Woman Pretiputi parodia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ROY ORBISON - Oh Pretty Woman Pretiputi parodia.mp3"; sourceTree = "<group>"; };
+		D9265740285A1EE700947165 /* LocalDatabase+Logs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+Logs.swift"; sourceTree = "<group>"; };
 		D927C40728523A050041970A /* Nunca foi meritocracia, sempre foi desigualdade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Nunca foi meritocracia, sempre foi desigualdade.mp3"; sourceTree = "<group>"; };
 		D927C40828523A050041970A /* OS DONOS DA BOLA - CRAQUE NETO - Ai depois fala que ta bebado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "OS DONOS DA BOLA - CRAQUE NETO - Ai depois fala que ta bebado.mp3"; sourceTree = "<group>"; };
 		D927C40928523A050041970A /* Omar Aziz - Ah, me erre.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Omar Aziz - Ah, me erre.mp3"; sourceTree = "<group>"; };
@@ -719,6 +720,7 @@
 		D998F28E284F177B0013E709 /* TrendsDisabledView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsDisabledView.swift; sourceTree = "<group>"; };
 		D99B9DC92848148600897930 /* ServerStatsAndLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerStatsAndLogs.swift; sourceTree = "<group>"; };
 		D99DC19C28423AD7002B03B6 /* AuthorDetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorDetailViewViewModel.swift; sourceTree = "<group>"; };
+		D9A32DC6285ACE880038A370 /* PodiumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodiumTests.swift; sourceTree = "<group>"; };
 		D9A8AB202853EB5500B5A94B /* InitialMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialMigration.swift; sourceTree = "<group>"; };
 		D9A8AB2428543F8E00B5A94B /* SharingLogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingLogCell.swift; sourceTree = "<group>"; };
 		D9A8AB272854436500B5A94B /* Date+ToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ToString.swift"; sourceTree = "<group>"; };
@@ -1121,6 +1123,7 @@
 			children = (
 				D9575094284428260094AEA6 /* Doubles */,
 				D9351C6028441FA400D4317E /* LoggerTests.swift */,
+				D9A32DC6285ACE880038A370 /* PodiumTests.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1845,6 +1848,7 @@
 				D9625E8F28238F9B00080852 /* LocalDatabaseTests.swift in Sources */,
 				D9351C6128441FA400D4317E /* LoggerTests.swift in Sources */,
 				D92C0CA62840125B009CF19A /* SoundsViewViewModelTests.swift in Sources */,
+				D9A32DC7285ACE880038A370 /* PodiumTests.swift in Sources */,
 				D9575092284427C70094AEA6 /* DummyShareLogs.swift in Sources */,
 				D98DBD38284921B5008544F8 /* NetworkRabbitTests.swift in Sources */,
 			);
