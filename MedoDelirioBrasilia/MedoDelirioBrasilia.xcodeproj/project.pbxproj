@@ -45,6 +45,19 @@
 		D91964F02856BB3F0067B430 /* Chico Bento - Coitado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964EE2856BB3F0067B430 /* Chico Bento - Coitado.mp3 */; };
 		D91964F22856BBE10067B430 /* Moro dizendo que nao seria ministro nem candidato a presidencia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964F12856BBE10067B430 /* Moro dizendo que nao seria ministro nem candidato a presidencia.mp3 */; };
 		D91964F42856BC860067B430 /* GALAS FEIOS - Moro desafinando no corrupcao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964F32856BC860067B430 /* GALAS FEIOS - Moro desafinando no corrupcao.mp3 */; };
+		D9227309285AAD3E00A98CAE /* Pretty please meme infantil crianca begging.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92272FC285AAD3D00A98CAE /* Pretty please meme infantil crianca begging.mp3 */; };
+		D922730A285AAD3E00A98CAE /* FUP - Marcele - Nao esta nem ai pro preto, pobre, favelado so esta ai por ele mesmo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92272FD285AAD3D00A98CAE /* FUP - Marcele - Nao esta nem ai pro preto, pobre, favelado so esta ai por ele mesmo.mp3 */; };
+		D922730B285AAD3E00A98CAE /* Bolsonaro - Pretendo beneficiar um filho meu sim pretendo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92272FE285AAD3D00A98CAE /* Bolsonaro - Pretendo beneficiar um filho meu sim pretendo.mp3 */; };
+		D922730C285AAD3E00A98CAE /* Bolsonaro - Igularidades no ministerio irregularidades paralelepipi pretiputi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92272FF285AAD3D00A98CAE /* Bolsonaro - Igularidades no ministerio irregularidades paralelepipi pretiputi.mp3 */; };
+		D922730D285AAD3E00A98CAE /* REDETV - Jair Bolsonaro - Eu pretendo participar de debates, nao participei na ultima porque estava em convalescencia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9227300285AAD3D00A98CAE /* REDETV - Jair Bolsonaro - Eu pretendo participar de debates, nao participei na ultima porque estava em convalescencia.mp3 */; };
+		D922730E285AAD3E00A98CAE /* TV BRASIL - Bolsonaro - Pretiputi, pretiputi, pretiputi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9227301285AAD3D00A98CAE /* TV BRASIL - Bolsonaro - Pretiputi, pretiputi, pretiputi.mp3 */; };
+		D922730F285AAD3E00A98CAE /* FALA M.R. - Quem produz vai ter sempre o pretexto de dizer que nao e fake news porque e uma piada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9227302285AAD3D00A98CAE /* FALA M.R. - Quem produz vai ter sempre o pretexto de dizer que nao e fake news porque e uma piada.mp3 */; };
+		D9227310285AAD3E00A98CAE /* Calcinha Preta - Pega Fogo Cabare short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9227303285AAD3D00A98CAE /* Calcinha Preta - Pega Fogo Cabare short meme.mp3 */; };
+		D9227311285AAD3E00A98CAE /* Bolsonaro - Presente Puti prentiputi pretiputi presidente putin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9227304285AAD3D00A98CAE /* Bolsonaro - Presente Puti prentiputi pretiputi presidente putin.mp3 */; };
+		D9227312285AAD3E00A98CAE /* PLANALTO - Bolsonaro - Presidente Putin Pretiputi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9227305285AAD3D00A98CAE /* PLANALTO - Bolsonaro - Presidente Putin Pretiputi.mp3 */; };
+		D9227313285AAD3E00A98CAE /* PLANALTO - Bolsonaro - Presidente Putin Pretiputi remix house.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9227306285AAD3E00A98CAE /* PLANALTO - Bolsonaro - Presidente Putin Pretiputi remix house.mp3 */; };
+		D9227314285AAD3E00A98CAE /* METEORO BRASIL - Antonio Tabet - Pretos, gays, lesbicas, trans tem familias e fazem familias.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9227307285AAD3E00A98CAE /* METEORO BRASIL - Antonio Tabet - Pretos, gays, lesbicas, trans tem familias e fazem familias.mp3 */; };
+		D9227315285AAD3E00A98CAE /* ROY ORBISON - Oh Pretty Woman Pretiputi parodia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9227308285AAD3E00A98CAE /* ROY ORBISON - Oh Pretty Woman Pretiputi parodia.mp3 */; };
 		D927C40C28523A050041970A /* Nunca foi meritocracia, sempre foi desigualdade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D927C40728523A050041970A /* Nunca foi meritocracia, sempre foi desigualdade.mp3 */; };
 		D927C40D28523A050041970A /* OS DONOS DA BOLA - CRAQUE NETO - Ai depois fala que ta bebado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D927C40828523A050041970A /* OS DONOS DA BOLA - CRAQUE NETO - Ai depois fala que ta bebado.mp3 */; };
 		D927C40E28523A050041970A /* Omar Aziz - Ah, me erre.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D927C40928523A050041970A /* Omar Aziz - Ah, me erre.mp3 */; };
@@ -399,6 +412,19 @@
 		D91964EE2856BB3F0067B430 /* Chico Bento - Coitado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Chico Bento - Coitado.mp3"; sourceTree = "<group>"; };
 		D91964F12856BBE10067B430 /* Moro dizendo que nao seria ministro nem candidato a presidencia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Moro dizendo que nao seria ministro nem candidato a presidencia.mp3"; sourceTree = "<group>"; };
 		D91964F32856BC860067B430 /* GALAS FEIOS - Moro desafinando no corrupcao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "GALAS FEIOS - Moro desafinando no corrupcao.mp3"; sourceTree = "<group>"; };
+		D92272FC285AAD3D00A98CAE /* Pretty please meme infantil crianca begging.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pretty please meme infantil crianca begging.mp3"; sourceTree = "<group>"; };
+		D92272FD285AAD3D00A98CAE /* FUP - Marcele - Nao esta nem ai pro preto, pobre, favelado so esta ai por ele mesmo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "FUP - Marcele - Nao esta nem ai pro preto, pobre, favelado so esta ai por ele mesmo.mp3"; sourceTree = "<group>"; };
+		D92272FE285AAD3D00A98CAE /* Bolsonaro - Pretendo beneficiar um filho meu sim pretendo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Pretendo beneficiar um filho meu sim pretendo.mp3"; sourceTree = "<group>"; };
+		D92272FF285AAD3D00A98CAE /* Bolsonaro - Igularidades no ministerio irregularidades paralelepipi pretiputi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Igularidades no ministerio irregularidades paralelepipi pretiputi.mp3"; sourceTree = "<group>"; };
+		D9227300285AAD3D00A98CAE /* REDETV - Jair Bolsonaro - Eu pretendo participar de debates, nao participei na ultima porque estava em convalescencia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "REDETV - Jair Bolsonaro - Eu pretendo participar de debates, nao participei na ultima porque estava em convalescencia.mp3"; sourceTree = "<group>"; };
+		D9227301285AAD3D00A98CAE /* TV BRASIL - Bolsonaro - Pretiputi, pretiputi, pretiputi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "TV BRASIL - Bolsonaro - Pretiputi, pretiputi, pretiputi.mp3"; sourceTree = "<group>"; };
+		D9227302285AAD3D00A98CAE /* FALA M.R. - Quem produz vai ter sempre o pretexto de dizer que nao e fake news porque e uma piada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "FALA M.R. - Quem produz vai ter sempre o pretexto de dizer que nao e fake news porque e uma piada.mp3"; sourceTree = "<group>"; };
+		D9227303285AAD3D00A98CAE /* Calcinha Preta - Pega Fogo Cabare short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Calcinha Preta - Pega Fogo Cabare short meme.mp3"; sourceTree = "<group>"; };
+		D9227304285AAD3D00A98CAE /* Bolsonaro - Presente Puti prentiputi pretiputi presidente putin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Presente Puti prentiputi pretiputi presidente putin.mp3"; sourceTree = "<group>"; };
+		D9227305285AAD3D00A98CAE /* PLANALTO - Bolsonaro - Presidente Putin Pretiputi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "PLANALTO - Bolsonaro - Presidente Putin Pretiputi.mp3"; sourceTree = "<group>"; };
+		D9227306285AAD3E00A98CAE /* PLANALTO - Bolsonaro - Presidente Putin Pretiputi remix house.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "PLANALTO - Bolsonaro - Presidente Putin Pretiputi remix house.mp3"; sourceTree = "<group>"; };
+		D9227307285AAD3E00A98CAE /* METEORO BRASIL - Antonio Tabet - Pretos, gays, lesbicas, trans tem familias e fazem familias.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "METEORO BRASIL - Antonio Tabet - Pretos, gays, lesbicas, trans tem familias e fazem familias.mp3"; sourceTree = "<group>"; };
+		D9227308285AAD3E00A98CAE /* ROY ORBISON - Oh Pretty Woman Pretiputi parodia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ROY ORBISON - Oh Pretty Woman Pretiputi parodia.mp3"; sourceTree = "<group>"; };
 		D927C40728523A050041970A /* Nunca foi meritocracia, sempre foi desigualdade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Nunca foi meritocracia, sempre foi desigualdade.mp3"; sourceTree = "<group>"; };
 		D927C40828523A050041970A /* OS DONOS DA BOLA - CRAQUE NETO - Ai depois fala que ta bebado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "OS DONOS DA BOLA - CRAQUE NETO - Ai depois fala que ta bebado.mp3"; sourceTree = "<group>"; };
 		D927C40928523A050041970A /* Omar Aziz - Ah, me erre.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Omar Aziz - Ah, me erre.mp3"; sourceTree = "<group>"; };
@@ -729,6 +755,19 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D92272FF285AAD3D00A98CAE /* Bolsonaro - Igularidades no ministerio irregularidades paralelepipi pretiputi.mp3 */,
+				D9227304285AAD3D00A98CAE /* Bolsonaro - Presente Puti prentiputi pretiputi presidente putin.mp3 */,
+				D92272FE285AAD3D00A98CAE /* Bolsonaro - Pretendo beneficiar um filho meu sim pretendo.mp3 */,
+				D9227303285AAD3D00A98CAE /* Calcinha Preta - Pega Fogo Cabare short meme.mp3 */,
+				D9227302285AAD3D00A98CAE /* FALA M.R. - Quem produz vai ter sempre o pretexto de dizer que nao e fake news porque e uma piada.mp3 */,
+				D92272FD285AAD3D00A98CAE /* FUP - Marcele - Nao esta nem ai pro preto, pobre, favelado so esta ai por ele mesmo.mp3 */,
+				D9227307285AAD3E00A98CAE /* METEORO BRASIL - Antonio Tabet - Pretos, gays, lesbicas, trans tem familias e fazem familias.mp3 */,
+				D9227306285AAD3E00A98CAE /* PLANALTO - Bolsonaro - Presidente Putin Pretiputi remix house.mp3 */,
+				D9227305285AAD3D00A98CAE /* PLANALTO - Bolsonaro - Presidente Putin Pretiputi.mp3 */,
+				D92272FC285AAD3D00A98CAE /* Pretty please meme infantil crianca begging.mp3 */,
+				D9227300285AAD3D00A98CAE /* REDETV - Jair Bolsonaro - Eu pretendo participar de debates, nao participei na ultima porque estava em convalescencia.mp3 */,
+				D9227308285AAD3E00A98CAE /* ROY ORBISON - Oh Pretty Woman Pretiputi parodia.mp3 */,
+				D9227301285AAD3D00A98CAE /* TV BRASIL - Bolsonaro - Pretiputi, pretiputi, pretiputi.mp3 */,
 				D9EB18A02857907800A2F8A8 /* Eduardo Sterblitch - E mais ou menos curto.mp3 */,
 				D9EB189F2857907800A2F8A8 /* Eduardo Sterblitch - E mais ou menos longo.mp3 */,
 				D9EB189D285781AC00A2F8A8 /* Bom dia e o caralho parceiro short meme.mp3 */,
@@ -1406,7 +1445,9 @@
 				D955693B285137800072E3FC /* Deltan Dallangnol - Os meus advogados estao estarrecidos.mp3 in Resources */,
 				D955696D285137800072E3FC /* Bolsonaro - Porra.mp3 in Resources */,
 				D9556939285137800072E3FC /* SBT NEWS - Bolsonaro - Sai, Alexandre de Moraes.mp3 in Resources */,
+				D922730A285AAD3E00A98CAE /* FUP - Marcele - Nao esta nem ai pro preto, pobre, favelado so esta ai por ele mesmo.mp3 in Resources */,
 				D92E706E283C5C2C0035826C /* Eu volto pro ostracismo.mp3 in Resources */,
+				D9227314285AAD3E00A98CAE /* METEORO BRASIL - Antonio Tabet - Pretos, gays, lesbicas, trans tem familias e fazem familias.mp3 in Resources */,
 				D955697C285137800072E3FC /* Leo Stronda Porra.mp3 in Resources */,
 				D955692C285137800072E3FC /* Samira Close - Deixa eu te falar uma coisa voce tem quantos anos menino.mp3 in Resources */,
 				D95569D3285137800072E3FC /* Bolsonaro - Uma crise uma pequena crise ne.mp3 in Resources */,
@@ -1414,6 +1455,7 @@
 				D9556911285137800072E3FC /* MULTISHOW_Titi_Muller_Ta_bombando_mais_do_que_o_povo_pedindo_Anitta.mp3 in Resources */,
 				D9556915285137800072E3FC /* ATILA IAMARINO - E vao empilhar sequela em cima de sequela.mp3 in Resources */,
 				D9556940285137800072E3FC /* Reinaldo Azevedo - E mentira.mp3 in Resources */,
+				D922730E285AAD3E00A98CAE /* TV BRASIL - Bolsonaro - Pretiputi, pretiputi, pretiputi.mp3 in Resources */,
 				D95569AA285137800072E3FC /* Que porra e essa batata.mp3 in Resources */,
 				D927C42228523FAC0041970A /* Xuxa - Aham Claudia Senta la short meme.mp3 in Resources */,
 				D955699D285137800072E3FC /* Fred - Ce ta falando serio.mp3 in Resources */,
@@ -1432,6 +1474,7 @@
 				D95569B1285137800072E3FC /* Pedro Pedreira - Pedra 90 ha controversias.mp3 in Resources */,
 				D95569B8285137800072E3FC /* Natalia Pasternak - Tem gente morrendo.mp3 in Resources */,
 				D955694D285137800072E3FC /* Bolsonaro - E dai.mp3 in Resources */,
+				D9227315285AAD3E00A98CAE /* ROY ORBISON - Oh Pretty Woman Pretiputi parodia.mp3 in Resources */,
 				D9556988285137800072E3FC /* Choque de Cultura - Falo com tranquilidade.mp3 in Resources */,
 				D95569C4285137800072E3FC /* Por que sera short meme.mp3 in Resources */,
 				D9556986285137800072E3FC /* Quercia - Mentiroso e caluniador, caluniador e mentiroso.mp3 in Resources */,
@@ -1470,6 +1513,7 @@
 				D90483E62851A87D00885739 /* Leandro Hassum - Pra caralho pra caraaaalho.mp3 in Resources */,
 				D955691C285137800072E3FC /* Caetano - Nao short.mp3 in Resources */,
 				D9556956285137800072E3FC /* Sabe que voce e muito petulante.mp3 in Resources */,
+				D922730D285AAD3E00A98CAE /* REDETV - Jair Bolsonaro - Eu pretendo participar de debates, nao participei na ultima porque estava em convalescencia.mp3 in Resources */,
 				D9556943285137800072E3FC /* Leo Stronda Monstro - Batata doce e frango logico.mp3 in Resources */,
 				D955697E285137800072E3FC /* COMUNISTA MEME.mp3 in Resources */,
 				D95569DB285137800072E3FC /* Bolsonaro - Lamento, quer que eu faca o que.mp3 in Resources */,
@@ -1481,6 +1525,7 @@
 				D9556991285137800072E3FC /* Quase ninguem de mascara.mp3 in Resources */,
 				D955699C285137800072E3FC /* Pedro Doria - Eles mentem mentem na cara dura mentem sem ter vergonha de mentir.mp3 in Resources */,
 				D9556952285137800072E3FC /* CHOQUE DE CULTURA - Rogerinho As vezes o odio e a unica emocao possivel short.mp3 in Resources */,
+				D922730C285AAD3E00A98CAE /* Bolsonaro - Igularidades no ministerio irregularidades paralelepipi pretiputi.mp3 in Resources */,
 				D90483FB2851B0F500885739 /* O Terrivel Homem do Broche de Caveira.mp3 in Resources */,
 				D955696B285137800072E3FC /* Trote Luiz Pareto - TELERJ meme mas que filho da puta olhai veja voce.mp3 in Resources */,
 				D91964F02856BB3F0067B430 /* Chico Bento - Coitado.mp3 in Resources */,
@@ -1499,6 +1544,7 @@
 				D9556960285137800072E3FC /* Bolsonaro - Pra midia, o virus sou eu.mp3 in Resources */,
 				D934432728381DEF00ADCD38 /* author_data.json in Resources */,
 				D9EB189928577EC400A2F8A8 /* Eu fico muito triste com uma noticia dessas filha da puta fogos short.mp3 in Resources */,
+				D922730B285AAD3E00A98CAE /* Bolsonaro - Pretendo beneficiar um filho meu sim pretendo.mp3 in Resources */,
 				D9556955285137800072E3FC /* Que merda hein short.mp3 in Resources */,
 				D9556941285137800072E3FC /* Ciro Gomes - Conspirador filho da puta.mp3 in Resources */,
 				D90483DC2851A66200885739 /* HENRY BUGALHO - Os reacas piram.mp3 in Resources */,
@@ -1523,12 +1569,14 @@
 				D95569CC285137800072E3FC /* Bolsonaro - Buscamos uma solucao, quem tiver tras pra mim tras pra mim.mp3 in Resources */,
 				D95569A5285137800072E3FC /* Ciro Gomes - Que isso, francamente.mp3 in Resources */,
 				D9556947285137800072E3FC /* Gilmar Mendes - Nao e razoavel.mp3 in Resources */,
+				D9227311285AAD3E00A98CAE /* Bolsonaro - Presente Puti prentiputi pretiputi presidente putin.mp3 in Resources */,
 				D90483F22851B0F500885739 /* Pega essa buceta e enfia no cu short meme.mp3 in Resources */,
 				D955698E285137800072E3FC /* Bolsonaro - Vai morrer gente morrer morte inocentes tinha que matar e mais minha especialidade e matar.mp3 in Resources */,
 				D90483FA2851B0F500885739 /* O Terrivel Editorialista do Estadao.mp3 in Resources */,
 				D9556964285137800072E3FC /* Neto - Voces estao de sacanagem short.mp3 in Resources */,
 				D955693C285137800072E3FC /* CIRO GOMES - Paulo Guedes mentiroso ta enganando a rapazeada paulo guedes.mp3 in Resources */,
 				D955697F285137800072E3FC /* Bolsonaro - Assim como na China, a curva ja esta na descendente, nos vamos passar por isso tambem.mp3 in Resources */,
+				D922730F285AAD3E00A98CAE /* FALA M.R. - Quem produz vai ter sempre o pretexto de dizer que nao e fake news porque e uma piada.mp3 in Resources */,
 				D955691A285137800072E3FC /* Bolsonaro - Ah nhem nhem nhem nhem olha o problema ai.mp3 in Resources */,
 				D90483CE2851A19F00885739 /* CANAL RURAL - Alexandre Garcia - A sensatez que significa a abordagem do governo na pandemia.mp3 in Resources */,
 				D927C41B28523F5D0041970A /* Malditos Milicos robo.mp3 in Resources */,
@@ -1550,6 +1598,7 @@
 				D9556928285137800072E3FC /* Winter is coming, this one will be long.mp3 in Resources */,
 				D95569D1285137800072E3FC /* PODER36_Paulo_Guedes_Tem_mais_iPhones_no_Brasil_que_populacao_Brasileiros.mp3 in Resources */,
 				D90483D72851A4A100885739 /* Harry e Helen - I've heard that song before short meme.mp3 in Resources */,
+				D9227309285AAD3E00A98CAE /* Pretty please meme infantil crianca begging.mp3 in Resources */,
 				D9556946285137800072E3FC /* Alborgeti - Que Merda Hein.mp3 in Resources */,
 				D955699A285137800072E3FC /* tu_ouviu_isso.mp3 in Resources */,
 				D9556912285137800072E3FC /* esse_neto_bosta.mp3 in Resources */,
@@ -1574,12 +1623,14 @@
 				D9EB18A22857907800A2F8A8 /* Eduardo Sterblitch - E mais ou menos curto.mp3 in Resources */,
 				D955699B285137800072E3FC /* Malafaia - Jair Messias Bolsonaro sem respostas.mp3 in Resources */,
 				D95569A4285137800072E3FC /* Fernando Collor - Tres vezes dizendo que e mentira.mp3 in Resources */,
+				D9227313285AAD3E00A98CAE /* PLANALTO - Bolsonaro - Presidente Putin Pretiputi remix house.mp3 in Resources */,
 				D95569BA285137800072E3FC /* esse_braga_neto_que_eh_um_bosta.mp3 in Resources */,
 				D9EB189628577DEF00A2F8A8 /* Atencao e agora que o bicho vai pegar short meme.mp3 in Resources */,
 				D9556996285137800072E3FC /* Passada chocada meu Deus jesus.mp3 in Resources */,
 				D955695B285137800072E3FC /* Craque Neto - Vacina eu Tomo short meme.mp3 in Resources */,
 				D927C41A28523F5D0041970A /* PLANALTO - Bolsonaro - Mente.mp3 in Resources */,
 				D955694A285137800072E3FC /* COMUNISTA DO INFERNO meme.mp3 in Resources */,
+				D9227312285AAD3E00A98CAE /* PLANALTO - Bolsonaro - Presidente Putin Pretiputi.mp3 in Resources */,
 				D9556914285137800072E3FC /* Boldo - Deixa com a cara magoada.mp3 in Resources */,
 				D927C41E28523F5D0041970A /* Tite - Fala muito!.mp3 in Resources */,
 				D955694F285137800072E3FC /* Saiddy Bamba - Vai chorar e vai chorar e chore na minha.mp3 in Resources */,
@@ -1613,6 +1664,7 @@
 				D9556994285137800072E3FC /* Maluf - Nao lhe dou o aparte.mp3 in Resources */,
 				D955694B285137800072E3FC /* Mermao na moral short.mp3 in Resources */,
 				D95569C8285137800072E3FC /* Pazuello - Nao tem o que fazer.mp3 in Resources */,
+				D9227310285AAD3E00A98CAE /* Calcinha Preta - Pega Fogo Cabare short meme.mp3 in Resources */,
 				D90483D62851A4A100885739 /* Harry Potter - Cala a boca, Malfoy.mp3 in Resources */,
 				D9556984285137800072E3FC /* MIDCAST - Teu cu.mp3 in Resources */,
 				D9556978285137800072E3FC /* Drauzio - E os outros problema deles nao tenho nada a ver com isso.mp3 in Resources */,
@@ -1907,7 +1959,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				ENABLE_PREVIEWS = YES;
@@ -1923,7 +1975,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = "Medo e Delírio";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1938,7 +1990,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				ENABLE_PREVIEWS = YES;
@@ -1954,7 +2006,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = "Medo e Delírio";
 				SWIFT_EMIT_LOC_STRINGS = YES;
