@@ -2581,5 +2581,50 @@
         "filename": "Sirigueijo - Dinheiro.mp3",
         "dateAdded": "2022-06-16T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "EE9B3C2F-39EB-49E6-AFAF-1E3EAB19F687",
+        "title": "Tá maluco",
+        "authorId": "F1683588-F547-4F2F-B3E4-8A328FAFC1AB",
+        "description": "Tá maluco",
+        "filename": "CASIMIRO - Ta maluco.mp3",
+        "dateAdded": "2022-06-16T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "06EFD3EA-0A3E-402D-ACD1-D87A1D7DA51D",
+        "title": "Que que porra é essa",
+        "authorId": "F1683588-F547-4F2F-B3E4-8A328FAFC1AB",
+        "description": "Que que porra e essa",
+        "filename": "CASIMIRO - Que que porra e essa.mp3",
+        "dateAdded": "2022-06-16T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "7C99B402-44F7-4177-8147-9A5201ADF7C4",
+        "title": "Você acha isso legal",
+        "authorId": "F1683588-F547-4F2F-B3E4-8A328FAFC1AB",
+        "description": "Voce acha isso legal",
+        "filename": "CASIMIRO - Voce acha isso legal.mp3",
+        "dateAdded": "2022-06-16T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "D4F504AB-D317-4A49-B5A9-5F6BFE867FCA",
+        "title": "Que marolada hein",
+        "authorId": "F1683588-F547-4F2F-B3E4-8A328FAFC1AB",
+        "description": "Que marolada hein",
+        "filename": "CASIMIRO - Que marolada hein.mp3",
+        "dateAdded": "2022-06-16T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "1EEDDBAC-252C-47CC-B5E9-C8A5205C8FB4",
+        "title": "Mix de insanidade",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "Mix de insanidade",
+        "filename": "Cristiano Botafogo - Mix de insanidade.mp3",
+        "dateAdded": "2022-06-16T00:00:00Z",
+        "isOffensive": false
     }
 ]

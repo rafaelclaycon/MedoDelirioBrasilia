@@ -330,6 +330,11 @@
 		D96E115D28459D8800306859 /* UserActivityWaiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96E115C28459D8800306859 /* UserActivityWaiter.swift */; };
 		D980455C28380EFE003B2E83 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D980455E28380EFE003B2E83 /* Localizable.strings */; };
 		D980456228380F66003B2E83 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D980456128380F66003B2E83 /* LocalizableStrings.swift */; };
+		D982DCF9285BD358003C8695 /* CASIMIRO - Ta maluco.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D982DCF8285BD358003C8695 /* CASIMIRO - Ta maluco.mp3 */; };
+		D982DCFB285BD3FC003C8695 /* CASIMIRO - Que que porra e essa.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D982DCFA285BD3FC003C8695 /* CASIMIRO - Que que porra e essa.mp3 */; };
+		D982DCFE285BD559003C8695 /* CASIMIRO - Voce acha isso legal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D982DCFC285BD559003C8695 /* CASIMIRO - Voce acha isso legal.mp3 */; };
+		D982DCFF285BD559003C8695 /* CASIMIRO - Que marolada hein.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D982DCFD285BD559003C8695 /* CASIMIRO - Que marolada hein.mp3 */; };
+		D982DD01285BDC27003C8695 /* Cristiano Botafogo - Mix de insanidade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D982DD00285BDC27003C8695 /* Cristiano Botafogo - Mix de insanidade.mp3 */; };
 		D98622E0283FC57100E9F630 /* AuthorDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98622DF283FC57100E9F630 /* AuthorDetailView.swift */; };
 		D98622E2283FCEDC00E9F630 /* AuthorsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98622E1283FCEDC00E9F630 /* AuthorsViewViewModel.swift */; };
 		D988C523283C33E100D64404 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D988C522283C33E100D64404 /* UserSettings.swift */; };
@@ -702,6 +707,11 @@
 		D980455D28380EFE003B2E83 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D980455F28380F05003B2E83 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D980456128380F66003B2E83 /* LocalizableStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
+		D982DCF8285BD358003C8695 /* CASIMIRO - Ta maluco.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "CASIMIRO - Ta maluco.mp3"; sourceTree = "<group>"; };
+		D982DCFA285BD3FC003C8695 /* CASIMIRO - Que que porra e essa.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "CASIMIRO - Que que porra e essa.mp3"; sourceTree = "<group>"; };
+		D982DCFC285BD559003C8695 /* CASIMIRO - Voce acha isso legal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "CASIMIRO - Voce acha isso legal.mp3"; sourceTree = "<group>"; };
+		D982DCFD285BD559003C8695 /* CASIMIRO - Que marolada hein.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "CASIMIRO - Que marolada hein.mp3"; sourceTree = "<group>"; };
+		D982DD00285BDC27003C8695 /* Cristiano Botafogo - Mix de insanidade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano Botafogo - Mix de insanidade.mp3"; sourceTree = "<group>"; };
 		D98622DF283FC57100E9F630 /* AuthorDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorDetailView.swift; sourceTree = "<group>"; };
 		D98622E1283FCEDC00E9F630 /* AuthorsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorsViewViewModel.swift; sourceTree = "<group>"; };
 		D988C522283C33E100D64404 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
@@ -761,6 +771,11 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D982DD00285BDC27003C8695 /* Cristiano Botafogo - Mix de insanidade.mp3 */,
+				D982DCFD285BD559003C8695 /* CASIMIRO - Que marolada hein.mp3 */,
+				D982DCFC285BD559003C8695 /* CASIMIRO - Voce acha isso legal.mp3 */,
+				D982DCFA285BD3FC003C8695 /* CASIMIRO - Que que porra e essa.mp3 */,
+				D982DCF8285BD358003C8695 /* CASIMIRO - Ta maluco.mp3 */,
 				D9376C13285B78A3001216DC /* Sirigueijo - Dinheiro.mp3 */,
 				D9376C11285B7510001216DC /* Cocorico - Ah coitado.mp3 */,
 				D9376C0F285B7348001216DC /* Bolsonaro - E so voce fazer coco dia sim, dia nao, que melhora bastante.mp3 */,
@@ -1467,6 +1482,7 @@
 				D922730E285AAD3E00A98CAE /* TV BRASIL - Bolsonaro - Pretiputi, pretiputi, pretiputi.mp3 in Resources */,
 				D95569AA285137800072E3FC /* Que porra e essa batata.mp3 in Resources */,
 				D927C42228523FAC0041970A /* Xuxa - Aham Claudia Senta la short meme.mp3 in Resources */,
+				D982DCFE285BD559003C8695 /* CASIMIRO - Voce acha isso legal.mp3 in Resources */,
 				D955699D285137800072E3FC /* Fred - Ce ta falando serio.mp3 in Resources */,
 				D9556981285137800072E3FC /* Bolsonaro - ah o o cara quem fala disso eu nao sou coveiro ta ok.mp3 in Resources */,
 				D90483D22851A19F00885739 /* Gaucho Puto - Seu bosta, seu lixo, tu e um ser tao repulsivo.mp3 in Resources */,
@@ -1560,6 +1576,7 @@
 				D90483DC2851A66200885739 /* HENRY BUGALHO - Os reacas piram.mp3 in Resources */,
 				D9556969285137800072E3FC /* Ze Gotinha - Ola meu nome e Ze Gotinha.mp3 in Resources */,
 				D955699E285137800072E3FC /* ATILA IAMARINO - E um virus mais transmissivel que mata mais.mp3 in Resources */,
+				D982DCF9285BD358003C8695 /* CASIMIRO - Ta maluco.mp3 in Resources */,
 				D9556973285137800072E3FC /* LUVA DE PEDREIRO - E, caralho carai, RECEBA.mp3 in Resources */,
 				D955695F285137800072E3FC /* Bolsonaro - Problemas.mp3 in Resources */,
 				D955694E285137800072E3FC /* Costinha - Se fudeu short.mp3 in Resources */,
@@ -1635,6 +1652,7 @@
 				D9EB18A22857907800A2F8A8 /* Eduardo Sterblitch - E mais ou menos curto.mp3 in Resources */,
 				D955699B285137800072E3FC /* Malafaia - Jair Messias Bolsonaro sem respostas.mp3 in Resources */,
 				D95569A4285137800072E3FC /* Fernando Collor - Tres vezes dizendo que e mentira.mp3 in Resources */,
+				D982DCFB285BD3FC003C8695 /* CASIMIRO - Que que porra e essa.mp3 in Resources */,
 				D9227313285AAD3E00A98CAE /* PLANALTO - Bolsonaro - Presidente Putin Pretiputi remix house.mp3 in Resources */,
 				D95569BA285137800072E3FC /* esse_braga_neto_que_eh_um_bosta.mp3 in Resources */,
 				D9EB189628577DEF00A2F8A8 /* Atencao e agora que o bicho vai pegar short meme.mp3 in Resources */,
@@ -1733,6 +1751,7 @@
 				D95569DA285137800072E3FC /* Brizola - Filhotes da ditadura.mp3 in Resources */,
 				D955697D285137800072E3FC /* Danca do Creu - 30 mil passou a meta em 8x.mp3 in Resources */,
 				D955693F285137800072E3FC /* Jonathan Frakes - pure fiction.mp3 in Resources */,
+				D982DCFF285BD559003C8695 /* CASIMIRO - Que marolada hein.mp3 in Resources */,
 				D9556938285137800072E3FC /* Jacquin - Cala a boca short.mp3 in Resources */,
 				D91964E62856B7920067B430 /* Bolsonaro - Da um tapa na minha cara slap sound.mp3 in Resources */,
 				D9556932285137800072E3FC /* Choque de cultura - Rogerinho - Nao vamos falar de porno aqui nao.mp3 in Resources */,
@@ -1742,6 +1761,7 @@
 				D9EB189228577BFD00A2F8A8 /* Bolsonaro - Paralelepipedo de crack.mp3 in Resources */,
 				D955695D285137800072E3FC /* SALLES - E ir passando a boiada.mp3 in Resources */,
 				D955694C285137800072E3FC /* O CARA DA LUVA DE PEDREIRO - Receba.mp3 in Resources */,
+				D982DD01285BDC27003C8695 /* Cristiano Botafogo - Mix de insanidade.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
