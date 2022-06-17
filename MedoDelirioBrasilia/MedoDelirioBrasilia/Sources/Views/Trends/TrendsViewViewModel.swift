@@ -32,7 +32,7 @@ class TrendsViewViewModel: ObservableObject {
                 }
                 
                 DispatchQueue.main.async {
-                    self.audienceTop5 = Podium.getTop5SoundsSharedByTheAudience()
+                    self.audienceTop5 = podium.getTop5SoundsSharedByTheAudience()
                 }
             }
         }

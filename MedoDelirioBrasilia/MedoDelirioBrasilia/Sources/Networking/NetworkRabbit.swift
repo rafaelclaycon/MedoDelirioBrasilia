@@ -1,6 +1,15 @@
 import UIKit
 
-class NetworkRabbit {
+internal protocol NetworkRabbitProtocol {
+
+    func checkServerStatus(completionHandler: @escaping (Bool, String) -> Void)
+    func getSoundShareCountStats(completionHandler: @escaping ([ServerShareCountStat]?, NetworkRabbitError?) -> Void)
+    func post(shareCountStat: ServerShareCountStat, completionHandler: @escaping (String) -> Void)
+    func post(clientDeviceInfo: ClientDeviceInfo, completionHandler: @escaping (Bool?, NetworkRabbitError?) -> Void)
+
+}
+
+class NetworkRabbit: NetworkRabbitProtocol {
 
     private let serverPath: String
     

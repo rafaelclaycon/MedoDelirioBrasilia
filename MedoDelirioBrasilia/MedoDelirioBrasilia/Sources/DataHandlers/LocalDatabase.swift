@@ -2,6 +2,15 @@ import Foundation
 import SQLite
 import SQLiteMigrationManager
 
+internal protocol LocalDatabaseProtocol {
+
+    func checkServerStatus(completionHandler: @escaping (Bool, String) -> Void)
+    func getSoundShareCountStats(completionHandler: @escaping ([ServerShareCountStat]?, NetworkRabbitError?) -> Void)
+    func post(shareCountStat: ServerShareCountStat, completionHandler: @escaping (String) -> Void)
+    func post(clientDeviceInfo: ClientDeviceInfo, completionHandler: @escaping (Bool?, NetworkRabbitError?) -> Void)
+
+}
+
 class LocalDatabase {
 
     var db: Connection

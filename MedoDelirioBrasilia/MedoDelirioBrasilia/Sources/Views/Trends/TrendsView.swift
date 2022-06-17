@@ -57,7 +57,7 @@ struct TrendsView: View {
                                         Spacer()
                                         
                                         Button {
-                                            viewModel.reloadPersonalList(withTopChartItems: Podium.getTop5SoundsSharedByTheUser())
+                                            viewModel.reloadPersonalList(withTopChartItems: podium.getTop5SoundsSharedByTheUser())
                                         } label: {
                                             HStack {
                                                 Image(systemName: "arrow.triangle.2.circlepath")
@@ -139,7 +139,7 @@ struct TrendsView: View {
             .navigationTitle("Tendências (Beta)")
             .navigationBarTitleDisplayMode(showTrends ? .large : .inline)
             .onAppear {
-                viewModel.reloadPersonalList(withTopChartItems: Podium.getTop5SoundsSharedByTheUser())
+                viewModel.reloadPersonalList(withTopChartItems: podium.getTop5SoundsSharedByTheUser())
                 viewModel.donateActivity()
             }
         }

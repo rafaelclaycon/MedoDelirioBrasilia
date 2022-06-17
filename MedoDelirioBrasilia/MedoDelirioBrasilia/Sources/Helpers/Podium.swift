@@ -1,8 +1,16 @@
 import Foundation
 
 class Podium {
+
+    private var database: LocalDatabase
+    private var networkRabbit: NetworkRabbitProtocol
     
-    static func getTop5SoundsSharedByTheUser() -> [TopChartItem]? {
+    init(database injectedDatabase: LocalDatabase, networkRabbit injectedNetwork: NetworkRabbitProtocol) {
+        self.database = injectedDatabase
+        self.networkRabbit = injectedNetwork
+    }
+    
+    func getTop5SoundsSharedByTheUser() -> [TopChartItem]? {
         var result = [TopChartItem]()
         var filteredSounds: [Sound]
         var filteredAuthors: [Author]
@@ -37,7 +45,7 @@ class Podium {
         }
     }
     
-    static func getTop5SoundsSharedByTheAudience() -> [TopChartItem]? {
+    func getTop5SoundsSharedByTheAudience() -> [TopChartItem]? {
         var result = [TopChartItem]()
         var filteredSounds: [Sound]
         var filteredAuthors: [Author]
@@ -75,7 +83,7 @@ class Podium {
     func exchangeShareCountStatsWithTheServer(completionHandler: @escaping (Bool, String) -> Void) {
         networkRabbit.checkServerStatus { serverIsAvailable, _ in
             guard serverIsAvailable else {
-                return
+                return completionHandler(false, "Servidor não disponível.")
             }
             
             // Prepare local stats to be sent
@@ -85,7 +93,7 @@ class Podium {
             //networkRabbit.post(shareCountStat: , completionHandler: <#T##(String) -> Void#>)
             
             // Get remote stats
-            networkRabbit.getSoundShareCountStats { stats, error in
+            self.networkRabbit.getSoundShareCountStats { stats, error in
                 guard error == nil else {
                     return
                 }
@@ -96,7 +104,7 @@ class Podium {
                 var audienceStat: AudienceShareCountStat? = nil
                 stats.forEach { stat in
                     audienceStat = AudienceShareCountStat(contentId: stat.contentId, contentType: stat.contentType, shareCount: stat.shareCount)
-                    try? database.insert(audienceStat: audienceStat!)
+                    try? self.database.insert(audienceStat: audienceStat!)
                 }
                 
                 // Let the caller now 

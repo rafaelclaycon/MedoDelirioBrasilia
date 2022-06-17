@@ -101,6 +101,8 @@
 		D93D24E02849DAAB00300541 /* DiagnosticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D24DF2849DAAB00300541 /* DiagnosticsView.swift */; };
 		D94656D928450535008B4785 /* SQLiteMigrationManager in Frameworks */ = {isa = PBXBuildFile; productRef = D94656D828450535008B4785 /* SQLiteMigrationManager */; };
 		D94A4214283DC52800A504BD /* SongHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A4213283DC52800A504BD /* SongHelpView.swift */; };
+		D9523741285BF98A00E6C838 /* NetworkRabbitStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */; };
+		D9523743285BF99800E6C838 /* LocalDatabaseSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9523742285BF99800E6C838 /* LocalDatabaseSpy.swift */; };
 		D955690F285137800072E3FC /* ADY - oh nao mais um crime de responsabilidade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95568422851377E0072E3FC /* ADY - oh nao mais um crime de responsabilidade.mp3 */; };
 		D9556910285137800072E3FC /* Bolsonaro - Duas letras PF e policia federal o cara.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95568432851377E0072E3FC /* Bolsonaro - Duas letras PF e policia federal o cara.mp3 */; };
 		D9556911285137800072E3FC /* MULTISHOW_Titi_Muller_Ta_bombando_mais_do_que_o_povo_pedindo_Anitta.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95568442851377E0072E3FC /* MULTISHOW_Titi_Muller_Ta_bombando_mais_do_que_o_povo_pedindo_Anitta.mp3 */; };
@@ -311,7 +313,7 @@
 		D95569E428513FAB0072E3FC /* SUPERPOP - Luciana Gimenez - Mas ce ta brava.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95569E028513FAB0072E3FC /* SUPERPOP - Luciana Gimenez - Mas ce ta brava.mp3 */; };
 		D95569E528513FAB0072E3FC /* Vou esquecer disso jamais.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95569E128513FAB0072E3FC /* Vou esquecer disso jamais.mp3 */; };
 		D95569E7285140AE0072E3FC /* Galvao Bueno - Diga la Tino meme short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95569E6285140AE0072E3FC /* Galvao Bueno - Diga la Tino meme short.mp3 */; };
-		D9575092284427C70094AEA6 /* DummyShareLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9575091284427C70094AEA6 /* DummyShareLogs.swift */; };
+		D9575092284427C70094AEA6 /* ShareLogsDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9575091284427C70094AEA6 /* ShareLogsDummy.swift */; };
 		D957509628445EC30094AEA6 /* TrendsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957509528445EC30094AEA6 /* TrendsViewViewModel.swift */; };
 		D958B1AA28394D400010F133 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958B1A928394D400010F133 /* MainView.swift */; };
 		D958B1AC28394DCD0010F133 /* AuthorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958B1AB28394DCD0010F133 /* AuthorsView.swift */; };
@@ -484,6 +486,8 @@
 		D93AC08A28414EEE00E38A63 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		D93D24DF2849DAAB00300541 /* DiagnosticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticsView.swift; sourceTree = "<group>"; };
 		D94A4213283DC52800A504BD /* SongHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongHelpView.swift; sourceTree = "<group>"; };
+		D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRabbitStub.swift; sourceTree = "<group>"; };
+		D9523742285BF99800E6C838 /* LocalDatabaseSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDatabaseSpy.swift; sourceTree = "<group>"; };
 		D95568422851377E0072E3FC /* ADY - oh nao mais um crime de responsabilidade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ADY - oh nao mais um crime de responsabilidade.mp3"; sourceTree = "<group>"; };
 		D95568432851377E0072E3FC /* Bolsonaro - Duas letras PF e policia federal o cara.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Duas letras PF e policia federal o cara.mp3"; sourceTree = "<group>"; };
 		D95568442851377E0072E3FC /* MULTISHOW_Titi_Muller_Ta_bombando_mais_do_que_o_povo_pedindo_Anitta.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MULTISHOW_Titi_Muller_Ta_bombando_mais_do_que_o_povo_pedindo_Anitta.mp3; sourceTree = "<group>"; };
@@ -694,7 +698,7 @@
 		D95569E028513FAB0072E3FC /* SUPERPOP - Luciana Gimenez - Mas ce ta brava.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "SUPERPOP - Luciana Gimenez - Mas ce ta brava.mp3"; sourceTree = "<group>"; };
 		D95569E128513FAB0072E3FC /* Vou esquecer disso jamais.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Vou esquecer disso jamais.mp3"; sourceTree = "<group>"; };
 		D95569E6285140AE0072E3FC /* Galvao Bueno - Diga la Tino meme short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Galvao Bueno - Diga la Tino meme short.mp3"; sourceTree = "<group>"; };
-		D9575091284427C70094AEA6 /* DummyShareLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyShareLogs.swift; sourceTree = "<group>"; };
+		D9575091284427C70094AEA6 /* ShareLogsDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareLogsDummy.swift; sourceTree = "<group>"; };
 		D957509528445EC30094AEA6 /* TrendsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsViewViewModel.swift; sourceTree = "<group>"; };
 		D958B1A928394D400010F133 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		D958B1AB28394DCD0010F133 /* AuthorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorsView.swift; sourceTree = "<group>"; };
@@ -1148,17 +1152,43 @@
 		D9351C5F28441F8E00D4317E /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				D9575094284428260094AEA6 /* Doubles */,
-				D9351C6028441FA400D4317E /* LoggerTests.swift */,
-				D9A32DC6285ACE880038A370 /* PodiumTests.swift */,
+				D9523744285BF9D300E6C838 /* Logger */,
+				D9523745285BF9D900E6C838 /* Podium */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		D9575094284428260094AEA6 /* Doubles */ = {
+		D9523744285BF9D300E6C838 /* Logger */ = {
 			isa = PBXGroup;
 			children = (
-				D9575091284427C70094AEA6 /* DummyShareLogs.swift */,
+				D9523747285BF9F600E6C838 /* Doubles */,
+				D9351C6028441FA400D4317E /* LoggerTests.swift */,
+			);
+			path = Logger;
+			sourceTree = "<group>";
+		};
+		D9523745285BF9D900E6C838 /* Podium */ = {
+			isa = PBXGroup;
+			children = (
+				D9523746285BF9EB00E6C838 /* Doubles */,
+				D9A32DC6285ACE880038A370 /* PodiumTests.swift */,
+			);
+			path = Podium;
+			sourceTree = "<group>";
+		};
+		D9523746285BF9EB00E6C838 /* Doubles */ = {
+			isa = PBXGroup;
+			children = (
+				D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */,
+				D9523742285BF99800E6C838 /* LocalDatabaseSpy.swift */,
+			);
+			path = Doubles;
+			sourceTree = "<group>";
+		};
+		D9523747285BF9F600E6C838 /* Doubles */ = {
+			isa = PBXGroup;
+			children = (
+				D9575091284427C70094AEA6 /* ShareLogsDummy.swift */,
 			);
 			path = Doubles;
 			sourceTree = "<group>";
@@ -1881,11 +1911,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9523741285BF98A00E6C838 /* NetworkRabbitStub.swift in Sources */,
 				D9625E8F28238F9B00080852 /* LocalDatabaseTests.swift in Sources */,
 				D9351C6128441FA400D4317E /* LoggerTests.swift in Sources */,
 				D92C0CA62840125B009CF19A /* SoundsViewViewModelTests.swift in Sources */,
 				D9A32DC7285ACE880038A370 /* PodiumTests.swift in Sources */,
-				D9575092284427C70094AEA6 /* DummyShareLogs.swift in Sources */,
+				D9523743285BF99800E6C838 /* LocalDatabaseSpy.swift in Sources */,
+				D9575092284427C70094AEA6 /* ShareLogsDummy.swift in Sources */,
 				D98DBD38284921B5008544F8 /* NetworkRabbitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2035,7 +2067,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				ENABLE_PREVIEWS = YES;
@@ -2066,7 +2098,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				ENABLE_PREVIEWS = YES;

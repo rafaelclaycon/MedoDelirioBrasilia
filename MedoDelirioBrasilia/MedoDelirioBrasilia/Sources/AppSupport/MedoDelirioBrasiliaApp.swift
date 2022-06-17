@@ -3,6 +3,7 @@ import SwiftUI
 var player: AudioPlayer?
 var database = LocalDatabase()
 let networkRabbit = NetworkRabbit(serverPath: CommandLine.arguments.contains("-UNDER_DEVELOPMENT") ? "http://localhost:8080/api/" : "http://170.187.145.233:8080/api/")
+let podium = Podium(database: database, networkRabbit: networkRabbit)
 
 let soundsLastUpdateDate: String = "16/06/2022"
 let songsLastUpdateDate: String = "23/05/2022"
