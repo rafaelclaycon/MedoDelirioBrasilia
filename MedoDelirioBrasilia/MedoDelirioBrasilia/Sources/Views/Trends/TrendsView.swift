@@ -53,27 +53,34 @@ struct TrendsView: View {
                                         Spacer()
                                     }
                                 } else {
-                                    HStack {
-                                        Spacer()
+                                    VStack {
+                                        HStack {
+                                            Spacer()
+                                            
+                                            Button {
+                                                viewModel.reloadPersonalList(withTopChartItems: podium.getTop5SoundsSharedByTheUser())
+                                            } label: {
+                                                HStack {
+                                                    Image(systemName: "arrow.triangle.2.circlepath")
+                                                    Text("Atualizar")
+                                                }
+                                            }
+                                            .padding(.trailing)
+                                            .padding(.top, 1)
+                                        }
                                         
-                                        Button {
-                                            viewModel.reloadPersonalList(withTopChartItems: podium.getTop5SoundsSharedByTheUser())
-                                        } label: {
-                                            HStack {
-                                                Image(systemName: "arrow.triangle.2.circlepath")
-                                                Text("Atualizar")
+                                        LazyVGrid(columns: columns, spacing: 14) {
+                                            ForEach(viewModel.personalTop5!) { item in
+                                                TopChartCellView(item: item)
                                             }
                                         }
-                                        .padding(.trailing)
-                                        .padding(.top, 1)
+                                        .padding(.bottom)
+                                        
+                                        Text("Última consulta: hoje às 12:05")
+                                            .font(.subheadline)
+                                            .foregroundColor(.gray)
                                     }
-                                    
-                                    LazyVGrid(columns: columns, spacing: 14) {
-                                        ForEach(viewModel.personalTop5!) { item in
-                                            TopChartCellView(item: item)
-                                        }
-                                    }
-                                    .padding(.bottom)
+                                    .padding(.bottom, 20)
                                 }
                             }
                             
@@ -108,9 +115,16 @@ struct TrendsView: View {
                                     HStack {
                                         Spacer()
                                         
-                                        Text("Sem Dados")
-                                            .font(.headline)
-                                            .padding(.vertical, 40)
+                                        VStack(spacing: 10) {
+                                            Text("Sem Dados")
+                                                //.font(.headline)
+                                                .bold()
+                                            
+                                            Text("Última consulta: hoje às 12:05")
+                                                //.font(.subheadline)
+                                                .foregroundColor(.gray)
+                                        }
+                                        .padding(.vertical, 40)
                                         
                                         Spacer()
                                     }

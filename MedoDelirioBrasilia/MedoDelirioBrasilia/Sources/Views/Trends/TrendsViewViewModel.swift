@@ -13,28 +13,12 @@ class TrendsViewViewModel: ObservableObject {
     }
     
     func reloadAudienceList() {
-        networkRabbit.checkServerStatus { serverIsAvailable, _ in
-            guard serverIsAvailable else {
-                return
-            }
-            
-            networkRabbit.getSoundShareCountStats { stats, error in
-                guard error == nil else {
-                    return
-                }
-                guard let stats = stats else {
-                    return
-                }
-                var audienceStat: AudienceShareCountStat? = nil
-                stats.forEach { stat in
-                    audienceStat = AudienceShareCountStat(contentId: stat.contentId, contentType: stat.contentType, shareCount: stat.shareCount)
-                    try? database.insert(audienceStat: audienceStat!)
-                }
-                
-                DispatchQueue.main.async {
-                    self.audienceTop5 = podium.getTop5SoundsSharedByTheAudience()
-                }
-            }
+        var topCharts = [TopChartItem]()
+        
+        topCharts.append(TopChartItem(id: "1", contentId: "", contentName: "Teste", contentAuthorId: "", contentAuthorName: "Autor", shareCount: 10))
+        
+        DispatchQueue.main.async {
+            self.audienceTop5 = topCharts
         }
     }
     
