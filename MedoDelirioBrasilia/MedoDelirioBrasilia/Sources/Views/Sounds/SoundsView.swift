@@ -10,6 +10,7 @@ struct SoundsView: View {
     @State private var currentMode: Mode = .allSounds
     @State private var showingHelpScreen = false
     @State private var searchText = ""
+    @State private var scrollViewObject: ScrollViewProxy? = nil
     
     let columns = [
         GridItem(.flexible()),
@@ -53,39 +54,44 @@ struct SoundsView: View {
                 } else if currentMode == .byAuthor {
                     AuthorsView()
                 } else {
-                    ScrollView {
-                        LazyVGrid(columns: columns, spacing: 14) {
-                            ForEach(searchResults) { sound in
-                                SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", favorites: $viewModel.favoritesKeeper)
-                                    .onTapGesture {
-                                        viewModel.playSound(fromPath: sound.filename)
-                                    }
-                                    .onLongPressGesture {
-                                        viewModel.soundForConfirmationDialog = sound
-                                        viewModel.showConfirmationDialog = true
-                                    }
+                    ScrollViewReader { scrollView in
+                        ScrollView {
+                            LazyVGrid(columns: columns, spacing: 14) {
+                                ForEach(searchResults) { sound in
+                                    SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", favorites: $viewModel.favoritesKeeper)
+                                        .onTapGesture {
+                                            viewModel.playSound(fromPath: sound.filename)
+                                        }
+                                        .onLongPressGesture {
+                                            viewModel.soundForConfirmationDialog = sound
+                                            viewModel.showConfirmationDialog = true
+                                        }
+                                }
                             }
-                        }
-                        .searchable(text: $searchText)
-                        .disableAutocorrection(true)
-                        .padding(.horizontal)
-                        .padding(.top, 7)
-                        
-                        if UserSettings.getShowOffensiveSounds() == false, currentMode != .favorites {
-                            Text("Filtrando conteúdo sensível. Você pode mudar isso na aba Ajustes.")
-                                .font(.footnote)
-                                .foregroundColor(.gray)
-                                .multilineTextAlignment(.center)
-                                .padding(.top, 15)
-                                .padding(.horizontal, 20)
-                        }
-                        
-                        if searchText.isEmpty, currentMode != .favorites {
-                            Text("\(viewModel.sounds.count) sons. Atualizado em \(soundsLastUpdateDate).")
-                                .font(.subheadline)
-                                .foregroundColor(.gray)
-                                .padding(.top, 10)
-                                .padding(.bottom, 18)
+                            .searchable(text: $searchText)
+                            .disableAutocorrection(true)
+                            .padding(.horizontal)
+                            .padding(.top, 7)
+                            .onAppear {
+                                scrollViewObject = scrollView
+                            }
+                            
+                            if UserSettings.getShowOffensiveSounds() == false, currentMode != .favorites {
+                                Text("Filtrando conteúdo sensível. Você pode mudar isso na aba Ajustes.")
+                                    .font(.footnote)
+                                    .foregroundColor(.gray)
+                                    .multilineTextAlignment(.center)
+                                    .padding(.top, 15)
+                                    .padding(.horizontal, 20)
+                            }
+                            
+                            if searchText.isEmpty, currentMode != .favorites {
+                                Text("\(viewModel.sounds.count) sons. Atualizado em \(soundsLastUpdateDate).")
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray)
+                                    .padding(.top, 10)
+                                    .padding(.bottom, 18)
+                            }
                         }
                     }
                 }
@@ -148,6 +154,12 @@ struct SoundsView: View {
                                 .tag(2)
                         }
                     }
+                    
+//                    Section {
+//                        Button("[DEV ONLY] Rolar até o fim da lista") {
+//                            scrollViewObject?.scrollTo(searchResults[searchResults.endIndex - 1])
+//                        }
+//                    }
                 } label: {
                     Image(systemName: "arrow.up.arrow.down")
                 }
