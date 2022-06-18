@@ -2,12 +2,10 @@ import SwiftUI
 
 struct SettingsView: View {
 
-    @State private var showPixKeyCopiedAlert: Bool = false
     @State private var showUnableToOpenPodcastsAppAlert: Bool = false
     @State private var showExplicitSounds: Bool = UserSettings.getShowOffensiveSounds()
     @State private var showExplicitSoundsConfirmationAlert: Bool = false
     
-    let pixKey: String = "918bd609-04d1-4df6-8697-352b62462061"
     let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
     let buildVersionNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""
 
@@ -59,34 +57,7 @@ struct SettingsView: View {
                             .multilineTextAlignment(.center)
                             .padding(.horizontal)
                         
-                        VStack(alignment: .center, spacing: 5) {
-                            Text("**Ô, CARA, APROVEITA QUE TÁ AQUI E PAGA UMA 🍺 PARA O DESENVOLVEDOR POR PIX, MORÔ, CARA.**")
-                                .foregroundColor(.gray)
-                                .multilineTextAlignment(.center)
-                                .padding(.horizontal)
-
-                            Button(action: {
-                                UIPasteboard.general.string = pixKey
-                                showPixKeyCopiedAlert = true
-                            }) {
-                                Text(pixKey)
-                                    .font(.subheadline)
-                                    .bold()
-                            }
-                            .tint(.blue)
-                            .controlSize(.large)
-                            .buttonStyle(.bordered)
-                            .buttonBorderShape(.roundedRectangle)
-                            .padding(.top)
-                            .alert(isPresented: $showPixKeyCopiedAlert) {
-                                Alert(title: Text("Chave copiada com sucesso!"), dismissButton: .default(Text("OK")))
-                            }
-                            
-                            Text("**ÚLTIMA DOAÇÃO: SÉRGIO M. O.   R$ 20,00**")
-                                .foregroundColor(.gray)
-                                .multilineTextAlignment(.center)
-                                .padding(.top, 15)
-                        }
+                        BegForMoneyView()
                         
                         /*VStack(alignment: .center, spacing: 5) {
                             Text("Gostou do que viu?")
