@@ -15,7 +15,7 @@ class UserSettings {
     static func getSoundSortOption() -> Int {
         let userDefaults = UserDefaults.standard
         guard let value = userDefaults.object(forKey: "soundSortOption") else {
-            return 0
+            return 2
         }
         return Int(value as! Int)
     }
