@@ -1864,8 +1864,8 @@
     },
     {
         "id": "746D9940-33FB-4680-A471-686B35C207FD",
-        "title": "Vou esquecer disso jamais",
-        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "title": "Vou esquecer disso jamais!",
+        "authorId": "A68C0AA4-546E-4E24-8153-832BB84FD68B",
         "description": "Vou esquecer disso jamais",
         "filename": "Vou esquecer disso jamais.mp3",
         "dateAdded": "2022-06-08T00:00:00Z",
@@ -2698,5 +2698,32 @@
         "filename": "Ja deu merda, ja deu merda.mp3",
         "dateAdded": "2022-06-18T00:00:00Z",
         "isOffensive": true
+    },
+    {
+        "id": "DCF787B7-09D5-4278-839F-A7ACF91A0B80",
+        "title": "Referência de velho",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "Referencia de velho",
+        "filename": "Referencia de velho.mp3",
+        "dateAdded": "2022-06-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "8FCF0E75-0913-4317-B544-4581ADA0AF9B",
+        "title": "Ixtá cancelada!",
+        "authorId": "C159C27D-3CCD-4622-8716-35162B89AB9F",
+        "description": "Esta cancelada ixta cancelada",
+        "filename": "UOL - Fux - Esta cancelada.mp3",
+        "dateAdded": "2022-06-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "7FB60095-8CEF-413F-8B34-723628E6A993",
+        "title": "Mas isso é... É enganar",
+        "authorId": "D9D14C58-E5C4-4479-82BE-E00D9A38AB3A",
+        "description": "Mas isso é é enganar",
+        "filename": "Pastor Valdemiro - Mas isso e... E enganar.mp3",
+        "dateAdded": "2022-06-19T00:00:00Z",
+        "isOffensive": false
     }
 ]
