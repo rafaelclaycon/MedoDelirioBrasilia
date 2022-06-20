@@ -35,26 +35,26 @@ class NetworkRabbitTests: XCTestCase {
         }
     }
     
-    func test_postShareCountStats_whenCallIsOkAndServerIsRunning_shouldReturnCorrectData() throws {
-        let e = expectation(description: "Server call")
-        var testResult = ""
-
-        let mockStat = ServerShareCountStat(installId: ShareLogsDummy.installId, contentId: ShareLogsDummy.bomDiaContentId, contentType: 0, shareCount: 10)
-
-        sut.post(shareCountStat: mockStat) { result in
-            guard result.contains("Failed") == false else {
-                fatalError(result)
-            }
-            testResult = result
-            e.fulfill()
-        }
-
-        waitForExpectations(timeout: 5.0) { error in
-            if let error = error {
-                XCTFail("timeout errored: \(error)")
-            }
-            XCTAssertEqual(testResult, ShareLogsDummy.bomDiaContentId)
-        }
-    }
+//    func test_postShareCountStats_whenCallIsOkAndServerIsRunning_shouldReturnCorrectData() throws {
+//        let e = expectation(description: "Server call")
+//        var testResult = ""
+//
+//        let mockStat = ServerShareCountStat(installId: ShareLogsDummy.installId, contentId: ShareLogsDummy.bomDiaContentId, contentType: 0, shareCount: 10)
+//
+//        sut.post(shareCountStat: mockStat) { result in
+//            guard result.contains("Failed") == false else {
+//                fatalError(result)
+//            }
+//            testResult = result
+//            e.fulfill()
+//        }
+//
+//        waitForExpectations(timeout: 5.0) { error in
+//            if let error = error {
+//                XCTFail("timeout errored: \(error)")
+//            }
+//            XCTAssertEqual(testResult, ShareLogsDummy.bomDiaContentId)
+//        }
+//    }
 
 }

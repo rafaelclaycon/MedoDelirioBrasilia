@@ -17,8 +17,8 @@ class NetworkRabbitStub: NetworkRabbitProtocol {
         completionHandler(nil, nil)
     }
     
-    func post(shareCountStat: ServerShareCountStat, completionHandler: @escaping (String) -> Void) {
-        completionHandler(.empty)
+    func post(shareCountStat: ServerShareCountStat, completionHandler: @escaping (Bool, String) -> Void) {
+        completionHandler(false, "")
     }
     
     func post(clientDeviceInfo: ClientDeviceInfo, completionHandler: @escaping (Bool?, NetworkRabbitError?) -> Void) {
