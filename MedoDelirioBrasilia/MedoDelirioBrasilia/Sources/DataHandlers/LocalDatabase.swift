@@ -2,81 +2,45 @@ import Foundation
 import SQLite
 import SQLiteMigrationManager
 
+internal protocol LocalDatabaseProtocol {
+
+    func checkServerStatus(completionHandler: @escaping (Bool, String) -> Void)
+    func getSoundShareCountStats(completionHandler: @escaping ([ServerShareCountStat]?, NetworkRabbitError?) -> Void)
+    func post(shareCountStat: ServerShareCountStat, completionHandler: @escaping (String) -> Void)
+    func post(clientDeviceInfo: ClientDeviceInfo, completionHandler: @escaping (Bool?, NetworkRabbitError?) -> Void)
+
+}
+
 class LocalDatabase {
 
-    private var db: Connection
+    var db: Connection
+    var migrationManager: SQLiteMigrationManager
     
-    private var favorite = Table("favorite")
-    private var userShareLog = Table("userShareLog")
-    private var audienceSharingStatistic = Table("audienceSharingStatistic")
-
-    // MARK: - Init
+    var favorite = Table("favorite")
+    var userShareLog = Table("userShareLog")
+    var audienceSharingStatistic = Table("audienceSharingStatistic")
+    var networkCallLog = Table("networkCallLog")
+    
+    // MARK: - Setup
 
     init() {
-        let path = NSSearchPathForDirectoriesInDomains(
-            .cachesDirectory, .userDomainMask, true
-        ).first!
-
         do {
-            db = try Connection("\(path)/medo_db.sqlite3")
-            try createFavoriteTable()
-            /*try createUserShareLogTable()
-            try createAudienceSharingStatisticTable()*/
+            db = try Connection(LocalDatabase.databaseFilepath())
         } catch {
             fatalError(error.localizedDescription)
         }
         
-        /*let manager = SQLiteMigrationManager(db: self.db)
-        
-        do {
-            if !manager.hasMigrationsTable() {
-                try manager.createMigrationsTable()
-            }
-        } catch {
-            fatalError(error.localizedDescription)
-        }*/
-    }
-
-    private func createFavoriteTable() throws {
-        let content_id = Expression<String>("contentId")
-        let date_added = Expression<Date>("dateAdded")
-
-        try db.run(favorite.create(ifNotExists: true) { t in
-            t.column(content_id, primaryKey: true)
-            t.column(date_added)
-        })
+        self.migrationManager = SQLiteMigrationManager(db: self.db, migrations: LocalDatabase.migrations())
     }
     
-    private func createUserShareLogTable() throws {
-        let install_id = Expression<String>("installId")
-        let content_id = Expression<String>("contentId")
-        let content_type = Expression<Int>("contentType")
-        let date_time = Expression<Date>("dateTime")
-        let destination = Expression<Int>("destination")
-        let destination_bundle_id = Expression<String>("destinationBundleId")
-        let sent_to_server = Expression<Bool>("sentToServer")
+    func migrateIfNeeded() throws {
+        if !migrationManager.hasMigrationsTable() {
+            try migrationManager.createMigrationsTable()
+        }
 
-        try db.run(userShareLog.create(ifNotExists: true) { t in
-            t.column(install_id)
-            t.column(content_id)
-            t.column(content_type)
-            t.column(date_time)
-            t.column(destination)
-            t.column(destination_bundle_id)
-            t.column(sent_to_server)
-        })
-    }
-    
-    private func createAudienceSharingStatisticTable() throws {
-        let content_id = Expression<String>("contentId")
-        let content_type = Expression<Int>("contentType")
-        let share_count = Expression<Int>("shareCount")
-
-        try db.run(audienceSharingStatistic.create(ifNotExists: true) { t in
-            t.column(content_id)
-            t.column(content_type)
-            t.column(share_count)
-        })
+        if migrationManager.needsMigration() {
+            try migrationManager.migrateDatabase()
+        }
     }
     
     // MARK: - Favorite
@@ -121,30 +85,6 @@ class LocalDatabase {
             queriedFavorites.append(try queriedFavorite.decode())
         }
         return queriedFavorites.count > 0
-    }
-    
-    // MARK: - User Share Log
-    
-    func getUserShareLogCount() throws -> Int {
-        try db.scalar(userShareLog.count)
-    }
-    
-    func insert(userShareLog newLog: UserShareLog) throws {
-        let insert = try userShareLog.insert(newLog)
-        try db.run(insert)
-    }
-    
-    func getAllUserShareLogs() throws -> [UserShareLog] {
-        var queriedItems = [UserShareLog]()
-
-        for queriedItem in try db.prepare(userShareLog) {
-            queriedItems.append(try queriedItem.decode())
-        }
-        return queriedItems
-    }
-    
-    func deleteAllUserShareLogs() throws {
-        try db.run(userShareLog.delete())
     }
     
     // MARK: - Personal Top Chart
@@ -229,6 +169,37 @@ class LocalDatabase {
     
     func getAudienceSharingStatCount() throws -> Int {
         try db.scalar(audienceSharingStatistic.count)
+    }
+
+}
+
+extension LocalDatabase {
+
+    static func databaseFilepath() -> String {
+        let path = NSSearchPathForDirectoriesInDomains(
+            .cachesDirectory, .userDomainMask, true
+        ).first!
+        return "\(path)/medo_db.sqlite3"
+    }
+    
+    static func migrations() -> [Migration] {
+        return [InitialMigration(), AddNetworkCallLogTable()]
+    }
+
+}
+
+extension LocalDatabase: CustomStringConvertible {
+
+    var description: String {
+        return "Database:\n" +
+        "url: \(LocalDatabase.databaseFilepath())\n" +
+        "migration state:\n" +
+        "  hasMigrationsTable() \(migrationManager.hasMigrationsTable())\n" +
+        "  currentVersion()     \(migrationManager.currentVersion())\n" +
+        "  originVersion()      \(migrationManager.originVersion())\n" +
+        "  appliedVersions()    \(migrationManager.appliedVersions())\n" +
+        "  pendingMigrations()  \(migrationManager.pendingMigrations())\n" +
+        "  needsMigration()     \(migrationManager.needsMigration())"
     }
 
 }
