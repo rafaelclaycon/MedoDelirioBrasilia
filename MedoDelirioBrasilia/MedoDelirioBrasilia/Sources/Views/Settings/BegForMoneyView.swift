@@ -1,11 +1,11 @@
 import SwiftUI
 
 struct BegForMoneyView: View {
-    
+
     @State private var showPixKeyCopiedAlert: Bool = false
     
     let pixKey: String = "918bd609-04d1-4df6-8697-352b62462061"
-
+    
     var body: some View {
         VStack(alignment: .center, spacing: 18) {
             

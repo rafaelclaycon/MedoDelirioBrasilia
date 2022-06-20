@@ -2,16 +2,15 @@ import SwiftUI
 
 struct SettingsView: View {
 
-    @State private var showingTrendsSettingsScreen: Bool = false
     @State private var showingDiagnosticsScreen: Bool = false
-    
-    @State private var showUnableToOpenPodcastsAppAlert: Bool = false
     @State private var showExplicitSounds: Bool = UserSettings.getShowOffensiveSounds()
     @State private var showExplicitSoundsConfirmationAlert: Bool = false
+    @State private var showingTrendsSettingsScreen: Bool = false
+    //@State private var showUnableToOpenPodcastsAppAlert: Bool = false
     
     let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
     let buildVersionNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""
-
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -41,7 +40,7 @@ struct SettingsView: View {
                                 }
                             }
                         }
-                        .tint(.accentColor)
+                        .foregroundColor(.primary)
                         .controlSize(.large)
                         .buttonStyle(.bordered)
                         .buttonBorderShape(.roundedRectangle)

@@ -3,6 +3,7 @@ import SwiftUI
 struct TrendsView: View {
 
     @StateObject private var viewModel = TrendsViewViewModel()
+    @State private var favoriteColor = 0
     @State var showAlert = false
     @State var alertTitle = ""
     
@@ -110,6 +111,14 @@ struct TrendsView: View {
                                     .padding(.trailing)
                                     .padding(.top, 1)
                                 }
+                                
+                                Picker("What is your favorite color?", selection: $favoriteColor) {
+                                    Text("Semana").tag(0)
+                                    Text("Mês").tag(1)
+                                    Text("Todos os Tempos").tag(2)
+                                }
+                                .pickerStyle(.segmented)
+                                .padding(.horizontal)
                                 
                                 if viewModel.audienceTop5 == nil {
                                     HStack {
