@@ -4,7 +4,7 @@ struct CollectionsView: View {
 
     var body: some View {
         NavigationView {
-            VStack {
+            VStack(alignment: .leading) {
                 ScrollView {
                     VStack(alignment: .leading) {
                         Text("Escolhas dos Editores")

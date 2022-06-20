@@ -23,7 +23,7 @@ class AuthorsViewViewModel: ObservableObject {
     }
     
     func donateActivity() {
-        self.currentActivity = UserActivityWaiter.getDonatableActivity(withType: Shared.viewSoundsByAuthorActivityTypeName, andTitle: "Ver sons por Autor")
+        self.currentActivity = UserActivityWaiter.getDonatableActivity(withType: Shared.viewCollectionsActivityTypeName, andTitle: "Ver Coleções de sons")
         self.currentActivity?.becomeCurrent()
     }
 
