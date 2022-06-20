@@ -111,11 +111,11 @@ class SoundsViewViewModel: ObservableObject {
         }
         activityVC.completionWithItemsHandler = { activity, completed, items, error in
             if completed {
-//                guard let activity = activity else {
-//                    return
-//                }
-//                let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
-//                Logger.logSharedSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
+                guard let activity = activity else {
+                    return
+                }
+                let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
+                Logger.logSharedSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
                 
                 AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
             }
@@ -164,6 +164,9 @@ class SoundsViewViewModel: ObservableObject {
             guard UIDevice.modelName.contains("Simulator") == false else {
                 return
             }
+            guard CommandLine.arguments.contains("-UNDER_DEVELOPMENT") == false else {
+                return
+            }
             
             let info = ClientDeviceInfo(installId: UIDevice.current.identifierForVendor?.uuidString ?? "", modelName: UIDevice.modelName)
             networkRabbit.post(clientDeviceInfo: info) { success, error in
@@ -174,11 +177,38 @@ class SoundsViewViewModel: ObservableObject {
         }
     }
     
+    func sendUserPersonalTrendsToServerIfEnabled() {
+        guard UserSettings.getEnableTrends() else {
+            return
+        }
+        guard UserSettings.getEnableShareUserPersonalTrends() else {
+            return
+        }
+        
+        if let lastDate = UserSettings.getLastSendDateOfUserPersonalTrendsToServer() {
+            if lastDate.onlyDate! < Date.now.onlyDate! {
+                podium.exchangeShareCountStatsWithTheServer { result, _ in
+                    guard result == .successful || result == .noStatsToSend else {
+                        return
+                    }
+                    UserSettings.setLastSendDateOfUserPersonalTrendsToServer(to: Date.now.onlyDate!)
+                }
+            }
+        } else {
+            podium.exchangeShareCountStatsWithTheServer { result, _ in
+                guard result == .successful || result == .noStatsToSend else {
+                    return
+                }
+                UserSettings.setLastSendDateOfUserPersonalTrendsToServer(to: Date.now.onlyDate!)
+            }
+        }
+    }
+    
     // MARK: - Alerts
     
     func showUnableToGetSoundAlert() {
-        alertTitle = "Não Foi Possível Localizar Esse Som"
-        alertMessage = "Devido a um problema técnico, o som que você quer acessar não está disponível.\n\nPor favor, nos avise através do botão Conte-nos Por E-mail na aba Ajustes."
+        alertTitle = Shared.soundNotFoundAlertTitle
+        alertMessage = Shared.soundNotFoundAlertMessage
         showAlert = true
     }
 

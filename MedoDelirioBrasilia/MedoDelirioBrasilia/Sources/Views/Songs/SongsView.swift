@@ -42,7 +42,7 @@ struct SongsView: View {
                                     }
                                 }
                                 .onLongPressGesture {
-                                    viewModel.shareSong(withPath: song.filename)
+                                    viewModel.shareSong(withPath: song.filename, andContentId: song.id)
                                 }
                         }
                     }

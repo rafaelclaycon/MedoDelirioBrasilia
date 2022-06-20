@@ -416,7 +416,7 @@
     {
         "id": "913F51D3-4B75-4D4A-88D1-6205D93E8416",
         "title": "Que merda hein",
-        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "authorId": "83724EA7-EB41-4B39-B1E0-2AFD3943CAA7",
         "description": "Que merda hein",
         "filename": "Que merda hein short.mp3",
         "dateAdded": "2021-02-19T00:00:00Z",
@@ -1288,7 +1288,7 @@
     },
     {
         "id": "15E1581A-6CE9-49F2-8255-C5B699899D43",
-        "title": "Você tem quantos anos menino?",
+        "title": "Você tem quantos anos, menino?",
         "authorId": "58382B3D-4014-42C0-B0A7-D02733E9BCE3",
         "description": "Deixa eu te falar uma coisa voce tem quantos anos menino",
         "filename": "Samira Close - Deixa eu te falar uma coisa voce tem quantos anos menino.mp3",
@@ -1864,8 +1864,8 @@
     },
     {
         "id": "746D9940-33FB-4680-A471-686B35C207FD",
-        "title": "Vou esquecer disso jamais",
-        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "title": "Vou esquecer disso jamais!",
+        "authorId": "A68C0AA4-546E-4E24-8153-832BB84FD68B",
         "description": "Vou esquecer disso jamais",
         "filename": "Vou esquecer disso jamais.mp3",
         "dateAdded": "2022-06-08T00:00:00Z",
@@ -2144,7 +2144,7 @@
     {
         "id": "DC11782C-4B89-48F8-B2FB-223EE21E85F2",
         "title": "Olha só!",
-        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "authorId": "E3688B09-6DAC-4763-A004-5186E636DC5B",
         "description": "Olha só",
         "filename": "OLHA SO short meme.mp3",
         "dateAdded": "2022-06-09T00:00:00Z",
@@ -2347,5 +2347,383 @@
         "filename": "GALAS FEIOS - Moro desafinando no corrupcao.mp3",
         "dateAdded": "2022-06-12T00:00:00Z",
         "isOffensive": true
+    },
+    {
+        "id": "CEF9D2A5-D8FA-4D00-85BA-0672464D8ADB",
+        "title": "Você merece tomar Nokul",
+        "authorId": "042C48ED-4CC9-4260-9FAD-EFA1DC5930F3",
+        "description": "Voce merece tomar Nokul no cu",
+        "filename": "GAVETA - Voce merece tomar Nokul no cu.mp3",
+        "dateAdded": "2022-06-13T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "667A9FC3-44F5-45BD-BC89-8B5F3837FEA7",
+        "title": "Paralelepípedo de crack",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Paralelepipedo de crack",
+        "filename": "Bolsonaro - Paralelepipedo de crack.mp3",
+        "dateAdded": "2022-06-13T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "8CC6DD57-CD57-466A-B984-800716A9ACAB",
+        "title": "Calma, cês tão de cabeça quente",
+        "authorId": "691D4F55-79F7-407A-B0AA-71CD09059E60",
+        "description": "Calma ces tao de cabeca quente",
+        "filename": "DIOGO DEFANTE - Calma, ces tao de cabeca quente.mp3",
+        "dateAdded": "2022-06-13T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "61D2CBE7-B6C5-4902-A70D-27759AE6508A",
+        "title": "Atenção! É agora que o bicho vai pegar!",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Atencao e agora que o bicho vai pegar",
+        "filename": "Atencao e agora que o bicho vai pegar short meme.mp3",
+        "dateAdded": "2022-06-13T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "A92C22BA-0CA4-4111-8872-4842F31A7226",
+        "title": "Eu não entendi o que ele falou",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Eu nao entendi o que ele falou",
+        "filename": "Eu nao entendi o que ele falou.mp3",
+        "dateAdded": "2022-06-13T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "BA00B5B5-D9D8-4146-A43A-CF2D9EEF7D30",
+        "title": "Eu fico muito triste com uma notícia dessas",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "Eu fico muito triste com uma noticia dessas filha da puta fogos",
+        "filename": "Eu fico muito triste com uma noticia dessas filha da puta fogos short.mp3",
+        "dateAdded": "2022-06-13T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "8CC3BF65-7DE6-4330-8E6A-A409EEE84BBB",
+        "title": "Eu sou RICA!",
+        "authorId": "5DC28A25-5937-471D-BB62-7A0B7547387B",
+        "description": "Eu sou RICA!",
+        "filename": "Eu sou RICA! short meme.mp3",
+        "dateAdded": "2022-06-13T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "5C3B9491-F7BD-4599-81F4-45D66B41A0CA",
+        "title": "Bom dia é o caralho, parceiro",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Mermão bom dia e o caralho parceiro",
+        "filename": "Bom dia e o caralho parceiro short meme.mp3",
+        "dateAdded": "2022-06-13T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "5E1404FF-6955-42DE-BD95-BF3AB2A0DCBF",
+        "title": "É mais ou meeenos (curto)",
+        "authorId": "5D776E25-6CFC-40FB-A41F-82E419EFAB40",
+        "description": "E mais ou menos curto",
+        "filename": "Eduardo Sterblitch - E mais ou menos curto.mp3",
+        "dateAdded": "2022-06-13T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "6A6FC987-4E99-4196-AEAA-D474FF07BA5F",
+        "title": "É mais ou meeenos (longo)",
+        "authorId": "5D776E25-6CFC-40FB-A41F-82E419EFAB40",
+        "description": "E mais ou menos longo",
+        "filename": "Eduardo Sterblitch - E mais ou menos longo.mp3",
+        "dateAdded": "2022-06-13T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "4A21D8DA-A9C0-4983-BA2B-957CA11B02F6",
+        "title": "Não tá nem aí pro preto, pobre, favelado",
+        "authorId": "382AD303-4621-4E69-8D87-B4D3C896C887",
+        "description": "Nao esta nem ai pro preto pobre favelado so esta ai por ele mesmo",
+        "filename": "FUP - Marcele - Nao esta nem ai pro preto, pobre, favelado so esta ai por ele mesmo.mp3",
+        "dateAdded": "2022-06-15T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "A9C739BA-17C1-46AD-A297-C50F5B33FDA4",
+        "title": "Igularidades no ministério",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Possíveis igularidades no ministerio irregularidades",
+        "filename": "Bolsonaro - Igularidades no ministerio irregularidades paralelepipi pretiputi.mp3",
+        "dateAdded": "2022-06-15T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "922FE069-2139-4388-99C0-B821D7B3A275",
+        "title": "Presente puti",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Presente Puti prentiputi pretiputi presidente putin",
+        "filename": "Bolsonaro - Presente Puti prentiputi pretiputi presidente putin.mp3",
+        "dateAdded": "2022-06-15T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "DD3CF7F9-03D9-401C-B0E1-C495351C6CBB",
+        "title": "Pretiputi (House Remix)",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Presidente Putin Pretiputi house remix",
+        "filename": "PLANALTO - Bolsonaro - Presidente Putin Pretiputi remix house.mp3",
+        "dateAdded": "2022-06-15T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "BEFF616D-52DA-400B-B7E4-A759613E67F0",
+        "title": "Pretiputi, pretiputi, pretiputi",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Pretiputi presidente putin",
+        "filename": "TV BRASIL - Bolsonaro - Pretiputi, pretiputi, pretiputi.mp3",
+        "dateAdded": "2022-06-15T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "EF7E3EA9-1605-4C18-BCAA-9C0C8C8DD28E",
+        "title": "Pretiputi (Paródia Oh Pretty Woman)",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "Oh Pretty Woman Pretiputi parodia",
+        "filename": "ROY ORBISON - Oh Pretty Woman Pretiputi parodia.mp3",
+        "dateAdded": "2022-06-15T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "2A06DCFC-E8EA-4FDC-A935-AF5123FA9B7F",
+        "title": "Pretiputi",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Pretiputi",
+        "filename": "PLANALTO - Bolsonaro - Presidente Putin Pretiputi.mp3",
+        "dateAdded": "2022-06-15T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "496D1EAC-306C-4921-9EB6-8269AF9F40A9",
+        "title": "Pretexto fake news = piada",
+        "authorId": "B71CB44C-1E7D-4729-9141-FB74B8878269",
+        "description": "Quem produz vai ter sempre o pretexto de dizer que nao e fake news porque e uma piada",
+        "filename": "FALA M.R. - Quem produz vai ter sempre o pretexto de dizer que nao e fake news porque e uma piada.mp3",
+        "dateAdded": "2022-06-15T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "56FE99A9-8A64-4543-B65E-A916C304131E",
+        "title": "Pretos e 🏳️‍🌈 têm famílias e fazem famílias",
+        "authorId": "AB5C4677-E814-4A78-8D9C-68AC8DE1B03F",
+        "description": "Pretos gays lesbicas e trans tem familias e fazem familias LGBTs LGBTQIAP+",
+        "filename": "METEORO BRASIL - Antonio Tabet - Pretos, gays, lesbicas, trans tem familias e fazem familias.mp3",
+        "dateAdded": "2022-06-15T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "D7D89807-B11A-461F-90DC-F9291776A0F8",
+        "title": "Eu pretendo participar de debates",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Eu pretendo participar de debates, nao participei na ultima porque estava em convalescencia",
+        "filename": "REDETV - Jair Bolsonaro - Eu pretendo participar de debates, nao participei na ultima porque estava em convalescencia.mp3",
+        "dateAdded": "2022-06-15T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "0688F4C2-D836-4AB6-8994-2D49908DFB03",
+        "title": "Prease! 🙏",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "please prease! criança",
+        "filename": "Pretty please meme infantil crianca begging.mp3",
+        "dateAdded": "2022-06-15T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "3BF9DA4E-DD39-4ADF-BA2B-2C02F66F714F",
+        "title": "Pretendo beneficiar um filho meu, sim, pretendo",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Pretendo beneficiar um filho meu sim pretendo",
+        "filename": "Bolsonaro - Pretendo beneficiar um filho meu sim pretendo.mp3",
+        "dateAdded": "2022-06-15T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "C3234442-2469-490E-8E8B-BEDCB06C0FC1",
+        "title": "Pega fogo, cabaré!",
+        "authorId": "6AF9A309-8B1F-4553-A369-19E575E14DA5",
+        "description": "Pega Fogo Cabare",
+        "filename": "Calcinha Preta - Pega Fogo Cabare short meme.mp3",
+        "dateAdded": "2022-06-15T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "677824F1-5D04-4264-BE5F-4017E03C186B",
+        "title": "É só você fazer cocô dia sim, dia não",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "E so voce fazer coco dia sim dia nao que melhora bastante",
+        "filename": "Bolsonaro - E so voce fazer coco dia sim, dia nao, que melhora bastante.mp3",
+        "dateAdded": "2022-06-16T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "2776A934-52D8-4068-A402-7A5C8033873F",
+        "title": "Aaaah, coitado",
+        "authorId": "52D30F16-A1CB-451D-AA4F-95C509CE2FC3",
+        "description": "Ah coitado",
+        "filename": "Cocorico - Ah coitado.mp3",
+        "dateAdded": "2022-06-16T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "C8AE3751-F307-4C3A-9CC8-E2C3CCF480FE",
+        "title": "Dinheiro!",
+        "authorId": "6155A533-D5F5-4491-9F1D-A1B95FC5FC84",
+        "description": "Dinheiro",
+        "filename": "Sirigueijo - Dinheiro.mp3",
+        "dateAdded": "2022-06-16T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "EE9B3C2F-39EB-49E6-AFAF-1E3EAB19F687",
+        "title": "Tá maluco",
+        "authorId": "F1683588-F547-4F2F-B3E4-8A328FAFC1AB",
+        "description": "Tá maluco",
+        "filename": "CASIMIRO - Ta maluco.mp3",
+        "dateAdded": "2022-06-16T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "06EFD3EA-0A3E-402D-ACD1-D87A1D7DA51D",
+        "title": "Que que porra é essa",
+        "authorId": "F1683588-F547-4F2F-B3E4-8A328FAFC1AB",
+        "description": "Que que porra e essa",
+        "filename": "CASIMIRO - Que que porra e essa.mp3",
+        "dateAdded": "2022-06-16T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "7C99B402-44F7-4177-8147-9A5201ADF7C4",
+        "title": "Você acha isso legal",
+        "authorId": "F1683588-F547-4F2F-B3E4-8A328FAFC1AB",
+        "description": "Voce acha isso legal",
+        "filename": "CASIMIRO - Voce acha isso legal.mp3",
+        "dateAdded": "2022-06-16T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "D4F504AB-D317-4A49-B5A9-5F6BFE867FCA",
+        "title": "Que marolada hein",
+        "authorId": "F1683588-F547-4F2F-B3E4-8A328FAFC1AB",
+        "description": "Que marolada hein",
+        "filename": "CASIMIRO - Que marolada hein.mp3",
+        "dateAdded": "2022-06-16T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "1EEDDBAC-252C-47CC-B5E9-C8A5205C8FB4",
+        "title": "Mix de insanidade",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "Mix de insanidade",
+        "filename": "Cristiano Botafogo - Mix de insanidade.mp3",
+        "dateAdded": "2022-06-16T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "B2411993-6E7D-4E9B-AC1E-8AF6D9E86E96",
+        "title": "Essa eu quero ver",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "Essa eu quero ver nao nao quero ver nao",
+        "filename": "Essa eu quero ver nao nao quero ver nao short meme.mp3",
+        "dateAdded": "2022-06-16T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "927F9F7D-7F4C-41BB-B49A-35159C2A51A4",
+        "title": "O Brasil tá decolando, a economia tá bombando (coletânea)",
+        "authorId": "BB392894-327A-48BA-9C7D-4F0601E947EB",
+        "description": "o terceiro ano já decola o brasil começando a decolar a economia tá de novo decolando a economia tá bombando eu acho que a economia tá voando o brasil tá decolando de novo o brasil tava começando a decolar o brasil tá decolando novamente eu só posso estar otimista com o futuro do brasil",
+        "filename": "DESMENTINDO BOLSONARO - PAULO GUEDES - O Brasil esta decolando economia bombando coletanea.mp3",
+        "dateAdded": "2022-06-17T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "3995320B-F6E8-4DE8-85AB-32B16DFD3480",
+        "title": "A economia tá bombando",
+        "authorId": "BB392894-327A-48BA-9C7D-4F0601E947EB",
+        "description": "a economia tá bombando",
+        "filename": "O POVO ONLINE - Paulo Guedes - A economia ta bombando.mp3",
+        "dateAdded": "2022-06-17T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "8076F4B2-7973-4D11-AB4A-C58CE302A974",
+        "title": "Sexo selvagem!",
+        "authorId": "BB392894-327A-48BA-9C7D-4F0601E947EB",
+        "description": "sexo selvagem",
+        "filename": "Paulo Guedes - Sexo Selvagem.mp3",
+        "dateAdded": "2022-06-17T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "5F936979-324B-47F9-A412-4FD3011C967F",
+        "title": "Vai responder não, puta?",
+        "authorId": "6BCF1C16-A416-4612-B2DE-A7E8D3705601",
+        "description": "Vai responder não puta",
+        "filename": "Esse Menino - Vai responder nao, puta.mp3",
+        "dateAdded": "2022-06-18T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "C0E11642-4841-44F2-9AEA-BE586135F0BA",
+        "title": "Tá passada?",
+        "authorId": "6BCF1C16-A416-4612-B2DE-A7E8D3705601",
+        "description": "Ta passada",
+        "filename": "ESSE MENINO - Ta passada.mp3",
+        "dateAdded": "2022-06-18T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "873A547A-D560-4D96-8AC2-3729A06CBD56",
+        "title": "Em 50 metros, tire o cu da reta",
+        "authorId": "0DF6839C-6E51-4138-A4A3-D3D9EF6BA9E5",
+        "description": "Em cinquenta metros tire o cu da reta",
+        "filename": "Em cinquenta metros, tire o cu da reta.mp3",
+        "dateAdded": "2022-06-18T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "E924DC95-0DB0-4C05-BE1B-965401953934",
+        "title": "Já deu merda, já deu merda",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "Ja deu merda ja deu merda",
+        "filename": "Ja deu merda, ja deu merda.mp3",
+        "dateAdded": "2022-06-18T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "DCF787B7-09D5-4278-839F-A7ACF91A0B80",
+        "title": "Referência de velho",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "Referencia de velho",
+        "filename": "Referencia de velho.mp3",
+        "dateAdded": "2022-06-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "8FCF0E75-0913-4317-B544-4581ADA0AF9B",
+        "title": "Ixtá cancelada!",
+        "authorId": "C159C27D-3CCD-4622-8716-35162B89AB9F",
+        "description": "Esta cancelada ixta cancelada",
+        "filename": "UOL - Fux - Esta cancelada.mp3",
+        "dateAdded": "2022-06-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "7FB60095-8CEF-413F-8B34-723628E6A993",
+        "title": "Mas isso é... É enganar",
+        "authorId": "D9D14C58-E5C4-4479-82BE-E00D9A38AB3A",
+        "description": "Mas isso é é enganar",
+        "filename": "Pastor Valdemiro - Mas isso e... E enganar.mp3",
+        "dateAdded": "2022-06-19T00:00:00Z",
+        "isOffensive": false
     }
 ]

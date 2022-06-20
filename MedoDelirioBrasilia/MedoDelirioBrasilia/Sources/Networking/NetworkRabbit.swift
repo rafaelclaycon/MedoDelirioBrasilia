@@ -1,6 +1,15 @@
 import UIKit
 
-class NetworkRabbit {
+internal protocol NetworkRabbitProtocol {
+
+    func checkServerStatus(completionHandler: @escaping (Bool, String) -> Void)
+    func getSoundShareCountStats(completionHandler: @escaping ([ServerShareCountStat]?, NetworkRabbitError?) -> Void)
+    func post(shareCountStat: ServerShareCountStat, completionHandler: @escaping (Bool, String) -> Void)
+    func post(clientDeviceInfo: ClientDeviceInfo, completionHandler: @escaping (Bool?, NetworkRabbitError?) -> Void)
+
+}
+
+class NetworkRabbit: NetworkRabbitProtocol {
 
     private let serverPath: String
     
@@ -10,39 +19,20 @@ class NetworkRabbit {
     
     // MARK: - GET
     
-    func getHelloFromServer(completionHandler: @escaping (String) -> Void) {
-        let url = URL(string: serverPath + "v1/hello/MedoDelirioBrasilia")!
-
-        //var request = URLRequest(url: url)
-
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            /*guard let httpResponse = response as? HTTPURLResponse else {
-                return
-            }
-             
-            httpResponse.statusCode*/
-            
-            if let data = data {
-                completionHandler(String(data: data, encoding: .utf8)!)
-            } else if let error = error {
-                completionHandler("HTTP Request Failed \(error.localizedDescription)")
-            }
-        }
-
-        task.resume()
-    }
-    
-    func checkServerStatus(completionHandler: @escaping (String) -> Void) {
+    func checkServerStatus(completionHandler: @escaping (Bool, String) -> Void) {
         let url = URL(string: serverPath + "v1/status-check")!
 
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             if let data = data {
-                completionHandler(String(data: data, encoding: .utf8)!)
+                let response = String(data: data, encoding: .utf8)!
+                Logger.logNetworkCall(callType: NetworkCallType.checkServerStatus.rawValue, requestUrl: url.absoluteString, requestBody: nil, response: response, wasSuccessful: true)
+                completionHandler(true, response)
             } else if let error = error {
-                completionHandler("A requisição HTTP falhou: \(error.localizedDescription)")
+                Logger.logNetworkCall(callType: NetworkCallType.checkServerStatus.rawValue, requestUrl: url.absoluteString, requestBody: nil, response: "A requisição HTTP falhou: \(error.localizedDescription)", wasSuccessful: false)
+                completionHandler(false, "A requisição HTTP falhou: \(error.localizedDescription)")
             }
         }
-
+        
         task.resume()
     }
     
@@ -60,6 +50,7 @@ class NetworkRabbit {
             
             if let data = data {
                 if let stats = try? JSONDecoder().decode([ServerShareCountStat].self, from: data) {
+                    Logger.logNetworkCall(callType: NetworkCallType.getSoundShareCountStats.rawValue, requestUrl: url.absoluteString, requestBody: nil, response: String(data: data, encoding: .utf8)!, wasSuccessful: true)
                     completionHandler(stats, nil)
                 } else {
                     completionHandler(nil, .invalidResponse)
@@ -74,7 +65,7 @@ class NetworkRabbit {
     
     // MARK: - POST
     
-    func post(shareCountStat: ServerShareCountStat, completionHandler: @escaping (String) -> Void) {
+    func post(shareCountStat: ServerShareCountStat, completionHandler: @escaping (Bool, String) -> Void) {
         let url = URL(string: serverPath + "v1/share-count-stat")!
 
         var request = URLRequest(url: url)
@@ -91,17 +82,17 @@ class NetworkRabbit {
             }
              
             guard httpResponse.statusCode == 200 else {
-                return completionHandler("Failed")
+                return completionHandler(false, "Failed")
             }
             
             if let data = data {
                 if let stat = try? JSONDecoder().decode(ServerShareCountStat.self, from: data) {
-                    completionHandler(stat.contentId)
+                    completionHandler(true, stat.contentId)
                 } else {
-                    completionHandler("Failed: Invalid Response")
+                    completionHandler(false, "Failed: Invalid Response")
                 }
             } else if let error = error {
-                completionHandler("HTTP Request Failed \(error.localizedDescription)")
+                completionHandler(false, "HTTP Request Failed \(error.localizedDescription)")
             }
         }
 

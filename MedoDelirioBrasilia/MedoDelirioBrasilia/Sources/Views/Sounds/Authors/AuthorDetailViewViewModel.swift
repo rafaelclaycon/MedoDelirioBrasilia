@@ -80,15 +80,17 @@ class AuthorDetailViewViewModel: ObservableObject {
         DispatchQueue.main.async {
             UIApplication.shared.keyWindow?.rootViewController?.present(activityVC, animated: true, completion: nil)
         }
-//        activityVC.completionWithItemsHandler = { activity, completed, items, error in
-//            if completed {
-//                guard let activity = activity else {
-//                    return
-//                }
-//                let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
-//                Logger.logSharedSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
-//            }
-//        }
+        activityVC.completionWithItemsHandler = { activity, completed, items, error in
+            if completed {
+                guard let activity = activity else {
+                    return
+                }
+                let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
+                Logger.logSharedSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
+                
+                AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
+            }
+        }
     }
     
     func addToFavorites(soundId: String) {
@@ -132,8 +134,8 @@ class AuthorDetailViewViewModel: ObservableObject {
     }
     
     func showUnableToGetSoundAlert() {
-        alertTitle = "Não Foi Possível Localizar Esse Som"
-        alertMessage = "Devido a um problema técnico, o som que você quer acessar não está disponível.\n\nPor favor, nos avise através do botão Conte-nos Por E-mail na aba Ajustes."
+        alertTitle = Shared.soundNotFoundAlertTitle
+        alertMessage = Shared.soundNotFoundAlertMessage
         showAlert = true
     }
 

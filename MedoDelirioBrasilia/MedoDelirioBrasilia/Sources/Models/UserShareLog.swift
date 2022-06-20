@@ -1,7 +1,8 @@
 import Foundation
 
-struct UserShareLog: Hashable, Codable {
+struct UserShareLog: Hashable, Codable, Identifiable {
 
+    var id: String
     var installId: String
     var contentId: String
     var contentType: Int
@@ -10,13 +11,15 @@ struct UserShareLog: Hashable, Codable {
     var destinationBundleId: String
     var sentToServer: Bool
     
-    init(installId: String,
+    init(id: String = UUID().uuidString,
+         installId: String,
          contentId: String,
          contentType: Int,
          dateTime: Date,
          destination: Int,
          destinationBundleId: String,
          sentToServer: Bool = false) {
+        self.id = id
         self.installId = installId
         self.contentId = contentId
         self.contentType = contentType
@@ -30,7 +33,7 @@ struct UserShareLog: Hashable, Codable {
 
 enum ContentType: Int {
     
-    case sound,song
+    case sound, song
     
 }
 

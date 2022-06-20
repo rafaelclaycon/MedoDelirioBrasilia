@@ -43,7 +43,7 @@ class SongsViewViewModel: ObservableObject {
         player?.togglePlay()
     }
 
-    func shareSong(withPath filepath: String) {
+    func shareSong(withPath filepath: String, andContentId contentId: String) {
         guard filepath.isEmpty == false else {
             return
         }
@@ -59,11 +59,11 @@ class SongsViewViewModel: ObservableObject {
         }
         activityVC.completionWithItemsHandler = { activity, completed, items, error in
             if completed {
-//                guard let activity = activity else {
-//                    return
-//                }
-//                let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
-//                Logger.logSharedSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
+                guard let activity = activity else {
+                    return
+                }
+                let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
+                Logger.logSharedSong(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
                 
                 AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
             }

@@ -7,7 +7,7 @@ class NetworkRabbitTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        sut = NetworkRabbit(serverPath: "http://170.187.145.233:8080/api/v1/")
+        sut = NetworkRabbit(serverPath: "http://localhost:8080/api/")
     }
     
     override func tearDown() {
@@ -15,15 +15,15 @@ class NetworkRabbitTests: XCTestCase {
         super.tearDown()
     }
     
-    func test_getHelloFromServer_whenCallIsOkAndServerIsRunning_shouldReturnCorrectString() throws {
+    func test_checkServerStatus_whenCallIsOkAndServerIsRunning_shouldReturnCorrectString() throws {
         let e = expectation(description: "Server call")
-        var testResult = ""
+        var testResult = false
         
-        sut.getHelloFromServer { result in
-            guard result.contains("Failed") == false else {
-                fatalError(result)
+        sut.checkServerStatus { serverIsAvailable, returnString  in
+            guard serverIsAvailable else {
+                fatalError(returnString)
             }
-            testResult = result
+            testResult = serverIsAvailable
             e.fulfill()
         }
         
@@ -31,16 +31,16 @@ class NetworkRabbitTests: XCTestCase {
             if let error = error {
                 XCTFail("timeout errored: \(error)")
             }
-            XCTAssertEqual(testResult, "Hello, MedoDelirioBrasilia!")
+            XCTAssertTrue(testResult)
         }
     }
     
     func test_postShareCountStats_whenCallIsOkAndServerIsRunning_shouldReturnCorrectData() throws {
         let e = expectation(description: "Server call")
         var testResult = ""
-        
-        let mockStat = ServerShareCountStat(installId: DummyShareLogs.installId, contentId: DummyShareLogs.bomDiaContentId, contentType: 0, shareCount: 10)
-        
+
+        let mockStat = ServerShareCountStat(installId: ShareLogsDummy.installId, contentId: ShareLogsDummy.bomDiaContentId, contentType: 0, shareCount: 10)
+
         sut.post(shareCountStat: mockStat) { result in
             guard result.contains("Failed") == false else {
                 fatalError(result)
@@ -48,12 +48,12 @@ class NetworkRabbitTests: XCTestCase {
             testResult = result
             e.fulfill()
         }
-        
+
         waitForExpectations(timeout: 5.0) { error in
             if let error = error {
                 XCTFail("timeout errored: \(error)")
             }
-            XCTAssertEqual(testResult, DummyShareLogs.bomDiaContentId)
+            XCTAssertEqual(testResult, ShareLogsDummy.bomDiaContentId)
         }
     }
 

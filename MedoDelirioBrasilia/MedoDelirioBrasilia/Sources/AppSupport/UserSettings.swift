@@ -15,7 +15,7 @@ class UserSettings {
     static func getSoundSortOption() -> Int {
         let userDefaults = UserDefaults.standard
         guard let value = userDefaults.object(forKey: "soundSortOption") else {
-            return 0
+            return 2
         }
         return Int(value as! Int)
     }
@@ -76,6 +76,14 @@ class UserSettings {
         return Bool(value as! Bool)
     }
     
+    static func getLastSendDateOfUserPersonalTrendsToServer() -> Date? {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "lastSendDateOfUserPersonalTrendsToServer") else {
+            return nil
+        }
+        return Date(timeIntervalSince1970: value as! Double)
+    }
+    
     // MARK: - Setters
     
     static func setShowOffensiveSounds(to newValue: Bool) {
@@ -121,6 +129,11 @@ class UserSettings {
     static func setHasSentDeviceModelToServer(to newValue: Bool) {
         let userDefaults = UserDefaults.standard
         userDefaults.set(newValue, forKey: "hasSentDeviceModelToServer")
+    }
+    
+    static func setLastSendDateOfUserPersonalTrendsToServer(to newValue: Date) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(newValue.timeIntervalSince1970, forKey: "lastSendDateOfUserPersonalTrendsToServer")
     }
 
 }

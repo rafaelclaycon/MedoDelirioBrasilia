@@ -1,7 +1,7 @@
 @testable import Medo_e_Delírio
 import Foundation
 
-class DummyShareLogs {
+class ShareLogsDummy {
 
     public static let installId = "76BE9811-D3D6-4DFC-8B37-6A8B83A1DF9A"
     

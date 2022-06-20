@@ -3,6 +3,7 @@ import SwiftUI
 struct TrendsView: View {
 
     @StateObject private var viewModel = TrendsViewViewModel()
+    @State private var favoriteColor = 0
     @State var showAlert = false
     @State var alertTitle = ""
     
@@ -40,6 +41,7 @@ struct TrendsView: View {
                                 Text("Sons Mais Compartilhados Por Mim")
                                     .font(.title2)
                                     .padding(.horizontal)
+                                    .padding(.top, 10)
                                 
                                 if viewModel.personalTop5 == nil {
                                     HStack {
@@ -52,27 +54,34 @@ struct TrendsView: View {
                                         Spacer()
                                     }
                                 } else {
-                                    HStack {
-                                        Spacer()
+                                    VStack {
+                                        HStack {
+                                            Spacer()
+                                            
+                                            Button {
+                                                viewModel.reloadPersonalList(withTopChartItems: podium.getTop5SoundsSharedByTheUser())
+                                            } label: {
+                                                HStack {
+                                                    Image(systemName: "arrow.triangle.2.circlepath")
+                                                    Text("Atualizar")
+                                                }
+                                            }
+                                            .padding(.trailing)
+                                            .padding(.top, 1)
+                                        }
                                         
-                                        Button {
-                                            viewModel.reloadPersonalList(withTopChartItems: Podium.getTop5SoundsSharedByTheUser())
-                                        } label: {
-                                            HStack {
-                                                Image(systemName: "arrow.triangle.2.circlepath")
-                                                Text("Atualizar")
+                                        LazyVGrid(columns: columns, spacing: 14) {
+                                            ForEach(viewModel.personalTop5!) { item in
+                                                TopChartCellView(item: item)
                                             }
                                         }
-                                        .padding(.trailing)
-                                        .padding(.top, 1)
+                                        .padding(.bottom)
+                                        
+                                        Text("Última consulta: hoje às 12:05")
+                                            .font(.subheadline)
+                                            .foregroundColor(.gray)
                                     }
-                                    
-                                    LazyVGrid(columns: columns, spacing: 14) {
-                                        ForEach(viewModel.personalTop5!) { item in
-                                            TopChartCellView(item: item)
-                                        }
-                                    }
-                                    .padding(.bottom)
+                                    .padding(.bottom, 20)
                                 }
                             }
                             
@@ -86,6 +95,7 @@ struct TrendsView: View {
                                 Text("Sons Mais Compartilhados Pela Audiência (iOS)")
                                     .font(.title2)
                                     .padding(.horizontal)
+                                    .padding(.top, 10)
                                 
                                 HStack {
                                     Spacer()
@@ -102,13 +112,28 @@ struct TrendsView: View {
                                     .padding(.top, 1)
                                 }
                                 
+                                Picker("What is your favorite color?", selection: $favoriteColor) {
+                                    Text("Semana").tag(0)
+                                    Text("Mês").tag(1)
+                                    Text("Todos os Tempos").tag(2)
+                                }
+                                .pickerStyle(.segmented)
+                                .padding(.horizontal)
+                                
                                 if viewModel.audienceTop5 == nil {
                                     HStack {
                                         Spacer()
                                         
-                                        Text("Sem Dados")
-                                            .font(.headline)
-                                            .padding(.vertical, 40)
+                                        VStack(spacing: 10) {
+                                            Text("Sem Dados")
+                                                //.font(.headline)
+                                                .bold()
+                                            
+                                            Text("Última consulta: hoje às 12:05")
+                                                //.font(.subheadline)
+                                                .foregroundColor(.gray)
+                                        }
+                                        .padding(.vertical, 40)
                                         
                                         Spacer()
                                     }
@@ -122,11 +147,11 @@ struct TrendsView: View {
                                 }
                             }
                             
-                            if showAppsThroughWhichTheUserSharesTheMost {
+                            /*if showAppsThroughWhichTheUserSharesTheMost {
                                 Text("Apps Pelos Quais Você Mais Compartilha")
                                     .font(.title2)
                                     .padding(.horizontal)
-                            }
+                            }*/
                         }
                     }
                 } else {
@@ -137,7 +162,7 @@ struct TrendsView: View {
             .navigationTitle("Tendências (Beta)")
             .navigationBarTitleDisplayMode(showTrends ? .large : .inline)
             .onAppear {
-                viewModel.reloadPersonalList(withTopChartItems: Podium.getTop5SoundsSharedByTheUser())
+                viewModel.reloadPersonalList(withTopChartItems: podium.getTop5SoundsSharedByTheUser())
                 viewModel.donateActivity()
             }
         }
