@@ -177,6 +177,33 @@ class SoundsViewViewModel: ObservableObject {
         }
     }
     
+    func sendUserPersonalTrendsToServerIfEnabled() {
+        guard UserSettings.getEnableTrends() else {
+            return
+        }
+        guard UserSettings.getEnableShareUserPersonalTrends() else {
+            return
+        }
+        
+        if let lastDate = UserSettings.getLastSendDateOfUserPersonalTrendsToServer() {
+            if lastDate.onlyDate! < Date.now.onlyDate! {
+                podium.exchangeShareCountStatsWithTheServer { result, _ in
+                    guard result == .successful || result == .noStatsToSend else {
+                        return
+                    }
+                    UserSettings.setLastSendDateOfUserPersonalTrendsToServer(to: Date.now.onlyDate!)
+                }
+            }
+        } else {
+            podium.exchangeShareCountStatsWithTheServer { result, _ in
+                guard result == .successful || result == .noStatsToSend else {
+                    return
+                }
+                UserSettings.setLastSendDateOfUserPersonalTrendsToServer(to: Date.now.onlyDate!)
+            }
+        }
+    }
+    
     // MARK: - Alerts
     
     func showUnableToGetSoundAlert() {

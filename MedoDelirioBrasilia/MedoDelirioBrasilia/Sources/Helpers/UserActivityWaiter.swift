@@ -11,5 +11,5 @@ class UserActivityWaiter {
         currentActivity.persistentIdentifier = UUID().uuidString
         return currentActivity
     }
-    
+
 }

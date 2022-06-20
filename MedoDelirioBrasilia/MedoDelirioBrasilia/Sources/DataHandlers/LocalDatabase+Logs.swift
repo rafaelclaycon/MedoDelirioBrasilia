@@ -1,4 +1,5 @@
 import Foundation
+import SQLite
 
 extension LocalDatabase {
 
@@ -11,6 +12,24 @@ extension LocalDatabase {
     func insert(userShareLog newLog: UserShareLog) throws {
         let insert = try userShareLog.insert(newLog)
         try db.run(insert)
+    }
+    
+    func markAsSentToServer(logId: String) throws {
+        let id = Expression<String>("id")
+        let sent_to_server = Expression<Bool>("sentToServer")
+        let logRecord = userShareLog.filter(id == logId)
+        
+        if try db.run(logRecord.update(sent_to_server <- true)) > 0 {
+            //print("'\(logId)' updated successfully.")
+        } else {
+            //print("'\(logId)' update failed.")
+        }
+    }
+    
+    func markAllUserShareLogsAsSentToServer() throws {
+        let sent_to_server = Expression<Bool>("sentToServer")
+        let numberOfRecordsUpdated = try db.run(userShareLog.update(sent_to_server <- true))
+        //print("\(numberOfRecordsUpdated) record(s) updated.")
     }
     
     func getAllUserShareLogs() throws -> [UserShareLog] {

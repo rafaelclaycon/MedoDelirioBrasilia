@@ -30,7 +30,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             fatalError("Failed to migrate database: \(error)")
         }
         
-        print(database)
+        //print(database)
         
         return true
     }

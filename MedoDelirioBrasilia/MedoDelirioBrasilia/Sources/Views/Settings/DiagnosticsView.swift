@@ -34,6 +34,18 @@ struct DiagnosticsView: View {
                 Text("Esse código identifica apenas a instalação do app e é renovado caso você o desinstale e instale novamente.")
             }
             
+            if CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
+                Section("Tendências [DEV ONLY]") {
+                    Button("Setar dia de envio para ontem") {
+                        var dayComponent = DateComponents()
+                        dayComponent.day = -1
+                        let calendar = Calendar.current
+                        let newDate = calendar.date(byAdding: dayComponent, to: Date())
+                        UserSettings.setLastSendDateOfUserPersonalTrendsToServer(to: newDate!.onlyDate!)
+                    }
+                }
+            }
+            
             Section("Logs de compartilhamento") {
                 if shareLogs == nil || shareLogs?.count == 0 {
                     Text("Sem Dados")

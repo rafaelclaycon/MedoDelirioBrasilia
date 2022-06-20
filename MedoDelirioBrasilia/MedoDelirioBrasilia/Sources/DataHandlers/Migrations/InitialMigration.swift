@@ -8,12 +8,12 @@ struct InitialMigration: Migration {
     
     private var favorite = Table("favorite")
     private var userShareLog = Table("userShareLog")
-    private var audienceSharingStatistic = Table("audienceSharingStatistic")
+    //private var audienceSharingStatistic = Table("audienceSharingStatistic")
     
     func migrateDatabase(_ db: Connection) throws {
         try createFavoriteTable(db)
         try createUserShareLogTable(db)
-        try createAudienceSharingStatisticTable(db)
+        //try createAudienceSharingStatisticTable(db)
     }
     
     private func createFavoriteTable(_ db: Connection) throws {
@@ -48,16 +48,16 @@ struct InitialMigration: Migration {
         })
     }
     
-    private func createAudienceSharingStatisticTable(_ db: Connection) throws {
-        let content_id = Expression<String>("contentId")
-        let content_type = Expression<Int>("contentType")
-        let share_count = Expression<Int>("shareCount")
-
-        try db.run(audienceSharingStatistic.create(ifNotExists: true) { t in
-            t.column(content_id)
-            t.column(content_type)
-            t.column(share_count)
-        })
-    }
+//    private func createAudienceSharingStatisticTable(_ db: Connection) throws {
+//        let content_id = Expression<String>("contentId")
+//        let content_type = Expression<Int>("contentType")
+//        let share_count = Expression<Int>("shareCount")
+//
+//        try db.run(audienceSharingStatistic.create(ifNotExists: true) { t in
+//            t.column(content_id)
+//            t.column(content_type)
+//            t.column(share_count)
+//        })
+//    }
 
 }

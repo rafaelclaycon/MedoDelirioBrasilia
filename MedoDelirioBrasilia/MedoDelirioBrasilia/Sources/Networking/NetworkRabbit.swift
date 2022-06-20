@@ -4,7 +4,7 @@ internal protocol NetworkRabbitProtocol {
 
     func checkServerStatus(completionHandler: @escaping (Bool, String) -> Void)
     func getSoundShareCountStats(completionHandler: @escaping ([ServerShareCountStat]?, NetworkRabbitError?) -> Void)
-    func post(shareCountStat: ServerShareCountStat, completionHandler: @escaping (String) -> Void)
+    func post(shareCountStat: ServerShareCountStat, completionHandler: @escaping (Bool, String) -> Void)
     func post(clientDeviceInfo: ClientDeviceInfo, completionHandler: @escaping (Bool?, NetworkRabbitError?) -> Void)
 
 }
@@ -65,7 +65,7 @@ class NetworkRabbit: NetworkRabbitProtocol {
     
     // MARK: - POST
     
-    func post(shareCountStat: ServerShareCountStat, completionHandler: @escaping (String) -> Void) {
+    func post(shareCountStat: ServerShareCountStat, completionHandler: @escaping (Bool, String) -> Void) {
         let url = URL(string: serverPath + "v1/share-count-stat")!
 
         var request = URLRequest(url: url)
@@ -82,17 +82,17 @@ class NetworkRabbit: NetworkRabbitProtocol {
             }
              
             guard httpResponse.statusCode == 200 else {
-                return completionHandler("Failed")
+                return completionHandler(false, "Failed")
             }
             
             if let data = data {
                 if let stat = try? JSONDecoder().decode(ServerShareCountStat.self, from: data) {
-                    completionHandler(stat.contentId)
+                    completionHandler(true, stat.contentId)
                 } else {
-                    completionHandler("Failed: Invalid Response")
+                    completionHandler(false, "Failed: Invalid Response")
                 }
             } else if let error = error {
-                completionHandler("HTTP Request Failed \(error.localizedDescription)")
+                completionHandler(false, "HTTP Request Failed \(error.localizedDescription)")
             }
         }
 
