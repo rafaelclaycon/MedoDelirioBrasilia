@@ -63,12 +63,12 @@ class LocalDatabaseTests: XCTestCase {
     
     // MARK: - User Share Logs
     
-    func test_insertAudienceSharingStat_whenInsertIsSuccessful_shouldReturnSharingStatCount1() {
-        let stat = AudienceShareCountStat(contentId: "6E4251F8-FE50-46E1-B8ED-6E24CEA1EB15",
-                                          contentType: ContentType.sound.rawValue,
-                                          shareCount: 16)
-        XCTAssertNoThrow(try sut.insert(audienceStat: stat))
-        XCTAssertEqual(try sut.getAudienceSharingStatCount(), 1)
-    }
+//    func test_insertAudienceSharingStat_whenInsertIsSuccessful_shouldReturnSharingStatCount1() {
+//        let stat = AudienceShareCountStat(contentId: "6E4251F8-FE50-46E1-B8ED-6E24CEA1EB15",
+//                                          contentType: ContentType.sound.rawValue,
+//                                          shareCount: 16)
+//        XCTAssertNoThrow(try sut.insert(audienceStat: stat))
+//        XCTAssertEqual(try sut.getAudienceSharingStatCount(), 1)
+//    }
 
 }

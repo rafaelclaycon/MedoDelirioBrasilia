@@ -23,13 +23,13 @@ class PodiumTests: XCTestCase {
     
     func test_exchangeShareCountStats_whenServerIsOffline_shouldReturnInfoString() throws {
         let e = expectation(description: "exchangeShareCountStats")
-        var testBoolResult = true
+        var testBoolResult: Podium.ShareCountStatServerExchangesResult = .successful
         var testStringResult = ""
         
         networkRabbitStub.serverShouldBeUnavailable = true
         
-        sut.exchangeShareCountStatsWithTheServer { serverIsAvailable, resultString in
-            testBoolResult = serverIsAvailable
+        sut.exchangeShareCountStatsWithTheServer { result, resultString in
+            testBoolResult = result
             testStringResult = resultString
             e.fulfill()
         }
@@ -38,7 +38,7 @@ class PodiumTests: XCTestCase {
             if let error = error {
                 XCTFail("timeout errored: \(error)")
             }
-            XCTAssertFalse(testBoolResult)
+            XCTAssertEqual(testBoolResult, .failed)
             XCTAssertEqual(testStringResult, "Servidor não disponível.")
         }
     }
