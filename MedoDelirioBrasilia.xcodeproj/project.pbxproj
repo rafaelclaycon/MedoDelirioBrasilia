@@ -99,6 +99,7 @@
 		D9376C14285B78A3001216DC /* Sirigueijo - Dinheiro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9376C13285B78A3001216DC /* Sirigueijo - Dinheiro.mp3 */; };
 		D93AC08B28414EEE00E38A63 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AC08A28414EEE00E38A63 /* Logger.swift */; };
 		D93D24E02849DAAB00300541 /* DiagnosticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D24DF2849DAAB00300541 /* DiagnosticsView.swift */; };
+		D946116E28611F1000C4FB7E /* FolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D946116D28611F1000C4FB7E /* FolderCell.swift */; };
 		D94656D928450535008B4785 /* SQLiteMigrationManager in Frameworks */ = {isa = PBXBuildFile; productRef = D94656D828450535008B4785 /* SQLiteMigrationManager */; };
 		D94A4214283DC52800A504BD /* SongHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A4213283DC52800A504BD /* SongHelpView.swift */; };
 		D9523741285BF98A00E6C838 /* NetworkRabbitStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */; };
@@ -498,6 +499,7 @@
 		D9376C13285B78A3001216DC /* Sirigueijo - Dinheiro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Sirigueijo - Dinheiro.mp3"; sourceTree = "<group>"; };
 		D93AC08A28414EEE00E38A63 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		D93D24DF2849DAAB00300541 /* DiagnosticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticsView.swift; sourceTree = "<group>"; };
+		D946116D28611F1000C4FB7E /* FolderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderCell.swift; sourceTree = "<group>"; };
 		D94A4213283DC52800A504BD /* SongHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongHelpView.swift; sourceTree = "<group>"; };
 		D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRabbitStub.swift; sourceTree = "<group>"; };
 		D9523742285BF99800E6C838 /* LocalDatabaseSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDatabaseSpy.swift; sourceTree = "<group>"; };
@@ -1469,6 +1471,7 @@
 			children = (
 				D9EB18A42857CDFF00A2F8A8 /* CollectionsView.swift */,
 				D9F78A9E2860DF9100B83567 /* CollectionCell.swift */,
+				D946116D28611F1000C4FB7E /* FolderCell.swift */,
 			);
 			path = Collections;
 			sourceTree = "<group>";
@@ -1923,6 +1926,7 @@
 				D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */,
 				D93443252838177000ADCD38 /* UserInfo.swift in Sources */,
 				D905B4C52857FF3D0096D466 /* AddNetworkCallLogTable.swift in Sources */,
+				D946116E28611F1000C4FB7E /* FolderCell.swift in Sources */,
 				D960AF272845BFE700ADF1F6 /* UserDefaultsKeys.swift in Sources */,
 				D988C523283C33E100D64404 /* UserSettings.swift in Sources */,
 				D92E7075283C5F620035826C /* SongCell.swift in Sources */,
