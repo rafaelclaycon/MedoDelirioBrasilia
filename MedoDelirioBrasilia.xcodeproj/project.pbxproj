@@ -390,6 +390,7 @@
 		D9EB18A12857907800A2F8A8 /* Eduardo Sterblitch - E mais ou menos longo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9EB189F2857907800A2F8A8 /* Eduardo Sterblitch - E mais ou menos longo.mp3 */; };
 		D9EB18A22857907800A2F8A8 /* Eduardo Sterblitch - E mais ou menos curto.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9EB18A02857907800A2F8A8 /* Eduardo Sterblitch - E mais ou menos curto.mp3 */; };
 		D9EB18A52857CDFF00A2F8A8 /* CollectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EB18A42857CDFF00A2F8A8 /* CollectionsView.swift */; };
+		D9F78A9D2860DD6C00B83567 /* AskForSoundToBeAddedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F78A9C2860DD6C00B83567 /* AskForSoundToBeAddedView.swift */; };
 		D9FA0CD728508590000F6ADE /* UIDevice+ModelName.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FA0CD628508590000F6ADE /* UIDevice+ModelName.swift */; };
 		D9FA0CD92850864C000F6ADE /* ClientDeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FA0CD82850864C000F6ADE /* ClientDeviceInfo.swift */; };
 /* End PBXBuildFile section */
@@ -790,6 +791,7 @@
 		D9EB189F2857907800A2F8A8 /* Eduardo Sterblitch - E mais ou menos longo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eduardo Sterblitch - E mais ou menos longo.mp3"; sourceTree = "<group>"; };
 		D9EB18A02857907800A2F8A8 /* Eduardo Sterblitch - E mais ou menos curto.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eduardo Sterblitch - E mais ou menos curto.mp3"; sourceTree = "<group>"; };
 		D9EB18A42857CDFF00A2F8A8 /* CollectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsView.swift; sourceTree = "<group>"; };
+		D9F78A9C2860DD6C00B83567 /* AskForSoundToBeAddedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskForSoundToBeAddedView.swift; sourceTree = "<group>"; };
 		D9FA0CD628508590000F6ADE /* UIDevice+ModelName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+ModelName.swift"; sourceTree = "<group>"; };
 		D9FA0CD82850864C000F6ADE /* ClientDeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientDeviceInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1417,6 +1419,7 @@
 				D92C0CA928405B2D009CF19A /* NoFavoritesView.swift */,
 				D961D024283731AA00EFEDEB /* SoundHelpView.swift */,
 				D98622DE283FC53B00E9F630 /* Authors */,
+				D9F78A9C2860DD6C00B83567 /* AskForSoundToBeAddedView.swift */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -1942,6 +1945,7 @@
 				D9FA0CD92850864C000F6ADE /* ClientDeviceInfo.swift in Sources */,
 				D9265741285A1EE700947165 /* LocalDatabase+Logs.swift in Sources */,
 				D980456228380F66003B2E83 /* LocalizableStrings.swift in Sources */,
+				D9F78A9D2860DD6C00B83567 /* AskForSoundToBeAddedView.swift in Sources */,
 				D961D025283731AA00EFEDEB /* SoundHelpView.swift in Sources */,
 				D96E115D28459D8800306859 /* UserActivityWaiter.swift in Sources */,
 				D9351C5C2844094E00D4317E /* TopChartItem.swift in Sources */,

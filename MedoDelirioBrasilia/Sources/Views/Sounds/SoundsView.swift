@@ -11,6 +11,7 @@ struct SoundsView: View {
     @State private var showingHelpScreen = false
     @State private var searchText = ""
     @State private var scrollViewObject: ScrollViewProxy? = nil
+    @State private var showingAskForNewSoundScreen = false
     
     let columns = [
         GridItem(.flexible()),
@@ -141,37 +142,47 @@ struct SoundsView: View {
                     }
                 }
             , trailing:
-                Menu {
-                    Section {
-                        Picker(selection: $viewModel.sortOption, label: Text("Ordenação")) {
-                            Text("Ordenar por Título")
-                                .tag(0)
-
-                            Text("Ordenar por Nome do Autor")
-                                .tag(1)
-
-                            Text("Mais Recentes no Topo")
-                                .tag(2)
+                HStack {
+                    Button(action: {
+                        showingAskForNewSoundScreen = true
+                    }) {
+                        HStack {
+                            Image(systemName: "hand.point.up") // "plus"
                         }
                     }
                     
-//                    Section {
-//                        Button("[DEV ONLY] Rolar até o fim da lista") {
-//                            scrollViewObject?.scrollTo(searchResults[searchResults.endIndex - 1])
-//                        }
-//                    }
-                } label: {
-                    Image(systemName: "arrow.up.arrow.down")
+                    Menu {
+                        Section {
+                            Picker(selection: $viewModel.sortOption, label: Text("Ordenação")) {
+                                Text("Ordenar por Título")
+                                    .tag(0)
+
+                                Text("Ordenar por Nome do Autor")
+                                    .tag(1)
+
+                                Text("Mais Recentes no Topo")
+                                    .tag(2)
+                            }
+                        }
+                        
+    //                    Section {
+    //                        Button("[DEV ONLY] Rolar até o fim da lista") {
+    //                            scrollViewObject?.scrollTo(searchResults[searchResults.endIndex - 1])
+    //                        }
+    //                    }
+                    } label: {
+                        Image(systemName: "arrow.up.arrow.down")
+                    }
+                    .onChange(of: viewModel.sortOption, perform: { newValue in
+                        viewModel.reloadList(withSounds: soundData,
+                                             andFavorites: try? database.getAllFavorites(),
+                                             allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+                                             favoritesOnly: currentMode == .favorites,
+                                             sortedBy: ContentSortOption(rawValue: newValue) ?? .titleAscending)
+                        UserSettings.setSoundSortOption(to: newValue)
+                    })
+                    .disabled(currentMode == .byAuthor)
                 }
-                .onChange(of: viewModel.sortOption, perform: { newValue in
-                    viewModel.reloadList(withSounds: soundData,
-                                         andFavorites: try? database.getAllFavorites(),
-                                         allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
-                                         favoritesOnly: currentMode == .favorites,
-                                         sortedBy: ContentSortOption(rawValue: newValue) ?? .titleAscending)
-                    UserSettings.setSoundSortOption(to: newValue)
-                })
-                .disabled(currentMode == .byAuthor)
             )
             .onAppear {
                 viewModel.reloadList(withSounds: soundData,
@@ -218,6 +229,9 @@ struct SoundsView: View {
             }
             .alert(isPresented: $viewModel.showAlert) {
                 Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
+            }
+            .sheet(isPresented: $showingAskForNewSoundScreen) {
+                AskForSoundToBeAddedView()
             }
         }
     }
