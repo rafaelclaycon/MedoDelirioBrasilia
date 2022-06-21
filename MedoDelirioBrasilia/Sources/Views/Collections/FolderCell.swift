@@ -11,7 +11,7 @@ struct FolderCell: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 20, style: .continuous)
                     .fill(regularGradient)
-                    .frame(width: 180, height: 90)
+                    .frame(height: 90)
                 
                 Text("😎")
                     .font(.system(size: 54))

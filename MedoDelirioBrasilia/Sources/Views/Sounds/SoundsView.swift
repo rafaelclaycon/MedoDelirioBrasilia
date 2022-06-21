@@ -202,6 +202,14 @@ struct SoundsView: View {
                     }
                 }
                 
+                Button("📁  Adicionar a Pasta") {
+                    guard let sound = viewModel.soundForConfirmationDialog else {
+                        return
+                    }
+                    //viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
+                    print(sound.title)
+                }
+                
                 Button(SoundOptionsHelper.getSuggestOtherAuthorNameButtonTitle(authorId: viewModel.soundForConfirmationDialog?.authorId ?? .empty)) {
                     guard let sound = viewModel.soundForConfirmationDialog else {
                         return

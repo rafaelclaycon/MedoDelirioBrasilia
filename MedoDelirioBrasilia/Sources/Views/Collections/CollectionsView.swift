@@ -3,7 +3,7 @@ import SwiftUI
 struct CollectionsView: View {
 
     @State var collections = ["Clássicos", "LGBT", "Sérios", "Casimiro", "Memes", "Melancia", "Quarteto", "Sabor", "Teto", "Fazenda", "Inflamar"]
-    @State var showingModalView = false
+    @State var showingAddNewFolderView = false
     
     let rows = [
         GridItem(.flexible()),
@@ -43,7 +43,7 @@ struct CollectionsView: View {
                             Spacer()
                             
                             Button(action: {
-                                showingModalView = true
+                                showingAddNewFolderView = true
                             }) {
                                 HStack {
                                     Image(systemName: "plus")
@@ -62,7 +62,9 @@ struct CollectionsView: View {
                     .padding(.horizontal)
                 }
                 .navigationTitle("Coleções")
-                //.navigationBarTitleDisplayMode(.inline)
+                .sheet(isPresented: $showingAddNewFolderView) {
+                    AddNewFolderView(isBeingShown: $showingAddNewFolderView)
+                }
             }
         }
     }
