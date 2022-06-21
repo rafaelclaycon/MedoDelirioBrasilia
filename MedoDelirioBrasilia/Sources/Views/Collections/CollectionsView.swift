@@ -17,54 +17,53 @@ struct CollectionsView: View {
     
     var body: some View {
         NavigationView {
-            VStack(alignment: .leading) {
+            ScrollView {
                 VStack(alignment: .leading) {
-                    Text("Escolhas dos Editores")
-                        .font(.title2)
-                        //.padding(.horizontal)
-                        .padding(.top, 10)
-                    
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        LazyHGrid(rows: rows, spacing: 14) {
-                            ForEach(collections, id: \.self) { collection in
-                                CollectionCell(title: collection)
-                            }
-                        }
-                        .frame(height: 210)
-                    }
-                }
-                .padding(.leading)
-                
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text("Minhas Pastas")
+                    VStack(alignment: .leading) {
+                        Text("Escolhas dos Editores")
                             .font(.title2)
+                            .padding(.leading)
                         
-                        Spacer()
-                        
-                        Button(action: {
-                            showingModalView = true
-                        }) {
-                            HStack {
-                                Image(systemName: "plus")
-                                Text("Nova Pasta")
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            LazyHGrid(rows: rows, spacing: 14) {
+                                ForEach(collections, id: \.self) { collection in
+                                    CollectionCell(title: collection)
+                                }
                             }
+                            .frame(height: 210)
                         }
                     }
+                    .padding(.top, 10)
                     
-                    ScrollView {
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Text("Minhas Pastas")
+                                .font(.title2)
+                            
+                            Spacer()
+                            
+                            Button(action: {
+                                showingModalView = true
+                            }) {
+                                HStack {
+                                    Image(systemName: "plus")
+                                    Text("Nova Pasta")
+                                }
+                            }
+                        }
+                        
                         LazyVGrid(columns: columns, spacing: 14) {
                             ForEach(collections, id: \.self) { collection in
                                 FolderCell(title: collection)
                             }
                         }
                     }
+                    .padding(.top, 10)
+                    .padding(.horizontal)
                 }
-                .padding(.top, 10)
-                .padding(.horizontal)
+                .navigationTitle("Coleções")
+                //.navigationBarTitleDisplayMode(.inline)
             }
-            .navigationTitle("Coleções")
-            .navigationBarTitleDisplayMode(.inline)
         }
     }
 
