@@ -29,6 +29,7 @@ struct AddNewFolderView: View {
                 Spacer()
                 
                 Button(action: {
+                    try? database.insert(userFolder: UserFolder(symbol: symbol, title: folderName, backgroundColor: Color.pastelBabyBlue.name ?? .empty))
                     self.isBeingShown = false
                 }) {
                     Text("OK")

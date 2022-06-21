@@ -348,6 +348,9 @@
 		D9625E8F28238F9B00080852 /* LocalDatabaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9625E8E28238F9B00080852 /* LocalDatabaseTests.swift */; };
 		D96E115D28459D8800306859 /* UserActivityWaiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96E115C28459D8800306859 /* UserActivityWaiter.swift */; };
 		D9758C3828616E650094D388 /* FolderColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9758C3728616E650094D388 /* FolderColor.swift */; };
+		D9758C3A28617BA70094D388 /* AddUserFolderTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9758C3928617BA70094D388 /* AddUserFolderTable.swift */; };
+		D9758C3C28617C980094D388 /* LocalDatabase+UserFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9758C3B28617C980094D388 /* LocalDatabase+UserFolder.swift */; };
+		D9758C3E28617DAC0094D388 /* Color+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9758C3D28617DAC0094D388 /* Color+Name.swift */; };
 		D980455C28380EFE003B2E83 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D980455E28380EFE003B2E83 /* Localizable.strings */; };
 		D980456228380F66003B2E83 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D980456128380F66003B2E83 /* LocalizableStrings.swift */; };
 		D982DCF9285BD358003C8695 /* CASIMIRO - Ta maluco.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D982DCF8285BD358003C8695 /* CASIMIRO - Ta maluco.mp3 */; };
@@ -753,6 +756,9 @@
 		D9625E8E28238F9B00080852 /* LocalDatabaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDatabaseTests.swift; sourceTree = "<group>"; };
 		D96E115C28459D8800306859 /* UserActivityWaiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserActivityWaiter.swift; sourceTree = "<group>"; };
 		D9758C3728616E650094D388 /* FolderColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderColor.swift; sourceTree = "<group>"; };
+		D9758C3928617BA70094D388 /* AddUserFolderTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserFolderTable.swift; sourceTree = "<group>"; };
+		D9758C3B28617C980094D388 /* LocalDatabase+UserFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+UserFolder.swift"; sourceTree = "<group>"; };
+		D9758C3D28617DAC0094D388 /* Color+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Name.swift"; sourceTree = "<group>"; };
 		D980455D28380EFE003B2E83 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D980455F28380F05003B2E83 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D980456128380F66003B2E83 /* LocalizableStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
@@ -1262,6 +1268,7 @@
 				D9FA0CD628508590000F6ADE /* UIDevice+ModelName.swift */,
 				D9A8AB272854436500B5A94B /* Date+ToString.swift */,
 				D9E51009286084F2003DB3A3 /* Date+OnlyDate.swift */,
+				D9758C3D28617DAC0094D388 /* Color+Name.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1418,6 +1425,7 @@
 			children = (
 				D9A8AB202853EB5500B5A94B /* InitialMigration.swift */,
 				D905B4C42857FF3D0096D466 /* AddNetworkCallLogTable.swift */,
+				D9758C3928617BA70094D388 /* AddUserFolderTable.swift */,
 			);
 			path = Migrations;
 			sourceTree = "<group>";
@@ -1453,6 +1461,7 @@
 				D961D01028371EE800EFEDEB /* FixedLocalData.swift */,
 				D9E69596283D551500C341B2 /* LocalDatabase.swift */,
 				D9265740285A1EE700947165 /* LocalDatabase+Logs.swift */,
+				D9758C3B28617C980094D388 /* LocalDatabase+UserFolder.swift */,
 			);
 			path = DataHandlers;
 			sourceTree = "<group>";
@@ -1914,6 +1923,7 @@
 				D93443292838230500ADCD38 /* String+Extensions.swift in Sources */,
 				D961D01128371EE800EFEDEB /* FixedLocalData.swift in Sources */,
 				D9BF9091284257F500BDDD7D /* Shared.swift in Sources */,
+				D9758C3C28617C980094D388 /* LocalDatabase+UserFolder.swift in Sources */,
 				D9E5100A286084F2003DB3A3 /* Date+OnlyDate.swift in Sources */,
 				D98622E0283FC57100E9F630 /* AuthorDetailView.swift in Sources */,
 				D92E7067283C51D20035826C /* Song.swift in Sources */,
@@ -1951,6 +1961,7 @@
 				D98EC5E32825A45000340BE5 /* SoundsViewViewModel.swift in Sources */,
 				D9F78A9F2860DF9100B83567 /* CollectionCell.swift in Sources */,
 				D9344323283812AD00ADCD38 /* Author.swift in Sources */,
+				D9758C3E28617DAC0094D388 /* Color+Name.swift in Sources */,
 				D98622E2283FCEDC00E9F630 /* AuthorsViewViewModel.swift in Sources */,
 				D958B1B22839534D0010F133 /* SettingsView.swift in Sources */,
 				D90F6A6628446C250050FFFF /* TrendsSettingsView.swift in Sources */,
@@ -1964,6 +1975,7 @@
 				D991E598284A94F70005705F /* Podium.swift in Sources */,
 				D9FA0CD92850864C000F6ADE /* ClientDeviceInfo.swift in Sources */,
 				D9265741285A1EE700947165 /* LocalDatabase+Logs.swift in Sources */,
+				D9758C3A28617BA70094D388 /* AddUserFolderTable.swift in Sources */,
 				D980456228380F66003B2E83 /* LocalizableStrings.swift in Sources */,
 				D961D025283731AA00EFEDEB /* SoundHelpView.swift in Sources */,
 				D96E115D28459D8800306859 /* UserActivityWaiter.swift in Sources */,

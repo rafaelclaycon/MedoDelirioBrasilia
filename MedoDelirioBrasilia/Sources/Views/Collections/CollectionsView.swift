@@ -4,6 +4,7 @@ struct CollectionsView: View {
 
     @State var collections = ["Clássicos", "LGBT", "Sérios", "Casimiro", "Memes", "Melancia", "Quarteto", "Sabor", "Teto", "Fazenda", "Inflamar"]
     @State var showingAddNewFolderView = false
+    @State var showingCollectionDetailView = false
     
     let rows = [
         GridItem(.flexible()),
@@ -19,6 +20,8 @@ struct CollectionsView: View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading) {
+                    NavigationLink(destination: CollectionDetailView(), isActive: $showingCollectionDetailView) { EmptyView() }
+                    
                     VStack(alignment: .leading) {
                         Text("Escolhas dos Editores")
                             .font(.title2)
@@ -28,6 +31,9 @@ struct CollectionsView: View {
                             LazyHGrid(rows: rows, spacing: 14) {
                                 ForEach(collections, id: \.self) { collection in
                                     CollectionCell(title: collection)
+                                        .onTapGesture {
+                                            showingCollectionDetailView = true
+                                        }
                                 }
                             }
                             .frame(height: 210)
@@ -52,11 +58,30 @@ struct CollectionsView: View {
                             }
                         }
                         
-                        LazyVGrid(columns: columns, spacing: 14) {
-                            ForEach(collections, id: \.self) { collection in
-                                FolderCell(title: collection)
+                        HStack {
+                            Spacer()
+                            
+                            VStack(spacing: 10) {
+                                Text("Nenhuma Pasta Criada")
+                                    //.font(.headline)
+                                    .bold()
+                                    .multilineTextAlignment(.center)
+                                
+                                Text("Toque em Nova Pasta acima para criar uma nova pasta de sons.")
+                                    //.font(.subheadline)
+                                    .foregroundColor(.gray)
+                                    .multilineTextAlignment(.center)
                             }
+                            .padding(.vertical, 40)
+                            
+                            Spacer()
                         }
+                        
+//                        LazyVGrid(columns: columns, spacing: 14) {
+//                            ForEach(collections, id: \.self) { collection in
+//                                FolderCell(title: collection)
+//                            }
+//                        }
                     }
                     .padding(.top, 10)
                     .padding(.horizontal)
