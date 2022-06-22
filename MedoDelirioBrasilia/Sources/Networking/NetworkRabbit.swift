@@ -167,6 +167,33 @@ class NetworkRabbit: NetworkRabbitProtocol {
 
         task.resume()
     }
+    
+    func post(signal: StillAliveSignal, completionHandler: @escaping (Bool, String) -> Void) {
+        let url = URL(string: serverPath + "v1/still-alive-signal")!
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let jsonEncoder = JSONEncoder()
+        jsonEncoder.dateEncodingStrategy = .iso8601
+        let jsonData = try? jsonEncoder.encode(signal)
+        request.httpBody = jsonData
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let httpResponse = response as? HTTPURLResponse else {
+                return
+            }
+             
+            guard httpResponse.statusCode == 200 else {
+                return completionHandler(false, "Failed")
+            }
+            
+            completionHandler(true, "")
+        }
+
+        task.resume()
+    }
 
 }
 
