@@ -2,18 +2,18 @@ import SwiftUI
 
 struct FolderCell: View {
 
+    @State var symbol: String
     @State var title: String
-    
-    let regularGradient = LinearGradient(gradient: Gradient(colors: [.babyBlue, .babyBlue]), startPoint: .topLeading, endPoint: .bottomTrailing)
+    @State var backgroundColor: Color
     
     var body: some View {
         VStack {
             ZStack {
                 RoundedRectangle(cornerRadius: 20, style: .continuous)
-                    .fill(regularGradient)
+                    .fill(backgroundColor)
                     .frame(height: 90)
                 
-                Text("😎")
+                Text(symbol)
                     .font(.system(size: 54))
             }
             
@@ -34,7 +34,7 @@ struct FolderCell: View {
 struct FolderCell_Previews: PreviewProvider {
 
     static var previews: some View {
-        FolderCell(title: "Memes")
+        FolderCell(symbol: "😎", title: "Memes", backgroundColor: .pastelBabyBlue)
     }
 
 }

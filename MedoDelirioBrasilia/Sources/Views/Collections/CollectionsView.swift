@@ -2,6 +2,7 @@ import SwiftUI
 
 struct CollectionsView: View {
 
+    @StateObject private var viewModel = CollectionsViewViewModel()
     @State var collections = ["Clássicos", "LGBT", "Sérios", "Casimiro", "Memes", "Melancia", "Quarteto", "Sabor", "Teto", "Fazenda", "Inflamar"]
     @State var showingAddNewFolderView = false
     @State var showingCollectionDetailView = false
@@ -37,6 +38,8 @@ struct CollectionsView: View {
                                 }
                             }
                             .frame(height: 210)
+                            .padding(.leading)
+                            .padding(.trailing)
                         }
                     }
                     .padding(.top, 10)
@@ -56,32 +59,37 @@ struct CollectionsView: View {
                                     Text("Nova Pasta")
                                 }
                             }
-                        }
-                        
-                        HStack {
-                            Spacer()
-                            
-                            VStack(spacing: 10) {
-                                Text("Nenhuma Pasta Criada")
-                                    //.font(.headline)
-                                    .bold()
-                                    .multilineTextAlignment(.center)
-                                
-                                Text("Toque em Nova Pasta acima para criar uma nova pasta de sons.")
-                                    //.font(.subheadline)
-                                    .foregroundColor(.gray)
-                                    .multilineTextAlignment(.center)
+                            .onChange(of: showingAddNewFolderView) { newValue in
+                                if newValue == false {
+                                    viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
+                                }
                             }
-                            .padding(.vertical, 40)
-                            
-                            Spacer()
                         }
                         
-//                        LazyVGrid(columns: columns, spacing: 14) {
-//                            ForEach(collections, id: \.self) { collection in
-//                                FolderCell(title: collection)
-//                            }
-//                        }
+                        if viewModel.hasFoldersToDisplay {
+                            LazyVGrid(columns: columns, spacing: 14) {
+                                ForEach(viewModel.folders) { folder in
+                                    FolderCell(symbol: folder.symbol, title: folder.title, backgroundColor: folder.backgroundColor.toColor())
+                                }
+                            }
+                        } else {
+                            HStack {
+                                Spacer()
+                                
+                                VStack(spacing: 10) {
+                                    Text("Nenhuma Pasta Criada")
+                                        .font(.headline)
+                                        .multilineTextAlignment(.center)
+                                    
+                                    Text("Toque em Nova Pasta acima para criar uma nova pasta de sons.")
+                                        .foregroundColor(.gray)
+                                        .multilineTextAlignment(.center)
+                                }
+                                .padding(.vertical, 40)
+                                
+                                Spacer()
+                            }
+                        }
                     }
                     .padding(.top, 10)
                     .padding(.horizontal)
@@ -89,6 +97,9 @@ struct CollectionsView: View {
                 .navigationTitle("Coleções")
                 .sheet(isPresented: $showingAddNewFolderView) {
                     AddNewFolderView(isBeingShown: $showingAddNewFolderView)
+                }
+                .onAppear {
+                    viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
                 }
             }
         }
