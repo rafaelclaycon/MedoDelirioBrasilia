@@ -8,6 +8,8 @@ struct SettingsView: View {
     
     @State private var showPixKeyCopiedAlert: Bool = false
     
+    @State private var showEmailAddressCopiedAlert: Bool = false
+    
     @State private var showingDiagnosticsScreen: Bool = false
     
     let pixKey: String = "918bd609-04d1-4df6-8697-352b62462061"
@@ -45,8 +47,8 @@ struct SettingsView: View {
                     }
                 }
                 
-                Section {
-                    Button(action: {
+                Section("🐞  Problemas, sugestões ou pedidos") {
+                    Button("Entrar em contato por e-mail (Mail)") {
                         guard let emailSubject = "Problema/sugestão no app iOS \(appVersion) Build \(buildVersionNumber)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
                             return
                         }
@@ -61,17 +63,18 @@ struct SettingsView: View {
                         }
 
                         UIApplication.shared.open(mailToUrl)
-                    }) {
-                        Text("Entrar em contato por e-mail")
                     }
-                } header: {
-                    Text("Problemas, sugestões ou pedidos")
-                } footer: {
-                    Text("medodeliriosuporte@gmail.com")
-                        .disabled(true)
+                    
+                    Button("Copiar endereço de e-mail (outros apps)") {
+                        UIPasteboard.general.string = "medodeliriosuporte@gmail.com"
+                        showEmailAddressCopiedAlert = true
+                    }
+                    .alert(isPresented: $showEmailAddressCopiedAlert) {
+                        Alert(title: Text("Endereço copiado com sucesso!"), dismissButton: .default(Text("OK")))
+                    }
                 }
                 
-                Section("Contribua ou entenda como o app funciona") {
+                Section("🧑‍💻  Contribua ou entenda como o app funciona") {
                     Button(action: {
                         let githubUrl = URL(string: "https://github.com/rafaelclaycon/MedoDelirioBrasilia")!
                         UIApplication.shared.open(githubUrl)
