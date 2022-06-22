@@ -77,7 +77,7 @@ struct SoundsView: View {
                             }
                             
                             if UserSettings.getShowOffensiveSounds() == false, currentMode != .favorites {
-                                Text("Filtrando conteúdo sensível. Você pode mudar isso na aba Ajustes.")
+                                Text(Shared.contentFilterMessage)
                                     .font(.footnote)
                                     .foregroundColor(.gray)
                                     .multilineTextAlignment(.center)
