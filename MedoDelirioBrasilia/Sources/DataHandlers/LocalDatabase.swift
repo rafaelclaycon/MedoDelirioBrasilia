@@ -161,6 +161,23 @@ class LocalDatabase {
         return result
     }
     
+    func getUniqueBundleIdsThatWereSharedTo() throws -> [ServerShareBundleIdLog] {
+        var result = [ServerShareBundleIdLog]()
+        
+        let destination_bundle_id = Expression<String>("destinationBundleId")
+        let sent_to_server = Expression<Bool>("sentToServer")
+        
+        let idCount = destination_bundle_id.count
+        for row in try db.prepare(userShareLog
+                                      .select(destination_bundle_id,idCount)
+                                      .where(sent_to_server == false)
+                                      .group(destination_bundle_id)
+                                      .order(idCount.desc)) {
+            result.append(ServerShareBundleIdLog(bundleId: row[destination_bundle_id], count: row[idCount]))
+        }
+        return result
+    }
+    
     // MARK: - Audience statistics from the server
     
     func insert(audienceStat newAudienceStat: AudienceShareCountStat) throws {

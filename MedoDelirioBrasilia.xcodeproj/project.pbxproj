@@ -103,6 +103,13 @@
 		D946117E28613D3200C4FB7E /* CollectionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D946117D28613D3200C4FB7E /* CollectionDetailView.swift */; };
 		D94611802861480A00C4FB7E /* AddNewFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D946117F2861480A00C4FB7E /* AddNewFolderView.swift */; };
 		D9461182286159BC00C4FB7E /* UserFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9461181286159BC00C4FB7E /* UserFolder.swift */; };
+		D94611702861311E00C4FB7E /* Damares - A princesa do Frozen vai voltar pra acordar a Bela Adormecida com um beijo gay.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D946116F2861311E00C4FB7E /* Damares - A princesa do Frozen vai voltar pra acordar a Bela Adormecida com um beijo gay.mp3 */; };
+		D94611732861336D00C4FB7E /* UOL - Pazuello - No dia D, na hora H.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94611712861336C00C4FB7E /* UOL - Pazuello - No dia D, na hora H.mp3 */; };
+		D94611742861336D00C4FB7E /* UOL -  Pazuello - Missao Cumprida short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94611722861336C00C4FB7E /* UOL -  Pazuello - Missao Cumprida short meme.mp3 */; };
+		D94611772861350300C4FB7E /* Eduardo Pazuello - Eu nao sabia nem o que era o SUS (short).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94611752861350300C4FB7E /* Eduardo Pazuello - Eu nao sabia nem o que era o SUS (short).mp3 */; };
+		D94611782861350300C4FB7E /* Pazuello - Abraco galera.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94611762861350300C4FB7E /* Pazuello - Abraco galera.mp3 */; };
+		D946117B286136CD00C4FB7E /* Damares - Uau.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9461179286136CD00C4FB7E /* Damares - Uau.mp3 */; };
+		D946117C286136CD00C4FB7E /* Damares - Inserir no anus.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D946117A286136CD00C4FB7E /* Damares - Inserir no anus.mp3 */; };
 		D94656D928450535008B4785 /* SQLiteMigrationManager in Frameworks */ = {isa = PBXBuildFile; productRef = D94656D828450535008B4785 /* SQLiteMigrationManager */; };
 		D94A4214283DC52800A504BD /* SongHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A4213283DC52800A504BD /* SongHelpView.swift */; };
 		D9523741285BF98A00E6C838 /* NetworkRabbitStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */; };
@@ -510,6 +517,13 @@
 		D946117D28613D3200C4FB7E /* CollectionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDetailView.swift; sourceTree = "<group>"; };
 		D946117F2861480A00C4FB7E /* AddNewFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewFolderView.swift; sourceTree = "<group>"; };
 		D9461181286159BC00C4FB7E /* UserFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFolder.swift; sourceTree = "<group>"; };
+		D946116F2861311E00C4FB7E /* Damares - A princesa do Frozen vai voltar pra acordar a Bela Adormecida com um beijo gay.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Damares - A princesa do Frozen vai voltar pra acordar a Bela Adormecida com um beijo gay.mp3"; sourceTree = "<group>"; };
+		D94611712861336C00C4FB7E /* UOL - Pazuello - No dia D, na hora H.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "UOL - Pazuello - No dia D, na hora H.mp3"; sourceTree = "<group>"; };
+		D94611722861336C00C4FB7E /* UOL -  Pazuello - Missao Cumprida short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "UOL -  Pazuello - Missao Cumprida short meme.mp3"; sourceTree = "<group>"; };
+		D94611752861350300C4FB7E /* Eduardo Pazuello - Eu nao sabia nem o que era o SUS (short).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eduardo Pazuello - Eu nao sabia nem o que era o SUS (short).mp3"; sourceTree = "<group>"; };
+		D94611762861350300C4FB7E /* Pazuello - Abraco galera.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pazuello - Abraco galera.mp3"; sourceTree = "<group>"; };
+		D9461179286136CD00C4FB7E /* Damares - Uau.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Damares - Uau.mp3"; sourceTree = "<group>"; };
+		D946117A286136CD00C4FB7E /* Damares - Inserir no anus.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Damares - Inserir no anus.mp3"; sourceTree = "<group>"; };
 		D94A4213283DC52800A504BD /* SongHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongHelpView.swift; sourceTree = "<group>"; };
 		D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRabbitStub.swift; sourceTree = "<group>"; };
 		D9523742285BF99800E6C838 /* LocalDatabaseSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDatabaseSpy.swift; sourceTree = "<group>"; };
@@ -835,6 +849,13 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D946117A286136CD00C4FB7E /* Damares - Inserir no anus.mp3 */,
+				D9461179286136CD00C4FB7E /* Damares - Uau.mp3 */,
+				D94611752861350300C4FB7E /* Eduardo Pazuello - Eu nao sabia nem o que era o SUS (short).mp3 */,
+				D94611762861350300C4FB7E /* Pazuello - Abraco galera.mp3 */,
+				D94611722861336C00C4FB7E /* UOL -  Pazuello - Missao Cumprida short meme.mp3 */,
+				D94611712861336C00C4FB7E /* UOL - Pazuello - No dia D, na hora H.mp3 */,
+				D946116F2861311E00C4FB7E /* Damares - A princesa do Frozen vai voltar pra acordar a Bela Adormecida com um beijo gay.mp3 */,
 				D961B862285F77CA00A645F4 /* Pastor Valdemiro - Mas isso e... E enganar.mp3 */,
 				D961B85E285F767200A645F4 /* Referencia de velho.mp3 */,
 				D961B85F285F767300A645F4 /* UOL - Fux - Esta cancelada.mp3 */,
@@ -1606,6 +1627,7 @@
 				D95569E528513FAB0072E3FC /* Vou esquecer disso jamais.mp3 in Resources */,
 				D9556911285137800072E3FC /* MULTISHOW_Titi_Muller_Ta_bombando_mais_do_que_o_povo_pedindo_Anitta.mp3 in Resources */,
 				D9556915285137800072E3FC /* ATILA IAMARINO - E vao empilhar sequela em cima de sequela.mp3 in Resources */,
+				D94611772861350300C4FB7E /* Eduardo Pazuello - Eu nao sabia nem o que era o SUS (short).mp3 in Resources */,
 				D9556940285137800072E3FC /* Reinaldo Azevedo - E mentira.mp3 in Resources */,
 				D922730E285AAD3E00A98CAE /* TV BRASIL - Bolsonaro - Pretiputi, pretiputi, pretiputi.mp3 in Resources */,
 				D95569AA285137800072E3FC /* Que porra e essa batata.mp3 in Resources */,
@@ -1747,8 +1769,10 @@
 				D9556961285137800072E3FC /* Gustavo mendes dilma todo mundo se fudeu.mp3 in Resources */,
 				D9556970285137800072E3FC /* MULTISHOW - Lulu Santos - Censura nunca mais.mp3 in Resources */,
 				D90483CF2851A19F00885739 /* Gaucho Puto - Uma bosta, nao sabe, uma merda.mp3 in Resources */,
+				D94611782861350300C4FB7E /* Pazuello - Abraco galera.mp3 in Resources */,
 				D9556971285137800072E3FC /* Bolsonaro - Sera que eu to errando ao falar isso dai.mp3 in Resources */,
 				D955691E285137800072E3FC /* Boulos Porra short.mp3 in Resources */,
+				D946117B286136CD00C4FB7E /* Damares - Uau.mp3 in Resources */,
 				D95569B7285137800072E3FC /* Olavo de Carvalho - Porra.mp3 in Resources */,
 				D92879E7283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 in Resources */,
 				D927C41928523F5D0041970A /* Pica Pau - Um genio.mp3 in Resources */,
@@ -1765,8 +1789,10 @@
 				D9556912285137800072E3FC /* esse_neto_bosta.mp3 in Resources */,
 				D9523757285DA13500E6C838 /* Ja deu merda, ja deu merda.mp3 in Resources */,
 				D955695A285137800072E3FC /* Boldo - Parece ate que um helicoptero pousou em cima da tua cara.mp3 in Resources */,
+				D94611742861336D00C4FB7E /* UOL -  Pazuello - Missao Cumprida short meme.mp3 in Resources */,
 				D95569BC285137800072E3FC /* Bolsonaro - O problema ta ai, lamentamos.mp3 in Resources */,
 				D91964F42856BC860067B430 /* GALAS FEIOS - Moro desafinando no corrupcao.mp3 in Resources */,
+				D946117C286136CD00C4FB7E /* Damares - Inserir no anus.mp3 in Resources */,
 				D95569E328513FAB0072E3FC /* Tati Quebra Barraco - Ce num tinha nem que ta aqui linda.mp3 in Resources */,
 				D955698B285137800072E3FC /* Mourao - Herois matam short.mp3 in Resources */,
 				D95569A2285137800072E3FC /* E O TCHAN - Loop.mp3 in Resources */,
@@ -1807,6 +1833,7 @@
 				D9556974285137800072E3FC /* tv_senado_soraya_thronicke_a_gente_vai_cansando_sabe.mp3 in Resources */,
 				D927C41028523A050041970A /* OLHA SO short meme.mp3 in Resources */,
 				D95569D0285137800072E3FC /* deu_errado.mp3 in Resources */,
+				D94611732861336D00C4FB7E /* UOL - Pazuello - No dia D, na hora H.mp3 in Resources */,
 				D95569B3285137800072E3FC /* JOUT JOUT - O MINIMO meme short.mp3 in Resources */,
 				D95569AB285137800072E3FC /* Datena - Me pareceu uma grande marmelada.mp3 in Resources */,
 				D9556942285137800072E3FC /* Natalie Wynn Contrapoints - Let's get started.mp3 in Resources */,
@@ -1876,6 +1903,7 @@
 				D95569B0285137800072E3FC /* Xo drogado short meme.mp3 in Resources */,
 				D91964EB2856B97A0067B430 /* Bolsonaro - Um jumento, um jumento.mp3 in Resources */,
 				D9556927285137800072E3FC /* um_bosta_ciro.mp3 in Resources */,
+				D94611702861311E00C4FB7E /* Damares - A princesa do Frozen vai voltar pra acordar a Bela Adormecida com um beijo gay.mp3 in Resources */,
 				D95569CA285137800072E3FC /* Falha de Cobertura - Cerginho da Pereira Nunes - Doidera.mp3 in Resources */,
 				D95569C3285137800072E3FC /* PORTA_DOS_FUNDOS_BALBURDIA_Bom_dia,_turma,_todo_mundo_tirando_a.mp3 in Resources */,
 				D95569BD285137800072E3FC /* Feiticeira - Nao e feiticaria, e tecnologia meme short.mp3 in Resources */,
@@ -2151,7 +2179,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				ENABLE_PREVIEWS = YES;
@@ -2159,7 +2187,6 @@
 				INFOPLIST_FILE = MedoDelirioBrasilia/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -2167,7 +2194,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6;
+				MARKETING_VERSION = 1.6.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = "Medo e Delírio";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2182,7 +2209,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				ENABLE_PREVIEWS = YES;
@@ -2190,7 +2217,6 @@
 				INFOPLIST_FILE = MedoDelirioBrasilia/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -2198,7 +2224,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6;
+				MARKETING_VERSION = 1.6.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = "Medo e Delírio";
 				SWIFT_EMIT_LOC_STRINGS = YES;
