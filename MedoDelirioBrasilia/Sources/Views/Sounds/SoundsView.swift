@@ -77,7 +77,7 @@ struct SoundsView: View {
                             }
                             
                             if UserSettings.getShowOffensiveSounds() == false, currentMode != .favorites {
-                                Text(Shared.contentFilterMessage)
+                                Text(Shared.contentFilterMessageForSounds)
                                     .font(.footnote)
                                     .foregroundColor(.gray)
                                     .multilineTextAlignment(.center)

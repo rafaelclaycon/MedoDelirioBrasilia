@@ -52,7 +52,7 @@ struct SongsView: View {
                     .padding(.top, 7)
                     
                     if UserSettings.getShowOffensiveSounds() == false {
-                        Text(Shared.contentFilterMessage)
+                        Text(Shared.contentFilterMessageForSongs)
                             .font(.footnote)
                             .foregroundColor(.gray)
                             .multilineTextAlignment(.center)
