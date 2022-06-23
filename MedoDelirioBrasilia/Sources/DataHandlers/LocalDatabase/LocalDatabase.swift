@@ -20,6 +20,7 @@ class LocalDatabase {
     var userShareLog = Table("userShareLog")
     var audienceSharingStatistic = Table("audienceSharingStatistic")
     var networkCallLog = Table("networkCallLog")
+    var userFolder = Table("userFolder")
     
     // MARK: - Setup
     
