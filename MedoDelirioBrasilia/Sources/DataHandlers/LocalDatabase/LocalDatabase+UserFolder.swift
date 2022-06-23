@@ -15,5 +15,11 @@ extension LocalDatabase {
         }
         return queriedFolders
     }
+    
+    func insert(contentId: String, intoUserFolder userFolderId: String) throws {
+        let folderContent = UserFolderContent(userFolderId: userFolderId, contentId: contentId)
+        let insert = try userFolderContent.insert(folderContent)
+        try db.run(insert)
+    }
 
 }

@@ -5,13 +5,16 @@ struct FolderCell: View {
     @State var symbol: String
     @State var title: String
     @State var backgroundColor: Color
+    @State var backgroundOpacity: Double = 1.0
+    @State var height: CGFloat = 90
     
     var body: some View {
         VStack {
             ZStack {
                 RoundedRectangle(cornerRadius: 20, style: .continuous)
                     .fill(backgroundColor)
-                    .frame(height: 90)
+                    .frame(height: height)
+                    .opacity(backgroundOpacity)
                 
                 Text(symbol)
                     .font(.system(size: 54))

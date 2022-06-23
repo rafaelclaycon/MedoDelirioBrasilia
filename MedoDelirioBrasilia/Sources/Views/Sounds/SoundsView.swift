@@ -9,6 +9,7 @@ struct SoundsView: View {
     @StateObject private var viewModel = SoundsViewViewModel()
     @State private var currentMode: Mode = .allSounds
     @State private var showingHelpScreen = false
+    @State private var showingAddToFolderModal = false
     @State private var searchText = ""
     @State private var scrollViewObject: ScrollViewProxy? = nil
     
@@ -203,11 +204,10 @@ struct SoundsView: View {
                 }
                 
                 Button("📁  Adicionar a Pasta") {
-                    guard let sound = viewModel.soundForConfirmationDialog else {
+                    guard viewModel.soundForConfirmationDialog != nil else {
                         return
                     }
-                    //viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
-                    print(sound.title)
+                    showingAddToFolderModal = true
                 }
                 
                 Button(SoundOptionsHelper.getSuggestOtherAuthorNameButtonTitle(authorId: viewModel.soundForConfirmationDialog?.authorId ?? .empty)) {
@@ -226,6 +226,9 @@ struct SoundsView: View {
             }
             .alert(isPresented: $viewModel.showAlert) {
                 Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
+            }
+            .sheet(isPresented: $showingAddToFolderModal) {
+                AddToFolderView(isBeingShown: $showingAddToFolderModal, selectedSoundName: viewModel.soundForConfirmationDialog!.title, selectedSoundId: viewModel.soundForConfirmationDialog!.id)
             }
         }
     }

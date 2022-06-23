@@ -21,6 +21,7 @@ class LocalDatabase {
     var audienceSharingStatistic = Table("audienceSharingStatistic")
     var networkCallLog = Table("networkCallLog")
     var userFolder = Table("userFolder")
+    var userFolderContent = Table("userFolderContent")
     
     // MARK: - Setup
     
@@ -56,7 +57,7 @@ extension LocalDatabase {
     }
     
     static func migrations() -> [Migration] {
-        return [InitialMigration(), AddNetworkCallLogTable()]
+        return [InitialMigration(), AddNetworkCallLogTable(), AddUserFolderTables()]
     }
 
 }

@@ -154,6 +154,8 @@ class SoundsViewViewModel: ObservableObject {
         return isSelectedSoundAlreadyAFavorite() ? "\(emoji)  Remover dos Favoritos" : "⭐️  Adicionar aos Favoritos"
     }
     
+    // MARK: - Other
+    
     func donateActivity() {
         self.currentActivity = UserActivityWaiter.getDonatableActivity(withType: Shared.playAndShareSoundsActivityTypeName, andTitle: "Tocar e compartilhar sons")
         self.currentActivity?.becomeCurrent()
