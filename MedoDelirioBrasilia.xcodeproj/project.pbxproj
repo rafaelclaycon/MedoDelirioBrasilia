@@ -44,7 +44,6 @@
 		D91107222863C7C5000B6F8F /* Heloisa Faissol - Cala a boca vai tomar no cu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D911071C2863C7C5000B6F8F /* Heloisa Faissol - Cala a boca vai tomar no cu.mp3 */; };
 		D91964E128563B680067B430 /* Queiroz - Eu sou um cara de negocios, eu faco dinheiro eu faco.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964DF28563B680067B430 /* Queiroz - Eu sou um cara de negocios, eu faco dinheiro eu faco.mp3 */; };
 		D91964E228563B680067B430 /* Bolsonaro - Esposa, ne, tem que aguentar, mas ta tudo bem.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964E028563B680067B430 /* Bolsonaro - Esposa, ne, tem que aguentar, mas ta tudo bem.mp3 */; };
-		D91964E4285641640067B430 /* Cristiano Botafogo - Presidente por que sua esposa Michele recebeu 89 mil de Fabricio Queiroz.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964E3285641640067B430 /* Cristiano Botafogo - Presidente por que sua esposa Michele recebeu 89 mil de Fabricio Queiroz.mp3 */; };
 		D91964E62856B7920067B430 /* Bolsonaro - Da um tapa na minha cara slap sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964E52856B7920067B430 /* Bolsonaro - Da um tapa na minha cara slap sound.mp3 */; };
 		D91964EA2856B97A0067B430 /* CASIMIRO - Amado ou amada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964E72856B97A0067B430 /* CASIMIRO - Amado ou amada.mp3 */; };
 		D91964EB2856B97A0067B430 /* Bolsonaro - Um jumento, um jumento.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964E82856B97A0067B430 /* Bolsonaro - Um jumento, um jumento.mp3 */; };
@@ -389,6 +388,7 @@
 		D9B4F73F283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B4F73D283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 */; };
 		D9B4F740283C8F4D0000EEF7 /* O roque ativa.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B4F73E283C8F4D0000EEF7 /* O roque ativa.mp3 */; };
 		D9B763282845B5E600CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B763272845B5E500CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift */; };
+		D9B878462864A327009CA7AD /* Frederico Goulart - Presidente por que sua esposa Michele recebeu 89 mil de Fabricio Queiroz.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B878452864A327009CA7AD /* Frederico Goulart - Presidente por que sua esposa Michele recebeu 89 mil de Fabricio Queiroz.mp3 */; };
 		D9BB9265285DAA8E005CD6DD /* BegForMoneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BB9264285DAA8E005CD6DD /* BegForMoneyView.swift */; };
 		D9BF9091284257F500BDDD7D /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF9090284257F500BDDD7D /* Shared.swift */; };
 		D9BF90972842D3CB00BDDD7D /* NoSoundsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF90962842D3CB00BDDD7D /* NoSoundsView.swift */; };
@@ -460,7 +460,6 @@
 		D911071C2863C7C5000B6F8F /* Heloisa Faissol - Cala a boca vai tomar no cu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Heloisa Faissol - Cala a boca vai tomar no cu.mp3"; sourceTree = "<group>"; };
 		D91964DF28563B680067B430 /* Queiroz - Eu sou um cara de negocios, eu faco dinheiro eu faco.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Queiroz - Eu sou um cara de negocios, eu faco dinheiro eu faco.mp3"; sourceTree = "<group>"; };
 		D91964E028563B680067B430 /* Bolsonaro - Esposa, ne, tem que aguentar, mas ta tudo bem.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Esposa, ne, tem que aguentar, mas ta tudo bem.mp3"; sourceTree = "<group>"; };
-		D91964E3285641640067B430 /* Cristiano Botafogo - Presidente por que sua esposa Michele recebeu 89 mil de Fabricio Queiroz.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano Botafogo - Presidente por que sua esposa Michele recebeu 89 mil de Fabricio Queiroz.mp3"; sourceTree = "<group>"; };
 		D91964E52856B7920067B430 /* Bolsonaro - Da um tapa na minha cara slap sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Da um tapa na minha cara slap sound.mp3"; sourceTree = "<group>"; };
 		D91964E72856B97A0067B430 /* CASIMIRO - Amado ou amada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "CASIMIRO - Amado ou amada.mp3"; sourceTree = "<group>"; };
 		D91964E82856B97A0067B430 /* Bolsonaro - Um jumento, um jumento.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Um jumento, um jumento.mp3"; sourceTree = "<group>"; };
@@ -808,6 +807,7 @@
 		D9B4F73D283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Unidos do Medo e Delírio.mp3"; sourceTree = "<group>"; };
 		D9B4F73E283C8F4D0000EEF7 /* O roque ativa.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O roque ativa.mp3"; sourceTree = "<group>"; };
 		D9B763272845B5E500CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKStoreReviewController+requestReviewInCurrentScene.swift"; sourceTree = "<group>"; };
+		D9B878452864A327009CA7AD /* Frederico Goulart - Presidente por que sua esposa Michele recebeu 89 mil de Fabricio Queiroz.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Frederico Goulart - Presidente por que sua esposa Michele recebeu 89 mil de Fabricio Queiroz.mp3"; sourceTree = "<group>"; };
 		D9BB9264285DAA8E005CD6DD /* BegForMoneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BegForMoneyView.swift; sourceTree = "<group>"; };
 		D9BF9090284257F500BDDD7D /* Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shared.swift; sourceTree = "<group>"; };
 		D9BF90962842D3CB00BDDD7D /* NoSoundsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSoundsView.swift; sourceTree = "<group>"; };
@@ -853,6 +853,7 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9B878452864A327009CA7AD /* Frederico Goulart - Presidente por que sua esposa Michele recebeu 89 mil de Fabricio Queiroz.mp3 */,
 				D91107182863C7C5000B6F8F /* Alanzoka - Sai, maluco, todo dia isso.mp3 */,
 				D91107192863C7C5000B6F8F /* Bolsonaro - Globo cala a boca catolico.mp3 */,
 				D911071C2863C7C5000B6F8F /* Heloisa Faissol - Cala a boca vai tomar no cu.mp3 */,
@@ -917,7 +918,6 @@
 				D91964E92856B97A0067B430 /* BREAKING BAD - Yeah Science meme.mp3 */,
 				D91964E72856B97A0067B430 /* CASIMIRO - Amado ou amada.mp3 */,
 				D91964E52856B7920067B430 /* Bolsonaro - Da um tapa na minha cara slap sound.mp3 */,
-				D91964E3285641640067B430 /* Cristiano Botafogo - Presidente por que sua esposa Michele recebeu 89 mil de Fabricio Queiroz.mp3 */,
 				D91964E028563B680067B430 /* Bolsonaro - Esposa, ne, tem que aguentar, mas ta tudo bem.mp3 */,
 				D91964DF28563B680067B430 /* Queiroz - Eu sou um cara de negocios, eu faco dinheiro eu faco.mp3 */,
 				D927C42128523FAC0041970A /* Xuxa - Aham Claudia Senta la short meme.mp3 */,
@@ -1710,7 +1710,6 @@
 				D955697E285137800072E3FC /* COMUNISTA MEME.mp3 in Resources */,
 				D95569DB285137800072E3FC /* Bolsonaro - Lamento, quer que eu faca o que.mp3 in Resources */,
 				D955691D285137800072E3FC /* Pazuello - Que que ce vai fazer nada.mp3 in Resources */,
-				D91964E4285641640067B430 /* Cristiano Botafogo - Presidente por que sua esposa Michele recebeu 89 mil de Fabricio Queiroz.mp3 in Resources */,
 				D9376C12285B7510001216DC /* Cocorico - Ah coitado.mp3 in Resources */,
 				D9556983285137800072E3FC /* Silas Malafaia - gente que vive tanto na mentira que faz dela a sua verdade.mp3 in Resources */,
 				D90483F32851B0F500885739 /* MAICON KISTER - Isso foi especifico demais.mp3 in Resources */,
@@ -1926,6 +1925,7 @@
 				D9556927285137800072E3FC /* um_bosta_ciro.mp3 in Resources */,
 				D94611702861311E00C4FB7E /* Damares - A princesa do Frozen vai voltar pra acordar a Bela Adormecida com um beijo gay.mp3 in Resources */,
 				D95569CA285137800072E3FC /* Falha de Cobertura - Cerginho da Pereira Nunes - Doidera.mp3 in Resources */,
+				D9B878462864A327009CA7AD /* Frederico Goulart - Presidente por que sua esposa Michele recebeu 89 mil de Fabricio Queiroz.mp3 in Resources */,
 				D95569C3285137800072E3FC /* PORTA_DOS_FUNDOS_BALBURDIA_Bom_dia,_turma,_todo_mundo_tirando_a.mp3 in Resources */,
 				D95569BD285137800072E3FC /* Feiticeira - Nao e feiticaria, e tecnologia meme short.mp3 in Resources */,
 				D980455C28380EFE003B2E83 /* Localizable.strings in Resources */,
