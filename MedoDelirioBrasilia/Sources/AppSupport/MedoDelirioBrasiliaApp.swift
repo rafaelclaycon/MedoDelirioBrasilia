@@ -7,8 +7,8 @@ let podium = Podium(database: database, networkRabbit: networkRabbit)
 
 //let soundsLastUpdateDate: String = "22/06/2022"
 //let songsLastUpdateDate: String = "22/06/2022"
-let soundsLastUpdateDate: String = "2022-06-19T01:00:00+0000"
-let songsLastUpdateDate: String = "2022-05-23T01:00:00+0000"
+let soundsLastUpdateDate: String = "2022-06-22T01:00:00+0000"
+let songsLastUpdateDate: String = "2022-06-22T01:00:00+0000"
 
 @main
 struct MedoDelirioBrasiliaApp: App {
