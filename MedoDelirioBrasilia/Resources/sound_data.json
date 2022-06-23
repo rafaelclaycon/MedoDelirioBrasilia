@@ -2788,5 +2788,68 @@
         "filename": "Damares - Uau.mp3",
         "dateAdded": "2022-06-20T00:00:00Z",
         "isOffensive": true
+    },
+    {
+        "id": "E0628DCD-96D5-4902-8A7A-9098FF64BC25",
+        "title": "Cruel, muito cruel",
+        "authorId": "BD4FBAD4-24D6-4D0A-A7CF-96CA68C0B22E",
+        "description": "Cruel, muito cruel",
+        "filename": "Januario de Oliveira - Cruel, muito cruel.mp3",
+        "dateAdded": "2022-06-22T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "4D5E60E6-08E1-456A-B274-B31A1E9C696E",
+        "title": "Infelizmente",
+        "authorId": "C159C27D-3CCD-4622-8716-35162B89AB9F",
+        "description": "Infelizmente",
+        "filename": "UOL - Luiz Fux - Infelizmente short meme.mp3",
+        "dateAdded": "2022-06-22T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "200CD082-E179-411E-A05B-2072087971EC",
+        "title": "Bom dia a todos, menos pra primeira dama",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Bom dia a todos menos pra primeira dama",
+        "filename": "TV BRASIL - Bolsonaro - Bom dia a todos, menos pra primeira dama.mp3",
+        "dateAdded": "2022-06-22T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "1C76E43A-D9EC-4DBD-A1CA-34999E82D294",
+        "title": "Cala a boca! Eu sou católico",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Essa Globo é uma merda de imprensa cês são uns canalhas eu sou católico",
+        "filename": "Bolsonaro - Globo cala a boca catolico.mp3",
+        "dateAdded": "2022-06-22T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "72ABCBCA-3519-4A41-9A12-A3A02CCAB6FB",
+        "title": "Sai, maluco, todo dia isso",
+        "authorId": "AE8E527E-23D5-41FF-9A8D-140A2A28A275",
+        "description": "Sai maluco todo dia isso",
+        "filename": "Alanzoka - Sai, maluco, todo dia isso.mp3",
+        "dateAdded": "2022-06-22T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "29CB5967-5412-413C-B880-46EB5ACCD38E",
+        "title": "Ele é burro!",
+        "authorId": "54AD2984-8D05-44CD-B4A7-72325B59E947",
+        "description": "Ele e burro",
+        "filename": "Kajuru - Ele e burro short meme.mp3",
+        "dateAdded": "2022-06-22T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "A688611D-10D1-4322-978A-025ACC9E1A23",
+        "title": "Cala a boca, vai tomar no cu",
+        "authorId": "0D45331A-889B-4A19-8B5F-1936F5F5534D",
+        "description": "Cala a boca vai tomar no cu",
+        "filename": "Heloisa Faissol - Cala a boca vai tomar no cu.mp3",
+        "dateAdded": "2022-06-22T00:00:00Z",
+        "isOffensive": true
     }
 ]
