@@ -50,5 +50,11 @@ class FolderDetailViewViewModel: ObservableObject {
         alertMessage = Shared.soundNotFoundAlertMessage
         showAlert = true
     }
+    
+    func showPodcastDeletionConfirmation(podcastTitle: String) {
+        alertTitle = String(format: "", podcastTitle)
+        alertMessage = LocalizableStrings.MainView.ErrorMessages.podcastDeletionConfirmationMessage
+        showAlert = true
+    }
 
 }
