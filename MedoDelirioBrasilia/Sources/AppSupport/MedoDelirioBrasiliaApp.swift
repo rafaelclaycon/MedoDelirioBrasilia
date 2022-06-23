@@ -54,7 +54,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             return
         }
         
-        let info = ClientDeviceInfo(installId: UIDevice.current.identifierForVendor?.uuidString ?? "", modelName: UIDevice.modelName)
+        let info = ClientDeviceInfo(installId: UIDevice.current.identifierForVendor?.uuidString ?? .empty, modelName: UIDevice.modelName)
         networkRabbit.post(clientDeviceInfo: info) { success, error in
             if let success = success, success {
                 UserSettings.setHasSentDeviceModelToServer(to: true)
@@ -77,9 +77,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             return
         }
         
-        let signal = StillAliveSignal(systemName: UIDevice.current.systemName,
+        let signal = StillAliveSignal(installId: UIDevice.current.identifierForVendor?.uuidString ?? .empty,
+                                      systemName: UIDevice.current.systemName,
                                       systemVersion: UIDevice.current.systemVersion,
-                                      currentTimeZone: TimeZone.current.abbreviation() ?? "",
+                                      isiOSAppOnMac: ProcessInfo.processInfo.isiOSAppOnMac,
+                                      currentTimeZone: TimeZone.current.abbreviation() ?? .empty,
                                       dateTime: Date.now)
         networkRabbit.post(signal: signal) { success, error in
             if success {
