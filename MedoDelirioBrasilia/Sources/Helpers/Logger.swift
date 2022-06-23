@@ -31,6 +31,13 @@ class Logger {
         return items
     }
     
+    static func getUniqueBundleIdsForServer() -> [ServerShareBundleIdLog]? {
+        guard let items = try? database.getUniqueBundleIdsThatWereSharedTo(), items.count > 0 else {
+            return nil
+        }
+        return items
+    }
+    
     static func logNetworkCall(callType: Int,
                                requestUrl: String,
                                requestBody: String?,

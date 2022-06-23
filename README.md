@@ -2,7 +2,7 @@
 
 ![Medo e Delírio em Brasília written over a bright yellow and green background calling back to the Brazilian flag.](MedoDelirioBrasilia/Resources/readme_logo.png)
 
-iOS app with sound inserts from [Medo e Delírio em Brasília](https://medoedelirioembrasilia.com.br), a Brazilian podcast chronicling the disastrous Bolsonaro presidency by Pedro Daltro and Cristiano Botafogo.
+iOS app with sound inserts from [Medo e Delírio em Brasília](https://medoedelirioembrasilia.com.br), a Brazilian podcast chronicling the disastrous Bolsonaro presidency by Pedro Daltro and Cristiano Botafogo. 🌟 Star this repo! ⬆️
 
 ![The app running on an iPhone simulator on a Mac.](MedoDelirioBrasilia/Resources/readme_demo.gif)
 
