@@ -394,6 +394,7 @@
 		D9943F2628641FEF002C6B97 /* AddToFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F2528641FEF002C6B97 /* AddToFolderView.swift */; };
 		D9943F2828642200002C6B97 /* AddToFolderViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F2728642200002C6B97 /* AddToFolderViewViewModel.swift */; };
 		D9943F2A28642EC3002C6B97 /* UserFolderContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F2928642EC3002C6B97 /* UserFolderContent.swift */; };
+		D9943F2C28643317002C6B97 /* FolderDetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F2B28643317002C6B97 /* FolderDetailViewViewModel.swift */; };
 		D998F28F284F177B0013E709 /* TrendsDisabledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998F28E284F177B0013E709 /* TrendsDisabledView.swift */; };
 		D99B9DCA2848148600897930 /* ServerStatsAndLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99B9DC92848148600897930 /* ServerStatsAndLogs.swift */; };
 		D99DC19D28423AD7002B03B6 /* AuthorDetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99DC19C28423AD7002B03B6 /* AuthorDetailViewViewModel.swift */; };
@@ -828,6 +829,7 @@
 		D9943F2528641FEF002C6B97 /* AddToFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToFolderView.swift; sourceTree = "<group>"; };
 		D9943F2728642200002C6B97 /* AddToFolderViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToFolderViewViewModel.swift; sourceTree = "<group>"; };
 		D9943F2928642EC3002C6B97 /* UserFolderContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFolderContent.swift; sourceTree = "<group>"; };
+		D9943F2B28643317002C6B97 /* FolderDetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetailViewViewModel.swift; sourceTree = "<group>"; };
 		D998F28E284F177B0013E709 /* TrendsDisabledView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsDisabledView.swift; sourceTree = "<group>"; };
 		D99B9DC92848148600897930 /* ServerStatsAndLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerStatsAndLogs.swift; sourceTree = "<group>"; };
 		D99DC19C28423AD7002B03B6 /* AuthorDetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorDetailViewViewModel.swift; sourceTree = "<group>"; };
@@ -1506,6 +1508,7 @@
 			children = (
 				D946117F2861480A00C4FB7E /* AddNewFolderView.swift */,
 				D9943F162863DAE1002C6B97 /* FolderDetailView.swift */,
+				D9943F2B28643317002C6B97 /* FolderDetailViewViewModel.swift */,
 				D946116D28611F1000C4FB7E /* FolderCell.swift */,
 				D9943F2528641FEF002C6B97 /* AddToFolderView.swift */,
 				D9943F2728642200002C6B97 /* AddToFolderViewViewModel.swift */,
@@ -2041,6 +2044,7 @@
 				D99B9DCA2848148600897930 /* ServerStatsAndLogs.swift in Sources */,
 				D9758C3828616E650094D388 /* FolderColor.swift in Sources */,
 				D960AF292845C82E00ADF1F6 /* AppStoreReviewSteward.swift in Sources */,
+				D9943F2C28643317002C6B97 /* FolderDetailViewViewModel.swift in Sources */,
 				D92C0CA82840162F009CF19A /* ContentSortOption.swift in Sources */,
 				D958B1B028394EA40010F133 /* TrendsView.swift in Sources */,
 				D92C0CAE284076CD009CF19A /* UIApplication+KeyWindow.swift in Sources */,

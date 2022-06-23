@@ -2,13 +2,34 @@ import SwiftUI
 
 struct FolderDetailView: View {
 
+    @StateObject var viewModel = FolderDetailViewViewModel()
     @State var folder: UserFolder
+    
+    private let columns = [
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
     
     var body: some View {
         VStack {
-            Text("Content")
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 14) {
+                    ForEach(viewModel.sounds) { sound in
+                        SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", favorites: .constant(Set<String>()))
+                            .onTapGesture {
+                                viewModel.playSound(fromPath: sound.filename)
+                            }
+//                            .onLongPressGesture {
+//                                viewModel.soundForConfirmationDialog = sound
+//                                viewModel.showConfirmationDialog = true
+//                            }
+                    }
+                }
+                .padding(.horizontal)
+                .padding(.top, 7)
+            }
         }
-        .navigationTitle("\(folder.symbol) \(folder.title)")
+        .navigationTitle("\(folder.symbol)  \(folder.title)")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarItems(trailing:
             Menu {
@@ -30,6 +51,9 @@ struct FolderDetailView: View {
                 Image(systemName: "ellipsis.circle")
             }
         )
+        .onAppear {
+            viewModel.reloadSoundList(withSoundIds: try? database.getAllSoundIdsInsideUserFolder(withId: folder.id))
+        }
     }
 
 }
