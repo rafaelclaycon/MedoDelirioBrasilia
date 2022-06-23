@@ -4,6 +4,7 @@ struct CollectionsView: View {
 
     @StateObject private var viewModel = CollectionsViewViewModel()
     @State var showingAddNewFolderView = false
+    @State var folderForEditingOnSheet: UserFolder? = nil
     
     let rows = [
         GridItem(.flexible()),
@@ -59,6 +60,7 @@ struct CollectionsView: View {
                             .onChange(of: showingAddNewFolderView) { newValue in
                                 if newValue == false {
                                     viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
+                                    folderForEditingOnSheet = nil
                                 }
                             }
                         }
@@ -72,6 +74,23 @@ struct CollectionsView: View {
                                         FolderCell(symbol: folder.symbol, title: folder.title, backgroundColor: folder.backgroundColor.toColor())
                                     }
                                     .foregroundColor(.primary)
+                                    .contextMenu {
+                                        Button(action: {
+                                            folderForEditingOnSheet = folder
+                                            showingAddNewFolderView = true
+                                        }) {
+                                            Label("Editar Pasta", systemImage: "pencil")
+                                        }
+                                        
+                                        Button(role: .destructive, action: {
+                                            //viewModel.dummyCall()
+                                        }, label: {
+                                            HStack {
+                                                Text("Apagar Pasta")
+                                                Image(systemName: "trash")
+                                            }
+                                        })
+                                    }
                                 }
                             }
                         } else {
@@ -98,7 +117,11 @@ struct CollectionsView: View {
                 }
                 .navigationTitle("Coleções")
                 .sheet(isPresented: $showingAddNewFolderView) {
-                    AddNewFolderView(isBeingShown: $showingAddNewFolderView)
+                    if let folder = folderForEditingOnSheet {
+                        AddNewFolderView(isBeingShown: $showingAddNewFolderView, symbol: folder.symbol, folderName: folder.title, backgroundColor: folder.backgroundColor.toColor(), isEditing: true)
+                    } else {
+                        AddNewFolderView(isBeingShown: $showingAddNewFolderView)
+                    }
                 }
                 .onAppear {
                     viewModel.reloadCollectionList(withCollections: getLocalCollections())

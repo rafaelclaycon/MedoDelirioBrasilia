@@ -36,7 +36,7 @@ struct FolderDetailView: View {
                 Button(action: {
                     //viewModel.toggleEpisodeListSorting()
                 }) {
-                    Label("Editar Símbolo e Nome", systemImage: "pencil")
+                    Label("Editar Pasta", systemImage: "pencil")
                 }
                 
                 Button(role: .destructive, action: {

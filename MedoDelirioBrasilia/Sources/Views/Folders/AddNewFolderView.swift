@@ -6,6 +6,7 @@ struct AddNewFolderView: View {
     @State var symbol: String = ""
     @State var folderName: String = ""
     @State var backgroundColor: Color = .pastelBabyBlue
+    @State var isEditing: Bool = false
     
     let colors: [FolderColor] = [FolderColor(color: .pastelPurple), FolderColor(color: .pastelBabyBlue),
                                  FolderColor(color: .pastelBrightGreen), FolderColor(color: .pastelYellow),
@@ -77,7 +78,7 @@ struct AddNewFolderView: View {
                     .padding(.trailing)
                 }
             }
-            .navigationTitle("Nova Pasta")
+            .navigationTitle(isEditing ? "Editar Pasta" : "Nova Pasta")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(leading:
                 Button(action: {
@@ -90,7 +91,7 @@ struct AddNewFolderView: View {
                     try? database.insert(userFolder: UserFolder(symbol: symbol, title: folderName, backgroundColor: backgroundColor.name ?? .empty))
                     self.isBeingShown = false
                 }) {
-                    Text("Criar")
+                    Text(isEditing ? "Salvar" : "Criar")
                         .bold()
                 }
             )
