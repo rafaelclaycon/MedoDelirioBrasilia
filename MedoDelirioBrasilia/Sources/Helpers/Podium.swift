@@ -93,13 +93,25 @@ class Podium {
             
             // Send them
             stats.forEach { stat in
-                self.networkRabbit.post(shareCountStat: stat) { wasSuccessful, _ in
-                    guard wasSuccessful else {
-                        return completionHandler(.failed, "Sending of \(stat) failed.")
+                self.networkRabbit.post(shareCountStat: stat) { wasSuccessful, errorString in
+                    if wasSuccessful == false {
+                        print("Sending of \(stat) failed: \(errorString)")
                     }
                 }
             }
             
+            // Send bundles IDs as well
+            if let bundleIdLogs = Logger.getUniqueBundleIdsForServer() {
+                bundleIdLogs.forEach { log in
+                    self.networkRabbit.post(bundleIdLog: log) { wasSuccessful, _ in
+                        guard wasSuccessful else {
+                            return completionHandler(.failed, "Sending of \(log) failed.")
+                        }
+                    }
+                }
+            }
+            
+            // Marking them as sent guarantees we won't send them again
             try? self.database.markAllUserShareLogsAsSentToServer()
             
             completionHandler(.successful, "")

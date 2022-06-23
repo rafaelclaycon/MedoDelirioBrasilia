@@ -2,9 +2,12 @@ import SwiftUI
 
 struct DiagnosticsView: View {
 
-    @State var showAlert = false
-    @State var alertTitle = ""
+    @State var showServerConnectionTestAlert = false
+    @State var serverConnectionTestAlertTitle = ""
+    
     @State var installId = UIDevice.current.identifierForVendor?.uuidString ?? ""
+    @State var showInstallIdCopiedAlert = false
+    
     @State var shareLogs: [UserShareLog]?
     @State var networkLogs: [NetworkCallLog]?
     
@@ -13,12 +16,12 @@ struct DiagnosticsView: View {
             Section {
                 Button("Testar conexão com o servidor") {
                     networkRabbit.checkServerStatus { _, response in
-                        alertTitle = response
-                        showAlert = true
+                        serverConnectionTestAlertTitle = response
+                        showServerConnectionTestAlert = true
                     }
                 }
-                .alert(isPresented: $showAlert) {
-                    Alert(title: Text(alertTitle), dismissButton: .default(Text("OK")))
+                .alert(isPresented: $showServerConnectionTestAlert) {
+                    Alert(title: Text(serverConnectionTestAlertTitle), dismissButton: .default(Text("OK")))
                 }
             }
             
@@ -27,6 +30,10 @@ struct DiagnosticsView: View {
                     .font(.monospaced(.subheadline)())
                     .onTapGesture {
                         UIPasteboard.general.string = installId
+                        showInstallIdCopiedAlert = true
+                    }
+                    .alert(isPresented: $showInstallIdCopiedAlert) {
+                        Alert(title: Text("ID copiado com sucesso!"), dismissButton: .default(Text("OK")))
                     }
             } header: {
                 Text("ID da instalação")

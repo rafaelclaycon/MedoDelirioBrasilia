@@ -32,6 +32,7 @@ struct ServerShareDestinationStat: Hashable, Codable {
 /// Sent to the server. Goal: understand usage trends.
 struct ServerShareBundleIdLog: Hashable, Codable {
 
-    var bundleIds: [String]
+    var bundleId: String
+    var count: Int
 
 }
