@@ -24,5 +24,9 @@ class NetworkRabbitStub: NetworkRabbitProtocol {
     func post(clientDeviceInfo: ClientDeviceInfo, completionHandler: @escaping (Bool?, NetworkRabbitError?) -> Void) {
         completionHandler(nil, nil)
     }
+    
+    func post(bundleIdLog: ServerShareBundleIdLog, completionHandler: @escaping (Bool, String) -> Void) {
+        completionHandler(false, "")
+    }
 
 }
