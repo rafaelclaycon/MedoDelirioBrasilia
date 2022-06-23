@@ -18,69 +18,78 @@ struct AddNewFolderView: View {
     ]
     
     var body: some View {
-        VStack {
-            HStack {
+        NavigationView {
+            VStack {
+                Spacer()
+                
+                ZStack {
+                    RoundedRectangle(cornerRadius: 20, style: .continuous)
+                        .fill(Color.pastelBabyBlue)
+                        .frame(width: 180, height: 100)
+                    
+                    HStack {
+                        Spacer()
+                        
+                        TextField("", text: $symbol)
+                            .font(.system(size: 50))
+                            .padding(.horizontal)
+                            .multilineTextAlignment(.center)
+                        
+                        Spacer()
+                    }
+                }
+                
+                Text("Digite um emoji no retângulo acima para representar a pasta.")
+                    .foregroundColor(.gray)
+                    .multilineTextAlignment(.center)
+                    .padding()
+                
+                VStack {
+                    TextField("Nome da pasta", text: $folderName)
+                        .textFieldStyle(.roundedBorder)
+                    
+                    HStack {
+                        Spacer()
+                        
+                        Text("\(folderName.count)/25")
+                            .font(.footnote)
+                            .foregroundColor(.gray)
+                    }
+                }
+                .padding(.horizontal)
+                
+                Spacer()
+                
+                ScrollView(.horizontal, showsIndicators: true) {
+                    LazyHGrid(rows: rows, spacing: 14) {
+                        ForEach(colors) { folderColor in
+                            Circle()
+                                .fill(folderColor.color)
+                                .frame(width: 40, height: 40)
+                        }
+                    }
+                    .frame(height: 70)
+                    .padding(.leading)
+                    .padding(.trailing)
+                }
+            }
+            .navigationTitle("Nova Pasta")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarItems(leading:
                 Button(action: {
                     self.isBeingShown = false
                 }) {
                     Text("Cancelar")
                 }
-                
-                Spacer()
-                
+            , trailing:
                 Button(action: {
                     try? database.insert(userFolder: UserFolder(symbol: symbol, title: folderName, backgroundColor: Color.pastelBabyBlue.name ?? .empty))
                     self.isBeingShown = false
                 }) {
-                    Text("OK")
+                    Text("Criar")
                         .bold()
                 }
-            }
-            .padding()
-            
-            ZStack {
-                RoundedRectangle(cornerRadius: 20, style: .continuous)
-                    .fill(Color.pastelBabyBlue)
-                    .frame(width: 180, height: 100)
-                
-                HStack {
-                    Spacer()
-                    
-                    TextField("", text: $symbol)
-                        .font(.system(size: 50))
-                        .padding(.horizontal)
-                        .multilineTextAlignment(.center)
-                    
-                    Spacer()
-                }
-            }
-            
-            VStack {
-                TextField("Nome da pasta", text: $folderName)
-                    .textFieldStyle(.roundedBorder)
-                
-                HStack {
-                    Spacer()
-                    
-                    Text("\(folderName.count)/25")
-                        .font(.footnote)
-                        .foregroundColor(.gray)
-                }
-            }
-            .padding()
-            
-            Spacer()
-            
-            ScrollView(.horizontal, showsIndicators: true) {
-                LazyHGrid(rows: rows, spacing: 14) {
-                    ForEach(colors) { folderColor in
-                        Circle()
-                            .fill(folderColor.color)
-                            .frame(width: 40, height: 40)
-                    }
-                }
-                .frame(height: 70)
-            }
+            )
         }
     }
 

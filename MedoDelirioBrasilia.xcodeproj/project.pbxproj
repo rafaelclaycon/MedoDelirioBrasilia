@@ -377,6 +377,7 @@
 		D98EC5E12825A05900340BE5 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5E02825A05900340BE5 /* Sound.swift */; };
 		D98EC5E32825A45000340BE5 /* SoundsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5E22825A45000340BE5 /* SoundsViewViewModel.swift */; };
 		D991E598284A94F70005705F /* Podium.swift in Sources */ = {isa = PBXBuildFile; fileRef = D991E597284A94F70005705F /* Podium.swift */; };
+		D9943F172863DAE1002C6B97 /* FolderDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F162863DAE1002C6B97 /* FolderDetailView.swift */; };
 		D998F28F284F177B0013E709 /* TrendsDisabledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998F28E284F177B0013E709 /* TrendsDisabledView.swift */; };
 		D99B9DCA2848148600897930 /* ServerStatsAndLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99B9DC92848148600897930 /* ServerStatsAndLogs.swift */; };
 		D99DC19D28423AD7002B03B6 /* AuthorDetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99DC19C28423AD7002B03B6 /* AuthorDetailViewViewModel.swift */; };
@@ -796,6 +797,7 @@
 		D98EC5E02825A05900340BE5 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		D98EC5E22825A45000340BE5 /* SoundsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsViewViewModel.swift; sourceTree = "<group>"; };
 		D991E597284A94F70005705F /* Podium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Podium.swift; sourceTree = "<group>"; };
+		D9943F162863DAE1002C6B97 /* FolderDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetailView.swift; sourceTree = "<group>"; };
 		D998F28E284F177B0013E709 /* TrendsDisabledView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsDisabledView.swift; sourceTree = "<group>"; };
 		D99B9DC92848148600897930 /* ServerStatsAndLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerStatsAndLogs.swift; sourceTree = "<group>"; };
 		D99DC19C28423AD7002B03B6 /* AuthorDetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorDetailViewViewModel.swift; sourceTree = "<group>"; };
@@ -1528,6 +1530,7 @@
 				D91107122863B486000B6F8F /* Cells */,
 				D946117F2861480A00C4FB7E /* AddNewFolderView.swift */,
 				D946117D28613D3200C4FB7E /* CollectionDetailView.swift */,
+				D9943F162863DAE1002C6B97 /* FolderDetailView.swift */,
 			);
 			path = Collections;
 			sourceTree = "<group>";
@@ -2024,6 +2027,7 @@
 				D961D025283731AA00EFEDEB /* SoundHelpView.swift in Sources */,
 				D96E115D28459D8800306859 /* UserActivityWaiter.swift in Sources */,
 				D9351C5C2844094E00D4317E /* TopChartItem.swift in Sources */,
+				D9943F172863DAE1002C6B97 /* FolderDetailView.swift in Sources */,
 				D98EC5E12825A05900340BE5 /* Sound.swift in Sources */,
 				D9461182286159BC00C4FB7E /* UserFolder.swift in Sources */,
 				D9FA0CD728508590000F6ADE /* UIDevice+ModelName.swift in Sources */,

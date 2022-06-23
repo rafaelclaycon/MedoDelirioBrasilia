@@ -7,6 +7,8 @@ struct CollectionsView: View {
     @State var showingAddNewFolderView = false
     @State var showingCollectionDetailView = false
     
+    @State var showingFolderDetailView = false
+    
     let rows = [
         GridItem(.flexible()),
         GridItem(.flexible())
@@ -69,7 +71,12 @@ struct CollectionsView: View {
                         if viewModel.hasFoldersToDisplay {
                             LazyVGrid(columns: columns, spacing: 14) {
                                 ForEach(viewModel.folders) { folder in
-                                    FolderCell(symbol: folder.symbol, title: folder.title, backgroundColor: folder.backgroundColor.toColor())
+                                    NavigationLink {
+                                        FolderDetailView(folder: folder)
+                                    } label: {
+                                        FolderCell(symbol: folder.symbol, title: folder.title, backgroundColor: folder.backgroundColor.toColor())
+                                    }
+                                    .foregroundColor(.primary)
                                 }
                             }
                         } else {
