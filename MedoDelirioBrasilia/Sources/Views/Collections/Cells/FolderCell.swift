@@ -21,11 +21,13 @@ struct FolderCell: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Text(title)
                         .font(.headline)
+                        .multilineTextAlignment(.leading)
+                        .lineLimit(2)
                 }
                 
                 Spacer()
             }
-            .padding(.leading, 20)
+            .padding(.leading, 15)
         }
     }
 

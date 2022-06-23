@@ -108,6 +108,7 @@ struct CollectionsView: View {
                 .onAppear {
                     viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
                 }
+                .padding(.bottom)
             }
         }
     }

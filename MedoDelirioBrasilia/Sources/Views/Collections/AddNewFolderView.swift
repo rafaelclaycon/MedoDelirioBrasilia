@@ -5,6 +5,7 @@ struct AddNewFolderView: View {
     @Binding var isBeingShown: Bool
     @State var symbol: String = ""
     @State var folderName: String = ""
+    @State var backgroundColor: Color = .pastelBabyBlue
     
     let colors: [FolderColor] = [FolderColor(color: .pastelPurple), FolderColor(color: .pastelBabyBlue),
                                  FolderColor(color: .pastelBrightGreen), FolderColor(color: .pastelYellow),
@@ -24,7 +25,7 @@ struct AddNewFolderView: View {
                 
                 ZStack {
                     RoundedRectangle(cornerRadius: 20, style: .continuous)
-                        .fill(Color.pastelBabyBlue)
+                        .fill(backgroundColor)
                         .frame(width: 180, height: 100)
                     
                     HStack {
@@ -66,6 +67,9 @@ struct AddNewFolderView: View {
                             Circle()
                                 .fill(folderColor.color)
                                 .frame(width: 40, height: 40)
+                                .onTapGesture {
+                                    backgroundColor = folderColor.color
+                                }
                         }
                     }
                     .frame(height: 70)
@@ -83,7 +87,7 @@ struct AddNewFolderView: View {
                 }
             , trailing:
                 Button(action: {
-                    try? database.insert(userFolder: UserFolder(symbol: symbol, title: folderName, backgroundColor: Color.pastelBabyBlue.name ?? .empty))
+                    try? database.insert(userFolder: UserFolder(symbol: symbol, title: folderName, backgroundColor: backgroundColor.name ?? .empty))
                     self.isBeingShown = false
                 }) {
                     Text("Criar")
