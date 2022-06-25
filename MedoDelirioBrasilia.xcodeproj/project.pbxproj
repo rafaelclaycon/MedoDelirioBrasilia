@@ -366,6 +366,7 @@
 		D9758C3A28617BA70094D388 /* AddUserFolderTables.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9758C3928617BA70094D388 /* AddUserFolderTables.swift */; };
 		D9758C3C28617C980094D388 /* LocalDatabase+UserFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9758C3B28617C980094D388 /* LocalDatabase+UserFolder.swift */; };
 		D9758C3E28617DAC0094D388 /* Color+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9758C3D28617DAC0094D388 /* Color+Name.swift */; };
+		D976FF3828674BAC00998E1B /* FoldersBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D976FF3728674BAC00998E1B /* FoldersBannerView.swift */; };
 		D980455C28380EFE003B2E83 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D980455E28380EFE003B2E83 /* Localizable.strings */; };
 		D980456228380F66003B2E83 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D980456128380F66003B2E83 /* LocalizableStrings.swift */; };
 		D982DCF9285BD358003C8695 /* CASIMIRO - Ta maluco.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D982DCF8285BD358003C8695 /* CASIMIRO - Ta maluco.mp3 */; };
@@ -818,6 +819,7 @@
 		D9758C3928617BA70094D388 /* AddUserFolderTables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserFolderTables.swift; sourceTree = "<group>"; };
 		D9758C3B28617C980094D388 /* LocalDatabase+UserFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+UserFolder.swift"; sourceTree = "<group>"; };
 		D9758C3D28617DAC0094D388 /* Color+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Name.swift"; sourceTree = "<group>"; };
+		D976FF3728674BAC00998E1B /* FoldersBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersBannerView.swift; sourceTree = "<group>"; };
 		D980455D28380EFE003B2E83 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D980455F28380F05003B2E83 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D980456128380F66003B2E83 /* LocalizableStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
@@ -1476,9 +1478,18 @@
 				D9943F2428641FB7002C6B97 /* Folders */,
 				D92E7073283C5D9E0035826C /* Songs */,
 				D9BF90BC2842EAB100BDDD7D /* Trends */,
+				D976FF3628674B9100998E1B /* Banners */,
 				D957509728446BEC0094AEA6 /* Settings */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		D976FF3628674B9100998E1B /* Banners */ = {
+			isa = PBXGroup;
+			children = (
+				D976FF3728674BAC00998E1B /* FoldersBannerView.swift */,
+			);
+			path = Banners;
 			sourceTree = "<group>";
 		};
 		D980456028380F45003B2E83 /* AppSupport */ = {
@@ -2112,6 +2123,7 @@
 				D91107112863B481000B6F8F /* CollectionsViewViewModel.swift in Sources */,
 				D98622E0283FC57100E9F630 /* AuthorDetailView.swift in Sources */,
 				D92E7067283C51D20035826C /* Song.swift in Sources */,
+				D976FF3828674BAC00998E1B /* FoldersBannerView.swift in Sources */,
 				D9A8AB2A28544FAE00B5A94B /* NetworkCallLog.swift in Sources */,
 				D99B9DCA2848148600897930 /* ServerStatsAndLogs.swift in Sources */,
 				D9758C3828616E650094D388 /* FolderColor.swift in Sources */,

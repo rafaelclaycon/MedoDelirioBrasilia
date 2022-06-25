@@ -12,6 +12,7 @@ struct SoundsView: View {
     @State private var showingAddToFolderModal = false
     @State private var searchText = ""
     @State private var scrollViewObject: ScrollViewProxy? = nil
+    @State private var shouldDisplayFolderBanner: Bool = false
     
     let columns = [
         GridItem(.flexible()),
@@ -57,6 +58,12 @@ struct SoundsView: View {
                 } else {
                     ScrollViewReader { scrollView in
                         ScrollView {
+                            if shouldDisplayFolderBanner, searchText.isEmpty, currentMode != .favorites {
+                                FoldersBannerView(displayMe: $shouldDisplayFolderBanner)
+                                    .padding(.horizontal)
+                                    .padding(.vertical, 6)
+                            }
+                            
                             LazyVGrid(columns: columns, spacing: 14) {
                                 ForEach(searchResults) { sound in
                                     SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", favorites: $viewModel.favoritesKeeper)
@@ -183,6 +190,7 @@ struct SoundsView: View {
                 viewModel.donateActivity()
                 viewModel.sendDeviceModelNameToServer()
                 viewModel.sendUserPersonalTrendsToServerIfEnabled()
+                shouldDisplayFolderBanner = UserSettings.getFolderBannerWasDismissed() == false
             }
             .confirmationDialog("", isPresented: $viewModel.showConfirmationDialog) {
                 Button(viewModel.getFavoriteButtonTitle()) {
