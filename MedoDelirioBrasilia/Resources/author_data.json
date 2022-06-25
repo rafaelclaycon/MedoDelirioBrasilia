@@ -93,7 +93,7 @@
     },
     {
         "id": "B7CB79F9-4CAC-4832-BB47-2EA96A4AC576",
-        "name": "Luiz Pareto"
+        "name": "Luiz Pareto (Trote TELERJ)"
     },
     {
         "id": "90725901-3A3F-407B-8177-159B50C60676",
@@ -138,10 +138,6 @@
     {
         "id": "7E1ED3FF-82AA-4047-B0A9-292D63FC4711",
         "name": "Leandro Hassum"
-    },
-    {
-        "id": "CFA8FC2A-3CB5-4B5B-8454-B29B5FE1B904",
-        "name": "Trote Pareto"
     },
     {
         "id": "3959FC8B-DB6F-4926-8610-7161A322E700",
@@ -550,5 +546,25 @@
     {
         "id": "8125E9F8-0AAC-477B-BB95-1D5EB90B6411",
         "name": "Frederico Goulart (Rádio CBN)"
+    },
+    {
+        "id": "4E7D9959-10EA-4F0B-9F56-D3C06BE1C2D0",
+        "name": "Otoni de Paula"
+    },
+    {
+        "id": "571F78AB-B691-4537-9952-795BF01D1945",
+        "name": "Silvio Santos"
+    },
+    {
+        "id": "2E1D75D4-5D46-4CB4-818F-1D2B356F2F68",
+        "name": "Jovem Pan News"
+    },
+    {
+        "id": "4723AB43-A1E8-464B-BC75-F2ABA1A9FCF6",
+        "name": "Milton Ribeiro"
+    },
+    {
+        "id": "32DECC5A-FEE3-42B7-BBCC-B34126C317DE",
+        "name": "Rodrigo Constantino"
     }
 ]
