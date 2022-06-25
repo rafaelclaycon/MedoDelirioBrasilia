@@ -180,7 +180,6 @@ struct SoundsView: View {
                                      favoritesOnly: currentMode == .favorites,
                                      sortedBy: ContentSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
                 viewModel.donateActivity()
-                viewModel.sendDeviceModelNameToServer()
                 viewModel.sendUserPersonalTrendsToServerIfEnabled()
             }
             .confirmationDialog("", isPresented: $viewModel.showConfirmationDialog) {
