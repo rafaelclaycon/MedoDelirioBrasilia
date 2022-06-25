@@ -53,7 +53,7 @@ class FolderDetailViewViewModel: ObservableObject {
     
     func showPodcastDeletionConfirmation(podcastTitle: String) {
         alertTitle = String(format: "", podcastTitle)
-        alertMessage = LocalizableStrings.MainView.ErrorMessages.podcastDeletionConfirmationMessage
+        alertMessage = ""
         showAlert = true
     }
 

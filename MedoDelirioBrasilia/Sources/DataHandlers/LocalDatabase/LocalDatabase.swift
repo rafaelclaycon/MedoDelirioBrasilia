@@ -81,5 +81,6 @@ extension LocalDatabase: CustomStringConvertible {
 enum LocalDatabaseError: Error {
 
     case favoriteNotFound
+    case folderNotFound
 
 }

@@ -3,15 +3,15 @@ import SwiftUI
 struct CollectionsView: View {
 
     @StateObject private var viewModel = CollectionsViewViewModel()
-    @State var showingAddNewFolderView = false
-    @State var folderForEditingOnSheet: UserFolder? = nil
+    @State private var showingAddNewFolderView = false
+    @State private var folderForEditingOnSheet: UserFolder? = nil
     
-    let rows = [
+    private let rows = [
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
     
-    let columns = [
+    private let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
@@ -25,20 +25,33 @@ struct CollectionsView: View {
                             .font(.title2)
                             .padding(.leading)
                         
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            LazyHGrid(rows: rows, spacing: 14) {
-                                ForEach(viewModel.collections) { collection in
-                                    NavigationLink {
-                                        CollectionDetailView()
-                                    } label: {
-                                        CollectionCell(title: collection.title, imageURL: collection.imageURL)
-                                    }
-                                }
+                        HStack {
+                            Spacer()
+                            
+                            VStack(spacing: 10) {
+                                Text("Em Breve")
+                                    .font(.headline)
+                                    .multilineTextAlignment(.center)
                             }
-                            .frame(height: 210)
-                            .padding(.leading)
-                            .padding(.trailing)
+                            .padding(.vertical, 100)
+                            
+                            Spacer()
                         }
+                        
+//                        ScrollView(.horizontal, showsIndicators: false) {
+//                            LazyHGrid(rows: rows, spacing: 14) {
+//                                ForEach(viewModel.collections) { collection in
+//                                    NavigationLink {
+//                                        CollectionDetailView()
+//                                    } label: {
+//                                        CollectionCell(title: collection.title, imageURL: collection.imageURL)
+//                                    }
+//                                }
+//                            }
+//                            .frame(height: 210)
+//                            .padding(.leading)
+//                            .padding(.trailing)
+//                        }
                     }
                     .padding(.top, 10)
                     
@@ -83,7 +96,7 @@ struct CollectionsView: View {
                                         }
                                         
                                         Button(role: .destructive, action: {
-                                            //viewModel.dummyCall()
+                                            viewModel.showFolderDeletionConfirmation(folderName: "\(folder.symbol) \(folder.title)", folderId: folder.id)
                                         }, label: {
                                             HStack {
                                                 Text("Apagar Pasta")
@@ -99,7 +112,8 @@ struct CollectionsView: View {
                                 
                                 VStack(spacing: 10) {
                                     Text("Nenhuma Pasta Criada")
-                                        .font(.headline)
+                                        .font(.body)
+                                        .bold()
                                         .multilineTextAlignment(.center)
                                     
                                     Text("Toque em Nova Pasta acima para criar uma nova pasta de sons.")
@@ -123,8 +137,17 @@ struct CollectionsView: View {
                         AddNewFolderView(isBeingShown: $showingAddNewFolderView)
                     }
                 }
+                .alert(isPresented: $viewModel.showAlert) {
+                    Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .destructive(Text("Apagar"), action: {
+                        guard viewModel.folderIdForDeletion.isEmpty == false else {
+                            return
+                        }
+                        try? database.deleteUserFolder(withId: viewModel.folderIdForDeletion)
+                        viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
+                    }), secondaryButton: .cancel(Text("Cancelar")))
+                }
                 .onAppear {
-                    viewModel.reloadCollectionList(withCollections: getLocalCollections())
+                    //viewModel.reloadCollectionList(withCollections: getLocalCollections())
                     viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
                 }
                 .padding(.bottom)

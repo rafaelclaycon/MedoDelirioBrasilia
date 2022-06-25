@@ -35,5 +35,17 @@ extension LocalDatabase {
         }
         return queriedIds
     }
+    
+    func deleteUserFolder(withId folderId: String) throws {
+        let folder_id_on_folder_content_table = Expression<String>("userFolderId")
+        let allFolderContent = userFolderContent.filter(folder_id_on_folder_content_table == folderId)
+        try db.run(allFolderContent.delete())
+        
+        let folder_id_on_folder_table = Expression<String>("id")
+        let folder = userFolder.filter(folder_id_on_folder_table == folderId)
+        if try db.run(folder.delete()) == 0 {
+            throw LocalDatabaseError.folderNotFound
+        }
+    }
 
 }
