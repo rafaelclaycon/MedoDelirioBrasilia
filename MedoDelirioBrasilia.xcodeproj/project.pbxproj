@@ -114,6 +114,7 @@
 		D946117C286136CD00C4FB7E /* Damares - Inserir no anus.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D946117A286136CD00C4FB7E /* Damares - Inserir no anus.mp3 */; };
 		D94656D928450535008B4785 /* SQLiteMigrationManager in Frameworks */ = {isa = PBXBuildFile; productRef = D94656D828450535008B4785 /* SQLiteMigrationManager */; };
 		D94A4214283DC52800A504BD /* SongHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94A4213283DC52800A504BD /* SongHelpView.swift */; };
+		D95561E228517537001E2725 /* Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95561E128517537001E2725 /* Delegates.swift */; };
 		D9523741285BF98A00E6C838 /* NetworkRabbitStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */; };
 		D9523743285BF99800E6C838 /* LocalDatabaseSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9523742285BF99800E6C838 /* LocalDatabaseSpy.swift */; };
 		D952374B285D118400E6C838 /* DESMENTINDO BOLSONARO - PAULO GUEDES - O Brasil esta decolando economia bombando coletanea.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D952374A285D118400E6C838 /* DESMENTINDO BOLSONARO - PAULO GUEDES - O Brasil esta decolando economia bombando coletanea.mp3 */; };
@@ -547,6 +548,7 @@
 		D9461179286136CD00C4FB7E /* Damares - Uau.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Damares - Uau.mp3"; sourceTree = "<group>"; };
 		D946117A286136CD00C4FB7E /* Damares - Inserir no anus.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Damares - Inserir no anus.mp3"; sourceTree = "<group>"; };
 		D94A4213283DC52800A504BD /* SongHelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongHelpView.swift; sourceTree = "<group>"; };
+		D95561E128517537001E2725 /* Delegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delegates.swift; sourceTree = "<group>"; };
 		D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRabbitStub.swift; sourceTree = "<group>"; };
 		D9523742285BF99800E6C838 /* LocalDatabaseSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDatabaseSpy.swift; sourceTree = "<group>"; };
 		D952374A285D118400E6C838 /* DESMENTINDO BOLSONARO - PAULO GUEDES - O Brasil esta decolando economia bombando coletanea.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "DESMENTINDO BOLSONARO - PAULO GUEDES - O Brasil esta decolando economia bombando coletanea.mp3"; sourceTree = "<group>"; };
@@ -1414,6 +1416,7 @@
 				D961D0142837229100EFEDEB /* Extensions */,
 				D9351C5E28441DF200D4317E /* Core */,
 				D980456028380F45003B2E83 /* AppSupport */,
+				D95561E128517537001E2725 /* Delegates.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -2069,6 +2072,7 @@
 				D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */,
 				D9943F20286419CE002C6B97 /* LocalDatabase+Statistic.swift in Sources */,
 				D93443252838177000ADCD38 /* UserInfo.swift in Sources */,
+				D95561E228517537001E2725 /* Delegates.swift in Sources */,
 				D905B4C52857FF3D0096D466 /* AddNetworkCallLogTable.swift in Sources */,
 				D960AF272845BFE700ADF1F6 /* UserDefaultsKeys.swift in Sources */,
 				D988C523283C33E100D64404 /* UserSettings.swift in Sources */,
