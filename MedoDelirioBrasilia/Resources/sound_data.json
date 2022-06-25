@@ -2995,5 +2995,23 @@
         "filename": "Bolsonaro - Coisa rara de eu falar aqui coloco a minha cara inteira no fogo pelo Milton ribeiro.mp3",
         "dateAdded": "2022-06-24T00:00:00Z",
         "isOffensive": true
+    },
+    {
+        "id": "E265DAE4-D5CB-46E9-8AD4-8CC9B38A05BE",
+        "title": "Aaahhi, que delícia!",
+        "authorId": "9F5424EA-2C65-41F6-B925-F9CC6CC70787",
+        "description": "Ai que delícia",
+        "filename": "Andre Starqueza - Ai que delicia.mp3",
+        "dateAdded": "2022-06-24T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "F54D69F7-5A16-47C8-B34E-F6B1C8118FAE",
+        "title": "Tem um grau aí de prisma na coisa",
+        "authorId": "71128756-78A9-4B31-A7D8-CE120147C481",
+        "description": "Tem um grau ai de prisma na coisa",
+        "filename": "Eduardo Pazuello - Tem um grau ai de prisma na coisa.mp3",
+        "dateAdded": "2022-06-24T00:00:00Z",
+        "isOffensive": false
     }
 ]
