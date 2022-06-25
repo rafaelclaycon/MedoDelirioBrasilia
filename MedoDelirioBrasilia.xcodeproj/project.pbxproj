@@ -426,6 +426,8 @@
 		D9BF9091284257F500BDDD7D /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF9090284257F500BDDD7D /* Shared.swift */; };
 		D9BF90972842D3CB00BDDD7D /* NoSoundsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF90962842D3CB00BDDD7D /* NoSoundsView.swift */; };
 		D9BF90BE2842EAED00BDDD7D /* TopChartCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF90BD2842EAED00BDDD7D /* TopChartCellView.swift */; };
+		D9C3EF4E28668FD800C44249 /* Andre Starqueza - Ai que delicia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C3EF4D28668FD800C44249 /* Andre Starqueza - Ai que delicia.mp3 */; };
+		D9C3EF502866938A00C44249 /* Eduardo Pazuello - Tem um grau ai de prisma na coisa.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C3EF4F2866938A00C44249 /* Eduardo Pazuello - Tem um grau ai de prisma na coisa.mp3 */; };
 		D9E5100A286084F2003DB3A3 /* Date+OnlyDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E51009286084F2003DB3A3 /* Date+OnlyDate.swift */; };
 		D9E69592283D2E2C00C341B2 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = D9E69591283D2E2C00C341B2 /* SQLite */; };
 		D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E69593283D2F2F00C341B2 /* Favorite.swift */; };
@@ -877,6 +879,8 @@
 		D9BF9090284257F500BDDD7D /* Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shared.swift; sourceTree = "<group>"; };
 		D9BF90962842D3CB00BDDD7D /* NoSoundsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSoundsView.swift; sourceTree = "<group>"; };
 		D9BF90BD2842EAED00BDDD7D /* TopChartCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartCellView.swift; sourceTree = "<group>"; };
+		D9C3EF4D28668FD800C44249 /* Andre Starqueza - Ai que delicia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Andre Starqueza - Ai que delicia.mp3"; sourceTree = "<group>"; };
+		D9C3EF4F2866938A00C44249 /* Eduardo Pazuello - Tem um grau ai de prisma na coisa.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eduardo Pazuello - Tem um grau ai de prisma na coisa.mp3"; sourceTree = "<group>"; };
 		D9E51009286084F2003DB3A3 /* Date+OnlyDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+OnlyDate.swift"; sourceTree = "<group>"; };
 		D9E69593283D2F2F00C341B2 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		D9EB188F28577AE000A2F8A8 /* GAVETA - Voce merece tomar Nokul no cu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "GAVETA - Voce merece tomar Nokul no cu.mp3"; sourceTree = "<group>"; };
@@ -919,6 +923,8 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9C3EF4F2866938A00C44249 /* Eduardo Pazuello - Tem um grau ai de prisma na coisa.mp3 */,
+				D9C3EF4D28668FD800C44249 /* Andre Starqueza - Ai que delicia.mp3 */,
 				D99A9FA7286687240068B172 /* Bolsonaro - Coisa rara de eu falar aqui coloco a minha cara inteira no fogo pelo Milton ribeiro.mp3 */,
 				D99A9FA4286687240068B172 /* CNN BRASIL - Milton Ribeiro - A questao e eminentemente repito tecnica.mp3 */,
 				D99A9FA0286687240068B172 /* CNN BRASIL - Milton Ribeiro - A versao verdadeira e a versao que a gente pode escutar no audio.mp3 */,
@@ -1785,6 +1791,7 @@
 				D955699F285137800072E3FC /* e_um_merda.mp3 in Resources */,
 				D961B860285F767300A645F4 /* Referencia de velho.mp3 in Resources */,
 				D9556993285137800072E3FC /* Bolsonaro - Eu nao errei nenhuma.mp3 in Resources */,
+				D9C3EF4E28668FD800C44249 /* Andre Starqueza - Ai que delicia.mp3 in Resources */,
 				D9556916285137800072E3FC /* Hassum - Nem fodendo.mp3 in Resources */,
 				D9556959285137800072E3FC /* Choque de Cultura - Cabo cabo cabo ja ta desvirtuando ja short.mp3 in Resources */,
 				D961D01328371F1700EFEDEB /* sound_data.json in Resources */,
@@ -1956,6 +1963,7 @@
 				D955695B285137800072E3FC /* Craque Neto - Vacina eu Tomo short meme.mp3 in Resources */,
 				D927C41A28523F5D0041970A /* PLANALTO - Bolsonaro - Mente.mp3 in Resources */,
 				D955694A285137800072E3FC /* COMUNISTA DO INFERNO meme.mp3 in Resources */,
+				D9C3EF502866938A00C44249 /* Eduardo Pazuello - Tem um grau ai de prisma na coisa.mp3 in Resources */,
 				D9227312285AAD3E00A98CAE /* PLANALTO - Bolsonaro - Presidente Putin Pretiputi.mp3 in Resources */,
 				D9556914285137800072E3FC /* Boldo - Deixa com a cara magoada.mp3 in Resources */,
 				D927C41E28523F5D0041970A /* Tite - Fala muito!.mp3 in Resources */,
