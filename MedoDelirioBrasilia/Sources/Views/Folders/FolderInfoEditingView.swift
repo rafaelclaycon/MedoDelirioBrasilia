@@ -3,12 +3,17 @@ import Combine
 
 struct FolderInfoEditingView: View {
 
+    private enum Field: Int, Hashable {
+        case symbol, folderName
+    }
+    
     @StateObject var viewModel = FolderInfoEditingViewViewModel()
     @Binding var isBeingShown: Bool
     @State var symbol: String = ""
     @State var folderName: String = ""
     @State var backgroundColor: Color = .pastelBabyBlue
     @State var isEditing: Bool = false
+    @FocusState private var focusedField: Field?
     
     let colors: [FolderColor] = [FolderColor(color: .pastelPurple), FolderColor(color: .pastelBabyBlue),
                                  FolderColor(color: .pastelBrightGreen), FolderColor(color: .pastelYellow),
@@ -41,6 +46,7 @@ struct FolderInfoEditingView: View {
                             .onReceive(Just(symbol)) { _ in
                                 limitSymbolText(1)
                             }
+                            .focused($focusedField, equals: .symbol)
                         
                         Spacer()
                     }
@@ -57,6 +63,7 @@ struct FolderInfoEditingView: View {
                         .onReceive(Just(folderName)) { _ in
                             limitFolderNameText(25)
                         }
+                        .focused($focusedField, equals: .folderName)
                     
                     HStack {
                         Spacer()
@@ -96,7 +103,7 @@ struct FolderInfoEditingView: View {
                 }
             , trailing:
                 Button(action: {
-                    if viewModel.checkIfMeetsAllRequirements(symbol: symbol, folderName: folderName) {
+                if viewModel.checkIfMeetsAllRequirements(symbol: symbol, folderName: folderName, isEditing: isEditing) {
                         try? database.insert(userFolder: UserFolder(symbol: symbol, title: folderName, backgroundColor: backgroundColor.name ?? .empty))
                         self.isBeingShown = false
                     }
@@ -108,6 +115,15 @@ struct FolderInfoEditingView: View {
             )
             .alert(isPresented: $viewModel.showAlert) { 
                 Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
+            }
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                    if isEditing {
+                        focusedField = .folderName
+                    } else {
+                        focusedField = .symbol
+                    }
+                }
             }
         }
     }
