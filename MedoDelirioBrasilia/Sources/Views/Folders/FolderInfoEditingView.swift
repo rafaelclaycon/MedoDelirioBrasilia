@@ -1,7 +1,9 @@
 import SwiftUI
+import Combine
 
-struct AddNewFolderView: View {
+struct FolderInfoEditingView: View {
 
+    @StateObject var viewModel = FolderInfoEditingViewViewModel()
     @Binding var isBeingShown: Bool
     @State var symbol: String = ""
     @State var folderName: String = ""
@@ -36,6 +38,9 @@ struct AddNewFolderView: View {
                             .font(.system(size: 50))
                             .padding(.horizontal)
                             .multilineTextAlignment(.center)
+                            .onReceive(Just(symbol)) { _ in
+                                limitSymbolText(1)
+                            }
                         
                         Spacer()
                     }
@@ -49,6 +54,9 @@ struct AddNewFolderView: View {
                 VStack {
                     TextField("Nome da pasta", text: $folderName)
                         .textFieldStyle(.roundedBorder)
+                        .onReceive(Just(folderName)) { _ in
+                            limitFolderNameText(25)
+                        }
                     
                     HStack {
                         Spacer()
@@ -88,13 +96,31 @@ struct AddNewFolderView: View {
                 }
             , trailing:
                 Button(action: {
-                    try? database.insert(userFolder: UserFolder(symbol: symbol, title: folderName, backgroundColor: backgroundColor.name ?? .empty))
-                    self.isBeingShown = false
+                    if viewModel.checkIfMeetsAllRequirements(symbol: symbol, folderName: folderName) {
+                        try? database.insert(userFolder: UserFolder(symbol: symbol, title: folderName, backgroundColor: backgroundColor.name ?? .empty))
+                        self.isBeingShown = false
+                    }
                 }) {
                     Text(isEditing ? "Salvar" : "Criar")
                         .bold()
                 }
+                .disabled(symbol.isEmpty || folderName.isEmpty)
             )
+            .alert(isPresented: $viewModel.showAlert) { 
+                Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
+            }
+        }
+    }
+    
+    private func limitSymbolText(_ upper: Int) {
+        if symbol.count > upper {
+            symbol = String(symbol.prefix(upper))
+        }
+    }
+    
+    private func limitFolderNameText(_ upper: Int) {
+        if folderName.count > upper {
+            folderName = String(folderName.prefix(upper))
         }
     }
 
@@ -103,7 +129,7 @@ struct AddNewFolderView: View {
 struct AddNewFolderView_Previews: PreviewProvider {
 
     static var previews: some View {
-        AddNewFolderView(isBeingShown: .constant(true))
+        FolderInfoEditingView(isBeingShown: .constant(true))
     }
 
 }
