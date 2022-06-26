@@ -342,6 +342,7 @@
 		D958B1B22839534D0010F133 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958B1B12839534D0010F133 /* SettingsView.swift */; };
 		D958BC562867D476000B2EDA /* Sheldon - Oh Really short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D958BC552867D476000B2EDA /* Sheldon - Oh Really short.mp3 */; };
 		D958BC582868D9A3000B2EDA /* Choque de Cultura - Nem existe isso, ce ta inventando palavra.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D958BC572868D9A3000B2EDA /* Choque de Cultura - Nem existe isso, ce ta inventando palavra.mp3 */; };
+		D958BC5A2868DCB7000B2EDA /* JOVEM PAN - Constantino - O mecanismo foi quase todo dominado por essa turma, o Brasil e o pais aparelhado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D958BC592868DCB7000B2EDA /* JOVEM PAN - Constantino - O mecanismo foi quase todo dominado por essa turma, o Brasil e o pais aparelhado.mp3 */; };
 		D960AF272845BFE700ADF1F6 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = D960AF262845BFE700ADF1F6 /* UserDefaultsKeys.swift */; };
 		D960AF292845C82E00ADF1F6 /* AppStoreReviewSteward.swift in Sources */ = {isa = PBXBuildFile; fileRef = D960AF282845C82E00ADF1F6 /* AppStoreReviewSteward.swift */; };
 		D961B860285F767300A645F4 /* Referencia de velho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D961B85E285F767200A645F4 /* Referencia de velho.mp3 */; };
@@ -777,6 +778,7 @@
 		D958B1B12839534D0010F133 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		D958BC552867D476000B2EDA /* Sheldon - Oh Really short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Sheldon - Oh Really short.mp3"; sourceTree = "<group>"; };
 		D958BC572868D9A3000B2EDA /* Choque de Cultura - Nem existe isso, ce ta inventando palavra.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Choque de Cultura - Nem existe isso, ce ta inventando palavra.mp3"; sourceTree = "<group>"; };
+		D958BC592868DCB7000B2EDA /* JOVEM PAN - Constantino - O mecanismo foi quase todo dominado por essa turma, o Brasil e o pais aparelhado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "JOVEM PAN - Constantino - O mecanismo foi quase todo dominado por essa turma, o Brasil e o pais aparelhado.mp3"; sourceTree = "<group>"; };
 		D960AF262845BFE700ADF1F6 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		D960AF282845C82E00ADF1F6 /* AppStoreReviewSteward.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreReviewSteward.swift; sourceTree = "<group>"; };
 		D961B85E285F767200A645F4 /* Referencia de velho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Referencia de velho.mp3"; sourceTree = "<group>"; };
@@ -893,6 +895,7 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D958BC592868DCB7000B2EDA /* JOVEM PAN - Constantino - O mecanismo foi quase todo dominado por essa turma, o Brasil e o pais aparelhado.mp3 */,
 				D958BC572868D9A3000B2EDA /* Choque de Cultura - Nem existe isso, ce ta inventando palavra.mp3 */,
 				D958BC552867D476000B2EDA /* Sheldon - Oh Really short.mp3 */,
 				D9C3EF4F2866938A00C44249 /* Eduardo Pazuello - Tem um grau ai de prisma na coisa.mp3 */,
@@ -1682,6 +1685,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D958BC5A2868DCB7000B2EDA /* JOVEM PAN - Constantino - O mecanismo foi quase todo dominado por essa turma, o Brasil e o pais aparelhado.mp3 in Resources */,
 				D955692B285137800072E3FC /* funk_do_xandao.mp3 in Resources */,
 				D9556922285137800072E3FC /* Cerginho da Perera Nunes - Com certeza.mp3 in Resources */,
 				D9EB189A28577EC400A2F8A8 /* Eu nao entendi o que ele falou.mp3 in Resources */,
