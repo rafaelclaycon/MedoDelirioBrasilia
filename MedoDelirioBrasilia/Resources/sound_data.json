@@ -3040,5 +3040,86 @@
         "filename": "JOVEM PAN - Constantino - O mecanismo foi quase todo dominado por essa turma, o Brasil e o pais aparelhado.mp3",
         "dateAdded": "2022-06-26T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "D38EAA9D-E58C-48FC-BE39-99D46E77FEDC",
+        "title": "Eles perderam o limite",
+        "authorId": "F16C8B71-E8A4-4E36-B869-98C6871ED694",
+        "description": "Eles perderam o limite",
+        "filename": "CHOQUE DE CULTURA - Julinho da Van - Eles perderam o limite.mp3",
+        "dateAdded": "2022-06-26T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "6140CBE0-43CA-41E1-9E0F-1D493AEF155D",
+        "title": "Foda-se",
+        "authorId": "F16C8B71-E8A4-4E36-B869-98C6871ED694",
+        "description": "Foda-se",
+        "filename": "Choque de Cultura - Julinho Foda-se.mp3",
+        "dateAdded": "2022-06-26T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "F6C33159-22DE-435D-81F3-3A6D0E74BE5A",
+        "title": "O último idoso alegre do planeta é o Ary Fontoura",
+        "authorId": "E3F705A3-74B1-4B62-B6AD-9A230A597B5D",
+        "description": "O ultimo idoso alegre do planeta e o Ary Fontoura",
+        "filename": "Choque de Cultura - Maurilio - O ultimo idoso alegre do planeta e o Ary Fontoura.mp3",
+        "dateAdded": "2022-06-26T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "0EA3C8F2-0F29-452C-A63B-8DB37D55F5E1",
+        "title": "É golpe",
+        "authorId": "E3F705A3-74B1-4B62-B6AD-9A230A597B5D",
+        "description": "É golpe",
+        "filename": "CHOQUE DE CULTURA - Maurilio palestrinha - E golpe short meme.mp3",
+        "dateAdded": "2022-06-26T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "1E30BF2B-F830-4F93-B337-FF468E0AE1C2",
+        "title": "Acho que deu uma pesada no clima do programa aí",
+        "authorId": "A329D501-7BD3-4B9C-8FBD-99BFD3AF3E13",
+        "description": "Acho que deu uma pesada no clima do programa ai",
+        "filename": "CHOQUE DE CULTURA - Renan - Acho que deu uma pesada no clima do programa ai.mp3",
+        "dateAdded": "2022-06-26T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "22F39773-96C6-43E6-AC43-C070A9DD9B02",
+        "title": "É energia aqui ó, tá em cima. Carnaval, alegria",
+        "authorId": "A329D501-7BD3-4B9C-8FBD-99BFD3AF3E13",
+        "description": "E energia aqui o ta em cima carnaval alegria",
+        "filename": "CHOQUE DE CULTURA - Renan - E energia aqui o ta em cima carnaval alegria.mp3",
+        "dateAdded": "2022-06-26T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "5B0FFF55-0B05-4FDA-B1A7-16C7856B4A82",
+        "title": "Inescrupulosos",
+        "authorId": "A329D501-7BD3-4B9C-8FBD-99BFD3AF3E13",
+        "description": "Inescrupulosos",
+        "filename": "CHOQUE DE CULTURA - Renan - Inescrupulosos.mp3",
+        "dateAdded": "2022-06-26T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "B76984D3-05E6-4B7D-8508-F13B3A8C0A3B",
+        "title": "Voz rouca",
+        "authorId": "BB392894-327A-48BA-9C7D-4F0601E947EB",
+        "description": "Voz rouca",
+        "filename": "CNN BRASIL BUSINESS - Conseguimos atenuar o choque do petr¢leo que veio de fora diz Guedes voz rouca.mp3",
+        "dateAdded": "2022-06-26T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "8919A7BE-B6B7-455E-A204-4639173732A3",
+        "title": "Não é de surpreender",
+        "authorId": "05A3C97F-68EE-4AEB-9BEA-761348725225",
+        "description": "Nao e de surpreender surpresa choque passada chocada",
+        "filename": "PODER360 - Barroso - Nao e de surpreender.mp3",
+        "dateAdded": "2022-06-26T00:00:00Z",
+        "isOffensive": true
     }
 ]
