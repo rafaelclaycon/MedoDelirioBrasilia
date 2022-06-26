@@ -209,7 +209,7 @@ struct SoundsView: View {
                     SoundOptionsHelper.suggestOtherAuthorName(soundId: sound.id, soundTitle: sound.title, currentAuthorName: sound.authorName ?? .empty)
                 }
                 
-                Button("Compartilhar") {
+                Button(Shared.shareButtonText) {
                     guard let sound = viewModel.soundForConfirmationDialog else {
                         return
                     }

@@ -8,6 +8,7 @@ class Shared {
     static let playAndShareSongsActivityTypeName = "com.rafaelschmitt.MedoDelirioBrasilia.PlayAndShareSongs"
     static let viewTrendsActivityTypeName = "com.rafaelschmitt.MedoDelirioBrasilia.ViewTrends"
     
+    static let shareButtonText = "Compartilhar"
     static let contentFilterMessageForSounds = "Alguns sons não estão sendo exibidos pois o filtro de conteúdo sensível está ativado. Você pode mudar isso na aba Ajustes."
     static let contentFilterMessageForSongs = "Algumas músicas não estão sendo exibidas pois o filtro de conteúdo sensível está ativado. Você pode mudar isso na aba Ajustes."
     static let soundNotFoundAlertTitle = "Não Foi Possível Localizar Esse Som"
