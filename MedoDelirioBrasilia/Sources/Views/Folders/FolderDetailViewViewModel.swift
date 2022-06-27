@@ -12,6 +12,7 @@ class FolderDetailViewViewModel: ObservableObject {
     @Published var alertTitle: String = ""
     @Published var alertMessage: String = ""
     @Published var showAlert: Bool = false
+    @Published var alertType: AlertType = .singleOption
     
     func reloadSoundList(withSoundIds soundIds: [String]?) {
         guard let soundIds = soundIds else {
@@ -58,17 +59,24 @@ class FolderDetailViewViewModel: ObservableObject {
         }
     }
     
+    func removeSoundFromFolder(folderId: String, soundId: String) {
+        try? database.deleteUserContentFromFolder(withId: folderId, contentId: soundId)
+        reloadSoundList(withSoundIds: try? database.getAllSoundIdsInsideUserFolder(withId: folderId))
+    }
+    
     // MARK: - Alerts
     
     func showUnableToGetSoundAlert() {
         alertTitle = Shared.soundNotFoundAlertTitle
         alertMessage = Shared.soundNotFoundAlertMessage
+        alertType = .singleOption
         showAlert = true
     }
     
-    func showPodcastDeletionConfirmation(podcastTitle: String) {
-        alertTitle = String(format: "", podcastTitle)
-        alertMessage = ""
+    func showSoundRemovalConfirmation(soundTitle: String) {
+        alertTitle = "Remover \"\(soundTitle)\"?"
+        alertMessage = "O som continuará disponível fora da pasta."
+        alertType = .twoOptions
         showAlert = true
     }
 

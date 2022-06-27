@@ -82,5 +82,6 @@ enum LocalDatabaseError: Error {
 
     case favoriteNotFound
     case folderNotFound
+    case folderContentNotFound
 
 }
