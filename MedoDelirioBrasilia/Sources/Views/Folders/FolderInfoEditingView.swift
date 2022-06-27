@@ -13,6 +13,7 @@ struct FolderInfoEditingView: View {
     @State var folderName: String = ""
     @State var selectedBackgroundColor: String
     @State var isEditing: Bool = false
+    @State var folderIdWhenEditing: String = ""
     @FocusState private var focusedField: Field?
     
     private let rows = [
@@ -91,9 +92,17 @@ struct FolderInfoEditingView: View {
                 }
             , trailing:
                 Button(action: {
-                if viewModel.checkIfMeetsAllRequirements(symbol: symbol, folderName: folderName, isEditing: isEditing) {
-                        try? database.insert(userFolder: UserFolder(symbol: symbol, title: folderName, backgroundColor: selectedBackgroundColor))
-                        self.isBeingShown = false
+                    if viewModel.checkIfMeetsAllRequirements(symbol: symbol, folderName: folderName, isEditing: isEditing) {
+                        if isEditing {
+                            guard folderIdWhenEditing.isEmpty == false else {
+                                return
+                            }
+                            try? database.update(userFolder: folderIdWhenEditing, withNewSymbol: symbol, newName: folderName, andNewBackgroundColor: selectedBackgroundColor)
+                            self.isBeingShown = false
+                        } else {
+                            try? database.insert(userFolder: UserFolder(symbol: symbol, title: folderName, backgroundColor: selectedBackgroundColor))
+                            self.isBeingShown = false
+                        }
                     }
                 }) {
                     Text(isEditing ? "Salvar" : "Criar")

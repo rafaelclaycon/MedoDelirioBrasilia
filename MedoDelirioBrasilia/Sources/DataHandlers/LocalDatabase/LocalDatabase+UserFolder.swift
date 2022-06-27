@@ -8,6 +8,17 @@ extension LocalDatabase {
         try db.run(insert)
     }
     
+    func update(userFolder userFolderId: String, withNewSymbol newSymbol: String, newName: String, andNewBackgroundColor newBackgroundColor: String) throws {
+        let id = Expression<String>("id")
+        let symbol = Expression<String>("symbol")
+        let title = Expression<String>("title")
+        let background_color = Expression<String>("backgroundColor")
+        
+        let folder = userFolder.filter(id == userFolderId)
+        let update = folder.update(symbol <- newSymbol, title <- newName, background_color <- newBackgroundColor)
+        try db.run(update)
+    }
+    
     func getAllUserFolders() throws -> [UserFolder] {
         var queriedFolders = [UserFolder]()
 

@@ -4,6 +4,7 @@ struct FolderDetailView: View {
 
     @StateObject var viewModel = FolderDetailViewViewModel()
     @State var folder: UserFolder
+    @State private var showingFolderInfoEditingView = false
     
     private let columns = [
         GridItem(.flexible()),
@@ -34,7 +35,7 @@ struct FolderDetailView: View {
         .navigationBarItems(trailing:
             Menu {
                 Button(action: {
-                    //viewModel.toggleEpisodeListSorting()
+                    showingFolderInfoEditingView = true
                 }) {
                     Label("Editar Pasta", systemImage: "pencil")
                 }
@@ -53,6 +54,9 @@ struct FolderDetailView: View {
         )
         .onAppear {
             viewModel.reloadSoundList(withSoundIds: try? database.getAllSoundIdsInsideUserFolder(withId: folder.id))
+        }
+        .sheet(isPresented: $showingFolderInfoEditingView) {
+            FolderInfoEditingView(isBeingShown: $showingFolderInfoEditingView, symbol: folder.symbol, folderName: folder.title, selectedBackgroundColor: folder.backgroundColor, isEditing: true, folderIdWhenEditing: folder.id)
         }
     }
 

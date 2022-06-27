@@ -3,7 +3,7 @@ import SwiftUI
 struct CollectionsView: View {
 
     @StateObject private var viewModel = CollectionsViewViewModel()
-    @State private var showingAddNewFolderView = false
+    @State private var showingFolderInfoEditingView = false
     @State private var folderForEditingOnSheet: UserFolder? = nil
     
     private let rows = [
@@ -63,14 +63,14 @@ struct CollectionsView: View {
                             Spacer()
                             
                             Button(action: {
-                                showingAddNewFolderView = true
+                                showingFolderInfoEditingView = true
                             }) {
                                 HStack {
                                     Image(systemName: "plus")
                                     Text("Nova Pasta")
                                 }
                             }
-                            .onChange(of: showingAddNewFolderView) { newValue in
+                            .onChange(of: showingFolderInfoEditingView) { newValue in
                                 if newValue == false {
                                     viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
                                     folderForEditingOnSheet = nil
@@ -90,7 +90,7 @@ struct CollectionsView: View {
                                     .contextMenu {
                                         Button(action: {
                                             folderForEditingOnSheet = folder
-                                            showingAddNewFolderView = true
+                                            showingFolderInfoEditingView = true
                                         }) {
                                             Label("Editar Pasta", systemImage: "pencil")
                                         }
@@ -130,11 +130,11 @@ struct CollectionsView: View {
                     .padding(.horizontal)
                 }
                 .navigationTitle("Coleções")
-                .sheet(isPresented: $showingAddNewFolderView) {
+                .sheet(isPresented: $showingFolderInfoEditingView) {
                     if let folder = folderForEditingOnSheet {
-                        FolderInfoEditingView(isBeingShown: $showingAddNewFolderView, symbol: folder.symbol, folderName: folder.title, selectedBackgroundColor: folder.backgroundColor, isEditing: true)
+                        FolderInfoEditingView(isBeingShown: $showingFolderInfoEditingView, symbol: folder.symbol, folderName: folder.title, selectedBackgroundColor: folder.backgroundColor, isEditing: true, folderIdWhenEditing: folder.id)
                     } else {
-                        FolderInfoEditingView(isBeingShown: $showingAddNewFolderView, selectedBackgroundColor: "pastelBabyBlue")
+                        FolderInfoEditingView(isBeingShown: $showingFolderInfoEditingView, selectedBackgroundColor: "pastelBabyBlue")
                     }
                 }
                 .alert(isPresented: $viewModel.showAlert) {
