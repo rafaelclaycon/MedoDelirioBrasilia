@@ -7,10 +7,11 @@ struct SoundCell: View {
     @State var author: String
     @Binding var favorites: Set<String>
     
-    var isFavorite: Bool {
+    private var isFavorite: Bool {
         favorites.contains(soundId)
     }
-    var titleFont: Font {
+    
+    private var titleFont: Font {
         if title.count <= 26 {
             return .body
         } else if title.count >= 27 && title.count <= 40 {
@@ -19,19 +20,30 @@ struct SoundCell: View {
             return .footnote
         }
     }
-    var is4InchDevice: Bool {
+    
+    private var authorFont: Font {
+        if title.count <= 26 {
+            return .subheadline
+        } else if title.count >= 27 && title.count <= 40 {
+            return .callout
+        } else {
+            return .footnote
+        }
+    }
+    
+    private var is4InchDevice: Bool {
         let model = UIDevice.modelName
         return model == "iPhone SE" || model == "iPod touch (7th generation)" || model == "Simulator iPod touch (7th generation)"
     }
     
-    let regularGradient = LinearGradient(gradient: Gradient(colors: [.green, .green, .brightYellow]), startPoint: .topLeading, endPoint: .bottomTrailing)
-    let favoriteGradient = LinearGradient(gradient: Gradient(colors: [.red, .red, .red]), startPoint: .topLeading, endPoint: .bottomTrailing)
+    private let regularGradient = LinearGradient(gradient: Gradient(colors: [.green, .green, .brightYellow]), startPoint: .topLeading, endPoint: .bottomTrailing)
+    private let favoriteGradient = LinearGradient(gradient: Gradient(colors: [.red, .red, .red]), startPoint: .topLeading, endPoint: .bottomTrailing)
 
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20, style: .continuous)
                 .fill(isFavorite ? favoriteGradient : regularGradient)
-                .frame(height: is4InchDevice ? 120 : 90)
+                .frame(height: is4InchDevice ? 120 : 96)
             
             if isFavorite {
                 HStack {
@@ -55,8 +67,9 @@ struct SoundCell: View {
                         .bold()
                     
                     Text(author)
-                        .font(is4InchDevice ? .footnote : .subheadline)
+                        .font(is4InchDevice ? .footnote : authorFont)
                         .foregroundColor(.white)
+                        .lineLimit(2)
                 }
                 
                 Spacer()
