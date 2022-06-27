@@ -30,7 +30,7 @@ struct FolderDetailView: View {
                 .padding(.top, 7)
             }
         }
-        .navigationTitle("\(folder.symbol)  \(folder.title)")
+        .navigationTitle("\(folder.symbol)  \(folder.name)")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarItems(trailing:
             Menu {
@@ -56,7 +56,7 @@ struct FolderDetailView: View {
             viewModel.reloadSoundList(withSoundIds: try? database.getAllSoundIdsInsideUserFolder(withId: folder.id))
         }
         .sheet(isPresented: $showingFolderInfoEditingView) {
-            FolderInfoEditingView(isBeingShown: $showingFolderInfoEditingView, symbol: folder.symbol, folderName: folder.title, selectedBackgroundColor: folder.backgroundColor, isEditing: true, folderIdWhenEditing: folder.id)
+            FolderInfoEditingView(isBeingShown: $showingFolderInfoEditingView, symbol: folder.symbol, folderName: folder.name, selectedBackgroundColor: folder.backgroundColor, isEditing: true, folderIdWhenEditing: folder.id)
         }
     }
 
@@ -65,7 +65,7 @@ struct FolderDetailView: View {
 struct FolderDetailView_Previews: PreviewProvider {
 
     static var previews: some View {
-        FolderDetailView(folder: UserFolder(symbol: "🤑", title: "Grupo da Economia", backgroundColor: "pastelBabyBlue"))
+        FolderDetailView(folder: UserFolder(symbol: "🤑", name: "Grupo da Economia", backgroundColor: "pastelBabyBlue"))
     }
 
 }

@@ -17,13 +17,13 @@ struct AddUserFolderTables: Migration {
     private func createUserFolderTable(_ db: Connection) throws {
         let id = Expression<String>("id")
         let symbol = Expression<String>("symbol")
-        let title = Expression<String>("title")
+        let name = Expression<String>("name")
         let background_color = Expression<String>("backgroundColor")
         
         try db.run(userFolder.create(ifNotExists: true) { t in
             t.column(id, primaryKey: true)
             t.column(symbol)
-            t.column(title)
+            t.column(name)
             t.column(background_color)
         })
     }

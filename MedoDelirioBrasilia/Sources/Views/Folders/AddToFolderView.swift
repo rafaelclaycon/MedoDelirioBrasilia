@@ -33,7 +33,7 @@ struct AddToFolderView: View {
                         Button {
                             print("Add")
                         } label: {
-                            FolderCell(symbol: "📂", title: "Nova Pasta...", backgroundColor: .gray, backgroundOpacity: 0.15, height: 100)
+                            FolderCell(symbol: "📂", name: "Nova Pasta...", backgroundColor: .gray, backgroundOpacity: 0.15, height: 100)
                         }
                         .foregroundColor(.primary)
                         .frame(width: (UIScreen.main.bounds.size.width / 2) - 20)
@@ -56,12 +56,12 @@ struct AddToFolderView: View {
                         ForEach(viewModel.folders) { folder in
                             Button {
                                 guard viewModel.soundIsNotYetOnFolder(folderId: folder.id, contentId: selectedSoundId) else {
-                                    return viewModel.showSoundAlredyInFolderAlert(folderName: folder.title)
+                                    return viewModel.showSoundAlredyInFolderAlert(folderName: folder.name)
                                 }
                                 try? database.insert(contentId: selectedSoundId, intoUserFolder: folder.id)
                                 isBeingShown = false
                             } label: {
-                                FolderCell(symbol: folder.symbol, title: folder.title, backgroundColor: folder.backgroundColor.toColor())
+                                FolderCell(symbol: folder.symbol, name: folder.name, backgroundColor: folder.backgroundColor.toColor())
                             }
                             .foregroundColor(.primary)
                         }

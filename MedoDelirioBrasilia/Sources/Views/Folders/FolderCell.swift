@@ -3,7 +3,7 @@ import SwiftUI
 struct FolderCell: View {
 
     @State var symbol: String
-    @State var title: String
+    @State var name: String
     @State var backgroundColor: Color
     @State var backgroundOpacity: Double = 1.0
     @State var height: CGFloat = 90
@@ -22,7 +22,7 @@ struct FolderCell: View {
             
             HStack {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text(title)
+                    Text(name)
                         .font(.headline)
                         .multilineTextAlignment(.leading)
                         .lineLimit(2)
@@ -39,7 +39,7 @@ struct FolderCell: View {
 struct FolderCell_Previews: PreviewProvider {
 
     static var previews: some View {
-        FolderCell(symbol: "😎", title: "Memes", backgroundColor: .pastelBabyBlue)
+        FolderCell(symbol: "😎", name: "Memes", backgroundColor: .pastelBabyBlue)
     }
 
 }

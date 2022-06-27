@@ -84,7 +84,7 @@ struct CollectionsView: View {
                                     NavigationLink {
                                         FolderDetailView(folder: folder)
                                     } label: {
-                                        FolderCell(symbol: folder.symbol, title: folder.title, backgroundColor: folder.backgroundColor.toColor())
+                                        FolderCell(symbol: folder.symbol, name: folder.name, backgroundColor: folder.backgroundColor.toColor())
                                     }
                                     .foregroundColor(.primary)
                                     .contextMenu {
@@ -96,7 +96,7 @@ struct CollectionsView: View {
                                         }
                                         
                                         Button(role: .destructive, action: {
-                                            viewModel.showFolderDeletionConfirmation(folderName: "\(folder.symbol) \(folder.title)", folderId: folder.id)
+                                            viewModel.showFolderDeletionConfirmation(folderName: "\(folder.symbol) \(folder.name)", folderId: folder.id)
                                         }, label: {
                                             HStack {
                                                 Text("Apagar Pasta")
@@ -132,7 +132,7 @@ struct CollectionsView: View {
                 .navigationTitle("Coleções")
                 .sheet(isPresented: $showingFolderInfoEditingView) {
                     if let folder = folderForEditingOnSheet {
-                        FolderInfoEditingView(isBeingShown: $showingFolderInfoEditingView, symbol: folder.symbol, folderName: folder.title, selectedBackgroundColor: folder.backgroundColor, isEditing: true, folderIdWhenEditing: folder.id)
+                        FolderInfoEditingView(isBeingShown: $showingFolderInfoEditingView, symbol: folder.symbol, folderName: folder.name, selectedBackgroundColor: folder.backgroundColor, isEditing: true, folderIdWhenEditing: folder.id)
                     } else {
                         FolderInfoEditingView(isBeingShown: $showingFolderInfoEditingView, selectedBackgroundColor: "pastelBabyBlue")
                     }

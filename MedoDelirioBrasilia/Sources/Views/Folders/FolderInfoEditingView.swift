@@ -100,7 +100,7 @@ struct FolderInfoEditingView: View {
                             try? database.update(userFolder: folderIdWhenEditing, withNewSymbol: symbol, newName: folderName, andNewBackgroundColor: selectedBackgroundColor)
                             self.isBeingShown = false
                         } else {
-                            try? database.insert(userFolder: UserFolder(symbol: symbol, title: folderName, backgroundColor: selectedBackgroundColor))
+                            try? database.insert(userFolder: UserFolder(symbol: symbol, name: folderName, backgroundColor: selectedBackgroundColor))
                             self.isBeingShown = false
                         }
                     }
