@@ -132,9 +132,9 @@ struct CollectionsView: View {
                 .navigationTitle("Coleções")
                 .sheet(isPresented: $showingAddNewFolderView) {
                     if let folder = folderForEditingOnSheet {
-                        FolderInfoEditingView(isBeingShown: $showingAddNewFolderView, symbol: folder.symbol, folderName: folder.title, backgroundColor: folder.backgroundColor.toColor(), isEditing: true)
+                        FolderInfoEditingView(isBeingShown: $showingAddNewFolderView, symbol: folder.symbol, folderName: folder.title, selectedBackgroundColor: folder.backgroundColor, isEditing: true)
                     } else {
-                        FolderInfoEditingView(isBeingShown: $showingAddNewFolderView)
+                        FolderInfoEditingView(isBeingShown: $showingAddNewFolderView, selectedBackgroundColor: "pastelBabyBlue")
                     }
                 }
                 .alert(isPresented: $viewModel.showAlert) {

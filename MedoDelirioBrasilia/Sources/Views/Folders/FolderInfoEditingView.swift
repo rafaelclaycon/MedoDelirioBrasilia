@@ -11,18 +11,11 @@ struct FolderInfoEditingView: View {
     @Binding var isBeingShown: Bool
     @State var symbol: String = ""
     @State var folderName: String = ""
-    @State var backgroundColor: Color = .pastelBabyBlue
+    @State var selectedBackgroundColor: String
     @State var isEditing: Bool = false
     @FocusState private var focusedField: Field?
     
-    let colors: [FolderColor] = [FolderColor(color: .pastelPurple), FolderColor(color: .pastelBabyBlue),
-                                 FolderColor(color: .pastelBrightGreen), FolderColor(color: .pastelYellow),
-                                 FolderColor(color: .pastelOrange), FolderColor(color: .pastelPink),
-                                 FolderColor(color: .pastelGray), FolderColor(color: .pastelRoyalBlue),
-                                 FolderColor(color: .pastelMutedGreen), FolderColor(color: .pastelRed),
-                                 FolderColor(color: .pastelBeige)]
-    
-    let rows = [
+    private let rows = [
         GridItem(.flexible())
     ]
     
@@ -33,7 +26,7 @@ struct FolderInfoEditingView: View {
                 
                 ZStack {
                     RoundedRectangle(cornerRadius: 20, style: .continuous)
-                        .fill(backgroundColor)
+                        .fill(selectedBackgroundColor.toColor())
                         .frame(width: 180, height: 100)
                     
                     HStack {
@@ -78,14 +71,9 @@ struct FolderInfoEditingView: View {
                 Spacer()
                 
                 ScrollView(.horizontal, showsIndicators: true) {
-                    LazyHGrid(rows: rows, spacing: 14) {
-                        ForEach(colors) { folderColor in
-                            Circle()
-                                .fill(folderColor.color)
-                                .frame(width: 40, height: 40)
-                                .onTapGesture {
-                                    backgroundColor = folderColor.color
-                                }
+                    LazyHGrid(rows: rows, spacing: 5) {
+                        ForEach(FolderColorFactory.getColors()) { folderColor in
+                            ColorSelectionCell(color: folderColor.color, selectedColor: $selectedBackgroundColor)
                         }
                     }
                     .frame(height: 70)
@@ -104,7 +92,7 @@ struct FolderInfoEditingView: View {
             , trailing:
                 Button(action: {
                 if viewModel.checkIfMeetsAllRequirements(symbol: symbol, folderName: folderName, isEditing: isEditing) {
-                        try? database.insert(userFolder: UserFolder(symbol: symbol, title: folderName, backgroundColor: backgroundColor.name ?? .empty))
+                        try? database.insert(userFolder: UserFolder(symbol: symbol, title: folderName, backgroundColor: selectedBackgroundColor))
                         self.isBeingShown = false
                     }
                 }) {
@@ -142,10 +130,10 @@ struct FolderInfoEditingView: View {
 
 }
 
-struct AddNewFolderView_Previews: PreviewProvider {
+struct FolderInfoEditingView_Previews: PreviewProvider {
 
     static var previews: some View {
-        FolderInfoEditingView(isBeingShown: .constant(true))
+        FolderInfoEditingView(isBeingShown: .constant(true), selectedBackgroundColor: "pastelBabyBlue")
     }
 
 }
