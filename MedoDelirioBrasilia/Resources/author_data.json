@@ -1,7 +1,7 @@
 [
     {
         "id": "E49C6318-B890-4976-B90F-01B60A4FE6D7",
-        "name": "ADY"
+        "name": "Ady Ferrer"
     },
     {
         "id": "2982E359-0A6C-4005-AED8-2D5BB7F39599",
@@ -101,7 +101,7 @@
     },
     {
         "id": "A7449684-39D6-48AE-91D2-BC8E3D8133F1",
-        "name": "Cerginho da Perera Nunes"
+        "name": "Cerginho da Pereira Nunes (Falha de Cobertura)"
     },
     {
         "id": "EA9B678C-B7AC-4A7F-8D5A-FA21CB3468F4",
@@ -130,10 +130,6 @@
     {
         "id": "D8738C87-8962-418E-ADBF-9B1DC3D30528",
         "name": "Saiddy Bamba"
-    },
-    {
-        "id": "924B9331-E479-4644-82F4-8DB6C7574DC7",
-        "name": "Choque de Cultura"
     },
     {
         "id": "7E1ED3FF-82AA-4047-B0A9-292D63FC4711",
@@ -322,10 +318,6 @@
     {
         "id": "CCD571EF-00FF-47F0-B6CE-429518BEDFF1",
         "name": "Érick Jacquin"
-    },
-    {
-        "id": "025AE8A1-8154-4529-9C3D-CFDFF9AE02E5",
-        "name": "Falha de Cobertura (Cerginho da Pereira Nunes)"
     },
     {
         "id": "C3846559-8B51-4A0E-89F6-46FA2910600E",
@@ -596,15 +588,19 @@
         "name": "Julinho da Van (Choque de Cultura)"
     },
     {
+        "id": "2BBB826D-24E5-4DFE-95DF-A6FFE41155D9",
+        "name": "Rogerinho (Choque de Cultura)"
+    },
+    {
         "id": "E3F705A3-74B1-4B62-B6AD-9A230A597B5D",
         "name": "Maurílio dos Anjos (Choque de Cultura)"
     },
     {
-        "id": "05A3C97F-68EE-4AEB-9BEA-761348725225",
-        "name": "Luís Roberto Barroso"
+        "id": "53202065-71B1-459F-A3C6-650379874255",
+        "name": "Gumball"
     },
     {
-        "id": "A3CBBA65-2035-4A63-A571-5EB3A722B392",
-        "name": "Rafael Portugal"
+        "id": "05A3C97F-68EE-4AEB-9BEA-761348725225",
+        "name": "Luís Roberto Barroso"
     }
 ]

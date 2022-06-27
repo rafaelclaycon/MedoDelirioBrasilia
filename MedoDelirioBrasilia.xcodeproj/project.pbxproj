@@ -94,6 +94,35 @@
 		D92E7070283C5CF40035826C /* song_data.json in Resources */ = {isa = PBXBuildFile; fileRef = D92E706F283C5CF40035826C /* song_data.json */; };
 		D92E7072283C5D990035826C /* SongsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92E7071283C5D990035826C /* SongsViewViewModel.swift */; };
 		D92E7075283C5F620035826C /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92E7074283C5F620035826C /* SongCell.swift */; };
+		D92F8BCB286A730500EB9470 /* Bolsonaro - Como etanol.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92F8BAE286A730400EB9470 /* Bolsonaro - Como etanol.mp3 */; };
+		D92F8BCC286A730500EB9470 /* Boldo - e de quanto.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92F8BAF286A730400EB9470 /* Boldo - e de quanto.mp3 */; };
+		D92F8BCD286A730500EB9470 /* Gilmar Mendes - aha uhu o Fachin e nosso.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92F8BB0286A730400EB9470 /* Gilmar Mendes - aha uhu o Fachin e nosso.mp3 */; };
+		D92F8BCE286A730500EB9470 /* Gilmar mendes - uma grande confusao short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92F8BB1286A730400EB9470 /* Gilmar mendes - uma grande confusao short.mp3 */; };
+		D92F8BCF286A730500EB9470 /* Gilmar Mendes - Eu ja disse aqui.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92F8BB2286A730400EB9470 /* Gilmar Mendes - Eu ja disse aqui.mp3 */; };
+		D92F8BD0286A730500EB9470 /* Ai seu grosso.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92F8BB3286A730400EB9470 /* Ai seu grosso.mp3 */; };
+		D92F8BD1286A730500EB9470 /* Ate o final tu vai bancar esse merda la seu merda.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92F8BB4286A730400EB9470 /* Ate o final tu vai bancar esse merda la seu merda.mp3 */; };
+		D92F8BD2286A730500EB9470 /* Gilmar Mendes - Com a devida venia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92F8BB5286A730400EB9470 /* Gilmar Mendes - Com a devida venia.mp3 */; };
+		D92F8BD3286A730500EB9470 /* Gilmar Mendes - Eu estou julgando improcedente a acao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92F8BB6286A730400EB9470 /* Gilmar Mendes - Eu estou julgando improcedente a acao.mp3 */; };
+		D92F8BD4286A730500EB9470 /* Bolsonaro - E todos esperavam exatamente o contrario.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92F8BB7286A730400EB9470 /* Bolsonaro - E todos esperavam exatamente o contrario.mp3 */; };
+		D92F8BD5286A730500EB9470 /* Gilmar Mendes - Me parece que esta havendo um certo delirio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92F8BB8286A730500EB9470 /* Gilmar Mendes - Me parece que esta havendo um certo delirio.mp3 */; };
+		D92F8BD6286A730500EB9470 /* Bolsonaro - Ce ta vendo muito Globo ai.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92F8BB9286A730500EB9470 /* Bolsonaro - Ce ta vendo muito Globo ai.mp3 */; };
+		D92F8BD7286A730500EB9470 /* Away - Que.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92F8BBA286A730500EB9470 /* Away - Que.mp3 */; };
+		D92F8BD8286A730500EB9470 /* Bolsonaro - Brasil e Estados Unidos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92F8BBB286A730500EB9470 /* Bolsonaro - Brasil e Estados Unidos.mp3 */; };
+		D92F8BD9286A730500EB9470 /* ATILA IAMARINO - Nao tem condicoes.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92F8BBC286A730500EB9470 /* ATILA IAMARINO - Nao tem condicoes.mp3 */; };
+		D92F8BDA286A730500EB9470 /* Bolsonaro - Enfrentar como homem.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92F8BBD286A730500EB9470 /* Bolsonaro - Enfrentar como homem.mp3 */; };
+		D92F8BDB286A730500EB9470 /* Bolsonaro - Estou com covid.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92F8BBE286A730500EB9470 /* Bolsonaro - Estou com covid.mp3 */; };
+		D92F8BDC286A730500EB9470 /* Bolsonaro - Estavamos a beira do socialismo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92F8BBF286A730500EB9470 /* Bolsonaro - Estavamos a beira do socialismo.mp3 */; };
+		D92F8BDD286A730500EB9470 /* Away - De novo cara.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92F8BC0286A730500EB9470 /* Away - De novo cara.mp3 */; };
+		D92F8BDE286A730500EB9470 /* Gumball - ooo que mais.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92F8BC1286A730500EB9470 /* Gumball - ooo que mais.mp3 */; };
+		D92F8BDF286A730500EB9470 /* Bolsonaro - Eu votaria no Lula no segundo turno.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92F8BC2286A730500EB9470 /* Bolsonaro - Eu votaria no Lula no segundo turno.mp3 */; };
+		D92F8BE0286A730500EB9470 /* Ady Ferrer - Oh nao mais um crime contra a humanidade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92F8BC3286A730500EB9470 /* Ady Ferrer - Oh nao mais um crime contra a humanidade.mp3 */; };
+		D92F8BE1286A730500EB9470 /* Bolsonaro - a imprensa mundial e de esquerda.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92F8BC4286A730500EB9470 /* Bolsonaro - a imprensa mundial e de esquerda.mp3 */; };
+		D92F8BE2286A730500EB9470 /* Bolsonaro - A coisa e seria pessoal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92F8BC5286A730500EB9470 /* Bolsonaro - A coisa e seria pessoal.mp3 */; };
+		D92F8BE3286A730500EB9470 /* Ady Ferrer - A pandemia ainda nao acabou porra.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92F8BC6286A730500EB9470 /* Ady Ferrer - A pandemia ainda nao acabou porra.mp3 */; };
+		D92F8BE4286A730500EB9470 /* Alborghetti - Ta uma merda esse pais.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92F8BC7286A730500EB9470 /* Alborghetti - Ta uma merda esse pais.mp3 */; };
+		D92F8BE5286A730500EB9470 /* Dudu Marfetan - Agora tu aguenta.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92F8BC8286A730500EB9470 /* Dudu Marfetan - Agora tu aguenta.mp3 */; };
+		D92F8BE6286A730500EB9470 /* Away -  Fora das condicoes normais.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92F8BC9286A730500EB9470 /* Away -  Fora das condicoes normais.mp3 */; };
+		D92F8BE7286A730500EB9470 /* ATILA IAMARINO - Que que eu posso tomar voce pode tomar cuidado e vacina.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92F8BCA286A730500EB9470 /* ATILA IAMARINO - Que que eu posso tomar voce pode tomar cuidado e vacina.mp3 */; };
 		D9344323283812AD00ADCD38 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9344322283812AD00ADCD38 /* Author.swift */; };
 		D93443252838177000ADCD38 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93443242838177000ADCD38 /* UserInfo.swift */; };
 		D934432728381DEF00ADCD38 /* author_data.json in Resources */ = {isa = PBXBuildFile; fileRef = D934432628381DEF00ADCD38 /* author_data.json */; };
@@ -540,6 +569,35 @@
 		D92E706F283C5CF40035826C /* song_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = song_data.json; sourceTree = "<group>"; };
 		D92E7071283C5D990035826C /* SongsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsViewViewModel.swift; sourceTree = "<group>"; };
 		D92E7074283C5F620035826C /* SongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
+		D92F8BAE286A730400EB9470 /* Bolsonaro - Como etanol.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Como etanol.mp3"; sourceTree = "<group>"; };
+		D92F8BAF286A730400EB9470 /* Boldo - e de quanto.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Boldo - e de quanto.mp3"; sourceTree = "<group>"; };
+		D92F8BB0286A730400EB9470 /* Gilmar Mendes - aha uhu o Fachin e nosso.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gilmar Mendes - aha uhu o Fachin e nosso.mp3"; sourceTree = "<group>"; };
+		D92F8BB1286A730400EB9470 /* Gilmar mendes - uma grande confusao short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gilmar mendes - uma grande confusao short.mp3"; sourceTree = "<group>"; };
+		D92F8BB2286A730400EB9470 /* Gilmar Mendes - Eu ja disse aqui.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gilmar Mendes - Eu ja disse aqui.mp3"; sourceTree = "<group>"; };
+		D92F8BB3286A730400EB9470 /* Ai seu grosso.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ai seu grosso.mp3"; sourceTree = "<group>"; };
+		D92F8BB4286A730400EB9470 /* Ate o final tu vai bancar esse merda la seu merda.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ate o final tu vai bancar esse merda la seu merda.mp3"; sourceTree = "<group>"; };
+		D92F8BB5286A730400EB9470 /* Gilmar Mendes - Com a devida venia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gilmar Mendes - Com a devida venia.mp3"; sourceTree = "<group>"; };
+		D92F8BB6286A730400EB9470 /* Gilmar Mendes - Eu estou julgando improcedente a acao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gilmar Mendes - Eu estou julgando improcedente a acao.mp3"; sourceTree = "<group>"; };
+		D92F8BB7286A730400EB9470 /* Bolsonaro - E todos esperavam exatamente o contrario.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - E todos esperavam exatamente o contrario.mp3"; sourceTree = "<group>"; };
+		D92F8BB8286A730500EB9470 /* Gilmar Mendes - Me parece que esta havendo um certo delirio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gilmar Mendes - Me parece que esta havendo um certo delirio.mp3"; sourceTree = "<group>"; };
+		D92F8BB9286A730500EB9470 /* Bolsonaro - Ce ta vendo muito Globo ai.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Ce ta vendo muito Globo ai.mp3"; sourceTree = "<group>"; };
+		D92F8BBA286A730500EB9470 /* Away - Que.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Away - Que.mp3"; sourceTree = "<group>"; };
+		D92F8BBB286A730500EB9470 /* Bolsonaro - Brasil e Estados Unidos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Brasil e Estados Unidos.mp3"; sourceTree = "<group>"; };
+		D92F8BBC286A730500EB9470 /* ATILA IAMARINO - Nao tem condicoes.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ATILA IAMARINO - Nao tem condicoes.mp3"; sourceTree = "<group>"; };
+		D92F8BBD286A730500EB9470 /* Bolsonaro - Enfrentar como homem.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Enfrentar como homem.mp3"; sourceTree = "<group>"; };
+		D92F8BBE286A730500EB9470 /* Bolsonaro - Estou com covid.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Estou com covid.mp3"; sourceTree = "<group>"; };
+		D92F8BBF286A730500EB9470 /* Bolsonaro - Estavamos a beira do socialismo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Estavamos a beira do socialismo.mp3"; sourceTree = "<group>"; };
+		D92F8BC0286A730500EB9470 /* Away - De novo cara.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Away - De novo cara.mp3"; sourceTree = "<group>"; };
+		D92F8BC1286A730500EB9470 /* Gumball - ooo que mais.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gumball - ooo que mais.mp3"; sourceTree = "<group>"; };
+		D92F8BC2286A730500EB9470 /* Bolsonaro - Eu votaria no Lula no segundo turno.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Eu votaria no Lula no segundo turno.mp3"; sourceTree = "<group>"; };
+		D92F8BC3286A730500EB9470 /* Ady Ferrer - Oh nao mais um crime contra a humanidade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ady Ferrer - Oh nao mais um crime contra a humanidade.mp3"; sourceTree = "<group>"; };
+		D92F8BC4286A730500EB9470 /* Bolsonaro - a imprensa mundial e de esquerda.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - a imprensa mundial e de esquerda.mp3"; sourceTree = "<group>"; };
+		D92F8BC5286A730500EB9470 /* Bolsonaro - A coisa e seria pessoal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - A coisa e seria pessoal.mp3"; sourceTree = "<group>"; };
+		D92F8BC6286A730500EB9470 /* Ady Ferrer - A pandemia ainda nao acabou porra.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ady Ferrer - A pandemia ainda nao acabou porra.mp3"; sourceTree = "<group>"; };
+		D92F8BC7286A730500EB9470 /* Alborghetti - Ta uma merda esse pais.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alborghetti - Ta uma merda esse pais.mp3"; sourceTree = "<group>"; };
+		D92F8BC8286A730500EB9470 /* Dudu Marfetan - Agora tu aguenta.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Dudu Marfetan - Agora tu aguenta.mp3"; sourceTree = "<group>"; };
+		D92F8BC9286A730500EB9470 /* Away -  Fora das condicoes normais.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Away -  Fora das condicoes normais.mp3"; sourceTree = "<group>"; };
+		D92F8BCA286A730500EB9470 /* ATILA IAMARINO - Que que eu posso tomar voce pode tomar cuidado e vacina.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ATILA IAMARINO - Que que eu posso tomar voce pode tomar cuidado e vacina.mp3"; sourceTree = "<group>"; };
 		D9344322283812AD00ADCD38 /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		D93443242838177000ADCD38 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		D934432628381DEF00ADCD38 /* author_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = author_data.json; sourceTree = "<group>"; };
@@ -913,6 +971,35 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D92F8BC6286A730500EB9470 /* Ady Ferrer - A pandemia ainda nao acabou porra.mp3 */,
+				D92F8BC3286A730500EB9470 /* Ady Ferrer - Oh nao mais um crime contra a humanidade.mp3 */,
+				D92F8BB3286A730400EB9470 /* Ai seu grosso.mp3 */,
+				D92F8BC7286A730500EB9470 /* Alborghetti - Ta uma merda esse pais.mp3 */,
+				D92F8BB4286A730400EB9470 /* Ate o final tu vai bancar esse merda la seu merda.mp3 */,
+				D92F8BBC286A730500EB9470 /* ATILA IAMARINO - Nao tem condicoes.mp3 */,
+				D92F8BCA286A730500EB9470 /* ATILA IAMARINO - Que que eu posso tomar voce pode tomar cuidado e vacina.mp3 */,
+				D92F8BC9286A730500EB9470 /* Away -  Fora das condicoes normais.mp3 */,
+				D92F8BC0286A730500EB9470 /* Away - De novo cara.mp3 */,
+				D92F8BBA286A730500EB9470 /* Away - Que.mp3 */,
+				D92F8BAF286A730400EB9470 /* Boldo - e de quanto.mp3 */,
+				D92F8BC5286A730500EB9470 /* Bolsonaro - A coisa e seria pessoal.mp3 */,
+				D92F8BC4286A730500EB9470 /* Bolsonaro - a imprensa mundial e de esquerda.mp3 */,
+				D92F8BBB286A730500EB9470 /* Bolsonaro - Brasil e Estados Unidos.mp3 */,
+				D92F8BB9286A730500EB9470 /* Bolsonaro - Ce ta vendo muito Globo ai.mp3 */,
+				D92F8BAE286A730400EB9470 /* Bolsonaro - Como etanol.mp3 */,
+				D92F8BB7286A730400EB9470 /* Bolsonaro - E todos esperavam exatamente o contrario.mp3 */,
+				D92F8BBD286A730500EB9470 /* Bolsonaro - Enfrentar como homem.mp3 */,
+				D92F8BBF286A730500EB9470 /* Bolsonaro - Estavamos a beira do socialismo.mp3 */,
+				D92F8BBE286A730500EB9470 /* Bolsonaro - Estou com covid.mp3 */,
+				D92F8BC2286A730500EB9470 /* Bolsonaro - Eu votaria no Lula no segundo turno.mp3 */,
+				D92F8BC8286A730500EB9470 /* Dudu Marfetan - Agora tu aguenta.mp3 */,
+				D92F8BB0286A730400EB9470 /* Gilmar Mendes - aha uhu o Fachin e nosso.mp3 */,
+				D92F8BB5286A730400EB9470 /* Gilmar Mendes - Com a devida venia.mp3 */,
+				D92F8BB6286A730400EB9470 /* Gilmar Mendes - Eu estou julgando improcedente a acao.mp3 */,
+				D92F8BB2286A730400EB9470 /* Gilmar Mendes - Eu ja disse aqui.mp3 */,
+				D92F8BB8286A730500EB9470 /* Gilmar Mendes - Me parece que esta havendo um certo delirio.mp3 */,
+				D92F8BB1286A730400EB9470 /* Gilmar mendes - uma grande confusao short.mp3 */,
+				D92F8BC1286A730500EB9470 /* Gumball - ooo que mais.mp3 */,
 				D958BC612868E210000B2EDA /* CHOQUE DE CULTURA - Julinho da Van - Eles perderam o limite.mp3 */,
 				D958BC622868E210000B2EDA /* Choque de Cultura - Julinho Foda-se.mp3 */,
 				D958BC5D2868E210000B2EDA /* Choque de Cultura - Maurilio - O ultimo idoso alegre do planeta e o Ary Fontoura.mp3 */,
@@ -1718,6 +1805,8 @@
 				D9EB189A28577EC400A2F8A8 /* Eu nao entendi o que ele falou.mp3 in Resources */,
 				D9556930285137800072E3FC /* jonathan frakes - not this time.mp3 in Resources */,
 				D9556949285137800072E3FC /* Away - Para com essa porra ai mermao short.mp3 in Resources */,
+				D92F8BD7286A730500EB9470 /* Away - Que.mp3 in Resources */,
+				D92F8BE0286A730500EB9470 /* Ady Ferrer - Oh nao mais um crime contra a humanidade.mp3 in Resources */,
 				D99A9FAE286687240068B172 /* CNN BRASIL - Milton Ribeiro - A questao e eminentemente repito tecnica.mp3 in Resources */,
 				D955698C285137800072E3FC /* Funk meme - Ele mesmo, ele mesmo, ele mesmo.mp3 in Resources */,
 				D95569AE285137800072E3FC /* Michel Temer - Pigarro.mp3 in Resources */,
@@ -1738,17 +1827,20 @@
 				D99A9FAD286687240068B172 /* DESMENTINDO BOLSONARO - Milton Ribeiro - O presidente da republica nunca me pediu nada, absolutamente nada.mp3 in Resources */,
 				D922730E285AAD3E00A98CAE /* TV BRASIL - Bolsonaro - Pretiputi, pretiputi, pretiputi.mp3 in Resources */,
 				D95569AA285137800072E3FC /* Que porra e essa batata.mp3 in Resources */,
+				D92F8BD0286A730500EB9470 /* Ai seu grosso.mp3 in Resources */,
 				D927C42228523FAC0041970A /* Xuxa - Aham Claudia Senta la short meme.mp3 in Resources */,
 				D982DCFE285BD559003C8695 /* CASIMIRO - Voce acha isso legal.mp3 in Resources */,
 				D955699D285137800072E3FC /* Fred - Ce ta falando serio.mp3 in Resources */,
 				D958BC682868E210000B2EDA /* CHOQUE DE CULTURA - Renan - E energia aqui o ta em cima carnaval alegria.mp3 in Resources */,
 				D9556981285137800072E3FC /* Bolsonaro - ah o o cara quem fala disso eu nao sou coveiro ta ok.mp3 in Resources */,
 				D90483D22851A19F00885739 /* Gaucho Puto - Seu bosta, seu lixo, tu e um ser tao repulsivo.mp3 in Resources */,
+				D92F8BCE286A730500EB9470 /* Gilmar mendes - uma grande confusao short.mp3 in Resources */,
 				D9556931285137800072E3FC /* Ivete Sangalo - Chupa Toda short meme.mp3 in Resources */,
 				D9556924285137800072E3FC /* Tim Maia - Me De Motivo.mp3 in Resources */,
 				D9556979285137800072E3FC /* Silas Malafaia - Nao seja um mentiroso short.mp3 in Resources */,
 				D95569A9285137800072E3FC /* Reinaldo Azevedo - Parte Terminal do Aparelho Digestivo.mp3 in Resources */,
 				D9556950285137800072E3FC /* Collor - Um devaneio, um sonho de uma noite de verao.mp3 in Resources */,
+				D92F8BE7286A730500EB9470 /* ATILA IAMARINO - Que que eu posso tomar voce pode tomar cuidado e vacina.mp3 in Resources */,
 				D9556966285137800072E3FC /* Drauzio - procura um psiquiatra, voce nao ta legal.mp3 in Resources */,
 				D9556972285137800072E3FC /* MC Creu - E creu, e creu neles.mp3 in Resources */,
 				D9B4F740283C8F4D0000EEF7 /* O roque ativa.mp3 in Resources */,
@@ -1778,10 +1870,12 @@
 				D9556937285137800072E3FC /* MULTISHOW_Gloria_Groove_Quer_dizer_que_eles_querem_calar_a_gente.mp3 in Resources */,
 				D90483F42851B0F500885739 /* Ronnie Von - Significa short.mp3 in Resources */,
 				D95569C5285137800072E3FC /* Bolsonaro - trabalho excepcional do pazuello.mp3 in Resources */,
+				D92F8BD6286A730500EB9470 /* Bolsonaro - Ce ta vendo muito Globo ai.mp3 in Resources */,
 				D95569BE285137800072E3FC /* Choque de Cultura - Rogerinho - Aqui tem informacao.mp3 in Resources */,
 				D95569A7285137800072E3FC /* Vera Magalhaes - Parece que o senhor esta um pouco imbuido de uma disposicao de acreditar.mp3 in Resources */,
 				D927C40F28523A050041970A /* Osorio - Flavio Bolsonaro desmaio - Nao da pra continuar, ta passando mal short.mp3 in Resources */,
 				D95569E228513FAB0072E3FC /* Valdemiro Santiago - Eu nao suporto mais.mp3 in Resources */,
+				D92F8BD1286A730500EB9470 /* Ate o final tu vai bancar esse merda la seu merda.mp3 in Resources */,
 				D9556926285137800072E3FC /* A mae copiloto - celera bem, acelera short meme.mp3 in Resources */,
 				D90483F52851B0F500885739 /* REVELACAO - Nao mete essa short meme.mp3 in Resources */,
 				D95569B6285137800072E3FC /* o_cachorro_do_supremo.mp3 in Resources */,
@@ -1807,6 +1901,7 @@
 				D9556943285137800072E3FC /* Leo Stronda Monstro - Batata doce e frango logico.mp3 in Resources */,
 				D955697E285137800072E3FC /* COMUNISTA MEME.mp3 in Resources */,
 				D95569DB285137800072E3FC /* Bolsonaro - Lamento, quer que eu faca o que.mp3 in Resources */,
+				D92F8BCC286A730500EB9470 /* Boldo - e de quanto.mp3 in Resources */,
 				D955691D285137800072E3FC /* Pazuello - Que que ce vai fazer nada.mp3 in Resources */,
 				D9376C12285B7510001216DC /* Cocorico - Ah coitado.mp3 in Resources */,
 				D9556983285137800072E3FC /* Silas Malafaia - gente que vive tanto na mentira que faz dela a sua verdade.mp3 in Resources */,
@@ -1822,7 +1917,10 @@
 				D91964F02856BB3F0067B430 /* Chico Bento - Coitado.mp3 in Resources */,
 				D9556992285137800072E3FC /* Joao Doria - Isso exige medidas urgentes.mp3 in Resources */,
 				D99A9F9A286683340068B172 /* Silvio Santos - Ele fala e voces deliram, ele fala e voces deliram.mp3 in Resources */,
+				D92F8BDC286A730500EB9470 /* Bolsonaro - Estavamos a beira do socialismo.mp3 in Resources */,
+				D92F8BE1286A730500EB9470 /* Bolsonaro - a imprensa mundial e de esquerda.mp3 in Resources */,
 				D99A9F972866827E0068B172 /* UOL - Otoni de Paula - Eu nao vou recuar um milimetro.mp3 in Resources */,
+				D92F8BDB286A730500EB9470 /* Bolsonaro - Estou com covid.mp3 in Resources */,
 				D9556925285137800072E3FC /* Nunca as funerarias trabalharam tanto.mp3 in Resources */,
 				D95569A3285137800072E3FC /* Natalia Pasternak - E um pedaco de pano no rosto, e uma porra de um pedaco de pano na cara.mp3 in Resources */,
 				D9556917285137800072E3FC /* Gilmar Mendes - O exercito esta se associando a esse genocidio.mp3 in Resources */,
@@ -1841,6 +1939,7 @@
 				D9EB189928577EC400A2F8A8 /* Eu fico muito triste com uma noticia dessas filha da puta fogos short.mp3 in Resources */,
 				D922730B285AAD3E00A98CAE /* Bolsonaro - Pretendo beneficiar um filho meu sim pretendo.mp3 in Resources */,
 				D9556955285137800072E3FC /* Que merda hein short.mp3 in Resources */,
+				D92F8BE2286A730500EB9470 /* Bolsonaro - A coisa e seria pessoal.mp3 in Resources */,
 				D99A9FA8286687240068B172 /* Milton Ribeiro - O mundo foi perdendo a referencia do que e certo e do que e errado em termos de conduta sexual.mp3 in Resources */,
 				D9556941285137800072E3FC /* Ciro Gomes - Conspirador filho da puta.mp3 in Resources */,
 				D90483DC2851A66200885739 /* HENRY BUGALHO - Os reacas piram.mp3 in Resources */,
@@ -1874,6 +1973,7 @@
 				D9556947285137800072E3FC /* Gilmar Mendes - Nao e razoavel.mp3 in Resources */,
 				D9227311285AAD3E00A98CAE /* Bolsonaro - Presente Puti prentiputi pretiputi presidente putin.mp3 in Resources */,
 				D90483F22851B0F500885739 /* Pega essa buceta e enfia no cu short meme.mp3 in Resources */,
+				D92F8BDE286A730500EB9470 /* Gumball - ooo que mais.mp3 in Resources */,
 				D955698E285137800072E3FC /* Bolsonaro - Vai morrer gente morrer morte inocentes tinha que matar e mais minha especialidade e matar.mp3 in Resources */,
 				D90483FA2851B0F500885739 /* O Terrivel Editorialista do Estadao.mp3 in Resources */,
 				D958BC662868E210000B2EDA /* Choque de Cultura - Maurilio - O ultimo idoso alegre do planeta e o Ary Fontoura.mp3 in Resources */,
@@ -1886,6 +1986,8 @@
 				D90483CE2851A19F00885739 /* CANAL RURAL - Alexandre Garcia - A sensatez que significa a abordagem do governo na pandemia.mp3 in Resources */,
 				D927C41B28523F5D0041970A /* Malditos Milicos robo.mp3 in Resources */,
 				D955690F285137800072E3FC /* ADY - oh nao mais um crime de responsabilidade.mp3 in Resources */,
+				D92F8BD4286A730500EB9470 /* Bolsonaro - E todos esperavam exatamente o contrario.mp3 in Resources */,
+				D92F8BE5286A730500EB9470 /* Dudu Marfetan - Agora tu aguenta.mp3 in Resources */,
 				D95569C9285137800072E3FC /* Neto - Ces tao de brincadeira.mp3 in Resources */,
 				D955693D285137800072E3FC /* Bolsonaro e Ratinho - O senhor acha que vai durar essa crise uns cinco 5 ou seis 6 meses.mp3 in Resources */,
 				D9556989285137800072E3FC /* Bolsonaro - Nao leio a imprensa nao vejo Jornal Nacional faca o que eu faco.mp3 in Resources */,
@@ -1895,6 +1997,7 @@
 				D9556970285137800072E3FC /* MULTISHOW - Lulu Santos - Censura nunca mais.mp3 in Resources */,
 				D90483CF2851A19F00885739 /* Gaucho Puto - Uma bosta, nao sabe, uma merda.mp3 in Resources */,
 				D94611782861350300C4FB7E /* Pazuello - Abraco galera.mp3 in Resources */,
+				D92F8BDA286A730500EB9470 /* Bolsonaro - Enfrentar como homem.mp3 in Resources */,
 				D9556971285137800072E3FC /* Bolsonaro - Sera que eu to errando ao falar isso dai.mp3 in Resources */,
 				D955691E285137800072E3FC /* Boulos Porra short.mp3 in Resources */,
 				D946117B286136CD00C4FB7E /* Damares - Uau.mp3 in Resources */,
@@ -1910,6 +2013,7 @@
 				D9556946285137800072E3FC /* Alborgeti - Que Merda Hein.mp3 in Resources */,
 				D9376C14285B78A3001216DC /* Sirigueijo - Dinheiro.mp3 in Resources */,
 				D9376C10285B7348001216DC /* Bolsonaro - E so voce fazer coco dia sim, dia nao, que melhora bastante.mp3 in Resources */,
+				D92F8BCB286A730500EB9470 /* Bolsonaro - Como etanol.mp3 in Resources */,
 				D955699A285137800072E3FC /* tu_ouviu_isso.mp3 in Resources */,
 				D99A9FAC286687240068B172 /* JOVEM PAN NEWS - Constantino - Pro audio vazar, alguem quer sabotar o MEC e o Milton Ribeiro se deu mal.mp3 in Resources */,
 				D9556912285137800072E3FC /* esse_neto_bosta.mp3 in Resources */,
@@ -1932,6 +2036,7 @@
 				D958BC582868D9A3000B2EDA /* Choque de Cultura - Nem existe isso, ce ta inventando palavra.mp3 in Resources */,
 				D955692F285137800072E3FC /* GABRIELA PRIOLI - Esse governo desmoraliza as forcas armadas.mp3 in Resources */,
 				D95569B2285137800072E3FC /* Datena - Gol do presidente Bolsonaro.mp3 in Resources */,
+				D92F8BE3286A730500EB9470 /* Ady Ferrer - A pandemia ainda nao acabou porra.mp3 in Resources */,
 				D95569CD285137800072E3FC /* Pedro Doria - Voces tem desanimo eu tenho as vezes.mp3 in Resources */,
 				D927C41F28523F5D0041970A /* SBT NEWS - Jair Renan - Acabou que nao fiz nada la.mp3 in Resources */,
 				D955692E285137800072E3FC /* Tu tava fora do brasil irmao short.mp3 in Resources */,
@@ -1942,12 +2047,14 @@
 				D955699B285137800072E3FC /* Malafaia - Jair Messias Bolsonaro sem respostas.mp3 in Resources */,
 				D95569A4285137800072E3FC /* Fernando Collor - Tres vezes dizendo que e mentira.mp3 in Resources */,
 				D982DCFB285BD3FC003C8695 /* CASIMIRO - Que que porra e essa.mp3 in Resources */,
+				D92F8BD5286A730500EB9470 /* Gilmar Mendes - Me parece que esta havendo um certo delirio.mp3 in Resources */,
 				D9227313285AAD3E00A98CAE /* PLANALTO - Bolsonaro - Presidente Putin Pretiputi remix house.mp3 in Resources */,
 				D95569BA285137800072E3FC /* esse_braga_neto_que_eh_um_bosta.mp3 in Resources */,
 				D9EB189628577DEF00A2F8A8 /* Atencao e agora que o bicho vai pegar short meme.mp3 in Resources */,
 				D9556996285137800072E3FC /* Passada chocada meu Deus jesus.mp3 in Resources */,
 				D955695B285137800072E3FC /* Craque Neto - Vacina eu Tomo short meme.mp3 in Resources */,
 				D927C41A28523F5D0041970A /* PLANALTO - Bolsonaro - Mente.mp3 in Resources */,
+				D92F8BD2286A730500EB9470 /* Gilmar Mendes - Com a devida venia.mp3 in Resources */,
 				D955694A285137800072E3FC /* COMUNISTA DO INFERNO meme.mp3 in Resources */,
 				D9C3EF502866938A00C44249 /* Eduardo Pazuello - Tem um grau ai de prisma na coisa.mp3 in Resources */,
 				D9227312285AAD3E00A98CAE /* PLANALTO - Bolsonaro - Presidente Putin Pretiputi.mp3 in Resources */,
@@ -1960,16 +2067,22 @@
 				D91964E228563B680067B430 /* Bolsonaro - Esposa, ne, tem que aguentar, mas ta tudo bem.mp3 in Resources */,
 				D90483F72851B0F500885739 /* Pronto, falei short.mp3 in Resources */,
 				D955692D285137800072E3FC /* Choque de Cultura - Renan - E Paradoxo que chama isso ai.mp3 in Resources */,
+				D92F8BD3286A730500EB9470 /* Gilmar Mendes - Eu estou julgando improcedente a acao.mp3 in Resources */,
 				D9556974285137800072E3FC /* tv_senado_soraya_thronicke_a_gente_vai_cansando_sabe.mp3 in Resources */,
 				D927C41028523A050041970A /* OLHA SO short meme.mp3 in Resources */,
+				D92F8BCD286A730500EB9470 /* Gilmar Mendes - aha uhu o Fachin e nosso.mp3 in Resources */,
 				D95569D0285137800072E3FC /* deu_errado.mp3 in Resources */,
+				D92F8BDD286A730500EB9470 /* Away - De novo cara.mp3 in Resources */,
 				D958BC562867D476000B2EDA /* Sheldon - Oh Really short.mp3 in Resources */,
+				D92F8BD8286A730500EB9470 /* Bolsonaro - Brasil e Estados Unidos.mp3 in Resources */,
+				D92F8BCF286A730500EB9470 /* Gilmar Mendes - Eu ja disse aqui.mp3 in Resources */,
 				D94611732861336D00C4FB7E /* UOL - Pazuello - No dia D, na hora H.mp3 in Resources */,
 				D95569B3285137800072E3FC /* JOUT JOUT - O MINIMO meme short.mp3 in Resources */,
 				D95569AB285137800072E3FC /* Datena - Me pareceu uma grande marmelada.mp3 in Resources */,
 				D9556942285137800072E3FC /* Natalie Wynn Contrapoints - Let's get started.mp3 in Resources */,
 				D9556919285137800072E3FC /* Ulysses Guimaraes - Temos odio a ditadura, odio e nojo.mp3 in Resources */,
 				D9B4F73F283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 in Resources */,
+				D92F8BE6286A730500EB9470 /* Away -  Fora das condicoes normais.mp3 in Resources */,
 				D9556944285137800072E3FC /* Natalie Wynn Contrapoints - Cancel culture.mp3 in Resources */,
 				D955695E285137800072E3FC /* METEORO - E o que a gente chama de fuga de cerebros, e e sempre uma pessima noticia pro futuro de qualquer pais.mp3 in Resources */,
 				D9523754285D9E1700E6C838 /* Esse Menino - Vai responder nao, puta.mp3 in Resources */,
@@ -2001,6 +2114,7 @@
 				D955691B285137800072E3FC /* Bolsonaro - Ganhou porra.mp3 in Resources */,
 				D9556963285137800072E3FC /* Ciro Gomes - Atencao Paulo Guedes.mp3 in Resources */,
 				D95569AD285137800072E3FC /* ATILA IAMARINO - Ele faz sexo.mp3 in Resources */,
+				D92F8BD9286A730500EB9470 /* ATILA IAMARINO - Nao tem condicoes.mp3 in Resources */,
 				D955692A285137800072E3FC /* Mourao - Voce e muito mais fisico do que intelectual short.mp3 in Resources */,
 				D955698A285137800072E3FC /* De cair o cu da bunda short meme.mp3 in Resources */,
 				D9556965285137800072E3FC /* Quercia - E mentira, e tudo mentira.mp3 in Resources */,
@@ -2012,6 +2126,7 @@
 				D927C40D28523A050041970A /* OS DONOS DA BOLA - CRAQUE NETO - Ai depois fala que ta bebado.mp3 in Resources */,
 				D95569D9285137800072E3FC /* JORNAL DA RECORD - Nao e coisa de deus nao.mp3 in Resources */,
 				D95569D2285137800072E3FC /* Bolsonaro - O cara o cara.mp3 in Resources */,
+				D92F8BE4286A730500EB9470 /* Alborghetti - Ta uma merda esse pais.mp3 in Resources */,
 				D95569CB285137800072E3FC /* Silas Malafaia - E por isso que Deus te escolheu.mp3 in Resources */,
 				D955696F285137800072E3FC /* jonathan frakes - It's a total fabrication.mp3 in Resources */,
 				D95569AF285137800072E3FC /* Trote Pareto - Calma filha da puta calma.mp3 in Resources */,
@@ -2034,6 +2149,7 @@
 				D99A9FA9286687240068B172 /* UOL - Milton Ribeiro - Enem tem a cara do governo competencia honestidade seriedade.mp3 in Resources */,
 				D9556967285137800072E3FC /* Choque de Cultura - Renan - Vamos fazer essa critica ai.mp3 in Resources */,
 				D9556910285137800072E3FC /* Bolsonaro - Duas letras PF e policia federal o cara.mp3 in Resources */,
+				D92F8BDF286A730500EB9470 /* Bolsonaro - Eu votaria no Lula no segundo turno.mp3 in Resources */,
 				D9556923285137800072E3FC /* tu_entendeu_a_pergunta.mp3 in Resources */,
 				D95569B5285137800072E3FC /* Silas Malafaia - Mentiroso sem vergonha vai pro inferno short.mp3 in Resources */,
 				D95569D7285137800072E3FC /* O CARA DA LUVA DE PEDREIRO - receba carai caralho.mp3 in Resources */,
@@ -2315,7 +2431,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				ENABLE_PREVIEWS = YES;
@@ -2345,7 +2461,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				ENABLE_PREVIEWS = YES;
