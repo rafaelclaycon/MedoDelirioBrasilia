@@ -23,6 +23,11 @@ class FolderDetailViewViewModel: ObservableObject {
         }
         
         self.sounds = sounds
+        
+        for i in stride(from: 0, to: self.sounds.count, by: 1) {
+            self.sounds[i].authorName = authorData.first(where: { $0.id == self.sounds[i].authorId })?.name ?? Shared.unknownAuthor
+        }
+        
         self.hasSoundsToDisplay = true
     }
     
