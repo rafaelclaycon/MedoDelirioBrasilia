@@ -33,10 +33,10 @@ struct FoldersBannerView: View {
                 VStack(alignment: .leading, spacing: 7) {
                     Text("Apresentando: Pastas")
                         .font(.headline)
-                        .foregroundColor(.black)
+                        .foregroundColor(.mutedNavyBlue)
                     
                     Text("Tem muitos favoritos? Quer separar os áudios que manda no grupo da família e no grupo dos amigos? Crie pastas para agrupar sons na **aba Coleções > Minhas Pastas > Nova Pasta**.")
-                        .foregroundColor(.black)
+                        .foregroundColor(.mutedNavyBlue)
                         .opacity(0.75)
                 }
                 
@@ -52,7 +52,7 @@ struct FoldersBannerView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 17)
-                        .foregroundColor(Color.blue)
+                        .foregroundColor(.blue)
                         .opacity(0.8)
                         .onTapGesture {
                             UserSettings.setFolderBannerWasDismissed(to: true)
