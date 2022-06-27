@@ -1037,7 +1037,7 @@
     {
         "id": "9CB12A4F-01E0-4E18-936B-55E0A96C9561",
         "title": "Pum",
-        "authorId": "90725901-3A3F-407B-8177-159B50C60676",
+        "authorId": "026D606A-356F-47C9-8D42-D5C838653E02",
         "description": "Pum",
         "filename": "Regina Duarte - Pum.mp3",
         "dateAdded": "2021-02-21T00:00:00Z",
@@ -1136,7 +1136,7 @@
     {
         "id": "E0C0983B-0D5E-4D92-8A2B-B953F58EFD97",
         "title": "É desesperador",
-        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "authorId": "248A6A3B-3EEF-45D6-9A2F-A81768B7B370",
         "description": "E desesperador",
         "filename": "E desesperador.mp3",
         "dateAdded": "2021-03-04T00:00:00Z",
@@ -2387,7 +2387,7 @@
     {
         "id": "A92C22BA-0CA4-4111-8872-4842F31A7226",
         "title": "Eu não entendi o que ele falou",
-        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "authorId": "601139B6-5703-48DC-A1B6-1E3C3E713813",
         "description": "Eu nao entendi o que ele falou",
         "filename": "Eu nao entendi o que ele falou.mp3",
         "dateAdded": "2022-06-13T00:00:00Z",
@@ -3013,5 +3013,113 @@
         "filename": "Eduardo Pazuello - Tem um grau ai de prisma na coisa.mp3",
         "dateAdded": "2022-06-24T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "5B7FC7D1-D916-46F5-87C4-17763E67AA49",
+        "title": "Oh Reeeeally",
+        "authorId": "A6C8916B-61E6-4E83-ACC8-64B77567F47E",
+        "description": "Oh Really",
+        "filename": "Sheldon - Oh Really short.mp3",
+        "dateAdded": "2022-06-25T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "B5A09B6B-0B0F-40CC-9DD7-4239A5BF475F",
+        "title": "Nem existe isso, cê tá inventando palavra",
+        "authorId": "A329D501-7BD3-4B9C-8FBD-99BFD3AF3E13",
+        "description": "Nem existe isso ce ta inventando palavra",
+        "filename": "Choque de Cultura - Nem existe isso, ce ta inventando palavra.mp3",
+        "dateAdded": "2022-06-26T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "BBD5CB24-99A9-44E6-B22B-79BC16F4C4AB",
+        "title": "O Brasil é o país aparelhado",
+        "authorId": "32DECC5A-FEE3-42B7-BBCC-B34126C317DE",
+        "description": "O mecanismo foi quase todo dominado por essa turma o Brasil e o pais aparelhado",
+        "filename": "JOVEM PAN - Constantino - O mecanismo foi quase todo dominado por essa turma, o Brasil e o pais aparelhado.mp3",
+        "dateAdded": "2022-06-26T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "D38EAA9D-E58C-48FC-BE39-99D46E77FEDC",
+        "title": "Eles perderam o limite",
+        "authorId": "F16C8B71-E8A4-4E36-B869-98C6871ED694",
+        "description": "Eles perderam o limite",
+        "filename": "CHOQUE DE CULTURA - Julinho da Van - Eles perderam o limite.mp3",
+        "dateAdded": "2022-06-26T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "6140CBE0-43CA-41E1-9E0F-1D493AEF155D",
+        "title": "Foda-se",
+        "authorId": "F16C8B71-E8A4-4E36-B869-98C6871ED694",
+        "description": "Foda-se",
+        "filename": "Choque de Cultura - Julinho Foda-se.mp3",
+        "dateAdded": "2022-06-26T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "F6C33159-22DE-435D-81F3-3A6D0E74BE5A",
+        "title": "O último idoso alegre do planeta é o Ary Fontoura",
+        "authorId": "E3F705A3-74B1-4B62-B6AD-9A230A597B5D",
+        "description": "O ultimo idoso alegre do planeta e o Ary Fontoura",
+        "filename": "Choque de Cultura - Maurilio - O ultimo idoso alegre do planeta e o Ary Fontoura.mp3",
+        "dateAdded": "2022-06-26T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "0EA3C8F2-0F29-452C-A63B-8DB37D55F5E1",
+        "title": "É golpe",
+        "authorId": "E3F705A3-74B1-4B62-B6AD-9A230A597B5D",
+        "description": "É golpe",
+        "filename": "CHOQUE DE CULTURA - Maurilio palestrinha - E golpe short meme.mp3",
+        "dateAdded": "2022-06-26T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "1E30BF2B-F830-4F93-B337-FF468E0AE1C2",
+        "title": "Acho que deu uma pesada no clima do programa aí",
+        "authorId": "A329D501-7BD3-4B9C-8FBD-99BFD3AF3E13",
+        "description": "Acho que deu uma pesada no clima do programa ai",
+        "filename": "CHOQUE DE CULTURA - Renan - Acho que deu uma pesada no clima do programa ai.mp3",
+        "dateAdded": "2022-06-26T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "22F39773-96C6-43E6-AC43-C070A9DD9B02",
+        "title": "É energia aqui ó, tá em cima. Carnaval, alegria",
+        "authorId": "A329D501-7BD3-4B9C-8FBD-99BFD3AF3E13",
+        "description": "E energia aqui o ta em cima carnaval alegria",
+        "filename": "CHOQUE DE CULTURA - Renan - E energia aqui o ta em cima carnaval alegria.mp3",
+        "dateAdded": "2022-06-26T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "5B0FFF55-0B05-4FDA-B1A7-16C7856B4A82",
+        "title": "Inescrupulosos",
+        "authorId": "A329D501-7BD3-4B9C-8FBD-99BFD3AF3E13",
+        "description": "Inescrupulosos",
+        "filename": "CHOQUE DE CULTURA - Renan - Inescrupulosos.mp3",
+        "dateAdded": "2022-06-26T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "B76984D3-05E6-4B7D-8508-F13B3A8C0A3B",
+        "title": "Voz rouca",
+        "authorId": "BB392894-327A-48BA-9C7D-4F0601E947EB",
+        "description": "Voz rouca",
+        "filename": "CNN BRASIL BUSINESS - Conseguimos atenuar o choque do petr¢leo que veio de fora diz Guedes voz rouca.mp3",
+        "dateAdded": "2022-06-26T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "8919A7BE-B6B7-455E-A204-4639173732A3",
+        "title": "Não é de surpreender",
+        "authorId": "05A3C97F-68EE-4AEB-9BEA-761348725225",
+        "description": "Nao e de surpreender surpresa choque passada chocada",
+        "filename": "PODER360 - Barroso - Nao e de surpreender.mp3",
+        "dateAdded": "2022-06-26T00:00:00Z",
+        "isOffensive": true
     }
 ]
