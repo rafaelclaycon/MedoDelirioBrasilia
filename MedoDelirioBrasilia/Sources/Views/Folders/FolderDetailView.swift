@@ -20,10 +20,10 @@ struct FolderDetailView: View {
                             .onTapGesture {
                                 viewModel.playSound(fromPath: sound.filename)
                             }
-//                            .onLongPressGesture {
-//                                viewModel.soundForConfirmationDialog = sound
-//                                viewModel.showConfirmationDialog = true
-//                            }
+                            .onLongPressGesture {
+                                viewModel.soundForConfirmationDialog = sound
+                                viewModel.showConfirmationDialog = true
+                            }
                     }
                 }
                 .padding(.horizontal)
@@ -57,6 +57,21 @@ struct FolderDetailView: View {
         }
         .sheet(isPresented: $showingFolderInfoEditingView) {
             FolderInfoEditingView(isBeingShown: $showingFolderInfoEditingView, symbol: folder.symbol, folderName: folder.name, selectedBackgroundColor: folder.backgroundColor, isEditing: true, folderIdWhenEditing: folder.id)
+        }
+        .confirmationDialog("", isPresented: $viewModel.showConfirmationDialog) {
+            Button("📁  Remover da Pasta") {
+                guard viewModel.soundForConfirmationDialog != nil else {
+                    return
+                }
+                //showingAddToFolderModal = true
+            }
+            
+            Button(Shared.shareButtonText) {
+                guard let sound = viewModel.soundForConfirmationDialog else {
+                    return
+                }
+                viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
+            }
         }
     }
 

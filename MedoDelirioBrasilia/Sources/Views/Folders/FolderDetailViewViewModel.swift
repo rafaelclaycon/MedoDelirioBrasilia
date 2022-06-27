@@ -5,6 +5,8 @@ class FolderDetailViewViewModel: ObservableObject {
 
     @Published var sounds = [Sound]()
     @Published var hasSoundsToDisplay: Bool = false
+    @Published var showConfirmationDialog = false
+    @Published var soundForConfirmationDialog: Sound? = nil
     
     // Alerts
     @Published var alertTitle: String = ""
@@ -46,6 +48,14 @@ class FolderDetailViewViewModel: ObservableObject {
         })
         
         player?.togglePlay()
+    }
+    
+    func shareSound(withPath filepath: String, andContentId contentId: String) {
+        do {
+            try Sharer.shareSound(withPath: filepath, andContentId: contentId)
+        } catch {
+            showUnableToGetSoundAlert()
+        }
     }
     
     // MARK: - Alerts
