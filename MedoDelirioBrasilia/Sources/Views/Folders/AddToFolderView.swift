@@ -55,6 +55,9 @@ struct AddToFolderView: View {
                     LazyVGrid(columns: columns, spacing: 14) {
                         ForEach(viewModel.folders) { folder in
                             Button {
+                                guard viewModel.soundIsNotYetOnFolder(folderId: folder.id, contentId: selectedSoundId) else {
+                                    return viewModel.showSoundAlredyInFolderAlert(folderName: folder.title)
+                                }
                                 try? database.insert(contentId: selectedSoundId, intoUserFolder: folder.id)
                                 isBeingShown = false
                             } label: {
@@ -77,6 +80,9 @@ struct AddToFolderView: View {
             )
             .onAppear {
                 viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
+            }
+            .alert(isPresented: $viewModel.showAlert) {
+                Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
             }
         }
     }
