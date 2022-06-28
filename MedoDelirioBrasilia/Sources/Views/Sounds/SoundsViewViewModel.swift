@@ -43,7 +43,7 @@ class SoundsViewViewModel: ObservableObject {
         if self.sounds.count > 0 {
             // Needed because author names live in a different file.
             for i in 0...(self.sounds.count - 1) {
-                self.sounds[i].authorName = authorData.first(where: { $0.id == self.sounds[i].authorId })?.name ?? "Desconhecido"
+                self.sounds[i].authorName = authorData.first(where: { $0.id == self.sounds[i].authorId })?.name ?? Shared.unknownAuthor
             }
             
             // Populate Favorites Keeper to display favorite cells accordingly
@@ -96,29 +96,10 @@ class SoundsViewViewModel: ObservableObject {
     }
 
     func shareSound(withPath filepath: String, andContentId contentId: String) {
-        guard filepath.isEmpty == false else {
-            return
-        }
-        
-        guard let path = Bundle.main.path(forResource: filepath, ofType: nil) else {
-            return showUnableToGetSoundAlert()
-        }
-        let url = URL(fileURLWithPath: path)
-        
-        let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
-        DispatchQueue.main.async {
-            UIApplication.shared.keyWindow?.rootViewController?.present(activityVC, animated: true, completion: nil)
-        }
-        activityVC.completionWithItemsHandler = { activity, completed, items, error in
-            if completed {
-                guard let activity = activity else {
-                    return
-                }
-                let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
-                Logger.logSharedSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
-                
-                AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
-            }
+        do {
+            try Sharer.shareSound(withPath: filepath, andContentId: contentId)
+        } catch {
+            showUnableToGetSoundAlert()
         }
     }
     
@@ -153,6 +134,8 @@ class SoundsViewViewModel: ObservableObject {
         let emoji = Shared.removeFromFavoritesEmojis.randomElement() ?? ""
         return isSelectedSoundAlreadyAFavorite() ? "\(emoji)  Remover dos Favoritos" : "⭐️  Adicionar aos Favoritos"
     }
+    
+    // MARK: - Other
     
     func donateActivity() {
         self.currentActivity = UserActivityWaiter.getDonatableActivity(withType: Shared.playAndShareSoundsActivityTypeName, andTitle: "Tocar e compartilhar sons")
@@ -209,6 +192,12 @@ class SoundsViewViewModel: ObservableObject {
     func showUnableToGetSoundAlert() {
         alertTitle = Shared.soundNotFoundAlertTitle
         alertMessage = Shared.soundNotFoundAlertMessage
+        showAlert = true
+    }
+    
+    func showNoFoldersAlert() {
+        alertTitle = "Não Existem Pastas"
+        alertMessage = "Para continuar, crie uma pasta de sons na aba Coleções > Minhas Pastas."
         showAlert = true
     }
 

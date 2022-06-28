@@ -12,11 +12,11 @@ struct MainView: View {
                 }
                 .tag(1)
             
-//            CollectionsView()
-//                .tabItem {
-//                    Label("Coleções", systemImage: "rectangle.grid.2x2.fill")
-//                }
-//                .tag(2)
+            CollectionsView()
+                .tabItem {
+                    Label("Coleções", systemImage: "rectangle.grid.2x2.fill")
+                }
+                .tag(2)
             
             SongsView()
                 .tabItem {
@@ -39,7 +39,7 @@ struct MainView: View {
         .onContinueUserActivity(Shared.playAndShareSoundsActivityTypeName, perform: { _ in
             tabSelection = 1
         })
-        .onContinueUserActivity(Shared.viewSoundsByAuthorActivityTypeName, perform: { _ in
+        .onContinueUserActivity(Shared.viewCollectionsActivityTypeName, perform: { _ in
             tabSelection = 2
         })
         .onContinueUserActivity(Shared.playAndShareSongsActivityTypeName, perform: { _ in
