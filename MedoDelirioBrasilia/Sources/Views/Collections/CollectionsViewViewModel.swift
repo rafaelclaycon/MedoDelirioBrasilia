@@ -1,4 +1,5 @@
 import Combine
+import UIKit
 
 class CollectionsViewViewModel: ObservableObject {
 
@@ -6,6 +7,8 @@ class CollectionsViewViewModel: ObservableObject {
     
     @Published var folders = [UserFolder]()
     @Published var hasFoldersToDisplay: Bool = false
+    
+    @Published var currentActivity: NSUserActivity? = nil
     
     // Alerts
     @Published var alertTitle: String = ""
@@ -27,6 +30,13 @@ class CollectionsViewViewModel: ObservableObject {
         self.folders = actualFolders
         self.hasFoldersToDisplay = true
     }
+    
+    func donateActivity() {
+        self.currentActivity = UserActivityWaiter.getDonatableActivity(withType: Shared.viewCollectionsActivityTypeName, andTitle: "Ver e criar pastas de sons")
+        self.currentActivity?.becomeCurrent()
+    }
+    
+    // MARK: - Alerts
     
     func showFolderDeletionConfirmation(folderName: String, folderId: String) {
         alertTitle = "Apagar a Pasta \"\(folderName)\"?"

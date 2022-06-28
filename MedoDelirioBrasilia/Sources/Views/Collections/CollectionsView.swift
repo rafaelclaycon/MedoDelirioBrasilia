@@ -149,6 +149,7 @@ struct CollectionsView: View {
                 .onAppear {
                     //viewModel.reloadCollectionList(withCollections: getLocalCollections())
                     viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
+                    viewModel.donateActivity()
                 }
                 .padding(.bottom)
             }

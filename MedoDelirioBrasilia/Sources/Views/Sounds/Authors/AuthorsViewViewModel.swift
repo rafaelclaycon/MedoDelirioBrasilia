@@ -22,9 +22,9 @@ class AuthorsViewViewModel: ObservableObject {
         }
     }
     
-    func donateActivity() {
-        self.currentActivity = UserActivityWaiter.getDonatableActivity(withType: Shared.viewCollectionsActivityTypeName, andTitle: "Ver Coleções de sons")
-        self.currentActivity?.becomeCurrent()
-    }
+//    func donateActivity() {
+//        self.currentActivity = UserActivityWaiter.getDonatableActivity(withType: Shared.viewCollectionsActivityTypeName, andTitle: "Ver Coleções de sons")
+//        self.currentActivity?.becomeCurrent()
+//    }
 
 }
