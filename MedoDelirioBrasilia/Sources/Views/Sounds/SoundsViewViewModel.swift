@@ -194,5 +194,11 @@ class SoundsViewViewModel: ObservableObject {
         alertMessage = Shared.soundNotFoundAlertMessage
         showAlert = true
     }
+    
+    func showNoFoldersAlert() {
+        alertTitle = "Não Existem Pastas"
+        alertMessage = "Para continuar, crie uma pasta de sons na aba Coleções > Minhas Pastas."
+        showAlert = true
+    }
 
 }

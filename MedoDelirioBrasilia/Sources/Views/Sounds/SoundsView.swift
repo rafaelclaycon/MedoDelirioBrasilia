@@ -212,6 +212,10 @@ struct SoundsView: View {
                 }
                 
                 Button("📁  Adicionar a Pasta") {
+                    let hasFolders = try? database.hasAnyUserFolder()
+                    guard hasFolders ?? false else {
+                        return viewModel.showNoFoldersAlert()
+                    }
                     guard viewModel.soundForConfirmationDialog != nil else {
                         return
                     }

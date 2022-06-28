@@ -88,12 +88,12 @@ struct CollectionsView: View {
                                     }
                                     .foregroundColor(.primary)
                                     .contextMenu {
-                                        Button(action: {
-                                            folderForEditingOnSheet = folder
-                                            showingFolderInfoEditingView = true
-                                        }) {
-                                            Label("Editar Pasta", systemImage: "pencil")
-                                        }
+//                                        Button(action: {
+//                                            folderForEditingOnSheet = folder
+//                                            showingFolderInfoEditingView = true
+//                                        }) {
+//                                            Label("Editar Pasta", systemImage: "pencil")
+//                                        }
                                         
                                         Button(role: .destructive, action: {
                                             viewModel.showFolderDeletionConfirmation(folderName: "\(folder.symbol) \(folder.name)", folderId: folder.id)

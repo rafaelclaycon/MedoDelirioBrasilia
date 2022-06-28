@@ -37,26 +37,26 @@ struct FolderDetailView: View {
         }
         .navigationTitle("\(folder.symbol)  \(folder.name)")
         .navigationBarTitleDisplayMode(.inline)
-        .navigationBarItems(trailing:
-            Menu {
-                Button(action: {
-                    showingFolderInfoEditingView = true
-                }) {
-                    Label("Editar Pasta", systemImage: "pencil")
-                }
-                
-                Button(role: .destructive, action: {
-                    //viewModel.dummyCall()
-                }, label: {
-                    HStack {
-                        Text("Apagar Pasta")
-                        Image(systemName: "trash")
-                    }
-                })
-            } label: {
-                Image(systemName: "ellipsis.circle")
-            }
-        )
+//        .navigationBarItems(trailing:
+//            Menu {
+//                Button(action: {
+//                    showingFolderInfoEditingView = true
+//                }) {
+//                    Label("Editar Pasta", systemImage: "pencil")
+//                }
+//                
+//                Button(role: .destructive, action: {
+//                    //viewModel.dummyCall()
+//                }, label: {
+//                    HStack {
+//                        Text("Apagar Pasta")
+//                        Image(systemName: "trash")
+//                    }
+//                })
+//            } label: {
+//                Image(systemName: "ellipsis.circle")
+//            }
+//        )
         .onAppear {
             viewModel.reloadSoundList(withSoundIds: try? database.getAllSoundIdsInsideUserFolder(withId: folder.id))
         }

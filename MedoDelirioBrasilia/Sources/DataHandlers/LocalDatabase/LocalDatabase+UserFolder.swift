@@ -58,5 +58,9 @@ extension LocalDatabase {
             throw LocalDatabaseError.folderNotFound
         }
     }
+    
+    func hasAnyUserFolder() throws -> Bool {
+        return try db.scalar(userFolder.count) > 0
+    }
 
 }
