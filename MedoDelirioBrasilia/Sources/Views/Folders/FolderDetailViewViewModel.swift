@@ -16,12 +16,16 @@ class FolderDetailViewViewModel: ObservableObject {
     
     func reloadSoundList(withSoundIds soundIds: [String]?) {
         guard let soundIds = soundIds else {
+            self.sounds = [Sound]()
+            self.hasSoundsToDisplay = false
             return
         }
         
         let sounds = soundData.filter({ soundIds.contains($0.id) })
         
         guard sounds.count > 0 else {
+            self.sounds = [Sound]()
+            self.hasSoundsToDisplay = false
             return
         }
         

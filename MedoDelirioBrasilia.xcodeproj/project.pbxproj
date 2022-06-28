@@ -107,6 +107,7 @@
 		D9376C12285B7510001216DC /* Cocorico - Ah coitado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9376C11285B7510001216DC /* Cocorico - Ah coitado.mp3 */; };
 		D9376C14285B78A3001216DC /* Sirigueijo - Dinheiro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9376C13285B78A3001216DC /* Sirigueijo - Dinheiro.mp3 */; };
 		D93AC08B28414EEE00E38A63 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AC08A28414EEE00E38A63 /* Logger.swift */; };
+		D93CCB77286A802D0002CF81 /* EmptyFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93CCB76286A802D0002CF81 /* EmptyFolderView.swift */; };
 		D93D24E02849DAAB00300541 /* DiagnosticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D24DF2849DAAB00300541 /* DiagnosticsView.swift */; };
 		D946116E28611F1000C4FB7E /* FolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D946116D28611F1000C4FB7E /* FolderCell.swift */; };
 		D94611702861311E00C4FB7E /* Damares - A princesa do Frozen vai voltar pra acordar a Bela Adormecida com um beijo gay.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D946116F2861311E00C4FB7E /* Damares - A princesa do Frozen vai voltar pra acordar a Bela Adormecida com um beijo gay.mp3 */; };
@@ -579,6 +580,7 @@
 		D9376C11285B7510001216DC /* Cocorico - Ah coitado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cocorico - Ah coitado.mp3"; sourceTree = "<group>"; };
 		D9376C13285B78A3001216DC /* Sirigueijo - Dinheiro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Sirigueijo - Dinheiro.mp3"; sourceTree = "<group>"; };
 		D93AC08A28414EEE00E38A63 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		D93CCB76286A802D0002CF81 /* EmptyFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyFolderView.swift; sourceTree = "<group>"; };
 		D93D24DF2849DAAB00300541 /* DiagnosticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticsView.swift; sourceTree = "<group>"; };
 		D946116D28611F1000C4FB7E /* FolderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderCell.swift; sourceTree = "<group>"; };
 		D946116F2861311E00C4FB7E /* Damares - A princesa do Frozen vai voltar pra acordar a Bela Adormecida com um beijo gay.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Damares - A princesa do Frozen vai voltar pra acordar a Bela Adormecida com um beijo gay.mp3"; sourceTree = "<group>"; };
@@ -1645,6 +1647,7 @@
 				D9943F2528641FEF002C6B97 /* AddToFolderView.swift */,
 				D9943F2728642200002C6B97 /* AddToFolderViewViewModel.swift */,
 				D98B291C28691C5C008A78AE /* ColorSelectionCell.swift */,
+				D93CCB76286A802D0002CF81 /* EmptyFolderView.swift */,
 			);
 			path = Folders;
 			sourceTree = "<group>";
@@ -2229,6 +2232,7 @@
 				D98DBD35284919B1008544F8 /* NetworkRabbit.swift in Sources */,
 				D9BB9265285DAA8E005CD6DD /* BegForMoneyView.swift in Sources */,
 				D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */,
+				D93CCB77286A802D0002CF81 /* EmptyFolderView.swift in Sources */,
 				D94611802861480A00C4FB7E /* FolderInfoEditingView.swift in Sources */,
 				D9943F20286419CE002C6B97 /* LocalDatabase+Statistic.swift in Sources */,
 				D93443252838177000ADCD38 /* UserInfo.swift in Sources */,

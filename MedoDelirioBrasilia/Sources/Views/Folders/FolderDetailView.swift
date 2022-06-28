@@ -13,21 +13,26 @@ struct FolderDetailView: View {
     
     var body: some View {
         VStack {
-            ScrollView {
-                LazyVGrid(columns: columns, spacing: 14) {
-                    ForEach(viewModel.sounds) { sound in
-                        SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", favorites: .constant(Set<String>()))
-                            .onTapGesture {
-                                viewModel.playSound(fromPath: sound.filename)
-                            }
-                            .onLongPressGesture {
-                                viewModel.soundForConfirmationDialog = sound
-                                viewModel.showConfirmationDialog = true
-                            }
+            if viewModel.hasSoundsToDisplay {
+                ScrollView {
+                    LazyVGrid(columns: columns, spacing: 14) {
+                        ForEach(viewModel.sounds) { sound in
+                            SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", favorites: .constant(Set<String>()))
+                                .onTapGesture {
+                                    viewModel.playSound(fromPath: sound.filename)
+                                }
+                                .onLongPressGesture {
+                                    viewModel.soundForConfirmationDialog = sound
+                                    viewModel.showConfirmationDialog = true
+                                }
+                        }
                     }
+                    .padding(.horizontal)
+                    .padding(.top, 7)
                 }
-                .padding(.horizontal)
-                .padding(.top, 7)
+            } else {
+                EmptyFolderView()
+                    .padding(.horizontal, 30)
             }
         }
         .navigationTitle("\(folder.symbol)  \(folder.name)")

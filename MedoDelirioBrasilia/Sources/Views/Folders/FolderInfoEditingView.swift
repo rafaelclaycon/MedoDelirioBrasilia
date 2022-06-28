@@ -50,6 +50,9 @@ struct FolderInfoEditingView: View {
                     .foregroundColor(.gray)
                     .multilineTextAlignment(.center)
                     .padding()
+                    .onTapGesture {
+                        focusedField = nil
+                    }
                 
                 VStack {
                     TextField("Nome da pasta", text: $folderName)
