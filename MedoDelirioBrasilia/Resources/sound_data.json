@@ -618,7 +618,7 @@
         "description": "estou com covid",
         "filename": "Bolsonaro - Estou com covid.mp3",
         "dateAdded": "2022-06-27T00:00:00Z",
-        "isOffensive": false
+        "isOffensive": true
     },
     {
         "id": "9B967075-8F15-4766-8F7A-290E5E1F8FEB",
@@ -699,7 +699,7 @@
         "description": "que",
         "filename": "Away - Que.mp3",
         "dateAdded": "2022-06-27T00:00:00Z",
-        "isOffensive": false
+        "isOffensive": true
     },
     {
         "id": "EC4350A4-2DD0-43F3-BAA2-AAF912D55EC7",
@@ -1878,16 +1878,16 @@
         "description": "ta uma merda esse país",
         "filename": "Alborghetti - Ta uma merda esse pais.mp3",
         "dateAdded": "2022-06-27T00:00:00Z",
-        "isOffensive": false
+        "isOffensive": true
     },
     {
         "id": "1B1F6A55-986B-4BB9-AD29-4F7BC72588DA",
         "title": "Ai, seu grosso",
-        "authorId": "A68C0AA4-546E-4E24-8153-832BB84FD68B",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
         "description": "ai seu grosso",
         "filename": "Ai seu grosso.mp3",
         "dateAdded": "2022-06-27T00:00:00Z",
-        "isOffensive": false
+        "isOffensive": true
     },
     {
         "id": "C5ADF059-5418-4B12-88E4-9716D7323DA5",
@@ -3183,7 +3183,7 @@
         "description": "a pandemia ainda não acabou porra",
         "filename": "Ady Ferrer - A pandemia ainda nao acabou porra.mp3",
         "dateAdded": "2022-06-27T00:00:00Z",
-        "isOffensive": false
+        "isOffensive": true
     },
     {
         "id": "15DC3998-5CC8-40EB-9868-2A3475B0EEA1",
