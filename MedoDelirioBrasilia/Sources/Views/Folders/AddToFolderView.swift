@@ -4,6 +4,8 @@ struct AddToFolderView: View {
 
     @StateObject private var viewModel = AddToFolderViewViewModel()
     @Binding var isBeingShown: Bool
+    @Binding var hadSuccess: Bool
+    @Binding var folderName: String?
     @State var selectedSoundName: String
     @State var selectedSoundId: String
     
@@ -37,7 +39,7 @@ struct AddToFolderView: View {
 //                        }
 //                        .foregroundColor(.primary)
 //                        .frame(width: (UIScreen.main.bounds.size.width / 2) - 20)
-//                        
+//
 //                        Spacer()
 //                    }
 //                    .padding(.horizontal)
@@ -59,6 +61,8 @@ struct AddToFolderView: View {
                                     return viewModel.showSoundAlredyInFolderAlert(folderName: folder.name)
                                 }
                                 try? database.insert(contentId: selectedSoundId, intoUserFolder: folder.id)
+                                folderName = "\(folder.symbol) \(folder.name)"
+                                hadSuccess = true
                                 isBeingShown = false
                             } label: {
                                 FolderCell(symbol: folder.symbol, name: folder.name, backgroundColor: folder.backgroundColor.toColor())
@@ -92,7 +96,7 @@ struct AddToFolderView: View {
 struct AddToFolderView_Previews: PreviewProvider {
 
     static var previews: some View {
-        AddToFolderView(isBeingShown: .constant(true), selectedSoundName: "Aham, sei", selectedSoundId: "ABCD")
+        AddToFolderView(isBeingShown: .constant(true), hadSuccess: .constant(false), folderName: .constant(nil), selectedSoundName: "Aham, sei", selectedSoundId: "ABCD")
     }
 
 }
