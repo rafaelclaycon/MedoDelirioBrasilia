@@ -1,11 +1,19 @@
 [
     {
         "id": "E49C6318-B890-4976-B90F-01B60A4FE6D7",
-        "name": "ADY"
+        "name": "Ady Ferrer"
+    },
+    {
+        "id": "045F8453-244C-4B94-8F89-395FE8986139",
+        "name": "Bam Bam"
     },
     {
         "id": "2982E359-0A6C-4005-AED8-2D5BB7F39599",
         "name": "Alborghetti"
+    },
+    {
+        "id": "2267C284-7BA1-42DB-8AE8-E329E28CF43C",
+        "name": "Alceu Valença"
     },
     {
         "id": "17860F3D-A18C-4684-86D0-931306A6937A",
@@ -14,6 +22,10 @@
     {
         "id": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
         "name": "Bolsonaro"
+    },
+    {
+        "id": "ED9593A4-B314-405D-B7F9-3BF8B21FA54A",
+        "name": "Alexandre Frota"
     },
     {
         "id": "51706210-3329-4A43-A823-2F91EBC4B546",
@@ -46,6 +58,10 @@
     {
         "id": "2C99D577-ED07-4803-8AC6-C265AF0D3093",
         "name": "Luva de Pedreiro"
+    },
+    {
+        "id": "541E3146-6FE1-494E-8C2B-D4955F3D4B5A",
+        "name": "Daniel Furlan"
     },
     {
         "id": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
@@ -93,7 +109,7 @@
     },
     {
         "id": "B7CB79F9-4CAC-4832-BB47-2EA96A4AC576",
-        "name": "Luiz Pareto"
+        "name": "Luiz Pareto (Trote TELERJ)"
     },
     {
         "id": "90725901-3A3F-407B-8177-159B50C60676",
@@ -101,7 +117,7 @@
     },
     {
         "id": "A7449684-39D6-48AE-91D2-BC8E3D8133F1",
-        "name": "Cerginho da Perera Nunes"
+        "name": "Cerginho da Pereira Nunes (Falha de Cobertura)"
     },
     {
         "id": "EA9B678C-B7AC-4A7F-8D5A-FA21CB3468F4",
@@ -132,16 +148,8 @@
         "name": "Saiddy Bamba"
     },
     {
-        "id": "924B9331-E479-4644-82F4-8DB6C7574DC7",
-        "name": "Choque de Cultura"
-    },
-    {
         "id": "7E1ED3FF-82AA-4047-B0A9-292D63FC4711",
         "name": "Leandro Hassum"
-    },
-    {
-        "id": "CFA8FC2A-3CB5-4B5B-8454-B29B5FE1B904",
-        "name": "Trote Pareto"
     },
     {
         "id": "3959FC8B-DB6F-4926-8610-7161A322E700",
@@ -177,7 +185,7 @@
     },
     {
         "id": "FD772147-0CA9-4D48-A1E4-B121DB3D4D73",
-        "name": "Opaíó"
+        "name": "Opaíó - Boca (Wagner Moura)"
     },
     {
         "id": "C066E971-8702-4261-955D-00CF642A465A",
@@ -328,10 +336,6 @@
         "name": "Érick Jacquin"
     },
     {
-        "id": "025AE8A1-8154-4529-9C3D-CFDFF9AE02E5",
-        "name": "Falha de Cobertura (Cerginho da Pereira Nunes)"
-    },
-    {
         "id": "C3846559-8B51-4A0E-89F6-46FA2910600E",
         "name": "Maluf"
     },
@@ -382,6 +386,10 @@
     {
         "id": "DAE06A66-5019-431A-88FE-22FB288CA933",
         "name": "Idosa"
+    },
+    {
+        "id": "3911940E-F747-4E0E-B6E1-26523D73D9A0",
+        "name": "Welder Rodrigues (Hermanoteu na Terra de Godah)"
     },
     {
         "id": "2FD69BCA-4F89-4EA1-9D18-EFAE5A183008",
@@ -546,5 +554,77 @@
     {
         "id": "0D45331A-889B-4A19-8B5F-1936F5F5534D",
         "name": "Heloísa Faissol"
+    },
+    {
+        "id": "8125E9F8-0AAC-477B-BB95-1D5EB90B6411",
+        "name": "Frederico Goulart (Rádio CBN)"
+    },
+    {
+        "id": "4E7D9959-10EA-4F0B-9F56-D3C06BE1C2D0",
+        "name": "Otoni de Paula"
+    },
+    {
+        "id": "571F78AB-B691-4537-9952-795BF01D1945",
+        "name": "Silvio Santos"
+    },
+    {
+        "id": "2E1D75D4-5D46-4CB4-818F-1D2B356F2F68",
+        "name": "Jovem Pan News"
+    },
+    {
+        "id": "4723AB43-A1E8-464B-BC75-F2ABA1A9FCF6",
+        "name": "Milton Ribeiro"
+    },
+    {
+        "id": "32DECC5A-FEE3-42B7-BBCC-B34126C317DE",
+        "name": "Rodrigo Constantino"
+    },
+    {
+        "id": "9F5424EA-2C65-41F6-B925-F9CC6CC70787",
+        "name": "André Starqueza"
+    },
+    {
+        "id": "248A6A3B-3EEF-45D6-9A2F-A81768B7B370",
+        "name": "Álvaro Borba (Meteoro Brasil)"
+    },
+    {
+        "id": "026D606A-356F-47C9-8D42-D5C838653E02",
+        "name": "Regina Duarte"
+    },
+    {
+        "id": "A6C8916B-61E6-4E83-ACC8-64B77567F47E",
+        "name": "Sheldon Cooper"
+    },
+    {
+        "id": "A329D501-7BD3-4B9C-8FBD-99BFD3AF3E13",
+        "name": "Renan (Choque de Cultura)"
+    },
+    {
+        "id": "601139B6-5703-48DC-A1B6-1E3C3E713813",
+        "name": "Pânico na TV"
+    },
+    {
+        "id": "F16C8B71-E8A4-4E36-B869-98C6871ED694",
+        "name": "Julinho da Van (Choque de Cultura)"
+    },
+    {
+        "id": "2BBB826D-24E5-4DFE-95DF-A6FFE41155D9",
+        "name": "Rogerinho (Choque de Cultura)"
+    },
+    {
+        "id": "E3F705A3-74B1-4B62-B6AD-9A230A597B5D",
+        "name": "Maurílio dos Anjos (Choque de Cultura)"
+    },
+    {
+        "id": "53202065-71B1-459F-A3C6-650379874255",
+        "name": "Gumball"
+    },
+    {
+        "id": "05A3C97F-68EE-4AEB-9BEA-761348725225",
+        "name": "Luís Roberto Barroso"
+    },
+    {
+        "id": "A3CBBA65-2035-4A63-A571-5EB3A722B392",
+        "name": "Rafael Portugal"
     }
 ]

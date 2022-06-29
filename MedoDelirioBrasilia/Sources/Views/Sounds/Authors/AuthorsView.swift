@@ -23,7 +23,7 @@ struct AuthorsView: View {
         .disableAutocorrection(true)
         .onAppear {
             viewModel.reloadList()
-            viewModel.donateActivity()
+            //viewModel.donateActivity()
         }
     }
 

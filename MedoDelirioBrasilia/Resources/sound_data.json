@@ -9,6 +9,258 @@
         "isOffensive": false
     },
     {
+        "id": "D61866D5-D4D5-44D0-BC61-B31A191B80A7",
+        "title": "Que coisa absurda",
+        "authorId": "3959FC8B-DB6F-4926-8610-7161A322E700",
+        "description": "que coisa absurda",
+        "filename": "Caetano Veloso - Que coisa absurda.mp3",
+        "dateAdded": "2022-06-28T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "7374279B-E2A7-42D1-866F-A2D7C020C797",
+        "title": "Você fala de uma maneira burra",
+        "authorId": "3959FC8B-DB6F-4926-8610-7161A322E700",
+        "description": "não consigo gravar muito bem o que você falou porque você fala de uma maneira burra",
+        "filename": "Caetano Veloso - Voce fala de uma maneira burra.mp3",
+        "dateAdded": "2022-06-28T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "D33A6DD6-069E-4A8E-AC6D-5D735C58A852",
+        "title": "Tudo burrice",
+        "authorId": "3959FC8B-DB6F-4926-8610-7161A322E700",
+        "description": "isso aí que você disse é tudo burrice",
+        "filename": "Caetano Veloso - Isso ai que voce disse e tudo burrice.mp3",
+        "dateAdded": "2022-06-28T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "5B4F97A0-5CD9-45EC-9B51-2B015460E901",
+        "title": "Como você é burro",
+        "authorId": "3959FC8B-DB6F-4926-8610-7161A322E700",
+        "description": "como você é burro",
+        "filename": "Caetano Veloso - Como voce e burro short.mp3",
+        "dateAdded": "2022-06-28T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "5431583F-48A5-4AF8-BBA7-90610E871C46",
+        "title": "A pressa da vacina não se justifica",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "a pressa da vacina não se justifica",
+        "filename": "Bolsonaro - A pressa da vacina nao se justifica.mp3",
+        "dateAdded": "2022-06-28T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "C41463F6-61E2-4536-AFE6-05715A25C9AF",
+        "title": "Vocês percebem a loucura",
+        "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
+        "description": "ou seja vocês percebem a loucura que está tomando conta desse país",
+        "filename": "Lula - Voces percebem a loucura.mp3",
+        "dateAdded": "2022-06-28T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "1AE1FB87-354C-4BC0-B739-5AA4BA1AE941",
+        "title": "Lula ou Bolsonaro?",
+        "authorId": "541E3146-6FE1-494E-8C2B-D4955F3D4B5A",
+        "description": "lula ou bolsonaro qualquer pessoa se você me perguntar satanás ou bolsonaro eu vou responder satanas",
+        "filename": "lula ou bolsonaro.mp3",
+        "dateAdded": "2022-06-28T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "E648C232-9FE8-4127-9138-854140990BE1",
+        "title": "Deixa cada um se foder do jeito que quiser",
+        "authorId": "BB392894-327A-48BA-9C7D-4F0601E947EB",
+        "description": "deixa cada um se fuder do jeito que quiser",
+        "filename": "Paulo Guedes - Deixa cada um se fuder do jeito que quiser.mp3",
+        "dateAdded": "2022-06-28T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "4C102FE7-B022-400D-9B44-79999D841C71",
+        "title": "Bora",
+        "authorId": "045F8453-244C-4B94-8F89-395FE8986139",
+        "description": "bora",
+        "filename": "BORA (Bam Bam).mp3",
+        "dateAdded": "2022-06-28T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "2A1A18DC-3B8C-4C32-B742-D3386B941976",
+        "title": "País de maricas",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "tem que deixar de ser um país de maricas",
+        "filename": "Bolsonaro - Tem que deixar de ser um pais de maricas.mp3",
+        "dateAdded": "2022-06-28T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "C1120B31-19E1-4533-8A94-A517B710453B",
+        "title": "Tem que trabalhar",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "tem que trabalhar",
+        "filename": "Bolsonaro - Tem que trabalhar.mp3",
+        "dateAdded": "2022-06-28T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "6C4B446E-730D-485E-BC31-2FA61A30AAE2",
+        "title": "Sem o viés ideológico",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "sem o vies ideológico",
+        "filename": "Bolsonaro - Sem o vies ideologico.mp3",
+        "dateAdded": "2022-06-28T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "8AA22B9F-FEE6-4607-BC03-42BF82E1F3EE",
+        "title": "Só se for na casa da tua mãe",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "só se for na casa da tua mãe",
+        "filename": "Bolsonaro - So se for na casa da tua mae.mp3",
+        "dateAdded": "2022-06-28T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "1F6A5D3E-8EC6-44EB-A9CC-6EA00EE304A3",
+        "title": "Procura outro pra pagar a tua vacina aí",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "procura outro pra pagar a tua vacina aí",
+        "filename": "Bolsonaro - Procura outro pra pagar a tua vacina ai.mp3",
+        "dateAdded": "2022-06-28T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "369F6138-A34B-49AE-9FC4-F7C99248DC2A",
+        "title": "Porra porras",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "acabou porra porras",
+        "filename": "Bolsonaro - Porra Porras.mp3",
+        "dateAdded": "2022-06-28T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "EEFBA8B5-AA66-4602-AE24-5F3C1070BEBC",
+        "title": "Pra mídia, o vírus sou eu",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "pra mídia o vírus sou eu",
+        "filename": "Bolsonaro - Pra midia o virus sou eu.mp3",
+        "dateAdded": "2022-06-28T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "E57011ED-40EA-4528-94F4-2D63440E3D88",
+        "title": "Pode me culpar à vontade",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "pode me culpar a vontade não tem problema não",
+        "filename": "Bolsonaro - Pode me culpar a vontade.mp3",
+        "dateAdded": "2022-06-28T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "3BEFA9AF-0E4B-4343-8E53-365CF1CE79B3",
+        "title": "O caos vem aí",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "o caos vem aí",
+        "filename": "Bolsonaro - O caos vem ai.mp3",
+        "dateAdded": "2022-06-28T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "9D71D0A0-4131-4869-B5D1-877DB6BB425A",
+        "title": "Lula tá elegível pra 22",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "o lula tá elegível pra 22",
+        "filename": "Bolsonaro - O Lula ta elegivel pra 22.mp3",
+        "dateAdded": "2022-06-28T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "45E10532-FDB7-46B9-9992-7DF14D1F889A",
+        "title": "Nunca teremos lockdown",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "no que depender de mim nunca teremos lockdown",
+        "filename": "Bolsonaro - No que depender de mim nunca teremos lockdown.mp3",
+        "dateAdded": "2022-06-28T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "A6B0355B-8AF8-4948-A07E-4CE8C7161CAC",
+        "title": "Jacaré",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "jacaré",
+        "filename": "Bolsonaro - Jacare.mp3",
+        "dateAdded": "2022-06-28T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "89DD869B-5A0D-47F6-A0AF-27690B588793",
+        "title": "Me chama de corrupto",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "me chama de corrupto porra",
+        "filename": "Bolsonaro - Me chama de corrupto porra.mp3",
+        "dateAdded": "2022-06-28T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "54CD7CEB-7738-42D0-9406-877E16496DD5",
+        "title": "Mas não quero polemizar",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "mas não quero polemizar esse assunto aí",
+        "filename": "Bolsonaro - Polemizar esse assunto.mp3",
+        "dateAdded": "2022-06-28T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "BD0030AB-49E2-412C-8ECF-572D965C3324",
+        "title": "Fica em casa",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "fica em casa que a economia a gente vê depois isso é para os fracos",
+        "filename": "Bolsonaro - Fica em casa.mp3",
+        "dateAdded": "2022-06-28T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "C7A71A03-B3F2-4275-93A5-ED41D84127A6",
+        "title": "Finalzinho de pandemia",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "finalzinho de pandemia",
+        "filename": "Bolsonaro - Finalzinho de pandemia.mp3",
+        "dateAdded": "2022-06-28T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "2EFBFEAE-AF9D-49BD-A57E-E33D04754EB2",
+        "title": "Faz politicalha",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "faz politicalha",
+        "filename": "Bolsonaro - Faz politicalha.mp3",
+        "dateAdded": "2022-06-28T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "40EF5D75-A383-422C-B264-880C92886C3F",
+        "title": "Tomara, meu Deus, tomara",
+        "authorId": "2267C284-7BA1-42DB-8AE8-E329E28CF43C",
+        "description": "tomara meu deus tomara",
+        "filename": "Alceu Valenca - Tomara - Tomara meu deus tomara.mp3",
+        "dateAdded": "2022-06-28T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "D33FB964-1353-462D-B7D4-DB2133C98248",
+        "title": "Taí ó",
+        "authorId": "ED9593A4-B314-405D-B7F9-3BF8B21FA54A",
+        "description": "taí ó",
+        "filename": "Alexandre Frota - Tai o.mp3",
+        "dateAdded": "2022-06-28T00:00:00Z",
+        "isOffensive": false
+    },
+    {
         "id": "131CBD3E-982E-4D9E-9D4A-8493DC6A14EC",
         "title": "Deu errado",
         "authorId": "B7F375D7-1087-42CB-B80F-7C5FF82386D9",
@@ -73,7 +325,7 @@
     },
     {
         "id": "6520780D-A676-43A4-A5F4-751E61D8ED71",
-        "title": "Mais um crime",
+        "title": "Crime de Responsabilidade",
         "authorId": "E49C6318-B890-4976-B90F-01B60A4FE6D7",
         "description": "oh não mais um crime de responsabilidade",
         "filename": "ADY - oh nao mais um crime de responsabilidade.mp3",
@@ -434,7 +686,7 @@
     {
         "id": "6E8F3CC9-C17E-4193-BED1-07792BC59B1A",
         "title": "É paradoxo que chama isso aí",
-        "authorId": "924B9331-E479-4644-82F4-8DB6C7574DC7",
+        "authorId": "A329D501-7BD3-4B9C-8FBD-99BFD3AF3E13",
         "description": "Renan É paradoxo que chama isso aí",
         "filename": "Choque de Cultura - Renan - E Paradoxo que chama isso ai.mp3",
         "dateAdded": "2021-02-19T00:00:00Z",
@@ -452,7 +704,7 @@
     {
         "id": "1C85C12B-7C0C-4DF9-B889-7FAC05D5547D",
         "title": "Calma, filha da puta, calma",
-        "authorId": "CFA8FC2A-3CB5-4B5B-8454-B29B5FE1B904",
+        "authorId": "B7CB79F9-4CAC-4832-BB47-2EA96A4AC576",
         "description": "Calma filha da puta calma",
         "filename": "Trote Pareto - Calma filha da puta calma.mp3",
         "dateAdded": "2021-02-19T00:00:00Z",
@@ -461,7 +713,7 @@
     {
         "id": "A97EF51F-C49D-4460-A159-F82CD9639E4E",
         "title": "Às vezes o ódio é a única emoção possível",
-        "authorId": "924B9331-E479-4644-82F4-8DB6C7574DC7",
+        "authorId": "2BBB826D-24E5-4DFE-95DF-A6FFE41155D9",
         "description": "Rogerinho Às vezes o ódio é a única emoção possível",
         "filename": "CHOQUE DE CULTURA - Rogerinho As vezes o odio e a unica emocao possivel short.mp3",
         "dateAdded": "2021-02-19T00:00:00Z",
@@ -488,7 +740,7 @@
     {
         "id": "0469BA5D-287B-4F88-A218-0FC95E00C166",
         "title": "Falo com tranquilidade",
-        "authorId": "924B9331-E479-4644-82F4-8DB6C7574DC7",
+        "authorId": "2BBB826D-24E5-4DFE-95DF-A6FFE41155D9",
         "description": "Falo com tranquilidade",
         "filename": "Choque de Cultura - Falo com tranquilidade.mp3",
         "dateAdded": "2021-02-19T00:00:00Z",
@@ -497,7 +749,7 @@
     {
         "id": "29DAC1C1-8097-40E0-AE9B-2FEC16E6839A",
         "title": "Aqui tem informação",
-        "authorId": "924B9331-E479-4644-82F4-8DB6C7574DC7",
+        "authorId": "2BBB826D-24E5-4DFE-95DF-A6FFE41155D9",
         "description": "Rogerinho Aqui tem informação",
         "filename": "Choque de Cultura - Rogerinho - Aqui tem informacao.mp3",
         "dateAdded": "2021-02-19T00:00:00Z",
@@ -506,7 +758,7 @@
     {
         "id": "5B4453DF-2736-461D-B731-12D3B9C095E1",
         "title": "Ó a informação aí",
-        "authorId": "924B9331-E479-4644-82F4-8DB6C7574DC7",
+        "authorId": "2BBB826D-24E5-4DFE-95DF-A6FFE41155D9",
         "description": "Rogerinho Ó a informação aí",
         "filename": "Choque de Cultura - Rogerinho - O a informacao ai.mp3",
         "dateAdded": "2021-02-19T00:00:00Z",
@@ -515,7 +767,7 @@
     {
         "id": "301B1EB5-1D6D-4AF1-8E8D-6CFBD9E95569",
         "title": "Não vamos falar de pornô aqui não",
-        "authorId": "924B9331-E479-4644-82F4-8DB6C7574DC7",
+        "authorId": "2BBB826D-24E5-4DFE-95DF-A6FFE41155D9",
         "description": "Rogerinho Não vamos falar de pornô aqui não",
         "filename": "Choque de cultura - Rogerinho - Nao vamos falar de porno aqui nao.mp3",
         "dateAdded": "2021-02-19T00:00:00Z",
@@ -594,8 +846,80 @@
         "isOffensive": false
     },
     {
+        "id": "7B1132CC-5B18-441C-A20B-B1E8F22F19AE",
+        "title": "A imprensa mundial é de esquerda",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "a imprensa mundial é de esquerda",
+        "filename": "Bolsonaro - a imprensa mundial e de esquerda.mp3",
+        "dateAdded": "2022-06-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "2C67AA4F-37B9-4193-AA24-95A5285099BD",
+        "title": "Enfrentar como homem",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "vai enfrentar como homem pô e não como moleque",
+        "filename": "Bolsonaro - Enfrentar como homem.mp3",
+        "dateAdded": "2022-06-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "C23EAD40-8DEF-44C6-90CE-68F5A4FFFC8A",
+        "title": "Estou com COVID (voz fina)",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "estou com covid",
+        "filename": "Bolsonaro - Estou com covid.mp3",
+        "dateAdded": "2022-06-27T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "9B967075-8F15-4766-8F7A-290E5E1F8FEB",
+        "title": "Eu votaria no Lula no segundo turno",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "eu votaria no lula no segundo turno eu votei no segundo turno no lula",
+        "filename": "Bolsonaro - Eu votaria no Lula no segundo turno.mp3",
+        "dateAdded": "2022-06-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "0A571775-4868-4CC9-A4B4-D4EEF65A760B",
+        "title": "Brasil e Estados Unidos",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "brasil e estados unidos acima de tudo brasil acima de todos",
+        "filename": "Bolsonaro - Brasil e Estados Unidos.mp3",
+        "dateAdded": "2022-06-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "CB3E3CA1-F2EF-420E-BEC2-1A24AB80D6E4",
+        "title": "Esperavam exatamente o contrário",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "e todos esperavam exatamente o contrário",
+        "filename": "Bolsonaro - E todos esperavam exatamente o contrario.mp3",
+        "dateAdded": "2022-06-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "28DB846B-6AD8-49B2-93B2-574B4B3BB8FE",
+        "title": "Vendo muito Globo",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Ce ta vendo muito globo ai",
+        "filename": "Bolsonaro - Ce ta vendo muito Globo ai.mp3",
+        "dateAdded": "2022-06-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "69B17A04-55EE-4FB4-A55E-F15AC124C35A",
+        "title": "Como etanol",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "como etanol",
+        "filename": "Bolsonaro - Como etanol.mp3",
+        "dateAdded": "2022-06-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
         "id": "0944BA0D-6A7E-44B7-A878-BCA7B8669842",
-        "title": "Parece até que um helicóptero pousou",
+        "title": "Parece até que um helicóptero pousou em cima da tua cara",
         "authorId": "F0A2EC08-8C98-42E8-8C23-C4EBD9314E14",
         "description": "Parece até que um helicóptero pousou em cima da tua cara",
         "filename": "Boldo - Parece ate que um helicoptero pousou em cima da tua cara.mp3",
@@ -603,9 +927,90 @@
         "isOffensive": false
     },
     {
+        "id": "8D75C6EB-F17B-43EF-8C2B-24F0EC28C6B5",
+        "title": "A coisa é séria",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "a coisa é séria pessoal",
+        "filename": "Bolsonaro - A coisa e seria pessoal.mp3",
+        "dateAdded": "2022-06-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "7FBA79EE-DC01-4DEF-B79B-9E4CDA675BFA",
+        "title": "Beira do socialismo",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Estávamos a beira do socialismo",
+        "filename": "Bolsonaro - Estavamos a beira do socialismo.mp3",
+        "dateAdded": "2022-06-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "F608B1EA-F3C9-4648-87FD-7EFFE636C75D",
+        "title": "Quê",
+        "authorId": "17860F3D-A18C-4684-86D0-931306A6937A",
+        "description": "que",
+        "filename": "Away - Que.mp3",
+        "dateAdded": "2022-06-27T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "EC4350A4-2DD0-43F3-BAA2-AAF912D55EC7",
+        "title": "É de quanto",
+        "authorId": "F0A2EC08-8C98-42E8-8C23-C4EBD9314E14",
+        "description": "é de quanto é de quanto",
+        "filename": "Boldo - e de quanto.mp3",
+        "dateAdded": "2022-06-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "482DD888-6B10-44F8-A328-57E4D0002216",
+        "title": "De novo, cara",
+        "authorId": "17860F3D-A18C-4684-86D0-931306A6937A",
+        "description": "po cara de novo cara pô não guento",
+        "filename": "Away - De novo cara.mp3",
+        "dateAdded": "2022-06-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "58E09FF1-3175-4192-B59E-03729C35F3C3",
+        "title": "Fora das condições normais",
+        "authorId": "17860F3D-A18C-4684-86D0-931306A6937A",
+        "description": "porra tem algumas coisas que me deixa fora das condições normais de atuação mermão",
+        "filename": "Away -  Fora das condicoes normais.mp3",
+        "dateAdded": "2022-06-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "D3EA8DBA-CAE5-4256-B888-B37C9ABF92F3",
+        "title": "Que que eu posso tomar",
+        "authorId": "9DD28494-F33B-471F-8AD6-D4F86978DD42",
+        "description": "mas átila eu quero tomar alguma coisa o que que eu posso tomar pra não pegar covid você pode tomar cuidado e você pode tomar vacina",
+        "filename": "ATILA IAMARINO - Que que eu posso tomar voce pode tomar cuidado e vacina.mp3",
+        "dateAdded": "2022-06-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "B0ED7531-7FB5-4BED-A3CA-60255EDD1C9C",
+        "title": "Até o final",
+        "authorId": "A68C0AA4-546E-4E24-8153-832BB84FD68B",
+        "description": "até o final você vai bancar esse merda lá seu merda",
+        "filename": "Ate o final tu vai bancar esse merda la seu merda.mp3",
+        "dateAdded": "2022-06-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "87D119D1-F2DA-4362-A9F0-312A9CE3A0B7",
+        "title": "Não tem condições",
+        "authorId": "9DD28494-F33B-471F-8AD6-D4F86978DD42",
+        "description": "não tem condições",
+        "filename": "ATILA IAMARINO - Nao tem condicoes.mp3",
+        "dateAdded": "2022-06-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
         "id": "C4075191-EEE2-4FD5-BDAA-A0869852C80F",
         "title": "Vamos fazer essa crítica aí",
-        "authorId": "924B9331-E479-4644-82F4-8DB6C7574DC7",
+        "authorId": "A329D501-7BD3-4B9C-8FBD-99BFD3AF3E13",
         "description": "Renan Vamos fazer essa critica ai",
         "filename": "Choque de Cultura - Renan - Vamos fazer essa critica ai.mp3",
         "dateAdded": "2021-02-19T00:00:00Z",
@@ -614,7 +1019,7 @@
     {
         "id": "2A8238B6-E2B8-4871-9F8B-ADD7B0551C99",
         "title": "Cabô cabô cabô",
-        "authorId": "924B9331-E479-4644-82F4-8DB6C7574DC7",
+        "authorId": "2BBB826D-24E5-4DFE-95DF-A6FFE41155D9",
         "description": "Cabo cabo cabo ja ta desvirtuando ja short",
         "filename": "Choque de Cultura - Cabo cabo cabo ja ta desvirtuando ja short.mp3",
         "dateAdded": "2021-02-19T00:00:00Z",
@@ -1037,7 +1442,7 @@
     {
         "id": "9CB12A4F-01E0-4E18-936B-55E0A96C9561",
         "title": "Pum",
-        "authorId": "90725901-3A3F-407B-8177-159B50C60676",
+        "authorId": "026D606A-356F-47C9-8D42-D5C838653E02",
         "description": "Pum",
         "filename": "Regina Duarte - Pum.mp3",
         "dateAdded": "2021-02-21T00:00:00Z",
@@ -1136,7 +1541,7 @@
     {
         "id": "E0C0983B-0D5E-4D92-8A2B-B953F58EFD97",
         "title": "É desesperador",
-        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "authorId": "248A6A3B-3EEF-45D6-9A2F-A81768B7B370",
         "description": "E desesperador",
         "filename": "E desesperador.mp3",
         "dateAdded": "2021-03-04T00:00:00Z",
@@ -1712,16 +2117,43 @@
     {
         "id": "7F07D9C1-BF53-4EC4-9AAE-241830287111",
         "title": "Doidera",
-        "authorId": "025AE8A1-8154-4529-9C3D-CFDFF9AE02E5",
+        "authorId": "A7449684-39D6-48AE-91D2-BC8E3D8133F1",
         "description": "Doidera",
         "filename": "Falha de Cobertura - Cerginho da Pereira Nunes - Doidera.mp3",
         "dateAdded": "2021-03-05T00:00:00Z",
         "isOffensive": true
     },
     {
+        "id": "94ABF832-21FE-4A0E-8556-9062BB32BD8F",
+        "title": "Tá uma merda esse país",
+        "authorId": "2982E359-0A6C-4005-AED8-2D5BB7F39599",
+        "description": "ta uma merda esse país",
+        "filename": "Alborghetti - Ta uma merda esse pais.mp3",
+        "dateAdded": "2022-06-27T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "1B1F6A55-986B-4BB9-AD29-4F7BC72588DA",
+        "title": "Ai, seu grosso",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "ai seu grosso",
+        "filename": "Ai seu grosso.mp3",
+        "dateAdded": "2022-06-27T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "C5ADF059-5418-4B12-88E4-9716D7323DA5",
+        "title": "Agora tu aguenta",
+        "authorId": "A68C0AA4-546E-4E24-8153-832BB84FD68B",
+        "description": "agora tu aguenta",
+        "filename": "Dudu Marfetan - Agora tu aguenta.mp3",
+        "dateAdded": "2022-06-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
         "id": "437D494D-100A-4F38-A95C-974842640F7D",
         "title": "Fudeu",
-        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "authorId": "3911940E-F747-4E0E-B6E1-26523D73D9A0",
         "description": "Fudeu",
         "filename": "Fudeu meme short.mp3",
         "dateAdded": "2021-03-05T00:00:00Z",
@@ -2270,9 +2702,9 @@
     {
         "id": "464810A2-B4EC-414C-B917-1CB12BD7DC6D",
         "title": "Presidente, por que sua esposa recebeu 89 mil de Queiroz?",
-        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "authorId": "8125E9F8-0AAC-477B-BB95-1D5EB90B6411",
         "description": "Presidente por que sua esposa Michele recebeu 89 mil de Fabricio Queiroz",
-        "filename": "Cristiano Botafogo - Presidente por que sua esposa Michele recebeu 89 mil de Fabricio Queiroz.mp3",
+        "filename": "Frederico Goulart - Presidente por que sua esposa Michele recebeu 89 mil de Fabricio Queiroz.mp3",
         "dateAdded": "2022-06-12T00:00:00Z",
         "isOffensive": false
     },
@@ -2387,7 +2819,7 @@
     {
         "id": "A92C22BA-0CA4-4111-8872-4842F31A7226",
         "title": "Eu não entendi o que ele falou",
-        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "authorId": "601139B6-5703-48DC-A1B6-1E3C3E713813",
         "description": "Eu nao entendi o que ele falou",
         "filename": "Eu nao entendi o que ele falou.mp3",
         "dateAdded": "2022-06-13T00:00:00Z",
@@ -2630,7 +3062,7 @@
     {
         "id": "B2411993-6E7D-4E9B-AC1E-8AF6D9E86E96",
         "title": "Essa eu quero ver",
-        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "authorId": "A3CBBA65-2035-4A63-A571-5EB3A722B392",
         "description": "Essa eu quero ver nao nao quero ver nao",
         "filename": "Essa eu quero ver nao nao quero ver nao short meme.mp3",
         "dateAdded": "2022-06-16T00:00:00Z",
@@ -2850,6 +3282,348 @@
         "description": "Cala a boca vai tomar no cu",
         "filename": "Heloisa Faissol - Cala a boca vai tomar no cu.mp3",
         "dateAdded": "2022-06-22T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "282F388B-74E2-4BBD-849E-F3BD67562013",
+        "title": "Grandes merda cê adevogado",
+        "authorId": "B7CB79F9-4CAC-4832-BB47-2EA96A4AC576",
+        "description": "grandes merda cê adevogado grandes merda ser adevogado",
+        "filename": "Trote Luiz Pareto - Trote da TELERJ (grandes merdas que o senhor e advogado).mp3",
+        "dateAdded": "2022-06-24T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "BA5144F5-AA99-420B-8007-7DF9FAE831A3",
+        "title": "Otoni não para",
+        "authorId": "4E7D9959-10EA-4F0B-9F56-D3C06BE1C2D0",
+        "description": "Otoni não para",
+        "filename": "Otoni de Paula - Otoni nao para.mp3",
+        "dateAdded": "2022-06-24T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "0717B37F-5F2B-4AC8-A76C-C0A8D6AE18ED",
+        "title": "Eu não vou recuar um milímetro",
+        "authorId": "4E7D9959-10EA-4F0B-9F56-D3C06BE1C2D0",
+        "description": "Eu nao vou recuar um milimetro",
+        "filename": "UOL - Otoni de Paula - Eu nao vou recuar um milimetro.mp3",
+        "dateAdded": "2022-06-24T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "F99CA897-EE32-4AF0-A3CF-2606BC5EE64E",
+        "title": "Ele fala e vocês deliram (2x)",
+        "authorId": "571F78AB-B691-4537-9952-795BF01D1945",
+        "description": "Ele fala e voces deliram ele fala e voces deliram",
+        "filename": "Silvio Santos - Ele fala e voces deliram, ele fala e voces deliram.mp3",
+        "dateAdded": "2022-06-24T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "57AFBBFE-41A7-42AC-A76A-7CAF3E119615",
+        "title": "Isso é meio delirante",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "Isso e meio delirante",
+        "filename": "REDE TV - Isso e meio delirante short meme.mp3",
+        "dateAdded": "2022-06-24T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "AD6629FE-9FF4-47E0-8807-7C0FDDC6DD19",
+        "title": "Sem querer colocar o senhor numa situação delicada",
+        "authorId": "2E1D75D4-5D46-4CB4-818F-1D2B356F2F68",
+        "description": "Sem querer colocar o senhor numa situacao delicada ai",
+        "filename": "JOVEM PAN NEWS - Sem querer colocar o senhor numa situacao delicada ai.mp3",
+        "dateAdded": "2022-06-24T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "39FA605E-1416-4107-AC56-BB665769A775",
+        "title": "ENEM tem a cara do governo",
+        "authorId": "4723AB43-A1E8-464B-BC75-F2ABA1A9FCF6",
+        "description": "Enem tem a cara do governo competencia honestidade seriedade",
+        "filename": "UOL - Milton Ribeiro - Enem tem a cara do governo competencia honestidade seriedade.mp3",
+        "dateAdded": "2022-06-24T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "E2BC0151-0734-444D-8DAB-B27C96AA7243",
+        "title": "O mundo foi perdendo a referência de conduta sexual",
+        "authorId": "4723AB43-A1E8-464B-BC75-F2ABA1A9FCF6",
+        "description": "O mundo foi perdendo a referencia do que e certo e do que e errado em termos de conduta sexual",
+        "filename": "Milton Ribeiro - O mundo foi perdendo a referencia do que e certo e do que e errado em termos de conduta sexual.mp3",
+        "dateAdded": "2022-06-24T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "23102483-44EF-4938-966E-C118051DE097",
+        "title": "A questão é eminentemente técnica",
+        "authorId": "4723AB43-A1E8-464B-BC75-F2ABA1A9FCF6",
+        "description": "A questao e eminentemente repito tecnica",
+        "filename": "CNN BRASIL - Milton Ribeiro - A questao e eminentemente repito tecnica.mp3",
+        "dateAdded": "2022-06-24T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "769AC81D-330A-4DD4-8132-D83D7DA6A5A0",
+        "title": "A versão verdadeira é a do áudio",
+        "authorId": "4723AB43-A1E8-464B-BC75-F2ABA1A9FCF6",
+        "description": "A versao verdadeira e a versao que a gente pode escutar no audio",
+        "filename": "CNN BRASIL - Milton Ribeiro - A versao verdadeira e a versao que a gente pode escutar no audio.mp3",
+        "dateAdded": "2022-06-24T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "87F64968-5A70-43E4-92D7-13D21CD1D423",
+        "title": "A minha natureza não é de mentira",
+        "authorId": "4723AB43-A1E8-464B-BC75-F2ABA1A9FCF6",
+        "description": "Isso eu falo publicamente porque a minha natureza nao e de mentira",
+        "filename": "DESMENTINDO BOLSONARO - Milton Ribeiro - Isso eu falo publicamente porque a minha natureza nao e de mentira.mp3",
+        "dateAdded": "2022-06-24T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "0BA23AE0-D32E-4D48-8F2B-F965CB0760DE",
+        "title": "O presidente nunca me pediu nada",
+        "authorId": "4723AB43-A1E8-464B-BC75-F2ABA1A9FCF6",
+        "description": "O presidente da republica nunca me pediu nada absolutamente nada",
+        "filename": "DESMENTINDO BOLSONARO - Milton Ribeiro - O presidente da republica nunca me pediu nada, absolutamente nada.mp3",
+        "dateAdded": "2022-06-24T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "370D589E-0D37-461B-BC79-F5B6D721A05E",
+        "title": "Muito obrigado",
+        "authorId": "4723AB43-A1E8-464B-BC75-F2ABA1A9FCF6",
+        "description": "ESTADAO - Milton Ribeiro - Muito obrigado",
+        "filename": "ESTADAO - Milton Ribeiro - Muito obrigado.mp3",
+        "dateAdded": "2022-06-24T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "5EFF4719-0C9F-47FC-AC35-CBA2914D9EA8",
+        "title": "Alguém quer sabotar o MEC, o Milton Ribeiro se deu mal",
+        "authorId": "32DECC5A-FEE3-42B7-BBCC-B34126C317DE",
+        "description": "Pro audio vazar alguem quer sabotar o MEC e o Milton Ribeiro se deu mal",
+        "filename": "JOVEM PAN NEWS - Constantino - Pro audio vazar, alguem quer sabotar o MEC e o Milton Ribeiro se deu mal.mp3",
+        "dateAdded": "2022-06-24T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "C76C3A24-071E-4630-83CD-9C9C72BF359C",
+        "title": "O Milton Ribeiro é uma pessoa séria, responsável, é do ramo",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "O milton ribeiro e uma pessoa seria responsavel e do ramo",
+        "filename": "JOVEM PAN - Bolsonaro - O milton ribeiro e uma pessoa seria responsavel e do ramo.mp3",
+        "dateAdded": "2022-06-24T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "D1B64473-97F0-4B53-9935-164061C0EAE4",
+        "title": "Coloco a minha cara inteira no fogo pelo Milton Ribeiro",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Coisa rara de eu falar aqui coloco a minha cara inteira no fogo pelo Milton ribeiro",
+        "filename": "Bolsonaro - Coisa rara de eu falar aqui coloco a minha cara inteira no fogo pelo Milton ribeiro.mp3",
+        "dateAdded": "2022-06-24T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "3A661DD8-8754-4849-A038-4EE3C765277E",
+        "title": "A pandemia não acabou",
+        "authorId": "E49C6318-B890-4976-B90F-01B60A4FE6D7",
+        "description": "a pandemia ainda não acabou porra",
+        "filename": "Ady Ferrer - A pandemia ainda nao acabou porra.mp3",
+        "dateAdded": "2022-06-27T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "15DC3998-5CC8-40EB-9868-2A3475B0EEA1",
+        "title": "Crime contra a humanidade",
+        "authorId": "E49C6318-B890-4976-B90F-01B60A4FE6D7",
+        "description": "on não mais um crime contra a humanidade",
+        "filename": "Ady Ferrer - Oh nao mais um crime contra a humanidade.mp3",
+        "dateAdded": "2022-06-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "FA0F5956-7AE1-4E05-900D-A96A8B2A9795",
+        "title": "Eu já disse aqui",
+        "authorId": "3C41E7C2-BA19-456E-90DC-97ADC57B81C0",
+        "description": "eu já disse aqui",
+        "filename": "Gilmar Mendes - Eu ja disse aqui.mp3",
+        "dateAdded": "2022-06-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "DDBB1BDE-9270-4FEA-904D-2D7DD85942B5",
+        "title": "Uma grande confusão",
+        "authorId": "3C41E7C2-BA19-456E-90DC-97ADC57B81C0",
+        "description": "uma grande confusão",
+        "filename": "Gilmar mendes - uma grande confusao short.mp3",
+        "dateAdded": "2022-06-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "6E44A53F-49A4-40AE-B41D-EA73BBA2C554",
+        "title": "Improcedente a ação",
+        "authorId": "3C41E7C2-BA19-456E-90DC-97ADC57B81C0",
+        "description": "eu estou julgando improcedente a ação",
+        "filename": "Gilmar Mendes - Eu estou julgando improcedente a acao.mp3",
+        "dateAdded": "2022-06-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "E265DAE4-D5CB-46E9-8AD4-8CC9B38A05BE",
+        "title": "Aaahhi, que delícia!",
+        "authorId": "9F5424EA-2C65-41F6-B925-F9CC6CC70787",
+        "description": "Ai que delícia",
+        "filename": "Andre Starqueza - Ai que delicia.mp3",
+        "dateAdded": "2022-06-24T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "F54D69F7-5A16-47C8-B34E-F6B1C8118FAE",
+        "title": "Tem um grau aí de prisma na coisa",
+        "authorId": "71128756-78A9-4B31-A7D8-CE120147C481",
+        "description": "Tem um grau ai de prisma na coisa",
+        "filename": "Eduardo Pazuello - Tem um grau ai de prisma na coisa.mp3",
+        "dateAdded": "2022-06-24T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "5B7FC7D1-D916-46F5-87C4-17763E67AA49",
+        "title": "Oh Reeeeally",
+        "authorId": "A6C8916B-61E6-4E83-ACC8-64B77567F47E",
+        "description": "Oh Really",
+        "filename": "Sheldon - Oh Really short.mp3",
+        "dateAdded": "2022-06-25T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "B5A09B6B-0B0F-40CC-9DD7-4239A5BF475F",
+        "title": "Nem existe isso, cê tá inventando palavra",
+        "authorId": "A329D501-7BD3-4B9C-8FBD-99BFD3AF3E13",
+        "description": "Nem existe isso ce ta inventando palavra",
+        "filename": "Choque de Cultura - Nem existe isso, ce ta inventando palavra.mp3",
+        "dateAdded": "2022-06-26T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "BBD5CB24-99A9-44E6-B22B-79BC16F4C4AB",
+        "title": "O Brasil é o país aparelhado",
+        "authorId": "32DECC5A-FEE3-42B7-BBCC-B34126C317DE",
+        "description": "O mecanismo foi quase todo dominado por essa turma o Brasil e o pais aparelhado",
+        "filename": "JOVEM PAN - Constantino - O mecanismo foi quase todo dominado por essa turma, o Brasil e o pais aparelhado.mp3",
+        "dateAdded": "2022-06-26T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "D38EAA9D-E58C-48FC-BE39-99D46E77FEDC",
+        "title": "Eles perderam o limite",
+        "authorId": "F16C8B71-E8A4-4E36-B869-98C6871ED694",
+        "description": "Eles perderam o limite",
+        "filename": "CHOQUE DE CULTURA - Julinho da Van - Eles perderam o limite.mp3",
+        "dateAdded": "2022-06-26T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "6140CBE0-43CA-41E1-9E0F-1D493AEF155D",
+        "title": "Foda-se",
+        "authorId": "F16C8B71-E8A4-4E36-B869-98C6871ED694",
+        "description": "Foda-se",
+        "filename": "Choque de Cultura - Julinho Foda-se.mp3",
+        "dateAdded": "2022-06-26T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "F6C33159-22DE-435D-81F3-3A6D0E74BE5A",
+        "title": "O último idoso alegre do planeta é o Ary Fontoura",
+        "authorId": "E3F705A3-74B1-4B62-B6AD-9A230A597B5D",
+        "description": "O ultimo idoso alegre do planeta e o Ary Fontoura",
+        "filename": "Choque de Cultura - Maurilio - O ultimo idoso alegre do planeta e o Ary Fontoura.mp3",
+        "dateAdded": "2022-06-26T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "0EA3C8F2-0F29-452C-A63B-8DB37D55F5E1",
+        "title": "É golpe",
+        "authorId": "E3F705A3-74B1-4B62-B6AD-9A230A597B5D",
+        "description": "É golpe",
+        "filename": "CHOQUE DE CULTURA - Maurilio palestrinha - E golpe short meme.mp3",
+        "dateAdded": "2022-06-26T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "1E30BF2B-F830-4F93-B337-FF468E0AE1C2",
+        "title": "Acho que deu uma pesada no clima do programa aí",
+        "authorId": "A329D501-7BD3-4B9C-8FBD-99BFD3AF3E13",
+        "description": "Acho que deu uma pesada no clima do programa ai",
+        "filename": "CHOQUE DE CULTURA - Renan - Acho que deu uma pesada no clima do programa ai.mp3",
+        "dateAdded": "2022-06-26T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "22F39773-96C6-43E6-AC43-C070A9DD9B02",
+        "title": "É energia aqui ó, tá em cima. Carnaval, alegria",
+        "authorId": "A329D501-7BD3-4B9C-8FBD-99BFD3AF3E13",
+        "description": "E energia aqui o ta em cima carnaval alegria",
+        "filename": "CHOQUE DE CULTURA - Renan - E energia aqui o ta em cima carnaval alegria.mp3",
+        "dateAdded": "2022-06-26T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "5B0FFF55-0B05-4FDA-B1A7-16C7856B4A82",
+        "title": "Inescrupulosos",
+        "authorId": "A329D501-7BD3-4B9C-8FBD-99BFD3AF3E13",
+        "description": "Inescrupulosos",
+        "filename": "CHOQUE DE CULTURA - Renan - Inescrupulosos.mp3",
+        "dateAdded": "2022-06-26T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "B76984D3-05E6-4B7D-8508-F13B3A8C0A3B",
+        "title": "Voz rouca",
+        "authorId": "BB392894-327A-48BA-9C7D-4F0601E947EB",
+        "description": "Voz rouca",
+        "filename": "CNN BRASIL BUSINESS - Conseguimos atenuar o choque do petr¢leo que veio de fora diz Guedes voz rouca.mp3",
+        "dateAdded": "2022-06-26T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "CEDECDC0-55CD-49B9-8094-173A9D713B8E",
+        "title": "Com a devida vênia",
+        "authorId": "3C41E7C2-BA19-456E-90DC-97ADC57B81C0",
+        "description": "com a devida vênia",
+        "filename": "Gilmar Mendes - Com a devida venia.mp3",
+        "dateAdded": "2022-06-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "C8C73B2A-F0C4-4FA6-A7BE-3939893D74B0",
+        "title": "O Fachin é nosso",
+        "authorId": "3C41E7C2-BA19-456E-90DC-97ADC57B81C0",
+        "description": "aha uhu o fachin é nosso",
+        "filename": "Gilmar Mendes - aha uhu o Fachin e nosso.mp3",
+        "dateAdded": "2022-06-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "FC5B1A29-F65B-4D7C-96FB-59307DE427A9",
+        "title": "Havendo um certo delírio",
+        "authorId": "3C41E7C2-BA19-456E-90DC-97ADC57B81C0",
+        "description": "Me parece que está havendo aí um certo delírio",
+        "filename": "Gilmar Mendes - Me parece que esta havendo um certo delirio.mp3",
+        "dateAdded": "2022-06-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "8919A7BE-B6B7-455E-A204-4639173732A3",
+        "title": "Não é de surpreender",
+        "authorId": "05A3C97F-68EE-4AEB-9BEA-761348725225",
+        "description": "Nao e de surpreender surpresa choque passada chocada",
+        "filename": "PODER360 - Barroso - Nao e de surpreender.mp3",
+        "dateAdded": "2022-06-26T00:00:00Z",
         "isOffensive": true
     }
 ]

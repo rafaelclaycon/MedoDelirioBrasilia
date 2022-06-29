@@ -84,6 +84,14 @@ class UserSettings {
         return Date(timeIntervalSince1970: value as! Double)
     }
     
+    static func getFolderBannerWasDismissed() -> Bool {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "folderBannerWasDismissed") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
+    
     // MARK: - Setters
     
     static func setShowOffensiveSounds(to newValue: Bool) {
@@ -134,6 +142,11 @@ class UserSettings {
     static func setLastSendDateOfUserPersonalTrendsToServer(to newValue: Date) {
         let userDefaults = UserDefaults.standard
         userDefaults.set(newValue.timeIntervalSince1970, forKey: "lastSendDateOfUserPersonalTrendsToServer")
+    }
+    
+    static func setFolderBannerWasDismissed(to newValue: Bool) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(newValue, forKey: "folderBannerWasDismissed")
     }
 
 }
