@@ -471,6 +471,34 @@
 		D9A8AB2528543F8E00B5A94B /* SharingLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A8AB2428543F8E00B5A94B /* SharingLogCell.swift */; };
 		D9A8AB282854436500B5A94B /* Date+ToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A8AB272854436500B5A94B /* Date+ToString.swift */; };
 		D9A8AB2A28544FAE00B5A94B /* NetworkCallLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A8AB2928544FAE00B5A94B /* NetworkCallLog.swift */; };
+		D9AFA25F286BF27B006155B1 /* Bolsonaro - Pra midia o virus sou eu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AFA243286BF27A006155B1 /* Bolsonaro - Pra midia o virus sou eu.mp3 */; };
+		D9AFA260286BF27B006155B1 /* Bolsonaro - Procura outro pra pagar a tua vacina ai.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AFA244286BF27A006155B1 /* Bolsonaro - Procura outro pra pagar a tua vacina ai.mp3 */; };
+		D9AFA261286BF27B006155B1 /* Alceu Valenca - Tomara - Tomara meu deus tomara.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AFA245286BF27A006155B1 /* Alceu Valenca - Tomara - Tomara meu deus tomara.mp3 */; };
+		D9AFA262286BF27B006155B1 /* Bolsonaro - Tem que deixar de ser um pais de maricas.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AFA246286BF27A006155B1 /* Bolsonaro - Tem que deixar de ser um pais de maricas.mp3 */; };
+		D9AFA263286BF27B006155B1 /* Bolsonaro - O caos vem ai.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AFA247286BF27B006155B1 /* Bolsonaro - O caos vem ai.mp3 */; };
+		D9AFA264286BF27B006155B1 /* Bolsonaro - Tem que trabalhar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AFA248286BF27B006155B1 /* Bolsonaro - Tem que trabalhar.mp3 */; };
+		D9AFA265286BF27B006155B1 /* Bolsonaro - Jacare.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AFA249286BF27B006155B1 /* Bolsonaro - Jacare.mp3 */; };
+		D9AFA266286BF27B006155B1 /* Bolsonaro - Porra Porras.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AFA24A286BF27B006155B1 /* Bolsonaro - Porra Porras.mp3 */; };
+		D9AFA267286BF27B006155B1 /* Alexandre Frota - Tai o.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AFA24B286BF27B006155B1 /* Alexandre Frota - Tai o.mp3 */; };
+		D9AFA268286BF27B006155B1 /* Bolsonaro - Finalzinho de pandemia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AFA24C286BF27B006155B1 /* Bolsonaro - Finalzinho de pandemia.mp3 */; };
+		D9AFA269286BF27B006155B1 /* Bolsonaro - Fica em casa.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AFA24D286BF27B006155B1 /* Bolsonaro - Fica em casa.mp3 */; };
+		D9AFA26A286BF27B006155B1 /* lula ou bolsonaro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AFA24E286BF27B006155B1 /* lula ou bolsonaro.mp3 */; };
+		D9AFA26B286BF27B006155B1 /* Bolsonaro - Polemizar esse assunto.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AFA24F286BF27B006155B1 /* Bolsonaro - Polemizar esse assunto.mp3 */; };
+		D9AFA26C286BF27B006155B1 /* Bolsonaro - Faz politicalha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AFA250286BF27B006155B1 /* Bolsonaro - Faz politicalha.mp3 */; };
+		D9AFA26D286BF27B006155B1 /* Caetano Veloso - Voce fala de uma maneira burra.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AFA251286BF27B006155B1 /* Caetano Veloso - Voce fala de uma maneira burra.mp3 */; };
+		D9AFA26E286BF27B006155B1 /* Bolsonaro - A pressa da vacina nao se justifica.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AFA252286BF27B006155B1 /* Bolsonaro - A pressa da vacina nao se justifica.mp3 */; };
+		D9AFA26F286BF27B006155B1 /* Bolsonaro - Me chama de corrupto porra.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AFA253286BF27B006155B1 /* Bolsonaro - Me chama de corrupto porra.mp3 */; };
+		D9AFA270286BF27B006155B1 /* BORA (Bam Bam).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AFA254286BF27B006155B1 /* BORA (Bam Bam).mp3 */; };
+		D9AFA271286BF27B006155B1 /* Bolsonaro - Sem o vies ideologico.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AFA255286BF27B006155B1 /* Bolsonaro - Sem o vies ideologico.mp3 */; };
+		D9AFA272286BF27B006155B1 /* Bolsonaro - Pode me culpar a vontade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AFA256286BF27B006155B1 /* Bolsonaro - Pode me culpar a vontade.mp3 */; };
+		D9AFA273286BF27B006155B1 /* Bolsonaro - No que depender de mim nunca teremos lockdown.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AFA257286BF27B006155B1 /* Bolsonaro - No que depender de mim nunca teremos lockdown.mp3 */; };
+		D9AFA274286BF27B006155B1 /* Caetano Veloso - Que coisa absurda.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AFA258286BF27B006155B1 /* Caetano Veloso - Que coisa absurda.mp3 */; };
+		D9AFA275286BF27B006155B1 /* Bolsonaro - O Lula ta elegivel pra 22.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AFA259286BF27B006155B1 /* Bolsonaro - O Lula ta elegivel pra 22.mp3 */; };
+		D9AFA276286BF27B006155B1 /* Caetano Veloso - Como voce e burro short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AFA25A286BF27B006155B1 /* Caetano Veloso - Como voce e burro short.mp3 */; };
+		D9AFA277286BF27B006155B1 /* Bolsonaro - So se for na casa da tua mae.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AFA25B286BF27B006155B1 /* Bolsonaro - So se for na casa da tua mae.mp3 */; };
+		D9AFA278286BF27B006155B1 /* Caetano Veloso - Isso ai que voce disse e tudo burrice.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AFA25C286BF27B006155B1 /* Caetano Veloso - Isso ai que voce disse e tudo burrice.mp3 */; };
+		D9AFA279286BF27B006155B1 /* Lula - Voces percebem a loucura.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AFA25D286BF27B006155B1 /* Lula - Voces percebem a loucura.mp3 */; };
+		D9AFA27A286BF27B006155B1 /* Paulo Guedes - Deixa cada um se fuder do jeito que quiser.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AFA25E286BF27B006155B1 /* Paulo Guedes - Deixa cada um se fuder do jeito que quiser.mp3 */; };
 		D9B4F73F283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B4F73D283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 */; };
 		D9B4F740283C8F4D0000EEF7 /* O roque ativa.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B4F73E283C8F4D0000EEF7 /* O roque ativa.mp3 */; };
 		D9B763282845B5E600CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B763272845B5E500CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift */; };
@@ -977,6 +1005,34 @@
 		D9A8AB2428543F8E00B5A94B /* SharingLogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingLogCell.swift; sourceTree = "<group>"; };
 		D9A8AB272854436500B5A94B /* Date+ToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ToString.swift"; sourceTree = "<group>"; };
 		D9A8AB2928544FAE00B5A94B /* NetworkCallLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCallLog.swift; sourceTree = "<group>"; };
+		D9AFA243286BF27A006155B1 /* Bolsonaro - Pra midia o virus sou eu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Pra midia o virus sou eu.mp3"; sourceTree = "<group>"; };
+		D9AFA244286BF27A006155B1 /* Bolsonaro - Procura outro pra pagar a tua vacina ai.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Procura outro pra pagar a tua vacina ai.mp3"; sourceTree = "<group>"; };
+		D9AFA245286BF27A006155B1 /* Alceu Valenca - Tomara - Tomara meu deus tomara.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alceu Valenca - Tomara - Tomara meu deus tomara.mp3"; sourceTree = "<group>"; };
+		D9AFA246286BF27A006155B1 /* Bolsonaro - Tem que deixar de ser um pais de maricas.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Tem que deixar de ser um pais de maricas.mp3"; sourceTree = "<group>"; };
+		D9AFA247286BF27B006155B1 /* Bolsonaro - O caos vem ai.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - O caos vem ai.mp3"; sourceTree = "<group>"; };
+		D9AFA248286BF27B006155B1 /* Bolsonaro - Tem que trabalhar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Tem que trabalhar.mp3"; sourceTree = "<group>"; };
+		D9AFA249286BF27B006155B1 /* Bolsonaro - Jacare.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Jacare.mp3"; sourceTree = "<group>"; };
+		D9AFA24A286BF27B006155B1 /* Bolsonaro - Porra Porras.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Porra Porras.mp3"; sourceTree = "<group>"; };
+		D9AFA24B286BF27B006155B1 /* Alexandre Frota - Tai o.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alexandre Frota - Tai o.mp3"; sourceTree = "<group>"; };
+		D9AFA24C286BF27B006155B1 /* Bolsonaro - Finalzinho de pandemia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Finalzinho de pandemia.mp3"; sourceTree = "<group>"; };
+		D9AFA24D286BF27B006155B1 /* Bolsonaro - Fica em casa.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Fica em casa.mp3"; sourceTree = "<group>"; };
+		D9AFA24E286BF27B006155B1 /* lula ou bolsonaro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "lula ou bolsonaro.mp3"; sourceTree = "<group>"; };
+		D9AFA24F286BF27B006155B1 /* Bolsonaro - Polemizar esse assunto.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Polemizar esse assunto.mp3"; sourceTree = "<group>"; };
+		D9AFA250286BF27B006155B1 /* Bolsonaro - Faz politicalha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Faz politicalha.mp3"; sourceTree = "<group>"; };
+		D9AFA251286BF27B006155B1 /* Caetano Veloso - Voce fala de uma maneira burra.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Caetano Veloso - Voce fala de uma maneira burra.mp3"; sourceTree = "<group>"; };
+		D9AFA252286BF27B006155B1 /* Bolsonaro - A pressa da vacina nao se justifica.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - A pressa da vacina nao se justifica.mp3"; sourceTree = "<group>"; };
+		D9AFA253286BF27B006155B1 /* Bolsonaro - Me chama de corrupto porra.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Me chama de corrupto porra.mp3"; sourceTree = "<group>"; };
+		D9AFA254286BF27B006155B1 /* BORA (Bam Bam).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "BORA (Bam Bam).mp3"; sourceTree = "<group>"; };
+		D9AFA255286BF27B006155B1 /* Bolsonaro - Sem o vies ideologico.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Sem o vies ideologico.mp3"; sourceTree = "<group>"; };
+		D9AFA256286BF27B006155B1 /* Bolsonaro - Pode me culpar a vontade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Pode me culpar a vontade.mp3"; sourceTree = "<group>"; };
+		D9AFA257286BF27B006155B1 /* Bolsonaro - No que depender de mim nunca teremos lockdown.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - No que depender de mim nunca teremos lockdown.mp3"; sourceTree = "<group>"; };
+		D9AFA258286BF27B006155B1 /* Caetano Veloso - Que coisa absurda.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Caetano Veloso - Que coisa absurda.mp3"; sourceTree = "<group>"; };
+		D9AFA259286BF27B006155B1 /* Bolsonaro - O Lula ta elegivel pra 22.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - O Lula ta elegivel pra 22.mp3"; sourceTree = "<group>"; };
+		D9AFA25A286BF27B006155B1 /* Caetano Veloso - Como voce e burro short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Caetano Veloso - Como voce e burro short.mp3"; sourceTree = "<group>"; };
+		D9AFA25B286BF27B006155B1 /* Bolsonaro - So se for na casa da tua mae.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - So se for na casa da tua mae.mp3"; sourceTree = "<group>"; };
+		D9AFA25C286BF27B006155B1 /* Caetano Veloso - Isso ai que voce disse e tudo burrice.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Caetano Veloso - Isso ai que voce disse e tudo burrice.mp3"; sourceTree = "<group>"; };
+		D9AFA25D286BF27B006155B1 /* Lula - Voces percebem a loucura.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - Voces percebem a loucura.mp3"; sourceTree = "<group>"; };
+		D9AFA25E286BF27B006155B1 /* Paulo Guedes - Deixa cada um se fuder do jeito que quiser.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Paulo Guedes - Deixa cada um se fuder do jeito que quiser.mp3"; sourceTree = "<group>"; };
 		D9B4F73D283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Unidos do Medo e Delírio.mp3"; sourceTree = "<group>"; };
 		D9B4F73E283C8F4D0000EEF7 /* O roque ativa.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O roque ativa.mp3"; sourceTree = "<group>"; };
 		D9B763272845B5E500CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKStoreReviewController+requestReviewInCurrentScene.swift"; sourceTree = "<group>"; };
@@ -1029,6 +1085,34 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9AFA245286BF27A006155B1 /* Alceu Valenca - Tomara - Tomara meu deus tomara.mp3 */,
+				D9AFA24B286BF27B006155B1 /* Alexandre Frota - Tai o.mp3 */,
+				D9AFA252286BF27B006155B1 /* Bolsonaro - A pressa da vacina nao se justifica.mp3 */,
+				D9AFA250286BF27B006155B1 /* Bolsonaro - Faz politicalha.mp3 */,
+				D9AFA24D286BF27B006155B1 /* Bolsonaro - Fica em casa.mp3 */,
+				D9AFA24C286BF27B006155B1 /* Bolsonaro - Finalzinho de pandemia.mp3 */,
+				D9AFA249286BF27B006155B1 /* Bolsonaro - Jacare.mp3 */,
+				D9AFA253286BF27B006155B1 /* Bolsonaro - Me chama de corrupto porra.mp3 */,
+				D9AFA257286BF27B006155B1 /* Bolsonaro - No que depender de mim nunca teremos lockdown.mp3 */,
+				D9AFA247286BF27B006155B1 /* Bolsonaro - O caos vem ai.mp3 */,
+				D9AFA259286BF27B006155B1 /* Bolsonaro - O Lula ta elegivel pra 22.mp3 */,
+				D9AFA256286BF27B006155B1 /* Bolsonaro - Pode me culpar a vontade.mp3 */,
+				D9AFA24F286BF27B006155B1 /* Bolsonaro - Polemizar esse assunto.mp3 */,
+				D9AFA24A286BF27B006155B1 /* Bolsonaro - Porra Porras.mp3 */,
+				D9AFA243286BF27A006155B1 /* Bolsonaro - Pra midia o virus sou eu.mp3 */,
+				D9AFA244286BF27A006155B1 /* Bolsonaro - Procura outro pra pagar a tua vacina ai.mp3 */,
+				D9AFA255286BF27B006155B1 /* Bolsonaro - Sem o vies ideologico.mp3 */,
+				D9AFA25B286BF27B006155B1 /* Bolsonaro - So se for na casa da tua mae.mp3 */,
+				D9AFA246286BF27A006155B1 /* Bolsonaro - Tem que deixar de ser um pais de maricas.mp3 */,
+				D9AFA248286BF27B006155B1 /* Bolsonaro - Tem que trabalhar.mp3 */,
+				D9AFA254286BF27B006155B1 /* BORA (Bam Bam).mp3 */,
+				D9AFA25A286BF27B006155B1 /* Caetano Veloso - Como voce e burro short.mp3 */,
+				D9AFA25C286BF27B006155B1 /* Caetano Veloso - Isso ai que voce disse e tudo burrice.mp3 */,
+				D9AFA258286BF27B006155B1 /* Caetano Veloso - Que coisa absurda.mp3 */,
+				D9AFA251286BF27B006155B1 /* Caetano Veloso - Voce fala de uma maneira burra.mp3 */,
+				D9AFA25D286BF27B006155B1 /* Lula - Voces percebem a loucura.mp3 */,
+				D9AFA24E286BF27B006155B1 /* lula ou bolsonaro.mp3 */,
+				D9AFA25E286BF27B006155B1 /* Paulo Guedes - Deixa cada um se fuder do jeito que quiser.mp3 */,
 				D92F8BC6286A730500EB9470 /* Ady Ferrer - A pandemia ainda nao acabou porra.mp3 */,
 				D92F8BC3286A730500EB9470 /* Ady Ferrer - Oh nao mais um crime contra a humanidade.mp3 */,
 				D92F8BB3286A730400EB9470 /* Ai seu grosso.mp3 */,
@@ -1920,6 +2004,7 @@
 				D92F8BD7286A730500EB9470 /* Away - Que.mp3 in Resources */,
 				D92F8BE0286A730500EB9470 /* Ady Ferrer - Oh nao mais um crime contra a humanidade.mp3 in Resources */,
 				D99A9FAE286687240068B172 /* CNN BRASIL - Milton Ribeiro - A questao e eminentemente repito tecnica.mp3 in Resources */,
+				D9AFA278286BF27B006155B1 /* Caetano Veloso - Isso ai que voce disse e tudo burrice.mp3 in Resources */,
 				D955698C285137800072E3FC /* Funk meme - Ele mesmo, ele mesmo, ele mesmo.mp3 in Resources */,
 				D95569AE285137800072E3FC /* Michel Temer - Pigarro.mp3 in Resources */,
 				D955693B285137800072E3FC /* Deltan Dallangnol - Os meus advogados estao estarrecidos.mp3 in Resources */,
@@ -1955,6 +2040,7 @@
 				D92F8BE7286A730500EB9470 /* ATILA IAMARINO - Que que eu posso tomar voce pode tomar cuidado e vacina.mp3 in Resources */,
 				D9556966285137800072E3FC /* Drauzio - procura um psiquiatra, voce nao ta legal.mp3 in Resources */,
 				D9556972285137800072E3FC /* MC Creu - E creu, e creu neles.mp3 in Resources */,
+				D9AFA26C286BF27B006155B1 /* Bolsonaro - Faz politicalha.mp3 in Resources */,
 				D9B4F740283C8F4D0000EEF7 /* O roque ativa.mp3 in Resources */,
 				D9EB189C285780BD00A2F8A8 /* Eu sou RICA! short meme.mp3 in Resources */,
 				D95569C1285137800072E3FC /* Pazuello - E simples assim, um manda e o outro obedece.mp3 in Resources */,
@@ -1970,6 +2056,7 @@
 				D90483F92851B0F500885739 /* Raca Negra - Que Pena short meme.mp3 in Resources */,
 				D91964EC2856B97A0067B430 /* BREAKING BAD - Yeah Science meme.mp3 in Resources */,
 				D95569E428513FAB0072E3FC /* SUPERPOP - Luciana Gimenez - Mas ce ta brava.mp3 in Resources */,
+				D9AFA265286BF27B006155B1 /* Bolsonaro - Jacare.mp3 in Resources */,
 				D955699F285137800072E3FC /* e_um_merda.mp3 in Resources */,
 				D961B860285F767300A645F4 /* Referencia de velho.mp3 in Resources */,
 				D9556993285137800072E3FC /* Bolsonaro - Eu nao errei nenhuma.mp3 in Resources */,
@@ -2005,6 +2092,8 @@
 				D99A9F9328667D470068B172 /* Trote Luiz Pareto - Trote da TELERJ (grandes merdas que o senhor e advogado).mp3 in Resources */,
 				D99A9FB0286687240068B172 /* JOVEM PAN - Bolsonaro - O milton ribeiro e uma pessoa seria responsavel e do ramo.mp3 in Resources */,
 				D91964EF2856BB3F0067B430 /* Datena - Entao bundao e o Jair.mp3 in Resources */,
+				D9AFA276286BF27B006155B1 /* Caetano Veloso - Como voce e burro short.mp3 in Resources */,
+				D9AFA263286BF27B006155B1 /* Bolsonaro - O caos vem ai.mp3 in Resources */,
 				D90483E62851A87D00885739 /* Leandro Hassum - Pra caralho pra caraaaalho.mp3 in Resources */,
 				D955691C285137800072E3FC /* Caetano - Nao short.mp3 in Resources */,
 				D958BC6C2868E210000B2EDA /* CHOQUE DE CULTURA - Renan - Acho que deu uma pesada no clima do programa ai.mp3 in Resources */,
@@ -2013,6 +2102,7 @@
 				D9556943285137800072E3FC /* Leo Stronda Monstro - Batata doce e frango logico.mp3 in Resources */,
 				D955697E285137800072E3FC /* COMUNISTA MEME.mp3 in Resources */,
 				D95569DB285137800072E3FC /* Bolsonaro - Lamento, quer que eu faca o que.mp3 in Resources */,
+				D9AFA25F286BF27B006155B1 /* Bolsonaro - Pra midia o virus sou eu.mp3 in Resources */,
 				D92F8BCC286A730500EB9470 /* Boldo - e de quanto.mp3 in Resources */,
 				D955691D285137800072E3FC /* Pazuello - Que que ce vai fazer nada.mp3 in Resources */,
 				D9376C12285B7510001216DC /* Cocorico - Ah coitado.mp3 in Resources */,
@@ -2029,6 +2119,7 @@
 				D91964F02856BB3F0067B430 /* Chico Bento - Coitado.mp3 in Resources */,
 				D9556992285137800072E3FC /* Joao Doria - Isso exige medidas urgentes.mp3 in Resources */,
 				D99A9F9A286683340068B172 /* Silvio Santos - Ele fala e voces deliram, ele fala e voces deliram.mp3 in Resources */,
+				D9AFA27A286BF27B006155B1 /* Paulo Guedes - Deixa cada um se fuder do jeito que quiser.mp3 in Resources */,
 				D92F8BDC286A730500EB9470 /* Bolsonaro - Estavamos a beira do socialismo.mp3 in Resources */,
 				D92F8BE1286A730500EB9470 /* Bolsonaro - a imprensa mundial e de esquerda.mp3 in Resources */,
 				D99A9F972866827E0068B172 /* UOL - Otoni de Paula - Eu nao vou recuar um milimetro.mp3 in Resources */,
@@ -2042,6 +2133,7 @@
 				D9556990285137800072E3FC /* Drauzio - As pessoas nao tem consciencia disso.mp3 in Resources */,
 				D95569C7285137800072E3FC /* Away - nao fode mermao.mp3 in Resources */,
 				D95569E7285140AE0072E3FC /* Galvao Bueno - Diga la Tino meme short.mp3 in Resources */,
+				D9AFA271286BF27B006155B1 /* Bolsonaro - Sem o vies ideologico.mp3 in Resources */,
 				D99A9FAF286687240068B172 /* ESTADAO - Milton Ribeiro - Muito obrigado.mp3 in Resources */,
 				D9523755285D9E1700E6C838 /* Em cinquenta metros, tire o cu da reta.mp3 in Resources */,
 				D955696C285137800072E3FC /* Bolsonaro - E coisa de viado o que ele estao fazendo.mp3 in Resources */,
@@ -2050,6 +2142,7 @@
 				D934432728381DEF00ADCD38 /* author_data.json in Resources */,
 				D9EB189928577EC400A2F8A8 /* Eu fico muito triste com uma noticia dessas filha da puta fogos short.mp3 in Resources */,
 				D922730B285AAD3E00A98CAE /* Bolsonaro - Pretendo beneficiar um filho meu sim pretendo.mp3 in Resources */,
+				D9AFA26E286BF27B006155B1 /* Bolsonaro - A pressa da vacina nao se justifica.mp3 in Resources */,
 				D9556955285137800072E3FC /* Que merda hein short.mp3 in Resources */,
 				D92F8BE2286A730500EB9470 /* Bolsonaro - A coisa e seria pessoal.mp3 in Resources */,
 				D99A9FA8286687240068B172 /* Milton Ribeiro - O mundo foi perdendo a referencia do que e certo e do que e errado em termos de conduta sexual.mp3 in Resources */,
@@ -2085,9 +2178,11 @@
 				D9556947285137800072E3FC /* Gilmar Mendes - Nao e razoavel.mp3 in Resources */,
 				D9227311285AAD3E00A98CAE /* Bolsonaro - Presente Puti prentiputi pretiputi presidente putin.mp3 in Resources */,
 				D90483F22851B0F500885739 /* Pega essa buceta e enfia no cu short meme.mp3 in Resources */,
+				D9AFA26D286BF27B006155B1 /* Caetano Veloso - Voce fala de uma maneira burra.mp3 in Resources */,
 				D92F8BDE286A730500EB9470 /* Gumball - ooo que mais.mp3 in Resources */,
 				D955698E285137800072E3FC /* Bolsonaro - Vai morrer gente morrer morte inocentes tinha que matar e mais minha especialidade e matar.mp3 in Resources */,
 				D90483FA2851B0F500885739 /* O Terrivel Editorialista do Estadao.mp3 in Resources */,
+				D9AFA26A286BF27B006155B1 /* lula ou bolsonaro.mp3 in Resources */,
 				D958BC662868E210000B2EDA /* Choque de Cultura - Maurilio - O ultimo idoso alegre do planeta e o Ary Fontoura.mp3 in Resources */,
 				D9556964285137800072E3FC /* Neto - Voces estao de sacanagem short.mp3 in Resources */,
 				D955693C285137800072E3FC /* CIRO GOMES - Paulo Guedes mentiroso ta enganando a rapazeada paulo guedes.mp3 in Resources */,
@@ -2100,6 +2195,7 @@
 				D955690F285137800072E3FC /* ADY - oh nao mais um crime de responsabilidade.mp3 in Resources */,
 				D92F8BD4286A730500EB9470 /* Bolsonaro - E todos esperavam exatamente o contrario.mp3 in Resources */,
 				D92F8BE5286A730500EB9470 /* Dudu Marfetan - Agora tu aguenta.mp3 in Resources */,
+				D9AFA272286BF27B006155B1 /* Bolsonaro - Pode me culpar a vontade.mp3 in Resources */,
 				D95569C9285137800072E3FC /* Neto - Ces tao de brincadeira.mp3 in Resources */,
 				D955693D285137800072E3FC /* Bolsonaro e Ratinho - O senhor acha que vai durar essa crise uns cinco 5 ou seis 6 meses.mp3 in Resources */,
 				D9556989285137800072E3FC /* Bolsonaro - Nao leio a imprensa nao vejo Jornal Nacional faca o que eu faco.mp3 in Resources */,
@@ -2108,6 +2204,7 @@
 				D9556961285137800072E3FC /* Gustavo mendes dilma todo mundo se fudeu.mp3 in Resources */,
 				D9556970285137800072E3FC /* MULTISHOW - Lulu Santos - Censura nunca mais.mp3 in Resources */,
 				D90483CF2851A19F00885739 /* Gaucho Puto - Uma bosta, nao sabe, uma merda.mp3 in Resources */,
+				D9AFA268286BF27B006155B1 /* Bolsonaro - Finalzinho de pandemia.mp3 in Resources */,
 				D94611782861350300C4FB7E /* Pazuello - Abraco galera.mp3 in Resources */,
 				D92F8BDA286A730500EB9470 /* Bolsonaro - Enfrentar como homem.mp3 in Resources */,
 				D9556971285137800072E3FC /* Bolsonaro - Sera que eu to errando ao falar isso dai.mp3 in Resources */,
@@ -2120,6 +2217,7 @@
 				D9556928285137800072E3FC /* Winter is coming, this one will be long.mp3 in Resources */,
 				D952374D285D14E300E6C838 /* O POVO ONLINE - Paulo Guedes - A economia ta bombando.mp3 in Resources */,
 				D95569D1285137800072E3FC /* PODER36_Paulo_Guedes_Tem_mais_iPhones_no_Brasil_que_populacao_Brasileiros.mp3 in Resources */,
+				D9AFA269286BF27B006155B1 /* Bolsonaro - Fica em casa.mp3 in Resources */,
 				D90483D72851A4A100885739 /* Harry e Helen - I've heard that song before short meme.mp3 in Resources */,
 				D9227309285AAD3E00A98CAE /* Pretty please meme infantil crianca begging.mp3 in Resources */,
 				D9556946285137800072E3FC /* Alborgeti - Que Merda Hein.mp3 in Resources */,
@@ -2135,8 +2233,10 @@
 				D95569BC285137800072E3FC /* Bolsonaro - O problema ta ai, lamentamos.mp3 in Resources */,
 				D91964F42856BC860067B430 /* GALAS FEIOS - Moro desafinando no corrupcao.mp3 in Resources */,
 				D99A9FAA286687240068B172 /* CNN BRASIL - Milton Ribeiro - A versao verdadeira e a versao que a gente pode escutar no audio.mp3 in Resources */,
+				D9AFA270286BF27B006155B1 /* BORA (Bam Bam).mp3 in Resources */,
 				D946117C286136CD00C4FB7E /* Damares - Inserir no anus.mp3 in Resources */,
 				D95569E328513FAB0072E3FC /* Tati Quebra Barraco - Ce num tinha nem que ta aqui linda.mp3 in Resources */,
+				D9AFA262286BF27B006155B1 /* Bolsonaro - Tem que deixar de ser um pais de maricas.mp3 in Resources */,
 				D955698B285137800072E3FC /* Mourao - Herois matam short.mp3 in Resources */,
 				D95569A2285137800072E3FC /* E O TCHAN - Loop.mp3 in Resources */,
 				D9556918285137800072E3FC /* jonathan frakes - You're wrong.mp3 in Resources */,
@@ -2169,12 +2269,14 @@
 				D92F8BD2286A730500EB9470 /* Gilmar Mendes - Com a devida venia.mp3 in Resources */,
 				D955694A285137800072E3FC /* COMUNISTA DO INFERNO meme.mp3 in Resources */,
 				D9C3EF502866938A00C44249 /* Eduardo Pazuello - Tem um grau ai de prisma na coisa.mp3 in Resources */,
+				D9AFA264286BF27B006155B1 /* Bolsonaro - Tem que trabalhar.mp3 in Resources */,
 				D9227312285AAD3E00A98CAE /* PLANALTO - Bolsonaro - Presidente Putin Pretiputi.mp3 in Resources */,
 				D9556914285137800072E3FC /* Boldo - Deixa com a cara magoada.mp3 in Resources */,
 				D927C41E28523F5D0041970A /* Tite - Fala muito!.mp3 in Resources */,
 				D955694F285137800072E3FC /* Saiddy Bamba - Vai chorar e vai chorar e chore na minha.mp3 in Resources */,
 				D95569C0285137800072E3FC /* Hassum - PUTA QUE PARIU.mp3 in Resources */,
 				D9625E8228238F9B00080852 /* Assets.xcassets in Resources */,
+				D9AFA274286BF27B006155B1 /* Caetano Veloso - Que coisa absurda.mp3 in Resources */,
 				D90483DE2851A66200885739 /* Handel - Aleluia short.mp3 in Resources */,
 				D91964E228563B680067B430 /* Bolsonaro - Esposa, ne, tem que aguentar, mas ta tudo bem.mp3 in Resources */,
 				D90483F72851B0F500885739 /* Pronto, falei short.mp3 in Resources */,
@@ -2212,6 +2314,7 @@
 				D9556953285137800072E3FC /* Regina Duarte - Pum.mp3 in Resources */,
 				D9556933285137800072E3FC /* Etcetera.mp3 in Resources */,
 				D9556977285137800072E3FC /* Boldo - Muito bom, muito bom.mp3 in Resources */,
+				D9AFA26F286BF27B006155B1 /* Bolsonaro - Me chama de corrupto porra.mp3 in Resources */,
 				D9556994285137800072E3FC /* Maluf - Nao lhe dou o aparte.mp3 in Resources */,
 				D911071D2863C7C5000B6F8F /* UOL - Luiz Fux - Infelizmente short meme.mp3 in Resources */,
 				D91107212863C7C5000B6F8F /* TV BRASIL - Bolsonaro - Bom dia a todos, menos pra primeira dama.mp3 in Resources */,
@@ -2234,7 +2337,9 @@
 				D9556997285137800072E3FC /* SBT NEWS - Bolsonaro - Sai alexandre de moraes deixa de ser canalha.mp3 in Resources */,
 				D9EB189E285781AD00A2F8A8 /* Bom dia e o caralho parceiro short meme.mp3 in Resources */,
 				D982DD03285BEB6D003C8695 /* Essa eu quero ver nao nao quero ver nao short meme.mp3 in Resources */,
+				D9AFA26B286BF27B006155B1 /* Bolsonaro - Polemizar esse assunto.mp3 in Resources */,
 				D955693E285137800072E3FC /* Bonitinha mas ordinaria - Mentira.mp3 in Resources */,
+				D9AFA279286BF27B006155B1 /* Lula - Voces percebem a loucura.mp3 in Resources */,
 				D927C40D28523A050041970A /* OS DONOS DA BOLA - CRAQUE NETO - Ai depois fala que ta bebado.mp3 in Resources */,
 				D95569D9285137800072E3FC /* JORNAL DA RECORD - Nao e coisa de deus nao.mp3 in Resources */,
 				D95569D2285137800072E3FC /* Bolsonaro - O cara o cara.mp3 in Resources */,
@@ -2243,14 +2348,18 @@
 				D955696F285137800072E3FC /* jonathan frakes - It's a total fabrication.mp3 in Resources */,
 				D95569AF285137800072E3FC /* Trote Pareto - Calma filha da puta calma.mp3 in Resources */,
 				D91964E128563B680067B430 /* Queiroz - Eu sou um cara de negocios, eu faco dinheiro eu faco.mp3 in Resources */,
+				D9AFA261286BF27B006155B1 /* Alceu Valenca - Tomara - Tomara meu deus tomara.mp3 in Resources */,
 				D95569CE285137800072E3FC /* Bolsonaro - Na ordem de 800 pessoas a previsao e nao chegar a isso no tocante ao coronavirus.mp3 in Resources */,
 				D90483F82851B0F500885739 /* Pedro Daltro - Fala direito, Cristiano, porra.mp3 in Resources */,
 				D95569C6285137800072E3FC /* Alborghetti - Ah, va a merda porra.mp3 in Resources */,
+				D9AFA266286BF27B006155B1 /* Bolsonaro - Porra Porras.mp3 in Resources */,
 				D9EB189028577AE000A2F8A8 /* GAVETA - Voce merece tomar Nokul no cu.mp3 in Resources */,
 				D90483F62851B0F500885739 /* Lula - Chupa que a cana e doce meu filho.mp3 in Resources */,
 				D9556998285137800072E3FC /* Pedro Pedreira (Pedra 90) - Nao delira, nao patina no omelete.mp3 in Resources */,
 				D952374B285D118400E6C838 /* DESMENTINDO BOLSONARO - PAULO GUEDES - O Brasil esta decolando economia bombando coletanea.mp3 in Resources */,
+				D9AFA267286BF27B006155B1 /* Alexandre Frota - Tai o.mp3 in Resources */,
 				D91964F22856BBE10067B430 /* Moro dizendo que nao seria ministro nem candidato a presidencia.mp3 in Resources */,
+				D9AFA260286BF27B006155B1 /* Bolsonaro - Procura outro pra pagar a tua vacina ai.mp3 in Resources */,
 				D99A9F95286680B50068B172 /* Otoni de Paula - Otoni nao para.mp3 in Resources */,
 				D90483DD2851A66200885739 /* Idosa - Ah! Peste grito idosa vacina.mp3 in Resources */,
 				D9556936285137800072E3FC /* Futurama - Entao tudo bem short.mp3 in Resources */,
@@ -2263,6 +2372,7 @@
 				D9556910285137800072E3FC /* Bolsonaro - Duas letras PF e policia federal o cara.mp3 in Resources */,
 				D92F8BDF286A730500EB9470 /* Bolsonaro - Eu votaria no Lula no segundo turno.mp3 in Resources */,
 				D9556923285137800072E3FC /* tu_entendeu_a_pergunta.mp3 in Resources */,
+				D9AFA277286BF27B006155B1 /* Bolsonaro - So se for na casa da tua mae.mp3 in Resources */,
 				D95569B5285137800072E3FC /* Silas Malafaia - Mentiroso sem vergonha vai pro inferno short.mp3 in Resources */,
 				D95569D7285137800072E3FC /* O CARA DA LUVA DE PEDREIRO - receba carai caralho.mp3 in Resources */,
 				D95569AC285137800072E3FC /* Bolsonaro - Que e a maneira que voce tem de realmente pensar em coisa seria no pais.mp3 in Resources */,
@@ -2270,10 +2380,12 @@
 				D95569B0285137800072E3FC /* Xo drogado short meme.mp3 in Resources */,
 				D91964EB2856B97A0067B430 /* Bolsonaro - Um jumento, um jumento.mp3 in Resources */,
 				D9556927285137800072E3FC /* um_bosta_ciro.mp3 in Resources */,
+				D9AFA273286BF27B006155B1 /* Bolsonaro - No que depender de mim nunca teremos lockdown.mp3 in Resources */,
 				D94611702861311E00C4FB7E /* Damares - A princesa do Frozen vai voltar pra acordar a Bela Adormecida com um beijo gay.mp3 in Resources */,
 				D95569CA285137800072E3FC /* Falha de Cobertura - Cerginho da Pereira Nunes - Doidera.mp3 in Resources */,
 				D9B878462864A327009CA7AD /* Frederico Goulart - Presidente por que sua esposa Michele recebeu 89 mil de Fabricio Queiroz.mp3 in Resources */,
 				D95569C3285137800072E3FC /* PORTA_DOS_FUNDOS_BALBURDIA_Bom_dia,_turma,_todo_mundo_tirando_a.mp3 in Resources */,
+				D9AFA275286BF27B006155B1 /* Bolsonaro - O Lula ta elegivel pra 22.mp3 in Resources */,
 				D95569BD285137800072E3FC /* Feiticeira - Nao e feiticaria, e tecnologia meme short.mp3 in Resources */,
 				D980455C28380EFE003B2E83 /* Localizable.strings in Resources */,
 				D95569B9285137800072E3FC /* Malafaia - JAIR MESSIAS BOLSONARO.mp3 in Resources */,
