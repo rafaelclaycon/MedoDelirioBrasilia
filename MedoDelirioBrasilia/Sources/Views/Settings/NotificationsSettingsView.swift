@@ -28,6 +28,8 @@ struct NotificationsSettingsView: View {
                     }
             } header: {
                 Text("Escolha quais notificações deseja receber")
+            } footer: {
+                Text("Tentarei manter a frequência das notificações em 1 a 2 por semana para não encher o saco.")
             }
             
         }

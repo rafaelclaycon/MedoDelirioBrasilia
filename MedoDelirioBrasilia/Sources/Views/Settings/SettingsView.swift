@@ -4,6 +4,7 @@ struct SettingsView: View {
 
     @State private var showExplicitSounds: Bool = UserSettings.getShowOffensiveSounds()
     
+    @State private var showingNotificationsSettingsScreen: Bool = false
     @State private var showingTrendsSettingsScreen: Bool = false
     
     @State private var showPixKeyCopiedAlert: Bool = false
@@ -29,6 +30,9 @@ struct SettingsView: View {
                 }
                 
                 Section {
+                    NavigationLink(destination: NotificationsSettingsView(), isActive: $showingNotificationsSettingsScreen) {
+                        Text("Notificações")
+                    }
                     NavigationLink(destination: TrendsSettingsView(), isActive: $showingTrendsSettingsScreen) {
                         Text("Tendências")
                     }
