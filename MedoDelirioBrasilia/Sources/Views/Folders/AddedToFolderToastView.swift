@@ -9,10 +9,10 @@ struct AddedToFolderToastView: View {
             RoundedRectangle(cornerRadius: 5, style: .continuous)
                 .fill(Color.white)
                 .frame(height: 50)
-                .shadow(color: .gray, radius: 5, y: 1)
+                .shadow(color: .gray, radius: 2, y: 2)
             
             HStack {
-                Text("Som adicionado à pasta \"\(folderName)\".")
+                Text("Som adicionado à pasta \(folderName).")
                     .foregroundColor(.black)
                     .font(.callout)
                     .bold()
@@ -28,7 +28,11 @@ struct AddedToFolderToastView: View {
 struct AddedToFolderToastView_Previews: PreviewProvider {
 
     static var previews: some View {
-        AddedToFolderToastView(folderName: "🤑 Econoboys")
+        Group {
+            AddedToFolderToastView(folderName: "🤑 Econoboys")
+                .padding(.horizontal)
+        }
+        .previewLayout(.fixed(width: 414, height: 100))
     }
 
 }
