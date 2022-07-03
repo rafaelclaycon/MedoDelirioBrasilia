@@ -4,6 +4,14 @@
         "name": "Ady Ferrer"
     },
     {
+        "id": "089EBD4E-486E-4DF2-9918-E404B5CA7A7E",
+        "name": "MC Jefinho Faraó"
+    },
+    {
+        "id": "959D8DD0-0EFB-4CC2-98C2-C61182BCFEC3",
+        "name": "Igor Guimarães"
+    },
+    {
         "id": "045F8453-244C-4B94-8F89-395FE8986139",
         "name": "Bam Bam"
     },
@@ -36,6 +44,10 @@
         "name": "Dallangnol"
     },
     {
+        "id": "3FE2F541-6B10-47A8-A1FB-640AB6E55FA9",
+        "name": "Dilma"
+    },
+    {
         "id": "691D4F55-79F7-407A-B0AA-71CD09059E60",
         "name": "Diogo Defante"
     },
@@ -54,6 +66,22 @@
     {
         "id": "6C973E63-4682-49A8-BDA3-EA20113A827A",
         "name": "Lulu Santos"
+    },
+    {
+        "id": "7BB7B9E2-5115-4CC2-89DB-20FDA7D2287E",
+        "name": "Cecília Oliveira"
+    },
+    {
+        "id": "1D0971B0-1818-4987-A8DB-04A784708DBB",
+        "name": "Carioca Puto"
+    },
+    {
+        "id": "DF65C0B6-418E-4EE8-98CE-55B19533B918",
+        "name": "Cauê Moura"
+    },
+    {
+        "id": "59BB4B38-4C6A-4B9C-9B14-C4BDB4B0085B",
+        "name": "Capitão Falcão"
     },
     {
         "id": "2C99D577-ED07-4803-8AC6-C265AF0D3093",
@@ -148,8 +176,16 @@
         "name": "Saiddy Bamba"
     },
     {
+        "id": "90C00D5D-797C-4DEF-91C6-1B2D407C955D",
+        "name": "Belo"
+    },
+    {
         "id": "7E1ED3FF-82AA-4047-B0A9-292D63FC4711",
         "name": "Leandro Hassum"
+    },
+    {
+        "id": "8387E951-503E-4C75-BFA0-06CAEE589C3A",
+        "name": "Ernesto Araújo"
     },
     {
         "id": "3959FC8B-DB6F-4926-8610-7161A322E700",
@@ -174,6 +210,10 @@
     {
         "id": "051E1352-4CDD-4881-AD5C-09FD3B43E33C",
         "name": "Gustavo Mendes (Dilma)"
+    },
+    {
+        "id": "7349C0DE-496E-421B-A39A-6CCA24E9F972",
+        "name": "Corra que a Polícia Vem Aí"
     },
     {
         "id": "56CCBFFD-04CA-4EDF-A88F-80E0B2618864",
@@ -298,6 +338,18 @@
     {
         "id": "79AF542F-72A5-43F3-A77A-20656C173890",
         "name": "É o Tchan!"
+    },
+    {
+        "id": "8DB0296F-1152-4DAF-BD78-C7665E031014",
+        "name": "Marcelo Adnet"
+    },
+    {
+        "id": "50896C29-3A48-4886-9089-33CD7062F2D7",
+        "name": "Biquini Cavadão"
+    },
+    {
+        "id": "677BDC27-06EF-44D4-BF8F-15E64245CC0F",
+        "name": "Bezerra da Silva"
     },
     {
         "id": "9DD28494-F33B-471F-8AD6-D4F86978DD42",
@@ -452,6 +504,18 @@
         "name": "Xuxa"
     },
     {
+        "id": "E2A6D694-3177-4671-9BAD-976A4988B4A8",
+        "name": "Cleber Machado"
+    },
+    {
+        "id": "223DB222-699C-4425-9025-2CD1CDEEC155",
+        "name": "Cid Moreira"
+    },
+    {
+        "id": "529AD00F-B78F-47D6-892C-0B75887B51DE",
+        "name": "Chico Buarque"
+    },
+    {
         "id": "745CE871-B6F7-4278-B7D5-CA065D5DD946",
         "name": "Fabrício Queiroz"
     },
@@ -472,8 +536,16 @@
         "name": "Sergio Moro"
     },
     {
+        "id": "44EBAE6B-89FF-4766-9C90-60CC84B87991",
+        "name": "SBT"
+    },
+    {
         "id": "63126808-C5C0-4492-9B21-AF800C5E0AFB",
         "name": "Galãs Feios"
+    },
+    {
+        "id": "7093D0D1-97C6-479F-968F-A9BF89E4C9C1",
+        "name": "Eduardo Cunha"
     },
     {
         "id": "042C48ED-4CC9-4260-9FAD-EFA1DC5930F3",

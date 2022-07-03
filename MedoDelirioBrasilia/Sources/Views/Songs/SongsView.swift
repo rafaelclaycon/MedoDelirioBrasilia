@@ -42,6 +42,7 @@ struct SongsView: View {
                                     }
                                 }
                                 .onLongPressGesture {
+                                    TapticFeedback.open()
                                     viewModel.shareSong(withPath: song.filename, andContentId: song.id)
                                 }
                         }

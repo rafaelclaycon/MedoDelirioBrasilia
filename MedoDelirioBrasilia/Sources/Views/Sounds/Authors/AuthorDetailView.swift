@@ -76,6 +76,11 @@ struct AuthorDetailView: View {
         .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
         }
+        .onChange(of: viewModel.showConfirmationDialog) { show in
+            if show {
+                TapticFeedback.open()
+            }
+        }
     }
 
 }

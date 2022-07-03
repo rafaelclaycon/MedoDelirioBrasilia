@@ -190,12 +190,14 @@ class SoundsViewViewModel: ObservableObject {
     // MARK: - Alerts
     
     func showUnableToGetSoundAlert() {
+        TapticFeedback.error()
         alertTitle = Shared.soundNotFoundAlertTitle
         alertMessage = Shared.soundNotFoundAlertMessage
         showAlert = true
     }
     
     func showNoFoldersAlert() {
+        TapticFeedback.error()
         alertTitle = "Não Existem Pastas"
         alertMessage = "Para continuar, crie uma pasta de sons na aba Coleções > Minhas Pastas."
         showAlert = true
