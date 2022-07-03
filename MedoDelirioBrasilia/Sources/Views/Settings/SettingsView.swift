@@ -12,7 +12,7 @@ struct SettingsView: View {
     
     @State private var showingDiagnosticsScreen: Bool = false
     
-    let pixKey: String = "918bd609-04d1-4df6-8697-352b62462061"
+    let pixKey: String = "medodeliriosuporte@gmail.com"
     let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
     let buildVersionNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""
     
@@ -34,7 +34,7 @@ struct SettingsView: View {
                     }
                 }
                 
-                Section("Esse app é uma homenagem ao trabalho de Cristiano Botafogo e Pedro Daltro") {
+                Section {
                     BegForMoneyView()
                         .padding(.vertical)
                     
@@ -45,6 +45,10 @@ struct SettingsView: View {
                     .alert(isPresented: $showPixKeyCopiedAlert) {
                         Alert(title: Text("Chave copiada com sucesso!"), dismissButton: .default(Text("OK")))
                     }
+                } header : {
+                    Text("Esse app é uma homenagem ao trabalho de Cristiano Botafogo e Pedro Daltro")
+                } footer: {
+                    Text("A chave é um endereço de e-mail, portanto, se o app do seu banco pedir o tipo de chave para transferir, selecione E-mail. Evite qualquer opção que mencione QR Code.")
                 }
                 
                 Section("🐞  Problemas, sugestões ou pedidos") {
