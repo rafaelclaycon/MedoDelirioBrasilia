@@ -68,7 +68,9 @@ class AuthorDetailViewViewModel: ObservableObject {
 
     func shareSound(withPath filepath: String, andContentId contentId: String) {
         do {
-            try Sharer.shareSound(withPath: filepath, andContentId: contentId)
+            try Sharer.shareSound(withPath: filepath, andContentId: contentId) { didShareSuccessfully in
+                print(didShareSuccessfully)
+            }
         } catch {
             showUnableToGetSoundAlert()
         }

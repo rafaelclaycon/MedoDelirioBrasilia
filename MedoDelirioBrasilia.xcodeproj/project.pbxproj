@@ -137,7 +137,7 @@
 		D9376C14285B78A3001216DC /* Sirigueijo - Dinheiro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9376C13285B78A3001216DC /* Sirigueijo - Dinheiro.mp3 */; };
 		D93AC08B28414EEE00E38A63 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AC08A28414EEE00E38A63 /* Logger.swift */; };
 		D93CCB77286A802D0002CF81 /* EmptyFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93CCB76286A802D0002CF81 /* EmptyFolderView.swift */; };
-		D93CCB79286A8A220002CF81 /* AddedToFolderToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93CCB78286A8A220002CF81 /* AddedToFolderToastView.swift */; };
+		D93CCB79286A8A220002CF81 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93CCB78286A8A220002CF81 /* ToastView.swift */; };
 		D93CCB7B286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93CCB7A286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift */; };
 		D93D24E02849DAAB00300541 /* DiagnosticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D24DF2849DAAB00300541 /* DiagnosticsView.swift */; };
 		D946116E28611F1000C4FB7E /* FolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D946116D28611F1000C4FB7E /* FolderCell.swift */; };
@@ -391,8 +391,6 @@
 		D958BC6A2868E210000B2EDA /* CHOQUE DE CULTURA - Julinho da Van - Eles perderam o limite.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D958BC612868E210000B2EDA /* CHOQUE DE CULTURA - Julinho da Van - Eles perderam o limite.mp3 */; };
 		D958BC6B2868E210000B2EDA /* Choque de Cultura - Julinho Foda-se.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D958BC622868E210000B2EDA /* Choque de Cultura - Julinho Foda-se.mp3 */; };
 		D958BC6C2868E210000B2EDA /* CHOQUE DE CULTURA - Renan - Acho que deu uma pesada no clima do programa ai.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D958BC632868E210000B2EDA /* CHOQUE DE CULTURA - Renan - Acho que deu uma pesada no clima do programa ai.mp3 */; };
-		D958BC6F2868F54C000B2EDA /* UIEmojiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958BC6E2868F54C000B2EDA /* UIEmojiTextField.swift */; };
-		D958BC712868F5A0000B2EDA /* EmojiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958BC702868F5A0000B2EDA /* EmojiTextField.swift */; };
 		D958BC732868FE8C000B2EDA /* EmojiIdentification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958BC722868FE8C000B2EDA /* EmojiIdentification.swift */; };
 		D958BC752869000A000B2EDA /* FolderInfoEditingViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958BC742869000A000B2EDA /* FolderInfoEditingViewViewModel.swift */; };
 		D95F40F32871FEDA001CF903 /* Atila Iamarino - E como se fosse uma crianca de cinco anos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95F40F22871FEDA001CF903 /* Atila Iamarino - E como se fosse uma crianca de cinco anos.mp3 */; };
@@ -719,7 +717,7 @@
 		D9376C13285B78A3001216DC /* Sirigueijo - Dinheiro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Sirigueijo - Dinheiro.mp3"; sourceTree = "<group>"; };
 		D93AC08A28414EEE00E38A63 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		D93CCB76286A802D0002CF81 /* EmptyFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyFolderView.swift; sourceTree = "<group>"; };
-		D93CCB78286A8A220002CF81 /* AddedToFolderToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddedToFolderToastView.swift; sourceTree = "<group>"; };
+		D93CCB78286A8A220002CF81 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		D93CCB7A286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyTransition+MoveAndFade.swift"; sourceTree = "<group>"; };
 		D93D24DF2849DAAB00300541 /* DiagnosticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticsView.swift; sourceTree = "<group>"; };
 		D946116D28611F1000C4FB7E /* FolderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderCell.swift; sourceTree = "<group>"; };
@@ -972,8 +970,6 @@
 		D958BC612868E210000B2EDA /* CHOQUE DE CULTURA - Julinho da Van - Eles perderam o limite.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "CHOQUE DE CULTURA - Julinho da Van - Eles perderam o limite.mp3"; sourceTree = "<group>"; };
 		D958BC622868E210000B2EDA /* Choque de Cultura - Julinho Foda-se.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Choque de Cultura - Julinho Foda-se.mp3"; sourceTree = "<group>"; };
 		D958BC632868E210000B2EDA /* CHOQUE DE CULTURA - Renan - Acho que deu uma pesada no clima do programa ai.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "CHOQUE DE CULTURA - Renan - Acho que deu uma pesada no clima do programa ai.mp3"; sourceTree = "<group>"; };
-		D958BC6E2868F54C000B2EDA /* UIEmojiTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIEmojiTextField.swift; sourceTree = "<group>"; };
-		D958BC702868F5A0000B2EDA /* EmojiTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiTextField.swift; sourceTree = "<group>"; };
 		D958BC722868FE8C000B2EDA /* EmojiIdentification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiIdentification.swift; sourceTree = "<group>"; };
 		D958BC742869000A000B2EDA /* FolderInfoEditingViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderInfoEditingViewViewModel.swift; sourceTree = "<group>"; };
 		D95F40F22871FEDA001CF903 /* Atila Iamarino - E como se fosse uma crianca de cinco anos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Atila Iamarino - E como se fosse uma crianca de cinco anos.mp3"; sourceTree = "<group>"; };
@@ -1761,15 +1757,6 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		D958BC6D2868F534000B2EDA /* CustomComponents */ = {
-			isa = PBXGroup;
-			children = (
-				D958BC6E2868F54C000B2EDA /* UIEmojiTextField.swift */,
-				D958BC702868F5A0000B2EDA /* EmojiTextField.swift */,
-			);
-			path = CustomComponents;
-			sourceTree = "<group>";
-		};
 		D961D0142837229100EFEDEB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -1869,19 +1856,19 @@
 				D9943F2428641FB7002C6B97 /* Folders */,
 				D92E7073283C5D9E0035826C /* Songs */,
 				D9BF90BC2842EAB100BDDD7D /* Trends */,
-				D976FF3628674B9100998E1B /* Banners */,
 				D957509728446BEC0094AEA6 /* Settings */,
-				D958BC6D2868F534000B2EDA /* CustomComponents */,
+				D9759ACA2872B1D1005F9871 /* Shared */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		D976FF3628674B9100998E1B /* Banners */ = {
+		D9759ACA2872B1D1005F9871 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
 				D976FF3728674BAC00998E1B /* FoldersBannerView.swift */,
+				D93CCB78286A8A220002CF81 /* ToastView.swift */,
 			);
-			path = Banners;
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		D980456028380F45003B2E83 /* AppSupport */ = {
@@ -1974,7 +1961,6 @@
 				D9943F2728642200002C6B97 /* AddToFolderViewViewModel.swift */,
 				D98B291C28691C5C008A78AE /* ColorSelectionCell.swift */,
 				D93CCB76286A802D0002CF81 /* EmptyFolderView.swift */,
-				D93CCB78286A8A220002CF81 /* AddedToFolderToastView.swift */,
 			);
 			path = Folders;
 			sourceTree = "<group>";
@@ -2634,7 +2620,6 @@
 				D92F8BAD286A6D2100EB9470 /* AlertType.swift in Sources */,
 				D93443292838230500ADCD38 /* String+Extensions.swift in Sources */,
 				D961D01128371EE800EFEDEB /* FixedLocalData.swift in Sources */,
-				D958BC712868F5A0000B2EDA /* EmojiTextField.swift in Sources */,
 				D9943F2628641FEF002C6B97 /* AddToFolderView.swift in Sources */,
 				D9BF9091284257F500BDDD7D /* Shared.swift in Sources */,
 				D9758C3C28617C980094D388 /* LocalDatabase+UserFolder.swift in Sources */,
@@ -2642,7 +2627,7 @@
 				D91107112863B481000B6F8F /* CollectionsViewViewModel.swift in Sources */,
 				D98622E0283FC57100E9F630 /* AuthorDetailView.swift in Sources */,
 				D92E7067283C51D20035826C /* Song.swift in Sources */,
-				D93CCB79286A8A220002CF81 /* AddedToFolderToastView.swift in Sources */,
+				D93CCB79286A8A220002CF81 /* ToastView.swift in Sources */,
 				D958BC752869000A000B2EDA /* FolderInfoEditingViewViewModel.swift in Sources */,
 				D976FF3828674BAC00998E1B /* FoldersBannerView.swift in Sources */,
 				D9A8AB2A28544FAE00B5A94B /* NetworkCallLog.swift in Sources */,
@@ -2672,7 +2657,6 @@
 				D94611802861480A00C4FB7E /* FolderInfoEditingView.swift in Sources */,
 				D9943F20286419CE002C6B97 /* LocalDatabase+Statistic.swift in Sources */,
 				D93443252838177000ADCD38 /* UserInfo.swift in Sources */,
-				D958BC6F2868F54C000B2EDA /* UIEmojiTextField.swift in Sources */,
 				D905B4C52857FF3D0096D466 /* AddNetworkCallLogTable.swift in Sources */,
 				D946116E28611F1000C4FB7E /* FolderCell.swift in Sources */,
 				D960AF272845BFE700ADF1F6 /* UserDefaultsKeys.swift in Sources */,

@@ -248,6 +248,10 @@ struct SoundsView: View {
                         }
                     }
                     
+                    Button("👱  Ver Todos os Sons Desse Autor") {
+                        print("Ver autor")
+                    }
+                    
                     Button(SoundOptionsHelper.getSuggestOtherAuthorNameButtonTitle(authorId: viewModel.soundForConfirmationDialog?.authorId ?? .empty)) {
                         guard let sound = viewModel.soundForConfirmationDialog else {
                             return
@@ -278,7 +282,17 @@ struct SoundsView: View {
                     VStack {
                         Spacer()
                         
-                        AddedToFolderToastView(folderName: folderName ?? "")
+                        ToastView(text: "Som adicionado à pasta \(folderName ?? "").")
+                            .padding()
+                    }
+                    .transition(.moveAndFade)
+                }
+                
+                if viewModel.shouldDisplaySharedSuccessfullyToast {
+                    VStack {
+                        Spacer()
+                        
+                        ToastView(text: "Som compartilhado com sucesso.")
                             .padding()
                     }
                     .transition(.moveAndFade)

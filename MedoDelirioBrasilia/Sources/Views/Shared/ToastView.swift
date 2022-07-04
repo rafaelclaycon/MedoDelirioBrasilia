@@ -1,8 +1,8 @@
 import SwiftUI
 
-struct AddedToFolderToastView: View {
+struct ToastView: View {
 
-    @State var folderName: String
+    @State var text: String
     
     var body: some View {
         ZStack {
@@ -12,7 +12,7 @@ struct AddedToFolderToastView: View {
                 .shadow(color: .gray, radius: 2, y: 2)
             
             HStack {
-                Text("Som adicionado à pasta \(folderName).")
+                Text(text)
                     .foregroundColor(.black)
                     .font(.callout)
                     .bold()
@@ -25,11 +25,11 @@ struct AddedToFolderToastView: View {
 
 }
 
-struct AddedToFolderToastView_Previews: PreviewProvider {
+struct ToastView_Previews: PreviewProvider {
 
     static var previews: some View {
         Group {
-            AddedToFolderToastView(folderName: "🤑 Econoboys")
+            ToastView(text: "🤑 Econoboys")
                 .padding(.horizontal)
         }
         .previewLayout(.fixed(width: 414, height: 100))
