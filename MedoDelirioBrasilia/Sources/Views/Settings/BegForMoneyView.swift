@@ -18,9 +18,8 @@ struct BegForMoneyView: View {
             VStack(alignment: .leading, spacing: 18) {
                 Text("Existem alguns custos para o app estar aqui. Especificamente:\n · a taxa de publicação (US$ 99/ano) e\n · os custos mensais com servidor (cerca de R$ 30).")
             
-                Text("Se você está curtindo o app e gostaria de ajudar, use a chave abaixo. Assim você garante novos sons, recursos e o meu muito obrigado!")
+                Text("Se você está curtindo o app e gostaria de ajudar, use a chave abaixo.")
             }
-            
             
 //            Text("**ÚLTIMA DOAÇÃO: SÉRGIO M. O.   R$ 20,00**")
 //                .foregroundColor(.gray)

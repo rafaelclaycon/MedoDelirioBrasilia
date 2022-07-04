@@ -235,6 +235,7 @@ struct SoundsView: View {
                                 withAnimation {
                                     shouldDisplayAddedToFolderToast = true
                                 }
+                                TapticFeedback.success()
                             }
                             
                             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -266,6 +267,11 @@ struct SoundsView: View {
                 }
                 .sheet(isPresented: $showingAddToFolderModal) {
                     AddToFolderView(isBeingShown: $showingAddToFolderModal, hadSuccess: $hadSuccessAddingToFolder, folderName: $folderName, selectedSoundName: viewModel.soundForConfirmationDialog!.title, selectedSoundId: viewModel.soundForConfirmationDialog!.id)
+                }
+                .onChange(of: viewModel.showConfirmationDialog) { show in
+                    if show {
+                        TapticFeedback.open()
+                    }
                 }
                 
                 if shouldDisplayAddedToFolderToast {

@@ -9,6 +9,150 @@
         "isOffensive": false
     },
     {
+        "id": "C56D243E-6E56-4EB2-B73E-920A6ED5F3E5",
+        "title": "Alegria",
+        "authorId": "959D8DD0-0EFB-4CC2-98C2-C61182BCFEC3",
+        "description": "que alegria",
+        "filename": "Igor Guimaraes - Alegria.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "8C66E314-BC91-4F69-A0EB-D14199BDD039",
+        "title": "Casos de Família",
+        "authorId": "44EBAE6B-89FF-4766-9C90-60CC84B87991",
+        "description": "final abertura casos de família",
+        "filename": "SBT - Casos de Familia.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "23990D9A-B6FF-4A0E-A0BF-17136AE1B03F",
+        "title": "Que Deus tenha misericórdia dessa nação",
+        "authorId": "7093D0D1-97C6-479F-968F-A9BF89E4C9C1",
+        "description": "que Deus tenha misericórdia dessa nação",
+        "filename": "Eduardo Cunha - Que Deus tenha misericordia dessa nacao.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "5895BAEB-1C1C-461B-863E-B7480137C5D5",
+        "title": "Bora passar raiva",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "bora passar raiva",
+        "filename": "Cristiano Botafogo - Bora passar raiva.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "92098BC2-C285-4618-BA6B-DC1C5BDDCB4B",
+        "title": "Ê porra, caralho, buceta",
+        "authorId": "994E7B6C-FB8D-49D3-8865-1F1EF9F90F72",
+        "description": "ê porra caralho buceta bora",
+        "filename": "Mae copiloto - e porra caralho buceta bora.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "9B75696B-CF93-47F7-95B5-B438EA841D6F",
+        "title": "Vem tribunal de Haia",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "vem tribunal de haia",
+        "filename": "Cristiano Botafogo - Vem tribunal de Haia.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "8CF68221-4C54-4E7E-B22E-F60391DA958F",
+        "title": "Pastor Marginal",
+        "authorId": "089EBD4E-486E-4DF2-9918-E404B5CA7A7E",
+        "description": "o pastor marginal da igreja foi que catou nosso dinheiro pega ele e dá um pau",
+        "filename": "MC Jefinho Farao - Pastor marginal.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "0761AFFA-FD3E-45C6-B47A-3ED97CA2462D",
+        "title": "Não temos provas",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "e eu digo mais não temos provas deixar bem claro",
+        "filename": "Bolsonaro - Nao temos provas.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "DB99A7ED-00D3-444C-89B6-BB24B9801014",
+        "title": "Sou ousado",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "eu não sou médico mas sou ousado",
+        "filename": "Bolsonaro - Sou ousado.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "86503160-353F-4B09-A4E7-BD02E1E7F594",
+        "title": "Sim sim sim sim sim",
+        "authorId": "D8738C87-8962-418E-ADBF-9B1DC3D30528",
+        "description": "sim sim sim sim sim",
+        "filename": "Saiddy Bamba - Sim sim sim sim sim.mp3",
+        "dateAdded": "2022-06-30T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "0DE55D65-AF39-4D30-8DE6-A5C98125C53F",
+        "title": "Quem é que não gosta de dinheiro",
+        "authorId": "571F78AB-B691-4537-9952-795BF01D1945",
+        "description": "quem é que não gosta de dinheiro",
+        "filename": "Silvio Santos - Quem e que nao gosta de dinheiro.mp3",
+        "dateAdded": "2022-06-30T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "2479A155-07F9-48B6-A49B-734755924627",
+        "title": "É mesmo, é verdade?",
+        "authorId": "571F78AB-B691-4537-9952-795BF01D1945",
+        "description": "é mermo é mesmo é verdade",
+        "filename": "Silvio Santos - E mesmo e verdade.mp3",
+        "dateAdded": "2022-06-30T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "3C3CA8A6-FA12-4C95-A553-1855172D635A",
+        "title": "Essa não é boa, ninguem deu risada",
+        "authorId": "571F78AB-B691-4537-9952-795BF01D1945",
+        "description": "essa não é boa essa não é boa ninguém deu risada",
+        "filename": "Silvio Santos - Essa nao e boa ninguem deu risada.mp3",
+        "dateAdded": "2022-06-30T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "2C8F8145-8231-4B64-8C44-1C6187510EAD",
+        "title": "Eu gosto de dinheiro",
+        "authorId": "6155A533-D5F5-4491-9F1D-A1B95FC5FC84",
+        "description": "olá eu gosto de dinheiro",
+        "filename": "Seu Sirigueijo - Ola eu gosto de dinheiro.mp3",
+        "dateAdded": "2022-06-30T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "63E32A72-3603-4B73-B09F-B92450298C78",
+        "title": "Face Palm",
+        "authorId": "7349C0DE-496E-421B-A39A-6CCA24E9F972",
+        "description": "face palm corra que a polícia vem aí naked gun",
+        "filename": "Face palm - Corra que a policia vem ai.mp3",
+        "dateAdded": "2022-06-30T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "B74BE2F0-48C2-4641-AE03-4D56759E048D",
+        "title": "Agora a coisa vai ser mais profunda",
+        "authorId": "C066E971-8702-4261-955D-00CF642A465A",
+        "description": "agora a coisa vai ser mais profunda",
+        "filename": "Silas Malafaia - Agora a coisa vai ser mais profunda.mp3",
+        "dateAdded": "2022-06-30T00:00:00Z",
+        "isOffensive": false
+    },
+    {
         "id": "D61866D5-D4D5-44D0-BC61-B31A191B80A7",
         "title": "Que coisa absurda",
         "authorId": "3959FC8B-DB6F-4926-8610-7161A322E700",
@@ -97,6 +241,15 @@
         "filename": "Bolsonaro - Tem que deixar de ser um pais de maricas.mp3",
         "dateAdded": "2022-06-28T00:00:00Z",
         "isOffensive": true
+    },
+    {
+        "id": "A8951402-7F62-4037-A6C1-CF0965913E05",
+        "title": "Tudo pequenininho aí",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "tudo pequenininho aí",
+        "filename": "Bolsonaro - Tudo pequenininho ai.mp3",
+        "dateAdded": "2022-06-28T00:00:00Z",
+        "isOffensive": false
     },
     {
         "id": "C1120B31-19E1-4533-8A94-A517B710453B",
@@ -969,6 +1122,195 @@
         "description": "po cara de novo cara pô não guento",
         "filename": "Away - De novo cara.mp3",
         "dateAdded": "2022-06-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "AF4DEAA5-F518-4B85-9A2C-6CC2D1E85D54",
+        "title": "A gente ta fudido",
+        "authorId": "7BB7B9E2-5115-4CC2-89DB-20FDA7D2287E",
+        "description": "então assim a gente ta fudido",
+        "filename": "Cecilia Oliveira - Entao assim a gente ta fodido.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "7F48B42F-A183-4818-95F5-9CFBD6123DFE",
+        "title": "Eu esperava o pior",
+        "authorId": "DF65C0B6-418E-4EE8-98CE-55B19533B918",
+        "description": "eu esperava o pior mas puta que o pariu",
+        "filename": "CAUE MOURA - Eu esperava o pior mas puta que o pariu.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "222C7674-50AD-47FA-9FBD-A8C3D308C385",
+        "title": "Malandro é malandro, mané é mane",
+        "authorId": "677BDC27-06EF-44D4-BF8F-15E64245CC0F",
+        "description": "e malandro é malandro e mané é mané podes crer que é",
+        "filename": "Bezerra da silva - Malandro e malandro.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "1B1F6F82-BC23-4892-9E7F-C5A051360859",
+        "title": "Foi mal tava doidão aqui não",
+        "authorId": "DF65C0B6-418E-4EE8-98CE-55B19533B918",
+        "description": "foi mal tava doidão aqui não seu arrombado",
+        "filename": "Caue Moura - Foi mal tava doidao aqui nao seu arrombado.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "1870C327-DCBE-43E4-A867-FB7BFE73A7BC",
+        "title": "Foi mal tava doidão",
+        "authorId": "DF65C0B6-418E-4EE8-98CE-55B19533B918",
+        "description": "foi mal tava doidão",
+        "filename": "Caue Moura - Foi mal tava doidao.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "14E8BC7A-7CAF-456C-AE5A-27C16B4AF6D2",
+        "title": "Vai tomar no cu cara, toda hora essa discussão",
+        "authorId": "1D0971B0-1818-4987-A8DB-04A784708DBB",
+        "description": "vai tomar no cu cara toda hora essa discussão cara",
+        "filename": "Carioca puto - Vai tomar no cu cara toda hora essa discussao cara.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "3E270D61-EDA2-48AD-9F06-E041C33D570E",
+        "title": "Víboras socialistas",
+        "authorId": "59BB4B38-4C6A-4B9C-9B14-C4BDB4B0085B",
+        "description": "Estas víboras socialistas não podem andar à solta no nosso país",
+        "filename": "Capitao Falcao - Viboras socialistas.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "DCDB7A68-5758-44B4-93C0-A26E65ED1EF4",
+        "title": "Malditos comunas",
+        "authorId": "59BB4B38-4C6A-4B9C-9B14-C4BDB4B0085B",
+        "description": "malditos comunas",
+        "filename": "Capitao Falcao - Malditos Comunas.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "7A8B10DC-EA45-4D3B-9B57-240991CBD1C0",
+        "title": "Calma que piora",
+        "authorId": "8DB0296F-1152-4DAF-BD78-C7665E031014",
+        "description": "calma que piora",
+        "filename": "Calma Que Piora.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "08250EF7-DFE3-4F6E-B48C-666D1AE656C5",
+        "title": "Bilhão com B de Bananada",
+        "authorId": "8DB0296F-1152-4DAF-BD78-C7665E031014",
+        "description": "da quase bilhão com b de bananada",
+        "filename": "Marcelo Adnet - Da quase bilhao com b de bananada.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "2D093803-5DCD-4B51-A156-C8DFBC880F82",
+        "title": "É impossível",
+        "authorId": "50896C29-3A48-4886-9089-33CD7062F2D7",
+        "description": "é impossível",
+        "filename": "Biquini Cavadao - E impossivel.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "2127354A-A04C-4A53-93E1-1AF8EBF46F0E",
+        "title": "That's not true (House Remix)",
+        "authorId": "8387E951-503E-4C75-BFA0-06CAEE589C3A",
+        "description": "that's not true not true at all",
+        "filename": "Ernesto Araujo - Thats not true (House Remix).mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "6201236C-D4C8-452D-A25D-6B46E9086235",
+        "title": "Bem louco",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "bem loco",
+        "filename": "Bem louco.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "23588CE3-CDB0-40CA-9481-316155B3B9B4",
+        "title": "Quem será",
+        "authorId": "90C00D5D-797C-4DEF-91C6-1B2D407C955D",
+        "description": "quem será",
+        "filename": "Belo - Quem sera.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "7360F290-6981-4860-AD86-42089AC984D1",
+        "title": "Lockdown do Espírito Humano",
+        "authorId": "8387E951-503E-4C75-BFA0-06CAEE589C3A",
+        "description": "não se pode aceitar um lockdown do espírito humano",
+        "filename": "Ernesto Araujo - Nao se pode aceitar um lockdown do espirito humano.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "730FCA74-2987-4995-90AC-826DD20C33B3",
+        "title": "Pária internacional",
+        "authorId": "8387E951-503E-4C75-BFA0-06CAEE589C3A",
+        "description": "se isso faz de nos um pária internacional então que sejamos esse paria",
+        "filename": "Ernesto Araujo - Paria internacional.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "0DE70CAC-AEDF-4B87-80EA-49B15AF09070",
+        "title": "That's not true",
+        "authorId": "8387E951-503E-4C75-BFA0-06CAEE589C3A",
+        "description": "that's not true not true at all",
+        "filename": "Ernesto Araujo - Thats not true.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "106EC893-EE5F-4D60-87CA-553F912596BC",
+        "title": "Globalismo",
+        "authorId": "8387E951-503E-4C75-BFA0-06CAEE589C3A",
+        "description": "eu acho que isso é parte do globalismo o mais grave do globalismo é na mente e no pensamento",
+        "filename": "Ernesto Araujo - Globalismo.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "B7B04F6C-715A-4ABC-89E3-735ACEEC8CE7",
+        "title": "Decisão judicial não se comenta, se cumpre",
+        "authorId": "28B86BE0-5475-49E9-9ADD-1AA39630869D",
+        "description": "Decisão judicial não se comenta né se cumpre",
+        "filename": "Mourao - Decisao judicial nao se comenta ne se cumpre.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "4B750384-11B7-4A3D-9607-465B25BB7059",
+        "title": "É como se fosse uma criança de cinco anos",
+        "authorId": "9DD28494-F33B-471F-8AD6-D4F86978DD42",
+        "description": "é como se fosse uma criança de cinco anos",
+        "filename": "Atila Iamarino - E como se fosse uma crianca de cinco anos.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "62222F9E-15C0-4504-9836-3568CA73051A",
+        "title": "No mínimo",
+        "authorId": "9DD28494-F33B-471F-8AD6-D4F86978DD42",
+        "description": "No minimo",
+        "filename": "Atila Iamarino - No minimo.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
         "isOffensive": false
     },
     {
@@ -2736,6 +3078,105 @@
         "isOffensive": false
     },
     {
+        "id": "9500C52A-0186-4467-8FD1-AC9536EA2D60",
+        "title": "Vai trabalhar vagabundo",
+        "authorId": "529AD00F-B78F-47D6-892C-0B75887B51DE",
+        "description": "vai trabalhar vagabundo vai trabalhar criatura",
+        "filename": "CHICO BUARQUE - vai trabalhar vagabundo.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "DCFB6973-3567-448D-B424-3C3A0AEDAAB2",
+        "title": "O milho",
+        "authorId": "3FE2F541-6B10-47A8-A1FB-640AB6E55FA9",
+        "description": "o milho",
+        "filename": "Dilma - O milho.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "65D895F7-AC69-4BDF-BE24-0575927667CD",
+        "title": "Vai todo mundo perder",
+        "authorId": "3FE2F541-6B10-47A8-A1FB-640AB6E55FA9",
+        "description": "vai todo mundo perder",
+        "filename": "Dilma - Vai todo mundo perder.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "91BDE728-E258-4C22-A8F9-0D54976A0C09",
+        "title": "If you speak slowly",
+        "authorId": "3FE2F541-6B10-47A8-A1FB-640AB6E55FA9",
+        "description": "if you speak slowly I understand very well",
+        "filename": "Dilma - If you speak slowly I understand very well.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "7FFCC464-DFB1-4C4F-BC6C-F01D7566AB06",
+        "title": "Engraçadão você, hein",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "engraçadão você hein",
+        "filename": "Engracadao voce hein meme short.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "7750C9E2-A2B9-4964-9A3E-1F7DAE3AE4D7",
+        "title": "Dedo no cu e gritaria",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "dedo no cu e gritaria",
+        "filename": "Dedo no cu e gritaria short meme.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "7C2B9BF4-E7EB-4F8C-9E5A-4328164226AE",
+        "title": "Hoje sim (Interrogação)",
+        "authorId": "E2A6D694-3177-4671-9BAD-976A4988B4A8",
+        "description": "hoje sim",
+        "filename": "Cleber Machado - Hoje sim (Interrogacao).mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "113965CA-826E-415D-A68C-B3C21B6019B0",
+        "title": "Hoje sim (Afirmativo)",
+        "authorId": "E2A6D694-3177-4671-9BAD-976A4988B4A8",
+        "description": "hoje sim",
+        "filename": "Cleber Machado - Hoje SIM (afirmativo).mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "D3E13673-C2B9-476B-8207-A51A70F808BD",
+        "title": "Hoje não hoje não",
+        "authorId": "E2A6D694-3177-4671-9BAD-976A4988B4A8",
+        "description": "hoje não hoje não",
+        "filename": "Cleber Machado - Hoje nao hoje nao.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "D5A9FCCC-472A-46FA-98F5-EB02431FBA96",
+        "title": "Chore na minha",
+        "authorId": "223DB222-699C-4425-9025-2CD1CDEEC155",
+        "description": "vai chorar é vai chorar é chore na minha",
+        "filename": "Cid Moreira - Vai chorar e chore na minha.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "AD765F53-9A9A-45A1-8E3A-B84A466C9534",
+        "title": "Pra mim já deu eu vou embora",
+        "authorId": "223DB222-699C-4425-9025-2CD1CDEEC155",
+        "description": "ah pra mim já deu eu vou embora foda-se essa merda puta que pariu",
+        "filename": "Cid Moreira - Pra mim ja deu.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": true
+    },
+    {
         "id": "82688740-C4E3-414C-A452-B4E696327CE9",
         "title": "Amado ou amada",
         "authorId": "F1683588-F547-4F2F-B3E4-8A328FAFC1AB",
@@ -3624,6 +4065,15 @@
         "description": "Nao e de surpreender surpresa choque passada chocada",
         "filename": "PODER360 - Barroso - Nao e de surpreender.mp3",
         "dateAdded": "2022-06-26T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "BFAC2F1F-D7CE-4388-8547-2223471CB525",
+        "title": "Até o final (completo)",
+        "authorId": "A68C0AA4-546E-4E24-8153-832BB84FD68B",
+        "description": "fica passando tua vergonha aí cara tu botou esse jumento tu botou essa merda lá pai a culpa é tua vou esquecer disso jamais vou esquecer jamais e não vem com esse teu papinho de ah você só fala sobre política não vem falar de política agora não não fode mermão tu mudou foto de perfil botou bandeira verde amarela enfiou camisa do brasil na bunda encheu o saco de todo mundo pra botar esse jumento lá agora tu aguenta vai segurar na piroca dele até o final tu vai bancar esse merda lá seu merda",
+        "filename": "Dudu Marfetan - Até o final (completo).mp3",
+        "dateAdded": "2022-07-04T00:00:00Z",
         "isOffensive": true
     }
 ]

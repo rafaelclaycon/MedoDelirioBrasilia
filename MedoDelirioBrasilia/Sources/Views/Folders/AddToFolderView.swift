@@ -17,18 +17,19 @@ struct AddToFolderView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .leading, spacing: 20) {
-                HStack(spacing: 20) {
+                HStack(spacing: 16) {
                     Image(systemName: "speaker.wave.3.fill")
                         .resizable()
                         .scaledToFit()
-                        .frame(height: 28)
-                        .padding(.leading)
+                        .frame(height: 24)
+                        .padding(.leading, 7)
                     
-                    Text(selectedSoundName)
+                    Text("Som:  \(selectedSoundName)")
                         .bold()
                         .multilineTextAlignment(.leading)
                 }
                 .padding(.horizontal)
+                .padding(.top, 2)
                 
                 ScrollView {
 //                    HStack {

@@ -91,6 +91,11 @@ struct FolderDetailView: View {
                 }), secondaryButton: .cancel(Text("Cancelar")))
             }
         }
+        .onChange(of: viewModel.showConfirmationDialog) { show in
+            if show {
+                TapticFeedback.open()
+            }
+        }
     }
 
 }

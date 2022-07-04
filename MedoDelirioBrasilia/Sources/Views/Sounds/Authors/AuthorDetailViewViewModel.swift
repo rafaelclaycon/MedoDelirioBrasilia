@@ -115,6 +115,7 @@ class AuthorDetailViewViewModel: ObservableObject {
     }
     
     func showUnableToGetSoundAlert() {
+        TapticFeedback.error()
         alertTitle = Shared.soundNotFoundAlertTitle
         alertMessage = Shared.soundNotFoundAlertMessage
         showAlert = true

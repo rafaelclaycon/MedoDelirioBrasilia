@@ -71,6 +71,7 @@ class FolderDetailViewViewModel: ObservableObject {
     // MARK: - Alerts
     
     func showUnableToGetSoundAlert() {
+        TapticFeedback.error()
         alertTitle = Shared.soundNotFoundAlertTitle
         alertMessage = Shared.soundNotFoundAlertMessage
         alertType = .singleOption
