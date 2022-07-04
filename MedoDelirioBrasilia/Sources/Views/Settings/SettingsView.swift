@@ -6,6 +6,7 @@ struct SettingsView: View {
     
     @State private var showingTrendsSettingsScreen: Bool = false
     
+    @State private var showAskForMoneyView: Bool = false
     @State private var showPixKeyCopiedAlert: Bool = false
     
     @State private var showEmailAddressCopiedAlert: Bool = false
@@ -34,21 +35,23 @@ struct SettingsView: View {
                     }
                 }
                 
-                Section {
-                    BegForMoneyView()
-                        .padding(.vertical)
-                    
-                    Button("Copiar chave Pix") { 
-                        UIPasteboard.general.string = pixKey
-                        showPixKeyCopiedAlert = true
+                if showAskForMoneyView {
+                    Section {
+                        BegForMoneyView()
+                            .padding(.vertical)
+                        
+                        Button("Copiar chave Pix") {
+                            UIPasteboard.general.string = pixKey
+                            showPixKeyCopiedAlert = true
+                        }
+                        .alert(isPresented: $showPixKeyCopiedAlert) {
+                            Alert(title: Text("Chave copiada com sucesso!"), dismissButton: .default(Text("OK")))
+                        }
+                    } header : {
+                        Text("Esse app é uma homenagem ao trabalho de Cristiano Botafogo e Pedro Daltro")
+                    } footer: {
+                        Text("A chave é um endereço de e-mail, portanto, se o app do seu banco pedir o tipo de chave para transferir, selecione E-mail. Evite qualquer opção que mencione QR Code.")
                     }
-                    .alert(isPresented: $showPixKeyCopiedAlert) {
-                        Alert(title: Text("Chave copiada com sucesso!"), dismissButton: .default(Text("OK")))
-                    }
-                } header : {
-                    Text("Esse app é uma homenagem ao trabalho de Cristiano Botafogo e Pedro Daltro")
-                } footer: {
-                    Text("A chave é um endereço de e-mail, portanto, se o app do seu banco pedir o tipo de chave para transferir, selecione E-mail. Evite qualquer opção que mencione QR Code.")
                 }
                 
                 Section("🐞  Problemas, sugestões ou pedidos") {
@@ -103,6 +106,11 @@ struct SettingsView: View {
                 }
             }
             .navigationTitle("Ajustes")
+            .onAppear {
+                networkRabbit.displayAskForMoneyView { result, _ in
+                    showAskForMoneyView = result
+                }
+            }
         }
     }
 
