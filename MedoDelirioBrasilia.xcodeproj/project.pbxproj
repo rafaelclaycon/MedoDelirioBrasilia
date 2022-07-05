@@ -67,6 +67,7 @@
 		D9227313285AAD3E00A98CAE /* PLANALTO - Bolsonaro - Presidente Putin Pretiputi remix house.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9227306285AAD3E00A98CAE /* PLANALTO - Bolsonaro - Presidente Putin Pretiputi remix house.mp3 */; };
 		D9227314285AAD3E00A98CAE /* METEORO BRASIL - Antonio Tabet - Pretos, gays, lesbicas, trans tem familias e fazem familias.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9227307285AAD3E00A98CAE /* METEORO BRASIL - Antonio Tabet - Pretos, gays, lesbicas, trans tem familias e fazem familias.mp3 */; };
 		D9227315285AAD3E00A98CAE /* ROY ORBISON - Oh Pretty Woman Pretiputi parodia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9227308285AAD3E00A98CAE /* ROY ORBISON - Oh Pretty Woman Pretiputi parodia.mp3 */; };
+		D9253B682873B68B00D138FB /* FoldersAreTagsBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9253B672873B68B00D138FB /* FoldersAreTagsBannerView.swift */; };
 		D9265741285A1EE700947165 /* LocalDatabase+Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9265740285A1EE700947165 /* LocalDatabase+Log.swift */; };
 		D927C40C28523A050041970A /* Nunca foi meritocracia, sempre foi desigualdade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D927C40728523A050041970A /* Nunca foi meritocracia, sempre foi desigualdade.mp3 */; };
 		D927C40D28523A050041970A /* OS DONOS DA BOLA - CRAQUE NETO - Ai depois fala que ta bebado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D927C40828523A050041970A /* OS DONOS DA BOLA - CRAQUE NETO - Ai depois fala que ta bebado.mp3 */; };
@@ -647,6 +648,7 @@
 		D9227306285AAD3E00A98CAE /* PLANALTO - Bolsonaro - Presidente Putin Pretiputi remix house.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "PLANALTO - Bolsonaro - Presidente Putin Pretiputi remix house.mp3"; sourceTree = "<group>"; };
 		D9227307285AAD3E00A98CAE /* METEORO BRASIL - Antonio Tabet - Pretos, gays, lesbicas, trans tem familias e fazem familias.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "METEORO BRASIL - Antonio Tabet - Pretos, gays, lesbicas, trans tem familias e fazem familias.mp3"; sourceTree = "<group>"; };
 		D9227308285AAD3E00A98CAE /* ROY ORBISON - Oh Pretty Woman Pretiputi parodia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ROY ORBISON - Oh Pretty Woman Pretiputi parodia.mp3"; sourceTree = "<group>"; };
+		D9253B672873B68B00D138FB /* FoldersAreTagsBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersAreTagsBannerView.swift; sourceTree = "<group>"; };
 		D9265740285A1EE700947165 /* LocalDatabase+Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+Log.swift"; sourceTree = "<group>"; };
 		D927C40728523A050041970A /* Nunca foi meritocracia, sempre foi desigualdade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Nunca foi meritocracia, sempre foi desigualdade.mp3"; sourceTree = "<group>"; };
 		D927C40828523A050041970A /* OS DONOS DA BOLA - CRAQUE NETO - Ai depois fala que ta bebado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "OS DONOS DA BOLA - CRAQUE NETO - Ai depois fala que ta bebado.mp3"; sourceTree = "<group>"; };
@@ -1867,6 +1869,7 @@
 			children = (
 				D976FF3728674BAC00998E1B /* FoldersBannerView.swift */,
 				D93CCB78286A8A220002CF81 /* ToastView.swift */,
+				D9253B672873B68B00D138FB /* FoldersAreTagsBannerView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -2653,6 +2656,7 @@
 				D9BB9265285DAA8E005CD6DD /* BegForMoneyView.swift in Sources */,
 				D9FB489A2870FE7800FF90D0 /* TapticHelper.swift in Sources */,
 				D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */,
+				D9253B682873B68B00D138FB /* FoldersAreTagsBannerView.swift in Sources */,
 				D93CCB77286A802D0002CF81 /* EmptyFolderView.swift in Sources */,
 				D94611802861480A00C4FB7E /* FolderInfoEditingView.swift in Sources */,
 				D9943F20286419CE002C6B97 /* LocalDatabase+Statistic.swift in Sources */,
