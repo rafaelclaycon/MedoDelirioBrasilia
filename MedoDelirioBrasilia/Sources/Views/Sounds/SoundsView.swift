@@ -6,16 +6,21 @@ struct SoundsView: View {
         case allSounds, favorites, byAuthor
     }
     
+    enum SubviewToOpen {
+        case onboardingView, addToFolderView
+    }
+    
     @StateObject private var viewModel = SoundsViewViewModel()
     @State private var currentMode: Mode = .allSounds
     @State private var searchText = ""
     @State private var scrollViewObject: ScrollViewProxy? = nil
+    @State private var subviewToOpen: SubviewToOpen = .onboardingView
+    @State private var showingModalView = false
     
     // Temporary banners
     @State private var shouldDisplayFolderBanner: Bool = false
     
     // Add to Folder vars
-    @State private var showingAddToFolderModal = false
     @State private var hadSuccessAddingToFolder: Bool = false
     @State private var folderName: String? = nil
     @State private var shouldDisplayAddedToFolderToast: Bool = false
@@ -187,7 +192,10 @@ struct SoundsView: View {
                     viewModel.donateActivity()
                     viewModel.sendDeviceModelNameToServer()
                     viewModel.sendUserPersonalTrendsToServerIfEnabled()
+                    
                     shouldDisplayFolderBanner = UserSettings.getFolderBannerWasDismissed() == false
+                    
+                    showingModalView = true
                 }
                 .confirmationDialog("", isPresented: $viewModel.showConfirmationDialog) {
                     Button(viewModel.getFavoriteButtonTitle()) {
@@ -216,9 +224,10 @@ struct SoundsView: View {
                         guard viewModel.soundForConfirmationDialog != nil else {
                             return
                         }
-                        showingAddToFolderModal = true
+                        subviewToOpen = .addToFolderView
+                        showingModalView = true
                     }
-                    .onChange(of: showingAddToFolderModal) { newValue in
+                    .onChange(of: showingModalView) { newValue in
                         if (newValue == false) && hadSuccessAddingToFolder {
                             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
                                 withAnimation {
@@ -258,8 +267,19 @@ struct SoundsView: View {
                 .alert(isPresented: $viewModel.showAlert) {
                     Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
                 }
-                .sheet(isPresented: $showingAddToFolderModal) {
-                    AddToFolderView(isBeingShown: $showingAddToFolderModal, hadSuccess: $hadSuccessAddingToFolder, folderName: $folderName, selectedSoundName: viewModel.soundForConfirmationDialog!.title, selectedSoundId: viewModel.soundForConfirmationDialog!.id)
+                .sheet(isPresented: $showingModalView) {
+                    switch subviewToOpen {
+                    case .onboardingView:
+                        OnboardingView(isBeingShown: $showingModalView)
+                            .interactiveDismissDisabled(true)
+                    
+                    case .addToFolderView:
+                        AddToFolderView(isBeingShown: $showingModalView,
+                                        hadSuccess: $hadSuccessAddingToFolder,
+                                        folderName: $folderName,
+                                        selectedSoundName: viewModel.soundForConfirmationDialog!.title,
+                                        selectedSoundId: viewModel.soundForConfirmationDialog!.id)
+                    }
                 }
                 .onChange(of: viewModel.showConfirmationDialog) { show in
                     if show {

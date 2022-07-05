@@ -46,17 +46,17 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         let token = tokenParts.joined()
         print("Device Token: \(token)")
       
-        if var currentDevice = Device.current() {
-            currentDevice.pushToken = token
-            currentDevice.save()
-        }
+//        if var currentDevice = Device.current() {
+//            currentDevice.pushToken = token
+//            currentDevice.save()
+//        }
     }
     
     func application(
         _ application: UIApplication,
         didFailToRegisterForRemoteNotificationsWithError error: Error
     ) {
-        print("Failed to register: \(error)")
+        print("Failed to register: \(error.localizedDescription)")
     }
 
 }

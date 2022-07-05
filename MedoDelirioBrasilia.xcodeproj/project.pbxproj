@@ -45,6 +45,8 @@
 		D91107202863C7C5000B6F8F /* Kajuru - Ele e burro short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D911071A2863C7C5000B6F8F /* Kajuru - Ele e burro short meme.mp3 */; };
 		D91107212863C7C5000B6F8F /* TV BRASIL - Bolsonaro - Bom dia a todos, menos pra primeira dama.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D911071B2863C7C5000B6F8F /* TV BRASIL - Bolsonaro - Bom dia a todos, menos pra primeira dama.mp3 */; };
 		D91107222863C7C5000B6F8F /* Heloisa Faissol - Cala a boca vai tomar no cu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D911071C2863C7C5000B6F8F /* Heloisa Faissol - Cala a boca vai tomar no cu.mp3 */; };
+		D916627D2874F1F9000A1B23 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D916627C2874F1F9000A1B23 /* OnboardingView.swift */; };
+		D916627F2874F838000A1B23 /* NotificationsSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D916627E2874F838000A1B23 /* NotificationsSymbol.swift */; };
 		D91964E128563B680067B430 /* Queiroz - Eu sou um cara de negocios, eu faco dinheiro eu faco.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964DF28563B680067B430 /* Queiroz - Eu sou um cara de negocios, eu faco dinheiro eu faco.mp3 */; };
 		D91964E228563B680067B430 /* Bolsonaro - Esposa, ne, tem que aguentar, mas ta tudo bem.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964E028563B680067B430 /* Bolsonaro - Esposa, ne, tem que aguentar, mas ta tudo bem.mp3 */; };
 		D91964E62856B7920067B430 /* Bolsonaro - Da um tapa na minha cara slap sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964E52856B7920067B430 /* Bolsonaro - Da um tapa na minha cara slap sound.mp3 */; };
@@ -644,6 +646,8 @@
 		D911071A2863C7C5000B6F8F /* Kajuru - Ele e burro short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Kajuru - Ele e burro short meme.mp3"; sourceTree = "<group>"; };
 		D911071B2863C7C5000B6F8F /* TV BRASIL - Bolsonaro - Bom dia a todos, menos pra primeira dama.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "TV BRASIL - Bolsonaro - Bom dia a todos, menos pra primeira dama.mp3"; sourceTree = "<group>"; };
 		D911071C2863C7C5000B6F8F /* Heloisa Faissol - Cala a boca vai tomar no cu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Heloisa Faissol - Cala a boca vai tomar no cu.mp3"; sourceTree = "<group>"; };
+		D916627C2874F1F9000A1B23 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		D916627E2874F838000A1B23 /* NotificationsSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSymbol.swift; sourceTree = "<group>"; };
 		D91964DF28563B680067B430 /* Queiroz - Eu sou um cara de negocios, eu faco dinheiro eu faco.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Queiroz - Eu sou um cara de negocios, eu faco dinheiro eu faco.mp3"; sourceTree = "<group>"; };
 		D91964E028563B680067B430 /* Bolsonaro - Esposa, ne, tem que aguentar, mas ta tudo bem.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Esposa, ne, tem que aguentar, mas ta tudo bem.mp3"; sourceTree = "<group>"; };
 		D91964E52856B7920067B430 /* Bolsonaro - Da um tapa na minha cara slap sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Da um tapa na minha cara slap sound.mp3"; sourceTree = "<group>"; };
@@ -1051,7 +1055,7 @@
 		D961D015283722AB00EFEDEB /* Color+CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+CustomColors.swift"; sourceTree = "<group>"; };
 		D961D01728372B1800EFEDEB /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		D961D024283731AA00EFEDEB /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
-		D9625E7A28238F9A00080852 /* Medo e Delírio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Medo e Delírio.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9625E7A28238F9A00080852 /* MedoDelirio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MedoDelirio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9625E7D28238F9A00080852 /* MedoDelirioBrasiliaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedoDelirioBrasiliaApp.swift; sourceTree = "<group>"; };
 		D9625E7F28238F9A00080852 /* SoundsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsView.swift; sourceTree = "<group>"; };
 		D9625E8128238F9B00080852 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1215,6 +1219,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D916627B2874F1E2000A1B23 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				D916627C2874F1F9000A1B23 /* OnboardingView.swift */,
+				D916627E2874F838000A1B23 /* NotificationsSymbol.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
@@ -1840,7 +1853,7 @@
 		D9625E7B28238F9A00080852 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D9625E7A28238F9A00080852 /* Medo e Delírio.app */,
+				D9625E7A28238F9A00080852 /* MedoDelirio.app */,
 				D9625E8A28238F9B00080852 /* MedoDelirioBrasiliaTests.xctest */,
 			);
 			name = Products;
@@ -1905,6 +1918,7 @@
 		D9625EAB2824EADC00080852 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D916627B2874F1E2000A1B23 /* Onboarding */,
 				D958B1A928394D400010F133 /* MainView.swift */,
 				D9B9025C2837485000551239 /* Sounds */,
 				D9EB18A32857CDE200A2F8A8 /* Collections */,
@@ -2125,7 +2139,7 @@
 				D9943F19286406AF002C6B97 /* Kingfisher */,
 			);
 			productName = MedoDelirioBrasilia;
-			productReference = D9625E7A28238F9A00080852 /* Medo e Delírio.app */;
+			productReference = D9625E7A28238F9A00080852 /* MedoDelirio.app */;
 			productType = "com.apple.product-type.application";
 		};
 		D9625E8928238F9B00080852 /* MedoDelirioBrasiliaTests */ = {
@@ -2718,7 +2732,6 @@
 				D92C0CA82840162F009CF19A /* ContentSortOption.swift in Sources */,
 				D958B1B028394EA40010F133 /* TrendsView.swift in Sources */,
 				D911070B28627216000B6F8F /* NotificationsSettingsView.swift in Sources */,
-				D9E69597283D551500C341B2 /* LocalDatabase.swift in Sources */,
 				D9ABDDB0287411C9007B25EA /* SongHelpView.swift in Sources */,
 				D92C0CAE284076CD009CF19A /* UIApplication+KeyWindow.swift in Sources */,
 				D93CCB7B286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift in Sources */,
@@ -2731,8 +2744,10 @@
 				D957509628445EC30094AEA6 /* TrendsViewViewModel.swift in Sources */,
 				D9B763282845B5E600CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift in Sources */,
 				D958BC732868FE8C000B2EDA /* EmojiIdentification.swift in Sources */,
+				D916627D2874F1F9000A1B23 /* OnboardingView.swift in Sources */,
 				D99DC19D28423AD7002B03B6 /* AuthorDetailViewViewModel.swift in Sources */,
 				D98DBD35284919B1008544F8 /* NetworkRabbit.swift in Sources */,
+				D916627F2874F838000A1B23 /* NotificationsSymbol.swift in Sources */,
 				D9BB9265285DAA8E005CD6DD /* BegForMoneyView.swift in Sources */,
 				D9FB489A2870FE7800FF90D0 /* TapticHelper.swift in Sources */,
 				D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */,
@@ -2957,6 +2972,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MedoDelirioBrasilia/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Medo e Delírio";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -2969,7 +2985,7 @@
 				);
 				MARKETING_VERSION = 2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
-				PRODUCT_NAME = "Medo e Delírio";
+				PRODUCT_NAME = MedoDelirio;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2989,6 +3005,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MedoDelirioBrasilia/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Medo e Delírio";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -3001,7 +3018,7 @@
 				);
 				MARKETING_VERSION = 2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
-				PRODUCT_NAME = "Medo e Delírio";
+				PRODUCT_NAME = MedoDelirio;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
