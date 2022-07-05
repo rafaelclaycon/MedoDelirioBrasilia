@@ -248,9 +248,9 @@ struct SoundsView: View {
                         }
                     }
                     
-                    Button("👱  Ver Todos os Sons Desse Autor") {
-                        print("Ver autor")
-                    }
+//                    Button("👱  Ver Todos os Sons Desse Autor") {
+//                        print("Ver autor")
+//                    }
                     
                     Button(SoundOptionsHelper.getSuggestOtherAuthorNameButtonTitle(authorId: viewModel.soundForConfirmationDialog?.authorId ?? .empty)) {
                         guard let sound = viewModel.soundForConfirmationDialog else {
