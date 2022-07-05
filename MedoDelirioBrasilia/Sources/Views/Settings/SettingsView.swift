@@ -30,6 +30,10 @@ struct SettingsView: View {
                 }
                 
                 Section {
+                    NavigationLink(destination: HelpView()) {
+                        Text("Ajuda")
+                    }
+                    
                     NavigationLink(destination: TrendsSettingsView(), isActive: $showingTrendsSettingsScreen) {
                         Text("Tendências")
                     }

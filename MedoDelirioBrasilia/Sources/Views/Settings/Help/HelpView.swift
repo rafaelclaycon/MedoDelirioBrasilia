@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct SoundHelpView: View {
+struct HelpView: View {
     
     private let iconFrameWidth: CGFloat = 40
 
@@ -8,6 +8,13 @@ struct SoundHelpView: View {
         VStack {
             ScrollView {                
                 VStack(alignment: .leading, spacing: 30) {
+                    HStack {
+                        Text("Sons")
+                            .font(.title2)
+                        
+                        Spacer()
+                    }
+                    
                     HStack(alignment: .center, spacing: 15) {
                         Image(systemName: "play.fill")
                             .font(.largeTitle)
@@ -47,12 +54,22 @@ struct SoundHelpView: View {
 
                         Text("Para favoritar, segure o som por 2 segundos e então escolha **Adicionar aos Favoritos**.\n\nPara ver apenas os favoritos, toque em **Todos** no topo da tela anterior e escolha **Favoritos**.\n\nÉ possível pesquisar entre os favoritos usando a barra de Busca. Para isso, na lista de favoritos, vá até o topo e puxe mais um pouco para baixo para ver a barra.")
                     }
-                    .padding(.bottom, 15)
+                    
+                    HStack {
+                        Text("Músicas")
+                            .font(.title2)
+
+                        Spacer()
+                    }
+                    
+                    SongHelpView()
+                        .padding(.bottom, 15)
                 }
                 .padding()
             }
         }
         .navigationTitle("Ajuda")
+        .navigationBarTitleDisplayMode(.inline)
     }
 
 }
@@ -60,7 +77,7 @@ struct SoundHelpView: View {
 struct SoundHelpView_Previews: PreviewProvider {
 
     static var previews: some View {
-        SoundHelpView()
+        HelpView()
     }
 
 }

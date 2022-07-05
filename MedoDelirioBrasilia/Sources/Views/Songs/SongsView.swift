@@ -3,7 +3,6 @@ import SwiftUI
 struct SongsView: View {
     
     @StateObject private var viewModel = SongsViewViewModel()
-    @State private var showingHelpScreen = false
     @State private var searchText = ""
     @State private var searchBar: UISearchBar?
     
@@ -25,8 +24,6 @@ struct SongsView: View {
     var body: some View {
         NavigationView {
             VStack {
-                NavigationLink(destination: SongHelpView(), isActive: $showingHelpScreen) { EmptyView() }
-                
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 14) {
                         ForEach(searchResults) { song in
@@ -71,15 +68,6 @@ struct SongsView: View {
                 }
             }
             .navigationTitle("Músicas")
-            .navigationBarItems(leading:
-                Button(action: {
-                    showingHelpScreen = true
-                }) {
-                    HStack {
-                        Image(systemName: "questionmark.circle")
-                    }
-                }
-            )
             .onAppear {
                 viewModel.reloadList()
                 viewModel.donateActivity()
