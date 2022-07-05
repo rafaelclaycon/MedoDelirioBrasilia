@@ -3041,7 +3041,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Medo e Delírio.app/Medo e Delírio";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MedoDelirio.app/MedoDelirio";
 			};
 			name = Debug;
 		};
@@ -3061,7 +3061,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Medo e Delírio.app/Medo e Delírio";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MedoDelirio.app/MedoDelirio";
 			};
 			name = Release;
 		};
