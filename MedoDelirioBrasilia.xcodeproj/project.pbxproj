@@ -571,6 +571,8 @@
 		D9EB18A12857907800A2F8A8 /* Eduardo Sterblitch - E mais ou menos longo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9EB189F2857907800A2F8A8 /* Eduardo Sterblitch - E mais ou menos longo.mp3 */; };
 		D9EB18A22857907800A2F8A8 /* Eduardo Sterblitch - E mais ou menos curto.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9EB18A02857907800A2F8A8 /* Eduardo Sterblitch - E mais ou menos curto.mp3 */; };
 		D9EB18A52857CDFF00A2F8A8 /* CollectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EB18A42857CDFF00A2F8A8 /* CollectionsView.swift */; };
+		D9F05B8D2873C55200E76B43 /* Regina Rouca - Se Liga Hein (serio).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F05B8B2873C55200E76B43 /* Regina Rouca - Se Liga Hein (serio).mp3 */; };
+		D9F05B8E2873C55200E76B43 /* Regina Rouca - Se Liga Hein (casual).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F05B8C2873C55200E76B43 /* Regina Rouca - Se Liga Hein (casual).mp3 */; };
 		D9F78A9F2860DF9100B83567 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F78A9E2860DF9100B83567 /* CollectionCell.swift */; };
 		D9FA0CD728508590000F6ADE /* UIDevice+ModelName.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FA0CD628508590000F6ADE /* UIDevice+ModelName.swift */; };
 		D9FA0CD92850864C000F6ADE /* ClientDeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FA0CD82850864C000F6ADE /* ClientDeviceInfo.swift */; };
@@ -1153,6 +1155,8 @@
 		D9EB189F2857907800A2F8A8 /* Eduardo Sterblitch - E mais ou menos longo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eduardo Sterblitch - E mais ou menos longo.mp3"; sourceTree = "<group>"; };
 		D9EB18A02857907800A2F8A8 /* Eduardo Sterblitch - E mais ou menos curto.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eduardo Sterblitch - E mais ou menos curto.mp3"; sourceTree = "<group>"; };
 		D9EB18A42857CDFF00A2F8A8 /* CollectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsView.swift; sourceTree = "<group>"; };
+		D9F05B8B2873C55200E76B43 /* Regina Rouca - Se Liga Hein (serio).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Regina Rouca - Se Liga Hein (serio).mp3"; sourceTree = "<group>"; };
+		D9F05B8C2873C55200E76B43 /* Regina Rouca - Se Liga Hein (casual).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Regina Rouca - Se Liga Hein (casual).mp3"; sourceTree = "<group>"; };
 		D9F78A9E2860DF9100B83567 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
 		D9FA0CD628508590000F6ADE /* UIDevice+ModelName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+ModelName.swift"; sourceTree = "<group>"; };
 		D9FA0CD82850864C000F6ADE /* ClientDeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientDeviceInfo.swift; sourceTree = "<group>"; };
@@ -1183,6 +1187,8 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9F05B8C2873C55200E76B43 /* Regina Rouca - Se Liga Hein (casual).mp3 */,
+				D9F05B8B2873C55200E76B43 /* Regina Rouca - Se Liga Hein (serio).mp3 */,
 				D9759AC82872AA40005F9871 /* Dudu Marfetan - Até o final (completo).mp3 */,
 				D95F415228720FE0001CF903 /* Ernesto Araujo - Thats not true (House Remix).mp3 */,
 				D95F414028720D1A001CF903 /* Marcelo Adnet - Da quase bilhao com b de bananada.mp3 */,
@@ -2159,6 +2165,7 @@
 				D955697C285137800072E3FC /* Leo Stronda Porra.mp3 in Resources */,
 				D955692C285137800072E3FC /* Samira Close - Deixa eu te falar uma coisa voce tem quantos anos menino.mp3 in Resources */,
 				D95569D3285137800072E3FC /* Bolsonaro - Uma crise uma pequena crise ne.mp3 in Resources */,
+				D9F05B8E2873C55200E76B43 /* Regina Rouca - Se Liga Hein (casual).mp3 in Resources */,
 				D95569E528513FAB0072E3FC /* Vou esquecer disso jamais.mp3 in Resources */,
 				D9556911285137800072E3FC /* MULTISHOW_Titi_Muller_Ta_bombando_mais_do_que_o_povo_pedindo_Anitta.mp3 in Resources */,
 				D9556915285137800072E3FC /* ATILA IAMARINO - E vao empilhar sequela em cima de sequela.mp3 in Resources */,
@@ -2444,6 +2451,7 @@
 				D9227313285AAD3E00A98CAE /* PLANALTO - Bolsonaro - Presidente Putin Pretiputi remix house.mp3 in Resources */,
 				D95569BA285137800072E3FC /* esse_braga_neto_que_eh_um_bosta.mp3 in Resources */,
 				D9EB189628577DEF00A2F8A8 /* Atencao e agora que o bicho vai pegar short meme.mp3 in Resources */,
+				D9F05B8D2873C55200E76B43 /* Regina Rouca - Se Liga Hein (serio).mp3 in Resources */,
 				D9556996285137800072E3FC /* Passada chocada meu Deus jesus.mp3 in Resources */,
 				D955695B285137800072E3FC /* Craque Neto - Vacina eu Tomo short meme.mp3 in Resources */,
 				D927C41A28523F5D0041970A /* PLANALTO - Bolsonaro - Mente.mp3 in Resources */,
