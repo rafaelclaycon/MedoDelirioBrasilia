@@ -24,11 +24,11 @@ struct MainView: View {
                 }
                 .tag(3)
             
-//            TrendsView()
-//                .tabItem {
-//                    Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
-//                }
-//                .tag(4)
+            TrendsView()
+                .tabItem {
+                    Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
+                }
+                .tag(4)
             
             SettingsView()
                 .tabItem {

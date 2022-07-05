@@ -36,7 +36,7 @@ struct TrendsView: View {
             VStack {
                 if showTrends {
                     ScrollView {
-                        VStack(alignment: .leading) {
+                        VStack(alignment: .leading, spacing: 10) {
                             if showMostSharedSoundsByTheUser {
                                 Text("Sons Mais Compartilhados Por Mim")
                                     .font(.title2)
@@ -68,6 +68,7 @@ struct TrendsView: View {
                                             }
                                             .padding(.trailing)
                                             .padding(.top, 1)
+                                            .padding(.bottom, 10)
                                         }
                                         
                                         LazyVGrid(columns: columns, spacing: 14) {
