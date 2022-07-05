@@ -484,6 +484,19 @@
 		D98EC5DE282596C300340BE5 /* SoundCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5DD282596C300340BE5 /* SoundCell.swift */; };
 		D98EC5E12825A05900340BE5 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5E02825A05900340BE5 /* Sound.swift */; };
 		D98EC5E32825A45000340BE5 /* SoundsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5E22825A45000340BE5 /* SoundsViewViewModel.swift */; };
+		D99151272873E4C100FFAA29 /* rock-eu-vou-pra-ceilandia-mdb.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D991511A2873E4C100FFAA29 /* rock-eu-vou-pra-ceilandia-mdb.mp3 */; };
+		D99151282873E4C100FFAA29 /* funk-podem-escrever-e-me-cobrem-mdb.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D991511B2873E4C100FFAA29 /* funk-podem-escrever-e-me-cobrem-mdb.mp3 */; };
+		D99151292873E4C100FFAA29 /* house-mascara-no-rabo-mdb.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D991511C2873E4C100FFAA29 /* house-mascara-no-rabo-mdb.mp3 */; };
+		D991512A2873E4C100FFAA29 /* funk-maluco-genocida-mdb.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D991511D2873E4C100FFAA29 /* funk-maluco-genocida-mdb.mp3 */; };
+		D991512B2873E4C100FFAA29 /* rock-chocolate-chocolate-mdb.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D991511E2873E4C100FFAA29 /* rock-chocolate-chocolate-mdb.mp3 */; };
+		D991512C2873E4C100FFAA29 /* rock-comunismo-vale-tudo-mdb.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D991511F2873E4C100FFAA29 /* rock-comunismo-vale-tudo-mdb.mp3 */; };
+		D991512D2873E4C100FFAA29 /* rock-comunismo-ai-seis-mdb.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99151202873E4C100FFAA29 /* rock-comunismo-ai-seis-mdb.mp3 */; };
+		D991512E2873E4C100FFAA29 /* funk-sexo-selvagem-1-mdb.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99151212873E4C100FFAA29 /* funk-sexo-selvagem-1-mdb.mp3 */; };
+		D991512F2873E4C100FFAA29 /* funk-capricha-renan-mdb.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99151222873E4C100FFAA29 /* funk-capricha-renan-mdb.mp3 */; };
+		D99151302873E4C100FFAA29 /* funk-nao-medico-mas-ousado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99151232873E4C100FFAA29 /* funk-nao-medico-mas-ousado.mp3 */; };
+		D99151312873E4C100FFAA29 /* funk-do-morto-mdb.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99151242873E4C100FFAA29 /* funk-do-morto-mdb.mp3 */; };
+		D99151322873E4C100FFAA29 /* pagode-osmar-cloroquina-mdb.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99151252873E4C100FFAA29 /* pagode-osmar-cloroquina-mdb.mp3 */; };
+		D99151332873E4C100FFAA29 /* funk-da-perninha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99151262873E4C100FFAA29 /* funk-da-perninha.mp3 */; };
 		D991E598284A94F70005705F /* Podium.swift in Sources */ = {isa = PBXBuildFile; fileRef = D991E597284A94F70005705F /* Podium.swift */; };
 		D9943F152863CC4D002C6B97 /* A impiedosa justica de Deus.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9943F142863CC4D002C6B97 /* A impiedosa justica de Deus.mp3 */; };
 		D9943F172863DAE1002C6B97 /* FolderDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F162863DAE1002C6B97 /* FolderDetailView.swift */; };
@@ -1071,6 +1084,19 @@
 		D98EC5DD282596C300340BE5 /* SoundCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundCell.swift; sourceTree = "<group>"; };
 		D98EC5E02825A05900340BE5 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		D98EC5E22825A45000340BE5 /* SoundsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsViewViewModel.swift; sourceTree = "<group>"; };
+		D991511A2873E4C100FFAA29 /* rock-eu-vou-pra-ceilandia-mdb.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "rock-eu-vou-pra-ceilandia-mdb.mp3"; sourceTree = "<group>"; };
+		D991511B2873E4C100FFAA29 /* funk-podem-escrever-e-me-cobrem-mdb.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "funk-podem-escrever-e-me-cobrem-mdb.mp3"; sourceTree = "<group>"; };
+		D991511C2873E4C100FFAA29 /* house-mascara-no-rabo-mdb.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "house-mascara-no-rabo-mdb.mp3"; sourceTree = "<group>"; };
+		D991511D2873E4C100FFAA29 /* funk-maluco-genocida-mdb.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "funk-maluco-genocida-mdb.mp3"; sourceTree = "<group>"; };
+		D991511E2873E4C100FFAA29 /* rock-chocolate-chocolate-mdb.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "rock-chocolate-chocolate-mdb.mp3"; sourceTree = "<group>"; };
+		D991511F2873E4C100FFAA29 /* rock-comunismo-vale-tudo-mdb.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "rock-comunismo-vale-tudo-mdb.mp3"; sourceTree = "<group>"; };
+		D99151202873E4C100FFAA29 /* rock-comunismo-ai-seis-mdb.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "rock-comunismo-ai-seis-mdb.mp3"; sourceTree = "<group>"; };
+		D99151212873E4C100FFAA29 /* funk-sexo-selvagem-1-mdb.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "funk-sexo-selvagem-1-mdb.mp3"; sourceTree = "<group>"; };
+		D99151222873E4C100FFAA29 /* funk-capricha-renan-mdb.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "funk-capricha-renan-mdb.mp3"; sourceTree = "<group>"; };
+		D99151232873E4C100FFAA29 /* funk-nao-medico-mas-ousado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "funk-nao-medico-mas-ousado.mp3"; sourceTree = "<group>"; };
+		D99151242873E4C100FFAA29 /* funk-do-morto-mdb.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "funk-do-morto-mdb.mp3"; sourceTree = "<group>"; };
+		D99151252873E4C100FFAA29 /* pagode-osmar-cloroquina-mdb.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "pagode-osmar-cloroquina-mdb.mp3"; sourceTree = "<group>"; };
+		D99151262873E4C100FFAA29 /* funk-da-perninha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "funk-da-perninha.mp3"; sourceTree = "<group>"; };
 		D991E597284A94F70005705F /* Podium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Podium.swift; sourceTree = "<group>"; };
 		D9943F142863CC4D002C6B97 /* A impiedosa justica de Deus.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "A impiedosa justica de Deus.mp3"; sourceTree = "<group>"; };
 		D9943F162863DAE1002C6B97 /* FolderDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetailView.swift; sourceTree = "<group>"; };
@@ -1668,6 +1694,19 @@
 		D92E7068283C5C120035826C /* Songs */ = {
 			isa = PBXGroup;
 			children = (
+				D99151222873E4C100FFAA29 /* funk-capricha-renan-mdb.mp3 */,
+				D99151262873E4C100FFAA29 /* funk-da-perninha.mp3 */,
+				D99151242873E4C100FFAA29 /* funk-do-morto-mdb.mp3 */,
+				D991511D2873E4C100FFAA29 /* funk-maluco-genocida-mdb.mp3 */,
+				D99151232873E4C100FFAA29 /* funk-nao-medico-mas-ousado.mp3 */,
+				D991511B2873E4C100FFAA29 /* funk-podem-escrever-e-me-cobrem-mdb.mp3 */,
+				D99151212873E4C100FFAA29 /* funk-sexo-selvagem-1-mdb.mp3 */,
+				D991511C2873E4C100FFAA29 /* house-mascara-no-rabo-mdb.mp3 */,
+				D99151252873E4C100FFAA29 /* pagode-osmar-cloroquina-mdb.mp3 */,
+				D991511E2873E4C100FFAA29 /* rock-chocolate-chocolate-mdb.mp3 */,
+				D99151202873E4C100FFAA29 /* rock-comunismo-ai-seis-mdb.mp3 */,
+				D991511F2873E4C100FFAA29 /* rock-comunismo-vale-tudo-mdb.mp3 */,
+				D991511A2873E4C100FFAA29 /* rock-eu-vou-pra-ceilandia-mdb.mp3 */,
 				D9943F142863CC4D002C6B97 /* A impiedosa justica de Deus.mp3 */,
 				D92879E5283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 */,
 				D92879E6283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 */,
@@ -2245,6 +2284,7 @@
 				D9556962285137800072E3FC /* Boldo - Puta que pariu marquinho.mp3 in Resources */,
 				D955696A285137800072E3FC /* Bolsonaro - Ta sendo superdimensionado o poder destruidor desse virus.mp3 in Resources */,
 				D9556929285137800072E3FC /* Carmina burana trecho.mp3 in Resources */,
+				D99151322873E4C100FFAA29 /* pagode-osmar-cloroquina-mdb.mp3 in Resources */,
 				D95F41082872040D001CF903 /* Biquini Cavadao - E impossivel.mp3 in Resources */,
 				D95569DD285138E70072E3FC /* Choque de Cultura - Rogerinho - O a informacao ai.mp3 in Resources */,
 				D9556968285137800072E3FC /* Michel Temer - Tem que pedir uma pastilha.mp3 in Resources */,
@@ -2270,6 +2310,7 @@
 				D922730D285AAD3E00A98CAE /* REDETV - Jair Bolsonaro - Eu pretendo participar de debates, nao participei na ultima porque estava em convalescencia.mp3 in Resources */,
 				D9556943285137800072E3FC /* Leo Stronda Monstro - Batata doce e frango logico.mp3 in Resources */,
 				D955697E285137800072E3FC /* COMUNISTA MEME.mp3 in Resources */,
+				D99151292873E4C100FFAA29 /* house-mascara-no-rabo-mdb.mp3 in Resources */,
 				D95569DB285137800072E3FC /* Bolsonaro - Lamento, quer que eu faca o que.mp3 in Resources */,
 				D9AFA25F286BF27B006155B1 /* Bolsonaro - Pra midia o virus sou eu.mp3 in Resources */,
 				D92F8BCC286A730500EB9470 /* Boldo - e de quanto.mp3 in Resources */,
@@ -2288,6 +2329,7 @@
 				D922730C285AAD3E00A98CAE /* Bolsonaro - Igularidades no ministerio irregularidades paralelepipi pretiputi.mp3 in Resources */,
 				D90483FB2851B0F500885739 /* O Terrivel Homem do Broche de Caveira.mp3 in Resources */,
 				D955696B285137800072E3FC /* Trote Luiz Pareto - TELERJ meme mas que filho da puta olhai veja voce.mp3 in Resources */,
+				D99151332873E4C100FFAA29 /* funk-da-perninha.mp3 in Resources */,
 				D91964F02856BB3F0067B430 /* Chico Bento - Coitado.mp3 in Resources */,
 				D95F410F2872040D001CF903 /* Bem louco.mp3 in Resources */,
 				D9556992285137800072E3FC /* Joao Doria - Isso exige medidas urgentes.mp3 in Resources */,
@@ -2345,6 +2387,7 @@
 				D958BC642868E210000B2EDA /* CHOQUE DE CULTURA - Renan - Inescrupulosos.mp3 in Resources */,
 				D9556957285137800072E3FC /* Xaropinho - Rapaz short.mp3 in Resources */,
 				D90483E42851A87D00885739 /* Lado B do Rio - Esse cara fica reclamando do mimimi mas ele e o mimizento.mp3 in Resources */,
+				D991512A2873E4C100FFAA29 /* funk-maluco-genocida-mdb.mp3 in Resources */,
 				D955696E285137800072E3FC /* ATILA IAMARINO - Que que isso quer dizer.mp3 in Resources */,
 				D958BC6B2868E210000B2EDA /* Choque de Cultura - Julinho Foda-se.mp3 in Resources */,
 				D9556954285137800072E3FC /* Craque Neto - Pa aplica numa bunda pa aplica na outra.mp3 in Resources */,
@@ -2376,9 +2419,11 @@
 				D95F410C2872040D001CF903 /* Capitao Falcao - Viboras socialistas.mp3 in Resources */,
 				D92F8BD4286A730500EB9470 /* Bolsonaro - E todos esperavam exatamente o contrario.mp3 in Resources */,
 				D92F8BE5286A730500EB9470 /* Dudu Marfetan - Agora tu aguenta.mp3 in Resources */,
+				D99151272873E4C100FFAA29 /* rock-eu-vou-pra-ceilandia-mdb.mp3 in Resources */,
 				D9AFA272286BF27B006155B1 /* Bolsonaro - Pode me culpar a vontade.mp3 in Resources */,
 				D95569C9285137800072E3FC /* Neto - Ces tao de brincadeira.mp3 in Resources */,
 				D955693D285137800072E3FC /* Bolsonaro e Ratinho - O senhor acha que vai durar essa crise uns cinco 5 ou seis 6 meses.mp3 in Resources */,
+				D99151312873E4C100FFAA29 /* funk-do-morto-mdb.mp3 in Resources */,
 				D9556989285137800072E3FC /* Bolsonaro - Nao leio a imprensa nao vejo Jornal Nacional faca o que eu faco.mp3 in Resources */,
 				D9556920285137800072E3FC /* Cidade Oculta - Voce fala isso porque e a putinha do bozo.mp3 in Resources */,
 				D95569D6285137800072E3FC /* Abraham Weintraub - odeio odeio odeio short.mp3 in Resources */,
@@ -2413,6 +2458,7 @@
 				D99A9FAC286687240068B172 /* JOVEM PAN NEWS - Constantino - Pro audio vazar, alguem quer sabotar o MEC e o Milton Ribeiro se deu mal.mp3 in Resources */,
 				D9556912285137800072E3FC /* esse_neto_bosta.mp3 in Resources */,
 				D95F414E28720D1B001CF903 /* MC Jefinho Farao - Pastor marginal.mp3 in Resources */,
+				D991512E2873E4C100FFAA29 /* funk-sexo-selvagem-1-mdb.mp3 in Resources */,
 				D9523757285DA13500E6C838 /* Ja deu merda, ja deu merda.mp3 in Resources */,
 				D9759AC92872AA40005F9871 /* Dudu Marfetan - Até o final (completo).mp3 in Resources */,
 				D955695A285137800072E3FC /* Boldo - Parece ate que um helicoptero pousou em cima da tua cara.mp3 in Resources */,
@@ -2472,6 +2518,7 @@
 				D9625E8228238F9B00080852 /* Assets.xcassets in Resources */,
 				D9AFA274286BF27B006155B1 /* Caetano Veloso - Que coisa absurda.mp3 in Resources */,
 				D90483DE2851A66200885739 /* Handel - Aleluia short.mp3 in Resources */,
+				D99151302873E4C100FFAA29 /* funk-nao-medico-mas-ousado.mp3 in Resources */,
 				D91964E228563B680067B430 /* Bolsonaro - Esposa, ne, tem que aguentar, mas ta tudo bem.mp3 in Resources */,
 				D90483F72851B0F500885739 /* Pronto, falei short.mp3 in Resources */,
 				D95F410D2872040D001CF903 /* Bezerra da silva - Malandro e malandro.mp3 in Resources */,
@@ -2525,7 +2572,9 @@
 				D9556963285137800072E3FC /* Ciro Gomes - Atencao Paulo Guedes.mp3 in Resources */,
 				D95569AD285137800072E3FC /* ATILA IAMARINO - Ele faz sexo.mp3 in Resources */,
 				D92F8BD9286A730500EB9470 /* ATILA IAMARINO - Nao tem condicoes.mp3 in Resources */,
+				D99151282873E4C100FFAA29 /* funk-podem-escrever-e-me-cobrem-mdb.mp3 in Resources */,
 				D955692A285137800072E3FC /* Mourao - Voce e muito mais fisico do que intelectual short.mp3 in Resources */,
+				D991512B2873E4C100FFAA29 /* rock-chocolate-chocolate-mdb.mp3 in Resources */,
 				D955698A285137800072E3FC /* De cair o cu da bunda short meme.mp3 in Resources */,
 				D9556965285137800072E3FC /* Quercia - E mentira, e tudo mentira.mp3 in Resources */,
 				D95569B4285137800072E3FC /* Mourao - Coronel Brilhante Ustra Meu heroi short meme.mp3 in Resources */,
@@ -2552,6 +2601,7 @@
 				D90483F62851B0F500885739 /* Lula - Chupa que a cana e doce meu filho.mp3 in Resources */,
 				D9556998285137800072E3FC /* Pedro Pedreira (Pedra 90) - Nao delira, nao patina no omelete.mp3 in Resources */,
 				D952374B285D118400E6C838 /* DESMENTINDO BOLSONARO - PAULO GUEDES - O Brasil esta decolando economia bombando coletanea.mp3 in Resources */,
+				D991512D2873E4C100FFAA29 /* rock-comunismo-ai-seis-mdb.mp3 in Resources */,
 				D9AFA267286BF27B006155B1 /* Alexandre Frota - Tai o.mp3 in Resources */,
 				D91964F22856BBE10067B430 /* Moro dizendo que nao seria ministro nem candidato a presidencia.mp3 in Resources */,
 				D95F410B2872040D001CF903 /* Caue Moura - Foi mal tava doidao aqui nao seu arrombado.mp3 in Resources */,
@@ -2568,6 +2618,7 @@
 				D9556910285137800072E3FC /* Bolsonaro - Duas letras PF e policia federal o cara.mp3 in Resources */,
 				D92F8BDF286A730500EB9470 /* Bolsonaro - Eu votaria no Lula no segundo turno.mp3 in Resources */,
 				D9556923285137800072E3FC /* tu_entendeu_a_pergunta.mp3 in Resources */,
+				D991512C2873E4C100FFAA29 /* rock-comunismo-vale-tudo-mdb.mp3 in Resources */,
 				D9AFA277286BF27B006155B1 /* Bolsonaro - So se for na casa da tua mae.mp3 in Resources */,
 				D95569B5285137800072E3FC /* Silas Malafaia - Mentiroso sem vergonha vai pro inferno short.mp3 in Resources */,
 				D95569D7285137800072E3FC /* O CARA DA LUVA DE PEDREIRO - receba carai caralho.mp3 in Resources */,
@@ -2593,6 +2644,7 @@
 				D95F415028720D1B001CF903 /* Silvio Santos - Essa nao e boa ninguem deu risada.mp3 in Resources */,
 				D90483DF2851A66200885739 /* Joao Kleber - Comeca o teste de fidelidade short meme.mp3 in Resources */,
 				D95569DA285137800072E3FC /* Brizola - Filhotes da ditadura.mp3 in Resources */,
+				D991512F2873E4C100FFAA29 /* funk-capricha-renan-mdb.mp3 in Resources */,
 				D955697D285137800072E3FC /* Danca do Creu - 30 mil passou a meta em 8x.mp3 in Resources */,
 				D95F41092872040D001CF903 /* Bolsonaro - Nao temos provas.mp3 in Resources */,
 				D95F41072872040D001CF903 /* Bolsonaro - Sou ousado.mp3 in Resources */,
