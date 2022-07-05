@@ -19,24 +19,22 @@ struct CollectionsView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack(alignment: .leading) {
-                    VStack(alignment: .leading) {
-                        Text("Escolhas dos Editores")
-                            .font(.title2)
-                            .padding(.leading)
-                        
+                VStack(alignment: .center) {
+                    VStack(alignment: .center) {
                         HStack {
-                            Spacer()
-                            
-                            VStack(spacing: 10) {
-                                Text("Em Breve")
-                                    .font(.headline)
-                                    .multilineTextAlignment(.center)
-                            }
-                            .padding(.vertical, 100)
+                            Text("Escolhas dos Editores")
+                                .font(.title2)
+                                .padding(.leading)
                             
                             Spacer()
                         }
+                        
+                        VStack(spacing: 10) {
+                            Text("Em Breve")
+                                .font(.headline)
+                                .multilineTextAlignment(.center)
+                        }
+                        .padding(.vertical, 100)
                         
 //                        ScrollView(.horizontal, showsIndicators: false) {
 //                            LazyHGrid(rows: rows, spacing: 14) {
@@ -55,7 +53,7 @@ struct CollectionsView: View {
                     }
                     .padding(.top, 10)
                     
-                    VStack(alignment: .leading) {
+                    VStack(alignment: .center) {
                         HStack {
                             Text("Minhas Pastas")
                                 .font(.title2)
@@ -107,23 +105,24 @@ struct CollectionsView: View {
                                 }
                             }
                         } else {
-                            HStack {
-                                Spacer()
+                            VStack(spacing: 15) {
+                                Image(systemName: "folder")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 90)
+                                    .foregroundColor(.blue)
+                                    .padding(.bottom, 10)
                                 
-                                VStack(spacing: 10) {
-                                    Text("Nenhuma Pasta Criada")
-                                        .font(.body)
-                                        .bold()
-                                        .multilineTextAlignment(.center)
-                                    
-                                    Text("Toque em Nova Pasta acima para criar uma nova pasta de sons.")
-                                        .foregroundColor(.gray)
-                                        .multilineTextAlignment(.center)
-                                }
-                                .padding(.vertical, 40)
+                                Text("Nenhuma Pasta Criada")
+                                    .font(.title3)
+                                    .multilineTextAlignment(.center)
                                 
-                                Spacer()
+                                Text("Toque em Nova Pasta acima para criar uma nova pasta de sons.")
+                                    .foregroundColor(.gray)
+                                    .multilineTextAlignment(.center)
+                                    .padding(.horizontal)
                             }
+                            .padding(.vertical, 40)
                         }
                     }
                     .padding(.top, 10)
@@ -134,7 +133,7 @@ struct CollectionsView: View {
                     if let folder = folderForEditingOnSheet {
                         FolderInfoEditingView(isBeingShown: $showingFolderInfoEditingView, symbol: folder.symbol, folderName: folder.name, selectedBackgroundColor: folder.backgroundColor, isEditing: true, folderIdWhenEditing: folder.id)
                     } else {
-                        FolderInfoEditingView(isBeingShown: $showingFolderInfoEditingView, selectedBackgroundColor: "pastelBabyBlue")
+                        FolderInfoEditingView(isBeingShown: $showingFolderInfoEditingView, selectedBackgroundColor: "pastelPurple")
                     }
                 }
                 .alert(isPresented: $viewModel.showAlert) {
