@@ -219,7 +219,7 @@ struct SoundsView: View {
                         }
                     }
                     
-                    Button("📁  Adicionar a Pasta") {
+                    Button(Shared.addToFolderButtonText) {
                         let hasFolders = try? database.hasAnyUserFolder()
                         guard hasFolders ?? false else {
                             return viewModel.showNoFoldersAlert()
@@ -235,6 +235,7 @@ struct SoundsView: View {
                                 withAnimation {
                                     shouldDisplayAddedToFolderToast = true
                                 }
+                                TapticFeedback.success()
                             }
                             
                             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -246,6 +247,10 @@ struct SoundsView: View {
                             }
                         }
                     }
+                    
+//                    Button("👱  Ver Todos os Sons Desse Autor") {
+//                        print("Ver autor")
+//                    }
                     
                     Button(SoundOptionsHelper.getSuggestOtherAuthorNameButtonTitle(authorId: viewModel.soundForConfirmationDialog?.authorId ?? .empty)) {
                         guard let sound = viewModel.soundForConfirmationDialog else {
@@ -267,12 +272,27 @@ struct SoundsView: View {
                 .sheet(isPresented: $showingAddToFolderModal) {
                     AddToFolderView(isBeingShown: $showingAddToFolderModal, hadSuccess: $hadSuccessAddingToFolder, folderName: $folderName, selectedSoundName: viewModel.soundForConfirmationDialog!.title, selectedSoundId: viewModel.soundForConfirmationDialog!.id)
                 }
+                .onChange(of: viewModel.showConfirmationDialog) { show in
+                    if show {
+                        TapticFeedback.open()
+                    }
+                }
                 
                 if shouldDisplayAddedToFolderToast {
                     VStack {
                         Spacer()
                         
-                        AddedToFolderToastView(folderName: folderName ?? "")
+                        ToastView(text: "Som adicionado à pasta \(folderName ?? "").")
+                            .padding()
+                    }
+                    .transition(.moveAndFade)
+                }
+                
+                if viewModel.shouldDisplaySharedSuccessfullyToast {
+                    VStack {
+                        Spacer()
+                        
+                        ToastView(text: Shared.soundSharedSuccessfullyMessage)
                             .padding()
                     }
                     .transition(.moveAndFade)

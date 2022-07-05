@@ -100,10 +100,10 @@ struct FolderInfoEditingView: View {
                             guard folderIdWhenEditing.isEmpty == false else {
                                 return
                             }
-                            try? database.update(userFolder: folderIdWhenEditing, withNewSymbol: symbol, newName: folderName, andNewBackgroundColor: selectedBackgroundColor)
+                            try? database.update(userFolder: folderIdWhenEditing, withNewSymbol: symbol, newName: folderName.trimmingCharacters(in: .whitespacesAndNewlines), andNewBackgroundColor: selectedBackgroundColor)
                             self.isBeingShown = false
                         } else {
-                            try? database.insert(userFolder: UserFolder(symbol: symbol, name: folderName, backgroundColor: selectedBackgroundColor))
+                            try? database.insert(userFolder: UserFolder(symbol: symbol, name: folderName.trimmingCharacters(in: .whitespacesAndNewlines), backgroundColor: selectedBackgroundColor))
                             self.isBeingShown = false
                         }
                     }
