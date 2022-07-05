@@ -6,7 +6,7 @@ let networkRabbit = NetworkRabbit(serverPath: CommandLine.arguments.contains("-U
 let podium = Podium(database: database, networkRabbit: networkRabbit)
 
 let soundsLastUpdateDate: String = "04/07/2022"
-let songsLastUpdateDate: String = "22/06/2022"
+let songsLastUpdateDate: String = "05/07/2022"
 
 @main
 struct MedoDelirioBrasiliaApp: App {

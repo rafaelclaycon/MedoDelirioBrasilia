@@ -4,14 +4,10 @@ struct SettingsView: View {
 
     @State private var showExplicitSounds: Bool = UserSettings.getShowOffensiveSounds()
     
-    @State private var showingTrendsSettingsScreen: Bool = false
-    
     @State private var showAskForMoneyView: Bool = false
     @State private var showPixKeyCopiedAlert: Bool = false
     
     @State private var showEmailAddressCopiedAlert: Bool = false
-    
-    @State private var showingDiagnosticsScreen: Bool = false
     
     let pixKey: String = "medodeliriosuporte@gmail.com"
     let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
@@ -30,7 +26,11 @@ struct SettingsView: View {
                 }
                 
                 Section {
-                    NavigationLink(destination: TrendsSettingsView(), isActive: $showingTrendsSettingsScreen) {
+                    NavigationLink(destination: HelpView()) {
+                        Text("Ajuda")
+                    }
+                    
+                    NavigationLink(destination: TrendsSettingsView()) {
                         Text("Tendências")
                     }
                 }
@@ -100,7 +100,7 @@ struct SettingsView: View {
                 }
                 
                 Section("Diagnóstico") {
-                    NavigationLink(destination: DiagnosticsView(), isActive: $showingDiagnosticsScreen) {
+                    NavigationLink(destination: DiagnosticsView()) {
                         Text("Dados para nerds")
                     }
                 }
