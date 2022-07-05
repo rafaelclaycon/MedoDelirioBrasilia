@@ -54,7 +54,7 @@ struct SettingsView: View {
                     }
                 }
                 
-                Section("🐞  Problemas, sugestões ou pedidos") {
+                Section("📬  Problemas, sugestões e pedidos") {
                     Button("Entrar em contato por e-mail (Mail)") {
                         guard let emailSubject = "Problema/sugestão no app iOS \(appVersion) Build \(buildVersionNumber)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
                             return
