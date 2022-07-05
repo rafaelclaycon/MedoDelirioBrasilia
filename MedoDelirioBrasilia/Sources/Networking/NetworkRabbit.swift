@@ -64,6 +64,21 @@ class NetworkRabbit: NetworkRabbitProtocol {
         task.resume()
     }
     
+    func displayAskForMoneyView(completionHandler: @escaping (Bool, String) -> Void) {
+        let url = URL(string: serverPath + "v1/display-ask-for-money-view")!
+
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            if let data = data {
+                let response = String(data: data, encoding: .utf8)!
+                completionHandler(response == "1", response)
+            } else if let error = error {
+                completionHandler(false, "A requisição HTTP falhou: \(error.localizedDescription)")
+            }
+        }
+        
+        task.resume()
+    }
+    
     // MARK: - POST
     
     func post(shareCountStat: ServerShareCountStat, completionHandler: @escaping (Bool, String) -> Void) {

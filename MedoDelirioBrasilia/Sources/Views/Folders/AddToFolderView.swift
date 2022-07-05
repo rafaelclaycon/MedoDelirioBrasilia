@@ -16,19 +16,26 @@ struct AddToFolderView: View {
     
     var body: some View {
         NavigationView {
-            VStack(alignment: .leading, spacing: 20) {
-                HStack(spacing: 20) {
+            VStack(alignment: .center, spacing: 20) {
+                HStack(spacing: 16) {
                     Image(systemName: "speaker.wave.3.fill")
                         .resizable()
                         .scaledToFit()
-                        .frame(height: 28)
-                        .padding(.leading)
+                        .frame(height: 24)
+                        .padding(.leading, 7)
                     
-                    Text(selectedSoundName)
+                    Text("Som:  \(selectedSoundName)")
                         .bold()
                         .multilineTextAlignment(.leading)
+                    
+                    Spacer()
                 }
                 .padding(.horizontal)
+                .padding(.top, 2)
+                
+                FoldersAreTagsBannerView()
+                    .padding(.horizontal)
+                    .padding(.bottom, -10)
                 
                 ScrollView {
 //                    HStack {
@@ -97,6 +104,7 @@ struct AddToFolderView_Previews: PreviewProvider {
 
     static var previews: some View {
         AddToFolderView(isBeingShown: .constant(true), hadSuccess: .constant(false), folderName: .constant(nil), selectedSoundName: "Aham, sei", selectedSoundId: "ABCD")
+            .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
     }
 
 }

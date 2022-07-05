@@ -4,16 +4,12 @@ struct SettingsView: View {
 
     @State private var showExplicitSounds: Bool = UserSettings.getShowOffensiveSounds()
     
-    @State private var showingNotificationsSettingsScreen: Bool = false
-    @State private var showingTrendsSettingsScreen: Bool = false
-    
+    @State private var showAskForMoneyView: Bool = false
     @State private var showPixKeyCopiedAlert: Bool = false
     
     @State private var showEmailAddressCopiedAlert: Bool = false
     
-    @State private var showingDiagnosticsScreen: Bool = false
-    
-    let pixKey: String = "918bd609-04d1-4df6-8697-352b62462061"
+    let pixKey: String = "medodeliriosuporte@gmail.com"
     let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
     let buildVersionNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""
     
@@ -30,28 +26,39 @@ struct SettingsView: View {
                 }
                 
                 Section {
-                    NavigationLink(destination: NotificationsSettingsView(), isActive: $showingNotificationsSettingsScreen) {
+                    NavigationLink(destination: HelpView()) {
+                        Text("Ajuda")
+                    }
+
+                    NavigationLink(destination: NotificationsSettingsView()) {
                         Text("Notificações")
                     }
-                    NavigationLink(destination: TrendsSettingsView(), isActive: $showingTrendsSettingsScreen) {
+                    
+                    NavigationLink(destination: TrendsSettingsView()) {
                         Text("Tendências")
                     }
                 }
                 
-                Section("Esse app é uma homenagem ao trabalho de Cristiano Botafogo e Pedro Daltro") {
-                    BegForMoneyView()
-                        .padding(.vertical)
-                    
-                    Button("Copiar chave Pix") { 
-                        UIPasteboard.general.string = pixKey
-                        showPixKeyCopiedAlert = true
-                    }
-                    .alert(isPresented: $showPixKeyCopiedAlert) {
-                        Alert(title: Text("Chave copiada com sucesso!"), dismissButton: .default(Text("OK")))
+                if showAskForMoneyView {
+                    Section {
+                        BegForMoneyView()
+                            .padding(.vertical)
+                        
+                        Button("Copiar chave Pix") {
+                            UIPasteboard.general.string = pixKey
+                            showPixKeyCopiedAlert = true
+                        }
+                        .alert(isPresented: $showPixKeyCopiedAlert) {
+                            Alert(title: Text("Chave copiada com sucesso!"), dismissButton: .default(Text("OK")))
+                        }
+                    } header : {
+                        Text("Esse app é uma homenagem ao trabalho de Cristiano Botafogo e Pedro Daltro")
+                    } footer: {
+                        Text("A chave é um endereço de e-mail, portanto, se o app do seu banco pedir o tipo de chave para transferir, selecione E-mail. Evite qualquer opção que mencione QR Code.")
                     }
                 }
                 
-                Section("🐞  Problemas, sugestões ou pedidos") {
+                Section("📬  Problemas, sugestões e pedidos") {
                     Button("Entrar em contato por e-mail (Mail)") {
                         guard let emailSubject = "Problema/sugestão no app iOS \(appVersion) Build \(buildVersionNumber)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
                             return
@@ -97,12 +104,17 @@ struct SettingsView: View {
                 }
                 
                 Section("Diagnóstico") {
-                    NavigationLink(destination: DiagnosticsView(), isActive: $showingDiagnosticsScreen) {
+                    NavigationLink(destination: DiagnosticsView()) {
                         Text("Dados para nerds")
                     }
                 }
             }
             .navigationTitle("Ajustes")
+            .onAppear {
+                networkRabbit.displayAskForMoneyView { result, _ in
+                    showAskForMoneyView = result
+                }
+            }
         }
     }
 

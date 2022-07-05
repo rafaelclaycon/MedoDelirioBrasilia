@@ -1,5 +1,5 @@
 import Combine
-import UIKit
+import SwiftUI
 import StoreKit
 
 class SoundsViewViewModel: ObservableObject {
@@ -12,6 +12,9 @@ class SoundsViewViewModel: ObservableObject {
     @Published var soundForConfirmationDialog: Sound? = nil
     
     @Published var currentActivity: NSUserActivity? = nil
+    
+    // Sharing
+    @Published var shouldDisplaySharedSuccessfullyToast: Bool = false
     
     // Alerts
     @Published var alertTitle: String = ""
@@ -97,7 +100,22 @@ class SoundsViewViewModel: ObservableObject {
 
     func shareSound(withPath filepath: String, andContentId contentId: String) {
         do {
-            try Sharer.shareSound(withPath: filepath, andContentId: contentId)
+            try Sharer.shareSound(withPath: filepath, andContentId: contentId) { didShareSuccessfully in
+                if didShareSuccessfully {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                        withAnimation {
+                            self.shouldDisplaySharedSuccessfullyToast = true
+                        }
+                        TapticFeedback.success()
+                    }
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        withAnimation {
+                            self.shouldDisplaySharedSuccessfullyToast = false
+                        }
+                    }
+                }
+            }
         } catch {
             showUnableToGetSoundAlert()
         }
@@ -190,12 +208,14 @@ class SoundsViewViewModel: ObservableObject {
     // MARK: - Alerts
     
     func showUnableToGetSoundAlert() {
+        TapticFeedback.error()
         alertTitle = Shared.soundNotFoundAlertTitle
         alertMessage = Shared.soundNotFoundAlertMessage
         showAlert = true
     }
     
     func showNoFoldersAlert() {
+        TapticFeedback.error()
         alertTitle = "Não Existem Pastas"
         alertMessage = "Para continuar, crie uma pasta de sons na aba Coleções > Minhas Pastas."
         showAlert = true
