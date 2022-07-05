@@ -69,7 +69,7 @@
         "description": "o pastor marginal da igreja foi que catou nosso dinheiro pega ele e dá um pau",
         "filename": "MC Jefinho Farao - Pastor marginal.mp3",
         "dateAdded": "2022-07-01T00:00:00Z",
-        "isOffensive": false
+        "isOffensive": true
     },
     {
         "id": "0761AFFA-FD3E-45C6-B47A-3ED97CA2462D",
@@ -118,7 +118,7 @@
     },
     {
         "id": "3C3CA8A6-FA12-4C95-A553-1855172D635A",
-        "title": "Essa não é boa, ninguem deu risada",
+        "title": "Essa não é boa, ninguém deu risada",
         "authorId": "571F78AB-B691-4537-9952-795BF01D1945",
         "description": "essa não é boa essa não é boa ninguém deu risada",
         "filename": "Silvio Santos - Essa nao e boa ninguem deu risada.mp3",
@@ -150,7 +150,7 @@
         "description": "agora a coisa vai ser mais profunda",
         "filename": "Silas Malafaia - Agora a coisa vai ser mais profunda.mp3",
         "dateAdded": "2022-06-30T00:00:00Z",
-        "isOffensive": false
+        "isOffensive": true
     },
     {
         "id": "D61866D5-D4D5-44D0-BC61-B31A191B80A7",
@@ -1144,7 +1144,7 @@
     },
     {
         "id": "222C7674-50AD-47FA-9FBD-A8C3D308C385",
-        "title": "Malandro é malandro, mané é mane",
+        "title": "Malandro é malandro, mané é mané",
         "authorId": "677BDC27-06EF-44D4-BF8F-15E64245CC0F",
         "description": "e malandro é malandro e mané é mané podes crer que é",
         "filename": "Bezerra da silva - Malandro e malandro.mp3",
@@ -1167,7 +1167,7 @@
         "description": "foi mal tava doidão",
         "filename": "Caue Moura - Foi mal tava doidao.mp3",
         "dateAdded": "2022-07-01T00:00:00Z",
-        "isOffensive": false
+        "isOffensive": true
     },
     {
         "id": "14E8BC7A-7CAF-456C-AE5A-27C16B4AF6D2",
@@ -1194,7 +1194,7 @@
         "description": "malditos comunas",
         "filename": "Capitao Falcao - Malditos Comunas.mp3",
         "dateAdded": "2022-07-01T00:00:00Z",
-        "isOffensive": false
+        "isOffensive": true
     },
     {
         "id": "7A8B10DC-EA45-4D3B-9B57-240991CBD1C0",
@@ -3084,7 +3084,7 @@
         "description": "vai trabalhar vagabundo vai trabalhar criatura",
         "filename": "CHICO BUARQUE - vai trabalhar vagabundo.mp3",
         "dateAdded": "2022-07-01T00:00:00Z",
-        "isOffensive": false
+        "isOffensive": true
     },
     {
         "id": "DCFB6973-3567-448D-B424-3C3A0AEDAAB2",
@@ -4065,7 +4065,7 @@
         "description": "Nao e de surpreender surpresa choque passada chocada",
         "filename": "PODER360 - Barroso - Nao e de surpreender.mp3",
         "dateAdded": "2022-06-26T00:00:00Z",
-        "isOffensive": true
+        "isOffensive": false
     },
     {
         "id": "BFAC2F1F-D7CE-4388-8547-2223471CB525",
@@ -4101,6 +4101,6 @@
         "description": "ou seja voces percebem a loucura",
         "filename": "Lula - Voces percebem a loucura.mp3",
         "dateAdded": "2022-07-05T00:00:00Z",
-        "isOffensive": false
+        "isOffensive": true
     }
 ]
