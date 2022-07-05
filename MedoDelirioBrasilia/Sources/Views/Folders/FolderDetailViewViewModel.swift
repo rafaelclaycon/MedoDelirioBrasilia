@@ -1,5 +1,5 @@
 import Combine
-import UIKit
+import SwiftUI
 
 class FolderDetailViewViewModel: ObservableObject {
 
@@ -7,6 +7,9 @@ class FolderDetailViewViewModel: ObservableObject {
     @Published var hasSoundsToDisplay: Bool = false
     @Published var showConfirmationDialog = false
     @Published var soundForConfirmationDialog: Sound? = nil
+    
+    // Sharing
+    @Published var shouldDisplaySharedSuccessfullyToast: Bool = false
     
     // Alerts
     @Published var alertTitle: String = ""
@@ -58,7 +61,20 @@ class FolderDetailViewViewModel: ObservableObject {
     func shareSound(withPath filepath: String, andContentId contentId: String) {
         do {
             try Sharer.shareSound(withPath: filepath, andContentId: contentId) { didShareSuccessfully in
-                print(didShareSuccessfully)
+                if didShareSuccessfully {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                        withAnimation {
+                            self.shouldDisplaySharedSuccessfullyToast = true
+                        }
+                        TapticFeedback.success()
+                    }
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        withAnimation {
+                            self.shouldDisplaySharedSuccessfullyToast = false
+                        }
+                    }
+                }
             }
         } catch {
             showUnableToGetSoundAlert()

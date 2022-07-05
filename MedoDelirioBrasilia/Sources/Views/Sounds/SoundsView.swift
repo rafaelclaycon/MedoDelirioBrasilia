@@ -219,7 +219,7 @@ struct SoundsView: View {
                         }
                     }
                     
-                    Button("📁  Adicionar a Pasta") {
+                    Button(Shared.addToFolderButtonText) {
                         let hasFolders = try? database.hasAnyUserFolder()
                         guard hasFolders ?? false else {
                             return viewModel.showNoFoldersAlert()
@@ -292,7 +292,7 @@ struct SoundsView: View {
                     VStack {
                         Spacer()
                         
-                        ToastView(text: "Som compartilhado com sucesso.")
+                        ToastView(text: Shared.soundSharedSuccessfullyMessage)
                             .padding()
                     }
                     .transition(.moveAndFade)
