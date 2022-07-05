@@ -199,10 +199,10 @@
     },
     {
         "id": "C41463F6-61E2-4536-AFE6-05715A25C9AF",
-        "title": "Vocês percebem a loucura",
+        "title": "Vocês percebem a loucura que está tomando conta desse país?",
         "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
         "description": "ou seja vocês percebem a loucura que está tomando conta desse país",
-        "filename": "Lula - Voces percebem a loucura.mp3",
+        "filename": "Lula - Voces percebem a loucura que esta tomando conta desse pais.mp3",
         "dateAdded": "2022-06-28T00:00:00Z",
         "isOffensive": false
     },
@@ -4075,5 +4075,32 @@
         "filename": "Dudu Marfetan - Até o final (completo).mp3",
         "dateAdded": "2022-07-04T00:00:00Z",
         "isOffensive": true
+    },
+    {
+        "id": "1EF2A3EB-F683-4BDB-871C-333CBD7C465F",
+        "title": "Se liga, hein (sério)",
+        "authorId": "EB50B3D6-BF30-4B52-BAD7-A019C2F03A79",
+        "description": "se liga hein se liga em",
+        "filename": "Regina Rouca - Se Liga Hein (serio).mp3",
+        "dateAdded": "2022-07-04T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "966FFAF5-7498-4279-8671-84BBCF781CAF",
+        "title": "Se liga, hein (casual)",
+        "authorId": "EB50B3D6-BF30-4B52-BAD7-A019C2F03A79",
+        "description": "se liga hein se liga em",
+        "filename": "Regina Rouca - Se Liga Hein (casual).mp3",
+        "dateAdded": "2022-07-04T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "9A9EC804-ACA6-4071-9388-3D465E8B1FFA",
+        "title": "Vocês percebem a loucura?",
+        "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
+        "description": "ou seja voces percebem a loucura",
+        "filename": "Lula - Voces percebem a loucura.mp3",
+        "dateAdded": "2022-07-05T00:00:00Z",
+        "isOffensive": false
     }
 ]
