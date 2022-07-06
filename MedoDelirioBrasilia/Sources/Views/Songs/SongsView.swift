@@ -72,6 +72,10 @@ struct SongsView: View {
                 viewModel.reloadList()
                 viewModel.donateActivity()
             }
+            .onDisappear {
+                player?.cancel()
+                viewModel.nowPlayingKeeper.removeAll()
+            }
         }
     }
 
