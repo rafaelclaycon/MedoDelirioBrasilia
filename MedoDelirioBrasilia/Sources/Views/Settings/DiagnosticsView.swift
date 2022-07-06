@@ -5,7 +5,7 @@ struct DiagnosticsView: View {
     @State var showServerConnectionTestAlert = false
     @State var serverConnectionTestAlertTitle = ""
     
-    @State var installId = UIDevice.current.identifierForVendor?.uuidString ?? ""
+    @State var installId = UIDevice.identifiderForVendor
     @State var showInstallIdCopiedAlert = false
     
     @State var shareLogs: [UserShareLog]?
@@ -48,7 +48,7 @@ struct DiagnosticsView: View {
                         dayComponent.day = -1
                         let calendar = Calendar.current
                         let newDate = calendar.date(byAdding: dayComponent, to: Date())
-                        UserSettings.setLastSendDateOfUserPersonalTrendsToServer(to: newDate!.onlyDate!)
+                        AppPersistentMemory.setLastSendDateOfUserPersonalTrendsToServer(to: newDate!.onlyDate!)
                     }
                 }
             }

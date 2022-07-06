@@ -193,9 +193,12 @@ struct SoundsView: View {
                     viewModel.sendDeviceModelNameToServer()
                     viewModel.sendUserPersonalTrendsToServerIfEnabled()
                     
-                    shouldDisplayFolderBanner = UserSettings.getFolderBannerWasDismissed() == false
+                    shouldDisplayFolderBanner = AppPersistentMemory.getFolderBannerWasDismissed() == false
                     
-                    showingModalView = true
+                    if AppPersistentMemory.getHasShownNotificationsOnboarding() == false {
+                        subviewToOpen = .onboardingView
+                        showingModalView = true
+                    }
                 }
                 .confirmationDialog("", isPresented: $viewModel.showConfirmationDialog) {
                     Button(viewModel.getFavoriteButtonTitle()) {

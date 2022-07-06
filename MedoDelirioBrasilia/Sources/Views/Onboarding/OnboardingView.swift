@@ -10,14 +10,14 @@ struct OnboardingView: View {
             VStack(alignment: .center) {
                 NotificationsSymbol()
                 
-                Text("Saiba das Novidades Assim que Elas Chegarem")
+                Text("Saiba das Novidades Assim que Elas Chegam")
                     .font(.largeTitle)
                     .bold()
                     .multilineTextAlignment(.center)
-                    .padding(.horizontal)
+                    .padding(.horizontal, 20)
                     .padding(.vertical)
                 
-                Text("Receba notificações sobre os últimos sons, tendências e novos recursos.\n\nTentaremos manter a frequência das notificações baixa, entre 2 e 3 por semana.")
+                Text("Receba notificações sobre os últimos sons, tendências e novos recursos.\n\nTentarei manter a frequência das notificações baixa, entre 2 e 3 por semana.")
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 20)
                     .padding(.vertical)
@@ -37,10 +37,10 @@ struct OnboardingView: View {
                 .padding(.top)
                 
                 Button {
+                    AppPersistentMemory.setHasShownNotificationsOnboarding(to: true)
                     isBeingShown = false
                 } label: {
                     Text("Ah é, é? F***-se")
-                        .bold()
                 }
                 .foregroundColor(.blue)
                 .padding(.vertical)
@@ -64,7 +64,10 @@ struct OnboardingView: View {
                 DispatchQueue.main.async {
                     UIApplication.shared.registerForRemoteNotifications()
                 }
+                UserSettings.setUserAllowedNotifications(to: granted)
             }
+            
+            AppPersistentMemory.setHasShownNotificationsOnboarding(to: true)
             isBeingShown = false
         }
     }

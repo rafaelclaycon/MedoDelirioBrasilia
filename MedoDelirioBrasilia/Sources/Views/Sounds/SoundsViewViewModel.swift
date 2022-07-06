@@ -161,7 +161,7 @@ class SoundsViewViewModel: ObservableObject {
     }
     
     func sendDeviceModelNameToServer() {
-        if UserSettings.getHasSentDeviceModelToServer() == false {
+        if AppPersistentMemory.getHasSentDeviceModelToServer() == false {
             guard UIDevice.modelName.contains("Simulator") == false else {
                 return
             }
@@ -169,10 +169,10 @@ class SoundsViewViewModel: ObservableObject {
                 return
             }
             
-            let info = ClientDeviceInfo(installId: UIDevice.current.identifierForVendor?.uuidString ?? "", modelName: UIDevice.modelName)
+            let info = ClientDeviceInfo(installId: UIDevice.identifiderForVendor, modelName: UIDevice.modelName)
             networkRabbit.post(clientDeviceInfo: info) { success, error in
                 if let success = success, success {
-                    UserSettings.setHasSentDeviceModelToServer(to: true)
+                    AppPersistentMemory.setHasSentDeviceModelToServer(to: true)
                 }
             }
         }
@@ -186,13 +186,13 @@ class SoundsViewViewModel: ObservableObject {
             return
         }
         
-        if let lastDate = UserSettings.getLastSendDateOfUserPersonalTrendsToServer() {
+        if let lastDate = AppPersistentMemory.getLastSendDateOfUserPersonalTrendsToServer() {
             if lastDate.onlyDate! < Date.now.onlyDate! {
                 podium.exchangeShareCountStatsWithTheServer { result, _ in
                     guard result == .successful || result == .noStatsToSend else {
                         return
                     }
-                    UserSettings.setLastSendDateOfUserPersonalTrendsToServer(to: Date.now.onlyDate!)
+                    AppPersistentMemory.setLastSendDateOfUserPersonalTrendsToServer(to: Date.now.onlyDate!)
                 }
             }
         } else {
@@ -200,7 +200,7 @@ class SoundsViewViewModel: ObservableObject {
                 guard result == .successful || result == .noStatsToSend else {
                     return
                 }
-                UserSettings.setLastSendDateOfUserPersonalTrendsToServer(to: Date.now.onlyDate!)
+                AppPersistentMemory.setLastSendDateOfUserPersonalTrendsToServer(to: Date.now.onlyDate!)
             }
         }
     }

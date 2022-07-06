@@ -39,7 +39,7 @@ struct SettingsView: View {
                     }
                 }
                 
-                if showAskForMoneyView {
+                if showAskForMoneyView || CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
                     Section {
                         BegForMoneyView()
                             .padding(.vertical)

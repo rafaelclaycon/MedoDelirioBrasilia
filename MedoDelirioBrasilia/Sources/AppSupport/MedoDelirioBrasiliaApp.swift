@@ -42,14 +42,24 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         _ application: UIApplication,
         didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
     ) {
-        let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
-        let token = tokenParts.joined()
-        print("Device Token: \(token)")
-      
-//        if var currentDevice = Device.current() {
-//            currentDevice.pushToken = token
-//            currentDevice.save()
-//        }
+        if AppPersistentMemory.getShouldRetrySendingDevicePushToken() {
+            let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
+            let token = tokenParts.joined()
+            print("Device Token: \(token)")
+            
+            let device = Device(installId: UIDevice.identifiderForVendor, pushToken: token)
+            networkRabbit.post(device: device) { success, error in
+                guard let success = success else {
+                    AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: true)
+                    return
+                }
+                guard success else {
+                    AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: true)
+                    return
+                }
+                AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: false)
+            }
+        }
     }
     
     func application(

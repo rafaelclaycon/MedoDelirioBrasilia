@@ -2,6 +2,10 @@ import UIKit
 
 public extension UIDevice {
 
+    static let identifiderForVendor: String = {
+        return UIDevice.current.identifierForVendor?.uuidString ?? ""
+    }()
+    
     static let modelName: String = {
         var systemInfo = utsname()
         uname(&systemInfo)

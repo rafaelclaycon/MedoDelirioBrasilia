@@ -574,6 +574,10 @@
 		D9BF90BE2842EAED00BDDD7D /* TopChartCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF90BD2842EAED00BDDD7D /* TopChartCellView.swift */; };
 		D9C3EF4E28668FD800C44249 /* Andre Starqueza - Ai que delicia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C3EF4D28668FD800C44249 /* Andre Starqueza - Ai que delicia.mp3 */; };
 		D9C3EF502866938A00C44249 /* Eduardo Pazuello - Tem um grau ai de prisma na coisa.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C3EF4F2866938A00C44249 /* Eduardo Pazuello - Tem um grau ai de prisma na coisa.mp3 */; };
+		D9DCC5D128751256008DD4A3 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D028751256008DD4A3 /* Device.swift */; };
+		D9DCC5D3287536EC008DD4A3 /* NetworkRabbit+Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D2287536EC008DD4A3 /* NetworkRabbit+Device.swift */; };
+		D9DCC5D52875CB59008DD4A3 /* AppPersistentMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D42875CB59008DD4A3 /* AppPersistentMemory.swift */; };
+		D9DCC5D72875D7E5008DD4A3 /* NotificationSymbolPlusText.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D62875D7E5008DD4A3 /* NotificationSymbolPlusText.swift */; };
 		D9E5100A286084F2003DB3A3 /* Date+OnlyDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E51009286084F2003DB3A3 /* Date+OnlyDate.swift */; };
 		D9E69592283D2E2C00C341B2 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = D9E69591283D2E2C00C341B2 /* SQLite */; };
 		D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E69593283D2F2F00C341B2 /* Favorite.swift */; };
@@ -591,7 +595,7 @@
 		D9F05B8D2873C55200E76B43 /* Regina Rouca - Se Liga Hein (serio).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F05B8B2873C55200E76B43 /* Regina Rouca - Se Liga Hein (serio).mp3 */; };
 		D9F05B8E2873C55200E76B43 /* Regina Rouca - Se Liga Hein (casual).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F05B8C2873C55200E76B43 /* Regina Rouca - Se Liga Hein (casual).mp3 */; };
 		D9F78A9F2860DF9100B83567 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F78A9E2860DF9100B83567 /* CollectionCell.swift */; };
-		D9FA0CD728508590000F6ADE /* UIDevice+ModelName.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FA0CD628508590000F6ADE /* UIDevice+ModelName.swift */; };
+		D9FA0CD728508590000F6ADE /* UIDevice+DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FA0CD628508590000F6ADE /* UIDevice+DeviceInfo.swift */; };
 		D9FA0CD92850864C000F6ADE /* ClientDeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FA0CD82850864C000F6ADE /* ClientDeviceInfo.swift */; };
 		D9FB489A2870FE7800FF90D0 /* TapticHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FB48992870FE7800FF90D0 /* TapticHelper.swift */; };
 /* End PBXBuildFile section */
@@ -1177,6 +1181,10 @@
 		D9BF90BD2842EAED00BDDD7D /* TopChartCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartCellView.swift; sourceTree = "<group>"; };
 		D9C3EF4D28668FD800C44249 /* Andre Starqueza - Ai que delicia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Andre Starqueza - Ai que delicia.mp3"; sourceTree = "<group>"; };
 		D9C3EF4F2866938A00C44249 /* Eduardo Pazuello - Tem um grau ai de prisma na coisa.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eduardo Pazuello - Tem um grau ai de prisma na coisa.mp3"; sourceTree = "<group>"; };
+		D9DCC5D028751256008DD4A3 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		D9DCC5D2287536EC008DD4A3 /* NetworkRabbit+Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+Device.swift"; sourceTree = "<group>"; };
+		D9DCC5D42875CB59008DD4A3 /* AppPersistentMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPersistentMemory.swift; sourceTree = "<group>"; };
+		D9DCC5D62875D7E5008DD4A3 /* NotificationSymbolPlusText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSymbolPlusText.swift; sourceTree = "<group>"; };
 		D9E51009286084F2003DB3A3 /* Date+OnlyDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+OnlyDate.swift"; sourceTree = "<group>"; };
 		D9E69593283D2F2F00C341B2 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		D9EB188F28577AE000A2F8A8 /* GAVETA - Voce merece tomar Nokul no cu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "GAVETA - Voce merece tomar Nokul no cu.mp3"; sourceTree = "<group>"; };
@@ -1193,7 +1201,7 @@
 		D9F05B8B2873C55200E76B43 /* Regina Rouca - Se Liga Hein (serio).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Regina Rouca - Se Liga Hein (serio).mp3"; sourceTree = "<group>"; };
 		D9F05B8C2873C55200E76B43 /* Regina Rouca - Se Liga Hein (casual).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Regina Rouca - Se Liga Hein (casual).mp3"; sourceTree = "<group>"; };
 		D9F78A9E2860DF9100B83567 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
-		D9FA0CD628508590000F6ADE /* UIDevice+ModelName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+ModelName.swift"; sourceTree = "<group>"; };
+		D9FA0CD628508590000F6ADE /* UIDevice+DeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+DeviceInfo.swift"; sourceTree = "<group>"; };
 		D9FA0CD82850864C000F6ADE /* ClientDeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientDeviceInfo.swift; sourceTree = "<group>"; };
 		D9FB48992870FE7800FF90D0 /* TapticHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapticHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1818,6 +1826,7 @@
 				D9A8AB2428543F8E00B5A94B /* SharingLogCell.swift */,
 				D92CAA4028593B1700D6C1EA /* NetworkLogCell.swift */,
 				D9BB9264285DAA8E005CD6DD /* BegForMoneyView.swift */,
+				D9DCC5D62875D7E5008DD4A3 /* NotificationSymbolPlusText.swift */,
 				D911070A28627216000B6F8F /* NotificationsSettingsView.swift */,
 				D9ABDDB1287411D9007B25EA /* Help */,
 			);
@@ -1831,7 +1840,7 @@
 				D93443282838230500ADCD38 /* String+Extensions.swift */,
 				D92C0CAD284076CD009CF19A /* UIApplication+KeyWindow.swift */,
 				D9B763272845B5E500CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift */,
-				D9FA0CD628508590000F6ADE /* UIDevice+ModelName.swift */,
+				D9FA0CD628508590000F6ADE /* UIDevice+DeviceInfo.swift */,
 				D9A8AB272854436500B5A94B /* Date+ToString.swift */,
 				D9E51009286084F2003DB3A3 /* Date+OnlyDate.swift */,
 				D9758C3D28617DAC0094D388 /* Color+Name.swift */,
@@ -1918,7 +1927,6 @@
 		D9625EAB2824EADC00080852 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D916627B2874F1E2000A1B23 /* Onboarding */,
 				D958B1A928394D400010F133 /* MainView.swift */,
 				D9B9025C2837485000551239 /* Sounds */,
 				D9EB18A32857CDE200A2F8A8 /* Collections */,
@@ -1926,6 +1934,7 @@
 				D92E7073283C5D9E0035826C /* Songs */,
 				D9BF90BC2842EAB100BDDD7D /* Trends */,
 				D957509728446BEC0094AEA6 /* Settings */,
+				D916627B2874F1E2000A1B23 /* Onboarding */,
 				D9759ACA2872B1D1005F9871 /* Shared */,
 			);
 			path = Views;
@@ -1948,6 +1957,7 @@
 				D9625E7D28238F9A00080852 /* MedoDelirioBrasiliaApp.swift */,
 				D980456128380F66003B2E83 /* LocalizableStrings.swift */,
 				D988C522283C33E100D64404 /* UserSettings.swift */,
+				D9DCC5D42875CB59008DD4A3 /* AppPersistentMemory.swift */,
 				D9BF9090284257F500BDDD7D /* Shared.swift */,
 				D960AF262845BFE700ADF1F6 /* UserDefaultsKeys.swift */,
 			);
@@ -1970,6 +1980,7 @@
 			isa = PBXGroup;
 			children = (
 				D98DBD34284919B1008544F8 /* NetworkRabbit.swift */,
+				D9DCC5D2287536EC008DD4A3 /* NetworkRabbit+Device.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -2001,6 +2012,7 @@
 				D91107132863B5FD000B6F8F /* ContentCollection.swift */,
 				D9943F2928642EC3002C6B97 /* UserFolderContent.swift */,
 				D92F8BAC286A6D2100EB9470 /* AlertType.swift */,
+				D9DCC5D028751256008DD4A3 /* Device.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2723,10 +2735,12 @@
 				D92E7067283C51D20035826C /* Song.swift in Sources */,
 				D93CCB79286A8A220002CF81 /* ToastView.swift in Sources */,
 				D958BC752869000A000B2EDA /* FolderInfoEditingViewViewModel.swift in Sources */,
+				D9DCC5D52875CB59008DD4A3 /* AppPersistentMemory.swift in Sources */,
 				D976FF3828674BAC00998E1B /* FoldersBannerView.swift in Sources */,
 				D9A8AB2A28544FAE00B5A94B /* NetworkCallLog.swift in Sources */,
 				D99B9DCA2848148600897930 /* ServerStatsAndLogs.swift in Sources */,
 				D9758C3828616E650094D388 /* FolderColor.swift in Sources */,
+				D9DCC5D72875D7E5008DD4A3 /* NotificationSymbolPlusText.swift in Sources */,
 				D960AF292845C82E00ADF1F6 /* AppStoreReviewSteward.swift in Sources */,
 				D9943F2C28643317002C6B97 /* FolderDetailViewViewModel.swift in Sources */,
 				D92C0CA82840162F009CF19A /* ContentSortOption.swift in Sources */,
@@ -2734,6 +2748,7 @@
 				D911070B28627216000B6F8F /* NotificationsSettingsView.swift in Sources */,
 				D9ABDDB0287411C9007B25EA /* SongHelpView.swift in Sources */,
 				D92C0CAE284076CD009CF19A /* UIApplication+KeyWindow.swift in Sources */,
+				D9DCC5D3287536EC008DD4A3 /* NetworkRabbit+Device.swift in Sources */,
 				D93CCB7B286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift in Sources */,
 				D9625E7E28238F9A00080852 /* MedoDelirioBrasiliaApp.swift in Sources */,
 				D958B1AC28394DCD0010F133 /* AuthorsView.swift in Sources */,
@@ -2794,8 +2809,9 @@
 				D9351C5C2844094E00D4317E /* TopChartItem.swift in Sources */,
 				D9943F172863DAE1002C6B97 /* FolderDetailView.swift in Sources */,
 				D98EC5E12825A05900340BE5 /* Sound.swift in Sources */,
+				D9DCC5D128751256008DD4A3 /* Device.swift in Sources */,
 				D9461182286159BC00C4FB7E /* UserFolder.swift in Sources */,
-				D9FA0CD728508590000F6ADE /* UIDevice+ModelName.swift in Sources */,
+				D9FA0CD728508590000F6ADE /* UIDevice+DeviceInfo.swift in Sources */,
 				D9943F2328641C00002C6B97 /* LocalDatabase.swift in Sources */,
 				D93D24E02849DAAB00300541 /* DiagnosticsView.swift in Sources */,
 				D958B1AE28394E420010F133 /* SongsView.swift in Sources */,

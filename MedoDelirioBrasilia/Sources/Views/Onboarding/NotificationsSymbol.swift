@@ -8,7 +8,7 @@ struct NotificationsSymbol: View {
             RoundedRectangle(cornerRadius: 20, style: .continuous)
                 .fill(Color.gray)
                 .frame(width: 280, height: 84)
-                .opacity(0.7)
+                .opacity(0.3)
             
             // App icon
             RoundedRectangle(cornerRadius: 16, style: .continuous)
@@ -40,7 +40,7 @@ struct NotificationsSymbol: View {
                     .frame(height: 34)
                     .foregroundColor(.green)
             }
-            .padding(.bottom, 83)
+            .padding(.bottom, 80)
             .padding(.trailing, 265)
         }
     }
