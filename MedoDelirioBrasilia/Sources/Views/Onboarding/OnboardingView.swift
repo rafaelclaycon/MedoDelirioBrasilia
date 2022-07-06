@@ -17,9 +17,9 @@ struct OnboardingView: View {
                     .padding(.horizontal)
                     .padding(.vertical)
                 
-                Text("Receba notificações sobre os últimos sons, tendências e novos recursos.\n\nTentaremos manter a frequência das notificações baixa.")
+                Text("Receba notificações sobre os últimos sons, tendências e novos recursos.\n\nTentaremos manter a frequência das notificações baixa, entre 2 e 3 por semana.")
                     .multilineTextAlignment(.center)
-                    .padding(.horizontal)
+                    .padding(.horizontal, 20)
                     .padding(.vertical)
                 
                 Button {
