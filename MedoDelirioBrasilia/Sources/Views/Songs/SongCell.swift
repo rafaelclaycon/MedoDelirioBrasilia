@@ -31,7 +31,7 @@ struct SongCell: View {
             
             VStack(alignment: .leading, spacing: 8) {
                 HStack(spacing: 10) {
-                    VStack(alignment: .leading, spacing: 8) {
+                    VStack(alignment: .leading, spacing: 4) {
                         Text(title)
                             .foregroundColor(.black)
                             .bold()
@@ -39,8 +39,8 @@ struct SongCell: View {
                         
                         Text(subtitle)
                             .foregroundColor(.white)
+                            .font(.callout)
                             .multilineTextAlignment(.leading)
-                            .opacity(isPlaying ? 0.7 : 1.0)
                     }
                     
                     Spacer()

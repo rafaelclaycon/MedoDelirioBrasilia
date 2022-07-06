@@ -578,6 +578,7 @@
 		D9DCC5D3287536EC008DD4A3 /* NetworkRabbit+Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D2287536EC008DD4A3 /* NetworkRabbit+Device.swift */; };
 		D9DCC5D52875CB59008DD4A3 /* AppPersistentMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D42875CB59008DD4A3 /* AppPersistentMemory.swift */; };
 		D9DCC5D72875D7E5008DD4A3 /* NotificationSymbolPlusText.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D62875D7E5008DD4A3 /* NotificationSymbolPlusText.swift */; };
+		D9DCC5D9287625F4008DD4A3 /* PodcastAuthorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D8287625F4008DD4A3 /* PodcastAuthorsView.swift */; };
 		D9E5100A286084F2003DB3A3 /* Date+OnlyDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E51009286084F2003DB3A3 /* Date+OnlyDate.swift */; };
 		D9E69592283D2E2C00C341B2 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = D9E69591283D2E2C00C341B2 /* SQLite */; };
 		D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E69593283D2F2F00C341B2 /* Favorite.swift */; };
@@ -1185,6 +1186,7 @@
 		D9DCC5D2287536EC008DD4A3 /* NetworkRabbit+Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+Device.swift"; sourceTree = "<group>"; };
 		D9DCC5D42875CB59008DD4A3 /* AppPersistentMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPersistentMemory.swift; sourceTree = "<group>"; };
 		D9DCC5D62875D7E5008DD4A3 /* NotificationSymbolPlusText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSymbolPlusText.swift; sourceTree = "<group>"; };
+		D9DCC5D8287625F4008DD4A3 /* PodcastAuthorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastAuthorsView.swift; sourceTree = "<group>"; };
 		D9E51009286084F2003DB3A3 /* Date+OnlyDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+OnlyDate.swift"; sourceTree = "<group>"; };
 		D9E69593283D2F2F00C341B2 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		D9EB188F28577AE000A2F8A8 /* GAVETA - Voce merece tomar Nokul no cu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "GAVETA - Voce merece tomar Nokul no cu.mp3"; sourceTree = "<group>"; };
@@ -1825,6 +1827,7 @@
 				D93D24DF2849DAAB00300541 /* DiagnosticsView.swift */,
 				D9A8AB2428543F8E00B5A94B /* SharingLogCell.swift */,
 				D92CAA4028593B1700D6C1EA /* NetworkLogCell.swift */,
+				D9DCC5D8287625F4008DD4A3 /* PodcastAuthorsView.swift */,
 				D9BB9264285DAA8E005CD6DD /* BegForMoneyView.swift */,
 				D9DCC5D62875D7E5008DD4A3 /* NotificationSymbolPlusText.swift */,
 				D911070A28627216000B6F8F /* NotificationsSettingsView.swift */,
@@ -2813,6 +2816,7 @@
 				D9461182286159BC00C4FB7E /* UserFolder.swift in Sources */,
 				D9FA0CD728508590000F6ADE /* UIDevice+DeviceInfo.swift in Sources */,
 				D9943F2328641C00002C6B97 /* LocalDatabase.swift in Sources */,
+				D9DCC5D9287625F4008DD4A3 /* PodcastAuthorsView.swift in Sources */,
 				D93D24E02849DAAB00300541 /* DiagnosticsView.swift in Sources */,
 				D958B1AE28394E420010F133 /* SongsView.swift in Sources */,
 				D9BF90972842D3CB00BDDD7D /* NoSoundsView.swift in Sources */,
@@ -2999,7 +3003,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2;
+				MARKETING_VERSION = 2.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -3032,7 +3036,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.2;
+				MARKETING_VERSION = 2.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SWIFT_EMIT_LOC_STRINGS = YES;
