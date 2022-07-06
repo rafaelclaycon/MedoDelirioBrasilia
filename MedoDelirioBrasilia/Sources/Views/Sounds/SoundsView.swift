@@ -8,7 +8,6 @@ struct SoundsView: View {
     
     @StateObject private var viewModel = SoundsViewViewModel()
     @State private var currentMode: Mode = .allSounds
-    @State private var showingHelpScreen = false
     @State private var searchText = ""
     @State private var scrollViewObject: ScrollViewProxy? = nil
     
@@ -56,8 +55,6 @@ struct SoundsView: View {
         NavigationView {
             ZStack {
                 VStack {
-                    NavigationLink(destination: SoundHelpView(), isActive: $showingHelpScreen) { EmptyView() }
-                    
                     if showNoFavoritesView {
                         NoFavoritesView()
                             .padding(.horizontal, 25)
@@ -115,14 +112,6 @@ struct SoundsView: View {
                 .navigationTitle(Text(LocalizableStrings.MainView.title))
                 .navigationBarItems(leading:
                     HStack {
-                        Button(action: {
-                            showingHelpScreen = true
-                        }) {
-                            HStack {
-                                Image(systemName: "questionmark.circle")
-                            }
-                        }
-                        
                         Menu {
                             Section {
                                 Picker(selection: $currentMode, label: Text("Exibição")) {

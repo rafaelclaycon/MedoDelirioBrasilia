@@ -3,6 +3,8 @@
         "id": "A7167CFA-BA69-4F4A-A180-F24120DB4EFF",
         "title": "Eu volto pro ostracismo",
         "description": "",
+        "genre": "MPB",
+        "duration": "00:09",
         "filename": "Eu volto pro ostracismo.mp3",
         "dateAdded": "2022-04-22T00:00:00Z",
         "isOffensive": false
@@ -11,6 +13,8 @@
         "id": "32D2E734-805F-4A1B-861F-AB4BDC10A914",
         "title": "Pena que não pode ver um impeachment",
         "description": "",
+        "genre": "",
+        "duration": "00:08",
         "filename": "Pena que nao pode ver um impeachment.mp3",
         "dateAdded": "2022-04-22T00:00:00Z",
         "isOffensive": false
@@ -19,6 +23,8 @@
         "id": "69AE8BCC-3ADC-4A32-8A98-D9C3777444D0",
         "title": "Não era fake news, era jornalismo",
         "description": "",
+        "genre": "MPB",
+        "duration": "00:47",
         "filename": "Nao era fake news era jornalismo.mp3",
         "dateAdded": "2022-04-22T00:00:00Z",
         "isOffensive": false
@@ -27,6 +33,8 @@
         "id": "97C87B5B-B8C0-4C37-8EEB-7D69553770AC",
         "title": "Unidos do Medo e Delírio em Brasília",
         "description": "",
+        "genre": "Samba",
+        "duration": "00:11",
         "filename": "Unidos do Medo e Delírio.mp3",
         "dateAdded": "2022-04-22T00:00:00Z",
         "isOffensive": false
@@ -35,6 +43,8 @@
         "id": "BE72C748-6762-44AD-B8C5-A390F0C8FE5A",
         "title": "Bora Arrochar... E Depois... Carnavalizar!",
         "description": "",
+        "genre": "Arrocha",
+        "duration": "01:12",
         "filename": "O roque ativa.mp3",
         "dateAdded": "2022-04-22T00:00:00Z",
         "isOffensive": true
@@ -43,8 +53,140 @@
         "id": "36EB9AD4-B70C-42A3-8C6F-48408CAA47D6",
         "title": "A impiedosa justiça de Deus",
         "description": "",
+        "genre": "",
+        "duration": "00:56",
         "filename": "A impiedosa justica de Deus.mp3",
         "dateAdded": "2022-06-22T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "2E2809EE-51F2-4996-AA3D-BF8AD332CF31",
+        "title": "Capricha Renan",
+        "description": "",
+        "genre": "Funk",
+        "duration": "01:17",
+        "filename": "funk-capricha-renan-mdb.mp3",
+        "dateAdded": "2022-07-05T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "8273FC78-0B7D-4AAB-BA61-BFF123C8EC39",
+        "title": "Funk da Perninha",
+        "description": "",
+        "genre": "Funk",
+        "duration": "02:43",
+        "filename": "funk-da-perninha.mp3",
+        "dateAdded": "2022-07-05T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "C5FDAF6D-6D5A-41C1-B2A9-D48A1FFAC41C",
+        "title": "Funk do Morto",
+        "description": "",
+        "genre": "Funk",
+        "duration": "00:27",
+        "filename": "funk-do-morto-mdb.mp3",
+        "dateAdded": "2022-07-05T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "65F5DCBD-0272-4DC0-9458-A4CAC90B2523",
+        "title": "Maluco Genocida",
+        "description": "",
+        "genre": "Funk",
+        "duration": "00:28",
+        "filename": "funk-maluco-genocida-mdb.mp3",
+        "dateAdded": "2022-07-05T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "EBF5FD18-288E-45FC-A328-672232B89766",
+        "title": "Não sou médico mas sou ousado",
+        "description": "",
+        "genre": "Funk",
+        "duration": "00:35",
+        "filename": "funk-nao-medico-mas-ousado.mp3",
+        "dateAdded": "2022-07-05T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "2A2EDE10-86C1-4DC4-A148-0939D839BCC9",
+        "title": "Podem escrever e me cobrem",
+        "description": "",
+        "genre": "Funk",
+        "duration": "00:44",
+        "filename": "funk-podem-escrever-e-me-cobrem-mdb.mp3",
+        "dateAdded": "2022-07-05T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "99371180-86E1-47CE-A637-1368712E68B8",
+        "title": "Sexo Selvagem",
+        "description": "",
+        "genre": "Funk",
+        "duration": "00:30",
+        "filename": "funk-sexo-selvagem-1-mdb.mp3",
+        "dateAdded": "2022-07-05T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "1B1B689D-2E88-4092-A0BA-0D6181B77723",
+        "title": "Máscara no rabo",
+        "description": "",
+        "genre": "House",
+        "duration": "01:12",
+        "filename": "house-mascara-no-rabo-mdb.mp3",
+        "dateAdded": "2022-07-05T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "BF0A20CD-762E-4FD3-BE87-030C8FBBA9D7",
+        "title": "Osmar Cloroquina",
+        "description": "",
+        "genre": "Pagode",
+        "duration": "00:13",
+        "filename": "pagode-osmar-cloroquina-mdb.mp3",
+        "dateAdded": "2022-07-05T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "AFCF2F5E-49D6-4BFC-957E-07CF24AF6A41",
+        "title": "Chocolate chocolate",
+        "description": "",
+        "genre": "Rock",
+        "duration": "00:21",
+        "filename": "rock-chocolate-chocolate-mdb.mp3",
+        "dateAdded": "2022-07-05T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "9D4F48AA-CB0E-426B-B45E-97772FA64306",
+        "title": "Comunismo AI-6",
+        "description": "",
+        "genre": "Rock",
+        "duration": "00:52",
+        "filename": "rock-comunismo-ai-seis-mdb.mp3",
+        "dateAdded": "2022-07-05T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "1BB31BF2-7980-4C76-9AA5-E6FF8B0D2DA8",
+        "title": "Comunismo Vale Tudo",
+        "description": "",
+        "genre": "Rock",
+        "duration": "00:55",
+        "filename": "rock-comunismo-vale-tudo-mdb.mp3",
+        "dateAdded": "2022-07-05T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "C9C87B50-55DE-4535-B164-819DE597A982",
+        "title": "Eu vou pra Ceilância",
+        "description": "",
+        "genre": "Rock",
+        "duration": "00:13",
+        "filename": "rock-eu-vou-pra-ceilandia-mdb.mp3",
+        "dateAdded": "2022-07-05T00:00:00Z",
+        "isOffensive": true
     }
 ]
