@@ -47,13 +47,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             let token = tokenParts.joined()
             print("Device Token: \(token)")
             
-            let device = Device(installId: UIDevice.identifiderForVendor, pushToken: token)
-            networkRabbit.post(device: device) { success, error in
-                guard let success = success else {
-                    AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: true)
-                    return
-                }
-                guard success else {
+            let device = PushDevice(installId: UIDevice.identifiderForVendor, pushToken: token)
+            networkRabbit.post(pushDevice: device) { success, error in
+                guard let success = success, success else {
                     AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: true)
                     return
                 }

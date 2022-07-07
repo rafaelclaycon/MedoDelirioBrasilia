@@ -574,8 +574,8 @@
 		D9BF90BE2842EAED00BDDD7D /* TopChartCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF90BD2842EAED00BDDD7D /* TopChartCellView.swift */; };
 		D9C3EF4E28668FD800C44249 /* Andre Starqueza - Ai que delicia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C3EF4D28668FD800C44249 /* Andre Starqueza - Ai que delicia.mp3 */; };
 		D9C3EF502866938A00C44249 /* Eduardo Pazuello - Tem um grau ai de prisma na coisa.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C3EF4F2866938A00C44249 /* Eduardo Pazuello - Tem um grau ai de prisma na coisa.mp3 */; };
-		D9DCC5D128751256008DD4A3 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D028751256008DD4A3 /* Device.swift */; };
-		D9DCC5D3287536EC008DD4A3 /* NetworkRabbit+Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D2287536EC008DD4A3 /* NetworkRabbit+Device.swift */; };
+		D9DCC5D128751256008DD4A3 /* PushDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D028751256008DD4A3 /* PushDevice.swift */; };
+		D9DCC5D3287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D2287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift */; };
 		D9DCC5D52875CB59008DD4A3 /* AppPersistentMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D42875CB59008DD4A3 /* AppPersistentMemory.swift */; };
 		D9DCC5D72875D7E5008DD4A3 /* NotificationSymbolPlusText.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D62875D7E5008DD4A3 /* NotificationSymbolPlusText.swift */; };
 		D9DCC5D9287625F4008DD4A3 /* PodcastAuthorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D8287625F4008DD4A3 /* PodcastAuthorsView.swift */; };
@@ -1182,8 +1182,8 @@
 		D9BF90BD2842EAED00BDDD7D /* TopChartCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartCellView.swift; sourceTree = "<group>"; };
 		D9C3EF4D28668FD800C44249 /* Andre Starqueza - Ai que delicia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Andre Starqueza - Ai que delicia.mp3"; sourceTree = "<group>"; };
 		D9C3EF4F2866938A00C44249 /* Eduardo Pazuello - Tem um grau ai de prisma na coisa.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eduardo Pazuello - Tem um grau ai de prisma na coisa.mp3"; sourceTree = "<group>"; };
-		D9DCC5D028751256008DD4A3 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
-		D9DCC5D2287536EC008DD4A3 /* NetworkRabbit+Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+Device.swift"; sourceTree = "<group>"; };
+		D9DCC5D028751256008DD4A3 /* PushDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushDevice.swift; sourceTree = "<group>"; };
+		D9DCC5D2287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+PushDevice.swift"; sourceTree = "<group>"; };
 		D9DCC5D42875CB59008DD4A3 /* AppPersistentMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPersistentMemory.swift; sourceTree = "<group>"; };
 		D9DCC5D62875D7E5008DD4A3 /* NotificationSymbolPlusText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSymbolPlusText.swift; sourceTree = "<group>"; };
 		D9DCC5D8287625F4008DD4A3 /* PodcastAuthorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastAuthorsView.swift; sourceTree = "<group>"; };
@@ -1983,7 +1983,7 @@
 			isa = PBXGroup;
 			children = (
 				D98DBD34284919B1008544F8 /* NetworkRabbit.swift */,
-				D9DCC5D2287536EC008DD4A3 /* NetworkRabbit+Device.swift */,
+				D9DCC5D2287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -2015,7 +2015,7 @@
 				D91107132863B5FD000B6F8F /* ContentCollection.swift */,
 				D9943F2928642EC3002C6B97 /* UserFolderContent.swift */,
 				D92F8BAC286A6D2100EB9470 /* AlertType.swift */,
-				D9DCC5D028751256008DD4A3 /* Device.swift */,
+				D9DCC5D028751256008DD4A3 /* PushDevice.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2751,7 +2751,7 @@
 				D911070B28627216000B6F8F /* NotificationsSettingsView.swift in Sources */,
 				D9ABDDB0287411C9007B25EA /* SongHelpView.swift in Sources */,
 				D92C0CAE284076CD009CF19A /* UIApplication+KeyWindow.swift in Sources */,
-				D9DCC5D3287536EC008DD4A3 /* NetworkRabbit+Device.swift in Sources */,
+				D9DCC5D3287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift in Sources */,
 				D93CCB7B286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift in Sources */,
 				D9625E7E28238F9A00080852 /* MedoDelirioBrasiliaApp.swift in Sources */,
 				D958B1AC28394DCD0010F133 /* AuthorsView.swift in Sources */,
@@ -2812,7 +2812,7 @@
 				D9351C5C2844094E00D4317E /* TopChartItem.swift in Sources */,
 				D9943F172863DAE1002C6B97 /* FolderDetailView.swift in Sources */,
 				D98EC5E12825A05900340BE5 /* Sound.swift in Sources */,
-				D9DCC5D128751256008DD4A3 /* Device.swift in Sources */,
+				D9DCC5D128751256008DD4A3 /* PushDevice.swift in Sources */,
 				D9461182286159BC00C4FB7E /* UserFolder.swift in Sources */,
 				D9FA0CD728508590000F6ADE /* UIDevice+DeviceInfo.swift in Sources */,
 				D9943F2328641C00002C6B97 /* LocalDatabase.swift in Sources */,

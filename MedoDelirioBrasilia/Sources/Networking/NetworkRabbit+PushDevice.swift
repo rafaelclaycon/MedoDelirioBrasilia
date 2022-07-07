@@ -2,7 +2,7 @@ import Foundation
 
 extension NetworkRabbit {
 
-    func post(device: Device, completionHandler: @escaping (Bool?, NetworkRabbitError?) -> Void) {
+    func post(pushDevice: PushDevice, completionHandler: @escaping (Bool?, NetworkRabbitError?) -> Void) {
         let url = URL(string: serverPath + "v1/push-device")!
 
         var request = URLRequest(url: url)
@@ -10,7 +10,7 @@ extension NetworkRabbit {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let jsonEncoder = JSONEncoder()
-        let jsonData = try? jsonEncoder.encode(device)
+        let jsonData = try? jsonEncoder.encode(pushDevice)
         request.httpBody = jsonData
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
