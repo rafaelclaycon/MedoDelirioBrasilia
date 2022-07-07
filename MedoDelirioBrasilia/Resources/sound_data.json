@@ -3006,10 +3006,19 @@
         "isOffensive": false
     },
     {
-        "id": "3CC64BAC-29B6-47DB-91CF-2B371DE64CCF",
-        "title": "Malditos milicos",
+        "id": "B8C7C7D4-2911-4678-BE2E-66F6BABC7AF1",
+        "title": "Malditos Milicos (Acorde em B7)",
         "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
-        "description": "Malditos milicos",
+        "description": "malditos milicos acorde em setima b7",
+        "filename": "Malditos Milicos - Acorde em B7.mp3",
+        "dateAdded": "2022-07-06T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "3CC64BAC-29B6-47DB-91CF-2B371DE64CCF",
+        "title": "Malditos milicos (Robô)",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "malditos milicos robô",
         "filename": "Malditos Milicos robo.mp3",
         "dateAdded": "2022-06-09T00:00:00Z",
         "isOffensive": true

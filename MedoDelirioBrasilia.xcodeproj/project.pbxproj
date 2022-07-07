@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49732B78287663FA006CA86A /* Malditos Milicos - Acorde em B7.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49732B77287663FA006CA86A /* Malditos Milicos - Acorde em B7.mp3 */; };
 		D90483CE2851A19F00885739 /* CANAL RURAL - Alexandre Garcia - A sensatez que significa a abordagem do governo na pandemia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90483C82851A19F00885739 /* CANAL RURAL - Alexandre Garcia - A sensatez que significa a abordagem do governo na pandemia.mp3 */; };
 		D90483CF2851A19F00885739 /* Gaucho Puto - Uma bosta, nao sabe, uma merda.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90483C92851A19F00885739 /* Gaucho Puto - Uma bosta, nao sabe, uma merda.mp3 */; };
 		D90483D02851A19F00885739 /* SBT NEWS - Bolsonaro - Qualquer decisao do Alexandre de Moraes esse presidente nao mais cumprira.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90483CA2851A19F00885739 /* SBT NEWS - Bolsonaro - Qualquer decisao do Alexandre de Moraes esse presidente nao mais cumprira.mp3 */; };
@@ -605,6 +606,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		49732B77287663FA006CA86A /* Malditos Milicos - Acorde em B7.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Malditos Milicos - Acorde em B7.mp3"; sourceTree = "<group>"; };
 		D90483C82851A19F00885739 /* CANAL RURAL - Alexandre Garcia - A sensatez que significa a abordagem do governo na pandemia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "CANAL RURAL - Alexandre Garcia - A sensatez que significa a abordagem do governo na pandemia.mp3"; sourceTree = "<group>"; };
 		D90483C92851A19F00885739 /* Gaucho Puto - Uma bosta, nao sabe, uma merda.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gaucho Puto - Uma bosta, nao sabe, uma merda.mp3"; sourceTree = "<group>"; };
 		D90483CA2851A19F00885739 /* SBT NEWS - Bolsonaro - Qualquer decisao do Alexandre de Moraes esse presidente nao mais cumprira.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "SBT NEWS - Bolsonaro - Qualquer decisao do Alexandre de Moraes esse presidente nao mais cumprira.mp3"; sourceTree = "<group>"; };
@@ -1217,6 +1219,7 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				49732B77287663FA006CA86A /* Malditos Milicos - Acorde em B7.mp3 */,
 				D93B0F3E2873E12C00EC1DFE /* Lula - Voces percebem a loucura que esta tomando conta desse pais.mp3 */,
 				D9F05B8C2873C55200E76B43 /* Regina Rouca - Se Liga Hein (casual).mp3 */,
 				D9F05B8B2873C55200E76B43 /* Regina Rouca - Se Liga Hein (serio).mp3 */,
@@ -2449,6 +2452,7 @@
 				D946117B286136CD00C4FB7E /* Damares - Uau.mp3 in Resources */,
 				D95569B7285137800072E3FC /* Olavo de Carvalho - Porra.mp3 in Resources */,
 				D95F412828720717001CF903 /* Dilma - O milho.mp3 in Resources */,
+				49732B78287663FA006CA86A /* Malditos Milicos - Acorde em B7.mp3 in Resources */,
 				D92879E7283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 in Resources */,
 				D927C41928523F5D0041970A /* Pica Pau - Um genio.mp3 in Resources */,
 				D95F410A2872040D001CF903 /* CAUE MOURA - Eu esperava o pior mas puta que o pariu.mp3 in Resources */,
