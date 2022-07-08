@@ -2,7 +2,7 @@ import UIKit
 
 class Sharer {
 
-    static func shareSound(withPath filepath: String, andContentId contentId: String) throws {
+    static func shareSound(withPath filepath: String, andContentId contentId: String, completionHandler: @escaping (Bool) -> Void) throws {
         guard filepath.isEmpty == false else {
             return
         }
@@ -25,6 +25,10 @@ class Sharer {
                 Logger.logSharedSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
                 
                 AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
+                
+                completionHandler(true)
+            } else {
+                completionHandler(false)
             }
         }
     }

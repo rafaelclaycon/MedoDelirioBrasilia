@@ -4,7 +4,18 @@ struct SongCell: View {
 
     @State var songId: String
     @State var title: String
+    @State var genre: String
+    @State var duration: String
     @Binding var nowPlaying: Set<String>
+    
+    var subtitle: String {
+        if genre.isEmpty == false {
+            return "\(genre) · \(duration)"
+        } else {
+            return duration
+        }
+    }
+    
     var isPlaying: Bool {
         nowPlaying.contains(songId)
     }
@@ -20,12 +31,17 @@ struct SongCell: View {
             
             VStack(alignment: .leading, spacing: 8) {
                 HStack(spacing: 10) {
-                    Text(title)
-                        .foregroundColor(.black)
-                        .font(.body)
-                        .bold()
-                        .multilineTextAlignment(.leading)
-                        .frame(height: 90)
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(title)
+                            .foregroundColor(.black)
+                            .bold()
+                            .multilineTextAlignment(.leading)
+                        
+                        Text(subtitle)
+                            .foregroundColor(.white)
+                            .font(.callout)
+                            .multilineTextAlignment(.leading)
+                    }
                     
                     Spacer()
                     
@@ -46,7 +62,9 @@ struct SongCell: View {
 struct SongCell_Previews: PreviewProvider {
 
     static var previews: some View {
-        SongCell(songId: "ABC", title: "Test", nowPlaying: .constant(Set<String>()))
+        SongCell(songId: "ABC", title: "Funk do Morto", genre: "Funk", duration: "01:00", nowPlaying: .constant(Set<String>()))
+            .padding(.horizontal)
+            .previewLayout(.fixed(width: 414, height: 100))
     }
 
 }
