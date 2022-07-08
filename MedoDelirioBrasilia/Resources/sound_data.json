@@ -4102,5 +4102,41 @@
         "filename": "Lula - Voces percebem a loucura.mp3",
         "dateAdded": "2022-07-05T00:00:00Z",
         "isOffensive": true
+    },
+    {
+        "id": "5B62CE81-EA51-46E2-8D21-B5FDEB2EFCD3",
+        "title": "Bibibibibi Mito (longo)",
+        "authorId": "8C588F61-04AC-4F3D-B1B8-F44ADC1311E2",
+        "description": "ainda vai lá bibibibibi mito mitooo seus corno do caramba",
+        "filename": "Nando Moura - Bibibibi Mito (longo).mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "F1DDF04F-7F0B-492B-AE61-FB6240FC06F8",
+        "title": "Bibibibibi Mito (curto)",
+        "authorId": "8C588F61-04AC-4F3D-B1B8-F44ADC1311E2",
+        "description": "bibibibibi mito mitooo",
+        "filename": "Nando Moura - Bibibibi Mito (curto).mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "28256D5E-B88F-4EF1-9E48-46AD0572955F",
+        "title": "Deus escolheu as coisas loucas",
+        "authorId": "C066E971-8702-4261-955D-00CF642A465A",
+        "description": "Deus escolheu as coisas loucas",
+        "filename": "Malafaia - Deus escolheu as coisas loucas.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "68A48196-7020-41D9-BB6E-4CA791503177",
+        "title": "Laudos",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "laudos pisi laudos aí",
+        "filename": "Bolsonaro - Laudos.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": true
     }
 ]
