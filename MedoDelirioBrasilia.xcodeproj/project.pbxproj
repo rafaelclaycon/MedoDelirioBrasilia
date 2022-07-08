@@ -8,6 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		49732B78287663FA006CA86A /* Malditos Milicos - Acorde em B7.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49732B77287663FA006CA86A /* Malditos Milicos - Acorde em B7.mp3 */; };
+		49732B7A28786823006CA86A /* Malditos Milicos - Arpeggio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49732B7928786823006CA86A /* Malditos Milicos - Arpeggio.mp3 */; };
+		49732B7C28786889006CA86A /* Malditos Milicos - cromatica descendente.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49732B7B28786889006CA86A /* Malditos Milicos - cromatica descendente.mp3 */; };
+		49732B7E287868C9006CA86A /* Malditos Milicos - Trashy Barber quartet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49732B7D287868C9006CA86A /* Malditos Milicos - Trashy Barber quartet.mp3 */; };
+		49732B8028786921006CA86A /* Malditos milicos - Autotune.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49732B7F28786921006CA86A /* Malditos milicos - Autotune.mp3 */; };
+		49732B8228786973006CA86A /* Malditos milicos - bomba.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49732B8128786973006CA86A /* Malditos milicos - bomba.mp3 */; };
+		49732B842878699F006CA86A /* Malditos Milicos distorcido.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49732B832878699F006CA86A /* Malditos Milicos distorcido.mp3 */; };
+		49732B86287869C6006CA86A /* Malditos milicos monges Om.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49732B85287869C6006CA86A /* Malditos milicos monges Om.mp3 */; };
+		49732B8828786A16006CA86A /* Malditos Milicos reverse.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49732B8728786A16006CA86A /* Malditos Milicos reverse.mp3 */; };
+		49732B8A28786A53006CA86A /* Malditos milicos robo grave.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49732B8928786A53006CA86A /* Malditos milicos robo grave.mp3 */; };
+		49732B8C28786A7B006CA86A /* Malditos Milicos semitons.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49732B8B28786A7B006CA86A /* Malditos Milicos semitons.mp3 */; };
+		49732B8E28786AE0006CA86A /* Bolsonaro - Tudo pequenininho ai.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49732B8D28786AE0006CA86A /* Bolsonaro - Tudo pequenininho ai.mp3 */; };
+		49732B9028786B57006CA86A /* Bolsonaro - Tudo pequenininho ai.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49732B8F28786B57006CA86A /* Bolsonaro - Tudo pequenininho ai.mp3 */; };
+		49732B9228786C28006CA86A /* MINISTRO TERRIVELMENTE FILHO DA PUTA.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49732B9128786C28006CA86A /* MINISTRO TERRIVELMENTE FILHO DA PUTA.mp3 */; };
+		49732B9428786CDC006CA86A /* LIVE DAS CANJEBRINAS - Francuel Cruz - Plural e sua mao em meu pau.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49732B9328786CDC006CA86A /* LIVE DAS CANJEBRINAS - Francuel Cruz - Plural e sua mao em meu pau.mp3 */; };
+		49732B9628786D6E006CA86A /* FRANCIEL CRUZ - LIVE DAS CANJEBRINAS - Polarizacao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49732B9528786D6E006CA86A /* FRANCIEL CRUZ - LIVE DAS CANJEBRINAS - Polarizacao.mp3 */; };
 		D90483CE2851A19F00885739 /* CANAL RURAL - Alexandre Garcia - A sensatez que significa a abordagem do governo na pandemia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90483C82851A19F00885739 /* CANAL RURAL - Alexandre Garcia - A sensatez que significa a abordagem do governo na pandemia.mp3 */; };
 		D90483CF2851A19F00885739 /* Gaucho Puto - Uma bosta, nao sabe, uma merda.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90483C92851A19F00885739 /* Gaucho Puto - Uma bosta, nao sabe, uma merda.mp3 */; };
 		D90483D02851A19F00885739 /* SBT NEWS - Bolsonaro - Qualquer decisao do Alexandre de Moraes esse presidente nao mais cumprira.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90483CA2851A19F00885739 /* SBT NEWS - Bolsonaro - Qualquer decisao do Alexandre de Moraes esse presidente nao mais cumprira.mp3 */; };
@@ -607,6 +622,21 @@
 
 /* Begin PBXFileReference section */
 		49732B77287663FA006CA86A /* Malditos Milicos - Acorde em B7.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Malditos Milicos - Acorde em B7.mp3"; sourceTree = "<group>"; };
+		49732B7928786823006CA86A /* Malditos Milicos - Arpeggio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Malditos Milicos - Arpeggio.mp3"; sourceTree = "<group>"; };
+		49732B7B28786889006CA86A /* Malditos Milicos - cromatica descendente.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Malditos Milicos - cromatica descendente.mp3"; sourceTree = "<group>"; };
+		49732B7D287868C9006CA86A /* Malditos Milicos - Trashy Barber quartet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Malditos Milicos - Trashy Barber quartet.mp3"; sourceTree = "<group>"; };
+		49732B7F28786921006CA86A /* Malditos milicos - Autotune.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Malditos milicos - Autotune.mp3"; sourceTree = "<group>"; };
+		49732B8128786973006CA86A /* Malditos milicos - bomba.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Malditos milicos - bomba.mp3"; sourceTree = "<group>"; };
+		49732B832878699F006CA86A /* Malditos Milicos distorcido.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Malditos Milicos distorcido.mp3"; sourceTree = "<group>"; };
+		49732B85287869C6006CA86A /* Malditos milicos monges Om.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Malditos milicos monges Om.mp3"; sourceTree = "<group>"; };
+		49732B8728786A16006CA86A /* Malditos Milicos reverse.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Malditos Milicos reverse.mp3"; sourceTree = "<group>"; };
+		49732B8928786A53006CA86A /* Malditos milicos robo grave.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Malditos milicos robo grave.mp3"; sourceTree = "<group>"; };
+		49732B8B28786A7B006CA86A /* Malditos Milicos semitons.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Malditos Milicos semitons.mp3"; sourceTree = "<group>"; };
+		49732B8D28786AE0006CA86A /* Bolsonaro - Tudo pequenininho ai.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Tudo pequenininho ai.mp3"; sourceTree = "<group>"; };
+		49732B8F28786B57006CA86A /* Bolsonaro - Tudo pequenininho ai.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Tudo pequenininho ai.mp3"; sourceTree = "<group>"; };
+		49732B9128786C28006CA86A /* MINISTRO TERRIVELMENTE FILHO DA PUTA.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "MINISTRO TERRIVELMENTE FILHO DA PUTA.mp3"; sourceTree = "<group>"; };
+		49732B9328786CDC006CA86A /* LIVE DAS CANJEBRINAS - Francuel Cruz - Plural e sua mao em meu pau.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "LIVE DAS CANJEBRINAS - Francuel Cruz - Plural e sua mao em meu pau.mp3"; sourceTree = "<group>"; };
+		49732B9528786D6E006CA86A /* FRANCIEL CRUZ - LIVE DAS CANJEBRINAS - Polarizacao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "FRANCIEL CRUZ - LIVE DAS CANJEBRINAS - Polarizacao.mp3"; sourceTree = "<group>"; };
 		D90483C82851A19F00885739 /* CANAL RURAL - Alexandre Garcia - A sensatez que significa a abordagem do governo na pandemia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "CANAL RURAL - Alexandre Garcia - A sensatez que significa a abordagem do governo na pandemia.mp3"; sourceTree = "<group>"; };
 		D90483C92851A19F00885739 /* Gaucho Puto - Uma bosta, nao sabe, uma merda.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gaucho Puto - Uma bosta, nao sabe, uma merda.mp3"; sourceTree = "<group>"; };
 		D90483CA2851A19F00885739 /* SBT NEWS - Bolsonaro - Qualquer decisao do Alexandre de Moraes esse presidente nao mais cumprira.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "SBT NEWS - Bolsonaro - Qualquer decisao do Alexandre de Moraes esse presidente nao mais cumprira.mp3"; sourceTree = "<group>"; };
@@ -1219,6 +1249,9 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				49732B9528786D6E006CA86A /* FRANCIEL CRUZ - LIVE DAS CANJEBRINAS - Polarizacao.mp3 */,
+				49732B9128786C28006CA86A /* MINISTRO TERRIVELMENTE FILHO DA PUTA.mp3 */,
+				49732B8F28786B57006CA86A /* Bolsonaro - Tudo pequenininho ai.mp3 */,
 				49732B77287663FA006CA86A /* Malditos Milicos - Acorde em B7.mp3 */,
 				D93B0F3E2873E12C00EC1DFE /* Lula - Voces percebem a loucura que esta tomando conta desse pais.mp3 */,
 				D9F05B8C2873C55200E76B43 /* Regina Rouca - Se Liga Hein (casual).mp3 */,
@@ -1699,6 +1732,18 @@
 		D92E7068283C5C120035826C /* Songs */ = {
 			isa = PBXGroup;
 			children = (
+				49732B9328786CDC006CA86A /* LIVE DAS CANJEBRINAS - Francuel Cruz - Plural e sua mao em meu pau.mp3 */,
+				49732B8B28786A7B006CA86A /* Malditos Milicos semitons.mp3 */,
+				49732B8728786A16006CA86A /* Malditos Milicos reverse.mp3 */,
+				49732B8D28786AE0006CA86A /* Bolsonaro - Tudo pequenininho ai.mp3 */,
+				49732B8928786A53006CA86A /* Malditos milicos robo grave.mp3 */,
+				49732B85287869C6006CA86A /* Malditos milicos monges Om.mp3 */,
+				49732B832878699F006CA86A /* Malditos Milicos distorcido.mp3 */,
+				49732B8128786973006CA86A /* Malditos milicos - bomba.mp3 */,
+				49732B7F28786921006CA86A /* Malditos milicos - Autotune.mp3 */,
+				49732B7D287868C9006CA86A /* Malditos Milicos - Trashy Barber quartet.mp3 */,
+				49732B7B28786889006CA86A /* Malditos Milicos - cromatica descendente.mp3 */,
+				49732B7928786823006CA86A /* Malditos Milicos - Arpeggio.mp3 */,
 				D99151222873E4C100FFAA29 /* funk-capricha-renan-mdb.mp3 */,
 				D99151262873E4C100FFAA29 /* funk-da-perninha.mp3 */,
 				D99151242873E4C100FFAA29 /* funk-do-morto-mdb.mp3 */,
@@ -2199,6 +2244,7 @@
 				D958BC5A2868DCB7000B2EDA /* JOVEM PAN - Constantino - O mecanismo foi quase todo dominado por essa turma, o Brasil e o pais aparelhado.mp3 in Resources */,
 				D955692B285137800072E3FC /* funk_do_xandao.mp3 in Resources */,
 				D9556922285137800072E3FC /* Cerginho da Perera Nunes - Com certeza.mp3 in Resources */,
+				49732B9228786C28006CA86A /* MINISTRO TERRIVELMENTE FILHO DA PUTA.mp3 in Resources */,
 				D9EB189A28577EC400A2F8A8 /* Eu nao entendi o que ele falou.mp3 in Resources */,
 				D9556930285137800072E3FC /* jonathan frakes - not this time.mp3 in Resources */,
 				D9556949285137800072E3FC /* Away - Para com essa porra ai mermao short.mp3 in Resources */,
@@ -2219,6 +2265,7 @@
 				D92E706E283C5C2C0035826C /* Eu volto pro ostracismo.mp3 in Resources */,
 				D9227314285AAD3E00A98CAE /* METEORO BRASIL - Antonio Tabet - Pretos, gays, lesbicas, trans tem familias e fazem familias.mp3 in Resources */,
 				D955697C285137800072E3FC /* Leo Stronda Porra.mp3 in Resources */,
+				49732B8E28786AE0006CA86A /* Bolsonaro - Tudo pequenininho ai.mp3 in Resources */,
 				D955692C285137800072E3FC /* Samira Close - Deixa eu te falar uma coisa voce tem quantos anos menino.mp3 in Resources */,
 				D95569D3285137800072E3FC /* Bolsonaro - Uma crise uma pequena crise ne.mp3 in Resources */,
 				D9F05B8E2873C55200E76B43 /* Regina Rouca - Se Liga Hein (casual).mp3 in Resources */,
@@ -2254,12 +2301,14 @@
 				D9AFA26C286BF27B006155B1 /* Bolsonaro - Faz politicalha.mp3 in Resources */,
 				D9B4F740283C8F4D0000EEF7 /* O roque ativa.mp3 in Resources */,
 				D9EB189C285780BD00A2F8A8 /* Eu sou RICA! short meme.mp3 in Resources */,
+				49732B8C28786A7B006CA86A /* Malditos Milicos semitons.mp3 in Resources */,
 				D95F414F28720D1B001CF903 /* SBT - Casos de Familia.mp3 in Resources */,
 				D95F40F728720182001CF903 /* Atila Iamarino - No minimo.mp3 in Resources */,
 				D95569C1285137800072E3FC /* Pazuello - E simples assim, um manda e o outro obedece.mp3 in Resources */,
 				D95569B1285137800072E3FC /* Pedro Pedreira - Pedra 90 ha controversias.mp3 in Resources */,
 				D95569B8285137800072E3FC /* Natalia Pasternak - Tem gente morrendo.mp3 in Resources */,
 				D955694D285137800072E3FC /* Bolsonaro - E dai.mp3 in Resources */,
+				49732B7E287868C9006CA86A /* Malditos Milicos - Trashy Barber quartet.mp3 in Resources */,
 				D911071E2863C7C5000B6F8F /* Alanzoka - Sai, maluco, todo dia isso.mp3 in Resources */,
 				D911071F2863C7C5000B6F8F /* Bolsonaro - Globo cala a boca catolico.mp3 in Resources */,
 				D9227315285AAD3E00A98CAE /* ROY ORBISON - Oh Pretty Woman Pretiputi parodia.mp3 in Resources */,
@@ -2359,6 +2408,7 @@
 				D95F41052872040D001CF903 /* Capitao Falcao - Malditos Comunas.mp3 in Resources */,
 				D9556917285137800072E3FC /* Gilmar Mendes - O exercito esta se associando a esse genocidio.mp3 in Resources */,
 				D9556913285137800072E3FC /* Temer - Nao renunciarei short.mp3 in Resources */,
+				49732B8028786921006CA86A /* Malditos milicos - Autotune.mp3 in Resources */,
 				D9556951285137800072E3FC /* BENDER Ahh, agora eu entendi short.mp3 in Resources */,
 				D955693A285137800072E3FC /* Bonitinha mas ordinaria - E mentira dele meme short.mp3 in Resources */,
 				D9556990285137800072E3FC /* Drauzio - As pessoas nao tem consciencia disso.mp3 in Resources */,
@@ -2405,9 +2455,11 @@
 				D955696E285137800072E3FC /* ATILA IAMARINO - Que que isso quer dizer.mp3 in Resources */,
 				D958BC6B2868E210000B2EDA /* Choque de Cultura - Julinho Foda-se.mp3 in Resources */,
 				D9556954285137800072E3FC /* Craque Neto - Pa aplica numa bunda pa aplica na outra.mp3 in Resources */,
+				49732B9628786D6E006CA86A /* FRANCIEL CRUZ - LIVE DAS CANJEBRINAS - Polarizacao.mp3 in Resources */,
 				D927C40C28523A050041970A /* Nunca foi meritocracia, sempre foi desigualdade.mp3 in Resources */,
 				D95569CC285137800072E3FC /* Bolsonaro - Buscamos uma solucao, quem tiver tras pra mim tras pra mim.mp3 in Resources */,
 				D95569A5285137800072E3FC /* Ciro Gomes - Que isso, francamente.mp3 in Resources */,
+				49732B842878699F006CA86A /* Malditos Milicos distorcido.mp3 in Resources */,
 				D958BC692868E210000B2EDA /* CHOQUE DE CULTURA - Maurilio palestrinha - E golpe short meme.mp3 in Resources */,
 				D9556947285137800072E3FC /* Gilmar Mendes - Nao e razoavel.mp3 in Resources */,
 				D9227311285AAD3E00A98CAE /* Bolsonaro - Presente Puti prentiputi pretiputi presidente putin.mp3 in Resources */,
@@ -2452,11 +2504,13 @@
 				D946117B286136CD00C4FB7E /* Damares - Uau.mp3 in Resources */,
 				D95569B7285137800072E3FC /* Olavo de Carvalho - Porra.mp3 in Resources */,
 				D95F412828720717001CF903 /* Dilma - O milho.mp3 in Resources */,
+				49732B86287869C6006CA86A /* Malditos milicos monges Om.mp3 in Resources */,
 				49732B78287663FA006CA86A /* Malditos Milicos - Acorde em B7.mp3 in Resources */,
 				D92879E7283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 in Resources */,
 				D927C41928523F5D0041970A /* Pica Pau - Um genio.mp3 in Resources */,
 				D95F410A2872040D001CF903 /* CAUE MOURA - Eu esperava o pior mas puta que o pariu.mp3 in Resources */,
 				D9556976285137800072E3FC /* Craque Neto - E cuidado com a cueca hein, cuidado com a cueca.mp3 in Resources */,
+				49732B7C28786889006CA86A /* Malditos Milicos - cromatica descendente.mp3 in Resources */,
 				D9556928285137800072E3FC /* Winter is coming, this one will be long.mp3 in Resources */,
 				D952374D285D14E300E6C838 /* O POVO ONLINE - Paulo Guedes - A economia ta bombando.mp3 in Resources */,
 				D95569D1285137800072E3FC /* PODER36_Paulo_Guedes_Tem_mais_iPhones_no_Brasil_que_populacao_Brasileiros.mp3 in Resources */,
@@ -2480,6 +2534,7 @@
 				D94611742861336D00C4FB7E /* UOL -  Pazuello - Missao Cumprida short meme.mp3 in Resources */,
 				D95569BC285137800072E3FC /* Bolsonaro - O problema ta ai, lamentamos.mp3 in Resources */,
 				D95F412328720717001CF903 /* Cid Moreira - Pra mim ja deu.mp3 in Resources */,
+				49732B9428786CDC006CA86A /* LIVE DAS CANJEBRINAS - Francuel Cruz - Plural e sua mao em meu pau.mp3 in Resources */,
 				D91964F42856BC860067B430 /* GALAS FEIOS - Moro desafinando no corrupcao.mp3 in Resources */,
 				D99A9FAA286687240068B172 /* CNN BRASIL - Milton Ribeiro - A versao verdadeira e a versao que a gente pode escutar no audio.mp3 in Resources */,
 				D9AFA270286BF27B006155B1 /* BORA (Bam Bam).mp3 in Resources */,
@@ -2584,6 +2639,7 @@
 				D9556999285137800072E3FC /* Bolsonaro e Pazuello - Sobre quando foram avisados da crise de Manaus oxigenio.mp3 in Resources */,
 				D90483D02851A19F00885739 /* SBT NEWS - Bolsonaro - Qualquer decisao do Alexandre de Moraes esse presidente nao mais cumprira.mp3 in Resources */,
 				D955691B285137800072E3FC /* Bolsonaro - Ganhou porra.mp3 in Resources */,
+				49732B8828786A16006CA86A /* Malditos Milicos reverse.mp3 in Resources */,
 				D9556963285137800072E3FC /* Ciro Gomes - Atencao Paulo Guedes.mp3 in Resources */,
 				D95569AD285137800072E3FC /* ATILA IAMARINO - Ele faz sexo.mp3 in Resources */,
 				D92F8BD9286A730500EB9470 /* ATILA IAMARINO - Nao tem condicoes.mp3 in Resources */,
@@ -2594,6 +2650,7 @@
 				D9556965285137800072E3FC /* Quercia - E mentira, e tudo mentira.mp3 in Resources */,
 				D95569B4285137800072E3FC /* Mourao - Coronel Brilhante Ustra Meu heroi short meme.mp3 in Resources */,
 				D9556997285137800072E3FC /* SBT NEWS - Bolsonaro - Sai alexandre de moraes deixa de ser canalha.mp3 in Resources */,
+				49732B8A28786A53006CA86A /* Malditos milicos robo grave.mp3 in Resources */,
 				D9EB189E285781AD00A2F8A8 /* Bom dia e o caralho parceiro short meme.mp3 in Resources */,
 				D982DD03285BEB6D003C8695 /* Essa eu quero ver nao nao quero ver nao short meme.mp3 in Resources */,
 				D9AFA26B286BF27B006155B1 /* Bolsonaro - Polemizar esse assunto.mp3 in Resources */,
@@ -2618,6 +2675,7 @@
 				D952374B285D118400E6C838 /* DESMENTINDO BOLSONARO - PAULO GUEDES - O Brasil esta decolando economia bombando coletanea.mp3 in Resources */,
 				D991512D2873E4C100FFAA29 /* rock-comunismo-ai-seis-mdb.mp3 in Resources */,
 				D9AFA267286BF27B006155B1 /* Alexandre Frota - Tai o.mp3 in Resources */,
+				49732B8228786973006CA86A /* Malditos milicos - bomba.mp3 in Resources */,
 				D91964F22856BBE10067B430 /* Moro dizendo que nao seria ministro nem candidato a presidencia.mp3 in Resources */,
 				D95F410B2872040D001CF903 /* Caue Moura - Foi mal tava doidao aqui nao seu arrombado.mp3 in Resources */,
 				D9AFA260286BF27B006155B1 /* Bolsonaro - Procura outro pra pagar a tua vacina ai.mp3 in Resources */,
@@ -2650,6 +2708,7 @@
 				D9AFA275286BF27B006155B1 /* Bolsonaro - O Lula ta elegivel pra 22.mp3 in Resources */,
 				D95569BD285137800072E3FC /* Feiticeira - Nao e feiticaria, e tecnologia meme short.mp3 in Resources */,
 				D980455C28380EFE003B2E83 /* Localizable.strings in Resources */,
+				49732B7A28786823006CA86A /* Malditos Milicos - Arpeggio.mp3 in Resources */,
 				D95569B9285137800072E3FC /* Malafaia - JAIR MESSIAS BOLSONARO.mp3 in Resources */,
 				D95569C2285137800072E3FC /* Ciro Gomes - Veja bem, se eu estiver errado me corrija.mp3 in Resources */,
 				D95F414D28720D1B001CF903 /* Silvio Santos - E mesmo e verdade.mp3 in Resources */,
@@ -2660,6 +2719,7 @@
 				D90483DF2851A66200885739 /* Joao Kleber - Comeca o teste de fidelidade short meme.mp3 in Resources */,
 				D95569DA285137800072E3FC /* Brizola - Filhotes da ditadura.mp3 in Resources */,
 				D991512F2873E4C100FFAA29 /* funk-capricha-renan-mdb.mp3 in Resources */,
+				49732B9028786B57006CA86A /* Bolsonaro - Tudo pequenininho ai.mp3 in Resources */,
 				D955697D285137800072E3FC /* Danca do Creu - 30 mil passou a meta em 8x.mp3 in Resources */,
 				D95F41092872040D001CF903 /* Bolsonaro - Nao temos provas.mp3 in Resources */,
 				D95F41072872040D001CF903 /* Bolsonaro - Sou ousado.mp3 in Resources */,
