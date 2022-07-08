@@ -429,7 +429,6 @@
 		D95F413928720BAA001CF903 /* Face palm - Corra que a policia vem ai.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95F413028720BAA001CF903 /* Face palm - Corra que a policia vem ai.mp3 */; };
 		D95F413A28720BAA001CF903 /* Ernesto Araujo - Globalismo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95F413128720BAA001CF903 /* Ernesto Araujo - Globalismo.mp3 */; };
 		D95F413B28720BAA001CF903 /* Ernesto Araujo - Thats not true.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95F413228720BAA001CF903 /* Ernesto Araujo - Thats not true.mp3 */; };
-		D95F413C28720BAA001CF903 /* Igor Guimaraes - Alegria.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95F413328720BAA001CF903 /* Igor Guimaraes - Alegria.mp3 */; };
 		D95F413D28720BAA001CF903 /* Ernesto Araujo - Nao se pode aceitar um lockdown do espirito humano.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95F413428720BAA001CF903 /* Ernesto Araujo - Nao se pode aceitar um lockdown do espirito humano.mp3 */; };
 		D95F414828720D1B001CF903 /* Mourao - Decisao judicial nao se comenta ne se cumpre.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95F413E28720D1A001CF903 /* Mourao - Decisao judicial nao se comenta ne se cumpre.mp3 */; };
 		D95F414928720D1B001CF903 /* Seu Sirigueijo - Ola eu gosto de dinheiro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95F413F28720D1A001CF903 /* Seu Sirigueijo - Ola eu gosto de dinheiro.mp3 */; };
@@ -460,6 +459,9 @@
 		D96E115D28459D8800306859 /* UserActivityWaiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96E115C28459D8800306859 /* UserActivityWaiter.swift */; };
 		D96E711128787D2F006495BA /* Malafaia - Deus escolheu as coisas loucas.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D96E711028787D2F006495BA /* Malafaia - Deus escolheu as coisas loucas.mp3 */; };
 		D96E71132878B626006495BA /* Bolsonaro - Laudos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D96E71122878B626006495BA /* Bolsonaro - Laudos.mp3 */; };
+		D96E71152878B8EB006495BA /* Diogo Defante - Alegria.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D96E71142878B8EB006495BA /* Diogo Defante - Alegria.mp3 */; };
+		D96E71172878B969006495BA /* Igor Guimaraes - Alegria.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D96E71162878B969006495BA /* Igor Guimaraes - Alegria.mp3 */; };
+		D96E71192878BA0C006495BA /* VICTOR CAMEJO - JORNAL DE CASA 82 - Humor, alegria, piada, humorismo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D96E71182878BA0C006495BA /* VICTOR CAMEJO - JORNAL DE CASA 82 - Humor, alegria, piada, humorismo.mp3 */; };
 		D9758C3828616E650094D388 /* FolderColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9758C3728616E650094D388 /* FolderColor.swift */; };
 		D9758C3A28617BA70094D388 /* AddUserFolderTables.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9758C3928617BA70094D388 /* AddUserFolderTables.swift */; };
 		D9758C3C28617C980094D388 /* LocalDatabase+UserFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9758C3B28617C980094D388 /* LocalDatabase+UserFolder.swift */; };
@@ -1030,7 +1032,6 @@
 		D95F413028720BAA001CF903 /* Face palm - Corra que a policia vem ai.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Face palm - Corra que a policia vem ai.mp3"; sourceTree = "<group>"; };
 		D95F413128720BAA001CF903 /* Ernesto Araujo - Globalismo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ernesto Araujo - Globalismo.mp3"; sourceTree = "<group>"; };
 		D95F413228720BAA001CF903 /* Ernesto Araujo - Thats not true.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ernesto Araujo - Thats not true.mp3"; sourceTree = "<group>"; };
-		D95F413328720BAA001CF903 /* Igor Guimaraes - Alegria.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Igor Guimaraes - Alegria.mp3"; sourceTree = "<group>"; };
 		D95F413428720BAA001CF903 /* Ernesto Araujo - Nao se pode aceitar um lockdown do espirito humano.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ernesto Araujo - Nao se pode aceitar um lockdown do espirito humano.mp3"; sourceTree = "<group>"; };
 		D95F413E28720D1A001CF903 /* Mourao - Decisao judicial nao se comenta ne se cumpre.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mourao - Decisao judicial nao se comenta ne se cumpre.mp3"; sourceTree = "<group>"; };
 		D95F413F28720D1A001CF903 /* Seu Sirigueijo - Ola eu gosto de dinheiro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Seu Sirigueijo - Ola eu gosto de dinheiro.mp3"; sourceTree = "<group>"; };
@@ -1063,6 +1064,9 @@
 		D96E115C28459D8800306859 /* UserActivityWaiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserActivityWaiter.swift; sourceTree = "<group>"; };
 		D96E711028787D2F006495BA /* Malafaia - Deus escolheu as coisas loucas.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Malafaia - Deus escolheu as coisas loucas.mp3"; sourceTree = "<group>"; };
 		D96E71122878B626006495BA /* Bolsonaro - Laudos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Laudos.mp3"; sourceTree = "<group>"; };
+		D96E71142878B8EB006495BA /* Diogo Defante - Alegria.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Diogo Defante - Alegria.mp3"; sourceTree = "<group>"; };
+		D96E71162878B969006495BA /* Igor Guimaraes - Alegria.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Igor Guimaraes - Alegria.mp3"; sourceTree = "<group>"; };
+		D96E71182878BA0C006495BA /* VICTOR CAMEJO - JORNAL DE CASA 82 - Humor, alegria, piada, humorismo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "VICTOR CAMEJO - JORNAL DE CASA 82 - Humor, alegria, piada, humorismo.mp3"; sourceTree = "<group>"; };
 		D9758C3728616E650094D388 /* FolderColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderColor.swift; sourceTree = "<group>"; };
 		D9758C3928617BA70094D388 /* AddUserFolderTables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserFolderTables.swift; sourceTree = "<group>"; };
 		D9758C3B28617C980094D388 /* LocalDatabase+UserFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+UserFolder.swift"; sourceTree = "<group>"; };
@@ -1225,6 +1229,9 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D96E71182878BA0C006495BA /* VICTOR CAMEJO - JORNAL DE CASA 82 - Humor, alegria, piada, humorismo.mp3 */,
+				D96E71162878B969006495BA /* Igor Guimaraes - Alegria.mp3 */,
+				D96E71142878B8EB006495BA /* Diogo Defante - Alegria.mp3 */,
 				D96E71122878B626006495BA /* Bolsonaro - Laudos.mp3 */,
 				D96E711028787D2F006495BA /* Malafaia - Deus escolheu as coisas loucas.mp3 */,
 				D9F482C4287873F500F5AAE1 /* Nando Moura - Bibibibi Mito (curto).mp3 */,
@@ -1250,7 +1257,6 @@
 				D95F412E28720BAA001CF903 /* Ernesto Araujo - Paria internacional.mp3 */,
 				D95F413228720BAA001CF903 /* Ernesto Araujo - Thats not true.mp3 */,
 				D95F413028720BAA001CF903 /* Face palm - Corra que a policia vem ai.mp3 */,
-				D95F413328720BAA001CF903 /* Igor Guimaraes - Alegria.mp3 */,
 				D95F412D28720BAA001CF903 /* Mae copiloto - e porra caralho buceta bora.mp3 */,
 				D95F411028720716001CF903 /* Cecilia Oliveira - Entao assim a gente ta fodido.mp3 */,
 				D95F411428720716001CF903 /* CHICO BUARQUE - vai trabalhar vagabundo.mp3 */,
@@ -2224,6 +2230,7 @@
 				D955696D285137800072E3FC /* Bolsonaro - Porra.mp3 in Resources */,
 				D9556939285137800072E3FC /* SBT NEWS - Bolsonaro - Sai, Alexandre de Moraes.mp3 in Resources */,
 				D96E71132878B626006495BA /* Bolsonaro - Laudos.mp3 in Resources */,
+				D96E71192878BA0C006495BA /* VICTOR CAMEJO - JORNAL DE CASA 82 - Humor, alegria, piada, humorismo.mp3 in Resources */,
 				D922730A285AAD3E00A98CAE /* FUP - Marcele - Nao esta nem ai pro preto, pobre, favelado so esta ai por ele mesmo.mp3 in Resources */,
 				D95F413628720BAA001CF903 /* Mae copiloto - e porra caralho buceta bora.mp3 in Resources */,
 				D92E706E283C5C2C0035826C /* Eu volto pro ostracismo.mp3 in Resources */,
@@ -2238,7 +2245,6 @@
 				D9556915285137800072E3FC /* ATILA IAMARINO - E vao empilhar sequela em cima de sequela.mp3 in Resources */,
 				D94611772861350300C4FB7E /* Eduardo Pazuello - Eu nao sabia nem o que era o SUS (short).mp3 in Resources */,
 				D9556940285137800072E3FC /* Reinaldo Azevedo - E mentira.mp3 in Resources */,
-				D95F413C28720BAA001CF903 /* Igor Guimaraes - Alegria.mp3 in Resources */,
 				D99A9FAD286687240068B172 /* DESMENTINDO BOLSONARO - Milton Ribeiro - O presidente da republica nunca me pediu nada, absolutamente nada.mp3 in Resources */,
 				D95F414C28720D1B001CF903 /* Silvio Santos - Quem e que nao gosta de dinheiro.mp3 in Resources */,
 				D95F414828720D1B001CF903 /* Mourao - Decisao judicial nao se comenta ne se cumpre.mp3 in Resources */,
@@ -2673,6 +2679,7 @@
 				D95F415028720D1B001CF903 /* Silvio Santos - Essa nao e boa ninguem deu risada.mp3 in Resources */,
 				D90483DF2851A66200885739 /* Joao Kleber - Comeca o teste de fidelidade short meme.mp3 in Resources */,
 				D95569DA285137800072E3FC /* Brizola - Filhotes da ditadura.mp3 in Resources */,
+				D96E71172878B969006495BA /* Igor Guimaraes - Alegria.mp3 in Resources */,
 				D991512F2873E4C100FFAA29 /* funk-capricha-renan-mdb.mp3 in Resources */,
 				D955697D285137800072E3FC /* Danca do Creu - 30 mil passou a meta em 8x.mp3 in Resources */,
 				D95F41092872040D001CF903 /* Bolsonaro - Nao temos provas.mp3 in Resources */,
@@ -2684,6 +2691,7 @@
 				D91964E62856B7920067B430 /* Bolsonaro - Da um tapa na minha cara slap sound.mp3 in Resources */,
 				D9556932285137800072E3FC /* Choque de cultura - Rogerinho - Nao vamos falar de porno aqui nao.mp3 in Resources */,
 				D952374F285D167600E6C838 /* Paulo Guedes - Sexo Selvagem.mp3 in Resources */,
+				D96E71152878B8EB006495BA /* Diogo Defante - Alegria.mp3 in Resources */,
 				D92879E8283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 in Resources */,
 				D955698D285137800072E3FC /* Sera mesmo.mp3 in Resources */,
 				D9556948285137800072E3FC /* Silas Malafaia - Eu tenho pena short.mp3 in Resources */,

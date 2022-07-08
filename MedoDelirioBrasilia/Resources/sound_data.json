@@ -11,9 +11,9 @@
     {
         "id": "C56D243E-6E56-4EB2-B73E-920A6ED5F3E5",
         "title": "Alegria",
-        "authorId": "959D8DD0-0EFB-4CC2-98C2-C61182BCFEC3",
+        "authorId": "691D4F55-79F7-407A-B0AA-71CD09059E60",
         "description": "que alegria",
-        "filename": "Igor Guimaraes - Alegria.mp3",
+        "filename": "Diogo Defante - Alegria.mp3",
         "dateAdded": "2022-07-01T00:00:00Z",
         "isOffensive": false
     },
@@ -4138,5 +4138,23 @@
         "filename": "Bolsonaro - Laudos.mp3",
         "dateAdded": "2022-07-08T00:00:00Z",
         "isOffensive": true
+    },
+    {
+        "id": "C148E02D-1A52-49E4-88EC-4C62D07C1E2E",
+        "title": "Alegria",
+        "authorId": "959D8DD0-0EFB-4CC2-98C2-C61182BCFEC3",
+        "description": "alegria",
+        "filename": "Igor Guimaraes - Alegria.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "FD25743B-D9EE-474F-9AAE-CD923B41C7A1",
+        "title": "Humor, alegria, piada, humorismo",
+        "authorId": "57017B39-5D5B-477A-BAF5-4F103DD84CB1",
+        "description": "Humor é alegria é piada humorismo",
+        "filename": "VICTOR CAMEJO - JORNAL DE CASA 82 - Humor, alegria, piada, humorismo.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": false
     }
 ]
