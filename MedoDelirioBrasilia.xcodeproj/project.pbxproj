@@ -376,6 +376,18 @@
 		D9575092284427C70094AEA6 /* ShareLogsDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9575091284427C70094AEA6 /* ShareLogsDummy.swift */; };
 		D957509628445EC30094AEA6 /* TrendsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957509528445EC30094AEA6 /* TrendsViewViewModel.swift */; };
 		D9575AB12878CDC500DC75D8 /* Bolsonaro - E voce jogar uma moeda 271 vezes pra cima e dar cara e coroa. Isso deve ser a quantidade de atomos aqui na terra.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9575AB02878CDC500DC75D8 /* Bolsonaro - E voce jogar uma moeda 271 vezes pra cima e dar cara e coroa. Isso deve ser a quantidade de atomos aqui na terra.mp3 */; };
+		D9575ABC2878D7A200DC75D8 /* Vai Dar Namoro - Pare.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9575AB22878D7A200DC75D8 /* Vai Dar Namoro - Pare.mp3 */; };
+		D9575ABD2878D7A200DC75D8 /* Vai Dar Namoro - Danca gatinho danca.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9575AB32878D7A200DC75D8 /* Vai Dar Namoro - Danca gatinho danca.mp3 */; };
+		D9575ABE2878D7A200DC75D8 /* Vai Dar Namoro - Cavalo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9575AB42878D7A200DC75D8 /* Vai Dar Namoro - Cavalo.mp3 */; };
+		D9575ABF2878D7A200DC75D8 /* Vai Dar Namoro - Tapa Tapa Tome.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9575AB52878D7A200DC75D8 /* Vai Dar Namoro - Tapa Tapa Tome.mp3 */; };
+		D9575AC02878D7A200DC75D8 /* Vai Dar Namoro - Tome.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9575AB62878D7A200DC75D8 /* Vai Dar Namoro - Tome.mp3 */; };
+		D9575AC12878D7A200DC75D8 /* Vai Dar Namoro - Nao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9575AB72878D7A200DC75D8 /* Vai Dar Namoro - Nao.mp3 */; };
+		D9575AC22878D7A200DC75D8 /* Vai Dar Namoro - Aruaruaruaarua.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9575AB82878D7A200DC75D8 /* Vai Dar Namoro - Aruaruaruaarua.mp3 */; };
+		D9575AC32878D7A200DC75D8 /* Vai Dar Namoro - Demais.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9575AB92878D7A200DC75D8 /* Vai Dar Namoro - Demais.mp3 */; };
+		D9575AC42878D7A200DC75D8 /* Vai Dar Namoro - Ele gosta.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9575ABA2878D7A200DC75D8 /* Vai Dar Namoro - Ele gosta.mp3 */; };
+		D9575AC52878D7A200DC75D8 /* Vai Dar Namoro - UUUUII.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9575ABB2878D7A200DC75D8 /* Vai Dar Namoro - UUUUII.mp3 */; };
+		D9575AC72878D95A00DC75D8 /* Vai Dar Namoro - Que isso meu filho calma.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9575AC62878D95A00DC75D8 /* Vai Dar Namoro - Que isso meu filho calma.mp3 */; };
+		D9575AC92878DAD600DC75D8 /* Lasier Martins - Choque.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9575AC82878DAD600DC75D8 /* Lasier Martins - Choque.mp3 */; };
 		D958B1AA28394D400010F133 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958B1A928394D400010F133 /* MainView.swift */; };
 		D958B1AC28394DCD0010F133 /* AuthorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958B1AB28394DCD0010F133 /* AuthorsView.swift */; };
 		D958B1AE28394E420010F133 /* SongsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958B1AD28394E420010F133 /* SongsView.swift */; };
@@ -983,6 +995,18 @@
 		D9575091284427C70094AEA6 /* ShareLogsDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareLogsDummy.swift; sourceTree = "<group>"; };
 		D957509528445EC30094AEA6 /* TrendsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsViewViewModel.swift; sourceTree = "<group>"; };
 		D9575AB02878CDC500DC75D8 /* Bolsonaro - E voce jogar uma moeda 271 vezes pra cima e dar cara e coroa. Isso deve ser a quantidade de atomos aqui na terra.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - E voce jogar uma moeda 271 vezes pra cima e dar cara e coroa. Isso deve ser a quantidade de atomos aqui na terra.mp3"; sourceTree = "<group>"; };
+		D9575AB22878D7A200DC75D8 /* Vai Dar Namoro - Pare.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Vai Dar Namoro - Pare.mp3"; sourceTree = "<group>"; };
+		D9575AB32878D7A200DC75D8 /* Vai Dar Namoro - Danca gatinho danca.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Vai Dar Namoro - Danca gatinho danca.mp3"; sourceTree = "<group>"; };
+		D9575AB42878D7A200DC75D8 /* Vai Dar Namoro - Cavalo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Vai Dar Namoro - Cavalo.mp3"; sourceTree = "<group>"; };
+		D9575AB52878D7A200DC75D8 /* Vai Dar Namoro - Tapa Tapa Tome.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Vai Dar Namoro - Tapa Tapa Tome.mp3"; sourceTree = "<group>"; };
+		D9575AB62878D7A200DC75D8 /* Vai Dar Namoro - Tome.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Vai Dar Namoro - Tome.mp3"; sourceTree = "<group>"; };
+		D9575AB72878D7A200DC75D8 /* Vai Dar Namoro - Nao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Vai Dar Namoro - Nao.mp3"; sourceTree = "<group>"; };
+		D9575AB82878D7A200DC75D8 /* Vai Dar Namoro - Aruaruaruaarua.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Vai Dar Namoro - Aruaruaruaarua.mp3"; sourceTree = "<group>"; };
+		D9575AB92878D7A200DC75D8 /* Vai Dar Namoro - Demais.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Vai Dar Namoro - Demais.mp3"; sourceTree = "<group>"; };
+		D9575ABA2878D7A200DC75D8 /* Vai Dar Namoro - Ele gosta.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Vai Dar Namoro - Ele gosta.mp3"; sourceTree = "<group>"; };
+		D9575ABB2878D7A200DC75D8 /* Vai Dar Namoro - UUUUII.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Vai Dar Namoro - UUUUII.mp3"; sourceTree = "<group>"; };
+		D9575AC62878D95A00DC75D8 /* Vai Dar Namoro - Que isso meu filho calma.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Vai Dar Namoro - Que isso meu filho calma.mp3"; sourceTree = "<group>"; };
+		D9575AC82878DAD600DC75D8 /* Lasier Martins - Choque.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lasier Martins - Choque.mp3"; sourceTree = "<group>"; };
 		D958B1A928394D400010F133 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		D958B1AB28394DCD0010F133 /* AuthorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorsView.swift; sourceTree = "<group>"; };
 		D958B1AD28394E420010F133 /* SongsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsView.swift; sourceTree = "<group>"; };
@@ -1237,6 +1261,18 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9575AC82878DAD600DC75D8 /* Lasier Martins - Choque.mp3 */,
+				D9575AC62878D95A00DC75D8 /* Vai Dar Namoro - Que isso meu filho calma.mp3 */,
+				D9575AB82878D7A200DC75D8 /* Vai Dar Namoro - Aruaruaruaarua.mp3 */,
+				D9575AB42878D7A200DC75D8 /* Vai Dar Namoro - Cavalo.mp3 */,
+				D9575AB32878D7A200DC75D8 /* Vai Dar Namoro - Danca gatinho danca.mp3 */,
+				D9575AB92878D7A200DC75D8 /* Vai Dar Namoro - Demais.mp3 */,
+				D9575ABA2878D7A200DC75D8 /* Vai Dar Namoro - Ele gosta.mp3 */,
+				D9575AB72878D7A200DC75D8 /* Vai Dar Namoro - Nao.mp3 */,
+				D9575AB22878D7A200DC75D8 /* Vai Dar Namoro - Pare.mp3 */,
+				D9575AB52878D7A200DC75D8 /* Vai Dar Namoro - Tapa Tapa Tome.mp3 */,
+				D9575AB62878D7A200DC75D8 /* Vai Dar Namoro - Tome.mp3 */,
+				D9575ABB2878D7A200DC75D8 /* Vai Dar Namoro - UUUUII.mp3 */,
 				D9575AB02878CDC500DC75D8 /* Bolsonaro - E voce jogar uma moeda 271 vezes pra cima e dar cara e coroa. Isso deve ser a quantidade de atomos aqui na terra.mp3 */,
 				D96E711E2878C70E006495BA /* FRANCIEL CRUZ - LIVE DAS CANJEBRINAS - Polarizacao e meu pau em sua mao, porra que polarizacao meu pai.mp3 */,
 				D96E711C2878BCBC006495BA /* RADIO BANDNEWS FM - Boechat - Nao significa absolutamente nada.mp3 */,
@@ -2234,6 +2270,7 @@
 				D92F8BE0286A730500EB9470 /* Ady Ferrer - Oh nao mais um crime contra a humanidade.mp3 in Resources */,
 				D99A9FAE286687240068B172 /* CNN BRASIL - Milton Ribeiro - A questao e eminentemente repito tecnica.mp3 in Resources */,
 				D95F410E2872040D001CF903 /* Caue Moura - Foi mal tava doidao.mp3 in Resources */,
+				D9575AC22878D7A200DC75D8 /* Vai Dar Namoro - Aruaruaruaarua.mp3 in Resources */,
 				D95F412128720717001CF903 /* Cristiano Botafogo - Vem tribunal de Haia.mp3 in Resources */,
 				D9AFA278286BF27B006155B1 /* Caetano Veloso - Isso ai que voce disse e tudo burrice.mp3 in Resources */,
 				D955698C285137800072E3FC /* Funk meme - Ele mesmo, ele mesmo, ele mesmo.mp3 in Resources */,
@@ -2251,6 +2288,7 @@
 				D955692C285137800072E3FC /* Samira Close - Deixa eu te falar uma coisa voce tem quantos anos menino.mp3 in Resources */,
 				D95569D3285137800072E3FC /* Bolsonaro - Uma crise uma pequena crise ne.mp3 in Resources */,
 				D9F05B8E2873C55200E76B43 /* Regina Rouca - Se Liga Hein (casual).mp3 in Resources */,
+				D9575ABD2878D7A200DC75D8 /* Vai Dar Namoro - Danca gatinho danca.mp3 in Resources */,
 				D95569E528513FAB0072E3FC /* Vou esquecer disso jamais.mp3 in Resources */,
 				D9F482C6287873F500F5AAE1 /* Nando Moura - Bibibibi Mito (curto).mp3 in Resources */,
 				D9556911285137800072E3FC /* MULTISHOW_Titi_Muller_Ta_bombando_mais_do_que_o_povo_pedindo_Anitta.mp3 in Resources */,
@@ -2352,6 +2390,8 @@
 				D9556956285137800072E3FC /* Sabe que voce e muito petulante.mp3 in Resources */,
 				D922730D285AAD3E00A98CAE /* REDETV - Jair Bolsonaro - Eu pretendo participar de debates, nao participei na ultima porque estava em convalescencia.mp3 in Resources */,
 				D9556943285137800072E3FC /* Leo Stronda Monstro - Batata doce e frango logico.mp3 in Resources */,
+				D9575AC72878D95A00DC75D8 /* Vai Dar Namoro - Que isso meu filho calma.mp3 in Resources */,
+				D9575AC52878D7A200DC75D8 /* Vai Dar Namoro - UUUUII.mp3 in Resources */,
 				D955697E285137800072E3FC /* COMUNISTA MEME.mp3 in Resources */,
 				D99151292873E4C100FFAA29 /* house-mascara-no-rabo-mdb.mp3 in Resources */,
 				D95569DB285137800072E3FC /* Bolsonaro - Lamento, quer que eu faca o que.mp3 in Resources */,
@@ -2372,6 +2412,7 @@
 				D922730C285AAD3E00A98CAE /* Bolsonaro - Igularidades no ministerio irregularidades paralelepipi pretiputi.mp3 in Resources */,
 				D90483FB2851B0F500885739 /* O Terrivel Homem do Broche de Caveira.mp3 in Resources */,
 				D955696B285137800072E3FC /* Trote Luiz Pareto - TELERJ meme mas que filho da puta olhai veja voce.mp3 in Resources */,
+				D9575ABC2878D7A200DC75D8 /* Vai Dar Namoro - Pare.mp3 in Resources */,
 				D99151332873E4C100FFAA29 /* funk-da-perninha.mp3 in Resources */,
 				D91964F02856BB3F0067B430 /* Chico Bento - Coitado.mp3 in Resources */,
 				D95F410F2872040D001CF903 /* Bem louco.mp3 in Resources */,
@@ -2435,6 +2476,7 @@
 				D955696E285137800072E3FC /* ATILA IAMARINO - Que que isso quer dizer.mp3 in Resources */,
 				D958BC6B2868E210000B2EDA /* Choque de Cultura - Julinho Foda-se.mp3 in Resources */,
 				D9556954285137800072E3FC /* Craque Neto - Pa aplica numa bunda pa aplica na outra.mp3 in Resources */,
+				D9575AC02878D7A200DC75D8 /* Vai Dar Namoro - Tome.mp3 in Resources */,
 				D927C40C28523A050041970A /* Nunca foi meritocracia, sempre foi desigualdade.mp3 in Resources */,
 				D95569CC285137800072E3FC /* Bolsonaro - Buscamos uma solucao, quem tiver tras pra mim tras pra mim.mp3 in Resources */,
 				D95569A5285137800072E3FC /* Ciro Gomes - Que isso, francamente.mp3 in Resources */,
@@ -2472,6 +2514,7 @@
 				D9556989285137800072E3FC /* Bolsonaro - Nao leio a imprensa nao vejo Jornal Nacional faca o que eu faco.mp3 in Resources */,
 				D9556920285137800072E3FC /* Cidade Oculta - Voce fala isso porque e a putinha do bozo.mp3 in Resources */,
 				D95569D6285137800072E3FC /* Abraham Weintraub - odeio odeio odeio short.mp3 in Resources */,
+				D9575ABF2878D7A200DC75D8 /* Vai Dar Namoro - Tapa Tapa Tome.mp3 in Resources */,
 				D9556961285137800072E3FC /* Gustavo mendes dilma todo mundo se fudeu.mp3 in Resources */,
 				D9556970285137800072E3FC /* MULTISHOW - Lulu Santos - Censura nunca mais.mp3 in Resources */,
 				D90483CF2851A19F00885739 /* Gaucho Puto - Uma bosta, nao sabe, uma merda.mp3 in Resources */,
@@ -2556,6 +2599,7 @@
 				D92F8BD2286A730500EB9470 /* Gilmar Mendes - Com a devida venia.mp3 in Resources */,
 				D955694A285137800072E3FC /* COMUNISTA DO INFERNO meme.mp3 in Resources */,
 				D9C3EF502866938A00C44249 /* Eduardo Pazuello - Tem um grau ai de prisma na coisa.mp3 in Resources */,
+				D9575ABE2878D7A200DC75D8 /* Vai Dar Namoro - Cavalo.mp3 in Resources */,
 				D95F412028720717001CF903 /* Cleber Machado - Hoje SIM (afirmativo).mp3 in Resources */,
 				D9AFA264286BF27B006155B1 /* Bolsonaro - Tem que trabalhar.mp3 in Resources */,
 				D9227312285AAD3E00A98CAE /* PLANALTO - Bolsonaro - Presidente Putin Pretiputi.mp3 in Resources */,
@@ -2618,6 +2662,7 @@
 				D9556999285137800072E3FC /* Bolsonaro e Pazuello - Sobre quando foram avisados da crise de Manaus oxigenio.mp3 in Resources */,
 				D90483D02851A19F00885739 /* SBT NEWS - Bolsonaro - Qualquer decisao do Alexandre de Moraes esse presidente nao mais cumprira.mp3 in Resources */,
 				D955691B285137800072E3FC /* Bolsonaro - Ganhou porra.mp3 in Resources */,
+				D9575AC12878D7A200DC75D8 /* Vai Dar Namoro - Nao.mp3 in Resources */,
 				D9556963285137800072E3FC /* Ciro Gomes - Atencao Paulo Guedes.mp3 in Resources */,
 				D95569AD285137800072E3FC /* ATILA IAMARINO - Ele faz sexo.mp3 in Resources */,
 				D92F8BD9286A730500EB9470 /* ATILA IAMARINO - Nao tem condicoes.mp3 in Resources */,
@@ -2641,6 +2686,7 @@
 				D955696F285137800072E3FC /* jonathan frakes - It's a total fabrication.mp3 in Resources */,
 				D95569AF285137800072E3FC /* Trote Pareto - Calma filha da puta calma.mp3 in Resources */,
 				D91964E128563B680067B430 /* Queiroz - Eu sou um cara de negocios, eu faco dinheiro eu faco.mp3 in Resources */,
+				D9575AC32878D7A200DC75D8 /* Vai Dar Namoro - Demais.mp3 in Resources */,
 				D9AFA261286BF27B006155B1 /* Alceu Valenca - Tomara - Tomara meu deus tomara.mp3 in Resources */,
 				D95569CE285137800072E3FC /* Bolsonaro - Na ordem de 800 pessoas a previsao e nao chegar a isso no tocante ao coronavirus.mp3 in Resources */,
 				D90483F82851B0F500885739 /* Pedro Daltro - Fala direito, Cristiano, porra.mp3 in Resources */,
@@ -2663,6 +2709,7 @@
 				D99A9F9B286683340068B172 /* REDE TV - Isso e meio delirante short meme.mp3 in Resources */,
 				D95569D8285137800072E3FC /* General Mourao Bom Dia short.mp3 in Resources */,
 				D91107222863C7C5000B6F8F /* Heloisa Faissol - Cala a boca vai tomar no cu.mp3 in Resources */,
+				D9575AC42878D7A200DC75D8 /* Vai Dar Namoro - Ele gosta.mp3 in Resources */,
 				D95569BB285137800072E3FC /* Bolsonaro - E um partido de pirocas ta ok.mp3 in Resources */,
 				D99A9FA9286687240068B172 /* UOL - Milton Ribeiro - Enem tem a cara do governo competencia honestidade seriedade.mp3 in Resources */,
 				D9556967285137800072E3FC /* Choque de Cultura - Renan - Vamos fazer essa critica ai.mp3 in Resources */,
@@ -2677,6 +2724,7 @@
 				D9556982285137800072E3FC /* E desesperador.mp3 in Resources */,
 				D95569B0285137800072E3FC /* Xo drogado short meme.mp3 in Resources */,
 				D91964EB2856B97A0067B430 /* Bolsonaro - Um jumento, um jumento.mp3 in Resources */,
+				D9575AC92878DAD600DC75D8 /* Lasier Martins - Choque.mp3 in Resources */,
 				D9556927285137800072E3FC /* um_bosta_ciro.mp3 in Resources */,
 				D9AFA273286BF27B006155B1 /* Bolsonaro - No que depender de mim nunca teremos lockdown.mp3 in Resources */,
 				D94611702861311E00C4FB7E /* Damares - A princesa do Frozen vai voltar pra acordar a Bela Adormecida com um beijo gay.mp3 in Resources */,
