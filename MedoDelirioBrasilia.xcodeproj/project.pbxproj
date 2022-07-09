@@ -19,7 +19,6 @@
 		49732B8A28786A53006CA86A /* Malditos milicos robo grave.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49732B8928786A53006CA86A /* Malditos milicos robo grave.mp3 */; };
 		49732B8C28786A7B006CA86A /* Malditos Milicos semitons.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49732B8B28786A7B006CA86A /* Malditos Milicos semitons.mp3 */; };
 		49732B8E28786AE0006CA86A /* Bolsonaro - Tudo pequenininho ai.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49732B8D28786AE0006CA86A /* Bolsonaro - Tudo pequenininho ai.mp3 */; };
-		49732B9028786B57006CA86A /* Bolsonaro - Tudo pequenininho ai.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49732B8F28786B57006CA86A /* Bolsonaro - Tudo pequenininho ai.mp3 */; };
 		49732B9228786C28006CA86A /* MINISTRO TERRIVELMENTE FILHO DA PUTA.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49732B9128786C28006CA86A /* MINISTRO TERRIVELMENTE FILHO DA PUTA.mp3 */; };
 		49732B9428786CDC006CA86A /* LIVE DAS CANJEBRINAS - Francuel Cruz - Plural e sua mao em meu pau.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49732B9328786CDC006CA86A /* LIVE DAS CANJEBRINAS - Francuel Cruz - Plural e sua mao em meu pau.mp3 */; };
 		49732B9628786D6E006CA86A /* FRANCIEL CRUZ - LIVE DAS CANJEBRINAS - Polarizacao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49732B9528786D6E006CA86A /* FRANCIEL CRUZ - LIVE DAS CANJEBRINAS - Polarizacao.mp3 */; };
@@ -633,7 +632,6 @@
 		49732B8928786A53006CA86A /* Malditos milicos robo grave.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Malditos milicos robo grave.mp3"; sourceTree = "<group>"; };
 		49732B8B28786A7B006CA86A /* Malditos Milicos semitons.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Malditos Milicos semitons.mp3"; sourceTree = "<group>"; };
 		49732B8D28786AE0006CA86A /* Bolsonaro - Tudo pequenininho ai.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Tudo pequenininho ai.mp3"; sourceTree = "<group>"; };
-		49732B8F28786B57006CA86A /* Bolsonaro - Tudo pequenininho ai.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Tudo pequenininho ai.mp3"; sourceTree = "<group>"; };
 		49732B9128786C28006CA86A /* MINISTRO TERRIVELMENTE FILHO DA PUTA.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "MINISTRO TERRIVELMENTE FILHO DA PUTA.mp3"; sourceTree = "<group>"; };
 		49732B9328786CDC006CA86A /* LIVE DAS CANJEBRINAS - Francuel Cruz - Plural e sua mao em meu pau.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "LIVE DAS CANJEBRINAS - Francuel Cruz - Plural e sua mao em meu pau.mp3"; sourceTree = "<group>"; };
 		49732B9528786D6E006CA86A /* FRANCIEL CRUZ - LIVE DAS CANJEBRINAS - Polarizacao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "FRANCIEL CRUZ - LIVE DAS CANJEBRINAS - Polarizacao.mp3"; sourceTree = "<group>"; };
@@ -1251,7 +1249,6 @@
 			children = (
 				49732B9528786D6E006CA86A /* FRANCIEL CRUZ - LIVE DAS CANJEBRINAS - Polarizacao.mp3 */,
 				49732B9128786C28006CA86A /* MINISTRO TERRIVELMENTE FILHO DA PUTA.mp3 */,
-				49732B8F28786B57006CA86A /* Bolsonaro - Tudo pequenininho ai.mp3 */,
 				49732B77287663FA006CA86A /* Malditos Milicos - Acorde em B7.mp3 */,
 				D93B0F3E2873E12C00EC1DFE /* Lula - Voces percebem a loucura que esta tomando conta desse pais.mp3 */,
 				D9F05B8C2873C55200E76B43 /* Regina Rouca - Se Liga Hein (casual).mp3 */,
@@ -2719,7 +2716,6 @@
 				D90483DF2851A66200885739 /* Joao Kleber - Comeca o teste de fidelidade short meme.mp3 in Resources */,
 				D95569DA285137800072E3FC /* Brizola - Filhotes da ditadura.mp3 in Resources */,
 				D991512F2873E4C100FFAA29 /* funk-capricha-renan-mdb.mp3 in Resources */,
-				49732B9028786B57006CA86A /* Bolsonaro - Tudo pequenininho ai.mp3 in Resources */,
 				D955697D285137800072E3FC /* Danca do Creu - 30 mil passou a meta em 8x.mp3 in Resources */,
 				D95F41092872040D001CF903 /* Bolsonaro - Nao temos provas.mp3 in Resources */,
 				D95F41072872040D001CF903 /* Bolsonaro - Sou ousado.mp3 in Resources */,
