@@ -29,7 +29,7 @@
     },
     {
         "id": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
-        "name": "Bolsonaro"
+        "name": "Jair Bolsonaro"
     },
     {
         "id": "ED9593A4-B314-405D-B7F9-3BF8B21FA54A",
@@ -702,5 +702,33 @@
     {
         "id": "EB50B3D6-BF30-4B52-BAD7-A019C2F03A79",
         "name": "Regina Rouca"
+    },
+    {
+        "id": "8C588F61-04AC-4F3D-B1B8-F44ADC1311E2",
+        "name": "Nando Moura"
+    },
+    {
+        "id": "57017B39-5D5B-477A-BAF5-4F103DD84CB1",
+        "name": "Victor Camejo"
+    },
+    {
+        "id": "0278633F-0BA6-48DB-94CA-7ADACDBBA39D",
+        "name": "Luiz Megale"
+    },
+    {
+        "id": "17C39873-DC8D-47ED-8447-BB47E565D542",
+        "name": "Ricardo Boechat"
+    },
+    {
+        "id": "0258693D-31D6-4A9E-8BA8-F11973BA79CF",
+        "name": "Franciel Cruz"
+    },
+    {
+        "id": "CBDBB613-B887-473F-956D-BE497F31E549",
+        "name": "Vai Dar Namoro"
+    },
+    {
+        "id": "818A31F2-77FC-45B0-8C4F-9CD52BC1B2FB",
+        "name": "Lasier Martins"
     }
 ]
