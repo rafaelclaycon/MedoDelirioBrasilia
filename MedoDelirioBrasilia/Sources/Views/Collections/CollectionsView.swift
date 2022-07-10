@@ -34,7 +34,7 @@ struct CollectionsView: View {
                                 .font(.headline)
                                 .multilineTextAlignment(.center)
                         }
-                        .padding(.vertical, 100)
+                        .padding(.vertical, 80)
                         
 //                        ScrollView(.horizontal, showsIndicators: false) {
 //                            LazyHGrid(rows: rows, spacing: 14) {
@@ -77,6 +77,9 @@ struct CollectionsView: View {
                         }
                         
                         if viewModel.hasFoldersToDisplay {
+                            JoinFolderResearchBannerView(displayMe: .constant(true))
+                                .padding(.bottom)
+                            
                             LazyVGrid(columns: columns, spacing: 14) {
                                 ForEach(viewModel.folders) { folder in
                                     NavigationLink {
