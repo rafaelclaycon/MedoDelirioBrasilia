@@ -75,10 +75,45 @@ struct SoundsView: View {
                                             .onTapGesture {
                                                 viewModel.playSound(fromPath: sound.filename)
                                             }
-                                            .onLongPressGesture {
+                                            .contextMenu(menuItems: {
+                                               
+                                                
+                                                Button(action: {
+                                                   // Falta adicionar a ação de adicionar ou remover dos favoritos
+                                                }, label: {
+                                                    Label("Adicionar aos favoritos", systemImage: "star")
+                                                })
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                Button(action: {
+                                                    // Falta adicionar a ação de criar a pasta
+                                                }, label: {
+                                                    Label("Adicionar a pasta", systemImage: "folder.badge.plus")
+                                                })
+                                                
+                                                
+                                                Button(action: {
+                                                    SoundOptionsHelper.suggestOtherAuthorName(soundId: sound.id, soundTitle: sound.title, currentAuthorName: sound.authorName ?? .empty)
+                                                }, label: {
+                                                    Label("Sugerir outro autor", systemImage: "exclamationmark.bubble")
+                                                })
+                                                
+                                                
+                                                Button(action: {
+                                                    viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
+                                                }, label: {
+                                                    Label("Compartilhar", systemImage: "square.and.arrow.up")
+                                                })
+                                                
+                                            })
+                                        
+                                          /*  .onLongPressGesture {
                                                 viewModel.soundForConfirmationDialog = sound
                                                 viewModel.showConfirmationDialog = true
-                                            }
+                                            } */
                                     }
                                 }
                                 .searchable(text: $searchText)
@@ -88,6 +123,7 @@ struct SoundsView: View {
                                 .onAppear {
                                     scrollViewObject = scrollView
                                 }
+                                
                                 
                                 if UserSettings.getShowOffensiveSounds() == false, currentMode != .favorites {
                                     Text(Shared.contentFilterMessageForSounds)
@@ -166,7 +202,7 @@ struct SoundsView: View {
     //                        }
     //                    }
                     } label: {
-                        Image(systemName: "arrow.up.arrow.down")
+                        Image(systemName: "arrow.up.arrow.down.circle")
                     }
                     .onChange(of: viewModel.sortOption, perform: { newValue in
                         viewModel.reloadList(withSounds: soundData,
@@ -189,6 +225,8 @@ struct SoundsView: View {
                     viewModel.sendUserPersonalTrendsToServerIfEnabled()
                     shouldDisplayFolderBanner = UserSettings.getFolderBannerWasDismissed() == false
                 }
+                /*
+                
                 .confirmationDialog("", isPresented: $viewModel.showConfirmationDialog) {
                     Button(viewModel.getFavoriteButtonTitle()) {
                         guard let sound = viewModel.soundForConfirmationDialog else {
@@ -254,7 +292,7 @@ struct SoundsView: View {
                         }
                         viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
                     }
-                }
+                }*/
                 .alert(isPresented: $viewModel.showAlert) {
                     Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
                 }
