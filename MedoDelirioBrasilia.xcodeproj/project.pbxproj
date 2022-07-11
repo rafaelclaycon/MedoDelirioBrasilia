@@ -619,6 +619,7 @@
 		D9BF9091284257F500BDDD7D /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF9090284257F500BDDD7D /* Shared.swift */; };
 		D9BF90972842D3CB00BDDD7D /* NoSoundsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF90962842D3CB00BDDD7D /* NoSoundsView.swift */; };
 		D9BF90BE2842EAED00BDDD7D /* TopChartCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF90BD2842EAED00BDDD7D /* TopChartCellView.swift */; };
+		D9D8C4A8287CD1B600812EE5 /* UIDevice+DevicePhysicalCharacteristics.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D8C4A7287CD1B600812EE5 /* UIDevice+DevicePhysicalCharacteristics.swift */; };
 		D9DCC5D9287625F4008DD4A3 /* PodcastAuthorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D8287625F4008DD4A3 /* PodcastAuthorsView.swift */; };
 		D9E254EE287C66B80013CE5A /* Fã do Armandinho - Vou ver se pego um corpinho hoje la.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E254EA287C66B80013CE5A /* Fã do Armandinho - Vou ver se pego um corpinho hoje la.mp3 */; };
 		D9E254EF287C66B80013CE5A /* Fã do Armandinho - E um poeta ne meu, bah.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E254EB287C66B80013CE5A /* Fã do Armandinho - E um poeta ne meu, bah.mp3 */; };
@@ -1259,6 +1260,7 @@
 		D9BF9090284257F500BDDD7D /* Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shared.swift; sourceTree = "<group>"; };
 		D9BF90962842D3CB00BDDD7D /* NoSoundsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSoundsView.swift; sourceTree = "<group>"; };
 		D9BF90BD2842EAED00BDDD7D /* TopChartCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartCellView.swift; sourceTree = "<group>"; };
+		D9D8C4A7287CD1B600812EE5 /* UIDevice+DevicePhysicalCharacteristics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+DevicePhysicalCharacteristics.swift"; sourceTree = "<group>"; };
 		D9DCC5D8287625F4008DD4A3 /* PodcastAuthorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastAuthorsView.swift; sourceTree = "<group>"; };
 		D9E254EA287C66B80013CE5A /* Fã do Armandinho - Vou ver se pego um corpinho hoje la.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fã do Armandinho - Vou ver se pego um corpinho hoje la.mp3"; sourceTree = "<group>"; };
 		D9E254EB287C66B80013CE5A /* Fã do Armandinho - E um poeta ne meu, bah.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fã do Armandinho - E um poeta ne meu, bah.mp3"; sourceTree = "<group>"; };
@@ -1943,6 +1945,7 @@
 				D9758C3D28617DAC0094D388 /* Color+Name.swift */,
 				D958BC722868FE8C000B2EDA /* EmojiIdentification.swift */,
 				D93CCB7A286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift */,
+				D9D8C4A7287CD1B600812EE5 /* UIDevice+DevicePhysicalCharacteristics.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2934,6 +2937,7 @@
 				D96E115D28459D8800306859 /* UserActivityWaiter.swift in Sources */,
 				D9351C5C2844094E00D4317E /* TopChartItem.swift in Sources */,
 				D9943F172863DAE1002C6B97 /* FolderDetailView.swift in Sources */,
+				D9D8C4A8287CD1B600812EE5 /* UIDevice+DevicePhysicalCharacteristics.swift in Sources */,
 				D98EC5E12825A05900340BE5 /* Sound.swift in Sources */,
 				D9461182286159BC00C4FB7E /* UserFolder.swift in Sources */,
 				D9FA0CD728508590000F6ADE /* UIDevice+ModelName.swift in Sources */,

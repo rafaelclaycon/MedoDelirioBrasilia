@@ -14,7 +14,7 @@ struct PodcastAuthorsView: View {
                 } label: {
                     Text("APOIA.se")
                         .bold()
-                        .padding(.horizontal)
+                        .padding(.horizontal, UIDevice.is4InchDevice ? 4 : 15)
                 }
                 .tint(.red)
                 .controlSize(.large)
@@ -27,13 +27,34 @@ struct PodcastAuthorsView: View {
                 } label: {
                     Text("PicPay")
                         .bold()
-                        .padding(.horizontal)
+                        .padding(.horizontal, UIDevice.is4InchDevice ? 6 : 15)
                 }
                 .tint(.green)
                 .controlSize(.large)
                 .buttonStyle(.bordered)
                 .buttonBorderShape(.roundedRectangle)
             }
+            
+            Button {
+                guard let url = URL(string: "https://loja.medoedelirioembrasilia.com.br") else { return }
+                UIApplication.shared.open(url)
+            } label: {
+                HStack(spacing: 15) {
+                    Image(systemName: "bag.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 18)
+                        .foregroundColor(.blue)
+                    
+                    Text("Compre na loja oficial")
+                        .foregroundColor(.blue)
+                }
+                .padding(.vertical, 5)
+                .padding(.horizontal, 34)
+            }
+            .controlSize(.regular)
+            .buttonStyle(.bordered)
+            .buttonBorderShape(.roundedRectangle)
         }
     }
 
