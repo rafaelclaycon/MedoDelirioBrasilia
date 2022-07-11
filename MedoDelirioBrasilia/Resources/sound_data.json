@@ -12,7 +12,7 @@
         "id": "C56D243E-6E56-4EB2-B73E-920A6ED5F3E5",
         "title": "Alegria",
         "authorId": "691D4F55-79F7-407A-B0AA-71CD09059E60",
-        "description": "que alegria",
+        "description": "alegria",
         "filename": "Diogo Defante - Alegria.mp3",
         "dateAdded": "2022-07-01T00:00:00Z",
         "isOffensive": false
@@ -4108,7 +4108,7 @@
         "title": "Vocês percebem a loucura?",
         "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
         "description": "ou seja voces percebem a loucura",
-        "filename": "Lula - Voces percebem a loucura.mp3",
+        "filename": "Lula - Ou seja voces percebem a loucura.mp3",
         "dateAdded": "2022-07-05T00:00:00Z",
         "isOffensive": true
     },
@@ -4308,6 +4308,339 @@
         "description": "ai ai",
         "filename": "Lasier Martins - Choque.mp3",
         "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "4E0B2A32-1B75-42F9-BD26-6871020DD593",
+        "title": "Vai começar a putaria (Completo)",
+        "authorId": "917F48B7-332D-4E9B-8190-DF93875F3E35",
+        "description": "senhoras e senhores a partir desse exato momento eu tenho o prazer e a satisfação de informar a todos os presentes que vai começar a putaria",
+        "filename": "MR CATRA - vai comecar a putaria long.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "C34EEF4C-C7B8-47AC-8DAC-7606C9410A02",
+        "title": "Vai começar a putaria",
+        "authorId": "917F48B7-332D-4E9B-8190-DF93875F3E35",
+        "description": "vai começar a putaria curto short",
+        "filename": "MR CATRA - vai comecar a putaria long.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "03637726-B560-4D19-BD28-0AEF8E87DD89",
+        "title": "Cilada",
+        "authorId": "AFB30EED-A9AA-4F0A-AAB1-92E07E319275",
+        "description": "cilada",
+        "filename": "Molejo - Cilada short meme.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "87DCC454-CF5C-4899-96E5-D98A58083292",
+        "title": "Vai se criando um clima terrivel",
+        "authorId": "8DB0296F-1152-4DAF-BD78-C7665E031014",
+        "description": "vai se criando um clima terrivel galvão bueno",
+        "filename": "Marcelo Adnet - Galvao Bueno - Vai se criando um clima terrivel.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "98165E38-369B-4680-85EF-9D4BF67C3531",
+        "title": "Competência política?",
+        "authorId": "C066E971-8702-4261-955D-00CF642A465A",
+        "description": "competência política ha ha risada risos",
+        "filename": "Malafaia - Competencia politica hahahaha risos.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "D57F9FF4-2C66-48B0-83B9-E7C356DC7508",
+        "title": "Teologia da Prosperidade (completo)",
+        "authorId": "C066E971-8702-4261-955D-00CF642A465A",
+        "description": "sabe o que que diz a teologia da prosperidade olha querido se tá acontecendo algum problema na sua vida se você não consegue as coisas se você não é bem sucedido ou porque você não crê ou porque você tem algum problema na sua vida você ta mal financeiramente você não tem fé isso é uma afronta gente você não tem porque você não tem fé você é um incrédulo isso é uma covardia prosperidade é você compartilhar com o outro é mesmo você tendo pouco você ainda tem forças e capacidade de ajudar alguém que ta pior que você",
+        "filename": "Malafaia - criticas a teologia da prosperidade resumo.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "26C09473-8210-4AC7-BBB8-0F7F1D4CC115",
+        "title": "Me ignorou, me bloqueou",
+        "authorId": "B844D396-6AEB-4AD8-845E-A6CBE539BA87",
+        "description": "me ignorou me bloqueou",
+        "filename": "Lucca  Wilker - ME IGNOROU - Ignorou me bloqueou short meme.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "16E7B463-2C2B-4F26-A99E-55BB0CCD4807",
+        "title": "Ó não peida não hein",
+        "authorId": "62281870-6E38-438C-BC6A-CC388FF0161E",
+        "description": "ó não peida não ein",
+        "filename": "MC Cidinho e MC Doca - nao Peida Nao hein short meme com peito pum fart.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "D68D9B5A-113E-49BC-946B-402BE88E4AB7",
+        "title": "Pô que vacilação, mermão",
+        "authorId": "917F48B7-332D-4E9B-8190-DF93875F3E35",
+        "description": "pô que vacilação meu irmão",
+        "filename": "Mr. Catra - Po, que vacilaçao mermao meu irmao.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "AD86CC68-52C8-4251-8F0B-08EB32469895",
+        "title": "É cada piada que eu fico putz",
+        "authorId": "9E6BFEFD-3E92-4D63-A564-1C59A01811C5",
+        "description": "é cada piada que eu fico putz puts de onde é que ele tirou essa",
+        "filename": "Matheus Canella - e cada piada que eu fico putz.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "2B360D77-AB55-4EA9-B2A8-5DB83F0AB7E2",
+        "title": "Decisão judicial não se discute, se cumpre",
+        "authorId": "D5C493CE-E29C-45CF-8E92-7A8C6F4526D8",
+        "description": "decisão judicial não se discute se comenta se cumpre",
+        "filename": "MARCO FELICIANO - Decisao judicial nao se discute se cumpre SHORT MEME.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "823B0693-015F-49AB-A4C2-3B6116CFEFAA",
+        "title": "Minha alegria tá baseada na tristeza do meu colega",
+        "authorId": "691D4F55-79F7-407A-B0AA-71CD09059E60",
+        "description": "minha alegria ta baseada na tristeza do meu colega",
+        "filename": "LINGUICETA - Diogo Defante - Minha alegria ta baseada na tristeza do meu colega.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "370E0AED-E6DC-49D2-9149-A6BB724FCE63",
+        "title": "Tem rabo de jacaré, tem couro de jacaré",
+        "authorId": "9AB96EA6-7AB9-4FF3-BD58-4752D23DCA9B",
+        "description": "tem rabo de jacaré tem couro de jacaré tem cara de jacaré é jacará gente",
+        "filename": "Midcast - Freixo - Tem rabo de jacare tem couro de jacare e jacare gente.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "6D8E7AFC-325F-45E1-BBD8-D78721A8122C",
+        "title": "É de bom tom?",
+        "authorId": "4E8F4CB9-1641-405E-ABE0-80887F72509A",
+        "description": "é de bom tom não não é de bom tom",
+        "filename": "Keila Mellman -  nao e de bom tom short meme.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "3362B1C8-B0F9-4501-A545-A0CF61753087",
+        "title": "Procure saber",
+        "authorId": "FE52729B-F3E8-4A7F-A5EB-4471A6595839",
+        "description": "lobão imitando o gilberto gil procure saber",
+        "filename": "Lobao (imitando gil) - Procure saber.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "8FFB3A18-D6CB-4CAD-BAE3-E38448C20B92",
+        "title": "Ninguém",
+        "authorId": "FE52729B-F3E8-4A7F-A5EB-4471A6595839",
+        "description": "ninguém tan tan tan tan",
+        "filename": "Molejo - Ninguem short meme.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "23EC659A-584C-4593-9134-0C1C9DECF14F",
+        "title": "Ética não tem ambiguidade a mesma mesma da vida privada é a merda da vida profissional vai se fuder fudê",
+        "authorId": "54AD2984-8D05-44CD-B4A7-72325B59E947",
+        "description": "ética não tem ambiguidade caralho porra ",
+        "filename": "Kajuru - etica nao tem ambiguidade caralho porra.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "6ED3913F-0E3F-4402-91CA-71F1B67E485C",
+        "title": "Lá vem besteira",
+        "authorId": "F70C9F83-5567-4892-8B31-BC9B96F4BBBA",
+        "description": "lá vem besteira lá vem besteira",
+        "filename": "Maysa - La vem besteira, la vem besteira.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "CA71D57C-F2E2-4AB0-B7FC-05B98D980D78",
+        "title": "Caralho, o maluco é brabo",
+        "authorId": "EA9B678C-B7AC-4A7F-8D5A-FA21CB3468F4",
+        "description": "caralho o maluco é brabo",
+        "filename": "Leo Stronda - Caralho o maluco e brabo short.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "A8C0BDDC-6D09-4A54-A20A-56C533039405",
+        "title": "Amiga não tem como te defender",
+        "authorId": "DFBF365D-CA69-456C-A536-B9C78F519669",
+        "description": "amiga não tem como te defendê",
+        "filename": "Lu Schievano - Amiga nao tem como te defende short meme.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "1C45285F-878A-4C12-AF3E-B000ED2BEB93",
+        "title": "Ator pornô",
+        "authorId": "02CFCF9C-F456-4813-8E6D-F8EA3DBF2777",
+        "description": "ator pornô meme",
+        "filename": "Merval Pereira - ator porno.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "243F6AFD-2624-43C5-AF3B-1935E73D5CB1",
+        "title": "Medo e Delírio em Brasília (com grito)",
+        "authorId": "02CFCF9C-F456-4813-8E6D-F8EA3DBF2777",
+        "description": "medo e delírio em brasília com grito abertura",
+        "filename": "Medo e Delirio em Brasilia com grito.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "743A729D-9E6B-4D66-BBD7-FFEE9B1F7DF6",
+        "title": "Que beleza",
+        "authorId": "42EDB2DA-51E7-40B1-BABA-FD28066AF001",
+        "description": "que beleza",
+        "filename": "Milton Leite - Que Beleza short.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "CF5DB0AA-8831-4A25-B5A8-28373ECA6B55",
+        "title": "Cala a boca moleque",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "a que não sei o que cala a boca moleque moderador",
+        "filename": "Moderador ah que nao sei o que cala a boca moleque muleque.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "DAF7180B-55B4-4499-B2F6-21E359707394",
+        "title": "Cadê o nosso querido Zé Gotinha?",
+        "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
+        "description": "cadê o nosso querido ze gotinha",
+        "filename": "Lula - Cade o nosso querido Ze gotinha.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "74425100-2E10-4E6C-A716-C02BE4E3F160",
+        "title": "Cadê o Zé Gotinha?",
+        "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
+        "description": "cadê o ze gotinha",
+        "filename": "Lula - Cade o Ze gotinha.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "27DA71CA-3A8D-44C9-A080-86A6A16FDBA1",
+        "title": "Cloroquina",
+        "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
+        "description": "cloroquina",
+        "filename": "Lula - Cloroquina.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "054FE01F-4B5A-404F-9B6F-EB2EC59417DA",
+        "title": "Deus de barro não dura muito tempo",
+        "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
+        "description": "deus de barro nao dura muito tempo",
+        "filename": "Lula - Deus de barro nao dura muito tempo.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "CCA54B28-7EA8-458D-BD22-AAAB4A5D7FB2",
+        "title": "Ele fala é tudo por conta do Guedes",
+        "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
+        "description": "ele fala é tudo por conta do guedes",
+        "filename": "Lula - Ele fala e tudo por conta do guedes.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "52256763-D870-41EC-8D6F-0DE04A40ECCA",
+        "title": "Ele não sabe o que é ser presidente",
+        "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
+        "description": "agora ele não sabe o que é ser presidente da república",
+        "filename": "Lula - Ele nao sabe o que e ser presidente da republica.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "E40915AD-E064-40E8-8B60-A7AEF7BB7977",
+        "title": "Esse não é o papel de um presidente",
+        "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
+        "description": "esse não é o papel num em um mundo civilizado de um presidente da república",
+        "filename": "Lula - Esse nao e o papel num mundo civilizado de um presidente da republica.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "7F1A4912-100D-4673-B355-387A3C1B3D62",
+        "title": "Este país não tem governo",
+        "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
+        "description": "Esse país não tem governo",
+        "filename": "Lula - Este pais nao tem governo.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "1E824F18-9731-4FB6-A03D-8F64C5472430",
+        "title": "Eu vou repetir",
+        "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
+        "description": "eu vou repetir",
+        "filename": "Lula - Eu vou repetir.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "96B4C13C-4B27-433C-AE7A-0DAEEC3E644E",
+        "title": "Eu vou tomar a minha vacina",
+        "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
+        "description": "eu vou tomar a minha vacina",
+        "filename": "Lula - Eu vou tomar a minha vacina.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "9BA35670-2B37-4BA6-9A2E-9E2486CFFC10",
+        "title": "Não siga nenhuma decisão",
+        "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
+        "description": "não siga nenhuma decisão imbecil do presidente da república",
+        "filename": "Lula - Nao siga nenhuma decisao imbecil do presidente da republica.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "9A40E686-A462-4735-A8CC-F2158DE15F8D",
+        "title": "Não",
+        "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
+        "description": "não",
+        "filename": "Lula - Nao.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "A517FB3D-74B4-4F54-AD55-301CFDF481D2",
+        "title": "Chupa que a cana é doce",
+        "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
+        "description": "chupa que a cana é doce meu filho",
+        "filename": "Lula - Chupa que a cana e doce meu filho.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
         "isOffensive": true
     }
 ]

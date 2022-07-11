@@ -7,6 +7,43 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49A7FC20287C52F70078798F /* MR CATRA - vai comecar a putaria long.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC1F287C52F70078798F /* MR CATRA - vai comecar a putaria long.mp3 */; };
+		49A7FC22287C532C0078798F /* MR CATRA - Vai comecar a putaria short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC21287C532C0078798F /* MR CATRA - Vai comecar a putaria short.mp3 */; };
+		49A7FC24287C53700078798F /* Molejo - Cilada short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC23287C53700078798F /* Molejo - Cilada short meme.mp3 */; };
+		49A7FC26287C54310078798F /* Marcelo Adnet - Galvao Bueno - Vai se criando um clima terrivel.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC25287C54310078798F /* Marcelo Adnet - Galvao Bueno - Vai se criando um clima terrivel.mp3 */; };
+		49A7FC28287C55E70078798F /* Malafaia - criticas a teologia da prosperidade resumo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC27287C55E60078798F /* Malafaia - criticas a teologia da prosperidade resumo.mp3 */; };
+		49A7FC2A287C56490078798F /* Lucca  Wilker - ME IGNOROU - Ignorou me bloqueou short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC29287C56490078798F /* Lucca  Wilker - ME IGNOROU - Ignorou me bloqueou short meme.mp3 */; };
+		49A7FC2C287C59F70078798F /* MC Cidinho e MC Doca - nao Peida Nao hein short meme com peito pum fart.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC2B287C59F70078798F /* MC Cidinho e MC Doca - nao Peida Nao hein short meme com peito pum fart.mp3 */; };
+		49A7FC2E287C5AD70078798F /* Matheus Canella - e cada piada que eu fico putz.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC2D287C5AD70078798F /* Matheus Canella - e cada piada que eu fico putz.mp3 */; };
+		49A7FC30287C5AF00078798F /* Mr. Catra - Po, que vacilaçao mermao meu irmao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC2F287C5AF00078798F /* Mr. Catra - Po, que vacilaçao mermao meu irmao.mp3 */; };
+		49A7FC34287C5C2A0078798F /* MARCO FELICIANO - Decisao judicial nao se discute se cumpre SHORT MEME.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC33287C5C2A0078798F /* MARCO FELICIANO - Decisao judicial nao se discute se cumpre SHORT MEME.mp3 */; };
+		49A7FC36287C5CFF0078798F /* LINGUICETA - Diogo Defante - Minha alegria ta baseada na tristeza do meu colega.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC35287C5CFE0078798F /* LINGUICETA - Diogo Defante - Minha alegria ta baseada na tristeza do meu colega.mp3 */; };
+		49A7FC38287C5D870078798F /* Midcast - Freixo - Tem rabo de jacare tem couro de jacare e jacare gente.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC37287C5D870078798F /* Midcast - Freixo - Tem rabo de jacare tem couro de jacare e jacare gente.mp3 */; };
+		49A7FC3A287C5DEA0078798F /* Keila Mellman -  nao e de bom tom short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC39287C5DEA0078798F /* Keila Mellman -  nao e de bom tom short meme.mp3 */; };
+		49A7FC3C287C5E2E0078798F /* Lobao (imitando gil) - Procure saber.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC3B287C5E2E0078798F /* Lobao (imitando gil) - Procure saber.mp3 */; };
+		49A7FC3E287C5E8E0078798F /* Molejo - Ninguem short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC3D287C5E8E0078798F /* Molejo - Ninguem short meme.mp3 */; };
+		49A7FC40287C5F200078798F /* Kajuru - etica nao tem ambiguidade caralho porra.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC3F287C5F200078798F /* Kajuru - etica nao tem ambiguidade caralho porra.mp3 */; };
+		49A7FC42287C5F5F0078798F /* Maysa - La vem besteira, la vem besteira.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC41287C5F5F0078798F /* Maysa - La vem besteira, la vem besteira.mp3 */; };
+		49A7FC44287C5FB70078798F /* Leo Stronda - Caralho o maluco e brabo short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC43287C5FB70078798F /* Leo Stronda - Caralho o maluco e brabo short.mp3 */; };
+		49A7FC46287C60040078798F /* Lu Schievano - Amiga nao tem como te defende short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC45287C60040078798F /* Lu Schievano - Amiga nao tem como te defende short meme.mp3 */; };
+		49A7FC48287C605A0078798F /* Merval Pereira - ator porno.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC47287C605A0078798F /* Merval Pereira - ator porno.mp3 */; };
+		49A7FC4A287C60A20078798F /* Medo e Delirio em Brasilia com grito.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC49287C60A20078798F /* Medo e Delirio em Brasilia com grito.mp3 */; };
+		49A7FC4C287C60EC0078798F /* Milton Leite - Que Beleza short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC4B287C60EB0078798F /* Milton Leite - Que Beleza short.mp3 */; };
+		49A7FC4E287C61810078798F /* Moderador ah que nao sei o que cala a boca moleque muleque.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC4D287C61810078798F /* Moderador ah que nao sei o que cala a boca moleque muleque.mp3 */; };
+		49A7FC50287C61C60078798F /* Lula - Cade o nosso querido Ze gotinha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC4F287C61C60078798F /* Lula - Cade o nosso querido Ze gotinha.mp3 */; };
+		49A7FC52287C61ED0078798F /* Lula - Cade o Ze gotinha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC51287C61ED0078798F /* Lula - Cade o Ze gotinha.mp3 */; };
+		49A7FC54287C62100078798F /* Lula - Cloroquina.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC53287C62100078798F /* Lula - Cloroquina.mp3 */; };
+		49A7FC56287C621C0078798F /* Lula - Deus de barro não dura muito tempo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC55287C621C0078798F /* Lula - Deus de barro não dura muito tempo.mp3 */; };
+		49A7FC58287C626B0078798F /* Lula - Ele fala e tudo por conta do guedes.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC57287C626B0078798F /* Lula - Ele fala e tudo por conta do guedes.mp3 */; };
+		49A7FC5A287C62B20078798F /* Lula - Ele nao sabe o que e ser presidente da republica.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC59287C62B20078798F /* Lula - Ele nao sabe o que e ser presidente da republica.mp3 */; };
+		49A7FC5C287C62EF0078798F /* Lula - Esse nao e o papel num mundo civilizado de um presidente da republica.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC5B287C62EF0078798F /* Lula - Esse nao e o papel num mundo civilizado de um presidente da republica.mp3 */; };
+		49A7FC5E287C63310078798F /* Lula - Este pais nao tem governo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC5D287C63310078798F /* Lula - Este pais nao tem governo.mp3 */; };
+		49A7FC60287C63570078798F /* Lula - Eu vou repetir.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC5F287C63570078798F /* Lula - Eu vou repetir.mp3 */; };
+		49A7FC62287C63750078798F /* Lula - Eu vou tomar a minha vacina.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC61287C63750078798F /* Lula - Eu vou tomar a minha vacina.mp3 */; };
+		49A7FC64287C63B70078798F /* Lula - Nao siga nenhuma decisao imbecil do presidente da republica.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC63287C63B70078798F /* Lula - Nao siga nenhuma decisao imbecil do presidente da republica.mp3 */; };
+		49A7FC66287C63D60078798F /* Lula - Nao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC65287C63D60078798F /* Lula - Nao.mp3 */; };
+		49A7FC68287C64090078798F /* Lula - Ou seja voces percebem a loucura.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC67287C64090078798F /* Lula - Ou seja voces percebem a loucura.mp3 */; };
+		49A7FC6A287C643C0078798F /* Lula - Chupa que a cana e doce meu filho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC69287C643C0078798F /* Lula - Chupa que a cana e doce meu filho.mp3 */; };
 		D905B4C52857FF3D0096D466 /* AddNetworkCallLogTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D905B4C42857FF3D0096D466 /* AddNetworkCallLogTable.swift */; };
 		D90F6A6628446C250050FFFF /* TrendsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */; };
 		D91107112863B481000B6F8F /* CollectionsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91107102863B481000B6F8F /* CollectionsViewViewModel.swift */; };
@@ -624,6 +661,43 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		49A7FC1F287C52F70078798F /* MR CATRA - vai comecar a putaria long.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "MR CATRA - vai comecar a putaria long.mp3"; sourceTree = "<group>"; };
+		49A7FC21287C532C0078798F /* MR CATRA - Vai comecar a putaria short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "MR CATRA - Vai comecar a putaria short.mp3"; sourceTree = "<group>"; };
+		49A7FC23287C53700078798F /* Molejo - Cilada short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Molejo - Cilada short meme.mp3"; sourceTree = "<group>"; };
+		49A7FC25287C54310078798F /* Marcelo Adnet - Galvao Bueno - Vai se criando um clima terrivel.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Marcelo Adnet - Galvao Bueno - Vai se criando um clima terrivel.mp3"; sourceTree = "<group>"; };
+		49A7FC27287C55E60078798F /* Malafaia - criticas a teologia da prosperidade resumo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Malafaia - criticas a teologia da prosperidade resumo.mp3"; sourceTree = "<group>"; };
+		49A7FC29287C56490078798F /* Lucca  Wilker - ME IGNOROU - Ignorou me bloqueou short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lucca  Wilker - ME IGNOROU - Ignorou me bloqueou short meme.mp3"; sourceTree = "<group>"; };
+		49A7FC2B287C59F70078798F /* MC Cidinho e MC Doca - nao Peida Nao hein short meme com peito pum fart.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "MC Cidinho e MC Doca - nao Peida Nao hein short meme com peito pum fart.mp3"; sourceTree = "<group>"; };
+		49A7FC2D287C5AD70078798F /* Matheus Canella - e cada piada que eu fico putz.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Matheus Canella - e cada piada que eu fico putz.mp3"; sourceTree = "<group>"; };
+		49A7FC2F287C5AF00078798F /* Mr. Catra - Po, que vacilaçao mermao meu irmao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mr. Catra - Po, que vacilaçao mermao meu irmao.mp3"; sourceTree = "<group>"; };
+		49A7FC33287C5C2A0078798F /* MARCO FELICIANO - Decisao judicial nao se discute se cumpre SHORT MEME.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "MARCO FELICIANO - Decisao judicial nao se discute se cumpre SHORT MEME.mp3"; sourceTree = "<group>"; };
+		49A7FC35287C5CFE0078798F /* LINGUICETA - Diogo Defante - Minha alegria ta baseada na tristeza do meu colega.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "LINGUICETA - Diogo Defante - Minha alegria ta baseada na tristeza do meu colega.mp3"; sourceTree = "<group>"; };
+		49A7FC37287C5D870078798F /* Midcast - Freixo - Tem rabo de jacare tem couro de jacare e jacare gente.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Midcast - Freixo - Tem rabo de jacare tem couro de jacare e jacare gente.mp3"; sourceTree = "<group>"; };
+		49A7FC39287C5DEA0078798F /* Keila Mellman -  nao e de bom tom short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Keila Mellman -  nao e de bom tom short meme.mp3"; sourceTree = "<group>"; };
+		49A7FC3B287C5E2E0078798F /* Lobao (imitando gil) - Procure saber.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lobao (imitando gil) - Procure saber.mp3"; sourceTree = "<group>"; };
+		49A7FC3D287C5E8E0078798F /* Molejo - Ninguem short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Molejo - Ninguem short meme.mp3"; sourceTree = "<group>"; };
+		49A7FC3F287C5F200078798F /* Kajuru - etica nao tem ambiguidade caralho porra.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Kajuru - etica nao tem ambiguidade caralho porra.mp3"; sourceTree = "<group>"; };
+		49A7FC41287C5F5F0078798F /* Maysa - La vem besteira, la vem besteira.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Maysa - La vem besteira, la vem besteira.mp3"; sourceTree = "<group>"; };
+		49A7FC43287C5FB70078798F /* Leo Stronda - Caralho o maluco e brabo short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Leo Stronda - Caralho o maluco e brabo short.mp3"; sourceTree = "<group>"; };
+		49A7FC45287C60040078798F /* Lu Schievano - Amiga nao tem como te defende short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lu Schievano - Amiga nao tem como te defende short meme.mp3"; sourceTree = "<group>"; };
+		49A7FC47287C605A0078798F /* Merval Pereira - ator porno.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Merval Pereira - ator porno.mp3"; sourceTree = "<group>"; };
+		49A7FC49287C60A20078798F /* Medo e Delirio em Brasilia com grito.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Medo e Delirio em Brasilia com grito.mp3"; sourceTree = "<group>"; };
+		49A7FC4B287C60EB0078798F /* Milton Leite - Que Beleza short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Milton Leite - Que Beleza short.mp3"; sourceTree = "<group>"; };
+		49A7FC4D287C61810078798F /* Moderador ah que nao sei o que cala a boca moleque muleque.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Moderador ah que nao sei o que cala a boca moleque muleque.mp3"; sourceTree = "<group>"; };
+		49A7FC4F287C61C60078798F /* Lula - Cade o nosso querido Ze gotinha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - Cade o nosso querido Ze gotinha.mp3"; sourceTree = "<group>"; };
+		49A7FC51287C61ED0078798F /* Lula - Cade o Ze gotinha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - Cade o Ze gotinha.mp3"; sourceTree = "<group>"; };
+		49A7FC53287C62100078798F /* Lula - Cloroquina.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - Cloroquina.mp3"; sourceTree = "<group>"; };
+		49A7FC55287C621C0078798F /* Lula - Deus de barro não dura muito tempo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - Deus de barro não dura muito tempo.mp3"; sourceTree = "<group>"; };
+		49A7FC57287C626B0078798F /* Lula - Ele fala e tudo por conta do guedes.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - Ele fala e tudo por conta do guedes.mp3"; sourceTree = "<group>"; };
+		49A7FC59287C62B20078798F /* Lula - Ele nao sabe o que e ser presidente da republica.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - Ele nao sabe o que e ser presidente da republica.mp3"; sourceTree = "<group>"; };
+		49A7FC5B287C62EF0078798F /* Lula - Esse nao e o papel num mundo civilizado de um presidente da republica.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - Esse nao e o papel num mundo civilizado de um presidente da republica.mp3"; sourceTree = "<group>"; };
+		49A7FC5D287C63310078798F /* Lula - Este pais nao tem governo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - Este pais nao tem governo.mp3"; sourceTree = "<group>"; };
+		49A7FC5F287C63570078798F /* Lula - Eu vou repetir.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - Eu vou repetir.mp3"; sourceTree = "<group>"; };
+		49A7FC61287C63750078798F /* Lula - Eu vou tomar a minha vacina.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - Eu vou tomar a minha vacina.mp3"; sourceTree = "<group>"; };
+		49A7FC63287C63B70078798F /* Lula - Nao siga nenhuma decisao imbecil do presidente da republica.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - Nao siga nenhuma decisao imbecil do presidente da republica.mp3"; sourceTree = "<group>"; };
+		49A7FC65287C63D60078798F /* Lula - Nao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - Nao.mp3"; sourceTree = "<group>"; };
+		49A7FC67287C64090078798F /* Lula - Ou seja voces percebem a loucura.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - Ou seja voces percebem a loucura.mp3"; sourceTree = "<group>"; };
+		49A7FC69287C643C0078798F /* Lula - Chupa que a cana e doce meu filho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Lula - Chupa que a cana e doce meu filho.mp3"; path = "../../../../../Downloads/Medo e Delírio app/FIla para fazer/Lula - Chupa que a cana e doce meu filho.mp3"; sourceTree = "<group>"; };
 		D905B4C42857FF3D0096D466 /* AddNetworkCallLogTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNetworkCallLogTable.swift; sourceTree = "<group>"; };
 		D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsSettingsView.swift; sourceTree = "<group>"; };
 		D91107102863B481000B6F8F /* CollectionsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsViewViewModel.swift; sourceTree = "<group>"; };
@@ -1255,16 +1329,53 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				49A7FC69287C643C0078798F /* Lula - Chupa que a cana e doce meu filho.mp3 */,
+				49A7FC67287C64090078798F /* Lula - Ou seja voces percebem a loucura.mp3 */,
+				49A7FC65287C63D60078798F /* Lula - Nao.mp3 */,
+				49A7FC63287C63B70078798F /* Lula - Nao siga nenhuma decisao imbecil do presidente da republica.mp3 */,
+				49A7FC61287C63750078798F /* Lula - Eu vou tomar a minha vacina.mp3 */,
+				49A7FC5F287C63570078798F /* Lula - Eu vou repetir.mp3 */,
+				49A7FC5D287C63310078798F /* Lula - Este pais nao tem governo.mp3 */,
+				49A7FC5B287C62EF0078798F /* Lula - Esse nao e o papel num mundo civilizado de um presidente da republica.mp3 */,
+				49A7FC59287C62B20078798F /* Lula - Ele nao sabe o que e ser presidente da republica.mp3 */,
+				49A7FC57287C626B0078798F /* Lula - Ele fala e tudo por conta do guedes.mp3 */,
+				49A7FC55287C621C0078798F /* Lula - Deus de barro não dura muito tempo.mp3 */,
+				49A7FC53287C62100078798F /* Lula - Cloroquina.mp3 */,
+				49A7FC51287C61ED0078798F /* Lula - Cade o Ze gotinha.mp3 */,
+				49A7FC4F287C61C60078798F /* Lula - Cade o nosso querido Ze gotinha.mp3 */,
+				49A7FC4D287C61810078798F /* Moderador ah que nao sei o que cala a boca moleque muleque.mp3 */,
+				49A7FC4B287C60EB0078798F /* Milton Leite - Que Beleza short.mp3 */,
+				49A7FC49287C60A20078798F /* Medo e Delirio em Brasilia com grito.mp3 */,
+				49A7FC47287C605A0078798F /* Merval Pereira - ator porno.mp3 */,
+				49A7FC45287C60040078798F /* Lu Schievano - Amiga nao tem como te defende short meme.mp3 */,
+				49A7FC43287C5FB70078798F /* Leo Stronda - Caralho o maluco e brabo short.mp3 */,
+				49A7FC41287C5F5F0078798F /* Maysa - La vem besteira, la vem besteira.mp3 */,
+				49A7FC3F287C5F200078798F /* Kajuru - etica nao tem ambiguidade caralho porra.mp3 */,
+				49A7FC3D287C5E8E0078798F /* Molejo - Ninguem short meme.mp3 */,
+				49A7FC3B287C5E2E0078798F /* Lobao (imitando gil) - Procure saber.mp3 */,
+				49A7FC39287C5DEA0078798F /* Keila Mellman -  nao e de bom tom short meme.mp3 */,
+				49A7FC37287C5D870078798F /* Midcast - Freixo - Tem rabo de jacare tem couro de jacare e jacare gente.mp3 */,
+				49A7FC35287C5CFE0078798F /* LINGUICETA - Diogo Defante - Minha alegria ta baseada na tristeza do meu colega.mp3 */,
+				49A7FC33287C5C2A0078798F /* MARCO FELICIANO - Decisao judicial nao se discute se cumpre SHORT MEME.mp3 */,
 				D993A5D7287B338E00109C79 /* A mae copiloto - celera bem, acelera short meme.mp3 */,
 				D993A69E287B339100109C79 /* Abraham Weintraub - odeio odeio odeio short.mp3 */,
+				49A7FC21287C532C0078798F /* MR CATRA - Vai comecar a putaria short.mp3 */,
+				49A7FC25287C54310078798F /* Marcelo Adnet - Galvao Bueno - Vai se criando um clima terrivel.mp3 */,
+				49A7FC29287C56490078798F /* Lucca  Wilker - ME IGNOROU - Ignorou me bloqueou short meme.mp3 */,
 				D993A528287B338B00109C79 /* ADY - oh nao mais um crime de responsabilidade.mp3 */,
 				D993A596287B338D00109C79 /* Ady Ferrer - A pandemia ainda nao acabou porra.mp3 */,
+				49A7FC23287C53700078798F /* Molejo - Cilada short meme.mp3 */,
+				49A7FC2B287C59F70078798F /* MC Cidinho e MC Doca - nao Peida Nao hein short meme com peito pum fart.mp3 */,
 				D993A5C5287B338D00109C79 /* Ady Ferrer - Oh nao mais um crime contra a humanidade.mp3 */,
+				49A7FC2D287C5AD70078798F /* Matheus Canella - e cada piada que eu fico putz.mp3 */,
 				D993A4EA287B338A00109C79 /* Aham sei.mp3 */,
+				49A7FC27287C55E60078798F /* Malafaia - criticas a teologia da prosperidade resumo.mp3 */,
 				D993A4FF287B338B00109C79 /* Ai seu grosso.mp3 */,
+				49A7FC1F287C52F70078798F /* MR CATRA - vai comecar a putaria long.mp3 */,
 				D993A649287B338F00109C79 /* Alanzoka - Sai, maluco, todo dia isso.mp3 */,
 				D993A543287B338B00109C79 /* Alborgeti - Que Merda Hein.mp3 */,
 				D993A5BB287B338D00109C79 /* Alborghetti - Ah, va a merda porra.mp3 */,
+				49A7FC2F287C5AF00078798F /* Mr. Catra - Po, que vacilaçao mermao meu irmao.mp3 */,
 				D993A56E287B338C00109C79 /* Alborghetti - Ta uma merda esse pais.mp3 */,
 				D993A554287B338C00109C79 /* Alceu Valenca - Tomara - Tomara meu deus tomara.mp3 */,
 				D993A636287B338F00109C79 /* Alexandre Frota - Tai o.mp3 */,
@@ -2277,6 +2388,7 @@
 				D993A7A6287B339100109C79 /* Heloisa Faissol - Cala a boca vai tomar no cu.mp3 in Resources */,
 				D993A7B5287B339100109C79 /* Joao Kleber - Comeca o teste de fidelidade short meme.mp3 in Resources */,
 				D993A708287B339100109C79 /* Vai Dar Namoro - Cavalo.mp3 in Resources */,
+				49A7FC2E287C5AD70078798F /* Matheus Canella - e cada piada que eu fico putz.mp3 in Resources */,
 				D993A6B4287B339100109C79 /* Bolsonaro - Laudos.mp3 in Resources */,
 				D993A872287B339200109C79 /* Leo Stronda Porra.mp3 in Resources */,
 				D993A6E3287B339100109C79 /* Bolsonaro - Eu nao errei nenhuma.mp3 in Resources */,
@@ -2291,6 +2403,7 @@
 				D993A87D287B339200109C79 /* PODER360 - Barroso - Nao e de surpreender.mp3 in Resources */,
 				D993A818287B339200109C79 /* Ernesto Araujo - Thats not true.mp3 in Resources */,
 				D993A873287B339200109C79 /* Mourao - Essa conta ira para as Forcas Armadas trecho short.mp3 in Resources */,
+				49A7FC6A287C643C0078798F /* Lula - Chupa que a cana e doce meu filho.mp3 in Resources */,
 				D993A875287B339200109C79 /* Sheldon - Oh Really short.mp3 in Resources */,
 				D993A76F287B339100109C79 /* Michel Temer - Tem que pedir uma pastilha.mp3 in Resources */,
 				D993A7E1287B339100109C79 /* Natalie Wynn Contrapoints - Cancel culture.mp3 in Resources */,
@@ -2306,6 +2419,7 @@
 				D993A815287B339200109C79 /* Bolsonaro - Lamento, quer que eu faca o que.mp3 in Resources */,
 				D993A7B2287B339100109C79 /* A mae copiloto - celera bem, acelera short meme.mp3 in Resources */,
 				D993A86C287B339200109C79 /* Bolsonaro - Porra Porras.mp3 in Resources */,
+				49A7FC5A287C62B20078798F /* Lula - Ele nao sabe o que e ser presidente da republica.mp3 in Resources */,
 				D993A6DA287B339100109C79 /* Ai seu grosso.mp3 in Resources */,
 				D993A749287B339100109C79 /* Alborghetti - Ta uma merda esse pais.mp3 in Resources */,
 				D993A80F287B339200109C79 /* GAVETA - Voce merece tomar Nokul no cu.mp3 in Resources */,
@@ -2318,11 +2432,13 @@
 				D993A6FE287B339100109C79 /* OLHA SO short meme.mp3 in Resources */,
 				D993A6EC287B339100109C79 /* Cecilia Oliveira - Entao assim a gente ta fodido.mp3 in Resources */,
 				D993A789287B339100109C79 /* CNN BRASIL - Milton Ribeiro - A versao verdadeira e a versao que a gente pode escutar no audio.mp3 in Resources */,
+				49A7FC48287C605A0078798F /* Merval Pereira - ator porno.mp3 in Resources */,
 				D993A820287B339200109C79 /* Gilmar Mendes - Com a devida venia.mp3 in Resources */,
 				D993A862287B339200109C79 /* Bolsonaro - E voce jogar uma moeda 271 vezes pra cima e dar cara e coroa. Isso deve ser a quantidade de atomos aqui na terra.mp3 in Resources */,
 				D993A79A287B339100109C79 /* Ciro Gomes - Veja bem, se eu estiver errado me corrija.mp3 in Resources */,
 				D993A793287B339100109C79 /* Dilma - O milho.mp3 in Resources */,
 				D993A856287B339200109C79 /* BREAKING BAD - Yeah Science meme.mp3 in Resources */,
+				49A7FC38287C5D870078798F /* Midcast - Freixo - Tem rabo de jacare tem couro de jacare e jacare gente.mp3 in Resources */,
 				D993A77C287B339100109C79 /* esse_braga_neto_que_eh_um_bosta.mp3 in Resources */,
 				D993A715287B339100109C79 /* Bolsonaro - Nao errei nenhuma short meme.mp3 in Resources */,
 				D993A704287B339100109C79 /* COMUNISTA DO INFERNO meme.mp3 in Resources */,
@@ -2369,6 +2485,7 @@
 				D993A884287B339200109C79 /* REVELACAO - Nao mete essa short meme.mp3 in Resources */,
 				D993A6B6287B339100109C79 /* Choque de cultura - Rogerinho - Nao vamos falar de porno aqui nao.mp3 in Resources */,
 				D993A6CD287B339100109C79 /* Silas Malafaia - Nunca vi tu e burro cara.mp3 in Resources */,
+				49A7FC3E287C5E8E0078798F /* Molejo - Ninguem short meme.mp3 in Resources */,
 				D993A7E7287B339100109C79 /* Osorio - Flavio Bolsonaro desmaio - Nao da pra continuar, ta passando mal short.mp3 in Resources */,
 				D993A721287B339100109C79 /* UOL - Milton Ribeiro - Enem tem a cara do governo competencia honestidade seriedade.mp3 in Resources */,
 				D993A849287B339200109C79 /* Datena - Gol do presidente Bolsonaro.mp3 in Resources */,
@@ -2382,6 +2499,7 @@
 				D993A7A0287B339100109C79 /* Ady Ferrer - Oh nao mais um crime contra a humanidade.mp3 in Resources */,
 				D993A85B287B339200109C79 /* Bolsonaro - Ce ta vendo muito Globo ai.mp3 in Resources */,
 				D993A79F287B339100109C79 /* Feiticeira - Nao e feiticaria, e tecnologia meme short.mp3 in Resources */,
+				49A7FC22287C532C0078798F /* MR CATRA - Vai comecar a putaria short.mp3 in Resources */,
 				D993A7CA287B339100109C79 /* Bolsonaro - Enfrentar como homem.mp3 in Resources */,
 				D993A801287B339200109C79 /* Bolsonaro - Pra midia, o virus sou eu.mp3 in Resources */,
 				D993A7D4287B339100109C79 /* GABRIELA PRIOLI - Esse governo desmoraliza as forcas armadas.mp3 in Resources */,
@@ -2407,6 +2525,7 @@
 				D993A755287B339100109C79 /* Gumball - ooo que mais.mp3 in Resources */,
 				D993A75B287B339100109C79 /* Nunca foi meritocracia, sempre foi desigualdade.mp3 in Resources */,
 				D993A6C8287B339100109C79 /* Malafaia - Deus escolheu as coisas loucas.mp3 in Resources */,
+				49A7FC4E287C61810078798F /* Moderador ah que nao sei o que cala a boca moleque muleque.mp3 in Resources */,
 				D993A7FC287B339200109C79 /* Tati Quebra Barraco - Ce num tinha nem que ta aqui linda.mp3 in Resources */,
 				D993A860287B339200109C79 /* MC Creu - E creu, e creu neles.mp3 in Resources */,
 				D993A828287B339200109C79 /* Neto - Voces estao de sacanagem short.mp3 in Resources */,
@@ -2415,7 +2534,9 @@
 				D993A80B287B339200109C79 /* Frederico Goulart - Presidente por que sua esposa Michele recebeu 89 mil de Fabricio Queiroz.mp3 in Resources */,
 				D993A6EA287B339100109C79 /* Lula - Voces percebem a loucura que esta tomando conta desse pais.mp3 in Resources */,
 				D993A77F287B339100109C79 /* Caetano Veloso - Que coisa absurda.mp3 in Resources */,
+				49A7FC4C287C60EC0078798F /* Milton Leite - Que Beleza short.mp3 in Resources */,
 				D993A7E3287B339100109C79 /* Calma Que Piora.mp3 in Resources */,
+				49A7FC2A287C56490078798F /* Lucca  Wilker - ME IGNOROU - Ignorou me bloqueou short meme.mp3 in Resources */,
 				D993A75C287B339100109C79 /* E O TCHAN - Loop.mp3 in Resources */,
 				D993A84F287B339200109C79 /* tv_senado_soraya_thronicke_a_gente_vai_cansando_sabe.mp3 in Resources */,
 				D993A6C1287B339100109C79 /* ATILA IAMARINO - Ele faz sexo.mp3 in Resources */,
@@ -2435,6 +2556,7 @@
 				D993A73E287B339100109C79 /* Bolsonaro - Tem que deixar de ser um pais de maricas.mp3 in Resources */,
 				D993A812287B339200109C79 /* Natalie Wynn Contrapoints - Let's get started.mp3 in Resources */,
 				D993A738287B339100109C79 /* Caetano Veloso - Voce fala de uma maneira burra.mp3 in Resources */,
+				49A7FC66287C63D60078798F /* Lula - Nao.mp3 in Resources */,
 				D993A72D287B339100109C79 /* MIDCAST - Teu cu.mp3 in Resources */,
 				D993A78A287B339100109C79 /* Silas Malafaia - E por isso que Deus te escolheu.mp3 in Resources */,
 				D993A791287B339100109C79 /* Paulo Guedes - Deixa cada um se fuder do jeito que quiser.mp3 in Resources */,
@@ -2483,6 +2605,7 @@
 				D993A878287B339200109C79 /* Bolsonaro - Igularidades no ministerio irregularidades paralelepipi pretiputi.mp3 in Resources */,
 				D993A6CA287B339100109C79 /* Gilmar Mendes - Me parece que esta havendo um certo delirio.mp3 in Resources */,
 				D993A831287B339200109C79 /* FALA M.R. - Quem produz vai ter sempre o pretexto de dizer que nao e fake news porque e uma piada.mp3 in Resources */,
+				49A7FC2C287C59F70078798F /* MC Cidinho e MC Doca - nao Peida Nao hein short meme com peito pum fart.mp3 in Resources */,
 				D993A79E287B339100109C79 /* Costinha - Se fudeu short.mp3 in Resources */,
 				D993A87F287B339200109C79 /* Regina Rouca - Se Liga Hein (casual).mp3 in Resources */,
 				D993A6F1287B339100109C79 /* DIOGO DEFANTE - Calma, ces tao de cabeca quente.mp3 in Resources */,
@@ -2501,6 +2624,8 @@
 				D993A70D287B339100109C79 /* Bonitinha mas ordinaria - E mentira dele meme short.mp3 in Resources */,
 				D993A86A287B339200109C79 /* Away - De novo cara.mp3 in Resources */,
 				D993A6D8287B339100109C79 /* Vai Dar Namoro - Danca gatinho danca.mp3 in Resources */,
+				49A7FC40287C5F200078798F /* Kajuru - etica nao tem ambiguidade caralho porra.mp3 in Resources */,
+				49A7FC46287C60040078798F /* Lu Schievano - Amiga nao tem como te defende short meme.mp3 in Resources */,
 				D99151272873E4C100FFAA29 /* rock-eu-vou-pra-ceilandia-mdb.mp3 in Resources */,
 				D993A74D287B339100109C79 /* Queiroz - Eu sou um cara de negocios, eu faco dinheiro eu faco.mp3 in Resources */,
 				D993A7B3287B339100109C79 /* UOL - Luiz Fux - Infelizmente short meme.mp3 in Resources */,
@@ -2515,6 +2640,7 @@
 				D993A75E287B339100109C79 /* Caetano Veloso - Como voce e burro short.mp3 in Resources */,
 				D993A6B3287B339100109C79 /* Gaucho Puto - Uma bosta, nao sabe, uma merda.mp3 in Resources */,
 				D993A6D9287B339100109C79 /* Bolsonaro - Polemizar esse assunto.mp3 in Resources */,
+				49A7FC52287C61ED0078798F /* Lula - Cade o Ze gotinha.mp3 in Resources */,
 				D993A726287B339100109C79 /* Silas Malafaia - Eu tenho pena short.mp3 in Resources */,
 				D99151312873E4C100FFAA29 /* funk-do-morto-mdb.mp3 in Resources */,
 				D993A84C287B339200109C79 /* Bolsonaro - Como etanol.mp3 in Resources */,
@@ -2564,7 +2690,9 @@
 				D993A7DC287B339100109C79 /* Silvio Santos - Quem e que nao gosta de dinheiro.mp3 in Resources */,
 				D993A74C287B339100109C79 /* Jonathan Frakes - pure fiction.mp3 in Resources */,
 				D993A83B287B339200109C79 /* SUPERPOP - Luciana Gimenez - Mas ce ta brava.mp3 in Resources */,
+				49A7FC44287C5FB70078798F /* Leo Stronda - Caralho o maluco e brabo short.mp3 in Resources */,
 				D993A7C5287B339100109C79 /* Valdemiro Santiago - Eu nao suporto mais.mp3 in Resources */,
+				49A7FC58287C626B0078798F /* Lula - Ele fala e tudo por conta do guedes.mp3 in Resources */,
 				D993A852287B339200109C79 /* Hassum - Nem fodendo.mp3 in Resources */,
 				D991512E2873E4C100FFAA29 /* funk-sexo-selvagem-1-mdb.mp3 in Resources */,
 				D993A72C287B339100109C79 /* Biquini Cavadao - E impossivel.mp3 in Resources */,
@@ -2590,7 +2718,9 @@
 				D993A81E287B339200109C79 /* RADIO BANDNEWS FM - Boechat - Nao significa absolutamente nada.mp3 in Resources */,
 				D993A706287B339100109C79 /* Fernando Collor - Isso e uma mentira uma pantomima uma patuscada short.mp3 in Resources */,
 				D993A743287B339100109C79 /* Pedro Doria - Eles mentem mentem na cara dura mentem sem ter vergonha de mentir.mp3 in Resources */,
+				49A7FC62287C63750078798F /* Lula - Eu vou tomar a minha vacina.mp3 in Resources */,
 				D993A799287B339100109C79 /* Dilma - Vai todo mundo perder.mp3 in Resources */,
+				49A7FC56287C621C0078798F /* Lula - Deus de barro não dura muito tempo.mp3 in Resources */,
 				D993A7AC287B339100109C79 /* Gustavo mendes dilma todo mundo se fudeu.mp3 in Resources */,
 				D993A6B0287B339100109C79 /* Bolsonaro - Brasil e Estados Unidos.mp3 in Resources */,
 				D993A767287B339100109C79 /* Choque de Cultura - Renan - E Paradoxo que chama isso ai.mp3 in Resources */,
@@ -2598,16 +2728,19 @@
 				D993A6F7287B339100109C79 /* SBT NEWS - Jair Renan - Acabou que nao fiz nada la.mp3 in Resources */,
 				D993A79D287B339100109C79 /* Drauzio - As pessoas nao tem consciencia disso.mp3 in Resources */,
 				D993A74E287B339100109C79 /* MC Jefinho Farao - Pastor marginal.mp3 in Resources */,
+				49A7FC5E287C63310078798F /* Lula - Este pais nao tem governo.mp3 in Resources */,
 				D993A816287B339200109C79 /* jonathan frakes - It's a total fabrication.mp3 in Resources */,
 				D993A6FD287B339100109C79 /* Collor - Um devaneio, um sonho de uma noite de verao.mp3 in Resources */,
 				D993A804287B339200109C79 /* Caue Moura - Foi mal tava doidao aqui nao seu arrombado.mp3 in Resources */,
 				D993A7C0287B339100109C79 /* Cleber Machado - Hoje SIM (afirmativo).mp3 in Resources */,
 				D993A6B7287B339100109C79 /* Olavo de Carvalho - Porra.mp3 in Resources */,
 				D993A85C287B339200109C79 /* Xaropinho - Rapaz short.mp3 in Resources */,
+				49A7FC54287C62100078798F /* Lula - Cloroquina.mp3 in Resources */,
 				D993A788287B339100109C79 /* Eu sou RICA! short meme.mp3 in Resources */,
 				D993A787287B339100109C79 /* O Terrivel Editorialista do Estadao.mp3 in Resources */,
 				D993A6B2287B339100109C79 /* Away - Bom dia, boa tarde, boa noite... por enquanto.mp3 in Resources */,
 				D993A6FA287B339100109C79 /* Craque Neto - Pa aplica numa bunda pa aplica na outra.mp3 in Resources */,
+				49A7FC4A287C60A20078798F /* Medo e Delirio em Brasilia com grito.mp3 in Resources */,
 				D993A717287B339100109C79 /* Boldo - Deixa com a cara magoada.mp3 in Resources */,
 				D993A795287B339100109C79 /* Boulos Porra short.mp3 in Resources */,
 				D993A6C6287B339100109C79 /* Boldo - Muito bom, muito bom.mp3 in Resources */,
@@ -2643,6 +2776,7 @@
 				D993A7F6287B339100109C79 /* Moro dizendo que nao seria ministro nem candidato a presidencia.mp3 in Resources */,
 				D993A859287B339200109C79 /* Gilmar Mendes - Eu estou julgando improcedente a acao.mp3 in Resources */,
 				D993A7D6287B339100109C79 /* Ate o final tu vai bancar esse merda la seu merda.mp3 in Resources */,
+				49A7FC34287C5C2A0078798F /* MARCO FELICIANO - Decisao judicial nao se discute se cumpre SHORT MEME.mp3 in Resources */,
 				D993A830287B339200109C79 /* ESSE MENINO - Ta passada.mp3 in Resources */,
 				D9B4F73F283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 in Resources */,
 				D993A728287B339100109C79 /* CHOQUE DE CULTURA - Renan - Acho que deu uma pesada no clima do programa ai.mp3 in Resources */,
@@ -2656,8 +2790,11 @@
 				D993A885287B339200109C79 /* Fred - Ce ta falando serio.mp3 in Resources */,
 				D9943F152863CC4D002C6B97 /* A impiedosa justica de Deus.mp3 in Resources */,
 				D993A824287B339200109C79 /* Alanzoka - Sai, maluco, todo dia isso.mp3 in Resources */,
+				49A7FC24287C53700078798F /* Molejo - Cilada short meme.mp3 in Resources */,
 				D993A6D7287B339100109C79 /* SBT - Casos de Familia.mp3 in Resources */,
 				D993A77E287B339100109C79 /* Sabe que voce e muito petulante.mp3 in Resources */,
+				49A7FC3C287C5E2E0078798F /* Lobao (imitando gil) - Procure saber.mp3 in Resources */,
+				49A7FC26287C54310078798F /* Marcelo Adnet - Galvao Bueno - Vai se criando um clima terrivel.mp3 in Resources */,
 				D993A81F287B339200109C79 /* ta_bom_xandao_ta_bom.mp3 in Resources */,
 				D993A782287B339100109C79 /* Pega essa buceta e enfia no cu short meme.mp3 in Resources */,
 				D993A73C287B339100109C79 /* Vai Dar Namoro - Aruaruaruaarua.mp3 in Resources */,
@@ -2666,9 +2803,11 @@
 				D993A7AA287B339100109C79 /* Bolsonaro - Esposa, ne, tem que aguentar, mas ta tudo bem.mp3 in Resources */,
 				D993A883287B339200109C79 /* Caetano - Que loucura, que coisa absurda short.mp3 in Resources */,
 				D993A756287B339100109C79 /* Ernesto Araujo - Nao se pode aceitar um lockdown do espirito humano.mp3 in Resources */,
+				49A7FC20287C52F70078798F /* MR CATRA - vai comecar a putaria long.mp3 in Resources */,
 				D993A841287B339200109C79 /* REDETV - Jair Bolsonaro - Eu pretendo participar de debates, nao participei na ultima porque estava em convalescencia.mp3 in Resources */,
 				D993A6BB287B339100109C79 /* Nando Moura - Bibibibi Mito (longo).mp3 in Resources */,
 				D993A7C6287B339100109C79 /* Paulo Guedes - Sexo Selvagem.mp3 in Resources */,
+				49A7FC64287C63B70078798F /* Lula - Nao siga nenhuma decisao imbecil do presidente da republica.mp3 in Resources */,
 				D993A6B5287B339100109C79 /* Dudu Marfetan - Até o final (completo).mp3 in Resources */,
 				D993A7CD287B339100109C79 /* Dudu Marfetan - Agora tu aguenta.mp3 in Resources */,
 				D993A84E287B339200109C79 /* Bolsonaro - A pressa da vacina nao se justifica.mp3 in Resources */,
@@ -2683,6 +2822,7 @@
 				D993A718287B339100109C79 /* Que merda hein short.mp3 in Resources */,
 				D993A6C0287B339100109C79 /* Eduardo Sterblitch - E mais ou menos curto.mp3 in Resources */,
 				D99151282873E4C100FFAA29 /* funk-podem-escrever-e-me-cobrem-mdb.mp3 in Resources */,
+				49A7FC50287C61C60078798F /* Lula - Cade o nosso querido Ze gotinha.mp3 in Resources */,
 				D993A713287B339100109C79 /* Bolsonaro - Presente Puti prentiputi pretiputi presidente putin.mp3 in Resources */,
 				D993A6B8287B339100109C79 /* Engracadao voce hein meme short.mp3 in Resources */,
 				D993A86D287B339200109C79 /* lula ou bolsonaro.mp3 in Resources */,
@@ -2704,11 +2844,13 @@
 				D993A87C287B339200109C79 /* Pazuello - Que que ce vai fazer nada.mp3 in Resources */,
 				D993A7F2287B339100109C79 /* Mermao na moral short.mp3 in Resources */,
 				D993A752287B339100109C79 /* Bolsonaro - Estavamos a beira do socialismo.mp3 in Resources */,
+				49A7FC42287C5F5F0078798F /* Maysa - La vem besteira, la vem besteira.mp3 in Resources */,
 				D993A870287B339200109C79 /* Silas Malafaia - Nao seja um mentiroso short.mp3 in Resources */,
 				D993A71A287B339100109C79 /* DESMENTINDO BOLSONARO - Milton Ribeiro - O presidente da republica nunca me pediu nada, absolutamente nada.mp3 in Resources */,
 				D993A7BD287B339100109C79 /* LUVA DE PEDREIRO - E, caralho carai, RECEBA.mp3 in Resources */,
 				D993A7A1287B339100109C79 /* Omar Aziz - Ah, me erre.mp3 in Resources */,
 				D993A85A287B339200109C79 /* TV BRASIL - Bolsonaro - Bom dia a todos, menos pra primeira dama.mp3 in Resources */,
+				49A7FC60287C63570078798F /* Lula - Eu vou repetir.mp3 in Resources */,
 				D993A7D5287B339100109C79 /* Bolsonaro - Na ordem de 800 pessoas a previsao e nao chegar a isso no tocante ao coronavirus.mp3 in Resources */,
 				D993A7C3287B339100109C79 /* Silas Malafaia - Agora a coisa vai ser mais profunda.mp3 in Resources */,
 				D993A6DD287B339100109C79 /* Dedo no cu e gritaria short meme.mp3 in Resources */,
@@ -2719,6 +2861,7 @@
 				D993A800287B339200109C79 /* Vai Dar Namoro - Tapa Tapa Tome.mp3 in Resources */,
 				D980455C28380EFE003B2E83 /* Localizable.strings in Resources */,
 				D993A850287B339200109C79 /* Ze Gotinha - Ola meu nome e Ze Gotinha.mp3 in Resources */,
+				49A7FC28287C55E70078798F /* Malafaia - criticas a teologia da prosperidade resumo.mp3 in Resources */,
 				D993A744287B339100109C79 /* Mae copiloto - e porra caralho buceta bora.mp3 in Resources */,
 				D993A829287B339200109C79 /* Cristiano Botafogo - Bora passar raiva.mp3 in Resources */,
 				D993A7E2287B339100109C79 /* Trote Luiz Pareto - TELERJ meme mas que filho da puta olhai veja voce.mp3 in Resources */,
@@ -2733,6 +2876,7 @@
 				D993A79C287B339100109C79 /* Lula - Voces percebem a loucura.mp3 in Resources */,
 				D993A86E287B339200109C79 /* Raca Negra - Que Pena short meme.mp3 in Resources */,
 				D993A75F287B339100109C79 /* Hassum - PUTA QUE PARIU.mp3 in Resources */,
+				49A7FC36287C5CFF0078798F /* LINGUICETA - Diogo Defante - Minha alegria ta baseada na tristeza do meu colega.mp3 in Resources */,
 				D993A6BA287B339100109C79 /* Silas Malafaia - gente que vive tanto na mentira que faz dela a sua verdade.mp3 in Resources */,
 				D993A6F4287B339100109C79 /* ATILA IAMARINO - Nao tem condicoes.mp3 in Resources */,
 				D993A79B287B339100109C79 /* Queima quengaral wooo short.mp3 in Resources */,
@@ -2740,15 +2884,19 @@
 				D993A733287B339100109C79 /* MULTISHOW_Gloria_Groove_Quer_dizer_que_eles_querem_calar_a_gente.mp3 in Resources */,
 				D993A7DA287B339100109C79 /* Pedro Pedreira - Pedra 90 ha controversias.mp3 in Resources */,
 				D993A78D287B339100109C79 /* Gilmar Mendes - Eu ja disse aqui.mp3 in Resources */,
+				49A7FC30287C5AF00078798F /* Mr. Catra - Po, que vacilaçao mermao meu irmao.mp3 in Resources */,
 				D993A790287B339100109C79 /* Vera Magalhaes - Parece que o senhor esta um pouco imbuido de uma disposicao de acreditar.mp3 in Resources */,
 				D993A6EB287B339100109C79 /* CNN BRASIL BUSINESS - Conseguimos atenuar o choque do petr¢leo que veio de fora diz Guedes voz rouca.mp3 in Resources */,
 				D92879E8283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 in Resources */,
 				D993A7E5287B339100109C79 /* Bolsonaro - E todos esperavam exatamente o contrario.mp3 in Resources */,
 				D993A851287B339200109C79 /* Winter is coming, this one will be long.mp3 in Resources */,
 				D993A7C4287B339100109C79 /* Diogo Defante - Alegria.mp3 in Resources */,
+				49A7FC5C287C62EF0078798F /* Lula - Esse nao e o papel num mundo civilizado de um presidente da republica.mp3 in Resources */,
+				49A7FC68287C64090078798F /* Lula - Ou seja voces percebem a loucura.mp3 in Resources */,
 				D993A87E287B339200109C79 /* Leo Stronda Monstro - Batata doce e frango logico.mp3 in Resources */,
 				D993A7BA287B339100109C79 /* Nunca as funerarias trabalharam tanto.mp3 in Resources */,
 				D993A792287B339100109C79 /* Essa eu quero ver nao nao quero ver nao short meme.mp3 in Resources */,
+				49A7FC3A287C5DEA0078798F /* Keila Mellman -  nao e de bom tom short meme.mp3 in Resources */,
 				D993A6E7287B339100109C79 /* Ciro Gomes - Que isso, francamente.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
