@@ -255,8 +255,51 @@ struct SoundsView: View {
                         viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
                     }
                 }
+                .confirmationDialog("Escolha um app de e-mail", isPresented: $viewModel.showEmailClientConfirmationDialog, titleVisibility: .visible) {
+                    Button("Mail") {
+                        guard let sound = viewModel.soundForConfirmationDialog else {
+                            return
+                        }
+                        print(sound.title)
+                    }
+                    
+                    Button("Gmail") {
+                        guard let sound = viewModel.soundForConfirmationDialog else {
+                            return
+                        }
+                        print(sound.title)
+                    }
+                    
+                    Button("Outlook") {
+                        guard let sound = viewModel.soundForConfirmationDialog else {
+                            return
+                        }
+                        print(sound.title)
+                    }
+                    
+                    Button("Yahoo") {
+                        guard let sound = viewModel.soundForConfirmationDialog else {
+                            return
+                        }
+                        print(sound.title)
+                    }
+                    
+                    Button("Spark") {
+                        guard let sound = viewModel.soundForConfirmationDialog else {
+                            return
+                        }
+                        print(sound.title)
+                    }
+                }
                 .alert(isPresented: $viewModel.showAlert) {
-                    Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
+                    switch viewModel.alertType {
+                    case .singleOption:
+                        return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
+                    default:
+                        return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .default(Text("Relatar Problema por E-mail"), action: {
+                            viewModel.showEmailClientConfirmationDialog = true
+                        }), secondaryButton: .cancel(Text("Fechar")))
+                    }
                 }
                 .sheet(isPresented: $showingAddToFolderModal) {
                     AddToFolderView(isBeingShown: $showingAddToFolderModal, hadSuccess: $hadSuccessAddingToFolder, folderName: $folderName, selectedSoundName: viewModel.soundForConfirmationDialog!.title, selectedSoundId: viewModel.soundForConfirmationDialog!.id)

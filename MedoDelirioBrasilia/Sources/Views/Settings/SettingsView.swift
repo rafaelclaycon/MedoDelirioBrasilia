@@ -56,7 +56,7 @@ struct SettingsView: View {
                 }
                 
                 Section("📬  Problemas, sugestões e pedidos") {
-                    Button("Entrar em contato por e-mail (Mail)") {
+                    Button("Entrar em contato por e-mail") {
                         guard let emailSubject = "Problema/sugestão no app iOS \(appVersion) Build \(buildVersionNumber)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
                             return
                         }
@@ -71,14 +71,6 @@ struct SettingsView: View {
                         }
 
                         UIApplication.shared.open(mailToUrl)
-                    }
-                    
-                    Button("Copiar endereço de e-mail (outros apps)") {
-                        UIPasteboard.general.string = "medodeliriosuporte@gmail.com"
-                        showEmailAddressCopiedAlert = true
-                    }
-                    .alert(isPresented: $showEmailAddressCopiedAlert) {
-                        Alert(title: Text("Endereço copiado com sucesso!"), dismissButton: .default(Text("OK")))
                     }
                 }
                 
