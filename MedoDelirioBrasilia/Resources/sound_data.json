@@ -11,9 +11,9 @@
     {
         "id": "C56D243E-6E56-4EB2-B73E-920A6ED5F3E5",
         "title": "Alegria",
-        "authorId": "959D8DD0-0EFB-4CC2-98C2-C61182BCFEC3",
+        "authorId": "691D4F55-79F7-407A-B0AA-71CD09059E60",
         "description": "que alegria",
-        "filename": "Igor Guimaraes - Alegria.mp3",
+        "filename": "Diogo Defante - Alegria.mp3",
         "dateAdded": "2022-07-01T00:00:00Z",
         "isOffensive": false
     },
@@ -241,15 +241,6 @@
         "filename": "Bolsonaro - Tem que deixar de ser um pais de maricas.mp3",
         "dateAdded": "2022-06-28T00:00:00Z",
         "isOffensive": true
-    },
-    {
-        "id": "A8951402-7F62-4037-A6C1-CF0965913E05",
-        "title": "Tudo pequenininho aí",
-        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
-        "description": "tudo pequenininho aí",
-        "filename": "Bolsonaro - Tudo pequenininho ai.mp3",
-        "dateAdded": "2022-06-28T00:00:00Z",
-        "isOffensive": false
     },
     {
         "id": "C1120B31-19E1-4533-8A94-A517B710453B",
@@ -2999,19 +2990,28 @@
     {
         "id": "3DD4AF15-EA60-4E5A-9E1A-F55CF7CA7535",
         "title": "Que delícia, cara",
-        "authorId": "E2F0F465-9D58-4A9F-97D5-432E5DAD5582",
+        "authorId": "8A064580-AEB6-4FCE-9B87-11F5D5C6995E",
         "description": "Que delicia cara",
         "filename": "Amigo Pedro Daltro - Que delicia, cara.mp3",
         "dateAdded": "2022-06-09T00:00:00Z",
         "isOffensive": false
     },
     {
-        "id": "3CC64BAC-29B6-47DB-91CF-2B371DE64CCF",
-        "title": "Malditos milicos",
+        "id": "B8C7C7D4-2911-4678-BE2E-66F6BABC7AF1",
+        "title": "Malditos Milicos (Acorde em B7)",
         "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
-        "description": "Malditos milicos",
+        "description": "malditos milicos acorde em setima b7",
+        "filename": "Malditos Milicos - Acorde em B7.mp3",
+        "dateAdded": "2022-07-10T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "3CC64BAC-29B6-47DB-91CF-2B371DE64CCF",
+        "title": "Malditos milicos (Robô)",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "malditos milicos robô",
         "filename": "Malditos Milicos robo.mp3",
-        "dateAdded": "2022-06-09T00:00:00Z",
+        "dateAdded": "2022-06-10T00:00:00Z",
         "isOffensive": true
     },
     {
@@ -4102,5 +4102,365 @@
         "filename": "Lula - Voces percebem a loucura.mp3",
         "dateAdded": "2022-07-05T00:00:00Z",
         "isOffensive": true
+    },
+    {
+        "id": "5B62CE81-EA51-46E2-8D21-B5FDEB2EFCD3",
+        "title": "Bibibibibi Mito (longo)",
+        "authorId": "8C588F61-04AC-4F3D-B1B8-F44ADC1311E2",
+        "description": "ainda vai lá bibibibibi mito mitooo seus corno do caramba",
+        "filename": "Nando Moura - Bibibibi Mito (longo).mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "F1DDF04F-7F0B-492B-AE61-FB6240FC06F8",
+        "title": "Bibibibibi Mito (curto)",
+        "authorId": "8C588F61-04AC-4F3D-B1B8-F44ADC1311E2",
+        "description": "bibibibibi mito mitooo",
+        "filename": "Nando Moura - Bibibibi Mito (curto).mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "28256D5E-B88F-4EF1-9E48-46AD0572955F",
+        "title": "Deus escolheu as coisas loucas",
+        "authorId": "C066E971-8702-4261-955D-00CF642A465A",
+        "description": "Deus escolheu as coisas loucas",
+        "filename": "Malafaia - Deus escolheu as coisas loucas.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "68A48196-7020-41D9-BB6E-4CA791503177",
+        "title": "Laudos",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "laudos pisi laudos aí",
+        "filename": "Bolsonaro - Laudos.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "C148E02D-1A52-49E4-88EC-4C62D07C1E2E",
+        "title": "Alegria",
+        "authorId": "959D8DD0-0EFB-4CC2-98C2-C61182BCFEC3",
+        "description": "alegria",
+        "filename": "Igor Guimaraes - Alegria.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "FD25743B-D9EE-474F-9AAE-CD923B41C7A1",
+        "title": "Humor, alegria, piada, humorismo",
+        "authorId": "57017B39-5D5B-477A-BAF5-4F103DD84CB1",
+        "description": "Humor é alegria é piada humorismo",
+        "filename": "VICTOR CAMEJO - JORNAL DE CASA 82 - Humor, alegria, piada, humorismo.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "511A0E0C-4FB0-4324-991A-84CFBDDBD1CD",
+        "title": "Mente como quem troca de cueca",
+        "authorId": "0278633F-0BA6-48DB-94CA-7ADACDBBA39D",
+        "description": "Mente como quem troca de cueca",
+        "filename": "RADIO BANDNEWS FM - Luiz Megale - Mente como quem troca de cueca.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "7AFE775A-AB51-4962-AC95-161603DAEA9C",
+        "title": "Não significa absolutamente nada",
+        "authorId": "17C39873-DC8D-47ED-8447-BB47E565D542",
+        "description": "Nao significa absolutamente nada",
+        "filename": "RADIO BANDNEWS FM - Boechat - Nao significa absolutamente nada.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "DA1F7E6D-FBAE-44BE-BE66-EB1E204DEAF4",
+        "title": "Polarização é meu pau em sua mão",
+        "authorId": "0258693D-31D6-4A9E-8BA8-F11973BA79CF",
+        "description": "Polarizacao e meu pau em sua mao porra que polarizacao meu pai",
+        "filename": "FRANCIEL CRUZ - LIVE DAS CANJEBRINAS - Polarizacao e meu pau em sua mao, porra que polarizacao meu pai.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "7DA217A5-7F7E-4810-ADDE-33A74A5DD53F",
+        "title": "Jogar uma moeda 271 vezes = quantidade de átomos na Terra",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "é ou melhor momentos antes da curva se tocar era dilma ganhou aecio ganhou dilma ganhou aecio por 271 vezes é você jogar uma moeda 271 vezes pra cima e dar cara coroa cara coroa cara coroa e isso deve ser a quantidade de atomos aqui no na terra",
+        "filename": "Bolsonaro - E voce jogar uma moeda 271 vezes pra cima e dar cara e coroa. Isso deve ser a quantidade de atomos aqui na terra.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "582E3AAF-8D9D-44A6-9D76-2E809F45EC97",
+        "title": "*tapa 2x* Tome",
+        "authorId": "CBDBB613-B887-473F-956D-BE497F31E549",
+        "description": "Tapa Tapa Tome",
+        "filename": "Vai Dar Namoro - Tapa Tapa Tome.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "1CA5671C-944D-4BA9-BB2A-3764A62722DB",
+        "title": "Tome",
+        "authorId": "CBDBB613-B887-473F-956D-BE497F31E549",
+        "description": "tome",
+        "filename": "Vai Dar Namoro - Tome.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "FF0DAEE5-9224-442C-BCA3-65D428ECFC69",
+        "title": "Não",
+        "authorId": "CBDBB613-B887-473F-956D-BE497F31E549",
+        "description": "não",
+        "filename": "Vai Dar Namoro - Nao.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "F9C139D0-2DC9-456B-9DB6-95CFA844DD68",
+        "title": "Dança, gatinho, dança",
+        "authorId": "CBDBB613-B887-473F-956D-BE497F31E549",
+        "description": "danca gatinho danca",
+        "filename": "Vai Dar Namoro - Danca gatinho danca.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "3D192F99-3F37-40B5-BAB0-4D7C6715219F",
+        "title": "UUUUII",
+        "authorId": "CBDBB613-B887-473F-956D-BE497F31E549",
+        "description": "UUUUII ui",
+        "filename": "Vai Dar Namoro - UUUUII.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "D6992789-D675-4C21-81C8-03B6C2AFBB37",
+        "title": "Aruaruaruaarua",
+        "authorId": "CBDBB613-B887-473F-956D-BE497F31E549",
+        "description": "Aruaruaruaarua",
+        "filename": "Vai Dar Namoro - Aruaruaruaarua.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "8EBCD9FD-468F-4194-A725-8D65D511A8C1",
+        "title": "Pare",
+        "authorId": "CBDBB613-B887-473F-956D-BE497F31E549",
+        "description": "Pare",
+        "filename": "Vai Dar Namoro - Pare.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "853686D9-B75F-4007-B28B-6FC5DD17097D",
+        "title": "Cavalo",
+        "authorId": "CBDBB613-B887-473F-956D-BE497F31E549",
+        "description": "Cavalo",
+        "filename": "Vai Dar Namoro - Cavalo.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "E166D0CD-8944-404A-A5B6-512F40E8F06F",
+        "title": "Demais",
+        "authorId": "CBDBB613-B887-473F-956D-BE497F31E549",
+        "description": "Demais",
+        "filename": "Vai Dar Namoro - Demais.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "3CF4EED8-6739-4AF6-8EA8-32A4412C7243",
+        "title": "Ele gosta",
+        "authorId": "CBDBB613-B887-473F-956D-BE497F31E549",
+        "description": "Ele gosta",
+        "filename": "Vai Dar Namoro - Ele gosta.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "9016D900-15C8-4CAA-9808-635862AA8B7F",
+        "title": "Que isso, meu filho, calma",
+        "authorId": "CBDBB613-B887-473F-956D-BE497F31E549",
+        "description": "Que isso meu filho calma",
+        "filename": "Vai Dar Namoro - Que isso meu filho calma.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "BC637B85-3A57-4078-B37F-AF4DED550A52",
+        "title": "Choque",
+        "authorId": "818A31F2-77FC-45B0-8C4F-9CD52BC1B2FB",
+        "description": "ai ai",
+        "filename": "Lasier Martins - Choque.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "DF6F7DD4-A151-4A30-B882-41258B2F7FD3",
+        "title": "Malditos Milicos (Arpeggio)",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "malditos milicos arpeggio",
+        "filename": "Malditos Milicos - Arpeggio.mp3",
+        "dateAdded": "2022-07-10T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "A835FE22-817F-4484-BB2E-7C8DFDAC66A0",
+        "title": "Malditos Milicos (Cromática Descendente)",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "malditos milicos escala cromática descendente",
+        "filename": "Malditos Milicos - cromatica descendente.mp3",
+        "dateAdded": "2022-07-10T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "019090E3-CEDB-4477-9EAA-9F29BE467E66",
+        "title": "Malditos Milicos (Trash Barber Quartet)",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "malditos milicos trashy barber quartet quarteto barbeiro",
+        "filename": "Malditos Milicos - Trashy Barber quartet.mp3",
+        "dateAdded": "2022-07-10T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "80B4C85F-FE16-40F9-BC06-740BB5210851",
+        "title": "Malditos Milicos (Autotune)",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "malditos milicos autotune",
+        "filename": "Malditos milicos - Autotune.mp3",
+        "dateAdded": "2022-07-10T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "4F5F6F56-9615-4A92-A4E2-EF238EE8B593",
+        "title": "Malditos Milicos (Bomba Caindo)",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "malditos milicos bomba caindo explosão que porra é essa",
+        "filename": "Malditos milicos - bomba.mp3",
+        "dateAdded": "2022-07-10T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "607E1F35-294F-455D-BAA6-36B101A8CB5E",
+        "title": "Malditos Milicos (Distorcido)",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "malditos milicos megafone distorcido",
+        "filename": "Malditos Milicos distorcido.mp3",
+        "dateAdded": "2022-07-10T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "BEC415D6-4718-45F7-A4EE-9351F2B3B9EB",
+        "title": "Malditos Milicos (Monges)",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "malditos milicos monges om meditando",
+        "filename": "Malditos milicos monges Om.mp3",
+        "dateAdded": "2022-07-10T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "1852639A-8D84-426E-BCEC-4006E8C4BD02",
+        "title": "Malditos Milicos (Reverse)",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "malditos milicos ao contrário reverse",
+        "filename": "Malditos Milicos reverse.mp3",
+        "dateAdded": "2022-07-10T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "4E179D60-8F08-47EA-A50F-6B49CCEB8A22",
+        "title": "Malditos Milicos (Robô grave)",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "malditos milicos robô grave gravão",
+        "filename": "Malditos milicos robo grave.mp3",
+        "dateAdded": "2022-07-10T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "36F7A6B3-0793-4D13-9B6B-5BC1479CF2D1",
+        "title": "Malditos Milicos (Semitons)",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "malditos milicos semitons semitom",
+        "filename": "Malditos Milicos semitons.mp3",
+        "dateAdded": "2022-07-10T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "F55EE4C8-E497-4792-A3EA-2E475110595E",
+        "title": "Tudo pequenininho aí",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "tudo pequeneninho ai pequinininho ae",
+        "filename": "Bolsonaro - Tudo pequenininho ai.mp3",
+        "dateAdded": "2022-07-10T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "3A8AED61-0635-4329-99D7-64F7A348B3D6",
+        "title": "Ministro terrivelmente filho da puta",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "ministro terrivelmente filha da puta filho",
+        "filename": "MINISTRO TERRIVELMENTE FILHO DA PUTA.mp3",
+        "dateAdded": "2022-07-10T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "6ACE67C1-69A9-4CF2-A96A-D70B687DBBFF",
+        "title": "Plural é sua mão em meu pau",
+        "authorId": "47AADA7B-9243-4988-904E-546C49355941",
+        "description": "plural é sua mão no meu pau",
+        "filename": "LIVE DAS CANJEBRINAS - Franciel Cruz - Plural e sua mao em meu pau.mp3",
+        "dateAdded": "2022-07-10T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "77CBD50D-984A-4093-B87F-656C1F82343C",
+        "title": "Armandinho é um terror né, meu (completo)",
+        "authorId": "50401E09-4DE2-4A1A-B49B-AF75C99904FF",
+        "description": "Armandinho e um terror ne meu completo",
+        "filename": "Fã do Armandinho - Armandinho e um terror ne meu (completo).mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "95EEF734-4813-404A-83AD-2D78C5F9BD9D",
+        "title": "Vamo pra cima, Grêmio",
+        "authorId": "50401E09-4DE2-4A1A-B49B-AF75C99904FF",
+        "description": "Vamo pra cima Gremio",
+        "filename": "Fã do Armandinho - Vamo pra cima Gremio.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "0DDE06B8-FBE9-41B3-92CE-CD5884570E96",
+        "title": "Vou ver se pego um corpinho hoje lá",
+        "authorId": "50401E09-4DE2-4A1A-B49B-AF75C99904FF",
+        "description": "Vou ver se pego um corpinho hoje lá",
+        "filename": "Fã do Armandinho - Vou ver se pego um corpinho hoje la.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "06C43278-FCD0-4916-88AE-24F8F2D9CAB0",
+        "title": "E um poeta né, meu, bah",
+        "authorId": "50401E09-4DE2-4A1A-B49B-AF75C99904FF",
+        "description": "E um poeta ne meu, bah",
+        "filename": "Fã do Armandinho - E um poeta ne meu, bah.mp3",
+        "dateAdded": "2022-07-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "971860A2-8BA0-4E7A-B697-5532E4681CE0",
+        "title": "Uuuuh! Que mais?",
+        "authorId": "53202065-71B1-459F-A3C6-650379874255",
+        "description": "uh que mais",
+        "filename": "Gumball - ooo que mais.mp3",
+        "dateAdded": "2022-07-11T00:00:00Z",
+        "isOffensive": false
     }
 ]
