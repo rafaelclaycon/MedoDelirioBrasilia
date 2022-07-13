@@ -38,7 +38,13 @@ struct NotificationsSettingsView: View {
                 
                 Toggle("Habilitar Notificações", isOn: $enableNotifications)
                     .onChange(of: enableNotifications) { newValue in
-                        UserSettings.setUserAllowedNotifications(to: newValue)
+                        if newValue == true {
+                            NotificationAide.registerForRemoteNotifications() { _ in
+                                enableNotifications = UserSettings.getUserAllowedNotifications()
+                            }
+                        } else {
+                            UserSettings.setUserAllowedNotifications(to: newValue)
+                        }
                     }
             }
             

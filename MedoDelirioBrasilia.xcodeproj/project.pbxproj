@@ -12,38 +12,8 @@
 		D911070B28627216000B6F8F /* NotificationsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D911070A28627216000B6F8F /* NotificationsSettingsView.swift */; };
 		D91107112863B481000B6F8F /* CollectionsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91107102863B481000B6F8F /* CollectionsViewViewModel.swift */; };
 		D91107142863B5FD000B6F8F /* ContentCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91107132863B5FD000B6F8F /* ContentCollection.swift */; };
-		D91107162863C1CE000B6F8F /* Januario de Oliveira - Cruel, muito cruel.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91107152863C1CD000B6F8F /* Januario de Oliveira - Cruel, muito cruel.mp3 */; };
-		D911071D2863C7C5000B6F8F /* UOL - Luiz Fux - Infelizmente short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91107172863C7C5000B6F8F /* UOL - Luiz Fux - Infelizmente short meme.mp3 */; };
-		D911071E2863C7C5000B6F8F /* Alanzoka - Sai, maluco, todo dia isso.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91107182863C7C5000B6F8F /* Alanzoka - Sai, maluco, todo dia isso.mp3 */; };
-		D911071F2863C7C5000B6F8F /* Bolsonaro - Globo cala a boca catolico.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91107192863C7C5000B6F8F /* Bolsonaro - Globo cala a boca catolico.mp3 */; };
-		D91107202863C7C5000B6F8F /* Kajuru - Ele e burro short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D911071A2863C7C5000B6F8F /* Kajuru - Ele e burro short meme.mp3 */; };
-		D91107212863C7C5000B6F8F /* TV BRASIL - Bolsonaro - Bom dia a todos, menos pra primeira dama.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D911071B2863C7C5000B6F8F /* TV BRASIL - Bolsonaro - Bom dia a todos, menos pra primeira dama.mp3 */; };
-		D91107222863C7C5000B6F8F /* Heloisa Faissol - Cala a boca vai tomar no cu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D911071C2863C7C5000B6F8F /* Heloisa Faissol - Cala a boca vai tomar no cu.mp3 */; };
 		D916627D2874F1F9000A1B23 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D916627C2874F1F9000A1B23 /* OnboardingView.swift */; };
 		D916627F2874F838000A1B23 /* NotificationsSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D916627E2874F838000A1B23 /* NotificationsSymbol.swift */; };
-		D91964E128563B680067B430 /* Queiroz - Eu sou um cara de negocios, eu faco dinheiro eu faco.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964DF28563B680067B430 /* Queiroz - Eu sou um cara de negocios, eu faco dinheiro eu faco.mp3 */; };
-		D91964E228563B680067B430 /* Bolsonaro - Esposa, ne, tem que aguentar, mas ta tudo bem.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964E028563B680067B430 /* Bolsonaro - Esposa, ne, tem que aguentar, mas ta tudo bem.mp3 */; };
-		D91964E62856B7920067B430 /* Bolsonaro - Da um tapa na minha cara slap sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964E52856B7920067B430 /* Bolsonaro - Da um tapa na minha cara slap sound.mp3 */; };
-		D91964EA2856B97A0067B430 /* CASIMIRO - Amado ou amada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964E72856B97A0067B430 /* CASIMIRO - Amado ou amada.mp3 */; };
-		D91964EB2856B97A0067B430 /* Bolsonaro - Um jumento, um jumento.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964E82856B97A0067B430 /* Bolsonaro - Um jumento, um jumento.mp3 */; };
-		D91964EC2856B97A0067B430 /* BREAKING BAD - Yeah Science meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964E92856B97A0067B430 /* BREAKING BAD - Yeah Science meme.mp3 */; };
-		D91964EF2856BB3F0067B430 /* Datena - Entao bundao e o Jair.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964ED2856BB3F0067B430 /* Datena - Entao bundao e o Jair.mp3 */; };
-		D91964F02856BB3F0067B430 /* Chico Bento - Coitado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964EE2856BB3F0067B430 /* Chico Bento - Coitado.mp3 */; };
-		D91964F22856BBE10067B430 /* Moro dizendo que nao seria ministro nem candidato a presidencia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964F12856BBE10067B430 /* Moro dizendo que nao seria ministro nem candidato a presidencia.mp3 */; };
-		D91964F42856BC860067B430 /* GALAS FEIOS - Moro desafinando no corrupcao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91964F32856BC860067B430 /* GALAS FEIOS - Moro desafinando no corrupcao.mp3 */; };
-		D9227309285AAD3E00A98CAE /* Pretty please meme infantil crianca begging.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92272FC285AAD3D00A98CAE /* Pretty please meme infantil crianca begging.mp3 */; };
-		D922730A285AAD3E00A98CAE /* FUP - Marcele - Nao esta nem ai pro preto, pobre, favelado so esta ai por ele mesmo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92272FD285AAD3D00A98CAE /* FUP - Marcele - Nao esta nem ai pro preto, pobre, favelado so esta ai por ele mesmo.mp3 */; };
-		D922730B285AAD3E00A98CAE /* Bolsonaro - Pretendo beneficiar um filho meu sim pretendo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92272FE285AAD3D00A98CAE /* Bolsonaro - Pretendo beneficiar um filho meu sim pretendo.mp3 */; };
-		D922730C285AAD3E00A98CAE /* Bolsonaro - Igularidades no ministerio irregularidades paralelepipi pretiputi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92272FF285AAD3D00A98CAE /* Bolsonaro - Igularidades no ministerio irregularidades paralelepipi pretiputi.mp3 */; };
-		D922730D285AAD3E00A98CAE /* REDETV - Jair Bolsonaro - Eu pretendo participar de debates, nao participei na ultima porque estava em convalescencia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9227300285AAD3D00A98CAE /* REDETV - Jair Bolsonaro - Eu pretendo participar de debates, nao participei na ultima porque estava em convalescencia.mp3 */; };
-		D922730E285AAD3E00A98CAE /* TV BRASIL - Bolsonaro - Pretiputi, pretiputi, pretiputi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9227301285AAD3D00A98CAE /* TV BRASIL - Bolsonaro - Pretiputi, pretiputi, pretiputi.mp3 */; };
-		D922730F285AAD3E00A98CAE /* FALA M.R. - Quem produz vai ter sempre o pretexto de dizer que nao e fake news porque e uma piada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9227302285AAD3D00A98CAE /* FALA M.R. - Quem produz vai ter sempre o pretexto de dizer que nao e fake news porque e uma piada.mp3 */; };
-		D9227310285AAD3E00A98CAE /* Calcinha Preta - Pega Fogo Cabare short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9227303285AAD3D00A98CAE /* Calcinha Preta - Pega Fogo Cabare short meme.mp3 */; };
-		D9227311285AAD3E00A98CAE /* Bolsonaro - Presente Puti prentiputi pretiputi presidente putin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9227304285AAD3D00A98CAE /* Bolsonaro - Presente Puti prentiputi pretiputi presidente putin.mp3 */; };
-		D9227312285AAD3E00A98CAE /* PLANALTO - Bolsonaro - Presidente Putin Pretiputi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9227305285AAD3D00A98CAE /* PLANALTO - Bolsonaro - Presidente Putin Pretiputi.mp3 */; };
-		D9227313285AAD3E00A98CAE /* PLANALTO - Bolsonaro - Presidente Putin Pretiputi remix house.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9227306285AAD3E00A98CAE /* PLANALTO - Bolsonaro - Presidente Putin Pretiputi remix house.mp3 */; };
-		D9227314285AAD3E00A98CAE /* METEORO BRASIL - Antonio Tabet - Pretos, gays, lesbicas, trans tem familias e fazem familias.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9227307285AAD3E00A98CAE /* METEORO BRASIL - Antonio Tabet - Pretos, gays, lesbicas, trans tem familias e fazem familias.mp3 */; };
-		D9227315285AAD3E00A98CAE /* ROY ORBISON - Oh Pretty Woman Pretiputi parodia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9227308285AAD3E00A98CAE /* ROY ORBISON - Oh Pretty Woman Pretiputi parodia.mp3 */; };
 		D9253B682873B68B00D138FB /* FoldersAreTagsBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9253B672873B68B00D138FB /* FoldersAreTagsBannerView.swift */; };
 		D9265741285A1EE700947165 /* LocalDatabase+Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9265740285A1EE700947165 /* LocalDatabase+Log.swift */; };
 		D927C424285245CE0041970A /* SoundOptionsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D927C423285245CE0041970A /* SoundOptionsHelper.swift */; };
@@ -67,6 +37,7 @@
 		D93443292838230500ADCD38 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93443282838230500ADCD38 /* String+Extensions.swift */; };
 		D9351C5C2844094E00D4317E /* TopChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9351C5B2844094E00D4317E /* TopChartItem.swift */; };
 		D9351C6128441FA400D4317E /* LoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9351C6028441FA400D4317E /* LoggerTests.swift */; };
+		D938132F287E12B3009EE24F /* NotificationAide.swift in Sources */ = {isa = PBXBuildFile; fileRef = D938132E287E12B3009EE24F /* NotificationAide.swift */; };
 		D93AC08B28414EEE00E38A63 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AC08A28414EEE00E38A63 /* Logger.swift */; };
 		D93CCB77286A802D0002CF81 /* EmptyFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93CCB76286A802D0002CF81 /* EmptyFolderView.swift */; };
 		D93CCB79286A8A220002CF81 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93CCB78286A8A220002CF81 /* ToastView.swift */; };
@@ -652,13 +623,11 @@
 		D9BF9091284257F500BDDD7D /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF9090284257F500BDDD7D /* Shared.swift */; };
 		D9BF90972842D3CB00BDDD7D /* NoSoundsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF90962842D3CB00BDDD7D /* NoSoundsView.swift */; };
 		D9BF90BE2842EAED00BDDD7D /* TopChartCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF90BD2842EAED00BDDD7D /* TopChartCellView.swift */; };
-		D9C3EF4E28668FD800C44249 /* Andre Starqueza - Ai que delicia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C3EF4D28668FD800C44249 /* Andre Starqueza - Ai que delicia.mp3 */; };
-		D9C3EF502866938A00C44249 /* Eduardo Pazuello - Tem um grau ai de prisma na coisa.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C3EF4F2866938A00C44249 /* Eduardo Pazuello - Tem um grau ai de prisma na coisa.mp3 */; };
+		D9D8C4A8287CD1B600812EE5 /* UIDevice+DevicePhysicalCharacteristics.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D8C4A7287CD1B600812EE5 /* UIDevice+DevicePhysicalCharacteristics.swift */; };
 		D9DCC5D128751256008DD4A3 /* PushDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D028751256008DD4A3 /* PushDevice.swift */; };
 		D9DCC5D3287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D2287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift */; };
 		D9DCC5D52875CB59008DD4A3 /* AppPersistentMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D42875CB59008DD4A3 /* AppPersistentMemory.swift */; };
 		D9DCC5D72875D7E5008DD4A3 /* NotificationSymbolPlusText.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D62875D7E5008DD4A3 /* NotificationSymbolPlusText.swift */; };
-		D9D8C4A8287CD1B600812EE5 /* UIDevice+DevicePhysicalCharacteristics.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D8C4A7287CD1B600812EE5 /* UIDevice+DevicePhysicalCharacteristics.swift */; };
 		D9DCC5D9287625F4008DD4A3 /* PodcastAuthorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D8287625F4008DD4A3 /* PodcastAuthorsView.swift */; };
 		D9E254EE287C66B80013CE5A /* Fã do Armandinho - Vou ver se pego um corpinho hoje la.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E254EA287C66B80013CE5A /* Fã do Armandinho - Vou ver se pego um corpinho hoje la.mp3 */; };
 		D9E254EF287C66B80013CE5A /* Fã do Armandinho - E um poeta ne meu, bah.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E254EB287C66B80013CE5A /* Fã do Armandinho - E um poeta ne meu, bah.mp3 */; };
@@ -691,38 +660,8 @@
 		D911070A28627216000B6F8F /* NotificationsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSettingsView.swift; sourceTree = "<group>"; };
 		D91107102863B481000B6F8F /* CollectionsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsViewViewModel.swift; sourceTree = "<group>"; };
 		D91107132863B5FD000B6F8F /* ContentCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCollection.swift; sourceTree = "<group>"; };
-		D91107152863C1CD000B6F8F /* Januario de Oliveira - Cruel, muito cruel.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Januario de Oliveira - Cruel, muito cruel.mp3"; sourceTree = "<group>"; };
-		D91107172863C7C5000B6F8F /* UOL - Luiz Fux - Infelizmente short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "UOL - Luiz Fux - Infelizmente short meme.mp3"; sourceTree = "<group>"; };
-		D91107182863C7C5000B6F8F /* Alanzoka - Sai, maluco, todo dia isso.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alanzoka - Sai, maluco, todo dia isso.mp3"; sourceTree = "<group>"; };
-		D91107192863C7C5000B6F8F /* Bolsonaro - Globo cala a boca catolico.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Globo cala a boca catolico.mp3"; sourceTree = "<group>"; };
-		D911071A2863C7C5000B6F8F /* Kajuru - Ele e burro short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Kajuru - Ele e burro short meme.mp3"; sourceTree = "<group>"; };
-		D911071B2863C7C5000B6F8F /* TV BRASIL - Bolsonaro - Bom dia a todos, menos pra primeira dama.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "TV BRASIL - Bolsonaro - Bom dia a todos, menos pra primeira dama.mp3"; sourceTree = "<group>"; };
-		D911071C2863C7C5000B6F8F /* Heloisa Faissol - Cala a boca vai tomar no cu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Heloisa Faissol - Cala a boca vai tomar no cu.mp3"; sourceTree = "<group>"; };
 		D916627C2874F1F9000A1B23 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		D916627E2874F838000A1B23 /* NotificationsSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSymbol.swift; sourceTree = "<group>"; };
-		D91964DF28563B680067B430 /* Queiroz - Eu sou um cara de negocios, eu faco dinheiro eu faco.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Queiroz - Eu sou um cara de negocios, eu faco dinheiro eu faco.mp3"; sourceTree = "<group>"; };
-		D91964E028563B680067B430 /* Bolsonaro - Esposa, ne, tem que aguentar, mas ta tudo bem.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Esposa, ne, tem que aguentar, mas ta tudo bem.mp3"; sourceTree = "<group>"; };
-		D91964E52856B7920067B430 /* Bolsonaro - Da um tapa na minha cara slap sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Da um tapa na minha cara slap sound.mp3"; sourceTree = "<group>"; };
-		D91964E72856B97A0067B430 /* CASIMIRO - Amado ou amada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "CASIMIRO - Amado ou amada.mp3"; sourceTree = "<group>"; };
-		D91964E82856B97A0067B430 /* Bolsonaro - Um jumento, um jumento.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Um jumento, um jumento.mp3"; sourceTree = "<group>"; };
-		D91964E92856B97A0067B430 /* BREAKING BAD - Yeah Science meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "BREAKING BAD - Yeah Science meme.mp3"; sourceTree = "<group>"; };
-		D91964ED2856BB3F0067B430 /* Datena - Entao bundao e o Jair.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Datena - Entao bundao e o Jair.mp3"; sourceTree = "<group>"; };
-		D91964EE2856BB3F0067B430 /* Chico Bento - Coitado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Chico Bento - Coitado.mp3"; sourceTree = "<group>"; };
-		D91964F12856BBE10067B430 /* Moro dizendo que nao seria ministro nem candidato a presidencia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Moro dizendo que nao seria ministro nem candidato a presidencia.mp3"; sourceTree = "<group>"; };
-		D91964F32856BC860067B430 /* GALAS FEIOS - Moro desafinando no corrupcao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "GALAS FEIOS - Moro desafinando no corrupcao.mp3"; sourceTree = "<group>"; };
-		D92272FC285AAD3D00A98CAE /* Pretty please meme infantil crianca begging.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pretty please meme infantil crianca begging.mp3"; sourceTree = "<group>"; };
-		D92272FD285AAD3D00A98CAE /* FUP - Marcele - Nao esta nem ai pro preto, pobre, favelado so esta ai por ele mesmo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "FUP - Marcele - Nao esta nem ai pro preto, pobre, favelado so esta ai por ele mesmo.mp3"; sourceTree = "<group>"; };
-		D92272FE285AAD3D00A98CAE /* Bolsonaro - Pretendo beneficiar um filho meu sim pretendo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Pretendo beneficiar um filho meu sim pretendo.mp3"; sourceTree = "<group>"; };
-		D92272FF285AAD3D00A98CAE /* Bolsonaro - Igularidades no ministerio irregularidades paralelepipi pretiputi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Igularidades no ministerio irregularidades paralelepipi pretiputi.mp3"; sourceTree = "<group>"; };
-		D9227300285AAD3D00A98CAE /* REDETV - Jair Bolsonaro - Eu pretendo participar de debates, nao participei na ultima porque estava em convalescencia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "REDETV - Jair Bolsonaro - Eu pretendo participar de debates, nao participei na ultima porque estava em convalescencia.mp3"; sourceTree = "<group>"; };
-		D9227301285AAD3D00A98CAE /* TV BRASIL - Bolsonaro - Pretiputi, pretiputi, pretiputi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "TV BRASIL - Bolsonaro - Pretiputi, pretiputi, pretiputi.mp3"; sourceTree = "<group>"; };
-		D9227302285AAD3D00A98CAE /* FALA M.R. - Quem produz vai ter sempre o pretexto de dizer que nao e fake news porque e uma piada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "FALA M.R. - Quem produz vai ter sempre o pretexto de dizer que nao e fake news porque e uma piada.mp3"; sourceTree = "<group>"; };
-		D9227303285AAD3D00A98CAE /* Calcinha Preta - Pega Fogo Cabare short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Calcinha Preta - Pega Fogo Cabare short meme.mp3"; sourceTree = "<group>"; };
-		D9227304285AAD3D00A98CAE /* Bolsonaro - Presente Puti prentiputi pretiputi presidente putin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Presente Puti prentiputi pretiputi presidente putin.mp3"; sourceTree = "<group>"; };
-		D9227305285AAD3D00A98CAE /* PLANALTO - Bolsonaro - Presidente Putin Pretiputi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "PLANALTO - Bolsonaro - Presidente Putin Pretiputi.mp3"; sourceTree = "<group>"; };
-		D9227306285AAD3E00A98CAE /* PLANALTO - Bolsonaro - Presidente Putin Pretiputi remix house.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "PLANALTO - Bolsonaro - Presidente Putin Pretiputi remix house.mp3"; sourceTree = "<group>"; };
-		D9227307285AAD3E00A98CAE /* METEORO BRASIL - Antonio Tabet - Pretos, gays, lesbicas, trans tem familias e fazem familias.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "METEORO BRASIL - Antonio Tabet - Pretos, gays, lesbicas, trans tem familias e fazem familias.mp3"; sourceTree = "<group>"; };
-		D9227308285AAD3E00A98CAE /* ROY ORBISON - Oh Pretty Woman Pretiputi parodia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ROY ORBISON - Oh Pretty Woman Pretiputi parodia.mp3"; sourceTree = "<group>"; };
 		D9253B672873B68B00D138FB /* FoldersAreTagsBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersAreTagsBannerView.swift; sourceTree = "<group>"; };
 		D9265740285A1EE700947165 /* LocalDatabase+Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+Log.swift"; sourceTree = "<group>"; };
 		D927C423285245CE0041970A /* SoundOptionsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundOptionsHelper.swift; sourceTree = "<group>"; };
@@ -746,6 +685,7 @@
 		D93443282838230500ADCD38 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		D9351C5B2844094E00D4317E /* TopChartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartItem.swift; sourceTree = "<group>"; };
 		D9351C6028441FA400D4317E /* LoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerTests.swift; sourceTree = "<group>"; };
+		D938132E287E12B3009EE24F /* NotificationAide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAide.swift; sourceTree = "<group>"; };
 		D93AC08A28414EEE00E38A63 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		D93CCB76286A802D0002CF81 /* EmptyFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyFolderView.swift; sourceTree = "<group>"; };
 		D93CCB78286A8A220002CF81 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
@@ -1333,13 +1273,11 @@
 		D9BF9090284257F500BDDD7D /* Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shared.swift; sourceTree = "<group>"; };
 		D9BF90962842D3CB00BDDD7D /* NoSoundsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSoundsView.swift; sourceTree = "<group>"; };
 		D9BF90BD2842EAED00BDDD7D /* TopChartCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartCellView.swift; sourceTree = "<group>"; };
-		D9C3EF4D28668FD800C44249 /* Andre Starqueza - Ai que delicia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Andre Starqueza - Ai que delicia.mp3"; sourceTree = "<group>"; };
-		D9C3EF4F2866938A00C44249 /* Eduardo Pazuello - Tem um grau ai de prisma na coisa.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eduardo Pazuello - Tem um grau ai de prisma na coisa.mp3"; sourceTree = "<group>"; };
+		D9D8C4A7287CD1B600812EE5 /* UIDevice+DevicePhysicalCharacteristics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+DevicePhysicalCharacteristics.swift"; sourceTree = "<group>"; };
 		D9DCC5D028751256008DD4A3 /* PushDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushDevice.swift; sourceTree = "<group>"; };
 		D9DCC5D2287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+PushDevice.swift"; sourceTree = "<group>"; };
 		D9DCC5D42875CB59008DD4A3 /* AppPersistentMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPersistentMemory.swift; sourceTree = "<group>"; };
 		D9DCC5D62875D7E5008DD4A3 /* NotificationSymbolPlusText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSymbolPlusText.swift; sourceTree = "<group>"; };
-		D9D8C4A7287CD1B600812EE5 /* UIDevice+DevicePhysicalCharacteristics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+DevicePhysicalCharacteristics.swift"; sourceTree = "<group>"; };
 		D9DCC5D8287625F4008DD4A3 /* PodcastAuthorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastAuthorsView.swift; sourceTree = "<group>"; };
 		D9E254EA287C66B80013CE5A /* Fã do Armandinho - Vou ver se pego um corpinho hoje la.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fã do Armandinho - Vou ver se pego um corpinho hoje la.mp3"; sourceTree = "<group>"; };
 		D9E254EB287C66B80013CE5A /* Fã do Armandinho - E um poeta ne meu, bah.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fã do Armandinho - E um poeta ne meu, bah.mp3"; sourceTree = "<group>"; };
@@ -1949,6 +1887,7 @@
 				D927C423285245CE0041970A /* SoundOptionsHelper.swift */,
 				D9877D2A2869845400B541F9 /* Sharer.swift */,
 				D9FB48992870FE7800FF90D0 /* TapticHelper.swift */,
+				D938132E287E12B3009EE24F /* NotificationAide.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -2966,6 +2905,7 @@
 				D93CCB79286A8A220002CF81 /* ToastView.swift in Sources */,
 				D958BC752869000A000B2EDA /* FolderInfoEditingViewViewModel.swift in Sources */,
 				D9DCC5D52875CB59008DD4A3 /* AppPersistentMemory.swift in Sources */,
+				D938132F287E12B3009EE24F /* NotificationAide.swift in Sources */,
 				D976FF3828674BAC00998E1B /* FoldersBannerView.swift in Sources */,
 				D9A8AB2A28544FAE00B5A94B /* NetworkCallLog.swift in Sources */,
 				D99B9DCA2848148600897930 /* ServerStatsAndLogs.swift in Sources */,

@@ -23,7 +23,7 @@ extension NetworkRabbit {
             }
             
             if let data = data {
-                if (try? JSONDecoder().decode(ClientDeviceInfo.self, from: data)) != nil {
+                if (try? JSONDecoder().decode(PushDevice.self, from: data)) != nil {
                     completionHandler(true, nil)
                 } else {
                     completionHandler(nil, .invalidResponse)

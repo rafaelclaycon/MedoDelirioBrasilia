@@ -1,5 +1,4 @@
 import SwiftUI
-import UserNotifications
 
 struct OnboardingView: View {
 
@@ -23,7 +22,10 @@ struct OnboardingView: View {
                     .padding(.vertical)
                 
                 Button {
-                    registerForRemoteNotifications()
+                    NotificationAide.registerForRemoteNotifications() { _ in
+                        AppPersistentMemory.setHasShownNotificationsOnboarding(to: true)
+                        isBeingShown = false
+                    }
                 } label: {
                     Text("Permitir notificações")
                         .bold()
@@ -53,22 +55,6 @@ struct OnboardingView: View {
             }
             .padding(.top, 100)
             .padding(.bottom, 100)
-        }
-    }
-    
-    private func registerForRemoteNotifications() {
-        let center = UNUserNotificationCenter.current()
-        
-        center.requestAuthorization(options: [.sound, .alert]) { granted, error in
-            if error == nil {
-                DispatchQueue.main.async {
-                    UIApplication.shared.registerForRemoteNotifications()
-                }
-                UserSettings.setUserAllowedNotifications(to: granted)
-            }
-            
-            AppPersistentMemory.setHasShownNotificationsOnboarding(to: true)
-            isBeingShown = false
         }
     }
 
