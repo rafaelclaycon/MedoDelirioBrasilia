@@ -4324,7 +4324,7 @@
         "title": "Vai começar a putaria",
         "authorId": "917F48B7-332D-4E9B-8190-DF93875F3E35",
         "description": "vai começar a putaria curto short",
-        "filename": "MR CATRA - vai comecar a putaria long.mp3",
+        "filename": "MR CATRA - Vai comecar a putaria short.mp3",
         "dateAdded": "2022-07-11T00:00:00Z",
         "isOffensive": true
     },
@@ -4343,15 +4343,6 @@
         "authorId": "8DB0296F-1152-4DAF-BD78-C7665E031014",
         "description": "vai se criando um clima terrivel galvão bueno",
         "filename": "Marcelo Adnet - Galvao Bueno - Vai se criando um clima terrivel.mp3",
-        "dateAdded": "2022-07-11T00:00:00Z",
-        "isOffensive": false
-    },
-    {
-        "id": "98165E38-369B-4680-85EF-9D4BF67C3531",
-        "title": "Competência política?",
-        "authorId": "C066E971-8702-4261-955D-00CF642A465A",
-        "description": "competência política ha ha risada risos",
-        "filename": "Malafaia - Competencia politica hahahaha risos.mp3",
         "dateAdded": "2022-07-11T00:00:00Z",
         "isOffensive": false
     },
@@ -4438,7 +4429,7 @@
     },
     {
         "id": "3362B1C8-B0F9-4501-A545-A0CF61753087",
-        "title": "Procure saber",
+        "title": "Procure saber (imitando Gil)",
         "authorId": "FE52729B-F3E8-4A7F-A5EB-4471A6595839",
         "description": "lobão imitando o gilberto gil procure saber",
         "filename": "Lobao (imitando gil) - Procure saber.mp3",
@@ -4448,7 +4439,7 @@
     {
         "id": "8FFB3A18-D6CB-4CAD-BAE3-E38448C20B92",
         "title": "Ninguém",
-        "authorId": "FE52729B-F3E8-4A7F-A5EB-4471A6595839",
+        "authorId": "AFB30EED-A9AA-4F0A-AAB1-92E07E319275",
         "description": "ninguém tan tan tan tan",
         "filename": "Molejo - Ninguem short meme.mp3",
         "dateAdded": "2022-07-11T00:00:00Z",
@@ -4456,9 +4447,9 @@
     },
     {
         "id": "23EC659A-584C-4593-9134-0C1C9DECF14F",
-        "title": "Ética não tem ambiguidade a mesma mesma da vida privada é a merda da vida profissional vai se fuder fudê",
+        "title": "Ética não tem ambiguidade",
         "authorId": "54AD2984-8D05-44CD-B4A7-72325B59E947",
-        "description": "ética não tem ambiguidade caralho porra ",
+        "description": "ética não tem ambiguidade caralho porra  a mesma mesma da vida privada é a merda da vida profissional vai se fuder fudê",
         "filename": "Kajuru - etica nao tem ambiguidade caralho porra.mp3",
         "dateAdded": "2022-07-11T00:00:00Z",
         "isOffensive": true
@@ -4502,7 +4493,7 @@
     {
         "id": "243F6AFD-2624-43C5-AF3B-1935E73D5CB1",
         "title": "Medo e Delírio em Brasília (com grito)",
-        "authorId": "02CFCF9C-F456-4813-8E6D-F8EA3DBF2777",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
         "description": "medo e delírio em brasília com grito abertura",
         "filename": "Medo e Delirio em Brasilia com grito.mp3",
         "dateAdded": "2022-07-11T00:00:00Z",
@@ -4550,15 +4541,6 @@
         "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
         "description": "cloroquina",
         "filename": "Lula - Cloroquina.mp3",
-        "dateAdded": "2022-07-11T00:00:00Z",
-        "isOffensive": false
-    },
-    {
-        "id": "054FE01F-4B5A-404F-9B6F-EB2EC59417DA",
-        "title": "Deus de barro não dura muito tempo",
-        "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
-        "description": "deus de barro nao dura muito tempo",
-        "filename": "Lula - Deus de barro nao dura muito tempo.mp3",
         "dateAdded": "2022-07-11T00:00:00Z",
         "isOffensive": false
     },
@@ -4635,12 +4617,129 @@
         "isOffensive": false
     },
     {
-        "id": "A517FB3D-74B4-4F54-AD55-301CFDF481D2",
-        "title": "Chupa que a cana é doce",
-        "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
-        "description": "chupa que a cana é doce meu filho",
-        "filename": "Lula - Chupa que a cana e doce meu filho.mp3",
-        "dateAdded": "2022-07-11T00:00:00Z",
+        "id": "DF6F7DD4-A151-4A30-B882-41258B2F7FD3",
+        "title": "Malditos Milicos (Arpeggio)",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "malditos milicos arpeggio",
+        "filename": "Malditos Milicos - Arpeggio.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "A835FE22-817F-4484-BB2E-7C8DFDAC66A0",
+        "title": "Malditos Milicos (Cromática Descendente)",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "malditos milicos escala cromática descendente",
+        "filename": "Malditos Milicos - cromatica descendente.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "019090E3-CEDB-4477-9EAA-9F29BE467E66",
+        "title": "Malditos Milicos (Trash Barber Quartet)",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "malditos milicos trashy barber quartet quarteto barbeiro",
+        "filename": "Malditos Milicos - Trashy Barber quartet.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "80B4C85F-FE16-40F9-BC06-740BB5210851",
+        "title": "Malditos Milicos (Autotune)",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "malditos milicos autotune",
+        "filename": "Malditos milicos - Autotune.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "4F5F6F56-9615-4A92-A4E2-EF238EE8B593",
+        "title": "Malditos Milicos (Bomba Caindo)",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "malditos milicos bomba caindo explosão que porra é essa",
+        "filename": "Malditos milicos - bomba.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "607E1F35-294F-455D-BAA6-36B101A8CB5E",
+        "title": "Malditos Milicos (Distorcido)",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "malditos milicos megafone distorcido",
+        "filename": "Malditos Milicos distorcido.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "BEC415D6-4718-45F7-A4EE-9351F2B3B9EB",
+        "title": "Malditos Milicos (Monges)",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "malditos milicos monges om meditando",
+        "filename": "Malditos milicos monges Om.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "E49AFD5A-9285-4F7C-9A10-4AD85AEBD09C",
+        "title": "Malditos Milicos (Acelerado)",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "malditos milicos acelerado rápido",
+        "filename": "Malditos milicos acelerado.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "1852639A-8D84-426E-BCEC-4006E8C4BD02",
+        "title": "Malditos Milicos (Reverse)",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "malditos milicos ao contrário reverse",
+        "filename": "Malditos Milicos reverse.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "4E179D60-8F08-47EA-A50F-6B49CCEB8A22",
+        "title": "Malditos Milicos (Robô grave)",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "malditos milicos robô grave gravão",
+        "filename": "Malditos milicos robo grave.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "36F7A6B3-0793-4D13-9B6B-5BC1479CF2D1",
+        "title": "Malditos Milicos (Semitons)",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "malditos milicos semitons semitom",
+        "filename": "Malditos Milicos semitons.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "F55EE4C8-E497-4792-A3EA-2E475110595E",
+        "title": "Tudo pequenininho aí",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "tudo pequeneninho ai pequinininho ae",
+        "filename": "Bolsonaro - Tudo pequenininho ai.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "3A8AED61-0635-4329-99D7-64F7A348B3D6",
+        "title": "Ministro terrivelmente filho da puta",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "ministro terrivelmente filha da puta filho",
+        "filename": "MINISTRO TERRIVELMENTE FILHO DA PUTA.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "6ACE67C1-69A9-4CF2-A96A-D70B687DBBFF",
+        "title": "Plural é sua mão em meu pau",
+        "authorId": "47AADA7B-9243-4988-904E-546C49355941",
+        "description": "pluram é sua mão no meu pau",
+        "filename": "LIVE DAS CANJEBRINAS - Francuel Cruz - Plural e sua mão em meu pau short meme.mp3",
+        "dateAdded": "2022-07-08T00:00:00Z",
         "isOffensive": true
     }
 ]

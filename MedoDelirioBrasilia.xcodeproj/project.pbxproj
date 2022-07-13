@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49109CBE287E7EA1008D172C /* Malditos Milicos - Acorde em B7.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49109CBD287E7EA1008D172C /* Malditos Milicos - Acorde em B7.mp3 */; };
+		49109CC0287E7EA8008D172C /* Malditos Milicos robo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49109CBF287E7EA8008D172C /* Malditos Milicos robo.mp3 */; };
+		49109CCB287E7EC3008D172C /* Malditos Milicos reverse.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49109CC1287E7EC3008D172C /* Malditos Milicos reverse.mp3 */; };
+		49109CCC287E7EC3008D172C /* Malditos milicos - Autotune.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49109CC2287E7EC3008D172C /* Malditos milicos - Autotune.mp3 */; };
+		49109CCD287E7EC3008D172C /* Malditos milicos robo grave.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49109CC3287E7EC3008D172C /* Malditos milicos robo grave.mp3 */; };
+		49109CCE287E7EC3008D172C /* Malditos milicos - bomba.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49109CC4287E7EC3008D172C /* Malditos milicos - bomba.mp3 */; };
+		49109CCF287E7EC3008D172C /* Malditos Milicos semitons.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49109CC5287E7EC3008D172C /* Malditos Milicos semitons.mp3 */; };
+		49109CD0287E7EC3008D172C /* Malditos milicos monges Om.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49109CC6287E7EC3008D172C /* Malditos milicos monges Om.mp3 */; };
+		49109CD1287E7EC3008D172C /* Malditos Milicos - cromatica descendente.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49109CC7287E7EC3008D172C /* Malditos Milicos - cromatica descendente.mp3 */; };
+		49109CD2287E7EC3008D172C /* Malditos Milicos - Trashy Barber quartet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49109CC8287E7EC3008D172C /* Malditos Milicos - Trashy Barber quartet.mp3 */; };
+		49109CD3287E7EC3008D172C /* Malditos Milicos - Arpeggio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49109CC9287E7EC3008D172C /* Malditos Milicos - Arpeggio.mp3 */; };
+		49109CD4287E7EC3008D172C /* Malditos Milicos distorcido.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49109CCA287E7EC3008D172C /* Malditos Milicos distorcido.mp3 */; };
 		49A7FC20287C52F70078798F /* MR CATRA - vai comecar a putaria long.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC1F287C52F70078798F /* MR CATRA - vai comecar a putaria long.mp3 */; };
 		49A7FC22287C532C0078798F /* MR CATRA - Vai comecar a putaria short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC21287C532C0078798F /* MR CATRA - Vai comecar a putaria short.mp3 */; };
 		49A7FC24287C53700078798F /* Molejo - Cilada short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC23287C53700078798F /* Molejo - Cilada short meme.mp3 */; };
@@ -43,7 +55,6 @@
 		49A7FC64287C63B70078798F /* Lula - Nao siga nenhuma decisao imbecil do presidente da republica.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC63287C63B70078798F /* Lula - Nao siga nenhuma decisao imbecil do presidente da republica.mp3 */; };
 		49A7FC66287C63D60078798F /* Lula - Nao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC65287C63D60078798F /* Lula - Nao.mp3 */; };
 		49A7FC68287C64090078798F /* Lula - Ou seja voces percebem a loucura.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC67287C64090078798F /* Lula - Ou seja voces percebem a loucura.mp3 */; };
-		49A7FC6A287C643C0078798F /* Lula - Chupa que a cana e doce meu filho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49A7FC69287C643C0078798F /* Lula - Chupa que a cana e doce meu filho.mp3 */; };
 		D905B4C52857FF3D0096D466 /* AddNetworkCallLogTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D905B4C42857FF3D0096D466 /* AddNetworkCallLogTable.swift */; };
 		D90F6A6628446C250050FFFF /* TrendsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */; };
 		D91107112863B481000B6F8F /* CollectionsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91107102863B481000B6F8F /* CollectionsViewViewModel.swift */; };
@@ -661,6 +672,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		49109CBD287E7EA1008D172C /* Malditos Milicos - Acorde em B7.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Malditos Milicos - Acorde em B7.mp3"; sourceTree = "<group>"; };
+		49109CBF287E7EA8008D172C /* Malditos Milicos robo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Malditos Milicos robo.mp3"; sourceTree = "<group>"; };
+		49109CC1287E7EC3008D172C /* Malditos Milicos reverse.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Malditos Milicos reverse.mp3"; path = "MedoDelirioBrasilia/Resources/Songs/Malditos Milicos reverse.mp3"; sourceTree = SOURCE_ROOT; };
+		49109CC2287E7EC3008D172C /* Malditos milicos - Autotune.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Malditos milicos - Autotune.mp3"; path = "MedoDelirioBrasilia/Resources/Songs/Malditos milicos - Autotune.mp3"; sourceTree = SOURCE_ROOT; };
+		49109CC3287E7EC3008D172C /* Malditos milicos robo grave.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Malditos milicos robo grave.mp3"; path = "MedoDelirioBrasilia/Resources/Songs/Malditos milicos robo grave.mp3"; sourceTree = SOURCE_ROOT; };
+		49109CC4287E7EC3008D172C /* Malditos milicos - bomba.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Malditos milicos - bomba.mp3"; path = "MedoDelirioBrasilia/Resources/Songs/Malditos milicos - bomba.mp3"; sourceTree = SOURCE_ROOT; };
+		49109CC5287E7EC3008D172C /* Malditos Milicos semitons.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Malditos Milicos semitons.mp3"; path = "MedoDelirioBrasilia/Resources/Songs/Malditos Milicos semitons.mp3"; sourceTree = SOURCE_ROOT; };
+		49109CC6287E7EC3008D172C /* Malditos milicos monges Om.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Malditos milicos monges Om.mp3"; path = "MedoDelirioBrasilia/Resources/Songs/Malditos milicos monges Om.mp3"; sourceTree = SOURCE_ROOT; };
+		49109CC7287E7EC3008D172C /* Malditos Milicos - cromatica descendente.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Malditos Milicos - cromatica descendente.mp3"; path = "MedoDelirioBrasilia/Resources/Songs/Malditos Milicos - cromatica descendente.mp3"; sourceTree = SOURCE_ROOT; };
+		49109CC8287E7EC3008D172C /* Malditos Milicos - Trashy Barber quartet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Malditos Milicos - Trashy Barber quartet.mp3"; path = "MedoDelirioBrasilia/Resources/Songs/Malditos Milicos - Trashy Barber quartet.mp3"; sourceTree = SOURCE_ROOT; };
+		49109CC9287E7EC3008D172C /* Malditos Milicos - Arpeggio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Malditos Milicos - Arpeggio.mp3"; path = "MedoDelirioBrasilia/Resources/Songs/Malditos Milicos - Arpeggio.mp3"; sourceTree = SOURCE_ROOT; };
+		49109CCA287E7EC3008D172C /* Malditos Milicos distorcido.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Malditos Milicos distorcido.mp3"; path = "MedoDelirioBrasilia/Resources/Songs/Malditos Milicos distorcido.mp3"; sourceTree = SOURCE_ROOT; };
 		49A7FC1F287C52F70078798F /* MR CATRA - vai comecar a putaria long.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "MR CATRA - vai comecar a putaria long.mp3"; sourceTree = "<group>"; };
 		49A7FC21287C532C0078798F /* MR CATRA - Vai comecar a putaria short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "MR CATRA - Vai comecar a putaria short.mp3"; sourceTree = "<group>"; };
 		49A7FC23287C53700078798F /* Molejo - Cilada short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Molejo - Cilada short meme.mp3"; sourceTree = "<group>"; };
@@ -697,7 +720,6 @@
 		49A7FC63287C63B70078798F /* Lula - Nao siga nenhuma decisao imbecil do presidente da republica.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - Nao siga nenhuma decisao imbecil do presidente da republica.mp3"; sourceTree = "<group>"; };
 		49A7FC65287C63D60078798F /* Lula - Nao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - Nao.mp3"; sourceTree = "<group>"; };
 		49A7FC67287C64090078798F /* Lula - Ou seja voces percebem a loucura.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - Ou seja voces percebem a loucura.mp3"; sourceTree = "<group>"; };
-		49A7FC69287C643C0078798F /* Lula - Chupa que a cana e doce meu filho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Lula - Chupa que a cana e doce meu filho.mp3"; path = "../../../../../Downloads/Medo e Delírio app/FIla para fazer/Lula - Chupa que a cana e doce meu filho.mp3"; sourceTree = "<group>"; };
 		D905B4C42857FF3D0096D466 /* AddNetworkCallLogTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNetworkCallLogTable.swift; sourceTree = "<group>"; };
 		D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsSettingsView.swift; sourceTree = "<group>"; };
 		D91107102863B481000B6F8F /* CollectionsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsViewViewModel.swift; sourceTree = "<group>"; };
@@ -1329,7 +1351,18 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				49A7FC69287C643C0078798F /* Lula - Chupa que a cana e doce meu filho.mp3 */,
+				49109CC9287E7EC3008D172C /* Malditos Milicos - Arpeggio.mp3 */,
+				49109CC2287E7EC3008D172C /* Malditos milicos - Autotune.mp3 */,
+				49109CC4287E7EC3008D172C /* Malditos milicos - bomba.mp3 */,
+				49109CC7287E7EC3008D172C /* Malditos Milicos - cromatica descendente.mp3 */,
+				49109CC8287E7EC3008D172C /* Malditos Milicos - Trashy Barber quartet.mp3 */,
+				49109CCA287E7EC3008D172C /* Malditos Milicos distorcido.mp3 */,
+				49109CC6287E7EC3008D172C /* Malditos milicos monges Om.mp3 */,
+				49109CC1287E7EC3008D172C /* Malditos Milicos reverse.mp3 */,
+				49109CC3287E7EC3008D172C /* Malditos milicos robo grave.mp3 */,
+				49109CC5287E7EC3008D172C /* Malditos Milicos semitons.mp3 */,
+				49109CBF287E7EA8008D172C /* Malditos Milicos robo.mp3 */,
+				49109CBD287E7EA1008D172C /* Malditos Milicos - Acorde em B7.mp3 */,
 				49A7FC67287C64090078798F /* Lula - Ou seja voces percebem a loucura.mp3 */,
 				49A7FC65287C63D60078798F /* Lula - Nao.mp3 */,
 				49A7FC63287C63B70078798F /* Lula - Nao siga nenhuma decisao imbecil do presidente da republica.mp3 */,
@@ -2403,7 +2436,6 @@
 				D993A87D287B339200109C79 /* PODER360 - Barroso - Nao e de surpreender.mp3 in Resources */,
 				D993A818287B339200109C79 /* Ernesto Araujo - Thats not true.mp3 in Resources */,
 				D993A873287B339200109C79 /* Mourao - Essa conta ira para as Forcas Armadas trecho short.mp3 in Resources */,
-				49A7FC6A287C643C0078798F /* Lula - Chupa que a cana e doce meu filho.mp3 in Resources */,
 				D993A875287B339200109C79 /* Sheldon - Oh Really short.mp3 in Resources */,
 				D993A76F287B339100109C79 /* Michel Temer - Tem que pedir uma pastilha.mp3 in Resources */,
 				D993A7E1287B339100109C79 /* Natalie Wynn Contrapoints - Cancel culture.mp3 in Resources */,
@@ -2510,6 +2542,7 @@
 				D993A86B287B339200109C79 /* CASIMIRO - Que que porra e essa.mp3 in Resources */,
 				D993A716287B339100109C79 /* Belo - Quem sera.mp3 in Resources */,
 				D993A786287B339100109C79 /* Craque Neto - Vacina eu Tomo short meme.mp3 in Resources */,
+				49109CCB287E7EC3008D172C /* Malditos Milicos reverse.mp3 in Resources */,
 				D993A76B287B339100109C79 /* Temer - Nao renunciarei short.mp3 in Resources */,
 				D993A7DF287B339100109C79 /* JORNAL DA RECORD - Nao e coisa de deus nao.mp3 in Resources */,
 				D993A71B287B339100109C79 /* Tite - Fala muito!.mp3 in Resources */,
@@ -2591,6 +2624,8 @@
 				D993A876287B339200109C79 /* Trote Pareto - Calma filha da puta calma.mp3 in Resources */,
 				D993A814287B339200109C79 /* Bolsonaro - So se for na casa da tua mae.mp3 in Resources */,
 				D993A806287B339200109C79 /* Galo Cego - Nada a ver irmao.mp3 in Resources */,
+				49109CBE287E7EA1008D172C /* Malditos Milicos - Acorde em B7.mp3 in Resources */,
+				49109CD3287E7EC3008D172C /* Malditos Milicos - Arpeggio.mp3 in Resources */,
 				D993A857287B339200109C79 /* Choque de Cultura - Rogerinho - Aqui tem informacao.mp3 in Resources */,
 				D993A846287B339200109C79 /* Jacquin - Cala a boca short.mp3 in Resources */,
 				D993A7A9287B339100109C79 /* Vai Dar Namoro - Ele gosta.mp3 in Resources */,
@@ -2630,10 +2665,12 @@
 				D993A74D287B339100109C79 /* Queiroz - Eu sou um cara de negocios, eu faco dinheiro eu faco.mp3 in Resources */,
 				D993A7B3287B339100109C79 /* UOL - Luiz Fux - Infelizmente short meme.mp3 in Resources */,
 				D993A7AB287B339100109C79 /* Mourao - Voce e muito mais fisico do que intelectual short.mp3 in Resources */,
+				49109CD0287E7EC3008D172C /* Malditos milicos monges Om.mp3 in Resources */,
 				D993A6CC287B339100109C79 /* Amigo Pedro Daltro - Que delicia, cara.mp3 in Resources */,
 				D993A76C287B339100109C79 /* Bolsonaro - Vai morrer gente morrer morte inocentes tinha que matar e mais minha especialidade e matar.mp3 in Resources */,
 				D993A83C287B339200109C79 /* Cid Moreira - Vai chorar e chore na minha.mp3 in Resources */,
 				D993A813287B339200109C79 /* Eduardo Pazuello - Tem um grau ai de prisma na coisa.mp3 in Resources */,
+				49109CD2287E7EC3008D172C /* Malditos Milicos - Trashy Barber quartet.mp3 in Resources */,
 				D993A757287B339100109C79 /* esse_neto_bosta.mp3 in Resources */,
 				D993A70B287B339100109C79 /* SBT NEWS - Bolsonaro - Sai alexandre de moraes deixa de ser canalha.mp3 in Resources */,
 				D993A6C4287B339100109C79 /* E desesperador.mp3 in Resources */,
@@ -2777,6 +2814,7 @@
 				D993A859287B339200109C79 /* Gilmar Mendes - Eu estou julgando improcedente a acao.mp3 in Resources */,
 				D993A7D6287B339100109C79 /* Ate o final tu vai bancar esse merda la seu merda.mp3 in Resources */,
 				49A7FC34287C5C2A0078798F /* MARCO FELICIANO - Decisao judicial nao se discute se cumpre SHORT MEME.mp3 in Resources */,
+				49109CC0287E7EA8008D172C /* Malditos Milicos robo.mp3 in Resources */,
 				D993A830287B339200109C79 /* ESSE MENINO - Ta passada.mp3 in Resources */,
 				D9B4F73F283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 in Resources */,
 				D993A728287B339100109C79 /* CHOQUE DE CULTURA - Renan - Acho que deu uma pesada no clima do programa ai.mp3 in Resources */,
@@ -2794,6 +2832,7 @@
 				D993A6D7287B339100109C79 /* SBT - Casos de Familia.mp3 in Resources */,
 				D993A77E287B339100109C79 /* Sabe que voce e muito petulante.mp3 in Resources */,
 				49A7FC3C287C5E2E0078798F /* Lobao (imitando gil) - Procure saber.mp3 in Resources */,
+				49109CD4287E7EC3008D172C /* Malditos Milicos distorcido.mp3 in Resources */,
 				49A7FC26287C54310078798F /* Marcelo Adnet - Galvao Bueno - Vai se criando um clima terrivel.mp3 in Resources */,
 				D993A81F287B339200109C79 /* ta_bom_xandao_ta_bom.mp3 in Resources */,
 				D993A782287B339100109C79 /* Pega essa buceta e enfia no cu short meme.mp3 in Resources */,
@@ -2813,6 +2852,7 @@
 				D993A84E287B339200109C79 /* Bolsonaro - A pressa da vacina nao se justifica.mp3 in Resources */,
 				D993A7EE287B339100109C79 /* Vai Dar Namoro - Que isso meu filho calma.mp3 in Resources */,
 				D993A844287B339200109C79 /* Januario de Oliveira - Cruel, muito cruel.mp3 in Resources */,
+				49109CCF287E7EC3008D172C /* Malditos Milicos semitons.mp3 in Resources */,
 				D993A6EF287B339100109C79 /* Bolsonaro - Procura outro pra pagar a tua vacina ai.mp3 in Resources */,
 				D993A6FC287B339100109C79 /* Regina Rouca - Se Liga Hein (serio).mp3 in Resources */,
 				D993A6F2287B339100109C79 /* Bolsonaro - Ta sendo superdimensionado o poder destruidor desse virus.mp3 in Resources */,
@@ -2828,6 +2868,7 @@
 				D993A86D287B339200109C79 /* lula ou bolsonaro.mp3 in Resources */,
 				D993A7F8287B339100109C79 /* Deltan Dallangnol - Os meus advogados estao estarrecidos.mp3 in Resources */,
 				D993A7BF287B339100109C79 /* Gaucho Puto - Seu bosta, seu lixo, tu e um ser tao repulsivo.mp3 in Resources */,
+				49109CD1287E7EC3008D172C /* Malditos Milicos - cromatica descendente.mp3 in Resources */,
 				D993A80C287B339200109C79 /* Neto - Ces tao de brincadeira.mp3 in Resources */,
 				D993A735287B339100109C79 /* CAUE MOURA - Eu esperava o pior mas puta que o pariu.mp3 in Resources */,
 				D993A6CF287B339100109C79 /* Bolsonaro - Eu sou favoravel a tortura, tu sabe disso.mp3 in Resources */,
@@ -2847,15 +2888,18 @@
 				49A7FC42287C5F5F0078798F /* Maysa - La vem besteira, la vem besteira.mp3 in Resources */,
 				D993A870287B339200109C79 /* Silas Malafaia - Nao seja um mentiroso short.mp3 in Resources */,
 				D993A71A287B339100109C79 /* DESMENTINDO BOLSONARO - Milton Ribeiro - O presidente da republica nunca me pediu nada, absolutamente nada.mp3 in Resources */,
+				49109CCC287E7EC3008D172C /* Malditos milicos - Autotune.mp3 in Resources */,
 				D993A7BD287B339100109C79 /* LUVA DE PEDREIRO - E, caralho carai, RECEBA.mp3 in Resources */,
 				D993A7A1287B339100109C79 /* Omar Aziz - Ah, me erre.mp3 in Resources */,
 				D993A85A287B339200109C79 /* TV BRASIL - Bolsonaro - Bom dia a todos, menos pra primeira dama.mp3 in Resources */,
 				49A7FC60287C63570078798F /* Lula - Eu vou repetir.mp3 in Resources */,
+				49109CCD287E7EC3008D172C /* Malditos milicos robo grave.mp3 in Resources */,
 				D993A7D5287B339100109C79 /* Bolsonaro - Na ordem de 800 pessoas a previsao e nao chegar a isso no tocante ao coronavirus.mp3 in Resources */,
 				D993A7C3287B339100109C79 /* Silas Malafaia - Agora a coisa vai ser mais profunda.mp3 in Resources */,
 				D993A6DD287B339100109C79 /* Dedo no cu e gritaria short meme.mp3 in Resources */,
 				D993A75A287B339100109C79 /* BENDER Ahh, agora eu entendi short.mp3 in Resources */,
 				D991512C2873E4C100FFAA29 /* rock-comunismo-vale-tudo-mdb.mp3 in Resources */,
+				49109CCE287E7EC3008D172C /* Malditos milicos - bomba.mp3 in Resources */,
 				D993A88A287B339200109C79 /* Vai Dar Namoro - Demais.mp3 in Resources */,
 				D993A73F287B339100109C79 /* CASIMIRO - Amado ou amada.mp3 in Resources */,
 				D993A800287B339200109C79 /* Vai Dar Namoro - Tapa Tapa Tome.mp3 in Resources */,
@@ -3173,7 +3217,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
-				DEVELOPMENT_TEAM = L8X3H5XA82;
+				DEVELOPMENT_TEAM = 64FQP9KQ3A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MedoDelirioBrasilia/Info.plist;
@@ -3188,7 +3232,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.3;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
+				PRODUCT_BUNDLE_IDENTIFIER = com.optimisticloser.MedoDelirioBrasilia;
 				PRODUCT_NAME = "Medo e Delírio";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -3204,7 +3248,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
-				DEVELOPMENT_TEAM = L8X3H5XA82;
+				DEVELOPMENT_TEAM = 64FQP9KQ3A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MedoDelirioBrasilia/Info.plist;
@@ -3219,7 +3263,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.3;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
+				PRODUCT_BUNDLE_IDENTIFIER = com.optimisticloser.MedoDelirioBrasilia;
 				PRODUCT_NAME = "Medo e Delírio";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
