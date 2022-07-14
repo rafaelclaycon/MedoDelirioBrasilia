@@ -4786,5 +4786,14 @@
         "filename": "Boldo - Caralho, Marquinho.mp3",
         "dateAdded": "2022-07-14T00:00:00Z",
         "isOffensive": true
+    },
+    {
+        "id": "603B63CC-9AE1-4043-884D-E8DD165B7259",
+        "title": "Deus de barro não dura muito tempo",
+        "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
+        "description": "Deus de barro não dura muito tempo",
+        "filename": "Lula - Deus de barro nao dura muito tempo.mp3",
+        "dateAdded": "2022-07-14T00:00:00Z",
+        "isOffensive": false
     }
 ]
