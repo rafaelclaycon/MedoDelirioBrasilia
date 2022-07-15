@@ -8,7 +8,6 @@ struct SettingsView: View {
     @State private var showPixKeyCopiedAlert: Bool = false
     
     @State private var showEmailClientConfirmationDialog: Bool = false
-    @State private var showEmailAddressCopiedAlert: Bool = false
     
     let pixKey: String = "medodeliriosuporte@gmail.com"
     
