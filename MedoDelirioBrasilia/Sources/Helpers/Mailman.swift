@@ -39,7 +39,7 @@ class Mailman {
         
         if Mailman.hasGmail {
             Button("Gmail") {
-                let mailToString = "\(gmailMailToUrl)?to=\(recipient)?subject=\(defaultSubject)&body=\(defaultMessage)"
+                let mailToString = "\(gmailMailToUrl)?to=\(recipient)"
                 guard let mailToUrl = URL(string: mailToString) else {
                     return
                 }
@@ -49,7 +49,7 @@ class Mailman {
         
         if Mailman.hasOutlook {
             Button("Outlook") {
-                let mailToString = "\(outlookMailToUrl)?to=\(recipient)?subject=\(defaultSubject)&body=\(defaultMessage)"
+                let mailToString = "\(outlookMailToUrl)?to=\(recipient)"
                 guard let mailToUrl = URL(string: mailToString) else {
                     return
                 }
@@ -59,7 +59,7 @@ class Mailman {
         
         if Mailman.hasYahooMail {
             Button("Yahoo Mail") {
-                let mailToString = "\(yahooMailToUrl)?to=\(recipient)?subject=\(defaultSubject)&body=\(defaultMessage)"
+                let mailToString = "\(yahooMailToUrl)?to=\(recipient)"
                 guard let mailToUrl = URL(string: mailToString) else {
                     return
                 }
@@ -69,7 +69,7 @@ class Mailman {
         
         if Mailman.hasSpark {
             Button("Spark") {
-                let mailToString = "\(sparkMailToUrl)?recipient=\(recipient)?subject=\(defaultSubject)&body=\(defaultMessage)"
+                let mailToString = "\(sparkMailToUrl)?recipient=\(recipient)"
                 guard let mailToUrl = URL(string: mailToString) else {
                     return
                 }
