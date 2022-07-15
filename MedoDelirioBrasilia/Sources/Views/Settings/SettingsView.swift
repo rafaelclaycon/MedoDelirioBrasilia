@@ -33,11 +33,19 @@ struct SettingsView: View {
                     }
                 }
                 
+                Section("📬  Problemas, sugestões e pedidos") {
+                    Button("Entrar em contato por e-mail") {
+                        showEmailClientConfirmationDialog = true
+                    }
+                }
+                
+                Section {
+                    PodcastAuthorsView()
+                        .padding(.vertical, 8)
+                }
+                
                 if showAskForMoneyView || CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
                     Section {
-                        PodcastAuthorsView()
-                            .padding(.vertical)
-                        
                         BegForMoneyView()
                             .padding(.vertical)
                         
@@ -48,14 +56,10 @@ struct SettingsView: View {
                         .alert(isPresented: $showPixKeyCopiedAlert) {
                             Alert(title: Text("Chave copiada com sucesso!"), dismissButton: .default(Text("OK")))
                         }
+                    } header: {
+                        Text("Ajude o app")
                     } footer: {
                         Text("A chave é um endereço de e-mail, portanto, se o app do seu banco pedir o tipo de chave para fazer o Pix, selecione E-mail. Evite qualquer opção que mencione QR Code.")
-                    }
-                }
-                
-                Section("📬  Problemas, sugestões e pedidos") {
-                    Button("Entrar em contato por e-mail") {
-                        showEmailClientConfirmationDialog = true
                     }
                 }
                 

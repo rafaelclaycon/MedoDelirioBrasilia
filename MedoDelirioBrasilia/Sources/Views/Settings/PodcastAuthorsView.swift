@@ -4,17 +4,20 @@ struct PodcastAuthorsView: View {
 
     var body: some View {
         VStack(alignment: .center, spacing: 18) {
-            Text("Esse app é uma homenagem ao brilhante trabalho de **Cristiano Botafogo** e **Pedro Daltro** no podcast **Medo e Delírio em Brasília**. Ouça no seu agregador de podcasts preferido e apoie o projeto.")
+            Text("Esse app é uma homenagem ao brilhante trabalho de **Cristiano Botafogo** e **Pedro Daltro** no podcast **Medo e Delírio em Brasília**.")
                 .multilineTextAlignment(.center)
             
-            HStack(spacing: 20) {
+            Text("Ouça no seu agregador de podcasts preferido e apoie o projeto.")
+                .multilineTextAlignment(.center)
+            
+            HStack(spacing: 24) {
                 Button {
                     guard let url = URL(string: "https://apoia.se/medoedelirio") else { return }
                     UIApplication.shared.open(url)
                 } label: {
                     Text("APOIA.se")
                         .bold()
-                        .padding(.horizontal, UIDevice.is4InchDevice ? 4 : 15)
+                        .padding(.horizontal, UIDevice.is4InchDevice ? 4 : 6)
                 }
                 .tint(.red)
                 .controlSize(.large)
@@ -27,7 +30,7 @@ struct PodcastAuthorsView: View {
                 } label: {
                     Text("PicPay")
                         .bold()
-                        .padding(.horizontal, UIDevice.is4InchDevice ? 6 : 15)
+                        .padding(.horizontal, UIDevice.is4InchDevice ? 6 : 6)
                 }
                 .tint(.green)
                 .controlSize(.large)
@@ -49,8 +52,8 @@ struct PodcastAuthorsView: View {
                     Text("Compre na loja oficial")
                         .foregroundColor(.blue)
                 }
-                .padding(.vertical, 5)
-                .padding(.horizontal, 34)
+                .padding(.vertical, 7)
+                .padding(.horizontal, 24)
             }
             .controlSize(.regular)
             .buttonStyle(.bordered)
