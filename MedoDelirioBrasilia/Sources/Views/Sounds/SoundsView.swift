@@ -263,32 +263,40 @@ struct SoundsView: View {
                         print(sound.title)
                     }
                     
-                    Button("Gmail") {
-                        guard let sound = viewModel.soundForConfirmationDialog else {
-                            return
+                    if Mailman.hasGmail {
+                        Button("Gmail") {
+                            guard let sound = viewModel.soundForConfirmationDialog else {
+                                return
+                            }
+                            print(sound.title)
                         }
-                        print(sound.title)
                     }
                     
-                    Button("Outlook") {
-                        guard let sound = viewModel.soundForConfirmationDialog else {
-                            return
+                    if Mailman.hasOutlook {
+                        Button("Outlook") {
+                            guard let sound = viewModel.soundForConfirmationDialog else {
+                                return
+                            }
+                            print(sound.title)
                         }
-                        print(sound.title)
                     }
                     
-                    Button("Yahoo") {
-                        guard let sound = viewModel.soundForConfirmationDialog else {
-                            return
+                    if Mailman.hasYahooMail {
+                        Button("Yahoo") {
+                            guard let sound = viewModel.soundForConfirmationDialog else {
+                                return
+                            }
+                            print(sound.title)
                         }
-                        print(sound.title)
                     }
                     
-                    Button("Spark") {
-                        guard let sound = viewModel.soundForConfirmationDialog else {
-                            return
+                    if Mailman.hasSpark {
+                        Button("Spark") {
+                            guard let sound = viewModel.soundForConfirmationDialog else {
+                                return
+                            }
+                            print(sound.title)
                         }
-                        print(sound.title)
                     }
                 }
                 .alert(isPresented: $viewModel.showAlert) {
