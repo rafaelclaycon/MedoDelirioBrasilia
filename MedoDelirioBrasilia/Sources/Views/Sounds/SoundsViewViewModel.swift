@@ -9,6 +9,8 @@ class SoundsViewViewModel: ObservableObject {
     @Published var sortOption: Int = 0
     @Published var favoritesKeeper = Set<String>()
     @Published var showConfirmationDialog = false
+    @Published var showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = false
+    @Published var showEmailAppPicker_soundUnavailableConfirmationDialog = false
     @Published var soundForConfirmationDialog: Sound? = nil
     
     @Published var currentActivity: NSUserActivity? = nil
@@ -20,6 +22,7 @@ class SoundsViewViewModel: ObservableObject {
     @Published var alertTitle: String = ""
     @Published var alertMessage: String = ""
     @Published var showAlert: Bool = false
+    @Published var alertType: AlertType = .singleOption
     
     func reloadList(withSounds allSounds: [Sound],
                     andFavorites favorites: [Favorite]?,
@@ -209,6 +212,7 @@ class SoundsViewViewModel: ObservableObject {
     
     func showUnableToGetSoundAlert() {
         TapticFeedback.error()
+        alertType = .twoOptions
         alertTitle = Shared.soundNotFoundAlertTitle
         alertMessage = Shared.soundNotFoundAlertMessage
         showAlert = true
@@ -216,6 +220,7 @@ class SoundsViewViewModel: ObservableObject {
     
     func showNoFoldersAlert() {
         TapticFeedback.error()
+        alertType = .singleOption
         alertTitle = "Não Existem Pastas"
         alertMessage = "Para continuar, crie uma pasta de sons na aba Coleções > Minhas Pastas."
         showAlert = true
