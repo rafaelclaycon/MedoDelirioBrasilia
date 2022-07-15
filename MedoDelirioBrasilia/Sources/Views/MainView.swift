@@ -36,16 +36,16 @@ struct MainView: View {
                 }
                 .tag(5)
         }
-        .onContinueUserActivity(Shared.playAndShareSoundsActivityTypeName, perform: { _ in
+        .onContinueUserActivity(Shared.ActivityTypes.playAndShareSounds, perform: { _ in
             tabSelection = 1
         })
-        .onContinueUserActivity(Shared.viewCollectionsActivityTypeName, perform: { _ in
+        .onContinueUserActivity(Shared.ActivityTypes.viewCollections, perform: { _ in
             tabSelection = 2
         })
-        .onContinueUserActivity(Shared.playAndShareSongsActivityTypeName, perform: { _ in
+        .onContinueUserActivity(Shared.ActivityTypes.playAndShareSongs, perform: { _ in
             tabSelection = 3
         })
-        .onContinueUserActivity(Shared.viewTrendsActivityTypeName, perform: { _ in
+        .onContinueUserActivity(Shared.ActivityTypes.viewTrends, perform: { _ in
             tabSelection = 4
         })
     }

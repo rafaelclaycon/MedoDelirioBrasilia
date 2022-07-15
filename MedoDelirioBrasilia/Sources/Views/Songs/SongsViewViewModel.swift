@@ -71,7 +71,7 @@ class SongsViewViewModel: ObservableObject {
     }
     
     func donateActivity() {
-        self.currentActivity = UserActivityWaiter.getDonatableActivity(withType: Shared.playAndShareSongsActivityTypeName, andTitle: "Tocar e compartilhar músicas")
+        self.currentActivity = UserActivityWaiter.getDonatableActivity(withType: Shared.ActivityTypes.playAndShareSongs, andTitle: "Tocar e compartilhar músicas")
         self.currentActivity?.becomeCurrent()
     }
 

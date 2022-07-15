@@ -253,7 +253,8 @@ struct SoundsView: View {
                     }
                 }
                 .confirmationDialog(Shared.pickAMailApp, isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog, titleVisibility: .visible) {
-                    Mailman.getMailClientOptions(subject: "Sugestão de Outro Nome de Autor Para \(viewModel.soundForConfirmationDialog?.title ?? "")", body: "Nome de autor antigo: \(viewModel.soundForConfirmationDialog?.authorName ?? "")\nNovo nome de autor: \n\nID do conteúdo: \(viewModel.soundForConfirmationDialog?.id ?? "") (para uso interno)")
+                    Mailman.getMailClientOptions(subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.soundForConfirmationDialog?.title ?? ""),
+                                                 body: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.soundForConfirmationDialog?.authorName ?? "", viewModel.soundForConfirmationDialog?.id ?? ""))
                 }
                 .confirmationDialog(Shared.pickAMailApp, isPresented: $viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog, titleVisibility: .visible) {
                     Mailman.getMailClientOptions(subject: Shared.issueSuggestionEmailSubject, body: Shared.issueSuggestionEmailBody)

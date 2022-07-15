@@ -32,7 +32,7 @@ class CollectionsViewViewModel: ObservableObject {
     }
     
     func donateActivity() {
-        self.currentActivity = UserActivityWaiter.getDonatableActivity(withType: Shared.viewCollectionsActivityTypeName, andTitle: "Ver e criar pastas de sons")
+        self.currentActivity = UserActivityWaiter.getDonatableActivity(withType: Shared.ActivityTypes.viewCollections, andTitle: "Ver e criar pastas de sons")
         self.currentActivity?.becomeCurrent()
     }
     
