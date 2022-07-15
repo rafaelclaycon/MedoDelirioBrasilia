@@ -5294,7 +5294,7 @@
     {
         "id": "CE8FD792-7DC4-4771-A075-3E2521E8B429",
         "title": "Boston Medical Group",
-        "authorId": "B390C2BC-D59C-4EF3-811A-FD8FC61386AC",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
         "description": "boston medical group",
         "filename": "Boston Medical Group short meme.mp3",
         "dateAdded": "2022-07-15T00:00:00Z",
@@ -5409,15 +5409,6 @@
         "isOffensive": false
     },
     {
-        "id": "77679215-DE4E-4C51-85AD-3AB242BFD12B",
-        "title": "Você tem quantos anos, menino?",
-        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
-        "description": "deixa eu te falar uma coisa você tem quantos anos menino",
-        "filename": "Deixa eu falar uma coisa Voce tem quantos anos menino meme short.mp3",
-        "dateAdded": "2022-07-15T00:00:00Z",
-        "isOffensive": false
-    },
-    {
         "id": "EE984253-CCC6-4896-BA59-C28925345546",
         "title": "Eita porra",
         "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
@@ -5445,15 +5436,6 @@
         "isOffensive": true
     },
     {
-        "id": "D6B34CDB-2CCF-4EA4-8F21-EE2D271A2AA2",
-        "title": "Eu sou rica",
-        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
-        "description": "eu so rica novela meme",
-        "filename": "Eu sou RICA short meme.mp3",
-        "dateAdded": "2022-07-15T00:00:00Z",
-        "isOffensive": false
-    },
-    {
         "id": "4BB74EA3-5F39-4B87-B4E6-1D4E34F59F8B",
         "title": "É ele mesmo",
         "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
@@ -5471,5 +5453,4 @@
         "dateAdded": "2022-07-15T00:00:00Z",
         "isOffensive": false
     }
-    
 ]
