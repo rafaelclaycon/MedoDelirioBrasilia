@@ -78,6 +78,7 @@
 		D94611802861480A00C4FB7E /* FolderInfoEditingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D946117F2861480A00C4FB7E /* FolderInfoEditingView.swift */; };
 		D9461182286159BC00C4FB7E /* UserFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9461181286159BC00C4FB7E /* UserFolder.swift */; };
 		D94656D928450535008B4785 /* SQLiteMigrationManager in Frameworks */ = {isa = PBXBuildFile; productRef = D94656D828450535008B4785 /* SQLiteMigrationManager */; };
+		D94AD34928811ADC00D3E4F0 /* Versioneer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94AD34828811ADC00D3E4F0 /* Versioneer.swift */; };
 		D9523741285BF98A00E6C838 /* NetworkRabbitStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */; };
 		D9523743285BF99800E6C838 /* LocalDatabaseSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9523742285BF99800E6C838 /* LocalDatabaseSpy.swift */; };
 		D9575092284427C70094AEA6 /* ShareLogsDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9575091284427C70094AEA6 /* ShareLogsDummy.swift */; };
@@ -723,6 +724,7 @@
 		D998F28F284F177B0013E709 /* TrendsDisabledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998F28E284F177B0013E709 /* TrendsDisabledView.swift */; };
 		D99B9DCA2848148600897930 /* ServerStatsAndLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99B9DC92848148600897930 /* ServerStatsAndLogs.swift */; };
 		D99DC19D28423AD7002B03B6 /* AuthorDetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99DC19C28423AD7002B03B6 /* AuthorDetailViewViewModel.swift */; };
+		D9A096D8287CE72300773869 /* Mailman.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A096D7287CE72300773869 /* Mailman.swift */; };
 		D9A32DC7285ACE880038A370 /* PodiumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A32DC6285ACE880038A370 /* PodiumTests.swift */; };
 		D9A8AB212853EB5500B5A94B /* InitialMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A8AB202853EB5500B5A94B /* InitialMigration.swift */; };
 		D9A8AB2528543F8E00B5A94B /* SharingLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A8AB2428543F8E00B5A94B /* SharingLogCell.swift */; };
@@ -829,6 +831,7 @@
 		D946117D28613D3200C4FB7E /* CollectionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDetailView.swift; sourceTree = "<group>"; };
 		D946117F2861480A00C4FB7E /* FolderInfoEditingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderInfoEditingView.swift; sourceTree = "<group>"; };
 		D9461181286159BC00C4FB7E /* UserFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFolder.swift; sourceTree = "<group>"; };
+		D94AD34828811ADC00D3E4F0 /* Versioneer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Versioneer.swift; sourceTree = "<group>"; };
 		D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRabbitStub.swift; sourceTree = "<group>"; };
 		D9523742285BF99800E6C838 /* LocalDatabaseSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDatabaseSpy.swift; sourceTree = "<group>"; };
 		D9575091284427C70094AEA6 /* ShareLogsDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareLogsDummy.swift; sourceTree = "<group>"; };
@@ -1477,6 +1480,7 @@
 		D998F28E284F177B0013E709 /* TrendsDisabledView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsDisabledView.swift; sourceTree = "<group>"; };
 		D99B9DC92848148600897930 /* ServerStatsAndLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerStatsAndLogs.swift; sourceTree = "<group>"; };
 		D99DC19C28423AD7002B03B6 /* AuthorDetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorDetailViewViewModel.swift; sourceTree = "<group>"; };
+		D9A096D7287CE72300773869 /* Mailman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mailman.swift; sourceTree = "<group>"; };
 		D9A32DC6285ACE880038A370 /* PodiumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodiumTests.swift; sourceTree = "<group>"; };
 		D9A8AB202853EB5500B5A94B /* InitialMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialMigration.swift; sourceTree = "<group>"; };
 		D9A8AB2428543F8E00B5A94B /* SharingLogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingLogCell.swift; sourceTree = "<group>"; };
@@ -2200,6 +2204,8 @@
 				D927C423285245CE0041970A /* SoundOptionsHelper.swift */,
 				D9877D2A2869845400B541F9 /* Sharer.swift */,
 				D9FB48992870FE7800FF90D0 /* TapticHelper.swift */,
+				D9A096D7287CE72300773869 /* Mailman.swift */,
+				D94AD34828811ADC00D3E4F0 /* Versioneer.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -3319,6 +3325,7 @@
 				D9E5100A286084F2003DB3A3 /* Date+OnlyDate.swift in Sources */,
 				D91107112863B481000B6F8F /* CollectionsViewViewModel.swift in Sources */,
 				D98622E0283FC57100E9F630 /* AuthorDetailView.swift in Sources */,
+				D94AD34928811ADC00D3E4F0 /* Versioneer.swift in Sources */,
 				D92E7067283C51D20035826C /* Song.swift in Sources */,
 				D93CCB79286A8A220002CF81 /* ToastView.swift in Sources */,
 				D958BC752869000A000B2EDA /* FolderInfoEditingViewViewModel.swift in Sources */,
@@ -3396,6 +3403,7 @@
 				D9943F2328641C00002C6B97 /* LocalDatabase.swift in Sources */,
 				D9DCC5D9287625F4008DD4A3 /* PodcastAuthorsView.swift in Sources */,
 				D93D24E02849DAAB00300541 /* DiagnosticsView.swift in Sources */,
+				D9A096D8287CE72300773869 /* Mailman.swift in Sources */,
 				D958B1AE28394E420010F133 /* SongsView.swift in Sources */,
 				D9BF90972842D3CB00BDDD7D /* NoSoundsView.swift in Sources */,
 				D927C424285245CE0041970A /* SoundOptionsHelper.swift in Sources */,
