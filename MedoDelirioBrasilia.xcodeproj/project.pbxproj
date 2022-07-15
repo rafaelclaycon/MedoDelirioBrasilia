@@ -33,7 +33,6 @@
 		49DEA9CA2881156A008C9BA1 /* CNN - Aecio Neves Nao tenho indicio que aponte para fraude nas eleicoes de 2014 short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA9C92881156A008C9BA1 /* CNN - Aecio Neves Nao tenho indicio que aponte para fraude nas eleicoes de 2014 short meme.mp3 */; };
 		49DEA9CC288115A9008C9BA1 /* Como assim eu nao entendi meme short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA9CB288115A9008C9BA1 /* Como assim eu nao entendi meme short.mp3 */; };
 		49DEA9CE28811613008C9BA1 /* Cumpadi compadre washington - Sabe De Nada Inocente short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA9CD28811613008C9BA1 /* Cumpadi compadre washington - Sabe De Nada Inocente short meme.mp3 */; };
-		49DEA9D028811676008C9BA1 /* Deixa eu falar uma coisa Voce tem quantos anos menino meme short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA9CF28811676008C9BA1 /* Deixa eu falar uma coisa Voce tem quantos anos menino meme short.mp3 */; };
 		49DEA9D2288116AF008C9BA1 /* Eita porra short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA9D1288116AF008C9BA1 /* Eita porra short meme.mp3 */; };
 		49DEA9D4288116DC008C9BA1 /* ESPN - Lewandowski short meme grito .mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA9D3288116DC008C9BA1 /* ESPN - Lewandowski short meme grito .mp3 */; };
 		49DEA9D62881173B008C9BA1 /* Eu quero dormir porra short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA9D52881173B008C9BA1 /* Eu quero dormir porra short meme.mp3 */; };
@@ -787,7 +786,6 @@
 		49DEA9C92881156A008C9BA1 /* CNN - Aecio Neves Nao tenho indicio que aponte para fraude nas eleicoes de 2014 short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "CNN - Aecio Neves Nao tenho indicio que aponte para fraude nas eleicoes de 2014 short meme.mp3"; sourceTree = "<group>"; };
 		49DEA9CB288115A9008C9BA1 /* Como assim eu nao entendi meme short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Como assim eu nao entendi meme short.mp3"; sourceTree = "<group>"; };
 		49DEA9CD28811613008C9BA1 /* Cumpadi compadre washington - Sabe De Nada Inocente short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cumpadi compadre washington - Sabe De Nada Inocente short meme.mp3"; sourceTree = "<group>"; };
-		49DEA9CF28811676008C9BA1 /* Deixa eu falar uma coisa Voce tem quantos anos menino meme short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Deixa eu falar uma coisa Voce tem quantos anos menino meme short.mp3"; sourceTree = "<group>"; };
 		49DEA9D1288116AF008C9BA1 /* Eita porra short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eita porra short meme.mp3"; sourceTree = "<group>"; };
 		49DEA9D3288116DC008C9BA1 /* ESPN - Lewandowski short meme grito .mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ESPN - Lewandowski short meme grito .mp3"; sourceTree = "<group>"; };
 		49DEA9D52881173B008C9BA1 /* Eu quero dormir porra short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu quero dormir porra short meme.mp3"; sourceTree = "<group>"; };
@@ -1534,7 +1532,6 @@
 				49DEA9D52881173B008C9BA1 /* Eu quero dormir porra short meme.mp3 */,
 				49DEA9D3288116DC008C9BA1 /* ESPN - Lewandowski short meme grito .mp3 */,
 				49DEA9D1288116AF008C9BA1 /* Eita porra short meme.mp3 */,
-				49DEA9CF28811676008C9BA1 /* Deixa eu falar uma coisa Voce tem quantos anos menino meme short.mp3 */,
 				49DEA9CD28811613008C9BA1 /* Cumpadi compadre washington - Sabe De Nada Inocente short meme.mp3 */,
 				49DEA9CB288115A9008C9BA1 /* Como assim eu nao entendi meme short.mp3 */,
 				49DEA9C92881156A008C9BA1 /* CNN - Aecio Neves Nao tenho indicio que aponte para fraude nas eleicoes de 2014 short meme.mp3 */,
@@ -2859,7 +2856,6 @@
 				D975FEB52880B4F20035E6F2 /* Vai Dar Namoro - Cavalo.mp3 in Resources */,
 				D975FFB92880B4F20035E6F2 /* Michel Temer - Tem que pedir uma pastilha.mp3 in Resources */,
 				D975FE722880B4F20035E6F2 /* Januario de Oliveira - Cruel, muito cruel.mp3 in Resources */,
-				49DEA9D028811676008C9BA1 /* Deixa eu falar uma coisa Voce tem quantos anos menino meme short.mp3 in Resources */,
 				D975FE862880B4F20035E6F2 /* Ernesto Araujo - Globalismo.mp3 in Resources */,
 				D975FE262880B4F20035E6F2 /* Andre Starqueza - Ai que delicia.mp3 in Resources */,
 				D975FE192880B4F20035E6F2 /* METEORO - E o que a gente chama de fuga de cerebros, e e sempre uma pessima noticia pro futuro de qualquer pais.mp3 in Resources */,
@@ -3573,7 +3569,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
-				DEVELOPMENT_TEAM = 64FQP9KQ3A;
+				DEVELOPMENT_TEAM = L8X3H5XA82;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MedoDelirioBrasilia/Info.plist;
@@ -3588,7 +3584,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.5;
-				PRODUCT_BUNDLE_IDENTIFIER = com.optimisticloser.MedoDelirioBrasilia;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = "Medo e Delírio";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -3604,7 +3600,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
-				DEVELOPMENT_TEAM = 64FQP9KQ3A;
+				DEVELOPMENT_TEAM = L8X3H5XA82;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MedoDelirioBrasilia/Info.plist;
@@ -3619,7 +3615,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.5;
-				PRODUCT_BUNDLE_IDENTIFIER = com.optimisticloser.MedoDelirioBrasilia;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = "Medo e Delírio";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
