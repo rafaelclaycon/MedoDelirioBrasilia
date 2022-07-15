@@ -9,7 +9,8 @@ class SoundsViewViewModel: ObservableObject {
     @Published var sortOption: Int = 0
     @Published var favoritesKeeper = Set<String>()
     @Published var showConfirmationDialog = false
-    @Published var showEmailClientConfirmationDialog = false
+    @Published var showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = false
+    @Published var showEmailAppPicker_soundUnavailableConfirmationDialog = false
     @Published var soundForConfirmationDialog: Sound? = nil
     
     @Published var currentActivity: NSUserActivity? = nil

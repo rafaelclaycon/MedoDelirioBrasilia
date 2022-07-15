@@ -90,7 +90,7 @@ struct SettingsView: View {
                 }
             }
             .confirmationDialog(Shared.pickAMailApp, isPresented: $showEmailClientConfirmationDialog, titleVisibility: .visible) {
-                Mailman.getMailClientOptions()
+                Mailman.getMailClientOptions(subject: Shared.issueSuggestionEmailSubject, body: Shared.issueSuggestionEmailBody)
             }
         }
     }
