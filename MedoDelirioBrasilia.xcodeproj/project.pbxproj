@@ -3573,7 +3573,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
-				DEVELOPMENT_TEAM = 64FQP9KQ3A;
+				DEVELOPMENT_TEAM = L8X3H5XA82;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MedoDelirioBrasilia/Info.plist;
@@ -3588,7 +3588,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.5;
-				PRODUCT_BUNDLE_IDENTIFIER = com.optimisticloser.MedoDelirioBrasilia;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = "Medo e Delírio";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -3604,7 +3604,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
-				DEVELOPMENT_TEAM = 64FQP9KQ3A;
+				DEVELOPMENT_TEAM = L8X3H5XA82;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MedoDelirioBrasilia/Info.plist;
@@ -3619,7 +3619,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.5;
-				PRODUCT_BUNDLE_IDENTIFIER = com.optimisticloser.MedoDelirioBrasilia;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = "Medo e Delírio";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

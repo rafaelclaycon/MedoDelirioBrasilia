@@ -4,9 +4,6 @@ class Mailman {
 
     private static let recipient = "medodeliriosuporte@gmail.com"
     
-    private static let defaultSubject = "Problema/sugestão no app iOS \(Versioneer.appVersion) Build \(Versioneer.buildVersionNumber)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-    private static let defaultMessage = "Para um problema, inclua passos para reproduzir e prints se possível.".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-    
     private static let gmailMailToUrl = "googlegmail://co"
     private static let outlookMailToUrl = "ms-outlook://compose"
     private static let yahooMailToUrl = "ymail://mail/compose"
@@ -28,9 +25,11 @@ class Mailman {
         return UIApplication.shared.canOpenURL(URL(string: sparkMailToUrl)!)
     }
     
-    @ViewBuilder static func getMailClientOptions() -> some View {
+    @ViewBuilder static func getMailClientOptions(subject: String, body: String) -> some View {
         Button("Mail") {
-            let mailToString = "mailto:\(recipient)?subject=\(defaultSubject)&body=\(defaultMessage)"
+            let encodedSubject = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+            let encodedBody = body.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+            let mailToString = "mailto:\(recipient)?subject=\(encodedSubject)&body=\(encodedBody)"
             guard let mailToUrl = URL(string: mailToString) else {
                 return
             }

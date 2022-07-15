@@ -242,10 +242,7 @@ struct SoundsView: View {
 //                    }
                     
                     Button(SoundOptionsHelper.getSuggestOtherAuthorNameButtonTitle(authorId: viewModel.soundForConfirmationDialog?.authorId ?? .empty)) {
-                        guard let sound = viewModel.soundForConfirmationDialog else {
-                            return
-                        }
-                        SoundOptionsHelper.suggestOtherAuthorName(soundId: sound.id, soundTitle: sound.title, currentAuthorName: sound.authorName ?? .empty)
+                        viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = true
                     }
                     
                     Button(Shared.shareButtonText) {
@@ -255,8 +252,11 @@ struct SoundsView: View {
                         viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
                     }
                 }
-                .confirmationDialog(Shared.pickAMailApp, isPresented: $viewModel.showEmailClientConfirmationDialog, titleVisibility: .visible) {
-                    Mailman.getMailClientOptions()
+                .confirmationDialog(Shared.pickAMailApp, isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog, titleVisibility: .visible) {
+                    Mailman.getMailClientOptions(subject: "Sugestão de Outro Nome de Autor Para \(viewModel.soundForConfirmationDialog?.title ?? "")", body: "Nome de autor antigo: \(viewModel.soundForConfirmationDialog?.authorName ?? "")\nNovo nome de autor: \n\nID do conteúdo: \(viewModel.soundForConfirmationDialog?.id ?? "") (para uso interno)")
+                }
+                .confirmationDialog(Shared.pickAMailApp, isPresented: $viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog, titleVisibility: .visible) {
+                    Mailman.getMailClientOptions(subject: Shared.issueSuggestionEmailSubject, body: Shared.issueSuggestionEmailBody)
                 }
                 .alert(isPresented: $viewModel.showAlert) {
                     switch viewModel.alertType {
@@ -264,7 +264,7 @@ struct SoundsView: View {
                         return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
                     default:
                         return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .default(Text("Relatar Problema por E-mail"), action: {
-                            viewModel.showEmailClientConfirmationDialog = true
+                            viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog = true
                         }), secondaryButton: .cancel(Text("Fechar")))
                     }
                 }
