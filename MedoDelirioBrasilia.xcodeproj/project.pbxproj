@@ -38,8 +38,9 @@
 		49DEA9D4288116DC008C9BA1 /* ESPN - Lewandowski short meme grito .mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA9D3288116DC008C9BA1 /* ESPN - Lewandowski short meme grito .mp3 */; };
 		49DEA9D62881173B008C9BA1 /* Eu quero dormir porra short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA9D52881173B008C9BA1 /* Eu quero dormir porra short meme.mp3 */; };
 		49DEA9D82881177C008C9BA1 /* Eu sou RICA short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA9D72881177C008C9BA1 /* Eu sou RICA short meme.mp3 */; };
-		49DEA9DC288118E1008C9BA1 /* Funk meme - Ele mesmo, ele mesmo, ele mesmo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA9DB288118E1008C9BA1 /* Funk meme - Ele mesmo, ele mesmo, ele mesmo.mp3 */; };
 		49DEA9DE288118FA008C9BA1 /* Gilmar mendes - Eine grosse Confusion.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA9DD288118FA008C9BA1 /* Gilmar mendes - Eine grosse Confusion.mp3 */; };
+		49DEA9E028811FAF008C9BA1 /* eletronica-eine-grosse-confusion-kraftwerk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA9DF28811FAF008C9BA1 /* eletronica-eine-grosse-confusion-kraftwerk.mp3 */; };
+		49DEA9E228812015008C9BA1 /* eletronica-eine-grosse-confusion-sexo-selvagem-kraftwerk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA9E128812015008C9BA1 /* eletronica-eine-grosse-confusion-sexo-selvagem-kraftwerk.mp3 */; };
 		D905B4C52857FF3D0096D466 /* AddNetworkCallLogTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D905B4C42857FF3D0096D466 /* AddNetworkCallLogTable.swift */; };
 		D90F6A6628446C250050FFFF /* TrendsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */; };
 		D91107112863B481000B6F8F /* CollectionsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91107102863B481000B6F8F /* CollectionsViewViewModel.swift */; };
@@ -789,8 +790,9 @@
 		49DEA9D3288116DC008C9BA1 /* ESPN - Lewandowski short meme grito .mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ESPN - Lewandowski short meme grito .mp3"; sourceTree = "<group>"; };
 		49DEA9D52881173B008C9BA1 /* Eu quero dormir porra short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu quero dormir porra short meme.mp3"; sourceTree = "<group>"; };
 		49DEA9D72881177C008C9BA1 /* Eu sou RICA short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu sou RICA short meme.mp3"; sourceTree = "<group>"; };
-		49DEA9DB288118E1008C9BA1 /* Funk meme - Ele mesmo, ele mesmo, ele mesmo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Funk meme - Ele mesmo, ele mesmo, ele mesmo.mp3"; path = "../../../../../Downloads/Medo e Delírio app/FIla para fazer/Funk meme - Ele mesmo, ele mesmo, ele mesmo.mp3"; sourceTree = "<group>"; };
 		49DEA9DD288118FA008C9BA1 /* Gilmar mendes - Eine grosse Confusion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gilmar mendes - Eine grosse Confusion.mp3"; sourceTree = "<group>"; };
+		49DEA9DF28811FAF008C9BA1 /* eletronica-eine-grosse-confusion-kraftwerk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "eletronica-eine-grosse-confusion-kraftwerk.mp3"; sourceTree = "<group>"; };
+		49DEA9E128812015008C9BA1 /* eletronica-eine-grosse-confusion-sexo-selvagem-kraftwerk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "eletronica-eine-grosse-confusion-sexo-selvagem-kraftwerk.mp3"; sourceTree = "<group>"; };
 		D905B4C42857FF3D0096D466 /* AddNetworkCallLogTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNetworkCallLogTable.swift; sourceTree = "<group>"; };
 		D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsSettingsView.swift; sourceTree = "<group>"; };
 		D91107102863B481000B6F8F /* CollectionsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsViewViewModel.swift; sourceTree = "<group>"; };
@@ -1524,7 +1526,6 @@
 			isa = PBXGroup;
 			children = (
 				49DEA9DD288118FA008C9BA1 /* Gilmar mendes - Eine grosse Confusion.mp3 */,
-				49DEA9DB288118E1008C9BA1 /* Funk meme - Ele mesmo, ele mesmo, ele mesmo.mp3 */,
 				49DEA9D72881177C008C9BA1 /* Eu sou RICA short meme.mp3 */,
 				49DEA9D52881173B008C9BA1 /* Eu quero dormir porra short meme.mp3 */,
 				49DEA9D3288116DC008C9BA1 /* ESPN - Lewandowski short meme grito .mp3 */,
@@ -2154,6 +2155,8 @@
 		D92E7068283C5C120035826C /* Songs */ = {
 			isa = PBXGroup;
 			children = (
+				49DEA9E128812015008C9BA1 /* eletronica-eine-grosse-confusion-sexo-selvagem-kraftwerk.mp3 */,
+				49DEA9DF28811FAF008C9BA1 /* eletronica-eine-grosse-confusion-kraftwerk.mp3 */,
 				D99151222873E4C100FFAA29 /* funk-capricha-renan-mdb.mp3 */,
 				D99151262873E4C100FFAA29 /* funk-da-perninha.mp3 */,
 				D99151242873E4C100FFAA29 /* funk-do-morto-mdb.mp3 */,
@@ -3131,6 +3134,7 @@
 				D991512C2873E4C100FFAA29 /* rock-comunismo-vale-tudo-mdb.mp3 in Resources */,
 				D975FE482880B4F20035E6F2 /* Seu Sirigueijo - Ola eu gosto de dinheiro.mp3 in Resources */,
 				D975FF872880B4F20035E6F2 /* Bolsonaro - Uma crise uma pequena crise ne.mp3 in Resources */,
+				49DEA9E228812015008C9BA1 /* eletronica-eine-grosse-confusion-sexo-selvagem-kraftwerk.mp3 in Resources */,
 				D975FF152880B4F20035E6F2 /* Nhonho olha ele olha ele short.mp3 in Resources */,
 				D975FF372880B4F20035E6F2 /* Lula - Nao siga nenhuma decisao imbecil do presidente da republica.mp3 in Resources */,
 				D975FF422880B4F20035E6F2 /* Nao sei meme short exaltado.mp3 in Resources */,
@@ -3172,7 +3176,6 @@
 				D975FE3C2880B4F20035E6F2 /* Gilmar Mendes - Eu ja disse aqui.mp3 in Resources */,
 				D975FE902880B4F20035E6F2 /* Fernando Collor - Tres vezes dizendo que e mentira.mp3 in Resources */,
 				D975FE442880B4F20035E6F2 /* Nando Moura - Bibibibi Mito (longo).mp3 in Resources */,
-				49DEA9DC288118E1008C9BA1 /* Funk meme - Ele mesmo, ele mesmo, ele mesmo.mp3 in Resources */,
 				D975FE3A2880B4F20035E6F2 /* Malafaia - Jair Messias Bolsonaro sem respostas.mp3 in Resources */,
 				D975FFB12880B4F20035E6F2 /* Bolsonaro - Que e a maneira que voce tem de realmente pensar em coisa seria no pais.mp3 in Resources */,
 				D975FFA92880B4F20035E6F2 /* Boldo - Deixa com a cara magoada.mp3 in Resources */,
@@ -3241,6 +3244,7 @@
 				D975FEDD2880B4F20035E6F2 /* Gilmar mendes - uma grande confusao short.mp3 in Resources */,
 				D975004E2880B5190035E6F2 /* MULTISHOW - Djonga - Xinguei Bolsonaro um monte de vezes, vou xingar de novo voce e um merda.mp3 in Resources */,
 				D97500142880B4F20035E6F2 /* RADIO BANDNEWS FM - Ciro Gomes - Que e um bosta.mp3 in Resources */,
+				49DEA9E028811FAF008C9BA1 /* eletronica-eine-grosse-confusion-kraftwerk.mp3 in Resources */,
 				D975FEF52880B4F20035E6F2 /* Samuel Mariano - Depois do culto - Deu errado.mp3 in Resources */,
 				D975FF5D2880B4F20035E6F2 /* Ivete Sangalo - Chupa Toda short meme.mp3 in Resources */,
 				D975FF7B2880B4F20035E6F2 /* Gilmar Mendes - Eu estou julgando improcedente a acao.mp3 in Resources */,
@@ -3561,7 +3565,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
-				DEVELOPMENT_TEAM = L8X3H5XA82;
+				DEVELOPMENT_TEAM = 64FQP9KQ3A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MedoDelirioBrasilia/Info.plist;
@@ -3576,7 +3580,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.5;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
+				PRODUCT_BUNDLE_IDENTIFIER = com.optimisticloser.MedoDelirioBrasilia;
 				PRODUCT_NAME = "Medo e Delírio";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -3592,7 +3596,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
-				DEVELOPMENT_TEAM = L8X3H5XA82;
+				DEVELOPMENT_TEAM = 64FQP9KQ3A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MedoDelirioBrasilia/Info.plist;
@@ -3607,7 +3611,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.5;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
+				PRODUCT_BUNDLE_IDENTIFIER = com.optimisticloser.MedoDelirioBrasilia;
 				PRODUCT_NAME = "Medo e Delírio";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
