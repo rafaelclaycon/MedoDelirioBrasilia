@@ -255,49 +255,8 @@ struct SoundsView: View {
                         viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
                     }
                 }
-                .confirmationDialog("Escolha um app de e-mail", isPresented: $viewModel.showEmailClientConfirmationDialog, titleVisibility: .visible) {
-                    Button("Mail") {
-                        guard let sound = viewModel.soundForConfirmationDialog else {
-                            return
-                        }
-                        print(sound.title)
-                    }
-                    
-                    if Mailman.hasGmail {
-                        Button("Gmail") {
-                            guard let sound = viewModel.soundForConfirmationDialog else {
-                                return
-                            }
-                            print(sound.title)
-                        }
-                    }
-                    
-                    if Mailman.hasOutlook {
-                        Button("Outlook") {
-                            guard let sound = viewModel.soundForConfirmationDialog else {
-                                return
-                            }
-                            print(sound.title)
-                        }
-                    }
-                    
-                    if Mailman.hasYahooMail {
-                        Button("Yahoo") {
-                            guard let sound = viewModel.soundForConfirmationDialog else {
-                                return
-                            }
-                            print(sound.title)
-                        }
-                    }
-                    
-                    if Mailman.hasSpark {
-                        Button("Spark") {
-                            guard let sound = viewModel.soundForConfirmationDialog else {
-                                return
-                            }
-                            print(sound.title)
-                        }
-                    }
+                .confirmationDialog(Shared.pickAMailApp, isPresented: $viewModel.showEmailClientConfirmationDialog, titleVisibility: .visible) {
+                    Mailman.getMailClientOptions()
                 }
                 .alert(isPresented: $viewModel.showAlert) {
                     switch viewModel.alertType {

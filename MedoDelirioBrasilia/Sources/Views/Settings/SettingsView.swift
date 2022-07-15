@@ -7,11 +7,10 @@ struct SettingsView: View {
     @State private var showAskForMoneyView: Bool = false
     @State private var showPixKeyCopiedAlert: Bool = false
     
+    @State private var showEmailClientConfirmationDialog: Bool = false
     @State private var showEmailAddressCopiedAlert: Bool = false
     
     let pixKey: String = "medodeliriosuporte@gmail.com"
-    let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
-    let buildVersionNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""
     
     var body: some View {
         NavigationView {
@@ -57,20 +56,7 @@ struct SettingsView: View {
                 
                 Section("📬  Problemas, sugestões e pedidos") {
                     Button("Entrar em contato por e-mail") {
-                        guard let emailSubject = "Problema/sugestão no app iOS \(appVersion) Build \(buildVersionNumber)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
-                            return
-                        }
-                        guard let emailMessage = "Para um problema, inclua passos para reproduzir e prints se possível.".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
-                            return
-                        }
-
-                        let mailToString = "mailto:medodeliriosuporte@gmail.com?subject=\(emailSubject)&body=\(emailMessage)"
-
-                        guard let mailToUrl = URL(string: mailToString) else {
-                            return
-                        }
-
-                        UIApplication.shared.open(mailToUrl)
+                        showEmailClientConfirmationDialog = true
                     }
                 }
                 
@@ -89,7 +75,7 @@ struct SettingsView: View {
                         UIApplication.shared.open(url)
                     }
                     
-                    Text("Versão \(appVersion) Build \(buildVersionNumber)")
+                    Text("Versão \(Versioneer.appVersion) Build \(Versioneer.buildVersionNumber)")
                 }
                 
                 Section("Diagnóstico") {
@@ -103,6 +89,9 @@ struct SettingsView: View {
                 networkRabbit.displayAskForMoneyView { result, _ in
                     showAskForMoneyView = result
                 }
+            }
+            .confirmationDialog(Shared.pickAMailApp, isPresented: $showEmailClientConfirmationDialog, titleVisibility: .visible) {
+                Mailman.getMailClientOptions()
             }
         }
     }
