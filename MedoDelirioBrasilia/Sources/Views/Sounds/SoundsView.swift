@@ -115,14 +115,23 @@ struct SoundsView: View {
                         Menu {
                             Section {
                                 Picker(selection: $currentMode, label: Text("Exibição")) {
-                                    Text("Todos os sons")
-                                        .tag(Mode.allSounds)
-
-                                    Text("Favoritos")
-                                        .tag(Mode.favorites)
-
-                                    Text("Agrupados por autor")
-                                        .tag(Mode.byAuthor)
+                                    HStack {
+                                        Text("Todos os sons")
+                                        Image(systemName: "speaker.wave.3.fill")
+                                    }
+                                    .tag(Mode.allSounds)
+                                    
+                                    HStack {
+                                        Text("Favoritos")
+                                        Image(systemName: "star.fill")
+                                    }
+                                    .tag(Mode.favorites)
+                                    
+                                    HStack {
+                                        Text("Agrupados por autor")
+                                        Image(systemName: "person.fill")
+                                    }
+                                    .tag(Mode.byAuthor)
                                 }
                             }
                         } label: {
