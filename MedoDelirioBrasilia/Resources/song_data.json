@@ -188,5 +188,25 @@
         "filename": "rock-eu-vou-pra-ceilandia-mdb.mp3",
         "dateAdded": "2022-07-05T00:00:00Z",
         "isOffensive": true
+    },
+    {
+        "id": "C7C332B2-82A7-4717-A846-92EBA8508579",
+        "title": "Eine Grosse Confusion (Die Roboter - Kraftwerk)",
+        "description": "",
+        "genre": "Eletrônica",
+        "duration": "00:30",
+        "filename": "eletronica-eine-grosse-confusion-kraftwerk.mp3",
+        "dateAdded": "2022-07-15T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "24A0F141-3B64-4655-9D98-B020B3A332CB",
+        "title": "Eine Grosse Confusion - Sexo Selvagem (The Robots - Kraftwerk)",
+        "description": "",
+        "genre": "Eletrônica",
+        "duration": "00:17",
+        "filename": "eletronica-eine-grosse-confusion-sexo-selvagem-kraftwerk.mp3",
+        "dateAdded": "2022-07-15T00:00:00Z",
+        "isOffensive": true
     }
 ]
