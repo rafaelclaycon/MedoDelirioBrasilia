@@ -134,70 +134,28 @@ struct SoundsView: View {
                         }
                     }
                 }
-                .navigationTitle(Text(LocalizableStrings.MainView.title))
-                .navigationBarItems(leading:
-                    HStack {
-                        Menu {
-                            Section {
-                                Picker(selection: $currentMode, label: Text("Exibição")) {
-                                    HStack {
-                                        Text("Todos os sons")
-                                        Image(systemName: "speaker.wave.3.fill")
-                                    }
-                                    .tag(Mode.allSounds)
-                                    
-                                    HStack {
-                                        Text("Favoritos")
-                                        Image(systemName: "star.fill")
-                                    }
-                                    .tag(Mode.favorites)
-                                    
-                                    HStack {
-                                        Text("Agrupados por autor")
-                                        Image(systemName: "person.fill")
-                                    }
-                                    .tag(Mode.byAuthor)
-                                }
-                            }
-                        } label: {
-                            HStack {
-                                Text(dropDownText)
-                                Image(systemName: "chevron.down")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 15)
-                            }
-                        }
-                        .onChange(of: currentMode) { newValue in
-                            guard newValue != .byAuthor else {
-                                return
-                            }
-                            viewModel.reloadList(withSounds: soundData,
-                                                 andFavorites: try? database.getAllFavorites(),
-                                                 allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
-                                                 favoritesOnly: newValue == .favorites,
-                                                 sortedBy: ContentSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
-                        }
-                    }
-                , trailing:
+            }
+            .navigationTitle(Text(title))
+            .navigationBarItems(leading:
+                HStack {
                     Menu {
                         Section {
                             Picker(selection: $currentMode, label: Text("Exibição")) {
                                 HStack {
                                     Text("Todos os sons")
-                                    Image(systemName: "speaker.wave.3.fill")
+                                    Image(systemName: "speaker.wave.3")
                                 }
                                 .tag(Mode.allSounds)
                                 
                                 HStack {
                                     Text("Favoritos")
-                                    Image(systemName: "star.fill")
+                                    Image(systemName: "star")
                                 }
                                 .tag(Mode.favorites)
                                 
                                 HStack {
                                     Text("Agrupados por autor")
-                                    Image(systemName: "person.fill")
+                                    Image(systemName: "person")
                                 }
                                 .tag(Mode.byAuthor)
                             }
@@ -228,13 +186,13 @@ struct SoundsView: View {
                         Picker(selection: $viewModel.sortOption, label: Text("Ordenação")) {
                             HStack {
                                 Text("Ordenar por Título")
-                                Image(systemName: "a.circle.fill")
+                                Image(systemName: "a.circle")
                             }
                             .tag(0)
                             
                             HStack {
                                 Text("Ordenar por Nome do Autor")
-                                Image(systemName: "person.fill")
+                                Image(systemName: "person")
                             }
                             .tag(1)
                             
