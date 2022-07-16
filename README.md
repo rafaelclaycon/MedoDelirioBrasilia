@@ -19,6 +19,7 @@ Looking for an Android version? Check out [Sidronio Lima's Android app 🤖](htt
 1. View sounds grouped by author.
 1. Play songs from the podcast.
 1. Filter by Favorites.
+1. Group sounds into Folders for easy access (just like tagging).
 
 ## How to run
 

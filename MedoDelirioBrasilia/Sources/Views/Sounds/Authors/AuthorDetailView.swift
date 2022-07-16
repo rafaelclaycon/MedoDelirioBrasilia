@@ -96,10 +96,7 @@ struct AuthorDetailView: View {
                 }
                 
                 Button(SoundOptionsHelper.getSuggestOtherAuthorNameButtonTitle(authorId: viewModel.soundForConfirmationDialog?.authorId ?? .empty)) {
-                    guard let sound = viewModel.soundForConfirmationDialog else {
-                        return
-                    }
-                    SoundOptionsHelper.suggestOtherAuthorName(soundId: sound.id, soundTitle: sound.title, currentAuthorName: sound.authorName ?? .empty)
+                    viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = true
                 }
                 
                 Button(Shared.shareButtonText) {
@@ -110,7 +107,14 @@ struct AuthorDetailView: View {
                 }
             }
             .alert(isPresented: $viewModel.showAlert) {
-                Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
+                switch viewModel.alertType {
+                case .singleOption:
+                    return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
+                default:
+                    return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .default(Text("Relatar Problema por E-mail"), action: {
+                        viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog = true
+                    }), secondaryButton: .cancel(Text("Fechar")))
+                }
             }
             .sheet(isPresented: $showingAddToFolderModal) {
                 AddToFolderView(isBeingShown: $showingAddToFolderModal, hadSuccess: $hadSuccessAddingToFolder, folderName: $folderName, selectedSoundName: viewModel.soundForConfirmationDialog!.title, selectedSoundId: viewModel.soundForConfirmationDialog!.id)
@@ -119,6 +123,13 @@ struct AuthorDetailView: View {
                 if show {
                     TapticFeedback.open()
                 }
+            }
+            .confirmationDialog(Shared.pickAMailApp, isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog, titleVisibility: .visible) {
+                Mailman.getMailClientOptions(subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.soundForConfirmationDialog?.title ?? ""),
+                                             body: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.soundForConfirmationDialog?.authorName ?? "", viewModel.soundForConfirmationDialog?.id ?? ""))
+            }
+            .confirmationDialog(Shared.pickAMailApp, isPresented: $viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog, titleVisibility: .visible) {
+                Mailman.getMailClientOptions(subject: Shared.issueSuggestionEmailSubject, body: Shared.issueSuggestionEmailBody)
             }
             
             if shouldDisplayAddedToFolderToast {
