@@ -5347,10 +5347,10 @@
     },
     {
         "id": "5D2183B6-BB59-4A15-9DED-DC522C09F9B6",
-        "title": "É uma boa idéia",
-        "authorId": "EA4EA172-668C-495A-A67E-623581486A08",
-        "description": "é uma boa idéia seu barriga",
-        "filename": "Chavez - Seu barriga - e uma boa ideia short meme.mp3",
+        "title": "É uma boa ideia",
+        "authorId": "5FDB3245-BE8B-4884-96D7-4EA43702CE50",
+        "description": "é uma boa ideia seu barriga",
+        "filename": "Chaves - Seu barriga - E uma boa ideia.mp3",
         "dateAdded": "2022-07-15T00:00:00Z",
         "isOffensive": false
     },
@@ -5452,5 +5452,140 @@
         "filename": "Gilmar mendes - Eine grosse Confusion.mp3",
         "dateAdded": "2022-07-15T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "604CD1B8-7D1A-40BE-B287-7C8FF54C1AA8",
+        "title": "Instituto Tirei do Cu",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "Instituto tirei do cu os dados que você quer",
+        "filename": "Propaganda Instituto Tireido Ku Tirey Doku (os dados que vc quer).mp3",
+        "dateAdded": "2022-07-16T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "CC10E3FA-D689-49D3-9522-60B329E99074",
+        "title": "Instituto Tirei do Cu (longo)",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "voce quer usar numeros em suas apresentacoes mas voce nao tem numeros ou os numeros que voce tem nao apoiam a sua hipotese vem falar com a gente Instituto tirei do cu os dados que você quer",
+        "filename": "Propaganda Instituto Tireido Ku (longo).mp3",
+        "dateAdded": "2022-07-16T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "1E825D32-D91E-4E2B-B58F-899FA1D07269",
+        "title": "É meu pau em sua mão",
+        "authorId": "0258693D-31D6-4A9E-8BA8-F11973BA79CF",
+        "description": "E meu pau em sua mao",
+        "filename": "FRANCIEL CRUZ - LIVE DAS CANJEBRINAS - E meu pau em sua mao.mp3",
+        "dateAdded": "2022-07-16T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "65261C97-3077-40E8-AC85-EAD2773958F6",
+        "title": "Porra, tá errado",
+        "authorId": "9796134C-BC7F-4121-9008-ACE479834FD5",
+        "description": "Porra ta errado",
+        "filename": "PETIT JOURNAL - Tanguy Baghdadi - Porra, ta errado.mp3",
+        "dateAdded": "2022-07-16T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "301480A2-06B4-4720-B504-58B3A3C89DB5",
+        "title": "Ele leu errado",
+        "authorId": "9796134C-BC7F-4121-9008-ACE479834FD5",
+        "description": "Ele leu errado",
+        "filename": "PETIT JOURNAL - Tanguy Baghdadi - Ele leu errado.mp3",
+        "dateAdded": "2022-07-16T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "D7E85171-66CC-4BA2-9BF8-5BDB4E506CDF",
+        "title": "Tá errado",
+        "authorId": "ED785AAD-640D-42A6-94C3-47DF7CE8CAD2",
+        "description": "Tá errado",
+        "filename": "RÁDIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3",
+        "dateAdded": "2022-07-16T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "2F6B28F6-17F7-4B3D-AAED-B77497475A2A",
+        "title": "Quer jogar luz pra falar que tá errado",
+        "authorId": "F1683588-F547-4F2F-B3E4-8A328FAFC1AB",
+        "description": "Quer jogar uma luz no bagulho pra falar que ta errado ja ta errado nao precisa jogar luz tem que jogar na merda",
+        "filename": "Casimiro - Quer jogar luz pra falar que ta errado ja ta errado nao precisa jogar luz tem que jogar na merda.mp3",
+        "dateAdded": "2022-07-16T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "745CB61B-BE26-410D-8CF3-210F7A60B0B2",
+        "title": "Não, tá errado",
+        "authorId": "0D944922-7E50-4DED-A8FD-F44EFCAE82A2",
+        "description": "Nao ta errado",
+        "filename": "ConservaTalk - Abraham Weintraub - Nao, ta errado.mp3",
+        "dateAdded": "2022-07-16T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "1DE8B7C7-E01A-420A-BA48-1109C114BD36",
+        "title": "Tá errado",
+        "authorId": "0D944922-7E50-4DED-A8FD-F44EFCAE82A2",
+        "description": "Ta errado",
+        "filename": "ConservaTalk - Abraham Weintraub - Ta errado.mp3",
+        "dateAdded": "2022-07-16T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "334DDFFE-A08B-4B1C-88D7-41F8202D49B8",
+        "title": "Repito",
+        "authorId": "56CCBFFD-04CA-4EDF-A88F-80E0B2618864",
+        "description": "Repito",
+        "filename": "Temer - Repito.mp3",
+        "dateAdded": "2022-07-16T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "1FB74C64-AB7F-454B-953F-129C751AE83A",
+        "title": "Ô, Malafaia, vai procurar uma rola, vai",
+        "authorId": "17C39873-DC8D-47ED-8447-BB47E565D542",
+        "description": "O Malafaia vai procurar uma rola vai não me enche o saco",
+        "filename": "Ricardo Boechat - O, Malafaia, vai procurar uma rola, vai.mp3",
+        "dateAdded": "2022-07-16T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "770A8EEC-A20D-4776-8994-0D89CBF5FE83",
+        "title": "Diferente de você, não sou um idiota",
+        "authorId": "17C39873-DC8D-47ED-8447-BB47E565D542",
+        "description": "Diferente de voce nao sou um idiota",
+        "filename": "Ricardo Boechat - Diferente de voce, nao sou um idiota.mp3",
+        "dateAdded": "2022-07-16T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "D2D02A4F-A769-42A8-8832-642755223EE4",
+        "title": "Igrejas neopentecostais e incitação de intolerância religiosa",
+        "authorId": "17C39873-DC8D-47ED-8447-BB47E565D542",
+        "description": "que e no ambito de igrejas neopentecostais que estao acontecendo atos de incitacao a intolerancia religiosa mais do que em outros ambientes",
+        "filename": "Ricardo Boechat - Incitacao de odio em igrejas neopentecostais.mp3",
+        "dateAdded": "2022-07-16T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "BD4F279C-2993-4225-B368-150FBF4004F5",
+        "title": "Você é um charlatão, cara",
+        "authorId": "17C39873-DC8D-47ED-8447-BB47E565D542",
+        "description": "Voce e um charlatao cara",
+        "filename": "Ricardo Boechat - Voce e um charlatao cara.mp3",
+        "dateAdded": "2022-07-16T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "1659CA62-5F2A-473D-A857-6388F1169A17",
+        "title": "É uma canalhice o que vocês fazem",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "E uma canalhice o que voces fazem",
+        "filename": "Bolsonaro - E uma canalhice o que voces fazem.mp3",
+        "dateAdded": "2022-07-16T00:00:00Z",
+        "isOffensive": true
     }
 ]
