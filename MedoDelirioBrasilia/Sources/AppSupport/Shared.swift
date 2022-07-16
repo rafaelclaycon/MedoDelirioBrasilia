@@ -11,9 +11,9 @@ struct Shared {
         
     }
     
-    static let removeFromFavoritesEmojis = ["🍗","🐂","👴🏻🇧🇷","💩","🤖","🔫","⛽️","🚜","🍌","🍫🤑","🛥🤳🏻"]
+    //static let removeFromFavoritesEmojis = ["🍗","🐂","👴🏻🇧🇷","💩","🤖","🔫","⛽️","🚜","🍌","🍫🤑","🛥🤳🏻"]
     
-    static let addToFolderButtonText = "📁  Adicionar a Pasta"
+    static let addToFolderButtonText = "Adicionar a Pasta"
     static let shareButtonText = "Compartilhar"
     
     static let contentFilterMessageForSounds = "Alguns sons não estão sendo exibidos pois o filtro de conteúdo sensível está ativado. Você pode mudar isso na aba Ajustes."

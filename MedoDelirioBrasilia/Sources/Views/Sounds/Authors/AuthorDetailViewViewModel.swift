@@ -124,8 +124,8 @@ class AuthorDetailViewViewModel: ObservableObject {
     }
     
     func getFavoriteButtonTitle() -> String {
-        let emoji = Shared.removeFromFavoritesEmojis.randomElement() ?? ""
-        return isSelectedSoundAlreadyAFavorite() ? "\(emoji)  Remover dos Favoritos" : "⭐️  Adicionar aos Favoritos"
+        //let emoji = Shared.removeFromFavoritesEmojis.randomElement() ?? ""
+        return isSelectedSoundAlreadyAFavorite() ? "Remover dos Favoritos" : "Adicionar aos Favoritos"
     }
     
     func getSoundCount() -> String {

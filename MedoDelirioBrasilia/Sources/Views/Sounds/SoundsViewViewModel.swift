@@ -8,7 +8,7 @@ class SoundsViewViewModel: ObservableObject {
     
     @Published var sortOption: Int = 0
     @Published var favoritesKeeper = Set<String>()
-    @Published var showConfirmationDialog = false
+    //@Published var showConfirmationDialog = false
     @Published var showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = false
     @Published var showEmailAppPicker_soundUnavailableConfirmationDialog = false
     @Published var soundForConfirmationDialog: Sound? = nil
@@ -152,8 +152,8 @@ class SoundsViewViewModel: ObservableObject {
     }
     
     func getFavoriteButtonTitle() -> String {
-        let emoji = Shared.removeFromFavoritesEmojis.randomElement() ?? ""
-        return isSelectedSoundAlreadyAFavorite() ? "\(emoji)  Remover dos Favoritos" : "⭐️  Adicionar aos Favoritos"
+        //let emoji = Shared.removeFromFavoritesEmojis.randomElement() ?? ""
+        return isSelectedSoundAlreadyAFavorite() ? "Remover dos Favoritos" : "Adicionar aos Favoritos"
     }
     
     // MARK: - Other

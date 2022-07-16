@@ -101,10 +101,71 @@ struct SoundsView: View {
                                         .onTapGesture {
                                             viewModel.playSound(fromPath: sound.filename)
                                         }
-                                        .onLongPressGesture {
-                                            viewModel.soundForConfirmationDialog = sound
-                                            viewModel.showConfirmationDialog = true
-                                        }
+                                        .contextMenu(menuItems: {
+                                            Button(action: {
+                                                if viewModel.isSelectedSoundAlreadyAFavorite() {
+                                                    viewModel.removeFromFavorites(soundId: sound.id)
+                                                    if currentMode == .favorites {
+                                                        viewModel.reloadList(withSounds: soundData,
+                                                                             andFavorites: try? database.getAllFavorites(),
+                                                                             allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+                                                                             favoritesOnly: currentMode == .favorites,
+                                                                             sortedBy: ContentSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
+                                                    }
+                                                } else {
+                                                    viewModel.addToFavorites(soundId: sound.id)
+                                                }
+                                            }, label: {
+                                                Label(viewModel.getFavoriteButtonTitle(), systemImage: "star")
+                                            })
+                                            
+                                            Button(action: {
+                                                let hasFolders = try? database.hasAnyUserFolder()
+                                                guard hasFolders ?? false else {
+                                                    return viewModel.showNoFoldersAlert()
+                                                }
+                                                showingAddToFolderModal = true
+                                            }, label: {
+                                                Label(Shared.addToFolderButtonText, systemImage: "folder.badge.plus")
+                                            })
+                                            .onChange(of: showingAddToFolderModal) { newValue in
+                                                if (newValue == false) && hadSuccessAddingToFolder {
+                                                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                                                        withAnimation {
+                                                            shouldDisplayAddedToFolderToast = true
+                                                        }
+                                                        TapticFeedback.success()
+                                                    }
+                                                    
+                                                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                                        withAnimation {
+                                                            shouldDisplayAddedToFolderToast = false
+                                                            folderName = nil
+                                                            hadSuccessAddingToFolder = false
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            
+                                            Button(action: {
+                                                viewModel.soundForConfirmationDialog = sound
+                                                viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = true
+                                            }, label: {
+                                                Label(SoundOptionsHelper.getSuggestOtherAuthorNameButtonTitle(authorId: sound.authorId), systemImage: "exclamationmark.bubble")
+                                            })
+                                            
+//                                            Button(action: {
+//                                                //
+//                                            }, label: {
+//                                                Label("Ver Todos os Sons Desse Autor", systemImage: "person")
+//                                            })
+                                            
+                                            Button(action: {
+                                                viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
+                                            }, label: {
+                                                Label(Shared.shareButtonText, systemImage: "square.and.arrow.up")
+                                            })
+                                        })
                                 }
                             }
                             .searchable(text: $searchText)
@@ -233,69 +294,6 @@ struct SoundsView: View {
                 viewModel.sendUserPersonalTrendsToServerIfEnabled()
                 shouldDisplayFolderBanner = UserSettings.getFolderBannerWasDismissed() == false
             }
-            .confirmationDialog("", isPresented: $viewModel.showConfirmationDialog) {
-                Button(viewModel.getFavoriteButtonTitle()) {
-                    guard let sound = viewModel.soundForConfirmationDialog else {
-                        return
-                    }
-                    if viewModel.isSelectedSoundAlreadyAFavorite() {
-                        viewModel.removeFromFavorites(soundId: sound.id)
-                        if currentMode == .favorites {
-                            viewModel.reloadList(withSounds: soundData,
-                                                 andFavorites: try? database.getAllFavorites(),
-                                                 allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
-                                                 favoritesOnly: currentMode == .favorites,
-                                                 sortedBy: ContentSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
-                        }
-                    } else {
-                        viewModel.addToFavorites(soundId: sound.id)
-                    }
-                }
-                
-                Button(Shared.addToFolderButtonText) {
-                    let hasFolders = try? database.hasAnyUserFolder()
-                    guard hasFolders ?? false else {
-                        return viewModel.showNoFoldersAlert()
-                    }
-                    guard viewModel.soundForConfirmationDialog != nil else {
-                        return
-                    }
-                    showingAddToFolderModal = true
-                }
-                .onChange(of: showingAddToFolderModal) { newValue in
-                    if (newValue == false) && hadSuccessAddingToFolder {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-                            withAnimation {
-                                shouldDisplayAddedToFolderToast = true
-                            }
-                            TapticFeedback.success()
-                        }
-                        
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                            withAnimation {
-                                shouldDisplayAddedToFolderToast = false
-                                folderName = nil
-                                hadSuccessAddingToFolder = false
-                            }
-                        }
-                    }
-                }
-                
-//                    Button("👱  Ver Todos os Sons Desse Autor") {
-//                        print("Ver autor")
-//                    }
-                
-                Button(SoundOptionsHelper.getSuggestOtherAuthorNameButtonTitle(authorId: viewModel.soundForConfirmationDialog?.authorId ?? .empty)) {
-                    viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = true
-                }
-                
-                Button(Shared.shareButtonText) {
-                    guard let sound = viewModel.soundForConfirmationDialog else {
-                        return
-                    }
-                    viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
-                }
-            }
             .confirmationDialog(Shared.pickAMailApp, isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog, titleVisibility: .visible) {
                 Mailman.getMailClientOptions(subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.soundForConfirmationDialog?.title ?? ""),
                                              body: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.soundForConfirmationDialog?.authorName ?? "", viewModel.soundForConfirmationDialog?.id ?? ""))
@@ -316,11 +314,11 @@ struct SoundsView: View {
             .sheet(isPresented: $showingAddToFolderModal) {
                 AddToFolderView(isBeingShown: $showingAddToFolderModal, hadSuccess: $hadSuccessAddingToFolder, folderName: $folderName, selectedSoundName: viewModel.soundForConfirmationDialog!.title, selectedSoundId: viewModel.soundForConfirmationDialog!.id)
             }
-            .onChange(of: viewModel.showConfirmationDialog) { show in
-                if show {
-                    TapticFeedback.open()
-                }
-            }
+//            .onChange(of: viewModel.showConfirmationDialog) { show in
+//                if show {
+//                    TapticFeedback.open()
+//                }
+//            }
             
             if shouldDisplayAddedToFolderToast {
                 VStack {
