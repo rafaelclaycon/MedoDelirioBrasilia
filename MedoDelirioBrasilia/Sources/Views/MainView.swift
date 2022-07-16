@@ -8,35 +8,45 @@ struct MainView: View {
     var body: some View {
         if UIDevice.current.userInterfaceIdiom == .phone {
             TabView(selection: $tabSelection) {
-                SoundsView()
-                    .tabItem {
-                        Label("Sons", systemImage: "speaker.wave.3.fill")
-                    }
-                    .tag(1)
+                NavigationView {
+                    SoundsView()
+                }
+                .tabItem {
+                    Label("Sons", systemImage: "speaker.wave.3.fill")
+                }
+                .tag(1)
                 
-                CollectionsView()
-                    .tabItem {
-                        Label("Coleções", systemImage: "rectangle.grid.2x2.fill")
-                    }
-                    .tag(2)
+                NavigationView {
+                    CollectionsView()
+                }
+                .tabItem {
+                    Label("Coleções", systemImage: "rectangle.grid.2x2.fill")
+                }
+                .tag(2)
                 
-                SongsView()
-                    .tabItem {
-                        Label("Músicas", systemImage: "music.quarternote.3")
-                    }
-                    .tag(3)
+                NavigationView {
+                    SongsView()
+                }
+                .tabItem {
+                    Label("Músicas", systemImage: "music.quarternote.3")
+                }
+                .tag(3)
                 
-    //            TrendsView()
-    //                .tabItem {
-    //                    Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
-    //                }
-    //                .tag(4)
+//                NavigationView {
+//                    TrendsView()
+//                }
+//                .tabItem {
+//                    Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
+//                }
+//                .tag(4)
                 
-                SettingsView()
-                    .tabItem {
-                        Label("Ajustes", systemImage: "gearshape.fill")
-                    }
-                    .tag(5)
+                NavigationView {
+                    SettingsView()
+                }
+                .tabItem {
+                    Label("Ajustes", systemImage: "gearshape.fill")
+                }
+                .tag(5)
             }
             .onContinueUserActivity(Shared.ActivityTypes.playAndShareSounds, perform: { _ in
                 tabSelection = 1
