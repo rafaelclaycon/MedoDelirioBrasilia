@@ -184,14 +184,23 @@ struct SoundsView: View {
                 Menu {
                     Section {
                         Picker(selection: $viewModel.sortOption, label: Text("Ordenação")) {
-                            Text("Ordenar por Título")
-                                .tag(0)
-
-                            Text("Ordenar por Nome do Autor")
-                                .tag(1)
-
-                            Text("Mais Recentes no Topo")
-                                .tag(2)
+                            HStack {
+                                Text("Ordenar por Título")
+                                Image(systemName: "a.circle.fill")
+                            }
+                            .tag(0)
+                            
+                            HStack {
+                                Text("Ordenar por Nome do Autor")
+                                Image(systemName: "person.fill")
+                            }
+                            .tag(1)
+                            
+                            HStack {
+                                Text("Mais Recentes no Topo")
+                                Image(systemName: "calendar")
+                            }
+                            .tag(2)
                         }
                     }
                     
