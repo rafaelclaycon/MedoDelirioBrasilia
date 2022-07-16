@@ -20,10 +20,21 @@ struct SoundsView: View {
     @State private var folderName: String? = nil
     @State private var shouldDisplayAddedToFolderToast: Bool = false
     
-    private let columns = [
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
+    private var columns: [GridItem] {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            return [
+                GridItem(.flexible()),
+                GridItem(.flexible())
+            ]
+        } else {
+            return [
+                GridItem(.flexible()),
+                GridItem(.flexible()),
+                GridItem(.flexible()),
+                GridItem(.flexible())
+            ]
+        }
+    }
     
     private var searchResults: [Sound] {
         if searchText.isEmpty {
@@ -83,9 +94,10 @@ struct SoundsView: View {
                                     .padding(.vertical, 6)
                             }
                             
-                            LazyVGrid(columns: columns, spacing: 14) {
+                            LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
                                 ForEach(searchResults) { sound in
                                     SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", favorites: $viewModel.favoritesKeeper)
+                                        .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                                         .onTapGesture {
                                             viewModel.playSound(fromPath: sound.filename)
                                         }

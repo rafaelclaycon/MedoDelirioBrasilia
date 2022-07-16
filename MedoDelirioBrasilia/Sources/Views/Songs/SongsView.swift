@@ -6,9 +6,18 @@ struct SongsView: View {
     @State private var searchText = ""
     @State private var searchBar: UISearchBar?
     
-    let columns = [
-        GridItem(.flexible())
-    ]
+    private var columns: [GridItem] {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            return [
+                GridItem(.flexible())
+            ]
+        } else {
+            return [
+                GridItem(.flexible()),
+                GridItem(.flexible())
+            ]
+        }
+    }
     
     var searchResults: [Song] {
         if searchText.isEmpty {
