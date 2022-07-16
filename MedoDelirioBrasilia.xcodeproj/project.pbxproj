@@ -89,6 +89,8 @@
 		D958B1B22839534D0010F133 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958B1B12839534D0010F133 /* SettingsView.swift */; };
 		D958BC732868FE8C000B2EDA /* EmojiIdentification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958BC722868FE8C000B2EDA /* EmojiIdentification.swift */; };
 		D958BC752869000A000B2EDA /* FolderInfoEditingViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958BC742869000A000B2EDA /* FolderInfoEditingViewViewModel.swift */; };
+		D95DB0F6288248A300D4FEDF /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95DB0F5288248A300D4FEDF /* SidebarView.swift */; };
+		D95DB0F82882491A00D4FEDF /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95DB0F72882491A00D4FEDF /* Screen.swift */; };
 		D960AF272845BFE700ADF1F6 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = D960AF262845BFE700ADF1F6 /* UserDefaultsKeys.swift */; };
 		D960AF292845C82E00ADF1F6 /* AppStoreReviewSteward.swift in Sources */ = {isa = PBXBuildFile; fileRef = D960AF282845C82E00ADF1F6 /* AppStoreReviewSteward.swift */; };
 		D961D01128371EE800EFEDEB /* FixedLocalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D961D01028371EE800EFEDEB /* FixedLocalData.swift */; };
@@ -841,6 +843,8 @@
 		D958B1B12839534D0010F133 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		D958BC722868FE8C000B2EDA /* EmojiIdentification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiIdentification.swift; sourceTree = "<group>"; };
 		D958BC742869000A000B2EDA /* FolderInfoEditingViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderInfoEditingViewViewModel.swift; sourceTree = "<group>"; };
+		D95DB0F5288248A300D4FEDF /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
+		D95DB0F72882491A00D4FEDF /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
 		D960AF262845BFE700ADF1F6 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		D960AF282845C82E00ADF1F6 /* AppStoreReviewSteward.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreReviewSteward.swift; sourceTree = "<group>"; };
 		D961D01028371EE800EFEDEB /* FixedLocalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedLocalData.swift; sourceTree = "<group>"; };
@@ -855,6 +859,7 @@
 		D9625E8428238F9B00080852 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D9625E8A28238F9B00080852 /* MedoDelirioBrasiliaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MedoDelirioBrasiliaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9625E8E28238F9B00080852 /* LocalDatabaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDatabaseTests.swift; sourceTree = "<group>"; };
+		D9653D9C2882749C00C745F4 /* MedoDelirioBrasilia.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MedoDelirioBrasilia.entitlements; sourceTree = "<group>"; };
 		D96E115C28459D8800306859 /* UserActivityWaiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserActivityWaiter.swift; sourceTree = "<group>"; };
 		D97500462880B5180035E6F2 /* MULTISHOW - Djonga - Xinguei Bolsonaro um monte de vezes, vou xingar de novo voce e um merda.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "MULTISHOW - Djonga - Xinguei Bolsonaro um monte de vezes, vou xingar de novo voce e um merda.mp3"; sourceTree = "<group>"; };
 		D97500472880B5180035E6F2 /* MULTISHOW - PLANET HEMP - AH FILHA DA PUTA AGORA SIM BOLSONARO VAI TOMAR NO CU.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "MULTISHOW - PLANET HEMP - AH FILHA DA PUTA AGORA SIM BOLSONARO VAI TOMAR NO CU.mp3"; sourceTree = "<group>"; };
@@ -2313,6 +2318,7 @@
 		D9625E7C28238F9A00080852 /* MedoDelirioBrasilia */ = {
 			isa = PBXGroup;
 			children = (
+				D9653D9C2882749C00C745F4 /* MedoDelirioBrasilia.entitlements */,
 				D98DBD3228491909008544F8 /* Info.plist */,
 				D9625EA72823949200080852 /* Sources */,
 				D9625EA82823949700080852 /* Resources */,
@@ -2369,6 +2375,7 @@
 			isa = PBXGroup;
 			children = (
 				D958B1A928394D400010F133 /* MainView.swift */,
+				D95DB0F5288248A300D4FEDF /* SidebarView.swift */,
 				D9B9025C2837485000551239 /* Sounds */,
 				D9EB18A32857CDE200A2F8A8 /* Collections */,
 				D9943F2428641FB7002C6B97 /* Folders */,
@@ -2450,6 +2457,7 @@
 				D91107132863B5FD000B6F8F /* ContentCollection.swift */,
 				D9943F2928642EC3002C6B97 /* UserFolderContent.swift */,
 				D92F8BAC286A6D2100EB9470 /* AlertType.swift */,
+				D95DB0F72882491A00D4FEDF /* Screen.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -3330,6 +3338,7 @@
 				D99B9DCA2848148600897930 /* ServerStatsAndLogs.swift in Sources */,
 				D9758C3828616E650094D388 /* FolderColor.swift in Sources */,
 				D960AF292845C82E00ADF1F6 /* AppStoreReviewSteward.swift in Sources */,
+				D95DB0F6288248A300D4FEDF /* SidebarView.swift in Sources */,
 				D9943F2C28643317002C6B97 /* FolderDetailViewViewModel.swift in Sources */,
 				D92C0CA82840162F009CF19A /* ContentSortOption.swift in Sources */,
 				D958B1B028394EA40010F133 /* TrendsView.swift in Sources */,
@@ -3384,6 +3393,7 @@
 				D92CAA4128593B1700D6C1EA /* NetworkLogCell.swift in Sources */,
 				D998F28F284F177B0013E709 /* TrendsDisabledView.swift in Sources */,
 				D991E598284A94F70005705F /* Podium.swift in Sources */,
+				D95DB0F82882491A00D4FEDF /* Screen.swift in Sources */,
 				D9FA0CD92850864C000F6ADE /* ClientDeviceInfo.swift in Sources */,
 				D9758C3A28617BA70094D388 /* AddUserFolderTables.swift in Sources */,
 				D9265741285A1EE700947165 /* LocalDatabase+Log.swift in Sources */,
@@ -3566,8 +3576,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				ENABLE_PREVIEWS = YES;
@@ -3575,20 +3586,21 @@
 				INFOPLIST_FILE = MedoDelirioBrasilia/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.5.1;
+				MARKETING_VERSION = 2.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = "Medo e Delírio";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -3597,8 +3609,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				ENABLE_PREVIEWS = YES;
@@ -3606,20 +3619,21 @@
 				INFOPLIST_FILE = MedoDelirioBrasilia/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.5.1;
+				MARKETING_VERSION = 2.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = "Medo e Delírio";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
