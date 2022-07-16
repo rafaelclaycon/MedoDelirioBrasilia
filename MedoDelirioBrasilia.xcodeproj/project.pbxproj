@@ -26,7 +26,6 @@
 		49DEA9BC288112A9008C9BA1 /* CARTOON NETWORK - ESTA ERRADO short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA9BB288112A9008C9BA1 /* CARTOON NETWORK - ESTA ERRADO short meme.mp3 */; };
 		49DEA9BE288112D8008C9BA1 /* CARTOON NETWORK - MAS ESTA ERRADO short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA9BD288112D8008C9BA1 /* CARTOON NETWORK - MAS ESTA ERRADO short meme.mp3 */; };
 		49DEA9C028811391008C9BA1 /* CHAVEZ - DR CHAPATIM - INSINUA QUE SOU VELHO short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA9BF28811391008C9BA1 /* CHAVEZ - DR CHAPATIM - INSINUA QUE SOU VELHO short meme.mp3 */; };
-		49DEA9C2288113E5008C9BA1 /* Chavez - Seu barriga - e uma boa ideia short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA9C1288113E5008C9BA1 /* Chavez - Seu barriga - e uma boa ideia short meme.mp3 */; };
 		49DEA9C428811436008C9BA1 /* CBN - Pasternak - De cair o cu da bunda - de cair o orificio retal anal das nadegas short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA9C328811436008C9BA1 /* CBN - Pasternak - De cair o cu da bunda - de cair o orificio retal anal das nadegas short meme.mp3 */; };
 		49DEA9C628811482008C9BA1 /* Chiquititas Brasil - Nao Pode Ser short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA9C528811482008C9BA1 /* Chiquititas Brasil - Nao Pode Ser short meme.mp3 */; };
 		49DEA9C8288114F6008C9BA1 /* CIDINHO e DOCA - Fogo no x9 da cabeca ao pe short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA9C7288114F6008C9BA1 /* CIDINHO e DOCA - Fogo no x9 da cabeca ao pe short meme.mp3 */; };
@@ -49,6 +48,24 @@
 		D927C424285245CE0041970A /* SoundOptionsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D927C423285245CE0041970A /* SoundOptionsHelper.swift */; };
 		D92879E7283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879E5283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 */; };
 		D92879E8283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879E6283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 */; };
+		D92AD1A6288328D7001CBCDF /* Propaganda Instituto Tireido Ku Tirey Doku (os dados que vc quer).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92AD1A4288328D7001CBCDF /* Propaganda Instituto Tireido Ku Tirey Doku (os dados que vc quer).mp3 */; };
+		D92AD1A7288328D7001CBCDF /* Propaganda Instituto Tireido Ku (longo).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92AD1A5288328D7001CBCDF /* Propaganda Instituto Tireido Ku (longo).mp3 */; };
+		D92AD1A928832AF2001CBCDF /* FRANCIEL CRUZ - LIVE DAS CANJEBRINAS - E meu pau em sua mao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92AD1A828832AF2001CBCDF /* FRANCIEL CRUZ - LIVE DAS CANJEBRINAS - E meu pau em sua mao.mp3 */; };
+		D92AD1AB28832BDF001CBCDF /* PETIT JOURNAL - Tanguy Baghdadi - Porra, ta errado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92AD1AA28832BDF001CBCDF /* PETIT JOURNAL - Tanguy Baghdadi - Porra, ta errado.mp3 */; };
+		D92AD1AD28832C80001CBCDF /* PETIT JOURNAL - Tanguy Baghdadi - Ele leu errado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92AD1AC28832C80001CBCDF /* PETIT JOURNAL - Tanguy Baghdadi - Ele leu errado.mp3 */; };
+		D92AD1B028832D6C001CBCDF /* RÁDIO BANDNEWS FM - Eduardo Oinegue - Se numero elevado de mortes policia e uma característica, ta errado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92AD1AE28832D6C001CBCDF /* RÁDIO BANDNEWS FM - Eduardo Oinegue - Se numero elevado de mortes policia e uma característica, ta errado.mp3 */; };
+		D92AD1B128832D6C001CBCDF /* RÁDIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92AD1AF28832D6C001CBCDF /* RÁDIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3 */; };
+		D92AD1B328832E07001CBCDF /* Casimiro - Quer jogar luz pra falar que ta errado ja ta errado nao precisa jogar luz tem que jogar na merda.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92AD1B228832E07001CBCDF /* Casimiro - Quer jogar luz pra falar que ta errado ja ta errado nao precisa jogar luz tem que jogar na merda.mp3 */; };
+		D92AD1B628832EB1001CBCDF /* ConservaTalk - Abraham Weintraub - Nao, ta errado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92AD1B428832EB1001CBCDF /* ConservaTalk - Abraham Weintraub - Nao, ta errado.mp3 */; };
+		D92AD1B728832EB1001CBCDF /* ConservaTalk - Abraham Weintraub - Ta errado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92AD1B528832EB1001CBCDF /* ConservaTalk - Abraham Weintraub - Ta errado.mp3 */; };
+		D92AD1B928833150001CBCDF /* Temer - Repito.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92AD1B828833150001CBCDF /* Temer - Repito.mp3 */; };
+		D92AD1BB28833913001CBCDF /* Chaves - Seu barriga - E uma boa ideia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92AD1BA28833913001CBCDF /* Chaves - Seu barriga - E uma boa ideia.mp3 */; };
+		D92AD1BD28833D9F001CBCDF /* Ricardo Boechat - O, Malafaia, vai procurar uma rola, vai.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92AD1BC28833D9F001CBCDF /* Ricardo Boechat - O, Malafaia, vai procurar uma rola, vai.mp3 */; };
+		D92AD1BF28833E4E001CBCDF /* Ricardo Boechat - Diferente de voce, nao sou um idiota.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92AD1BE28833E4E001CBCDF /* Ricardo Boechat - Diferente de voce, nao sou um idiota.mp3 */; };
+		D92AD1C128833F1E001CBCDF /* Ricardo Boechat - Incitacao de odio em igrejas neopentecostais.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92AD1C028833F1E001CBCDF /* Ricardo Boechat - Incitacao de odio em igrejas neopentecostais.mp3 */; };
+		D92AD1C32883407D001CBCDF /* Ricardo Boechat - Voce e um charlatao cara.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92AD1C22883407D001CBCDF /* Ricardo Boechat - Voce e um charlatao cara.mp3 */; };
+		D92AD1C52883434C001CBCDF /* Bolsonaro - E uma canalhice o que voces fazem.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92AD1C42883434C001CBCDF /* Bolsonaro - E uma canalhice o que voces fazem.mp3 */; };
+		D92AD1C7288344CC001CBCDF /* Franciel Cruz - Polarizacao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92AD1C6288344CB001CBCDF /* Franciel Cruz - Polarizacao.mp3 */; };
 		D92C0CA62840125B009CF19A /* SoundsViewViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92C0CA52840125B009CF19A /* SoundsViewViewModelTests.swift */; };
 		D92C0CA82840162F009CF19A /* ContentSortOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92C0CA72840162F009CF19A /* ContentSortOption.swift */; };
 		D92C0CAA28405B2D009CF19A /* NoFavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92C0CA928405B2D009CF19A /* NoFavoritesView.swift */; };
@@ -781,7 +798,6 @@
 		49DEA9BB288112A9008C9BA1 /* CARTOON NETWORK - ESTA ERRADO short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "CARTOON NETWORK - ESTA ERRADO short meme.mp3"; sourceTree = "<group>"; };
 		49DEA9BD288112D8008C9BA1 /* CARTOON NETWORK - MAS ESTA ERRADO short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "CARTOON NETWORK - MAS ESTA ERRADO short meme.mp3"; sourceTree = "<group>"; };
 		49DEA9BF28811391008C9BA1 /* CHAVEZ - DR CHAPATIM - INSINUA QUE SOU VELHO short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "CHAVEZ - DR CHAPATIM - INSINUA QUE SOU VELHO short meme.mp3"; sourceTree = "<group>"; };
-		49DEA9C1288113E5008C9BA1 /* Chavez - Seu barriga - e uma boa ideia short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Chavez - Seu barriga - e uma boa ideia short meme.mp3"; sourceTree = "<group>"; };
 		49DEA9C328811436008C9BA1 /* CBN - Pasternak - De cair o cu da bunda - de cair o orificio retal anal das nadegas short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "CBN - Pasternak - De cair o cu da bunda - de cair o orificio retal anal das nadegas short meme.mp3"; sourceTree = "<group>"; };
 		49DEA9C528811482008C9BA1 /* Chiquititas Brasil - Nao Pode Ser short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Chiquititas Brasil - Nao Pode Ser short meme.mp3"; sourceTree = "<group>"; };
 		49DEA9C7288114F6008C9BA1 /* CIDINHO e DOCA - Fogo no x9 da cabeca ao pe short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "CIDINHO e DOCA - Fogo no x9 da cabeca ao pe short meme.mp3"; sourceTree = "<group>"; };
@@ -804,6 +820,24 @@
 		D927C423285245CE0041970A /* SoundOptionsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundOptionsHelper.swift; sourceTree = "<group>"; };
 		D92879E5283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Nao era fake news era jornalismo.mp3"; sourceTree = "<group>"; };
 		D92879E6283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pena que nao pode ver um impeachment.mp3"; sourceTree = "<group>"; };
+		D92AD1A4288328D7001CBCDF /* Propaganda Instituto Tireido Ku Tirey Doku (os dados que vc quer).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Propaganda Instituto Tireido Ku Tirey Doku (os dados que vc quer).mp3"; sourceTree = "<group>"; };
+		D92AD1A5288328D7001CBCDF /* Propaganda Instituto Tireido Ku (longo).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Propaganda Instituto Tireido Ku (longo).mp3"; sourceTree = "<group>"; };
+		D92AD1A828832AF2001CBCDF /* FRANCIEL CRUZ - LIVE DAS CANJEBRINAS - E meu pau em sua mao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "FRANCIEL CRUZ - LIVE DAS CANJEBRINAS - E meu pau em sua mao.mp3"; sourceTree = "<group>"; };
+		D92AD1AA28832BDF001CBCDF /* PETIT JOURNAL - Tanguy Baghdadi - Porra, ta errado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "PETIT JOURNAL - Tanguy Baghdadi - Porra, ta errado.mp3"; sourceTree = "<group>"; };
+		D92AD1AC28832C80001CBCDF /* PETIT JOURNAL - Tanguy Baghdadi - Ele leu errado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "PETIT JOURNAL - Tanguy Baghdadi - Ele leu errado.mp3"; sourceTree = "<group>"; };
+		D92AD1AE28832D6C001CBCDF /* RÁDIO BANDNEWS FM - Eduardo Oinegue - Se numero elevado de mortes policia e uma característica, ta errado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "RÁDIO BANDNEWS FM - Eduardo Oinegue - Se numero elevado de mortes policia e uma característica, ta errado.mp3"; sourceTree = "<group>"; };
+		D92AD1AF28832D6C001CBCDF /* RÁDIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "RÁDIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3"; sourceTree = "<group>"; };
+		D92AD1B228832E07001CBCDF /* Casimiro - Quer jogar luz pra falar que ta errado ja ta errado nao precisa jogar luz tem que jogar na merda.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Casimiro - Quer jogar luz pra falar que ta errado ja ta errado nao precisa jogar luz tem que jogar na merda.mp3"; sourceTree = "<group>"; };
+		D92AD1B428832EB1001CBCDF /* ConservaTalk - Abraham Weintraub - Nao, ta errado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ConservaTalk - Abraham Weintraub - Nao, ta errado.mp3"; sourceTree = "<group>"; };
+		D92AD1B528832EB1001CBCDF /* ConservaTalk - Abraham Weintraub - Ta errado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ConservaTalk - Abraham Weintraub - Ta errado.mp3"; sourceTree = "<group>"; };
+		D92AD1B828833150001CBCDF /* Temer - Repito.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Temer - Repito.mp3"; sourceTree = "<group>"; };
+		D92AD1BA28833913001CBCDF /* Chaves - Seu barriga - E uma boa ideia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Chaves - Seu barriga - E uma boa ideia.mp3"; sourceTree = "<group>"; };
+		D92AD1BC28833D9F001CBCDF /* Ricardo Boechat - O, Malafaia, vai procurar uma rola, vai.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ricardo Boechat - O, Malafaia, vai procurar uma rola, vai.mp3"; sourceTree = "<group>"; };
+		D92AD1BE28833E4E001CBCDF /* Ricardo Boechat - Diferente de voce, nao sou um idiota.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ricardo Boechat - Diferente de voce, nao sou um idiota.mp3"; sourceTree = "<group>"; };
+		D92AD1C028833F1E001CBCDF /* Ricardo Boechat - Incitacao de odio em igrejas neopentecostais.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ricardo Boechat - Incitacao de odio em igrejas neopentecostais.mp3"; sourceTree = "<group>"; };
+		D92AD1C22883407D001CBCDF /* Ricardo Boechat - Voce e um charlatao cara.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ricardo Boechat - Voce e um charlatao cara.mp3"; sourceTree = "<group>"; };
+		D92AD1C42883434C001CBCDF /* Bolsonaro - E uma canalhice o que voces fazem.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - E uma canalhice o que voces fazem.mp3"; sourceTree = "<group>"; };
+		D92AD1C6288344CB001CBCDF /* Franciel Cruz - Polarizacao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Franciel Cruz - Polarizacao.mp3"; sourceTree = "<group>"; };
 		D92C0CA52840125B009CF19A /* SoundsViewViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsViewViewModelTests.swift; sourceTree = "<group>"; };
 		D92C0CA72840162F009CF19A /* ContentSortOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSortOption.swift; sourceTree = "<group>"; };
 		D92C0CA928405B2D009CF19A /* NoFavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFavoritesView.swift; sourceTree = "<group>"; };
@@ -1532,6 +1566,23 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D92AD1C42883434C001CBCDF /* Bolsonaro - E uma canalhice o que voces fazem.mp3 */,
+				D92AD1C22883407D001CBCDF /* Ricardo Boechat - Voce e um charlatao cara.mp3 */,
+				D92AD1C028833F1E001CBCDF /* Ricardo Boechat - Incitacao de odio em igrejas neopentecostais.mp3 */,
+				D92AD1BE28833E4E001CBCDF /* Ricardo Boechat - Diferente de voce, nao sou um idiota.mp3 */,
+				D92AD1BC28833D9F001CBCDF /* Ricardo Boechat - O, Malafaia, vai procurar uma rola, vai.mp3 */,
+				D92AD1BA28833913001CBCDF /* Chaves - Seu barriga - E uma boa ideia.mp3 */,
+				D92AD1B828833150001CBCDF /* Temer - Repito.mp3 */,
+				D92AD1B428832EB1001CBCDF /* ConservaTalk - Abraham Weintraub - Nao, ta errado.mp3 */,
+				D92AD1B528832EB1001CBCDF /* ConservaTalk - Abraham Weintraub - Ta errado.mp3 */,
+				D92AD1B228832E07001CBCDF /* Casimiro - Quer jogar luz pra falar que ta errado ja ta errado nao precisa jogar luz tem que jogar na merda.mp3 */,
+				D92AD1AE28832D6C001CBCDF /* RÁDIO BANDNEWS FM - Eduardo Oinegue - Se numero elevado de mortes policia e uma característica, ta errado.mp3 */,
+				D92AD1AF28832D6C001CBCDF /* RÁDIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3 */,
+				D92AD1AC28832C80001CBCDF /* PETIT JOURNAL - Tanguy Baghdadi - Ele leu errado.mp3 */,
+				D92AD1AA28832BDF001CBCDF /* PETIT JOURNAL - Tanguy Baghdadi - Porra, ta errado.mp3 */,
+				D92AD1A828832AF2001CBCDF /* FRANCIEL CRUZ - LIVE DAS CANJEBRINAS - E meu pau em sua mao.mp3 */,
+				D92AD1A5288328D7001CBCDF /* Propaganda Instituto Tireido Ku (longo).mp3 */,
+				D92AD1A4288328D7001CBCDF /* Propaganda Instituto Tireido Ku Tirey Doku (os dados que vc quer).mp3 */,
 				49DEA9DD288118FA008C9BA1 /* Gilmar mendes - Eine grosse Confusion.mp3 */,
 				49DEA9D72881177C008C9BA1 /* Eu sou RICA short meme.mp3 */,
 				49DEA9D52881173B008C9BA1 /* Eu quero dormir porra short meme.mp3 */,
@@ -1543,7 +1594,6 @@
 				49DEA9C528811482008C9BA1 /* Chiquititas Brasil - Nao Pode Ser short meme.mp3 */,
 				49DEA9C7288114F6008C9BA1 /* CIDINHO e DOCA - Fogo no x9 da cabeca ao pe short meme.mp3 */,
 				49DEA9C328811436008C9BA1 /* CBN - Pasternak - De cair o cu da bunda - de cair o orificio retal anal das nadegas short meme.mp3 */,
-				49DEA9C1288113E5008C9BA1 /* Chavez - Seu barriga - e uma boa ideia short meme.mp3 */,
 				49DEA9BF28811391008C9BA1 /* CHAVEZ - DR CHAPATIM - INSINUA QUE SOU VELHO short meme.mp3 */,
 				49DEA9BD288112D8008C9BA1 /* CARTOON NETWORK - MAS ESTA ERRADO short meme.mp3 */,
 				49DEA9BB288112A9008C9BA1 /* CARTOON NETWORK - ESTA ERRADO short meme.mp3 */,
@@ -2161,6 +2211,7 @@
 		D92E7068283C5C120035826C /* Songs */ = {
 			isa = PBXGroup;
 			children = (
+				D92AD1C6288344CB001CBCDF /* Franciel Cruz - Polarizacao.mp3 */,
 				49DEA9E128812015008C9BA1 /* eletronica-eine-grosse-confusion-sexo-selvagem-kraftwerk.mp3 */,
 				49DEA9DF28811FAF008C9BA1 /* eletronica-eine-grosse-confusion-kraftwerk.mp3 */,
 				D99151222873E4C100FFAA29 /* funk-capricha-renan-mdb.mp3 */,
@@ -2673,6 +2724,7 @@
 				D975FEB82880B4F20035E6F2 /* Bolsonaro - Ce ta vendo muito Globo ai.mp3 in Resources */,
 				D92E706E283C5C2C0035826C /* Eu volto pro ostracismo.mp3 in Resources */,
 				D975FFF32880B4F20035E6F2 /* Quase ninguem de mascara.mp3 in Resources */,
+				D92AD1A7288328D7001CBCDF /* Propaganda Instituto Tireido Ku (longo).mp3 in Resources */,
 				D975FF132880B4F20035E6F2 /* UOL - Fux - Esta cancelada.mp3 in Resources */,
 				D975FE9B2880B4F20035E6F2 /* Choque de Cultura - Renan - Vamos fazer essa critica ai.mp3 in Resources */,
 				D975FE3E2880B4F20035E6F2 /* DESMENTINDO BOLSONARO - PAULO GUEDES - O Brasil esta decolando economia bombando coletanea.mp3 in Resources */,
@@ -2686,6 +2738,7 @@
 				49DEA9A828810E7B008C9BA1 /* UOL - Bolsonaro - A GENTE LAMENTA TODOS OS MORTOS MAS E O DESTINO DE TODO MUNDO short meme.mp3 in Resources */,
 				D975FE9C2880B4F20035E6F2 /* Bolsonaro - O problema ta ai, lamentamos.mp3 in Resources */,
 				D97500352880B4F20035E6F2 /* King Size - E vai ficar melhor assim que eu assumir como king size o senhor das terras do rio de janeiro.mp3 in Resources */,
+				D92AD1A928832AF2001CBCDF /* FRANCIEL CRUZ - LIVE DAS CANJEBRINAS - E meu pau em sua mao.mp3 in Resources */,
 				D975002A2880B4F20035E6F2 /* SUPERPOP - Luciana Gimenez - Mas ce ta brava.mp3 in Resources */,
 				D97500452880B4F20035E6F2 /* O CARA DA LUVA DE PEDREIRO - receba carai caralho.mp3 in Resources */,
 				D975FE382880B4F20035E6F2 /* Deltan Dallangnol - Os meus advogados estao estarrecidos.mp3 in Resources */,
@@ -2708,6 +2761,7 @@
 				D975FEA82880B4F20035E6F2 /* Silas Malafaia - Mentiroso sem vergonha vai pro inferno short.mp3 in Resources */,
 				D975FFA62880B4F20035E6F2 /* Gaucho Puto - Uma bosta, nao sabe, uma merda.mp3 in Resources */,
 				D975FEFD2880B4F20035E6F2 /* Silvio Santos - Quem e que nao gosta de dinheiro.mp3 in Resources */,
+				D92AD1BF28833E4E001CBCDF /* Ricardo Boechat - Diferente de voce, nao sou um idiota.mp3 in Resources */,
 				D97500362880B4F20035E6F2 /* Bolsonaro - Pra midia o virus sou eu.mp3 in Resources */,
 				D975FEE62880B4F20035E6F2 /* Vai Dar Namoro - Danca gatinho danca.mp3 in Resources */,
 				D975FFBB2880B4F20035E6F2 /* Caetano - Que loucura, que coisa absurda short.mp3 in Resources */,
@@ -2761,11 +2815,13 @@
 				D975FE2B2880B4F20035E6F2 /* Jonathan Frakes - pure fiction.mp3 in Resources */,
 				D97500172880B4F20035E6F2 /* Queiroz - Eu sou um cara de negocios, eu faco dinheiro eu faco.mp3 in Resources */,
 				D975FEB12880B4F20035E6F2 /* NENHO - Desca dai seu corno short meme.mp3 in Resources */,
+				D92AD1B128832D6C001CBCDF /* RÁDIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3 in Resources */,
 				D975FF1D2880B4F20035E6F2 /* BandNews FM - Ciro Gomes - Esse neto bosta, esse braga bosta, esse neto braga.mp3 in Resources */,
 				D975FF4A2880B4F20035E6F2 /* ATILA IAMARINO - Que que isso quer dizer.mp3 in Resources */,
 				D975FF2E2880B4F20035E6F2 /* Moderador ah que nao sei o que cala a boca moleque muleque.mp3 in Resources */,
 				D975FE232880B4F20035E6F2 /* Choque de Cultura - Rogerinho - O a informacao ai.mp3 in Resources */,
 				D99151332873E4C100FFAA29 /* funk-da-perninha.mp3 in Resources */,
+				D92AD1B628832EB1001CBCDF /* ConservaTalk - Abraham Weintraub - Nao, ta errado.mp3 in Resources */,
 				D975FE512880B4F20035E6F2 /* Marcel van Hatten - Acuse os adversarios do que voce faz.mp3 in Resources */,
 				D975FF632880B4F20035E6F2 /* Boldo - Parece ate que um helicoptero pousou em cima da tua cara.mp3 in Resources */,
 				D975FE852880B4F20035E6F2 /* BENDER Ahh, agora eu entendi short.mp3 in Resources */,
@@ -2773,7 +2829,6 @@
 				D97500332880B4F20035E6F2 /* Mourao - A politica nao pode entrar no quartel e nossa posicao desde sempre.mp3 in Resources */,
 				D975FF432880B4F20035E6F2 /* Eduardo Sterblitch - E mais ou menos longo.mp3 in Resources */,
 				D975FE532880B4F20035E6F2 /* Pastor Valdemiro - Mas isso e... E enganar.mp3 in Resources */,
-				49DEA9C2288113E5008C9BA1 /* Chavez - Seu barriga - e uma boa ideia short meme.mp3 in Resources */,
 				D975FEA42880B4F20035E6F2 /* Bolsonaro - ah o o cara quem fala disso eu nao sou coveiro ta ok.mp3 in Resources */,
 				D97500232880B4F20035E6F2 /* Bolsonaro - Eu nao errei nenhuma.mp3 in Resources */,
 				D97500052880B4F20035E6F2 /* Monty Python - Eric Idle - Bring out your dead.mp3 in Resources */,
@@ -2824,6 +2879,7 @@
 				D975FE212880B4F20035E6F2 /* Mae copiloto - e porra caralho buceta bora.mp3 in Resources */,
 				D975FF0B2880B4F20035E6F2 /* Malditos milicos - Autotune.mp3 in Resources */,
 				D975FEDA2880B4F20035E6F2 /* Silas Malafaia - Nao seja um mentiroso short.mp3 in Resources */,
+				D92AD1C128833F1E001CBCDF /* Ricardo Boechat - Incitacao de odio em igrejas neopentecostais.mp3 in Resources */,
 				D975FEA72880B4F20035E6F2 /* Bolsonaro - Buscamos uma solucao, quem tiver tras pra mim tras pra mim.mp3 in Resources */,
 				D975FF1B2880B4F20035E6F2 /* Gilmar Mendes - Com a devida venia.mp3 in Resources */,
 				D975FEFE2880B4F20035E6F2 /* Kajuru - etica nao tem ambiguidade caralho porra.mp3 in Resources */,
@@ -2876,6 +2932,7 @@
 				D975FF572880B4F20035E6F2 /* Ady Ferrer - A pandemia ainda nao acabou porra.mp3 in Resources */,
 				D975001B2880B4F20035E6F2 /* Leo Stronda Porra.mp3 in Resources */,
 				D975FE842880B4F20035E6F2 /* Funk meme - Ele mesmo, ele mesmo, ele mesmo.mp3 in Resources */,
+				D92AD1A6288328D7001CBCDF /* Propaganda Instituto Tireido Ku Tirey Doku (os dados que vc quer).mp3 in Resources */,
 				D975FE522880B4F20035E6F2 /* Ciro Gomes - Que isso, francamente.mp3 in Resources */,
 				D975FF092880B4F20035E6F2 /* Medo e Delirio em Brasilia com grito.mp3 in Resources */,
 				D975FFF72880B4F20035E6F2 /* Bolsonaro - A pressa da vacina nao se justifica.mp3 in Resources */,
@@ -2993,6 +3050,7 @@
 				D975FF212880B4F20035E6F2 /* Lucca  Wilker - ME IGNOROU - Ignorou me bloqueou short meme.mp3 in Resources */,
 				D975FFA72880B4F20035E6F2 /* Ja deu merda, ja deu merda.mp3 in Resources */,
 				D975FF222880B4F20035E6F2 /* Ciro Gomes - Conspirador filho da puta.mp3 in Resources */,
+				D92AD1B028832D6C001CBCDF /* RÁDIO BANDNEWS FM - Eduardo Oinegue - Se numero elevado de mortes policia e uma característica, ta errado.mp3 in Resources */,
 				D975FE5C2880B4F20035E6F2 /* Ernesto Araujo - Nao se pode aceitar um lockdown do espirito humano.mp3 in Resources */,
 				D975003B2880B4F20035E6F2 /* Futurama - Entao tudo bem short.mp3 in Resources */,
 				D975FEAF2880B4F20035E6F2 /* Caue Moura - Foi mal tava doidao.mp3 in Resources */,
@@ -3027,6 +3085,7 @@
 				D975FEC92880B4F20035E6F2 /* SBT NEWS - Bolsonaro - Qualquer decisao do Alexandre de Moraes esse presidente nao mais cumprira.mp3 in Resources */,
 				D975FED32880B4F20035E6F2 /* Pazuello - O cu dilatado.mp3 in Resources */,
 				D97500102880B4F20035E6F2 /* CHOQUE DE CULTURA - Renan - Inescrupulosos.mp3 in Resources */,
+				D92AD1AB28832BDF001CBCDF /* PETIT JOURNAL - Tanguy Baghdadi - Porra, ta errado.mp3 in Resources */,
 				D975FF712880B4F20035E6F2 /* Malditos milicos robo grave.mp3 in Resources */,
 				D975FEC42880B4F20035E6F2 /* ROY ORBISON - Oh Pretty Woman Pretiputi parodia.mp3 in Resources */,
 				D975FE5E2880B4F20035E6F2 /* Harry e Helen - I've heard that song before short meme.mp3 in Resources */,
@@ -3075,10 +3134,12 @@
 				D9943F152863CC4D002C6B97 /* A impiedosa justica de Deus.mp3 in Resources */,
 				49DEA9A628810E38008C9BA1 /* TV BRASIL - Bolsonaro - Tem muita gente melhor do que eu por ai short meme.mp3 in Resources */,
 				D97500022880B4F20035E6F2 /* Gustavo mendes dilma todo mundo se fudeu.mp3 in Resources */,
+				D92AD1C7288344CC001CBCDF /* Franciel Cruz - Polarizacao.mp3 in Resources */,
 				D975FF592880B4F20035E6F2 /* Silvio Santos - Ele fala e voces deliram, ele fala e voces deliram.mp3 in Resources */,
 				D975FF9F2880B4F20035E6F2 /* De cair o cu da bunda short meme.mp3 in Resources */,
 				D975FF522880B4F20035E6F2 /* TV SENADO - Soraya Thronicke - A gente vai cansando sabe.mp3 in Resources */,
 				D975FFE92880B4F20035E6F2 /* Merval Pereira - ator porno.mp3 in Resources */,
+				D92AD1BB28833913001CBCDF /* Chaves - Seu barriga - E uma boa ideia.mp3 in Resources */,
 				49DEA9BC288112A9008C9BA1 /* CARTOON NETWORK - ESTA ERRADO short meme.mp3 in Resources */,
 				D975004F2880B5190035E6F2 /* MULTISHOW - PLANET HEMP - AH FILHA DA PUTA AGORA SIM BOLSONARO VAI TOMAR NO CU.mp3 in Resources */,
 				D975FEA02880B4F20035E6F2 /* JOVEM PAN - Constantino - O mecanismo foi quase todo dominado por essa turma, o Brasil e o pais aparelhado.mp3 in Resources */,
@@ -3104,6 +3165,7 @@
 				D975FE4C2880B4F20035E6F2 /* Trote Luiz Pareto - TELERJ meme mas que filho da puta olhai veja voce.mp3 in Resources */,
 				D975FFCE2880B4F20035E6F2 /* Otoni de Paula - Otoni nao para.mp3 in Resources */,
 				D975FFBE2880B4F20035E6F2 /* Malafaia - JAIR MESSIAS BOLSONARO.mp3 in Resources */,
+				D92AD1B928833150001CBCDF /* Temer - Repito.mp3 in Resources */,
 				D975FFFB2880B4F20035E6F2 /* Choque de Cultura - Nem existe isso, ce ta inventando palavra.mp3 in Resources */,
 				D975FEDC2880B4F20035E6F2 /* Bolsonaro - Lamento, quer que eu faca o que.mp3 in Resources */,
 				D975FE222880B4F20035E6F2 /* Bolsonaro - Esposa, ne, tem que aguentar, mas ta tudo bem.mp3 in Resources */,
@@ -3149,6 +3211,7 @@
 				D975FF372880B4F20035E6F2 /* Lula - Nao siga nenhuma decisao imbecil do presidente da republica.mp3 in Resources */,
 				D975FF422880B4F20035E6F2 /* Nao sei meme short exaltado.mp3 in Resources */,
 				D975FFC02880B4F20035E6F2 /* Choque de Cultura - Julinho Foda-se.mp3 in Resources */,
+				D92AD1B728832EB1001CBCDF /* ConservaTalk - Abraham Weintraub - Ta errado.mp3 in Resources */,
 				D975FE972880B4F20035E6F2 /* Alexandre Frota - Tai o.mp3 in Resources */,
 				D975FE372880B4F20035E6F2 /* Fudeu meme short.mp3 in Resources */,
 				D975FF532880B4F20035E6F2 /* Damares - Uau.mp3 in Resources */,
@@ -3162,6 +3225,7 @@
 				D975FF3C2880B4F20035E6F2 /* Cecilia Oliveira - Entao assim a gente ta fodido.mp3 in Resources */,
 				D975FFFD2880B4F20035E6F2 /* COMUNISTA DO INFERNO meme.mp3 in Resources */,
 				D975FFE82880B4F20035E6F2 /* Lasier Martins - Choque.mp3 in Resources */,
+				D92AD1AD28832C80001CBCDF /* PETIT JOURNAL - Tanguy Baghdadi - Ele leu errado.mp3 in Resources */,
 				D97500202880B4F20035E6F2 /* Choque de cultura - Rogerinho - Nao vamos falar de porno aqui nao.mp3 in Resources */,
 				D975FE162880B4F20035E6F2 /* Esse Menino - Vai responder nao, puta.mp3 in Resources */,
 				D975FF9B2880B4F20035E6F2 /* UOL - Pazuello - No dia D, na hora H.mp3 in Resources */,
@@ -3204,6 +3268,7 @@
 				D975003A2880B4F20035E6F2 /* METEORO BRASIL - Antonio Tabet - Pretos, gays, lesbicas, trans tem familias e fazem familias.mp3 in Resources */,
 				D975FF602880B4F20035E6F2 /* RADIO BANDNEWS FM - Boechat - Nao significa absolutamente nada.mp3 in Resources */,
 				D975FE542880B4F20035E6F2 /* Sheldon - Oh Really short.mp3 in Resources */,
+				D92AD1C52883434C001CBCDF /* Bolsonaro - E uma canalhice o que voces fazem.mp3 in Resources */,
 				D975FF6B2880B4F20035E6F2 /* Maluf - Nao lhe dou o aparte.mp3 in Resources */,
 				D97500392880B4F20035E6F2 /* ATILA IAMARINO - E vao empilhar sequela em cima de sequela.mp3 in Resources */,
 				D975FFF52880B4F20035E6F2 /* CHOQUE DE CULTURA - Renan - Acho que deu uma pesada no clima do programa ai.mp3 in Resources */,
@@ -3220,6 +3285,7 @@
 				D97500422880B4F20035E6F2 /* Bolsonaro - Faz politicalha.mp3 in Resources */,
 				D975FFD22880B4F20035E6F2 /* Michael Jackson - Dont Stop Till You Get Enough Andre Marques short.mp3 in Resources */,
 				D975FE8D2880B4F20035E6F2 /* Away - Bom dia, boa tarde, boa noite... por enquanto.mp3 in Resources */,
+				D92AD1BD28833D9F001CBCDF /* Ricardo Boechat - O, Malafaia, vai procurar uma rola, vai.mp3 in Resources */,
 				D975FF772880B4F20035E6F2 /* Vai Dar Namoro - Ele gosta.mp3 in Resources */,
 				D975FF442880B4F20035E6F2 /* Lado B do Rio - Esse cara fica reclamando do mimimi mas ele e o mimizento.mp3 in Resources */,
 				D975FEA12880B4F20035E6F2 /* Caetano Veloso - Isso ai que voce disse e tudo burrice.mp3 in Resources */,
@@ -3234,6 +3300,7 @@
 				D975FE6F2880B4F20035E6F2 /* Bolsonaro - Tudo pequenininho ai.mp3 in Resources */,
 				D975FF4B2880B4F20035E6F2 /* Michel Temer - Eu nao tenho medo dos fatos short meme.mp3 in Resources */,
 				D975FE8E2880B4F20035E6F2 /* Regina Duarte - Pum.mp3 in Resources */,
+				D92AD1C32883407D001CBCDF /* Ricardo Boechat - Voce e um charlatao cara.mp3 in Resources */,
 				D975FE462880B4F20035E6F2 /* PODER360 - Paulo Guedes - Tem mais iPhones no Brasil que populacao brasileiros tem 2 iphones.mp3 in Resources */,
 				D975000D2880B4F20035E6F2 /* EMICIDA no loolapalooza - Tira o titulo e bolsonaro vai tomar no cu.mp3 in Resources */,
 				D975FFED2880B4F20035E6F2 /* Datena - Me pareceu uma grande marmelada.mp3 in Resources */,
@@ -3269,6 +3336,7 @@
 				D975FFFA2880B4F20035E6F2 /* Vai Dar Namoro - Demais.mp3 in Resources */,
 				D97500072880B4F20035E6F2 /* REDETV - Jair Bolsonaro - Eu pretendo participar de debates, nao participei na ultima porque estava em convalescencia.mp3 in Resources */,
 				D975FF392880B4F20035E6F2 /* PORTA DOS FUNDOS - BALBURDIA - Bom dia, turma, todo mundo tirando a roupa e dedo no cu do colega do lado.mp3 in Resources */,
+				D92AD1B328832E07001CBCDF /* Casimiro - Quer jogar luz pra falar que ta errado ja ta errado nao precisa jogar luz tem que jogar na merda.mp3 in Resources */,
 				D975FE812880B4F20035E6F2 /* UOL - Otoni de Paula - Eu nao vou recuar um milimetro.mp3 in Resources */,
 				D975FE4B2880B4F20035E6F2 /* Fã do Armandinho - E um poeta ne meu, bah.mp3 in Resources */,
 				D975FFEC2880B4F20035E6F2 /* Calma Que Piora.mp3 in Resources */,

@@ -134,10 +134,52 @@ struct SoundsView: View {
                         }
                     }
                 }
-            }
-            .navigationTitle(Text(title))
-            .navigationBarItems(leading:
-                HStack {
+                .navigationTitle(Text(LocalizableStrings.MainView.title))
+                .navigationBarItems(leading:
+                    HStack {
+                        Menu {
+                            Section {
+                                Picker(selection: $currentMode, label: Text("Exibição")) {
+                                    HStack {
+                                        Text("Todos os sons")
+                                        Image(systemName: "speaker.wave.3.fill")
+                                    }
+                                    .tag(Mode.allSounds)
+                                    
+                                    HStack {
+                                        Text("Favoritos")
+                                        Image(systemName: "star.fill")
+                                    }
+                                    .tag(Mode.favorites)
+                                    
+                                    HStack {
+                                        Text("Agrupados por autor")
+                                        Image(systemName: "person.fill")
+                                    }
+                                    .tag(Mode.byAuthor)
+                                }
+                            }
+                        } label: {
+                            HStack {
+                                Text(dropDownText)
+                                Image(systemName: "chevron.down")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 15)
+                            }
+                        }
+                        .onChange(of: currentMode) { newValue in
+                            guard newValue != .byAuthor else {
+                                return
+                            }
+                            viewModel.reloadList(withSounds: soundData,
+                                                 andFavorites: try? database.getAllFavorites(),
+                                                 allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+                                                 favoritesOnly: newValue == .favorites,
+                                                 sortedBy: ContentSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
+                        }
+                    }
+                , trailing:
                     Menu {
                         Section {
                             Picker(selection: $currentMode, label: Text("Exibição")) {
