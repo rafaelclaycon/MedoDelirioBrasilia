@@ -131,6 +131,9 @@ struct AuthorDetailView: View {
             .confirmationDialog(Shared.pickAMailApp, isPresented: $viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog, titleVisibility: .visible) {
                 Mailman.getMailClientOptions(subject: Shared.issueSuggestionEmailSubject, body: Shared.issueSuggestionEmailBody)
             }
+            .sheet(isPresented: $viewModel.isShowingShareSheet) {
+                viewModel.iPadShareSheet
+            }
             
             if shouldDisplayAddedToFolderToast {
                 VStack {
