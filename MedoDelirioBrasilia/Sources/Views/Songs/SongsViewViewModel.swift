@@ -1,13 +1,20 @@
 import Combine
+import SwiftUI
 import UIKit
 
 class SongsViewViewModel: ObservableObject {
     
     @Published var songs = [Song]()
+    
     @Published var sortOption: Int = 0
     @Published var nowPlayingKeeper = Set<String>()
     
     @Published var currentActivity: NSUserActivity? = nil
+    
+    // Sharing
+    @Published var iPadShareSheet = ActivityViewController(activityItems: [URL(string: "https://www.apple.com")!])
+    @Published var isShowingShareSheet: Bool = false
+    @Published var shouldDisplaySharedSuccessfullyToast: Bool = false
     
     func reloadList() {
         if UserSettings.getShowOffensiveSounds() {
@@ -44,29 +51,63 @@ class SongsViewViewModel: ObservableObject {
     }
 
     func shareSong(withPath filepath: String, andContentId contentId: String) {
-        guard filepath.isEmpty == false else {
-            return
-        }
-        
-        guard let path = Bundle.main.path(forResource: filepath, ofType: nil) else {
-            return
-        }
-        let url = URL(fileURLWithPath: path)
-        
-        let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
-        DispatchQueue.main.async {
-            UIApplication.shared.keyWindow?.rootViewController?.present(activityVC, animated: true, completion: nil)
-        }
-        activityVC.completionWithItemsHandler = { activity, completed, items, error in
-            if completed {
-                guard let activity = activity else {
-                    return
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            do {
+                try Sharer.shareSound(withPath: filepath, andContentId: contentId) { didShareSuccessfully in
+                    if didShareSuccessfully {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                            withAnimation {
+                                self.shouldDisplaySharedSuccessfullyToast = true
+                            }
+                            TapticFeedback.success()
+                        }
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            withAnimation {
+                                self.shouldDisplaySharedSuccessfullyToast = false
+                            }
+                        }
+                    }
                 }
-                let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
-                Logger.logSharedSong(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
-                
-                AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
+            } catch {
+                print("Unable to get song.")
             }
+        } else {
+            guard filepath.isEmpty == false else {
+                return
+            }
+            
+            guard let path = Bundle.main.path(forResource: filepath, ofType: nil) else {
+                return print("Unable to get song.")
+            }
+            let url = URL(fileURLWithPath: path)
+            
+            iPadShareSheet = ActivityViewController(activityItems: [url]) { activity, completed, items, error in
+                if completed {
+                    guard let activity = activity else {
+                        return
+                    }
+                    let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
+                    Logger.logSharedSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
+                    
+                    AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                        withAnimation {
+                            self.shouldDisplaySharedSuccessfullyToast = true
+                        }
+                        TapticFeedback.success()
+                    }
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        withAnimation {
+                            self.shouldDisplaySharedSuccessfullyToast = false
+                        }
+                    }
+                }
+            }
+            
+            isShowingShareSheet = true
         }
     }
     
