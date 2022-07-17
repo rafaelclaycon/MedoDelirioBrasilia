@@ -21,6 +21,7 @@ struct Shared {
     static let soundNotFoundAlertTitle = "Som Indisponível"
     static let soundNotFoundAlertMessage = "Devido a um problema técnico, o som que você quer acessar não está disponível."
     static let soundSharedSuccessfullyMessage = "Som compartilhado com sucesso."
+    static let songSharedSuccessfullyMessage = "Música compartilhada com sucesso."
     
     static let unknownAuthor = "Desconhecido"
     

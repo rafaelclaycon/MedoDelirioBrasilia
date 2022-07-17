@@ -204,19 +204,19 @@ struct SoundsView: View {
                             Picker(selection: $currentMode, label: Text("Exibição")) {
                                 HStack {
                                     Text("Todos os sons")
-                                    Image(systemName: "speaker.wave.3.fill")
+                                    Image(systemName: "speaker.wave.3")
                                 }
                                 .tag(Mode.allSounds)
                                 
                                 HStack {
                                     Text("Favoritos")
-                                    Image(systemName: "star.fill")
+                                    Image(systemName: "star")
                                 }
                                 .tag(Mode.favorites)
                                 
                                 HStack {
                                     Text("Agrupados por autor")
-                                    Image(systemName: "person.fill")
+                                    Image(systemName: "person")
                                 }
                                 .tag(Mode.byAuthor)
                             }
@@ -247,13 +247,13 @@ struct SoundsView: View {
                         Picker(selection: $viewModel.sortOption, label: Text("Ordenação")) {
                             HStack {
                                 Text("Ordenar por Título")
-                                Image(systemName: "a.circle.fill")
+                                Image(systemName: "a.circle")
                             }
                             .tag(0)
                             
                             HStack {
                                 Text("Ordenar por Nome do Autor")
-                                Image(systemName: "person.fill")
+                                Image(systemName: "person")
                             }
                             .tag(1)
                             
@@ -314,11 +314,14 @@ struct SoundsView: View {
             .sheet(isPresented: $showingAddToFolderModal) {
                 AddToFolderView(isBeingShown: $showingAddToFolderModal, hadSuccess: $hadSuccessAddingToFolder, folderName: $folderName, selectedSoundName: viewModel.soundForConfirmationDialog!.title, selectedSoundId: viewModel.soundForConfirmationDialog!.id)
             }
-//            .onChange(of: viewModel.showConfirmationDialog) { show in
-//                if show {
-//                    TapticFeedback.open()
-//                }
-//            }
+            .sheet(isPresented: $viewModel.isShowingShareSheet) {
+                viewModel.iPadShareSheet
+            }
+            // .onChange(of: viewModel.showConfirmationDialog) { show in
+            //     if show {
+            //         TapticFeedback.open()
+            //     }
+            // }
             
             if shouldDisplayAddedToFolderToast {
                 VStack {

@@ -11,10 +11,21 @@ struct AuthorDetailView: View {
     @State private var folderName: String? = nil
     @State private var shouldDisplayAddedToFolderToast: Bool = false
     
-    let columns = [
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
+    private var columns: [GridItem] {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            return [
+                GridItem(.flexible()),
+                GridItem(.flexible())
+            ]
+        } else {
+            return [
+                GridItem(.flexible()),
+                GridItem(.flexible()),
+                GridItem(.flexible()),
+                GridItem(.flexible())
+            ]
+        }
+    }
     
     var body: some View {
         ZStack {
@@ -24,9 +35,10 @@ struct AuthorDetailView: View {
                         .padding(.horizontal, 25)
                 } else {
                     ScrollView {
-                        LazyVGrid(columns: columns, spacing: 14) {
+                        LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
                             ForEach(viewModel.sounds) { sound in
                                 SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", favorites: $viewModel.favoritesKeeper)
+                                    .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                                     .onTapGesture {
                                         viewModel.playSound(fromPath: sound.filename)
                                     }
@@ -130,6 +142,9 @@ struct AuthorDetailView: View {
             }
             .confirmationDialog(Shared.pickAMailApp, isPresented: $viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog, titleVisibility: .visible) {
                 Mailman.getMailClientOptions(subject: Shared.issueSuggestionEmailSubject, body: Shared.issueSuggestionEmailBody)
+            }
+            .sheet(isPresented: $viewModel.isShowingShareSheet) {
+                viewModel.iPadShareSheet
             }
             
             if shouldDisplayAddedToFolderToast {

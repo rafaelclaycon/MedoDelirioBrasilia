@@ -11,14 +11,14 @@ struct SidebarView: View {
                 tag: Screen.sounds,
                 selection: $state,
                 label: {
-                    Label("Sons", systemImage: "speaker.wave.3.fill")
+                    Label("Sons", systemImage: "speaker.wave.3")
                 })
             NavigationLink(
                 destination: CollectionsView(),
                 tag: Screen.collections,
                 selection: $state,
                 label: {
-                    Label("Coleções", systemImage: "rectangle.grid.2x2.fill")
+                    Label("Coleções", systemImage: "rectangle.grid.2x2")
                 })
             NavigationLink(
                 destination: SongsView(),
@@ -39,7 +39,7 @@ struct SidebarView: View {
                 tag: Screen.settings,
                 selection: $state,
                 label: {
-                    Label("Ajustes", systemImage: "gearshape.fill")
+                    Label("Ajustes", systemImage: "gearshape")
                 })
         }
         .listStyle(SidebarListStyle())

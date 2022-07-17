@@ -13,6 +13,8 @@ class AuthorDetailViewViewModel: ObservableObject {
     @Published var showEmailAppPicker_soundUnavailableConfirmationDialog = false
     
     // Sharing
+    @Published var iPadShareSheet = ActivityViewController(activityItems: [URL(string: "https://www.apple.com")!])
+    @Published var isShowingShareSheet: Bool = false
     @Published var shouldDisplaySharedSuccessfullyToast: Bool = false
     
     // Alerts
@@ -74,9 +76,47 @@ class AuthorDetailViewViewModel: ObservableObject {
     }
 
     func shareSound(withPath filepath: String, andContentId contentId: String) {
-        do {
-            try Sharer.shareSound(withPath: filepath, andContentId: contentId) { didShareSuccessfully in
-                if didShareSuccessfully {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            do {
+                try Sharer.shareSound(withPath: filepath, andContentId: contentId) { didShareSuccessfully in
+                    if didShareSuccessfully {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                            withAnimation {
+                                self.shouldDisplaySharedSuccessfullyToast = true
+                            }
+                            TapticFeedback.success()
+                        }
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            withAnimation {
+                                self.shouldDisplaySharedSuccessfullyToast = false
+                            }
+                        }
+                    }
+                }
+            } catch {
+                showUnableToGetSoundAlert()
+            }
+        } else {
+            guard filepath.isEmpty == false else {
+                return
+            }
+            
+            guard let path = Bundle.main.path(forResource: filepath, ofType: nil) else {
+                return showUnableToGetSoundAlert()
+            }
+            let url = URL(fileURLWithPath: path)
+            
+            iPadShareSheet = ActivityViewController(activityItems: [url]) { activity, completed, items, error in
+                if completed {
+                    guard let activity = activity else {
+                        return
+                    }
+                    let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
+                    Logger.logSharedSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
+                    
+                    AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
+                    
                     DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
                         withAnimation {
                             self.shouldDisplaySharedSuccessfullyToast = true
@@ -91,8 +131,8 @@ class AuthorDetailViewViewModel: ObservableObject {
                     }
                 }
             }
-        } catch {
-            showUnableToGetSoundAlert()
+            
+            isShowingShareSheet = true
         }
     }
     
