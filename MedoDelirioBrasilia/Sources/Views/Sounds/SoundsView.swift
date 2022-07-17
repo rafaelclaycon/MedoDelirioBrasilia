@@ -316,6 +316,9 @@ struct SoundsView: View {
             .sheet(isPresented: $showingAddToFolderModal) {
                 AddToFolderView(isBeingShown: $showingAddToFolderModal, hadSuccess: $hadSuccessAddingToFolder, folderName: $folderName, selectedSoundName: viewModel.soundForConfirmationDialog!.title, selectedSoundId: viewModel.soundForConfirmationDialog!.id)
             }
+            .sheet(isPresented: $viewModel.isShowingShareSheet) {
+                viewModel.iPadShareSheet
+            }
             .onChange(of: viewModel.showConfirmationDialog) { show in
                 if show {
                     TapticFeedback.open()
