@@ -6,9 +6,18 @@ struct SongsView: View {
     @State private var searchText = ""
     @State private var searchBar: UISearchBar?
     
-    let columns = [
-        GridItem(.flexible())
-    ]
+    private var columns: [GridItem] {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            return [
+                GridItem(.flexible())
+            ]
+        } else {
+            return [
+                GridItem(.flexible()),
+                GridItem(.flexible())
+            ]
+        }
+    }
     
     var searchResults: [Song] {
         if searchText.isEmpty {
@@ -22,7 +31,7 @@ struct SongsView: View {
     }
 
     var body: some View {
-        NavigationView {
+        ZStack {
             VStack {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 14) {
@@ -75,6 +84,19 @@ struct SongsView: View {
             .onDisappear {
                 player?.cancel()
                 viewModel.nowPlayingKeeper.removeAll()
+            }
+            .sheet(isPresented: $viewModel.isShowingShareSheet) {
+                viewModel.iPadShareSheet
+            }
+            
+            if viewModel.shouldDisplaySharedSuccessfullyToast {
+                VStack {
+                    Spacer()
+                    
+                    ToastView(text: Shared.songSharedSuccessfullyMessage)
+                        .padding()
+                }
+                .transition(.moveAndFade)
             }
         }
     }

@@ -23,7 +23,7 @@ class TrendsViewViewModel: ObservableObject {
     }
     
     func donateActivity() {
-        self.currentActivity = UserActivityWaiter.getDonatableActivity(withType: Shared.viewTrendsActivityTypeName, andTitle: "Ver Tendências")
+        self.currentActivity = UserActivityWaiter.getDonatableActivity(withType: Shared.ActivityTypes.viewTrends, andTitle: "Ver Tendências")
         self.currentActivity?.becomeCurrent()
     }
 

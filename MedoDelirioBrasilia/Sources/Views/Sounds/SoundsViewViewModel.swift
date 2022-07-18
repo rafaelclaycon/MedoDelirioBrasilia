@@ -1,6 +1,5 @@
 import Combine
 import SwiftUI
-import StoreKit
 
 class SoundsViewViewModel: ObservableObject {
 
@@ -8,18 +7,22 @@ class SoundsViewViewModel: ObservableObject {
     
     @Published var sortOption: Int = 0
     @Published var favoritesKeeper = Set<String>()
-    @Published var showConfirmationDialog = false
-    @Published var soundForConfirmationDialog: Sound? = nil
+    @Published var showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = false
+    @Published var showEmailAppPicker_soundUnavailableConfirmationDialog = false
+    @Published var selectedSound: Sound? = nil
     
     @Published var currentActivity: NSUserActivity? = nil
     
     // Sharing
+    @Published var iPadShareSheet = ActivityViewController(activityItems: [URL(string: "https://www.apple.com")!])
+    @Published var isShowingShareSheet: Bool = false
     @Published var shouldDisplaySharedSuccessfullyToast: Bool = false
     
     // Alerts
     @Published var alertTitle: String = ""
     @Published var alertMessage: String = ""
     @Published var showAlert: Bool = false
+    @Published var alertType: AlertType = .singleOption
     
     func reloadList(withSounds allSounds: [Sound],
                     andFavorites favorites: [Favorite]?,
@@ -99,9 +102,47 @@ class SoundsViewViewModel: ObservableObject {
     }
 
     func shareSound(withPath filepath: String, andContentId contentId: String) {
-        do {
-            try Sharer.shareSound(withPath: filepath, andContentId: contentId) { didShareSuccessfully in
-                if didShareSuccessfully {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            do {
+                try Sharer.shareSound(withPath: filepath, andContentId: contentId) { didShareSuccessfully in
+                    if didShareSuccessfully {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                            withAnimation {
+                                self.shouldDisplaySharedSuccessfullyToast = true
+                            }
+                            TapticFeedback.success()
+                        }
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            withAnimation {
+                                self.shouldDisplaySharedSuccessfullyToast = false
+                            }
+                        }
+                    }
+                }
+            } catch {
+                showUnableToGetSoundAlert()
+            }
+        } else {
+            guard filepath.isEmpty == false else {
+                return
+            }
+            
+            guard let path = Bundle.main.path(forResource: filepath, ofType: nil) else {
+                return showUnableToGetSoundAlert()
+            }
+            let url = URL(fileURLWithPath: path)
+            
+            iPadShareSheet = ActivityViewController(activityItems: [url]) { activity, completed, items, error in
+                if completed {
+                    guard let activity = activity else {
+                        return
+                    }
+                    let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
+                    Logger.logSharedSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
+                    
+                    AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
+                    
                     DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
                         withAnimation {
                             self.shouldDisplaySharedSuccessfullyToast = true
@@ -116,8 +157,8 @@ class SoundsViewViewModel: ObservableObject {
                     }
                 }
             }
-        } catch {
-            showUnableToGetSoundAlert()
+            
+            isShowingShareSheet = true
         }
     }
     
@@ -141,22 +182,10 @@ class SoundsViewViewModel: ObservableObject {
         }
     }
     
-    func isSelectedSoundAlreadyAFavorite() -> Bool {
-        guard let soundId = soundForConfirmationDialog?.id else {
-            return false
-        }
-        return favoritesKeeper.contains(soundId)
-    }
-    
-    func getFavoriteButtonTitle() -> String {
-        let emoji = Shared.removeFromFavoritesEmojis.randomElement() ?? ""
-        return isSelectedSoundAlreadyAFavorite() ? "\(emoji)  Remover dos Favoritos" : "⭐️  Adicionar aos Favoritos"
-    }
-    
     // MARK: - Other
     
     func donateActivity() {
-        self.currentActivity = UserActivityWaiter.getDonatableActivity(withType: Shared.playAndShareSoundsActivityTypeName, andTitle: "Tocar e compartilhar sons")
+        self.currentActivity = UserActivityWaiter.getDonatableActivity(withType: Shared.ActivityTypes.playAndShareSounds, andTitle: "Tocar e compartilhar sons")
         self.currentActivity?.becomeCurrent()
     }
     
@@ -209,6 +238,7 @@ class SoundsViewViewModel: ObservableObject {
     
     func showUnableToGetSoundAlert() {
         TapticFeedback.error()
+        alertType = .twoOptions
         alertTitle = Shared.soundNotFoundAlertTitle
         alertMessage = Shared.soundNotFoundAlertMessage
         showAlert = true
@@ -216,6 +246,7 @@ class SoundsViewViewModel: ObservableObject {
     
     func showNoFoldersAlert() {
         TapticFeedback.error()
+        alertType = .singleOption
         alertTitle = "Não Existem Pastas"
         alertMessage = "Para continuar, crie uma pasta de sons na aba Coleções > Minhas Pastas."
         showAlert = true
