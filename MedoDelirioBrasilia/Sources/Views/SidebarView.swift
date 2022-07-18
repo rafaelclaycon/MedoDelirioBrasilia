@@ -7,11 +7,25 @@ struct SidebarView: View {
     var body: some View {
         List {
             NavigationLink(
-                destination: SoundsView(),
-                tag: Screen.sounds,
+                destination: SoundsView(currentMode: .allSounds),
+                tag: Screen.allSounds,
                 selection: $state,
                 label: {
-                    Label("Sons", systemImage: "speaker.wave.3")
+                    Label("Todos os Sons", systemImage: "speaker.wave.2")
+                })
+            NavigationLink(
+                destination: SoundsView(currentMode: .favorites),
+                tag: Screen.favorites,
+                selection: $state,
+                label: {
+                    Label("Favoritos", systemImage: "star")
+                })
+            NavigationLink(
+                destination: SoundsView(currentMode: .byAuthor),
+                tag: Screen.groupedByAuthor,
+                selection: $state,
+                label: {
+                    Label("Agrupados por Autor", systemImage: "person")
                 })
             NavigationLink(
                 destination: CollectionsView(),
@@ -41,6 +55,35 @@ struct SidebarView: View {
                 label: {
                     Label("Ajustes", systemImage: "gearshape")
                 })
+            
+            Section("Minhas Pastas") {
+                NavigationLink(
+                    destination: SettingsView(),
+                    tag: Screen.allFolders,
+                    selection: $state,
+                    label: {
+                        Label("Todas as Pastas", systemImage: "folder")
+                    })
+                
+                NavigationLink(
+                    destination: SettingsView(),
+                    tag: Screen.allFolders,
+                    selection: $state,
+                    label: {
+                        HStack(spacing: 15) {
+                            SidebarFolderIcon(symbol: "🤑", backgroundColor: .pastelBrightGreen)
+                            Text("Grupo da Adm")
+                        }
+                    })
+                
+                Button {
+                    //
+                } label: {
+                    Label("Nova Pasta", systemImage: "plus")
+                        .foregroundColor(.accentColor)
+                }
+
+            }
         }
         .listStyle(SidebarListStyle())
         .navigationTitle(LocalizableStrings.MainView.title)
@@ -51,7 +94,7 @@ struct SidebarView: View {
 struct SidebarView_Previews: PreviewProvider {
 
     static var previews: some View {
-        SidebarView(state: .constant(.sounds))
+        SidebarView(state: .constant(.allSounds))
     }
 
 }

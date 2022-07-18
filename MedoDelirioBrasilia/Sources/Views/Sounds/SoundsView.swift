@@ -7,7 +7,7 @@ struct SoundsView: View {
     }
     
     @StateObject private var viewModel = SoundsViewViewModel()
-    @State private var currentMode: Mode = .allSounds
+    @State var currentMode: Mode
     @State private var searchText = ""
     @State private var scrollViewObject: ScrollViewProxy? = nil
     
@@ -248,6 +248,7 @@ struct SoundsView: View {
                                              sortedBy: ContentSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
                     }
                 }
+                .disabled(UIDevice.current.userInterfaceIdiom == .pad || UIDevice.current.userInterfaceIdiom == .mac)
             , trailing:
                 Menu {
                     Section {
@@ -352,7 +353,7 @@ struct SoundsView: View {
 struct SoundsView_Previews: PreviewProvider {
 
     static var previews: some View {
-        SoundsView()
+        SoundsView(currentMode: .allSounds)
     }
 
 }
