@@ -140,12 +140,11 @@ struct AuthorDetailView: View {
             .sheet(isPresented: $showingAddToFolderModal) {
                 AddToFolderView(isBeingShown: $showingAddToFolderModal, hadSuccess: $hadSuccessAddingToFolder, folderName: $folderName, selectedSoundName: viewModel.selectedSound!.title, selectedSoundId: viewModel.selectedSound!.id)
             }
-            .confirmationDialog(Shared.pickAMailApp, isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog, titleVisibility: .visible) {
-                Mailman.getMailClientOptions(subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.selectedSound?.title ?? ""),
-                                             body: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.selectedSound?.authorName ?? "", viewModel.selectedSound?.id ?? ""))
+            .sheet(isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog) {
+                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog, subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.selectedSound?.title ?? ""), emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.selectedSound?.authorName ?? "", viewModel.selectedSound?.id ?? ""))
             }
-            .confirmationDialog(Shared.pickAMailApp, isPresented: $viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog, titleVisibility: .visible) {
-                Mailman.getMailClientOptions(subject: Shared.issueSuggestionEmailSubject, body: Shared.issueSuggestionEmailBody)
+            .sheet(isPresented: $viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog) {
+                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog, subject: Shared.issueSuggestionEmailSubject, emailBody: Shared.issueSuggestionEmailBody)
             }
             .sheet(isPresented: $viewModel.isShowingShareSheet) {
                 viewModel.iPadShareSheet

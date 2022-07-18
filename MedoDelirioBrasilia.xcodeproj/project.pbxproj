@@ -702,6 +702,7 @@
 		D975FFFF2880B4F20035E6F2 /* Bolsonaro - Polemizar esse assunto.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FDC82880B4F00035E6F2 /* Bolsonaro - Polemizar esse assunto.mp3 */; };
 		D976FF3828674BAC00998E1B /* FoldersBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D976FF3728674BAC00998E1B /* FoldersBannerView.swift */; };
 		D97D76F92885B1BD005210D9 /* SidebarFolderIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97D76F82885B1BD005210D9 /* SidebarFolderIcon.swift */; };
+		D97D76FB2885B794005210D9 /* EmailAppPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97D76FA2885B794005210D9 /* EmailAppPickerView.swift */; };
 		D980455C28380EFE003B2E83 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D980455E28380EFE003B2E83 /* Localizable.strings */; };
 		D980456228380F66003B2E83 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D980456128380F66003B2E83 /* LocalizableStrings.swift */; };
 		D98622E0283FC57100E9F630 /* AuthorDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98622DF283FC57100E9F630 /* AuthorDetailView.swift */; };
@@ -1479,6 +1480,7 @@
 		D975FE0E2880B4F20035E6F2 /* O CARA DA LUVA DE PEDREIRO - receba carai caralho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O CARA DA LUVA DE PEDREIRO - receba carai caralho.mp3"; sourceTree = "<group>"; };
 		D976FF3728674BAC00998E1B /* FoldersBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersBannerView.swift; sourceTree = "<group>"; };
 		D97D76F82885B1BD005210D9 /* SidebarFolderIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarFolderIcon.swift; sourceTree = "<group>"; };
+		D97D76FA2885B794005210D9 /* EmailAppPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAppPickerView.swift; sourceTree = "<group>"; };
 		D980455D28380EFE003B2E83 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D980455F28380F05003B2E83 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D980456128380F66003B2E83 /* LocalizableStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
@@ -2451,6 +2453,7 @@
 				D93CCB78286A8A220002CF81 /* ToastView.swift */,
 				D9253B672873B68B00D138FB /* FoldersAreTagsBannerView.swift */,
 				D933251D28835E41004EFACB /* ActivityViewController.swift */,
+				D97D76FA2885B794005210D9 /* EmailAppPickerView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -3411,6 +3414,7 @@
 				D93CCB79286A8A220002CF81 /* ToastView.swift in Sources */,
 				D958BC752869000A000B2EDA /* FolderInfoEditingViewViewModel.swift in Sources */,
 				D976FF3828674BAC00998E1B /* FoldersBannerView.swift in Sources */,
+				D97D76FB2885B794005210D9 /* EmailAppPickerView.swift in Sources */,
 				D9A8AB2A28544FAE00B5A94B /* NetworkCallLog.swift in Sources */,
 				D99B9DCA2848148600897930 /* ServerStatsAndLogs.swift in Sources */,
 				D9758C3828616E650094D388 /* FolderColor.swift in Sources */,
