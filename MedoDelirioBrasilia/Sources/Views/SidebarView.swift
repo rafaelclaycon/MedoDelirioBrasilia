@@ -59,7 +59,7 @@ struct SidebarView: View {
             
             Section("Minhas Pastas") {
                 NavigationLink(
-                    destination: SettingsView(),
+                    destination: AllFoldersView(),
                     tag: Screen.allFolders,
                     selection: $state,
                     label: {
@@ -68,7 +68,7 @@ struct SidebarView: View {
                 
                 NavigationLink(
                     destination: SettingsView(),
-                    tag: Screen.allFolders,
+                    tag: Screen.settings,
                     selection: $state,
                     label: {
                         HStack(spacing: 15) {
