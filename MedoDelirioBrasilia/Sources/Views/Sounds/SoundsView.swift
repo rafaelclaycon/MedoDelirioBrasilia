@@ -103,15 +103,15 @@ struct SoundsView: View {
                                         }
                                         .contextMenu(menuItems: {
                                             Section {
-                                                Button(action: {
+                                                Button {
                                                     viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
-                                                }, label: {
+                                                } label: {
                                                     Label(Shared.shareButtonText, systemImage: "square.and.arrow.up")
-                                                })
+                                                }
                                             }
                                             
                                             Section {
-                                                Button(action: {
+                                                Button {
                                                     if viewModel.favoritesKeeper.contains(sound.id) {
                                                         viewModel.removeFromFavorites(soundId: sound.id)
                                                         if currentMode == .favorites {
@@ -124,20 +124,20 @@ struct SoundsView: View {
                                                     } else {
                                                         viewModel.addToFavorites(soundId: sound.id)
                                                     }
-                                                }, label: {
+                                                } label: {
                                                     Label(viewModel.favoritesKeeper.contains(sound.id) ? "Remover dos Favoritos" : "Adicionar aos Favoritos", systemImage: viewModel.favoritesKeeper.contains(sound.id) ? "star.slash" : "star")
-                                                })
+                                                }
                                                 
-                                                Button(action: {
+                                                Button {
                                                     viewModel.selectedSound = sound
                                                     let hasFolders = try? database.hasAnyUserFolder()
                                                     guard hasFolders ?? false else {
                                                         return viewModel.showNoFoldersAlert()
                                                     }
                                                     showingAddToFolderModal = true
-                                                }, label: {
+                                                } label: {
                                                     Label(Shared.addToFolderButtonText, systemImage: "folder.badge.plus")
-                                                })
+                                                }
                                                 .onChange(of: showingAddToFolderModal) { newValue in
                                                     if (newValue == false) && hadSuccessAddingToFolder {
                                                         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
@@ -159,19 +159,19 @@ struct SoundsView: View {
                                             }
                                             
                                             Section {
-                                                Button(action: {
+                                                Button {
                                                     viewModel.selectedSound = sound
                                                     viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = true
-                                                }, label: {
+                                                } label: {
                                                     Label(SoundOptionsHelper.getSuggestOtherAuthorNameButtonTitle(authorId: sound.authorId), systemImage: "exclamationmark.bubble")
-                                                })
+                                                }
                                             }
                                             
-//                                            Button(action: {
+//                                            Button {
 //                                                //
-//                                            }, label: {
+//                                            } label: {
 //                                                Label("Ver Todos os Sons Desse Autor", systemImage: "person")
-//                                            })
+//                                            }
                                         })
                                 }
                             }
@@ -208,7 +208,7 @@ struct SoundsView: View {
                 HStack {
                     Menu {
                         Section {
-                            Picker(selection: $currentMode, label: Text("Exibição")) {
+                            Picker("Exibição", selection: $currentMode) {
                                 HStack {
                                     Text("Todos os Sons")
                                     Image(systemName: "speaker.wave.3")
@@ -251,7 +251,7 @@ struct SoundsView: View {
             , trailing:
                 Menu {
                     Section {
-                        Picker(selection: $viewModel.sortOption, label: Text("Ordenação")) {
+                        Picker("Ordenação", selection: $viewModel.sortOption) {
                             HStack {
                                 Text("Ordenar por Título")
                                 Image(systemName: "a.circle")

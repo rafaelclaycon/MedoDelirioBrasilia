@@ -70,9 +70,9 @@ struct CollectionsView: View {
                         
                         Spacer()
                         
-                        Button(action: {
+                        Button {
                             showingFolderInfoEditingView = true
-                        }) {
+                        } label: {
                             HStack {
                                 Image(systemName: "plus")
                                 Text("Nova Pasta")
@@ -96,10 +96,10 @@ struct CollectionsView: View {
                                 }
                                 .foregroundColor(.primary)
                                 .contextMenu {
-//                                        Button(action: {
+//                                        Button {
 //                                            folderForEditingOnSheet = folder
 //                                            showingFolderInfoEditingView = true
-//                                        }) {
+//                                        } label: {
 //                                            Label("Editar Pasta", systemImage: "pencil")
 //                                        }
                                     

@@ -63,11 +63,9 @@ struct SettingsView: View {
             }
             
             Section("🧑‍💻  Contribua ou entenda como o app funciona") {
-                Button(action: {
+                Button("Ver código fonte no GitHub") {
                     let githubUrl = URL(string: "https://github.com/rafaelclaycon/MedoDelirioBrasilia")!
                     UIApplication.shared.open(githubUrl)
-                }) {
-                    Text("Ver código fonte no GitHub")
                 }
             }
             
