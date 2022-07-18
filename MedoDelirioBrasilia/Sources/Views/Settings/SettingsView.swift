@@ -38,12 +38,12 @@ struct SettingsView: View {
                 }
             }
             
-            Section {
-                PodcastAuthorsView()
-                    .padding(.vertical, 8)
-            }
-            
             if showAskForMoneyView || CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
+                Section {
+                    PodcastAuthorsView()
+                        .padding(.vertical, 8)
+                }
+                
                 Section {
                     BegForMoneyView()
                         .padding(.vertical)
