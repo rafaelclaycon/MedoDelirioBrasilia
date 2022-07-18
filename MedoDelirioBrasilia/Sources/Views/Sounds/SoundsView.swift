@@ -210,7 +210,7 @@ struct SoundsView: View {
                         Section {
                             Picker(selection: $currentMode, label: Text("Exibição")) {
                                 HStack {
-                                    Text("Todos os sons")
+                                    Text("Todos os Sons")
                                     Image(systemName: "speaker.wave.3")
                                 }
                                 .tag(Mode.allSounds)
@@ -222,7 +222,7 @@ struct SoundsView: View {
                                 .tag(Mode.favorites)
                                 
                                 HStack {
-                                    Text("Agrupados por autor")
+                                    Text("Agrupados por Autor")
                                     Image(systemName: "person")
                                 }
                                 .tag(Mode.byAuthor)
