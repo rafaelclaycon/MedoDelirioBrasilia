@@ -139,7 +139,8 @@ struct SoundsView: View {
                                                     guard hasFolders ?? false else {
                                                         return viewModel.showNoFoldersAlert()
                                                     }
-                                                    showingAddToFolderModal = true
+                                                    subviewToOpen = .addToFolderView
+                                                    showingModalView = true
                                                 }, label: {
                                                     Label(Shared.addToFolderButtonText, systemImage: "folder.badge.plus")
                                                 })
@@ -305,7 +306,7 @@ struct SoundsView: View {
                 viewModel.sendDeviceModelNameToServer()
                 viewModel.sendUserPersonalTrendsToServerIfEnabled()
 
-                shouldDisplayFolderBanner = UserSettings.getFolderBannerWasDismissed() == false
+                shouldDisplayFolderBanner = AppPersistentMemory.getFolderBannerWasDismissed() == false
 
                 if AppPersistentMemory.getHasShownNotificationsOnboarding() == false {
                     subviewToOpen = .onboardingView
