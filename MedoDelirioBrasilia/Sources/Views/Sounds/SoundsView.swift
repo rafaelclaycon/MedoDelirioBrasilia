@@ -324,11 +324,6 @@ struct SoundsView: View {
             .sheet(isPresented: $viewModel.isShowingShareSheet) {
                 viewModel.iPadShareSheet
             }
-            // .onChange(of: viewModel.showConfirmationDialog) { show in
-            //     if show {
-            //         TapticFeedback.open()
-            //     }
-            // }
             
             if shouldDisplayAddedToFolderToast {
                 VStack {
