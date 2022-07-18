@@ -6,19 +6,31 @@ struct FolderDetailView: View {
     @State var folder: UserFolder
     @State private var showingFolderInfoEditingView = false
     
-    private let columns = [
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
+    private var columns: [GridItem] {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            return [
+                GridItem(.flexible()),
+                GridItem(.flexible())
+            ]
+        } else {
+            return [
+                GridItem(.flexible()),
+                GridItem(.flexible()),
+                GridItem(.flexible()),
+                GridItem(.flexible())
+            ]
+        }
+    }
     
     var body: some View {
         ZStack {
             VStack {
                 if viewModel.hasSoundsToDisplay {
                     ScrollView {
-                        LazyVGrid(columns: columns, spacing: 14) {
+                        LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
                             ForEach(viewModel.sounds) { sound in
                                 SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", favorites: .constant(Set<String>()))
+                                    .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                                     .onTapGesture {
                                         viewModel.playSound(fromPath: sound.filename)
                                     }
