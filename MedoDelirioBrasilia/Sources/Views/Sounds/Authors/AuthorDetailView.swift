@@ -178,7 +178,7 @@ struct AuthorDetailView: View {
 struct AuthorDetailView_Previews: PreviewProvider {
 
     static var previews: some View {
-        AuthorDetailView(author: Author(id: "A", name: "João"))
+        AuthorDetailView(author: Author(id: "A", name: "João", photo: nil))
     }
 
 }
