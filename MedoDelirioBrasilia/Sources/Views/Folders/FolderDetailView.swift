@@ -103,6 +103,9 @@ struct FolderDetailView: View {
                     }), secondaryButton: .cancel(Text("Cancelar")))
                 }
             }
+            .sheet(isPresented: $viewModel.isShowingShareSheet) {
+                viewModel.iPadShareSheet
+            }
             
             if viewModel.shouldDisplaySharedSuccessfullyToast {
                 VStack {
