@@ -90,8 +90,8 @@ struct SettingsView: View {
                 showAskForMoneyView = result
             }
         }
-        .confirmationDialog(Shared.pickAMailApp, isPresented: $showEmailClientConfirmationDialog, titleVisibility: .visible) {
-            Mailman.getMailClientOptions(subject: Shared.issueSuggestionEmailSubject, body: Shared.issueSuggestionEmailBody)
+        .sheet(isPresented: $showEmailClientConfirmationDialog) {
+            EmailAppPickerView(isBeingShown: $showEmailClientConfirmationDialog, subject: Shared.issueSuggestionEmailSubject, emailBody: Shared.issueSuggestionEmailBody)
         }
     }
 
