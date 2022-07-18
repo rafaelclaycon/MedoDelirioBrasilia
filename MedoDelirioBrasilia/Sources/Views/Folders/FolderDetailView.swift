@@ -34,9 +34,23 @@ struct FolderDetailView: View {
                                     .onTapGesture {
                                         viewModel.playSound(fromPath: sound.filename)
                                     }
-                                    .onLongPressGesture {
-                                        viewModel.soundForConfirmationDialog = sound
-                                        viewModel.showConfirmationDialog = true
+                                    .contextMenu {
+                                        Section {
+                                            Button {
+                                                viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
+                                            } label: {
+                                                Label(Shared.shareButtonText, systemImage: "square.and.arrow.up")
+                                            }
+                                        }
+                                        
+                                        Section {
+                                            Button {
+                                                viewModel.selectedSound = sound
+                                                viewModel.showSoundRemovalConfirmation(soundTitle: sound.title)
+                                            } label: {
+                                                Label("Remover da Pasta", systemImage: "folder.badge.minus")
+                                            }
+                                        }
                                     }
                             }
                         }
@@ -76,37 +90,17 @@ struct FolderDetailView: View {
             .sheet(isPresented: $showingFolderInfoEditingView) {
                 FolderInfoEditingView(isBeingShown: $showingFolderInfoEditingView, symbol: folder.symbol, folderName: folder.name, selectedBackgroundColor: folder.backgroundColor, isEditing: true, folderIdWhenEditing: folder.id)
             }
-            .confirmationDialog("", isPresented: $viewModel.showConfirmationDialog) {
-                Button("📁  Remover da Pasta") {
-                    guard let sound = viewModel.soundForConfirmationDialog else {
-                        return
-                    }
-                    viewModel.showSoundRemovalConfirmation(soundTitle: sound.title)
-                }
-                
-                Button(Shared.shareButtonText) {
-                    guard let sound = viewModel.soundForConfirmationDialog else {
-                        return
-                    }
-                    viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
-                }
-            }
             .alert(isPresented: $viewModel.showAlert) {
                 switch viewModel.alertType {
                 case .singleOption:
                     return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
                 default:
                     return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .destructive(Text("Remover"), action: {
-                        guard let sound = viewModel.soundForConfirmationDialog else {
+                        guard let sound = viewModel.selectedSound else {
                             return
                         }
                         viewModel.removeSoundFromFolder(folderId: folder.id, soundId: sound.id)
                     }), secondaryButton: .cancel(Text("Cancelar")))
-                }
-            }
-            .onChange(of: viewModel.showConfirmationDialog) { show in
-                if show {
-                    TapticFeedback.open()
                 }
             }
             

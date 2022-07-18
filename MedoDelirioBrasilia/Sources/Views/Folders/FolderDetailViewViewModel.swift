@@ -5,8 +5,7 @@ class FolderDetailViewViewModel: ObservableObject {
 
     @Published var sounds = [Sound]()
     @Published var hasSoundsToDisplay: Bool = false
-    @Published var showConfirmationDialog = false
-    @Published var soundForConfirmationDialog: Sound? = nil
+    @Published var selectedSound: Sound? = nil
     
     // Sharing
     @Published var shouldDisplaySharedSuccessfullyToast: Bool = false
