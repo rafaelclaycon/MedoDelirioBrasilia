@@ -6,8 +6,7 @@ class AuthorDetailViewViewModel: ObservableObject {
     @Published var sounds = [Sound]()
     
     @Published var favoritesKeeper = Set<String>()
-    @Published var showConfirmationDialog = false
-    @Published var soundForConfirmationDialog: Sound? = nil
+    @Published var selectedSound: Sound? = nil
     
     @Published var showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = false
     @Published var showEmailAppPicker_soundUnavailableConfirmationDialog = false
@@ -154,18 +153,6 @@ class AuthorDetailViewViewModel: ObservableObject {
         } catch {
             print("Problem removing favorite \(soundId)")
         }
-    }
-    
-    func isSelectedSoundAlreadyAFavorite() -> Bool {
-        guard let soundId = soundForConfirmationDialog?.id else {
-            return false
-        }
-        return favoritesKeeper.contains(soundId)
-    }
-    
-    func getFavoriteButtonTitle() -> String {
-        //let emoji = Shared.removeFromFavoritesEmojis.randomElement() ?? ""
-        return isSelectedSoundAlreadyAFavorite() ? "Remover dos Favoritos" : "Adicionar aos Favoritos"
     }
     
     func getSoundCount() -> String {
