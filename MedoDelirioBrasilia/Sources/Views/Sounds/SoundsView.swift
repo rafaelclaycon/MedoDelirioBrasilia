@@ -104,7 +104,15 @@ struct SoundsView: View {
                                         .contextMenu(menuItems: {
                                             Section {
                                                 Button(action: {
-                                                    if viewModel.isSelectedSoundAlreadyAFavorite() {
+                                                    viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
+                                                }, label: {
+                                                    Label(Shared.shareButtonText, systemImage: "square.and.arrow.up")
+                                                })
+                                            }
+                                            
+                                            Section {
+                                                Button(action: {
+                                                    if viewModel.favoritesKeeper.contains(sound.id) {
                                                         viewModel.removeFromFavorites(soundId: sound.id)
                                                         if currentMode == .favorites {
                                                             viewModel.reloadList(withSounds: soundData,
@@ -117,10 +125,11 @@ struct SoundsView: View {
                                                         viewModel.addToFavorites(soundId: sound.id)
                                                     }
                                                 }, label: {
-                                                    Label(viewModel.getFavoriteButtonTitle(), systemImage: "star")
+                                                    Label(viewModel.favoritesKeeper.contains(sound.id) ? "Remover dos Favoritos" : "Adicionar aos Favoritos", systemImage: viewModel.favoritesKeeper.contains(sound.id) ? "star.slash" : "star")
                                                 })
                                                 
                                                 Button(action: {
+                                                    viewModel.soundForConfirmationDialog = sound
                                                     let hasFolders = try? database.hasAnyUserFolder()
                                                     guard hasFolders ?? false else {
                                                         return viewModel.showNoFoldersAlert()
@@ -163,14 +172,6 @@ struct SoundsView: View {
 //                                            }, label: {
 //                                                Label("Ver Todos os Sons Desse Autor", systemImage: "person")
 //                                            })
-                                            
-                                            Section {
-                                                Button(action: {
-                                                    viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
-                                                }, label: {
-                                                    Label(Shared.shareButtonText, systemImage: "square.and.arrow.up")
-                                                })
-                                            }
                                         })
                                 }
                             }

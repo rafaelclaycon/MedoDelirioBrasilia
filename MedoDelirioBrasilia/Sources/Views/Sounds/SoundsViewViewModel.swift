@@ -183,18 +183,6 @@ class SoundsViewViewModel: ObservableObject {
         }
     }
     
-    func isSelectedSoundAlreadyAFavorite() -> Bool {
-        guard let soundId = soundForConfirmationDialog?.id else {
-            return false
-        }
-        return favoritesKeeper.contains(soundId)
-    }
-    
-    func getFavoriteButtonTitle() -> String {
-        //let emoji = Shared.removeFromFavoritesEmojis.randomElement() ?? ""
-        return isSelectedSoundAlreadyAFavorite() ? "Remover dos Favoritos" : "Adicionar aos Favoritos"
-    }
-    
     // MARK: - Other
     
     func donateActivity() {
