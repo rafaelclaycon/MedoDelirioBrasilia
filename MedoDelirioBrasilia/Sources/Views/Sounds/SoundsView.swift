@@ -129,7 +129,7 @@ struct SoundsView: View {
                                                 })
                                                 
                                                 Button(action: {
-                                                    viewModel.soundForConfirmationDialog = sound
+                                                    viewModel.selectedSound = sound
                                                     let hasFolders = try? database.hasAnyUserFolder()
                                                     guard hasFolders ?? false else {
                                                         return viewModel.showNoFoldersAlert()
@@ -160,7 +160,7 @@ struct SoundsView: View {
                                             
                                             Section {
                                                 Button(action: {
-                                                    viewModel.soundForConfirmationDialog = sound
+                                                    viewModel.selectedSound = sound
                                                     viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = true
                                                 }, label: {
                                                     Label(SoundOptionsHelper.getSuggestOtherAuthorNameButtonTitle(authorId: sound.authorId), systemImage: "exclamationmark.bubble")
@@ -302,8 +302,8 @@ struct SoundsView: View {
                 shouldDisplayFolderBanner = UserSettings.getFolderBannerWasDismissed() == false
             }
             .confirmationDialog(Shared.pickAMailApp, isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog, titleVisibility: .visible) {
-                Mailman.getMailClientOptions(subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.soundForConfirmationDialog?.title ?? ""),
-                                             body: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.soundForConfirmationDialog?.authorName ?? "", viewModel.soundForConfirmationDialog?.id ?? ""))
+                Mailman.getMailClientOptions(subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.selectedSound?.title ?? ""),
+                                             body: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.selectedSound?.authorName ?? "", viewModel.selectedSound?.id ?? ""))
             }
             .confirmationDialog(Shared.pickAMailApp, isPresented: $viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog, titleVisibility: .visible) {
                 Mailman.getMailClientOptions(subject: Shared.issueSuggestionEmailSubject, body: Shared.issueSuggestionEmailBody)
@@ -319,7 +319,7 @@ struct SoundsView: View {
                 }
             }
             .sheet(isPresented: $showingAddToFolderModal) {
-                AddToFolderView(isBeingShown: $showingAddToFolderModal, hadSuccess: $hadSuccessAddingToFolder, folderName: $folderName, selectedSoundName: viewModel.soundForConfirmationDialog!.title, selectedSoundId: viewModel.soundForConfirmationDialog!.id)
+                AddToFolderView(isBeingShown: $showingAddToFolderModal, hadSuccess: $hadSuccessAddingToFolder, folderName: $folderName, selectedSoundName: viewModel.selectedSound!.title, selectedSoundId: viewModel.selectedSound!.id)
             }
             .sheet(isPresented: $viewModel.isShowingShareSheet) {
                 viewModel.iPadShareSheet
