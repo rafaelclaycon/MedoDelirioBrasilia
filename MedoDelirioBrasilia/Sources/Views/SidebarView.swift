@@ -31,15 +31,15 @@ struct SidebarView: View {
                     label: {
                         Label("Por Autor", systemImage: "person")
                     })
+                
+                NavigationLink(
+                    destination: CollectionsView(),
+                    tag: Screen.collections,
+                    selection: $state,
+                    label: {
+                        Label("Coleções", systemImage: "rectangle.grid.2x2")
+                    })
             }
-            
-            NavigationLink(
-                destination: CollectionsView(),
-                tag: Screen.collections,
-                selection: $state,
-                label: {
-                    Label("Coleções", systemImage: "rectangle.grid.2x2")
-                })
             
             NavigationLink(
                 destination: SongsView(),
