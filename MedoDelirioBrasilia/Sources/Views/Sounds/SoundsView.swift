@@ -229,12 +229,16 @@ struct SoundsView: View {
                             }
                         }
                     } label: {
-                        HStack {
-                            Text(dropDownText)
-                            Image(systemName: "chevron.down")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 15)
+                        if UIDevice.current.userInterfaceIdiom == .pad || UIDevice.current.userInterfaceIdiom == .mac {
+                            Text("")
+                        } else {
+                            HStack {
+                                Text(dropDownText)
+                                Image(systemName: "chevron.down")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 15)
+                            }
                         }
                     }
                     .onChange(of: currentMode) { newValue in
@@ -279,7 +283,11 @@ struct SoundsView: View {
 //                        }
 //                    }
                 } label: {
-                    Image(systemName: "arrow.up.arrow.down")
+                    if (UIDevice.current.userInterfaceIdiom == .pad || UIDevice.current.userInterfaceIdiom == .mac) && currentMode == .byAuthor {
+                        Text("")
+                    } else {
+                        Image(systemName: "arrow.up.arrow.down")
+                    }
                 }
                 .onChange(of: viewModel.sortOption, perform: { newValue in
                     viewModel.reloadList(withSounds: soundData,
