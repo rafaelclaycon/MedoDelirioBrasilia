@@ -2,10 +2,12 @@ import SwiftUI
 
 struct AllFoldersView: View {
 
+    @Binding var isShowingFolderInfoEditingSheet: Bool
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .center) {
-                Text("Teste")
+                FolderList()
             }
         }
         .navigationTitle("Pastas")
@@ -13,7 +15,7 @@ struct AllFoldersView: View {
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Button {
-                    //showingFolderInfoEditingView = true
+                    isShowingFolderInfoEditingSheet = true
                 } label: {
                     HStack {
                         Image(systemName: "plus")
@@ -29,7 +31,7 @@ struct AllFoldersView: View {
 struct AllFoldersView_Previews: PreviewProvider {
 
     static var previews: some View {
-        AllFoldersView()
+        AllFoldersView(isShowingFolderInfoEditingSheet: .constant(false))
     }
 
 }

@@ -3,8 +3,9 @@ import SwiftUI
 struct SidebarView: View {
 
     @Binding var state: Screen?
-    @State private var isShowingSettingsSheet: Bool = false
+    @Binding var isShowingSettingsSheet: Bool
     @Binding var updateSoundsList: Bool
+    @Binding var isShowingFolderInfoEditingSheet: Bool
     
     var body: some View {
         List {
@@ -34,7 +35,7 @@ struct SidebarView: View {
                     })
                 
                 NavigationLink(
-                    destination: CollectionsView(),
+                    destination: CollectionsView(isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet),
                     tag: Screen.collections,
                     selection: $state,
                     label: {
@@ -60,7 +61,7 @@ struct SidebarView: View {
             
             Section("Minhas Pastas") {
                 NavigationLink(
-                    destination: AllFoldersView(),
+                    destination: AllFoldersView(isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet),
                     tag: Screen.allFolders,
                     selection: $state,
                     label: {
@@ -79,7 +80,7 @@ struct SidebarView: View {
                     })
                 
                 Button {
-                    //
+                    isShowingFolderInfoEditingSheet = true
                 } label: {
                     Label("Nova Pasta", systemImage: "plus")
                         .foregroundColor(.accentColor)
@@ -91,15 +92,10 @@ struct SidebarView: View {
         .navigationTitle(LocalizableStrings.MainView.title)
         .toolbar {
             Button {
-                self.isShowingSettingsSheet = true
+                isShowingSettingsSheet = true
             } label: {
                 Image(systemName: "gearshape")
             }
-        }
-        .sheet(isPresented: $isShowingSettingsSheet, onDismiss: {
-            updateSoundsList = true
-        }) {
-            SettingsCasingWithCloseView(isBeingShown: $isShowingSettingsSheet)
         }
     }
 
@@ -108,7 +104,7 @@ struct SidebarView: View {
 struct SidebarView_Previews: PreviewProvider {
 
     static var previews: some View {
-        SidebarView(state: .constant(.allSounds), updateSoundsList: .constant(false))
+        SidebarView(state: .constant(.allSounds), isShowingSettingsSheet: .constant(false), updateSoundsList: .constant(false), isShowingFolderInfoEditingSheet: .constant(false))
     }
 
 }
