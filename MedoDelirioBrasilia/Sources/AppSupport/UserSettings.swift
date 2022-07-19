@@ -84,9 +84,9 @@ class UserSettings {
         return Date(timeIntervalSince1970: value as! Double)
     }
     
-    static func getFolderBannerWasDismissed() -> Bool {
+    static func getHotWeatherBannerWasDismissed() -> Bool {
         let userDefaults = UserDefaults.standard
-        guard let value = userDefaults.object(forKey: "folderBannerWasDismissed") else {
+        guard let value = userDefaults.object(forKey: "hotWeatherBannerWasDismissed") else {
             return false
         }
         return Bool(value as! Bool)
@@ -144,9 +144,9 @@ class UserSettings {
         userDefaults.set(newValue.timeIntervalSince1970, forKey: "lastSendDateOfUserPersonalTrendsToServer")
     }
     
-    static func setFolderBannerWasDismissed(to newValue: Bool) {
+    static func setHotWeatherBannerWasDismissed(to newValue: Bool) {
         let userDefaults = UserDefaults.standard
-        userDefaults.set(newValue, forKey: "folderBannerWasDismissed")
+        userDefaults.set(newValue, forKey: "hotWeatherBannerWasDismissed")
     }
 
 }
