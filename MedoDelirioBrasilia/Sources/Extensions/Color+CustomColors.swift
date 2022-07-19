@@ -3,6 +3,7 @@ import SwiftUI
 public extension Color {
 
     static let mutedNavyBlue = Color(UIColor(red: 0.07, green: 0.20, blue: 0.37, alpha: 1.00))
+    static let darkerGreen = Color(UIColor(red: 0.00, green: 0.64, blue: 0.02, alpha: 1.00))
     
     // From the logo
     static let brightGreen = Color(UIColor(red: 0.49, green: 0.84, blue: 0.39, alpha: 1.00))

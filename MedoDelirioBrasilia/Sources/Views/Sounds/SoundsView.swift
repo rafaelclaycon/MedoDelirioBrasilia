@@ -14,7 +14,7 @@ struct SoundsView: View {
     @Binding var updateSoundsList: Bool
     
     // Temporary banners
-    @State private var shouldDisplayFolderBanner: Bool = false
+    @State private var shouldDisplayHotWheatherBanner: Bool = false
     
     // Add to Folder vars
     @State private var showingAddToFolderModal = false
@@ -90,8 +90,8 @@ struct SoundsView: View {
                 } else {
                     ScrollViewReader { scrollView in
                         ScrollView {
-                            if shouldDisplayFolderBanner, searchText.isEmpty, currentMode != .favorites {
-                                FoldersBannerView(displayMe: $shouldDisplayFolderBanner)
+                            if shouldDisplayHotWheatherBanner, searchText.isEmpty, currentMode != .favorites {
+                                HotWeatherAdBannerView(displayMe: $shouldDisplayHotWheatherBanner)
                                     .padding(.horizontal)
                                     .padding(.vertical, 6)
                             }
@@ -310,7 +310,8 @@ struct SoundsView: View {
                 viewModel.donateActivity()
                 viewModel.sendDeviceModelNameToServer()
                 viewModel.sendUserPersonalTrendsToServerIfEnabled()
-                shouldDisplayFolderBanner = UserSettings.getFolderBannerWasDismissed() == false
+                
+                shouldDisplayHotWheatherBanner = UserSettings.getHotWeatherBannerWasDismissed() == false
             }
             .sheet(isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog) {
                 EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog, subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.selectedSound?.title ?? ""), emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.selectedSound?.authorName ?? "", viewModel.selectedSound?.id ?? ""))
