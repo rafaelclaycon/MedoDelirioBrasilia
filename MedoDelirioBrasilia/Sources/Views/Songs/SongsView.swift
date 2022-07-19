@@ -37,6 +37,7 @@ struct SongsView: View {
                     LazyVGrid(columns: columns, spacing: 14) {
                         ForEach(searchResults) { song in
                             SongCell(songId: song.id, title: song.title, genre: song.genre, duration: song.duration, nowPlaying: $viewModel.nowPlayingKeeper)
+                                .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                                 .onTapGesture {
                                     if viewModel.nowPlayingKeeper.contains(song.id) {
                                         player?.togglePlay()
