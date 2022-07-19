@@ -3,13 +3,14 @@ import SwiftUI
 struct MainView: View {
 
     @State private var tabSelection = 1
-    @State var state: Screen? = .sounds
+    @State var state: Screen? = .allSounds
+    @State var updateSoundsList: Bool = false
     
     var body: some View {
         if UIDevice.current.userInterfaceIdiom == .phone {
             TabView(selection: $tabSelection) {
                 NavigationView {
-                    SoundsView()
+                    SoundsView(currentMode: .allSounds, updateSoundsList: .constant(false))
                 }
                 .tabItem {
                     Label("Sons", systemImage: "speaker.wave.3.fill")
@@ -62,8 +63,8 @@ struct MainView: View {
             })
         } else {
             NavigationView {
-                SidebarView(state: $state)
-                SoundsView()
+                SidebarView(state: $state, updateSoundsList: $updateSoundsList)
+                SoundsView(currentMode: .allSounds, updateSoundsList: $updateSoundsList)
             }
             .navigationViewStyle(DoubleColumnNavigationViewStyle())
         }

@@ -2,6 +2,6 @@ import Foundation
 
 enum Screen: Hashable {
 
-    case sounds, collections, songs, trends, settings
+    case allSounds, favorites, groupedByAuthor, collections, songs, trends, settings, allFolders
 
 }

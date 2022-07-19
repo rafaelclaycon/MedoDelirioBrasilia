@@ -46,6 +46,7 @@ struct AuthorsView: View {
                 .disableAutocorrection(true)
                 .padding(.horizontal)
                 .padding(.top, 7)
+                .padding(.bottom, 18)
                 .onAppear {
                     viewModel.reloadList()
                     //viewModel.donateActivity()

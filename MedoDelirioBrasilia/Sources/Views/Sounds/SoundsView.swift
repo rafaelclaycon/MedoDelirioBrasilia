@@ -7,9 +7,11 @@ struct SoundsView: View {
     }
     
     @StateObject private var viewModel = SoundsViewViewModel()
-    @State private var currentMode: Mode = .allSounds
+    @State var currentMode: Mode
     @State private var searchText = ""
     @State private var scrollViewObject: ScrollViewProxy? = nil
+    
+    @Binding var updateSoundsList: Bool
     
     // Temporary banners
     @State private var shouldDisplayFolderBanner: Bool = false
@@ -229,12 +231,16 @@ struct SoundsView: View {
                             }
                         }
                     } label: {
-                        HStack {
-                            Text(dropDownText)
-                            Image(systemName: "chevron.down")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 15)
+                        if UIDevice.current.userInterfaceIdiom == .pad || UIDevice.current.userInterfaceIdiom == .mac {
+                            Text("")
+                        } else {
+                            HStack {
+                                Text(dropDownText)
+                                Image(systemName: "chevron.down")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 15)
+                            }
                         }
                     }
                     .onChange(of: currentMode) { newValue in
@@ -248,6 +254,7 @@ struct SoundsView: View {
                                              sortedBy: ContentSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
                     }
                 }
+                .disabled(UIDevice.current.userInterfaceIdiom == .pad || UIDevice.current.userInterfaceIdiom == .mac)
             , trailing:
                 Menu {
                     Section {
@@ -278,7 +285,11 @@ struct SoundsView: View {
 //                        }
 //                    }
                 } label: {
-                    Image(systemName: "arrow.up.arrow.down")
+                    if (UIDevice.current.userInterfaceIdiom == .pad || UIDevice.current.userInterfaceIdiom == .mac) && currentMode == .byAuthor {
+                        Text("")
+                    } else {
+                        Image(systemName: "arrow.up.arrow.down")
+                    }
                 }
                 .onChange(of: viewModel.sortOption, perform: { newValue in
                     viewModel.reloadList(withSounds: soundData,
@@ -323,6 +334,16 @@ struct SoundsView: View {
             .sheet(isPresented: $viewModel.isShowingShareSheet) {
                 viewModel.iPadShareSheet
             }
+            .onChange(of: updateSoundsList) { shouldUpdate in
+                if shouldUpdate {
+                    viewModel.reloadList(withSounds: soundData,
+                                         andFavorites: try? database.getAllFavorites(),
+                                         allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+                                         favoritesOnly: currentMode == .favorites,
+                                         sortedBy: ContentSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
+                    updateSoundsList = false
+                }
+            }
             
             if shouldDisplayAddedToFolderToast {
                 VStack {
@@ -351,7 +372,7 @@ struct SoundsView: View {
 struct SoundsView_Previews: PreviewProvider {
 
     static var previews: some View {
-        SoundsView()
+        SoundsView(currentMode: .allSounds, updateSoundsList: .constant(false))
     }
 
 }
