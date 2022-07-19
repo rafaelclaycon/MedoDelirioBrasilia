@@ -63,7 +63,7 @@ struct CollectionsView: View {
                 }
                 .padding(.top, 10)
                 
-                //if UIDevice.current.userInterfaceIdiom == .phone {
+                if UIDevice.current.userInterfaceIdiom == .phone {
                     VStack(alignment: .center) {
                         HStack {
                             Text("Minhas Pastas")
@@ -138,7 +138,7 @@ struct CollectionsView: View {
                     }
                     .padding(.top, 10)
                     .padding(.horizontal)
-                //}
+                }
             }
             .navigationTitle("Coleções")
             .sheet(isPresented: $showingFolderInfoEditingView) {

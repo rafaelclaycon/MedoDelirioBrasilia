@@ -58,34 +58,34 @@ struct SidebarView: View {
 //                    Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
 //                })
             
-//            Section("Minhas Pastas") {
-//                NavigationLink(
-//                    destination: AllFoldersView(),
-//                    tag: Screen.allFolders,
-//                    selection: $state,
-//                    label: {
-//                        Label("Todas as Pastas", systemImage: "folder")
-//                    })
-//                
-//                NavigationLink(
-//                    destination: SettingsView(),
-//                    tag: Screen.settings,
-//                    selection: $state,
-//                    label: {
-//                        HStack(spacing: 15) {
-//                            SidebarFolderIcon(symbol: "🤑", backgroundColor: .pastelBrightGreen)
-//                            Text("Grupo da Adm")
-//                        }
-//                    })
-//                
-//                Button {
-//                    //
-//                } label: {
-//                    Label("Nova Pasta", systemImage: "plus")
-//                        .foregroundColor(.accentColor)
-//                }
-//
-//            }
+            Section("Minhas Pastas") {
+                NavigationLink(
+                    destination: AllFoldersView(),
+                    tag: Screen.allFolders,
+                    selection: $state,
+                    label: {
+                        Label("Todas as Pastas", systemImage: "folder")
+                    })
+                
+                NavigationLink(
+                    destination: SettingsView(),
+                    tag: Screen.settings,
+                    selection: $state,
+                    label: {
+                        HStack(spacing: 15) {
+                            SidebarFolderIcon(symbol: "🤑", backgroundColor: .pastelBrightGreen)
+                            Text("Grupo da Adm")
+                        }
+                    })
+                
+                Button {
+                    //
+                } label: {
+                    Label("Nova Pasta", systemImage: "plus")
+                        .foregroundColor(.accentColor)
+                }
+
+            }
         }
         .listStyle(SidebarListStyle())
         .navigationTitle(LocalizableStrings.MainView.title)
