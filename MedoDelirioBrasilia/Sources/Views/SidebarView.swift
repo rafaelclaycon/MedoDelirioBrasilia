@@ -4,12 +4,13 @@ struct SidebarView: View {
 
     @Binding var state: Screen?
     @State private var isShowingSettingsSheet: Bool = false
+    @Binding var updateSoundsList: Bool
     
     var body: some View {
         List {
             Section("Sons") {
                 NavigationLink(
-                    destination: SoundsView(currentMode: .allSounds),
+                    destination: SoundsView(currentMode: .allSounds, updateSoundsList: $updateSoundsList),
                     tag: Screen.allSounds,
                     selection: $state,
                     label: {
@@ -17,7 +18,7 @@ struct SidebarView: View {
                     })
                 
                 NavigationLink(
-                    destination: SoundsView(currentMode: .favorites),
+                    destination: SoundsView(currentMode: .favorites, updateSoundsList: .constant(false)),
                     tag: Screen.favorites,
                     selection: $state,
                     label: {
@@ -25,7 +26,7 @@ struct SidebarView: View {
                     })
                 
                 NavigationLink(
-                    destination: SoundsView(currentMode: .byAuthor),
+                    destination: SoundsView(currentMode: .byAuthor, updateSoundsList: .constant(false)),
                     tag: Screen.groupedByAuthor,
                     selection: $state,
                     label: {
@@ -57,34 +58,34 @@ struct SidebarView: View {
 //                    Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
 //                })
             
-            Section("Minhas Pastas") {
-                NavigationLink(
-                    destination: AllFoldersView(),
-                    tag: Screen.allFolders,
-                    selection: $state,
-                    label: {
-                        Label("Todas as Pastas", systemImage: "folder")
-                    })
-                
-                NavigationLink(
-                    destination: SettingsView(),
-                    tag: Screen.settings,
-                    selection: $state,
-                    label: {
-                        HStack(spacing: 15) {
-                            SidebarFolderIcon(symbol: "🤑", backgroundColor: .pastelBrightGreen)
-                            Text("Grupo da Adm")
-                        }
-                    })
-                
-                Button {
-                    //
-                } label: {
-                    Label("Nova Pasta", systemImage: "plus")
-                        .foregroundColor(.accentColor)
-                }
-
-            }
+//            Section("Minhas Pastas") {
+//                NavigationLink(
+//                    destination: AllFoldersView(),
+//                    tag: Screen.allFolders,
+//                    selection: $state,
+//                    label: {
+//                        Label("Todas as Pastas", systemImage: "folder")
+//                    })
+//                
+//                NavigationLink(
+//                    destination: SettingsView(),
+//                    tag: Screen.settings,
+//                    selection: $state,
+//                    label: {
+//                        HStack(spacing: 15) {
+//                            SidebarFolderIcon(symbol: "🤑", backgroundColor: .pastelBrightGreen)
+//                            Text("Grupo da Adm")
+//                        }
+//                    })
+//                
+//                Button {
+//                    //
+//                } label: {
+//                    Label("Nova Pasta", systemImage: "plus")
+//                        .foregroundColor(.accentColor)
+//                }
+//
+//            }
         }
         .listStyle(SidebarListStyle())
         .navigationTitle(LocalizableStrings.MainView.title)
@@ -95,7 +96,9 @@ struct SidebarView: View {
                 Image(systemName: "gearshape")
             }
         }
-        .sheet(isPresented: $isShowingSettingsSheet) {
+        .sheet(isPresented: $isShowingSettingsSheet, onDismiss: {
+            updateSoundsList = true
+        }) {
             SettingsCasingWithCloseView(isBeingShown: $isShowingSettingsSheet)
         }
     }
@@ -105,7 +108,7 @@ struct SidebarView: View {
 struct SidebarView_Previews: PreviewProvider {
 
     static var previews: some View {
-        SidebarView(state: .constant(.allSounds))
+        SidebarView(state: .constant(.allSounds), updateSoundsList: .constant(false))
     }
 
 }

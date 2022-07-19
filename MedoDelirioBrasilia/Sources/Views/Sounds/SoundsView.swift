@@ -11,6 +11,8 @@ struct SoundsView: View {
     @State private var searchText = ""
     @State private var scrollViewObject: ScrollViewProxy? = nil
     
+    @Binding var updateSoundsList: Bool
+    
     // Temporary banners
     @State private var shouldDisplayFolderBanner: Bool = false
     
@@ -332,6 +334,16 @@ struct SoundsView: View {
             .sheet(isPresented: $viewModel.isShowingShareSheet) {
                 viewModel.iPadShareSheet
             }
+            .onChange(of: updateSoundsList) { shouldUpdate in
+                if shouldUpdate {
+                    viewModel.reloadList(withSounds: soundData,
+                                         andFavorites: try? database.getAllFavorites(),
+                                         allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+                                         favoritesOnly: currentMode == .favorites,
+                                         sortedBy: ContentSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
+                    updateSoundsList = false
+                }
+            }
             
             if shouldDisplayAddedToFolderToast {
                 VStack {
@@ -360,7 +372,7 @@ struct SoundsView: View {
 struct SoundsView_Previews: PreviewProvider {
 
     static var previews: some View {
-        SoundsView(currentMode: .allSounds)
+        SoundsView(currentMode: .allSounds, updateSoundsList: .constant(false))
     }
 
 }
