@@ -3,6 +3,7 @@ import SwiftUI
 struct FolderList: View {
 
     @StateObject private var viewModel = FolderListViewModel()
+    @Binding var updateFolderList: Bool
     
     private var columns: [GridItem] {
         if UIDevice.current.userInterfaceIdiom == .phone {
@@ -80,6 +81,11 @@ struct FolderList: View {
             viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
             viewModel.donateActivity()
         }
+        .onChange(of: updateFolderList) { shouldUpdate in
+            if shouldUpdate {
+                viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
+            }
+        }
     }
 
 }
@@ -87,7 +93,7 @@ struct FolderList: View {
 struct FolderList_Previews: PreviewProvider {
 
     static var previews: some View {
-        FolderList()
+        FolderList(updateFolderList: .constant(false))
     }
 
 }

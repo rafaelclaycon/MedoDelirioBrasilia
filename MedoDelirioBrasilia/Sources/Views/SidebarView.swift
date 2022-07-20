@@ -6,6 +6,7 @@ struct SidebarView: View {
     @Binding var isShowingSettingsSheet: Bool
     @Binding var updateSoundsList: Bool
     @Binding var isShowingFolderInfoEditingSheet: Bool
+    @Binding var updateFolderList: Bool
     
     var body: some View {
         List {
@@ -35,7 +36,7 @@ struct SidebarView: View {
                     })
                 
                 NavigationLink(
-                    destination: CollectionsView(isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet),
+                    destination: CollectionsView(isShowingFolderInfoEditingSheet: .constant(false)),
                     tag: Screen.collections,
                     selection: $state,
                     label: {
@@ -61,23 +62,23 @@ struct SidebarView: View {
             
             Section("Minhas Pastas") {
                 NavigationLink(
-                    destination: AllFoldersView(isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet),
+                    destination: AllFoldersView(isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet, updateFolderList: $updateFolderList),
                     tag: Screen.allFolders,
                     selection: $state,
                     label: {
                         Label("Todas as Pastas", systemImage: "folder")
                     })
                 
-                NavigationLink(
-                    destination: SettingsView(),
-                    tag: Screen.settings,
-                    selection: $state,
-                    label: {
-                        HStack(spacing: 15) {
-                            SidebarFolderIcon(symbol: "🤑", backgroundColor: .pastelBrightGreen)
-                            Text("Grupo da Adm")
-                        }
-                    })
+//                NavigationLink(
+//                    destination: SettingsView(),
+//                    tag: Screen.settings,
+//                    selection: $state,
+//                    label: {
+//                        HStack(spacing: 15) {
+//                            SidebarFolderIcon(symbol: "🤑", backgroundColor: .pastelBrightGreen)
+//                            Text("Grupo da Adm")
+//                        }
+//                    })
                 
                 Button {
                     isShowingFolderInfoEditingSheet = true
@@ -104,7 +105,11 @@ struct SidebarView: View {
 struct SidebarView_Previews: PreviewProvider {
 
     static var previews: some View {
-        SidebarView(state: .constant(.allSounds), isShowingSettingsSheet: .constant(false), updateSoundsList: .constant(false), isShowingFolderInfoEditingSheet: .constant(false))
+        SidebarView(state: .constant(.allSounds),
+                    isShowingSettingsSheet: .constant(false),
+                    updateSoundsList: .constant(false),
+                    isShowingFolderInfoEditingSheet: .constant(false),
+                    updateFolderList: .constant(false))
     }
 
 }

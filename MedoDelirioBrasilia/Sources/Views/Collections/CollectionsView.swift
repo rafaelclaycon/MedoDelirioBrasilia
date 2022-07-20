@@ -5,6 +5,7 @@ struct CollectionsView: View {
     @StateObject private var viewModel = CollectionsViewViewModel()
     @Binding var isShowingFolderInfoEditingSheet: Bool
     @State private var folderForEditingOnSheet: UserFolder? = nil
+    @State var updateFolderList: Bool = false
     
     private let rows = [
         GridItem(.flexible()),
@@ -65,13 +66,13 @@ struct CollectionsView: View {
                             }
                             .onChange(of: isShowingFolderInfoEditingSheet) { isShowing in
                                 if isShowing == false {
-                                    //viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
+                                    updateFolderList = true
                                     folderForEditingOnSheet = nil
                                 }
                             }
                         }
                         
-                        FolderList()
+                        FolderList(updateFolderList: $updateFolderList)
                     }
                     .padding(.top, 10)
                     .padding(.horizontal)

@@ -7,6 +7,7 @@ struct MainView: View {
     @State var isShowingSettingsSheet: Bool = false
     @State var updateSoundsList: Bool = false
     @State var isShowingFolderInfoEditingSheet: Bool = false
+    @State var updateFolderList: Bool = false
     
     var body: some View {
         if UIDevice.current.userInterfaceIdiom == .phone {
@@ -68,8 +69,10 @@ struct MainView: View {
                 SidebarView(state: $state,
                             isShowingSettingsSheet: $isShowingSettingsSheet,
                             updateSoundsList: $updateSoundsList,
-                            isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet)
-                SoundsView(currentMode: .allSounds, updateSoundsList: $updateSoundsList)
+                            isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet,
+                            updateFolderList: $updateFolderList)
+                SoundsView(currentMode: .allSounds,
+                           updateSoundsList: $updateSoundsList)
             }
             .navigationViewStyle(DoubleColumnNavigationViewStyle())
             .sheet(isPresented: $isShowingSettingsSheet, onDismiss: {
@@ -77,7 +80,9 @@ struct MainView: View {
             }) {
                 SettingsCasingWithCloseView(isBeingShown: $isShowingSettingsSheet)
             }
-            .sheet(isPresented: $isShowingFolderInfoEditingSheet) {
+            .sheet(isPresented: $isShowingFolderInfoEditingSheet, onDismiss: {
+                updateFolderList = true
+            }) {
                 FolderInfoEditingView(isBeingShown: $isShowingFolderInfoEditingSheet, selectedBackgroundColor: "pastelPurple")
             }
         }

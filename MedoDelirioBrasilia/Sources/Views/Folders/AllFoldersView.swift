@@ -3,11 +3,12 @@ import SwiftUI
 struct AllFoldersView: View {
 
     @Binding var isShowingFolderInfoEditingSheet: Bool
+    @Binding var updateFolderList: Bool
     
     var body: some View {
         ScrollView {
             VStack(alignment: .center) {
-                FolderList()
+                FolderList(updateFolderList: $updateFolderList)
             }
             .padding(.horizontal)
             .padding(.top, 7)
@@ -34,7 +35,7 @@ struct AllFoldersView: View {
 struct AllFoldersView_Previews: PreviewProvider {
 
     static var previews: some View {
-        AllFoldersView(isShowingFolderInfoEditingSheet: .constant(false))
+        AllFoldersView(isShowingFolderInfoEditingSheet: .constant(false), updateFolderList: .constant(false))
     }
 
 }
