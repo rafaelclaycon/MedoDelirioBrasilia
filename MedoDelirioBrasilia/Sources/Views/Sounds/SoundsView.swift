@@ -186,18 +186,18 @@ struct SoundsView: View {
                             }
                             
                             if UserSettings.getShowOffensiveSounds() == false, currentMode != .favorites {
-                                Text(Shared.contentFilterMessageForSounds)
+                                Text(UIDevice.current.userInterfaceIdiom == .phone ? Shared.contentFilterMessageForSoundsiPhone : Shared.contentFilterMessageForSoundsiPadMac)
                                     .font(.footnote)
                                     .foregroundColor(.gray)
                                     .multilineTextAlignment(.center)
                                     .padding(.top, 15)
-                                    .padding(.horizontal, 20)
+                                    .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 20 : 40)
                             }
                             
                             if searchText.isEmpty, currentMode != .favorites {
                                 Text("\(viewModel.sounds.count) sons. Atualizado em \(soundsLastUpdateDate).")
                                     .font(.subheadline)
-                                    .foregroundColor(.gray)
+                                    .bold()
                                     .padding(.top, 10)
                                     .padding(.bottom, 18)
                             }
@@ -231,7 +231,7 @@ struct SoundsView: View {
                             }
                         }
                     } label: {
-                        if UIDevice.current.userInterfaceIdiom == .pad || UIDevice.current.userInterfaceIdiom == .mac {
+                        if UIDevice.current.userInterfaceIdiom == .pad {
                             Text("")
                         } else {
                             HStack {
@@ -254,7 +254,7 @@ struct SoundsView: View {
                                              sortedBy: ContentSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
                     }
                 }
-                .disabled(UIDevice.current.userInterfaceIdiom == .pad || UIDevice.current.userInterfaceIdiom == .mac)
+                .disabled(UIDevice.current.userInterfaceIdiom == .pad)
             , trailing:
                 Menu {
                     Section {
@@ -285,7 +285,7 @@ struct SoundsView: View {
 //                        }
 //                    }
                 } label: {
-                    if (UIDevice.current.userInterfaceIdiom == .pad || UIDevice.current.userInterfaceIdiom == .mac) && currentMode == .byAuthor {
+                    if UIDevice.current.userInterfaceIdiom == .pad && currentMode == .byAuthor {
                         Text("")
                     } else {
                         Image(systemName: "arrow.up.arrow.down")
