@@ -2,7 +2,8 @@ import SwiftUI
 
 struct SidebarView: View {
 
-    @Binding var state: Screen?
+    @StateObject private var viewModel = SidebarViewViewModel()
+    @Binding var state: String?
     @Binding var isShowingSettingsSheet: Bool
     @Binding var updateSoundsList: Bool
     @Binding var isShowingFolderInfoEditingSheet: Bool
@@ -13,7 +14,7 @@ struct SidebarView: View {
             Section("Sons") {
                 NavigationLink(
                     destination: SoundsView(currentMode: .allSounds, updateSoundsList: $updateSoundsList),
-                    tag: Screen.allSounds,
+                    tag: Screen.allSounds.rawValue,
                     selection: $state,
                     label: {
                         Label("Todos os Sons", systemImage: "speaker.wave.2")
@@ -21,7 +22,7 @@ struct SidebarView: View {
                 
                 NavigationLink(
                     destination: SoundsView(currentMode: .favorites, updateSoundsList: .constant(false)),
-                    tag: Screen.favorites,
+                    tag: Screen.favorites.rawValue,
                     selection: $state,
                     label: {
                         Label("Favoritos", systemImage: "star")
@@ -29,7 +30,7 @@ struct SidebarView: View {
                 
                 NavigationLink(
                     destination: SoundsView(currentMode: .byAuthor, updateSoundsList: .constant(false)),
-                    tag: Screen.groupedByAuthor,
+                    tag: Screen.groupedByAuthor.rawValue,
                     selection: $state,
                     label: {
                         Label("Por Autor", systemImage: "person")
@@ -37,7 +38,7 @@ struct SidebarView: View {
                 
                 NavigationLink(
                     destination: CollectionsView(isShowingFolderInfoEditingSheet: .constant(false)),
-                    tag: Screen.collections,
+                    tag: Screen.collections.rawValue,
                     selection: $state,
                     label: {
                         Label("Coleções", systemImage: "rectangle.grid.2x2")
@@ -46,7 +47,7 @@ struct SidebarView: View {
             
             NavigationLink(
                 destination: SongsView(),
-                tag: Screen.songs,
+                tag: Screen.songs.rawValue,
                 selection: $state,
                 label: {
                     Label("Músicas", systemImage: "music.quarternote.3")
@@ -63,22 +64,24 @@ struct SidebarView: View {
             Section("Minhas Pastas") {
                 NavigationLink(
                     destination: AllFoldersView(isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet, updateFolderList: $updateFolderList),
-                    tag: Screen.allFolders,
+                    tag: Screen.allFolders.rawValue,
                     selection: $state,
                     label: {
                         Label("Todas as Pastas", systemImage: "folder")
                     })
                 
-//                NavigationLink(
-//                    destination: SettingsView(),
-//                    tag: Screen.settings,
-//                    selection: $state,
-//                    label: {
-//                        HStack(spacing: 15) {
-//                            SidebarFolderIcon(symbol: "🤑", backgroundColor: .pastelBrightGreen)
-//                            Text("Grupo da Adm")
-//                        }
-//                    })
+                ForEach(viewModel.folders) { folder in
+                    NavigationLink(
+                        destination: FolderDetailView(folder: folder),
+                        tag: folder.id,
+                        selection: $state,
+                        label: {
+                            HStack(spacing: 15) {
+                                SidebarFolderIcon(symbol: folder.symbol, backgroundColor: folder.backgroundColor.toColor())
+                                Text(folder.name)
+                            }
+                        })
+                }
                 
                 Button {
                     isShowingFolderInfoEditingSheet = true
@@ -98,6 +101,9 @@ struct SidebarView: View {
                 Image(systemName: "gearshape")
             }
         }
+        .onAppear {
+            viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
+        }
     }
 
 }
@@ -105,7 +111,7 @@ struct SidebarView: View {
 struct SidebarView_Previews: PreviewProvider {
 
     static var previews: some View {
-        SidebarView(state: .constant(.allSounds),
+        SidebarView(state: .constant(Screen.allSounds.rawValue),
                     isShowingSettingsSheet: .constant(false),
                     updateSoundsList: .constant(false),
                     isShowingFolderInfoEditingSheet: .constant(false),

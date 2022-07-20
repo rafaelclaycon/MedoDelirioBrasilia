@@ -3,7 +3,7 @@ import SwiftUI
 struct MainView: View {
 
     @State private var tabSelection = 1
-    @State var state: Screen? = .allSounds
+    @State var state: String? = Screen.allSounds.rawValue
     @State var isShowingSettingsSheet: Bool = false
     @State var updateSoundsList: Bool = false
     @State var isShowingFolderInfoEditingSheet: Bool = false
