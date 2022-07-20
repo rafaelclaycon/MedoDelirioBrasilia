@@ -29,6 +29,7 @@ struct FolderList: View {
                             FolderDetailView(folder: folder)
                         } label: {
                             FolderCell(symbol: folder.symbol, name: folder.name, backgroundColor: folder.backgroundColor.toColor())
+                                .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                         }
                         .foregroundColor(.primary)
                         .contextMenu {

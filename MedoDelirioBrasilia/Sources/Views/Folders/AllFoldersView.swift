@@ -9,6 +9,9 @@ struct AllFoldersView: View {
             VStack(alignment: .center) {
                 FolderList()
             }
+            .padding(.horizontal)
+            .padding(.top, 7)
+            .padding(.bottom, 18)
         }
         .navigationTitle("Pastas")
         .navigationBarTitleDisplayMode(.inline)
