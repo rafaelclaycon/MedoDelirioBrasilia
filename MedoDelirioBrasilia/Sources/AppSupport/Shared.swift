@@ -16,8 +16,8 @@ struct Shared {
     static let addToFolderButtonText = "Adicionar a Pasta"
     static let shareButtonText = "Compartilhar"
     
-    static let contentFilterMessageForSounds = "Alguns sons não estão sendo exibidos pois o filtro de conteúdo sensível está ativado. Você pode mudar isso na aba Ajustes."
-    static let contentFilterMessageForSongs = "Algumas músicas não estão sendo exibidas pois o filtro de conteúdo sensível está ativado. Você pode mudar isso na aba Ajustes."
+    static let contentFilterMessageForSounds = "Alguns sons não estão sendo exibidos pois o filtro de conteúdo sensível está ativado. Você pode mudar isso em Ajustes (dentro do app)."
+    static let contentFilterMessageForSongs = "Algumas músicas não estão sendo exibidas pois o filtro de conteúdo sensível está ativado. Você pode mudar isso em Ajustes (dentro do app)."
     static let soundNotFoundAlertTitle = "Som Indisponível"
     static let soundNotFoundAlertMessage = "Devido a um problema técnico, o som que você quer acessar não está disponível."
     static let soundSharedSuccessfullyMessage = "Som compartilhado com sucesso."
