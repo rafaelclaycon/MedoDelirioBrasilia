@@ -104,6 +104,11 @@ struct SidebarView: View {
         .onAppear {
             viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
         }
+        .onChange(of: updateFolderList) { shouldUpdate in
+            if shouldUpdate {
+                viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
+            }
+        }
     }
 
 }
