@@ -96,6 +96,12 @@ struct SoundsView: View {
                                     .padding(.vertical, 6)
                             }
                             
+                            NavigationLink {
+                                MedelinderView()
+                            } label: {
+                                Text("Melinder")
+                            }
+                            
                             LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
                                 ForEach(searchResults) { sound in
                                     SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", favorites: $viewModel.favoritesKeeper)
