@@ -3,6 +3,44 @@ import SwiftUI
 struct HelpView: View {
     
     private let iconFrameWidth: CGFloat = 40
+    
+    private var toPlayInstruction: String {
+        if ProcessInfo.processInfo.isMacCatalystApp {
+            return "Para reproduzir um som, clique nele 1 vez."
+        } else {
+            return "Para reproduzir um som, toque nele 1 vez."
+        }
+    }
+    
+    private var toShareInstruction: String {
+        if ProcessInfo.processInfo.isMacCatalystApp {
+            return "Para compartilhar, clique com o botão direito no som e escolha Compartilhar."
+        } else {
+            return "Para compartilhar, toque e segure o som por alguns segundos e então escolha Compartilhar."
+        }
+    }
+    
+    private var toSearchInstruction: String {
+        switch UIDevice.current.userInterfaceIdiom {
+        case .phone:
+            return "Para pesquisar, vá até o topo da lista de sons e puxe mais um pouco para baixo até revelar o campo Buscar.\n\nA pesquisa considera o conteúdo do áudio e o nome do autor. Não use vírgulas."
+        case .pad:
+            return "Para pesquisar, toque no campo Buscar no canto superior direito da tela de sons e digite o texto que procura.\n\nA pesquisa considera o conteúdo do áudio e o nome do autor. Não use vírgulas."
+        default:
+            return "Para pesquisar, clique no campo Buscar no canto superior direito da tela de sons e digite o texto que procura.\n\nA pesquisa considera o conteúdo do áudio e o nome do autor. Não use vírgulas."
+        }
+    }
+    
+    private var favoritesInstruction: String {
+        switch UIDevice.current.userInterfaceIdiom {
+        case .phone:
+            return "Para favoritar, toque e segure o som por alguns segundos e então escolha Adicionar aos Favoritos.\n\nPara ver apenas os favoritos, toque em Todos no topo da tela de sons e escolha Favoritos.\n\nÉ possível pesquisar entre os favoritos usando a barra de Busca. Para isso, na lista de favoritos, vá até o topo e puxe mais um pouco para baixo até ver a barra."
+        case .pad:
+            return "Para favoritar, toque e segure o som por alguns segundos e então escolha Adicionar aos Favoritos.\n\nPara ver apenas os favoritos, toque em Favoritos na barra lateral.\n\nÉ possível pesquisar entre os favoritos usando o campo de Busca no topo direito da tela de Favoritos."
+        default:
+            return "Para favoritar, clique com o botão direito em um som e escolha Adicionar aos Favoritos.\n\nPara ver apenas os favoritos, clique em Favoritos na barra lateral.\n\nÉ possível pesquisar entre os favoritos usando o campo de Busca no topo direito da tela de Favoritos."
+        }
+    }
 
     var body: some View {
         VStack {
@@ -10,7 +48,7 @@ struct HelpView: View {
                 VStack(alignment: .leading, spacing: 30) {
                     HStack {
                         Text("Sons")
-                            .font(.title2)
+                            .font(.title)
                         
                         Spacer()
                     }
@@ -21,7 +59,7 @@ struct HelpView: View {
                             .foregroundColor(.accentColor)
                             .frame(width: iconFrameWidth)
                         
-                        Text("Para reproduzir um som, basta tocar nele.")
+                        Text(toPlayInstruction)
                     }
                     
                     HStack(alignment: .center, spacing: 15) {
@@ -30,7 +68,7 @@ struct HelpView: View {
                             .foregroundColor(.accentColor)
                             .frame(width: iconFrameWidth)
                         
-                        Text("Para compartilhar, segure o som por 2 segundos e então escolha Compartilhar.")
+                        Text(toShareInstruction)
                     }
                     
                     Divider()
@@ -41,7 +79,7 @@ struct HelpView: View {
                             .foregroundColor(.accentColor)
                             .frame(width: iconFrameWidth)
                         
-                        Text("Para pesquisar, vá até o topo da lista e **puxe mais um pouco para baixo** até revelar o campo de pesquisa.\n\nA pesquisa considera o **conteúdo do áudio** e o **nome do autor**. Não use vírgulas.")
+                        Text(toSearchInstruction)
                     }
                     
                     Divider()
@@ -52,12 +90,12 @@ struct HelpView: View {
                             .foregroundColor(.red)
                             .frame(width: iconFrameWidth)
 
-                        Text("Para favoritar, segure o som por 2 segundos e então escolha **Adicionar aos Favoritos**.\n\nPara ver apenas os favoritos, toque em **Todos** no topo da tela anterior e escolha **Favoritos**.\n\nÉ possível pesquisar entre os favoritos usando a barra de Busca. Para isso, na lista de favoritos, vá até o topo e puxe mais um pouco para baixo para ver a barra.")
+                        Text(favoritesInstruction)
                     }
                     
                     HStack {
                         Text("Músicas")
-                            .font(.title2)
+                            .font(.title)
 
                         Spacer()
                     }

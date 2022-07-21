@@ -16,8 +16,11 @@ struct Shared {
     static let addToFolderButtonText = "Adicionar a Pasta"
     static let shareButtonText = "Compartilhar"
     
-    static let contentFilterMessageForSounds = "Alguns sons não estão sendo exibidos pois o filtro de conteúdo sensível está ativado. Você pode mudar isso na aba Ajustes."
-    static let contentFilterMessageForSongs = "Algumas músicas não estão sendo exibidas pois o filtro de conteúdo sensível está ativado. Você pode mudar isso na aba Ajustes."
+    static let contentFilterMessageForSoundsiPhone = "Alguns sons não estão sendo exibidos pois a opção Exibir Conteúdo Sensível está desabilitada. Você pode mudar isso na aba Ajustes (aqui dentro do app)."
+    static let contentFilterMessageForSoundsiPadMac = "Alguns sons não estão sendo exibidos pois a opção Exibir Conteúdo Sensível está desabilitada. Você pode mudar isso na tela de Ajustes (ícone de engrenagem no topo da barra lateral do app)."
+    static let contentFilterMessageForSongsiPhone = "Algumas músicas não estão sendo exibidas pois a opção Exibir Conteúdo Sensível está desabilitada. Você pode mudar isso na aba Ajustes (aqui dentro do app)."
+    static let contentFilterMessageForSongsiPadMac = "Algumas músicas não estão sendo exibidas pois a opção Exibir Conteúdo Sensível está desabilitada. Você pode mudar isso na tela de Ajustes (ícone de engrenagem no topo da barra lateral do app)."
+    
     static let soundNotFoundAlertTitle = "Som Indisponível"
     static let soundNotFoundAlertMessage = "Devido a um problema técnico, o som que você quer acessar não está disponível."
     static let soundSharedSuccessfullyMessage = "Som compartilhado com sucesso."
