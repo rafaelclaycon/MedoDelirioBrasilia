@@ -60,18 +60,18 @@ struct SongsView: View {
                     .padding(.top, 7)
                     
                     if UserSettings.getShowOffensiveSounds() == false {
-                        Text(Shared.contentFilterMessageForSongs)
+                        Text(UIDevice.current.userInterfaceIdiom == .phone ? Shared.contentFilterMessageForSongsiPhone : Shared.contentFilterMessageForSongsiPadMac)
                             .font(.footnote)
                             .foregroundColor(.gray)
                             .multilineTextAlignment(.center)
                             .padding(.top, 15)
-                            .padding(.horizontal, 20)
+                            .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 20 : 40)
                     }
                     
                     if searchText.isEmpty {
                         Text("\(viewModel.songs.count) músicas. Atualizado em \(songsLastUpdateDate).")
                             .font(.subheadline)
-                            .foregroundColor(.gray)
+                            .bold()
                             .padding(.top, 10)
                             .padding(.bottom, 18)
                     }
