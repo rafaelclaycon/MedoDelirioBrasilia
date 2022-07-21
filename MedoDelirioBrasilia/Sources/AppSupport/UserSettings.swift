@@ -76,6 +76,14 @@ class UserSettings {
         return Bool(value as! Bool)
     }
     
+    static func getHotWeatherBannerWasDismissed() -> Bool {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "hotWeatherBannerWasDismissed") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
+    
     // MARK: - Setters
     
     static func setShowOffensiveSounds(to newValue: Bool) {
@@ -121,6 +129,11 @@ class UserSettings {
     static func setUserAllowedNotifications(to newValue: Bool) {
         let userDefaults = UserDefaults.standard
         userDefaults.set(newValue, forKey: "userAllowedNotifications")
+    }
+    
+    static func setHotWeatherBannerWasDismissed(to newValue: Bool) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(newValue, forKey: "hotWeatherBannerWasDismissed")
     }
 
 }

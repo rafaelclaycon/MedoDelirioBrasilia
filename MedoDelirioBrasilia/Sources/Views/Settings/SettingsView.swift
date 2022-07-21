@@ -19,7 +19,7 @@ struct SettingsView: View {
                         UserSettings.setShowOffensiveSounds(to: newValue)
                     }
             } footer: {
-                Text("Alguns conteúdos contam com muitos palavrões. Ao marcar essa opção, você concorda que tem mais de 18 anos e que deseja ver esse conteúdo.")
+                Text("Alguns conteúdos contam com muitos palavrões. Ao marcar essa opção, você concorda que tem mais de 18 anos e que deseja ver esses conteúdos.")
             }
             
             Section {
@@ -67,11 +67,9 @@ struct SettingsView: View {
             }
             
             Section("🧑‍💻  Contribua ou entenda como o app funciona") {
-                Button(action: {
+                Button("Ver código fonte no GitHub") {
                     let githubUrl = URL(string: "https://github.com/rafaelclaycon/MedoDelirioBrasilia")!
                     UIApplication.shared.open(githubUrl)
-                }) {
-                    Text("Ver código fonte no GitHub")
                 }
             }
             
@@ -96,8 +94,8 @@ struct SettingsView: View {
                 showAskForMoneyView = result
             }
         }
-        .confirmationDialog(Shared.pickAMailApp, isPresented: $showEmailClientConfirmationDialog, titleVisibility: .visible) {
-            Mailman.getMailClientOptions(subject: Shared.issueSuggestionEmailSubject, body: Shared.issueSuggestionEmailBody)
+        .sheet(isPresented: $showEmailClientConfirmationDialog) {
+            EmailAppPickerView(isBeingShown: $showEmailClientConfirmationDialog, subject: Shared.issueSuggestionEmailSubject, emailBody: Shared.issueSuggestionEmailBody)
         }
     }
 

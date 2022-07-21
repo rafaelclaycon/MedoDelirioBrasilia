@@ -66,9 +66,9 @@ struct FolderDetailView: View {
             .navigationBarTitleDisplayMode(.inline)
     //        .navigationBarItems(trailing:
     //            Menu {
-    //                Button(action: {
+    //                Button {
     //                    showingFolderInfoEditingView = true
-    //                }) {
+    //                } label: {
     //                    Label("Editar Pasta", systemImage: "pencil")
     //                }
     //

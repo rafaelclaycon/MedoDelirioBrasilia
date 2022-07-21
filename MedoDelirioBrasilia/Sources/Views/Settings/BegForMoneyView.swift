@@ -11,8 +11,9 @@ struct BegForMoneyView: View {
                     .clipShape(Circle())
                     .frame(width: 80)
                 
-                Text("Oi! Eu sou Rafael, o criador da **versão iOS** do app.")
+                Text("Oi! Eu sou Rafael, o criador dos apps do Medo e Delírio para **iPhone, iPad e Mac**.")
                     .multilineTextAlignment(.center)
+                    .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 15)
             }
             
             VStack(alignment: .leading, spacing: 18) {

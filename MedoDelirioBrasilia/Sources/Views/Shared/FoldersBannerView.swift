@@ -55,7 +55,7 @@ struct FoldersBannerView: View {
                         .foregroundColor(.blue)
                         .opacity(0.8)
                         .onTapGesture {
-                            AppPersistentMemory.setFolderBannerWasDismissed(to: true)
+                            //AppPersistentMemory.setFolderBannerWasDismissed(to: true)
                             displayMe = false
                         }
                 }
