@@ -10,55 +10,70 @@ struct PodcastAuthorsView: View {
             Text("Ouça no seu agregador de podcasts preferido e apoie o projeto.")
                 .multilineTextAlignment(.center)
             
-            HStack(spacing: 24) {
-                Button {
-                    guard let url = URL(string: "https://apoia.se/medoedelirio") else { return }
-                    UIApplication.shared.open(url)
-                } label: {
-                    Text("APOIA.se")
-                        .bold()
-                        .padding(.horizontal, UIDevice.is4InchDevice ? 4 : 6)
+            if UIDevice.current.userInterfaceIdiom == .phone {
+                HStack(spacing: 24) {
+                    podcastFundingButtons()
                 }
-                .tint(.red)
-                .controlSize(.large)
-                .buttonStyle(.bordered)
-                .buttonBorderShape(.roundedRectangle)
                 
-                Button {
-                    guard let url = URL(string: "https://app.picpay.com/user/medoedelirioembrasilia") else { return }
-                    UIApplication.shared.open(url)
-                } label: {
-                    Text("PicPay")
-                        .bold()
-                        .padding(.horizontal, UIDevice.is4InchDevice ? 6 : 6)
+                storeButton()
+            } else {
+                HStack(spacing: 24) {
+                    podcastFundingButtons()
+                    storeButton()
                 }
-                .tint(.green)
-                .controlSize(.large)
-                .buttonStyle(.bordered)
-                .buttonBorderShape(.roundedRectangle)
             }
-            
-            Button {
-                guard let url = URL(string: "https://loja.medoedelirioembrasilia.com.br") else { return }
-                UIApplication.shared.open(url)
-            } label: {
-                HStack(spacing: 15) {
-                    Image(systemName: "bag.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 18)
-                        .foregroundColor(.blue)
-                    
-                    Text("Compre na loja oficial")
-                        .foregroundColor(.blue)
-                }
-                .padding(.vertical, 7)
-                .padding(.horizontal, 24)
-            }
-            .controlSize(.regular)
-            .buttonStyle(.bordered)
-            .buttonBorderShape(.roundedRectangle)
         }
+    }
+    
+    @ViewBuilder func podcastFundingButtons() -> some View {
+        Button {
+            guard let url = URL(string: "https://apoia.se/medoedelirio") else { return }
+            UIApplication.shared.open(url)
+        } label: {
+            Text("APOIA.se")
+                .bold()
+                .padding(.horizontal, UIDevice.is4InchDevice ? 4 : 6)
+        }
+        .tint(.red)
+        .controlSize(.large)
+        .buttonStyle(.bordered)
+        .buttonBorderShape(.roundedRectangle)
+        
+        Button {
+            guard let url = URL(string: "https://app.picpay.com/user/medoedelirioembrasilia") else { return }
+            UIApplication.shared.open(url)
+        } label: {
+            Text("PicPay")
+                .bold()
+                .padding(.horizontal, UIDevice.is4InchDevice ? 6 : 6)
+        }
+        .tint(.green)
+        .controlSize(.large)
+        .buttonStyle(.bordered)
+        .buttonBorderShape(.roundedRectangle)
+    }
+    
+    @ViewBuilder func storeButton() -> some View {
+        Button {
+            guard let url = URL(string: "https://loja.medoedelirioembrasilia.com.br") else { return }
+            UIApplication.shared.open(url)
+        } label: {
+            HStack(spacing: 15) {
+                Image(systemName: "bag.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 18)
+                    .foregroundColor(.blue)
+                
+                Text("Compre na loja oficial")
+                    .foregroundColor(.blue)
+            }
+            .padding(.vertical, 7)
+            .padding(.horizontal, 24)
+        }
+        .controlSize(.regular)
+        .buttonStyle(.bordered)
+        .buttonBorderShape(.roundedRectangle)
     }
 
 }

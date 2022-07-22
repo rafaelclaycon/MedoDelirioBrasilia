@@ -63,80 +63,82 @@ struct CollectionsView: View {
                 }
                 .padding(.top, 10)
                 
-                VStack(alignment: .center) {
-                    HStack {
-                        Text("Minhas Pastas")
-                            .font(.title2)
-                        
-                        Spacer()
-                        
-                        Button(action: {
-                            showingFolderInfoEditingView = true
-                        }) {
-                            HStack {
-                                Image(systemName: "plus")
-                                Text("Nova Pasta")
-                            }
-                        }
-                        .onChange(of: showingFolderInfoEditingView) { newValue in
-                            if newValue == false {
-                                viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
-                                folderForEditingOnSheet = nil
-                            }
-                        }
-                    }
-                    
-                    if viewModel.hasFoldersToDisplay {
-                        LazyVGrid(columns: columns, spacing: 14) {
-                            ForEach(viewModel.folders) { folder in
-                                NavigationLink {
-                                    FolderDetailView(folder: folder)
-                                } label: {
-                                    FolderCell(symbol: folder.symbol, name: folder.name, backgroundColor: folder.backgroundColor.toColor())
+                //if UIDevice.current.userInterfaceIdiom == .phone {
+                    VStack(alignment: .center) {
+                        HStack {
+                            Text("Minhas Pastas")
+                                .font(.title2)
+                            
+                            Spacer()
+                            
+                            Button {
+                                showingFolderInfoEditingView = true
+                            } label: {
+                                HStack {
+                                    Image(systemName: "plus")
+                                    Text("Nova Pasta")
                                 }
-                                .foregroundColor(.primary)
-                                .contextMenu {
-//                                        Button(action: {
-//                                            folderForEditingOnSheet = folder
-//                                            showingFolderInfoEditingView = true
-//                                        }) {
-//                                            Label("Editar Pasta", systemImage: "pencil")
-//                                        }
-                                    
-                                    Button(role: .destructive, action: {
-                                        viewModel.showFolderDeletionConfirmation(folderName: "\(folder.symbol) \(folder.name)", folderId: folder.id)
-                                    }, label: {
-                                        HStack {
-                                            Text("Apagar Pasta")
-                                            Image(systemName: "trash")
-                                        }
-                                    })
+                            }
+                            .onChange(of: showingFolderInfoEditingView) { newValue in
+                                if newValue == false {
+                                    viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
+                                    folderForEditingOnSheet = nil
                                 }
                             }
                         }
-                    } else {
-                        VStack(spacing: 15) {
-                            Image(systemName: "folder")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 90)
-                                .foregroundColor(.blue)
-                                .padding(.bottom, 10)
-                            
-                            Text("Nenhuma Pasta Criada")
-                                .font(.title3)
-                                .multilineTextAlignment(.center)
-                            
-                            Text("Toque em Nova Pasta acima para criar uma nova pasta de sons.")
-                                .foregroundColor(.gray)
-                                .multilineTextAlignment(.center)
-                                .padding(.horizontal)
+                        
+                        if viewModel.hasFoldersToDisplay {
+                            LazyVGrid(columns: columns, spacing: 14) {
+                                ForEach(viewModel.folders) { folder in
+                                    NavigationLink {
+                                        FolderDetailView(folder: folder)
+                                    } label: {
+                                        FolderCell(symbol: folder.symbol, name: folder.name, backgroundColor: folder.backgroundColor.toColor())
+                                    }
+                                    .foregroundColor(.primary)
+                                    .contextMenu {
+    //                                        Button {
+    //                                            folderForEditingOnSheet = folder
+    //                                            showingFolderInfoEditingView = true
+    //                                        } label: {
+    //                                            Label("Editar Pasta", systemImage: "pencil")
+    //                                        }
+                                        
+                                        Button(role: .destructive, action: {
+                                            viewModel.showFolderDeletionConfirmation(folderName: "\(folder.symbol) \(folder.name)", folderId: folder.id)
+                                        }, label: {
+                                            HStack {
+                                                Text("Apagar Pasta")
+                                                Image(systemName: "trash")
+                                            }
+                                        })
+                                    }
+                                }
+                            }
+                        } else {
+                            VStack(spacing: 15) {
+                                Image(systemName: "folder")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 90)
+                                    .foregroundColor(.blue)
+                                    .padding(.bottom, 10)
+                                
+                                Text("Nenhuma Pasta Criada")
+                                    .font(.title3)
+                                    .multilineTextAlignment(.center)
+                                
+                                Text("Toque em Nova Pasta acima para criar uma nova pasta de sons.")
+                                    .foregroundColor(.gray)
+                                    .multilineTextAlignment(.center)
+                                    .padding(.horizontal)
+                            }
+                            .padding(.vertical, 40)
                         }
-                        .padding(.vertical, 40)
                     }
-                }
-                .padding(.top, 10)
-                .padding(.horizontal)
+                    .padding(.top, 10)
+                    .padding(.horizontal)
+                //}
             }
             .navigationTitle("Coleções")
             .sheet(isPresented: $showingFolderInfoEditingView) {

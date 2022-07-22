@@ -88,13 +88,11 @@ struct FolderInfoEditingView: View {
             .navigationTitle(isEditing ? "Editar Pasta" : "Nova Pasta")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(leading:
-                Button(action: {
+                Button("Cancelar") {
                     self.isBeingShown = false
-                }) {
-                    Text("Cancelar")
                 }
             , trailing:
-                Button(action: {
+                Button {
                     if viewModel.checkIfMeetsAllRequirements(symbol: symbol, folderName: folderName, isEditing: isEditing) {
                         if isEditing {
                             guard folderIdWhenEditing.isEmpty == false else {
@@ -107,7 +105,7 @@ struct FolderInfoEditingView: View {
                             self.isBeingShown = false
                         }
                     }
-                }) {
+                } label: {
                     Text(isEditing ? "Salvar" : "Criar")
                         .bold()
                 }

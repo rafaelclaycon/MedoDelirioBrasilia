@@ -5503,7 +5503,7 @@
         "title": "Tá errado",
         "authorId": "ED785AAD-640D-42A6-94C3-47DF7CE8CAD2",
         "description": "Tá errado",
-        "filename": "RÁDIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3",
+        "filename": "RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3",
         "dateAdded": "2022-07-16T00:00:00Z",
         "isOffensive": false
     },
@@ -5586,6 +5586,15 @@
         "description": "E uma canalhice o que voces fazem",
         "filename": "Bolsonaro - E uma canalhice o que voces fazem.mp3",
         "dateAdded": "2022-07-16T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "15AEC980-8177-481B-8141-C21E9F191D3A",
+        "title": "Se muitos policiais mortos, tá errado",
+        "authorId": "ED785AAD-640D-42A6-94C3-47DF7CE8CAD2",
+        "description": "se voce tem um sistema de policia cuja maior caracteristica e deixar um numero elevado de policiais mortos no topo do ranking mundial e um numero elevado de pessoas em confronto com a policia morrem no topo da cadeia mundial ta errado",
+        "filename": "RADIO BANDNEWS FM - Eduardo Oinegue - Se numero elevado de mortes policia e uma caracteristica, ta errado.mp3",
+        "dateAdded": "2022-07-18T00:00:00Z",
         "isOffensive": true
     },
     {

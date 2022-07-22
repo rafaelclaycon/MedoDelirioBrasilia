@@ -3,6 +3,10 @@ import UIKit
 public extension UIDevice {
 
     static let modelName: String = {
+        if ProcessInfo.processInfo.isiOSAppOnMac || ProcessInfo.processInfo.isMacCatalystApp {
+            return "Mac"
+        }
+        
         var systemInfo = utsname()
         uname(&systemInfo)
         let machineMirror = Mirror(reflecting: systemInfo.machine)
