@@ -78,8 +78,37 @@ struct SongsView: View {
                 }
             }
             .navigationTitle("Músicas")
+            .toolbar {
+                Menu {
+                    Section {
+                        Picker("Ordenação", selection: $viewModel.sortOption) {
+                            HStack {
+                                Text("Ordenar por Título")
+                                Image(systemName: "a.circle")
+                            }
+                            .tag(0)
+                            
+                            HStack {
+                                Text("Mais Recentes no Topo")
+                                Image(systemName: "calendar")
+                            }
+                            .tag(1)
+                        }
+                    }
+                } label: {
+                    Image(systemName: "arrow.up.arrow.down")
+                }
+                .onChange(of: viewModel.sortOption, perform: { newSortOption in
+                    viewModel.reloadList(withSongs: songData,
+                                         allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+                                         sortedBy: SongSortOption(rawValue: newSortOption) ?? .titleAscending)
+                    UserSettings.setSongSortOption(to: newSortOption)
+                })
+            }
             .onAppear {
-                viewModel.reloadList()
+                viewModel.reloadList(withSongs: songData,
+                                     allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+                                     sortedBy: SongSortOption(rawValue: UserSettings.getSongSortOption()) ?? .titleAscending)
                 viewModel.donateActivity()
             }
             .onDisappear {
