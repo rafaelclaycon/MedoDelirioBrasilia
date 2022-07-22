@@ -218,5 +218,65 @@
         "filename": "Franciel Cruz - Polarizacao.mp3",
         "dateAdded": "2022-07-16T00:00:00Z",
         "isOffensive": true
+    },
+    {
+        "id": "14867881-54E6-4865-BF3F-88F87A839505",
+        "title": "Au au (Parabéns, Sanção)",
+        "description": "",
+        "genre": "MPB",
+        "duration": "00:22",
+        "filename": "Au au (Parabens sancao) - Bolsonaro.mp3",
+        "dateAdded": "2022-07-22T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "6FD95E58-0418-47F2-B28C-133B9F51E7E7",
+        "title": "Toma Cloroquina",
+        "description": "",
+        "genre": "Marchinha",
+        "duration": "00:30",
+        "filename": "Toma cloroquina - Cristiano Botafogo (feat Vitor Midcast) - vassourinha.mp3",
+        "dateAdded": "2022-07-22T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "534F81DA-249C-46F6-B143-7CA7FCAC9DE5",
+        "title": "Se for feito com amor, tudo vale",
+        "description": "",
+        "genre": "Eletrônica",
+        "duration": "01:18",
+        "filename": "Se for feito com amor tudo vale.mp3",
+        "dateAdded": "2022-07-22T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "813256AB-2690-4D1F-833D-646F85721811",
+        "title": "Um dado da natureza",
+        "description": "",
+        "genre": "MPB",
+        "duration": "00:29",
+        "filename": "Um dado da natureza.mp3",
+        "dateAdded": "2022-07-22T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "03157605-86DC-43A7-BAAC-827140066214",
+        "title": "Pra frente, Brasil",
+        "description": "",
+        "genre": "Música Tema",
+        "duration": "00:42",
+        "filename": "Pra frente brasil.mp3",
+        "dateAdded": "2022-07-22T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "36C3F444-3BCB-45A3-83C5-9642338E1728",
+        "title": "Vale Tudo",
+        "description": "",
+        "genre": "MPB",
+        "duration": "00:18",
+        "filename": "Vale Tudo.mp3",
+        "dateAdded": "2022-07-22T00:00:00Z",
+        "isOffensive": false
     }
 ]
