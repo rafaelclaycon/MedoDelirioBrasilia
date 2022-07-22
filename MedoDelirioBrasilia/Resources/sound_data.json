@@ -5686,5 +5686,77 @@
         "filename": "Jornalista de alta performance - Oswaldo Eustaquio.mp3",
         "dateAdded": "2022-07-20T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "C784758D-A7E5-48C0-A272-DB49BFE22001",
+        "title": "Ih, rapaz",
+        "authorId": "42139D24-0869-44A5-B9A9-C3179BE20E3C",
+        "description": "ih rapaz fred seleção",
+        "filename": "Ih rapaz - fred.mp3",
+        "dateAdded": "2022-07-22T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "060C7A57-8129-4654-B027-5F98547CAC21",
+        "title": "Cê tá falando sério?",
+        "authorId": "42139D24-0869-44A5-B9A9-C3179BE20E3C",
+        "description": "voce ce ta falando serio",
+        "filename": "Ce ta falando serio - Fred.mp3",
+        "dateAdded": "2022-07-22T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "6681F63E-673C-49A2-981F-CF84C02C9329",
+        "title": "Ciúmes de homem é foda",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "ciumes de homem e foda",
+        "filename": "Ciumes de homem e foda.mp3",
+        "dateAdded": "2022-07-22T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "EC2FC93A-7B83-4133-AA02-A4342BF79567",
+        "title": "Amontoado de coisa escrita",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "é um monte de amontoado de muita coisa escrita",
+        "filename": "E um montao de amontoado de muita coisa escrita.mp3",
+        "dateAdded": "2022-07-22T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "40CEE765-643C-4E9A-92DC-E35EA994CA86",
+        "title": "Air Quotes",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "air quotes",
+        "filename": "Air quotes.mp3",
+        "dateAdded": "2022-07-22T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "5D63E2CF-94F7-4988-BF1F-27F1A2DD38BE",
+        "title": "Fala baixo, quem fala alto aqui sou eu!",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "fala baixo quem fala alto aqui sou eu",
+        "filename": "Fala baixo quem fala alto aqui sou eu.mp3",
+        "dateAdded": "2022-07-22T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "6C91C054-1FD8-41AD-90A9-B92C2F880979",
+        "title": "Atenção, é agora que o bicho vai pegar! (Remix)",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "atenção atenção é agora que o bicho vai pegar",
+        "filename": "Atencao e agora que o bicho vai pegar.mp3",
+        "dateAdded": "2022-07-22T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "AB298258-EB86-4226-9BAF-14780905B098",
+        "title": "Aglomeração de idosos todos doentes",
+        "authorId": "A74F2546-2C44-4EDC-92CD-1C64DFE0B9FC",
+        "description": "aglomeração de idosos todos doentes ministro da saude",
+        "filename": "Aglomeracao de idosos todos doentes.mp3",
+        "dateAdded": "2022-07-22T00:00:00Z",
+        "isOffensive": false
     }
 ]
