@@ -28,7 +28,7 @@ class SoundsViewViewModel: ObservableObject {
                     andFavorites favorites: [Favorite]?,
                     allowSensitiveContent: Bool,
                     favoritesOnly: Bool,
-                    sortedBy sortOption: ContentSortOption) {
+                    sortedBy sortOption: SoundSortOption) {
         var soundsCopy = allSounds
         
         if favoritesOnly, let favorites = favorites {
