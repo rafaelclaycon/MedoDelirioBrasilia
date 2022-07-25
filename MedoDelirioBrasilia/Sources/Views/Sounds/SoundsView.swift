@@ -126,7 +126,7 @@ struct SoundsView: View {
                                                                                  andFavorites: try? database.getAllFavorites(),
                                                                                  allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
                                                                                  favoritesOnly: currentMode == .favorites,
-                                                                                 sortedBy: ContentSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
+                                                                                 sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
                                                         }
                                                     } else {
                                                         viewModel.addToFavorites(soundId: sound.id)
@@ -257,7 +257,7 @@ struct SoundsView: View {
                                              andFavorites: try? database.getAllFavorites(),
                                              allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
                                              favoritesOnly: newValue == .favorites,
-                                             sortedBy: ContentSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
+                                             sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
                     }
                 }
                 .disabled(UIDevice.current.userInterfaceIdiom == .pad)
@@ -302,7 +302,7 @@ struct SoundsView: View {
                                          andFavorites: try? database.getAllFavorites(),
                                          allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
                                          favoritesOnly: currentMode == .favorites,
-                                         sortedBy: ContentSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
+                                         sortedBy: SoundSortOption(rawValue: newValue) ?? .titleAscending)
                     UserSettings.setSoundSortOption(to: newValue)
                 })
                 .disabled(currentMode == .byAuthor)
@@ -312,7 +312,7 @@ struct SoundsView: View {
                                      andFavorites: try? database.getAllFavorites(),
                                      allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
                                      favoritesOnly: currentMode == .favorites,
-                                     sortedBy: ContentSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
+                                     sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
                 viewModel.donateActivity()
                 viewModel.sendDeviceModelNameToServer()
                 viewModel.sendUserPersonalTrendsToServerIfEnabled()
@@ -363,7 +363,7 @@ struct SoundsView: View {
                                          andFavorites: try? database.getAllFavorites(),
                                          allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
                                          favoritesOnly: currentMode == .favorites,
-                                         sortedBy: ContentSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
+                                         sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
                     updateSoundsList = false
                 }
             }

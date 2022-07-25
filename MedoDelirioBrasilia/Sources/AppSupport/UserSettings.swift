@@ -20,6 +20,14 @@ class UserSettings {
         return Int(value as! Int)
     }
     
+    static func getSongSortOption() -> Int {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "songSortOption") else {
+            return 1
+        }
+        return Int(value as! Int)
+    }
+    
     static func getEnableTrends() -> Bool {
         let userDefaults = UserDefaults.standard
         guard let value = userDefaults.object(forKey: "enableTrends") else {
@@ -94,6 +102,11 @@ class UserSettings {
     static func setSoundSortOption(to newValue: Int) {
         let userDefaults = UserDefaults.standard
         userDefaults.set(newValue, forKey: "soundSortOption")
+    }
+    
+    static func setSongSortOption(to newValue: Int) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(newValue, forKey: "songSortOption")
     }
     
     static func setEnableTrends(to newValue: Bool) {

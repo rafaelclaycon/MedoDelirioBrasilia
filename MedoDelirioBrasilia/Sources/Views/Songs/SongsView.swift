@@ -48,10 +48,24 @@ struct SongsView: View {
                                         viewModel.nowPlayingKeeper.insert(song.id)
                                     }
                                 }
-                                .onLongPressGesture {
-                                    TapticFeedback.open()
-                                    viewModel.shareSong(withPath: song.filename, andContentId: song.id)
-                                }
+                                .contextMenu(menuItems: {
+                                    Section {
+                                        Button {
+                                            viewModel.shareSong(withPath: song.filename, andContentId: song.id)
+                                        } label: {
+                                            Label(Shared.shareButtonText, systemImage: "square.and.arrow.up")
+                                        }
+                                    }
+                                    
+                                    Section {
+                                        Button {
+                                            viewModel.selectedSong = song
+                                            viewModel.showEmailAppPicker_suggestChangeConfirmationDialog = true
+                                        } label: {
+                                            Label("Sugerir Alteração", systemImage: "exclamationmark.bubble")
+                                        }
+                                    }
+                                })
                         }
                     }
                     .searchable(text: $searchText)
@@ -78,8 +92,37 @@ struct SongsView: View {
                 }
             }
             .navigationTitle("Músicas")
+            .toolbar {
+                Menu {
+                    Section {
+                        Picker("Ordenação", selection: $viewModel.sortOption) {
+                            HStack {
+                                Text("Ordenar por Título")
+                                Image(systemName: "a.circle")
+                            }
+                            .tag(0)
+                            
+                            HStack {
+                                Text("Mais Recentes no Topo")
+                                Image(systemName: "calendar")
+                            }
+                            .tag(1)
+                        }
+                    }
+                } label: {
+                    Image(systemName: "arrow.up.arrow.down")
+                }
+                .onChange(of: viewModel.sortOption, perform: { newSortOption in
+                    viewModel.reloadList(withSongs: songData,
+                                         allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+                                         sortedBy: SongSortOption(rawValue: newSortOption) ?? .titleAscending)
+                    UserSettings.setSongSortOption(to: newSortOption)
+                })
+            }
             .onAppear {
-                viewModel.reloadList()
+                viewModel.reloadList(withSongs: songData,
+                                     allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+                                     sortedBy: SongSortOption(rawValue: UserSettings.getSongSortOption()) ?? .titleAscending)
                 viewModel.donateActivity()
             }
             .onDisappear {
@@ -88,6 +131,11 @@ struct SongsView: View {
             }
             .sheet(isPresented: $viewModel.isShowingShareSheet) {
                 viewModel.iPadShareSheet
+            }
+            .sheet(isPresented: $viewModel.showEmailAppPicker_suggestChangeConfirmationDialog) {
+                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_suggestChangeConfirmationDialog,
+                                   subject: String(format: Shared.Email.suggestSongChangeSubject, viewModel.selectedSong?.title ?? ""),
+                                   emailBody: String(format: Shared.Email.suggestSongChangeBody, viewModel.selectedSong?.id ?? ""))
             }
             
             if viewModel.shouldDisplaySharedSuccessfullyToast {

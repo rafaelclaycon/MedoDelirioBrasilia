@@ -82,10 +82,10 @@
     },
     {
         "id": "DB99A7ED-00D3-444C-89B6-BB24B9801014",
-        "title": "Sou ousado",
+        "title": "Eu não sou médico, mas sou ousado",
         "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
         "description": "eu não sou médico mas sou ousado",
-        "filename": "Bolsonaro - Sou ousado.mp3",
+        "filename": "Bolsonaro - Eu nao sou medico, mas sou ousado.mp3",
         "dateAdded": "2022-07-01T00:00:00Z",
         "isOffensive": false
     },
@@ -4729,7 +4729,7 @@
         "title": "Armandinho é um terror né, meu (completo)",
         "authorId": "50401E09-4DE2-4A1A-B49B-AF75C99904FF",
         "description": "Armandinho e um terror ne meu completo",
-        "filename": "Fã do Armandinho - Armandinho e um terror ne meu (completo).mp3",
+        "filename": "Fa do Armandinho - Armandinho e um terror ne meu (completo).mp3",
         "dateAdded": "2022-07-01T00:00:00Z",
         "isOffensive": false
     },
@@ -4738,7 +4738,7 @@
         "title": "Vamo pra cima, Grêmio",
         "authorId": "50401E09-4DE2-4A1A-B49B-AF75C99904FF",
         "description": "Vamo pra cima Gremio",
-        "filename": "Fã do Armandinho - Vamo pra cima Gremio.mp3",
+        "filename": "Fa do Armandinho - Vamo pra cima Gremio.mp3",
         "dateAdded": "2022-07-01T00:00:00Z",
         "isOffensive": true
     },
@@ -4747,7 +4747,7 @@
         "title": "Vou ver se pego um corpinho hoje lá",
         "authorId": "50401E09-4DE2-4A1A-B49B-AF75C99904FF",
         "description": "Vou ver se pego um corpinho hoje lá",
-        "filename": "Fã do Armandinho - Vou ver se pego um corpinho hoje la.mp3",
+        "filename": "Fa do Armandinho - Vou ver se pego um corpinho hoje la.mp3",
         "dateAdded": "2022-07-01T00:00:00Z",
         "isOffensive": true
     },
@@ -4756,7 +4756,7 @@
         "title": "E um poeta né, meu, bah",
         "authorId": "50401E09-4DE2-4A1A-B49B-AF75C99904FF",
         "description": "E um poeta ne meu, bah",
-        "filename": "Fã do Armandinho - E um poeta ne meu, bah.mp3",
+        "filename": "Fa do Armandinho - E um poeta ne meu, bah.mp3",
         "dateAdded": "2022-07-01T00:00:00Z",
         "isOffensive": false
     },
@@ -5436,15 +5436,6 @@
         "isOffensive": true
     },
     {
-        "id": "4BB74EA3-5F39-4B87-B4E6-1D4E34F59F8B",
-        "title": "É ele mesmo",
-        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
-        "description": "é ele mesmo ele mesmo funk",
-        "filename": "Funk meme - Ele mesmo, ele mesmo, ele mesmo.mp3",
-        "dateAdded": "2022-07-15T00:00:00Z",
-        "isOffensive": false
-    },
-    {
         "id": "63D437EF-D7C9-4F3E-8019-D26CC3891133",
         "title": "Eine grosse confusion",
         "authorId": "3C41E7C2-BA19-456E-90DC-97ADC57B81C0",
@@ -5595,6 +5586,258 @@
         "description": "se voce tem um sistema de policia cuja maior caracteristica e deixar um numero elevado de policiais mortos no topo do ranking mundial e um numero elevado de pessoas em confronto com a policia morrem no topo da cadeia mundial ta errado",
         "filename": "RADIO BANDNEWS FM - Eduardo Oinegue - Se numero elevado de mortes policia e uma caracteristica, ta errado.mp3",
         "dateAdded": "2022-07-18T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "8C73F718-FAB4-4A6A-BE28-77EBBAF6118E",
+        "title": "Vendidos e Canalhas (editorialista do Estadão)",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "ze do caixao vendidos e canalhas que os tumores da culpa permeeiem o seu corpo terrivel editorialista do estadão",
+        "filename": "Vendidos e canalhas - Cristiano botafogo.mp3",
+        "dateAdded": "2022-07-20T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "AFC5B160-3B3A-40D3-9558-B29A5B6D919B",
+        "title": "Isso aí é sarcasmo (voz de esquilo)",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "isso aí é sarcarmo esquilo alvin rapido",
+        "filename": "Isso ai e sarcasmo alvin e os esquilos - cristiano botafogo.mp3",
+        "dateAdded": "2022-07-20T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "5E02D85D-F8EC-4B66-8384-E25E516D4DD4",
+        "title": "Sarcasmo",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "sarcasmo lento silabas coro",
+        "filename": "sarcasmo - cristiano botafogo.mp3",
+        "dateAdded": "2022-07-20T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "BC047B30-D0E5-4B83-88C2-EEE0717B282C",
+        "title": "Sai fora, satanas",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "sai fora satanas",
+        "filename": "sai fora satanas - cristiano botafogo.mp3",
+        "dateAdded": "2022-07-20T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "A94B9BE6-33A5-47FC-81E3-08E02E5BF4FB",
+        "title": "Eu tô passada, chocada",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "surpresa eu to passada chocada meme",
+        "filename": "Eu to passada chocada - meme.mp3",
+        "dateAdded": "2022-07-20T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "30F66DA5-897F-468D-8B73-8E0D915D1CB8",
+        "title": "Festa estranha com gente esquisita",
+        "authorId": "F6C48774-975B-4AAD-BED1-211D56B41CDB",
+        "description": "festa estranha com gente esquisita",
+        "filename": "Festa estranha com gente esquisita - legiao urbana.mp3",
+        "dateAdded": "2022-07-20T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "6C94060D-1F6C-4DB1-9195-F39F75D10377",
+        "title": "Eduardo, você é burro!",
+        "authorId": "2F031364-8F11-4BD2-9DB6-A2D7BFA19B3F",
+        "description": "eduardo presta atenção aqui no tio sabe o que você é burro você é burro",
+        "filename": "Eduardo voce e burro.mp3",
+        "dateAdded": "2022-07-20T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "FDD84713-F860-4427-8216-AFC411DF8E39",
+        "title": "Quero que o senhor as engula",
+        "authorId": "C85B6755-6598-47C4-BDAF-DD8E8FFEDBE3",
+        "description": "as palavras que o senhor acabou de pronunciar são palavras que eu quero que o senhor as engula e as digira como o senhor julgar conveniente",
+        "filename": "quero que o senhor as engula - collor.mp3",
+        "dateAdded": "2022-07-20T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "B36B1DA2-7A1F-4B88-852F-B4029E459070",
+        "title": "Ihuuu (compilação)",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "ihu ihuuu compilação grito cowboy vaqueiro comemoração comemorando",
+        "filename": "Ihu compilacao.mp3",
+        "dateAdded": "2022-07-20T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "4FB54B3A-5FF1-42B1-AE14-1E99F4F0BCBB",
+        "title": "Pouerpoint",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "powerpoint power point pouerpoint",
+        "filename": "Pouerpoint - Bolsonaro.mp3",
+        "dateAdded": "2022-07-20T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "302076D0-9381-4945-8322-F8329EDDEB67",
+        "title": "Jornalista de alta performance",
+        "authorId": "567A3EC6-6D44-4B49-8028-1C6CA6224ED4",
+        "description": "querida eu sou um jornalista de alta performance",
+        "filename": "Jornalista de alta performance - Oswaldo Eustaquio.mp3",
+        "dateAdded": "2022-07-20T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "C784758D-A7E5-48C0-A272-DB49BFE22001",
+        "title": "Ih, rapaz",
+        "authorId": "D19468C5-9F69-4F1B-B47F-696D5D716764",
+        "description": "ih rapaz fred seleção",
+        "filename": "Ih rapaz - fred.mp3",
+        "dateAdded": "2022-07-22T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "6681F63E-673C-49A2-981F-CF84C02C9329",
+        "title": "Ciúmes de homem é foda",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "ciumes de homem e foda",
+        "filename": "Ciumes de homem e foda.mp3",
+        "dateAdded": "2022-07-22T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "EC2FC93A-7B83-4133-AA02-A4342BF79567",
+        "title": "Amontoado de coisa escrita",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "é um monte de amontoado de muita coisa escrita",
+        "filename": "E um montao de amontoado de muita coisa escrita.mp3",
+        "dateAdded": "2022-07-22T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "40CEE765-643C-4E9A-92DC-E35EA994CA86",
+        "title": "\"Air quotes\"",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "air quotes",
+        "filename": "Air quotes.mp3",
+        "dateAdded": "2022-07-22T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "5D63E2CF-94F7-4988-BF1F-27F1A2DD38BE",
+        "title": "Fala baixo, quem fala alto aqui sou eu!",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "fala baixo quem fala alto aqui sou eu",
+        "filename": "Fala baixo quem fala alto aqui sou eu.mp3",
+        "dateAdded": "2022-07-22T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "6C91C054-1FD8-41AD-90A9-B92C2F880979",
+        "title": "Atenção, é agora que o bicho vai pegar! (remix)",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "atenção atenção é agora que o bicho vai pegar",
+        "filename": "Atencao e agora que o bicho vai pegar.mp3",
+        "dateAdded": "2022-07-22T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "AB298258-EB86-4226-9BAF-14780905B098",
+        "title": "Aglomeração de idosos, todos doentes",
+        "authorId": "A74F2546-2C44-4EDC-92CD-1C64DFE0B9FC",
+        "description": "aglomeração de idosos todos doentes ministro da saude",
+        "filename": "Aglomeracao de idosos todos doentes.mp3",
+        "dateAdded": "2022-07-22T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "1E45F2E9-E67C-4997-8BB3-D9D3AED26559",
+        "title": "A decisão não cabe a gente, cabe ao TSE",
+        "authorId": "463C5301-7D24-4EE4-9E75-E81DFF9B36F4",
+        "description": "A decisao a aceitacao nao cabe a gente cabe ao tribunal superior eleitoral logicamente TSE",
+        "filename": "A decisao aceitacao nao cabe a gente cabe ao TSE.mp3",
+        "dateAdded": "2022-07-22T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "7447DB3D-B57B-4CC2-BDED-59400B2EB9B1",
+        "title": "Sou ousado",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "sou ousado",
+        "filename": "Bolsonaro - Sou ousado.mp3",
+        "dateAdded": "2022-07-24T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "74DBFC2A-1BA9-4314-AFEF-FEFEAD623BA6",
+        "title": "Canalhas!",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "canalhas",
+        "filename": "Jair Bolsonaro - Canalhas.mp3",
+        "dateAdded": "2022-07-24T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "2BE954A7-3D29-4869-B799-1E49A1FD6140",
+        "title": "Canalhas mil vezes",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "canalhas mil vezes",
+        "filename": "Jair Bolsonaro - Canalhas mil vezes.mp3",
+        "dateAdded": "2022-07-24T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "38FAB19A-634E-488E-90BA-DF37FD74373A",
+        "title": "Muito muito pipi mole, o pipizinho dele é bem mole",
+        "authorId": "0D944922-7E50-4DED-A8FD-F44EFCAE82A2",
+        "description": "Muito muito pipi mole o pipizinho dele e bem mole",
+        "filename": "Abraham Weintraub - Muito muito pipi mole, o pipizinho dele e bem mole.mp3",
+        "dateAdded": "2022-07-25T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "F7CF35B6-DB09-4A7C-ABB4-18E46CDD0EF4",
+        "title": "Muito muito pipi mole",
+        "authorId": "0D944922-7E50-4DED-A8FD-F44EFCAE82A2",
+        "description": "Muito muito pipi mole",
+        "filename": "Abraham Weintraub - Muito muito pipi mole.mp3",
+        "dateAdded": "2022-07-25T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "D1B14988-87AF-48C8-B223-54AEDFC80282",
+        "title": "Carga pesadíssima de loucura e conspiração no marxismo cultural",
+        "authorId": "248A6A3B-3EEF-45D6-9A2F-A81768B7B370",
+        "description": "Carga pesadissima de loucura e conspiracao que existe nesse termo ai o MARXISMO CULTURAL",
+        "filename": "METEORO BRASIL - Carga pesadissima de loucura e conspiracao no MARXISMO CULTURAL.mp3",
+        "dateAdded": "2022-07-25T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "6C7FF5AB-66F8-4BBE-A78E-8C9E0FC54660",
+        "title": "Carga pesadíssima de loucura e conspiração",
+        "authorId": "248A6A3B-3EEF-45D6-9A2F-A81768B7B370",
+        "description": "Carga pesadissima de loucura e conspiracao",
+        "filename": "METEORO BRASIL - Carga pesadissima de loucura e conspiracao.mp3",
+        "dateAdded": "2022-07-25T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "1FAE17F2-0FD4-414F-AEA4-277AEA99AF22",
+        "title": "Eduardo Bolsonaro, aquele bonsai de pica",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "porra o Eduardo Bolsonaro aquele bonsai de pica",
+        "filename": "Cristiano Botafogo imitando o Frota - Eduardo Bolsonaro, aquele bonsai de pica.mp3",
+        "dateAdded": "2022-07-25T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "9AB28699-8884-407C-8809-BBA08E47826A",
+        "title": "Bonsai de pica",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "bonsai de pica",
+        "filename": "Cristiano Botafogo imitando o Frota - Bonsai de pica.mp3",
+        "dateAdded": "2022-07-25T00:00:00Z",
         "isOffensive": true
     }
 ]
