@@ -14,7 +14,7 @@ struct TrendsSettingsView: View {
     var body: some View {
         Form {
             Section {
-                Toggle("Habilitar Tendências (Beta)", isOn: $trendsEnabled)
+                Toggle("Habilitar Tendências", isOn: $trendsEnabled)
                     .onChange(of: trendsEnabled) { newValue in
                         UserSettings.setEnableTrends(to: newValue)
                     }

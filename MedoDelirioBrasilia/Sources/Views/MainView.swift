@@ -33,13 +33,13 @@ struct MainView: View {
                 }
                 .tag(3)
                 
-//                NavigationView {
-//                    TrendsView()
-//                }
-//                .tabItem {
-//                    Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
-//                }
-//                .tag(4)
+                NavigationView {
+                    TrendsView()
+                }
+                .tabItem {
+                    Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
+                }
+                .tag(4)
                 
                 NavigationView {
                     SettingsView()

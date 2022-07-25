@@ -195,12 +195,12 @@ struct TrendsView: View {
                             .padding(.horizontal)
                     }*/
                 }
+            } else {
+                TrendsDisabledView()
+                    .padding(.horizontal, 25)
             }
-        } else {
-            TrendsDisabledView()
-                .padding(.horizontal, 25)
         }
-        .navigationTitle("Tendências (Beta)")
+        .navigationTitle("Tendências")
         .navigationBarTitleDisplayMode(showTrends ? .large : .inline)
         .onAppear {
             viewModel.reloadPersonalList(withTopChartItems: podium.getTop5SoundsSharedByTheUser())
