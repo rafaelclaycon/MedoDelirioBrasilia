@@ -142,11 +142,11 @@ struct SoundsView: View {
                                                         return viewModel.showNoFoldersAlert()
                                                     }
                                                     subviewToOpen = .addToFolderView
-                                                    showingAddToFolderModal = true
+                                                    showingModalView = true
                                                 } label: {
                                                     Label(Shared.addToFolderButtonText, systemImage: "folder.badge.plus")
                                                 }
-                                                .onChange(of: showingAddToFolderModal) { newValue in
+                                                .onChange(of: showingModalView) { newValue in
                                                     if (newValue == false) && hadSuccessAddingToFolder {
                                                         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
                                                             withAnimation {
