@@ -6,10 +6,16 @@ struct SoundsView: View {
         case allSounds, favorites, byAuthor
     }
     
+    enum SubviewToOpen {
+        case onboardingView, addToFolderView
+    }
+    
     @StateObject private var viewModel = SoundsViewViewModel()
     @State var currentMode: Mode
     @State private var searchText = ""
     @State private var scrollViewObject: ScrollViewProxy? = nil
+    @State private var subviewToOpen: SubviewToOpen = .onboardingView
+    @State private var showingModalView = false
     
     @Binding var updateSoundsList: Bool
     
@@ -17,7 +23,6 @@ struct SoundsView: View {
     @State private var shouldDisplayHotWheatherBanner: Bool = false
     
     // Add to Folder vars
-    @State private var showingAddToFolderModal = false
     @State private var hadSuccessAddingToFolder: Bool = false
     @State private var folderName: String? = nil
     @State private var shouldDisplayAddedToFolderToast: Bool = false
@@ -136,6 +141,7 @@ struct SoundsView: View {
                                                     guard hasFolders ?? false else {
                                                         return viewModel.showNoFoldersAlert()
                                                     }
+                                                    subviewToOpen = .addToFolderView
                                                     showingAddToFolderModal = true
                                                 } label: {
                                                     Label(Shared.addToFolderButtonText, systemImage: "folder.badge.plus")
@@ -310,7 +316,12 @@ struct SoundsView: View {
                 viewModel.donateActivity()
                 viewModel.sendDeviceModelNameToServer()
                 viewModel.sendUserPersonalTrendsToServerIfEnabled()
-                
+
+                if AppPersistentMemory.getHasShownNotificationsOnboarding() == false {
+                    subviewToOpen = .onboardingView
+                    showingModalView = true
+                }
+
                 shouldDisplayHotWheatherBanner = UserSettings.getHotWeatherBannerWasDismissed() == false
             }
             .sheet(isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog) {
@@ -329,11 +340,22 @@ struct SoundsView: View {
                     }), secondaryButton: .cancel(Text("Fechar")))
                 }
             }
-            .sheet(isPresented: $showingAddToFolderModal) {
-                AddToFolderView(isBeingShown: $showingAddToFolderModal, hadSuccess: $hadSuccessAddingToFolder, folderName: $folderName, selectedSoundName: viewModel.selectedSound!.title, selectedSoundId: viewModel.selectedSound!.id)
-            }
             .sheet(isPresented: $viewModel.isShowingShareSheet) {
                 viewModel.iPadShareSheet
+            }
+            .sheet(isPresented: $showingModalView) {
+                switch subviewToOpen {
+                 case .onboardingView:
+                    OnboardingView(isBeingShown: $showingModalView)
+                        .interactiveDismissDisabled(true)
+                    
+                case .addToFolderView:
+                    AddToFolderView(isBeingShown: $showingModalView,
+                                    hadSuccess: $hadSuccessAddingToFolder,
+                                    folderName: $folderName,
+                                    selectedSoundName: viewModel.selectedSound!.title,
+                                    selectedSoundId: viewModel.selectedSound!.id)
+                }
             }
             .onChange(of: updateSoundsList) { shouldUpdate in
                 if shouldUpdate {
@@ -349,7 +371,7 @@ struct SoundsView: View {
             if shouldDisplayAddedToFolderToast {
                 VStack {
                     Spacer()
-                    
+
                     ToastView(text: "Som adicionado à pasta \(folderName ?? "").")
                         .padding()
                 }

@@ -3,7 +3,7 @@ import UIKit
 class Logger {
 
     static func logSharedSound(contentId: String, destination: ShareDestination, destinationBundleId: String) {
-        let shareLog = UserShareLog(installId: UIDevice.current.identifierForVendor?.uuidString ?? "",
+        let shareLog = UserShareLog(installId: UIDevice.identifiderForVendor,
                                     contentId: contentId,
                                     contentType: 0,
                                     dateTime: Date(),
@@ -14,7 +14,7 @@ class Logger {
     }
     
     static func logSharedSong(contentId: String, destination: ShareDestination, destinationBundleId: String) {
-        let shareLog = UserShareLog(installId: UIDevice.current.identifierForVendor?.uuidString ?? "",
+        let shareLog = UserShareLog(installId: UIDevice.identifiderForVendor,
                                     contentId: contentId,
                                     contentType: 1,
                                     dateTime: Date(),

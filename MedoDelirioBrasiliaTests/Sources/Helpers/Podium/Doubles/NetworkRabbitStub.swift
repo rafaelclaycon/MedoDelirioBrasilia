@@ -1,4 +1,4 @@
-@testable import Medo_e_Delírio
+@testable import MedoDelirio
 import Foundation
 
 class NetworkRabbitStub: NetworkRabbitProtocol {

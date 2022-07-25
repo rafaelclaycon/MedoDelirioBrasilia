@@ -76,20 +76,12 @@ class UserSettings {
         return Bool(value as! Bool)
     }
     
-    static func getHasSentDeviceModelToServer() -> Bool {
+    static func getUserAllowedNotifications() -> Bool {
         let userDefaults = UserDefaults.standard
-        guard let value = userDefaults.object(forKey: "hasSentDeviceModelToServer") else {
+        guard let value = userDefaults.object(forKey: "userAllowedNotifications") else {
             return false
         }
         return Bool(value as! Bool)
-    }
-    
-    static func getLastSendDateOfUserPersonalTrendsToServer() -> Date? {
-        let userDefaults = UserDefaults.standard
-        guard let value = userDefaults.object(forKey: "lastSendDateOfUserPersonalTrendsToServer") else {
-            return nil
-        }
-        return Date(timeIntervalSince1970: value as! Double)
     }
     
     static func getHotWeatherBannerWasDismissed() -> Bool {
@@ -147,14 +139,9 @@ class UserSettings {
         userDefaults.set(newValue, forKey: "enableShareUserPersonalTrends")
     }
     
-    static func setHasSentDeviceModelToServer(to newValue: Bool) {
+    static func setUserAllowedNotifications(to newValue: Bool) {
         let userDefaults = UserDefaults.standard
-        userDefaults.set(newValue, forKey: "hasSentDeviceModelToServer")
-    }
-    
-    static func setLastSendDateOfUserPersonalTrendsToServer(to newValue: Date) {
-        let userDefaults = UserDefaults.standard
-        userDefaults.set(newValue.timeIntervalSince1970, forKey: "lastSendDateOfUserPersonalTrendsToServer")
+        userDefaults.set(newValue, forKey: "userAllowedNotifications")
     }
     
     static func setHotWeatherBannerWasDismissed(to newValue: Bool) {
