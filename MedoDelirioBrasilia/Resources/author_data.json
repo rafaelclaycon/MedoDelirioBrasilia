@@ -1,7 +1,8 @@
 [
     {
         "id": "E49C6318-B890-4976-B90F-01B60A4FE6D7",
-        "name": "Ady Ferrer"
+        "name": "Ady Ferrer",
+        "photo": "https://cachedimages.podchaser.com/256x256/aHR0cHM6Ly9jcmVhdG9yLWltYWdlcy5wb2RjaGFzZXIuY29tLzZiMzQ4NWQxOTBlYmFlZWMwOTI3NDk0OTBlOTE1OTUwLmpwZWc%3D/aHR0cHM6Ly93d3cucG9kY2hhc2VyLmNvbS9pbWFnZXMvbWlzc2luZy1pbWFnZS5wbmc%3D"
     },
     {
         "id": "089EBD4E-486E-4DF2-9918-E404B5CA7A7E",
@@ -17,7 +18,8 @@
     },
     {
         "id": "2982E359-0A6C-4005-AED8-2D5BB7F39599",
-        "name": "Alborghetti"
+        "name": "Alborghetti",
+        "photo": "https://pbs.twimg.com/profile_images/1257904807/alborghetti_400x400.jpg"
     },
     {
         "id": "2267C284-7BA1-42DB-8AE8-E329E28CF43C",
@@ -29,7 +31,7 @@
     },
     {
         "id": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
-        "name": "Bolsonaro"
+        "name": "Jair Bolsonaro"
     },
     {
         "id": "ED9593A4-B314-405D-B7F9-3BF8B21FA54A",
@@ -45,7 +47,8 @@
     },
     {
         "id": "3FE2F541-6B10-47A8-A1FB-640AB6E55FA9",
-        "name": "Dilma"
+        "name": "Dilma Rousseff",
+        "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Dilma_Rousseff_-_foto_oficial_2011-01-09.jpg/640px-Dilma_Rousseff_-_foto_oficial_2011-01-09.jpg"
     },
     {
         "id": "691D4F55-79F7-407A-B0AA-71CD09059E60",
@@ -61,7 +64,8 @@
     },
     {
         "id": "69EFC7D8-8922-4FC4-A0F8-881136B69564",
-        "name": "Gloria Groove"
+        "name": "Gloria Groove",
+        "photo": "https://yt3.ggpht.com/bB-BjsfmyCs27_PW0RmtI6O6Ox7_TPekQHLGgyOQDYt5nBOkvAv_rNd0xI0cIqaEAbimaqjo=s900-c-k-c0x00ffffff-no-rj"
     },
     {
         "id": "6C973E63-4682-49A8-BDA3-EA20113A827A",
@@ -133,7 +137,8 @@
     },
     {
         "id": "D19468C5-9F69-4F1B-B47F-696D5D716764",
-        "name": "Fred"
+        "name": "Fred",
+        "photo": "https://www.futcards.com.br/wp-content/uploads/2018/10/fred-fluminense-1.jpg"
     },
     {
         "id": "B7CB79F9-4CAC-4832-BB47-2EA96A4AC576",
@@ -193,7 +198,7 @@
     },
     {
         "id": "28B86BE0-5475-49E9-9ADD-1AA39630869D",
-        "name": "Mourão"
+        "name": "Hamilton Mourão"
     },
     {
         "id": "DBC3A1FF-E536-40F0-B869-2ED3E11DF5F7",
@@ -253,7 +258,8 @@
     },
     {
         "id": "39FA164E-7618-480E-8881-BC3AA5E862F7",
-        "name": "MIDCast"
+        "name": "MIDCast",
+        "photo": "https://pbs.twimg.com/profile_images/1195273809512800258/GH_0pD8W_400x400.jpg"
     },
     {
         "id": "321C3F81-51C6-4AB2-917C-81DCAF13A515",
@@ -313,7 +319,8 @@
     },
     {
         "id": "58382B3D-4014-42C0-B0A7-D02733E9BCE3",
-        "name": "Samira Close"
+        "name": "Samira Close",
+        "photo": "https://yt3.ggpht.com/ytc/AKedOLRjdzsZyL8rKC0c83BV7_muqPkBtd2TM1kYrV76iA=s900-c-k-c0x00ffffff-no-rj"
     },
     {
         "id": "A641DDF3-E419-4488-8F1F-20A823218212",
@@ -353,11 +360,13 @@
     },
     {
         "id": "9DD28494-F33B-471F-8AD6-D4F86978DD42",
-        "name": "Atila Iamarino"
+        "name": "Atila Iamarino",
+        "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtxe9cE8JfTuctIhfMTIHQ4Qqx2jMqa_7uW37Pg0OkhghYCjd1JZSqoR5meCC-hln_xKA&usqp=CAU"
     },
     {
         "id": "0B6E906E-CF91-4705-A65A-72C96A4813FC",
-        "name": "Zé Gotinha"
+        "name": "Zé Gotinha",
+        "photo": "https://i.pinimg.com/564x/05/aa/dc/05aadc07b29cf87bbc4dd154e3f43296.jpg"
     },
     {
         "id": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
@@ -449,7 +458,8 @@
     },
     {
         "id": "71F782D3-2BB3-443D-9F2D-262E12EB7FDD",
-        "name": "Lado B do Rio"
+        "name": "Lado B do Rio",
+        "photo": "https://yt3.ggpht.com/ytc/AKedOLSCoORDMB0Yt1RVhNZJaRASlwWVGmMZ6yH6iYQ1qw=s900-c-k-c0x00ffffff-no-rj"
     },
     {
         "id": "FB21ABB0-044C-4A33-8DFC-965480115F4A",
@@ -457,7 +467,8 @@
     },
     {
         "id": "495C92AE-56FA-4882-A962-188FCCEBCA01",
-        "name": "Lula"
+        "name": "Lula",
+        "photo": "https://pbs.twimg.com/profile_images/710844355452522496/gOAhmKxr_400x400.jpg"
     },
     {
         "id": "F40DEA6D-D795-4697-8911-275FAB2869AD",
@@ -525,7 +536,8 @@
     },
     {
         "id": "F1683588-F547-4F2F-B3E4-8A328FAFC1AB",
-        "name": "Casimiro"
+        "name": "Casimiro",
+        "photo": "https://pbs.twimg.com/profile_images/1495509561377177601/WljXGF65_400x400.jpg"
     },
     {
         "id": "94004C99-7373-4880-B551-1BC283992BDC",
@@ -573,7 +585,8 @@
     },
     {
         "id": "AB5C4677-E814-4A78-8D9C-68AC8DE1B03F",
-        "name": "Antonio Tabet"
+        "name": "Antonio Tabet",
+        "photo": "https://media-exp1.licdn.com/dms/image/C5603AQEf7-GNPunUOw/profile-displayphoto-shrink_200_200/0/1517623646946?e=1659571200&v=beta&t=vqDOLQrBYDeM3OVreBEVxRU1nBCcOWf53kr1joFcZfM"
     },
     {
         "id": "6AF9A309-8B1F-4553-A369-19E575E14DA5",
@@ -657,7 +670,8 @@
     },
     {
         "id": "248A6A3B-3EEF-45D6-9A2F-A81768B7B370",
-        "name": "Álvaro Borba (Meteoro Brasil)"
+        "name": "Álvaro Borba (Meteoro Brasil)",
+        "photo": "https://pbs.twimg.com/profile_images/1507527759953813506/4RJpvU42_400x400.jpg"
     },
     {
         "id": "026D606A-356F-47C9-8D42-D5C838653E02",
@@ -689,7 +703,8 @@
     },
     {
         "id": "53202065-71B1-459F-A3C6-650379874255",
-        "name": "Gumball"
+        "name": "Gumball",
+        "photo": "https://yt3.ggpht.com/ytc/AKedOLQBa1gd-XwFMQuohMtYc0RgXIlPV3nr-VUtSy1-=s900-c-k-c0x00ffffff-no-rj"
     },
     {
         "id": "05A3C97F-68EE-4AEB-9BEA-761348725225",
@@ -702,5 +717,244 @@
     {
         "id": "EB50B3D6-BF30-4B52-BAD7-A019C2F03A79",
         "name": "Regina Rouca"
+    },
+    {
+        "id": "8C588F61-04AC-4F3D-B1B8-F44ADC1311E2",
+        "name": "Nando Moura"
+    },
+    {
+        "id": "57017B39-5D5B-477A-BAF5-4F103DD84CB1",
+        "name": "Victor Camejo"
+    },
+    {
+        "id": "0278633F-0BA6-48DB-94CA-7ADACDBBA39D",
+        "name": "Luiz Megale"
+    },
+    {
+        "id": "17C39873-DC8D-47ED-8447-BB47E565D542",
+        "name": "Ricardo Boechat"
+    },
+    {
+        "id": "0258693D-31D6-4A9E-8BA8-F11973BA79CF",
+        "name": "Franciel Cruz (Laive das Canjebrinas)"
+    },
+    {
+        "id": "CBDBB613-B887-473F-956D-BE497F31E549",
+        "name": "Vai Dar Namoro"
+    },
+    {
+        "id": "818A31F2-77FC-45B0-8C4F-9CD52BC1B2FB",
+        "name": "Lasier Martins"
+    },
+    {
+        "id": "8A064580-AEB6-4FCE-9B87-11F5D5C6995E",
+        "name": "Amigo do Pedro Daltro"
+    },
+    {
+        "id": "917F48B7-332D-4E9B-8190-DF93875F3E35",
+        "name": "Mr. Catra"
+    },
+    {
+        "id": "AFB30EED-A9AA-4F0A-AAB1-92E07E319275",
+        "name": "Molejo"
+    },
+    {
+        "id": "B844D396-6AEB-4AD8-845E-A6CBE539BA87",
+        "name": "Lucca Wilker"
+    },
+    {
+        "id": "62281870-6E38-438C-BC6A-CC388FF0161E",
+        "name": "MC Cidinho e MC Doca"
+    },
+    {
+        "id": "9E6BFEFD-3E92-4D63-A564-1C59A01811C5",
+        "name": "Matheus Canella"
+    },
+    {
+        "id": "D5C493CE-E29C-45CF-8E92-7A8C6F4526D8",
+        "name": "Marco Feliciano"
+    },
+    {
+        "id": "9AB96EA6-7AB9-4FF3-BD58-4752D23DCA9B",
+        "name": "Marcelo Freixo"
+    },
+    {
+        "id": "4E8F4CB9-1641-405E-ABE0-80887F72509A",
+        "name": "Keila Mellman"
+    },
+    {
+        "id": "FE52729B-F3E8-4A7F-A5EB-4471A6595839",
+        "name": "Lobão"
+    },
+    {
+        "id": "F70C9F83-5567-4892-8B31-BC9B96F4BBBA",
+        "name": "Maisa Silva",
+        "photo": "https://vejasp.abril.com.br/wp-content/uploads/2020/10/119047740_601873583818073_5298713052860443963_n.jpg"
+    },
+    {
+        "id": "DFBF365D-CA69-456C-A536-B9C78F519669",
+        "name": "Lu Schievano"
+    },
+    {
+        "id": "02CFCF9C-F456-4813-8E6D-F8EA3DBF2777",
+        "name": "Merval Pereira"
+    },
+    {
+        "id": "42EDB2DA-51E7-40B1-BABA-FD28066AF001",
+        "name": "Milton Leite"
+    },
+    {
+        "id": "50401E09-4DE2-4A1A-B49B-AF75C99904FF",
+        "name": "Fã do Armandinho"
+    },
+    {
+        "id": "4A3B9287-8D43-43A3-921D-4F3191455330",
+        "name": "Joice (TV Beltrão - Expobel)"
+    },
+    {
+        "id": "E88CFA6A-ACB9-43FC-A844-769E119BCDDE",
+        "name": "King Size"
+    },
+    {
+        "id": "8C167506-518F-4054-9230-3E4CC351C260",
+        "name": "Luciano Hang"
+    },
+    {
+        "id": "0C099F71-12F6-4DDE-B13B-18E29D55F0F5",
+        "name": "Magno Malta"
+    },
+    {
+        "id": "563E0AAC-F818-4FB6-B2C2-027B242D2801",
+        "name": "Marcel van Hatten"
+    },
+    {
+        "id": "F9ACC75C-75EB-48B2-85DC-6372B1A542E2",
+        "name": "Massacration"
+    },
+    {
+        "id": "AD2D908B-E9F4-4E42-8DD0-CD08BD62816C",
+        "name": "Matheuzinho e Menor Nico"
+    },
+    {
+        "id": "7248F1AC-D4BF-4DF9-8E65-A0BF17F9A122",
+        "name": "MC Serginho"
+    },
+    {
+        "id": "A597D84F-D4AD-4F77-A75A-B375C1FC5CE7",
+        "name": "Marisa Monte"
+    },
+    {
+        "id": "17B0925A-5D2B-470F-91B2-83130B25CA45",
+        "name": "Monty Python"
+    },
+    {
+        "id": "F8CE2D0A-98A0-48B2-BEB7-A6CBE0672593",
+        "name": "Planet Hemp"
+    },
+    {
+        "id": "FA224CBA-E69C-42B2-B01D-CD2DBF70573B",
+        "name": "Djonga"
+    },
+    {
+        "id": "1A9F31DE-694B-4424-8303-2CBDCC592E18",
+        "name": "Jão",
+        "photo": "https://s2.glbimg.com/GSfuzY02Z9dugbHHVo9DTE_l-rw=/e.glbimg.com/og/ed/f/original/2021/01/19/image_PJRFcHq.png"
+    },
+    {
+        "id": "3731428A-2D50-4EDB-B6D3-E1F870EA89D2",
+        "name": "Pabllo Vittar"
+    },
+    {
+        "id": "C7706E5F-794E-4496-95DF-C95F2494063D",
+        "name": "Naiara Azevedo"
+    },
+    {
+        "id": "93C67421-9990-4F19-9A40-039D91528014",
+        "name": "Néstor Kirchner"
+    },
+    {
+        "id": "4B62F3D0-31D3-4C11-85A6-D8C137D0422C",
+        "name": "Nhonho"
+    },
+    {
+        "id": "37C26939-216F-4595-8B2C-8931E4C57778",
+        "name": "Nenho"
+    },
+    {
+        "id": "13D62ECA-B179-4AD4-B7BE-438BEA8AEB4C",
+        "name": "Randolfe"
+    },
+    {
+        "id": "CEB3DACA-D4E2-4D83-AF87-610571ABD44A",
+        "name": "Barões da Pisadinha"
+    },
+    {
+        "id": "B390C2BC-D59C-4EF3-811A-FD8FC61386AC",
+        "name": "Bob Esponja (Spongebob)",
+        "photo": "https://almeidajunior-prod1.s3.amazonaws.com/prod/uploads/news/5d81505ac6770.jpg"
+    },
+    {
+        "id": "809961C4-9B82-4A5F-BD95-3EF09A7A5720",
+        "name": "Carole King"
+    },
+    {
+        "id": "876FAE2F-1D35-45AD-BEA7-08F9B86988A3",
+        "name": "Cartoon Network"
+    },
+    {
+        "id": "FFF51EE2-C8CE-451F-8BAC-9235A6F56F67",
+        "name": "Dr. Chapatin (Chaves)"
+    },
+    {
+        "id": "B1D05D61-85EC-4AA7-9FF9-501BB6DAB719",
+        "name": "Chiquititas"
+    },
+    {
+        "id": "32F308DB-5D4C-4900-BB13-98471F0FABCC",
+        "name": "Cidinho e Doca"
+    },
+    {
+        "id": "57180528-C9BA-4668-B795-BDA000642445",
+        "name": "Aécio Neves"
+    },
+    {
+        "id": "287808FB-BAF5-41DC-8CD2-DF60C4323796",
+        "name": "Compradre Washington"
+    },
+    {
+        "id": "5F0EAB9B-2267-4C31-944A-F73D76AC1020",
+        "name": "Ana Paula (BBB 16)"
+    },
+    {
+        "id": "9796134C-BC7F-4121-9008-ACE479834FD5",
+        "name": "Tanguy Baghdadi"
+    },
+    {
+        "id": "ED785AAD-640D-42A6-94C3-47DF7CE8CAD2",
+        "name": "Eduardo Oinegue"
+    },
+    {
+        "id": "5FDB3245-BE8B-4884-96D7-4EA43702CE50",
+        "name": "Seu Barriga (Chaves)"
+    },
+    {
+        "id": "567A3EC6-6D44-4B49-8028-1C6CA6224ED4",
+        "name": "Oswaldo Eustáquio"
+    },
+    {
+        "id": "F6C48774-975B-4AAD-BED1-211D56B41CDB",
+        "name": "Legião Urbana"
+    },
+    {
+        "id": "2F031364-8F11-4BD2-9DB6-A2D7BFA19B3F",
+        "name": "Reinaldo Azevedo"
+    },
+    {
+        "id": "A74F2546-2C44-4EDC-92CD-1C64DFE0B9FC",
+        "name": "Henrique Mandetta"
+    },
+    {
+        "id": "30295E3D-5CC4-4DE8-9BDA-A9117BF3535B",
+        "name": "Anderson Torres (Ministro da Defesa)"
     }
 ]

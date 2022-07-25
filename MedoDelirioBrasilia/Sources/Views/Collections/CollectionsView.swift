@@ -11,31 +11,41 @@ struct CollectionsView: View {
         GridItem(.flexible())
     ]
     
-    private let columns = [
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
+    private var columns: [GridItem] {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            return [
+                GridItem(.flexible()),
+                GridItem(.flexible())
+            ]
+        } else {
+            return [
+                GridItem(.flexible()),
+                GridItem(.flexible()),
+                GridItem(.flexible()),
+                GridItem(.flexible())
+            ]
+        }
+    }
     
     var body: some View {
-        NavigationView {
-            ScrollView {
+        ScrollView {
+            VStack(alignment: .center) {
                 VStack(alignment: .center) {
-                    VStack(alignment: .center) {
-                        HStack {
-                            Text("Escolhas dos Editores")
-                                .font(.title2)
-                                .padding(.leading)
-                            
-                            Spacer()
-                        }
+                    HStack {
+                        Text("Escolhas dos Editores")
+                            .font(.title2)
+                            .padding(.leading)
                         
-                        VStack(spacing: 10) {
-                            Text("Em Breve")
-                                .font(.headline)
-                                .multilineTextAlignment(.center)
-                        }
-                        .padding(.vertical, 100)
-                        
+                        Spacer()
+                    }
+                    
+                    VStack(spacing: 10) {
+                        Text("Em Breve")
+                            .font(.headline)
+                            .multilineTextAlignment(.center)
+                    }
+                    .padding(.vertical, 100)
+                    
 //                        ScrollView(.horizontal, showsIndicators: false) {
 //                            LazyHGrid(rows: rows, spacing: 14) {
 //                                ForEach(viewModel.collections) { collection in
@@ -50,9 +60,10 @@ struct CollectionsView: View {
 //                            .padding(.leading)
 //                            .padding(.trailing)
 //                        }
-                    }
-                    .padding(.top, 10)
-                    
+                }
+                .padding(.top, 10)
+                
+                //if UIDevice.current.userInterfaceIdiom == .phone {
                     VStack(alignment: .center) {
                         HStack {
                             Text("Minhas Pastas")
@@ -60,9 +71,9 @@ struct CollectionsView: View {
                             
                             Spacer()
                             
-                            Button(action: {
+                            Button {
                                 showingFolderInfoEditingView = true
-                            }) {
+                            } label: {
                                 HStack {
                                     Image(systemName: "plus")
                                     Text("Nova Pasta")
@@ -86,12 +97,12 @@ struct CollectionsView: View {
                                     }
                                     .foregroundColor(.primary)
                                     .contextMenu {
-//                                        Button(action: {
-//                                            folderForEditingOnSheet = folder
-//                                            showingFolderInfoEditingView = true
-//                                        }) {
-//                                            Label("Editar Pasta", systemImage: "pencil")
-//                                        }
+    //                                        Button {
+    //                                            folderForEditingOnSheet = folder
+    //                                            showingFolderInfoEditingView = true
+    //                                        } label: {
+    //                                            Label("Editar Pasta", systemImage: "pencil")
+    //                                        }
                                         
                                         Button(role: .destructive, action: {
                                             viewModel.showFolderDeletionConfirmation(folderName: "\(folder.symbol) \(folder.name)", folderId: folder.id)
@@ -127,31 +138,31 @@ struct CollectionsView: View {
                     }
                     .padding(.top, 10)
                     .padding(.horizontal)
-                }
-                .navigationTitle("Coleções")
-                .sheet(isPresented: $showingFolderInfoEditingView) {
-                    if let folder = folderForEditingOnSheet {
-                        FolderInfoEditingView(isBeingShown: $showingFolderInfoEditingView, symbol: folder.symbol, folderName: folder.name, selectedBackgroundColor: folder.backgroundColor, isEditing: true, folderIdWhenEditing: folder.id)
-                    } else {
-                        FolderInfoEditingView(isBeingShown: $showingFolderInfoEditingView, selectedBackgroundColor: "pastelPurple")
-                    }
-                }
-                .alert(isPresented: $viewModel.showAlert) {
-                    Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .destructive(Text("Apagar"), action: {
-                        guard viewModel.folderIdForDeletion.isEmpty == false else {
-                            return
-                        }
-                        try? database.deleteUserFolder(withId: viewModel.folderIdForDeletion)
-                        viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
-                    }), secondaryButton: .cancel(Text("Cancelar")))
-                }
-                .onAppear {
-                    //viewModel.reloadCollectionList(withCollections: getLocalCollections())
-                    viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
-                    viewModel.donateActivity()
-                }
-                .padding(.bottom)
+                //}
             }
+            .navigationTitle("Coleções")
+            .sheet(isPresented: $showingFolderInfoEditingView) {
+                if let folder = folderForEditingOnSheet {
+                    FolderInfoEditingView(isBeingShown: $showingFolderInfoEditingView, symbol: folder.symbol, folderName: folder.name, selectedBackgroundColor: folder.backgroundColor, isEditing: true, folderIdWhenEditing: folder.id)
+                } else {
+                    FolderInfoEditingView(isBeingShown: $showingFolderInfoEditingView, selectedBackgroundColor: "pastelPurple")
+                }
+            }
+            .alert(isPresented: $viewModel.showAlert) {
+                Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .destructive(Text("Apagar"), action: {
+                    guard viewModel.folderIdForDeletion.isEmpty == false else {
+                        return
+                    }
+                    try? database.deleteUserFolder(withId: viewModel.folderIdForDeletion)
+                    viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
+                }), secondaryButton: .cancel(Text("Cancelar")))
+            }
+            .onAppear {
+                //viewModel.reloadCollectionList(withCollections: getLocalCollections())
+                viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
+                viewModel.donateActivity()
+            }
+            .padding(.bottom)
         }
     }
     

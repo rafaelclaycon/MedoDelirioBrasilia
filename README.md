@@ -2,13 +2,19 @@
 
 ![Medo e Delírio em Brasília written over a bright yellow and green background calling back to the Brazilian flag.](MedoDelirioBrasilia/Resources/readme_logo.png)
 
-iOS app with sound inserts from [Medo e Delírio em Brasília](https://medoedelirioembrasilia.com.br), a Brazilian podcast chronicling the disastrous Bolsonaro presidency by Pedro Daltro and Cristiano Botafogo. 🌟 Star this repo! ⬆️
+iOS, iPadOS and macOS app with sound snippets/memes from [Medo e Delírio em Brasília](https://medoedelirioembrasilia.com.br), a Brazilian podcast by Pedro Daltro and Cristiano Botafogo chronicling the disastrous Bolsonaro presidency.
 
-![The app running on an iPhone simulator on a Mac.](MedoDelirioBrasilia/Resources/readme_demo.gif)
+🌟 Star this repo! ↗️
 
-✨ [**Now available on the App Store**](https://apps.apple.com/br/app/medo-e-del%C3%ADrio/id1625199878) ✨
+👉 [**Download it from the App Store**](https://apps.apple.com/br/app/medo-e-del%C3%ADrio/id1625199878) 📲
 
-Looking for an Android version? Check out [Sidronio Lima's Android app 🤖](https://play.google.com/store/apps/details?id=br.com.sidroniolima.medo_e_delirio_app)
+![The app running on an iPhone 13 simulator on a Mac.](MedoDelirioBrasilia/Resources/readme_demo_iphone.gif)
+
+![The app running on an iPad mini simulator on a Mac.](MedoDelirioBrasilia/Resources/readme_demo_ipad.gif)
+
+![The app running on a Mac.](MedoDelirioBrasilia/Resources/readme_demo_mac.gif)
+
+Looking for an Android version? Check out [Sidronio Lima's Android app](https://play.google.com/store/apps/details?id=br.com.sidroniolima.medo_e_delirio_app).
 
 ## Features
 
@@ -18,7 +24,11 @@ Looking for an Android version? Check out [Sidronio Lima's Android app 🤖](htt
 1. View sounds sorted by title, author name or date added.
 1. View sounds grouped by author.
 1. Play songs from the podcast.
-1. Filter by Favorites.
+1. Filter sounds by Favorites.
+1. Group sounds into Folders for easy access (just like tagging).
+1. Optimized for iPhone, iPad and Mac.
+1. Dark Mode support.
+1. User sharing statistics synced with server (opt-out available).
 
 ## How to run
 
