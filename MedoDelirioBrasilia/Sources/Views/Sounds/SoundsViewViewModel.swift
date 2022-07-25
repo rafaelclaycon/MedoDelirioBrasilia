@@ -135,6 +135,8 @@ class SoundsViewViewModel: ObservableObject {
             
             iPadShareSheet = ActivityViewController(activityItems: [url]) { activity, completed, items, error in
                 if completed {
+                    self.isShowingShareSheet = false
+                    
                     guard let activity = activity else {
                         return
                     }
