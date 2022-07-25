@@ -48,6 +48,8 @@
 		D91793AF288E3A13009C3165 /* Doce feto, fase anal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793AE288E3A13009C3165 /* Doce feto, fase anal.mp3 */; };
 		D91793B2288E3CF0009C3165 /* Jair Bolsonaro - Canalhas mil vezes.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793B0288E3CF0009C3165 /* Jair Bolsonaro - Canalhas mil vezes.mp3 */; };
 		D91793B3288E3CF0009C3165 /* Jair Bolsonaro - Canalhas.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793B1288E3CF0009C3165 /* Jair Bolsonaro - Canalhas.mp3 */; };
+		D91793B6288E3F0E009C3165 /* Abraham Weintraub - Muito muito pipi mole.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793B4288E3F0E009C3165 /* Abraham Weintraub - Muito muito pipi mole.mp3 */; };
+		D91793B7288E3F0E009C3165 /* Abraham Weintraub - Muito muito pipi mole, o pipizinho dele e bem mole.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793B5288E3F0E009C3165 /* Abraham Weintraub - Muito muito pipi mole, o pipizinho dele e bem mole.mp3 */; };
 		D921F879288B0177003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F865288B0176003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 */; };
 		D921F87B288B0177003979CC /* Ciumes de homem e foda.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F867288B0177003979CC /* Ciumes de homem e foda.mp3 */; };
 		D921F87C288B0177003979CC /* Jornalista de alta performance - Oswaldo Eustaquio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F868288B0177003979CC /* Jornalista de alta performance - Oswaldo Eustaquio.mp3 */; };
@@ -856,6 +858,8 @@
 		D91793AE288E3A13009C3165 /* Doce feto, fase anal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Doce feto, fase anal.mp3"; sourceTree = "<group>"; };
 		D91793B0288E3CF0009C3165 /* Jair Bolsonaro - Canalhas mil vezes.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Canalhas mil vezes.mp3"; sourceTree = "<group>"; };
 		D91793B1288E3CF0009C3165 /* Jair Bolsonaro - Canalhas.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Canalhas.mp3"; sourceTree = "<group>"; };
+		D91793B4288E3F0E009C3165 /* Abraham Weintraub - Muito muito pipi mole.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Abraham Weintraub - Muito muito pipi mole.mp3"; sourceTree = "<group>"; };
+		D91793B5288E3F0E009C3165 /* Abraham Weintraub - Muito muito pipi mole, o pipizinho dele e bem mole.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Abraham Weintraub - Muito muito pipi mole, o pipizinho dele e bem mole.mp3"; sourceTree = "<group>"; };
 		D921F865288B0176003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fala baixo quem fala alto aqui sou eu.mp3"; sourceTree = "<group>"; };
 		D921F867288B0177003979CC /* Ciumes de homem e foda.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ciumes de homem e foda.mp3"; sourceTree = "<group>"; };
 		D921F868288B0177003979CC /* Jornalista de alta performance - Oswaldo Eustaquio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jornalista de alta performance - Oswaldo Eustaquio.mp3"; sourceTree = "<group>"; };
@@ -1638,6 +1642,8 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D91793B5288E3F0E009C3165 /* Abraham Weintraub - Muito muito pipi mole, o pipizinho dele e bem mole.mp3 */,
+				D91793B4288E3F0E009C3165 /* Abraham Weintraub - Muito muito pipi mole.mp3 */,
 				D91793B0288E3CF0009C3165 /* Jair Bolsonaro - Canalhas mil vezes.mp3 */,
 				D91793B1288E3CF0009C3165 /* Jair Bolsonaro - Canalhas.mp3 */,
 				D91793AC288E2236009C3165 /* Bolsonaro - Eu nao sou medico, mas sou ousado.mp3 */,
@@ -3289,6 +3295,7 @@
 				D975FF0E2880B4F20035E6F2 /* Por que sera short meme.mp3 in Resources */,
 				D991512B2873E4C100FFAA29 /* rock-chocolate-chocolate-mdb.mp3 in Resources */,
 				D975FE2D2880B4F20035E6F2 /* MAICON KISTER - Isso foi especifico demais.mp3 in Resources */,
+				D91793B6288E3F0E009C3165 /* Abraham Weintraub - Muito muito pipi mole.mp3 in Resources */,
 				D975FE4C2880B4F20035E6F2 /* Trote Luiz Pareto - TELERJ meme mas que filho da puta olhai veja voce.mp3 in Resources */,
 				D975FFCE2880B4F20035E6F2 /* Otoni de Paula - Otoni nao para.mp3 in Resources */,
 				D975FFBE2880B4F20035E6F2 /* Malafaia - JAIR MESSIAS BOLSONARO.mp3 in Resources */,
@@ -3393,6 +3400,7 @@
 				D991512F2873E4C100FFAA29 /* funk-capricha-renan-mdb.mp3 in Resources */,
 				D975FE392880B4F20035E6F2 /* MR CATRA - vai comecar a putaria long.mp3 in Resources */,
 				D975FFAA2880B4F20035E6F2 /* Trote Pareto - Calma filha da puta calma.mp3 in Resources */,
+				D91793B7288E3F0E009C3165 /* Abraham Weintraub - Muito muito pipi mole, o pipizinho dele e bem mole.mp3 in Resources */,
 				D975FF6C2880B4F20035E6F2 /* Lula - Eu vou repetir.mp3 in Resources */,
 				D975FFB62880B4F20035E6F2 /* Lula - Cade o nosso querido Ze gotinha.mp3 in Resources */,
 				D975FFA82880B4F20035E6F2 /* VICTOR CAMEJO - JORNAL DE CASA 82 - Humor, alegria, piada, humorismo.mp3 in Resources */,
