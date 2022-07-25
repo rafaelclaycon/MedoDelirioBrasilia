@@ -5821,5 +5821,23 @@
         "filename": "METEORO BRASIL - Carga pesadissima de loucura e conspiracao.mp3",
         "dateAdded": "2022-07-25T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "1FAE17F2-0FD4-414F-AEA4-277AEA99AF22",
+        "title": "Eduardo Bolsonaro, aquele bonsai de pica",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "porra o Eduardo Bolsonaro aquele bonsai de pica",
+        "filename": "Cristiano Botafogo imitando o Frota - Eduardo Bolsonaro, aquele bonsai de pica.mp3",
+        "dateAdded": "2022-07-25T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "9AB28699-8884-407C-8809-BBA08E47826A",
+        "title": "Bonsai de pica",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "bonsai de pica",
+        "filename": "Cristiano Botafogo imitando o Frota - Bonsai de pica.mp3",
+        "dateAdded": "2022-07-25T00:00:00Z",
+        "isOffensive": true
     }
 ]

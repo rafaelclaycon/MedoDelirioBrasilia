@@ -34,5 +34,12 @@ struct Shared {
     static let issueSuggestionEmailBody = "Para um problema, inclua passos para reproduzir e prints se possível."
     static let suggestOtherAuthorNameEmailSubject = "Sugestão de Outro Nome de Autor Para %@"
     static let suggestOtherAuthorNameEmailBody = "Nome de autor antigo: %@\nNovo nome de autor: \n\nID do conteúdo: %@ (para uso interno)"
+    
+    struct Email {
+        
+        static let suggestSongChangeSubject = "Sugestão de Alteração Para a Música '%@'"
+        static let suggestSongChangeBody = "\n\n\nID do conteúdo: %@ (para uso interno)"
+        
+    }
 
 }

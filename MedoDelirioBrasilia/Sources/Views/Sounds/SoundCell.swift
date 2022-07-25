@@ -14,7 +14,7 @@ struct SoundCell: View {
     private var titleFont: Font {
         if title.count <= 26 {
             return .body
-        } else if title.count >= 27 && title.count <= 40 {
+        } else if (title.count >= 27 && title.count <= 40) && (author.count < 20) {
             return .callout
         } else {
             return .footnote
@@ -85,6 +85,7 @@ struct SoundRow_Previews: PreviewProvider {
             SoundCell(soundId: "ABC", title: "Às vezes o ódio é a única emoção possível", author: "Soraya Thronicke", favorites: .constant(Set<String>()))
             SoundCell(soundId: "ABC", title: "É simples assim, um manda e o outro obedece", author: "Soraya Thronicke", favorites: .constant(Set<String>()))
             SoundCell(soundId: "ABC", title: "Você tá falando isso porque você é a putinha do Bozo", author: "Soraya Thronicke", favorites: .constant(Set<String>()))
+            SoundCell(soundId: "ABC", title: "A decisão não cabe a gente, cabe ao TSE", author: "Paulo Sérgio Nogueira", favorites: .constant(Set<String>()))
             
             // Favorite
             SoundCell(soundId: "DEF", title: "A gente vai cansando", author: "Soraya Thronicke", favorites: .constant(Set<String>(arrayLiteral: "DEF")))
