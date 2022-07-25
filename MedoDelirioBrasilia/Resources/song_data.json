@@ -278,5 +278,15 @@
         "filename": "Vale tudo.mp3",
         "dateAdded": "2022-07-22T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "A69651EE-64A5-4BA8-A6E0-188AFC99C576",
+        "title": "Um Ministério Técnico",
+        "description": "",
+        "genre": "Tecno",
+        "duration": "00:50",
+        "filename": "Um Ministerio Tecnico.mp3",
+        "dateAdded": "2022-07-24T00:00:00Z",
+        "isOffensive": false
     }
 ]

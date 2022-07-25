@@ -43,6 +43,7 @@
 		D90F6A6628446C250050FFFF /* TrendsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */; };
 		D91107112863B481000B6F8F /* CollectionsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91107102863B481000B6F8F /* CollectionsViewViewModel.swift */; };
 		D91107142863B5FD000B6F8F /* ContentCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91107132863B5FD000B6F8F /* ContentCollection.swift */; };
+		D91793A9288E1B51009C3165 /* Um Ministerio Tecnico.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793A8288E1B51009C3165 /* Um Ministerio Tecnico.mp3 */; };
 		D921F879288B0177003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F865288B0176003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 */; };
 		D921F87B288B0177003979CC /* Ciumes de homem e foda.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F867288B0177003979CC /* Ciumes de homem e foda.mp3 */; };
 		D921F87C288B0177003979CC /* Jornalista de alta performance - Oswaldo Eustaquio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F868288B0177003979CC /* Jornalista de alta performance - Oswaldo Eustaquio.mp3 */; };
@@ -846,6 +847,7 @@
 		D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsSettingsView.swift; sourceTree = "<group>"; };
 		D91107102863B481000B6F8F /* CollectionsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsViewViewModel.swift; sourceTree = "<group>"; };
 		D91107132863B5FD000B6F8F /* ContentCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCollection.swift; sourceTree = "<group>"; };
+		D91793A8288E1B51009C3165 /* Um Ministerio Tecnico.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Um Ministerio Tecnico.mp3"; sourceTree = "<group>"; };
 		D921F865288B0176003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fala baixo quem fala alto aqui sou eu.mp3"; sourceTree = "<group>"; };
 		D921F867288B0177003979CC /* Ciumes de homem e foda.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ciumes de homem e foda.mp3"; sourceTree = "<group>"; };
 		D921F868288B0177003979CC /* Jornalista de alta performance - Oswaldo Eustaquio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jornalista de alta performance - Oswaldo Eustaquio.mp3"; sourceTree = "<group>"; };
@@ -2291,6 +2293,7 @@
 		D92E7068283C5C120035826C /* Songs */ = {
 			isa = PBXGroup;
 			children = (
+				D91793A8288E1B51009C3165 /* Um Ministerio Tecnico.mp3 */,
 				D921F89A288B0DC4003979CC /* Au au (Parabens sancao) - Bolsonaro.mp3 */,
 				D921F898288B0DC4003979CC /* Pra frente brasil.mp3 */,
 				D921F89B288B0DC4003979CC /* Se for feito com amor tudo vale.mp3 */,
@@ -3235,6 +3238,7 @@
 				D975FEBF2880B4F20035E6F2 /* Leo Stronda Monstro - Batata doce e frango logico.mp3 in Resources */,
 				D921F885288B0177003979CC /* Ihu compilacao.mp3 in Resources */,
 				D975FE1E2880B4F20035E6F2 /* Matheuzinho e  Menor Nico - O Golpe ta ai short meme.mp3 in Resources */,
+				D91793A9288E1B51009C3165 /* Um Ministerio Tecnico.mp3 in Resources */,
 				49DEA99E28810C88008C9BA1 /* Ana Paula - Olha Ela short meme.mp3 in Resources */,
 				D975FEEE2880B4F20035E6F2 /* Xaropinho - Rapaz short.mp3 in Resources */,
 				D921F879288B0177003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 in Resources */,
