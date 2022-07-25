@@ -82,10 +82,10 @@
     },
     {
         "id": "DB99A7ED-00D3-444C-89B6-BB24B9801014",
-        "title": "Sou ousado",
+        "title": "Eu não sou médico, mas sou ousado",
         "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
         "description": "eu não sou médico mas sou ousado",
-        "filename": "Bolsonaro - Sou ousado.mp3",
+        "filename": "Bolsonaro - Eu nao sou medico, mas sou ousado.mp3",
         "dateAdded": "2022-07-01T00:00:00Z",
         "isOffensive": false
     },
@@ -5753,10 +5753,73 @@
     {
         "id": "1E45F2E9-E67C-4997-8BB3-D9D3AED26559",
         "title": "A decisão não cabe a gente, cabe ao TSE",
-        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "authorId": "463C5301-7D24-4EE4-9E75-E81DFF9B36F4",
         "description": "A decisao a aceitacao nao cabe a gente cabe ao tribunal superior eleitoral logicamente TSE",
         "filename": "A decisao aceitacao nao cabe a gente cabe ao TSE.mp3",
         "dateAdded": "2022-07-22T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "7447DB3D-B57B-4CC2-BDED-59400B2EB9B1",
+        "title": "Sou ousado",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "sou ousado",
+        "filename": "Bolsonaro - Sou ousado.mp3",
+        "dateAdded": "2022-07-24T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "74DBFC2A-1BA9-4314-AFEF-FEFEAD623BA6",
+        "title": "Canalhas!",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "canalhas",
+        "filename": "Jair Bolsonaro - Canalhas.mp3",
+        "dateAdded": "2022-07-24T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "2BE954A7-3D29-4869-B799-1E49A1FD6140",
+        "title": "Canalhas mil vezes",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "canalhas mil vezes",
+        "filename": "Jair Bolsonaro - Canalhas mil vezes.mp3",
+        "dateAdded": "2022-07-24T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "38FAB19A-634E-488E-90BA-DF37FD74373A",
+        "title": "Muito muito pipi mole, o pipizinho dele é bem mole",
+        "authorId": "0D944922-7E50-4DED-A8FD-F44EFCAE82A2",
+        "description": "Muito muito pipi mole o pipizinho dele e bem mole",
+        "filename": "Abraham Weintraub - Muito muito pipi mole, o pipizinho dele e bem mole.mp3",
+        "dateAdded": "2022-07-25T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "F7CF35B6-DB09-4A7C-ABB4-18E46CDD0EF4",
+        "title": "Muito muito pipi mole",
+        "authorId": "0D944922-7E50-4DED-A8FD-F44EFCAE82A2",
+        "description": "Muito muito pipi mole",
+        "filename": "Abraham Weintraub - Muito muito pipi mole.mp3",
+        "dateAdded": "2022-07-25T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "D1B14988-87AF-48C8-B223-54AEDFC80282",
+        "title": "Carga pesadíssima de loucura e conspiração no marxismo cultural",
+        "authorId": "248A6A3B-3EEF-45D6-9A2F-A81768B7B370",
+        "description": "Carga pesadissima de loucura e conspiracao que existe nesse termo ai o MARXISMO CULTURAL",
+        "filename": "METEORO BRASIL - Carga pesadissima de loucura e conspiracao no MARXISMO CULTURAL.mp3",
+        "dateAdded": "2022-07-25T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "6C7FF5AB-66F8-4BBE-A78E-8C9E0FC54660",
+        "title": "Carga pesadíssima de loucura e conspiração",
+        "authorId": "248A6A3B-3EEF-45D6-9A2F-A81768B7B370",
+        "description": "Carga pesadissima de loucura e conspiracao",
+        "filename": "METEORO BRASIL - Carga pesadissima de loucura e conspiracao.mp3",
+        "dateAdded": "2022-07-25T00:00:00Z",
         "isOffensive": false
     }
 ]

@@ -43,6 +43,15 @@
 		D90F6A6628446C250050FFFF /* TrendsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */; };
 		D91107112863B481000B6F8F /* CollectionsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91107102863B481000B6F8F /* CollectionsViewViewModel.swift */; };
 		D91107142863B5FD000B6F8F /* ContentCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91107132863B5FD000B6F8F /* ContentCollection.swift */; };
+		D91793A9288E1B51009C3165 /* Um Ministerio Tecnico.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793A8288E1B51009C3165 /* Um Ministerio Tecnico.mp3 */; };
+		D91793AD288E2236009C3165 /* Bolsonaro - Eu nao sou medico, mas sou ousado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793AC288E2236009C3165 /* Bolsonaro - Eu nao sou medico, mas sou ousado.mp3 */; };
+		D91793AF288E3A13009C3165 /* Doce feto, fase anal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793AE288E3A13009C3165 /* Doce feto, fase anal.mp3 */; };
+		D91793B2288E3CF0009C3165 /* Jair Bolsonaro - Canalhas mil vezes.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793B0288E3CF0009C3165 /* Jair Bolsonaro - Canalhas mil vezes.mp3 */; };
+		D91793B3288E3CF0009C3165 /* Jair Bolsonaro - Canalhas.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793B1288E3CF0009C3165 /* Jair Bolsonaro - Canalhas.mp3 */; };
+		D91793B6288E3F0E009C3165 /* Abraham Weintraub - Muito muito pipi mole.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793B4288E3F0E009C3165 /* Abraham Weintraub - Muito muito pipi mole.mp3 */; };
+		D91793B7288E3F0E009C3165 /* Abraham Weintraub - Muito muito pipi mole, o pipizinho dele e bem mole.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793B5288E3F0E009C3165 /* Abraham Weintraub - Muito muito pipi mole, o pipizinho dele e bem mole.mp3 */; };
+		D91793BA288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao no MARXISMO CULTURAL.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793B8288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao no MARXISMO CULTURAL.mp3 */; };
+		D91793BB288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793B9288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao.mp3 */; };
 		D921F879288B0177003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F865288B0176003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 */; };
 		D921F87B288B0177003979CC /* Ciumes de homem e foda.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F867288B0177003979CC /* Ciumes de homem e foda.mp3 */; };
 		D921F87C288B0177003979CC /* Jornalista de alta performance - Oswaldo Eustaquio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F868288B0177003979CC /* Jornalista de alta performance - Oswaldo Eustaquio.mp3 */; };
@@ -846,6 +855,15 @@
 		D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsSettingsView.swift; sourceTree = "<group>"; };
 		D91107102863B481000B6F8F /* CollectionsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsViewViewModel.swift; sourceTree = "<group>"; };
 		D91107132863B5FD000B6F8F /* ContentCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCollection.swift; sourceTree = "<group>"; };
+		D91793A8288E1B51009C3165 /* Um Ministerio Tecnico.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Um Ministerio Tecnico.mp3"; sourceTree = "<group>"; };
+		D91793AC288E2236009C3165 /* Bolsonaro - Eu nao sou medico, mas sou ousado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Eu nao sou medico, mas sou ousado.mp3"; sourceTree = "<group>"; };
+		D91793AE288E3A13009C3165 /* Doce feto, fase anal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Doce feto, fase anal.mp3"; sourceTree = "<group>"; };
+		D91793B0288E3CF0009C3165 /* Jair Bolsonaro - Canalhas mil vezes.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Canalhas mil vezes.mp3"; sourceTree = "<group>"; };
+		D91793B1288E3CF0009C3165 /* Jair Bolsonaro - Canalhas.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Canalhas.mp3"; sourceTree = "<group>"; };
+		D91793B4288E3F0E009C3165 /* Abraham Weintraub - Muito muito pipi mole.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Abraham Weintraub - Muito muito pipi mole.mp3"; sourceTree = "<group>"; };
+		D91793B5288E3F0E009C3165 /* Abraham Weintraub - Muito muito pipi mole, o pipizinho dele e bem mole.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Abraham Weintraub - Muito muito pipi mole, o pipizinho dele e bem mole.mp3"; sourceTree = "<group>"; };
+		D91793B8288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao no MARXISMO CULTURAL.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "METEORO BRASIL - Carga pesadissima de loucura e conspiracao no MARXISMO CULTURAL.mp3"; sourceTree = "<group>"; };
+		D91793B9288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "METEORO BRASIL - Carga pesadissima de loucura e conspiracao.mp3"; sourceTree = "<group>"; };
 		D921F865288B0176003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fala baixo quem fala alto aqui sou eu.mp3"; sourceTree = "<group>"; };
 		D921F867288B0177003979CC /* Ciumes de homem e foda.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ciumes de homem e foda.mp3"; sourceTree = "<group>"; };
 		D921F868288B0177003979CC /* Jornalista de alta performance - Oswaldo Eustaquio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jornalista de alta performance - Oswaldo Eustaquio.mp3"; sourceTree = "<group>"; };
@@ -1628,6 +1646,13 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D91793B8288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao no MARXISMO CULTURAL.mp3 */,
+				D91793B9288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao.mp3 */,
+				D91793B5288E3F0E009C3165 /* Abraham Weintraub - Muito muito pipi mole, o pipizinho dele e bem mole.mp3 */,
+				D91793B4288E3F0E009C3165 /* Abraham Weintraub - Muito muito pipi mole.mp3 */,
+				D91793B0288E3CF0009C3165 /* Jair Bolsonaro - Canalhas mil vezes.mp3 */,
+				D91793B1288E3CF0009C3165 /* Jair Bolsonaro - Canalhas.mp3 */,
+				D91793AC288E2236009C3165 /* Bolsonaro - Eu nao sou medico, mas sou ousado.mp3 */,
 				D921F891288B07CB003979CC /* Fa do Armandinho - Armandinho e um terror ne meu (completo).mp3 */,
 				D921F88F288B07CB003979CC /* Fa do Armandinho - E um poeta ne meu, bah.mp3 */,
 				D921F890288B07CB003979CC /* Fa do Armandinho - Vamo pra cima Gremio.mp3 */,
@@ -2291,6 +2316,8 @@
 		D92E7068283C5C120035826C /* Songs */ = {
 			isa = PBXGroup;
 			children = (
+				D91793AE288E3A13009C3165 /* Doce feto, fase anal.mp3 */,
+				D91793A8288E1B51009C3165 /* Um Ministerio Tecnico.mp3 */,
 				D921F89A288B0DC4003979CC /* Au au (Parabens sancao) - Bolsonaro.mp3 */,
 				D921F898288B0DC4003979CC /* Pra frente brasil.mp3 */,
 				D921F89B288B0DC4003979CC /* Se for feito com amor tudo vale.mp3 */,
@@ -2931,6 +2958,7 @@
 				D97500232880B4F20035E6F2 /* Bolsonaro - Eu nao errei nenhuma.mp3 in Resources */,
 				D97500052880B4F20035E6F2 /* Monty Python - Eric Idle - Bring out your dead.mp3 in Resources */,
 				D975002F2880B4F20035E6F2 /* Vai Dar Namoro - Que isso meu filho calma.mp3 in Resources */,
+				D91793BB288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao.mp3 in Resources */,
 				49DEA9AC28810F1D008C9BA1 /* UOL - Bolsonaro - Quem nao esta contente tem Lula em 2022 short meme.mp3 in Resources */,
 				D97500062880B4F20035E6F2 /* Lula - Chupa que a cana e doce meu filho.mp3 in Resources */,
 				D975FF692880B4F20035E6F2 /* Cristiano Botafogo - Bora passar raiva.mp3 in Resources */,
@@ -3235,6 +3263,7 @@
 				D975FEBF2880B4F20035E6F2 /* Leo Stronda Monstro - Batata doce e frango logico.mp3 in Resources */,
 				D921F885288B0177003979CC /* Ihu compilacao.mp3 in Resources */,
 				D975FE1E2880B4F20035E6F2 /* Matheuzinho e  Menor Nico - O Golpe ta ai short meme.mp3 in Resources */,
+				D91793A9288E1B51009C3165 /* Um Ministerio Tecnico.mp3 in Resources */,
 				49DEA99E28810C88008C9BA1 /* Ana Paula - Olha Ela short meme.mp3 in Resources */,
 				D975FEEE2880B4F20035E6F2 /* Xaropinho - Rapaz short.mp3 in Resources */,
 				D921F879288B0177003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 in Resources */,
@@ -3273,6 +3302,7 @@
 				D975FF0E2880B4F20035E6F2 /* Por que sera short meme.mp3 in Resources */,
 				D991512B2873E4C100FFAA29 /* rock-chocolate-chocolate-mdb.mp3 in Resources */,
 				D975FE2D2880B4F20035E6F2 /* MAICON KISTER - Isso foi especifico demais.mp3 in Resources */,
+				D91793B6288E3F0E009C3165 /* Abraham Weintraub - Muito muito pipi mole.mp3 in Resources */,
 				D975FE4C2880B4F20035E6F2 /* Trote Luiz Pareto - TELERJ meme mas que filho da puta olhai veja voce.mp3 in Resources */,
 				D975FFCE2880B4F20035E6F2 /* Otoni de Paula - Otoni nao para.mp3 in Resources */,
 				D975FFBE2880B4F20035E6F2 /* Malafaia - JAIR MESSIAS BOLSONARO.mp3 in Resources */,
@@ -3288,6 +3318,7 @@
 				D975FFC62880B4F20035E6F2 /* Cidade Oculta - Voce fala isso porque e a putinha do bozo.mp3 in Resources */,
 				D991512D2873E4C100FFAA29 /* rock-comunismo-ai-seis-mdb.mp3 in Resources */,
 				D975FE632880B4F20035E6F2 /* Ai seu grosso.mp3 in Resources */,
+				D91793BA288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao no MARXISMO CULTURAL.mp3 in Resources */,
 				D975FE3F2880B4F20035E6F2 /* Bolsonaro - Procura outro pra pagar a tua vacina ai.mp3 in Resources */,
 				D975FE872880B4F20035E6F2 /* Handel - Aleluia short.mp3 in Resources */,
 				D975FF652880B4F20035E6F2 /* Reinaldo Azevedo - Parte Terminal do Aparelho Digestivo.mp3 in Resources */,
@@ -3295,6 +3326,7 @@
 				D975FEAD2880B4F20035E6F2 /* Gilmar Mendes - Nao e razoavel.mp3 in Resources */,
 				D975FF962880B4F20035E6F2 /* Paulo Guedes - Deixa cada um se fuder do jeito que quiser.mp3 in Resources */,
 				D975FFDB2880B4F20035E6F2 /* Legal short meme empolgante.mp3 in Resources */,
+				D91793AD288E2236009C3165 /* Bolsonaro - Eu nao sou medico, mas sou ousado.mp3 in Resources */,
 				D975FFFC2880B4F20035E6F2 /* Keila Mellman -  nao e de bom tom short meme.mp3 in Resources */,
 				D97500272880B4F20035E6F2 /* Carioca puto - Vai tomar no cu cara toda hora essa discussao cara.mp3 in Resources */,
 				D975FF1A2880B4F20035E6F2 /* Bolsonaro - Ta sendo superdimensionado o poder destruidor desse virus.mp3 in Resources */,
@@ -3335,7 +3367,9 @@
 				D97500372880B4F20035E6F2 /* ATILA IAMARINO - Ele faz sexo.mp3 in Resources */,
 				D975FF322880B4F20035E6F2 /* Nao parece short meme.mp3 in Resources */,
 				D921F87C288B0177003979CC /* Jornalista de alta performance - Oswaldo Eustaquio.mp3 in Resources */,
+				D91793B3288E3CF0009C3165 /* Jair Bolsonaro - Canalhas.mp3 in Resources */,
 				D975FE1F2880B4F20035E6F2 /* Vai Dar Namoro - Tapa Tapa Tome.mp3 in Resources */,
+				D91793AF288E3A13009C3165 /* Doce feto, fase anal.mp3 in Resources */,
 				D975FFEE2880B4F20035E6F2 /* CANAL RURAL - Alexandre Garcia - A sensatez que significa a abordagem do governo na pandemia.mp3 in Resources */,
 				D975FE6E2880B4F20035E6F2 /* Lula - Alo.mp3 in Resources */,
 				D975FF3C2880B4F20035E6F2 /* Cecilia Oliveira - Entao assim a gente ta fodido.mp3 in Resources */,
@@ -3374,6 +3408,7 @@
 				D991512F2873E4C100FFAA29 /* funk-capricha-renan-mdb.mp3 in Resources */,
 				D975FE392880B4F20035E6F2 /* MR CATRA - vai comecar a putaria long.mp3 in Resources */,
 				D975FFAA2880B4F20035E6F2 /* Trote Pareto - Calma filha da puta calma.mp3 in Resources */,
+				D91793B7288E3F0E009C3165 /* Abraham Weintraub - Muito muito pipi mole, o pipizinho dele e bem mole.mp3 in Resources */,
 				D975FF6C2880B4F20035E6F2 /* Lula - Eu vou repetir.mp3 in Resources */,
 				D975FFB62880B4F20035E6F2 /* Lula - Cade o nosso querido Ze gotinha.mp3 in Resources */,
 				D975FFA82880B4F20035E6F2 /* VICTOR CAMEJO - JORNAL DE CASA 82 - Humor, alegria, piada, humorismo.mp3 in Resources */,
@@ -3388,6 +3423,7 @@
 				D975FF602880B4F20035E6F2 /* RADIO BANDNEWS FM - Boechat - Nao significa absolutamente nada.mp3 in Resources */,
 				D975FE542880B4F20035E6F2 /* Sheldon - Oh Really short.mp3 in Resources */,
 				D92AD1C52883434C001CBCDF /* Bolsonaro - E uma canalhice o que voces fazem.mp3 in Resources */,
+				D91793B2288E3CF0009C3165 /* Jair Bolsonaro - Canalhas mil vezes.mp3 in Resources */,
 				D975FF6B2880B4F20035E6F2 /* Maluf - Nao lhe dou o aparte.mp3 in Resources */,
 				D97500392880B4F20035E6F2 /* ATILA IAMARINO - E vao empilhar sequela em cima de sequela.mp3 in Resources */,
 				D975FFF52880B4F20035E6F2 /* CHOQUE DE CULTURA - Renan - Acho que deu uma pesada no clima do programa ai.mp3 in Resources */,
@@ -3787,7 +3823,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.10;
+				MARKETING_VERSION = 2.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = "Medo e Delírio";
 				SUPPORTS_MACCATALYST = YES;
@@ -3821,7 +3857,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.10;
+				MARKETING_VERSION = 2.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = "Medo e Delírio";
 				SUPPORTS_MACCATALYST = YES;
