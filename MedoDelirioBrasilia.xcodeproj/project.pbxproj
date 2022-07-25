@@ -44,6 +44,7 @@
 		D91107112863B481000B6F8F /* CollectionsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91107102863B481000B6F8F /* CollectionsViewViewModel.swift */; };
 		D91107142863B5FD000B6F8F /* ContentCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91107132863B5FD000B6F8F /* ContentCollection.swift */; };
 		D91793A9288E1B51009C3165 /* Um Ministerio Tecnico.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793A8288E1B51009C3165 /* Um Ministerio Tecnico.mp3 */; };
+		D91793AD288E2236009C3165 /* Bolsonaro - Eu nao sou medico, mas sou ousado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793AC288E2236009C3165 /* Bolsonaro - Eu nao sou medico, mas sou ousado.mp3 */; };
 		D921F879288B0177003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F865288B0176003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 */; };
 		D921F87B288B0177003979CC /* Ciumes de homem e foda.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F867288B0177003979CC /* Ciumes de homem e foda.mp3 */; };
 		D921F87C288B0177003979CC /* Jornalista de alta performance - Oswaldo Eustaquio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F868288B0177003979CC /* Jornalista de alta performance - Oswaldo Eustaquio.mp3 */; };
@@ -848,6 +849,7 @@
 		D91107102863B481000B6F8F /* CollectionsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsViewViewModel.swift; sourceTree = "<group>"; };
 		D91107132863B5FD000B6F8F /* ContentCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCollection.swift; sourceTree = "<group>"; };
 		D91793A8288E1B51009C3165 /* Um Ministerio Tecnico.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Um Ministerio Tecnico.mp3"; sourceTree = "<group>"; };
+		D91793AC288E2236009C3165 /* Bolsonaro - Eu nao sou medico, mas sou ousado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Eu nao sou medico, mas sou ousado.mp3"; sourceTree = "<group>"; };
 		D921F865288B0176003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fala baixo quem fala alto aqui sou eu.mp3"; sourceTree = "<group>"; };
 		D921F867288B0177003979CC /* Ciumes de homem e foda.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ciumes de homem e foda.mp3"; sourceTree = "<group>"; };
 		D921F868288B0177003979CC /* Jornalista de alta performance - Oswaldo Eustaquio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jornalista de alta performance - Oswaldo Eustaquio.mp3"; sourceTree = "<group>"; };
@@ -1630,6 +1632,7 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D91793AC288E2236009C3165 /* Bolsonaro - Eu nao sou medico, mas sou ousado.mp3 */,
 				D921F891288B07CB003979CC /* Fa do Armandinho - Armandinho e um terror ne meu (completo).mp3 */,
 				D921F88F288B07CB003979CC /* Fa do Armandinho - E um poeta ne meu, bah.mp3 */,
 				D921F890288B07CB003979CC /* Fa do Armandinho - Vamo pra cima Gremio.mp3 */,
@@ -3299,6 +3302,7 @@
 				D975FEAD2880B4F20035E6F2 /* Gilmar Mendes - Nao e razoavel.mp3 in Resources */,
 				D975FF962880B4F20035E6F2 /* Paulo Guedes - Deixa cada um se fuder do jeito que quiser.mp3 in Resources */,
 				D975FFDB2880B4F20035E6F2 /* Legal short meme empolgante.mp3 in Resources */,
+				D91793AD288E2236009C3165 /* Bolsonaro - Eu nao sou medico, mas sou ousado.mp3 in Resources */,
 				D975FFFC2880B4F20035E6F2 /* Keila Mellman -  nao e de bom tom short meme.mp3 in Resources */,
 				D97500272880B4F20035E6F2 /* Carioca puto - Vai tomar no cu cara toda hora essa discussao cara.mp3 in Resources */,
 				D975FF1A2880B4F20035E6F2 /* Bolsonaro - Ta sendo superdimensionado o poder destruidor desse virus.mp3 in Resources */,

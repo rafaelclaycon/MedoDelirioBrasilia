@@ -82,10 +82,10 @@
     },
     {
         "id": "DB99A7ED-00D3-444C-89B6-BB24B9801014",
-        "title": "Sou ousado",
+        "title": "Eu não sou médico, mas sou ousado",
         "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
         "description": "eu não sou médico mas sou ousado",
-        "filename": "Bolsonaro - Sou ousado.mp3",
+        "filename": "Bolsonaro - Eu nao sou medico, mas sou ousado.mp3",
         "dateAdded": "2022-07-01T00:00:00Z",
         "isOffensive": false
     },
@@ -5757,6 +5757,15 @@
         "description": "A decisao a aceitacao nao cabe a gente cabe ao tribunal superior eleitoral logicamente TSE",
         "filename": "A decisao aceitacao nao cabe a gente cabe ao TSE.mp3",
         "dateAdded": "2022-07-22T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "7447DB3D-B57B-4CC2-BDED-59400B2EB9B1",
+        "title": "Sou ousado",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "sou ousado",
+        "filename": "Bolsonaro - Sou ousado.mp3",
+        "dateAdded": "2022-07-24T00:00:00Z",
         "isOffensive": false
     }
 ]
