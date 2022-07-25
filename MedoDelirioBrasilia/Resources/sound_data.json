@@ -5767,5 +5767,23 @@
         "filename": "Bolsonaro - Sou ousado.mp3",
         "dateAdded": "2022-07-24T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "74DBFC2A-1BA9-4314-AFEF-FEFEAD623BA6",
+        "title": "Canalhas!",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "canalhas",
+        "filename": "Jair Bolsonaro - Canalhas.mp3",
+        "dateAdded": "2022-07-24T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "2BE954A7-3D29-4869-B799-1E49A1FD6140",
+        "title": "Canalhas mil vezes",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "canalhas mil vezes",
+        "filename": "Jair Bolsonaro - Canalhas mil vezes.mp3",
+        "dateAdded": "2022-07-24T00:00:00Z",
+        "isOffensive": true
     }
 ]

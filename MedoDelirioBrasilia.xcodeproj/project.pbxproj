@@ -46,6 +46,8 @@
 		D91793A9288E1B51009C3165 /* Um Ministerio Tecnico.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793A8288E1B51009C3165 /* Um Ministerio Tecnico.mp3 */; };
 		D91793AD288E2236009C3165 /* Bolsonaro - Eu nao sou medico, mas sou ousado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793AC288E2236009C3165 /* Bolsonaro - Eu nao sou medico, mas sou ousado.mp3 */; };
 		D91793AF288E3A13009C3165 /* Doce feto, fase anal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793AE288E3A13009C3165 /* Doce feto, fase anal.mp3 */; };
+		D91793B2288E3CF0009C3165 /* Jair Bolsonaro - Canalhas mil vezes.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793B0288E3CF0009C3165 /* Jair Bolsonaro - Canalhas mil vezes.mp3 */; };
+		D91793B3288E3CF0009C3165 /* Jair Bolsonaro - Canalhas.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793B1288E3CF0009C3165 /* Jair Bolsonaro - Canalhas.mp3 */; };
 		D921F879288B0177003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F865288B0176003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 */; };
 		D921F87B288B0177003979CC /* Ciumes de homem e foda.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F867288B0177003979CC /* Ciumes de homem e foda.mp3 */; };
 		D921F87C288B0177003979CC /* Jornalista de alta performance - Oswaldo Eustaquio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F868288B0177003979CC /* Jornalista de alta performance - Oswaldo Eustaquio.mp3 */; };
@@ -852,6 +854,8 @@
 		D91793A8288E1B51009C3165 /* Um Ministerio Tecnico.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Um Ministerio Tecnico.mp3"; sourceTree = "<group>"; };
 		D91793AC288E2236009C3165 /* Bolsonaro - Eu nao sou medico, mas sou ousado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Eu nao sou medico, mas sou ousado.mp3"; sourceTree = "<group>"; };
 		D91793AE288E3A13009C3165 /* Doce feto, fase anal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Doce feto, fase anal.mp3"; sourceTree = "<group>"; };
+		D91793B0288E3CF0009C3165 /* Jair Bolsonaro - Canalhas mil vezes.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Canalhas mil vezes.mp3"; sourceTree = "<group>"; };
+		D91793B1288E3CF0009C3165 /* Jair Bolsonaro - Canalhas.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Canalhas.mp3"; sourceTree = "<group>"; };
 		D921F865288B0176003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fala baixo quem fala alto aqui sou eu.mp3"; sourceTree = "<group>"; };
 		D921F867288B0177003979CC /* Ciumes de homem e foda.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ciumes de homem e foda.mp3"; sourceTree = "<group>"; };
 		D921F868288B0177003979CC /* Jornalista de alta performance - Oswaldo Eustaquio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jornalista de alta performance - Oswaldo Eustaquio.mp3"; sourceTree = "<group>"; };
@@ -1634,6 +1638,8 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D91793B0288E3CF0009C3165 /* Jair Bolsonaro - Canalhas mil vezes.mp3 */,
+				D91793B1288E3CF0009C3165 /* Jair Bolsonaro - Canalhas.mp3 */,
 				D91793AC288E2236009C3165 /* Bolsonaro - Eu nao sou medico, mas sou ousado.mp3 */,
 				D921F891288B07CB003979CC /* Fa do Armandinho - Armandinho e um terror ne meu (completo).mp3 */,
 				D921F88F288B07CB003979CC /* Fa do Armandinho - E um poeta ne meu, bah.mp3 */,
@@ -3346,6 +3352,7 @@
 				D97500372880B4F20035E6F2 /* ATILA IAMARINO - Ele faz sexo.mp3 in Resources */,
 				D975FF322880B4F20035E6F2 /* Nao parece short meme.mp3 in Resources */,
 				D921F87C288B0177003979CC /* Jornalista de alta performance - Oswaldo Eustaquio.mp3 in Resources */,
+				D91793B3288E3CF0009C3165 /* Jair Bolsonaro - Canalhas.mp3 in Resources */,
 				D975FE1F2880B4F20035E6F2 /* Vai Dar Namoro - Tapa Tapa Tome.mp3 in Resources */,
 				D91793AF288E3A13009C3165 /* Doce feto, fase anal.mp3 in Resources */,
 				D975FFEE2880B4F20035E6F2 /* CANAL RURAL - Alexandre Garcia - A sensatez que significa a abordagem do governo na pandemia.mp3 in Resources */,
@@ -3400,6 +3407,7 @@
 				D975FF602880B4F20035E6F2 /* RADIO BANDNEWS FM - Boechat - Nao significa absolutamente nada.mp3 in Resources */,
 				D975FE542880B4F20035E6F2 /* Sheldon - Oh Really short.mp3 in Resources */,
 				D92AD1C52883434C001CBCDF /* Bolsonaro - E uma canalhice o que voces fazem.mp3 in Resources */,
+				D91793B2288E3CF0009C3165 /* Jair Bolsonaro - Canalhas mil vezes.mp3 in Resources */,
 				D975FF6B2880B4F20035E6F2 /* Maluf - Nao lhe dou o aparte.mp3 in Resources */,
 				D97500392880B4F20035E6F2 /* ATILA IAMARINO - E vao empilhar sequela em cima de sequela.mp3 in Resources */,
 				D975FFF52880B4F20035E6F2 /* CHOQUE DE CULTURA - Renan - Acho que deu uma pesada no clima do programa ai.mp3 in Resources */,
