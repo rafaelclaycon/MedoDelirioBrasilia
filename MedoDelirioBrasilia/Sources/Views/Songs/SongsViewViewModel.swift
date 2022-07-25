@@ -8,6 +8,8 @@ class SongsViewViewModel: ObservableObject {
     
     @Published var sortOption: Int = 0
     @Published var nowPlayingKeeper = Set<String>()
+    @Published var showEmailAppPicker_suggestChangeConfirmationDialog = false
+    @Published var selectedSong: Song? = nil
     
     @Published var currentActivity: NSUserActivity? = nil
     
