@@ -41,7 +41,7 @@
     },
     {
         "id": "BE72C748-6762-44AD-B8C5-A390F0C8FE5A",
-        "title": "Bora Arrochar... E Depois... Carnavalizar!",
+        "title": "Bora",
         "description": "",
         "genre": "Arrocha",
         "duration": "01:12",
@@ -288,5 +288,15 @@
         "filename": "Um Ministerio Tecnico.mp3",
         "dateAdded": "2022-07-24T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "4EEA6C23-8AAC-4458-A64F-D405EA800BDC",
+        "title": "Doce feto, fase anal",
+        "description": "",
+        "genre": "Samba",
+        "duration": "02:02",
+        "filename": "Doce feto, fase anal.mp3",
+        "dateAdded": "2022-07-24T00:00:00Z",
+        "isOffensive": true
     }
 ]
