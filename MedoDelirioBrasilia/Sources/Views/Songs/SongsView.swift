@@ -34,6 +34,12 @@ struct SongsView: View {
         ZStack {
             VStack {
                 ScrollView {
+                    if searchText.isEmpty {
+                        HitsMedoDelirioBannerView()
+                            .padding(.horizontal)
+                            .padding(.vertical, 6)
+                    }
+                    
                     LazyVGrid(columns: columns, spacing: 14) {
                         ForEach(searchResults) { song in
                             SongCell(songId: song.id, title: song.title, genre: song.genre, duration: song.duration, nowPlaying: $viewModel.nowPlayingKeeper)

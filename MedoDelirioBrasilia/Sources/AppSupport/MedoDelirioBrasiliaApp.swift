@@ -6,8 +6,8 @@ var database = LocalDatabase()
 let networkRabbit = NetworkRabbit(serverPath: CommandLine.arguments.contains("-UNDER_DEVELOPMENT") ? "http://localhost:8080/api/" : "http://170.187.145.233:8080/api/")
 let podium = Podium(database: database, networkRabbit: networkRabbit)
 
-let soundsLastUpdateDate: String = "25/07/2022"
-let songsLastUpdateDate: String = "24/07/2022"
+let soundsLastUpdateDate: String = "28/07/2022"
+let songsLastUpdateDate: String = "28/07/2022"
 
 @main
 struct MedoDelirioBrasiliaApp: App {

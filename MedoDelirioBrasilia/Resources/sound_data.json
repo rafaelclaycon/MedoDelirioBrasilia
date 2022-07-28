@@ -5839,5 +5839,32 @@
         "filename": "Cristiano Botafogo imitando o Frota - Bonsai de pica.mp3",
         "dateAdded": "2022-07-25T00:00:00Z",
         "isOffensive": true
+    },
+    {
+        "id": "742BE901-C363-4BD9-B534-F281907851DC",
+        "title": "Tá errado, tá muito errado isso",
+        "authorId": "FF3D6700-EF71-4368-A800-63ACC9C74750",
+        "description": "Ta errado ta muito errado isso",
+        "filename": "Parafernalha - Ta errado, ta muito errado isso.mp3",
+        "dateAdded": "2022-07-28T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "92080450-B204-4C06-AF56-E6DF7A2F3725",
+        "title": "Ah, como o cara é grosso",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Ah como o cara e grosso ó como o cara é grosso",
+        "filename": "Bolsonaro - Ah, como o cara e grosso.mp3",
+        "dateAdded": "2022-07-28T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "1E88A1C3-33EB-4E82-A256-435CB40D821D",
+        "title": "Vai dar vitória pro Lula, sem problema nenhum",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Vai dar vitoria pro Lula sem problema nenhum",
+        "filename": "Bolsonaro - Vai dar vitoria pro Lula, sem problema nenhum.mp3",
+        "dateAdded": "2022-07-28T00:00:00Z",
+        "isOffensive": false
     }
 ]
