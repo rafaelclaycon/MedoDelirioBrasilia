@@ -35,7 +35,6 @@
 		49DEA9D2288116AF008C9BA1 /* Eita porra short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA9D1288116AF008C9BA1 /* Eita porra short meme.mp3 */; };
 		49DEA9D4288116DC008C9BA1 /* ESPN - Lewandowski short meme grito .mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA9D3288116DC008C9BA1 /* ESPN - Lewandowski short meme grito .mp3 */; };
 		49DEA9D62881173B008C9BA1 /* Eu quero dormir porra short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA9D52881173B008C9BA1 /* Eu quero dormir porra short meme.mp3 */; };
-		49DEA9D82881177C008C9BA1 /* Eu sou RICA short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA9D72881177C008C9BA1 /* Eu sou RICA short meme.mp3 */; };
 		49DEA9DE288118FA008C9BA1 /* Gilmar mendes - Eine grosse Confusion.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA9DD288118FA008C9BA1 /* Gilmar mendes - Eine grosse Confusion.mp3 */; };
 		49DEA9E028811FAF008C9BA1 /* eletronica-eine-grosse-confusion-kraftwerk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA9DF28811FAF008C9BA1 /* eletronica-eine-grosse-confusion-kraftwerk.mp3 */; };
 		49DEA9E228812015008C9BA1 /* eletronica-eine-grosse-confusion-sexo-selvagem-kraftwerk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA9E128812015008C9BA1 /* eletronica-eine-grosse-confusion-sexo-selvagem-kraftwerk.mp3 */; };
@@ -44,8 +43,51 @@
 		D90F6A6628446C250050FFFF /* TrendsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */; };
 		D91107112863B481000B6F8F /* CollectionsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91107102863B481000B6F8F /* CollectionsViewViewModel.swift */; };
 		D91107142863B5FD000B6F8F /* ContentCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91107132863B5FD000B6F8F /* ContentCollection.swift */; };
+		D91793A9288E1B51009C3165 /* Um Ministerio Tecnico.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793A8288E1B51009C3165 /* Um Ministerio Tecnico.mp3 */; };
+		D91793AD288E2236009C3165 /* Bolsonaro - Eu nao sou medico, mas sou ousado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793AC288E2236009C3165 /* Bolsonaro - Eu nao sou medico, mas sou ousado.mp3 */; };
+		D91793AF288E3A13009C3165 /* Doce feto, fase anal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793AE288E3A13009C3165 /* Doce feto, fase anal.mp3 */; };
+		D91793B2288E3CF0009C3165 /* Jair Bolsonaro - Canalhas mil vezes.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793B0288E3CF0009C3165 /* Jair Bolsonaro - Canalhas mil vezes.mp3 */; };
+		D91793B3288E3CF0009C3165 /* Jair Bolsonaro - Canalhas.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793B1288E3CF0009C3165 /* Jair Bolsonaro - Canalhas.mp3 */; };
+		D91793B6288E3F0E009C3165 /* Abraham Weintraub - Muito muito pipi mole.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793B4288E3F0E009C3165 /* Abraham Weintraub - Muito muito pipi mole.mp3 */; };
+		D91793B7288E3F0E009C3165 /* Abraham Weintraub - Muito muito pipi mole, o pipizinho dele e bem mole.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793B5288E3F0E009C3165 /* Abraham Weintraub - Muito muito pipi mole, o pipizinho dele e bem mole.mp3 */; };
+		D91793BA288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao no MARXISMO CULTURAL.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793B8288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao no MARXISMO CULTURAL.mp3 */; };
+		D91793BB288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793B9288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao.mp3 */; };
+		D921F879288B0177003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F865288B0176003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 */; };
+		D921F87B288B0177003979CC /* Ciumes de homem e foda.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F867288B0177003979CC /* Ciumes de homem e foda.mp3 */; };
+		D921F87C288B0177003979CC /* Jornalista de alta performance - Oswaldo Eustaquio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F868288B0177003979CC /* Jornalista de alta performance - Oswaldo Eustaquio.mp3 */; };
+		D921F87D288B0177003979CC /* Atencao e agora que o bicho vai pegar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F869288B0177003979CC /* Atencao e agora que o bicho vai pegar.mp3 */; };
+		D921F87E288B0177003979CC /* E um montao de amontoado de muita coisa escrita.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F86A288B0177003979CC /* E um montao de amontoado de muita coisa escrita.mp3 */; };
+		D921F87F288B0177003979CC /* Aglomeracao de idosos todos doentes.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F86B288B0177003979CC /* Aglomeracao de idosos todos doentes.mp3 */; };
+		D921F881288B0177003979CC /* Festa estranha com gente esquisita - legiao urbana.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F86D288B0177003979CC /* Festa estranha com gente esquisita - legiao urbana.mp3 */; };
+		D921F882288B0177003979CC /* quero que o senhor as engula - collor.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F86E288B0177003979CC /* quero que o senhor as engula - collor.mp3 */; };
+		D921F883288B0177003979CC /* A decisao aceitacao nao cabe a gente cabe ao TSE.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F86F288B0177003979CC /* A decisao aceitacao nao cabe a gente cabe ao TSE.mp3 */; };
+		D921F884288B0177003979CC /* Eduardo voce e burro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F870288B0177003979CC /* Eduardo voce e burro.mp3 */; };
+		D921F885288B0177003979CC /* Ihu compilacao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F871288B0177003979CC /* Ihu compilacao.mp3 */; };
+		D921F886288B0177003979CC /* sai fora satanas - cristiano botafogo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F872288B0177003979CC /* sai fora satanas - cristiano botafogo.mp3 */; };
+		D921F887288B0177003979CC /* Isso ai e sarcasmo alvin e os esquilos - cristiano botafogo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F873288B0177003979CC /* Isso ai e sarcasmo alvin e os esquilos - cristiano botafogo.mp3 */; };
+		D921F888288B0177003979CC /* sarcasmo - cristiano botafogo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F874288B0177003979CC /* sarcasmo - cristiano botafogo.mp3 */; };
+		D921F889288B0177003979CC /* Pouerpoint - Bolsonaro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F875288B0177003979CC /* Pouerpoint - Bolsonaro.mp3 */; };
+		D921F88A288B0177003979CC /* Eu to passada chocada - meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F876288B0177003979CC /* Eu to passada chocada - meme.mp3 */; };
+		D921F88B288B0177003979CC /* Air quotes.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F877288B0177003979CC /* Air quotes.mp3 */; };
+		D921F88C288B0177003979CC /* Vendidos e canalhas - Cristiano botafogo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F878288B0177003979CC /* Vendidos e canalhas - Cristiano botafogo.mp3 */; };
+		D921F88E288B063A003979CC /* Ih rapaz - fred.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F88D288B063A003979CC /* Ih rapaz - fred.mp3 */; };
+		D921F893288B07CB003979CC /* Fa do Armandinho - E um poeta ne meu, bah.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F88F288B07CB003979CC /* Fa do Armandinho - E um poeta ne meu, bah.mp3 */; };
+		D921F894288B07CB003979CC /* Fa do Armandinho - Vamo pra cima Gremio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F890288B07CB003979CC /* Fa do Armandinho - Vamo pra cima Gremio.mp3 */; };
+		D921F895288B07CB003979CC /* Fa do Armandinho - Armandinho e um terror ne meu (completo).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F891288B07CB003979CC /* Fa do Armandinho - Armandinho e um terror ne meu (completo).mp3 */; };
+		D921F896288B07CB003979CC /* Fa do Armandinho - Vou ver se pego um corpinho hoje la.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F892288B07CB003979CC /* Fa do Armandinho - Vou ver se pego um corpinho hoje la.mp3 */; };
+		D921F89D288B0DC4003979CC /* Vale tudo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F897288B0DC4003979CC /* Vale tudo.mp3 */; };
+		D921F89E288B0DC4003979CC /* Pra frente brasil.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F898288B0DC4003979CC /* Pra frente brasil.mp3 */; };
+		D921F89F288B0DC4003979CC /* Toma cloroquina - Cristiano Botafogo (feat Vitor Midcast) - vassourinha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F899288B0DC4003979CC /* Toma cloroquina - Cristiano Botafogo (feat Vitor Midcast) - vassourinha.mp3 */; };
+		D921F8A0288B0DC4003979CC /* Au au (Parabens sancao) - Bolsonaro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F89A288B0DC4003979CC /* Au au (Parabens sancao) - Bolsonaro.mp3 */; };
+		D921F8A1288B0DC4003979CC /* Se for feito com amor tudo vale.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F89B288B0DC4003979CC /* Se for feito com amor tudo vale.mp3 */; };
+		D921F8A2288B0DC4003979CC /* Um dado da natureza.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F89C288B0DC4003979CC /* Um dado da natureza.mp3 */; };
 		D9253B682873B68B00D138FB /* FoldersAreTagsBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9253B672873B68B00D138FB /* FoldersAreTagsBannerView.swift */; };
 		D9265741285A1EE700947165 /* LocalDatabase+Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9265740285A1EE700947165 /* LocalDatabase+Log.swift */; };
+		D92722FE289246AC001D5E47 /* Parafernalha - Ta errado, ta muito errado isso.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92722FD289246AC001D5E47 /* Parafernalha - Ta errado, ta muito errado isso.mp3 */; };
+		D9272300289248C1001D5E47 /* Bolsonaro - Ah, como o cara e grosso.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92722FF289248C1001D5E47 /* Bolsonaro - Ah, como o cara e grosso.mp3 */; };
+		D927230228924E2F001D5E47 /* Bolsonaro - Vai dar vitoria pro Lula, sem problema nenhum.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D927230128924E2F001D5E47 /* Bolsonaro - Vai dar vitoria pro Lula, sem problema nenhum.mp3 */; };
+		D927230428924E36001D5E47 /* Carla Zambelliii (Happy cover).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D927230328924E36001D5E47 /* Carla Zambelliii (Happy cover).mp3 */; };
+		D927230628924FC1001D5E47 /* HitsMedoDelirioBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D927230528924FC1001D5E47 /* HitsMedoDelirioBannerView.swift */; };
 		D927C424285245CE0041970A /* SoundOptionsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D927C423285245CE0041970A /* SoundOptionsHelper.swift */; };
 		D92879E7283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879E5283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 */; };
 		D92879E8283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879E6283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 */; };
@@ -84,6 +126,8 @@
 		D93443292838230500ADCD38 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93443282838230500ADCD38 /* String+Extensions.swift */; };
 		D9351C5C2844094E00D4317E /* TopChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9351C5B2844094E00D4317E /* TopChartItem.swift */; };
 		D9351C6128441FA400D4317E /* LoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9351C6028441FA400D4317E /* LoggerTests.swift */; };
+		D9388F9E288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Bonsai de pica.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9388F9C288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Bonsai de pica.mp3 */; };
+		D9388F9F288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Eduardo Bolsonaro, aquele bonsai de pica.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9388F9D288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Eduardo Bolsonaro, aquele bonsai de pica.mp3 */; };
 		D93AC08B28414EEE00E38A63 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AC08A28414EEE00E38A63 /* Logger.swift */; };
 		D93CCB77286A802D0002CF81 /* EmptyFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93CCB76286A802D0002CF81 /* EmptyFolderView.swift */; };
 		D93CCB79286A8A220002CF81 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93CCB78286A8A220002CF81 /* ToastView.swift */; };
@@ -266,7 +310,6 @@
 		D975FE482880B4F20035E6F2 /* Seu Sirigueijo - Ola eu gosto de dinheiro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FC112880B4EA0035E6F2 /* Seu Sirigueijo - Ola eu gosto de dinheiro.mp3 */; };
 		D975FE492880B4F20035E6F2 /* Collor - Um devaneio, um sonho de uma noite de verao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FC122880B4EA0035E6F2 /* Collor - Um devaneio, um sonho de uma noite de verao.mp3 */; };
 		D975FE4A2880B4F20035E6F2 /* Natalia Pasternak - E um pedaco de pano no rosto, e uma porra de um pedaco de pano na cara.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FC132880B4EA0035E6F2 /* Natalia Pasternak - E um pedaco de pano no rosto, e uma porra de um pedaco de pano na cara.mp3 */; };
-		D975FE4B2880B4F20035E6F2 /* Fã do Armandinho - E um poeta ne meu, bah.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FC142880B4EA0035E6F2 /* Fã do Armandinho - E um poeta ne meu, bah.mp3 */; };
 		D975FE4C2880B4F20035E6F2 /* Trote Luiz Pareto - TELERJ meme mas que filho da puta olhai veja voce.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FC152880B4EA0035E6F2 /* Trote Luiz Pareto - TELERJ meme mas que filho da puta olhai veja voce.mp3 */; };
 		D975FE4D2880B4F20035E6F2 /* Lula - Eu vou tomar a minha vacina.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FC162880B4EA0035E6F2 /* Lula - Eu vou tomar a minha vacina.mp3 */; };
 		D975FE4E2880B4F20035E6F2 /* SALLES - E ir passando a boiada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FC172880B4EA0035E6F2 /* SALLES - E ir passando a boiada.mp3 */; };
@@ -356,14 +399,12 @@
 		D975FEA22880B4F20035E6F2 /* ATILA IAMARINO - A gente esta basicamente sabotando a campanha de vacinacao do mundo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FC6B2880B4EB0035E6F2 /* ATILA IAMARINO - A gente esta basicamente sabotando a campanha de vacinacao do mundo.mp3 */; };
 		D975FEA32880B4F20035E6F2 /* Capitao Falcao - Viboras socialistas.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FC6C2880B4EB0035E6F2 /* Capitao Falcao - Viboras socialistas.mp3 */; };
 		D975FEA42880B4F20035E6F2 /* Bolsonaro - ah o o cara quem fala disso eu nao sou coveiro ta ok.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FC6D2880B4EB0035E6F2 /* Bolsonaro - ah o o cara quem fala disso eu nao sou coveiro ta ok.mp3 */; };
-		D975FEA52880B4F20035E6F2 /* Fã do Armandinho - Vou ver se pego um corpinho hoje la.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FC6E2880B4EB0035E6F2 /* Fã do Armandinho - Vou ver se pego um corpinho hoje la.mp3 */; };
 		D975FEA62880B4F20035E6F2 /* Boldo - Que boldo bao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FC6F2880B4EB0035E6F2 /* Boldo - Que boldo bao.mp3 */; };
 		D975FEA72880B4F20035E6F2 /* Bolsonaro - Buscamos uma solucao, quem tiver tras pra mim tras pra mim.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FC702880B4EB0035E6F2 /* Bolsonaro - Buscamos uma solucao, quem tiver tras pra mim tras pra mim.mp3 */; };
 		D975FEA82880B4F20035E6F2 /* Silas Malafaia - Mentiroso sem vergonha vai pro inferno short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FC712880B4EB0035E6F2 /* Silas Malafaia - Mentiroso sem vergonha vai pro inferno short.mp3 */; };
 		D975FEA92880B4F20035E6F2 /* MR CATRA - Vai comecar a putaria short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FC722880B4EB0035E6F2 /* MR CATRA - Vai comecar a putaria short.mp3 */; };
 		D975FEAA2880B4F20035E6F2 /* Malditos milicos - bomba.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FC732880B4EB0035E6F2 /* Malditos milicos - bomba.mp3 */; };
 		D975FEAB2880B4F20035E6F2 /* UOL - Luiz Fux - Infelizmente short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FC742880B4EB0035E6F2 /* UOL - Luiz Fux - Infelizmente short meme.mp3 */; };
-		D975FEAC2880B4F20035E6F2 /* Fã do Armandinho - Armandinho e um terror ne meu (completo).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FC752880B4EB0035E6F2 /* Fã do Armandinho - Armandinho e um terror ne meu (completo).mp3 */; };
 		D975FEAD2880B4F20035E6F2 /* Gilmar Mendes - Nao e razoavel.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FC762880B4EB0035E6F2 /* Gilmar Mendes - Nao e razoavel.mp3 */; };
 		D975FEAE2880B4F20035E6F2 /* Mourao - A gente nao tem que ser mendigo nisso ai ne vamos colocar a coisa muito clara.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FC772880B4EB0035E6F2 /* Mourao - A gente nao tem que ser mendigo nisso ai ne vamos colocar a coisa muito clara.mp3 */; };
 		D975FEAF2880B4F20035E6F2 /* Caue Moura - Foi mal tava doidao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FC782880B4EB0035E6F2 /* Caue Moura - Foi mal tava doidao.mp3 */; };
@@ -413,7 +454,6 @@
 		D975FEDB2880B4F20035E6F2 /* HENRY BUGALHO - Os reacas piram.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FCA42880B4EB0035E6F2 /* HENRY BUGALHO - Os reacas piram.mp3 */; };
 		D975FEDC2880B4F20035E6F2 /* Bolsonaro - Lamento, quer que eu faca o que.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FCA52880B4EB0035E6F2 /* Bolsonaro - Lamento, quer que eu faca o que.mp3 */; };
 		D975FEDD2880B4F20035E6F2 /* Gilmar mendes - uma grande confusao short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FCA62880B4EB0035E6F2 /* Gilmar mendes - uma grande confusao short.mp3 */; };
-		D975FEDE2880B4F20035E6F2 /* Fã do Armandinho - Vamo pra cima Gremio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FCA72880B4EB0035E6F2 /* Fã do Armandinho - Vamo pra cima Gremio.mp3 */; };
 		D975FEDF2880B4F20035E6F2 /* Emicida - So isso mesmo short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FCA82880B4EB0035E6F2 /* Emicida - So isso mesmo short meme.mp3 */; };
 		D975FEE02880B4F20035E6F2 /* Choque de Cultura - Rogerinho - Aqui tem informacao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FCA92880B4EB0035E6F2 /* Choque de Cultura - Rogerinho - Aqui tem informacao.mp3 */; };
 		D975FEE12880B4F20035E6F2 /* Bolsonaro - Finalzinho de pandemia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FCAA2880B4EC0035E6F2 /* Bolsonaro - Finalzinho de pandemia.mp3 */; };
@@ -817,7 +857,6 @@
 		49DEA9D1288116AF008C9BA1 /* Eita porra short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eita porra short meme.mp3"; sourceTree = "<group>"; };
 		49DEA9D3288116DC008C9BA1 /* ESPN - Lewandowski short meme grito .mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ESPN - Lewandowski short meme grito .mp3"; sourceTree = "<group>"; };
 		49DEA9D52881173B008C9BA1 /* Eu quero dormir porra short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu quero dormir porra short meme.mp3"; sourceTree = "<group>"; };
-		49DEA9D72881177C008C9BA1 /* Eu sou RICA short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu sou RICA short meme.mp3"; sourceTree = "<group>"; };
 		49DEA9DD288118FA008C9BA1 /* Gilmar mendes - Eine grosse Confusion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gilmar mendes - Eine grosse Confusion.mp3"; sourceTree = "<group>"; };
 		49DEA9DF28811FAF008C9BA1 /* eletronica-eine-grosse-confusion-kraftwerk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "eletronica-eine-grosse-confusion-kraftwerk.mp3"; sourceTree = "<group>"; };
 		49DEA9E128812015008C9BA1 /* eletronica-eine-grosse-confusion-sexo-selvagem-kraftwerk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "eletronica-eine-grosse-confusion-sexo-selvagem-kraftwerk.mp3"; sourceTree = "<group>"; };
@@ -826,8 +865,51 @@
 		D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsSettingsView.swift; sourceTree = "<group>"; };
 		D91107102863B481000B6F8F /* CollectionsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsViewViewModel.swift; sourceTree = "<group>"; };
 		D91107132863B5FD000B6F8F /* ContentCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCollection.swift; sourceTree = "<group>"; };
+		D91793A8288E1B51009C3165 /* Um Ministerio Tecnico.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Um Ministerio Tecnico.mp3"; sourceTree = "<group>"; };
+		D91793AC288E2236009C3165 /* Bolsonaro - Eu nao sou medico, mas sou ousado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Eu nao sou medico, mas sou ousado.mp3"; sourceTree = "<group>"; };
+		D91793AE288E3A13009C3165 /* Doce feto, fase anal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Doce feto, fase anal.mp3"; sourceTree = "<group>"; };
+		D91793B0288E3CF0009C3165 /* Jair Bolsonaro - Canalhas mil vezes.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Canalhas mil vezes.mp3"; sourceTree = "<group>"; };
+		D91793B1288E3CF0009C3165 /* Jair Bolsonaro - Canalhas.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Canalhas.mp3"; sourceTree = "<group>"; };
+		D91793B4288E3F0E009C3165 /* Abraham Weintraub - Muito muito pipi mole.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Abraham Weintraub - Muito muito pipi mole.mp3"; sourceTree = "<group>"; };
+		D91793B5288E3F0E009C3165 /* Abraham Weintraub - Muito muito pipi mole, o pipizinho dele e bem mole.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Abraham Weintraub - Muito muito pipi mole, o pipizinho dele e bem mole.mp3"; sourceTree = "<group>"; };
+		D91793B8288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao no MARXISMO CULTURAL.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "METEORO BRASIL - Carga pesadissima de loucura e conspiracao no MARXISMO CULTURAL.mp3"; sourceTree = "<group>"; };
+		D91793B9288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "METEORO BRASIL - Carga pesadissima de loucura e conspiracao.mp3"; sourceTree = "<group>"; };
+		D921F865288B0176003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fala baixo quem fala alto aqui sou eu.mp3"; sourceTree = "<group>"; };
+		D921F867288B0177003979CC /* Ciumes de homem e foda.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ciumes de homem e foda.mp3"; sourceTree = "<group>"; };
+		D921F868288B0177003979CC /* Jornalista de alta performance - Oswaldo Eustaquio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jornalista de alta performance - Oswaldo Eustaquio.mp3"; sourceTree = "<group>"; };
+		D921F869288B0177003979CC /* Atencao e agora que o bicho vai pegar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Atencao e agora que o bicho vai pegar.mp3"; sourceTree = "<group>"; };
+		D921F86A288B0177003979CC /* E um montao de amontoado de muita coisa escrita.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "E um montao de amontoado de muita coisa escrita.mp3"; sourceTree = "<group>"; };
+		D921F86B288B0177003979CC /* Aglomeracao de idosos todos doentes.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Aglomeracao de idosos todos doentes.mp3"; sourceTree = "<group>"; };
+		D921F86D288B0177003979CC /* Festa estranha com gente esquisita - legiao urbana.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Festa estranha com gente esquisita - legiao urbana.mp3"; sourceTree = "<group>"; };
+		D921F86E288B0177003979CC /* quero que o senhor as engula - collor.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "quero que o senhor as engula - collor.mp3"; sourceTree = "<group>"; };
+		D921F86F288B0177003979CC /* A decisao aceitacao nao cabe a gente cabe ao TSE.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "A decisao aceitacao nao cabe a gente cabe ao TSE.mp3"; sourceTree = "<group>"; };
+		D921F870288B0177003979CC /* Eduardo voce e burro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eduardo voce e burro.mp3"; sourceTree = "<group>"; };
+		D921F871288B0177003979CC /* Ihu compilacao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ihu compilacao.mp3"; sourceTree = "<group>"; };
+		D921F872288B0177003979CC /* sai fora satanas - cristiano botafogo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "sai fora satanas - cristiano botafogo.mp3"; sourceTree = "<group>"; };
+		D921F873288B0177003979CC /* Isso ai e sarcasmo alvin e os esquilos - cristiano botafogo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Isso ai e sarcasmo alvin e os esquilos - cristiano botafogo.mp3"; sourceTree = "<group>"; };
+		D921F874288B0177003979CC /* sarcasmo - cristiano botafogo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "sarcasmo - cristiano botafogo.mp3"; sourceTree = "<group>"; };
+		D921F875288B0177003979CC /* Pouerpoint - Bolsonaro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pouerpoint - Bolsonaro.mp3"; sourceTree = "<group>"; };
+		D921F876288B0177003979CC /* Eu to passada chocada - meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu to passada chocada - meme.mp3"; sourceTree = "<group>"; };
+		D921F877288B0177003979CC /* Air quotes.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Air quotes.mp3"; sourceTree = "<group>"; };
+		D921F878288B0177003979CC /* Vendidos e canalhas - Cristiano botafogo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Vendidos e canalhas - Cristiano botafogo.mp3"; sourceTree = "<group>"; };
+		D921F88D288B063A003979CC /* Ih rapaz - fred.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ih rapaz - fred.mp3"; sourceTree = "<group>"; };
+		D921F88F288B07CB003979CC /* Fa do Armandinho - E um poeta ne meu, bah.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fa do Armandinho - E um poeta ne meu, bah.mp3"; sourceTree = "<group>"; };
+		D921F890288B07CB003979CC /* Fa do Armandinho - Vamo pra cima Gremio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fa do Armandinho - Vamo pra cima Gremio.mp3"; sourceTree = "<group>"; };
+		D921F891288B07CB003979CC /* Fa do Armandinho - Armandinho e um terror ne meu (completo).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fa do Armandinho - Armandinho e um terror ne meu (completo).mp3"; sourceTree = "<group>"; };
+		D921F892288B07CB003979CC /* Fa do Armandinho - Vou ver se pego um corpinho hoje la.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fa do Armandinho - Vou ver se pego um corpinho hoje la.mp3"; sourceTree = "<group>"; };
+		D921F897288B0DC4003979CC /* Vale tudo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Vale tudo.mp3"; sourceTree = "<group>"; };
+		D921F898288B0DC4003979CC /* Pra frente brasil.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pra frente brasil.mp3"; sourceTree = "<group>"; };
+		D921F899288B0DC4003979CC /* Toma cloroquina - Cristiano Botafogo (feat Vitor Midcast) - vassourinha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Toma cloroquina - Cristiano Botafogo (feat Vitor Midcast) - vassourinha.mp3"; sourceTree = "<group>"; };
+		D921F89A288B0DC4003979CC /* Au au (Parabens sancao) - Bolsonaro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Au au (Parabens sancao) - Bolsonaro.mp3"; sourceTree = "<group>"; };
+		D921F89B288B0DC4003979CC /* Se for feito com amor tudo vale.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Se for feito com amor tudo vale.mp3"; sourceTree = "<group>"; };
+		D921F89C288B0DC4003979CC /* Um dado da natureza.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Um dado da natureza.mp3"; sourceTree = "<group>"; };
 		D9253B672873B68B00D138FB /* FoldersAreTagsBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersAreTagsBannerView.swift; sourceTree = "<group>"; };
 		D9265740285A1EE700947165 /* LocalDatabase+Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+Log.swift"; sourceTree = "<group>"; };
+		D92722FD289246AC001D5E47 /* Parafernalha - Ta errado, ta muito errado isso.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Parafernalha - Ta errado, ta muito errado isso.mp3"; sourceTree = "<group>"; };
+		D92722FF289248C1001D5E47 /* Bolsonaro - Ah, como o cara e grosso.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Ah, como o cara e grosso.mp3"; sourceTree = "<group>"; };
+		D927230128924E2F001D5E47 /* Bolsonaro - Vai dar vitoria pro Lula, sem problema nenhum.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Vai dar vitoria pro Lula, sem problema nenhum.mp3"; sourceTree = "<group>"; };
+		D927230328924E36001D5E47 /* Carla Zambelliii (Happy cover).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Carla Zambelliii (Happy cover).mp3"; sourceTree = "<group>"; };
+		D927230528924FC1001D5E47 /* HitsMedoDelirioBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitsMedoDelirioBannerView.swift; sourceTree = "<group>"; };
 		D927C423285245CE0041970A /* SoundOptionsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundOptionsHelper.swift; sourceTree = "<group>"; };
 		D92879E5283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Nao era fake news era jornalismo.mp3"; sourceTree = "<group>"; };
 		D92879E6283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pena que nao pode ver um impeachment.mp3"; sourceTree = "<group>"; };
@@ -866,6 +948,8 @@
 		D93443282838230500ADCD38 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		D9351C5B2844094E00D4317E /* TopChartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartItem.swift; sourceTree = "<group>"; };
 		D9351C6028441FA400D4317E /* LoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerTests.swift; sourceTree = "<group>"; };
+		D9388F9C288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Bonsai de pica.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano Botafogo imitando o Frota - Bonsai de pica.mp3"; sourceTree = "<group>"; };
+		D9388F9D288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Eduardo Bolsonaro, aquele bonsai de pica.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano Botafogo imitando o Frota - Eduardo Bolsonaro, aquele bonsai de pica.mp3"; sourceTree = "<group>"; };
 		D93AC08A28414EEE00E38A63 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		D93CCB76286A802D0002CF81 /* EmptyFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyFolderView.swift; sourceTree = "<group>"; };
 		D93CCB78286A8A220002CF81 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
@@ -980,7 +1064,6 @@
 		D975FC112880B4EA0035E6F2 /* Seu Sirigueijo - Ola eu gosto de dinheiro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Seu Sirigueijo - Ola eu gosto de dinheiro.mp3"; sourceTree = "<group>"; };
 		D975FC122880B4EA0035E6F2 /* Collor - Um devaneio, um sonho de uma noite de verao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Collor - Um devaneio, um sonho de uma noite de verao.mp3"; sourceTree = "<group>"; };
 		D975FC132880B4EA0035E6F2 /* Natalia Pasternak - E um pedaco de pano no rosto, e uma porra de um pedaco de pano na cara.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Natalia Pasternak - E um pedaco de pano no rosto, e uma porra de um pedaco de pano na cara.mp3"; sourceTree = "<group>"; };
-		D975FC142880B4EA0035E6F2 /* Fã do Armandinho - E um poeta ne meu, bah.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fã do Armandinho - E um poeta ne meu, bah.mp3"; sourceTree = "<group>"; };
 		D975FC152880B4EA0035E6F2 /* Trote Luiz Pareto - TELERJ meme mas que filho da puta olhai veja voce.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Trote Luiz Pareto - TELERJ meme mas que filho da puta olhai veja voce.mp3"; sourceTree = "<group>"; };
 		D975FC162880B4EA0035E6F2 /* Lula - Eu vou tomar a minha vacina.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - Eu vou tomar a minha vacina.mp3"; sourceTree = "<group>"; };
 		D975FC172880B4EA0035E6F2 /* SALLES - E ir passando a boiada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "SALLES - E ir passando a boiada.mp3"; sourceTree = "<group>"; };
@@ -1070,14 +1153,12 @@
 		D975FC6B2880B4EB0035E6F2 /* ATILA IAMARINO - A gente esta basicamente sabotando a campanha de vacinacao do mundo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ATILA IAMARINO - A gente esta basicamente sabotando a campanha de vacinacao do mundo.mp3"; sourceTree = "<group>"; };
 		D975FC6C2880B4EB0035E6F2 /* Capitao Falcao - Viboras socialistas.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Capitao Falcao - Viboras socialistas.mp3"; sourceTree = "<group>"; };
 		D975FC6D2880B4EB0035E6F2 /* Bolsonaro - ah o o cara quem fala disso eu nao sou coveiro ta ok.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - ah o o cara quem fala disso eu nao sou coveiro ta ok.mp3"; sourceTree = "<group>"; };
-		D975FC6E2880B4EB0035E6F2 /* Fã do Armandinho - Vou ver se pego um corpinho hoje la.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fã do Armandinho - Vou ver se pego um corpinho hoje la.mp3"; sourceTree = "<group>"; };
 		D975FC6F2880B4EB0035E6F2 /* Boldo - Que boldo bao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Boldo - Que boldo bao.mp3"; sourceTree = "<group>"; };
 		D975FC702880B4EB0035E6F2 /* Bolsonaro - Buscamos uma solucao, quem tiver tras pra mim tras pra mim.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Buscamos uma solucao, quem tiver tras pra mim tras pra mim.mp3"; sourceTree = "<group>"; };
 		D975FC712880B4EB0035E6F2 /* Silas Malafaia - Mentiroso sem vergonha vai pro inferno short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Silas Malafaia - Mentiroso sem vergonha vai pro inferno short.mp3"; sourceTree = "<group>"; };
 		D975FC722880B4EB0035E6F2 /* MR CATRA - Vai comecar a putaria short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "MR CATRA - Vai comecar a putaria short.mp3"; sourceTree = "<group>"; };
 		D975FC732880B4EB0035E6F2 /* Malditos milicos - bomba.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Malditos milicos - bomba.mp3"; sourceTree = "<group>"; };
 		D975FC742880B4EB0035E6F2 /* UOL - Luiz Fux - Infelizmente short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "UOL - Luiz Fux - Infelizmente short meme.mp3"; sourceTree = "<group>"; };
-		D975FC752880B4EB0035E6F2 /* Fã do Armandinho - Armandinho e um terror ne meu (completo).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fã do Armandinho - Armandinho e um terror ne meu (completo).mp3"; sourceTree = "<group>"; };
 		D975FC762880B4EB0035E6F2 /* Gilmar Mendes - Nao e razoavel.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gilmar Mendes - Nao e razoavel.mp3"; sourceTree = "<group>"; };
 		D975FC772880B4EB0035E6F2 /* Mourao - A gente nao tem que ser mendigo nisso ai ne vamos colocar a coisa muito clara.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mourao - A gente nao tem que ser mendigo nisso ai ne vamos colocar a coisa muito clara.mp3"; sourceTree = "<group>"; };
 		D975FC782880B4EB0035E6F2 /* Caue Moura - Foi mal tava doidao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Caue Moura - Foi mal tava doidao.mp3"; sourceTree = "<group>"; };
@@ -1127,7 +1208,6 @@
 		D975FCA42880B4EB0035E6F2 /* HENRY BUGALHO - Os reacas piram.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "HENRY BUGALHO - Os reacas piram.mp3"; sourceTree = "<group>"; };
 		D975FCA52880B4EB0035E6F2 /* Bolsonaro - Lamento, quer que eu faca o que.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Lamento, quer que eu faca o que.mp3"; sourceTree = "<group>"; };
 		D975FCA62880B4EB0035E6F2 /* Gilmar mendes - uma grande confusao short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gilmar mendes - uma grande confusao short.mp3"; sourceTree = "<group>"; };
-		D975FCA72880B4EB0035E6F2 /* Fã do Armandinho - Vamo pra cima Gremio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fã do Armandinho - Vamo pra cima Gremio.mp3"; sourceTree = "<group>"; };
 		D975FCA82880B4EB0035E6F2 /* Emicida - So isso mesmo short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Emicida - So isso mesmo short meme.mp3"; sourceTree = "<group>"; };
 		D975FCA92880B4EB0035E6F2 /* Choque de Cultura - Rogerinho - Aqui tem informacao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Choque de Cultura - Rogerinho - Aqui tem informacao.mp3"; sourceTree = "<group>"; };
 		D975FCAA2880B4EC0035E6F2 /* Bolsonaro - Finalzinho de pandemia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Finalzinho de pandemia.mp3"; sourceTree = "<group>"; };
@@ -1586,6 +1666,41 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D927230128924E2F001D5E47 /* Bolsonaro - Vai dar vitoria pro Lula, sem problema nenhum.mp3 */,
+				D92722FF289248C1001D5E47 /* Bolsonaro - Ah, como o cara e grosso.mp3 */,
+				D92722FD289246AC001D5E47 /* Parafernalha - Ta errado, ta muito errado isso.mp3 */,
+				D9388F9C288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Bonsai de pica.mp3 */,
+				D9388F9D288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Eduardo Bolsonaro, aquele bonsai de pica.mp3 */,
+				D91793B8288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao no MARXISMO CULTURAL.mp3 */,
+				D91793B9288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao.mp3 */,
+				D91793B5288E3F0E009C3165 /* Abraham Weintraub - Muito muito pipi mole, o pipizinho dele e bem mole.mp3 */,
+				D91793B4288E3F0E009C3165 /* Abraham Weintraub - Muito muito pipi mole.mp3 */,
+				D91793B0288E3CF0009C3165 /* Jair Bolsonaro - Canalhas mil vezes.mp3 */,
+				D91793B1288E3CF0009C3165 /* Jair Bolsonaro - Canalhas.mp3 */,
+				D91793AC288E2236009C3165 /* Bolsonaro - Eu nao sou medico, mas sou ousado.mp3 */,
+				D921F891288B07CB003979CC /* Fa do Armandinho - Armandinho e um terror ne meu (completo).mp3 */,
+				D921F88F288B07CB003979CC /* Fa do Armandinho - E um poeta ne meu, bah.mp3 */,
+				D921F890288B07CB003979CC /* Fa do Armandinho - Vamo pra cima Gremio.mp3 */,
+				D921F892288B07CB003979CC /* Fa do Armandinho - Vou ver se pego um corpinho hoje la.mp3 */,
+				D921F88D288B063A003979CC /* Ih rapaz - fred.mp3 */,
+				D921F86F288B0177003979CC /* A decisao aceitacao nao cabe a gente cabe ao TSE.mp3 */,
+				D921F86B288B0177003979CC /* Aglomeracao de idosos todos doentes.mp3 */,
+				D921F877288B0177003979CC /* Air quotes.mp3 */,
+				D921F869288B0177003979CC /* Atencao e agora que o bicho vai pegar.mp3 */,
+				D921F867288B0177003979CC /* Ciumes de homem e foda.mp3 */,
+				D921F86A288B0177003979CC /* E um montao de amontoado de muita coisa escrita.mp3 */,
+				D921F870288B0177003979CC /* Eduardo voce e burro.mp3 */,
+				D921F876288B0177003979CC /* Eu to passada chocada - meme.mp3 */,
+				D921F865288B0176003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 */,
+				D921F86D288B0177003979CC /* Festa estranha com gente esquisita - legiao urbana.mp3 */,
+				D921F871288B0177003979CC /* Ihu compilacao.mp3 */,
+				D921F873288B0177003979CC /* Isso ai e sarcasmo alvin e os esquilos - cristiano botafogo.mp3 */,
+				D921F868288B0177003979CC /* Jornalista de alta performance - Oswaldo Eustaquio.mp3 */,
+				D921F875288B0177003979CC /* Pouerpoint - Bolsonaro.mp3 */,
+				D921F86E288B0177003979CC /* quero que o senhor as engula - collor.mp3 */,
+				D921F872288B0177003979CC /* sai fora satanas - cristiano botafogo.mp3 */,
+				D921F874288B0177003979CC /* sarcasmo - cristiano botafogo.mp3 */,
+				D921F878288B0177003979CC /* Vendidos e canalhas - Cristiano botafogo.mp3 */,
 				D9D856F4288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Se numero elevado de mortes policia e uma caracteristica, ta errado.mp3 */,
 				D9D856F3288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3 */,
 				D92AD1C42883434C001CBCDF /* Bolsonaro - E uma canalhice o que voces fazem.mp3 */,
@@ -1604,7 +1719,6 @@
 				D92AD1A5288328D7001CBCDF /* Propaganda Instituto Tireido Ku (longo).mp3 */,
 				D92AD1A4288328D7001CBCDF /* Propaganda Instituto Tireido Ku Tirey Doku (os dados que vc quer).mp3 */,
 				49DEA9DD288118FA008C9BA1 /* Gilmar mendes - Eine grosse Confusion.mp3 */,
-				49DEA9D72881177C008C9BA1 /* Eu sou RICA short meme.mp3 */,
 				49DEA9D52881173B008C9BA1 /* Eu quero dormir porra short meme.mp3 */,
 				49DEA9D3288116DC008C9BA1 /* ESPN - Lewandowski short meme grito .mp3 */,
 				49DEA9D1288116AF008C9BA1 /* Eita porra short meme.mp3 */,
@@ -1886,10 +2000,6 @@
 				D975FC2F2880B4EA0035E6F2 /* Eu fico muito triste com uma noticia dessas filha da puta fogos short.mp3 */,
 				D975FD862880B4EF0035E6F2 /* Eu nao entendi o que ele falou.mp3 */,
 				D975FDA72880B4F00035E6F2 /* Eu sou RICA! short meme.mp3 */,
-				D975FC752880B4EB0035E6F2 /* Fã do Armandinho - Armandinho e um terror ne meu (completo).mp3 */,
-				D975FC142880B4EA0035E6F2 /* Fã do Armandinho - E um poeta ne meu, bah.mp3 */,
-				D975FCA72880B4EB0035E6F2 /* Fã do Armandinho - Vamo pra cima Gremio.mp3 */,
-				D975FC6E2880B4EB0035E6F2 /* Fã do Armandinho - Vou ver se pego um corpinho hoje la.mp3 */,
 				D975FDD72880B4F10035E6F2 /* Face palm - Corra que a policia vem ai.mp3 */,
 				D975FC0B2880B4EA0035E6F2 /* FALA M.R. - Quem produz vai ter sempre o pretexto de dizer que nao e fake news porque e uma piada.mp3 */,
 				D975FE0C2880B4F20035E6F2 /* Falha de Cobertura - Cerginho da Pereira Nunes - Doidera.mp3 */,
@@ -2231,6 +2341,15 @@
 		D92E7068283C5C120035826C /* Songs */ = {
 			isa = PBXGroup;
 			children = (
+				D927230328924E36001D5E47 /* Carla Zambelliii (Happy cover).mp3 */,
+				D91793AE288E3A13009C3165 /* Doce feto, fase anal.mp3 */,
+				D91793A8288E1B51009C3165 /* Um Ministerio Tecnico.mp3 */,
+				D921F89A288B0DC4003979CC /* Au au (Parabens sancao) - Bolsonaro.mp3 */,
+				D921F898288B0DC4003979CC /* Pra frente brasil.mp3 */,
+				D921F89B288B0DC4003979CC /* Se for feito com amor tudo vale.mp3 */,
+				D921F899288B0DC4003979CC /* Toma cloroquina - Cristiano Botafogo (feat Vitor Midcast) - vassourinha.mp3 */,
+				D921F89C288B0DC4003979CC /* Um dado da natureza.mp3 */,
+				D921F897288B0DC4003979CC /* Vale tudo.mp3 */,
 				D92AD1C6288344CB001CBCDF /* Franciel Cruz - Polarizacao.mp3 */,
 				49DEA9E128812015008C9BA1 /* eletronica-eine-grosse-confusion-sexo-selvagem-kraftwerk.mp3 */,
 				49DEA9DF28811FAF008C9BA1 /* eletronica-eine-grosse-confusion-kraftwerk.mp3 */,
@@ -2469,6 +2588,7 @@
 				D933251D28835E41004EFACB /* ActivityViewController.swift */,
 				D97D76FA2885B794005210D9 /* EmailAppPickerView.swift */,
 				D9C35D22288713990065F3E7 /* HotWeatherAdBannerView.swift */,
+				D927230528924FC1001D5E47 /* HitsMedoDelirioBannerView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -2761,6 +2881,7 @@
 				49DEA9D2288116AF008C9BA1 /* Eita porra short meme.mp3 in Resources */,
 				D975FF282880B4F20035E6F2 /* Dedo no cu e gritaria short meme.mp3 in Resources */,
 				D9B4F740283C8F4D0000EEF7 /* O roque ativa.mp3 in Resources */,
+				D921F88B288B0177003979CC /* Air quotes.mp3 in Resources */,
 				D975FEE72880B4F20035E6F2 /* Away -  Fora das condicoes normais.mp3 in Resources */,
 				D975FE792880B4F20035E6F2 /* Saiddy Bamba - Vai chorar e vai chorar e chore na minha.mp3 in Resources */,
 				D975FE702880B4F20035E6F2 /* UOL - Milton Ribeiro - Enem tem a cara do governo competencia honestidade seriedade.mp3 in Resources */,
@@ -2787,6 +2908,7 @@
 				D975FE2A2880B4F20035E6F2 /* Fernando Collor - Isso e uma mentira uma pantomima uma patuscada short.mp3 in Resources */,
 				D975FF912880B4F20035E6F2 /* O Terrivel Editorialista do Estadao.mp3 in Resources */,
 				D975FFF62880B4F20035E6F2 /* Malditos Milicos robo.mp3 in Resources */,
+				D927230228924E2F001D5E47 /* Bolsonaro - Vai dar vitoria pro Lula, sem problema nenhum.mp3 in Resources */,
 				D975FF112880B4F20035E6F2 /* SBT - Casos de Familia.mp3 in Resources */,
 				D975FEA82880B4F20035E6F2 /* Silas Malafaia - Mentiroso sem vergonha vai pro inferno short.mp3 in Resources */,
 				D975FFA62880B4F20035E6F2 /* Gaucho Puto - Uma bosta, nao sabe, uma merda.mp3 in Resources */,
@@ -2809,10 +2931,12 @@
 				D975FF412880B4F20035E6F2 /* PLANALTO - Bolsonaro - Mente.mp3 in Resources */,
 				D975FE782880B4F20035E6F2 /* Damares - A princesa do Frozen vai voltar pra acordar a Bela Adormecida com um beijo gay.mp3 in Resources */,
 				D975FE6C2880B4F20035E6F2 /* Que porra e essa batata.mp3 in Resources */,
+				D921F8A0288B0DC4003979CC /* Au au (Parabens sancao) - Bolsonaro.mp3 in Resources */,
 				D975000A2880B4F20035E6F2 /* Atila Iamarino - No minimo.mp3 in Resources */,
 				D975FFC22880B4F20035E6F2 /* Bolsonaro - O caos vem ai.mp3 in Resources */,
 				D975FE112880B4F20035E6F2 /* Dilma - O milho.mp3 in Resources */,
 				D975FED02880B4F20035E6F2 /* CASIMIRO - Amado ou amada.mp3 in Resources */,
+				D921F887288B0177003979CC /* Isso ai e sarcasmo alvin e os esquilos - cristiano botafogo.mp3 in Resources */,
 				D975FE492880B4F20035E6F2 /* Collor - Um devaneio, um sonho de uma noite de verao.mp3 in Resources */,
 				D975FE8B2880B4F20035E6F2 /* E desesperador.mp3 in Resources */,
 				D975FE6A2880B4F20035E6F2 /* Malditos Milicos reverse.mp3 in Resources */,
@@ -2830,7 +2954,9 @@
 				D975FF8C2880B4F20035E6F2 /* SBT NEWS - Jair Renan - Acabou que nao fiz nada la.mp3 in Resources */,
 				D975FF9A2880B4F20035E6F2 /* Massacration - Metal is the Law - grito short meme.mp3 in Resources */,
 				D975FF9C2880B4F20035E6F2 /* Bolsonaro - Duas letras PF e policia federal o cara.mp3 in Resources */,
+				D921F89E288B0DC4003979CC /* Pra frente brasil.mp3 in Resources */,
 				49DEA9A028810CBC008C9BA1 /* band jornalismo - Ah MORRE DIABO  short meme.mp3 in Resources */,
+				D921F8A2288B0DC4003979CC /* Um dado da natureza.mp3 in Resources */,
 				D975FFC12880B4F20035E6F2 /* Bolsonaro - E voce jogar uma moeda 271 vezes pra cima e dar cara e coroa. Isso deve ser a quantidade de atomos aqui na terra.mp3 in Resources */,
 				D975FE7A2880B4F20035E6F2 /* Silas Malafaia - gente que vive tanto na mentira que faz dela a sua verdade.mp3 in Resources */,
 				D975FF4C2880B4F20035E6F2 /* Cerginho da Perera Nunes - Com certeza.mp3 in Resources */,
@@ -2863,6 +2989,7 @@
 				D97500232880B4F20035E6F2 /* Bolsonaro - Eu nao errei nenhuma.mp3 in Resources */,
 				D97500052880B4F20035E6F2 /* Monty Python - Eric Idle - Bring out your dead.mp3 in Resources */,
 				D975002F2880B4F20035E6F2 /* Vai Dar Namoro - Que isso meu filho calma.mp3 in Resources */,
+				D91793BB288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao.mp3 in Resources */,
 				49DEA9AC28810F1D008C9BA1 /* UOL - Bolsonaro - Quem nao esta contente tem Lula em 2022 short meme.mp3 in Resources */,
 				D97500062880B4F20035E6F2 /* Lula - Chupa que a cana e doce meu filho.mp3 in Resources */,
 				D975FF692880B4F20035E6F2 /* Cristiano Botafogo - Bora passar raiva.mp3 in Resources */,
@@ -2884,6 +3011,7 @@
 				D975FE102880B4F20035E6F2 /* Lula - Nao.mp3 in Resources */,
 				49DEA9BE288112D8008C9BA1 /* CARTOON NETWORK - MAS ESTA ERRADO short meme.mp3 in Resources */,
 				D934432728381DEF00ADCD38 /* author_data.json in Resources */,
+				D921F87F288B0177003979CC /* Aglomeracao de idosos todos doentes.mp3 in Resources */,
 				D975FF7A2880B4F20035E6F2 /* Dilma - Vai todo mundo perder.mp3 in Resources */,
 				D9625E8528238F9B00080852 /* Preview Assets.xcassets in Resources */,
 				D97500152880B4F20035E6F2 /* Eduardo Sterblitch - E mais ou menos curto.mp3 in Resources */,
@@ -2895,6 +3023,7 @@
 				D97500502880B5190035E6F2 /* MULTISHOW - Titi Muller - Ta bombando mais do que o povo pedindo Anitta gente bolsonaro vai tomar no cu.mp3 in Resources */,
 				D975FF182880B4F20035E6F2 /* MINISTRO TERRIVELMENTE FILHO DA PUTA.mp3 in Resources */,
 				D975FF7D2880B4F20035E6F2 /* Ate o final tu vai bancar esse merda la seu merda.mp3 in Resources */,
+				D921F87E288B0177003979CC /* E um montao de amontoado de muita coisa escrita.mp3 in Resources */,
 				D975FFDE2880B4F20035E6F2 /* Eu sou RICA! short meme.mp3 in Resources */,
 				D97500002880B4F20035E6F2 /* Bolsonaro - Ah nhem nhem nhem nhem olha o problema ai.mp3 in Resources */,
 				D975FE2F2880B4F20035E6F2 /* Cleber Machado - Hoje sim (Interrogacao).mp3 in Resources */,
@@ -2917,7 +3046,6 @@
 				D975001F2880B4F20035E6F2 /* Diogo Defante - Tu ouviu isso nao e possivel.mp3 in Resources */,
 				D975FE752880B4F20035E6F2 /* Bolsonaro - Estavamos a beira do socialismo.mp3 in Resources */,
 				D975FEF72880B4F20035E6F2 /* NOTAS TAQUIGRAFICAS DO SENADO - Randolfe - Atencao senhores infelizmente muitos nao estao com o comprometimento necessario.mp3 in Resources */,
-				D975FEA52880B4F20035E6F2 /* Fã do Armandinho - Vou ver se pego um corpinho hoje la.mp3 in Resources */,
 				D975FF012880B4F20035E6F2 /* Malditos Milicos - Acorde em B7.mp3 in Resources */,
 				D975FF3E2880B4F20035E6F2 /* JORNAL DA RECORD - Nao e coisa de deus nao.mp3 in Resources */,
 				D975FF682880B4F20035E6F2 /* Chico Bento - Coitado.mp3 in Resources */,
@@ -2934,6 +3062,7 @@
 				D97500012880B4F20035E6F2 /* Vai Dar Namoro - Nao.mp3 in Resources */,
 				D975FEC12880B4F20035E6F2 /* Lula - Ou seja voces percebem a loucura.mp3 in Resources */,
 				D975FF782880B4F20035E6F2 /* Bolsonaro - Estou com covid.mp3 in Resources */,
+				D921F894288B07CB003979CC /* Fa do Armandinho - Vamo pra cima Gremio.mp3 in Resources */,
 				D975FFA42880B4F20035E6F2 /* Cid Moreira - Vai chorar e chore na minha.mp3 in Resources */,
 				D975FF732880B4F20035E6F2 /* LEANDRO HASSUM - Adora falar rebuscado.mp3 in Resources */,
 				D975FE4D2880B4F20035E6F2 /* Lula - Eu vou tomar a minha vacina.mp3 in Resources */,
@@ -2953,6 +3082,7 @@
 				D975FE722880B4F20035E6F2 /* Januario de Oliveira - Cruel, muito cruel.mp3 in Resources */,
 				D975FE862880B4F20035E6F2 /* Ernesto Araujo - Globalismo.mp3 in Resources */,
 				D975FE262880B4F20035E6F2 /* Andre Starqueza - Ai que delicia.mp3 in Resources */,
+				D921F89D288B0DC4003979CC /* Vale tudo.mp3 in Resources */,
 				D975FE192880B4F20035E6F2 /* METEORO - E o que a gente chama de fuga de cerebros, e e sempre uma pessima noticia pro futuro de qualquer pais.mp3 in Resources */,
 				D975FECE2880B4F20035E6F2 /* Natalie Wynn Contrapoints - Let's get started.mp3 in Resources */,
 				D975FE6B2880B4F20035E6F2 /* jonathan frakes - not this time.mp3 in Resources */,
@@ -2978,11 +3108,11 @@
 				D975FE172880B4F20035E6F2 /* Malditos Milicos semitons.mp3 in Resources */,
 				D975FF922880B4F20035E6F2 /* Mourao - Coronel Brilhante Ustra Meu heroi short meme.mp3 in Resources */,
 				D97500222880B4F20035E6F2 /* Silas Malafaia - Agora a coisa vai ser mais profunda.mp3 in Resources */,
+				D921F888288B0177003979CC /* sarcasmo - cristiano botafogo.mp3 in Resources */,
 				D975FEB32880B4F20035E6F2 /* REDE TV - Isso e meio delirante short meme.mp3 in Resources */,
 				D975FE562880B4F20035E6F2 /* Temer - Nao renunciarei short.mp3 in Resources */,
 				D975FEF02880B4F20035E6F2 /* Boldo - Esse e o boldo bao.mp3 in Resources */,
 				D975FEE32880B4F20035E6F2 /* MIDCAST - Teu cu.mp3 in Resources */,
-				D975FEDE2880B4F20035E6F2 /* Fã do Armandinho - Vamo pra cima Gremio.mp3 in Resources */,
 				D975FE682880B4F20035E6F2 /* Natalie Wynn Contrapoints - Cancel culture.mp3 in Resources */,
 				D975FF3B2880B4F20035E6F2 /* Bom dia e o caralho parceiro short meme.mp3 in Resources */,
 				D975FE572880B4F20035E6F2 /* Bolsonaro - Globo cala a boca catolico.mp3 in Resources */,
@@ -3013,6 +3143,7 @@
 				D975FE982880B4F20035E6F2 /* Lula - Cade o Ze gotinha.mp3 in Resources */,
 				D975FFEB2880B4F20035E6F2 /* Neto - Voces estao de sacanagem short.mp3 in Resources */,
 				D975FF202880B4F20035E6F2 /* Caue Moura - Foi mal tava doidao aqui nao seu arrombado.mp3 in Resources */,
+				D921F889288B0177003979CC /* Pouerpoint - Bolsonaro.mp3 in Resources */,
 				D97500382880B4F20035E6F2 /* Kajuru - Ele e burro short meme.mp3 in Resources */,
 				D975FFB02880B4F20035E6F2 /* Matheus Canella - e cada piada que eu fico putz.mp3 in Resources */,
 				D975FE2C2880B4F20035E6F2 /* Choque de Cultura - Falo com tranquilidade.mp3 in Resources */,
@@ -3035,6 +3166,7 @@
 				D97500182880B4F20035E6F2 /* Lula - Ele nao sabe o que e ser presidente da republica.mp3 in Resources */,
 				49DEA9BA28811219008C9BA1 /* Carole King - Its Too Late - And its too late, baby, now, its too late short meme.mp3 in Resources */,
 				D975FEE22880B4F20035E6F2 /* Caetano Veloso - Como voce e burro short.mp3 in Resources */,
+				D9388F9E288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Bonsai de pica.mp3 in Resources */,
 				D975FE5A2880B4F20035E6F2 /* Alanzoka - Sai, maluco, todo dia isso.mp3 in Resources */,
 				D97500162880B4F20035E6F2 /* Olavo - Porrrrra.mp3 in Resources */,
 				D975FEED2880B4F20035E6F2 /* Molejo - Cilada short meme.mp3 in Resources */,
@@ -3058,6 +3190,7 @@
 				D975FF402880B4F20035E6F2 /* Drauzio - E os outros problema deles nao tenho nada a ver com isso.mp3 in Resources */,
 				D975FFC32880B4F20035E6F2 /* Bolsonaro - Ganhou porra.mp3 in Resources */,
 				D975FFF22880B4F20035E6F2 /* Regina Rouca - Se Liga Hein (casual).mp3 in Resources */,
+				D921F886288B0177003979CC /* sai fora satanas - cristiano botafogo.mp3 in Resources */,
 				D975FEB92880B4F20035E6F2 /* ATILA IAMARINO - E um virus mais transmissivel que mata mais.mp3 in Resources */,
 				D975FF802880B4F20035E6F2 /* Pronto, falei short.mp3 in Resources */,
 				D975FE582880B4F20035E6F2 /* Bolsonaro - Eu sou favoravel a tortura, tu sabe disso.mp3 in Resources */,
@@ -3070,9 +3203,12 @@
 				D97500542880B5190035E6F2 /* MULTISHOW - PABLLO VITTAR - Fora Bolsonaro.mp3 in Resources */,
 				D975FF4E2880B4F20035E6F2 /* SBT NEWS - Bolsonaro - Sai, Alexandre de Moraes.mp3 in Resources */,
 				D975FEA62880B4F20035E6F2 /* Boldo - Que boldo bao.mp3 in Resources */,
+				D921F883288B0177003979CC /* A decisao aceitacao nao cabe a gente cabe ao TSE.mp3 in Resources */,
 				D97500412880B4F20035E6F2 /* Pedro Pedreira (Pedra 90) - Nao delira, nao patina no omelete.mp3 in Resources */,
+				D921F88C288B0177003979CC /* Vendidos e canalhas - Cristiano botafogo.mp3 in Resources */,
 				D975FFD32880B4F20035E6F2 /* Bolsonaro - Brasil e Estados Unidos.mp3 in Resources */,
 				D975FF332880B4F20035E6F2 /* Sera mesmo.mp3 in Resources */,
+				D9272300289248C1001D5E47 /* Bolsonaro - Ah, como o cara e grosso.mp3 in Resources */,
 				D975FE732880B4F20035E6F2 /* Nando Moura - Bibibibi Mito (curto).mp3 in Resources */,
 				D9625E8228238F9B00080852 /* Assets.xcassets in Resources */,
 				D975FF5B2880B4F20035E6F2 /* NOTAS TAQUIGRAFICAS DO SENADO - Randolfe - Ana Cristina, por gentileza, coloque a mensagem de whatsapp.mp3 in Resources */,
@@ -3081,6 +3217,7 @@
 				D975FF212880B4F20035E6F2 /* Lucca  Wilker - ME IGNOROU - Ignorou me bloqueou short meme.mp3 in Resources */,
 				D975FFA72880B4F20035E6F2 /* Ja deu merda, ja deu merda.mp3 in Resources */,
 				D975FF222880B4F20035E6F2 /* Ciro Gomes - Conspirador filho da puta.mp3 in Resources */,
+				D921F882288B0177003979CC /* quero que o senhor as engula - collor.mp3 in Resources */,
 				D975FE5C2880B4F20035E6F2 /* Ernesto Araujo - Nao se pode aceitar um lockdown do espirito humano.mp3 in Resources */,
 				D975003B2880B4F20035E6F2 /* Futurama - Entao tudo bem short.mp3 in Resources */,
 				D975FEAF2880B4F20035E6F2 /* Caue Moura - Foi mal tava doidao.mp3 in Resources */,
@@ -3093,6 +3230,7 @@
 				D97500312880B4F20035E6F2 /* Marcelo Adnet - Da quase bilhao com b de bananada.mp3 in Resources */,
 				D975FE182880B4F20035E6F2 /* Bolsonaro - Nao errei nenhuma short meme.mp3 in Resources */,
 				D975FE432880B4F20035E6F2 /* Galo Cego - Nada a ver irmao.mp3 in Resources */,
+				D921F89F288B0DC4003979CC /* Toma cloroquina - Cristiano Botafogo (feat Vitor Midcast) - vassourinha.mp3 in Resources */,
 				D975FE282880B4F20035E6F2 /* Quercia - Mentiroso e caluniador, caluniador e mentiroso.mp3 in Resources */,
 				D975002D2880B4F20035E6F2 /* Dudu Marfetan - Até o final (completo).mp3 in Resources */,
 				D975FF2B2880B4F20035E6F2 /* ATILA IAMARINO - Que que eu posso tomar voce pode tomar cuidado e vacina.mp3 in Resources */,
@@ -3128,8 +3266,10 @@
 				D975FF612880B4F20035E6F2 /* CIRO GOMES - Paulo Guedes mentiroso ta enganando a rapazeada paulo guedes.mp3 in Resources */,
 				D975FE362880B4F20035E6F2 /* Bolsonaro - Problemas.mp3 in Resources */,
 				D975FFE72880B4F20035E6F2 /* GAVETA - Voce merece tomar Nokul no cu.mp3 in Resources */,
+				D921F87D288B0177003979CC /* Atencao e agora que o bicho vai pegar.mp3 in Resources */,
 				D975FEC72880B4F20035E6F2 /* Eduardo Pazuello - Eu nao sabia nem o que era o SUS (short).mp3 in Resources */,
 				D975FE5B2880B4F20035E6F2 /* Sirigueijo - Dinheiro.mp3 in Resources */,
+				D921F896288B07CB003979CC /* Fa do Armandinho - Vou ver se pego um corpinho hoje la.mp3 in Resources */,
 				D975FE802880B4F20035E6F2 /* jonathan frakes - You're wrong.mp3 in Resources */,
 				D975001D2880B4F20035E6F2 /* Quercia - E mentira, e tudo mentira.mp3 in Resources */,
 				D975FE352880B4F20035E6F2 /* Pazuello - Que que ce vai fazer nada.mp3 in Resources */,
@@ -3154,9 +3294,12 @@
 				D975FF232880B4F20035E6F2 /* ATILA IAMARINO - Nao tem condicoes.mp3 in Resources */,
 				D975FEBA2880B4F20035E6F2 /* MY NEWS - Antonio Tabet - Tem uma editoria da imprensa que todo dia rende noticia Bolsonaro fala merda.mp3 in Resources */,
 				D975FEBF2880B4F20035E6F2 /* Leo Stronda Monstro - Batata doce e frango logico.mp3 in Resources */,
+				D921F885288B0177003979CC /* Ihu compilacao.mp3 in Resources */,
 				D975FE1E2880B4F20035E6F2 /* Matheuzinho e  Menor Nico - O Golpe ta ai short meme.mp3 in Resources */,
+				D91793A9288E1B51009C3165 /* Um Ministerio Tecnico.mp3 in Resources */,
 				49DEA99E28810C88008C9BA1 /* Ana Paula - Olha Ela short meme.mp3 in Resources */,
 				D975FEEE2880B4F20035E6F2 /* Xaropinho - Rapaz short.mp3 in Resources */,
+				D921F879288B0177003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 in Resources */,
 				D9B4F73F283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 in Resources */,
 				D975FEC62880B4F20035E6F2 /* Away - Que.mp3 in Resources */,
 				49DEA9CA2881156A008C9BA1 /* CNN - Aecio Neves Nao tenho indicio que aponte para fraude nas eleicoes de 2014 short meme.mp3 in Resources */,
@@ -3172,6 +3315,7 @@
 				D92AD1BB28833913001CBCDF /* Chaves - Seu barriga - E uma boa ideia.mp3 in Resources */,
 				49DEA9BC288112A9008C9BA1 /* CARTOON NETWORK - ESTA ERRADO short meme.mp3 in Resources */,
 				D975004F2880B5190035E6F2 /* MULTISHOW - PLANET HEMP - AH FILHA DA PUTA AGORA SIM BOLSONARO VAI TOMAR NO CU.mp3 in Resources */,
+				D927230428924E36001D5E47 /* Carla Zambelliii (Happy cover).mp3 in Resources */,
 				D975FEA02880B4F20035E6F2 /* JOVEM PAN - Constantino - O mecanismo foi quase todo dominado por essa turma, o Brasil e o pais aparelhado.mp3 in Resources */,
 				D975FEC52880B4F20035E6F2 /* Bolsonaro - Um jumento, um jumento.mp3 in Resources */,
 				D975FF002880B4F20035E6F2 /* Datena - Gol do presidente Bolsonaro.mp3 in Resources */,
@@ -3192,11 +3336,13 @@
 				D975FF0E2880B4F20035E6F2 /* Por que sera short meme.mp3 in Resources */,
 				D991512B2873E4C100FFAA29 /* rock-chocolate-chocolate-mdb.mp3 in Resources */,
 				D975FE2D2880B4F20035E6F2 /* MAICON KISTER - Isso foi especifico demais.mp3 in Resources */,
+				D91793B6288E3F0E009C3165 /* Abraham Weintraub - Muito muito pipi mole.mp3 in Resources */,
 				D975FE4C2880B4F20035E6F2 /* Trote Luiz Pareto - TELERJ meme mas que filho da puta olhai veja voce.mp3 in Resources */,
 				D975FFCE2880B4F20035E6F2 /* Otoni de Paula - Otoni nao para.mp3 in Resources */,
 				D975FFBE2880B4F20035E6F2 /* Malafaia - JAIR MESSIAS BOLSONARO.mp3 in Resources */,
 				D92AD1B928833150001CBCDF /* Temer - Repito.mp3 in Resources */,
 				D975FFFB2880B4F20035E6F2 /* Choque de Cultura - Nem existe isso, ce ta inventando palavra.mp3 in Resources */,
+				D921F884288B0177003979CC /* Eduardo voce e burro.mp3 in Resources */,
 				D975FEDC2880B4F20035E6F2 /* Bolsonaro - Lamento, quer que eu faca o que.mp3 in Resources */,
 				D975FE222880B4F20035E6F2 /* Bolsonaro - Esposa, ne, tem que aguentar, mas ta tudo bem.mp3 in Resources */,
 				D975FF272880B4F20035E6F2 /* Fred - Ce ta falando serio.mp3 in Resources */,
@@ -3206,12 +3352,15 @@
 				D975FFC62880B4F20035E6F2 /* Cidade Oculta - Voce fala isso porque e a putinha do bozo.mp3 in Resources */,
 				D991512D2873E4C100FFAA29 /* rock-comunismo-ai-seis-mdb.mp3 in Resources */,
 				D975FE632880B4F20035E6F2 /* Ai seu grosso.mp3 in Resources */,
+				D91793BA288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao no MARXISMO CULTURAL.mp3 in Resources */,
 				D975FE3F2880B4F20035E6F2 /* Bolsonaro - Procura outro pra pagar a tua vacina ai.mp3 in Resources */,
 				D975FE872880B4F20035E6F2 /* Handel - Aleluia short.mp3 in Resources */,
 				D975FF652880B4F20035E6F2 /* Reinaldo Azevedo - Parte Terminal do Aparelho Digestivo.mp3 in Resources */,
+				D921F881288B0177003979CC /* Festa estranha com gente esquisita - legiao urbana.mp3 in Resources */,
 				D975FEAD2880B4F20035E6F2 /* Gilmar Mendes - Nao e razoavel.mp3 in Resources */,
 				D975FF962880B4F20035E6F2 /* Paulo Guedes - Deixa cada um se fuder do jeito que quiser.mp3 in Resources */,
 				D975FFDB2880B4F20035E6F2 /* Legal short meme empolgante.mp3 in Resources */,
+				D91793AD288E2236009C3165 /* Bolsonaro - Eu nao sou medico, mas sou ousado.mp3 in Resources */,
 				D975FFFC2880B4F20035E6F2 /* Keila Mellman -  nao e de bom tom short meme.mp3 in Resources */,
 				D97500272880B4F20035E6F2 /* Carioca puto - Vai tomar no cu cara toda hora essa discussao cara.mp3 in Resources */,
 				D975FF1A2880B4F20035E6F2 /* Bolsonaro - Ta sendo superdimensionado o poder destruidor desse virus.mp3 in Resources */,
@@ -3226,6 +3375,7 @@
 				D975FEEC2880B4F20035E6F2 /* Queima quengaral wooo short.mp3 in Resources */,
 				D975FF192880B4F20035E6F2 /* Galvao Bueno - Diga la Tino meme short.mp3 in Resources */,
 				D975FF062880B4F20035E6F2 /* Lula - Deus de barro nao dura muito tempo.mp3 in Resources */,
+				D921F895288B07CB003979CC /* Fa do Armandinho - Armandinho e um terror ne meu (completo).mp3 in Resources */,
 				D975FF122880B4F20035E6F2 /* Alborghetti - Ta uma merda esse pais.mp3 in Resources */,
 				D975002B2880B4F20035E6F2 /* FUP - Marcele - Nao esta nem ai pro preto, pobre, favelado so esta ai por ele mesmo.mp3 in Resources */,
 				D975FF242880B4F20035E6F2 /* Calcinha Preta - Pega Fogo Cabare short meme.mp3 in Resources */,
@@ -3245,11 +3395,15 @@
 				D975FE972880B4F20035E6F2 /* Alexandre Frota - Tai o.mp3 in Resources */,
 				D975FE372880B4F20035E6F2 /* Fudeu meme short.mp3 in Resources */,
 				D975FF532880B4F20035E6F2 /* Damares - Uau.mp3 in Resources */,
+				D921F88A288B0177003979CC /* Eu to passada chocada - meme.mp3 in Resources */,
 				49DEA9D62881173B008C9BA1 /* Eu quero dormir porra short meme.mp3 in Resources */,
 				D975FECF2880B4F20035E6F2 /* Hassum - Nem fodendo.mp3 in Resources */,
 				D97500372880B4F20035E6F2 /* ATILA IAMARINO - Ele faz sexo.mp3 in Resources */,
 				D975FF322880B4F20035E6F2 /* Nao parece short meme.mp3 in Resources */,
+				D921F87C288B0177003979CC /* Jornalista de alta performance - Oswaldo Eustaquio.mp3 in Resources */,
+				D91793B3288E3CF0009C3165 /* Jair Bolsonaro - Canalhas.mp3 in Resources */,
 				D975FE1F2880B4F20035E6F2 /* Vai Dar Namoro - Tapa Tapa Tome.mp3 in Resources */,
+				D91793AF288E3A13009C3165 /* Doce feto, fase anal.mp3 in Resources */,
 				D975FFEE2880B4F20035E6F2 /* CANAL RURAL - Alexandre Garcia - A sensatez que significa a abordagem do governo na pandemia.mp3 in Resources */,
 				D975FE6E2880B4F20035E6F2 /* Lula - Alo.mp3 in Resources */,
 				D975FF3C2880B4F20035E6F2 /* Cecilia Oliveira - Entao assim a gente ta fodido.mp3 in Resources */,
@@ -3266,6 +3420,7 @@
 				D97500122880B4F20035E6F2 /* Biquini Cavadao - E impossivel.mp3 in Resources */,
 				D975FE502880B4F20035E6F2 /* Bonitinha mas ordinaria - E mentira dele meme short.mp3 in Resources */,
 				D975FEFB2880B4F20035E6F2 /* Silas Malafaia - E por isso que Deus te escolheu.mp3 in Resources */,
+				D921F88E288B063A003979CC /* Ih rapaz - fred.mp3 in Resources */,
 				D975FFB52880B4F20035E6F2 /* Malafaia - Deus escolheu as coisas loucas.mp3 in Resources */,
 				49DEA9B02881101C008C9BA1 /* SpongeBob Time Cards - A few moments later.mp3 in Resources */,
 				D975FF642880B4F20035E6F2 /* Vai Dar Namoro - Pare.mp3 in Resources */,
@@ -3287,25 +3442,28 @@
 				D991512F2873E4C100FFAA29 /* funk-capricha-renan-mdb.mp3 in Resources */,
 				D975FE392880B4F20035E6F2 /* MR CATRA - vai comecar a putaria long.mp3 in Resources */,
 				D975FFAA2880B4F20035E6F2 /* Trote Pareto - Calma filha da puta calma.mp3 in Resources */,
+				D91793B7288E3F0E009C3165 /* Abraham Weintraub - Muito muito pipi mole, o pipizinho dele e bem mole.mp3 in Resources */,
 				D975FF6C2880B4F20035E6F2 /* Lula - Eu vou repetir.mp3 in Resources */,
 				D975FFB62880B4F20035E6F2 /* Lula - Cade o nosso querido Ze gotinha.mp3 in Resources */,
 				D975FFA82880B4F20035E6F2 /* VICTOR CAMEJO - JORNAL DE CASA 82 - Humor, alegria, piada, humorismo.mp3 in Resources */,
 				D975FFC92880B4F20035E6F2 /* JOUT JOUT - O MINIMO meme short.mp3 in Resources */,
 				D975FF882880B4F20035E6F2 /* Craque Neto - Vacina eu Tomo short meme.mp3 in Resources */,
+				D921F893288B07CB003979CC /* Fa do Armandinho - E um poeta ne meu, bah.mp3 in Resources */,
 				D975FF7C2880B4F20035E6F2 /* Boldo - Carrralho caralho.mp3 in Resources */,
 				D975FE7F2880B4F20035E6F2 /* Joao Kleber - Comeca o teste de fidelidade short meme.mp3 in Resources */,
 				D975FEC82880B4F20035E6F2 /* Diogo Defante - Alegria.mp3 in Resources */,
+				D921F87B288B0177003979CC /* Ciumes de homem e foda.mp3 in Resources */,
 				D975003A2880B4F20035E6F2 /* METEORO BRASIL - Antonio Tabet - Pretos, gays, lesbicas, trans tem familias e fazem familias.mp3 in Resources */,
 				D975FF602880B4F20035E6F2 /* RADIO BANDNEWS FM - Boechat - Nao significa absolutamente nada.mp3 in Resources */,
 				D975FE542880B4F20035E6F2 /* Sheldon - Oh Really short.mp3 in Resources */,
 				D92AD1C52883434C001CBCDF /* Bolsonaro - E uma canalhice o que voces fazem.mp3 in Resources */,
+				D91793B2288E3CF0009C3165 /* Jair Bolsonaro - Canalhas mil vezes.mp3 in Resources */,
 				D975FF6B2880B4F20035E6F2 /* Maluf - Nao lhe dou o aparte.mp3 in Resources */,
 				D97500392880B4F20035E6F2 /* ATILA IAMARINO - E vao empilhar sequela em cima de sequela.mp3 in Resources */,
 				D975FFF52880B4F20035E6F2 /* CHOQUE DE CULTURA - Renan - Acho que deu uma pesada no clima do programa ai.mp3 in Resources */,
 				D975FF2D2880B4F20035E6F2 /* GALAS FEIOS - Moro desafinando no corrupcao.mp3 in Resources */,
 				D975FEE12880B4F20035E6F2 /* Bolsonaro - Finalzinho de pandemia.mp3 in Resources */,
 				D975FEB62880B4F20035E6F2 /* Nao fez mais que sua obrigacao short meme.mp3 in Resources */,
-				D975FEAC2880B4F20035E6F2 /* Fã do Armandinho - Armandinho e um terror ne meu (completo).mp3 in Resources */,
 				D975FF662880B4F20035E6F2 /* Magno Malta - So o escolhido de deus.mp3 in Resources */,
 				D975FE4F2880B4F20035E6F2 /* Saiddy Bamba - Sim sim sim sim sim.mp3 in Resources */,
 				D975FFAF2880B4F20035E6F2 /* Bolsonaro - E coisa de viado o que ele estao fazendo.mp3 in Resources */,
@@ -3326,6 +3484,7 @@
 				D975FFD02880B4F20035E6F2 /* Aham sei.mp3 in Resources */,
 				D975FF082880B4F20035E6F2 /* Roberto Jeferson - Funk do Xandao.mp3 in Resources */,
 				D975FF6F2880B4F20035E6F2 /* ESTADAO - Milton Ribeiro - Muito obrigado.mp3 in Resources */,
+				D921F8A1288B0DC4003979CC /* Se for feito com amor tudo vale.mp3 in Resources */,
 				D975FFDC2880B4F20035E6F2 /* OS DONOS DA BOLA - CRAQUE NETO - Ai depois fala que ta bebado.mp3 in Resources */,
 				D975FE6F2880B4F20035E6F2 /* Bolsonaro - Tudo pequenininho ai.mp3 in Resources */,
 				D975FF4B2880B4F20035E6F2 /* Michel Temer - Eu nao tenho medo dos fatos short meme.mp3 in Resources */,
@@ -3338,17 +3497,18 @@
 				D975FF0C2880B4F20035E6F2 /* Gilmar Mendes - O exercito esta se associando a esse genocidio.mp3 in Resources */,
 				49DEA9B2288110F0008C9BA1 /* SpongeBob Flashback.mp3 in Resources */,
 				D97500262880B4F20035E6F2 /* Dilma - If you speak slowly I understand very well.mp3 in Resources */,
-				49DEA9D82881177C008C9BA1 /* Eu sou RICA short meme.mp3 in Resources */,
 				D975FFBC2880B4F20035E6F2 /* Winter is coming, this one will be long.mp3 in Resources */,
 				D975FEE42880B4F20035E6F2 /* Luciano Hang - Comunista, ne short meme.mp3 in Resources */,
 				D97500522880B5190035E6F2 /* Mulheres de Areia - Abertura - Tonho da Lua Acordes Sexy Iemanja.mp3 in Resources */,
 				D975FFA32880B4F20035E6F2 /* ATILA IAMARINO - Voce vai morrer (resumo da live).mp3 in Resources */,
 				D975FFAE2880B4F20035E6F2 /* Bolsonaro - E so voce fazer coco dia sim, dia nao, que melhora bastante.mp3 in Resources */,
 				D975FF8D2880B4F20035E6F2 /* Mc Serginho - Ah, que isso elas estao descontrolada short meme.mp3 in Resources */,
+				D9388F9F288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Eduardo Bolsonaro, aquele bonsai de pica.mp3 in Resources */,
 				D975FEAB2880B4F20035E6F2 /* UOL - Luiz Fux - Infelizmente short meme.mp3 in Resources */,
 				D975FF352880B4F20035E6F2 /* O POVO ONLINE - Paulo Guedes - A economia ta bombando.mp3 in Resources */,
 				D975FFF92880B4F20035E6F2 /* Cleber Machado - Hoje SIM (afirmativo).mp3 in Resources */,
 				D975FEDD2880B4F20035E6F2 /* Gilmar mendes - uma grande confusao short.mp3 in Resources */,
+				D92722FE289246AC001D5E47 /* Parafernalha - Ta errado, ta muito errado isso.mp3 in Resources */,
 				D975004E2880B5190035E6F2 /* MULTISHOW - Djonga - Xinguei Bolsonaro um monte de vezes, vou xingar de novo voce e um merda.mp3 in Resources */,
 				D97500142880B4F20035E6F2 /* RADIO BANDNEWS FM - Ciro Gomes - Que e um bosta.mp3 in Resources */,
 				49DEA9E028811FAF008C9BA1 /* eletronica-eine-grosse-confusion-kraftwerk.mp3 in Resources */,
@@ -3368,7 +3528,6 @@
 				D975FF392880B4F20035E6F2 /* PORTA DOS FUNDOS - BALBURDIA - Bom dia, turma, todo mundo tirando a roupa e dedo no cu do colega do lado.mp3 in Resources */,
 				D92AD1B328832E07001CBCDF /* Casimiro - Quer jogar luz pra falar que ta errado ja ta errado nao precisa jogar luz tem que jogar na merda.mp3 in Resources */,
 				D975FE812880B4F20035E6F2 /* UOL - Otoni de Paula - Eu nao vou recuar um milimetro.mp3 in Resources */,
-				D975FE4B2880B4F20035E6F2 /* Fã do Armandinho - E um poeta ne meu, bah.mp3 in Resources */,
 				D975FFEC2880B4F20035E6F2 /* Calma Que Piora.mp3 in Resources */,
 				D975FFCA2880B4F20035E6F2 /* LAILA BRANDAO - Falsiane short meme.mp3 in Resources */,
 				49DEA9C028811391008C9BA1 /* CHAVEZ - DR CHAPATIM - INSINUA QUE SOU VELHO short meme.mp3 in Resources */,
@@ -3503,6 +3662,7 @@
 				D9265741285A1EE700947165 /* LocalDatabase+Log.swift in Sources */,
 				D980456228380F66003B2E83 /* LocalizableStrings.swift in Sources */,
 				D961D025283731AA00EFEDEB /* HelpView.swift in Sources */,
+				D927230628924FC1001D5E47 /* HitsMedoDelirioBannerView.swift in Sources */,
 				D96E115D28459D8800306859 /* UserActivityWaiter.swift in Sources */,
 				D97D76F92885B1BD005210D9 /* SidebarFolderIcon.swift in Sources */,
 				D9351C5C2844094E00D4317E /* TopChartItem.swift in Sources */,
@@ -3703,7 +3863,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.9.1;
+				MARKETING_VERSION = 2.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = "Medo e Delírio";
 				SUPPORTS_MACCATALYST = YES;
@@ -3737,7 +3897,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.9.1;
+				MARKETING_VERSION = 2.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = "Medo e Delírio";
 				SUPPORTS_MACCATALYST = YES;

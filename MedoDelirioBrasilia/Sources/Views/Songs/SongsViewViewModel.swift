@@ -3,11 +3,13 @@ import SwiftUI
 import UIKit
 
 class SongsViewViewModel: ObservableObject {
-    
+
     @Published var songs = [Song]()
     
     @Published var sortOption: Int = 0
     @Published var nowPlayingKeeper = Set<String>()
+    @Published var showEmailAppPicker_suggestChangeConfirmationDialog = false
+    @Published var selectedSong: Song? = nil
     
     @Published var currentActivity: NSUserActivity? = nil
     
@@ -16,18 +18,33 @@ class SongsViewViewModel: ObservableObject {
     @Published var isShowingShareSheet: Bool = false
     @Published var shouldDisplaySharedSuccessfullyToast: Bool = false
     
-    func reloadList() {
-        if UserSettings.getShowOffensiveSounds() {
-            self.songs = songData
-        } else {
-            self.songs = songData.filter({ $0.isOffensive == false })
+    func reloadList(withSongs allSongs: [Song],
+                    allowSensitiveContent: Bool,
+                    sortedBy sortOption: SongSortOption) {
+        var songsCopy = allSongs
+        
+        if allowSensitiveContent == false {
+            songsCopy = songsCopy.filter({ $0.isOffensive == false })
         }
         
-        self.sortOption = 0 //UserSettings.getArchiveSortOption()
+        self.songs = songsCopy
         
-        if self.songs.count > 0 {
-            self.songs.sort(by: { $0.title.withoutDiacritics() < $1.title.withoutDiacritics() })
+        self.sortOption = sortOption.rawValue
+        
+        switch sortOption {
+        case .titleAscending:
+            sortSongsInPlaceByTitleAscending()
+        case .dateAddedDescending:
+            sortSongsInPlaceByDateAddedDescending()
         }
+    }
+    
+    private func sortSongsInPlaceByTitleAscending() {
+        self.songs.sort(by: { $0.title.withoutDiacritics() < $1.title.withoutDiacritics() })
+    }
+    
+    private func sortSongsInPlaceByDateAddedDescending() {
+        self.songs.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
     }
     
     func playSong(fromPath filepath: String) {
@@ -84,6 +101,8 @@ class SongsViewViewModel: ObservableObject {
             
             iPadShareSheet = ActivityViewController(activityItems: [url]) { activity, completed, items, error in
                 if completed {
+                    self.isShowingShareSheet = false
+                    
                     guard let activity = activity else {
                         return
                     }
