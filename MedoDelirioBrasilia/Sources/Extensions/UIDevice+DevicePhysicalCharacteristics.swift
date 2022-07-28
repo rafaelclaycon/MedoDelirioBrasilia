@@ -6,5 +6,10 @@ extension UIDevice {
         let model = UIDevice.modelName
         return model == "iPhone SE" || model == "iPod touch (7th generation)" || model == "Simulator iPod touch (7th generation)"
     }
+    
+    static var isiPadMini: Bool {
+        let model = UIDevice.modelName
+        return model.contains("iPad mini")
+    }
 
 }
