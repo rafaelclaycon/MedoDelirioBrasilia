@@ -9,7 +9,7 @@ struct SoundsView: View {
     @StateObject private var viewModel = SoundsViewViewModel()
     @State var currentMode: Mode
     @State private var searchText = ""
-    @State private var listWidth: CGFloat = 0
+    @State private var listWidth: CGFloat = 700
     
     @Binding var updateSoundsList: Bool
     
