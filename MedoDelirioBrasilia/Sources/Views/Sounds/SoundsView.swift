@@ -9,7 +9,7 @@ struct SoundsView: View {
     @StateObject private var viewModel = SoundsViewViewModel()
     @State var currentMode: Mode
     @State private var searchText = ""
-    @State private var scrollViewObject: ScrollViewProxy? = nil
+    @State private var listWidth: CGFloat = 0
     
     @Binding var updateSoundsList: Bool
     
@@ -29,12 +29,23 @@ struct SoundsView: View {
                 GridItem(.flexible())
             ]
         } else {
-            return [
-                GridItem(.flexible()),
-                GridItem(.flexible()),
-                GridItem(.flexible()),
-                GridItem(.flexible())
-            ]
+            if listWidth < 500 {
+                return [
+                    GridItem(.flexible())
+                ]
+            } else if listWidth < 700 {
+                return [
+                    GridItem(.flexible()),
+                    GridItem(.flexible())
+                ]
+            } else {
+                return [
+                    GridItem(.flexible()),
+                    GridItem(.flexible()),
+                    GridItem(.flexible()),
+                    GridItem(.flexible())
+                ]
+            }
         }
     }
     
@@ -88,7 +99,7 @@ struct SoundsView: View {
                 } else if currentMode == .byAuthor {
                     AuthorsView()
                 } else {
-                    ScrollViewReader { scrollView in
+                    GeometryReader { geometry in
                         ScrollView {
                             if shouldDisplayHotWheatherBanner, searchText.isEmpty, currentMode != .favorites {
                                 HotWeatherAdBannerView(displayMe: $shouldDisplayHotWheatherBanner)
@@ -181,8 +192,8 @@ struct SoundsView: View {
                             .disableAutocorrection(true)
                             .padding(.horizontal)
                             .padding(.top, 7)
-                            .onAppear {
-                                scrollViewObject = scrollView
+                            .onChange(of: geometry.size.width) { newWidth in
+                                self.listWidth = newWidth
                             }
                             
                             if UserSettings.getShowOffensiveSounds() == false, currentMode != .favorites {
