@@ -90,7 +90,7 @@ struct SettingsView: View {
                 showAskForMoneyView = result
             }
         }
-        .sheet(isPresented: $showEmailClientConfirmationDialog) {
+        .popover(isPresented: $showEmailClientConfirmationDialog) {
             EmailAppPickerView(isBeingShown: $showEmailClientConfirmationDialog, subject: Shared.issueSuggestionEmailSubject, emailBody: Shared.issueSuggestionEmailBody)
         }
     }

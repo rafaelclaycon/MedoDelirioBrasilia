@@ -72,6 +72,7 @@ struct EmailAppPickerView: View {
                 }
             )
         }
+        .frame(minWidth: 320, idealWidth: 400, maxWidth: nil, minHeight: 150, idealHeight: 300, maxHeight: nil, alignment: .top)
     }
 
 }
