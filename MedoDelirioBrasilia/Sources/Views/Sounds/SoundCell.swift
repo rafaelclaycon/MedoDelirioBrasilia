@@ -44,7 +44,7 @@ struct SoundCell: View {
 
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 20, style: .continuous)
+            RoundedRectangle(cornerRadius: 13, style: .continuous)
                 .fill(isFavorite ? favoriteGradient : regularGradient)
                 .frame(height: cellHeight)
             
