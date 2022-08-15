@@ -34,11 +34,11 @@ struct SongsView: View {
         ZStack {
             VStack {
                 ScrollView {
-                    if searchText.isEmpty {
-                        HitsMedoDelirioBannerView()
-                            .padding(.horizontal)
-                            .padding(.vertical, 6)
-                    }
+//                    if searchText.isEmpty {
+//                        HitsMedoDelirioBannerView()
+//                            .padding(.horizontal)
+//                            .padding(.vertical, 6)
+//                    }
                     
                     LazyVGrid(columns: columns, spacing: 14) {
                         ForEach(searchResults) { song in
