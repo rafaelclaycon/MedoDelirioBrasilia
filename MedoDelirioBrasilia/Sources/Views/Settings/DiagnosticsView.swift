@@ -2,6 +2,8 @@ import SwiftUI
 
 struct DiagnosticsView: View {
 
+    @StateObject private var viewModel = DiagnosticsViewViewModel()
+    
     @State var showServerConnectionTestAlert = false
     @State var serverConnectionTestAlertTitle = ""
     
@@ -11,6 +13,11 @@ struct DiagnosticsView: View {
     @State var showFavoriteDiagnosticsAlert = false
     @State var favoriteDiagnosticsAlertTitle = ""
     @State var favoriteDiagnosticsAlertMessage = ""
+    
+    @State var showDatabaseExportAlert = false
+    @State var databaseExportAlertTitle = ""
+    @State var databaseExportAlertMessage = ""
+    @State var databaseExportAlertConfirmationButtonText = ""
     
     @State var shareLogs: [UserShareLog]?
     //@State var networkLogs: [NetworkCallLog]?
@@ -69,6 +76,31 @@ struct DiagnosticsView: View {
                 .alert(isPresented: $showFavoriteDiagnosticsAlert) {
                     Alert(title: Text(favoriteDiagnosticsAlertTitle), message: Text(favoriteDiagnosticsAlertMessage), dismissButton: .default(Text("OK")))
                 }
+                
+                Button("Exportar banco de dados") {
+                    if UIDevice.current.userInterfaceIdiom == .phone {
+                        databaseExportAlertTitle = "Envie o Banco de Dados Exportado para o Desenvolvedor"
+                        databaseExportAlertMessage = "Quando a tela de compartilhamento aparecer, selecione Salvar em Arquivos e salve ele onde achar melhor. Depois, anexe o arquivo exportado a um e-mail no seu app de e-mail preferido."
+                        databaseExportAlertConfirmationButtonText = "Prosseguir"
+                        showDatabaseExportAlert = true
+                    } else {
+                        databaseExportAlertTitle = "Função Não Suportada Nessa Plataforma"
+                        databaseExportAlertMessage = "Caso esteja enfrentando problemas com os Favoritos no iPad ou Mac, por favor, contate o desenvolvedor por e-mail."
+                        databaseExportAlertConfirmationButtonText = "OK"
+                        showDatabaseExportAlert = true
+                    }
+                }
+                .alert(isPresented: $showDatabaseExportAlert) {
+                    Alert(title: Text(databaseExportAlertTitle), message: Text(databaseExportAlertMessage), dismissButton: .default(Text(databaseExportAlertConfirmationButtonText), action: {
+                        if UIDevice.current.userInterfaceIdiom == .phone {
+                            viewModel.exportDatabase()
+                        }
+                    }))
+                }
+            } header: {
+                Text("Debug dos Favoritos")
+            } footer: {
+                Text("Envie o arquivo do banco de dados para medodeliriosuporte@gmail.com.")
             }
             
             /*if CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
