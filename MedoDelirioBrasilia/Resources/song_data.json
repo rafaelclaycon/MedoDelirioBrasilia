@@ -308,5 +308,15 @@
         "filename": "Carla Zambelliii (Happy cover).mp3",
         "dateAdded": "2022-07-28T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "2518F854-7661-46F6-B259-A91E2F47A198",
+        "title": "Jingle de Campanha do Bolsonaro",
+        "description": "",
+        "genre": "Sertanejo?",
+        "duration": "00:13",
+        "filename": "Musica de Campanha do Bolsonaro.mp3",
+        "dateAdded": "2022-08-16T00:00:00Z",
+        "isOffensive": false
     }
 ]

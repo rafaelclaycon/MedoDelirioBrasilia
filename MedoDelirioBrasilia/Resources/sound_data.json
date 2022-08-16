@@ -5866,5 +5866,68 @@
         "filename": "Bolsonaro - Vai dar vitoria pro Lula, sem problema nenhum.mp3",
         "dateAdded": "2022-07-28T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "ABDED8DB-D436-4FDE-8FC9-5E526D4DFEC8",
+        "title": "Volta pra sua casa, vaza!",
+        "authorId": "E2F0F465-9D58-4A9F-97D5-432E5DAD5582",
+        "description": "Volta pra sua casa cara vaza",
+        "filename": "Volta pra sua casa, vaza - pedro daltro.mp3",
+        "dateAdded": "2022-08-16T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "44E30BFA-508E-4712-B624-3BF32C2124BD",
+        "title": "Meus amigos não, amigo é o caralho",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "meus amigos não amigo é o caralho",
+        "filename": "meus amigos nao amigo e o caralho.mp3",
+        "dateAdded": "2022-08-16T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "691ACA23-DC6D-4D97-B28D-4BB76654E53B",
+        "title": "Essa é pra machucar",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "essa e pra machucar vambora",
+        "filename": "essa e pra machucar.mp3",
+        "dateAdded": "2022-08-16T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "9F83A0EF-0D79-406D-91E9-CD968C625594",
+        "title": "Polarização é meu pau em sua mão",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Polarização é meu pau em sua mão sempre importante frizar",
+        "filename": "polarizacao e meu pau em sua mao.mp3",
+        "dateAdded": "2022-08-16T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "89AABDE4-7868-498B-817C-EFA46C193DD4",
+        "title": "O que que pode acontecer",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "o que que pode acontecer não é o que vai acontecer repito não quero dizer que vai acontecer já entendi",
+        "filename": "o que que pode acontecer - bolsonaro.mp3",
+        "dateAdded": "2022-08-16T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "AE99B329-A0E6-4C02-B830-BC323176D0BC",
+        "title": "Quando o injusto governa, o povo geme",
+        "authorId": "87138168-E9AC-4BF0-A486-2C5F098CD541",
+        "description": "quando o injusto governa o povo geme gemidão gemido",
+        "filename": "quando o injusto governa o povo geme gemido - michele bolsonaro.mp3",
+        "dateAdded": "2022-08-16T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "1796CD4F-2D9A-4043-BB8A-9FF84E6D1AC7",
+        "title": "Sentar na mesa",
+        "authorId": "463C5301-7D24-4EE4-9E75-E81DFF9B36F4",
+        "description": "sentar a na mesa",
+        "filename": "Sentar na mesa - paulo sergio nogueira.mp3",
+        "dateAdded": "2022-08-16T00:00:00Z",
+        "isOffensive": false
     }
 ]
