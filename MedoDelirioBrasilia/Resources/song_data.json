@@ -308,5 +308,15 @@
         "filename": "Carla Zambelliii (Happy cover).mp3",
         "dateAdded": "2022-07-28T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "9B492003-96B8-48F7-91F8-15C1EFFD69FC",
+        "title": "Assovio do passarinho",
+        "description": "",
+        "genre": "Funk",
+        "duration": "00:23",
+        "filename": "Assovio do passarinho.mp3",
+        "dateAdded": "2022-08-15T00:00:00Z",
+        "isOffensive": true
     }
 ]
