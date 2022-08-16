@@ -54,11 +54,14 @@ struct DiagnosticsView: View {
                     }
                     favoriteDiagnosticsAlertTitle = "\(favorites.count) Favorito(s) Cadastrados"
                     favoriteDiagnosticsAlertMessage = ""
-                    favorites.forEach { favorite in
+                    for (index, favorite) in favorites.enumerated() {
                         if let sound = soundData.first(where: {$0.id == favorite.contentId}) {
-                            favoriteDiagnosticsAlertMessage = favoriteDiagnosticsAlertMessage + "\(sound.title) \(favorite.dateAdded.toString())" + ";\n"
+                            favoriteDiagnosticsAlertMessage = favoriteDiagnosticsAlertMessage + "\(sound.title) \(favorite.dateAdded.toString())"
                         } else {
-                            favoriteDiagnosticsAlertMessage = favoriteDiagnosticsAlertMessage + "Som não identificado;\n"
+                            favoriteDiagnosticsAlertMessage = favoriteDiagnosticsAlertMessage + "Som não identificado"
+                        }
+                        if index != (favorites.count - 1) {
+                            favoriteDiagnosticsAlertMessage = favoriteDiagnosticsAlertMessage + ";\n"
                         }
                     }
                     showFavoriteDiagnosticsAlert = true
