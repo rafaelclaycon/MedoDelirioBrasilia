@@ -2,14 +2,25 @@ import SwiftUI
 
 struct DiagnosticsView: View {
 
+    @StateObject private var viewModel = DiagnosticsViewViewModel()
+    
     @State var showServerConnectionTestAlert = false
     @State var serverConnectionTestAlertTitle = ""
     
     @State var installId = UIDevice.current.identifierForVendor?.uuidString ?? ""
     @State var showInstallIdCopiedAlert = false
     
+    @State var showFavoriteDiagnosticsAlert = false
+    @State var favoriteDiagnosticsAlertTitle = ""
+    @State var favoriteDiagnosticsAlertMessage = ""
+    
+    @State var showDatabaseExportAlert = false
+    @State var databaseExportAlertTitle = ""
+    @State var databaseExportAlertMessage = ""
+    @State var databaseExportAlertConfirmationButtonText = ""
+    
     @State var shareLogs: [UserShareLog]?
-    @State var networkLogs: [NetworkCallLog]?
+    //@State var networkLogs: [NetworkCallLog]?
     
     var body: some View {
         Form {
@@ -41,7 +52,58 @@ struct DiagnosticsView: View {
                 Text("Esse código identifica apenas a instalação do app e é renovado caso você o desinstale e instale novamente.")
             }
             
-            if CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
+            Section {
+                Button("Ver Favoritos internos") {
+                    guard let favorites = try? database.getAllFavorites() else {
+                        favoriteDiagnosticsAlertTitle = "Não Foi Possível Obter a Quantidade de Favoritos"
+                        favoriteDiagnosticsAlertMessage = "Informe o desenvolvedor."
+                        return showFavoriteDiagnosticsAlert = true
+                    }
+                    favoriteDiagnosticsAlertTitle = "\(favorites.count) Favorito(s) Cadastrados"
+                    favoriteDiagnosticsAlertMessage = ""
+                    for (index, favorite) in favorites.enumerated() {
+                        if let sound = soundData.first(where: {$0.id == favorite.contentId}) {
+                            favoriteDiagnosticsAlertMessage = favoriteDiagnosticsAlertMessage + "\(sound.title) \(favorite.dateAdded.toString())"
+                        } else {
+                            favoriteDiagnosticsAlertMessage = favoriteDiagnosticsAlertMessage + "Som não identificado"
+                        }
+                        if index != (favorites.count - 1) {
+                            favoriteDiagnosticsAlertMessage = favoriteDiagnosticsAlertMessage + ";\n"
+                        }
+                    }
+                    showFavoriteDiagnosticsAlert = true
+                }
+                .alert(isPresented: $showFavoriteDiagnosticsAlert) {
+                    Alert(title: Text(favoriteDiagnosticsAlertTitle), message: Text(favoriteDiagnosticsAlertMessage), dismissButton: .default(Text("OK")))
+                }
+                
+                Button("Exportar banco de dados") {
+                    if UIDevice.current.userInterfaceIdiom == .phone {
+                        databaseExportAlertTitle = "Envie o Banco de Dados Exportado para o Desenvolvedor"
+                        databaseExportAlertMessage = "Quando a tela de compartilhamento aparecer, selecione Salvar em Arquivos e salve ele onde achar melhor. Depois, anexe o arquivo exportado a um e-mail no seu app de e-mail preferido."
+                        databaseExportAlertConfirmationButtonText = "Prosseguir"
+                        showDatabaseExportAlert = true
+                    } else {
+                        databaseExportAlertTitle = "Função Não Suportada Nessa Plataforma"
+                        databaseExportAlertMessage = "Caso esteja enfrentando problemas com os Favoritos no iPad ou Mac, por favor, contate o desenvolvedor por e-mail."
+                        databaseExportAlertConfirmationButtonText = "OK"
+                        showDatabaseExportAlert = true
+                    }
+                }
+                .alert(isPresented: $showDatabaseExportAlert) {
+                    Alert(title: Text(databaseExportAlertTitle), message: Text(databaseExportAlertMessage), dismissButton: .default(Text(databaseExportAlertConfirmationButtonText), action: {
+                        if UIDevice.current.userInterfaceIdiom == .phone {
+                            viewModel.exportDatabase()
+                        }
+                    }))
+                }
+            } header: {
+                Text("Debug dos Favoritos")
+            } footer: {
+                Text("Envie o arquivo do banco de dados para medodeliriosuporte@gmail.com.")
+            }
+            
+            /*if CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
                 Section("Tendências [DEV ONLY]") {
                     Button("Setar dia de envio para ontem") {
                         var dayComponent = DateComponents()
@@ -51,7 +113,7 @@ struct DiagnosticsView: View {
                         UserSettings.setLastSendDateOfUserPersonalTrendsToServer(to: newDate!.onlyDate!)
                     }
                 }
-            }
+            }*/
             
             Section("Logs de compartilhamento") {
                 if shareLogs == nil || shareLogs?.count == 0 {
@@ -63,7 +125,7 @@ struct DiagnosticsView: View {
                 }
             }
             
-            Section("Logs de rede") {
+            /*Section("Logs de rede") {
                 if networkLogs == nil || networkLogs?.count == 0 {
                     Text("Sem Dados")
                 } else {
@@ -71,15 +133,15 @@ struct DiagnosticsView: View {
                         NetworkLogCell(callType: NetworkCallType(rawValue: log.callType) ?? .checkServerStatus, dateTime: log.dateTime.toString(), wasSuccessful: log.wasSuccessful)
                     }
                 }
-            }
+            }*/
         }
         .navigationTitle("Diagnóstico")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             shareLogs = try? database.getAllUserShareLogs()
             shareLogs?.sort(by: { $0.dateTime > $1.dateTime })
-            networkLogs = try? database.getAllNetworkCallLogs()
-            networkLogs?.sort(by: { $0.dateTime > $1.dateTime })
+            /*networkLogs = try? database.getAllNetworkCallLogs()
+            networkLogs?.sort(by: { $0.dateTime > $1.dateTime })*/
         }
     }
     
