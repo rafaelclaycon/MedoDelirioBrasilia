@@ -78,9 +78,9 @@ struct SettingsView: View {
                 Text("Versão \(Versioneer.appVersion) Build \(Versioneer.buildVersionNumber)")
             }
             
-            Section("Diagnóstico") {
+            Section {
                 NavigationLink(destination: DiagnosticsView()) {
-                    Text("Dados para nerds")
+                    Text("Diagnóstico")
                 }
             }
         }

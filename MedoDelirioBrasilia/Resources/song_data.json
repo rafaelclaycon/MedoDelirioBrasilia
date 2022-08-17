@@ -318,5 +318,15 @@
         "filename": "Assovio do passarinho.mp3",
         "dateAdded": "2022-08-15T00:00:00Z",
         "isOffensive": true
+    },
+    {
+        "id": "62CFFE82-096F-43AB-BBC9-7C6C1E90FE0A",
+        "title": "Dose segura de crack / os tios e as tias do Zap",
+        "description": "",
+        "genre": "Funk",
+        "duration": "00:15",
+        "filename": "Dose segura de crack, os tios e as tias do Zap.mp3",
+        "dateAdded": "2022-08-16T00:00:00Z",
+        "isOffensive": true
     }
 ]
