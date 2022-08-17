@@ -6,8 +6,8 @@ var database = LocalDatabase()
 let networkRabbit = NetworkRabbit(serverPath: CommandLine.arguments.contains("-UNDER_DEVELOPMENT") ? "https://7e25-2804-1b3-8643-6734-3920-db5b-c065-1789.sa.ngrok.io/api/" : "http://170.187.145.233:8080/api/")
 let podium = Podium(database: database, networkRabbit: networkRabbit)
 
-let soundsLastUpdateDate: String = "25/07/2022"
-let songsLastUpdateDate: String = "24/07/2022"
+let soundsLastUpdateDate: String = "16/08/2022"
+let songsLastUpdateDate: String = "16/08/2022"
 
 @main
 struct MedoDelirioBrasiliaApp: App {
@@ -28,6 +28,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
     ) -> Bool {
+        if let favoriteCount = try? database.getFavoriteCount() {
+            Logger.logFavorites(favoriteCount: favoriteCount, callMoment: "application(didFinishLaunchingWithOptions)", needsMigration: database.needsMigration)
+        } else {
+            Logger.logFavorites(favoriteCount: 0, callMoment: "application(didFinishLaunchingWithOptions) - getFavoriteCount failed", needsMigration: database.needsMigration)
+        }
+        
         do {
             try database.migrateIfNeeded()
         } catch {
@@ -36,7 +42,18 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         
         //print(database)
         
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
+        
         return true
+    }
+
+    @objc func appMovedToBackground() {
+        if let favoriteCount = try? database.getFavoriteCount() {
+            Logger.logFavorites(favoriteCount: favoriteCount, callMoment: "willResignActiveNotification", needsMigration: false)
+        } else {
+            Logger.logFavorites(favoriteCount: 0, callMoment: "willResignActiveNotification - getFavoriteCount failed", needsMigration: false)
+        }
     }
     
     func application(

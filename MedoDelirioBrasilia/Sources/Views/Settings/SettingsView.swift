@@ -82,9 +82,9 @@ struct SettingsView: View {
                 Text("Versão \(Versioneer.appVersion) Build \(Versioneer.buildVersionNumber)")
             }
             
-            Section("Diagnóstico") {
+            Section {
                 NavigationLink(destination: DiagnosticsView()) {
-                    Text("Dados para nerds")
+                    Text("Diagnóstico")
                 }
             }
         }
@@ -94,7 +94,7 @@ struct SettingsView: View {
                 showAskForMoneyView = result
             }
         }
-        .sheet(isPresented: $showEmailClientConfirmationDialog) {
+        .popover(isPresented: $showEmailClientConfirmationDialog) {
             EmailAppPickerView(isBeingShown: $showEmailClientConfirmationDialog, subject: Shared.issueSuggestionEmailSubject, emailBody: Shared.issueSuggestionEmailBody)
         }
     }
