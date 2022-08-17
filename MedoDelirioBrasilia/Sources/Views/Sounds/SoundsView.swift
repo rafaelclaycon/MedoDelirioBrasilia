@@ -119,7 +119,13 @@ struct SoundsView: View {
                                                 Button {
                                                     viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
                                                 } label: {
-                                                    Label(Shared.shareButtonText, systemImage: "square.and.arrow.up")
+                                                    Label(Shared.shareSoundButtonText, systemImage: "square.and.arrow.up")
+                                                }
+                                                
+                                                Button {
+                                                    viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
+                                                } label: {
+                                                    Label(Shared.shareAsVideoButtonText, systemImage: "film")
                                                 }
                                             }
                                             

@@ -762,6 +762,7 @@
 		D980456228380F66003B2E83 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D980456128380F66003B2E83 /* LocalizableStrings.swift */; };
 		D98622E0283FC57100E9F630 /* AuthorDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98622DF283FC57100E9F630 /* AuthorDetailView.swift */; };
 		D98622E2283FCEDC00E9F630 /* AuthorsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98622E1283FCEDC00E9F630 /* AuthorsViewViewModel.swift */; };
+		D986DF7D28AC86D8004E63F0 /* Teste.mov in Resources */ = {isa = PBXBuildFile; fileRef = D986DF7C28AC86D8004E63F0 /* Teste.mov */; };
 		D9877D2928694F3200B541F9 /* LocalDatabase+UserFolderContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9877D2828694F3200B541F9 /* LocalDatabase+UserFolderContent.swift */; };
 		D9877D2B2869845400B541F9 /* Sharer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9877D2A2869845400B541F9 /* Sharer.swift */; };
 		D988B19F28AB4A8100A179CF /* LocalDatabase+FavoriteLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D988B19E28AB4A8100A179CF /* LocalDatabase+FavoriteLog.swift */; };
@@ -1607,6 +1608,7 @@
 		D980456128380F66003B2E83 /* LocalizableStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
 		D98622DF283FC57100E9F630 /* AuthorDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorDetailView.swift; sourceTree = "<group>"; };
 		D98622E1283FCEDC00E9F630 /* AuthorsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorsViewViewModel.swift; sourceTree = "<group>"; };
+		D986DF7C28AC86D8004E63F0 /* Teste.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = Teste.mov; sourceTree = "<group>"; };
 		D9877D2828694F3200B541F9 /* LocalDatabase+UserFolderContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+UserFolderContent.swift"; sourceTree = "<group>"; };
 		D9877D2A2869845400B541F9 /* Sharer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sharer.swift; sourceTree = "<group>"; };
 		D988B19E28AB4A8100A179CF /* LocalDatabase+FavoriteLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+FavoriteLog.swift"; sourceTree = "<group>"; };
@@ -1706,6 +1708,7 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D986DF7C28AC86D8004E63F0 /* Teste.mov */,
 				D9E7D0F528AC6BC6001E909E /* PORTA DOS FUNDOS - Nao, brother broder.mp3 */,
 				D9E7D0F328AC699B001E909E /* Cristiano Botafogo - Vista o seu traje quimico.mp3 */,
 				D9E7D0F028AC677B001E909E /* Paulo Guedes - Empregada domestica na Disney (curto).mp3 */,
@@ -3123,6 +3126,7 @@
 				D975FFA02880B4F20035E6F2 /* Bolsonaro - a imprensa mundial e de esquerda.mp3 in Resources */,
 				D975FE992880B4F20035E6F2 /* O Terrivel Homem do Broche de Caveira.mp3 in Resources */,
 				D975FE1C2880B4F20035E6F2 /* Milton Leite - Que Beleza short.mp3 in Resources */,
+				D986DF7D28AC86D8004E63F0 /* Teste.mov in Resources */,
 				D97500012880B4F20035E6F2 /* Vai Dar Namoro - Nao.mp3 in Resources */,
 				D975FEC12880B4F20035E6F2 /* Lula - Ou seja voces percebem a loucura.mp3 in Resources */,
 				D975FF782880B4F20035E6F2 /* Bolsonaro - Estou com covid.mp3 in Resources */,

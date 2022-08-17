@@ -59,7 +59,7 @@ struct SongsView: View {
                                         Button {
                                             viewModel.shareSong(withPath: song.filename, andContentId: song.id)
                                         } label: {
-                                            Label(Shared.shareButtonText, systemImage: "square.and.arrow.up")
+                                            Label(Shared.shareSongButtonText, systemImage: "square.and.arrow.up")
                                         }
                                     }
                                     
