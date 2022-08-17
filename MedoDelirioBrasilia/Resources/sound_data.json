@@ -5929,5 +5929,95 @@
         "filename": "Sentar na mesa - paulo sergio nogueira.mp3",
         "dateAdded": "2022-08-16T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "0C533408-68BD-4293-9B05-7EDDDA889DED",
+        "title": "Calma por favor",
+        "authorId": "3CCBAC72-4CEE-4C8A-B3AF-B6CA0E34C5B2",
+        "description": "calma por favor",
+        "filename": "Calma por favor - Desesperado.mp3",
+        "dateAdded": "2022-08-17T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "9AB7EE7B-1B94-4493-9A3D-4ABA0866DFDC",
+        "title": "Calma, poxa",
+        "authorId": "3CCBAC72-4CEE-4C8A-B3AF-B6CA0E34C5B2",
+        "description": "calma poxa",
+        "filename": "Calma poxa - Desesperado.mp3",
+        "dateAdded": "2022-08-17T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "02500C3A-AEAE-4FCA-94B6-0BBEB77B891D",
+        "title": "Não é hora pra desespero",
+        "authorId": "3CCBAC72-4CEE-4C8A-B3AF-B6CA0E34C5B2",
+        "description": "não é hora pra desespero",
+        "filename": "Nao e hora pra desespero - Desesperado.mp3",
+        "dateAdded": "2022-08-17T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "A213CC75-99A0-405E-AD4E-129177FABEF1",
+        "title": "Malditos Milicos (Acapella Doida)",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "malditos milicos",
+        "filename": "malditos milicos a capella doida.mp3",
+        "dateAdded": "2022-08-17T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "1D1DE944-6970-44DF-867F-567B2518BD00",
+        "title": "Alerta de Novidade",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "alerta de novidade grave",
+        "filename": "alerta de novidade - cristiano botafogo.mp3",
+        "dateAdded": "2022-08-17T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "297F436F-8853-40F1-A154-2677CF4BE583",
+        "title": "Presta atenção senão como suas tripa",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "presta atenção senão como suas tripa",
+        "filename": "presta atencao senao como suas tripa.mp3",
+        "dateAdded": "2022-08-17T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "43F2D753-36A9-44DA-9142-F9F7C620C88A",
+        "title": "O Artigo 268 acaba de falecer",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "o artigo 268 do código penal brasileiro acaba de falecer",
+        "filename": "o artigo 268 acaba de falecer.mp3",
+        "dateAdded": "2022-08-17T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "7DF56BE1-1A4E-4A22-8FE1-DB04FB14D8D6",
+        "title": "Vossa excelência permite um aparte",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "atenção quando ouvirem vossa excelência permite um aparte o custo de vida vai lhe provocar um imparte",
+        "filename": "Vossa excelencia permite um aparte.mp3",
+        "dateAdded": "2022-08-17T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "B5E81B2F-C9B2-40FE-B6CF-66E465C770E1",
+        "title": "Gemidão do Delírio",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "gemidão gemido delírio",
+        "filename": "Gemidao do Delirio.mp3",
+        "dateAdded": "2022-08-17T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "41FD18F1-11CD-4E07-92DE-C408D3509023",
+        "title": "Um pequeno passo para o homem",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "um pequeno passo para o homem e um grande chute na cara do estado laico",
+        "filename": "Um pequeno passo para o homem.mp3",
+        "dateAdded": "2022-08-17T00:00:00Z",
+        "isOffensive": false
     }
 ]
