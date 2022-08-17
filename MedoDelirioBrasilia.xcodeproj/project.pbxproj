@@ -824,6 +824,13 @@
 		D9E5100A286084F2003DB3A3 /* Date+OnlyDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E51009286084F2003DB3A3 /* Date+OnlyDate.swift */; };
 		D9E69592283D2E2C00C341B2 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = D9E69591283D2E2C00C341B2 /* SQLite */; };
 		D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E69593283D2F2F00C341B2 /* Favorite.swift */; };
+		D9E7D0EA28AC6195001E909E /* Dose segura de crack, os tios e as tias do Zap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E7D0E928AC6195001E909E /* Dose segura de crack, os tios e as tias do Zap.mp3 */; };
+		D9E7D0EC28AC6349001E909E /* REDE GLOBO - GIL DO VIGOR - Eu estou to indignado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E7D0EB28AC6348001E909E /* REDE GLOBO - GIL DO VIGOR - Eu estou to indignado.mp3 */; };
+		D9E7D0EE28AC64F4001E909E /* Rogerinho - Ta certa a indignacao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E7D0ED28AC64F4001E909E /* Rogerinho - Ta certa a indignacao.mp3 */; };
+		D9E7D0F128AC677B001E909E /* Paulo Guedes - Empregada domestica na Disney (longo).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E7D0EF28AC677B001E909E /* Paulo Guedes - Empregada domestica na Disney (longo).mp3 */; };
+		D9E7D0F228AC677B001E909E /* Paulo Guedes - Empregada domestica na Disney (curto).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E7D0F028AC677B001E909E /* Paulo Guedes - Empregada domestica na Disney (curto).mp3 */; };
+		D9E7D0F428AC699B001E909E /* Cristiano Botafogo - Vista o seu traje quimico.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E7D0F328AC699B001E909E /* Cristiano Botafogo - Vista o seu traje quimico.mp3 */; };
+		D9E7D0F628AC6BC6001E909E /* PORTA DOS FUNDOS - Nao, brother broder.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E7D0F528AC6BC6001E909E /* PORTA DOS FUNDOS - Nao, brother broder.mp3 */; };
 		D9EB18A52857CDFF00A2F8A8 /* CollectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EB18A42857CDFF00A2F8A8 /* CollectionsView.swift */; };
 		D9F78A9F2860DF9100B83567 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F78A9E2860DF9100B83567 /* CollectionCell.swift */; };
 		D9FA0CD728508590000F6ADE /* UIDevice+ModelName.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FA0CD628508590000F6ADE /* UIDevice+ModelName.swift */; };
@@ -1661,6 +1668,13 @@
 		D9DCC5D8287625F4008DD4A3 /* PodcastAuthorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastAuthorsView.swift; sourceTree = "<group>"; };
 		D9E51009286084F2003DB3A3 /* Date+OnlyDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+OnlyDate.swift"; sourceTree = "<group>"; };
 		D9E69593283D2F2F00C341B2 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
+		D9E7D0E928AC6195001E909E /* Dose segura de crack, os tios e as tias do Zap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Dose segura de crack, os tios e as tias do Zap.mp3"; sourceTree = "<group>"; };
+		D9E7D0EB28AC6348001E909E /* REDE GLOBO - GIL DO VIGOR - Eu estou to indignado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "REDE GLOBO - GIL DO VIGOR - Eu estou to indignado.mp3"; sourceTree = "<group>"; };
+		D9E7D0ED28AC64F4001E909E /* Rogerinho - Ta certa a indignacao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rogerinho - Ta certa a indignacao.mp3"; sourceTree = "<group>"; };
+		D9E7D0EF28AC677B001E909E /* Paulo Guedes - Empregada domestica na Disney (longo).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Paulo Guedes - Empregada domestica na Disney (longo).mp3"; sourceTree = "<group>"; };
+		D9E7D0F028AC677B001E909E /* Paulo Guedes - Empregada domestica na Disney (curto).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Paulo Guedes - Empregada domestica na Disney (curto).mp3"; sourceTree = "<group>"; };
+		D9E7D0F328AC699B001E909E /* Cristiano Botafogo - Vista o seu traje quimico.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano Botafogo - Vista o seu traje quimico.mp3"; sourceTree = "<group>"; };
+		D9E7D0F528AC6BC6001E909E /* PORTA DOS FUNDOS - Nao, brother broder.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "PORTA DOS FUNDOS - Nao, brother broder.mp3"; sourceTree = "<group>"; };
 		D9EB18A42857CDFF00A2F8A8 /* CollectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsView.swift; sourceTree = "<group>"; };
 		D9F78A9E2860DF9100B83567 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
 		D9FA0CD628508590000F6ADE /* UIDevice+ModelName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+ModelName.swift"; sourceTree = "<group>"; };
@@ -1692,6 +1706,12 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9E7D0F528AC6BC6001E909E /* PORTA DOS FUNDOS - Nao, brother broder.mp3 */,
+				D9E7D0F328AC699B001E909E /* Cristiano Botafogo - Vista o seu traje quimico.mp3 */,
+				D9E7D0F028AC677B001E909E /* Paulo Guedes - Empregada domestica na Disney (curto).mp3 */,
+				D9E7D0EF28AC677B001E909E /* Paulo Guedes - Empregada domestica na Disney (longo).mp3 */,
+				D9E7D0ED28AC64F4001E909E /* Rogerinho - Ta certa a indignacao.mp3 */,
+				D9E7D0EB28AC6348001E909E /* REDE GLOBO - GIL DO VIGOR - Eu estou to indignado.mp3 */,
 				D923127228AB0A6100436336 /* Novo e diferente, e top, e moderno (completo).mp3 */,
 				D923127128AB0A6100436336 /* Novo e diferente, e top, e moderno (curto).mp3 */,
 				D923126F28AB049800436336 /* E pra glorificar de pe, igreja.mp3 */,
@@ -2378,6 +2398,7 @@
 		D92E7068283C5C120035826C /* Songs */ = {
 			isa = PBXGroup;
 			children = (
+				D9E7D0E928AC6195001E909E /* Dose segura de crack, os tios e as tias do Zap.mp3 */,
 				D923125F28AAD5CD00436336 /* Assovio do passarinho.mp3 */,
 				D927230328924E36001D5E47 /* Carla Zambelliii (Happy cover).mp3 */,
 				D91793AE288E3A13009C3165 /* Doce feto, fase anal.mp3 */,
@@ -3024,6 +3045,7 @@
 				D97500332880B4F20035E6F2 /* Mourao - A politica nao pode entrar no quartel e nossa posicao desde sempre.mp3 in Resources */,
 				D975FF432880B4F20035E6F2 /* Eduardo Sterblitch - E mais ou menos longo.mp3 in Resources */,
 				D9D856F6288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Se numero elevado de mortes policia e uma caracteristica, ta errado.mp3 in Resources */,
+				D9E7D0F128AC677B001E909E /* Paulo Guedes - Empregada domestica na Disney (longo).mp3 in Resources */,
 				D975FE532880B4F20035E6F2 /* Pastor Valdemiro - Mas isso e... E enganar.mp3 in Resources */,
 				D975FEA42880B4F20035E6F2 /* Bolsonaro - ah o o cara quem fala disso eu nao sou coveiro ta ok.mp3 in Resources */,
 				D97500232880B4F20035E6F2 /* Bolsonaro - Eu nao errei nenhuma.mp3 in Resources */,
@@ -3081,6 +3103,7 @@
 				D975FEDA2880B4F20035E6F2 /* Silas Malafaia - Nao seja um mentiroso short.mp3 in Resources */,
 				D92AD1C128833F1E001CBCDF /* Ricardo Boechat - Incitacao de odio em igrejas neopentecostais.mp3 in Resources */,
 				D975FEA72880B4F20035E6F2 /* Bolsonaro - Buscamos uma solucao, quem tiver tras pra mim tras pra mim.mp3 in Resources */,
+				D9E7D0EE28AC64F4001E909E /* Rogerinho - Ta certa a indignacao.mp3 in Resources */,
 				D975FF1B2880B4F20035E6F2 /* Gilmar Mendes - Com a devida venia.mp3 in Resources */,
 				D975FEFE2880B4F20035E6F2 /* Kajuru - etica nao tem ambiguidade caralho porra.mp3 in Resources */,
 				D975FED12880B4F20035E6F2 /* Boldo - Caralho, Marquinho.mp3 in Resources */,
@@ -3152,6 +3175,7 @@
 				D921F888288B0177003979CC /* sarcasmo - cristiano botafogo.mp3 in Resources */,
 				D975FEB32880B4F20035E6F2 /* REDE TV - Isso e meio delirante short meme.mp3 in Resources */,
 				D975FE562880B4F20035E6F2 /* Temer - Nao renunciarei short.mp3 in Resources */,
+				D9E7D0F428AC699B001E909E /* Cristiano Botafogo - Vista o seu traje quimico.mp3 in Resources */,
 				D975FEF02880B4F20035E6F2 /* Boldo - Esse e o boldo bao.mp3 in Resources */,
 				D975FEE32880B4F20035E6F2 /* MIDCAST - Teu cu.mp3 in Resources */,
 				D975FE682880B4F20035E6F2 /* Natalie Wynn Contrapoints - Cancel culture.mp3 in Resources */,
@@ -3263,6 +3287,7 @@
 				D975FE5C2880B4F20035E6F2 /* Ernesto Araujo - Nao se pode aceitar um lockdown do espirito humano.mp3 in Resources */,
 				D975003B2880B4F20035E6F2 /* Futurama - Entao tudo bem short.mp3 in Resources */,
 				D975FEAF2880B4F20035E6F2 /* Caue Moura - Foi mal tava doidao.mp3 in Resources */,
+				D9E7D0F228AC677B001E909E /* Paulo Guedes - Empregada domestica na Disney (curto).mp3 in Resources */,
 				D975FEC32880B4F20035E6F2 /* Bolsonaro - Pretendo beneficiar um filho meu sim pretendo.mp3 in Resources */,
 				49DEA9C628811482008C9BA1 /* Chiquititas Brasil - Nao Pode Ser short meme.mp3 in Resources */,
 				D975FFC72880B4F20035E6F2 /* Ernesto Araujo - Thats not true (House Remix).mp3 in Resources */,
@@ -3468,6 +3493,7 @@
 				D975FEFB2880B4F20035E6F2 /* Silas Malafaia - E por isso que Deus te escolheu.mp3 in Resources */,
 				D921F88E288B063A003979CC /* Ih rapaz - fred.mp3 in Resources */,
 				D975FFB52880B4F20035E6F2 /* Malafaia - Deus escolheu as coisas loucas.mp3 in Resources */,
+				D9E7D0F628AC6BC6001E909E /* PORTA DOS FUNDOS - Nao, brother broder.mp3 in Resources */,
 				49DEA9B02881101C008C9BA1 /* SpongeBob Time Cards - A few moments later.mp3 in Resources */,
 				D975FF642880B4F20035E6F2 /* Vai Dar Namoro - Pare.mp3 in Resources */,
 				D97500282880B4F20035E6F2 /* Vera Magalhaes - Pensamento Magico.mp3 in Resources */,
@@ -3584,6 +3610,7 @@
 				D975FF9E2880B4F20035E6F2 /* Bolsonaro - O cara o cara.mp3 in Resources */,
 				D975FECB2880B4F20035E6F2 /* Em cinquenta metros, tire o cu da reta.mp3 in Resources */,
 				D975FF8F2880B4F20035E6F2 /* ADY - oh nao mais um crime de responsabilidade.mp3 in Resources */,
+				D9E7D0EA28AC6195001E909E /* Dose segura de crack, os tios e as tias do Zap.mp3 in Resources */,
 				D975FF9D2880B4F20035E6F2 /* DIOGO DEFANTE - Calma, ces tao de cabeca quente.mp3 in Resources */,
 				D923126B28AB01A700436336 /* Donald Trump - Its very sad.mp3 in Resources */,
 				D975FEEA2880B4F20035E6F2 /* PODER360 - Roberto Jefferson - Ta bom, Xandao, ta bom.mp3 in Resources */,
@@ -3607,6 +3634,7 @@
 				D97500532880B5190035E6F2 /* MULTISHOW - Jao - Nao adianta gritar aqui no vestival e nao votar, vai votar porra.mp3 in Resources */,
 				D975FF752880B4F20035E6F2 /* Mourao - Essa conta ira para as Forcas Armadas trecho short.mp3 in Resources */,
 				D975FE1A2880B4F20035E6F2 /* Pazuello - Abraco galera.mp3 in Resources */,
+				D9E7D0EC28AC6349001E909E /* REDE GLOBO - GIL DO VIGOR - Eu estou to indignado.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3898,7 +3926,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				ENABLE_PREVIEWS = YES;
@@ -3915,7 +3943,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.13;
+				MARKETING_VERSION = 2.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = "Medo e Delírio";
 				SUPPORTS_MACCATALYST = YES;
@@ -3932,7 +3960,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				ENABLE_PREVIEWS = YES;
@@ -3949,7 +3977,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.13;
+				MARKETING_VERSION = 2.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = "Medo e Delírio";
 				SUPPORTS_MACCATALYST = YES;

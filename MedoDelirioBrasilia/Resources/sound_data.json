@@ -5965,5 +5965,59 @@
         "filename": "Novo e diferente, e top, e moderno (curto).mp3",
         "dateAdded": "2022-08-15T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "F85BE766-479D-4500-91C5-C5E9E6826547",
+        "title": "Eu tô indignado!",
+        "authorId": "08C5B696-B506-4C6A-8F9D-A72BEC68525E",
+        "description": "Eu tô indignado",
+        "filename": "REDE GLOBO - GIL DO VIGOR - Eu estou to indignado.mp3",
+        "dateAdded": "2022-08-16T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "237C7FCC-1208-4422-8B14-3640A0717B79",
+        "title": "Tá certa a indignação",
+        "authorId": "2BBB826D-24E5-4DFE-95DF-A6FFE41155D9",
+        "description": "Ta certa a indignacao",
+        "filename": "Rogerinho - Ta certa a indignacao.mp3",
+        "dateAdded": "2022-08-16T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "DFD96E90-DDEF-49EB-A8A0-7F2CBADE4F2C",
+        "title": "Empregada doméstica na Disney (longo)",
+        "authorId": "BB392894-327A-48BA-9C7D-4F0601E947EB",
+        "description": "Empregada domestica na Disney longo",
+        "filename": "Paulo Guedes - Empregada domestica na Disney (longo).mp3",
+        "dateAdded": "2022-08-16T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "54933C99-68EB-4BB1-92E9-A317B2ABEB88",
+        "title": "Empregada doméstica na Disney (curto)",
+        "authorId": "BB392894-327A-48BA-9C7D-4F0601E947EB",
+        "description": "Empregada domestica na Disney curto",
+        "filename": "Paulo Guedes - Empregada domestica na Disney (curto).mp3",
+        "dateAdded": "2022-08-16T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "2D28BCBB-F14B-4618-9810-AF85182C0085",
+        "title": "Vista seu traje químico",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "mas vamos lá vista seu traje quimico e nos acompanhe",
+        "filename": "Cristiano Botafogo - Vista o seu traje quimico.mp3",
+        "dateAdded": "2022-08-16T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "5B17CE5C-5716-4AE3-A08B-570496E161C5",
+        "title": "Não, brother",
+        "authorId": "ED95DB68-655F-496B-9CAE-E71C3D2207AC",
+        "description": "nao brother nao broder",
+        "filename": "PORTA DOS FUNDOS - Nao, brother broder.mp3",
+        "dateAdded": "2022-08-16T00:00:00Z",
+        "isOffensive": false
     }
 ]
