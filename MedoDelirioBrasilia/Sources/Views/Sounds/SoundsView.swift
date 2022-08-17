@@ -331,10 +331,10 @@ struct SoundsView: View {
                 viewModel.sendDeviceModelNameToServer()
                 viewModel.sendUserPersonalTrendsToServerIfEnabled()
 
-                if AppPersistentMemory.getHasShownNotificationsOnboarding() == false {
+                /*if AppPersistentMemory.getHasShownNotificationsOnboarding() == false {
                     subviewToOpen = .onboardingView
                     showingModalView = true
-                }
+                }*/
 
                 shouldDisplayHotWheatherBanner = UserSettings.getHotWeatherBannerWasDismissed() == false
             }

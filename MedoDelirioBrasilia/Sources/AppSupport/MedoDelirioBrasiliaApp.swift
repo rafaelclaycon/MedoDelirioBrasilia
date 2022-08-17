@@ -56,31 +56,31 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         }
     }
     
-    func application(
-        _ application: UIApplication,
-        didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
-    ) {
-        if AppPersistentMemory.getShouldRetrySendingDevicePushToken() {
-            let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
-            let token = tokenParts.joined()
-            print("Device Token: \(token)")
-            
-            let device = PushDevice(installId: UIDevice.identifiderForVendor, pushToken: token)
-            networkRabbit.post(pushDevice: device) { success, error in
-                guard let success = success, success else {
-                    AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: true)
-                    return
-                }
-                AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: false)
-            }
-        }
-    }
-    
-    func application(
-        _ application: UIApplication,
-        didFailToRegisterForRemoteNotificationsWithError error: Error
-    ) {
-        print("Failed to register: \(error.localizedDescription)")
-    }
+//    func application(
+//        _ application: UIApplication,
+//        didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
+//    ) {
+//        if AppPersistentMemory.getShouldRetrySendingDevicePushToken() {
+//            let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
+//            let token = tokenParts.joined()
+//            print("Device Token: \(token)")
+//
+//            let device = PushDevice(installId: UIDevice.identifiderForVendor, pushToken: token)
+//            networkRabbit.post(pushDevice: device) { success, error in
+//                guard let success = success, success else {
+//                    AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: true)
+//                    return
+//                }
+//                AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: false)
+//            }
+//        }
+//    }
+//
+//    func application(
+//        _ application: UIApplication,
+//        didFailToRegisterForRemoteNotificationsWithError error: Error
+//    ) {
+//        print("Failed to register: \(error.localizedDescription)")
+//    }
 
 }

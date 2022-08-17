@@ -27,9 +27,9 @@ struct SettingsView: View {
                     Text("Ajuda")
                 }
                 
-                NavigationLink(destination: NotificationsSettingsView()) {
+                /*NavigationLink(destination: NotificationsSettingsView()) {
                     Text("Notificações")
-                }
+                }*/
 
                 NavigationLink(destination: TrendsSettingsView()) {
                     Text("Tendências")
