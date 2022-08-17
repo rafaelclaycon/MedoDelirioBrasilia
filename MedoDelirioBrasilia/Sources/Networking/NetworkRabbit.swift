@@ -12,7 +12,7 @@ internal protocol NetworkRabbitProtocol {
 
 class NetworkRabbit: NetworkRabbitProtocol {
 
-    private let serverPath: String
+    let serverPath: String
     
     init(serverPath: String) {
         self.serverPath = serverPath
