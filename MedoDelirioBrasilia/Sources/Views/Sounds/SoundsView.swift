@@ -7,7 +7,7 @@ struct SoundsView: View {
     }
     
     enum SubviewToOpen {
-        case onboardingView, addToFolderView
+        case onboardingView, addToFolderView, shareAsVideoView
     }
     
     @StateObject private var viewModel = SoundsViewViewModel()
@@ -29,6 +29,10 @@ struct SoundsView: View {
     @State private var hadSuccessAddingToFolder: Bool = false
     @State private var folderName: String? = nil
     @State private var shouldDisplayAddedToFolderToast: Bool = false
+    
+    // Share as Video
+    @State private var shareAsVideo_SoundTitle: String = ""
+    @State private var shareAsVideo_AudioFilename: String = ""
     
     private var columns: [GridItem] {
         if UIDevice.current.userInterfaceIdiom == .phone {
@@ -131,7 +135,10 @@ struct SoundsView: View {
                                                 }
                                                 
                                                 Button {
-                                                    viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
+                                                    shareAsVideo_SoundTitle = sound.title
+                                                    shareAsVideo_AudioFilename = sound.filename
+                                                    subviewToOpen = .shareAsVideoView
+                                                    showingModalView = true
                                                 } label: {
                                                     Label(Shared.shareAsVideoButtonText, systemImage: "film")
                                                 }
@@ -375,6 +382,9 @@ struct SoundsView: View {
                                     folderName: $folderName,
                                     selectedSoundName: viewModel.selectedSound!.title,
                                     selectedSoundId: viewModel.selectedSound!.id)
+                    
+                case .shareAsVideoView:
+                    ShareAsVideoView(isBeingShown: $showingModalView, image: VideoMaker.textToImage(drawText: shareAsVideo_SoundTitle.uppercased(), inImage: UIImage(named: "video_background")!, atPoint: CGPoint(x: 25, y: 100)), audioFilename: shareAsVideo_AudioFilename)
                 }
             }
             .onChange(of: updateSoundsList) { shouldUpdate in
