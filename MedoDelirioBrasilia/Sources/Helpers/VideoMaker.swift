@@ -26,7 +26,7 @@ class VideoMaker {
             ] as [NSAttributedString.Key : Any]
         image.draw(in: CGRect(origin: CGPoint.zero, size: image.size))
 
-        let rect = CGRect(origin: point, size: image.size)
+        let rect = CGRect(origin: point, size: CGSize(width: image.size.width - 80, height: image.size.height))
         text.draw(in: rect, withAttributes: textFontAttributes)
 
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
@@ -35,9 +35,9 @@ class VideoMaker {
         return newImage!
     }
     
-    static func createVideo(fromImage imageName: String, duration: Int) {
+    static func createVideo(fromImage image: UIImage, duration: Int) {
         // Create a CIImage
-        guard let uikitImage = UIImage(named: imageName), let staticImage = CIImage(image: uikitImage) else {
+        guard let staticImage = CIImage(image: image) else {
             fatalError("Invalid image")
         }
         
@@ -71,7 +71,7 @@ class VideoMaker {
         //let assetWriterSettings = [AVVideoCodecKey: AVVideoCodecType.h264, AVVideoWidthKey : 400, AVVideoHeightKey: 400] as [String : Any]
         
         // generate a file url to store the video. some_image.jpg becomes some_image.mov
-        guard let imageNameRoot = imageName.split(separator: ".").first, let outputMovieURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("\(imageNameRoot).mov") else {
+        guard let imageNameRoot = "video".split(separator: ".").first, let outputMovieURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("\(imageNameRoot).mov") else {
             fatalError("Invalid URL")
         }
         // delete any old file

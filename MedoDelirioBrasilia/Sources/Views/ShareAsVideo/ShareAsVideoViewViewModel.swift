@@ -8,7 +8,7 @@ class ShareAsVideoViewViewModel: ObservableObject {
     @Published var alertMessage: String = ""
     @Published var showAlert: Bool = false
     
-    func createVideo(audioFilename: String) {
+    func createVideo(audioFilename: String, image: UIImage) {
         guard audioFilename.isEmpty == false else {
             return
         }
@@ -22,7 +22,7 @@ class ShareAsVideoViewViewModel: ObservableObject {
             return
         }
         
-        VideoMaker.createVideo(fromImage: "video_background", duration: audioDuration)
+        VideoMaker.createVideo(fromImage: image, duration: audioDuration)
     }
     
     // MARK: - Alerts

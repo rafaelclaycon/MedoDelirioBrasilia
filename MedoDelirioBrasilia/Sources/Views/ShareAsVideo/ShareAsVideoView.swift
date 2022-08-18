@@ -19,7 +19,7 @@ struct ShareAsVideoView: View {
                     .padding()
                 
                 Button {
-                    viewModel.createVideo(audioFilename: audioFilename)
+                    viewModel.createVideo(audioFilename: audioFilename, image: image)
                 } label: {
                     Text("Gerar Vídeo")
                         .bold()
