@@ -12,7 +12,7 @@ struct ShareAsVideoView: View {
             NavigationView {
                 ScrollView {
                     VStack {
-                        Text("Esse será o fundo do vídeo:")
+                        Text("Essa será a imagem do vídeo:")
                             .multilineTextAlignment(.center)
                             .padding()
                         
