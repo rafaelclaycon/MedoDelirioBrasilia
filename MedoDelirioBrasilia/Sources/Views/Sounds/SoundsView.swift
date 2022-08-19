@@ -135,13 +135,15 @@ struct SoundsView: View {
                                                     Label(Shared.shareSoundButtonText, systemImage: "square.and.arrow.up")
                                                 }
                                                 
-                                                Button {
-                                                    shareAsVideo_SoundTitle = sound.title
-                                                    shareAsVideo_AudioFilename = sound.filename
-                                                    subviewToOpen = .shareAsVideoView
-                                                    showingModalView = true
-                                                } label: {
-                                                    Label(Shared.shareAsVideoButtonText, systemImage: "film")
+                                                if UIDevice.current.userInterfaceIdiom == .phone {
+                                                    Button {
+                                                        shareAsVideo_SoundTitle = sound.title
+                                                        shareAsVideo_AudioFilename = sound.filename
+                                                        subviewToOpen = .shareAsVideoView
+                                                        showingModalView = true
+                                                    } label: {
+                                                        Label(Shared.shareAsVideoButtonText, systemImage: "film")
+                                                    }
                                                 }
                                             }
                                             
