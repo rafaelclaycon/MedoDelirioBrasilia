@@ -27,14 +27,12 @@ struct SettingsView: View {
                     Text("Ajuda")
                 }
                 
+                /*NavigationLink(destination: NotificationsSettingsView()) {
+                    Text("Notificações")
+                }*/
+
                 NavigationLink(destination: TrendsSettingsView()) {
                     Text("Tendências")
-                }
-            }
-            
-            Section("📬  Problemas, sugestões e pedidos") {
-                Button("Entrar em contato por e-mail") {
-                    showEmailClientConfirmationDialog = true
                 }
             }
             
@@ -62,12 +60,18 @@ struct SettingsView: View {
                 }
             }
             
-            Section("🧑‍💻  Contribua ou entenda como o app funciona") {
+            Section("📬  Problemas, sugestões e pedidos") {
+                Button("Entrar em contato por e-mail") {
+                    showEmailClientConfirmationDialog = true
+                }
+            }
+            
+            /*Section("🧑‍💻  Contribua ou entenda como o app funciona") {
                 Button("Ver código fonte no GitHub") {
                     let githubUrl = URL(string: "https://github.com/rafaelclaycon/MedoDelirioBrasilia")!
                     UIApplication.shared.open(githubUrl)
                 }
-            }
+            }*/
             
             Section("Sobre") {
                 Button("Criado por @claycon_") {
@@ -78,9 +82,9 @@ struct SettingsView: View {
                 Text("Versão \(Versioneer.appVersion) Build \(Versioneer.buildVersionNumber)")
             }
             
-            Section("Diagnóstico") {
+            Section {
                 NavigationLink(destination: DiagnosticsView()) {
-                    Text("Dados para nerds")
+                    Text("Diagnóstico")
                 }
             }
         }
