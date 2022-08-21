@@ -17,7 +17,7 @@ struct BegForMoneyView: View {
             }
             
             VStack(alignment: .leading, spacing: 18) {
-                Text("Sou um único desenvolvedor dedicando meu tempo livre para um projeto no qual acredito.")
+                Text("Sou um único desenvolvedor dedicando meu tempo livre para esse projeto.")
             
                 Text("Se você está curtindo o app e gostaria de ajudar, use a chave abaixo. Assim você garante novos sons, recursos e o meu muito obrigado!")
             }
