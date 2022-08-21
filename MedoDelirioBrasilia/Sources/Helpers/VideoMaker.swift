@@ -3,10 +3,10 @@ import AVFoundation
 
 class VideoMaker {
 
-    static func getAudioFileDuration(fileURL: URL) -> Int? {
+    static func getAudioFileDuration(fileURL: URL) -> CGFloat? {
         do {
             let audioPlayer = try AVAudioPlayer(contentsOf: fileURL)
-            return Int(audioPlayer.duration)
+            return CGFloat(audioPlayer.duration)
         } catch {
             assertionFailure("Failed creating audio player: \(error).")
             return nil
@@ -14,7 +14,7 @@ class VideoMaker {
     }
     
     static func textToImage(drawText text: String, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
-        let textColor = UIColor.white
+        let textColor = UIColor.black
         let textFont = UIFont(name: "Helvetica Bold", size: 72)!
 
         let scale = UIScreen.main.scale
@@ -35,10 +35,11 @@ class VideoMaker {
         return newImage!
     }
     
-    func mergeVideoWithAudio(videoUrl: URL,
-                             audioUrl: URL,
-                             success: @escaping ((URL) -> Void),
-                             failure: @escaping ((Error?) -> Void)) {
+    static func mergeVideoWithAudio(videoUrl: URL,
+                                    audioUrl: URL,
+                                    videoName: String,
+                                    success: @escaping ((URL) -> Void),
+                                    failure: @escaping ((Error?) -> Void)) {
         let mixComposition: AVMutableComposition = AVMutableComposition()
         var mutableCompositionVideoTrack: [AVMutableCompositionTrack] = []
         var mutableCompositionAudioTrack: [AVMutableCompositionTrack] = []
@@ -85,10 +86,10 @@ class VideoMaker {
 
            let mutableVideoComposition: AVMutableVideoComposition = AVMutableVideoComposition()
            mutableVideoComposition.frameDuration = CMTimeMake(value: 1, timescale: 30)
-           mutableVideoComposition.renderSize = CGSize(width: 480, height: 640)
+           mutableVideoComposition.renderSize = CGSize(width: 1000, height: 1000)
 
            if let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first {
-               let outputURL = URL(fileURLWithPath: documentsPath).appendingPathComponent("\("fileName").m4v")
+               let outputURL = URL(fileURLWithPath: documentsPath).appendingPathComponent("\(videoName).mov")
 
                do {
                    if FileManager.default.fileExists(atPath: outputURL.path) {
@@ -126,9 +127,18 @@ class VideoMaker {
     }
     
     static func createVideo(fromImage image: UIImage,
-                            withDuration duration: Int,
+                            withDuration duration: CGFloat,
                             andName videoName: String,
-                            completionHandler: @escaping (String?) -> Void) throws {
+                            soundFilepath: String,
+                            completionHandler: @escaping (String?, VideoMakerError?) -> Void) throws {
+        guard soundFilepath.isEmpty == false else {
+            throw VideoMakerError.soundFilepathIsEmpty
+        }
+        
+        guard let soundPath = Bundle.main.path(forResource: soundFilepath, ofType: nil) else {
+            throw VideoMakerError.unableToFindSoundFile
+        }
+        
         guard let staticImage = CIImage(image: image) else {
             throw VideoMakerError.invalidImage
         }
@@ -176,10 +186,10 @@ class VideoMaker {
         assetwriter.startWriting()
         assetwriter.startSession(atSourceTime: CMTime.zero)
         
-        let framesPerSecond = 30
+        let framesPerSecond = 30.0
         
         let totalFrames = duration * framesPerSecond
-        var frameCount = 0
+        var frameCount = 0.0
         while frameCount < totalFrames {
             if assetWriterInput.isReadyForMoreMediaData {
                 let frameTime = CMTimeMake(value: Int64(frameCount), timescale: Int32(framesPerSecond))
@@ -192,9 +202,15 @@ class VideoMaker {
         assetwriter.finishWriting {
             pixelBuffer = nil
             
+            let soundURL = URL(fileURLWithPath: soundPath)
             
-            
-            completionHandler(outputMovieURL.path)
+            mergeVideoWithAudio(videoUrl: outputMovieURL, audioUrl: soundURL, videoName: videoName) { videoURL in
+                completionHandler(videoURL.path, nil)
+            } failure: { error in
+                if error != nil {
+                    completionHandler(nil, VideoMakerError.failedToMergeSoundAndVideo)
+                }
+            }
         }
     }
 
@@ -204,5 +220,8 @@ enum VideoMakerError: Error {
 
     case invalidImage
     case invalidURL
+    case soundFilepathIsEmpty
+    case unableToFindSoundFile
+    case failedToMergeSoundAndVideo
 
 }
