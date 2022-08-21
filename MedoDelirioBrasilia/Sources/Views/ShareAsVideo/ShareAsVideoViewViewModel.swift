@@ -13,7 +13,7 @@ class ShareAsVideoViewViewModel: ObservableObject {
     @Published var alertMessage: String = ""
     @Published var showAlert: Bool = false
     
-    func createVideo(audioFilename: String, image: UIImage) {
+    func createVideo(audioFilename: String, image: UIImage, contentTitle: String) {
         DispatchQueue.main.async {
             self.processingViewMessage = "Gerando vídeo..."
             self.isShowingProcessingView = true
@@ -48,7 +48,7 @@ class ShareAsVideoViewViewModel: ObservableObject {
             return
         }
         do {
-            try VideoMaker.createVideo(fromImage: image, duration: audioDuration) { [weak self] videoPath in
+            try VideoMaker.createVideo(fromImage: image, withDuration: audioDuration, andName: contentTitle.withoutDiacritics()) { [weak self] videoPath in
                 guard let videoPath = videoPath else {
                     DispatchQueue.main.async {
                         self?.isShowingProcessingView = false

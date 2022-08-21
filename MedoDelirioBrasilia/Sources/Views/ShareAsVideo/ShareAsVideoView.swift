@@ -6,6 +6,7 @@ struct ShareAsVideoView: View {
     @Binding var isBeingShown: Bool
     @State var image: UIImage
     @State var audioFilename: String
+    @State var contentTitle: String
     
     var body: some View {
         ZStack {
@@ -25,7 +26,7 @@ struct ShareAsVideoView: View {
                             .padding(.all, 20)
                         
                         Button {
-                            viewModel.createVideo(audioFilename: audioFilename, image: image)
+                            viewModel.createVideo(audioFilename: audioFilename, image: image, contentTitle: contentTitle)
                         } label: {
                             Text("Gerar Vídeo")
                                 .bold()
@@ -79,7 +80,7 @@ struct ShareAsVideoView: View {
 struct ShareAsVideoView_Previews: PreviewProvider {
 
     static var previews: some View {
-        ShareAsVideoView(isBeingShown: .constant(true), image: UIImage(named: "video_background")!, audioFilename: "")
+        ShareAsVideoView(isBeingShown: .constant(true), image: UIImage(named: "video_background")!, audioFilename: "", contentTitle: "Test")
     }
 
 }

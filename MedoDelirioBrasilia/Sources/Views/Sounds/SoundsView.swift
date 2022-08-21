@@ -33,6 +33,7 @@ struct SoundsView: View {
     // Share as Video
     @State private var shareAsVideo_SoundTitle: String = ""
     @State private var shareAsVideo_AudioFilename: String = ""
+    @State private var shareAsVideo_ContentTitle: String = ""
     
     private var columns: [GridItem] {
         if UIDevice.current.userInterfaceIdiom == .phone {
@@ -139,6 +140,7 @@ struct SoundsView: View {
                                                     Button {
                                                         shareAsVideo_SoundTitle = sound.title
                                                         shareAsVideo_AudioFilename = sound.filename
+                                                        shareAsVideo_ContentTitle = sound.title
                                                         subviewToOpen = .shareAsVideoView
                                                         showingModalView = true
                                                     } label: {
@@ -387,7 +389,7 @@ struct SoundsView: View {
                                     selectedSoundId: viewModel.selectedSound!.id)
                     
                 case .shareAsVideoView:
-                    ShareAsVideoView(isBeingShown: $showingModalView, image: VideoMaker.textToImage(drawText: shareAsVideo_SoundTitle.uppercased(), inImage: UIImage(named: "video_background")!, atPoint: CGPoint(x: 80, y: 300)), audioFilename: shareAsVideo_AudioFilename)
+                    ShareAsVideoView(isBeingShown: $showingModalView, image: VideoMaker.textToImage(drawText: shareAsVideo_SoundTitle.uppercased(), inImage: UIImage(named: "video_background")!, atPoint: CGPoint(x: 80, y: 300)), audioFilename: shareAsVideo_AudioFilename, contentTitle: shareAsVideo_ContentTitle)
                 }
             }
             .onChange(of: updateSoundsList) { shouldUpdate in
