@@ -6,8 +6,8 @@ var database = LocalDatabase()
 let networkRabbit = NetworkRabbit(serverPath: CommandLine.arguments.contains("-UNDER_DEVELOPMENT") ? "https://7e25-2804-1b3-8643-6734-3920-db5b-c065-1789.sa.ngrok.io/api/" : "http://170.187.145.233:8080/api/")
 let podium = Podium(database: database, networkRabbit: networkRabbit)
 
-let soundsLastUpdateDate: String = "16/08/2022"
-let songsLastUpdateDate: String = "16/08/2022"
+let soundsLastUpdateDate: String = "21/08/2022"
+let songsLastUpdateDate: String = "21/08/2022"
 
 @main
 struct MedoDelirioBrasiliaApp: App {
