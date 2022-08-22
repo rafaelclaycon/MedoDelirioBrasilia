@@ -33,7 +33,7 @@ class Sharer {
         }
     }
     
-    static func shareFile(withPath filepath: String) throws {
+    static func shareFile(withPath filepath: String, delayInSeconds: Double = 0.0) throws {
         guard filepath.isEmpty == false else {
             return
         }
@@ -41,8 +41,15 @@ class Sharer {
         let url = URL(fileURLWithPath: filepath)
         
         let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
-        DispatchQueue.main.async {
-            UIApplication.shared.keyWindow?.rootViewController?.present(activityVC, animated: true, completion: nil)
+        
+        if delayInSeconds > 0 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + delayInSeconds) {
+                UIApplication.shared.keyWindow?.rootViewController?.present(activityVC, animated: true, completion: nil)
+            }
+        } else {
+            DispatchQueue.main.async {
+                UIApplication.shared.keyWindow?.rootViewController?.present(activityVC, animated: true, completion: nil)
+            }
         }
     }
 

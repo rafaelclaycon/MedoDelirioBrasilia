@@ -48,7 +48,7 @@ struct AuthorDetailView: View {
                                             Button {
                                                 viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
                                             } label: {
-                                                Label(Shared.shareButtonText, systemImage: "square.and.arrow.up")
+                                                Label(Shared.shareSoundButtonText, systemImage: "square.and.arrow.up")
                                             }
                                         }
                                         
