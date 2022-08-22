@@ -5,12 +5,12 @@ class ShareAsVideoViewViewModel: ObservableObject {
 
     @Published var isShowingProcessingView = false
     @Published var processingViewMessage = String.empty
-    @Published var isPresentingShareSheet = false
+    @Published var presentShareSheet = false
     @Published var pathToVideoFile = String.empty
     
     // Alerts
-    @Published var alertTitle: String = ""
-    @Published var alertMessage: String = ""
+    @Published var alertTitle: String = .empty
+    @Published var alertMessage: String = .empty
     @Published var showAlert: Bool = false
     
     func createVideo(audioFilename: String, image: UIImage, contentTitle: String) {
@@ -61,7 +61,7 @@ class ShareAsVideoViewViewModel: ObservableObject {
                 DispatchQueue.main.async {
                     self?.isShowingProcessingView = false
                     self?.pathToVideoFile = videoPath
-                    self?.isPresentingShareSheet = true
+                    self?.presentShareSheet = true
                 }
             }
         } catch {

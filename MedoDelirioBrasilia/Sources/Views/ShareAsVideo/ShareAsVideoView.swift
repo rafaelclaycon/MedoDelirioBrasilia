@@ -4,6 +4,7 @@ struct ShareAsVideoView: View {
 
     @StateObject private var viewModel = ShareAsVideoViewViewModel()
     @Binding var isBeingShown: Bool
+    @Binding var resultPath: String
     @State var image: UIImage
     @State var audioFilename: String
     @State var contentTitle: String
@@ -21,7 +22,7 @@ struct ShareAsVideoView: View {
                             .resizable()
                             .frame(width: 350, height: 350)
                         
-                        Text("Compartilhe o conteúdo em redes como o Twitter, TikTok e Instagram transformando-o em um vídeo.")
+                        Text("Compartilhe o conteúdo em redes como o Twitter, TikTok e Instagram transformando-o em um vídeo.\n\nSe possível, inclua a #MedoEDelírioiOS\n\nPara responder um tuíte, use a opção Salvar Vídeo.")
                             .multilineTextAlignment(.center)
                             .padding(.all, 20)
                         
@@ -37,23 +38,7 @@ struct ShareAsVideoView: View {
                         .controlSize(.large)
                         .buttonStyle(.borderedProminent)
                         .buttonBorderShape(.capsule)
-                        .padding(.top)
                         .padding(.bottom)
-                        .background(SharingViewController(isPresenting: $viewModel.isPresentingShareSheet) {
-                            let url = URL(fileURLWithPath: viewModel.pathToVideoFile)
-                            let av = UIActivityViewController(activityItems: [url], applicationActivities: nil)
-                              
-                            // For iPad
-                            if UIDevice.current.userInterfaceIdiom == .pad {
-                                av.popoverPresentationController?.sourceView = UIView()
-                            }
-
-                            av.completionWithItemsHandler = { _, _, _, _ in
-                                viewModel.isPresentingShareSheet = false // required to prevent it from auto re-opening
-                                isBeingShown = false
-                            }
-                            return av
-                        })
                     }
                     .navigationTitle("Compartilhar como Vídeo")
                     .navigationBarTitleDisplayMode(.inline)
@@ -64,6 +49,12 @@ struct ShareAsVideoView: View {
                     )
                     .alert(isPresented: $viewModel.showAlert) {
                         Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
+                    }
+                    .onChange(of: viewModel.presentShareSheet) { shouldPresentShareSheet in
+                        if shouldPresentShareSheet {
+                            resultPath = viewModel.pathToVideoFile
+                            isBeingShown = false
+                        }
                     }
                 }
             }
@@ -80,7 +71,7 @@ struct ShareAsVideoView: View {
 struct ShareAsVideoView_Previews: PreviewProvider {
 
     static var previews: some View {
-        ShareAsVideoView(isBeingShown: .constant(true), image: UIImage(named: "video_background")!, audioFilename: "", contentTitle: "Test")
+        ShareAsVideoView(isBeingShown: .constant(true), resultPath: .constant(.empty), image: UIImage(named: "video_background")!, audioFilename: "", contentTitle: "Test")
     }
 
 }

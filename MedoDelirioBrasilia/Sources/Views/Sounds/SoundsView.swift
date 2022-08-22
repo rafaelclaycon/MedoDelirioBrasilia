@@ -12,7 +12,7 @@ struct SoundsView: View {
     
     @StateObject private var viewModel = SoundsViewViewModel()
     @State var currentMode: Mode
-    @State private var searchText = ""
+    @State private var searchText: String = .empty
 
     @State private var listWidth: CGFloat = 700
 
@@ -31,9 +31,7 @@ struct SoundsView: View {
     @State private var shouldDisplayAddedToFolderToast: Bool = false
     
     // Share as Video
-    @State private var shareAsVideo_SoundTitle: String = ""
-    @State private var shareAsVideo_AudioFilename: String = ""
-    @State private var shareAsVideo_ContentTitle: String = ""
+    @State private var shareAsVideo_ResultFilepath: String = .empty
     
     private var columns: [GridItem] {
         if UIDevice.current.userInterfaceIdiom == .phone {
@@ -138,9 +136,7 @@ struct SoundsView: View {
                                                 
                                                 if UIDevice.current.userInterfaceIdiom == .phone {
                                                     Button {
-                                                        shareAsVideo_SoundTitle = sound.title
-                                                        shareAsVideo_AudioFilename = sound.filename
-                                                        shareAsVideo_ContentTitle = sound.title
+                                                        viewModel.selectedSound = sound
                                                         subviewToOpen = .shareAsVideoView
                                                         showingModalView = true
                                                     } label: {
@@ -389,7 +385,7 @@ struct SoundsView: View {
                                     selectedSoundId: viewModel.selectedSound!.id)
                     
                 case .shareAsVideoView:
-                    ShareAsVideoView(isBeingShown: $showingModalView, image: VideoMaker.textToImage(drawText: shareAsVideo_SoundTitle.uppercased(), inImage: UIImage(named: "video_background")!, atPoint: CGPoint(x: 80, y: 300)), audioFilename: shareAsVideo_AudioFilename, contentTitle: shareAsVideo_ContentTitle)
+                    ShareAsVideoView(isBeingShown: $showingModalView, resultPath: $shareAsVideo_ResultFilepath, image: VideoMaker.textToImage(drawText: viewModel.selectedSound?.title.uppercased() ?? .empty, inImage: UIImage(named: "video_background")!, atPoint: CGPoint(x: 80, y: 300)), audioFilename: viewModel.selectedSound?.filename ?? .empty, contentTitle: viewModel.selectedSound?.title ?? "Sem Título")
                 }
             }
             .onChange(of: updateSoundsList) { shouldUpdate in
@@ -400,6 +396,11 @@ struct SoundsView: View {
                                          favoritesOnly: currentMode == .favorites,
                                          sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
                     updateSoundsList = false
+                }
+            }
+            .onChange(of: shareAsVideo_ResultFilepath) { videoResultPath in
+                if videoResultPath.isEmpty == false {
+                    try? Sharer.shareFile(withPath: videoResultPath, delayInSeconds: 0.6)
                 }
             }
             
