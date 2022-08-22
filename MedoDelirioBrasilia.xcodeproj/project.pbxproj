@@ -822,6 +822,7 @@
 		D9BF90972842D3CB00BDDD7D /* NoSoundsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF90962842D3CB00BDDD7D /* NoSoundsView.swift */; };
 		D9BF90BE2842EAED00BDDD7D /* TopChartCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF90BD2842EAED00BDDD7D /* TopChartCellView.swift */; };
 		D9C35D23288713990065F3E7 /* HotWeatherAdBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C35D22288713990065F3E7 /* HotWeatherAdBannerView.swift */; };
+		D9CB84F528B2E31D00E815C2 /* Alvaro Borba - A Verdadeira Polarizacao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CB84F428B2E31D00E815C2 /* Alvaro Borba - A Verdadeira Polarizacao.mp3 */; };
 		D9D856F5288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D856F3288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3 */; };
 		D9D856F6288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Se numero elevado de mortes policia e uma caracteristica, ta errado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D856F4288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Se numero elevado de mortes policia e uma caracteristica, ta errado.mp3 */; };
 		D9D8C4A8287CD1B600812EE5 /* UIDevice+DevicePhysicalCharacteristics.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D8C4A7287CD1B600812EE5 /* UIDevice+DevicePhysicalCharacteristics.swift */; };
@@ -1697,6 +1698,7 @@
 		D9BF90962842D3CB00BDDD7D /* NoSoundsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSoundsView.swift; sourceTree = "<group>"; };
 		D9BF90BD2842EAED00BDDD7D /* TopChartCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartCellView.swift; sourceTree = "<group>"; };
 		D9C35D22288713990065F3E7 /* HotWeatherAdBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotWeatherAdBannerView.swift; sourceTree = "<group>"; };
+		D9CB84F428B2E31D00E815C2 /* Alvaro Borba - A Verdadeira Polarizacao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alvaro Borba - A Verdadeira Polarizacao.mp3"; sourceTree = "<group>"; };
 		D9D856F3288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3"; sourceTree = "<group>"; };
 		D9D856F4288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Se numero elevado de mortes policia e uma caracteristica, ta errado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "RADIO BANDNEWS FM - Eduardo Oinegue - Se numero elevado de mortes policia e uma caracteristica, ta errado.mp3"; sourceTree = "<group>"; };
 		D9D8C4A7287CD1B600812EE5 /* UIDevice+DevicePhysicalCharacteristics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+DevicePhysicalCharacteristics.swift"; sourceTree = "<group>"; };
@@ -1775,6 +1777,7 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9CB84F428B2E31D00E815C2 /* Alvaro Borba - A Verdadeira Polarizacao.mp3 */,
 				D9FD0EF528B2B2ED0000616A /* alerta de novidade - cristiano botafogo.mp3 */,
 				D9FD0EFB28B2B2EE0000616A /* Calma por favor - Desesperado.mp3 */,
 				D9FD0EFD28B2B2EE0000616A /* Calma poxa - Desesperado.mp3 */,
@@ -3222,6 +3225,7 @@
 				D975FE272880B4F20035E6F2 /* Cocorico - Ah coitado.mp3 in Resources */,
 				D97500292880B4F20035E6F2 /* Bonitinha mas ordinaria - Mentira.mp3 in Resources */,
 				D975FED62880B4F20035E6F2 /* Cristiano Botafogo - Mix de insanidade.mp3 in Resources */,
+				D9CB84F528B2E31D00E815C2 /* Alvaro Borba - A Verdadeira Polarizacao.mp3 in Resources */,
 				D9D856F5288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3 in Resources */,
 				D975FED92880B4F20035E6F2 /* TV BRASIL - Bolsonaro - Pretiputi, pretiputi, pretiputi.mp3 in Resources */,
 				D97500512880B5190035E6F2 /* MULTISHOW - Gloria Groove - Quer dizer que eles querem calar a gente censura 2022 caralho fora bolsonaro.mp3 in Resources */,
