@@ -8,13 +8,13 @@ import UIKit
 enum Icon: String, CaseIterable, Identifiable {
 
     case primary    = "AppIcon"
-    case blue       = "AppIcon-Blue"
-    case green      = "AppIcon-Green"
-    case orange     = "AppIcon-Orange"
-    case purple     = "AppIcon-Purple"
-    case pink       = "AppIcon-Pink"
-    case teal       = "AppIcon-Teal"
-    case yellow     = "AppIcon-Yellow"
+    case odioNojo   = "AppIcon-OdioNojo"
+//    case green      = "AppIcon-Green"
+//    case orange     = "AppIcon-Orange"
+//    case purple     = "AppIcon-Purple"
+//    case pink       = "AppIcon-Pink"
+//    case teal       = "AppIcon-Teal"
+//    case yellow     = "AppIcon-Yellow"
 
     var id: String { self.rawValue }
 

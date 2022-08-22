@@ -848,6 +848,7 @@
 		D9E7D0F428AC699B001E909E /* Cristiano Botafogo - Vista o seu traje quimico.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E7D0F328AC699B001E909E /* Cristiano Botafogo - Vista o seu traje quimico.mp3 */; };
 		D9E7D0F628AC6BC6001E909E /* PORTA DOS FUNDOS - Nao, brother broder.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E7D0F528AC6BC6001E909E /* PORTA DOS FUNDOS - Nao, brother broder.mp3 */; };
 		D9EB18A52857CDFF00A2F8A8 /* CollectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EB18A42857CDFF00A2F8A8 /* CollectionsView.swift */; };
+		D9ECD81528B3C470003C033A /* IconImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9ECD81428B3C470003C033A /* IconImage.swift */; };
 		D9F78A9F2860DF9100B83567 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F78A9E2860DF9100B83567 /* CollectionCell.swift */; };
 		D9FA0CD728508590000F6ADE /* UIDevice+DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FA0CD628508590000F6ADE /* UIDevice+DeviceInfo.swift */; };
 		D9FA0CD92850864C000F6ADE /* ClientDeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FA0CD82850864C000F6ADE /* ClientDeviceInfo.swift */; };
@@ -1729,6 +1730,7 @@
 		D9E7D0F328AC699B001E909E /* Cristiano Botafogo - Vista o seu traje quimico.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano Botafogo - Vista o seu traje quimico.mp3"; sourceTree = "<group>"; };
 		D9E7D0F528AC6BC6001E909E /* PORTA DOS FUNDOS - Nao, brother broder.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "PORTA DOS FUNDOS - Nao, brother broder.mp3"; sourceTree = "<group>"; };
 		D9EB18A42857CDFF00A2F8A8 /* CollectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsView.swift; sourceTree = "<group>"; };
+		D9ECD81428B3C470003C033A /* IconImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconImage.swift; sourceTree = "<group>"; };
 		D9F78A9E2860DF9100B83567 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
 		D9FA0CD628508590000F6ADE /* UIDevice+DeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+DeviceInfo.swift"; sourceTree = "<group>"; };
 		D9FA0CD82850864C000F6ADE /* ClientDeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientDeviceInfo.swift; sourceTree = "<group>"; };
@@ -2624,6 +2626,7 @@
 		D957509728446BEC0094AEA6 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				D9ECD81328B3C45D003C033A /* AlternateIcons */,
 				D958B1B12839534D0010F133 /* SettingsView.swift */,
 				D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */,
 				D93D24DF2849DAAB00300541 /* DiagnosticsView.swift */,
@@ -2636,7 +2639,6 @@
 				D911070A28627216000B6F8F /* NotificationsSettingsView.swift */,
 				D9ABDDB1287411D9007B25EA /* Help */,
 				D949180F288606E00079F545 /* SettingsCasingWithCloseView.swift */,
-				D957048228AFCC93008DEF8C /* ChangeAppIconView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -2976,6 +2978,15 @@
 				D946117D28613D3200C4FB7E /* CollectionDetailView.swift */,
 			);
 			path = Collections;
+			sourceTree = "<group>";
+		};
+		D9ECD81328B3C45D003C033A /* AlternateIcons */ = {
+			isa = PBXGroup;
+			children = (
+				D957048228AFCC93008DEF8C /* ChangeAppIconView.swift */,
+				D9ECD81428B3C470003C033A /* IconImage.swift */,
+			);
+			path = AlternateIcons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -3900,6 +3911,7 @@
 				D9491810288606E00079F545 /* SettingsCasingWithCloseView.swift in Sources */,
 				D98622E2283FCEDC00E9F630 /* AuthorsViewViewModel.swift in Sources */,
 				D958B1B22839534D0010F133 /* SettingsView.swift in Sources */,
+				D9ECD81528B3C470003C033A /* IconImage.swift in Sources */,
 				D90F6A6628446C250050FFFF /* TrendsSettingsView.swift in Sources */,
 				D92C0CAA28405B2D009CF19A /* NoFavoritesView.swift in Sources */,
 				D957048328AFCC93008DEF8C /* ChangeAppIconView.swift in Sources */,

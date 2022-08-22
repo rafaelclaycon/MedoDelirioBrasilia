@@ -11,14 +11,17 @@ struct ChangeAppIconView: View {
                     Button {
                         model.setAlternateAppIcon(icon: icon)
                     } label: {
-                        //IconImage(icon: icon)
-                        Text("JJ")
+                        IconImage(icon: icon)
+                        //Text("JJ")
                     }
                 }
             }
         }
         .navigationTitle("Ícone do app")
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            model.setAlternateAppIcon(icon: Icon.odioNojo)
+        }
     }
 
 }
