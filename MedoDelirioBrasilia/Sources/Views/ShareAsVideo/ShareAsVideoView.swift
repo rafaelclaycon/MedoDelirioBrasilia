@@ -5,6 +5,7 @@ struct ShareAsVideoView: View {
     @StateObject private var viewModel = ShareAsVideoViewViewModel()
     @Binding var isBeingShown: Bool
     @Binding var resultPath: String
+    
     @State var image: UIImage
     @State var audioFilename: String
     @State var contentTitle: String
@@ -14,25 +15,58 @@ struct ShareAsVideoView: View {
             NavigationView {
                 ScrollView {
                     VStack {
-                        Text("Essa será a imagem do vídeo:")
-                            .multilineTextAlignment(.center)
-                            .padding()
+                        Picker(selection: $viewModel.selectedSocialNetwork, label: Text("Rede social")) {
+                            Text("Twitter").tag(0)
+                            Text("Instagram ou TikTok").tag(1)
+                        }
+                        .pickerStyle(SegmentedPickerStyle())
+                        .padding(.horizontal, 25)
+                        .padding(.bottom, 10)
+                        .onChange(of: viewModel.selectedSocialNetwork) { newValue in
+                            if newValue == VideoExportType.twitter.rawValue {
+                                self.image = VideoMaker.textToImage(drawText: contentTitle.uppercased(), inImage: UIImage(named: "square_video_background")!, atPoint: CGPoint(x: 80, y: 300))
+                            } else {
+                                self.image = VideoMaker.textToImage(drawText: contentTitle.uppercased(), inImage: UIImage(named: "9_16_video_background")!, atPoint: CGPoint(x: 80, y: 600))
+                            }
+                        }
                         
                         Image(uiImage: image)
                             .resizable()
-                            .frame(width: 350, height: 350)
+                            .scaledToFit()
+                            .frame(height: 350)
                         
-                        Text("Compartilhe o conteúdo em redes como o Twitter, TikTok e Instagram transformando-o em um vídeo.\n\nSe possível, inclua a #MedoEDelírioiOS\n\nPara responder um tuíte, use a opção Salvar Vídeo.")
-                            .multilineTextAlignment(.center)
-                            .padding(.all, 20)
+                        TwitterReplyTipView()
+                            .padding(.horizontal)
+                            .padding(.vertical)
                         
                         Button {
                             viewModel.createVideo(audioFilename: audioFilename, image: image, contentTitle: contentTitle)
                         } label: {
-                            Text("Gerar Vídeo")
-                                .bold()
-                                .foregroundColor(.white)
-                                .padding(.horizontal, 50)
+                            HStack(spacing: 15) {
+                                if viewModel.selectedSocialNetwork == VideoExportType.twitter.rawValue {
+                                    Image("twitter")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(height: 25)
+                                } else {
+                                    HStack(spacing: 10) {
+                                        Image("instagram")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(height: 25)
+                                        
+                                        Image("tiktok")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(height: 25)
+                                    }
+                                }
+                                
+                                Text("Compartilhar")
+                                    .font(.headline)
+                                    .foregroundColor(.white)
+                            }
+                            .padding(.horizontal, 50)
                         }
                         .tint(.accentColor)
                         .controlSize(.large)
@@ -40,7 +74,7 @@ struct ShareAsVideoView: View {
                         .buttonBorderShape(.capsule)
                         .padding(.bottom)
                     }
-                    .navigationTitle("Compartilhar como Vídeo")
+                    .navigationTitle("Gerar Vídeo")
                     .navigationBarTitleDisplayMode(.inline)
                     .navigationBarItems(leading:
                         Button("Cancelar") {

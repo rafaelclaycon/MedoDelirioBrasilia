@@ -7,6 +7,7 @@ class ShareAsVideoViewViewModel: ObservableObject {
     @Published var processingViewMessage = String.empty
     @Published var presentShareSheet = false
     @Published var pathToVideoFile = String.empty
+    @Published var selectedSocialNetwork = VideoExportType.twitter.rawValue
     
     // Alerts
     @Published var alertTitle: String = .empty
@@ -48,7 +49,7 @@ class ShareAsVideoViewViewModel: ObservableObject {
             return
         }
         do {
-            try VideoMaker.createVideo(fromImage: image, withDuration: audioDuration, andName: contentTitle.withoutDiacritics(), soundFilepath: audioFilename) { [weak self] videoPath, error in
+            try VideoMaker.createVideo(fromImage: image, withDuration: audioDuration, andName: contentTitle.withoutDiacritics(), soundFilepath: audioFilename, exportType: VideoExportType(rawValue: selectedSocialNetwork)!) { [weak self] videoPath, error in
                 guard let videoPath = videoPath else {
                     DispatchQueue.main.async {
                         self?.isShowingProcessingView = false
