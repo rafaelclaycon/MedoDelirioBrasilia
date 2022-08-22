@@ -30,6 +30,10 @@ struct SettingsView: View {
                 /*NavigationLink(destination: NotificationsSettingsView()) {
                     Text("Notificações")
                 }*/
+                
+                NavigationLink(destination: ChangeAppIconView()) {
+                    Text("Ícone do app")
+                }
 
                 NavigationLink(destination: TrendsSettingsView()) {
                     Text("Tendências")

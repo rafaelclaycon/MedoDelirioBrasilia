@@ -161,8 +161,8 @@
 		D94AD34928811ADC00D3E4F0 /* Versioneer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94AD34828811ADC00D3E4F0 /* Versioneer.swift */; };
 		D9523741285BF98A00E6C838 /* NetworkRabbitStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */; };
 		D9523743285BF99800E6C838 /* LocalDatabaseSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9523742285BF99800E6C838 /* LocalDatabaseSpy.swift */; };
-		D957048328AFCC93008DEF8C /* ChangeAppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957048228AFCC93008DEF8C /* ChangeAppIconView.swift */; };
 		D957047D28AEF733008DEF8C /* ProcessingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957047C28AEF733008DEF8C /* ProcessingView.swift */; };
+		D957048328AFCC93008DEF8C /* ChangeAppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957048228AFCC93008DEF8C /* ChangeAppIconView.swift */; };
 		D957048528B2B04F008DEF8C /* Jair Bolsonaro - Os escandalos do Jair, enumerados.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D957048428B2B04F008DEF8C /* Jair Bolsonaro - Os escandalos do Jair, enumerados.mp3 */; };
 		D9575092284427C70094AEA6 /* ShareLogsDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9575091284427C70094AEA6 /* ShareLogsDummy.swift */; };
 		D957509628445EC30094AEA6 /* TrendsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957509528445EC30094AEA6 /* TrendsViewViewModel.swift */; };
@@ -822,6 +822,7 @@
 		D9B4F73F283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B4F73D283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 */; };
 		D9B4F740283C8F4D0000EEF7 /* O roque ativa.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B4F73E283C8F4D0000EEF7 /* O roque ativa.mp3 */; };
 		D9B763282845B5E600CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B763272845B5E500CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift */; };
+		D9BB1E7728B3200700C5FFAA /* AppIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BB1E7628B3200700C5FFAA /* AppIcon.swift */; };
 		D9BB9265285DAA8E005CD6DD /* BegForMoneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BB9264285DAA8E005CD6DD /* BegForMoneyView.swift */; };
 		D9BF9091284257F500BDDD7D /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF9090284257F500BDDD7D /* Shared.swift */; };
 		D9BF90972842D3CB00BDDD7D /* NoSoundsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF90962842D3CB00BDDD7D /* NoSoundsView.swift */; };
@@ -1038,8 +1039,8 @@
 		D94AD34828811ADC00D3E4F0 /* Versioneer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Versioneer.swift; sourceTree = "<group>"; };
 		D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRabbitStub.swift; sourceTree = "<group>"; };
 		D9523742285BF99800E6C838 /* LocalDatabaseSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDatabaseSpy.swift; sourceTree = "<group>"; };
-		D957048228AFCC93008DEF8C /* ChangeAppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAppIconView.swift; sourceTree = "<group>"; };
 		D957047C28AEF733008DEF8C /* ProcessingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingView.swift; sourceTree = "<group>"; };
+		D957048228AFCC93008DEF8C /* ChangeAppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAppIconView.swift; sourceTree = "<group>"; };
 		D957048428B2B04F008DEF8C /* Jair Bolsonaro - Os escandalos do Jair, enumerados.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Os escandalos do Jair, enumerados.mp3"; sourceTree = "<group>"; };
 		D9575091284427C70094AEA6 /* ShareLogsDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareLogsDummy.swift; sourceTree = "<group>"; };
 		D957509528445EC30094AEA6 /* TrendsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsViewViewModel.swift; sourceTree = "<group>"; };
@@ -1703,6 +1704,7 @@
 		D9B4F73D283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Unidos do Medo e Delírio.mp3"; sourceTree = "<group>"; };
 		D9B4F73E283C8F4D0000EEF7 /* O roque ativa.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O roque ativa.mp3"; sourceTree = "<group>"; };
 		D9B763272845B5E500CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKStoreReviewController+requestReviewInCurrentScene.swift"; sourceTree = "<group>"; };
+		D9BB1E7628B3200700C5FFAA /* AppIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcon.swift; sourceTree = "<group>"; };
 		D9BB9264285DAA8E005CD6DD /* BegForMoneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BegForMoneyView.swift; sourceTree = "<group>"; };
 		D9BF9090284257F500BDDD7D /* Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shared.swift; sourceTree = "<group>"; };
 		D9BF90962842D3CB00BDDD7D /* NoSoundsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSoundsView.swift; sourceTree = "<group>"; };
@@ -2820,25 +2822,18 @@
 		D98EC5DF2825A04000340BE5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				D98EC5E02825A05900340BE5 /* Sound.swift */,
-				D92E7066283C51D20035826C /* Song.swift */,
-				D9344322283812AD00ADCD38 /* Author.swift */,
+				D9BB1E7928B3212000C5FFAA /* Core */,
+				D9BB1E7828B3210D00C5FFAA /* Logs */,
 				D93443242838177000ADCD38 /* UserInfo.swift */,
-				D9E69593283D2F2F00C341B2 /* Favorite.swift */,
 				D92C0CA72840162F009CF19A /* ContentSortOption.swift */,
-				D92C0CAB28406EA5009CF19A /* UserShareLog.swift */,
 				D9351C5B2844094E00D4317E /* TopChartItem.swift */,
 				D99B9DC92848148600897930 /* ServerStatsAndLogs.swift */,
 				D9FA0CD82850864C000F6ADE /* ClientDeviceInfo.swift */,
-				D9A8AB2928544FAE00B5A94B /* NetworkCallLog.swift */,
-				D9461181286159BC00C4FB7E /* UserFolder.swift */,
 				D9758C3728616E650094D388 /* FolderColor.swift */,
-				D91107132863B5FD000B6F8F /* ContentCollection.swift */,
-				D9943F2928642EC3002C6B97 /* UserFolderContent.swift */,
 				D92F8BAC286A6D2100EB9470 /* AlertType.swift */,
 				D9DCC5D028751256008DD4A3 /* PushDevice.swift */,
 				D95DB0F72882491A00D4FEDF /* Screen.swift */,
-				D988B1A028AB4AE200A179CF /* FavoriteLog.swift */,
+				D9BB1E7628B3200700C5FFAA /* AppIcon.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2906,6 +2901,30 @@
 				D98622DE283FC53B00E9F630 /* Authors */,
 			);
 			path = Sounds;
+			sourceTree = "<group>";
+		};
+		D9BB1E7828B3210D00C5FFAA /* Logs */ = {
+			isa = PBXGroup;
+			children = (
+				D92C0CAB28406EA5009CF19A /* UserShareLog.swift */,
+				D9A8AB2928544FAE00B5A94B /* NetworkCallLog.swift */,
+				D988B1A028AB4AE200A179CF /* FavoriteLog.swift */,
+			);
+			path = Logs;
+			sourceTree = "<group>";
+		};
+		D9BB1E7928B3212000C5FFAA /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				D98EC5E02825A05900340BE5 /* Sound.swift */,
+				D92E7066283C51D20035826C /* Song.swift */,
+				D9344322283812AD00ADCD38 /* Author.swift */,
+				D9E69593283D2F2F00C341B2 /* Favorite.swift */,
+				D9461181286159BC00C4FB7E /* UserFolder.swift */,
+				D91107132863B5FD000B6F8F /* ContentCollection.swift */,
+				D9943F2928642EC3002C6B97 /* UserFolderContent.swift */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 		D9BF90BC2842EAB100BDDD7D /* Trends */ = {
@@ -3889,6 +3908,7 @@
 				D9A8AB212853EB5500B5A94B /* InitialMigration.swift in Sources */,
 				D946117E28613D3200C4FB7E /* CollectionDetailView.swift in Sources */,
 				D92CAA4128593B1700D6C1EA /* NetworkLogCell.swift in Sources */,
+				D9BB1E7728B3200700C5FFAA /* AppIcon.swift in Sources */,
 				D998F28F284F177B0013E709 /* TrendsDisabledView.swift in Sources */,
 				D933251E28835E41004EFACB /* ActivityViewController.swift in Sources */,
 				D991E598284A94F70005705F /* Podium.swift in Sources */,
