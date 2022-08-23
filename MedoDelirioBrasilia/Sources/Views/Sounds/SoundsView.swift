@@ -23,7 +23,7 @@ struct SoundsView: View {
     @Binding var updateSoundsList: Bool
     
     // Temporary banners
-    @State private var shouldDisplayHotWheatherBanner: Bool = false
+    //@State private var shouldDisplayHotWheatherBanner: Bool = false
     
     // Add to Folder vars
     @State private var hadSuccessAddingToFolder: Bool = false
@@ -32,7 +32,7 @@ struct SoundsView: View {
     
     // Share as Video
     @State private var shareAsVideo_ShowContextMenuOption: Bool = UIDevice.current.userInterfaceIdiom == .phone
-    @State private var shareAsVideo_ResultFilepath: String = .empty
+    @State private var shareAsVideo_Result = ShareAsVideoResult()
     
     private var columns: [GridItem] {
         if UIDevice.current.userInterfaceIdiom == .phone {
@@ -113,12 +113,6 @@ struct SoundsView: View {
                 } else {
                     GeometryReader { geometry in
                         ScrollView {
-                            if shouldDisplayHotWheatherBanner, searchText.isEmpty, currentMode != .favorites {
-                                HotWeatherAdBannerView(displayMe: $shouldDisplayHotWheatherBanner)
-                                    .padding(.horizontal)
-                                    .padding(.vertical, 6)
-                            }
-                            
                             LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
                                 ForEach(searchResults) { sound in
                                     SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", favorites: $viewModel.favoritesKeeper)
@@ -350,8 +344,6 @@ struct SoundsView: View {
                     subviewToOpen = .onboardingView
                     showingModalView = true
                 }*/
-
-                shouldDisplayHotWheatherBanner = UserSettings.getHotWeatherBannerWasDismissed() == false
             }
             .sheet(isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog) {
                 EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog, subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.selectedSound?.title ?? ""), emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.selectedSound?.authorName ?? "", viewModel.selectedSound?.id ?? ""))
@@ -386,7 +378,7 @@ struct SoundsView: View {
                                     selectedSoundId: viewModel.selectedSound!.id)
                     
                 case .shareAsVideoView:
-                    ShareAsVideoView(isBeingShown: $showingModalView, resultPath: $shareAsVideo_ResultFilepath, image: VideoMaker.textToImage(drawText: viewModel.selectedSound?.title.uppercased() ?? .empty, inImage: UIImage(named: "video_background")!, atPoint: CGPoint(x: 80, y: 300)), audioFilename: viewModel.selectedSound?.filename ?? .empty, contentTitle: viewModel.selectedSound?.title ?? "Sem Título")
+                    ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result)
                 }
             }
             .onChange(of: updateSoundsList) { shouldUpdate in
@@ -399,9 +391,9 @@ struct SoundsView: View {
                     updateSoundsList = false
                 }
             }
-            .onChange(of: shareAsVideo_ResultFilepath) { videoResultPath in
+            .onChange(of: shareAsVideo_Result.videoFilepath) { videoResultPath in
                 if videoResultPath.isEmpty == false {
-                    try? Sharer.shareFile(withPath: videoResultPath, delayInSeconds: 0.6)
+                    viewModel.shareVideo(withPath: videoResultPath, andContentId: shareAsVideo_Result.contentId)
                 }
             }
             
@@ -415,11 +407,11 @@ struct SoundsView: View {
                 .transition(.moveAndFade)
             }
             
-            if viewModel.shouldDisplaySharedSuccessfullyToast {
+            if viewModel.displaySharedSuccessfullyToast {
                 VStack {
                     Spacer()
                     
-                    ToastView(text: Shared.soundSharedSuccessfullyMessage)
+                    ToastView(text: viewModel.shareBannerMessage)
                         .padding()
                 }
                 .transition(.moveAndFade)

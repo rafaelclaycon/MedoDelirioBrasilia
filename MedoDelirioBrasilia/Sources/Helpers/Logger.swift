@@ -5,7 +5,7 @@ class Logger {
     static func logSharedSound(contentId: String, destination: ShareDestination, destinationBundleId: String) {
         let shareLog = UserShareLog(installId: UIDevice.identifiderForVendor,
                                     contentId: contentId,
-                                    contentType: 0,
+                                    contentType: ContentType.sound.rawValue,
                                     dateTime: Date(),
                                     destination: destination.rawValue,
                                     destinationBundleId: destinationBundleId,
@@ -16,7 +16,18 @@ class Logger {
     static func logSharedSong(contentId: String, destination: ShareDestination, destinationBundleId: String) {
         let shareLog = UserShareLog(installId: UIDevice.identifiderForVendor,
                                     contentId: contentId,
-                                    contentType: 1,
+                                    contentType: ContentType.song.rawValue,
+                                    dateTime: Date(),
+                                    destination: destination.rawValue,
+                                    destinationBundleId: destinationBundleId,
+                                    sentToServer: false)
+        try? database.insert(userShareLog: shareLog)
+    }
+    
+    static func logSharedVideoFromSound(contentId: String, destination: ShareDestination, destinationBundleId: String) {
+        let shareLog = UserShareLog(installId: UIDevice.identifiderForVendor,
+                                    contentId: contentId,
+                                    contentType: ContentType.videoFromSound.rawValue,
                                     dateTime: Date(),
                                     destination: destination.rawValue,
                                     destinationBundleId: destinationBundleId,
