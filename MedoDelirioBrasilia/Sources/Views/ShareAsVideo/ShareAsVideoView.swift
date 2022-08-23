@@ -107,6 +107,8 @@ struct ShareAsVideoView: View {
         }
         .onAppear {
             tipText = twitterTip
+            // Cleaning this string is needed in case the user decides do re-export the same sound
+            resultPath = .empty
         }
     }
 

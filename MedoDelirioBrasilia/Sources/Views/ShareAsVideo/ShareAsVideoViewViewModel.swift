@@ -72,6 +72,7 @@ class ShareAsVideoViewViewModel: ObservableObject {
             }
             return
         }
+        
         do {
             try VideoMaker.createVideo(fromImage: image, withDuration: audioDuration, andName: contentTitle.withoutDiacritics(), soundFilepath: audioFilename, exportType: VideoExportType(rawValue: selectedSocialNetwork)!) { [weak self] videoPath, error in
                 guard let videoPath = videoPath else {

@@ -108,7 +108,9 @@ class VideoMaker {
                     if FileManager.default.fileExists(atPath: outputURL.path) {
                         try FileManager.default.removeItem(at: outputURL)
                     }
-                } catch { }
+                } catch {
+                    print("Could not remove file: \(error.localizedDescription)")
+                }
 
                 if let exportSession = AVAssetExportSession(asset: mixComposition, presetName: AVAssetExportPresetHighestQuality) {
                     exportSession.outputURL = outputURL
@@ -184,7 +186,7 @@ class VideoMaker {
         do {
             try FileManager.default.removeItem(at: outputMovieURL)
         } catch {
-            print("Could not remove file \(error.localizedDescription)")
+            print("Could not remove file: \(error.localizedDescription)")
         }
         
         guard let assetwriter = try? AVAssetWriter(outputURL: outputMovieURL, fileType: .mov) else {
