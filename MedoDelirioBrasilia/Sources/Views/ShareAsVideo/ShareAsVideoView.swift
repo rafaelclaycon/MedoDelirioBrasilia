@@ -2,37 +2,78 @@ import SwiftUI
 
 struct ShareAsVideoView: View {
 
-    @StateObject private var viewModel = ShareAsVideoViewViewModel()
+    @StateObject var viewModel: ShareAsVideoViewViewModel
     @Binding var isBeingShown: Bool
-    @Binding var resultPath: String
-    @State var image: UIImage
-    @State var audioFilename: String
-    @State var contentTitle: String
+    @Binding var result: ShareAsVideoResult
+    
+    @State private var tipText: String = .empty
+    
+    private let twitterTip = "Para responder um tuíte, escolha Salvar Vídeo na tela de compartilhamento. Depois, adicione o vídeo ao seu tuíte a partir do Twitter."
+    private let instagramTip = "Para fazer um Story, escolha Salvar Vídeo na tela de compartilhamento. Depois, adicione o vídeo ao seu Story a partir do Instagram."
     
     var body: some View {
         ZStack {
             NavigationView {
                 ScrollView {
                     VStack {
-                        Text("Essa será a imagem do vídeo:")
-                            .multilineTextAlignment(.center)
-                            .padding()
+                        Picker(selection: $viewModel.selectedSocialNetwork, label: Text("Rede social")) {
+                            Text("Twitter").tag(0)
+                            Text("Instagram ou TikTok").tag(1)
+                        }
+                        .pickerStyle(SegmentedPickerStyle())
+                        .padding(.horizontal, 25)
+                        .padding(.bottom, 10)
+                        .onChange(of: viewModel.selectedSocialNetwork) { newValue in
+                            tipText = newValue == VideoExportType.twitter.rawValue ? twitterTip : instagramTip
+                            viewModel.reloadImage()
+                        }
                         
-                        Image(uiImage: image)
+                        Image(uiImage: viewModel.image)
                             .resizable()
-                            .frame(width: 350, height: 350)
+                            .scaledToFit()
+                            .frame(height: 350)
                         
-                        Text("Compartilhe o conteúdo em redes como o Twitter, TikTok e Instagram transformando-o em um vídeo.\n\nSe possível, inclua a #MedoEDelírioiOS\n\nPara responder um tuíte, use a opção Salvar Vídeo.")
-                            .multilineTextAlignment(.center)
-                            .padding(.all, 20)
+                        if viewModel.selectedSocialNetwork == VideoExportType.instagramTikTok.rawValue {
+                            Toggle("Incluir aviso Ligue o Som", isOn: $viewModel.includeSoundWarning)
+                                .onChange(of: viewModel.includeSoundWarning) { _ in
+                                    viewModel.reloadImage()
+                                }
+                                .padding(.horizontal, 25)
+                                .padding(.top)
+                        }
+                        
+                        TipView(text: $tipText)
+                            .padding(.horizontal)
+                            .padding(.vertical)
                         
                         Button {
-                            viewModel.createVideo(audioFilename: audioFilename, image: image, contentTitle: contentTitle)
+                            viewModel.createVideo()
                         } label: {
-                            Text("Gerar Vídeo")
-                                .bold()
-                                .foregroundColor(.white)
-                                .padding(.horizontal, 50)
+                            HStack(spacing: 20) {
+                                if viewModel.selectedSocialNetwork == VideoExportType.twitter.rawValue {
+                                    Image("twitter")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(height: 25)
+                                } else {
+                                    HStack(spacing: 10) {
+                                        Image("instagram")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(height: 25)
+                                        
+                                        Image("tiktok")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(height: 25)
+                                    }
+                                }
+                                
+                                Text("Compartilhar")
+                                    .font(.headline)
+                                    .foregroundColor(.white)
+                            }
+                            .padding(.horizontal, 40)
                         }
                         .tint(.accentColor)
                         .controlSize(.large)
@@ -40,7 +81,7 @@ struct ShareAsVideoView: View {
                         .buttonBorderShape(.capsule)
                         .padding(.bottom)
                     }
-                    .navigationTitle("Compartilhar como Vídeo")
+                    .navigationTitle("Gerar Vídeo")
                     .navigationBarTitleDisplayMode(.inline)
                     .navigationBarItems(leading:
                         Button("Cancelar") {
@@ -52,7 +93,8 @@ struct ShareAsVideoView: View {
                     }
                     .onChange(of: viewModel.presentShareSheet) { shouldPresentShareSheet in
                         if shouldPresentShareSheet {
-                            resultPath = viewModel.pathToVideoFile
+                            result.videoFilepath = viewModel.pathToVideoFile
+                            result.contentId = viewModel.contentId
                             isBeingShown = false
                         }
                     }
@@ -64,6 +106,12 @@ struct ShareAsVideoView: View {
                     .padding(.bottom)
             }
         }
+        .onAppear {
+            tipText = twitterTip
+            // Cleaning this string is needed in case the user decides do re-export the same sound
+            result.videoFilepath = .empty
+            result.contentId = .empty
+        }
     }
 
 }
@@ -71,7 +119,7 @@ struct ShareAsVideoView: View {
 struct ShareAsVideoView_Previews: PreviewProvider {
 
     static var previews: some View {
-        ShareAsVideoView(isBeingShown: .constant(true), resultPath: .constant(.empty), image: UIImage(named: "video_background")!, audioFilename: "", contentTitle: "Test")
+        ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: "ABC", contentTitle: "Test", audioFilename: .empty), isBeingShown: .constant(true), result: .constant(ShareAsVideoResult()))
     }
 
 }
