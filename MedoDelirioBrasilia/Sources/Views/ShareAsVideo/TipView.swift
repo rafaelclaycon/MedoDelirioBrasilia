@@ -1,7 +1,9 @@
 import SwiftUI
 
-struct TwitterReplyTipView: View {
+struct TipView: View {
 
+    @Binding var text: String
+    
     var roundedRectangleHeight: CGFloat {
         switch UIScreen.main.bounds.width {
         case 320: // iPod touch 7
@@ -33,7 +35,7 @@ struct TwitterReplyTipView: View {
                         .font(.headline)
                         .foregroundColor(.black)
                     
-                    Text("Para responder um tuíte, escolha Salvar Vídeo na tela de compartilhamento. Depois, adicione o vídeo ao seu tuíte de dentro do Twitter.")
+                    Text(text)
                         .foregroundColor(.black)
                         .font(.callout)
                         .opacity(0.9)
@@ -50,7 +52,7 @@ struct TwitterReplyTipView: View {
 struct TwitterReplyTipView_Previews: PreviewProvider {
 
     static var previews: some View {
-        TwitterReplyTipView()
+        TipView(text: .constant("Para responder um tuíte, escolha Salvar Vídeo na tela de compartilhamento. Depois, adicione o vídeo ao seu tuíte de dentro do Twitter."))
     }
 
 }

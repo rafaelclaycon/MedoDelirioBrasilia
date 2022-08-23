@@ -386,7 +386,7 @@ struct SoundsView: View {
                                     selectedSoundId: viewModel.selectedSound!.id)
                     
                 case .shareAsVideoView:
-                    ShareAsVideoView(isBeingShown: $showingModalView, resultPath: $shareAsVideo_ResultFilepath, image: VideoMaker.textToImage(drawText: viewModel.selectedSound?.title.uppercased() ?? .empty, inImage: UIImage(named: "square_video_background")!, atPoint: CGPoint(x: 80, y: 300)), audioFilename: viewModel.selectedSound?.filename ?? .empty, contentTitle: viewModel.selectedSound?.title ?? "Sem Título")
+                    ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentTitle: viewModel.selectedSound?.title ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty), isBeingShown: $showingModalView, resultPath: $shareAsVideo_ResultFilepath)
                 }
             }
             .onChange(of: updateSoundsList) { shouldUpdate in

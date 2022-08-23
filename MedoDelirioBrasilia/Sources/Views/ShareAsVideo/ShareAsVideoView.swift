@@ -2,13 +2,14 @@ import SwiftUI
 
 struct ShareAsVideoView: View {
 
-    @StateObject private var viewModel = ShareAsVideoViewViewModel()
+    @StateObject var viewModel: ShareAsVideoViewViewModel
     @Binding var isBeingShown: Bool
     @Binding var resultPath: String
     
-    @State var image: UIImage
-    @State var audioFilename: String
-    @State var contentTitle: String
+    @State private var tipText: String = .empty
+    
+    private let twitterTip = "Para responder um tuíte, escolha Salvar Vídeo na tela de compartilhamento. Depois, adicione o vídeo ao seu tuíte a partir do Twitter."
+    private let instagramTip = "Para fazer um Story, escolha Salvar Vídeo na tela de compartilhamento. Depois, adicione o vídeo ao seu Story a partir do Instagram."
     
     var body: some View {
         ZStack {
@@ -23,26 +24,32 @@ struct ShareAsVideoView: View {
                         .padding(.horizontal, 25)
                         .padding(.bottom, 10)
                         .onChange(of: viewModel.selectedSocialNetwork) { newValue in
-                            if newValue == VideoExportType.twitter.rawValue {
-                                self.image = VideoMaker.textToImage(drawText: contentTitle.uppercased(), inImage: UIImage(named: "square_video_background")!, atPoint: CGPoint(x: 80, y: 300))
-                            } else {
-                                self.image = VideoMaker.textToImage(drawText: contentTitle.uppercased(), inImage: UIImage(named: "9_16_video_background")!, atPoint: CGPoint(x: 80, y: 600))
-                            }
+                            tipText = newValue == VideoExportType.twitter.rawValue ? twitterTip : instagramTip
+                            viewModel.reloadImage()
                         }
                         
-                        Image(uiImage: image)
+                        Image(uiImage: viewModel.image)
                             .resizable()
                             .scaledToFit()
                             .frame(height: 350)
                         
-                        TwitterReplyTipView()
+                        if viewModel.selectedSocialNetwork == VideoExportType.instagramTikTok.rawValue {
+                            Toggle("Incluir aviso Ligue o Som", isOn: $viewModel.includeSoundWarning)
+                                .onChange(of: viewModel.includeSoundWarning) { _ in
+                                    viewModel.reloadImage()
+                                }
+                                .padding(.horizontal, 25)
+                                .padding(.top)
+                        }
+                        
+                        TipView(text: $tipText)
                             .padding(.horizontal)
                             .padding(.vertical)
                         
                         Button {
-                            viewModel.createVideo(audioFilename: audioFilename, image: image, contentTitle: contentTitle)
+                            viewModel.createVideo()
                         } label: {
-                            HStack(spacing: 15) {
+                            HStack(spacing: 20) {
                                 if viewModel.selectedSocialNetwork == VideoExportType.twitter.rawValue {
                                     Image("twitter")
                                         .resizable()
@@ -66,7 +73,7 @@ struct ShareAsVideoView: View {
                                     .font(.headline)
                                     .foregroundColor(.white)
                             }
-                            .padding(.horizontal, 50)
+                            .padding(.horizontal, 40)
                         }
                         .tint(.accentColor)
                         .controlSize(.large)
@@ -98,6 +105,9 @@ struct ShareAsVideoView: View {
                     .padding(.bottom)
             }
         }
+        .onAppear {
+            tipText = twitterTip
+        }
     }
 
 }
@@ -105,7 +115,7 @@ struct ShareAsVideoView: View {
 struct ShareAsVideoView_Previews: PreviewProvider {
 
     static var previews: some View {
-        ShareAsVideoView(isBeingShown: .constant(true), resultPath: .constant(.empty), image: UIImage(named: "video_background")!, audioFilename: "", contentTitle: "Test")
+        ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentTitle: "Test", audioFilename: .empty), isBeingShown: .constant(true), resultPath: .constant(.empty))
     }
 
 }
