@@ -33,7 +33,7 @@ class Sharer {
         }
     }
     
-    static func shareFile(withPath filepath: String, delayInSeconds: Double = 0.0) throws {
+    static func shareVideoFromSound(withPath filepath: String, andContentId contentId: String, shareSheetDelayInSeconds: Double, completionHandler: @escaping (Bool) -> Void) throws {
         guard filepath.isEmpty == false else {
             return
         }
@@ -42,14 +42,38 @@ class Sharer {
         
         let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
         
-        if delayInSeconds > 0 {
-            DispatchQueue.main.asyncAfter(deadline: .now() + delayInSeconds) {
-                UIApplication.shared.keyWindow?.rootViewController?.present(activityVC, animated: true, completion: nil)
+        DispatchQueue.main.asyncAfter(deadline: .now() + shareSheetDelayInSeconds) {
+            UIApplication.shared.keyWindow?.rootViewController?.present(activityVC, animated: true, completion: nil)
+        }
+        
+        activityVC.completionWithItemsHandler = { activity, completed, items, error in
+            if completed {
+                guard let activity = activity else {
+                    return
+                }
+                let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
+                Logger.logSharedVideoFromSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
+                
+                AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
+                
+                completionHandler(true)
+            } else {
+                completionHandler(false)
             }
-        } else {
-            DispatchQueue.main.async {
-                UIApplication.shared.keyWindow?.rootViewController?.present(activityVC, animated: true, completion: nil)
-            }
+        }
+    }
+    
+    static func shareFile(withPath filepath: String) throws {
+        guard filepath.isEmpty == false else {
+            return
+        }
+        
+        let url = URL(fileURLWithPath: filepath)
+        
+        let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        
+        DispatchQueue.main.async {
+            UIApplication.shared.keyWindow?.rootViewController?.present(activityVC, animated: true, completion: nil)
         }
     }
 

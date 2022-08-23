@@ -44,6 +44,9 @@
 		D911070B28627216000B6F8F /* NotificationsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D911070A28627216000B6F8F /* NotificationsSettingsView.swift */; };
 		D91107112863B481000B6F8F /* CollectionsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91107102863B481000B6F8F /* CollectionsViewViewModel.swift */; };
 		D91107142863B5FD000B6F8F /* ContentCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91107132863B5FD000B6F8F /* ContentCollection.swift */; };
+		D912A33628B3E8F000F7293D /* VideoExportType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D912A33528B3E8F000F7293D /* VideoExportType.swift */; };
+		D912A33828B3F2C000F7293D /* TipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D912A33728B3F2C000F7293D /* TipView.swift */; };
+		D912A33A28B5321400F7293D /* ShareAsVideoResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D912A33928B5321400F7293D /* ShareAsVideoResult.swift */; };
 		D916536428AD7FF7007F141D /* VideoMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D916536328AD7FF7007F141D /* VideoMaker.swift */; };
 		D916536628ADCD9B007F141D /* ShareAsVideoViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D916536528ADCD9B007F141D /* ShareAsVideoViewViewModel.swift */; };
 		D916627D2874F1F9000A1B23 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D916627C2874F1F9000A1B23 /* OnboardingView.swift */; };
@@ -921,6 +924,9 @@
 		D911070A28627216000B6F8F /* NotificationsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSettingsView.swift; sourceTree = "<group>"; };
 		D91107102863B481000B6F8F /* CollectionsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsViewViewModel.swift; sourceTree = "<group>"; };
 		D91107132863B5FD000B6F8F /* ContentCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCollection.swift; sourceTree = "<group>"; };
+		D912A33528B3E8F000F7293D /* VideoExportType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoExportType.swift; sourceTree = "<group>"; };
+		D912A33728B3F2C000F7293D /* TipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipView.swift; sourceTree = "<group>"; };
+		D912A33928B5321400F7293D /* ShareAsVideoResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAsVideoResult.swift; sourceTree = "<group>"; };
 		D916536328AD7FF7007F141D /* VideoMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoMaker.swift; sourceTree = "<group>"; };
 		D916536528ADCD9B007F141D /* ShareAsVideoViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAsVideoViewViewModel.swift; sourceTree = "<group>"; };
 		D916627C2874F1F9000A1B23 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -2641,6 +2647,7 @@
 			children = (
 				D95F363928AD386D00743026 /* ShareAsVideoView.swift */,
 				D916536528ADCD9B007F141D /* ShareAsVideoViewViewModel.swift */,
+				D912A33728B3F2C000F7293D /* TipView.swift */,
 			);
 			path = ShareAsVideo;
 			sourceTree = "<group>";
@@ -2836,6 +2843,8 @@
 				D9DCC5D028751256008DD4A3 /* PushDevice.swift */,
 				D95DB0F72882491A00D4FEDF /* Screen.swift */,
 				D988B1A028AB4AE200A179CF /* FavoriteLog.swift */,
+				D912A33528B3E8F000F7293D /* VideoExportType.swift */,
+				D912A33928B5321400F7293D /* ShareAsVideoResult.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -3799,6 +3808,7 @@
 				D9625E8028238F9A00080852 /* SoundsView.swift in Sources */,
 				D91107142863B5FD000B6F8F /* ContentCollection.swift in Sources */,
 				D9877D2928694F3200B541F9 /* LocalDatabase+UserFolderContent.swift in Sources */,
+				D912A33A28B5321400F7293D /* ShareAsVideoResult.swift in Sources */,
 				D958B1AA28394D400010F133 /* MainView.swift in Sources */,
 				D92F8BAD286A6D2100EB9470 /* AlertType.swift in Sources */,
 				D93443292838230500ADCD38 /* String+Extensions.swift in Sources */,
@@ -3846,6 +3856,7 @@
 				D98DBD35284919B1008544F8 /* NetworkRabbit.swift in Sources */,
 				D916627F2874F838000A1B23 /* NotificationsSymbol.swift in Sources */,
 				D9BB9265285DAA8E005CD6DD /* BegForMoneyView.swift in Sources */,
+				D912A33628B3E8F000F7293D /* VideoExportType.swift in Sources */,
 				D9FB489A2870FE7800FF90D0 /* TapticHelper.swift in Sources */,
 				D957047D28AEF733008DEF8C /* ProcessingView.swift in Sources */,
 				D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */,
@@ -3914,6 +3925,7 @@
 				D90E2E5728853CDC00F406B6 /* AuthorCell.swift in Sources */,
 				D9A096D8287CE72300773869 /* Mailman.swift in Sources */,
 				D958B1AE28394E420010F133 /* SongsView.swift in Sources */,
+				D912A33828B3F2C000F7293D /* TipView.swift in Sources */,
 				D9C35D23288713990065F3E7 /* HotWeatherAdBannerView.swift in Sources */,
 				D9BF90972842D3CB00BDDD7D /* NoSoundsView.swift in Sources */,
 				D927C424285245CE0041970A /* SoundOptionsHelper.swift in Sources */,
@@ -4082,7 +4094,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -4102,7 +4114,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.0.1;
+				MARKETING_VERSION = 3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTS_MACCATALYST = YES;
@@ -4119,7 +4131,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -4139,7 +4151,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.0.1;
+				MARKETING_VERSION = 3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTS_MACCATALYST = YES;
