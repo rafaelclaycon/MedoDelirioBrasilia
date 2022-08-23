@@ -7,14 +7,14 @@ import UIKit
 /// `ASSETCATALOG_COMPILER_APPICON_NAME` and `ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES`.
 enum Icon: String, CaseIterable, Identifiable {
 
-    case primary      = "AppIcon"
-    case odioNojo     = "AppIcon-OdioNojo"
-    case terrivelEdit = "AppIcon-TerrivelEdit"
-    case teuCu        = "AppIcon-TeuCu"
-//    case purple     = "AppIcon-Purple"
-//    case pink       = "AppIcon-Pink"
-//    case teal       = "AppIcon-Teal"
-//    case yellow     = "AppIcon-Yellow"
+    case primary         = "AppIcon"
+    case odioNojo        = "AppIcon-OdioNojo"
+    case terrivelEdit    = "AppIcon-TerrivelEdit"
+    case teuCu           = "AppIcon-TeuCu"
+//    case boraPassarRaiva = "AppIcon-BoraPassarRaiva"
+//    case malditosMilicos = "AppIcon-MalditosMilicos"
+//    case bomDiaBoaTarde  = "AppIcon-BomDiaBoaTarde"
+//    case medoDelicia     = "AppIcon-MedoDelicia"
     
     var id: String { self.rawValue }
     var marketingName: String {
@@ -27,6 +27,10 @@ enum Icon: String, CaseIterable, Identifiable {
             return "O Terrível Editorialista do Estadão"
         case .teuCu:
             return "Teu Cu"
+//        case .boraPassarRaiva:
+//            return "Bora Passar Raiva?"
+//        case .malditosMilicos:
+//            return "Malditos Milicos"
         }
     }
 
