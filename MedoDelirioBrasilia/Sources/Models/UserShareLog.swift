@@ -32,13 +32,13 @@ struct UserShareLog: Hashable, Codable, Identifiable {
 }
 
 enum ContentType: Int {
-    
-    case sound, song
-    
+
+    case sound, song, videoFromSound, videoFromSong
+
 }
 
 enum ShareDestination: Int {
-    
+
     case whatsApp, telegram, other
     
     static func translateFrom(activityTypeRawValue: String) -> ShareDestination {
@@ -50,5 +50,5 @@ enum ShareDestination: Int {
             return .other
         }
     }
-    
+
 }

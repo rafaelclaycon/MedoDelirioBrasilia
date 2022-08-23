@@ -3,6 +3,7 @@ import UIKit
 
 class ShareAsVideoViewViewModel: ObservableObject {
 
+    var contentId: String
     private var contentTitle: String
     private var audioFilename: String
     
@@ -19,7 +20,8 @@ class ShareAsVideoViewViewModel: ObservableObject {
     @Published var alertMessage: String = .empty
     @Published var showAlert: Bool = false
     
-    init(contentTitle: String, audioFilename: String) {
+    init(contentId: String, contentTitle: String, audioFilename: String) {
+        self.contentId = contentId
         self.contentTitle = contentTitle
         self.audioFilename = audioFilename
         self.image = UIImage()

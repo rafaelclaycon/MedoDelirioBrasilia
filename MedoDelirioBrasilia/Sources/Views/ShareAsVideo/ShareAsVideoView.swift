@@ -4,7 +4,7 @@ struct ShareAsVideoView: View {
 
     @StateObject var viewModel: ShareAsVideoViewViewModel
     @Binding var isBeingShown: Bool
-    @Binding var resultPath: String
+    @Binding var result: ShareAsVideoResult
     
     @State private var tipText: String = .empty
     
@@ -93,7 +93,8 @@ struct ShareAsVideoView: View {
                     }
                     .onChange(of: viewModel.presentShareSheet) { shouldPresentShareSheet in
                         if shouldPresentShareSheet {
-                            resultPath = viewModel.pathToVideoFile
+                            result.videoFilepath = viewModel.pathToVideoFile
+                            result.contentId = viewModel.contentId
                             isBeingShown = false
                         }
                     }
@@ -108,7 +109,8 @@ struct ShareAsVideoView: View {
         .onAppear {
             tipText = twitterTip
             // Cleaning this string is needed in case the user decides do re-export the same sound
-            resultPath = .empty
+            result.videoFilepath = .empty
+            result.contentId = .empty
         }
     }
 
@@ -117,7 +119,7 @@ struct ShareAsVideoView: View {
 struct ShareAsVideoView_Previews: PreviewProvider {
 
     static var previews: some View {
-        ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentTitle: "Test", audioFilename: .empty), isBeingShown: .constant(true), resultPath: .constant(.empty))
+        ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: "ABC", contentTitle: "Test", audioFilename: .empty), isBeingShown: .constant(true), result: .constant(ShareAsVideoResult()))
     }
 
 }
