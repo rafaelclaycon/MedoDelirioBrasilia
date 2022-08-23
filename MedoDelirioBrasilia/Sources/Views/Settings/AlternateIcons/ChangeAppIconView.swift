@@ -6,22 +6,21 @@ struct ChangeAppIconView: View {
     
     var body: some View {
         VStack {
-            ScrollView {
-                List(Icon.allCases) { icon in
-                    Button {
-                        model.setAlternateAppIcon(icon: icon)
-                    } label: {
+            List(Icon.allCases) { icon in
+                Button {
+                    model.setAlternateAppIcon(icon: icon)
+                } label: {
+                    HStack(spacing: 15) {
                         IconImage(icon: icon)
-                        //Text("JJ")
+                        Text(icon.marketingName)
+                        Spacer()
                     }
                 }
+                .foregroundColor(.primary)
             }
         }
         .navigationTitle("Ícone do app")
         .navigationBarTitleDisplayMode(.inline)
-        .onAppear {
-            model.setAlternateAppIcon(icon: Icon.odioNojo)
-        }
     }
 
 }

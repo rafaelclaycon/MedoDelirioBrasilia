@@ -11,9 +11,8 @@ struct IconImage: View {
             Image(uiImage: UIImage(named: icon.rawValue) ?? UIImage())
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(minHeight: 57, maxHeight: 1024)
+                .frame(minHeight: 50, maxHeight: 50)
                 .cornerRadius(10)
-                .shadow(radius: 10)
                 .padding()
         }
         .labelStyle(.iconOnly)
