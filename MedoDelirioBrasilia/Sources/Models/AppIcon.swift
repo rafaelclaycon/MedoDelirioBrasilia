@@ -7,14 +7,16 @@ import UIKit
 /// `ASSETCATALOG_COMPILER_APPICON_NAME` and `ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES`.
 enum Icon: String, CaseIterable, Identifiable {
 
-    case primary         = "AppIcon"
-    case odioNojo        = "AppIcon-OdioNojo"
-    case terrivelEdit    = "AppIcon-TerrivelEdit"
-    case teuCu           = "AppIcon-TeuCu"
-//    case boraPassarRaiva = "AppIcon-BoraPassarRaiva"
-//    case malditosMilicos = "AppIcon-MalditosMilicos"
-//    case bomDiaBoaTarde  = "AppIcon-BomDiaBoaTarde"
-//    case medoDelicia     = "AppIcon-MedoDelicia"
+    case primary              = "AppIcon"
+    case odioNojo             = "AppIcon-OdioNojo"
+    case terrivelEdit         = "AppIcon-TerrivelEdit"
+    case teuCu                = "AppIcon-TeuCu"
+    case boraPassarRaiva      = "AppIcon-BoraPassarRaiva"
+    case malditosMilicosBlack = "AppIcon-MalditosMilicos-Black"
+    case malditosMilicosRed   = "AppIcon-MalditosMilicos-Red"
+    case bomDiaBoaTarde       = "AppIcon-BomDiaBoaTarde"
+    case medoDelicia          = "AppIcon-MedoDelicia"
+    case lgbt                 = "AppIcon-LGBT"
     
     var id: String { self.rawValue }
     var marketingName: String {
@@ -27,10 +29,18 @@ enum Icon: String, CaseIterable, Identifiable {
             return "O Terrível Editorialista do Estadão"
         case .teuCu:
             return "Teu Cu"
-//        case .boraPassarRaiva:
-//            return "Bora Passar Raiva?"
-//        case .malditosMilicos:
-//            return "Malditos Milicos"
+        case .boraPassarRaiva:
+            return "Bora Passar Raiva?"
+        case .malditosMilicosBlack:
+            return "Malditos Milicos (Preto)"
+        case .malditosMilicosRed:
+            return "Malditos Milicos (Vermelho)"
+        case .bomDiaBoaTarde:
+            return "Bom dia, boa tarde, boa noite... por enquanto"
+        case .medoDelicia:
+            return "Medo e Delícia"
+        case .lgbt:
+            return "Orgulho"
         }
     }
 

@@ -4,6 +4,8 @@ struct IconImage: View {
 
     var icon: Icon
     
+    private let cornerRadius: CGFloat = 11.0
+    
     var body: some View {
         Label {
             Text(icon.rawValue)
@@ -11,9 +13,12 @@ struct IconImage: View {
             Image(uiImage: UIImage(named: icon.rawValue) ?? UIImage())
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(minHeight: 50, maxHeight: 50)
-                .cornerRadius(10)
-                //.border(.gray, width: 1)
+                .frame(height: 60)
+                .cornerRadius(cornerRadius)
+                .overlay(
+                    RoundedRectangle(cornerRadius: cornerRadius)
+                        .stroke(.gray.opacity(0.5), lineWidth: 1)
+                )
                 .padding(.vertical)
         }
         .labelStyle(.iconOnly)
