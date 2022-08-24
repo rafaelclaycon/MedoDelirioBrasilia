@@ -28,7 +28,6 @@ struct AppIconCell: View {
                         .font(.callout)
                         .frame(width: circleSize, height: circleSize)
                 }
-                //.padding(.trailing)
             }
         }
     }
