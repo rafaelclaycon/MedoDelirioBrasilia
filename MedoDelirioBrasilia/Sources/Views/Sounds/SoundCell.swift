@@ -33,11 +33,7 @@ struct SoundCell: View {
     
     private var cellHeight: CGFloat {
         if UIDevice.current.userInterfaceIdiom == .phone {
-            if UIDevice.is4InchDevice || UIDevice.is4Point7InchDevice {
-                return 120
-            } else {
-                return 96
-            }
+            return UIDevice.is4InchDevice ? 120 : 96
         } else {
             return UIDevice.isiPadMini ? 130 : 96
         }
