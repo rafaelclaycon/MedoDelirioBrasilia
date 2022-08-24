@@ -6190,5 +6190,23 @@
         "filename": "Alvaro Borba - A Verdadeira Polarizacao.mp3",
         "dateAdded": "2022-08-21T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "133DC3A6-0A91-4921-AECC-0032E4BB4CF8",
+        "title": "Tchutchuca do Centrão",
+        "authorId": "153714DB-0383-48F8-B03A-DE36E967421F",
+        "description": "tchutchuca a tchutchuca do centrao ela rouba o seu iphone e tambem a eleicao",
+        "filename": "Thii Gouveia - Tchutchuca do Centrao.mp3",
+        "dateAdded": "2022-08-24T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "53BCFFBE-7A42-45AB-A81B-05ECF27592ED",
+        "title": "Tchutchuca Treme o Bumbum",
+        "authorId": "B2816FE5-924A-427A-8E34-BCA2A0149346",
+        "description": "Tchutchuca Treme o Bumbum treme treme treme",
+        "filename": "Furacao 2000 - Tchutchuca Treme o Bumbum.mp3",
+        "dateAdded": "2022-08-24T00:00:00Z",
+        "isOffensive": true
     }
 ]
