@@ -13,7 +13,8 @@ struct IconImage: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(minHeight: 50, maxHeight: 50)
                 .cornerRadius(10)
-                .padding()
+                //.border(.gray, width: 1)
+                .padding(.vertical)
         }
         .labelStyle(.iconOnly)
     }
