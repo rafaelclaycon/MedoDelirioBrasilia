@@ -68,36 +68,42 @@ class ShareAsVideoViewViewModel: ObservableObject {
         
         let url = URL(fileURLWithPath: path)
         
-        guard let audioDuration = VideoMaker.getAudioFileDuration(fileURL: url) else {
-            DispatchQueue.main.async {
-                self.isShowingProcessingView = false
-                self.showOtherError(errorTitle: "Falha na Geração do Vídeo",
-                                    errorBody: "Não foi possível obter a duração do áudio.")
-            }
-            return
-        }
-        
-        do {
-            try VideoMaker.createVideo(fromImage: image, withDuration: audioDuration, andName: contentTitle.withoutDiacritics(), soundFilepath: audioFilename, exportType: VideoExportType(rawValue: selectedSocialNetwork)!) { [weak self] videoPath, error in
-                guard let videoPath = videoPath else {
-                    DispatchQueue.main.async {
-                        self?.isShowingProcessingView = false
-                        self?.showOtherError(errorTitle: "Falha na Geração do Vídeo",
-                                            errorBody: "Não foi possível obter o caminho do vídeo.")
-                    }
-                    return
-                }
-                
-                DispatchQueue.main.async {
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let audioDuration = VideoMaker.getAudioFileDuration(fileURL: url) else {
+                DispatchQueue.main.async { [weak self] in
                     self?.isShowingProcessingView = false
-                    self?.pathToVideoFile = videoPath
-                    self?.presentShareSheet = true
+                    self?.showOtherError(errorTitle: "Falha na Geração do Vídeo",
+                                        errorBody: "Não foi possível obter a duração do áudio.")
                 }
+                return
             }
-        } catch {
-            DispatchQueue.main.async {
-                self.isShowingProcessingView = false
-                self.showOtherError(errorTitle: "Falha na Geração do Vídeo", errorBody: error.localizedDescription)
+            
+            do {
+                try VideoMaker.createVideo(fromImage: self?.image ?? UIImage(),
+                                           withDuration: audioDuration,
+                                           andName: self?.contentTitle.withoutDiacritics() ?? .empty,
+                                           soundFilepath: self?.audioFilename ?? .empty,
+                                           exportType: VideoExportType(rawValue: self?.selectedSocialNetwork ?? VideoExportType.twitter.rawValue)!) { [weak self] videoPath, error in
+                    guard let videoPath = videoPath else {
+                        DispatchQueue.main.async { [weak self] in
+                            self?.isShowingProcessingView = false
+                            self?.showOtherError(errorTitle: "Falha na Geração do Vídeo",
+                                                errorBody: "Não foi possível obter o caminho do vídeo.")
+                        }
+                        return
+                    }
+                    
+                    DispatchQueue.main.async { [weak self] in
+                        self?.isShowingProcessingView = false
+                        self?.pathToVideoFile = videoPath
+                        self?.presentShareSheet = true
+                    }
+                }
+            } catch {
+                DispatchQueue.main.async { [weak self] in
+                    self?.isShowingProcessingView = false
+                    self?.showOtherError(errorTitle: "Falha na Geração do Vídeo", errorBody: error.localizedDescription)
+                }
             }
         }
     }
