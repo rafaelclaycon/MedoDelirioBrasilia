@@ -31,7 +31,6 @@ struct SoundsView: View {
     @State private var shouldDisplayAddedToFolderToast: Bool = false
     
     // Share as Video
-    @State private var shareAsVideo_ShowContextMenuOption: Bool = UIDevice.current.userInterfaceIdiom == .phone
     @State private var shareAsVideo_Result = ShareAsVideoResult()
     
     private var columns: [GridItem] {
@@ -129,14 +128,12 @@ struct SoundsView: View {
                                                     Label(Shared.shareSoundButtonText, systemImage: "square.and.arrow.up")
                                                 }
                                                 
-                                                if shareAsVideo_ShowContextMenuOption {
-                                                    Button {
-                                                        viewModel.selectedSound = sound
-                                                        subviewToOpen = .shareAsVideoView
-                                                        showingModalView = true
-                                                    } label: {
-                                                        Label(Shared.shareAsVideoButtonText, systemImage: "film")
-                                                    }
+                                                Button {
+                                                    viewModel.selectedSound = sound
+                                                    subviewToOpen = .shareAsVideoView
+                                                    showingModalView = true
+                                                } label: {
+                                                    Label(Shared.shareAsVideoButtonText, systemImage: "film")
                                                 }
                                             }
                                             
