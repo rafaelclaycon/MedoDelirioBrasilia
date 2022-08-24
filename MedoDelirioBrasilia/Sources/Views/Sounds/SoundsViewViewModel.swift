@@ -195,10 +195,7 @@ class SoundsViewViewModel: ObservableObject {
                 return
             }
             
-            guard let path = Bundle.main.path(forResource: filepath, ofType: nil) else {
-                return showUnableToGetSoundAlert()
-            }
-            let url = URL(fileURLWithPath: path)
+            let url = URL(fileURLWithPath: filepath)
             
             iPadShareSheet = ActivityViewController(activityItems: [url]) { activity, completed, items, error in
                 if completed {
@@ -208,7 +205,7 @@ class SoundsViewViewModel: ObservableObject {
                         return
                     }
                     let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
-                    Logger.logSharedSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
+                    Logger.logSharedVideoFromSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
                     
                     AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
                     
