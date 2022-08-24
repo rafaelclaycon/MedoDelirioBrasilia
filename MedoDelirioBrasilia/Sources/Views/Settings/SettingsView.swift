@@ -4,6 +4,8 @@ struct SettingsView: View {
 
     @State private var showExplicitSounds: Bool = UserSettings.getShowOffensiveSounds()
     
+    @State private var showChangeAppIcon: Bool = ProcessInfo.processInfo.isMacCatalystApp == false
+    
     @State private var showAskForMoneyView: Bool = false
     @State private var showPixKeyCopiedAlert: Bool = false
     
@@ -31,10 +33,12 @@ struct SettingsView: View {
                     Text("Notificações")
                 }*/
                 
-                NavigationLink(destination: ChangeAppIconView()) {
-                    Text("Ícone do app")
+                if showChangeAppIcon {
+                    NavigationLink(destination: ChangeAppIconView()) {
+                        Text("Ícone do app")
+                    }
                 }
-
+                
                 NavigationLink(destination: TrendsSettingsView()) {
                     Text("Tendências")
                 }
