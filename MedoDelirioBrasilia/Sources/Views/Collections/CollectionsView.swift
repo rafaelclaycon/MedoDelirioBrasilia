@@ -97,21 +97,25 @@ struct CollectionsView: View {
                                     }
                                     .foregroundColor(.primary)
                                     .contextMenu {
-    //                                        Button {
-    //                                            folderForEditingOnSheet = folder
-    //                                            showingFolderInfoEditingView = true
-    //                                        } label: {
-    //                                            Label("Editar Pasta", systemImage: "pencil")
-    //                                        }
-                                        
-                                        Button(role: .destructive, action: {
-                                            viewModel.showFolderDeletionConfirmation(folderName: "\(folder.symbol) \(folder.name)", folderId: folder.id)
-                                        }, label: {
-                                            HStack {
-                                                Text("Apagar Pasta")
-                                                Image(systemName: "trash")
+                                        Section {
+                                            Button {
+                                                folderForEditingOnSheet = folder
+                                                showingFolderInfoEditingView = true
+                                            } label: {
+                                                Label("Editar Pasta", systemImage: "pencil")
                                             }
-                                        })
+                                        }
+                                        
+                                        Section {
+                                            Button(role: .destructive, action: {
+                                                viewModel.showFolderDeletionConfirmation(folderName: "\(folder.symbol) \(folder.name)", folderId: folder.id)
+                                            }, label: {
+                                                HStack {
+                                                    Text("Apagar Pasta")
+                                                    Image(systemName: "trash")
+                                                }
+                                            })
+                                        }
                                     }
                                 }
                             }
