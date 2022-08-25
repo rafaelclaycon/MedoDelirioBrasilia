@@ -30,19 +30,28 @@ class ShareAsVideoViewViewModel: ObservableObject {
         reloadImage()
     }
     
-    func reloadImage() {
-        if selectedSocialNetwork == VideoExportType.twitter.rawValue {
-            image = VideoMaker.textToImage(drawText: contentTitle.uppercased(),
-                                           inImage: UIImage(named: "square_video_background")!,
-                                           atPoint: CGPoint(x: 80, y: 300))
+    func reloadImage(hasUserSelectedImage: Bool = false, userSelectedImage: UIImage? = nil) {
+        if hasUserSelectedImage {
+            guard let userSelectedImage = userSelectedImage else { return }
+            image = userSelectedImage
         } else {
-            image = VideoMaker.textToImage(drawText: contentTitle.uppercased(),
-                                           inImage: UIImage(named: includeSoundWarning ? "9_16_video_background_with_warning" : "9_16_video_background_no_warning")!,
-                                           atPoint: CGPoint(x: 80, y: 600))
+            if selectedSocialNetwork == VideoExportType.twitter.rawValue {
+                image = VideoMaker.textToImage(drawText: contentTitle.uppercased(),
+                                               inImage: UIImage(named: "square_video_background")!,
+                                               atPoint: CGPoint(x: 80, y: 300))
+            } else {
+                image = VideoMaker.textToImage(drawText: contentTitle.uppercased(),
+                                               inImage: UIImage(named: includeSoundWarning ? "9_16_video_background_with_warning" : "9_16_video_background_no_warning")!,
+                                               atPoint: CGPoint(x: 80, y: 600))
+            }
         }
     }
     
-    func createVideo() {
+    func resetImageToDefault() {
+        reloadImage()
+    }
+    
+    func createVideo(hasUserSelectedImage: Bool) {
         DispatchQueue.main.async {
             self.processingViewMessage = "Gerando vídeo..."
             self.isShowingProcessingView = true
@@ -79,11 +88,13 @@ class ShareAsVideoViewViewModel: ObservableObject {
             }
             
             do {
+                let exportType: VideoExportType = hasUserSelectedImage ? .customImage : VideoExportType(rawValue: self?.selectedSocialNetwork ?? VideoExportType.twitter.rawValue)!
+                
                 try VideoMaker.createVideo(fromImage: self?.image ?? UIImage(),
                                            withDuration: audioDuration,
                                            andName: self?.contentTitle.withoutDiacritics() ?? .empty,
                                            soundFilepath: self?.audioFilename ?? .empty,
-                                           exportType: VideoExportType(rawValue: self?.selectedSocialNetwork ?? VideoExportType.twitter.rawValue)!) { [weak self] videoPath, error in
+                                           exportType: exportType) { [weak self] videoPath, error in
                     guard let videoPath = videoPath else {
                         DispatchQueue.main.async { [weak self] in
                             self?.isShowingProcessingView = false

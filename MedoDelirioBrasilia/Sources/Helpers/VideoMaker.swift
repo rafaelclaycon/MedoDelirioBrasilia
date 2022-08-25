@@ -3,6 +3,8 @@ import AVFoundation
 
 class VideoMaker {
 
+    // MARK: - Helpers
+    
     static func getAudioFileDuration(fileURL: URL) -> CGFloat? {
         do {
             let audioPlayer = try AVAudioPlayer(contentsOf: fileURL)
@@ -34,6 +36,70 @@ class VideoMaker {
 
         return newImage!
     }
+    
+    private static func resolutionForLocalVideo(url: URL) -> CGSize? {
+        guard let track = AVURLAsset(url: url).tracks(withMediaType: AVMediaType.video).first else { return nil }
+        let size = track.naturalSize.applying(track.preferredTransform)
+        return CGSize(width: abs(size.width), height: abs(size.height))
+    }
+    
+    static func getVideoWidth(with fileURL: URL) -> Int {
+        let resolution = resolutionForLocalVideo(url: fileURL)
+        guard let width = resolution?.width else {
+            return 0
+        }
+        return Int(width)
+    }
+    
+    static func getVideoHeight(with fileURL: URL) -> Int {
+        let resolution = resolutionForLocalVideo(url: fileURL)
+        guard let height = resolution?.height else {
+            return 0
+        }
+        return Int(height)
+    }
+    
+    static func getCustomImageWidth(fromImage image: UIImage) -> Int {
+        if image.size.width > image.size.height {
+            return 1920
+        } else if image.size.width == image.size.height {
+            return 1920
+        } else {
+            return Int(1920 * (image.size.width / image.size.height))
+        }
+    }
+    
+    static func getCustomImageHeight(fromImage image: UIImage) -> Int {
+        if image.size.width > image.size.height {
+            return Int(1920 / (image.size.width / image.size.height))
+        } else if image.size.width == image.size.height {
+            return 1920
+        } else {
+            return 1920
+        }
+    }
+    
+    static func getCustomImageWidth(fromVideo videoURL: URL) -> Int {
+        if getVideoWidth(with: videoURL) > getVideoHeight(with: videoURL) {
+            return 1920
+        } else if image.size.width == image.size.height {
+            return 1920
+        } else {
+            return Int(1920 * (image.size.width / image.size.height))
+        }
+    }
+    
+    static func getCustomImageHeight(fromVideo videoURL: URL) -> Int {
+        if image.size.width > image.size.height {
+            return Int(1920 / (image.size.width / image.size.height))
+        } else if image.size.width == image.size.height {
+            return 1920
+        } else {
+            return 1920
+        }
+    }
+    
+    // MARK: - Main Stuff
     
     static func mergeVideoWithAudio(videoUrl: URL,
                                     audioUrl: URL,
@@ -91,14 +157,18 @@ class VideoMaker {
             var videoWidth: Int = 0
             var videoHeight: Int = 0
             
-            if exportType == VideoExportType.twitter {
+            switch exportType {
+            case .twitter:
                 videoWidth = 1000
                 videoHeight = 1000
-            } else {
+            case .instagramTikTok:
                 videoWidth = 1080
                 videoHeight = 1920
+            case .customImage:
+                videoHeight = 1920
+                videoWidth = Int(1920 * aspectRatioOfVideo(with: videoUrl))
             }
-        
+            
             mutableVideoComposition.renderSize = CGSize(width: videoWidth, height: videoHeight)
 
             if let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first {
@@ -196,12 +266,17 @@ class VideoMaker {
         var videoWidth: Int = 0
         var videoHeight: Int = 0
         
-        if exportType == VideoExportType.twitter {
+        switch exportType {
+        case .twitter:
             videoWidth = 1000
             videoHeight = 1000
-        } else {
+        case .instagramTikTok:
             videoWidth = 1080
             videoHeight = 1920
+        case .customImage:
+            //videoWidth = Int(1920 * (image.size.width / image.size.height))
+            videoWidth = getCustomImageWidth(fromImage: image)
+            videoHeight = getCustomImageHeight(fromImage: image)
         }
         
         let assetWriterSettings = [AVVideoCodecKey: AVVideoCodecType.h264, AVVideoWidthKey: videoWidth, AVVideoHeightKey: videoHeight] as [String: Any]

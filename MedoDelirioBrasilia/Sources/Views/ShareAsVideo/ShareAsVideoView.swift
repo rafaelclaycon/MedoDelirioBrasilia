@@ -5,6 +5,10 @@ struct ShareAsVideoView: View {
     @StateObject var viewModel: ShareAsVideoViewViewModel
     @Binding var isBeingShown: Bool
     @Binding var result: ShareAsVideoResult
+    @State private var userSelectedImage: UIImage?
+    var hasUserSelectedImage: Bool {
+        return userSelectedImage != nil
+    }
     
     @State private var tipText: String = .empty
     
@@ -23,9 +27,9 @@ struct ShareAsVideoView: View {
                         .pickerStyle(SegmentedPickerStyle())
                         .padding(.horizontal, 25)
                         .padding(.bottom, 10)
-                        .onChange(of: viewModel.selectedSocialNetwork) { newValue in
-                            tipText = newValue == VideoExportType.twitter.rawValue ? twitterTip : instagramTip
-                            viewModel.reloadImage()
+                        .onChange(of: viewModel.selectedSocialNetwork) { selectedSocialNetwork in
+                            tipText = selectedSocialNetwork == VideoExportType.twitter.rawValue ? twitterTip : instagramTip
+                            viewModel.reloadImage(hasUserSelectedImage: hasUserSelectedImage, userSelectedImage: userSelectedImage)
                         }
                         
                         Image(uiImage: viewModel.image)
@@ -33,7 +37,7 @@ struct ShareAsVideoView: View {
                             .scaledToFit()
                             .frame(height: 350)
                         
-                        if viewModel.selectedSocialNetwork == VideoExportType.instagramTikTok.rawValue {
+                        if viewModel.selectedSocialNetwork == VideoExportType.instagramTikTok.rawValue && hasUserSelectedImage == false {
                             Toggle("Incluir aviso Ligue o Som", isOn: $viewModel.includeSoundWarning)
                                 .onChange(of: viewModel.includeSoundWarning) { _ in
                                     viewModel.reloadImage()
@@ -42,12 +46,27 @@ struct ShareAsVideoView: View {
                                 .padding(.top)
                         }
                         
+                        NavigationLink(destination: ImagePicker(image: $userSelectedImage)) {
+                            Label("Escolher imagem da galeria...", systemImage: "photo.on.rectangle.angled")
+                        }
+                        .padding(.top)
+                        
+                        if hasUserSelectedImage {
+                            Button {
+                                userSelectedImage = nil
+                                viewModel.resetImageToDefault()
+                            } label: {
+                                Label("Remover imagem", systemImage: "x.circle")
+                            }
+                            .padding(.top)
+                        }
+                        
                         TipView(text: $tipText)
-                            .padding(.horizontal)
+                            .padding(.horizontal, 25)
                             .padding(.vertical)
                         
                         Button {
-                            viewModel.createVideo()
+                            viewModel.createVideo(hasUserSelectedImage: hasUserSelectedImage)
                         } label: {
                             HStack(spacing: 20) {
                                 if viewModel.selectedSocialNetwork == VideoExportType.twitter.rawValue {
@@ -97,6 +116,9 @@ struct ShareAsVideoView: View {
                             result.contentId = viewModel.contentId
                             isBeingShown = false
                         }
+                    }
+                    .onChange(of: userSelectedImage) { userSelectedImage in
+                        viewModel.reloadImage(hasUserSelectedImage: hasUserSelectedImage, userSelectedImage: userSelectedImage)
                     }
                 }
             }
