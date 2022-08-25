@@ -39,7 +39,7 @@ struct AppIconCell_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             AppIconCell(icon: Icon.primary, selectedItem: .constant(Icon.primary.id))
-            AppIconCell(icon: Icon.teuCu, selectedItem: .constant(Icon.primary.id))
+            AppIconCell(icon: Icon.terrivelEdit, selectedItem: .constant(Icon.primary.id))
         }
         .previewLayout(.fixed(width: 350, height: 100))
     }
