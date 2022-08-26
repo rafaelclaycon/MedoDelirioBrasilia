@@ -5,9 +5,17 @@ struct ChangeAppIconView: View {
     private var model = AppIcon()
     @State private var selectedIcon: String = .empty
     
+    private var icons: [Icon] {
+        if UserSettings.getShowOffensiveSounds() {
+            return Icon.allCases
+        } else {
+            return Icon.allCases.filter({ $0.isOffensive == false })
+        }
+    }
+    
     var body: some View {
         VStack {
-            List(Icon.allCases) { icon in
+            List(icons) { icon in
                 Button {
                     model.setAlternateAppIcon(icon: icon)
                     selectedIcon = icon.id

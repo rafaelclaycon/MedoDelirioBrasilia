@@ -2640,8 +2640,8 @@
 		D957509728446BEC0094AEA6 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				D9ECD81328B3C45D003C033A /* AlternateIcons */,
 				D958B1B12839534D0010F133 /* SettingsView.swift */,
+				D9ECD81328B3C45D003C033A /* AlternateIcons */,
 				D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */,
 				D93D24DF2849DAAB00300541 /* DiagnosticsView.swift */,
 				D973076B28AC49B100FBB3B8 /* DiagnosticsViewViewModel.swift */,
