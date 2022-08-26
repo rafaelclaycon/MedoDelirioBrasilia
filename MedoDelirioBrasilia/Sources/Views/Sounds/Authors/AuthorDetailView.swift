@@ -50,6 +50,14 @@ struct AuthorDetailView: View {
                                             } label: {
                                                 Label(Shared.shareSoundButtonText, systemImage: "square.and.arrow.up")
                                             }
+                                            
+                                            Button {
+                                                viewModel.selectedSound = sound
+                                                //subviewToOpen = .shareAsVideoView
+                                                //showingModalView = true
+                                            } label: {
+                                                Label(Shared.shareAsVideoButtonText, systemImage: "film")
+                                            }
                                         }
                                         
                                         Section {
