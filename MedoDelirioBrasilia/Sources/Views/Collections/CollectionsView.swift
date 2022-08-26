@@ -96,6 +96,7 @@ struct CollectionsView: View {
                                         FolderCell(symbol: folder.symbol, name: folder.name, backgroundColor: folder.backgroundColor.toColor())
                                     }
                                     .foregroundColor(.primary)
+                                    .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
                                     .contextMenu {
     //                                        Button {
     //                                            folderForEditingOnSheet = folder
