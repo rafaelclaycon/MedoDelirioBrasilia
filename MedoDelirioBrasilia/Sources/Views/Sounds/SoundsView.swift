@@ -33,6 +33,10 @@ struct SoundsView: View {
     // Share as Video
     @State private var shareAsVideo_Result = ShareAsVideoResult()
     
+    // View All Sounds By This Author
+    @State var authorToAutoOpen: Author = Author(id: .empty, name: .empty)
+    @State var autoOpenAuthor: Bool = false
+    
     private var columns: [GridItem] {
         if UIDevice.current.userInterfaceIdiom == .phone {
             return [
@@ -108,6 +112,8 @@ struct SoundsView: View {
     var body: some View {
         ZStack {
             VStack {
+                NavigationLink(destination: AuthorDetailView(author: authorToAutoOpen), isActive: $autoOpenAuthor) { EmptyView() }
+                
                 if showNoFavoritesView {
                     NoFavoritesView()
                         .padding(.horizontal, 25)
@@ -192,7 +198,11 @@ struct SoundsView: View {
                                             
                                             Section {
                                                 Button {
-                                                    //
+                                                    guard let author = authorData.first(where: { $0.id == sound.authorId }) else {
+                                                        return
+                                                    }
+                                                    authorToAutoOpen = author
+                                                    autoOpenAuthor = true
                                                 } label: {
                                                     Label("Ver Todos os Sons Desse Autor", systemImage: "person")
                                                 }
