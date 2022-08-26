@@ -88,7 +88,11 @@ struct SoundsView: View {
     
     private var title: String {
         if UIDevice.current.userInterfaceIdiom == .phone {
-            return LocalizableStrings.MainView.title
+            if currentMode == .byAuthor {
+                return "Autores"
+            } else {
+                return LocalizableStrings.MainView.title
+            }
         } else {
             switch currentMode {
             case .allSounds:
@@ -188,18 +192,18 @@ struct SoundsView: View {
                                             
                                             Section {
                                                 Button {
+                                                    //
+                                                } label: {
+                                                    Label("Ver Todos os Sons Desse Autor", systemImage: "person")
+                                                }
+                                                
+                                                Button {
                                                     viewModel.selectedSound = sound
                                                     viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = true
                                                 } label: {
                                                     Label(SoundOptionsHelper.getSuggestOtherAuthorNameButtonTitle(authorId: sound.authorId), systemImage: "exclamationmark.bubble")
                                                 }
                                             }
-                                            
-//                                            Button {
-//                                                //
-//                                            } label: {
-//                                                Label("Ver Todos os Sons Desse Autor", systemImage: "person")
-//                                            }
                                         })
                                 }
                             }
@@ -233,54 +237,7 @@ struct SoundsView: View {
             }
             .navigationTitle(Text(title))
             .navigationBarItems(leading:
-                HStack {
-                    Menu {
-                        Section {
-                            Picker("Exibição", selection: $currentMode) {
-                                HStack {
-                                    Text("Todos os Sons")
-                                    Image(systemName: "speaker.wave.3")
-                                }
-                                .tag(Mode.allSounds)
-                                
-                                HStack {
-                                    Text("Favoritos")
-                                    Image(systemName: "star")
-                                }
-                                .tag(Mode.favorites)
-                                
-                                HStack {
-                                    Text("Agrupados por Autor")
-                                    Image(systemName: "person")
-                                }
-                                .tag(Mode.byAuthor)
-                            }
-                        }
-                    } label: {
-                        if UIDevice.current.userInterfaceIdiom == .pad {
-                            Text("")
-                        } else {
-                            HStack {
-                                Text(dropDownText)
-                                Image(systemName: "chevron.down")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 15)
-                            }
-                        }
-                    }
-                    .onChange(of: currentMode) { newValue in
-                        guard newValue != .byAuthor else {
-                            return
-                        }
-                        viewModel.reloadList(withSounds: soundData,
-                                             andFavorites: try? database.getAllFavorites(),
-                                             allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
-                                             favoritesOnly: newValue == .favorites,
-                                             sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
-                    }
-                }
-                .disabled(UIDevice.current.userInterfaceIdiom == .pad)
+                getLeadingToolbarControl()
             , trailing:
                 Menu {
                     Section {
@@ -413,6 +370,35 @@ struct SoundsView: View {
                 }
                 .transition(.moveAndFade)
             }
+        }
+    }
+    
+    @ViewBuilder func getLeadingToolbarControl() -> some View {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            Picker("Exibição", selection: $currentMode) {
+                Image(systemName: "speaker.wave.3")
+                    .tag(Mode.allSounds)
+                
+                Image(systemName: "star")
+                    .tag(Mode.favorites)
+                
+                Image(systemName: "person")
+                    .tag(Mode.byAuthor)
+            }
+            .pickerStyle(.segmented)
+            .frame(width: 200)
+            .onChange(of: currentMode) { newValue in
+                guard newValue != .byAuthor else {
+                    return
+                }
+                viewModel.reloadList(withSounds: soundData,
+                                     andFavorites: try? database.getAllFavorites(),
+                                     allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+                                     favoritesOnly: newValue == .favorites,
+                                     sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
+            }
+        } else {
+            EmptyView()
         }
     }
 
