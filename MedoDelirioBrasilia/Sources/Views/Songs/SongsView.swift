@@ -34,9 +34,16 @@ struct SongsView: View {
         ZStack {
             VStack {
                 ScrollView {
+//                    if searchText.isEmpty {
+//                        HitsMedoDelirioBannerView()
+//                            .padding(.horizontal)
+//                            .padding(.vertical, 6)
+//                    }
+                    
                     LazyVGrid(columns: columns, spacing: 14) {
                         ForEach(searchResults) { song in
                             SongCell(songId: song.id, title: song.title, genre: song.genre, duration: song.duration, nowPlaying: $viewModel.nowPlayingKeeper)
+                                .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
                                 .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                                 .onTapGesture {
                                     if viewModel.nowPlayingKeeper.contains(song.id) {
@@ -48,10 +55,24 @@ struct SongsView: View {
                                         viewModel.nowPlayingKeeper.insert(song.id)
                                     }
                                 }
-                                .onLongPressGesture {
-                                    TapticFeedback.open()
-                                    viewModel.shareSong(withPath: song.filename, andContentId: song.id)
-                                }
+                                .contextMenu(menuItems: {
+                                    Section {
+                                        Button {
+                                            viewModel.shareSong(withPath: song.filename, andContentId: song.id)
+                                        } label: {
+                                            Label(Shared.shareSongButtonText, systemImage: "square.and.arrow.up")
+                                        }
+                                    }
+                                    
+                                    Section {
+                                        Button {
+                                            viewModel.selectedSong = song
+                                            viewModel.showEmailAppPicker_suggestChangeConfirmationDialog = true
+                                        } label: {
+                                            Label("Sugerir Alteração", systemImage: "exclamationmark.bubble")
+                                        }
+                                    }
+                                })
                         }
                     }
                     .searchable(text: $searchText)
@@ -117,6 +138,11 @@ struct SongsView: View {
             }
             .sheet(isPresented: $viewModel.isShowingShareSheet) {
                 viewModel.iPadShareSheet
+            }
+            .sheet(isPresented: $viewModel.showEmailAppPicker_suggestChangeConfirmationDialog) {
+                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_suggestChangeConfirmationDialog,
+                                   subject: String(format: Shared.Email.suggestSongChangeSubject, viewModel.selectedSong?.title ?? ""),
+                                   emailBody: String(format: Shared.Email.suggestSongChangeBody, viewModel.selectedSong?.id ?? ""))
             }
             
             if viewModel.shouldDisplaySharedSuccessfullyToast {

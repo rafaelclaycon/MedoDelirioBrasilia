@@ -16,7 +16,8 @@ class SoundsViewViewModel: ObservableObject {
     // Sharing
     @Published var iPadShareSheet = ActivityViewController(activityItems: [URL(string: "https://www.apple.com")!])
     @Published var isShowingShareSheet: Bool = false
-    @Published var shouldDisplaySharedSuccessfullyToast: Bool = false
+    @Published var shareBannerMessage: String = .empty
+    @Published var displaySharedSuccessfullyToast: Bool = false
     
     // Alerts
     @Published var alertTitle: String = ""
@@ -108,14 +109,15 @@ class SoundsViewViewModel: ObservableObject {
                     if didShareSuccessfully {
                         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
                             withAnimation {
-                                self.shouldDisplaySharedSuccessfullyToast = true
+                                self.shareBannerMessage = Shared.soundSharedSuccessfullyMessage
+                                self.displaySharedSuccessfullyToast = true
                             }
                             TapticFeedback.success()
                         }
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                             withAnimation {
-                                self.shouldDisplaySharedSuccessfullyToast = false
+                                self.displaySharedSuccessfullyToast = false
                             }
                         }
                     }
@@ -135,6 +137,8 @@ class SoundsViewViewModel: ObservableObject {
             
             iPadShareSheet = ActivityViewController(activityItems: [url]) { activity, completed, items, error in
                 if completed {
+                    self.isShowingShareSheet = false
+                    
                     guard let activity = activity else {
                         return
                     }
@@ -145,14 +149,77 @@ class SoundsViewViewModel: ObservableObject {
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
                         withAnimation {
-                            self.shouldDisplaySharedSuccessfullyToast = true
+                            self.shareBannerMessage = Shared.soundSharedSuccessfullyMessage
+                            self.displaySharedSuccessfullyToast = true
                         }
                         TapticFeedback.success()
                     }
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                         withAnimation {
-                            self.shouldDisplaySharedSuccessfullyToast = false
+                            self.displaySharedSuccessfullyToast = false
+                        }
+                    }
+                }
+            }
+            
+            isShowingShareSheet = true
+        }
+    }
+    
+    func shareVideo(withPath filepath: String, andContentId contentId: String) {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            do {
+                try Sharer.shareVideoFromSound(withPath: filepath, andContentId: contentId, shareSheetDelayInSeconds: 0.6) { didShareSuccessfully in
+                    if didShareSuccessfully {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                            withAnimation {
+                                self.shareBannerMessage = Shared.videoSharedSuccessfullyMessage
+                                self.displaySharedSuccessfullyToast = true
+                            }
+                            TapticFeedback.success()
+                        }
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            withAnimation {
+                                self.displaySharedSuccessfullyToast = false
+                            }
+                        }
+                    }
+                }
+            } catch {
+                showUnableToGetSoundAlert()
+            }
+        } else {
+            guard filepath.isEmpty == false else {
+                return
+            }
+            
+            let url = URL(fileURLWithPath: filepath)
+            
+            iPadShareSheet = ActivityViewController(activityItems: [url]) { activity, completed, items, error in
+                if completed {
+                    self.isShowingShareSheet = false
+                    
+                    guard let activity = activity else {
+                        return
+                    }
+                    let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
+                    Logger.logSharedVideoFromSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
+                    
+                    AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                        withAnimation {
+                            self.shareBannerMessage = Shared.videoSharedSuccessfullyMessage
+                            self.displaySharedSuccessfullyToast = true
+                        }
+                        TapticFeedback.success()
+                    }
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        withAnimation {
+                            self.displaySharedSuccessfullyToast = false
                         }
                     }
                 }
@@ -190,7 +257,7 @@ class SoundsViewViewModel: ObservableObject {
     }
     
     func sendDeviceModelNameToServer() {
-        if UserSettings.getHasSentDeviceModelToServer() == false {
+        if AppPersistentMemory.getHasSentDeviceModelToServer() == false {
             guard UIDevice.modelName.contains("Simulator") == false else {
                 return
             }
@@ -198,10 +265,10 @@ class SoundsViewViewModel: ObservableObject {
                 return
             }
             
-            let info = ClientDeviceInfo(installId: UIDevice.current.identifierForVendor?.uuidString ?? "", modelName: UIDevice.modelName)
+            let info = ClientDeviceInfo(installId: UIDevice.identifiderForVendor, modelName: UIDevice.modelName)
             networkRabbit.post(clientDeviceInfo: info) { success, error in
                 if let success = success, success {
-                    UserSettings.setHasSentDeviceModelToServer(to: true)
+                    AppPersistentMemory.setHasSentDeviceModelToServer(to: true)
                 }
             }
         }
@@ -215,13 +282,13 @@ class SoundsViewViewModel: ObservableObject {
             return
         }
         
-        if let lastDate = UserSettings.getLastSendDateOfUserPersonalTrendsToServer() {
+        if let lastDate = AppPersistentMemory.getLastSendDateOfUserPersonalTrendsToServer() {
             if lastDate.onlyDate! < Date.now.onlyDate! {
                 podium.exchangeShareCountStatsWithTheServer { result, _ in
                     guard result == .successful || result == .noStatsToSend else {
                         return
                     }
-                    UserSettings.setLastSendDateOfUserPersonalTrendsToServer(to: Date.now.onlyDate!)
+                    AppPersistentMemory.setLastSendDateOfUserPersonalTrendsToServer(to: Date.now.onlyDate!)
                 }
             }
         } else {
@@ -229,7 +296,7 @@ class SoundsViewViewModel: ObservableObject {
                 guard result == .successful || result == .noStatsToSend else {
                     return
                 }
-                UserSettings.setLastSendDateOfUserPersonalTrendsToServer(to: Date.now.onlyDate!)
+                AppPersistentMemory.setLastSendDateOfUserPersonalTrendsToServer(to: Date.now.onlyDate!)
             }
         }
     }

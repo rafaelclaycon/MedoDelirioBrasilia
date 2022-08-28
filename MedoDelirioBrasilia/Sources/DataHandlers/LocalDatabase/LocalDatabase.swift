@@ -22,6 +22,7 @@ class LocalDatabase {
     var networkCallLog = Table("networkCallLog")
     var userFolder = Table("userFolder")
     var userFolderContent = Table("userFolderContent")
+    var favoriteLog = Table("favoriteLog")
     
     // MARK: - Setup
     
@@ -57,7 +58,11 @@ extension LocalDatabase {
     }
     
     static func migrations() -> [Migration] {
-        return [InitialMigration(), AddNetworkCallLogTable(), AddUserFolderTables()]
+        return [InitialMigration(), AddNetworkCallLogTable(), AddUserFolderTables(), AddFavoriteLogTable()]
+    }
+    
+    var needsMigration: Bool {
+        return migrationManager.needsMigration()
     }
 
 }
