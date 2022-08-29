@@ -10,6 +10,7 @@ enum Icon: String, CaseIterable, Identifiable {
     case primary              = "AppIcon"
     case odioNojo             = "AppIcon-OdioNojo"
     case terrivelEdit         = "AppIcon-TerrivelEdit"
+    case teuCu                = "AppIcon-TeuCu"
     case boraPassarRaiva      = "AppIcon-BoraPassarRaiva"
     case malditosMilicosBlack = "AppIcon-MalditosMilicos-Black"
     case malditosMilicosRed   = "AppIcon-MalditosMilicos-Red"
@@ -25,19 +26,45 @@ enum Icon: String, CaseIterable, Identifiable {
         case .odioNojo:
             return "Ódio e Nojo"
         case .terrivelEdit:
-            return "O Terrível Editorialista"
+            return "O Terrível Editorialista do Estadão"
+        case .teuCu:
+            return "Teu Cu"
         case .boraPassarRaiva:
             return "Bora Passar Raiva?"
         case .malditosMilicosBlack:
-            return "Malditos (Preto)"
+            return "Malditos Milicos (Preto)"
         case .malditosMilicosRed:
-            return "Malditos (Vermelho)"
+            return "Malditos Milicos (Vermelho)"
         case .bomDiaBoaTarde:
             return "Bom dia, boa tarde, boa noite... por enquanto"
         case .medoDelicia:
             return "Medo e Delícia"
         case .lgbt:
             return "Orgulho"
+        }
+    }
+    var isOffensive: Bool {
+        switch self {
+        case .primary:
+            return false
+        case .odioNojo:
+            return false
+        case .terrivelEdit:
+            return true
+        case .teuCu:
+            return true
+        case .boraPassarRaiva:
+            return false
+        case .malditosMilicosBlack:
+            return true
+        case .malditosMilicosRed:
+            return true
+        case .bomDiaBoaTarde:
+            return false
+        case .medoDelicia:
+            return false
+        case .lgbt:
+            return false
         }
     }
 
