@@ -48,8 +48,14 @@ struct SoundsView: View {
                 return [
                     GridItem(.flexible())
                 ]
-            } else if listWidth < 700 {
+            } else if listWidth < 600 {
                 return [
+                    GridItem(.flexible()),
+                    GridItem(.flexible())
+                ]
+            } else if listWidth < 705 {
+                return [
+                    GridItem(.flexible()),
                     GridItem(.flexible()),
                     GridItem(.flexible())
                 ]
@@ -77,17 +83,6 @@ struct SoundsView: View {
     
     private var showNoFavoritesView: Bool {
         searchResults.isEmpty && currentMode == .favorites && searchText.isEmpty
-    }
-    
-    private var dropDownText: String {
-        switch currentMode {
-        case .allSounds:
-            return "Todos"
-        case .favorites:
-            return "Favoritos"
-        case .byAuthor:
-            return "Por autor"
-        }
     }
     
     private var title: String {
