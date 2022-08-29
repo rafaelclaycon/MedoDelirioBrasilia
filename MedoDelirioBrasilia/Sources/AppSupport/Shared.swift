@@ -14,7 +14,9 @@ struct Shared {
     //static let removeFromFavoritesEmojis = ["🍗","🐂","👴🏻🇧🇷","💩","🤖","🔫","⛽️","🚜","🍌","🍫🤑","🛥🤳🏻"]
     
     static let addToFolderButtonText = "Adicionar a Pasta"
-    static let shareButtonText = "Compartilhar"
+    static let shareSoundButtonText = "Compartilhar Som"
+    static let shareSongButtonText = "Compartilhar Música"
+    static let shareAsVideoButtonText = "Compartilhar como Vídeo"
     
     static let contentFilterMessageForSoundsiPhone = "Alguns sons não estão sendo exibidos pois a opção Exibir Conteúdo Sensível está desabilitada. Você pode mudar isso na aba Ajustes (aqui dentro do app)."
     static let contentFilterMessageForSoundsiPadMac = "Alguns sons não estão sendo exibidos pois a opção Exibir Conteúdo Sensível está desabilitada. Você pode mudar isso na tela de Ajustes (ícone de engrenagem no topo da barra lateral do app)."
@@ -25,6 +27,7 @@ struct Shared {
     static let soundNotFoundAlertMessage = "Devido a um problema técnico, o som que você quer acessar não está disponível."
     static let soundSharedSuccessfullyMessage = "Som compartilhado com sucesso."
     static let songSharedSuccessfullyMessage = "Música compartilhada com sucesso."
+    static let videoSharedSuccessfullyMessage = "Vídeo compartilhado com sucesso."
     
     static let unknownAuthor = "Desconhecido"
     

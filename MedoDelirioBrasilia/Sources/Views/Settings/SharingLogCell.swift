@@ -24,6 +24,10 @@ struct SharingLogCell: View {
             return "Som"
         case .song:
             return "Música"
+        case .videoFromSound:
+            return "Vídeo de Som"
+        case .videoFromSong:
+            return "Vídeo de Música"
         }
     }
     var adjective: String {
@@ -32,6 +36,10 @@ struct SharingLogCell: View {
             return "compartilhado"
         case .song:
             return "compartilhada"
+        case .videoFromSound:
+            return "compartilhado"
+        case .videoFromSong:
+            return "compartilhado"
         }
     }
     

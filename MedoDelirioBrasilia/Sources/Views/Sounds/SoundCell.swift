@@ -31,6 +31,14 @@ struct SoundCell: View {
         }
     }
     
+    private var cellHeight: CGFloat {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            return UIDevice.is4InchDevice ? 120 : 96
+        } else {
+            return UIDevice.isiPadMini ? 130 : 96
+        }
+    }
+    
     private let regularGradient = LinearGradient(gradient: Gradient(colors: [.green, .green, .brightYellow]), startPoint: .topLeading, endPoint: .bottomTrailing)
     private let favoriteGradient = LinearGradient(gradient: Gradient(colors: [.red, .red, .red]), startPoint: .topLeading, endPoint: .bottomTrailing)
 
@@ -38,7 +46,7 @@ struct SoundCell: View {
         ZStack {
             RoundedRectangle(cornerRadius: 20, style: .continuous)
                 .fill(isFavorite ? favoriteGradient : regularGradient)
-                .frame(height: UIDevice.is4InchDevice ? 120 : 96)
+                .frame(height: cellHeight)
             
             if isFavorite {
                 HStack {

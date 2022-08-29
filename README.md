@@ -32,10 +32,22 @@ Looking for an Android version? Check out [Sidronio Lima's Android app](https://
 
 ## How to run
 
-### Prerequisites
+### On your device (production)
 
-- iOS 15.0+
-- Xcode 13.4+
+1. [**Download the app from the App Store**](https://apps.apple.com/br/app/medo-e-del%C3%ADrio/id1625199878)
+
+#### Prerequisites to run from the App Store
+
+- iOS 15 (iPhone SE 1/iPhone 6s/6s Plus or newer) or
+- iPadOS 15 (iPad 5th gen, iPad mini 4, iPad Air 2, any iPad Pro, or newer) or
+- macOS 12 Monterey on an Apple Silicion Mac (M1 or higher).
+
+
+### Prerequisites to develop
+
+- A Mac running macOS 12 Monterey;
+- Xcode 13.4+;
+- iOS 15.0+ simulators.
 
 ## App support
 

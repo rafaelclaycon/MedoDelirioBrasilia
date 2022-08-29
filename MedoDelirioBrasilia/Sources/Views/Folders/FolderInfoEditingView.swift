@@ -54,6 +54,13 @@ struct FolderInfoEditingView: View {
                         focusedField = nil
                     }
                 
+                if ProcessInfo.processInfo.isMacCatalystApp {
+                    Text("Para acessar os emojis no Mac, pressione Control + Command + Espaço.")
+                        .foregroundColor(.gray)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                }
+                
                 VStack {
                     TextField("Nome da pasta", text: $folderName)
                         .textFieldStyle(.roundedBorder)

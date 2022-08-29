@@ -181,7 +181,7 @@
     },
     {
         "id": "C9C87B50-55DE-4535-B164-819DE597A982",
-        "title": "Eu vou pra Ceilância",
+        "title": "Eu vou pra Ceilândia",
         "description": "",
         "genre": "Rock",
         "duration": "00:13",
@@ -307,6 +307,66 @@
         "duration": "01:39",
         "filename": "Carla Zambelliii (Happy cover).mp3",
         "dateAdded": "2022-07-28T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "9B492003-96B8-48F7-91F8-15C1EFFD69FC",
+        "title": "Assovio do passarinho",
+        "description": "",
+        "genre": "Funk",
+        "duration": "00:23",
+        "filename": "Assovio do passarinho.mp3",
+        "dateAdded": "2022-08-15T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "62CFFE82-096F-43AB-BBC9-7C6C1E90FE0A",
+        "title": "Dose segura de crack / os tios e as tias do Zap",
+        "description": "",
+        "genre": "Funk",
+        "duration": "00:15",
+        "filename": "Dose segura de crack, os tios e as tias do Zap.mp3",
+        "dateAdded": "2022-08-16T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "2518F854-7661-46F6-B259-A91E2F47A198",
+        "title": "Jingle de Campanha do Bolsonaro",
+        "description": "",
+        "genre": "Sertanejo",
+        "duration": "00:13",
+        "filename": "Musica de Campanha do Bolsonaro.mp3",
+        "dateAdded": "2022-08-21T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "D9A37E17-CE17-486A-98BB-45E140CAB065",
+        "title": "Eu vou, eu vou, sentar na mesa eu vou",
+        "description": "",
+        "genre": "Funk",
+        "duration": "00:36",
+        "filename": "Eu vou, eu vou, sentar na mesa eu vou funk.mp3",
+        "dateAdded": "2022-08-21T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "764167E5-33EB-4A8B-87C2-580E71F43A2E",
+        "title": "Sentar na mesa",
+        "description": "",
+        "genre": "Funk",
+        "duration": "00:15",
+        "filename": "Funk do Sentar na Mesa.mp3",
+        "dateAdded": "2022-08-21T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "3A6A0386-7149-497C-AF5E-5CD98D724D0D",
+        "title": "Coréia do Norte, Cuba, Venezuela",
+        "description": "",
+        "genre": "Funk",
+        "duration": "00:42",
+        "filename": "Coreia do Norte, Cuba, Venezuela musica.mp3",
+        "dateAdded": "2022-08-21T00:00:00Z",
         "isOffensive": false
     }
 ]
