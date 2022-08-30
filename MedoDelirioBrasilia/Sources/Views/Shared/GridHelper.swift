@@ -4,7 +4,7 @@ class GridHelper {
 
     static func soundColumns(listWidth: CGFloat, sizeCategory: ContentSizeCategory) -> [GridItem] {
         if UIDevice.current.userInterfaceIdiom == .phone {
-            if sizeCategory > ContentSizeCategory.medium {
+            if sizeCategory > ContentSizeCategory.large {
                 return [
                     GridItem(.flexible())
                 ]
