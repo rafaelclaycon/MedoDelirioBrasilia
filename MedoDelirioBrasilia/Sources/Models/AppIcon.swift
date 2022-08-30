@@ -43,6 +43,30 @@ enum Icon: String, CaseIterable, Identifiable {
             return "Orgulho"
         }
     }
+    var isOffensive: Bool {
+        switch self {
+        case .primary:
+            return false
+        case .odioNojo:
+            return false
+        case .terrivelEdit:
+            return true
+        case .teuCu:
+            return true
+        case .boraPassarRaiva:
+            return false
+        case .malditosMilicosBlack:
+            return true
+        case .malditosMilicosRed:
+            return true
+        case .bomDiaBoaTarde:
+            return false
+        case .medoDelicia:
+            return false
+        case .lgbt:
+            return false
+        }
+    }
 
 }
 
