@@ -4296,8 +4296,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
 			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 7.2.0;
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.3.2;
 			};
 		};
 		D9E69590283D2E2C00C341B2 /* XCRemoteSwiftPackageReference "SQLite" */ = {
