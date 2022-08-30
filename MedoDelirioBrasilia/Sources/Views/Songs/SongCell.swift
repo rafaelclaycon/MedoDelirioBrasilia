@@ -7,6 +7,7 @@ struct SongCell: View {
     @State var genre: String
     @State var duration: String
     @Binding var nowPlaying: Set<String>
+    @Environment(\.sizeCategory) var sizeCategory
     
     var subtitle: String {
         if genre.isEmpty == false {
@@ -20,13 +21,21 @@ struct SongCell: View {
         nowPlaying.contains(songId)
     }
     
+    private var cellHeight: CGFloat {
+        if sizeCategory > ContentSizeCategory.medium {
+            return 115
+        } else {
+            return 90
+        }
+    }
+    
     let gradient = LinearGradient(gradient: Gradient(colors: [.green, .green, .green, .brightYellow]), startPoint: .topLeading, endPoint: .bottomTrailing)
     
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20, style: .continuous)
                 .fill(gradient)
-                .frame(height: 90)
+                .frame(height: cellHeight)
                 .opacity(isPlaying ? 0.7 : 1.0)
             
             VStack(alignment: .leading, spacing: 8) {
