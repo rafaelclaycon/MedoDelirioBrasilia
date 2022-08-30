@@ -22,7 +22,7 @@ struct SongCell: View {
     }
     
     private var cellHeight: CGFloat {
-        if sizeCategory > ContentSizeCategory.medium {
+        if sizeCategory > ContentSizeCategory.large {
             return 115
         } else {
             return 90
