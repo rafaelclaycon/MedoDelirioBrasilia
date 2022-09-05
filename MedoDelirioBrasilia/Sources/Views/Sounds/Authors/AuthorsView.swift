@@ -13,44 +13,38 @@ struct AuthorsView: View {
         }
     }
     
-    private let columns = [
-        GridItem(.flexible()),
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
+    private var columns: [GridItem] {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            return [
+                GridItem(.flexible())
+            ]
+        } else {
+            return [
+                GridItem(.flexible()),
+                GridItem(.flexible()),
+                GridItem(.flexible())
+            ]
+        }
+    }
     
     var body: some View {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            List(searchResults) { author in
-                NavigationLink(destination: AuthorDetailView(author: author)) {
-                    Text(author.name)
+        ScrollView {
+            LazyVGrid(columns: columns, spacing: 20) {
+                ForEach(searchResults) { author in
+                    NavigationLink(destination: AuthorDetailView(author: author)) {
+                        AuthorCell(authorName: author.name, authorImageURL: author.photo ?? "")
+                            .padding(.horizontal, 5)
+                    }
                 }
             }
             .searchable(text: $searchText)
             .disableAutocorrection(true)
+            .padding(.horizontal)
+            .padding(.top, 7)
+            .padding(.bottom, 18)
             .onAppear {
                 viewModel.reloadList()
                 //viewModel.donateActivity()
-            }
-        } else {
-            ScrollView {
-                LazyVGrid(columns: columns, spacing: 20) {
-                    ForEach(searchResults) { author in
-                        NavigationLink(destination: AuthorDetailView(author: author)) {
-                            AuthorCell(authorName: author.name, authorImageURL: author.photo ?? "")
-                                .padding(.horizontal, 5)
-                        }
-                    }
-                }
-                .searchable(text: $searchText)
-                .disableAutocorrection(true)
-                .padding(.horizontal)
-                .padding(.top, 7)
-                .padding(.bottom, 18)
-                .onAppear {
-                    viewModel.reloadList()
-                    //viewModel.donateActivity()
-                }
             }
         }
     }

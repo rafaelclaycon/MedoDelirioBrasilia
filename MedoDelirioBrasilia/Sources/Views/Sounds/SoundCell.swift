@@ -35,7 +35,7 @@ struct SoundCell: View {
         if UIDevice.current.userInterfaceIdiom == .phone {
             return UIDevice.is4InchDevice ? 120 : 96
         } else {
-            return UIDevice.isiPadMini ? 130 : 96
+            return UIDevice.isiPadMini ? 116 : 96
         }
     }
     

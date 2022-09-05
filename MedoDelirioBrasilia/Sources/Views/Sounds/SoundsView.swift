@@ -15,6 +15,8 @@ struct SoundsView: View {
     @State private var searchText: String = .empty
 
     @State private var listWidth: CGFloat = 700
+    @State private var columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
+    @Environment(\.sizeCategory) var sizeCategory
 
     @State private var scrollViewObject: ScrollViewProxy? = nil
     @State private var subviewToOpen: SubviewToOpen = .onboardingView
@@ -23,7 +25,7 @@ struct SoundsView: View {
     @Binding var updateSoundsList: Bool
     
     // Temporary banners
-    @State private var shouldDisplayHotWheatherBanner: Bool = false
+    //@State private var shouldDisplayHotWheatherBanner: Bool = false
     
     // Add to Folder vars
     @State private var hadSuccessAddingToFolder: Bool = false
@@ -31,35 +33,11 @@ struct SoundsView: View {
     @State private var shouldDisplayAddedToFolderToast: Bool = false
     
     // Share as Video
-    @State private var shareAsVideo_ShowContextMenuOption: Bool = UIDevice.current.userInterfaceIdiom == .phone
-    @State private var shareAsVideo_ResultFilepath: String = .empty
+    @State private var shareAsVideo_Result = ShareAsVideoResult()
     
-    private var columns: [GridItem] {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            return [
-                GridItem(.flexible()),
-                GridItem(.flexible())
-            ]
-        } else {
-            if listWidth < 500 {
-                return [
-                    GridItem(.flexible())
-                ]
-            } else if listWidth < 700 {
-                return [
-                    GridItem(.flexible()),
-                    GridItem(.flexible())
-                ]
-            } else {
-                return [
-                    GridItem(.flexible()),
-                    GridItem(.flexible()),
-                    GridItem(.flexible()),
-                    GridItem(.flexible())
-                ]
-            }
-        }
-    }
+    // View All Sounds By This Author
+    @State var authorToAutoOpen: Author = Author(id: .empty, name: .empty)
+    @State var autoOpenAuthor: Bool = false
     
     private var searchResults: [Sound] {
         if searchText.isEmpty {
@@ -76,20 +54,13 @@ struct SoundsView: View {
         searchResults.isEmpty && currentMode == .favorites && searchText.isEmpty
     }
     
-    private var dropDownText: String {
-        switch currentMode {
-        case .allSounds:
-            return "Todos"
-        case .favorites:
-            return "Favoritos"
-        case .byAuthor:
-            return "Por autor"
-        }
-    }
-    
     private var title: String {
         if UIDevice.current.userInterfaceIdiom == .phone {
-            return LocalizableStrings.MainView.title
+            if currentMode == .byAuthor {
+                return "Autores"
+            } else {
+                return LocalizableStrings.MainView.title
+            }
         } else {
             switch currentMode {
             case .allSounds:
@@ -105,6 +76,8 @@ struct SoundsView: View {
     var body: some View {
         ZStack {
             VStack {
+                NavigationLink(destination: AuthorDetailView(author: authorToAutoOpen), isActive: $autoOpenAuthor) { EmptyView() }
+                
                 if showNoFavoritesView {
                     NoFavoritesView()
                         .padding(.horizontal, 25)
@@ -113,12 +86,6 @@ struct SoundsView: View {
                 } else {
                     GeometryReader { geometry in
                         ScrollView {
-                            if shouldDisplayHotWheatherBanner, searchText.isEmpty, currentMode != .favorites {
-                                HotWeatherAdBannerView(displayMe: $shouldDisplayHotWheatherBanner)
-                                    .padding(.horizontal)
-                                    .padding(.vertical, 6)
-                            }
-                            
                             LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
                                 ForEach(searchResults) { sound in
                                     SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", favorites: $viewModel.favoritesKeeper)
@@ -135,14 +102,12 @@ struct SoundsView: View {
                                                     Label(Shared.shareSoundButtonText, systemImage: "square.and.arrow.up")
                                                 }
                                                 
-                                                if shareAsVideo_ShowContextMenuOption {
-                                                    Button {
-                                                        viewModel.selectedSound = sound
-                                                        subviewToOpen = .shareAsVideoView
-                                                        showingModalView = true
-                                                    } label: {
-                                                        Label(Shared.shareAsVideoButtonText, systemImage: "film")
-                                                    }
+                                                Button {
+                                                    viewModel.selectedSound = sound
+                                                    subviewToOpen = .shareAsVideoView
+                                                    showingModalView = true
+                                                } label: {
+                                                    Label(Shared.shareAsVideoButtonText, systemImage: "film")
                                                 }
                                             }
                                             
@@ -197,18 +162,22 @@ struct SoundsView: View {
                                             
                                             Section {
                                                 Button {
+                                                    guard let author = authorData.first(where: { $0.id == sound.authorId }) else {
+                                                        return
+                                                    }
+                                                    authorToAutoOpen = author
+                                                    autoOpenAuthor = true
+                                                } label: {
+                                                    Label("Ver Todos os Sons Desse Autor", systemImage: "person")
+                                                }
+                                                
+                                                Button {
                                                     viewModel.selectedSound = sound
                                                     viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = true
                                                 } label: {
                                                     Label(SoundOptionsHelper.getSuggestOtherAuthorNameButtonTitle(authorId: sound.authorId), systemImage: "exclamationmark.bubble")
                                                 }
                                             }
-                                            
-//                                            Button {
-//                                                //
-//                                            } label: {
-//                                                Label("Ver Todos os Sons Desse Autor", systemImage: "person")
-//                                            }
                                         })
                                 }
                             }
@@ -218,6 +187,7 @@ struct SoundsView: View {
                             .padding(.top, 7)
                             .onChange(of: geometry.size.width) { newWidth in
                                 self.listWidth = newWidth
+                                columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
                             }
                             
                             if UserSettings.getShowOffensiveSounds() == false, currentMode != .favorites {
@@ -242,54 +212,7 @@ struct SoundsView: View {
             }
             .navigationTitle(Text(title))
             .navigationBarItems(leading:
-                HStack {
-                    Menu {
-                        Section {
-                            Picker("Exibição", selection: $currentMode) {
-                                HStack {
-                                    Text("Todos os Sons")
-                                    Image(systemName: "speaker.wave.3")
-                                }
-                                .tag(Mode.allSounds)
-                                
-                                HStack {
-                                    Text("Favoritos")
-                                    Image(systemName: "star")
-                                }
-                                .tag(Mode.favorites)
-                                
-                                HStack {
-                                    Text("Agrupados por Autor")
-                                    Image(systemName: "person")
-                                }
-                                .tag(Mode.byAuthor)
-                            }
-                        }
-                    } label: {
-                        if UIDevice.current.userInterfaceIdiom == .pad {
-                            Text("")
-                        } else {
-                            HStack {
-                                Text(dropDownText)
-                                Image(systemName: "chevron.down")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 15)
-                            }
-                        }
-                    }
-                    .onChange(of: currentMode) { newValue in
-                        guard newValue != .byAuthor else {
-                            return
-                        }
-                        viewModel.reloadList(withSounds: soundData,
-                                             andFavorites: try? database.getAllFavorites(),
-                                             allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
-                                             favoritesOnly: newValue == .favorites,
-                                             sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
-                    }
-                }
-                .disabled(UIDevice.current.userInterfaceIdiom == .pad)
+                getLeadingToolbarControl()
             , trailing:
                 Menu {
                     Section {
@@ -342,6 +265,7 @@ struct SoundsView: View {
                                      allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
                                      favoritesOnly: currentMode == .favorites,
                                      sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
+                columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
                 viewModel.donateActivity()
                 viewModel.sendDeviceModelNameToServer()
                 viewModel.sendUserPersonalTrendsToServerIfEnabled()
@@ -350,8 +274,6 @@ struct SoundsView: View {
                     subviewToOpen = .onboardingView
                     showingModalView = true
                 }*/
-
-                shouldDisplayHotWheatherBanner = UserSettings.getHotWeatherBannerWasDismissed() == false
             }
             .sheet(isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog) {
                 EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog, subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.selectedSound?.title ?? ""), emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.selectedSound?.authorName ?? "", viewModel.selectedSound?.id ?? ""))
@@ -386,7 +308,7 @@ struct SoundsView: View {
                                     selectedSoundId: viewModel.selectedSound!.id)
                     
                 case .shareAsVideoView:
-                    ShareAsVideoView(isBeingShown: $showingModalView, resultPath: $shareAsVideo_ResultFilepath, image: VideoMaker.textToImage(drawText: viewModel.selectedSound?.title.uppercased() ?? .empty, inImage: UIImage(named: "video_background")!, atPoint: CGPoint(x: 80, y: 300)), audioFilename: viewModel.selectedSound?.filename ?? .empty, contentTitle: viewModel.selectedSound?.title ?? "Sem Título")
+                    ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result)
                 }
             }
             .onChange(of: updateSoundsList) { shouldUpdate in
@@ -399,9 +321,9 @@ struct SoundsView: View {
                     updateSoundsList = false
                 }
             }
-            .onChange(of: shareAsVideo_ResultFilepath) { videoResultPath in
+            .onChange(of: shareAsVideo_Result.videoFilepath) { videoResultPath in
                 if videoResultPath.isEmpty == false {
-                    try? Sharer.shareFile(withPath: videoResultPath, delayInSeconds: 0.6)
+                    viewModel.shareVideo(withPath: videoResultPath, andContentId: shareAsVideo_Result.contentId)
                 }
             }
             
@@ -415,15 +337,44 @@ struct SoundsView: View {
                 .transition(.moveAndFade)
             }
             
-            if viewModel.shouldDisplaySharedSuccessfullyToast {
+            if viewModel.displaySharedSuccessfullyToast {
                 VStack {
                     Spacer()
                     
-                    ToastView(text: Shared.soundSharedSuccessfullyMessage)
+                    ToastView(text: viewModel.shareBannerMessage)
                         .padding()
                 }
                 .transition(.moveAndFade)
             }
+        }
+    }
+    
+    @ViewBuilder func getLeadingToolbarControl() -> some View {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            Picker("Exibição", selection: $currentMode) {
+                Image(systemName: "speaker.wave.3")
+                    .tag(Mode.allSounds)
+                
+                Image(systemName: "star")
+                    .tag(Mode.favorites)
+                
+                Image(systemName: "person")
+                    .tag(Mode.byAuthor)
+            }
+            .pickerStyle(.segmented)
+            .frame(width: 200)
+            .onChange(of: currentMode) { newValue in
+                guard newValue != .byAuthor else {
+                    return
+                }
+                viewModel.reloadList(withSounds: soundData,
+                                     andFavorites: try? database.getAllFavorites(),
+                                     allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+                                     favoritesOnly: newValue == .favorites,
+                                     sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
+            }
+        } else {
+            EmptyView()
         }
     }
 
