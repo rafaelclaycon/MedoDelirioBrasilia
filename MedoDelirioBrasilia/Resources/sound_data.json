@@ -6208,5 +6208,59 @@
         "filename": "Furacao 2000 - Tchutchuca Treme o Bumbum.mp3",
         "dateAdded": "2022-08-24T00:00:00Z",
         "isOffensive": true
+    },
+    {
+        "id": "A130D53D-E003-44D3-A63D-1C70C83360B2",
+        "title": "Vai tomar no cu, vai pro caralho",
+        "authorId": "2AE9CF14-548F-4ECC-8422-8A62D1EF37FB",
+        "description": "vai tomar no cu vai pro caralho",
+        "filename": "Vai Tomar no Cu Vai Pro Caralho - Palhaco Gozo.mp3",
+        "dateAdded": "2022-08-30T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "D3E92F89-A44D-4E11-8AA2-514FCE3171DE",
+        "title": "Vai Tomar no Cu (completo)",
+        "authorId": "2AE9CF14-548F-4ECC-8422-8A62D1EF37FB",
+        "description": "vai tomar no cu vai pro caralho vai se fuder vai pra puta que o pariu",
+        "filename": "Vai Tomar no Cu Completo - Palhaco Gozo.mp3",
+        "dateAdded": "2022-08-30T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "B9402239-95E0-4024-B515-EE84D6095470",
+        "title": "Desculpa, perdão, lamento",
+        "authorId": "E2F0F465-9D58-4A9F-97D5-432E5DAD5582",
+        "description": "desculpa perdão lamento foi mal e os caralho a quatro 4",
+        "filename": "Desculpa perdao lamento - Pedro Daltro.mp3",
+        "dateAdded": "2022-08-30T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "83485E32-D42D-47CC-A50A-440CC536AC8F",
+        "title": "Me deixa bastante chateado",
+        "authorId": "463C5301-7D24-4EE4-9E75-E81DFF9B36F4",
+        "description": "me deixa bastante chateado",
+        "filename": "Me deixa bastante chateado - Paulo Sergio Nogueira.mp3",
+        "dateAdded": "2022-08-30T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "9CEADC5B-0D68-450D-A0ED-5FD283911681",
+        "title": "Chateado",
+        "authorId": "463C5301-7D24-4EE4-9E75-E81DFF9B36F4",
+        "description": "chateado",
+        "filename": "Chateado - Paulo Sergio Nogueira.mp3",
+        "dateAdded": "2022-08-30T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "01E5030D-4863-4485-AF95-0872842C46C1",
+        "title": "Não é hora pra desespero (completo)",
+        "authorId": "3CCBAC72-4CEE-4C8A-B3AF-B6CA0E34C5B2",
+        "description": "calma meu amigo Calma por favor não é hora pra desespero poxa tá todo mundo unido trabalhando",
+        "filename": "Nao e hora pra desespero completo.mp3",
+        "dateAdded": "2022-09-05T00:00:00Z",
+        "isOffensive": false
     }
 ]
