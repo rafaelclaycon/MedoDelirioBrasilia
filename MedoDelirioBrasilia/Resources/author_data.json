@@ -836,10 +836,6 @@
         "name": "Matheuzinho e Menor Nico"
     },
     {
-        "id": "7248F1AC-D4BF-4DF9-8E65-A0BF17F9A122",
-        "name": "MC Serginho"
-    },
-    {
         "id": "A597D84F-D4AD-4F77-A75A-B375C1FC5CE7",
         "name": "Marisa Monte"
     },
@@ -954,10 +950,6 @@
         "name": "Henrique Mandetta"
     },
     {
-        "id": "30295E3D-5CC4-4DE8-9BDA-A9117BF3535B",
-        "name": "Anderson Torres (Ministro da Defesa)"
-    },
-    {
         "id": "463C5301-7D24-4EE4-9E75-E81DFF9B36F4",
         "name": "Paulo Sérgio Nogueira",
         "photo": "https://imagens.ebc.com.br/qizmUWrGrrEBWNXcAee-ZGZZef4=/770x0/https://agenciabrasil.ebc.com.br/sites/default/files/thumbnails/image/51128885055_a51b661077_o.jpg?itok=P-4weeNh"
@@ -1033,5 +1025,9 @@
     {
         "id": "FFDD3A28-B7A3-45EF-8E18-51DE1C800F05",
         "name": "Stallone Cobra"
+    },
+    {
+        "id": "2AE9CF14-548F-4ECC-8422-8A62D1EF37FB",
+        "name": "Palhaço Gozo"
     }
 ]
