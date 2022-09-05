@@ -37,14 +37,14 @@ struct AuthorCell: View {
                         .foregroundColor(.primary)
                         .bold()
                         .multilineTextAlignment(.leading)
+                        .lineLimit(2)
                 }
                 .padding(.leading, 5)
                 
                 Spacer()
                 
-                Text(soundCount)
+                NumberBadgeView(number: soundCount)
                     .foregroundColor(.primary)
-                    .bold()
                     .padding(.trailing, 12)
                 
                 Image(systemName: "chevron.right")
