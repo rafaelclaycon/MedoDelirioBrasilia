@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4979105228BEC6F700CDF01C /* Vai Tomar no Cu Vai Pro Caralho - Palhaco Gozo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4979104C28BEC6F700CDF01C /* Vai Tomar no Cu Vai Pro Caralho - Palhaco Gozo.mp3 */; };
-		4979105328BEC6F700CDF01C /* Jair Bolsonaro - Os escandalos do Jair, enumerados.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4979104D28BEC6F700CDF01C /* Jair Bolsonaro - Os escandalos do Jair, enumerados.mp3 */; };
 		4979105428BEC6F700CDF01C /* Desculpa perdao lamento - Pedro Daltro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4979104E28BEC6F700CDF01C /* Desculpa perdao lamento - Pedro Daltro.mp3 */; };
 		4979105528BEC6F700CDF01C /* Me deixa bastante chateado - Paulo Sergio Nogueira.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4979104F28BEC6F700CDF01C /* Me deixa bastante chateado - Paulo Sergio Nogueira.mp3 */; };
 		4979105628BEC6F700CDF01C /* Vai Tomar no Cu Completo - Palhaco Gozo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4979105028BEC6F700CDF01C /* Vai Tomar no Cu Completo - Palhaco Gozo.mp3 */; };
@@ -153,6 +152,7 @@
 		D93443252838177000ADCD38 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93443242838177000ADCD38 /* UserInfo.swift */; };
 		D934432728381DEF00ADCD38 /* author_data.json in Resources */ = {isa = PBXBuildFile; fileRef = D934432628381DEF00ADCD38 /* author_data.json */; };
 		D93443292838230500ADCD38 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93443282838230500ADCD38 /* String+Extensions.swift */; };
+		D9345E7628C697F900BADC1B /* Ele Queria Ter 2 Mesa Funk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9345E7528C697F900BADC1B /* Ele Queria Ter 2 Mesa Funk.mp3 */; };
 		D9351C5C2844094E00D4317E /* TopChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9351C5B2844094E00D4317E /* TopChartItem.swift */; };
 		D9351C6128441FA400D4317E /* LoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9351C6028441FA400D4317E /* LoggerTests.swift */; };
 		D938132F287E12B3009EE24F /* NotificationAide.swift in Sources */ = {isa = PBXBuildFile; fileRef = D938132E287E12B3009EE24F /* NotificationAide.swift */; };
@@ -904,7 +904,6 @@
 
 /* Begin PBXFileReference section */
 		4979104C28BEC6F700CDF01C /* Vai Tomar no Cu Vai Pro Caralho - Palhaco Gozo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Vai Tomar no Cu Vai Pro Caralho - Palhaco Gozo.mp3"; sourceTree = "<group>"; };
-		4979104D28BEC6F700CDF01C /* Jair Bolsonaro - Os escandalos do Jair, enumerados.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Os escandalos do Jair, enumerados.mp3"; sourceTree = "<group>"; };
 		4979104E28BEC6F700CDF01C /* Desculpa perdao lamento - Pedro Daltro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Desculpa perdao lamento - Pedro Daltro.mp3"; sourceTree = "<group>"; };
 		4979104F28BEC6F700CDF01C /* Me deixa bastante chateado - Paulo Sergio Nogueira.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Me deixa bastante chateado - Paulo Sergio Nogueira.mp3"; sourceTree = "<group>"; };
 		4979105028BEC6F700CDF01C /* Vai Tomar no Cu Completo - Palhaco Gozo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Vai Tomar no Cu Completo - Palhaco Gozo.mp3"; sourceTree = "<group>"; };
@@ -1049,6 +1048,7 @@
 		D93443242838177000ADCD38 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		D934432628381DEF00ADCD38 /* author_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = author_data.json; sourceTree = "<group>"; };
 		D93443282838230500ADCD38 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		D9345E7528C697F900BADC1B /* Ele Queria Ter 2 Mesa Funk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ele Queria Ter 2 Mesa Funk.mp3"; sourceTree = "<group>"; };
 		D9351C5B2844094E00D4317E /* TopChartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartItem.swift; sourceTree = "<group>"; };
 		D9351C6028441FA400D4317E /* LoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerTests.swift; sourceTree = "<group>"; };
 		D938132E287E12B3009EE24F /* NotificationAide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAide.swift; sourceTree = "<group>"; };
@@ -1826,7 +1826,6 @@
 				49E5D33A28C634F20057FF7D /* Nao e hora pra desespero completo.mp3 */,
 				4979105B28BEC78600CDF01C /* Chateado - Paulo Sergio Nogueira.mp3 */,
 				4979104E28BEC6F700CDF01C /* Desculpa perdao lamento - Pedro Daltro.mp3 */,
-				4979104D28BEC6F700CDF01C /* Jair Bolsonaro - Os escandalos do Jair, enumerados.mp3 */,
 				4979104F28BEC6F700CDF01C /* Me deixa bastante chateado - Paulo Sergio Nogueira.mp3 */,
 				4979105028BEC6F700CDF01C /* Vai Tomar no Cu Completo - Palhaco Gozo.mp3 */,
 				4979104C28BEC6F700CDF01C /* Vai Tomar no Cu Vai Pro Caralho - Palhaco Gozo.mp3 */,
@@ -2543,6 +2542,7 @@
 		D92E7068283C5C120035826C /* Songs */ = {
 			isa = PBXGroup;
 			children = (
+				D9345E7528C697F900BADC1B /* Ele Queria Ter 2 Mesa Funk.mp3 */,
 				4979105828BEC71400CDF01C /* Agora vai sentar na mesa Funk.mp3 */,
 				4979105728BEC71400CDF01C /* Dentro do Carro Funk.mp3 */,
 				D9FD0F1028B2B2FA0000616A /* Coreia do Norte, Cuba, Venezuela musica.mp3 */,
@@ -3160,7 +3160,6 @@
 				D975FEBD2880B4F20035E6F2 /* Joao Doria - Isso exige medidas urgentes.mp3 in Resources */,
 				D97500032880B4F20035E6F2 /* Bolsonaro - Sera que eu to errando ao falar isso dai.mp3 in Resources */,
 				D975FFFF2880B4F20035E6F2 /* Bolsonaro - Polemizar esse assunto.mp3 in Resources */,
-				4979105328BEC6F700CDF01C /* Jair Bolsonaro - Os escandalos do Jair, enumerados.mp3 in Resources */,
 				D975FFDA2880B4F20035E6F2 /* Bolsonaro - Paralelepipedo de crack.mp3 in Resources */,
 				D975FE472880B4F20035E6F2 /* CNN BRASIL BUSINESS - Conseguimos atenuar o choque do petr¢leo que veio de fora diz Guedes voz rouca.mp3 in Resources */,
 				D975000F2880B4F20035E6F2 /* Gilmar Mendes - aha uhu o Fachin e nosso.mp3 in Resources */,
@@ -3778,6 +3777,7 @@
 				D975FF772880B4F20035E6F2 /* Vai Dar Namoro - Ele gosta.mp3 in Resources */,
 				D975FF442880B4F20035E6F2 /* Lado B do Rio - Esse cara fica reclamando do mimimi mas ele e o mimizento.mp3 in Resources */,
 				D975FEA12880B4F20035E6F2 /* Caetano Veloso - Isso ai que voce disse e tudo burrice.mp3 in Resources */,
+				D9345E7628C697F900BADC1B /* Ele Queria Ter 2 Mesa Funk.mp3 in Resources */,
 				D97500442880B4F20035E6F2 /* Amigo Pedro Daltro - Que delicia, cara.mp3 in Resources */,
 				D975FE7C2880B4F20035E6F2 /* Ernesto Araujo - Paria internacional.mp3 in Resources */,
 				D923126E28AB02FE00436336 /* Debora Travesti - Exatamente.mp3 in Resources */,
@@ -4183,7 +4183,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -4203,7 +4203,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.2.1;
+				MARKETING_VERSION = 3.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTS_MACCATALYST = YES;
@@ -4221,7 +4221,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -4241,7 +4241,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.2.1;
+				MARKETING_VERSION = 3.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTS_MACCATALYST = YES;
