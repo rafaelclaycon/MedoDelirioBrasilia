@@ -46,6 +46,7 @@
 		49DEA9DE288118FA008C9BA1 /* Gilmar mendes - Eine grosse Confusion.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA9DD288118FA008C9BA1 /* Gilmar mendes - Eine grosse Confusion.mp3 */; };
 		49DEA9E028811FAF008C9BA1 /* eletronica-eine-grosse-confusion-kraftwerk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA9DF28811FAF008C9BA1 /* eletronica-eine-grosse-confusion-kraftwerk.mp3 */; };
 		49DEA9E228812015008C9BA1 /* eletronica-eine-grosse-confusion-sexo-selvagem-kraftwerk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA9E128812015008C9BA1 /* eletronica-eine-grosse-confusion-sexo-selvagem-kraftwerk.mp3 */; };
+		49E5D33B28C634F20057FF7D /* Nao e hora pra desespero completo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49E5D33A28C634F20057FF7D /* Nao e hora pra desespero completo.mp3 */; };
 		D905B4C52857FF3D0096D466 /* AddNetworkCallLogTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D905B4C42857FF3D0096D466 /* AddNetworkCallLogTable.swift */; };
 		D90E2E5728853CDC00F406B6 /* AuthorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90E2E5628853CDC00F406B6 /* AuthorCell.swift */; };
 		D90F6A6628446C250050FFFF /* TrendsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */; };
@@ -931,6 +932,7 @@
 		49DEA9DD288118FA008C9BA1 /* Gilmar mendes - Eine grosse Confusion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gilmar mendes - Eine grosse Confusion.mp3"; sourceTree = "<group>"; };
 		49DEA9DF28811FAF008C9BA1 /* eletronica-eine-grosse-confusion-kraftwerk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "eletronica-eine-grosse-confusion-kraftwerk.mp3"; sourceTree = "<group>"; };
 		49DEA9E128812015008C9BA1 /* eletronica-eine-grosse-confusion-sexo-selvagem-kraftwerk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "eletronica-eine-grosse-confusion-sexo-selvagem-kraftwerk.mp3"; sourceTree = "<group>"; };
+		49E5D33A28C634F20057FF7D /* Nao e hora pra desespero completo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Nao e hora pra desespero completo.mp3"; sourceTree = "<group>"; };
 		D905B4C42857FF3D0096D466 /* AddNetworkCallLogTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNetworkCallLogTable.swift; sourceTree = "<group>"; };
 		D90E2E5628853CDC00F406B6 /* AuthorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorCell.swift; sourceTree = "<group>"; };
 		D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsSettingsView.swift; sourceTree = "<group>"; };
@@ -1801,6 +1803,7 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				49E5D33A28C634F20057FF7D /* Nao e hora pra desespero completo.mp3 */,
 				4979105B28BEC78600CDF01C /* Chateado - Paulo Sergio Nogueira.mp3 */,
 				4979104E28BEC6F700CDF01C /* Desculpa perdao lamento - Pedro Daltro.mp3 */,
 				4979104D28BEC6F700CDF01C /* Jair Bolsonaro - Os escandalos do Jair, enumerados.mp3 */,
@@ -3712,6 +3715,7 @@
 				D975FE0F2880B4F20035E6F2 /* Boldo - e de quanto.mp3 in Resources */,
 				D975003C2880B4F20035E6F2 /* Lu Schievano - Amiga nao tem como te defende short meme.mp3 in Resources */,
 				D975FF992880B4F20035E6F2 /* PODER360 - Roberto Jefferson - O cachorro do supremo, o xandao, alexandre de moraes.mp3 in Resources */,
+				49E5D33B28C634F20057FF7D /* Nao e hora pra desespero completo.mp3 in Resources */,
 				D97500422880B4F20035E6F2 /* Bolsonaro - Faz politicalha.mp3 in Resources */,
 				D975FFD22880B4F20035E6F2 /* Michael Jackson - Dont Stop Till You Get Enough Andre Marques short.mp3 in Resources */,
 				D975FE8D2880B4F20035E6F2 /* Away - Bom dia, boa tarde, boa noite... por enquanto.mp3 in Resources */,
