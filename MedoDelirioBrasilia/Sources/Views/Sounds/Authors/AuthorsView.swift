@@ -32,7 +32,7 @@ struct AuthorsView: View {
             LazyVGrid(columns: columns, spacing: 20) {
                 ForEach(searchResults) { author in
                     NavigationLink(destination: AuthorDetailView(author: author)) {
-                        AuthorCell(authorName: author.name, authorImageURL: author.photo ?? "")
+                        AuthorCell(authorName: author.name, authorImageURL: author.photo ?? "", soundCount: "\(author.soundCount ?? 0)")
                             .padding(.horizontal, 5)
                     }
                 }

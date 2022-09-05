@@ -257,7 +257,7 @@ struct SoundsView: View {
                                          sortedBy: SoundSortOption(rawValue: newValue) ?? .titleAscending)
                     UserSettings.setSoundSortOption(to: newValue)
                 })
-                .disabled(currentMode == .byAuthor)
+                //.disabled(currentMode == .byAuthor)
             )
             .onAppear {
                 viewModel.reloadList(withSounds: soundData,

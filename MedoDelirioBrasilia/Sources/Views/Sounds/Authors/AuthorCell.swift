@@ -5,13 +5,15 @@ struct AuthorCell: View {
 
     @State var authorName: String
     @State var authorImageURL: String
+    @State var soundCount: String
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20, style: .continuous)
                 .fill(Color.gray)
                 .frame(height: UIDevice.is4InchDevice ? 120 : 96)
-                .opacity(0.25)
+                .opacity(colorScheme == .dark ? 0.25 : 0.15)
             
             HStack {
                 if authorImageURL.isEmpty == false {
@@ -40,6 +42,11 @@ struct AuthorCell: View {
                 
                 Spacer()
                 
+                Text(soundCount)
+                    .foregroundColor(.primary)
+                    .bold()
+                    .padding(.trailing, 12)
+                
                 Image(systemName: "chevron.right")
                     .resizable()
                     .scaledToFit()
@@ -58,15 +65,15 @@ struct AuthorCell_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             // No image
-            AuthorCell(authorName: "Jair Bolsonaro", authorImageURL: "")
+            AuthorCell(authorName: "Jair Bolsonaro", authorImageURL: "", soundCount: "10")
             
-            AuthorCell(authorName: "Samira Close", authorImageURL: "https://yt3.ggpht.com/ytc/AKedOLRjdzsZyL8rKC0c83BV7_muqPkBtd2TM1kYrV76iA=s900-c-k-c0x00ffffff-no-rj")
-            AuthorCell(authorName: "Casimiro", authorImageURL: "https://pbs.twimg.com/profile_images/1495509561377177601/WljXGF65_400x400.jpg")
+            AuthorCell(authorName: "Samira Close", authorImageURL: "https://yt3.ggpht.com/ytc/AKedOLRjdzsZyL8rKC0c83BV7_muqPkBtd2TM1kYrV76iA=s900-c-k-c0x00ffffff-no-rj", soundCount: "1")
+            AuthorCell(authorName: "Casimiro", authorImageURL: "https://pbs.twimg.com/profile_images/1495509561377177601/WljXGF65_400x400.jpg", soundCount: "4")
             
             // URL unavailable
-            AuthorCell(authorName: "Samira Close", authorImageURL: "abc")
+            AuthorCell(authorName: "Samira Close", authorImageURL: "abc", soundCount: "1")
         }
-        .previewLayout(.fixed(width: 200, height: 100))
+        .previewLayout(.fixed(width: 220, height: 100))
     }
 
 }

@@ -17,8 +17,14 @@ class AuthorsViewViewModel: ObservableObject {
         
         //self.sortOption = UserSettings.getSoundSortOption()
         
+        self.authors.indices.forEach {
+            let authorId = self.authors[$0].id
+            self.authors[$0].soundCount = soundData.filter({ $0.authorId == authorId }).count
+        }
+        
         if self.authors.count > 0 {
-            self.authors.sort(by: { $0.name.withoutDiacritics() < $1.name.withoutDiacritics() })
+            //self.authors.sort(by: { $0.name.withoutDiacritics() < $1.name.withoutDiacritics() })
+            self.authors.sort(by: { $0.soundCount ?? 0 > $1.soundCount ?? 0 })
         }
     }
     
