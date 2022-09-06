@@ -15,6 +15,8 @@ struct SoundsView: View {
     @State private var searchText: String = .empty
 
     @State private var listWidth: CGFloat = 700
+    @State private var columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
+    @Environment(\.sizeCategory) var sizeCategory
 
     @State private var scrollViewObject: ScrollViewProxy? = nil
     @State private var subviewToOpen: SubviewToOpen = .onboardingView
@@ -37,33 +39,6 @@ struct SoundsView: View {
     @State var authorToAutoOpen: Author = Author(id: .empty, name: .empty)
     @State var autoOpenAuthor: Bool = false
     
-    private var columns: [GridItem] {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            return [
-                GridItem(.flexible()),
-                GridItem(.flexible())
-            ]
-        } else {
-            if listWidth < 500 {
-                return [
-                    GridItem(.flexible())
-                ]
-            } else if listWidth < 700 {
-                return [
-                    GridItem(.flexible()),
-                    GridItem(.flexible())
-                ]
-            } else {
-                return [
-                    GridItem(.flexible()),
-                    GridItem(.flexible()),
-                    GridItem(.flexible()),
-                    GridItem(.flexible())
-                ]
-            }
-        }
-    }
-    
     private var searchResults: [Sound] {
         if searchText.isEmpty {
             return viewModel.sounds
@@ -77,17 +52,6 @@ struct SoundsView: View {
     
     private var showNoFavoritesView: Bool {
         searchResults.isEmpty && currentMode == .favorites && searchText.isEmpty
-    }
-    
-    private var dropDownText: String {
-        switch currentMode {
-        case .allSounds:
-            return "Todos"
-        case .favorites:
-            return "Favoritos"
-        case .byAuthor:
-            return "Por autor"
-        }
     }
     
     private var title: String {
@@ -223,6 +187,7 @@ struct SoundsView: View {
                             .padding(.top, 7)
                             .onChange(of: geometry.size.width) { newWidth in
                                 self.listWidth = newWidth
+                                columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
                             }
                             
                             if UserSettings.getShowOffensiveSounds() == false, currentMode != .favorites {
@@ -300,6 +265,7 @@ struct SoundsView: View {
                                      allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
                                      favoritesOnly: currentMode == .favorites,
                                      sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
+                columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
                 viewModel.donateActivity()
                 viewModel.sendDeviceModelNameToServer()
                 viewModel.sendUserPersonalTrendsToServerIfEnabled()
