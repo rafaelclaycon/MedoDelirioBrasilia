@@ -6280,5 +6280,23 @@
         "filename": "Jair Bolsonaro - Putaria.mp3",
         "dateAdded": "2022-09-06T00:00:00Z",
         "isOffensive": true
+    },
+    {
+        "id": "33D593B4-9273-4E3F-A64D-1A8EDF322BD4",
+        "title": "Ato falho",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "quantos aqui votaram em mim ate mesmo eu sendo o mais ruim ou o menos ruim melhor dizendo ato falho sincericidio",
+        "filename": "Jair Bolsonaro - Ato falho.mp3",
+        "dateAdded": "2022-09-06T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "B0A031A8-F2B9-4C32-85A5-26065C5F5CF4",
+        "title": "THAT was a threat",
+        "authorId": "D18DD51F-FA29-47CA-81EF-AAD6072EBFE7",
+        "description": "THAT was a threat",
+        "filename": "Tyrion Lannister - THAT was a threat.mp3",
+        "dateAdded": "2022-09-06T00:00:00Z",
+        "isOffensive": false
     }
 ]
