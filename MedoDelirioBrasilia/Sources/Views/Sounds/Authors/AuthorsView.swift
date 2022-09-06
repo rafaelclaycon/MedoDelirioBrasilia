@@ -6,25 +6,15 @@ struct AuthorsView: View {
     @State private var searchText = ""
     @Binding var sortAction: AuthorSortOption
     
+    @State private var listWidth: CGFloat = 700
+    @State private var columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
+    @Environment(\.sizeCategory) var sizeCategory
+    
     var searchResults: [Author] {
         if searchText.isEmpty {
             return viewModel.authors
         } else {
             return viewModel.authors.filter { $0.name.lowercased().withoutDiacritics().contains(searchText.lowercased()) }
-        }
-    }
-    
-    private var columns: [GridItem] {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            return [
-                GridItem(.flexible())
-            ]
-        } else {
-            return [
-                GridItem(.flexible()),
-                GridItem(.flexible()),
-                GridItem(.flexible())
-            ]
         }
     }
     

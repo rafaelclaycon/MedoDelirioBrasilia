@@ -40,5 +40,44 @@ class GridHelper {
             }
         }
     }
+    
+    static func authorColumns(listWidth: CGFloat, sizeCategory: ContentSizeCategory) -> [GridItem] {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            if sizeCategory > ContentSizeCategory.large {
+                return [
+                    GridItem(.flexible())
+                ]
+            } else {
+                return [
+                    GridItem(.flexible()),
+                    GridItem(.flexible())
+                ]
+            }
+        } else {
+            if listWidth < 500 {
+                return [
+                    GridItem(.flexible())
+                ]
+            } else if listWidth < 600 {
+                return [
+                    GridItem(.flexible()),
+                    GridItem(.flexible())
+                ]
+            } else if listWidth < 705 {
+                return [
+                    GridItem(.flexible()),
+                    GridItem(.flexible()),
+                    GridItem(.flexible())
+                ]
+            } else {
+                return [
+                    GridItem(.flexible()),
+                    GridItem(.flexible()),
+                    GridItem(.flexible()),
+                    GridItem(.flexible())
+                ]
+            }
+        }
+    }
 
 }
