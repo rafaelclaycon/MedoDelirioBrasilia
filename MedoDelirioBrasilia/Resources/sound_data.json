@@ -6262,5 +6262,23 @@
         "filename": "Nao e hora pra desespero completo.mp3",
         "dateAdded": "2022-09-05T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "B0A1AAC0-0C14-4CF2-9DD6-89EB594A0C7B",
+        "title": "O que nós queremos? Paz, tranquilidade...",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "O que nos queremos paz tranquilidade",
+        "filename": "Jair Bolsonaro - O que nos queremos paz tranquilidade.mp3",
+        "dateAdded": "2022-09-06T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "52CCB712-281B-48C6-A9FC-62B9DF623417",
+        "title": "Putaria",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Putaria",
+        "filename": "Jair Bolsonaro - Putaria.mp3",
+        "dateAdded": "2022-09-06T00:00:00Z",
+        "isOffensive": true
     }
 ]
