@@ -398,5 +398,15 @@
         "filename": "Agora vai sentar na mesa Funk.mp3",
         "dateAdded": "2022-08-30T00:00:00Z",
         "isOffensive": true
+    },
+    {
+        "id": "B84C1995-64E4-49E6-AE85-89BD3874A4FF",
+        "title": "Fora, genocida",
+        "description": "",
+        "genre": "House",
+        "duration": "00:52",
+        "filename": "Fora Genocida.mp3",
+        "dateAdded": "2022-09-06T00:00:00Z",
+        "isOffensive": true
     }
 ]

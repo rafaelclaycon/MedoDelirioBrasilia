@@ -843,6 +843,11 @@
 		D9BF90972842D3CB00BDDD7D /* NoSoundsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF90962842D3CB00BDDD7D /* NoSoundsView.swift */; };
 		D9BF90BE2842EAED00BDDD7D /* TopChartCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF90BD2842EAED00BDDD7D /* TopChartCellView.swift */; };
 		D9C35D23288713990065F3E7 /* HotWeatherAdBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C35D22288713990065F3E7 /* HotWeatherAdBannerView.swift */; };
+		D9C5EC3128C7DEEA0099EA86 /* Jair Bolsonaro - O que nos queremos paz tranquilidade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C5EC3028C7DEE90099EA86 /* Jair Bolsonaro - O que nos queremos paz tranquilidade.mp3 */; };
+		D9C5EC3328C7F3150099EA86 /* Fora Genocida.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C5EC3228C7F3150099EA86 /* Fora Genocida.mp3 */; };
+		D9C5EC3628C7F7F70099EA86 /* Jair Bolsonaro - Ato falho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C5EC3428C7F7F70099EA86 /* Jair Bolsonaro - Ato falho.mp3 */; };
+		D9C5EC3728C7F7F70099EA86 /* Jair Bolsonaro - Putaria.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C5EC3528C7F7F70099EA86 /* Jair Bolsonaro - Putaria.mp3 */; };
+		D9C5EC3928C7FAA00099EA86 /* Tyrion Lannister - THAT was a threat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C5EC3828C7FAA00099EA86 /* Tyrion Lannister - THAT was a threat.mp3 */; };
 		D9CB84F528B2E31D00E815C2 /* Alvaro Borba - A Verdadeira Polarizacao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CB84F428B2E31D00E815C2 /* Alvaro Borba - A Verdadeira Polarizacao.mp3 */; };
 		D9CC025D28BD9EBD0021C1E6 /* GridHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CC025C28BD9EBD0021C1E6 /* GridHelper.swift */; };
 		D9D856F5288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D856F3288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3 */; };
@@ -1743,6 +1748,11 @@
 		D9BF90962842D3CB00BDDD7D /* NoSoundsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSoundsView.swift; sourceTree = "<group>"; };
 		D9BF90BD2842EAED00BDDD7D /* TopChartCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartCellView.swift; sourceTree = "<group>"; };
 		D9C35D22288713990065F3E7 /* HotWeatherAdBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotWeatherAdBannerView.swift; sourceTree = "<group>"; };
+		D9C5EC3028C7DEE90099EA86 /* Jair Bolsonaro - O que nos queremos paz tranquilidade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - O que nos queremos paz tranquilidade.mp3"; sourceTree = "<group>"; };
+		D9C5EC3228C7F3150099EA86 /* Fora Genocida.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fora Genocida.mp3"; sourceTree = "<group>"; };
+		D9C5EC3428C7F7F70099EA86 /* Jair Bolsonaro - Ato falho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Ato falho.mp3"; sourceTree = "<group>"; };
+		D9C5EC3528C7F7F70099EA86 /* Jair Bolsonaro - Putaria.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Putaria.mp3"; sourceTree = "<group>"; };
+		D9C5EC3828C7FAA00099EA86 /* Tyrion Lannister - THAT was a threat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tyrion Lannister - THAT was a threat.mp3"; sourceTree = "<group>"; };
 		D9CB84F428B2E31D00E815C2 /* Alvaro Borba - A Verdadeira Polarizacao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alvaro Borba - A Verdadeira Polarizacao.mp3"; sourceTree = "<group>"; };
 		D9CC025C28BD9EBD0021C1E6 /* GridHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridHelper.swift; sourceTree = "<group>"; };
 		D9D856F3288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3"; sourceTree = "<group>"; };
@@ -1825,6 +1835,10 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9C5EC3828C7FAA00099EA86 /* Tyrion Lannister - THAT was a threat.mp3 */,
+				D9C5EC3428C7F7F70099EA86 /* Jair Bolsonaro - Ato falho.mp3 */,
+				D9C5EC3528C7F7F70099EA86 /* Jair Bolsonaro - Putaria.mp3 */,
+				D9C5EC3028C7DEE90099EA86 /* Jair Bolsonaro - O que nos queremos paz tranquilidade.mp3 */,
 				49E5D33A28C634F20057FF7D /* Nao e hora pra desespero completo.mp3 */,
 				4979105B28BEC78600CDF01C /* Chateado - Paulo Sergio Nogueira.mp3 */,
 				4979104E28BEC6F700CDF01C /* Desculpa perdao lamento - Pedro Daltro.mp3 */,
@@ -2544,6 +2558,7 @@
 		D92E7068283C5C120035826C /* Songs */ = {
 			isa = PBXGroup;
 			children = (
+				D9C5EC3228C7F3150099EA86 /* Fora Genocida.mp3 */,
 				D9345E7528C697F900BADC1B /* Ele Queria Ter 2 Mesa Funk.mp3 */,
 				4979105828BEC71400CDF01C /* Agora vai sentar na mesa Funk.mp3 */,
 				4979105728BEC71400CDF01C /* Dentro do Carro Funk.mp3 */,
@@ -2796,6 +2811,7 @@
 				D958B1A928394D400010F133 /* MainView.swift */,
 				D95DB0F5288248A300D4FEDF /* SidebarView.swift */,
 				D9B9025C2837485000551239 /* Sounds */,
+				D98622DE283FC53B00E9F630 /* Authors */,
 				D95F363828AD385100743026 /* ShareAsVideo */,
 				D9EB18A32857CDE200A2F8A8 /* Collections */,
 				D9943F2428641FB7002C6B97 /* Folders */,
@@ -2950,7 +2966,6 @@
 				D98EC5E22825A45000340BE5 /* SoundsViewViewModel.swift */,
 				D98EC5DD282596C300340BE5 /* SoundCell.swift */,
 				D92C0CA928405B2D009CF19A /* NoFavoritesView.swift */,
-				D98622DE283FC53B00E9F630 /* Authors */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -3317,6 +3332,7 @@
 				D9E7D0EE28AC64F4001E909E /* Rogerinho - Ta certa a indignacao.mp3 in Resources */,
 				D9FD0F0F28B2B2EE0000616A /* Sentar na mesa - paulo sergio nogueira.mp3 in Resources */,
 				D975FF1B2880B4F20035E6F2 /* Gilmar Mendes - Com a devida venia.mp3 in Resources */,
+				D9C5EC3328C7F3150099EA86 /* Fora Genocida.mp3 in Resources */,
 				D975FEFE2880B4F20035E6F2 /* Kajuru - etica nao tem ambiguidade caralho porra.mp3 in Resources */,
 				D975FED12880B4F20035E6F2 /* Boldo - Caralho, Marquinho.mp3 in Resources */,
 				D975001F2880B4F20035E6F2 /* Diogo Defante - Tu ouviu isso nao e possivel.mp3 in Resources */,
@@ -3436,6 +3452,7 @@
 				D975FE152880B4F20035E6F2 /* Ulysses Guimaraes - Temos odio a ditadura, odio e nojo.mp3 in Resources */,
 				D975FE912880B4F20035E6F2 /* Away - De novo cara.mp3 in Resources */,
 				D975FE942880B4F20035E6F2 /* Ady Ferrer - Oh nao mais um crime contra a humanidade.mp3 in Resources */,
+				D9C5EC3928C7FAA00099EA86 /* Tyrion Lannister - THAT was a threat.mp3 in Resources */,
 				D9FD0F0628B2B2EE0000616A /* alerta de novidade - cristiano botafogo.mp3 in Resources */,
 				D975FEA32880B4F20035E6F2 /* Capitao Falcao - Viboras socialistas.mp3 in Resources */,
 				D975FFAB2880B4F20035E6F2 /* Tu tava fora do brasil irmao short.mp3 in Resources */,
@@ -3647,6 +3664,7 @@
 				D975FFC62880B4F20035E6F2 /* Cidade Oculta - Voce fala isso porque e a putinha do bozo.mp3 in Resources */,
 				D991512D2873E4C100FFAA29 /* rock-comunismo-ai-seis-mdb.mp3 in Resources */,
 				D975FE632880B4F20035E6F2 /* Ai seu grosso.mp3 in Resources */,
+				D9C5EC3728C7F7F70099EA86 /* Jair Bolsonaro - Putaria.mp3 in Resources */,
 				D91793BA288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao no MARXISMO CULTURAL.mp3 in Resources */,
 				D975FE3F2880B4F20035E6F2 /* Bolsonaro - Procura outro pra pagar a tua vacina ai.mp3 in Resources */,
 				D9FD0F0228B2B2EE0000616A /* presta atencao senao como suas tripa.mp3 in Resources */,
@@ -3800,6 +3818,7 @@
 				D975000D2880B4F20035E6F2 /* EMICIDA no loolapalooza - Tira o titulo e bolsonaro vai tomar no cu.mp3 in Resources */,
 				D975FFED2880B4F20035E6F2 /* Datena - Me pareceu uma grande marmelada.mp3 in Resources */,
 				49DEA9CC288115A9008C9BA1 /* Como assim eu nao entendi meme short.mp3 in Resources */,
+				D9C5EC3628C7F7F70099EA86 /* Jair Bolsonaro - Ato falho.mp3 in Resources */,
 				D975FF0C2880B4F20035E6F2 /* Gilmar Mendes - O exercito esta se associando a esse genocidio.mp3 in Resources */,
 				49DEA9B2288110F0008C9BA1 /* SpongeBob Flashback.mp3 in Resources */,
 				D9FD0F0928B2B2EE0000616A /* Nao e hora pra desespero - Desesperado.mp3 in Resources */,
@@ -3853,6 +3872,7 @@
 				D975FF102880B4F20035E6F2 /* Drauzio - procura um psiquiatra, voce nao ta legal.mp3 in Resources */,
 				D923126028AAD5CD00436336 /* Assovio do passarinho.mp3 in Resources */,
 				4979105428BEC6F700CDF01C /* Desculpa perdao lamento - Pedro Daltro.mp3 in Resources */,
+				D9C5EC3128C7DEEA0099EA86 /* Jair Bolsonaro - O que nos queremos paz tranquilidade.mp3 in Resources */,
 				D975FF1E2880B4F20035E6F2 /* DESMENTINDO BOLSONARO - Milton Ribeiro - Isso eu falo publicamente porque a minha natureza nao e de mentira.mp3 in Resources */,
 				D97500302880B4F20035E6F2 /* Malafaia - criticas a teologia da prosperidade resumo.mp3 in Resources */,
 				D975FE412880B4F20035E6F2 /* GABRIELA PRIOLI - Esse governo desmoraliza as forcas armadas.mp3 in Resources */,
@@ -4187,7 +4207,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -4207,7 +4227,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.3;
+				MARKETING_VERSION = 3.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTS_MACCATALYST = YES;
@@ -4225,7 +4245,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -4245,7 +4265,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.3;
+				MARKETING_VERSION = 3.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTS_MACCATALYST = YES;
