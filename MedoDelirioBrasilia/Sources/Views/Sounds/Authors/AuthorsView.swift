@@ -43,7 +43,7 @@ struct AuthorsView: View {
             .padding(.top, 7)
             .padding(.bottom, 18)
             .onAppear {
-                viewModel.reloadList()
+                viewModel.reloadList(sortedBy: .nameAscending)
                 //viewModel.donateActivity()
             }
         }

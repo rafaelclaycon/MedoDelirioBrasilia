@@ -13,12 +13,11 @@ struct SoundsView: View {
     @StateObject private var viewModel = SoundsViewViewModel()
     @State var currentMode: Mode
     @State private var searchText: String = .empty
-
+    
     @State private var listWidth: CGFloat = 700
     @State private var columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
     @Environment(\.sizeCategory) var sizeCategory
-
-    @State private var scrollViewObject: ScrollViewProxy? = nil
+    
     @State private var subviewToOpen: SubviewToOpen = .onboardingView
     @State private var showingModalView = false
     
@@ -214,50 +213,7 @@ struct SoundsView: View {
             .navigationBarItems(leading:
                 getLeadingToolbarControl()
             , trailing:
-                Menu {
-                    Section {
-                        Picker("Ordenação", selection: $viewModel.sortOption) {
-                            HStack {
-                                Text("Ordenar por Título")
-                                Image(systemName: "a.circle")
-                            }
-                            .tag(0)
-                            
-                            HStack {
-                                Text("Ordenar por Nome do Autor")
-                                Image(systemName: "person")
-                            }
-                            .tag(1)
-                            
-                            HStack {
-                                Text("Mais Recentes no Topo")
-                                Image(systemName: "calendar")
-                            }
-                            .tag(2)
-                        }
-                    }
-                    
-//                    Section {
-//                        Button("[DEV ONLY] Rolar até o fim da lista") {
-//                            scrollViewObject?.scrollTo(searchResults[searchResults.endIndex - 1])
-//                        }
-//                    }
-                } label: {
-                    if UIDevice.current.userInterfaceIdiom == .pad && currentMode == .byAuthor {
-                        Text("")
-                    } else {
-                        Image(systemName: "arrow.up.arrow.down")
-                    }
-                }
-                .onChange(of: viewModel.sortOption, perform: { newValue in
-                    viewModel.reloadList(withSounds: soundData,
-                                         andFavorites: try? database.getAllFavorites(),
-                                         allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
-                                         favoritesOnly: currentMode == .favorites,
-                                         sortedBy: SoundSortOption(rawValue: newValue) ?? .titleAscending)
-                    UserSettings.setSoundSortOption(to: newValue)
-                })
-                //.disabled(currentMode == .byAuthor)
+                getTrailingToolbarControl()
             )
             .onAppear {
                 viewModel.reloadList(withSounds: soundData,
@@ -375,6 +331,73 @@ struct SoundsView: View {
             }
         } else {
             EmptyView()
+        }
+    }
+    
+    @ViewBuilder func getTrailingToolbarControl() -> some View {
+        if currentMode == .byAuthor {
+            Menu {
+                Section {
+                    Picker("Ordenação de Autores", selection: $viewModel.sortOption) {
+                        HStack {
+                            Text("Ordenar por Nome")
+                            Image(systemName: "a.circle")
+                        }
+                        .tag(0)
+                        
+                        HStack {
+                            Text("Mais Sons no Topo")
+                            Image(systemName: "chevron.down.circle")
+                        }
+                        .tag(1)
+                        
+                        HStack {
+                            Text("Menos Sons no Topo")
+                            Image(systemName: "chevron.up.circle")
+                        }
+                        .tag(2)
+                    }
+                }
+            } label: {
+                Image(systemName: "arrow.up.arrow.down")
+            }
+            .onChange(of: viewModel.sortOption, perform: { newValue in
+                //viewModel.reloadList()
+            })
+        } else {
+            Menu {
+                Section {
+                    Picker("Ordenação de Sons", selection: $viewModel.sortOption) {
+                        HStack {
+                            Text("Ordenar por Título")
+                            Image(systemName: "a.circle")
+                        }
+                        .tag(0)
+                        
+                        HStack {
+                            Text("Ordenar por Nome do Autor")
+                            Image(systemName: "person")
+                        }
+                        .tag(1)
+                        
+                        HStack {
+                            Text("Mais Recentes no Topo")
+                            Image(systemName: "calendar")
+                        }
+                        .tag(2)
+                    }
+                }
+            } label: {
+                Image(systemName: "arrow.up.arrow.down")
+            }
+            .onChange(of: viewModel.sortOption, perform: { newValue in
+                viewModel.reloadList(withSounds: soundData,
+                                     andFavorites: try? database.getAllFavorites(),
+                                     allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+                                     favoritesOnly: currentMode == .favorites,
+                                     sortedBy: SoundSortOption(rawValue: newValue) ?? .titleAscending)
+                UserSettings.setSoundSortOption(to: newValue)
+            })
         }
     }
 
