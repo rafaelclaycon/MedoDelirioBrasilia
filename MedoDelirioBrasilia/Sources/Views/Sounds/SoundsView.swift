@@ -10,7 +10,7 @@ struct SoundsView: View {
         case onboardingView, addToFolderView, shareAsVideoView
     }
     
-    @StateObject private var viewModel = SoundsViewViewModel()
+    @StateObject var viewModel: SoundsViewViewModel
     @State var currentMode: Mode
     @State private var searchText: String = .empty
     
@@ -420,7 +420,7 @@ struct SoundsView: View {
 struct SoundsView_Previews: PreviewProvider {
 
     static var previews: some View {
-        SoundsView(currentMode: .allSounds, updateSoundsList: .constant(false))
+        SoundsView(viewModel: SoundsViewViewModel(sortOption: SoundSortOption.dateAddedDescending.rawValue), currentMode: .allSounds, updateSoundsList: .constant(false))
     }
 
 }
