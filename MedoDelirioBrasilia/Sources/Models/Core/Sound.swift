@@ -4,7 +4,7 @@ struct Sound: Hashable, Codable, Identifiable {
 
     var id: String
     var title: String
-    var authorId: String
+    var authorIds: [String]
     var authorName: String?
     var description: String
     var filename: String
@@ -13,14 +13,14 @@ struct Sound: Hashable, Codable, Identifiable {
     
     init(id: String = UUID().uuidString,
          title: String,
-         authorId: String = UUID().uuidString,
+         authorIds: [String] = [UUID().uuidString],
          description: String = "",
          filename: String = "",
          dateAdded: Date? = Date(),
          isOffensive: Bool = false) {
         self.id = id
         self.title = title
-        self.authorId = authorId
+        self.authorIds = authorIds
         self.description = description
         self.filename = filename
         self.dateAdded = dateAdded
