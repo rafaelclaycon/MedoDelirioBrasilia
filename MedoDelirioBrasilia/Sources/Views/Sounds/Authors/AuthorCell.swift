@@ -45,7 +45,7 @@ struct AuthorCell: View {
                 
                 NumberBadgeView(number: soundCount)
                     .foregroundColor(.primary)
-                    .padding(.trailing, 12)
+                    .padding(.trailing, 10)
                 
                 Image(systemName: "chevron.right")
                     .resizable()
