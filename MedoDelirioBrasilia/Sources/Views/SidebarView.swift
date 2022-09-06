@@ -10,7 +10,7 @@ struct SidebarView: View {
         List {
             Section("Sons") {
                 NavigationLink(
-                    destination: SoundsView(currentMode: .allSounds, updateSoundsList: $updateSoundsList),
+                    destination: SoundsView(viewModel: SoundsViewViewModel(sortOption: UserSettings.getSoundSortOption()), currentMode: .allSounds, updateSoundsList: $updateSoundsList),
                     tag: Screen.allSounds,
                     selection: $state,
                     label: {
@@ -18,7 +18,7 @@ struct SidebarView: View {
                     })
                 
                 NavigationLink(
-                    destination: SoundsView(currentMode: .favorites, updateSoundsList: .constant(false)),
+                    destination: SoundsView(viewModel: SoundsViewViewModel(sortOption: UserSettings.getSoundSortOption()), currentMode: .favorites, updateSoundsList: .constant(false)),
                     tag: Screen.favorites,
                     selection: $state,
                     label: {
@@ -26,7 +26,7 @@ struct SidebarView: View {
                     })
                 
                 NavigationLink(
-                    destination: SoundsView(currentMode: .byAuthor, updateSoundsList: .constant(false)),
+                    destination: SoundsView(viewModel: SoundsViewViewModel(sortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .byAuthor, updateSoundsList: .constant(false)),
                     tag: Screen.groupedByAuthor,
                     selection: $state,
                     label: {

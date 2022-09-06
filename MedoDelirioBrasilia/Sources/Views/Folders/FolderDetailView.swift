@@ -6,57 +6,51 @@ struct FolderDetailView: View {
     @State var folder: UserFolder
     @State private var showingFolderInfoEditingView = false
     
-    private var columns: [GridItem] {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            return [
-                GridItem(.flexible()),
-                GridItem(.flexible())
-            ]
-        } else {
-            return [
-                GridItem(.flexible()),
-                GridItem(.flexible()),
-                GridItem(.flexible()),
-                GridItem(.flexible())
-            ]
-        }
-    }
+    @State private var listWidth: CGFloat = 700
+    @State private var columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
+    @Environment(\.sizeCategory) var sizeCategory
     
     var body: some View {
         ZStack {
             VStack {
                 if viewModel.hasSoundsToDisplay {
-                    ScrollView {
-                        LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
-                            ForEach(viewModel.sounds) { sound in
-                                SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", favorites: .constant(Set<String>()))
-                                    .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
-                                    .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
-                                    .onTapGesture {
-                                        viewModel.playSound(fromPath: sound.filename)
-                                    }
-                                    .contextMenu {
-                                        Section {
-                                            Button {
-                                                viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
-                                            } label: {
-                                                Label(Shared.shareSoundButtonText, systemImage: "square.and.arrow.up")
+                    GeometryReader { geometry in
+                        ScrollView {
+                            LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
+                                ForEach(viewModel.sounds) { sound in
+                                    SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", favorites: .constant(Set<String>()))
+                                        .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
+                                        .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
+                                        .onTapGesture {
+                                            viewModel.playSound(fromPath: sound.filename)
+                                        }
+                                        .contextMenu {
+                                            Section {
+                                                Button {
+                                                    viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
+                                                } label: {
+                                                    Label(Shared.shareSoundButtonText, systemImage: "square.and.arrow.up")
+                                                }
+                                            }
+                                            
+                                            Section {
+                                                Button {
+                                                    viewModel.selectedSound = sound
+                                                    viewModel.showSoundRemovalConfirmation(soundTitle: sound.title)
+                                                } label: {
+                                                    Label("Remover da Pasta", systemImage: "folder.badge.minus")
+                                                }
                                             }
                                         }
-                                        
-                                        Section {
-                                            Button {
-                                                viewModel.selectedSound = sound
-                                                viewModel.showSoundRemovalConfirmation(soundTitle: sound.title)
-                                            } label: {
-                                                Label("Remover da Pasta", systemImage: "folder.badge.minus")
-                                            }
-                                        }
-                                    }
+                                }
+                            }
+                            .padding(.horizontal)
+                            .padding(.top, 7)
+                            .onChange(of: geometry.size.width) { newWidth in
+                                self.listWidth = newWidth
+                                columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
                             }
                         }
-                        .padding(.horizontal)
-                        .padding(.top, 7)
                     }
                 } else {
                     EmptyFolderView()
@@ -87,6 +81,7 @@ struct FolderDetailView: View {
     //        )
             .onAppear {
                 viewModel.reloadSoundList(withSoundIds: try? database.getAllSoundIdsInsideUserFolder(withId: folder.id))
+                columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
             }
             .sheet(isPresented: $showingFolderInfoEditingView) {
                 FolderInfoEditingView(isBeingShown: $showingFolderInfoEditingView, symbol: folder.symbol, folderName: folder.name, selectedBackgroundColor: folder.backgroundColor, isEditing: true, folderIdWhenEditing: folder.id)
