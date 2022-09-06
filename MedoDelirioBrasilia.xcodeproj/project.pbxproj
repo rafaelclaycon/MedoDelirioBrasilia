@@ -2811,6 +2811,7 @@
 				D958B1A928394D400010F133 /* MainView.swift */,
 				D95DB0F5288248A300D4FEDF /* SidebarView.swift */,
 				D9B9025C2837485000551239 /* Sounds */,
+				D98622DE283FC53B00E9F630 /* Authors */,
 				D95F363828AD385100743026 /* ShareAsVideo */,
 				D9EB18A32857CDE200A2F8A8 /* Collections */,
 				D9943F2428641FB7002C6B97 /* Folders */,
@@ -2965,7 +2966,6 @@
 				D98EC5E22825A45000340BE5 /* SoundsViewViewModel.swift */,
 				D98EC5DD282596C300340BE5 /* SoundCell.swift */,
 				D92C0CA928405B2D009CF19A /* NoFavoritesView.swift */,
-				D98622DE283FC53B00E9F630 /* Authors */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
