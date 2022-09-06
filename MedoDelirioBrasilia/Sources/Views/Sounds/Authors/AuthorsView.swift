@@ -44,7 +44,10 @@ struct AuthorsView: View {
             .padding(.top, 7)
             .padding(.bottom, 18)
             .onAppear {
-                viewModel.reloadList(sortedBy: .nameAscending)
+                if viewModel.authors.isEmpty {
+                    viewModel.reloadList(sortedBy: .nameAscending)
+                }
+                
                 //viewModel.donateActivity()
             }
             .onChange(of: sortAction) { sortAction in
