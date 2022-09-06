@@ -27,15 +27,15 @@ class AuthorsViewViewModel: ObservableObject {
         }
     }
     
-    private func sortAuthorsInPlaceByNameAscending() {
+    func sortAuthorsInPlaceByNameAscending() {
         self.authors.sort(by: { $0.name.withoutDiacritics() < $1.name.withoutDiacritics() })
     }
     
-    private func sortAuthorsInPlaceBySoundCountDescending() {
+    func sortAuthorsInPlaceBySoundCountDescending() {
         self.authors.sort(by: { $0.soundCount ?? 0 > $1.soundCount ?? 0 })
     }
     
-    private func sortAuthorsInPlaceBySoundCountAscending() {
+    func sortAuthorsInPlaceBySoundCountAscending() {
         self.authors.sort(by: { $0.soundCount ?? 0 < $1.soundCount ?? 0 })
     }
     

@@ -38,6 +38,9 @@ struct SoundsView: View {
     @State var authorToAutoOpen: Author = Author(id: .empty, name: .empty)
     @State var autoOpenAuthor: Bool = false
     
+    // Sort Authors
+    @State var authorSortAction: AuthorSortOption = .nameAscending
+    
     private var searchResults: [Sound] {
         if searchText.isEmpty {
             return viewModel.sounds
@@ -81,7 +84,7 @@ struct SoundsView: View {
                     NoFavoritesView()
                         .padding(.horizontal, 25)
                 } else if currentMode == .byAuthor {
-                    AuthorsView()
+                    AuthorsView(sortAction: $authorSortAction)
                 } else {
                     GeometryReader { geometry in
                         ScrollView {
@@ -282,6 +285,13 @@ struct SoundsView: View {
                     viewModel.shareVideo(withPath: videoResultPath, andContentId: shareAsVideo_Result.contentId)
                 }
             }
+            .onChange(of: currentMode) { currentMode in
+                if currentMode == .byAuthor {
+                    viewModel.sortOption = 0
+                } else {
+                    viewModel.sortOption = UserSettings.getSongSortOption()
+                }
+            }
             
             if shouldDisplayAddedToFolderToast {
                 VStack {
@@ -346,14 +356,14 @@ struct SoundsView: View {
                         .tag(0)
                         
                         HStack {
-                            Text("Mais Sons no Topo")
-                            Image(systemName: "chevron.down.circle")
+                            Text("Autores com Mais Sons no Topo")
+                            Image(systemName: "chevron.down.square")
                         }
                         .tag(1)
                         
                         HStack {
-                            Text("Menos Sons no Topo")
-                            Image(systemName: "chevron.up.circle")
+                            Text("Autores com Menos Sons no Topo")
+                            Image(systemName: "chevron.up.square")
                         }
                         .tag(2)
                     }
@@ -361,8 +371,10 @@ struct SoundsView: View {
             } label: {
                 Image(systemName: "arrow.up.arrow.down")
             }
-            .onChange(of: viewModel.sortOption, perform: { newValue in
-                //viewModel.reloadList()
+            .onChange(of: viewModel.sortOption, perform: { sortOption in
+                if currentMode == .byAuthor {
+                    authorSortAction = AuthorSortOption(rawValue: sortOption) ?? .nameAscending
+                }
             })
         } else {
             Menu {
@@ -390,13 +402,15 @@ struct SoundsView: View {
             } label: {
                 Image(systemName: "arrow.up.arrow.down")
             }
-            .onChange(of: viewModel.sortOption, perform: { newValue in
-                viewModel.reloadList(withSounds: soundData,
-                                     andFavorites: try? database.getAllFavorites(),
-                                     allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
-                                     favoritesOnly: currentMode == .favorites,
-                                     sortedBy: SoundSortOption(rawValue: newValue) ?? .titleAscending)
-                UserSettings.setSoundSortOption(to: newValue)
+            .onChange(of: viewModel.sortOption, perform: { sortOption in
+                if currentMode != .byAuthor {
+                    viewModel.reloadList(withSounds: soundData,
+                                         andFavorites: try? database.getAllFavorites(),
+                                         allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+                                         favoritesOnly: currentMode == .favorites,
+                                         sortedBy: SoundSortOption(rawValue: sortOption) ?? .titleAscending)
+                    UserSettings.setSoundSortOption(to: sortOption)
+                }
             })
         }
     }
