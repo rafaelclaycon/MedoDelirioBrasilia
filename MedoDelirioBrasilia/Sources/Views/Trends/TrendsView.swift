@@ -3,7 +3,7 @@ import SwiftUI
 struct TrendsView: View {
 
     @StateObject private var viewModel = TrendsViewViewModel()
-    @State private var favoriteColor = 0
+    @State private var mostSharedTimeIntervalOption = 0
     @State var showAlert = false
     @State var alertTitle = ""
     
@@ -84,47 +84,6 @@ struct TrendsView: View {
                                 .padding(.bottom, 20)
                             }
                         }
-                        
-                        if viewModel.personalTop5 == nil {
-                            HStack {
-                                Spacer()
-                                
-                                Text("Sem Dados")
-                                    .font(.headline)
-                                    .padding(.vertical, 40)
-                                
-                                Spacer()
-                            }
-                        } else {
-                            VStack {
-                                HStack {
-                                    Spacer()
-                                    
-                                    Button {
-                                        viewModel.reloadPersonalList(withTopChartItems: podium.getTop5SoundsSharedByTheUser())
-                                    } label: {
-                                        HStack {
-                                            Image(systemName: "arrow.triangle.2.circlepath")
-                                            Text("Atualizar")
-                                        }
-                                    }
-                                    .padding(.trailing)
-                                    .padding(.top, 1)
-                                }
-                                
-                                LazyVGrid(columns: columns, spacing: 14) {
-                                    ForEach(viewModel.personalTop5!) { item in
-                                        TopChartCellView(item: item)
-                                    }
-                                }
-                                .padding(.bottom)
-                                
-                                Text("Última consulta: hoje às 12:05")
-                                    .font(.subheadline)
-                                    .foregroundColor(.gray)
-                            }
-                            .padding(.bottom, 20)
-                        }
                     }
                     
                     /*if showDayOfTheWeekTheUserSharesTheMost {
@@ -154,12 +113,12 @@ struct TrendsView: View {
                             .padding(.top, 1)
                         }
                         
-                        Picker("What is your favorite color?", selection: $favoriteColor) {
-                            Text("Semana").tag(0)
+                        Picker("Período", selection: $mostSharedTimeIntervalOption) {
+                            Text("Última semana").tag(0)
                             Text("Mês").tag(1)
                             Text("Todos os Tempos").tag(2)
                         }
-                        .pickerStyle(.segmented)
+                        .pickerStyle(.menu)
                         .padding(.horizontal)
                         
                         if viewModel.audienceTop5 == nil {
