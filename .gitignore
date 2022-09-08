@@ -90,3 +90,5 @@ fastlane/test_output
 iOSInjectionProject/
 
 .DS_Store
+MedoDelirioBrasilia.xcodeproj/project.pbxproj
+MedoDelirioBrasilia/MedoDelirioBrasilia.entitlements
