@@ -31,6 +31,17 @@ struct TrendsView: View {
         UserSettings.getEnableAppsThroughWhichTheUserSharesTheMost()
     }
     
+    private var dropDownText: String {
+        switch mostSharedTimeIntervalOption {
+        case 1:
+            return Shared.Trends.lastMonth
+        case 2:
+            return Shared.Trends.allTime
+        default:
+            return Shared.Trends.lastWeek
+        }
+    }
+    
     var body: some View {
         VStack {
             if showTrends {
@@ -99,6 +110,30 @@ struct TrendsView: View {
                             .padding(.top, 10)
                         
                         HStack {
+                            Menu {
+                                Picker("Período", selection: $mostSharedTimeIntervalOption) {
+                                    Text(Shared.Trends.lastWeek).tag(0)
+                                    Text(Shared.Trends.lastMonth).tag(1)
+                                    Text(Shared.Trends.allTime).tag(2)
+                                }
+                            } label: {
+                                HStack {
+                                    Text(dropDownText)
+                                    Image(systemName: "chevron.up.chevron.down")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 15)
+                                }
+                            }
+    //                        .onChange(of: viewModel.sortOption, perform: { newValue in
+    //                            viewModel.reloadList(withSounds: soundData,
+    //                                                 andFavorites: try? database.getAllFavorites(),
+    //                                                 allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+    //                                                 favoritesOnly: currentMode == .favorites,
+    //                                                 sortedBy: SoundSortOption(rawValue: newValue) ?? .titleAscending)
+    //                            UserSettings.setSoundSortOption(to: newValue)
+    //                        })
+                            
                             Spacer()
                             
                             Button {
@@ -109,17 +144,9 @@ struct TrendsView: View {
                                     Text("Atualizar")
                                 }
                             }
-                            .padding(.trailing)
-                            .padding(.top, 1)
                         }
-                        
-                        Picker("Período", selection: $mostSharedTimeIntervalOption) {
-                            Text("Última semana").tag(0)
-                            Text("Mês").tag(1)
-                            Text("Todos os Tempos").tag(2)
-                        }
-                        .pickerStyle(.menu)
                         .padding(.horizontal)
+                        .padding(.top, 1)
                         
                         if viewModel.audienceTop5 == nil {
                             HStack {
@@ -127,11 +154,9 @@ struct TrendsView: View {
                                 
                                 VStack(spacing: 10) {
                                     Text("Sem Dados")
-                                        //.font(.headline)
                                         .bold()
                                     
                                     Text("Última consulta: hoje às 12:05")
-                                        //.font(.subheadline)
                                         .foregroundColor(.gray)
                                 }
                                 .padding(.vertical, 40)
