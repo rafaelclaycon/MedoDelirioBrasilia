@@ -42,22 +42,22 @@ struct MedoWidgetEntryView : View {
     
     var body: some View {
         switch widgetFamily {
-        case .accessoryCircular:
-            Image("figure.walk.departure")
-            Gauge(value: 0.92) {
-                Text("GOV")
-            } currentValueLabel: {
-                VStack(alignment: .center) {
-                    Text("131d")
-                        .font(.system(size: 12))
-                    
-                }
-            }
-            .gaugeStyle(.accessoryCircular)
+//        case .accessoryCircular:
+//            Image("figure.walk.departure")
+//            Gauge(value: 0.92) {
+//                Text("GOV")
+//            } currentValueLabel: {
+//                VStack(alignment: .center) {
+//                    Text("131d")
+//                        .font(.system(size: 12))
+//                    
+//                }
+//            }
+//            .gaugeStyle(.accessoryCircular)
             
         case .accessoryRectangular:
             VStack(alignment: .leading) {
-                Text(getDaysUntil(date: firstTurnDate()))
+                Text(getDaysUntilDateShort(firstTurnDate()))
                     .bold()
                     .font(.system(size: 14))
                 
@@ -67,7 +67,7 @@ struct MedoWidgetEntryView : View {
                     .fontWeight(.medium)
                 
                 
-                Text(getDaysUntil(date: endOfCurrentMandateDate()))
+                Text(getDaysUntilDateShort(endOfCurrentMandateDate()))
                     .bold()
                     .font(.system(size: 14))
                 
@@ -82,11 +82,11 @@ struct MedoWidgetEntryView : View {
         case .accessoryInline:
             HStack {
                 Image(systemName: "calendar")
-                Text("40 dias para o 1º turno")
+                Text(getDaysUntilDateLong(firstTurnDate()))
             }
             
         default:
-            Text("Not implemented")
+            Text("Não implementado")
         }
     }
     
@@ -100,7 +100,7 @@ struct MedoWidgetEntryView : View {
         return dateFormatter.date(from: "2023-01-01T00:00:00-0300")!
     }
     
-    private func getDaysUntil(date: Date) -> String {
+    private func getDaysUntilDateShort(_ date: Date) -> String {
         let calendar = Calendar.current
         
         let date1 = calendar.startOfDay(for: Date.now)
@@ -111,10 +111,35 @@ struct MedoWidgetEntryView : View {
         if let days = components.day {
             if days < 0 {
                 return "Já passou"
+            } else if days == 0 {
+                return "Hoje"
             } else if days == 1 {
                 return "1 dia"
             } else {
                 return "\(days) dias"
+            }
+        } else {
+            return "Indefinido"
+        }
+    }
+    
+    private func getDaysUntilDateLong(_ date: Date) -> String {
+        let calendar = Calendar.current
+        
+        let date1 = calendar.startOfDay(for: Date.now)
+        let date2 = calendar.startOfDay(for: date)
+        
+        let components = calendar.dateComponents([.day], from: date1, to: date2)
+        
+        if let days = components.day {
+            if days < 0 {
+                return "O 1º turno já passou"
+            } else if days == 1 {
+                return "O 1º turno é hoje"
+            } else if days == 1 {
+                return "1 dia para o 1º turno"
+            } else {
+                return "\(days) dias para o 1º turno"
             }
         } else {
             return "Indefinido"
