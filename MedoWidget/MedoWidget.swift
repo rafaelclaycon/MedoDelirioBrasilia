@@ -42,16 +42,6 @@ struct MedoWidgetEntryView : View {
     
     var body: some View {
         switch widgetFamily {
-            // case .systemSmall:
-            
-            //  case .systemMedium:
-            
-            //  case .systemLarge:
-            
-            //  case .systemExtraLarge:
-            
-            //  case .accessoryCorner:
-            
         case .accessoryCircular:
             Image("figure.walk.departure")
             Gauge(value: 0.92) {
@@ -67,7 +57,7 @@ struct MedoWidgetEntryView : View {
             
         case .accessoryRectangular:
             VStack(alignment: .leading) {
-                Text("40 dias")
+                Text(getDaysUntil(date: firstTurnDate()))
                     .bold()
                     .font(.system(size: 14))
                 
@@ -77,7 +67,7 @@ struct MedoWidgetEntryView : View {
                     .fontWeight(.medium)
                 
                 
-                Text("131 dias")
+                Text(getDaysUntil(date: endOfCurrentMandateDate()))
                     .bold()
                     .font(.system(size: 14))
                 
@@ -97,6 +87,37 @@ struct MedoWidgetEntryView : View {
             
         default:
             Text("Not implemented")
+        }
+    }
+    
+    private func firstTurnDate() -> Date {
+        let dateFormatter = ISO8601DateFormatter()
+        return dateFormatter.date(from: "2022-10-02T00:00:00-0300")!
+    }
+    
+    private func endOfCurrentMandateDate() -> Date {
+        let dateFormatter = ISO8601DateFormatter()
+        return dateFormatter.date(from: "2023-01-01T00:00:00-0300")!
+    }
+    
+    private func getDaysUntil(date: Date) -> String {
+        let calendar = Calendar.current
+        
+        let date1 = calendar.startOfDay(for: Date.now)
+        let date2 = calendar.startOfDay(for: date)
+        
+        let components = calendar.dateComponents([.day], from: date1, to: date2)
+        
+        if let days = components.day {
+            if days < 0 {
+                return "Já passou"
+            } else if days == 1 {
+                return "1 dia"
+            } else {
+                return "\(days) dias"
+            }
+        } else {
+            return "Indefinido"
         }
     }
 
