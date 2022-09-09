@@ -159,7 +159,7 @@ struct MedoWidget: Widget {
         }
         .configurationDisplayName("Contagem Regressiva")
         .description("Acompanhe a aproximação de datas importantes.")
-        .supportedFamilies([.accessoryInline, .accessoryCircular, .accessoryRectangular])
+        .supportedFamilies([.accessoryInline, .accessoryRectangular])
     }
 
 }
