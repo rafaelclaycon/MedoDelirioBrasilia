@@ -6298,5 +6298,59 @@
         "filename": "Tyrion Lannister - THAT was a threat.mp3",
         "dateAdded": "2022-09-06T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "C9256DDC-11EB-4224-9087-C4987188FAAD",
+        "title": "Não adianta desvirtuar",
+        "authorId": "9AB96EA6-7AB9-4FF3-BD58-4752D23DCA9B",
+        "description": "Nao adianta desvirtuar",
+        "filename": "TV CAMARA - MARCELO FREIXO - Nao adianta desvirtuar.mp3",
+        "dateAdded": "2022-09-08T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "06BB6AC8-F3BF-4995-A7B1-0ECD5013D146",
+        "title": "A esperança finalmente venceu o medo",
+        "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
+        "description": "A esperanca finalmente venceu o medo",
+        "filename": "TV CAMARA - Lula - A esperanca finalmente venceu o medo.mp3",
+        "dateAdded": "2022-09-08T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "F3B40D97-122B-42EC-8AC8-AB7AEFDA158A",
+        "title": "É óbvio",
+        "authorId": "66E5E3E2-A90C-4BE2-A0DB-E9E63A2ABF0B",
+        "description": "É óbvio",
+        "filename": "TV CAMARA - Alessandro Molon - E obvio.mp3",
+        "dateAdded": "2022-09-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "9C1EDF73-D5BE-44F6-BD6F-3D92D3C80C19",
+        "title": "Auxílio emergencial de R$ 200",
+        "authorId": "BB392894-327A-48BA-9C7D-4F0601E947EB",
+        "description": "vamos lancar uma camada de protecao justamente aos autonomos é praticamente em torno do bolsa familia também duzentos reais sao duas cestas basicas",
+        "filename": "TV BRASIL - GUEDES - Auxilio emergencial de 200 reais.mp3",
+        "dateAdded": "2022-09-08T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "0E0D3D7D-BBBB-456A-9BA9-923A2C66B9FF",
+        "title": "Pior do que tá não fica",
+        "authorId": "EBC28244-3E86-410C-AA5F-4426C1B71E30",
+        "description": "Pior do que ta nao fica",
+        "filename": "TIRIRICA - Pior do que ta nao fica.mp3",
+        "dateAdded": "2022-09-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "0C109387-3731-4A53-AD1B-59C923AD5164",
+        "title": "Passarinho que come cu não sabe a pedra que tem",
+        "authorId": "F3DF88A1-E7CD-431F-BD84-4AE7DB7E7657",
+        "description": "Passarinho que come cu nao sabe a pedra que tem",
+        "filename": "Thiago Arruda - Passarinho que come cu nao sabe a pedra que tem.mp3",
+        "dateAdded": "2022-09-08T00:00:00Z",
+        "isOffensive": true
     }
 ]

@@ -110,7 +110,8 @@
     },
     {
         "id": "BB392894-327A-48BA-9C7D-4F0601E947EB",
-        "name": "Paulo Guedes"
+        "name": "Paulo Guedes",
+        "photo": "https://politica.estadao.com.br/blogs/crop/1200x1200/diario-da-cpi/wp-content/uploads/sites/723/2021/05/paulo-guedes-edu-andrade-me_240520211751.jpg"
     },
     {
         "id": "332C6028-19BF-4027-AEC4-982E7B36880F",
@@ -785,7 +786,8 @@
     },
     {
         "id": "9AB96EA6-7AB9-4FF3-BD58-4752D23DCA9B",
-        "name": "Marcelo Freixo"
+        "name": "Marcelo Freixo",
+        "photo": "https://conteudo.imguol.com.br/c/entretenimento/15/2019/08/29/retrato-do-deputado-estadual-pelo-rio-de-janeiro-marcelo-freixo-psol-1567088732544_v2_1x1.jpg"
     },
     {
         "id": "4E8F4CB9-1641-405E-ABE0-80887F72509A",
@@ -1043,5 +1045,19 @@
         "id": "D18DD51F-FA29-47CA-81EF-AAD6072EBFE7",
         "name": "Tyrion Lannister",
         "photo": "https://i.scdn.co/image/ab67706c0000bebb9e4e96e77aecc3bbda585739"
+    },
+    {
+        "id": "66E5E3E2-A90C-4BE2-A0DB-E9E63A2ABF0B",
+        "name": "Alessandro Molon",
+        "photo": "https://conteudo.imguol.com.br/c/noticias/2013/09/18/alessandro-molon-no-poder-e-politica-1379536351621_300x300.jpg"
+    },
+    {
+        "id": "EBC28244-3E86-410C-AA5F-4426C1B71E30",
+        "name": "Tiririca",
+        "photo": "https://akamai.sscdn.co/letras/250x250/fotos/a/f/a/5/afa5040a81a32a46428610067da7e93d.jpg"
+    },
+    {
+        "id": "F3DF88A1-E7CD-431F-BD84-4AE7DB7E7657",
+        "name": "Thiago Arruda"
     }
 ]
