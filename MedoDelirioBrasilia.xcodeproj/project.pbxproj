@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4979103828BE844D00CDF01C /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4979103728BE844D00CDF01C /* WidgetKit.framework */; };
-		4979103A28BE844D00CDF01C /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4979103928BE844D00CDF01C /* SwiftUI.framework */; };
 		4979103D28BE844D00CDF01C /* MedoWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4979103C28BE844D00CDF01C /* MedoWidget.swift */; };
 		4979103F28BE844E00CDF01C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4979103E28BE844E00CDF01C /* Assets.xcassets */; };
 		4979104328BE844E00CDF01C /* MedoWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4979103528BE844D00CDF01C /* MedoWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -943,8 +941,6 @@
 /* Begin PBXFileReference section */
 		4979103028BE842A00CDF01C /* MedoDelirioBrasiliaDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MedoDelirioBrasiliaDebug.entitlements; sourceTree = "<group>"; };
 		4979103528BE844D00CDF01C /* MedoWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MedoWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		4979103728BE844D00CDF01C /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
-		4979103928BE844D00CDF01C /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		4979103C28BE844D00CDF01C /* MedoWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedoWidget.swift; sourceTree = "<group>"; };
 		4979103E28BE844E00CDF01C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4979104028BE844E00CDF01C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1853,8 +1849,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4979103A28BE844D00CDF01C /* SwiftUI.framework in Frameworks */,
-				4979103828BE844D00CDF01C /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1878,15 +1872,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4979103628BE844D00CDF01C /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				4979103728BE844D00CDF01C /* WidgetKit.framework */,
-				4979103928BE844D00CDF01C /* SwiftUI.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		4979103B28BE844D00CDF01C /* MedoWidget */ = {
 			isa = PBXGroup;
 			children = (
@@ -2818,7 +2803,6 @@
 				D9625E7C28238F9A00080852 /* MedoDelirioBrasilia */,
 				D9625E8D28238F9B00080852 /* MedoDelirioBrasiliaTests */,
 				4979103B28BE844D00CDF01C /* MedoWidget */,
-				4979103628BE844D00CDF01C /* Frameworks */,
 				D9625E7B28238F9A00080852 /* Products */,
 			);
 			sourceTree = "<group>";
