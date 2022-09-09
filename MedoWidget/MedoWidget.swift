@@ -26,7 +26,7 @@ struct Provider: TimelineProvider {
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
     }
-    
+
 }
 
 struct SimpleEntry: TimelineEntry {
@@ -111,11 +111,11 @@ struct MedoWidget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             MedoWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("Contagem Regressiva")
+        .description("Acompanhe a aproximação de datas importantes.")
         .supportedFamilies([.accessoryInline, .accessoryCircular, .accessoryRectangular])
     }
-    
+
 }
 
 struct MedoWidget_Previews: PreviewProvider {
