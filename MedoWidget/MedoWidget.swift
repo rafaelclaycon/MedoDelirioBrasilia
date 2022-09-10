@@ -42,6 +42,9 @@ struct MedoWidgetEntryView : View {
     
     var body: some View {
         switch widgetFamily {
+            
+            
+// Circular widget under construction
 //        case .accessoryCircular:
 //            Image("figure.walk.departure")
 //            Gauge(value: 0.92) {

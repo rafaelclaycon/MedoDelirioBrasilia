@@ -4212,7 +4212,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = L8X3H5XA82;
+				DEVELOPMENT_TEAM = 64FQP9KQ3A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MedoWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = MedoWidget;
@@ -4224,7 +4224,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 3.5;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sergiof.MedoDelirioBrasilia.MedoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -4244,7 +4244,7 @@
 				CODE_SIGN_ENTITLEMENTS = MedoWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = L8X3H5XA82;
+				DEVELOPMENT_TEAM = 64FQP9KQ3A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MedoWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = MedoWidget;
@@ -4256,7 +4256,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 3.5;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sergiof.MedoDelirioBrasilia.MedoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
@@ -4393,7 +4393,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
-				DEVELOPMENT_TEAM = L8X3H5XA82;
+				DEVELOPMENT_TEAM = 64FQP9KQ3A;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -4412,7 +4412,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 3.5;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sergiof.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -4434,7 +4434,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
-				DEVELOPMENT_TEAM = L8X3H5XA82;
+				DEVELOPMENT_TEAM = 64FQP9KQ3A;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -4453,7 +4453,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 3.5;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sergiof.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -4471,11 +4471,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = L8X3H5XA82;
+				DEVELOPMENT_TEAM = 64FQP9KQ3A;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasiliaTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sergiof.MedoDelirioBrasiliaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -4494,11 +4494,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = L8X3H5XA82;
+				DEVELOPMENT_TEAM = 64FQP9KQ3A;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasiliaTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sergiof.MedoDelirioBrasiliaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
