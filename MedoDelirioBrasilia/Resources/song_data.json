@@ -408,5 +408,15 @@
         "filename": "Fora Genocida.mp3",
         "dateAdded": "2022-09-06T00:00:00Z",
         "isOffensive": true
+    },
+    {
+        "id": "B84C1995-64E4-49E6-AE85-89BD3874A4FF",
+        "title": "A pipa do Jair não sobe mais (canalhas)",
+        "description": "",
+        "genre": "Marchinha",
+        "duration": "00:14",
+        "filename": "A pipa do jair nao sobe mais.mp3",
+        "dateAdded": "2022-09-11T00:00:00Z",
+        "isOffensive": true
     }
 ]
