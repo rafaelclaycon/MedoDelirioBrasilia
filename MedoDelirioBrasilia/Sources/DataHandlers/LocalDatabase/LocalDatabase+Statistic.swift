@@ -22,7 +22,8 @@ extension LocalDatabase {
             result.append(ServerShareCountStat(installId: row[install_id],
                                                contentId: row[content_id],
                                                contentType: row[content_type],
-                                               shareCount: row[contentCount]))
+                                               shareCount: row[contentCount],
+                                               date: Date.now))
         }
         return result
     }
