@@ -44,11 +44,17 @@ struct SettingsView: View {
                 }
             }
             
+            Section("📬  Problemas, sugestões e pedidos") {
+                Button("Entrar em contato por e-mail") {
+                    showEmailClientConfirmationDialog = true
+                }
+            }
+            
             if showAskForMoneyView || CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
-                Section {
+                /*Section {
                     PodcastAuthorsView()
                         .padding(.vertical, 8)
-                }
+                }*/
                 
                 Section {
                     BegForMoneyView()
@@ -68,18 +74,12 @@ struct SettingsView: View {
                 }
             }
             
-            Section("📬  Problemas, sugestões e pedidos") {
-                Button("Entrar em contato por e-mail") {
-                    showEmailClientConfirmationDialog = true
-                }
-            }
-            
-            /*Section("🧑‍💻  Contribua ou entenda como o app funciona") {
+            Section("🧑‍💻  Contribua ou entenda como o app funciona") {
                 Button("Ver código fonte no GitHub") {
                     let githubUrl = URL(string: "https://github.com/rafaelclaycon/MedoDelirioBrasilia")!
                     UIApplication.shared.open(githubUrl)
                 }
-            }*/
+            }
             
             Section("Sobre") {
                 Button("Criado por @claycon_") {
