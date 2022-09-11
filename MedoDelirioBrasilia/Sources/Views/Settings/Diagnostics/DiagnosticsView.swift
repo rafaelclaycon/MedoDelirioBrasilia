@@ -125,6 +125,14 @@ struct DiagnosticsView: View {
                 }
             }
             
+            if CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
+                Section {
+                    Button("Enviar ShareCountStats") { 
+                        viewModel.sendShareCountStats()
+                    }
+                }
+            }
+            
             /*Section("Logs de rede") {
                 if networkLogs == nil || networkLogs?.count == 0 {
                     Text("Sem Dados")
