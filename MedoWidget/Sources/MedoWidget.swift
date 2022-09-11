@@ -56,7 +56,7 @@ struct MedoWidgetEntryView : View {
 //            .gaugeStyle(.accessoryCircular)
             
         case .accessoryRectangular:
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: -1) {
                 Text(getDaysUntilDateShort(firstTurnDate()))
                     .bold()
                     .font(.system(size: 14))
@@ -114,7 +114,7 @@ struct MedoWidgetEntryView : View {
             } else if days == 0 {
                 return "Hoje"
             } else if days == 1 {
-                return "1 dia"
+                return "Amanhã"
             } else {
                 return "\(days) dias"
             }
@@ -137,9 +137,9 @@ struct MedoWidgetEntryView : View {
             } else if days == 1 {
                 return "O 1º turno é hoje"
             } else if days == 1 {
-                return "1 dia para o 1º turno"
+                return "O 1º turno é amanhã!"
             } else {
-                return "\(days) dias para o 1º turno"
+                return "\(days) dias até o 1º turno"
             }
         } else {
             return "Indefinido"
@@ -171,9 +171,9 @@ struct MedoWidget_Previews: PreviewProvider {
             .previewContext(WidgetPreviewContext(family: .accessoryInline))
             .previewDisplayName("Inline")
         
-        MedoWidgetEntryView(entry: SimpleEntry(date: Date()))
-            .previewContext(WidgetPreviewContext(family: .accessoryCircular))
-            .previewDisplayName("Circular")
+//        MedoWidgetEntryView(entry: SimpleEntry(date: Date()))
+//            .previewContext(WidgetPreviewContext(family: .accessoryCircular))
+//            .previewDisplayName("Circular")
         
         MedoWidgetEntryView(entry: SimpleEntry(date: Date()))
             .previewContext(WidgetPreviewContext(family: .accessoryRectangular))
