@@ -1736,7 +1736,7 @@
 		D988B1A228AC3B1800A179CF /* AddFavoriteLogTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFavoriteLogTable.swift; sourceTree = "<group>"; };
 		D988C522283C33E100D64404 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		D98B291C28691C5C008A78AE /* ColorSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSelectionCell.swift; sourceTree = "<group>"; };
-		D98DBD3228491909008544F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D98DBD3228491909008544F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D98DBD34284919B1008544F8 /* NetworkRabbit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRabbit.swift; sourceTree = "<group>"; };
 		D98DBD37284921B5008544F8 /* NetworkRabbitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRabbitTests.swift; sourceTree = "<group>"; };
 		D98EC5DD282596C300340BE5 /* SoundCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundCell.swift; sourceTree = "<group>"; };
@@ -1881,10 +1881,8 @@
 		4979103B28BE844D00CDF01C /* MedoWidget */ = {
 			isa = PBXGroup;
 			children = (
-				4979103C28BE844D00CDF01C /* MedoWidget.swift */,
-				4979103E28BE844E00CDF01C /* Assets.xcassets */,
-				4979104028BE844E00CDF01C /* Info.plist */,
-				4979104428BE844E00CDF01C /* MedoWidgetExtension.entitlements */,
+				D9DB6F8828CD791500E24BDE /* Sources */,
+				D9DB6F8928CD791A00E24BDE /* Resources */,
 			);
 			path = MedoWidget;
 			sourceTree = "<group>";
@@ -2829,7 +2827,6 @@
 		D9625E7C28238F9A00080852 /* MedoDelirioBrasilia */ = {
 			isa = PBXGroup;
 			children = (
-				D98DBD3228491909008544F8 /* Info.plist */,
 				D9625EA72823949200080852 /* Sources */,
 				D9625EA82823949700080852 /* Resources */,
 			);
@@ -2922,6 +2919,7 @@
 			children = (
 				4979103028BE842A00CDF01C /* MedoDelirioBrasiliaDebug.entitlements */,
 				D9653D9C2882749C00C745F4 /* MedoDelirioBrasilia.entitlements */,
+				D98DBD3228491909008544F8 /* Info.plist */,
 				D9625E8328238F9B00080852 /* Preview Content */,
 				D9625E7D28238F9A00080852 /* MedoDelirioBrasiliaApp.swift */,
 				D980456128380F66003B2E83 /* LocalizableStrings.swift */,
@@ -3081,6 +3079,32 @@
 				D998F28E284F177B0013E709 /* TrendsDisabledView.swift */,
 			);
 			path = Trends;
+			sourceTree = "<group>";
+		};
+		D9DB6F8728CD790100E24BDE /* WidgetSupport */ = {
+			isa = PBXGroup;
+			children = (
+				4979104028BE844E00CDF01C /* Info.plist */,
+				4979104428BE844E00CDF01C /* MedoWidgetExtension.entitlements */,
+			);
+			path = WidgetSupport;
+			sourceTree = "<group>";
+		};
+		D9DB6F8828CD791500E24BDE /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				4979103C28BE844D00CDF01C /* MedoWidget.swift */,
+				D9DB6F8728CD790100E24BDE /* WidgetSupport */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		D9DB6F8928CD791A00E24BDE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4979103E28BE844E00CDF01C /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		D9E69595283D54EA00C341B2 /* DataHandlers */ = {
@@ -4220,13 +4244,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_ENTITLEMENTS = MedoWidget/MedoWidgetExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = MedoWidget/Sources/WidgetSupport/MedoWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MedoWidget/Info.plist;
+				INFOPLIST_FILE = MedoWidget/Sources/WidgetSupport/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = MedoWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -4253,12 +4277,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_ENTITLEMENTS = MedoWidget/MedoWidgetExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = MedoWidget/Sources/WidgetSupport/MedoWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MedoWidget/Info.plist;
+				INFOPLIST_FILE = MedoWidget/Sources/WidgetSupport/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = MedoWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -4409,7 +4433,7 @@
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MedoDelirioBrasilia/Info.plist;
+				INFOPLIST_FILE = MedoDelirioBrasilia/Sources/AppSupport/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Medo e Delírio";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Medo e Delírio requer acesso a sua biblioteca de fotos para salvar vídeos gerados a partir de sons.";
@@ -4450,7 +4474,7 @@
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MedoDelirioBrasilia/Info.plist;
+				INFOPLIST_FILE = MedoDelirioBrasilia/Sources/AppSupport/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Medo e Delírio";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Medo e Delírio requer acesso a sua biblioteca de fotos para salvar vídeos gerados a partir de sons.";
