@@ -18,7 +18,7 @@ class SoundsViewViewModelTests: XCTestCase {
     /// - Sorted by title, author or date added.
 
     func test_reloadList_whenOnlyCleanContentNoFavoritesAndSortedByTitle_shouldDisplay4Sounds() throws {
-        sut = SoundsViewViewModel()
+        sut = SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue)
         
         var mockSounds = [Sound]()
         mockSounds.append(Sound(title: "Deu errado", isOffensive: false))
@@ -35,7 +35,7 @@ class SoundsViewViewModelTests: XCTestCase {
     }
     
     func test_reloadList_whenAllowsOffensiveContentNoFavoritesAndSortedByTitle_shouldDisplay5Sounds() throws {
-        sut = SoundsViewViewModel()
+        sut = SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue)
         
         var mockSounds = [Sound]()
         mockSounds.append(Sound(title: "Deu errado", isOffensive: false))
@@ -52,7 +52,7 @@ class SoundsViewViewModelTests: XCTestCase {
     }
     
     func test_reloadList_whenAllowsOffensiveContent_favoritesOnly_andSortedByTitle_shouldDisplay1Sound() throws {
-        sut = SoundsViewViewModel()
+        sut = SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue)
         
         var mockSounds = [Sound]()
         mockSounds.append(Sound(title: "Deu errado", isOffensive: false))
@@ -71,7 +71,7 @@ class SoundsViewViewModelTests: XCTestCase {
     }
     
     func test_reloadList_whenAllowsOffensiveContent_favoritesOnly_andSortedByTitle_butNoFavoritesExist_shouldDisplayNoSounds() throws {
-        sut = SoundsViewViewModel()
+        sut = SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue)
         
         var mockSounds = [Sound]()
         mockSounds.append(Sound(title: "Deu errado", isOffensive: false))
