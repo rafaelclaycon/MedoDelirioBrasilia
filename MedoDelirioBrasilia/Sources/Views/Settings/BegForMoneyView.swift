@@ -18,8 +18,13 @@ struct BegForMoneyView: View {
             
             VStack(alignment: .leading, spacing: 18) {
                 Text("Sou um único desenvolvedor dedicando meu tempo livre para esse projeto.")
-            
-                Text("Se você está curtindo o app e gostaria de ajudar, use a chave abaixo. Assim você garante novos sons, recursos e o meu muito obrigado!")
+                
+                if UIDevice.current.userInterfaceIdiom == .phone {
+                    Text("Se você está curtindo o app e gostaria de ajudar, use a chave abaixo. Assim você garante novos sons, recursos e o meu muito obrigado!")
+                } else {
+                    Text("Se você está curtindo o app e gostaria de ajudar, use a chave abaixo.")
+                    Text("Assim você garante novos sons, recursos e o meu muito obrigado!")
+                }
             }
         }
     }

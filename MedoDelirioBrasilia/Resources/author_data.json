@@ -1059,5 +1059,19 @@
     {
         "id": "F3DF88A1-E7CD-431F-BD84-4AE7DB7E7657",
         "name": "Thiago Arruda"
+    },
+    {
+        "id": "AE949547-5C2E-4AA4-B68F-0C3E1F503AB3",
+        "name": "João Gordo",
+        "photo": "https://f.i.uol.com.br/fotografia/2021/02/22/1614020809603400c90e828_1614020809_1x1_md.jpg"
+    },
+    {
+        "id": "CB8A74AE-C21F-4129-9A89-4DBDFF1835F3",
+        "name": "Edu Santos"
+    },
+    {
+        "id": "4840C45E-2404-42F3-A455-3091C6AE88C3",
+        "name": "Fernanda Torres",
+        "photo": "https://static1.purepeople.com.br/articles/9/10/29/09/@/1351429-fernanda-torres-escreve-novo-texto-nesta-237x237-1.jpg"
     }
 ]
