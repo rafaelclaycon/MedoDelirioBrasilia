@@ -142,7 +142,7 @@ struct MedoWidgetEntryView : View {
             } else if days == 1 {
                 return "1 dia para o 1º turno"
             } else {
-                return "\(days) dias para o 1º turno"
+                return "\(days) dias até o 1º turno"
             }
         } else {
             return "Indefinido"
