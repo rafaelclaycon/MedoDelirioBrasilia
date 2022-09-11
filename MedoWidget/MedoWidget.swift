@@ -140,7 +140,7 @@ struct MedoWidgetEntryView : View {
             } else if days == 1 {
                 return "O 1º turno é hoje"
             } else if days == 1 {
-                return "1 dia para o 1º turno"
+                return "O 1º turno é amanhã!"
             } else {
                 return "\(days) dias até o 1º turno"
             }
