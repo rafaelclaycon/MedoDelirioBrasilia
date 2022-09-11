@@ -2759,18 +2759,10 @@
 			isa = PBXGroup;
 			children = (
 				D958B1B12839534D0010F133 /* SettingsView.swift */,
-				D9ECD81328B3C45D003C033A /* AlternateIcons */,
-				D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */,
-				D93D24DF2849DAAB00300541 /* DiagnosticsView.swift */,
-				D973076B28AC49B100FBB3B8 /* DiagnosticsViewViewModel.swift */,
-				D9A8AB2428543F8E00B5A94B /* SharingLogCell.swift */,
-				D92CAA4028593B1700D6C1EA /* NetworkLogCell.swift */,
-				D9DCC5D8287625F4008DD4A3 /* PodcastAuthorsView.swift */,
-				D9BB9264285DAA8E005CD6DD /* BegForMoneyView.swift */,
-				D9DCC5D62875D7E5008DD4A3 /* NotificationSymbolPlusText.swift */,
-				D911070A28627216000B6F8F /* NotificationsSettingsView.swift */,
-				D9ABDDB1287411D9007B25EA /* Help */,
-				D949180F288606E00079F545 /* SettingsCasingWithCloseView.swift */,
+				D970162D28CE797B0003AA00 /* Sub-Settings */,
+				D970162F28CE7A0F0003AA00 /* Acknowledgements */,
+				D970162E28CE79C30003AA00 /* Diagnostics */,
+				D970163028CE7A540003AA00 /* iPad */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -2894,6 +2886,54 @@
 				D9759ACA2872B1D1005F9871 /* Shared */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		D970162D28CE797B0003AA00 /* Sub-Settings */ = {
+			isa = PBXGroup;
+			children = (
+				D9ABDDB1287411D9007B25EA /* Help */,
+				D970163128CE7A6E0003AA00 /* Notifications */,
+				D9ECD81328B3C45D003C033A /* AlternateIcons */,
+				D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */,
+			);
+			path = "Sub-Settings";
+			sourceTree = "<group>";
+		};
+		D970162E28CE79C30003AA00 /* Diagnostics */ = {
+			isa = PBXGroup;
+			children = (
+				D93D24DF2849DAAB00300541 /* DiagnosticsView.swift */,
+				D973076B28AC49B100FBB3B8 /* DiagnosticsViewViewModel.swift */,
+				D9A8AB2428543F8E00B5A94B /* SharingLogCell.swift */,
+				D92CAA4028593B1700D6C1EA /* NetworkLogCell.swift */,
+			);
+			path = Diagnostics;
+			sourceTree = "<group>";
+		};
+		D970162F28CE7A0F0003AA00 /* Acknowledgements */ = {
+			isa = PBXGroup;
+			children = (
+				D9DCC5D8287625F4008DD4A3 /* PodcastAuthorsView.swift */,
+				D9BB9264285DAA8E005CD6DD /* BegForMoneyView.swift */,
+			);
+			path = Acknowledgements;
+			sourceTree = "<group>";
+		};
+		D970163028CE7A540003AA00 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				D949180F288606E00079F545 /* SettingsCasingWithCloseView.swift */,
+			);
+			path = iPad;
+			sourceTree = "<group>";
+		};
+		D970163128CE7A6E0003AA00 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				D9DCC5D62875D7E5008DD4A3 /* NotificationSymbolPlusText.swift */,
+				D911070A28627216000B6F8F /* NotificationsSettingsView.swift */,
+			);
+			path = Notifications;
 			sourceTree = "<group>";
 		};
 		D9759ACA2872B1D1005F9871 /* Shared */ = {
