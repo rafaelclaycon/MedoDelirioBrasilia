@@ -2916,15 +2916,15 @@
 		D980456028380F45003B2E83 /* AppSupport */ = {
 			isa = PBXGroup;
 			children = (
-				D9653D9C2882749C00C745F4 /* MedoDelirioBrasilia.entitlements */,
-				D98DBD3228491909008544F8 /* Info.plist */,
-				D9625E8328238F9B00080852 /* Preview Content */,
 				D9625E7D28238F9A00080852 /* MedoDelirioBrasiliaApp.swift */,
 				D980456128380F66003B2E83 /* LocalizableStrings.swift */,
 				D988C522283C33E100D64404 /* UserSettings.swift */,
 				D9DCC5D42875CB59008DD4A3 /* AppPersistentMemory.swift */,
 				D9BF9090284257F500BDDD7D /* Shared.swift */,
 				D960AF262845BFE700ADF1F6 /* UserDefaultsKeys.swift */,
+				D9653D9C2882749C00C745F4 /* MedoDelirioBrasilia.entitlements */,
+				D98DBD3228491909008544F8 /* Info.plist */,
+				D9625E8328238F9B00080852 /* Preview Content */,
 			);
 			path = AppSupport;
 			sourceTree = "<group>";
