@@ -15,7 +15,7 @@ class VideoMaker {
     
     static func textToImage(drawText text: String, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
         let textColor = UIColor.black
-        let textFont = UIFont(name: "Helvetica Bold", size: 72)!
+        let textFont = UIFont.systemFont(ofSize: 72, weight: .bold)
 
         let scale = UIScreen.main.scale
         UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
