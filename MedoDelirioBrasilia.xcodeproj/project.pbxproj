@@ -18,9 +18,6 @@
 		4979105A28BEC71400CDF01C /* Agora vai sentar na mesa Funk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4979105828BEC71400CDF01C /* Agora vai sentar na mesa Funk.mp3 */; };
 		4979105C28BEC78600CDF01C /* Chateado - Paulo Sergio Nogueira.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4979105B28BEC78600CDF01C /* Chateado - Paulo Sergio Nogueira.mp3 */; };
 		49B4C96A28CE74E6007E893B /* A pipa do jair nao sobe mais.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49B4C96928CE74E6007E893B /* A pipa do jair nao sobe mais.mp3 */; };
-		49B4C96C28CE753E007E893B /* ele e meio sem nocao - michele bolsonaro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49B4C96B28CE753E007E893B /* ele e meio sem nocao - michele bolsonaro.mp3 */; };
-		49B4C96E28CE7581007E893B /* Imbroxavel 5 vezes.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49B4C96D28CE7581007E893B /* Imbroxavel 5 vezes.mp3 */; };
-		49B4C97028CE75EE007E893B /* Que satisfacao aspira - tropa de elite.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49B4C96F28CE75EE007E893B /* Que satisfacao aspira - tropa de elite.mp3 */; };
 		49B4C97228CE7635007E893B /* Ui que brega.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49B4C97128CE7635007E893B /* Ui que brega.mp3 */; };
 		49B4C97428CE7684007E893B /* Ihuu (agora com equiu).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49B4C97328CE7684007E893B /* Ihuu (agora com equiu).mp3 */; };
 		49DEA99C28810C63008C9BA1 /* Ah nao de novo nao de novo nao short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA99B28810C63008C9BA1 /* Ah nao de novo nao de novo nao short meme.mp3 */; };
@@ -801,6 +798,9 @@
 		D988B1A328AC3B1800A179CF /* AddFavoriteLogTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D988B1A228AC3B1800A179CF /* AddFavoriteLogTable.swift */; };
 		D988C523283C33E100D64404 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D988C522283C33E100D64404 /* UserSettings.swift */; };
 		D98B291D28691C5C008A78AE /* ColorSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98B291C28691C5C008A78AE /* ColorSelectionCell.swift */; };
+		D98B9AD628CEBD2D00B82EDE /* Imbrochavel 5 vezes.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98B9AD328CEBD2D00B82EDE /* Imbrochavel 5 vezes.mp3 */; };
+		D98B9AD728CEBD2D00B82EDE /* Michelle Bolsonaro - Ele e meio sem nocao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98B9AD428CEBD2D00B82EDE /* Michelle Bolsonaro - Ele e meio sem nocao.mp3 */; };
+		D98B9AD828CEBD2D00B82EDE /* Tropa de Elite - Que satisfacao, aspira.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98B9AD528CEBD2D00B82EDE /* Tropa de Elite - Que satisfacao, aspira.mp3 */; };
 		D98DBD35284919B1008544F8 /* NetworkRabbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98DBD34284919B1008544F8 /* NetworkRabbit.swift */; };
 		D98DBD38284921B5008544F8 /* NetworkRabbitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98DBD37284921B5008544F8 /* NetworkRabbitTests.swift */; };
 		D98EC5DE282596C300340BE5 /* SoundCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5DD282596C300340BE5 /* SoundCell.swift */; };
@@ -961,9 +961,6 @@
 		4979105828BEC71400CDF01C /* Agora vai sentar na mesa Funk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Agora vai sentar na mesa Funk.mp3"; sourceTree = "<group>"; };
 		4979105B28BEC78600CDF01C /* Chateado - Paulo Sergio Nogueira.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Chateado - Paulo Sergio Nogueira.mp3"; sourceTree = "<group>"; };
 		49B4C96928CE74E6007E893B /* A pipa do jair nao sobe mais.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "A pipa do jair nao sobe mais.mp3"; sourceTree = "<group>"; };
-		49B4C96B28CE753E007E893B /* ele e meio sem nocao - michele bolsonaro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ele e meio sem nocao - michele bolsonaro.mp3"; sourceTree = "<group>"; };
-		49B4C96D28CE7581007E893B /* Imbroxavel 5 vezes.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Imbroxavel 5 vezes.mp3"; sourceTree = "<group>"; };
-		49B4C96F28CE75EE007E893B /* Que satisfacao aspira - tropa de elite.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Que satisfacao aspira - tropa de elite.mp3"; sourceTree = "<group>"; };
 		49B4C97128CE7635007E893B /* Ui que brega.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ui que brega.mp3"; sourceTree = "<group>"; };
 		49B4C97328CE7684007E893B /* Ihuu (agora com equiu).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ihuu (agora com equiu).mp3"; sourceTree = "<group>"; };
 		49DEA99B28810C63008C9BA1 /* Ah nao de novo nao de novo nao short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ah nao de novo nao de novo nao short meme.mp3"; sourceTree = "<group>"; };
@@ -1747,6 +1744,9 @@
 		D988B1A228AC3B1800A179CF /* AddFavoriteLogTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFavoriteLogTable.swift; sourceTree = "<group>"; };
 		D988C522283C33E100D64404 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		D98B291C28691C5C008A78AE /* ColorSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSelectionCell.swift; sourceTree = "<group>"; };
+		D98B9AD328CEBD2D00B82EDE /* Imbrochavel 5 vezes.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Imbrochavel 5 vezes.mp3"; sourceTree = "<group>"; };
+		D98B9AD428CEBD2D00B82EDE /* Michelle Bolsonaro - Ele e meio sem nocao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Michelle Bolsonaro - Ele e meio sem nocao.mp3"; sourceTree = "<group>"; };
+		D98B9AD528CEBD2D00B82EDE /* Tropa de Elite - Que satisfacao, aspira.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tropa de Elite - Que satisfacao, aspira.mp3"; sourceTree = "<group>"; };
 		D98DBD3228491909008544F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D98DBD34284919B1008544F8 /* NetworkRabbit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRabbit.swift; sourceTree = "<group>"; };
 		D98DBD37284921B5008544F8 /* NetworkRabbitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRabbitTests.swift; sourceTree = "<group>"; };
@@ -1910,11 +1910,11 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D98B9AD328CEBD2D00B82EDE /* Imbrochavel 5 vezes.mp3 */,
+				D98B9AD428CEBD2D00B82EDE /* Michelle Bolsonaro - Ele e meio sem nocao.mp3 */,
+				D98B9AD528CEBD2D00B82EDE /* Tropa de Elite - Que satisfacao, aspira.mp3 */,
 				49B4C97328CE7684007E893B /* Ihuu (agora com equiu).mp3 */,
 				49B4C97128CE7635007E893B /* Ui que brega.mp3 */,
-				49B4C96F28CE75EE007E893B /* Que satisfacao aspira - tropa de elite.mp3 */,
-				49B4C96D28CE7581007E893B /* Imbroxavel 5 vezes.mp3 */,
-				49B4C96B28CE753E007E893B /* ele e meio sem nocao - michele bolsonaro.mp3 */,
 				D9DB6F8428CD770900E24BDE /* Fernanda Torres - Totalmente drogada.mp3 */,
 				D9DB6F8228CD6F3500E24BDE /* Edu Santos - Totalmente embriagado.mp3 */,
 				D9DB6F8028CD6E2900E24BDE /* UOL - JOAO GORDO - Doidao de droga.mp3 */,
@@ -3425,7 +3425,6 @@
 				D975FF142880B4F20035E6F2 /* Abraham Weintraub - odeio odeio odeio short.mp3 in Resources */,
 				D975FF942880B4F20035E6F2 /* Lula - Voces percebem a loucura que esta tomando conta desse pais.mp3 in Resources */,
 				D975001A2880B4F20035E6F2 /* Bolsonaro - Pode me culpar a vontade.mp3 in Resources */,
-				49B4C97028CE75EE007E893B /* Que satisfacao aspira - tropa de elite.mp3 in Resources */,
 				D975FE602880B4F20035E6F2 /* CHOQUE DE CULTURA - Maurilio palestrinha - E golpe short meme.mp3 in Resources */,
 				D975FF8C2880B4F20035E6F2 /* SBT NEWS - Jair Renan - Acabou que nao fiz nada la.mp3 in Resources */,
 				D975FF9A2880B4F20035E6F2 /* Massacration - Metal is the Law - grito short meme.mp3 in Resources */,
@@ -3554,7 +3553,6 @@
 				D921F894288B07CB003979CC /* Fa do Armandinho - Vamo pra cima Gremio.mp3 in Resources */,
 				D975FFA42880B4F20035E6F2 /* Cid Moreira - Vai chorar e chore na minha.mp3 in Resources */,
 				D975FF732880B4F20035E6F2 /* LEANDRO HASSUM - Adora falar rebuscado.mp3 in Resources */,
-				49B4C96E28CE7581007E893B /* Imbroxavel 5 vezes.mp3 in Resources */,
 				D975FE4D2880B4F20035E6F2 /* Lula - Eu vou tomar a minha vacina.mp3 in Resources */,
 				D975FFD52880B4F20035E6F2 /* Pretty please meme infantil crianca begging.mp3 in Resources */,
 				D975FFC82880B4F20035E6F2 /* Bolsonaro - No que depender de mim nunca teremos lockdown.mp3 in Resources */,
@@ -3591,6 +3589,7 @@
 				D975FFF72880B4F20035E6F2 /* Bolsonaro - A pressa da vacina nao se justifica.mp3 in Resources */,
 				D975FF952880B4F20035E6F2 /* Mermao na moral short.mp3 in Resources */,
 				D975FF6A2880B4F20035E6F2 /* CASIMIRO - Que que porra e essa.mp3 in Resources */,
+				D98B9AD828CEBD2D00B82EDE /* Tropa de Elite - Que satisfacao, aspira.mp3 in Resources */,
 				D975FEDB2880B4F20035E6F2 /* HENRY BUGALHO - Os reacas piram.mp3 in Resources */,
 				D975FEF82880B4F20035E6F2 /* LINGUICETA - Diogo Defante - Minha alegria ta baseada na tristeza do meu colega.mp3 in Resources */,
 				D975FFF02880B4F20035E6F2 /* Feiticeira - Nao e feiticaria, e tecnologia meme short.mp3 in Resources */,
@@ -3765,6 +3764,7 @@
 				D97500102880B4F20035E6F2 /* CHOQUE DE CULTURA - Renan - Inescrupulosos.mp3 in Resources */,
 				D92AD1AB28832BDF001CBCDF /* PETIT JOURNAL - Tanguy Baghdadi - Porra, ta errado.mp3 in Resources */,
 				D975FF712880B4F20035E6F2 /* Malditos milicos robo grave.mp3 in Resources */,
+				D98B9AD628CEBD2D00B82EDE /* Imbrochavel 5 vezes.mp3 in Resources */,
 				D975FEC42880B4F20035E6F2 /* ROY ORBISON - Oh Pretty Woman Pretiputi parodia.mp3 in Resources */,
 				D975FE5E2880B4F20035E6F2 /* Harry e Helen - I've heard that song before short meme.mp3 in Resources */,
 				D975FE122880B4F20035E6F2 /* Cleber Machado - Hoje nao hoje nao.mp3 in Resources */,
@@ -3799,7 +3799,6 @@
 				D975FF862880B4F20035E6F2 /* Bolsonaro - O Lula ta elegivel pra 22.mp3 in Resources */,
 				D975FFAD2880B4F20035E6F2 /* Ronnie Von - Significa short.mp3 in Resources */,
 				D975002E2880B4F20035E6F2 /* LINGUICETA - Diogo Defante - Eu queria deixar claro que eu fico puto.mp3 in Resources */,
-				49B4C96C28CE753E007E893B /* ele e meio sem nocao - michele bolsonaro.mp3 in Resources */,
 				D975FF672880B4F20035E6F2 /* CASIMIRO - Que marolada hein.mp3 in Resources */,
 				D975FFD62880B4F20035E6F2 /* Vai Dar Namoro - UUUUII.mp3 in Resources */,
 				D975FE652880B4F20035E6F2 /* Gilmar Mendes - Me parece que esta havendo um certo delirio.mp3 in Resources */,
@@ -4055,6 +4054,7 @@
 				D975FE662880B4F20035E6F2 /* Eu fico muito triste com uma noticia dessas filha da puta fogos short.mp3 in Resources */,
 				D975FFD92880B4F20035E6F2 /* Malafaia - Concordamos.mp3 in Resources */,
 				D975FFFA2880B4F20035E6F2 /* Vai Dar Namoro - Demais.mp3 in Resources */,
+				D98B9AD728CEBD2D00B82EDE /* Michelle Bolsonaro - Ele e meio sem nocao.mp3 in Resources */,
 				D97500072880B4F20035E6F2 /* REDETV - Jair Bolsonaro - Eu pretendo participar de debates, nao participei na ultima porque estava em convalescencia.mp3 in Resources */,
 				D975FF392880B4F20035E6F2 /* PORTA DOS FUNDOS - BALBURDIA - Bom dia, turma, todo mundo tirando a roupa e dedo no cu do colega do lado.mp3 in Resources */,
 				D92AD1B328832E07001CBCDF /* Casimiro - Quer jogar luz pra falar que ta errado ja ta errado nao precisa jogar luz tem que jogar na merda.mp3 in Resources */,
