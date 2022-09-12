@@ -29,9 +29,19 @@ struct SettingsView: View {
                     Text("Ajuda")
                 }
                 
+//                NavigationLink(destination: TrendsSettingsView()) {
+//                    Text("Novidades")
+//                }
+                
+                NavigationLink(destination: TrendsSettingsView()) {
+                    Text("Recomendado pelo Desenvolvedor")
+                }
+            }
+            
+            Section {
                 /*NavigationLink(destination: NotificationsSettingsView()) {
-                    Text("Notificações")
-                }*/
+                 Text("Notificações")
+                 }*/
                 
                 if showChangeAppIcon {
                     NavigationLink(destination: ChangeAppIconView()) {
