@@ -6379,5 +6379,50 @@
         "filename": "Fernanda Torres - Totalmente drogada.mp3",
         "dateAdded": "2022-09-10T00:00:00Z",
         "isOffensive": true
+    },
+    {
+        "id": "B799B5AD-6916-4B1F-8810-B4577EA0DB6F",
+        "title": "Ele é meio sem noção",
+        "authorId": "87138168-E9AC-4BF0-A486-2C5F098CD541",
+        "description": "ele é meio sem noção",
+        "filename": "Michelle Bolsonaro - Ele e meio sem nocao.mp3",
+        "dateAdded": "2022-09-11T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "7167C5A2-E406-4256-9569-B1BD8FFC93FC",
+        "title": "Imbrochável (5x)",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "imbroxavel imbrochavel",
+        "filename": "Imbrochavel 5 vezes.mp3",
+        "dateAdded": "2022-09-11T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "2C9DC0D3-E062-4AF7-8414-2FD0E71E44C5",
+        "title": "Que satisfação, aspira",
+        "authorId": "94A68344-24DE-40B8-A9B8-D2F3FFD09763",
+        "description": "que satisfação aspira",
+        "filename": "Tropa de Elite - Que satisfacao, aspira.mp3",
+        "dateAdded": "2022-09-11T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "F0FC28B2-C201-4460-B132-089576A077C9",
+        "title": "Ui, que brega",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "ui que brega",
+        "filename": "Ui que brega.mp3",
+        "dateAdded": "2022-09-11T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "4A6BFF34-A937-4436-AD5A-5011D632B722",
+        "title": "Ihuu (agora com équiu)",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "ihuu ihuul irru agora com equiu eco tabajara",
+        "filename": "Ihuu (agora com equiu).mp3",
+        "dateAdded": "2022-09-11T00:00:00Z",
+        "isOffensive": false
     }
 ]
