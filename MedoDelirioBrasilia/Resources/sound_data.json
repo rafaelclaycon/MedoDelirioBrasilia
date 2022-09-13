@@ -6424,5 +6424,50 @@
         "filename": "Ihuu (agora com equiu).mp3",
         "dateAdded": "2022-09-11T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "5702813A-AC05-474E-9628-2D6F32EB192E",
+        "title": "Eu acho que até um fake news é valido, com todo o respeito",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Eu acho que ate um fake news e valido com todo o respeito",
+        "filename": "Bolsonaro - Eu acho que ate um fake news e valido, com todo o respeito.mp3",
+        "dateAdded": "2022-09-12T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "2C292A5F-F198-4552-8DD2-C607900B7AA5",
+        "title": "Misericórdia, jornalista, tenha dó",
+        "authorId": "F1683588-F547-4F2F-B3E4-8A328FAFC1AB",
+        "description": "Misericordia jornalista tenha do",
+        "filename": "Casimiro - Misericordia, jornalista, tenha do.mp3",
+        "dateAdded": "2022-09-13T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "B0D809A4-2EE5-4C72-A557-34A587A5E566",
+        "title": "Moderador, tira o moleque desse grupo AGORA",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "Moderador tira o moleque desse grupo agora",
+        "filename": "Moderador, tira o moleque desse grupo agora.mp3",
+        "dateAdded": "2022-09-13T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "D7693EE9-1C7A-45E4-817B-E811D0DEDCBB",
+        "title": "Chato pra caralho",
+        "authorId": "42EDB2DA-51E7-40B1-BABA-FD28066AF001",
+        "description": "Chato pra caralho",
+        "filename": "Milton Leite - Chato pra caralho.mp3",
+        "dateAdded": "2022-09-13T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "340CE467-19A4-4992-B337-7F9A94720F82",
+        "title": "Ui, que brega!",
+        "authorId": "DE543F8C-7337-4629-8A35-2A51FD7F36A6",
+        "description": "Ui que brega",
+        "filename": "Mc Douglinhas - Ui, que brega.mp3",
+        "dateAdded": "2022-09-13T00:00:00Z",
+        "isOffensive": false
     }
 ]
