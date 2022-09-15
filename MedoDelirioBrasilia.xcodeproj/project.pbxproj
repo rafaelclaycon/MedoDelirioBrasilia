@@ -18,7 +18,6 @@
 		4979105A28BEC71400CDF01C /* Agora vai sentar na mesa Funk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4979105828BEC71400CDF01C /* Agora vai sentar na mesa Funk.mp3 */; };
 		4979105C28BEC78600CDF01C /* Chateado - Paulo Sergio Nogueira.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4979105B28BEC78600CDF01C /* Chateado - Paulo Sergio Nogueira.mp3 */; };
 		49B4C96A28CE74E6007E893B /* A pipa do jair nao sobe mais.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49B4C96928CE74E6007E893B /* A pipa do jair nao sobe mais.mp3 */; };
-		49B4C97228CE7635007E893B /* Ui que brega.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49B4C97128CE7635007E893B /* Ui que brega.mp3 */; };
 		49B4C97428CE7684007E893B /* Ihuu (agora com equiu).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49B4C97328CE7684007E893B /* Ihuu (agora com equiu).mp3 */; };
 		49DEA99C28810C63008C9BA1 /* Ah nao de novo nao de novo nao short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA99B28810C63008C9BA1 /* Ah nao de novo nao de novo nao short meme.mp3 */; };
 		49DEA99E28810C88008C9BA1 /* Ana Paula - Olha Ela short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA99D28810C88008C9BA1 /* Ana Paula - Olha Ela short meme.mp3 */; };
@@ -966,7 +965,6 @@
 		4979105828BEC71400CDF01C /* Agora vai sentar na mesa Funk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Agora vai sentar na mesa Funk.mp3"; sourceTree = "<group>"; };
 		4979105B28BEC78600CDF01C /* Chateado - Paulo Sergio Nogueira.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Chateado - Paulo Sergio Nogueira.mp3"; sourceTree = "<group>"; };
 		49B4C96928CE74E6007E893B /* A pipa do jair nao sobe mais.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "A pipa do jair nao sobe mais.mp3"; sourceTree = "<group>"; };
-		49B4C97128CE7635007E893B /* Ui que brega.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ui que brega.mp3"; sourceTree = "<group>"; };
 		49B4C97328CE7684007E893B /* Ihuu (agora com equiu).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ihuu (agora com equiu).mp3"; sourceTree = "<group>"; };
 		49DEA99B28810C63008C9BA1 /* Ah nao de novo nao de novo nao short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ah nao de novo nao de novo nao short meme.mp3"; sourceTree = "<group>"; };
 		49DEA99D28810C88008C9BA1 /* Ana Paula - Olha Ela short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ana Paula - Olha Ela short meme.mp3"; sourceTree = "<group>"; };
@@ -1929,7 +1927,6 @@
 				D98B9AD428CEBD2D00B82EDE /* Michelle Bolsonaro - Ele e meio sem nocao.mp3 */,
 				D98B9AD528CEBD2D00B82EDE /* Tropa de Elite - Que satisfacao, aspira.mp3 */,
 				49B4C97328CE7684007E893B /* Ihuu (agora com equiu).mp3 */,
-				49B4C97128CE7635007E893B /* Ui que brega.mp3 */,
 				D9DB6F8428CD770900E24BDE /* Fernanda Torres - Totalmente drogada.mp3 */,
 				D9DB6F8228CD6F3500E24BDE /* Edu Santos - Totalmente embriagado.mp3 */,
 				D9DB6F8028CD6E2900E24BDE /* UOL - JOAO GORDO - Doidao de droga.mp3 */,
@@ -3411,7 +3408,6 @@
 				D975FF4D2880B4F20035E6F2 /* Bolsonaro - E todos esperavam exatamente o contrario.mp3 in Resources */,
 				D975FFBF2880B4F20035E6F2 /* MC Jefinho Farao - Pastor marginal.mp3 in Resources */,
 				D975FF622880B4F20035E6F2 /* Maysa - La vem besteira, la vem besteira.mp3 in Resources */,
-				49B4C97228CE7635007E893B /* Ui que brega.mp3 in Resources */,
 				D975FECA2880B4F20035E6F2 /* Bolsonaro - E um partido de pirocas ta ok.mp3 in Resources */,
 				D975FF822880B4F20035E6F2 /* Bolsonaro - Sou ousado.mp3 in Resources */,
 				D99151292873E4C100FFAA29 /* house-mascara-no-rabo-mdb.mp3 in Resources */,

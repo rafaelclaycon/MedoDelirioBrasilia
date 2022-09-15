@@ -6409,10 +6409,10 @@
     },
     {
         "id": "F0FC28B2-C201-4460-B132-089576A077C9",
-        "title": "Ui, que brega",
-        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "title": "Ui, que brega!",
+        "authorId": "DE543F8C-7337-4629-8A35-2A51FD7F36A6",
         "description": "ui que brega",
-        "filename": "Ui que brega.mp3",
+        "filename": "Mc Douglinhas - Ui, que brega.mp3",
         "dateAdded": "2022-09-11T00:00:00Z",
         "isOffensive": false
     },
@@ -6460,14 +6460,5 @@
         "filename": "Milton Leite - Chato pra caralho.mp3",
         "dateAdded": "2022-09-13T00:00:00Z",
         "isOffensive": true
-    },
-    {
-        "id": "340CE467-19A4-4992-B337-7F9A94720F82",
-        "title": "Ui, que brega!",
-        "authorId": "DE543F8C-7337-4629-8A35-2A51FD7F36A6",
-        "description": "Ui que brega",
-        "filename": "Mc Douglinhas - Ui, que brega.mp3",
-        "dateAdded": "2022-09-13T00:00:00Z",
-        "isOffensive": false
     }
 ]
