@@ -39,27 +39,27 @@ struct CollectionsView: View {
                         Spacer()
                     }
                     
-                    VStack(spacing: 10) {
-                        Text("Em Breve")
-                            .font(.headline)
-                            .multilineTextAlignment(.center)
-                    }
-                    .padding(.vertical, 100)
+//                    VStack(spacing: 10) {
+//                        Text("Em Breve")
+//                            .font(.headline)
+//                            .multilineTextAlignment(.center)
+//                    }
+//                    .padding(.vertical, 100)
                     
-//                        ScrollView(.horizontal, showsIndicators: false) {
-//                            LazyHGrid(rows: rows, spacing: 14) {
-//                                ForEach(viewModel.collections) { collection in
-//                                    NavigationLink {
-//                                        CollectionDetailView()
-//                                    } label: {
-//                                        CollectionCell(title: collection.title, imageURL: collection.imageURL)
-//                                    }
-//                                }
-//                            }
-//                            .frame(height: 210)
-//                            .padding(.leading)
-//                            .padding(.trailing)
-//                        }
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        LazyHGrid(rows: rows, spacing: 14) {
+                            ForEach(viewModel.collections) { collection in
+                                NavigationLink {
+                                    CollectionDetailView()
+                                } label: {
+                                    CollectionCell(title: collection.title, imageURL: collection.imageURL)
+                                }
+                            }
+                        }
+                        .frame(height: 210)
+                        .padding(.leading)
+                        .padding(.trailing)
+                    }
                 }
                 .padding(.top, 10)
                 
@@ -159,7 +159,7 @@ struct CollectionsView: View {
                 }), secondaryButton: .cancel(Text("Cancelar")))
             }
             .onAppear {
-                //viewModel.reloadCollectionList(withCollections: getLocalCollections())
+                viewModel.reloadCollectionList(withCollections: getLocalCollections())
                 viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
                 viewModel.donateActivity()
             }
