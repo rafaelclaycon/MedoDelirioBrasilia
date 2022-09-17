@@ -5,7 +5,7 @@ struct Song: Hashable, Codable, Identifiable {
     var id: String
     var title: String
     var description: String
-    var genre: String
+    var genre: MusicGenre
     var duration: String
     var filename: String
     var dateAdded: Date?
@@ -14,7 +14,7 @@ struct Song: Hashable, Codable, Identifiable {
     init(id: String = UUID().uuidString,
          title: String,
          description: String = "",
-         genre: String = "",
+         genre: MusicGenre = .undefined,
          duration: String = "",
          filename: String = "",
          dateAdded: Date = Date(),
