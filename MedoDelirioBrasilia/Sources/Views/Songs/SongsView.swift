@@ -168,7 +168,7 @@ struct SongsView: View {
                 }
             }
         } label: {
-            Image(systemName: "line.3.horizontal.decrease.circle")
+            Image(systemName: currentGenre == .all ? "line.3.horizontal.decrease.circle" : "line.3.horizontal.decrease.circle.fill")
         }
     }
 
