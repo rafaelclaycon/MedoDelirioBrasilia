@@ -839,6 +839,7 @@
 		D99D0DC128CAB3E800EB6F27 /* TV CAMARA - Lula - A esperanca finalmente venceu o medo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99D0DC028CAB3E800EB6F27 /* TV CAMARA - Lula - A esperanca finalmente venceu o medo.mp3 */; };
 		D99D0DC328CAB52700EB6F27 /* TV CAMARA - Alessandro Molon - E obvio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99D0DC228CAB52700EB6F27 /* TV CAMARA - Alessandro Molon - E obvio.mp3 */; };
 		D99D0DC528CAB5F000EB6F27 /* TV BRASIL - GUEDES - Auxilio emergencial de 200 reais.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99D0DC428CAB5EF00EB6F27 /* TV BRASIL - GUEDES - Auxilio emergencial de 200 reais.mp3 */; };
+		D99D6CE528D6766300B36301 /* Jair Bolsonaro - Ministro Fachin, marxista, leninista.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99D6CE428D6766300B36301 /* Jair Bolsonaro - Ministro Fachin, marxista, leninista.mp3 */; };
 		D99DC19D28423AD7002B03B6 /* AuthorDetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99DC19C28423AD7002B03B6 /* AuthorDetailViewViewModel.swift */; };
 		D9A096D8287CE72300773869 /* Mailman.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A096D7287CE72300773869 /* Mailman.swift */; };
 		D9A32DC7285ACE880038A370 /* PodiumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A32DC6285ACE880038A370 /* PodiumTests.swift */; };
@@ -890,6 +891,9 @@
 		D9E7D0F628AC6BC6001E909E /* PORTA DOS FUNDOS - Nao, brother broder.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E7D0F528AC6BC6001E909E /* PORTA DOS FUNDOS - Nao, brother broder.mp3 */; };
 		D9EB18A52857CDFF00A2F8A8 /* CollectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EB18A42857CDFF00A2F8A8 /* CollectionsView.swift */; };
 		D9ECD81528B3C470003C033A /* IconImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9ECD81428B3C470003C033A /* IconImage.swift */; };
+		D9F185CC28D6705100BE2F69 /* Bolsonaro - Presta atencao que e importante, pessoal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F185CB28D6705100BE2F69 /* Bolsonaro - Presta atencao que e importante, pessoal.mp3 */; };
+		D9F185CF28D6729A00BE2F69 /* Lula - Chupou, acabou.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F185CD28D6729A00BE2F69 /* Lula - Chupou, acabou.mp3 */; };
+		D9F185D028D6729A00BE2F69 /* Lula - E como se fosse um sorvete, chupou, acabou, fica com o palito na mao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F185CE28D6729A00BE2F69 /* Lula - E como se fosse um sorvete, chupou, acabou, fica com o palito na mao.mp3 */; };
 		D9F6420528CFD57600003A0E /* Bolsonaro - Eu acho que ate um fake news e valido, com todo o respeito.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F6420428CFD57600003A0E /* Bolsonaro - Eu acho que ate um fake news e valido, com todo o respeito.mp3 */; };
 		D9F6420728D1211700003A0E /* Casimiro - Misericordia, jornalista, tenha do.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F6420628D1211700003A0E /* Casimiro - Misericordia, jornalista, tenha do.mp3 */; };
 		D9F6420928D122C500003A0E /* Moderador, tira o moleque desse grupo agora.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F6420828D122C500003A0E /* Moderador, tira o moleque desse grupo agora.mp3 */; };
@@ -1790,6 +1794,7 @@
 		D99D0DC028CAB3E800EB6F27 /* TV CAMARA - Lula - A esperanca finalmente venceu o medo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "TV CAMARA - Lula - A esperanca finalmente venceu o medo.mp3"; sourceTree = "<group>"; };
 		D99D0DC228CAB52700EB6F27 /* TV CAMARA - Alessandro Molon - E obvio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "TV CAMARA - Alessandro Molon - E obvio.mp3"; sourceTree = "<group>"; };
 		D99D0DC428CAB5EF00EB6F27 /* TV BRASIL - GUEDES - Auxilio emergencial de 200 reais.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "TV BRASIL - GUEDES - Auxilio emergencial de 200 reais.mp3"; sourceTree = "<group>"; };
+		D99D6CE428D6766300B36301 /* Jair Bolsonaro - Ministro Fachin, marxista, leninista.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Ministro Fachin, marxista, leninista.mp3"; sourceTree = "<group>"; };
 		D99DC19C28423AD7002B03B6 /* AuthorDetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorDetailViewViewModel.swift; sourceTree = "<group>"; };
 		D9A096D7287CE72300773869 /* Mailman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mailman.swift; sourceTree = "<group>"; };
 		D9A32DC6285ACE880038A370 /* PodiumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodiumTests.swift; sourceTree = "<group>"; };
@@ -1840,6 +1845,9 @@
 		D9E7D0F528AC6BC6001E909E /* PORTA DOS FUNDOS - Nao, brother broder.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "PORTA DOS FUNDOS - Nao, brother broder.mp3"; sourceTree = "<group>"; };
 		D9EB18A42857CDFF00A2F8A8 /* CollectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsView.swift; sourceTree = "<group>"; };
 		D9ECD81428B3C470003C033A /* IconImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconImage.swift; sourceTree = "<group>"; };
+		D9F185CB28D6705100BE2F69 /* Bolsonaro - Presta atencao que e importante, pessoal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Presta atencao que e importante, pessoal.mp3"; sourceTree = "<group>"; };
+		D9F185CD28D6729A00BE2F69 /* Lula - Chupou, acabou.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - Chupou, acabou.mp3"; sourceTree = "<group>"; };
+		D9F185CE28D6729A00BE2F69 /* Lula - E como se fosse um sorvete, chupou, acabou, fica com o palito na mao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - E como se fosse um sorvete, chupou, acabou, fica com o palito na mao.mp3"; sourceTree = "<group>"; };
 		D9F6420428CFD57600003A0E /* Bolsonaro - Eu acho que ate um fake news e valido, com todo o respeito.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Eu acho que ate um fake news e valido, com todo o respeito.mp3"; sourceTree = "<group>"; };
 		D9F6420628D1211700003A0E /* Casimiro - Misericordia, jornalista, tenha do.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Casimiro - Misericordia, jornalista, tenha do.mp3"; sourceTree = "<group>"; };
 		D9F6420828D122C500003A0E /* Moderador, tira o moleque desse grupo agora.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Moderador, tira o moleque desse grupo agora.mp3"; sourceTree = "<group>"; };
@@ -1920,6 +1928,10 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D99D6CE428D6766300B36301 /* Jair Bolsonaro - Ministro Fachin, marxista, leninista.mp3 */,
+				D9F185CD28D6729A00BE2F69 /* Lula - Chupou, acabou.mp3 */,
+				D9F185CE28D6729A00BE2F69 /* Lula - E como se fosse um sorvete, chupou, acabou, fica com o palito na mao.mp3 */,
+				D9F185CB28D6705100BE2F69 /* Bolsonaro - Presta atencao que e importante, pessoal.mp3 */,
 				D9267EE528D1271300C0DC6C /* Mc Douglinhas - Ui, que brega.mp3 */,
 				D9267EE628D1271400C0DC6C /* Milton Leite - Chato pra caralho.mp3 */,
 				D9F6420828D122C500003A0E /* Moderador, tira o moleque desse grupo agora.mp3 */,
@@ -3732,6 +3744,7 @@
 				D975FE732880B4F20035E6F2 /* Nando Moura - Bibibibi Mito (curto).mp3 in Resources */,
 				D9625E8228238F9B00080852 /* Assets.xcassets in Resources */,
 				D975FF5B2880B4F20035E6F2 /* NOTAS TAQUIGRAFICAS DO SENADO - Randolfe - Ana Cristina, por gentileza, coloque a mensagem de whatsapp.mp3 in Resources */,
+				D9F185CF28D6729A00BE2F69 /* Lula - Chupou, acabou.mp3 in Resources */,
 				D975FFDF2880B4F20035E6F2 /* Silvio Santos - E mesmo e verdade.mp3 in Resources */,
 				D975FF8E2880B4F20035E6F2 /* CHICO BUARQUE - vai trabalhar vagabundo.mp3 in Resources */,
 				D975FF212880B4F20035E6F2 /* Lucca  Wilker - ME IGNOROU - Ignorou me bloqueou short meme.mp3 in Resources */,
@@ -3878,6 +3891,7 @@
 				D975FF272880B4F20035E6F2 /* Fred - Ce ta falando serio.mp3 in Resources */,
 				D975FEBE2880B4F20035E6F2 /* Craque Neto - E cuidado com a cueca hein, cuidado com a cueca.mp3 in Resources */,
 				D975FF262880B4F20035E6F2 /* PLANALTO - Bolsonaro - Presidente Putin Pretiputi.mp3 in Resources */,
+				D9F185CC28D6705100BE2F69 /* Bolsonaro - Presta atencao que e importante, pessoal.mp3 in Resources */,
 				D975FF842880B4F20035E6F2 /* Bolsonaro - Sem o vies ideologico.mp3 in Resources */,
 				D975FFC62880B4F20035E6F2 /* Cidade Oculta - Voce fala isso porque e a putinha do bozo.mp3 in Resources */,
 				D991512D2873E4C100FFAA29 /* rock-comunismo-ai-seis-mdb.mp3 in Resources */,
@@ -3906,6 +3920,7 @@
 				D975001E2880B4F20035E6F2 /* Choque de Cultura - Maurilio - O ultimo idoso alegre do planeta e o Ary Fontoura.mp3 in Resources */,
 				D975FFCF2880B4F20035E6F2 /* Atila Iamarino - E como se fosse uma crianca de cinco anos.mp3 in Resources */,
 				D975FEEC2880B4F20035E6F2 /* Queima quengaral wooo short.mp3 in Resources */,
+				D99D6CE528D6766300B36301 /* Jair Bolsonaro - Ministro Fachin, marxista, leninista.mp3 in Resources */,
 				D975FF192880B4F20035E6F2 /* Galvao Bueno - Diga la Tino meme short.mp3 in Resources */,
 				D975FF062880B4F20035E6F2 /* Lula - Deus de barro nao dura muito tempo.mp3 in Resources */,
 				D921F895288B07CB003979CC /* Fa do Armandinho - Armandinho e um terror ne meu (completo).mp3 in Resources */,
@@ -3932,6 +3947,7 @@
 				D975FF532880B4F20035E6F2 /* Damares - Uau.mp3 in Resources */,
 				D923127028AB049800436336 /* E pra glorificar de pe, igreja.mp3 in Resources */,
 				D921F88A288B0177003979CC /* Eu to passada chocada - meme.mp3 in Resources */,
+				D9F185D028D6729A00BE2F69 /* Lula - E como se fosse um sorvete, chupou, acabou, fica com o palito na mao.mp3 in Resources */,
 				49DEA9D62881173B008C9BA1 /* Eu quero dormir porra short meme.mp3 in Resources */,
 				D975FECF2880B4F20035E6F2 /* Hassum - Nem fodendo.mp3 in Resources */,
 				D97500372880B4F20035E6F2 /* ATILA IAMARINO - Ele faz sexo.mp3 in Resources */,
