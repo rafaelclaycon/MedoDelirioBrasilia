@@ -100,7 +100,7 @@ struct DiagnosticsView: View {
             } header: {
                 Text("Debug dos Favoritos")
             } footer: {
-                Text("Envie o arquivo do banco de dados para medodeliriosuporte@gmail.com.")
+                Text("Compacte e envie o arquivo do banco de dados para medodeliriosuporte@gmail.com.")
             }
             
             /*if CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
@@ -121,6 +121,14 @@ struct DiagnosticsView: View {
                 } else {
                     List(shareLogs!) { log in
                         SharingLogCell(destination: ShareDestination(rawValue: log.destination) ?? .other, contentType: ContentType(rawValue: log.contentType) ?? .sound, contentTitle: getContentName(contentId: log.contentId), dateTime: log.dateTime.toString(), sentToServer: log.sentToServer)
+                    }
+                }
+            }
+            
+            if CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
+                Section {
+                    Button("Enviar ShareCountStats") { 
+                        viewModel.sendShareCountStats()
                     }
                 }
             }

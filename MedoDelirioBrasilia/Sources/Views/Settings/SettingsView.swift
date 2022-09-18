@@ -51,16 +51,16 @@ struct SettingsView: View {
             }
             
             if showAskForMoneyView || CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
-//                Section {
-//                    PodcastAuthorsView()
-//                        .padding(.vertical, 8)
-//                }
+                /*Section {
+                    PodcastAuthorsView()
+                        .padding(.vertical, 8)
+                }*/
                 
                 Section {
                     BegForMoneyView()
                         .padding(.vertical)
                     
-                    Button("Copiar chave Pix") {
+                    Button("Copiar chave Pix (e-mail)") {
                         UIPasteboard.general.string = pixKey
                         showPixKeyCopiedAlert = true
                     }
@@ -70,16 +70,16 @@ struct SettingsView: View {
                 } header: {
                     Text("Ajude o app")
                 } footer: {
-                    Text("A chave é um endereço de e-mail, portanto, se o app do seu banco pedir o tipo de chave para fazer o Pix, selecione E-mail. Evite qualquer opção que mencione QR Code.")
+                    Text("Selecione E-mail como tipo de chave no app do seu banco. Evite qualquer opção que mencione QR Code.")
                 }
             }
             
-            /*Section("🧑‍💻  Contribua ou entenda como o app funciona") {
+            Section("🧑‍💻  Contribua ou entenda como o app funciona") {
                 Button("Ver código fonte no GitHub") {
                     let githubUrl = URL(string: "https://github.com/rafaelclaycon/MedoDelirioBrasilia")!
                     UIApplication.shared.open(githubUrl)
                 }
-            }*/
+            }
             
             Section("Sobre") {
                 Button("Criado por @claycon_") {

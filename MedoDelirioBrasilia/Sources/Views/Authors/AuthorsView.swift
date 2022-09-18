@@ -4,6 +4,7 @@ struct AuthorsView: View {
 
     @StateObject private var viewModel = AuthorsViewViewModel()
     @State private var searchText = ""
+    @Binding var sortOption: Int
     @Binding var sortAction: AuthorSortOption
     
     var searchResults: [Author] {
@@ -45,7 +46,7 @@ struct AuthorsView: View {
             .padding(.bottom, 18)
             .onAppear {
                 if viewModel.authors.isEmpty {
-                    viewModel.reloadList(sortedBy: .nameAscending)
+                    viewModel.reloadList(sortedBy: AuthorSortOption(rawValue: sortOption) ?? .nameAscending)
                 }
                 
                 //viewModel.donateActivity()
@@ -68,7 +69,7 @@ struct AuthorsView: View {
 struct FavoritesView_Previews: PreviewProvider {
 
     static var previews: some View {
-        AuthorsView(sortAction: .constant(.nameAscending))
+        AuthorsView(sortOption: .constant(AuthorSortOption.nameAscending.rawValue), sortAction: .constant(.nameAscending))
     }
 
 }
