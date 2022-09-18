@@ -6158,7 +6158,7 @@
     {
         "id": "7DF56BE1-1A4E-4A22-8FE1-DB04FB14D8D6",
         "title": "Vossa excelência permite um aparte",
-        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "authorId": "048EE7E0-A10A-4361-B3EC-52CD5CFD16A9",
         "description": "atenção quando ouvirem vossa excelência permite um aparte o custo de vida vai lhe provocar um imparte",
         "filename": "Vossa excelencia permite um aparte.mp3",
         "dateAdded": "2022-08-21T00:00:00Z",
@@ -6459,6 +6459,42 @@
         "description": "Chato pra caralho",
         "filename": "Milton Leite - Chato pra caralho.mp3",
         "dateAdded": "2022-09-13T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "BCC0F8A9-9AF1-4E64-B186-7FC0F03D159D",
+        "title": "Presta atenção que é importante, pessoal",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Presta atencao que e importante pessoal",
+        "filename": "Bolsonaro - Presta atencao que e importante, pessoal.mp3",
+        "dateAdded": "2022-09-17T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "713280D1-91B6-4EDE-B004-1E50D9D27CA6",
+        "title": "É como se fosse um sorvete",
+        "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
+        "description": "E como se fosse um sorvete chupou acabou fica com o palito na mao",
+        "filename": "Lula - E como se fosse um sorvete, chupou, acabou, fica com o palito na mao.mp3",
+        "dateAdded": "2022-09-17T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "2CCED2C5-DB33-40C8-9DD1-CFDC5B352EAA",
+        "title": "Chupou, acabou",
+        "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
+        "description": "Chupou acabou",
+        "filename": "Lula - Chupou, acabou.mp3",
+        "dateAdded": "2022-09-17T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "8EC14965-8E19-42B4-BCEB-FBB74830206A",
+        "title": "Ministro Fachin, marxista, leninista",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Ministro Fachin marxista leninista",
+        "filename": "Jair Bolsonaro - Ministro Fachin, marxista, leninista.mp3",
+        "dateAdded": "2022-09-17T00:00:00Z",
         "isOffensive": true
     }
 ]

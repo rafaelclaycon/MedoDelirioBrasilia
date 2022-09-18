@@ -60,7 +60,7 @@ struct SettingsView: View {
                     BegForMoneyView()
                         .padding(.vertical)
                     
-                    Button("Copiar chave Pix") {
+                    Button("Copiar chave Pix (e-mail)") {
                         UIPasteboard.general.string = pixKey
                         showPixKeyCopiedAlert = true
                     }
@@ -70,7 +70,7 @@ struct SettingsView: View {
                 } header: {
                     Text("Ajude o app")
                 } footer: {
-                    Text("A chave é um endereço de e-mail, portanto, se o app do seu banco pedir o tipo de chave para fazer o Pix, selecione E-mail. Evite qualquer opção que mencione QR Code.")
+                    Text("Selecione E-mail como tipo de chave no app do seu banco. Evite qualquer opção que mencione QR Code.")
                 }
             }
             
