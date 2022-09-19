@@ -6505,5 +6505,14 @@
         "filename": "Cristiano Botafogo - Porra, Brasil.mp3",
         "dateAdded": "2022-09-19T00:00:00Z",
         "isOffensive": true
+    },
+    {
+        "id": "A5BAC10B-6BBC-4F25-BE31-A16D7761740C",
+        "title": "Eu aloprei, perdi a linha, lamento",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Eu aloprei perdi a linha lamento",
+        "filename": "Jair Bolsonaro - Eu aloprei, perdi a linha, lamento.mp3",
+        "dateAdded": "2022-09-19T00:00:00Z",
+        "isOffensive": false
     }
 ]
