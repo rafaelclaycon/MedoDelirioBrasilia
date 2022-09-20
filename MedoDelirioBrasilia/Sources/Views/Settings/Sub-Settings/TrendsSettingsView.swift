@@ -14,12 +14,12 @@ struct TrendsSettingsView: View {
     var body: some View {
         Form {
             Section {
-                Toggle("Habilitar Tendências (Beta)", isOn: $trendsEnabled)
+                Toggle("Habilitar Tendências", isOn: $trendsEnabled)
                     .onChange(of: trendsEnabled) { newValue in
                         UserSettings.setEnableTrends(to: newValue)
                     }
             } footer: {
-                Text("Nenhum dado coletado identifica você. O propósito dessa funcionalidade é apenas matar a sua curiosidade e a dos demais usuários sobre a popularidade dos sons. (Em breve!)")
+                Text("Nenhum dado coletado identifica você. O propósito dessa funcionalidade é apenas matar a sua curiosidade e a dos demais usuários sobre a popularidade dos sons (em breve numa tela dedicada aqui no app).")
             }
             
             Section {
