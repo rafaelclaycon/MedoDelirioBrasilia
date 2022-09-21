@@ -127,10 +127,15 @@ struct MedoWidgetEntryView : View {
                     Image(systemName: "medal.fill")
                     Text(" É Lula!!!!")
                 }
+            } else if firstTurnHasPassed {
+                HStack {
+                    Image(systemName: "calendar")
+                    Text(getDaysUntilDateLong(secondTurnDate(), isFirstTurn: false))
+                }
             } else {
                 HStack {
                     Image(systemName: "calendar")
-                    Text(getDaysUntilDateLong(firstTurnDate()))
+                    Text(getDaysUntilDateLong(firstTurnDate(), isFirstTurn: true))
                 }
             }
             
@@ -139,10 +144,10 @@ struct MedoWidgetEntryView : View {
         }
     }
     
-//    private func mockDate() -> Date {
-//        let dateFormatter = ISO8601DateFormatter()
-//        return dateFormatter.date(from: "2022-10-21T00:00:00-0300")!
-//    }
+    /*private func mockDate() -> Date {
+        let dateFormatter = ISO8601DateFormatter()
+        return dateFormatter.date(from: "2022-10-03T00:00:00-0300")!
+    }*/
     
     private func firstTurnDate() -> Date {
         let dateFormatter = ISO8601DateFormatter()
@@ -182,7 +187,7 @@ struct MedoWidgetEntryView : View {
         }
     }
     
-    private func getDaysUntilDateLong(_ date: Date) -> String {
+    private func getDaysUntilDateLong(_ date: Date, isFirstTurn: Bool) -> String {
         let calendar = Calendar.current
         
         let date1 = calendar.startOfDay(for: Date.now)
@@ -190,15 +195,17 @@ struct MedoWidgetEntryView : View {
         
         let components = calendar.dateComponents([.day], from: date1, to: date2)
         
+        let turnNumber = isFirstTurn ? "1" : "2"
+        
         if let days = components.day {
             if days < 0 {
-                return "O 1º turno já passou"
+                return "O \(turnNumber)º turno já passou"
             } else if days == 1 {
-                return "O 1º turno é hoje"
+                return "O \(turnNumber)º turno é hoje"
             } else if days == 1 {
-                return "O 1º turno é amanhã!"
+                return "O \(turnNumber)º turno é amanhã!"
             } else {
-                return "\(days) dias até o 1º turno"
+                return "\(days) dias até o \(turnNumber)º turno"
             }
         } else {
             return "Indefinido"
