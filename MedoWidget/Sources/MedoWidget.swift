@@ -32,7 +32,7 @@ struct Provider: TimelineProvider {
 struct SimpleEntry: TimelineEntry {
 
     let date: Date
-    
+
 }
 
 struct MedoWidgetEntryView : View {
@@ -63,11 +63,20 @@ struct MedoWidgetEntryView : View {
                 Text(getDaysUntilDateShort(firstTurnDate()))
                     .bold()
                     .font(.system(size: 14))
-                
+
                 Text("Primeiro Turno")
                     .textCase(.uppercase)
                     .font(.system(size: 12))
                     .fontWeight(.medium)
+                
+//                Text("É Lula!")
+//                    .bold()
+//                    .font(.system(size: 14))
+//
+//                Text("É Lula, porrrraaa")
+//                    .textCase(.uppercase)
+//                    .font(.system(size: 12))
+//                    .fontWeight(.medium)
                 
                 
                 Text(getDaysUntilDateShort(endOfCurrentMandateDate()))
@@ -87,6 +96,11 @@ struct MedoWidgetEntryView : View {
                 Image(systemName: "calendar")
                 Text(getDaysUntilDateLong(firstTurnDate()))
             }
+            
+//            HStack {
+//                Image(systemName: "medal.fill")
+//                Text(" É Lula!!!!")
+//            }
             
         default:
             Text("Não implementado")
