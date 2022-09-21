@@ -6,6 +6,7 @@ struct SongsView: View {
     
     @State private var searchText = ""
     @State private var searchBar: UISearchBar?
+    @State var currentGenre: MusicGenre = .all
     
     @State private var showingModalView = false
     
@@ -27,7 +28,11 @@ struct SongsView: View {
     
     var searchResults: [Song] {
         if searchText.isEmpty {
-            return viewModel.songs
+            if currentGenre == .all {
+                return viewModel.songs
+            } else {
+                return viewModel.songs.filter({ $0.genre == currentGenre })
+            }
         } else {
             return viewModel.songs.filter { sound in
                 let searchString = sound.title.lowercased().withoutDiacritics()
@@ -40,12 +45,6 @@ struct SongsView: View {
         ZStack {
             VStack {
                 ScrollView {
-//                    if searchText.isEmpty {
-//                        HitsMedoDelirioBannerView()
-//                            .padding(.horizontal)
-//                            .padding(.vertical, 6)
-//                    }
-                    
                     LazyVGrid(columns: columns, spacing: 14) {
                         ForEach(searchResults) { song in
                             SongCell(songId: song.id, title: song.title, genre: song.genre, duration: song.duration, nowPlaying: $viewModel.nowPlayingKeeper)
@@ -102,7 +101,7 @@ struct SongsView: View {
                             .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 20 : 40)
                     }
                     
-                    if searchText.isEmpty {
+                    if searchText.isEmpty, currentGenre == .all {
                         Text("\(viewModel.songs.count) músicas. Atualizado em \(songsLastUpdateDate).")
                             .font(.subheadline)
                             .bold()
@@ -112,6 +111,9 @@ struct SongsView: View {
                 }
             }
             .navigationTitle("Músicas")
+            .navigationBarItems(leading:
+                getLeadingToolbarControl()
+            )
             .toolbar {
                 Menu {
                     Section {
@@ -175,6 +177,19 @@ struct SongsView: View {
                 }
                 .transition(.moveAndFade)
             }
+        }
+    }
+    
+    @ViewBuilder func getLeadingToolbarControl() -> some View {
+        Menu {
+            Picker("Gênero", selection: $currentGenre) {
+                ForEach(MusicGenre.allCases) { genre in
+                    Text(genre.name)
+                        .tag(genre)
+                }
+            }
+        } label: {
+            Image(systemName: currentGenre == .all ? "line.3.horizontal.decrease.circle" : "line.3.horizontal.decrease.circle.fill")
         }
     }
 

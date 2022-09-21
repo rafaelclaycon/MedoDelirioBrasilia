@@ -5,7 +5,9 @@ class SoundsViewViewModel: ObservableObject {
 
     @Published var sounds = [Sound]()
     
-    @Published var sortOption: Int = 0
+    @Published var soundSortOption: Int
+    @Published var authorSortOption: Int
+    
     @Published var favoritesKeeper = Set<String>()
     @Published var showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = false
     @Published var showEmailAppPicker_soundUnavailableConfirmationDialog = false
@@ -24,6 +26,11 @@ class SoundsViewViewModel: ObservableObject {
     @Published var alertMessage: String = ""
     @Published var showAlert: Bool = false
     @Published var alertType: AlertType = .singleOption
+    
+    init(soundSortOption: Int, authorSortOption: Int) {
+        self.soundSortOption = soundSortOption
+        self.authorSortOption = authorSortOption
+    }
     
     func reloadList(withSounds allSounds: [Sound],
                     andFavorites favorites: [Favorite]?,
@@ -45,8 +52,6 @@ class SoundsViewViewModel: ObservableObject {
         self.sounds = soundsCopy
         
         // From here the sounds array is already set
-        self.sortOption = sortOption.rawValue
-        
         if self.sounds.count > 0 {
             // Needed because author names live in a different file.
             for i in 0...(self.sounds.count - 1) {

@@ -10,13 +10,14 @@ struct SoundsView: View {
         case onboardingView, addToFolderView, shareAsVideoView
     }
     
-    @StateObject private var viewModel = SoundsViewViewModel()
+    @StateObject var viewModel: SoundsViewViewModel
     @State var currentMode: Mode
     @State private var searchText: String = .empty
-
+    
     @State private var listWidth: CGFloat = 700
-
-    @State private var scrollViewObject: ScrollViewProxy? = nil
+    @State private var columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
+    @Environment(\.sizeCategory) var sizeCategory
+    
     @State private var subviewToOpen: SubviewToOpen = .onboardingView
     @State private var showingModalView = false
     
@@ -37,38 +38,8 @@ struct SoundsView: View {
     @State var authorToAutoOpen: Author = Author(id: .empty, name: .empty)
     @State var autoOpenAuthor: Bool = false
     
-    private var columns: [GridItem] {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            return [
-                GridItem(.flexible()),
-                GridItem(.flexible())
-            ]
-        } else {
-            if listWidth < 500 {
-                return [
-                    GridItem(.flexible())
-                ]
-            } else if listWidth < 600 {
-                return [
-                    GridItem(.flexible()),
-                    GridItem(.flexible())
-                ]
-            } else if listWidth < 705 {
-                return [
-                    GridItem(.flexible()),
-                    GridItem(.flexible()),
-                    GridItem(.flexible())
-                ]
-            } else {
-                return [
-                    GridItem(.flexible()),
-                    GridItem(.flexible()),
-                    GridItem(.flexible()),
-                    GridItem(.flexible())
-                ]
-            }
-        }
-    }
+    // Sort Authors
+    @State var authorSortAction: AuthorSortOption = .nameAscending
     
     private var searchResults: [Sound] {
         if searchText.isEmpty {
@@ -86,21 +57,13 @@ struct SoundsView: View {
     }
     
     private var title: String {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            if currentMode == .byAuthor {
-                return "Autores"
-            } else {
-                return LocalizableStrings.MainView.title
-            }
-        } else {
-            switch currentMode {
-            case .allSounds:
-                return "Sons"
-            case .favorites:
-                return "Favoritos"
-            case .byAuthor:
-                return "Autores"
-            }
+        switch currentMode {
+        case .allSounds:
+            return "Sons"
+        case .favorites:
+            return "Favoritos"
+        case .byAuthor:
+            return "Autores"
         }
     }
     
@@ -113,7 +76,7 @@ struct SoundsView: View {
                     NoFavoritesView()
                         .padding(.horizontal, 25)
                 } else if currentMode == .byAuthor {
-                    AuthorsView()
+                    AuthorsView(sortOption: $viewModel.authorSortOption, sortAction: $authorSortAction)
                 } else {
                     GeometryReader { geometry in
                         ScrollView {
@@ -218,6 +181,7 @@ struct SoundsView: View {
                             .padding(.top, 7)
                             .onChange(of: geometry.size.width) { newWidth in
                                 self.listWidth = newWidth
+                                columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
                             }
                             
                             if UserSettings.getShowOffensiveSounds() == false, currentMode != .favorites {
@@ -244,50 +208,7 @@ struct SoundsView: View {
             .navigationBarItems(leading:
                 getLeadingToolbarControl()
             , trailing:
-                Menu {
-                    Section {
-                        Picker("Ordenação", selection: $viewModel.sortOption) {
-                            HStack {
-                                Text("Ordenar por Título")
-                                Image(systemName: "a.circle")
-                            }
-                            .tag(0)
-                            
-                            HStack {
-                                Text("Ordenar por Nome do Autor")
-                                Image(systemName: "person")
-                            }
-                            .tag(1)
-                            
-                            HStack {
-                                Text("Mais Recentes no Topo")
-                                Image(systemName: "calendar")
-                            }
-                            .tag(2)
-                        }
-                    }
-                    
-//                    Section {
-//                        Button("[DEV ONLY] Rolar até o fim da lista") {
-//                            scrollViewObject?.scrollTo(searchResults[searchResults.endIndex - 1])
-//                        }
-//                    }
-                } label: {
-                    if UIDevice.current.userInterfaceIdiom == .pad && currentMode == .byAuthor {
-                        Text("")
-                    } else {
-                        Image(systemName: "arrow.up.arrow.down")
-                    }
-                }
-                .onChange(of: viewModel.sortOption, perform: { newValue in
-                    viewModel.reloadList(withSounds: soundData,
-                                         andFavorites: try? database.getAllFavorites(),
-                                         allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
-                                         favoritesOnly: currentMode == .favorites,
-                                         sortedBy: SoundSortOption(rawValue: newValue) ?? .titleAscending)
-                    UserSettings.setSoundSortOption(to: newValue)
-                })
-                .disabled(currentMode == .byAuthor)
+                getTrailingToolbarControl()
             )
             .onAppear {
                 viewModel.reloadList(withSounds: soundData,
@@ -295,10 +216,17 @@ struct SoundsView: View {
                                      allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
                                      favoritesOnly: currentMode == .favorites,
                                      sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
+                columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
                 viewModel.donateActivity()
                 viewModel.sendDeviceModelNameToServer()
                 viewModel.sendUserPersonalTrendsToServerIfEnabled()
-
+                
+                if UIDevice.current.userInterfaceIdiom == .phone {
+                    networkRabbit.displayLulaWonOnLockScreenWidgets { displayLulaWon, _ in
+                        UserDefaults(suiteName: "group.com.rafaelschmitt.MedoDelirioBrasilia")!.set(displayLulaWon, forKey: "displayLulaWon")
+                    }
+                }
+                
                 /*if AppPersistentMemory.getHasShownNotificationsOnboarding() == false {
                     subviewToOpen = .onboardingView
                     showingModalView = true
@@ -406,13 +334,80 @@ struct SoundsView: View {
             EmptyView()
         }
     }
+    
+    @ViewBuilder func getTrailingToolbarControl() -> some View {
+        if currentMode == .byAuthor {
+            Menu {
+                Section {
+                    Picker("Ordenação de Autores", selection: $viewModel.authorSortOption) {
+                        HStack {
+                            Text("Ordenar por Nome")
+                            Image(systemName: "a.circle")
+                        }
+                        .tag(0)
+                        
+                        HStack {
+                            Text("Autores com Mais Sons no Topo")
+                            Image(systemName: "chevron.down.square")
+                        }
+                        .tag(1)
+                        
+                        HStack {
+                            Text("Autores com Menos Sons no Topo")
+                            Image(systemName: "chevron.up.square")
+                        }
+                        .tag(2)
+                    }
+                }
+            } label: {
+                Image(systemName: "arrow.up.arrow.down")
+            }
+            .onChange(of: viewModel.authorSortOption, perform: { authorSortOption in
+                authorSortAction = AuthorSortOption(rawValue: authorSortOption) ?? .nameAscending
+            })
+        } else {
+            Menu {
+                Section {
+                    Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
+                        HStack {
+                            Text("Ordenar por Título")
+                            Image(systemName: "a.circle")
+                        }
+                        .tag(0)
+                        
+                        HStack {
+                            Text("Ordenar por Nome do Autor")
+                            Image(systemName: "person")
+                        }
+                        .tag(1)
+                        
+                        HStack {
+                            Text("Mais Recentes no Topo")
+                            Image(systemName: "calendar")
+                        }
+                        .tag(2)
+                    }
+                }
+            } label: {
+                Image(systemName: "arrow.up.arrow.down")
+            }
+            .onChange(of: viewModel.soundSortOption, perform: { soundSortOption in
+                viewModel.reloadList(withSounds: soundData,
+                                     andFavorites: try? database.getAllFavorites(),
+                                     allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+                                     favoritesOnly: currentMode == .favorites,
+                                     sortedBy: SoundSortOption(rawValue: soundSortOption) ?? .titleAscending)
+                UserSettings.setSoundSortOption(to: soundSortOption)
+            })
+        }
+    }
 
 }
 
 struct SoundsView_Previews: PreviewProvider {
 
     static var previews: some View {
-        SoundsView(currentMode: .allSounds, updateSoundsList: .constant(false))
+        SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .allSounds, updateSoundsList: .constant(false))
     }
 
 }
