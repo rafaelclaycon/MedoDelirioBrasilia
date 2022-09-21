@@ -38,10 +38,26 @@ struct SimpleEntry: TimelineEntry {
 struct MedoWidgetEntryView : View {
 
     @Environment(\.widgetFamily) var widgetFamily
+    
     var entry: Provider.Entry
     
     var displayLulaWon: Bool {
         return UserDefaults(suiteName: "group.com.rafaelschmitt.MedoDelirioBrasilia")!.bool(forKey: "displayLulaWon")
+    }
+    
+    var firstTurnHasPassed: Bool {
+        let calendar = Calendar.current
+        
+        let date1 = calendar.startOfDay(for: Date.now)
+        let date2 = calendar.startOfDay(for: secondTurnDate())
+        
+        let components = calendar.dateComponents([.day], from: date1, to: date2)
+        
+        if let days = components.day {
+            return days < 0
+        } else {
+            return false
+        }
     }
     
     var body: some View {
@@ -68,8 +84,17 @@ struct MedoWidgetEntryView : View {
                     Text("É Lula!")
                         .bold()
                         .font(.system(size: 14))
-
+                    
                     Text("É Lula, porrrraaaa")
+                        .textCase(.uppercase)
+                        .font(.system(size: 12))
+                        .fontWeight(.medium)
+                } else if firstTurnHasPassed {
+                    Text(getDaysUntilDateShort(secondTurnDate()))
+                        .bold()
+                        .font(.system(size: 14))
+                    
+                    Text("Segundo Turno")
                         .textCase(.uppercase)
                         .font(.system(size: 12))
                         .fontWeight(.medium)
@@ -114,9 +139,19 @@ struct MedoWidgetEntryView : View {
         }
     }
     
+//    private func mockDate() -> Date {
+//        let dateFormatter = ISO8601DateFormatter()
+//        return dateFormatter.date(from: "2022-10-21T00:00:00-0300")!
+//    }
+    
     private func firstTurnDate() -> Date {
         let dateFormatter = ISO8601DateFormatter()
         return dateFormatter.date(from: "2022-10-02T00:00:00-0300")!
+    }
+    
+    private func secondTurnDate() -> Date {
+        let dateFormatter = ISO8601DateFormatter()
+        return dateFormatter.date(from: "2022-10-30T00:00:00-0300")!
     }
     
     private func endOfCurrentMandateDate() -> Date {
