@@ -3,8 +3,15 @@ import SwiftUI
 struct SongsView: View {
     
     @StateObject private var viewModel = SongsViewViewModel()
+    
     @State private var searchText = ""
     @State private var searchBar: UISearchBar?
+    @State var currentGenre: MusicGenre = .all
+    
+    @State private var showingModalView = false
+    
+    // Share as Video
+    @State private var shareAsVideo_Result = ShareAsVideoResult()
     
     private var columns: [GridItem] {
         if UIDevice.current.userInterfaceIdiom == .phone {
@@ -21,7 +28,11 @@ struct SongsView: View {
     
     var searchResults: [Song] {
         if searchText.isEmpty {
-            return viewModel.songs
+            if currentGenre == .all {
+                return viewModel.songs
+            } else {
+                return viewModel.songs.filter({ $0.genre == currentGenre })
+            }
         } else {
             return viewModel.songs.filter { sound in
                 let searchString = sound.title.lowercased().withoutDiacritics()
@@ -34,12 +45,6 @@ struct SongsView: View {
         ZStack {
             VStack {
                 ScrollView {
-//                    if searchText.isEmpty {
-//                        HitsMedoDelirioBannerView()
-//                            .padding(.horizontal)
-//                            .padding(.vertical, 6)
-//                    }
-                    
                     LazyVGrid(columns: columns, spacing: 14) {
                         ForEach(searchResults) { song in
                             SongCell(songId: song.id, title: song.title, genre: song.genre, duration: song.duration, nowPlaying: $viewModel.nowPlayingKeeper)
@@ -61,6 +66,13 @@ struct SongsView: View {
                                             viewModel.shareSong(withPath: song.filename, andContentId: song.id)
                                         } label: {
                                             Label(Shared.shareSongButtonText, systemImage: "square.and.arrow.up")
+                                        }
+                                        
+                                        Button {
+                                            viewModel.selectedSong = song
+                                            showingModalView = true
+                                        } label: {
+                                            Label(Shared.shareAsVideoButtonText, systemImage: "film")
                                         }
                                     }
                                     
@@ -89,7 +101,7 @@ struct SongsView: View {
                             .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 20 : 40)
                     }
                     
-                    if searchText.isEmpty {
+                    if searchText.isEmpty, currentGenre == .all {
                         Text("\(viewModel.songs.count) músicas. Atualizado em \(songsLastUpdateDate).")
                             .font(.subheadline)
                             .bold()
@@ -99,6 +111,9 @@ struct SongsView: View {
                 }
             }
             .navigationTitle("Músicas")
+            .navigationBarItems(leading:
+                getLeadingToolbarControl()
+            )
             .toolbar {
                 Menu {
                     Section {
@@ -125,6 +140,11 @@ struct SongsView: View {
                                          sortedBy: SongSortOption(rawValue: newSortOption) ?? .titleAscending)
                     UserSettings.setSongSortOption(to: newSortOption)
                 })
+                .onChange(of: shareAsVideo_Result.videoFilepath) { videoResultPath in
+                    if videoResultPath.isEmpty == false {
+                        viewModel.shareVideo(withPath: videoResultPath, andContentId: shareAsVideo_Result.contentId)
+                    }
+                }
             }
             .onAppear {
                 viewModel.reloadList(withSongs: songData,
@@ -144,16 +164,32 @@ struct SongsView: View {
                                    subject: String(format: Shared.Email.suggestSongChangeSubject, viewModel.selectedSong?.title ?? ""),
                                    emailBody: String(format: Shared.Email.suggestSongChangeBody, viewModel.selectedSong?.id ?? ""))
             }
+            .sheet(isPresented: $showingModalView) {
+                ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSong?.id ?? .empty, contentTitle: viewModel.selectedSong?.title ?? .empty, audioFilename: viewModel.selectedSong?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: true)
+            }
             
-            if viewModel.shouldDisplaySharedSuccessfullyToast {
+            if viewModel.displaySharedSuccessfullyToast {
                 VStack {
                     Spacer()
                     
-                    ToastView(text: Shared.songSharedSuccessfullyMessage)
+                    ToastView(text: viewModel.shareBannerMessage)
                         .padding()
                 }
                 .transition(.moveAndFade)
             }
+        }
+    }
+    
+    @ViewBuilder func getLeadingToolbarControl() -> some View {
+        Menu {
+            Picker("Gênero", selection: $currentGenre) {
+                ForEach(MusicGenre.allCases) { genre in
+                    Text(genre.name)
+                        .tag(genre)
+                }
+            }
+        } label: {
+            Image(systemName: currentGenre == .all ? "line.3.horizontal.decrease.circle" : "line.3.horizontal.decrease.circle.fill")
         }
     }
 

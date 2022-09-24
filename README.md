@@ -8,6 +8,8 @@ iOS, iPadOS and macOS app with sound snippets/memes from [Medo e Delírio em Bra
 
 👉 [**Download it from the App Store**](https://apps.apple.com/br/app/medo-e-del%C3%ADrio/id1625199878) 📲
 
+GIF demos below (they may take a while to load due to size).
+
 ![The app running on an iPhone 13 simulator on a Mac.](MedoDelirioBrasilia/Resources/readme_demo_iphone.gif)
 
 ![The app running on an iPad mini simulator on a Mac.](MedoDelirioBrasilia/Resources/readme_demo_ipad.gif)
@@ -26,7 +28,8 @@ Looking for an Android version? Check out [Sidronio Lima's Android app](https://
 1. Play songs from the podcast.
 1. Filter sounds by Favorites.
 1. Group sounds into Folders for easy access (just like tagging).
-1. Optimized for iPhone, iPad and Mac.
+1. Share sound as video on Twitter, TikTok and Instagram.
+1. Supports iPhone, iPad and Apple Silicon Macs.
 1. Dark Mode support.
 1. User sharing statistics synced with server (opt-out available).
 
@@ -41,7 +44,6 @@ Looking for an Android version? Check out [Sidronio Lima's Android app](https://
 - iOS 15 (iPhone SE 1/iPhone 6s/6s Plus or newer) or
 - iPadOS 15 (iPad 5th gen, iPad mini 4, iPad Air 2, any iPad Pro, or newer) or
 - macOS 12 Monterey on an Apple Silicion Mac (M1 or higher).
-
 
 ### Prerequisites to develop
 

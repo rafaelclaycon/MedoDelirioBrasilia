@@ -31,11 +31,19 @@ struct SoundCell: View {
         }
     }
     
+    private var authorNameLineLimit: Int {
+        if (UIScreen.main.bounds.width < 380) && (title.count > 20) {
+            return 1
+        } else {
+            return 2
+        }
+    }
+    
     private var cellHeight: CGFloat {
         if UIDevice.current.userInterfaceIdiom == .phone {
             return UIDevice.is4InchDevice ? 120 : 96
         } else {
-            return UIDevice.isiPadMini ? 130 : 96
+            return UIDevice.isiPadMini ? 116 : 96
         }
     }
     
@@ -72,7 +80,7 @@ struct SoundCell: View {
                     Text(author)
                         .font(UIDevice.is4InchDevice ? .footnote : authorFont)
                         .foregroundColor(.white)
-                        .lineLimit(2)
+                        .lineLimit(authorNameLineLimit)
                 }
                 
                 Spacer()

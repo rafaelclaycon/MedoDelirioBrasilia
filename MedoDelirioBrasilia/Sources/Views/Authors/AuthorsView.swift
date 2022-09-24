@@ -4,6 +4,8 @@ struct AuthorsView: View {
 
     @StateObject private var viewModel = AuthorsViewViewModel()
     @State private var searchText = ""
+    @Binding var sortOption: Int
+    @Binding var sortAction: AuthorSortOption
     
     var searchResults: [Author] {
         if searchText.isEmpty {
@@ -32,7 +34,7 @@ struct AuthorsView: View {
             LazyVGrid(columns: columns, spacing: 20) {
                 ForEach(searchResults) { author in
                     NavigationLink(destination: AuthorDetailView(author: author)) {
-                        AuthorCell(authorName: author.name, authorImageURL: author.photo ?? "")
+                        AuthorCell(authorName: author.name, authorImageURL: author.photo ?? "", soundCount: "\(author.soundCount ?? 0)")
                             .padding(.horizontal, 5)
                     }
                 }
@@ -43,8 +45,21 @@ struct AuthorsView: View {
             .padding(.top, 7)
             .padding(.bottom, 18)
             .onAppear {
-                viewModel.reloadList()
+                if viewModel.authors.isEmpty {
+                    viewModel.reloadList(sortedBy: AuthorSortOption(rawValue: sortOption) ?? .nameAscending)
+                }
+                
                 //viewModel.donateActivity()
+            }
+            .onChange(of: sortAction) { sortAction in
+                switch sortAction {
+                case .nameAscending:
+                    viewModel.sortAuthorsInPlaceByNameAscending()
+                case .soundCountDescending:
+                    viewModel.sortAuthorsInPlaceBySoundCountDescending()
+                case .soundCountAscending:
+                    viewModel.sortAuthorsInPlaceBySoundCountAscending()
+                }
             }
         }
     }
@@ -54,7 +69,7 @@ struct AuthorsView: View {
 struct FavoritesView_Previews: PreviewProvider {
 
     static var previews: some View {
-        AuthorsView()
+        AuthorsView(sortOption: .constant(AuthorSortOption.nameAscending.rawValue), sortAction: .constant(.nameAscending))
     }
 
 }

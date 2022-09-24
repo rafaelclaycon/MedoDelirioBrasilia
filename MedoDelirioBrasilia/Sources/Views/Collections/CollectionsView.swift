@@ -40,8 +40,9 @@ struct CollectionsView: View {
                     }
                     
                     VStack(spacing: 10) {
-                        Text("Em Breve")
-                            .font(.headline)
+                        Text("Nenhuma Coleção")
+                            .foregroundColor(.gray)
+                            .font(.title3)
                             .multilineTextAlignment(.center)
                     }
                     .padding(.vertical, 100)
