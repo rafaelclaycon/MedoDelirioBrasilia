@@ -11,7 +11,6 @@ class ShareAsVideoViewViewModel: ObservableObject {
     @Published var includeSoundWarning: Bool = true
     
     @Published var isShowingProcessingView = false
-    @Published var processingViewMessage = String.empty
     
     @Published var presentShareSheet = false
     @Published var pathToVideoFile = String.empty
@@ -44,7 +43,6 @@ class ShareAsVideoViewViewModel: ObservableObject {
     
     func createVideo() {
         DispatchQueue.main.async {
-            self.processingViewMessage = "Gerando vídeo..."
             self.isShowingProcessingView = true
         }
         
