@@ -39,6 +39,13 @@ struct AuthorDetailView: View {
                                                 } label: {
                                                     Label(Shared.shareSoundButtonText, systemImage: "square.and.arrow.up")
                                                 }
+                                                
+                                                Button {
+                                                    viewModel.selectedSound = sound
+                                                    //showingModalView = true
+                                                } label: {
+                                                    Label(Shared.shareAsVideoButtonText, systemImage: "film")
+                                                }
                                             }
                                             
                                             Section {
@@ -90,12 +97,6 @@ struct AuthorDetailView: View {
                                                     Label(SoundOptionsHelper.getSuggestOtherAuthorNameButtonTitle(authorId: sound.authorId), systemImage: "exclamationmark.bubble")
                                                 }
                                             }
-                                            
-    //                                        Button {
-    //                                            //
-    //                                        } label: {
-    //                                            Label("Ver Todos os Sons Desse Autor", systemImage: "person")
-    //                                        }
                                         })
                                 }
                             }
