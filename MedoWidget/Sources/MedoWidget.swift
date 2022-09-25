@@ -32,13 +32,33 @@ struct Provider: TimelineProvider {
 struct SimpleEntry: TimelineEntry {
 
     let date: Date
-    
+
 }
 
 struct MedoWidgetEntryView : View {
 
     @Environment(\.widgetFamily) var widgetFamily
+    
     var entry: Provider.Entry
+    
+    var displayLulaWon: Bool {
+        return UserDefaults(suiteName: "group.com.rafaelschmitt.MedoDelirioBrasilia")!.bool(forKey: "displayLulaWon")
+    }
+    
+    var firstTurnHasPassed: Bool {
+        let calendar = Calendar.current
+        
+        let date1 = calendar.startOfDay(for: Date.now)
+        let date2 = calendar.startOfDay(for: secondTurnDate())
+        
+        let components = calendar.dateComponents([.day], from: date1, to: date2)
+        
+        if let days = components.day {
+            return days < 0
+        } else {
+            return false
+        }
+    }
     
     var body: some View {
         switch widgetFamily {
@@ -60,15 +80,34 @@ struct MedoWidgetEntryView : View {
             
         case .accessoryRectangular:
             VStack(alignment: .leading, spacing: -1) {
-                Text(getDaysUntilDateShort(firstTurnDate()))
-                    .bold()
-                    .font(.system(size: 14))
-                
-                Text("Primeiro Turno")
-                    .textCase(.uppercase)
-                    .font(.system(size: 12))
-                    .fontWeight(.medium)
-                
+                if displayLulaWon {
+                    Text("É Lula!")
+                        .bold()
+                        .font(.system(size: 14))
+                    
+                    Text("É Lula, porrrraaaa")
+                        .textCase(.uppercase)
+                        .font(.system(size: 12))
+                        .fontWeight(.medium)
+                } else if firstTurnHasPassed {
+                    Text(getDaysUntilDateShort(secondTurnDate()))
+                        .bold()
+                        .font(.system(size: 14))
+                    
+                    Text("Segundo Turno")
+                        .textCase(.uppercase)
+                        .font(.system(size: 12))
+                        .fontWeight(.medium)
+                } else {
+                    Text(getDaysUntilDateShort(firstTurnDate()))
+                        .bold()
+                        .font(.system(size: 14))
+                    
+                    Text("Primeiro Turno")
+                        .textCase(.uppercase)
+                        .font(.system(size: 12))
+                        .fontWeight(.medium)
+                }
                 
                 Text(getDaysUntilDateShort(endOfCurrentMandateDate()))
                     .bold()
@@ -83,9 +122,21 @@ struct MedoWidgetEntryView : View {
             .frame(maxWidth: .infinity, alignment: .leading)
             
         case .accessoryInline:
-            HStack {
-                Image(systemName: "calendar")
-                Text(getDaysUntilDateLong(firstTurnDate()))
+            if displayLulaWon {
+                HStack {
+                    Image(systemName: "medal.fill")
+                    Text(" É Lula!!!!")
+                }
+            } else if firstTurnHasPassed {
+                HStack {
+                    Image(systemName: "calendar")
+                    Text(getDaysUntilDateLong(secondTurnDate(), isFirstTurn: false))
+                }
+            } else {
+                HStack {
+                    Image(systemName: "calendar")
+                    Text(getDaysUntilDateLong(firstTurnDate(), isFirstTurn: true))
+                }
             }
             
         default:
@@ -93,9 +144,19 @@ struct MedoWidgetEntryView : View {
         }
     }
     
+    /*private func mockDate() -> Date {
+        let dateFormatter = ISO8601DateFormatter()
+        return dateFormatter.date(from: "2022-10-03T00:00:00-0300")!
+    }*/
+    
     private func firstTurnDate() -> Date {
         let dateFormatter = ISO8601DateFormatter()
         return dateFormatter.date(from: "2022-10-02T00:00:00-0300")!
+    }
+    
+    private func secondTurnDate() -> Date {
+        let dateFormatter = ISO8601DateFormatter()
+        return dateFormatter.date(from: "2022-10-30T00:00:00-0300")!
     }
     
     private func endOfCurrentMandateDate() -> Date {
@@ -126,7 +187,7 @@ struct MedoWidgetEntryView : View {
         }
     }
     
-    private func getDaysUntilDateLong(_ date: Date) -> String {
+    private func getDaysUntilDateLong(_ date: Date, isFirstTurn: Bool) -> String {
         let calendar = Calendar.current
         
         let date1 = calendar.startOfDay(for: Date.now)
@@ -134,15 +195,17 @@ struct MedoWidgetEntryView : View {
         
         let components = calendar.dateComponents([.day], from: date1, to: date2)
         
+        let turnNumber = isFirstTurn ? "1" : "2"
+        
         if let days = components.day {
             if days < 0 {
-                return "O 1º turno já passou"
+                return "O \(turnNumber)º turno já passou"
             } else if days == 1 {
-                return "O 1º turno é hoje"
+                return "O \(turnNumber)º turno é hoje"
             } else if days == 1 {
-                return "O 1º turno é amanhã!"
+                return "O \(turnNumber)º turno é amanhã!"
             } else {
-                return "\(days) dias até o 1º turno"
+                return "\(days) dias até o \(turnNumber)º turno"
             }
         } else {
             return "Indefinido"
