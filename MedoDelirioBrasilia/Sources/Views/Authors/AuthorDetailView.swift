@@ -9,11 +9,16 @@ struct AuthorDetailView: View {
     @State private var columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
     @Environment(\.sizeCategory) var sizeCategory
     
+    @State private var showingModalView = false
+    
     // Add to Folder vars
     @State private var showingAddToFolderModal = false
     @State private var hadSuccessAddingToFolder: Bool = false
     @State private var folderName: String? = nil
     @State private var shouldDisplayAddedToFolderToast: Bool = false
+    
+    // Share as Video
+    @State private var shareAsVideo_Result = ShareAsVideoResult()
     
     var body: some View {
         ZStack {
@@ -42,7 +47,7 @@ struct AuthorDetailView: View {
                                                 
                                                 Button {
                                                     viewModel.selectedSound = sound
-                                                    //showingModalView = true
+                                                    showingModalView = true
                                                 } label: {
                                                     Label(Shared.shareAsVideoButtonText, systemImage: "film")
                                                 }
@@ -146,6 +151,14 @@ struct AuthorDetailView: View {
             .sheet(isPresented: $viewModel.isShowingShareSheet) {
                 viewModel.iPadShareSheet
             }
+            .sheet(isPresented: $showingModalView) {
+                ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: false)
+            }
+            .onChange(of: shareAsVideo_Result.videoFilepath) { videoResultPath in
+                if videoResultPath.isEmpty == false {
+                    viewModel.shareVideo(withPath: videoResultPath, andContentId: shareAsVideo_Result.contentId)
+                }
+            }
             
             if shouldDisplayAddedToFolderToast {
                 VStack {
@@ -157,11 +170,11 @@ struct AuthorDetailView: View {
                 .transition(.moveAndFade)
             }
             
-            if viewModel.shouldDisplaySharedSuccessfullyToast {
+            if viewModel.displaySharedSuccessfullyToast {
                 VStack {
                     Spacer()
                     
-                    ToastView(text: Shared.soundSharedSuccessfullyMessage)
+                    ToastView(text: viewModel.shareBannerMessage)
                         .padding()
                 }
                 .transition(.moveAndFade)
