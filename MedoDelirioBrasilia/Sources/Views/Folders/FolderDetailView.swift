@@ -10,6 +10,11 @@ struct FolderDetailView: View {
     @State private var columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
     @Environment(\.sizeCategory) var sizeCategory
     
+    @State private var showingModalView = false
+    
+    // Share as Video
+    @State private var shareAsVideo_Result = ShareAsVideoResult()
+    
     var body: some View {
         ZStack {
             VStack {
@@ -30,6 +35,13 @@ struct FolderDetailView: View {
                                                     viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
                                                 } label: {
                                                     Label(Shared.shareSoundButtonText, systemImage: "square.and.arrow.up")
+                                                }
+                                                
+                                                Button {
+                                                    viewModel.selectedSound = sound
+                                                    showingModalView = true
+                                                } label: {
+                                                    Label(Shared.shareAsVideoButtonText, systemImage: "film")
                                                 }
                                             }
                                             
@@ -102,12 +114,20 @@ struct FolderDetailView: View {
             .sheet(isPresented: $viewModel.isShowingShareSheet) {
                 viewModel.iPadShareSheet
             }
+            .sheet(isPresented: $showingModalView) {
+                ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: false)
+            }
+            .onChange(of: shareAsVideo_Result.videoFilepath) { videoResultPath in
+                if videoResultPath.isEmpty == false {
+                    viewModel.shareVideo(withPath: videoResultPath, andContentId: shareAsVideo_Result.contentId)
+                }
+            }
             
-            if viewModel.shouldDisplaySharedSuccessfullyToast {
+            if viewModel.displaySharedSuccessfullyToast {
                 VStack {
                     Spacer()
                     
-                    ToastView(text: Shared.soundSharedSuccessfullyMessage)
+                    ToastView(text: viewModel.shareBannerMessage)
                         .padding()
                 }
                 .transition(.moveAndFade)
