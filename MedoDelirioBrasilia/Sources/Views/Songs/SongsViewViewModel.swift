@@ -37,6 +37,10 @@ class SongsViewViewModel: ObservableObject {
             sortSongsInPlaceByTitleAscending()
         case .dateAddedDescending:
             sortSongsInPlaceByDateAddedDescending()
+        case .durationDescending:
+            sortSongsInPlaceByDurationDescending()
+        case .durationAscending:
+            sortSongsInPlaceByDurationAscending()
         }
     }
     
@@ -46,6 +50,14 @@ class SongsViewViewModel: ObservableObject {
     
     private func sortSongsInPlaceByDateAddedDescending() {
         self.songs.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
+    }
+    
+    private func sortSongsInPlaceByDurationDescending() {
+        self.songs.sort(by: { $0.duration > $1.duration })
+    }
+    
+    private func sortSongsInPlaceByDurationAscending() {
+        self.songs.sort(by: { $0.duration < $1.duration })
     }
     
     func playSong(fromPath filepath: String) {
