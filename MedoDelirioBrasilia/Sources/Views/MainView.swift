@@ -13,7 +13,10 @@ struct MainView: View {
         if UIDevice.current.userInterfaceIdiom == .phone {
             TabView(selection: $tabSelection) {
                 NavigationView {
-                    SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(), authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .allSounds, updateSoundsList: .constant(false))
+                    SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
+                                                              authorSortOption: AuthorSortOption.nameAscending.rawValue),
+                               currentMode: .allSounds,
+                               updateSoundsList: .constant(false))
                 }
                 .tabItem {
                     Label("Sons", systemImage: "speaker.wave.3.fill")
@@ -71,7 +74,9 @@ struct MainView: View {
                             updateSoundsList: $updateSoundsList,
                             isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet,
                             updateFolderList: $updateFolderList)
-                SoundsView(currentMode: .allSounds,
+                SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
+                                                          authorSortOption: AuthorSortOption.nameAscending.rawValue),
+                           currentMode: .allSounds,
                            updateSoundsList: $updateSoundsList)
             }
             .navigationViewStyle(DoubleColumnNavigationViewStyle())

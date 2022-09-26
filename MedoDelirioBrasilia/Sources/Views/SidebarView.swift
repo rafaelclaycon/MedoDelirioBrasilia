@@ -14,7 +14,7 @@ struct SidebarView: View {
             Section("Sons") {
                 NavigationLink(
                     destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(), authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .allSounds, updateSoundsList: $updateSoundsList),
-                    tag: Screen.allSounds,
+                    tag: Screen.allSounds.rawValue,
                     selection: $state,
                     label: {
                         Label("Todos os Sons", systemImage: "speaker.wave.2")
@@ -22,7 +22,7 @@ struct SidebarView: View {
                 
                 NavigationLink(
                     destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(), authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .favorites, updateSoundsList: .constant(false)),
-                    tag: Screen.favorites,
+                    tag: Screen.favorites.rawValue,
                     selection: $state,
                     label: {
                         Label("Favoritos", systemImage: "star")
@@ -30,7 +30,7 @@ struct SidebarView: View {
                 
                 NavigationLink(
                     destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .byAuthor, updateSoundsList: .constant(false)),
-                    tag: Screen.groupedByAuthor,
+                    tag: Screen.groupedByAuthor.rawValue,
                     selection: $state,
                     label: {
                         Label("Por Autor", systemImage: "person")
