@@ -54,7 +54,7 @@ enum Icon: String, CaseIterable, Identifiable {
         case .teuCu:
             return true
         case .boraPassarRaiva:
-            return false
+            return true
         case .malditosMilicosBlack:
             return true
         case .malditosMilicosRed:

@@ -2,11 +2,12 @@ import SwiftUI
 
 struct ChangeAppIconView: View {
 
-    private var model = AppIcon()
+    var model = AppIcon()
+    @State var displayOffensiveIcons: Bool
     @State private var selectedIcon: String = .empty
     
     private var icons: [Icon] {
-        if UserSettings.getShowOffensiveSounds() {
+        if displayOffensiveIcons {
             return Icon.allCases
         } else {
             return Icon.allCases.filter({ $0.isOffensive == false })
@@ -37,7 +38,7 @@ struct ChangeAppIconView: View {
 struct ChangeAppIconView_Previews: PreviewProvider {
 
     static var previews: some View {
-        ChangeAppIconView()
+        ChangeAppIconView(displayOffensiveIcons: true)
     }
 
 }

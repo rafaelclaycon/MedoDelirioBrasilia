@@ -34,7 +34,7 @@ struct SettingsView: View {
                 }*/
                 
                 if showChangeAppIcon {
-                    NavigationLink(destination: ChangeAppIconView()) {
+                    NavigationLink(destination: ChangeAppIconView(displayOffensiveIcons: showAskForMoneyView)) {
                         Text("Ícone do app")
                     }
                 }
