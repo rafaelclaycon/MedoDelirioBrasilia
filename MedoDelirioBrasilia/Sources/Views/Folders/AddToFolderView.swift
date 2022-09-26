@@ -38,20 +38,20 @@ struct AddToFolderView: View {
                     .padding(.bottom, -10)
                 
                 ScrollView {
-//                    HStack {
-//                        Button {
-//                            print("Add")
-//                        } label: {
-//                            FolderCell(symbol: "📂", name: "Nova Pasta...", backgroundColor: .gray, backgroundOpacity: 0.15, height: 100)
-//                        }
-//                        .foregroundColor(.primary)
-//                        .frame(width: (UIScreen.main.bounds.size.width / 2) - 20)
-//
-//                        Spacer()
-//                    }
-//                    .padding(.horizontal)
-//                    .padding(.top, 5)
+                    HStack {
+                        Button {
+                            print("Add")
+                        } label: {
+                            FolderCell(symbol: "📂", name: "Nova Pasta...", backgroundColor: .gray, backgroundOpacity: 0.15, height: 100)
+                        }
+                        .foregroundColor(.primary)
+                        .frame(width: (UIScreen.main.bounds.size.width / 2) - 20)
 
+                        Spacer()
+                    }
+                    .padding(.horizontal)
+                    .padding(.top, 5)
+                    
                     HStack {
                         Text("Minhas Pastas")
                             .font(.title2)
