@@ -195,6 +195,7 @@
 		D958B1B22839534D0010F133 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958B1B12839534D0010F133 /* SettingsView.swift */; };
 		D958BC732868FE8C000B2EDA /* EmojiIdentification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958BC722868FE8C000B2EDA /* EmojiIdentification.swift */; };
 		D958BC752869000A000B2EDA /* FolderInfoEditingViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958BC742869000A000B2EDA /* FolderInfoEditingViewViewModel.swift */; };
+		D959B0482887E83D00A215AD /* SidebarViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D959B0472887E83D00A215AD /* SidebarViewViewModel.swift */; };
 		D95A86C828B576A7002A011D /* FavoriteLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95A86C728B576A7002A011D /* FavoriteLog.swift */; };
 		D95DB0F6288248A300D4FEDF /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95DB0F5288248A300D4FEDF /* SidebarView.swift */; };
 		D95DB0F82882491A00D4FEDF /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95DB0F72882491A00D4FEDF /* Screen.swift */; };
@@ -863,6 +864,8 @@
 		D9BF90972842D3CB00BDDD7D /* NoSoundsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF90962842D3CB00BDDD7D /* NoSoundsView.swift */; };
 		D9BF90BE2842EAED00BDDD7D /* TopChartCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF90BD2842EAED00BDDD7D /* TopChartCellView.swift */; };
 		D9C35D23288713990065F3E7 /* HotWeatherAdBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C35D22288713990065F3E7 /* HotWeatherAdBannerView.swift */; };
+		D9D3D4912887495B00C42FDE /* FolderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3D4902887495B00C42FDE /* FolderList.swift */; };
+		D9D3D493288750C400C42FDE /* FolderListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3D492288750C400C42FDE /* FolderListViewModel.swift */; };
 		D9C5EC3128C7DEEA0099EA86 /* Jair Bolsonaro - O que nos queremos paz tranquilidade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C5EC3028C7DEE90099EA86 /* Jair Bolsonaro - O que nos queremos paz tranquilidade.mp3 */; };
 		D9C5EC3328C7F3150099EA86 /* Fora Genocida.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C5EC3228C7F3150099EA86 /* Fora Genocida.mp3 */; };
 		D9C5EC3628C7F7F70099EA86 /* Jair Bolsonaro - Ato falho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C5EC3428C7F7F70099EA86 /* Jair Bolsonaro - Ato falho.mp3 */; };
@@ -1150,6 +1153,7 @@
 		D958B1B12839534D0010F133 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		D958BC722868FE8C000B2EDA /* EmojiIdentification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiIdentification.swift; sourceTree = "<group>"; };
 		D958BC742869000A000B2EDA /* FolderInfoEditingViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderInfoEditingViewViewModel.swift; sourceTree = "<group>"; };
+		D959B0472887E83D00A215AD /* SidebarViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewViewModel.swift; sourceTree = "<group>"; };
 		D95A86C728B576A7002A011D /* FavoriteLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteLog.swift; sourceTree = "<group>"; };
 		D95DB0F5288248A300D4FEDF /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		D95DB0F72882491A00D4FEDF /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
@@ -1822,6 +1826,8 @@
 		D9BF90962842D3CB00BDDD7D /* NoSoundsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSoundsView.swift; sourceTree = "<group>"; };
 		D9BF90BD2842EAED00BDDD7D /* TopChartCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartCellView.swift; sourceTree = "<group>"; };
 		D9C35D22288713990065F3E7 /* HotWeatherAdBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotWeatherAdBannerView.swift; sourceTree = "<group>"; };
+		D9D3D4902887495B00C42FDE /* FolderList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderList.swift; sourceTree = "<group>"; };
+		D9D3D492288750C400C42FDE /* FolderListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListViewModel.swift; sourceTree = "<group>"; };
 		D9C5EC3028C7DEE90099EA86 /* Jair Bolsonaro - O que nos queremos paz tranquilidade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - O que nos queremos paz tranquilidade.mp3"; sourceTree = "<group>"; };
 		D9C5EC3228C7F3150099EA86 /* Fora Genocida.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fora Genocida.mp3"; sourceTree = "<group>"; };
 		D9C5EC3428C7F7F70099EA86 /* Jair Bolsonaro - Ato falho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Ato falho.mp3"; sourceTree = "<group>"; };
@@ -2930,6 +2936,7 @@
 			children = (
 				D958B1A928394D400010F133 /* MainView.swift */,
 				D95DB0F5288248A300D4FEDF /* SidebarView.swift */,
+				D959B0472887E83D00A215AD /* SidebarViewViewModel.swift */,
 				D9B9025C2837485000551239 /* Sounds */,
 				D98622DE283FC53B00E9F630 /* Authors */,
 				D95F363828AD385100743026 /* ShareAsVideo */,
@@ -3095,6 +3102,8 @@
 		D9943F2428641FB7002C6B97 /* Folders */ = {
 			isa = PBXGroup;
 			children = (
+				D9D3D4902887495B00C42FDE /* FolderList.swift */,
+				D9D3D492288750C400C42FDE /* FolderListViewModel.swift */,
 				D946117F2861480A00C4FB7E /* FolderInfoEditingView.swift */,
 				D958BC742869000A000B2EDA /* FolderInfoEditingViewViewModel.swift */,
 				D9943F162863DAE1002C6B97 /* FolderDetailView.swift */,
@@ -4210,6 +4219,7 @@
 				D9BCAC2D28B598FB0098FE15 /* AppIconCell.swift in Sources */,
 				D9ABDDB0287411C9007B25EA /* SongHelpView.swift in Sources */,
 				D92C0CAE284076CD009CF19A /* UIApplication+KeyWindow.swift in Sources */,
+				D9D3D493288750C400C42FDE /* FolderListViewModel.swift in Sources */,
 				D9DCC5D3287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift in Sources */,
 				D93CCB7B286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift in Sources */,
 				D9625E7E28238F9A00080852 /* MedoDelirioBrasiliaApp.swift in Sources */,
@@ -4225,6 +4235,7 @@
 				D916627D2874F1F9000A1B23 /* OnboardingView.swift in Sources */,
 				D99DC19D28423AD7002B03B6 /* AuthorDetailViewViewModel.swift in Sources */,
 				D98DBD35284919B1008544F8 /* NetworkRabbit.swift in Sources */,
+				D959B0482887E83D00A215AD /* SidebarViewViewModel.swift in Sources */,
 				D916627F2874F838000A1B23 /* NotificationsSymbol.swift in Sources */,
 				D9BB9265285DAA8E005CD6DD /* BegForMoneyView.swift in Sources */,
 				D912A33628B3E8F000F7293D /* VideoExportType.swift in Sources */,
@@ -4279,6 +4290,7 @@
 				D988B19F28AB4A8100A179CF /* LocalDatabase+FavoriteLog.swift in Sources */,
 				D95DB0F82882491A00D4FEDF /* Screen.swift in Sources */,
 				D9FA0CD92850864C000F6ADE /* ClientDeviceInfo.swift in Sources */,
+				D9D3D4912887495B00C42FDE /* FolderList.swift in Sources */,
 				D9758C3A28617BA70094D388 /* AddUserFolderTables.swift in Sources */,
 				D9265741285A1EE700947165 /* LocalDatabase+Log.swift in Sources */,
 				D980456228380F66003B2E83 /* LocalizableStrings.swift in Sources */,
