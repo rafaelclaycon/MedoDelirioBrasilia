@@ -44,5 +44,12 @@ struct Shared {
         static let suggestSongChangeBody = "\n\n\nID do conteúdo: %@ (para uso interno)"
         
     }
+    
+    struct ShareAsVideo {
+        
+        static let generatingVideoShortMessage = "Gerando vídeo..."
+        static let generatingVideoLongMessage = "Gerando vídeo...\nIsso pode demorar um pouco."
+        
+    }
 
 }

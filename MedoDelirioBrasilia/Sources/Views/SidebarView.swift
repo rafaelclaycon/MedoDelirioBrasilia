@@ -13,24 +13,24 @@ struct SidebarView: View {
         List {
             Section("Sons") {
                 NavigationLink(
-                    destination: SoundsView(currentMode: .allSounds, updateSoundsList: $updateSoundsList),
-                    tag: Screen.allSounds.rawValue,
+                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(), authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .allSounds, updateSoundsList: $updateSoundsList),
+                    tag: Screen.allSounds,
                     selection: $state,
                     label: {
                         Label("Todos os Sons", systemImage: "speaker.wave.2")
                     })
                 
                 NavigationLink(
-                    destination: SoundsView(currentMode: .favorites, updateSoundsList: .constant(false)),
-                    tag: Screen.favorites.rawValue,
+                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(), authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .favorites, updateSoundsList: .constant(false)),
+                    tag: Screen.favorites,
                     selection: $state,
                     label: {
                         Label("Favoritos", systemImage: "star")
                     })
                 
                 NavigationLink(
-                    destination: SoundsView(currentMode: .byAuthor, updateSoundsList: .constant(false)),
-                    tag: Screen.groupedByAuthor.rawValue,
+                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .byAuthor, updateSoundsList: .constant(false)),
+                    tag: Screen.groupedByAuthor,
                     selection: $state,
                     label: {
                         Label("Por Autor", systemImage: "person")

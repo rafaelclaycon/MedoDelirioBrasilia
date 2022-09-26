@@ -8,6 +8,12 @@ enum SoundSortOption: Int {
 
 enum SongSortOption: Int {
 
-    case titleAscending, dateAddedDescending
+    case titleAscending, dateAddedDescending, durationDescending, durationAscending
+
+}
+
+enum AuthorSortOption: Int {
+
+    case nameAscending, soundCountDescending, soundCountAscending
 
 }

@@ -5726,7 +5726,7 @@
     {
         "id": "5D63E2CF-94F7-4988-BF1F-27F1A2DD38BE",
         "title": "Fala baixo, quem fala alto aqui sou eu!",
-        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "authorId": "09E6F605-ACB1-49EB-AC11-F53DCBDA5C29",
         "description": "fala baixo quem fala alto aqui sou eu",
         "filename": "Fala baixo quem fala alto aqui sou eu.mp3",
         "dateAdded": "2022-07-22T00:00:00Z",
@@ -6158,7 +6158,7 @@
     {
         "id": "7DF56BE1-1A4E-4A22-8FE1-DB04FB14D8D6",
         "title": "Vossa excelência permite um aparte",
-        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "authorId": "048EE7E0-A10A-4361-B3EC-52CD5CFD16A9",
         "description": "atenção quando ouvirem vossa excelência permite um aparte o custo de vida vai lhe provocar um imparte",
         "filename": "Vossa excelencia permite um aparte.mp3",
         "dateAdded": "2022-08-21T00:00:00Z",
@@ -6262,5 +6262,266 @@
         "filename": "Nao e hora pra desespero completo.mp3",
         "dateAdded": "2022-09-05T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "B0A1AAC0-0C14-4CF2-9DD6-89EB594A0C7B",
+        "title": "O que nós queremos? Paz, tranquilidade...",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "O que nos queremos paz tranquilidade",
+        "filename": "Jair Bolsonaro - O que nos queremos paz tranquilidade.mp3",
+        "dateAdded": "2022-09-06T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "52CCB712-281B-48C6-A9FC-62B9DF623417",
+        "title": "Putaria",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Putaria",
+        "filename": "Jair Bolsonaro - Putaria.mp3",
+        "dateAdded": "2022-09-06T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "33D593B4-9273-4E3F-A64D-1A8EDF322BD4",
+        "title": "Ato falho",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "quantos aqui votaram em mim ate mesmo eu sendo o mais ruim ou o menos ruim melhor dizendo ato falho sincericidio",
+        "filename": "Jair Bolsonaro - Ato falho.mp3",
+        "dateAdded": "2022-09-06T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "B0A031A8-F2B9-4C32-85A5-26065C5F5CF4",
+        "title": "THAT was a threat",
+        "authorId": "D18DD51F-FA29-47CA-81EF-AAD6072EBFE7",
+        "description": "THAT was a threat",
+        "filename": "Tyrion Lannister - THAT was a threat.mp3",
+        "dateAdded": "2022-09-06T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "C9256DDC-11EB-4224-9087-C4987188FAAD",
+        "title": "Não adianta desvirtuar",
+        "authorId": "9AB96EA6-7AB9-4FF3-BD58-4752D23DCA9B",
+        "description": "Nao adianta desvirtuar",
+        "filename": "TV CAMARA - MARCELO FREIXO - Nao adianta desvirtuar.mp3",
+        "dateAdded": "2022-09-08T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "06BB6AC8-F3BF-4995-A7B1-0ECD5013D146",
+        "title": "A esperança finalmente venceu o medo",
+        "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
+        "description": "A esperanca finalmente venceu o medo",
+        "filename": "TV CAMARA - Lula - A esperanca finalmente venceu o medo.mp3",
+        "dateAdded": "2022-09-08T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "F3B40D97-122B-42EC-8AC8-AB7AEFDA158A",
+        "title": "É óbvio",
+        "authorId": "66E5E3E2-A90C-4BE2-A0DB-E9E63A2ABF0B",
+        "description": "É óbvio",
+        "filename": "TV CAMARA - Alessandro Molon - E obvio.mp3",
+        "dateAdded": "2022-09-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "9C1EDF73-D5BE-44F6-BD6F-3D92D3C80C19",
+        "title": "Auxílio emergencial de R$ 200",
+        "authorId": "BB392894-327A-48BA-9C7D-4F0601E947EB",
+        "description": "vamos lancar uma camada de protecao justamente aos autonomos é praticamente em torno do bolsa familia também duzentos reais sao duas cestas basicas",
+        "filename": "TV BRASIL - GUEDES - Auxilio emergencial de 200 reais.mp3",
+        "dateAdded": "2022-09-08T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "0E0D3D7D-BBBB-456A-9BA9-923A2C66B9FF",
+        "title": "Pior do que tá não fica",
+        "authorId": "EBC28244-3E86-410C-AA5F-4426C1B71E30",
+        "description": "Pior do que ta nao fica",
+        "filename": "TIRIRICA - Pior do que ta nao fica.mp3",
+        "dateAdded": "2022-09-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "0C109387-3731-4A53-AD1B-59C923AD5164",
+        "title": "Passarinho que come cu não sabe a pedra que tem",
+        "authorId": "F3DF88A1-E7CD-431F-BD84-4AE7DB7E7657",
+        "description": "Passarinho que come cu nao sabe a pedra que tem",
+        "filename": "Thiago Arruda - Passarinho que come cu nao sabe a pedra que tem.mp3",
+        "dateAdded": "2022-09-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "CD817691-E500-4CC0-A395-DE845548F785",
+        "title": "Doidão de droga",
+        "authorId": "AE949547-5C2E-4AA4-B68F-0C3E1F503AB3",
+        "description": "Doidão de droga",
+        "filename": "UOL - JOAO GORDO - Doidao de droga.mp3",
+        "dateAdded": "2022-09-10T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "2A3B0DBD-E793-4BD7-A9C4-6107F39DE220",
+        "title": "Totalmente embriagado",
+        "authorId": "CB8A74AE-C21F-4129-9A89-4DBDFF1835F3",
+        "description": "Totalmente embriagado",
+        "filename": "Edu Santos - Totalmente embriagado.mp3",
+        "dateAdded": "2022-09-10T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "5DDBCE6B-875E-4F3C-BD73-418CA05F2679",
+        "title": "Totalmente drogada",
+        "authorId": "4840C45E-2404-42F3-A455-3091C6AE88C3",
+        "description": "Totalmente drogada",
+        "filename": "Fernanda Torres - Totalmente drogada.mp3",
+        "dateAdded": "2022-09-10T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "B799B5AD-6916-4B1F-8810-B4577EA0DB6F",
+        "title": "Ele é meio sem noção",
+        "authorId": "87138168-E9AC-4BF0-A486-2C5F098CD541",
+        "description": "ele é meio sem noção",
+        "filename": "Michelle Bolsonaro - Ele e meio sem nocao.mp3",
+        "dateAdded": "2022-09-11T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "7167C5A2-E406-4256-9569-B1BD8FFC93FC",
+        "title": "Imbrochável (5x)",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "imbroxavel imbrochavel",
+        "filename": "Imbrochavel 5 vezes.mp3",
+        "dateAdded": "2022-09-11T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "2C9DC0D3-E062-4AF7-8414-2FD0E71E44C5",
+        "title": "Que satisfação, aspira",
+        "authorId": "94A68344-24DE-40B8-A9B8-D2F3FFD09763",
+        "description": "que satisfação aspira",
+        "filename": "Tropa de Elite - Que satisfacao, aspira.mp3",
+        "dateAdded": "2022-09-11T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "F0FC28B2-C201-4460-B132-089576A077C9",
+        "title": "Ui, que brega!",
+        "authorId": "DE543F8C-7337-4629-8A35-2A51FD7F36A6",
+        "description": "ui que brega",
+        "filename": "Mc Douglinhas - Ui, que brega.mp3",
+        "dateAdded": "2022-09-11T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "4A6BFF34-A937-4436-AD5A-5011D632B722",
+        "title": "Ihuu (agora com équiu)",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "ihuu ihuul irru agora com equiu eco tabajara",
+        "filename": "Ihuu (agora com equiu).mp3",
+        "dateAdded": "2022-09-11T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "5702813A-AC05-474E-9628-2D6F32EB192E",
+        "title": "Eu acho que até um fake news é válido, com todo o respeito",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Eu acho que ate um fake news e valido com todo o respeito",
+        "filename": "Bolsonaro - Eu acho que ate um fake news e valido, com todo o respeito.mp3",
+        "dateAdded": "2022-09-12T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "2C292A5F-F198-4552-8DD2-C607900B7AA5",
+        "title": "Misericórdia, jornalista, tenha dó",
+        "authorId": "F1683588-F547-4F2F-B3E4-8A328FAFC1AB",
+        "description": "Misericordia jornalista tenha do",
+        "filename": "Casimiro - Misericordia, jornalista, tenha do.mp3",
+        "dateAdded": "2022-09-13T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "B0D809A4-2EE5-4C72-A557-34A587A5E566",
+        "title": "Moderador, tira o moleque desse grupo AGORA",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "Moderador tira o moleque desse grupo agora",
+        "filename": "Moderador, tira o moleque desse grupo agora.mp3",
+        "dateAdded": "2022-09-13T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "D7693EE9-1C7A-45E4-817B-E811D0DEDCBB",
+        "title": "Chato pra caralho",
+        "authorId": "42EDB2DA-51E7-40B1-BABA-FD28066AF001",
+        "description": "Chato pra caralho",
+        "filename": "Milton Leite - Chato pra caralho.mp3",
+        "dateAdded": "2022-09-13T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "BCC0F8A9-9AF1-4E64-B186-7FC0F03D159D",
+        "title": "Presta atenção que é importante, pessoal",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Presta atencao que e importante pessoal",
+        "filename": "Bolsonaro - Presta atencao que e importante, pessoal.mp3",
+        "dateAdded": "2022-09-17T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "713280D1-91B6-4EDE-B004-1E50D9D27CA6",
+        "title": "É como se fosse um sorvete",
+        "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
+        "description": "E como se fosse um sorvete chupou acabou fica com o palito na mao",
+        "filename": "Lula - E como se fosse um sorvete, chupou, acabou, fica com o palito na mao.mp3",
+        "dateAdded": "2022-09-17T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "2CCED2C5-DB33-40C8-9DD1-CFDC5B352EAA",
+        "title": "Chupou, acabou",
+        "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
+        "description": "Chupou acabou",
+        "filename": "Lula - Chupou, acabou.mp3",
+        "dateAdded": "2022-09-17T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "8EC14965-8E19-42B4-BCEB-FBB74830206A",
+        "title": "Ministro Fachin, marxista, leninista",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Ministro Fachin marxista leninista",
+        "filename": "Jair Bolsonaro - Ministro Fachin, marxista, leninista.mp3",
+        "dateAdded": "2022-09-17T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "9417C644-26E4-42EB-9FDF-C766567072B9",
+        "title": "Porra, Brasil (jingle)",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "porra brasil porra brasil com sinceridade bolsonaro reeleito é sacanagem",
+        "filename": "Cristiano Botafogo - Porra, Brasil.mp3",
+        "dateAdded": "2022-09-19T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "A5BAC10B-6BBC-4F25-BE31-A16D7761740C",
+        "title": "Eu aloprei, perdi a linha, lamento",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Eu aloprei perdi a linha lamento",
+        "filename": "Jair Bolsonaro - Eu aloprei, perdi a linha, lamento.mp3",
+        "dateAdded": "2022-09-19T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "A07451FF-58FC-4978-A79B-AEA40F5C9EC9",
+        "title": "Balde de cerveja gelada no final do arco-íris",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "e no final do arco-iris tem um baldinho de cerveja gelada foda-se",
+        "filename": "Balde de cerveja gelada no final do arco-iris.mp3",
+        "dateAdded": "2022-09-26T00:00:00Z",
+        "isOffensive": true
     }
 ]

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4979103D28BE844D00CDF01C /* MedoWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4979103C28BE844D00CDF01C /* MedoWidget.swift */; };
+		4979103F28BE844E00CDF01C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4979103E28BE844E00CDF01C /* Assets.xcassets */; };
+		4979104328BE844E00CDF01C /* MedoWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4979103528BE844D00CDF01C /* MedoWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4979105228BEC6F700CDF01C /* Vai Tomar no Cu Vai Pro Caralho - Palhaco Gozo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4979104C28BEC6F700CDF01C /* Vai Tomar no Cu Vai Pro Caralho - Palhaco Gozo.mp3 */; };
 		4979105428BEC6F700CDF01C /* Desculpa perdao lamento - Pedro Daltro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4979104E28BEC6F700CDF01C /* Desculpa perdao lamento - Pedro Daltro.mp3 */; };
 		4979105528BEC6F700CDF01C /* Me deixa bastante chateado - Paulo Sergio Nogueira.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4979104F28BEC6F700CDF01C /* Me deixa bastante chateado - Paulo Sergio Nogueira.mp3 */; };
@@ -14,6 +17,8 @@
 		4979105928BEC71400CDF01C /* Dentro do Carro Funk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4979105728BEC71400CDF01C /* Dentro do Carro Funk.mp3 */; };
 		4979105A28BEC71400CDF01C /* Agora vai sentar na mesa Funk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4979105828BEC71400CDF01C /* Agora vai sentar na mesa Funk.mp3 */; };
 		4979105C28BEC78600CDF01C /* Chateado - Paulo Sergio Nogueira.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4979105B28BEC78600CDF01C /* Chateado - Paulo Sergio Nogueira.mp3 */; };
+		49B4C96A28CE74E6007E893B /* A pipa do jair nao sobe mais.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49B4C96928CE74E6007E893B /* A pipa do jair nao sobe mais.mp3 */; };
+		49B4C97428CE7684007E893B /* Ihuu (agora com equiu).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49B4C97328CE7684007E893B /* Ihuu (agora com equiu).mp3 */; };
 		49DEA99C28810C63008C9BA1 /* Ah nao de novo nao de novo nao short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA99B28810C63008C9BA1 /* Ah nao de novo nao de novo nao short meme.mp3 */; };
 		49DEA99E28810C88008C9BA1 /* Ana Paula - Olha Ela short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA99D28810C88008C9BA1 /* Ana Paula - Olha Ela short meme.mp3 */; };
 		49DEA9A028810CBC008C9BA1 /* band jornalismo - Ah MORRE DIABO  short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA99F28810CBC008C9BA1 /* band jornalismo - Ah MORRE DIABO  short meme.mp3 */; };
@@ -46,7 +51,11 @@
 		49DEA9E028811FAF008C9BA1 /* eletronica-eine-grosse-confusion-kraftwerk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA9DF28811FAF008C9BA1 /* eletronica-eine-grosse-confusion-kraftwerk.mp3 */; };
 		49DEA9E228812015008C9BA1 /* eletronica-eine-grosse-confusion-sexo-selvagem-kraftwerk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA9E128812015008C9BA1 /* eletronica-eine-grosse-confusion-sexo-selvagem-kraftwerk.mp3 */; };
 		49E5D33B28C634F20057FF7D /* Nao e hora pra desespero completo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49E5D33A28C634F20057FF7D /* Nao e hora pra desespero completo.mp3 */; };
+		D901B06428BC795200B1A610 /* MusicGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = D901B06328BC795200B1A610 /* MusicGenre.swift */; };
 		D905B4C52857FF3D0096D466 /* AddNetworkCallLogTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D905B4C42857FF3D0096D466 /* AddNetworkCallLogTable.swift */; };
+		D906BA4D28D90999007F4701 /* Cristiano Botafogo - Porra, Brasil.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D906BA4C28D90999007F4701 /* Cristiano Botafogo - Porra, Brasil.mp3 */; };
+		D906BA4F28D909A0007F4701 /* Jingle Bolsonaro 2022.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D906BA4E28D909A0007F4701 /* Jingle Bolsonaro 2022.mp3 */; };
+		D906BA5128D912DB007F4701 /* Jair Bolsonaro - Eu aloprei, perdi a linha, lamento.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D906BA5028D912DA007F4701 /* Jair Bolsonaro - Eu aloprei, perdi a linha, lamento.mp3 */; };
 		D90E2E5728853CDC00F406B6 /* AuthorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90E2E5628853CDC00F406B6 /* AuthorCell.swift */; };
 		D90F6A6628446C250050FFFF /* TrendsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */; };
 		D911070B28627216000B6F8F /* NotificationsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D911070A28627216000B6F8F /* NotificationsSettingsView.swift */; };
@@ -111,6 +120,8 @@
 		D923127428AB0A6100436336 /* Novo e diferente, e top, e moderno (completo).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D923127228AB0A6100436336 /* Novo e diferente, e top, e moderno (completo).mp3 */; };
 		D9253B682873B68B00D138FB /* FoldersAreTagsBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9253B672873B68B00D138FB /* FoldersAreTagsBannerView.swift */; };
 		D9265741285A1EE700947165 /* LocalDatabase+Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9265740285A1EE700947165 /* LocalDatabase+Log.swift */; };
+		D9267EE728D1271400C0DC6C /* Mc Douglinhas - Ui, que brega.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9267EE528D1271300C0DC6C /* Mc Douglinhas - Ui, que brega.mp3 */; };
+		D9267EE828D1271400C0DC6C /* Milton Leite - Chato pra caralho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9267EE628D1271400C0DC6C /* Milton Leite - Chato pra caralho.mp3 */; };
 		D92722FE289246AC001D5E47 /* Parafernalha - Ta errado, ta muito errado isso.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92722FD289246AC001D5E47 /* Parafernalha - Ta errado, ta muito errado isso.mp3 */; };
 		D9272300289248C1001D5E47 /* Bolsonaro - Ah, como o cara e grosso.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92722FF289248C1001D5E47 /* Bolsonaro - Ah, como o cara e grosso.mp3 */; };
 		D927230228924E2F001D5E47 /* Bolsonaro - Vai dar vitoria pro Lula, sem problema nenhum.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D927230128924E2F001D5E47 /* Bolsonaro - Vai dar vitoria pro Lula, sem problema nenhum.mp3 */; };
@@ -779,6 +790,7 @@
 		D975FFFE2880B4F20035E6F2 /* jonathan frakes - It's a total fabrication.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FDC72880B4F00035E6F2 /* jonathan frakes - It's a total fabrication.mp3 */; };
 		D975FFFF2880B4F20035E6F2 /* Bolsonaro - Polemizar esse assunto.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FDC82880B4F00035E6F2 /* Bolsonaro - Polemizar esse assunto.mp3 */; };
 		D976FF3828674BAC00998E1B /* FoldersBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D976FF3728674BAC00998E1B /* FoldersBannerView.swift */; };
+		D977294A28E1F99D003B0CD3 /* Balde de cerveja gelada no final do arco-iris.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D977294928E1F99C003B0CD3 /* Balde de cerveja gelada no final do arco-iris.mp3 */; };
 		D97D76F92885B1BD005210D9 /* SidebarFolderIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97D76F82885B1BD005210D9 /* SidebarFolderIcon.swift */; };
 		D97D76FB2885B794005210D9 /* EmailAppPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97D76FA2885B794005210D9 /* EmailAppPickerView.swift */; };
 		D980455C28380EFE003B2E83 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D980455E28380EFE003B2E83 /* Localizable.strings */; };
@@ -793,6 +805,9 @@
 		D988B1A328AC3B1800A179CF /* AddFavoriteLogTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D988B1A228AC3B1800A179CF /* AddFavoriteLogTable.swift */; };
 		D988C523283C33E100D64404 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D988C522283C33E100D64404 /* UserSettings.swift */; };
 		D98B291D28691C5C008A78AE /* ColorSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98B291C28691C5C008A78AE /* ColorSelectionCell.swift */; };
+		D98B9AD628CEBD2D00B82EDE /* Imbrochavel 5 vezes.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98B9AD328CEBD2D00B82EDE /* Imbrochavel 5 vezes.mp3 */; };
+		D98B9AD728CEBD2D00B82EDE /* Michelle Bolsonaro - Ele e meio sem nocao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98B9AD428CEBD2D00B82EDE /* Michelle Bolsonaro - Ele e meio sem nocao.mp3 */; };
+		D98B9AD828CEBD2D00B82EDE /* Tropa de Elite - Que satisfacao, aspira.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98B9AD528CEBD2D00B82EDE /* Tropa de Elite - Que satisfacao, aspira.mp3 */; };
 		D98DBD35284919B1008544F8 /* NetworkRabbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98DBD34284919B1008544F8 /* NetworkRabbit.swift */; };
 		D98DBD38284921B5008544F8 /* NetworkRabbitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98DBD37284921B5008544F8 /* NetworkRabbitTests.swift */; };
 		D98EC5DE282596C300340BE5 /* SoundCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5DD282596C300340BE5 /* SoundCell.swift */; };
@@ -825,6 +840,11 @@
 		D9943F2C28643317002C6B97 /* FolderDetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F2B28643317002C6B97 /* FolderDetailViewViewModel.swift */; };
 		D998F28F284F177B0013E709 /* TrendsDisabledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998F28E284F177B0013E709 /* TrendsDisabledView.swift */; };
 		D99B9DCA2848148600897930 /* ServerStatsAndLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99B9DC92848148600897930 /* ServerStatsAndLogs.swift */; };
+		D99D0DBF28CAB0FF00EB6F27 /* TV CAMARA - MARCELO FREIXO - Nao adianta desvirtuar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99D0DBE28CAB0FF00EB6F27 /* TV CAMARA - MARCELO FREIXO - Nao adianta desvirtuar.mp3 */; };
+		D99D0DC128CAB3E800EB6F27 /* TV CAMARA - Lula - A esperanca finalmente venceu o medo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99D0DC028CAB3E800EB6F27 /* TV CAMARA - Lula - A esperanca finalmente venceu o medo.mp3 */; };
+		D99D0DC328CAB52700EB6F27 /* TV CAMARA - Alessandro Molon - E obvio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99D0DC228CAB52700EB6F27 /* TV CAMARA - Alessandro Molon - E obvio.mp3 */; };
+		D99D0DC528CAB5F000EB6F27 /* TV BRASIL - GUEDES - Auxilio emergencial de 200 reais.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99D0DC428CAB5EF00EB6F27 /* TV BRASIL - GUEDES - Auxilio emergencial de 200 reais.mp3 */; };
+		D99D6CE528D6766300B36301 /* Jair Bolsonaro - Ministro Fachin, marxista, leninista.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99D6CE428D6766300B36301 /* Jair Bolsonaro - Ministro Fachin, marxista, leninista.mp3 */; };
 		D99DC19D28423AD7002B03B6 /* AuthorDetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99DC19C28423AD7002B03B6 /* AuthorDetailViewViewModel.swift */; };
 		D9A096D8287CE72300773869 /* Mailman.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A096D7287CE72300773869 /* Mailman.swift */; };
 		D9A32DC7285ACE880038A370 /* PodiumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A32DC6285ACE880038A370 /* PodiumTests.swift */; };
@@ -833,6 +853,7 @@
 		D9A8AB282854436500B5A94B /* Date+ToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A8AB272854436500B5A94B /* Date+ToString.swift */; };
 		D9A8AB2A28544FAE00B5A94B /* NetworkCallLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A8AB2928544FAE00B5A94B /* NetworkCallLog.swift */; };
 		D9ABDDB0287411C9007B25EA /* SongHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9ABDDAF287411C9007B25EA /* SongHelpView.swift */; };
+		D9B24E2228C6A68800D76F7D /* NumberBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B24E2128C6A68800D76F7D /* NumberBadgeView.swift */; };
 		D9B4F73F283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B4F73D283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 */; };
 		D9B4F740283C8F4D0000EEF7 /* O roque ativa.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B4F73E283C8F4D0000EEF7 /* O roque ativa.mp3 */; };
 		D9B763282845B5E600CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B763272845B5E500CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift */; };
@@ -845,11 +866,21 @@
 		D9C35D23288713990065F3E7 /* HotWeatherAdBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C35D22288713990065F3E7 /* HotWeatherAdBannerView.swift */; };
 		D9D3D4912887495B00C42FDE /* FolderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3D4902887495B00C42FDE /* FolderList.swift */; };
 		D9D3D493288750C400C42FDE /* FolderListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3D492288750C400C42FDE /* FolderListViewModel.swift */; };
+		D9C5EC3128C7DEEA0099EA86 /* Jair Bolsonaro - O que nos queremos paz tranquilidade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C5EC3028C7DEE90099EA86 /* Jair Bolsonaro - O que nos queremos paz tranquilidade.mp3 */; };
+		D9C5EC3328C7F3150099EA86 /* Fora Genocida.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C5EC3228C7F3150099EA86 /* Fora Genocida.mp3 */; };
+		D9C5EC3628C7F7F70099EA86 /* Jair Bolsonaro - Ato falho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C5EC3428C7F7F70099EA86 /* Jair Bolsonaro - Ato falho.mp3 */; };
+		D9C5EC3728C7F7F70099EA86 /* Jair Bolsonaro - Putaria.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C5EC3528C7F7F70099EA86 /* Jair Bolsonaro - Putaria.mp3 */; };
+		D9C5EC3928C7FAA00099EA86 /* Tyrion Lannister - THAT was a threat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C5EC3828C7FAA00099EA86 /* Tyrion Lannister - THAT was a threat.mp3 */; };
+		D9C77B6D28CAB81F006CA17B /* TIRIRICA - Pior do que ta nao fica.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C77B6C28CAB81F006CA17B /* TIRIRICA - Pior do que ta nao fica.mp3 */; };
+		D9C77B6F28CAC07B006CA17B /* Thiago Arruda - Passarinho que come cu nao sabe a pedra que tem.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C77B6E28CAC07B006CA17B /* Thiago Arruda - Passarinho que come cu nao sabe a pedra que tem.mp3 */; };
 		D9CB84F528B2E31D00E815C2 /* Alvaro Borba - A Verdadeira Polarizacao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CB84F428B2E31D00E815C2 /* Alvaro Borba - A Verdadeira Polarizacao.mp3 */; };
 		D9CC025D28BD9EBD0021C1E6 /* GridHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CC025C28BD9EBD0021C1E6 /* GridHelper.swift */; };
 		D9D856F5288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D856F3288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3 */; };
 		D9D856F6288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Se numero elevado de mortes policia e uma caracteristica, ta errado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D856F4288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Se numero elevado de mortes policia e uma caracteristica, ta errado.mp3 */; };
 		D9D8C4A8287CD1B600812EE5 /* UIDevice+DevicePhysicalCharacteristics.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D8C4A7287CD1B600812EE5 /* UIDevice+DevicePhysicalCharacteristics.swift */; };
+		D9DB6F8128CD6E2900E24BDE /* UOL - JOAO GORDO - Doidao de droga.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DB6F8028CD6E2900E24BDE /* UOL - JOAO GORDO - Doidao de droga.mp3 */; };
+		D9DB6F8328CD6F3600E24BDE /* Edu Santos - Totalmente embriagado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DB6F8228CD6F3500E24BDE /* Edu Santos - Totalmente embriagado.mp3 */; };
+		D9DB6F8528CD770900E24BDE /* Fernanda Torres - Totalmente drogada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DB6F8428CD770900E24BDE /* Fernanda Torres - Totalmente drogada.mp3 */; };
 		D9DCC5D128751256008DD4A3 /* PushDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D028751256008DD4A3 /* PushDevice.swift */; };
 		D9DCC5D3287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D2287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift */; };
 		D9DCC5D52875CB59008DD4A3 /* AppPersistentMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D42875CB59008DD4A3 /* AppPersistentMemory.swift */; };
@@ -867,6 +898,12 @@
 		D9E7D0F628AC6BC6001E909E /* PORTA DOS FUNDOS - Nao, brother broder.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E7D0F528AC6BC6001E909E /* PORTA DOS FUNDOS - Nao, brother broder.mp3 */; };
 		D9EB18A52857CDFF00A2F8A8 /* CollectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EB18A42857CDFF00A2F8A8 /* CollectionsView.swift */; };
 		D9ECD81528B3C470003C033A /* IconImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9ECD81428B3C470003C033A /* IconImage.swift */; };
+		D9F185CC28D6705100BE2F69 /* Bolsonaro - Presta atencao que e importante, pessoal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F185CB28D6705100BE2F69 /* Bolsonaro - Presta atencao que e importante, pessoal.mp3 */; };
+		D9F185CF28D6729A00BE2F69 /* Lula - Chupou, acabou.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F185CD28D6729A00BE2F69 /* Lula - Chupou, acabou.mp3 */; };
+		D9F185D028D6729A00BE2F69 /* Lula - E como se fosse um sorvete, chupou, acabou, fica com o palito na mao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F185CE28D6729A00BE2F69 /* Lula - E como se fosse um sorvete, chupou, acabou, fica com o palito na mao.mp3 */; };
+		D9F6420528CFD57600003A0E /* Bolsonaro - Eu acho que ate um fake news e valido, com todo o respeito.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F6420428CFD57600003A0E /* Bolsonaro - Eu acho que ate um fake news e valido, com todo o respeito.mp3 */; };
+		D9F6420728D1211700003A0E /* Casimiro - Misericordia, jornalista, tenha do.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F6420628D1211700003A0E /* Casimiro - Misericordia, jornalista, tenha do.mp3 */; };
+		D9F6420928D122C500003A0E /* Moderador, tira o moleque desse grupo agora.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F6420828D122C500003A0E /* Moderador, tira o moleque desse grupo agora.mp3 */; };
 		D9F696BD28BBFDD700C984E6 /* Jair Bolsonaro e Conrado Hubner - Os escandalos do Jair, enumerados.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F696BC28BBFDD700C984E6 /* Jair Bolsonaro e Conrado Hubner - Os escandalos do Jair, enumerados.mp3 */; };
 		D9F78A9F2860DF9100B83567 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F78A9E2860DF9100B83567 /* CollectionCell.swift */; };
 		D9FA0CD728508590000F6ADE /* UIDevice+DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FA0CD628508590000F6ADE /* UIDevice+DeviceInfo.swift */; };
@@ -896,6 +933,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		4979104128BE844E00CDF01C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D9625E7228238F9A00080852 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4979103428BE844D00CDF01C;
+			remoteInfo = MedoWidgetExtension;
+		};
 		D9625E8B28238F9B00080852 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D9625E7228238F9A00080852 /* Project object */;
@@ -905,7 +949,26 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		4979104828BE844E00CDF01C /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				4979104328BE844E00CDF01C /* MedoWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		4979103528BE844D00CDF01C /* MedoWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MedoWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		4979103C28BE844D00CDF01C /* MedoWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedoWidget.swift; sourceTree = "<group>"; };
+		4979103E28BE844E00CDF01C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4979104028BE844E00CDF01C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4979104428BE844E00CDF01C /* MedoWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MedoWidgetExtension.entitlements; sourceTree = "<group>"; };
 		4979104C28BEC6F700CDF01C /* Vai Tomar no Cu Vai Pro Caralho - Palhaco Gozo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Vai Tomar no Cu Vai Pro Caralho - Palhaco Gozo.mp3"; sourceTree = "<group>"; };
 		4979104E28BEC6F700CDF01C /* Desculpa perdao lamento - Pedro Daltro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Desculpa perdao lamento - Pedro Daltro.mp3"; sourceTree = "<group>"; };
 		4979104F28BEC6F700CDF01C /* Me deixa bastante chateado - Paulo Sergio Nogueira.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Me deixa bastante chateado - Paulo Sergio Nogueira.mp3"; sourceTree = "<group>"; };
@@ -913,6 +976,8 @@
 		4979105728BEC71400CDF01C /* Dentro do Carro Funk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Dentro do Carro Funk.mp3"; sourceTree = "<group>"; };
 		4979105828BEC71400CDF01C /* Agora vai sentar na mesa Funk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Agora vai sentar na mesa Funk.mp3"; sourceTree = "<group>"; };
 		4979105B28BEC78600CDF01C /* Chateado - Paulo Sergio Nogueira.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Chateado - Paulo Sergio Nogueira.mp3"; sourceTree = "<group>"; };
+		49B4C96928CE74E6007E893B /* A pipa do jair nao sobe mais.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "A pipa do jair nao sobe mais.mp3"; sourceTree = "<group>"; };
+		49B4C97328CE7684007E893B /* Ihuu (agora com equiu).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ihuu (agora com equiu).mp3"; sourceTree = "<group>"; };
 		49DEA99B28810C63008C9BA1 /* Ah nao de novo nao de novo nao short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ah nao de novo nao de novo nao short meme.mp3"; sourceTree = "<group>"; };
 		49DEA99D28810C88008C9BA1 /* Ana Paula - Olha Ela short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ana Paula - Olha Ela short meme.mp3"; sourceTree = "<group>"; };
 		49DEA99F28810CBC008C9BA1 /* band jornalismo - Ah MORRE DIABO  short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "band jornalismo - Ah MORRE DIABO  short meme.mp3"; sourceTree = "<group>"; };
@@ -945,7 +1010,11 @@
 		49DEA9DF28811FAF008C9BA1 /* eletronica-eine-grosse-confusion-kraftwerk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "eletronica-eine-grosse-confusion-kraftwerk.mp3"; sourceTree = "<group>"; };
 		49DEA9E128812015008C9BA1 /* eletronica-eine-grosse-confusion-sexo-selvagem-kraftwerk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "eletronica-eine-grosse-confusion-sexo-selvagem-kraftwerk.mp3"; sourceTree = "<group>"; };
 		49E5D33A28C634F20057FF7D /* Nao e hora pra desespero completo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Nao e hora pra desespero completo.mp3"; sourceTree = "<group>"; };
+		D901B06328BC795200B1A610 /* MusicGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicGenre.swift; sourceTree = "<group>"; };
 		D905B4C42857FF3D0096D466 /* AddNetworkCallLogTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNetworkCallLogTable.swift; sourceTree = "<group>"; };
+		D906BA4C28D90999007F4701 /* Cristiano Botafogo - Porra, Brasil.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano Botafogo - Porra, Brasil.mp3"; sourceTree = "<group>"; };
+		D906BA4E28D909A0007F4701 /* Jingle Bolsonaro 2022.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jingle Bolsonaro 2022.mp3"; sourceTree = "<group>"; };
+		D906BA5028D912DA007F4701 /* Jair Bolsonaro - Eu aloprei, perdi a linha, lamento.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Eu aloprei, perdi a linha, lamento.mp3"; sourceTree = "<group>"; };
 		D90E2E5628853CDC00F406B6 /* AuthorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorCell.swift; sourceTree = "<group>"; };
 		D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsSettingsView.swift; sourceTree = "<group>"; };
 		D911070A28627216000B6F8F /* NotificationsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSettingsView.swift; sourceTree = "<group>"; };
@@ -1010,6 +1079,8 @@
 		D923127228AB0A6100436336 /* Novo e diferente, e top, e moderno (completo).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Novo e diferente, e top, e moderno (completo).mp3"; sourceTree = "<group>"; };
 		D9253B672873B68B00D138FB /* FoldersAreTagsBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersAreTagsBannerView.swift; sourceTree = "<group>"; };
 		D9265740285A1EE700947165 /* LocalDatabase+Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+Log.swift"; sourceTree = "<group>"; };
+		D9267EE528D1271300C0DC6C /* Mc Douglinhas - Ui, que brega.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mc Douglinhas - Ui, que brega.mp3"; sourceTree = "<group>"; };
+		D9267EE628D1271400C0DC6C /* Milton Leite - Chato pra caralho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Milton Leite - Chato pra caralho.mp3"; sourceTree = "<group>"; };
 		D92722FD289246AC001D5E47 /* Parafernalha - Ta errado, ta muito errado isso.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Parafernalha - Ta errado, ta muito errado isso.mp3"; sourceTree = "<group>"; };
 		D92722FF289248C1001D5E47 /* Bolsonaro - Ah, como o cara e grosso.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Ah, como o cara e grosso.mp3"; sourceTree = "<group>"; };
 		D927230128924E2F001D5E47 /* Bolsonaro - Vai dar vitoria pro Lula, sem problema nenhum.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Vai dar vitoria pro Lula, sem problema nenhum.mp3"; sourceTree = "<group>"; };
@@ -1680,6 +1751,7 @@
 		D975FE0D2880B4F20035E6F2 /* Amigo Pedro Daltro - Que delicia, cara.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Amigo Pedro Daltro - Que delicia, cara.mp3"; sourceTree = "<group>"; };
 		D975FE0E2880B4F20035E6F2 /* O CARA DA LUVA DE PEDREIRO - receba carai caralho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O CARA DA LUVA DE PEDREIRO - receba carai caralho.mp3"; sourceTree = "<group>"; };
 		D976FF3728674BAC00998E1B /* FoldersBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersBannerView.swift; sourceTree = "<group>"; };
+		D977294928E1F99C003B0CD3 /* Balde de cerveja gelada no final do arco-iris.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Balde de cerveja gelada no final do arco-iris.mp3"; sourceTree = "<group>"; };
 		D97D76F82885B1BD005210D9 /* SidebarFolderIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarFolderIcon.swift; sourceTree = "<group>"; };
 		D97D76FA2885B794005210D9 /* EmailAppPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAppPickerView.swift; sourceTree = "<group>"; };
 		D980455D28380EFE003B2E83 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1695,7 +1767,10 @@
 		D988B1A228AC3B1800A179CF /* AddFavoriteLogTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFavoriteLogTable.swift; sourceTree = "<group>"; };
 		D988C522283C33E100D64404 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		D98B291C28691C5C008A78AE /* ColorSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSelectionCell.swift; sourceTree = "<group>"; };
-		D98DBD3228491909008544F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D98B9AD328CEBD2D00B82EDE /* Imbrochavel 5 vezes.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Imbrochavel 5 vezes.mp3"; sourceTree = "<group>"; };
+		D98B9AD428CEBD2D00B82EDE /* Michelle Bolsonaro - Ele e meio sem nocao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Michelle Bolsonaro - Ele e meio sem nocao.mp3"; sourceTree = "<group>"; };
+		D98B9AD528CEBD2D00B82EDE /* Tropa de Elite - Que satisfacao, aspira.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tropa de Elite - Que satisfacao, aspira.mp3"; sourceTree = "<group>"; };
+		D98DBD3228491909008544F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D98DBD34284919B1008544F8 /* NetworkRabbit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRabbit.swift; sourceTree = "<group>"; };
 		D98DBD37284921B5008544F8 /* NetworkRabbitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRabbitTests.swift; sourceTree = "<group>"; };
 		D98EC5DD282596C300340BE5 /* SoundCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundCell.swift; sourceTree = "<group>"; };
@@ -1727,6 +1802,11 @@
 		D9943F2B28643317002C6B97 /* FolderDetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetailViewViewModel.swift; sourceTree = "<group>"; };
 		D998F28E284F177B0013E709 /* TrendsDisabledView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsDisabledView.swift; sourceTree = "<group>"; };
 		D99B9DC92848148600897930 /* ServerStatsAndLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerStatsAndLogs.swift; sourceTree = "<group>"; };
+		D99D0DBE28CAB0FF00EB6F27 /* TV CAMARA - MARCELO FREIXO - Nao adianta desvirtuar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "TV CAMARA - MARCELO FREIXO - Nao adianta desvirtuar.mp3"; sourceTree = "<group>"; };
+		D99D0DC028CAB3E800EB6F27 /* TV CAMARA - Lula - A esperanca finalmente venceu o medo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "TV CAMARA - Lula - A esperanca finalmente venceu o medo.mp3"; sourceTree = "<group>"; };
+		D99D0DC228CAB52700EB6F27 /* TV CAMARA - Alessandro Molon - E obvio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "TV CAMARA - Alessandro Molon - E obvio.mp3"; sourceTree = "<group>"; };
+		D99D0DC428CAB5EF00EB6F27 /* TV BRASIL - GUEDES - Auxilio emergencial de 200 reais.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "TV BRASIL - GUEDES - Auxilio emergencial de 200 reais.mp3"; sourceTree = "<group>"; };
+		D99D6CE428D6766300B36301 /* Jair Bolsonaro - Ministro Fachin, marxista, leninista.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Ministro Fachin, marxista, leninista.mp3"; sourceTree = "<group>"; };
 		D99DC19C28423AD7002B03B6 /* AuthorDetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorDetailViewViewModel.swift; sourceTree = "<group>"; };
 		D9A096D7287CE72300773869 /* Mailman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mailman.swift; sourceTree = "<group>"; };
 		D9A32DC6285ACE880038A370 /* PodiumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodiumTests.swift; sourceTree = "<group>"; };
@@ -1735,6 +1815,7 @@
 		D9A8AB272854436500B5A94B /* Date+ToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ToString.swift"; sourceTree = "<group>"; };
 		D9A8AB2928544FAE00B5A94B /* NetworkCallLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCallLog.swift; sourceTree = "<group>"; };
 		D9ABDDAF287411C9007B25EA /* SongHelpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongHelpView.swift; sourceTree = "<group>"; };
+		D9B24E2128C6A68800D76F7D /* NumberBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberBadgeView.swift; sourceTree = "<group>"; };
 		D9B4F73D283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Unidos do Medo e Delírio.mp3"; sourceTree = "<group>"; };
 		D9B4F73E283C8F4D0000EEF7 /* O roque ativa.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O roque ativa.mp3"; sourceTree = "<group>"; };
 		D9B763272845B5E500CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKStoreReviewController+requestReviewInCurrentScene.swift"; sourceTree = "<group>"; };
@@ -1747,11 +1828,21 @@
 		D9C35D22288713990065F3E7 /* HotWeatherAdBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotWeatherAdBannerView.swift; sourceTree = "<group>"; };
 		D9D3D4902887495B00C42FDE /* FolderList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderList.swift; sourceTree = "<group>"; };
 		D9D3D492288750C400C42FDE /* FolderListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListViewModel.swift; sourceTree = "<group>"; };
+		D9C5EC3028C7DEE90099EA86 /* Jair Bolsonaro - O que nos queremos paz tranquilidade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - O que nos queremos paz tranquilidade.mp3"; sourceTree = "<group>"; };
+		D9C5EC3228C7F3150099EA86 /* Fora Genocida.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fora Genocida.mp3"; sourceTree = "<group>"; };
+		D9C5EC3428C7F7F70099EA86 /* Jair Bolsonaro - Ato falho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Ato falho.mp3"; sourceTree = "<group>"; };
+		D9C5EC3528C7F7F70099EA86 /* Jair Bolsonaro - Putaria.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Putaria.mp3"; sourceTree = "<group>"; };
+		D9C5EC3828C7FAA00099EA86 /* Tyrion Lannister - THAT was a threat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tyrion Lannister - THAT was a threat.mp3"; sourceTree = "<group>"; };
+		D9C77B6C28CAB81F006CA17B /* TIRIRICA - Pior do que ta nao fica.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "TIRIRICA - Pior do que ta nao fica.mp3"; sourceTree = "<group>"; };
+		D9C77B6E28CAC07B006CA17B /* Thiago Arruda - Passarinho que come cu nao sabe a pedra que tem.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Thiago Arruda - Passarinho que come cu nao sabe a pedra que tem.mp3"; sourceTree = "<group>"; };
 		D9CB84F428B2E31D00E815C2 /* Alvaro Borba - A Verdadeira Polarizacao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alvaro Borba - A Verdadeira Polarizacao.mp3"; sourceTree = "<group>"; };
 		D9CC025C28BD9EBD0021C1E6 /* GridHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridHelper.swift; sourceTree = "<group>"; };
 		D9D856F3288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3"; sourceTree = "<group>"; };
 		D9D856F4288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Se numero elevado de mortes policia e uma caracteristica, ta errado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "RADIO BANDNEWS FM - Eduardo Oinegue - Se numero elevado de mortes policia e uma caracteristica, ta errado.mp3"; sourceTree = "<group>"; };
 		D9D8C4A7287CD1B600812EE5 /* UIDevice+DevicePhysicalCharacteristics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+DevicePhysicalCharacteristics.swift"; sourceTree = "<group>"; };
+		D9DB6F8028CD6E2900E24BDE /* UOL - JOAO GORDO - Doidao de droga.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "UOL - JOAO GORDO - Doidao de droga.mp3"; sourceTree = "<group>"; };
+		D9DB6F8228CD6F3500E24BDE /* Edu Santos - Totalmente embriagado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Edu Santos - Totalmente embriagado.mp3"; sourceTree = "<group>"; };
+		D9DB6F8428CD770900E24BDE /* Fernanda Torres - Totalmente drogada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fernanda Torres - Totalmente drogada.mp3"; sourceTree = "<group>"; };
 		D9DCC5D028751256008DD4A3 /* PushDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushDevice.swift; sourceTree = "<group>"; };
 		D9DCC5D2287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+PushDevice.swift"; sourceTree = "<group>"; };
 		D9DCC5D42875CB59008DD4A3 /* AppPersistentMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPersistentMemory.swift; sourceTree = "<group>"; };
@@ -1768,6 +1859,12 @@
 		D9E7D0F528AC6BC6001E909E /* PORTA DOS FUNDOS - Nao, brother broder.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "PORTA DOS FUNDOS - Nao, brother broder.mp3"; sourceTree = "<group>"; };
 		D9EB18A42857CDFF00A2F8A8 /* CollectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsView.swift; sourceTree = "<group>"; };
 		D9ECD81428B3C470003C033A /* IconImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconImage.swift; sourceTree = "<group>"; };
+		D9F185CB28D6705100BE2F69 /* Bolsonaro - Presta atencao que e importante, pessoal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Presta atencao que e importante, pessoal.mp3"; sourceTree = "<group>"; };
+		D9F185CD28D6729A00BE2F69 /* Lula - Chupou, acabou.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - Chupou, acabou.mp3"; sourceTree = "<group>"; };
+		D9F185CE28D6729A00BE2F69 /* Lula - E como se fosse um sorvete, chupou, acabou, fica com o palito na mao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - E como se fosse um sorvete, chupou, acabou, fica com o palito na mao.mp3"; sourceTree = "<group>"; };
+		D9F6420428CFD57600003A0E /* Bolsonaro - Eu acho que ate um fake news e valido, com todo o respeito.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Eu acho que ate um fake news e valido, com todo o respeito.mp3"; sourceTree = "<group>"; };
+		D9F6420628D1211700003A0E /* Casimiro - Misericordia, jornalista, tenha do.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Casimiro - Misericordia, jornalista, tenha do.mp3"; sourceTree = "<group>"; };
+		D9F6420828D122C500003A0E /* Moderador, tira o moleque desse grupo agora.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Moderador, tira o moleque desse grupo agora.mp3"; sourceTree = "<group>"; };
 		D9F696BC28BBFDD700C984E6 /* Jair Bolsonaro e Conrado Hubner - Os escandalos do Jair, enumerados.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro e Conrado Hubner - Os escandalos do Jair, enumerados.mp3"; sourceTree = "<group>"; };
 		D9F78A9E2860DF9100B83567 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
 		D9FA0CD628508590000F6ADE /* UIDevice+DeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+DeviceInfo.swift"; sourceTree = "<group>"; };
@@ -1797,6 +1894,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4979103228BE844D00CDF01C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D9625E7728238F9A00080852 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1817,6 +1921,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4979103B28BE844D00CDF01C /* MedoWidget */ = {
+			isa = PBXGroup;
+			children = (
+				D9DB6F8828CD791500E24BDE /* Sources */,
+				D9DB6F8928CD791A00E24BDE /* Resources */,
+			);
+			path = MedoWidget;
+			sourceTree = "<group>";
+		};
 		D916627B2874F1E2000A1B23 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -1829,6 +1942,35 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D977294928E1F99C003B0CD3 /* Balde de cerveja gelada no final do arco-iris.mp3 */,
+				D906BA5028D912DA007F4701 /* Jair Bolsonaro - Eu aloprei, perdi a linha, lamento.mp3 */,
+				D906BA4C28D90999007F4701 /* Cristiano Botafogo - Porra, Brasil.mp3 */,
+				D99D6CE428D6766300B36301 /* Jair Bolsonaro - Ministro Fachin, marxista, leninista.mp3 */,
+				D9F185CD28D6729A00BE2F69 /* Lula - Chupou, acabou.mp3 */,
+				D9F185CE28D6729A00BE2F69 /* Lula - E como se fosse um sorvete, chupou, acabou, fica com o palito na mao.mp3 */,
+				D9F185CB28D6705100BE2F69 /* Bolsonaro - Presta atencao que e importante, pessoal.mp3 */,
+				D9267EE528D1271300C0DC6C /* Mc Douglinhas - Ui, que brega.mp3 */,
+				D9267EE628D1271400C0DC6C /* Milton Leite - Chato pra caralho.mp3 */,
+				D9F6420828D122C500003A0E /* Moderador, tira o moleque desse grupo agora.mp3 */,
+				D9F6420628D1211700003A0E /* Casimiro - Misericordia, jornalista, tenha do.mp3 */,
+				D9F6420428CFD57600003A0E /* Bolsonaro - Eu acho que ate um fake news e valido, com todo o respeito.mp3 */,
+				D98B9AD328CEBD2D00B82EDE /* Imbrochavel 5 vezes.mp3 */,
+				D98B9AD428CEBD2D00B82EDE /* Michelle Bolsonaro - Ele e meio sem nocao.mp3 */,
+				D98B9AD528CEBD2D00B82EDE /* Tropa de Elite - Que satisfacao, aspira.mp3 */,
+				49B4C97328CE7684007E893B /* Ihuu (agora com equiu).mp3 */,
+				D9DB6F8428CD770900E24BDE /* Fernanda Torres - Totalmente drogada.mp3 */,
+				D9DB6F8228CD6F3500E24BDE /* Edu Santos - Totalmente embriagado.mp3 */,
+				D9DB6F8028CD6E2900E24BDE /* UOL - JOAO GORDO - Doidao de droga.mp3 */,
+				D9C77B6E28CAC07B006CA17B /* Thiago Arruda - Passarinho que come cu nao sabe a pedra que tem.mp3 */,
+				D9C77B6C28CAB81F006CA17B /* TIRIRICA - Pior do que ta nao fica.mp3 */,
+				D99D0DC428CAB5EF00EB6F27 /* TV BRASIL - GUEDES - Auxilio emergencial de 200 reais.mp3 */,
+				D99D0DC228CAB52700EB6F27 /* TV CAMARA - Alessandro Molon - E obvio.mp3 */,
+				D99D0DC028CAB3E800EB6F27 /* TV CAMARA - Lula - A esperanca finalmente venceu o medo.mp3 */,
+				D99D0DBE28CAB0FF00EB6F27 /* TV CAMARA - MARCELO FREIXO - Nao adianta desvirtuar.mp3 */,
+				D9C5EC3828C7FAA00099EA86 /* Tyrion Lannister - THAT was a threat.mp3 */,
+				D9C5EC3428C7F7F70099EA86 /* Jair Bolsonaro - Ato falho.mp3 */,
+				D9C5EC3528C7F7F70099EA86 /* Jair Bolsonaro - Putaria.mp3 */,
+				D9C5EC3028C7DEE90099EA86 /* Jair Bolsonaro - O que nos queremos paz tranquilidade.mp3 */,
 				49E5D33A28C634F20057FF7D /* Nao e hora pra desespero completo.mp3 */,
 				4979105B28BEC78600CDF01C /* Chateado - Paulo Sergio Nogueira.mp3 */,
 				4979104E28BEC6F700CDF01C /* Desculpa perdao lamento - Pedro Daltro.mp3 */,
@@ -2548,6 +2690,9 @@
 		D92E7068283C5C120035826C /* Songs */ = {
 			isa = PBXGroup;
 			children = (
+				D906BA4E28D909A0007F4701 /* Jingle Bolsonaro 2022.mp3 */,
+				49B4C96928CE74E6007E893B /* A pipa do jair nao sobe mais.mp3 */,
+				D9C5EC3228C7F3150099EA86 /* Fora Genocida.mp3 */,
 				D9345E7528C697F900BADC1B /* Ele Queria Ter 2 Mesa Funk.mp3 */,
 				4979105828BEC71400CDF01C /* Agora vai sentar na mesa Funk.mp3 */,
 				4979105728BEC71400CDF01C /* Dentro do Carro Funk.mp3 */,
@@ -2676,18 +2821,10 @@
 			isa = PBXGroup;
 			children = (
 				D958B1B12839534D0010F133 /* SettingsView.swift */,
-				D9ECD81328B3C45D003C033A /* AlternateIcons */,
-				D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */,
-				D93D24DF2849DAAB00300541 /* DiagnosticsView.swift */,
-				D973076B28AC49B100FBB3B8 /* DiagnosticsViewViewModel.swift */,
-				D9A8AB2428543F8E00B5A94B /* SharingLogCell.swift */,
-				D92CAA4028593B1700D6C1EA /* NetworkLogCell.swift */,
-				D9DCC5D8287625F4008DD4A3 /* PodcastAuthorsView.swift */,
-				D9BB9264285DAA8E005CD6DD /* BegForMoneyView.swift */,
-				D9DCC5D62875D7E5008DD4A3 /* NotificationSymbolPlusText.swift */,
-				D911070A28627216000B6F8F /* NotificationsSettingsView.swift */,
-				D9ABDDB1287411D9007B25EA /* Help */,
-				D949180F288606E00079F545 /* SettingsCasingWithCloseView.swift */,
+				D970162D28CE797B0003AA00 /* Sub-Settings */,
+				D970162F28CE7A0F0003AA00 /* Acknowledgements */,
+				D970162E28CE79C30003AA00 /* Diagnostics */,
+				D970163028CE7A540003AA00 /* iPad */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -2725,6 +2862,7 @@
 			children = (
 				D9625E7C28238F9A00080852 /* MedoDelirioBrasilia */,
 				D9625E8D28238F9B00080852 /* MedoDelirioBrasiliaTests */,
+				4979103B28BE844D00CDF01C /* MedoWidget */,
 				D9625E7B28238F9A00080852 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -2734,6 +2872,7 @@
 			children = (
 				D9625E7A28238F9A00080852 /* MedoDelirio.app */,
 				D9625E8A28238F9B00080852 /* MedoDelirioBrasiliaTests.xctest */,
+				4979103528BE844D00CDF01C /* MedoWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2741,8 +2880,6 @@
 		D9625E7C28238F9A00080852 /* MedoDelirioBrasilia */ = {
 			isa = PBXGroup;
 			children = (
-				D9653D9C2882749C00C745F4 /* MedoDelirioBrasilia.entitlements */,
-				D98DBD3228491909008544F8 /* Info.plist */,
 				D9625EA72823949200080852 /* Sources */,
 				D9625EA82823949700080852 /* Resources */,
 			);
@@ -2801,6 +2938,7 @@
 				D95DB0F5288248A300D4FEDF /* SidebarView.swift */,
 				D959B0472887E83D00A215AD /* SidebarViewViewModel.swift */,
 				D9B9025C2837485000551239 /* Sounds */,
+				D98622DE283FC53B00E9F630 /* Authors */,
 				D95F363828AD385100743026 /* ShareAsVideo */,
 				D9EB18A32857CDE200A2F8A8 /* Collections */,
 				D9943F2428641FB7002C6B97 /* Folders */,
@@ -2811,6 +2949,54 @@
 				D9759ACA2872B1D1005F9871 /* Shared */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		D970162D28CE797B0003AA00 /* Sub-Settings */ = {
+			isa = PBXGroup;
+			children = (
+				D9ABDDB1287411D9007B25EA /* Help */,
+				D970163128CE7A6E0003AA00 /* Notifications */,
+				D9ECD81328B3C45D003C033A /* AlternateIcons */,
+				D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */,
+			);
+			path = "Sub-Settings";
+			sourceTree = "<group>";
+		};
+		D970162E28CE79C30003AA00 /* Diagnostics */ = {
+			isa = PBXGroup;
+			children = (
+				D93D24DF2849DAAB00300541 /* DiagnosticsView.swift */,
+				D973076B28AC49B100FBB3B8 /* DiagnosticsViewViewModel.swift */,
+				D9A8AB2428543F8E00B5A94B /* SharingLogCell.swift */,
+				D92CAA4028593B1700D6C1EA /* NetworkLogCell.swift */,
+			);
+			path = Diagnostics;
+			sourceTree = "<group>";
+		};
+		D970162F28CE7A0F0003AA00 /* Acknowledgements */ = {
+			isa = PBXGroup;
+			children = (
+				D9DCC5D8287625F4008DD4A3 /* PodcastAuthorsView.swift */,
+				D9BB9264285DAA8E005CD6DD /* BegForMoneyView.swift */,
+			);
+			path = Acknowledgements;
+			sourceTree = "<group>";
+		};
+		D970163028CE7A540003AA00 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				D949180F288606E00079F545 /* SettingsCasingWithCloseView.swift */,
+			);
+			path = iPad;
+			sourceTree = "<group>";
+		};
+		D970163128CE7A6E0003AA00 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				D9DCC5D62875D7E5008DD4A3 /* NotificationSymbolPlusText.swift */,
+				D911070A28627216000B6F8F /* NotificationsSettingsView.swift */,
+			);
+			path = Notifications;
 			sourceTree = "<group>";
 		};
 		D9759ACA2872B1D1005F9871 /* Shared */ = {
@@ -2825,6 +3011,7 @@
 				D927230528924FC1001D5E47 /* HitsMedoDelirioBannerView.swift */,
 				D957047C28AEF733008DEF8C /* ProcessingView.swift */,
 				D9CC025C28BD9EBD0021C1E6 /* GridHelper.swift */,
+				D9B24E2128C6A68800D76F7D /* NumberBadgeView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -2832,13 +3019,15 @@
 		D980456028380F45003B2E83 /* AppSupport */ = {
 			isa = PBXGroup;
 			children = (
-				D9625E8328238F9B00080852 /* Preview Content */,
 				D9625E7D28238F9A00080852 /* MedoDelirioBrasiliaApp.swift */,
 				D980456128380F66003B2E83 /* LocalizableStrings.swift */,
 				D988C522283C33E100D64404 /* UserSettings.swift */,
 				D9DCC5D42875CB59008DD4A3 /* AppPersistentMemory.swift */,
 				D9BF9090284257F500BDDD7D /* Shared.swift */,
 				D960AF262845BFE700ADF1F6 /* UserDefaultsKeys.swift */,
+				D9653D9C2882749C00C745F4 /* MedoDelirioBrasilia.entitlements */,
+				D98DBD3228491909008544F8 /* Info.plist */,
+				D9625E8328238F9B00080852 /* Preview Content */,
 			);
 			path = AppSupport;
 			sourceTree = "<group>";
@@ -2890,6 +3079,7 @@
 				D9BB1E7628B3200700C5FFAA /* AppIcon.swift */,
 				D912A33528B3E8F000F7293D /* VideoExportType.swift */,
 				D912A33928B5321400F7293D /* ShareAsVideoResult.swift */,
+				D901B06328BC795200B1A610 /* MusicGenre.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2956,7 +3146,6 @@
 				D98EC5E22825A45000340BE5 /* SoundsViewViewModel.swift */,
 				D98EC5DD282596C300340BE5 /* SoundCell.swift */,
 				D92C0CA928405B2D009CF19A /* NoFavoritesView.swift */,
-				D98622DE283FC53B00E9F630 /* Authors */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -2994,6 +3183,32 @@
 				D998F28E284F177B0013E709 /* TrendsDisabledView.swift */,
 			);
 			path = Trends;
+			sourceTree = "<group>";
+		};
+		D9DB6F8728CD790100E24BDE /* WidgetSupport */ = {
+			isa = PBXGroup;
+			children = (
+				4979104028BE844E00CDF01C /* Info.plist */,
+				4979104428BE844E00CDF01C /* MedoWidgetExtension.entitlements */,
+			);
+			path = WidgetSupport;
+			sourceTree = "<group>";
+		};
+		D9DB6F8828CD791500E24BDE /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				4979103C28BE844D00CDF01C /* MedoWidget.swift */,
+				D9DB6F8728CD790100E24BDE /* WidgetSupport */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		D9DB6F8928CD791A00E24BDE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4979103E28BE844E00CDF01C /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		D9E69595283D54EA00C341B2 /* DataHandlers */ = {
@@ -3049,6 +3264,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4979103428BE844D00CDF01C /* MedoWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4979104528BE844E00CDF01C /* Build configuration list for PBXNativeTarget "MedoWidgetExtension" */;
+			buildPhases = (
+				4979103128BE844D00CDF01C /* Sources */,
+				4979103228BE844D00CDF01C /* Frameworks */,
+				4979103328BE844D00CDF01C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MedoWidgetExtension;
+			productName = MedoWidgetExtension;
+			productReference = 4979103528BE844D00CDF01C /* MedoWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		D9625E7928238F9A00080852 /* MedoDelirioBrasilia */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D9625E9E28238F9B00080852 /* Build configuration list for PBXNativeTarget "MedoDelirioBrasilia" */;
@@ -3056,10 +3288,12 @@
 				D9625E7628238F9A00080852 /* Sources */,
 				D9625E7728238F9A00080852 /* Frameworks */,
 				D9625E7828238F9A00080852 /* Resources */,
+				4979104828BE844E00CDF01C /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				4979104228BE844E00CDF01C /* PBXTargetDependency */,
 			);
 			name = MedoDelirioBrasilia;
 			packageProductDependencies = (
@@ -3096,9 +3330,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1330;
+				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
+					4979103428BE844D00CDF01C = {
+						CreatedOnToolsVersion = 14.0;
+					};
 					D9625E7928238F9A00080852 = {
 						CreatedOnToolsVersion = 13.3.1;
 					};
@@ -3129,11 +3366,20 @@
 			targets = (
 				D9625E7928238F9A00080852 /* MedoDelirioBrasilia */,
 				D9625E8928238F9B00080852 /* MedoDelirioBrasiliaTests */,
+				4979103428BE844D00CDF01C /* MedoWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4979103328BE844D00CDF01C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4979103F28BE844E00CDF01C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D9625E7828238F9A00080852 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3151,9 +3397,11 @@
 				D975FE3E2880B4F20035E6F2 /* DESMENTINDO BOLSONARO - PAULO GUEDES - O Brasil esta decolando economia bombando coletanea.mp3 in Resources */,
 				49DEA9D2288116AF008C9BA1 /* Eita porra short meme.mp3 in Resources */,
 				D975FF282880B4F20035E6F2 /* Dedo no cu e gritaria short meme.mp3 in Resources */,
+				D906BA4F28D909A0007F4701 /* Jingle Bolsonaro 2022.mp3 in Resources */,
 				D9B4F740283C8F4D0000EEF7 /* O roque ativa.mp3 in Resources */,
 				D921F88B288B0177003979CC /* Air quotes.mp3 in Resources */,
 				D975FEE72880B4F20035E6F2 /* Away -  Fora das condicoes normais.mp3 in Resources */,
+				D99D0DC328CAB52700EB6F27 /* TV CAMARA - Alessandro Molon - E obvio.mp3 in Resources */,
 				D975FE792880B4F20035E6F2 /* Saiddy Bamba - Vai chorar e vai chorar e chore na minha.mp3 in Resources */,
 				D975FE702880B4F20035E6F2 /* UOL - Milton Ribeiro - Enem tem a cara do governo competencia honestidade seriedade.mp3 in Resources */,
 				D975FE2E2880B4F20035E6F2 /* Boldo - Puta que pariu marquinho.mp3 in Resources */,
@@ -3171,6 +3419,7 @@
 				D975FFFF2880B4F20035E6F2 /* Bolsonaro - Polemizar esse assunto.mp3 in Resources */,
 				D975FFDA2880B4F20035E6F2 /* Bolsonaro - Paralelepipedo de crack.mp3 in Resources */,
 				D975FE472880B4F20035E6F2 /* CNN BRASIL BUSINESS - Conseguimos atenuar o choque do petr¢leo que veio de fora diz Guedes voz rouca.mp3 in Resources */,
+				D977294A28E1F99D003B0CD3 /* Balde de cerveja gelada no final do arco-iris.mp3 in Resources */,
 				D975000F2880B4F20035E6F2 /* Gilmar Mendes - aha uhu o Fachin e nosso.mp3 in Resources */,
 				D975FE642880B4F20035E6F2 /* King Size do Rio de Janeiro - A mafia chinesa short meme.mp3 in Resources */,
 				D975FE592880B4F20035E6F2 /* Leo Stronda - Caralho o maluco e brabo short.mp3 in Resources */,
@@ -3212,6 +3461,7 @@
 				D921F887288B0177003979CC /* Isso ai e sarcasmo alvin e os esquilos - cristiano botafogo.mp3 in Resources */,
 				D975FE492880B4F20035E6F2 /* Collor - Um devaneio, um sonho de uma noite de verao.mp3 in Resources */,
 				D975FE8B2880B4F20035E6F2 /* E desesperador.mp3 in Resources */,
+				49B4C96A28CE74E6007E893B /* A pipa do jair nao sobe mais.mp3 in Resources */,
 				D923127328AB0A6100436336 /* Novo e diferente, e top, e moderno (curto).mp3 in Resources */,
 				D975FE6A2880B4F20035E6F2 /* Malditos Milicos reverse.mp3 in Resources */,
 				D975FF5F2880B4F20035E6F2 /* Nunca foi meritocracia, sempre foi desigualdade.mp3 in Resources */,
@@ -3263,6 +3513,7 @@
 				D9E7D0F128AC677B001E909E /* Paulo Guedes - Empregada domestica na Disney (longo).mp3 in Resources */,
 				D975FE532880B4F20035E6F2 /* Pastor Valdemiro - Mas isso e... E enganar.mp3 in Resources */,
 				D975FEA42880B4F20035E6F2 /* Bolsonaro - ah o o cara quem fala disso eu nao sou coveiro ta ok.mp3 in Resources */,
+				D9C77B6F28CAC07B006CA17B /* Thiago Arruda - Passarinho que come cu nao sabe a pedra que tem.mp3 in Resources */,
 				D97500232880B4F20035E6F2 /* Bolsonaro - Eu nao errei nenhuma.mp3 in Resources */,
 				D97500052880B4F20035E6F2 /* Monty Python - Eric Idle - Bring out your dead.mp3 in Resources */,
 				D975002F2880B4F20035E6F2 /* Vai Dar Namoro - Que isso meu filho calma.mp3 in Resources */,
@@ -3303,6 +3554,7 @@
 				D975FF182880B4F20035E6F2 /* MINISTRO TERRIVELMENTE FILHO DA PUTA.mp3 in Resources */,
 				4979105228BEC6F700CDF01C /* Vai Tomar no Cu Vai Pro Caralho - Palhaco Gozo.mp3 in Resources */,
 				D975FF7D2880B4F20035E6F2 /* Ate o final tu vai bancar esse merda la seu merda.mp3 in Resources */,
+				49B4C97428CE7684007E893B /* Ihuu (agora com equiu).mp3 in Resources */,
 				D921F87E288B0177003979CC /* E um montao de amontoado de muita coisa escrita.mp3 in Resources */,
 				D975FFDE2880B4F20035E6F2 /* Eu sou RICA! short meme.mp3 in Resources */,
 				D97500002880B4F20035E6F2 /* Bolsonaro - Ah nhem nhem nhem nhem olha o problema ai.mp3 in Resources */,
@@ -3323,6 +3575,7 @@
 				D9E7D0EE28AC64F4001E909E /* Rogerinho - Ta certa a indignacao.mp3 in Resources */,
 				D9FD0F0F28B2B2EE0000616A /* Sentar na mesa - paulo sergio nogueira.mp3 in Resources */,
 				D975FF1B2880B4F20035E6F2 /* Gilmar Mendes - Com a devida venia.mp3 in Resources */,
+				D9C5EC3328C7F3150099EA86 /* Fora Genocida.mp3 in Resources */,
 				D975FEFE2880B4F20035E6F2 /* Kajuru - etica nao tem ambiguidade caralho porra.mp3 in Resources */,
 				D975FED12880B4F20035E6F2 /* Boldo - Caralho, Marquinho.mp3 in Resources */,
 				D975001F2880B4F20035E6F2 /* Diogo Defante - Tu ouviu isso nao e possivel.mp3 in Resources */,
@@ -3334,6 +3587,7 @@
 				D975FEBB2880B4F20035E6F2 /* Craque Neto - Pa aplica numa bunda pa aplica na outra.mp3 in Resources */,
 				D975FE272880B4F20035E6F2 /* Cocorico - Ah coitado.mp3 in Resources */,
 				D97500292880B4F20035E6F2 /* Bonitinha mas ordinaria - Mentira.mp3 in Resources */,
+				D9C77B6D28CAB81F006CA17B /* TIRIRICA - Pior do que ta nao fica.mp3 in Resources */,
 				D975FED62880B4F20035E6F2 /* Cristiano Botafogo - Mix de insanidade.mp3 in Resources */,
 				D9CB84F528B2E31D00E815C2 /* Alvaro Borba - A Verdadeira Polarizacao.mp3 in Resources */,
 				D9D856F5288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3 in Resources */,
@@ -3360,6 +3614,7 @@
 				D975FE832880B4F20035E6F2 /* Cid Moreira - Pra mim ja deu.mp3 in Resources */,
 				D975FFAC2880B4F20035E6F2 /* Malditos milicos monges Om.mp3 in Resources */,
 				D975FF452880B4F20035E6F2 /* Molejo - Ninguem short meme.mp3 in Resources */,
+				D99D0DBF28CAB0FF00EB6F27 /* TV CAMARA - MARCELO FREIXO - Nao adianta desvirtuar.mp3 in Resources */,
 				D92E7070283C5CF40035826C /* song_data.json in Resources */,
 				D975FEB52880B4F20035E6F2 /* Vai Dar Namoro - Cavalo.mp3 in Resources */,
 				D975FFB92880B4F20035E6F2 /* Michel Temer - Tem que pedir uma pastilha.mp3 in Resources */,
@@ -3383,6 +3638,7 @@
 				D975FFF72880B4F20035E6F2 /* Bolsonaro - A pressa da vacina nao se justifica.mp3 in Resources */,
 				D975FF952880B4F20035E6F2 /* Mermao na moral short.mp3 in Resources */,
 				D975FF6A2880B4F20035E6F2 /* CASIMIRO - Que que porra e essa.mp3 in Resources */,
+				D98B9AD828CEBD2D00B82EDE /* Tropa de Elite - Que satisfacao, aspira.mp3 in Resources */,
 				D975FEDB2880B4F20035E6F2 /* HENRY BUGALHO - Os reacas piram.mp3 in Resources */,
 				D975FEF82880B4F20035E6F2 /* LINGUICETA - Diogo Defante - Minha alegria ta baseada na tristeza do meu colega.mp3 in Resources */,
 				D975FFF02880B4F20035E6F2 /* Feiticeira - Nao e feiticaria, e tecnologia meme short.mp3 in Resources */,
@@ -3442,6 +3698,7 @@
 				D975FE152880B4F20035E6F2 /* Ulysses Guimaraes - Temos odio a ditadura, odio e nojo.mp3 in Resources */,
 				D975FE912880B4F20035E6F2 /* Away - De novo cara.mp3 in Resources */,
 				D975FE942880B4F20035E6F2 /* Ady Ferrer - Oh nao mais um crime contra a humanidade.mp3 in Resources */,
+				D9C5EC3928C7FAA00099EA86 /* Tyrion Lannister - THAT was a threat.mp3 in Resources */,
 				D9FD0F0628B2B2EE0000616A /* alerta de novidade - cristiano botafogo.mp3 in Resources */,
 				D975FEA32880B4F20035E6F2 /* Capitao Falcao - Viboras socialistas.mp3 in Resources */,
 				D975FFAB2880B4F20035E6F2 /* Tu tava fora do brasil irmao short.mp3 in Resources */,
@@ -3456,11 +3713,14 @@
 				D975FF1F2880B4F20035E6F2 /* Bolsonaro - Pra midia, o virus sou eu.mp3 in Resources */,
 				D97500182880B4F20035E6F2 /* Lula - Ele nao sabe o que e ser presidente da republica.mp3 in Resources */,
 				49DEA9BA28811219008C9BA1 /* Carole King - Its Too Late - And its too late, baby, now, its too late short meme.mp3 in Resources */,
+				D9267EE828D1271400C0DC6C /* Milton Leite - Chato pra caralho.mp3 in Resources */,
 				D975FEE22880B4F20035E6F2 /* Caetano Veloso - Como voce e burro short.mp3 in Resources */,
 				D9388F9E288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Bonsai de pica.mp3 in Resources */,
 				D975FE5A2880B4F20035E6F2 /* Alanzoka - Sai, maluco, todo dia isso.mp3 in Resources */,
 				D97500162880B4F20035E6F2 /* Olavo - Porrrrra.mp3 in Resources */,
+				D9DB6F8528CD770900E24BDE /* Fernanda Torres - Totalmente drogada.mp3 in Resources */,
 				D975FEED2880B4F20035E6F2 /* Molejo - Cilada short meme.mp3 in Resources */,
+				D9267EE728D1271400C0DC6C /* Mc Douglinhas - Ui, que brega.mp3 in Resources */,
 				D975FF252880B4F20035E6F2 /* Bolsonaro - E dai.mp3 in Resources */,
 				D99151312873E4C100FFAA29 /* funk-do-morto-mdb.mp3 in Resources */,
 				D975FEE92880B4F20035E6F2 /* UOL -  Pazuello - Missao Cumprida short meme.mp3 in Resources */,
@@ -3491,6 +3751,7 @@
 				D975FEC22880B4F20035E6F2 /* Caetano - Nao short.mp3 in Resources */,
 				D975FF2A2880B4F20035E6F2 /* Malditos Milicos - cromatica descendente.mp3 in Resources */,
 				D9FD0F0728B2B2EE0000616A /* quando o injusto governa o povo geme gemido - michele bolsonaro.mp3 in Resources */,
+				D99D0DC128CAB3E800EB6F27 /* TV CAMARA - Lula - A esperanca finalmente venceu o medo.mp3 in Resources */,
 				D975FF2C2880B4F20035E6F2 /* Drauzio - E verdade quer dizer as vezes nao meme short.mp3 in Resources */,
 				D975FF8B2880B4F20035E6F2 /* Magno Malta - Anestesiado nos bracos da morte.mp3 in Resources */,
 				D97500542880B5190035E6F2 /* MULTISHOW - PABLLO VITTAR - Fora Bolsonaro.mp3 in Resources */,
@@ -3506,6 +3767,7 @@
 				D975FE732880B4F20035E6F2 /* Nando Moura - Bibibibi Mito (curto).mp3 in Resources */,
 				D9625E8228238F9B00080852 /* Assets.xcassets in Resources */,
 				D975FF5B2880B4F20035E6F2 /* NOTAS TAQUIGRAFICAS DO SENADO - Randolfe - Ana Cristina, por gentileza, coloque a mensagem de whatsapp.mp3 in Resources */,
+				D9F185CF28D6729A00BE2F69 /* Lula - Chupou, acabou.mp3 in Resources */,
 				D975FFDF2880B4F20035E6F2 /* Silvio Santos - E mesmo e verdade.mp3 in Resources */,
 				D975FF8E2880B4F20035E6F2 /* CHICO BUARQUE - vai trabalhar vagabundo.mp3 in Resources */,
 				D975FF212880B4F20035E6F2 /* Lucca  Wilker - ME IGNOROU - Ignorou me bloqueou short meme.mp3 in Resources */,
@@ -3519,6 +3781,7 @@
 				D975FEC32880B4F20035E6F2 /* Bolsonaro - Pretendo beneficiar um filho meu sim pretendo.mp3 in Resources */,
 				49DEA9C628811482008C9BA1 /* Chiquititas Brasil - Nao Pode Ser short meme.mp3 in Resources */,
 				D975FFC72880B4F20035E6F2 /* Ernesto Araujo - Thats not true (House Remix).mp3 in Resources */,
+				D9DB6F8328CD6F3600E24BDE /* Edu Santos - Totalmente embriagado.mp3 in Resources */,
 				D975FEB02880B4F20035E6F2 /* Mourao - Herois matam short.mp3 in Resources */,
 				D975FE772880B4F20035E6F2 /* Pedro Daltro - Fala direito, Cristiano, porra.mp3 in Resources */,
 				D975FF3D2880B4F20035E6F2 /* Carmina burana trecho.mp3 in Resources */,
@@ -3545,6 +3808,7 @@
 				D975FE4A2880B4F20035E6F2 /* Natalia Pasternak - E um pedaco de pano no rosto, e uma porra de um pedaco de pano na cara.mp3 in Resources */,
 				D97500342880B4F20035E6F2 /* Bolsonaro - Coisa rara de eu falar aqui coloco a minha cara inteira no fogo pelo Milton ribeiro.mp3 in Resources */,
 				D975FFC42880B4F20035E6F2 /* CASIMIRO - Ta maluco.mp3 in Resources */,
+				D9DB6F8128CD6E2900E24BDE /* UOL - JOAO GORDO - Doidao de droga.mp3 in Resources */,
 				D923126428AAFD5C00436336 /* Fala, MR - Nao e um meme para muitos tios e tias do whatsapp zap.mp3 in Resources */,
 				D975FE712880B4F20035E6F2 /* Alceu Valenca - Tomara - Tomara meu deus tomara.mp3 in Resources */,
 				D975FEC92880B4F20035E6F2 /* SBT NEWS - Bolsonaro - Qualquer decisao do Alexandre de Moraes esse presidente nao mais cumprira.mp3 in Resources */,
@@ -3552,6 +3816,7 @@
 				D97500102880B4F20035E6F2 /* CHOQUE DE CULTURA - Renan - Inescrupulosos.mp3 in Resources */,
 				D92AD1AB28832BDF001CBCDF /* PETIT JOURNAL - Tanguy Baghdadi - Porra, ta errado.mp3 in Resources */,
 				D975FF712880B4F20035E6F2 /* Malditos milicos robo grave.mp3 in Resources */,
+				D98B9AD628CEBD2D00B82EDE /* Imbrochavel 5 vezes.mp3 in Resources */,
 				D975FEC42880B4F20035E6F2 /* ROY ORBISON - Oh Pretty Woman Pretiputi parodia.mp3 in Resources */,
 				D975FE5E2880B4F20035E6F2 /* Harry e Helen - I've heard that song before short meme.mp3 in Resources */,
 				D975FE122880B4F20035E6F2 /* Cleber Machado - Hoje nao hoje nao.mp3 in Resources */,
@@ -3640,6 +3905,7 @@
 				D91793B6288E3F0E009C3165 /* Abraham Weintraub - Muito muito pipi mole.mp3 in Resources */,
 				D975FE4C2880B4F20035E6F2 /* Trote Luiz Pareto - TELERJ meme mas que filho da puta olhai veja voce.mp3 in Resources */,
 				D975FFCE2880B4F20035E6F2 /* Otoni de Paula - Otoni nao para.mp3 in Resources */,
+				D906BA4D28D90999007F4701 /* Cristiano Botafogo - Porra, Brasil.mp3 in Resources */,
 				D975FFBE2880B4F20035E6F2 /* Malafaia - JAIR MESSIAS BOLSONARO.mp3 in Resources */,
 				D92AD1B928833150001CBCDF /* Temer - Repito.mp3 in Resources */,
 				D975FFFB2880B4F20035E6F2 /* Choque de Cultura - Nem existe isso, ce ta inventando palavra.mp3 in Resources */,
@@ -3649,10 +3915,12 @@
 				D975FF272880B4F20035E6F2 /* Fred - Ce ta falando serio.mp3 in Resources */,
 				D975FEBE2880B4F20035E6F2 /* Craque Neto - E cuidado com a cueca hein, cuidado com a cueca.mp3 in Resources */,
 				D975FF262880B4F20035E6F2 /* PLANALTO - Bolsonaro - Presidente Putin Pretiputi.mp3 in Resources */,
+				D9F185CC28D6705100BE2F69 /* Bolsonaro - Presta atencao que e importante, pessoal.mp3 in Resources */,
 				D975FF842880B4F20035E6F2 /* Bolsonaro - Sem o vies ideologico.mp3 in Resources */,
 				D975FFC62880B4F20035E6F2 /* Cidade Oculta - Voce fala isso porque e a putinha do bozo.mp3 in Resources */,
 				D991512D2873E4C100FFAA29 /* rock-comunismo-ai-seis-mdb.mp3 in Resources */,
 				D975FE632880B4F20035E6F2 /* Ai seu grosso.mp3 in Resources */,
+				D9C5EC3728C7F7F70099EA86 /* Jair Bolsonaro - Putaria.mp3 in Resources */,
 				D91793BA288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao no MARXISMO CULTURAL.mp3 in Resources */,
 				D975FE3F2880B4F20035E6F2 /* Bolsonaro - Procura outro pra pagar a tua vacina ai.mp3 in Resources */,
 				D9FD0F0228B2B2EE0000616A /* presta atencao senao como suas tripa.mp3 in Resources */,
@@ -3662,6 +3930,7 @@
 				D975FEAD2880B4F20035E6F2 /* Gilmar Mendes - Nao e razoavel.mp3 in Resources */,
 				D975FF962880B4F20035E6F2 /* Paulo Guedes - Deixa cada um se fuder do jeito que quiser.mp3 in Resources */,
 				D975FFDB2880B4F20035E6F2 /* Legal short meme empolgante.mp3 in Resources */,
+				D9F6420728D1211700003A0E /* Casimiro - Misericordia, jornalista, tenha do.mp3 in Resources */,
 				D91793AD288E2236009C3165 /* Bolsonaro - Eu nao sou medico, mas sou ousado.mp3 in Resources */,
 				D975FFFC2880B4F20035E6F2 /* Keila Mellman -  nao e de bom tom short meme.mp3 in Resources */,
 				D97500272880B4F20035E6F2 /* Carioca puto - Vai tomar no cu cara toda hora essa discussao cara.mp3 in Resources */,
@@ -3675,6 +3944,7 @@
 				D975001E2880B4F20035E6F2 /* Choque de Cultura - Maurilio - O ultimo idoso alegre do planeta e o Ary Fontoura.mp3 in Resources */,
 				D975FFCF2880B4F20035E6F2 /* Atila Iamarino - E como se fosse uma crianca de cinco anos.mp3 in Resources */,
 				D975FEEC2880B4F20035E6F2 /* Queima quengaral wooo short.mp3 in Resources */,
+				D99D6CE528D6766300B36301 /* Jair Bolsonaro - Ministro Fachin, marxista, leninista.mp3 in Resources */,
 				D975FF192880B4F20035E6F2 /* Galvao Bueno - Diga la Tino meme short.mp3 in Resources */,
 				D975FF062880B4F20035E6F2 /* Lula - Deus de barro nao dura muito tempo.mp3 in Resources */,
 				D921F895288B07CB003979CC /* Fa do Armandinho - Armandinho e um terror ne meu (completo).mp3 in Resources */,
@@ -3701,10 +3971,12 @@
 				D975FF532880B4F20035E6F2 /* Damares - Uau.mp3 in Resources */,
 				D923127028AB049800436336 /* E pra glorificar de pe, igreja.mp3 in Resources */,
 				D921F88A288B0177003979CC /* Eu to passada chocada - meme.mp3 in Resources */,
+				D9F185D028D6729A00BE2F69 /* Lula - E como se fosse um sorvete, chupou, acabou, fica com o palito na mao.mp3 in Resources */,
 				49DEA9D62881173B008C9BA1 /* Eu quero dormir porra short meme.mp3 in Resources */,
 				D975FECF2880B4F20035E6F2 /* Hassum - Nem fodendo.mp3 in Resources */,
 				D97500372880B4F20035E6F2 /* ATILA IAMARINO - Ele faz sexo.mp3 in Resources */,
 				D975FF322880B4F20035E6F2 /* Nao parece short meme.mp3 in Resources */,
+				D99D0DC528CAB5F000EB6F27 /* TV BRASIL - GUEDES - Auxilio emergencial de 200 reais.mp3 in Resources */,
 				D921F87C288B0177003979CC /* Jornalista de alta performance - Oswaldo Eustaquio.mp3 in Resources */,
 				D91793B3288E3CF0009C3165 /* Jair Bolsonaro - Canalhas.mp3 in Resources */,
 				D975FE1F2880B4F20035E6F2 /* Vai Dar Namoro - Tapa Tapa Tome.mp3 in Resources */,
@@ -3745,6 +4017,7 @@
 				D975FE3A2880B4F20035E6F2 /* Malafaia - Jair Messias Bolsonaro sem respostas.mp3 in Resources */,
 				D975FFB12880B4F20035E6F2 /* Bolsonaro - Que e a maneira que voce tem de realmente pensar em coisa seria no pais.mp3 in Resources */,
 				D975FFA92880B4F20035E6F2 /* Boldo - Deixa com a cara magoada.mp3 in Resources */,
+				D906BA5128D912DB007F4701 /* Jair Bolsonaro - Eu aloprei, perdi a linha, lamento.mp3 in Resources */,
 				49DEA9B62881115A008C9BA1 /* Boston Medical Group short meme.mp3 in Resources */,
 				D991512F2873E4C100FFAA29 /* funk-capricha-renan-mdb.mp3 in Resources */,
 				D975FE392880B4F20035E6F2 /* MR CATRA - vai comecar a putaria long.mp3 in Resources */,
@@ -3806,6 +4079,7 @@
 				D975000D2880B4F20035E6F2 /* EMICIDA no loolapalooza - Tira o titulo e bolsonaro vai tomar no cu.mp3 in Resources */,
 				D975FFED2880B4F20035E6F2 /* Datena - Me pareceu uma grande marmelada.mp3 in Resources */,
 				49DEA9CC288115A9008C9BA1 /* Como assim eu nao entendi meme short.mp3 in Resources */,
+				D9C5EC3628C7F7F70099EA86 /* Jair Bolsonaro - Ato falho.mp3 in Resources */,
 				D975FF0C2880B4F20035E6F2 /* Gilmar Mendes - O exercito esta se associando a esse genocidio.mp3 in Resources */,
 				49DEA9B2288110F0008C9BA1 /* SpongeBob Flashback.mp3 in Resources */,
 				D9FD0F0928B2B2EE0000616A /* Nao e hora pra desespero - Desesperado.mp3 in Resources */,
@@ -3838,6 +4112,7 @@
 				D975FE662880B4F20035E6F2 /* Eu fico muito triste com uma noticia dessas filha da puta fogos short.mp3 in Resources */,
 				D975FFD92880B4F20035E6F2 /* Malafaia - Concordamos.mp3 in Resources */,
 				D975FFFA2880B4F20035E6F2 /* Vai Dar Namoro - Demais.mp3 in Resources */,
+				D98B9AD728CEBD2D00B82EDE /* Michelle Bolsonaro - Ele e meio sem nocao.mp3 in Resources */,
 				D97500072880B4F20035E6F2 /* REDETV - Jair Bolsonaro - Eu pretendo participar de debates, nao participei na ultima porque estava em convalescencia.mp3 in Resources */,
 				D975FF392880B4F20035E6F2 /* PORTA DOS FUNDOS - BALBURDIA - Bom dia, turma, todo mundo tirando a roupa e dedo no cu do colega do lado.mp3 in Resources */,
 				D92AD1B328832E07001CBCDF /* Casimiro - Quer jogar luz pra falar que ta errado ja ta errado nao precisa jogar luz tem que jogar na merda.mp3 in Resources */,
@@ -3845,6 +4120,7 @@
 				D975FFEC2880B4F20035E6F2 /* Calma Que Piora.mp3 in Resources */,
 				D975FFCA2880B4F20035E6F2 /* LAILA BRANDAO - Falsiane short meme.mp3 in Resources */,
 				49DEA9C028811391008C9BA1 /* CHAVEZ - DR CHAPATIM - INSINUA QUE SOU VELHO short meme.mp3 in Resources */,
+				D9F6420928D122C500003A0E /* Moderador, tira o moleque desse grupo agora.mp3 in Resources */,
 				D9FD0F1428B2B2FA0000616A /* Coreia do Norte, Cuba, Venezuela musica.mp3 in Resources */,
 				D975FFEF2880B4F20035E6F2 /* Omar Aziz - Ah, me erre.mp3 in Resources */,
 				D975FF9E2880B4F20035E6F2 /* Bolsonaro - O cara o cara.mp3 in Resources */,
@@ -3859,6 +4135,7 @@
 				D975FF102880B4F20035E6F2 /* Drauzio - procura um psiquiatra, voce nao ta legal.mp3 in Resources */,
 				D923126028AAD5CD00436336 /* Assovio do passarinho.mp3 in Resources */,
 				4979105428BEC6F700CDF01C /* Desculpa perdao lamento - Pedro Daltro.mp3 in Resources */,
+				D9C5EC3128C7DEEA0099EA86 /* Jair Bolsonaro - O que nos queremos paz tranquilidade.mp3 in Resources */,
 				D975FF1E2880B4F20035E6F2 /* DESMENTINDO BOLSONARO - Milton Ribeiro - Isso eu falo publicamente porque a minha natureza nao e de mentira.mp3 in Resources */,
 				D97500302880B4F20035E6F2 /* Malafaia - criticas a teologia da prosperidade resumo.mp3 in Resources */,
 				D975FE412880B4F20035E6F2 /* GABRIELA PRIOLI - Esse governo desmoraliza as forcas armadas.mp3 in Resources */,
@@ -3879,6 +4156,7 @@
 				D975FF752880B4F20035E6F2 /* Mourao - Essa conta ira para as Forcas Armadas trecho short.mp3 in Resources */,
 				D9FD0F0A28B2B2EE0000616A /* o que que pode acontecer - bolsonaro.mp3 in Resources */,
 				D975FE1A2880B4F20035E6F2 /* Pazuello - Abraco galera.mp3 in Resources */,
+				D9F6420528CFD57600003A0E /* Bolsonaro - Eu acho que ate um fake news e valido, com todo o respeito.mp3 in Resources */,
 				D9E7D0EC28AC6349001E909E /* REDE GLOBO - GIL DO VIGOR - Eu estou to indignado.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3893,6 +4171,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4979103128BE844D00CDF01C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4979103D28BE844D00CDF01C /* MedoWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D9625E7628238F9A00080852 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3953,6 +4239,7 @@
 				D916627F2874F838000A1B23 /* NotificationsSymbol.swift in Sources */,
 				D9BB9265285DAA8E005CD6DD /* BegForMoneyView.swift in Sources */,
 				D912A33628B3E8F000F7293D /* VideoExportType.swift in Sources */,
+				D901B06428BC795200B1A610 /* MusicGenre.swift in Sources */,
 				D9FB489A2870FE7800FF90D0 /* TapticHelper.swift in Sources */,
 				D957047D28AEF733008DEF8C /* ProcessingView.swift in Sources */,
 				D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */,
@@ -3996,6 +4283,7 @@
 				D946117E28613D3200C4FB7E /* CollectionDetailView.swift in Sources */,
 				D92CAA4128593B1700D6C1EA /* NetworkLogCell.swift in Sources */,
 				D9BB1E7728B3200700C5FFAA /* AppIcon.swift in Sources */,
+				D9B24E2228C6A68800D76F7D /* NumberBadgeView.swift in Sources */,
 				D998F28F284F177B0013E709 /* TrendsDisabledView.swift in Sources */,
 				D933251E28835E41004EFACB /* ActivityViewController.swift in Sources */,
 				D991E598284A94F70005705F /* Podium.swift in Sources */,
@@ -4051,6 +4339,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		4979104228BE844E00CDF01C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4979103428BE844D00CDF01C /* MedoWidgetExtension */;
+			targetProxy = 4979104128BE844E00CDF01C /* PBXContainerItemProxy */;
+		};
 		D9625E8C28238F9B00080852 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D9625E7928238F9A00080852 /* MedoDelirioBrasilia */;
@@ -4071,6 +4364,70 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4979104628BE844E00CDF01C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = MedoWidget/Sources/WidgetSupport/MedoWidgetExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_TEAM = L8X3H5XA82;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MedoWidget/Sources/WidgetSupport/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MedoWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 3.12;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		4979104728BE844E00CDF01C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = MedoWidget/Sources/WidgetSupport/MedoWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_TEAM = L8X3H5XA82;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MedoWidget/Sources/WidgetSupport/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MedoWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 3.12;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 		D9625E9C28238F9B00080852 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -4190,18 +4547,19 @@
 		D9625E9F28238F9B00080852 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
-				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/MedoDelirioBrasilia.entitlements;
+				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/Sources/AppSupport/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MedoDelirioBrasilia/Info.plist;
+				INFOPLIST_FILE = MedoDelirioBrasilia/Sources/AppSupport/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Medo e Delírio";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Medo e Delírio requer acesso a sua biblioteca de fotos para salvar vídeos gerados a partir de sons.";
@@ -4215,10 +4573,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.3;
+				MARKETING_VERSION = 3.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -4228,18 +4588,19 @@
 		D9625EA028238F9B00080852 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
-				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/MedoDelirioBrasilia.entitlements;
+				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/Sources/AppSupport/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MedoDelirioBrasilia/Info.plist;
+				INFOPLIST_FILE = MedoDelirioBrasilia/Sources/AppSupport/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Medo e Delírio";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Medo e Delírio requer acesso a sua biblioteca de fotos para salvar vídeos gerados a partir de sons.";
@@ -4253,10 +4614,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.3;
+				MARKETING_VERSION = 3.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -4269,13 +4632,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasiliaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -4289,13 +4655,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasiliaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -4306,6 +4675,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4979104528BE844E00CDF01C /* Build configuration list for PBXNativeTarget "MedoWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4979104628BE844E00CDF01C /* Debug */,
+				4979104728BE844E00CDF01C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D9625E7528238F9A00080852 /* Build configuration list for PBXProject "MedoDelirioBrasilia" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
