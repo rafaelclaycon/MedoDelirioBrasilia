@@ -6514,5 +6514,14 @@
         "filename": "Jair Bolsonaro - Eu aloprei, perdi a linha, lamento.mp3",
         "dateAdded": "2022-09-19T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "A07451FF-58FC-4978-A79B-AEA40F5C9EC9",
+        "title": "Balde de cerveja gelada no final do arco-íris",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "e no final do arco-iris tem um baldinho de cerveja gelada foda-se",
+        "filename": "Balde de cerveja gelada no final do arco-iris.mp3",
+        "dateAdded": "2022-09-26T00:00:00Z",
+        "isOffensive": true
     }
 ]
