@@ -9,8 +9,8 @@ enum Icon: String, CaseIterable, Identifiable {
 
     case primary              = "AppIcon"
     case odioNojo             = "AppIcon-OdioNojo"
-    case terrivelEdit         = "AppIcon-TerrivelEdit"
-    case teuCu                = "AppIcon-TeuCu"
+//    case terrivelEdit         = "AppIcon-TerrivelEdit"
+//    case teuCu                = "AppIcon-TeuCu"
 //    case boraPassarRaiva      = "AppIcon-BoraPassarRaiva"
 //    case malditosMilicosBlack = "AppIcon-MalditosMilicos-Black"
 //    case malditosMilicosRed   = "AppIcon-MalditosMilicos-Red"
@@ -25,10 +25,10 @@ enum Icon: String, CaseIterable, Identifiable {
             return "Padrão"
         case .odioNojo:
             return "Ódio e Nojo"
-        case .terrivelEdit:
-            return "O Terrível Editorialista do Estadão"
-        case .teuCu:
-            return "Teu Cu"
+//        case .terrivelEdit:
+//            return "O Terrível Editorialista do Estadão"
+//        case .teuCu:
+//            return "Teu Cu"
 //        case .boraPassarRaiva:
 //            return "Bora Passar Raiva?"
 //        case .malditosMilicosBlack:
@@ -49,10 +49,10 @@ enum Icon: String, CaseIterable, Identifiable {
             return false
         case .odioNojo:
             return false
-        case .terrivelEdit:
-            return true
-        case .teuCu:
-            return true
+//        case .terrivelEdit:
+//            return true
+//        case .teuCu:
+//            return true
 //        case .boraPassarRaiva:
 //            return true
 //        case .malditosMilicosBlack:
