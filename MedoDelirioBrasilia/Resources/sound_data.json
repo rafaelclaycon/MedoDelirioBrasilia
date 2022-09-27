@@ -6523,5 +6523,23 @@
         "filename": "Balde de cerveja gelada no final do arco-iris.mp3",
         "dateAdded": "2022-09-26T00:00:00Z",
         "isOffensive": true
+    },
+    {
+        "id": "2CD75EC0-1753-4E47-A747-7B7431EA27C8",
+        "title": "Medo, medo, medo",
+        "authorId": "71128756-78A9-4B31-A7D8-CE120147C481",
+        "description": "Medo medo medo",
+        "filename": "Eduardo Pazuello - Medo, medo, medo.mp3",
+        "dateAdded": "2022-09-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "7A522588-7A83-4B46-BB91-E848430539EC",
+        "title": "Nunes Marques",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "NUNES MARQUES Dont stop till you get enough michael jackson",
+        "filename": "NUNES MARQUES Dont stop till you get enough michael jackson.mp3",
+        "dateAdded": "2022-09-27T00:00:00Z",
+        "isOffensive": true
     }
 ]
