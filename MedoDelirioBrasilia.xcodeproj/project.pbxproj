@@ -51,6 +51,11 @@
 		49DEA9E028811FAF008C9BA1 /* eletronica-eine-grosse-confusion-kraftwerk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA9DF28811FAF008C9BA1 /* eletronica-eine-grosse-confusion-kraftwerk.mp3 */; };
 		49DEA9E228812015008C9BA1 /* eletronica-eine-grosse-confusion-sexo-selvagem-kraftwerk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA9E128812015008C9BA1 /* eletronica-eine-grosse-confusion-sexo-selvagem-kraftwerk.mp3 */; };
 		49E5D33B28C634F20057FF7D /* Nao e hora pra desespero completo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49E5D33A28C634F20057FF7D /* Nao e hora pra desespero completo.mp3 */; };
+		49F9220028E334C1009AC743 /* Eu to esmagada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49F921FF28E334C1009AC743 /* Eu to esmagada.mp3 */; };
+		49F9220228E33576009AC743 /* Ey ey eymael funk meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49F9220128E33576009AC743 /* Ey ey eymael funk meme.mp3 */; };
+		49F9220428E335DE009AC743 /* restricao porque e um fascista - ciro nogueira.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49F9220328E335DE009AC743 /* restricao porque e um fascista - ciro nogueira.mp3 */; };
+		49F9220628E337D2009AC743 /* Im a little bit nervous - eduardo bolsonaro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49F9220528E337D2009AC743 /* Im a little bit nervous - eduardo bolsonaro.mp3 */; };
+		49F9220828E33810009AC743 /* quando o couro comer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49F9220728E33810009AC743 /* quando o couro comer.mp3 */; };
 		D901B06428BC795200B1A610 /* MusicGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = D901B06328BC795200B1A610 /* MusicGenre.swift */; };
 		D905B4C52857FF3D0096D466 /* AddNetworkCallLogTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D905B4C42857FF3D0096D466 /* AddNetworkCallLogTable.swift */; };
 		D906BA4D28D90999007F4701 /* Cristiano Botafogo - Porra, Brasil.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D906BA4C28D90999007F4701 /* Cristiano Botafogo - Porra, Brasil.mp3 */; };
@@ -1013,6 +1018,11 @@
 		49DEA9DF28811FAF008C9BA1 /* eletronica-eine-grosse-confusion-kraftwerk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "eletronica-eine-grosse-confusion-kraftwerk.mp3"; sourceTree = "<group>"; };
 		49DEA9E128812015008C9BA1 /* eletronica-eine-grosse-confusion-sexo-selvagem-kraftwerk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "eletronica-eine-grosse-confusion-sexo-selvagem-kraftwerk.mp3"; sourceTree = "<group>"; };
 		49E5D33A28C634F20057FF7D /* Nao e hora pra desespero completo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Nao e hora pra desespero completo.mp3"; sourceTree = "<group>"; };
+		49F921FF28E334C1009AC743 /* Eu to esmagada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu to esmagada.mp3"; sourceTree = "<group>"; };
+		49F9220128E33576009AC743 /* Ey ey eymael funk meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ey ey eymael funk meme.mp3"; sourceTree = "<group>"; };
+		49F9220328E335DE009AC743 /* restricao porque e um fascista - ciro nogueira.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "restricao porque e um fascista - ciro nogueira.mp3"; sourceTree = "<group>"; };
+		49F9220528E337D2009AC743 /* Im a little bit nervous - eduardo bolsonaro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Im a little bit nervous - eduardo bolsonaro.mp3"; sourceTree = "<group>"; };
+		49F9220728E33810009AC743 /* quando o couro comer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "quando o couro comer.mp3"; sourceTree = "<group>"; };
 		D901B06328BC795200B1A610 /* MusicGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicGenre.swift; sourceTree = "<group>"; };
 		D905B4C42857FF3D0096D466 /* AddNetworkCallLogTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNetworkCallLogTable.swift; sourceTree = "<group>"; };
 		D906BA4C28D90999007F4701 /* Cristiano Botafogo - Porra, Brasil.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano Botafogo - Porra, Brasil.mp3"; sourceTree = "<group>"; };
@@ -1948,6 +1958,11 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				49F9220728E33810009AC743 /* quando o couro comer.mp3 */,
+				49F9220528E337D2009AC743 /* Im a little bit nervous - eduardo bolsonaro.mp3 */,
+				49F9220328E335DE009AC743 /* restricao porque e um fascista - ciro nogueira.mp3 */,
+				49F9220128E33576009AC743 /* Ey ey eymael funk meme.mp3 */,
+				49F921FF28E334C1009AC743 /* Eu to esmagada.mp3 */,
 				D90D7DE728E2A70E003B272A /* Nunes Marques - Dont Stop till you get enough - Parece o Praga.mp3 */,
 				D90D7DE528E2A579003B272A /* NUNES MARQUES Dont stop till you get enough michael jackson.mp3 */,
 				D90D7DE328E2A4B1003B272A /* Eduardo Pazuello - Medo, medo, medo.mp3 */,
@@ -3610,6 +3625,7 @@
 				D975FF782880B4F20035E6F2 /* Bolsonaro - Estou com covid.mp3 in Resources */,
 				D921F894288B07CB003979CC /* Fa do Armandinho - Vamo pra cima Gremio.mp3 in Resources */,
 				D975FFA42880B4F20035E6F2 /* Cid Moreira - Vai chorar e chore na minha.mp3 in Resources */,
+				49F9220428E335DE009AC743 /* restricao porque e um fascista - ciro nogueira.mp3 in Resources */,
 				D975FF732880B4F20035E6F2 /* LEANDRO HASSUM - Adora falar rebuscado.mp3 in Resources */,
 				D975FE4D2880B4F20035E6F2 /* Lula - Eu vou tomar a minha vacina.mp3 in Resources */,
 				D975FFD52880B4F20035E6F2 /* Pretty please meme infantil crianca begging.mp3 in Resources */,
@@ -3885,6 +3901,7 @@
 				D92AD1C7288344CC001CBCDF /* Franciel Cruz - Polarizacao.mp3 in Resources */,
 				D923127428AB0A6100436336 /* Novo e diferente, e top, e moderno (completo).mp3 in Resources */,
 				D975FF592880B4F20035E6F2 /* Silvio Santos - Ele fala e voces deliram, ele fala e voces deliram.mp3 in Resources */,
+				49F9220828E33810009AC743 /* quando o couro comer.mp3 in Resources */,
 				D975FF9F2880B4F20035E6F2 /* De cair o cu da bunda short meme.mp3 in Resources */,
 				D975FF522880B4F20035E6F2 /* TV SENADO - Soraya Thronicke - A gente vai cansando sabe.mp3 in Resources */,
 				D975FFE92880B4F20035E6F2 /* Merval Pereira - ator porno.mp3 in Resources */,
@@ -3931,6 +3948,7 @@
 				D975FFC62880B4F20035E6F2 /* Cidade Oculta - Voce fala isso porque e a putinha do bozo.mp3 in Resources */,
 				D991512D2873E4C100FFAA29 /* rock-comunismo-ai-seis-mdb.mp3 in Resources */,
 				D975FE632880B4F20035E6F2 /* Ai seu grosso.mp3 in Resources */,
+				49F9220028E334C1009AC743 /* Eu to esmagada.mp3 in Resources */,
 				D9C5EC3728C7F7F70099EA86 /* Jair Bolsonaro - Putaria.mp3 in Resources */,
 				D91793BA288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao no MARXISMO CULTURAL.mp3 in Resources */,
 				D975FE3F2880B4F20035E6F2 /* Bolsonaro - Procura outro pra pagar a tua vacina ai.mp3 in Resources */,
@@ -4110,6 +4128,7 @@
 				D92722FE289246AC001D5E47 /* Parafernalha - Ta errado, ta muito errado isso.mp3 in Resources */,
 				D975004E2880B5190035E6F2 /* MULTISHOW - Djonga - Xinguei Bolsonaro um monte de vezes, vou xingar de novo voce e um merda.mp3 in Resources */,
 				D97500142880B4F20035E6F2 /* RADIO BANDNEWS FM - Ciro Gomes - Que e um bosta.mp3 in Resources */,
+				49F9220228E33576009AC743 /* Ey ey eymael funk meme.mp3 in Resources */,
 				49DEA9E028811FAF008C9BA1 /* eletronica-eine-grosse-confusion-kraftwerk.mp3 in Resources */,
 				D975FEF52880B4F20035E6F2 /* Samuel Mariano - Depois do culto - Deu errado.mp3 in Resources */,
 				D975FF5D2880B4F20035E6F2 /* Ivete Sangalo - Chupa Toda short meme.mp3 in Resources */,
@@ -4166,6 +4185,7 @@
 				D975FFEA2880B4F20035E6F2 /* Atencao e agora que o bicho vai pegar short meme.mp3 in Resources */,
 				D97500532880B5190035E6F2 /* MULTISHOW - Jao - Nao adianta gritar aqui no vestival e nao votar, vai votar porra.mp3 in Resources */,
 				D975FF752880B4F20035E6F2 /* Mourao - Essa conta ira para as Forcas Armadas trecho short.mp3 in Resources */,
+				49F9220628E337D2009AC743 /* Im a little bit nervous - eduardo bolsonaro.mp3 in Resources */,
 				D9FD0F0A28B2B2EE0000616A /* o que que pode acontecer - bolsonaro.mp3 in Resources */,
 				D975FE1A2880B4F20035E6F2 /* Pazuello - Abraco galera.mp3 in Resources */,
 				D9F6420528CFD57600003A0E /* Bolsonaro - Eu acho que ate um fake news e valido, com todo o respeito.mp3 in Resources */,
