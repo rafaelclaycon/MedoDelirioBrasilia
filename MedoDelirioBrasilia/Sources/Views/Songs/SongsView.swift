@@ -129,6 +129,18 @@ struct SongsView: View {
                                 Image(systemName: "calendar")
                             }
                             .tag(1)
+                            
+                            HStack {
+                                Text("Maior Duração no Topo")
+                                Image(systemName: "chevron.down.square")
+                            }
+                            .tag(2)
+                            
+                            HStack {
+                                Text("Menor Duração no Topo")
+                                Image(systemName: "chevron.up.square")
+                            }
+                            .tag(3)
                         }
                     }
                 } label: {

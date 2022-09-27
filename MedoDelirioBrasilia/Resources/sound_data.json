@@ -6514,5 +6514,41 @@
         "filename": "Jair Bolsonaro - Eu aloprei, perdi a linha, lamento.mp3",
         "dateAdded": "2022-09-19T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "A07451FF-58FC-4978-A79B-AEA40F5C9EC9",
+        "title": "Balde de cerveja gelada no final do arco-íris",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "e no final do arco-iris tem um baldinho de cerveja gelada foda-se",
+        "filename": "Balde de cerveja gelada no final do arco-iris.mp3",
+        "dateAdded": "2022-09-26T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "2CD75EC0-1753-4E47-A747-7B7431EA27C8",
+        "title": "Medo, medo, medo",
+        "authorId": "71128756-78A9-4B31-A7D8-CE120147C481",
+        "description": "Medo medo medo",
+        "filename": "Eduardo Pazuello - Medo, medo, medo.mp3",
+        "dateAdded": "2022-09-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "7A522588-7A83-4B46-BB91-E848430539EC",
+        "title": "Nunes Marques",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "NUNES MARQUES Don't stop till you get enough michael jackson",
+        "filename": "NUNES MARQUES Dont stop till you get enough michael jackson.mp3",
+        "dateAdded": "2022-09-27T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "54C82B4B-F841-4726-86CE-F759742E7EEF",
+        "title": "Parece o Praga",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "Nunes Marques Don't Stop till you get enough Parece o Praga",
+        "filename": "Nunes Marques - Dont Stop till you get enough - Parece o Praga.mp3",
+        "dateAdded": "2022-09-27T00:00:00Z",
+        "isOffensive": true
     }
 ]
