@@ -6550,5 +6550,50 @@
         "filename": "Nunes Marques - Dont Stop till you get enough - Parece o Praga.mp3",
         "dateAdded": "2022-09-27T00:00:00Z",
         "isOffensive": true
+    },
+    {
+        "id": "4D69AC6F-34AA-4526-AEF5-4FA62162957F",
+        "title": "Eu tô esmagada",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "eu to esmagada socorro",
+        "filename": "Eu to esmagada.mp3",
+        "dateAdded": "2022-09-28T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "6A1DDE8D-5030-41AD-9609-6994014AA9F5",
+        "title": "Ey-Ey-Eymael",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "ei ei eimael eymael",
+        "filename": "Ey ey eymael funk meme.mp3",
+        "dateAdded": "2022-09-28T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "279C77A4-9A8E-46AC-B741-D910497BDB51",
+        "title": "Bolsonaro é um fascista",
+        "authorId": "97F98648-0862-423D-B938-E80C6B5A52B9",
+        "description": "o bolsonaro eu tenho muita restrição pois é um fascista",
+        "filename": "Ciro Nogueira - Restricao porque e um fascista.mp3",
+        "dateAdded": "2022-09-28T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "31ED7C77-9C56-4075-BC8E-6F2591BED131",
+        "title": "I'm a little bit nirvous",
+        "authorId": "BB05B606-9553-48B9-BC59-3BA58B3F0181",
+        "description": "i'm a little bit nervous nirvous",
+        "filename": "Flavio Bolsonaro - Im a little bit nirvous.mp3",
+        "dateAdded": "2022-09-28T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "5D24EF31-CB97-4190-99BD-0ED28A893D05",
+        "title": "Quando o couro comer pra valer",
+        "authorId": "BB05B606-9553-48B9-BC59-3BA58B3F0181",
+        "description": "quando o couro comer pra valer se vocês vão se deixar seduzir por discurso do centrão ou se vão se manter firme e forte bolsonaro",
+        "filename": "Flavio Bolsonaro - Quando o couro comer.mp3",
+        "dateAdded": "2022-09-28T00:00:00Z",
+        "isOffensive": true
     }
 ]
