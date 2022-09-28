@@ -46,6 +46,13 @@ struct Shared {
         
     }
     
+    struct ShareAsVideo {
+        
+        static let generatingVideoShortMessage = "Gerando vídeo..."
+        static let generatingVideoLongMessage = "Gerando vídeo...\nIsso pode demorar um pouco."
+        
+    }
+    
     // MARK: - Trends
     
     struct Trends {
@@ -53,7 +60,7 @@ struct Shared {
         static let lastWeek = "Última semana"
         static let lastMonth = "Último mês"
         static let allTime = "Todos os tempos"
-        
+
     }
 
 }

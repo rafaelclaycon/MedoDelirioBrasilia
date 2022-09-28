@@ -2,16 +2,19 @@ import SwiftUI
 
 struct SidebarView: View {
 
-    @Binding var state: Screen?
-    @State private var isShowingSettingsSheet: Bool = false
+    @StateObject private var viewModel = SidebarViewViewModel()
+    @Binding var state: String?
+    @Binding var isShowingSettingsSheet: Bool
     @Binding var updateSoundsList: Bool
+    @Binding var isShowingFolderInfoEditingSheet: Bool
+    @Binding var updateFolderList: Bool
     
     var body: some View {
         List {
             Section("Sons") {
                 NavigationLink(
                     destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(), authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .allSounds, updateSoundsList: $updateSoundsList),
-                    tag: Screen.allSounds,
+                    tag: Screen.allSounds.rawValue,
                     selection: $state,
                     label: {
                         Label("Todos os Sons", systemImage: "speaker.wave.2")
@@ -19,7 +22,7 @@ struct SidebarView: View {
                 
                 NavigationLink(
                     destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(), authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .favorites, updateSoundsList: .constant(false)),
-                    tag: Screen.favorites,
+                    tag: Screen.favorites.rawValue,
                     selection: $state,
                     label: {
                         Label("Favoritos", systemImage: "star")
@@ -27,15 +30,15 @@ struct SidebarView: View {
                 
                 NavigationLink(
                     destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .byAuthor, updateSoundsList: .constant(false)),
-                    tag: Screen.groupedByAuthor,
+                    tag: Screen.groupedByAuthor.rawValue,
                     selection: $state,
                     label: {
                         Label("Por Autor", systemImage: "person")
                     })
                 
                 NavigationLink(
-                    destination: CollectionsView(),
-                    tag: Screen.collections,
+                    destination: CollectionsView(isShowingFolderInfoEditingSheet: .constant(false)),
+                    tag: Screen.collections.rawValue,
                     selection: $state,
                     label: {
                         Label("Coleções", systemImage: "rectangle.grid.2x2")
@@ -44,7 +47,7 @@ struct SidebarView: View {
             
             NavigationLink(
                 destination: SongsView(),
-                tag: Screen.songs,
+                tag: Screen.songs.rawValue,
                 selection: $state,
                 label: {
                     Label("Músicas", systemImage: "music.quarternote.3")
@@ -58,48 +61,53 @@ struct SidebarView: View {
                     Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
                 })
             
-//            Section("Minhas Pastas") {
-//                NavigationLink(
-//                    destination: AllFoldersView(),
-//                    tag: Screen.allFolders,
-//                    selection: $state,
-//                    label: {
-//                        Label("Todas as Pastas", systemImage: "folder")
-//                    })
-//                
-//                NavigationLink(
-//                    destination: SettingsView(),
-//                    tag: Screen.settings,
-//                    selection: $state,
-//                    label: {
-//                        HStack(spacing: 15) {
-//                            SidebarFolderIcon(symbol: "🤑", backgroundColor: .pastelBrightGreen)
-//                            Text("Grupo da Adm")
-//                        }
-//                    })
-//                
-//                Button {
-//                    //
-//                } label: {
-//                    Label("Nova Pasta", systemImage: "plus")
-//                        .foregroundColor(.accentColor)
-//                }
-//
-//            }
+            Section("Minhas Pastas") {
+                NavigationLink(
+                    destination: AllFoldersView(isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet, updateFolderList: $updateFolderList),
+                    tag: Screen.allFolders.rawValue,
+                    selection: $state,
+                    label: {
+                        Label("Todas as Pastas", systemImage: "folder")
+                    })
+                
+                ForEach(viewModel.folders) { folder in
+                    NavigationLink(
+                        destination: FolderDetailView(folder: folder),
+                        tag: folder.id,
+                        selection: $state,
+                        label: {
+                            HStack(spacing: 15) {
+                                SidebarFolderIcon(symbol: folder.symbol, backgroundColor: folder.backgroundColor.toColor())
+                                Text(folder.name)
+                            }
+                        })
+                }
+                
+                Button {
+                    isShowingFolderInfoEditingSheet = true
+                } label: {
+                    Label("Nova Pasta", systemImage: "plus")
+                        .foregroundColor(.accentColor)
+                }
+
+            }
         }
         .listStyle(SidebarListStyle())
         .navigationTitle(LocalizableStrings.MainView.title)
         .toolbar {
             Button {
-                self.isShowingSettingsSheet = true
+                isShowingSettingsSheet = true
             } label: {
                 Image(systemName: "gearshape")
             }
         }
-        .sheet(isPresented: $isShowingSettingsSheet, onDismiss: {
-            updateSoundsList = true
-        }) {
-            SettingsCasingWithCloseView(isBeingShown: $isShowingSettingsSheet)
+        .onAppear {
+            viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
+        }
+        .onChange(of: updateFolderList) { shouldUpdate in
+            if shouldUpdate {
+                viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
+            }
         }
     }
 
@@ -108,7 +116,11 @@ struct SidebarView: View {
 struct SidebarView_Previews: PreviewProvider {
 
     static var previews: some View {
-        SidebarView(state: .constant(.allSounds), updateSoundsList: .constant(false))
+        SidebarView(state: .constant(Screen.allSounds.rawValue),
+                    isShowingSettingsSheet: .constant(false),
+                    updateSoundsList: .constant(false),
+                    isShowingFolderInfoEditingSheet: .constant(false),
+                    updateFolderList: .constant(false))
     }
 
 }

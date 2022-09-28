@@ -3,9 +3,15 @@ import SwiftUI
 struct SongsView: View {
     
     @StateObject private var viewModel = SongsViewViewModel()
+    
     @State private var searchText = ""
     @State private var searchBar: UISearchBar?
     @State var currentGenre: MusicGenre = .all
+    
+    @State private var showingModalView = false
+    
+    // Share as Video
+    @State private var shareAsVideo_Result = ShareAsVideoResult()
     
     private var columns: [GridItem] {
         if UIDevice.current.userInterfaceIdiom == .phone {
@@ -60,6 +66,13 @@ struct SongsView: View {
                                             viewModel.shareSong(withPath: song.filename, andContentId: song.id)
                                         } label: {
                                             Label(Shared.shareSongButtonText, systemImage: "square.and.arrow.up")
+                                        }
+                                        
+                                        Button {
+                                            viewModel.selectedSong = song
+                                            showingModalView = true
+                                        } label: {
+                                            Label(Shared.shareAsVideoButtonText, systemImage: "film")
                                         }
                                     }
                                     
@@ -116,6 +129,18 @@ struct SongsView: View {
                                 Image(systemName: "calendar")
                             }
                             .tag(1)
+                            
+                            HStack {
+                                Text("Maior Duração no Topo")
+                                Image(systemName: "chevron.down.square")
+                            }
+                            .tag(2)
+                            
+                            HStack {
+                                Text("Menor Duração no Topo")
+                                Image(systemName: "chevron.up.square")
+                            }
+                            .tag(3)
                         }
                     }
                 } label: {
@@ -127,6 +152,11 @@ struct SongsView: View {
                                          sortedBy: SongSortOption(rawValue: newSortOption) ?? .titleAscending)
                     UserSettings.setSongSortOption(to: newSortOption)
                 })
+                .onChange(of: shareAsVideo_Result.videoFilepath) { videoResultPath in
+                    if videoResultPath.isEmpty == false {
+                        viewModel.shareVideo(withPath: videoResultPath, andContentId: shareAsVideo_Result.contentId)
+                    }
+                }
             }
             .onAppear {
                 viewModel.reloadList(withSongs: songData,
@@ -146,12 +176,15 @@ struct SongsView: View {
                                    subject: String(format: Shared.Email.suggestSongChangeSubject, viewModel.selectedSong?.title ?? ""),
                                    emailBody: String(format: Shared.Email.suggestSongChangeBody, viewModel.selectedSong?.id ?? ""))
             }
+            .sheet(isPresented: $showingModalView) {
+                ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSong?.id ?? .empty, contentTitle: viewModel.selectedSong?.title ?? .empty, audioFilename: viewModel.selectedSong?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: true)
+            }
             
-            if viewModel.shouldDisplaySharedSuccessfullyToast {
+            if viewModel.displaySharedSuccessfullyToast {
                 VStack {
                     Spacer()
                     
-                    ToastView(text: Shared.songSharedSuccessfullyMessage)
+                    ToastView(text: viewModel.shareBannerMessage)
                         .padding()
                 }
                 .transition(.moveAndFade)

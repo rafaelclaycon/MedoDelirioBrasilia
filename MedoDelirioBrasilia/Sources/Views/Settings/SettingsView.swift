@@ -74,13 +74,6 @@ struct SettingsView: View {
                 }
             }
             
-            Section("🧑‍💻  Contribua ou entenda como o app funciona") {
-                Button("Ver código fonte no GitHub") {
-                    let githubUrl = URL(string: "https://github.com/rafaelclaycon/MedoDelirioBrasilia")!
-                    UIApplication.shared.open(githubUrl)
-                }
-            }
-            
             Section("Sobre") {
                 Button("Criado por @claycon_") {
                     guard let url = URL(string: "https://twitter.com/claycon_") else { return }
@@ -88,6 +81,13 @@ struct SettingsView: View {
                 }
                 
                 Text("Versão \(Versioneer.appVersion) Build \(Versioneer.buildVersionNumber)")
+            }
+            
+            Section("Contribua ou entenda como funciona") {
+                Button("Ver código fonte no GitHub") {
+                    let githubUrl = URL(string: "https://github.com/rafaelclaycon/MedoDelirioBrasilia")!
+                    UIApplication.shared.open(githubUrl)
+                }
             }
             
             Section {

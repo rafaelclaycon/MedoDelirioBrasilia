@@ -220,7 +220,13 @@ struct SoundsView: View {
                 viewModel.donateActivity()
                 viewModel.sendDeviceModelNameToServer()
                 viewModel.sendUserPersonalTrendsToServerIfEnabled()
-
+                
+                if UIDevice.current.userInterfaceIdiom == .phone {
+                    networkRabbit.displayLulaWonOnLockScreenWidgets { displayLulaWon, _ in
+                        UserDefaults(suiteName: "group.com.rafaelschmitt.MedoDelirioBrasilia")!.set(displayLulaWon, forKey: "displayLulaWon")
+                    }
+                }
+                
                 /*if AppPersistentMemory.getHasShownNotificationsOnboarding() == false {
                     subviewToOpen = .onboardingView
                     showingModalView = true
@@ -259,7 +265,7 @@ struct SoundsView: View {
                                     selectedSoundId: viewModel.selectedSound!.id)
                     
                 case .shareAsVideoView:
-                    ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result)
+                    ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: false)
                 }
             }
             .onChange(of: updateSoundsList) { shouldUpdate in
