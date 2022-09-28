@@ -55,7 +55,7 @@ struct SidebarView: View {
             
             NavigationLink(
                 destination: TrendsView(),
-                tag: Screen.trends,
+                tag: Screen.trends.rawValue,
                 selection: $state,
                 label: {
                     Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")

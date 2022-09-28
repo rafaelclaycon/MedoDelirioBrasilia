@@ -48,7 +48,7 @@ struct TrendsView: View {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 10) {
                         if showMostSharedSoundsByTheUser {
-                            //MostSharedByMeView()
+                            MostSharedByMeView()
                         }
                     }
                     
