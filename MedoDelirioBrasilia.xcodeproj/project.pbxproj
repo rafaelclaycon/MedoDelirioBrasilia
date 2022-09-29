@@ -19,6 +19,7 @@
 		4979105C28BEC78600CDF01C /* Chateado - Paulo Sergio Nogueira.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4979105B28BEC78600CDF01C /* Chateado - Paulo Sergio Nogueira.mp3 */; };
 		49B4C96A28CE74E6007E893B /* A pipa do jair nao sobe mais.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49B4C96928CE74E6007E893B /* A pipa do jair nao sobe mais.mp3 */; };
 		49B4C97428CE7684007E893B /* Ihuu (agora com equiu).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49B4C97328CE7684007E893B /* Ihuu (agora com equiu).mp3 */; };
+		49C0938E28E5EEA200960B7E /* Vou de Lula, Ce Sabe - Neide e Lula.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49C0938D28E5EEA200960B7E /* Vou de Lula, Ce Sabe - Neide e Lula.mp3 */; };
 		49DEA99C28810C63008C9BA1 /* Ah nao de novo nao de novo nao short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA99B28810C63008C9BA1 /* Ah nao de novo nao de novo nao short meme.mp3 */; };
 		49DEA99E28810C88008C9BA1 /* Ana Paula - Olha Ela short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA99D28810C88008C9BA1 /* Ana Paula - Olha Ela short meme.mp3 */; };
 		49DEA9A028810CBC008C9BA1 /* band jornalismo - Ah MORRE DIABO  short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA99F28810CBC008C9BA1 /* band jornalismo - Ah MORRE DIABO  short meme.mp3 */; };
@@ -797,6 +798,13 @@
 		D976FF3828674BAC00998E1B /* FoldersBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D976FF3728674BAC00998E1B /* FoldersBannerView.swift */; };
 		D977294A28E1F99D003B0CD3 /* Balde de cerveja gelada no final do arco-iris.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D977294928E1F99C003B0CD3 /* Balde de cerveja gelada no final do arco-iris.mp3 */; };
 		D97B2DD928E5EA0500C3B50B /* DeleteFolderViewAid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97B2DD828E5EA0500C3B50B /* DeleteFolderViewAid.swift */; };
+		D97B2DE128E60B8600C3B50B /* Renan (Choque de Cultura) - Nem existe isso voce ta inventando palavras.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D97B2DDA28E60B8500C3B50B /* Renan (Choque de Cultura) - Nem existe isso voce ta inventando palavras.mp3 */; };
+		D97B2DE228E60B8600C3B50B /* Soraya Thronicke - Nao cutuque onca com a sua vara curta.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D97B2DDB28E60B8500C3B50B /* Soraya Thronicke - Nao cutuque onca com a sua vara curta.mp3 */; };
+		D97B2DE328E60B8600C3B50B /* William Bonner - Fora Bolsonaro Genocida.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D97B2DDC28E60B8600C3B50B /* William Bonner - Fora Bolsonaro Genocida.mp3 */; };
+		D97B2DE428E60B8600C3B50B /* Patrick (Zorra Total) - Olha a Faca.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D97B2DDD28E60B8600C3B50B /* Patrick (Zorra Total) - Olha a Faca.mp3 */; };
+		D97B2DE528E60B8600C3B50B /* Milton Cunha - E Lula o nosso candidato maravilhoso.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D97B2DDE28E60B8600C3B50B /* Milton Cunha - E Lula o nosso candidato maravilhoso.mp3 */; };
+		D97B2DE628E60B8600C3B50B /* Igor Guimaraes - Reaja a assaltos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D97B2DDF28E60B8600C3B50B /* Igor Guimaraes - Reaja a assaltos.mp3 */; };
+		D97B2DE728E60B8600C3B50B /* Michael The Office - No god please no.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D97B2DE028E60B8600C3B50B /* Michael The Office - No god please no.mp3 */; };
 		D97D76F92885B1BD005210D9 /* SidebarFolderIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97D76F82885B1BD005210D9 /* SidebarFolderIcon.swift */; };
 		D97D76FB2885B794005210D9 /* EmailAppPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97D76FA2885B794005210D9 /* EmailAppPickerView.swift */; };
 		D980455C28380EFE003B2E83 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D980455E28380EFE003B2E83 /* Localizable.strings */; };
@@ -987,6 +995,7 @@
 		4979105B28BEC78600CDF01C /* Chateado - Paulo Sergio Nogueira.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Chateado - Paulo Sergio Nogueira.mp3"; sourceTree = "<group>"; };
 		49B4C96928CE74E6007E893B /* A pipa do jair nao sobe mais.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "A pipa do jair nao sobe mais.mp3"; sourceTree = "<group>"; };
 		49B4C97328CE7684007E893B /* Ihuu (agora com equiu).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ihuu (agora com equiu).mp3"; sourceTree = "<group>"; };
+		49C0938D28E5EEA200960B7E /* Vou de Lula, Ce Sabe - Neide e Lula.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Vou de Lula, Ce Sabe - Neide e Lula.mp3"; sourceTree = "<group>"; };
 		49DEA99B28810C63008C9BA1 /* Ah nao de novo nao de novo nao short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ah nao de novo nao de novo nao short meme.mp3"; sourceTree = "<group>"; };
 		49DEA99D28810C88008C9BA1 /* Ana Paula - Olha Ela short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ana Paula - Olha Ela short meme.mp3"; sourceTree = "<group>"; };
 		49DEA99F28810CBC008C9BA1 /* band jornalismo - Ah MORRE DIABO  short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "band jornalismo - Ah MORRE DIABO  short meme.mp3"; sourceTree = "<group>"; };
@@ -1767,6 +1776,13 @@
 		D976FF3728674BAC00998E1B /* FoldersBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersBannerView.swift; sourceTree = "<group>"; };
 		D977294928E1F99C003B0CD3 /* Balde de cerveja gelada no final do arco-iris.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Balde de cerveja gelada no final do arco-iris.mp3"; sourceTree = "<group>"; };
 		D97B2DD828E5EA0500C3B50B /* DeleteFolderViewAid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteFolderViewAid.swift; sourceTree = "<group>"; };
+		D97B2DDA28E60B8500C3B50B /* Renan (Choque de Cultura) - Nem existe isso voce ta inventando palavras.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Renan (Choque de Cultura) - Nem existe isso voce ta inventando palavras.mp3"; sourceTree = "<group>"; };
+		D97B2DDB28E60B8500C3B50B /* Soraya Thronicke - Nao cutuque onca com a sua vara curta.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Soraya Thronicke - Nao cutuque onca com a sua vara curta.mp3"; sourceTree = "<group>"; };
+		D97B2DDC28E60B8600C3B50B /* William Bonner - Fora Bolsonaro Genocida.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "William Bonner - Fora Bolsonaro Genocida.mp3"; sourceTree = "<group>"; };
+		D97B2DDD28E60B8600C3B50B /* Patrick (Zorra Total) - Olha a Faca.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Patrick (Zorra Total) - Olha a Faca.mp3"; sourceTree = "<group>"; };
+		D97B2DDE28E60B8600C3B50B /* Milton Cunha - E Lula o nosso candidato maravilhoso.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Milton Cunha - E Lula o nosso candidato maravilhoso.mp3"; sourceTree = "<group>"; };
+		D97B2DDF28E60B8600C3B50B /* Igor Guimaraes - Reaja a assaltos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Igor Guimaraes - Reaja a assaltos.mp3"; sourceTree = "<group>"; };
+		D97B2DE028E60B8600C3B50B /* Michael The Office - No god please no.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Michael The Office - No god please no.mp3"; sourceTree = "<group>"; };
 		D97D76F82885B1BD005210D9 /* SidebarFolderIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarFolderIcon.swift; sourceTree = "<group>"; };
 		D97D76FA2885B794005210D9 /* EmailAppPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAppPickerView.swift; sourceTree = "<group>"; };
 		D980455D28380EFE003B2E83 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1960,6 +1976,13 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D97B2DDF28E60B8600C3B50B /* Igor Guimaraes - Reaja a assaltos.mp3 */,
+				D97B2DE028E60B8600C3B50B /* Michael The Office - No god please no.mp3 */,
+				D97B2DDE28E60B8600C3B50B /* Milton Cunha - E Lula o nosso candidato maravilhoso.mp3 */,
+				D97B2DDD28E60B8600C3B50B /* Patrick (Zorra Total) - Olha a Faca.mp3 */,
+				D97B2DDA28E60B8500C3B50B /* Renan (Choque de Cultura) - Nem existe isso voce ta inventando palavras.mp3 */,
+				D97B2DDB28E60B8500C3B50B /* Soraya Thronicke - Nao cutuque onca com a sua vara curta.mp3 */,
+				D97B2DDC28E60B8600C3B50B /* William Bonner - Fora Bolsonaro Genocida.mp3 */,
 				D9EDB87528E3E477007724E2 /* Ciro Nogueira - Restricao porque e um fascista.mp3 */,
 				D9EDB87628E3E477007724E2 /* Flavio Bolsonaro - Im a little bit nirvous.mp3 */,
 				D9EDB87728E3E477007724E2 /* Flavio Bolsonaro - Quando o couro comer.mp3 */,
@@ -2716,6 +2739,7 @@
 		D92E7068283C5C120035826C /* Songs */ = {
 			isa = PBXGroup;
 			children = (
+				49C0938D28E5EEA200960B7E /* Vou de Lula, Ce Sabe - Neide e Lula.mp3 */,
 				D906BA4E28D909A0007F4701 /* Jingle Bolsonaro 2022.mp3 */,
 				49B4C96928CE74E6007E893B /* A pipa do jair nao sobe mais.mp3 */,
 				D9C5EC3228C7F3150099EA86 /* Fora Genocida.mp3 */,
@@ -3508,6 +3532,7 @@
 				D975FF502880B4F20035E6F2 /* Bolsonaro - So se for na casa da tua mae.mp3 in Resources */,
 				D975FF142880B4F20035E6F2 /* Abraham Weintraub - odeio odeio odeio short.mp3 in Resources */,
 				D975FF942880B4F20035E6F2 /* Lula - Voces percebem a loucura que esta tomando conta desse pais.mp3 in Resources */,
+				D97B2DE528E60B8600C3B50B /* Milton Cunha - E Lula o nosso candidato maravilhoso.mp3 in Resources */,
 				D975001A2880B4F20035E6F2 /* Bolsonaro - Pode me culpar a vontade.mp3 in Resources */,
 				D975FE602880B4F20035E6F2 /* CHOQUE DE CULTURA - Maurilio palestrinha - E golpe short meme.mp3 in Resources */,
 				D975FF8C2880B4F20035E6F2 /* SBT NEWS - Jair Renan - Acabou que nao fiz nada la.mp3 in Resources */,
@@ -3548,6 +3573,7 @@
 				D9E7D0F128AC677B001E909E /* Paulo Guedes - Empregada domestica na Disney (longo).mp3 in Resources */,
 				D975FE532880B4F20035E6F2 /* Pastor Valdemiro - Mas isso e... E enganar.mp3 in Resources */,
 				D975FEA42880B4F20035E6F2 /* Bolsonaro - ah o o cara quem fala disso eu nao sou coveiro ta ok.mp3 in Resources */,
+				D97B2DE428E60B8600C3B50B /* Patrick (Zorra Total) - Olha a Faca.mp3 in Resources */,
 				D9C77B6F28CAC07B006CA17B /* Thiago Arruda - Passarinho que come cu nao sabe a pedra que tem.mp3 in Resources */,
 				D97500232880B4F20035E6F2 /* Bolsonaro - Eu nao errei nenhuma.mp3 in Resources */,
 				D97500052880B4F20035E6F2 /* Monty Python - Eric Idle - Bring out your dead.mp3 in Resources */,
@@ -3751,6 +3777,7 @@
 				49DEA9BA28811219008C9BA1 /* Carole King - Its Too Late - And its too late, baby, now, its too late short meme.mp3 in Resources */,
 				D9267EE828D1271400C0DC6C /* Milton Leite - Chato pra caralho.mp3 in Resources */,
 				D975FEE22880B4F20035E6F2 /* Caetano Veloso - Como voce e burro short.mp3 in Resources */,
+				D97B2DE628E60B8600C3B50B /* Igor Guimaraes - Reaja a assaltos.mp3 in Resources */,
 				D9388F9E288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Bonsai de pica.mp3 in Resources */,
 				D975FE5A2880B4F20035E6F2 /* Alanzoka - Sai, maluco, todo dia isso.mp3 in Resources */,
 				D97500162880B4F20035E6F2 /* Olavo - Porrrrra.mp3 in Resources */,
@@ -3846,6 +3873,7 @@
 				D975FE4A2880B4F20035E6F2 /* Natalia Pasternak - E um pedaco de pano no rosto, e uma porra de um pedaco de pano na cara.mp3 in Resources */,
 				D97500342880B4F20035E6F2 /* Bolsonaro - Coisa rara de eu falar aqui coloco a minha cara inteira no fogo pelo Milton ribeiro.mp3 in Resources */,
 				D9EDB87828E3E477007724E2 /* Ciro Nogueira - Restricao porque e um fascista.mp3 in Resources */,
+				D97B2DE228E60B8600C3B50B /* Soraya Thronicke - Nao cutuque onca com a sua vara curta.mp3 in Resources */,
 				D975FFC42880B4F20035E6F2 /* CASIMIRO - Ta maluco.mp3 in Resources */,
 				D9DB6F8128CD6E2900E24BDE /* UOL - JOAO GORDO - Doidao de droga.mp3 in Resources */,
 				D923126428AAFD5C00436336 /* Fala, MR - Nao e um meme para muitos tios e tias do whatsapp zap.mp3 in Resources */,
@@ -3897,6 +3925,7 @@
 				D975FF232880B4F20035E6F2 /* ATILA IAMARINO - Nao tem condicoes.mp3 in Resources */,
 				D975FEBA2880B4F20035E6F2 /* MY NEWS - Antonio Tabet - Tem uma editoria da imprensa que todo dia rende noticia Bolsonaro fala merda.mp3 in Resources */,
 				D975FEBF2880B4F20035E6F2 /* Leo Stronda Monstro - Batata doce e frango logico.mp3 in Resources */,
+				D97B2DE328E60B8600C3B50B /* William Bonner - Fora Bolsonaro Genocida.mp3 in Resources */,
 				D921F885288B0177003979CC /* Ihu compilacao.mp3 in Resources */,
 				D975FE1E2880B4F20035E6F2 /* Matheuzinho e  Menor Nico - O Golpe ta ai short meme.mp3 in Resources */,
 				D91793A9288E1B51009C3165 /* Um Ministerio Tecnico.mp3 in Resources */,
@@ -4033,6 +4062,7 @@
 				D975FF9B2880B4F20035E6F2 /* UOL - Pazuello - No dia D, na hora H.mp3 in Resources */,
 				D975FE402880B4F20035E6F2 /* CASIMIRO - Voce acha isso legal.mp3 in Resources */,
 				D975FF852880B4F20035E6F2 /* Choque de Cultura - Renan - E Paradoxo que chama isso ai.mp3 in Resources */,
+				D97B2DE728E60B8600C3B50B /* Michael The Office - No god please no.mp3 in Resources */,
 				D975FE242880B4F20035E6F2 /* CHOQUE DE CULTURA - Rogerinho As vezes o odio e a unica emocao possivel short.mp3 in Resources */,
 				D975FEF12880B4F20035E6F2 /* Vai Dar Namoro - Tome.mp3 in Resources */,
 				D9F696BD28BBFDD700C984E6 /* Jair Bolsonaro e Conrado Hubner - Os escandalos do Jair, enumerados.mp3 in Resources */,
@@ -4128,6 +4158,7 @@
 				D97500262880B4F20035E6F2 /* Dilma - If you speak slowly I understand very well.mp3 in Resources */,
 				D975FFBC2880B4F20035E6F2 /* Winter is coming, this one will be long.mp3 in Resources */,
 				D975FEE42880B4F20035E6F2 /* Luciano Hang - Comunista, ne short meme.mp3 in Resources */,
+				49C0938E28E5EEA200960B7E /* Vou de Lula, Ce Sabe - Neide e Lula.mp3 in Resources */,
 				D97500522880B5190035E6F2 /* Mulheres de Areia - Abertura - Tonho da Lua Acordes Sexy Iemanja.mp3 in Resources */,
 				D975FFA32880B4F20035E6F2 /* ATILA IAMARINO - Voce vai morrer (resumo da live).mp3 in Resources */,
 				D975FFAE2880B4F20035E6F2 /* Bolsonaro - E so voce fazer coco dia sim, dia nao, que melhora bastante.mp3 in Resources */,
@@ -4170,6 +4201,7 @@
 				D975FECB2880B4F20035E6F2 /* Em cinquenta metros, tire o cu da reta.mp3 in Resources */,
 				D975FF8F2880B4F20035E6F2 /* ADY - oh nao mais um crime de responsabilidade.mp3 in Resources */,
 				D9E7D0EA28AC6195001E909E /* Dose segura de crack, os tios e as tias do Zap.mp3 in Resources */,
+				D97B2DE128E60B8600C3B50B /* Renan (Choque de Cultura) - Nem existe isso voce ta inventando palavras.mp3 in Resources */,
 				D975FF9D2880B4F20035E6F2 /* DIOGO DEFANTE - Calma, ces tao de cabeca quente.mp3 in Resources */,
 				D923126B28AB01A700436336 /* Donald Trump - Its very sad.mp3 in Resources */,
 				D975FEEA2880B4F20035E6F2 /* PODER360 - Roberto Jefferson - Ta bom, Xandao, ta bom.mp3 in Resources */,
@@ -4429,7 +4461,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 3.13;
+				MARKETING_VERSION = 3.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -4461,7 +4493,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 3.13;
+				MARKETING_VERSION = 3.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -4617,7 +4649,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.13;
+				MARKETING_VERSION = 3.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -4658,7 +4690,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.13;
+				MARKETING_VERSION = 3.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
