@@ -13,9 +13,10 @@ class VideoMaker {
         }
     }
     
-    static func textToImage(drawText text: String, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
+    static func textToImage(drawText text: String, drawAuthor authorText: String, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
         let textColor = UIColor.black
         let textFont = UIFont.systemFont(ofSize: 72, weight: .bold)
+        let textAuthorFont = UIFont.systemFont(ofSize: 72, weight: .light)
 
         let scale = UIScreen.main.scale
         UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
@@ -25,9 +26,19 @@ class VideoMaker {
             NSAttributedString.Key.foregroundColor: textColor,
             ] as [NSAttributedString.Key : Any]
         image.draw(in: CGRect(origin: CGPoint.zero, size: image.size))
+        
+        let textAuthorFontAttributes = [
+            NSAttributedString.Key.font: textAuthorFont,
+            NSAttributedString.Key.foregroundColor: textColor,
+            ] as [NSAttributedString.Key : Any]
+        image.draw(in: CGRect(origin: CGPoint.zero, size: image.size))
 
         let rect = CGRect(origin: point, size: CGSize(width: image.size.width - 80, height: image.size.height))
         text.draw(in: rect, withAttributes: textFontAttributes)
+        
+        
+        let rectAuthor = CGRect(origin: CGPoint(x: 80, y: 600), size: CGSize(width: image.size.width - 80, height: image.size.height))
+        authorText.draw(in: rectAuthor, withAttributes: textAuthorFontAttributes)
 
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
