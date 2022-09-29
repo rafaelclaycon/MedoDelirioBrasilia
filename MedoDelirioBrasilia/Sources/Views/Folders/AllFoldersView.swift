@@ -1,5 +1,6 @@
 import SwiftUI
 
+/// iPad and Mac only.
 struct AllFoldersView: View {
 
     @Binding var isShowingFolderInfoEditingSheet: Bool
@@ -35,7 +36,7 @@ struct AllFoldersView: View {
                     return
                 }
                 try? database.deleteUserFolder(withId: deleteFolderAid.folderIdForDeletion)
-                //viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
+                updateFolderList = true
             }), secondaryButton: .cancel(Text("Cancelar")))
         }
     }

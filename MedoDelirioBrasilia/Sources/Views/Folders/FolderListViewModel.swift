@@ -9,10 +9,10 @@ class FolderListViewModel: ObservableObject {
     @Published var currentActivity: NSUserActivity? = nil
     
     // Alerts
-    @Published var alertTitle: String = ""
-    @Published var alertMessage: String = ""
-    @Published var showAlert: Bool = false
-    @Published var folderIdForDeletion: String = ""
+//    @Published var alertTitle: String = ""
+//    @Published var alertMessage: String = ""
+//    @Published var showAlert: Bool = false
+//    @Published var folderIdForDeletion: String = ""
     
     func reloadFolderList(withFolders outsideFolders: [UserFolder]?) {
         guard let actualFolders = outsideFolders, actualFolders.count > 0 else {

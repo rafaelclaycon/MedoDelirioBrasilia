@@ -1,5 +1,6 @@
 import SwiftUI
 
+/// Sub-view loaded inside the Collections tab on iPhone and the All Folders tab on iPad and Mac.
 struct FolderList: View {
 
     @StateObject private var viewModel = FolderListViewModel()
@@ -89,6 +90,7 @@ struct FolderList: View {
         .onChange(of: updateFolderList) { shouldUpdate in
             if shouldUpdate {
                 viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
+                updateFolderList = false
             }
         }
     }
