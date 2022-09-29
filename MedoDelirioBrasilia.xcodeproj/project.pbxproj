@@ -797,6 +797,7 @@
 		D975FFFF2880B4F20035E6F2 /* Bolsonaro - Polemizar esse assunto.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FDC82880B4F00035E6F2 /* Bolsonaro - Polemizar esse assunto.mp3 */; };
 		D976FF3828674BAC00998E1B /* FoldersBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D976FF3728674BAC00998E1B /* FoldersBannerView.swift */; };
 		D977294A28E1F99D003B0CD3 /* Balde de cerveja gelada no final do arco-iris.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D977294928E1F99C003B0CD3 /* Balde de cerveja gelada no final do arco-iris.mp3 */; };
+		D97B2DD928E5EA0500C3B50B /* DeleteFolderViewAid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97B2DD828E5EA0500C3B50B /* DeleteFolderViewAid.swift */; };
 		D97B2DE128E60B8600C3B50B /* Renan (Choque de Cultura) - Nem existe isso voce ta inventando palavras.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D97B2DDA28E60B8500C3B50B /* Renan (Choque de Cultura) - Nem existe isso voce ta inventando palavras.mp3 */; };
 		D97B2DE228E60B8600C3B50B /* Soraya Thronicke - Nao cutuque onca com a sua vara curta.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D97B2DDB28E60B8500C3B50B /* Soraya Thronicke - Nao cutuque onca com a sua vara curta.mp3 */; };
 		D97B2DE328E60B8600C3B50B /* William Bonner - Fora Bolsonaro Genocida.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D97B2DDC28E60B8600C3B50B /* William Bonner - Fora Bolsonaro Genocida.mp3 */; };
@@ -1774,6 +1775,7 @@
 		D975FE0E2880B4F20035E6F2 /* O CARA DA LUVA DE PEDREIRO - receba carai caralho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O CARA DA LUVA DE PEDREIRO - receba carai caralho.mp3"; sourceTree = "<group>"; };
 		D976FF3728674BAC00998E1B /* FoldersBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersBannerView.swift; sourceTree = "<group>"; };
 		D977294928E1F99C003B0CD3 /* Balde de cerveja gelada no final do arco-iris.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Balde de cerveja gelada no final do arco-iris.mp3"; sourceTree = "<group>"; };
+		D97B2DD828E5EA0500C3B50B /* DeleteFolderViewAid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteFolderViewAid.swift; sourceTree = "<group>"; };
 		D97B2DDA28E60B8500C3B50B /* Renan (Choque de Cultura) - Nem existe isso voce ta inventando palavras.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Renan (Choque de Cultura) - Nem existe isso voce ta inventando palavras.mp3"; sourceTree = "<group>"; };
 		D97B2DDB28E60B8500C3B50B /* Soraya Thronicke - Nao cutuque onca com a sua vara curta.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Soraya Thronicke - Nao cutuque onca com a sua vara curta.mp3"; sourceTree = "<group>"; };
 		D97B2DDC28E60B8600C3B50B /* William Bonner - Fora Bolsonaro Genocida.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "William Bonner - Fora Bolsonaro Genocida.mp3"; sourceTree = "<group>"; };
@@ -3064,6 +3066,14 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
+		D97B2DD728E5E9E400C3B50B /* ViewAid */ = {
+			isa = PBXGroup;
+			children = (
+				D97B2DD828E5EA0500C3B50B /* DeleteFolderViewAid.swift */,
+			);
+			path = ViewAid;
+			sourceTree = "<group>";
+		};
 		D980456028380F45003B2E83 /* AppSupport */ = {
 			isa = PBXGroup;
 			children = (
@@ -3113,6 +3123,7 @@
 		D98EC5DF2825A04000340BE5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D97B2DD728E5E9E400C3B50B /* ViewAid */,
 				D9BB1E7928B3212000C5FFAA /* Core */,
 				D9BB1E7828B3210D00C5FFAA /* Logs */,
 				D93443242838177000ADCD38 /* UserInfo.swift */,
@@ -4355,6 +4366,7 @@
 				D95DB0F82882491A00D4FEDF /* Screen.swift in Sources */,
 				D9FA0CD92850864C000F6ADE /* ClientDeviceInfo.swift in Sources */,
 				D9D3D4912887495B00C42FDE /* FolderList.swift in Sources */,
+				D97B2DD928E5EA0500C3B50B /* DeleteFolderViewAid.swift in Sources */,
 				D9758C3A28617BA70094D388 /* AddUserFolderTables.swift in Sources */,
 				D9265741285A1EE700947165 /* LocalDatabase+Log.swift in Sources */,
 				D980456228380F66003B2E83 /* LocalizableStrings.swift in Sources */,
