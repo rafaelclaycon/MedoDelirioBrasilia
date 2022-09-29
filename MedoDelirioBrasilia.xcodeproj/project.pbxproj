@@ -26,6 +26,7 @@
 		49C0939228E5EF5500960B7E /* Reaja a assaltos - Igor Guimaraes.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49C0939128E5EF5500960B7E /* Reaja a assaltos - Igor Guimaraes.mp3 */; };
 		49C0939428E5EFD700960B7E /* E Lula o nosso candidato maravilhoso - milton cunha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49C0939328E5EFD700960B7E /* E Lula o nosso candidato maravilhoso - milton cunha.mp3 */; };
 		49C0939628E5F03300960B7E /* Fora Bolsonaro Genocida - William Bonner.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49C0939528E5F03300960B7E /* Fora Bolsonaro Genocida - William Bonner.mp3 */; };
+		49C0939828E5F17500960B7E /* Nao cutuque onca com a sua vara curta - Soraya.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49C0939728E5F17500960B7E /* Nao cutuque onca com a sua vara curta - Soraya.mp3 */; };
 		49DEA99C28810C63008C9BA1 /* Ah nao de novo nao de novo nao short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA99B28810C63008C9BA1 /* Ah nao de novo nao de novo nao short meme.mp3 */; };
 		49DEA99E28810C88008C9BA1 /* Ana Paula - Olha Ela short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA99D28810C88008C9BA1 /* Ana Paula - Olha Ela short meme.mp3 */; };
 		49DEA9A028810CBC008C9BA1 /* band jornalismo - Ah MORRE DIABO  short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49DEA99F28810CBC008C9BA1 /* band jornalismo - Ah MORRE DIABO  short meme.mp3 */; };
@@ -1000,6 +1001,7 @@
 		49C0939128E5EF5500960B7E /* Reaja a assaltos - Igor Guimaraes.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Reaja a assaltos - Igor Guimaraes.mp3"; sourceTree = "<group>"; };
 		49C0939328E5EFD700960B7E /* E Lula o nosso candidato maravilhoso - milton cunha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "E Lula o nosso candidato maravilhoso - milton cunha.mp3"; sourceTree = "<group>"; };
 		49C0939528E5F03300960B7E /* Fora Bolsonaro Genocida - William Bonner.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fora Bolsonaro Genocida - William Bonner.mp3"; sourceTree = "<group>"; };
+		49C0939728E5F17500960B7E /* Nao cutuque onca com a sua vara curta - Soraya.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Nao cutuque onca com a sua vara curta - Soraya.mp3"; sourceTree = "<group>"; };
 		49DEA99B28810C63008C9BA1 /* Ah nao de novo nao de novo nao short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ah nao de novo nao de novo nao short meme.mp3"; sourceTree = "<group>"; };
 		49DEA99D28810C88008C9BA1 /* Ana Paula - Olha Ela short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ana Paula - Olha Ela short meme.mp3"; sourceTree = "<group>"; };
 		49DEA99F28810CBC008C9BA1 /* band jornalismo - Ah MORRE DIABO  short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "band jornalismo - Ah MORRE DIABO  short meme.mp3"; sourceTree = "<group>"; };
@@ -2730,6 +2732,7 @@
 		D92E7068283C5C120035826C /* Songs */ = {
 			isa = PBXGroup;
 			children = (
+				49C0939728E5F17500960B7E /* Nao cutuque onca com a sua vara curta - Soraya.mp3 */,
 				49C0939528E5F03300960B7E /* Fora Bolsonaro Genocida - William Bonner.mp3 */,
 				49C0939328E5EFD700960B7E /* E Lula o nosso candidato maravilhoso - milton cunha.mp3 */,
 				49C0939128E5EF5500960B7E /* Reaja a assaltos - Igor Guimaraes.mp3 */,
@@ -4110,6 +4113,7 @@
 				D975003C2880B4F20035E6F2 /* Lu Schievano - Amiga nao tem como te defende short meme.mp3 in Resources */,
 				D975FF992880B4F20035E6F2 /* PODER360 - Roberto Jefferson - O cachorro do supremo, o xandao, alexandre de moraes.mp3 in Resources */,
 				49E5D33B28C634F20057FF7D /* Nao e hora pra desespero completo.mp3 in Resources */,
+				49C0939828E5F17500960B7E /* Nao cutuque onca com a sua vara curta - Soraya.mp3 in Resources */,
 				D97500422880B4F20035E6F2 /* Bolsonaro - Faz politicalha.mp3 in Resources */,
 				D975FFD22880B4F20035E6F2 /* Michael Jackson - Dont Stop Till You Get Enough Andre Marques short.mp3 in Resources */,
 				D975FE8D2880B4F20035E6F2 /* Away - Bom dia, boa tarde, boa noite... por enquanto.mp3 in Resources */,
