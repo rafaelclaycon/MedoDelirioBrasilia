@@ -4,6 +4,7 @@ struct FolderList: View {
 
     @StateObject private var viewModel = FolderListViewModel()
     @Binding var updateFolderList: Bool
+    @Binding var deleteFolderAid: DeleteFolderViewAid
     
     private var columns: [GridItem] {
         if UIDevice.current.userInterfaceIdiom == .phone {
@@ -42,7 +43,11 @@ struct FolderList: View {
     //                                        }
                             
                             Button(role: .destructive, action: {
-                                viewModel.showFolderDeletionConfirmation(folderName: "\(folder.symbol) \(folder.name)", folderId: folder.id)
+                                let folderName = "\(folder.symbol) \(folder.name)"
+                                deleteFolderAid.alertTitle = "Apagar a Pasta \"\(folderName)\"?"
+                                deleteFolderAid.alertMessage = "Os sons continuarão disponíveis no app, fora da pasta.\n\nEssa ação não pode ser desfeita."
+                                deleteFolderAid.folderIdForDeletion = folder.id
+                                deleteFolderAid.showAlert = true
                             }, label: {
                                 HStack {
                                     Text("Apagar Pasta")
@@ -93,7 +98,7 @@ struct FolderList: View {
 struct FolderList_Previews: PreviewProvider {
 
     static var previews: some View {
-        FolderList(updateFolderList: .constant(false))
+        FolderList(updateFolderList: .constant(false), deleteFolderAid: .constant(DeleteFolderViewAid()))
     }
 
 }

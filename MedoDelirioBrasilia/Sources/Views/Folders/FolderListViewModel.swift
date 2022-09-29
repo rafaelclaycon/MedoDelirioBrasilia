@@ -29,11 +29,11 @@ class FolderListViewModel: ObservableObject {
     
     // MARK: - Alerts
     
-    func showFolderDeletionConfirmation(folderName: String, folderId: String) {
+    /*func showFolderDeletionConfirmation(folderName: String, folderId: String) {
         alertTitle = "Apagar a Pasta \"\(folderName)\"?"
         alertMessage = "Os sons continuarão disponíveis no app, fora da pasta.\n\nEssa ação não pode ser desfeita."
         folderIdForDeletion = folderId
         showAlert = true
-    }
+    }*/
 
 }

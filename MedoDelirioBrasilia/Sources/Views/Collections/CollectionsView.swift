@@ -6,6 +6,7 @@ struct CollectionsView: View {
     @Binding var isShowingFolderInfoEditingSheet: Bool
     @State private var folderForEditingOnSheet: UserFolder? = nil
     @State var updateFolderList: Bool = false
+    @State var deleteFolderAid = DeleteFolderViewAid()
     
     private let rows = [
         GridItem(.flexible()),
@@ -73,7 +74,7 @@ struct CollectionsView: View {
                             }
                         }
                         
-                        FolderList(updateFolderList: $updateFolderList)
+                        FolderList(updateFolderList: $updateFolderList, deleteFolderAid: $deleteFolderAid)
                     }
                     .padding(.top, 10)
                     .padding(.horizontal)
@@ -87,15 +88,15 @@ struct CollectionsView: View {
                     FolderInfoEditingView(isBeingShown: $isShowingFolderInfoEditingSheet, selectedBackgroundColor: "pastelPurple")
                 }
             }
-//            .alert(isPresented: $viewModel.showAlert) {
-//                Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .destructive(Text("Apagar"), action: {
-//                    guard viewModel.folderIdForDeletion.isEmpty == false else {
-//                        return
-//                    }
-//                    try? database.deleteUserFolder(withId: viewModel.folderIdForDeletion)
-//                    viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
-//                }), secondaryButton: .cancel(Text("Cancelar")))
-//            }
+            .alert(isPresented: $deleteFolderAid.showAlert) {
+                Alert(title: Text(deleteFolderAid.alertTitle), message: Text(deleteFolderAid.alertMessage), primaryButton: .destructive(Text("Apagar"), action: {
+                    guard deleteFolderAid.folderIdForDeletion.isEmpty == false else {
+                        return
+                    }
+                    try? database.deleteUserFolder(withId: deleteFolderAid.folderIdForDeletion)
+                    //viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
+                }), secondaryButton: .cancel(Text("Cancelar")))
+            }
             .onAppear {
                 //viewModel.reloadCollectionList(withCollections: getLocalCollections())
             }
