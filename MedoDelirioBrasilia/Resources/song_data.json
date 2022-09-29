@@ -428,5 +428,15 @@
         "filename": "Jingle Bolsonaro 2022.mp3",
         "dateAdded": "2022-09-19T00:00:00Z",
         "isOffensive": true
+    },
+    {
+        "id": "DC5ADF8A-5096-4259-9E13-95EDAFEF10CC",
+        "title": "Vou de Lula, Cê Sabe",
+        "description": "",
+        "genre": 11,
+        "duration": "00:08",
+        "filename": "Vou de Lula, Ce Sabe - Neide e Lula.mp3",
+        "dateAdded": "2022-09-29T00:00:00Z",
+        "isOffensive": false
     }
 ]

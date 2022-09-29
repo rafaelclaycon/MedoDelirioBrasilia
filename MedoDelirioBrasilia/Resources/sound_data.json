@@ -6595,5 +6595,68 @@
         "filename": "Flavio Bolsonaro - Quando o couro comer.mp3",
         "dateAdded": "2022-09-28T00:00:00Z",
         "isOffensive": true
+    },
+    {
+        "id": "391A1188-0889-4B50-B544-92B989A51E94",
+        "title": "Olha a faca!",
+        "authorId": "B8ABD61F-9C7F-449E-AFE0-092C4BBA4BDF",
+        "description": "olha a faca",
+        "filename": "Patrick (Zorra Total) - Olha a Faca.mp3",
+        "dateAdded": "2022-09-29T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "ECE32DD9-F10C-4321-8A74-3D2E37305A6F",
+        "title": "NO, GOD! PLEASE, NO!",
+        "authorId": "3C020AFF-B544-49C3-9029-AD41296E692C",
+        "description": "no god please no no nooo",
+        "filename": "Michael The Office - No god please no.mp3",
+        "dateAdded": "2022-09-29T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "5A150676-FC8B-4A70-9A90-C3E0FD1997EF",
+        "title": "Nem existe isso, você tá inventando palavra",
+        "authorId": "A329D501-7BD3-4B9C-8FBD-99BFD3AF3E13",
+        "description": "nem existe isso voce ta inventando palavra palavras",
+        "filename": "Renan (Choque de Cultura) - Nem existe isso voce ta inventando palavras.mp3",
+        "dateAdded": "2022-09-29T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "4A6D20FF-CB0F-4BD4-941C-120538CAD485",
+        "title": "Reaja a assaltos",
+        "authorId": "959D8DD0-0EFB-4CC2-98C2-C61182BCFEC3",
+        "description": "reaja a assaltos acredite no seu potencial você pode com um revolver e um fuzil a morte te espera do outro lado",
+        "filename": "Igor Guimaraes - Reaja a assaltos.mp3",
+        "dateAdded": "2022-09-29T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "71BEF1F6-5BD1-46C2-8E2A-FE54ED85E99A",
+        "title": "É Lula o nosso candidato maravilhoso",
+        "authorId": "2C2352DD-2357-4B9E-99AD-4E7323664449",
+        "description": "é lula o nosso candidato maravilhoso",
+        "filename": "Milton Cunha - E Lula o nosso candidato maravilhoso.mp3",
+        "dateAdded": "2022-09-29T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "09666F90-A133-4107-8056-308DE7F4CC6B",
+        "title": "Fora Bolsonaro Genocida",
+        "authorId": "AD02C7FB-8F0D-48F1-AC4B-962858DE678B",
+        "description": "fora bolsonaro genocida",
+        "filename": "William Bonner - Fora Bolsonaro Genocida.mp3",
+        "dateAdded": "2022-09-29T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "10CF7194-5285-41D5-84B8-861C6CBFF2CC",
+        "title": "Não cutuque onça com a sua vara curta",
+        "authorId": "12A306D0-3DB5-4E89-8A99-63EFB3687806",
+        "description": "quero dizer ao candidato jair bolsonaro não cutuque onça com a sua vara curta",
+        "filename": "Soraya Thronicke - Nao cutuque onca com a sua vara curta.mp3",
+        "dateAdded": "2022-09-29T00:00:00Z",
+        "isOffensive": false
     }
 ]
