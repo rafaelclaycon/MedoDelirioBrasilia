@@ -6658,5 +6658,14 @@
         "filename": "Soraya Thronicke - Nao cutuque onca com a sua vara curta.mp3",
         "dateAdded": "2022-09-29T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "D7A9AF70-FCCD-4A9B-BDAA-629720CA41DC",
+        "title": "Medo de ir pro inferno",
+        "authorId": "12A306D0-3DB5-4E89-8A99-63EFB3687806",
+        "description": "O senhor nao tem medo de ir pro inferno nao",
+        "filename": "Soraya Thronicke - O senhor nao tem medo de ir pro inferno nao.mp3",
+        "dateAdded": "2022-09-30T00:00:00Z",
+        "isOffensive": true
     }
 ]

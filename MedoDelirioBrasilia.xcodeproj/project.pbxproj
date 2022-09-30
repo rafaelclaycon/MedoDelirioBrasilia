@@ -923,6 +923,7 @@
 		D9F6420928D122C500003A0E /* Moderador, tira o moleque desse grupo agora.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F6420828D122C500003A0E /* Moderador, tira o moleque desse grupo agora.mp3 */; };
 		D9F696BD28BBFDD700C984E6 /* Jair Bolsonaro e Conrado Hubner - Os escandalos do Jair, enumerados.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F696BC28BBFDD700C984E6 /* Jair Bolsonaro e Conrado Hubner - Os escandalos do Jair, enumerados.mp3 */; };
 		D9F78A9F2860DF9100B83567 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F78A9E2860DF9100B83567 /* CollectionCell.swift */; };
+		D9F8E9A028E6A08D0098A454 /* Soraya Thronicke - O senhor nao tem medo de ir pro inferno nao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F8E99F28E6A08D0098A454 /* Soraya Thronicke - O senhor nao tem medo de ir pro inferno nao.mp3 */; };
 		D9FA0CD728508590000F6ADE /* UIDevice+DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FA0CD628508590000F6ADE /* UIDevice+DeviceInfo.swift */; };
 		D9FA0CD92850864C000F6ADE /* ClientDeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FA0CD82850864C000F6ADE /* ClientDeviceInfo.swift */; };
 		D9FB489A2870FE7800FF90D0 /* TapticHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FB48992870FE7800FF90D0 /* TapticHelper.swift */; };
@@ -1901,6 +1902,7 @@
 		D9F6420828D122C500003A0E /* Moderador, tira o moleque desse grupo agora.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Moderador, tira o moleque desse grupo agora.mp3"; sourceTree = "<group>"; };
 		D9F696BC28BBFDD700C984E6 /* Jair Bolsonaro e Conrado Hubner - Os escandalos do Jair, enumerados.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro e Conrado Hubner - Os escandalos do Jair, enumerados.mp3"; sourceTree = "<group>"; };
 		D9F78A9E2860DF9100B83567 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
+		D9F8E99F28E6A08D0098A454 /* Soraya Thronicke - O senhor nao tem medo de ir pro inferno nao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Soraya Thronicke - O senhor nao tem medo de ir pro inferno nao.mp3"; sourceTree = "<group>"; };
 		D9FA0CD628508590000F6ADE /* UIDevice+DeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+DeviceInfo.swift"; sourceTree = "<group>"; };
 		D9FA0CD82850864C000F6ADE /* ClientDeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientDeviceInfo.swift; sourceTree = "<group>"; };
 		D9FB48992870FE7800FF90D0 /* TapticHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapticHelper.swift; sourceTree = "<group>"; };
@@ -1976,6 +1978,7 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9F8E99F28E6A08D0098A454 /* Soraya Thronicke - O senhor nao tem medo de ir pro inferno nao.mp3 */,
 				D97B2DDF28E60B8600C3B50B /* Igor Guimaraes - Reaja a assaltos.mp3 */,
 				D97B2DE028E60B8600C3B50B /* Michael The Office - No god please no.mp3 */,
 				D97B2DDE28E60B8600C3B50B /* Milton Cunha - E Lula o nosso candidato maravilhoso.mp3 */,
@@ -3924,6 +3927,7 @@
 				D975FF0A2880B4F20035E6F2 /* Malditos Milicos - Arpeggio.mp3 in Resources */,
 				D975FF232880B4F20035E6F2 /* ATILA IAMARINO - Nao tem condicoes.mp3 in Resources */,
 				D975FEBA2880B4F20035E6F2 /* MY NEWS - Antonio Tabet - Tem uma editoria da imprensa que todo dia rende noticia Bolsonaro fala merda.mp3 in Resources */,
+				D9F8E9A028E6A08D0098A454 /* Soraya Thronicke - O senhor nao tem medo de ir pro inferno nao.mp3 in Resources */,
 				D975FEBF2880B4F20035E6F2 /* Leo Stronda Monstro - Batata doce e frango logico.mp3 in Resources */,
 				D97B2DE328E60B8600C3B50B /* William Bonner - Fora Bolsonaro Genocida.mp3 in Resources */,
 				D921F885288B0177003979CC /* Ihu compilacao.mp3 in Resources */,
@@ -4449,7 +4453,7 @@
 				CODE_SIGN_ENTITLEMENTS = MedoWidget/Sources/WidgetSupport/MedoWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MedoWidget/Sources/WidgetSupport/Info.plist;
@@ -4481,7 +4485,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_ENTITLEMENTS = MedoWidget/Sources/WidgetSupport/MedoWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MedoWidget/Sources/WidgetSupport/Info.plist;
@@ -4629,7 +4633,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/Sources/AppSupport/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -4670,7 +4674,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/Sources/AppSupport/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
