@@ -924,6 +924,8 @@
 		D9F696BD28BBFDD700C984E6 /* Jair Bolsonaro e Conrado Hubner - Os escandalos do Jair, enumerados.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F696BC28BBFDD700C984E6 /* Jair Bolsonaro e Conrado Hubner - Os escandalos do Jair, enumerados.mp3 */; };
 		D9F78A9F2860DF9100B83567 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F78A9E2860DF9100B83567 /* CollectionCell.swift */; };
 		D9F8E9A028E6A08D0098A454 /* Soraya Thronicke - O senhor nao tem medo de ir pro inferno nao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F8E99F28E6A08D0098A454 /* Soraya Thronicke - O senhor nao tem medo de ir pro inferno nao.mp3 */; };
+		D9F8E9A228E8D6D40098A454 /* Soraya Thronicke - Padre Kelson.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F8E9A128E8D6D40098A454 /* Soraya Thronicke - Padre Kelson.mp3 */; };
+		D9F8E9A428E8D7470098A454 /* Soraya Thronicke - Candidato padre.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F8E9A328E8D7470098A454 /* Soraya Thronicke - Candidato padre.mp3 */; };
 		D9FA0CD728508590000F6ADE /* UIDevice+DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FA0CD628508590000F6ADE /* UIDevice+DeviceInfo.swift */; };
 		D9FA0CD92850864C000F6ADE /* ClientDeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FA0CD82850864C000F6ADE /* ClientDeviceInfo.swift */; };
 		D9FB489A2870FE7800FF90D0 /* TapticHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FB48992870FE7800FF90D0 /* TapticHelper.swift */; };
@@ -1903,6 +1905,8 @@
 		D9F696BC28BBFDD700C984E6 /* Jair Bolsonaro e Conrado Hubner - Os escandalos do Jair, enumerados.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro e Conrado Hubner - Os escandalos do Jair, enumerados.mp3"; sourceTree = "<group>"; };
 		D9F78A9E2860DF9100B83567 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
 		D9F8E99F28E6A08D0098A454 /* Soraya Thronicke - O senhor nao tem medo de ir pro inferno nao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Soraya Thronicke - O senhor nao tem medo de ir pro inferno nao.mp3"; sourceTree = "<group>"; };
+		D9F8E9A128E8D6D40098A454 /* Soraya Thronicke - Padre Kelson.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Soraya Thronicke - Padre Kelson.mp3"; sourceTree = "<group>"; };
+		D9F8E9A328E8D7470098A454 /* Soraya Thronicke - Candidato padre.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Soraya Thronicke - Candidato padre.mp3"; sourceTree = "<group>"; };
 		D9FA0CD628508590000F6ADE /* UIDevice+DeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+DeviceInfo.swift"; sourceTree = "<group>"; };
 		D9FA0CD82850864C000F6ADE /* ClientDeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientDeviceInfo.swift; sourceTree = "<group>"; };
 		D9FB48992870FE7800FF90D0 /* TapticHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapticHelper.swift; sourceTree = "<group>"; };
@@ -1978,6 +1982,8 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9F8E9A328E8D7470098A454 /* Soraya Thronicke - Candidato padre.mp3 */,
+				D9F8E9A128E8D6D40098A454 /* Soraya Thronicke - Padre Kelson.mp3 */,
 				D9F8E99F28E6A08D0098A454 /* Soraya Thronicke - O senhor nao tem medo de ir pro inferno nao.mp3 */,
 				D97B2DDF28E60B8600C3B50B /* Igor Guimaraes - Reaja a assaltos.mp3 */,
 				D97B2DE028E60B8600C3B50B /* Michael The Office - No god please no.mp3 */,
@@ -3750,6 +3756,7 @@
 				D975FF472880B4F20035E6F2 /* Bolsonaro - Jacare.mp3 in Resources */,
 				D975FF382880B4F20035E6F2 /* Boldo - Muito bom, muito bom.mp3 in Resources */,
 				D975FE9F2880B4F20035E6F2 /* Malditos Milicos distorcido.mp3 in Resources */,
+				D9F8E9A428E8D7470098A454 /* Soraya Thronicke - Candidato padre.mp3 in Resources */,
 				D975FE982880B4F20035E6F2 /* Lula - Cade o Ze gotinha.mp3 in Resources */,
 				D975FFEB2880B4F20035E6F2 /* Neto - Voces estao de sacanagem short.mp3 in Resources */,
 				D975FF202880B4F20035E6F2 /* Caue Moura - Foi mal tava doidao aqui nao seu arrombado.mp3 in Resources */,
@@ -4058,6 +4065,7 @@
 				D975FFEE2880B4F20035E6F2 /* CANAL RURAL - Alexandre Garcia - A sensatez que significa a abordagem do governo na pandemia.mp3 in Resources */,
 				D975FE6E2880B4F20035E6F2 /* Lula - Alo.mp3 in Resources */,
 				D975FF3C2880B4F20035E6F2 /* Cecilia Oliveira - Entao assim a gente ta fodido.mp3 in Resources */,
+				D9F8E9A228E8D6D40098A454 /* Soraya Thronicke - Padre Kelson.mp3 in Resources */,
 				D975FFFD2880B4F20035E6F2 /* COMUNISTA DO INFERNO meme.mp3 in Resources */,
 				D975FFE82880B4F20035E6F2 /* Lasier Martins - Choque.mp3 in Resources */,
 				D92AD1AD28832C80001CBCDF /* PETIT JOURNAL - Tanguy Baghdadi - Ele leu errado.mp3 in Resources */,
@@ -4453,7 +4461,7 @@
 				CODE_SIGN_ENTITLEMENTS = MedoWidget/Sources/WidgetSupport/MedoWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MedoWidget/Sources/WidgetSupport/Info.plist;
@@ -4465,7 +4473,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 3.14;
+				MARKETING_VERSION = 3.14.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -4485,7 +4493,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_ENTITLEMENTS = MedoWidget/Sources/WidgetSupport/MedoWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MedoWidget/Sources/WidgetSupport/Info.plist;
@@ -4497,7 +4505,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 3.14;
+				MARKETING_VERSION = 3.14.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -4633,7 +4641,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/Sources/AppSupport/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -4653,7 +4661,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.14;
+				MARKETING_VERSION = 3.14.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -4674,7 +4682,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/Sources/AppSupport/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -4694,7 +4702,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.14;
+				MARKETING_VERSION = 3.14.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
