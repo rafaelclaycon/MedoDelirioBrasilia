@@ -6667,5 +6667,23 @@
         "filename": "Soraya Thronicke - O senhor nao tem medo de ir pro inferno nao.mp3",
         "dateAdded": "2022-09-30T00:00:00Z",
         "isOffensive": true
+    },
+    {
+        "id": "421D6B9B-2D9E-434F-BC40-68C03A674918",
+        "title": "Padre Kelson",
+        "authorId": "12A306D0-3DB5-4E89-8A99-63EFB3687806",
+        "description": "Padre Kelson kelvin candidato padre",
+        "filename": "Soraya Thronicke - Padre Kelson.mp3",
+        "dateAdded": "2022-10-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "365AF518-2C9C-41B4-8BCE-AE671C3E139F",
+        "title": "Candidato padre",
+        "authorId": "12A306D0-3DB5-4E89-8A99-63EFB3687806",
+        "description": "Candidato padre",
+        "filename": "Soraya Thronicke - Candidato padre.mp3",
+        "dateAdded": "2022-10-01T00:00:00Z",
+        "isOffensive": false
     }
 ]
