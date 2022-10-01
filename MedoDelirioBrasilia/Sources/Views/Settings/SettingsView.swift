@@ -29,9 +29,9 @@ struct SettingsView: View {
                     Text("Ajuda")
                 }
                 
-                /*NavigationLink(destination: NotificationsSettingsView()) {
+                NavigationLink(destination: NotificationsSettingsView()) {
                     Text("Notificações")
-                }*/
+                }
                 
                 if showChangeAppIcon {
                     NavigationLink(destination: ChangeAppIconView()) {
