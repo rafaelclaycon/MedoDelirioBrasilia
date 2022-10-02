@@ -200,7 +200,7 @@ struct MedoWidgetEntryView : View {
         if let days = components.day {
             if days < 0 {
                 return "O \(turnNumber)º turno já passou"
-            } else if days == 1 {
+            } else if days == 0 {
                 return "O \(turnNumber)º turno é hoje"
             } else if days == 1 {
                 return "O \(turnNumber)º turno é amanhã!"
