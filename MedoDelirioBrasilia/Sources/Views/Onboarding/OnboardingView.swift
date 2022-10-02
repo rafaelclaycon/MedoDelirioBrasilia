@@ -16,7 +16,7 @@ struct OnboardingView: View {
                     .padding(.horizontal, 20)
                     .padding(.vertical)
                 
-                Text("Receba notificações sobre os últimos sons, tendências e novos recursos.\n\nTentarei manter a frequência das notificações baixa, entre 2 e 3 por semana.")
+                Text("Receba notificações sobre os últimos sons, tendências e novos recursos.\n\nA frequência das notificações será baixa, no máximo 2 por semana.")
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 20)
                     .padding(.vertical)
@@ -47,7 +47,7 @@ struct OnboardingView: View {
                 .foregroundColor(.blue)
                 .padding(.vertical)
                 
-                Text("Você pode ativar as notificações mais tarde nos Ajustes.")
+                Text("Você pode ativar as notificações mais tarde nos Ajustes do app.")
                     .multilineTextAlignment(.center)
                     .padding(.horizontal)
                     .font(.callout)

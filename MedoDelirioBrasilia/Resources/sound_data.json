@@ -6513,12 +6513,12 @@
         "description": "Eu aloprei perdi a linha lamento",
         "filename": "Jair Bolsonaro - Eu aloprei, perdi a linha, lamento.mp3",
         "dateAdded": "2022-09-19T00:00:00Z",
-        "isOffensive": false
+        "isOffensive": true
     },
     {
         "id": "A07451FF-58FC-4978-A79B-AEA40F5C9EC9",
         "title": "Balde de cerveja gelada no final do arco-íris",
-        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "authorId": "FE2D6CB6-81F2-4A6B-B312-44E8AD9C8C4B",
         "description": "e no final do arco-iris tem um baldinho de cerveja gelada foda-se",
         "filename": "Balde de cerveja gelada no final do arco-iris.mp3",
         "dateAdded": "2022-09-26T00:00:00Z",
@@ -6558,7 +6558,7 @@
         "description": "eu to esmagada socorro",
         "filename": "Eu to esmagada.mp3",
         "dateAdded": "2022-09-28T00:00:00Z",
-        "isOffensive": false
+        "isOffensive": true
     },
     {
         "id": "6A1DDE8D-5030-41AD-9609-6994014AA9F5",
@@ -6576,12 +6576,12 @@
         "description": "o bolsonaro eu tenho muita restrição pois é um fascista",
         "filename": "Ciro Nogueira - Restricao porque e um fascista.mp3",
         "dateAdded": "2022-09-28T00:00:00Z",
-        "isOffensive": false
+        "isOffensive": true
     },
     {
         "id": "31ED7C77-9C56-4075-BC8E-6F2591BED131",
         "title": "I'm a little bit nirvous",
-        "authorId": "BB05B606-9553-48B9-BC59-3BA58B3F0181",
+        "authorId": "07F09910-4B4C-4C19-BFCF-4D261CE5E1BA",
         "description": "i'm a little bit nervous nirvous",
         "filename": "Flavio Bolsonaro - Im a little bit nirvous.mp3",
         "dateAdded": "2022-09-28T00:00:00Z",
@@ -6590,10 +6590,91 @@
     {
         "id": "5D24EF31-CB97-4190-99BD-0ED28A893D05",
         "title": "Quando o couro comer pra valer",
-        "authorId": "BB05B606-9553-48B9-BC59-3BA58B3F0181",
+        "authorId": "07F09910-4B4C-4C19-BFCF-4D261CE5E1BA",
         "description": "quando o couro comer pra valer se vocês vão se deixar seduzir por discurso do centrão ou se vão se manter firme e forte bolsonaro",
         "filename": "Flavio Bolsonaro - Quando o couro comer.mp3",
         "dateAdded": "2022-09-28T00:00:00Z",
         "isOffensive": true
+    },
+    {
+        "id": "391A1188-0889-4B50-B544-92B989A51E94",
+        "title": "Olha a faca!",
+        "authorId": "B8ABD61F-9C7F-449E-AFE0-092C4BBA4BDF",
+        "description": "olha a faca",
+        "filename": "Patrick (Zorra Total) - Olha a Faca.mp3",
+        "dateAdded": "2022-09-29T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "ECE32DD9-F10C-4321-8A74-3D2E37305A6F",
+        "title": "NO, GOD! PLEASE, NO!",
+        "authorId": "3C020AFF-B544-49C3-9029-AD41296E692C",
+        "description": "no god please no no nooo",
+        "filename": "Michael The Office - No god please no.mp3",
+        "dateAdded": "2022-09-29T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "4A6D20FF-CB0F-4BD4-941C-120538CAD485",
+        "title": "Reaja a assaltos",
+        "authorId": "959D8DD0-0EFB-4CC2-98C2-C61182BCFEC3",
+        "description": "reaja a assaltos acredite no seu potencial você pode com um revolver e um fuzil a morte te espera do outro lado",
+        "filename": "Igor Guimaraes - Reaja a assaltos.mp3",
+        "dateAdded": "2022-09-29T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "71BEF1F6-5BD1-46C2-8E2A-FE54ED85E99A",
+        "title": "É Lula o nosso candidato maravilhoso",
+        "authorId": "2C2352DD-2357-4B9E-99AD-4E7323664449",
+        "description": "é lula o nosso candidato maravilhoso",
+        "filename": "Milton Cunha - E Lula o nosso candidato maravilhoso.mp3",
+        "dateAdded": "2022-09-29T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "09666F90-A133-4107-8056-308DE7F4CC6B",
+        "title": "Fora Bolsonaro Genocida",
+        "authorId": "AD02C7FB-8F0D-48F1-AC4B-962858DE678B",
+        "description": "fora bolsonaro genocida",
+        "filename": "William Bonner - Fora Bolsonaro Genocida.mp3",
+        "dateAdded": "2022-09-29T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "10CF7194-5285-41D5-84B8-861C6CBFF2CC",
+        "title": "Não cutuque onça com a sua vara curta",
+        "authorId": "12A306D0-3DB5-4E89-8A99-63EFB3687806",
+        "description": "quero dizer ao candidato jair bolsonaro não cutuque onça com a sua vara curta",
+        "filename": "Soraya Thronicke - Nao cutuque onca com a sua vara curta.mp3",
+        "dateAdded": "2022-09-29T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "D7A9AF70-FCCD-4A9B-BDAA-629720CA41DC",
+        "title": "Medo de ir pro inferno",
+        "authorId": "12A306D0-3DB5-4E89-8A99-63EFB3687806",
+        "description": "O senhor nao tem medo de ir pro inferno nao",
+        "filename": "Soraya Thronicke - O senhor nao tem medo de ir pro inferno nao.mp3",
+        "dateAdded": "2022-09-30T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "421D6B9B-2D9E-434F-BC40-68C03A674918",
+        "title": "Padre Kelson",
+        "authorId": "12A306D0-3DB5-4E89-8A99-63EFB3687806",
+        "description": "Padre Kelson kelvin candidato padre",
+        "filename": "Soraya Thronicke - Padre Kelson.mp3",
+        "dateAdded": "2022-10-01T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "365AF518-2C9C-41B4-8BCE-AE671C3E139F",
+        "title": "Candidato padre",
+        "authorId": "12A306D0-3DB5-4E89-8A99-63EFB3687806",
+        "description": "Candidato padre",
+        "filename": "Soraya Thronicke - Candidato padre.mp3",
+        "dateAdded": "2022-10-01T00:00:00Z",
+        "isOffensive": false
     }
 ]

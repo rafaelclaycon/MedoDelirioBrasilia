@@ -3,12 +3,12 @@ import SwiftUI
 var player: AudioPlayer?
 var database = LocalDatabase()
 
-// Notifications: https://7e25-2804-1b3-8643-6734-3920-db5b-c065-1789.sa.ngrok.io/api/
+//let networkRabbit = NetworkRabbit(serverPath: "https://654e-2804-1b3-8640-96df-d0b4-dd5d-6922-bb1b.sa.ngrok.io/api/")
 let networkRabbit = NetworkRabbit(serverPath: CommandLine.arguments.contains("-UNDER_DEVELOPMENT") ? "http://127.0.0.1:8080/api/" : "http://170.187.145.233:8080/api/")
 let podium = Podium(database: database, networkRabbit: networkRabbit)
 
-let soundsLastUpdateDate: String = "28/09/2022"
-let songsLastUpdateDate: String = "19/09/2022"
+let soundsLastUpdateDate: String = "01/10/2022"
+let songsLastUpdateDate: String = "30/09/2022"
 
 @main
 struct MedoDelirioBrasiliaApp: App {
@@ -57,31 +57,31 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         }
     }
     
-//    func application(
-//        _ application: UIApplication,
-//        didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
-//    ) {
-//        if AppPersistentMemory.getShouldRetrySendingDevicePushToken() {
-//            let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
-//            let token = tokenParts.joined()
-//            print("Device Token: \(token)")
-//
-//            let device = PushDevice(installId: UIDevice.identifiderForVendor, pushToken: token)
-//            networkRabbit.post(pushDevice: device) { success, error in
-//                guard let success = success, success else {
-//                    AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: true)
-//                    return
-//                }
-//                AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: false)
-//            }
-//        }
-//    }
-//
-//    func application(
-//        _ application: UIApplication,
-//        didFailToRegisterForRemoteNotificationsWithError error: Error
-//    ) {
-//        print("Failed to register: \(error.localizedDescription)")
-//    }
+    func application(
+        _ application: UIApplication,
+        didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
+    ) {
+        if AppPersistentMemory.getShouldRetrySendingDevicePushToken() {
+            let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
+            let token = tokenParts.joined()
+            print("Device Token: \(token)")
+
+            let device = PushDevice(installId: UIDevice.identifiderForVendor, pushToken: token)
+            networkRabbit.post(pushDevice: device) { success, error in
+                guard let success = success, success else {
+                    AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: true)
+                    return
+                }
+                AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: false)
+            }
+        }
+    }
+    
+    func application(
+        _ application: UIApplication,
+        didFailToRegisterForRemoteNotificationsWithError error: Error
+    ) {
+        print("Failed to register: \(error.localizedDescription)")
+    }
 
 }
