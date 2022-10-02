@@ -1093,11 +1093,13 @@
     },
     {
         "id": "97F98648-0862-423D-B938-E80C6B5A52B9",
-        "name": "Ciro Nogueira"
+        "name": "Ciro Nogueira",
+        "photo": "https://i.em.com.br/Z6CDTbWP9ZTngft_os96aGaAPzc=/1200x1200/smart/imgsapp.em.com.br/app/noticia_127983242361/2022/09/26/1398378/jair-bolsonaro-e-ciro-nogueira-em-evento-no-palacio-do-planalto-_1_72364.jpg"
     },
     {
         "id": "BB05B606-9553-48B9-BC59-3BA58B3F0181",
-        "name": "Flávio Bolsonaro"
+        "name": "Flávio Bolsonaro",
+        "photo": "https://p2.trrsf.com/image/fget/cf/1200/1200/middle/images.terra.com/2019/12/19/2019-12-19T232813Z_1_LYNXMPEFBI2A6_RTROPTP_4_POLITICA-OPERACAO-FLAVIO-BOLSONARO-QUEIROZ-MP.JPG"
     },
     {
         "id": "B8ABD61F-9C7F-449E-AFE0-092C4BBA4BDF",
@@ -1105,14 +1107,22 @@
     },
     {
         "id": "3C020AFF-B544-49C3-9029-AD41296E692C",
-        "name": "Michael Scott (The Office)"
+        "name": "Michael Scott (The Office)",
+        "photo": "https://static.wikia.nocookie.net/theoffice/images/b/be/Character_-_MichaelScott.PNG/revision/latest/top-crop/width/360/height/360?cb=20200413224550"
     },
     {
         "id": "2C2352DD-2357-4B9E-99AD-4E7323664449",
-        "name": "Milton Cunha"
+        "name": "Milton Cunha",
+        "photo": "https://yt3.ggpht.com/ytc/AMLnZu-QuZehD3P8ypCjoe4nvultRgWk7ObUJSnaJLF55Q=s900-c-k-c0x00ffffff-no-rj"
     },
     {
         "id": "AD02C7FB-8F0D-48F1-AC4B-962858DE678B",
-        "name": "William Bonner"
+        "name": "William Bonner",
+        "photo": "https://p2.trrsf.com/image/fget/cf/1200/1200/middle/images.terra.com/2022/10/01/1728925116-0462f935-jornal-nacional-william-bonner-negativo-covid-19.jpeg"
+    },
+    {
+        "id": "FE2D6CB6-81F2-4A6B-B312-44E8AD9C8C4B",
+        "name": "Valentina Bandeira",
+        "photo": "https://s2.glbimg.com/iOP80CJEm0uoH46dm70PqzMnK_o=/0x0:1080x1080/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_e84042ef78cb4708aeebdf1c68c6cbd6/internal_photos/bs/2021/E/f/rmXCePSOmb7RNFmRnwXQ/valentina-bandeira-e-seus-livros.jpg"
     }
 ]

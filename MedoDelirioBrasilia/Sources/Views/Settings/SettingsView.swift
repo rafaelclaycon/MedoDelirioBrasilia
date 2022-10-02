@@ -28,7 +28,9 @@ struct SettingsView: View {
                 NavigationLink(destination: HelpView()) {
                     Text("Ajuda")
                 }
-                
+            }
+            
+            Section {
                 NavigationLink(destination: NotificationsSettingsView()) {
                     Text("Notificações")
                 }

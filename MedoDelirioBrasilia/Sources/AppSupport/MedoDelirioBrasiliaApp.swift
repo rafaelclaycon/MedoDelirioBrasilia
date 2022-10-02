@@ -3,7 +3,7 @@ import SwiftUI
 var player: AudioPlayer?
 var database = LocalDatabase()
 
-// Notifications: https://7e25-2804-1b3-8643-6734-3920-db5b-c065-1789.sa.ngrok.io/api/
+//let networkRabbit = NetworkRabbit(serverPath: "https://654e-2804-1b3-8640-96df-d0b4-dd5d-6922-bb1b.sa.ngrok.io/api/")
 let networkRabbit = NetworkRabbit(serverPath: CommandLine.arguments.contains("-UNDER_DEVELOPMENT") ? "http://127.0.0.1:8080/api/" : "http://170.187.145.233:8080/api/")
 let podium = Podium(database: database, networkRabbit: networkRabbit)
 

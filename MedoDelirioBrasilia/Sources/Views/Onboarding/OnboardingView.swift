@@ -47,7 +47,7 @@ struct OnboardingView: View {
                 .foregroundColor(.blue)
                 .padding(.vertical)
                 
-                Text("Você pode ativar as notificações mais tarde nos Ajustes.")
+                Text("Você pode ativar as notificações mais tarde nos Ajustes do app.")
                     .multilineTextAlignment(.center)
                     .padding(.horizontal)
                     .font(.callout)
