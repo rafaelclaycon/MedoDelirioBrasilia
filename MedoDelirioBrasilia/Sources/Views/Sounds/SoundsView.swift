@@ -255,7 +255,7 @@ struct SoundsView: View {
                 switch subviewToOpen {
                  case .onboardingView:
                     OnboardingView(isBeingShown: $showingModalView)
-                        .interactiveDismissDisabled(true)
+                        .interactiveDismissDisabled(UIDevice.current.userInterfaceIdiom == .phone ? true : false)
                     
                 case .addToFolderView:
                     AddToFolderView(isBeingShown: $showingModalView,
