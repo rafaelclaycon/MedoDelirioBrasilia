@@ -38,14 +38,23 @@ struct OnboardingView: View {
                 .buttonBorderShape(.capsule)
                 .padding(.top)
                 
-                Button {
-                    AppPersistentMemory.setHasShownNotificationsOnboarding(to: true)
-                    isBeingShown = false
-                } label: {
-                    Text("Ah é, é? F***-se")
+                if UIDevice.current.userInterfaceIdiom == .phone {
+                    Button {
+                        AppPersistentMemory.setHasShownNotificationsOnboarding(to: true)
+                        isBeingShown = false
+                    } label: {
+                        Text("Ah é, é? F***-se")
+                    }
+                    .foregroundColor(.blue)
+                    .padding(.vertical)
+                } else {
+                    Text("Toque na área apagada fora dessa janela para fechá-la.")
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
+                        .font(.callout)
+                        .foregroundColor(.gray)
+                        .padding(.vertical)
                 }
-                .foregroundColor(.blue)
-                .padding(.vertical)
                 
                 Text("Você pode ativar as notificações mais tarde nos Ajustes do app.")
                     .multilineTextAlignment(.center)
