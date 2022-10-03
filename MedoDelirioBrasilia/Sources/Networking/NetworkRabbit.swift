@@ -104,6 +104,7 @@ class NetworkRabbit: NetworkRabbitProtocol {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let jsonEncoder = JSONEncoder()
+        jsonEncoder.dateEncodingStrategy = .iso8601
         let jsonData = try? jsonEncoder.encode(shareCountStat)
         request.httpBody = jsonData
 
