@@ -5,25 +5,22 @@ extension LocalDatabase {
 
     // MARK: - User statistics to be sent to the server
     
-    func getShareCountByUniqueContentId() throws -> [ServerShareCountStat] {
+    func getUserShareStatsNotSentToServer() throws -> [ServerShareCountStat] {
         var result = [ServerShareCountStat]()
         
         let install_id = Expression<String>("installId")
         let content_id = Expression<String>("contentId")
         let content_type = Expression<Int>("contentType")
         let sent_to_server = Expression<Bool>("sentToServer")
+        let date_time = Expression<Date>("dateTime")
         
-        let contentCount = content_id.count
         for row in try db.prepare(userShareLog
-                                      .select(install_id,content_id,content_type,contentCount)
-                                      .where(sent_to_server == false)
-                                      .group(content_id)
-                                      .order(contentCount.desc)) {
+                                      .select(install_id,content_id,content_type,date_time)
+                                      .where(sent_to_server == false)) {
             result.append(ServerShareCountStat(installId: row[install_id],
                                                contentId: row[content_id],
                                                contentType: row[content_type],
-                                               shareCount: row[contentCount],
-                                               date: Date.now))
+                                               dateTime: row[date_time].iso8601withFractionalSeconds))
         }
         return result
     }

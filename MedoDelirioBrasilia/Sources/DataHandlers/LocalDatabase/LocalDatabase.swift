@@ -58,7 +58,10 @@ extension LocalDatabase {
     }
     
     static func migrations() -> [Migration] {
-        return [InitialMigration(), AddNetworkCallLogTable(), AddUserFolderTables(), AddFavoriteLogTable()]
+        return [InitialMigration(),
+                AddNetworkCallLogTable(),
+                AddUserFolderTables(),
+                AddFavoriteLogTable()]
     }
     
     var needsMigration: Bool {
