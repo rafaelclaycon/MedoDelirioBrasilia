@@ -873,6 +873,9 @@
 		D9BB1E7728B3200700C5FFAA /* AppIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BB1E7628B3200700C5FFAA /* AppIcon.swift */; };
 		D9BB8F7628EC6D9E00659D4A /* Amigo do Pedro Daltro - Risada caralho (curto).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BB8F7428EC6D9E00659D4A /* Amigo do Pedro Daltro - Risada caralho (curto).mp3 */; };
 		D9BB8F7728EC6D9E00659D4A /* Amigo do Pedro Daltro - Risada caralho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BB8F7528EC6D9E00659D4A /* Amigo do Pedro Daltro - Risada caralho.mp3 */; };
+		D9BB8F7928EC72BE00659D4A /* Rita von Hunty - Pra que serve um bilionario.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BB8F7828EC72BE00659D4A /* Rita von Hunty - Pra que serve um bilionario.mp3 */; };
+		D9BB8F7B28EC753100659D4A /* Charlie e Lola - Da pra parar de enrolar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BB8F7A28EC753100659D4A /* Charlie e Lola - Da pra parar de enrolar.mp3 */; };
+		D9BB8F7D28EC760500659D4A /* Heleno - Amigos e amigas, tenho uma mensagem para voces.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BB8F7C28EC760500659D4A /* Heleno - Amigos e amigas, tenho uma mensagem para voces.mp3 */; };
 		D9BB9265285DAA8E005CD6DD /* BegForMoneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BB9264285DAA8E005CD6DD /* BegForMoneyView.swift */; };
 		D9BCAC2D28B598FB0098FE15 /* AppIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BCAC2C28B598FA0098FE15 /* AppIconCell.swift */; };
 		D9BF9091284257F500BDDD7D /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF9090284257F500BDDD7D /* Shared.swift */; };
@@ -1856,6 +1859,9 @@
 		D9BB1E7628B3200700C5FFAA /* AppIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcon.swift; sourceTree = "<group>"; };
 		D9BB8F7428EC6D9E00659D4A /* Amigo do Pedro Daltro - Risada caralho (curto).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Amigo do Pedro Daltro - Risada caralho (curto).mp3"; sourceTree = "<group>"; };
 		D9BB8F7528EC6D9E00659D4A /* Amigo do Pedro Daltro - Risada caralho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Amigo do Pedro Daltro - Risada caralho.mp3"; sourceTree = "<group>"; };
+		D9BB8F7828EC72BE00659D4A /* Rita von Hunty - Pra que serve um bilionario.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rita von Hunty - Pra que serve um bilionario.mp3"; sourceTree = "<group>"; };
+		D9BB8F7A28EC753100659D4A /* Charlie e Lola - Da pra parar de enrolar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Charlie e Lola - Da pra parar de enrolar.mp3"; sourceTree = "<group>"; };
+		D9BB8F7C28EC760500659D4A /* Heleno - Amigos e amigas, tenho uma mensagem para voces.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Heleno - Amigos e amigas, tenho uma mensagem para voces.mp3"; sourceTree = "<group>"; };
 		D9BB9264285DAA8E005CD6DD /* BegForMoneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BegForMoneyView.swift; sourceTree = "<group>"; };
 		D9BCAC2C28B598FA0098FE15 /* AppIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconCell.swift; sourceTree = "<group>"; };
 		D9BF9090284257F500BDDD7D /* Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shared.swift; sourceTree = "<group>"; };
@@ -1984,6 +1990,9 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9BB8F7C28EC760500659D4A /* Heleno - Amigos e amigas, tenho uma mensagem para voces.mp3 */,
+				D9BB8F7A28EC753100659D4A /* Charlie e Lola - Da pra parar de enrolar.mp3 */,
+				D9BB8F7828EC72BE00659D4A /* Rita von Hunty - Pra que serve um bilionario.mp3 */,
 				D9BB8F7428EC6D9E00659D4A /* Amigo do Pedro Daltro - Risada caralho (curto).mp3 */,
 				D9BB8F7528EC6D9E00659D4A /* Amigo do Pedro Daltro - Risada caralho.mp3 */,
 				D9F8E9A328E8D7470098A454 /* Soraya Thronicke - Candidato padre.mp3 */,
@@ -3475,6 +3484,7 @@
 				D99D0DC328CAB52700EB6F27 /* TV CAMARA - Alessandro Molon - E obvio.mp3 in Resources */,
 				D975FE792880B4F20035E6F2 /* Saiddy Bamba - Vai chorar e vai chorar e chore na minha.mp3 in Resources */,
 				D975FE702880B4F20035E6F2 /* UOL - Milton Ribeiro - Enem tem a cara do governo competencia honestidade seriedade.mp3 in Resources */,
+				D9BB8F7928EC72BE00659D4A /* Rita von Hunty - Pra que serve um bilionario.mp3 in Resources */,
 				D975FE2E2880B4F20035E6F2 /* Boldo - Puta que pariu marquinho.mp3 in Resources */,
 				49DEA9A828810E7B008C9BA1 /* UOL - Bolsonaro - A GENTE LAMENTA TODOS OS MORTOS MAS E O DESTINO DE TODO MUNDO short meme.mp3 in Resources */,
 				D975FE9C2880B4F20035E6F2 /* Bolsonaro - O problema ta ai, lamentamos.mp3 in Resources */,
@@ -3940,6 +3950,7 @@
 				D975FEBA2880B4F20035E6F2 /* MY NEWS - Antonio Tabet - Tem uma editoria da imprensa que todo dia rende noticia Bolsonaro fala merda.mp3 in Resources */,
 				D9F8E9A028E6A08D0098A454 /* Soraya Thronicke - O senhor nao tem medo de ir pro inferno nao.mp3 in Resources */,
 				D975FEBF2880B4F20035E6F2 /* Leo Stronda Monstro - Batata doce e frango logico.mp3 in Resources */,
+				D9BB8F7B28EC753100659D4A /* Charlie e Lola - Da pra parar de enrolar.mp3 in Resources */,
 				D97B2DE328E60B8600C3B50B /* William Bonner - Fora Bolsonaro Genocida.mp3 in Resources */,
 				D921F885288B0177003979CC /* Ihu compilacao.mp3 in Resources */,
 				D975FE1E2880B4F20035E6F2 /* Matheuzinho e  Menor Nico - O Golpe ta ai short meme.mp3 in Resources */,
@@ -4193,6 +4204,7 @@
 				D975FEF52880B4F20035E6F2 /* Samuel Mariano - Depois do culto - Deu errado.mp3 in Resources */,
 				D975FF5D2880B4F20035E6F2 /* Ivete Sangalo - Chupa Toda short meme.mp3 in Resources */,
 				D975FF7B2880B4F20035E6F2 /* Gilmar Mendes - Eu estou julgando improcedente a acao.mp3 in Resources */,
+				D9BB8F7D28EC760500659D4A /* Heleno - Amigos e amigas, tenho uma mensagem para voces.mp3 in Resources */,
 				D975FE622880B4F20035E6F2 /* Engracadao voce hein meme short.mp3 in Resources */,
 				D975FF342880B4F20035E6F2 /* Tim Maia - Me De Motivo.mp3 in Resources */,
 				D975FF1C2880B4F20035E6F2 /* Paulo Guedes - Sexo Selvagem.mp3 in Resources */,

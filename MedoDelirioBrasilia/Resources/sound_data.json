@@ -6694,5 +6694,32 @@
         "filename": "Amigo do Pedro Daltro - Risada caralho (curto).mp3",
         "dateAdded": "2022-10-04T00:00:00Z",
         "isOffensive": true
+    },
+    {
+        "id": "31490857-085E-4AA6-93A4-D2899CA2BBBD",
+        "title": "Pra que serve um bilionário?",
+        "authorId": "A32CFB2A-8DF2-41AC-88A1-8AF4DF7DEF82",
+        "description": "Pra que serve um bilionario",
+        "filename": "Rita von Hunty - Pra que serve um bilionario.mp3",
+        "dateAdded": "2022-10-04T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "13317119-CF96-487A-BB92-490020713F97",
+        "title": "Dá pra parar de enrolar?",
+        "authorId": "A340D90D-552C-4478-ABE6-E90B536351B6",
+        "description": "Dá pra parar de enrolar",
+        "filename": "Charlie e Lola - Da pra parar de enrolar.mp3",
+        "dateAdded": "2022-10-04T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "9D1C8049-765E-43FF-8A20-046597F7977F",
+        "title": "Amigos e amigas, tenho uma mensagem pra vocês",
+        "authorId": "BBD5570D-18FF-4099-81C8-AD6CFCA64B26",
+        "description": "Meus amigos e amigas, tenho uma mensagem para voces",
+        "filename": "Heleno - Amigos e amigas, tenho uma mensagem para voces.mp3",
+        "dateAdded": "2022-10-04T00:00:00Z",
+        "isOffensive": false
     }
 ]
