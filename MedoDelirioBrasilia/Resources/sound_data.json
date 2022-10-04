@@ -6676,5 +6676,122 @@
         "filename": "Soraya Thronicke - Candidato padre.mp3",
         "dateAdded": "2022-10-01T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "255A1EB5-30A9-4CE8-BA29-F88909B4746D",
+        "title": "Hahaha, caralho (completo)",
+        "authorId": "8A064580-AEB6-4FCE-9B87-11F5D5C6995E",
+        "description": "Hahaha caralho essa foi",
+        "filename": "Amigo do Pedro Daltro - Risada caralho.mp3",
+        "dateAdded": "2022-10-04T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "C63178AE-228D-46C9-BFB1-4C2C86884EE6",
+        "title": "Hahaha, caralho (curto)",
+        "authorId": "8A064580-AEB6-4FCE-9B87-11F5D5C6995E",
+        "description": "Hahaha caralho",
+        "filename": "Amigo do Pedro Daltro - Risada caralho (curto).mp3",
+        "dateAdded": "2022-10-04T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "31490857-085E-4AA6-93A4-D2899CA2BBBD",
+        "title": "Pra que serve um bilionário?",
+        "authorId": "A32CFB2A-8DF2-41AC-88A1-8AF4DF7DEF82",
+        "description": "Pra que serve um bilionario",
+        "filename": "Rita von Hunty - Pra que serve um bilionario.mp3",
+        "dateAdded": "2022-10-04T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "13317119-CF96-487A-BB92-490020713F97",
+        "title": "Dá pra parar de enrolar?",
+        "authorId": "A340D90D-552C-4478-ABE6-E90B536351B6",
+        "description": "Dá pra parar de enrolar",
+        "filename": "Charlie e Lola - Da pra parar de enrolar.mp3",
+        "dateAdded": "2022-10-04T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "9D1C8049-765E-43FF-8A20-046597F7977F",
+        "title": "Amigos e amigas, tenho uma mensagem pra vocês",
+        "authorId": "BBD5570D-18FF-4099-81C8-AD6CFCA64B26",
+        "description": "Meus amigos e amigas, tenho uma mensagem para voces",
+        "filename": "Heleno - Amigos e amigas, tenho uma mensagem para voces.mp3",
+        "dateAdded": "2022-10-04T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "09A8A8CA-7B96-4A7C-B821-33315C2FDA2B",
+        "title": "Paaara para para para para",
+        "authorId": "2FD69BCA-4F89-4EA1-9D18-EFAE5A183008",
+        "description": "Paaara para para para para para tudo aí",
+        "filename": "Joao Kleber - Paaara para para para.mp3",
+        "dateAdded": "2022-10-04T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "F3883477-8CA8-4405-BB36-EBD25F0C7810",
+        "title": "Bolsonarismo usa Pânico Moral",
+        "authorId": "248A6A3B-3EEF-45D6-9A2F-A81768B7B370",
+        "description": "Bolsonarismo usa o Panico Moral para escapar dos debates que realmente importam",
+        "filename": "Alvaro Borba - Bolsonarismo usa Panico Moral para evitar debates que realmente importam.mp3",
+        "dateAdded": "2022-10-04T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "54C21338-D039-4E53-B41B-F92CF34645E1",
+        "title": "Pânico Comunista (funk)",
+        "authorId": "248A6A3B-3EEF-45D6-9A2F-A81768B7B370",
+        "description": "Panico comunista funk",
+        "filename": "Alvaro Borba - Panico comunista funk.mp3",
+        "dateAdded": "2022-10-04T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "1C49C286-E077-4927-A37E-EE02F91B746F",
+        "title": "Pânico Moral (funk)",
+        "authorId": "248A6A3B-3EEF-45D6-9A2F-A81768B7B370",
+        "description": "Panico Moral funk",
+        "filename": "Alvaro Borba - Funk Panico Moral trecho.mp3",
+        "dateAdded": "2022-10-04T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "4FA44511-6C5D-4F61-BF1A-C46C88A9E730",
+        "title": "Pânico Moral (funk 2)",
+        "authorId": "248A6A3B-3EEF-45D6-9A2F-A81768B7B370",
+        "description": "Panico Moral funk 2",
+        "filename": "Alvaro Borba - Panico Moral funk 2.mp3",
+        "dateAdded": "2022-10-04T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "A36F052F-76B8-4A8D-B8B6-9B428BBE9ABF",
+        "title": "Pânico Institucional (funk)",
+        "authorId": "248A6A3B-3EEF-45D6-9A2F-A81768B7B370",
+        "description": "Panico institucional funk",
+        "filename": "Alvaro Borba - Panico institucional funk.mp3",
+        "dateAdded": "2022-10-04T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "E472D7B1-D998-43AC-A4D0-909B14970F4F",
+        "title": "Vou ser fuzilado, né",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Vou ser fuzilado ne",
+        "filename": "Jair Bolsonaro - Vou ser fuzilado, ne.mp3",
+        "dateAdded": "2022-10-04T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "E38A256B-106D-45E6-B9CD-86300D1C3B6D",
+        "title": "Trilhões de reais",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Trilhoes de reais",
+        "filename": "Jair Bolsonaro - Trilhoes de reais.mp3",
+        "dateAdded": "2022-10-04T00:00:00Z",
+        "isOffensive": true
     }
 ]

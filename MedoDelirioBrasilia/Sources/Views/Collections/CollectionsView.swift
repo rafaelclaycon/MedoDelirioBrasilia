@@ -18,7 +18,7 @@ struct CollectionsView: View {
             VStack(alignment: .center) {
                 VStack(alignment: .center) {
                     HStack {
-                        Text("Escolhas dos Editores")
+                        Text("Escolhas do Editor")
                             .font(.title2)
                             .padding(.leading)
                         
