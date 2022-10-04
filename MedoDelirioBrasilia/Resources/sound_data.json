@@ -6676,5 +6676,23 @@
         "filename": "Soraya Thronicke - Candidato padre.mp3",
         "dateAdded": "2022-10-01T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "255A1EB5-30A9-4CE8-BA29-F88909B4746D",
+        "title": "Hahaha, caralho (completo)",
+        "authorId": "8A064580-AEB6-4FCE-9B87-11F5D5C6995E",
+        "description": "Hahaha caralho essa foi",
+        "filename": "Amigo do Pedro Daltro - Risada caralho.mp3",
+        "dateAdded": "2022-10-04T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "C63178AE-228D-46C9-BFB1-4C2C86884EE6",
+        "title": "Hahaha, caralho (curto)",
+        "authorId": "8A064580-AEB6-4FCE-9B87-11F5D5C6995E",
+        "description": "Hahaha caralho",
+        "filename": "Amigo do Pedro Daltro - Risada caralho (curto).mp3",
+        "dateAdded": "2022-10-04T00:00:00Z",
+        "isOffensive": true
     }
 ]
