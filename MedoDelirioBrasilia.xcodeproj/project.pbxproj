@@ -887,6 +887,8 @@
 		D9C77B6F28CAC07B006CA17B /* Thiago Arruda - Passarinho que come cu nao sabe a pedra que tem.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C77B6E28CAC07B006CA17B /* Thiago Arruda - Passarinho que come cu nao sabe a pedra que tem.mp3 */; };
 		D9CB84F528B2E31D00E815C2 /* Alvaro Borba - A Verdadeira Polarizacao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CB84F428B2E31D00E815C2 /* Alvaro Borba - A Verdadeira Polarizacao.mp3 */; };
 		D9CC025D28BD9EBD0021C1E6 /* GridHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CC025C28BD9EBD0021C1E6 /* GridHelper.swift */; };
+		D9CC893328EB7BB500576492 /* MostSharedByAudienceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CC893228EB7BB500576492 /* MostSharedByAudienceView.swift */; };
+		D9CC893528EB7CF800576492 /* MostSharedByAudienceViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CC893428EB7CF800576492 /* MostSharedByAudienceViewViewModel.swift */; };
 		D9D3D4912887495B00C42FDE /* FolderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3D4902887495B00C42FDE /* FolderList.swift */; };
 		D9D3D493288750C400C42FDE /* FolderListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3D492288750C400C42FDE /* FolderListViewModel.swift */; };
 		D9D856F5288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D856F3288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3 */; };
@@ -1870,6 +1872,8 @@
 		D9C77B6E28CAC07B006CA17B /* Thiago Arruda - Passarinho que come cu nao sabe a pedra que tem.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Thiago Arruda - Passarinho que come cu nao sabe a pedra que tem.mp3"; sourceTree = "<group>"; };
 		D9CB84F428B2E31D00E815C2 /* Alvaro Borba - A Verdadeira Polarizacao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alvaro Borba - A Verdadeira Polarizacao.mp3"; sourceTree = "<group>"; };
 		D9CC025C28BD9EBD0021C1E6 /* GridHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridHelper.swift; sourceTree = "<group>"; };
+		D9CC893228EB7BB500576492 /* MostSharedByAudienceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostSharedByAudienceView.swift; sourceTree = "<group>"; };
+		D9CC893428EB7CF800576492 /* MostSharedByAudienceViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostSharedByAudienceViewViewModel.swift; sourceTree = "<group>"; };
 		D9D3D4902887495B00C42FDE /* FolderList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderList.swift; sourceTree = "<group>"; };
 		D9D3D492288750C400C42FDE /* FolderListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListViewModel.swift; sourceTree = "<group>"; };
 		D9D856F3288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3"; sourceTree = "<group>"; };
@@ -3252,6 +3256,8 @@
 				D998F28E284F177B0013E709 /* TrendsDisabledView.swift */,
 				D9DB6F7E28CBDA8000E24BDE /* MostSharedByMeView.swift */,
 				D97B2DD528E3E85400C3B50B /* MostSharedByMeViewViewModel.swift */,
+				D9CC893228EB7BB500576492 /* MostSharedByAudienceView.swift */,
+				D9CC893428EB7CF800576492 /* MostSharedByAudienceViewViewModel.swift */,
 			);
 			path = Trends;
 			sourceTree = "<group>";
@@ -4275,6 +4281,7 @@
 				D9625E8028238F9A00080852 /* SoundsView.swift in Sources */,
 				D91107142863B5FD000B6F8F /* ContentCollection.swift in Sources */,
 				D9877D2928694F3200B541F9 /* LocalDatabase+UserFolderContent.swift in Sources */,
+				D9CC893328EB7BB500576492 /* MostSharedByAudienceView.swift in Sources */,
 				D912A33A28B5321400F7293D /* ShareAsVideoResult.swift in Sources */,
 				D958B1AA28394D400010F133 /* MainView.swift in Sources */,
 				D92F8BAD286A6D2100EB9470 /* AlertType.swift in Sources */,
@@ -4355,6 +4362,7 @@
 				D9EB18A52857CDFF00A2F8A8 /* CollectionsView.swift in Sources */,
 				D98EC5E32825A45000340BE5 /* SoundsViewViewModel.swift in Sources */,
 				D9F78A9F2860DF9100B83567 /* CollectionCell.swift in Sources */,
+				D9CC893528EB7CF800576492 /* MostSharedByAudienceViewViewModel.swift in Sources */,
 				D9943F2A28642EC3002C6B97 /* UserFolderContent.swift in Sources */,
 				D9943F2828642200002C6B97 /* AddToFolderViewViewModel.swift in Sources */,
 				D95A86C828B576A7002A011D /* FavoriteLog.swift in Sources */,

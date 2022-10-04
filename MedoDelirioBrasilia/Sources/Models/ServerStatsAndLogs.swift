@@ -6,6 +6,7 @@ struct ServerShareCountStat: Hashable, Codable {
     var installId: String
     var contentId: String
     var contentType: Int
+    var shareCount: Int
     var dateTime: String
 
 }

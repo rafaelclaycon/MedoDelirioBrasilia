@@ -10,10 +10,12 @@ struct MostSharedByMeView: View {
     
     var body: some View {
         VStack {
-            Text("Sons Mais Compartilhados Por Mim")
-                .font(.title2)
-                .padding(.horizontal)
-                .padding(.top, 10)
+            HStack {
+                Text("Sons Mais Compartilhados Por Mim")
+                    .font(.title2)
+                Spacer()
+            }
+            .padding(.horizontal)
             
             if viewModel.personalTop5 == nil {
                 HStack {
@@ -31,7 +33,7 @@ struct MostSharedByMeView: View {
                         Spacer()
                         
                         Button {
-                            viewModel.reloadPersonalList(withTopChartItems: podium.getTop5SoundsSharedByTheUser())
+                            //viewModel.reloadPersonalList(withTopChartItems: <#T##[TopChartItem]?#>)
                         } label: {
                             HStack {
                                 Image(systemName: "arrow.triangle.2.circlepath")
@@ -56,6 +58,9 @@ struct MostSharedByMeView: View {
                 }
                 .padding(.bottom, 20)
             }
+        }
+        .onAppear {
+            viewModel.reloadPersonalList(withTopChartItems: podium.getTop5SoundsSharedByTheUser())
         }
     }
 
