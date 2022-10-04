@@ -92,7 +92,7 @@ struct SoundsView: View {
                                         
                                         Spacer()
                                     }
-                                    .padding(.vertical, UIDevice.current.userInterfaceIdiom == .phone ? 200 : 400)
+                                    .padding(.vertical, UIScreen.main.bounds.height / 3)
                                 } else {
                                     ForEach(searchResults) { sound in
                                         SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", favorites: $viewModel.favoritesKeeper)
