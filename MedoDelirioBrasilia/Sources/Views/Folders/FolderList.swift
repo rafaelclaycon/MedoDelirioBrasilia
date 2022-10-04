@@ -66,8 +66,9 @@ struct FolderList: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 90)
-                        .foregroundColor(.blue)
-                        .padding(.bottom, 10)
+                        .foregroundColor(.gray)
+                        .opacity(0.4)
+                        .padding(.bottom, 15)
                     
                     Text("Nenhuma Pasta Criada")
                         .font(.title3)
