@@ -81,98 +81,112 @@ struct SoundsView: View {
                     GeometryReader { geometry in
                         ScrollView {
                             LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
-                                ForEach(searchResults) { sound in
-                                    SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", favorites: $viewModel.favoritesKeeper)
-                                        .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
-                                        .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
-                                        .onTapGesture {
-                                            viewModel.playSound(fromPath: sound.filename)
-                                        }
-                                        .contextMenu(menuItems: {
-                                            Section {
-                                                Button {
-                                                    viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
-                                                } label: {
-                                                    Label(Shared.shareSoundButtonText, systemImage: "square.and.arrow.up")
-                                                }
-                                                
-                                                Button {
-                                                    viewModel.selectedSound = sound
-                                                    subviewToOpen = .shareAsVideoView
-                                                    showingModalView = true
-                                                } label: {
-                                                    Label(Shared.shareAsVideoButtonText, systemImage: "film")
-                                                }
+                                if searchResults.isEmpty {
+                                    VStack {
+                                        Spacer()
+                                        
+                                        Text("Nenhum Resultado")
+                                            .foregroundColor(.gray)
+                                            .font(.title3)
+                                            .multilineTextAlignment(.center)
+                                        
+                                        Spacer()
+                                    }
+                                    .padding(.vertical, UIDevice.current.userInterfaceIdiom == .phone ? 200 : 400)
+                                } else {
+                                    ForEach(searchResults) { sound in
+                                        SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", favorites: $viewModel.favoritesKeeper)
+                                            .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
+                                            .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
+                                            .onTapGesture {
+                                                viewModel.playSound(fromPath: sound.filename)
                                             }
-                                            
-                                            Section {
-                                                Button {
-                                                    if viewModel.favoritesKeeper.contains(sound.id) {
-                                                        viewModel.removeFromFavorites(soundId: sound.id)
-                                                        if currentMode == .favorites {
-                                                            viewModel.reloadList(withSounds: soundData,
-                                                                                 andFavorites: try? database.getAllFavorites(),
-                                                                                 allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
-                                                                                 favoritesOnly: currentMode == .favorites,
-                                                                                 sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
-                                                        }
-                                                    } else {
-                                                        viewModel.addToFavorites(soundId: sound.id)
+                                            .contextMenu(menuItems: {
+                                                Section {
+                                                    Button {
+                                                        viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
+                                                    } label: {
+                                                        Label(Shared.shareSoundButtonText, systemImage: "square.and.arrow.up")
                                                     }
-                                                } label: {
-                                                    Label(viewModel.favoritesKeeper.contains(sound.id) ? "Remover dos Favoritos" : "Adicionar aos Favoritos", systemImage: viewModel.favoritesKeeper.contains(sound.id) ? "star.slash" : "star")
+                                                    
+                                                    Button {
+                                                        viewModel.selectedSound = sound
+                                                        subviewToOpen = .shareAsVideoView
+                                                        showingModalView = true
+                                                    } label: {
+                                                        Label(Shared.shareAsVideoButtonText, systemImage: "film")
+                                                    }
                                                 }
                                                 
-                                                Button {
-                                                    viewModel.selectedSound = sound
-                                                    let hasFolders = try? database.hasAnyUserFolder()
-                                                    guard hasFolders ?? false else {
-                                                        return viewModel.showNoFoldersAlert()
-                                                    }
-                                                    subviewToOpen = .addToFolderView
-                                                    showingModalView = true
-                                                } label: {
-                                                    Label(Shared.addToFolderButtonText, systemImage: "folder.badge.plus")
-                                                }
-                                                .onChange(of: showingModalView) { newValue in
-                                                    if (newValue == false) && hadSuccessAddingToFolder {
-                                                        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-                                                            withAnimation {
-                                                                shouldDisplayAddedToFolderToast = true
+                                                Section {
+                                                    Button {
+                                                        if viewModel.favoritesKeeper.contains(sound.id) {
+                                                            viewModel.removeFromFavorites(soundId: sound.id)
+                                                            if currentMode == .favorites {
+                                                                viewModel.reloadList(withSounds: soundData,
+                                                                                     andFavorites: try? database.getAllFavorites(),
+                                                                                     allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+                                                                                     favoritesOnly: currentMode == .favorites,
+                                                                                     sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
                                                             }
-                                                            TapticFeedback.success()
+                                                        } else {
+                                                            viewModel.addToFavorites(soundId: sound.id)
                                                         }
-                                                        
-                                                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                                                            withAnimation {
-                                                                shouldDisplayAddedToFolderToast = false
-                                                                folderName = nil
-                                                                hadSuccessAddingToFolder = false
+                                                    } label: {
+                                                        Label(viewModel.favoritesKeeper.contains(sound.id) ? "Remover dos Favoritos" : "Adicionar aos Favoritos", systemImage: viewModel.favoritesKeeper.contains(sound.id) ? "star.slash" : "star")
+                                                    }
+                                                    
+                                                    Button {
+                                                        viewModel.selectedSound = sound
+                                                        let hasFolders = try? database.hasAnyUserFolder()
+                                                        guard hasFolders ?? false else {
+                                                            return viewModel.showNoFoldersAlert()
+                                                        }
+                                                        subviewToOpen = .addToFolderView
+                                                        showingModalView = true
+                                                    } label: {
+                                                        Label(Shared.addToFolderButtonText, systemImage: "folder.badge.plus")
+                                                    }
+                                                    .onChange(of: showingModalView) { newValue in
+                                                        if (newValue == false) && hadSuccessAddingToFolder {
+                                                            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                                                                withAnimation {
+                                                                    shouldDisplayAddedToFolderToast = true
+                                                                }
+                                                                TapticFeedback.success()
+                                                            }
+                                                            
+                                                            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                                                withAnimation {
+                                                                    shouldDisplayAddedToFolderToast = false
+                                                                    folderName = nil
+                                                                    hadSuccessAddingToFolder = false
+                                                                }
                                                             }
                                                         }
                                                     }
                                                 }
-                                            }
-                                            
-                                            Section {
-                                                Button {
-                                                    guard let author = authorData.first(where: { $0.id == sound.authorId }) else {
-                                                        return
-                                                    }
-                                                    authorToAutoOpen = author
-                                                    autoOpenAuthor = true
-                                                } label: {
-                                                    Label("Ver Todos os Sons Desse Autor", systemImage: "person")
-                                                }
                                                 
-                                                Button {
-                                                    viewModel.selectedSound = sound
-                                                    viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = true
-                                                } label: {
-                                                    Label(SoundOptionsHelper.getSuggestOtherAuthorNameButtonTitle(authorId: sound.authorId), systemImage: "exclamationmark.bubble")
+                                                Section {
+                                                    Button {
+                                                        guard let author = authorData.first(where: { $0.id == sound.authorId }) else {
+                                                            return
+                                                        }
+                                                        authorToAutoOpen = author
+                                                        autoOpenAuthor = true
+                                                    } label: {
+                                                        Label("Ver Todos os Sons Desse Autor", systemImage: "person")
+                                                    }
+                                                    
+                                                    Button {
+                                                        viewModel.selectedSound = sound
+                                                        viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = true
+                                                    } label: {
+                                                        Label(SoundOptionsHelper.getSuggestOtherAuthorNameButtonTitle(authorId: sound.authorId), systemImage: "exclamationmark.bubble")
+                                                    }
                                                 }
-                                            }
-                                        })
+                                            })
+                                    }
                                 }
                             }
                             .searchable(text: $searchText)
@@ -182,6 +196,13 @@ struct SoundsView: View {
                             .onChange(of: geometry.size.width) { newWidth in
                                 self.listWidth = newWidth
                                 columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
+                            }
+                            .onChange(of: searchResults) { searchResults in
+                                if searchResults.isEmpty {
+                                    columns = [GridItem(.flexible())]
+                                } else {
+                                    columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
+                                }
                             }
                             
                             if UserSettings.getShowOffensiveSounds() == false, currentMode != .favorites {
