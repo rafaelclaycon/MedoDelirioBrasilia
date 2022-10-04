@@ -876,6 +876,14 @@
 		D9BB8F7928EC72BE00659D4A /* Rita von Hunty - Pra que serve um bilionario.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BB8F7828EC72BE00659D4A /* Rita von Hunty - Pra que serve um bilionario.mp3 */; };
 		D9BB8F7B28EC753100659D4A /* Charlie e Lola - Da pra parar de enrolar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BB8F7A28EC753100659D4A /* Charlie e Lola - Da pra parar de enrolar.mp3 */; };
 		D9BB8F7D28EC760500659D4A /* Heleno - Amigos e amigas, tenho uma mensagem para voces.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BB8F7C28EC760500659D4A /* Heleno - Amigos e amigas, tenho uma mensagem para voces.mp3 */; };
+		D9BB8F7F28ECB01F00659D4A /* Joao Kleber - Paaara para para para.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BB8F7E28ECB01F00659D4A /* Joao Kleber - Paaara para para para.mp3 */; };
+		D9BB8F8728ECB2A900659D4A /* Alvaro Borba - Panico institucional funk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BB8F8028ECB2A900659D4A /* Alvaro Borba - Panico institucional funk.mp3 */; };
+		D9BB8F8828ECB2A900659D4A /* Jair Bolsonaro - Vou ser fuzilado, ne.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BB8F8128ECB2A900659D4A /* Jair Bolsonaro - Vou ser fuzilado, ne.mp3 */; };
+		D9BB8F8928ECB2A900659D4A /* Alvaro Borba - Panico Moral funk 2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BB8F8228ECB2A900659D4A /* Alvaro Borba - Panico Moral funk 2.mp3 */; };
+		D9BB8F8A28ECB2A900659D4A /* Jair Bolsonaro - Trilhoes de reais.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BB8F8328ECB2A900659D4A /* Jair Bolsonaro - Trilhoes de reais.mp3 */; };
+		D9BB8F8B28ECB2A900659D4A /* Alvaro Borba - Bolsonarismo usa Panico Moral para evitar debates que realmente importam.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BB8F8428ECB2A900659D4A /* Alvaro Borba - Bolsonarismo usa Panico Moral para evitar debates que realmente importam.mp3 */; };
+		D9BB8F8C28ECB2A900659D4A /* Alvaro Borba - Panico comunista funk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BB8F8528ECB2A900659D4A /* Alvaro Borba - Panico comunista funk.mp3 */; };
+		D9BB8F8D28ECB2A900659D4A /* Alvaro Borba - Funk Panico Moral trecho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BB8F8628ECB2A900659D4A /* Alvaro Borba - Funk Panico Moral trecho.mp3 */; };
 		D9BB9265285DAA8E005CD6DD /* BegForMoneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BB9264285DAA8E005CD6DD /* BegForMoneyView.swift */; };
 		D9BCAC2D28B598FB0098FE15 /* AppIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BCAC2C28B598FA0098FE15 /* AppIconCell.swift */; };
 		D9BF9091284257F500BDDD7D /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF9090284257F500BDDD7D /* Shared.swift */; };
@@ -1862,6 +1870,14 @@
 		D9BB8F7828EC72BE00659D4A /* Rita von Hunty - Pra que serve um bilionario.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rita von Hunty - Pra que serve um bilionario.mp3"; sourceTree = "<group>"; };
 		D9BB8F7A28EC753100659D4A /* Charlie e Lola - Da pra parar de enrolar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Charlie e Lola - Da pra parar de enrolar.mp3"; sourceTree = "<group>"; };
 		D9BB8F7C28EC760500659D4A /* Heleno - Amigos e amigas, tenho uma mensagem para voces.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Heleno - Amigos e amigas, tenho uma mensagem para voces.mp3"; sourceTree = "<group>"; };
+		D9BB8F7E28ECB01F00659D4A /* Joao Kleber - Paaara para para para.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Joao Kleber - Paaara para para para.mp3"; sourceTree = "<group>"; };
+		D9BB8F8028ECB2A900659D4A /* Alvaro Borba - Panico institucional funk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alvaro Borba - Panico institucional funk.mp3"; sourceTree = "<group>"; };
+		D9BB8F8128ECB2A900659D4A /* Jair Bolsonaro - Vou ser fuzilado, ne.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Vou ser fuzilado, ne.mp3"; sourceTree = "<group>"; };
+		D9BB8F8228ECB2A900659D4A /* Alvaro Borba - Panico Moral funk 2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alvaro Borba - Panico Moral funk 2.mp3"; sourceTree = "<group>"; };
+		D9BB8F8328ECB2A900659D4A /* Jair Bolsonaro - Trilhoes de reais.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Trilhoes de reais.mp3"; sourceTree = "<group>"; };
+		D9BB8F8428ECB2A900659D4A /* Alvaro Borba - Bolsonarismo usa Panico Moral para evitar debates que realmente importam.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alvaro Borba - Bolsonarismo usa Panico Moral para evitar debates que realmente importam.mp3"; sourceTree = "<group>"; };
+		D9BB8F8528ECB2A900659D4A /* Alvaro Borba - Panico comunista funk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alvaro Borba - Panico comunista funk.mp3"; sourceTree = "<group>"; };
+		D9BB8F8628ECB2A900659D4A /* Alvaro Borba - Funk Panico Moral trecho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alvaro Borba - Funk Panico Moral trecho.mp3"; sourceTree = "<group>"; };
 		D9BB9264285DAA8E005CD6DD /* BegForMoneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BegForMoneyView.swift; sourceTree = "<group>"; };
 		D9BCAC2C28B598FA0098FE15 /* AppIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconCell.swift; sourceTree = "<group>"; };
 		D9BF9090284257F500BDDD7D /* Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shared.swift; sourceTree = "<group>"; };
@@ -1990,6 +2006,14 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9BB8F8428ECB2A900659D4A /* Alvaro Borba - Bolsonarismo usa Panico Moral para evitar debates que realmente importam.mp3 */,
+				D9BB8F8628ECB2A900659D4A /* Alvaro Borba - Funk Panico Moral trecho.mp3 */,
+				D9BB8F8528ECB2A900659D4A /* Alvaro Borba - Panico comunista funk.mp3 */,
+				D9BB8F8028ECB2A900659D4A /* Alvaro Borba - Panico institucional funk.mp3 */,
+				D9BB8F8228ECB2A900659D4A /* Alvaro Borba - Panico Moral funk 2.mp3 */,
+				D9BB8F8328ECB2A900659D4A /* Jair Bolsonaro - Trilhoes de reais.mp3 */,
+				D9BB8F8128ECB2A900659D4A /* Jair Bolsonaro - Vou ser fuzilado, ne.mp3 */,
+				D9BB8F7E28ECB01F00659D4A /* Joao Kleber - Paaara para para para.mp3 */,
 				D9BB8F7C28EC760500659D4A /* Heleno - Amigos e amigas, tenho uma mensagem para voces.mp3 */,
 				D9BB8F7A28EC753100659D4A /* Charlie e Lola - Da pra parar de enrolar.mp3 */,
 				D9BB8F7828EC72BE00659D4A /* Rita von Hunty - Pra que serve um bilionario.mp3 */,
@@ -3487,6 +3511,7 @@
 				D9BB8F7928EC72BE00659D4A /* Rita von Hunty - Pra que serve um bilionario.mp3 in Resources */,
 				D975FE2E2880B4F20035E6F2 /* Boldo - Puta que pariu marquinho.mp3 in Resources */,
 				49DEA9A828810E7B008C9BA1 /* UOL - Bolsonaro - A GENTE LAMENTA TODOS OS MORTOS MAS E O DESTINO DE TODO MUNDO short meme.mp3 in Resources */,
+				D9BB8F8B28ECB2A900659D4A /* Alvaro Borba - Bolsonarismo usa Panico Moral para evitar debates que realmente importam.mp3 in Resources */,
 				D975FE9C2880B4F20035E6F2 /* Bolsonaro - O problema ta ai, lamentamos.mp3 in Resources */,
 				D97500352880B4F20035E6F2 /* King Size - E vai ficar melhor assim que eu assumir como king size o senhor das terras do rio de janeiro.mp3 in Resources */,
 				D92AD1A928832AF2001CBCDF /* FRANCIEL CRUZ - LIVE DAS CANJEBRINAS - E meu pau em sua mao.mp3 in Resources */,
@@ -3615,6 +3640,7 @@
 				D975FE142880B4F20035E6F2 /* Bolsonaro - Tem que trabalhar.mp3 in Resources */,
 				D975FE952880B4F20035E6F2 /* Bolsonaro - A coisa e seria pessoal.mp3 in Resources */,
 				D97500212880B4F20035E6F2 /* Ernesto Araujo - Thats not true.mp3 in Resources */,
+				D9BB8F8928ECB2A900659D4A /* Alvaro Borba - Panico Moral funk 2.mp3 in Resources */,
 				D975FF762880B4F20035E6F2 /* Gumball - ooo que mais.mp3 in Resources */,
 				D975FECD2880B4F20035E6F2 /* Bolsonaro - Porra.mp3 in Resources */,
 				D975FF3A2880B4F20035E6F2 /* Reinaldo Azevedo - E mentira.mp3 in Resources */,
@@ -3632,6 +3658,7 @@
 				D975FE612880B4F20035E6F2 /* Bolsonaro - Na ordem de 800 pessoas a previsao e nao chegar a isso no tocante ao coronavirus.mp3 in Resources */,
 				D975FE7B2880B4F20035E6F2 /* BREAKING BAD - Yeah Science meme.mp3 in Resources */,
 				D975FEBC2880B4F20035E6F2 /* Frederico Goulart - Presidente por que sua esposa Michele recebeu 89 mil de Fabricio Queiroz.mp3 in Resources */,
+				D9BB8F8D28ECB2A900659D4A /* Alvaro Borba - Funk Panico Moral trecho.mp3 in Resources */,
 				D9FD0EFF28B2B2EE0000616A /* Um pequeno passo para o homem.mp3 in Resources */,
 				D97500502880B5190035E6F2 /* MULTISHOW - Titi Muller - Ta bombando mais do que o povo pedindo Anitta gente bolsonaro vai tomar no cu.mp3 in Resources */,
 				D975FF182880B4F20035E6F2 /* MINISTRO TERRIVELMENTE FILHO DA PUTA.mp3 in Resources */,
@@ -3730,6 +3757,7 @@
 				D975FE7D2880B4F20035E6F2 /* COMUNISTA MEME.mp3 in Resources */,
 				D975FE172880B4F20035E6F2 /* Malditos Milicos semitons.mp3 in Resources */,
 				D975FF922880B4F20035E6F2 /* Mourao - Coronel Brilhante Ustra Meu heroi short meme.mp3 in Resources */,
+				D9BB8F8828ECB2A900659D4A /* Jair Bolsonaro - Vou ser fuzilado, ne.mp3 in Resources */,
 				D97500222880B4F20035E6F2 /* Silas Malafaia - Agora a coisa vai ser mais profunda.mp3 in Resources */,
 				D921F888288B0177003979CC /* sarcasmo - cristiano botafogo.mp3 in Resources */,
 				D975FEB32880B4F20035E6F2 /* REDE TV - Isso e meio delirante short meme.mp3 in Resources */,
@@ -3819,6 +3847,7 @@
 				4979105528BEC6F700CDF01C /* Me deixa bastante chateado - Paulo Sergio Nogueira.mp3 in Resources */,
 				D92879E7283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 in Resources */,
 				D975FFA52880B4F20035E6F2 /* Away - nao fode mermao.mp3 in Resources */,
+				D9BB8F8728ECB2A900659D4A /* Alvaro Borba - Panico institucional funk.mp3 in Resources */,
 				D991512E2873E4C100FFAA29 /* funk-sexo-selvagem-1-mdb.mp3 in Resources */,
 				D975FFE32880B4F20035E6F2 /* Gaucho Puto - Seu bosta, seu lixo, tu e um ser tao repulsivo.mp3 in Resources */,
 				D975FED52880B4F20035E6F2 /* Marisa Monte - Ate parece short meme.mp3 in Resources */,
@@ -4004,6 +4033,7 @@
 				D92AD1B928833150001CBCDF /* Temer - Repito.mp3 in Resources */,
 				D975FFFB2880B4F20035E6F2 /* Choque de Cultura - Nem existe isso, ce ta inventando palavra.mp3 in Resources */,
 				D921F884288B0177003979CC /* Eduardo voce e burro.mp3 in Resources */,
+				D9BB8F8A28ECB2A900659D4A /* Jair Bolsonaro - Trilhoes de reais.mp3 in Resources */,
 				D975FEDC2880B4F20035E6F2 /* Bolsonaro - Lamento, quer que eu faca o que.mp3 in Resources */,
 				D975FE222880B4F20035E6F2 /* Bolsonaro - Esposa, ne, tem que aguentar, mas ta tudo bem.mp3 in Resources */,
 				D975FF272880B4F20035E6F2 /* Fred - Ce ta falando serio.mp3 in Resources */,
@@ -4018,6 +4048,7 @@
 				D9C5EC3728C7F7F70099EA86 /* Jair Bolsonaro - Putaria.mp3 in Resources */,
 				D91793BA288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao no MARXISMO CULTURAL.mp3 in Resources */,
 				D975FE3F2880B4F20035E6F2 /* Bolsonaro - Procura outro pra pagar a tua vacina ai.mp3 in Resources */,
+				D9BB8F8C28ECB2A900659D4A /* Alvaro Borba - Panico comunista funk.mp3 in Resources */,
 				D9FD0F0228B2B2EE0000616A /* presta atencao senao como suas tripa.mp3 in Resources */,
 				D975FE872880B4F20035E6F2 /* Handel - Aleluia short.mp3 in Resources */,
 				D975FF652880B4F20035E6F2 /* Reinaldo Azevedo - Parte Terminal do Aparelho Digestivo.mp3 in Resources */,
@@ -4144,6 +4175,7 @@
 				D975FFF52880B4F20035E6F2 /* CHOQUE DE CULTURA - Renan - Acho que deu uma pesada no clima do programa ai.mp3 in Resources */,
 				D975FF2D2880B4F20035E6F2 /* GALAS FEIOS - Moro desafinando no corrupcao.mp3 in Resources */,
 				D975FEE12880B4F20035E6F2 /* Bolsonaro - Finalzinho de pandemia.mp3 in Resources */,
+				D9BB8F7F28ECB01F00659D4A /* Joao Kleber - Paaara para para para.mp3 in Resources */,
 				D975FEB62880B4F20035E6F2 /* Nao fez mais que sua obrigacao short meme.mp3 in Resources */,
 				D975FF662880B4F20035E6F2 /* Magno Malta - So o escolhido de deus.mp3 in Resources */,
 				D975FE4F2880B4F20035E6F2 /* Saiddy Bamba - Sim sim sim sim sim.mp3 in Resources */,
