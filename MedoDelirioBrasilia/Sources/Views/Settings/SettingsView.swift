@@ -52,27 +52,36 @@ struct SettingsView: View {
                 }
             }
             
-            if showAskForMoneyView || CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
-                /*Section {
-                    PodcastAuthorsView()
-                        .padding(.vertical, 8)
-                }*/
+            /*Section {
+                PodcastAuthorsView()
+                    .padding(.vertical, 8)
+            }*/
+            
+            Section("💵  Jarro de gorjetas") {
+                BegForMoneyView()
+                    .padding(.vertical)
                 
-                Section {
-                    BegForMoneyView()
-                        .padding(.vertical)
-                    
-                    Button("Copiar chave Pix (e-mail)") {
-                        UIPasteboard.general.string = pixKey
-                        showPixKeyCopiedAlert = true
-                    }
-                    .alert(isPresented: $showPixKeyCopiedAlert) {
-                        Alert(title: Text("Chave copiada com sucesso!"), dismissButton: .default(Text("OK")))
-                    }
-                } header: {
-                    Text("Ajude o app")
-                } footer: {
-                    Text("Selecione E-mail como tipo de chave no app do seu banco. Evite qualquer opção que mencione QR Code.")
+                Button("🙂  Gorjeta pequena (R$ 4,90)") {
+                    UIPasteboard.general.string = pixKey
+                    showPixKeyCopiedAlert = true
+                }
+                .alert(isPresented: $showPixKeyCopiedAlert) {
+                    Alert(title: Text("Chave copiada com sucesso!"), dismissButton: .default(Text("OK")))
+                }
+                
+                Button("😀  Gorjeta média (R$ 10,90)") {
+                    UIPasteboard.general.string = pixKey
+                    showPixKeyCopiedAlert = true
+                }
+                
+                Button("😃  Gorjeta grande (R$ 27,90)") {
+                    UIPasteboard.general.string = pixKey
+                    showPixKeyCopiedAlert = true
+                }
+                
+                Button("😍  Gorjeta gigante (R$ 54,90)") {
+                    UIPasteboard.general.string = pixKey
+                    showPixKeyCopiedAlert = true
                 }
             }
             
