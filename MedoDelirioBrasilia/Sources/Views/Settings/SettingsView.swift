@@ -28,10 +28,12 @@ struct SettingsView: View {
                 NavigationLink(destination: HelpView()) {
                     Text("Ajuda")
                 }
-                
-                /*NavigationLink(destination: NotificationsSettingsView()) {
+            }
+            
+            Section {
+                NavigationLink(destination: NotificationsSettingsView()) {
                     Text("Notificações")
-                }*/
+                }
                 
                 if showChangeAppIcon {
                     NavigationLink(destination: ChangeAppIconView()) {
@@ -60,7 +62,7 @@ struct SettingsView: View {
                     BegForMoneyView()
                         .padding(.vertical)
                     
-                    Button("Copiar chave Pix") {
+                    Button("Copiar chave Pix (e-mail)") {
                         UIPasteboard.general.string = pixKey
                         showPixKeyCopiedAlert = true
                     }
@@ -70,14 +72,7 @@ struct SettingsView: View {
                 } header: {
                     Text("Ajude o app")
                 } footer: {
-                    Text("A chave é um endereço de e-mail, portanto, se o app do seu banco pedir o tipo de chave para fazer o Pix, selecione E-mail. Evite qualquer opção que mencione QR Code.")
-                }
-            }
-            
-            Section("🧑‍💻  Contribua ou entenda como o app funciona") {
-                Button("Ver código fonte no GitHub") {
-                    let githubUrl = URL(string: "https://github.com/rafaelclaycon/MedoDelirioBrasilia")!
-                    UIApplication.shared.open(githubUrl)
+                    Text("Selecione E-mail como tipo de chave no app do seu banco. Evite qualquer opção que mencione QR Code.")
                 }
             }
             
@@ -88,6 +83,13 @@ struct SettingsView: View {
                 }
                 
                 Text("Versão \(Versioneer.appVersion) Build \(Versioneer.buildVersionNumber)")
+            }
+            
+            Section("Contribua ou entenda como funciona") {
+                Button("Ver código fonte no GitHub") {
+                    let githubUrl = URL(string: "https://github.com/rafaelclaycon/MedoDelirioBrasilia")!
+                    UIApplication.shared.open(githubUrl)
+                }
             }
             
             Section {

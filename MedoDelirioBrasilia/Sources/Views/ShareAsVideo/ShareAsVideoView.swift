@@ -5,6 +5,7 @@ struct ShareAsVideoView: View {
     @StateObject var viewModel: ShareAsVideoViewViewModel
     @Binding var isBeingShown: Bool
     @Binding var result: ShareAsVideoResult
+    @State var useLongerGeneratingVideoMessage: Bool
     
     @State private var tipText: String = .empty
     
@@ -102,8 +103,13 @@ struct ShareAsVideoView: View {
             }
             
             if viewModel.isShowingProcessingView {
-                ProcessingView(message: $viewModel.processingViewMessage)
-                    .padding(.bottom)
+                if useLongerGeneratingVideoMessage {
+                    ProcessingView(message: Shared.ShareAsVideo.generatingVideoLongMessage, progressViewYOffset: -27, progressViewWidth: 270, messageYOffset: 30)
+                        .padding(.bottom)
+                } else {
+                    ProcessingView(message: Shared.ShareAsVideo.generatingVideoShortMessage)
+                        .padding(.bottom)
+                }
             }
         }
         .onAppear {
@@ -119,7 +125,7 @@ struct ShareAsVideoView: View {
 struct ShareAsVideoView_Previews: PreviewProvider {
 
     static var previews: some View {
-        ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: "ABC", contentTitle: "Test", audioFilename: .empty), isBeingShown: .constant(true), result: .constant(ShareAsVideoResult()))
+        ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: "ABC", contentTitle: "Test", audioFilename: .empty), isBeingShown: .constant(true), result: .constant(ShareAsVideoResult()), useLongerGeneratingVideoMessage: false)
     }
 
 }

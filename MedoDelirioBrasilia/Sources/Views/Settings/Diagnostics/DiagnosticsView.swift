@@ -100,7 +100,7 @@ struct DiagnosticsView: View {
             } header: {
                 Text("Debug dos Favoritos")
             } footer: {
-                Text("Envie o arquivo do banco de dados para medodeliriosuporte@gmail.com.")
+                Text("Compacte e envie o arquivo do banco de dados para medodeliriosuporte@gmail.com.")
             }
             
             /*if CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {

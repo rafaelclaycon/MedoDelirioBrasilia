@@ -40,7 +40,7 @@ struct NotificationsSymbol: View {
                     .frame(height: 34)
                     .foregroundColor(.green)
             }
-            .padding(.bottom, 80)
+            .padding(.bottom, 75)
             .padding(.trailing, 265)
         }
     }

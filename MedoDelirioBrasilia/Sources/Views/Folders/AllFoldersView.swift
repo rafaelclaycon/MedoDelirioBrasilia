@@ -1,19 +1,27 @@
 import SwiftUI
 
+/// iPad and Mac only.
 struct AllFoldersView: View {
 
+    @Binding var isShowingFolderInfoEditingSheet: Bool
+    @Binding var updateFolderList: Bool
+    @State var deleteFolderAid = DeleteFolderViewAid()
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .center) {
-                Text("Teste")
+                FolderList(updateFolderList: $updateFolderList, deleteFolderAid: $deleteFolderAid)
             }
+            .padding(.horizontal)
+            .padding(.top, 7)
+            .padding(.bottom, 18)
         }
         .navigationTitle("Pastas")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Button {
-                    //showingFolderInfoEditingView = true
+                    isShowingFolderInfoEditingSheet = true
                 } label: {
                     HStack {
                         Image(systemName: "plus")
@@ -22,6 +30,15 @@ struct AllFoldersView: View {
                 }
             }
         }
+        .alert(isPresented: $deleteFolderAid.showAlert) {
+            Alert(title: Text(deleteFolderAid.alertTitle), message: Text(deleteFolderAid.alertMessage), primaryButton: .destructive(Text("Apagar"), action: {
+                guard deleteFolderAid.folderIdForDeletion.isEmpty == false else {
+                    return
+                }
+                try? database.deleteUserFolder(withId: deleteFolderAid.folderIdForDeletion)
+                updateFolderList = true
+            }), secondaryButton: .cancel(Text("Cancelar")))
+        }
     }
 
 }
@@ -29,7 +46,7 @@ struct AllFoldersView: View {
 struct AllFoldersView_Previews: PreviewProvider {
 
     static var previews: some View {
-        AllFoldersView()
+        AllFoldersView(isShowingFolderInfoEditingSheet: .constant(false), updateFolderList: .constant(false))
     }
 
 }

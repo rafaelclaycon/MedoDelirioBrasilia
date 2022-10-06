@@ -11,20 +11,13 @@ struct BegForMoneyView: View {
                     .clipShape(Circle())
                     .frame(width: 80)
                 
-                Text("Oi! Eu sou Rafael, o criador dos apps do Medo e Delírio para **iPhone, iPad e Mac**.")
+                Text("Oi! Eu sou Rafael, o criador do app Medo e Delírio para iPhone, iPad e Mac.")
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 15)
             }
             
             VStack(alignment: .leading, spacing: 18) {
-                Text("Sou um único desenvolvedor dedicando meu tempo livre para esse projeto.")
-                
-                if UIDevice.current.userInterfaceIdiom == .phone {
-                    Text("Se você está curtindo o app e gostaria de ajudar, use a chave abaixo. Assim você garante novos sons, recursos e o meu muito obrigado!")
-                } else {
-                    Text("Se você está curtindo o app e gostaria de ajudar, use a chave abaixo.")
-                    Text("Assim você garante novos sons, recursos e o meu muito obrigado!")
-                }
+                Text("Meu trabalho é voluntário e envolve custos mensais com servidor (~R$ 30). Se você quiser ajudar com um capilé ou um cafezinho, eu agradeço muito!")
             }
         }
     }
