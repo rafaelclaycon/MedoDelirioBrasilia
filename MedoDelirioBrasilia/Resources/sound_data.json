@@ -2511,15 +2511,6 @@
         "isOffensive": false
     },
     {
-        "id": "3AEB9E3D-54FE-486E-94D4-C0263CED0526",
-        "title": "Pra mídia, o vírus sou eu",
-        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
-        "description": "Pra midia o virus sou eu",
-        "filename": "Bolsonaro - Pra midia, o virus sou eu.mp3",
-        "dateAdded": "2021-03-05T00:00:00Z",
-        "isOffensive": false
-    },
-    {
         "id": "49CEBA2A-90CB-41CF-80CC-ED8ACF3F68E6",
         "title": "A maneira que tem de realmente pensar em coisa séria no país",
         "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
@@ -6792,6 +6783,33 @@
         "description": "Trilhoes de reais",
         "filename": "Jair Bolsonaro - Trilhoes de reais.mp3",
         "dateAdded": "2022-10-04T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "416E9453-8110-4EFC-9C13-166795560C45",
+        "title": "Abertura do Lombardi",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "Abertura do Lombardi",
+        "filename": "Abertura Lombardi.mp3",
+        "dateAdded": "2022-10-06T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "FC68BB0B-2719-4DC4-848A-38F4097E7390",
+        "title": "Eu vou votar no barba, não tem jeito",
+        "authorId": "F1683588-F547-4F2F-B3E4-8A328FAFC1AB",
+        "description": "eu vou votar no barba maluco não tem jeito tá ligado",
+        "filename": "Casimiro - Eu vou votar no barba, nao tem jeito.mp3",
+        "dateAdded": "2022-10-06T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "9C6966A7-BC7E-48A7-9A14-93AFB0B5C5F2",
+        "title": "Se o Bolsonaro tá de um lado, eu tô do outro",
+        "authorId": "F1683588-F547-4F2F-B3E4-8A328FAFC1AB",
+        "description": "porque se o bolsonaro tá de um lado eu tô do outro",
+        "filename": "Casimiro - Porque se o Bolsonaro ta de um lado, eu to do outro.mp3",
+        "dateAdded": "2022-10-06T00:00:00Z",
         "isOffensive": true
     }
 ]

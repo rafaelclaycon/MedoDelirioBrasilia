@@ -218,6 +218,9 @@
 		D9625E8228238F9B00080852 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9625E8128238F9B00080852 /* Assets.xcassets */; };
 		D9625E8528238F9B00080852 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9625E8428238F9B00080852 /* Preview Assets.xcassets */; };
 		D9625E8F28238F9B00080852 /* LocalDatabaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9625E8E28238F9B00080852 /* LocalDatabaseTests.swift */; };
+		D964CF3428EEEDC6004DECAF /* Abertura Lombardi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D964CF3328EEEDC6004DECAF /* Abertura Lombardi.mp3 */; };
+		D964CF3928EEF83A004DECAF /* Casimiro - Eu vou votar no barba, nao tem jeito.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D964CF3728EEF839004DECAF /* Casimiro - Eu vou votar no barba, nao tem jeito.mp3 */; };
+		D964CF3A28EEF83A004DECAF /* Casimiro - Porque se o Bolsonaro ta de um lado, eu to do outro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D964CF3828EEF83A004DECAF /* Casimiro - Porque se o Bolsonaro ta de um lado, eu to do outro.mp3 */; };
 		D96E115D28459D8800306859 /* UserActivityWaiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96E115C28459D8800306859 /* UserActivityWaiter.swift */; };
 		D973076C28AC49B100FBB3B8 /* DiagnosticsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D973076B28AC49B100FBB3B8 /* DiagnosticsViewViewModel.swift */; };
 		D97500002880B4F20035E6F2 /* Bolsonaro - Ah nhem nhem nhem nhem olha o problema ai.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FDC92880B4F00035E6F2 /* Bolsonaro - Ah nhem nhem nhem nhem olha o problema ai.mp3 */; };
@@ -570,7 +573,6 @@
 		D975FF1C2880B4F20035E6F2 /* Paulo Guedes - Sexo Selvagem.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FCE52880B4EC0035E6F2 /* Paulo Guedes - Sexo Selvagem.mp3 */; };
 		D975FF1D2880B4F20035E6F2 /* BandNews FM - Ciro Gomes - Esse neto bosta, esse braga bosta, esse neto braga.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FCE62880B4EC0035E6F2 /* BandNews FM - Ciro Gomes - Esse neto bosta, esse braga bosta, esse neto braga.mp3 */; };
 		D975FF1E2880B4F20035E6F2 /* DESMENTINDO BOLSONARO - Milton Ribeiro - Isso eu falo publicamente porque a minha natureza nao e de mentira.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FCE72880B4EC0035E6F2 /* DESMENTINDO BOLSONARO - Milton Ribeiro - Isso eu falo publicamente porque a minha natureza nao e de mentira.mp3 */; };
-		D975FF1F2880B4F20035E6F2 /* Bolsonaro - Pra midia, o virus sou eu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FCE82880B4EC0035E6F2 /* Bolsonaro - Pra midia, o virus sou eu.mp3 */; };
 		D975FF202880B4F20035E6F2 /* Caue Moura - Foi mal tava doidao aqui nao seu arrombado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FCE92880B4EC0035E6F2 /* Caue Moura - Foi mal tava doidao aqui nao seu arrombado.mp3 */; };
 		D975FF212880B4F20035E6F2 /* Lucca  Wilker - ME IGNOROU - Ignorou me bloqueou short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FCEA2880B4EC0035E6F2 /* Lucca  Wilker - ME IGNOROU - Ignorou me bloqueou short meme.mp3 */; };
 		D975FF222880B4F20035E6F2 /* Ciro Gomes - Conspirador filho da puta.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FCEB2880B4EC0035E6F2 /* Ciro Gomes - Conspirador filho da puta.mp3 */; };
@@ -1210,6 +1212,9 @@
 		D9625E8428238F9B00080852 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D9625E8A28238F9B00080852 /* MedoDelirioBrasiliaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MedoDelirioBrasiliaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9625E8E28238F9B00080852 /* LocalDatabaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDatabaseTests.swift; sourceTree = "<group>"; };
+		D964CF3328EEEDC6004DECAF /* Abertura Lombardi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Abertura Lombardi.mp3"; sourceTree = "<group>"; };
+		D964CF3728EEF839004DECAF /* Casimiro - Eu vou votar no barba, nao tem jeito.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Casimiro - Eu vou votar no barba, nao tem jeito.mp3"; sourceTree = "<group>"; };
+		D964CF3828EEF83A004DECAF /* Casimiro - Porque se o Bolsonaro ta de um lado, eu to do outro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Casimiro - Porque se o Bolsonaro ta de um lado, eu to do outro.mp3"; sourceTree = "<group>"; };
 		D9653D9C2882749C00C745F4 /* MedoDelirioBrasilia.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MedoDelirioBrasilia.entitlements; sourceTree = "<group>"; };
 		D96E115C28459D8800306859 /* UserActivityWaiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserActivityWaiter.swift; sourceTree = "<group>"; };
 		D973076B28AC49B100FBB3B8 /* DiagnosticsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticsViewViewModel.swift; sourceTree = "<group>"; };
@@ -1493,7 +1498,6 @@
 		D975FCE52880B4EC0035E6F2 /* Paulo Guedes - Sexo Selvagem.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Paulo Guedes - Sexo Selvagem.mp3"; sourceTree = "<group>"; };
 		D975FCE62880B4EC0035E6F2 /* BandNews FM - Ciro Gomes - Esse neto bosta, esse braga bosta, esse neto braga.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "BandNews FM - Ciro Gomes - Esse neto bosta, esse braga bosta, esse neto braga.mp3"; sourceTree = "<group>"; };
 		D975FCE72880B4EC0035E6F2 /* DESMENTINDO BOLSONARO - Milton Ribeiro - Isso eu falo publicamente porque a minha natureza nao e de mentira.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "DESMENTINDO BOLSONARO - Milton Ribeiro - Isso eu falo publicamente porque a minha natureza nao e de mentira.mp3"; sourceTree = "<group>"; };
-		D975FCE82880B4EC0035E6F2 /* Bolsonaro - Pra midia, o virus sou eu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Pra midia, o virus sou eu.mp3"; sourceTree = "<group>"; };
 		D975FCE92880B4EC0035E6F2 /* Caue Moura - Foi mal tava doidao aqui nao seu arrombado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Caue Moura - Foi mal tava doidao aqui nao seu arrombado.mp3"; sourceTree = "<group>"; };
 		D975FCEA2880B4EC0035E6F2 /* Lucca  Wilker - ME IGNOROU - Ignorou me bloqueou short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lucca  Wilker - ME IGNOROU - Ignorou me bloqueou short meme.mp3"; sourceTree = "<group>"; };
 		D975FCEB2880B4EC0035E6F2 /* Ciro Gomes - Conspirador filho da puta.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ciro Gomes - Conspirador filho da puta.mp3"; sourceTree = "<group>"; };
@@ -2006,6 +2010,9 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D964CF3728EEF839004DECAF /* Casimiro - Eu vou votar no barba, nao tem jeito.mp3 */,
+				D964CF3828EEF83A004DECAF /* Casimiro - Porque se o Bolsonaro ta de um lado, eu to do outro.mp3 */,
+				D964CF3328EEEDC6004DECAF /* Abertura Lombardi.mp3 */,
 				D9BB8F8428ECB2A900659D4A /* Alvaro Borba - Bolsonarismo usa Panico Moral para evitar debates que realmente importam.mp3 */,
 				D9BB8F8628ECB2A900659D4A /* Alvaro Borba - Funk Panico Moral trecho.mp3 */,
 				D9BB8F8528ECB2A900659D4A /* Alvaro Borba - Panico comunista funk.mp3 */,
@@ -2299,7 +2306,6 @@
 				D975FD9A2880B4EF0035E6F2 /* Bolsonaro - Porra Porras.mp3 */,
 				D975FC962880B4EB0035E6F2 /* Bolsonaro - Porra.mp3 */,
 				D975FDFF2880B4F10035E6F2 /* Bolsonaro - Pra midia o virus sou eu.mp3 */,
-				D975FCE82880B4EC0035E6F2 /* Bolsonaro - Pra midia, o virus sou eu.mp3 */,
 				D975FD962880B4EF0035E6F2 /* Bolsonaro - Presente Puti prentiputi pretiputi presidente putin.mp3 */,
 				D975FC8C2880B4EB0035E6F2 /* Bolsonaro - Pretendo beneficiar um filho meu sim pretendo.mp3 */,
 				D975FBFF2880B4E90035E6F2 /* Bolsonaro - Problemas.mp3 */,
@@ -3651,6 +3657,7 @@
 				D934432728381DEF00ADCD38 /* author_data.json in Resources */,
 				D921F87F288B0177003979CC /* Aglomeracao de idosos todos doentes.mp3 in Resources */,
 				D975FF7A2880B4F20035E6F2 /* Dilma - Vai todo mundo perder.mp3 in Resources */,
+				D964CF3928EEF83A004DECAF /* Casimiro - Eu vou votar no barba, nao tem jeito.mp3 in Resources */,
 				D9625E8528238F9B00080852 /* Preview Assets.xcassets in Resources */,
 				D97500152880B4F20035E6F2 /* Eduardo Sterblitch - E mais ou menos curto.mp3 in Resources */,
 				D975FE452880B4F20035E6F2 /* Olavo de Carvalho - Porra.mp3 in Resources */,
@@ -3824,7 +3831,6 @@
 				D975FF4F2880B4F20035E6F2 /* Silas Malafaia - Eu tenho pena short.mp3 in Resources */,
 				D9FD0F1528B2B2FA0000616A /* Musica de Campanha do Bolsonaro.mp3 in Resources */,
 				49DEA9DE288118FA008C9BA1 /* Gilmar mendes - Eine grosse Confusion.mp3 in Resources */,
-				D975FF1F2880B4F20035E6F2 /* Bolsonaro - Pra midia, o virus sou eu.mp3 in Resources */,
 				D97500182880B4F20035E6F2 /* Lula - Ele nao sabe o que e ser presidente da republica.mp3 in Resources */,
 				49DEA9BA28811219008C9BA1 /* Carole King - Its Too Late - And its too late, baby, now, its too late short meme.mp3 in Resources */,
 				D9267EE828D1271400C0DC6C /* Milton Leite - Chato pra caralho.mp3 in Resources */,
@@ -3928,6 +3934,7 @@
 				D9EDB87828E3E477007724E2 /* Ciro Nogueira - Restricao porque e um fascista.mp3 in Resources */,
 				D97B2DE228E60B8600C3B50B /* Soraya Thronicke - Nao cutuque onca com a sua vara curta.mp3 in Resources */,
 				D975FFC42880B4F20035E6F2 /* CASIMIRO - Ta maluco.mp3 in Resources */,
+				D964CF3428EEEDC6004DECAF /* Abertura Lombardi.mp3 in Resources */,
 				D9DB6F8128CD6E2900E24BDE /* UOL - JOAO GORDO - Doidao de droga.mp3 in Resources */,
 				D923126428AAFD5C00436336 /* Fala, MR - Nao e um meme para muitos tios e tias do whatsapp zap.mp3 in Resources */,
 				D975FE712880B4F20035E6F2 /* Alceu Valenca - Tomara - Tomara meu deus tomara.mp3 in Resources */,
@@ -4094,6 +4101,7 @@
 				D975FF422880B4F20035E6F2 /* Nao sei meme short exaltado.mp3 in Resources */,
 				D975FFC02880B4F20035E6F2 /* Choque de Cultura - Julinho Foda-se.mp3 in Resources */,
 				D92AD1B728832EB1001CBCDF /* ConservaTalk - Abraham Weintraub - Ta errado.mp3 in Resources */,
+				D964CF3A28EEF83A004DECAF /* Casimiro - Porque se o Bolsonaro ta de um lado, eu to do outro.mp3 in Resources */,
 				D975FE972880B4F20035E6F2 /* Alexandre Frota - Tai o.mp3 in Resources */,
 				D975FE372880B4F20035E6F2 /* Fudeu meme short.mp3 in Resources */,
 				D975FF532880B4F20035E6F2 /* Damares - Uau.mp3 in Resources */,
@@ -4509,7 +4517,7 @@
 				CODE_SIGN_ENTITLEMENTS = MedoWidget/Sources/WidgetSupport/MedoWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MedoWidget/Sources/WidgetSupport/Info.plist;
@@ -4521,7 +4529,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.1;
+				MARKETING_VERSION = 4.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -4541,7 +4549,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_ENTITLEMENTS = MedoWidget/Sources/WidgetSupport/MedoWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MedoWidget/Sources/WidgetSupport/Info.plist;
@@ -4553,7 +4561,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.1;
+				MARKETING_VERSION = 4.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -4689,7 +4697,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/Sources/AppSupport/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -4709,7 +4717,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.1;
+				MARKETING_VERSION = 4.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -4730,7 +4738,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/Sources/AppSupport/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -4750,7 +4758,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.1;
+				MARKETING_VERSION = 4.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
