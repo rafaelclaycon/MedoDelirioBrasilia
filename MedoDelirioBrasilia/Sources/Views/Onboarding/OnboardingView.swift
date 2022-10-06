@@ -38,22 +38,23 @@ struct OnboardingView: View {
                 .buttonBorderShape(.capsule)
                 .padding(.top)
                 
-                if UIDevice.current.userInterfaceIdiom == .phone {
-                    Button {
-                        AppPersistentMemory.setHasShownNotificationsOnboarding(to: true)
-                        isBeingShown = false
-                    } label: {
-                        Text("Ah é, é? F***-se")
-                    }
-                    .foregroundColor(.blue)
-                    .padding(.vertical)
-                } else {
-                    Text("Toque na área apagada fora dessa janela para fechá-la.")
+                Button {
+                    AppPersistentMemory.setHasShownNotificationsOnboarding(to: true)
+                    isBeingShown = false
+                } label: {
+                    Text("Ah é, é? F***-se")
+                }
+                .foregroundColor(.blue)
+                .padding(.vertical)
+                
+                if UIDevice.current.userInterfaceIdiom != .phone {
+                    Text("Caso a tela não feche automaticamente ao escolher uma das opções, toque fora dela (na área apagada).")
                         .multilineTextAlignment(.center)
                         .padding(.horizontal)
                         .font(.callout)
                         .foregroundColor(.gray)
                         .padding(.vertical)
+                        .padding(.horizontal)
                 }
                 
                 Text("Você pode ativar as notificações mais tarde nos Ajustes do app.")
