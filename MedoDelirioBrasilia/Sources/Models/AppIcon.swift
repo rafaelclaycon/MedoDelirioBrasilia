@@ -17,6 +17,7 @@ enum Icon: String, CaseIterable, Identifiable {
     case bomDiaBoaTarde       = "AppIcon-BomDiaBoaTarde"
     case medoDelicia          = "AppIcon-MedoDelicia"
     case lgbt                 = "AppIcon-LGBT"
+    case lula                 = "AppIcon-Lula"
     
     var id: String { self.rawValue }
     var marketingName: String {
@@ -41,6 +42,8 @@ enum Icon: String, CaseIterable, Identifiable {
             return "Medo e Delícia"
         case .lgbt:
             return "Orgulho"
+        case .lula:
+            return "Lula (por @crisvector)"
         }
     }
     var isOffensive: Bool {
@@ -64,6 +67,8 @@ enum Icon: String, CaseIterable, Identifiable {
         case .medoDelicia:
             return false
         case .lgbt:
+            return false
+        case .lula:
             return false
         }
     }
