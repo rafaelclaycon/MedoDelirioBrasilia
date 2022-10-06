@@ -58,11 +58,17 @@ struct TrendsView: View {
                 } else {
                     HStack {
                         if showMostSharedSoundsByTheUser {
-                            MostSharedByMeView()
+                            VStack {
+                                MostSharedByMeView()
+                                Spacer()
+                            }
                         }
                         
                         if showSoundsMostSharedByTheAudience {
-                            MostSharedByAudienceView()
+                            VStack {
+                                MostSharedByAudienceView()
+                                Spacer()
+                            }
                         }
                     }
                 }
