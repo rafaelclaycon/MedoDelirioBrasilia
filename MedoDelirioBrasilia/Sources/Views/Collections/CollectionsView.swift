@@ -25,13 +25,13 @@ struct CollectionsView: View {
                         Spacer()
                     }
                     
-                    VStack(spacing: 10) {
-                        Text("Nenhuma Coleção")
-                            .foregroundColor(.gray)
-                            .font(.title3)
-                            .multilineTextAlignment(.center)
-                    }
-                    .padding(.vertical, UIDevice.current.userInterfaceIdiom == .phone ? 100 : 200)
+//                    VStack(spacing: 10) {
+//                        Text("Nenhuma Coleção")
+//                            .foregroundColor(.gray)
+//                            .font(.title3)
+//                            .multilineTextAlignment(.center)
+//                    }
+//                    .padding(.vertical, UIDevice.current.userInterfaceIdiom == .phone ? 100 : 200)
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         LazyHGrid(rows: rows, spacing: 14) {
@@ -43,7 +43,7 @@ struct CollectionsView: View {
                                 }
                             }
                         }
-                        .frame(height: 210)
+                        .frame(height: 220)
                         .padding(.leading)
                         .padding(.trailing)
                     }
