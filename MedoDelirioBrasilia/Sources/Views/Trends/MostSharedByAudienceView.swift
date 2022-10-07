@@ -3,14 +3,15 @@ import SwiftUI
 struct MostSharedByAudienceView: View {
 
     @StateObject private var viewModel = MostSharedByAudienceViewViewModel()
-    @State private var mostSharedTimeIntervalOption = 2
+    @State private var timeIntervalOption = 2
+    
     
     private let columns = [
         GridItem(.flexible())
     ]
     
     private var dropDownText: String {
-        switch mostSharedTimeIntervalOption {
+        switch timeIntervalOption {
         case 1:
             return Shared.Trends.lastMonth
         case 2:
@@ -31,7 +32,7 @@ struct MostSharedByAudienceView: View {
             
             HStack {
                 Menu {
-                    Picker("Período", selection: $mostSharedTimeIntervalOption) {
+                    Picker("Período", selection: $timeIntervalOption) {
                         Text(Shared.Trends.lastWeek).tag(0)
                         Text(Shared.Trends.lastMonth).tag(1)
                         Text(Shared.Trends.allTime).tag(2)
@@ -49,19 +50,21 @@ struct MostSharedByAudienceView: View {
                 Spacer()
                 
                 Button {
-                    //viewModel.reloadPersonalList(withTopChartItems: <#T##[TopChartItem]?#>)
+                    if timeIntervalOption == 2 {
+                        
+                    }
                 } label: {
                     HStack {
                         Image(systemName: "arrow.triangle.2.circlepath")
                         Text("Atualizar")
                     }
                 }
-                .disabled(mostSharedTimeIntervalOption == 0 || mostSharedTimeIntervalOption == 1)
+                .disabled(timeIntervalOption == 0 || timeIntervalOption == 1)
             }
             .padding(.horizontal)
             .padding(.top, 1)
             
-            if mostSharedTimeIntervalOption == 0 || mostSharedTimeIntervalOption == 1 {
+            if timeIntervalOption == 0 || timeIntervalOption == 1 {
                 HStack {
                     Spacer()
                     
