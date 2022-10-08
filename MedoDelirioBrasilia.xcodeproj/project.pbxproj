@@ -865,6 +865,8 @@
 		D9A096D8287CE72300773869 /* Mailman.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A096D7287CE72300773869 /* Mailman.swift */; };
 		D9A32DC7285ACE880038A370 /* PodiumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A32DC6285ACE880038A370 /* PodiumTests.swift */; };
 		D9A3AB6B28F03C970064CB7A /* TrendsViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A3AB6A28F03C970064CB7A /* TrendsViewState.swift */; };
+		D9A3AB6D28F062580064CB7A /* TimeKeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A3AB6C28F062580064CB7A /* TimeKeeper.swift */; };
+		D9A3AB6F28F063FF0064CB7A /* TimeKeeperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A3AB6E28F063FF0064CB7A /* TimeKeeperTests.swift */; };
 		D9A8AB212853EB5500B5A94B /* InitialMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A8AB202853EB5500B5A94B /* InitialMigration.swift */; };
 		D9A8AB2528543F8E00B5A94B /* SharingLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A8AB2428543F8E00B5A94B /* SharingLogCell.swift */; };
 		D9A8AB282854436500B5A94B /* Date+ToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A8AB272854436500B5A94B /* Date+ToString.swift */; };
@@ -1866,6 +1868,8 @@
 		D9A096D7287CE72300773869 /* Mailman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mailman.swift; sourceTree = "<group>"; };
 		D9A32DC6285ACE880038A370 /* PodiumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodiumTests.swift; sourceTree = "<group>"; };
 		D9A3AB6A28F03C970064CB7A /* TrendsViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsViewState.swift; sourceTree = "<group>"; };
+		D9A3AB6C28F062580064CB7A /* TimeKeeper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeKeeper.swift; sourceTree = "<group>"; };
+		D9A3AB6E28F063FF0064CB7A /* TimeKeeperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeKeeperTests.swift; sourceTree = "<group>"; };
 		D9A8AB202853EB5500B5A94B /* InitialMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialMigration.swift; sourceTree = "<group>"; };
 		D9A8AB2428543F8E00B5A94B /* SharingLogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingLogCell.swift; sourceTree = "<group>"; };
 		D9A8AB272854436500B5A94B /* Date+ToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ToString.swift"; sourceTree = "<group>"; };
@@ -2872,6 +2876,7 @@
 				D9A096D7287CE72300773869 /* Mailman.swift */,
 				D94AD34828811ADC00D3E4F0 /* Versioneer.swift */,
 				D916536328AD7FF7007F141D /* VideoMaker.swift */,
+				D9A3AB6C28F062580064CB7A /* TimeKeeper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -2889,6 +2894,7 @@
 			children = (
 				D9523744285BF9D300E6C838 /* Logger */,
 				D9523745285BF9D900E6C838 /* Podium */,
+				D9A3AB6E28F063FF0064CB7A /* TimeKeeperTests.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -4441,6 +4447,7 @@
 				D92C0CAA28405B2D009CF19A /* NoFavoritesView.swift in Sources */,
 				D957048328AFCC93008DEF8C /* ChangeAppIconView.swift in Sources */,
 				D9BF90BE2842EAED00BDDD7D /* TopChartCellView.swift in Sources */,
+				D9A3AB6D28F062580064CB7A /* TimeKeeper.swift in Sources */,
 				D9943F1E286419C2002C6B97 /* LocalDatabase+TopChart.swift in Sources */,
 				D9A8AB212853EB5500B5A94B /* InitialMigration.swift in Sources */,
 				D946117E28613D3200C4FB7E /* CollectionDetailView.swift in Sources */,
@@ -4490,6 +4497,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9523741285BF98A00E6C838 /* NetworkRabbitStub.swift in Sources */,
+				D9A3AB6F28F063FF0064CB7A /* TimeKeeperTests.swift in Sources */,
 				D9625E8F28238F9B00080852 /* LocalDatabaseTests.swift in Sources */,
 				D9351C6128441FA400D4317E /* LoggerTests.swift in Sources */,
 				D92C0CA62840125B009CF19A /* SoundsViewViewModelTests.swift in Sources */,
