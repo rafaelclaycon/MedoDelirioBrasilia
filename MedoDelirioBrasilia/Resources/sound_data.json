@@ -6811,5 +6811,23 @@
         "filename": "Casimiro - Porque se o Bolsonaro ta de um lado, eu to do outro.mp3",
         "dateAdded": "2022-10-06T00:00:00Z",
         "isOffensive": true
+    },
+    {
+        "id": "5C4F0786-56CB-4462-AF17-E1288EE25B0F",
+        "title": "Vou dedicar minha existência a odiar esse rapaz",
+        "authorId": "DDEBD7C4-9CC5-4DD6-B207-58A27C37A8E0",
+        "description": "eu vou dedicar minha vida inteira minha existencia agora a odiar esse rapaz esse cidadao gostaria que ele soubesse disso",
+        "filename": "Falha de Cobertura - Craque Daniel - Vou dedicar minha existencia a partir de agora a odiar esse rapaz esse cidadao.mp3",
+        "dateAdded": "2022-10-08T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "05A66869-09E5-4B4C-B8F3-816A17558603",
+        "title": "Eu acho é pouco",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Eu acho e pouco",
+        "filename": "Eu acho e pouco.mp3",
+        "dateAdded": "2022-10-08T00:00:00Z",
+        "isOffensive": false
     }
 ]
