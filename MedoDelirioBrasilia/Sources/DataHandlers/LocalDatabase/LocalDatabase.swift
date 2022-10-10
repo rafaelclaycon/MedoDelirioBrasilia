@@ -52,7 +52,7 @@ extension LocalDatabase {
 
     static func databaseFilepath() -> String {
         let path = NSSearchPathForDirectoriesInDomains(
-            .cachesDirectory, .userDomainMask, true
+            .documentDirectory, .userDomainMask, true
         ).first!
         return "\(path)/medo_db.sqlite3"
     }
