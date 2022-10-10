@@ -252,6 +252,10 @@ struct SoundsView: View {
                     subviewToOpen = .onboardingView
                     showingModalView = true
                 }
+                
+                if moveDatabaseIssue.isEmpty == false {
+                    viewModel.showMoveDatabaseIssueAlert()
+                }
             }
             .sheet(isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog) {
                 EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog, subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.selectedSound?.title ?? ""), emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.selectedSound?.authorName ?? "", viewModel.selectedSound?.id ?? ""))
