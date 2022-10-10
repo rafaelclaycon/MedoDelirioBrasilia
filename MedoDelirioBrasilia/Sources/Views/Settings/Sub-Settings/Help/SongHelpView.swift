@@ -14,20 +14,21 @@ struct SongHelpView: View {
     
     private var shareInstruction: String {
         if ProcessInfo.processInfo.isMacCatalystApp {
-            return "Para compartilhar, clique e segure a música por alguns segundos. Não se assuste, é normal que apareça uma tela vazia. As opções de compartilhamento aparecerão em um dos cantos da janela. Para sair sem compartilhar, toque em qualquer lugar da tela."
+            return "Para compartilhar, clique com o botão direito na música e escolha Compartilhar Música. Não se assuste, é normal que apareça uma tela vazia. As opções de compartilhamento aparecerão em um dos cantos da janela. Para sair sem compartilhar, toque em qualquer lugar da tela."
         } else {
-            return "Para compartilhar, toque e segure a música por alguns segundos e então escolha o app pelo qual deseja enviá-la."
+            return "Para compartilhar, segure a música e escolha Compartilhar Música."
         }
     }
     
     private var searchInstruction: String {
-        switch UIDevice.current.userInterfaceIdiom {
-        case .phone:
-            return "Para pesquisar, vá até o topo da lista e puxe mais um pouco para baixo até revelar o campo de pesquisa.\n\nA pesquisa considera apenas o título da música."
-        case .pad:
-            return "Para pesquisar, toque no campo Buscar no canto superior direito da tela de músicas e digite o texto que procura.\n\nA pesquisa considera apenas o título da música."
-        default:
+        if ProcessInfo.processInfo.isMacCatalystApp {
             return "Para pesquisar, clique no campo Buscar no canto superior direito da tela de músicas e digite o texto que procura.\n\nA pesquisa considera apenas o título da música."
+        } else {
+            if UIDevice.current.userInterfaceIdiom == .phone {
+                return "Para pesquisar, vá até o topo da lista e puxe mais um pouco para baixo até revelar o campo de pesquisa.\n\nA pesquisa considera apenas o título da música."
+            } else {
+                return "Para pesquisar, toque no campo Buscar no canto superior direito da tela de músicas e digite o texto que procura.\n\nA pesquisa considera apenas o título da música."
+            }
         }
     }
     

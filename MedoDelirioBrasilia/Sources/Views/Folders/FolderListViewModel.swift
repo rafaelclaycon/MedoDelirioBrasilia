@@ -9,10 +9,10 @@ class FolderListViewModel: ObservableObject {
     @Published var currentActivity: NSUserActivity? = nil
     
     // Alerts
-    @Published var alertTitle: String = ""
-    @Published var alertMessage: String = ""
-    @Published var showAlert: Bool = false
-    @Published var folderIdForDeletion: String = ""
+//    @Published var alertTitle: String = ""
+//    @Published var alertMessage: String = ""
+//    @Published var showAlert: Bool = false
+//    @Published var folderIdForDeletion: String = ""
     
     func reloadFolderList(withFolders outsideFolders: [UserFolder]?) {
         guard let actualFolders = outsideFolders, actualFolders.count > 0 else {
@@ -29,11 +29,11 @@ class FolderListViewModel: ObservableObject {
     
     // MARK: - Alerts
     
-    func showFolderDeletionConfirmation(folderName: String, folderId: String) {
+    /*func showFolderDeletionConfirmation(folderName: String, folderId: String) {
         alertTitle = "Apagar a Pasta \"\(folderName)\"?"
         alertMessage = "Os sons continuarão disponíveis no app, fora da pasta.\n\nEssa ação não pode ser desfeita."
         folderIdForDeletion = folderId
         showAlert = true
-    }
+    }*/
 
 }

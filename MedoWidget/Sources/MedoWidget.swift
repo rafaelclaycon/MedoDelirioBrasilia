@@ -45,21 +45,6 @@ struct MedoWidgetEntryView : View {
         return UserDefaults(suiteName: "group.com.rafaelschmitt.MedoDelirioBrasilia")!.bool(forKey: "displayLulaWon")
     }
     
-    var firstTurnHasPassed: Bool {
-        let calendar = Calendar.current
-        
-        let date1 = calendar.startOfDay(for: Date.now)
-        let date2 = calendar.startOfDay(for: secondTurnDate())
-        
-        let components = calendar.dateComponents([.day], from: date1, to: date2)
-        
-        if let days = components.day {
-            return days < 0
-        } else {
-            return false
-        }
-    }
-    
     var body: some View {
         switch widgetFamily {
             
@@ -89,21 +74,12 @@ struct MedoWidgetEntryView : View {
                         .textCase(.uppercase)
                         .font(.system(size: 12))
                         .fontWeight(.medium)
-                } else if firstTurnHasPassed {
+                } else {
                     Text(getDaysUntilDateShort(secondTurnDate()))
                         .bold()
                         .font(.system(size: 14))
                     
                     Text("Segundo Turno")
-                        .textCase(.uppercase)
-                        .font(.system(size: 12))
-                        .fontWeight(.medium)
-                } else {
-                    Text(getDaysUntilDateShort(firstTurnDate()))
-                        .bold()
-                        .font(.system(size: 14))
-                    
-                    Text("Primeiro Turno")
                         .textCase(.uppercase)
                         .font(.system(size: 12))
                         .fontWeight(.medium)
@@ -127,15 +103,10 @@ struct MedoWidgetEntryView : View {
                     Image(systemName: "medal.fill")
                     Text(" É Lula!!!!")
                 }
-            } else if firstTurnHasPassed {
-                HStack {
-                    Image(systemName: "calendar")
-                    Text(getDaysUntilDateLong(secondTurnDate(), isFirstTurn: false))
-                }
             } else {
                 HStack {
                     Image(systemName: "calendar")
-                    Text(getDaysUntilDateLong(firstTurnDate(), isFirstTurn: true))
+                    Text(getDaysUntilDateLong(secondTurnDate(), isFirstTurn: false))
                 }
             }
             
@@ -148,11 +119,6 @@ struct MedoWidgetEntryView : View {
         let dateFormatter = ISO8601DateFormatter()
         return dateFormatter.date(from: "2022-10-03T00:00:00-0300")!
     }*/
-    
-    private func firstTurnDate() -> Date {
-        let dateFormatter = ISO8601DateFormatter()
-        return dateFormatter.date(from: "2022-10-02T00:00:00-0300")!
-    }
     
     private func secondTurnDate() -> Date {
         let dateFormatter = ISO8601DateFormatter()
@@ -200,7 +166,7 @@ struct MedoWidgetEntryView : View {
         if let days = components.day {
             if days < 0 {
                 return "O \(turnNumber)º turno já passou"
-            } else if days == 1 {
+            } else if days == 0 {
                 return "O \(turnNumber)º turno é hoje"
             } else if days == 1 {
                 return "O \(turnNumber)º turno é amanhã!"

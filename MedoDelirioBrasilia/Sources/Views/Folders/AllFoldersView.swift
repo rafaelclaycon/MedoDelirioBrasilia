@@ -1,14 +1,16 @@
 import SwiftUI
 
+/// iPad and Mac only.
 struct AllFoldersView: View {
 
     @Binding var isShowingFolderInfoEditingSheet: Bool
     @Binding var updateFolderList: Bool
+    @State var deleteFolderAid = DeleteFolderViewAid()
     
     var body: some View {
         ScrollView {
             VStack(alignment: .center) {
-                FolderList(updateFolderList: $updateFolderList)
+                FolderList(updateFolderList: $updateFolderList, deleteFolderAid: $deleteFolderAid)
             }
             .padding(.horizontal)
             .padding(.top, 7)
@@ -27,6 +29,15 @@ struct AllFoldersView: View {
                     }
                 }
             }
+        }
+        .alert(isPresented: $deleteFolderAid.showAlert) {
+            Alert(title: Text(deleteFolderAid.alertTitle), message: Text(deleteFolderAid.alertMessage), primaryButton: .destructive(Text("Apagar"), action: {
+                guard deleteFolderAid.folderIdForDeletion.isEmpty == false else {
+                    return
+                }
+                try? database.deleteUserFolder(withId: deleteFolderAid.folderIdForDeletion)
+                updateFolderList = true
+            }), secondaryButton: .cancel(Text("Cancelar")))
         }
     }
 

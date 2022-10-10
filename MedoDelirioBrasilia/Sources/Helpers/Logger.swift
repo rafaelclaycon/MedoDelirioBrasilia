@@ -62,16 +62,16 @@ class Logger {
         try? database.insert(networkCallLog: log)
     }
     
-    static func logFavorites(favoriteCount: Int, callMoment: String, needsMigration: Bool) {
-        let log = FavoriteLog(favoriteCount: favoriteCount,
-                              dateTime: Date(),
-                              appVersion: "\(Versioneer.appVersion) Build \(Versioneer.buildVersionNumber)",
-                              deviceModel: UIDevice.modelName,
-                              systemVersion: UIDevice.current.systemVersion,
-                              callMoment: callMoment,
-                              needsMigration: needsMigration,
-                              installId: UIDevice.current.identifierForVendor?.uuidString ?? "")
-        try? database.insert(favoriteLog: log)
-    }
+//    static func logFavorites(favoriteCount: Int, callMoment: String, needsMigration: Bool) {
+//        let log = FavoriteLog(favoriteCount: favoriteCount,
+//                              dateTime: Date(),
+//                              appVersion: "\(Versioneer.appVersion) Build \(Versioneer.buildVersionNumber)",
+//                              deviceModel: UIDevice.modelName,
+//                              systemVersion: UIDevice.current.systemVersion,
+//                              callMoment: callMoment,
+//                              needsMigration: needsMigration,
+//                              installId: UIDevice.current.identifierForVendor?.uuidString ?? "")
+//        try? database.insert(favoriteLog: log)
+//    }
 
 }
