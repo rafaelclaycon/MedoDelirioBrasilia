@@ -6829,5 +6829,14 @@
         "filename": "Eu acho e pouco.mp3",
         "dateAdded": "2022-10-08T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "2B87646A-AE56-4DF8-93C9-8848E0639413",
+        "title": "Paz, tranquilidade",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Paz tranquilidade",
+        "filename": "Jair Bolsonaro - Paz, tranquilidade.mp3",
+        "dateAdded": "2022-10-10T00:00:00Z",
+        "isOffensive": false
     }
 ]
