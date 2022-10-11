@@ -32,6 +32,7 @@ struct Shared {
     static let unknownAuthor = "Desconhecido"
     
     // E-mail
+    
     static let pickAMailApp = "Escolha um app de e-mail"
     static let issueSuggestionEmailSubject = "Problema/sugestão no app iOS \(Versioneer.appVersion) Build \(Versioneer.buildVersionNumber)"
     static let issueSuggestionEmailBody = "Para um problema, inclua passos para reproduzir e prints se possível."
@@ -50,6 +51,16 @@ struct Shared {
         static let generatingVideoShortMessage = "Gerando vídeo..."
         static let generatingVideoLongMessage = "Gerando vídeo...\nIsso pode demorar um pouco."
         
+    }
+    
+    // MARK: - Trends
+    
+    struct Trends {
+        
+        static let lastWeek = "Última semana"
+        static let lastMonth = "Último mês"
+        static let allTime = "Todos os tempos"
+
     }
 
 }
