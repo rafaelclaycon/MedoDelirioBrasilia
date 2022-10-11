@@ -117,7 +117,7 @@ class Podium {
             completionHandler(.successful, "")
             
             // Get remote stats
-            self.networkRabbit.getSoundShareCountStats { stats, error in
+            /*self.networkRabbit.getSoundShareCountStats { stats, error in
                 guard error == nil else {
                     return
                 }
@@ -133,7 +133,7 @@ class Podium {
                 
                 // Let the caller now 
                 //self.audienceTop5 = Podium.getTop5SoundsSharedByTheAudience()
-            }
+            }*/
         }
     }
     

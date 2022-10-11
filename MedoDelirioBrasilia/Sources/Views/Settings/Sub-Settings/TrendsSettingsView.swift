@@ -64,7 +64,7 @@ struct TrendsSettingsView: View {
                 }
             }
         }
-        .navigationTitle("Ajustes das Tendências")
+        .navigationTitle("Tendências")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             trendsEnabled = UserSettings.getEnableTrends()
