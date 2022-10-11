@@ -19,7 +19,7 @@ struct TrendsSettingsView: View {
                         UserSettings.setEnableTrends(to: newValue)
                     }
             } footer: {
-                Text("Nenhum dado coletado identifica você. O propósito dessa funcionalidade é apenas matar a sua curiosidade e a dos demais usuários sobre a popularidade dos sons (em breve numa tela dedicada aqui no app).")
+                Text("Nenhum dado coletado identifica você. O propósito dessa funcionalidade é apenas matar a sua curiosidade (e a dos demais usuários) sobre a popularidade dos sons.")
             }
             
             Section {
@@ -46,7 +46,7 @@ struct TrendsSettingsView: View {
             } header: {
                 Text("Escolha o que deseja usar")
             } footer: {
-                Text("Se a opção acima estiver ativada, os seguintes dados serão enviados:\n · ID de instalação\n · ID do conteúdo compartilhado\n · tipo do conteúdo (som ou música)\n · quantidade total de compartilhamentos\n · nome do app pelo qual o conteúdo foi compartilhado")
+                Text("Se a opção acima estiver ativada, os seguintes dados serão enviados:\n · ID de instalação\n · ID do conteúdo compartilhado\n · tipo do conteúdo (som, música ou vídeo)\n · quantidade total de compartilhamentos\n · nome do app pelo qual o conteúdo foi compartilhado")
             }
             .disabled(trendsEnabled == false)
             
@@ -64,7 +64,7 @@ struct TrendsSettingsView: View {
                 }
             }
         }
-        .navigationTitle("Ajustes das Tendências")
+        .navigationTitle("Tendências")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             trendsEnabled = UserSettings.getEnableTrends()

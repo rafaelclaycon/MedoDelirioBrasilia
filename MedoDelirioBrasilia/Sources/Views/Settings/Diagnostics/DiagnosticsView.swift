@@ -63,7 +63,7 @@ struct DiagnosticsView: View {
                     favoriteDiagnosticsAlertMessage = ""
                     for (index, favorite) in favorites.enumerated() {
                         if let sound = soundData.first(where: {$0.id == favorite.contentId}) {
-                            favoriteDiagnosticsAlertMessage = favoriteDiagnosticsAlertMessage + "\(sound.title) \(favorite.dateAdded.toString())"
+                            favoriteDiagnosticsAlertMessage = favoriteDiagnosticsAlertMessage + "\(sound.title) \(favorite.dateAdded.toScreenString())"
                         } else {
                             favoriteDiagnosticsAlertMessage = favoriteDiagnosticsAlertMessage + "Som não identificado"
                         }
@@ -120,7 +120,7 @@ struct DiagnosticsView: View {
                     Text("Sem Dados")
                 } else {
                     List(shareLogs!) { log in
-                        SharingLogCell(destination: ShareDestination(rawValue: log.destination) ?? .other, contentType: ContentType(rawValue: log.contentType) ?? .sound, contentTitle: getContentName(contentId: log.contentId), dateTime: log.dateTime.toString(), sentToServer: log.sentToServer)
+                        SharingLogCell(destination: ShareDestination(rawValue: log.destination) ?? .other, contentType: ContentType(rawValue: log.contentType) ?? .sound, contentTitle: getContentName(contentId: log.contentId), dateTime: log.dateTime.toScreenString(), sentToServer: log.sentToServer)
                     }
                 }
             }

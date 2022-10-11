@@ -117,23 +117,23 @@ class Podium {
             completionHandler(.successful, "")
             
             // Get remote stats
-//            self.networkRabbit.getSoundShareCountStats { stats, error in
-//                guard error == nil else {
-//                    return
-//                }
-//                guard let stats = stats else {
-//                    return
-//                }
-//                // Save them
-//                var audienceStat: AudienceShareCountStat? = nil
-//                stats.forEach { stat in
-//                    audienceStat = AudienceShareCountStat(contentId: stat.contentId, contentType: stat.contentType, shareCount: stat.shareCount)
-//                    try? self.database.insert(audienceStat: audienceStat!)
-//                }
-//                
-//                // Let the caller now 
-//                //self.audienceTop5 = Podium.getTop5SoundsSharedByTheAudience()
-//            }
+            /*self.networkRabbit.getSoundShareCountStats { stats, error in
+                guard error == nil else {
+                    return
+                }
+                guard let stats = stats, stats.isEmpty == false else {
+                    return
+                }
+                // Save them
+                var audienceStat: AudienceShareCountStat? = nil
+                stats.forEach { stat in
+                    audienceStat = AudienceShareCountStat(contentId: stat.contentId, contentType: stat.contentType, shareCount: stat.shareCount)
+                    try? self.database.insert(audienceStat: audienceStat!)
+                }
+                
+                // Let the caller now 
+                //self.audienceTop5 = Podium.getTop5SoundsSharedByTheAudience()
+            }*/
         }
     }
     
