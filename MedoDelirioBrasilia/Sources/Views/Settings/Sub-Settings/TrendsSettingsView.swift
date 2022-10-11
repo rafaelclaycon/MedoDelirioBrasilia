@@ -3,9 +3,9 @@ import SwiftUI
 struct TrendsSettingsView: View {
 
     @State var trendsEnabled = false
-    //@State var mostSharedSoundsByTheUserEnabled = false
+    @State var mostSharedSoundsByTheUserEnabled = false
     //@State var dayOfTheWeekTheUserSharesTheMostEnabled = false
-    //@State var soundsMostSharedByTheAudienceEnabled = false
+    @State var soundsMostSharedByTheAudienceEnabled = false
     //@State var appsThroughWhichTheUserSharesTheMostEnabled = false
     @State var shareUserPersonalTrendsEnabled = false
     
@@ -23,18 +23,18 @@ struct TrendsSettingsView: View {
             }
             
             Section {
-//                Toggle("Sons Mais Compartilhados Por Mim", isOn: $mostSharedSoundsByTheUserEnabled)
-//                    .onChange(of: mostSharedSoundsByTheUserEnabled) { newValue in
-//                        UserSettings.setEnableMostSharedSoundsByTheUser(to: newValue)
-//                    }
+                Toggle("Sons Mais Compartilhados Por Mim", isOn: $mostSharedSoundsByTheUserEnabled)
+                    .onChange(of: mostSharedSoundsByTheUserEnabled) { newValue in
+                        UserSettings.setEnableMostSharedSoundsByTheUser(to: newValue)
+                    }
 //                Toggle("Dia da semana no qual você mais compartilha", isOn: $dayOfTheWeekTheUserSharesTheMostEnabled)
 //                    .onChange(of: dayOfTheWeekTheUserSharesTheMostEnabled) { newValue in
 //                        UserSettings.setEnableDayOfTheWeekTheUserSharesTheMost(to: newValue)
 //                    }
-//                Toggle("Sons Mais Compartilhados Pela Audiência (Beta)", isOn: $soundsMostSharedByTheAudienceEnabled)
-//                    .onChange(of: soundsMostSharedByTheAudienceEnabled) { newValue in
-//                        UserSettings.setEnableSoundsMostSharedByTheAudience(to: newValue)
-//                    }
+                Toggle("Sons Mais Compartilhados Pela Audiência (iOS)", isOn: $soundsMostSharedByTheAudienceEnabled)
+                    .onChange(of: soundsMostSharedByTheAudienceEnabled) { newValue in
+                        UserSettings.setEnableSoundsMostSharedByTheAudience(to: newValue)
+                    }
 //                Toggle("Apps Pelos Quais Você Mais Compartilha", isOn: $appsThroughWhichTheUserSharesTheMostEnabled)
 //                    .onChange(of: appsThroughWhichTheUserSharesTheMostEnabled) { newValue in
 //                        UserSettings.setEnableAppsThroughWhichTheUserSharesTheMost(to: newValue)
@@ -68,8 +68,8 @@ struct TrendsSettingsView: View {
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             trendsEnabled = UserSettings.getEnableTrends()
-            //mostSharedSoundsByTheUserEnabled = UserSettings.getEnableMostSharedSoundsByTheUser()
-            //soundsMostSharedByTheAudienceEnabled = UserSettings.getEnableSoundsMostSharedByTheAudience()
+            mostSharedSoundsByTheUserEnabled = UserSettings.getEnableMostSharedSoundsByTheUser()
+            soundsMostSharedByTheAudienceEnabled = UserSettings.getEnableSoundsMostSharedByTheAudience()
             shareUserPersonalTrendsEnabled = UserSettings.getEnableShareUserPersonalTrends()
         }
     }

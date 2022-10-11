@@ -53,13 +53,13 @@ struct SidebarView: View {
                     Label("Músicas", systemImage: "music.quarternote.3")
                 })
             
-            /*NavigationLink(
+            NavigationLink(
                 destination: TrendsView(),
                 tag: Screen.trends.rawValue,
                 selection: $state,
                 label: {
                     Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
-                })*/
+                })
             
             Section("Minhas Pastas") {
                 NavigationLink(
