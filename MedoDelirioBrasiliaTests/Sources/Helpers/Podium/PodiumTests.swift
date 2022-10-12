@@ -28,7 +28,7 @@ class PodiumTests: XCTestCase {
         
         networkRabbitStub.serverShouldBeUnavailable = true
         
-        sut.exchangeShareCountStatsWithTheServer { result, resultString in
+        sut.exchangeShareCountStatsWithTheServer(timeInterval: .allTime) { result, resultString in
             testBoolResult = result
             testStringResult = resultString
             e.fulfill()
