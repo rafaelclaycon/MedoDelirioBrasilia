@@ -17,23 +17,23 @@ class MostSharedByAudienceViewViewModel: ObservableObject {
             self.viewState = .loading
         }
         
-//        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-//            // Send user stats and retrieve remote stats
-//            podium.exchangeShareCountStatsWithTheServer { result, _ in
-//                guard result == .successful || result == .noStatsToSend else {
-//                    return
-//                }
-//                print(result)
-//            }
-//        }
-//
-//        var topCharts = [TopChartItem]()
-//
-//        topCharts.append(TopChartItem(id: "1", contentId: "", contentName: "Teste", contentAuthorId: "", contentAuthorName: "Autor", shareCount: 10))
-//
-//        DispatchQueue.main.async {
-//            self.audienceTop5 = topCharts
-//        }
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            // Send user stats and retrieve remote stats
+            podium.exchangeShareCountStatsWithTheServer { result, _ in
+                guard result == .successful || result == .noStatsToSend else {
+                    return
+                }
+                print(result)
+            }
+        }
+
+        var topCharts = [TopChartItem]()
+
+        topCharts.append(TopChartItem(id: "1", contentId: "", contentName: "Teste", contentAuthorId: "", contentAuthorName: "Autor", shareCount: 10))
+
+        DispatchQueue.main.async {
+            self.audienceTop5 = topCharts
+        }
     }
 
 }

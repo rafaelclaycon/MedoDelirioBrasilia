@@ -37,8 +37,8 @@ class NetworkRabbit: NetworkRabbitProtocol {
         task.resume()
     }
     
-    func getSoundShareCountStats(completionHandler: @escaping ([ServerShareCountStat]?, NetworkRabbitError?) -> Void) {
-        let url = URL(string: serverPath + "v1/sound-share-count-stats")!
+    func getSoundShareCountStats(timeInterval: TrendsTimeInterval, completionHandler: @escaping ([ServerShareCountStat]?, NetworkRabbitError?) -> Void) {
+        let url = URL(string: serverPath + "v2/sound-share-count-stats-all-time")!
 
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             guard let httpResponse = response as? HTTPURLResponse else {

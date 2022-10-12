@@ -80,7 +80,7 @@ class Podium {
         }
     }
     
-    func exchangeShareCountStatsWithTheServer(completionHandler: @escaping (ShareCountStatServerExchangesResult, String) -> Void) {
+    func exchangeShareCountStatsWithTheServer(timeInterval: TrendsTimeInterval, completionHandler: @escaping (ShareCountStatServerExchangesResult, String) -> Void) {
         networkRabbit.checkServerStatus { serverIsAvailable, _ in
             guard serverIsAvailable else {
                 return completionHandler(.failed, "Servidor não disponível.")
@@ -117,7 +117,7 @@ class Podium {
             completionHandler(.successful, "")
             
             // Get remote stats
-            /*self.networkRabbit.getSoundShareCountStats { stats, error in
+            self.networkRabbit.getSoundShareCountStats { stats, error in
                 guard error == nil else {
                     return
                 }
@@ -133,7 +133,7 @@ class Podium {
                 
                 // Let the caller now 
                 //self.audienceTop5 = Podium.getTop5SoundsSharedByTheAudience()
-            }*/
+            }
         }
     }
     
