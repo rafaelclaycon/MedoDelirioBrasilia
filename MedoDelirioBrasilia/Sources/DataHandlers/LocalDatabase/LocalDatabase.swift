@@ -61,7 +61,7 @@ extension LocalDatabase {
         return [InitialMigration(),
                 AddNetworkCallLogTable(),
                 AddUserFolderTables(),
-                AddFavoriteLogTable()]
+                RemoveFavoriteLogTable()]
     }
     
     var needsMigration: Bool {
