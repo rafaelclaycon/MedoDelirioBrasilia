@@ -22,7 +22,6 @@ class LocalDatabase {
     var networkCallLog = Table("networkCallLog")
     var userFolder = Table("userFolder")
     var userFolderContent = Table("userFolderContent")
-    var favoriteLog = Table("favoriteLog")
     
     // MARK: - Setup
     
