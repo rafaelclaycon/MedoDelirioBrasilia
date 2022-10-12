@@ -114,12 +114,12 @@ class Podium {
             // Marking them as sent guarantees we won't send them again
             try? self.database.markAllUserShareLogsAsSentToServer()
             
-            completionHandler(.successful, "")
+            //completionHandler(.successful, "")
             
             // Get remote stats
             self.networkRabbit.getSoundShareCountStats(timeInterval: timeInterval) { stats, error in
                 guard error == nil else {
-                    return
+                    return completionHandler(nil, "")
                 }
                 guard let stats = stats, stats.isEmpty == false else {
                     return
