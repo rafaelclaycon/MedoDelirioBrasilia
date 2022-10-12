@@ -61,7 +61,6 @@ extension LocalDatabase {
         return [InitialMigration(),
                 AddNetworkCallLogTable(),
                 AddUserFolderTables(),
-                //AddFavoriteLogTable(),
                 RemoveFavoriteLogTable()]
     }
     
