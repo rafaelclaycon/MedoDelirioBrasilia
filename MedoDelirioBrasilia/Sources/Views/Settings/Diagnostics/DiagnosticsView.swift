@@ -40,7 +40,7 @@ struct DiagnosticsView: View {
             } header: {
                 Text("ID da instalação")
             } footer: {
-                Text("Esse código identifica apenas a instalação do app e é renovado caso você o desinstale e instale novamente.")
+                Text("Esse código identifica apenas a instalação do app e é renovado caso você o desinstale e instale novamente. Toque nele uma vez para copiar.")
             }
             
             /*if CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
