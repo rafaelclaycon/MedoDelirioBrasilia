@@ -3,22 +3,30 @@ import SwiftUI
 struct MostSharedByAudienceView: View {
 
     @StateObject private var viewModel = MostSharedByAudienceViewViewModel()
-    @State private var timeIntervalOption = 2
+    @State private var lastUpdatedAtText: String = "Última consulta: indisponível"
     
     private let columns = [
         GridItem(.flexible())
     ]
+    private let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
     
     private var dropDownText: String {
-        switch timeIntervalOption {
-        case 1:
-            return Shared.Trends.lastMonth
-        case 2:
-            return Shared.Trends.allTime
-        default:
+        switch viewModel.timeIntervalOption {
+        case .lastWeek:
             return Shared.Trends.lastWeek
+        case .lastMonth:
+            return Shared.Trends.lastMonth
+        case .allTime:
+            return Shared.Trends.allTime
         }
     }
+//    private var lastUpdatedAtText: String {
+//        if viewModel.lastCheckDate == Date(timeIntervalSince1970: 0) {
+//            return "Última consulta: -"
+//        } else {
+//            return "Última consulta: \(viewModel.lastCheckDate.asRelativeDateTime)"
+//        }
+//    }
     
     var body: some View {
         VStack {
@@ -31,10 +39,10 @@ struct MostSharedByAudienceView: View {
             
             HStack {
                 Menu {
-                    Picker("Período", selection: $timeIntervalOption) {
-                        Text(Shared.Trends.lastWeek).tag(0)
-                        Text(Shared.Trends.lastMonth).tag(1)
-                        Text(Shared.Trends.allTime).tag(2)
+                    Picker("Período", selection: $viewModel.timeIntervalOption) {
+                        Text(Shared.Trends.lastWeek).tag(TrendsTimeInterval.lastWeek)
+                        Text(Shared.Trends.lastMonth).tag(TrendsTimeInterval.lastMonth)
+                        Text(Shared.Trends.allTime).tag(TrendsTimeInterval.allTime)
                     }
                 } label: {
                     HStack {
@@ -45,8 +53,8 @@ struct MostSharedByAudienceView: View {
                             .frame(width: 15)
                     }
                 }
-                .onChange(of: timeIntervalOption) { timeIntervalOption in
-                    if timeIntervalOption == 0 || timeIntervalOption == 1 {
+                .onChange(of: viewModel.timeIntervalOption) { timeIntervalOption in
+                    if viewModel.timeIntervalOption == .lastWeek || viewModel.timeIntervalOption == .lastMonth {
                         viewModel.viewState = .noDataToDisplayForNow
                     } else {
                         if TimeKeeper.checkTwoMinutesHasPassed(viewModel.lastCheckDate) {
@@ -64,7 +72,7 @@ struct MostSharedByAudienceView: View {
                 Spacer()
                 
                 Button {
-                    if timeIntervalOption == 2 {
+                    if viewModel.timeIntervalOption == .allTime {
                         viewModel.reloadAudienceList()
                     }
                 } label: {
@@ -73,7 +81,7 @@ struct MostSharedByAudienceView: View {
                         Text("Atualizar")
                     }
                 }
-                .disabled(timeIntervalOption == 0 || timeIntervalOption == 1)
+                .disabled(viewModel.timeIntervalOption == .lastWeek || viewModel.timeIntervalOption == .lastMonth)
             }
             .padding(.horizontal)
             .padding(.top, 1)
@@ -99,7 +107,7 @@ struct MostSharedByAudienceView: View {
                             .font(.headline)
                             .padding(.vertical, 40)
                         
-                        Text("Última consulta: hoje às 12:05")
+                        Text(lastUpdatedAtText)
                             .font(.subheadline)
                             .foregroundColor(.gray)
                     }
@@ -116,9 +124,16 @@ struct MostSharedByAudienceView: View {
                     }
                     .padding(.bottom)
                     
-                    Text("Última consulta: hoje às 12:05")
+                    Text(lastUpdatedAtText)
                         .font(.subheadline)
                         .foregroundColor(.gray)
+                        .onReceive(timer) { input in
+                            if viewModel.lastCheckDate == Date(timeIntervalSince1970: 0) {
+                                lastUpdatedAtText = "Última consulta: indisponível"
+                            } else {
+                                lastUpdatedAtText = "Última consulta: \(viewModel.lastCheckDate.asRelativeDateTime)"
+                            }
+                        }
                 }
                 .padding(.bottom, 20)
                 

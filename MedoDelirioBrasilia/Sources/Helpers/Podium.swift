@@ -45,13 +45,13 @@ class Podium {
         }
     }
     
-    func getTop5SoundsSharedByTheAudience() -> [TopChartItem]? {
+    func getTop10SoundsSharedByTheAudience() -> [TopChartItem]? {
         var result = [TopChartItem]()
         var filteredSounds: [Sound]
         var filteredAuthors: [Author]
         var itemInPreparation: TopChartItem
         
-        guard let dimItems = try? database.getTop5SoundsSharedByTheAudience(), dimItems.count > 0 else {
+        guard let dimItems = try? database.getTop10SoundsSharedByTheAudience(), dimItems.count > 0 else {
             return nil
         }
         
@@ -80,7 +80,7 @@ class Podium {
         }
     }
     
-    func exchangeShareCountStatsWithTheServer(timeInterval: TrendsTimeInterval, completionHandler: @escaping (ShareCountStatServerExchangesResult, String) -> Void) {
+    func sendShareCountStatsToServer(completionHandler: @escaping (ShareCountStatServerExchangeResult, String) -> Void) {
         networkRabbit.checkServerStatus { serverIsAvailable, _ in
             guard serverIsAvailable else {
                 return completionHandler(.failed, "Servidor não disponível.")
@@ -114,30 +114,33 @@ class Podium {
             // Marking them as sent guarantees we won't send them again
             try? self.database.markAllUserShareLogsAsSentToServer()
             
-            //completionHandler(.successful, "")
-            
-            // Get remote stats
-            self.networkRabbit.getSoundShareCountStats(timeInterval: timeInterval) { stats, error in
-                guard error == nil else {
-                    return completionHandler(nil, "")
-                }
-                guard let stats = stats, stats.isEmpty == false else {
-                    return
-                }
-                // Save them
-                var audienceStat: AudienceShareCountStat? = nil
-                stats.forEach { stat in
-                    audienceStat = AudienceShareCountStat(contentId: stat.contentId, contentType: stat.contentType, shareCount: stat.shareCount)
-                    try? self.database.insert(audienceStat: audienceStat!)
-                }
-                
-                // Let the caller now 
-                //self.audienceTop5 = Podium.getTop5SoundsSharedByTheAudience()
-            }
+            completionHandler(.successful, "")
         }
     }
     
-    enum ShareCountStatServerExchangesResult {
+    func getAudienceShareCountStatsFromServer(for timeInterval: TrendsTimeInterval, completionHandler: @escaping (ShareCountStatServerExchangeResult, String) -> Void) {
+        self.networkRabbit.getSoundShareCountStats(timeInterval: timeInterval) { stats, error in
+            guard error == nil else {
+                return completionHandler(.failed, "")
+            }
+            guard let stats = stats, stats.isEmpty == false else {
+                return
+            }
+            // Save them
+            try? self.database.clearAudienceSharingStatisticTable()
+            
+            var audienceStat: AudienceShareCountStat? = nil
+            stats.forEach { stat in
+                audienceStat = AudienceShareCountStat(contentId: stat.contentId, contentType: stat.contentType, shareCount: stat.shareCount)
+                try? self.database.insert(audienceStat: audienceStat!)
+            }
+            
+            // Let the caller now
+            completionHandler(.successful, .empty)
+        }
+    }
+    
+    enum ShareCountStatServerExchangeResult {
         
         case successful, noStatsToSend, failed
         

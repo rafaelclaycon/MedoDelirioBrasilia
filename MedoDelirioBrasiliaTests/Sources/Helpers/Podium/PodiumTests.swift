@@ -23,12 +23,12 @@ class PodiumTests: XCTestCase {
     
     func test_exchangeShareCountStats_whenServerIsOffline_shouldReturnInfoString() throws {
         let e = expectation(description: "exchangeShareCountStats")
-        var testBoolResult: Podium.ShareCountStatServerExchangesResult = .successful
+        var testBoolResult: Podium.ShareCountStatServerExchangeResult = .successful
         var testStringResult = ""
         
         networkRabbitStub.serverShouldBeUnavailable = true
         
-        sut.exchangeShareCountStatsWithTheServer(timeInterval: .allTime) { result, resultString in
+        sut.sendShareCountStatsToServer { result, resultString in
             testBoolResult = result
             testStringResult = resultString
             e.fulfill()
