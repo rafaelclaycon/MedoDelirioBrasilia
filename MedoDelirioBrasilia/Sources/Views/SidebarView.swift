@@ -91,7 +91,6 @@ struct SidebarView: View {
                     Label("Nova Pasta", systemImage: "plus")
                         .foregroundColor(.accentColor)
                 }
-
             }
         }
         .listStyle(SidebarListStyle())
