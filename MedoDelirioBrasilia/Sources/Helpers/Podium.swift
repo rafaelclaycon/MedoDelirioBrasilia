@@ -131,7 +131,7 @@ class Podium {
             
             var audienceStat: AudienceShareCountStat? = nil
             stats.forEach { stat in
-                audienceStat = AudienceShareCountStat(contentId: stat.contentId, contentType: stat.contentType, shareCount: stat.shareCount)
+                audienceStat = AudienceShareCountStat(contentId: stat.contentId, contentType: stat.contentType, shareCount: stat.shareCount, rankingType: TrendsTimeInterval.allTime.rawValue)
                 try? self.database.insert(audienceStat: audienceStat!)
             }
             

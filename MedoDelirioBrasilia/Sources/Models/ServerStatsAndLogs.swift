@@ -17,6 +17,7 @@ struct AudienceShareCountStat: Hashable, Codable {
     var contentId: String
     var contentType: Int
     var shareCount: Int
+    var rankingType: Int
 
 }
 

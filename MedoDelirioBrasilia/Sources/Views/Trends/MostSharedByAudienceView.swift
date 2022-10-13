@@ -52,7 +52,7 @@ struct MostSharedByAudienceView: View {
                         if TimeKeeper.checkTwoMinutesHasPassed(viewModel.lastCheckDate) {
                             viewModel.reloadAudienceList()
                         } else {
-                            if viewModel.audienceTop5 == nil {
+                            if viewModel.allTimeRanking == nil {
                                 viewModel.viewState = .noDataToDisplay
                             } else {
                                 viewModel.viewState = .displayingData
@@ -111,7 +111,7 @@ struct MostSharedByAudienceView: View {
             case .displayingData:
                 VStack {
                     LazyVGrid(columns: columns, spacing: 14) {
-                        ForEach(viewModel.audienceTop5!) { item in
+                        ForEach(viewModel.allTimeRanking!) { item in
                             TopChartCellView(item: item)
                         }
                     }
