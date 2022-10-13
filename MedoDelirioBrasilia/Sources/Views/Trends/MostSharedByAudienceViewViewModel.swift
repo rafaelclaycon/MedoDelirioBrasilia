@@ -7,13 +7,20 @@ class MostSharedByAudienceViewViewModel: ObservableObject {
     @Published var viewState: TrendsViewState = .noDataToDisplay
     @Published var lastCheckDate: Date = Date(timeIntervalSince1970: 0)
     @Published var timeIntervalOption: TrendsTimeInterval = .allTime
+    @Published var lastUpdatedAtText: String = .empty
+    
+    // Alerts
+    @Published var alertTitle: String = ""
+    @Published var alertMessage: String = ""
+    @Published var showAlert: Bool = false
     
     func reloadAudienceList() {
         // Check if enough time has passed for a retry
-        guard TimeKeeper.checkTwoMinutesHasPassed(lastCheckDate) else {
+        guard TimeKeeper.checkTwoMinutesHasPassed(lastCheckDate) || viewState == .noDataToDisplay else {
             return
         }
         lastCheckDate = .now
+        lastUpdatedAtText = "Última consulta: agora mesmo"
         
         DispatchQueue.main.async {
             self.viewState = .loading
@@ -23,6 +30,17 @@ class MostSharedByAudienceViewViewModel: ObservableObject {
             // Send user stats and retrieve remote stats
             podium.sendShareCountStatsToServer { result, _ in
                 guard result == .successful || result == .noStatsToSend else {
+                    if self?.audienceTop5 == nil {
+                        DispatchQueue.main.async {
+                            self?.viewState = .noDataToDisplay
+                            self?.showServerUnavailableAlert()
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            self?.viewState = .displayingData
+                            self?.showServerUnavailableAlert()
+                        }
+                    }
                     return
                 }
                 
@@ -42,6 +60,21 @@ class MostSharedByAudienceViewViewModel: ObservableObject {
                 }
             }
         }
+    }
+    
+    func updateLastUpdatedAtText() {
+        if lastCheckDate == Date(timeIntervalSince1970: 0) {
+            lastUpdatedAtText = "Última consulta: indisponível"
+        } else {
+            lastUpdatedAtText = "Última consulta: \(lastCheckDate.asRelativeDateTime)"
+        }
+    }
+    
+    private func showServerUnavailableAlert() {
+        TapticFeedback.error()
+        alertTitle = "Servidor Indisponível"
+        alertMessage = "Não foi possível obter o ranking mais recente. Tente novamente mais tarde."
+        showAlert = true
     }
 
 }

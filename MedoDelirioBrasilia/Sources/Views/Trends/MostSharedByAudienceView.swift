@@ -3,7 +3,6 @@ import SwiftUI
 struct MostSharedByAudienceView: View {
 
     @StateObject private var viewModel = MostSharedByAudienceViewViewModel()
-    @State private var lastUpdatedAtText: String = "Última consulta: indisponível"
     
     private let columns = [
         GridItem(.flexible())
@@ -20,13 +19,6 @@ struct MostSharedByAudienceView: View {
             return Shared.Trends.allTime
         }
     }
-//    private var lastUpdatedAtText: String {
-//        if viewModel.lastCheckDate == Date(timeIntervalSince1970: 0) {
-//            return "Última consulta: -"
-//        } else {
-//            return "Última consulta: \(viewModel.lastCheckDate.asRelativeDateTime)"
-//        }
-//    }
     
     var body: some View {
         VStack {
@@ -85,6 +77,7 @@ struct MostSharedByAudienceView: View {
             }
             .padding(.horizontal)
             .padding(.top, 1)
+            .padding(.bottom)
             
             switch viewModel.viewState {
             case .loading:
@@ -107,7 +100,7 @@ struct MostSharedByAudienceView: View {
                             .font(.headline)
                             .padding(.vertical, 40)
                         
-                        Text(lastUpdatedAtText)
+                        Text(viewModel.lastUpdatedAtText)
                             .font(.subheadline)
                             .foregroundColor(.gray)
                     }
@@ -124,16 +117,13 @@ struct MostSharedByAudienceView: View {
                     }
                     .padding(.bottom)
                     
-                    Text(lastUpdatedAtText)
+                    Text(viewModel.lastUpdatedAtText)
                         .font(.subheadline)
                         .foregroundColor(.gray)
                         .onReceive(timer) { input in
-                            if viewModel.lastCheckDate == Date(timeIntervalSince1970: 0) {
-                                lastUpdatedAtText = "Última consulta: indisponível"
-                            } else {
-                                lastUpdatedAtText = "Última consulta: \(viewModel.lastCheckDate.asRelativeDateTime)"
-                            }
+                            viewModel.updateLastUpdatedAtText()
                         }
+                        .padding(.bottom)
                 }
                 .padding(.bottom, 20)
                 
@@ -155,6 +145,12 @@ struct MostSharedByAudienceView: View {
                 .padding(.vertical, 100)
                 .padding(.horizontal)
             }
+        }
+        .onAppear {
+            viewModel.reloadAudienceList()
+        }
+        .alert(isPresented: $viewModel.showAlert) {
+            Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
         }
     }
 
