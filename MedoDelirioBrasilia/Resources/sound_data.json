@@ -6856,5 +6856,14 @@
         "filename": "Darcy Ribeiro - Uma classe dominante ruim (fala completa).mp3",
         "dateAdded": "2022-10-11T00:00:00Z",
         "isOffensive": true
+    },
+    {
+        "id": "7E2FE3F0-DA0F-48F7-93BC-109EE496EDB7",
+        "title": "Que tistreza",
+        "authorId": "1FE5ED6C-01FA-4429-BE84-00275EFD6E2A",
+        "description": "Que tistreza que tristeza",
+        "filename": "Luiz Felipe D'Avila - Que tistreza.mp3",
+        "dateAdded": "2022-10-12T00:00:00Z",
+        "isOffensive": false
     }
 ]
