@@ -13,7 +13,7 @@ class NetworkRabbitStub: NetworkRabbitProtocol {
         }
     }
     
-    func getSoundShareCountStats(completionHandler: @escaping ([ServerShareCountStat]?, NetworkRabbitError?) -> Void) {
+    func getSoundShareCountStats(timeInterval: TrendsTimeInterval, completionHandler: @escaping ([ServerShareCountStat]?, NetworkRabbitError?) -> Void) {
         completionHandler(nil, nil)
     }
     

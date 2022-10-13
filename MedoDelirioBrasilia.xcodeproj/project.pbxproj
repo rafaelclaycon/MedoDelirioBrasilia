@@ -61,6 +61,7 @@
 		D906BA5128D912DB007F4701 /* Jair Bolsonaro - Eu aloprei, perdi a linha, lamento.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D906BA5028D912DA007F4701 /* Jair Bolsonaro - Eu aloprei, perdi a linha, lamento.mp3 */; };
 		D90CDF0628F620F100CC992D /* Darcy Ribeiro - Uma classe dominante ruim, ranzinza, azeda, mediocre, cobicosa que nao deixa o pais ir pra frente.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90CDF0428F620F100CC992D /* Darcy Ribeiro - Uma classe dominante ruim, ranzinza, azeda, mediocre, cobicosa que nao deixa o pais ir pra frente.mp3 */; };
 		D90CDF0728F620F100CC992D /* Darcy Ribeiro - Uma classe dominante ruim (fala completa).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90CDF0528F620F100CC992D /* Darcy Ribeiro - Uma classe dominante ruim (fala completa).mp3 */; };
+		D90CDF0928F65C7200CC992D /* TrendsTimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90CDF0828F65C7200CC992D /* TrendsTimeInterval.swift */; };
 		D90D7DE428E2A4B1003B272A /* Eduardo Pazuello - Medo, medo, medo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90D7DE328E2A4B1003B272A /* Eduardo Pazuello - Medo, medo, medo.mp3 */; };
 		D90D7DE628E2A57A003B272A /* NUNES MARQUES Dont stop till you get enough michael jackson.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90D7DE528E2A579003B272A /* NUNES MARQUES Dont stop till you get enough michael jackson.mp3 */; };
 		D90D7DE828E2A70E003B272A /* Nunes Marques - Dont Stop till you get enough - Parece o Praga.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90D7DE728E2A70E003B272A /* Nunes Marques - Dont Stop till you get enough - Parece o Praga.mp3 */; };
@@ -924,6 +925,7 @@
 		D9DCC5D52875CB59008DD4A3 /* AppPersistentMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D42875CB59008DD4A3 /* AppPersistentMemory.swift */; };
 		D9DCC5D72875D7E5008DD4A3 /* NotificationSymbolPlusText.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D62875D7E5008DD4A3 /* NotificationSymbolPlusText.swift */; };
 		D9DCC5D9287625F4008DD4A3 /* PodcastAuthorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D8287625F4008DD4A3 /* PodcastAuthorsView.swift */; };
+		D9E5056028F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E5055F28F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift */; };
 		D9E5100A286084F2003DB3A3 /* Date+OnlyDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E51009286084F2003DB3A3 /* Date+OnlyDate.swift */; };
 		D9E69592283D2E2C00C341B2 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = D9E69591283D2E2C00C341B2 /* SQLite */; };
 		D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E69593283D2F2F00C341B2 /* Favorite.swift */; };
@@ -1065,6 +1067,7 @@
 		D906BA5028D912DA007F4701 /* Jair Bolsonaro - Eu aloprei, perdi a linha, lamento.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Eu aloprei, perdi a linha, lamento.mp3"; sourceTree = "<group>"; };
 		D90CDF0428F620F100CC992D /* Darcy Ribeiro - Uma classe dominante ruim, ranzinza, azeda, mediocre, cobicosa que nao deixa o pais ir pra frente.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Darcy Ribeiro - Uma classe dominante ruim, ranzinza, azeda, mediocre, cobicosa que nao deixa o pais ir pra frente.mp3"; sourceTree = "<group>"; };
 		D90CDF0528F620F100CC992D /* Darcy Ribeiro - Uma classe dominante ruim (fala completa).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Darcy Ribeiro - Uma classe dominante ruim (fala completa).mp3"; sourceTree = "<group>"; };
+		D90CDF0828F65C7200CC992D /* TrendsTimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsTimeInterval.swift; sourceTree = "<group>"; };
 		D90D7DE328E2A4B1003B272A /* Eduardo Pazuello - Medo, medo, medo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eduardo Pazuello - Medo, medo, medo.mp3"; sourceTree = "<group>"; };
 		D90D7DE528E2A579003B272A /* NUNES MARQUES Dont stop till you get enough michael jackson.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "NUNES MARQUES Dont stop till you get enough michael jackson.mp3"; sourceTree = "<group>"; };
 		D90D7DE728E2A70E003B272A /* Nunes Marques - Dont Stop till you get enough - Parece o Praga.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Nunes Marques - Dont Stop till you get enough - Parece o Praga.mp3"; sourceTree = "<group>"; };
@@ -1931,6 +1934,7 @@
 		D9DCC5D42875CB59008DD4A3 /* AppPersistentMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPersistentMemory.swift; sourceTree = "<group>"; };
 		D9DCC5D62875D7E5008DD4A3 /* NotificationSymbolPlusText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSymbolPlusText.swift; sourceTree = "<group>"; };
 		D9DCC5D8287625F4008DD4A3 /* PodcastAuthorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastAuthorsView.swift; sourceTree = "<group>"; };
+		D9E5055F28F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAudienceSharingStatisticTable.swift; sourceTree = "<group>"; };
 		D9E51009286084F2003DB3A3 /* Date+OnlyDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+OnlyDate.swift"; sourceTree = "<group>"; };
 		D9E69593283D2F2F00C341B2 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		D9E7D0E928AC6195001E909E /* Dose segura de crack, os tios e as tias do Zap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Dose segura de crack, os tios e as tias do Zap.mp3"; sourceTree = "<group>"; };
@@ -3220,6 +3224,7 @@
 				D912A33528B3E8F000F7293D /* VideoExportType.swift */,
 				D912A33928B5321400F7293D /* ShareAsVideoResult.swift */,
 				D901B06328BC795200B1A610 /* MusicGenre.swift */,
+				D90CDF0828F65C7200CC992D /* TrendsTimeInterval.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -3265,6 +3270,7 @@
 				D905B4C42857FF3D0096D466 /* AddNetworkCallLogTable.swift */,
 				D9758C3928617BA70094D388 /* AddUserFolderTables.swift */,
 				D9F87A9128F6EA51002EE8AA /* RemoveFavoriteLogTable.swift */,
+				D9E5055F28F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift */,
 			);
 			path = Migrations;
 			sourceTree = "<group>";
@@ -4415,6 +4421,7 @@
 				D957509628445EC30094AEA6 /* TrendsViewViewModel.swift in Sources */,
 				D9B763282845B5E600CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift in Sources */,
 				D958BC732868FE8C000B2EDA /* EmojiIdentification.swift in Sources */,
+				D9E5056028F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift in Sources */,
 				D9CC025D28BD9EBD0021C1E6 /* GridHelper.swift in Sources */,
 				D916627D2874F1F9000A1B23 /* OnboardingView.swift in Sources */,
 				D99DC19D28423AD7002B03B6 /* AuthorDetailViewViewModel.swift in Sources */,
@@ -4482,6 +4489,7 @@
 				D9265741285A1EE700947165 /* LocalDatabase+Log.swift in Sources */,
 				D980456228380F66003B2E83 /* LocalizableStrings.swift in Sources */,
 				D961D025283731AA00EFEDEB /* HelpView.swift in Sources */,
+				D90CDF0928F65C7200CC992D /* TrendsTimeInterval.swift in Sources */,
 				D927230628924FC1001D5E47 /* HitsMedoDelirioBannerView.swift in Sources */,
 				D96E115D28459D8800306859 /* UserActivityWaiter.swift in Sources */,
 				D97D76F92885B1BD005210D9 /* SidebarFolderIcon.swift in Sources */,
@@ -4573,7 +4581,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.5;
+				MARKETING_VERSION = 5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -4605,7 +4613,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.5;
+				MARKETING_VERSION = 5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -4761,7 +4769,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.5;
+				MARKETING_VERSION = 5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -4802,7 +4810,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.5;
+				MARKETING_VERSION = 5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

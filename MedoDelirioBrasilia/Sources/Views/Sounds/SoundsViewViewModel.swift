@@ -289,7 +289,7 @@ class SoundsViewViewModel: ObservableObject {
         
         if let lastDate = AppPersistentMemory.getLastSendDateOfUserPersonalTrendsToServer() {
             if lastDate.onlyDate! < Date.now.onlyDate! {
-                podium.exchangeShareCountStatsWithTheServer { result, _ in
+                podium.sendShareCountStatsToServer { result, _ in
                     guard result == .successful || result == .noStatsToSend else {
                         return
                     }
@@ -297,7 +297,7 @@ class SoundsViewViewModel: ObservableObject {
                 }
             }
         } else {
-            podium.exchangeShareCountStatsWithTheServer { result, _ in
+            podium.sendShareCountStatsToServer { result, _ in
                 guard result == .successful || result == .noStatsToSend else {
                     return
                 }

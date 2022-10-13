@@ -53,5 +53,9 @@ extension LocalDatabase {
     func getAudienceSharingStatCount() throws -> Int {
         try db.scalar(audienceSharingStatistic.count)
     }
+    
+    func clearAudienceSharingStatisticTable() throws {
+        try db.run(audienceSharingStatistic.delete())
+    }
 
 }

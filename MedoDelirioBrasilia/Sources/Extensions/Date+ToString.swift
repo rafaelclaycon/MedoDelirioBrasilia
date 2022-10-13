@@ -36,5 +36,11 @@ extension Date {
         dateFormatter.calendar = Calendar(identifier: .gregorian)
         return dateFormatter.string(from: self)
     }
+    
+    var asRelativeDateTime: String {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.unitsStyle = .full
+        return formatter.localizedString(for: self, relativeTo: Date.now)
+    }
 
 }
