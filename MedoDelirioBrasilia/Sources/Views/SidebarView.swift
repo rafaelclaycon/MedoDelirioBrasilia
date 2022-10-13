@@ -45,21 +45,23 @@ struct SidebarView: View {
                     })
             }
             
-            NavigationLink(
-                destination: SongsView(),
-                tag: Screen.songs.rawValue,
-                selection: $state,
-                label: {
-                    Label("Músicas", systemImage: "music.quarternote.3")
-                })
-            
-            NavigationLink(
-                destination: TrendsView(),
-                tag: Screen.trends.rawValue,
-                selection: $state,
-                label: {
-                    Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
-                })
+            Section("Mais") {
+                NavigationLink(
+                    destination: SongsView(),
+                    tag: Screen.songs.rawValue,
+                    selection: $state,
+                    label: {
+                        Label("Músicas", systemImage: "music.quarternote.3")
+                    })
+                
+                NavigationLink(
+                    destination: TrendsView(),
+                    tag: Screen.trends.rawValue,
+                    selection: $state,
+                    label: {
+                        Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
+                    })
+            }
             
             Section("Minhas Pastas") {
                 NavigationLink(

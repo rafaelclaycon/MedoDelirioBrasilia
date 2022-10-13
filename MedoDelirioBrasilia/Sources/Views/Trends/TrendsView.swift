@@ -56,18 +56,20 @@ struct TrendsView: View {
                         }
                     }
                 } else {
-                    HStack {
-                        /*if showMostSharedSoundsByTheUser {
-                            VStack {
-                                MostSharedByMeView()
-                                Spacer()
-                            }
-                        }*/
-                        
-                        if showSoundsMostSharedByTheAudience {
-                            VStack {
-                                MostSharedByAudienceView()
-                                Spacer()
+                    ScrollView {
+                        HStack {
+                            /*if showMostSharedSoundsByTheUser {
+                             VStack {
+                             MostSharedByMeView()
+                             Spacer()
+                             }
+                             }*/
+                            
+                            if showSoundsMostSharedByTheAudience {
+                                VStack {
+                                    MostSharedByAudienceView()
+                                    Spacer()
+                                }
                             }
                         }
                     }
