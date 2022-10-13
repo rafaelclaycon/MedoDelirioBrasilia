@@ -319,8 +319,8 @@ class SoundsViewViewModel: ObservableObject {
     func showNoFoldersAlert() {
         TapticFeedback.error()
         alertType = .singleOption
-        alertTitle = "Não Existem Pastas"
-        alertMessage = "Para continuar, crie uma pasta de sons na aba Coleções > Minhas Pastas."
+        alertTitle = Shared.Folders.noFoldersAlertTitle
+        alertMessage = UIDevice.current.userInterfaceIdiom == .phone ? Shared.Folders.noFoldersAlertMessagePhone : Shared.Folders.noFoldersAlertMessagePadMac
         showAlert = true
     }
     
