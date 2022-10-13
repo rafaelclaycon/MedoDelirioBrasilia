@@ -39,13 +39,13 @@ struct MainView: View {
                 }
                 .tag(3)
                 
-                /*NavigationView {
+                NavigationView {
                     TrendsView()
                 }
                 .tabItem {
                     Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
                 }
-                .tag(4)*/
+                .tag(4)
                 
                 NavigationView {
                     SettingsView()

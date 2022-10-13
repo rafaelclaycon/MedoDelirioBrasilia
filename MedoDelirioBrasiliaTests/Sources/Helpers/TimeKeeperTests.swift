@@ -47,5 +47,27 @@ final class TimeKeeperTests: XCTestCase {
         
         XCTAssertTrue(TimeKeeper.checkTwoMinutesHasPassed(originalDate))
     }
+    
+    func test_getDateAsStringAddingDays_whenDaysIsMinusSeven_shouldReturnCorrectDate() throws {
+        let isoDate = "2022-10-12T10:17:00+0000"
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        let date = dateFormatter.date(from: isoDate)!
+        
+        XCTAssertEqual(TimeKeeper.getDateAsString(addingDays: -7, referenceDate: date), "2022-10-05")
+    }
+    
+    func test_getDateAsStringAddingDays_whenDaysIsMinusThirty_shouldReturnCorrectDate() throws {
+        let isoDate = "2022-10-12T10:17:00+0000"
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        let date = dateFormatter.date(from: isoDate)!
+        
+        XCTAssertEqual(TimeKeeper.getDateAsString(addingDays: -30, referenceDate: date), "2022-09-12")
+    }
 
 }

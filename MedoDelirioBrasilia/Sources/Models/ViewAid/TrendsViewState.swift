@@ -2,6 +2,6 @@ import Foundation
 
 enum TrendsViewState {
 
-    case loading, noDataToDisplay, displayingData
+    case loading, noDataToDisplay, displayingData, noDataToDisplayForNow
 
 }

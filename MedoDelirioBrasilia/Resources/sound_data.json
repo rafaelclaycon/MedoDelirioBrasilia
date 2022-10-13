@@ -6824,7 +6824,7 @@
     {
         "id": "05A66869-09E5-4B4C-B8F3-816A17558603",
         "title": "Eu acho é pouco",
-        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "authorId": "98DE7FDA-4130-491E-BD06-76D835FE8792",
         "description": "Eu acho e pouco",
         "filename": "Eu acho e pouco.mp3",
         "dateAdded": "2022-10-08T00:00:00Z",
@@ -6837,6 +6837,33 @@
         "description": "Paz tranquilidade",
         "filename": "Jair Bolsonaro - Paz, tranquilidade.mp3",
         "dateAdded": "2022-10-10T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "4FB30C50-9B48-40B8-A149-44DD360AE9C9",
+        "title": "Uma classe dominante ruim, ranzinza, azeda, medíocre",
+        "authorId": "B3AC795E-4FAB-45D4-A772-1CB4A51A75E3",
+        "description": "mas tem uma classe dominante ruim ranzinza azeda mediocre cobicosa que nao deixa o pais ir pra frente",
+        "filename": "Darcy Ribeiro - Uma classe dominante ruim, ranzinza, azeda, mediocre, cobicosa que nao deixa o pais ir pra frente.mp3",
+        "dateAdded": "2022-10-11T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "CFFDA26B-3B06-4395-B280-328DDCF98A5B",
+        "title": "Uma classe dominante ruim (fala completa)",
+        "authorId": "B3AC795E-4FAB-45D4-A772-1CB4A51A75E3",
+        "description": "entao aqui nao é jogar toda a culpa nos militares os militares foram instrumento de uma classe dominante infecunda e é preciso olhar e apontar e acusar a essa classe é isso que eu tenho feito ou você leva a sério que esse povo precisa ser alfabetizado e que o que vale aqui é criança ou você assume a atitude sacana da classe dominante que sempre achou que o povo é uma espécie de negro escravo deles carvão pra queimar e nao importa o que acontece com eles essa é a postura do brasileiro comum uma postura perversa e pervertida eu vi o mundo inteiro nao ha pais não há lugar melhor pra fazer um pais como esse eu andei no exilio mas tem uma classe dominante ruim ranzinza azeda mediocre cobicosa que nao deixa o pais ir pra frente",
+        "filename": "Darcy Ribeiro - Uma classe dominante ruim (fala completa).mp3",
+        "dateAdded": "2022-10-11T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "7E2FE3F0-DA0F-48F7-93BC-109EE496EDB7",
+        "title": "Que tistreza",
+        "authorId": "1FE5ED6C-01FA-4429-BE84-00275EFD6E2A",
+        "description": "Que tistreza que tristeza",
+        "filename": "Luiz Felipe D'Avila - Que tistreza.mp3",
+        "dateAdded": "2022-10-12T00:00:00Z",
         "isOffensive": false
     }
 ]
