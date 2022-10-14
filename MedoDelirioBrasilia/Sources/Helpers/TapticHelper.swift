@@ -7,6 +7,11 @@ class TapticFeedback {
         generator.notificationOccurred(.success)
     }
     
+    static func warning() {
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.warning)
+    }
+    
     static func error() {
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.error)
