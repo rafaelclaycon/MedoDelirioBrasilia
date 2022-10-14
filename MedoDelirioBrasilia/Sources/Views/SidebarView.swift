@@ -9,11 +9,14 @@ struct SidebarView: View {
     @Binding var isShowingFolderInfoEditingSheet: Bool
     @Binding var updateFolderList: Bool
     
+    // Trends
+    @Binding var soundIdToGoToFromTrends: String
+    
     var body: some View {
         List {
             Section("Sons") {
                 NavigationLink(
-                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(), authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .allSounds, updateSoundsList: $updateSoundsList),
+                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(), authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .allSounds, updateSoundsList: $updateSoundsList, soundIdToGoToFromTrends: $soundIdToGoToFromTrends),
                     tag: Screen.allSounds.rawValue,
                     selection: $state,
                     label: {
@@ -21,7 +24,7 @@ struct SidebarView: View {
                     })
                 
                 NavigationLink(
-                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(), authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .favorites, updateSoundsList: .constant(false)),
+                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(), authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .favorites, updateSoundsList: .constant(false), soundIdToGoToFromTrends: $soundIdToGoToFromTrends),
                     tag: Screen.favorites.rawValue,
                     selection: $state,
                     label: {
@@ -29,7 +32,7 @@ struct SidebarView: View {
                     })
                 
                 NavigationLink(
-                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .byAuthor, updateSoundsList: .constant(false)),
+                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .byAuthor, updateSoundsList: .constant(false), soundIdToGoToFromTrends: $soundIdToGoToFromTrends),
                     tag: Screen.groupedByAuthor.rawValue,
                     selection: $state,
                     label: {
@@ -55,7 +58,7 @@ struct SidebarView: View {
                     })
                 
                 NavigationLink(
-                    destination: TrendsView(),
+                    destination: TrendsView(tabSelection: .constant(.trends), soundIdToGoToFromTrends: $soundIdToGoToFromTrends),
                     tag: Screen.trends.rawValue,
                     selection: $state,
                     label: {
@@ -121,7 +124,8 @@ struct SidebarView_Previews: PreviewProvider {
                     isShowingSettingsSheet: .constant(false),
                     updateSoundsList: .constant(false),
                     isShowingFolderInfoEditingSheet: .constant(false),
-                    updateFolderList: .constant(false))
+                    updateFolderList: .constant(false),
+                    soundIdToGoToFromTrends: .constant(.empty))
     }
 
 }

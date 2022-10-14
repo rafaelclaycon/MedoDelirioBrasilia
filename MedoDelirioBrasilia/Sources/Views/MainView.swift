@@ -2,12 +2,13 @@ import SwiftUI
 
 struct MainView: View {
 
-    @State private var tabSelection = 1
+    @State var tabSelection: PhoneTab = .sounds
     @State var state: String? = Screen.allSounds.rawValue
     @State var isShowingSettingsSheet: Bool = false
     @State var updateSoundsList: Bool = false
     @State var isShowingFolderInfoEditingSheet: Bool = false
     @State var updateFolderList: Bool = false
+    @State var soundIdToGoToFromTrends: String = .empty
     
     var body: some View {
         if UIDevice.current.userInterfaceIdiom == .phone {
@@ -16,12 +17,13 @@ struct MainView: View {
                     SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
                                                               authorSortOption: AuthorSortOption.nameAscending.rawValue),
                                currentMode: .allSounds,
-                               updateSoundsList: .constant(false))
+                               updateSoundsList: .constant(false),
+                               soundIdToGoToFromTrends: $soundIdToGoToFromTrends)
                 }
                 .tabItem {
                     Label("Sons", systemImage: "speaker.wave.3.fill")
                 }
-                .tag(1)
+                .tag(PhoneTab.sounds)
                 
                 NavigationView {
                     CollectionsView(isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet)
@@ -29,7 +31,7 @@ struct MainView: View {
                 .tabItem {
                     Label("Coleções", systemImage: "rectangle.grid.2x2.fill")
                 }
-                .tag(2)
+                .tag(PhoneTab.collections)
                 
                 NavigationView {
                     SongsView()
@@ -37,15 +39,15 @@ struct MainView: View {
                 .tabItem {
                     Label("Músicas", systemImage: "music.quarternote.3")
                 }
-                .tag(3)
+                .tag(PhoneTab.songs)
                 
                 NavigationView {
-                    TrendsView()
+                    TrendsView(tabSelection: $tabSelection, soundIdToGoToFromTrends: $soundIdToGoToFromTrends)
                 }
                 .tabItem {
                     Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
                 }
-                .tag(4)
+                .tag(PhoneTab.trends)
                 
                 NavigationView {
                     SettingsView()
@@ -53,19 +55,19 @@ struct MainView: View {
                 .tabItem {
                     Label("Ajustes", systemImage: "gearshape.fill")
                 }
-                .tag(5)
+                .tag(PhoneTab.settings)
             }
             .onContinueUserActivity(Shared.ActivityTypes.playAndShareSounds, perform: { _ in
-                tabSelection = 1
+                tabSelection = .sounds
             })
             .onContinueUserActivity(Shared.ActivityTypes.viewCollections, perform: { _ in
-                tabSelection = 2
+                tabSelection = .collections
             })
             .onContinueUserActivity(Shared.ActivityTypes.playAndShareSongs, perform: { _ in
-                tabSelection = 3
+                tabSelection = .songs
             })
             .onContinueUserActivity(Shared.ActivityTypes.viewTrends, perform: { _ in
-                tabSelection = 4
+                tabSelection = .trends
             })
         } else {
             NavigationView {
@@ -73,11 +75,13 @@ struct MainView: View {
                             isShowingSettingsSheet: $isShowingSettingsSheet,
                             updateSoundsList: $updateSoundsList,
                             isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet,
-                            updateFolderList: $updateFolderList)
+                            updateFolderList: $updateFolderList,
+                            soundIdToGoToFromTrends: $soundIdToGoToFromTrends)
                 SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
                                                           authorSortOption: AuthorSortOption.nameAscending.rawValue),
                            currentMode: .allSounds,
-                           updateSoundsList: $updateSoundsList)
+                           updateSoundsList: $updateSoundsList,
+                           soundIdToGoToFromTrends: $soundIdToGoToFromTrends)
             }
             .navigationViewStyle(DoubleColumnNavigationViewStyle())
             .sheet(isPresented: $isShowingSettingsSheet, onDismiss: {
