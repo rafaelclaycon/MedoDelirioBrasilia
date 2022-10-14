@@ -12,10 +12,6 @@ struct SoundCell: View {
         case regular, favorite, highlighted
     }
     
-//    private var isFavorite: Bool {
-//        favorites.contains(soundId)
-//    }
-    
     private var currentMode: Mode {
         if favorites.contains(soundId) {
             return .favorite
