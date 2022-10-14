@@ -10,15 +10,6 @@ struct DiagnosticsView: View {
     @State var installId = UIDevice.identifiderForVendor
     @State var showInstallIdCopiedAlert = false
     
-    @State var showFavoriteDiagnosticsAlert = false
-    @State var favoriteDiagnosticsAlertTitle = ""
-    @State var favoriteDiagnosticsAlertMessage = ""
-    
-    @State var showDatabaseExportAlert = false
-    @State var databaseExportAlertTitle = ""
-    @State var databaseExportAlertMessage = ""
-    @State var databaseExportAlertConfirmationButtonText = ""
-    
     @State var shareLogs: [UserShareLog]?
     //@State var networkLogs: [NetworkCallLog]?
     
@@ -49,58 +40,7 @@ struct DiagnosticsView: View {
             } header: {
                 Text("ID da instalação")
             } footer: {
-                Text("Esse código identifica apenas a instalação do app e é renovado caso você o desinstale e instale novamente.")
-            }
-            
-            Section {
-                Button("Ver Favoritos internos") {
-                    guard let favorites = try? database.getAllFavorites() else {
-                        favoriteDiagnosticsAlertTitle = "Não Foi Possível Obter a Quantidade de Favoritos"
-                        favoriteDiagnosticsAlertMessage = "Informe o desenvolvedor."
-                        return showFavoriteDiagnosticsAlert = true
-                    }
-                    favoriteDiagnosticsAlertTitle = "\(favorites.count) Favorito(s) Cadastrados"
-                    favoriteDiagnosticsAlertMessage = ""
-                    for (index, favorite) in favorites.enumerated() {
-                        if let sound = soundData.first(where: {$0.id == favorite.contentId}) {
-                            favoriteDiagnosticsAlertMessage = favoriteDiagnosticsAlertMessage + "\(sound.title) \(favorite.dateAdded.toString())"
-                        } else {
-                            favoriteDiagnosticsAlertMessage = favoriteDiagnosticsAlertMessage + "Som não identificado"
-                        }
-                        if index != (favorites.count - 1) {
-                            favoriteDiagnosticsAlertMessage = favoriteDiagnosticsAlertMessage + ";\n"
-                        }
-                    }
-                    showFavoriteDiagnosticsAlert = true
-                }
-                .alert(isPresented: $showFavoriteDiagnosticsAlert) {
-                    Alert(title: Text(favoriteDiagnosticsAlertTitle), message: Text(favoriteDiagnosticsAlertMessage), dismissButton: .default(Text("OK")))
-                }
-                
-                Button("Exportar banco de dados") {
-                    if UIDevice.current.userInterfaceIdiom == .phone {
-                        databaseExportAlertTitle = "Envie o Banco de Dados Exportado para o Desenvolvedor"
-                        databaseExportAlertMessage = "Quando a tela de compartilhamento aparecer, selecione Salvar em Arquivos e salve ele onde achar melhor. Depois, anexe o arquivo exportado a um e-mail no seu app de e-mail preferido."
-                        databaseExportAlertConfirmationButtonText = "Prosseguir"
-                        showDatabaseExportAlert = true
-                    } else {
-                        databaseExportAlertTitle = "Função Não Suportada Nessa Plataforma"
-                        databaseExportAlertMessage = "Caso esteja enfrentando problemas com os Favoritos no iPad ou Mac, por favor, contate o desenvolvedor por e-mail."
-                        databaseExportAlertConfirmationButtonText = "OK"
-                        showDatabaseExportAlert = true
-                    }
-                }
-                .alert(isPresented: $showDatabaseExportAlert) {
-                    Alert(title: Text(databaseExportAlertTitle), message: Text(databaseExportAlertMessage), dismissButton: .default(Text(databaseExportAlertConfirmationButtonText), action: {
-                        if UIDevice.current.userInterfaceIdiom == .phone {
-                            viewModel.exportDatabase()
-                        }
-                    }))
-                }
-            } header: {
-                Text("Debug dos Favoritos")
-            } footer: {
-                Text("Compacte e envie o arquivo do banco de dados para medodeliriosuporte@gmail.com.")
+                Text("Esse código identifica apenas a instalação do app e é renovado caso você o desinstale e instale novamente. Toque nele uma vez para copiar.")
             }
             
             /*if CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
@@ -120,7 +60,7 @@ struct DiagnosticsView: View {
                     Text("Sem Dados")
                 } else {
                     List(shareLogs!) { log in
-                        SharingLogCell(destination: ShareDestination(rawValue: log.destination) ?? .other, contentType: ContentType(rawValue: log.contentType) ?? .sound, contentTitle: getContentName(contentId: log.contentId), dateTime: log.dateTime.toString(), sentToServer: log.sentToServer)
+                        SharingLogCell(destination: ShareDestination(rawValue: log.destination) ?? .other, contentType: ContentType(rawValue: log.contentType) ?? .sound, contentTitle: getContentName(contentId: log.contentId), dateTime: log.dateTime.toScreenString(), sentToServer: log.sentToServer)
                     }
                 }
             }

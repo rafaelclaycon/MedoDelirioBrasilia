@@ -9,6 +9,7 @@ class SoundsViewViewModel: ObservableObject {
     @Published var authorSortOption: Int
     
     @Published var favoritesKeeper = Set<String>()
+    @Published var highlightKeeper = Set<String>()
     @Published var showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = false
     @Published var showEmailAppPicker_soundUnavailableConfirmationDialog = false
     @Published var selectedSound: Sound? = nil
@@ -289,7 +290,7 @@ class SoundsViewViewModel: ObservableObject {
         
         if let lastDate = AppPersistentMemory.getLastSendDateOfUserPersonalTrendsToServer() {
             if lastDate.onlyDate! < Date.now.onlyDate! {
-                podium.exchangeShareCountStatsWithTheServer { result, _ in
+                podium.sendShareCountStatsToServer { result, _ in
                     guard result == .successful || result == .noStatsToSend else {
                         return
                     }
@@ -297,7 +298,7 @@ class SoundsViewViewModel: ObservableObject {
                 }
             }
         } else {
-            podium.exchangeShareCountStatsWithTheServer { result, _ in
+            podium.sendShareCountStatsToServer { result, _ in
                 guard result == .successful || result == .noStatsToSend else {
                     return
                 }
@@ -319,8 +320,16 @@ class SoundsViewViewModel: ObservableObject {
     func showNoFoldersAlert() {
         TapticFeedback.error()
         alertType = .singleOption
-        alertTitle = "Não Existem Pastas"
-        alertMessage = "Para continuar, crie uma pasta de sons na aba Coleções > Minhas Pastas."
+        alertTitle = Shared.Folders.noFoldersAlertTitle
+        alertMessage = UIDevice.current.userInterfaceIdiom == .phone ? Shared.Folders.noFoldersAlertMessagePhone : Shared.Folders.noFoldersAlertMessagePadMac
+        showAlert = true
+    }
+    
+    func showMoveDatabaseIssueAlert() {
+        TapticFeedback.error()
+        alertType = .singleOption
+        alertTitle = "Problema ao Mover o Banco de Dados"
+        alertMessage = "Houve um problema ao tentar mover o banco de dados do app. Por favor, envie um print desse erro para o desenvolvedor (e-mail nos Ajustes):\n\n\(moveDatabaseIssue)"
         showAlert = true
     }
 

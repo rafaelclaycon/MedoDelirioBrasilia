@@ -22,7 +22,6 @@ class LocalDatabase {
     var networkCallLog = Table("networkCallLog")
     var userFolder = Table("userFolder")
     var userFolderContent = Table("userFolderContent")
-    var favoriteLog = Table("favoriteLog")
     
     // MARK: - Setup
     
@@ -52,13 +51,17 @@ extension LocalDatabase {
 
     static func databaseFilepath() -> String {
         let path = NSSearchPathForDirectoriesInDomains(
-            .cachesDirectory, .userDomainMask, true
+            .documentDirectory, .userDomainMask, true
         ).first!
         return "\(path)/medo_db.sqlite3"
     }
     
     static func migrations() -> [Migration] {
-        return [InitialMigration(), AddNetworkCallLogTable(), AddUserFolderTables(), AddFavoriteLogTable()]
+        return [InitialMigration(),
+                AddNetworkCallLogTable(),
+                AddUserFolderTables(),
+                RemoveFavoriteLogTable(),
+                AddAudienceSharingStatisticTable()]
     }
     
     var needsMigration: Bool {

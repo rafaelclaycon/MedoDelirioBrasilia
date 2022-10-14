@@ -11,8 +11,6 @@ struct Shared {
         
     }
     
-    //static let removeFromFavoritesEmojis = ["🍗","🐂","👴🏻🇧🇷","💩","🤖","🔫","⛽️","🚜","🍌","🍫🤑","🛥🤳🏻"]
-    
     static let addToFolderButtonText = "Adicionar a Pasta"
     static let shareSoundButtonText = "Compartilhar Som"
     static let shareSongButtonText = "Compartilhar Música"
@@ -32,6 +30,7 @@ struct Shared {
     static let unknownAuthor = "Desconhecido"
     
     // E-mail
+    
     static let pickAMailApp = "Escolha um app de e-mail"
     static let issueSuggestionEmailSubject = "Problema/sugestão no app iOS \(Versioneer.appVersion) Build \(Versioneer.buildVersionNumber)"
     static let issueSuggestionEmailBody = "Para um problema, inclua passos para reproduzir e prints se possível."
@@ -49,6 +48,22 @@ struct Shared {
         
         static let generatingVideoShortMessage = "Gerando vídeo..."
         static let generatingVideoLongMessage = "Gerando vídeo...\nIsso pode demorar um pouco."
+        
+    }
+    
+    struct Trends {
+        
+        static let lastWeek = "Última semana"
+        static let lastMonth = "Último mês"
+        static let allTime = "Todos os tempos"
+
+    }
+    
+    struct Folders {
+        
+        static let noFoldersAlertTitle = "Não Existem Pastas"
+        static let noFoldersAlertMessagePhone = "Para continuar, crie uma pasta de sons na aba Coleções > Minhas Pastas."
+        static let noFoldersAlertMessagePadMac = "Para continuar, crie uma pasta de sons. Toque em Nova Pasta na barra lateral."
         
     }
 
