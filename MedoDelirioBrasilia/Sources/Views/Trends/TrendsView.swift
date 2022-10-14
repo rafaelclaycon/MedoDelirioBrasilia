@@ -4,6 +4,7 @@ struct TrendsView: View {
 
     @StateObject private var viewModel = TrendsViewViewModel()
     @Binding var tabSelection: PhoneTab
+    @Binding var activePadScreen: PadScreen?
     @Binding var soundIdToGoToFromTrends: String
     @State var showAlert = false
     @State var alertTitle = ""
@@ -46,7 +47,7 @@ struct TrendsView: View {
                              }*/
                             
                             if showSoundsMostSharedByTheAudience {
-                                MostSharedByAudienceView(tabSelection: $tabSelection, soundIdToGoToFromTrends: $soundIdToGoToFromTrends)
+                                MostSharedByAudienceView(tabSelection: $tabSelection, activePadScreen: $activePadScreen, soundIdToGoToFromTrends: $soundIdToGoToFromTrends)
                                     .padding(.top, 10)
                             }
                             
@@ -69,7 +70,7 @@ struct TrendsView: View {
                             
                             if showSoundsMostSharedByTheAudience {
                                 VStack {
-                                    MostSharedByAudienceView(tabSelection: $tabSelection, soundIdToGoToFromTrends: $soundIdToGoToFromTrends)
+                                    MostSharedByAudienceView(tabSelection: $tabSelection, activePadScreen: $activePadScreen, soundIdToGoToFromTrends: $soundIdToGoToFromTrends)
                                     Spacer()
                                 }
                             }
@@ -93,7 +94,7 @@ struct TrendsView: View {
 struct TrendsView_Previews: PreviewProvider {
 
     static var previews: some View {
-        TrendsView(tabSelection: .constant(.trends), soundIdToGoToFromTrends: .constant(.empty))
+        TrendsView(tabSelection: .constant(.trends), activePadScreen: .constant(.trends), soundIdToGoToFromTrends: .constant(.empty))
     }
 
 }

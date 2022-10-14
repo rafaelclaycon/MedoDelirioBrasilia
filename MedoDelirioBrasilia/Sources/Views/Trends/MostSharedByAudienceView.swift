@@ -4,6 +4,7 @@ struct MostSharedByAudienceView: View {
 
     @StateObject private var viewModel = MostSharedByAudienceViewViewModel()
     @Binding var tabSelection: PhoneTab
+    @Binding var activePadScreen: PadScreen?
     @Binding var soundIdToGoToFromTrends: String
     
     private let columns = [
@@ -116,13 +117,11 @@ struct MostSharedByAudienceView: View {
                         ForEach(viewModel.audienceTop5!) { item in
                             TopChartCellView(item: item)
                                 .onTapGesture {
-                                    tabSelection = .sounds
-                                    soundIdToGoToFromTrends = item.contentId
+                                    navigateTo(sound: item.contentId)
                                 }
                                 .contextMenu {
                                     Button {
-                                        tabSelection = .sounds
-                                        soundIdToGoToFromTrends = item.contentId
+                                        navigateTo(sound: item.contentId)
                                     } label: {
                                         Label("Ir para Som", systemImage: "arrow.uturn.backward")
                                     }
@@ -167,13 +166,22 @@ struct MostSharedByAudienceView: View {
             Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
         }
     }
+    
+    private func navigateTo(sound soundId: String) {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            tabSelection = .sounds
+        } else {
+            activePadScreen = .allSounds
+        }
+        soundIdToGoToFromTrends = soundId
+    }
 
 }
 
 struct MostSharedByAudienceView_Previews: PreviewProvider {
-    
+
     static var previews: some View {
-        MostSharedByAudienceView(tabSelection: .constant(.trends), soundIdToGoToFromTrends: .constant(.empty))
+        MostSharedByAudienceView(tabSelection: .constant(.trends), activePadScreen: .constant(.trends), soundIdToGoToFromTrends: .constant(.empty))
     }
-    
+
 }

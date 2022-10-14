@@ -3,7 +3,7 @@ import SwiftUI
 struct MainView: View {
 
     @State var tabSelection: PhoneTab = .sounds
-    @State var state: String? = Screen.allSounds.rawValue
+    @State var state: PadScreen? = PadScreen.allSounds
     @State var isShowingSettingsSheet: Bool = false
     @State var updateSoundsList: Bool = false
     @State var isShowingFolderInfoEditingSheet: Bool = false
@@ -42,7 +42,7 @@ struct MainView: View {
                 .tag(PhoneTab.songs)
                 
                 NavigationView {
-                    TrendsView(tabSelection: $tabSelection, soundIdToGoToFromTrends: $soundIdToGoToFromTrends)
+                    TrendsView(tabSelection: $tabSelection, activePadScreen: .constant(.trends), soundIdToGoToFromTrends: $soundIdToGoToFromTrends)
                 }
                 .tabItem {
                     Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")

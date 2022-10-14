@@ -3,7 +3,7 @@ import SwiftUI
 struct SidebarView: View {
 
     @StateObject private var viewModel = SidebarViewViewModel()
-    @Binding var state: String?
+    @Binding var state: PadScreen?
     @Binding var isShowingSettingsSheet: Bool
     @Binding var updateSoundsList: Bool
     @Binding var isShowingFolderInfoEditingSheet: Bool
@@ -17,23 +17,23 @@ struct SidebarView: View {
             Section("Sons") {
                 NavigationLink(
                     destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(), authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .allSounds, updateSoundsList: $updateSoundsList, soundIdToGoToFromTrends: $soundIdToGoToFromTrends),
-                    tag: Screen.allSounds.rawValue,
+                    tag: PadScreen.allSounds,
                     selection: $state,
                     label: {
                         Label("Todos os Sons", systemImage: "speaker.wave.2")
                     })
                 
                 NavigationLink(
-                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(), authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .favorites, updateSoundsList: .constant(false), soundIdToGoToFromTrends: $soundIdToGoToFromTrends),
-                    tag: Screen.favorites.rawValue,
+                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(), authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .favorites, updateSoundsList: .constant(false), soundIdToGoToFromTrends: .constant(.empty)),
+                    tag: PadScreen.favorites,
                     selection: $state,
                     label: {
                         Label("Favoritos", systemImage: "star")
                     })
                 
                 NavigationLink(
-                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .byAuthor, updateSoundsList: .constant(false), soundIdToGoToFromTrends: $soundIdToGoToFromTrends),
-                    tag: Screen.groupedByAuthor.rawValue,
+                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .byAuthor, updateSoundsList: .constant(false), soundIdToGoToFromTrends: .constant(.empty)),
+                    tag: PadScreen.groupedByAuthor,
                     selection: $state,
                     label: {
                         Label("Por Autor", systemImage: "person")
@@ -41,7 +41,7 @@ struct SidebarView: View {
                 
                 NavigationLink(
                     destination: CollectionsView(isShowingFolderInfoEditingSheet: .constant(false)),
-                    tag: Screen.collections.rawValue,
+                    tag: PadScreen.collections,
                     selection: $state,
                     label: {
                         Label("Coleções", systemImage: "rectangle.grid.2x2")
@@ -51,15 +51,15 @@ struct SidebarView: View {
             Section("Mais") {
                 NavigationLink(
                     destination: SongsView(),
-                    tag: Screen.songs.rawValue,
+                    tag: PadScreen.songs,
                     selection: $state,
                     label: {
                         Label("Músicas", systemImage: "music.quarternote.3")
                     })
                 
                 NavigationLink(
-                    destination: TrendsView(tabSelection: .constant(.trends), soundIdToGoToFromTrends: $soundIdToGoToFromTrends),
-                    tag: Screen.trends.rawValue,
+                    destination: TrendsView(tabSelection: .constant(.trends), activePadScreen: $state, soundIdToGoToFromTrends: $soundIdToGoToFromTrends),
+                    tag: PadScreen.trends,
                     selection: $state,
                     label: {
                         Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
@@ -69,7 +69,7 @@ struct SidebarView: View {
             Section("Minhas Pastas") {
                 NavigationLink(
                     destination: AllFoldersView(isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet, updateFolderList: $updateFolderList),
-                    tag: Screen.allFolders.rawValue,
+                    tag: PadScreen.allFolders,
                     selection: $state,
                     label: {
                         Label("Todas as Pastas", systemImage: "folder")
@@ -78,7 +78,7 @@ struct SidebarView: View {
                 ForEach(viewModel.folders) { folder in
                     NavigationLink(
                         destination: FolderDetailView(folder: folder),
-                        tag: folder.id,
+                        tag: .specificFolder,
                         selection: $state,
                         label: {
                             HStack(spacing: 15) {
@@ -120,7 +120,7 @@ struct SidebarView: View {
 struct SidebarView_Previews: PreviewProvider {
 
     static var previews: some View {
-        SidebarView(state: .constant(Screen.allSounds.rawValue),
+        SidebarView(state: .constant(PadScreen.allSounds),
                     isShowingSettingsSheet: .constant(false),
                     updateSoundsList: .constant(false),
                     isShowingFolderInfoEditingSheet: .constant(false),
