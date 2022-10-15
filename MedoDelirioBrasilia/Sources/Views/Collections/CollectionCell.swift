@@ -20,7 +20,7 @@ struct CollectionCell: View {
                 }
                 .resizable()
                 .scaledToFill()
-                .frame(width: 180)
+                .frame(width: 160, height: 100)
                 .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
             
 //            RoundedRectangle(cornerRadius: 20, style: .continuous)
