@@ -6865,5 +6865,77 @@
         "filename": "Luiz Felipe D'Avila - Que tistreza.mp3",
         "dateAdded": "2022-10-12T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "DFF24FB0-9FD5-44A1-8DF6-3D5CD7F9FA9F",
+        "title": "Faz algum sentido pra você isso?",
+        "authorId": "BB05B606-9553-48B9-BC59-3BA58B3F0181",
+        "description": "faz algum sentido pra voce isso pois bem",
+        "filename": "Faz algum sentido pra voce isso - flavio bolsonaro.mp3",
+        "dateAdded": "2022-10-13T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "22D5875D-6B62-471D-BCFC-61DED509D4CA",
+        "title": "O Barbinha tá vindo aí hein",
+        "authorId": "691D4F55-79F7-407A-B0AA-71CD09059E60",
+        "description": "O Barbinha tá vindo aí hein, vai vir te jambronando hein filho",
+        "filename": "O barbinha ta vindo ai, vai vir te jambronando - diogo defante.mp3",
+        "dateAdded": "2022-10-13T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "0258693D-31D6-4A9E-8BA8-F11973BA79CF",
+        "title": "Rapaz",
+        "authorId": "691D4F55-79F7-407A-B0AA-71CD09059E60",
+        "description": "rapaz",
+        "filename": "Rapaz - Franciel Cruz.mp3",
+        "dateAdded": "2022-10-16T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "title": "Se o Brasil reeleger Bolsonaro",
+        "authorId": "0258693D-31D6-4A9E-8BA8-F11973BA79CF",
+        "description": "aí gente na moral se o brasil reeleger bolsonaro, o brasil tem mais é que se fuder mesmo",
+        "filename": "Se o Brasil reeleger bolsonaro - Cristiano Botafogo.mp3",
+        "dateAdded": "2022-10-16T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "4225D9DC-F310-4D08-97BB-F4E284F36D18",
+        "title": "Que alegria... que tistreza",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "que alegria que tistreza tristeza felipe davila d'ávila igor guimarães",
+        "filename": "Que alegria que tistreza.mp3",
+        "dateAdded": "2022-10-16T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "3D04D88C-5A79-4C2D-A262-983D50422446",
+        "title": "Filho, eu estou achando você nervoso",
+        "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
+        "description": "filho eu estou achando você nervoso",
+        "filename": "Filho eu estou achando voce nervoso - Lula.mp3",
+        "dateAdded": "2022-10-16T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "title": "Pelo amor de Deus, ele é muito burro",
+        "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
+        "description": "pelo amor de deus ele e muito burro",
+        "filename": "Pelo amor de Deus ele e muito burro meme.mp3",
+        "dateAdded": "2022-10-16T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "5D04794F-3DB3-449F-B6C8-29E403BD9E5F",
+        "title": "Falta de respeito com as criança",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "falta de respeito com as criança as crianças não merece isso",
+        "filename": "Falta de respeito com as criança - Meme Show do Patati Patata.mp3",
+        "dateAdded": "2022-10-16T00:00:00Z",
+        "isOffensive": false
     }
 ]

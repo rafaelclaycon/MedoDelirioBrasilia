@@ -438,5 +438,15 @@
         "filename": "Vou de Lula, Ce Sabe - Neide e Lula.mp3",
         "dateAdded": "2022-09-29T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "4B702B58-C212-4648-A442-A893B1124F7D",
+        "title": "Tá na hora de votar (Ilariê)",
+        "description": "",
+        "genre": 11,
+        "duration": "00:26",
+        "filename": "Tá na hora de votar (Ilarie) - Lula.mp3",
+        "dateAdded": "2022-08-16T00:00:00Z",
+        "isOffensive": true
     }
 ]
