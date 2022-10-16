@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		494EAD1B28F84E3A00BF822C /* Faz algum sentido pra voce isso - flavio bolsonaro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 494EAD1A28F84E3A00BF822C /* Faz algum sentido pra voce isso - flavio bolsonaro.mp3 */; };
+		494EAD1D28F84F0700BF822C /* O barbinha ta vindo ai, vai vir te jambronando - diogo defante.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 494EAD1C28F84F0700BF822C /* O barbinha ta vindo ai, vai vir te jambronando - diogo defante.mp3 */; };
+		494EAD1F28FC58D800BF822C /* Rapaz - Franciel Cruz.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 494EAD1E28FC58D800BF822C /* Rapaz - Franciel Cruz.mp3 */; };
+		494EAD2128FC5A2E00BF822C /* Se o Brasil reeleger bolsonaro - Cristiano Botafogo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 494EAD2028FC5A2E00BF822C /* Se o Brasil reeleger bolsonaro - Cristiano Botafogo.mp3 */; };
+		494EAD2328FC5B7500BF822C /* Falta de respeito com as criança - Meme Show do Patati Patata.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 494EAD2228FC5B7500BF822C /* Falta de respeito com as criança - Meme Show do Patati Patata.mp3 */; };
+		494EAD2528FC5C6C00BF822C /* Que alegria que tistreza.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 494EAD2428FC5C6C00BF822C /* Que alegria que tistreza.mp3 */; };
+		494EAD2728FC5D7400BF822C /* Filho eu estou achando voce nervoso - Lula.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 494EAD2628FC5D7400BF822C /* Filho eu estou achando voce nervoso - Lula.mp3 */; };
+		494EAD2928FC5DE900BF822C /* Pelo amor de Deus ele e muito burro meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 494EAD2828FC5DE900BF822C /* Pelo amor de Deus ele e muito burro meme.mp3 */; };
+		494EAD2B28FC614A00BF822C /* Tá na hora de votar (Ilarie) - Lula.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 494EAD2A28FC614900BF822C /* Tá na hora de votar (Ilarie) - Lula.mp3 */; };
 		4979103D28BE844D00CDF01C /* MedoWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4979103C28BE844D00CDF01C /* MedoWidget.swift */; };
 		4979103F28BE844E00CDF01C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4979103E28BE844E00CDF01C /* Assets.xcassets */; };
 		4979104328BE844E00CDF01C /* MedoWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4979103528BE844D00CDF01C /* MedoWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -1012,6 +1021,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		494EAD1A28F84E3A00BF822C /* Faz algum sentido pra voce isso - flavio bolsonaro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Faz algum sentido pra voce isso - flavio bolsonaro.mp3"; sourceTree = "<group>"; };
+		494EAD1C28F84F0700BF822C /* O barbinha ta vindo ai, vai vir te jambronando - diogo defante.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O barbinha ta vindo ai, vai vir te jambronando - diogo defante.mp3"; sourceTree = "<group>"; };
+		494EAD1E28FC58D800BF822C /* Rapaz - Franciel Cruz.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rapaz - Franciel Cruz.mp3"; sourceTree = "<group>"; };
+		494EAD2028FC5A2E00BF822C /* Se o Brasil reeleger bolsonaro - Cristiano Botafogo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Se o Brasil reeleger bolsonaro - Cristiano Botafogo.mp3"; sourceTree = "<group>"; };
+		494EAD2228FC5B7500BF822C /* Falta de respeito com as criança - Meme Show do Patati Patata.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Falta de respeito com as criança - Meme Show do Patati Patata.mp3"; sourceTree = "<group>"; };
+		494EAD2428FC5C6C00BF822C /* Que alegria que tistreza.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Que alegria que tistreza.mp3"; sourceTree = "<group>"; };
+		494EAD2628FC5D7400BF822C /* Filho eu estou achando voce nervoso - Lula.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Filho eu estou achando voce nervoso - Lula.mp3"; sourceTree = "<group>"; };
+		494EAD2828FC5DE900BF822C /* Pelo amor de Deus ele e muito burro meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pelo amor de Deus ele e muito burro meme.mp3"; sourceTree = "<group>"; };
+		494EAD2A28FC614900BF822C /* Tá na hora de votar (Ilarie) - Lula.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tá na hora de votar (Ilarie) - Lula.mp3"; sourceTree = "<group>"; };
 		4979103528BE844D00CDF01C /* MedoWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MedoWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		4979103C28BE844D00CDF01C /* MedoWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedoWidget.swift; sourceTree = "<group>"; };
 		4979103E28BE844E00CDF01C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -2038,6 +2056,14 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				494EAD2828FC5DE900BF822C /* Pelo amor de Deus ele e muito burro meme.mp3 */,
+				494EAD2628FC5D7400BF822C /* Filho eu estou achando voce nervoso - Lula.mp3 */,
+				494EAD2428FC5C6C00BF822C /* Que alegria que tistreza.mp3 */,
+				494EAD2228FC5B7500BF822C /* Falta de respeito com as criança - Meme Show do Patati Patata.mp3 */,
+				494EAD2028FC5A2E00BF822C /* Se o Brasil reeleger bolsonaro - Cristiano Botafogo.mp3 */,
+				494EAD1E28FC58D800BF822C /* Rapaz - Franciel Cruz.mp3 */,
+				494EAD1C28F84F0700BF822C /* O barbinha ta vindo ai, vai vir te jambronando - diogo defante.mp3 */,
+				494EAD1A28F84E3A00BF822C /* Faz algum sentido pra voce isso - flavio bolsonaro.mp3 */,
 				D9E5056128F79ECB008DAA1E /* Luiz Felipe D'Avila - Que tistreza.mp3 */,
 				D90CDF0528F620F100CC992D /* Darcy Ribeiro - Uma classe dominante ruim (fala completa).mp3 */,
 				D90CDF0428F620F100CC992D /* Darcy Ribeiro - Uma classe dominante ruim, ranzinza, azeda, mediocre, cobicosa que nao deixa o pais ir pra frente.mp3 */,
@@ -2824,6 +2850,7 @@
 		D92E7068283C5C120035826C /* Songs */ = {
 			isa = PBXGroup;
 			children = (
+				494EAD2A28FC614900BF822C /* Tá na hora de votar (Ilarie) - Lula.mp3 */,
 				49C0938D28E5EEA200960B7E /* Vou de Lula, Ce Sabe - Neide e Lula.mp3 */,
 				D906BA4E28D909A0007F4701 /* Jingle Bolsonaro 2022.mp3 */,
 				49B4C96928CE74E6007E893B /* A pipa do jair nao sobe mais.mp3 */,
@@ -3578,6 +3605,7 @@
 				D975FE642880B4F20035E6F2 /* King Size do Rio de Janeiro - A mafia chinesa short meme.mp3 in Resources */,
 				D975FE592880B4F20035E6F2 /* Leo Stronda - Caralho o maluco e brabo short.mp3 in Resources */,
 				D975FF312880B4F20035E6F2 /* MC Creu - E creu, e creu neles.mp3 in Resources */,
+				494EAD1B28F84E3A00BF822C /* Faz algum sentido pra voce isso - flavio bolsonaro.mp3 in Resources */,
 				D975FF172880B4F20035E6F2 /* Xuxa - Aham Claudia Senta la short meme.mp3 in Resources */,
 				D961D01328371F1700EFEDEB /* sound_data.json in Resources */,
 				D975FE2A2880B4F20035E6F2 /* Fernando Collor - Isso e uma mentira uma pantomima uma patuscada short.mp3 in Resources */,
@@ -3599,6 +3627,7 @@
 				D975FE332880B4F20035E6F2 /* Bolsonaro - Vai morrer gente morrer morte inocentes tinha que matar e mais minha especialidade e matar.mp3 in Resources */,
 				D975FF4D2880B4F20035E6F2 /* Bolsonaro - E todos esperavam exatamente o contrario.mp3 in Resources */,
 				D975FFBF2880B4F20035E6F2 /* MC Jefinho Farao - Pastor marginal.mp3 in Resources */,
+				494EAD1D28F84F0700BF822C /* O barbinha ta vindo ai, vai vir te jambronando - diogo defante.mp3 in Resources */,
 				D90CDF0728F620F100CC992D /* Darcy Ribeiro - Uma classe dominante ruim (fala completa).mp3 in Resources */,
 				D975FF622880B4F20035E6F2 /* Maysa - La vem besteira, la vem besteira.mp3 in Resources */,
 				D975FECA2880B4F20035E6F2 /* Bolsonaro - E um partido de pirocas ta ok.mp3 in Resources */,
@@ -3608,6 +3637,7 @@
 				D975FF412880B4F20035E6F2 /* PLANALTO - Bolsonaro - Mente.mp3 in Resources */,
 				D975FE782880B4F20035E6F2 /* Damares - A princesa do Frozen vai voltar pra acordar a Bela Adormecida com um beijo gay.mp3 in Resources */,
 				D975FE6C2880B4F20035E6F2 /* Que porra e essa batata.mp3 in Resources */,
+				494EAD2728FC5D7400BF822C /* Filho eu estou achando voce nervoso - Lula.mp3 in Resources */,
 				D921F8A0288B0DC4003979CC /* Au au (Parabens sancao) - Bolsonaro.mp3 in Resources */,
 				D975000A2880B4F20035E6F2 /* Atila Iamarino - No minimo.mp3 in Resources */,
 				D975FFC22880B4F20035E6F2 /* Bolsonaro - O caos vem ai.mp3 in Resources */,
@@ -3668,6 +3698,7 @@
 				D9FD0F0B28B2B2EE0000616A /* meus amigos nao amigo e o caralho.mp3 in Resources */,
 				D9E7D0F128AC677B001E909E /* Paulo Guedes - Empregada domestica na Disney (longo).mp3 in Resources */,
 				D975FE532880B4F20035E6F2 /* Pastor Valdemiro - Mas isso e... E enganar.mp3 in Resources */,
+				494EAD2128FC5A2E00BF822C /* Se o Brasil reeleger bolsonaro - Cristiano Botafogo.mp3 in Resources */,
 				D975FEA42880B4F20035E6F2 /* Bolsonaro - ah o o cara quem fala disso eu nao sou coveiro ta ok.mp3 in Resources */,
 				D97B2DE428E60B8600C3B50B /* Patrick (Zorra Total) - Olha a Faca.mp3 in Resources */,
 				D9C77B6F28CAC07B006CA17B /* Thiago Arruda - Passarinho que come cu nao sabe a pedra que tem.mp3 in Resources */,
@@ -3717,6 +3748,7 @@
 				49B4C97428CE7684007E893B /* Ihuu (agora com equiu).mp3 in Resources */,
 				D921F87E288B0177003979CC /* E um montao de amontoado de muita coisa escrita.mp3 in Resources */,
 				D975FFDE2880B4F20035E6F2 /* Eu sou RICA! short meme.mp3 in Resources */,
+				494EAD2328FC5B7500BF822C /* Falta de respeito com as criança - Meme Show do Patati Patata.mp3 in Resources */,
 				D97500002880B4F20035E6F2 /* Bolsonaro - Ah nhem nhem nhem nhem olha o problema ai.mp3 in Resources */,
 				D975FE2F2880B4F20035E6F2 /* Cleber Machado - Hoje sim (Interrogacao).mp3 in Resources */,
 				D975FF072880B4F20035E6F2 /* Neto - Ces tao de brincadeira.mp3 in Resources */,
@@ -3893,6 +3925,7 @@
 				D975FF2F2880B4F20035E6F2 /* Monty Python - And Now For Something Completely Different clip.mp3 in Resources */,
 				D97500132880B4F20035E6F2 /* DESMENTINDO BOLSONARO - Milton Ribeiro - O presidente da republica nunca me pediu nada, absolutamente nada.mp3 in Resources */,
 				D975FE882880B4F20035E6F2 /* Pedro Pedreira - Pedra 90 ha controversias.mp3 in Resources */,
+				494EAD2B28FC614A00BF822C /* Tá na hora de votar (Ilarie) - Lula.mp3 in Resources */,
 				D975000C2880B4F20035E6F2 /* Bolsonaro - Fica em casa.mp3 in Resources */,
 				4979105528BEC6F700CDF01C /* Me deixa bastante chateado - Paulo Sergio Nogueira.mp3 in Resources */,
 				D92879E7283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 in Resources */,
@@ -4040,6 +4073,7 @@
 				49DEA99E28810C88008C9BA1 /* Ana Paula - Olha Ela short meme.mp3 in Resources */,
 				D975FEEE2880B4F20035E6F2 /* Xaropinho - Rapaz short.mp3 in Resources */,
 				D921F879288B0177003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 in Resources */,
+				494EAD1F28FC58D800BF822C /* Rapaz - Franciel Cruz.mp3 in Resources */,
 				D9B4F73F283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 in Resources */,
 				D975FEC62880B4F20035E6F2 /* Away - Que.mp3 in Resources */,
 				49DEA9CA2881156A008C9BA1 /* CNN - Aecio Neves Nao tenho indicio que aponte para fraude nas eleicoes de 2014 short meme.mp3 in Resources */,
@@ -4090,6 +4124,7 @@
 				D975FEDC2880B4F20035E6F2 /* Bolsonaro - Lamento, quer que eu faca o que.mp3 in Resources */,
 				D975FE222880B4F20035E6F2 /* Bolsonaro - Esposa, ne, tem que aguentar, mas ta tudo bem.mp3 in Resources */,
 				D975FF272880B4F20035E6F2 /* Fred - Ce ta falando serio.mp3 in Resources */,
+				494EAD2928FC5DE900BF822C /* Pelo amor de Deus ele e muito burro meme.mp3 in Resources */,
 				D975FEBE2880B4F20035E6F2 /* Craque Neto - E cuidado com a cueca hein, cuidado com a cueca.mp3 in Resources */,
 				D975FF262880B4F20035E6F2 /* PLANALTO - Bolsonaro - Presidente Putin Pretiputi.mp3 in Resources */,
 				D9F185CC28D6705100BE2F69 /* Bolsonaro - Presta atencao que e importante, pessoal.mp3 in Resources */,
@@ -4282,6 +4317,7 @@
 				D9388F9F288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Eduardo Bolsonaro, aquele bonsai de pica.mp3 in Resources */,
 				D975FEAB2880B4F20035E6F2 /* UOL - Luiz Fux - Infelizmente short meme.mp3 in Resources */,
 				D975FF352880B4F20035E6F2 /* O POVO ONLINE - Paulo Guedes - A economia ta bombando.mp3 in Resources */,
+				494EAD2528FC5C6C00BF822C /* Que alegria que tistreza.mp3 in Resources */,
 				D975FFF92880B4F20035E6F2 /* Cleber Machado - Hoje SIM (afirmativo).mp3 in Resources */,
 				D975FEDD2880B4F20035E6F2 /* Gilmar mendes - uma grande confusao short.mp3 in Resources */,
 				D92722FE289246AC001D5E47 /* Parafernalha - Ta errado, ta muito errado isso.mp3 in Resources */,
