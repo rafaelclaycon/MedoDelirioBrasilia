@@ -60,13 +60,28 @@ struct MostSharedByAudienceView: View {
                     }
                 }
                 .onChange(of: viewModel.timeIntervalOption) { timeIntervalOption in
-                    if TimeKeeper.checkTwoMinutesHasPassed(viewModel.lastCheckDate) {
-                        viewModel.reloadAudienceLists()
-                    } else {
-                        if viewModel.allTimeRanking == nil {
-                            viewModel.viewState = .noDataToDisplay
-                        } else {
-                            viewModel.viewState = .displayingData
+                    DispatchQueue.main.async {
+                        switch viewModel.timeIntervalOption {
+                        case .lastWeek:
+                            if viewModel.lastWeekRanking == nil {
+                                viewModel.viewState = .noDataToDisplay
+                            } else {
+                                viewModel.viewState = .displayingData
+                            }
+                            
+                        case .lastMonth:
+                            if viewModel.lastMonthRanking == nil {
+                                viewModel.viewState = .noDataToDisplay
+                            } else {
+                                viewModel.viewState = .displayingData
+                            }
+                            
+                        case .allTime:
+                            if viewModel.allTimeRanking == nil {
+                                viewModel.viewState = .noDataToDisplay
+                            } else {
+                                viewModel.viewState = .displayingData
+                            }
                         }
                     }
                 }
@@ -81,7 +96,6 @@ struct MostSharedByAudienceView: View {
                         Text("Atualizar")
                     }
                 }
-                .disabled(viewModel.timeIntervalOption == .lastWeek || viewModel.timeIntervalOption == .lastMonth)
             }
             .padding(.horizontal)
             .padding(.top, 1)

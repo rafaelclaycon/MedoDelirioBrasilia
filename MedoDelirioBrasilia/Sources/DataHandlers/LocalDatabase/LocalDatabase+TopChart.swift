@@ -18,6 +18,7 @@ extension LocalDatabase {
                                       .order(contentCount.desc)
                                       .limit(5)) {
             result.append(TopChartItem(id: .empty,
+                                       rankNumber: .empty,
                                        contentId: row[content_id],
                                        contentName: .empty,
                                        contentAuthorId: .empty,
@@ -45,6 +46,7 @@ extension LocalDatabase {
                                       .order(totalShareCount.desc)
                                       .limit(10)) {
             result.append(TopChartItem(id: .empty,
+                                       rankNumber: .empty,
                                        contentId: row[content_id],
                                        contentName: .empty,
                                        contentAuthorId: .empty,

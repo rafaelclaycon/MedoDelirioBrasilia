@@ -9,7 +9,7 @@ class MostSharedByAudienceViewViewModel: ObservableObject {
     
     @Published var viewState: TrendsViewState = .noDataToDisplay
     @Published var lastCheckDate: Date = Date(timeIntervalSince1970: 0)
-    @Published var timeIntervalOption: TrendsTimeInterval = .allTime
+    @Published var timeIntervalOption: TrendsTimeInterval = .lastWeek
     @Published var lastUpdatedAtText: String = .empty
     
     // Alerts
@@ -30,69 +30,78 @@ class MostSharedByAudienceViewViewModel: ObservableObject {
         }
         
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let self = self else {
+                return
+            }
             // Send user stats and retrieve remote stats
             podium.sendShareCountStatsToServer { result, _ in
                 guard result == .successful || result == .noStatsToSend else {
-                    if self?.allTimeRanking == nil {
+                    if self.allTimeRanking == nil {
                         DispatchQueue.main.async {
-                            self?.viewState = .noDataToDisplay
-                            self?.showServerUnavailableAlert()
+                            self.viewState = .noDataToDisplay
+                            self.showServerUnavailableAlert()
                         }
                     } else {
                         DispatchQueue.main.async {
-                            self?.viewState = .displayingData
-                            self?.showServerUnavailableAlert()
+                            self.viewState = .displayingData
+                            self.showServerUnavailableAlert()
                         }
                     }
                     return
                 }
                 
+                podium.cleanAudienceSharingStatisticTableToReceiveUpdatedData()
+                
                 podium.getAudienceShareCountStatsFromServer(for: .lastWeek) { result, _ in
                     guard result == .successful else {
                         return
                     }
-                    self?.lastWeekRanking = podium.getTop10SoundsSharedByTheAudience(for: .lastWeek)
+                    DispatchQueue.main.async {
+                        self.lastWeekRanking = podium.getTop10SoundsSharedByTheAudience(for: .lastWeek)
+                    }
                 }
                 
                 podium.getAudienceShareCountStatsFromServer(for: .lastMonth) { result, _ in
                     guard result == .successful else {
                         return
                     }
-                    self?.lastMonthRanking = podium.getTop10SoundsSharedByTheAudience(for: .lastMonth)
+                    DispatchQueue.main.async {
+                        self.lastMonthRanking = podium.getTop10SoundsSharedByTheAudience(for: .lastMonth)
+                    }
                 }
                 
                 podium.getAudienceShareCountStatsFromServer(for: .allTime) { result, _ in
                     guard result == .successful else {
                         return
                     }
-                    self?.allTimeRanking = podium.getTop10SoundsSharedByTheAudience(for: .allTime)
+                    DispatchQueue.main.async {
+                        self.allTimeRanking = podium.getTop10SoundsSharedByTheAudience(for: .allTime)
+                    }
                 }
                 
-                DispatchQueue.main.async {
-                    switch self?.timeIntervalOption {
+                // Delay needed so the lists actually have something in them.
+                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
+                    switch self.timeIntervalOption {
                     case .lastWeek:
-                        if self?.lastWeekRanking != nil, self?.lastWeekRanking?.isEmpty == false {
-                            self?.viewState = .displayingData
+                        if self.lastWeekRanking != nil, self.lastWeekRanking?.isEmpty == false {
+                            self.viewState = .displayingData
                         } else {
-                            self?.viewState = .noDataToDisplay
+                            self.viewState = .noDataToDisplay
                         }
                         
                     case .lastMonth:
-                        if self?.lastMonthRanking != nil, self?.lastMonthRanking?.isEmpty == false {
-                            self?.viewState = .displayingData
+                        if self.lastMonthRanking != nil, self.lastMonthRanking?.isEmpty == false {
+                            self.viewState = .displayingData
                         } else {
-                            self?.viewState = .noDataToDisplay
+                            self.viewState = .noDataToDisplay
                         }
                         
                     case .allTime:
-                        if self?.allTimeRanking != nil, self?.allTimeRanking?.isEmpty == false {
-                            self?.viewState = .displayingData
+                        if self.allTimeRanking != nil, self.allTimeRanking?.isEmpty == false {
+                            self.viewState = .displayingData
                         } else {
-                            self?.viewState = .noDataToDisplay
+                            self.viewState = .noDataToDisplay
                         }
-                        
-                    case .none:
-                        self?.viewState = .noDataToDisplay
                     }
                 }
             }

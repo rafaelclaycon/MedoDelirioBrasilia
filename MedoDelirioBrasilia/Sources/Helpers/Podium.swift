@@ -33,7 +33,7 @@ class Podium {
                 continue
             }
             
-            itemInPreparation = TopChartItem(id: "\(i + 1)", contentId: dimItems[i].contentId, contentName: filteredSounds[0].title, contentAuthorId: filteredSounds[0].authorId, contentAuthorName: filteredAuthors[0].name, shareCount: dimItems[i].shareCount)
+            itemInPreparation = TopChartItem(id: UUID().uuidString, rankNumber: "\(i + 1)", contentId: dimItems[i].contentId, contentName: filteredSounds[0].title, contentAuthorId: filteredSounds[0].authorId, contentAuthorName: filteredAuthors[0].name, shareCount: dimItems[i].shareCount)
             
             result.append(itemInPreparation)
         }
@@ -68,7 +68,7 @@ class Podium {
                 continue
             }
             
-            itemInPreparation = TopChartItem(id: "\(i + 1)", contentId: dimItems[i].contentId, contentName: filteredSounds[0].title, contentAuthorId: filteredSounds[0].authorId, contentAuthorName: filteredAuthors[0].name, shareCount: dimItems[i].shareCount)
+            itemInPreparation = TopChartItem(id: UUID().uuidString, rankNumber: "\(i + 1)", contentId: dimItems[i].contentId, contentName: filteredSounds[0].title, contentAuthorId: filteredSounds[0].authorId, contentAuthorName: filteredAuthors[0].name, shareCount: dimItems[i].shareCount)
             
             result.append(itemInPreparation)
         }
@@ -118,6 +118,10 @@ class Podium {
         }
     }
     
+    func cleanAudienceSharingStatisticTableToReceiveUpdatedData() {
+        try? self.database.clearAudienceSharingStatisticTable()
+    }
+    
     func getAudienceShareCountStatsFromServer(for timeInterval: TrendsTimeInterval, completionHandler: @escaping (ShareCountStatServerExchangeResult, String) -> Void) {
         self.networkRabbit.getSoundShareCountStats(timeInterval: timeInterval) { stats, error in
             guard error == nil else {
@@ -126,12 +130,11 @@ class Podium {
             guard let stats = stats, stats.isEmpty == false else {
                 return
             }
-            // Save them
-            try? self.database.clearAudienceSharingStatisticTable()
             
+            // Save them
             var audienceStat: AudienceShareCountStat? = nil
             stats.forEach { stat in
-                audienceStat = AudienceShareCountStat(contentId: stat.contentId, contentType: stat.contentType, shareCount: stat.shareCount, rankingType: TrendsTimeInterval.allTime.rawValue)
+                audienceStat = AudienceShareCountStat(contentId: stat.contentId, contentType: stat.contentType, shareCount: stat.shareCount, rankingType: timeInterval.rawValue)
                 try? self.database.insert(audienceStat: audienceStat!)
             }
             
