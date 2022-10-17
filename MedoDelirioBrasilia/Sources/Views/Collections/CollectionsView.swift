@@ -37,7 +37,7 @@ struct CollectionsView: View {
                         LazyHGrid(rows: rows, spacing: 14) {
                             ForEach(viewModel.collections) { collection in
                                 NavigationLink {
-                                    CollectionDetailView()
+                                    CollectionDetailView(collection: collection)
                                 } label: {
                                     CollectionCell(title: collection.title, imageURL: collection.imageURL)
                                 }
