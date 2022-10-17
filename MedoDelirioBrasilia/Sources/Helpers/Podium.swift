@@ -45,13 +45,13 @@ class Podium {
         }
     }
     
-    func getTop10SoundsSharedByTheAudience() -> [TopChartItem]? {
+    func getTop10SoundsSharedByTheAudience(for timeInterval: TrendsTimeInterval) -> [TopChartItem]? {
         var result = [TopChartItem]()
         var filteredSounds: [Sound]
         var filteredAuthors: [Author]
         var itemInPreparation: TopChartItem
         
-        guard let dimItems = try? database.getTop10SoundsSharedByTheAudience(), dimItems.count > 0 else {
+        guard let dimItems = try? database.getTop10SoundsSharedByTheAudience(for: timeInterval), dimItems.count > 0 else {
             return nil
         }
         

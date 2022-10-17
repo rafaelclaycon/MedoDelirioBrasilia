@@ -23,6 +23,17 @@ struct MostSharedByAudienceView: View {
         }
     }
     
+    private var list: [TopChartItem] {
+        switch viewModel.timeIntervalOption {
+        case .lastWeek:
+            return viewModel.lastWeekRanking!
+        case .lastMonth:
+            return viewModel.lastMonthRanking!
+        case .allTime:
+            return viewModel.allTimeRanking!
+        }
+    }
+    
     var body: some View {
         VStack {
             HStack {
@@ -49,17 +60,13 @@ struct MostSharedByAudienceView: View {
                     }
                 }
                 .onChange(of: viewModel.timeIntervalOption) { timeIntervalOption in
-                    if viewModel.timeIntervalOption == .lastWeek || viewModel.timeIntervalOption == .lastMonth {
-                        viewModel.viewState = .noDataToDisplayForNow
+                    if TimeKeeper.checkTwoMinutesHasPassed(viewModel.lastCheckDate) {
+                        viewModel.reloadAudienceLists()
                     } else {
-                        if TimeKeeper.checkTwoMinutesHasPassed(viewModel.lastCheckDate) {
-                            viewModel.reloadAudienceList()
+                        if viewModel.allTimeRanking == nil {
+                            viewModel.viewState = .noDataToDisplay
                         } else {
-                            if viewModel.allTimeRanking == nil {
-                                viewModel.viewState = .noDataToDisplay
-                            } else {
-                                viewModel.viewState = .displayingData
-                            }
+                            viewModel.viewState = .displayingData
                         }
                     }
                 }
@@ -67,9 +74,7 @@ struct MostSharedByAudienceView: View {
                 Spacer()
                 
                 Button {
-                    if viewModel.timeIntervalOption == .allTime {
-                        viewModel.reloadAudienceList()
-                    }
+                    viewModel.reloadAudienceLists()
                 } label: {
                     HStack {
                         Image(systemName: "arrow.triangle.2.circlepath")
@@ -114,7 +119,7 @@ struct MostSharedByAudienceView: View {
             case .displayingData:
                 VStack {
                     LazyVGrid(columns: columns, spacing: 20) {
-                        ForEach(viewModel.allTimeRanking!) { item in
+                        ForEach(list) { item in
                             TopChartCellView(item: item)
                                 .onTapGesture {
                                     navigateTo(sound: item.contentId)
@@ -139,28 +144,10 @@ struct MostSharedByAudienceView: View {
                         .padding(.bottom)
                 }
                 .padding(.bottom, 20)
-                
-            case .noDataToDisplayForNow:
-                HStack {
-                    Spacer()
-                    
-                    VStack(spacing: 10) {
-                        Text("Sem Dados Por Enquanto")
-                            .font(.headline)
-                        
-                        Text("Ainda não há dados coletados para essa visualização.")
-                            .foregroundColor(.gray)
-                            .multilineTextAlignment(.center)
-                    }
-                    
-                    Spacer()
-                }
-                .padding(.vertical, 100)
-                .padding(.horizontal)
             }
         }
         .onAppear {
-            viewModel.reloadAudienceList()
+            viewModel.reloadAudienceLists()
         }
         .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
