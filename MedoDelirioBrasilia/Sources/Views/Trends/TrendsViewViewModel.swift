@@ -15,7 +15,7 @@ class TrendsViewViewModel: ObservableObject {
     func reloadAudienceList() {
         var topCharts = [TopChartItem]()
         
-        topCharts.append(TopChartItem(id: "1", contentId: "", contentName: "Teste", contentAuthorId: "", contentAuthorName: "Autor", shareCount: 10))
+        topCharts.append(TopChartItem(id: UUID().uuidString, rankNumber: "1", contentId: "", contentName: "Teste", contentAuthorId: "", contentAuthorName: "Autor", shareCount: 10))
         
         DispatchQueue.main.async {
             self.audienceTop5 = topCharts

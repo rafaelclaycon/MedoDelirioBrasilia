@@ -6,7 +6,7 @@ struct TopChartCellView: View {
     
     var body: some View {
         HStack(spacing: 15) {
-            NumberBadgeView(number: item.id)
+            NumberBadgeView(number: item.rankNumber)
             
             VStack(alignment: .leading, spacing: 2) {
                 Text(item.contentName)
@@ -28,6 +28,7 @@ struct TopChartCellView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             TopChartCellView(item: TopChartItem(id: "1",
+                                                rankNumber: "ABCD-EFGH",
                                                 contentId: "ABC",
                                                 contentName: "Olha que imbecil",
                                                 contentAuthorId: "DEF",
