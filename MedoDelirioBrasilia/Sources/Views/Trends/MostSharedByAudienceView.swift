@@ -3,6 +3,9 @@ import SwiftUI
 struct MostSharedByAudienceView: View {
 
     @StateObject private var viewModel = MostSharedByAudienceViewViewModel()
+    @Binding var tabSelection: PhoneTab
+    @Binding var activePadScreen: PadScreen?
+    @Binding var soundIdToGoToFromTrends: String
     
     private let columns = [
         GridItem(.flexible())
@@ -110,9 +113,19 @@ struct MostSharedByAudienceView: View {
                 
             case .displayingData:
                 VStack {
-                    LazyVGrid(columns: columns, spacing: 14) {
+                    LazyVGrid(columns: columns, spacing: 20) {
                         ForEach(viewModel.allTimeRanking!) { item in
                             TopChartCellView(item: item)
+                                .onTapGesture {
+                                    navigateTo(sound: item.contentId)
+                                }
+                                .contextMenu {
+                                    Button {
+                                        navigateTo(sound: item.contentId)
+                                    } label: {
+                                        Label("Ir para Som", systemImage: "arrow.uturn.backward")
+                                    }
+                                }
                         }
                     }
                     .padding(.bottom)
@@ -153,13 +166,22 @@ struct MostSharedByAudienceView: View {
             Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
         }
     }
+    
+    private func navigateTo(sound soundId: String) {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            tabSelection = .sounds
+        } else {
+            activePadScreen = .allSounds
+        }
+        soundIdToGoToFromTrends = soundId
+    }
 
 }
 
 struct MostSharedByAudienceView_Previews: PreviewProvider {
-    
+
     static var previews: some View {
-        MostSharedByAudienceView()
+        MostSharedByAudienceView(tabSelection: .constant(.trends), activePadScreen: .constant(.trends), soundIdToGoToFromTrends: .constant(.empty))
     }
-    
+
 }
