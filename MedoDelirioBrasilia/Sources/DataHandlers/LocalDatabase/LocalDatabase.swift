@@ -61,7 +61,8 @@ extension LocalDatabase {
                 AddNetworkCallLogTable(),
                 AddUserFolderTables(),
                 RemoveFavoriteLogTable(),
-                AddAudienceSharingStatisticTable()]
+                AddAudienceSharingStatisticTable(),
+                AddRankingTypeToAudienceSharingStatisticTable()]
     }
     
     var needsMigration: Bool {

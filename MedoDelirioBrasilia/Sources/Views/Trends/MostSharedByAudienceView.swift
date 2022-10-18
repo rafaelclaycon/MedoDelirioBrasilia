@@ -23,6 +23,17 @@ struct MostSharedByAudienceView: View {
         }
     }
     
+    private var list: [TopChartItem] {
+        switch viewModel.timeIntervalOption {
+        case .lastWeek:
+            return viewModel.lastWeekRanking!
+        case .lastMonth:
+            return viewModel.lastMonthRanking!
+        case .allTime:
+            return viewModel.allTimeRanking!
+        }
+    }
+    
     var body: some View {
         VStack {
             HStack {
@@ -49,13 +60,24 @@ struct MostSharedByAudienceView: View {
                     }
                 }
                 .onChange(of: viewModel.timeIntervalOption) { timeIntervalOption in
-                    if viewModel.timeIntervalOption == .lastWeek || viewModel.timeIntervalOption == .lastMonth {
-                        viewModel.viewState = .noDataToDisplayForNow
-                    } else {
-                        if TimeKeeper.checkTwoMinutesHasPassed(viewModel.lastCheckDate) {
-                            viewModel.reloadAudienceList()
-                        } else {
-                            if viewModel.audienceTop5 == nil {
+                    DispatchQueue.main.async {
+                        switch viewModel.timeIntervalOption {
+                        case .lastWeek:
+                            if viewModel.lastWeekRanking == nil {
+                                viewModel.viewState = .noDataToDisplay
+                            } else {
+                                viewModel.viewState = .displayingData
+                            }
+                            
+                        case .lastMonth:
+                            if viewModel.lastMonthRanking == nil {
+                                viewModel.viewState = .noDataToDisplay
+                            } else {
+                                viewModel.viewState = .displayingData
+                            }
+                            
+                        case .allTime:
+                            if viewModel.allTimeRanking == nil {
                                 viewModel.viewState = .noDataToDisplay
                             } else {
                                 viewModel.viewState = .displayingData
@@ -67,16 +89,13 @@ struct MostSharedByAudienceView: View {
                 Spacer()
                 
                 Button {
-                    if viewModel.timeIntervalOption == .allTime {
-                        viewModel.reloadAudienceList()
-                    }
+                    viewModel.reloadAudienceLists()
                 } label: {
                     HStack {
                         Image(systemName: "arrow.triangle.2.circlepath")
                         Text("Atualizar")
                     }
                 }
-                .disabled(viewModel.timeIntervalOption == .lastWeek || viewModel.timeIntervalOption == .lastMonth)
             }
             .padding(.horizontal)
             .padding(.top, 1)
@@ -114,7 +133,7 @@ struct MostSharedByAudienceView: View {
             case .displayingData:
                 VStack {
                     LazyVGrid(columns: columns, spacing: 20) {
-                        ForEach(viewModel.audienceTop5!) { item in
+                        ForEach(list) { item in
                             TopChartCellView(item: item)
                                 .onTapGesture {
                                     navigateTo(sound: item.contentId)
@@ -139,28 +158,10 @@ struct MostSharedByAudienceView: View {
                         .padding(.bottom)
                 }
                 .padding(.bottom, 20)
-                
-            case .noDataToDisplayForNow:
-                HStack {
-                    Spacer()
-                    
-                    VStack(spacing: 10) {
-                        Text("Sem Dados Por Enquanto")
-                            .font(.headline)
-                        
-                        Text("Ainda não há dados coletados para essa visualização.")
-                            .foregroundColor(.gray)
-                            .multilineTextAlignment(.center)
-                    }
-                    
-                    Spacer()
-                }
-                .padding(.vertical, 100)
-                .padding(.horizontal)
             }
         }
         .onAppear {
-            viewModel.reloadAudienceList()
+            viewModel.reloadAudienceLists()
         }
         .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))

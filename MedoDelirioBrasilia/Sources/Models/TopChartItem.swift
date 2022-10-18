@@ -3,6 +3,7 @@ import Foundation
 struct TopChartItem: Hashable, Codable, Identifiable {
 
     var id: String
+    var rankNumber: String
     var contentId: String
     var contentName: String
     var contentAuthorId: String

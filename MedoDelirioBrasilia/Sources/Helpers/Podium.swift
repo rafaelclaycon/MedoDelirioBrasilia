@@ -33,7 +33,7 @@ class Podium {
                 continue
             }
             
-            itemInPreparation = TopChartItem(id: "\(i + 1)", contentId: dimItems[i].contentId, contentName: filteredSounds[0].title, contentAuthorId: filteredSounds[0].authorId, contentAuthorName: filteredAuthors[0].name, shareCount: dimItems[i].shareCount)
+            itemInPreparation = TopChartItem(id: UUID().uuidString, rankNumber: "\(i + 1)", contentId: dimItems[i].contentId, contentName: filteredSounds[0].title, contentAuthorId: filteredSounds[0].authorId, contentAuthorName: filteredAuthors[0].name, shareCount: dimItems[i].shareCount)
             
             result.append(itemInPreparation)
         }
@@ -45,13 +45,13 @@ class Podium {
         }
     }
     
-    func getTop10SoundsSharedByTheAudience() -> [TopChartItem]? {
+    func getTop10SoundsSharedByTheAudience(for timeInterval: TrendsTimeInterval) -> [TopChartItem]? {
         var result = [TopChartItem]()
         var filteredSounds: [Sound]
         var filteredAuthors: [Author]
         var itemInPreparation: TopChartItem
         
-        guard let dimItems = try? database.getTop10SoundsSharedByTheAudience(), dimItems.count > 0 else {
+        guard let dimItems = try? database.getTop10SoundsSharedByTheAudience(for: timeInterval), dimItems.count > 0 else {
             return nil
         }
         
@@ -68,7 +68,7 @@ class Podium {
                 continue
             }
             
-            itemInPreparation = TopChartItem(id: "\(i + 1)", contentId: dimItems[i].contentId, contentName: filteredSounds[0].title, contentAuthorId: filteredSounds[0].authorId, contentAuthorName: filteredAuthors[0].name, shareCount: dimItems[i].shareCount)
+            itemInPreparation = TopChartItem(id: UUID().uuidString, rankNumber: "\(i + 1)", contentId: dimItems[i].contentId, contentName: filteredSounds[0].title, contentAuthorId: filteredSounds[0].authorId, contentAuthorName: filteredAuthors[0].name, shareCount: dimItems[i].shareCount)
             
             result.append(itemInPreparation)
         }
@@ -118,6 +118,10 @@ class Podium {
         }
     }
     
+    func cleanAudienceSharingStatisticTableToReceiveUpdatedData() {
+        try? self.database.clearAudienceSharingStatisticTable()
+    }
+    
     func getAudienceShareCountStatsFromServer(for timeInterval: TrendsTimeInterval, completionHandler: @escaping (ShareCountStatServerExchangeResult, String) -> Void) {
         self.networkRabbit.getSoundShareCountStats(timeInterval: timeInterval) { stats, error in
             guard error == nil else {
@@ -126,12 +130,11 @@ class Podium {
             guard let stats = stats, stats.isEmpty == false else {
                 return
             }
-            // Save them
-            try? self.database.clearAudienceSharingStatisticTable()
             
+            // Save them
             var audienceStat: AudienceShareCountStat? = nil
             stats.forEach { stat in
-                audienceStat = AudienceShareCountStat(contentId: stat.contentId, contentType: stat.contentType, shareCount: stat.shareCount)
+                audienceStat = AudienceShareCountStat(contentId: stat.contentId, contentType: stat.contentType, shareCount: stat.shareCount, rankingType: timeInterval.rawValue)
                 try? self.database.insert(audienceStat: audienceStat!)
             }
             
