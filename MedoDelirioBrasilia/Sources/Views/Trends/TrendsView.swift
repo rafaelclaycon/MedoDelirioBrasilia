@@ -20,9 +20,9 @@ struct TrendsView: View {
         UserSettings.getEnableTrends()
     }
     
-    /*var showMostSharedSoundsByTheUser: Bool {
+    var showMostSharedSoundsByTheUser: Bool {
         UserSettings.getEnableMostSharedSoundsByTheUser()
-    }*/
+    }
     
     /*var showDayOfTheWeekTheUserSharesTheMost: Bool {
         UserSettings.getEnableDayOfTheWeekTheUserSharesTheMost()
@@ -42,10 +42,10 @@ struct TrendsView: View {
                 if UIDevice.current.userInterfaceIdiom == .phone {
                     ScrollView {
                         VStack(alignment: .leading, spacing: 10) {
-                            /*if showMostSharedSoundsByTheUser {
+                            if showMostSharedSoundsByTheUser {
                                 MostSharedByMeView()
                                     .padding(.top, 10)
-                            }*/
+                            }
                             
                             /*if showDayOfTheWeekTheUserSharesTheMost {
                              Text("Dia da Semana No Qual Eu Mais Compartilho")
