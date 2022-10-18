@@ -12,6 +12,8 @@ class MostSharedByAudienceViewViewModel: ObservableObject {
     @Published var timeIntervalOption: TrendsTimeInterval = .lastWeek
     @Published var lastUpdatedAtText: String = .empty
     
+    @Published var currentActivity: NSUserActivity? = nil
+    
     // Alerts
     @Published var alertTitle: String = ""
     @Published var alertMessage: String = ""
@@ -121,6 +123,26 @@ class MostSharedByAudienceViewViewModel: ObservableObject {
         alertTitle = "Servidor Indisponível"
         alertMessage = "Não foi possível obter o ranking mais recente. Tente novamente mais tarde."
         showAlert = true
+    }
+    
+    func donateActivity(forTimeInterval timeIntervalOption: TrendsTimeInterval) {
+        var activityType = ""
+        var activityName = ""
+        
+        switch timeIntervalOption {
+        case .lastWeek:
+            activityType = Shared.ActivityTypes.viewLastWeekTopChart
+            activityName = "Ver sons mais compartilhados na última semana"
+        case .lastMonth:
+            activityType = Shared.ActivityTypes.viewLastMonthTopChart
+            activityName = "Ver sons mais compartilhados no último mês"
+        case .allTime:
+            activityType = Shared.ActivityTypes.viewAllTimeTopChart
+            activityName = "Ver sons mais compartilhados de todos os tempos"
+        }
+        
+        self.currentActivity = UserActivityWaiter.getDonatableActivity(withType: activityType, andTitle: activityName)
+        self.currentActivity?.becomeCurrent()
     }
 
 }

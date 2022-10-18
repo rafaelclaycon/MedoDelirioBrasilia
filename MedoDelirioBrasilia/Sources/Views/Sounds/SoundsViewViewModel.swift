@@ -258,7 +258,7 @@ class SoundsViewViewModel: ObservableObject {
     // MARK: - Other
     
     func donateActivity() {
-        self.currentActivity = UserActivityWaiter.getDonatableActivity(withType: Shared.ActivityTypes.playAndShareSounds, andTitle: "Tocar e compartilhar sons")
+        self.currentActivity = UserActivityWaiter.getDonatableActivity(withType: Shared.ActivityTypes.playAndShareSounds, andTitle: "Ouvir e compartilhar sons")
         self.currentActivity?.becomeCurrent()
     }
     
