@@ -388,7 +388,7 @@ struct SoundsView: View {
     }
     
     @ViewBuilder func getTrailingToolbarControl() -> some View {
-        HStack(spacing: 20) {
+        HStack(spacing: 15) {
             if currentMode != .byAuthor {
                 Button {
                     viewModel.stopPlayback()
