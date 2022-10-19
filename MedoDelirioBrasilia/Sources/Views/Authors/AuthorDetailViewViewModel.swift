@@ -4,6 +4,7 @@ import SwiftUI
 class AuthorDetailViewViewModel: ObservableObject {
 
     @Published var sounds = [Sound]()
+    @Published var isPlayingSound = false
     
     @Published var favoritesKeeper = Set<String>()
     @Published var selectedSound: Sound? = nil
@@ -68,11 +69,17 @@ class AuthorDetailViewViewModel: ObservableObject {
         }
         let url = URL(fileURLWithPath: path)
 
-        player = AudioPlayer(url: url, update: { state in
-            //print(state?.activity as Any)
+        player = AudioPlayer(url: url, update: { [weak self] state in
+            guard let self = self else { return }
+            self.isPlayingSound = state?.activity != .stopped
         })
         
         player?.togglePlay()
+    }
+    
+    func stopPlayback() {
+        player?.togglePlay()
+        isPlayingSound = false
     }
 
     func shareSound(withPath filepath: String, andContentId contentId: String) {

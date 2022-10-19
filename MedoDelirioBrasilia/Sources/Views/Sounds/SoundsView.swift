@@ -388,69 +388,80 @@ struct SoundsView: View {
     }
     
     @ViewBuilder func getTrailingToolbarControl() -> some View {
-        if currentMode == .byAuthor {
-            Menu {
-                Section {
-                    Picker("Ordenação de Autores", selection: $viewModel.authorSortOption) {
-                        HStack {
-                            Text("Ordenar por Nome")
-                            Image(systemName: "a.circle")
-                        }
-                        .tag(0)
-                        
-                        HStack {
-                            Text("Autores com Mais Sons no Topo")
-                            Image(systemName: "chevron.down.square")
-                        }
-                        .tag(1)
-                        
-                        HStack {
-                            Text("Autores com Menos Sons no Topo")
-                            Image(systemName: "chevron.up.square")
-                        }
-                        .tag(2)
-                    }
+        HStack(spacing: 20) {
+            if currentMode != .byAuthor {
+                Button {
+                    viewModel.stopPlayback()
+                } label: {
+                    Image(systemName: "stop.fill")
                 }
-            } label: {
-                Image(systemName: "arrow.up.arrow.down")
+                .disabled(!viewModel.isPlayingSound)
             }
-            .onChange(of: viewModel.authorSortOption, perform: { authorSortOption in
-                authorSortAction = AuthorSortOption(rawValue: authorSortOption) ?? .nameAscending
-            })
-        } else {
-            Menu {
-                Section {
-                    Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
-                        HStack {
-                            Text("Ordenar por Título")
-                            Image(systemName: "a.circle")
+            
+            if currentMode == .byAuthor {
+                Menu {
+                    Section {
+                        Picker("Ordenação de Autores", selection: $viewModel.authorSortOption) {
+                            HStack {
+                                Text("Ordenar por Nome")
+                                Image(systemName: "a.circle")
+                            }
+                            .tag(0)
+                            
+                            HStack {
+                                Text("Autores com Mais Sons no Topo")
+                                Image(systemName: "chevron.down.square")
+                            }
+                            .tag(1)
+                            
+                            HStack {
+                                Text("Autores com Menos Sons no Topo")
+                                Image(systemName: "chevron.up.square")
+                            }
+                            .tag(2)
                         }
-                        .tag(0)
-                        
-                        HStack {
-                            Text("Ordenar por Nome do Autor")
-                            Image(systemName: "person")
-                        }
-                        .tag(1)
-                        
-                        HStack {
-                            Text("Mais Recentes no Topo")
-                            Image(systemName: "calendar")
-                        }
-                        .tag(2)
                     }
+                } label: {
+                    Image(systemName: "arrow.up.arrow.down")
                 }
-            } label: {
-                Image(systemName: "arrow.up.arrow.down")
+                .onChange(of: viewModel.authorSortOption, perform: { authorSortOption in
+                    authorSortAction = AuthorSortOption(rawValue: authorSortOption) ?? .nameAscending
+                })
+            } else {
+                Menu {
+                    Section {
+                        Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
+                            HStack {
+                                Text("Ordenar por Título")
+                                Image(systemName: "a.circle")
+                            }
+                            .tag(0)
+                            
+                            HStack {
+                                Text("Ordenar por Nome do Autor")
+                                Image(systemName: "person")
+                            }
+                            .tag(1)
+                            
+                            HStack {
+                                Text("Mais Recentes no Topo")
+                                Image(systemName: "calendar")
+                            }
+                            .tag(2)
+                        }
+                    }
+                } label: {
+                    Image(systemName: "arrow.up.arrow.down")
+                }
+                .onChange(of: viewModel.soundSortOption, perform: { soundSortOption in
+                    viewModel.reloadList(withSounds: soundData,
+                                         andFavorites: try? database.getAllFavorites(),
+                                         allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+                                         favoritesOnly: currentMode == .favorites,
+                                         sortedBy: SoundSortOption(rawValue: soundSortOption) ?? .titleAscending)
+                    UserSettings.setSoundSortOption(to: soundSortOption)
+                })
             }
-            .onChange(of: viewModel.soundSortOption, perform: { soundSortOption in
-                viewModel.reloadList(withSounds: soundData,
-                                     andFavorites: try? database.getAllFavorites(),
-                                     allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
-                                     favoritesOnly: currentMode == .favorites,
-                                     sortedBy: SoundSortOption(rawValue: soundSortOption) ?? .titleAscending)
-                UserSettings.setSoundSortOption(to: soundSortOption)
-            })
         }
     }
 
