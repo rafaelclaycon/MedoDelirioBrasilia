@@ -72,7 +72,7 @@ struct FolderDetailView: View {
             .navigationTitle("\(folder.symbol)  \(folder.name)")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(trailing:
-                HStack(spacing: 20) {
+                HStack(spacing: 15) {
                     Button {
                         viewModel.stopPlayback()
                     } label: {
