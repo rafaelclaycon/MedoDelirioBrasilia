@@ -7,6 +7,7 @@ struct TrendsView: View {
     @Binding var activePadScreen: PadScreen?
     @Binding var soundIdToGoToFromTrends: String
     @Binding var trendsTimeIntervalToGoTo: TrendsTimeInterval?
+    
     @State var showAlert = false
     @State var alertTitle = ""
     

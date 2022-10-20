@@ -950,6 +950,7 @@
 		D9E7D0F628AC6BC6001E909E /* PORTA DOS FUNDOS - Nao, brother broder.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E7D0F528AC6BC6001E909E /* PORTA DOS FUNDOS - Nao, brother broder.mp3 */; };
 		D9EB18A52857CDFF00A2F8A8 /* CollectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EB18A42857CDFF00A2F8A8 /* CollectionsView.swift */; };
 		D9ECD81528B3C470003C033A /* IconImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9ECD81428B3C470003C033A /* IconImage.swift */; };
+		D9ED525829007D6B005D619C /* FromTrendsToSounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9ED525729007D6B005D619C /* FromTrendsToSounds.swift */; };
 		D9EDB87828E3E477007724E2 /* Ciro Nogueira - Restricao porque e um fascista.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9EDB87528E3E477007724E2 /* Ciro Nogueira - Restricao porque e um fascista.mp3 */; };
 		D9EDB87928E3E477007724E2 /* Flavio Bolsonaro - Im a little bit nirvous.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9EDB87628E3E477007724E2 /* Flavio Bolsonaro - Im a little bit nirvous.mp3 */; };
 		D9EDB87A28E3E477007724E2 /* Flavio Bolsonaro - Quando o couro comer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9EDB87728E3E477007724E2 /* Flavio Bolsonaro - Quando o couro comer.mp3 */; };
@@ -1970,6 +1971,7 @@
 		D9E7D0F528AC6BC6001E909E /* PORTA DOS FUNDOS - Nao, brother broder.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "PORTA DOS FUNDOS - Nao, brother broder.mp3"; sourceTree = "<group>"; };
 		D9EB18A42857CDFF00A2F8A8 /* CollectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsView.swift; sourceTree = "<group>"; };
 		D9ECD81428B3C470003C033A /* IconImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconImage.swift; sourceTree = "<group>"; };
+		D9ED525729007D6B005D619C /* FromTrendsToSounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromTrendsToSounds.swift; sourceTree = "<group>"; };
 		D9EDB87528E3E477007724E2 /* Ciro Nogueira - Restricao porque e um fascista.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ciro Nogueira - Restricao porque e um fascista.mp3"; sourceTree = "<group>"; };
 		D9EDB87628E3E477007724E2 /* Flavio Bolsonaro - Im a little bit nirvous.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Flavio Bolsonaro - Im a little bit nirvous.mp3"; sourceTree = "<group>"; };
 		D9EDB87728E3E477007724E2 /* Flavio Bolsonaro - Quando o couro comer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Flavio Bolsonaro - Quando o couro comer.mp3"; sourceTree = "<group>"; };
@@ -3191,6 +3193,7 @@
 				D95DB0F72882491A00D4FEDF /* ScreenAndTabs.swift */,
 				D97B2DD828E5EA0500C3B50B /* DeleteFolderViewAid.swift */,
 				D9A3AB6A28F03C970064CB7A /* TrendsViewState.swift */,
+				D9ED525729007D6B005D619C /* FromTrendsToSounds.swift */,
 			);
 			path = ViewAid;
 			sourceTree = "<group>";
@@ -4492,6 +4495,7 @@
 				D946116E28611F1000C4FB7E /* FolderCell.swift in Sources */,
 				D960AF272845BFE700ADF1F6 /* UserDefaultsKeys.swift in Sources */,
 				D9877D2B2869845400B541F9 /* Sharer.swift in Sources */,
+				D9ED525829007D6B005D619C /* FromTrendsToSounds.swift in Sources */,
 				D988C523283C33E100D64404 /* UserSettings.swift in Sources */,
 				D92E7075283C5F620035826C /* SongCell.swift in Sources */,
 				D9943F1C28641917002C6B97 /* LocalDatabase+Favorite.swift in Sources */,

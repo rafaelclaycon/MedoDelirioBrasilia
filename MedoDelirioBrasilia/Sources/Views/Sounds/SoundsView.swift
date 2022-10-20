@@ -43,6 +43,7 @@ struct SoundsView: View {
     
     // Trends
     @Binding var soundIdToGoToFromTrends: String
+    @EnvironmentObject var fromTrendsToSounds: FromTrendsToSounds
     
     private var searchResults: [Sound] {
         if searchText.isEmpty {
@@ -211,10 +212,10 @@ struct SoundsView: View {
                                 .onChange(of: soundIdToGoToFromTrends) { soundIdToGoToFromTrends in
                                     if soundIdToGoToFromTrends.isEmpty == false {
                                         currentMode = .allSounds
-                                        if searchText.isEmpty == false {
-                                            searchText = .empty
-                                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                                        }
+//                                        if searchText.isEmpty == false {
+//                                            searchText = .empty
+//                                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+//                                        }
                                         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
                                             withAnimation {
                                                 proxy.scrollTo(soundIdToGoToFromTrends, anchor: .center)
@@ -228,6 +229,28 @@ struct SoundsView: View {
                                         }
                                         
                                         self.soundIdToGoToFromTrends = .empty
+                                    }
+                                }
+                                .onReceive(fromTrendsToSounds) { soundIdToGoTo in
+                                    if soundIdToGoTo.isEmpty == false {
+                                        currentMode = .allSounds
+//                                        if searchText.isEmpty == false {
+//                                            searchText = .empty
+//                                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+//                                        }
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                                            withAnimation {
+                                                proxy.scrollTo(soundIdToGoTo, anchor: .center)
+                                            }
+                                            TapticFeedback.warning()
+                                        }
+                                        
+                                        viewModel.highlightKeeper.insert(soundIdToGoTo)
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
+                                            viewModel.highlightKeeper.remove(soundIdToGoTo)
+                                        }
+                                        
+                                        self.fromTrendsToSounds.soundIdToGoTo = .empty
                                     }
                                 }
                             }
@@ -252,7 +275,7 @@ struct SoundsView: View {
                     }
                 }
             }
-            .navigationTitle(Text(title))
+            .navigationTitle(Text(fromTrendsToSounds.soundIdToGoTo))
             .navigationBarItems(leading:
                 getLeadingToolbarControl()
             , trailing:
@@ -470,7 +493,12 @@ struct SoundsView: View {
 struct SoundsView_Previews: PreviewProvider {
 
     static var previews: some View {
-        SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .allSounds, updateSoundsList: .constant(false), soundIdToGoToFromTrends: .constant(.empty))
+        SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue,
+                                                  authorSortOption: AuthorSortOption.nameAscending.rawValue),
+                   currentMode: .allSounds,
+                   updateSoundsList: .constant(false),
+                   soundIdToGoToFromTrends: .constant(.empty))
+            .environmentObject(FromTrendsToSounds())
     }
 
 }

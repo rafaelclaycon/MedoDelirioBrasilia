@@ -11,6 +11,7 @@ struct MainView: View {
     
     // Trends
     @State var soundIdToGoToFromTrends: String = .empty
+    @StateObject var fromTrendsToSounds = FromTrendsToSounds()
     @State var trendsTimeIntervalToGoTo: TrendsTimeInterval? = nil
     
     var body: some View {
@@ -87,6 +88,7 @@ struct MainView: View {
                 tabSelection = .trends
                 trendsTimeIntervalToGoTo = .allTime
             })
+            .environmentObject(fromTrendsToSounds)
         } else {
             NavigationView {
                 SidebarView(state: $state,
@@ -113,6 +115,7 @@ struct MainView: View {
             }) {
                 FolderInfoEditingView(isBeingShown: $isShowingFolderInfoEditingSheet, selectedBackgroundColor: "pastelPurple")
             }
+            .environmentObject(fromTrendsToSounds)
         }
     }
 
@@ -122,6 +125,7 @@ struct MainView_Previews: PreviewProvider {
 
     static var previews: some View {
         MainView()
+            .environmentObject(FromTrendsToSounds())
     }
 
 }

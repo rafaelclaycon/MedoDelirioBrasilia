@@ -7,6 +7,7 @@ struct MostSharedByAudienceView: View {
     @Binding var activePadScreen: PadScreen?
     @Binding var soundIdToGoToFromTrends: String
     @Binding var trendsTimeIntervalToGoTo: TrendsTimeInterval?
+    @EnvironmentObject var fromTrendsToSounds: FromTrendsToSounds
     
     private let columns = [
         GridItem(.flexible())
@@ -186,6 +187,7 @@ struct MostSharedByAudienceView: View {
             activePadScreen = .allSounds
         }
         soundIdToGoToFromTrends = soundId
+        fromTrendsToSounds.soundIdToGoTo = soundId
     }
 
 }
@@ -197,6 +199,7 @@ struct MostSharedByAudienceView_Previews: PreviewProvider {
                                  activePadScreen: .constant(.trends),
                                  soundIdToGoToFromTrends: .constant(.empty),
                                  trendsTimeIntervalToGoTo: .constant(nil))
+            .environmentObject(FromTrendsToSounds())
     }
 
 }

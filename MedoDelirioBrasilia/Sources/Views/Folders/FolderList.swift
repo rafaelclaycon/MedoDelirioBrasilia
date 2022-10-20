@@ -36,25 +36,29 @@ struct FolderList: View {
                         }
                         .foregroundColor(.primary)
                         .contextMenu {
-    //                                        Button {
-    //                                            folderForEditingOnSheet = folder
-    //                                            showingFolderInfoEditingView = true
-    //                                        } label: {
-    //                                            Label("Editar Pasta", systemImage: "pencil")
-    //                                        }
-                            
-                            Button(role: .destructive, action: {
-                                let folderName = "\(folder.symbol) \(folder.name)"
-                                deleteFolderAid.alertTitle = "Apagar a Pasta \"\(folderName)\"?"
-                                deleteFolderAid.alertMessage = "Os sons continuarão disponíveis no app, fora da pasta.\n\nEssa ação não pode ser desfeita."
-                                deleteFolderAid.folderIdForDeletion = folder.id
-                                deleteFolderAid.showAlert = true
-                            }, label: {
-                                HStack {
-                                    Text("Apagar Pasta")
-                                    Image(systemName: "trash")
+                            Section {
+                                Button {
+                                    //folderForEditingOnSheet = folder
+                                    //showingFolderInfoEditingView = true
+                                } label: {
+                                    Label("Editar Pasta", systemImage: "pencil")
                                 }
-                            })
+                            }
+                            
+                            Section {
+                                Button(role: .destructive, action: {
+                                    let folderName = "\(folder.symbol) \(folder.name)"
+                                    deleteFolderAid.alertTitle = "Apagar a Pasta \"\(folderName)\"?"
+                                    deleteFolderAid.alertMessage = "Os sons continuarão disponíveis no app, fora da pasta.\n\nEssa ação não pode ser desfeita."
+                                    deleteFolderAid.folderIdForDeletion = folder.id
+                                    deleteFolderAid.showAlert = true
+                                }, label: {
+                                    HStack {
+                                        Text("Apagar Pasta")
+                                        Image(systemName: "trash")
+                                    }
+                                })
+                            }
                         }
                     }
                 }
