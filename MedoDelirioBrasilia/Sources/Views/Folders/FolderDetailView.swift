@@ -80,28 +80,30 @@ struct FolderDetailView: View {
                     }
                     .disabled(!viewModel.isPlayingSound)
                     
-                    Menu {
-                        Section {
-                            Button {
-                                showingFolderInfoEditingView = true
-                            } label: {
-                                Label("Editar Pasta", systemImage: "pencil")
-                            }
-                        }
-                        
-                        Section {
-                            Button(role: .destructive, action: {
-                                //viewModel.dummyCall()
-                            }, label: {
-                                HStack {
-                                    Text("Apagar Pasta")
-                                    Image(systemName: "trash")
-                                }
-                            })
-                        }
-                    } label: {
-                        Image(systemName: "ellipsis.circle")
-                    }
+//                    Menu {
+//                        if UIDevice.current.userInterfaceIdiom == .phone {
+//                            Section {
+//                                Button {
+//                                    showingFolderInfoEditingView = true
+//                                } label: {
+//                                    Label("Editar Pasta", systemImage: "pencil")
+//                                }
+//                            }
+//                        }
+//                        
+//                        Section {
+//                            Button(role: .destructive, action: {
+//                                //viewModel.dummyCall()
+//                            }, label: {
+//                                HStack {
+//                                    Text("Apagar Pasta")
+//                                    Image(systemName: "trash")
+//                                }
+//                            })
+//                        }
+//                    } label: {
+//                        Image(systemName: "ellipsis.circle")
+//                    }
                 }
             )
             .onAppear {

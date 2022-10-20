@@ -37,11 +37,13 @@ struct FolderList: View {
                         }
                         .foregroundColor(.primary)
                         .contextMenu {
-                            Section {
-                                Button {
-                                    folderIdForEditing = folder.id
-                                } label: {
-                                    Label("Editar Pasta", systemImage: "pencil")
+                            if UIDevice.current.userInterfaceIdiom == .phone {
+                                Section {
+                                    Button {
+                                        folderIdForEditing = folder.id
+                                    } label: {
+                                        Label("Editar Pasta", systemImage: "pencil")
+                                    }
                                 }
                             }
                             
