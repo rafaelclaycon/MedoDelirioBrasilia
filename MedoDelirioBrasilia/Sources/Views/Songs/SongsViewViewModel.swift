@@ -164,6 +164,8 @@ class SongsViewViewModel: ObservableObject {
                             }
                         }
                     }
+                    
+                    WallE.deleteAllVideoFilesFromDocumentsDir()
                 }
             } catch {
                 print("Unable to get song.")
@@ -201,6 +203,8 @@ class SongsViewViewModel: ObservableObject {
                         }
                     }
                 }
+                
+                WallE.deleteAllVideoFilesFromDocumentsDir()
             }
             
             isShowingShareSheet = true

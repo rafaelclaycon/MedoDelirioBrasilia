@@ -149,6 +149,8 @@ class FolderDetailViewViewModel: ObservableObject {
                             }
                         }
                     }
+                    
+                    WallE.deleteAllVideoFilesFromDocumentsDir()
                 }
             } catch {
                 showUnableToGetSoundAlert()
@@ -186,6 +188,8 @@ class FolderDetailViewViewModel: ObservableObject {
                         }
                     }
                 }
+                
+                WallE.deleteAllVideoFilesFromDocumentsDir()
             }
             
             isShowingShareSheet = true

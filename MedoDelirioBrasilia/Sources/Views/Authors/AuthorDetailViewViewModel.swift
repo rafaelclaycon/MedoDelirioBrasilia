@@ -164,6 +164,8 @@ class AuthorDetailViewViewModel: ObservableObject {
                             }
                         }
                     }
+                    
+                    WallE.deleteAllVideoFilesFromDocumentsDir()
                 }
             } catch {
                 showUnableToGetSoundAlert()
@@ -201,6 +203,8 @@ class AuthorDetailViewViewModel: ObservableObject {
                         }
                     }
                 }
+                
+                WallE.deleteAllVideoFilesFromDocumentsDir()
             }
             
             isShowingShareSheet = true

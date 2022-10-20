@@ -233,6 +233,7 @@
 		D964CF3428EEEDC6004DECAF /* Abertura Lombardi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D964CF3328EEEDC6004DECAF /* Abertura Lombardi.mp3 */; };
 		D964CF3928EEF83A004DECAF /* Casimiro - Eu vou votar no barba, nao tem jeito.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D964CF3728EEF839004DECAF /* Casimiro - Eu vou votar no barba, nao tem jeito.mp3 */; };
 		D964CF3A28EEF83A004DECAF /* Casimiro - Porque se o Bolsonaro ta de um lado, eu to do outro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D964CF3828EEF83A004DECAF /* Casimiro - Porque se o Bolsonaro ta de um lado, eu to do outro.mp3 */; };
+		D967E2BA290196F900B21C11 /* WallE.swift in Sources */ = {isa = PBXBuildFile; fileRef = D967E2B9290196F900B21C11 /* WallE.swift */; };
 		D96E115D28459D8800306859 /* UserActivityWaiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96E115C28459D8800306859 /* UserActivityWaiter.swift */; };
 		D973076C28AC49B100FBB3B8 /* DiagnosticsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D973076B28AC49B100FBB3B8 /* DiagnosticsViewViewModel.swift */; };
 		D97500002880B4F20035E6F2 /* Bolsonaro - Ah nhem nhem nhem nhem olha o problema ai.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FDC92880B4F00035E6F2 /* Bolsonaro - Ah nhem nhem nhem nhem olha o problema ai.mp3 */; };
@@ -1253,6 +1254,7 @@
 		D964CF3728EEF839004DECAF /* Casimiro - Eu vou votar no barba, nao tem jeito.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Casimiro - Eu vou votar no barba, nao tem jeito.mp3"; sourceTree = "<group>"; };
 		D964CF3828EEF83A004DECAF /* Casimiro - Porque se o Bolsonaro ta de um lado, eu to do outro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Casimiro - Porque se o Bolsonaro ta de um lado, eu to do outro.mp3"; sourceTree = "<group>"; };
 		D9653D9C2882749C00C745F4 /* MedoDelirioBrasilia.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MedoDelirioBrasilia.entitlements; sourceTree = "<group>"; };
+		D967E2B9290196F900B21C11 /* WallE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallE.swift; sourceTree = "<group>"; };
 		D96E115C28459D8800306859 /* UserActivityWaiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserActivityWaiter.swift; sourceTree = "<group>"; };
 		D973076B28AC49B100FBB3B8 /* DiagnosticsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticsViewViewModel.swift; sourceTree = "<group>"; };
 		D97500462880B5180035E6F2 /* MULTISHOW - Djonga - Xinguei Bolsonaro um monte de vezes, vou xingar de novo voce e um merda.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "MULTISHOW - Djonga - Xinguei Bolsonaro um monte de vezes, vou xingar de novo voce e um merda.mp3"; sourceTree = "<group>"; };
@@ -2929,6 +2931,7 @@
 				D94AD34828811ADC00D3E4F0 /* Versioneer.swift */,
 				D916536328AD7FF7007F141D /* VideoMaker.swift */,
 				D9A3AB6C28F062580064CB7A /* TimeKeeper.swift */,
+				D967E2B9290196F900B21C11 /* WallE.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -4482,6 +4485,7 @@
 				D9FB489A2870FE7800FF90D0 /* TapticHelper.swift in Sources */,
 				D957047D28AEF733008DEF8C /* ProcessingView.swift in Sources */,
 				D9A3984928FDEE0D00039B7B /* AddRankingTypeToAudienceSharingStatisticTable.swift in Sources */,
+				D967E2BA290196F900B21C11 /* WallE.swift in Sources */,
 				D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */,
 				D9253B682873B68B00D138FB /* FoldersAreTagsBannerView.swift in Sources */,
 				D93CCB77286A802D0002CF81 /* EmptyFolderView.swift in Sources */,
