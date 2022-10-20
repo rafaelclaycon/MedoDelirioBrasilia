@@ -6,6 +6,7 @@ struct FolderList: View {
     @StateObject private var viewModel = FolderListViewModel()
     @Binding var updateFolderList: Bool
     @Binding var deleteFolderAid: DeleteFolderViewAid
+    @Binding var folderIdForEditing: String
     
     private var columns: [GridItem] {
         if UIDevice.current.userInterfaceIdiom == .phone {
@@ -27,7 +28,7 @@ struct FolderList: View {
         VStack {
             if viewModel.hasFoldersToDisplay {
                 LazyVGrid(columns: columns, spacing: 14) {
-                    ForEach(viewModel.folders) { folder in
+                    ForEach(viewModel.folders, id: \.editingIdentifyingId) { folder in
                         NavigationLink {
                             FolderDetailView(folder: folder)
                         } label: {
@@ -36,25 +37,30 @@ struct FolderList: View {
                         }
                         .foregroundColor(.primary)
                         .contextMenu {
-    //                                        Button {
-    //                                            folderForEditingOnSheet = folder
-    //                                            showingFolderInfoEditingView = true
-    //                                        } label: {
-    //                                            Label("Editar Pasta", systemImage: "pencil")
-    //                                        }
-                            
-                            Button(role: .destructive, action: {
-                                let folderName = "\(folder.symbol) \(folder.name)"
-                                deleteFolderAid.alertTitle = "Apagar a Pasta \"\(folderName)\"?"
-                                deleteFolderAid.alertMessage = "Os sons continuarão disponíveis no app, fora da pasta.\n\nEssa ação não pode ser desfeita."
-                                deleteFolderAid.folderIdForDeletion = folder.id
-                                deleteFolderAid.showAlert = true
-                            }, label: {
-                                HStack {
-                                    Text("Apagar Pasta")
-                                    Image(systemName: "trash")
+                            if UIDevice.current.userInterfaceIdiom == .phone {
+                                Section {
+                                    Button {
+                                        folderIdForEditing = folder.id
+                                    } label: {
+                                        Label("Editar Pasta", systemImage: "pencil")
+                                    }
                                 }
-                            })
+                            }
+                            
+                            Section {
+                                Button(role: .destructive, action: {
+                                    let folderName = "\(folder.symbol) \(folder.name)"
+                                    deleteFolderAid.alertTitle = "Apagar a Pasta \"\(folderName)\"?"
+                                    deleteFolderAid.alertMessage = "Os sons continuarão disponíveis no app, fora da pasta.\n\nEssa ação não pode ser desfeita."
+                                    deleteFolderAid.folderIdForDeletion = folder.id
+                                    deleteFolderAid.showAlert = true
+                                }, label: {
+                                    HStack {
+                                        Text("Apagar Pasta")
+                                        Image(systemName: "trash")
+                                    }
+                                })
+                            }
                         }
                     }
                 }
@@ -101,7 +107,9 @@ struct FolderList: View {
 struct FolderList_Previews: PreviewProvider {
 
     static var previews: some View {
-        FolderList(updateFolderList: .constant(false), deleteFolderAid: .constant(DeleteFolderViewAid()))
+        FolderList(updateFolderList: .constant(false),
+                   deleteFolderAid: .constant(DeleteFolderViewAid()),
+                   folderIdForEditing: .constant(.empty))
     }
 
 }

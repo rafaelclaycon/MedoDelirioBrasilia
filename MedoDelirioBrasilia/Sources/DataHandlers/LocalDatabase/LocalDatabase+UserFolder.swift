@@ -4,8 +4,28 @@ import SQLite
 extension LocalDatabase {
 
     func insert(userFolder newFolder: UserFolder) throws {
-        let insert = try userFolder.insert(newFolder)
+        var folder = newFolder
+        folder.editingIdentifyingId = nil
+        let insert = try userFolder.insert(folder)
         try db.run(insert)
+    }
+    
+    func getFolder(withId folderId: String) throws -> UserFolder {
+        var queriedFolders = [UserFolder]()
+        
+        let id = Expression<String>("id")
+        let query = userFolder.filter(id == folderId)
+
+        for queriedFolder in try db.prepare(query) {
+            queriedFolders.append(try queriedFolder.decode())
+        }
+        if queriedFolders.count == 0 {
+            throw LocalDatabaseError.folderNotFound
+        } else if queriedFolders.count > 1 {
+            throw LocalDatabaseError.internalError
+        } else {
+            return queriedFolders.first!
+        }
     }
     
     func update(userFolder userFolderId: String, withNewSymbol newSymbol: String, newName: String, andNewBackgroundColor newBackgroundColor: String) throws {
@@ -25,6 +45,11 @@ extension LocalDatabase {
         for queriedFolder in try db.prepare(userFolder) {
             queriedFolders.append(try queriedFolder.decode())
         }
+        
+        for i in 0..<queriedFolders.count {
+            queriedFolders[i].editingIdentifyingId = UUID().uuidString
+        }
+        
         return queriedFolders
     }
     
