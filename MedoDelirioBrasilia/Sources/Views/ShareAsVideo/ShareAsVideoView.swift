@@ -9,8 +9,8 @@ struct ShareAsVideoView: View {
     
     @State private var tipText: String = .empty
     
-    private let twitterTip = "Para responder a um tuíte, escolha Salvar Vídeo na tela de compartilhamento. Depois, adicione o vídeo ao seu tuíte a partir do Twitter."
-    private let instagramTip = "Para fazer um Story, escolha Salvar Vídeo na tela de compartilhamento. Depois, adicione o vídeo ao seu Story a partir do Instagram."
+    private let twitterTip = "Para responder a um tuíte, escolha Salvar Vídeo e depois adicione o vídeo ao seu tuíte a partir do Twitter."
+    private let instagramTip = "Para fazer um Story, escolha Salvar Vídeo e depois adicione o vídeo ao seu Story a partir do Instagram."
     
     var body: some View {
         ZStack {
@@ -47,40 +47,47 @@ struct ShareAsVideoView: View {
                             .padding(.horizontal)
                             .padding(.vertical)
                         
-                        Button {
-                            viewModel.createVideo()
-                        } label: {
-                            HStack(spacing: 20) {
-                                if viewModel.selectedSocialNetwork == VideoExportType.twitter.rawValue {
-                                    Image("twitter")
+                        HStack(spacing: 10) {
+                            Button {
+                                viewModel.createVideo()
+                            } label: {
+                                HStack(spacing: 15) {
+                                    Image(systemName: "square.and.arrow.up")
                                         .resizable()
                                         .scaledToFit()
                                         .frame(height: 25)
-                                } else {
-                                    HStack(spacing: 10) {
-                                        Image("instagram")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(height: 25)
-                                        
-                                        Image("tiktok")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(height: 25)
-                                    }
+                                    
+                                    Text("Compartilhar")
+                                        .font(.headline)
+                                        .foregroundColor(.white)
                                 }
-                                
-                                Text("Compartilhar")
-                                    .font(.headline)
-                                    .foregroundColor(.white)
                             }
-                            .padding(.horizontal, 40)
+                            .tint(.accentColor)
+                            .controlSize(.large)
+                            .buttonStyle(.borderedProminent)
+                            .buttonBorderShape(.capsule)
+                            .padding(.bottom)
+                            
+                            Button {
+                                //viewModel.createVideo()
+                            } label: {
+                                HStack(spacing: 15) {
+                                    Image(systemName: "square.and.arrow.down")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(height: 25)
+                                    
+                                    Text("Salvar Vídeo")
+                                        .font(.headline)
+                                        .foregroundColor(.white)
+                                }
+                            }
+                            .tint(.accentColor)
+                            .controlSize(.large)
+                            .buttonStyle(.borderedProminent)
+                            .buttonBorderShape(.capsule)
+                            .padding(.bottom)
                         }
-                        .tint(.accentColor)
-                        .controlSize(.large)
-                        .buttonStyle(.borderedProminent)
-                        .buttonBorderShape(.capsule)
-                        .padding(.bottom)
                     }
                     .navigationTitle("Gerar Vídeo")
                     .navigationBarTitleDisplayMode(.inline)
