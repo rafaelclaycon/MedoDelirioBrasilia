@@ -25,7 +25,7 @@ struct ShareAsVideoView: View {
                         .padding(.horizontal, 25)
                         .padding(.bottom, 10)
                         .onChange(of: viewModel.selectedSocialNetwork) { newValue in
-                            tipText = newValue == VideoExportType.twitter.rawValue ? twitterTip : instagramTip
+                            tipText = newValue == IntendedVideoDestination.twitter.rawValue ? twitterTip : instagramTip
                             viewModel.reloadImage()
                         }
                         
@@ -34,7 +34,7 @@ struct ShareAsVideoView: View {
                             .scaledToFit()
                             .frame(height: 350)
                         
-                        if viewModel.selectedSocialNetwork == VideoExportType.instagramTikTok.rawValue {
+                        if viewModel.selectedSocialNetwork == IntendedVideoDestination.instagramTikTok.rawValue {
                             Toggle("Incluir aviso Ligue o Som", isOn: $viewModel.includeSoundWarning)
                                 .onChange(of: viewModel.includeSoundWarning) { _ in
                                     viewModel.reloadImage()
@@ -48,31 +48,31 @@ struct ShareAsVideoView: View {
                             .padding(.vertical)
                         
                         Button {
-                            viewModel.createVideo()
-                        } label: {
-                            HStack(spacing: 20) {
-                                if viewModel.selectedSocialNetwork == VideoExportType.twitter.rawValue {
-                                    Image("twitter")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(height: 25)
-                                } else {
-                                    HStack(spacing: 10) {
-                                        Image("instagram")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(height: 25)
-                                        
-                                        Image("tiktok")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(height: 25)
+                            viewModel.generateVideo { videoPath, error in
+                                if let error = error {
+                                    DispatchQueue.main.async {
+                                        viewModel.isShowingProcessingView = false
+                                        viewModel.showOtherError(errorTitle: "Falha na Geração do Vídeo",
+                                                                 errorBody: error.localizedDescription)
                                     }
+                                    return
                                 }
+                                guard let videoPath = videoPath else { return }
+                                DispatchQueue.main.async {
+                                    viewModel.isShowingProcessingView = false
+                                    viewModel.pathToVideoFile = videoPath
+                                    viewModel.presentShareSheet = true
+                                }
+                            }
+                        } label: {
+                            HStack(spacing: 15) {
+                                Image(systemName: "square.and.arrow.up")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height: 25)
                                 
                                 Text("Compartilhar")
                                     .font(.headline)
-                                    .foregroundColor(.white)
                             }
                             .padding(.horizontal, 40)
                         }

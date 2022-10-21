@@ -6,6 +6,7 @@ struct MostSharedByAudienceView: View {
     @Binding var tabSelection: PhoneTab
     @Binding var activePadScreen: PadScreen?
     @Binding var soundIdToGoToFromTrends: String
+    @Binding var trendsTimeIntervalToGoTo: TrendsTimeInterval?
     
     private let columns = [
         GridItem(.flexible())
@@ -82,6 +83,15 @@ struct MostSharedByAudienceView: View {
                             } else {
                                 viewModel.viewState = .displayingData
                             }
+                        }
+                    }
+                    
+                    viewModel.donateActivity(forTimeInterval: timeIntervalOption)
+                }
+                .onChange(of: trendsTimeIntervalToGoTo) { trendsTimeIntervalToGoTo in
+                    if let option = trendsTimeIntervalToGoTo {
+                        DispatchQueue.main.async {
+                            viewModel.timeIntervalOption = option
                         }
                     }
                 }
@@ -162,6 +172,7 @@ struct MostSharedByAudienceView: View {
         }
         .onAppear {
             viewModel.reloadAudienceLists()
+            viewModel.donateActivity(forTimeInterval: viewModel.timeIntervalOption)
         }
         .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
@@ -182,7 +193,10 @@ struct MostSharedByAudienceView: View {
 struct MostSharedByAudienceView_Previews: PreviewProvider {
 
     static var previews: some View {
-        MostSharedByAudienceView(tabSelection: .constant(.trends), activePadScreen: .constant(.trends), soundIdToGoToFromTrends: .constant(.empty))
+        MostSharedByAudienceView(tabSelection: .constant(.trends),
+                                 activePadScreen: .constant(.trends),
+                                 soundIdToGoToFromTrends: .constant(.empty),
+                                 trendsTimeIntervalToGoTo: .constant(nil))
     }
 
 }

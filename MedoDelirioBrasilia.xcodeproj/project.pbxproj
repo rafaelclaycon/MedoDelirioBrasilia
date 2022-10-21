@@ -176,6 +176,11 @@
 		D9345E7628C697F900BADC1B /* Ele Queria Ter 2 Mesa Funk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9345E7528C697F900BADC1B /* Ele Queria Ter 2 Mesa Funk.mp3 */; };
 		D9351C5C2844094E00D4317E /* TopChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9351C5B2844094E00D4317E /* TopChartItem.swift */; };
 		D9351C6128441FA400D4317E /* LoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9351C6028441FA400D4317E /* LoggerTests.swift */; };
+		D93752122902C94200E2F27B /* Joaquim Barbosa - Bolsonaro e um ser abjeto, Lula no primeiro turno.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D93752102902C94200E2F27B /* Joaquim Barbosa - Bolsonaro e um ser abjeto, Lula no primeiro turno.mp3 */; };
+		D93752132902C94200E2F27B /* Lula - Consideracoes finais debate Band 2o turno.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D93752112902C94200E2F27B /* Lula - Consideracoes finais debate Band 2o turno.mp3 */; };
+		D93752162902C94A00E2F27B /* Funk da Picanha e da Cerveja.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D93752142902C94A00E2F27B /* Funk da Picanha e da Cerveja.mp3 */; };
+		D93752172902C94A00E2F27B /* O senhor gozou.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D93752152902C94A00E2F27B /* O senhor gozou.mp3 */; };
+		D93752192902CD1A00E2F27B /* Genocida, miliciano, canibal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D93752182902CD1A00E2F27B /* Genocida, miliciano, canibal.mp3 */; };
 		D938132F287E12B3009EE24F /* NotificationAide.swift in Sources */ = {isa = PBXBuildFile; fileRef = D938132E287E12B3009EE24F /* NotificationAide.swift */; };
 		D9388F9E288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Bonsai de pica.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9388F9C288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Bonsai de pica.mp3 */; };
 		D9388F9F288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Eduardo Bolsonaro, aquele bonsai de pica.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9388F9D288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Eduardo Bolsonaro, aquele bonsai de pica.mp3 */; };
@@ -233,6 +238,8 @@
 		D964CF3428EEEDC6004DECAF /* Abertura Lombardi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D964CF3328EEEDC6004DECAF /* Abertura Lombardi.mp3 */; };
 		D964CF3928EEF83A004DECAF /* Casimiro - Eu vou votar no barba, nao tem jeito.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D964CF3728EEF839004DECAF /* Casimiro - Eu vou votar no barba, nao tem jeito.mp3 */; };
 		D964CF3A28EEF83A004DECAF /* Casimiro - Porque se o Bolsonaro ta de um lado, eu to do outro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D964CF3828EEF83A004DECAF /* Casimiro - Porque se o Bolsonaro ta de um lado, eu to do outro.mp3 */; };
+		D967E2BA290196F900B21C11 /* WallE.swift in Sources */ = {isa = PBXBuildFile; fileRef = D967E2B9290196F900B21C11 /* WallE.swift */; };
+		D967E2BC2901C40700B21C11 /* CustomPhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D967E2BB2901C40700B21C11 /* CustomPhotoAlbum.swift */; };
 		D96E115D28459D8800306859 /* UserActivityWaiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96E115C28459D8800306859 /* UserActivityWaiter.swift */; };
 		D973076C28AC49B100FBB3B8 /* DiagnosticsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D973076B28AC49B100FBB3B8 /* DiagnosticsViewViewModel.swift */; };
 		D97500002880B4F20035E6F2 /* Bolsonaro - Ah nhem nhem nhem nhem olha o problema ai.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FDC92880B4F00035E6F2 /* Bolsonaro - Ah nhem nhem nhem nhem olha o problema ai.mp3 */; };
@@ -875,6 +882,7 @@
 		D9A096D8287CE72300773869 /* Mailman.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A096D7287CE72300773869 /* Mailman.swift */; };
 		D9A32DC7285ACE880038A370 /* PodiumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A32DC6285ACE880038A370 /* PodiumTests.swift */; };
 		D9A3984928FDEE0D00039B7B /* AddRankingTypeToAudienceSharingStatisticTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A3984828FDEE0D00039B7B /* AddRankingTypeToAudienceSharingStatisticTable.swift */; };
+		D9A3984B28FF4AA300039B7B /* Samira Close - 22 so se for de pica.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9A3984A28FF4AA300039B7B /* Samira Close - 22 so se for de pica.mp3 */; };
 		D9A3AB6B28F03C970064CB7A /* TrendsViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A3AB6A28F03C970064CB7A /* TrendsViewState.swift */; };
 		D9A3AB6D28F062580064CB7A /* TimeKeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A3AB6C28F062580064CB7A /* TimeKeeper.swift */; };
 		D9A3AB6F28F063FF0064CB7A /* TimeKeeperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A3AB6E28F063FF0064CB7A /* TimeKeeperTests.swift */; };
@@ -1193,6 +1201,11 @@
 		D9345E7528C697F900BADC1B /* Ele Queria Ter 2 Mesa Funk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ele Queria Ter 2 Mesa Funk.mp3"; sourceTree = "<group>"; };
 		D9351C5B2844094E00D4317E /* TopChartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartItem.swift; sourceTree = "<group>"; };
 		D9351C6028441FA400D4317E /* LoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerTests.swift; sourceTree = "<group>"; };
+		D93752102902C94200E2F27B /* Joaquim Barbosa - Bolsonaro e um ser abjeto, Lula no primeiro turno.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Joaquim Barbosa - Bolsonaro e um ser abjeto, Lula no primeiro turno.mp3"; sourceTree = "<group>"; };
+		D93752112902C94200E2F27B /* Lula - Consideracoes finais debate Band 2o turno.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - Consideracoes finais debate Band 2o turno.mp3"; sourceTree = "<group>"; };
+		D93752142902C94A00E2F27B /* Funk da Picanha e da Cerveja.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Funk da Picanha e da Cerveja.mp3"; sourceTree = "<group>"; };
+		D93752152902C94A00E2F27B /* O senhor gozou.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O senhor gozou.mp3"; sourceTree = "<group>"; };
+		D93752182902CD1A00E2F27B /* Genocida, miliciano, canibal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Genocida, miliciano, canibal.mp3"; sourceTree = "<group>"; };
 		D938132E287E12B3009EE24F /* NotificationAide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAide.swift; sourceTree = "<group>"; };
 		D9388F9C288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Bonsai de pica.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano Botafogo imitando o Frota - Bonsai de pica.mp3"; sourceTree = "<group>"; };
 		D9388F9D288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Eduardo Bolsonaro, aquele bonsai de pica.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano Botafogo imitando o Frota - Eduardo Bolsonaro, aquele bonsai de pica.mp3"; sourceTree = "<group>"; };
@@ -1252,6 +1265,8 @@
 		D964CF3728EEF839004DECAF /* Casimiro - Eu vou votar no barba, nao tem jeito.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Casimiro - Eu vou votar no barba, nao tem jeito.mp3"; sourceTree = "<group>"; };
 		D964CF3828EEF83A004DECAF /* Casimiro - Porque se o Bolsonaro ta de um lado, eu to do outro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Casimiro - Porque se o Bolsonaro ta de um lado, eu to do outro.mp3"; sourceTree = "<group>"; };
 		D9653D9C2882749C00C745F4 /* MedoDelirioBrasilia.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MedoDelirioBrasilia.entitlements; sourceTree = "<group>"; };
+		D967E2B9290196F900B21C11 /* WallE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallE.swift; sourceTree = "<group>"; };
+		D967E2BB2901C40700B21C11 /* CustomPhotoAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPhotoAlbum.swift; sourceTree = "<group>"; };
 		D96E115C28459D8800306859 /* UserActivityWaiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserActivityWaiter.swift; sourceTree = "<group>"; };
 		D973076B28AC49B100FBB3B8 /* DiagnosticsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticsViewViewModel.swift; sourceTree = "<group>"; };
 		D97500462880B5180035E6F2 /* MULTISHOW - Djonga - Xinguei Bolsonaro um monte de vezes, vou xingar de novo voce e um merda.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "MULTISHOW - Djonga - Xinguei Bolsonaro um monte de vezes, vou xingar de novo voce e um merda.mp3"; sourceTree = "<group>"; };
@@ -1895,6 +1910,7 @@
 		D9A096D7287CE72300773869 /* Mailman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mailman.swift; sourceTree = "<group>"; };
 		D9A32DC6285ACE880038A370 /* PodiumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodiumTests.swift; sourceTree = "<group>"; };
 		D9A3984828FDEE0D00039B7B /* AddRankingTypeToAudienceSharingStatisticTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRankingTypeToAudienceSharingStatisticTable.swift; sourceTree = "<group>"; };
+		D9A3984A28FF4AA300039B7B /* Samira Close - 22 so se for de pica.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Samira Close - 22 so se for de pica.mp3"; sourceTree = "<group>"; };
 		D9A3AB6A28F03C970064CB7A /* TrendsViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsViewState.swift; sourceTree = "<group>"; };
 		D9A3AB6C28F062580064CB7A /* TimeKeeper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeKeeper.swift; sourceTree = "<group>"; };
 		D9A3AB6E28F063FF0064CB7A /* TimeKeeperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeKeeperTests.swift; sourceTree = "<group>"; };
@@ -2058,6 +2074,9 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D93752102902C94200E2F27B /* Joaquim Barbosa - Bolsonaro e um ser abjeto, Lula no primeiro turno.mp3 */,
+				D93752112902C94200E2F27B /* Lula - Consideracoes finais debate Band 2o turno.mp3 */,
+				D9A3984A28FF4AA300039B7B /* Samira Close - 22 so se for de pica.mp3 */,
 				D9547D7728FDD7180020A800 /* Cristiano Botafogo - Se o Brasil reeleger Bolsonaro.mp3 */,
 				D9547D7928FDD7180020A800 /* Diogo Defante - O barbinha ta vindo ai, vai vir te jambrolhando.mp3 */,
 				D9547D7828FDD7180020A800 /* Espectadora do Falso Patati Patata - Falta de respeito com as criança.mp3 */,
@@ -2852,6 +2871,9 @@
 		D92E7068283C5C120035826C /* Songs */ = {
 			isa = PBXGroup;
 			children = (
+				D93752182902CD1A00E2F27B /* Genocida, miliciano, canibal.mp3 */,
+				D93752142902C94A00E2F27B /* Funk da Picanha e da Cerveja.mp3 */,
+				D93752152902C94A00E2F27B /* O senhor gozou.mp3 */,
 				494EAD2A28FC614900BF822C /* Tá na hora de votar (Ilarie) - Lula.mp3 */,
 				49C0938D28E5EEA200960B7E /* Vou de Lula, Ce Sabe - Neide e Lula.mp3 */,
 				D906BA4E28D909A0007F4701 /* Jingle Bolsonaro 2022.mp3 */,
@@ -2926,6 +2948,7 @@
 				D94AD34828811ADC00D3E4F0 /* Versioneer.swift */,
 				D916536328AD7FF7007F141D /* VideoMaker.swift */,
 				D9A3AB6C28F062580064CB7A /* TimeKeeper.swift */,
+				D967E2B9290196F900B21C11 /* WallE.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -3399,6 +3422,7 @@
 				D9943F2128641A82002C6B97 /* LocalDatabase */,
 				D9A8AB1E2853D80200B5A94B /* Migrations */,
 				D961D01028371EE800EFEDEB /* FixedLocalData.swift */,
+				D967E2BB2901C40700B21C11 /* CustomPhotoAlbum.swift */,
 			);
 			path = DataHandlers;
 			sourceTree = "<group>";
@@ -3707,6 +3731,7 @@
 				D975002F2880B4F20035E6F2 /* Vai Dar Namoro - Que isso meu filho calma.mp3 in Resources */,
 				D923126C28AB01A700436336 /* Trump - I could shoot somebody and not lose voters short meme.mp3 in Resources */,
 				D91793BB288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao.mp3 in Resources */,
+				D93752172902C94A00E2F27B /* O senhor gozou.mp3 in Resources */,
 				49DEA9AC28810F1D008C9BA1 /* UOL - Bolsonaro - Quem nao esta contente tem Lula em 2022 short meme.mp3 in Resources */,
 				D97500062880B4F20035E6F2 /* Lula - Chupa que a cana e doce meu filho.mp3 in Resources */,
 				D975FF692880B4F20035E6F2 /* Cristiano Botafogo - Bora passar raiva.mp3 in Resources */,
@@ -3778,6 +3803,7 @@
 				D975FEBB2880B4F20035E6F2 /* Craque Neto - Pa aplica numa bunda pa aplica na outra.mp3 in Resources */,
 				D975FE272880B4F20035E6F2 /* Cocorico - Ah coitado.mp3 in Resources */,
 				D97500292880B4F20035E6F2 /* Bonitinha mas ordinaria - Mentira.mp3 in Resources */,
+				D93752162902C94A00E2F27B /* Funk da Picanha e da Cerveja.mp3 in Resources */,
 				D9C77B6D28CAB81F006CA17B /* TIRIRICA - Pior do que ta nao fica.mp3 in Resources */,
 				D975FED62880B4F20035E6F2 /* Cristiano Botafogo - Mix de insanidade.mp3 in Resources */,
 				D9CB84F528B2E31D00E815C2 /* Alvaro Borba - A Verdadeira Polarizacao.mp3 in Resources */,
@@ -3995,6 +4021,7 @@
 				D975002D2880B4F20035E6F2 /* Dudu Marfetan - Até o final (completo).mp3 in Resources */,
 				D975FF2B2880B4F20035E6F2 /* ATILA IAMARINO - Que que eu posso tomar voce pode tomar cuidado e vacina.mp3 in Resources */,
 				D97500432880B4F20035E6F2 /* Falha de Cobertura - Cerginho da Pereira Nunes - Doidera.mp3 in Resources */,
+				D93752122902C94200E2F27B /* Joaquim Barbosa - Bolsonaro e um ser abjeto, Lula no primeiro turno.mp3 in Resources */,
 				D975FE5F2880B4F20035E6F2 /* Danca do Creu - 30 mil passou a meta em 8x.mp3 in Resources */,
 				49DEA9A228810D79008C9BA1 /* Baroes da pisadinha - Status - Por mim tudo bem short meme.mp3 in Resources */,
 				D975FF542880B4F20035E6F2 /* Bolsonaro - Tem que deixar de ser um pais de maricas.mp3 in Resources */,
@@ -4067,6 +4094,7 @@
 				D975FEBA2880B4F20035E6F2 /* MY NEWS - Antonio Tabet - Tem uma editoria da imprensa que todo dia rende noticia Bolsonaro fala merda.mp3 in Resources */,
 				D9F8E9A028E6A08D0098A454 /* Soraya Thronicke - O senhor nao tem medo de ir pro inferno nao.mp3 in Resources */,
 				D975FEBF2880B4F20035E6F2 /* Leo Stronda Monstro - Batata doce e frango logico.mp3 in Resources */,
+				D9A3984B28FF4AA300039B7B /* Samira Close - 22 so se for de pica.mp3 in Resources */,
 				D9BB8F7B28EC753100659D4A /* Charlie e Lola - Da pra parar de enrolar.mp3 in Resources */,
 				D97B2DE328E60B8600C3B50B /* William Bonner - Fora Bolsonaro Genocida.mp3 in Resources */,
 				D921F885288B0177003979CC /* Ihu compilacao.mp3 in Resources */,
@@ -4343,6 +4371,7 @@
 				D975FFD92880B4F20035E6F2 /* Malafaia - Concordamos.mp3 in Resources */,
 				D975FFFA2880B4F20035E6F2 /* Vai Dar Namoro - Demais.mp3 in Resources */,
 				D98B9AD728CEBD2D00B82EDE /* Michelle Bolsonaro - Ele e meio sem nocao.mp3 in Resources */,
+				D93752132902C94200E2F27B /* Lula - Consideracoes finais debate Band 2o turno.mp3 in Resources */,
 				D97500072880B4F20035E6F2 /* REDETV - Jair Bolsonaro - Eu pretendo participar de debates, nao participei na ultima porque estava em convalescencia.mp3 in Resources */,
 				D975FF392880B4F20035E6F2 /* PORTA DOS FUNDOS - BALBURDIA - Bom dia, turma, todo mundo tirando a roupa e dedo no cu do colega do lado.mp3 in Resources */,
 				D92AD1B328832E07001CBCDF /* Casimiro - Quer jogar luz pra falar que ta errado ja ta errado nao precisa jogar luz tem que jogar na merda.mp3 in Resources */,
@@ -4375,6 +4404,7 @@
 				D975FEAE2880B4F20035E6F2 /* Mourao - A gente nao tem que ser mendigo nisso ai ne vamos colocar a coisa muito clara.mp3 in Resources */,
 				D975FECC2880B4F20035E6F2 /* CNN BRASIL - Milton Ribeiro - A versao verdadeira e a versao que a gente pode escutar no audio.mp3 in Resources */,
 				D975FEEF2880B4F20035E6F2 /* Bolsonaro - Da um tapa na minha cara slap sound.mp3 in Resources */,
+				D93752192902CD1A00E2F27B /* Genocida, miliciano, canibal.mp3 in Resources */,
 				D975FF812880B4F20035E6F2 /* Alborghetti - Ah, va a merda porra.mp3 in Resources */,
 				D975FF7E2880B4F20035E6F2 /* Bolsonaro - Eu votaria no Lula no segundo turno.mp3 in Resources */,
 				D9FD0F1628B2B2FA0000616A /* Funk do Sentar na Mesa.mp3 in Resources */,
@@ -4468,6 +4498,7 @@
 				D9CC025D28BD9EBD0021C1E6 /* GridHelper.swift in Sources */,
 				D916627D2874F1F9000A1B23 /* OnboardingView.swift in Sources */,
 				D99DC19D28423AD7002B03B6 /* AuthorDetailViewViewModel.swift in Sources */,
+				D967E2BC2901C40700B21C11 /* CustomPhotoAlbum.swift in Sources */,
 				D98DBD35284919B1008544F8 /* NetworkRabbit.swift in Sources */,
 				D959B0482887E83D00A215AD /* SidebarViewViewModel.swift in Sources */,
 				D97B2DD628E3E85400C3B50B /* MostSharedByMeViewViewModel.swift in Sources */,
@@ -4478,6 +4509,7 @@
 				D9FB489A2870FE7800FF90D0 /* TapticHelper.swift in Sources */,
 				D957047D28AEF733008DEF8C /* ProcessingView.swift in Sources */,
 				D9A3984928FDEE0D00039B7B /* AddRankingTypeToAudienceSharingStatisticTable.swift in Sources */,
+				D967E2BA290196F900B21C11 /* WallE.swift in Sources */,
 				D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */,
 				D9253B682873B68B00D138FB /* FoldersAreTagsBannerView.swift in Sources */,
 				D93CCB77286A802D0002CF81 /* EmptyFolderView.swift in Sources */,
@@ -4613,7 +4645,7 @@
 				CODE_SIGN_ENTITLEMENTS = MedoWidget/Sources/WidgetSupport/MedoWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MedoWidget/Sources/WidgetSupport/Info.plist;
@@ -4625,7 +4657,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 5.2;
+				MARKETING_VERSION = 5.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -4645,7 +4677,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_ENTITLEMENTS = MedoWidget/Sources/WidgetSupport/MedoWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MedoWidget/Sources/WidgetSupport/Info.plist;
@@ -4657,7 +4689,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 5.2;
+				MARKETING_VERSION = 5.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -4793,7 +4825,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/Sources/AppSupport/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -4813,7 +4845,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.2;
+				MARKETING_VERSION = 5.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -4834,7 +4866,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/Sources/AppSupport/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -4854,7 +4886,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.2;
+				MARKETING_VERSION = 5.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

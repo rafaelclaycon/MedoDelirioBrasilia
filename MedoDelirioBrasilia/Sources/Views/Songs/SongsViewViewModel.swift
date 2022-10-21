@@ -164,6 +164,8 @@ class SongsViewViewModel: ObservableObject {
                             }
                         }
                     }
+                    
+                    WallE.deleteAllVideoFilesFromDocumentsDir()
                 }
             } catch {
                 print("Unable to get song.")
@@ -201,6 +203,8 @@ class SongsViewViewModel: ObservableObject {
                         }
                     }
                 }
+                
+                WallE.deleteAllVideoFilesFromDocumentsDir()
             }
             
             isShowingShareSheet = true
@@ -208,7 +212,7 @@ class SongsViewViewModel: ObservableObject {
     }
     
     func donateActivity() {
-        self.currentActivity = UserActivityWaiter.getDonatableActivity(withType: Shared.ActivityTypes.playAndShareSongs, andTitle: "Tocar e compartilhar músicas")
+        self.currentActivity = UserActivityWaiter.getDonatableActivity(withType: Shared.ActivityTypes.playAndShareSongs, andTitle: "Ouvir e compartilhar músicas")
         self.currentActivity?.becomeCurrent()
     }
 

@@ -2,6 +2,7 @@ import SwiftUI
 
 struct TipView: View {
 
+    @Environment(\.colorScheme) var colorScheme
     @Binding var text: String
     
     var roundedRectangleHeight: CGFloat {
@@ -24,8 +25,9 @@ struct TipView: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20, style: .continuous)
-                .fill(Color.yellow)
+                .fill(Color.gray)
                 .frame(height: roundedRectangleHeight)
+                .opacity(colorScheme == .dark ? 0.3 : 0.1)
             
             HStack(spacing: 20) {
                 Image(systemName: "lightbulb")
@@ -37,12 +39,10 @@ struct TipView: View {
                 VStack(alignment: .leading, spacing: 7) {
                     Text("Dica")
                         .font(.headline)
-                        .foregroundColor(.black)
                     
                     Text(text)
-                        .foregroundColor(.black)
                         .font(.callout)
-                        .opacity(0.9)
+                        .opacity(0.75)
                 }
                 
                 Spacer()

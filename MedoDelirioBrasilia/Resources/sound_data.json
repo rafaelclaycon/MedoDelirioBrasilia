@@ -6923,7 +6923,7 @@
     {
         "id": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
         "title": "Pelo amor de Deus, ele é muito burro",
-        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "authorId": "AF4BE658-13CF-4468-8AB2-C03B73A2EE34",
         "description": "pelo amor de deus ele e muito burro",
         "filename": "Meme - Pelo amor de Deus ele e muito burro.mp3",
         "dateAdded": "2022-10-17T00:00:00Z",
@@ -6936,6 +6936,33 @@
         "description": "falta de respeito com as criança as crianças não merece isso",
         "filename": "Espectadora do Falso Patati Patata - Falta de respeito com as criança.mp3",
         "dateAdded": "2022-10-17T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "9CCC04C0-BAB6-4CAA-9BAB-34E4DEFF7251",
+        "title": "22 só se for de 🍆",
+        "authorId": "58382B3D-4014-42C0-B0A7-D02733E9BCE3",
+        "description": "22 só se for de pica na urna é 13",
+        "filename": "Samira Close - 22 so se for de pica.mp3",
+        "dateAdded": "2022-10-18T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "7ECC9815-3DC1-4C79-8854-DDF9F68D8E9B",
+        "title": "Bolsonaro é um ser abjeto; Lula no primeiro turno",
+        "authorId": "E52173CF-0E21-4691-87CE-0884992876F2",
+        "description": "em 2018 eu alertei os brasileiros de que jair bolsonaro seria uma péssima escolha para a presidência da república bolsonaro não é um homem sério não serve para governar um país como o nosso não esta a altura não tem dignidade para ocupar um cargo dessa relevância nas grandes democracias bolsonaro é visto como um ser humano abjeto desprezível uma pessoa a ser evitada esse isolamento internacional é muito ruim para o nosso país nós perdemos muitas oportunidades com isso é preciso votar já em lula no primeiro turno para encerrar essa eleicao no próximo domingo",
+        "filename": "Joaquim Barbosa - Bolsonaro e um ser abjeto, Lula no primeiro turno.mp3",
+        "dateAdded": "2022-10-21T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "CC29F309-0989-4FBE-B0CF-D9117F5E8744",
+        "title": "Considerações finais do debate da Band no 2º turno",
+        "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
+    "description": "cuidar do povo porque tem 33 milhoes de pessoas passando fome esse pais que é o maior produtor de alimento do planeta terra esse pais tem 31 milhoes de pessoas passando fome esse pais que é o maior produtor de proteina animal do mundo as pessoas estao na fila do osso e quando eu falo do churrasco é porque nos vamos voltar a consertar esse pais e vamos voltar no final de semana a comer um churrasquinho e tomar uma cerveja ele fica doido porque só ele pensa que ele pode nós podemos e vamos querer comer o churrasquinho e no final do arco-íris tem um baldinho de cerveja gelada foda-se",
+        "filename": "Lula - Consideracoes finais debate Band 2o turno.mp3",
+        "dateAdded": "2022-10-21T00:00:00Z",
         "isOffensive": false
     }
 ]

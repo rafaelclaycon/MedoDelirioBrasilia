@@ -122,7 +122,14 @@ struct AuthorDetailView: View {
                 }
             }
             .navigationTitle(author.name)
-            .navigationBarTitleDisplayMode(.automatic)
+            .navigationBarItems(trailing:
+                Button {
+                    viewModel.stopPlayback()
+                } label: {
+                    Image(systemName: "stop.fill")
+                }
+                .disabled(!viewModel.isPlayingSound)
+            )
             .onAppear {
                 viewModel.reloadList(withSounds: soundData.filter({ $0.authorId == author.id }),
                                      andFavorites: try? database.getAllFavorites(),
