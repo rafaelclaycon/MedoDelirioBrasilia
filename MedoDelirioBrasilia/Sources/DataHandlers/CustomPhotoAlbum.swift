@@ -57,15 +57,62 @@ class CustomPhotoAlbum: NSObject {
         return nil
     }
     
-    func save(video videoURL: URL, completion : @escaping () -> ()) {
-        if assetCollection == nil {
-            return // if there was an error upstream, skip the save
-        }
+    func save(video videoURL: URL, completion: @escaping (Bool, String?) -> ()) {
+//        if assetCollection == nil {
+//            return // if there was an error upstream, skip the save
+//        }
+        
+        var placeholder: PHObjectPlaceholder
+        var identifier: String
         
         PHPhotoLibrary.shared().performChanges({
-            PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: videoURL)
-        }, completionHandler: { status , errror in
-            completion()
+            let createAssetRequest = PHAssetChangeRequest.creationRequestForAssetFromVideoAtFileURL(videoURL)
+            placeholder = createAssetRequest.placeholderForCreatedAsset
+            identifier = placeholder.localIdentifier
+        }, completionHandler: { success, error in
+            /*
+               Fetch Asset with the identifier here
+               after that, add the PHAsset into an album
+            */
+            newAsset = PHAsset.fetchAssets(withLocalIdentifiers: [identifier], options: nil).firstObject
+            
+            PHPhotoLibrary.shared().performChanges({
+                let createRequest = PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: name)
+                placeHolderIdentifier = createRequest.placeholderForCreatedAssetCollection.localIdentifier
+            }, completionHandler: {
+                success, error in
+                if success {
+                    var createdCollection: PHAssetCollection? = nil
+                    if placeHolderIdentifier != nil {
+                        createdCollection = PHAssetCollection.fetchAssetCollections(withLocalIdentifiers: [placeHolderIdentifier!], options: nil).firstObject
+                    }
+                    completion(success, createdCollection as? T)
+                } else {
+                    LogError("\(error)")
+                    completion(success, nil)
+                }
+            })
+            
+        }
+        
+        
+        var placeholderIdentifier: String = .empty
+        
+        PHPhotoLibrary.shared().performChanges({
+            //PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: videoURL)
+            let createRequest = PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: CustomPhotoAlbum.albumName)
+            placeholderIdentifier = createRequest.placeholderForCreatedAssetCollection.localIdentifier
+        }, completionHandler: { success, error in
+            if success {
+                //var createdCollection: PHAssetCollection? = nil
+//                if placeholderIdentifier != nil {
+//                    createdCollection = PHAssetCollection.fetchAssetCollections(withLocalIdentifiers: [placeholderIdentifier!], options: nil).firstObject
+//                }
+                print(placeholderIdentifier)
+                completion(true, nil)
+            } else {
+                completion(false, error?.localizedDescription)
+            }
         })
     }
 
