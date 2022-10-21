@@ -6,6 +6,9 @@ struct ShareAsVideoView: View {
     @Binding var isBeingShown: Bool
     @Binding var result: ShareAsVideoResult
     @State var useLongerGeneratingVideoMessage: Bool
+    @State var didCloseTip: Bool = false
+    @State var showTwitterTip: Bool = true
+    @State var showInstagramTip: Bool = true
     
     @State private var tipText: String = .empty
     
@@ -43,9 +46,15 @@ struct ShareAsVideoView: View {
                                 .padding(.top)
                         }
                         
-                        TipView(text: $tipText)
-                            .padding(.horizontal)
-                            .padding(.vertical)
+                        if viewModel.selectedSocialNetwork == IntendedVideoDestination.twitter.rawValue && showTwitterTip {
+                            TipView(text: $tipText, didTapClose: $didCloseTip)
+                                .padding(.horizontal)
+                                .padding(.top)
+                        } else if viewModel.selectedSocialNetwork == IntendedVideoDestination.instagramTikTok.rawValue && showInstagramTip {
+                            TipView(text: $tipText, didTapClose: $didCloseTip)
+                                .padding(.horizontal)
+                                .padding(.top)
+                        }
                         
                         HStack(spacing: 10) {
                             Button {
@@ -109,7 +118,7 @@ struct ShareAsVideoView: View {
                             .buttonStyle(.borderedProminent)
                             .buttonBorderShape(.capsule)
                         }
-                        .padding(.bottom)
+                        .padding(.vertical)
                     }
                     .navigationTitle("Gerar Vídeo")
                     .navigationBarTitleDisplayMode(.inline)
@@ -128,6 +137,17 @@ struct ShareAsVideoView: View {
                             isBeingShown = false
                         }
                     }
+                    .onChange(of: didCloseTip) { didCloseTip in
+                        if didCloseTip {
+                            if viewModel.selectedSocialNetwork == IntendedVideoDestination.twitter.rawValue {
+                                showTwitterTip = false
+                                AppPersistentMemory.setHasHiddenShareAsVideoTwitterTip(to: true)
+                            } else if viewModel.selectedSocialNetwork == IntendedVideoDestination.instagramTikTok.rawValue {
+                                showInstagramTip = false
+                                AppPersistentMemory.setHasHiddenShareAsVideoInstagramTip(to: true)
+                            }
+                        }
+                    }
                 }
             }
             
@@ -143,9 +163,13 @@ struct ShareAsVideoView: View {
         }
         .onAppear {
             tipText = twitterTip
+            
             // Cleaning this string is needed in case the user decides do re-export the same sound
             result.videoFilepath = .empty
             result.contentId = .empty
+            
+            showTwitterTip = AppPersistentMemory.getHasHiddenShareAsVideoTwitterTip() == false
+            showInstagramTip = AppPersistentMemory.getHasHiddenShareAsVideoInstagramTip() == false
         }
     }
 
