@@ -25,7 +25,7 @@ struct ShareAsVideoView: View {
                         .padding(.horizontal, 25)
                         .padding(.bottom, 10)
                         .onChange(of: viewModel.selectedSocialNetwork) { newValue in
-                            tipText = newValue == VideoExportType.twitter.rawValue ? twitterTip : instagramTip
+                            tipText = newValue == IntendedVideoDestination.twitter.rawValue ? twitterTip : instagramTip
                             viewModel.reloadImage()
                         }
                         
@@ -34,7 +34,7 @@ struct ShareAsVideoView: View {
                             .scaledToFit()
                             .frame(height: 350)
                         
-                        if viewModel.selectedSocialNetwork == VideoExportType.instagramTikTok.rawValue {
+                        if viewModel.selectedSocialNetwork == IntendedVideoDestination.instagramTikTok.rawValue {
                             Toggle("Incluir aviso Ligue o Som", isOn: $viewModel.includeSoundWarning)
                                 .onChange(of: viewModel.includeSoundWarning) { _ in
                                     viewModel.reloadImage()
@@ -49,7 +49,22 @@ struct ShareAsVideoView: View {
                         
                         HStack(spacing: 10) {
                             Button {
-                                viewModel.createVideo()
+                                viewModel.generateVideo { videoPath, error in
+                                    if let error = error {
+                                        DispatchQueue.main.async {
+                                            viewModel.isShowingProcessingView = false
+                                            viewModel.showOtherError(errorTitle: "Falha na Geração do Vídeo",
+                                                                     errorBody: error.localizedDescription)
+                                        }
+                                        return
+                                    }
+                                    guard let videoPath = videoPath else { return }
+                                    DispatchQueue.main.async {
+                                        viewModel.isShowingProcessingView = false
+                                        viewModel.pathToVideoFile = videoPath
+                                        viewModel.presentShareSheet = true
+                                    }
+                                }
                             } label: {
                                 HStack(spacing: 15) {
                                     Image(systemName: "square.and.arrow.up")
@@ -59,17 +74,21 @@ struct ShareAsVideoView: View {
                                     
                                     Text("Compartilhar")
                                         .font(.headline)
-                                        .foregroundColor(.white)
                                 }
                             }
                             .tint(.accentColor)
                             .controlSize(.large)
-                            .buttonStyle(.borderedProminent)
+                            .buttonStyle(.bordered)
                             .buttonBorderShape(.capsule)
                             .padding(.bottom)
                             
                             Button {
-                                //viewModel.createVideo()
+                                viewModel.saveVideoToPhotos() { success in
+                                    if success {
+                                        result.exportMethod = .saveAsVideo
+                                        isBeingShown = false
+                                    }
+                                }
                             } label: {
                                 HStack(spacing: 15) {
                                     Image(systemName: "square.and.arrow.down")
