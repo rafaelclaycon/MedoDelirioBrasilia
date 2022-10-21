@@ -41,6 +41,7 @@ struct TipView: View {
                         .font(.headline)
                     
                     Text(text)
+                        .font(.callout)
                         .opacity(0.75)
                 }
                 
