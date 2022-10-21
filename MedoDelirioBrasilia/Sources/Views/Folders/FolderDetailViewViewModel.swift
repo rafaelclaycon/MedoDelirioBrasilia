@@ -1,3 +1,10 @@
+//
+//  FolderDetailViewViewModel.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 28/06/22.
+//
+
 import Combine
 import SwiftUI
 

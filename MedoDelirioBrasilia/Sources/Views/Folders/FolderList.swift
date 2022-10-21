@@ -1,3 +1,10 @@
+//
+//  FolderList.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 26/09/22.
+//
+
 import SwiftUI
 
 /// Sub-view loaded inside the Collections tab on iPhone and the All Folders tab on iPad and Mac.

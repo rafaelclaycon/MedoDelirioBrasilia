@@ -1,3 +1,10 @@
+//
+//  TopChartItem.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 29/05/22.
+//
+
 import Foundation
 
 struct TopChartItem: Hashable, Codable, Identifiable {
