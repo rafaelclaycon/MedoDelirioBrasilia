@@ -13,7 +13,7 @@ class ShareAsVideoViewViewModel: ObservableObject {
     
     @Published var isShowingProcessingView = false
     
-    @Published var presentShareSheet = false
+    @Published var shouldCloseView = false
     @Published var pathToVideoFile = String.empty
     @Published var selectedSocialNetwork = IntendedVideoDestination.twitter.rawValue
     
@@ -73,7 +73,7 @@ class ShareAsVideoViewViewModel: ObservableObject {
         }
     }
     
-    func saveVideoToPhotos(completion: @escaping (Bool) -> Void) {
+    func saveVideoToPhotos(completion: @escaping (Bool, String?) -> Void) {
         DispatchQueue.main.async {
             self.isShowingProcessingView = true
         }
@@ -99,11 +99,11 @@ class ShareAsVideoViewViewModel: ObservableObject {
                     self.showOtherError(errorTitle: "Falha na Geração do Vídeo",
                                         errorBody: error.localizedDescription)
                 }
-                completion(false)
+                completion(false, nil)
                 return
             }
             guard let videoPath = videoPath else {
-                completion(false)
+                completion(false, nil)
                 return
             }
             CustomPhotoAlbum.sharedInstance.save(video: URL(fileURLWithPath: videoPath)) {
@@ -111,7 +111,7 @@ class ShareAsVideoViewViewModel: ObservableObject {
                 DispatchQueue.main.async {
                     self.isShowingProcessingView = false
                 }
-                completion(true)
+                completion(true, videoPath)
             }
         }
     }

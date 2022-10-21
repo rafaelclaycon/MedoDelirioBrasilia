@@ -333,7 +333,7 @@ struct SoundsView: View {
             .onChange(of: shareAsVideo_Result.videoFilepath) { videoResultPath in
                 if videoResultPath.isEmpty == false {
                     if shareAsVideo_Result.exportMethod == .saveAsVideo {
-                        //viewModel.showVideoSavedSuccessfullyToast()
+                        viewModel.showVideoSavedSuccessfullyToast()
                     } else {
                         viewModel.shareVideo(withPath: videoResultPath, andContentId: shareAsVideo_Result.contentId)
                     }

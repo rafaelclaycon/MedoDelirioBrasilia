@@ -62,7 +62,8 @@ struct ShareAsVideoView: View {
                                     DispatchQueue.main.async {
                                         viewModel.isShowingProcessingView = false
                                         viewModel.pathToVideoFile = videoPath
-                                        viewModel.presentShareSheet = true
+                                        result.exportMethod = .shareSheet
+                                        viewModel.shouldCloseView = true
                                     }
                                 }
                             } label: {
@@ -82,10 +83,13 @@ struct ShareAsVideoView: View {
                             .buttonBorderShape(.capsule)
                             
                             Button {
-                                viewModel.saveVideoToPhotos() { success in
+                                viewModel.saveVideoToPhotos() { success, videoPath in
                                     if success {
-                                        result.exportMethod = .saveAsVideo
-                                        isBeingShown = false
+                                        DispatchQueue.main.async {
+                                            viewModel.pathToVideoFile = videoPath ?? .empty
+                                            result.exportMethod = .saveAsVideo
+                                            viewModel.shouldCloseView = true
+                                        }
                                     }
                                 }
                             } label: {
@@ -117,8 +121,8 @@ struct ShareAsVideoView: View {
                     .alert(isPresented: $viewModel.showAlert) {
                         Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
                     }
-                    .onChange(of: viewModel.presentShareSheet) { shouldPresentShareSheet in
-                        if shouldPresentShareSheet {
+                    .onChange(of: viewModel.shouldCloseView) { shouldCloseView in
+                        if shouldCloseView {
                             result.videoFilepath = viewModel.pathToVideoFile
                             result.contentId = viewModel.contentId
                             isBeingShown = false
