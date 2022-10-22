@@ -218,6 +218,22 @@ class SongsViewViewModel: ObservableObject {
         }
     }
     
+    func showVideoSavedSuccessfullyToast() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+            withAnimation {
+                self.shareBannerMessage = "Vídeo salvo com sucesso."
+                self.displaySharedSuccessfullyToast = true
+            }
+            TapticFeedback.success()
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            withAnimation {
+                self.displaySharedSuccessfullyToast = false
+            }
+        }
+    }
+    
     func donateActivity() {
         self.currentActivity = UserActivityWaiter.getDonatableActivity(withType: Shared.ActivityTypes.playAndShareSongs, andTitle: "Ouvir e compartilhar músicas")
         self.currentActivity?.becomeCurrent()
