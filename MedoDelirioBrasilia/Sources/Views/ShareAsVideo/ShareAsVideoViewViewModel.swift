@@ -114,7 +114,7 @@ class ShareAsVideoViewViewModel: ObservableObject {
                 return
             }
             CustomPhotoAlbum.sharedInstance.save(video: URL(fileURLWithPath: videoPath)) { success, error in
-                print("Saved!")
+                // TODO: Deal with error.
                 DispatchQueue.main.async {
                     self.isShowingProcessingView = false
                 }

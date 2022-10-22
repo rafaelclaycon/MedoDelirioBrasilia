@@ -62,10 +62,20 @@ class CustomPhotoAlbum: NSObject {
 //            return // if there was an error upstream, skip the save
 //        }
         
-        var placeholder: PHObjectPlaceholder
+        PHPhotoLibrary.shared().performChanges({
+            PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: videoURL)
+        }, completionHandler: { success, error in
+            if let error = error {
+                completion(false, error.localizedDescription)
+                return
+            }
+            completion(true, nil)
+        })
+        
+        /*var placeholder: PHObjectPlaceholder
         var identifier: String
         
-        /*PHPhotoLibrary.shared().performChanges({
+        PHPhotoLibrary.shared().performChanges({
             let createAssetRequest = PHAssetChangeRequest.creationRequestForAssetFromVideoAtFileURL(videoURL)
             placeholder = createAssetRequest.placeholderForCreatedAsset
             identifier = placeholder.localIdentifier
