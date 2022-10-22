@@ -65,7 +65,7 @@ class CustomPhotoAlbum: NSObject {
         var placeholder: PHObjectPlaceholder
         var identifier: String
         
-        PHPhotoLibrary.shared().performChanges({
+        /*PHPhotoLibrary.shared().performChanges({
             let createAssetRequest = PHAssetChangeRequest.creationRequestForAssetFromVideoAtFileURL(videoURL)
             placeholder = createAssetRequest.placeholderForCreatedAsset
             identifier = placeholder.localIdentifier
@@ -113,7 +113,7 @@ class CustomPhotoAlbum: NSObject {
             } else {
                 completion(false, error?.localizedDescription)
             }
-        })
+        })*/
     }
 
 }
