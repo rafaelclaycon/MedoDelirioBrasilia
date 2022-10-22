@@ -1,3 +1,10 @@
+//
+//  AuthorCell.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 18/07/22.
+//
+
 import SwiftUI
 import Kingfisher
 

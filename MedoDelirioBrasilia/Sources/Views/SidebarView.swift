@@ -1,3 +1,10 @@
+//
+//  SidebarView.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 16/07/22.
+//
+
 import SwiftUI
 
 struct SidebarView: View {

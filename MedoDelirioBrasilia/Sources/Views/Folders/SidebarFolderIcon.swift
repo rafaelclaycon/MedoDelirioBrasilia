@@ -1,3 +1,10 @@
+//
+//  SidebarFolderIcon.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 19/07/22.
+//
+
 import SwiftUI
 
 struct SidebarFolderIcon: View {

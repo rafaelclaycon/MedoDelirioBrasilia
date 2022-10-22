@@ -1,3 +1,10 @@
+//
+//  Author.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 20/05/22.
+//
+
 import Foundation
 
 struct Author: Hashable, Codable, Identifiable {

@@ -1,3 +1,10 @@
+//
+//  MostSharedByMeView.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 11/10/22.
+//
+
 import SwiftUI
 
 struct MostSharedByMeView: View {

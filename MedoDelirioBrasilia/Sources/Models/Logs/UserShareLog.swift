@@ -1,3 +1,10 @@
+//
+//  UserShareLog.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 28/05/22.
+//
+
 import Foundation
 
 struct UserShareLog: Hashable, Codable, Identifiable {

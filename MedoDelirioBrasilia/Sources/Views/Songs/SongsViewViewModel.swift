@@ -1,3 +1,10 @@
+//
+//  SongsViewViewModel.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 19/05/22.
+//
+
 import Combine
 import SwiftUI
 import UIKit
