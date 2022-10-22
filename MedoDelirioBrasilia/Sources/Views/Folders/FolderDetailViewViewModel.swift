@@ -203,6 +203,22 @@ class FolderDetailViewViewModel: ObservableObject {
         }
     }
     
+    func showVideoSavedSuccessfullyToast() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+            withAnimation {
+                self.shareBannerMessage = "Vídeo salvo com sucesso."
+                self.displaySharedSuccessfullyToast = true
+            }
+            TapticFeedback.success()
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            withAnimation {
+                self.displaySharedSuccessfullyToast = false
+            }
+        }
+    }
+    
     func removeSoundFromFolder(folderId: String, soundId: String) {
         try? database.deleteUserContentFromFolder(withId: folderId, contentId: soundId)
         reloadSoundList(withSoundIds: try? database.getAllSoundIdsInsideUserFolder(withId: folderId))
