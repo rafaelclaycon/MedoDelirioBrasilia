@@ -64,8 +64,6 @@ struct Shared {
     
     struct Folders {
         
-        
-        
         static let noFoldersAlertTitle = "Não Existem Pastas"
         static let noFoldersAlertMessagePhone = "Para continuar, crie uma pasta de sons na aba Coleções > Minhas Pastas."
         static let noFoldersAlertMessagePadMac = "Para continuar, crie uma pasta de sons. Toque em Nova Pasta na barra lateral."
