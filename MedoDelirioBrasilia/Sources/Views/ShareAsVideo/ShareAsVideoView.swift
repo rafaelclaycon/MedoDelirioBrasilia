@@ -19,7 +19,7 @@ struct ShareAsVideoView: View {
     
     @State private var tipText: String = .empty
     
-    private let twitterTip = "Para responder a um tuíte, escolha Salvar Vídeo e depois adicione o vídeo ao seu tuíte a partir do Twitter."
+    private let twitterTip = "Para responder a um tuíte, escolha Salvar Vídeo e depois adicione o vídeo ao seu tuíte a partir do app do Twitter."
     private let instagramTip = "Para fazer um Story, escolha Salvar Vídeo e depois adicione o vídeo ao seu Story a partir do Instagram."
     
     var body: some View {
