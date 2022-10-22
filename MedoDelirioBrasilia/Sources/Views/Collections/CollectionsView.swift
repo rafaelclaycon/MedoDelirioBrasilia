@@ -1,3 +1,10 @@
+//
+//  CollectionsView.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 13/06/22.
+//
+
 import SwiftUI
 
 struct CollectionsView: View {

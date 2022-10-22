@@ -1,3 +1,10 @@
+//
+//  ShareAsVideoViewViewModel.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 21/08/22.
+//
+
 import Combine
 import UIKit
 import PhotosUI

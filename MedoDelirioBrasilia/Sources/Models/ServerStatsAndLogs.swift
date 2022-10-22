@@ -1,3 +1,10 @@
+//
+//  ServerStatsAndLogs.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 02/06/22.
+//
+
 import Foundation
 
 /// Logs sent to and from the server to generate audience statistics.

@@ -1,3 +1,10 @@
+//
+//  ContentCollection.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 28/06/22.
+//
+
 import Foundation
 
 struct ContentCollection: Hashable, Codable, Identifiable {

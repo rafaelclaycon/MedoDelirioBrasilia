@@ -1,3 +1,10 @@
+//
+//  DeleteFolderViewAid.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 29/09/22.
+//
+
 import Foundation
 
 struct DeleteFolderViewAid {

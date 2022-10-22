@@ -1,3 +1,10 @@
+//
+//  TopChartCellView.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 29/05/22.
+//
+
 import SwiftUI
 
 struct TopChartCellView: View {

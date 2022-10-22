@@ -1,3 +1,10 @@
+//
+//  SoundsView.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 19/05/22.
+//
+
 import SwiftUI
 
 struct SoundsView: View {
