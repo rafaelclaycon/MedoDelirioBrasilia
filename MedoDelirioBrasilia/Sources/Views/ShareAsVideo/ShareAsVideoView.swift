@@ -63,69 +63,19 @@ struct ShareAsVideoView: View {
                                 .padding(.top)
                         }
                         
-                        HStack(spacing: 10) {
-                            Button {
-                                viewModel.generateVideo { videoPath, error in
-                                    if let error = error {
-                                        DispatchQueue.main.async {
-                                            viewModel.isShowingProcessingView = false
-                                            viewModel.showOtherError(errorTitle: "Falha na Geração do Vídeo",
-                                                                     errorBody: error.localizedDescription)
-                                        }
-                                        return
-                                    }
-                                    guard let videoPath = videoPath else { return }
-                                    DispatchQueue.main.async {
-                                        viewModel.isShowingProcessingView = false
-                                        viewModel.pathToVideoFile = videoPath
-                                        result.exportMethod = .shareSheet
-                                        viewModel.shouldCloseView = true
-                                    }
-                                }
-                            } label: {
-                                HStack(spacing: 15) {
-                                    Image(systemName: "square.and.arrow.up")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(height: 25)
-                                    
-                                    Text("Compartilhar")
-                                        .font(.headline)
-                                }
+                        if UIDevice.current.userInterfaceIdiom == .phone {
+                            HStack(spacing: 10) {
+                                getShareButton()
+                                getShareAsVideoButton()
                             }
-                            .tint(.accentColor)
-                            .controlSize(.large)
-                            .buttonStyle(.bordered)
-                            .buttonBorderShape(.capsule)
-                            
-                            Button {
-                                viewModel.saveVideoToPhotos() { success, videoPath in
-                                    if success {
-                                        DispatchQueue.main.async {
-                                            viewModel.pathToVideoFile = videoPath ?? .empty
-                                            result.exportMethod = .saveAsVideo
-                                            viewModel.shouldCloseView = true
-                                        }
-                                    }
-                                }
-                            } label: {
-                                HStack(spacing: 15) {
-                                    Image(systemName: "square.and.arrow.down")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(height: 25)
-                                    
-                                    Text("Salvar Vídeo")
-                                        .font(.headline)
-                                        .foregroundColor(.white)
-                                }
+                            .padding(.vertical)
+                        } else {
+                            HStack(spacing: 20) {
+                                getShareButton(withWidth: 40)
+                                getShareAsVideoButton(withWidth: 40)
                             }
-                            .tint(.accentColor)
-                            .controlSize(.large)
-                            .buttonStyle(.borderedProminent)
-                            .buttonBorderShape(.capsule)
+                            .padding(.vertical, 20)
                         }
-                        .padding(.vertical)
                     }
                     .navigationTitle("Gerar Vídeo")
                     .navigationBarTitleDisplayMode(.inline)
@@ -178,6 +128,73 @@ struct ShareAsVideoView: View {
             showTwitterTip = AppPersistentMemory.getHasHiddenShareAsVideoTwitterTip() == false
             showInstagramTip = AppPersistentMemory.getHasHiddenShareAsVideoInstagramTip() == false
         }
+    }
+    
+    @ViewBuilder func getShareButton(withWidth buttonInternalPadding: CGFloat = 0) -> some View {
+        Button {
+            viewModel.generateVideo { videoPath, error in
+                if let error = error {
+                    DispatchQueue.main.async {
+                        viewModel.isShowingProcessingView = false
+                        viewModel.showOtherError(errorTitle: "Falha na Geração do Vídeo",
+                                                 errorBody: error.localizedDescription)
+                    }
+                    return
+                }
+                guard let videoPath = videoPath else { return }
+                DispatchQueue.main.async {
+                    viewModel.isShowingProcessingView = false
+                    viewModel.pathToVideoFile = videoPath
+                    result.exportMethod = .shareSheet
+                    viewModel.shouldCloseView = true
+                }
+            }
+        } label: {
+            HStack(spacing: 15) {
+                Image(systemName: "square.and.arrow.up")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 25)
+                
+                Text("Compartilhar")
+                    .font(.headline)
+            }
+            .padding(.horizontal, buttonInternalPadding)
+        }
+        .tint(.accentColor)
+        .controlSize(.large)
+        .buttonStyle(.bordered)
+        .buttonBorderShape(.capsule)
+    }
+    
+    @ViewBuilder func getShareAsVideoButton(withWidth buttonInternalPadding: CGFloat = 0) -> some View {
+        Button {
+            viewModel.saveVideoToPhotos() { success, videoPath in
+                if success {
+                    DispatchQueue.main.async {
+                        viewModel.pathToVideoFile = videoPath ?? .empty
+                        result.exportMethod = .saveAsVideo
+                        viewModel.shouldCloseView = true
+                    }
+                }
+            }
+        } label: {
+            HStack(spacing: 15) {
+                Image(systemName: "square.and.arrow.down")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 25)
+                
+                Text("Salvar Vídeo")
+                    .font(.headline)
+                    .foregroundColor(.white)
+            }
+            .padding(.horizontal, buttonInternalPadding)
+        }
+        .tint(.accentColor)
+        .controlSize(.large)
+        .buttonStyle(.borderedProminent)
+        .buttonBorderShape(.capsule)
     }
 
 }
