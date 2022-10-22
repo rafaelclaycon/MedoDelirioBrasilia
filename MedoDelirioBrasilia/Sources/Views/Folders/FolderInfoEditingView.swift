@@ -1,3 +1,10 @@
+//
+//  FolderInfoEditingView.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 28/06/22.
+//
+
 import SwiftUI
 import Combine
 

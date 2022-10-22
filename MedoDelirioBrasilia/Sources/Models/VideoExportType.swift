@@ -1,3 +1,10 @@
+//
+//  VideoExportType.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 23/08/22.
+//
+
 import Foundation
 
 enum IntendedVideoDestination: Int {

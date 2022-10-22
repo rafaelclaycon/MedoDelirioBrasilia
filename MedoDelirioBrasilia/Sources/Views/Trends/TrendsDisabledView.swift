@@ -1,3 +1,10 @@
+//
+//  TrendsDisabledView.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 07/06/22.
+//
+
 import SwiftUI
 
 struct TrendsDisabledView: View {

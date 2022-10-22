@@ -1,3 +1,10 @@
+//
+//  MostSharedByAudienceViewViewModel.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 11/10/22.
+//
+
 import Combine
 import UIKit
 
