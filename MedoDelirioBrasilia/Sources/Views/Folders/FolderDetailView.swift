@@ -141,7 +141,11 @@ struct FolderDetailView: View {
             }
             .onChange(of: shareAsVideo_Result.videoFilepath) { videoResultPath in
                 if videoResultPath.isEmpty == false {
-                    viewModel.shareVideo(withPath: videoResultPath, andContentId: shareAsVideo_Result.contentId)
+                    if shareAsVideo_Result.exportMethod == .saveAsVideo {
+                        viewModel.showVideoSavedSuccessfullyToast()
+                    } else {
+                        viewModel.shareVideo(withPath: videoResultPath, andContentId: shareAsVideo_Result.contentId)
+                    }
                 }
             }
             

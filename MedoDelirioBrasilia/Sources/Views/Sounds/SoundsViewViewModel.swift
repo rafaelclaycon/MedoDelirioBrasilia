@@ -253,6 +253,22 @@ class SoundsViewViewModel: ObservableObject {
         }
     }
     
+    func showVideoSavedSuccessfullyToast() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+            withAnimation {
+                self.shareBannerMessage = "Vídeo salvo com sucesso."
+                self.displaySharedSuccessfullyToast = true
+            }
+            TapticFeedback.success()
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            withAnimation {
+                self.displaySharedSuccessfullyToast = false
+            }
+        }
+    }
+    
     func addToFavorites(soundId: String) {
         let newFavorite = Favorite(contentId: soundId, dateAdded: Date())
         

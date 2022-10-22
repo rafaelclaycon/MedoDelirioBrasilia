@@ -11,6 +11,7 @@ struct TipView: View {
 
     @Environment(\.colorScheme) var colorScheme
     @Binding var text: String
+    @Binding var didTapClose: Bool
     
     var roundedRectangleHeight: CGFloat {
         if UIDevice.current.userInterfaceIdiom == .phone {
@@ -31,6 +32,23 @@ struct TipView: View {
     
     var body: some View {
         ZStack {
+            VStack {
+                HStack {
+                    Spacer()
+                    Image(systemName: "xmark")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 15)
+                        .foregroundColor(.gray)
+                        .padding(.top)
+                        .padding(.trailing)
+                        .onTapGesture {
+                            didTapClose = true
+                        }
+                }
+                Spacer()
+            }
+            
             RoundedRectangle(cornerRadius: 20, style: .continuous)
                 .fill(Color.gray)
                 .frame(height: roundedRectangleHeight)
@@ -48,7 +66,6 @@ struct TipView: View {
                         .font(.headline)
                     
                     Text(text)
-                        .font(.callout)
                         .opacity(0.75)
                 }
                 
@@ -63,7 +80,7 @@ struct TipView: View {
 struct TwitterReplyTipView_Previews: PreviewProvider {
 
     static var previews: some View {
-        TipView(text: .constant("Para responder a um tuíte, escolha Salvar Vídeo na tela de compartilhamento. Depois, adicione o vídeo ao seu tuíte de dentro do Twitter."))
+        TipView(text: .constant("Para responder a um tuíte, escolha Salvar Vídeo na tela de compartilhamento. Depois, adicione o vídeo ao seu tuíte de dentro do Twitter."), didTapClose: .constant(false))
     }
 
 }
