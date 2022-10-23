@@ -1,5 +1,13 @@
+//
+//  ShareAsVideoViewViewModel.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 21/08/22.
+//
+
 import Combine
 import UIKit
+import PhotosUI
 
 class ShareAsVideoViewViewModel: ObservableObject {
 
@@ -12,9 +20,9 @@ class ShareAsVideoViewViewModel: ObservableObject {
     
     @Published var isShowingProcessingView = false
     
-    @Published var presentShareSheet = false
+    @Published var shouldCloseView = false
     @Published var pathToVideoFile = String.empty
-    @Published var selectedSocialNetwork = VideoExportType.twitter.rawValue
+    @Published var selectedSocialNetwork = IntendedVideoDestination.twitter.rawValue
     
     // Alerts
     @Published var alertTitle: String = .empty
@@ -30,7 +38,7 @@ class ShareAsVideoViewViewModel: ObservableObject {
     }
     
     func reloadImage() {
-        if selectedSocialNetwork == VideoExportType.twitter.rawValue {
+        if selectedSocialNetwork == IntendedVideoDestination.twitter.rawValue {
             image = VideoMaker.textToImage(drawText: contentTitle.uppercased(),
                                            inImage: UIImage(named: "square_video_background")!,
                                            atPoint: CGPoint(x: 80, y: 300))
@@ -41,74 +49,83 @@ class ShareAsVideoViewViewModel: ObservableObject {
         }
     }
     
-    func createVideo() {
+    func generateVideo(completion: @escaping (String?, VideoMakerError?) -> Void) {
         DispatchQueue.main.async {
             self.isShowingProcessingView = true
         }
         
-        guard audioFilename.isEmpty == false else {
-            DispatchQueue.main.async {
-                self.isShowingProcessingView = false
-                self.showOtherError(errorTitle: Shared.soundNotFoundAlertTitle,
-                                    errorBody: Shared.soundNotFoundAlertMessage)
-            }
-            return
-        }
-        
-        guard let path = Bundle.main.path(forResource: audioFilename, ofType: nil) else {
-            DispatchQueue.main.async {
-                self.isShowingProcessingView = false
-                self.showOtherError(errorTitle: Shared.soundNotFoundAlertTitle,
-                                    errorBody: Shared.soundNotFoundAlertMessage)
-            }
-            return
-        }
-        
-        let url = URL(fileURLWithPath: path)
-        
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            guard let audioDuration = VideoMaker.getAudioFileDuration(fileURL: url) else {
-                DispatchQueue.main.async { [weak self] in
-                    self?.isShowingProcessingView = false
-                    self?.showOtherError(errorTitle: "Falha na Geração do Vídeo",
-                                        errorBody: "Não foi possível obter a duração do áudio.")
+        do {
+            try VideoMaker.createVideo(from: audioFilename,
+                                       with: image,
+                                       contentTitle: contentTitle.withoutDiacritics(),
+                                       exportType: IntendedVideoDestination(rawValue: selectedSocialNetwork)!
+            ) { videoPath, error in
+                guard error == nil else {
+                    return completion(nil, error)
                 }
+                completion(videoPath, nil)
+            }
+        } catch VideoMakerError.soundFilepathIsEmpty {
+            DispatchQueue.main.async {
+                self.isShowingProcessingView = false
+                self.showOtherError(errorTitle: Shared.soundNotFoundAlertTitle,
+                                    errorBody: Shared.soundNotFoundAlertMessage)
+            }
+        } catch {
+            DispatchQueue.main.async {
+                self.isShowingProcessingView = false
+                self.showOtherError(errorTitle: "Falha na Geração do Vídeo",
+                                    errorBody: error.localizedDescription)
+            }
+        }
+    }
+    
+    func saveVideoToPhotos(completion: @escaping (Bool, String?) -> Void) {
+        DispatchQueue.main.async {
+            self.isShowingProcessingView = true
+        }
+        
+        // Create video album
+//        let photos = PHPhotoLibrary.authorizationStatus()
+//        if photos == .notDetermined {
+//            PHPhotoLibrary.requestAuthorization({status in
+//                if status == .authorized {
+//                    CustomPhotoAlbum.sharedInstance.requestAuthorizationHandler(status: .authorized)
+//                } else {
+//                    print(status)
+//                }
+//            })
+//        } else {
+//            CustomPhotoAlbum.sharedInstance.requestAuthorizationHandler(status: .authorized)
+//        }
+        
+        generateVideo { videoPath, error in
+            if let error = error {
+                DispatchQueue.main.async {
+                    self.isShowingProcessingView = false
+                    self.showOtherError(errorTitle: "Falha na Geração do Vídeo",
+                                        errorBody: error.localizedDescription)
+                }
+                completion(false, nil)
                 return
             }
-            
-            do {
-                try VideoMaker.createVideo(fromImage: self?.image ?? UIImage(),
-                                           withDuration: audioDuration,
-                                           andName: self?.contentTitle.withoutDiacritics() ?? .empty,
-                                           soundFilepath: self?.audioFilename ?? .empty,
-                                           exportType: VideoExportType(rawValue: self?.selectedSocialNetwork ?? VideoExportType.twitter.rawValue)!) { [weak self] videoPath, error in
-                    guard let videoPath = videoPath else {
-                        DispatchQueue.main.async { [weak self] in
-                            self?.isShowingProcessingView = false
-                            self?.showOtherError(errorTitle: "Falha na Geração do Vídeo",
-                                                errorBody: "Não foi possível obter o caminho do vídeo.")
-                        }
-                        return
-                    }
-                    
-                    DispatchQueue.main.async { [weak self] in
-                        self?.isShowingProcessingView = false
-                        self?.pathToVideoFile = videoPath
-                        self?.presentShareSheet = true
-                    }
+            guard let videoPath = videoPath else {
+                completion(false, nil)
+                return
+            }
+            CustomPhotoAlbum.sharedInstance.save(video: URL(fileURLWithPath: videoPath)) { success, error in
+                // TODO: Deal with error.
+                DispatchQueue.main.async {
+                    self.isShowingProcessingView = false
                 }
-            } catch {
-                DispatchQueue.main.async { [weak self] in
-                    self?.isShowingProcessingView = false
-                    self?.showOtherError(errorTitle: "Falha na Geração do Vídeo", errorBody: error.localizedDescription)
-                }
+                completion(true, videoPath)
             }
         }
     }
     
     // MARK: - Alerts
     
-    private func showOtherError(errorTitle: String, errorBody: String) {
+    func showOtherError(errorTitle: String, errorBody: String) {
         alertTitle = errorTitle
         alertMessage = errorBody
         showAlert = true

@@ -1,3 +1,10 @@
+//
+//  FolderDetailView.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 28/06/22.
+//
+
 import SwiftUI
 
 struct FolderDetailView: View {
@@ -71,26 +78,41 @@ struct FolderDetailView: View {
             }
             .navigationTitle("\(folder.symbol)  \(folder.name)")
             .navigationBarTitleDisplayMode(.inline)
-    //        .navigationBarItems(trailing:
-    //            Menu {
-    //                Button {
-    //                    showingFolderInfoEditingView = true
-    //                } label: {
-    //                    Label("Editar Pasta", systemImage: "pencil")
-    //                }
-    //
-    //                Button(role: .destructive, action: {
-    //                    //viewModel.dummyCall()
-    //                }, label: {
-    //                    HStack {
-    //                        Text("Apagar Pasta")
-    //                        Image(systemName: "trash")
-    //                    }
-    //                })
-    //            } label: {
-    //                Image(systemName: "ellipsis.circle")
-    //            }
-    //        )
+            .navigationBarItems(trailing:
+                HStack(spacing: 15) {
+                    Button {
+                        viewModel.stopPlayback()
+                    } label: {
+                        Image(systemName: "stop.fill")
+                    }
+                    .disabled(!viewModel.isPlayingSound)
+                    
+//                    Menu {
+//                        if UIDevice.current.userInterfaceIdiom == .phone {
+//                            Section {
+//                                Button {
+//                                    showingFolderInfoEditingView = true
+//                                } label: {
+//                                    Label("Editar Pasta", systemImage: "pencil")
+//                                }
+//                            }
+//                        }
+//                        
+//                        Section {
+//                            Button(role: .destructive, action: {
+//                                //viewModel.dummyCall()
+//                            }, label: {
+//                                HStack {
+//                                    Text("Apagar Pasta")
+//                                    Image(systemName: "trash")
+//                                }
+//                            })
+//                        }
+//                    } label: {
+//                        Image(systemName: "ellipsis.circle")
+//                    }
+                }
+            )
             .onAppear {
                 viewModel.reloadSoundList(withSoundIds: try? database.getAllSoundIdsInsideUserFolder(withId: folder.id))
                 columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
@@ -119,7 +141,11 @@ struct FolderDetailView: View {
             }
             .onChange(of: shareAsVideo_Result.videoFilepath) { videoResultPath in
                 if videoResultPath.isEmpty == false {
-                    viewModel.shareVideo(withPath: videoResultPath, andContentId: shareAsVideo_Result.contentId)
+                    if shareAsVideo_Result.exportMethod == .saveAsVideo {
+                        viewModel.showVideoSavedSuccessfullyToast()
+                    } else {
+                        viewModel.shareVideo(withPath: videoResultPath, andContentId: shareAsVideo_Result.contentId)
+                    }
                 }
             }
             

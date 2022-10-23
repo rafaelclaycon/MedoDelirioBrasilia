@@ -1,3 +1,10 @@
+//
+//  MainView.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 19/05/22.
+//
+
 import SwiftUI
 
 struct MainView: View {
@@ -8,7 +15,10 @@ struct MainView: View {
     @State var updateSoundsList: Bool = false
     @State var isShowingFolderInfoEditingSheet: Bool = false
     @State var updateFolderList: Bool = false
+    
+    // Trends
     @State var soundIdToGoToFromTrends: String = .empty
+    @State var trendsTimeIntervalToGoTo: TrendsTimeInterval? = nil
     
     var body: some View {
         if UIDevice.current.userInterfaceIdiom == .phone {
@@ -42,7 +52,10 @@ struct MainView: View {
                 .tag(PhoneTab.songs)
                 
                 NavigationView {
-                    TrendsView(tabSelection: $tabSelection, activePadScreen: .constant(.trends), soundIdToGoToFromTrends: $soundIdToGoToFromTrends)
+                    TrendsView(tabSelection: $tabSelection,
+                               activePadScreen: .constant(.trends),
+                               soundIdToGoToFromTrends: $soundIdToGoToFromTrends,
+                               trendsTimeIntervalToGoTo: $trendsTimeIntervalToGoTo)
                 }
                 .tabItem {
                     Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
@@ -69,6 +82,18 @@ struct MainView: View {
             .onContinueUserActivity(Shared.ActivityTypes.viewTrends, perform: { _ in
                 tabSelection = .trends
             })
+            .onContinueUserActivity(Shared.ActivityTypes.viewLastWeekTopChart, perform: { _ in
+                tabSelection = .trends
+                trendsTimeIntervalToGoTo = .lastWeek
+            })
+            .onContinueUserActivity(Shared.ActivityTypes.viewLastMonthTopChart, perform: { _ in
+                tabSelection = .trends
+                trendsTimeIntervalToGoTo = .lastMonth
+            })
+            .onContinueUserActivity(Shared.ActivityTypes.viewAllTimeTopChart, perform: { _ in
+                tabSelection = .trends
+                trendsTimeIntervalToGoTo = .allTime
+            })
         } else {
             NavigationView {
                 SidebarView(state: $state,
@@ -76,7 +101,8 @@ struct MainView: View {
                             updateSoundsList: $updateSoundsList,
                             isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet,
                             updateFolderList: $updateFolderList,
-                            soundIdToGoToFromTrends: $soundIdToGoToFromTrends)
+                            soundIdToGoToFromTrends: $soundIdToGoToFromTrends,
+                            trendsTimeIntervalToGoTo: $trendsTimeIntervalToGoTo)
                 SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
                                                           authorSortOption: AuthorSortOption.nameAscending.rawValue),
                            currentMode: .allSounds,

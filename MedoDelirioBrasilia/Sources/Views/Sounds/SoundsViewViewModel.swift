@@ -1,9 +1,17 @@
+//
+//  SoundsViewViewModel.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 19/05/22.
+//
+
 import Combine
 import SwiftUI
 
 class SoundsViewViewModel: ObservableObject {
 
     @Published var sounds = [Sound]()
+    @Published var isPlayingSound = false
     
     @Published var soundSortOption: Int
     @Published var authorSortOption: Int
@@ -101,11 +109,17 @@ class SoundsViewViewModel: ObservableObject {
         }
         let url = URL(fileURLWithPath: path)
 
-        player = AudioPlayer(url: url, update: { state in
-            //print(state?.activity as Any)
+        player = AudioPlayer(url: url, update: { [weak self] state in
+            guard let self = self else { return }
+            self.isPlayingSound = state?.activity != .stopped
         })
         
         player?.togglePlay()
+    }
+    
+    func stopPlayback() {
+        player?.togglePlay()
+        isPlayingSound = false
     }
 
     func shareSound(withPath filepath: String, andContentId contentId: String) {
@@ -192,6 +206,8 @@ class SoundsViewViewModel: ObservableObject {
                             }
                         }
                     }
+                    
+                    WallE.deleteAllVideoFilesFromDocumentsDir()
                 }
             } catch {
                 showUnableToGetSoundAlert()
@@ -229,9 +245,27 @@ class SoundsViewViewModel: ObservableObject {
                         }
                     }
                 }
+                
+                WallE.deleteAllVideoFilesFromDocumentsDir()
             }
             
             isShowingShareSheet = true
+        }
+    }
+    
+    func showVideoSavedSuccessfullyToast() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+            withAnimation {
+                self.shareBannerMessage = "Vídeo salvo com sucesso."
+                self.displaySharedSuccessfullyToast = true
+            }
+            TapticFeedback.success()
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            withAnimation {
+                self.displaySharedSuccessfullyToast = false
+            }
         }
     }
     
@@ -258,7 +292,7 @@ class SoundsViewViewModel: ObservableObject {
     // MARK: - Other
     
     func donateActivity() {
-        self.currentActivity = UserActivityWaiter.getDonatableActivity(withType: Shared.ActivityTypes.playAndShareSounds, andTitle: "Tocar e compartilhar sons")
+        self.currentActivity = UserActivityWaiter.getDonatableActivity(withType: Shared.ActivityTypes.playAndShareSounds, andTitle: "Ouvir e compartilhar sons")
         self.currentActivity?.becomeCurrent()
     }
     

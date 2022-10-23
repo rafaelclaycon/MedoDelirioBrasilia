@@ -1,8 +1,17 @@
+//
+//  TipView.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 04/07/22.
+//
+
 import SwiftUI
 
 struct TipView: View {
 
+    @Environment(\.colorScheme) var colorScheme
     @Binding var text: String
+    @Binding var didTapClose: Bool
     
     var roundedRectangleHeight: CGFloat {
         if UIDevice.current.userInterfaceIdiom == .phone {
@@ -23,9 +32,27 @@ struct TipView: View {
     
     var body: some View {
         ZStack {
+            VStack {
+                HStack {
+                    Spacer()
+                    Image(systemName: "xmark")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 15)
+                        .foregroundColor(.gray)
+                        .padding(.top)
+                        .padding(.trailing)
+                        .onTapGesture {
+                            didTapClose = true
+                        }
+                }
+                Spacer()
+            }
+            
             RoundedRectangle(cornerRadius: 20, style: .continuous)
-                .fill(Color.yellow)
+                .fill(Color.gray)
                 .frame(height: roundedRectangleHeight)
+                .opacity(colorScheme == .dark ? 0.3 : 0.1)
             
             HStack(spacing: 20) {
                 Image(systemName: "lightbulb")
@@ -37,12 +64,9 @@ struct TipView: View {
                 VStack(alignment: .leading, spacing: 7) {
                     Text("Dica")
                         .font(.headline)
-                        .foregroundColor(.black)
                     
                     Text(text)
-                        .foregroundColor(.black)
-                        .font(.callout)
-                        .opacity(0.9)
+                        .opacity(0.75)
                 }
                 
                 Spacer()
@@ -56,7 +80,7 @@ struct TipView: View {
 struct TwitterReplyTipView_Previews: PreviewProvider {
 
     static var previews: some View {
-        TipView(text: .constant("Para responder a um tuíte, escolha Salvar Vídeo na tela de compartilhamento. Depois, adicione o vídeo ao seu tuíte de dentro do Twitter."))
+        TipView(text: .constant("Para responder a um tuíte, escolha Salvar Vídeo na tela de compartilhamento. Depois, adicione o vídeo ao seu tuíte de dentro do Twitter."), didTapClose: .constant(false))
     }
 
 }

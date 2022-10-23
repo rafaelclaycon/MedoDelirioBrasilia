@@ -16,13 +16,11 @@ GIF demos below (they may take a while to load due to size).
 
 ![The app running on a Mac.](MedoDelirioBrasilia/Resources/readme_demo_mac.gif)
 
-Looking for an Android version? Check out [Sidronio Lima's Android app](https://play.google.com/store/apps/details?id=br.com.sidroniolima.medo_e_delirio_app).
-
 ## Features
 
-1. Play sound.
-1. Share sound.
-1. Favorite sound.
+1. Play sounds.
+1. Share sounds.
+1. Favorite sounds.
 1. View sounds sorted by title, author name or date added.
 1. View sounds grouped by author.
 1. Play songs from the podcast.
@@ -35,6 +33,7 @@ Looking for an Android version? Check out [Sidronio Lima's Android app](https://
 1. Filter songs by music genre.
 1. User sharing statistics synced with server (opt-out available).
 1. Receive push notifications about new content, features and trends.
+1. View a top 10 ranking of the audience's most shared sounds from last week, last month and all time on the Trends tab.
 
 ## How to run
 
@@ -46,13 +45,17 @@ Looking for an Android version? Check out [Sidronio Lima's Android app](https://
 
 - iOS 15 (iPhone SE 1/iPhone 6s/6s Plus or newer) or
 - iPadOS 15 (iPad 5th gen, iPad mini 4, iPad Air 2, any iPad Pro, or newer) or
-- macOS 12 Monterey on an Apple Silicion Mac (M1 or higher).
+- macOS 12 Monterey on an Apple Silicion Mac (M1 or newer).
 
 ### Prerequisites to develop
 
 - A Mac running macOS 12 Monterey;
 - Xcode 13.4+;
 - iOS 15.0+ simulators.
+
+## Android version
+
+Check out [Sidronio Lima's Android app](https://play.google.com/store/apps/details?id=br.com.sidroniolima.medo_e_delirio_app).
 
 ## App support
 

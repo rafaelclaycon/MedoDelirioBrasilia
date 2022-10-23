@@ -1,3 +1,10 @@
+//
+//  AllFoldersView.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 19/07/22.
+//
+
 import SwiftUI
 
 /// iPad and Mac only.
@@ -6,11 +13,14 @@ struct AllFoldersView: View {
     @Binding var isShowingFolderInfoEditingSheet: Bool
     @Binding var updateFolderList: Bool
     @State var deleteFolderAid = DeleteFolderViewAid()
+    @State var folderIdForEditing: String = .empty
     
     var body: some View {
         ScrollView {
             VStack(alignment: .center) {
-                FolderList(updateFolderList: $updateFolderList, deleteFolderAid: $deleteFolderAid)
+                FolderList(updateFolderList: $updateFolderList,
+                           deleteFolderAid: $deleteFolderAid,
+                           folderIdForEditing: $folderIdForEditing)
             }
             .padding(.horizontal)
             .padding(.top, 7)
@@ -38,6 +48,12 @@ struct AllFoldersView: View {
                 try? database.deleteUserFolder(withId: deleteFolderAid.folderIdForDeletion)
                 updateFolderList = true
             }), secondaryButton: .cancel(Text("Cancelar")))
+        }
+        .onChange(of: folderIdForEditing) { folderIdForEditing in
+            if folderIdForEditing.isEmpty == false {
+                isShowingFolderInfoEditingSheet = true
+                self.folderIdForEditing = .empty
+            }
         }
     }
 

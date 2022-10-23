@@ -1,3 +1,10 @@
+//
+//  SidebarView.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 16/07/22.
+//
+
 import SwiftUI
 
 struct SidebarView: View {
@@ -11,6 +18,7 @@ struct SidebarView: View {
     
     // Trends
     @Binding var soundIdToGoToFromTrends: String
+    @Binding var trendsTimeIntervalToGoTo: TrendsTimeInterval?
     
     var body: some View {
         List {
@@ -58,7 +66,10 @@ struct SidebarView: View {
                     })
                 
                 NavigationLink(
-                    destination: TrendsView(tabSelection: .constant(.trends), activePadScreen: $state, soundIdToGoToFromTrends: $soundIdToGoToFromTrends),
+                    destination: TrendsView(tabSelection: .constant(.trends),
+                                            activePadScreen: $state,
+                                            soundIdToGoToFromTrends: $soundIdToGoToFromTrends,
+                                            trendsTimeIntervalToGoTo: $trendsTimeIntervalToGoTo),
                     tag: PadScreen.trends,
                     selection: $state,
                     label: {
@@ -125,7 +136,8 @@ struct SidebarView_Previews: PreviewProvider {
                     updateSoundsList: .constant(false),
                     isShowingFolderInfoEditingSheet: .constant(false),
                     updateFolderList: .constant(false),
-                    soundIdToGoToFromTrends: .constant(.empty))
+                    soundIdToGoToFromTrends: .constant(.empty),
+                    trendsTimeIntervalToGoTo: .constant(nil))
     }
 
 }

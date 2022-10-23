@@ -438,5 +438,45 @@
         "filename": "Vou de Lula, Ce Sabe - Neide e Lula.mp3",
         "dateAdded": "2022-09-29T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "4B702B58-C212-4648-A442-A893B1124F7D",
+        "title": "Tá na hora de votar (Ilariê)",
+        "description": "",
+        "genre": 11,
+        "duration": "00:26",
+        "filename": "Tá na hora de votar (Ilarie) - Lula.mp3",
+        "dateAdded": "2022-10-17T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "F755FE64-C720-4073-BC87-225949269D03",
+        "title": "Funk da Picanha e da Cerveja 🥩🍺",
+        "description": "",
+        "genre": 3,
+        "duration": "00:38",
+        "filename": "Funk da Picanha e da Cerveja.mp3",
+        "dateAdded": "2022-10-21T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "F651F126-46AC-404D-9587-978C3A3BBD64",
+        "title": "💦",
+        "description": "",
+        "genre": 3,
+        "duration": "00:28",
+        "filename": "O senhor gozou.mp3",
+        "dateAdded": "2022-10-21T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "CEE780E9-C56B-4923-8CCB-A19FDED2550E",
+        "title": "Genocida, miliciano, canibal",
+        "description": "",
+        "genre": 3,
+        "duration": "00:14",
+        "filename": "Genocida, miliciano, canibal.mp3",
+        "dateAdded": "2022-10-21T00:00:00Z",
+        "isOffensive": true
     }
 ]

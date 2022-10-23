@@ -1,3 +1,10 @@
+//
+//  NetworkCallLog.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 20/06/22.
+//
+
 import Foundation
 
 struct NetworkCallLog: Hashable, Codable, Identifiable {

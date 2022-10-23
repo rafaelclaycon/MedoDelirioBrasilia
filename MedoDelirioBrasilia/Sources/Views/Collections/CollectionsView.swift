@@ -1,3 +1,10 @@
+//
+//  CollectionsView.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 13/06/22.
+//
+
 import SwiftUI
 
 struct CollectionsView: View {
@@ -7,6 +14,7 @@ struct CollectionsView: View {
     @State private var folderForEditingOnSheet: UserFolder? = nil
     @State var updateFolderList: Bool = false
     @State var deleteFolderAid = DeleteFolderViewAid()
+    @State var folderIdForEditing: String = .empty
     
     private let rows = [
         GridItem(.flexible()),
@@ -74,7 +82,9 @@ struct CollectionsView: View {
                             }
                         }
                         
-                        FolderList(updateFolderList: $updateFolderList, deleteFolderAid: $deleteFolderAid)
+                        FolderList(updateFolderList: $updateFolderList,
+                                   deleteFolderAid: $deleteFolderAid,
+                                   folderIdForEditing: $folderIdForEditing)
                     }
                     .padding(.top, 10)
                     .padding(.horizontal)
@@ -96,6 +106,14 @@ struct CollectionsView: View {
                     try? database.deleteUserFolder(withId: deleteFolderAid.folderIdForDeletion)
                     updateFolderList = true
                 }), secondaryButton: .cancel(Text("Cancelar")))
+            }
+            .onChange(of: folderIdForEditing) { folderIdForEditing in
+                if folderIdForEditing.isEmpty == false {
+                    folderForEditingOnSheet = try? database.getFolder(withId: folderIdForEditing)
+                    guard folderForEditingOnSheet != nil else { return }
+                    isShowingFolderInfoEditingSheet = true
+                    self.folderIdForEditing = .empty
+                }
             }
             .onAppear {
                 viewModel.reloadCollectionList(withCollections: getLocalCollections())

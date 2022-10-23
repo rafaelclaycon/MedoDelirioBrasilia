@@ -3,6 +3,43 @@ import AVFoundation
 
 class VideoMaker {
 
+    static func createVideo(from audioFilename: String,
+                            with sourceImage: UIImage,
+                            contentTitle: String,
+                            exportType: IntendedVideoDestination,
+                            completion: @escaping (String?, VideoMakerError?) -> Void) throws {
+        guard audioFilename.isEmpty == false else {
+            throw VideoMakerError.soundFilepathIsEmpty
+        }
+        
+        guard let path = Bundle.main.path(forResource: audioFilename, ofType: nil) else {
+            throw VideoMakerError.unableToFindSoundFile
+        }
+        
+        let url = URL(fileURLWithPath: path)
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            guard let audioDuration = VideoMaker.getAudioFileDuration(fileURL: url) else {
+                return completion(nil, .couldNotObtainAudioDuration)
+            }
+            
+            do {
+                try VideoMaker.createVideo(fromImage: sourceImage,
+                                           withDuration: audioDuration,
+                                           andName: contentTitle,
+                                           soundFilepath: audioFilename,
+                                           exportType: exportType) { videoPath, error in
+                    guard let videoPath = videoPath else {
+                        return completion(nil, .unableToFindVideoFile)
+                    }
+                    completion(videoPath, nil)
+                }
+            } catch {
+                completion(nil, .unknownError)
+            }
+        }
+    }
+    
     static func getAudioFileDuration(fileURL: URL) -> CGFloat? {
         do {
             let audioPlayer = try AVAudioPlayer(contentsOf: fileURL)
@@ -38,7 +75,7 @@ class VideoMaker {
     static func mergeVideoWithAudio(videoUrl: URL,
                                     audioUrl: URL,
                                     videoName: String,
-                                    exportType: VideoExportType,
+                                    exportType: IntendedVideoDestination,
                                     success: @escaping ((URL) -> Void),
                                     failure: @escaping ((Error?) -> Void)) {
         let mixComposition: AVMutableComposition = AVMutableComposition()
@@ -91,7 +128,7 @@ class VideoMaker {
             var videoWidth: Int = 0
             var videoHeight: Int = 0
             
-            if exportType == VideoExportType.twitter {
+            if exportType == IntendedVideoDestination.twitter {
                 videoWidth = 1000
                 videoHeight = 1000
             } else {
@@ -145,7 +182,7 @@ class VideoMaker {
                             withDuration duration: CGFloat,
                             andName videoName: String,
                             soundFilepath: String,
-                            exportType: VideoExportType,
+                            exportType: IntendedVideoDestination,
                             completionHandler: @escaping (String?, VideoMakerError?) -> Void) throws {
         guard soundFilepath.isEmpty == false else {
             throw VideoMakerError.soundFilepathIsEmpty
@@ -196,7 +233,7 @@ class VideoMaker {
         var videoWidth: Int = 0
         var videoHeight: Int = 0
         
-        if exportType == VideoExportType.twitter {
+        if exportType == IntendedVideoDestination.twitter {
             videoWidth = 1000
             videoHeight = 1000
         } else {
@@ -250,5 +287,8 @@ enum VideoMakerError: Error {
     case soundFilepathIsEmpty
     case unableToFindSoundFile
     case failedToMergeSoundAndVideo
+    case couldNotObtainAudioDuration
+    case unableToFindVideoFile
+    case unknownError
 
 }

@@ -1,3 +1,10 @@
+//
+//  MusicGenre.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 17/09/22.
+//
+
 import Foundation
 
 enum MusicGenre: Int, CaseIterable, Identifiable, Codable {

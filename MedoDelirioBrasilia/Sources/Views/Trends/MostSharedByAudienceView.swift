@@ -1,3 +1,10 @@
+//
+//  MostSharedByAudienceView.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 11/10/22.
+//
+
 import SwiftUI
 
 struct MostSharedByAudienceView: View {
@@ -6,6 +13,7 @@ struct MostSharedByAudienceView: View {
     @Binding var tabSelection: PhoneTab
     @Binding var activePadScreen: PadScreen?
     @Binding var soundIdToGoToFromTrends: String
+    @Binding var trendsTimeIntervalToGoTo: TrendsTimeInterval?
     
     private let columns = [
         GridItem(.flexible())
@@ -20,6 +28,17 @@ struct MostSharedByAudienceView: View {
             return Shared.Trends.lastMonth
         case .allTime:
             return Shared.Trends.allTime
+        }
+    }
+    
+    private var list: [TopChartItem] {
+        switch viewModel.timeIntervalOption {
+        case .lastWeek:
+            return viewModel.lastWeekRanking!
+        case .lastMonth:
+            return viewModel.lastMonthRanking!
+        case .allTime:
+            return viewModel.allTimeRanking!
         }
     }
     
@@ -49,17 +68,37 @@ struct MostSharedByAudienceView: View {
                     }
                 }
                 .onChange(of: viewModel.timeIntervalOption) { timeIntervalOption in
-                    if viewModel.timeIntervalOption == .lastWeek || viewModel.timeIntervalOption == .lastMonth {
-                        viewModel.viewState = .noDataToDisplayForNow
-                    } else {
-                        if TimeKeeper.checkTwoMinutesHasPassed(viewModel.lastCheckDate) {
-                            viewModel.reloadAudienceList()
-                        } else {
-                            if viewModel.audienceTop5 == nil {
+                    DispatchQueue.main.async {
+                        switch viewModel.timeIntervalOption {
+                        case .lastWeek:
+                            if viewModel.lastWeekRanking == nil {
                                 viewModel.viewState = .noDataToDisplay
                             } else {
                                 viewModel.viewState = .displayingData
                             }
+                            
+                        case .lastMonth:
+                            if viewModel.lastMonthRanking == nil {
+                                viewModel.viewState = .noDataToDisplay
+                            } else {
+                                viewModel.viewState = .displayingData
+                            }
+                            
+                        case .allTime:
+                            if viewModel.allTimeRanking == nil {
+                                viewModel.viewState = .noDataToDisplay
+                            } else {
+                                viewModel.viewState = .displayingData
+                            }
+                        }
+                    }
+                    
+                    viewModel.donateActivity(forTimeInterval: timeIntervalOption)
+                }
+                .onChange(of: trendsTimeIntervalToGoTo) { trendsTimeIntervalToGoTo in
+                    if let option = trendsTimeIntervalToGoTo {
+                        DispatchQueue.main.async {
+                            viewModel.timeIntervalOption = option
                         }
                     }
                 }
@@ -67,16 +106,13 @@ struct MostSharedByAudienceView: View {
                 Spacer()
                 
                 Button {
-                    if viewModel.timeIntervalOption == .allTime {
-                        viewModel.reloadAudienceList()
-                    }
+                    viewModel.reloadAudienceLists()
                 } label: {
                     HStack {
                         Image(systemName: "arrow.triangle.2.circlepath")
                         Text("Atualizar")
                     }
                 }
-                .disabled(viewModel.timeIntervalOption == .lastWeek || viewModel.timeIntervalOption == .lastMonth)
             }
             .padding(.horizontal)
             .padding(.top, 1)
@@ -114,7 +150,7 @@ struct MostSharedByAudienceView: View {
             case .displayingData:
                 VStack {
                     LazyVGrid(columns: columns, spacing: 20) {
-                        ForEach(viewModel.audienceTop5!) { item in
+                        ForEach(list) { item in
                             TopChartCellView(item: item)
                                 .onTapGesture {
                                     navigateTo(sound: item.contentId)
@@ -139,28 +175,11 @@ struct MostSharedByAudienceView: View {
                         .padding(.bottom)
                 }
                 .padding(.bottom, 20)
-                
-            case .noDataToDisplayForNow:
-                HStack {
-                    Spacer()
-                    
-                    VStack(spacing: 10) {
-                        Text("Sem Dados Por Enquanto")
-                            .font(.headline)
-                        
-                        Text("Ainda não há dados coletados para essa visualização.")
-                            .foregroundColor(.gray)
-                            .multilineTextAlignment(.center)
-                    }
-                    
-                    Spacer()
-                }
-                .padding(.vertical, 100)
-                .padding(.horizontal)
             }
         }
         .onAppear {
-            viewModel.reloadAudienceList()
+            viewModel.reloadAudienceLists()
+            viewModel.donateActivity(forTimeInterval: viewModel.timeIntervalOption)
         }
         .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
@@ -181,7 +200,10 @@ struct MostSharedByAudienceView: View {
 struct MostSharedByAudienceView_Previews: PreviewProvider {
 
     static var previews: some View {
-        MostSharedByAudienceView(tabSelection: .constant(.trends), activePadScreen: .constant(.trends), soundIdToGoToFromTrends: .constant(.empty))
+        MostSharedByAudienceView(tabSelection: .constant(.trends),
+                                 activePadScreen: .constant(.trends),
+                                 soundIdToGoToFromTrends: .constant(.empty),
+                                 trendsTimeIntervalToGoTo: .constant(nil))
     }
 
 }

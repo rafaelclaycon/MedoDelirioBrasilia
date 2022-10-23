@@ -1,3 +1,10 @@
+//
+//  TrendsView.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 29/05/22.
+//
+
 import SwiftUI
 
 struct TrendsView: View {
@@ -6,6 +13,7 @@ struct TrendsView: View {
     @Binding var tabSelection: PhoneTab
     @Binding var activePadScreen: PadScreen?
     @Binding var soundIdToGoToFromTrends: String
+    @Binding var trendsTimeIntervalToGoTo: TrendsTimeInterval?
     @State var showAlert = false
     @State var alertTitle = ""
     
@@ -47,7 +55,10 @@ struct TrendsView: View {
                              }*/
                             
                             if showSoundsMostSharedByTheAudience {
-                                MostSharedByAudienceView(tabSelection: $tabSelection, activePadScreen: $activePadScreen, soundIdToGoToFromTrends: $soundIdToGoToFromTrends)
+                                MostSharedByAudienceView(tabSelection: $tabSelection,
+                                                         activePadScreen: $activePadScreen,
+                                                         soundIdToGoToFromTrends: $soundIdToGoToFromTrends,
+                                                         trendsTimeIntervalToGoTo: $trendsTimeIntervalToGoTo)
                                     .padding(.top, 10)
                             }
                             
@@ -70,7 +81,10 @@ struct TrendsView: View {
                             
                             if showSoundsMostSharedByTheAudience {
                                 VStack {
-                                    MostSharedByAudienceView(tabSelection: $tabSelection, activePadScreen: $activePadScreen, soundIdToGoToFromTrends: $soundIdToGoToFromTrends)
+                                    MostSharedByAudienceView(tabSelection: $tabSelection,
+                                                             activePadScreen: $activePadScreen,
+                                                             soundIdToGoToFromTrends: $soundIdToGoToFromTrends,
+                                                             trendsTimeIntervalToGoTo: $trendsTimeIntervalToGoTo)
                                     Spacer()
                                 }
                             }
@@ -84,9 +98,6 @@ struct TrendsView: View {
         }
         .navigationTitle("Tendências")
         .navigationBarTitleDisplayMode(showTrends ? .large : .inline)
-        .onAppear {
-            viewModel.donateActivity()
-        }
     }
 
 }
@@ -94,7 +105,10 @@ struct TrendsView: View {
 struct TrendsView_Previews: PreviewProvider {
 
     static var previews: some View {
-        TrendsView(tabSelection: .constant(.trends), activePadScreen: .constant(.trends), soundIdToGoToFromTrends: .constant(.empty))
+        TrendsView(tabSelection: .constant(.trends),
+                   activePadScreen: .constant(.trends),
+                   soundIdToGoToFromTrends: .constant(.empty),
+                   trendsTimeIntervalToGoTo: .constant(nil))
     }
 
 }

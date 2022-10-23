@@ -1,3 +1,10 @@
+//
+//  AuthorDetailView.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 26/05/22.
+//
+
 import SwiftUI
 
 struct AuthorDetailView: View {
@@ -122,7 +129,14 @@ struct AuthorDetailView: View {
                 }
             }
             .navigationTitle(author.name)
-            .navigationBarTitleDisplayMode(.automatic)
+            .navigationBarItems(trailing:
+                Button {
+                    viewModel.stopPlayback()
+                } label: {
+                    Image(systemName: "stop.fill")
+                }
+                .disabled(!viewModel.isPlayingSound)
+            )
             .onAppear {
                 viewModel.reloadList(withSounds: soundData.filter({ $0.authorId == author.id }),
                                      andFavorites: try? database.getAllFavorites(),
@@ -156,7 +170,11 @@ struct AuthorDetailView: View {
             }
             .onChange(of: shareAsVideo_Result.videoFilepath) { videoResultPath in
                 if videoResultPath.isEmpty == false {
-                    viewModel.shareVideo(withPath: videoResultPath, andContentId: shareAsVideo_Result.contentId)
+                    if shareAsVideo_Result.exportMethod == .saveAsVideo {
+                        viewModel.showVideoSavedSuccessfullyToast()
+                    } else {
+                        viewModel.shareVideo(withPath: videoResultPath, andContentId: shareAsVideo_Result.contentId)
+                    }
                 }
             }
             

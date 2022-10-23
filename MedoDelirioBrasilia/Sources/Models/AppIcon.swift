@@ -1,3 +1,10 @@
+//
+//  AppIcon.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 24/08/22.
+//
+
 import Foundation
 import UIKit
 

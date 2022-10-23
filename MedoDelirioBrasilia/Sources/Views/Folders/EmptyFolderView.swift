@@ -1,3 +1,10 @@
+//
+//  EmptyFolderView.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 26/05/22.
+//
+
 import SwiftUI
 
 struct EmptyFolderView: View {

@@ -1,3 +1,10 @@
+//
+//  SongsViewViewModel.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 19/05/22.
+//
+
 import Combine
 import SwiftUI
 import UIKit
@@ -164,6 +171,8 @@ class SongsViewViewModel: ObservableObject {
                             }
                         }
                     }
+                    
+                    WallE.deleteAllVideoFilesFromDocumentsDir()
                 }
             } catch {
                 print("Unable to get song.")
@@ -201,14 +210,32 @@ class SongsViewViewModel: ObservableObject {
                         }
                     }
                 }
+                
+                WallE.deleteAllVideoFilesFromDocumentsDir()
             }
             
             isShowingShareSheet = true
         }
     }
     
+    func showVideoSavedSuccessfullyToast() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+            withAnimation {
+                self.shareBannerMessage = "Vídeo salvo com sucesso."
+                self.displaySharedSuccessfullyToast = true
+            }
+            TapticFeedback.success()
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            withAnimation {
+                self.displaySharedSuccessfullyToast = false
+            }
+        }
+    }
+    
     func donateActivity() {
-        self.currentActivity = UserActivityWaiter.getDonatableActivity(withType: Shared.ActivityTypes.playAndShareSongs, andTitle: "Tocar e compartilhar músicas")
+        self.currentActivity = UserActivityWaiter.getDonatableActivity(withType: Shared.ActivityTypes.playAndShareSongs, andTitle: "Ouvir e compartilhar músicas")
         self.currentActivity?.becomeCurrent()
     }
 

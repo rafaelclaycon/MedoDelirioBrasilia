@@ -61,7 +61,8 @@ extension LocalDatabase {
                 AddNetworkCallLogTable(),
                 AddUserFolderTables(),
                 RemoveFavoriteLogTable(),
-                AddAudienceSharingStatisticTable()]
+                AddAudienceSharingStatisticTable(),
+                AddRankingTypeToAudienceSharingStatisticTable()]
     }
     
     var needsMigration: Bool {
@@ -91,5 +92,6 @@ enum LocalDatabaseError: Error {
     case favoriteNotFound
     case folderNotFound
     case folderContentNotFound
+    case internalError
 
 }
