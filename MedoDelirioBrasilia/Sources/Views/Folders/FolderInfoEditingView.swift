@@ -1,3 +1,10 @@
+//
+//  FolderInfoEditingView.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 28/06/22.
+//
+
 import SwiftUI
 import Combine
 
@@ -54,6 +61,13 @@ struct FolderInfoEditingView: View {
                         focusedField = nil
                     }
                 
+                if ProcessInfo.processInfo.isMacCatalystApp {
+                    Text("Para acessar os emojis no Mac, pressione Control + Command + Espaço.")
+                        .foregroundColor(.gray)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                }
+                
                 VStack {
                     TextField("Nome da pasta", text: $folderName)
                         .textFieldStyle(.roundedBorder)
@@ -88,13 +102,11 @@ struct FolderInfoEditingView: View {
             .navigationTitle(isEditing ? "Editar Pasta" : "Nova Pasta")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(leading:
-                Button(action: {
+                Button("Cancelar") {
                     self.isBeingShown = false
-                }) {
-                    Text("Cancelar")
                 }
             , trailing:
-                Button(action: {
+                Button {
                     if viewModel.checkIfMeetsAllRequirements(symbol: symbol, folderName: folderName, isEditing: isEditing) {
                         if isEditing {
                             guard folderIdWhenEditing.isEmpty == false else {
@@ -107,7 +119,7 @@ struct FolderInfoEditingView: View {
                             self.isBeingShown = false
                         }
                     }
-                }) {
+                } label: {
                     Text(isEditing ? "Salvar" : "Criar")
                         .bold()
                 }

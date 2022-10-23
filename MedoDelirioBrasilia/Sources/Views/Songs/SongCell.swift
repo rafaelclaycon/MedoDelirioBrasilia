@@ -1,23 +1,31 @@
+//
+//  SongCell.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 24/05/22.
+//
+
 import SwiftUI
 
 struct SongCell: View {
 
     @State var songId: String
     @State var title: String
-    @State var genre: String
+    @State var genre: MusicGenre
     @State var duration: String
     @Binding var nowPlaying: Set<String>
-    
-    var subtitle: String {
-        if genre.isEmpty == false {
-            return "\(genre) · \(duration)"
-        } else {
-            return duration
-        }
-    }
+    @Environment(\.sizeCategory) var sizeCategory
     
     var isPlaying: Bool {
         nowPlaying.contains(songId)
+    }
+    
+    private var cellHeight: CGFloat {
+        if sizeCategory > ContentSizeCategory.large {
+            return 115
+        } else {
+            return 90
+        }
     }
     
     let gradient = LinearGradient(gradient: Gradient(colors: [.green, .green, .green, .brightYellow]), startPoint: .topLeading, endPoint: .bottomTrailing)
@@ -26,7 +34,7 @@ struct SongCell: View {
         ZStack {
             RoundedRectangle(cornerRadius: 20, style: .continuous)
                 .fill(gradient)
-                .frame(height: 90)
+                .frame(height: cellHeight)
                 .opacity(isPlaying ? 0.7 : 1.0)
             
             VStack(alignment: .leading, spacing: 8) {
@@ -37,7 +45,7 @@ struct SongCell: View {
                             .bold()
                             .multilineTextAlignment(.leading)
                         
-                        Text(subtitle)
+                        Text("\(genre.name) · \(duration)")
                             .foregroundColor(.white)
                             .font(.callout)
                             .multilineTextAlignment(.leading)
@@ -62,7 +70,7 @@ struct SongCell: View {
 struct SongCell_Previews: PreviewProvider {
 
     static var previews: some View {
-        SongCell(songId: "ABC", title: "Funk do Morto", genre: "Funk", duration: "01:00", nowPlaying: .constant(Set<String>()))
+        SongCell(songId: "ABC", title: "Funk do Morto", genre: .funk, duration: "01:00", nowPlaying: .constant(Set<String>()))
             .padding(.horizontal)
             .previewLayout(.fixed(width: 414, height: 100))
     }

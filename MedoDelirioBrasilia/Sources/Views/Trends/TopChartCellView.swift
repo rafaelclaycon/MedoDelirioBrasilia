@@ -1,23 +1,19 @@
+//
+//  TopChartCellView.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 29/05/22.
+//
+
 import SwiftUI
 
 struct TopChartCellView: View {
 
     @State var item: TopChartItem
     
-    private let circleDiameter: CGFloat = 30
-    
     var body: some View {
         HStack(spacing: 15) {
-            ZStack() {
-                Circle()
-                    .fill(.gray)
-                    .frame(width: circleDiameter, height: circleDiameter)
-                    .opacity(0.5)
-                
-                Text(item.id)
-                    .foregroundColor(.primary)
-                    .bold()
-            }
+            NumberBadgeView(number: item.rankNumber)
             
             VStack(alignment: .leading, spacing: 2) {
                 Text(item.contentName)
@@ -37,7 +33,16 @@ struct TopChartCellView: View {
 struct TopChartCellView_Previews: PreviewProvider {
 
     static var previews: some View {
-        TopChartCellView(item: TopChartItem(id: "1", contentId: "ABC", contentName: "Olha que imbecil", contentAuthorId: "DEF", contentAuthorName: "Bolsonaro", shareCount: 15))
+        Group {
+            TopChartCellView(item: TopChartItem(id: "1",
+                                                rankNumber: "ABCD-EFGH",
+                                                contentId: "ABC",
+                                                contentName: "Olha que imbecil",
+                                                contentAuthorId: "DEF",
+                                                contentAuthorName: "Bolsonaro",
+                                                shareCount: 15))
+        }
+        .previewLayout(.fixed(width: 300, height: 100))
     }
 
 }

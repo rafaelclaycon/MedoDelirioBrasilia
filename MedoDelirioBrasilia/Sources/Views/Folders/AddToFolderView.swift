@@ -1,3 +1,10 @@
+//
+//  AddToFolderView.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 28/06/22.
+//
+
 import SwiftUI
 
 struct AddToFolderView: View {
@@ -83,10 +90,8 @@ struct AddToFolderView: View {
             .navigationTitle("Adicionar a Pasta")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(leading:
-                Button(action: {
+                Button("Cancelar") {
                     self.isBeingShown = false
-                }) {
-                    Text("Cancelar")
                 }
             )
             .onAppear {

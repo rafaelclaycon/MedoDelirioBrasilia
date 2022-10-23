@@ -3,9 +3,9 @@ import UIKit
 class Logger {
 
     static func logSharedSound(contentId: String, destination: ShareDestination, destinationBundleId: String) {
-        let shareLog = UserShareLog(installId: UIDevice.current.identifierForVendor?.uuidString ?? "",
+        let shareLog = UserShareLog(installId: UIDevice.identifiderForVendor,
                                     contentId: contentId,
-                                    contentType: 0,
+                                    contentType: ContentType.sound.rawValue,
                                     dateTime: Date(),
                                     destination: destination.rawValue,
                                     destinationBundleId: destinationBundleId,
@@ -14,9 +14,20 @@ class Logger {
     }
     
     static func logSharedSong(contentId: String, destination: ShareDestination, destinationBundleId: String) {
-        let shareLog = UserShareLog(installId: UIDevice.current.identifierForVendor?.uuidString ?? "",
+        let shareLog = UserShareLog(installId: UIDevice.identifiderForVendor,
                                     contentId: contentId,
-                                    contentType: 1,
+                                    contentType: ContentType.song.rawValue,
+                                    dateTime: Date(),
+                                    destination: destination.rawValue,
+                                    destinationBundleId: destinationBundleId,
+                                    sentToServer: false)
+        try? database.insert(userShareLog: shareLog)
+    }
+    
+    static func logSharedVideoFromSound(contentId: String, destination: ShareDestination, destinationBundleId: String) {
+        let shareLog = UserShareLog(installId: UIDevice.identifiderForVendor,
+                                    contentId: contentId,
+                                    contentType: ContentType.videoFromSound.rawValue,
                                     dateTime: Date(),
                                     destination: destination.rawValue,
                                     destinationBundleId: destinationBundleId,
@@ -25,7 +36,7 @@ class Logger {
     }
     
     static func getShareCountStatsForServer() -> [ServerShareCountStat]? {
-        guard let items = try? database.getShareCountByUniqueContentId(), items.count > 0 else {
+        guard let items = try? database.getUserShareStatsNotSentToServer(), items.count > 0 else {
             return nil
         }
         return items

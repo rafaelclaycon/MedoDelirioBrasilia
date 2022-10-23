@@ -1,7 +1,8 @@
 [
     {
         "id": "E49C6318-B890-4976-B90F-01B60A4FE6D7",
-        "name": "Ady Ferrer"
+        "name": "Ady Ferrer",
+        "photo": "https://cachedimages.podchaser.com/256x256/aHR0cHM6Ly9jcmVhdG9yLWltYWdlcy5wb2RjaGFzZXIuY29tLzZiMzQ4NWQxOTBlYmFlZWMwOTI3NDk0OTBlOTE1OTUwLmpwZWc%3D/aHR0cHM6Ly93d3cucG9kY2hhc2VyLmNvbS9pbWFnZXMvbWlzc2luZy1pbWFnZS5wbmc%3D"
     },
     {
         "id": "089EBD4E-486E-4DF2-9918-E404B5CA7A7E",
@@ -13,11 +14,13 @@
     },
     {
         "id": "045F8453-244C-4B94-8F89-395FE8986139",
-        "name": "Bam Bam"
+        "name": "Kleber Bambam",
+        "photo": "https://upload.wikimedia.org/wikipedia/commons/6/65/KleberBambam.jpg"
     },
     {
         "id": "2982E359-0A6C-4005-AED8-2D5BB7F39599",
-        "name": "Alborghetti"
+        "name": "Alborghetti",
+        "photo": "https://pbs.twimg.com/profile_images/1257904807/alborghetti_400x400.jpg"
     },
     {
         "id": "2267C284-7BA1-42DB-8AE8-E329E28CF43C",
@@ -25,15 +28,18 @@
     },
     {
         "id": "17860F3D-A18C-4684-86D0-931306A6937A",
-        "name": "Away"
+        "name": "Gil Brother (Away de Petrópolis)",
+        "photo": "https://pm1.narvii.com/6755/9f46f1336fd3f526f21dc8b64dfc952a5c3e7ddbv2_hq.jpg"
     },
     {
         "id": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
-        "name": "Jair Bolsonaro"
+        "name": "Jair Bolsonaro",
+        "photo": "https://p2.trrsf.com/image/fget/cf/1200/1200/middle/images.terra.com/2022/04/08/2022-04-06t135923z_1_lynxnpei350p9_rtroptp_4_brazil-politics-vb439uzay8mr.JPG"
     },
     {
         "id": "ED9593A4-B314-405D-B7F9-3BF8B21FA54A",
-        "name": "Alexandre Frota"
+        "name": "Alexandre Frota",
+        "photo": "https://midias.agazeta.com.br/2019/10/15/o-deputado-federal-e-ex-ator-porno-alexandre-frota-77709-article.jpg"
     },
     {
         "id": "51706210-3329-4A43-A823-2F91EBC4B546",
@@ -45,11 +51,13 @@
     },
     {
         "id": "3FE2F541-6B10-47A8-A1FB-640AB6E55FA9",
-        "name": "Dilma"
+        "name": "Dilma Rousseff",
+        "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Dilma_Rousseff_-_foto_oficial_2011-01-09.jpg/640px-Dilma_Rousseff_-_foto_oficial_2011-01-09.jpg"
     },
     {
         "id": "691D4F55-79F7-407A-B0AA-71CD09059E60",
-        "name": "Diogo Defante"
+        "name": "Diogo Defante",
+        "photo": "https://criadoresid.com/wp-content/uploads/2020/08/diegodefante.jpg"
     },
     {
         "id": "4FC19D8E-7DE3-443F-B19E-90C9272F53E4",
@@ -61,7 +69,8 @@
     },
     {
         "id": "69EFC7D8-8922-4FC4-A0F8-881136B69564",
-        "name": "Gloria Groove"
+        "name": "Gloria Groove",
+        "photo": "https://yt3.ggpht.com/bB-BjsfmyCs27_PW0RmtI6O6Ox7_TPekQHLGgyOQDYt5nBOkvAv_rNd0xI0cIqaEAbimaqjo=s900-c-k-c0x00ffffff-no-rj"
     },
     {
         "id": "6C973E63-4682-49A8-BDA3-EA20113A827A",
@@ -101,7 +110,8 @@
     },
     {
         "id": "BB392894-327A-48BA-9C7D-4F0601E947EB",
-        "name": "Paulo Guedes"
+        "name": "Paulo Guedes",
+        "photo": "https://politica.estadao.com.br/blogs/crop/1200x1200/diario-da-cpi/wp-content/uploads/sites/723/2021/05/paulo-guedes-edu-andrade-me_240520211751.jpg"
     },
     {
         "id": "332C6028-19BF-4027-AEC4-982E7B36880F",
@@ -133,7 +143,8 @@
     },
     {
         "id": "D19468C5-9F69-4F1B-B47F-696D5D716764",
-        "name": "Fred"
+        "name": "Fred",
+        "photo": "https://www.futcards.com.br/wp-content/uploads/2018/10/fred-fluminense-1.jpg"
     },
     {
         "id": "B7CB79F9-4CAC-4832-BB47-2EA96A4AC576",
@@ -177,7 +188,8 @@
     },
     {
         "id": "90C00D5D-797C-4DEF-91C6-1B2D407C955D",
-        "name": "Belo"
+        "name": "Belo",
+        "photo": "https://dicionariompb.com.br/wp-content/uploads/2021/04/Belo.jpeg"
     },
     {
         "id": "7E1ED3FF-82AA-4047-B0A9-292D63FC4711",
@@ -193,7 +205,7 @@
     },
     {
         "id": "28B86BE0-5475-49E9-9ADD-1AA39630869D",
-        "name": "Mourão"
+        "name": "Hamilton Mourão"
     },
     {
         "id": "DBC3A1FF-E536-40F0-B869-2ED3E11DF5F7",
@@ -201,7 +213,8 @@
     },
     {
         "id": "CFCC4FD4-8F9D-4515-AFE0-A79F41C1FC01",
-        "name": "Bender"
+        "name": "Bender",
+        "photo": "https://i.pinimg.com/originals/c7/73/f4/c773f4d77f6088a92d4ac01b94b8296d.jpg"
     },
     {
         "id": "FD6976FA-83E8-4B03-AF35-B358D12AD84A",
@@ -253,7 +266,8 @@
     },
     {
         "id": "39FA164E-7618-480E-8881-BC3AA5E862F7",
-        "name": "MIDCast"
+        "name": "MIDCast",
+        "photo": "https://pbs.twimg.com/profile_images/1195273809512800258/GH_0pD8W_400x400.jpg"
     },
     {
         "id": "321C3F81-51C6-4AB2-917C-81DCAF13A515",
@@ -313,7 +327,8 @@
     },
     {
         "id": "58382B3D-4014-42C0-B0A7-D02733E9BCE3",
-        "name": "Samira Close"
+        "name": "Samira Close",
+        "photo": "https://yt3.ggpht.com/ytc/AKedOLRjdzsZyL8rKC0c83BV7_muqPkBtd2TM1kYrV76iA=s900-c-k-c0x00ffffff-no-rj"
     },
     {
         "id": "A641DDF3-E419-4488-8F1F-20A823218212",
@@ -353,11 +368,13 @@
     },
     {
         "id": "9DD28494-F33B-471F-8AD6-D4F86978DD42",
-        "name": "Atila Iamarino"
+        "name": "Atila Iamarino",
+        "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtxe9cE8JfTuctIhfMTIHQ4Qqx2jMqa_7uW37Pg0OkhghYCjd1JZSqoR5meCC-hln_xKA&usqp=CAU"
     },
     {
         "id": "0B6E906E-CF91-4705-A65A-72C96A4813FC",
-        "name": "Zé Gotinha"
+        "name": "Zé Gotinha",
+        "photo": "https://i.pinimg.com/564x/05/aa/dc/05aadc07b29cf87bbc4dd154e3f43296.jpg"
     },
     {
         "id": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
@@ -369,7 +386,7 @@
     },
     {
         "id": "845BEF9F-9DA4-4764-B35A-A86BEE216A0A",
-        "name": "Meteoro"
+        "name": "Canal Meteoro Brasil"
     },
     {
         "id": "859DB6CD-B1CB-4FFC-95B9-E8BD7F8CC7A1",
@@ -449,7 +466,8 @@
     },
     {
         "id": "71F782D3-2BB3-443D-9F2D-262E12EB7FDD",
-        "name": "Lado B do Rio"
+        "name": "Lado B do Rio",
+        "photo": "https://yt3.ggpht.com/ytc/AKedOLSCoORDMB0Yt1RVhNZJaRASlwWVGmMZ6yH6iYQ1qw=s900-c-k-c0x00ffffff-no-rj"
     },
     {
         "id": "FB21ABB0-044C-4A33-8DFC-965480115F4A",
@@ -457,7 +475,8 @@
     },
     {
         "id": "495C92AE-56FA-4882-A962-188FCCEBCA01",
-        "name": "Lula"
+        "name": "Lula",
+        "photo": "https://pbs.twimg.com/profile_images/710844355452522496/gOAhmKxr_400x400.jpg"
     },
     {
         "id": "F40DEA6D-D795-4697-8911-275FAB2869AD",
@@ -481,7 +500,8 @@
     },
     {
         "id": "52541553-B287-465F-BD13-EEA5EAC40044",
-        "name": "Cristiano Botafogo"
+        "name": "Cristiano Botafogo",
+        "photo": "https://pbs.twimg.com/profile_images/1559986839850713090/m747gZDM_400x400.jpg"
     },
     {
         "id": "4AE135DD-B688-45D7-B20B-88DCFE8CDD8A",
@@ -525,7 +545,8 @@
     },
     {
         "id": "F1683588-F547-4F2F-B3E4-8A328FAFC1AB",
-        "name": "Casimiro"
+        "name": "Casimiro",
+        "photo": "https://pbs.twimg.com/profile_images/1495509561377177601/WljXGF65_400x400.jpg"
     },
     {
         "id": "94004C99-7373-4880-B551-1BC283992BDC",
@@ -573,7 +594,8 @@
     },
     {
         "id": "AB5C4677-E814-4A78-8D9C-68AC8DE1B03F",
-        "name": "Antonio Tabet"
+        "name": "Antonio Tabet",
+        "photo": "https://p2.trrsf.com/image/fget/cf/648/0/images.terra.com/2021/08/10/250817413-antonio-tabet.jpg"
     },
     {
         "id": "6AF9A309-8B1F-4553-A369-19E575E14DA5",
@@ -657,7 +679,8 @@
     },
     {
         "id": "248A6A3B-3EEF-45D6-9A2F-A81768B7B370",
-        "name": "Álvaro Borba (Meteoro Brasil)"
+        "name": "Álvaro Borba (Meteoro Brasil)",
+        "photo": "https://pbs.twimg.com/profile_images/1559954950603657219/PW4CB2Su_400x400.jpg"
     },
     {
         "id": "026D606A-356F-47C9-8D42-D5C838653E02",
@@ -689,7 +712,8 @@
     },
     {
         "id": "53202065-71B1-459F-A3C6-650379874255",
-        "name": "Gumball"
+        "name": "Gumball",
+        "photo": "https://yt3.ggpht.com/ytc/AKedOLQBa1gd-XwFMQuohMtYc0RgXIlPV3nr-VUtSy1-=s900-c-k-c0x00ffffff-no-rj"
     },
     {
         "id": "05A3C97F-68EE-4AEB-9BEA-761348725225",
@@ -721,7 +745,7 @@
     },
     {
         "id": "0258693D-31D6-4A9E-8BA8-F11973BA79CF",
-        "name": "Franciel Cruz"
+        "name": "Franciel Cruz (Laive das Canjebrinas)"
     },
     {
         "id": "CBDBB613-B887-473F-956D-BE497F31E549",
@@ -730,5 +754,423 @@
     {
         "id": "818A31F2-77FC-45B0-8C4F-9CD52BC1B2FB",
         "name": "Lasier Martins"
+    },
+    {
+        "id": "8A064580-AEB6-4FCE-9B87-11F5D5C6995E",
+        "name": "Amigo do Pedro Daltro"
+    },
+    {
+        "id": "917F48B7-332D-4E9B-8190-DF93875F3E35",
+        "name": "Mr. Catra",
+        "photo": "https://cdn.falauniversidades.com.br/wp-content/uploads/2018/09/x2015-820808174-2015052907106.jpg_20150623.jpg.pagespeed.ic_.UUoqXqj0IC.jpg"
+    },
+    {
+        "id": "AFB30EED-A9AA-4F0A-AAB1-92E07E319275",
+        "name": "Molejo"
+    },
+    {
+        "id": "B844D396-6AEB-4AD8-845E-A6CBE539BA87",
+        "name": "Lucca Wilker"
+    },
+    {
+        "id": "62281870-6E38-438C-BC6A-CC388FF0161E",
+        "name": "MC Cidinho e MC Doca"
+    },
+    {
+        "id": "9E6BFEFD-3E92-4D63-A564-1C59A01811C5",
+        "name": "Matheus Canella"
+    },
+    {
+        "id": "D5C493CE-E29C-45CF-8E92-7A8C6F4526D8",
+        "name": "Marco Feliciano"
+    },
+    {
+        "id": "9AB96EA6-7AB9-4FF3-BD58-4752D23DCA9B",
+        "name": "Marcelo Freixo",
+        "photo": "https://conteudo.imguol.com.br/c/entretenimento/15/2019/08/29/retrato-do-deputado-estadual-pelo-rio-de-janeiro-marcelo-freixo-psol-1567088732544_v2_1x1.jpg"
+    },
+    {
+        "id": "4E8F4CB9-1641-405E-ABE0-80887F72509A",
+        "name": "Keila Mellman"
+    },
+    {
+        "id": "FE52729B-F3E8-4A7F-A5EB-4471A6595839",
+        "name": "Lobão"
+    },
+    {
+        "id": "F70C9F83-5567-4892-8B31-BC9B96F4BBBA",
+        "name": "Maisa Silva",
+        "photo": "https://vejasp.abril.com.br/wp-content/uploads/2020/10/119047740_601873583818073_5298713052860443963_n.jpg"
+    },
+    {
+        "id": "DFBF365D-CA69-456C-A536-B9C78F519669",
+        "name": "Lu Schievano"
+    },
+    {
+        "id": "02CFCF9C-F456-4813-8E6D-F8EA3DBF2777",
+        "name": "Merval Pereira"
+    },
+    {
+        "id": "42EDB2DA-51E7-40B1-BABA-FD28066AF001",
+        "name": "Milton Leite"
+    },
+    {
+        "id": "50401E09-4DE2-4A1A-B49B-AF75C99904FF",
+        "name": "Fã do Armandinho"
+    },
+    {
+        "id": "4A3B9287-8D43-43A3-921D-4F3191455330",
+        "name": "Joice (TV Beltrão - Expobel)"
+    },
+    {
+        "id": "E88CFA6A-ACB9-43FC-A844-769E119BCDDE",
+        "name": "King Size"
+    },
+    {
+        "id": "8C167506-518F-4054-9230-3E4CC351C260",
+        "name": "Luciano Hang"
+    },
+    {
+        "id": "0C099F71-12F6-4DDE-B13B-18E29D55F0F5",
+        "name": "Magno Malta"
+    },
+    {
+        "id": "563E0AAC-F818-4FB6-B2C2-027B242D2801",
+        "name": "Marcel van Hatten"
+    },
+    {
+        "id": "F9ACC75C-75EB-48B2-85DC-6372B1A542E2",
+        "name": "Massacration"
+    },
+    {
+        "id": "AD2D908B-E9F4-4E42-8DD0-CD08BD62816C",
+        "name": "Matheuzinho e Menor Nico"
+    },
+    {
+        "id": "A597D84F-D4AD-4F77-A75A-B375C1FC5CE7",
+        "name": "Marisa Monte"
+    },
+    {
+        "id": "17B0925A-5D2B-470F-91B2-83130B25CA45",
+        "name": "Monty Python"
+    },
+    {
+        "id": "F8CE2D0A-98A0-48B2-BEB7-A6CBE0672593",
+        "name": "Planet Hemp"
+    },
+    {
+        "id": "FA224CBA-E69C-42B2-B01D-CD2DBF70573B",
+        "name": "Djonga"
+    },
+    {
+        "id": "1A9F31DE-694B-4424-8303-2CBDCC592E18",
+        "name": "Jão",
+        "photo": "https://s2.glbimg.com/GSfuzY02Z9dugbHHVo9DTE_l-rw=/e.glbimg.com/og/ed/f/original/2021/01/19/image_PJRFcHq.png"
+    },
+    {
+        "id": "3731428A-2D50-4EDB-B6D3-E1F870EA89D2",
+        "name": "Pabllo Vittar"
+    },
+    {
+        "id": "C7706E5F-794E-4496-95DF-C95F2494063D",
+        "name": "Naiara Azevedo"
+    },
+    {
+        "id": "93C67421-9990-4F19-9A40-039D91528014",
+        "name": "Néstor Kirchner"
+    },
+    {
+        "id": "4B62F3D0-31D3-4C11-85A6-D8C137D0422C",
+        "name": "Nhonho"
+    },
+    {
+        "id": "37C26939-216F-4595-8B2C-8931E4C57778",
+        "name": "Nenho"
+    },
+    {
+        "id": "13D62ECA-B179-4AD4-B7BE-438BEA8AEB4C",
+        "name": "Randolfe"
+    },
+    {
+        "id": "CEB3DACA-D4E2-4D83-AF87-610571ABD44A",
+        "name": "Barões da Pisadinha"
+    },
+    {
+        "id": "B390C2BC-D59C-4EF3-811A-FD8FC61386AC",
+        "name": "Bob Esponja (Spongebob)",
+        "photo": "https://almeidajunior-prod1.s3.amazonaws.com/prod/uploads/news/5d81505ac6770.jpg"
+    },
+    {
+        "id": "809961C4-9B82-4A5F-BD95-3EF09A7A5720",
+        "name": "Carole King"
+    },
+    {
+        "id": "876FAE2F-1D35-45AD-BEA7-08F9B86988A3",
+        "name": "Cartoon Network"
+    },
+    {
+        "id": "FFF51EE2-C8CE-451F-8BAC-9235A6F56F67",
+        "name": "Dr. Chapatin (Chaves)"
+    },
+    {
+        "id": "B1D05D61-85EC-4AA7-9FF9-501BB6DAB719",
+        "name": "Chiquititas"
+    },
+    {
+        "id": "32F308DB-5D4C-4900-BB13-98471F0FABCC",
+        "name": "Cidinho e Doca"
+    },
+    {
+        "id": "57180528-C9BA-4668-B795-BDA000642445",
+        "name": "Aécio Neves"
+    },
+    {
+        "id": "287808FB-BAF5-41DC-8CD2-DF60C4323796",
+        "name": "Compradre Washington"
+    },
+    {
+        "id": "5F0EAB9B-2267-4C31-944A-F73D76AC1020",
+        "name": "Ana Paula (BBB 16)"
+    },
+    {
+        "id": "9796134C-BC7F-4121-9008-ACE479834FD5",
+        "name": "Tanguy Baghdadi"
+    },
+    {
+        "id": "ED785AAD-640D-42A6-94C3-47DF7CE8CAD2",
+        "name": "Eduardo Oinegue"
+    },
+    {
+        "id": "5FDB3245-BE8B-4884-96D7-4EA43702CE50",
+        "name": "Seu Barriga (Chaves)"
+    },
+    {
+        "id": "567A3EC6-6D44-4B49-8028-1C6CA6224ED4",
+        "name": "Oswaldo Eustáquio"
+    },
+    {
+        "id": "F6C48774-975B-4AAD-BED1-211D56B41CDB",
+        "name": "Legião Urbana"
+    },
+    {
+        "id": "2F031364-8F11-4BD2-9DB6-A2D7BFA19B3F",
+        "name": "Reinaldo Azevedo"
+    },
+    {
+        "id": "A74F2546-2C44-4EDC-92CD-1C64DFE0B9FC",
+        "name": "Henrique Mandetta"
+    },
+    {
+        "id": "463C5301-7D24-4EE4-9E75-E81DFF9B36F4",
+        "name": "Paulo Sérgio Nogueira",
+        "photo": "https://i.em.com.br/6w32eO_It9wIGIGPEAxCxFO0pOk=/1200x1200/smart/imgsapp.em.com.br/app/noticia_127983242361/2022/07/06/1378376/-paulo-sergio-nogueira-de-oliveira_1_46862.jpeg"
+    },
+    {
+        "id": "FF3D6700-EF71-4368-A800-63ACC9C74750",
+        "name": "Parafernalha",
+        "photo": "https://upload.wikimedia.org/wikipedia/pt/2/28/Parafernalha_logo.png"
+    },
+    {
+        "id": "54D17991-32DC-49FD-A3C1-977C30050B07",
+        "name": "Ludmilla e Jair Bolsonaro"
+    },
+    {
+        "id": "366BA578-CE2F-480B-9DA6-5ADC6BD0E474",
+        "name": "O Viciado em C... (1984)"
+    },
+    {
+        "id": "07F09910-4B4C-4C19-BFCF-4D261CE5E1BA",
+        "name": "Eduardo Bolsonaro"
+    },
+    {
+        "id": "A7D44066-DAFE-435D-8987-5A1C17EB2A69",
+        "name": "Billy Madison: Um Herdeiro Bobalhão"
+    },
+    {
+        "id": "15A5B647-F367-47C3-A344-D2F57F3351F7",
+        "name": "Donald Trump"
+    },
+    {
+        "id": "46663734-58F2-4CC3-85E1-22E641518F3E",
+        "name": "Débora Travesti"
+    },
+    {
+        "id": "08C5B696-B506-4C6A-8F9D-A72BEC68525E",
+        "name": "Gil do Vigor",
+        "photo": "https://conteudo.imguol.com.br/c/entretenimento/05/2021/06/13/gilberto-nogueira-o-gil-do-vigor-do-bbb-21-1623613936106_v2_450x600.jpg"
+    },
+    {
+        "id": "ED95DB68-655F-496B-9CAE-E71C3D2207AC",
+        "name": "Pedro Benevides (Porta dos Fundos)"
+    },
+    {
+        "id": "A89E0C2C-860D-41FB-A5E1-46AC0B5A7CDB",
+        "name": "Jair Bolsonaro e Conrado Hübner"
+    },
+    {
+        "id": "87138168-E9AC-4BF0-A486-2C5F098CD541",
+        "name": "Michelle Bolsonaro",
+        "photo": "https://vejasp.abril.com.br/wp-content/uploads/2020/07/64824963_701441800314451_5430597184963739648_n.jpg"
+    },
+    {
+        "id": "3CCBAC72-4CEE-4C8A-B3AF-B6CA0E34C5B2",
+        "name": "Desesperado"
+    },
+    {
+        "id": "2DC1E766-27D5-4469-954C-1B9DF729ADFE",
+        "name": "João Carvalho (@assimdisseojoao)",
+        "photo": "https://pbs.twimg.com/profile_images/1502681039621267457/gxocWXCV_400x400.jpg"
+    },
+    {
+        "id": "B8EB0642-1907-439C-A118-46F21AD24A92",
+        "name": "Grupo Menos é Mais"
+    },
+    {
+        "id": "153714DB-0383-48F8-B03A-DE36E967421F",
+        "name": "Thii Gouveia (@othiigouveia)"
+    },
+    {
+        "id": "B2816FE5-924A-427A-8E34-BCA2A0149346",
+        "name": "Furacão 2000"
+    },
+    {
+        "id": "FFDD3A28-B7A3-45EF-8E18-51DE1C800F05",
+        "name": "Stallone Cobra"
+    },
+    {
+        "id": "2AE9CF14-548F-4ECC-8422-8A62D1EF37FB",
+        "name": "Palhaço Gozo"
+    },
+    {
+        "id": "D18DD51F-FA29-47CA-81EF-AAD6072EBFE7",
+        "name": "Tyrion Lannister",
+        "photo": "https://i.scdn.co/image/ab67706c0000bebb9e4e96e77aecc3bbda585739"
+    },
+    {
+        "id": "66E5E3E2-A90C-4BE2-A0DB-E9E63A2ABF0B",
+        "name": "Alessandro Molon",
+        "photo": "https://conteudo.imguol.com.br/c/noticias/2013/09/18/alessandro-molon-no-poder-e-politica-1379536351621_300x300.jpg"
+    },
+    {
+        "id": "EBC28244-3E86-410C-AA5F-4426C1B71E30",
+        "name": "Tiririca",
+        "photo": "https://akamai.sscdn.co/letras/250x250/fotos/a/f/a/5/afa5040a81a32a46428610067da7e93d.jpg"
+    },
+    {
+        "id": "F3DF88A1-E7CD-431F-BD84-4AE7DB7E7657",
+        "name": "Thiago Arruda"
+    },
+    {
+        "id": "AE949547-5C2E-4AA4-B68F-0C3E1F503AB3",
+        "name": "João Gordo",
+        "photo": "https://f.i.uol.com.br/fotografia/2021/02/22/1614020809603400c90e828_1614020809_1x1_md.jpg"
+    },
+    {
+        "id": "CB8A74AE-C21F-4129-9A89-4DBDFF1835F3",
+        "name": "Edu Santos"
+    },
+    {
+        "id": "4840C45E-2404-42F3-A455-3091C6AE88C3",
+        "name": "Fernanda Torres",
+        "photo": "https://static1.purepeople.com.br/articles/9/10/29/09/@/1351429-fernanda-torres-escreve-novo-texto-nesta-237x237-1.jpg"
+    },
+    {
+        "id": "94A68344-24DE-40B8-A9B8-D2F3FFD09763",
+        "name": "Milhem Cortaz (Tropa de Elite)"
+    },
+    {
+        "id": "DE543F8C-7337-4629-8A35-2A51FD7F36A6",
+        "name": "Mc Douglinhas"
+    },
+    {
+        "id": "048EE7E0-A10A-4361-B3EC-52CD5CFD16A9",
+        "name": "Paulo Silvino e Jô Soares"
+    },
+    {
+        "id": "09E6F605-ACB1-49EB-AC11-F53DCBDA5C29",
+        "name": "Evaristo Nogueira (Vavá Maravilha e Homem Mau)",
+        "photo": "https://pbs.twimg.com/profile_images/1029196277538598912/zbieDLvm_400x400.jpg"
+    },
+    {
+        "id": "97F98648-0862-423D-B938-E80C6B5A52B9",
+        "name": "Ciro Nogueira",
+        "photo": "https://i.em.com.br/Z6CDTbWP9ZTngft_os96aGaAPzc=/1200x1200/smart/imgsapp.em.com.br/app/noticia_127983242361/2022/09/26/1398378/jair-bolsonaro-e-ciro-nogueira-em-evento-no-palacio-do-planalto-_1_72364.jpg"
+    },
+    {
+        "id": "BB05B606-9553-48B9-BC59-3BA58B3F0181",
+        "name": "Flávio Bolsonaro",
+        "photo": "https://p2.trrsf.com/image/fget/cf/1200/1200/middle/images.terra.com/2019/12/19/2019-12-19T232813Z_1_LYNXMPEFBI2A6_RTROPTP_4_POLITICA-OPERACAO-FLAVIO-BOLSONARO-QUEIROZ-MP.JPG"
+    },
+    {
+        "id": "B8ABD61F-9C7F-449E-AFE0-092C4BBA4BDF",
+        "name": "Patrick (Zorra Total)"
+    },
+    {
+        "id": "3C020AFF-B544-49C3-9029-AD41296E692C",
+        "name": "Michael Scott (The Office)",
+        "photo": "https://static.wikia.nocookie.net/theoffice/images/b/be/Character_-_MichaelScott.PNG/revision/latest/top-crop/width/360/height/360?cb=20200413224550"
+    },
+    {
+        "id": "2C2352DD-2357-4B9E-99AD-4E7323664449",
+        "name": "Milton Cunha",
+        "photo": "https://yt3.ggpht.com/ytc/AMLnZu-QuZehD3P8ypCjoe4nvultRgWk7ObUJSnaJLF55Q=s900-c-k-c0x00ffffff-no-rj"
+    },
+    {
+        "id": "AD02C7FB-8F0D-48F1-AC4B-962858DE678B",
+        "name": "William Bonner",
+        "photo": "https://p2.trrsf.com/image/fget/cf/1200/1200/middle/images.terra.com/2022/10/01/1728925116-0462f935-jornal-nacional-william-bonner-negativo-covid-19.jpeg"
+    },
+    {
+        "id": "FE2D6CB6-81F2-4A6B-B312-44E8AD9C8C4B",
+        "name": "Valentina Bandeira",
+        "photo": "https://s2.glbimg.com/iOP80CJEm0uoH46dm70PqzMnK_o=/0x0:1080x1080/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_e84042ef78cb4708aeebdf1c68c6cbd6/internal_photos/bs/2021/E/f/rmXCePSOmb7RNFmRnwXQ/valentina-bandeira-e-seus-livros.jpg"
+    },
+    {
+        "id": "A32CFB2A-8DF2-41AC-88A1-8AF4DF7DEF82",
+        "name": "Rita von Hunty (Guilherme Terreri)",
+        "photo": "https://conteudo.imguol.com.br/c/entretenimento/65/2021/08/30/rita-von-hunty-transforma-o-youtube-em-sala-de-aula-1630361549320_v2_450x450.jpg"
+    },
+    {
+        "id": "A340D90D-552C-4478-ABE6-E90B536351B6",
+        "name": "Charlie e Lola"
+    },
+    {
+        "id": "BBD5570D-18FF-4099-81C8-AD6CFCA64B26",
+        "name": "Gen. Augusto Heleno"
+    },
+    {
+        "id": "DDEBD7C4-9CC5-4DD6-B207-58A27C37A8E0",
+        "name": "Craque Daniel (Falha de Cobertura)"
+    },
+    {
+        "id": "B3AC795E-4FAB-45D4-A772-1CB4A51A75E3",
+        "name": "Darcy Ribeiro",
+        "photo": "https://memorial.org.br/wp-content/uploads/2017/02/Darcy-Ribeiro-1.jpg"
+    },
+    {
+        "id": "98DE7FDA-4130-491E-BD06-76D835FE8792",
+        "name": "Dona Irene",
+        "photo": "https://criadoresid.com/wp-content/uploads/2016/10/criadoresid_dona-irene_keke-isso-na-tv_youtuber.jpg"
+    },
+    {
+        "id": "1FE5ED6C-01FA-4429-BE84-00275EFD6E2A",
+        "name": "Luiz Felipe D'Avila"
+    },
+    {
+        "id": "CDDA95B6-F4D3-4783-85B1-DDE7EB3127FD",
+        "name": "Espectadora do Falso Patati Patatá",
+        "photo": "https://brasil.estadao.com.br/blogs/crop/1200x1200/radar-pop/wp-content/uploads/sites/77/2011/12/patati.jpg"
+    },
+    {
+        "id": "CA83F4BE-1466-4AD2-9BDF-D96B515B4681",
+        "name": "Igor Guimaraes e Luiz Felipe D'Avila"
+    },
+    {
+        "id": "AF4BE658-13CF-4468-8AB2-C03B73A2EE34",
+        "name": "Farid Germano Filho"
+    },
+    {
+        "id": "E52173CF-0E21-4691-87CE-0884992876F2",
+        "name": "Joaquim Barbosa"
     }
 ]

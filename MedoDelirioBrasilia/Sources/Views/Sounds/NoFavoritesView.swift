@@ -1,10 +1,17 @@
+//
+//  NoFavoritesView.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 26/05/22.
+//
+
 import SwiftUI
 
 struct NoFavoritesView: View {
 
     var body: some View {
         VStack(alignment: .center, spacing: 20) {
-            Image(systemName: "star.fill")
+            Image(systemName: "star")
                 .font(.system(size: 70))
                 .foregroundColor(.red)
                 .frame(width: 100)
@@ -14,8 +21,9 @@ struct NoFavoritesView: View {
                 .bold()
                 .multilineTextAlignment(.center)
             
-            Text("Adicione um som aos favoritos segurando nele por 2 segundos e então escolhendo Adicionar aos Favoritos.")
+            Text("Para adicionar um som aos Favoritos, volte para os sons, segure em um deles e escolha Adicionar aos Favoritos.")
                 .multilineTextAlignment(.center)
+                .padding(.horizontal)
         }
     }
 

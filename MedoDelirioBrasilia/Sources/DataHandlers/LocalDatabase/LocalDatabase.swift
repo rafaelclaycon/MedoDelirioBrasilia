@@ -51,13 +51,22 @@ extension LocalDatabase {
 
     static func databaseFilepath() -> String {
         let path = NSSearchPathForDirectoriesInDomains(
-            .cachesDirectory, .userDomainMask, true
+            .documentDirectory, .userDomainMask, true
         ).first!
         return "\(path)/medo_db.sqlite3"
     }
     
     static func migrations() -> [Migration] {
-        return [InitialMigration(), AddNetworkCallLogTable(), AddUserFolderTables()]
+        return [InitialMigration(),
+                AddNetworkCallLogTable(),
+                AddUserFolderTables(),
+                RemoveFavoriteLogTable(),
+                AddAudienceSharingStatisticTable(),
+                AddRankingTypeToAudienceSharingStatisticTable()]
+    }
+    
+    var needsMigration: Bool {
+        return migrationManager.needsMigration()
     }
 
 }
@@ -83,5 +92,6 @@ enum LocalDatabaseError: Error {
     case favoriteNotFound
     case folderNotFound
     case folderContentNotFound
+    case internalError
 
 }
