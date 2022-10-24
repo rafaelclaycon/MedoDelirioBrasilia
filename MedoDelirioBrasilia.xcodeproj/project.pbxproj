@@ -3027,7 +3027,6 @@
 			isa = PBXGroup;
 			children = (
 				D958B1B12839534D0010F133 /* SettingsView.swift */,
-				D9C1372A29063D7D003E4ABF /* PrivacySettingsView.swift */,
 				D970162D28CE797B0003AA00 /* Sub-Settings */,
 				D970162F28CE7A0F0003AA00 /* Acknowledgements */,
 				D970162E28CE79C30003AA00 /* Diagnostics */,
@@ -3165,8 +3164,7 @@
 				D9ABDDB1287411D9007B25EA /* Help */,
 				D970163128CE7A6E0003AA00 /* Notifications */,
 				D9ECD81328B3C45D003C033A /* AlternateAppIcons */,
-				D9C1372429063A2A003E4ABF /* Trends */,
-				D9C1372529063A30003E4ABF /* FolderResearch */,
+				D9C1372C29064153003E4ABF /* Privacy */,
 			);
 			path = "Sub-Settings";
 			sourceTree = "<group>";
@@ -3421,6 +3419,16 @@
 				D9C1372629063A78003E4ABF /* FolderResearchSettingsView.swift */,
 			);
 			path = FolderResearch;
+			sourceTree = "<group>";
+		};
+		D9C1372C29064153003E4ABF /* Privacy */ = {
+			isa = PBXGroup;
+			children = (
+				D9C1372A29063D7D003E4ABF /* PrivacySettingsView.swift */,
+				D9C1372429063A2A003E4ABF /* Trends */,
+				D9C1372529063A30003E4ABF /* FolderResearch */,
+			);
+			path = Privacy;
 			sourceTree = "<group>";
 		};
 		D9DB6F8728CD790100E24BDE /* WidgetSupport */ = {
