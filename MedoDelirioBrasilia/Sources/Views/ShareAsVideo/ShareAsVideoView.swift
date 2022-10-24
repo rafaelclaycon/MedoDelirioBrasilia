@@ -34,6 +34,7 @@ struct ShareAsVideoView: View {
                         .pickerStyle(SegmentedPickerStyle())
                         .padding(.horizontal, 25)
                         .padding(.bottom, 10)
+                        .disabled(viewModel.isShowingProcessingView)
                         .onChange(of: viewModel.selectedSocialNetwork) { newValue in
                             tipText = newValue == IntendedVideoDestination.twitter.rawValue ? twitterTip : instagramTip
                             viewModel.reloadImage()
@@ -51,6 +52,7 @@ struct ShareAsVideoView: View {
                                 }
                                 .padding(.horizontal, 25)
                                 .padding(.top)
+                                .disabled(viewModel.isShowingProcessingView)
                         }
                         
                         if viewModel.selectedSocialNetwork == IntendedVideoDestination.twitter.rawValue && showTwitterTip {
@@ -165,6 +167,7 @@ struct ShareAsVideoView: View {
         .controlSize(.large)
         .buttonStyle(.bordered)
         .buttonBorderShape(.capsule)
+        .disabled(viewModel.isShowingProcessingView)
     }
     
     @ViewBuilder func getShareAsVideoButton(withWidth buttonInternalPadding: CGFloat = 0) -> some View {
@@ -195,6 +198,7 @@ struct ShareAsVideoView: View {
         .controlSize(.large)
         .buttonStyle(.borderedProminent)
         .buttonBorderShape(.capsule)
+        .disabled(viewModel.isShowingProcessingView)
     }
 
 }
