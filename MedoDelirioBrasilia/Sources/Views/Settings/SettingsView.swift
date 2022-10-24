@@ -48,8 +48,8 @@ struct SettingsView: View {
                     }
                 }
                 
-                NavigationLink(destination: TrendsSettingsView()) {
-                    Text("Tendências")
+                NavigationLink(destination: PrivacySettingsView()) {
+                    Text("Privacidade")
                 }
             }
             

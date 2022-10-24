@@ -918,6 +918,8 @@
 		D9BF90972842D3CB00BDDD7D /* NoSoundsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF90962842D3CB00BDDD7D /* NoSoundsView.swift */; };
 		D9BF90BE2842EAED00BDDD7D /* TopChartCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF90BD2842EAED00BDDD7D /* TopChartCellView.swift */; };
 		D9BFD8CC29059B4800E1AF6F /* FoldersAreTagsBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BFD8CB29059B4800E1AF6F /* FoldersAreTagsBannerView.swift */; };
+		D9C1372729063A78003E4ABF /* FolderResearchSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C1372629063A78003E4ABF /* FolderResearchSettingsView.swift */; };
+		D9C1372B29063D7D003E4ABF /* PrivacySettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C1372A29063D7D003E4ABF /* PrivacySettingsView.swift */; };
 		D9C35D23288713990065F3E7 /* HotWeatherAdBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C35D22288713990065F3E7 /* HotWeatherAdBannerView.swift */; };
 		D9C5EC3128C7DEEA0099EA86 /* Jair Bolsonaro - O que nos queremos paz tranquilidade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C5EC3028C7DEE90099EA86 /* Jair Bolsonaro - O que nos queremos paz tranquilidade.mp3 */; };
 		D9C5EC3328C7F3150099EA86 /* Fora Genocida.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C5EC3228C7F3150099EA86 /* Fora Genocida.mp3 */; };
@@ -1947,6 +1949,8 @@
 		D9BF90962842D3CB00BDDD7D /* NoSoundsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSoundsView.swift; sourceTree = "<group>"; };
 		D9BF90BD2842EAED00BDDD7D /* TopChartCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartCellView.swift; sourceTree = "<group>"; };
 		D9BFD8CB29059B4800E1AF6F /* FoldersAreTagsBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoldersAreTagsBannerView.swift; sourceTree = "<group>"; };
+		D9C1372629063A78003E4ABF /* FolderResearchSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderResearchSettingsView.swift; sourceTree = "<group>"; };
+		D9C1372A29063D7D003E4ABF /* PrivacySettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacySettingsView.swift; sourceTree = "<group>"; };
 		D9C35D22288713990065F3E7 /* HotWeatherAdBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotWeatherAdBannerView.swift; sourceTree = "<group>"; };
 		D9C5EC3028C7DEE90099EA86 /* Jair Bolsonaro - O que nos queremos paz tranquilidade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - O que nos queremos paz tranquilidade.mp3"; sourceTree = "<group>"; };
 		D9C5EC3228C7F3150099EA86 /* Fora Genocida.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fora Genocida.mp3"; sourceTree = "<group>"; };
@@ -3023,6 +3027,7 @@
 			isa = PBXGroup;
 			children = (
 				D958B1B12839534D0010F133 /* SettingsView.swift */,
+				D9C1372A29063D7D003E4ABF /* PrivacySettingsView.swift */,
 				D970162D28CE797B0003AA00 /* Sub-Settings */,
 				D970162F28CE7A0F0003AA00 /* Acknowledgements */,
 				D970162E28CE79C30003AA00 /* Diagnostics */,
@@ -3159,8 +3164,9 @@
 			children = (
 				D9ABDDB1287411D9007B25EA /* Help */,
 				D970163128CE7A6E0003AA00 /* Notifications */,
-				D9ECD81328B3C45D003C033A /* AlternateIcons */,
-				D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */,
+				D9ECD81328B3C45D003C033A /* AlternateAppIcons */,
+				D9C1372429063A2A003E4ABF /* Trends */,
+				D9C1372529063A30003E4ABF /* FolderResearch */,
 			);
 			path = "Sub-Settings";
 			sourceTree = "<group>";
@@ -3401,6 +3407,22 @@
 			path = Trends;
 			sourceTree = "<group>";
 		};
+		D9C1372429063A2A003E4ABF /* Trends */ = {
+			isa = PBXGroup;
+			children = (
+				D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */,
+			);
+			path = Trends;
+			sourceTree = "<group>";
+		};
+		D9C1372529063A30003E4ABF /* FolderResearch */ = {
+			isa = PBXGroup;
+			children = (
+				D9C1372629063A78003E4ABF /* FolderResearchSettingsView.swift */,
+			);
+			path = FolderResearch;
+			sourceTree = "<group>";
+		};
 		D9DB6F8728CD790100E24BDE /* WidgetSupport */ = {
 			isa = PBXGroup;
 			children = (
@@ -3468,14 +3490,14 @@
 			path = Collections;
 			sourceTree = "<group>";
 		};
-		D9ECD81328B3C45D003C033A /* AlternateIcons */ = {
+		D9ECD81328B3C45D003C033A /* AlternateAppIcons */ = {
 			isa = PBXGroup;
 			children = (
 				D957048228AFCC93008DEF8C /* ChangeAppIconView.swift */,
 				D9ECD81428B3C470003C033A /* IconImage.swift */,
 				D9BCAC2C28B598FA0098FE15 /* AppIconCell.swift */,
 			);
-			path = AlternateIcons;
+			path = AlternateAppIcons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -4489,6 +4511,7 @@
 				D960AF292845C82E00ADF1F6 /* AppStoreReviewSteward.swift in Sources */,
 				D95DB0F6288248A300D4FEDF /* SidebarView.swift in Sources */,
 				D9943F2C28643317002C6B97 /* FolderDetailViewViewModel.swift in Sources */,
+				D9C1372B29063D7D003E4ABF /* PrivacySettingsView.swift in Sources */,
 				D92C0CA82840162F009CF19A /* ContentSortOption.swift in Sources */,
 				D958B1B028394EA40010F133 /* TrendsView.swift in Sources */,
 				D911070B28627216000B6F8F /* NotificationsSettingsView.swift in Sources */,
@@ -4540,6 +4563,7 @@
 				D961D01828372B1800EFEDEB /* AudioPlayer.swift in Sources */,
 				D916536428AD7FF7007F141D /* VideoMaker.swift in Sources */,
 				D95F363A28AD386D00743026 /* ShareAsVideoView.swift in Sources */,
+				D9C1372729063A78003E4ABF /* FolderResearchSettingsView.swift in Sources */,
 				D98EC5DE282596C300340BE5 /* SoundCell.swift in Sources */,
 				D973076C28AC49B100FBB3B8 /* DiagnosticsViewViewModel.swift in Sources */,
 				D9EB18A52857CDFF00A2F8A8 /* CollectionsView.swift in Sources */,
