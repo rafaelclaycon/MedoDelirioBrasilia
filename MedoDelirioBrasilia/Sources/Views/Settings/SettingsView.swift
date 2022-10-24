@@ -66,7 +66,13 @@ struct SettingsView: View {
                 }
                 
                 NavigationLink(destination: PrivacySettingsView()) {
-                    Text("Privacidade")
+                    Label {
+                        Text("Privacidade")
+                    } icon: {
+                        Image(systemName: "hand.raised.fill")
+                            .foregroundColor(.blue)
+                    }
+
                 }
             }
             
