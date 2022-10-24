@@ -3317,19 +3317,12 @@
 		D9943F2428641FB7002C6B97 /* Folders */ = {
 			isa = PBXGroup;
 			children = (
-				D9D3D4902887495B00C42FDE /* FolderList.swift */,
-				D9D3D492288750C400C42FDE /* FolderListViewModel.swift */,
-				D946117F2861480A00C4FB7E /* FolderInfoEditingView.swift */,
-				D958BC742869000A000B2EDA /* FolderInfoEditingViewViewModel.swift */,
-				D9943F162863DAE1002C6B97 /* FolderDetailView.swift */,
-				D9943F2B28643317002C6B97 /* FolderDetailViewViewModel.swift */,
-				D946116D28611F1000C4FB7E /* FolderCell.swift */,
+				D9C1372D29064446003E4ABF /* FolderList */,
+				D9C1372E29064474003E4ABF /* FolderDetail */,
+				D9C1372F2906448C003E4ABF /* EditFolderInfo */,
+				D9C13730290644B9003E4ABF /* iPad */,
 				D9943F2528641FEF002C6B97 /* AddToFolderView.swift */,
 				D9943F2728642200002C6B97 /* AddToFolderViewViewModel.swift */,
-				D98B291C28691C5C008A78AE /* ColorSelectionCell.swift */,
-				D93CCB76286A802D0002CF81 /* EmptyFolderView.swift */,
-				D97D76F82885B1BD005210D9 /* SidebarFolderIcon.swift */,
-				D949181128860ABC0079F545 /* AllFoldersView.swift */,
 			);
 			path = Folders;
 			sourceTree = "<group>";
@@ -3429,6 +3422,45 @@
 				D9C1372529063A30003E4ABF /* FolderResearch */,
 			);
 			path = Privacy;
+			sourceTree = "<group>";
+		};
+		D9C1372D29064446003E4ABF /* FolderList */ = {
+			isa = PBXGroup;
+			children = (
+				D9D3D4902887495B00C42FDE /* FolderList.swift */,
+				D9D3D492288750C400C42FDE /* FolderListViewModel.swift */,
+				D946116D28611F1000C4FB7E /* FolderCell.swift */,
+				D949181128860ABC0079F545 /* AllFoldersView.swift */,
+			);
+			path = FolderList;
+			sourceTree = "<group>";
+		};
+		D9C1372E29064474003E4ABF /* FolderDetail */ = {
+			isa = PBXGroup;
+			children = (
+				D93CCB76286A802D0002CF81 /* EmptyFolderView.swift */,
+				D9943F162863DAE1002C6B97 /* FolderDetailView.swift */,
+				D9943F2B28643317002C6B97 /* FolderDetailViewViewModel.swift */,
+			);
+			path = FolderDetail;
+			sourceTree = "<group>";
+		};
+		D9C1372F2906448C003E4ABF /* EditFolderInfo */ = {
+			isa = PBXGroup;
+			children = (
+				D98B291C28691C5C008A78AE /* ColorSelectionCell.swift */,
+				D946117F2861480A00C4FB7E /* FolderInfoEditingView.swift */,
+				D958BC742869000A000B2EDA /* FolderInfoEditingViewViewModel.swift */,
+			);
+			path = EditFolderInfo;
+			sourceTree = "<group>";
+		};
+		D9C13730290644B9003E4ABF /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				D97D76F82885B1BD005210D9 /* SidebarFolderIcon.swift */,
+			);
+			path = iPad;
 			sourceTree = "<group>";
 		};
 		D9DB6F8728CD790100E24BDE /* WidgetSupport */ = {
