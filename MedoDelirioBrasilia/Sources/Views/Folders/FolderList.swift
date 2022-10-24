@@ -34,6 +34,9 @@ struct FolderList: View {
     var body: some View {
         VStack {
             if viewModel.hasFoldersToDisplay {
+                JoinFolderResearchBannerView(displayMe: .constant(true))
+                    .padding(.bottom)
+                
                 LazyVGrid(columns: columns, spacing: 14) {
                     ForEach(viewModel.folders, id: \.editingIdentifyingId) { folder in
                         NavigationLink {

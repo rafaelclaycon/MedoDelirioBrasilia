@@ -3,56 +3,22 @@ import SwiftUI
 struct JoinFolderResearchBannerView: View {
 
     @Binding var displayMe: Bool
+    @Environment(\.colorScheme) var colorScheme
     
     var roundedRectangleHeight: CGFloat {
-        switch UIScreen.main.bounds.width {
-        case 320:
-            return 224
-        case 375:
-            return 184
-        case 390:
-            return 186
-        default:
-            return 170
+        guard UIDevice.current.userInterfaceIdiom == .phone else {
+            return 140
         }
-    }
-    
-    var buttonSpacing: CGFloat {
+        
         switch UIScreen.main.bounds.width {
         case 320:
-            return 15
-        case 375:
-            return 10
-        case 390:
-            return 15
+            return 240
+        case 428:
+            return 180
+        case 430:
+            return 180
         default:
-            return 25
-        }
-    }
-    
-    var buttonFont: Font {
-        switch UIScreen.main.bounds.width {
-        case 320:
-            return .callout
-        case 375:
-            return .body
-        case 390:
-            return .body
-        default:
-            return .body
-        }
-    }
-    
-    var noThanksButtonText: String {
-        switch UIScreen.main.bounds.width {
-        case 320:
-            return "Não"
-        case 375:
-            return "Não, obrigado"
-        case 390:
-            return "Não, obrigado"
-        default:
-            return "Não, obrigado"
+            return 200
         }
     }
     
@@ -60,7 +26,25 @@ struct JoinFolderResearchBannerView: View {
         ZStack {
             RoundedRectangle(cornerRadius: 20, style: .continuous)
                 .fill(Color.pastelBabyBlue)
+                .opacity(colorScheme == .dark ? 1.0 : 0.35)
                 .frame(height: roundedRectangleHeight)
+            
+            VStack {
+                HStack {
+                    Spacer()
+                    Image(systemName: "xmark")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 15)
+                        .foregroundColor(.blue)
+                        .padding(.top)
+                        .padding(.trailing)
+                        .onTapGesture {
+                            //didTapClose = true
+                        }
+                }
+                Spacer()
+            }
             
             HStack(spacing: 20) {
                 VStack {
@@ -73,36 +57,29 @@ struct JoinFolderResearchBannerView: View {
                     
                     Spacer()
                 }
+                .frame(height: roundedRectangleHeight)
                 
                 VStack(alignment: .leading, spacing: 7) {
-                    Text("Participar da Pesquisa?")
+                    Text("Participe da Pesquisa")
                         .font(.headline)
                         .foregroundColor(.mutedNavyBlue)
                     
-                    Text("Ao enviar o nome das suas pastas anonimamente, você nos ajuda a entender o uso da funcionalidade para que possamos aprimorá-la no futuro.")
+                    Text("Ao enviar informações das suas pastas anonimamente, você me ajuda a entender o uso dessa funcionalidade para que eu possa melhorá-la no futuro.")
                         .font(.callout)
                         .foregroundColor(.mutedNavyBlue)
-                        .opacity(0.75)
+                        .opacity(colorScheme == .dark ? 1.0 : 0.75)
                     
-                    HStack(spacing: buttonSpacing) {
-                        Button("Participar") {
-                            print("Participar")
-                        }
-                        .font(buttonFont)
-                        .tint(.blue)
-                        .controlSize(.regular)
-                        .buttonStyle(.bordered)
-                        .buttonBorderShape(.roundedRectangle)
-                        
-                        Button(noThanksButtonText) {
-                            print("Não")
-                        }
-                        .font(buttonFont)
-                        .tint(.blue)
-                        .controlSize(.regular)
-                        .buttonStyle(.bordered)
-                        .buttonBorderShape(.roundedRectangle)
+                    Button {
+                        print("Participar")
+                    } label: {
+                        Text("Participar")
+                            .padding(.horizontal, 20)
                     }
+                    .font(.body)
+                    .tint(colorScheme == .dark ? .mutedNavyBlue : .blue)
+                    .controlSize(.regular)
+                    .buttonStyle(.bordered)
+                    .buttonBorderShape(.roundedRectangle)
                     .padding(.top, 2)
                 }
                 
@@ -118,6 +95,7 @@ struct JoinFolderResearchBannerView_Previews: PreviewProvider {
 
     static var previews: some View {
         JoinFolderResearchBannerView(displayMe: .constant(true))
+            .padding(.horizontal)
     }
 
 }
