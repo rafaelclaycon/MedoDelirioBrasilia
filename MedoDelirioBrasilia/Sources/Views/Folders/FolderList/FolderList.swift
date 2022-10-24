@@ -34,7 +34,7 @@ struct FolderList: View {
     var body: some View {
         VStack {
             if viewModel.hasFoldersToDisplay {
-                JoinFolderResearchBannerView(displayMe: .constant(true))
+                JoinFolderResearchBannerView(viewModel: JoinFolderResearchBannerViewViewModel(state: .displayingRequestToJoin), displayMe: .constant(true))
                     .padding(.bottom)
                 
                 LazyVGrid(columns: columns, spacing: 14) {

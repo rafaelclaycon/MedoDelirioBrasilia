@@ -183,6 +183,10 @@
 		D938132F287E12B3009EE24F /* NotificationAide.swift in Sources */ = {isa = PBXBuildFile; fileRef = D938132E287E12B3009EE24F /* NotificationAide.swift */; };
 		D9388F9E288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Bonsai de pica.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9388F9C288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Bonsai de pica.mp3 */; };
 		D9388F9F288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Eduardo Bolsonaro, aquele bonsai de pica.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9388F9D288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Eduardo Bolsonaro, aquele bonsai de pica.mp3 */; };
+		D93A02982906DE8C00A85FE2 /* UserFolderLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93A02972906DE8C00A85FE2 /* UserFolderLog.swift */; };
+		D93A029A2906DEB100A85FE2 /* UserFolderContentLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93A02992906DEB100A85FE2 /* UserFolderContentLog.swift */; };
+		D93A029C2906E8E200A85FE2 /* NetworkRabbit+UserFolderLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93A029B2906E8E200A85FE2 /* NetworkRabbit+UserFolderLog.swift */; };
+		D93A029E2906E9F100A85FE2 /* JoinFolderResearchBannerViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93A029D2906E9F100A85FE2 /* JoinFolderResearchBannerViewViewModel.swift */; };
 		D93AC08B28414EEE00E38A63 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AC08A28414EEE00E38A63 /* Logger.swift */; };
 		D93CCB77286A802D0002CF81 /* EmptyFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93CCB76286A802D0002CF81 /* EmptyFolderView.swift */; };
 		D93CCB79286A8A220002CF81 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93CCB78286A8A220002CF81 /* ToastView.swift */; };
@@ -882,7 +886,7 @@
 		D9A32DC7285ACE880038A370 /* PodiumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A32DC6285ACE880038A370 /* PodiumTests.swift */; };
 		D9A3984928FDEE0D00039B7B /* AddRankingTypeToAudienceSharingStatisticTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A3984828FDEE0D00039B7B /* AddRankingTypeToAudienceSharingStatisticTable.swift */; };
 		D9A3984B28FF4AA300039B7B /* Samira Close - 22 so se for de pica.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9A3984A28FF4AA300039B7B /* Samira Close - 22 so se for de pica.mp3 */; };
-		D9A3AB6B28F03C970064CB7A /* TrendsViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A3AB6A28F03C970064CB7A /* TrendsViewState.swift */; };
+		D9A3AB6B28F03C970064CB7A /* ViewStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A3AB6A28F03C970064CB7A /* ViewStates.swift */; };
 		D9A3AB6D28F062580064CB7A /* TimeKeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A3AB6C28F062580064CB7A /* TimeKeeper.swift */; };
 		D9A3AB6F28F063FF0064CB7A /* TimeKeeperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A3AB6E28F063FF0064CB7A /* TimeKeeperTests.swift */; };
 		D9A8AB212853EB5500B5A94B /* InitialMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A8AB202853EB5500B5A94B /* InitialMigration.swift */; };
@@ -1211,6 +1215,10 @@
 		D938132E287E12B3009EE24F /* NotificationAide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAide.swift; sourceTree = "<group>"; };
 		D9388F9C288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Bonsai de pica.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano Botafogo imitando o Frota - Bonsai de pica.mp3"; sourceTree = "<group>"; };
 		D9388F9D288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Eduardo Bolsonaro, aquele bonsai de pica.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano Botafogo imitando o Frota - Eduardo Bolsonaro, aquele bonsai de pica.mp3"; sourceTree = "<group>"; };
+		D93A02972906DE8C00A85FE2 /* UserFolderLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFolderLog.swift; sourceTree = "<group>"; };
+		D93A02992906DEB100A85FE2 /* UserFolderContentLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFolderContentLog.swift; sourceTree = "<group>"; };
+		D93A029B2906E8E200A85FE2 /* NetworkRabbit+UserFolderLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+UserFolderLog.swift"; sourceTree = "<group>"; };
+		D93A029D2906E9F100A85FE2 /* JoinFolderResearchBannerViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinFolderResearchBannerViewViewModel.swift; sourceTree = "<group>"; };
 		D93AC08A28414EEE00E38A63 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		D93CCB76286A802D0002CF81 /* EmptyFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyFolderView.swift; sourceTree = "<group>"; };
 		D93CCB78286A8A220002CF81 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
@@ -1913,7 +1921,7 @@
 		D9A32DC6285ACE880038A370 /* PodiumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodiumTests.swift; sourceTree = "<group>"; };
 		D9A3984828FDEE0D00039B7B /* AddRankingTypeToAudienceSharingStatisticTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRankingTypeToAudienceSharingStatisticTable.swift; sourceTree = "<group>"; };
 		D9A3984A28FF4AA300039B7B /* Samira Close - 22 so se for de pica.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Samira Close - 22 so se for de pica.mp3"; sourceTree = "<group>"; };
-		D9A3AB6A28F03C970064CB7A /* TrendsViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsViewState.swift; sourceTree = "<group>"; };
+		D9A3AB6A28F03C970064CB7A /* ViewStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStates.swift; sourceTree = "<group>"; };
 		D9A3AB6C28F062580064CB7A /* TimeKeeper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeKeeper.swift; sourceTree = "<group>"; };
 		D9A3AB6E28F063FF0064CB7A /* TimeKeeperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeKeeperTests.swift; sourceTree = "<group>"; };
 		D9A8AB202853EB5500B5A94B /* InitialMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialMigration.swift; sourceTree = "<group>"; };
@@ -2984,6 +2992,7 @@
 				D9BFD8CB29059B4800E1AF6F /* FoldersAreTagsBannerView.swift */,
 				D976FF3728674BAC00998E1B /* FoldersBannerView.swift */,
 				D94BA9EC2879EC7F001BD09C /* JoinFolderResearchBannerView.swift */,
+				D93A029D2906E9F100A85FE2 /* JoinFolderResearchBannerViewViewModel.swift */,
 			);
 			path = Banners;
 			sourceTree = "<group>";
@@ -3226,7 +3235,7 @@
 			children = (
 				D95DB0F72882491A00D4FEDF /* ScreenAndTabs.swift */,
 				D97B2DD828E5EA0500C3B50B /* DeleteFolderViewAid.swift */,
-				D9A3AB6A28F03C970064CB7A /* TrendsViewState.swift */,
+				D9A3AB6A28F03C970064CB7A /* ViewStates.swift */,
 			);
 			path = ViewAid;
 			sourceTree = "<group>";
@@ -3265,6 +3274,7 @@
 			children = (
 				D98DBD34284919B1008544F8 /* NetworkRabbit.swift */,
 				D9DCC5D2287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift */,
+				D93A029B2906E8E200A85FE2 /* NetworkRabbit+UserFolderLog.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -3365,6 +3375,8 @@
 			children = (
 				D92C0CAB28406EA5009CF19A /* UserShareLog.swift */,
 				D9A8AB2928544FAE00B5A94B /* NetworkCallLog.swift */,
+				D93A02972906DE8C00A85FE2 /* UserFolderLog.swift */,
+				D93A02992906DEB100A85FE2 /* UserFolderContentLog.swift */,
 			);
 			path = Logs;
 			sourceTree = "<group>";
@@ -4544,7 +4556,7 @@
 				D976FF3828674BAC00998E1B /* FoldersBannerView.swift in Sources */,
 				D97D76FB2885B794005210D9 /* EmailAppPickerView.swift in Sources */,
 				D9A8AB2A28544FAE00B5A94B /* NetworkCallLog.swift in Sources */,
-				D9A3AB6B28F03C970064CB7A /* TrendsViewState.swift in Sources */,
+				D9A3AB6B28F03C970064CB7A /* ViewStates.swift in Sources */,
 				D99B9DCA2848148600897930 /* ServerStatsAndLogs.swift in Sources */,
 				D9758C3828616E650094D388 /* FolderColor.swift in Sources */,
 				D9DCC5D72875D7E5008DD4A3 /* NotificationSymbolPlusText.swift in Sources */,
@@ -4553,6 +4565,7 @@
 				D9943F2C28643317002C6B97 /* FolderDetailViewViewModel.swift in Sources */,
 				D9C1372B29063D7D003E4ABF /* PrivacySettingsView.swift in Sources */,
 				D92C0CA82840162F009CF19A /* ContentSortOption.swift in Sources */,
+				D93A029E2906E9F100A85FE2 /* JoinFolderResearchBannerViewViewModel.swift in Sources */,
 				D958B1B028394EA40010F133 /* TrendsView.swift in Sources */,
 				D911070B28627216000B6F8F /* NotificationsSettingsView.swift in Sources */,
 				D9BCAC2D28B598FB0098FE15 /* AppIconCell.swift in Sources */,
@@ -4566,6 +4579,7 @@
 				D92E7072283C5D990035826C /* SongsViewViewModel.swift in Sources */,
 				D92C0CAC28406EA5009CF19A /* UserShareLog.swift in Sources */,
 				D961D016283722AB00EFEDEB /* Color+CustomColors.swift in Sources */,
+				D93A029A2906DEB100A85FE2 /* UserFolderContentLog.swift in Sources */,
 				D93AC08B28414EEE00E38A63 /* Logger.swift in Sources */,
 				D957509628445EC30094AEA6 /* TrendsViewViewModel.swift in Sources */,
 				D9B763282845B5E600CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift in Sources */,
@@ -4587,6 +4601,7 @@
 				D9A3984928FDEE0D00039B7B /* AddRankingTypeToAudienceSharingStatisticTable.swift in Sources */,
 				D967E2BA290196F900B21C11 /* WallE.swift in Sources */,
 				D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */,
+				D93A02982906DE8C00A85FE2 /* UserFolderLog.swift in Sources */,
 				D93CCB77286A802D0002CF81 /* EmptyFolderView.swift in Sources */,
 				D9BFD8CC29059B4800E1AF6F /* FoldersAreTagsBannerView.swift in Sources */,
 				D94611802861480A00C4FB7E /* FolderInfoEditingView.swift in Sources */,
@@ -4627,6 +4642,7 @@
 				D9943F1E286419C2002C6B97 /* LocalDatabase+TopChart.swift in Sources */,
 				D9A8AB212853EB5500B5A94B /* InitialMigration.swift in Sources */,
 				D946117E28613D3200C4FB7E /* CollectionDetailView.swift in Sources */,
+				D93A029C2906E8E200A85FE2 /* NetworkRabbit+UserFolderLog.swift in Sources */,
 				D92CAA4128593B1700D6C1EA /* NetworkLogCell.swift in Sources */,
 				D9BB1E7728B3200700C5FFAA /* AppIcon.swift in Sources */,
 				D9B24E2228C6A68800D76F7D /* NumberBadgeView.swift in Sources */,

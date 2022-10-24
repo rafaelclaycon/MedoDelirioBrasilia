@@ -81,7 +81,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         if AppPersistentMemory.getShouldRetrySendingDevicePushToken() {
             let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
             let token = tokenParts.joined()
-            print("Device Token: \(token)")
+            //print("Device Token: \(token)")
 
             let device = PushDevice(installId: UIDevice.identifiderForVendor, pushToken: token)
             networkRabbit.post(pushDevice: device) { success, error in
