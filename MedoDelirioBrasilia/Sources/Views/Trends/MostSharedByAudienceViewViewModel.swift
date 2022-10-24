@@ -89,7 +89,7 @@ class MostSharedByAudienceViewViewModel: ObservableObject {
                 }
                 
                 // Delay needed so the lists actually have something in them.
-                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
                     switch self.timeIntervalOption {
                     case .lastWeek:
                         if self.lastWeekRanking != nil, self.lastWeekRanking?.isEmpty == false {
