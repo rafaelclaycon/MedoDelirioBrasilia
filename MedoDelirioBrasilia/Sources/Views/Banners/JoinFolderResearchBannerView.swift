@@ -28,6 +28,20 @@ struct JoinFolderResearchBannerView: View {
         }
     }
     
+    var buttonInternalPadding: CGFloat {
+        guard UIDevice.current.userInterfaceIdiom == .phone else {
+            return 20
+        }
+        switch UIScreen.main.bounds.width {
+        case 320:
+            return 0
+        case 375:
+            return 10
+        default:
+            return 20
+        }
+    }
+    
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20, style: .continuous)
@@ -77,7 +91,7 @@ struct JoinFolderResearchBannerView: View {
                         viewModel.sendLogs()
                     } label: {
                         Text("Participar")
-                            .padding(.horizontal, 20)
+                            .padding(.horizontal, buttonInternalPadding)
                     }
                     .font(.body)
                     .tint(colorScheme == .dark ? .mutedNavyBlue : .blue)
@@ -90,7 +104,7 @@ struct JoinFolderResearchBannerView: View {
                         displayMe = false
                     } label: {
                         Text("Não")
-                            .padding(.horizontal, 20)
+                            .padding(.horizontal, buttonInternalPadding)
                     }
                     .font(.body)
                     .tint(colorScheme == .dark ? .mutedNavyBlue : .blue)
