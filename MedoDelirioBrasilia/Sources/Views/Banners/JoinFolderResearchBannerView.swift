@@ -6,7 +6,7 @@ struct JoinFolderResearchBannerView: View {
     @Binding var displayMe: Bool
     @Environment(\.colorScheme) var colorScheme
     
-    var roundedRectangleHeight: CGFloat {
+    var backgroundHeight: CGFloat {
         guard UIDevice.current.userInterfaceIdiom == .phone else {
             return 140
         }
@@ -35,7 +35,7 @@ struct JoinFolderResearchBannerView: View {
             RoundedRectangle(cornerRadius: 20, style: .continuous)
                 .fill(viewModel.state == .displayingRequestToJoin ? Color.pastelBabyBlue : Color.gray)
                 .opacity(backgroundOpacity)
-                .frame(height: roundedRectangleHeight)
+                .frame(height: backgroundHeight)
             
             switch viewModel.state {
             case .displayingRequestToJoin:
@@ -62,7 +62,7 @@ struct JoinFolderResearchBannerView: View {
                 
                 Spacer()
             }
-            .frame(height: roundedRectangleHeight)
+            .frame(height: backgroundHeight)
             
             VStack(alignment: .leading, spacing: 7) {
                 Text("Participe da Pesquisa")
@@ -89,6 +89,7 @@ struct JoinFolderResearchBannerView: View {
                     
                     Button {
                         AppPersistentMemory.setHasDismissedJoinFolderResearchBanner(to: true)
+                        displayMe = false
                     } label: {
                         Text("Não")
                             .padding(.horizontal, 20)
@@ -124,6 +125,7 @@ struct JoinFolderResearchBannerView: View {
                     Spacer()
                     Button {
                         AppPersistentMemory.setHasDismissedJoinFolderResearchBanner(to: true)
+                        displayMe = false
                     } label: {
                         Image(systemName: "xmark")
                             .resizable()
@@ -136,7 +138,7 @@ struct JoinFolderResearchBannerView: View {
                 }
                 Spacer()
             }
-            .frame(height: roundedRectangleHeight)
+            .frame(height: backgroundHeight)
             
             VStack(spacing: 15) {
                 Image(systemName: "checkmark.circle")
@@ -164,6 +166,7 @@ struct JoinFolderResearchBannerView: View {
                     Spacer()
                     Button {
                         AppPersistentMemory.setHasDismissedJoinFolderResearchBanner(to: true)
+                        displayMe = false
                     } label: {
                         Image(systemName: "xmark")
                             .resizable()
@@ -176,7 +179,7 @@ struct JoinFolderResearchBannerView: View {
                 }
                 Spacer()
             }
-            .frame(height: roundedRectangleHeight)
+            .frame(height: backgroundHeight)
             
             VStack(spacing: 12) {
                 Image(systemName: "wifi.exclamationmark")

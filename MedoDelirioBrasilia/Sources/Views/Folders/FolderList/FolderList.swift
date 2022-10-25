@@ -37,7 +37,7 @@ struct FolderList: View {
             if viewModel.hasFoldersToDisplay {
                 if displayJoinFolderResearchBanner {
                     JoinFolderResearchBannerView(viewModel: JoinFolderResearchBannerViewViewModel(state: .displayingRequestToJoin),
-                                                 displayMe: .constant(true))
+                                                 displayMe: $displayJoinFolderResearchBanner)
                         .padding(.bottom)
                 }
                 
@@ -110,14 +110,19 @@ struct FolderList: View {
             if AppPersistentMemory.getHasJoinedFolderResearch() {
                 displayJoinFolderResearchBanner = false
             } else if let hasDismissed = AppPersistentMemory.getHasDismissedJoinFolderResearchBanner() {
+                if hasDismissed {
+                    displayJoinFolderResearchBanner = false
+                } else {
+                    if AppPersistentMemory.getHasSentFolderResearchInfo() {
+                        displayJoinFolderResearchBanner = false
+                    } else {
+                        displayJoinFolderResearchBanner = true
+                    }
+                }
                 displayJoinFolderResearchBanner = hasDismissed == false
             } else {
                 displayJoinFolderResearchBanner = true
             }
-            
-            print("displayJoinFolderResearchBanner: \(displayJoinFolderResearchBanner)")
-            print("HasJoined: \(AppPersistentMemory.getHasJoinedFolderResearch())")
-            print("HasDismissed: \(AppPersistentMemory.getHasDismissedJoinFolderResearchBanner())")
             
             viewModel.donateActivity()
         }

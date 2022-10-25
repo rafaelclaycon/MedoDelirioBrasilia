@@ -22,60 +22,18 @@ class JoinFolderResearchBannerViewViewModel: ObservableObject {
         }
         
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            guard let self = self else {
-                return
-            }
+            guard let self = self else { return }
             
-            var hadErrorsSending = false
-            
-            guard let folders = try? database.getAllUserFolders(), !folders.isEmpty else {
-                return
-            }
-            
-            var folderLogs = [UserFolderLog]()
-            
-            folders.forEach { folder in
-                folderLogs.append(UserFolderLog(installId: UIDevice.identifiderForVendor,
-                                                folderId: folder.id,
-                                                folderSymbol: folder.symbol,
-                                                folderName: folder.name,
-                                                backgroundColor: folder.backgroundColor,
-                                                logDateTime: Date.now.iso8601withFractionalSeconds))
-            }
-            
-            folderLogs.forEach { folderLog in
-                networkRabbit.post(folderLog: folderLog) { success, error in
-                    guard let success = success, success else {
-                        // TODO: Mark for resend
-                        hadErrorsSending = true
-                        return
-                    }
-                    if let contentIds = try? database.getAllSoundIdsInsideUserFolder(withId: folderLog.folderId) {
-                        guard !contentIds.isEmpty else {
-                            return
-                        }
-                        contentIds.forEach { folderContentId in
-                            let contentLog = UserFolderContentLog(userFolderLogId: folderLog.id, contentId: folderContentId)
-                            
-                            networkRabbit.post(folderContentLog: contentLog) { success, error in
-                                guard let success = success, success else {
-                                    // TODO: Mark for resend
-                                    hadErrorsSending = true
-                                    return
-                                }
-                            }
-                        }
+            FolderResearchHelper.sendLogs { success in
+                DispatchQueue.main.async {
+                    if success {
+                        AppPersistentMemory.setHasJoinedFolderResearch(to: true)
+                        AppPersistentMemory.setHasSentFolderResearchInfo(to: true)
+                        self.state = .doneSending
+                    } else {
+                        self.state = .errorSending
                     }
                 }
-            }
-            
-            if hadErrorsSending == false {
-                AppPersistentMemory.setHasJoinedFolderResearch(to: true)
-                AppPersistentMemory.setHasDismissedJoinFolderResearchBanner(to: true)
-            }
-            
-            DispatchQueue.main.async {
-                self.state = hadErrorsSending ? .errorSending : .doneSending
             }
         }
     }
