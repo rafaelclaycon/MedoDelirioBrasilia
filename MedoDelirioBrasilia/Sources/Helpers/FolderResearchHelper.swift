@@ -26,8 +26,6 @@ class FolderResearchHelper {
                                             logDateTime: Date.now.iso8601withFractionalSeconds))
         }
         
-        var hadErrorsSending = false
-        
         networkRabbit.post(folderLogs: folderLogs) { success, error in
             guard let success = success, success else {
                 // TODO: Mark for resend
