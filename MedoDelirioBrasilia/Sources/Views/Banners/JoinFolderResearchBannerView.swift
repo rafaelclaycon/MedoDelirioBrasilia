@@ -22,11 +22,19 @@ struct JoinFolderResearchBannerView: View {
         }
     }
     
+    var backgroundOpacity: Double {
+        if viewModel.state == .displayingRequestToJoin {
+            return colorScheme == .dark ? 1.0 : 0.35
+        } else {
+            return colorScheme == .dark ? 0.5 : 0.15
+        }
+    }
+    
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20, style: .continuous)
                 .fill(viewModel.state == .displayingRequestToJoin ? Color.pastelBabyBlue : Color.gray)
-                .opacity(colorScheme == .dark ? 1.0 : 0.35)
+                .opacity(backgroundOpacity)
                 .frame(height: roundedRectangleHeight)
             
             switch viewModel.state {
@@ -80,7 +88,7 @@ struct JoinFolderResearchBannerView: View {
                     .buttonBorderShape(.roundedRectangle)
                     
                     Button {
-                        print("Não")
+                        AppPersistentMemory.setHasDismissedJoinFolderResearchBanner(to: true)
                     } label: {
                         Text("Não")
                             .padding(.horizontal, 20)
@@ -115,7 +123,7 @@ struct JoinFolderResearchBannerView: View {
                 HStack {
                     Spacer()
                     Button {
-                        print("Closed")
+                        AppPersistentMemory.setHasDismissedJoinFolderResearchBanner(to: true)
                     } label: {
                         Image(systemName: "xmark")
                             .resizable()
@@ -130,7 +138,7 @@ struct JoinFolderResearchBannerView: View {
             }
             .frame(height: roundedRectangleHeight)
             
-            VStack(spacing: 20) {
+            VStack(spacing: 15) {
                 Image(systemName: "checkmark.circle")
                     .resizable()
                     .scaledToFit()
@@ -139,7 +147,7 @@ struct JoinFolderResearchBannerView: View {
                 
                 Text("Enviado com sucesso!")
                     .multilineTextAlignment(.center)
-                    .font(.headline)
+                    .font(.title3)
                 
                 Text("Você faz parte da pesquisa. Para descadastrar, vá em Ajustes > Privacidade > Pesquisa sobre as Pastas.")
                     .multilineTextAlignment(.center)
@@ -150,20 +158,53 @@ struct JoinFolderResearchBannerView: View {
     }
     
     @ViewBuilder func getErrorSendingView() -> some View {
-        VStack(spacing: 20) {
-            Image(systemName: "wifi.exclamationmark")
-                .resizable()
-                .scaledToFit()
-                .frame(height: 40)
+        ZStack {
+            VStack {
+                HStack {
+                    Spacer()
+                    Button {
+                        AppPersistentMemory.setHasDismissedJoinFolderResearchBanner(to: true)
+                    } label: {
+                        Image(systemName: "xmark")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 15)
+                            .foregroundColor(colorScheme == .dark ? .primary : .gray)
+                    }
+                    .padding(.top)
+                    .padding(.trailing)
+                }
+                Spacer()
+            }
+            .frame(height: roundedRectangleHeight)
             
-            Text("Erro ao tentar enviar.")
-                .multilineTextAlignment(.center)
-                .font(.title3)
-            
-            Text("Tente novamente mais tarde. Para cadastrar nos Ajustes, vá em Privacidade > Pesquisa sobre as Pastas.")
-                .multilineTextAlignment(.center)
-                .font(.footnote)
-                .padding(.horizontal)
+            VStack(spacing: 12) {
+                Image(systemName: "wifi.exclamationmark")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 40)
+                
+                Text("Erro ao tentar enviar.")
+                    .multilineTextAlignment(.center)
+                    .font(.title3)
+                
+                Text("Tente novamente mais tarde. Para cadastrar nos Ajustes, vá em Privacidade > Pesquisa sobre as Pastas.")
+                    .multilineTextAlignment(.center)
+                    .font(.footnote)
+                    .padding(.horizontal)
+                
+                Button {
+                    viewModel.sendLogs()
+                } label: {
+                    Text("Tentar Novamente")
+                        .padding(.horizontal, 10)
+                }
+                .font(.body)
+                .tint(colorScheme == .dark ? .primary : .blue)
+                .controlSize(.regular)
+                .buttonStyle(.bordered)
+                .buttonBorderShape(.roundedRectangle)
+            }
         }
     }
 
@@ -172,7 +213,7 @@ struct JoinFolderResearchBannerView: View {
 struct JoinFolderResearchBannerView_Previews: PreviewProvider {
 
     static var previews: some View {
-        JoinFolderResearchBannerView(viewModel: JoinFolderResearchBannerViewViewModel(state: .doneSending), displayMe: .constant(true))
+        JoinFolderResearchBannerView(viewModel: JoinFolderResearchBannerViewViewModel(state: .displayingRequestToJoin), displayMe: .constant(true))
             .padding(.horizontal)
     }
 

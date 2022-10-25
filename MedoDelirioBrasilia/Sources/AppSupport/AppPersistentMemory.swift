@@ -61,6 +61,22 @@ class AppPersistentMemory {
         return Bool(value as! Bool)
     }
     
+    static func getHasDismissedJoinFolderResearchBanner() -> Bool? {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "hasDismissedJoinFolderResearchBanner") else {
+            return nil
+        }
+        return Bool(value as! Bool)
+    }
+    
+    static func getHasJoinedFolderResearch() -> Bool {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "hasJoinedFolderResearch") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
+    
     // MARK: - Setters
     
     static func setHasSentDeviceModelToServer(to newValue: Bool) {
@@ -96,6 +112,16 @@ class AppPersistentMemory {
     static func setHasHiddenShareAsVideoInstagramTip(to newValue: Bool) {
         let userDefaults = UserDefaults.standard
         userDefaults.set(newValue, forKey: "hasHiddenShareAsVideoInstagramTip")
+    }
+    
+    static func setHasDismissedJoinFolderResearchBanner(to newValue: Bool) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(newValue, forKey: "hasDismissedJoinFolderResearchBanner")
+    }
+    
+    static func setHasJoinedFolderResearch(to newValue: Bool) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(newValue, forKey: "hasJoinedFolderResearch")
     }
 
 }

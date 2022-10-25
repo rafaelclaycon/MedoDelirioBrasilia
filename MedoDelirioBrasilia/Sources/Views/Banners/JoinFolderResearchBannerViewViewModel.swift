@@ -69,6 +69,11 @@ class JoinFolderResearchBannerViewViewModel: ObservableObject {
                 }
             }
             
+            if hadErrorsSending == false {
+                AppPersistentMemory.setHasJoinedFolderResearch(to: true)
+                AppPersistentMemory.setHasDismissedJoinFolderResearchBanner(to: true)
+            }
+            
             DispatchQueue.main.async {
                 self.state = hadErrorsSending ? .errorSending : .doneSending
             }

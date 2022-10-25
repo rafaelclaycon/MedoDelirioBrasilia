@@ -11,6 +11,7 @@ import SwiftUI
 struct FolderList: View {
 
     @StateObject private var viewModel = FolderListViewModel()
+    @State var displayJoinFolderResearchBanner: Bool = false
     @Binding var updateFolderList: Bool
     @Binding var deleteFolderAid: DeleteFolderViewAid
     @Binding var folderIdForEditing: String
@@ -34,8 +35,11 @@ struct FolderList: View {
     var body: some View {
         VStack {
             if viewModel.hasFoldersToDisplay {
-                JoinFolderResearchBannerView(viewModel: JoinFolderResearchBannerViewViewModel(state: .displayingRequestToJoin), displayMe: .constant(true))
-                    .padding(.bottom)
+                if displayJoinFolderResearchBanner {
+                    JoinFolderResearchBannerView(viewModel: JoinFolderResearchBannerViewViewModel(state: .displayingRequestToJoin),
+                                                 displayMe: .constant(true))
+                        .padding(.bottom)
+                }
                 
                 LazyVGrid(columns: columns, spacing: 14) {
                     ForEach(viewModel.folders, id: \.editingIdentifyingId) { folder in
@@ -102,6 +106,19 @@ struct FolderList: View {
         }
         .onAppear {
             viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
+            
+            if AppPersistentMemory.getHasJoinedFolderResearch() {
+                displayJoinFolderResearchBanner = false
+            } else if let hasDismissed = AppPersistentMemory.getHasDismissedJoinFolderResearchBanner() {
+                displayJoinFolderResearchBanner = hasDismissed == false
+            } else {
+                displayJoinFolderResearchBanner = true
+            }
+            
+            print("displayJoinFolderResearchBanner: \(displayJoinFolderResearchBanner)")
+            print("HasJoined: \(AppPersistentMemory.getHasJoinedFolderResearch())")
+            print("HasDismissed: \(AppPersistentMemory.getHasDismissedJoinFolderResearchBanner())")
+            
             viewModel.donateActivity()
         }
         .onChange(of: updateFolderList) { shouldUpdate in
