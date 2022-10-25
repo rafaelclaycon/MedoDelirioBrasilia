@@ -33,23 +33,46 @@ struct SettingsView: View {
             
             Section {
                 NavigationLink(destination: HelpView()) {
-                    Text("Ajuda")
+                    Label {
+                        Text("Ajuda")
+                    } icon: {
+                        Image(systemName: "questionmark")
+                            .foregroundColor(.blue)
+                    }
+
                 }
             }
             
             Section {
                 NavigationLink(destination: NotificationsSettingsView()) {
-                    Text("Notificações")
+                    Label(title: {
+                        Text("Notificações")
+                    }, icon: {
+                        Image(systemName: "bell.badge")
+                            .foregroundColor(.red)
+                    })
                 }
                 
                 if showChangeAppIcon {
                     NavigationLink(destination: ChangeAppIconView()) {
-                        Text("Ícone do app")
+                        Label {
+                            Text("Ícone do app")
+                        } icon: {
+                            Image(systemName: "app")
+                                .foregroundColor(.orange)
+                        }
+
                     }
                 }
                 
-                NavigationLink(destination: TrendsSettingsView()) {
-                    Text("Tendências")
+                NavigationLink(destination: PrivacySettingsView()) {
+                    Label {
+                        Text("Privacidade")
+                    } icon: {
+                        Image(systemName: "hand.raised")
+                            .foregroundColor(.blue)
+                    }
+
                 }
             }
             
@@ -101,7 +124,12 @@ struct SettingsView: View {
             
             Section {
                 NavigationLink(destination: DiagnosticsView()) {
-                    Text("Diagnóstico")
+                    Label {
+                        Text("Diagnóstico")
+                    } icon: {
+                        Image(systemName: "stethoscope")
+                            .foregroundColor(.gray)
+                    }
                 }
             }
         }
