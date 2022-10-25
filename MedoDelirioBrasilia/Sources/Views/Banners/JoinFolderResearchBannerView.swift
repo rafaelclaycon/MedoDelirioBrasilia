@@ -13,9 +13,7 @@ struct JoinFolderResearchBannerView: View {
         switch UIScreen.main.bounds.width {
         case 320:
             return 240
-        case 428:
-            return 180
-        case 430:
+        case 428, 430:
             return 180
         default:
             return 200
