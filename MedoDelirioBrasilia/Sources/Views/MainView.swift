@@ -44,10 +44,10 @@ struct MainView: View {
                 .tag(PhoneTab.collections)
                 
                 NavigationView {
-                    SongsView()
+                    EpisodeView()
                 }
                 .tabItem {
-                    Label("Músicas", systemImage: "music.quarternote.3")
+                    Label("Episódios", systemImage: "rectangle.stack.badge.play.fill")
                 }
                 .tag(PhoneTab.songs)
                 
