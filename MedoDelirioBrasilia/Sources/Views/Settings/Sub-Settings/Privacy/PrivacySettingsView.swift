@@ -18,7 +18,7 @@ struct PrivacySettingsView: View {
                 
                 NavigationLink(destination: FolderResearchSettingsView()) {
                     Label {
-                        Text("Pesquisa sobre as Pastas")
+                        Text("Pesquisa Sobre as Pastas")
                     } icon: {
                         Image(systemName: "folder")
                             .foregroundColor(.blue)

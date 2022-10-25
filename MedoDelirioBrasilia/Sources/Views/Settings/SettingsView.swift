@@ -48,7 +48,7 @@ struct SettingsView: View {
                     Label(title: {
                         Text("Notificações")
                     }, icon: {
-                        Image(systemName: "bell.badge.fill")
+                        Image(systemName: "bell.badge")
                             .foregroundColor(.red)
                     })
                 }
@@ -69,7 +69,7 @@ struct SettingsView: View {
                     Label {
                         Text("Privacidade")
                     } icon: {
-                        Image(systemName: "hand.raised.fill")
+                        Image(systemName: "hand.raised")
                             .foregroundColor(.blue)
                     }
 
@@ -128,7 +128,7 @@ struct SettingsView: View {
                         Text("Diagnóstico")
                     } icon: {
                         Image(systemName: "stethoscope")
-                            .foregroundColor(.red)
+                            .foregroundColor(.gray)
                     }
                 }
             }
