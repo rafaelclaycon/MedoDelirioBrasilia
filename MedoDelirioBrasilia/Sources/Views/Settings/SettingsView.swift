@@ -65,8 +65,14 @@ struct SettingsView: View {
                     }
                 }
                 
-                NavigationLink(destination: TrendsSettingsView()) {
-                    Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
+                NavigationLink(destination: PrivacySettingsView()) {
+                    Label {
+                        Text("Privacidade")
+                    } icon: {
+                        Image(systemName: "hand.raised.fill")
+                            .foregroundColor(.blue)
+                    }
+
                 }
             }
             
