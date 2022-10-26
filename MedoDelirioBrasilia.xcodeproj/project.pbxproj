@@ -182,6 +182,19 @@
 		D93752172902C94A00E2F27B /* O senhor gozou.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D93752152902C94A00E2F27B /* O senhor gozou.mp3 */; };
 		D93752192902CD1A00E2F27B /* Genocida, miliciano, canibal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D93752182902CD1A00E2F27B /* Genocida, miliciano, canibal.mp3 */; };
 		D937E10229097A0F004137ED /* Eduardo Leite e Onyx Lorenzoni - Qual e a sua alternativa, candidato (completo).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D937E10129097A0F004137ED /* Eduardo Leite e Onyx Lorenzoni - Qual e a sua alternativa, candidato (completo).mp3 */; };
+		D937E11029097D58004137ED /* Renan Calheiros - Onyx Lorenzeti parece nome de chuveiro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D937E10329097D58004137ED /* Renan Calheiros - Onyx Lorenzeti parece nome de chuveiro.mp3 */; };
+		D937E11129097D58004137ED /* Onyx Lorenzoni - E obvio que nao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D937E10429097D58004137ED /* Onyx Lorenzoni - E obvio que nao.mp3 */; };
+		D937E11229097D58004137ED /* BAND JORNALISMO - Onyx - Golpismo ou golpista.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D937E10529097D58004137ED /* BAND JORNALISMO - Onyx - Golpismo ou golpista.mp3 */; };
+		D937E11329097D58004137ED /* Claudio Couto, Queiroga, Caetano, Pasquale, Lula e Onyx - Naos, e obvio que nao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D937E10629097D58004137ED /* Claudio Couto, Queiroga, Caetano, Pasquale, Lula e Onyx - Naos, e obvio que nao.mp3 */; };
+		D937E11429097D58004137ED /* Onyx Lorenzoni - Alguem consegue fazer o lockdown dos insetos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D937E10729097D58004137ED /* Onyx Lorenzoni - Alguem consegue fazer o lockdown dos insetos.mp3 */; };
+		D937E11529097D58004137ED /* Onyx Lorenzoni - Ineficiente.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D937E10829097D58004137ED /* Onyx Lorenzoni - Ineficiente.mp3 */; };
+		D937E11629097D58004137ED /* Onyx Lorenzoni - Eu considero eles tolos, porque nao sao inteligentes.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D937E10929097D58004137ED /* Onyx Lorenzoni - Eu considero eles tolos, porque nao sao inteligentes.mp3 */; };
+		D937E11729097D58004137ED /* BAND JORNALISMO - Onyx - A narrativa de golpismo ou golpista foi enterrada e emerge um estadista.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D937E10A29097D58004137ED /* BAND JORNALISMO - Onyx - A narrativa de golpismo ou golpista foi enterrada e emerge um estadista.mp3 */; };
+		D937E11829097D58004137ED /* Onyx Lorenzoni - Um ministerio tecnico.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D937E10B29097D58004137ED /* Onyx Lorenzoni - Um ministerio tecnico.mp3 */; };
+		D937E11929097D58004137ED /* BAND JORNALISMO - Onyx - E o presidente estendeu a mao para poder pacificar a nacao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D937E10C29097D58004137ED /* BAND JORNALISMO - Onyx - E o presidente estendeu a mao para poder pacificar a nacao.mp3 */; };
+		D937E11A29097D58004137ED /* BAND JORNALISMO - Onyx - E o gesto que so um homem forte politicamente e respaldado em sua populacao poderia fazer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D937E10D29097D58004137ED /* BAND JORNALISMO - Onyx - E o gesto que so um homem forte politicamente e respaldado em sua populacao poderia fazer.mp3 */; };
+		D937E11B29097D58004137ED /* BAND JORNALISMO - Onyx - Ele opta pelo bem do pais brasil pela pacificacao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D937E10E29097D58004137ED /* BAND JORNALISMO - Onyx - Ele opta pelo bem do pais brasil pela pacificacao.mp3 */; };
+		D937E11C29097D58004137ED /* Onyx Lorenzoni - Tecnico, tecnico, tecnico.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D937E10F29097D58004137ED /* Onyx Lorenzoni - Tecnico, tecnico, tecnico.mp3 */; };
 		D938132F287E12B3009EE24F /* NotificationAide.swift in Sources */ = {isa = PBXBuildFile; fileRef = D938132E287E12B3009EE24F /* NotificationAide.swift */; };
 		D9388F9E288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Bonsai de pica.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9388F9C288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Bonsai de pica.mp3 */; };
 		D9388F9F288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Eduardo Bolsonaro, aquele bonsai de pica.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9388F9D288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Eduardo Bolsonaro, aquele bonsai de pica.mp3 */; };
@@ -1217,6 +1230,19 @@
 		D93752152902C94A00E2F27B /* O senhor gozou.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O senhor gozou.mp3"; sourceTree = "<group>"; };
 		D93752182902CD1A00E2F27B /* Genocida, miliciano, canibal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Genocida, miliciano, canibal.mp3"; sourceTree = "<group>"; };
 		D937E10129097A0F004137ED /* Eduardo Leite e Onyx Lorenzoni - Qual e a sua alternativa, candidato (completo).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eduardo Leite e Onyx Lorenzoni - Qual e a sua alternativa, candidato (completo).mp3"; sourceTree = "<group>"; };
+		D937E10329097D58004137ED /* Renan Calheiros - Onyx Lorenzeti parece nome de chuveiro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Renan Calheiros - Onyx Lorenzeti parece nome de chuveiro.mp3"; sourceTree = "<group>"; };
+		D937E10429097D58004137ED /* Onyx Lorenzoni - E obvio que nao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Onyx Lorenzoni - E obvio que nao.mp3"; sourceTree = "<group>"; };
+		D937E10529097D58004137ED /* BAND JORNALISMO - Onyx - Golpismo ou golpista.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "BAND JORNALISMO - Onyx - Golpismo ou golpista.mp3"; sourceTree = "<group>"; };
+		D937E10629097D58004137ED /* Claudio Couto, Queiroga, Caetano, Pasquale, Lula e Onyx - Naos, e obvio que nao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Claudio Couto, Queiroga, Caetano, Pasquale, Lula e Onyx - Naos, e obvio que nao.mp3"; sourceTree = "<group>"; };
+		D937E10729097D58004137ED /* Onyx Lorenzoni - Alguem consegue fazer o lockdown dos insetos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Onyx Lorenzoni - Alguem consegue fazer o lockdown dos insetos.mp3"; sourceTree = "<group>"; };
+		D937E10829097D58004137ED /* Onyx Lorenzoni - Ineficiente.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Onyx Lorenzoni - Ineficiente.mp3"; sourceTree = "<group>"; };
+		D937E10929097D58004137ED /* Onyx Lorenzoni - Eu considero eles tolos, porque nao sao inteligentes.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Onyx Lorenzoni - Eu considero eles tolos, porque nao sao inteligentes.mp3"; sourceTree = "<group>"; };
+		D937E10A29097D58004137ED /* BAND JORNALISMO - Onyx - A narrativa de golpismo ou golpista foi enterrada e emerge um estadista.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "BAND JORNALISMO - Onyx - A narrativa de golpismo ou golpista foi enterrada e emerge um estadista.mp3"; sourceTree = "<group>"; };
+		D937E10B29097D58004137ED /* Onyx Lorenzoni - Um ministerio tecnico.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Onyx Lorenzoni - Um ministerio tecnico.mp3"; sourceTree = "<group>"; };
+		D937E10C29097D58004137ED /* BAND JORNALISMO - Onyx - E o presidente estendeu a mao para poder pacificar a nacao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "BAND JORNALISMO - Onyx - E o presidente estendeu a mao para poder pacificar a nacao.mp3"; sourceTree = "<group>"; };
+		D937E10D29097D58004137ED /* BAND JORNALISMO - Onyx - E o gesto que so um homem forte politicamente e respaldado em sua populacao poderia fazer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "BAND JORNALISMO - Onyx - E o gesto que so um homem forte politicamente e respaldado em sua populacao poderia fazer.mp3"; sourceTree = "<group>"; };
+		D937E10E29097D58004137ED /* BAND JORNALISMO - Onyx - Ele opta pelo bem do pais brasil pela pacificacao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "BAND JORNALISMO - Onyx - Ele opta pelo bem do pais brasil pela pacificacao.mp3"; sourceTree = "<group>"; };
+		D937E10F29097D58004137ED /* Onyx Lorenzoni - Tecnico, tecnico, tecnico.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Onyx Lorenzoni - Tecnico, tecnico, tecnico.mp3"; sourceTree = "<group>"; };
 		D938132E287E12B3009EE24F /* NotificationAide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAide.swift; sourceTree = "<group>"; };
 		D9388F9C288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Bonsai de pica.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano Botafogo imitando o Frota - Bonsai de pica.mp3"; sourceTree = "<group>"; };
 		D9388F9D288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Eduardo Bolsonaro, aquele bonsai de pica.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano Botafogo imitando o Frota - Eduardo Bolsonaro, aquele bonsai de pica.mp3"; sourceTree = "<group>"; };
@@ -2094,6 +2120,19 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D937E10A29097D58004137ED /* BAND JORNALISMO - Onyx - A narrativa de golpismo ou golpista foi enterrada e emerge um estadista.mp3 */,
+				D937E10D29097D58004137ED /* BAND JORNALISMO - Onyx - E o gesto que so um homem forte politicamente e respaldado em sua populacao poderia fazer.mp3 */,
+				D937E10C29097D58004137ED /* BAND JORNALISMO - Onyx - E o presidente estendeu a mao para poder pacificar a nacao.mp3 */,
+				D937E10E29097D58004137ED /* BAND JORNALISMO - Onyx - Ele opta pelo bem do pais brasil pela pacificacao.mp3 */,
+				D937E10529097D58004137ED /* BAND JORNALISMO - Onyx - Golpismo ou golpista.mp3 */,
+				D937E10629097D58004137ED /* Claudio Couto, Queiroga, Caetano, Pasquale, Lula e Onyx - Naos, e obvio que nao.mp3 */,
+				D937E10729097D58004137ED /* Onyx Lorenzoni - Alguem consegue fazer o lockdown dos insetos.mp3 */,
+				D937E10429097D58004137ED /* Onyx Lorenzoni - E obvio que nao.mp3 */,
+				D937E10929097D58004137ED /* Onyx Lorenzoni - Eu considero eles tolos, porque nao sao inteligentes.mp3 */,
+				D937E10829097D58004137ED /* Onyx Lorenzoni - Ineficiente.mp3 */,
+				D937E10F29097D58004137ED /* Onyx Lorenzoni - Tecnico, tecnico, tecnico.mp3 */,
+				D937E10B29097D58004137ED /* Onyx Lorenzoni - Um ministerio tecnico.mp3 */,
+				D937E10329097D58004137ED /* Renan Calheiros - Onyx Lorenzeti parece nome de chuveiro.mp3 */,
 				D937E10129097A0F004137ED /* Eduardo Leite e Onyx Lorenzoni - Qual e a sua alternativa, candidato (completo).mp3 */,
 				D9B2BFC5290441C100D161AF /* Jair Bolsonaro - Nem que nao tem nem que tem.mp3 */,
 				D93752102902C94200E2F27B /* Joaquim Barbosa - Bolsonaro e um ser abjeto, Lula no primeiro turno.mp3 */,
@@ -3716,6 +3755,7 @@
 				D97500452880B4F20035E6F2 /* O CARA DA LUVA DE PEDREIRO - receba carai caralho.mp3 in Resources */,
 				D9FD0F0828B2B2EE0000616A /* malditos milicos a capella doida.mp3 in Resources */,
 				D975FE382880B4F20035E6F2 /* Deltan Dallangnol - Os meus advogados estao estarrecidos.mp3 in Resources */,
+				D937E11B29097D58004137ED /* BAND JORNALISMO - Onyx - Ele opta pelo bem do pais brasil pela pacificacao.mp3 in Resources */,
 				D97500112880B4F20035E6F2 /* Idosa - Ah! Peste grito idosa vacina.mp3 in Resources */,
 				D975FEBD2880B4F20035E6F2 /* Joao Doria - Isso exige medidas urgentes.mp3 in Resources */,
 				D97500032880B4F20035E6F2 /* Bolsonaro - Sera que eu to errando ao falar isso dai.mp3 in Resources */,
@@ -3920,11 +3960,13 @@
 				49DEA9AE28810F5E008C9BA1 /* UOL- BOLSONARO -  MORRE MAIS GENTE DE PAVOR DO QUE DE UM ATO EM SI short meme.mp3 in Resources */,
 				D975FFF12880B4F20035E6F2 /* Costinha - Se fudeu short.mp3 in Resources */,
 				D9FD0F0E28B2B2EE0000616A /* Calma poxa - Desesperado.mp3 in Resources */,
+				D937E11029097D58004137ED /* Renan Calheiros - Onyx Lorenzeti parece nome de chuveiro.mp3 in Resources */,
 				D975FE132880B4F20035E6F2 /* Midcast - Freixo - Tem rabo de jacare tem couro de jacare e jacare gente.mp3 in Resources */,
 				D975FE292880B4F20035E6F2 /* Capitao Falcao - Malditos Comunas.mp3 in Resources */,
 				D975FE832880B4F20035E6F2 /* Cid Moreira - Pra mim ja deu.mp3 in Resources */,
 				D975FFAC2880B4F20035E6F2 /* Malditos milicos monges Om.mp3 in Resources */,
 				D975FF452880B4F20035E6F2 /* Molejo - Ninguem short meme.mp3 in Resources */,
+				D937E11629097D58004137ED /* Onyx Lorenzoni - Eu considero eles tolos, porque nao sao inteligentes.mp3 in Resources */,
 				D99D0DBF28CAB0FF00EB6F27 /* TV CAMARA - MARCELO FREIXO - Nao adianta desvirtuar.mp3 in Resources */,
 				D92E7070283C5CF40035826C /* song_data.json in Resources */,
 				D975FEB52880B4F20035E6F2 /* Vai Dar Namoro - Cavalo.mp3 in Resources */,
@@ -3951,6 +3993,7 @@
 				D975FF6A2880B4F20035E6F2 /* CASIMIRO - Que que porra e essa.mp3 in Resources */,
 				D98B9AD828CEBD2D00B82EDE /* Tropa de Elite - Que satisfacao, aspira.mp3 in Resources */,
 				D975FEDB2880B4F20035E6F2 /* HENRY BUGALHO - Os reacas piram.mp3 in Resources */,
+				D937E11129097D58004137ED /* Onyx Lorenzoni - E obvio que nao.mp3 in Resources */,
 				D975FEF82880B4F20035E6F2 /* LINGUICETA - Diogo Defante - Minha alegria ta baseada na tristeza do meu colega.mp3 in Resources */,
 				D975FFF02880B4F20035E6F2 /* Feiticeira - Nao e feiticaria, e tecnologia meme short.mp3 in Resources */,
 				D975FFCB2880B4F20035E6F2 /* Opaio - Tomar no cu rapaz.mp3 in Resources */,
@@ -3965,6 +4008,7 @@
 				D975FE562880B4F20035E6F2 /* Temer - Nao renunciarei short.mp3 in Resources */,
 				D9E7D0F428AC699B001E909E /* Cristiano Botafogo - Vista o seu traje quimico.mp3 in Resources */,
 				D975FEF02880B4F20035E6F2 /* Boldo - Esse e o boldo bao.mp3 in Resources */,
+				D937E11229097D58004137ED /* BAND JORNALISMO - Onyx - Golpismo ou golpista.mp3 in Resources */,
 				D975FEE32880B4F20035E6F2 /* MIDCAST - Teu cu.mp3 in Resources */,
 				4979105A28BEC71400CDF01C /* Agora vai sentar na mesa Funk.mp3 in Resources */,
 				D975FE682880B4F20035E6F2 /* Natalie Wynn Contrapoints - Cancel culture.mp3 in Resources */,
@@ -3989,6 +4033,7 @@
 				D975FE8C2880B4F20035E6F2 /* Xo drogado short meme.mp3 in Resources */,
 				49DEA9C428811436008C9BA1 /* CBN - Pasternak - De cair o cu da bunda - de cair o orificio retal anal das nadegas short meme.mp3 in Resources */,
 				D975FFD82880B4F20035E6F2 /* Caetano Veloso - Que coisa absurda.mp3 in Resources */,
+				D937E11C29097D58004137ED /* Onyx Lorenzoni - Tecnico, tecnico, tecnico.mp3 in Resources */,
 				D975FF832880B4F20035E6F2 /* Essa eu quero ver nao nao quero ver nao short meme.mp3 in Resources */,
 				D975FE932880B4F20035E6F2 /* Nunca as funerarias trabalharam tanto.mp3 in Resources */,
 				D975FE312880B4F20035E6F2 /* MY NEWS - Antonio Tabet - Bolsonaro fala merda.mp3 in Resources */,
@@ -4060,6 +4105,7 @@
 				D97500552880B5190035E6F2 /* MULTISHOW - Lulu Santos - Censura nunca mais.mp3 in Resources */,
 				D975FE5D2880B4F20035E6F2 /* Bolsonaro - Nao leio a imprensa nao vejo Jornal Nacional faca o que eu faco.mp3 in Resources */,
 				D975FF402880B4F20035E6F2 /* Drauzio - E os outros problema deles nao tenho nada a ver com isso.mp3 in Resources */,
+				D937E11429097D58004137ED /* Onyx Lorenzoni - Alguem consegue fazer o lockdown dos insetos.mp3 in Resources */,
 				D975FFC32880B4F20035E6F2 /* Bolsonaro - Ganhou porra.mp3 in Resources */,
 				D975FFF22880B4F20035E6F2 /* Regina Rouca - Se Liga Hein (casual).mp3 in Resources */,
 				D921F886288B0177003979CC /* sai fora satanas - cristiano botafogo.mp3 in Resources */,
@@ -4236,6 +4282,7 @@
 				D975FFE22880B4F20035E6F2 /* Brizola - Filhotes da ditadura.mp3 in Resources */,
 				D975FF982880B4F20035E6F2 /* Mourao - Voce e muito mais fisico do que intelectual short.mp3 in Resources */,
 				D975FF0E2880B4F20035E6F2 /* Por que sera short meme.mp3 in Resources */,
+				D937E11529097D58004137ED /* Onyx Lorenzoni - Ineficiente.mp3 in Resources */,
 				D991512B2873E4C100FFAA29 /* rock-chocolate-chocolate-mdb.mp3 in Resources */,
 				D975FE2D2880B4F20035E6F2 /* MAICON KISTER - Isso foi especifico demais.mp3 in Resources */,
 				D91793B6288E3F0E009C3165 /* Abraham Weintraub - Muito muito pipi mole.mp3 in Resources */,
@@ -4271,6 +4318,7 @@
 				D975FF962880B4F20035E6F2 /* Paulo Guedes - Deixa cada um se fuder do jeito que quiser.mp3 in Resources */,
 				D975FFDB2880B4F20035E6F2 /* Legal short meme empolgante.mp3 in Resources */,
 				D9F6420728D1211700003A0E /* Casimiro - Misericordia, jornalista, tenha do.mp3 in Resources */,
+				D937E11929097D58004137ED /* BAND JORNALISMO - Onyx - E o presidente estendeu a mao para poder pacificar a nacao.mp3 in Resources */,
 				D91793AD288E2236009C3165 /* Bolsonaro - Eu nao sou medico, mas sou ousado.mp3 in Resources */,
 				D975FFFC2880B4F20035E6F2 /* Keila Mellman -  nao e de bom tom short meme.mp3 in Resources */,
 				D97500272880B4F20035E6F2 /* Carioca puto - Vai tomar no cu cara toda hora essa discussao cara.mp3 in Resources */,
@@ -4291,6 +4339,7 @@
 				D975FF062880B4F20035E6F2 /* Lula - Deus de barro nao dura muito tempo.mp3 in Resources */,
 				D921F895288B07CB003979CC /* Fa do Armandinho - Armandinho e um terror ne meu (completo).mp3 in Resources */,
 				4979105628BEC6F700CDF01C /* Vai Tomar no Cu Completo - Palhaco Gozo.mp3 in Resources */,
+				D937E11729097D58004137ED /* BAND JORNALISMO - Onyx - A narrativa de golpismo ou golpista foi enterrada e emerge um estadista.mp3 in Resources */,
 				D975FF122880B4F20035E6F2 /* Alborghetti - Ta uma merda esse pais.mp3 in Resources */,
 				D975002B2880B4F20035E6F2 /* FUP - Marcele - Nao esta nem ai pro preto, pobre, favelado so esta ai por ele mesmo.mp3 in Resources */,
 				D975FF242880B4F20035E6F2 /* Calcinha Preta - Pega Fogo Cabare short meme.mp3 in Resources */,
@@ -4357,6 +4406,7 @@
 				D975FEA92880B4F20035E6F2 /* MR CATRA - Vai comecar a putaria short.mp3 in Resources */,
 				D980455C28380EFE003B2E83 /* Localizable.strings in Resources */,
 				D975FFE52880B4F20035E6F2 /* Lula - Ele fala e tudo por conta do guedes.mp3 in Resources */,
+				D937E11329097D58004137ED /* Claudio Couto, Queiroga, Caetano, Pasquale, Lula e Onyx - Naos, e obvio que nao.mp3 in Resources */,
 				D975FE3C2880B4F20035E6F2 /* Gilmar Mendes - Eu ja disse aqui.mp3 in Resources */,
 				D975FE902880B4F20035E6F2 /* Fernando Collor - Tres vezes dizendo que e mentira.mp3 in Resources */,
 				D975FE442880B4F20035E6F2 /* Nando Moura - Bibibibi Mito (longo).mp3 in Resources */,
@@ -4433,6 +4483,7 @@
 				D975FF0C2880B4F20035E6F2 /* Gilmar Mendes - O exercito esta se associando a esse genocidio.mp3 in Resources */,
 				D9547D8328FDD7190020A800 /* Lula - Filho, eu estou achando voce nervoso.mp3 in Resources */,
 				49DEA9B2288110F0008C9BA1 /* SpongeBob Flashback.mp3 in Resources */,
+				D937E11829097D58004137ED /* Onyx Lorenzoni - Um ministerio tecnico.mp3 in Resources */,
 				D9FD0F0928B2B2EE0000616A /* Nao e hora pra desespero - Desesperado.mp3 in Resources */,
 				D97500262880B4F20035E6F2 /* Dilma - If you speak slowly I understand very well.mp3 in Resources */,
 				D975FFBC2880B4F20035E6F2 /* Winter is coming, this one will be long.mp3 in Resources */,
@@ -4464,6 +4515,7 @@
 				D975FFB32880B4F20035E6F2 /* CHOQUE DE CULTURA - Renan - E energia aqui o ta em cima carnaval alegria.mp3 in Resources */,
 				D923126828AB001300436336 /* Billy Madison Um Herdeiro Bobalhao - Todos nesse salao estao mais burros por terem escutado isso.mp3 in Resources */,
 				D92879E8283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 in Resources */,
+				D937E11A29097D58004137ED /* BAND JORNALISMO - Onyx - E o gesto que so um homem forte politicamente e respaldado em sua populacao poderia fazer.mp3 in Resources */,
 				D975FE662880B4F20035E6F2 /* Eu fico muito triste com uma noticia dessas filha da puta fogos short.mp3 in Resources */,
 				D975FFD92880B4F20035E6F2 /* Malafaia - Concordamos.mp3 in Resources */,
 				D975FFFA2880B4F20035E6F2 /* Vai Dar Namoro - Demais.mp3 in Resources */,

@@ -3,8 +3,10 @@ import UIKit
 extension UIDevice {
 
     static var is4InchDevice: Bool {
-        let model = UIDevice.modelName
-        return model == "iPhone SE" || model == "iPod touch (7th generation)" || model == "Simulator iPod touch (7th generation)"
+        guard UIDevice.current.userInterfaceIdiom == .phone else {
+            return false
+        }
+        return UIScreen.main.bounds.width == 320
     }
     
     static var isiPadMini: Bool {
