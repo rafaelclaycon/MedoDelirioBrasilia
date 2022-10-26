@@ -11,7 +11,7 @@ struct EpisodeView: View {
     var body: some View {
         ScrollView {
             VStack {
-                Text("Medo e Delírio iOS não é um tocador de podcasts.")
+                
             }
             .navigationTitle("Episódios")
         }

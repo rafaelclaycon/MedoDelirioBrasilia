@@ -182,6 +182,12 @@
 		D93752172902C94A00E2F27B /* O senhor gozou.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D93752152902C94A00E2F27B /* O senhor gozou.mp3 */; };
 		D93752192902CD1A00E2F27B /* Genocida, miliciano, canibal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D93752182902CD1A00E2F27B /* Genocida, miliciano, canibal.mp3 */; };
 		D937E0F12908AA0C004137ED /* EpisodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D937E0F02908AA0C004137ED /* EpisodeView.swift */; };
+		D937E0F42908AD21004137ED /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = D937E0F32908AD21004137ED /* Podcast.swift */; };
+		D937E0F62908AD29004137ED /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D937E0F52908AD29004137ED /* Episode.swift */; };
+		D937E0F82909600E004137ED /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D937E0F72909600E004137ED /* EpisodeCell.swift */; };
+		D937E0FA29096049004137ED /* EpisodeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D937E0F929096049004137ED /* EpisodeCellViewModel.swift */; };
+		D937E0FC2909608D004137ED /* Double+ToDisplayString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D937E0FB2909608D004137ED /* Double+ToDisplayString.swift */; };
+		D937E0FE2909629A004137ED /* DateTime+AsShortString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D937E0FD2909629A004137ED /* DateTime+AsShortString.swift */; };
 		D938132F287E12B3009EE24F /* NotificationAide.swift in Sources */ = {isa = PBXBuildFile; fileRef = D938132E287E12B3009EE24F /* NotificationAide.swift */; };
 		D9388F9E288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Bonsai de pica.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9388F9C288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Bonsai de pica.mp3 */; };
 		D9388F9F288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Eduardo Bolsonaro, aquele bonsai de pica.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9388F9D288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Eduardo Bolsonaro, aquele bonsai de pica.mp3 */; };
@@ -1217,6 +1223,12 @@
 		D93752152902C94A00E2F27B /* O senhor gozou.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O senhor gozou.mp3"; sourceTree = "<group>"; };
 		D93752182902CD1A00E2F27B /* Genocida, miliciano, canibal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Genocida, miliciano, canibal.mp3"; sourceTree = "<group>"; };
 		D937E0F02908AA0C004137ED /* EpisodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeView.swift; sourceTree = "<group>"; };
+		D937E0F32908AD21004137ED /* Podcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
+		D937E0F52908AD29004137ED /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
+		D937E0F72909600E004137ED /* EpisodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCell.swift; sourceTree = "<group>"; };
+		D937E0F929096049004137ED /* EpisodeCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCellViewModel.swift; sourceTree = "<group>"; };
+		D937E0FB2909608D004137ED /* Double+ToDisplayString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+ToDisplayString.swift"; sourceTree = "<group>"; };
+		D937E0FD2909629A004137ED /* DateTime+AsShortString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateTime+AsShortString.swift"; sourceTree = "<group>"; };
 		D938132E287E12B3009EE24F /* NotificationAide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAide.swift; sourceTree = "<group>"; };
 		D9388F9C288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Bonsai de pica.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano Botafogo imitando o Frota - Bonsai de pica.mp3"; sourceTree = "<group>"; };
 		D9388F9D288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Eduardo Bolsonaro, aquele bonsai de pica.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano Botafogo imitando o Frota - Eduardo Bolsonaro, aquele bonsai de pica.mp3"; sourceTree = "<group>"; };
@@ -2998,6 +3010,17 @@
 			isa = PBXGroup;
 			children = (
 				D937E0F02908AA0C004137ED /* EpisodeView.swift */,
+				D937E0F72909600E004137ED /* EpisodeCell.swift */,
+				D937E0F929096049004137ED /* EpisodeCellViewModel.swift */,
+			);
+			path = Episodes;
+			sourceTree = "<group>";
+		};
+		D937E0F22908AD0C004137ED /* Episodes */ = {
+			isa = PBXGroup;
+			children = (
+				D937E0F32908AD21004137ED /* Podcast.swift */,
+				D937E0F52908AD29004137ED /* Episode.swift */,
 			);
 			path = Episodes;
 			sourceTree = "<group>";
@@ -3084,6 +3107,8 @@
 				D958BC722868FE8C000B2EDA /* EmojiIdentification.swift */,
 				D93CCB7A286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift */,
 				D9D8C4A7287CD1B600812EE5 /* UIDevice+DevicePhysicalCharacteristics.swift */,
+				D937E0FB2909608D004137ED /* Double+ToDisplayString.swift */,
+				D937E0FD2909629A004137ED /* DateTime+AsShortString.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -3165,7 +3190,6 @@
 		D9625EAB2824EADC00080852 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D937E0EF2908A9E1004137ED /* Episodes */,
 				D958B1A928394D400010F133 /* MainView.swift */,
 				D95DB0F5288248A300D4FEDF /* SidebarView.swift */,
 				D959B0472887E83D00A215AD /* SidebarViewViewModel.swift */,
@@ -3174,6 +3198,7 @@
 				D95F363828AD385100743026 /* ShareAsVideo */,
 				D9EB18A32857CDE200A2F8A8 /* Collections */,
 				D9943F2428641FB7002C6B97 /* Folders */,
+				D937E0EF2908A9E1004137ED /* Episodes */,
 				D92E7073283C5D9E0035826C /* Songs */,
 				D9BF90BC2842EAB100BDDD7D /* Trends */,
 				D957509728446BEC0094AEA6 /* Settings */,
@@ -3307,9 +3332,10 @@
 		D98EC5DF2825A04000340BE5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				D97B2DD728E5E9E400C3B50B /* ViewAid */,
 				D9BB1E7928B3212000C5FFAA /* Core */,
 				D9BB1E7828B3210D00C5FFAA /* Logs */,
+				D97B2DD728E5E9E400C3B50B /* ViewAid */,
+				D937E0F22908AD0C004137ED /* Episodes */,
 				D93443242838177000ADCD38 /* UserInfo.swift */,
 				D92C0CA72840162F009CF19A /* ContentSortOption.swift */,
 				D9351C5B2844094E00D4317E /* TopChartItem.swift */,
@@ -4552,6 +4578,7 @@
 				D9877D2928694F3200B541F9 /* LocalDatabase+UserFolderContent.swift in Sources */,
 				D9CC893328EB7BB500576492 /* MostSharedByAudienceView.swift in Sources */,
 				D912A33A28B5321400F7293D /* ShareAsVideoResult.swift in Sources */,
+				D937E0F82909600E004137ED /* EpisodeCell.swift in Sources */,
 				D958B1AA28394D400010F133 /* MainView.swift in Sources */,
 				D92F8BAD286A6D2100EB9470 /* AlertType.swift in Sources */,
 				D94BA9ED2879EC7F001BD09C /* JoinFolderResearchBannerView.swift in Sources */,
@@ -4566,6 +4593,7 @@
 				D98622E0283FC57100E9F630 /* AuthorDetailView.swift in Sources */,
 				D94AD34928811ADC00D3E4F0 /* Versioneer.swift in Sources */,
 				D92E7067283C51D20035826C /* Song.swift in Sources */,
+				D937E0F42908AD21004137ED /* Podcast.swift in Sources */,
 				D93CCB79286A8A220002CF81 /* ToastView.swift in Sources */,
 				D958BC752869000A000B2EDA /* FolderInfoEditingViewViewModel.swift in Sources */,
 				D9F87A9228F6EA51002EE8AA /* RemoveFavoriteLogTable.swift in Sources */,
@@ -4607,6 +4635,7 @@
 				D9CC025D28BD9EBD0021C1E6 /* GridHelper.swift in Sources */,
 				D916627D2874F1F9000A1B23 /* OnboardingView.swift in Sources */,
 				D99DC19D28423AD7002B03B6 /* AuthorDetailViewViewModel.swift in Sources */,
+				D937E0FA29096049004137ED /* EpisodeCellViewModel.swift in Sources */,
 				D967E2BC2901C40700B21C11 /* CustomPhotoAlbum.swift in Sources */,
 				D98DBD35284919B1008544F8 /* NetworkRabbit.swift in Sources */,
 				D959B0482887E83D00A215AD /* SidebarViewViewModel.swift in Sources */,
@@ -4618,6 +4647,7 @@
 				D9FB489A2870FE7800FF90D0 /* TapticHelper.swift in Sources */,
 				D957047D28AEF733008DEF8C /* ProcessingView.swift in Sources */,
 				D9A3984928FDEE0D00039B7B /* AddRankingTypeToAudienceSharingStatisticTable.swift in Sources */,
+				D937E0FE2909629A004137ED /* DateTime+AsShortString.swift in Sources */,
 				D967E2BA290196F900B21C11 /* WallE.swift in Sources */,
 				D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */,
 				D93A02982906DE8C00A85FE2 /* UserFolderLog.swift in Sources */,
@@ -4631,6 +4661,7 @@
 				D960AF272845BFE700ADF1F6 /* UserDefaultsKeys.swift in Sources */,
 				D9877D2B2869845400B541F9 /* Sharer.swift in Sources */,
 				D988C523283C33E100D64404 /* UserSettings.swift in Sources */,
+				D937E0F62908AD29004137ED /* Episode.swift in Sources */,
 				D92E7075283C5F620035826C /* SongCell.swift in Sources */,
 				D9943F1C28641917002C6B97 /* LocalDatabase+Favorite.swift in Sources */,
 				D9A8AB2528543F8E00B5A94B /* SharingLogCell.swift in Sources */,
@@ -4644,6 +4675,7 @@
 				D98EC5E32825A45000340BE5 /* SoundsViewViewModel.swift in Sources */,
 				D9F78A9F2860DF9100B83567 /* CollectionCell.swift in Sources */,
 				D9CC893528EB7CF800576492 /* MostSharedByAudienceViewViewModel.swift in Sources */,
+				D937E0FC2909608D004137ED /* Double+ToDisplayString.swift in Sources */,
 				D9943F2A28642EC3002C6B97 /* UserFolderContent.swift in Sources */,
 				D9943F2828642200002C6B97 /* AddToFolderViewViewModel.swift in Sources */,
 				D98B291D28691C5C008A78AE /* ColorSelectionCell.swift in Sources */,
