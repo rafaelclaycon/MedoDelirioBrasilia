@@ -3,6 +3,8 @@
         "id": "A7167CFA-BA69-4F4A-A180-F24120DB4EFF",
         "title": "Eu volto pro ostracismo",
         "description": "",
+        "genre": 9,
+        "duration": "00:09",
         "filename": "Eu volto pro ostracismo.mp3",
         "dateAdded": "2022-04-22T00:00:00Z",
         "isOffensive": false
@@ -11,6 +13,8 @@
         "id": "32D2E734-805F-4A1B-861F-AB4BDC10A914",
         "title": "Pena que não pode ver um impeachment",
         "description": "",
+        "genre": 4,
+        "duration": "00:08",
         "filename": "Pena que nao pode ver um impeachment.mp3",
         "dateAdded": "2022-04-22T00:00:00Z",
         "isOffensive": false
@@ -19,6 +23,8 @@
         "id": "69AE8BCC-3ADC-4A32-8A98-D9C3777444D0",
         "title": "Não era fake news, era jornalismo",
         "description": "",
+        "genre": 9,
+        "duration": "00:47",
         "filename": "Nao era fake news era jornalismo.mp3",
         "dateAdded": "2022-04-22T00:00:00Z",
         "isOffensive": false
@@ -27,14 +33,18 @@
         "id": "97C87B5B-B8C0-4C37-8EEB-7D69553770AC",
         "title": "Unidos do Medo e Delírio em Brasília",
         "description": "",
+        "genre": 13,
+        "duration": "00:11",
         "filename": "Unidos do Medo e Delírio.mp3",
         "dateAdded": "2022-04-22T00:00:00Z",
         "isOffensive": false
     },
     {
         "id": "BE72C748-6762-44AD-B8C5-A390F0C8FE5A",
-        "title": "Bora Arrochar... E Depois... Carnavalizar!",
+        "title": "Bora",
         "description": "",
+        "genre": 1,
+        "duration": "01:12",
         "filename": "O roque ativa.mp3",
         "dateAdded": "2022-04-22T00:00:00Z",
         "isOffensive": true
@@ -43,8 +53,440 @@
         "id": "36EB9AD4-B70C-42A3-8C6F-48408CAA47D6",
         "title": "A impiedosa justiça de Deus",
         "description": "",
+        "genre": 4,
+        "duration": "00:56",
         "filename": "A impiedosa justica de Deus.mp3",
         "dateAdded": "2022-06-22T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "2E2809EE-51F2-4996-AA3D-BF8AD332CF31",
+        "title": "Capricha Renan",
+        "description": "",
+        "genre": 3,
+        "duration": "01:17",
+        "filename": "funk-capricha-renan-mdb.mp3",
+        "dateAdded": "2022-07-05T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "8273FC78-0B7D-4AAB-BA61-BFF123C8EC39",
+        "title": "Funk da Perninha",
+        "description": "",
+        "genre": 3,
+        "duration": "02:43",
+        "filename": "funk-da-perninha.mp3",
+        "dateAdded": "2022-07-05T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "C5FDAF6D-6D5A-41C1-B2A9-D48A1FFAC41C",
+        "title": "Funk do Morto",
+        "description": "",
+        "genre": 3,
+        "duration": "00:27",
+        "filename": "funk-do-morto-mdb.mp3",
+        "dateAdded": "2022-07-05T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "65F5DCBD-0272-4DC0-9458-A4CAC90B2523",
+        "title": "Maluco Genocida",
+        "description": "",
+        "genre": 3,
+        "duration": "00:28",
+        "filename": "funk-maluco-genocida-mdb.mp3",
+        "dateAdded": "2022-07-05T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "EBF5FD18-288E-45FC-A328-672232B89766",
+        "title": "Não sou médico mas sou ousado",
+        "description": "",
+        "genre": 3,
+        "duration": "00:35",
+        "filename": "funk-nao-medico-mas-ousado.mp3",
+        "dateAdded": "2022-07-05T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "2A2EDE10-86C1-4DC4-A148-0939D839BCC9",
+        "title": "Podem escrever e me cobrem",
+        "description": "",
+        "genre": 3,
+        "duration": "00:44",
+        "filename": "funk-podem-escrever-e-me-cobrem-mdb.mp3",
+        "dateAdded": "2022-07-05T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "99371180-86E1-47CE-A637-1368712E68B8",
+        "title": "Sexo Selvagem",
+        "description": "",
+        "genre": 3,
+        "duration": "00:30",
+        "filename": "funk-sexo-selvagem-1-mdb.mp3",
+        "dateAdded": "2022-07-05T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "1B1B689D-2E88-4092-A0BA-0D6181B77723",
+        "title": "Máscara no rabo",
+        "description": "",
+        "genre": 5,
+        "duration": "01:12",
+        "filename": "house-mascara-no-rabo-mdb.mp3",
+        "dateAdded": "2022-07-05T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "BF0A20CD-762E-4FD3-BE87-030C8FBBA9D7",
+        "title": "Osmar Cloroquina",
+        "description": "",
+        "genre": 10,
+        "duration": "00:13",
+        "filename": "pagode-osmar-cloroquina-mdb.mp3",
+        "dateAdded": "2022-07-05T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "AFCF2F5E-49D6-4BFC-957E-07CF24AF6A41",
+        "title": "Chocolate chocolate",
+        "description": "",
+        "genre": 12,
+        "duration": "00:21",
+        "filename": "rock-chocolate-chocolate-mdb.mp3",
+        "dateAdded": "2022-07-05T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "9D4F48AA-CB0E-426B-B45E-97772FA64306",
+        "title": "Comunismo AI-6",
+        "description": "",
+        "genre": 12,
+        "duration": "00:52",
+        "filename": "rock-comunismo-ai-seis-mdb.mp3",
+        "dateAdded": "2022-07-05T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "1BB31BF2-7980-4C76-9AA5-E6FF8B0D2DA8",
+        "title": "Comunismo Vale Tudo",
+        "description": "",
+        "genre": 12,
+        "duration": "00:55",
+        "filename": "rock-comunismo-vale-tudo-mdb.mp3",
+        "dateAdded": "2022-07-05T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "C9C87B50-55DE-4535-B164-819DE597A982",
+        "title": "Eu vou pra Ceilândia",
+        "description": "",
+        "genre": 12,
+        "duration": "00:13",
+        "filename": "rock-eu-vou-pra-ceilandia-mdb.mp3",
+        "dateAdded": "2022-07-05T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "C7C332B2-82A7-4717-A846-92EBA8508579",
+        "title": "Eine Grosse Confusion (Die Roboter - Kraftwerk)",
+        "description": "",
+        "genre": 2,
+        "duration": "00:30",
+        "filename": "eletronica-eine-grosse-confusion-kraftwerk.mp3",
+        "dateAdded": "2022-07-15T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "24A0F141-3B64-4655-9D98-B020B3A332CB",
+        "title": "Eine Grosse Confusion - Sexo Selvagem (The Robots - Kraftwerk)",
+        "description": "",
+        "genre": 2,
+        "duration": "00:17",
+        "filename": "eletronica-eine-grosse-confusion-sexo-selvagem-kraftwerk.mp3",
+        "dateAdded": "2022-07-15T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "9AEEC2F0-F749-4CAE-BEFD-D14FF520D929",
+        "title": "Polarização",
+        "description": "",
+        "genre": 8,
+        "duration": "00:58",
+        "filename": "Franciel Cruz - Polarizacao.mp3",
+        "dateAdded": "2022-07-16T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "14867881-54E6-4865-BF3F-88F87A839505",
+        "title": "Au au (Parabéns, Sanção)",
+        "description": "",
+        "genre": 9,
+        "duration": "00:22",
+        "filename": "Au au (Parabens sancao) - Bolsonaro.mp3",
+        "dateAdded": "2022-07-22T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "6FD95E58-0418-47F2-B28C-133B9F51E7E7",
+        "title": "Toma Cloroquina",
+        "description": "",
+        "genre": 7,
+        "duration": "00:30",
+        "filename": "Toma cloroquina - Cristiano Botafogo (feat Vitor Midcast) - vassourinha.mp3",
+        "dateAdded": "2022-07-22T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "534F81DA-249C-46F6-B143-7CA7FCAC9DE5",
+        "title": "Se for feito com amor, tudo vale",
+        "description": "",
+        "genre": 2,
+        "duration": "01:18",
+        "filename": "Se for feito com amor tudo vale.mp3",
+        "dateAdded": "2022-07-22T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "813256AB-2690-4D1F-833D-646F85721811",
+        "title": "Um dado da natureza",
+        "description": "",
+        "genre": 9,
+        "duration": "00:29",
+        "filename": "Um dado da natureza.mp3",
+        "dateAdded": "2022-07-22T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "03157605-86DC-43A7-BAAC-827140066214",
+        "title": "Pra frente, Brasil",
+        "description": "",
+        "genre": 6,
+        "duration": "00:42",
+        "filename": "Pra frente brasil.mp3",
+        "dateAdded": "2022-07-22T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "36C3F444-3BCB-45A3-83C5-9642338E1728",
+        "title": "Vale Tudo",
+        "description": "",
+        "genre": 9,
+        "duration": "00:18",
+        "filename": "Vale tudo.mp3",
+        "dateAdded": "2022-07-22T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "A69651EE-64A5-4BA8-A6E0-188AFC99C576",
+        "title": "Um Ministério Técnico",
+        "description": "",
+        "genre": 15,
+        "duration": "00:50",
+        "filename": "Um Ministerio Tecnico.mp3",
+        "dateAdded": "2022-07-24T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "4EEA6C23-8AAC-4458-A64F-D405EA800BDC",
+        "title": "Doce feto, fase anal",
+        "description": "",
+        "genre": 13,
+        "duration": "02:02",
+        "filename": "Doce feto, fase anal.mp3",
+        "dateAdded": "2022-07-24T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "D542D719-6FAF-4917-8CE1-D9D5A568B105",
+        "title": "Carla Zambelliii (Happy cover)",
+        "description": "",
+        "genre": 11,
+        "duration": "01:39",
+        "filename": "Carla Zambelliii (Happy cover).mp3",
+        "dateAdded": "2022-07-28T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "9B492003-96B8-48F7-91F8-15C1EFFD69FC",
+        "title": "Assovio do passarinho",
+        "description": "",
+        "genre": 3,
+        "duration": "00:23",
+        "filename": "Assovio do passarinho.mp3",
+        "dateAdded": "2022-08-15T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "62CFFE82-096F-43AB-BBC9-7C6C1E90FE0A",
+        "title": "Dose segura de crack / os tios e as tias do Zap",
+        "description": "",
+        "genre": 3,
+        "duration": "00:15",
+        "filename": "Dose segura de crack, os tios e as tias do Zap.mp3",
+        "dateAdded": "2022-08-16T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "2518F854-7661-46F6-B259-A91E2F47A198",
+        "title": "Jingle de Campanha do Bolsonaro",
+        "description": "",
+        "genre": 14,
+        "duration": "00:13",
+        "filename": "Musica de Campanha do Bolsonaro.mp3",
+        "dateAdded": "2022-08-21T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "D9A37E17-CE17-486A-98BB-45E140CAB065",
+        "title": "Eu vou, eu vou, sentar na mesa eu vou",
+        "description": "",
+        "genre": 3,
+        "duration": "00:36",
+        "filename": "Eu vou, eu vou, sentar na mesa eu vou funk.mp3",
+        "dateAdded": "2022-08-21T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "764167E5-33EB-4A8B-87C2-580E71F43A2E",
+        "title": "Sentar na mesa",
+        "description": "",
+        "genre": 3,
+        "duration": "00:15",
+        "filename": "Funk do Sentar na Mesa.mp3",
+        "dateAdded": "2022-08-21T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "3A6A0386-7149-497C-AF5E-5CD98D724D0D",
+        "title": "Coréia do Norte, Cuba, Venezuela",
+        "description": "",
+        "genre": 3,
+        "duration": "00:42",
+        "filename": "Coreia do Norte, Cuba, Venezuela musica.mp3",
+        "dateAdded": "2022-08-21T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "5B3463AF-E0DE-4255-B199-AD659A75B6D5",
+        "title": "Ele Queria Ter 2 Mesa",
+        "description": "",
+        "genre": 3,
+        "duration": "00:15",
+        "filename": "Ele Queria Ter 2 Mesa Funk.mp3",
+        "dateAdded": "2022-08-30T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "25B4E231-0553-43E1-B0A9-8A1C47E8E0F6",
+        "title": "Dentro do Carro",
+        "description": "",
+        "genre": 3,
+        "duration": "00:19",
+        "filename": "Dentro do Carro Funk.mp3",
+        "dateAdded": "2022-08-30T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "291A477D-69F3-45C8-8E80-555C95656BE5",
+        "title": "Agora vai sentar na mesa",
+        "description": "",
+        "genre": 3,
+        "duration": "00:31",
+        "filename": "Agora vai sentar na mesa Funk.mp3",
+        "dateAdded": "2022-08-30T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "B84C1995-64E4-49E6-AE85-89BD3874A4FF",
+        "title": "Fora, genocida",
+        "description": "",
+        "genre": 5,
+        "duration": "00:52",
+        "filename": "Fora Genocida.mp3",
+        "dateAdded": "2022-09-06T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "29A83E04-7CBB-40DE-95CD-395371840F30",
+        "title": "A pipa do Jair não sobe mais (canalhas)",
+        "description": "",
+        "genre": 7,
+        "duration": "00:14",
+        "filename": "A pipa do jair nao sobe mais.mp3",
+        "dateAdded": "2022-09-11T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "4E2260B0-0AF1-41D5-A151-F98BD7E948FA",
+        "title": "Jingle Bolsonaro 2022 (dez. 2020)",
+        "description": "",
+        "genre": 6,
+        "duration": "00:44",
+        "filename": "Jingle Bolsonaro 2022.mp3",
+        "dateAdded": "2022-09-19T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "DC5ADF8A-5096-4259-9E13-95EDAFEF10CC",
+        "title": "Vou de Lula, Cê Sabe",
+        "description": "",
+        "genre": 11,
+        "duration": "00:08",
+        "filename": "Vou de Lula, Ce Sabe - Neide e Lula.mp3",
+        "dateAdded": "2022-09-29T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "4B702B58-C212-4648-A442-A893B1124F7D",
+        "title": "Tá na hora de votar (Ilariê)",
+        "description": "",
+        "genre": 11,
+        "duration": "00:26",
+        "filename": "Tá na hora de votar (Ilarie) - Lula.mp3",
+        "dateAdded": "2022-10-17T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "F755FE64-C720-4073-BC87-225949269D03",
+        "title": "Funk da Picanha e da Cerveja 🥩🍺",
+        "description": "",
+        "genre": 3,
+        "duration": "00:38",
+        "filename": "Funk da Picanha e da Cerveja.mp3",
+        "dateAdded": "2022-10-21T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "F651F126-46AC-404D-9587-978C3A3BBD64",
+        "title": "💦",
+        "description": "",
+        "genre": 3,
+        "duration": "00:28",
+        "filename": "O senhor gozou.mp3",
+        "dateAdded": "2022-10-21T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "CEE780E9-C56B-4923-8CCB-A19FDED2550E",
+        "title": "Genocida, miliciano, canibal",
+        "description": "",
+        "genre": 3,
+        "duration": "00:14",
+        "filename": "Genocida, miliciano, canibal.mp3",
+        "dateAdded": "2022-10-21T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "006BC316-AC88-4A1E-BE19-07E1D7B470E5",
+        "title": "Não tenho provas",
+        "description": "",
+        "genre": 3,
+        "duration": "01:05",
+        "filename": "Jair Bolsonaro - Nao tenho provas.mp3",
+        "dateAdded": "2022-10-25T00:00:00Z",
         "isOffensive": false
     }
 ]

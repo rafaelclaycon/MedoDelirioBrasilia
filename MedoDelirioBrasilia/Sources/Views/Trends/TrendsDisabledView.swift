@@ -1,3 +1,10 @@
+//
+//  TrendsDisabledView.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 07/06/22.
+//
+
 import SwiftUI
 
 struct TrendsDisabledView: View {
@@ -13,12 +20,15 @@ struct TrendsDisabledView: View {
                 .font(.title)
                 .bold()
                 .multilineTextAlignment(.center)
+                .padding(.horizontal)
             
-            Text("Para descobrir quais sons são mais compartilhados por você e pelos demais usuários do app, habilite o recurso Tendências na aba Ajustes.")
+            Text("Para descobrir quais sons são mais compartilhados por você e pelos demais usuários do app, habilite o recurso Tendências em Ajustes > Privacidade.")
                 .multilineTextAlignment(.center)
+                .padding(.horizontal)
             
-            Text("Enquanto as tendências estiverem desabilitadas, nenhum dado de compartilhamento será armazenado.")
+            Text("Enquanto as tendências estiverem desabilitadas, nenhum dado de compartilhamento será coletado.")
                 .multilineTextAlignment(.center)
+                .padding(.horizontal)
         }
     }
 

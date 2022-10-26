@@ -18,6 +18,7 @@ extension LocalDatabase {
                                       .order(contentCount.desc)
                                       .limit(5)) {
             result.append(TopChartItem(id: .empty,
+                                       rankNumber: .empty,
                                        contentId: row[content_id],
                                        contentName: .empty,
                                        contentAuthorId: .empty,
@@ -29,20 +30,23 @@ extension LocalDatabase {
     
     // MARK: - Audience Top Chart
     
-    func getTop5SoundsSharedByTheAudience() throws -> [TopChartItem] {
+    func getTop10SoundsSharedByTheAudience(for timeInterval: TrendsTimeInterval) throws -> [TopChartItem] {
         var result = [TopChartItem]()
         let content_id = Expression<String>("contentId")
         let content_type = Expression<Int>("contentType")
         let share_count = Expression<Int>("shareCount")
+        let ranking_type = Expression<Int>("rankingType")
         
         let totalShareCount = share_count.sum
         for row in try db.prepare(audienceSharingStatistic
                                       .select(content_id,totalShareCount)
                                       .where(content_type == 0)
+                                      .where(ranking_type == timeInterval.rawValue)
                                       .group(content_id)
                                       .order(totalShareCount.desc)
-                                      .limit(5)) {
+                                      .limit(10)) {
             result.append(TopChartItem(id: .empty,
+                                       rankNumber: .empty,
                                        contentId: row[content_id],
                                        contentName: .empty,
                                        contentAuthorId: .empty,

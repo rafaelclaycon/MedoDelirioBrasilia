@@ -20,6 +20,14 @@ class UserSettings {
         return Int(value as! Int)
     }
     
+    static func getSongSortOption() -> Int {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "songSortOption") else {
+            return 1
+        }
+        return Int(value as! Int)
+    }
+    
     static func getEnableTrends() -> Bool {
         let userDefaults = UserDefaults.standard
         guard let value = userDefaults.object(forKey: "enableTrends") else {
@@ -68,20 +76,20 @@ class UserSettings {
         return Bool(value as! Bool)
     }
     
-    static func getHasSentDeviceModelToServer() -> Bool {
+    static func getUserAllowedNotifications() -> Bool {
         let userDefaults = UserDefaults.standard
-        guard let value = userDefaults.object(forKey: "hasSentDeviceModelToServer") else {
+        guard let value = userDefaults.object(forKey: "userAllowedNotifications") else {
             return false
         }
         return Bool(value as! Bool)
     }
     
-    static func getLastSendDateOfUserPersonalTrendsToServer() -> Date? {
+    static func getHotWeatherBannerWasDismissed() -> Bool {
         let userDefaults = UserDefaults.standard
-        guard let value = userDefaults.object(forKey: "lastSendDateOfUserPersonalTrendsToServer") else {
-            return nil
+        guard let value = userDefaults.object(forKey: "hotWeatherBannerWasDismissed") else {
+            return false
         }
-        return Date(timeIntervalSince1970: value as! Double)
+        return Bool(value as! Bool)
     }
     
     static func getLastSendDateOfStillAliveSignalToServer() -> Date? {
@@ -102,6 +110,11 @@ class UserSettings {
     static func setSoundSortOption(to newValue: Int) {
         let userDefaults = UserDefaults.standard
         userDefaults.set(newValue, forKey: "soundSortOption")
+    }
+    
+    static func setSongSortOption(to newValue: Int) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(newValue, forKey: "songSortOption")
     }
     
     static func setEnableTrends(to newValue: Bool) {
@@ -134,14 +147,14 @@ class UserSettings {
         userDefaults.set(newValue, forKey: "enableShareUserPersonalTrends")
     }
     
-    static func setHasSentDeviceModelToServer(to newValue: Bool) {
+    static func setUserAllowedNotifications(to newValue: Bool) {
         let userDefaults = UserDefaults.standard
-        userDefaults.set(newValue, forKey: "hasSentDeviceModelToServer")
+        userDefaults.set(newValue, forKey: "userAllowedNotifications")
     }
     
-    static func setLastSendDateOfUserPersonalTrendsToServer(to newValue: Date) {
+    static func setHotWeatherBannerWasDismissed(to newValue: Bool) {
         let userDefaults = UserDefaults.standard
-        userDefaults.set(newValue.timeIntervalSince1970, forKey: "lastSendDateOfUserPersonalTrendsToServer")
+        userDefaults.set(newValue, forKey: "hotWeatherBannerWasDismissed")
     }
     
     static func setLastSendDateOfStillAliveSignalToServer(to newValue: Date) {

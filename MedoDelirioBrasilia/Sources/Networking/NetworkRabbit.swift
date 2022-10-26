@@ -3,7 +3,7 @@ import UIKit
 internal protocol NetworkRabbitProtocol {
 
     func checkServerStatus(completionHandler: @escaping (Bool, String) -> Void)
-    func getSoundShareCountStats(completionHandler: @escaping ([ServerShareCountStat]?, NetworkRabbitError?) -> Void)
+    func getSoundShareCountStats(timeInterval: TrendsTimeInterval, completionHandler: @escaping ([ServerShareCountStat]?, NetworkRabbitError?) -> Void)
     func post(shareCountStat: ServerShareCountStat, completionHandler: @escaping (Bool, String) -> Void)
     func post(clientDeviceInfo: ClientDeviceInfo, completionHandler: @escaping (Bool?, NetworkRabbitError?) -> Void)
     func post(bundleIdLog: ServerShareBundleIdLog, completionHandler: @escaping (Bool, String) -> Void)
@@ -12,7 +12,7 @@ internal protocol NetworkRabbitProtocol {
 
 class NetworkRabbit: NetworkRabbitProtocol {
 
-    private let serverPath: String
+    let serverPath: String
     
     init(serverPath: String) {
         self.serverPath = serverPath
@@ -37,9 +37,22 @@ class NetworkRabbit: NetworkRabbitProtocol {
         task.resume()
     }
     
-    func getSoundShareCountStats(completionHandler: @escaping ([ServerShareCountStat]?, NetworkRabbitError?) -> Void) {
-        let url = URL(string: serverPath + "v1/sound-share-count-stats")!
-
+    func getSoundShareCountStats(timeInterval: TrendsTimeInterval, completionHandler: @escaping ([ServerShareCountStat]?, NetworkRabbitError?) -> Void) {
+        var url: URL
+        
+        switch timeInterval {
+        case .lastWeek:
+            let refDate: String = TimeKeeper.getDateAsString(addingDays: -7)
+            url = URL(string: serverPath + "v2/sound-share-count-stats-from/\(refDate)")!
+        
+        case .lastMonth:
+            let refDate: String = TimeKeeper.getDateAsString(addingDays: -30)
+            url = URL(string: serverPath + "v2/sound-share-count-stats-from/\(refDate)")!
+        
+        case .allTime:
+            url = URL(string: serverPath + "v2/sound-share-count-stats-all-time")!
+        }
+        
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             guard let httpResponse = response as? HTTPURLResponse else {
                 return completionHandler(nil, .responseWasNotAnHTTPURLResponse)
@@ -61,6 +74,36 @@ class NetworkRabbit: NetworkRabbitProtocol {
             }
         }
 
+        task.resume()
+    }
+    
+    func displayAskForMoneyView(completionHandler: @escaping (Bool, String) -> Void) {
+        let url = URL(string: serverPath + "v1/display-ask-for-money-view")!
+
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            if let data = data {
+                let response = String(data: data, encoding: .utf8)!
+                completionHandler(response == "1", response)
+            } else if let error = error {
+                completionHandler(false, "A requisição HTTP falhou: \(error.localizedDescription)")
+            }
+        }
+        
+        task.resume()
+    }
+    
+    func displayLulaWonOnLockScreenWidgets(completionHandler: @escaping (Bool, String) -> Void) {
+        let url = URL(string: serverPath + "v1/display-lula-won-on-lock-screen-widgets")!
+
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            if let data = data {
+                let response = String(data: data, encoding: .utf8)!
+                completionHandler(response == "1", response)
+            } else if let error = error {
+                completionHandler(false, "A requisição HTTP falhou: \(error.localizedDescription)")
+            }
+        }
+        
         task.resume()
     }
     

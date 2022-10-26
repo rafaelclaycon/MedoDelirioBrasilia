@@ -1,171 +1,103 @@
+//
+//  TrendsView.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 29/05/22.
+//
+
 import SwiftUI
 
 struct TrendsView: View {
 
     @StateObject private var viewModel = TrendsViewViewModel()
-    @State private var favoriteColor = 0
+    @Binding var tabSelection: PhoneTab
+    @Binding var activePadScreen: PadScreen?
+    @Binding var soundIdToGoToFromTrends: String
+    @Binding var trendsTimeIntervalToGoTo: TrendsTimeInterval?
     @State var showAlert = false
     @State var alertTitle = ""
-    
-    let columns = [
-        GridItem(.flexible())
-    ]
     
     var showTrends: Bool {
         UserSettings.getEnableTrends()
     }
     
-    var showMostSharedSoundsByTheUser: Bool {
+    /*var showMostSharedSoundsByTheUser: Bool {
         UserSettings.getEnableMostSharedSoundsByTheUser()
-    }
+    }*/
     
-    var showDayOfTheWeekTheUserSharesTheMost: Bool {
+    /*var showDayOfTheWeekTheUserSharesTheMost: Bool {
         UserSettings.getEnableDayOfTheWeekTheUserSharesTheMost()
-    }
+    }*/
     
     var showSoundsMostSharedByTheAudience: Bool {
         UserSettings.getEnableSoundsMostSharedByTheAudience()
     }
     
-    var showAppsThroughWhichTheUserSharesTheMost: Bool {
+    /*var showAppsThroughWhichTheUserSharesTheMost: Bool {
         UserSettings.getEnableAppsThroughWhichTheUserSharesTheMost()
-    }
+    }*/
     
     var body: some View {
-        NavigationView {
-            VStack {
-                if showTrends {
+        VStack {
+            if showTrends {
+                if UIDevice.current.userInterfaceIdiom == .phone {
                     ScrollView {
-                        VStack(alignment: .leading) {
-                            if showMostSharedSoundsByTheUser {
-                                Text("Sons Mais Compartilhados Por Mim")
-                                    .font(.title2)
-                                    .padding(.horizontal)
+                        VStack(alignment: .leading, spacing: 10) {
+                            /*if showMostSharedSoundsByTheUser {
+                                MostSharedByMeView()
                                     .padding(.top, 10)
-                                
-                                if viewModel.personalTop5 == nil {
-                                    HStack {
-                                        Spacer()
-                                        
-                                        Text("Sem Dados")
-                                            .font(.headline)
-                                            .padding(.vertical, 40)
-                                        
-                                        Spacer()
-                                    }
-                                } else {
-                                    VStack {
-                                        HStack {
-                                            Spacer()
-                                            
-                                            Button {
-                                                viewModel.reloadPersonalList(withTopChartItems: podium.getTop5SoundsSharedByTheUser())
-                                            } label: {
-                                                HStack {
-                                                    Image(systemName: "arrow.triangle.2.circlepath")
-                                                    Text("Atualizar")
-                                                }
-                                            }
-                                            .padding(.trailing)
-                                            .padding(.top, 1)
-                                        }
-                                        
-                                        LazyVGrid(columns: columns, spacing: 14) {
-                                            ForEach(viewModel.personalTop5!) { item in
-                                                TopChartCellView(item: item)
-                                            }
-                                        }
-                                        .padding(.bottom)
-                                        
-                                        Text("Última consulta: hoje às 12:05")
-                                            .font(.subheadline)
-                                            .foregroundColor(.gray)
-                                    }
-                                    .padding(.bottom, 20)
-                                }
-                            }
-                            
-                            /*if showDayOfTheWeekTheUserSharesTheMost {
-                                Text("Dia da Semana No Qual Eu Mais Compartilho")
-                                    .font(.title2)
-                                    .padding(.horizontal)
                             }*/
                             
+                            /*if showDayOfTheWeekTheUserSharesTheMost {
+                             Text("Dia da Semana No Qual Eu Mais Compartilho")
+                             .font(.title2)
+                             .padding(.horizontal)
+                             }*/
+                            
                             if showSoundsMostSharedByTheAudience {
-                                Text("Sons Mais Compartilhados Pela Audiência (iOS)")
-                                    .font(.title2)
-                                    .padding(.horizontal)
+                                MostSharedByAudienceView(tabSelection: $tabSelection,
+                                                         activePadScreen: $activePadScreen,
+                                                         soundIdToGoToFromTrends: $soundIdToGoToFromTrends,
+                                                         trendsTimeIntervalToGoTo: $trendsTimeIntervalToGoTo)
                                     .padding(.top, 10)
-                                
-                                HStack {
-                                    Spacer()
-                                    
-                                    Button {
-                                        viewModel.reloadAudienceList()
-                                    } label: {
-                                        HStack {
-                                            Image(systemName: "arrow.triangle.2.circlepath")
-                                            Text("Atualizar")
-                                        }
-                                    }
-                                    .padding(.trailing)
-                                    .padding(.top, 1)
-                                }
-                                
-                                Picker("What is your favorite color?", selection: $favoriteColor) {
-                                    Text("Semana").tag(0)
-                                    Text("Mês").tag(1)
-                                    Text("Todos os Tempos").tag(2)
-                                }
-                                .pickerStyle(.segmented)
-                                .padding(.horizontal)
-                                
-                                if viewModel.audienceTop5 == nil {
-                                    HStack {
-                                        Spacer()
-                                        
-                                        VStack(spacing: 10) {
-                                            Text("Sem Dados")
-                                                //.font(.headline)
-                                                .bold()
-                                            
-                                            Text("Última consulta: hoje às 12:05")
-                                                //.font(.subheadline)
-                                                .foregroundColor(.gray)
-                                        }
-                                        .padding(.vertical, 40)
-                                        
-                                        Spacer()
-                                    }
-                                } else {
-                                    LazyVGrid(columns: columns, spacing: 14) {
-                                        ForEach(viewModel.audienceTop5!) { item in
-                                            TopChartCellView(item: item)
-                                        }
-                                    }
-                                    .padding(.bottom)
-                                }
                             }
                             
                             /*if showAppsThroughWhichTheUserSharesTheMost {
-                                Text("Apps Pelos Quais Você Mais Compartilha")
-                                    .font(.title2)
-                                    .padding(.horizontal)
-                            }*/
+                             Text("Apps Pelos Quais Você Mais Compartilha")
+                             .font(.title2)
+                             .padding(.horizontal)
+                             }*/
                         }
                     }
                 } else {
-                    TrendsDisabledView()
-                        .padding(.horizontal, 25)
+                    ScrollView {
+                        HStack {
+                            /*if showMostSharedSoundsByTheUser {
+                             VStack {
+                             MostSharedByMeView()
+                             Spacer()
+                             }
+                             }*/
+                            
+                            if showSoundsMostSharedByTheAudience {
+                                VStack {
+                                    MostSharedByAudienceView(tabSelection: $tabSelection,
+                                                             activePadScreen: $activePadScreen,
+                                                             soundIdToGoToFromTrends: $soundIdToGoToFromTrends,
+                                                             trendsTimeIntervalToGoTo: $trendsTimeIntervalToGoTo)
+                                    Spacer()
+                                }
+                            }
+                        }
+                    }
                 }
-            }
-            .navigationTitle("Tendências (Beta)")
-            .navigationBarTitleDisplayMode(showTrends ? .large : .inline)
-            .onAppear {
-                viewModel.reloadPersonalList(withTopChartItems: podium.getTop5SoundsSharedByTheUser())
-                viewModel.donateActivity()
+            } else {
+                TrendsDisabledView()
+                    .padding(.horizontal, 25)
             }
         }
+        .navigationTitle("Tendências")
+        .navigationBarTitleDisplayMode(showTrends ? .large : .inline)
     }
 
 }
@@ -173,7 +105,10 @@ struct TrendsView: View {
 struct TrendsView_Previews: PreviewProvider {
 
     static var previews: some View {
-        TrendsView()
+        TrendsView(tabSelection: .constant(.trends),
+                   activePadScreen: .constant(.trends),
+                   soundIdToGoToFromTrends: .constant(.empty),
+                   trendsTimeIntervalToGoTo: .constant(nil))
     }
 
 }

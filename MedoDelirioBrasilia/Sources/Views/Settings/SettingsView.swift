@@ -1,104 +1,146 @@
+//
+//  SettingsView.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 21/05/22.
+//
+
 import SwiftUI
 
 struct SettingsView: View {
 
     @State private var showExplicitSounds: Bool = UserSettings.getShowOffensiveSounds()
     
-    @State private var showingTrendsSettingsScreen: Bool = false
+    @State private var showChangeAppIcon: Bool = ProcessInfo.processInfo.isMacCatalystApp == false
     
+    @State private var showAskForMoneyView: Bool = false
     @State private var showPixKeyCopiedAlert: Bool = false
     
-    @State private var showEmailAddressCopiedAlert: Bool = false
+    @State private var showEmailClientConfirmationDialog: Bool = false
     
-    @State private var showingDiagnosticsScreen: Bool = false
-    
-    let pixKey: String = "918bd609-04d1-4df6-8697-352b62462061"
-    let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
-    let buildVersionNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""
+    let pixKey: String = "medodeliriosuporte@gmail.com"
     
     var body: some View {
-        NavigationView {
-            Form {
-                Section {
-                    Toggle("Exibir conteúdo sensível", isOn: $showExplicitSounds)
-                        .onChange(of: showExplicitSounds) { newValue in
-                            UserSettings.setShowOffensiveSounds(to: newValue)
-                        }
-                } footer: {
-                    Text("Alguns conteúdos contam com muitos palavrões. Ao marcar essa opção, você concorda que tem mais de 18 anos e que deseja ver esse conteúdo.")
+        Form {
+            Section {
+                Toggle("Exibir conteúdo sensível", isOn: $showExplicitSounds)
+                    .onChange(of: showExplicitSounds) { newValue in
+                        UserSettings.setShowOffensiveSounds(to: newValue)
+                    }
+            } footer: {
+                Text("Alguns conteúdos contam com muitos palavrões. Ao marcar essa opção, você concorda que tem mais de 18 anos e que deseja ver esses conteúdos.")
+            }
+            
+            Section {
+                NavigationLink(destination: HelpView()) {
+                    Label {
+                        Text("Ajuda")
+                    } icon: {
+                        Image(systemName: "questionmark")
+                            .foregroundColor(.blue)
+                    }
+
+                }
+            }
+            
+            Section {
+                NavigationLink(destination: NotificationsSettingsView()) {
+                    Label(title: {
+                        Text("Notificações")
+                    }, icon: {
+                        Image(systemName: "bell.badge")
+                            .foregroundColor(.red)
+                    })
                 }
                 
-                Section {
-                    NavigationLink(destination: TrendsSettingsView(), isActive: $showingTrendsSettingsScreen) {
-                        Text("Tendências")
+                if showChangeAppIcon {
+                    NavigationLink(destination: ChangeAppIconView()) {
+                        Label {
+                            Text("Ícone do app")
+                        } icon: {
+                            Image(systemName: "app")
+                                .foregroundColor(.orange)
+                        }
+
                     }
                 }
                 
-                Section("Esse app é uma homenagem ao trabalho de Cristiano Botafogo e Pedro Daltro") {
+                NavigationLink(destination: PrivacySettingsView()) {
+                    Label {
+                        Text("Privacidade")
+                    } icon: {
+                        Image(systemName: "hand.raised")
+                            .foregroundColor(.blue)
+                    }
+
+                }
+            }
+            
+            Section("📬  Problemas, sugestões e pedidos") {
+                Button("Entrar em contato por e-mail") {
+                    showEmailClientConfirmationDialog = true
+                }
+            }
+            
+            if showAskForMoneyView || CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
+                /*Section {
+                    PodcastAuthorsView()
+                        .padding(.vertical, 8)
+                }*/
+                
+                Section {
                     BegForMoneyView()
                         .padding(.vertical)
                     
-                    Button("Copiar chave Pix") { 
+                    Button("Copiar chave Pix (e-mail)") {
                         UIPasteboard.general.string = pixKey
                         showPixKeyCopiedAlert = true
                     }
                     .alert(isPresented: $showPixKeyCopiedAlert) {
                         Alert(title: Text("Chave copiada com sucesso!"), dismissButton: .default(Text("OK")))
                     }
+                } header: {
+                    Text("Ajude o app")
+                } footer: {
+                    Text("Selecione E-mail como tipo de chave no app do seu banco. Evite qualquer opção que mencione QR Code.")
+                }
+            }
+            
+            Section("Sobre") {
+                Button("Criado por @claycon_") {
+                    guard let url = URL(string: "https://twitter.com/claycon_") else { return }
+                    UIApplication.shared.open(url)
                 }
                 
-                Section("🐞  Problemas, sugestões ou pedidos") {
-                    Button("Entrar em contato por e-mail (Mail)") {
-                        guard let emailSubject = "Problema/sugestão no app iOS \(appVersion) Build \(buildVersionNumber)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
-                            return
-                        }
-                        guard let emailMessage = "Para um problema, inclua passos para reproduzir e prints se possível.".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
-                            return
-                        }
-
-                        let mailToString = "mailto:medodeliriosuporte@gmail.com?subject=\(emailSubject)&body=\(emailMessage)"
-
-                        guard let mailToUrl = URL(string: mailToString) else {
-                            return
-                        }
-
-                        UIApplication.shared.open(mailToUrl)
-                    }
-                    
-                    Button("Copiar endereço de e-mail (outros apps)") {
-                        UIPasteboard.general.string = "medodeliriosuporte@gmail.com"
-                        showEmailAddressCopiedAlert = true
-                    }
-                    .alert(isPresented: $showEmailAddressCopiedAlert) {
-                        Alert(title: Text("Endereço copiado com sucesso!"), dismissButton: .default(Text("OK")))
-                    }
+                Text("Versão \(Versioneer.appVersion) Build \(Versioneer.buildVersionNumber)")
+            }
+            
+            Section("Contribua ou entenda como funciona") {
+                Button("Ver código fonte no GitHub") {
+                    let githubUrl = URL(string: "https://github.com/rafaelclaycon/MedoDelirioBrasilia")!
+                    UIApplication.shared.open(githubUrl)
                 }
-                
-                Section("🧑‍💻  Contribua ou entenda como o app funciona") {
-                    Button(action: {
-                        let githubUrl = URL(string: "https://github.com/rafaelclaycon/MedoDelirioBrasilia")!
-                        UIApplication.shared.open(githubUrl)
-                    }) {
-                        Text("Ver código fonte no GitHub")
-                    }
-                }
-                
-                Section("Sobre") {
-                    Button("Criado por @claycon_") {
-                        guard let url = URL(string: "https://twitter.com/claycon_") else { return }
-                        UIApplication.shared.open(url)
-                    }
-                    
-                    Text("Versão \(appVersion) Build \(buildVersionNumber)")
-                }
-                
-                Section("Diagnóstico") {
-                    NavigationLink(destination: DiagnosticsView(), isActive: $showingDiagnosticsScreen) {
-                        Text("Dados para nerds")
+            }
+            
+            Section {
+                NavigationLink(destination: DiagnosticsView()) {
+                    Label {
+                        Text("Diagnóstico")
+                    } icon: {
+                        Image(systemName: "stethoscope")
+                            .foregroundColor(.gray)
                     }
                 }
             }
-            .navigationTitle("Ajustes")
+        }
+        .navigationTitle("Ajustes")
+        .onAppear {
+            networkRabbit.displayAskForMoneyView { result, _ in
+                showAskForMoneyView = result
+            }
+        }
+        .popover(isPresented: $showEmailClientConfirmationDialog) {
+            EmailAppPickerView(isBeingShown: $showEmailClientConfirmationDialog, subject: Shared.issueSuggestionEmailSubject, emailBody: Shared.issueSuggestionEmailBody)
         }
     }
 

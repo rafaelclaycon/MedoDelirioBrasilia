@@ -1,4 +1,4 @@
-@testable import Medo_e_Delírio
+@testable import MedoDelirio
 import Foundation
 
 class NetworkRabbitStub: NetworkRabbitProtocol {
@@ -13,7 +13,7 @@ class NetworkRabbitStub: NetworkRabbitProtocol {
         }
     }
     
-    func getSoundShareCountStats(completionHandler: @escaping ([ServerShareCountStat]?, NetworkRabbitError?) -> Void) {
+    func getSoundShareCountStats(timeInterval: TrendsTimeInterval, completionHandler: @escaping ([ServerShareCountStat]?, NetworkRabbitError?) -> Void) {
         completionHandler(nil, nil)
     }
     

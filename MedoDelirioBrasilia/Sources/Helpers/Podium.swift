@@ -33,7 +33,7 @@ class Podium {
                 continue
             }
             
-            itemInPreparation = TopChartItem(id: "\(i + 1)", contentId: dimItems[i].contentId, contentName: filteredSounds[0].title, contentAuthorId: filteredSounds[0].authorId, contentAuthorName: filteredAuthors[0].name, shareCount: dimItems[i].shareCount)
+            itemInPreparation = TopChartItem(id: UUID().uuidString, rankNumber: "\(i + 1)", contentId: dimItems[i].contentId, contentName: filteredSounds[0].title, contentAuthorId: filteredSounds[0].authorId, contentAuthorName: filteredAuthors[0].name, shareCount: dimItems[i].shareCount)
             
             result.append(itemInPreparation)
         }
@@ -45,13 +45,13 @@ class Podium {
         }
     }
     
-    func getTop5SoundsSharedByTheAudience() -> [TopChartItem]? {
+    func getTop10SoundsSharedByTheAudience(for timeInterval: TrendsTimeInterval) -> [TopChartItem]? {
         var result = [TopChartItem]()
         var filteredSounds: [Sound]
         var filteredAuthors: [Author]
         var itemInPreparation: TopChartItem
         
-        guard let dimItems = try? database.getTop5SoundsSharedByTheAudience(), dimItems.count > 0 else {
+        guard let dimItems = try? database.getTop10SoundsSharedByTheAudience(for: timeInterval), dimItems.count > 0 else {
             return nil
         }
         
@@ -68,7 +68,7 @@ class Podium {
                 continue
             }
             
-            itemInPreparation = TopChartItem(id: "\(i + 1)", contentId: dimItems[i].contentId, contentName: filteredSounds[0].title, contentAuthorId: filteredSounds[0].authorId, contentAuthorName: filteredAuthors[0].name, shareCount: dimItems[i].shareCount)
+            itemInPreparation = TopChartItem(id: UUID().uuidString, rankNumber: "\(i + 1)", contentId: dimItems[i].contentId, contentName: filteredSounds[0].title, contentAuthorId: filteredSounds[0].authorId, contentAuthorName: filteredAuthors[0].name, shareCount: dimItems[i].shareCount)
             
             result.append(itemInPreparation)
         }
@@ -80,7 +80,7 @@ class Podium {
         }
     }
     
-    func exchangeShareCountStatsWithTheServer(completionHandler: @escaping (ShareCountStatServerExchangesResult, String) -> Void) {
+    func sendShareCountStatsToServer(completionHandler: @escaping (ShareCountStatServerExchangeResult, String) -> Void) {
         networkRabbit.checkServerStatus { serverIsAvailable, _ in
             guard serverIsAvailable else {
                 return completionHandler(.failed, "Servidor não disponível.")
@@ -115,29 +115,35 @@ class Podium {
             try? self.database.markAllUserShareLogsAsSentToServer()
             
             completionHandler(.successful, "")
-            
-            // Get remote stats
-//            self.networkRabbit.getSoundShareCountStats { stats, error in
-//                guard error == nil else {
-//                    return
-//                }
-//                guard let stats = stats else {
-//                    return
-//                }
-//                // Save them
-//                var audienceStat: AudienceShareCountStat? = nil
-//                stats.forEach { stat in
-//                    audienceStat = AudienceShareCountStat(contentId: stat.contentId, contentType: stat.contentType, shareCount: stat.shareCount)
-//                    try? self.database.insert(audienceStat: audienceStat!)
-//                }
-//                
-//                // Let the caller now 
-//                //self.audienceTop5 = Podium.getTop5SoundsSharedByTheAudience()
-//            }
         }
     }
     
-    enum ShareCountStatServerExchangesResult {
+    func cleanAudienceSharingStatisticTableToReceiveUpdatedData() {
+        try? self.database.clearAudienceSharingStatisticTable()
+    }
+    
+    func getAudienceShareCountStatsFromServer(for timeInterval: TrendsTimeInterval, completionHandler: @escaping (ShareCountStatServerExchangeResult, String) -> Void) {
+        self.networkRabbit.getSoundShareCountStats(timeInterval: timeInterval) { stats, error in
+            guard error == nil else {
+                return completionHandler(.failed, "")
+            }
+            guard let stats = stats, stats.isEmpty == false else {
+                return
+            }
+            
+            // Save them
+            var audienceStat: AudienceShareCountStat? = nil
+            stats.forEach { stat in
+                audienceStat = AudienceShareCountStat(contentId: stat.contentId, contentType: stat.contentType, shareCount: stat.shareCount, rankingType: timeInterval.rawValue)
+                try? self.database.insert(audienceStat: audienceStat!)
+            }
+            
+            // Let the caller now
+            completionHandler(.successful, .empty)
+        }
+    }
+    
+    enum ShareCountStatServerExchangeResult {
         
         case successful, noStatsToSend, failed
         
