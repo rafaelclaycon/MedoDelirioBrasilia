@@ -7099,5 +7099,23 @@
         "filename": "BAND JORNALISMO - Onyx - E o presidente estendeu a mao para poder pacificar a nacao.mp3",
         "dateAdded": "2022-10-26T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "90C0EC47-B6A9-4284-AD29-784AA79239DB",
+        "title": "Muito melhor do que a sua",
+        "authorId": "79046C01-8DC2-4390-9E4E-3BF5D7B3858E",
+        "description": "Muito melhor do que a sua",
+        "filename": "Onyx Lorenzoni - Muito melhor do que a sua.mp3",
+        "dateAdded": "2022-10-26T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "E87E0576-7CA5-4A73-8E32-D60AD5914015",
+        "title": "Qual a sua alternativa, candidato?",
+        "authorId": "569E5EDC-6097-48B9-A8C6-246FCC1C6973",
+        "description": "Qual a sua alternativa candidato",
+        "filename": "Eduardo Leite - Qual a sua alternativa candidato.mp3",
+        "dateAdded": "2022-10-26T00:00:00Z",
+        "isOffensive": false
     }
 ]
