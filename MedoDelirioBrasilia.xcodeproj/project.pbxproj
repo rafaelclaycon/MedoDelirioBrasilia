@@ -936,6 +936,7 @@
 		D9BC1E1528F1CFBD00AC0C8D /* Eu acho e pouco.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BC1E1428F1CFBD00AC0C8D /* Eu acho e pouco.mp3 */; };
 		D9BCAC2D28B598FB0098FE15 /* AppIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BCAC2C28B598FA0098FE15 /* AppIconCell.swift */; };
 		D9BE7701290A895B00C8C0A6 /* Luiz Henrique Mandetta - Ta certissimo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BE7700290A895B00C8C0A6 /* Luiz Henrique Mandetta - Ta certissimo.mp3 */; };
+		D9BE7703290A8E8300C8C0A6 /* Galvao Bueno - Virou passeio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BE7702290A8E8300C8C0A6 /* Galvao Bueno - Virou passeio.mp3 */; };
 		D9BF9091284257F500BDDD7D /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF9090284257F500BDDD7D /* Shared.swift */; };
 		D9BF90972842D3CB00BDDD7D /* NoSoundsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF90962842D3CB00BDDD7D /* NoSoundsView.swift */; };
 		D9BF90BE2842EAED00BDDD7D /* TopChartCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF90BD2842EAED00BDDD7D /* TopChartCellView.swift */; };
@@ -1990,6 +1991,7 @@
 		D9BC1E1428F1CFBD00AC0C8D /* Eu acho e pouco.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu acho e pouco.mp3"; sourceTree = "<group>"; };
 		D9BCAC2C28B598FA0098FE15 /* AppIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconCell.swift; sourceTree = "<group>"; };
 		D9BE7700290A895B00C8C0A6 /* Luiz Henrique Mandetta - Ta certissimo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Luiz Henrique Mandetta - Ta certissimo.mp3"; sourceTree = "<group>"; };
+		D9BE7702290A8E8300C8C0A6 /* Galvao Bueno - Virou passeio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Galvao Bueno - Virou passeio.mp3"; sourceTree = "<group>"; };
 		D9BF9090284257F500BDDD7D /* Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shared.swift; sourceTree = "<group>"; };
 		D9BF90962842D3CB00BDDD7D /* NoSoundsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSoundsView.swift; sourceTree = "<group>"; };
 		D9BF90BD2842EAED00BDDD7D /* TopChartCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartCellView.swift; sourceTree = "<group>"; };
@@ -2126,6 +2128,7 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9BE7702290A8E8300C8C0A6 /* Galvao Bueno - Virou passeio.mp3 */,
 				D9BE7700290A895B00C8C0A6 /* Luiz Henrique Mandetta - Ta certissimo.mp3 */,
 				D937E11E2909AA90004137ED /* Eduardo Leite - Qual a sua alternativa candidato.mp3 */,
 				D937E11D2909AA90004137ED /* Onyx Lorenzoni - Muito melhor do que a sua.mp3 */,
@@ -4162,6 +4165,7 @@
 				49DEA9C628811482008C9BA1 /* Chiquititas Brasil - Nao Pode Ser short meme.mp3 in Resources */,
 				D975FFC72880B4F20035E6F2 /* Ernesto Araujo - Thats not true (House Remix).mp3 in Resources */,
 				D9DB6F8328CD6F3600E24BDE /* Edu Santos - Totalmente embriagado.mp3 in Resources */,
+				D9BE7703290A8E8300C8C0A6 /* Galvao Bueno - Virou passeio.mp3 in Resources */,
 				D975FEB02880B4F20035E6F2 /* Mourao - Herois matam short.mp3 in Resources */,
 				D975FE772880B4F20035E6F2 /* Pedro Daltro - Fala direito, Cristiano, porra.mp3 in Resources */,
 				D975FF3D2880B4F20035E6F2 /* Carmina burana trecho.mp3 in Resources */,
