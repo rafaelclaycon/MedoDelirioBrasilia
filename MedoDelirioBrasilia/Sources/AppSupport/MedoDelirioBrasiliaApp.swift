@@ -63,7 +63,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 //            return
 //        }
 //
-//        let info = ClientDeviceInfo(installId: UIDevice.current.identifierForVendor?.uuidString ?? .empty, modelName: UIDevice.modelName)
+//        let info = ClientDeviceInfo(installId: UIDevice.deviceIDForVendor, modelName: UIDevice.modelName)
 //        networkRabbit.post(clientDeviceInfo: info) { success, error in
 //            if let success = success, success {
 //                UserSettings.setHasSentDeviceModelToServer(to: true)
@@ -131,18 +131,20 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         let lastDate = UserSettings.getLastSendDateOfStillAliveSignalToServer()
         
         // Should only send 1 still alive signal per day
-        guard let lastDate = lastDate, lastDate.onlyDate! < Date.now.onlyDate! else {
+        guard lastDate == nil || lastDate!.onlyDate! < Date.now.onlyDate! else {
             return
         }
         
         let signal = StillAliveSignal(installId: UIDevice.deviceIDForVendor,
+                                      modelName: UIDevice.modelName,
                                       systemName: UIDevice.current.systemName,
                                       systemVersion: UIDevice.current.systemVersion,
                                       isiOSAppOnMac: ProcessInfo.processInfo.isiOSAppOnMac,
+                                      appVersion: Versioneer.appVersion,
                                       currentTimeZone: TimeZone.current.abbreviation() ?? .empty,
-                                      dateTime: Date.now)
+                                      dateTime: Date.now.iso8601withFractionalSeconds)
         networkRabbit.post(signal: signal) { success, error in
-            if success {
+            if success != nil, success == true {
                 UserSettings.setLastSendDateOfStillAliveSignalToServer(to: Date.now)
             }
         }
