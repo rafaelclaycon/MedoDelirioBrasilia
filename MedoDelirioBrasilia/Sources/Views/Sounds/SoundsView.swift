@@ -10,7 +10,7 @@ import SwiftUI
 struct SoundsView: View {
 
     enum Mode: Int {
-        case allSounds, favorites, byAuthor
+        case allSounds, favorites, collections, byAuthor
     }
     
     enum SubviewToOpen {
@@ -72,6 +72,8 @@ struct SoundsView: View {
             return "Sons"
         case .favorites:
             return "Favoritos"
+        case .collections:
+            return "Coleções"
         case .byAuthor:
             return "Autores"
         }
@@ -85,6 +87,8 @@ struct SoundsView: View {
                 if showNoFavoritesView {
                     NoFavoritesView()
                         .padding(.horizontal, 25)
+                } else if currentMode == .collections {
+                    CollectionsView(isShowingFolderInfoEditingSheet: .constant(false))
                 } else if currentMode == .byAuthor {
                     AuthorsView(sortOption: $viewModel.authorSortOption, sortAction: $authorSortAction)
                 } else {
@@ -260,9 +264,7 @@ struct SoundsView: View {
                 }
             }
             .navigationTitle(Text(title))
-            .navigationBarItems(leading:
-                getLeadingToolbarControl()
-            , trailing:
+            .navigationBarItems(trailing:
                 getTrailingToolbarControl()
             )
             .onAppear {
@@ -282,10 +284,10 @@ struct SoundsView: View {
                     }
                 }
                 
-                if AppPersistentMemory.getHasShownNotificationsOnboarding() == false {
-                    subviewToOpen = .onboardingView
-                    showingModalView = true
-                }
+//                if AppPersistentMemory.getHasShownNotificationsOnboarding() == false {
+//                    subviewToOpen = .onboardingView
+//                    showingModalView = true
+//                }
                 
                 if moveDatabaseIssue.isEmpty == false {
                     viewModel.showMoveDatabaseIssueAlert()
@@ -347,6 +349,15 @@ struct SoundsView: View {
                 }
             }
             
+            if UIDevice.current.userInterfaceIdiom == .phone {
+                VStack {
+                    Spacer()
+                    
+                    floatingSelectorView()
+                        .padding()
+                }
+            }
+            
             if shouldDisplayAddedToFolderToast {
                 VStack {
                     Spacer()
@@ -369,109 +380,113 @@ struct SoundsView: View {
         }
     }
     
-    @ViewBuilder func getLeadingToolbarControl() -> some View {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            Picker("Exibição", selection: $currentMode) {
-                Image(systemName: "speaker.wave.3")
-                    .tag(Mode.allSounds)
-                
-                Image(systemName: "star")
-                    .tag(Mode.favorites)
-                
-                Image(systemName: "person")
-                    .tag(Mode.byAuthor)
+    @ViewBuilder func floatingSelectorView() -> some View {
+        Picker("Exibição", selection: $currentMode) {
+            Image(systemName: "speaker.wave.3")
+                .tag(Mode.allSounds)
+            
+            Image(systemName: "star")
+                .tag(Mode.favorites)
+            
+            Image(systemName: "rectangle.grid.2x2")
+                .tag(Mode.collections)
+            
+            Image(systemName: "person")
+                .tag(Mode.byAuthor)
+        }
+        .pickerStyle(.segmented)
+        .background(.regularMaterial)
+        .cornerRadius(8)
+        .onChange(of: currentMode) { currentMode in
+            guard currentMode == .allSounds || currentMode == .favorites else {
+                return
             }
-            .pickerStyle(.segmented)
-            .frame(width: 200)
-            .onChange(of: currentMode) { newValue in
-                guard newValue != .byAuthor else {
-                    return
-                }
-                viewModel.reloadList(withSounds: soundData,
-                                     andFavorites: try? database.getAllFavorites(),
-                                     allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
-                                     favoritesOnly: newValue == .favorites,
-                                     sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
-            }
-        } else {
-            EmptyView()
+            viewModel.reloadList(withSounds: soundData,
+                                 andFavorites: try? database.getAllFavorites(),
+                                 allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+                                 favoritesOnly: currentMode == .favorites,
+                                 sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
         }
     }
     
     @ViewBuilder func getTrailingToolbarControl() -> some View {
-        HStack(spacing: 15) {
-            if currentMode != .byAuthor {
-                Button {
-                    viewModel.stopPlayback()
-                } label: {
-                    Image(systemName: "stop.fill")
-                }
-                .disabled(!viewModel.isPlayingSound)
-            }
-            
-            if currentMode == .byAuthor {
-                Menu {
-                    Section {
-                        Picker("Ordenação de Autores", selection: $viewModel.authorSortOption) {
-                            HStack {
-                                Text("Ordenar por Nome")
-                                Image(systemName: "a.circle")
-                            }
-                            .tag(0)
-                            
-                            HStack {
-                                Text("Autores com Mais Sons no Topo")
-                                Image(systemName: "chevron.down.square")
-                            }
-                            .tag(1)
-                            
-                            HStack {
-                                Text("Autores com Menos Sons no Topo")
-                                Image(systemName: "chevron.up.square")
-                            }
-                            .tag(2)
-                        }
+        if currentMode == .collections {
+            EmptyView()
+        } else {
+            HStack(spacing: 15) {
+                if currentMode != .byAuthor {
+                    Button {
+                        viewModel.stopPlayback()
+                    } label: {
+                        Image(systemName: "stop.fill")
                     }
-                } label: {
-                    Image(systemName: "arrow.up.arrow.down")
+                    .disabled(!viewModel.isPlayingSound)
                 }
-                .onChange(of: viewModel.authorSortOption, perform: { authorSortOption in
-                    authorSortAction = AuthorSortOption(rawValue: authorSortOption) ?? .nameAscending
-                })
-            } else {
-                Menu {
-                    Section {
-                        Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
-                            HStack {
-                                Text("Ordenar por Título")
-                                Image(systemName: "a.circle")
+                
+                if currentMode == .byAuthor {
+                    Menu {
+                        Section {
+                            Picker("Ordenação de Autores", selection: $viewModel.authorSortOption) {
+                                HStack {
+                                    Text("Ordenar por Nome")
+                                    Image(systemName: "a.circle")
+                                }
+                                .tag(0)
+                                
+                                HStack {
+                                    Text("Autores com Mais Sons no Topo")
+                                    Image(systemName: "chevron.down.square")
+                                }
+                                .tag(1)
+                                
+                                HStack {
+                                    Text("Autores com Menos Sons no Topo")
+                                    Image(systemName: "chevron.up.square")
+                                }
+                                .tag(2)
                             }
-                            .tag(0)
-                            
-                            HStack {
-                                Text("Ordenar por Nome do Autor")
-                                Image(systemName: "person")
-                            }
-                            .tag(1)
-                            
-                            HStack {
-                                Text("Mais Recentes no Topo")
-                                Image(systemName: "calendar")
-                            }
-                            .tag(2)
                         }
+                    } label: {
+                        Image(systemName: "arrow.up.arrow.down")
                     }
-                } label: {
-                    Image(systemName: "arrow.up.arrow.down")
+                    .onChange(of: viewModel.authorSortOption, perform: { authorSortOption in
+                        authorSortAction = AuthorSortOption(rawValue: authorSortOption) ?? .nameAscending
+                    })
+                } else {
+                    Menu {
+                        Section {
+                            Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
+                                HStack {
+                                    Text("Ordenar por Título")
+                                    Image(systemName: "a.circle")
+                                }
+                                .tag(0)
+                                
+                                HStack {
+                                    Text("Ordenar por Nome do Autor")
+                                    Image(systemName: "person")
+                                }
+                                .tag(1)
+                                
+                                HStack {
+                                    Text("Mais Recentes no Topo")
+                                    Image(systemName: "calendar")
+                                }
+                                .tag(2)
+                            }
+                        }
+                    } label: {
+                        Image(systemName: "arrow.up.arrow.down")
+                    }
+                    .onChange(of: viewModel.soundSortOption, perform: { soundSortOption in
+                        viewModel.reloadList(withSounds: soundData,
+                                             andFavorites: try? database.getAllFavorites(),
+                                             allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+                                             favoritesOnly: currentMode == .favorites,
+                                             sortedBy: SoundSortOption(rawValue: soundSortOption) ?? .titleAscending)
+                        UserSettings.setSoundSortOption(to: soundSortOption)
+                    })
                 }
-                .onChange(of: viewModel.soundSortOption, perform: { soundSortOption in
-                    viewModel.reloadList(withSounds: soundData,
-                                         andFavorites: try? database.getAllFavorites(),
-                                         allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
-                                         favoritesOnly: currentMode == .favorites,
-                                         sortedBy: SoundSortOption(rawValue: soundSortOption) ?? .titleAscending)
-                    UserSettings.setSoundSortOption(to: soundSortOption)
-                })
             }
         }
     }

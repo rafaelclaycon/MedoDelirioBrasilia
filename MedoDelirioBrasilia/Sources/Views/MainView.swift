@@ -36,12 +36,12 @@ struct MainView: View {
                 .tag(PhoneTab.sounds)
                 
                 NavigationView {
-                    CollectionsView(isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet)
+                    SongsView()
                 }
                 .tabItem {
-                    Label("Coleções", systemImage: "rectangle.grid.2x2.fill")
+                    Label("Músicas", systemImage: "music.quarternote.3")
                 }
-                .tag(PhoneTab.collections)
+                .tag(PhoneTab.songs)
                 
                 NavigationView {
                     EpisodeView()
@@ -74,7 +74,8 @@ struct MainView: View {
                 tabSelection = .sounds
             })
             .onContinueUserActivity(Shared.ActivityTypes.viewCollections, perform: { _ in
-                tabSelection = .collections
+                // TODO: Fix this
+                //tabSelection = .collections
             })
             .onContinueUserActivity(Shared.ActivityTypes.playAndShareSongs, perform: { _ in
                 tabSelection = .songs
