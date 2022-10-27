@@ -42,8 +42,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         
         //print(database)
         
-        sendDeviceModelNameToServer()
-        sendStillAliveSignalToServer()
+        collectTelemetry()
         
         return true
     }
@@ -54,22 +53,22 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
     
     private func sendDeviceModelNameToServer() {
-        guard UserSettings.getHasSentDeviceModelToServer() == false else {
-            return
-        }
-        guard UIDevice.modelName.contains("Simulator") == false else {
-            return
-        }
-        guard CommandLine.arguments.contains("-UNDER_DEVELOPMENT") == false else {
-            return
-        }
-        
-        let info = ClientDeviceInfo(installId: UIDevice.current.identifierForVendor?.uuidString ?? .empty, modelName: UIDevice.modelName)
-        networkRabbit.post(clientDeviceInfo: info) { success, error in
-            if let success = success, success {
-                UserSettings.setHasSentDeviceModelToServer(to: true)
-            }
-        }
+//        guard UserSettings.getHasSentDeviceModelToServer() == false else {
+//            return
+//        }
+//        guard UIDevice.modelName.contains("Simulator") == false else {
+//            return
+//        }
+//        guard CommandLine.arguments.contains("-UNDER_DEVELOPMENT") == false else {
+//            return
+//        }
+//
+//        let info = ClientDeviceInfo(installId: UIDevice.current.identifierForVendor?.uuidString ?? .empty, modelName: UIDevice.modelName)
+//        networkRabbit.post(clientDeviceInfo: info) { success, error in
+//            if let success = success, success {
+//                UserSettings.setHasSentDeviceModelToServer(to: true)
+//            }
+//        }
     }
     
     private func moveDatabaseFileIfNeeded() {
@@ -110,7 +109,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             let token = tokenParts.joined()
             //print("Device Token: \(token)")
 
-            let device = PushDevice(installId: UIDevice.identifiderForVendor, pushToken: token)
+            let device = PushDevice(installId: UIDevice.deviceIDForVendor, pushToken: token)
             networkRabbit.post(pushDevice: device) { success, error in
                 guard let success = success, success else {
                     AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: true)
@@ -132,11 +131,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         let lastDate = UserSettings.getLastSendDateOfStillAliveSignalToServer()
         
         // Should only send 1 still alive signal per day
-        guard lastDate == nil || (lastDate!.onlyDate! < Date.now.onlyDate!) else {
+        guard let lastDate = lastDate, lastDate.onlyDate! < Date.now.onlyDate! else {
             return
         }
         
-        let signal = StillAliveSignal(installId: UIDevice.current.identifierForVendor?.uuidString ?? .empty,
+        let signal = StillAliveSignal(installId: UIDevice.deviceIDForVendor,
                                       systemName: UIDevice.current.systemName,
                                       systemVersion: UIDevice.current.systemVersion,
                                       isiOSAppOnMac: ProcessInfo.processInfo.isiOSAppOnMac,

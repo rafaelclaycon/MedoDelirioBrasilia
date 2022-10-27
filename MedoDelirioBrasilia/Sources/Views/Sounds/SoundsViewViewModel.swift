@@ -305,7 +305,7 @@ class SoundsViewViewModel: ObservableObject {
                 return
             }
             
-            let info = ClientDeviceInfo(installId: UIDevice.identifiderForVendor, modelName: UIDevice.modelName)
+            let info = ClientDeviceInfo(installId: UIDevice.deviceIDForVendor, modelName: UIDevice.modelName)
             networkRabbit.post(clientDeviceInfo: info) { success, error in
                 if let success = success, success {
                     AppPersistentMemory.setHasSentDeviceModelToServer(to: true)
