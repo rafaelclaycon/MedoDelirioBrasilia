@@ -935,6 +935,7 @@
 		D9BC1E1328F1CD6700AC0C8D /* Falha de Cobertura - Craque Daniel - Vou dedicar minha existencia a partir de agora a odiar esse rapaz esse cidadao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BC1E1228F1CD6700AC0C8D /* Falha de Cobertura - Craque Daniel - Vou dedicar minha existencia a partir de agora a odiar esse rapaz esse cidadao.mp3 */; };
 		D9BC1E1528F1CFBD00AC0C8D /* Eu acho e pouco.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BC1E1428F1CFBD00AC0C8D /* Eu acho e pouco.mp3 */; };
 		D9BCAC2D28B598FB0098FE15 /* AppIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BCAC2C28B598FA0098FE15 /* AppIconCell.swift */; };
+		D9BE7701290A895B00C8C0A6 /* Luiz Henrique Mandetta - Ta certissimo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BE7700290A895B00C8C0A6 /* Luiz Henrique Mandetta - Ta certissimo.mp3 */; };
 		D9BF9091284257F500BDDD7D /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF9090284257F500BDDD7D /* Shared.swift */; };
 		D9BF90972842D3CB00BDDD7D /* NoSoundsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF90962842D3CB00BDDD7D /* NoSoundsView.swift */; };
 		D9BF90BE2842EAED00BDDD7D /* TopChartCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF90BD2842EAED00BDDD7D /* TopChartCellView.swift */; };
@@ -1988,6 +1989,7 @@
 		D9BC1E1228F1CD6700AC0C8D /* Falha de Cobertura - Craque Daniel - Vou dedicar minha existencia a partir de agora a odiar esse rapaz esse cidadao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Falha de Cobertura - Craque Daniel - Vou dedicar minha existencia a partir de agora a odiar esse rapaz esse cidadao.mp3"; sourceTree = "<group>"; };
 		D9BC1E1428F1CFBD00AC0C8D /* Eu acho e pouco.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu acho e pouco.mp3"; sourceTree = "<group>"; };
 		D9BCAC2C28B598FA0098FE15 /* AppIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconCell.swift; sourceTree = "<group>"; };
+		D9BE7700290A895B00C8C0A6 /* Luiz Henrique Mandetta - Ta certissimo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Luiz Henrique Mandetta - Ta certissimo.mp3"; sourceTree = "<group>"; };
 		D9BF9090284257F500BDDD7D /* Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shared.swift; sourceTree = "<group>"; };
 		D9BF90962842D3CB00BDDD7D /* NoSoundsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSoundsView.swift; sourceTree = "<group>"; };
 		D9BF90BD2842EAED00BDDD7D /* TopChartCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartCellView.swift; sourceTree = "<group>"; };
@@ -2124,6 +2126,7 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9BE7700290A895B00C8C0A6 /* Luiz Henrique Mandetta - Ta certissimo.mp3 */,
 				D937E11E2909AA90004137ED /* Eduardo Leite - Qual a sua alternativa candidato.mp3 */,
 				D937E11D2909AA90004137ED /* Onyx Lorenzoni - Muito melhor do que a sua.mp3 */,
 				D937E10A29097D58004137ED /* BAND JORNALISMO - Onyx - A narrativa de golpismo ou golpista foi enterrada e emerge um estadista.mp3 */,
@@ -4058,6 +4061,7 @@
 				D975FF202880B4F20035E6F2 /* Caue Moura - Foi mal tava doidao aqui nao seu arrombado.mp3 in Resources */,
 				D921F889288B0177003979CC /* Pouerpoint - Bolsonaro.mp3 in Resources */,
 				D97500382880B4F20035E6F2 /* Kajuru - Ele e burro short meme.mp3 in Resources */,
+				D9BE7701290A895B00C8C0A6 /* Luiz Henrique Mandetta - Ta certissimo.mp3 in Resources */,
 				D975FFB02880B4F20035E6F2 /* Matheus Canella - e cada piada que eu fico putz.mp3 in Resources */,
 				D975FE2C2880B4F20035E6F2 /* Choque de Cultura - Falo com tranquilidade.mp3 in Resources */,
 				D975FF022880B4F20035E6F2 /* Alborgeti - Que Merda Hein.mp3 in Resources */,
