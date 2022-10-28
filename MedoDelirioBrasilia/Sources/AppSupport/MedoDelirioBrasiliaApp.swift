@@ -55,14 +55,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
     
     private func sendDeviceModelNameToServer() {
-        guard UserSettings.getHasSentDeviceModelToServer() == false else {
+        guard AppPersistentMemory.getHasSentDeviceModelToServer() == false else {
             return
         }
         
         let info = ClientDeviceInfo(installId: UIDevice.deviceIDForVendor, modelName: UIDevice.modelName)
         networkRabbit.post(clientDeviceInfo: info) { success, error in
             if let success = success, success {
-                UserSettings.setHasSentDeviceModelToServer(to: true)
+                AppPersistentMemory.setHasSentDeviceModelToServer(to: true)
             }
         }
     }
