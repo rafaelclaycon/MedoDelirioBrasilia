@@ -296,24 +296,6 @@ class SoundsViewViewModel: ObservableObject {
         self.currentActivity?.becomeCurrent()
     }
     
-    func sendDeviceModelNameToServer() {
-        if AppPersistentMemory.getHasSentDeviceModelToServer() == false {
-            guard UIDevice.modelName.contains("Simulator") == false else {
-                return
-            }
-            guard CommandLine.arguments.contains("-UNDER_DEVELOPMENT") == false else {
-                return
-            }
-            
-            let info = ClientDeviceInfo(installId: UIDevice.deviceIDForVendor, modelName: UIDevice.modelName)
-            networkRabbit.post(clientDeviceInfo: info) { success, error in
-                if let success = success, success {
-                    AppPersistentMemory.setHasSentDeviceModelToServer(to: true)
-                }
-            }
-        }
-    }
-    
     func sendUserPersonalTrendsToServerIfEnabled() {
         guard UserSettings.getEnableTrends() else {
             return
