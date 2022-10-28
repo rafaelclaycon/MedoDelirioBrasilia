@@ -991,6 +991,8 @@
 		D9DCC5D52875CB59008DD4A3 /* AppPersistentMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D42875CB59008DD4A3 /* AppPersistentMemory.swift */; };
 		D9DCC5D72875D7E5008DD4A3 /* NotificationSymbolPlusText.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D62875D7E5008DD4A3 /* NotificationSymbolPlusText.swift */; };
 		D9DCC5D9287625F4008DD4A3 /* PodcastAuthorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D8287625F4008DD4A3 /* PodcastAuthorsView.swift */; };
+		D9DCF737290C2C4B00DB177C /* Valdemiro Santiago - Oferta generosa beijinho essa e pro senhor Jesus.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DCF735290C2C4A00DB177C /* Valdemiro Santiago - Oferta generosa beijinho essa e pro senhor Jesus.mp3 */; };
+		D9DCF738290C2C4B00DB177C /* Valdemiro Santiago - Voce vai semear essa semente.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DCF736290C2C4A00DB177C /* Valdemiro Santiago - Voce vai semear essa semente.mp3 */; };
 		D9E5056028F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E5055F28F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift */; };
 		D9E5056228F79ECB008DAA1E /* Luiz Felipe D'Avila - Que tistreza.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E5056128F79ECB008DAA1E /* Luiz Felipe D'Avila - Que tistreza.mp3 */; };
 		D9E5100A286084F2003DB3A3 /* Date+OnlyDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E51009286084F2003DB3A3 /* Date+OnlyDate.swift */; };
@@ -2067,6 +2069,8 @@
 		D9DCC5D42875CB59008DD4A3 /* AppPersistentMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPersistentMemory.swift; sourceTree = "<group>"; };
 		D9DCC5D62875D7E5008DD4A3 /* NotificationSymbolPlusText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSymbolPlusText.swift; sourceTree = "<group>"; };
 		D9DCC5D8287625F4008DD4A3 /* PodcastAuthorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastAuthorsView.swift; sourceTree = "<group>"; };
+		D9DCF735290C2C4A00DB177C /* Valdemiro Santiago - Oferta generosa beijinho essa e pro senhor Jesus.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Valdemiro Santiago - Oferta generosa beijinho essa e pro senhor Jesus.mp3"; sourceTree = "<group>"; };
+		D9DCF736290C2C4A00DB177C /* Valdemiro Santiago - Voce vai semear essa semente.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Valdemiro Santiago - Voce vai semear essa semente.mp3"; sourceTree = "<group>"; };
 		D9E5055F28F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAudienceSharingStatisticTable.swift; sourceTree = "<group>"; };
 		D9E5056128F79ECB008DAA1E /* Luiz Felipe D'Avila - Que tistreza.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Luiz Felipe D'Avila - Que tistreza.mp3"; sourceTree = "<group>"; };
 		D9E51009286084F2003DB3A3 /* Date+OnlyDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+OnlyDate.swift"; sourceTree = "<group>"; };
@@ -2170,6 +2174,8 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9DCF735290C2C4A00DB177C /* Valdemiro Santiago - Oferta generosa beijinho essa e pro senhor Jesus.mp3 */,
+				D9DCF736290C2C4A00DB177C /* Valdemiro Santiago - Voce vai semear essa semente.mp3 */,
 				D9AF10B1290AD50D0054741F /* CARA A TAPA - General Pazuello - Fala serio.mp3 */,
 				D9AF10BF290AD50D0054741F /* CARA A TAPA - Rica Perrone - Puta, mas isso e uma merda.mp3 */,
 				D9AF10B0290AD50D0054741F /* Crianca - Bora.mp3 */,
@@ -3821,6 +3827,7 @@
 				D9BB8F7928EC72BE00659D4A /* Rita von Hunty - Pra que serve um bilionario.mp3 in Resources */,
 				D975FE2E2880B4F20035E6F2 /* Boldo - Puta que pariu marquinho.mp3 in Resources */,
 				49DEA9A828810E7B008C9BA1 /* UOL - Bolsonaro - A GENTE LAMENTA TODOS OS MORTOS MAS E O DESTINO DE TODO MUNDO short meme.mp3 in Resources */,
+				D9DCF738290C2C4B00DB177C /* Valdemiro Santiago - Voce vai semear essa semente.mp3 in Resources */,
 				D9547D7D28FDD7190020A800 /* Franciel Cruz - Rapaz.mp3 in Resources */,
 				D9BB8F8B28ECB2A900659D4A /* Alvaro Borba - Bolsonarismo usa Panico Moral para evitar debates que realmente importam.mp3 in Resources */,
 				D975FE9C2880B4F20035E6F2 /* Bolsonaro - O problema ta ai, lamentamos.mp3 in Resources */,
@@ -3883,6 +3890,7 @@
 				D975FE8B2880B4F20035E6F2 /* E desesperador.mp3 in Resources */,
 				49B4C96A28CE74E6007E893B /* A pipa do jair nao sobe mais.mp3 in Resources */,
 				D923127328AB0A6100436336 /* Novo e diferente, e top, e moderno (curto).mp3 in Resources */,
+				D9DCF737290C2C4B00DB177C /* Valdemiro Santiago - Oferta generosa beijinho essa e pro senhor Jesus.mp3 in Resources */,
 				D975FE6A2880B4F20035E6F2 /* Malditos Milicos reverse.mp3 in Resources */,
 				D975FF5F2880B4F20035E6F2 /* Nunca foi meritocracia, sempre foi desigualdade.mp3 in Resources */,
 				D975FFB72880B4F20035E6F2 /* Trote Luiz Pareto - Trote da TELERJ (grandes merdas que o senhor e advogado).mp3 in Resources */,
