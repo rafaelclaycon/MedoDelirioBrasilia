@@ -31,7 +31,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
     ) -> Bool {
-        // Fix missing favorites bug
+        // Fix missing Favorites bug
         moveDatabaseFileIfNeeded()
         
         do {
@@ -46,6 +46,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         
         return true
     }
+    
+    // MARK: - Telemetry
     
     private func collectTelemetry() {
         sendDeviceModelNameToServer()
@@ -69,55 +71,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 //                UserSettings.setHasSentDeviceModelToServer(to: true)
 //            }
 //        }
-    }
-    
-    private func moveDatabaseFileIfNeeded() {
-        guard databaseFileExistsInCachesDirectory() else {
-            return
-        }
-        
-        let documentsDirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
-        let cachesDirPath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0] as String
-        let fromPath = cachesDirPath.appending("/medo_db.sqlite3")
-        let toPath = documentsDirPath.appending("/medo_db.sqlite3")
-        
-        do {
-            try FileManager.default.moveItem(atPath: fromPath, toPath: toPath)
-        } catch {
-            moveDatabaseIssue = error.localizedDescription
-        }
-    }
-    
-    private func databaseFileExistsInCachesDirectory() -> Bool {
-        let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0] as String
-        let url = NSURL(fileURLWithPath: path)
-        if let pathComponent = url.appendingPathComponent("medo_db.sqlite3") {
-            let filePath = pathComponent.path
-            let fileManager = FileManager.default
-            return fileManager.fileExists(atPath: filePath)
-        } else {
-            return false
-        }
-    }
-    
-    func application(
-        _ application: UIApplication,
-        didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
-    ) {
-        if AppPersistentMemory.getShouldRetrySendingDevicePushToken() {
-            let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
-            let token = tokenParts.joined()
-            //print("Device Token: \(token)")
-
-            let device = PushDevice(installId: UIDevice.deviceIDForVendor, pushToken: token)
-            networkRabbit.post(pushDevice: device) { success, error in
-                guard let success = success, success else {
-                    AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: true)
-                    return
-                }
-                AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: false)
-            }
-        }
     }
     
     private func sendStillAliveSignalToServer() {
@@ -150,11 +103,64 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         }
     }
     
+    // MARK: - Push notifications
+    
+    func application(
+        _ application: UIApplication,
+        didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
+    ) {
+        if AppPersistentMemory.getShouldRetrySendingDevicePushToken() {
+            let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
+            let token = tokenParts.joined()
+            //print("Device Token: \(token)")
+
+            let device = PushDevice(installId: UIDevice.deviceIDForVendor, pushToken: token)
+            networkRabbit.post(pushDevice: device) { success, error in
+                guard let success = success, success else {
+                    AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: true)
+                    return
+                }
+                AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: false)
+            }
+        }
+    }
+    
     func application(
         _ application: UIApplication,
         didFailToRegisterForRemoteNotificationsWithError error: Error
     ) {
         print("Failed to register: \(error.localizedDescription)")
+    }
+    
+    // MARK: - Missing Favorites bugfix
+    
+    private func moveDatabaseFileIfNeeded() {
+        guard databaseFileExistsInCachesDirectory() else {
+            return
+        }
+        
+        let documentsDirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
+        let cachesDirPath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0] as String
+        let fromPath = cachesDirPath.appending("/medo_db.sqlite3")
+        let toPath = documentsDirPath.appending("/medo_db.sqlite3")
+        
+        do {
+            try FileManager.default.moveItem(atPath: fromPath, toPath: toPath)
+        } catch {
+            moveDatabaseIssue = error.localizedDescription
+        }
+    }
+    
+    private func databaseFileExistsInCachesDirectory() -> Bool {
+        let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0] as String
+        let url = NSURL(fileURLWithPath: path)
+        if let pathComponent = url.appendingPathComponent("medo_db.sqlite3") {
+            let filePath = pathComponent.path
+            let fileManager = FileManager.default
+            return fileManager.fileExists(atPath: filePath)
+        } else {
+            return false
+        }
     }
 
 }
