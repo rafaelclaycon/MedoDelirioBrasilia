@@ -7153,5 +7153,158 @@
         "filename": "Gilmar Mendes - Ministro Castro Nunes.mp3",
         "dateAdded": "2022-10-27T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "CEF4BB73-9CB2-4B74-BCA0-E9737DCB6ECE",
+        "title": "Isso é enganar",
+        "authorId": "D9D14C58-E5C4-4479-82BE-E00D9A38AB3A",
+        "description": "Isso é enganar",
+        "filename": "Pastor Valdemiro - Isso e enganar.mp3",
+        "dateAdded": "2022-10-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "E33EBA81-1837-45E1-9AE3-823B5B69EF15",
+        "title": "Acontece 2",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Acontece 2",
+        "filename": "Jair Bolsonaro - Acontece 2.mp3",
+        "dateAdded": "2022-10-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "CAC260DB-120E-4F3B-8343-A37DBA9FE396",
+        "title": "Bora!",
+        "authorId": "994E7B6C-FB8D-49D3-8865-1F1EF9F90F72",
+        "description": "Bora",
+        "filename": "Mae Copiloto Celera bem - Bora.mp3",
+        "dateAdded": "2022-10-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "1A311403-B7EA-4926-B578-99C18AA98050",
+        "title": "Fala sério",
+        "authorId": "71128756-78A9-4B31-A7D8-CE120147C481",
+        "description": "Fala serio",
+        "filename": "CARA A TAPA - General Pazuello - Fala serio.mp3",
+        "dateAdded": "2022-10-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "1F17035C-6347-4AAE-BBC0-2843B8E46B21",
+        "title": "Destruidor de florestas",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Destruidor de florestas",
+        "filename": "REDE GLOBO - Bolsonaro - Destruidor de florestas.mp3",
+        "dateAdded": "2022-10-27T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "F87B90F7-B9C0-4544-B5E8-D578B4EBE7EE",
+        "title": "É foda, é foda!",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "é foda é foda",
+        "filename": "FLOW - BOLSONARO - E foda, e foda.mp3",
+        "dateAdded": "2022-10-27T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "AA774A32-804B-40AD-9FAD-1864A764622A",
+        "title": "Puta, mas isso é uma merda",
+        "authorId": "C66D6D67-4513-41A1-9300-B653111F3795",
+        "description": "Puta mas isso e uma merda",
+        "filename": "CARA A TAPA - Rica Perrone - Puta, mas isso e uma merda.mp3",
+        "dateAdded": "2022-10-27T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "FEB7F096-44B4-4E51-B8D1-3C8BF99A69F1",
+        "title": "O pessoal que malha",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "O pessoal que malha",
+        "filename": "Jair Bolsonaro - O pessoal que malha.mp3",
+        "dateAdded": "2022-10-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "C7B49D08-9027-4955-9C35-731A6B088902",
+        "title": "Foda-se",
+        "authorId": "BB392894-327A-48BA-9C7D-4F0601E947EB",
+        "description": "Foda-se",
+        "filename": "PODER360 - Paulo Guedes - Foda-se.mp3",
+        "dateAdded": "2022-10-27T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "96E575D5-1FB1-452B-8E82-B6B39B86DED5",
+        "title": "Espero que seja uma página virada",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Espero que seja uma pagina virada",
+        "filename": "REDE GLOBO - Bolsonaro - Espero que seja uma pagina virada.mp3",
+        "dateAdded": "2022-10-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "8212EC97-864F-419C-909A-0D21F8BDD8C0",
+        "title": "O ruído é tão grande",
+        "authorId": "564495D0-ADBB-448B-B4BF-65A84FC0EBAF",
+        "description": "O ruido e tao grande",
+        "filename": "Marco Antonio Villa - O ruido e tao grande.mp3",
+        "dateAdded": "2022-10-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "08EAFC21-BEBB-4A6B-9B58-AE0D31136A5E",
+        "title": "Tão se vitimizando",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Tao se vitimizando",
+        "filename": "PODER360 - Bolsonaro - Tao se vitimizando.mp3",
+        "dateAdded": "2022-10-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "D6C11108-0E93-475D-8FF2-1BB783AC214C",
+        "title": "Acontece",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Acontece",
+        "filename": "Jair Bolsonaro - Acontece.mp3",
+        "dateAdded": "2022-10-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "8FC1678C-835D-46A0-BFB2-C973352B2118",
+        "title": "Não é brincadeira isso",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Nao e brincadeira isso",
+        "filename": "REDE GLOBO - Bolsonaro - Nao e brincadeira isso.mp3",
+        "dateAdded": "2022-10-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "6CDF4547-287E-40A6-8949-85CF9A9E2D81",
+        "title": "Até aqui todo mundo tá acompanhando?",
+        "authorId": "F5DCE1EC-4993-43B3-80BA-F4BE17721D8F",
+        "description": "Ate aqui todo mundo ta acompanhando",
+        "filename": "Wajngarten - Ate aqui todo mundo ta acompanhando.mp3",
+        "dateAdded": "2022-10-27T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "2AD17C63-2F80-4240-9D75-7602945926A1",
+        "title": "Babaca do caralho",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Babaca do caralho",
+        "filename": "Desconhecido - Babaca do caralho.mp3",
+        "dateAdded": "2022-10-27T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "AD53DCCA-EB31-4A5C-8849-37656C25179E",
+        "title": "Boooraa",
+        "authorId": "1257E131-D86F-4B5E-B58B-1EF369D4537D",
+        "description": "Bora Boooraa",
+        "filename": "Crianca - Bora.mp3",
+        "dateAdded": "2022-10-27T00:00:00Z",
+        "isOffensive": false
     }
 ]
