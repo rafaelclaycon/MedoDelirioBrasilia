@@ -24,7 +24,6 @@ extension NetworkRabbit {
             guard let httpResponse = response as? HTTPURLResponse else {
                 return completion(nil, .responseWasNotAnHTTPURLResponse)
             }
-             
             guard httpResponse.statusCode == 200 else {
                 return completion(nil, .unexpectedStatusCode)
             }

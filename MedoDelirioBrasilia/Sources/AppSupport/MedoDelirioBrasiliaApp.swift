@@ -55,32 +55,19 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
     
     private func sendDeviceModelNameToServer() {
-//        guard UserSettings.getHasSentDeviceModelToServer() == false else {
-//            return
-//        }
-//        guard UIDevice.modelName.contains("Simulator") == false else {
-//            return
-//        }
-//        guard CommandLine.arguments.contains("-UNDER_DEVELOPMENT") == false else {
-//            return
-//        }
-//
-//        let info = ClientDeviceInfo(installId: UIDevice.deviceIDForVendor, modelName: UIDevice.modelName)
-//        networkRabbit.post(clientDeviceInfo: info) { success, error in
-//            if let success = success, success {
-//                UserSettings.setHasSentDeviceModelToServer(to: true)
-//            }
-//        }
+        guard UserSettings.getHasSentDeviceModelToServer() == false else {
+            return
+        }
+        
+        let info = ClientDeviceInfo(installId: UIDevice.deviceIDForVendor, modelName: UIDevice.modelName)
+        networkRabbit.post(clientDeviceInfo: info) { success, error in
+            if let success = success, success {
+                UserSettings.setHasSentDeviceModelToServer(to: true)
+            }
+        }
     }
     
     private func sendStillAliveSignalToServer() {
-//        guard UIDevice.modelName.contains("Simulator") == false else {
-//            return
-//        }
-//        guard CommandLine.arguments.contains("-UNDER_DEVELOPMENT") == false else {
-//            return
-//        }
-        
         let lastDate = UserSettings.getLastSendDateOfStillAliveSignalToServer()
         
         // Should only send 1 still alive signal per day
