@@ -71,7 +71,6 @@
 		D90F6A6628446C250050FFFF /* TrendsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */; };
 		D911070B28627216000B6F8F /* NotificationsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D911070A28627216000B6F8F /* NotificationsSettingsView.swift */; };
 		D911070D2862BA4C000B6F8F /* StillAliveSignal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D911070C2862BA4C000B6F8F /* StillAliveSignal.swift */; };
-		D91107112863B481000B6F8F /* CollectionsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91107102863B481000B6F8F /* CollectionsViewViewModel.swift */; };
 		D91107142863B5FD000B6F8F /* ContentCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91107132863B5FD000B6F8F /* ContentCollection.swift */; };
 		D912A33628B3E8F000F7293D /* VideoExportType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D912A33528B3E8F000F7293D /* VideoExportType.swift */; };
 		D912A33828B3F2C000F7293D /* TipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D912A33728B3F2C000F7293D /* TipView.swift */; };
@@ -852,6 +851,8 @@
 		D97D76FB2885B794005210D9 /* EmailAppPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97D76FA2885B794005210D9 /* EmailAppPickerView.swift */; };
 		D980455C28380EFE003B2E83 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D980455E28380EFE003B2E83 /* Localizable.strings */; };
 		D980456228380F66003B2E83 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D980456128380F66003B2E83 /* LocalizableStrings.swift */; };
+		D983BDE4290B8F0500850A86 /* CollectionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D983BDE3290B8F0500850A86 /* CollectionListView.swift */; };
+		D983BDE6290B90AC00850A86 /* CollectionListViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D983BDE5290B90AC00850A86 /* CollectionListViewViewModel.swift */; };
 		D985DCD928B6D7150085B8E5 /* Thii Gouveia - Tchutchuca do Centrao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D985DCD828B6D7150085B8E5 /* Thii Gouveia - Tchutchuca do Centrao.mp3 */; };
 		D985DCDB28B6D9460085B8E5 /* Furacao 2000 - Tchutchuca Treme o Bumbum.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D985DCDA28B6D9460085B8E5 /* Furacao 2000 - Tchutchuca Treme o Bumbum.mp3 */; };
 		D98622E0283FC57100E9F630 /* AuthorDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98622DF283FC57100E9F630 /* AuthorDetailView.swift */; };
@@ -1145,7 +1146,6 @@
 		D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsSettingsView.swift; sourceTree = "<group>"; };
 		D911070A28627216000B6F8F /* NotificationsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSettingsView.swift; sourceTree = "<group>"; };
 		D911070C2862BA4C000B6F8F /* StillAliveSignal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StillAliveSignal.swift; sourceTree = "<group>"; };
-		D91107102863B481000B6F8F /* CollectionsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsViewViewModel.swift; sourceTree = "<group>"; };
 		D91107132863B5FD000B6F8F /* ContentCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCollection.swift; sourceTree = "<group>"; };
 		D912A33528B3E8F000F7293D /* VideoExportType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoExportType.swift; sourceTree = "<group>"; };
 		D912A33728B3F2C000F7293D /* TipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipView.swift; sourceTree = "<group>"; };
@@ -1929,6 +1929,8 @@
 		D980455D28380EFE003B2E83 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D980455F28380F05003B2E83 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D980456128380F66003B2E83 /* LocalizableStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
+		D983BDE3290B8F0500850A86 /* CollectionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionListView.swift; sourceTree = "<group>"; };
+		D983BDE5290B90AC00850A86 /* CollectionListViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionListViewViewModel.swift; sourceTree = "<group>"; };
 		D985DCD828B6D7150085B8E5 /* Thii Gouveia - Tchutchuca do Centrao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Thii Gouveia - Tchutchuca do Centrao.mp3"; sourceTree = "<group>"; };
 		D985DCDA28B6D9460085B8E5 /* Furacao 2000 - Tchutchuca Treme o Bumbum.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Furacao 2000 - Tchutchuca Treme o Bumbum.mp3"; sourceTree = "<group>"; };
 		D98622DF283FC57100E9F630 /* AuthorDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorDetailView.swift; sourceTree = "<group>"; };
@@ -3379,6 +3381,16 @@
 			path = AppSupport;
 			sourceTree = "<group>";
 		};
+		D983BDE2290B8EE200850A86 /* CollectionList */ = {
+			isa = PBXGroup;
+			children = (
+				D983BDE3290B8F0500850A86 /* CollectionListView.swift */,
+				D983BDE5290B90AC00850A86 /* CollectionListViewViewModel.swift */,
+				D9F78A9E2860DF9100B83567 /* CollectionCell.swift */,
+			);
+			path = CollectionList;
+			sourceTree = "<group>";
+		};
 		D98622DE283FC53B00E9F630 /* Authors */ = {
 			isa = PBXGroup;
 			children = (
@@ -3660,8 +3672,7 @@
 			isa = PBXGroup;
 			children = (
 				D9EB18A42857CDFF00A2F8A8 /* CollectionsView.swift */,
-				D91107102863B481000B6F8F /* CollectionsViewViewModel.swift */,
-				D9F78A9E2860DF9100B83567 /* CollectionCell.swift */,
+				D983BDE2290B8EE200850A86 /* CollectionList */,
 				D946117D28613D3200C4FB7E /* CollectionDetailView.swift */,
 				D93284D628FC913900E84525 /* CollectionDetailViewViewModel.swift */,
 			);
@@ -4708,7 +4719,6 @@
 				D9758C3C28617C980094D388 /* LocalDatabase+UserFolder.swift in Sources */,
 				D9E5100A286084F2003DB3A3 /* Date+OnlyDate.swift in Sources */,
 				D9DB6F7F28CBDA8000E24BDE /* MostSharedByMeView.swift in Sources */,
-				D91107112863B481000B6F8F /* CollectionsViewViewModel.swift in Sources */,
 				D98622E0283FC57100E9F630 /* AuthorDetailView.swift in Sources */,
 				D94AD34928811ADC00D3E4F0 /* Versioneer.swift in Sources */,
 				D92E7067283C51D20035826C /* Song.swift in Sources */,
@@ -4744,6 +4754,7 @@
 				D92C0CAC28406EA5009CF19A /* UserShareLog.swift in Sources */,
 				D961D016283722AB00EFEDEB /* Color+CustomColors.swift in Sources */,
 				D93A029A2906DEB100A85FE2 /* UserFolderContentLog.swift in Sources */,
+				D983BDE6290B90AC00850A86 /* CollectionListViewViewModel.swift in Sources */,
 				D93AC08B28414EEE00E38A63 /* Logger.swift in Sources */,
 				D957509628445EC30094AEA6 /* TrendsViewViewModel.swift in Sources */,
 				D9B763282845B5E600CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift in Sources */,
@@ -4794,6 +4805,7 @@
 				D9943F2A28642EC3002C6B97 /* UserFolderContent.swift in Sources */,
 				D9943F2828642200002C6B97 /* AddToFolderViewViewModel.swift in Sources */,
 				D98B291D28691C5C008A78AE /* ColorSelectionCell.swift in Sources */,
+				D983BDE4290B8F0500850A86 /* CollectionListView.swift in Sources */,
 				D9344323283812AD00ADCD38 /* Author.swift in Sources */,
 				D9758C3E28617DAC0094D388 /* Color+Name.swift in Sources */,
 				D9491810288606E00079F545 /* SettingsCasingWithCloseView.swift in Sources */,
