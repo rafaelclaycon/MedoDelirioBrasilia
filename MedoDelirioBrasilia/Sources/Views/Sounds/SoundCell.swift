@@ -87,17 +87,20 @@ struct SoundCell: View {
                 .frame(height: cellHeight)
             
             if currentMode == .favorite {
-                HStack {
+                VStack {
                     Spacer()
-                    
-                    Image(systemName: "star.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 24)
-                        .foregroundColor(.yellow)
-                        .offset(y: -22)
+                    HStack {
+                        Spacer()
+                        Image(systemName: "star.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 24)
+                            .foregroundColor(.yellow)
+                            .padding(.trailing, 10)
+                            .padding(.bottom)
+                    }
                 }
-                .padding(.trailing, 10)
+                .frame(height: cellHeight)
             }
             
             HStack {

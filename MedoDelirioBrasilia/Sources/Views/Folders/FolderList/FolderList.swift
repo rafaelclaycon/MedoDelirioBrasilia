@@ -11,6 +11,7 @@ import SwiftUI
 struct FolderList: View {
 
     @StateObject private var viewModel = FolderListViewModel()
+    @State var displayJoinFolderResearchBanner: Bool = false
     @Binding var updateFolderList: Bool
     @Binding var deleteFolderAid: DeleteFolderViewAid
     @Binding var folderIdForEditing: String
@@ -34,6 +35,12 @@ struct FolderList: View {
     var body: some View {
         VStack {
             if viewModel.hasFoldersToDisplay {
+                if displayJoinFolderResearchBanner {
+                    JoinFolderResearchBannerView(viewModel: JoinFolderResearchBannerViewViewModel(state: .displayingRequestToJoin),
+                                                 displayMe: $displayJoinFolderResearchBanner)
+                        .padding(.bottom)
+                }
+                
                 LazyVGrid(columns: columns, spacing: 14) {
                     ForEach(viewModel.folders, id: \.editingIdentifyingId) { folder in
                         NavigationLink {
@@ -99,6 +106,24 @@ struct FolderList: View {
         }
         .onAppear {
             viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
+            
+            if AppPersistentMemory.getHasJoinedFolderResearch() {
+                displayJoinFolderResearchBanner = false
+            } else if let hasDismissed = AppPersistentMemory.getHasDismissedJoinFolderResearchBanner() {
+                if hasDismissed {
+                    displayJoinFolderResearchBanner = false
+                } else {
+                    if AppPersistentMemory.getHasSentFolderResearchInfo() {
+                        displayJoinFolderResearchBanner = false
+                    } else {
+                        displayJoinFolderResearchBanner = true
+                    }
+                }
+                displayJoinFolderResearchBanner = hasDismissed == false
+            } else {
+                displayJoinFolderResearchBanner = true
+            }
+            
             viewModel.donateActivity()
         }
         .onChange(of: updateFolderList) { shouldUpdate in

@@ -7,8 +7,8 @@ var database = LocalDatabase()
 let networkRabbit = NetworkRabbit(serverPath: CommandLine.arguments.contains("-UNDER_DEVELOPMENT") ? "http://127.0.0.1:8080/api/" : "http://170.187.145.233:8080/api/")
 let podium = Podium(database: database, networkRabbit: networkRabbit)
 
-let soundsLastUpdateDate: String = "22/10/2022"
-let songsLastUpdateDate: String = "21/10/2022"
+let soundsLastUpdateDate: String = "27/10/2022"
+let songsLastUpdateDate: String = "25/10/2022"
 
 var moveDatabaseIssue: String = .empty
 
@@ -31,7 +31,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
     ) -> Bool {
-        // Fix missing favorites bug
+        // Fix missing Favorites bug
         moveDatabaseFileIfNeeded()
         
         do {
@@ -42,8 +42,84 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         
         //print(database)
         
+        collectTelemetry()
+        
         return true
     }
+    
+    // MARK: - Telemetry
+    
+    private func collectTelemetry() {
+        sendDeviceModelNameToServer()
+        sendStillAliveSignalToServer()
+    }
+    
+    private func sendDeviceModelNameToServer() {
+        guard AppPersistentMemory.getHasSentDeviceModelToServer() == false else {
+            return
+        }
+        
+        let info = ClientDeviceInfo(installId: UIDevice.deviceIDForVendor, modelName: UIDevice.modelName)
+        networkRabbit.post(clientDeviceInfo: info) { success, error in
+            if let success = success, success {
+                AppPersistentMemory.setHasSentDeviceModelToServer(to: true)
+            }
+        }
+    }
+    
+    private func sendStillAliveSignalToServer() {
+        let lastDate = UserSettings.getLastSendDateOfStillAliveSignalToServer()
+        
+        // Should only send 1 still alive signal per day
+        guard lastDate == nil || lastDate!.onlyDate! < Date.now.onlyDate! else {
+            return
+        }
+        
+        let signal = StillAliveSignal(installId: UIDevice.deviceIDForVendor,
+                                      modelName: UIDevice.modelName,
+                                      systemName: UIDevice.current.systemName,
+                                      systemVersion: UIDevice.current.systemVersion,
+                                      isiOSAppOnMac: ProcessInfo.processInfo.isiOSAppOnMac,
+                                      appVersion: Versioneer.appVersion,
+                                      currentTimeZone: TimeZone.current.abbreviation() ?? .empty,
+                                      dateTime: Date.now.iso8601withFractionalSeconds)
+        networkRabbit.post(signal: signal) { success, error in
+            if success != nil, success == true {
+                UserSettings.setLastSendDateOfStillAliveSignalToServer(to: Date.now)
+            }
+        }
+    }
+    
+    // MARK: - Push notifications
+    
+    func application(
+        _ application: UIApplication,
+        didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
+    ) {
+        if AppPersistentMemory.getShouldRetrySendingDevicePushToken() {
+            let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
+            let token = tokenParts.joined()
+            //print("Device Token: \(token)")
+
+            let device = PushDevice(installId: UIDevice.deviceIDForVendor, pushToken: token)
+            networkRabbit.post(pushDevice: device) { success, error in
+                guard let success = success, success else {
+                    AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: true)
+                    return
+                }
+                AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: false)
+            }
+        }
+    }
+    
+    func application(
+        _ application: UIApplication,
+        didFailToRegisterForRemoteNotificationsWithError error: Error
+    ) {
+        print("Failed to register: \(error.localizedDescription)")
+    }
+    
+    // MARK: - Missing Favorites bugfix
     
     private func moveDatabaseFileIfNeeded() {
         guard databaseFileExistsInCachesDirectory() else {
@@ -72,33 +148,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         } else {
             return false
         }
-    }
-    
-    func application(
-        _ application: UIApplication,
-        didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
-    ) {
-        if AppPersistentMemory.getShouldRetrySendingDevicePushToken() {
-            let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
-            let token = tokenParts.joined()
-            print("Device Token: \(token)")
-
-            let device = PushDevice(installId: UIDevice.identifiderForVendor, pushToken: token)
-            networkRabbit.post(pushDevice: device) { success, error in
-                guard let success = success, success else {
-                    AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: true)
-                    return
-                }
-                AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: false)
-            }
-        }
-    }
-    
-    func application(
-        _ application: UIApplication,
-        didFailToRegisterForRemoteNotificationsWithError error: Error
-    ) {
-        print("Failed to register: \(error.localizedDescription)")
     }
 
 }
