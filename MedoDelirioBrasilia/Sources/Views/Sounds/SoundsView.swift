@@ -273,7 +273,6 @@ struct SoundsView: View {
                                      sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
                 columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
                 viewModel.donateActivity()
-                viewModel.sendDeviceModelNameToServer()
                 viewModel.sendUserPersonalTrendsToServerIfEnabled()
                 
                 if UIDevice.current.userInterfaceIdiom == .phone {
