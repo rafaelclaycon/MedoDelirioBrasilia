@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "customalert",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/divadretlaw/CustomAlert.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "273791738480bc27bfc9820f44fb91bfe8748d91"
+      }
+    },
+    {
       "identity" : "kingfisher",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/onevcat/Kingfisher",
@@ -25,6 +34,15 @@
       "state" : {
         "revision" : "edd732911cde57d9674e364a4796af775c977c7d",
         "version" : "0.8.0"
+      }
+    },
+    {
+      "identity" : "windowscenereader",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/divadretlaw/WindowSceneReader",
+      "state" : {
+        "revision" : "0c58c3bd0acb4e7db0f7744096fa9a70d71290d6",
+        "version" : "1.0.1"
       }
     }
   ],

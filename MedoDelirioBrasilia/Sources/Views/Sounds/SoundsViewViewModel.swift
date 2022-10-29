@@ -30,6 +30,10 @@ class SoundsViewViewModel: ObservableObject {
     @Published var shareBannerMessage: String = .empty
     @Published var displaySharedSuccessfullyToast: Bool = false
     
+    // Save all sounds as videos
+    @Published var showProgressViewAlert = false
+    @Published var amountCreated = 0.0
+    
     // Alerts
     @Published var alertTitle: String = ""
     @Published var alertMessage: String = ""
@@ -207,7 +211,7 @@ class SoundsViewViewModel: ObservableObject {
                         }
                     }
                     
-                    WallE.deleteAllVideoFilesFromDocumentsDir()
+                    //WallE.deleteAllVideoFilesFromDocumentsDir()
                 }
             } catch {
                 showUnableToGetSoundAlert()
@@ -286,6 +290,43 @@ class SoundsViewViewModel: ObservableObject {
             favoritesKeeper.remove(soundId)
         } catch {
             print("Problem removing favorite \(soundId)")
+        }
+    }
+    
+    func saveAllSoundsAsVideo() {
+        DispatchQueue.main.async {
+            self.showProgressViewAlert = true
+        }
+        
+        soundData.forEach { sound in
+            do {
+                try VideoMaker.createVideo(from: sound.filename,
+                                           with: VideoMaker.textToImage(drawText: sound.title.uppercased(),
+                                                                        inImage: UIImage(named: "square_video_background")!,
+                                                                        atPoint: CGPoint(x: 80, y: 300)),
+                                           contentTitle: sound.title.withoutDiacritics(),
+                                           exportType: .twitter
+                ) { videoPath, error in
+                    guard error == nil else {
+                        fatalError()
+                    }
+                    sleep(3)
+                }
+            } catch VideoMakerError.soundFilepathIsEmpty {
+                fatalError()
+            } catch {
+                print("\(sound.title): \(error.localizedDescription)")
+            }
+            
+            DispatchQueue.main.async {
+                if self.amountCreated < Double(soundData.count) {
+                    self.amountCreated += 1
+                }
+            }
+        }
+        
+        DispatchQueue.main.async {
+            self.showProgressViewAlert = false
         }
     }
     

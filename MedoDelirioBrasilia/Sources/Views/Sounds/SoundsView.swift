@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CustomAlert
 
 struct SoundsView: View {
 
@@ -345,6 +346,20 @@ struct SoundsView: View {
                     }
                 }
             }
+            .customAlert(isPresented: $viewModel.showProgressViewAlert) {
+                VStack(spacing: 16) {
+                    ProgressView(value: viewModel.amountCreated, total: Double(soundData.count))
+                        .tint(.blue)
+                    Text("Criando vídeos (\(String(format: "%.f", viewModel.amountCreated))/\(soundData.count))...")
+                        .font(.headline)
+                }
+            } actions: {
+                Button(role: .cancel) {
+                    // Cancel Action
+                } label: {
+                    Text("Cancel")
+                }
+            }
             
             if shouldDisplayAddedToFolderToast {
                 VStack {
@@ -401,11 +416,11 @@ struct SoundsView: View {
         HStack(spacing: 15) {
             if currentMode != .byAuthor {
                 Button {
-                    viewModel.stopPlayback()
+                    viewModel.showProgressViewAlert = true
+                    viewModel.saveAllSoundsAsVideo()
                 } label: {
-                    Image(systemName: "stop.fill")
+                    Image(systemName: "square.and.arrow.up")
                 }
-                .disabled(!viewModel.isPlayingSound)
             }
             
             if currentMode == .byAuthor {
