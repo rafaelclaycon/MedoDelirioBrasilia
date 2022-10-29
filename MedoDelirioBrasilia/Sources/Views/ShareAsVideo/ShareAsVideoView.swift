@@ -59,10 +59,12 @@ struct ShareAsVideoView: View {
                             TipView(text: $tipText, didTapClose: $didCloseTip)
                                 .padding(.horizontal)
                                 .padding(.top)
+                                .disabled(viewModel.isShowingProcessingView)
                         } else if viewModel.selectedSocialNetwork == IntendedVideoDestination.instagramTikTok.rawValue && showInstagramTip {
                             TipView(text: $tipText, didTapClose: $didCloseTip)
                                 .padding(.horizontal)
                                 .padding(.top)
+                                .disabled(viewModel.isShowingProcessingView)
                         }
                         
                         if UIDevice.current.userInterfaceIdiom == .phone {
