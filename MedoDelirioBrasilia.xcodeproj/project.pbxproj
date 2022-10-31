@@ -933,6 +933,7 @@
 		D9AF10D3290AD50D0054741F /* PODER360 - Paulo Guedes - Foda-se.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AF10C1290AD50D0054741F /* PODER360 - Paulo Guedes - Foda-se.mp3 */; };
 		D9B24E2228C6A68800D76F7D /* NumberBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B24E2128C6A68800D76F7D /* NumberBadgeView.swift */; };
 		D9B2BFC6290441C100D161AF /* Jair Bolsonaro - Nem que nao tem nem que tem.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B2BFC5290441C100D161AF /* Jair Bolsonaro - Nem que nao tem nem que tem.mp3 */; };
+		D9B47636290DE3C1007C8ED0 /* Padre Kelmon - Nao existira pessoas.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B47635290DE3C0007C8ED0 /* Padre Kelmon - Nao existira pessoas.mp3 */; };
 		D9B4F73F283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B4F73D283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 */; };
 		D9B4F740283C8F4D0000EEF7 /* O roque ativa.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B4F73E283C8F4D0000EEF7 /* O roque ativa.mp3 */; };
 		D9B763282845B5E600CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B763272845B5E500CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift */; };
@@ -991,6 +992,10 @@
 		D9DCC5D52875CB59008DD4A3 /* AppPersistentMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D42875CB59008DD4A3 /* AppPersistentMemory.swift */; };
 		D9DCC5D72875D7E5008DD4A3 /* NotificationSymbolPlusText.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D62875D7E5008DD4A3 /* NotificationSymbolPlusText.swift */; };
 		D9DCC5D9287625F4008DD4A3 /* PodcastAuthorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D8287625F4008DD4A3 /* PodcastAuthorsView.swift */; };
+		D9DCF737290C2C4B00DB177C /* Valdemiro Santiago - Oferta generosa beijinho essa e pro senhor Jesus.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DCF735290C2C4A00DB177C /* Valdemiro Santiago - Oferta generosa beijinho essa e pro senhor Jesus.mp3 */; };
+		D9DCF738290C2C4B00DB177C /* Valdemiro Santiago - Voce vai semear essa semente.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DCF736290C2C4A00DB177C /* Valdemiro Santiago - Voce vai semear essa semente.mp3 */; };
+		D9DCF73B290D832800DB177C /* Desconhecido - Mi-mi-mi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DCF739290D832800DB177C /* Desconhecido - Mi-mi-mi.mp3 */; };
+		D9DCF73C290D832800DB177C /* Valdemiro Santiago - Eu estou no limite, Brasil.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DCF73A290D832800DB177C /* Valdemiro Santiago - Eu estou no limite, Brasil.mp3 */; };
 		D9E5056028F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E5055F28F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift */; };
 		D9E5056228F79ECB008DAA1E /* Luiz Felipe D'Avila - Que tistreza.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E5056128F79ECB008DAA1E /* Luiz Felipe D'Avila - Que tistreza.mp3 */; };
 		D9E5100A286084F2003DB3A3 /* Date+OnlyDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E51009286084F2003DB3A3 /* Date+OnlyDate.swift */; };
@@ -2009,6 +2014,7 @@
 		D9AF10C1290AD50D0054741F /* PODER360 - Paulo Guedes - Foda-se.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "PODER360 - Paulo Guedes - Foda-se.mp3"; sourceTree = "<group>"; };
 		D9B24E2128C6A68800D76F7D /* NumberBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberBadgeView.swift; sourceTree = "<group>"; };
 		D9B2BFC5290441C100D161AF /* Jair Bolsonaro - Nem que nao tem nem que tem.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Nem que nao tem nem que tem.mp3"; sourceTree = "<group>"; };
+		D9B47635290DE3C0007C8ED0 /* Padre Kelmon - Nao existira pessoas.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Padre Kelmon - Nao existira pessoas.mp3"; sourceTree = "<group>"; };
 		D9B4F73D283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Unidos do Medo e Delírio.mp3"; sourceTree = "<group>"; };
 		D9B4F73E283C8F4D0000EEF7 /* O roque ativa.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O roque ativa.mp3"; sourceTree = "<group>"; };
 		D9B763272845B5E500CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKStoreReviewController+requestReviewInCurrentScene.swift"; sourceTree = "<group>"; };
@@ -2067,6 +2073,10 @@
 		D9DCC5D42875CB59008DD4A3 /* AppPersistentMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPersistentMemory.swift; sourceTree = "<group>"; };
 		D9DCC5D62875D7E5008DD4A3 /* NotificationSymbolPlusText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSymbolPlusText.swift; sourceTree = "<group>"; };
 		D9DCC5D8287625F4008DD4A3 /* PodcastAuthorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastAuthorsView.swift; sourceTree = "<group>"; };
+		D9DCF735290C2C4A00DB177C /* Valdemiro Santiago - Oferta generosa beijinho essa e pro senhor Jesus.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Valdemiro Santiago - Oferta generosa beijinho essa e pro senhor Jesus.mp3"; sourceTree = "<group>"; };
+		D9DCF736290C2C4A00DB177C /* Valdemiro Santiago - Voce vai semear essa semente.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Valdemiro Santiago - Voce vai semear essa semente.mp3"; sourceTree = "<group>"; };
+		D9DCF739290D832800DB177C /* Desconhecido - Mi-mi-mi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Desconhecido - Mi-mi-mi.mp3"; sourceTree = "<group>"; };
+		D9DCF73A290D832800DB177C /* Valdemiro Santiago - Eu estou no limite, Brasil.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Valdemiro Santiago - Eu estou no limite, Brasil.mp3"; sourceTree = "<group>"; };
 		D9E5055F28F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAudienceSharingStatisticTable.swift; sourceTree = "<group>"; };
 		D9E5056128F79ECB008DAA1E /* Luiz Felipe D'Avila - Que tistreza.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Luiz Felipe D'Avila - Que tistreza.mp3"; sourceTree = "<group>"; };
 		D9E51009286084F2003DB3A3 /* Date+OnlyDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+OnlyDate.swift"; sourceTree = "<group>"; };
@@ -2170,6 +2180,10 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9DCF739290D832800DB177C /* Desconhecido - Mi-mi-mi.mp3 */,
+				D9DCF73A290D832800DB177C /* Valdemiro Santiago - Eu estou no limite, Brasil.mp3 */,
+				D9DCF735290C2C4A00DB177C /* Valdemiro Santiago - Oferta generosa beijinho essa e pro senhor Jesus.mp3 */,
+				D9DCF736290C2C4A00DB177C /* Valdemiro Santiago - Voce vai semear essa semente.mp3 */,
 				D9AF10B1290AD50D0054741F /* CARA A TAPA - General Pazuello - Fala serio.mp3 */,
 				D9AF10BF290AD50D0054741F /* CARA A TAPA - Rica Perrone - Puta, mas isso e uma merda.mp3 */,
 				D9AF10B0290AD50D0054741F /* Crianca - Bora.mp3 */,
@@ -3005,6 +3019,7 @@
 		D92E7068283C5C120035826C /* Songs */ = {
 			isa = PBXGroup;
 			children = (
+				D9B47635290DE3C0007C8ED0 /* Padre Kelmon - Nao existira pessoas.mp3 */,
 				D9CA8BB62908802300C6B492 /* Jair Bolsonaro - Nao tenho provas.mp3 */,
 				D93752182902CD1A00E2F27B /* Genocida, miliciano, canibal.mp3 */,
 				D93752142902C94A00E2F27B /* Funk da Picanha e da Cerveja.mp3 */,
@@ -3821,6 +3836,7 @@
 				D9BB8F7928EC72BE00659D4A /* Rita von Hunty - Pra que serve um bilionario.mp3 in Resources */,
 				D975FE2E2880B4F20035E6F2 /* Boldo - Puta que pariu marquinho.mp3 in Resources */,
 				49DEA9A828810E7B008C9BA1 /* UOL - Bolsonaro - A GENTE LAMENTA TODOS OS MORTOS MAS E O DESTINO DE TODO MUNDO short meme.mp3 in Resources */,
+				D9DCF738290C2C4B00DB177C /* Valdemiro Santiago - Voce vai semear essa semente.mp3 in Resources */,
 				D9547D7D28FDD7190020A800 /* Franciel Cruz - Rapaz.mp3 in Resources */,
 				D9BB8F8B28ECB2A900659D4A /* Alvaro Borba - Bolsonarismo usa Panico Moral para evitar debates que realmente importam.mp3 in Resources */,
 				D975FE9C2880B4F20035E6F2 /* Bolsonaro - O problema ta ai, lamentamos.mp3 in Resources */,
@@ -3883,6 +3899,7 @@
 				D975FE8B2880B4F20035E6F2 /* E desesperador.mp3 in Resources */,
 				49B4C96A28CE74E6007E893B /* A pipa do jair nao sobe mais.mp3 in Resources */,
 				D923127328AB0A6100436336 /* Novo e diferente, e top, e moderno (curto).mp3 in Resources */,
+				D9DCF737290C2C4B00DB177C /* Valdemiro Santiago - Oferta generosa beijinho essa e pro senhor Jesus.mp3 in Resources */,
 				D975FE6A2880B4F20035E6F2 /* Malditos Milicos reverse.mp3 in Resources */,
 				D975FF5F2880B4F20035E6F2 /* Nunca foi meritocracia, sempre foi desigualdade.mp3 in Resources */,
 				D975FFB72880B4F20035E6F2 /* Trote Luiz Pareto - Trote da TELERJ (grandes merdas que o senhor e advogado).mp3 in Resources */,
@@ -4244,6 +4261,7 @@
 				D97500312880B4F20035E6F2 /* Marcelo Adnet - Da quase bilhao com b de bananada.mp3 in Resources */,
 				D975FE182880B4F20035E6F2 /* Bolsonaro - Nao errei nenhuma short meme.mp3 in Resources */,
 				D975FE432880B4F20035E6F2 /* Galo Cego - Nada a ver irmao.mp3 in Resources */,
+				D9DCF73B290D832800DB177C /* Desconhecido - Mi-mi-mi.mp3 in Resources */,
 				D921F89F288B0DC4003979CC /* Toma cloroquina - Cristiano Botafogo (feat Vitor Midcast) - vassourinha.mp3 in Resources */,
 				D975FE282880B4F20035E6F2 /* Quercia - Mentiroso e caluniador, caluniador e mentiroso.mp3 in Resources */,
 				D9AF10CB290AD50D0054741F /* Desconhecido - Babaca do caralho.mp3 in Resources */,
@@ -4620,6 +4638,7 @@
 				D93752132902C94200E2F27B /* Lula - Consideracoes finais debate Band 2o turno.mp3 in Resources */,
 				D97500072880B4F20035E6F2 /* REDETV - Jair Bolsonaro - Eu pretendo participar de debates, nao participei na ultima porque estava em convalescencia.mp3 in Resources */,
 				D975FF392880B4F20035E6F2 /* PORTA DOS FUNDOS - BALBURDIA - Bom dia, turma, todo mundo tirando a roupa e dedo no cu do colega do lado.mp3 in Resources */,
+				D9B47636290DE3C1007C8ED0 /* Padre Kelmon - Nao existira pessoas.mp3 in Resources */,
 				D92AD1B328832E07001CBCDF /* Casimiro - Quer jogar luz pra falar que ta errado ja ta errado nao precisa jogar luz tem que jogar na merda.mp3 in Resources */,
 				D975FE812880B4F20035E6F2 /* UOL - Otoni de Paula - Eu nao vou recuar um milimetro.mp3 in Resources */,
 				D975FFEC2880B4F20035E6F2 /* Calma Que Piora.mp3 in Resources */,
@@ -4632,6 +4651,7 @@
 				D975FF9E2880B4F20035E6F2 /* Bolsonaro - O cara o cara.mp3 in Resources */,
 				D975FECB2880B4F20035E6F2 /* Em cinquenta metros, tire o cu da reta.mp3 in Resources */,
 				D975FF8F2880B4F20035E6F2 /* ADY - oh nao mais um crime de responsabilidade.mp3 in Resources */,
+				D9DCF73C290D832800DB177C /* Valdemiro Santiago - Eu estou no limite, Brasil.mp3 in Resources */,
 				D9E7D0EA28AC6195001E909E /* Dose segura de crack, os tios e as tias do Zap.mp3 in Resources */,
 				D975FF9D2880B4F20035E6F2 /* DIOGO DEFANTE - Calma, ces tao de cabeca quente.mp3 in Resources */,
 				D923126B28AB01A700436336 /* Donald Trump - Its very sad.mp3 in Resources */,
@@ -4901,7 +4921,7 @@
 				CODE_SIGN_ENTITLEMENTS = MedoWidget/Sources/WidgetSupport/MedoWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MedoWidget/Sources/WidgetSupport/Info.plist;
@@ -4913,7 +4933,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 5.9;
+				MARKETING_VERSION = 5.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -4933,7 +4953,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_ENTITLEMENTS = MedoWidget/Sources/WidgetSupport/MedoWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MedoWidget/Sources/WidgetSupport/Info.plist;
@@ -4945,7 +4965,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 5.9;
+				MARKETING_VERSION = 5.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -5081,7 +5101,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/Sources/AppSupport/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -5101,7 +5121,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.9;
+				MARKETING_VERSION = 5.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -5122,7 +5142,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/Sources/AppSupport/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -5142,7 +5162,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.9;
+				MARKETING_VERSION = 5.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
