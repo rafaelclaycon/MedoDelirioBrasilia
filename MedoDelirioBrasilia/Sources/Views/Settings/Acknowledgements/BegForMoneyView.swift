@@ -17,7 +17,9 @@ struct BegForMoneyView: View {
             }
             
             VStack(alignment: .leading, spacing: 18) {
-                Text("Meu trabalho é voluntário e envolve custos mensais com servidor (~R$ 30). Se você quiser ajudar com um capilé ou um cafezinho, eu agradeço muito!")
+                Text("Esse trabalho é voluntário e envolve custos mensais com servidor (~R$ 30). Se você quiser ajudar com um cafezinho ou um petisco, eu e a Wandinha agradecemos muito! 🐶")
+                
+                Text("Últimas contribuições:\n**Daniela C. B., Julio C. A., Bernardo P. M.** ❤️")
             }
         }
     }
