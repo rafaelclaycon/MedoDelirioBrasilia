@@ -106,7 +106,7 @@ struct SoundsView: View {
                                         .padding(.vertical, UIScreen.main.bounds.height / 3)
                                     } else {
                                         ForEach(searchResults) { sound in
-                                            SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", favorites: $viewModel.favoritesKeeper, highlighted: $viewModel.highlightKeeper)
+                                            SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", isNew: sound.isNew ?? false, favorites: $viewModel.favoritesKeeper, highlighted: $viewModel.highlightKeeper)
                                                 .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
                                                 .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                                                 .onTapGesture {

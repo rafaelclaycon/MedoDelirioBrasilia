@@ -51,7 +51,8 @@
         "description": "ê porra caralho buceta bora",
         "filename": "Mae copiloto - e porra caralho buceta bora.mp3",
         "dateAdded": "2022-07-01T00:00:00Z",
-        "isOffensive": true
+        "isOffensive": true,
+        "isNew": true
     },
     {
         "id": "9B75696B-CF93-47F7-95B5-B438EA841D6F",
@@ -7350,7 +7351,8 @@
         "description": "6 milhoes de reais esse e o preço da mansao de Flavio Bolsonaro em Brasilia",
         "filename": "Jornalismo TV Cultura - 6 milhoes de reais esse e o preço da mansao de Flavio Bolsonaro em Brasilia.mp3",
         "dateAdded": "2022-10-31T00:00:00Z",
-        "isOffensive": false
+        "isOffensive": false,
+        "isNew": true
     },
     {
         "id": "464F12B9-E467-423C-82D0-AC4D2F917A18",
@@ -7359,7 +7361,8 @@
         "description": "Ta na hora do Jair Ta na hora do Jair já ir embora arruma suas malas dá no pé e vá-se embora tchau",
         "filename": "Tiago Doidao e Juliano Maderada - Ta na hora do Jair.mp3",
         "dateAdded": "2022-10-31T00:00:00Z",
-        "isOffensive": true
+        "isOffensive": true,
+        "isNew": true
     },
     {
         "id": "29B2E303-A424-45AE-A788-BE04D64B1204",
@@ -7368,6 +7371,7 @@
         "description": "O que os caras querem e a nossa hemorroida",
         "filename": "Jair Bolsonaro - O que os caras querem e a nossa hemorroida.mp3",
         "dateAdded": "2022-10-31T00:00:00Z",
-        "isOffensive": true
+        "isOffensive": true,
+        "isNew": true
     }
 ]
