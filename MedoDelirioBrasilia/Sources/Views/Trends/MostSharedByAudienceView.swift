@@ -22,6 +22,8 @@ struct MostSharedByAudienceView: View {
     
     private var dropDownText: String {
         switch viewModel.timeIntervalOption {
+        case .last24Hours:
+            return Shared.Trends.last24Hours
         case .lastWeek:
             return Shared.Trends.lastWeek
         case .lastMonth:
@@ -33,6 +35,8 @@ struct MostSharedByAudienceView: View {
     
     private var list: [TopChartItem] {
         switch viewModel.timeIntervalOption {
+        case .last24Hours:
+            return viewModel.last24HoursRanking!
         case .lastWeek:
             return viewModel.lastWeekRanking!
         case .lastMonth:
@@ -54,6 +58,7 @@ struct MostSharedByAudienceView: View {
             HStack {
                 Menu {
                     Picker("Período", selection: $viewModel.timeIntervalOption) {
+                        Text(Shared.Trends.last24Hours).tag(TrendsTimeInterval.last24Hours)
                         Text(Shared.Trends.lastWeek).tag(TrendsTimeInterval.lastWeek)
                         Text(Shared.Trends.lastMonth).tag(TrendsTimeInterval.lastMonth)
                         Text(Shared.Trends.allTime).tag(TrendsTimeInterval.allTime)
@@ -70,6 +75,13 @@ struct MostSharedByAudienceView: View {
                 .onChange(of: viewModel.timeIntervalOption) { timeIntervalOption in
                     DispatchQueue.main.async {
                         switch viewModel.timeIntervalOption {
+                        case .last24Hours:
+                            if viewModel.last24HoursRanking == nil {
+                                viewModel.viewState = .noDataToDisplay
+                            } else {
+                                viewModel.viewState = .displayingData
+                            }
+                            
                         case .lastWeek:
                             if viewModel.lastWeekRanking == nil {
                                 viewModel.viewState = .noDataToDisplay

@@ -41,6 +41,10 @@ class NetworkRabbit: NetworkRabbitProtocol {
         var url: URL
         
         switch timeInterval {
+        case .last24Hours:
+            let refDate: String = TimeKeeper.getDateAsString(addingDays: -1)
+            url = URL(string: serverPath + "v2/sound-share-count-stats-from/\(refDate)")!
+            
         case .lastWeek:
             let refDate: String = TimeKeeper.getDateAsString(addingDays: -7)
             url = URL(string: serverPath + "v2/sound-share-count-stats-from/\(refDate)")!

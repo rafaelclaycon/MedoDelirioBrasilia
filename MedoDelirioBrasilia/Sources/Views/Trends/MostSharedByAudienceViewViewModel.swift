@@ -10,13 +10,14 @@ import UIKit
 
 class MostSharedByAudienceViewViewModel: ObservableObject {
 
+    @Published var last24HoursRanking: [TopChartItem]? = nil
     @Published var lastWeekRanking: [TopChartItem]? = nil
     @Published var lastMonthRanking: [TopChartItem]? = nil
     @Published var allTimeRanking: [TopChartItem]? = nil
     
     @Published var viewState: TrendsViewState = .noDataToDisplay
     @Published var lastCheckDate: Date = Date(timeIntervalSince1970: 0)
-    @Published var timeIntervalOption: TrendsTimeInterval = .lastWeek
+    @Published var timeIntervalOption: TrendsTimeInterval = .last24Hours
     @Published var lastUpdatedAtText: String = .empty
     
     @Published var currentActivity: NSUserActivity? = nil
@@ -61,6 +62,15 @@ class MostSharedByAudienceViewViewModel: ObservableObject {
                 
                 podium.cleanAudienceSharingStatisticTableToReceiveUpdatedData()
                 
+                podium.getAudienceShareCountStatsFromServer(for: .last24Hours) { result, _ in
+                    guard result == .successful else {
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        self.last24HoursRanking = podium.getTop10SoundsSharedByTheAudience(for: .last24Hours)
+                    }
+                }
+                
                 podium.getAudienceShareCountStatsFromServer(for: .lastWeek) { result, _ in
                     guard result == .successful else {
                         return
@@ -91,6 +101,13 @@ class MostSharedByAudienceViewViewModel: ObservableObject {
                 // Delay needed so the lists actually have something in them.
                 DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
                     switch self.timeIntervalOption {
+                    case .last24Hours:
+                        if self.last24HoursRanking != nil, self.last24HoursRanking?.isEmpty == false {
+                            self.viewState = .displayingData
+                        } else {
+                            self.viewState = .noDataToDisplay
+                        }
+                        
                     case .lastWeek:
                         if self.lastWeekRanking != nil, self.lastWeekRanking?.isEmpty == false {
                             self.viewState = .displayingData
@@ -137,6 +154,9 @@ class MostSharedByAudienceViewViewModel: ObservableObject {
         var activityName = ""
         
         switch timeIntervalOption {
+        case .last24Hours:
+            activityType = Shared.ActivityTypes.viewLast24HoursTopChart
+            activityName = "Ver sons mais compartilhados nas últimas 24 horas"
         case .lastWeek:
             activityType = Shared.ActivityTypes.viewLastWeekTopChart
             activityName = "Ver sons mais compartilhados na última semana"
