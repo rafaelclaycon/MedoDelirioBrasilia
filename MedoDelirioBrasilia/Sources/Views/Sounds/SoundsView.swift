@@ -275,12 +275,6 @@ struct SoundsView: View {
                 viewModel.donateActivity()
                 viewModel.sendUserPersonalTrendsToServerIfEnabled()
                 
-                if UIDevice.current.userInterfaceIdiom == .phone {
-                    networkRabbit.displayLulaWonOnLockScreenWidgets { displayLulaWon, _ in
-                        UserDefaults(suiteName: "group.com.rafaelschmitt.MedoDelirioBrasilia")!.set(displayLulaWon, forKey: "displayLulaWon")
-                    }
-                }
-                
                 if AppPersistentMemory.getHasShownNotificationsOnboarding() == false {
                     subviewToOpen = .onboardingView
                     showingModalView = true
