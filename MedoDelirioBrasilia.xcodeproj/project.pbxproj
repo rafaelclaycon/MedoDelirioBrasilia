@@ -230,6 +230,8 @@
 		D9547D8328FDD7190020A800 /* Lula - Filho, eu estou achando voce nervoso.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9547D7B28FDD7190020A800 /* Lula - Filho, eu estou achando voce nervoso.mp3 */; };
 		D9547D8428FDD7190020A800 /* Meme - Pelo amor de Deus ele e muito burro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9547D7C28FDD7190020A800 /* Meme - Pelo amor de Deus ele e muito burro.mp3 */; };
 		D955755F29108B75002EFC50 /* Jornalismo TV Cultura - 6 milhoes de reais esse e o preço da mansao de Flavio Bolsonaro em Brasilia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D955755E29108B75002EFC50 /* Jornalismo TV Cultura - 6 milhoes de reais esse e o preço da mansao de Flavio Bolsonaro em Brasilia.mp3 */; };
+		D95575622910A462002EFC50 /* Tiago Doidao e Juliano Maderada - Ta na hora do Jair.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95575602910A462002EFC50 /* Tiago Doidao e Juliano Maderada - Ta na hora do Jair.mp3 */; };
+		D95575632910A462002EFC50 /* Jair Bolsonaro - O que os caras querem e a nossa hemorroida.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95575612910A462002EFC50 /* Jair Bolsonaro - O que os caras querem e a nossa hemorroida.mp3 */; };
 		D957047D28AEF733008DEF8C /* ProcessingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957047C28AEF733008DEF8C /* ProcessingView.swift */; };
 		D957048328AFCC93008DEF8C /* ChangeAppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957048228AFCC93008DEF8C /* ChangeAppIconView.swift */; };
 		D9575092284427C70094AEA6 /* ShareLogsDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9575091284427C70094AEA6 /* ShareLogsDummy.swift */; };
@@ -1308,6 +1310,8 @@
 		D9547D7B28FDD7190020A800 /* Lula - Filho, eu estou achando voce nervoso.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - Filho, eu estou achando voce nervoso.mp3"; sourceTree = "<group>"; };
 		D9547D7C28FDD7190020A800 /* Meme - Pelo amor de Deus ele e muito burro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Meme - Pelo amor de Deus ele e muito burro.mp3"; sourceTree = "<group>"; };
 		D955755E29108B75002EFC50 /* Jornalismo TV Cultura - 6 milhoes de reais esse e o preço da mansao de Flavio Bolsonaro em Brasilia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jornalismo TV Cultura - 6 milhoes de reais esse e o preço da mansao de Flavio Bolsonaro em Brasilia.mp3"; sourceTree = "<group>"; };
+		D95575602910A462002EFC50 /* Tiago Doidao e Juliano Maderada - Ta na hora do Jair.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tiago Doidao e Juliano Maderada - Ta na hora do Jair.mp3"; sourceTree = "<group>"; };
+		D95575612910A462002EFC50 /* Jair Bolsonaro - O que os caras querem e a nossa hemorroida.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - O que os caras querem e a nossa hemorroida.mp3"; sourceTree = "<group>"; };
 		D957047C28AEF733008DEF8C /* ProcessingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingView.swift; sourceTree = "<group>"; };
 		D957048228AFCC93008DEF8C /* ChangeAppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAppIconView.swift; sourceTree = "<group>"; };
 		D9575091284427C70094AEA6 /* ShareLogsDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareLogsDummy.swift; sourceTree = "<group>"; };
@@ -2182,6 +2186,8 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D95575612910A462002EFC50 /* Jair Bolsonaro - O que os caras querem e a nossa hemorroida.mp3 */,
+				D95575602910A462002EFC50 /* Tiago Doidao e Juliano Maderada - Ta na hora do Jair.mp3 */,
 				D955755E29108B75002EFC50 /* Jornalismo TV Cultura - 6 milhoes de reais esse e o preço da mansao de Flavio Bolsonaro em Brasilia.mp3 */,
 				D9DCF739290D832800DB177C /* Desconhecido - Mi-mi-mi.mp3 */,
 				D9DCF73A290D832800DB177C /* Valdemiro Santiago - Eu estou no limite, Brasil.mp3 */,
@@ -3896,6 +3902,7 @@
 				D975000A2880B4F20035E6F2 /* Atila Iamarino - No minimo.mp3 in Resources */,
 				D975FFC22880B4F20035E6F2 /* Bolsonaro - O caos vem ai.mp3 in Resources */,
 				D975FE112880B4F20035E6F2 /* Dilma - O milho.mp3 in Resources */,
+				D95575622910A462002EFC50 /* Tiago Doidao e Juliano Maderada - Ta na hora do Jair.mp3 in Resources */,
 				D975FED02880B4F20035E6F2 /* CASIMIRO - Amado ou amada.mp3 in Resources */,
 				D921F887288B0177003979CC /* Isso ai e sarcasmo alvin e os esquilos - cristiano botafogo.mp3 in Resources */,
 				D975FE492880B4F20035E6F2 /* Collor - Um devaneio, um sonho de uma noite de verao.mp3 in Resources */,
@@ -4465,6 +4472,7 @@
 				D9EDB87A28E3E477007724E2 /* Flavio Bolsonaro - Quando o couro comer.mp3 in Resources */,
 				D991512C2873E4C100FFAA29 /* rock-comunismo-vale-tudo-mdb.mp3 in Resources */,
 				D975FE482880B4F20035E6F2 /* Seu Sirigueijo - Ola eu gosto de dinheiro.mp3 in Resources */,
+				D95575632910A462002EFC50 /* Jair Bolsonaro - O que os caras querem e a nossa hemorroida.mp3 in Resources */,
 				D975FF872880B4F20035E6F2 /* Bolsonaro - Uma crise uma pequena crise ne.mp3 in Resources */,
 				49DEA9E228812015008C9BA1 /* eletronica-eine-grosse-confusion-sexo-selvagem-kraftwerk.mp3 in Resources */,
 				D923125E28AAD5C300436336 /* Vai dar merda, vai dar meeerda.mp3 in Resources */,

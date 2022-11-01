@@ -964,7 +964,7 @@
     },
     {
         "id": "521FB542-46D1-49B1-96C5-ED69C9B2A4DA",
-        "title": "Carrralho caralho",
+        "title": "Carrralho",
         "authorId": "F0A2EC08-8C98-42E8-8C23-C4EBD9314E14",
         "description": "Carrralho caralho",
         "filename": "Boldo - Carrralho caralho.mp3",
@@ -7351,5 +7351,23 @@
         "filename": "Jornalismo TV Cultura - 6 milhoes de reais esse e o preço da mansao de Flavio Bolsonaro em Brasilia.mp3",
         "dateAdded": "2022-10-31T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "464F12B9-E467-423C-82D0-AC4D2F917A18",
+        "title": "Tá na hora do Jair",
+        "authorId": "852E5EE2-9E6D-4811-9D0B-AC7D15FA54A3",
+        "description": "Ta na hora do Jair Ta na hora do Jair já ir embora arruma suas malas dá no pé e vá-se embora tchau",
+        "filename": "Tiago Doidao e Juliano Maderada - Ta na hora do Jair.mp3",
+        "dateAdded": "2022-10-31T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "29B2E303-A424-45AE-A788-BE04D64B1204",
+        "title": "Os caras querem é a nossa hemorroida",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "O que os caras querem e a nossa hemorroida",
+        "filename": "Jair Bolsonaro - O que os caras querem e a nossa hemorroida.mp3",
+        "dateAdded": "2022-10-31T00:00:00Z",
+        "isOffensive": true
     }
 ]
