@@ -1,4 +1,5 @@
 import SwiftUI
+import MarqueeText
 
 struct BegForMoneyView: View {
 
@@ -19,7 +20,14 @@ struct BegForMoneyView: View {
             VStack(alignment: .leading, spacing: 18) {
                 Text("Esse trabalho é voluntário e envolve custos mensais com servidor (~R$ 30). Se você quiser ajudar com um cafezinho ou um petisco, eu e a Wandinha agradecemos muito! 🐶")
                 
-                Text("Últimas contribuições:\n**Daniela C. B., Julio C. A., Bernardo P. M.** ❤️")
+                Text("**Junte-se a esse povo que não presta que já contribuiu:**")
+                
+                MarqueeText(text: "Daniela C. B.   Julio Cesar A.   Bernardo P. M.   Rodrigo K. L.   Carlos Henrique P. M. ❤️",
+                            font: UIFont.preferredFont(forTextStyle: .body),
+                            leftFade: 16,
+                            rightFade: 16,
+                            startDelay: 1)
+                    .padding(.bottom, -5)
             }
         }
     }

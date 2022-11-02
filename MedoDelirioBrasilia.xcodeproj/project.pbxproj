@@ -232,6 +232,7 @@
 		D955755F29108B75002EFC50 /* Jornalismo TV Cultura - 6 milhoes de reais esse e o preço da mansao de Flavio Bolsonaro em Brasilia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D955755E29108B75002EFC50 /* Jornalismo TV Cultura - 6 milhoes de reais esse e o preço da mansao de Flavio Bolsonaro em Brasilia.mp3 */; };
 		D95575622910A462002EFC50 /* Tiago Doidao e Juliano Maderada - Ta na hora do Jair.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95575602910A462002EFC50 /* Tiago Doidao e Juliano Maderada - Ta na hora do Jair.mp3 */; };
 		D95575632910A462002EFC50 /* Jair Bolsonaro - O que os caras querem e a nossa hemorroida.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95575612910A462002EFC50 /* Jair Bolsonaro - O que os caras querem e a nossa hemorroida.mp3 */; };
+		D9557566291309B2002EFC50 /* MarqueeText in Frameworks */ = {isa = PBXBuildFile; productRef = D9557565291309B2002EFC50 /* MarqueeText */; };
 		D957047D28AEF733008DEF8C /* ProcessingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957047C28AEF733008DEF8C /* ProcessingView.swift */; };
 		D957048328AFCC93008DEF8C /* ChangeAppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957048228AFCC93008DEF8C /* ChangeAppIconView.swift */; };
 		D9575092284427C70094AEA6 /* ShareLogsDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9575091284427C70094AEA6 /* ShareLogsDummy.swift */; };
@@ -2149,6 +2150,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9557566291309B2002EFC50 /* MarqueeText in Frameworks */,
 				D9943F1A286406AF002C6B97 /* Kingfisher in Frameworks */,
 				D9E69592283D2E2C00C341B2 /* SQLite in Frameworks */,
 				D94656D928450535008B4785 /* SQLiteMigrationManager in Frameworks */,
@@ -3738,6 +3740,7 @@
 				D9E69591283D2E2C00C341B2 /* SQLite */,
 				D94656D828450535008B4785 /* SQLiteMigrationManager */,
 				D9943F19286406AF002C6B97 /* Kingfisher */,
+				D9557565291309B2002EFC50 /* MarqueeText */,
 			);
 			productName = MedoDelirioBrasilia;
 			productReference = D9625E7A28238F9A00080852 /* MedoDelirio.app */;
@@ -3797,6 +3800,7 @@
 				D9E69590283D2E2C00C341B2 /* XCRemoteSwiftPackageReference "SQLite" */,
 				D94656D728450535008B4785 /* XCRemoteSwiftPackageReference "SQLiteMigrationManager" */,
 				D9943F18286406AF002C6B97 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				D9557564291309B2002EFC50 /* XCRemoteSwiftPackageReference "MarqueeText" */,
 			);
 			productRefGroup = D9625E7B28238F9A00080852 /* Products */;
 			projectDirPath = "";
@@ -5282,6 +5286,14 @@
 				minimumVersion = 0.8.0;
 			};
 		};
+		D9557564291309B2002EFC50 /* XCRemoteSwiftPackageReference "MarqueeText" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/joekndy/MarqueeText";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		D9943F18286406AF002C6B97 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -5305,6 +5317,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D94656D728450535008B4785 /* XCRemoteSwiftPackageReference "SQLiteMigrationManager" */;
 			productName = SQLiteMigrationManager;
+		};
+		D9557565291309B2002EFC50 /* MarqueeText */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D9557564291309B2002EFC50 /* XCRemoteSwiftPackageReference "MarqueeText" */;
+			productName = MarqueeText;
 		};
 		D9943F19286406AF002C6B97 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
