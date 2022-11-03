@@ -7351,7 +7351,7 @@
         "filename": "Jornalismo TV Cultura - 6 milhoes de reais esse e o preço da mansao de Flavio Bolsonaro em Brasilia.mp3",
         "dateAdded": "2022-10-31T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "464F12B9-E467-423C-82D0-AC4D2F917A18",
@@ -7361,7 +7361,7 @@
         "filename": "Tiago Doidao e Juliano Maderada - Ta na hora do Jair.mp3",
         "dateAdded": "2022-10-31T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "29B2E303-A424-45AE-A788-BE04D64B1204",
@@ -7371,6 +7371,26 @@
         "filename": "Jair Bolsonaro - O que os caras querem e a nossa hemorroida.mp3",
         "dateAdded": "2022-10-31T00:00:00Z",
         "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "CD0E53B5-E3E5-45AF-8439-D692B28B80CA",
+        "title": "Como dizem os peruanos",
+        "authorId": "4AE135DD-B688-45D7-B20B-88DCFE8CDD8A",
+        "description": "mas como dizem os peruanos las intenciones son muy claras",
+        "filename": "Omar Aziz - Como dizem os peruanos.mp3",
+        "dateAdded": "2022-11-02T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "FC4F8104-FB32-48E2-9E59-A2D5CA61C2B1",
+        "title": "Precisa ter provas?",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "presidente o senhor tem alguma prova de que eles eram pra fazer uma guerrilha e não médicos o senhor afirma isso com base em que precisa ter prova pra fazer isso aí",
+        "filename": "Jair Bolsonaro - Precisa ter provas.mp3",
+        "dateAdded": "2022-11-02T00:00:00Z",
+        "isOffensive": false,
         "isNew": true
     }
 ]
