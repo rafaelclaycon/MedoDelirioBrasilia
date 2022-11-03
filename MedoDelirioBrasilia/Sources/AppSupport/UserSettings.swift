@@ -92,6 +92,14 @@ class UserSettings {
         return Bool(value as! Bool)
     }
     
+    static func getLastSendDateOfStillAliveSignalToServer() -> Date? {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "lastSendDateOfStillAliveSignalToServer") else {
+            return nil
+        }
+        return Date(timeIntervalSince1970: value as! Double)
+    }
+    
     // MARK: - Setters
     
     static func setShowOffensiveSounds(to newValue: Bool) {
@@ -147,6 +155,11 @@ class UserSettings {
     static func setHotWeatherBannerWasDismissed(to newValue: Bool) {
         let userDefaults = UserDefaults.standard
         userDefaults.set(newValue, forKey: "hotWeatherBannerWasDismissed")
+    }
+    
+    static func setLastSendDateOfStillAliveSignalToServer(to newValue: Date) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(newValue.timeIntervalSince1970, forKey: "lastSendDateOfStillAliveSignalToServer")
     }
 
 }

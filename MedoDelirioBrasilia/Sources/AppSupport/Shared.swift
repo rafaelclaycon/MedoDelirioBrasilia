@@ -7,7 +7,8 @@ struct Shared {
         static let playAndShareSounds = "com.rafaelschmitt.MedoDelirioBrasilia.PlayAndShareSounds"
         static let viewCollections = "com.rafaelschmitt.MedoDelirioBrasilia.ViewCollections"
         static let playAndShareSongs = "com.rafaelschmitt.MedoDelirioBrasilia.PlayAndShareSongs"
-        static let viewTrends = "com.rafaelschmitt.MedoDelirioBrasilia.ViewTrends" // Legacy
+        static let viewTrends = "com.rafaelschmitt.MedoDelirioBrasilia.ViewTrends" // Legacy. Kept here to support old donated activities.
+        static let viewLast24HoursTopChart = "com.rafaelschmitt.MedoDelirioBrasilia.ViewLast24HoursTopChart"
         static let viewLastWeekTopChart = "com.rafaelschmitt.MedoDelirioBrasilia.ViewLastWeekTopChart"
         static let viewLastMonthTopChart = "com.rafaelschmitt.MedoDelirioBrasilia.ViewLastMonthTopChart"
         static let viewAllTimeTopChart = "com.rafaelschmitt.MedoDelirioBrasilia.ViewAllTimeTopChart"
@@ -56,6 +57,7 @@ struct Shared {
     
     struct Trends {
         
+        static let last24Hours = "Últimas 24 horas"
         static let lastWeek = "Última semana"
         static let lastMonth = "Último mês"
         static let allTime = "Todos os tempos"

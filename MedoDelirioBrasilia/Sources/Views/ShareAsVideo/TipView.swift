@@ -35,16 +35,17 @@ struct TipView: View {
             VStack {
                 HStack {
                     Spacer()
-                    Image(systemName: "xmark")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 15)
-                        .foregroundColor(.gray)
-                        .padding(.top)
-                        .padding(.trailing)
-                        .onTapGesture {
-                            didTapClose = true
-                        }
+                    Button {
+                        didTapClose = true
+                    } label: {
+                        Image(systemName: "xmark")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 15)
+                            .foregroundColor(colorScheme == .dark ? .primary : .gray)
+                    }
+                    .padding(.top)
+                    .padding(.trailing)
                 }
                 Spacer()
             }
