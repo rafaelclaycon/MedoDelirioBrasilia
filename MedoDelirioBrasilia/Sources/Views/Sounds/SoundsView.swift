@@ -110,7 +110,7 @@ struct SoundsView: View {
                                         .padding(.vertical, UIScreen.main.bounds.height / 3)
                                     } else {
                                         ForEach(searchResults) { sound in
-                                            SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", favorites: $viewModel.favoritesKeeper, highlighted: $viewModel.highlightKeeper)
+                                            SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", isNew: sound.isNew ?? false, favorites: $viewModel.favoritesKeeper, highlighted: $viewModel.highlightKeeper)
                                                 .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
                                                 .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                                                 .onTapGesture {
@@ -275,19 +275,12 @@ struct SoundsView: View {
                                      sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
                 columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
                 viewModel.donateActivity()
-                viewModel.sendDeviceModelNameToServer()
                 viewModel.sendUserPersonalTrendsToServerIfEnabled()
                 
-                if UIDevice.current.userInterfaceIdiom == .phone {
-                    networkRabbit.displayLulaWonOnLockScreenWidgets { displayLulaWon, _ in
-                        UserDefaults(suiteName: "group.com.rafaelschmitt.MedoDelirioBrasilia")!.set(displayLulaWon, forKey: "displayLulaWon")
-                    }
+                if AppPersistentMemory.getHasShownNotificationsOnboarding() == false {
+                    subviewToOpen = .onboardingView
+                    showingModalView = true
                 }
-                
-//                if AppPersistentMemory.getHasShownNotificationsOnboarding() == false {
-//                    subviewToOpen = .onboardingView
-//                    showingModalView = true
-//                }
                 
                 if moveDatabaseIssue.isEmpty == false {
                     viewModel.showMoveDatabaseIssueAlert()

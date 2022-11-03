@@ -9,6 +9,6 @@ import Foundation
 
 enum TrendsTimeInterval: Int {
 
-    case lastWeek, lastMonth, allTime
+    case last24Hours, lastWeek, lastMonth, allTime
 
 }
