@@ -964,7 +964,7 @@
     },
     {
         "id": "521FB542-46D1-49B1-96C5-ED69C9B2A4DA",
-        "title": "Carrralho caralho",
+        "title": "Carrralho",
         "authorId": "F0A2EC08-8C98-42E8-8C23-C4EBD9314E14",
         "description": "Carrralho caralho",
         "filename": "Boldo - Carrralho caralho.mp3",
@@ -7306,5 +7306,101 @@
         "filename": "Crianca - Bora.mp3",
         "dateAdded": "2022-10-27T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "BCB139E7-071A-4305-86E5-AE61439D0CE9",
+        "title": "Oferta generosa 💋 essa é pro senhor Jesus",
+        "authorId": "D9D14C58-E5C4-4479-82BE-E00D9A38AB3A",
+        "description": "voce vai colocar uma oferta generosa com muita alegria ce vai colocar e vai dar beijinho assim o essa e pro senhor Jesus",
+        "filename": "Valdemiro Santiago - Oferta generosa beijinho essa e pro senhor Jesus.mp3",
+        "dateAdded": "2022-10-28T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "0667ECBF-C410-4823-BAF3-4B416B90D2A1",
+        "title": "Você vai semear essa semente",
+        "authorId": "D9D14C58-E5C4-4479-82BE-E00D9A38AB3A",
+        "description": "Voce vai semear essa semente",
+        "filename": "Valdemiro Santiago - Voce vai semear essa semente.mp3",
+        "dateAdded": "2022-10-28T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "08CF8D88-03E8-4BA9-B2DD-2B388C0A8CCE",
+        "title": "Mi-mi-mi",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Mi-mi-mi mi mi mi mimimi",
+        "filename": "Desconhecido - Mi-mi-mi.mp3",
+        "dateAdded": "2022-10-29T00:00:00Z",
+        "isOffensive": false
+    },
+    {
+        "id": "DF391DB1-70E0-4C5D-BDD0-A20C4C78EB55",
+        "title": "Eu estou no limite, Brasil",
+        "authorId": "D9D14C58-E5C4-4479-82BE-E00D9A38AB3A",
+        "description": "Eu estou no limite Brasil",
+        "filename": "Valdemiro Santiago - Eu estou no limite, Brasil.mp3",
+        "dateAdded": "2022-10-29T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "D4B5868F-DF6D-469A-B0E4-801A376E7378",
+        "title": "Preço da mansão de Flávio Bolsonaro",
+        "authorId": "410F11BD-9136-4DC1-8125-4DDA9828EEA6",
+        "description": "6 milhoes de reais esse e o preço da mansao de Flavio Bolsonaro em Brasilia",
+        "filename": "Jornalismo TV Cultura - 6 milhoes de reais esse e o preço da mansao de Flavio Bolsonaro em Brasilia.mp3",
+        "dateAdded": "2022-10-31T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "464F12B9-E467-423C-82D0-AC4D2F917A18",
+        "title": "Tá na hora do Jair",
+        "authorId": "852E5EE2-9E6D-4811-9D0B-AC7D15FA54A3",
+        "description": "Ta na hora do Jair Ta na hora do Jair já ir embora arruma suas malas dá no pé e vá-se embora tchau",
+        "filename": "Tiago Doidao e Juliano Maderada - Ta na hora do Jair.mp3",
+        "dateAdded": "2022-10-31T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "29B2E303-A424-45AE-A788-BE04D64B1204",
+        "title": "Os caras querem é a nossa hemorroida",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "O que os caras querem e a nossa hemorroida",
+        "filename": "Jair Bolsonaro - O que os caras querem e a nossa hemorroida.mp3",
+        "dateAdded": "2022-10-31T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "CD0E53B5-E3E5-45AF-8439-D692B28B80CA",
+        "title": "Como dizem os peruanos",
+        "authorId": "4AE135DD-B688-45D7-B20B-88DCFE8CDD8A",
+        "description": "mas como dizem os peruanos las intenciones son muy claras",
+        "filename": "Omar Aziz - Como dizem os peruanos.mp3",
+        "dateAdded": "2022-11-02T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "FC4F8104-FB32-48E2-9E59-A2D5CA61C2B1",
+        "title": "Precisa ter provas?",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "presidente o senhor tem alguma prova de que eles eram pra fazer uma guerrilha e não médicos o senhor afirma isso com base em que precisa ter prova pra fazer isso aí",
+        "filename": "Jair Bolsonaro - Precisa ter provas.mp3",
+        "dateAdded": "2022-11-02T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "17814CA4-BBBE-4C0F-BA52-2A85C4C0870C",
+        "title": "Maioria é uma coisa, minoria é outra",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Maioria e uma coisa minoria e outra minoria tem que se curvar a maioria acabou",
+        "filename": "Jair Bolsonaro - Maioria e uma coisa, minoria e outra minoria tem que se curvar a maioria acabou.mp3",
+        "dateAdded": "2022-11-03T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
     }
 ]
