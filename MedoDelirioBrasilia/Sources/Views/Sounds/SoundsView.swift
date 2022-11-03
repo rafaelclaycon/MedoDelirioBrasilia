@@ -375,16 +375,27 @@ struct SoundsView: View {
     
     @ViewBuilder func floatingSelectorView() -> some View {
         Picker("Exibição", selection: $currentMode) {
-            Image(systemName: "speaker.wave.3")
+//            Image(systemName: "speaker.wave.3")
+//                .tag(Mode.allSounds)
+//
+//            Image(systemName: "star")
+//                .tag(Mode.favorites)
+//
+//            Image(systemName: "rectangle.grid.2x2")
+//                .tag(Mode.collections)
+//
+//            Image(systemName: "person")
+//                .tag(Mode.byAuthor)
+            Text("Todos")
                 .tag(Mode.allSounds)
             
-            Image(systemName: "star")
+            Text("Favoritos")
                 .tag(Mode.favorites)
             
-            Image(systemName: "rectangle.grid.2x2")
+            Text("Coleções")
                 .tag(Mode.collections)
             
-            Image(systemName: "person")
+            Text("Por autor")
                 .tag(Mode.byAuthor)
         }
         .pickerStyle(.segmented)
