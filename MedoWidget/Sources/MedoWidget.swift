@@ -41,10 +41,6 @@ struct MedoWidgetEntryView : View {
     
     var entry: Provider.Entry
     
-    var displayLulaWon: Bool {
-        return UserDefaults(suiteName: "group.com.rafaelschmitt.MedoDelirioBrasilia")!.bool(forKey: "displayLulaWon")
-    }
-    
     var body: some View {
         switch widgetFamily {
             
@@ -65,25 +61,14 @@ struct MedoWidgetEntryView : View {
             
         case .accessoryRectangular:
             VStack(alignment: .leading, spacing: -1) {
-                if displayLulaWon {
-                    Text("É Lula!")
-                        .bold()
-                        .font(.system(size: 14))
-                    
-                    Text("É Lula, porrrraaaa")
-                        .textCase(.uppercase)
-                        .font(.system(size: 12))
-                        .fontWeight(.medium)
-                } else {
-                    Text(getDaysUntilDateShort(secondTurnDate()))
-                        .bold()
-                        .font(.system(size: 14))
-                    
-                    Text("Segundo Turno")
-                        .textCase(.uppercase)
-                        .font(.system(size: 12))
-                        .fontWeight(.medium)
-                }
+                Text("É Lula!")
+                    .bold()
+                    .font(.system(size: 14))
+                
+                Text("É Lula, porrrraaaa")
+                    .textCase(.uppercase)
+                    .font(.system(size: 12))
+                    .fontWeight(.medium)
                 
                 Text(getDaysUntilDateShort(endOfCurrentMandateDate()))
                     .bold()
@@ -98,16 +83,9 @@ struct MedoWidgetEntryView : View {
             .frame(maxWidth: .infinity, alignment: .leading)
             
         case .accessoryInline:
-            if displayLulaWon {
-                HStack {
-                    Image(systemName: "medal.fill")
-                    Text(" É Lula!!!!")
-                }
-            } else {
-                HStack {
-                    Image(systemName: "calendar")
-                    Text(getDaysUntilDateLong(secondTurnDate(), isFirstTurn: false))
-                }
+            HStack {
+                Image(systemName: "medal.fill")
+                Text(" É Lula!!!!")
             }
             
         default:

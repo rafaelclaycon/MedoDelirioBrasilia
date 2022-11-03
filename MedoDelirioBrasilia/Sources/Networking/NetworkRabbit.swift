@@ -41,6 +41,10 @@ class NetworkRabbit: NetworkRabbitProtocol {
         var url: URL
         
         switch timeInterval {
+        case .last24Hours:
+            let refDate: String = TimeKeeper.getDateAsString(addingDays: -1)
+            url = URL(string: serverPath + "v2/sound-share-count-stats-from/\(refDate)")!
+            
         case .lastWeek:
             let refDate: String = TimeKeeper.getDateAsString(addingDays: -7)
             url = URL(string: serverPath + "v2/sound-share-count-stats-from/\(refDate)")!
@@ -79,21 +83,6 @@ class NetworkRabbit: NetworkRabbitProtocol {
     
     func displayAskForMoneyView(completionHandler: @escaping (Bool, String) -> Void) {
         let url = URL(string: serverPath + "v1/display-ask-for-money-view")!
-
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            if let data = data {
-                let response = String(data: data, encoding: .utf8)!
-                completionHandler(response == "1", response)
-            } else if let error = error {
-                completionHandler(false, "A requisição HTTP falhou: \(error.localizedDescription)")
-            }
-        }
-        
-        task.resume()
-    }
-    
-    func displayLulaWonOnLockScreenWidgets(completionHandler: @escaping (Bool, String) -> Void) {
-        let url = URL(string: serverPath + "v1/display-lula-won-on-lock-screen-widgets")!
 
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             if let data = data {

@@ -229,6 +229,12 @@
 		D9547D8228FDD7190020A800 /* Igor Guimaraes e Luiz Felipe D'Avila - Que alegria, que tistreza.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9547D7A28FDD7180020A800 /* Igor Guimaraes e Luiz Felipe D'Avila - Que alegria, que tistreza.mp3 */; };
 		D9547D8328FDD7190020A800 /* Lula - Filho, eu estou achando voce nervoso.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9547D7B28FDD7190020A800 /* Lula - Filho, eu estou achando voce nervoso.mp3 */; };
 		D9547D8428FDD7190020A800 /* Meme - Pelo amor de Deus ele e muito burro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9547D7C28FDD7190020A800 /* Meme - Pelo amor de Deus ele e muito burro.mp3 */; };
+		D955755F29108B75002EFC50 /* Jornalismo TV Cultura - 6 milhoes de reais esse e o preço da mansao de Flavio Bolsonaro em Brasilia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D955755E29108B75002EFC50 /* Jornalismo TV Cultura - 6 milhoes de reais esse e o preço da mansao de Flavio Bolsonaro em Brasilia.mp3 */; };
+		D95575622910A462002EFC50 /* Tiago Doidao e Juliano Maderada - Ta na hora do Jair.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95575602910A462002EFC50 /* Tiago Doidao e Juliano Maderada - Ta na hora do Jair.mp3 */; };
+		D95575632910A462002EFC50 /* Jair Bolsonaro - O que os caras querem e a nossa hemorroida.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95575612910A462002EFC50 /* Jair Bolsonaro - O que os caras querem e a nossa hemorroida.mp3 */; };
+		D9557566291309B2002EFC50 /* MarqueeText in Frameworks */ = {isa = PBXBuildFile; productRef = D9557565291309B2002EFC50 /* MarqueeText */; };
+		D955756829131037002EFC50 /* Omar Aziz - Como dizem os peruanos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D955756729131037002EFC50 /* Omar Aziz - Como dizem os peruanos.mp3 */; };
+		D955756A2913419A002EFC50 /* Jair Bolsonaro - Precisa ter provas.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95575692913419A002EFC50 /* Jair Bolsonaro - Precisa ter provas.mp3 */; };
 		D957047D28AEF733008DEF8C /* ProcessingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957047C28AEF733008DEF8C /* ProcessingView.swift */; };
 		D957048328AFCC93008DEF8C /* ChangeAppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957048228AFCC93008DEF8C /* ChangeAppIconView.swift */; };
 		D9575092284427C70094AEA6 /* ShareLogsDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9575091284427C70094AEA6 /* ShareLogsDummy.swift */; };
@@ -1306,6 +1312,11 @@
 		D9547D7A28FDD7180020A800 /* Igor Guimaraes e Luiz Felipe D'Avila - Que alegria, que tistreza.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Igor Guimaraes e Luiz Felipe D'Avila - Que alegria, que tistreza.mp3"; sourceTree = "<group>"; };
 		D9547D7B28FDD7190020A800 /* Lula - Filho, eu estou achando voce nervoso.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - Filho, eu estou achando voce nervoso.mp3"; sourceTree = "<group>"; };
 		D9547D7C28FDD7190020A800 /* Meme - Pelo amor de Deus ele e muito burro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Meme - Pelo amor de Deus ele e muito burro.mp3"; sourceTree = "<group>"; };
+		D955755E29108B75002EFC50 /* Jornalismo TV Cultura - 6 milhoes de reais esse e o preço da mansao de Flavio Bolsonaro em Brasilia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jornalismo TV Cultura - 6 milhoes de reais esse e o preço da mansao de Flavio Bolsonaro em Brasilia.mp3"; sourceTree = "<group>"; };
+		D95575602910A462002EFC50 /* Tiago Doidao e Juliano Maderada - Ta na hora do Jair.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tiago Doidao e Juliano Maderada - Ta na hora do Jair.mp3"; sourceTree = "<group>"; };
+		D95575612910A462002EFC50 /* Jair Bolsonaro - O que os caras querem e a nossa hemorroida.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - O que os caras querem e a nossa hemorroida.mp3"; sourceTree = "<group>"; };
+		D955756729131037002EFC50 /* Omar Aziz - Como dizem os peruanos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Omar Aziz - Como dizem os peruanos.mp3"; sourceTree = "<group>"; };
+		D95575692913419A002EFC50 /* Jair Bolsonaro - Precisa ter provas.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Precisa ter provas.mp3"; sourceTree = "<group>"; };
 		D957047C28AEF733008DEF8C /* ProcessingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingView.swift; sourceTree = "<group>"; };
 		D957048228AFCC93008DEF8C /* ChangeAppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAppIconView.swift; sourceTree = "<group>"; };
 		D9575091284427C70094AEA6 /* ShareLogsDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareLogsDummy.swift; sourceTree = "<group>"; };
@@ -2143,6 +2154,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9557566291309B2002EFC50 /* MarqueeText in Frameworks */,
 				D9943F1A286406AF002C6B97 /* Kingfisher in Frameworks */,
 				D9E69592283D2E2C00C341B2 /* SQLite in Frameworks */,
 				D94656D928450535008B4785 /* SQLiteMigrationManager in Frameworks */,
@@ -2180,6 +2192,11 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D95575692913419A002EFC50 /* Jair Bolsonaro - Precisa ter provas.mp3 */,
+				D955756729131037002EFC50 /* Omar Aziz - Como dizem os peruanos.mp3 */,
+				D95575612910A462002EFC50 /* Jair Bolsonaro - O que os caras querem e a nossa hemorroida.mp3 */,
+				D95575602910A462002EFC50 /* Tiago Doidao e Juliano Maderada - Ta na hora do Jair.mp3 */,
+				D955755E29108B75002EFC50 /* Jornalismo TV Cultura - 6 milhoes de reais esse e o preço da mansao de Flavio Bolsonaro em Brasilia.mp3 */,
 				D9DCF739290D832800DB177C /* Desconhecido - Mi-mi-mi.mp3 */,
 				D9DCF73A290D832800DB177C /* Valdemiro Santiago - Eu estou no limite, Brasil.mp3 */,
 				D9DCF735290C2C4A00DB177C /* Valdemiro Santiago - Oferta generosa beijinho essa e pro senhor Jesus.mp3 */,
@@ -3729,6 +3746,7 @@
 				D9E69591283D2E2C00C341B2 /* SQLite */,
 				D94656D828450535008B4785 /* SQLiteMigrationManager */,
 				D9943F19286406AF002C6B97 /* Kingfisher */,
+				D9557565291309B2002EFC50 /* MarqueeText */,
 			);
 			productName = MedoDelirioBrasilia;
 			productReference = D9625E7A28238F9A00080852 /* MedoDelirio.app */;
@@ -3788,6 +3806,7 @@
 				D9E69590283D2E2C00C341B2 /* XCRemoteSwiftPackageReference "SQLite" */,
 				D94656D728450535008B4785 /* XCRemoteSwiftPackageReference "SQLiteMigrationManager" */,
 				D9943F18286406AF002C6B97 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				D9557564291309B2002EFC50 /* XCRemoteSwiftPackageReference "MarqueeText" */,
 			);
 			productRefGroup = D9625E7B28238F9A00080852 /* Products */;
 			projectDirPath = "";
@@ -3893,6 +3912,7 @@
 				D975000A2880B4F20035E6F2 /* Atila Iamarino - No minimo.mp3 in Resources */,
 				D975FFC22880B4F20035E6F2 /* Bolsonaro - O caos vem ai.mp3 in Resources */,
 				D975FE112880B4F20035E6F2 /* Dilma - O milho.mp3 in Resources */,
+				D95575622910A462002EFC50 /* Tiago Doidao e Juliano Maderada - Ta na hora do Jair.mp3 in Resources */,
 				D975FED02880B4F20035E6F2 /* CASIMIRO - Amado ou amada.mp3 in Resources */,
 				D921F887288B0177003979CC /* Isso ai e sarcasmo alvin e os esquilos - cristiano botafogo.mp3 in Resources */,
 				D975FE492880B4F20035E6F2 /* Collor - Um devaneio, um sonho de uma noite de verao.mp3 in Resources */,
@@ -4337,6 +4357,7 @@
 				D975FFD62880B4F20035E6F2 /* Vai Dar Namoro - UUUUII.mp3 in Resources */,
 				D9BC1E1328F1CD6700AC0C8D /* Falha de Cobertura - Craque Daniel - Vou dedicar minha existencia a partir de agora a odiar esse rapaz esse cidadao.mp3 in Resources */,
 				D975FE652880B4F20035E6F2 /* Gilmar Mendes - Me parece que esta havendo um certo delirio.mp3 in Resources */,
+				D955755F29108B75002EFC50 /* Jornalismo TV Cultura - 6 milhoes de reais esse e o preço da mansao de Flavio Bolsonaro em Brasilia.mp3 in Resources */,
 				D975FF0A2880B4F20035E6F2 /* Malditos Milicos - Arpeggio.mp3 in Resources */,
 				D975FF232880B4F20035E6F2 /* ATILA IAMARINO - Nao tem condicoes.mp3 in Resources */,
 				D937E11F2909AA90004137ED /* Onyx Lorenzoni - Muito melhor do que a sua.mp3 in Resources */,
@@ -4461,6 +4482,7 @@
 				D9EDB87A28E3E477007724E2 /* Flavio Bolsonaro - Quando o couro comer.mp3 in Resources */,
 				D991512C2873E4C100FFAA29 /* rock-comunismo-vale-tudo-mdb.mp3 in Resources */,
 				D975FE482880B4F20035E6F2 /* Seu Sirigueijo - Ola eu gosto de dinheiro.mp3 in Resources */,
+				D95575632910A462002EFC50 /* Jair Bolsonaro - O que os caras querem e a nossa hemorroida.mp3 in Resources */,
 				D975FF872880B4F20035E6F2 /* Bolsonaro - Uma crise uma pequena crise ne.mp3 in Resources */,
 				49DEA9E228812015008C9BA1 /* eletronica-eine-grosse-confusion-sexo-selvagem-kraftwerk.mp3 in Resources */,
 				D923125E28AAD5C300436336 /* Vai dar merda, vai dar meeerda.mp3 in Resources */,
@@ -4479,6 +4501,7 @@
 				49DEA9D62881173B008C9BA1 /* Eu quero dormir porra short meme.mp3 in Resources */,
 				D975FECF2880B4F20035E6F2 /* Hassum - Nem fodendo.mp3 in Resources */,
 				D97500372880B4F20035E6F2 /* ATILA IAMARINO - Ele faz sexo.mp3 in Resources */,
+				D955756A2913419A002EFC50 /* Jair Bolsonaro - Precisa ter provas.mp3 in Resources */,
 				D975FF322880B4F20035E6F2 /* Nao parece short meme.mp3 in Resources */,
 				D99D0DC528CAB5F000EB6F27 /* TV BRASIL - GUEDES - Auxilio emergencial de 200 reais.mp3 in Resources */,
 				D921F87C288B0177003979CC /* Jornalista de alta performance - Oswaldo Eustaquio.mp3 in Resources */,
@@ -4598,6 +4621,7 @@
 				D975FF0C2880B4F20035E6F2 /* Gilmar Mendes - O exercito esta se associando a esse genocidio.mp3 in Resources */,
 				D9547D8328FDD7190020A800 /* Lula - Filho, eu estou achando voce nervoso.mp3 in Resources */,
 				49DEA9B2288110F0008C9BA1 /* SpongeBob Flashback.mp3 in Resources */,
+				D955756829131037002EFC50 /* Omar Aziz - Como dizem os peruanos.mp3 in Resources */,
 				D937E11829097D58004137ED /* Onyx Lorenzoni - Um ministerio tecnico.mp3 in Resources */,
 				D9FD0F0928B2B2EE0000616A /* Nao e hora pra desespero - Desesperado.mp3 in Resources */,
 				D97500262880B4F20035E6F2 /* Dilma - If you speak slowly I understand very well.mp3 in Resources */,
@@ -4933,7 +4957,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 5.11;
+				MARKETING_VERSION = 5.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -4965,7 +4989,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 5.11;
+				MARKETING_VERSION = 5.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -5121,7 +5145,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.11;
+				MARKETING_VERSION = 5.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -5162,7 +5186,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.11;
+				MARKETING_VERSION = 5.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -5270,6 +5294,14 @@
 				minimumVersion = 0.8.0;
 			};
 		};
+		D9557564291309B2002EFC50 /* XCRemoteSwiftPackageReference "MarqueeText" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/joekndy/MarqueeText";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		D9943F18286406AF002C6B97 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -5293,6 +5325,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D94656D728450535008B4785 /* XCRemoteSwiftPackageReference "SQLiteMigrationManager" */;
 			productName = SQLiteMigrationManager;
+		};
+		D9557565291309B2002EFC50 /* MarqueeText */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D9557564291309B2002EFC50 /* XCRemoteSwiftPackageReference "MarqueeText" */;
+			productName = MarqueeText;
 		};
 		D9943F19286406AF002C6B97 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
