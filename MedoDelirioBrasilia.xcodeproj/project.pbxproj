@@ -246,6 +246,7 @@
 		D957048328AFCC93008DEF8C /* ChangeAppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957048228AFCC93008DEF8C /* ChangeAppIconView.swift */; };
 		D9575092284427C70094AEA6 /* ShareLogsDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9575091284427C70094AEA6 /* ShareLogsDummy.swift */; };
 		D957509628445EC30094AEA6 /* TrendsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957509528445EC30094AEA6 /* TrendsViewViewModel.swift */; };
+		D9584D8C2913E60C006ED00A /* Jair Bolsonaro - Maioria e uma coisa, minoria e outra minoria tem que se curvar a maioria acabou.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9584D8B2913E60C006ED00A /* Jair Bolsonaro - Maioria e uma coisa, minoria e outra minoria tem que se curvar a maioria acabou.mp3 */; };
 		D958B1AA28394D400010F133 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958B1A928394D400010F133 /* MainView.swift */; };
 		D958B1AC28394DCD0010F133 /* AuthorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958B1AB28394DCD0010F133 /* AuthorsView.swift */; };
 		D958B1AE28394E420010F133 /* SongsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958B1AD28394E420010F133 /* SongsView.swift */; };
@@ -1335,6 +1336,7 @@
 		D957048228AFCC93008DEF8C /* ChangeAppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAppIconView.swift; sourceTree = "<group>"; };
 		D9575091284427C70094AEA6 /* ShareLogsDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareLogsDummy.swift; sourceTree = "<group>"; };
 		D957509528445EC30094AEA6 /* TrendsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsViewViewModel.swift; sourceTree = "<group>"; };
+		D9584D8B2913E60C006ED00A /* Jair Bolsonaro - Maioria e uma coisa, minoria e outra minoria tem que se curvar a maioria acabou.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Maioria e uma coisa, minoria e outra minoria tem que se curvar a maioria acabou.mp3"; sourceTree = "<group>"; };
 		D958B1A928394D400010F133 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		D958B1AB28394DCD0010F133 /* AuthorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorsView.swift; sourceTree = "<group>"; };
 		D958B1AD28394E420010F133 /* SongsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsView.swift; sourceTree = "<group>"; };
@@ -2206,6 +2208,7 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9584D8B2913E60C006ED00A /* Jair Bolsonaro - Maioria e uma coisa, minoria e outra minoria tem que se curvar a maioria acabou.mp3 */,
 				D95575692913419A002EFC50 /* Jair Bolsonaro - Precisa ter provas.mp3 */,
 				D955756729131037002EFC50 /* Omar Aziz - Como dizem os peruanos.mp3 */,
 				D95575612910A462002EFC50 /* Jair Bolsonaro - O que os caras querem e a nossa hemorroida.mp3 */,
@@ -4402,6 +4405,7 @@
 				D9F8E9A028E6A08D0098A454 /* Soraya Thronicke - O senhor nao tem medo de ir pro inferno nao.mp3 in Resources */,
 				D975FEBF2880B4F20035E6F2 /* Leo Stronda Monstro - Batata doce e frango logico.mp3 in Resources */,
 				D9A3984B28FF4AA300039B7B /* Samira Close - 22 so se for de pica.mp3 in Resources */,
+				D9584D8C2913E60C006ED00A /* Jair Bolsonaro - Maioria e uma coisa, minoria e outra minoria tem que se curvar a maioria acabou.mp3 in Resources */,
 				D9BB8F7B28EC753100659D4A /* Charlie e Lola - Da pra parar de enrolar.mp3 in Resources */,
 				D97B2DE328E60B8600C3B50B /* William Bonner - Fora Bolsonaro Genocida.mp3 in Resources */,
 				D921F885288B0177003979CC /* Ihu compilacao.mp3 in Resources */,
@@ -4989,7 +4993,7 @@
 				CODE_SIGN_ENTITLEMENTS = MedoWidget/Sources/WidgetSupport/MedoWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MedoWidget/Sources/WidgetSupport/Info.plist;
@@ -5021,7 +5025,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_ENTITLEMENTS = MedoWidget/Sources/WidgetSupport/MedoWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MedoWidget/Sources/WidgetSupport/Info.plist;
@@ -5169,7 +5173,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/Sources/AppSupport/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -5210,7 +5214,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/Sources/AppSupport/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;

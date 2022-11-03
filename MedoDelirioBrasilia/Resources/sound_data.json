@@ -7392,5 +7392,15 @@
         "dateAdded": "2022-11-02T00:00:00Z",
         "isOffensive": false,
         "isNew": true
+    },
+    {
+        "id": "17814CA4-BBBE-4C0F-BA52-2A85C4C0870C",
+        "title": "Maioria é uma coisa, minoria é outra",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Maioria e uma coisa minoria e outra minoria tem que se curvar a maioria acabou",
+        "filename": "Jair Bolsonaro - Maioria e uma coisa, minoria e outra minoria tem que se curvar a maioria acabou.mp3",
+        "dateAdded": "2022-11-03T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
     }
 ]
