@@ -34,7 +34,7 @@ struct CollectionsView: View {
                     }
                     
                     VStack(spacing: 10) {
-                        Text("Nenhuma Coleção")
+                        Text("*Tá vindo!*")
                             .foregroundColor(.gray)
                             .font(.title3)
                             .multilineTextAlignment(.center)
@@ -57,38 +57,6 @@ struct CollectionsView: View {
 //                        }
                 }
                 .padding(.top, 10)
-                
-                if UIDevice.current.userInterfaceIdiom == .phone {
-                    VStack(alignment: .center) {
-                        HStack {
-                            Text("Minhas Pastas")
-                                .font(.title2)
-                            
-                            Spacer()
-                            
-                            Button {
-                                isShowingFolderInfoEditingSheet = true
-                            } label: {
-                                HStack {
-                                    Image(systemName: "plus")
-                                    Text("Nova Pasta")
-                                }
-                            }
-                            .onChange(of: isShowingFolderInfoEditingSheet) { isShowing in
-                                if isShowing == false {
-                                    updateFolderList = true
-                                    folderForEditingOnSheet = nil
-                                }
-                            }
-                        }
-                        
-                        FolderList(updateFolderList: $updateFolderList,
-                                   deleteFolderAid: $deleteFolderAid,
-                                   folderIdForEditing: $folderIdForEditing)
-                    }
-                    .padding(.top, 10)
-                    .padding(.horizontal)
-                }
             }
             .navigationTitle("Coleções")
             .sheet(isPresented: $isShowingFolderInfoEditingSheet) {

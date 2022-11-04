@@ -1,14 +1,13 @@
 //
-//  AllFoldersView.swift
+//  MyFoldersiPhoneView.swift
 //  MedoDelirioBrasilia
 //
-//  Created by Rafael Claycon Schmitt on 19/07/22.
+//  Created by Rafael Claycon Schmitt on 04/11/22.
 //
 
 import SwiftUI
 
-/// iPad and Mac only.
-struct AllFoldersView: View {
+struct MyFoldersiPhoneView: View {
 
     @Binding var isShowingFolderInfoEditingSheet: Bool
     @Binding var updateFolderList: Bool
@@ -26,8 +25,7 @@ struct AllFoldersView: View {
             .padding(.top, 7)
             .padding(.bottom, 18)
         }
-        .navigationTitle("Pastas")
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("Minhas Pastas")
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Button {
@@ -35,7 +33,6 @@ struct AllFoldersView: View {
                 } label: {
                     HStack {
                         Image(systemName: "plus")
-                        Text("Nova Pasta")
                     }
                 }
             }
@@ -59,10 +56,10 @@ struct AllFoldersView: View {
 
 }
 
-struct AllFoldersView_Previews: PreviewProvider {
+struct MyFoldersiPhoneView_Previews: PreviewProvider {
 
     static var previews: some View {
-        AllFoldersView(isShowingFolderInfoEditingSheet: .constant(false), updateFolderList: .constant(false))
+        MyFoldersiPhoneView(isShowingFolderInfoEditingSheet: .constant(false), updateFolderList: .constant(false))
     }
 
 }

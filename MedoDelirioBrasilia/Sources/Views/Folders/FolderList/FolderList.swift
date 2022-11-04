@@ -79,7 +79,7 @@ struct FolderList: View {
                     }
                 }
             } else {
-                VStack(spacing: 15) {
+                VStack(spacing: 20) {
                     Spacer()
                     
                     Image(systemName: "folder")
@@ -101,7 +101,7 @@ struct FolderList: View {
                     
                     Spacer()
                 }
-                .padding(.vertical, 40)
+                .padding(.vertical, 100)
             }
         }
         .onAppear {
