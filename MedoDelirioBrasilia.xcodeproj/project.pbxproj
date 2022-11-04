@@ -716,7 +716,6 @@
 		D975FF7D2880B4F20035E6F2 /* Ate o final tu vai bancar esse merda la seu merda.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FD462880B4EE0035E6F2 /* Ate o final tu vai bancar esse merda la seu merda.mp3 */; };
 		D975FF7E2880B4F20035E6F2 /* Bolsonaro - Eu votaria no Lula no segundo turno.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FD472880B4EE0035E6F2 /* Bolsonaro - Eu votaria no Lula no segundo turno.mp3 */; };
 		D975FF7F2880B4F20035E6F2 /* Osorio - Flavio Bolsonaro desmaio - Nao da pra continuar, ta passando mal short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FD482880B4EE0035E6F2 /* Osorio - Flavio Bolsonaro desmaio - Nao da pra continuar, ta passando mal short.mp3 */; };
-		D975FF802880B4F20035E6F2 /* Pronto, falei short.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FD492880B4EE0035E6F2 /* Pronto, falei short.mp3 */; };
 		D975FF812880B4F20035E6F2 /* Alborghetti - Ah, va a merda porra.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FD4A2880B4EE0035E6F2 /* Alborghetti - Ah, va a merda porra.mp3 */; };
 		D975FF822880B4F20035E6F2 /* Bolsonaro - Sou ousado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FD4B2880B4EE0035E6F2 /* Bolsonaro - Sou ousado.mp3 */; };
 		D975FF832880B4F20035E6F2 /* Essa eu quero ver nao nao quero ver nao short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FD4C2880B4EE0035E6F2 /* Essa eu quero ver nao nao quero ver nao short meme.mp3 */; };
@@ -1003,6 +1002,7 @@
 		D9DCF738290C2C4B00DB177C /* Valdemiro Santiago - Voce vai semear essa semente.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DCF736290C2C4A00DB177C /* Valdemiro Santiago - Voce vai semear essa semente.mp3 */; };
 		D9DCF73B290D832800DB177C /* Desconhecido - Mi-mi-mi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DCF739290D832800DB177C /* Desconhecido - Mi-mi-mi.mp3 */; };
 		D9DCF73C290D832800DB177C /* Valdemiro Santiago - Eu estou no limite, Brasil.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DCF73A290D832800DB177C /* Valdemiro Santiago - Eu estou no limite, Brasil.mp3 */; };
+		D9E1A8D02914CB3A00694A74 /* Monica de Bolle - Pronto, falei.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E1A8CF2914CB3900694A74 /* Monica de Bolle - Pronto, falei.mp3 */; };
 		D9E5056028F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E5055F28F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift */; };
 		D9E5056228F79ECB008DAA1E /* Luiz Felipe D'Avila - Que tistreza.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E5056128F79ECB008DAA1E /* Luiz Felipe D'Avila - Que tistreza.mp3 */; };
 		D9E5100A286084F2003DB3A3 /* Date+OnlyDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E51009286084F2003DB3A3 /* Date+OnlyDate.swift */; };
@@ -1732,7 +1732,6 @@
 		D975FD462880B4EE0035E6F2 /* Ate o final tu vai bancar esse merda la seu merda.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ate o final tu vai bancar esse merda la seu merda.mp3"; sourceTree = "<group>"; };
 		D975FD472880B4EE0035E6F2 /* Bolsonaro - Eu votaria no Lula no segundo turno.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Eu votaria no Lula no segundo turno.mp3"; sourceTree = "<group>"; };
 		D975FD482880B4EE0035E6F2 /* Osorio - Flavio Bolsonaro desmaio - Nao da pra continuar, ta passando mal short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Osorio - Flavio Bolsonaro desmaio - Nao da pra continuar, ta passando mal short.mp3"; sourceTree = "<group>"; };
-		D975FD492880B4EE0035E6F2 /* Pronto, falei short.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pronto, falei short.mp3"; sourceTree = "<group>"; };
 		D975FD4A2880B4EE0035E6F2 /* Alborghetti - Ah, va a merda porra.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alborghetti - Ah, va a merda porra.mp3"; sourceTree = "<group>"; };
 		D975FD4B2880B4EE0035E6F2 /* Bolsonaro - Sou ousado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Sou ousado.mp3"; sourceTree = "<group>"; };
 		D975FD4C2880B4EE0035E6F2 /* Essa eu quero ver nao nao quero ver nao short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Essa eu quero ver nao nao quero ver nao short meme.mp3"; sourceTree = "<group>"; };
@@ -2090,6 +2089,7 @@
 		D9DCF736290C2C4A00DB177C /* Valdemiro Santiago - Voce vai semear essa semente.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Valdemiro Santiago - Voce vai semear essa semente.mp3"; sourceTree = "<group>"; };
 		D9DCF739290D832800DB177C /* Desconhecido - Mi-mi-mi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Desconhecido - Mi-mi-mi.mp3"; sourceTree = "<group>"; };
 		D9DCF73A290D832800DB177C /* Valdemiro Santiago - Eu estou no limite, Brasil.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Valdemiro Santiago - Eu estou no limite, Brasil.mp3"; sourceTree = "<group>"; };
+		D9E1A8CF2914CB3900694A74 /* Monica de Bolle - Pronto, falei.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Monica de Bolle - Pronto, falei.mp3"; sourceTree = "<group>"; };
 		D9E5055F28F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAudienceSharingStatisticTable.swift; sourceTree = "<group>"; };
 		D9E5056128F79ECB008DAA1E /* Luiz Felipe D'Avila - Que tistreza.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Luiz Felipe D'Avila - Que tistreza.mp3"; sourceTree = "<group>"; };
 		D9E51009286084F2003DB3A3 /* Date+OnlyDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+OnlyDate.swift"; sourceTree = "<group>"; };
@@ -2194,6 +2194,7 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9E1A8CF2914CB3900694A74 /* Monica de Bolle - Pronto, falei.mp3 */,
 				D9584D8B2913E60C006ED00A /* Jair Bolsonaro - Maioria e uma coisa, minoria e outra minoria tem que se curvar a maioria acabou.mp3 */,
 				D95575692913419A002EFC50 /* Jair Bolsonaro - Precisa ter provas.mp3 */,
 				D955756729131037002EFC50 /* Omar Aziz - Como dizem os peruanos.mp3 */,
@@ -2925,7 +2926,6 @@
 				D975FCD72880B4EC0035E6F2 /* Por que sera short meme.mp3 */,
 				D975FD022880B4ED0035E6F2 /* PORTA DOS FUNDOS - BALBURDIA - Bom dia, turma, todo mundo tirando a roupa e dedo no cu do colega do lado.mp3 */,
 				D975FD9E2880B4EF0035E6F2 /* Pretty please meme infantil crianca begging.mp3 */,
-				D975FD492880B4EE0035E6F2 /* Pronto, falei short.mp3 */,
 				D975FDBC2880B4F00035E6F2 /* Quase ninguem de mascara.mp3 */,
 				D975FD422880B4EE0035E6F2 /* Que merda hein short.mp3 */,
 				D975FC352880B4EA0035E6F2 /* Que porra e essa batata.mp3 */,
@@ -4234,7 +4234,6 @@
 				D975FFF22880B4F20035E6F2 /* Regina Rouca - Se Liga Hein (casual).mp3 in Resources */,
 				D921F886288B0177003979CC /* sai fora satanas - cristiano botafogo.mp3 in Resources */,
 				D975FEB92880B4F20035E6F2 /* ATILA IAMARINO - E um virus mais transmissivel que mata mais.mp3 in Resources */,
-				D975FF802880B4F20035E6F2 /* Pronto, falei short.mp3 in Resources */,
 				D975FE582880B4F20035E6F2 /* Bolsonaro - Eu sou favoravel a tortura, tu sabe disso.mp3 in Resources */,
 				D975FEDF2880B4F20035E6F2 /* Emicida - So isso mesmo short meme.mp3 in Resources */,
 				D90D7DE628E2A57A003B272A /* NUNES MARQUES Dont stop till you get enough michael jackson.mp3 in Resources */,
@@ -4507,6 +4506,7 @@
 				D97500372880B4F20035E6F2 /* ATILA IAMARINO - Ele faz sexo.mp3 in Resources */,
 				D955756A2913419A002EFC50 /* Jair Bolsonaro - Precisa ter provas.mp3 in Resources */,
 				D975FF322880B4F20035E6F2 /* Nao parece short meme.mp3 in Resources */,
+				D9E1A8D02914CB3A00694A74 /* Monica de Bolle - Pronto, falei.mp3 in Resources */,
 				D99D0DC528CAB5F000EB6F27 /* TV BRASIL - GUEDES - Auxilio emergencial de 200 reais.mp3 in Resources */,
 				D921F87C288B0177003979CC /* Jornalista de alta performance - Oswaldo Eustaquio.mp3 in Resources */,
 				D91793B3288E3CF0009C3165 /* Jair Bolsonaro - Canalhas.mp3 in Resources */,
