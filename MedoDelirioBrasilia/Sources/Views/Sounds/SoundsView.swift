@@ -265,7 +265,7 @@ struct SoundsView: View {
             }
             .navigationTitle(Text(title))
             .navigationBarItems(trailing:
-                getTrailingToolbarControl()
+                trailingToolbarControls()
             )
             .onAppear {
                 viewModel.reloadList(withSounds: soundData,
@@ -375,17 +375,6 @@ struct SoundsView: View {
     
     @ViewBuilder func floatingSelectorView() -> some View {
         Picker("Exibição", selection: $currentMode) {
-//            Image(systemName: "speaker.wave.3")
-//                .tag(Mode.allSounds)
-//
-//            Image(systemName: "star")
-//                .tag(Mode.favorites)
-//
-//            Image(systemName: "rectangle.grid.2x2")
-//                .tag(Mode.collections)
-//
-//            Image(systemName: "person")
-//                .tag(Mode.byAuthor)
             Text("Todos")
                 .tag(Mode.allSounds)
             
@@ -413,7 +402,7 @@ struct SoundsView: View {
         }
     }
     
-    @ViewBuilder func getTrailingToolbarControl() -> some View {
+    @ViewBuilder func trailingToolbarControls() -> some View {
         if currentMode == .collections {
             EmptyView()
         } else {
