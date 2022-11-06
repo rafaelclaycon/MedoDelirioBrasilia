@@ -248,6 +248,12 @@
 		D958BC732868FE8C000B2EDA /* EmojiIdentification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958BC722868FE8C000B2EDA /* EmojiIdentification.swift */; };
 		D958BC752869000A000B2EDA /* FolderInfoEditingViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958BC742869000A000B2EDA /* FolderInfoEditingViewViewModel.swift */; };
 		D959B0482887E83D00A215AD /* SidebarViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D959B0472887E83D00A215AD /* SidebarViewViewModel.swift */; };
+		D95A462929182FF3006B4023 /* Gregorio Duvivier - Alem do Lula, agora o choro tambem e livre.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95A462529182FF3006B4023 /* Gregorio Duvivier - Alem do Lula, agora o choro tambem e livre.mp3 */; };
+		D95A462A29182FF3006B4023 /* Gregorio Duvivier - Greg News pos-vitoria do Lula.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95A462629182FF3006B4023 /* Gregorio Duvivier - Greg News pos-vitoria do Lula.mp3 */; };
+		D95A462B29182FF3006B4023 /* Gregorio Duvivier - A frente ampla.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95A462729182FF3006B4023 /* Gregorio Duvivier - A frente ampla.mp3 */; };
+		D95A462C29182FF3006B4023 /* Gregorio Duvivier - Vencemos a milicia sem dar um tiro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95A462829182FF3006B4023 /* Gregorio Duvivier - Vencemos a milicia sem dar um tiro.mp3 */; };
+		D95A462E291831A7006B4023 /* Henrique Oliveira - Doses seguras de crack.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95A462D291831A7006B4023 /* Henrique Oliveira - Doses seguras de crack.mp3 */; };
+		D95A4630291832F0006B4023 /* Romeu Zema - Eu quero me drogar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95A462F291832F0006B4023 /* Romeu Zema - Eu quero me drogar.mp3 */; };
 		D95DB0F6288248A300D4FEDF /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95DB0F5288248A300D4FEDF /* SidebarView.swift */; };
 		D95DB0F82882491A00D4FEDF /* ScreenAndTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95DB0F72882491A00D4FEDF /* ScreenAndTabs.swift */; };
 		D95F363A28AD386D00743026 /* ShareAsVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95F363928AD386D00743026 /* ShareAsVideoView.swift */; };
@@ -1331,6 +1337,12 @@
 		D958BC722868FE8C000B2EDA /* EmojiIdentification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiIdentification.swift; sourceTree = "<group>"; };
 		D958BC742869000A000B2EDA /* FolderInfoEditingViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderInfoEditingViewViewModel.swift; sourceTree = "<group>"; };
 		D959B0472887E83D00A215AD /* SidebarViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewViewModel.swift; sourceTree = "<group>"; };
+		D95A462529182FF3006B4023 /* Gregorio Duvivier - Alem do Lula, agora o choro tambem e livre.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gregorio Duvivier - Alem do Lula, agora o choro tambem e livre.mp3"; sourceTree = "<group>"; };
+		D95A462629182FF3006B4023 /* Gregorio Duvivier - Greg News pos-vitoria do Lula.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gregorio Duvivier - Greg News pos-vitoria do Lula.mp3"; sourceTree = "<group>"; };
+		D95A462729182FF3006B4023 /* Gregorio Duvivier - A frente ampla.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gregorio Duvivier - A frente ampla.mp3"; sourceTree = "<group>"; };
+		D95A462829182FF3006B4023 /* Gregorio Duvivier - Vencemos a milicia sem dar um tiro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gregorio Duvivier - Vencemos a milicia sem dar um tiro.mp3"; sourceTree = "<group>"; };
+		D95A462D291831A7006B4023 /* Henrique Oliveira - Doses seguras de crack.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Henrique Oliveira - Doses seguras de crack.mp3"; sourceTree = "<group>"; };
+		D95A462F291832F0006B4023 /* Romeu Zema - Eu quero me drogar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Romeu Zema - Eu quero me drogar.mp3"; sourceTree = "<group>"; };
 		D95DB0F5288248A300D4FEDF /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		D95DB0F72882491A00D4FEDF /* ScreenAndTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenAndTabs.swift; sourceTree = "<group>"; };
 		D95F363928AD386D00743026 /* ShareAsVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAsVideoView.swift; sourceTree = "<group>"; };
@@ -2194,6 +2206,12 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D95A462F291832F0006B4023 /* Romeu Zema - Eu quero me drogar.mp3 */,
+				D95A462D291831A7006B4023 /* Henrique Oliveira - Doses seguras de crack.mp3 */,
+				D95A462729182FF3006B4023 /* Gregorio Duvivier - A frente ampla.mp3 */,
+				D95A462529182FF3006B4023 /* Gregorio Duvivier - Alem do Lula, agora o choro tambem e livre.mp3 */,
+				D95A462629182FF3006B4023 /* Gregorio Duvivier - Greg News pos-vitoria do Lula.mp3 */,
+				D95A462829182FF3006B4023 /* Gregorio Duvivier - Vencemos a milicia sem dar um tiro.mp3 */,
 				D9E1A8CF2914CB3900694A74 /* Monica de Bolle - Pronto, falei.mp3 */,
 				D9584D8B2913E60C006ED00A /* Jair Bolsonaro - Maioria e uma coisa, minoria e outra minoria tem que se curvar a maioria acabou.mp3 */,
 				D95575692913419A002EFC50 /* Jair Bolsonaro - Precisa ter provas.mp3 */,
@@ -3931,6 +3949,7 @@
 				D975FFB22880B4F20035E6F2 /* Damares - Inserir no anus.mp3 in Resources */,
 				D975000E2880B4F20035E6F2 /* Face palm - Corra que a policia vem ai.mp3 in Resources */,
 				D975FF502880B4F20035E6F2 /* Bolsonaro - So se for na casa da tua mae.mp3 in Resources */,
+				D95A462C29182FF3006B4023 /* Gregorio Duvivier - Vencemos a milicia sem dar um tiro.mp3 in Resources */,
 				D975FF142880B4F20035E6F2 /* Abraham Weintraub - odeio odeio odeio short.mp3 in Resources */,
 				D975FF942880B4F20035E6F2 /* Lula - Voces percebem a loucura que esta tomando conta desse pais.mp3 in Resources */,
 				D97B2DE528E60B8600C3B50B /* Milton Cunha - E Lula o nosso candidato maravilhoso.mp3 in Resources */,
@@ -4039,6 +4058,7 @@
 				D975FEDA2880B4F20035E6F2 /* Silas Malafaia - Nao seja um mentiroso short.mp3 in Resources */,
 				D92AD1C128833F1E001CBCDF /* Ricardo Boechat - Incitacao de odio em igrejas neopentecostais.mp3 in Resources */,
 				D975FEA72880B4F20035E6F2 /* Bolsonaro - Buscamos uma solucao, quem tiver tras pra mim tras pra mim.mp3 in Resources */,
+				D95A462A29182FF3006B4023 /* Gregorio Duvivier - Greg News pos-vitoria do Lula.mp3 in Resources */,
 				D9E7D0EE28AC64F4001E909E /* Rogerinho - Ta certa a indignacao.mp3 in Resources */,
 				D9FD0F0F28B2B2EE0000616A /* Sentar na mesa - paulo sergio nogueira.mp3 in Resources */,
 				D975FF1B2880B4F20035E6F2 /* Gilmar Mendes - Com a devida venia.mp3 in Resources */,
@@ -4281,6 +4301,7 @@
 				D975FE772880B4F20035E6F2 /* Pedro Daltro - Fala direito, Cristiano, porra.mp3 in Resources */,
 				D975FF3D2880B4F20035E6F2 /* Carmina burana trecho.mp3 in Resources */,
 				D97500312880B4F20035E6F2 /* Marcelo Adnet - Da quase bilhao com b de bananada.mp3 in Resources */,
+				D95A462E291831A7006B4023 /* Henrique Oliveira - Doses seguras de crack.mp3 in Resources */,
 				D975FE182880B4F20035E6F2 /* Bolsonaro - Nao errei nenhuma short meme.mp3 in Resources */,
 				D975FE432880B4F20035E6F2 /* Galo Cego - Nada a ver irmao.mp3 in Resources */,
 				D9DCF73B290D832800DB177C /* Desconhecido - Mi-mi-mi.mp3 in Resources */,
@@ -4446,6 +4467,7 @@
 				D975FE872880B4F20035E6F2 /* Handel - Aleluia short.mp3 in Resources */,
 				D975FF652880B4F20035E6F2 /* Reinaldo Azevedo - Parte Terminal do Aparelho Digestivo.mp3 in Resources */,
 				D921F881288B0177003979CC /* Festa estranha com gente esquisita - legiao urbana.mp3 in Resources */,
+				D95A462929182FF3006B4023 /* Gregorio Duvivier - Alem do Lula, agora o choro tambem e livre.mp3 in Resources */,
 				D9547D7E28FDD7190020A800 /* Flavio Bolsonaro - Faz algum sentido pra voce isso.mp3 in Resources */,
 				D975FEAD2880B4F20035E6F2 /* Gilmar Mendes - Nao e razoavel.mp3 in Resources */,
 				D975FF962880B4F20035E6F2 /* Paulo Guedes - Deixa cada um se fuder do jeito que quiser.mp3 in Resources */,
@@ -4493,6 +4515,7 @@
 				D975FF372880B4F20035E6F2 /* Lula - Nao siga nenhuma decisao imbecil do presidente da republica.mp3 in Resources */,
 				D975FF422880B4F20035E6F2 /* Nao sei meme short exaltado.mp3 in Resources */,
 				D975FFC02880B4F20035E6F2 /* Choque de Cultura - Julinho Foda-se.mp3 in Resources */,
+				D95A462B29182FF3006B4023 /* Gregorio Duvivier - A frente ampla.mp3 in Resources */,
 				D92AD1B728832EB1001CBCDF /* ConservaTalk - Abraham Weintraub - Ta errado.mp3 in Resources */,
 				D964CF3A28EEF83A004DECAF /* Casimiro - Porque se o Bolsonaro ta de um lado, eu to do outro.mp3 in Resources */,
 				D975FE972880B4F20035E6F2 /* Alexandre Frota - Tai o.mp3 in Resources */,
@@ -4556,6 +4579,7 @@
 				49DEA9B62881115A008C9BA1 /* Boston Medical Group short meme.mp3 in Resources */,
 				D991512F2873E4C100FFAA29 /* funk-capricha-renan-mdb.mp3 in Resources */,
 				D975FE392880B4F20035E6F2 /* MR CATRA - vai comecar a putaria long.mp3 in Resources */,
+				D95A4630291832F0006B4023 /* Romeu Zema - Eu quero me drogar.mp3 in Resources */,
 				D90D7DE428E2A4B1003B272A /* Eduardo Pazuello - Medo, medo, medo.mp3 in Resources */,
 				D975FFAA2880B4F20035E6F2 /* Trote Pareto - Calma filha da puta calma.mp3 in Resources */,
 				D9FD0F0528B2B2EE0000616A /* Volta pra sua casa, vaza - pedro daltro.mp3 in Resources */,
