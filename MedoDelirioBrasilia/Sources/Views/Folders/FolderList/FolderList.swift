@@ -90,11 +90,16 @@ struct FolderList: View {
                         .opacity(0.4)
                         .padding(.bottom, 15)
                     
-                    Text("Nenhuma Pasta Criada")
+                    Text("Nenhuma Pasta Criada (Ainda)")
                         .font(.title3)
                         .multilineTextAlignment(.center)
                     
-                    Text("Toque em Nova Pasta acima para criar uma nova pasta de sons.")
+                    Text("Pastas são uma maneira de organizar sons que você usa com frequência para acesso fácil.")
+                        .foregroundColor(.gray)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
+                    
+                    Text("\(UIDevice.current.userInterfaceIdiom == .phone ? "Toque no + no canto superior direito para criar uma nova pasta de sons." : "Toque em Nova Pasta acima para criar uma nova pasta de sons.")")
                         .foregroundColor(.gray)
                         .multilineTextAlignment(.center)
                         .padding(.horizontal)

@@ -41,6 +41,17 @@ struct CollectionsView: View {
                     }
                     .padding(.vertical, UIDevice.current.userInterfaceIdiom == .phone ? 100 : 200)
                     
+                    if UIDevice.current.userInterfaceIdiom == .phone {
+                        VStack(spacing: 10) {
+                            Text("Procurando pelas pastas? Agora elas estão na aba Sons.")
+                                .foregroundColor(.gray)
+                                .font(.body)
+                                .multilineTextAlignment(.center)
+                        }
+                        .padding(.vertical, 100)
+                        .padding(.horizontal)
+                    }
+                    
 //                        ScrollView(.horizontal, showsIndicators: false) {
 //                            LazyHGrid(rows: rows, spacing: 14) {
 //                                ForEach(viewModel.collections) { collection in
