@@ -7381,7 +7381,7 @@
         "filename": "Omar Aziz - Como dizem os peruanos.mp3",
         "dateAdded": "2022-11-02T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "FC4F8104-FB32-48E2-9E59-A2D5CA61C2B1",
@@ -7391,7 +7391,7 @@
         "filename": "Jair Bolsonaro - Precisa ter provas.mp3",
         "dateAdded": "2022-11-02T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "17814CA4-BBBE-4C0F-BA52-2A85C4C0870C",
@@ -7400,6 +7400,76 @@
         "description": "Maioria e uma coisa minoria e outra minoria tem que se curvar a maioria acabou",
         "filename": "Jair Bolsonaro - Maioria e uma coisa, minoria e outra minoria tem que se curvar a maioria acabou.mp3",
         "dateAdded": "2022-11-03T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "9BDA95A1-9815-4A7B-BA86-66F645A87C40",
+        "title": "Encerramento do Greg News pós-vitória do Lula",
+        "authorId": "4234ACB1-5D43-4EFA-A61E-7D80EC749866",
+        "description": "Encerramento do Greg News pos-vitoria do Lula",
+        "filename": "Gregorio Duvivier - Greg News pos-vitoria do Lula.mp3",
+        "dateAdded": "2022-11-06T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "A2B474FD-4704-472F-8D1F-AB6D5E834778",
+        "title": "Vencemos a milícia sem dar um tiro",
+        "authorId": "4234ACB1-5D43-4EFA-A61E-7D80EC749866",
+        "description": "Vencemos a milicia sem dar um tiro",
+        "filename": "Gregorio Duvivier - Vencemos a milicia sem dar um tiro.mp3",
+        "dateAdded": "2022-11-06T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "29CCF0E8-71AB-4BDF-8BB1-8B57F7C4CC3E",
+        "title": "A frente ampla",
+        "authorId": "4234ACB1-5D43-4EFA-A61E-7D80EC749866",
+        "description": "A frente ampla",
+        "filename": "Gregorio Duvivier - A frente ampla.mp3",
+        "dateAdded": "2022-11-06T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "8E221D18-88DE-4AD4-914C-94F8B8A111AE",
+        "title": "Além do Lula, agora o choro também é livre",
+        "authorId": "4234ACB1-5D43-4EFA-A61E-7D80EC749866",
+        "description": "Alem do Lula agora o choro tambem e livre",
+        "filename": "Gregorio Duvivier - Alem do Lula, agora o choro tambem e livre.mp3",
+        "dateAdded": "2022-11-06T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "854D9B5D-C987-4C07-A155-539D2D212A43",
+        "title": "Doses seguras de crack",
+        "authorId": "86F66690-FBE6-4D05-BB82-F6BED0C7C162",
+        "description": "Doses seguras de crack",
+        "filename": "Henrique Oliveira - Doses seguras de crack.mp3",
+        "dateAdded": "2022-11-06T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "739D519A-5367-4079-A7F0-ADB3AAE0E002",
+        "title": "Eu quero me drogar",
+        "authorId": "3175E2DD-B226-43A0-A4CF-82C51094F2C8",
+        "description": "Eu quero me drogar",
+        "filename": "Romeu Zema - Eu quero me drogar.mp3",
+        "dateAdded": "2022-11-06T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "4D0D833D-584C-439E-AC23-2D55D00794EA",
+        "title": "Urubu, cabelo liso, tu vai pro inferno",
+        "authorId": "A8A761BF-9DD4-4CB4-A6C8-D8A552CCA921",
+        "description": "urubu corno sem vergonha tu vai sair dai peste cabelo liso tu vai pro inferno",
+        "filename": "Eleitores do Lula no Maranhao - Urubu, cabelo liso, tu vai pro inferno.mp3",
+        "dateAdded": "2022-11-06T00:00:00Z",
         "isOffensive": true,
         "isNew": true
     }
