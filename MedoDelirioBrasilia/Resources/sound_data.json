@@ -2837,9 +2837,9 @@
     {
         "id": "B1917667-7598-41E9-9BDA-60F4463E9E9F",
         "title": "Pronto, falei",
-        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "authorId": "44A20EED-991F-48F8-BC6B-18A06709E241",
         "description": "Pronto falei",
-        "filename": "Pronto, falei short.mp3",
+        "filename": "Monica de Bolle - Pronto, falei.mp3",
         "dateAdded": "2022-06-09T00:00:00Z",
         "isOffensive": false
     },
@@ -6032,7 +6032,7 @@
     {
         "id": "44E30BFA-508E-4712-B624-3BF32C2124BD",
         "title": "Meus amigos não, amigo é o caralho",
-        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "authorId": "CF9D214A-0CAB-4C16-A35B-7099FC74032E",
         "description": "meus amigos não amigo é o caralho",
         "filename": "meus amigos nao amigo e o caralho.mp3",
         "dateAdded": "2022-08-21T00:00:00Z",
@@ -7381,7 +7381,7 @@
         "filename": "Omar Aziz - Como dizem os peruanos.mp3",
         "dateAdded": "2022-11-02T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "FC4F8104-FB32-48E2-9E59-A2D5CA61C2B1",
@@ -7391,7 +7391,7 @@
         "filename": "Jair Bolsonaro - Precisa ter provas.mp3",
         "dateAdded": "2022-11-02T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "17814CA4-BBBE-4C0F-BA52-2A85C4C0870C",
@@ -7401,6 +7401,156 @@
         "filename": "Jair Bolsonaro - Maioria e uma coisa, minoria e outra minoria tem que se curvar a maioria acabou.mp3",
         "dateAdded": "2022-11-03T00:00:00Z",
         "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "9BDA95A1-9815-4A7B-BA86-66F645A87C40",
+        "title": "Encerramento do Greg News pós-vitória do Lula",
+        "authorId": "4234ACB1-5D43-4EFA-A61E-7D80EC749866",
+        "description": "Encerramento do Greg News pos-vitoria do Lula",
+        "filename": "Gregorio Duvivier - Greg News pos-vitoria do Lula.mp3",
+        "dateAdded": "2022-11-06T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "A2B474FD-4704-472F-8D1F-AB6D5E834778",
+        "title": "Vencemos a milícia sem dar um tiro",
+        "authorId": "4234ACB1-5D43-4EFA-A61E-7D80EC749866",
+        "description": "Vencemos a milicia sem dar um tiro",
+        "filename": "Gregorio Duvivier - Vencemos a milicia sem dar um tiro.mp3",
+        "dateAdded": "2022-11-06T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "29CCF0E8-71AB-4BDF-8BB1-8B57F7C4CC3E",
+        "title": "A frente ampla",
+        "authorId": "4234ACB1-5D43-4EFA-A61E-7D80EC749866",
+        "description": "A frente ampla",
+        "filename": "Gregorio Duvivier - A frente ampla.mp3",
+        "dateAdded": "2022-11-06T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "8E221D18-88DE-4AD4-914C-94F8B8A111AE",
+        "title": "Além do Lula, agora o choro também é livre",
+        "authorId": "4234ACB1-5D43-4EFA-A61E-7D80EC749866",
+        "description": "Alem do Lula agora o choro tambem e livre",
+        "filename": "Gregorio Duvivier - Alem do Lula, agora o choro tambem e livre.mp3",
+        "dateAdded": "2022-11-06T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "854D9B5D-C987-4C07-A155-539D2D212A43",
+        "title": "Doses seguras de crack",
+        "authorId": "86F66690-FBE6-4D05-BB82-F6BED0C7C162",
+        "description": "Doses seguras de crack",
+        "filename": "Henrique Oliveira - Doses seguras de crack.mp3",
+        "dateAdded": "2022-11-06T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "739D519A-5367-4079-A7F0-ADB3AAE0E002",
+        "title": "Eu quero me drogar",
+        "authorId": "3175E2DD-B226-43A0-A4CF-82C51094F2C8",
+        "description": "Eu quero me drogar",
+        "filename": "Romeu Zema - Eu quero me drogar.mp3",
+        "dateAdded": "2022-11-06T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "4D0D833D-584C-439E-AC23-2D55D00794EA",
+        "title": "Urubu, cabelo liso, tu vai pro inferno",
+        "authorId": "A8A761BF-9DD4-4CB4-A6C8-D8A552CCA921",
+        "description": "urubu corno sem vergonha tu vai sair dai peste cabelo liso tu vai pro inferno",
+        "filename": "Eleitores do Lula no Maranhao - Urubu, cabelo liso, tu vai pro inferno.mp3",
+        "dateAdded": "2022-11-06T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "E08C67F2-1C22-49A7-8656-3BAF44D848BB",
+        "title": "Comemorando a vitória",
+        "authorId": "0BB56C75-D0F8-480E-8DC7-BA4FC4BA48A9",
+        "description": "Comemorando a vitoria ah puta que pariu porra ganhamo generalato",
+        "filename": "Pedro Daltro e Cristiano Botafogo - Comemorando a vitoria.mp3",
+        "dateAdded": "2022-11-06T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "691ECBB3-9DA0-468C-84D3-383E69ECC631",
+        "title": "Bala de borracha e gás lacrimogêneo",
+        "authorId": "CC73ED72-24A6-4191-B9BC-6E608F57E651",
+        "description": "Opcao B bala de borracha e gas lacrimogeneo",
+        "filename": "Fabio Porchat - Bala de borracha e gas lacrimogeneo.mp3",
+        "dateAdded": "2022-11-07T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "EDEEBA5F-F062-4ED3-8895-2581700A7DA8",
+        "title": "Andam fumando e bebendo coisas estragadas",
+        "authorId": "3C41E7C2-BA19-456E-90DC-97ADC57B81C0",
+        "description": "Os autores dessa denuncia andam fumando e bebendo coisas estregadas",
+        "filename": "Gilmar Mendes - Os autores dessa denuncia andam fumando e bebendo coisas estregadas.mp3",
+        "dateAdded": "2022-11-07T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "5F88BC5B-176E-49C1-9788-2E445D17B3A2",
+        "title": "Gente nojenta como você",
+        "authorId": "2BE52574-CEB1-4C0D-BCE5-5D4E97312F52",
+        "description": "gente nojenta como você",
+        "filename": "Frederico Davila - Gente nojenta como voce.mp3",
+        "dateAdded": "2022-11-07T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "2974A1FF-462B-42C0-B2F6-CADE12D65661",
+        "title": "Essa gente anda fumando erva estragada",
+        "authorId": "3C41E7C2-BA19-456E-90DC-97ADC57B81C0",
+        "description": "essa gente anda fumando erva estragada",
+        "filename": "Gilmar Mendes - Essa gente anda fumando erva estragada.mp3",
+        "dateAdded": "2022-11-07T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "DF4F4674-725A-4C9D-9308-BA003647A176",
+        "title": "Complete a frase: Anistia de cu é...",
+        "authorId": "846DE704-A8C1-4C8B-820F-AF2E35FBB553",
+        "description": "complete a frase anistia de cu é...",
+        "filename": "Neide Maria - Complete a frase anistia de cu e.mp3",
+        "dateAdded": "2022-11-07T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "485CBCDD-6D48-4B20-A90D-66FD430512DE",
+        "title": "Na hora, Patati e Patatá não apareceu",
+        "authorId": "CDDA95B6-F4D3-4783-85B1-DDE7EB3127FD",
+        "description": "Todo mundo pagou 15 reais na hora patati e patatá não apareceu",
+        "filename": "Espectadora do Falso Patati Patata - Na hora patati e patata nao apareceu.mp3",
+        "dateAdded": "2022-11-07T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "5D66656B-DFC8-490A-8256-496D3A8C6AA3",
+        "title": "Que merda, caramba, poxa vida",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Que merda caramba, poxa vida",
+        "filename": "Desconhecido - Que merda caramba poxa vida.mp3",
+        "dateAdded": "2022-11-07T00:00:00Z",
+        "isOffensive": false,
         "isNew": true
     }
 ]

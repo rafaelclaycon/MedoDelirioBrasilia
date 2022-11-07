@@ -7,8 +7,8 @@ var database = LocalDatabase()
 let networkRabbit = NetworkRabbit(serverPath: CommandLine.arguments.contains("-UNDER_DEVELOPMENT") ? "http://127.0.0.1:8080/api/" : "http://170.187.145.233:8080/api/")
 let podium = Podium(database: database, networkRabbit: networkRabbit)
 
-let soundsLastUpdateDate: String = "03/11/2022"
-let songsLastUpdateDate: String = "29/10/2022"
+let soundsLastUpdateDate: String = "07/11/2022"
+let songsLastUpdateDate: String = "07/11/2022"
 
 var moveDatabaseIssue: String = .empty
 
