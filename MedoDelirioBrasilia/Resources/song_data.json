@@ -500,24 +500,24 @@
         "isOffensive": true
     },
     {
-        "id": "7BEC30B4-35EE-437D-AF43-C9FD09010F0F",
-        "title": "Em Brasília, 19h, é hora de rir um pouco dos militares",
+        "id": "422B2B36-1714-444F-A28B-165C0AAAC98B",
+        "title": "Música da Vitória: Lula Eleito",
         "description": "",
-        "genre": 7,
-        "duration": "00:37",
-        "filename": "Em Brasilia, 19h, e hora de rir um pouco dos militares.mp3",
-        "dateAdded": "2022-11-06T00:00:00Z",
+        "genre": 11,
+        "duration": "01:18",
+        "filename": "Musica da Vitoria - Lula Eleito.mp3",
+        "dateAdded": "2022-11-07T00:00:00Z",
         "isOffensive": true,
         "isNew": true
     },
     {
-        "id": "4AE833E9-5492-4F95-9761-7AF7028AF660",
-        "title": "Cacofonia de comemoração da vitória",
+        "id": "F5294ECE-1933-4716-9E14-D22B90DB9DA0",
+        "title": "É hora de rir um pouco dos militares",
         "description": "",
-        "genre": 7,
-        "duration": "00:56",
-        "filename": "Cacofonia da vitoria.mp3",
-        "dateAdded": "2022-11-07T00:00:00Z",
+        "genre": 11,
+        "duration": "00:37",
+        "filename": "E hora de rir um pouco dos militares.mp3",
+        "dateAdded": "2022-11-07T04:00:00Z",
         "isOffensive": true,
         "isNew": true
     }

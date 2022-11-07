@@ -7443,6 +7443,7 @@
         "isOffensive": true,
         "isNew": true
     },
+
     {
         "id": "854D9B5D-C987-4C07-A155-539D2D212A43",
         "title": "Doses seguras de crack",
@@ -7491,6 +7492,66 @@
         "filename": "Fabio Porchat - Bala de borracha e gas lacrimogeneo.mp3",
         "dateAdded": "2022-11-07T00:00:00Z",
         "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "EDEEBA5F-F062-4ED3-8895-2581700A7DA8",
+        "title": "Andam fumando e bebendo coisas estragadas",
+        "authorId": "3C41E7C2-BA19-456E-90DC-97ADC57B81C0",
+        "description": "Os autores dessa denuncia andam fumando e bebendo coisas estregadas",
+        "filename": "Gilmar Mendes - Os autores dessa denuncia andam fumando e bebendo coisas estregadas.mp3",
+        "dateAdded": "2022-11-07T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "5F88BC5B-176E-49C1-9788-2E445D17B3A2",
+        "title": "Gente nojenta como você",
+        "authorId": "2BE52574-CEB1-4C0D-BCE5-5D4E97312F52",
+        "description": "gente nojenta como você",
+        "filename": "Frederico Davila - Gente nojenta como voce.mp3",
+        "dateAdded": "2022-11-07T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "2974A1FF-462B-42C0-B2F6-CADE12D65661",
+        "title": "Essa gente anda fumando erva estragada",
+        "authorId": "3C41E7C2-BA19-456E-90DC-97ADC57B81C0",
+        "description": "essa gente anda fumando erva estragada",
+        "filename": "Gilmar Mendes - Essa gente anda fumando erva estragada.mp3",
+        "dateAdded": "2022-11-07T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "DF4F4674-725A-4C9D-9308-BA003647A176",
+        "title": "Complete a frase: Anistia de cu é...",
+        "authorId": "846DE704-A8C1-4C8B-820F-AF2E35FBB553",
+        "description": "complete a frase anistia de cu é...",
+        "filename": "Neide Maria - Complete a frase anistia de cu e.mp3",
+        "dateAdded": "2022-11-07T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "485CBCDD-6D48-4B20-A90D-66FD430512DE",
+        "title": "Na hora, Patati e Patatá não apareceu",
+        "authorId": "CDDA95B6-F4D3-4783-85B1-DDE7EB3127FD",
+        "description": "Todo mundo pagou 15 reais na hora patati e patatá não apareceu",
+        "filename": "Espectadora do Falso Patati Patata - Na hora patati e patata nao apareceu.mp3",
+        "dateAdded": "2022-11-07T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "5D66656B-DFC8-490A-8256-496D3A8C6AA3",
+        "title": "Que merda, caramba, poxa vida",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Que merda caramba, poxa vida",
+        "filename": "Desconhecido - Que merda caramba poxa vida.mp3",
+        "dateAdded": "2022-11-07T00:00:00Z",
+        "isOffensive": false,
         "isNew": true
     }
 ]
