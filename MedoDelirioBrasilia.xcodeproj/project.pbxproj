@@ -255,6 +255,13 @@
 		D958BC732868FE8C000B2EDA /* EmojiIdentification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958BC722868FE8C000B2EDA /* EmojiIdentification.swift */; };
 		D958BC752869000A000B2EDA /* FolderInfoEditingViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958BC742869000A000B2EDA /* FolderInfoEditingViewViewModel.swift */; };
 		D959B0482887E83D00A215AD /* SidebarViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D959B0472887E83D00A215AD /* SidebarViewViewModel.swift */; };
+		D95A462929182FF3006B4023 /* Gregorio Duvivier - Alem do Lula, agora o choro tambem e livre.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95A462529182FF3006B4023 /* Gregorio Duvivier - Alem do Lula, agora o choro tambem e livre.mp3 */; };
+		D95A462A29182FF3006B4023 /* Gregorio Duvivier - Greg News pos-vitoria do Lula.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95A462629182FF3006B4023 /* Gregorio Duvivier - Greg News pos-vitoria do Lula.mp3 */; };
+		D95A462B29182FF3006B4023 /* Gregorio Duvivier - A frente ampla.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95A462729182FF3006B4023 /* Gregorio Duvivier - A frente ampla.mp3 */; };
+		D95A462C29182FF3006B4023 /* Gregorio Duvivier - Vencemos a milicia sem dar um tiro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95A462829182FF3006B4023 /* Gregorio Duvivier - Vencemos a milicia sem dar um tiro.mp3 */; };
+		D95A462E291831A7006B4023 /* Henrique Oliveira - Doses seguras de crack.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95A462D291831A7006B4023 /* Henrique Oliveira - Doses seguras de crack.mp3 */; };
+		D95A4630291832F0006B4023 /* Romeu Zema - Eu quero me drogar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95A462F291832F0006B4023 /* Romeu Zema - Eu quero me drogar.mp3 */; };
+		D95A463229183843006B4023 /* Eleitores do Lula no Maranhao - Urubu, cabelo liso, tu vai pro inferno.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95A463129183843006B4023 /* Eleitores do Lula no Maranhao - Urubu, cabelo liso, tu vai pro inferno.mp3 */; };
 		D95DB0F6288248A300D4FEDF /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95DB0F5288248A300D4FEDF /* SidebarView.swift */; };
 		D95DB0F82882491A00D4FEDF /* ScreenAndTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95DB0F72882491A00D4FEDF /* ScreenAndTabs.swift */; };
 		D95F363A28AD386D00743026 /* ShareAsVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95F363928AD386D00743026 /* ShareAsVideoView.swift */; };
@@ -950,6 +957,8 @@
 		D9B4F73F283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B4F73D283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 */; };
 		D9B4F740283C8F4D0000EEF7 /* O roque ativa.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B4F73E283C8F4D0000EEF7 /* O roque ativa.mp3 */; };
 		D9B763282845B5E600CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B763272845B5E500CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift */; };
+		D9B83361291890D9007E47EB /* Pedro Daltro e Cristiano Botafogo - Comemorando a vitoria.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B83360291890D9007E47EB /* Pedro Daltro e Cristiano Botafogo - Comemorando a vitoria.mp3 */; };
+		D9B83363291890E0007E47EB /* Cacofonia da vitoria.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B83362291890E0007E47EB /* Cacofonia da vitoria.mp3 */; };
 		D9BB1E7728B3200700C5FFAA /* AppIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BB1E7628B3200700C5FFAA /* AppIcon.swift */; };
 		D9BB3A2D28F4BAD500EF7E8D /* Jair Bolsonaro - Paz, tranquilidade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BB3A2C28F4BAD500EF7E8D /* Jair Bolsonaro - Paz, tranquilidade.mp3 */; };
 		D9BB8F7628EC6D9E00659D4A /* Amigo do Pedro Daltro - Risada caralho (curto).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BB8F7428EC6D9E00659D4A /* Amigo do Pedro Daltro - Risada caralho (curto).mp3 */; };
@@ -1042,6 +1051,8 @@
 		D9FA0CD728508590000F6ADE /* UIDevice+DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FA0CD628508590000F6ADE /* UIDevice+DeviceInfo.swift */; };
 		D9FA0CD92850864C000F6ADE /* ClientDeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FA0CD82850864C000F6ADE /* ClientDeviceInfo.swift */; };
 		D9FB489A2870FE7800FF90D0 /* TapticHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FB48992870FE7800FF90D0 /* TapticHelper.swift */; };
+		D9FB4D5629193CF600AAFA7A /* Fabio Porchat - Bala de borracha e gas lacrimogeneo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9FB4D5529193CF600AAFA7A /* Fabio Porchat - Bala de borracha e gas lacrimogeneo.mp3 */; };
+		D9FB4D582919403000AAFA7A /* Em Brasilia, 19h, e hora de rir um pouco dos militares.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9FB4D572919403000AAFA7A /* Em Brasilia, 19h, e hora de rir um pouco dos militares.mp3 */; };
 		D9FD0EFF28B2B2EE0000616A /* Um pequeno passo para o homem.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9FD0EEE28B2B2ED0000616A /* Um pequeno passo para o homem.mp3 */; };
 		D9FD0F0028B2B2EE0000616A /* polarizacao e meu pau em sua mao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9FD0EEF28B2B2ED0000616A /* polarizacao e meu pau em sua mao.mp3 */; };
 		D9FD0F0128B2B2EE0000616A /* Gemidao do Delirio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9FD0EF028B2B2ED0000616A /* Gemidao do Delirio.mp3 */; };
@@ -1345,6 +1356,13 @@
 		D958BC722868FE8C000B2EDA /* EmojiIdentification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiIdentification.swift; sourceTree = "<group>"; };
 		D958BC742869000A000B2EDA /* FolderInfoEditingViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderInfoEditingViewViewModel.swift; sourceTree = "<group>"; };
 		D959B0472887E83D00A215AD /* SidebarViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewViewModel.swift; sourceTree = "<group>"; };
+		D95A462529182FF3006B4023 /* Gregorio Duvivier - Alem do Lula, agora o choro tambem e livre.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gregorio Duvivier - Alem do Lula, agora o choro tambem e livre.mp3"; sourceTree = "<group>"; };
+		D95A462629182FF3006B4023 /* Gregorio Duvivier - Greg News pos-vitoria do Lula.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gregorio Duvivier - Greg News pos-vitoria do Lula.mp3"; sourceTree = "<group>"; };
+		D95A462729182FF3006B4023 /* Gregorio Duvivier - A frente ampla.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gregorio Duvivier - A frente ampla.mp3"; sourceTree = "<group>"; };
+		D95A462829182FF3006B4023 /* Gregorio Duvivier - Vencemos a milicia sem dar um tiro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gregorio Duvivier - Vencemos a milicia sem dar um tiro.mp3"; sourceTree = "<group>"; };
+		D95A462D291831A7006B4023 /* Henrique Oliveira - Doses seguras de crack.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Henrique Oliveira - Doses seguras de crack.mp3"; sourceTree = "<group>"; };
+		D95A462F291832F0006B4023 /* Romeu Zema - Eu quero me drogar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Romeu Zema - Eu quero me drogar.mp3"; sourceTree = "<group>"; };
+		D95A463129183843006B4023 /* Eleitores do Lula no Maranhao - Urubu, cabelo liso, tu vai pro inferno.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eleitores do Lula no Maranhao - Urubu, cabelo liso, tu vai pro inferno.mp3"; sourceTree = "<group>"; };
 		D95DB0F5288248A300D4FEDF /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		D95DB0F72882491A00D4FEDF /* ScreenAndTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenAndTabs.swift; sourceTree = "<group>"; };
 		D95F363928AD386D00743026 /* ShareAsVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAsVideoView.swift; sourceTree = "<group>"; };
@@ -2044,6 +2062,8 @@
 		D9B4F73D283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Unidos do Medo e Delírio.mp3"; sourceTree = "<group>"; };
 		D9B4F73E283C8F4D0000EEF7 /* O roque ativa.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O roque ativa.mp3"; sourceTree = "<group>"; };
 		D9B763272845B5E500CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKStoreReviewController+requestReviewInCurrentScene.swift"; sourceTree = "<group>"; };
+		D9B83360291890D9007E47EB /* Pedro Daltro e Cristiano Botafogo - Comemorando a vitoria.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pedro Daltro e Cristiano Botafogo - Comemorando a vitoria.mp3"; sourceTree = "<group>"; };
+		D9B83362291890E0007E47EB /* Cacofonia da vitoria.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cacofonia da vitoria.mp3"; sourceTree = "<group>"; };
 		D9BB1E7628B3200700C5FFAA /* AppIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcon.swift; sourceTree = "<group>"; };
 		D9BB3A2C28F4BAD500EF7E8D /* Jair Bolsonaro - Paz, tranquilidade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Paz, tranquilidade.mp3"; sourceTree = "<group>"; };
 		D9BB8F7428EC6D9E00659D4A /* Amigo do Pedro Daltro - Risada caralho (curto).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Amigo do Pedro Daltro - Risada caralho (curto).mp3"; sourceTree = "<group>"; };
@@ -2135,6 +2155,8 @@
 		D9FA0CD628508590000F6ADE /* UIDevice+DeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+DeviceInfo.swift"; sourceTree = "<group>"; };
 		D9FA0CD82850864C000F6ADE /* ClientDeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientDeviceInfo.swift; sourceTree = "<group>"; };
 		D9FB48992870FE7800FF90D0 /* TapticHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapticHelper.swift; sourceTree = "<group>"; };
+		D9FB4D5529193CF600AAFA7A /* Fabio Porchat - Bala de borracha e gas lacrimogeneo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fabio Porchat - Bala de borracha e gas lacrimogeneo.mp3"; sourceTree = "<group>"; };
+		D9FB4D572919403000AAFA7A /* Em Brasilia, 19h, e hora de rir um pouco dos militares.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Em Brasilia, 19h, e hora de rir um pouco dos militares.mp3"; sourceTree = "<group>"; };
 		D9FD0EEE28B2B2ED0000616A /* Um pequeno passo para o homem.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Um pequeno passo para o homem.mp3"; sourceTree = "<group>"; };
 		D9FD0EEF28B2B2ED0000616A /* polarizacao e meu pau em sua mao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "polarizacao e meu pau em sua mao.mp3"; sourceTree = "<group>"; };
 		D9FD0EF028B2B2ED0000616A /* Gemidao do Delirio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gemidao do Delirio.mp3"; sourceTree = "<group>"; };
@@ -2214,6 +2236,15 @@
 				497E63C8291947F800FBC539 /* Neide Maria - Complete a frase anistia de cu e.mp3 */,
 				497E63C62919463800FBC539 /* Desconhecido - Que merda caramba poxa vida.mp3 */,
 				497E63C4291945FD00FBC539 /* Espectadora do Falso Patati Patata - Na hora patati e patata nao apareceu.mp3 */,
+				D9FB4D5529193CF600AAFA7A /* Fabio Porchat - Bala de borracha e gas lacrimogeneo.mp3 */,
+				D9B83360291890D9007E47EB /* Pedro Daltro e Cristiano Botafogo - Comemorando a vitoria.mp3 */,
+				D95A463129183843006B4023 /* Eleitores do Lula no Maranhao - Urubu, cabelo liso, tu vai pro inferno.mp3 */,
+				D95A462F291832F0006B4023 /* Romeu Zema - Eu quero me drogar.mp3 */,
+				D95A462D291831A7006B4023 /* Henrique Oliveira - Doses seguras de crack.mp3 */,
+				D95A462729182FF3006B4023 /* Gregorio Duvivier - A frente ampla.mp3 */,
+				D95A462529182FF3006B4023 /* Gregorio Duvivier - Alem do Lula, agora o choro tambem e livre.mp3 */,
+				D95A462629182FF3006B4023 /* Gregorio Duvivier - Greg News pos-vitoria do Lula.mp3 */,
+				D95A462829182FF3006B4023 /* Gregorio Duvivier - Vencemos a milicia sem dar um tiro.mp3 */,
 				D9E1A8CF2914CB3900694A74 /* Monica de Bolle - Pronto, falei.mp3 */,
 				D9584D8B2913E60C006ED00A /* Jair Bolsonaro - Maioria e uma coisa, minoria e outra minoria tem que se curvar a maioria acabou.mp3 */,
 				D95575692913419A002EFC50 /* Jair Bolsonaro - Precisa ter provas.mp3 */,
@@ -3060,6 +3091,8 @@
 			isa = PBXGroup;
 			children = (
 				497E63D029194B8F00FBC539 /* Musica da Vitoria.mp3 */,
+				D9FB4D572919403000AAFA7A /* Em Brasilia, 19h, e hora de rir um pouco dos militares.mp3 */,
+				D9B83362291890E0007E47EB /* Cacofonia da vitoria.mp3 */,
 				D9B47635290DE3C0007C8ED0 /* Padre Kelmon - Nao existira pessoas.mp3 */,
 				D9CA8BB62908802300C6B492 /* Jair Bolsonaro - Nao tenho provas.mp3 */,
 				D93752182902CD1A00E2F27B /* Genocida, miliciano, canibal.mp3 */,
@@ -3887,6 +3920,7 @@
 				D92AD1A928832AF2001CBCDF /* FRANCIEL CRUZ - LIVE DAS CANJEBRINAS - E meu pau em sua mao.mp3 in Resources */,
 				D975002A2880B4F20035E6F2 /* SUPERPOP - Luciana Gimenez - Mas ce ta brava.mp3 in Resources */,
 				D97500452880B4F20035E6F2 /* O CARA DA LUVA DE PEDREIRO - receba carai caralho.mp3 in Resources */,
+				D9B83361291890D9007E47EB /* Pedro Daltro e Cristiano Botafogo - Comemorando a vitoria.mp3 in Resources */,
 				D9FD0F0828B2B2EE0000616A /* malditos milicos a capella doida.mp3 in Resources */,
 				D975FE382880B4F20035E6F2 /* Deltan Dallangnol - Os meus advogados estao estarrecidos.mp3 in Resources */,
 				D937E11B29097D58004137ED /* BAND JORNALISMO - Onyx - Ele opta pelo bem do pais brasil pela pacificacao.mp3 in Resources */,
@@ -3944,6 +3978,7 @@
 				49B4C96A28CE74E6007E893B /* A pipa do jair nao sobe mais.mp3 in Resources */,
 				D923127328AB0A6100436336 /* Novo e diferente, e top, e moderno (curto).mp3 in Resources */,
 				D9DCF737290C2C4B00DB177C /* Valdemiro Santiago - Oferta generosa beijinho essa e pro senhor Jesus.mp3 in Resources */,
+				D9FB4D582919403000AAFA7A /* Em Brasilia, 19h, e hora de rir um pouco dos militares.mp3 in Resources */,
 				D975FE6A2880B4F20035E6F2 /* Malditos Milicos reverse.mp3 in Resources */,
 				D975FF5F2880B4F20035E6F2 /* Nunca foi meritocracia, sempre foi desigualdade.mp3 in Resources */,
 				D975FFB72880B4F20035E6F2 /* Trote Luiz Pareto - Trote da TELERJ (grandes merdas que o senhor e advogado).mp3 in Resources */,
@@ -3952,6 +3987,8 @@
 				D975FFB22880B4F20035E6F2 /* Damares - Inserir no anus.mp3 in Resources */,
 				D975000E2880B4F20035E6F2 /* Face palm - Corra que a policia vem ai.mp3 in Resources */,
 				D975FF502880B4F20035E6F2 /* Bolsonaro - So se for na casa da tua mae.mp3 in Resources */,
+				D95A462C29182FF3006B4023 /* Gregorio Duvivier - Vencemos a milicia sem dar um tiro.mp3 in Resources */,
+				D9B83363291890E0007E47EB /* Cacofonia da vitoria.mp3 in Resources */,
 				D975FF142880B4F20035E6F2 /* Abraham Weintraub - odeio odeio odeio short.mp3 in Resources */,
 				D975FF942880B4F20035E6F2 /* Lula - Voces percebem a loucura que esta tomando conta desse pais.mp3 in Resources */,
 				D97B2DE528E60B8600C3B50B /* Milton Cunha - E Lula o nosso candidato maravilhoso.mp3 in Resources */,
@@ -4062,6 +4099,7 @@
 				D975FEDA2880B4F20035E6F2 /* Silas Malafaia - Nao seja um mentiroso short.mp3 in Resources */,
 				D92AD1C128833F1E001CBCDF /* Ricardo Boechat - Incitacao de odio em igrejas neopentecostais.mp3 in Resources */,
 				D975FEA72880B4F20035E6F2 /* Bolsonaro - Buscamos uma solucao, quem tiver tras pra mim tras pra mim.mp3 in Resources */,
+				D95A462A29182FF3006B4023 /* Gregorio Duvivier - Greg News pos-vitoria do Lula.mp3 in Resources */,
 				D9E7D0EE28AC64F4001E909E /* Rogerinho - Ta certa a indignacao.mp3 in Resources */,
 				D9FD0F0F28B2B2EE0000616A /* Sentar na mesa - paulo sergio nogueira.mp3 in Resources */,
 				D975FF1B2880B4F20035E6F2 /* Gilmar Mendes - Com a devida venia.mp3 in Resources */,
@@ -4138,6 +4176,7 @@
 				D975FEF82880B4F20035E6F2 /* LINGUICETA - Diogo Defante - Minha alegria ta baseada na tristeza do meu colega.mp3 in Resources */,
 				D975FFF02880B4F20035E6F2 /* Feiticeira - Nao e feiticaria, e tecnologia meme short.mp3 in Resources */,
 				D975FFCB2880B4F20035E6F2 /* Opaio - Tomar no cu rapaz.mp3 in Resources */,
+				D95A463229183843006B4023 /* Eleitores do Lula no Maranhao - Urubu, cabelo liso, tu vai pro inferno.mp3 in Resources */,
 				D975FE8A2880B4F20035E6F2 /* Choque de Cultura - Cabo cabo cabo ja ta desvirtuando ja short.mp3 in Resources */,
 				D975FE7D2880B4F20035E6F2 /* COMUNISTA MEME.mp3 in Resources */,
 				D975FE172880B4F20035E6F2 /* Malditos Milicos semitons.mp3 in Resources */,
@@ -4306,6 +4345,7 @@
 				D975FE772880B4F20035E6F2 /* Pedro Daltro - Fala direito, Cristiano, porra.mp3 in Resources */,
 				D975FF3D2880B4F20035E6F2 /* Carmina burana trecho.mp3 in Resources */,
 				D97500312880B4F20035E6F2 /* Marcelo Adnet - Da quase bilhao com b de bananada.mp3 in Resources */,
+				D95A462E291831A7006B4023 /* Henrique Oliveira - Doses seguras de crack.mp3 in Resources */,
 				D975FE182880B4F20035E6F2 /* Bolsonaro - Nao errei nenhuma short meme.mp3 in Resources */,
 				D975FE432880B4F20035E6F2 /* Galo Cego - Nada a ver irmao.mp3 in Resources */,
 				D9DCF73B290D832800DB177C /* Desconhecido - Mi-mi-mi.mp3 in Resources */,
@@ -4472,6 +4512,7 @@
 				D975FE872880B4F20035E6F2 /* Handel - Aleluia short.mp3 in Resources */,
 				D975FF652880B4F20035E6F2 /* Reinaldo Azevedo - Parte Terminal do Aparelho Digestivo.mp3 in Resources */,
 				D921F881288B0177003979CC /* Festa estranha com gente esquisita - legiao urbana.mp3 in Resources */,
+				D95A462929182FF3006B4023 /* Gregorio Duvivier - Alem do Lula, agora o choro tambem e livre.mp3 in Resources */,
 				D9547D7E28FDD7190020A800 /* Flavio Bolsonaro - Faz algum sentido pra voce isso.mp3 in Resources */,
 				D975FEAD2880B4F20035E6F2 /* Gilmar Mendes - Nao e razoavel.mp3 in Resources */,
 				D975FF962880B4F20035E6F2 /* Paulo Guedes - Deixa cada um se fuder do jeito que quiser.mp3 in Resources */,
@@ -4520,6 +4561,7 @@
 				D975FF372880B4F20035E6F2 /* Lula - Nao siga nenhuma decisao imbecil do presidente da republica.mp3 in Resources */,
 				D975FF422880B4F20035E6F2 /* Nao sei meme short exaltado.mp3 in Resources */,
 				D975FFC02880B4F20035E6F2 /* Choque de Cultura - Julinho Foda-se.mp3 in Resources */,
+				D95A462B29182FF3006B4023 /* Gregorio Duvivier - A frente ampla.mp3 in Resources */,
 				D92AD1B728832EB1001CBCDF /* ConservaTalk - Abraham Weintraub - Ta errado.mp3 in Resources */,
 				D964CF3A28EEF83A004DECAF /* Casimiro - Porque se o Bolsonaro ta de um lado, eu to do outro.mp3 in Resources */,
 				D975FE972880B4F20035E6F2 /* Alexandre Frota - Tai o.mp3 in Resources */,
@@ -4584,6 +4626,7 @@
 				49DEA9B62881115A008C9BA1 /* Boston Medical Group short meme.mp3 in Resources */,
 				D991512F2873E4C100FFAA29 /* funk-capricha-renan-mdb.mp3 in Resources */,
 				D975FE392880B4F20035E6F2 /* MR CATRA - vai comecar a putaria long.mp3 in Resources */,
+				D95A4630291832F0006B4023 /* Romeu Zema - Eu quero me drogar.mp3 in Resources */,
 				D90D7DE428E2A4B1003B272A /* Eduardo Pazuello - Medo, medo, medo.mp3 in Resources */,
 				D975FFAA2880B4F20035E6F2 /* Trote Pareto - Calma filha da puta calma.mp3 in Resources */,
 				D9FD0F0528B2B2EE0000616A /* Volta pra sua casa, vaza - pedro daltro.mp3 in Resources */,
@@ -4658,6 +4701,7 @@
 				D9FD0F0928B2B2EE0000616A /* Nao e hora pra desespero - Desesperado.mp3 in Resources */,
 				D97500262880B4F20035E6F2 /* Dilma - If you speak slowly I understand very well.mp3 in Resources */,
 				D975FFBC2880B4F20035E6F2 /* Winter is coming, this one will be long.mp3 in Resources */,
+				D9FB4D5629193CF600AAFA7A /* Fabio Porchat - Bala de borracha e gas lacrimogeneo.mp3 in Resources */,
 				D975FEE42880B4F20035E6F2 /* Luciano Hang - Comunista, ne short meme.mp3 in Resources */,
 				49C0938E28E5EEA200960B7E /* Vou de Lula, Ce Sabe - Neide e Lula.mp3 in Resources */,
 				D97500522880B5190035E6F2 /* Mulheres de Areia - Abertura - Tonho da Lua Acordes Sexy Iemanja.mp3 in Resources */,
@@ -4977,7 +5021,7 @@
 				CODE_SIGN_ENTITLEMENTS = MedoWidget/Sources/WidgetSupport/MedoWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MedoWidget/Sources/WidgetSupport/Info.plist;
@@ -4989,7 +5033,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 5.13;
+				MARKETING_VERSION = 5.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -5009,7 +5053,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_ENTITLEMENTS = MedoWidget/Sources/WidgetSupport/MedoWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MedoWidget/Sources/WidgetSupport/Info.plist;
@@ -5021,7 +5065,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 5.13;
+				MARKETING_VERSION = 5.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -5157,7 +5201,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/Sources/AppSupport/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -5177,7 +5221,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.13;
+				MARKETING_VERSION = 5.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -5198,7 +5242,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/Sources/AppSupport/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -5218,7 +5262,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.13;
+				MARKETING_VERSION = 5.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

@@ -507,16 +507,18 @@
         "duration": "01:18",
         "filename": "Musica da Vitoria.mp3",
         "dateAdded": "2022-11-07T04:00:00Z",
-        "isOffensive": true
+        "isOffensive": true,
+        "isNew": true
     },
     {
         "id": "F5294ECE-1933-4716-9E14-D22B90DB9DA0",
         "title": "É hora de rir um pouco dos militares",
         "description": "",
         "genre": 11,
-        "duration": "00:36",
-        "filename": "E hora de rir um pouco dos militares.mp3",
+        "duration": "00:37",
+        "filename": "Em Brasilia, 19h, e hora de rir um pouco dos militares.mp3",
         "dateAdded": "2022-11-07T00:00:00Z",
-        "isOffensive": true
+        "isOffensive": true,
+        "isNew": true
     }
 ]

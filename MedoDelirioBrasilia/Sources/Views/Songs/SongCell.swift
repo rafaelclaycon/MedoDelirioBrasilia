@@ -13,6 +13,7 @@ struct SongCell: View {
     @State var title: String
     @State var genre: MusicGenre
     @State var duration: String
+    @State var isNew: Bool
     @Binding var nowPlaying: Set<String>
     @Environment(\.sizeCategory) var sizeCategory
     
@@ -45,10 +46,26 @@ struct SongCell: View {
                             .bold()
                             .multilineTextAlignment(.leading)
                         
-                        Text("\(genre.name) · \(duration)")
-                            .foregroundColor(.white)
-                            .font(.callout)
-                            .multilineTextAlignment(.leading)
+                        HStack(spacing: 10) {
+                            Text("\(genre.name) · \(duration)")
+                                .foregroundColor(.white)
+                                .font(.callout)
+                                .multilineTextAlignment(.leading)
+                            
+                            if isNew {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 5, style: .continuous)
+                                        .fill(.yellow)
+                                        .frame(width: 50, height: 20)
+                                    
+                                    Text("NOVA")
+                                        .foregroundColor(.black)
+                                        .font(.footnote)
+                                        .bold()
+                                        .opacity(0.7)
+                                }
+                            }
+                        }
                     }
                     
                     Spacer()
@@ -70,7 +87,7 @@ struct SongCell: View {
 struct SongCell_Previews: PreviewProvider {
 
     static var previews: some View {
-        SongCell(songId: "ABC", title: "Funk do Morto", genre: .funk, duration: "01:00", nowPlaying: .constant(Set<String>()))
+        SongCell(songId: "ABC", title: "Funk do Morto", genre: .funk, duration: "01:00", isNew: false, nowPlaying: .constant(Set<String>()))
             .padding(.horizontal)
             .previewLayout(.fixed(width: 414, height: 100))
     }
