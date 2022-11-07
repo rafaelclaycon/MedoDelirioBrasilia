@@ -48,7 +48,7 @@ struct SidebarView: View {
                     })
                 
                 NavigationLink(
-                    destination: CollectionsView(isShowingFolderInfoEditingSheet: .constant(false)),
+                    destination: CollectionsView(),
                     tag: PadScreen.collections,
                     selection: $state,
                     label: {

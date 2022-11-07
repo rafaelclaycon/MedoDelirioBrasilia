@@ -88,7 +88,7 @@ struct SoundsView: View {
                     NoFavoritesView()
                         .padding(.horizontal, 25)
                 } else if currentMode == .folders {
-                    MyFoldersiPhoneView(isShowingFolderInfoEditingSheet: .constant(false), updateFolderList: .constant(false))
+                    MyFoldersiPhoneView()
                 } else if currentMode == .byAuthor {
                     AuthorsView(sortOption: $viewModel.authorSortOption, sortAction: $authorSortAction)
                 } else {
