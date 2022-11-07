@@ -46,10 +46,26 @@ struct SongCell: View {
                             .bold()
                             .multilineTextAlignment(.leading)
                         
-                        Text("\(genre.name) · \(duration)")
-                            .foregroundColor(.white)
-                            .font(.callout)
-                            .multilineTextAlignment(.leading)
+                        HStack(spacing: 10) {
+                            Text("\(genre.name) · \(duration)")
+                                .foregroundColor(.white)
+                                .font(.callout)
+                                .multilineTextAlignment(.leading)
+                            
+                            if isNew {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 5, style: .continuous)
+                                        .fill(.yellow)
+                                        .frame(width: 50, height: 20)
+                                    
+                                    Text("NOVA")
+                                        .foregroundColor(.black)
+                                        .font(.footnote)
+                                        .bold()
+                                        .opacity(0.7)
+                                }
+                            }
+                        }
                     }
                     
                     Spacer()
@@ -63,29 +79,6 @@ struct SongCell: View {
                 }
             }
             .padding(.leading, 20)
-            
-            if isNew {
-                VStack {
-                    Spacer()
-                    HStack {
-                        Spacer()
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 5, style: .continuous)
-                                .fill(.yellow)
-                                .frame(width: 50, height: 20)
-                                
-                            Text("NOVO")
-                                .foregroundColor(.black)
-                                .font(.footnote)
-                                .bold()
-                                .opacity(0.7)
-                        }
-                        .padding(.trailing, 10)
-                        .padding(.bottom, 10)
-                    }
-                }
-                .frame(height: cellHeight)
-            }
         }
     }
 
