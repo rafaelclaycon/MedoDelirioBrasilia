@@ -7482,5 +7482,15 @@
         "dateAdded": "2022-11-06T00:00:00Z",
         "isOffensive": true,
         "isNew": true
+    },
+    {
+        "id": "691ECBB3-9DA0-468C-84D3-383E69ECC631",
+        "title": "Bala de borracha e gás lacrimogêneo",
+        "authorId": "CC73ED72-24A6-4191-B9BC-6E608F57E651",
+        "description": "Opcao B bala de borracha e gas lacrimogeneo",
+        "filename": "Fabio Porchat - Bala de borracha e gas lacrimogeneo.mp3",
+        "dateAdded": "2022-11-07T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
     }
 ]
