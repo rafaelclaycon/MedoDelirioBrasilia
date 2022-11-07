@@ -13,6 +13,7 @@ struct SongCell: View {
     @State var title: String
     @State var genre: MusicGenre
     @State var duration: String
+    @State var isNew: Bool
     @Binding var nowPlaying: Set<String>
     @Environment(\.sizeCategory) var sizeCategory
     
@@ -62,6 +63,29 @@ struct SongCell: View {
                 }
             }
             .padding(.leading, 20)
+            
+            if isNew {
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 5, style: .continuous)
+                                .fill(.yellow)
+                                .frame(width: 50, height: 20)
+                                
+                            Text("NOVO")
+                                .foregroundColor(.black)
+                                .font(.footnote)
+                                .bold()
+                                .opacity(0.7)
+                        }
+                        .padding(.trailing, 10)
+                        .padding(.bottom, 10)
+                    }
+                }
+                .frame(height: cellHeight)
+            }
         }
     }
 
@@ -70,7 +94,7 @@ struct SongCell: View {
 struct SongCell_Previews: PreviewProvider {
 
     static var previews: some View {
-        SongCell(songId: "ABC", title: "Funk do Morto", genre: .funk, duration: "01:00", nowPlaying: .constant(Set<String>()))
+        SongCell(songId: "ABC", title: "Funk do Morto", genre: .funk, duration: "01:00", isNew: false, nowPlaying: .constant(Set<String>()))
             .padding(.horizontal)
             .previewLayout(.fixed(width: 414, height: 100))
     }
