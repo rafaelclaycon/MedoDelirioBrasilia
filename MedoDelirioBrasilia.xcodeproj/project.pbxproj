@@ -24,7 +24,6 @@
 		497E63CB2919484600FBC539 /* Frederico Davila - Gente nojenta como voce.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 497E63CA2919484600FBC539 /* Frederico Davila - Gente nojenta como voce.mp3 */; };
 		497E63CD291948B700FBC539 /* Gilmar Mendes - Essa gente anda fumando erva estragada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 497E63CC291948B700FBC539 /* Gilmar Mendes - Essa gente anda fumando erva estragada.mp3 */; };
 		497E63CF2919490C00FBC539 /* Gilmar Mendes - Os autores dessa denuncia andam fumando e bebendo coisas estregadas.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 497E63CE2919490C00FBC539 /* Gilmar Mendes - Os autores dessa denuncia andam fumando e bebendo coisas estregadas.mp3 */; };
-		497E63D129194B9000FBC539 /* Musica da Vitoria.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 497E63D029194B8F00FBC539 /* Musica da Vitoria.mp3 */; };
 		49B4C96A28CE74E6007E893B /* A pipa do jair nao sobe mais.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49B4C96928CE74E6007E893B /* A pipa do jair nao sobe mais.mp3 */; };
 		49B4C97428CE7684007E893B /* Ihuu (agora com equiu).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49B4C97328CE7684007E893B /* Ihuu (agora com equiu).mp3 */; };
 		49C0938E28E5EEA200960B7E /* Vou de Lula, Ce Sabe - Neide e Lula.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49C0938D28E5EEA200960B7E /* Vou de Lula, Ce Sabe - Neide e Lula.mp3 */; };
@@ -958,7 +957,6 @@
 		D9B4F740283C8F4D0000EEF7 /* O roque ativa.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B4F73E283C8F4D0000EEF7 /* O roque ativa.mp3 */; };
 		D9B763282845B5E600CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B763272845B5E500CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift */; };
 		D9B83361291890D9007E47EB /* Pedro Daltro e Cristiano Botafogo - Comemorando a vitoria.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B83360291890D9007E47EB /* Pedro Daltro e Cristiano Botafogo - Comemorando a vitoria.mp3 */; };
-		D9B83363291890E0007E47EB /* Cacofonia da vitoria.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B83362291890E0007E47EB /* Cacofonia da vitoria.mp3 */; };
 		D9BB1E7728B3200700C5FFAA /* AppIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BB1E7628B3200700C5FFAA /* AppIcon.swift */; };
 		D9BB3A2D28F4BAD500EF7E8D /* Jair Bolsonaro - Paz, tranquilidade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BB3A2C28F4BAD500EF7E8D /* Jair Bolsonaro - Paz, tranquilidade.mp3 */; };
 		D9BB8F7628EC6D9E00659D4A /* Amigo do Pedro Daltro - Risada caralho (curto).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BB8F7428EC6D9E00659D4A /* Amigo do Pedro Daltro - Risada caralho (curto).mp3 */; };
@@ -1005,6 +1003,8 @@
 		D9D856F5288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D856F3288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3 */; };
 		D9D856F6288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Se numero elevado de mortes policia e uma caracteristica, ta errado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D856F4288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Se numero elevado de mortes policia e uma caracteristica, ta errado.mp3 */; };
 		D9D8C4A8287CD1B600812EE5 /* UIDevice+DevicePhysicalCharacteristics.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D8C4A7287CD1B600812EE5 /* UIDevice+DevicePhysicalCharacteristics.swift */; };
+		D9DACB0229199E9200D917BB /* E hora de rir um pouco dos militares.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DACB0029199E9200D917BB /* E hora de rir um pouco dos militares.mp3 */; };
+		D9DACB0329199E9200D917BB /* Musica da Vitoria - Lula Eleito.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DACB0129199E9200D917BB /* Musica da Vitoria - Lula Eleito.mp3 */; };
 		D9DB6F7F28CBDA8000E24BDE /* MostSharedByMeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DB6F7E28CBDA8000E24BDE /* MostSharedByMeView.swift */; };
 		D9DB6F8128CD6E2900E24BDE /* UOL - JOAO GORDO - Doidao de droga.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DB6F8028CD6E2900E24BDE /* UOL - JOAO GORDO - Doidao de droga.mp3 */; };
 		D9DB6F8328CD6F3600E24BDE /* Edu Santos - Totalmente embriagado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DB6F8228CD6F3500E24BDE /* Edu Santos - Totalmente embriagado.mp3 */; };
@@ -1052,7 +1052,6 @@
 		D9FA0CD92850864C000F6ADE /* ClientDeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FA0CD82850864C000F6ADE /* ClientDeviceInfo.swift */; };
 		D9FB489A2870FE7800FF90D0 /* TapticHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FB48992870FE7800FF90D0 /* TapticHelper.swift */; };
 		D9FB4D5629193CF600AAFA7A /* Fabio Porchat - Bala de borracha e gas lacrimogeneo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9FB4D5529193CF600AAFA7A /* Fabio Porchat - Bala de borracha e gas lacrimogeneo.mp3 */; };
-		D9FB4D582919403000AAFA7A /* Em Brasilia, 19h, e hora de rir um pouco dos militares.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9FB4D572919403000AAFA7A /* Em Brasilia, 19h, e hora de rir um pouco dos militares.mp3 */; };
 		D9FD0EFF28B2B2EE0000616A /* Um pequeno passo para o homem.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9FD0EEE28B2B2ED0000616A /* Um pequeno passo para o homem.mp3 */; };
 		D9FD0F0028B2B2EE0000616A /* polarizacao e meu pau em sua mao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9FD0EEF28B2B2ED0000616A /* polarizacao e meu pau em sua mao.mp3 */; };
 		D9FD0F0128B2B2EE0000616A /* Gemidao do Delirio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9FD0EF028B2B2ED0000616A /* Gemidao do Delirio.mp3 */; };
@@ -1127,7 +1126,6 @@
 		497E63CA2919484600FBC539 /* Frederico Davila - Gente nojenta como voce.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Frederico Davila - Gente nojenta como voce.mp3"; sourceTree = "<group>"; };
 		497E63CC291948B700FBC539 /* Gilmar Mendes - Essa gente anda fumando erva estragada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gilmar Mendes - Essa gente anda fumando erva estragada.mp3"; sourceTree = "<group>"; };
 		497E63CE2919490C00FBC539 /* Gilmar Mendes - Os autores dessa denuncia andam fumando e bebendo coisas estregadas.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gilmar Mendes - Os autores dessa denuncia andam fumando e bebendo coisas estregadas.mp3"; sourceTree = "<group>"; };
-		497E63D029194B8F00FBC539 /* Musica da Vitoria.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Musica da Vitoria.mp3"; sourceTree = "<group>"; };
 		49B4C96928CE74E6007E893B /* A pipa do jair nao sobe mais.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "A pipa do jair nao sobe mais.mp3"; sourceTree = "<group>"; };
 		49B4C97328CE7684007E893B /* Ihuu (agora com equiu).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ihuu (agora com equiu).mp3"; sourceTree = "<group>"; };
 		49C0938D28E5EEA200960B7E /* Vou de Lula, Ce Sabe - Neide e Lula.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Vou de Lula, Ce Sabe - Neide e Lula.mp3"; sourceTree = "<group>"; };
@@ -2063,7 +2061,6 @@
 		D9B4F73E283C8F4D0000EEF7 /* O roque ativa.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O roque ativa.mp3"; sourceTree = "<group>"; };
 		D9B763272845B5E500CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKStoreReviewController+requestReviewInCurrentScene.swift"; sourceTree = "<group>"; };
 		D9B83360291890D9007E47EB /* Pedro Daltro e Cristiano Botafogo - Comemorando a vitoria.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pedro Daltro e Cristiano Botafogo - Comemorando a vitoria.mp3"; sourceTree = "<group>"; };
-		D9B83362291890E0007E47EB /* Cacofonia da vitoria.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cacofonia da vitoria.mp3"; sourceTree = "<group>"; };
 		D9BB1E7628B3200700C5FFAA /* AppIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcon.swift; sourceTree = "<group>"; };
 		D9BB3A2C28F4BAD500EF7E8D /* Jair Bolsonaro - Paz, tranquilidade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Paz, tranquilidade.mp3"; sourceTree = "<group>"; };
 		D9BB8F7428EC6D9E00659D4A /* Amigo do Pedro Daltro - Risada caralho (curto).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Amigo do Pedro Daltro - Risada caralho (curto).mp3"; sourceTree = "<group>"; };
@@ -2110,6 +2107,8 @@
 		D9D856F3288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3"; sourceTree = "<group>"; };
 		D9D856F4288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Se numero elevado de mortes policia e uma caracteristica, ta errado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "RADIO BANDNEWS FM - Eduardo Oinegue - Se numero elevado de mortes policia e uma caracteristica, ta errado.mp3"; sourceTree = "<group>"; };
 		D9D8C4A7287CD1B600812EE5 /* UIDevice+DevicePhysicalCharacteristics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+DevicePhysicalCharacteristics.swift"; sourceTree = "<group>"; };
+		D9DACB0029199E9200D917BB /* E hora de rir um pouco dos militares.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "E hora de rir um pouco dos militares.mp3"; sourceTree = "<group>"; };
+		D9DACB0129199E9200D917BB /* Musica da Vitoria - Lula Eleito.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Musica da Vitoria - Lula Eleito.mp3"; sourceTree = "<group>"; };
 		D9DB6F7E28CBDA8000E24BDE /* MostSharedByMeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostSharedByMeView.swift; sourceTree = "<group>"; };
 		D9DB6F8028CD6E2900E24BDE /* UOL - JOAO GORDO - Doidao de droga.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "UOL - JOAO GORDO - Doidao de droga.mp3"; sourceTree = "<group>"; };
 		D9DB6F8228CD6F3500E24BDE /* Edu Santos - Totalmente embriagado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Edu Santos - Totalmente embriagado.mp3"; sourceTree = "<group>"; };
@@ -2156,7 +2155,6 @@
 		D9FA0CD82850864C000F6ADE /* ClientDeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientDeviceInfo.swift; sourceTree = "<group>"; };
 		D9FB48992870FE7800FF90D0 /* TapticHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapticHelper.swift; sourceTree = "<group>"; };
 		D9FB4D5529193CF600AAFA7A /* Fabio Porchat - Bala de borracha e gas lacrimogeneo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fabio Porchat - Bala de borracha e gas lacrimogeneo.mp3"; sourceTree = "<group>"; };
-		D9FB4D572919403000AAFA7A /* Em Brasilia, 19h, e hora de rir um pouco dos militares.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Em Brasilia, 19h, e hora de rir um pouco dos militares.mp3"; sourceTree = "<group>"; };
 		D9FD0EEE28B2B2ED0000616A /* Um pequeno passo para o homem.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Um pequeno passo para o homem.mp3"; sourceTree = "<group>"; };
 		D9FD0EEF28B2B2ED0000616A /* polarizacao e meu pau em sua mao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "polarizacao e meu pau em sua mao.mp3"; sourceTree = "<group>"; };
 		D9FD0EF028B2B2ED0000616A /* Gemidao do Delirio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gemidao do Delirio.mp3"; sourceTree = "<group>"; };
@@ -3090,9 +3088,8 @@
 		D92E7068283C5C120035826C /* Songs */ = {
 			isa = PBXGroup;
 			children = (
-				497E63D029194B8F00FBC539 /* Musica da Vitoria.mp3 */,
-				D9FB4D572919403000AAFA7A /* Em Brasilia, 19h, e hora de rir um pouco dos militares.mp3 */,
-				D9B83362291890E0007E47EB /* Cacofonia da vitoria.mp3 */,
+				D9DACB0029199E9200D917BB /* E hora de rir um pouco dos militares.mp3 */,
+				D9DACB0129199E9200D917BB /* Musica da Vitoria - Lula Eleito.mp3 */,
 				D9B47635290DE3C0007C8ED0 /* Padre Kelmon - Nao existira pessoas.mp3 */,
 				D9CA8BB62908802300C6B492 /* Jair Bolsonaro - Nao tenho provas.mp3 */,
 				D93752182902CD1A00E2F27B /* Genocida, miliciano, canibal.mp3 */,
@@ -3978,7 +3975,6 @@
 				49B4C96A28CE74E6007E893B /* A pipa do jair nao sobe mais.mp3 in Resources */,
 				D923127328AB0A6100436336 /* Novo e diferente, e top, e moderno (curto).mp3 in Resources */,
 				D9DCF737290C2C4B00DB177C /* Valdemiro Santiago - Oferta generosa beijinho essa e pro senhor Jesus.mp3 in Resources */,
-				D9FB4D582919403000AAFA7A /* Em Brasilia, 19h, e hora de rir um pouco dos militares.mp3 in Resources */,
 				D975FE6A2880B4F20035E6F2 /* Malditos Milicos reverse.mp3 in Resources */,
 				D975FF5F2880B4F20035E6F2 /* Nunca foi meritocracia, sempre foi desigualdade.mp3 in Resources */,
 				D975FFB72880B4F20035E6F2 /* Trote Luiz Pareto - Trote da TELERJ (grandes merdas que o senhor e advogado).mp3 in Resources */,
@@ -3988,7 +3984,6 @@
 				D975000E2880B4F20035E6F2 /* Face palm - Corra que a policia vem ai.mp3 in Resources */,
 				D975FF502880B4F20035E6F2 /* Bolsonaro - So se for na casa da tua mae.mp3 in Resources */,
 				D95A462C29182FF3006B4023 /* Gregorio Duvivier - Vencemos a milicia sem dar um tiro.mp3 in Resources */,
-				D9B83363291890E0007E47EB /* Cacofonia da vitoria.mp3 in Resources */,
 				D975FF142880B4F20035E6F2 /* Abraham Weintraub - odeio odeio odeio short.mp3 in Resources */,
 				D975FF942880B4F20035E6F2 /* Lula - Voces percebem a loucura que esta tomando conta desse pais.mp3 in Resources */,
 				D97B2DE528E60B8600C3B50B /* Milton Cunha - E Lula o nosso candidato maravilhoso.mp3 in Resources */,
@@ -4028,6 +4023,7 @@
 				D975FE3D2880B4F20035E6F2 /* JOVEM PAN NEWS - Sem querer colocar o senhor numa situacao delicada ai.mp3 in Resources */,
 				D97500332880B4F20035E6F2 /* Mourao - A politica nao pode entrar no quartel e nossa posicao desde sempre.mp3 in Resources */,
 				D975FF432880B4F20035E6F2 /* Eduardo Sterblitch - E mais ou menos longo.mp3 in Resources */,
+				D9DACB0329199E9200D917BB /* Musica da Vitoria - Lula Eleito.mp3 in Resources */,
 				D9D856F6288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Se numero elevado de mortes policia e uma caracteristica, ta errado.mp3 in Resources */,
 				D9FD0F0B28B2B2EE0000616A /* meus amigos nao amigo e o caralho.mp3 in Resources */,
 				D9E7D0F128AC677B001E909E /* Paulo Guedes - Empregada domestica na Disney (longo).mp3 in Resources */,
@@ -4062,6 +4058,7 @@
 				D975FF7F2880B4F20035E6F2 /* Osorio - Flavio Bolsonaro desmaio - Nao da pra continuar, ta passando mal short.mp3 in Resources */,
 				D975FE422880B4F20035E6F2 /* FALA M.R. - Quem produz vai ter sempre o pretexto de dizer que nao e fake news porque e uma piada.mp3 in Resources */,
 				D975FE102880B4F20035E6F2 /* Lula - Nao.mp3 in Resources */,
+				D9DACB0229199E9200D917BB /* E hora de rir um pouco dos militares.mp3 in Resources */,
 				49DEA9BE288112D8008C9BA1 /* CARTOON NETWORK - MAS ESTA ERRADO short meme.mp3 in Resources */,
 				D934432728381DEF00ADCD38 /* author_data.json in Resources */,
 				D921F87F288B0177003979CC /* Aglomeracao de idosos todos doentes.mp3 in Resources */,
@@ -4074,7 +4071,6 @@
 				D975FE612880B4F20035E6F2 /* Bolsonaro - Na ordem de 800 pessoas a previsao e nao chegar a isso no tocante ao coronavirus.mp3 in Resources */,
 				D975FE7B2880B4F20035E6F2 /* BREAKING BAD - Yeah Science meme.mp3 in Resources */,
 				D975FEBC2880B4F20035E6F2 /* Frederico Goulart - Presidente por que sua esposa Michele recebeu 89 mil de Fabricio Queiroz.mp3 in Resources */,
-				497E63D129194B9000FBC539 /* Musica da Vitoria.mp3 in Resources */,
 				D9BB8F8D28ECB2A900659D4A /* Alvaro Borba - Funk Panico Moral trecho.mp3 in Resources */,
 				D9FD0EFF28B2B2EE0000616A /* Um pequeno passo para o homem.mp3 in Resources */,
 				D97500502880B5190035E6F2 /* MULTISHOW - Titi Muller - Ta bombando mais do que o povo pedindo Anitta gente bolsonaro vai tomar no cu.mp3 in Resources */,
