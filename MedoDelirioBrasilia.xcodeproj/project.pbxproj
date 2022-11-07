@@ -950,6 +950,8 @@
 		D9B4F73F283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B4F73D283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 */; };
 		D9B4F740283C8F4D0000EEF7 /* O roque ativa.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B4F73E283C8F4D0000EEF7 /* O roque ativa.mp3 */; };
 		D9B763282845B5E600CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B763272845B5E500CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift */; };
+		D9B83361291890D9007E47EB /* Pedro Daltro e Cristiano Botafogo - Comemorando a vitoria.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B83360291890D9007E47EB /* Pedro Daltro e Cristiano Botafogo - Comemorando a vitoria.mp3 */; };
+		D9B83363291890E0007E47EB /* Cacofonia da vitoria.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B83362291890E0007E47EB /* Cacofonia da vitoria.mp3 */; };
 		D9BB1E7728B3200700C5FFAA /* AppIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BB1E7628B3200700C5FFAA /* AppIcon.swift */; };
 		D9BB3A2D28F4BAD500EF7E8D /* Jair Bolsonaro - Paz, tranquilidade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BB3A2C28F4BAD500EF7E8D /* Jair Bolsonaro - Paz, tranquilidade.mp3 */; };
 		D9BB8F7628EC6D9E00659D4A /* Amigo do Pedro Daltro - Risada caralho (curto).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BB8F7428EC6D9E00659D4A /* Amigo do Pedro Daltro - Risada caralho (curto).mp3 */; };
@@ -2045,6 +2047,8 @@
 		D9B4F73D283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Unidos do Medo e Delírio.mp3"; sourceTree = "<group>"; };
 		D9B4F73E283C8F4D0000EEF7 /* O roque ativa.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O roque ativa.mp3"; sourceTree = "<group>"; };
 		D9B763272845B5E500CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKStoreReviewController+requestReviewInCurrentScene.swift"; sourceTree = "<group>"; };
+		D9B83360291890D9007E47EB /* Pedro Daltro e Cristiano Botafogo - Comemorando a vitoria.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pedro Daltro e Cristiano Botafogo - Comemorando a vitoria.mp3"; sourceTree = "<group>"; };
+		D9B83362291890E0007E47EB /* Cacofonia da vitoria.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cacofonia da vitoria.mp3"; sourceTree = "<group>"; };
 		D9BB1E7628B3200700C5FFAA /* AppIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcon.swift; sourceTree = "<group>"; };
 		D9BB3A2C28F4BAD500EF7E8D /* Jair Bolsonaro - Paz, tranquilidade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Paz, tranquilidade.mp3"; sourceTree = "<group>"; };
 		D9BB8F7428EC6D9E00659D4A /* Amigo do Pedro Daltro - Risada caralho (curto).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Amigo do Pedro Daltro - Risada caralho (curto).mp3"; sourceTree = "<group>"; };
@@ -2210,6 +2214,7 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9B83360291890D9007E47EB /* Pedro Daltro e Cristiano Botafogo - Comemorando a vitoria.mp3 */,
 				D95A463129183843006B4023 /* Eleitores do Lula no Maranhao - Urubu, cabelo liso, tu vai pro inferno.mp3 */,
 				D95A462F291832F0006B4023 /* Romeu Zema - Eu quero me drogar.mp3 */,
 				D95A462D291831A7006B4023 /* Henrique Oliveira - Doses seguras de crack.mp3 */,
@@ -3062,6 +3067,7 @@
 		D92E7068283C5C120035826C /* Songs */ = {
 			isa = PBXGroup;
 			children = (
+				D9B83362291890E0007E47EB /* Cacofonia da vitoria.mp3 */,
 				D9B47635290DE3C0007C8ED0 /* Padre Kelmon - Nao existira pessoas.mp3 */,
 				D9CA8BB62908802300C6B492 /* Jair Bolsonaro - Nao tenho provas.mp3 */,
 				D93752182902CD1A00E2F27B /* Genocida, miliciano, canibal.mp3 */,
@@ -3890,6 +3896,7 @@
 				D92AD1A928832AF2001CBCDF /* FRANCIEL CRUZ - LIVE DAS CANJEBRINAS - E meu pau em sua mao.mp3 in Resources */,
 				D975002A2880B4F20035E6F2 /* SUPERPOP - Luciana Gimenez - Mas ce ta brava.mp3 in Resources */,
 				D97500452880B4F20035E6F2 /* O CARA DA LUVA DE PEDREIRO - receba carai caralho.mp3 in Resources */,
+				D9B83361291890D9007E47EB /* Pedro Daltro e Cristiano Botafogo - Comemorando a vitoria.mp3 in Resources */,
 				D9FD0F0828B2B2EE0000616A /* malditos milicos a capella doida.mp3 in Resources */,
 				D975FE382880B4F20035E6F2 /* Deltan Dallangnol - Os meus advogados estao estarrecidos.mp3 in Resources */,
 				D937E11B29097D58004137ED /* BAND JORNALISMO - Onyx - Ele opta pelo bem do pais brasil pela pacificacao.mp3 in Resources */,
@@ -3956,6 +3963,7 @@
 				D975000E2880B4F20035E6F2 /* Face palm - Corra que a policia vem ai.mp3 in Resources */,
 				D975FF502880B4F20035E6F2 /* Bolsonaro - So se for na casa da tua mae.mp3 in Resources */,
 				D95A462C29182FF3006B4023 /* Gregorio Duvivier - Vencemos a milicia sem dar um tiro.mp3 in Resources */,
+				D9B83363291890E0007E47EB /* Cacofonia da vitoria.mp3 in Resources */,
 				D975FF142880B4F20035E6F2 /* Abraham Weintraub - odeio odeio odeio short.mp3 in Resources */,
 				D975FF942880B4F20035E6F2 /* Lula - Voces percebem a loucura que esta tomando conta desse pais.mp3 in Resources */,
 				D97B2DE528E60B8600C3B50B /* Milton Cunha - E Lula o nosso candidato maravilhoso.mp3 in Resources */,
@@ -4981,7 +4989,7 @@
 				CODE_SIGN_ENTITLEMENTS = MedoWidget/Sources/WidgetSupport/MedoWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MedoWidget/Sources/WidgetSupport/Info.plist;
@@ -5013,7 +5021,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_ENTITLEMENTS = MedoWidget/Sources/WidgetSupport/MedoWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MedoWidget/Sources/WidgetSupport/Info.plist;
@@ -5161,7 +5169,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/Sources/AppSupport/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -5202,7 +5210,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/Sources/AppSupport/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;

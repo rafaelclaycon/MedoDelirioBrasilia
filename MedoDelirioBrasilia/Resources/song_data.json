@@ -498,5 +498,15 @@
         "filename": "Padre Kelmon - Nao existira pessoas.mp3",
         "dateAdded": "2022-10-29T00:00:00Z",
         "isOffensive": true
+    },
+    {
+        "id": "4AE833E9-5492-4F95-9761-7AF7028AF660",
+        "title": "Cacofonia da vitória",
+        "description": "",
+        "genre": 7,
+        "duration": "00:56",
+        "filename": "Cacofonia da vitoria.mp3",
+        "dateAdded": "2022-11-06T00:00:00Z",
+        "isOffensive": true
     }
 ]
