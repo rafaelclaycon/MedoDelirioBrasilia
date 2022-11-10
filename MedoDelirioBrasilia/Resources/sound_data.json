@@ -7411,7 +7411,7 @@
         "filename": "Gregorio Duvivier - Greg News pos-vitoria do Lula.mp3",
         "dateAdded": "2022-11-06T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "A2B474FD-4704-472F-8D1F-AB6D5E834778",
@@ -7421,7 +7421,7 @@
         "filename": "Gregorio Duvivier - Vencemos a milicia sem dar um tiro.mp3",
         "dateAdded": "2022-11-06T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "29CCF0E8-71AB-4BDF-8BB1-8B57F7C4CC3E",
@@ -7431,7 +7431,7 @@
         "filename": "Gregorio Duvivier - A frente ampla.mp3",
         "dateAdded": "2022-11-06T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "8E221D18-88DE-4AD4-914C-94F8B8A111AE",
@@ -7441,7 +7441,7 @@
         "filename": "Gregorio Duvivier - Alem do Lula, agora o choro tambem e livre.mp3",
         "dateAdded": "2022-11-06T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "854D9B5D-C987-4C07-A155-539D2D212A43",
@@ -7451,7 +7451,7 @@
         "filename": "Henrique Oliveira - Doses seguras de crack.mp3",
         "dateAdded": "2022-11-06T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "739D519A-5367-4079-A7F0-ADB3AAE0E002",
@@ -7461,7 +7461,7 @@
         "filename": "Romeu Zema - Eu quero me drogar.mp3",
         "dateAdded": "2022-11-06T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "4D0D833D-584C-439E-AC23-2D55D00794EA",
@@ -7471,7 +7471,7 @@
         "filename": "Eleitores do Lula no Maranhao - Urubu, cabelo liso, tu vai pro inferno.mp3",
         "dateAdded": "2022-11-06T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "E08C67F2-1C22-49A7-8656-3BAF44D848BB",
@@ -7481,7 +7481,7 @@
         "filename": "Pedro Daltro e Cristiano Botafogo - Comemorando a vitoria.mp3",
         "dateAdded": "2022-11-06T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "691ECBB3-9DA0-468C-84D3-383E69ECC631",
@@ -7491,7 +7491,7 @@
         "filename": "Fabio Porchat - Bala de borracha e gas lacrimogeneo.mp3",
         "dateAdded": "2022-11-07T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "EDEEBA5F-F062-4ED3-8895-2581700A7DA8",
@@ -7501,7 +7501,7 @@
         "filename": "Gilmar Mendes - Os autores dessa denuncia andam fumando e bebendo coisas estregadas.mp3",
         "dateAdded": "2022-11-07T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "5F88BC5B-176E-49C1-9788-2E445D17B3A2",
@@ -7511,7 +7511,7 @@
         "filename": "Frederico Davila - Gente nojenta como voce.mp3",
         "dateAdded": "2022-11-07T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "2974A1FF-462B-42C0-B2F6-CADE12D65661",
@@ -7521,7 +7521,7 @@
         "filename": "Gilmar Mendes - Essa gente anda fumando erva estragada.mp3",
         "dateAdded": "2022-11-07T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "DF4F4674-725A-4C9D-9308-BA003647A176",
@@ -7531,7 +7531,7 @@
         "filename": "Neide Maria - Complete a frase anistia de cu e.mp3",
         "dateAdded": "2022-11-07T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "485CBCDD-6D48-4B20-A90D-66FD430512DE",
@@ -7541,7 +7541,7 @@
         "filename": "Espectadora do Falso Patati Patata - Na hora patati e patata nao apareceu.mp3",
         "dateAdded": "2022-11-07T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "5D66656B-DFC8-490A-8256-496D3A8C6AA3",
@@ -7550,6 +7550,56 @@
         "description": "Que merda caramba, poxa vida",
         "filename": "Desconhecido - Que merda caramba poxa vida.mp3",
         "dateAdded": "2022-11-07T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "00C68C85-1F19-4E64-945F-299EF59968FF",
+        "title": "Vamo comunistada!",
+        "authorId": "EE070B17-4C63-4BF4-BF5C-62894B70F390",
+        "description": "Vamo comunistada uhul vamo poder abortar toda semana comer carne de cachorro banheiro unisex droga tudo liberado acabou família adão e ivo",
+        "filename": "Barbara Saccomori - Vamo comunistada.mp3",
+        "dateAdded": "2022-11-08T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "4A4169BA-2B24-49CD-B5E9-001800412934",
+        "title": "Não existe segunda-feira no comunismo",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Nao existe segunda-feira no comunismo",
+        "filename": "Desconhecido - Nao existe segunda-feira no comunismo.mp3",
+        "dateAdded": "2022-11-08T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "E16FBC55-A194-47FC-ABCA-7351385D8EBF",
+        "title": "Que bosta",
+        "authorId": "88E55EFF-549F-4047-86B9-7A5D551201A7",
+        "description": "Que bosta",
+        "filename": "Menino Pulando na Cama - Que bosta.mp3",
+        "dateAdded": "2022-11-08T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "27605A38-3398-446B-B027-8A54B5AAB534",
+        "title": "CODIB-19",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "CODIB-19 codib 19 covid-19 covid 19",
+        "filename": "Jair Bolsonaro - CODIB-19.mp3",
+        "dateAdded": "2022-11-10T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "74D9AB49-38C3-48AA-BF11-371B56ED38A2",
+        "title": "Pode botar, CODIB-19",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "pode botar CODIB-19 codib 19 covid-19 covid 19",
+        "filename": "Jair Bolsonaro - Pode botar, CODIB-19.mp3",
+        "dateAdded": "2022-11-10T00:00:00Z",
         "isOffensive": false,
         "isNew": true
     }
