@@ -60,14 +60,13 @@ struct MedoWidgetEntryView : View {
 //            .gaugeStyle(.accessoryCircular)
             
         case .accessoryRectangular:
-            VStack(alignment: .leading, spacing: 5) {
+            VStack(alignment: .leading, spacing: 2) {
                 Text(getDaysUntilDateShort(endOfCurrentMandateDate(), considering: .daysToJaIr))
-                    .bold()
-                    .font(.system(size: 14))
+                    .font(.headline)
                 
                 Text("Fim do Governo")
                     .textCase(.uppercase)
-                    .font(.system(size: 12))
+                    //.font(.system(size: 13))
                     .fontWeight(.medium)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
