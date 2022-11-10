@@ -179,6 +179,7 @@
 		D92E7075283C5F620035826C /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92E7074283C5F620035826C /* SongCell.swift */; };
 		D92EF4BF291CA5B9009E3E0A /* Jair Bolsonaro - Pode botar, CODIB-19.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92EF4BD291CA5B9009E3E0A /* Jair Bolsonaro - Pode botar, CODIB-19.mp3 */; };
 		D92EF4C0291CA5B9009E3E0A /* Jair Bolsonaro - CODIB-19.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92EF4BE291CA5B9009E3E0A /* Jair Bolsonaro - CODIB-19.mp3 */; };
+		D92EF4C2291D721D009E3E0A /* FunnyPhrase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92EF4C1291D721D009E3E0A /* FunnyPhrase.swift */; };
 		D92F8BAD286A6D2100EB9470 /* AlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92F8BAC286A6D2100EB9470 /* AlertType.swift */; };
 		D933251E28835E41004EFACB /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D933251D28835E41004EFACB /* ActivityViewController.swift */; };
 		D9344323283812AD00ADCD38 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9344322283812AD00ADCD38 /* Author.swift */; };
@@ -1286,6 +1287,7 @@
 		D92E7074283C5F620035826C /* SongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
 		D92EF4BD291CA5B9009E3E0A /* Jair Bolsonaro - Pode botar, CODIB-19.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Pode botar, CODIB-19.mp3"; sourceTree = "<group>"; };
 		D92EF4BE291CA5B9009E3E0A /* Jair Bolsonaro - CODIB-19.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - CODIB-19.mp3"; sourceTree = "<group>"; };
+		D92EF4C1291D721D009E3E0A /* FunnyPhrase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunnyPhrase.swift; sourceTree = "<group>"; };
 		D92F8BAC286A6D2100EB9470 /* AlertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertType.swift; sourceTree = "<group>"; };
 		D933251D28835E41004EFACB /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		D9344322283812AD00ADCD38 /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
@@ -3712,6 +3714,7 @@
 			isa = PBXGroup;
 			children = (
 				4979103C28BE844D00CDF01C /* MedoWidget.swift */,
+				D92EF4C1291D721D009E3E0A /* FunnyPhrase.swift */,
 				D9DB6F8728CD790100E24BDE /* WidgetSupport */,
 			);
 			path = Sources;
@@ -4819,6 +4822,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4979103D28BE844D00CDF01C /* MedoWidget.swift in Sources */,
+				D92EF4C2291D721D009E3E0A /* FunnyPhrase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -60,17 +60,8 @@ struct MedoWidgetEntryView : View {
 //            .gaugeStyle(.accessoryCircular)
             
         case .accessoryRectangular:
-            VStack(alignment: .leading, spacing: -1) {
-                Text("É Lula!")
-                    .bold()
-                    .font(.system(size: 14))
-                
-                Text("É Lula, porrrraaaa")
-                    .textCase(.uppercase)
-                    .font(.system(size: 12))
-                    .fontWeight(.medium)
-                
-                Text(getDaysUntilDateShort(endOfCurrentMandateDate()))
+            VStack(alignment: .leading, spacing: 5) {
+                Text(getDaysUntilDateShort(endOfCurrentMandateDate(), considering: .daysToJaIr))
                     .bold()
                     .font(.system(size: 14))
                 
@@ -78,15 +69,17 @@ struct MedoWidgetEntryView : View {
                     .textCase(.uppercase)
                     .font(.system(size: 12))
                     .fontWeight(.medium)
-                
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             
         case .accessoryInline:
             HStack {
-                Image(systemName: "medal.fill")
-                Text(" É Lula!!!!")
+                Text(getPhrase(getRandomPhraseType()))
             }
+            // 🏃‍♂️ 52 dias para já ir
+            // ⭐️ O barba vem em 52 dias
+            // 👋 "Tchau, Jair" em 52 dias
+            // 🍆 Jambrolhando em 52 dias
             
         default:
             Text("Não implementado")
@@ -98,9 +91,21 @@ struct MedoWidgetEntryView : View {
         return dateFormatter.date(from: "2022-10-03T00:00:00-0300")!
     }*/
     
-    private func secondTurnDate() -> Date {
-        let dateFormatter = ISO8601DateFormatter()
-        return dateFormatter.date(from: "2022-10-30T00:00:00-0300")!
+    private func getRandomPhraseType() -> FunnyPhrase {
+        return FunnyPhrase(rawValue: Int.random(in: 0..<4))!
+    }
+    
+    private func getPhrase(_ type: FunnyPhrase) -> String {
+        switch type {
+        case .daysToJaIr:
+            return "🏃‍♂️  \(getDaysUntilDateShort(endOfCurrentMandateDate(), considering: type)) para já ir"
+        case .theBeardedOneIsComing:
+            return "⭐️  O barba \(getDaysUntilDateShort(endOfCurrentMandateDate(), considering: type))"
+        case .byeByeJair:
+            return "👋  Tchau \(getDaysUntilDateShort(endOfCurrentMandateDate(), considering: type))"
+        case .veryPhallicReference:
+            return "·  Jambro👌 \(getDaysUntilDateShort(endOfCurrentMandateDate(), considering: type))"
+        }
     }
     
     private func endOfCurrentMandateDate() -> Date {
@@ -108,7 +113,7 @@ struct MedoWidgetEntryView : View {
         return dateFormatter.date(from: "2023-01-01T00:00:00-0300")!
     }
     
-    private func getDaysUntilDateShort(_ date: Date) -> String {
+    private func getDaysUntilDateShort(_ date: Date, considering funnyPhraseType: FunnyPhrase) -> String {
         let calendar = Calendar.current
         
         let date1 = calendar.startOfDay(for: Date.now)
@@ -117,39 +122,55 @@ struct MedoWidgetEntryView : View {
         let components = calendar.dateComponents([.day], from: date1, to: date2)
         
         if let days = components.day {
+            // Já passou
             if days < 0 {
-                return "Já passou"
+                switch funnyPhraseType {
+                case .daysToJaIr:
+                    return "Foi"
+                case .theBeardedOneIsComing:
+                    return "já tá aí"
+                case .byeByeJair:
+                    return "querido"
+                case .veryPhallicReference:
+                    return "chegou"
+                }
+                
+            // Hoje
             } else if days == 0 {
-                return "Hoje"
+                switch funnyPhraseType {
+                case .daysToJaIr:
+                    return "É hoje"
+                case .theBeardedOneIsComing:
+                    return "vem hoje!"
+                case .byeByeJair:
+                    return "hoje!"
+                case .veryPhallicReference:
+                    return "vem hoje!"
+                }
+                
+            // Amanhã
             } else if days == 1 {
-                return "Amanhã"
+                switch funnyPhraseType {
+                case .daysToJaIr:
+                    return "Amanhã"
+                case .theBeardedOneIsComing:
+                    return "chega amanhã"
+                case .byeByeJair:
+                    return "querido amanhã"
+                case .veryPhallicReference:
+                    return "vem amanhã"
+                }
+                
+            // Mais dias
             } else {
-                return "\(days) dias"
-            }
-        } else {
-            return "Indefinido"
-        }
-    }
-    
-    private func getDaysUntilDateLong(_ date: Date, isFirstTurn: Bool) -> String {
-        let calendar = Calendar.current
-        
-        let date1 = calendar.startOfDay(for: Date.now)
-        let date2 = calendar.startOfDay(for: date)
-        
-        let components = calendar.dateComponents([.day], from: date1, to: date2)
-        
-        let turnNumber = isFirstTurn ? "1" : "2"
-        
-        if let days = components.day {
-            if days < 0 {
-                return "O \(turnNumber)º turno já passou"
-            } else if days == 0 {
-                return "O \(turnNumber)º turno é hoje"
-            } else if days == 1 {
-                return "O \(turnNumber)º turno é amanhã!"
-            } else {
-                return "\(days) dias até o \(turnNumber)º turno"
+                switch funnyPhraseType {
+                case .daysToJaIr:
+                    return "\(days) dias"
+                case .theBeardedOneIsComing, .veryPhallicReference:
+                    return "em \(days) dias"
+                case .byeByeJair:
+                    return " em \(days) dias"
+                }
             }
         } else {
             return "Indefinido"
