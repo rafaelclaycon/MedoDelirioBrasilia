@@ -7561,7 +7561,7 @@
         "filename": "Barbara Saccomori - Vamo comunistada.mp3",
         "dateAdded": "2022-11-08T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "4A4169BA-2B24-49CD-B5E9-001800412934",
@@ -7571,7 +7571,7 @@
         "filename": "Desconhecido - Nao existe segunda-feira no comunismo.mp3",
         "dateAdded": "2022-11-08T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "E16FBC55-A194-47FC-ABCA-7351385D8EBF",
@@ -7581,7 +7581,7 @@
         "filename": "Menino Pulando na Cama - Que bosta.mp3",
         "dateAdded": "2022-11-08T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "27605A38-3398-446B-B027-8A54B5AAB534",
@@ -7591,7 +7591,7 @@
         "filename": "Jair Bolsonaro - CODIB-19.mp3",
         "dateAdded": "2022-11-10T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "74D9AB49-38C3-48AA-BF11-371B56ED38A2",
@@ -7601,6 +7601,6 @@
         "filename": "Jair Bolsonaro - Pode botar, CODIB-19.mp3",
         "dateAdded": "2022-11-10T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     }
 ]
