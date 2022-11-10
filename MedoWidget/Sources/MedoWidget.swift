@@ -101,7 +101,7 @@ struct MedoWidgetEntryView : View {
         case .theBeardedOneIsComing:
             return "⭐️  O barba \(getDaysUntilDateShort(endOfCurrentMandateDate(), considering: type))"
         case .byeByeJair:
-            return "👋  Tchau \(getDaysUntilDateShort(endOfCurrentMandateDate(), considering: type))"
+            return "👋  Tchau\(getDaysUntilDateShort(endOfCurrentMandateDate(), considering: type))"
         case .veryPhallicReference:
             return "·  Jambro👌 \(getDaysUntilDateShort(endOfCurrentMandateDate(), considering: type))"
         }
