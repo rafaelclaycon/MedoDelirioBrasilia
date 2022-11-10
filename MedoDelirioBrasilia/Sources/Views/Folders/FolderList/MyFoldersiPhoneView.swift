@@ -36,6 +36,12 @@ struct MyFoldersiPhoneView: View {
                         Image(systemName: "plus")
                     }
                 }
+                .onChange(of: isShowingFolderInfoEditingSheet) { isShowing in
+                    if isShowing == false {
+                        updateFolderList = true
+                        folderForEditingOnSheet = nil
+                    }
+                }
             }
         }
         .sheet(isPresented: $isShowingFolderInfoEditingSheet) {
