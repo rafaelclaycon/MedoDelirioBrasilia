@@ -7582,5 +7582,25 @@
         "dateAdded": "2022-11-08T00:00:00Z",
         "isOffensive": true,
         "isNew": true
+    },
+    {
+        "id": "27605A38-3398-446B-B027-8A54B5AAB534",
+        "title": "CODIB-19",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "CODIB-19 codib 19 covid-19 covid 19",
+        "filename": "Jair Bolsonaro - CODIB-19.mp3",
+        "dateAdded": "2022-11-10T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "74D9AB49-38C3-48AA-BF11-371B56ED38A2",
+        "title": "Pode botar, CODIB-19",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "pode botar CODIB-19 codib 19 covid-19 covid 19",
+        "filename": "Jair Bolsonaro - Pode botar, CODIB-19.mp3",
+        "dateAdded": "2022-11-10T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
     }
 ]
