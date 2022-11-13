@@ -7602,5 +7602,35 @@
         "dateAdded": "2022-11-10T00:00:00Z",
         "isOffensive": false,
         "isNew": false
+    },
+    {
+        "id": "F13653A5-5401-4680-B38C-CC1AF865BDA0",
+        "title": "A sensibilidade incrível desse homem",
+        "authorId": "A329D501-7BD3-4B9C-8FBD-99BFD3AF3E13",
+        "description": "A sensibilidade incrivel desse homem",
+        "filename": "Renan (Choque de Cultura) - A sensibilidade incrivel desse homem.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "7FC6B14E-9376-41EB-AA5A-03B8B8719A7A",
+        "title": "Todo mundo sabe que eu tenho grande sensibilidade nisso daí",
+        "authorId": "1E694793-C6D0-4CAD-A48D-2985B63CB7FE",
+        "description": "Todo mundo sabe que eu tenho grande sensibilidade nisso dai",
+        "filename": "Marcelo Adnet (como Jair Bolsonaro) - Todo mundo sabe que eu tenho grande sensibilidade nisso dai.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "8B9CDC1B-6D80-47B4-8283-250A8C492422",
+        "title": "Não tem qualquer sensibilidade",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Nao tem qualquer sensibilidade",
+        "filename": "Jair Bolsonaro - Nao tem qualquer sensibilidade.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
     }
 ]
