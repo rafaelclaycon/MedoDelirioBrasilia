@@ -7506,7 +7506,7 @@
     {
         "id": "5F88BC5B-176E-49C1-9788-2E445D17B3A2",
         "title": "Gente nojenta como você",
-        "authorId": "2BE52574-CEB1-4C0D-BCE5-5D4E97312F52",
+        "authorId": "BC2818F5-4FA5-46FC-90C3-075691F3E979",
         "description": "gente nojenta como você",
         "filename": "Frederico Davila - Gente nojenta como voce.mp3",
         "dateAdded": "2022-11-07T00:00:00Z",
@@ -7602,5 +7602,145 @@
         "dateAdded": "2022-11-10T00:00:00Z",
         "isOffensive": false,
         "isNew": false
+    },
+    {
+        "id": "F13653A5-5401-4680-B38C-CC1AF865BDA0",
+        "title": "A sensibilidade incrível desse homem",
+        "authorId": "A329D501-7BD3-4B9C-8FBD-99BFD3AF3E13",
+        "description": "A sensibilidade incrivel desse homem",
+        "filename": "Renan (Choque de Cultura) - A sensibilidade incrivel desse homem.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "7FC6B14E-9376-41EB-AA5A-03B8B8719A7A",
+        "title": "Todo mundo sabe que eu tenho grande sensibilidade nisso daí",
+        "authorId": "1E694793-C6D0-4CAD-A48D-2985B63CB7FE",
+        "description": "Todo mundo sabe que eu tenho grande sensibilidade nisso dai",
+        "filename": "Marcelo Adnet (como Jair Bolsonaro) - Todo mundo sabe que eu tenho grande sensibilidade nisso dai.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "8B9CDC1B-6D80-47B4-8283-250A8C492422",
+        "title": "Não tem qualquer sensibilidade",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Nao tem qualquer sensibilidade",
+        "filename": "Jair Bolsonaro - Nao tem qualquer sensibilidade.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "D19C1FF7-43D0-4724-9262-38C0FBBBF893",
+        "title": "A quem interessa o caos no Brasil?",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "A quem interessa o caos no Brasil",
+        "filename": "Jair Bolsonaro - A quem interessa o caos no Brasil.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "C68375FD-624D-45CE-9D93-BBE1F992150B",
+        "title": "O caos vem aí",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "O caos vem ai",
+        "filename": "Jair Bolsonaro - O caos vem ai.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "6AD29CDF-D423-4D8F-87FA-E99FD00E524D",
+        "title": "Seu bosta, seu obtuso, seu ser maldito",
+        "authorId": "5328EB33-A71C-4A07-94CE-B374AC937319",
+        "description": "Seu bosta seu obtuso seu ser maldito",
+        "filename": "Gaucho Puto - Seu bosta, seu obtuso, seu ser maldito.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "99D8F5FD-62C0-4578-A9BF-0C34E3016378",
+        "title": "Seu obtuso",
+        "authorId": "5328EB33-A71C-4A07-94CE-B374AC937319",
+        "description": "Seu obtuso",
+        "filename": "Gaucho Puto - Seu obtuso.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "6642FDCB-6517-4A8E-9697-579309A4167E",
+        "title": "O dia foi de caos",
+        "authorId": "0C347F20-86F2-4A85-99B5-F27DC55B9859",
+        "description": "O dia foi de caos",
+        "filename": "Jornal da Record - O dia foi de caos.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "08E32A35-7ACB-48E4-8C89-94B0990BD73D",
+        "title": "Aqueles que patrocinam o caos sabem o que estão fazendo",
+        "authorId": "9DA5C94C-7EF4-42D2-9769-DB55BCF391AE",
+        "description": "Aqueles que patrocinam esse caos sabem o que estao fazendo para solapar o estado de direito",
+        "filename": "Edson Fachin - Aqueles que patrocinam o caos sabem o que estao fazendo.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "828D5E60-572C-4EDD-8BC9-7CF373EB83BB",
+        "title": "Governo Bolsonaro, o mais baixo degrau da indigência humana",
+        "authorId": "FB58B8EE-4DD6-45F7-ACBE-D26B7AF6B43A",
+        "description": "o caos do governo jair Bolsonaro entrara para historia como o mais baixo degrau da indigencia humana e civilizatoria",
+        "filename": "Renan Calheiros - Governo Bolsonaro, o mais baixo degrau da indigencia humana.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "898D518E-D42E-4701-8EF3-67A3EC5F479F",
+        "title": "Quem promove o nós contra eles propaga o caos",
+        "authorId": "C159C27D-3CCD-4622-8716-35162B89AB9F",
+        "description": "todos sabemos que quem promove o discurso do nos contra eles nao propaga a democracia mas a politica do caos",
+        "filename": "Luiz Fux - Quem promove o nos contra eles promove o caos.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "93B1076F-DE12-478B-B2EC-047959C61122",
+        "title": "Estrategia golpista para criar o caos não é contragolpe, é golpe",
+        "authorId": "66E5E3E2-A90C-4BE2-A0DB-E9E63A2ABF0B",
+        "description": "o presidente trump estava provocando um motim possivelmente esperando por uma desculpa para invocar a lei da insurreicao e chamar os militares é o que o presidente da republica pretende fazer aqui no brasil ele quer o caos nas ruas pra diante do caos poder usar a desculpa do artigo 142 e dizer pra garantir a lei e a ordem eu invoco as forças armadas pra segurar um golpe que ele pretende dar nao é contragolpe é golpe",
+        "filename": "Alessandro Molon - Estrategia golpista para criar o caos nao e contragolpe, e golpe.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "4D1D452B-1392-4136-A7A4-41CAAD22C318",
+        "title": "Propaganda da Ditadura Militar",
+        "authorId": "26B71AC1-32E0-479B-96FE-3B1AFDBB2437",
+        "description": "Propaganda da Ditadura Militar no inicio de 1964 assim era o dia-a-dia agitacao desordem intranquilidade o povo exigiu o fim da anarquia o exercito solidario com as legitimas aspiracoes do povo cumpriu sua missao constitucional garantindo a lei e a ordem exercito compromisso com a democracia",
+        "filename": "Propaganda da Ditadura Militar.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "FBB451C7-98E2-421E-96F8-0CAA5DF6A5D1",
+        "title": "Depressão, violência, brigas, morte, caos",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Depressao violencia brigas morte caos",
+        "filename": "Jair Bolsonaro - Depressao, violencia, brigas, morte, caos.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
     }
 ]
