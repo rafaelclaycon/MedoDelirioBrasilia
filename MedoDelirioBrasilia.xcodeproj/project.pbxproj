@@ -227,6 +227,8 @@
 		D94611802861480A00C4FB7E /* FolderInfoEditingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D946117F2861480A00C4FB7E /* FolderInfoEditingView.swift */; };
 		D9461182286159BC00C4FB7E /* UserFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9461181286159BC00C4FB7E /* UserFolder.swift */; };
 		D94656D928450535008B4785 /* SQLiteMigrationManager in Frameworks */ = {isa = PBXBuildFile; productRef = D94656D828450535008B4785 /* SQLiteMigrationManager */; };
+		D948E9822921BF3400D047D3 /* Jair Bolsonaro - A quem interessa o caos no Brasil.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D948E9812921BF3300D047D3 /* Jair Bolsonaro - A quem interessa o caos no Brasil.mp3 */; };
+		D948E9842921BFD600D047D3 /* Jair Bolsonaro - O caos vem ai.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D948E9832921BFD600D047D3 /* Jair Bolsonaro - O caos vem ai.mp3 */; };
 		D9491810288606E00079F545 /* SettingsCasingWithCloseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D949180F288606E00079F545 /* SettingsCasingWithCloseView.swift */; };
 		D949181228860ABC0079F545 /* AllFoldersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D949181128860ABC0079F545 /* AllFoldersView.swift */; };
 		D94AD34928811ADC00D3E4F0 /* Versioneer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94AD34828811ADC00D3E4F0 /* Versioneer.swift */; };
@@ -1337,6 +1339,8 @@
 		D946117D28613D3200C4FB7E /* CollectionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDetailView.swift; sourceTree = "<group>"; };
 		D946117F2861480A00C4FB7E /* FolderInfoEditingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderInfoEditingView.swift; sourceTree = "<group>"; };
 		D9461181286159BC00C4FB7E /* UserFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFolder.swift; sourceTree = "<group>"; };
+		D948E9812921BF3300D047D3 /* Jair Bolsonaro - A quem interessa o caos no Brasil.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - A quem interessa o caos no Brasil.mp3"; sourceTree = "<group>"; };
+		D948E9832921BFD600D047D3 /* Jair Bolsonaro - O caos vem ai.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - O caos vem ai.mp3"; sourceTree = "<group>"; };
 		D949180F288606E00079F545 /* SettingsCasingWithCloseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCasingWithCloseView.swift; sourceTree = "<group>"; };
 		D949181128860ABC0079F545 /* AllFoldersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFoldersView.swift; sourceTree = "<group>"; };
 		D94AD34828811ADC00D3E4F0 /* Versioneer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Versioneer.swift; sourceTree = "<group>"; };
@@ -2246,6 +2250,8 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D948E9832921BFD600D047D3 /* Jair Bolsonaro - O caos vem ai.mp3 */,
+				D948E9812921BF3300D047D3 /* Jair Bolsonaro - A quem interessa o caos no Brasil.mp3 */,
 				D989D3B92921AE1C00DFB333 /* Jair Bolsonaro - Nao tem qualquer sensibilidade.mp3 */,
 				D989D3B82921AE1B00DFB333 /* Marcelo Adnet (como Jair Bolsonaro) - Todo mundo sabe que eu tenho grande sensibilidade nisso dai.mp3 */,
 				D989D3B62921AD3400DFB333 /* Renan (Choque de Cultura) - A sensibilidade incrivel desse homem.mp3 */,
@@ -4145,6 +4151,7 @@
 				D975FED62880B4F20035E6F2 /* Cristiano Botafogo - Mix de insanidade.mp3 in Resources */,
 				D9CB84F528B2E31D00E815C2 /* Alvaro Borba - A Verdadeira Polarizacao.mp3 in Resources */,
 				D9D856F5288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3 in Resources */,
+				D948E9842921BFD600D047D3 /* Jair Bolsonaro - O caos vem ai.mp3 in Resources */,
 				D975FED92880B4F20035E6F2 /* TV BRASIL - Bolsonaro - Pretiputi, pretiputi, pretiputi.mp3 in Resources */,
 				D97500512880B5190035E6F2 /* MULTISHOW - Gloria Groove - Quer dizer que eles querem calar a gente censura 2022 caralho fora bolsonaro.mp3 in Resources */,
 				D975FFA02880B4F20035E6F2 /* Bolsonaro - a imprensa mundial e de esquerda.mp3 in Resources */,
@@ -4677,6 +4684,7 @@
 				D975FF602880B4F20035E6F2 /* RADIO BANDNEWS FM - Boechat - Nao significa absolutamente nada.mp3 in Resources */,
 				D975FE542880B4F20035E6F2 /* Sheldon - Oh Really short.mp3 in Resources */,
 				D92AD1C52883434C001CBCDF /* Bolsonaro - E uma canalhice o que voces fazem.mp3 in Resources */,
+				D948E9822921BF3400D047D3 /* Jair Bolsonaro - A quem interessa o caos no Brasil.mp3 in Resources */,
 				D91793B2288E3CF0009C3165 /* Jair Bolsonaro - Canalhas mil vezes.mp3 in Resources */,
 				D975FF6B2880B4F20035E6F2 /* Maluf - Nao lhe dou o aparte.mp3 in Resources */,
 				D97500392880B4F20035E6F2 /* ATILA IAMARINO - E vao empilhar sequela em cima de sequela.mp3 in Resources */,
@@ -5065,7 +5073,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 5.17;
+				MARKETING_VERSION = 5.18;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -5097,7 +5105,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 5.17;
+				MARKETING_VERSION = 5.18;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -5253,7 +5261,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.17;
+				MARKETING_VERSION = 5.18;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -5294,7 +5302,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.17;
+				MARKETING_VERSION = 5.18;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

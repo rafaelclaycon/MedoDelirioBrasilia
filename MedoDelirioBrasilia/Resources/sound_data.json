@@ -7632,5 +7632,25 @@
         "dateAdded": "2022-11-13T00:00:00Z",
         "isOffensive": true,
         "isNew": true
+    },
+    {
+        "id": "D19C1FF7-43D0-4724-9262-38C0FBBBF893",
+        "title": "A quem interessa o caos no Brasil?",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "A quem interessa o caos no Brasil",
+        "filename": "Jair Bolsonaro - A quem interessa o caos no Brasil.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "C68375FD-624D-45CE-9D93-BBE1F992150B",
+        "title": "O caos vem aí",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "O caos vem ai",
+        "filename": "Jair Bolsonaro - O caos vem ai.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
     }
 ]
