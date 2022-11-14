@@ -238,6 +238,7 @@
 		D948E9942921F74F00D047D3 /* Luiz Fux - Quem promove o nos contra eles promove o caos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D948E98D2921F74F00D047D3 /* Luiz Fux - Quem promove o nos contra eles promove o caos.mp3 */; };
 		D948E9952921F74F00D047D3 /* Jornal da Record - O dia foi de caos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D948E98E2921F74F00D047D3 /* Jornal da Record - O dia foi de caos.mp3 */; };
 		D948E9962921F74F00D047D3 /* Alessandro Molon - Estrategia golpista para criar o caos nao e contragolpe, e golpe.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D948E98F2921F74F00D047D3 /* Alessandro Molon - Estrategia golpista para criar o caos nao e contragolpe, e golpe.mp3 */; };
+		D948E9982921FCB000D047D3 /* Marcelo Adnet (como Jair Bolsonaro) - Todo mundo sabe que eu tenho grande sensibilidade nisso dai.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D948E9972921FCB000D047D3 /* Marcelo Adnet (como Jair Bolsonaro) - Todo mundo sabe que eu tenho grande sensibilidade nisso dai.mp3 */; };
 		D9491810288606E00079F545 /* SettingsCasingWithCloseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D949180F288606E00079F545 /* SettingsCasingWithCloseView.swift */; };
 		D949181228860ABC0079F545 /* AllFoldersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D949181128860ABC0079F545 /* AllFoldersView.swift */; };
 		D94AD34928811ADC00D3E4F0 /* Versioneer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94AD34828811ADC00D3E4F0 /* Versioneer.swift */; };
@@ -895,7 +896,6 @@
 		D9877D2B2869845400B541F9 /* Sharer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9877D2A2869845400B541F9 /* Sharer.swift */; };
 		D988C523283C33E100D64404 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D988C522283C33E100D64404 /* UserSettings.swift */; };
 		D989D3B72921AD3500DFB333 /* Renan (Choque de Cultura) - A sensibilidade incrivel desse homem.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D989D3B62921AD3400DFB333 /* Renan (Choque de Cultura) - A sensibilidade incrivel desse homem.mp3 */; };
-		D989D3BA2921AE1C00DFB333 /* Marcelo Adnet (como Jair Bolsonaro) - Todo mundo sabe que eu tenho grande sensibilidade nisso dai.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D989D3B82921AE1B00DFB333 /* Marcelo Adnet (como Jair Bolsonaro) - Todo mundo sabe que eu tenho grande sensibilidade nisso dai.mp3 */; };
 		D989D3BB2921AE1C00DFB333 /* Jair Bolsonaro - Nao tem qualquer sensibilidade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D989D3B92921AE1C00DFB333 /* Jair Bolsonaro - Nao tem qualquer sensibilidade.mp3 */; };
 		D98B291D28691C5C008A78AE /* ColorSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98B291C28691C5C008A78AE /* ColorSelectionCell.swift */; };
 		D98B9AD628CEBD2D00B82EDE /* Imbrochavel 5 vezes.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98B9AD328CEBD2D00B82EDE /* Imbrochavel 5 vezes.mp3 */; };
@@ -1359,6 +1359,7 @@
 		D948E98D2921F74F00D047D3 /* Luiz Fux - Quem promove o nos contra eles promove o caos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Luiz Fux - Quem promove o nos contra eles promove o caos.mp3"; sourceTree = "<group>"; };
 		D948E98E2921F74F00D047D3 /* Jornal da Record - O dia foi de caos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jornal da Record - O dia foi de caos.mp3"; sourceTree = "<group>"; };
 		D948E98F2921F74F00D047D3 /* Alessandro Molon - Estrategia golpista para criar o caos nao e contragolpe, e golpe.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alessandro Molon - Estrategia golpista para criar o caos nao e contragolpe, e golpe.mp3"; sourceTree = "<group>"; };
+		D948E9972921FCB000D047D3 /* Marcelo Adnet (como Jair Bolsonaro) - Todo mundo sabe que eu tenho grande sensibilidade nisso dai.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Marcelo Adnet (como Jair Bolsonaro) - Todo mundo sabe que eu tenho grande sensibilidade nisso dai.mp3"; sourceTree = "<group>"; };
 		D949180F288606E00079F545 /* SettingsCasingWithCloseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCasingWithCloseView.swift; sourceTree = "<group>"; };
 		D949181128860ABC0079F545 /* AllFoldersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFoldersView.swift; sourceTree = "<group>"; };
 		D94AD34828811ADC00D3E4F0 /* Versioneer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Versioneer.swift; sourceTree = "<group>"; };
@@ -2019,7 +2020,6 @@
 		D9877D2A2869845400B541F9 /* Sharer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sharer.swift; sourceTree = "<group>"; };
 		D988C522283C33E100D64404 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		D989D3B62921AD3400DFB333 /* Renan (Choque de Cultura) - A sensibilidade incrivel desse homem.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Renan (Choque de Cultura) - A sensibilidade incrivel desse homem.mp3"; sourceTree = "<group>"; };
-		D989D3B82921AE1B00DFB333 /* Marcelo Adnet (como Jair Bolsonaro) - Todo mundo sabe que eu tenho grande sensibilidade nisso dai.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Marcelo Adnet (como Jair Bolsonaro) - Todo mundo sabe que eu tenho grande sensibilidade nisso dai.mp3"; sourceTree = "<group>"; };
 		D989D3B92921AE1C00DFB333 /* Jair Bolsonaro - Nao tem qualquer sensibilidade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Nao tem qualquer sensibilidade.mp3"; sourceTree = "<group>"; };
 		D98B291C28691C5C008A78AE /* ColorSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSelectionCell.swift; sourceTree = "<group>"; };
 		D98B9AD328CEBD2D00B82EDE /* Imbrochavel 5 vezes.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Imbrochavel 5 vezes.mp3"; sourceTree = "<group>"; };
@@ -2268,6 +2268,7 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D948E9972921FCB000D047D3 /* Marcelo Adnet (como Jair Bolsonaro) - Todo mundo sabe que eu tenho grande sensibilidade nisso dai.mp3 */,
 				D948E98F2921F74F00D047D3 /* Alessandro Molon - Estrategia golpista para criar o caos nao e contragolpe, e golpe.mp3 */,
 				D948E98A2921F74E00D047D3 /* Edson Fachin - Aqueles que patrocinam o caos sabem o que estao fazendo.mp3 */,
 				D948E9892921F74E00D047D3 /* Jair Bolsonaro - Depressao, violencia, brigas, morte, caos.mp3 */,
@@ -2280,7 +2281,6 @@
 				D948E9832921BFD600D047D3 /* Jair Bolsonaro - O caos vem ai.mp3 */,
 				D948E9812921BF3300D047D3 /* Jair Bolsonaro - A quem interessa o caos no Brasil.mp3 */,
 				D989D3B92921AE1C00DFB333 /* Jair Bolsonaro - Nao tem qualquer sensibilidade.mp3 */,
-				D989D3B82921AE1B00DFB333 /* Marcelo Adnet (como Jair Bolsonaro) - Todo mundo sabe que eu tenho grande sensibilidade nisso dai.mp3 */,
 				D989D3B62921AD3400DFB333 /* Renan (Choque de Cultura) - A sensibilidade incrivel desse homem.mp3 */,
 				D92EF4BE291CA5B9009E3E0A /* Jair Bolsonaro - CODIB-19.mp3 */,
 				D92EF4BD291CA5B9009E3E0A /* Jair Bolsonaro - Pode botar, CODIB-19.mp3 */,
@@ -4302,7 +4302,6 @@
 				D975FF202880B4F20035E6F2 /* Caue Moura - Foi mal tava doidao aqui nao seu arrombado.mp3 in Resources */,
 				D921F889288B0177003979CC /* Pouerpoint - Bolsonaro.mp3 in Resources */,
 				D97500382880B4F20035E6F2 /* Kajuru - Ele e burro short meme.mp3 in Resources */,
-				D989D3BA2921AE1C00DFB333 /* Marcelo Adnet (como Jair Bolsonaro) - Todo mundo sabe que eu tenho grande sensibilidade nisso dai.mp3 in Resources */,
 				D9BE7701290A895B00C8C0A6 /* Luiz Henrique Mandetta - Ta certissimo.mp3 in Resources */,
 				D975FFB02880B4F20035E6F2 /* Matheus Canella - e cada piada que eu fico putz.mp3 in Resources */,
 				D975FE2C2880B4F20035E6F2 /* Choque de Cultura - Falo com tranquilidade.mp3 in Resources */,
@@ -4764,6 +4763,7 @@
 				D975FE8E2880B4F20035E6F2 /* Regina Duarte - Pum.mp3 in Resources */,
 				D92AD1C32883407D001CBCDF /* Ricardo Boechat - Voce e um charlatao cara.mp3 in Resources */,
 				D975FE462880B4F20035E6F2 /* PODER360 - Paulo Guedes - Tem mais iPhones no Brasil que populacao brasileiros tem 2 iphones.mp3 in Resources */,
+				D948E9982921FCB000D047D3 /* Marcelo Adnet (como Jair Bolsonaro) - Todo mundo sabe que eu tenho grande sensibilidade nisso dai.mp3 in Resources */,
 				D975000D2880B4F20035E6F2 /* EMICIDA no loolapalooza - Tira o titulo e bolsonaro vai tomar no cu.mp3 in Resources */,
 				D975FFED2880B4F20035E6F2 /* Datena - Me pareceu uma grande marmelada.mp3 in Resources */,
 				49DEA9CC288115A9008C9BA1 /* Como assim eu nao entendi meme short.mp3 in Resources */,
