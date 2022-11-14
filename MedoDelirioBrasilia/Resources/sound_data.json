@@ -7506,7 +7506,7 @@
     {
         "id": "5F88BC5B-176E-49C1-9788-2E445D17B3A2",
         "title": "Gente nojenta como você",
-        "authorId": "2BE52574-CEB1-4C0D-BCE5-5D4E97312F52",
+        "authorId": "BC2818F5-4FA5-46FC-90C3-075691F3E979",
         "description": "gente nojenta como você",
         "filename": "Frederico Davila - Gente nojenta como voce.mp3",
         "dateAdded": "2022-11-07T00:00:00Z",
@@ -7651,6 +7651,96 @@
         "filename": "Jair Bolsonaro - O caos vem ai.mp3",
         "dateAdded": "2022-11-13T00:00:00Z",
         "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "6AD29CDF-D423-4D8F-87FA-E99FD00E524D",
+        "title": "Seu bosta, seu obtuso, seu ser maldito",
+        "authorId": "5328EB33-A71C-4A07-94CE-B374AC937319",
+        "description": "Seu bosta, seu obtuso, seu ser maldito",
+        "filename": "Gaucho Puto - Seu bosta, seu obtuso, seu ser maldito.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "99D8F5FD-62C0-4578-A9BF-0C34E3016378",
+        "title": "Seu obtuso",
+        "authorId": "5328EB33-A71C-4A07-94CE-B374AC937319",
+        "description": "Seu obtuso",
+        "filename": "Gaucho Puto - Seu obtuso.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "6642FDCB-6517-4A8E-9697-579309A4167E",
+        "title": "O dia foi de caos",
+        "authorId": "0C347F20-86F2-4A85-99B5-F27DC55B9859",
+        "description": "O dia foi de caos",
+        "filename": "Jornal da Record - O dia foi de caos.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "08E32A35-7ACB-48E4-8C89-94B0990BD73D",
+        "title": "Aqueles que patrocinam o caos sabem o que estão fazendo",
+        "authorId": "9DA5C94C-7EF4-42D2-9769-DB55BCF391AE",
+        "description": "Aqueles que patrocinam o caos sabem o que estao fazendo",
+        "filename": "Edson Fachin - Aqueles que patrocinam o caos sabem o que estao fazendo.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "828D5E60-572C-4EDD-8BC9-7CF373EB83BB",
+        "title": "Governo Bolsonaro, o mais baixo degrau da indigência humana",
+        "authorId": "FB58B8EE-4DD6-45F7-ACBE-D26B7AF6B43A",
+        "description": "Governo Bolsonaro, o mais baixo degrau da indigencia humana",
+        "filename": "Renan Calheiros - Governo Bolsonaro, o mais baixo degrau da indigencia humana.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "898D518E-D42E-4701-8EF3-67A3EC5F479F",
+        "title": "Quem promove o nós contra eles promove o caos",
+        "authorId": "C159C27D-3CCD-4622-8716-35162B89AB9F",
+        "description": "Quem promove o nos contra eles promove o caos",
+        "filename": "Luiz Fux - Quem promove o nos contra eles promove o caos.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "93B1076F-DE12-478B-B2EC-047959C61122",
+        "title": "Estrategia golpista para criar o caos não é contragolpe, é golpe",
+        "authorId": "66E5E3E2-A90C-4BE2-A0DB-E9E63A2ABF0B",
+        "description": "Estrategia golpista para criar o caos nao e contragolpe, e golpe",
+        "filename": "Alessandro Molon - Estrategia golpista para criar o caos nao e contragolpe, e golpe.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "4D1D452B-1392-4136-A7A4-41CAAD22C318",
+        "title": "Propaganda da Ditadura Militar",
+        "authorId": "26B71AC1-32E0-479B-96FE-3B1AFDBB2437",
+        "description": "Propaganda da Ditadura Militar",
+        "filename": "Propaganda da Ditadura Militar.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "FBB451C7-98E2-421E-96F8-0CAA5DF6A5D1",
+        "title": "Depressão, violência, brigas, morte, caos",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Depressao violencia brigas morte caos",
+        "filename": "Jair Bolsonaro - Depressao, violencia, brigas, morte, caos.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": true,
         "isNew": true
     }
 ]
