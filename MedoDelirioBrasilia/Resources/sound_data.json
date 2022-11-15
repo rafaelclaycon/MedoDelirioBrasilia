@@ -7611,7 +7611,7 @@
         "filename": "Renan (Choque de Cultura) - A sensibilidade incrivel desse homem.mp3",
         "dateAdded": "2022-11-13T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "7FC6B14E-9376-41EB-AA5A-03B8B8719A7A",
@@ -7621,7 +7621,7 @@
         "filename": "Marcelo Adnet (como Jair Bolsonaro) - Todo mundo sabe que eu tenho grande sensibilidade nisso dai.mp3",
         "dateAdded": "2022-11-13T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "8B9CDC1B-6D80-47B4-8283-250A8C492422",
@@ -7631,7 +7631,7 @@
         "filename": "Jair Bolsonaro - Nao tem qualquer sensibilidade.mp3",
         "dateAdded": "2022-11-13T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "D19C1FF7-43D0-4724-9262-38C0FBBBF893",
@@ -7641,7 +7641,7 @@
         "filename": "Jair Bolsonaro - A quem interessa o caos no Brasil.mp3",
         "dateAdded": "2022-11-13T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "C68375FD-624D-45CE-9D93-BBE1F992150B",
@@ -7651,7 +7651,7 @@
         "filename": "Jair Bolsonaro - O caos vem ai.mp3",
         "dateAdded": "2022-11-13T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "6AD29CDF-D423-4D8F-87FA-E99FD00E524D",
@@ -7661,7 +7661,7 @@
         "filename": "Gaucho Puto - Seu bosta, seu obtuso, seu ser maldito.mp3",
         "dateAdded": "2022-11-13T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "99D8F5FD-62C0-4578-A9BF-0C34E3016378",
@@ -7671,7 +7671,7 @@
         "filename": "Gaucho Puto - Seu obtuso.mp3",
         "dateAdded": "2022-11-13T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "6642FDCB-6517-4A8E-9697-579309A4167E",
@@ -7681,7 +7681,7 @@
         "filename": "Jornal da Record - O dia foi de caos.mp3",
         "dateAdded": "2022-11-13T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "08E32A35-7ACB-48E4-8C89-94B0990BD73D",
@@ -7691,7 +7691,7 @@
         "filename": "Edson Fachin - Aqueles que patrocinam o caos sabem o que estao fazendo.mp3",
         "dateAdded": "2022-11-13T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "828D5E60-572C-4EDD-8BC9-7CF373EB83BB",
@@ -7701,7 +7701,7 @@
         "filename": "Renan Calheiros - Governo Bolsonaro, o mais baixo degrau da indigencia humana.mp3",
         "dateAdded": "2022-11-13T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "898D518E-D42E-4701-8EF3-67A3EC5F479F",
@@ -7711,7 +7711,7 @@
         "filename": "Luiz Fux - Quem promove o nos contra eles promove o caos.mp3",
         "dateAdded": "2022-11-13T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "93B1076F-DE12-478B-B2EC-047959C61122",
@@ -7721,7 +7721,7 @@
         "filename": "Alessandro Molon - Estrategia golpista para criar o caos nao e contragolpe, e golpe.mp3",
         "dateAdded": "2022-11-13T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "4D1D452B-1392-4136-A7A4-41CAAD22C318",
@@ -7731,7 +7731,7 @@
         "filename": "Propaganda da Ditadura Militar.mp3",
         "dateAdded": "2022-11-13T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "FBB451C7-98E2-421E-96F8-0CAA5DF6A5D1",
@@ -7740,6 +7740,16 @@
         "description": "Depressao violencia brigas morte caos",
         "filename": "Jair Bolsonaro - Depressao, violencia, brigas, morte, caos.mp3",
         "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "3CDB8B43-7777-4C66-B962-ECE1528AB8D8",
+        "title": "Perdeu, mané, não amola",
+        "authorId": "05A3C97F-68EE-4AEB-9BEA-761348725225",
+        "description": "Perdeu mane nao amola",
+        "filename": "Luis Roberto Barroso - Perdeu, mane, nao amola.mp3",
+        "dateAdded": "2022-11-15T00:00:00Z",
         "isOffensive": true,
         "isNew": true
     }
