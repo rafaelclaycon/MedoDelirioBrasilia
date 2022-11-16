@@ -164,7 +164,7 @@
     },
     {
         "id": "6CBDBB4C-15AD-4C97-91DF-97FCFAAE46D6",
-        "name": "Brizola"
+        "name": "Leonel Brizola"
     },
     {
         "id": "19F699FE-FFE1-4A9C-B19F-9C29D58A862E",
@@ -1292,5 +1292,9 @@
     {
         "id": "B5AE82A7-52D9-4B9F-8821-28AE2C869ED4",
         "name": "Ygona Moura"
+    },
+    {
+        "id": "C8BA79D4-6D75-440D-915B-14BAFDF41B46",
+        "name": "Flávio Dino"
     }
 ]
