@@ -7611,7 +7611,7 @@
         "filename": "Renan (Choque de Cultura) - A sensibilidade incrivel desse homem.mp3",
         "dateAdded": "2022-11-13T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "7FC6B14E-9376-41EB-AA5A-03B8B8719A7A",
@@ -7621,7 +7621,7 @@
         "filename": "Marcelo Adnet (como Jair Bolsonaro) - Todo mundo sabe que eu tenho grande sensibilidade nisso dai.mp3",
         "dateAdded": "2022-11-13T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "8B9CDC1B-6D80-47B4-8283-250A8C492422",
@@ -7631,7 +7631,7 @@
         "filename": "Jair Bolsonaro - Nao tem qualquer sensibilidade.mp3",
         "dateAdded": "2022-11-13T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "D19C1FF7-43D0-4724-9262-38C0FBBBF893",
@@ -7641,7 +7641,7 @@
         "filename": "Jair Bolsonaro - A quem interessa o caos no Brasil.mp3",
         "dateAdded": "2022-11-13T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "C68375FD-624D-45CE-9D93-BBE1F992150B",
@@ -7651,7 +7651,7 @@
         "filename": "Jair Bolsonaro - O caos vem ai.mp3",
         "dateAdded": "2022-11-13T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "6AD29CDF-D423-4D8F-87FA-E99FD00E524D",
@@ -7661,7 +7661,7 @@
         "filename": "Gaucho Puto - Seu bosta, seu obtuso, seu ser maldito.mp3",
         "dateAdded": "2022-11-13T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "99D8F5FD-62C0-4578-A9BF-0C34E3016378",
@@ -7671,7 +7671,7 @@
         "filename": "Gaucho Puto - Seu obtuso.mp3",
         "dateAdded": "2022-11-13T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "6642FDCB-6517-4A8E-9697-579309A4167E",
@@ -7681,7 +7681,7 @@
         "filename": "Jornal da Record - O dia foi de caos.mp3",
         "dateAdded": "2022-11-13T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "08E32A35-7ACB-48E4-8C89-94B0990BD73D",
@@ -7691,7 +7691,7 @@
         "filename": "Edson Fachin - Aqueles que patrocinam o caos sabem o que estao fazendo.mp3",
         "dateAdded": "2022-11-13T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "828D5E60-572C-4EDD-8BC9-7CF373EB83BB",
@@ -7701,7 +7701,7 @@
         "filename": "Renan Calheiros - Governo Bolsonaro, o mais baixo degrau da indigencia humana.mp3",
         "dateAdded": "2022-11-13T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "898D518E-D42E-4701-8EF3-67A3EC5F479F",
@@ -7711,7 +7711,7 @@
         "filename": "Luiz Fux - Quem promove o nos contra eles promove o caos.mp3",
         "dateAdded": "2022-11-13T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "93B1076F-DE12-478B-B2EC-047959C61122",
@@ -7721,7 +7721,7 @@
         "filename": "Alessandro Molon - Estrategia golpista para criar o caos nao e contragolpe, e golpe.mp3",
         "dateAdded": "2022-11-13T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "4D1D452B-1392-4136-A7A4-41CAAD22C318",
@@ -7731,7 +7731,7 @@
         "filename": "Propaganda da Ditadura Militar.mp3",
         "dateAdded": "2022-11-13T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "FBB451C7-98E2-421E-96F8-0CAA5DF6A5D1",
@@ -7741,6 +7741,86 @@
         "filename": "Jair Bolsonaro - Depressao, violencia, brigas, morte, caos.mp3",
         "dateAdded": "2022-11-13T00:00:00Z",
         "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "3CDB8B43-7777-4C66-B962-ECE1528AB8D8",
+        "title": "Perdeu, mané, não amola",
+        "authorId": "05A3C97F-68EE-4AEB-9BEA-761348725225",
+        "description": "Perdeu mane nao amola",
+        "filename": "Luis Roberto Barroso - Perdeu, mane, nao amola.mp3",
+        "dateAdded": "2022-11-16T00:00:00Z",
+        "isOffensive": true,
         "isNew": true
+    },
+    {
+        "id": "9C1D0E82-9AEE-4C7D-9826-B6D625717C18",
+        "title": "Por que o pobre não tá na planilha da Faria Lima?",
+        "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
+        "description": "por que que as pessoas são levadas a sofrerem por conta de garantir a tal da estabilidade fiscal nesse país por que que toda hora as pessoas falam é preciso é preciso sabe cortar gasto é preciso fazer superavite é preciso fazer teto de gastos por que que as mesmas pessoas que discutem com seriedade o teto de gastos nao discutem a questao social desse pais por que que o povo pobre nao tá na planilha da discussao da macro economia por que que a gente tem meta de inflacao e nao tem meta de crescimento",
+        "filename": "Lula - Por que o pobre nao ta na planilha da Faria Lima.mp3",
+        "dateAdded": "2022-11-16T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "50A0933B-85AA-4333-8372-BC71A9FDBF42",
+        "title": "A falácia da estabilidade fiscal",
+        "authorId": "F546B81B-ABF6-4DC1-8E54-A36119A599E5",
+        "description": "uma economia que diz que precisa primeiro estabilizar depois crescer depois distribuir é uma falacia e tem sido uma falacia nem estabiliza cresce aos solavancos e nao distribui se nao se preocupa com a justica social com quem paga a conta voce nao é um economista sério voce é um tecnocrata",
+        "filename": "Maria da Conceicao Tavares - A falacia da estabilidade fiscal.mp3",
+        "dateAdded": "2022-11-16T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "32714A58-2B95-4F39-8EC1-38FBB4B1A9BC",
+        "title": "A razão de ser da economia é o bem estar do povo",
+        "authorId": "6CBDBB4C-15AD-4C97-91DF-97FCFAAE46D6",
+        "description": "nao ha brasil sem ser humano nao ha brasil sem o povo brasileiro e eles tao querendo transformar o brasil numa empresa brasil é uma nacao e a sua economia e uma economia publica so tem razao de ser se se destina a trazer o bem estar do ser humano trazer o pleno emprego trazer a garantia de vida para todo mundo nao adianta ter economia aqui sem deficit publico economia equilibrada moeda estavel se a maioria do povo brasileiro esta morrendo de fome pra que que serve isso",
+        "filename": "Desconhecido - A razao de ser da economia e o bem estar do povo.mp3",
+        "dateAdded": "2022-11-16T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "DED18CF4-55EC-4211-88DF-56D9E27498B3",
+        "title": "A importância da consciência de classe",
+        "authorId": "0D442AB1-E098-4D15-A5DD-B67D8514872D",
+        "description": "eles sao manipulados a esse ponto de brigar pelo interesse do patrao eu nao vou brigar pelo interesse do qual eu recebo 10 por cento de 90 por cento quem tá com os 90 por cento que va la brigar consciencia de classe muita pouca gente tem que que a gente vai fazer consciencia do que tem que ser feito do que nao tem que ser feito pouca gente tem",
+        "filename": "Elis Regina - A importancia da consciencia de classe.mp3",
+        "dateAdded": "2022-11-16T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "0F69A1F1-D008-495B-B5B5-4E464A49E6A4",
+        "title": "Todo e qualquer direito trabalhista vai quebrar a burguesia",
+        "authorId": "0B091615-B4F2-4079-89E0-8CFE400F4856",
+        "description": "Todo e qualquer direito trabalhista vai quebrar a burguesia no seculo 19 voce ja via nao voces querem proibir trabalho infantil vai quebrar mulher gravida voce quer tirar mulher gravida da fabrica impossivel vai quebrar as empresas nao os caras que voces nao querem diminuir de 16 horas pra 14 impossivel vai quebrar as fabricas",
+        "filename": "Ian Neves - Todo e qualquer direito trabalhista vai quebrar a burguesia.mp3",
+        "dateAdded": "2022-11-16T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "7D3AADA0-A19A-4FB4-8BC8-A5D3B391970C",
+        "title": "A responsabilidade fiscal não será abandonada",
+        "authorId": "C8BA79D4-6D75-440D-915B-14BAFDF41B46",
+        "description": "Lula ja foi presidente o Alckmin já foi governador ou seja se trata de pessoas ja conhecidas evidente que uma inclinacao social imprescindivel nesse momento nao significa que havera o abandono da responsabilidade fiscal nao ha razao realmente para esse temor de medidas que aniquilem as contas publicas e isso nao vai acontecer no governo liderado pelo presidente lula",
+        "filename": "Desconhecido - A responsabilidade fiscal nao sera abandonada.mp3",
+        "dateAdded": "2022-11-16T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "512C770B-6188-4D76-B921-AD8B18253AE2",
+        "title": "Apaga isso agora!",
+        "authorId": "B5AE82A7-52D9-4B9F-8821-28AE2C869ED4",
+        "description": "Apaga isso agora",
+        "filename": "Ygona Moura - Apaga isso agora.mp3",
+        "dateAdded": "2022-02-14T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
     }
 ]
