@@ -7752,5 +7752,185 @@
         "dateAdded": "2022-11-15T00:00:00Z",
         "isOffensive": true,
         "isNew": true
+    },
+    {
+        "id": "E9C0E6F4-BA52-4C18-BD2D-A7D39CE7E5A8",
+        "title": "Eu por força de lei sou obrigado",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Eu por força de lei sou obrigado a ter que mandar vocês irem tomar no cu",
+        "filename": "Desconhecido - Eu por forca de lei sou obrigado.mp3",
+        "dateAdded": "2022-11-17T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "9CE6EAFC-3C19-424A-B358-AEE2733909F4",
+        "title": "Socorro! Nos ajudem!",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Socorro nos ajudem os meus filhos a minha familia a nação brasileira precisa de vocês socorro",
+        "filename": "Desconhecido - Socorro nos ajudem.mp3",
+        "dateAdded": "2022-11-17T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "5A080FBF-AC28-4B9C-95BD-C6A36BF259FA",
+        "title": "Está sendo um movimento passivo",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Está sendo um movimento passivo não tem violência não tem gangue LGBT",
+        "filename": "Desconhecido - Um movimento passivo.mp3",
+        "dateAdded": "2022-11-17T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "72526828-6F6D-4EFC-8437-12B6D2955A5C",
+        "title": "Uma manifestação passiva",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "estamos aqui nessa manifestação passiva pedindo o fechamento do FGTS e pedindo também que o ministro Alexandre de Moraes largue a presidência do PIS e do PASEP não queremos mais eleições",
+        "filename": "Desconhecido - Uma manifestacao passiva.mp3",
+        "dateAdded": "2022-11-17T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "1E07247D-DE01-469C-B871-40E5D8D03463",
+        "title": "Vontade de chorar e morrer, só isso",
+        "authorId": "E1FC8AFA-EE7F-40B6-B784-81B43E6F5F8E",
+        "description": "Vontade de chorar e morrer, só isso",
+        "filename": "Leonardo Bastos - Vontade de chorar e morrer so isso.mp3",
+        "dateAdded": "2022-11-17T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "57049E89-BAAA-406D-B483-070971E06EAF",
+        "title": "As Forças Armadas emitiram duas notas",
+        "authorId": "26B71AC1-32E0-479B-96FE-3B1AFDBB2437",
+        "description": "locutor militar as forças armadas emitiram duas notas",
+        "filename": "Locutor Militar - As Forcas Armadas emitiram duas notas.mp3",
+        "dateAdded": "2022-11-17T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "26F72A63-5955-47DF-9939-6187F8B8B7AE",
+        "title": "Os comandantes das três forças emitiram uma nota",
+        "authorId": "26B71AC1-32E0-479B-96FE-3B1AFDBB2437",
+        "description": "os comandantes da marinha exercito e aeronáutica emitiram uma nota",
+        "filename": "Locutor Militar - Os comandantes emitiram uma nota.mp3",
+        "dateAdded": "2022-11-17T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "E7B4BC8E-C59A-4D88-B56D-E20C32A70604",
+        "title": "Beber, cair",
+        "authorId": "1CB7AE33-7BDC-4009-B8C1-8B0DFD417058",
+        "description": "beber cair",
+        "filename": "Rai Saia Rodada -  Beber, Cair.mp3",
+        "dateAdded": "2022-11-17T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "5DA9073A-75B8-4F72-8FC6-21028A4B77E4",
+        "title": "Vai chorar é, vai chorar é (Instrumental",
+        "authorId": "D8738C87-8962-418E-ADBF-9B1DC3D30528",
+        "description": "vai chorar é chore na minha instrumental",
+        "filename": "Saiddy Bamba -  Vai chorar e vai chorar e instrumental.mp3",
+        "dateAdded": "2022-11-17T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "043F12BE-5523-4DE7-92DE-336D7EA59ED5",
+        "title": "Não não não não não não não",
+        "authorId": "D8738C87-8962-418E-ADBF-9B1DC3D30528",
+        "description": "Não não não não não não não olha só",
+        "filename": "Saiddy Bamba - Nao nao nao nao short.mp3",
+        "dateAdded": "2022-11-17T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "949B608C-7A7E-4B69-A9E7-0ABB15E49348",
+        "title": "Sim sim sim não não não",
+        "authorId": "D8738C87-8962-418E-ADBF-9B1DC3D30528",
+        "description": "Sim sim sim não não não",
+        "filename": "Saiddy Bamba - SIM SIM SIM NAO NAO NAO.mp3",
+        "dateAdded": "2022-11-17T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "96A7026E-61B6-4A3C-B844-DEF32262E4A4",
+        "title": "Eu não sabia que ele era safado assim não, moço",
+        "authorId": "08E925A9-9553-456B-8541-499BF578225B",
+        "description": "eu não sabia que ele era safado assim não, moço",
+        "filename": "Jojo Todynho - Eu nao sabia que ele era safado assim nao moco.mp3",
+        "dateAdded": "2022-11-17T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "9839F467-32CA-4CE5-ACE5-0058F461A040",
+        "title": "Tarado",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "tarado",
+        "filename": "Jair Bolsonaro - Tarado.mp3",
+        "dateAdded": "2022-11-17T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "99E4AD7C-0495-4844-97D1-18FBE56FC030",
+        "title": "Eu nunca sentei na mesa",
+        "authorId": "71128756-78A9-4B31-A7D8-CE120147C481",
+        "description": "eu nunca sentei na mesa",
+        "filename": "Eduardo Pazuello - Eu nunca sentei na mesa.mp3",
+        "dateAdded": "2022-11-17T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "2CE3571B-83A7-456C-9892-C71BB3D5B2E6",
+        "title": "Tu demorou pra sentar aqui na mesa",
+        "authorId": "71128756-78A9-4B31-A7D8-CE120147C481",
+        "description": "tu demorou pra sentar aqui na mesa",
+        "filename": "Eduardo Pazuello - Tu demorou pra sentar aqui na mesa.mp3",
+        "dateAdded": "2022-11-17T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "66EB23ED-4B81-4517-819B-3231F61E65E5",
+        "title": "Cinquenta sentadas",
+        "authorId": "71128756-78A9-4B31-A7D8-CE120147C481",
+        "description": "cinquenta sentadas",
+        "filename": "Eduardo Pazuello - Cinquenta sentadas.mp3",
+        "dateAdded": "2022-11-17T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "81D31D1A-CEF2-4EDC-9EA7-89AED359DDC8",
+        "title": "Confira comigo no replay",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "confira comigo no replay",
+        "filename": "Cristiano Botafogo - Confira comigo no replay.mp3",
+        "dateAdded": "2022-11-17T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "1501DCD2-0268-4ECF-AB79-B865506C7528",
+        "title": "O terrível editorialista do Globo",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "o terrível editorialista do Globo",
+        "filename": "Cristiano Botafogo - O terrivel editorialista do Globo.mp3",
+        "dateAdded": "2022-11-17T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
     }
 ]
