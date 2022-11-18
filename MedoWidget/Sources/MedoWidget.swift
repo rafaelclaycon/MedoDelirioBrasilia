@@ -66,7 +66,7 @@ struct MedoWidgetEntryView : View {
                 
                 Text("Fim do Governo")
                     .textCase(.uppercase)
-                    //.font(.system(size: 13))
+                    .font(.system(size: 13))
                     .fontWeight(.medium)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
