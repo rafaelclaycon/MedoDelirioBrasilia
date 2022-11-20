@@ -87,6 +87,7 @@ struct SoundsView: View {
                 if showNoFavoritesView {
                     NoFavoritesView()
                         .padding(.horizontal, 25)
+                        .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? 100 : 15)
                 } else if currentMode == .folders {
                     MyFoldersiPhoneView()
                 } else if currentMode == .byAuthor {
@@ -257,7 +258,7 @@ struct SoundsView: View {
                                     .font(.subheadline)
                                     .bold()
                                     .padding(.top, 10)
-                                    .padding(.bottom, 18)
+                                    .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? 75 : 18)
                             }
                         }
                     }
