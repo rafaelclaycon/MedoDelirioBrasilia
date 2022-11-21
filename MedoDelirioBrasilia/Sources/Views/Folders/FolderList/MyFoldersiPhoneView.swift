@@ -11,8 +11,8 @@ struct MyFoldersiPhoneView: View {
 
     @State private var isShowingFolderInfoEditingSheet: Bool = false
     @State private var folderForEditingOnSheet: UserFolder? = nil
-    @State var updateFolderList: Bool = false
-    @State var deleteFolderAid = DeleteFolderViewAid()
+    @State var updateFolderList: Bool = false // Does nothing, just here to satisfy FolderList :)
+    @State var deleteFolderAid = DeleteFolderViewAid() // Same as above
     @State var folderIdForEditing: String = .empty
     
     var body: some View {
@@ -50,15 +50,6 @@ struct MyFoldersiPhoneView: View {
             } else {
                 FolderInfoEditingView(isBeingShown: $isShowingFolderInfoEditingSheet, selectedBackgroundColor: "pastelPurple")
             }
-        }
-        .alert(isPresented: $deleteFolderAid.showAlert) {
-            Alert(title: Text(deleteFolderAid.alertTitle), message: Text(deleteFolderAid.alertMessage), primaryButton: .destructive(Text("Apagar"), action: {
-                guard deleteFolderAid.folderIdForDeletion.isEmpty == false else {
-                    return
-                }
-                try? database.deleteUserFolder(withId: deleteFolderAid.folderIdForDeletion)
-                updateFolderList = true
-            }), secondaryButton: .cancel(Text("Cancelar")))
         }
         .onChange(of: folderIdForEditing) { folderIdForEditing in
             if folderIdForEditing.isEmpty == false {

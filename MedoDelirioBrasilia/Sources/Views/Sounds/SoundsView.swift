@@ -51,6 +51,9 @@ struct SoundsView: View {
     // Trends
     @Binding var soundIdToGoToFromTrends: String
     
+    // Folders
+    @StateObject var deleteFolderAid = DeleteFolderViewAidiPhone()
+    
     private var searchResults: [Sound] {
         if searchText.isEmpty {
             return viewModel.sounds
@@ -90,6 +93,7 @@ struct SoundsView: View {
                         .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? 100 : 15)
                 } else if currentMode == .folders {
                     MyFoldersiPhoneView()
+                        .environmentObject(deleteFolderAid)
                 } else if currentMode == .byAuthor {
                     AuthorsView(sortOption: $viewModel.authorSortOption, sortAction: $authorSortAction)
                 } else {
@@ -297,10 +301,20 @@ struct SoundsView: View {
                 switch viewModel.alertType {
                 case .singleOption:
                     return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
-                default:
+
+                case .twoOptions:
                     return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .default(Text("Relatar Problema por E-mail"), action: {
                         viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog = true
                     }), secondaryButton: .cancel(Text("Fechar")))
+
+                case .twoOptionsOneDelete:
+                    return Alert(title: Text(deleteFolderAid.alertTitle), message: Text(deleteFolderAid.alertMessage), primaryButton: .destructive(Text("Apagar"), action: {
+                        guard deleteFolderAid.folderIdForDeletion.isEmpty == false else {
+                            return
+                        }
+                        try? database.deleteUserFolder(withId: deleteFolderAid.folderIdForDeletion)
+                        deleteFolderAid.updateFolderList = true
+                    }), secondaryButton: .cancel(Text("Cancelar")))
                 }
             }
             .sheet(isPresented: $viewModel.isShowingShareSheet) {
@@ -340,6 +354,12 @@ struct SoundsView: View {
                     } else {
                         viewModel.shareVideo(withPath: videoResultPath, andContentId: shareAsVideo_Result.contentId)
                     }
+                }
+            }
+            .onChange(of: deleteFolderAid.showAlert) { showAlert in
+                if showAlert {
+                    viewModel.alertType = .twoOptionsOneDelete
+                    viewModel.showAlert = true
                 }
             }
             

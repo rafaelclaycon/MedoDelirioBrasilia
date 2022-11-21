@@ -22,3 +22,13 @@ struct DeleteFolderViewAid {
     }
 
 }
+
+class DeleteFolderViewAidiPhone: ObservableObject {
+
+    @Published var alertTitle: String = .empty
+    @Published var alertMessage: String = .empty
+    @Published var showAlert: Bool = false
+    @Published var folderIdForDeletion: String = .empty
+    @Published var updateFolderList: Bool = false
+
+}

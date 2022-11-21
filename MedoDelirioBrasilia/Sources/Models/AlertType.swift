@@ -9,6 +9,6 @@ import Foundation
 
 enum AlertType {
 
-    case singleOption, twoOptions
+    case singleOption, twoOptions, twoOptionsOneDelete
 
 }
