@@ -12,7 +12,7 @@ struct MyFoldersiPhoneView: View {
     @State private var isShowingFolderInfoEditingSheet: Bool = false
     @State private var folderForEditingOnSheet: UserFolder? = nil
     @State var updateFolderList: Bool = false // Does nothing, just here to satisfy FolderList :)
-    @State var deleteFolderAid = DeleteFolderViewAid() // Same as above
+    @State var deleteFolderAid = DeleteFolderViewAide() // Same as above
     @State var folderIdForEditing: String = .empty
     
     var body: some View {

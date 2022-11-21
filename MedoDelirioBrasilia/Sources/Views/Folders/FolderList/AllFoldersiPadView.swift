@@ -12,7 +12,7 @@ struct AllFoldersiPadView: View {
 
     @Binding var isShowingFolderInfoEditingSheet: Bool
     @Binding var updateFolderList: Bool
-    @State var deleteFolderAid = DeleteFolderViewAid()
+    @State var deleteFolderAid = DeleteFolderViewAide()
     @State var folderIdForEditing: String = .empty
     
     var body: some View {

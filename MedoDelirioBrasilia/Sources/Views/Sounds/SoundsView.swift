@@ -52,7 +52,7 @@ struct SoundsView: View {
     @Binding var soundIdToGoToFromTrends: String
     
     // Folders
-    @StateObject var deleteFolderAid = DeleteFolderViewAidiPhone()
+    @StateObject var deleteFolderAid = DeleteFolderViewAideiPhone()
     
     private var searchResults: [Sound] {
         if searchText.isEmpty {

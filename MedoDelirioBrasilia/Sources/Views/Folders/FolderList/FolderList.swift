@@ -13,9 +13,9 @@ struct FolderList: View {
     @StateObject private var viewModel = FolderListViewModel()
     @State var displayJoinFolderResearchBanner: Bool = false
     @Binding var updateFolderList: Bool
-    @Binding var deleteFolderAid: DeleteFolderViewAid
+    @Binding var deleteFolderAid: DeleteFolderViewAide
     @Binding var folderIdForEditing: String
-    @EnvironmentObject var deleteFolderAidiPhone: DeleteFolderViewAidiPhone
+    @EnvironmentObject var deleteFolderAidiPhone: DeleteFolderViewAideiPhone
     
     private var columns: [GridItem] {
         if UIDevice.current.userInterfaceIdiom == .phone {
@@ -161,7 +161,7 @@ struct FolderList_Previews: PreviewProvider {
 
     static var previews: some View {
         FolderList(updateFolderList: .constant(false),
-                   deleteFolderAid: .constant(DeleteFolderViewAid()),
+                   deleteFolderAid: .constant(DeleteFolderViewAide()),
                    folderIdForEditing: .constant(.empty))
     }
 

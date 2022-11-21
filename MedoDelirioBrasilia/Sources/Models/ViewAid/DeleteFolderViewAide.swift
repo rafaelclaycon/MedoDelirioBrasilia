@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DeleteFolderViewAid {
+struct DeleteFolderViewAide {
 
     var alertTitle: String
     var alertMessage: String
@@ -23,7 +23,7 @@ struct DeleteFolderViewAid {
 
 }
 
-class DeleteFolderViewAidiPhone: ObservableObject {
+class DeleteFolderViewAideiPhone: ObservableObject {
 
     @Published var alertTitle: String = .empty
     @Published var alertMessage: String = .empty
