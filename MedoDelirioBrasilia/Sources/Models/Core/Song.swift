@@ -17,6 +17,7 @@ struct Song: Hashable, Codable, Identifiable {
     var filename: String
     var dateAdded: Date?
     let isOffensive: Bool
+    let isNew: Bool?
     
     init(id: String = UUID().uuidString,
          title: String,
@@ -25,7 +26,8 @@ struct Song: Hashable, Codable, Identifiable {
          duration: String = "",
          filename: String = "",
          dateAdded: Date = Date(),
-         isOffensive: Bool = false) {
+         isOffensive: Bool = false,
+         isNew: Bool?) {
         self.id = id
         self.title = title
         self.description = description
@@ -34,6 +36,7 @@ struct Song: Hashable, Codable, Identifiable {
         self.filename = filename
         self.dateAdded = dateAdded
         self.isOffensive = isOffensive
+        self.isNew = isNew
     }
 
 }

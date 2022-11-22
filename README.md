@@ -6,7 +6,7 @@ iOS, iPadOS and macOS app with sound snippets/memes from [Medo e Delírio em Bra
 
 🌟 Star this repo! ↗️
 
-👉 [**Download it from the App Store**](https://apps.apple.com/br/app/medo-e-del%C3%ADrio/id1625199878) 📲
+👉 [**Download it on the App Store**](https://apps.apple.com/br/app/medo-e-del%C3%ADrio/id1625199878) 📲
 
 GIF demos below (they may take a while to load due to size).
 
@@ -34,24 +34,17 @@ GIF demos below (they may take a while to load due to size).
 1. User sharing statistics synced with server (opt-out available).
 1. Receive push notifications about new content, features and trends.
 1. View a top 10 ranking of the audience's most shared sounds from last week, last month and all time on the Trends tab.
+1. Count the days until Lula's inauguration with 2 Lock Screen widgets.
 
-## How to run
+## How to run the project
 
-### On your device (production)
+To build and run this project, you'll need:
 
-1. [**Download the app from the App Store**](https://apps.apple.com/br/app/medo-e-del%C3%ADrio/id1625199878)
-
-#### Prerequisites to run from the App Store
-
-- iOS 15 (iPhone SE 1/iPhone 6s/6s Plus or newer) or
-- iPadOS 15 (iPad 5th gen, iPad mini 4, iPad Air 2, any iPad Pro, or newer) or
-- macOS 12 Monterey on an Apple Silicion Mac (M1 or newer).
-
-### Prerequisites to develop
-
-- A Mac running macOS 12 Monterey;
+- A Mac running macOS 12 Monterey or newer;
 - Xcode 13.4+;
-- iOS 15.0+ simulators.
+- iOS 15.0+ simulators installed.
+
+***Note:** The server component is also written in Swift (with Vapor) and is not publicly available due to security concerns. If you would like to take a look or help make it better, please contact me.*
 
 ## Android version
 
