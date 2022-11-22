@@ -4744,7 +4744,7 @@
     },
     {
         "id": "06C43278-FCD0-4916-88AE-24F8F2D9CAB0",
-        "title": "E um poeta né, meu, bah",
+        "title": "É um poeta né, meu, bah",
         "authorId": "50401E09-4DE2-4A1A-B49B-AF75C99904FF",
         "description": "E um poeta ne meu, bah",
         "filename": "Fa do Armandinho - E um poeta ne meu, bah.mp3",
@@ -7831,7 +7831,7 @@
         "filename": "Desconhecido - Eu por forca de lei sou obrigado.mp3",
         "dateAdded": "2022-11-17T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "9CE6EAFC-3C19-424A-B358-AEE2733909F4",
@@ -7841,7 +7841,7 @@
         "filename": "Desconhecido - Socorro nos ajudem.mp3",
         "dateAdded": "2022-11-17T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "5A080FBF-AC28-4B9C-95BD-C6A36BF259FA",
@@ -7851,7 +7851,7 @@
         "filename": "Desconhecido - Um movimento passivo.mp3",
         "dateAdded": "2022-11-17T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "72526828-6F6D-4EFC-8437-12B6D2955A5C",
@@ -7861,7 +7861,7 @@
         "filename": "Desconhecido - Uma manifestacao passiva.mp3",
         "dateAdded": "2022-11-17T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "1E07247D-DE01-469C-B871-40E5D8D03463",
@@ -7871,7 +7871,7 @@
         "filename": "Leonardo Bastos - Vontade de chorar e morrer so isso.mp3",
         "dateAdded": "2022-11-17T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "57049E89-BAAA-406D-B483-070971E06EAF",
@@ -7881,7 +7881,7 @@
         "filename": "Locutor Militar - As Forcas Armadas emitiram duas notas.mp3",
         "dateAdded": "2022-11-17T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "26F72A63-5955-47DF-9939-6187F8B8B7AE",
@@ -7891,7 +7891,7 @@
         "filename": "Locutor Militar - Os comandantes emitiram uma nota.mp3",
         "dateAdded": "2022-11-17T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "E7B4BC8E-C59A-4D88-B56D-E20C32A70604",
@@ -7901,7 +7901,7 @@
         "filename": "Rai Saia Rodada -  Beber, Cair.mp3",
         "dateAdded": "2022-11-17T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "5DA9073A-75B8-4F72-8FC6-21028A4B77E4",
@@ -7911,7 +7911,7 @@
         "filename": "Saiddy Bamba -  Vai chorar e vai chorar e instrumental.mp3",
         "dateAdded": "2022-11-17T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "043F12BE-5523-4DE7-92DE-336D7EA59ED5",
@@ -7921,7 +7921,7 @@
         "filename": "Saiddy Bamba - Nao nao nao nao short.mp3",
         "dateAdded": "2022-11-17T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "949B608C-7A7E-4B69-A9E7-0ABB15E49348",
@@ -7931,7 +7931,7 @@
         "filename": "Saiddy Bamba - SIM SIM SIM NAO NAO NAO.mp3",
         "dateAdded": "2022-11-17T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "96A7026E-61B6-4A3C-B844-DEF32262E4A4",
@@ -7941,7 +7941,7 @@
         "filename": "Jojo Todynho - Eu nao sabia que ele era safado assim nao moco.mp3",
         "dateAdded": "2022-11-17T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "9839F467-32CA-4CE5-ACE5-0058F461A040",
@@ -7951,7 +7951,7 @@
         "filename": "Jair Bolsonaro - Tarado.mp3",
         "dateAdded": "2022-11-17T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "99E4AD7C-0495-4844-97D1-18FBE56FC030",
@@ -7961,7 +7961,7 @@
         "filename": "Eduardo Pazuello - Eu nunca sentei na mesa.mp3",
         "dateAdded": "2022-11-17T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "2CE3571B-83A7-456C-9892-C71BB3D5B2E6",
@@ -7971,7 +7971,7 @@
         "filename": "Eduardo Pazuello - Tu demorou pra sentar aqui na mesa.mp3",
         "dateAdded": "2022-11-17T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "66EB23ED-4B81-4517-819B-3231F61E65E5",
@@ -7981,7 +7981,7 @@
         "filename": "Eduardo Pazuello - Cinquenta sentadas.mp3",
         "dateAdded": "2022-11-17T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "81D31D1A-CEF2-4EDC-9EA7-89AED359DDC8",
@@ -7991,7 +7991,7 @@
         "filename": "Cristiano Botafogo - Confira comigo no replay.mp3",
         "dateAdded": "2022-11-17T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "1501DCD2-0268-4ECF-AB79-B865506C7528",
@@ -8001,6 +8001,16 @@
         "filename": "Cristiano Botafogo - O terrivel editorialista do Globo.mp3",
         "dateAdded": "2022-11-17T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
+    },
+    {
+        "id": "185F8D10-7806-4CC0-8083-E47F27AD1DAE",
+        "title": "Vamo lá tomar uma lá no bar",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "vamo la tomar uma la no bar só chamar que eu também vou pra lá qual é o bar xenofobia copa",
+        "filename": "Meme - Vamo la tomar uma la no bar.mp3",
+        "dateAdded": "2022-01-01T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
     }
 ]
