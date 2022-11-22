@@ -36,7 +36,7 @@ struct MainView: View {
                 .tag(PhoneTab.sounds)
                 
                 NavigationView {
-                    CollectionsView(isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet)
+                    CollectionsView()
                 }
                 .tabItem {
                     Label("Coleções", systemImage: "rectangle.grid.2x2.fill")

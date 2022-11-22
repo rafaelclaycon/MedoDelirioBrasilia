@@ -50,7 +50,7 @@ struct AuthorsView: View {
             .disableAutocorrection(true)
             .padding(.horizontal)
             .padding(.top, 7)
-            .padding(.bottom, 18)
+            .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? 75 : 18)
             .onAppear {
                 if viewModel.authors.isEmpty {
                     viewModel.reloadList(sortedBy: AuthorSortOption(rawValue: sortOption) ?? .nameAscending)
