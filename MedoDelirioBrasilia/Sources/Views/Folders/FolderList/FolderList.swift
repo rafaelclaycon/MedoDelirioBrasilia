@@ -13,9 +13,9 @@ struct FolderList: View {
     @StateObject private var viewModel = FolderListViewModel()
     @State var displayJoinFolderResearchBanner: Bool = false
     @Binding var updateFolderList: Bool
-    @Binding var deleteFolderAid: DeleteFolderViewAide
+    @Binding var deleteFolderAide: DeleteFolderViewAide
     @Binding var folderIdForEditing: String
-    @EnvironmentObject var deleteFolderAidiPhone: DeleteFolderViewAideiPhone
+    @EnvironmentObject var deleteFolderAideiPhone: DeleteFolderViewAideiPhone
     
     private var columns: [GridItem] {
         if UIDevice.current.userInterfaceIdiom == .phone {
@@ -81,16 +81,16 @@ struct FolderList: View {
                                 Button(role: .destructive, action: {
                                     if UIDevice.current.userInterfaceIdiom == .phone {
                                         let folderName = "\(folder.symbol) \(folder.name)"
-                                        deleteFolderAidiPhone.alertTitle = "Apagar \"\(folderName)\""
-                                        deleteFolderAidiPhone.alertMessage = "Tem certeza de que deseja apagar a pasta \"\(folderName)\"? Os sons não serão apagados."
-                                        deleteFolderAidiPhone.folderIdForDeletion = folder.id
-                                        deleteFolderAidiPhone.showAlert = true
+                                        deleteFolderAideiPhone.alertTitle = "Apagar \"\(folderName)\""
+                                        deleteFolderAideiPhone.alertMessage = "Tem certeza de que deseja apagar a pasta \"\(folderName)\"? Os sons não serão apagados."
+                                        deleteFolderAideiPhone.folderIdForDeletion = folder.id
+                                        deleteFolderAideiPhone.showAlert = true
                                     } else {
                                         let folderName = "\(folder.symbol) \(folder.name)"
-                                        deleteFolderAid.alertTitle = "Apagar \"\(folderName)\""
-                                        deleteFolderAid.alertMessage = "Tem certeza de que deseja apagar a pasta \"\(folderName)\"? Os sons não serão apagados."
-                                        deleteFolderAid.folderIdForDeletion = folder.id
-                                        deleteFolderAid.showAlert = true
+                                        deleteFolderAide.alertTitle = "Apagar \"\(folderName)\""
+                                        deleteFolderAide.alertMessage = "Tem certeza de que deseja apagar a pasta \"\(folderName)\"? Os sons não serão apagados."
+                                        deleteFolderAide.folderIdForDeletion = folder.id
+                                        deleteFolderAide.showAlert = true
                                     }
                                 }, label: {
                                     HStack {
@@ -132,7 +132,7 @@ struct FolderList: View {
         .onChange(of: updateFolderList) { shouldUpdate in
             refreshFolderList(shouldUpdate)
         }
-        .onChange(of: deleteFolderAidiPhone.updateFolderList) { shouldUpdate in
+        .onChange(of: deleteFolderAideiPhone.updateFolderList) { shouldUpdate in
             refreshFolderList(shouldUpdate)
         }
     }
@@ -150,7 +150,7 @@ struct FolderList_Previews: PreviewProvider {
 
     static var previews: some View {
         FolderList(updateFolderList: .constant(false),
-                   deleteFolderAid: .constant(DeleteFolderViewAide()),
+                   deleteFolderAide: .constant(DeleteFolderViewAide()),
                    folderIdForEditing: .constant(.empty))
     }
 

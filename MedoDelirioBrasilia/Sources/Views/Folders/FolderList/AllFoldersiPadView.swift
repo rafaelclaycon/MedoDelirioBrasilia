@@ -12,7 +12,7 @@ struct AllFoldersiPadView: View {
 
     @Binding var isShowingFolderInfoEditingSheet: Bool
     @Binding var updateFolderList: Bool
-    @State var deleteFolderAid = DeleteFolderViewAide()
+    @State var deleteFolderAide = DeleteFolderViewAide()
     @State var folderIdForEditing: String = .empty
     @StateObject var deleteFolderAideiPhone = DeleteFolderViewAideiPhone() // Not used, here just so FolderList does not crash on iPad
     
@@ -20,7 +20,7 @@ struct AllFoldersiPadView: View {
         ScrollView {
             VStack(alignment: .center) {
                 FolderList(updateFolderList: $updateFolderList,
-                           deleteFolderAid: $deleteFolderAid,
+                           deleteFolderAide: $deleteFolderAide,
                            folderIdForEditing: $folderIdForEditing)
                     .environmentObject(deleteFolderAideiPhone)
             }
@@ -42,12 +42,12 @@ struct AllFoldersiPadView: View {
                 }
             }
         }
-        .alert(isPresented: $deleteFolderAid.showAlert) {
-            Alert(title: Text(deleteFolderAid.alertTitle), message: Text(deleteFolderAid.alertMessage), primaryButton: .destructive(Text("Apagar"), action: {
-                guard deleteFolderAid.folderIdForDeletion.isEmpty == false else {
+        .alert(isPresented: $deleteFolderAide.showAlert) {
+            Alert(title: Text(deleteFolderAide.alertTitle), message: Text(deleteFolderAide.alertMessage), primaryButton: .destructive(Text("Apagar"), action: {
+                guard deleteFolderAide.folderIdForDeletion.isEmpty == false else {
                     return
                 }
-                try? database.deleteUserFolder(withId: deleteFolderAid.folderIdForDeletion)
+                try? database.deleteUserFolder(withId: deleteFolderAide.folderIdForDeletion)
                 updateFolderList = true
             }), secondaryButton: .cancel(Text("Cancelar")))
         }
