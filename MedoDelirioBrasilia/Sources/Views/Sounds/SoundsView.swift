@@ -367,7 +367,7 @@ struct SoundsView: View {
                 }
             }
             
-            if UIDevice.current.userInterfaceIdiom == .phone {
+            if UIDevice.current.userInterfaceIdiom == .phone, searchText.isEmpty {
                 VStack {
                     Spacer()
 
