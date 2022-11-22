@@ -141,6 +141,7 @@ struct FolderList: View {
         if shouldUpdate {
             viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
             updateFolderList = false
+            deleteFolderAideiPhone.updateFolderList = false
         }
     }
 

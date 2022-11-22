@@ -318,6 +318,7 @@ struct SoundsView: View {
                         }
                         try? database.deleteUserFolder(withId: deleteFolderAide.folderIdForDeletion)
                         deleteFolderAide.updateFolderList = true
+                        deleteFolderAide.showAlert = false
                     }), secondaryButton: .cancel(Text("Cancelar")))
                 }
             }
