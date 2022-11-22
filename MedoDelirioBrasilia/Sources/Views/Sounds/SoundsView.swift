@@ -54,6 +54,10 @@ struct SoundsView: View {
     // Folders
     @StateObject var deleteFolderAide = DeleteFolderViewAideiPhone()
     
+    // Toast views
+    private let toastViewBottomPaddingPhone: CGFloat = 60
+    private let toastViewBottomPaddingPad: CGFloat = 15
+    
     private var searchResults: [Sound] {
         if searchText.isEmpty {
             return viewModel.sounds
@@ -377,7 +381,8 @@ struct SoundsView: View {
                     Spacer()
 
                     ToastView(text: "Som adicionado à pasta \(folderName ?? "").")
-                        .padding()
+                        .padding(.horizontal)
+                        .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? toastViewBottomPaddingPhone : toastViewBottomPaddingPad)
                 }
                 .transition(.moveAndFade)
             }
@@ -387,7 +392,8 @@ struct SoundsView: View {
                     Spacer()
                     
                     ToastView(text: viewModel.shareBannerMessage)
-                        .padding()
+                        .padding(.horizontal)
+                        .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? toastViewBottomPaddingPhone : toastViewBottomPaddingPad)
                 }
                 .transition(.moveAndFade)
             }
