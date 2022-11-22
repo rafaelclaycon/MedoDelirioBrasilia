@@ -14,6 +14,7 @@ struct AllFoldersiPadView: View {
     @Binding var updateFolderList: Bool
     @State var deleteFolderAid = DeleteFolderViewAide()
     @State var folderIdForEditing: String = .empty
+    @StateObject var deleteFolderAideiPhone = DeleteFolderViewAideiPhone() // Not used, here just so FolderList does not crash on iPad
     
     var body: some View {
         ScrollView {
@@ -21,6 +22,7 @@ struct AllFoldersiPadView: View {
                 FolderList(updateFolderList: $updateFolderList,
                            deleteFolderAid: $deleteFolderAid,
                            folderIdForEditing: $folderIdForEditing)
+                    .environmentObject(deleteFolderAideiPhone)
             }
             .padding(.horizontal)
             .padding(.top, 7)

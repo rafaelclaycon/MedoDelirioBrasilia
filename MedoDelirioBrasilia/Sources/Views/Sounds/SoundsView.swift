@@ -52,7 +52,7 @@ struct SoundsView: View {
     @Binding var soundIdToGoToFromTrends: String
     
     // Folders
-    @StateObject var deleteFolderAid = DeleteFolderViewAideiPhone()
+    @StateObject var deleteFolderAide = DeleteFolderViewAideiPhone()
     
     private var searchResults: [Sound] {
         if searchText.isEmpty {
@@ -93,7 +93,7 @@ struct SoundsView: View {
                         .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? 100 : 15)
                 } else if currentMode == .folders {
                     MyFoldersiPhoneView()
-                        .environmentObject(deleteFolderAid)
+                        .environmentObject(deleteFolderAide)
                 } else if currentMode == .byAuthor {
                     AuthorsView(sortOption: $viewModel.authorSortOption, sortAction: $authorSortAction)
                 } else {
@@ -308,12 +308,12 @@ struct SoundsView: View {
                     }), secondaryButton: .cancel(Text("Fechar")))
 
                 case .twoOptionsOneDelete:
-                    return Alert(title: Text(deleteFolderAid.alertTitle), message: Text(deleteFolderAid.alertMessage), primaryButton: .destructive(Text("Apagar"), action: {
-                        guard deleteFolderAid.folderIdForDeletion.isEmpty == false else {
+                    return Alert(title: Text(deleteFolderAide.alertTitle), message: Text(deleteFolderAide.alertMessage), primaryButton: .destructive(Text("Apagar"), action: {
+                        guard deleteFolderAide.folderIdForDeletion.isEmpty == false else {
                             return
                         }
-                        try? database.deleteUserFolder(withId: deleteFolderAid.folderIdForDeletion)
-                        deleteFolderAid.updateFolderList = true
+                        try? database.deleteUserFolder(withId: deleteFolderAide.folderIdForDeletion)
+                        deleteFolderAide.updateFolderList = true
                     }), secondaryButton: .cancel(Text("Cancelar")))
                 }
             }
@@ -356,7 +356,7 @@ struct SoundsView: View {
                     }
                 }
             }
-            .onChange(of: deleteFolderAid.showAlert) { showAlert in
+            .onChange(of: deleteFolderAide.showAlert) { showAlert in
                 if showAlert {
                     viewModel.alertType = .twoOptionsOneDelete
                     viewModel.showAlert = true

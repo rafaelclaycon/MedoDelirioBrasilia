@@ -33,6 +33,21 @@ struct FolderList: View {
         }
     }
     
+    private var noFoldersScrollHeight: CGFloat {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            let screenWidth = UIScreen.main.bounds.height
+            if screenWidth < 600 {
+                return 0
+            } else if screenWidth < 800 {
+                return 50
+            } else {
+                return 100
+            }
+        } else {
+            return 100
+        }
+    }
+    
     var body: some View {
         VStack {
             if viewModel.hasFoldersToDisplay {
@@ -88,34 +103,8 @@ struct FolderList: View {
                     }
                 }
             } else {
-                VStack(spacing: 20) {
-                    Spacer()
-                    
-                    Image(systemName: "folder")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 90)
-                        .foregroundColor(.gray)
-                        .opacity(0.4)
-                        .padding(.bottom, 15)
-                    
-                    Text("Nenhuma Pasta Criada (Ainda)")
-                        .font(.title3)
-                        .multilineTextAlignment(.center)
-                    
-                    Text("Pastas são uma maneira de organizar sons que você usa com frequência para acesso fácil.")
-                        .foregroundColor(.gray)
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal)
-                    
-                    Text("\(UIDevice.current.userInterfaceIdiom == .phone ? "Toque no + no canto superior direito para criar uma nova pasta de sons." : "Toque em Nova Pasta acima para criar uma nova pasta de sons.")")
-                        .foregroundColor(.gray)
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal)
-                    
-                    Spacer()
-                }
-                .padding(.vertical, 100)
+                NoFoldersView()
+                    .padding(.vertical, noFoldersScrollHeight)
             }
         }
         .onAppear {
