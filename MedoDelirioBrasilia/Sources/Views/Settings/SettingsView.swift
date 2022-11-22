@@ -135,7 +135,9 @@ struct SettingsView: View {
         }
         .navigationTitle("Ajustes")
         .onAppear {
-            showAskForMoneyView = (TimeZone.current.abbreviation() ?? .empty) != "PDT"
+            networkRabbit.displayAskForMoneyView { result, _ in
+                showAskForMoneyView = result
+            }
         }
         .popover(isPresented: $showEmailClientConfirmationDialog) {
             EmailAppPickerView(isBeingShown: $showEmailClientConfirmationDialog, subject: Shared.issueSuggestionEmailSubject, emailBody: Shared.issueSuggestionEmailBody)

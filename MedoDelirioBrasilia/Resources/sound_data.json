@@ -2837,9 +2837,9 @@
     {
         "id": "B1917667-7598-41E9-9BDA-60F4463E9E9F",
         "title": "Pronto, falei",
-        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "authorId": "44A20EED-991F-48F8-BC6B-18A06709E241",
         "description": "Pronto falei",
-        "filename": "Pronto, falei short.mp3",
+        "filename": "Monica de Bolle - Pronto, falei.mp3",
         "dateAdded": "2022-06-09T00:00:00Z",
         "isOffensive": false
     },
@@ -3278,7 +3278,7 @@
     {
         "id": "5C3B9491-F7BD-4599-81F4-45D66B41A0CA",
         "title": "Bom dia é o caralho, parceiro",
-        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "authorId": "2E0605FF-BD9F-4941-BFD7-36027D7EF407",
         "description": "Mermão bom dia e o caralho parceiro",
         "filename": "Bom dia e o caralho parceiro short meme.mp3",
         "dateAdded": "2022-06-13T00:00:00Z",
@@ -4744,7 +4744,7 @@
     },
     {
         "id": "06C43278-FCD0-4916-88AE-24F8F2D9CAB0",
-        "title": "E um poeta né, meu, bah",
+        "title": "É um poeta né, meu, bah",
         "authorId": "50401E09-4DE2-4A1A-B49B-AF75C99904FF",
         "description": "E um poeta ne meu, bah",
         "filename": "Fa do Armandinho - E um poeta ne meu, bah.mp3",
@@ -6032,7 +6032,7 @@
     {
         "id": "44E30BFA-508E-4712-B624-3BF32C2124BD",
         "title": "Meus amigos não, amigo é o caralho",
-        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "authorId": "CF9D214A-0CAB-4C16-A35B-7099FC74032E",
         "description": "meus amigos não amigo é o caralho",
         "filename": "meus amigos nao amigo e o caralho.mp3",
         "dateAdded": "2022-08-21T00:00:00Z",
@@ -6167,9 +6167,9 @@
     {
         "id": "41FD18F1-11CD-4E07-92DE-C408D3509023",
         "title": "Um pequeno passo para o homem",
-        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "authorId": "39FA164E-7618-480E-8881-BC3AA5E862F7",
         "description": "um pequeno passo para o homem e um grande chute na cara do estado laico",
-        "filename": "Um pequeno passo para o homem.mp3",
+        "filename": "MIDCast - Um pequeno passo para o homem.mp3",
         "dateAdded": "2022-08-21T00:00:00Z",
         "isOffensive": false
     },
@@ -7381,7 +7381,7 @@
         "filename": "Omar Aziz - Como dizem os peruanos.mp3",
         "dateAdded": "2022-11-02T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "FC4F8104-FB32-48E2-9E59-A2D5CA61C2B1",
@@ -7391,7 +7391,7 @@
         "filename": "Jair Bolsonaro - Precisa ter provas.mp3",
         "dateAdded": "2022-11-02T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "17814CA4-BBBE-4C0F-BA52-2A85C4C0870C",
@@ -7401,6 +7401,616 @@
         "filename": "Jair Bolsonaro - Maioria e uma coisa, minoria e outra minoria tem que se curvar a maioria acabou.mp3",
         "dateAdded": "2022-11-03T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
+    },
+    {
+        "id": "9BDA95A1-9815-4A7B-BA86-66F645A87C40",
+        "title": "Encerramento do Greg News pós-vitória do Lula",
+        "authorId": "4234ACB1-5D43-4EFA-A61E-7D80EC749866",
+        "description": "Encerramento do Greg News pos-vitoria do Lula",
+        "filename": "Gregorio Duvivier - Greg News pos-vitoria do Lula.mp3",
+        "dateAdded": "2022-11-06T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "A2B474FD-4704-472F-8D1F-AB6D5E834778",
+        "title": "Vencemos a milícia sem dar um tiro",
+        "authorId": "4234ACB1-5D43-4EFA-A61E-7D80EC749866",
+        "description": "Vencemos a milicia sem dar um tiro",
+        "filename": "Gregorio Duvivier - Vencemos a milicia sem dar um tiro.mp3",
+        "dateAdded": "2022-11-06T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "29CCF0E8-71AB-4BDF-8BB1-8B57F7C4CC3E",
+        "title": "A frente ampla",
+        "authorId": "4234ACB1-5D43-4EFA-A61E-7D80EC749866",
+        "description": "A frente ampla",
+        "filename": "Gregorio Duvivier - A frente ampla.mp3",
+        "dateAdded": "2022-11-06T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "8E221D18-88DE-4AD4-914C-94F8B8A111AE",
+        "title": "Além do Lula, agora o choro também é livre",
+        "authorId": "4234ACB1-5D43-4EFA-A61E-7D80EC749866",
+        "description": "Alem do Lula agora o choro tambem e livre",
+        "filename": "Gregorio Duvivier - Alem do Lula, agora o choro tambem e livre.mp3",
+        "dateAdded": "2022-11-06T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "854D9B5D-C987-4C07-A155-539D2D212A43",
+        "title": "Doses seguras de crack",
+        "authorId": "86F66690-FBE6-4D05-BB82-F6BED0C7C162",
+        "description": "Doses seguras de crack",
+        "filename": "Henrique Oliveira - Doses seguras de crack.mp3",
+        "dateAdded": "2022-11-06T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "739D519A-5367-4079-A7F0-ADB3AAE0E002",
+        "title": "Eu quero me drogar",
+        "authorId": "3175E2DD-B226-43A0-A4CF-82C51094F2C8",
+        "description": "Eu quero me drogar",
+        "filename": "Romeu Zema - Eu quero me drogar.mp3",
+        "dateAdded": "2022-11-06T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "4D0D833D-584C-439E-AC23-2D55D00794EA",
+        "title": "Urubu, cabelo liso, tu vai pro inferno",
+        "authorId": "A8A761BF-9DD4-4CB4-A6C8-D8A552CCA921",
+        "description": "urubu corno sem vergonha tu vai sair dai peste cabelo liso tu vai pro inferno",
+        "filename": "Eleitores do Lula no Maranhao - Urubu, cabelo liso, tu vai pro inferno.mp3",
+        "dateAdded": "2022-11-06T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "E08C67F2-1C22-49A7-8656-3BAF44D848BB",
+        "title": "Comemorando a vitória",
+        "authorId": "0BB56C75-D0F8-480E-8DC7-BA4FC4BA48A9",
+        "description": "Comemorando a vitoria ah puta que pariu porra ganhamo generalato",
+        "filename": "Pedro Daltro e Cristiano Botafogo - Comemorando a vitoria.mp3",
+        "dateAdded": "2022-11-06T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "691ECBB3-9DA0-468C-84D3-383E69ECC631",
+        "title": "Bala de borracha e gás lacrimogêneo",
+        "authorId": "CC73ED72-24A6-4191-B9BC-6E608F57E651",
+        "description": "Opcao B bala de borracha e gas lacrimogeneo",
+        "filename": "Fabio Porchat - Bala de borracha e gas lacrimogeneo.mp3",
+        "dateAdded": "2022-11-07T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "EDEEBA5F-F062-4ED3-8895-2581700A7DA8",
+        "title": "Andam fumando e bebendo coisas estragadas",
+        "authorId": "3C41E7C2-BA19-456E-90DC-97ADC57B81C0",
+        "description": "Os autores dessa denuncia andam fumando e bebendo coisas estregadas",
+        "filename": "Gilmar Mendes - Os autores dessa denuncia andam fumando e bebendo coisas estregadas.mp3",
+        "dateAdded": "2022-11-07T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "5F88BC5B-176E-49C1-9788-2E445D17B3A2",
+        "title": "Gente nojenta como você",
+        "authorId": "BC2818F5-4FA5-46FC-90C3-075691F3E979",
+        "description": "gente nojenta como você",
+        "filename": "Frederico Davila - Gente nojenta como voce.mp3",
+        "dateAdded": "2022-11-07T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "2974A1FF-462B-42C0-B2F6-CADE12D65661",
+        "title": "Essa gente anda fumando erva estragada",
+        "authorId": "3C41E7C2-BA19-456E-90DC-97ADC57B81C0",
+        "description": "essa gente anda fumando erva estragada",
+        "filename": "Gilmar Mendes - Essa gente anda fumando erva estragada.mp3",
+        "dateAdded": "2022-11-07T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "DF4F4674-725A-4C9D-9308-BA003647A176",
+        "title": "Complete a frase: Anistia de cu é...",
+        "authorId": "846DE704-A8C1-4C8B-820F-AF2E35FBB553",
+        "description": "complete a frase anistia de cu é...",
+        "filename": "Neide Maria - Complete a frase anistia de cu e.mp3",
+        "dateAdded": "2022-11-07T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "485CBCDD-6D48-4B20-A90D-66FD430512DE",
+        "title": "Na hora, Patati e Patatá não apareceu",
+        "authorId": "CDDA95B6-F4D3-4783-85B1-DDE7EB3127FD",
+        "description": "Todo mundo pagou 15 reais na hora patati e patatá não apareceu",
+        "filename": "Espectadora do Falso Patati Patata - Na hora patati e patata nao apareceu.mp3",
+        "dateAdded": "2022-11-07T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "5D66656B-DFC8-490A-8256-496D3A8C6AA3",
+        "title": "Que merda, caramba, poxa vida",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Que merda caramba, poxa vida",
+        "filename": "Desconhecido - Que merda caramba poxa vida.mp3",
+        "dateAdded": "2022-11-07T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "00C68C85-1F19-4E64-945F-299EF59968FF",
+        "title": "Vamo comunistada!",
+        "authorId": "EE070B17-4C63-4BF4-BF5C-62894B70F390",
+        "description": "Vamo comunistada uhul vamo poder abortar toda semana comer carne de cachorro banheiro unisex droga tudo liberado acabou família adão e ivo",
+        "filename": "Barbara Saccomori - Vamo comunistada.mp3",
+        "dateAdded": "2022-11-08T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "4A4169BA-2B24-49CD-B5E9-001800412934",
+        "title": "Não existe segunda-feira no comunismo",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Nao existe segunda-feira no comunismo",
+        "filename": "Desconhecido - Nao existe segunda-feira no comunismo.mp3",
+        "dateAdded": "2022-11-08T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "E16FBC55-A194-47FC-ABCA-7351385D8EBF",
+        "title": "Que bosta",
+        "authorId": "88E55EFF-549F-4047-86B9-7A5D551201A7",
+        "description": "Que bosta",
+        "filename": "Menino Pulando na Cama - Que bosta.mp3",
+        "dateAdded": "2022-11-08T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "27605A38-3398-446B-B027-8A54B5AAB534",
+        "title": "CODIB-19",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "CODIB-19 codib 19 covid-19 covid 19",
+        "filename": "Jair Bolsonaro - CODIB-19.mp3",
+        "dateAdded": "2022-11-10T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "74D9AB49-38C3-48AA-BF11-371B56ED38A2",
+        "title": "Pode botar, CODIB-19",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "pode botar CODIB-19 codib 19 covid-19 covid 19",
+        "filename": "Jair Bolsonaro - Pode botar, CODIB-19.mp3",
+        "dateAdded": "2022-11-10T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "F13653A5-5401-4680-B38C-CC1AF865BDA0",
+        "title": "A sensibilidade incrível desse homem",
+        "authorId": "A329D501-7BD3-4B9C-8FBD-99BFD3AF3E13",
+        "description": "A sensibilidade incrivel desse homem",
+        "filename": "Renan (Choque de Cultura) - A sensibilidade incrivel desse homem.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "7FC6B14E-9376-41EB-AA5A-03B8B8719A7A",
+        "title": "Todo mundo sabe que eu tenho grande sensibilidade nisso daí",
+        "authorId": "1E694793-C6D0-4CAD-A48D-2985B63CB7FE",
+        "description": "Todo mundo sabe que eu tenho grande sensibilidade nisso dai",
+        "filename": "Marcelo Adnet (como Jair Bolsonaro) - Todo mundo sabe que eu tenho grande sensibilidade nisso dai.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "8B9CDC1B-6D80-47B4-8283-250A8C492422",
+        "title": "Não tem qualquer sensibilidade",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Nao tem qualquer sensibilidade",
+        "filename": "Jair Bolsonaro - Nao tem qualquer sensibilidade.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "D19C1FF7-43D0-4724-9262-38C0FBBBF893",
+        "title": "A quem interessa o caos no Brasil?",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "A quem interessa o caos no Brasil",
+        "filename": "Jair Bolsonaro - A quem interessa o caos no Brasil.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "C68375FD-624D-45CE-9D93-BBE1F992150B",
+        "title": "O caos vem aí",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "O caos vem ai",
+        "filename": "Jair Bolsonaro - O caos vem ai.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "6AD29CDF-D423-4D8F-87FA-E99FD00E524D",
+        "title": "Seu bosta, seu obtuso, seu ser maldito",
+        "authorId": "5328EB33-A71C-4A07-94CE-B374AC937319",
+        "description": "Seu bosta seu obtuso seu ser maldito",
+        "filename": "Gaucho Puto - Seu bosta, seu obtuso, seu ser maldito.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "99D8F5FD-62C0-4578-A9BF-0C34E3016378",
+        "title": "Seu obtuso",
+        "authorId": "5328EB33-A71C-4A07-94CE-B374AC937319",
+        "description": "Seu obtuso",
+        "filename": "Gaucho Puto - Seu obtuso.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "6642FDCB-6517-4A8E-9697-579309A4167E",
+        "title": "O dia foi de caos",
+        "authorId": "0C347F20-86F2-4A85-99B5-F27DC55B9859",
+        "description": "O dia foi de caos",
+        "filename": "Jornal da Record - O dia foi de caos.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "08E32A35-7ACB-48E4-8C89-94B0990BD73D",
+        "title": "Aqueles que patrocinam o caos sabem o que estão fazendo",
+        "authorId": "9DA5C94C-7EF4-42D2-9769-DB55BCF391AE",
+        "description": "Aqueles que patrocinam esse caos sabem o que estao fazendo para solapar o estado de direito",
+        "filename": "Edson Fachin - Aqueles que patrocinam o caos sabem o que estao fazendo.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "828D5E60-572C-4EDD-8BC9-7CF373EB83BB",
+        "title": "Governo Bolsonaro, o mais baixo degrau da indigência humana",
+        "authorId": "FB58B8EE-4DD6-45F7-ACBE-D26B7AF6B43A",
+        "description": "o caos do governo jair Bolsonaro entrara para historia como o mais baixo degrau da indigencia humana e civilizatoria",
+        "filename": "Renan Calheiros - Governo Bolsonaro, o mais baixo degrau da indigencia humana.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "898D518E-D42E-4701-8EF3-67A3EC5F479F",
+        "title": "Quem promove o nós contra eles propaga o caos",
+        "authorId": "C159C27D-3CCD-4622-8716-35162B89AB9F",
+        "description": "todos sabemos que quem promove o discurso do nos contra eles nao propaga a democracia mas a politica do caos",
+        "filename": "Luiz Fux - Quem promove o nos contra eles promove o caos.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "93B1076F-DE12-478B-B2EC-047959C61122",
+        "title": "Estrategia golpista para criar o caos não é contragolpe, é golpe",
+        "authorId": "66E5E3E2-A90C-4BE2-A0DB-E9E63A2ABF0B",
+        "description": "o presidente trump estava provocando um motim possivelmente esperando por uma desculpa para invocar a lei da insurreicao e chamar os militares é o que o presidente da republica pretende fazer aqui no brasil ele quer o caos nas ruas pra diante do caos poder usar a desculpa do artigo 142 e dizer pra garantir a lei e a ordem eu invoco as forças armadas pra segurar um golpe que ele pretende dar nao é contragolpe é golpe",
+        "filename": "Alessandro Molon - Estrategia golpista para criar o caos nao e contragolpe, e golpe.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "4D1D452B-1392-4136-A7A4-41CAAD22C318",
+        "title": "Propaganda da Ditadura Militar",
+        "authorId": "26B71AC1-32E0-479B-96FE-3B1AFDBB2437",
+        "description": "Propaganda da Ditadura Militar no inicio de 1964 assim era o dia-a-dia agitacao desordem intranquilidade o povo exigiu o fim da anarquia o exercito solidario com as legitimas aspiracoes do povo cumpriu sua missao constitucional garantindo a lei e a ordem exercito compromisso com a democracia",
+        "filename": "Propaganda da Ditadura Militar.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "FBB451C7-98E2-421E-96F8-0CAA5DF6A5D1",
+        "title": "Depressão, violência, brigas, morte, caos",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Depressao violencia brigas morte caos",
+        "filename": "Jair Bolsonaro - Depressao, violencia, brigas, morte, caos.mp3",
+        "dateAdded": "2022-11-13T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "3CDB8B43-7777-4C66-B962-ECE1528AB8D8",
+        "title": "Perdeu, mané, não amola",
+        "authorId": "05A3C97F-68EE-4AEB-9BEA-761348725225",
+        "description": "Perdeu mane nao amola",
+        "filename": "Luis Roberto Barroso - Perdeu, mane, nao amola.mp3",
+        "dateAdded": "2022-11-16T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "9C1D0E82-9AEE-4C7D-9826-B6D625717C18",
+        "title": "Por que o pobre não tá na planilha da Faria Lima?",
+        "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
+        "description": "por que que as pessoas são levadas a sofrerem por conta de garantir a tal da estabilidade fiscal nesse país por que que toda hora as pessoas falam é preciso é preciso sabe cortar gasto é preciso fazer superavite é preciso fazer teto de gastos por que que as mesmas pessoas que discutem com seriedade o teto de gastos nao discutem a questao social desse pais por que que o povo pobre nao tá na planilha da discussao da macro economia por que que a gente tem meta de inflacao e nao tem meta de crescimento",
+        "filename": "Lula - Por que o pobre nao ta na planilha da Faria Lima.mp3",
+        "dateAdded": "2022-11-16T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "50A0933B-85AA-4333-8372-BC71A9FDBF42",
+        "title": "A falácia da estabilidade fiscal",
+        "authorId": "F546B81B-ABF6-4DC1-8E54-A36119A599E5",
+        "description": "uma economia que diz que precisa primeiro estabilizar depois crescer depois distribuir é uma falacia e tem sido uma falacia nem estabiliza cresce aos solavancos e nao distribui se nao se preocupa com a justica social com quem paga a conta voce nao é um economista sério voce é um tecnocrata",
+        "filename": "Maria da Conceicao Tavares - A falacia da estabilidade fiscal.mp3",
+        "dateAdded": "2022-11-16T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "32714A58-2B95-4F39-8EC1-38FBB4B1A9BC",
+        "title": "A razão de ser da economia é o bem estar do povo",
+        "authorId": "6CBDBB4C-15AD-4C97-91DF-97FCFAAE46D6",
+        "description": "nao ha brasil sem ser humano nao ha brasil sem o povo brasileiro e eles tao querendo transformar o brasil numa empresa brasil é uma nacao e a sua economia e uma economia publica so tem razao de ser se se destina a trazer o bem estar do ser humano trazer o pleno emprego trazer a garantia de vida para todo mundo nao adianta ter economia aqui sem deficit publico economia equilibrada moeda estavel se a maioria do povo brasileiro esta morrendo de fome pra que que serve isso",
+        "filename": "Desconhecido - A razao de ser da economia e o bem estar do povo.mp3",
+        "dateAdded": "2022-11-16T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "DED18CF4-55EC-4211-88DF-56D9E27498B3",
+        "title": "A importância da consciência de classe",
+        "authorId": "0D442AB1-E098-4D15-A5DD-B67D8514872D",
+        "description": "eles sao manipulados a esse ponto de brigar pelo interesse do patrao eu nao vou brigar pelo interesse do qual eu recebo 10 por cento de 90 por cento quem tá com os 90 por cento que va la brigar consciencia de classe muita pouca gente tem que que a gente vai fazer consciencia do que tem que ser feito do que nao tem que ser feito pouca gente tem",
+        "filename": "Elis Regina - A importancia da consciencia de classe.mp3",
+        "dateAdded": "2022-11-16T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "0F69A1F1-D008-495B-B5B5-4E464A49E6A4",
+        "title": "Todo e qualquer direito trabalhista vai quebrar a burguesia",
+        "authorId": "0B091615-B4F2-4079-89E0-8CFE400F4856",
+        "description": "Todo e qualquer direito trabalhista vai quebrar a burguesia no seculo 19 voce ja via nao voces querem proibir trabalho infantil vai quebrar mulher gravida voce quer tirar mulher gravida da fabrica impossivel vai quebrar as empresas nao os caras que voces nao querem diminuir de 16 horas pra 14 impossivel vai quebrar as fabricas",
+        "filename": "Ian Neves - Todo e qualquer direito trabalhista vai quebrar a burguesia.mp3",
+        "dateAdded": "2022-11-16T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "7D3AADA0-A19A-4FB4-8BC8-A5D3B391970C",
+        "title": "A responsabilidade fiscal não será abandonada",
+        "authorId": "C8BA79D4-6D75-440D-915B-14BAFDF41B46",
+        "description": "Lula ja foi presidente o Alckmin já foi governador ou seja se trata de pessoas ja conhecidas evidente que uma inclinacao social imprescindivel nesse momento nao significa que havera o abandono da responsabilidade fiscal nao ha razao realmente para esse temor de medidas que aniquilem as contas publicas e isso nao vai acontecer no governo liderado pelo presidente lula",
+        "filename": "Desconhecido - A responsabilidade fiscal nao sera abandonada.mp3",
+        "dateAdded": "2022-11-16T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "512C770B-6188-4D76-B921-AD8B18253AE2",
+        "title": "Apaga isso agora!",
+        "authorId": "B5AE82A7-52D9-4B9F-8821-28AE2C869ED4",
+        "description": "Apaga isso agora",
+        "filename": "Ygona Moura - Apaga isso agora.mp3",
+        "dateAdded": "2022-02-14T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "E9C0E6F4-BA52-4C18-BD2D-A7D39CE7E5A8",
+        "title": "Eu, por força de lei, sou obrigado",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Eu por força de lei sou obrigado a ter que mandar vocês irem tomar no cu",
+        "filename": "Desconhecido - Eu por forca de lei sou obrigado.mp3",
+        "dateAdded": "2022-11-17T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "9CE6EAFC-3C19-424A-B358-AEE2733909F4",
+        "title": "Socorro! Nos ajudem!",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Socorro nos ajudem os meus filhos a minha familia a nação brasileira precisa de vocês socorro",
+        "filename": "Desconhecido - Socorro nos ajudem.mp3",
+        "dateAdded": "2022-11-17T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "5A080FBF-AC28-4B9C-95BD-C6A36BF259FA",
+        "title": "Está sendo um movimento passivo",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Está sendo um movimento passivo não tem violência não tem gangue LGBT",
+        "filename": "Desconhecido - Um movimento passivo.mp3",
+        "dateAdded": "2022-11-17T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "72526828-6F6D-4EFC-8437-12B6D2955A5C",
+        "title": "Uma manifestação passiva",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "estamos aqui nessa manifestação passiva pedindo o fechamento do FGTS e pedindo também que o ministro Alexandre de Moraes largue a presidência do PIS e do PASEP não queremos mais eleições",
+        "filename": "Desconhecido - Uma manifestacao passiva.mp3",
+        "dateAdded": "2022-11-17T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "1E07247D-DE01-469C-B871-40E5D8D03463",
+        "title": "Vontade de chorar e morrer, só isso",
+        "authorId": "E1FC8AFA-EE7F-40B6-B784-81B43E6F5F8E",
+        "description": "Vontade de chorar e morrer, só isso",
+        "filename": "Leonardo Bastos - Vontade de chorar e morrer so isso.mp3",
+        "dateAdded": "2022-11-17T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "57049E89-BAAA-406D-B483-070971E06EAF",
+        "title": "As Forças Armadas emitiram duas notas",
+        "authorId": "26B71AC1-32E0-479B-96FE-3B1AFDBB2437",
+        "description": "locutor militar as forças armadas emitiram duas notas",
+        "filename": "Locutor Militar - As Forcas Armadas emitiram duas notas.mp3",
+        "dateAdded": "2022-11-17T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "26F72A63-5955-47DF-9939-6187F8B8B7AE",
+        "title": "Os comandantes das três forças emitiram uma nota",
+        "authorId": "26B71AC1-32E0-479B-96FE-3B1AFDBB2437",
+        "description": "os comandantes da marinha exercito e aeronáutica emitiram uma nota",
+        "filename": "Locutor Militar - Os comandantes emitiram uma nota.mp3",
+        "dateAdded": "2022-11-17T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "E7B4BC8E-C59A-4D88-B56D-E20C32A70604",
+        "title": "Beber, cair",
+        "authorId": "1CB7AE33-7BDC-4009-B8C1-8B0DFD417058",
+        "description": "beber cair",
+        "filename": "Rai Saia Rodada -  Beber, Cair.mp3",
+        "dateAdded": "2022-11-17T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "5DA9073A-75B8-4F72-8FC6-21028A4B77E4",
+        "title": "Vai chorar é, vai chorar é (instrumental)",
+        "authorId": "D8738C87-8962-418E-ADBF-9B1DC3D30528",
+        "description": "vai chorar é chore na minha instrumental",
+        "filename": "Saiddy Bamba -  Vai chorar e vai chorar e instrumental.mp3",
+        "dateAdded": "2022-11-17T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "043F12BE-5523-4DE7-92DE-336D7EA59ED5",
+        "title": "Não não não não não não não",
+        "authorId": "D8738C87-8962-418E-ADBF-9B1DC3D30528",
+        "description": "Não não não não não não não olha só",
+        "filename": "Saiddy Bamba - Nao nao nao nao short.mp3",
+        "dateAdded": "2022-11-17T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "949B608C-7A7E-4B69-A9E7-0ABB15E49348",
+        "title": "Sim sim sim, não não não",
+        "authorId": "D8738C87-8962-418E-ADBF-9B1DC3D30528",
+        "description": "Sim sim sim não não não",
+        "filename": "Saiddy Bamba - SIM SIM SIM NAO NAO NAO.mp3",
+        "dateAdded": "2022-11-17T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "96A7026E-61B6-4A3C-B844-DEF32262E4A4",
+        "title": "Eu não sabia que ele era safado assim não, moço",
+        "authorId": "08E925A9-9553-456B-8541-499BF578225B",
+        "description": "eu não sabia que ele era safado assim não, moço",
+        "filename": "Jojo Todynho - Eu nao sabia que ele era safado assim nao moco.mp3",
+        "dateAdded": "2022-11-17T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "9839F467-32CA-4CE5-ACE5-0058F461A040",
+        "title": "Tarado",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "tarado",
+        "filename": "Jair Bolsonaro - Tarado.mp3",
+        "dateAdded": "2022-11-17T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "99E4AD7C-0495-4844-97D1-18FBE56FC030",
+        "title": "Eu nunca sentei na mesa",
+        "authorId": "71128756-78A9-4B31-A7D8-CE120147C481",
+        "description": "eu nunca sentei na mesa",
+        "filename": "Eduardo Pazuello - Eu nunca sentei na mesa.mp3",
+        "dateAdded": "2022-11-17T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "2CE3571B-83A7-456C-9892-C71BB3D5B2E6",
+        "title": "Tu demorou pra sentar aqui na mesa",
+        "authorId": "71128756-78A9-4B31-A7D8-CE120147C481",
+        "description": "tu demorou pra sentar aqui na mesa",
+        "filename": "Eduardo Pazuello - Tu demorou pra sentar aqui na mesa.mp3",
+        "dateAdded": "2022-11-17T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "66EB23ED-4B81-4517-819B-3231F61E65E5",
+        "title": "Cinquenta sentadas",
+        "authorId": "71128756-78A9-4B31-A7D8-CE120147C481",
+        "description": "cinquenta sentadas",
+        "filename": "Eduardo Pazuello - Cinquenta sentadas.mp3",
+        "dateAdded": "2022-11-17T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "81D31D1A-CEF2-4EDC-9EA7-89AED359DDC8",
+        "title": "Confira comigo no replay",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "confira comigo no replay",
+        "filename": "Cristiano Botafogo - Confira comigo no replay.mp3",
+        "dateAdded": "2022-11-17T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "1501DCD2-0268-4ECF-AB79-B865506C7528",
+        "title": "O terrível editorialista do Globo",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "o terrível editorialista do Globo",
+        "filename": "Cristiano Botafogo - O terrivel editorialista do Globo.mp3",
+        "dateAdded": "2022-11-17T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "185F8D10-7806-4CC0-8083-E47F27AD1DAE",
+        "title": "Vamo lá tomar uma lá no bar",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "vamo la tomar uma la no bar só chamar que eu também vou pra lá qual é o bar xenofobia copa",
+        "filename": "Meme - Vamo la tomar uma la no bar.mp3",
+        "dateAdded": "2022-01-01T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
     }
 ]

@@ -13,8 +13,9 @@ struct FolderList: View {
     @StateObject private var viewModel = FolderListViewModel()
     @State var displayJoinFolderResearchBanner: Bool = false
     @Binding var updateFolderList: Bool
-    @Binding var deleteFolderAid: DeleteFolderViewAid
+    @Binding var deleteFolderAide: DeleteFolderViewAide
     @Binding var folderIdForEditing: String
+    @EnvironmentObject var deleteFolderAideiPhone: DeleteFolderViewAideiPhone
     
     private var columns: [GridItem] {
         if UIDevice.current.userInterfaceIdiom == .phone {
@@ -29,6 +30,21 @@ struct FolderList: View {
                 GridItem(.flexible()),
                 GridItem(.flexible())
             ]
+        }
+    }
+    
+    private var noFoldersScrollHeight: CGFloat {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            let screenWidth = UIScreen.main.bounds.height
+            if screenWidth < 600 {
+                return 0
+            } else if screenWidth < 800 {
+                return 50
+            } else {
+                return 100
+            }
+        } else {
+            return 100
         }
     }
     
@@ -63,11 +79,19 @@ struct FolderList: View {
                             
                             Section {
                                 Button(role: .destructive, action: {
-                                    let folderName = "\(folder.symbol) \(folder.name)"
-                                    deleteFolderAid.alertTitle = "Apagar \"\(folderName)\""
-                                    deleteFolderAid.alertMessage = "Tem certeza de que deseja apagar a pasta \"\(folderName)\"? Os sons não serão apagados."
-                                    deleteFolderAid.folderIdForDeletion = folder.id
-                                    deleteFolderAid.showAlert = true
+                                    if UIDevice.current.userInterfaceIdiom == .phone {
+                                        let folderName = "\(folder.symbol) \(folder.name)"
+                                        deleteFolderAideiPhone.alertTitle = "Apagar \"\(folderName)\""
+                                        deleteFolderAideiPhone.alertMessage = "Tem certeza de que deseja apagar a pasta \"\(folderName)\"? Os sons não serão apagados."
+                                        deleteFolderAideiPhone.folderIdForDeletion = folder.id
+                                        deleteFolderAideiPhone.showAlert = true
+                                    } else {
+                                        let folderName = "\(folder.symbol) \(folder.name)"
+                                        deleteFolderAide.alertTitle = "Apagar \"\(folderName)\""
+                                        deleteFolderAide.alertMessage = "Tem certeza de que deseja apagar a pasta \"\(folderName)\"? Os sons não serão apagados."
+                                        deleteFolderAide.folderIdForDeletion = folder.id
+                                        deleteFolderAide.showAlert = true
+                                    }
                                 }, label: {
                                     HStack {
                                         Text("Apagar Pasta")
@@ -79,29 +103,8 @@ struct FolderList: View {
                     }
                 }
             } else {
-                VStack(spacing: 15) {
-                    Spacer()
-                    
-                    Image(systemName: "folder")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 90)
-                        .foregroundColor(.gray)
-                        .opacity(0.4)
-                        .padding(.bottom, 15)
-                    
-                    Text("Nenhuma Pasta Criada")
-                        .font(.title3)
-                        .multilineTextAlignment(.center)
-                    
-                    Text("Toque em Nova Pasta acima para criar uma nova pasta de sons.")
-                        .foregroundColor(.gray)
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal)
-                    
-                    Spacer()
-                }
-                .padding(.vertical, 40)
+                NoFoldersView()
+                    .padding(.vertical, noFoldersScrollHeight)
             }
         }
         .onAppear {
@@ -127,10 +130,17 @@ struct FolderList: View {
             viewModel.donateActivity()
         }
         .onChange(of: updateFolderList) { shouldUpdate in
-            if shouldUpdate {
-                viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
-                updateFolderList = false
-            }
+            refreshFolderList(shouldUpdate)
+        }
+        .onChange(of: deleteFolderAideiPhone.updateFolderList) { shouldUpdate in
+            refreshFolderList(shouldUpdate)
+        }
+    }
+    
+    private func refreshFolderList(_ shouldUpdate: Bool) {
+        if shouldUpdate {
+            viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
+            updateFolderList = false
         }
     }
 
@@ -140,7 +150,7 @@ struct FolderList_Previews: PreviewProvider {
 
     static var previews: some View {
         FolderList(updateFolderList: .constant(false),
-                   deleteFolderAid: .constant(DeleteFolderViewAid()),
+                   deleteFolderAide: .constant(DeleteFolderViewAide()),
                    folderIdForEditing: .constant(.empty))
     }
 
