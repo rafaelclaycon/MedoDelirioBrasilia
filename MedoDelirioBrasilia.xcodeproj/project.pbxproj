@@ -258,7 +258,7 @@
 		D948E9962921F74F00D047D3 /* Alessandro Molon - Estrategia golpista para criar o caos nao e contragolpe, e golpe.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D948E98F2921F74F00D047D3 /* Alessandro Molon - Estrategia golpista para criar o caos nao e contragolpe, e golpe.mp3 */; };
 		D948E9982921FCB000D047D3 /* Marcelo Adnet (como Jair Bolsonaro) - Todo mundo sabe que eu tenho grande sensibilidade nisso dai.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D948E9972921FCB000D047D3 /* Marcelo Adnet (como Jair Bolsonaro) - Todo mundo sabe que eu tenho grande sensibilidade nisso dai.mp3 */; };
 		D9491810288606E00079F545 /* SettingsCasingWithCloseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D949180F288606E00079F545 /* SettingsCasingWithCloseView.swift */; };
-		D949181228860ABC0079F545 /* AllFoldersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D949181128860ABC0079F545 /* AllFoldersView.swift */; };
+		D949181228860ABC0079F545 /* AllFoldersiPadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D949181128860ABC0079F545 /* AllFoldersiPadView.swift */; };
 		D94AD34928811ADC00D3E4F0 /* Versioneer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94AD34828811ADC00D3E4F0 /* Versioneer.swift */; };
 		D94BA9ED2879EC7F001BD09C /* JoinFolderResearchBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94BA9EC2879EC7F001BD09C /* JoinFolderResearchBannerView.swift */; };
 		D9523741285BF98A00E6C838 /* NetworkRabbitStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */; };
@@ -896,7 +896,7 @@
 		D976FF3828674BAC00998E1B /* FoldersBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D976FF3728674BAC00998E1B /* FoldersBannerView.swift */; };
 		D977294A28E1F99D003B0CD3 /* Balde de cerveja gelada no final do arco-iris.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D977294928E1F99C003B0CD3 /* Balde de cerveja gelada no final do arco-iris.mp3 */; };
 		D97B2DD628E3E85400C3B50B /* MostSharedByMeViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97B2DD528E3E85400C3B50B /* MostSharedByMeViewViewModel.swift */; };
-		D97B2DD928E5EA0500C3B50B /* DeleteFolderViewAid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97B2DD828E5EA0500C3B50B /* DeleteFolderViewAid.swift */; };
+		D97B2DD928E5EA0500C3B50B /* DeleteFolderViewAide.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97B2DD828E5EA0500C3B50B /* DeleteFolderViewAide.swift */; };
 		D97B2DE228E60B8600C3B50B /* Soraya Thronicke - Nao cutuque onca com a sua vara curta.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D97B2DDB28E60B8500C3B50B /* Soraya Thronicke - Nao cutuque onca com a sua vara curta.mp3 */; };
 		D97B2DE328E60B8600C3B50B /* William Bonner - Fora Bolsonaro Genocida.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D97B2DDC28E60B8600C3B50B /* William Bonner - Fora Bolsonaro Genocida.mp3 */; };
 		D97B2DE428E60B8600C3B50B /* Patrick (Zorra Total) - Olha a Faca.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D97B2DDD28E60B8600C3B50B /* Patrick (Zorra Total) - Olha a Faca.mp3 */; };
@@ -1029,6 +1029,7 @@
 		D9C5EC3628C7F7F70099EA86 /* Jair Bolsonaro - Ato falho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C5EC3428C7F7F70099EA86 /* Jair Bolsonaro - Ato falho.mp3 */; };
 		D9C5EC3728C7F7F70099EA86 /* Jair Bolsonaro - Putaria.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C5EC3528C7F7F70099EA86 /* Jair Bolsonaro - Putaria.mp3 */; };
 		D9C5EC3928C7FAA00099EA86 /* Tyrion Lannister - THAT was a threat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C5EC3828C7FAA00099EA86 /* Tyrion Lannister - THAT was a threat.mp3 */; };
+		D9C7310C292D62C300090DED /* Meme - Vamo la tomar uma la no bar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C7310B292D62C300090DED /* Meme - Vamo la tomar uma la no bar.mp3 */; };
 		D9C77B6D28CAB81F006CA17B /* TIRIRICA - Pior do que ta nao fica.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C77B6C28CAB81F006CA17B /* TIRIRICA - Pior do que ta nao fica.mp3 */; };
 		D9C77B6F28CAC07B006CA17B /* Thiago Arruda - Passarinho que come cu nao sabe a pedra que tem.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C77B6E28CAC07B006CA17B /* Thiago Arruda - Passarinho que come cu nao sabe a pedra que tem.mp3 */; };
 		D9CA8BB72908802300C6B492 /* Jair Bolsonaro - Nao tenho provas.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CA8BB62908802300C6B492 /* Jair Bolsonaro - Nao tenho provas.mp3 */; };
@@ -1058,6 +1059,7 @@
 		D9DCF73B290D832800DB177C /* Desconhecido - Mi-mi-mi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DCF739290D832800DB177C /* Desconhecido - Mi-mi-mi.mp3 */; };
 		D9DCF73C290D832800DB177C /* Valdemiro Santiago - Eu estou no limite, Brasil.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DCF73A290D832800DB177C /* Valdemiro Santiago - Eu estou no limite, Brasil.mp3 */; };
 		D9E1A8D02914CB3A00694A74 /* Monica de Bolle - Pronto, falei.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E1A8CF2914CB3900694A74 /* Monica de Bolle - Pronto, falei.mp3 */; };
+		D9E1A8D22914CD8200694A74 /* MyFoldersiPhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E1A8D12914CD8200694A74 /* MyFoldersiPhoneView.swift */; };
 		D9E5056028F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E5055F28F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift */; };
 		D9E5056228F79ECB008DAA1E /* Luiz Felipe D'Avila - Que tistreza.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E5056128F79ECB008DAA1E /* Luiz Felipe D'Avila - Que tistreza.mp3 */; };
 		D9E5100A286084F2003DB3A3 /* Date+OnlyDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E51009286084F2003DB3A3 /* Date+OnlyDate.swift */; };
@@ -1070,6 +1072,8 @@
 		D9E7D0F228AC677B001E909E /* Paulo Guedes - Empregada domestica na Disney (curto).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E7D0F028AC677B001E909E /* Paulo Guedes - Empregada domestica na Disney (curto).mp3 */; };
 		D9E7D0F428AC699B001E909E /* Cristiano Botafogo - Vista o seu traje quimico.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E7D0F328AC699B001E909E /* Cristiano Botafogo - Vista o seu traje quimico.mp3 */; };
 		D9E7D0F628AC6BC6001E909E /* PORTA DOS FUNDOS - Nao, brother broder.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E7D0F528AC6BC6001E909E /* PORTA DOS FUNDOS - Nao, brother broder.mp3 */; };
+		D9E9CFA3292C3DD1002BC918 /* NoFoldersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E9CFA2292C3DD1002BC918 /* NoFoldersView.swift */; };
+		D9E9CFA5292C40BF002BC918 /* NoFoldersSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E9CFA4292C40BF002BC918 /* NoFoldersSymbol.swift */; };
 		D9EB18A52857CDFF00A2F8A8 /* CollectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EB18A42857CDFF00A2F8A8 /* CollectionsView.swift */; };
 		D9ECD81528B3C470003C033A /* IconImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9ECD81428B3C470003C033A /* IconImage.swift */; };
 		D9EDB87828E3E477007724E2 /* Ciro Nogueira - Restricao porque e um fascista.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9EDB87528E3E477007724E2 /* Ciro Nogueira - Restricao porque e um fascista.mp3 */; };
@@ -1405,7 +1409,7 @@
 		D948E98F2921F74F00D047D3 /* Alessandro Molon - Estrategia golpista para criar o caos nao e contragolpe, e golpe.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alessandro Molon - Estrategia golpista para criar o caos nao e contragolpe, e golpe.mp3"; sourceTree = "<group>"; };
 		D948E9972921FCB000D047D3 /* Marcelo Adnet (como Jair Bolsonaro) - Todo mundo sabe que eu tenho grande sensibilidade nisso dai.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Marcelo Adnet (como Jair Bolsonaro) - Todo mundo sabe que eu tenho grande sensibilidade nisso dai.mp3"; sourceTree = "<group>"; };
 		D949180F288606E00079F545 /* SettingsCasingWithCloseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCasingWithCloseView.swift; sourceTree = "<group>"; };
-		D949181128860ABC0079F545 /* AllFoldersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFoldersView.swift; sourceTree = "<group>"; };
+		D949181128860ABC0079F545 /* AllFoldersiPadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFoldersiPadView.swift; sourceTree = "<group>"; };
 		D94AD34828811ADC00D3E4F0 /* Versioneer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Versioneer.swift; sourceTree = "<group>"; };
 		D94BA9EC2879EC7F001BD09C /* JoinFolderResearchBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinFolderResearchBannerView.swift; sourceTree = "<group>"; };
 		D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRabbitStub.swift; sourceTree = "<group>"; };
@@ -2045,7 +2049,7 @@
 		D976FF3728674BAC00998E1B /* FoldersBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersBannerView.swift; sourceTree = "<group>"; };
 		D977294928E1F99C003B0CD3 /* Balde de cerveja gelada no final do arco-iris.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Balde de cerveja gelada no final do arco-iris.mp3"; sourceTree = "<group>"; };
 		D97B2DD528E3E85400C3B50B /* MostSharedByMeViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostSharedByMeViewViewModel.swift; sourceTree = "<group>"; };
-		D97B2DD828E5EA0500C3B50B /* DeleteFolderViewAid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteFolderViewAid.swift; sourceTree = "<group>"; };
+		D97B2DD828E5EA0500C3B50B /* DeleteFolderViewAide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteFolderViewAide.swift; sourceTree = "<group>"; };
 		D97B2DDB28E60B8500C3B50B /* Soraya Thronicke - Nao cutuque onca com a sua vara curta.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Soraya Thronicke - Nao cutuque onca com a sua vara curta.mp3"; sourceTree = "<group>"; };
 		D97B2DDC28E60B8600C3B50B /* William Bonner - Fora Bolsonaro Genocida.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "William Bonner - Fora Bolsonaro Genocida.mp3"; sourceTree = "<group>"; };
 		D97B2DDD28E60B8600C3B50B /* Patrick (Zorra Total) - Olha a Faca.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Patrick (Zorra Total) - Olha a Faca.mp3"; sourceTree = "<group>"; };
@@ -2179,6 +2183,7 @@
 		D9C5EC3428C7F7F70099EA86 /* Jair Bolsonaro - Ato falho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Ato falho.mp3"; sourceTree = "<group>"; };
 		D9C5EC3528C7F7F70099EA86 /* Jair Bolsonaro - Putaria.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Putaria.mp3"; sourceTree = "<group>"; };
 		D9C5EC3828C7FAA00099EA86 /* Tyrion Lannister - THAT was a threat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tyrion Lannister - THAT was a threat.mp3"; sourceTree = "<group>"; };
+		D9C7310B292D62C300090DED /* Meme - Vamo la tomar uma la no bar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Meme - Vamo la tomar uma la no bar.mp3"; sourceTree = "<group>"; };
 		D9C77B6C28CAB81F006CA17B /* TIRIRICA - Pior do que ta nao fica.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "TIRIRICA - Pior do que ta nao fica.mp3"; sourceTree = "<group>"; };
 		D9C77B6E28CAC07B006CA17B /* Thiago Arruda - Passarinho que come cu nao sabe a pedra que tem.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Thiago Arruda - Passarinho que come cu nao sabe a pedra que tem.mp3"; sourceTree = "<group>"; };
 		D9CA8BB62908802300C6B492 /* Jair Bolsonaro - Nao tenho provas.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Nao tenho provas.mp3"; sourceTree = "<group>"; };
@@ -2208,6 +2213,7 @@
 		D9DCF739290D832800DB177C /* Desconhecido - Mi-mi-mi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Desconhecido - Mi-mi-mi.mp3"; sourceTree = "<group>"; };
 		D9DCF73A290D832800DB177C /* Valdemiro Santiago - Eu estou no limite, Brasil.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Valdemiro Santiago - Eu estou no limite, Brasil.mp3"; sourceTree = "<group>"; };
 		D9E1A8CF2914CB3900694A74 /* Monica de Bolle - Pronto, falei.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Monica de Bolle - Pronto, falei.mp3"; sourceTree = "<group>"; };
+		D9E1A8D12914CD8200694A74 /* MyFoldersiPhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFoldersiPhoneView.swift; sourceTree = "<group>"; };
 		D9E5055F28F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAudienceSharingStatisticTable.swift; sourceTree = "<group>"; };
 		D9E5056128F79ECB008DAA1E /* Luiz Felipe D'Avila - Que tistreza.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Luiz Felipe D'Avila - Que tistreza.mp3"; sourceTree = "<group>"; };
 		D9E51009286084F2003DB3A3 /* Date+OnlyDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+OnlyDate.swift"; sourceTree = "<group>"; };
@@ -2219,6 +2225,8 @@
 		D9E7D0F028AC677B001E909E /* Paulo Guedes - Empregada domestica na Disney (curto).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Paulo Guedes - Empregada domestica na Disney (curto).mp3"; sourceTree = "<group>"; };
 		D9E7D0F328AC699B001E909E /* Cristiano Botafogo - Vista o seu traje quimico.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano Botafogo - Vista o seu traje quimico.mp3"; sourceTree = "<group>"; };
 		D9E7D0F528AC6BC6001E909E /* PORTA DOS FUNDOS - Nao, brother broder.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "PORTA DOS FUNDOS - Nao, brother broder.mp3"; sourceTree = "<group>"; };
+		D9E9CFA2292C3DD1002BC918 /* NoFoldersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFoldersView.swift; sourceTree = "<group>"; };
+		D9E9CFA4292C40BF002BC918 /* NoFoldersSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFoldersSymbol.swift; sourceTree = "<group>"; };
 		D9EB18A42857CDFF00A2F8A8 /* CollectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsView.swift; sourceTree = "<group>"; };
 		D9ECD81428B3C470003C033A /* IconImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconImage.swift; sourceTree = "<group>"; };
 		D9EDB87528E3E477007724E2 /* Ciro Nogueira - Restricao porque e um fascista.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ciro Nogueira - Restricao porque e um fascista.mp3"; sourceTree = "<group>"; };
@@ -2320,6 +2328,7 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9C7310B292D62C300090DED /* Meme - Vamo la tomar uma la no bar.mp3 */,
 				491110472926C2F70055F4EE /* Cristiano Botafogo - O terrivel editorialista do Globo.mp3 */,
 				491110452926C0B20055F4EE /* Cristiano Botafogo - Confira comigo no replay.mp3 */,
 				491110432926C06A0055F4EE /* Eduardo Pazuello - Cinquenta sentadas.mp3 */,
@@ -3499,8 +3508,8 @@
 				D9B9025C2837485000551239 /* Sounds */,
 				D98622DE283FC53B00E9F630 /* Authors */,
 				D95F363828AD385100743026 /* ShareAsVideo */,
-				D9EB18A32857CDE200A2F8A8 /* Collections */,
 				D9943F2428641FB7002C6B97 /* Folders */,
+				D9EB18A32857CDE200A2F8A8 /* Collections */,
 				D92E7073283C5D9E0035826C /* Songs */,
 				D9BF90BC2842EAB100BDDD7D /* Trends */,
 				D957509728446BEC0094AEA6 /* Settings */,
@@ -3578,7 +3587,7 @@
 			isa = PBXGroup;
 			children = (
 				D95DB0F72882491A00D4FEDF /* ScreenAndTabs.swift */,
-				D97B2DD828E5EA0500C3B50B /* DeleteFolderViewAid.swift */,
+				D97B2DD828E5EA0500C3B50B /* DeleteFolderViewAide.swift */,
 				D9A3AB6A28F03C970064CB7A /* ViewStates.swift */,
 			);
 			path = ViewAid;
@@ -3788,7 +3797,10 @@
 				D9D3D4902887495B00C42FDE /* FolderList.swift */,
 				D9D3D492288750C400C42FDE /* FolderListViewModel.swift */,
 				D946116D28611F1000C4FB7E /* FolderCell.swift */,
-				D949181128860ABC0079F545 /* AllFoldersView.swift */,
+				D949181128860ABC0079F545 /* AllFoldersiPadView.swift */,
+				D9E1A8D12914CD8200694A74 /* MyFoldersiPhoneView.swift */,
+				D9E9CFA2292C3DD1002BC918 /* NoFoldersView.swift */,
+				D9E9CFA4292C40BF002BC918 /* NoFoldersSymbol.swift */,
 			);
 			path = FolderList;
 			sourceTree = "<group>";
@@ -4598,6 +4610,7 @@
 				D975FE1E2880B4F20035E6F2 /* Matheuzinho e  Menor Nico - O Golpe ta ai short meme.mp3 in Resources */,
 				D91793A9288E1B51009C3165 /* Um Ministerio Tecnico.mp3 in Resources */,
 				D9547D8228FDD7190020A800 /* Igor Guimaraes e Luiz Felipe D'Avila - Que alegria, que tistreza.mp3 in Resources */,
+				D9C7310C292D62C300090DED /* Meme - Vamo la tomar uma la no bar.mp3 in Resources */,
 				49DEA99E28810C88008C9BA1 /* Ana Paula - Olha Ela short meme.mp3 in Resources */,
 				D975FEEE2880B4F20035E6F2 /* Xaropinho - Rapaz short.mp3 in Resources */,
 				D921F879288B0177003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 in Resources */,
@@ -5064,6 +5077,7 @@
 				D967E2BA290196F900B21C11 /* WallE.swift in Sources */,
 				D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */,
 				D93A02982906DE8C00A85FE2 /* UserFolderLog.swift in Sources */,
+				D9E9CFA5292C40BF002BC918 /* NoFoldersSymbol.swift in Sources */,
 				D93CCB77286A802D0002CF81 /* EmptyFolderView.swift in Sources */,
 				D9BFD8CC29059B4800E1AF6F /* FoldersAreTagsBannerView.swift in Sources */,
 				D94611802861480A00C4FB7E /* FolderInfoEditingView.swift in Sources */,
@@ -5078,6 +5092,7 @@
 				D9943F1C28641917002C6B97 /* LocalDatabase+Favorite.swift in Sources */,
 				D9A8AB2528543F8E00B5A94B /* SharingLogCell.swift in Sources */,
 				D961D01828372B1800EFEDEB /* AudioPlayer.swift in Sources */,
+				D9E9CFA3292C3DD1002BC918 /* NoFoldersView.swift in Sources */,
 				D916536428AD7FF7007F141D /* VideoMaker.swift in Sources */,
 				D95F363A28AD386D00743026 /* ShareAsVideoView.swift in Sources */,
 				D9C1372729063A78003E4ABF /* FolderResearchSettingsView.swift in Sources */,
@@ -5093,6 +5108,7 @@
 				D9344323283812AD00ADCD38 /* Author.swift in Sources */,
 				D9758C3E28617DAC0094D388 /* Color+Name.swift in Sources */,
 				D9491810288606E00079F545 /* SettingsCasingWithCloseView.swift in Sources */,
+				D9E1A8D22914CD8200694A74 /* MyFoldersiPhoneView.swift in Sources */,
 				D98622E2283FCEDC00E9F630 /* AuthorsViewViewModel.swift in Sources */,
 				D958B1B22839534D0010F133 /* SettingsView.swift in Sources */,
 				D9ECD81528B3C470003C033A /* IconImage.swift in Sources */,
@@ -5115,7 +5131,7 @@
 				D95DB0F82882491A00D4FEDF /* ScreenAndTabs.swift in Sources */,
 				D9FA0CD92850864C000F6ADE /* ClientDeviceInfo.swift in Sources */,
 				D9D3D4912887495B00C42FDE /* FolderList.swift in Sources */,
-				D97B2DD928E5EA0500C3B50B /* DeleteFolderViewAid.swift in Sources */,
+				D97B2DD928E5EA0500C3B50B /* DeleteFolderViewAide.swift in Sources */,
 				D9758C3A28617BA70094D388 /* AddUserFolderTables.swift in Sources */,
 				D9265741285A1EE700947165 /* LocalDatabase+Log.swift in Sources */,
 				D980456228380F66003B2E83 /* LocalizableStrings.swift in Sources */,
@@ -5126,7 +5142,7 @@
 				D97D76F92885B1BD005210D9 /* SidebarFolderIcon.swift in Sources */,
 				D9351C5C2844094E00D4317E /* TopChartItem.swift in Sources */,
 				D9943F172863DAE1002C6B97 /* FolderDetailView.swift in Sources */,
-				D949181228860ABC0079F545 /* AllFoldersView.swift in Sources */,
+				D949181228860ABC0079F545 /* AllFoldersiPadView.swift in Sources */,
 				D9D8C4A8287CD1B600812EE5 /* UIDevice+DevicePhysicalCharacteristics.swift in Sources */,
 				D98EC5E12825A05900340BE5 /* Sound.swift in Sources */,
 				D9DCC5D128751256008DD4A3 /* PushDevice.swift in Sources */,
@@ -5213,7 +5229,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 5.20;
+				MARKETING_VERSION = 5.21;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -5245,7 +5261,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 5.20;
+				MARKETING_VERSION = 5.21;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -5401,7 +5417,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.20;
+				MARKETING_VERSION = 5.21;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -5442,7 +5458,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.20;
+				MARKETING_VERSION = 5.21;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
