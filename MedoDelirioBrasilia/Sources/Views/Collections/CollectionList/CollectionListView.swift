@@ -37,6 +37,9 @@ struct CollectionListView: View {
                 loadingErrorView()
             }
         }
+        .onAppear {
+            viewModel.fetchCollections()
+        }
     }
     
     @ViewBuilder private func loadingView() -> some View {

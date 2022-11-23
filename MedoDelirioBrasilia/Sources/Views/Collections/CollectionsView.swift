@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CollectionsView: View {
 
-    @StateObject private var viewModel = CollectionsViewViewModel()
+    //@StateObject private var viewModel = CollectionsViewViewModel()
     
     var body: some View {
         ScrollView {
@@ -17,25 +17,6 @@ struct CollectionsView: View {
                 VStack(alignment: .center) {
                     CollectionListView(viewModel: CollectionListViewViewModel(state: .loading))
                         .padding(.top, 10)
-                    
-                    VStack(spacing: 10) {
-                        Text("*Tá vindo!*")
-                            .foregroundColor(.gray)
-                            .font(.title3)
-                            .multilineTextAlignment(.center)
-                    }
-                    .padding(.vertical, UIDevice.current.userInterfaceIdiom == .phone ? 100 : 200)
-                    
-                    if UIDevice.current.userInterfaceIdiom == .phone {
-                        VStack(spacing: 10) {
-                            Text("Procurando pelas pastas? Agora elas estão na aba Sons.")
-                                .foregroundColor(.gray)
-                                .font(.body)
-                                .multilineTextAlignment(.center)
-                        }
-                        .padding(.vertical, 100)
-                        .padding(.horizontal)
-                    }
                     
 //                        ScrollView(.horizontal, showsIndicators: false) {
 //                            LazyHGrid(rows: rows, spacing: 14) {
