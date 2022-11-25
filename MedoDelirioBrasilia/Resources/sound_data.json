@@ -8021,6 +8021,26 @@
         "filename": "Desconhecido - Pra conversar com doido, so outro doido.mp3",
         "dateAdded": "2022-11-22T00:00:00Z",
         "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "09747723-DD76-4188-92A8-081BEE2FCC23",
+        "title": "Vocâ tá falando isso porque você é a putinha do Jobs",
+        "authorId": "2A0E4FE2-C625-44E2-9053-C98BF8006415",
+        "description": "Voce ta falando isso porque voce e a putinha do Jobs",
+        "filename": "Cidade Oculta e Google Tradutor - Voce ta falando isso porque voce e a putinha do Jobs.mp3",
+        "dateAdded": "2022-11-23T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "2B780223-8A62-4B9D-9A85-23C3E3F2C098",
+        "title": "Putinha do Jobs",
+        "authorId": "2A0E4FE2-C625-44E2-9053-C98BF8006415",
+        "description": "Putinha do Jobs",
+        "filename": "Cidade Oculta e Google Tradutor - Putinha do Jobs.mp3",
+        "dateAdded": "2022-11-23T00:00:00Z",
+        "isOffensive": true,
         "isNew": true
     }
 ]
