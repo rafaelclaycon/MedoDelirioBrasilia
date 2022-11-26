@@ -3,6 +3,8 @@ import SwiftUI
 
 class CollectionDetailViewViewModel: ObservableObject {
 
+    @Published var state: GenericViewState
+    
     @Published var sounds = [Sound]()
     @Published var hasSoundsToDisplay: Bool = false
     @Published var selectedSound: Sound? = nil
@@ -18,6 +20,48 @@ class CollectionDetailViewViewModel: ObservableObject {
     @Published var alertMessage: String = ""
     @Published var showAlert: Bool = false
     @Published var alertType: AlertType = .singleOption
+    
+    init(state: GenericViewState) {
+        self.state = state
+    }
+    
+    func fetchCollections() {
+        DispatchQueue.main.async {
+            self.state = .loading
+        }
+        
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                self.sounds = self.getLocalCollections()
+                self.state = .displayingData
+            }
+            
+//            FolderResearchHelper.sendLogs { success in
+//                DispatchQueue.main.async {
+//                    if success {
+//                        self.state = .displayingData
+//                    } else {
+//                        self.state = .loadingError
+//                    }
+//                }
+//            }
+        }
+    }
+    
+    private func getLocalCollections() -> [Sound] {
+        var array = [Sound]()
+        
+        array.append(soundData.filter({ $0.id == "9CE6EAFC-3C19-424A-B358-AEE2733909F4" }).first!)
+        array.append(soundData.filter({ $0.id == "4A4169BA-2B24-49CD-B5E9-001800412934" }).first!)
+        array.append(soundData.filter({ $0.id == "4D0D833D-584C-439E-AC23-2D55D00794EA" }).first!)
+        array.append(soundData.filter({ $0.id == "87666D4A-3439-4221-A1A0-D8BFF3F70202" }).first!)
+        array.append(soundData.filter({ $0.id == "E8BDCFCF-611E-4DB8-ACAD-B1EECF0E3285" }).first!)
+        array.append(soundData.filter({ $0.id == "CE548967-AC67-4439-BB18-694B2271FCF3" }).first!)
+        
+        return array
+    }
     
     func reloadSoundList(withSoundIds soundIds: [String]?) {
         guard let soundIds = soundIds else {

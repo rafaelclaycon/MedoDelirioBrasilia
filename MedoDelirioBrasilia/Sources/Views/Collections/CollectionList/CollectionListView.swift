@@ -11,21 +11,13 @@ struct CollectionListView: View {
 
     @StateObject var viewModel: CollectionListViewViewModel
     
-    private let rows = [
+    private let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
     
     var body: some View {
         VStack(alignment: .center) {
-            HStack {
-                Text("Escolhas do Editor")
-                    .font(.title2)
-                    .padding(.leading)
-                
-                Spacer()
-            }
-            
             switch viewModel.state {
             case .loading:
                 loadingView()
@@ -55,8 +47,8 @@ struct CollectionListView: View {
     }
     
     @ViewBuilder private func listView() -> some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            LazyHGrid(rows: rows, spacing: 14) {
+        ScrollView {
+            LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
                 ForEach(viewModel.collections) { collection in
                     NavigationLink {
                         CollectionDetailView(collection: collection)
@@ -65,7 +57,6 @@ struct CollectionListView: View {
                     }
                 }
             }
-            .frame(height: 250)
             .padding(.leading)
             .padding(.trailing)
         }
