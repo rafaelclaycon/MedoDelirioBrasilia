@@ -56,6 +56,7 @@ struct MostSharedByAudienceView: View {
             .padding(.horizontal)
             
             HStack {
+                #if os(iOS)
                 Menu {
                     Picker("Período", selection: $viewModel.timeIntervalOption) {
                         Text(Shared.Trends.last24Hours).tag(TrendsTimeInterval.last24Hours)
@@ -114,6 +115,7 @@ struct MostSharedByAudienceView: View {
                         }
                     }
                 }
+                #endif
                 
                 Spacer()
                 

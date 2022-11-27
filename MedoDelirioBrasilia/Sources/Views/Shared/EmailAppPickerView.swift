@@ -65,7 +65,9 @@ struct EmailAppPickerView: View {
                 }
             }
             .navigationTitle(Shared.pickAMailApp)
+            #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
             .navigationBarItems(leading:
                 Button("Cancelar") {
                     self.isBeingShown = false

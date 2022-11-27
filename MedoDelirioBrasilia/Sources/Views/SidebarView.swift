@@ -107,7 +107,9 @@ struct SidebarView: View {
                 }
             }
         }
+        #if os(iOS)
         .listStyle(SidebarListStyle())
+        #endif
         .navigationTitle(LocalizableStrings.MainView.title)
         .toolbar {
             Button {

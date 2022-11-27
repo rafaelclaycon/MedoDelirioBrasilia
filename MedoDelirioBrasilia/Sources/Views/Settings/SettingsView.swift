@@ -93,7 +93,7 @@ struct SettingsView: View {
                         .padding(.vertical)
                     
                     Button("Copiar chave Pix (e-mail)") {
-                        UIPasteboard.general.string = pixKey
+                        //UIPasteboard.general.string = pixKey
                         showPixKeyCopiedAlert = true
                     }
                     .alert(isPresented: $showPixKeyCopiedAlert) {
@@ -139,9 +139,9 @@ struct SettingsView: View {
                 showAskForMoneyView = result
             }
         }
-        .popover(isPresented: $showEmailClientConfirmationDialog) {
-            EmailAppPickerView(isBeingShown: $showEmailClientConfirmationDialog, subject: Shared.issueSuggestionEmailSubject, emailBody: Shared.issueSuggestionEmailBody)
-        }
+//        .popover(isPresented: $showEmailClientConfirmationDialog) {
+//            EmailAppPickerView(isBeingShown: $showEmailClientConfirmationDialog, subject: Shared.issueSuggestionEmailSubject, emailBody: Shared.issueSuggestionEmailBody)
+//        }
     }
 
 }

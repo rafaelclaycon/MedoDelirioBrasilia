@@ -21,7 +21,9 @@ class SongsViewViewModel: ObservableObject {
     @Published var currentActivity: NSUserActivity? = nil
     
     // Sharing
+    #if os(iOS)
     @Published var iPadShareSheet = ActivityViewController(activityItems: [URL(string: "https://www.apple.com")!])
+    #endif
     @Published var isShowingShareSheet: Bool = false
     @Published var shareBannerMessage: String = .empty
     @Published var displaySharedSuccessfullyToast: Bool = false
@@ -97,7 +99,7 @@ class SongsViewViewModel: ObservableObject {
                                 self.shareBannerMessage = Shared.songSharedSuccessfullyMessage
                                 self.displaySharedSuccessfullyToast = true
                             }
-                            TapticFeedback.success()
+                            ////TapticFeedback.success()
                         }
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -120,6 +122,7 @@ class SongsViewViewModel: ObservableObject {
             }
             let url = URL(fileURLWithPath: path)
             
+            #if os(iOS)
             iPadShareSheet = ActivityViewController(activityItems: [url]) { activity, completed, items, error in
                 if completed {
                     self.isShowingShareSheet = false
@@ -137,7 +140,7 @@ class SongsViewViewModel: ObservableObject {
                             self.shareBannerMessage = Shared.songSharedSuccessfullyMessage
                             self.displaySharedSuccessfullyToast = true
                         }
-                        TapticFeedback.success()
+                        //TapticFeedback.success()
                     }
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -147,6 +150,7 @@ class SongsViewViewModel: ObservableObject {
                     }
                 }
             }
+            #endif
             
             isShowingShareSheet = true
         }
@@ -162,7 +166,7 @@ class SongsViewViewModel: ObservableObject {
                                 self.shareBannerMessage = Shared.videoSharedSuccessfullyMessage
                                 self.displaySharedSuccessfullyToast = true
                             }
-                            TapticFeedback.success()
+                            //TapticFeedback.success()
                         }
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -184,6 +188,7 @@ class SongsViewViewModel: ObservableObject {
             
             let url = URL(fileURLWithPath: filepath)
             
+            #if os(iOS)
             iPadShareSheet = ActivityViewController(activityItems: [url]) { activity, completed, items, error in
                 if completed {
                     self.isShowingShareSheet = false
@@ -201,7 +206,7 @@ class SongsViewViewModel: ObservableObject {
                             self.shareBannerMessage = Shared.videoSharedSuccessfullyMessage
                             self.displaySharedSuccessfullyToast = true
                         }
-                        TapticFeedback.success()
+                        //TapticFeedback.success()
                     }
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -213,6 +218,7 @@ class SongsViewViewModel: ObservableObject {
                 
                 WallE.deleteAllVideoFilesFromDocumentsDir()
             }
+            #endif
             
             isShowingShareSheet = true
         }
@@ -224,7 +230,7 @@ class SongsViewViewModel: ObservableObject {
                 self.shareBannerMessage = "Vídeo salvo com sucesso."
                 self.displaySharedSuccessfullyToast = true
             }
-            TapticFeedback.success()
+            //TapticFeedback.success()
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {

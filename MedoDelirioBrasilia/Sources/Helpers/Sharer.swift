@@ -12,6 +12,7 @@ class Sharer {
         }
         let url = URL(fileURLWithPath: path)
         
+        #if os(iOS)
         let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
         DispatchQueue.main.async {
             UIApplication.shared.keyWindow?.rootViewController?.present(activityVC, animated: true, completion: nil)
@@ -31,6 +32,7 @@ class Sharer {
                 completionHandler(false)
             }
         }
+        #endif
     }
     
     static func shareVideoFromSound(withPath filepath: String, andContentId contentId: String, shareSheetDelayInSeconds: Double, completionHandler: @escaping (Bool) -> Void) throws {
@@ -40,6 +42,7 @@ class Sharer {
         
         let url = URL(fileURLWithPath: filepath)
         
+        #if os(iOS)
         let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + shareSheetDelayInSeconds) {
@@ -61,6 +64,7 @@ class Sharer {
                 completionHandler(false)
             }
         }
+        #endif
     }
     
     static func shareFile(withPath filepath: String) throws {
@@ -70,11 +74,13 @@ class Sharer {
         
         let url = URL(fileURLWithPath: filepath)
         
+        #if os(iOS)
         let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
         
         DispatchQueue.main.async {
             UIApplication.shared.keyWindow?.rootViewController?.present(activityVC, animated: true, completion: nil)
         }
+        #endif
     }
 
 }

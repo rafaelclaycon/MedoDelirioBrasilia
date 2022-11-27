@@ -120,7 +120,7 @@ struct SoundsView: View {
                                     } else {
                                         ForEach(searchResults) { sound in
                                             SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", isNew: sound.isNew ?? false, favorites: $viewModel.favoritesKeeper, highlighted: $viewModel.highlightKeeper)
-                                                .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
+                                                //.contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
                                                 .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                                                 .onTapGesture {
                                                     viewModel.playSound(fromPath: sound.filename)
@@ -177,7 +177,7 @@ struct SoundsView: View {
                                                                     withAnimation {
                                                                         shouldDisplayAddedToFolderToast = true
                                                                     }
-                                                                    TapticFeedback.success()
+                                                                    //TapticFeedback.success()
                                                                 }
                                                                 
                                                                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -213,8 +213,8 @@ struct SoundsView: View {
                                         }
                                     }
                                 }
-                                .searchable(text: $searchText)
-                                .disableAutocorrection(true)
+//                                .searchable(text: $searchText)
+//                                .disableAutocorrection(true)
                                 .padding(.horizontal)
                                 .padding(.top, 7)
                                 .onChange(of: geometry.size.width) { newWidth in
@@ -239,7 +239,7 @@ struct SoundsView: View {
                                             withAnimation {
                                                 proxy.scrollTo(soundIdToGoToFromTrends, anchor: .center)
                                             }
-                                            TapticFeedback.warning()
+                                            //TapticFeedback.warning()
                                         }
                                         
                                         viewModel.highlightKeeper.insert(soundIdToGoToFromTrends)
@@ -322,9 +322,11 @@ struct SoundsView: View {
                     }), secondaryButton: .cancel(Text("Cancelar")))
                 }
             }
+            #if os(iOS)
             .sheet(isPresented: $viewModel.isShowingShareSheet) {
                 viewModel.iPadShareSheet
             }
+            #endif
             .sheet(isPresented: $showingModalView) {
                 switch subviewToOpen {
                  case .onboardingView:
@@ -444,6 +446,7 @@ struct SoundsView: View {
                     .disabled(!viewModel.isPlayingSound)
                 }
                 
+                #if os(iOS)
                 if currentMode == .byAuthor {
                     Menu {
                         Section {
@@ -508,6 +511,7 @@ struct SoundsView: View {
                         UserSettings.setSoundSortOption(to: soundSortOption)
                     })
                 }
+                #endif
             }
         }
     }

@@ -27,7 +27,9 @@ struct PrivacySettingsView: View {
             }
         }
         .navigationTitle("Privacidade")
+        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
     }
 
 }

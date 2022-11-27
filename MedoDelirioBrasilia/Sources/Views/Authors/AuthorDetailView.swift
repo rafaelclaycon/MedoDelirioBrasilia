@@ -39,7 +39,9 @@ struct AuthorDetailView: View {
                             LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
                                 ForEach(viewModel.sounds) { sound in
                                     SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", isNew: sound.isNew ?? false, favorites: $viewModel.favoritesKeeper, highlighted: .constant(Set<String>()))
+                                        #if os(iOS)
                                         .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
+                                        #endif
                                         .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                                         .onTapGesture {
                                             viewModel.playSound(fromPath: sound.filename)
@@ -87,7 +89,7 @@ struct AuthorDetailView: View {
                                                             withAnimation {
                                                                 shouldDisplayAddedToFolderToast = true
                                                             }
-                                                            TapticFeedback.success()
+                                                            //TapticFeedback.success()
                                                         }
                                                         
                                                         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -162,9 +164,11 @@ struct AuthorDetailView: View {
             .sheet(isPresented: $viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog) {
                 EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog, subject: Shared.issueSuggestionEmailSubject, emailBody: Shared.issueSuggestionEmailBody)
             }
+            #if os(iOS)
             .sheet(isPresented: $viewModel.isShowingShareSheet) {
                 viewModel.iPadShareSheet
             }
+            #endif
             .sheet(isPresented: $showingModalView) {
                 ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: false)
             }

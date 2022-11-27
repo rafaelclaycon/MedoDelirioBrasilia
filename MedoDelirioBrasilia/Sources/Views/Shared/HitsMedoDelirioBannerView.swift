@@ -58,7 +58,7 @@ struct HitsMedoDelirioBannerView: View {
                             .padding(.horizontal, UIDevice.is4InchDevice ? 4 : 6)
                     }
                     .tint(.white)
-                    .controlSize(.regular)
+                    //.controlSize(.regular)
                     .buttonStyle(.bordered)
                     .buttonBorderShape(.roundedRectangle)
                 }

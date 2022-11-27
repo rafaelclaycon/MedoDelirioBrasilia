@@ -143,7 +143,7 @@ class MostSharedByAudienceViewViewModel: ObservableObject {
     }
     
     private func showServerUnavailableAlert() {
-        TapticFeedback.error()
+        //TapticFeedback.error()
         alertTitle = "Servidor Indisponível"
         alertMessage = "Não foi possível obter o ranking mais recente. Tente novamente mais tarde."
         showAlert = true

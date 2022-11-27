@@ -35,7 +35,7 @@ struct PodcastAuthorsView: View {
                 .padding(.horizontal, UIDevice.is4InchDevice ? 4 : 6)
         }
         .tint(.red)
-        .controlSize(.large)
+        //.controlSize(.large)
         .buttonStyle(.bordered)
         .buttonBorderShape(.roundedRectangle)
         
@@ -48,7 +48,7 @@ struct PodcastAuthorsView: View {
                 .padding(.horizontal, UIDevice.is4InchDevice ? 6 : 6)
         }
         .tint(.green)
-        .controlSize(.large)
+        //.controlSize(.large)
         .buttonStyle(.bordered)
         .buttonBorderShape(.roundedRectangle)
     }
@@ -71,7 +71,7 @@ struct PodcastAuthorsView: View {
             .padding(.vertical, 7)
             .padding(.horizontal, 24)
         }
-        .controlSize(.regular)
+        //.controlSize(.regular)
         .buttonStyle(.bordered)
         .buttonBorderShape(.roundedRectangle)
     }

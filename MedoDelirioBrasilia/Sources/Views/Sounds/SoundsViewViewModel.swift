@@ -25,7 +25,9 @@ class SoundsViewViewModel: ObservableObject {
     @Published var currentActivity: NSUserActivity? = nil
     
     // Sharing
+    #if os(iOS)
     @Published var iPadShareSheet = ActivityViewController(activityItems: [URL(string: "https://www.apple.com")!])
+    #endif
     @Published var isShowingShareSheet: Bool = false
     @Published var shareBannerMessage: String = .empty
     @Published var displaySharedSuccessfullyToast: Bool = false
@@ -132,7 +134,7 @@ class SoundsViewViewModel: ObservableObject {
                                 self.shareBannerMessage = Shared.soundSharedSuccessfullyMessage
                                 self.displaySharedSuccessfullyToast = true
                             }
-                            TapticFeedback.success()
+                            //TapticFeedback.success()
                         }
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -155,6 +157,7 @@ class SoundsViewViewModel: ObservableObject {
             }
             let url = URL(fileURLWithPath: path)
             
+            #if os(iOS)
             iPadShareSheet = ActivityViewController(activityItems: [url]) { activity, completed, items, error in
                 if completed {
                     self.isShowingShareSheet = false
@@ -172,7 +175,7 @@ class SoundsViewViewModel: ObservableObject {
                             self.shareBannerMessage = Shared.soundSharedSuccessfullyMessage
                             self.displaySharedSuccessfullyToast = true
                         }
-                        TapticFeedback.success()
+                        //TapticFeedback.success()
                     }
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -182,6 +185,7 @@ class SoundsViewViewModel: ObservableObject {
                     }
                 }
             }
+            #endif
             
             isShowingShareSheet = true
         }
@@ -197,7 +201,7 @@ class SoundsViewViewModel: ObservableObject {
                                 self.shareBannerMessage = Shared.videoSharedSuccessfullyMessage
                                 self.displaySharedSuccessfullyToast = true
                             }
-                            TapticFeedback.success()
+                            //TapticFeedback.success()
                         }
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -219,6 +223,7 @@ class SoundsViewViewModel: ObservableObject {
             
             let url = URL(fileURLWithPath: filepath)
             
+            #if os(iOS)
             iPadShareSheet = ActivityViewController(activityItems: [url]) { activity, completed, items, error in
                 if completed {
                     self.isShowingShareSheet = false
@@ -236,7 +241,7 @@ class SoundsViewViewModel: ObservableObject {
                             self.shareBannerMessage = Shared.videoSharedSuccessfullyMessage
                             self.displaySharedSuccessfullyToast = true
                         }
-                        TapticFeedback.success()
+                        //TapticFeedback.success()
                     }
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -248,6 +253,7 @@ class SoundsViewViewModel: ObservableObject {
                 
                 WallE.deleteAllVideoFilesFromDocumentsDir()
             }
+            #endif
             
             isShowingShareSheet = true
         }
@@ -259,7 +265,7 @@ class SoundsViewViewModel: ObservableObject {
                 self.shareBannerMessage = "Vídeo salvo com sucesso."
                 self.displaySharedSuccessfullyToast = true
             }
-            TapticFeedback.success()
+            //TapticFeedback.success()
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -326,7 +332,7 @@ class SoundsViewViewModel: ObservableObject {
     // MARK: - Alerts
     
     func showUnableToGetSoundAlert() {
-        TapticFeedback.error()
+        //TapticFeedback.error()
         alertType = .twoOptions
         alertTitle = Shared.soundNotFoundAlertTitle
         alertMessage = Shared.soundNotFoundAlertMessage
@@ -334,7 +340,7 @@ class SoundsViewViewModel: ObservableObject {
     }
     
     func showNoFoldersAlert() {
-        TapticFeedback.error()
+        //TapticFeedback.error()
         alertType = .singleOption
         alertTitle = Shared.Folders.noFoldersAlertTitle
         alertMessage = UIDevice.current.userInterfaceIdiom == .phone ? Shared.Folders.noFoldersAlertMessagePhone : Shared.Folders.noFoldersAlertMessagePadMac
@@ -342,7 +348,7 @@ class SoundsViewViewModel: ObservableObject {
     }
     
     func showMoveDatabaseIssueAlert() {
-        TapticFeedback.error()
+        //TapticFeedback.error()
         alertType = .singleOption
         alertTitle = "Problema ao Mover o Banco de Dados"
         alertMessage = "Houve um problema ao tentar mover o banco de dados do app. Por favor, envie um print desse erro para o desenvolvedor (e-mail nos Ajustes):\n\n\(moveDatabaseIssue)"

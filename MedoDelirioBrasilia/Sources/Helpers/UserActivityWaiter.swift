@@ -7,8 +7,8 @@ class UserActivityWaiter {
         let currentActivity = NSUserActivity(activityType: activityType)
         currentActivity.title = activityTitle
         currentActivity.isEligibleForHandoff = false
-        currentActivity.isEligibleForPrediction = true
-        currentActivity.persistentIdentifier = UUID().uuidString
+        //currentActivity.isEligibleForPrediction = true
+        //currentActivity.persistentIdentifier = UUID().uuidString
         return currentActivity
     }
 

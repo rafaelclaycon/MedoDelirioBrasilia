@@ -8,7 +8,7 @@ struct SettingsCasingWithCloseView: View {
         NavigationView {
             SettingsView()
                 .navigationTitle("Ajustes")
-                .navigationBarTitleDisplayMode(.inline)
+                //.navigationBarTitleDisplayMode(.inline)
                 .navigationBarItems(leading:
                     Button("Fechar") {
                         self.isBeingShown = false

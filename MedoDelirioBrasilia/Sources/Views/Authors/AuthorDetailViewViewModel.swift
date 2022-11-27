@@ -20,7 +20,9 @@ class AuthorDetailViewViewModel: ObservableObject {
     @Published var showEmailAppPicker_soundUnavailableConfirmationDialog = false
     
     // Sharing
+    #if os(iOS)
     @Published var iPadShareSheet = ActivityViewController(activityItems: [URL(string: "https://www.apple.com")!])
+    #endif
     @Published var isShowingShareSheet: Bool = false
     @Published var shareBannerMessage: String = .empty
     @Published var displaySharedSuccessfullyToast: Bool = false
@@ -99,7 +101,7 @@ class AuthorDetailViewViewModel: ObservableObject {
                                 self.shareBannerMessage = Shared.soundSharedSuccessfullyMessage
                                 self.displaySharedSuccessfullyToast = true
                             }
-                            TapticFeedback.success()
+                            ////TapticFeedback.success()
                         }
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -122,6 +124,7 @@ class AuthorDetailViewViewModel: ObservableObject {
             }
             let url = URL(fileURLWithPath: path)
             
+            #if os(iOS)
             iPadShareSheet = ActivityViewController(activityItems: [url]) { activity, completed, items, error in
                 if completed {
                     guard let activity = activity else {
@@ -137,7 +140,7 @@ class AuthorDetailViewViewModel: ObservableObject {
                             self.shareBannerMessage = Shared.soundSharedSuccessfullyMessage
                             self.displaySharedSuccessfullyToast = true
                         }
-                        TapticFeedback.success()
+                        //TapticFeedback.success()
                     }
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -147,6 +150,7 @@ class AuthorDetailViewViewModel: ObservableObject {
                     }
                 }
             }
+            #endif
             
             isShowingShareSheet = true
         }
@@ -162,7 +166,7 @@ class AuthorDetailViewViewModel: ObservableObject {
                                 self.shareBannerMessage = Shared.videoSharedSuccessfullyMessage
                                 self.displaySharedSuccessfullyToast = true
                             }
-                            TapticFeedback.success()
+                            ////TapticFeedback.success()
                         }
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -184,6 +188,7 @@ class AuthorDetailViewViewModel: ObservableObject {
             
             let url = URL(fileURLWithPath: filepath)
             
+            #if os(iOS)
             iPadShareSheet = ActivityViewController(activityItems: [url]) { activity, completed, items, error in
                 if completed {
                     self.isShowingShareSheet = false
@@ -201,7 +206,7 @@ class AuthorDetailViewViewModel: ObservableObject {
                             self.shareBannerMessage = Shared.videoSharedSuccessfullyMessage
                             self.displaySharedSuccessfullyToast = true
                         }
-                        TapticFeedback.success()
+                        //TapticFeedback.success()
                     }
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -213,6 +218,7 @@ class AuthorDetailViewViewModel: ObservableObject {
                 
                 WallE.deleteAllVideoFilesFromDocumentsDir()
             }
+            #endif
             
             isShowingShareSheet = true
         }
@@ -224,7 +230,7 @@ class AuthorDetailViewViewModel: ObservableObject {
                 self.shareBannerMessage = "Vídeo salvo com sucesso."
                 self.displaySharedSuccessfullyToast = true
             }
-            TapticFeedback.success()
+            ////TapticFeedback.success()
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -265,7 +271,7 @@ class AuthorDetailViewViewModel: ObservableObject {
     // MARK: - Alerts
     
     func showUnableToGetSoundAlert() {
-        TapticFeedback.error()
+        //TapticFeedback.error()
         alertType = .twoOptions
         alertTitle = Shared.soundNotFoundAlertTitle
         alertMessage = Shared.soundNotFoundAlertMessage
@@ -273,7 +279,7 @@ class AuthorDetailViewViewModel: ObservableObject {
     }
     
     func showNoFoldersAlert() {
-        TapticFeedback.error()
+        //TapticFeedback.error()
         alertType = .singleOption
         alertTitle = Shared.Folders.noFoldersAlertTitle
         alertMessage = UIDevice.current.userInterfaceIdiom == .phone ? Shared.Folders.noFoldersAlertMessagePhone : Shared.Folders.noFoldersAlertMessagePadMac

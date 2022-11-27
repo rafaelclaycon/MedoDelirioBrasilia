@@ -97,7 +97,9 @@ struct TrendsView: View {
             }
         }
         .navigationTitle("Tendências")
+        #if os(iOS)
         .navigationBarTitleDisplayMode(showTrends ? .large : .inline)
+        #endif
     }
 
 }

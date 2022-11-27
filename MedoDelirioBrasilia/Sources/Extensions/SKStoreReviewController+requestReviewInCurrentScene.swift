@@ -1,5 +1,6 @@
 import StoreKit
 
+#if os(iOS)
 extension SKStoreReviewController {
 
     public static func requestReviewInCurrentScene() {
@@ -9,3 +10,4 @@ extension SKStoreReviewController {
     }
 
 }
+#endif

@@ -116,7 +116,7 @@ struct HelpView: View {
             }
         }
         .navigationTitle("Ajuda")
-        .navigationBarTitleDisplayMode(.inline)
+        //.navigationBarTitleDisplayMode(.inline)
     }
 
 }

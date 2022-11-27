@@ -16,12 +16,14 @@ class AppStoreReviewSteward {
         
         let lastVersionPromptedForReview = UserDefaults.standard.string(forKey: UserDefaultsKeys.lastVersionPromptedForReviewKey)
         
+        #if os(iOS)
         if count >= 4 && currentVersion != lastVersionPromptedForReview {
             DispatchQueue.main.async {
                 SKStoreReviewController.requestReviewInCurrentScene()
                 UserDefaults.standard.set(currentVersion, forKey: UserDefaultsKeys.lastVersionPromptedForReviewKey)
             }
         }
+        #endif
     }
     
 }

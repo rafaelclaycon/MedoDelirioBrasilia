@@ -70,7 +70,7 @@ struct FolderInfoEditingView: View {
                 
                 VStack {
                     TextField("Nome da pasta", text: $folderName)
-                        .textFieldStyle(.roundedBorder)
+                        //.textFieldStyle(.roundedBorder)
                         .onReceive(Just(folderName)) { _ in
                             limitFolderNameText(25)
                         }
@@ -100,7 +100,7 @@ struct FolderInfoEditingView: View {
                 }
             }
             .navigationTitle(isEditing ? "Editar Pasta" : "Nova Pasta")
-            .navigationBarTitleDisplayMode(.inline)
+            //.navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(leading:
                 Button("Cancelar") {
                     self.isBeingShown = false

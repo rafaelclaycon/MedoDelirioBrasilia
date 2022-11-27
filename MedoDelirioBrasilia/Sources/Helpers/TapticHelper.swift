@@ -1,5 +1,6 @@
 import UIKit
 
+#if os(iOS)
 class TapticFeedback {
 
     static func success() {
@@ -23,3 +24,4 @@ class TapticFeedback {
     }
 
 }
+#endif

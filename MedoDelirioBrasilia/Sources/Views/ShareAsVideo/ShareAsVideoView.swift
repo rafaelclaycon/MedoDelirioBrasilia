@@ -82,7 +82,7 @@ struct ShareAsVideoView: View {
                         }
                     }
                     .navigationTitle("Gerar Vídeo")
-                    .navigationBarTitleDisplayMode(.inline)
+                    //.navigationBarTitleDisplayMode(.inline)
                     .navigationBarItems(leading:
                         Button("Cancelar") {
                             self.isBeingShown = false
@@ -166,9 +166,9 @@ struct ShareAsVideoView: View {
             .padding(.horizontal, buttonInternalPadding)
         }
         .tint(.accentColor)
-        .controlSize(.large)
+        //.controlSize(.large)
         .buttonStyle(.bordered)
-        .buttonBorderShape(.capsule)
+        //.buttonBorderShape(.capsule)
         .disabled(viewModel.isShowingProcessingView)
     }
     
@@ -197,9 +197,9 @@ struct ShareAsVideoView: View {
             .padding(.horizontal, buttonInternalPadding)
         }
         .tint(.accentColor)
-        .controlSize(.large)
+        //.controlSize(.large)
         .buttonStyle(.borderedProminent)
-        .buttonBorderShape(.capsule)
+        //.buttonBorderShape(.capsule)
         .disabled(viewModel.isShowingProcessingView)
     }
 

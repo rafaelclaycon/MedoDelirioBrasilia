@@ -1,5 +1,7 @@
 import SwiftUI
+#if os(iOS)
 import MarqueeText
+#endif
 
 struct BegForMoneyView: View {
 
@@ -22,12 +24,14 @@ struct BegForMoneyView: View {
                 
                 Text("**Últimas contribuições:**")
                 
+                #if os(iOS)
                 MarqueeText(text: "Carlos Henrique P. M.     Beatriz F. F. N.     Luiz Fernando L. F.     Maria Augusta M. C.     Pedro O. R.",
                             font: UIFont.preferredFont(forTextStyle: .body),
                             leftFade: 16,
                             rightFade: 16,
                             startDelay: 1)
                     .padding(.bottom, -5)
+                #endif
             }
         }
     }

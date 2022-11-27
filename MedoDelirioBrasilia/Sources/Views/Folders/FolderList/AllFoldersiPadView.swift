@@ -29,7 +29,7 @@ struct AllFoldersiPadView: View {
             .padding(.bottom, 18)
         }
         .navigationTitle("Pastas")
-        .navigationBarTitleDisplayMode(.inline)
+        //.navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Button {

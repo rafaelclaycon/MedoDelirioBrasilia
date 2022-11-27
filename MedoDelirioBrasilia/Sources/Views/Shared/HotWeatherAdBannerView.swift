@@ -119,7 +119,7 @@ struct HotWeatherAdBannerView: View {
                 .padding(.horizontal, UIDevice.is4InchDevice ? 4 : 6)
         }
         .tint(colorScheme == .dark ? .green : .darkerGreen)
-        .controlSize(.regular)
+        //.controlSize(.regular)
         .buttonStyle(.bordered)
         .buttonBorderShape(.roundedRectangle)
         
@@ -131,7 +131,7 @@ struct HotWeatherAdBannerView: View {
                 .padding(.horizontal, UIDevice.is4InchDevice ? 6 : 6)
         }
         .tint(.purple)
-        .controlSize(.regular)
+        //.controlSize(.regular)
         .buttonStyle(.bordered)
         .buttonBorderShape(.roundedRectangle)
         
@@ -143,7 +143,7 @@ struct HotWeatherAdBannerView: View {
                 .padding(.horizontal, UIDevice.is4InchDevice ? 6 : 6)
         }
         .tint(.red)
-        .controlSize(.regular)
+        //.controlSize(.regular)
         .buttonStyle(.bordered)
         .buttonBorderShape(.roundedRectangle)
     }

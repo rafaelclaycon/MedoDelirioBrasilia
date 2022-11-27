@@ -65,7 +65,7 @@ struct TrendsSettingsView: View {
             }
         }
         .navigationTitle("Tendências")
-        .navigationBarTitleDisplayMode(.inline)
+        //.navigationBarTitleDisplayMode(.inline)
         .onAppear {
             trendsEnabled = UserSettings.getEnableTrends()
             //mostSharedSoundsByTheUserEnabled = UserSettings.getEnableMostSharedSoundsByTheUser()

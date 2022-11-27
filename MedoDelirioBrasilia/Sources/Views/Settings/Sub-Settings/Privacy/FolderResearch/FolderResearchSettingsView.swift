@@ -29,7 +29,7 @@ struct FolderResearchSettingsView: View {
 //            }
         }
         .navigationTitle("Pesquisa Sobre as Pastas")
-        .navigationBarTitleDisplayMode(.inline)
+        //.navigationBarTitleDisplayMode(.inline)
         .onAppear {
             hasJoinedFolderResearch = AppPersistentMemory.getHasJoinedFolderResearch()
         }

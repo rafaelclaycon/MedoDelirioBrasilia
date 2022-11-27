@@ -88,7 +88,7 @@ struct AddToFolderView: View {
                 }
             }
             .navigationTitle("Adicionar a Pasta")
-            .navigationBarTitleDisplayMode(.inline)
+            //.navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(leading:
                 Button("Cancelar") {
                     self.isBeingShown = false

@@ -33,9 +33,13 @@ struct OnboardingView: View {
                         .padding(.horizontal, 50)
                 }
                 .tint(.accentColor)
+                #if os(iOS)
                 .controlSize(.large)
+                #endif
                 .buttonStyle(.borderedProminent)
+                #if os(iOS)
                 .buttonBorderShape(.capsule)
+                #endif
                 .padding(.top)
                 
                 Button {

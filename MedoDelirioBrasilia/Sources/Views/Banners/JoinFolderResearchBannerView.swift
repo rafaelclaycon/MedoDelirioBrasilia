@@ -95,7 +95,7 @@ struct JoinFolderResearchBannerView: View {
                     }
                     .font(.body)
                     .tint(colorScheme == .dark ? .mutedNavyBlue : .blue)
-                    .controlSize(.regular)
+                    //.controlSize(.regular)
                     .buttonStyle(.bordered)
                     .buttonBorderShape(.roundedRectangle)
                     
@@ -108,7 +108,7 @@ struct JoinFolderResearchBannerView: View {
                     }
                     .font(.body)
                     .tint(colorScheme == .dark ? .mutedNavyBlue : .blue)
-                    .controlSize(.regular)
+                    //.controlSize(.regular)
                     .buttonStyle(.bordered)
                     .buttonBorderShape(.roundedRectangle)
                 }
@@ -216,7 +216,7 @@ struct JoinFolderResearchBannerView: View {
                 }
                 .font(.body)
                 .tint(colorScheme == .dark ? .primary : .blue)
-                .controlSize(.regular)
+                //.controlSize(.regular)
                 .buttonStyle(.bordered)
                 .buttonBorderShape(.roundedRectangle)
             }

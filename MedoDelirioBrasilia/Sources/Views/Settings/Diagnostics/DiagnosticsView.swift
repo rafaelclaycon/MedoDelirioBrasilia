@@ -31,7 +31,7 @@ struct DiagnosticsView: View {
                 Text(installId)
                     .font(.monospaced(.subheadline)())
                     .onTapGesture {
-                        UIPasteboard.general.string = installId
+                        //UIPasteboard.general.string = installId
                         showInstallIdCopiedAlert = true
                     }
                     .alert(isPresented: $showInstallIdCopiedAlert) {
@@ -84,7 +84,7 @@ struct DiagnosticsView: View {
             }*/
         }
         .navigationTitle("Diagnóstico")
-        .navigationBarTitleDisplayMode(.inline)
+        //.navigationBarTitleDisplayMode(.inline)
         .onAppear {
             shareLogs = try? database.getAllUserShareLogs()
             shareLogs?.sort(by: { $0.dateTime > $1.dateTime })

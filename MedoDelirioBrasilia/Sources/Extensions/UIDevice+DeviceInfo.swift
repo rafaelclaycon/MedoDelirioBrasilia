@@ -79,6 +79,8 @@ public extension UIDevice {
             case "i386", "x86_64", "arm64":                        return "Simulator \(mapToDevice(identifier: ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] ?? "iOS"))"
             default:                                              return identifier
             }
+            #else
+            return "Apple TV"
             #endif
         }
         

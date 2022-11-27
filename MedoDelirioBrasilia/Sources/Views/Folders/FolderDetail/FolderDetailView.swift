@@ -31,7 +31,9 @@ struct FolderDetailView: View {
                             LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
                                 ForEach(viewModel.sounds) { sound in
                                     SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", isNew: sound.isNew ?? false, favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()))
+                                        #if os(iOS)
                                         .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
+                                        #endif
                                         .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                                         .onTapGesture {
                                             viewModel.playSound(fromPath: sound.filename)
@@ -77,7 +79,9 @@ struct FolderDetailView: View {
                 }
             }
             .navigationTitle("\(folder.symbol)  \(folder.name)")
+            #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
             .navigationBarItems(trailing:
                 HStack(spacing: 15) {
                     Button {
@@ -133,9 +137,11 @@ struct FolderDetailView: View {
                     }), secondaryButton: .cancel(Text("Cancelar")))
                 }
             }
+            #if os(iOS)
             .sheet(isPresented: $viewModel.isShowingShareSheet) {
                 viewModel.iPadShareSheet
             }
+            #endif
             .sheet(isPresented: $showingModalView) {
                 ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: false)
             }

@@ -61,7 +61,9 @@ struct NotificationsSettingsView: View {
             }
         }
         .navigationTitle("Notificações")
+        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
         .onAppear {
             enableNotifications = UserSettings.getUserAllowedNotifications()
         }

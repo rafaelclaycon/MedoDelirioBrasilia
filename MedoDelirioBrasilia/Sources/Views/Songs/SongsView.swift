@@ -55,7 +55,9 @@ struct SongsView: View {
                     LazyVGrid(columns: columns, spacing: 14) {
                         ForEach(searchResults) { song in
                             SongCell(songId: song.id, title: song.title, genre: song.genre, duration: song.duration, isNew: song.isNew ?? false, nowPlaying: $viewModel.nowPlayingKeeper)
+                                #if os(iOS)
                                 .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
+                                #endif
                                 .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                                 .onTapGesture {
                                     if viewModel.nowPlayingKeeper.contains(song.id) {
@@ -118,9 +120,12 @@ struct SongsView: View {
                 }
             }
             .navigationTitle("Músicas")
+            #if os(iOS)
             .navigationBarItems(leading:
                 getLeadingToolbarControl()
             )
+            #endif
+            #if os(iOS)
             .toolbar {
                 Menu {
                     Section {
@@ -169,6 +174,7 @@ struct SongsView: View {
                     }
                 }
             }
+            #endif
             .onAppear {
                 viewModel.reloadList(withSongs: songData,
                                      allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
@@ -179,9 +185,11 @@ struct SongsView: View {
                 player?.cancel()
                 viewModel.nowPlayingKeeper.removeAll()
             }
+            #if os(iOS)
             .sheet(isPresented: $viewModel.isShowingShareSheet) {
                 viewModel.iPadShareSheet
             }
+            #endif
             .sheet(isPresented: $viewModel.showEmailAppPicker_suggestChangeConfirmationDialog) {
                 EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_suggestChangeConfirmationDialog,
                                    subject: String(format: Shared.Email.suggestSongChangeSubject, viewModel.selectedSong?.title ?? ""),
@@ -203,6 +211,7 @@ struct SongsView: View {
         }
     }
     
+    #if os(iOS)
     @ViewBuilder func getLeadingToolbarControl() -> some View {
         Menu {
             Picker("Gênero", selection: $currentGenre) {
@@ -215,6 +224,7 @@ struct SongsView: View {
             Image(systemName: currentGenre == .all ? "line.3.horizontal.decrease.circle" : "line.3.horizontal.decrease.circle.fill")
         }
     }
+    #endif
 
 }
 
