@@ -35,13 +35,13 @@ struct MainView: View {
                 }
                 .tag(PhoneTab.sounds)
                 
-//                NavigationView {
-//                    CollectionsView()
-//                }
-//                .tabItem {
-//                    Label("Coleções", systemImage: "rectangle.grid.2x2.fill")
-//                }
-//                .tag(PhoneTab.collections)
+                NavigationView {
+                    CollectionsView()
+                }
+                .tabItem {
+                    Label("Coleções", systemImage: "rectangle.grid.2x2.fill")
+                }
+                .tag(PhoneTab.collections)
                 
                 NavigationView {
                     SongsView()
@@ -73,9 +73,9 @@ struct MainView: View {
             .onContinueUserActivity(Shared.ActivityTypes.playAndShareSounds, perform: { _ in
                 tabSelection = .sounds
             })
-//            .onContinueUserActivity(Shared.ActivityTypes.viewCollections, perform: { _ in
-//                tabSelection = .collections
-//            })
+            .onContinueUserActivity(Shared.ActivityTypes.viewCollections, perform: { _ in
+                tabSelection = .collections
+            })
             .onContinueUserActivity(Shared.ActivityTypes.playAndShareSongs, perform: { _ in
                 tabSelection = .songs
             })
