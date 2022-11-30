@@ -190,6 +190,11 @@
 		D92C0CAC28406EA5009CF19A /* UserShareLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92C0CAB28406EA5009CF19A /* UserShareLog.swift */; };
 		D92C0CAE284076CD009CF19A /* UIApplication+KeyWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92C0CAD284076CD009CF19A /* UIApplication+KeyWindow.swift */; };
 		D92CAA4128593B1700D6C1EA /* NetworkLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92CAA4028593B1700D6C1EA /* NetworkLogCell.swift */; };
+		D92DAB1C2936D14800E0CA82 /* Leandro Demori - Precisa de muita gente pra fazer bagunca, nao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92DAB1B2936D14800E0CA82 /* Leandro Demori - Precisa de muita gente pra fazer bagunca, nao.mp3 */; };
+		D92DAB1E2937BBAB00E0CA82 /* Jair Bolsonaro - A temperatura subiu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92DAB1D2937BBAB00E0CA82 /* Jair Bolsonaro - A temperatura subiu.mp3 */; };
+		D92DAB202937BC4C00E0CA82 /* William Bonner - Como se coubesse ao senhor decidir uma coisa dessas.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92DAB1F2937BC4C00E0CA82 /* William Bonner - Como se coubesse ao senhor decidir uma coisa dessas.mp3 */; };
+		D92DAB232937BD5500E0CA82 /* Eduardo Pazuello - E a doenca politica.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92DAB212937BD5500E0CA82 /* Eduardo Pazuello - E a doenca politica.mp3 */; };
+		D92DAB242937BD5500E0CA82 /* Eduardo Pazuello - Sabe o que que me doi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92DAB222937BD5500E0CA82 /* Eduardo Pazuello - Sabe o que que me doi.mp3 */; };
 		D92E7067283C51D20035826C /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92E7066283C51D20035826C /* Song.swift */; };
 		D92E706E283C5C2C0035826C /* Eu volto pro ostracismo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92E706B283C5C2C0035826C /* Eu volto pro ostracismo.mp3 */; };
 		D92E7070283C5CF40035826C /* song_data.json in Resources */ = {isa = PBXBuildFile; fileRef = D92E706F283C5CF40035826C /* song_data.json */; };
@@ -1345,6 +1350,11 @@
 		D92C0CAB28406EA5009CF19A /* UserShareLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserShareLog.swift; sourceTree = "<group>"; };
 		D92C0CAD284076CD009CF19A /* UIApplication+KeyWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+KeyWindow.swift"; sourceTree = "<group>"; };
 		D92CAA4028593B1700D6C1EA /* NetworkLogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLogCell.swift; sourceTree = "<group>"; };
+		D92DAB1B2936D14800E0CA82 /* Leandro Demori - Precisa de muita gente pra fazer bagunca, nao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Leandro Demori - Precisa de muita gente pra fazer bagunca, nao.mp3"; sourceTree = "<group>"; };
+		D92DAB1D2937BBAB00E0CA82 /* Jair Bolsonaro - A temperatura subiu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - A temperatura subiu.mp3"; sourceTree = "<group>"; };
+		D92DAB1F2937BC4C00E0CA82 /* William Bonner - Como se coubesse ao senhor decidir uma coisa dessas.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "William Bonner - Como se coubesse ao senhor decidir uma coisa dessas.mp3"; sourceTree = "<group>"; };
+		D92DAB212937BD5500E0CA82 /* Eduardo Pazuello - E a doenca politica.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eduardo Pazuello - E a doenca politica.mp3"; sourceTree = "<group>"; };
+		D92DAB222937BD5500E0CA82 /* Eduardo Pazuello - Sabe o que que me doi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eduardo Pazuello - Sabe o que que me doi.mp3"; sourceTree = "<group>"; };
 		D92E7066283C51D20035826C /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		D92E706B283C5C2C0035826C /* Eu volto pro ostracismo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu volto pro ostracismo.mp3"; sourceTree = "<group>"; };
 		D92E706F283C5CF40035826C /* song_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = song_data.json; sourceTree = "<group>"; };
@@ -2334,6 +2344,11 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D92DAB212937BD5500E0CA82 /* Eduardo Pazuello - E a doenca politica.mp3 */,
+				D92DAB222937BD5500E0CA82 /* Eduardo Pazuello - Sabe o que que me doi.mp3 */,
+				D92DAB1F2937BC4C00E0CA82 /* William Bonner - Como se coubesse ao senhor decidir uma coisa dessas.mp3 */,
+				D92DAB1D2937BBAB00E0CA82 /* Jair Bolsonaro - A temperatura subiu.mp3 */,
+				D92DAB1B2936D14800E0CA82 /* Leandro Demori - Precisa de muita gente pra fazer bagunca, nao.mp3 */,
 				D9C7D18A292EEA80003F500C /* Cidade Oculta e Google Tradutor - Putinha do Jobs.mp3 */,
 				D9C7D18B292EEA81003F500C /* Cidade Oculta e Google Tradutor - Voce ta falando isso porque voce e a putinha do Jobs.mp3 */,
 				D969BA4D292D892C006A7D2F /* Desconhecido - Pra conversar com doido, so outro doido.mp3 */,
@@ -4370,6 +4385,7 @@
 				D9EDB87928E3E477007724E2 /* Flavio Bolsonaro - Im a little bit nirvous.mp3 in Resources */,
 				D975FE572880B4F20035E6F2 /* Bolsonaro - Globo cala a boca catolico.mp3 in Resources */,
 				D989D3BB2921AE1C00DFB333 /* Jair Bolsonaro - Nao tem qualquer sensibilidade.mp3 in Resources */,
+				D92DAB1E2937BBAB00E0CA82 /* Jair Bolsonaro - A temperatura subiu.mp3 in Resources */,
 				D9BB8F7628EC6D9E00659D4A /* Amigo do Pedro Daltro - Risada caralho (curto).mp3 in Resources */,
 				D975FE6D2880B4F20035E6F2 /* Silas Malafaia - Nunca vi tu e burro cara.mp3 in Resources */,
 				D975FF902880B4F20035E6F2 /* OLHA SO short meme.mp3 in Resources */,
@@ -4535,6 +4551,7 @@
 				D97500432880B4F20035E6F2 /* Falha de Cobertura - Cerginho da Pereira Nunes - Doidera.mp3 in Resources */,
 				D93752122902C94200E2F27B /* Joaquim Barbosa - Bolsonaro e um ser abjeto, Lula no primeiro turno.mp3 in Resources */,
 				D975FE5F2880B4F20035E6F2 /* Danca do Creu - 30 mil passou a meta em 8x.mp3 in Resources */,
+				D92DAB242937BD5500E0CA82 /* Eduardo Pazuello - Sabe o que que me doi.mp3 in Resources */,
 				D92EF4BF291CA5B9009E3E0A /* Jair Bolsonaro - Pode botar, CODIB-19.mp3 in Resources */,
 				49DEA9A228810D79008C9BA1 /* Baroes da pisadinha - Status - Por mim tudo bem short meme.mp3 in Resources */,
 				D975FF542880B4F20035E6F2 /* Bolsonaro - Tem que deixar de ser um pais de maricas.mp3 in Resources */,
@@ -4638,6 +4655,7 @@
 				D975FF592880B4F20035E6F2 /* Silvio Santos - Ele fala e voces deliram, ele fala e voces deliram.mp3 in Resources */,
 				D975FF9F2880B4F20035E6F2 /* De cair o cu da bunda short meme.mp3 in Resources */,
 				D975FF522880B4F20035E6F2 /* TV SENADO - Soraya Thronicke - A gente vai cansando sabe.mp3 in Resources */,
+				D92DAB232937BD5500E0CA82 /* Eduardo Pazuello - E a doenca politica.mp3 in Resources */,
 				D9AF10C5290AD50D0054741F /* Mae Copiloto Celera bem - Bora.mp3 in Resources */,
 				D975FFE92880B4F20035E6F2 /* Merval Pereira - ator porno.mp3 in Resources */,
 				D92AD1BB28833913001CBCDF /* Chaves - Seu barriga - E uma boa ideia.mp3 in Resources */,
@@ -4798,6 +4816,7 @@
 				D97500122880B4F20035E6F2 /* Biquini Cavadao - E impossivel.mp3 in Resources */,
 				D975FE502880B4F20035E6F2 /* Bonitinha mas ordinaria - E mentira dele meme short.mp3 in Resources */,
 				D975FEFB2880B4F20035E6F2 /* Silas Malafaia - E por isso que Deus te escolheu.mp3 in Resources */,
+				D92DAB1C2936D14800E0CA82 /* Leandro Demori - Precisa de muita gente pra fazer bagunca, nao.mp3 in Resources */,
 				D921F88E288B063A003979CC /* Ih rapaz - fred.mp3 in Resources */,
 				D975FFB52880B4F20035E6F2 /* Malafaia - Deus escolheu as coisas loucas.mp3 in Resources */,
 				D9E7D0F628AC6BC6001E909E /* PORTA DOS FUNDOS - Nao, brother broder.mp3 in Resources */,
@@ -4882,6 +4901,7 @@
 				D975FF6F2880B4F20035E6F2 /* ESTADAO - Milton Ribeiro - Muito obrigado.mp3 in Resources */,
 				D921F8A1288B0DC4003979CC /* Se for feito com amor tudo vale.mp3 in Resources */,
 				D975FFDC2880B4F20035E6F2 /* OS DONOS DA BOLA - CRAQUE NETO - Ai depois fala que ta bebado.mp3 in Resources */,
+				D92DAB202937BC4C00E0CA82 /* William Bonner - Como se coubesse ao senhor decidir uma coisa dessas.mp3 in Resources */,
 				D9FA63022924A5D000790F55 /* Lula - Por que o pobre nao ta na planilha da Faria Lima.mp3 in Resources */,
 				D975FE6F2880B4F20035E6F2 /* Bolsonaro - Tudo pequenininho ai.mp3 in Resources */,
 				D975FF4B2880B4F20035E6F2 /* Michel Temer - Eu nao tenho medo dos fatos short meme.mp3 in Resources */,
@@ -5241,7 +5261,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 5.23.1;
+				MARKETING_VERSION = 5.24;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -5273,7 +5293,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 5.23.1;
+				MARKETING_VERSION = 5.24;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -5429,7 +5449,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.23.1;
+				MARKETING_VERSION = 5.24;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -5470,7 +5490,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.23.1;
+				MARKETING_VERSION = 5.24;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
