@@ -190,6 +190,7 @@
 		D92C0CAC28406EA5009CF19A /* UserShareLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92C0CAB28406EA5009CF19A /* UserShareLog.swift */; };
 		D92C0CAE284076CD009CF19A /* UIApplication+KeyWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92C0CAD284076CD009CF19A /* UIApplication+KeyWindow.swift */; };
 		D92CAA4128593B1700D6C1EA /* NetworkLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92CAA4028593B1700D6C1EA /* NetworkLogCell.swift */; };
+		D92DAB1C2936D14800E0CA82 /* Leandro Demori - Precisa de muita gente pra fazer bagunca, nao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92DAB1B2936D14800E0CA82 /* Leandro Demori - Precisa de muita gente pra fazer bagunca, nao.mp3 */; };
 		D92E7067283C51D20035826C /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92E7066283C51D20035826C /* Song.swift */; };
 		D92E706E283C5C2C0035826C /* Eu volto pro ostracismo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92E706B283C5C2C0035826C /* Eu volto pro ostracismo.mp3 */; };
 		D92E7070283C5CF40035826C /* song_data.json in Resources */ = {isa = PBXBuildFile; fileRef = D92E706F283C5CF40035826C /* song_data.json */; };
@@ -1345,6 +1346,7 @@
 		D92C0CAB28406EA5009CF19A /* UserShareLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserShareLog.swift; sourceTree = "<group>"; };
 		D92C0CAD284076CD009CF19A /* UIApplication+KeyWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+KeyWindow.swift"; sourceTree = "<group>"; };
 		D92CAA4028593B1700D6C1EA /* NetworkLogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLogCell.swift; sourceTree = "<group>"; };
+		D92DAB1B2936D14800E0CA82 /* Leandro Demori - Precisa de muita gente pra fazer bagunca, nao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Leandro Demori - Precisa de muita gente pra fazer bagunca, nao.mp3"; sourceTree = "<group>"; };
 		D92E7066283C51D20035826C /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		D92E706B283C5C2C0035826C /* Eu volto pro ostracismo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu volto pro ostracismo.mp3"; sourceTree = "<group>"; };
 		D92E706F283C5CF40035826C /* song_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = song_data.json; sourceTree = "<group>"; };
@@ -2334,6 +2336,7 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D92DAB1B2936D14800E0CA82 /* Leandro Demori - Precisa de muita gente pra fazer bagunca, nao.mp3 */,
 				D9C7D18A292EEA80003F500C /* Cidade Oculta e Google Tradutor - Putinha do Jobs.mp3 */,
 				D9C7D18B292EEA81003F500C /* Cidade Oculta e Google Tradutor - Voce ta falando isso porque voce e a putinha do Jobs.mp3 */,
 				D969BA4D292D892C006A7D2F /* Desconhecido - Pra conversar com doido, so outro doido.mp3 */,
@@ -4798,6 +4801,7 @@
 				D97500122880B4F20035E6F2 /* Biquini Cavadao - E impossivel.mp3 in Resources */,
 				D975FE502880B4F20035E6F2 /* Bonitinha mas ordinaria - E mentira dele meme short.mp3 in Resources */,
 				D975FEFB2880B4F20035E6F2 /* Silas Malafaia - E por isso que Deus te escolheu.mp3 in Resources */,
+				D92DAB1C2936D14800E0CA82 /* Leandro Demori - Precisa de muita gente pra fazer bagunca, nao.mp3 in Resources */,
 				D921F88E288B063A003979CC /* Ih rapaz - fred.mp3 in Resources */,
 				D975FFB52880B4F20035E6F2 /* Malafaia - Deus escolheu as coisas loucas.mp3 in Resources */,
 				D9E7D0F628AC6BC6001E909E /* PORTA DOS FUNDOS - Nao, brother broder.mp3 in Resources */,
