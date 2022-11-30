@@ -107,9 +107,37 @@ struct SettingsView: View {
             }
             
             Section("Sobre") {
-                Button("Criado por @claycon_") {
-                    guard let url = URL(string: "https://twitter.com/claycon_") else { return }
-                    UIApplication.shared.open(url)
+                VStack(alignment: .leading) {
+                    Text("Criado por @claycon")
+                    
+                    HStack(spacing: 25) {
+                        Spacer()
+                        
+                        Button {
+                            open(link: "https://www.kooapp.com/profile/claycon")
+                        } label: {
+                            Text("Koo")
+                                .padding(.horizontal)
+                        }
+                        .tint(.orange)
+                        .controlSize(.regular)
+                        .buttonStyle(.bordered)
+                        .buttonBorderShape(.roundedRectangle)
+                        
+                        Button {
+                            open(link: "https://toot.wales/@mitt_rafael")
+                        } label: {
+                            Text("Mastodon")
+                                .padding(.horizontal)
+                        }
+                        .tint(.purple)
+                        .controlSize(.regular)
+                        .buttonStyle(.bordered)
+                        .buttonBorderShape(.roundedRectangle)
+                        
+                        Spacer()
+                    }
+                    .padding(.bottom, 3)
                 }
                 
                 Text("Versão \(Versioneer.appVersion) Build \(Versioneer.buildVersionNumber)")
@@ -117,8 +145,7 @@ struct SettingsView: View {
             
             Section("Contribua ou entenda como funciona") {
                 Button("Ver código fonte no GitHub") {
-                    let githubUrl = URL(string: "https://github.com/rafaelclaycon/MedoDelirioBrasilia")!
-                    UIApplication.shared.open(githubUrl)
+                    open(link: "https://github.com/rafaelclaycon/MedoDelirioBrasilia")
                 }
             }
             
@@ -142,6 +169,11 @@ struct SettingsView: View {
         .popover(isPresented: $showEmailClientConfirmationDialog) {
             EmailAppPickerView(isBeingShown: $showEmailClientConfirmationDialog, subject: Shared.issueSuggestionEmailSubject, emailBody: Shared.issueSuggestionEmailBody)
         }
+    }
+    
+    private func open(link: String) {
+        guard let url = URL(string: link) else { return }
+        UIApplication.shared.open(url)
     }
 
 }

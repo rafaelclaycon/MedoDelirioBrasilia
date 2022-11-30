@@ -8042,5 +8042,55 @@
         "dateAdded": "2022-11-23T00:00:00Z",
         "isOffensive": true,
         "isNew": false
+    },
+    {
+        "id": "EAD4A266-22C0-47D2-BAD1-A8FF25D078FB",
+        "title": "Precisa de muita gente pra fazer bagunça? Não",
+        "authorId": "30246C06-D0F4-4A64-BD59-57BE7E9786C4",
+        "description": "Precisa de muita gente pra fazer bagunca nao",
+        "filename": "Leandro Demori - Precisa de muita gente pra fazer bagunca, nao.mp3",
+        "dateAdded": "2022-11-29T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "ABBB5138-79D0-49B6-B2F6-059B5204F70C",
+        "title": "A temperatura subiu",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "A temperatura subiu",
+        "filename": "Jair Bolsonaro - A temperatura subiu.mp3",
+        "dateAdded": "2022-11-30T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "61F744CC-6A0A-486C-82E4-FE75FB93FBD2",
+        "title": "Como se coubesse ao senhor decidir uma coisa dessas",
+        "authorId": "AD02C7FB-8F0D-48F1-AC4B-962858DE678B",
+        "description": "Como se coubesse ao senhor decidir uma coisa dessas",
+        "filename": "William Bonner - Como se coubesse ao senhor decidir uma coisa dessas.mp3",
+        "dateAdded": "2022-11-30T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "1DC058EB-B2BF-4292-BC4C-0E78BBDFB340",
+        "title": "Sabe o que que me doi",
+        "authorId": "71128756-78A9-4B31-A7D8-CE120147C481",
+        "description": "Sabe o que que me doi",
+        "filename": "Eduardo Pazuello - Sabe o que que me doi.mp3",
+        "dateAdded": "2022-11-30T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "A86A0220-9909-412E-995E-8FEDAEB9217C",
+        "title": "É a doença política",
+        "authorId": "71128756-78A9-4B31-A7D8-CE120147C481",
+        "description": "E a doenca politica",
+        "filename": "Eduardo Pazuello - E a doenca politica.mp3",
+        "dateAdded": "2022-11-30T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
     }
 ]
