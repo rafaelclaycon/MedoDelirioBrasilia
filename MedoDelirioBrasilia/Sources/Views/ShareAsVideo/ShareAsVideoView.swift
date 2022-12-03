@@ -28,7 +28,7 @@ struct ShareAsVideoView: View {
                 ScrollView {
                     VStack {
                         Picker(selection: $viewModel.selectedSocialNetwork, label: Text("Rede social")) {
-                            Text("Twitter / Koo").tag(0)
+                            Text("Twitter / WhatsApp").tag(0)
                             Text("Instagram / TikTok").tag(1)
                         }
                         .pickerStyle(SegmentedPickerStyle())

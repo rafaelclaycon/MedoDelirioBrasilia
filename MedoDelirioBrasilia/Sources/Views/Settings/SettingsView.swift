@@ -18,7 +18,7 @@ struct SettingsView: View {
     
     @State private var showEmailClientConfirmationDialog: Bool = false
     
-    let pixKey: String = "medodeliriosuporte@gmail.com"
+    private let pixKey: String = "medodeliriosuporte@gmail.com"
     
     var body: some View {
         Form {
@@ -108,18 +108,20 @@ struct SettingsView: View {
             
             Section("Sobre") {
                 VStack(alignment: .leading) {
-                    Text("Criado por @claycon")
+                    Text("Criado por Rafael Claycon Schmitt")
                     
                     HStack(spacing: 25) {
                         Spacer()
                         
                         Button {
-                            open(link: "https://www.kooapp.com/profile/claycon")
+                            open(link: "https://twitter.com/claycon_")
                         } label: {
-                            Text("Koo")
+                            Image("twitter")
+                                .renderingMode(.template)
+                                .foregroundColor(.blue)
                                 .padding(.horizontal)
                         }
-                        .tint(.orange)
+                        .tint(.blue)
                         .controlSize(.regular)
                         .buttonStyle(.bordered)
                         .buttonBorderShape(.roundedRectangle)
@@ -127,7 +129,9 @@ struct SettingsView: View {
                         Button {
                             open(link: "https://toot.wales/@mitt_rafael")
                         } label: {
-                            Text("Mastodon")
+                            Image("mastodon")
+                                .renderingMode(.template)
+                                .foregroundColor(.purple)
                                 .padding(.horizontal)
                         }
                         .tint(.purple)

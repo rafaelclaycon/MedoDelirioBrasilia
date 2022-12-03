@@ -1066,6 +1066,7 @@
 		D9DCF738290C2C4B00DB177C /* Valdemiro Santiago - Voce vai semear essa semente.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DCF736290C2C4A00DB177C /* Valdemiro Santiago - Voce vai semear essa semente.mp3 */; };
 		D9DCF73B290D832800DB177C /* Desconhecido - Mi-mi-mi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DCF739290D832800DB177C /* Desconhecido - Mi-mi-mi.mp3 */; };
 		D9DCF73C290D832800DB177C /* Valdemiro Santiago - Eu estou no limite, Brasil.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DCF73A290D832800DB177C /* Valdemiro Santiago - Eu estou no limite, Brasil.mp3 */; };
+		D9E142C4293BF17400B7FF04 /* Isa Penna - Eu nao permito, nao sou obrigada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E142C3293BF17400B7FF04 /* Isa Penna - Eu nao permito, nao sou obrigada.mp3 */; };
 		D9E1A8D02914CB3A00694A74 /* Monica de Bolle - Pronto, falei.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E1A8CF2914CB3900694A74 /* Monica de Bolle - Pronto, falei.mp3 */; };
 		D9E1A8D22914CD8200694A74 /* MyFoldersiPhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E1A8D12914CD8200694A74 /* MyFoldersiPhoneView.swift */; };
 		D9E5056028F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E5055F28F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift */; };
@@ -2228,6 +2229,7 @@
 		D9DCF736290C2C4A00DB177C /* Valdemiro Santiago - Voce vai semear essa semente.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Valdemiro Santiago - Voce vai semear essa semente.mp3"; sourceTree = "<group>"; };
 		D9DCF739290D832800DB177C /* Desconhecido - Mi-mi-mi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Desconhecido - Mi-mi-mi.mp3"; sourceTree = "<group>"; };
 		D9DCF73A290D832800DB177C /* Valdemiro Santiago - Eu estou no limite, Brasil.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Valdemiro Santiago - Eu estou no limite, Brasil.mp3"; sourceTree = "<group>"; };
+		D9E142C3293BF17400B7FF04 /* Isa Penna - Eu nao permito, nao sou obrigada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Isa Penna - Eu nao permito, nao sou obrigada.mp3"; sourceTree = "<group>"; };
 		D9E1A8CF2914CB3900694A74 /* Monica de Bolle - Pronto, falei.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Monica de Bolle - Pronto, falei.mp3"; sourceTree = "<group>"; };
 		D9E1A8D12914CD8200694A74 /* MyFoldersiPhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFoldersiPhoneView.swift; sourceTree = "<group>"; };
 		D9E5055F28F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAudienceSharingStatisticTable.swift; sourceTree = "<group>"; };
@@ -2344,6 +2346,7 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9E142C3293BF17400B7FF04 /* Isa Penna - Eu nao permito, nao sou obrigada.mp3 */,
 				D92DAB212937BD5500E0CA82 /* Eduardo Pazuello - E a doenca politica.mp3 */,
 				D92DAB222937BD5500E0CA82 /* Eduardo Pazuello - Sabe o que que me doi.mp3 */,
 				D92DAB1F2937BC4C00E0CA82 /* William Bonner - Como se coubesse ao senhor decidir uma coisa dessas.mp3 */,
@@ -4434,6 +4437,7 @@
 				D975FEE82880B4F20035E6F2 /* Sabe que voce e muito petulante.mp3 in Resources */,
 				D975FE152880B4F20035E6F2 /* Ulysses Guimaraes - Temos odio a ditadura, odio e nojo.mp3 in Resources */,
 				D975FE912880B4F20035E6F2 /* Away - De novo cara.mp3 in Resources */,
+				D9E142C4293BF17400B7FF04 /* Isa Penna - Eu nao permito, nao sou obrigada.mp3 in Resources */,
 				D975FE942880B4F20035E6F2 /* Ady Ferrer - Oh nao mais um crime contra a humanidade.mp3 in Resources */,
 				D9C5EC3928C7FAA00099EA86 /* Tyrion Lannister - THAT was a threat.mp3 in Resources */,
 				D9E5056228F79ECB008DAA1E /* Luiz Felipe D'Avila - Que tistreza.mp3 in Resources */,
@@ -5261,7 +5265,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 5.24;
+				MARKETING_VERSION = 5.25;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -5293,7 +5297,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 5.24;
+				MARKETING_VERSION = 5.25;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -5449,7 +5453,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.24;
+				MARKETING_VERSION = 5.25;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -5490,7 +5494,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.24;
+				MARKETING_VERSION = 5.25;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
