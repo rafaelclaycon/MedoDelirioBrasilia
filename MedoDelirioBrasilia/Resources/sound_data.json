@@ -8051,7 +8051,7 @@
         "filename": "Leandro Demori - Precisa de muita gente pra fazer bagunca, nao.mp3",
         "dateAdded": "2022-11-29T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "ABBB5138-79D0-49B6-B2F6-059B5204F70C",
@@ -8061,7 +8061,7 @@
         "filename": "Jair Bolsonaro - A temperatura subiu.mp3",
         "dateAdded": "2022-11-30T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "61F744CC-6A0A-486C-82E4-FE75FB93FBD2",
@@ -8071,7 +8071,7 @@
         "filename": "William Bonner - Como se coubesse ao senhor decidir uma coisa dessas.mp3",
         "dateAdded": "2022-11-30T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "1DC058EB-B2BF-4292-BC4C-0E78BBDFB340",
@@ -8081,7 +8081,7 @@
         "filename": "Eduardo Pazuello - Sabe o que que me doi.mp3",
         "dateAdded": "2022-11-30T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "A86A0220-9909-412E-995E-8FEDAEB9217C",
@@ -8090,6 +8090,16 @@
         "description": "E a doenca politica",
         "filename": "Eduardo Pazuello - E a doenca politica.mp3",
         "dateAdded": "2022-11-30T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "CCA6D906-8610-4E74-A086-50888EFEB186",
+        "title": "Eu não permito, não sou obrigada",
+        "authorId": "CC1490F4-347B-46AB-8752-535F70AFFA1F",
+        "description": "Eu nao permito nao sou obrigada",
+        "filename": "Isa Penna - Eu nao permito, nao sou obrigada.mp3",
+        "dateAdded": "2022-12-03T00:00:00Z",
         "isOffensive": false,
         "isNew": true
     }
