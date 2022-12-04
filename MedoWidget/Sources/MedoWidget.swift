@@ -58,7 +58,25 @@ struct MedoWidgetEntryView : View {
 //                }
 //            }
 //            .gaugeStyle(.accessoryCircular)
+         
+        case .systemSmall:
             
+            HStack {
+                VStack(alignment: .leading) {
+                    
+                    Text("Os caras querem é a nossa hemorróida!")
+                        .font(.system(size: 15))
+                        .fontWeight(.heavy)
+                    Spacer()
+                    Text("Jair Bolsonaro")
+                        .font(.system(size: 10))
+                        .fontWeight(.heavy)
+                }
+                
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal, 10)
+                
+            }
         case .accessoryRectangular:
             VStack(alignment: .leading, spacing: 2) {
                 Text(getDaysUntilDateShort(endOfCurrentMandateDate(), considering: .daysToJaIr))
@@ -189,7 +207,7 @@ struct MedoWidget: Widget {
         }
         .configurationDisplayName("Contagem Regressiva")
         .description("Acompanhe a aproximação de datas importantes.")
-        .supportedFamilies([.accessoryInline, .accessoryRectangular])
+        .supportedFamilies([.accessoryInline, .accessoryRectangular, .systemSmall, .systemMedium, .systemLarge])
     }
 
 }
@@ -208,6 +226,10 @@ struct MedoWidget_Previews: PreviewProvider {
         MedoWidgetEntryView(entry: SimpleEntry(date: Date()))
             .previewContext(WidgetPreviewContext(family: .accessoryRectangular))
             .previewDisplayName("Rectangular")
+        
+        MedoWidgetEntryView(entry: SimpleEntry(date: Date()))
+            .previewContext(WidgetPreviewContext(family: .systemSmall))
+            .previewDisplayName("Home Small")
     }
 
 }
