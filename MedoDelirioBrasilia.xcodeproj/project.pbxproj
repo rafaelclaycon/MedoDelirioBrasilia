@@ -144,6 +144,9 @@
 		D921F8A0288B0DC4003979CC /* Au au (Parabens sancao) - Bolsonaro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F89A288B0DC4003979CC /* Au au (Parabens sancao) - Bolsonaro.mp3 */; };
 		D921F8A1288B0DC4003979CC /* Se for feito com amor tudo vale.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F89B288B0DC4003979CC /* Se for feito com amor tudo vale.mp3 */; };
 		D921F8A2288B0DC4003979CC /* Um dado da natureza.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F89C288B0DC4003979CC /* Um dado da natureza.mp3 */; };
+		D92230AC2942390500C59227 /* Jair Bolsonaro - Gases.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92230AA2942390500C59227 /* Jair Bolsonaro - Gases.mp3 */; };
+		D92230AD2942390500C59227 /* Jair Bolsonaro - Todo relaxado, gostosao, tranquilo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92230AB2942390500C59227 /* Jair Bolsonaro - Todo relaxado, gostosao, tranquilo.mp3 */; };
+		D92230AF2942391000C59227 /* Funk do Desespero Pos-Primeiro Turno de 2022.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92230AE2942391000C59227 /* Funk do Desespero Pos-Primeiro Turno de 2022.mp3 */; };
 		D923125E28AAD5C300436336 /* Vai dar merda, vai dar meeerda.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D923125D28AAD5C300436336 /* Vai dar merda, vai dar meeerda.mp3 */; };
 		D923126028AAD5CD00436336 /* Assovio do passarinho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D923125F28AAD5CD00436336 /* Assovio do passarinho.mp3 */; };
 		D923126228AAF30D00436336 /* Ludmilla e Bolsonaro - Saaai da Minha Frente.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D923126128AAF30D00436336 /* Ludmilla e Bolsonaro - Saaai da Minha Frente.mp3 */; };
@@ -1307,6 +1310,9 @@
 		D921F89A288B0DC4003979CC /* Au au (Parabens sancao) - Bolsonaro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Au au (Parabens sancao) - Bolsonaro.mp3"; sourceTree = "<group>"; };
 		D921F89B288B0DC4003979CC /* Se for feito com amor tudo vale.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Se for feito com amor tudo vale.mp3"; sourceTree = "<group>"; };
 		D921F89C288B0DC4003979CC /* Um dado da natureza.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Um dado da natureza.mp3"; sourceTree = "<group>"; };
+		D92230AA2942390500C59227 /* Jair Bolsonaro - Gases.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Gases.mp3"; sourceTree = "<group>"; };
+		D92230AB2942390500C59227 /* Jair Bolsonaro - Todo relaxado, gostosao, tranquilo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Todo relaxado, gostosao, tranquilo.mp3"; sourceTree = "<group>"; };
+		D92230AE2942391000C59227 /* Funk do Desespero Pos-Primeiro Turno de 2022.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Funk do Desespero Pos-Primeiro Turno de 2022.mp3"; sourceTree = "<group>"; };
 		D923125D28AAD5C300436336 /* Vai dar merda, vai dar meeerda.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Vai dar merda, vai dar meeerda.mp3"; sourceTree = "<group>"; };
 		D923125F28AAD5CD00436336 /* Assovio do passarinho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Assovio do passarinho.mp3"; sourceTree = "<group>"; };
 		D923126128AAF30D00436336 /* Ludmilla e Bolsonaro - Saaai da Minha Frente.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ludmilla e Bolsonaro - Saaai da Minha Frente.mp3"; sourceTree = "<group>"; };
@@ -2350,6 +2356,8 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D92230AA2942390500C59227 /* Jair Bolsonaro - Gases.mp3 */,
+				D92230AB2942390500C59227 /* Jair Bolsonaro - Todo relaxado, gostosao, tranquilo.mp3 */,
 				D9E142C3293BF17400B7FF04 /* Isa Penna - Eu nao permito, nao sou obrigada.mp3 */,
 				D92DAB212937BD5500E0CA82 /* Eduardo Pazuello - E a doenca politica.mp3 */,
 				D92DAB222937BD5500E0CA82 /* Eduardo Pazuello - Sabe o que que me doi.mp3 */,
@@ -3265,6 +3273,7 @@
 		D92E7068283C5C120035826C /* Songs */ = {
 			isa = PBXGroup;
 			children = (
+				D92230AE2942391000C59227 /* Funk do Desespero Pos-Primeiro Turno de 2022.mp3 */,
 				D9DACB0029199E9200D917BB /* E hora de rir um pouco dos militares.mp3 */,
 				D9DACB0129199E9200D917BB /* Musica da Vitoria - Lula Eleito.mp3 */,
 				D9B47635290DE3C0007C8ED0 /* Padre Kelmon - Nao existira pessoas.mp3 */,
@@ -4232,6 +4241,7 @@
 				D97500052880B4F20035E6F2 /* Monty Python - Eric Idle - Bring out your dead.mp3 in Resources */,
 				D975002F2880B4F20035E6F2 /* Vai Dar Namoro - Que isso meu filho calma.mp3 in Resources */,
 				D923126C28AB01A700436336 /* Trump - I could shoot somebody and not lose voters short meme.mp3 in Resources */,
+				D92230AD2942390500C59227 /* Jair Bolsonaro - Todo relaxado, gostosao, tranquilo.mp3 in Resources */,
 				D91793BB288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao.mp3 in Resources */,
 				D93752172902C94A00E2F27B /* O senhor gozou.mp3 in Resources */,
 				49DEA9AC28810F1D008C9BA1 /* UOL - Bolsonaro - Quem nao esta contente tem Lula em 2022 short meme.mp3 in Resources */,
@@ -4372,6 +4382,7 @@
 				D975FF092880B4F20035E6F2 /* Medo e Delirio em Brasilia com grito.mp3 in Resources */,
 				D975FFF72880B4F20035E6F2 /* Bolsonaro - A pressa da vacina nao se justifica.mp3 in Resources */,
 				D975FF952880B4F20035E6F2 /* Mermao na moral short.mp3 in Resources */,
+				D92230AF2942391000C59227 /* Funk do Desespero Pos-Primeiro Turno de 2022.mp3 in Resources */,
 				D975FF6A2880B4F20035E6F2 /* CASIMIRO - Que que porra e essa.mp3 in Resources */,
 				D98B9AD828CEBD2D00B82EDE /* Tropa de Elite - Que satisfacao, aspira.mp3 in Resources */,
 				D975FEDB2880B4F20035E6F2 /* HENRY BUGALHO - Os reacas piram.mp3 in Resources */,
@@ -4998,6 +5009,7 @@
 				D975FF9D2880B4F20035E6F2 /* DIOGO DEFANTE - Calma, ces tao de cabeca quente.mp3 in Resources */,
 				D923126B28AB01A700436336 /* Donald Trump - Its very sad.mp3 in Resources */,
 				D975FEEA2880B4F20035E6F2 /* PODER360 - Roberto Jefferson - Ta bom, Xandao, ta bom.mp3 in Resources */,
+				D92230AC2942390500C59227 /* Jair Bolsonaro - Gases.mp3 in Resources */,
 				D975FE1D2880B4F20035E6F2 /* Bolsonaro - Como etanol.mp3 in Resources */,
 				D975FFC52880B4F20035E6F2 /* CHOQUE DE CULTURA - Julinho da Van - Eles perderam o limite.mp3 in Resources */,
 				D975FF102880B4F20035E6F2 /* Drauzio - procura um psiquiatra, voce nao ta legal.mp3 in Resources */,
@@ -5281,7 +5293,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 5.25;
+				MARKETING_VERSION = 5.26;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -5313,7 +5325,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 5.25;
+				MARKETING_VERSION = 5.26;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -5469,7 +5481,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.25;
+				MARKETING_VERSION = 5.26;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -5510,7 +5522,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.25;
+				MARKETING_VERSION = 5.26;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
