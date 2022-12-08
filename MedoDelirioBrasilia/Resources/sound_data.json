@@ -8101,6 +8101,26 @@
         "filename": "Isa Penna - Eu nao permito, nao sou obrigada.mp3",
         "dateAdded": "2022-12-03T00:00:00Z",
         "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "EC1A801B-6BE1-48E4-91A6-315FC7591B8A",
+        "title": "Todo relaxado, gostosão, tranquilo",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Todo relaxado gostosao tranquilo",
+        "filename": "Jair Bolsonaro - Todo relaxado, gostosao, tranquilo.mp3",
+        "dateAdded": "2022-12-08T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "9F25FCA5-4B25-4D2A-96F3-BA29AD8F35B8",
+        "title": "Gases",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Gases",
+        "filename": "Jair Bolsonaro - Gases.mp3",
+        "dateAdded": "2022-12-08T00:00:00Z",
+        "isOffensive": true,
         "isNew": true
     }
 ]
