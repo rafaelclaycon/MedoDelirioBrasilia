@@ -8111,7 +8111,7 @@
         "filename": "Jair Bolsonaro - Todo relaxado, gostosao, tranquilo.mp3",
         "dateAdded": "2022-12-08T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "9F25FCA5-4B25-4D2A-96F3-BA29AD8F35B8",
@@ -8121,6 +8121,56 @@
         "filename": "Jair Bolsonaro - Gases.mp3",
         "dateAdded": "2022-12-08T00:00:00Z",
         "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "C6D594E9-B6A5-4EE6-A6BB-359B779CD687",
+        "title": "Arthur Lira é foda (curto)",
+        "authorId": "863E6246-0E17-4D5B-B059-6B43CCB18590",
+        "description": "Arthur Lira e foda",
+        "filename": "Arthur Lira e foda (curto).mp3",
+        "dateAdded": "2022-12-09T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "69DCFA5F-35F2-45F4-A9FC-A87576F67498",
+        "title": "Arthur Lira é foda (completo)",
+        "authorId": "863E6246-0E17-4D5B-B059-6B43CCB18590",
+        "description": "diz ae diz ae Arthur Lira e foda eu vou dizer por que o homem e forte em brasilia",
+        "filename": "Arthur Lira e foda (completo).mp3",
+        "dateAdded": "2022-12-09T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "276BBCED-5D27-4F78-875D-049422F4A3F2",
+        "title": "O homem é forte em Brasília",
+        "authorId": "863E6246-0E17-4D5B-B059-6B43CCB18590",
+        "description": "O homem e forte em Brasilia",
+        "filename": "O homem e forte em Brasilia.mp3",
+        "dateAdded": "2022-12-09T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "B62CDB8A-F6DD-476D-85E0-245327D1B47E",
+        "title": "Brasil!",
+        "authorId": "08C5B696-B506-4C6A-8F9D-A72BEC68525E",
+        "description": "Brasil",
+        "filename": "Gil do Vigor - Brasil.mp3",
+        "dateAdded": "2022-12-09T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "39E0E16B-D551-471C-B81D-61D3838FA480",
+        "title": "Nossa, sério isso? Que interessante...",
+        "authorId": "1F7A2AB7-1CB2-447C-9158-C8A620F9D170",
+        "description": "Nossa serio isso que interessante olha so",
+        "filename": "Dona Eleni - Nossa serio isso que interessante.mp3",
+        "dateAdded": "2022-12-09T00:00:00Z",
+        "isOffensive": false,
         "isNew": true
     }
 ]
