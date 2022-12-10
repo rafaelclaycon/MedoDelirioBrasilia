@@ -2,7 +2,7 @@ import UIKit
 
 internal protocol NetworkRabbitProtocol {
 
-    func checkServerStatus(completionHandler: @escaping (Bool, String) -> Void)
+    func checkServerStatus(completionHandler: @escaping (Bool) -> Void)
     func getSoundShareCountStats(timeInterval: TrendsTimeInterval, completionHandler: @escaping ([ServerShareCountStat]?, NetworkRabbitError?) -> Void)
     func post(shareCountStat: ServerShareCountStat, completionHandler: @escaping (Bool, String) -> Void)
     func post(clientDeviceInfo: ClientDeviceInfo, completionHandler: @escaping (Bool?, NetworkRabbitError?) -> Void)
@@ -20,18 +20,17 @@ class NetworkRabbit: NetworkRabbitProtocol {
     
     // MARK: - GET
     
-    func checkServerStatus(completionHandler: @escaping (Bool, String) -> Void) {
-        let url = URL(string: serverPath + "v1/status-check")!
-
+    func checkServerStatus(completionHandler: @escaping (Bool) -> Void) {
+        let url = URL(string: serverPath + "v2/status-check")!
+        
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            if let data = data {
-                let response = String(data: data, encoding: .utf8)!
-                Logger.logNetworkCall(callType: NetworkCallType.checkServerStatus.rawValue, requestUrl: url.absoluteString, requestBody: nil, response: response, wasSuccessful: true)
-                completionHandler(true, response)
-            } else if let error = error {
-                Logger.logNetworkCall(callType: NetworkCallType.checkServerStatus.rawValue, requestUrl: url.absoluteString, requestBody: nil, response: "A requisição HTTP falhou: \(error.localizedDescription)", wasSuccessful: false)
-                completionHandler(false, "A requisição HTTP falhou: \(error.localizedDescription)")
+            guard let httpResponse = response as? HTTPURLResponse else {
+                return completionHandler(false)
             }
+            guard httpResponse.statusCode == 200 else {
+                return completionHandler(false)
+            }
+            completionHandler(true)
         }
         
         task.resume()
