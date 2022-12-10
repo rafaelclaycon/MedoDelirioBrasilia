@@ -8131,7 +8131,7 @@
         "filename": "Arthur Lira e foda (curto).mp3",
         "dateAdded": "2022-12-09T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "69DCFA5F-35F2-45F4-A9FC-A87576F67498",
@@ -8141,7 +8141,7 @@
         "filename": "Arthur Lira e foda (completo).mp3",
         "dateAdded": "2022-12-09T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "276BBCED-5D27-4F78-875D-049422F4A3F2",
@@ -8151,7 +8151,7 @@
         "filename": "O homem e forte em Brasilia.mp3",
         "dateAdded": "2022-12-09T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "B62CDB8A-F6DD-476D-85E0-245327D1B47E",
@@ -8161,7 +8161,7 @@
         "filename": "Gil do Vigor - Brasil.mp3",
         "dateAdded": "2022-12-09T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "39E0E16B-D551-471C-B81D-61D3838FA480",
@@ -8170,6 +8170,16 @@
         "description": "Nossa serio isso que interessante olha so",
         "filename": "Dona Eleni - Nossa serio isso que interessante.mp3",
         "dateAdded": "2022-12-09T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "D186B8AE-71F7-41BA-ADC5-8EF57CBF874E",
+        "title": "Deu errado (Edição Copa no Catar)",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Deu errado Edicao Copa no Catar",
+        "filename": "Deu errado (Edicao Copa no Catar).mp3",
+        "dateAdded": "2022-12-10T00:00:00Z",
         "isOffensive": false,
         "isNew": true
     }
