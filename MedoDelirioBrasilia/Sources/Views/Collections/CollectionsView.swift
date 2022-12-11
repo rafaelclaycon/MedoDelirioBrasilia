@@ -35,7 +35,7 @@ struct CollectionsView: View {
                 }
                 .padding(.top, 10)
             }
-            .navigationTitle("Coleções")
+            .navigationTitle("Reações")
             .onAppear {
                 //viewModel.donateActivity()
             }

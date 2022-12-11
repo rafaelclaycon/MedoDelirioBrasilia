@@ -39,7 +39,7 @@ struct MainView: View {
                     CollectionsView()
                 }
                 .tabItem {
-                    Label("Coleções", systemImage: "rectangle.grid.2x2.fill")
+                    Label("Reações", systemImage: "theatermasks.fill")
                 }
                 .tag(PhoneTab.collections)
                 

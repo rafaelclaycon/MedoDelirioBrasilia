@@ -52,7 +52,7 @@ struct SidebarView: View {
                     tag: PadScreen.collections,
                     selection: $state,
                     label: {
-                        Label("Coleções", systemImage: "rectangle.grid.2x2")
+                        Label("Reações", systemImage: "theatermasks.fill")
                     })
             }
             
