@@ -1,5 +1,5 @@
 //
-//  CollectionsView.swift
+//  ReactionsView.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Claycon Schmitt on 13/06/22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CollectionsView: View {
+struct ReactionsView: View {
 
     //@StateObject private var viewModel = CollectionsViewViewModel()
     
@@ -15,7 +15,7 @@ struct CollectionsView: View {
         ScrollView {
             VStack(alignment: .center) {
                 VStack(alignment: .center) {
-                    CollectionListView(viewModel: CollectionListViewViewModel(state: .loading))
+                    ReactionListView(viewModel: ReactionListViewViewModel(state: .loading))
                         .padding(.top, 10)
                     
 //                        ScrollView(.horizontal, showsIndicators: false) {
@@ -48,7 +48,7 @@ struct CollectionsView: View {
 struct CollectionsView_Previews: PreviewProvider {
 
     static var previews: some View {
-        CollectionsView()
+        ReactionsView()
     }
 
 }

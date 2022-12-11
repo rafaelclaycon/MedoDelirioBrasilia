@@ -1,5 +1,5 @@
 //
-//  CollectionListViewViewModel.swift
+//  ReactionListViewViewModel.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Claycon Schmitt on 28/10/22.
@@ -8,7 +8,7 @@
 import Combine
 import UIKit
 
-class CollectionListViewViewModel: ObservableObject {
+class ReactionListViewViewModel: ObservableObject {
 
     @Published var state: GenericViewState
     @Published var collections = [ContentCollection]()

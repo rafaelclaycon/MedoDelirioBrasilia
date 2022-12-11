@@ -211,7 +211,7 @@
 		D92EF4C0291CA5B9009E3E0A /* Jair Bolsonaro - CODIB-19.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92EF4BE291CA5B9009E3E0A /* Jair Bolsonaro - CODIB-19.mp3 */; };
 		D92EF4C2291D721D009E3E0A /* FunnyPhrase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92EF4C1291D721D009E3E0A /* FunnyPhrase.swift */; };
 		D92F8BAD286A6D2100EB9470 /* AlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92F8BAC286A6D2100EB9470 /* AlertType.swift */; };
-		D93284D728FC913900E84525 /* CollectionDetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93284D628FC913900E84525 /* CollectionDetailViewViewModel.swift */; };
+		D93284D728FC913900E84525 /* ReactionDetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93284D628FC913900E84525 /* ReactionDetailViewViewModel.swift */; };
 		D933251E28835E41004EFACB /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D933251D28835E41004EFACB /* ActivityViewController.swift */; };
 		D9344323283812AD00ADCD38 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9344322283812AD00ADCD38 /* Author.swift */; };
 		D93443252838177000ADCD38 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93443242838177000ADCD38 /* UserInfo.swift */; };
@@ -254,7 +254,7 @@
 		D93CCB7B286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93CCB7A286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift */; };
 		D93D24E02849DAAB00300541 /* DiagnosticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D24DF2849DAAB00300541 /* DiagnosticsView.swift */; };
 		D946116E28611F1000C4FB7E /* FolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D946116D28611F1000C4FB7E /* FolderCell.swift */; };
-		D946117E28613D3200C4FB7E /* CollectionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D946117D28613D3200C4FB7E /* CollectionDetailView.swift */; };
+		D946117E28613D3200C4FB7E /* ReactionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D946117D28613D3200C4FB7E /* ReactionDetailView.swift */; };
 		D94611802861480A00C4FB7E /* FolderInfoEditingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D946117F2861480A00C4FB7E /* FolderInfoEditingView.swift */; };
 		D9461182286159BC00C4FB7E /* UserFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9461181286159BC00C4FB7E /* UserFolder.swift */; };
 		D94656D928450535008B4785 /* SQLiteMigrationManager in Frameworks */ = {isa = PBXBuildFile; productRef = D94656D828450535008B4785 /* SQLiteMigrationManager */; };
@@ -921,8 +921,8 @@
 		D97D76FB2885B794005210D9 /* EmailAppPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97D76FA2885B794005210D9 /* EmailAppPickerView.swift */; };
 		D980455C28380EFE003B2E83 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D980455E28380EFE003B2E83 /* Localizable.strings */; };
 		D980456228380F66003B2E83 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D980456128380F66003B2E83 /* LocalizableStrings.swift */; };
-		D983BDE4290B8F0500850A86 /* CollectionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D983BDE3290B8F0500850A86 /* CollectionListView.swift */; };
-		D983BDE6290B90AC00850A86 /* CollectionListViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D983BDE5290B90AC00850A86 /* CollectionListViewViewModel.swift */; };
+		D983BDE4290B8F0500850A86 /* ReactionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D983BDE3290B8F0500850A86 /* ReactionListView.swift */; };
+		D983BDE6290B90AC00850A86 /* ReactionListViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D983BDE5290B90AC00850A86 /* ReactionListViewViewModel.swift */; };
 		D985DCD928B6D7150085B8E5 /* Thii Gouveia - Tchutchuca do Centrao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D985DCD828B6D7150085B8E5 /* Thii Gouveia - Tchutchuca do Centrao.mp3 */; };
 		D985DCDB28B6D9460085B8E5 /* Furacao 2000 - Tchutchuca Treme o Bumbum.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D985DCDA28B6D9460085B8E5 /* Furacao 2000 - Tchutchuca Treme o Bumbum.mp3 */; };
 		D98622E0283FC57100E9F630 /* AuthorDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98622DF283FC57100E9F630 /* AuthorDetailView.swift */; };
@@ -1094,7 +1094,7 @@
 		D9E7D0F628AC6BC6001E909E /* PORTA DOS FUNDOS - Nao, brother broder.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E7D0F528AC6BC6001E909E /* PORTA DOS FUNDOS - Nao, brother broder.mp3 */; };
 		D9E9CFA3292C3DD1002BC918 /* NoFoldersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E9CFA2292C3DD1002BC918 /* NoFoldersView.swift */; };
 		D9E9CFA5292C40BF002BC918 /* NoFoldersSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E9CFA4292C40BF002BC918 /* NoFoldersSymbol.swift */; };
-		D9EB18A52857CDFF00A2F8A8 /* CollectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EB18A42857CDFF00A2F8A8 /* CollectionsView.swift */; };
+		D9EB18A52857CDFF00A2F8A8 /* ReactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EB18A42857CDFF00A2F8A8 /* ReactionsView.swift */; };
 		D9ECD81528B3C470003C033A /* IconImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9ECD81428B3C470003C033A /* IconImage.swift */; };
 		D9EDB87828E3E477007724E2 /* Ciro Nogueira - Restricao porque e um fascista.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9EDB87528E3E477007724E2 /* Ciro Nogueira - Restricao porque e um fascista.mp3 */; };
 		D9EDB87928E3E477007724E2 /* Flavio Bolsonaro - Im a little bit nirvous.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9EDB87628E3E477007724E2 /* Flavio Bolsonaro - Im a little bit nirvous.mp3 */; };
@@ -1106,7 +1106,7 @@
 		D9F6420728D1211700003A0E /* Casimiro - Misericordia, jornalista, tenha do.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F6420628D1211700003A0E /* Casimiro - Misericordia, jornalista, tenha do.mp3 */; };
 		D9F6420928D122C500003A0E /* Moderador, tira o moleque desse grupo agora.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F6420828D122C500003A0E /* Moderador, tira o moleque desse grupo agora.mp3 */; };
 		D9F696BD28BBFDD700C984E6 /* Jair Bolsonaro e Conrado Hubner - Os escandalos do Jair, enumerados.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F696BC28BBFDD700C984E6 /* Jair Bolsonaro e Conrado Hubner - Os escandalos do Jair, enumerados.mp3 */; };
-		D9F78A9F2860DF9100B83567 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F78A9E2860DF9100B83567 /* CollectionCell.swift */; };
+		D9F78A9F2860DF9100B83567 /* ReactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F78A9E2860DF9100B83567 /* ReactionCell.swift */; };
 		D9F87A9228F6EA51002EE8AA /* RemoveFavoriteLogTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F87A9128F6EA51002EE8AA /* RemoveFavoriteLogTable.swift */; };
 		D9F8E9A028E6A08D0098A454 /* Soraya Thronicke - O senhor nao tem medo de ir pro inferno nao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F8E99F28E6A08D0098A454 /* Soraya Thronicke - O senhor nao tem medo de ir pro inferno nao.mp3 */; };
 		D9F8E9A228E8D6D40098A454 /* Soraya Thronicke - Padre Kelson.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F8E9A128E8D6D40098A454 /* Soraya Thronicke - Padre Kelson.mp3 */; };
@@ -1383,7 +1383,7 @@
 		D92EF4BE291CA5B9009E3E0A /* Jair Bolsonaro - CODIB-19.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - CODIB-19.mp3"; sourceTree = "<group>"; };
 		D92EF4C1291D721D009E3E0A /* FunnyPhrase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunnyPhrase.swift; sourceTree = "<group>"; };
 		D92F8BAC286A6D2100EB9470 /* AlertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertType.swift; sourceTree = "<group>"; };
-		D93284D628FC913900E84525 /* CollectionDetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDetailViewViewModel.swift; sourceTree = "<group>"; };
+		D93284D628FC913900E84525 /* ReactionDetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionDetailViewViewModel.swift; sourceTree = "<group>"; };
 		D933251D28835E41004EFACB /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		D9344322283812AD00ADCD38 /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		D93443242838177000ADCD38 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
@@ -1426,7 +1426,7 @@
 		D93CCB7A286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyTransition+MoveAndFade.swift"; sourceTree = "<group>"; };
 		D93D24DF2849DAAB00300541 /* DiagnosticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticsView.swift; sourceTree = "<group>"; };
 		D946116D28611F1000C4FB7E /* FolderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderCell.swift; sourceTree = "<group>"; };
-		D946117D28613D3200C4FB7E /* CollectionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDetailView.swift; sourceTree = "<group>"; };
+		D946117D28613D3200C4FB7E /* ReactionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionDetailView.swift; sourceTree = "<group>"; };
 		D946117F2861480A00C4FB7E /* FolderInfoEditingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderInfoEditingView.swift; sourceTree = "<group>"; };
 		D9461181286159BC00C4FB7E /* UserFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFolder.swift; sourceTree = "<group>"; };
 		D948E9812921BF3300D047D3 /* Jair Bolsonaro - A quem interessa o caos no Brasil.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - A quem interessa o caos no Brasil.mp3"; sourceTree = "<group>"; };
@@ -2095,8 +2095,8 @@
 		D980455D28380EFE003B2E83 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D980455F28380F05003B2E83 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D980456128380F66003B2E83 /* LocalizableStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
-		D983BDE3290B8F0500850A86 /* CollectionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionListView.swift; sourceTree = "<group>"; };
-		D983BDE5290B90AC00850A86 /* CollectionListViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionListViewViewModel.swift; sourceTree = "<group>"; };
+		D983BDE3290B8F0500850A86 /* ReactionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionListView.swift; sourceTree = "<group>"; };
+		D983BDE5290B90AC00850A86 /* ReactionListViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionListViewViewModel.swift; sourceTree = "<group>"; };
 		D985DCD828B6D7150085B8E5 /* Thii Gouveia - Tchutchuca do Centrao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Thii Gouveia - Tchutchuca do Centrao.mp3"; sourceTree = "<group>"; };
 		D985DCDA28B6D9460085B8E5 /* Furacao 2000 - Tchutchuca Treme o Bumbum.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Furacao 2000 - Tchutchuca Treme o Bumbum.mp3"; sourceTree = "<group>"; };
 		D98622DF283FC57100E9F630 /* AuthorDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorDetailView.swift; sourceTree = "<group>"; };
@@ -2267,7 +2267,7 @@
 		D9E7D0F528AC6BC6001E909E /* PORTA DOS FUNDOS - Nao, brother broder.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "PORTA DOS FUNDOS - Nao, brother broder.mp3"; sourceTree = "<group>"; };
 		D9E9CFA2292C3DD1002BC918 /* NoFoldersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFoldersView.swift; sourceTree = "<group>"; };
 		D9E9CFA4292C40BF002BC918 /* NoFoldersSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFoldersSymbol.swift; sourceTree = "<group>"; };
-		D9EB18A42857CDFF00A2F8A8 /* CollectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsView.swift; sourceTree = "<group>"; };
+		D9EB18A42857CDFF00A2F8A8 /* ReactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsView.swift; sourceTree = "<group>"; };
 		D9ECD81428B3C470003C033A /* IconImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconImage.swift; sourceTree = "<group>"; };
 		D9EDB87528E3E477007724E2 /* Ciro Nogueira - Restricao porque e um fascista.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ciro Nogueira - Restricao porque e um fascista.mp3"; sourceTree = "<group>"; };
 		D9EDB87628E3E477007724E2 /* Flavio Bolsonaro - Im a little bit nirvous.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Flavio Bolsonaro - Im a little bit nirvous.mp3"; sourceTree = "<group>"; };
@@ -2279,7 +2279,7 @@
 		D9F6420628D1211700003A0E /* Casimiro - Misericordia, jornalista, tenha do.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Casimiro - Misericordia, jornalista, tenha do.mp3"; sourceTree = "<group>"; };
 		D9F6420828D122C500003A0E /* Moderador, tira o moleque desse grupo agora.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Moderador, tira o moleque desse grupo agora.mp3"; sourceTree = "<group>"; };
 		D9F696BC28BBFDD700C984E6 /* Jair Bolsonaro e Conrado Hubner - Os escandalos do Jair, enumerados.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro e Conrado Hubner - Os escandalos do Jair, enumerados.mp3"; sourceTree = "<group>"; };
-		D9F78A9E2860DF9100B83567 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
+		D9F78A9E2860DF9100B83567 /* ReactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionCell.swift; sourceTree = "<group>"; };
 		D9F87A9128F6EA51002EE8AA /* RemoveFavoriteLogTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveFavoriteLogTable.swift; sourceTree = "<group>"; };
 		D9F8E99F28E6A08D0098A454 /* Soraya Thronicke - O senhor nao tem medo de ir pro inferno nao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Soraya Thronicke - O senhor nao tem medo de ir pro inferno nao.mp3"; sourceTree = "<group>"; };
 		D9F8E9A128E8D6D40098A454 /* Soraya Thronicke - Padre Kelson.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Soraya Thronicke - Padre Kelson.mp3"; sourceTree = "<group>"; };
@@ -3670,9 +3670,9 @@
 		D983BDE2290B8EE200850A86 /* CollectionList */ = {
 			isa = PBXGroup;
 			children = (
-				D983BDE3290B8F0500850A86 /* CollectionListView.swift */,
-				D983BDE5290B90AC00850A86 /* CollectionListViewViewModel.swift */,
-				D9F78A9E2860DF9100B83567 /* CollectionCell.swift */,
+				D983BDE3290B8F0500850A86 /* ReactionListView.swift */,
+				D983BDE5290B90AC00850A86 /* ReactionListViewViewModel.swift */,
+				D9F78A9E2860DF9100B83567 /* ReactionCell.swift */,
 			);
 			path = CollectionList;
 			sourceTree = "<group>";
@@ -3961,10 +3961,10 @@
 		D9EB18A32857CDE200A2F8A8 /* Collections */ = {
 			isa = PBXGroup;
 			children = (
-				D9EB18A42857CDFF00A2F8A8 /* CollectionsView.swift */,
+				D9EB18A42857CDFF00A2F8A8 /* ReactionsView.swift */,
 				D983BDE2290B8EE200850A86 /* CollectionList */,
-				D946117D28613D3200C4FB7E /* CollectionDetailView.swift */,
-				D93284D628FC913900E84525 /* CollectionDetailViewViewModel.swift */,
+				D946117D28613D3200C4FB7E /* ReactionDetailView.swift */,
+				D93284D628FC913900E84525 /* ReactionDetailViewViewModel.swift */,
 			);
 			path = Collections;
 			sourceTree = "<group>";
@@ -5139,7 +5139,7 @@
 				D92C0CAC28406EA5009CF19A /* UserShareLog.swift in Sources */,
 				D961D016283722AB00EFEDEB /* Color+CustomColors.swift in Sources */,
 				D93A029A2906DEB100A85FE2 /* UserFolderContentLog.swift in Sources */,
-				D983BDE6290B90AC00850A86 /* CollectionListViewViewModel.swift in Sources */,
+				D983BDE6290B90AC00850A86 /* ReactionListViewViewModel.swift in Sources */,
 				D93AC08B28414EEE00E38A63 /* Logger.swift in Sources */,
 				D957509628445EC30094AEA6 /* TrendsViewViewModel.swift in Sources */,
 				D9B763282845B5E600CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift in Sources */,
@@ -5184,15 +5184,15 @@
 				D9C1372729063A78003E4ABF /* FolderResearchSettingsView.swift in Sources */,
 				D98EC5DE282596C300340BE5 /* SoundCell.swift in Sources */,
 				D973076C28AC49B100FBB3B8 /* DiagnosticsViewViewModel.swift in Sources */,
-				D9EB18A52857CDFF00A2F8A8 /* CollectionsView.swift in Sources */,
-				D93284D728FC913900E84525 /* CollectionDetailViewViewModel.swift in Sources */,
+				D9EB18A52857CDFF00A2F8A8 /* ReactionsView.swift in Sources */,
+				D93284D728FC913900E84525 /* ReactionDetailViewViewModel.swift in Sources */,
 				D98EC5E32825A45000340BE5 /* SoundsViewViewModel.swift in Sources */,
-				D9F78A9F2860DF9100B83567 /* CollectionCell.swift in Sources */,
+				D9F78A9F2860DF9100B83567 /* ReactionCell.swift in Sources */,
 				D9CC893528EB7CF800576492 /* MostSharedByAudienceViewViewModel.swift in Sources */,
 				D9943F2A28642EC3002C6B97 /* UserFolderContent.swift in Sources */,
 				D9943F2828642200002C6B97 /* AddToFolderViewViewModel.swift in Sources */,
 				D98B291D28691C5C008A78AE /* ColorSelectionCell.swift in Sources */,
-				D983BDE4290B8F0500850A86 /* CollectionListView.swift in Sources */,
+				D983BDE4290B8F0500850A86 /* ReactionListView.swift in Sources */,
 				D9344323283812AD00ADCD38 /* Author.swift in Sources */,
 				D9758C3E28617DAC0094D388 /* Color+Name.swift in Sources */,
 				D9491810288606E00079F545 /* SettingsCasingWithCloseView.swift in Sources */,
@@ -5207,7 +5207,7 @@
 				D9A3AB6D28F062580064CB7A /* TimeKeeper.swift in Sources */,
 				D9943F1E286419C2002C6B97 /* LocalDatabase+TopChart.swift in Sources */,
 				D9A8AB212853EB5500B5A94B /* InitialMigration.swift in Sources */,
-				D946117E28613D3200C4FB7E /* CollectionDetailView.swift in Sources */,
+				D946117E28613D3200C4FB7E /* ReactionDetailView.swift in Sources */,
 				D93A029C2906E8E200A85FE2 /* NetworkRabbit+UserFolderLog.swift in Sources */,
 				D92CAA4128593B1700D6C1EA /* NetworkLogCell.swift in Sources */,
 				D9BB1E7728B3200700C5FFAA /* AppIcon.swift in Sources */,

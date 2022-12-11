@@ -1,5 +1,5 @@
 //
-//  CollectionDetailView.swift
+//  ReactionDetailView.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Claycon Schmitt on 28/06/22.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct CollectionDetailView: View {
+struct ReactionDetailView: View {
 
-    @StateObject var viewModel = CollectionDetailViewViewModel(state: .loading)
+    @StateObject var viewModel = ReactionDetailViewViewModel(state: .loading)
     @State var collection: ContentCollection
     
     private let columns = [
@@ -168,7 +168,7 @@ struct CollectionDetailView: View {
 struct CollectionDetailView_Previews: PreviewProvider {
 
     static var previews: some View {
-        CollectionDetailView(collection: ContentCollection(title: "Teste", imageURL: .empty))
+        ReactionDetailView(collection: ContentCollection(title: "Teste", imageURL: .empty))
     }
 
 }

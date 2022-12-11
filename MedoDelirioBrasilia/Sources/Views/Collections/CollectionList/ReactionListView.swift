@@ -1,5 +1,5 @@
 //
-//  CollectionListView.swift
+//  ReactionListView.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Claycon Schmitt on 28/10/22.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct CollectionListView: View {
+struct ReactionListView: View {
 
-    @StateObject var viewModel: CollectionListViewViewModel
+    @StateObject var viewModel: ReactionListViewViewModel
     
     private let columns = [
         GridItem(.flexible()),
@@ -51,9 +51,9 @@ struct CollectionListView: View {
             LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
                 ForEach(viewModel.collections) { collection in
                     NavigationLink {
-                        CollectionDetailView(collection: collection)
+                        ReactionDetailView(collection: collection)
                     } label: {
-                        CollectionCell(title: collection.title, imageURL: collection.imageURL)
+                        ReactionCell(title: collection.title, imageURL: collection.imageURL)
                     }
                 }
             }
@@ -88,10 +88,10 @@ struct CollectionListView_Previews: PreviewProvider {
 
     static var previews: some View {
         Group {
-            CollectionListView(viewModel: CollectionListViewViewModel(state: .loading))
-            CollectionListView(viewModel: CollectionListViewViewModel(state: .displayingData))
-            CollectionListView(viewModel: CollectionListViewViewModel(state: .noDataToDisplay))
-            CollectionListView(viewModel: CollectionListViewViewModel(state: .loadingError))
+            ReactionListView(viewModel: ReactionListViewViewModel(state: .loading))
+            ReactionListView(viewModel: ReactionListViewViewModel(state: .displayingData))
+            ReactionListView(viewModel: ReactionListViewViewModel(state: .noDataToDisplay))
+            ReactionListView(viewModel: ReactionListViewViewModel(state: .loadingError))
         }
     }
 

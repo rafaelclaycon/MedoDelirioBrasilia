@@ -36,7 +36,7 @@ struct MainView: View {
                 .tag(PhoneTab.sounds)
                 
                 NavigationView {
-                    CollectionsView()
+                    ReactionsView()
                 }
                 .tabItem {
                     Label("Reações", systemImage: "theatermasks.fill")

@@ -48,7 +48,7 @@ struct SidebarView: View {
                     })
                 
                 NavigationLink(
-                    destination: CollectionsView(),
+                    destination: ReactionsView(),
                     tag: PadScreen.collections,
                     selection: $state,
                     label: {
