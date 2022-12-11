@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/onevcat/Kingfisher",
       "state" : {
-        "revision" : "be1a1acb283a702b99b630f586877ba02234b4cb",
-        "version" : "7.3.2"
+        "revision" : "44e891bdb61426a95e31492a67c7c0dfad1f87c5",
+        "version" : "7.4.1"
       }
     },
     {
@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stephencelis/SQLite.swift",
       "state" : {
-        "revision" : "4d543d811ee644fa4cc4bfa0be996b4dd6ba0f54",
-        "version" : "0.13.3"
+        "revision" : "7a2e3cd27de56f6d396e84f63beefd0267b55ccb",
+        "version" : "0.14.1"
       }
     },
     {
@@ -32,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/garriguv/SQLiteMigrationManager.swift",
       "state" : {
-        "revision" : "edd732911cde57d9674e364a4796af775c977c7d",
-        "version" : "0.8.0"
+        "revision" : "1ae71f0b0badb1538fad655d4b8894ad2a01846a",
+        "version" : "0.8.1"
       }
     }
   ],
