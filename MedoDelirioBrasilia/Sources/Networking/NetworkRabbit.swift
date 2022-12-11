@@ -80,15 +80,19 @@ class NetworkRabbit: NetworkRabbitProtocol {
         task.resume()
     }
     
-    func displayAskForMoneyView(completionHandler: @escaping (Bool, String) -> Void) {
-        let url = URL(string: serverPath + "v1/display-ask-for-money-view")!
-
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+    func displayAskForMoneyView(completionHandler: @escaping (Bool) -> Void) {
+        let url = URL(string: serverPath + "v2/current-test-version")!
+        
+        let task = URLSession.shared.dataTask(with: url) { data, _, error in
             if let data = data {
                 let response = String(data: data, encoding: .utf8)!
-                completionHandler(response == "1", response)
-            } else if let error = error {
-                completionHandler(false, "A requisição HTTP falhou: \(error.localizedDescription)")
+                if response.contains(Versioneer.appVersion) {
+                    completionHandler(false)
+                } else {
+                    completionHandler(true)
+                }
+            } else if error != nil {
+                completionHandler(false)
             }
         }
         
