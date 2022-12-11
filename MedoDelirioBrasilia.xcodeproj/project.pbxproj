@@ -966,6 +966,8 @@
 		D9943F2C28643317002C6B97 /* FolderDetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F2B28643317002C6B97 /* FolderDetailViewViewModel.swift */; };
 		D998F28F284F177B0013E709 /* TrendsDisabledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998F28E284F177B0013E709 /* TrendsDisabledView.swift */; };
 		D99B9DCA2848148600897930 /* ServerStatsAndLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99B9DC92848148600897930 /* ServerStatsAndLogs.swift */; };
+		D99BBE4129466D9800BCA901 /* UsageMetric.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99BBE4029466D9800BCA901 /* UsageMetric.swift */; };
+		D99BBE43294676B200BCA901 /* NetworkRabbit+UsageMetric.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99BBE42294676B200BCA901 /* NetworkRabbit+UsageMetric.swift */; };
 		D99C83BA2945169100385C6F /* Deu errado (Edicao Copa no Catar).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99C83B92945169000385C6F /* Deu errado (Edicao Copa no Catar).mp3 */; };
 		D99D0DBF28CAB0FF00EB6F27 /* TV CAMARA - MARCELO FREIXO - Nao adianta desvirtuar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99D0DBE28CAB0FF00EB6F27 /* TV CAMARA - MARCELO FREIXO - Nao adianta desvirtuar.mp3 */; };
 		D99D0DC128CAB3E800EB6F27 /* TV CAMARA - Lula - A esperanca finalmente venceu o medo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99D0DC028CAB3E800EB6F27 /* TV CAMARA - Lula - A esperanca finalmente venceu o medo.mp3 */; };
@@ -2138,6 +2140,8 @@
 		D9943F2B28643317002C6B97 /* FolderDetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetailViewViewModel.swift; sourceTree = "<group>"; };
 		D998F28E284F177B0013E709 /* TrendsDisabledView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsDisabledView.swift; sourceTree = "<group>"; };
 		D99B9DC92848148600897930 /* ServerStatsAndLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerStatsAndLogs.swift; sourceTree = "<group>"; };
+		D99BBE4029466D9800BCA901 /* UsageMetric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageMetric.swift; sourceTree = "<group>"; };
+		D99BBE42294676B200BCA901 /* NetworkRabbit+UsageMetric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+UsageMetric.swift"; sourceTree = "<group>"; };
 		D99C83B92945169000385C6F /* Deu errado (Edicao Copa no Catar).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Deu errado (Edicao Copa no Catar).mp3"; sourceTree = "<group>"; };
 		D99D0DBE28CAB0FF00EB6F27 /* TV CAMARA - MARCELO FREIXO - Nao adianta desvirtuar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "TV CAMARA - MARCELO FREIXO - Nao adianta desvirtuar.mp3"; sourceTree = "<group>"; };
 		D99D0DC028CAB3E800EB6F27 /* TV CAMARA - Lula - A esperanca finalmente venceu o medo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "TV CAMARA - Lula - A esperanca finalmente venceu o medo.mp3"; sourceTree = "<group>"; };
@@ -3683,6 +3687,7 @@
 				D9DCC5D2287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift */,
 				D93A029B2906E8E200A85FE2 /* NetworkRabbit+UserFolderLog.swift */,
 				D9A4D00F290A18ED00EB57B3 /* NetworkRabbit+StillAliveSignal.swift */,
+				D99BBE42294676B200BCA901 /* NetworkRabbit+UsageMetric.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -3786,6 +3791,7 @@
 				D92C0CAB28406EA5009CF19A /* UserShareLog.swift */,
 				D93A02972906DE8C00A85FE2 /* UserFolderLog.swift */,
 				D93A02992906DEB100A85FE2 /* UserFolderContentLog.swift */,
+				D99BBE4029466D9800BCA901 /* UsageMetric.swift */,
 			);
 			path = Logs;
 			sourceTree = "<group>";
@@ -5078,6 +5084,7 @@
 				D9625E8028238F9A00080852 /* SoundsView.swift in Sources */,
 				D91107142863B5FD000B6F8F /* ContentCollection.swift in Sources */,
 				D9877D2928694F3200B541F9 /* LocalDatabase+UserFolderContent.swift in Sources */,
+				D99BBE4129466D9800BCA901 /* UsageMetric.swift in Sources */,
 				D9CC893328EB7BB500576492 /* MostSharedByAudienceView.swift in Sources */,
 				D912A33A28B5321400F7293D /* ShareAsVideoResult.swift in Sources */,
 				D958B1AA28394D400010F133 /* MainView.swift in Sources */,
@@ -5198,6 +5205,7 @@
 				D9B24E2228C6A68800D76F7D /* NumberBadgeView.swift in Sources */,
 				D998F28F284F177B0013E709 /* TrendsDisabledView.swift in Sources */,
 				D933251E28835E41004EFACB /* ActivityViewController.swift in Sources */,
+				D99BBE43294676B200BCA901 /* NetworkRabbit+UsageMetric.swift in Sources */,
 				D991E598284A94F70005705F /* Podium.swift in Sources */,
 				D911070D2862BA4C000B6F8F /* StillAliveSignal.swift in Sources */,
 				D95DB0F82882491A00D4FEDF /* ScreenAndTabs.swift in Sources */,

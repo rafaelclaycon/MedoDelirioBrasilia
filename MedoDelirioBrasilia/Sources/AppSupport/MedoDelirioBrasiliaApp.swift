@@ -59,7 +59,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             return
         }
         
-        let info = ClientDeviceInfo(installId: UIDevice.deviceIDForVendor, modelName: UIDevice.modelName)
+        let info = ClientDeviceInfo(installId: UIDevice.customInstallId, modelName: UIDevice.modelName)
         networkRabbit.post(clientDeviceInfo: info) { success, error in
             if let success = success, success {
                 AppPersistentMemory.setHasSentDeviceModelToServer(to: true)
@@ -75,7 +75,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             return
         }
         
-        let signal = StillAliveSignal(installId: UIDevice.deviceIDForVendor,
+        let signal = StillAliveSignal(installId: UIDevice.customInstallId,
                                       modelName: UIDevice.modelName,
                                       systemName: UIDevice.current.systemName,
                                       systemVersion: UIDevice.current.systemVersion,
@@ -101,7 +101,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             let token = tokenParts.joined()
             //print("Device Token: \(token)")
 
-            let device = PushDevice(installId: UIDevice.deviceIDForVendor, pushToken: token)
+            let device = PushDevice(installId: UIDevice.customInstallId, pushToken: token)
             networkRabbit.post(pushDevice: device) { success, error in
                 guard let success = success, success else {
                     AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: true)

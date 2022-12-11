@@ -71,5 +71,13 @@ struct Shared {
         static let noFoldersAlertMessagePadMac = "Para continuar, crie uma pasta de sons. Toque em Nova Pasta na barra lateral."
         
     }
+    
+    struct ScreenNames {
+        
+        static let soundsView = "SoundsView"
+        static let authorsView = "AuthorsView"
+        static let authorDetailView = "AuthorDetailView"
+        
+    }
 
 }
