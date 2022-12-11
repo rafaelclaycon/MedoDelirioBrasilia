@@ -166,8 +166,8 @@ struct SettingsView: View {
         }
         .navigationTitle("Ajustes")
         .onAppear {
-            networkRabbit.displayAskForMoneyView { result, _ in
-                showAskForMoneyView = result
+            networkRabbit.displayAskForMoneyView { shouldDisplay in
+                showAskForMoneyView = shouldDisplay
             }
         }
         .popover(isPresented: $showEmailClientConfirmationDialog) {
