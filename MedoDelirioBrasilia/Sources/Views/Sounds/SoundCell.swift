@@ -72,10 +72,15 @@ struct SoundCell: View {
     }
     
     private var cellHeight: CGFloat {
+        
+        let random = Double.random(in: 120.1...350.2)
+        
+        
+        
         if UIDevice.current.userInterfaceIdiom == .phone {
-            return UIDevice.is4InchDevice ? 120 : 96
+            return random
         } else {
-            return UIDevice.isiPadMini ? 116 : 96
+            return random
         }
     }
     
