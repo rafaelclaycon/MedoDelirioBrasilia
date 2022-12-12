@@ -968,6 +968,9 @@
 		D99B9DCA2848148600897930 /* ServerStatsAndLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99B9DC92848148600897930 /* ServerStatsAndLogs.swift */; };
 		D99BBE4129466D9800BCA901 /* UsageMetric.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99BBE4029466D9800BCA901 /* UsageMetric.swift */; };
 		D99BBE43294676B200BCA901 /* NetworkRabbit+UsageMetric.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99BBE42294676B200BCA901 /* NetworkRabbit+UsageMetric.swift */; };
+		D99BBE45294700B200BCA901 /* Jair Bolsonaro - Imitando pessoa com falta de ar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99BBE44294700B200BCA901 /* Jair Bolsonaro - Imitando pessoa com falta de ar.mp3 */; };
+		D99BBE482947051200BCA901 /* Jair Bolsonaro - Gripezinha ou resfriadinho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99BBE462947051100BCA901 /* Jair Bolsonaro - Gripezinha ou resfriadinho.mp3 */; };
+		D99BBE492947051200BCA901 /* Jair Bolsonaro - Historico de atleta.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99BBE472947051200BCA901 /* Jair Bolsonaro - Historico de atleta.mp3 */; };
 		D99C83BA2945169100385C6F /* Deu errado (Edicao Copa no Catar).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99C83B92945169000385C6F /* Deu errado (Edicao Copa no Catar).mp3 */; };
 		D99D0DBF28CAB0FF00EB6F27 /* TV CAMARA - MARCELO FREIXO - Nao adianta desvirtuar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99D0DBE28CAB0FF00EB6F27 /* TV CAMARA - MARCELO FREIXO - Nao adianta desvirtuar.mp3 */; };
 		D99D0DC128CAB3E800EB6F27 /* TV CAMARA - Lula - A esperanca finalmente venceu o medo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99D0DC028CAB3E800EB6F27 /* TV CAMARA - Lula - A esperanca finalmente venceu o medo.mp3 */; };
@@ -2142,6 +2145,9 @@
 		D99B9DC92848148600897930 /* ServerStatsAndLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerStatsAndLogs.swift; sourceTree = "<group>"; };
 		D99BBE4029466D9800BCA901 /* UsageMetric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageMetric.swift; sourceTree = "<group>"; };
 		D99BBE42294676B200BCA901 /* NetworkRabbit+UsageMetric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+UsageMetric.swift"; sourceTree = "<group>"; };
+		D99BBE44294700B200BCA901 /* Jair Bolsonaro - Imitando pessoa com falta de ar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Imitando pessoa com falta de ar.mp3"; sourceTree = "<group>"; };
+		D99BBE462947051100BCA901 /* Jair Bolsonaro - Gripezinha ou resfriadinho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Gripezinha ou resfriadinho.mp3"; sourceTree = "<group>"; };
+		D99BBE472947051200BCA901 /* Jair Bolsonaro - Historico de atleta.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Historico de atleta.mp3"; sourceTree = "<group>"; };
 		D99C83B92945169000385C6F /* Deu errado (Edicao Copa no Catar).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Deu errado (Edicao Copa no Catar).mp3"; sourceTree = "<group>"; };
 		D99D0DBE28CAB0FF00EB6F27 /* TV CAMARA - MARCELO FREIXO - Nao adianta desvirtuar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "TV CAMARA - MARCELO FREIXO - Nao adianta desvirtuar.mp3"; sourceTree = "<group>"; };
 		D99D0DC028CAB3E800EB6F27 /* TV CAMARA - Lula - A esperanca finalmente venceu o medo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "TV CAMARA - Lula - A esperanca finalmente venceu o medo.mp3"; sourceTree = "<group>"; };
@@ -2368,6 +2374,9 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D99BBE462947051100BCA901 /* Jair Bolsonaro - Gripezinha ou resfriadinho.mp3 */,
+				D99BBE472947051200BCA901 /* Jair Bolsonaro - Historico de atleta.mp3 */,
+				D99BBE44294700B200BCA901 /* Jair Bolsonaro - Imitando pessoa com falta de ar.mp3 */,
 				D99C83B92945169000385C6F /* Deu errado (Edicao Copa no Catar).mp3 */,
 				D91B7F8E2943C97B00B9A43F /* Gil do Vigor - Brasil.mp3 */,
 				D91B7F8C2943C97400B9A43F /* Dona Eleni - Nossa serio isso que interessante.mp3 */,
@@ -4156,6 +4165,7 @@
 				D975FFA62880B4F20035E6F2 /* Gaucho Puto - Uma bosta, nao sabe, uma merda.mp3 in Resources */,
 				D975FEFD2880B4F20035E6F2 /* Silvio Santos - Quem e que nao gosta de dinheiro.mp3 in Resources */,
 				D92AD1BF28833E4E001CBCDF /* Ricardo Boechat - Diferente de voce, nao sou um idiota.mp3 in Resources */,
+				D99BBE492947051200BCA901 /* Jair Bolsonaro - Historico de atleta.mp3 in Resources */,
 				D97500362880B4F20035E6F2 /* Bolsonaro - Pra midia o virus sou eu.mp3 in Resources */,
 				D975FEE62880B4F20035E6F2 /* Vai Dar Namoro - Danca gatinho danca.mp3 in Resources */,
 				D975FFBB2880B4F20035E6F2 /* Caetano - Que loucura, que coisa absurda short.mp3 in Resources */,
@@ -4407,6 +4417,7 @@
 				D975FE8A2880B4F20035E6F2 /* Choque de Cultura - Cabo cabo cabo ja ta desvirtuando ja short.mp3 in Resources */,
 				D975FE7D2880B4F20035E6F2 /* COMUNISTA MEME.mp3 in Resources */,
 				D975FE172880B4F20035E6F2 /* Malditos Milicos semitons.mp3 in Resources */,
+				D99BBE45294700B200BCA901 /* Jair Bolsonaro - Imitando pessoa com falta de ar.mp3 in Resources */,
 				D975FF922880B4F20035E6F2 /* Mourao - Coronel Brilhante Ustra Meu heroi short meme.mp3 in Resources */,
 				D9BB8F8828ECB2A900659D4A /* Jair Bolsonaro - Vou ser fuzilado, ne.mp3 in Resources */,
 				D948E9942921F74F00D047D3 /* Luiz Fux - Quem promove o nos contra eles promove o caos.mp3 in Resources */,
@@ -4868,6 +4879,7 @@
 				D975FF642880B4F20035E6F2 /* Vai Dar Namoro - Pare.mp3 in Resources */,
 				D97500282880B4F20035E6F2 /* Vera Magalhaes - Pensamento Magico.mp3 in Resources */,
 				D975FEE52880B4F20035E6F2 /* LIVE DAS CANJEBRINAS - Franciel Cruz - Plural e sua mao em meu pau.mp3 in Resources */,
+				D99BBE482947051200BCA901 /* Jair Bolsonaro - Gripezinha ou resfriadinho.mp3 in Resources */,
 				D975FF892880B4F20035E6F2 /* Igor Guimaraes - Alegria.mp3 in Resources */,
 				D975FF932880B4F20035E6F2 /* CAUE MOURA - Eu esperava o pior mas puta que o pariu.mp3 in Resources */,
 				D975FE302880B4F20035E6F2 /* Referencia de velho.mp3 in Resources */,
@@ -5309,7 +5321,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 5.28;
+				MARKETING_VERSION = 5.29;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -5341,7 +5353,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 5.28;
+				MARKETING_VERSION = 5.29;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -5497,7 +5509,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.28;
+				MARKETING_VERSION = 5.29;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -5538,7 +5550,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.28;
+				MARKETING_VERSION = 5.29;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
