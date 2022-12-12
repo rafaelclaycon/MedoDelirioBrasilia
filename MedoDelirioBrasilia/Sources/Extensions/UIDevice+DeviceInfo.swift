@@ -2,8 +2,14 @@ import UIKit
 
 public extension UIDevice {
 
-    static let deviceIDForVendor: String = {
-        return UIDevice.current.identifierForVendor?.uuidString ?? ""
+    static let customInstallId: String = {
+        let userDefaults = UserDefaults.standard
+        guard let existingCustomDeviceID = userDefaults.object(forKey: "customInstallId") else {
+            let newlyCreatedDeviceID = UUID().uuidString
+            userDefaults.set(newlyCreatedDeviceID, forKey: "customInstallId")
+            return newlyCreatedDeviceID
+        }
+        return String(existingCustomDeviceID as! String)
     }()
     
     static let modelName: String = {
