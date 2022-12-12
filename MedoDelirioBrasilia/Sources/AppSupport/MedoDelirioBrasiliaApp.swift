@@ -7,7 +7,7 @@ var database = LocalDatabase()
 let networkRabbit = NetworkRabbit(serverPath: CommandLine.arguments.contains("-UNDER_DEVELOPMENT") ? "http://127.0.0.1:8080/api/" : "http://170.187.145.233:8080/api/")
 let podium = Podium(database: database, networkRabbit: networkRabbit)
 
-let soundsLastUpdateDate: String = "10/12/2022"
+let soundsLastUpdateDate: String = "12/12/2022"
 let songsLastUpdateDate: String = "08/12/2022"
 
 var moveDatabaseIssue: String = .empty
@@ -59,7 +59,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             return
         }
         
-        let info = ClientDeviceInfo(installId: UIDevice.deviceIDForVendor, modelName: UIDevice.modelName)
+        let info = ClientDeviceInfo(installId: UIDevice.customInstallId, modelName: UIDevice.modelName)
         networkRabbit.post(clientDeviceInfo: info) { success, error in
             if let success = success, success {
                 AppPersistentMemory.setHasSentDeviceModelToServer(to: true)
@@ -75,7 +75,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             return
         }
         
-        let signal = StillAliveSignal(installId: UIDevice.deviceIDForVendor,
+        let signal = StillAliveSignal(installId: UIDevice.customInstallId,
                                       modelName: UIDevice.modelName,
                                       systemName: UIDevice.current.systemName,
                                       systemVersion: UIDevice.current.systemVersion,
@@ -101,7 +101,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             let token = tokenParts.joined()
             //print("Device Token: \(token)")
 
-            let device = PushDevice(installId: UIDevice.deviceIDForVendor, pushToken: token)
+            let device = PushDevice(installId: UIDevice.customInstallId, pushToken: token)
             networkRabbit.post(pushDevice: device) { success, error in
                 guard let success = success, success else {
                     AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: true)

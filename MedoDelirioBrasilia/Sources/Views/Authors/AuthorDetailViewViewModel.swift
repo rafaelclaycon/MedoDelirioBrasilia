@@ -31,6 +31,13 @@ class AuthorDetailViewViewModel: ObservableObject {
     @Published var showAlert: Bool = false
     @Published var alertType: AlertType = .singleOption
     
+    init(originatingScreenName: String, authorName: String) {
+        // Sends metric only from iPhones because iPad and Mac are calling this methos twice instead of once upon each screen opening.
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            sendUsageMetricToServer(originatingScreenName: originatingScreenName, authorName: authorName)
+        }
+    }
+    
     func reloadList(withSounds allSounds: [Sound],
                     andFavorites favorites: [Favorite]?,
                     allowSensitiveContent: Bool) {
@@ -260,6 +267,18 @@ class AuthorDetailViewViewModel: ObservableObject {
         } else {
             return "\(sounds.count) sons"
         }
+    }
+    
+    private func sendUsageMetricToServer(originatingScreenName: String, authorName: String) {
+        let usageMetric = UsageMetric(customInstallId: UIDevice.customInstallId,
+                                      originatingScreen: originatingScreenName,
+                                      destinationScreen: "\(Shared.ScreenNames.authorDetailView)(\(authorName))",
+                                      systemName: UIDevice.current.systemName,
+                                      isiOSAppOnMac: ProcessInfo.processInfo.isiOSAppOnMac,
+                                      appVersion: Versioneer.appVersion,
+                                      dateTime: Date.now.iso8601withFractionalSeconds,
+                                      currentTimeZone: TimeZone.current.abbreviation() ?? .empty)
+        networkRabbit.post(usageMetric: usageMetric)
     }
     
     // MARK: - Alerts

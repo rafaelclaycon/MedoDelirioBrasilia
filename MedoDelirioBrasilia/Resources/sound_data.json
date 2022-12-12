@@ -8176,11 +8176,41 @@
     {
         "id": "D186B8AE-71F7-41BA-ADC5-8EF57CBF874E",
         "title": "Deu errado (Edição Copa no Catar)",
-        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "authorId": "B7F375D7-1087-42CB-B80F-7C5FF82386D9",
         "description": "Deu errado Edicao Copa no Catar",
         "filename": "Deu errado (Edicao Copa no Catar).mp3",
         "dateAdded": "2022-12-10T00:00:00Z",
         "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "91324A5A-F07B-4AFA-A18F-A0EB6C1A871A",
+        "title": "Imitando pessoa com falta de ar pela COVID-19",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "voce vai pra casa quando voce tiver falta de ar daí voce vai pro hospital imitando pessoa com falta de ar pela COVID-19",
+        "filename": "Jair Bolsonaro - Imitando pessoa com falta de ar.mp3",
+        "dateAdded": "2022-12-12T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "73215997-1186-45B9-A933-DCEDDF40AA7C",
+        "title": "Histórico de atleta",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "no meu caso particular pelo meu historico de atleta caso fosse contaminado pelo virus nao precisaria me preocupar nada sentiria ou seria quando muito acometido de uma gripezinha ou resfriadinho",
+        "filename": "Jair Bolsonaro - Historico de atleta.mp3",
+        "dateAdded": "2022-12-12T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "67A4DE46-4CCA-42F7-945D-7AB86C95B5E0",
+        "title": "Gripezinha ou resfriadinho",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Gripezinha ou resfriadinho",
+        "filename": "Jair Bolsonaro - Gripezinha ou resfriadinho.mp3",
+        "dateAdded": "2022-12-12T00:00:00Z",
+        "isOffensive": true,
         "isNew": true
     }
 ]
