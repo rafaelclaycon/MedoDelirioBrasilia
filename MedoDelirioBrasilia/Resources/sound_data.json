@@ -6481,9 +6481,9 @@
     },
     {
         "id": "8EC14965-8E19-42B4-BCEB-FBB74830206A",
-        "title": "Ministro Fachin, marxista, leninista",
+        "title": "Ministro Fachin, marxista, leninista (curto)",
         "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
-        "description": "Ministro Fachin marxista leninista",
+        "description": "Ministro Fachin marxista leninista curto",
         "filename": "Jair Bolsonaro - Ministro Fachin, marxista, leninista.mp3",
         "dateAdded": "2022-09-17T00:00:00Z",
         "isOffensive": true
@@ -8191,7 +8191,7 @@
         "filename": "Jair Bolsonaro - Imitando pessoa com falta de ar.mp3",
         "dateAdded": "2022-12-12T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "73215997-1186-45B9-A933-DCEDDF40AA7C",
@@ -8201,7 +8201,7 @@
         "filename": "Jair Bolsonaro - Historico de atleta.mp3",
         "dateAdded": "2022-12-12T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "67A4DE46-4CCA-42F7-945D-7AB86C95B5E0",
@@ -8211,6 +8211,36 @@
         "filename": "Jair Bolsonaro - Gripezinha ou resfriadinho.mp3",
         "dateAdded": "2022-12-12T00:00:00Z",
         "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "E20BEF35-7FFE-4582-9F76-D89D62E993A0",
+        "title": "A história da humanidade está cheia de puxa-sacos",
+        "authorId": "315C8C3D-14AB-4689-A9E8-E01820AB7705",
+        "description": "A historia da humanidade esta cheia de puxa-sacos",
+        "filename": "Max Gheringer - A historia da humanidade esta cheia de puxa-sacos.mp3",
+        "dateAdded": "2022-12-13T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "6AA0B42E-7AD7-4242-8894-69E2AB0DA396",
+        "title": "Vinheta do gabinete paralelo",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "Vinheta do gabinete paralelo esse e o gabinete paralelo",
+        "filename": "Cristiano Botafogo - Vinheta do gabinete paralelo.mp3",
+        "dateAdded": "2022-12-13T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "CFD37DC8-88CA-4B29-B307-C10E7DCB3609",
+        "title": "Ministro Fachin, marxista, leninista (completo)",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Ministro Fachin marxista leninista não trotskista leninista completo",
+        "filename": "Jair Bolsonaro - Ministro Fachin, marxista, leninista (completo).mp3",
+        "dateAdded": "2022-12-13T00:00:00Z",
+        "isOffensive": false,
         "isNew": true
     }
 ]
