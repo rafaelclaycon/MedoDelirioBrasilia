@@ -8221,7 +8221,7 @@
         "filename": "Max Gheringer - A historia da humanidade esta cheia de puxa-sacos.mp3",
         "dateAdded": "2022-12-13T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "6AA0B42E-7AD7-4242-8894-69E2AB0DA396",
@@ -8231,7 +8231,7 @@
         "filename": "Cristiano Botafogo - Vinheta do gabinete paralelo.mp3",
         "dateAdded": "2022-12-13T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "CFD37DC8-88CA-4B29-B307-C10E7DCB3609",
@@ -8241,6 +8241,16 @@
         "filename": "Jair Bolsonaro - Ministro Fachin, marxista, leninista (completo).mp3",
         "dateAdded": "2022-12-13T00:00:00Z",
         "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "15B250F2-2791-47A8-9745-29686DE9C594",
+        "title": "Militares e República não combinam",
+        "authorId": "76F3DFA1-0838-4EB7-BF6B-2C2381341DC0",
+        "description": "eu considero o desastre do brasil a proclamacao da republica pelos militares os militares terem proclamado a republica julgaram-se donos da republica e nunca aceitaram nao ser os donos da republica enquanto a presidencia da republica e os cargos eminentes do pais nao voltarem para os civis continuarem na mao dos miliatares nos estaremos nessa situacao terrivel em que nos encontramos de falencia e de corrupcao Militares e República não combinam",
+        "filename": "Heraclito Sobral Pinto - Militares e Republica nao combinam.mp3",
+        "dateAdded": "2022-12-13T15:00:00Z",
+        "isOffensive": true,
         "isNew": true
     }
 ]
