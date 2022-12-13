@@ -104,6 +104,7 @@
 		D916536628ADCD9B007F141D /* ShareAsVideoViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D916536528ADCD9B007F141D /* ShareAsVideoViewViewModel.swift */; };
 		D916627D2874F1F9000A1B23 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D916627C2874F1F9000A1B23 /* OnboardingView.swift */; };
 		D916627F2874F838000A1B23 /* NotificationsSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D916627E2874F838000A1B23 /* NotificationsSymbol.swift */; };
+		D9178B1129483ADA003A43C0 /* ReactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9178B1029483ADA003A43C0 /* ReactionsView.swift */; };
 		D91793A9288E1B51009C3165 /* Um Ministerio Tecnico.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793A8288E1B51009C3165 /* Um Ministerio Tecnico.mp3 */; };
 		D91793AD288E2236009C3165 /* Bolsonaro - Eu nao sou medico, mas sou ousado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793AC288E2236009C3165 /* Bolsonaro - Eu nao sou medico, mas sou ousado.mp3 */; };
 		D91793AF288E3A13009C3165 /* Doce feto, fase anal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793AE288E3A13009C3165 /* Doce feto, fase anal.mp3 */; };
@@ -1099,8 +1100,6 @@
 		D9E7D0F628AC6BC6001E909E /* PORTA DOS FUNDOS - Nao, brother broder.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E7D0F528AC6BC6001E909E /* PORTA DOS FUNDOS - Nao, brother broder.mp3 */; };
 		D9E9CFA3292C3DD1002BC918 /* NoFoldersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E9CFA2292C3DD1002BC918 /* NoFoldersView.swift */; };
 		D9E9CFA5292C40BF002BC918 /* NoFoldersSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E9CFA4292C40BF002BC918 /* NoFoldersSymbol.swift */; };
-		D9EB18A52857CDFF00A2F8A8 /* ReactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EB18A42857CDFF00A2F8A8 /* ReactionsView.swift */; };
-		D9EB18A52857CDFF00A2F8A8 /* CollectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9EB18A42857CDFF00A2F8A8 /* CollectionsView.swift */; };
 		D9EBC932294834D200960AE3 /* Jair Bolsonaro - Ministro Fachin, marxista, leninista (completo).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9EBC92F294834D200960AE3 /* Jair Bolsonaro - Ministro Fachin, marxista, leninista (completo).mp3 */; };
 		D9EBC933294834D200960AE3 /* Max Gheringer - A historia da humanidade esta cheia de puxa-sacos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9EBC930294834D200960AE3 /* Max Gheringer - A historia da humanidade esta cheia de puxa-sacos.mp3 */; };
 		D9EBC934294834D200960AE3 /* Cristiano Botafogo - Vinheta do gabinete paralelo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9EBC931294834D200960AE3 /* Cristiano Botafogo - Vinheta do gabinete paralelo.mp3 */; };
@@ -1285,6 +1284,7 @@
 		D916536528ADCD9B007F141D /* ShareAsVideoViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAsVideoViewViewModel.swift; sourceTree = "<group>"; };
 		D916627C2874F1F9000A1B23 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		D916627E2874F838000A1B23 /* NotificationsSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSymbol.swift; sourceTree = "<group>"; };
+		D9178B1029483ADA003A43C0 /* ReactionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionsView.swift; sourceTree = "<group>"; };
 		D91793A8288E1B51009C3165 /* Um Ministerio Tecnico.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Um Ministerio Tecnico.mp3"; sourceTree = "<group>"; };
 		D91793AC288E2236009C3165 /* Bolsonaro - Eu nao sou medico, mas sou ousado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Eu nao sou medico, mas sou ousado.mp3"; sourceTree = "<group>"; };
 		D91793AE288E3A13009C3165 /* Doce feto, fase anal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Doce feto, fase anal.mp3"; sourceTree = "<group>"; };
@@ -2281,8 +2281,6 @@
 		D9E7D0F528AC6BC6001E909E /* PORTA DOS FUNDOS - Nao, brother broder.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "PORTA DOS FUNDOS - Nao, brother broder.mp3"; sourceTree = "<group>"; };
 		D9E9CFA2292C3DD1002BC918 /* NoFoldersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFoldersView.swift; sourceTree = "<group>"; };
 		D9E9CFA4292C40BF002BC918 /* NoFoldersSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFoldersSymbol.swift; sourceTree = "<group>"; };
-		D9EB18A42857CDFF00A2F8A8 /* ReactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsView.swift; sourceTree = "<group>"; };
-		D9EB18A42857CDFF00A2F8A8 /* CollectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsView.swift; sourceTree = "<group>"; };
 		D9EBC92F294834D200960AE3 /* Jair Bolsonaro - Ministro Fachin, marxista, leninista (completo).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Ministro Fachin, marxista, leninista (completo).mp3"; sourceTree = "<group>"; };
 		D9EBC930294834D200960AE3 /* Max Gheringer - A historia da humanidade esta cheia de puxa-sacos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Max Gheringer - A historia da humanidade esta cheia de puxa-sacos.mp3"; sourceTree = "<group>"; };
 		D9EBC931294834D200960AE3 /* Cristiano Botafogo - Vinheta do gabinete paralelo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano Botafogo - Vinheta do gabinete paralelo.mp3"; sourceTree = "<group>"; };
@@ -3591,7 +3589,7 @@
 				D98622DE283FC53B00E9F630 /* Authors */,
 				D95F363828AD385100743026 /* ShareAsVideo */,
 				D9943F2428641FB7002C6B97 /* Folders */,
-				D9EB18A32857CDE200A2F8A8 /* Collections */,
+				D9EB18A32857CDE200A2F8A8 /* Reactions */,
 				D92E7073283C5D9E0035826C /* Songs */,
 				D9BF90BC2842EAB100BDDD7D /* Trends */,
 				D957509728446BEC0094AEA6 /* Settings */,
@@ -3984,15 +3982,15 @@
 			path = DataHandlers;
 			sourceTree = "<group>";
 		};
-		D9EB18A32857CDE200A2F8A8 /* Collections */ = {
+		D9EB18A32857CDE200A2F8A8 /* Reactions */ = {
 			isa = PBXGroup;
 			children = (
-				D9EB18A42857CDFF00A2F8A8 /* ReactionsView.swift */,
+				D9178B1029483ADA003A43C0 /* ReactionsView.swift */,
 				D983BDE2290B8EE200850A86 /* CollectionList */,
 				D946117D28613D3200C4FB7E /* ReactionDetailView.swift */,
 				D93284D628FC913900E84525 /* ReactionDetailViewViewModel.swift */,
 			);
-			path = Collections;
+			path = Reactions;
 			sourceTree = "<group>";
 		};
 		D9ECD81328B3C45D003C033A /* AlternateAppIcons */ = {
@@ -5183,6 +5181,7 @@
 				D916627D2874F1F9000A1B23 /* OnboardingView.swift in Sources */,
 				D99DC19D28423AD7002B03B6 /* AuthorDetailViewViewModel.swift in Sources */,
 				D967E2BC2901C40700B21C11 /* CustomPhotoAlbum.swift in Sources */,
+				D9178B1129483ADA003A43C0 /* ReactionsView.swift in Sources */,
 				D98DBD35284919B1008544F8 /* NetworkRabbit.swift in Sources */,
 				D959B0482887E83D00A215AD /* SidebarViewViewModel.swift in Sources */,
 				D97B2DD628E3E85400C3B50B /* MostSharedByMeViewViewModel.swift in Sources */,
@@ -5217,7 +5216,6 @@
 				D9C1372729063A78003E4ABF /* FolderResearchSettingsView.swift in Sources */,
 				D98EC5DE282596C300340BE5 /* SoundCell.swift in Sources */,
 				D973076C28AC49B100FBB3B8 /* DiagnosticsViewViewModel.swift in Sources */,
-				D9EB18A52857CDFF00A2F8A8 /* ReactionsView.swift in Sources */,
 				D93284D728FC913900E84525 /* ReactionDetailViewViewModel.swift in Sources */,
 				D98EC5E32825A45000340BE5 /* SoundsViewViewModel.swift in Sources */,
 				D9F78A9F2860DF9100B83567 /* ReactionCell.swift in Sources */,
