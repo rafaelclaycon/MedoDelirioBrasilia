@@ -15,6 +15,7 @@ struct SettingsView: View {
     
     @State private var showAskForMoneyView: Bool = false
     @State private var showPixKeyCopiedAlert: Bool = false
+    @State private var donorNames: String = ""
     
     @State private var showEmailClientConfirmationDialog: Bool = false
     
@@ -166,6 +167,9 @@ struct SettingsView: View {
         }
         .navigationTitle("Ajustes")
         .onAppear {
+            networkRabbit.displayAskForMoneyView { shouldDisplay in
+                showAskForMoneyView = shouldDisplay
+            }
             networkRabbit.displayAskForMoneyView { shouldDisplay in
                 showAskForMoneyView = shouldDisplay
             }

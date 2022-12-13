@@ -3,6 +3,8 @@ import MarqueeText
 
 struct BegForMoneyView: View {
 
+    @Binding var donorNames: String
+    
     var body: some View {
         VStack(alignment: .center, spacing: 18) {
             HStack(spacing: 20) {
@@ -21,14 +23,16 @@ struct BegForMoneyView: View {
                 Text("Esse trabalho é voluntário e envolve custos mensais com servidor (~R$ 30). Qualquer tipo de contribuição é bem-vinda!")
                     .fixedSize(horizontal: false, vertical: true)
                 
-                Text("**Últimas contribuições:**")
-                
-                MarqueeText(text: "Roberto B. E. T.     Carolina P. L.     Pedro O. R.     Maria Augusta M. C.     Luiz Fernando L. F.",
-                            font: UIFont.preferredFont(forTextStyle: .body),
-                            leftFade: 16,
-                            rightFade: 16,
-                            startDelay: 1)
-                    .padding(.bottom, -5)
+                if donorNames.isEmpty == false {
+                    Text("**Últimas contribuições:**")
+                    
+                    MarqueeText(text: donorNames,
+                                font: UIFont.preferredFont(forTextStyle: .body),
+                                leftFade: 16,
+                                rightFade: 16,
+                                startDelay: 1)
+                        .padding(.bottom, -5)
+                }
             }
         }
     }
@@ -38,7 +42,7 @@ struct BegForMoneyView: View {
 struct BegForMoneyView_Previews: PreviewProvider {
 
     static var previews: some View {
-        BegForMoneyView()
+        BegForMoneyView(donorNames: .constant("Roberto B. E. T.     Carolina P. L.     Pedro O. R.     Maria Augusta M. C.     Luiz Fernando L. F."))
     }
 
 }
