@@ -50,6 +50,7 @@ struct SoundsView: View {
     
     // Trends
     @Binding var soundIdToGoToFromTrends: String
+    @EnvironmentObject var highlightSoundAideiPad: HighlightSoundAideiPad
     
     // Folders
     @StateObject var deleteFolderAide = DeleteFolderViewAideiPhone()
@@ -232,25 +233,23 @@ struct SoundsView: View {
                                     }
                                 }
                                 .onChange(of: soundIdToGoToFromTrends) { soundIdToGoToFromTrends in
-                                    if soundIdToGoToFromTrends.isEmpty == false {
-                                        currentMode = .allSounds
-                                        if searchText.isEmpty == false {
-                                            searchText = .empty
-                                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                                        }
+                                    if shouldScrollToAndHighlight(soundId: soundIdToGoToFromTrends) {
                                         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
                                             withAnimation {
                                                 proxy.scrollTo(soundIdToGoToFromTrends, anchor: .center)
                                             }
                                             TapticFeedback.warning()
                                         }
-                                        
-                                        viewModel.highlightKeeper.insert(soundIdToGoToFromTrends)
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
-                                            viewModel.highlightKeeper.remove(soundIdToGoToFromTrends)
+                                    }
+                                }
+                                .onChange(of: highlightSoundAideiPad.soundIdToGoTo) { soundIdToGoTo in
+                                    if shouldScrollToAndHighlight(soundId: soundIdToGoToFromTrends) {
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                                            withAnimation {
+                                                proxy.scrollTo(soundIdToGoToFromTrends, anchor: .center)
+                                            }
+                                            TapticFeedback.warning()
                                         }
-                                        
-                                        self.soundIdToGoToFromTrends = .empty
                                     }
                                 }
                             }
@@ -275,7 +274,7 @@ struct SoundsView: View {
                     }
                 }
             }
-            .navigationTitle(Text(title))
+            .navigationTitle(Text(highlightSoundAideiPad.soundIdToGoTo))
             .navigationBarItems(trailing:
                 trailingToolbarControls()
             )
@@ -513,6 +512,26 @@ struct SoundsView: View {
                 }
             }
         }
+    }
+    
+    private func shouldScrollToAndHighlight(soundId: String) -> Bool {
+        guard soundId.isEmpty == false else {
+            return false
+        }
+        currentMode = .allSounds
+        
+        if searchText.isEmpty == false {
+            searchText = .empty
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        }
+        
+        viewModel.highlightKeeper.insert(soundId)
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
+            viewModel.highlightKeeper.remove(soundId)
+        }
+        
+        self.soundIdToGoToFromTrends = .empty
+        return true // This tells the ScrollViewProxy "yes, go ahead and scroll, there was a soundId received". Unfortunately, passing the proxy as a parameter did not work and this code was made more complex because of this.
     }
 
 }

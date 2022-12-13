@@ -14,6 +14,7 @@ struct MostSharedByAudienceView: View {
     @Binding var activePadScreen: PadScreen?
     @Binding var soundIdToGoToFromTrends: String
     @Binding var trendsTimeIntervalToGoTo: TrendsTimeInterval?
+    @EnvironmentObject var highlightSoundAideiPad: HighlightSoundAideiPad
     
     private let columns = [
         GridItem(.flexible())
@@ -201,10 +202,11 @@ struct MostSharedByAudienceView: View {
     private func navigateTo(sound soundId: String) {
         if UIDevice.current.userInterfaceIdiom == .phone {
             tabSelection = .sounds
+            soundIdToGoToFromTrends = soundId
         } else {
             activePadScreen = .allSounds
+            highlightSoundAideiPad.soundIdToGoTo = soundId
         }
-        soundIdToGoToFromTrends = soundId
     }
 
 }

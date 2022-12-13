@@ -19,6 +19,7 @@ struct MainView: View {
     // Trends
     @State var soundIdToGoToFromTrends: String = .empty
     @State var trendsTimeIntervalToGoTo: TrendsTimeInterval? = nil
+    @StateObject var highlightSoundAideiPad = HighlightSoundAideiPad()
     
     var body: some View {
         if UIDevice.current.userInterfaceIdiom == .phone {
@@ -29,6 +30,7 @@ struct MainView: View {
                                currentMode: .allSounds,
                                updateSoundsList: .constant(false),
                                soundIdToGoToFromTrends: $soundIdToGoToFromTrends)
+                        .environmentObject(highlightSoundAideiPad)
                 }
                 .tabItem {
                     Label("Sons", systemImage: "speaker.wave.3.fill")
@@ -56,6 +58,7 @@ struct MainView: View {
                                activePadScreen: .constant(.trends),
                                soundIdToGoToFromTrends: $soundIdToGoToFromTrends,
                                trendsTimeIntervalToGoTo: $trendsTimeIntervalToGoTo)
+                        .environmentObject(highlightSoundAideiPad)
                 }
                 .tabItem {
                     Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
@@ -103,11 +106,13 @@ struct MainView: View {
                             updateFolderList: $updateFolderList,
                             soundIdToGoToFromTrends: $soundIdToGoToFromTrends,
                             trendsTimeIntervalToGoTo: $trendsTimeIntervalToGoTo)
+                    .environmentObject(highlightSoundAideiPad)
                 SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
                                                           authorSortOption: AuthorSortOption.nameAscending.rawValue),
                            currentMode: .allSounds,
                            updateSoundsList: $updateSoundsList,
                            soundIdToGoToFromTrends: $soundIdToGoToFromTrends)
+                    .environmentObject(highlightSoundAideiPad)
             }
             .navigationViewStyle(DoubleColumnNavigationViewStyle())
             .sheet(isPresented: $isShowingSettingsSheet, onDismiss: {
