@@ -32,9 +32,3 @@ class DeleteFolderViewAideiPhone: ObservableObject {
     @Published var updateFolderList: Bool = false
 
 }
-
-class HighlightSoundAideiPad: ObservableObject {
-
-    @Published var soundIdToGoTo: String = .empty
-
-}

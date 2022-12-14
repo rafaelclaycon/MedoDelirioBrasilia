@@ -202,7 +202,7 @@ struct MostSharedByAudienceView: View {
     private func navigateTo(sound soundId: String) {
         if UIDevice.current.userInterfaceIdiom == .phone {
             tabSelection = .sounds
-            soundIdToGoToFromTrends = soundId
+            highlightSoundAideiPad.soundIdToGoTo = soundId
         } else {
             activePadScreen = .allSounds
             highlightSoundAideiPad.soundIdToGoTo = soundId

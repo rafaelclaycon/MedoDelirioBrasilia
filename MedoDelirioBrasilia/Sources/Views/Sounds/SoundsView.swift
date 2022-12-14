@@ -242,11 +242,11 @@ struct SoundsView: View {
                                         }
                                     }
                                 }
-                                .onChange(of: highlightSoundAideiPad.soundIdToGoTo) { soundIdToGoTo in
-                                    if shouldScrollToAndHighlight(soundId: soundIdToGoToFromTrends) {
+                                .onReceive(highlightSoundAideiPad.$soundIdToGoTo) { soundIdToGoTo in
+                                    if shouldScrollToAndHighlight(soundId: soundIdToGoTo) {
                                         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
                                             withAnimation {
-                                                proxy.scrollTo(soundIdToGoToFromTrends, anchor: .center)
+                                                proxy.scrollTo(soundIdToGoTo, anchor: .center)
                                             }
                                             TapticFeedback.warning()
                                         }
@@ -274,7 +274,7 @@ struct SoundsView: View {
                     }
                 }
             }
-            .navigationTitle(Text(highlightSoundAideiPad.soundIdToGoTo))
+            .navigationTitle(Text(title))
             .navigationBarItems(trailing:
                 trailingToolbarControls()
             )
@@ -531,6 +531,7 @@ struct SoundsView: View {
         }
         
         self.soundIdToGoToFromTrends = .empty
+        self.highlightSoundAideiPad.soundIdToGoTo = .empty
         return true // This tells the ScrollViewProxy "yes, go ahead and scroll, there was a soundId received". Unfortunately, passing the proxy as a parameter did not work and this code was made more complex because of this.
     }
 
