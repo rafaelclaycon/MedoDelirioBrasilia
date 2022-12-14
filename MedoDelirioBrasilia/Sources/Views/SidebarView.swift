@@ -17,14 +17,17 @@ struct SidebarView: View {
     @Binding var updateFolderList: Bool
     
     // Trends
-    @Binding var soundIdToGoToFromTrends: String
     @Binding var trendsTimeIntervalToGoTo: TrendsTimeInterval?
+    @EnvironmentObject var highlightHelper: HighlightHelper
     
     var body: some View {
         List {
             Section("Sons") {
                 NavigationLink(
-                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(), authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .allSounds, updateSoundsList: $updateSoundsList, soundIdToGoToFromTrends: $soundIdToGoToFromTrends),
+                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
+                                                                           authorSortOption: AuthorSortOption.nameAscending.rawValue),
+                                            currentMode: .allSounds,
+                                            updateSoundsList: $updateSoundsList).environmentObject(highlightHelper),
                     tag: PadScreen.allSounds,
                     selection: $state,
                     label: {
@@ -32,7 +35,7 @@ struct SidebarView: View {
                     })
                 
                 NavigationLink(
-                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(), authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .favorites, updateSoundsList: .constant(false), soundIdToGoToFromTrends: .constant(.empty)),
+                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(), authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .favorites, updateSoundsList: .constant(false)).environmentObject(highlightHelper),
                     tag: PadScreen.favorites,
                     selection: $state,
                     label: {
@@ -40,7 +43,7 @@ struct SidebarView: View {
                     })
                 
                 NavigationLink(
-                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .byAuthor, updateSoundsList: .constant(false), soundIdToGoToFromTrends: .constant(.empty)),
+                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .byAuthor, updateSoundsList: .constant(false)).environmentObject(highlightHelper),
                     tag: PadScreen.groupedByAuthor,
                     selection: $state,
                     label: {
@@ -68,8 +71,7 @@ struct SidebarView: View {
                 NavigationLink(
                     destination: TrendsView(tabSelection: .constant(.trends),
                                             activePadScreen: $state,
-                                            soundIdToGoToFromTrends: $soundIdToGoToFromTrends,
-                                            trendsTimeIntervalToGoTo: $trendsTimeIntervalToGoTo),
+                                            trendsTimeIntervalToGoTo: $trendsTimeIntervalToGoTo).environmentObject(highlightHelper),
                     tag: PadScreen.trends,
                     selection: $state,
                     label: {
@@ -136,7 +138,6 @@ struct SidebarView_Previews: PreviewProvider {
                     updateSoundsList: .constant(false),
                     isShowingFolderInfoEditingSheet: .constant(false),
                     updateFolderList: .constant(false),
-                    soundIdToGoToFromTrends: .constant(.empty),
                     trendsTimeIntervalToGoTo: .constant(nil))
     }
 
