@@ -1119,7 +1119,7 @@
 		D9F8E9A228E8D6D40098A454 /* Soraya Thronicke - Padre Kelson.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F8E9A128E8D6D40098A454 /* Soraya Thronicke - Padre Kelson.mp3 */; };
 		D9F8E9A428E8D7470098A454 /* Soraya Thronicke - Candidato padre.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F8E9A328E8D7470098A454 /* Soraya Thronicke - Candidato padre.mp3 */; };
 		D9F9BB37294A0FF90005BE56 /* Rafael Infante - Errou feio, errou rude.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F9BB36294A0FF90005BE56 /* Rafael Infante - Errou feio, errou rude.mp3 */; };
-		D9F9BB39294A167C0005BE56 /* HighlightHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F9BB38294A167C0005BE56 /* HighlightHelper.swift */; };
+		D9F9BB39294A167C0005BE56 /* TrendsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F9BB38294A167C0005BE56 /* TrendsHelper.swift */; };
 		D9FA0CD728508590000F6ADE /* UIDevice+DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FA0CD628508590000F6ADE /* UIDevice+DeviceInfo.swift */; };
 		D9FA0CD92850864C000F6ADE /* ClientDeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FA0CD82850864C000F6ADE /* ClientDeviceInfo.swift */; };
 		D9FA62F42924252100790F55 /* Luis Roberto Barroso - Perdeu, mane, nao amola.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9FA62F32924252100790F55 /* Luis Roberto Barroso - Perdeu, mane, nao amola.mp3 */; };
@@ -2301,7 +2301,7 @@
 		D9F8E9A128E8D6D40098A454 /* Soraya Thronicke - Padre Kelson.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Soraya Thronicke - Padre Kelson.mp3"; sourceTree = "<group>"; };
 		D9F8E9A328E8D7470098A454 /* Soraya Thronicke - Candidato padre.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Soraya Thronicke - Candidato padre.mp3"; sourceTree = "<group>"; };
 		D9F9BB36294A0FF90005BE56 /* Rafael Infante - Errou feio, errou rude.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rafael Infante - Errou feio, errou rude.mp3"; sourceTree = "<group>"; };
-		D9F9BB38294A167C0005BE56 /* HighlightHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightHelper.swift; sourceTree = "<group>"; };
+		D9F9BB38294A167C0005BE56 /* TrendsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsHelper.swift; sourceTree = "<group>"; };
 		D9FA0CD628508590000F6ADE /* UIDevice+DeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+DeviceInfo.swift"; sourceTree = "<group>"; };
 		D9FA0CD82850864C000F6ADE /* ClientDeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientDeviceInfo.swift; sourceTree = "<group>"; };
 		D9FA62F32924252100790F55 /* Luis Roberto Barroso - Perdeu, mane, nao amola.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Luis Roberto Barroso - Perdeu, mane, nao amola.mp3"; sourceTree = "<group>"; };
@@ -3673,7 +3673,7 @@
 				D95DB0F72882491A00D4FEDF /* ScreenAndTabs.swift */,
 				D97B2DD828E5EA0500C3B50B /* DeleteFolderViewAide.swift */,
 				D9A3AB6A28F03C970064CB7A /* ViewStates.swift */,
-				D9F9BB38294A167C0005BE56 /* HighlightHelper.swift */,
+				D9F9BB38294A167C0005BE56 /* TrendsHelper.swift */,
 			);
 			path = ViewAid;
 			sourceTree = "<group>";
@@ -5141,7 +5141,7 @@
 				D9F87A9228F6EA51002EE8AA /* RemoveFavoriteLogTable.swift in Sources */,
 				D9DCC5D52875CB59008DD4A3 /* AppPersistentMemory.swift in Sources */,
 				D938132F287E12B3009EE24F /* NotificationAide.swift in Sources */,
-				D9F9BB39294A167C0005BE56 /* HighlightHelper.swift in Sources */,
+				D9F9BB39294A167C0005BE56 /* TrendsHelper.swift in Sources */,
 				D976FF3828674BAC00998E1B /* FoldersBannerView.swift in Sources */,
 				D90EDDBA2908505000ED87A8 /* FolderResearchHelper.swift in Sources */,
 				D97D76FB2885B794005210D9 /* EmailAppPickerView.swift in Sources */,
