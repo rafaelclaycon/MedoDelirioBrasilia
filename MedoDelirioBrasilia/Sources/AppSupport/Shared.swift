@@ -7,7 +7,6 @@ struct Shared {
         static let playAndShareSounds = "com.rafaelschmitt.MedoDelirioBrasilia.PlayAndShareSounds"
         static let viewCollections = "com.rafaelschmitt.MedoDelirioBrasilia.ViewCollections"
         static let playAndShareSongs = "com.rafaelschmitt.MedoDelirioBrasilia.PlayAndShareSongs"
-        static let viewTrends = "com.rafaelschmitt.MedoDelirioBrasilia.ViewTrends" // Legacy. Kept here to support old donated activities.
         static let viewLast24HoursTopChart = "com.rafaelschmitt.MedoDelirioBrasilia.ViewLast24HoursTopChart"
         static let viewLastWeekTopChart = "com.rafaelschmitt.MedoDelirioBrasilia.ViewLastWeekTopChart"
         static let viewLastMonthTopChart = "com.rafaelschmitt.MedoDelirioBrasilia.ViewLastMonthTopChart"

@@ -12,8 +12,7 @@ struct MostSharedByAudienceView: View {
     @StateObject private var viewModel = MostSharedByAudienceViewViewModel()
     @Binding var tabSelection: PhoneTab
     @Binding var activePadScreen: PadScreen?
-    @Binding var trendsTimeIntervalToGoTo: TrendsTimeInterval?
-    @EnvironmentObject var highlightHelper: HighlightHelper
+    @EnvironmentObject var trendsHelper: TrendsHelper
     
     private let columns = [
         GridItem(.flexible())
@@ -107,8 +106,8 @@ struct MostSharedByAudienceView: View {
                     
                     viewModel.donateActivity(forTimeInterval: timeIntervalOption)
                 }
-                .onChange(of: trendsTimeIntervalToGoTo) { trendsTimeIntervalToGoTo in
-                    if let option = trendsTimeIntervalToGoTo {
+                .onReceive(trendsHelper.$timeIntervalToGoTo) { timeIntervalToGoTo in
+                    if let option = timeIntervalToGoTo {
                         DispatchQueue.main.async {
                             viewModel.timeIntervalOption = option
                         }
@@ -204,7 +203,7 @@ struct MostSharedByAudienceView: View {
         } else {
             activePadScreen = .allSounds
         }
-        highlightHelper.soundIdToGoTo = soundId
+        trendsHelper.soundIdToGoTo = soundId
     }
 
 }
@@ -213,8 +212,7 @@ struct MostSharedByAudienceView_Previews: PreviewProvider {
 
     static var previews: some View {
         MostSharedByAudienceView(tabSelection: .constant(.trends),
-                                 activePadScreen: .constant(.trends),
-                                 trendsTimeIntervalToGoTo: .constant(nil))
+                                 activePadScreen: .constant(.trends))
     }
 
 }

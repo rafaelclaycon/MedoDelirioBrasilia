@@ -18,8 +18,7 @@ struct MainView: View {
     
     // Trends
     @State var soundIdToGoToFromTrends: String = .empty
-    @State var trendsTimeIntervalToGoTo: TrendsTimeInterval? = nil
-    @StateObject var highlightHelper = HighlightHelper()
+    @StateObject var trendsHelper = TrendsHelper()
     
     var body: some View {
         if UIDevice.current.userInterfaceIdiom == .phone {
@@ -29,7 +28,7 @@ struct MainView: View {
                                                               authorSortOption: AuthorSortOption.nameAscending.rawValue),
                                currentMode: .allSounds,
                                updateSoundsList: .constant(false))
-                        .environmentObject(highlightHelper)
+                        .environmentObject(trendsHelper)
                 }
                 .tabItem {
                     Label("Sons", systemImage: "speaker.wave.3.fill")
@@ -54,9 +53,8 @@ struct MainView: View {
                 
                 NavigationView {
                     TrendsView(tabSelection: $tabSelection,
-                               activePadScreen: .constant(.trends),
-                               trendsTimeIntervalToGoTo: $trendsTimeIntervalToGoTo)
-                        .environmentObject(highlightHelper)
+                               activePadScreen: .constant(.trends))
+                        .environmentObject(trendsHelper)
                 }
                 .tabItem {
                     Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
@@ -80,20 +78,21 @@ struct MainView: View {
             .onContinueUserActivity(Shared.ActivityTypes.playAndShareSongs, perform: { _ in
                 tabSelection = .songs
             })
-            .onContinueUserActivity(Shared.ActivityTypes.viewTrends, perform: { _ in
+            .onContinueUserActivity(Shared.ActivityTypes.viewLast24HoursTopChart, perform: { _ in
                 tabSelection = .trends
+                trendsHelper.timeIntervalToGoTo = .last24Hours
             })
             .onContinueUserActivity(Shared.ActivityTypes.viewLastWeekTopChart, perform: { _ in
                 tabSelection = .trends
-                trendsTimeIntervalToGoTo = .lastWeek
+                trendsHelper.timeIntervalToGoTo = .lastWeek
             })
             .onContinueUserActivity(Shared.ActivityTypes.viewLastMonthTopChart, perform: { _ in
                 tabSelection = .trends
-                trendsTimeIntervalToGoTo = .lastMonth
+                trendsHelper.timeIntervalToGoTo = .lastMonth
             })
             .onContinueUserActivity(Shared.ActivityTypes.viewAllTimeTopChart, perform: { _ in
                 tabSelection = .trends
-                trendsTimeIntervalToGoTo = .allTime
+                trendsHelper.timeIntervalToGoTo = .allTime
             })
         } else {
             NavigationView {
@@ -101,14 +100,13 @@ struct MainView: View {
                             isShowingSettingsSheet: $isShowingSettingsSheet,
                             updateSoundsList: $updateSoundsList,
                             isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet,
-                            updateFolderList: $updateFolderList,
-                            trendsTimeIntervalToGoTo: $trendsTimeIntervalToGoTo)
-                    .environmentObject(highlightHelper)
+                            updateFolderList: $updateFolderList)
+                    .environmentObject(trendsHelper)
                 SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
                                                           authorSortOption: AuthorSortOption.nameAscending.rawValue),
                            currentMode: .allSounds,
                            updateSoundsList: $updateSoundsList)
-                    .environmentObject(highlightHelper)
+                    .environmentObject(trendsHelper)
             }
             .navigationViewStyle(DoubleColumnNavigationViewStyle())
             .sheet(isPresented: $isShowingSettingsSheet, onDismiss: {
