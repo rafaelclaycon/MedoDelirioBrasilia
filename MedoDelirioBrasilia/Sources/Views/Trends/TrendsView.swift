@@ -12,10 +12,9 @@ struct TrendsView: View {
     @StateObject private var viewModel = TrendsViewViewModel()
     @Binding var tabSelection: PhoneTab
     @Binding var activePadScreen: PadScreen?
-    @Binding var trendsTimeIntervalToGoTo: TrendsTimeInterval?
     @State var showAlert = false
     @State var alertTitle = ""
-    @EnvironmentObject var highlightHelper: HighlightHelper
+    @EnvironmentObject var trendsHelper: TrendsHelper
     
     var showTrends: Bool {
         UserSettings.getEnableTrends()
@@ -56,9 +55,8 @@ struct TrendsView: View {
                             
                             if showSoundsMostSharedByTheAudience {
                                 MostSharedByAudienceView(tabSelection: $tabSelection,
-                                                         activePadScreen: $activePadScreen,
-                                                         trendsTimeIntervalToGoTo: $trendsTimeIntervalToGoTo)
-                                    .environmentObject(highlightHelper)
+                                                         activePadScreen: $activePadScreen)
+                                    .environmentObject(trendsHelper)
                                     .padding(.top, 10)
                             }
                             
@@ -82,8 +80,7 @@ struct TrendsView: View {
                             if showSoundsMostSharedByTheAudience {
                                 VStack {
                                     MostSharedByAudienceView(tabSelection: $tabSelection,
-                                                             activePadScreen: $activePadScreen,
-                                                             trendsTimeIntervalToGoTo: $trendsTimeIntervalToGoTo)
+                                                             activePadScreen: $activePadScreen)
                                     Spacer()
                                 }
                             }
@@ -105,8 +102,7 @@ struct TrendsView_Previews: PreviewProvider {
 
     static var previews: some View {
         TrendsView(tabSelection: .constant(.trends),
-                   activePadScreen: .constant(.trends),
-                   trendsTimeIntervalToGoTo: .constant(nil))
+                   activePadScreen: .constant(.trends))
     }
 
 }

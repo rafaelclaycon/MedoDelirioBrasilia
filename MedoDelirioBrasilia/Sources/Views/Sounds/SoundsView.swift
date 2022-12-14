@@ -49,7 +49,7 @@ struct SoundsView: View {
     @State var authorSortAction: AuthorSortOption = .nameAscending
     
     // Trends
-    @EnvironmentObject var highlightHelper: HighlightHelper
+    @EnvironmentObject var trendsHelper: TrendsHelper
     
     // Folders
     @StateObject var deleteFolderAide = DeleteFolderViewAideiPhone()
@@ -231,7 +231,7 @@ struct SoundsView: View {
                                         columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
                                     }
                                 }
-                                .onReceive(highlightHelper.$soundIdToGoTo) { soundIdToGoTo in
+                                .onReceive(trendsHelper.$soundIdToGoTo) { soundIdToGoTo in
                                     if shouldScrollToAndHighlight(soundId: soundIdToGoTo) {
                                         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
                                             withAnimation {
@@ -519,7 +519,7 @@ struct SoundsView: View {
             viewModel.highlightKeeper.remove(soundId)
         }
         
-        self.highlightHelper.soundIdToGoTo = .empty
+        self.trendsHelper.soundIdToGoTo = .empty
         return true // This tells the ScrollViewProxy "yes, go ahead and scroll, there was a soundId received". Unfortunately, passing the proxy as a parameter did not work and this code was made more complex because of this.
     }
 
