@@ -12,11 +12,10 @@ struct TrendsView: View {
     @StateObject private var viewModel = TrendsViewViewModel()
     @Binding var tabSelection: PhoneTab
     @Binding var activePadScreen: PadScreen?
-    @Binding var soundIdToGoToFromTrends: String
     @Binding var trendsTimeIntervalToGoTo: TrendsTimeInterval?
     @State var showAlert = false
     @State var alertTitle = ""
-    @EnvironmentObject var highlightSoundAideiPad: HighlightSoundAideiPad
+    @EnvironmentObject var highlightSoundAideiPad: HighlightHelper
     
     var showTrends: Bool {
         UserSettings.getEnableTrends()
@@ -58,7 +57,6 @@ struct TrendsView: View {
                             if showSoundsMostSharedByTheAudience {
                                 MostSharedByAudienceView(tabSelection: $tabSelection,
                                                          activePadScreen: $activePadScreen,
-                                                         soundIdToGoToFromTrends: $soundIdToGoToFromTrends,
                                                          trendsTimeIntervalToGoTo: $trendsTimeIntervalToGoTo)
                                     .environmentObject(highlightSoundAideiPad)
                                     .padding(.top, 10)
@@ -85,7 +83,6 @@ struct TrendsView: View {
                                 VStack {
                                     MostSharedByAudienceView(tabSelection: $tabSelection,
                                                              activePadScreen: $activePadScreen,
-                                                             soundIdToGoToFromTrends: $soundIdToGoToFromTrends,
                                                              trendsTimeIntervalToGoTo: $trendsTimeIntervalToGoTo)
                                     Spacer()
                                 }
@@ -109,7 +106,6 @@ struct TrendsView_Previews: PreviewProvider {
     static var previews: some View {
         TrendsView(tabSelection: .constant(.trends),
                    activePadScreen: .constant(.trends),
-                   soundIdToGoToFromTrends: .constant(.empty),
                    trendsTimeIntervalToGoTo: .constant(nil))
     }
 

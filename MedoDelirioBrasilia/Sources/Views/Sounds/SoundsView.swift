@@ -49,8 +49,7 @@ struct SoundsView: View {
     @State var authorSortAction: AuthorSortOption = .nameAscending
     
     // Trends
-    @Binding var soundIdToGoToFromTrends: String
-    @EnvironmentObject var highlightSoundAideiPad: HighlightSoundAideiPad
+    @EnvironmentObject var highlightHelper: HighlightHelper
     
     // Folders
     @StateObject var deleteFolderAide = DeleteFolderViewAideiPhone()
@@ -232,17 +231,7 @@ struct SoundsView: View {
                                         columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
                                     }
                                 }
-                                .onChange(of: soundIdToGoToFromTrends) { soundIdToGoToFromTrends in
-                                    if shouldScrollToAndHighlight(soundId: soundIdToGoToFromTrends) {
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-                                            withAnimation {
-                                                proxy.scrollTo(soundIdToGoToFromTrends, anchor: .center)
-                                            }
-                                            TapticFeedback.warning()
-                                        }
-                                    }
-                                }
-                                .onReceive(highlightSoundAideiPad.$soundIdToGoTo) { soundIdToGoTo in
+                                .onReceive(highlightHelper.$soundIdToGoTo) { soundIdToGoTo in
                                     if shouldScrollToAndHighlight(soundId: soundIdToGoTo) {
                                         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
                                             withAnimation {
@@ -530,8 +519,7 @@ struct SoundsView: View {
             viewModel.highlightKeeper.remove(soundId)
         }
         
-        self.soundIdToGoToFromTrends = .empty
-        self.highlightSoundAideiPad.soundIdToGoTo = .empty
+        self.highlightHelper.soundIdToGoTo = .empty
         return true // This tells the ScrollViewProxy "yes, go ahead and scroll, there was a soundId received". Unfortunately, passing the proxy as a parameter did not work and this code was made more complex because of this.
     }
 
@@ -540,7 +528,7 @@ struct SoundsView: View {
 struct SoundsView_Previews: PreviewProvider {
 
     static var previews: some View {
-        SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .allSounds, updateSoundsList: .constant(false), soundIdToGoToFromTrends: .constant(.empty))
+        SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .allSounds, updateSoundsList: .constant(false))
     }
 
 }

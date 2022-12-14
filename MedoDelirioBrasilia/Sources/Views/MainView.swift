@@ -19,7 +19,7 @@ struct MainView: View {
     // Trends
     @State var soundIdToGoToFromTrends: String = .empty
     @State var trendsTimeIntervalToGoTo: TrendsTimeInterval? = nil
-    @StateObject var highlightSoundAideiPad = HighlightSoundAideiPad()
+    @StateObject var highlightSoundAideiPad = HighlightHelper()
     
     var body: some View {
         if UIDevice.current.userInterfaceIdiom == .phone {
@@ -28,8 +28,7 @@ struct MainView: View {
                     SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
                                                               authorSortOption: AuthorSortOption.nameAscending.rawValue),
                                currentMode: .allSounds,
-                               updateSoundsList: .constant(false),
-                               soundIdToGoToFromTrends: $soundIdToGoToFromTrends)
+                               updateSoundsList: .constant(false))
                         .environmentObject(highlightSoundAideiPad)
                 }
                 .tabItem {
@@ -56,7 +55,6 @@ struct MainView: View {
                 NavigationView {
                     TrendsView(tabSelection: $tabSelection,
                                activePadScreen: .constant(.trends),
-                               soundIdToGoToFromTrends: $soundIdToGoToFromTrends,
                                trendsTimeIntervalToGoTo: $trendsTimeIntervalToGoTo)
                         .environmentObject(highlightSoundAideiPad)
                 }
@@ -104,14 +102,12 @@ struct MainView: View {
                             updateSoundsList: $updateSoundsList,
                             isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet,
                             updateFolderList: $updateFolderList,
-                            soundIdToGoToFromTrends: $soundIdToGoToFromTrends,
                             trendsTimeIntervalToGoTo: $trendsTimeIntervalToGoTo)
                     .environmentObject(highlightSoundAideiPad)
                 SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
                                                           authorSortOption: AuthorSortOption.nameAscending.rawValue),
                            currentMode: .allSounds,
-                           updateSoundsList: $updateSoundsList,
-                           soundIdToGoToFromTrends: $soundIdToGoToFromTrends)
+                           updateSoundsList: $updateSoundsList)
                     .environmentObject(highlightSoundAideiPad)
             }
             .navigationViewStyle(DoubleColumnNavigationViewStyle())
