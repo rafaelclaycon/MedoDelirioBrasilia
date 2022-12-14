@@ -12,8 +12,8 @@ struct MostSharedByAudienceView: View {
     @StateObject private var viewModel = MostSharedByAudienceViewViewModel()
     @Binding var tabSelection: PhoneTab
     @Binding var activePadScreen: PadScreen?
-    @Binding var soundIdToGoToFromTrends: String
     @Binding var trendsTimeIntervalToGoTo: TrendsTimeInterval?
+    @EnvironmentObject var highlightHelper: HighlightHelper
     
     private let columns = [
         GridItem(.flexible())
@@ -204,7 +204,7 @@ struct MostSharedByAudienceView: View {
         } else {
             activePadScreen = .allSounds
         }
-        soundIdToGoToFromTrends = soundId
+        highlightHelper.soundIdToGoTo = soundId
     }
 
 }
@@ -214,7 +214,6 @@ struct MostSharedByAudienceView_Previews: PreviewProvider {
     static var previews: some View {
         MostSharedByAudienceView(tabSelection: .constant(.trends),
                                  activePadScreen: .constant(.trends),
-                                 soundIdToGoToFromTrends: .constant(.empty),
                                  trendsTimeIntervalToGoTo: .constant(nil))
     }
 
