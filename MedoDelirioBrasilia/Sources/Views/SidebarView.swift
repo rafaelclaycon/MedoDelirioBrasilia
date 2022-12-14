@@ -49,13 +49,13 @@ struct SidebarView: View {
                         Label("Por Autor", systemImage: "person")
                     })
                 
-//                NavigationLink(
-//                    destination: CollectionsView(),
-//                    tag: PadScreen.collections,
-//                    selection: $state,
-//                    label: {
-//                        Label("Coleções", systemImage: "rectangle.grid.2x2")
-//                    })
+                NavigationLink(
+                    destination: ReactionsView(),
+                    tag: PadScreen.collections,
+                    selection: $state,
+                    label: {
+                        Label("Reações", systemImage: "theatermasks.fill")
+                    })
             }
             
             Section("Mais") {

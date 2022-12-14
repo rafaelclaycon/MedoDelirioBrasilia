@@ -7,6 +7,12 @@
 
 import Foundation
 
+enum GenericViewState {
+
+    case loading, displayingData, noDataToDisplay, loadingError
+
+}
+
 enum TrendsViewState {
 
     case loading, noDataToDisplay, displayingData
