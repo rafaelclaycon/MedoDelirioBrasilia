@@ -24,7 +24,7 @@ struct SettingsView: View {
     var body: some View {
         Form {
             Section {
-                Toggle("Exibir conteúdo sensível", isOn: $showExplicitSounds)
+                Toggle("Exibir conteúdo explícito", isOn: $showExplicitSounds)
                     .onChange(of: showExplicitSounds) { newValue in
                         UserSettings.setShowOffensiveSounds(to: newValue)
                     }
