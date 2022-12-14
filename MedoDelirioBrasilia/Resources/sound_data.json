@@ -8252,5 +8252,15 @@
         "dateAdded": "2022-12-13T15:00:00Z",
         "isOffensive": true,
         "isNew": true
+    },
+    {
+        "id": "23E20E87-6C49-4F63-86A0-87C00F5F61C1",
+        "title": "Errou feio, errou rude",
+        "authorId": "F7AC4187-1AA2-4EBA-AC0C-91247653A590",
+        "description": "Errou feio errou feio errou rude",
+        "filename": "Rafael Infante - Errou feio, errou rude.mp3",
+        "dateAdded": "2022-12-14T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
     }
 ]
