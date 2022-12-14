@@ -15,7 +15,7 @@ struct TrendsView: View {
     @Binding var trendsTimeIntervalToGoTo: TrendsTimeInterval?
     @State var showAlert = false
     @State var alertTitle = ""
-    @EnvironmentObject var highlightSoundAideiPad: HighlightHelper
+    @EnvironmentObject var highlightHelper: HighlightHelper
     
     var showTrends: Bool {
         UserSettings.getEnableTrends()
@@ -58,7 +58,7 @@ struct TrendsView: View {
                                 MostSharedByAudienceView(tabSelection: $tabSelection,
                                                          activePadScreen: $activePadScreen,
                                                          trendsTimeIntervalToGoTo: $trendsTimeIntervalToGoTo)
-                                    .environmentObject(highlightSoundAideiPad)
+                                    .environmentObject(highlightHelper)
                                     .padding(.top, 10)
                             }
                             

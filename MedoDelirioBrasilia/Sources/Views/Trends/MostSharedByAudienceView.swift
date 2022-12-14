@@ -13,7 +13,7 @@ struct MostSharedByAudienceView: View {
     @Binding var tabSelection: PhoneTab
     @Binding var activePadScreen: PadScreen?
     @Binding var trendsTimeIntervalToGoTo: TrendsTimeInterval?
-    @EnvironmentObject var highlightSoundAideiPad: HighlightHelper
+    @EnvironmentObject var highlightHelper: HighlightHelper
     
     private let columns = [
         GridItem(.flexible())
@@ -204,7 +204,7 @@ struct MostSharedByAudienceView: View {
         } else {
             activePadScreen = .allSounds
         }
-        highlightSoundAideiPad.soundIdToGoTo = soundId
+        highlightHelper.soundIdToGoTo = soundId
     }
 
 }
