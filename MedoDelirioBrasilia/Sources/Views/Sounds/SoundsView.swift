@@ -49,7 +49,7 @@ struct SoundsView: View {
     @State var authorSortAction: AuthorSortOption = .nameAscending
     
     // Trends
-    @Binding var soundIdToGoToFromTrends: String
+    @EnvironmentObject var highlightHelper: HighlightHelper
     
     // Folders
     @StateObject var deleteFolderAide = DeleteFolderViewAideiPhone()
@@ -231,26 +231,14 @@ struct SoundsView: View {
                                         columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
                                     }
                                 }
-                                .onChange(of: soundIdToGoToFromTrends) { soundIdToGoToFromTrends in
-                                    if soundIdToGoToFromTrends.isEmpty == false {
-                                        currentMode = .allSounds
-                                        if searchText.isEmpty == false {
-                                            searchText = .empty
-                                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                                        }
+                                .onReceive(highlightHelper.$soundIdToGoTo) { soundIdToGoTo in
+                                    if shouldScrollToAndHighlight(soundId: soundIdToGoTo) {
                                         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
                                             withAnimation {
-                                                proxy.scrollTo(soundIdToGoToFromTrends, anchor: .center)
+                                                proxy.scrollTo(soundIdToGoTo, anchor: .center)
                                             }
                                             TapticFeedback.warning()
                                         }
-                                        
-                                        viewModel.highlightKeeper.insert(soundIdToGoToFromTrends)
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
-                                            viewModel.highlightKeeper.remove(soundIdToGoToFromTrends)
-                                        }
-                                        
-                                        self.soundIdToGoToFromTrends = .empty
                                     }
                                 }
                             }
@@ -514,13 +502,33 @@ struct SoundsView: View {
             }
         }
     }
+    
+    private func shouldScrollToAndHighlight(soundId: String) -> Bool {
+        guard soundId.isEmpty == false else {
+            return false
+        }
+        currentMode = .allSounds
+        
+        if searchText.isEmpty == false {
+            searchText = .empty
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        }
+        
+        viewModel.highlightKeeper.insert(soundId)
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
+            viewModel.highlightKeeper.remove(soundId)
+        }
+        
+        self.highlightHelper.soundIdToGoTo = .empty
+        return true // This tells the ScrollViewProxy "yes, go ahead and scroll, there was a soundId received". Unfortunately, passing the proxy as a parameter did not work and this code was made more complex because of this.
+    }
 
 }
 
 struct SoundsView_Previews: PreviewProvider {
 
     static var previews: some View {
-        SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .allSounds, updateSoundsList: .constant(false), soundIdToGoToFromTrends: .constant(.empty))
+        SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .allSounds, updateSoundsList: .constant(false))
     }
 
 }

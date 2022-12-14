@@ -19,6 +19,7 @@ struct MainView: View {
     // Trends
     @State var soundIdToGoToFromTrends: String = .empty
     @State var trendsTimeIntervalToGoTo: TrendsTimeInterval? = nil
+    @StateObject var highlightHelper = HighlightHelper()
     
     var body: some View {
         if UIDevice.current.userInterfaceIdiom == .phone {
@@ -27,8 +28,8 @@ struct MainView: View {
                     SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
                                                               authorSortOption: AuthorSortOption.nameAscending.rawValue),
                                currentMode: .allSounds,
-                               updateSoundsList: .constant(false),
-                               soundIdToGoToFromTrends: $soundIdToGoToFromTrends)
+                               updateSoundsList: .constant(false))
+                        .environmentObject(highlightHelper)
                 }
                 .tabItem {
                     Label("Sons", systemImage: "speaker.wave.3.fill")
@@ -54,8 +55,8 @@ struct MainView: View {
                 NavigationView {
                     TrendsView(tabSelection: $tabSelection,
                                activePadScreen: .constant(.trends),
-                               soundIdToGoToFromTrends: $soundIdToGoToFromTrends,
                                trendsTimeIntervalToGoTo: $trendsTimeIntervalToGoTo)
+                        .environmentObject(highlightHelper)
                 }
                 .tabItem {
                     Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
@@ -101,13 +102,13 @@ struct MainView: View {
                             updateSoundsList: $updateSoundsList,
                             isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet,
                             updateFolderList: $updateFolderList,
-                            soundIdToGoToFromTrends: $soundIdToGoToFromTrends,
                             trendsTimeIntervalToGoTo: $trendsTimeIntervalToGoTo)
+                    .environmentObject(highlightHelper)
                 SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
                                                           authorSortOption: AuthorSortOption.nameAscending.rawValue),
                            currentMode: .allSounds,
-                           updateSoundsList: $updateSoundsList,
-                           soundIdToGoToFromTrends: $soundIdToGoToFromTrends)
+                           updateSoundsList: $updateSoundsList)
+                    .environmentObject(highlightHelper)
             }
             .navigationViewStyle(DoubleColumnNavigationViewStyle())
             .sheet(isPresented: $isShowingSettingsSheet, onDismiss: {
