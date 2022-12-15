@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AuthorDetailView: View {
 
-    @StateObject private var viewModel = AuthorDetailViewViewModel()
+    @StateObject var viewModel: AuthorDetailViewViewModel
     @State var author: Author
     
     @State private var listWidth: CGFloat = 700
@@ -205,7 +205,7 @@ struct AuthorDetailView: View {
 struct AuthorDetailView_Previews: PreviewProvider {
 
     static var previews: some View {
-        AuthorDetailView(author: Author(id: "A", name: "João", photo: nil))
+        AuthorDetailView(viewModel: AuthorDetailViewViewModel(originatingScreenName: "originalScreen", authorName: "João da Silva"), author: Author(id: "A", name: "João", photo: nil))
     }
 
 }

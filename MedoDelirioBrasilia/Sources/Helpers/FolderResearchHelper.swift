@@ -18,7 +18,7 @@ class FolderResearchHelper {
         var folderContentLogs = [UserFolderContentLog]()
         
         folders.forEach { folder in
-            folderLogs.append(UserFolderLog(installId: UIDevice.deviceIDForVendor,
+            folderLogs.append(UserFolderLog(installId: UIDevice.customInstallId,
                                             folderId: folder.id,
                                             folderSymbol: folder.symbol,
                                             folderName: folder.name,

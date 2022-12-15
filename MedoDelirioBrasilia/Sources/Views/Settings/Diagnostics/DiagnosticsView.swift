@@ -7,7 +7,7 @@ struct DiagnosticsView: View {
     @State var showServerConnectionTestAlert = false
     @State var serverConnectionTestAlertTitle = ""
     
-    @State var installId = UIDevice.deviceIDForVendor
+    @State var installId = UIDevice.customInstallId
     @State var showInstallIdCopiedAlert = false
     
     @State var shareLogs: [UserShareLog]?
