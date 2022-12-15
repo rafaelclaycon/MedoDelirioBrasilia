@@ -18,12 +18,12 @@ struct SettingsView: View {
     
     @State private var showEmailClientConfirmationDialog: Bool = false
     
-    let pixKey: String = "medodeliriosuporte@gmail.com"
+    private let pixKey: String = "medodeliriosuporte@gmail.com"
     
     var body: some View {
         Form {
             Section {
-                Toggle("Exibir conteúdo sensível", isOn: $showExplicitSounds)
+                Toggle("Exibir conteúdo explícito", isOn: $showExplicitSounds)
                     .onChange(of: showExplicitSounds) { newValue in
                         UserSettings.setShowOffensiveSounds(to: newValue)
                     }
@@ -107,9 +107,41 @@ struct SettingsView: View {
             }
             
             Section("Sobre") {
-                Button("Criado por @claycon_") {
-                    guard let url = URL(string: "https://twitter.com/claycon_") else { return }
-                    UIApplication.shared.open(url)
+                VStack(alignment: .leading) {
+                    Text("Criado por Rafael Claycon Schmitt")
+                    
+                    HStack(spacing: 25) {
+                        Spacer()
+                        
+                        Button {
+                            open(link: "https://twitter.com/claycon_")
+                        } label: {
+                            Image("twitter")
+                                .renderingMode(.template)
+                                .foregroundColor(.blue)
+                                .padding(.horizontal)
+                        }
+                        .tint(.blue)
+                        .controlSize(.regular)
+                        .buttonStyle(.bordered)
+                        .buttonBorderShape(.roundedRectangle)
+                        
+                        Button {
+                            open(link: "https://toot.wales/@mitt_rafael")
+                        } label: {
+                            Image("mastodon")
+                                .renderingMode(.template)
+                                .foregroundColor(.purple)
+                                .padding(.horizontal)
+                        }
+                        .tint(.purple)
+                        .controlSize(.regular)
+                        .buttonStyle(.bordered)
+                        .buttonBorderShape(.roundedRectangle)
+                        
+                        Spacer()
+                    }
+                    .padding(.bottom, 3)
                 }
                 
                 Text("Versão \(Versioneer.appVersion) Build \(Versioneer.buildVersionNumber)")
@@ -117,8 +149,7 @@ struct SettingsView: View {
             
             Section("Contribua ou entenda como funciona") {
                 Button("Ver código fonte no GitHub") {
-                    let githubUrl = URL(string: "https://github.com/rafaelclaycon/MedoDelirioBrasilia")!
-                    UIApplication.shared.open(githubUrl)
+                    open(link: "https://github.com/rafaelclaycon/MedoDelirioBrasilia")
                 }
             }
             
@@ -135,13 +166,18 @@ struct SettingsView: View {
         }
         .navigationTitle("Ajustes")
         .onAppear {
-            networkRabbit.displayAskForMoneyView { result, _ in
-                showAskForMoneyView = result
+            networkRabbit.displayAskForMoneyView { shouldDisplay in
+                showAskForMoneyView = shouldDisplay
             }
         }
         .popover(isPresented: $showEmailClientConfirmationDialog) {
             EmailAppPickerView(isBeingShown: $showEmailClientConfirmationDialog, subject: Shared.issueSuggestionEmailSubject, emailBody: Shared.issueSuggestionEmailBody)
         }
+    }
+    
+    private func open(link: String) {
+        guard let url = URL(string: link) else { return }
+        UIApplication.shared.open(url)
     }
 
 }

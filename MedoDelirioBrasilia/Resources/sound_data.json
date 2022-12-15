@@ -6481,9 +6481,9 @@
     },
     {
         "id": "8EC14965-8E19-42B4-BCEB-FBB74830206A",
-        "title": "Ministro Fachin, marxista, leninista",
+        "title": "Ministro Fachin, marxista, leninista (curto)",
         "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
-        "description": "Ministro Fachin marxista leninista",
+        "description": "Ministro Fachin marxista leninista curto",
         "filename": "Jair Bolsonaro - Ministro Fachin, marxista, leninista.mp3",
         "dateAdded": "2022-09-17T00:00:00Z",
         "isOffensive": true
@@ -7292,7 +7292,7 @@
     {
         "id": "2AD17C63-2F80-4240-9D75-7602945926A1",
         "title": "Babaca do caralho",
-        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "authorId": "EA110CA9-E80E-4DCF-8DA0-FEC0F6C13EB0",
         "description": "Babaca do caralho",
         "filename": "Desconhecido - Babaca do caralho.mp3",
         "dateAdded": "2022-10-27T00:00:00Z",
@@ -7506,7 +7506,7 @@
     {
         "id": "5F88BC5B-176E-49C1-9788-2E445D17B3A2",
         "title": "Gente nojenta como você",
-        "authorId": "BC2818F5-4FA5-46FC-90C3-075691F3E979",
+        "authorId": "87AC9F8E-E81F-4B71-A1D9-8646FED0D86B",
         "description": "gente nojenta como você",
         "filename": "Frederico Davila - Gente nojenta como voce.mp3",
         "dateAdded": "2022-11-07T00:00:00Z",
@@ -7826,7 +7826,7 @@
     {
         "id": "E9C0E6F4-BA52-4C18-BD2D-A7D39CE7E5A8",
         "title": "Eu, por força de lei, sou obrigado",
-        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "authorId": "57017B39-5D5B-477A-BAF5-4F103DD84CB1",
         "description": "Eu por força de lei sou obrigado a ter que mandar vocês irem tomar no cu",
         "filename": "Desconhecido - Eu por forca de lei sou obrigado.mp3",
         "dateAdded": "2022-11-17T00:00:00Z",
@@ -8012,5 +8012,255 @@
         "dateAdded": "2022-01-01T00:00:00Z",
         "isOffensive": true,
         "isNew": false
+    },
+    {
+        "id": "F7B402CE-F1A9-40FF-898E-105F6C715F3B",
+        "title": "Pra conversar com doido, só outro doido",
+        "authorId": "B7C31BA4-0E42-4206-8920-B568AA04B608",
+        "description": "Pra conversar com doido so outro doido",
+        "filename": "Desconhecido - Pra conversar com doido, so outro doido.mp3",
+        "dateAdded": "2022-11-22T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "09747723-DD76-4188-92A8-081BEE2FCC23",
+        "title": "Vocâ tá falando isso porque você é a putinha do Jobs",
+        "authorId": "2A0E4FE2-C625-44E2-9053-C98BF8006415",
+        "description": "Voce ta falando isso porque voce e a putinha do Jobs",
+        "filename": "Cidade Oculta e Google Tradutor - Voce ta falando isso porque voce e a putinha do Jobs.mp3",
+        "dateAdded": "2022-11-23T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "2B780223-8A62-4B9D-9A85-23C3E3F2C098",
+        "title": "Putinha do Jobs",
+        "authorId": "2A0E4FE2-C625-44E2-9053-C98BF8006415",
+        "description": "Putinha do Jobs",
+        "filename": "Cidade Oculta e Google Tradutor - Putinha do Jobs.mp3",
+        "dateAdded": "2022-11-23T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "EAD4A266-22C0-47D2-BAD1-A8FF25D078FB",
+        "title": "Precisa de muita gente pra fazer bagunça? Não",
+        "authorId": "30246C06-D0F4-4A64-BD59-57BE7E9786C4",
+        "description": "Precisa de muita gente pra fazer bagunca nao",
+        "filename": "Leandro Demori - Precisa de muita gente pra fazer bagunca, nao.mp3",
+        "dateAdded": "2022-11-29T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "ABBB5138-79D0-49B6-B2F6-059B5204F70C",
+        "title": "A temperatura subiu",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "A temperatura subiu",
+        "filename": "Jair Bolsonaro - A temperatura subiu.mp3",
+        "dateAdded": "2022-11-30T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "61F744CC-6A0A-486C-82E4-FE75FB93FBD2",
+        "title": "Como se coubesse ao senhor decidir uma coisa dessas",
+        "authorId": "AD02C7FB-8F0D-48F1-AC4B-962858DE678B",
+        "description": "Como se coubesse ao senhor decidir uma coisa dessas",
+        "filename": "William Bonner - Como se coubesse ao senhor decidir uma coisa dessas.mp3",
+        "dateAdded": "2022-11-30T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "1DC058EB-B2BF-4292-BC4C-0E78BBDFB340",
+        "title": "Sabe o que que me doi",
+        "authorId": "71128756-78A9-4B31-A7D8-CE120147C481",
+        "description": "Sabe o que que me doi",
+        "filename": "Eduardo Pazuello - Sabe o que que me doi.mp3",
+        "dateAdded": "2022-11-30T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "A86A0220-9909-412E-995E-8FEDAEB9217C",
+        "title": "É a doença política",
+        "authorId": "71128756-78A9-4B31-A7D8-CE120147C481",
+        "description": "E a doenca politica",
+        "filename": "Eduardo Pazuello - E a doenca politica.mp3",
+        "dateAdded": "2022-11-30T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "CCA6D906-8610-4E74-A086-50888EFEB186",
+        "title": "Eu não permito, não sou obrigada",
+        "authorId": "CC1490F4-347B-46AB-8752-535F70AFFA1F",
+        "description": "Eu nao permito nao sou obrigada",
+        "filename": "Isa Penna - Eu nao permito, nao sou obrigada.mp3",
+        "dateAdded": "2022-12-03T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "EC1A801B-6BE1-48E4-91A6-315FC7591B8A",
+        "title": "Todo relaxado, gostosão, tranquilo",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Todo relaxado gostosao tranquilo",
+        "filename": "Jair Bolsonaro - Todo relaxado, gostosao, tranquilo.mp3",
+        "dateAdded": "2022-12-08T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "9F25FCA5-4B25-4D2A-96F3-BA29AD8F35B8",
+        "title": "Gases",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Gases",
+        "filename": "Jair Bolsonaro - Gases.mp3",
+        "dateAdded": "2022-12-08T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "C6D594E9-B6A5-4EE6-A6BB-359B779CD687",
+        "title": "Arthur Lira é foda (curto)",
+        "authorId": "863E6246-0E17-4D5B-B059-6B43CCB18590",
+        "description": "Arthur Lira e foda",
+        "filename": "Arthur Lira e foda (curto).mp3",
+        "dateAdded": "2022-12-09T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "69DCFA5F-35F2-45F4-A9FC-A87576F67498",
+        "title": "Arthur Lira é foda (completo)",
+        "authorId": "863E6246-0E17-4D5B-B059-6B43CCB18590",
+        "description": "diz ae diz ae Arthur Lira e foda eu vou dizer por que o homem e forte em brasilia",
+        "filename": "Arthur Lira e foda (completo).mp3",
+        "dateAdded": "2022-12-09T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "276BBCED-5D27-4F78-875D-049422F4A3F2",
+        "title": "O homem é forte em Brasília",
+        "authorId": "863E6246-0E17-4D5B-B059-6B43CCB18590",
+        "description": "O homem e forte em Brasilia",
+        "filename": "O homem e forte em Brasilia.mp3",
+        "dateAdded": "2022-12-09T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "B62CDB8A-F6DD-476D-85E0-245327D1B47E",
+        "title": "Brasil!",
+        "authorId": "08C5B696-B506-4C6A-8F9D-A72BEC68525E",
+        "description": "Brasil",
+        "filename": "Gil do Vigor - Brasil.mp3",
+        "dateAdded": "2022-12-09T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "39E0E16B-D551-471C-B81D-61D3838FA480",
+        "title": "Nossa, sério isso? Que interessante...",
+        "authorId": "1F7A2AB7-1CB2-447C-9158-C8A620F9D170",
+        "description": "Nossa serio isso que interessante olha so",
+        "filename": "Dona Eleni - Nossa serio isso que interessante.mp3",
+        "dateAdded": "2022-12-09T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "D186B8AE-71F7-41BA-ADC5-8EF57CBF874E",
+        "title": "Deu errado (Edição Copa no Catar)",
+        "authorId": "B7F375D7-1087-42CB-B80F-7C5FF82386D9",
+        "description": "Deu errado Edicao Copa no Catar",
+        "filename": "Deu errado (Edicao Copa no Catar).mp3",
+        "dateAdded": "2022-12-10T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "91324A5A-F07B-4AFA-A18F-A0EB6C1A871A",
+        "title": "Imitando pessoa com falta de ar pela COVID-19",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "voce vai pra casa quando voce tiver falta de ar daí voce vai pro hospital imitando pessoa com falta de ar pela COVID-19",
+        "filename": "Jair Bolsonaro - Imitando pessoa com falta de ar.mp3",
+        "dateAdded": "2022-12-12T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "73215997-1186-45B9-A933-DCEDDF40AA7C",
+        "title": "Histórico de atleta",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "no meu caso particular pelo meu historico de atleta caso fosse contaminado pelo virus nao precisaria me preocupar nada sentiria ou seria quando muito acometido de uma gripezinha ou resfriadinho",
+        "filename": "Jair Bolsonaro - Historico de atleta.mp3",
+        "dateAdded": "2022-12-12T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "67A4DE46-4CCA-42F7-945D-7AB86C95B5E0",
+        "title": "Gripezinha ou resfriadinho",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Gripezinha ou resfriadinho",
+        "filename": "Jair Bolsonaro - Gripezinha ou resfriadinho.mp3",
+        "dateAdded": "2022-12-12T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "E20BEF35-7FFE-4582-9F76-D89D62E993A0",
+        "title": "A história da humanidade está cheia de puxa-sacos",
+        "authorId": "315C8C3D-14AB-4689-A9E8-E01820AB7705",
+        "description": "A historia da humanidade esta cheia de puxa-sacos",
+        "filename": "Max Gheringer - A historia da humanidade esta cheia de puxa-sacos.mp3",
+        "dateAdded": "2022-12-13T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "6AA0B42E-7AD7-4242-8894-69E2AB0DA396",
+        "title": "Vinheta do gabinete paralelo",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "Vinheta do gabinete paralelo esse e o gabinete paralelo",
+        "filename": "Cristiano Botafogo - Vinheta do gabinete paralelo.mp3",
+        "dateAdded": "2022-12-13T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "CFD37DC8-88CA-4B29-B307-C10E7DCB3609",
+        "title": "Ministro Fachin, marxista, leninista (completo)",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Ministro Fachin marxista leninista não trotskista leninista completo",
+        "filename": "Jair Bolsonaro - Ministro Fachin, marxista, leninista (completo).mp3",
+        "dateAdded": "2022-12-13T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "15B250F2-2791-47A8-9745-29686DE9C594",
+        "title": "Militares e República não combinam",
+        "authorId": "76F3DFA1-0838-4EB7-BF6B-2C2381341DC0",
+        "description": "eu considero o desastre do brasil a proclamacao da republica pelos militares os militares terem proclamado a republica julgaram-se donos da republica e nunca aceitaram nao ser os donos da republica enquanto a presidencia da republica e os cargos eminentes do pais nao voltarem para os civis continuarem na mao dos miliatares nos estaremos nessa situacao terrivel em que nos encontramos de falencia e de corrupcao Militares e República não combinam",
+        "filename": "Heraclito Sobral Pinto - Militares e Republica nao combinam.mp3",
+        "dateAdded": "2022-12-13T15:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "23E20E87-6C49-4F63-86A0-87C00F5F61C1",
+        "title": "Errou feio, errou rude",
+        "authorId": "F7AC4187-1AA2-4EBA-AC0C-91247653A590",
+        "description": "Errou feio errou feio errou rude",
+        "filename": "Rafael Infante - Errou feio, errou rude.mp3",
+        "dateAdded": "2022-12-14T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
     }
 ]

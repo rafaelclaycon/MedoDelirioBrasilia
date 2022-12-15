@@ -81,7 +81,7 @@ class Podium {
     }
     
     func sendShareCountStatsToServer(completionHandler: @escaping (ShareCountStatServerExchangeResult, String) -> Void) {
-        networkRabbit.checkServerStatus { serverIsAvailable, _ in
+        networkRabbit.checkServerStatus { serverIsAvailable in
             guard serverIsAvailable else {
                 return completionHandler(.failed, "Servidor não disponível.")
             }

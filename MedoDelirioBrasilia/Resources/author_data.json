@@ -24,7 +24,8 @@
     },
     {
         "id": "2267C284-7BA1-42DB-8AE8-E329E28CF43C",
-        "name": "Alceu Valença"
+        "name": "Alceu Valença",
+        "photo": "https://dicionariompb.com.br/wp-content/uploads/2021/04/channels4_profile.jpg"
     },
     {
         "id": "17860F3D-A18C-4684-86D0-931306A6937A",
@@ -111,7 +112,7 @@
     {
         "id": "BB392894-327A-48BA-9C7D-4F0601E947EB",
         "name": "Paulo Guedes",
-        "photo": "https://politica.estadao.com.br/blogs/crop/1200x1200/diario-da-cpi/wp-content/uploads/sites/723/2021/05/paulo-guedes-edu-andrade-me_240520211751.jpg"
+        "photo": "https://conteudo.imguol.com.br/c/noticias/e8/2022/01/14/brasilia-df---17122021---nesta-sexta-17-o-ministro-da-economia-paulo-guedes-realiza-coletiva-de-imprensa-para-passar-o-balanco-economico-de-2021-durante-o-segundo-ano-da-pandemia-de-covid19-e-1642181867541_v2_450x450.jpg"
     },
     {
         "id": "332C6028-19BF-4027-AEC4-982E7B36880F",
@@ -271,7 +272,8 @@
     },
     {
         "id": "321C3F81-51C6-4AB2-917C-81DCAF13A515",
-        "name": "Carl Orff"
+        "name": "Carl Orff",
+        "photo": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Carl_Orff_um_1970.jpg"
     },
     {
         "id": "71128756-78A9-4B31-A7D8-CE120147C481",
@@ -332,7 +334,8 @@
     },
     {
         "id": "A641DDF3-E419-4488-8F1F-20A823218212",
-        "name": "Natalie Wynn (ContraPoints)"
+        "name": "Natalie Wynn (ContraPoints)",
+        "photo": "https://i.guim.co.uk/img/media/b49bfc77c20b4944855f483d26f9dba511d8bf5a/3_0_7509_4508/master/7509.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=eadce18aa3043b6560cc9aa4adacbb01"
     },
     {
         "id": "5908EC21-A47D-49A0-A081-651B702D95C9",
@@ -364,7 +367,8 @@
     },
     {
         "id": "677BDC27-06EF-44D4-BF8F-15E64245CC0F",
-        "name": "Bezerra da Silva"
+        "name": "Bezerra da Silva",
+        "photo": "https://www.vagalume.com.br/bezerra-da-silva/images/bezerra-da-silva.jpg"
     },
     {
         "id": "9DD28494-F33B-471F-8AD6-D4F86978DD42",
@@ -390,11 +394,13 @@
     },
     {
         "id": "859DB6CD-B1CB-4FFC-95B9-E8BD7F8CC7A1",
-        "name": "João Doria"
+        "name": "João Doria",
+        "photo": "https://www.cnnbrasil.com.br/wp-content/uploads/sites/12/2022/05/joao_doria-13-e1655133496563.jpg?w=1200&h=1200&crop=1"
     },
     {
         "id": "96BDE4FA-E1BE-408A-A8EC-8014BCED7699",
-        "name": "Jonathan Frakes"
+        "name": "Jonathan Frakes",
+        "photo": "https://s3.amazonaws.com/app.growtix.com/media/big/54/64/89/da52a218-0940-4223-8f3b-85d060adea69.jpg"
     },
     {
         "id": "3C41E7C2-BA19-456E-90DC-97ADC57B81C0",
@@ -406,7 +412,8 @@
     },
     {
         "id": "C3846559-8B51-4A0E-89F6-46FA2910600E",
-        "name": "Maluf"
+        "name": "Paulo Maluf",
+        "photo": "https://www.mapadoceu.com.br/photo/astro/paulo-maluf.jpg"
     },
     {
         "id": "716DB19B-1DC3-4826-855B-B480DB9E6D53",
@@ -442,7 +449,8 @@
     },
     {
         "id": "8913BB74-53FF-49D4-B32D-5F348D32F799",
-        "name": "Harry Potter"
+        "name": "Harry Potter",
+        "photo": "https://conteudo.imguol.com.br/c/parceiros/6e/2022/11/15/a-saga-harry-potter-esta-disponivel-no-hbo-max-1668541198115_v2_1x1.jpg"
     },
     {
         "id": "CA6F8AD6-7F99-4BEA-B4F2-066DED010370",
@@ -550,7 +558,8 @@
     },
     {
         "id": "94004C99-7373-4880-B551-1BC283992BDC",
-        "name": "Chico Bento"
+        "name": "Chico Bento",
+        "photo": "https://pbs.twimg.com/profile_images/1013602213896343552/T-ifDST3_400x400.jpg"
     },
     {
         "id": "AA4313EE-E9E1-4EDB-9D40-3A9C5C286DA6",
@@ -639,7 +648,8 @@
     },
     {
         "id": "AE8E527E-23D5-41FF-9A8D-140A2A28A275",
-        "name": "Alanzoka"
+        "name": "Alanzoka",
+        "photo": "https://i1.sndcdn.com/artworks-000465890313-x6cae8-t500x500.jpg"
     },
     {
         "id": "54AD2984-8D05-44CD-B4A7-72325B59E947",
@@ -680,7 +690,7 @@
     {
         "id": "248A6A3B-3EEF-45D6-9A2F-A81768B7B370",
         "name": "Álvaro Borba (Meteoro Brasil)",
-        "photo": "https://pbs.twimg.com/profile_images/1559954950603657219/PW4CB2Su_400x400.jpg"
+        "photo": "https://static1.personality-database.com/profile_images/1c8edd51ae88481a847995a1772b8cd2.png"
     },
     {
         "id": "026D606A-356F-47C9-8D42-D5C838653E02",
@@ -893,7 +903,8 @@
     },
     {
         "id": "CEB3DACA-D4E2-4D83-AF87-610571ABD44A",
-        "name": "Barões da Pisadinha"
+        "name": "Barões da Pisadinha",
+        "photo": "https://akamai.sscdn.co/tb/letras-blog/wp-content/uploads/2020/12/b756b18-N7fooRYo.jpg"
     },
     {
         "id": "B390C2BC-D59C-4EF3-811A-FD8FC61386AC",
@@ -930,7 +941,8 @@
     },
     {
         "id": "5F0EAB9B-2267-4C31-944A-F73D76AC1020",
-        "name": "Ana Paula (BBB 16)"
+        "name": "Ana Paula (BBB 16)",
+        "photo": "https://media.gazetadopovo.com.br/2016/05/e6892dd551f179aa7d7ec2045ef3088b-gpLarge.jpg"
     },
     {
         "id": "9796134C-BC7F-4121-9008-ACE479834FD5",
@@ -1158,8 +1170,7 @@
     },
     {
         "id": "CDDA95B6-F4D3-4783-85B1-DDE7EB3127FD",
-        "name": "Espectadora do Falso Patati Patatá",
-        "photo": "https://brasil.estadao.com.br/blogs/crop/1200x1200/radar-pop/wp-content/uploads/sites/77/2011/12/patati.jpg"
+        "name": "Espectadora do Falso Patati Patatá"
     },
     {
         "id": "CA83F4BE-1466-4AD2-9BDF-D96B515B4681",
@@ -1219,7 +1230,8 @@
     },
     {
         "id": "44A20EED-991F-48F8-BC6B-18A06709E241",
-        "name": "Monica de Bolle"
+        "name": "Monica de Bolle",
+        "photo": "https://www.piie.com/sites/default/files/headshots/monica-debolle.jpg"
     },
     {
         "id": "004757BC-BDE7-4630-BE06-C3AAF387D359",
@@ -1227,7 +1239,7 @@
     },
     {
         "id": "87AC9F8E-E81F-4B71-A1D9-8646FED0D86B",
-        "name": "Frederico D'Avila"
+        "name": "Frederico D'Avila (PL-SP)"
     },
     {
         "id": "4234ACB1-5D43-4EFA-A61E-7D80EC749866",
@@ -1259,7 +1271,8 @@
     },
     {
         "id": "EE070B17-4C63-4BF4-BF5C-62894B70F390",
-        "name": "Bárbara Saccomori (IG: barbarasaccomori)"
+        "name": "Bárbara Saccomori (IG: barbarasaccomori)",
+        "photo": "https://cachedimages.podchaser.com/256x256/aHR0cHM6Ly9jcmVhdG9yLWltYWdlcy5wb2RjaGFzZXIuY29tL2EzODc4MzFlMTJhY2JmMDJiZTJiMjVkMTg4Mzg3MWFmLmpwZWc%3D/aHR0cHM6Ly93d3cucG9kY2hhc2VyLmNvbS9pbWFnZXMvbWlzc2luZy1pbWFnZS5wbmc%3D"
     },
     {
         "id": "88E55EFF-549F-4047-86B9-7A5D551201A7",
@@ -1312,5 +1325,46 @@
     {
         "id": "2E0605FF-BD9F-4941-BFD7-36027D7EF407",
         "name": "Torcida Jovem do Flamengo"
+    },
+    {
+        "id": "2A0E4FE2-C625-44E2-9053-C98BF8006415",
+        "name": "Cidade Oculta e Google Tradutor"
+    },
+    {
+        "id": "EA110CA9-E80E-4DCF-8DA0-FEC0F6C13EB0",
+        "name": "Marcos Keller"
+    },
+    {
+        "id": "B7C31BA4-0E42-4206-8920-B568AA04B608",
+        "name": "Pastor Sargento Isidório (AVANTE-BA)"
+    },
+    {
+        "id": "30246C06-D0F4-4A64-BD59-57BE7E9786C4",
+        "name": "Leandro Demori"
+    },
+    {
+        "id": "CC1490F4-347B-46AB-8752-535F70AFFA1F",
+        "name": "Isa Penna (PCdoB)",
+        "photo": "https://img.estadao.com.br/fotos/crop/1200x1200/resources/jpg/2/6/1575479990562.jpg"
+    },
+    {
+        "id": "863E6246-0E17-4D5B-B059-6B43CCB18590",
+        "name": "Campanha do Arthur Lira (PP) 2022"
+    },
+    {
+        "id": "1F7A2AB7-1CB2-447C-9158-C8A620F9D170",
+        "name": "Dona Eleni"
+    },
+    {
+        "id": "315C8C3D-14AB-4689-A9E8-E01820AB7705",
+        "name": "Max Gehringer"
+    },
+    {
+        "id": "76F3DFA1-0838-4EB7-BF6B-2C2381341DC0",
+        "name": "Heráclito Sobral Pinto"
+    },
+    {
+        "id": "F7AC4187-1AA2-4EBA-AC0C-91247653A590",
+        "name": "Rafael Infante"
     }
 ]

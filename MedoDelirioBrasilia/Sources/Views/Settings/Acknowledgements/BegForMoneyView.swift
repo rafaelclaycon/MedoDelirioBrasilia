@@ -5,24 +5,25 @@ struct BegForMoneyView: View {
 
     var body: some View {
         VStack(alignment: .center, spacing: 18) {
-            HStack(spacing: 15) {
+            HStack(spacing: 20) {
                 Image("creator")
                     .resizable()
                     .scaledToFit()
                     .clipShape(Circle())
                     .frame(width: 80)
                 
-                Text("Oi, aqui é o Rafael. Eu sou o criador do app Medo e Delírio para iPhone, iPad e Mac.")
+                Text("Rafael aqui, criador do app Medo e Delírio para iPhone, iPad e Mac.")
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 15)
             }
             
             VStack(alignment: .leading, spacing: 18) {
-                Text("Esse trabalho é voluntário e envolve custos mensais com servidor (~R$ 30). Quer ter seu nome aqui embaixo? Manda um cafezinho ou um petisco pra gente. Eu e a Wandinha agradecemos muito! 🐶")
+                Text("Esse trabalho é voluntário e envolve custos mensais com servidor (~R$ 30). Qualquer tipo de contribuição é bem-vinda!")
+                    .fixedSize(horizontal: false, vertical: true)
                 
                 Text("**Últimas contribuições:**")
                 
-                MarqueeText(text: "Carlos Henrique P. M.     Beatriz F. F. N.     Luiz Fernando L. F.     Maria Augusta M. C.     Pedro O. R.",
+                MarqueeText(text: "Marina L. F.     Roberto B. E. T.     Carolina P. L.     Pedro O. R.     Maria Augusta M. C.",
                             font: UIFont.preferredFont(forTextStyle: .body),
                             leftFade: 16,
                             rightFade: 16,

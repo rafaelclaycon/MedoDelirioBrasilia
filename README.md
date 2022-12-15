@@ -44,7 +44,10 @@ To build and run this project, you'll need:
 - Xcode 13.4+;
 - iOS 15.0+ simulators installed.
 
-***Note:** The server component is also written in Swift (with Vapor) and is not publicly available due to security concerns. If you would like to take a look or help make it better, please contact me.*
+To test and fiddle with the Trends tab, you'll need:
+
+- the same equipment and software as above;
+- to clone and run locally the following Vapor project: [medo-delirio-api](https://github.com/rafaelclaycon/medo-delirio-api)
 
 ## Android version
 

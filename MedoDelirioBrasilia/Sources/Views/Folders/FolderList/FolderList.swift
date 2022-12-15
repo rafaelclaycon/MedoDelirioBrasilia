@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-/// Sub-view loaded inside the Collections tab on iPhone and the All Folders tab on iPad and Mac.
+/// Sub-view loaded inside the Sounds tab on iPhone and the All Folders tab on iPad and Mac.
 struct FolderList: View {
 
     @StateObject private var viewModel = FolderListViewModel()
@@ -141,6 +141,7 @@ struct FolderList: View {
         if shouldUpdate {
             viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
             updateFolderList = false
+            deleteFolderAideiPhone.updateFolderList = false
         }
     }
 

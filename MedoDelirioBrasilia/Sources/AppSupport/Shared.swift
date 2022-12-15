@@ -7,7 +7,6 @@ struct Shared {
         static let playAndShareSounds = "com.rafaelschmitt.MedoDelirioBrasilia.PlayAndShareSounds"
         static let viewCollections = "com.rafaelschmitt.MedoDelirioBrasilia.ViewCollections"
         static let playAndShareSongs = "com.rafaelschmitt.MedoDelirioBrasilia.PlayAndShareSongs"
-        static let viewTrends = "com.rafaelschmitt.MedoDelirioBrasilia.ViewTrends" // Legacy. Kept here to support old donated activities.
         static let viewLast24HoursTopChart = "com.rafaelschmitt.MedoDelirioBrasilia.ViewLast24HoursTopChart"
         static let viewLastWeekTopChart = "com.rafaelschmitt.MedoDelirioBrasilia.ViewLastWeekTopChart"
         static let viewLastMonthTopChart = "com.rafaelschmitt.MedoDelirioBrasilia.ViewLastMonthTopChart"
@@ -20,10 +19,10 @@ struct Shared {
     static let shareSongButtonText = "Compartilhar Música"
     static let shareAsVideoButtonText = "Compartilhar como Vídeo"
     
-    static let contentFilterMessageForSoundsiPhone = "Alguns sons não estão sendo exibidos pois a opção Exibir Conteúdo Sensível está desabilitada. Você pode mudar isso na aba Ajustes (aqui dentro do app)."
-    static let contentFilterMessageForSoundsiPadMac = "Alguns sons não estão sendo exibidos pois a opção Exibir Conteúdo Sensível está desabilitada. Você pode mudar isso na tela de Ajustes (ícone de engrenagem no topo da barra lateral do app)."
-    static let contentFilterMessageForSongsiPhone = "Algumas músicas não estão sendo exibidas pois a opção Exibir Conteúdo Sensível está desabilitada. Você pode mudar isso na aba Ajustes (aqui dentro do app)."
-    static let contentFilterMessageForSongsiPadMac = "Algumas músicas não estão sendo exibidas pois a opção Exibir Conteúdo Sensível está desabilitada. Você pode mudar isso na tela de Ajustes (ícone de engrenagem no topo da barra lateral do app)."
+    static let contentFilterMessageForSoundsiPhone = "Alguns sons não estão sendo exibidos pois a opção Exibir Conteúdo Explícito está desabilitada. Você pode mudar isso na aba Ajustes (aqui dentro do app)."
+    static let contentFilterMessageForSoundsiPadMac = "Alguns sons não estão sendo exibidos pois a opção Exibir Conteúdo Explícito está desabilitada. Você pode mudar isso na tela de Ajustes (ícone de engrenagem no topo da barra lateral do app)."
+    static let contentFilterMessageForSongsiPhone = "Algumas músicas não estão sendo exibidas pois a opção Exibir Conteúdo Explícito está desabilitada. Você pode mudar isso na aba Ajustes (aqui dentro do app)."
+    static let contentFilterMessageForSongsiPadMac = "Algumas músicas não estão sendo exibidas pois a opção Exibir Conteúdo Explícito está desabilitada. Você pode mudar isso na tela de Ajustes (ícone de engrenagem no topo da barra lateral do app)."
     
     static let soundNotFoundAlertTitle = "Som Indisponível"
     static let soundNotFoundAlertMessage = "Devido a um problema técnico, o som que você quer acessar não está disponível."
@@ -66,9 +65,17 @@ struct Shared {
     
     struct Folders {
         
-        static let noFoldersAlertTitle = "Não Existem Pastas"
-        static let noFoldersAlertMessagePhone = "Para continuar, crie uma pasta de sons na aba Coleções > Minhas Pastas."
+        static let noFoldersAlertTitle = "Nenhuma Pasta Criada"
+        static let noFoldersAlertMessagePhone = "Para continuar, crie uma pasta de sons tocando em Pastas aqui embaixo."
         static let noFoldersAlertMessagePadMac = "Para continuar, crie uma pasta de sons. Toque em Nova Pasta na barra lateral."
+        
+    }
+    
+    struct ScreenNames {
+        
+        static let soundsView = "SoundsView"
+        static let authorsView = "AuthorsView"
+        static let authorDetailView = "AuthorDetailView"
         
     }
 

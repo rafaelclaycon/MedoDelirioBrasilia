@@ -40,7 +40,7 @@ struct AuthorsView: View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 20) {
                 ForEach(searchResults) { author in
-                    NavigationLink(destination: AuthorDetailView(author: author)) {
+                    NavigationLink(destination: AuthorDetailView(viewModel: AuthorDetailViewViewModel(originatingScreenName: searchText.isEmpty ? Shared.ScreenNames.authorsView : "\(Shared.ScreenNames.authorsView)(\(searchText))", authorName: author.name), author: author)) {
                         AuthorCell(authorName: author.name, authorImageURL: author.photo ?? "", soundCount: "\(author.soundCount ?? 0)")
                             .padding(.horizontal, 5)
                     }
