@@ -44,12 +44,12 @@ struct MainView: View {
                 .tag(PhoneTab.collections)
                 
                 NavigationView {
-                    SongsView()
+                    SettingsView()
                 }
                 .tabItem {
-                    Label("Músicas", systemImage: "music.quarternote.3")
+                    Label("Episódios", systemImage: "rectangle.stack.badge.play.fill")
                 }
-                .tag(PhoneTab.songs)
+                .tag(PhoneTab.settings)
                 
                 NavigationView {
                     TrendsView(tabSelection: $tabSelection,
@@ -62,12 +62,12 @@ struct MainView: View {
                 .tag(PhoneTab.trends)
                 
                 NavigationView {
-                    SettingsView()
+                    SongsView()
                 }
                 .tabItem {
-                    Label("Ajustes", systemImage: "gearshape.fill")
+                    Label("Músicas", systemImage: "music.quarternote.3")
                 }
-                .tag(PhoneTab.settings)
+                .tag(PhoneTab.songs)
             }
             .onContinueUserActivity(Shared.ActivityTypes.playAndShareSounds, perform: { _ in
                 tabSelection = .sounds
