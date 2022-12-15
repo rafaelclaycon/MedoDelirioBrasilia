@@ -274,6 +274,16 @@
 		D949181228860ABC0079F545 /* AllFoldersiPadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D949181128860ABC0079F545 /* AllFoldersiPadView.swift */; };
 		D94AD34928811ADC00D3E4F0 /* Versioneer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94AD34828811ADC00D3E4F0 /* Versioneer.swift */; };
 		D94BA9ED2879EC7F001BD09C /* JoinFolderResearchBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94BA9EC2879EC7F001BD09C /* JoinFolderResearchBannerView.swift */; };
+		D94C8385294BAC8500E083F3 /* Pastor Marcio Valadao - Agora agorinha agorinha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94C837B294BAC8500E083F3 /* Pastor Marcio Valadao - Agora agorinha agorinha.mp3 */; };
+		D94C8386294BAC8500E083F3 /* Meme - Tava ruim, tava bom, mas parece que piorou.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94C837C294BAC8500E083F3 /* Meme - Tava ruim, tava bom, mas parece que piorou.mp3 */; };
+		D94C8387294BAC8500E083F3 /* Veia - Fia da Puta.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94C837D294BAC8500E083F3 /* Veia - Fia da Puta.mp3 */; };
+		D94C838A294BAC8500E083F3 /* Milton Cunha - Xo xo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94C8380294BAC8500E083F3 /* Milton Cunha - Xo xo.mp3 */; };
+		D94C838B294BAC8500E083F3 /* Franciel Cruz - E a sua mao em meu pau.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94C8381294BAC8500E083F3 /* Franciel Cruz - E a sua mao em meu pau.mp3 */; };
+		D94C838C294BAC8500E083F3 /* Milton Cunha - Forcas sambadas salvem o Brasil.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94C8382294BAC8500E083F3 /* Milton Cunha - Forcas sambadas salvem o Brasil.mp3 */; };
+		D94C838E294BAC8500E083F3 /* Igor Guimaraes - Enfia um abacaxi no meu cu mas nao me mete nisso.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94C8384294BAC8500E083F3 /* Igor Guimaraes - Enfia um abacaxi no meu cu mas nao me mete nisso.mp3 */; };
+		D94C8390294BACE000E083F3 /* Foi tao bom mas acabou.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94C838F294BACE000E083F3 /* Foi tao bom mas acabou.mp3 */; };
+		D94C8393294BAF7100E083F3 /* Renan (Choque de Cultura) - Brasil e bagunca.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94C8391294BAF7100E083F3 /* Renan (Choque de Cultura) - Brasil e bagunca.mp3 */; };
+		D94C8394294BAF7100E083F3 /* Jair Bolsonaro - Podemos ate viver sem oxigenio mas jamais sem liberdade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94C8392294BAF7100E083F3 /* Jair Bolsonaro - Podemos ate viver sem oxigenio mas jamais sem liberdade.mp3 */; };
 		D94FBD342948F64F001FA3A8 /* Heraclito Sobral Pinto - Militares e Republica nao combinam.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94FBD332948F64E001FA3A8 /* Heraclito Sobral Pinto - Militares e Republica nao combinam.mp3 */; };
 		D9523741285BF98A00E6C838 /* NetworkRabbitStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */; };
 		D9523743285BF99800E6C838 /* LocalDatabaseSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9523742285BF99800E6C838 /* LocalDatabaseSpy.swift */; };
@@ -1454,6 +1464,16 @@
 		D949181128860ABC0079F545 /* AllFoldersiPadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFoldersiPadView.swift; sourceTree = "<group>"; };
 		D94AD34828811ADC00D3E4F0 /* Versioneer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Versioneer.swift; sourceTree = "<group>"; };
 		D94BA9EC2879EC7F001BD09C /* JoinFolderResearchBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinFolderResearchBannerView.swift; sourceTree = "<group>"; };
+		D94C837B294BAC8500E083F3 /* Pastor Marcio Valadao - Agora agorinha agorinha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pastor Marcio Valadao - Agora agorinha agorinha.mp3"; sourceTree = "<group>"; };
+		D94C837C294BAC8500E083F3 /* Meme - Tava ruim, tava bom, mas parece que piorou.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Meme - Tava ruim, tava bom, mas parece que piorou.mp3"; sourceTree = "<group>"; };
+		D94C837D294BAC8500E083F3 /* Veia - Fia da Puta.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Veia - Fia da Puta.mp3"; sourceTree = "<group>"; };
+		D94C8380294BAC8500E083F3 /* Milton Cunha - Xo xo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Milton Cunha - Xo xo.mp3"; sourceTree = "<group>"; };
+		D94C8381294BAC8500E083F3 /* Franciel Cruz - E a sua mao em meu pau.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Franciel Cruz - E a sua mao em meu pau.mp3"; sourceTree = "<group>"; };
+		D94C8382294BAC8500E083F3 /* Milton Cunha - Forcas sambadas salvem o Brasil.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Milton Cunha - Forcas sambadas salvem o Brasil.mp3"; sourceTree = "<group>"; };
+		D94C8384294BAC8500E083F3 /* Igor Guimaraes - Enfia um abacaxi no meu cu mas nao me mete nisso.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Igor Guimaraes - Enfia um abacaxi no meu cu mas nao me mete nisso.mp3"; sourceTree = "<group>"; };
+		D94C838F294BACE000E083F3 /* Foi tao bom mas acabou.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Foi tao bom mas acabou.mp3"; sourceTree = "<group>"; };
+		D94C8391294BAF7100E083F3 /* Renan (Choque de Cultura) - Brasil e bagunca.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Renan (Choque de Cultura) - Brasil e bagunca.mp3"; sourceTree = "<group>"; };
+		D94C8392294BAF7100E083F3 /* Jair Bolsonaro - Podemos ate viver sem oxigenio mas jamais sem liberdade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Podemos ate viver sem oxigenio mas jamais sem liberdade.mp3"; sourceTree = "<group>"; };
 		D94FBD332948F64E001FA3A8 /* Heraclito Sobral Pinto - Militares e Republica nao combinam.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Heraclito Sobral Pinto - Militares e Republica nao combinam.mp3"; sourceTree = "<group>"; };
 		D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRabbitStub.swift; sourceTree = "<group>"; };
 		D9523742285BF99800E6C838 /* LocalDatabaseSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDatabaseSpy.swift; sourceTree = "<group>"; };
@@ -2386,6 +2406,16 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D94C8392294BAF7100E083F3 /* Jair Bolsonaro - Podemos ate viver sem oxigenio mas jamais sem liberdade.mp3 */,
+				D94C8391294BAF7100E083F3 /* Renan (Choque de Cultura) - Brasil e bagunca.mp3 */,
+				D94C838F294BACE000E083F3 /* Foi tao bom mas acabou.mp3 */,
+				D94C8381294BAC8500E083F3 /* Franciel Cruz - E a sua mao em meu pau.mp3 */,
+				D94C8384294BAC8500E083F3 /* Igor Guimaraes - Enfia um abacaxi no meu cu mas nao me mete nisso.mp3 */,
+				D94C837C294BAC8500E083F3 /* Meme - Tava ruim, tava bom, mas parece que piorou.mp3 */,
+				D94C8382294BAC8500E083F3 /* Milton Cunha - Forcas sambadas salvem o Brasil.mp3 */,
+				D94C8380294BAC8500E083F3 /* Milton Cunha - Xo xo.mp3 */,
+				D94C837B294BAC8500E083F3 /* Pastor Marcio Valadao - Agora agorinha agorinha.mp3 */,
+				D94C837D294BAC8500E083F3 /* Veia - Fia da Puta.mp3 */,
 				D9F9BB36294A0FF90005BE56 /* Rafael Infante - Errou feio, errou rude.mp3 */,
 				D94FBD332948F64E001FA3A8 /* Heraclito Sobral Pinto - Militares e Republica nao combinam.mp3 */,
 				D9EBC931294834D200960AE3 /* Cristiano Botafogo - Vinheta do gabinete paralelo.mp3 */,
@@ -4434,6 +4464,7 @@
 				D975FFF02880B4F20035E6F2 /* Feiticeira - Nao e feiticaria, e tecnologia meme short.mp3 in Resources */,
 				D975FFCB2880B4F20035E6F2 /* Opaio - Tomar no cu rapaz.mp3 in Resources */,
 				D95A463229183843006B4023 /* Eleitores do Lula no Maranhao - Urubu, cabelo liso, tu vai pro inferno.mp3 in Resources */,
+				D94C8387294BAC8500E083F3 /* Veia - Fia da Puta.mp3 in Resources */,
 				4911103C2926BF700055F4EE /* Jojo Todynho - Eu nao sabia que ele era safado assim nao moco.mp3 in Resources */,
 				D975FE8A2880B4F20035E6F2 /* Choque de Cultura - Cabo cabo cabo ja ta desvirtuando ja short.mp3 in Resources */,
 				D975FE7D2880B4F20035E6F2 /* COMUNISTA MEME.mp3 in Resources */,
@@ -4534,6 +4565,7 @@
 				D948E9912921F74F00D047D3 /* Edson Fachin - Aqueles que patrocinam o caos sabem o que estao fazendo.mp3 in Resources */,
 				D9DB6F8528CD770900E24BDE /* Fernanda Torres - Totalmente drogada.mp3 in Resources */,
 				D975FEED2880B4F20035E6F2 /* Molejo - Cilada short meme.mp3 in Resources */,
+				D94C838C294BAC8500E083F3 /* Milton Cunha - Forcas sambadas salvem o Brasil.mp3 in Resources */,
 				D9267EE728D1271400C0DC6C /* Mc Douglinhas - Ui, que brega.mp3 in Resources */,
 				D975FF252880B4F20035E6F2 /* Bolsonaro - E dai.mp3 in Resources */,
 				D99151312873E4C100FFAA29 /* funk-do-morto-mdb.mp3 in Resources */,
@@ -4550,6 +4582,7 @@
 				D92879E7283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 in Resources */,
 				D975FFA52880B4F20035E6F2 /* Away - nao fode mermao.mp3 in Resources */,
 				D9BB8F8728ECB2A900659D4A /* Alvaro Borba - Panico institucional funk.mp3 in Resources */,
+				D94C838E294BAC8500E083F3 /* Igor Guimaraes - Enfia um abacaxi no meu cu mas nao me mete nisso.mp3 in Resources */,
 				D991512E2873E4C100FFAA29 /* funk-sexo-selvagem-1-mdb.mp3 in Resources */,
 				D975FFE32880B4F20035E6F2 /* Gaucho Puto - Seu bosta, seu lixo, tu e um ser tao repulsivo.mp3 in Resources */,
 				D975FED52880B4F20035E6F2 /* Marisa Monte - Ate parece short meme.mp3 in Resources */,
@@ -4601,10 +4634,12 @@
 				D975003B2880B4F20035E6F2 /* Futurama - Entao tudo bem short.mp3 in Resources */,
 				D975FEAF2880B4F20035E6F2 /* Caue Moura - Foi mal tava doidao.mp3 in Resources */,
 				D9E7D0F228AC677B001E909E /* Paulo Guedes - Empregada domestica na Disney (curto).mp3 in Resources */,
+				D94C8393294BAF7100E083F3 /* Renan (Choque de Cultura) - Brasil e bagunca.mp3 in Resources */,
 				4911102E2926BD380055F4EE /* Leonardo Bastos - Vontade de chorar e morrer so isso.mp3 in Resources */,
 				491110422926C0100055F4EE /* Eduardo Pazuello - Tu demorou pra sentar aqui na mesa.mp3 in Resources */,
 				D975FEC32880B4F20035E6F2 /* Bolsonaro - Pretendo beneficiar um filho meu sim pretendo.mp3 in Resources */,
 				49DEA9C628811482008C9BA1 /* Chiquititas Brasil - Nao Pode Ser short meme.mp3 in Resources */,
+				D94C838B294BAC8500E083F3 /* Franciel Cruz - E a sua mao em meu pau.mp3 in Resources */,
 				497E63C72919463800FBC539 /* Desconhecido - Que merda caramba poxa vida.mp3 in Resources */,
 				D975FFC72880B4F20035E6F2 /* Ernesto Araujo - Thats not true (House Remix).mp3 in Resources */,
 				D9DB6F8328CD6F3600E24BDE /* Edu Santos - Totalmente embriagado.mp3 in Resources */,
@@ -4710,6 +4745,7 @@
 				D9BB8F7B28EC753100659D4A /* Charlie e Lola - Da pra parar de enrolar.mp3 in Resources */,
 				D97B2DE328E60B8600C3B50B /* William Bonner - Fora Bolsonaro Genocida.mp3 in Resources */,
 				D921F885288B0177003979CC /* Ihu compilacao.mp3 in Resources */,
+				D94C8386294BAC8500E083F3 /* Meme - Tava ruim, tava bom, mas parece que piorou.mp3 in Resources */,
 				D975FE1E2880B4F20035E6F2 /* Matheuzinho e  Menor Nico - O Golpe ta ai short meme.mp3 in Resources */,
 				D91793A9288E1B51009C3165 /* Um Ministerio Tecnico.mp3 in Resources */,
 				D9547D8228FDD7190020A800 /* Igor Guimaraes e Luiz Felipe D'Avila - Que alegria, que tistreza.mp3 in Resources */,
@@ -4869,6 +4905,7 @@
 				497E63CB2919484600FBC539 /* Frederico Davila - Gente nojenta como voce.mp3 in Resources */,
 				D9E1A8D02914CB3A00694A74 /* Monica de Bolle - Pronto, falei.mp3 in Resources */,
 				D99D0DC528CAB5F000EB6F27 /* TV BRASIL - GUEDES - Auxilio emergencial de 200 reais.mp3 in Resources */,
+				D94C838A294BAC8500E083F3 /* Milton Cunha - Xo xo.mp3 in Resources */,
 				D921F87C288B0177003979CC /* Jornalista de alta performance - Oswaldo Eustaquio.mp3 in Resources */,
 				D91793B3288E3CF0009C3165 /* Jair Bolsonaro - Canalhas.mp3 in Resources */,
 				D975FE1F2880B4F20035E6F2 /* Vai Dar Namoro - Tapa Tapa Tome.mp3 in Resources */,
@@ -4897,6 +4934,8 @@
 				D92DAB1C2936D14800E0CA82 /* Leandro Demori - Precisa de muita gente pra fazer bagunca, nao.mp3 in Resources */,
 				D921F88E288B063A003979CC /* Ih rapaz - fred.mp3 in Resources */,
 				D975FFB52880B4F20035E6F2 /* Malafaia - Deus escolheu as coisas loucas.mp3 in Resources */,
+				D94C8385294BAC8500E083F3 /* Pastor Marcio Valadao - Agora agorinha agorinha.mp3 in Resources */,
+				D94C8390294BACE000E083F3 /* Foi tao bom mas acabou.mp3 in Resources */,
 				D9E7D0F628AC6BC6001E909E /* PORTA DOS FUNDOS - Nao, brother broder.mp3 in Resources */,
 				49DEA9B02881101C008C9BA1 /* SpongeBob Time Cards - A few moments later.mp3 in Resources */,
 				D975FF642880B4F20035E6F2 /* Vai Dar Namoro - Pare.mp3 in Resources */,
@@ -5017,6 +5056,7 @@
 				D975FEDD2880B4F20035E6F2 /* Gilmar mendes - uma grande confusao short.mp3 in Resources */,
 				D92722FE289246AC001D5E47 /* Parafernalha - Ta errado, ta muito errado isso.mp3 in Resources */,
 				D975004E2880B5190035E6F2 /* MULTISHOW - Djonga - Xinguei Bolsonaro um monte de vezes, vou xingar de novo voce e um merda.mp3 in Resources */,
+				D94C8394294BAF7100E083F3 /* Jair Bolsonaro - Podemos ate viver sem oxigenio mas jamais sem liberdade.mp3 in Resources */,
 				D97500142880B4F20035E6F2 /* RADIO BANDNEWS FM - Ciro Gomes - Que e um bosta.mp3 in Resources */,
 				D9B2BFC6290441C100D161AF /* Jair Bolsonaro - Nem que nao tem nem que tem.mp3 in Resources */,
 				49F9220228E33576009AC743 /* Ey ey eymael funk meme.mp3 in Resources */,
