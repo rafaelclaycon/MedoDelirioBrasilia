@@ -46,29 +46,46 @@ struct NotificationsSettingsView: View {
                             UserSettings.setUserAllowedNotifications(to: newValue)
                         }
                     }
-            } header: {
-                EmptyView()
-            } footer: {
-                Text("Caso não consiga ativar a opção acima, toque no botão abaixo para habilitar as notificações do app nos Ajustes do sistema.")
             }
             
             Section {
-                Button("Mostrar permissões de notificação do sistema") {
+                Toggle("Geral (novos sons, tendências, novos recursos)", isOn: $enableNotifications)
+//                    .onChange(of: enableNotifications) { newValue in
+//                        if newValue == true {
+//                            NotificationAide.registerForRemoteNotifications() { _ in
+//                                enableNotifications = UserSettings.getUserAllowedNotifications()
+//                            }
+//                        } else {
+//                            UserSettings.setUserAllowedNotifications(to: newValue)
+//                        }
+//                    }
+                
+                Toggle("Novos Episódios (Beta)", isOn: $enableNotifications)
+            } header: {
+                Text("Canais")
+            }
+            
+            Section {
+                Button("Mostrar permissões do app no sistema") {
                     if let appSettings = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(appSettings) {
                         UIApplication.shared.open(appSettings)
                     }
                 }
+            } header: {
+                EmptyView()
+            } footer: {
+                Text("Use a opção acima para verificar se você não bloqueou o app de mandar notificações a nível de sistema.")
             }
             
-            Section {
-                Button("Habilitar re-tentativa de envio do token de notificação para o servidor") {
-                    AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: true)
-                }
-            } header: {
-                Text("Resolução de problemas")
-            } footer: {
-                Text("Use o botão acima caso você tenha desinstalado o app, reinstalado, concordado novamente em receber notificações e não recebeu mais.\n\nDepois disso, toque em Ajustes no topo da tela para voltar para a tela de Ajustes e re-abra essa tela (Notificações) para que a re-tentativa seja feita.")
-            }
+//            Section {
+//                Button("Habilitar re-tentativa de envio do token de notificação para o servidor") {
+//                    AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: true)
+//                }
+//            } header: {
+//                Text("Resolução de problemas")
+//            } footer: {
+//                Text("Use o botão acima caso você tenha desinstalado o app, reinstalado, concordado novamente em receber notificações e não recebeu mais.\n\nDepois disso, toque em Ajustes no topo da tela para voltar para a tela de Ajustes e re-abra essa tela (Notificações) para que a re-tentativa seja feita.")
+//            }
         }
         .navigationTitle("Notificações")
         .navigationBarTitleDisplayMode(.inline)
