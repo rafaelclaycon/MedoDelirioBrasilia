@@ -49,26 +49,26 @@ struct NotificationsSettingsView: View {
             } header: {
                 EmptyView()
             } footer: {
-                Text("Caso não consiga ativar a opção acima, toque no botão abaixo para habilitar as notificações do app nos Ajustes do sistema.")
+                Text("Caso a opção acima não esteja surtindo efeito, toque no botão abaixo para habilitar as notificações do app nos Ajustes do sistema.")
             }
             
             Section {
-                Button("Mostrar permissões de notificação do sistema") {
+                Button("Mostrar permissões do app no sistema") {
                     if let appSettings = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(appSettings) {
                         UIApplication.shared.open(appSettings)
                     }
                 }
             }
             
-            Section {
-                Button("Habilitar re-tentativa de envio do token de notificação para o servidor") {
-                    AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: true)
-                }
-            } header: {
-                Text("Resolução de problemas")
-            } footer: {
-                Text("Use o botão acima caso você tenha desinstalado o app, reinstalado, concordado novamente em receber notificações e não recebeu mais.\n\nDepois disso, toque em Ajustes no topo da tela para voltar para a tela de Ajustes e re-abra essa tela (Notificações) para que a re-tentativa seja feita.")
-            }
+//            Section {
+//                Button("Habilitar re-tentativa de envio do token de notificação para o servidor") {
+//                    AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: true)
+//                }
+//            } header: {
+//                Text("Resolução de problemas")
+//            } footer: {
+//                Text("Use o botão acima caso você tenha desinstalado o app, reinstalado, concordado novamente em receber notificações e não recebeu mais.\n\nDepois disso, toque em Ajustes no topo da tela para voltar para a tela de Ajustes e re-abra essa tela (Notificações) para que a re-tentativa seja feita.")
+//            }
         }
         .navigationTitle("Notificações")
         .navigationBarTitleDisplayMode(.inline)
