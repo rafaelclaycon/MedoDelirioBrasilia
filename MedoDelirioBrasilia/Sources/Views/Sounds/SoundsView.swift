@@ -14,7 +14,7 @@ struct SoundsView: View {
     }
     
     enum SubviewToOpen {
-        case onboardingView, addToFolderView, shareAsVideoView
+        case onboardingView, addToFolderView, shareAsVideoView, settingsView
     }
     
     @StateObject var viewModel: SoundsViewViewModel
@@ -29,8 +29,6 @@ struct SoundsView: View {
     @State private var showingModalView = false
     
     @Binding var updateSoundsList: Bool
-    
-    @State var openSettings: Bool = false
     
     // Temporary banners
     //@State private var shouldDisplayHotWheatherBanner: Bool = false
@@ -95,8 +93,6 @@ struct SoundsView: View {
                                                                                                   authorName: authorToAutoOpen.name),
                                                              author: authorToAutoOpen),
                                isActive: $autoOpenAuthor) { EmptyView() }
-                NavigationLink(destination: SettingsView(),
-                               isActive: $openSettings) { EmptyView() }
                 
                 if showNoFavoritesView {
                     NoFavoritesView()
@@ -333,6 +329,9 @@ struct SoundsView: View {
                     
                 case .shareAsVideoView:
                     ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: false)
+                    
+                case .settingsView:
+                    SettingsView()
                 }
             }
             .onChange(of: updateSoundsList) { shouldUpdate in
@@ -426,7 +425,8 @@ struct SoundsView: View {
     @ViewBuilder func leadingToolbarControls() -> some View {
         if UIDevice.current.userInterfaceIdiom == .phone {
             Button {
-                openSettings = true
+                subviewToOpen = .settingsView
+                showingModalView = true
             } label: {
                 Image(systemName: "gearshape")
             }
