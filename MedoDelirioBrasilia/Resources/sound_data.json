@@ -8271,7 +8271,7 @@
         "filename": "Pastor Marcio Valadao - Agora agorinha agorinha.mp3",
         "dateAdded": "2022-12-15T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "B2538838-51D1-4DE5-B23C-C7A009940B59",
@@ -8281,7 +8281,7 @@
         "filename": "Veia - Fia da Puta.mp3",
         "dateAdded": "2022-12-15T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "558CB470-4489-4A00-A9FB-117BC85017A6",
@@ -8291,7 +8291,7 @@
         "filename": "Meme - Tava ruim, tava bom, mas parece que piorou.mp3",
         "dateAdded": "2022-12-15T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "FF1B7A58-079F-4F95-B56C-D39507E6C942",
@@ -8301,7 +8301,7 @@
         "filename": "Renan (Choque de Cultura) - Brasil e bagunca.mp3",
         "dateAdded": "2022-12-15T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "0F703B70-3D94-4823-9043-785FD289A141",
@@ -8311,7 +8311,7 @@
         "filename": "Igor Guimaraes - Enfia um abacaxi no meu cu mas nao me mete nisso.mp3",
         "dateAdded": "2022-12-15T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "6C930AD8-0823-405A-B688-12389C68F3DB",
@@ -8321,17 +8321,17 @@
         "filename": "Milton Cunha - Forcas sambadas salvem o Brasil.mp3",
         "dateAdded": "2022-12-15T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "4E4D62E8-6328-4546-A36F-4F0C7008E84C",
-        "title": "Podemos até viver sem oxigênio, mas jamais sem liberdade (imitando pessoa sem ar)",
+        "title": "Podemos até viver sem oxigênio, mas jamais sem liberdade",
         "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
         "description": "podemos até viver sem oxigênio, mas jamais sem liberdade imita pessoa sem ar tomar no cu rapaz",
         "filename": "Jair Bolsonaro - Podemos ate viver sem oxigenio mas jamais sem liberdade.mp3",
         "dateAdded": "2022-12-15T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "31CF3C10-6FE2-4F7D-B28B-D436DEDFF274",
@@ -8341,7 +8341,7 @@
         "filename": "Foi tao bom mas acabou.mp3",
         "dateAdded": "2022-12-15T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "3DDDDEC7-DE23-4A0F-92C5-513CC0FC58AA",
@@ -8351,7 +8351,7 @@
         "filename": "Franciel Cruz - E a sua mao em meu pau.mp3",
         "dateAdded": "2022-12-15T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "09C02279-37FB-409F-813B-855B833A0103",
@@ -8361,6 +8361,16 @@
         "filename": "Milton Cunha - Xo xo.mp3",
         "dateAdded": "2022-12-15T00:00:00Z",
         "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "6A2C5D8D-1472-49A4-8994-FA26089F9728",
+        "title": "Resmungos",
+        "authorId": "C515748D-92E1-4732-A130-8D3BDCA187BD",
+        "description": "resmungos que bosta vai começar sai daqui e vai embora filho da puta Benedito de Lira",
+        "filename": "Biu de Lira - Resmungos.mp3",
+        "dateAdded": "2022-12-17T00:00:00Z",
+        "isOffensive": true,
         "isNew": true
     }
 ]
