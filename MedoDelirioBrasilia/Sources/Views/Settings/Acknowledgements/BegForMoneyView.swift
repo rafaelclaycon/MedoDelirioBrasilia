@@ -23,7 +23,7 @@ struct BegForMoneyView: View {
                 
                 Text("**Últimas contribuições:**")
                 
-                MarqueeText(text: "Paulo F. M.     Julio Cesar A.     Marina L. F.     Roberto B. E. T.     Carolina P. L.",
+                MarqueeText(text: "Ptolomeu M. P.     Paulo F. M.     Julio Cesar A.     Marina L. F.     Roberto B. E. T.",
                             font: UIFont.preferredFont(forTextStyle: .body),
                             leftFade: 16,
                             rightFade: 16,
