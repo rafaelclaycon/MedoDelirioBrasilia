@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct EpisodeView: View {
+
     var body: some View {
         ScrollView {
             VStack {
@@ -16,10 +17,13 @@ struct EpisodeView: View {
             .navigationTitle("Episódios")
         }
     }
+
 }
 
 struct EpisodeView_Previews: PreviewProvider {
+
     static var previews: some View {
         EpisodeView()
     }
+
 }
