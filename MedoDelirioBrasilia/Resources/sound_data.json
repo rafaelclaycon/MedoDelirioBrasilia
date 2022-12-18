@@ -8371,6 +8371,16 @@
         "filename": "Biu de Lira - Resmungos.mp3",
         "dateAdded": "2022-12-17T00:00:00Z",
         "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "89820053-5E7B-4817-8E11-3FADB121025F",
+        "title": "Alguém conhece a senhora Jeanine Áñez?",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Alguem conhece a senhora Jeanine Anez",
+        "filename": "Jair Bolsonaro - Alguem conhece a senhora Jeanine Anez.mp3",
+        "dateAdded": "2022-12-18T00:00:00Z",
+        "isOffensive": false,
         "isNew": true
     }
 ]
