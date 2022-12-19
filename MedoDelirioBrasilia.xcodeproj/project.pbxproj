@@ -226,7 +226,6 @@
 		D93752172902C94A00E2F27B /* O senhor gozou.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D93752152902C94A00E2F27B /* O senhor gozou.mp3 */; };
 		D93752192902CD1A00E2F27B /* Genocida, miliciano, canibal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D93752182902CD1A00E2F27B /* Genocida, miliciano, canibal.mp3 */; };
 		D937E0F12908AA0C004137ED /* EpisodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D937E0F02908AA0C004137ED /* EpisodeView.swift */; };
-		D937E0F42908AD21004137ED /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = D937E0F32908AD21004137ED /* Podcast.swift */; };
 		D937E0F62908AD29004137ED /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D937E0F52908AD29004137ED /* Episode.swift */; };
 		D937E0F82909600E004137ED /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D937E0F72909600E004137ED /* EpisodeCell.swift */; };
 		D937E0FA29096049004137ED /* EpisodeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D937E0F929096049004137ED /* EpisodeCellViewModel.swift */; };
@@ -308,6 +307,7 @@
 		D9557566291309B2002EFC50 /* MarqueeText in Frameworks */ = {isa = PBXBuildFile; productRef = D9557565291309B2002EFC50 /* MarqueeText */; };
 		D955756829131037002EFC50 /* Omar Aziz - Como dizem os peruanos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D955756729131037002EFC50 /* Omar Aziz - Como dizem os peruanos.mp3 */; };
 		D955756A2913419A002EFC50 /* Jair Bolsonaro - Precisa ter provas.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95575692913419A002EFC50 /* Jair Bolsonaro - Precisa ter provas.mp3 */; };
+		D955DC972950A955009230FD /* Opener.swift in Sources */ = {isa = PBXBuildFile; fileRef = D955DC962950A955009230FD /* Opener.swift */; };
 		D957047D28AEF733008DEF8C /* ProcessingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957047C28AEF733008DEF8C /* ProcessingView.swift */; };
 		D957048328AFCC93008DEF8C /* ChangeAppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957048228AFCC93008DEF8C /* ChangeAppIconView.swift */; };
 		D9575092284427C70094AEA6 /* ShareLogsDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9575091284427C70094AEA6 /* ShareLogsDummy.swift */; };
@@ -929,7 +929,6 @@
 		D976FF3828674BAC00998E1B /* FoldersBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D976FF3728674BAC00998E1B /* FoldersBannerView.swift */; };
 		D977294A28E1F99D003B0CD3 /* Balde de cerveja gelada no final do arco-iris.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D977294928E1F99C003B0CD3 /* Balde de cerveja gelada no final do arco-iris.mp3 */; };
 		D97B2DD628E3E85400C3B50B /* MostSharedByMeViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97B2DD528E3E85400C3B50B /* MostSharedByMeViewViewModel.swift */; };
-		D97B2DD928E5EA0500C3B50B /* DeleteFolderViewAide.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97B2DD828E5EA0500C3B50B /* DeleteFolderViewAide.swift */; };
 		D97B2DE228E60B8600C3B50B /* Soraya Thronicke - Nao cutuque onca com a sua vara curta.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D97B2DDB28E60B8500C3B50B /* Soraya Thronicke - Nao cutuque onca com a sua vara curta.mp3 */; };
 		D97B2DE328E60B8600C3B50B /* William Bonner - Fora Bolsonaro Genocida.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D97B2DDC28E60B8600C3B50B /* William Bonner - Fora Bolsonaro Genocida.mp3 */; };
 		D97B2DE428E60B8600C3B50B /* Patrick (Zorra Total) - Olha a Faca.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D97B2DDD28E60B8600C3B50B /* Patrick (Zorra Total) - Olha a Faca.mp3 */; };
@@ -1074,6 +1073,7 @@
 		D9C77B6F28CAC07B006CA17B /* Thiago Arruda - Passarinho que come cu nao sabe a pedra que tem.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C77B6E28CAC07B006CA17B /* Thiago Arruda - Passarinho que come cu nao sabe a pedra que tem.mp3 */; };
 		D9C7D18C292EEA81003F500C /* Cidade Oculta e Google Tradutor - Putinha do Jobs.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C7D18A292EEA80003F500C /* Cidade Oculta e Google Tradutor - Putinha do Jobs.mp3 */; };
 		D9C7D18D292EEA81003F500C /* Cidade Oculta e Google Tradutor - Voce ta falando isso porque voce e a putinha do Jobs.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C7D18B292EEA81003F500C /* Cidade Oculta e Google Tradutor - Voce ta falando isso porque voce e a putinha do Jobs.mp3 */; };
+		D9C907EF294FF3D20032161E /* DeleteFolderViewAide.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97B2DD828E5EA0500C3B50B /* DeleteFolderViewAide.swift */; };
 		D9CA8BB72908802300C6B492 /* Jair Bolsonaro - Nao tenho provas.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CA8BB62908802300C6B492 /* Jair Bolsonaro - Nao tenho provas.mp3 */; };
 		D9CB84F528B2E31D00E815C2 /* Alvaro Borba - A Verdadeira Polarizacao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CB84F428B2E31D00E815C2 /* Alvaro Borba - A Verdadeira Polarizacao.mp3 */; };
 		D9CC025D28BD9EBD0021C1E6 /* GridHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CC025C28BD9EBD0021C1E6 /* GridHelper.swift */; };
@@ -1426,7 +1426,6 @@
 		D93752152902C94A00E2F27B /* O senhor gozou.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O senhor gozou.mp3"; sourceTree = "<group>"; };
 		D93752182902CD1A00E2F27B /* Genocida, miliciano, canibal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Genocida, miliciano, canibal.mp3"; sourceTree = "<group>"; };
 		D937E0F02908AA0C004137ED /* EpisodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeView.swift; sourceTree = "<group>"; };
-		D937E0F32908AD21004137ED /* Podcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
 		D937E0F52908AD29004137ED /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
 		D937E0F72909600E004137ED /* EpisodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCell.swift; sourceTree = "<group>"; };
 		D937E0F929096049004137ED /* EpisodeCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCellViewModel.swift; sourceTree = "<group>"; };
@@ -1506,6 +1505,7 @@
 		D95575612910A462002EFC50 /* Jair Bolsonaro - O que os caras querem e a nossa hemorroida.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - O que os caras querem e a nossa hemorroida.mp3"; sourceTree = "<group>"; };
 		D955756729131037002EFC50 /* Omar Aziz - Como dizem os peruanos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Omar Aziz - Como dizem os peruanos.mp3"; sourceTree = "<group>"; };
 		D95575692913419A002EFC50 /* Jair Bolsonaro - Precisa ter provas.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Precisa ter provas.mp3"; sourceTree = "<group>"; };
+		D955DC962950A955009230FD /* Opener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Opener.swift; sourceTree = "<group>"; };
 		D957047C28AEF733008DEF8C /* ProcessingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingView.swift; sourceTree = "<group>"; };
 		D957048228AFCC93008DEF8C /* ChangeAppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAppIconView.swift; sourceTree = "<group>"; };
 		D9575091284427C70094AEA6 /* ShareLogsDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareLogsDummy.swift; sourceTree = "<group>"; };
@@ -3451,6 +3451,7 @@
 				D9A3AB6C28F062580064CB7A /* TimeKeeper.swift */,
 				D967E2B9290196F900B21C11 /* WallE.swift */,
 				D90EDDB92908505000ED87A8 /* FolderResearchHelper.swift */,
+				D955DC962950A955009230FD /* Opener.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -3486,7 +3487,6 @@
 		D937E0F22908AD0C004137ED /* Episodes */ = {
 			isa = PBXGroup;
 			children = (
-				D937E0F32908AD21004137ED /* Podcast.swift */,
 				D937E0F52908AD29004137ED /* Episode.swift */,
 			);
 			path = Episodes;
@@ -5203,6 +5203,7 @@
 			files = (
 				D9625E8028238F9A00080852 /* SoundsView.swift in Sources */,
 				D91107142863B5FD000B6F8F /* ContentCollection.swift in Sources */,
+				D955DC972950A955009230FD /* Opener.swift in Sources */,
 				D9877D2928694F3200B541F9 /* LocalDatabase+UserFolderContent.swift in Sources */,
 				D99BBE4129466D9800BCA901 /* UsageMetric.swift in Sources */,
 				D9CC893328EB7BB500576492 /* MostSharedByAudienceView.swift in Sources */,
@@ -5222,7 +5223,6 @@
 				D98622E0283FC57100E9F630 /* AuthorDetailView.swift in Sources */,
 				D94AD34928811ADC00D3E4F0 /* Versioneer.swift in Sources */,
 				D92E7067283C51D20035826C /* Song.swift in Sources */,
-				D937E0F42908AD21004137ED /* Podcast.swift in Sources */,
 				D93CCB79286A8A220002CF81 /* ToastView.swift in Sources */,
 				D958BC752869000A000B2EDA /* FolderInfoEditingViewViewModel.swift in Sources */,
 				D9F87A9228F6EA51002EE8AA /* RemoveFavoriteLogTable.swift in Sources */,
@@ -5273,6 +5273,7 @@
 				D916627F2874F838000A1B23 /* NotificationsSymbol.swift in Sources */,
 				D9BB9265285DAA8E005CD6DD /* BegForMoneyView.swift in Sources */,
 				D912A33628B3E8F000F7293D /* VideoExportType.swift in Sources */,
+				D9C907EF294FF3D20032161E /* DeleteFolderViewAide.swift in Sources */,
 				D901B06428BC795200B1A610 /* MusicGenre.swift in Sources */,
 				D9FB489A2870FE7800FF90D0 /* TapticHelper.swift in Sources */,
 				D957047D28AEF733008DEF8C /* ProcessingView.swift in Sources */,
@@ -5339,8 +5340,6 @@
 				D9FA0CD92850864C000F6ADE /* ClientDeviceInfo.swift in Sources */,
 				D9D3D4912887495B00C42FDE /* FolderList.swift in Sources */,
 				D937E0F12908AA0C004137ED /* EpisodeView.swift in Sources */,
-				D97B2DD928E5EA0500C3B50B /* DeleteFolderViewAid.swift in Sources */,
-				D97B2DD928E5EA0500C3B50B /* DeleteFolderViewAide.swift in Sources */,
 				D9758C3A28617BA70094D388 /* AddUserFolderTables.swift in Sources */,
 				D9265741285A1EE700947165 /* LocalDatabase+Log.swift in Sources */,
 				D980456228380F66003B2E83 /* LocalizableStrings.swift in Sources */,

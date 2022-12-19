@@ -22,7 +22,11 @@ struct EpisodeCell: View {
             HStack {
                 VStack(alignment: .leading, spacing: 7) {
                     Text(viewModel.title)
-                        .lineLimit(2)
+                        //.lineLimit(2)
+                    
+                    Text(viewModel.description)
+                        .foregroundColor(.gray)
+                        .font(.footnote)
                     
                     Text(viewModel.subtitle)
                         .foregroundColor(.gray)
@@ -36,31 +40,52 @@ struct EpisodeCell: View {
             
             HStack(spacing: 20) {
                 Button {
-                    print("Spotify")
+                    //open(link: "https://open.spotify.com/show/4GTrddwqYaFDOuNUPcsRaX?si=c0592a81c6a64c83")
+                    Opener.open(link: "https://open.spotify.com/show/4GTrddwqYaFDOuNUPcsRaX?si=c0592a81c6a64c83")
+                    //print("Spotify")
                 } label: {
-                    HStack {
-                        Image(systemName: "airpodsmax")
-                        Text("Spotify")
-                    }
+                    Image("spotify")
+                        .renderingMode(.template)
+                        .foregroundColor(.green)
+                        .padding(.horizontal)
                 }
+                .tint(.green)
+                .controlSize(.regular)
+                .buttonStyle(.bordered)
+                .buttonBorderShape(.roundedRectangle)
+                
                 Button {
-                    print("Podcasts")
+                    //open(link: "https://open.spotify.com/show/4GTrddwqYaFDOuNUPcsRaX?si=c0592a81c6a64c83")
+                    print("Apple Podcasts")
                 } label: {
-                    HStack {
-                        Image(systemName: "airpodsmax")
-                        Text("Podcasts")
-                    }
+                    Image("apple_podcasts")
+                        .resizable()
+                        .renderingMode(.template)
+                        .foregroundColor(.purple)
+                        .frame(width: 24, height: 24)
+                        .padding(.horizontal)
                 }
-                .foregroundColor(.purple)
+                .tint(.purple)
+                .controlSize(.regular)
+                .buttonStyle(.bordered)
+                .buttonBorderShape(.roundedRectangle)
+                
                 Button {
+                    //open(link: "https://open.spotify.com/show/4GTrddwqYaFDOuNUPcsRaX?si=c0592a81c6a64c83")
                     print("Pocket Casts")
                 } label: {
-                    HStack {
-                        Image(systemName: "airpodsmax")
-                        Text("Pocket Casts")
-                    }
+                    Image("pocket_casts")
+                        .resizable()
+                        .renderingMode(.template)
+                        .foregroundColor(.red)
+                        .frame(width: 24, height: 24)
+                        .padding(.horizontal)
                 }
-                .foregroundColor(.red)
+                .tint(.red)
+                .controlSize(.regular)
+                .buttonStyle(.bordered)
+                .buttonBorderShape(.roundedRectangle)
+                
                 Spacer()
             }
             .padding(.horizontal)
@@ -71,24 +96,24 @@ struct EpisodeCell: View {
 }
 
 struct EpisodeCell_Previews: PreviewProvider {
-    
+
     static var previews: some View {
         Group {
-            EpisodeCell(viewModel: EpisodeCellViewModel(episode: Episode(id: "1",
-                                                                       podcastId: 123,
-                                                                       title: "Dias 1.390, 1.391 e 1.392 | Bob e Jeff em Comendador Levy Gasparian | Dias 21, 22 e 23/10/22",
-                                                                       pubDate: Date(),
-                                                                       duration: 300,
-                                                                       originalRemoteUrl: .empty)))
+            EpisodeCell(viewModel: EpisodeCellViewModel(episode: Episode(episodeId: "123",
+                                                                         title: "Dias 1.390, 1.391 e 1.392 | Bob e Jeff em Comendador Levy Gasparian | Dias 21, 22 e 23/10/22",
+                                                                         description: "Bob Jeff in the sky with grenades.",
+                                                                         pubDate: "2022-12-15T05:47:52.000Z",
+                                                                         duration: 300,
+                                                                         creationDate: .empty)))
             
-            EpisodeCell(viewModel: EpisodeCellViewModel(episode: Episode(id: "2",
-                                                                         podcastId: 456,
+            EpisodeCell(viewModel: EpisodeCellViewModel(episode: Episode(episodeId: "456",
                                                                          title: "Dias 1.386 a 1.389 | A indiscrição que comove | 17 a 20/10/22",
-                                                                         pubDate: Date(),
+                                                                         description: "Conrado Hubner Mendes e o Curriculum Vitae de Bolsonaro, um dossiê; Dê de presente nosso futuro livro em www.averdadevoslibertara.com.br; Militares e eleições; Bolsonaro, mais ministros no STF; Guedes e o salário mínimo.",
+                                                                         pubDate: "2022-12-15T05:47:52.000Z",
                                                                          duration: 3600,
-                                                                         originalRemoteUrl: .empty)))
+                                                                         creationDate: .empty)))
         }
         .previewLayout(.fixed(width: 350, height: 100))
     }
-    
+
 }
