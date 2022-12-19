@@ -15,12 +15,18 @@ class EpisodeCellViewModel: ObservableObject {
     @Published var title: String
     @Published var description: String
     @Published var subtitle: String
+    @Published var spotifyLink: String
+    @Published var applePodcastsLink: String
+    @Published var pocketCastsLink: String
     
     init(episode: Episode, selected: Bool = false) {
         episodeID = episode.id
         title = episode.title
         description = episode.description
-        subtitle = (episode.pubDate.iso8601withFractionalSeconds?.asShortString() ?? .empty)  + " - " + episode.duration.toDisplayString()
+        subtitle = (episode.pubDate.iso8601withFractionalSeconds?.asShortString() ?? .empty)  + " · " + episode.duration.toDisplayString()
+        spotifyLink = episode.spotifyLink
+        applePodcastsLink = episode.applePodcastsLink
+        pocketCastsLink = episode.pocketCastsLink
     }
 
 }

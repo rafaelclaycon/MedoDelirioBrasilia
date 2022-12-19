@@ -22,14 +22,13 @@ struct EpisodeCell: View {
             HStack {
                 VStack(alignment: .leading, spacing: 7) {
                     Text(viewModel.title)
-                        //.lineLimit(2)
+                        .font(.headline)
                     
                     Text(viewModel.description)
                         .foregroundColor(.gray)
-                        .font(.footnote)
+                        .font(.subheadline)
                     
                     Text(viewModel.subtitle)
-                        .foregroundColor(.gray)
                         .bold()
                         .font(.footnote)
                 }
@@ -40,9 +39,7 @@ struct EpisodeCell: View {
             
             HStack(spacing: 20) {
                 Button {
-                    //open(link: "https://open.spotify.com/show/4GTrddwqYaFDOuNUPcsRaX?si=c0592a81c6a64c83")
-                    Opener.open(link: "https://open.spotify.com/show/4GTrddwqYaFDOuNUPcsRaX?si=c0592a81c6a64c83")
-                    //print("Spotify")
+                    Opener.open(link: viewModel.spotifyLink)
                 } label: {
                     Image("spotify")
                         .renderingMode(.template)
@@ -55,8 +52,7 @@ struct EpisodeCell: View {
                 .buttonBorderShape(.roundedRectangle)
                 
                 Button {
-                    //open(link: "https://open.spotify.com/show/4GTrddwqYaFDOuNUPcsRaX?si=c0592a81c6a64c83")
-                    print("Apple Podcasts")
+                    Opener.open(link: viewModel.applePodcastsLink)
                 } label: {
                     Image("apple_podcasts")
                         .resizable()
@@ -64,6 +60,7 @@ struct EpisodeCell: View {
                         .foregroundColor(.purple)
                         .frame(width: 24, height: 24)
                         .padding(.horizontal)
+                        .padding(.vertical, 4)
                 }
                 .tint(.purple)
                 .controlSize(.regular)
@@ -71,8 +68,7 @@ struct EpisodeCell: View {
                 .buttonBorderShape(.roundedRectangle)
                 
                 Button {
-                    //open(link: "https://open.spotify.com/show/4GTrddwqYaFDOuNUPcsRaX?si=c0592a81c6a64c83")
-                    print("Pocket Casts")
+                    Opener.open(link: viewModel.pocketCastsLink)
                 } label: {
                     Image("pocket_casts")
                         .resizable()
@@ -80,6 +76,7 @@ struct EpisodeCell: View {
                         .foregroundColor(.red)
                         .frame(width: 24, height: 24)
                         .padding(.horizontal)
+                        .padding(.vertical, 4)
                 }
                 .tint(.red)
                 .controlSize(.regular)
