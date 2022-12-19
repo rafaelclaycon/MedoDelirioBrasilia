@@ -36,7 +36,7 @@ struct EpisodeView: View {
                              pocketCastsLink: "https://pca.st/episode/c7252e37-6d22-43ea-ad87-d2302b3bc3c5"))
         array.append(Episode(episodeId: "https://www.central3.com.br/?p=46083",
                              title: "Dias 1.441, 1.442 e 1.443 | O mais patético dos pedidos de ajuda | 09, 10 e 11/12/22",
-                             description: "Foi o Constantino; Medo e Delírio em Brasília; A diplomação; Menina Rosa.",
+                             description: "Lula diplomado; O Mito pede ajuda; Zé Múcio; Anistia é o caralho.",
                              pubDate: "2022-12-13T17:52:14.000Z",
                              duration: 2530,
                              creationDate: .empty,
@@ -45,19 +45,19 @@ struct EpisodeView: View {
                              pocketCastsLink: "https://pca.st/podcast/888d5760-4c1b-0138-9785-0acc26574db2"))
         array.append(Episode(episodeId: "https://www.central3.com.br/?p=46063",
                              title: "Dias 1.439 e 1.440 | Conciliações | 07 e 08/12/22",
-                             description: "Foi o Constantino; Medo e Delírio em Brasília; A diplomação; Menina Rosa.",
+                             description: "Brasil perdeu; Julgamento do orçamento secreto; Lula e os militares; A resistência do Itamaraty; Heleno petulante; Bolsonaro quebra o silêncio.",
                              pubDate: "2022-12-10T03:24:59.000Z",
                              duration: 1831,
                              creationDate: .empty))
         array.append(Episode(episodeId: "https://www.central3.com.br/?p=46042",
                              title: "Dias 1.437 e 1.438 | Terra arrasada | 05 e 06/12/22",
-                             description: "Foi o Constantino; Medo e Delírio em Brasília; A diplomação; Menina Rosa.",
+                             description: "Calamidade, desmonte, descaso, irresponsabilidade, má-fé.",
                              pubDate: "2022-12-08T04:32:26.000Z",
                              duration: 2382,
                              creationDate: .empty))
         array.append(Episode(episodeId: "https://www.central3.com.br/?p=46034",
                              title: "Dias 1.432 a 1.436 | “Não tem como não dar errado, vai dar errado” | 30/11 a 4/12/22",
-                             description: "Foi o Constantino; Medo e Delírio em Brasília; A diplomação; Menina Rosa.",
+                             description: "Militares e o governo Lula.",
                              pubDate: "2022-12-06T03:04:52.000Z",
                              duration: 1618,
                              creationDate: .empty))

@@ -11,22 +11,17 @@ struct EpisodeCell: View {
 
     @StateObject var viewModel: EpisodeCellViewModel
     
-    // MARK: - Checkmark component
-    private let circleSize: CGFloat = 32.0
-    private let unselectedFillColor: Color = .white
-    private let unselectedForegroundColor: Color = .gray
-    private let selectedFillColor: Color = .pink
-
     var body: some View {
         VStack {
             HStack {
-                VStack(alignment: .leading, spacing: 7) {
+                VStack(alignment: .leading, spacing: 10) {
                     Text(viewModel.title)
                         .font(.headline)
                     
                     Text(viewModel.description)
                         .foregroundColor(.gray)
                         .font(.subheadline)
+                        .lineLimit(2)
                     
                     Text(viewModel.subtitle)
                         .bold()
