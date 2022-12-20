@@ -46,10 +46,6 @@ struct NotificationsSettingsView: View {
                             UserSettings.setUserAllowedNotifications(to: newValue)
                         }
                     }
-            } header: {
-                EmptyView()
-            } footer: {
-                Text("Caso a opção acima não esteja surtindo efeito, toque no botão abaixo para habilitar as notificações do app nos Ajustes do sistema.")
             }
             
             Section {
@@ -64,7 +60,7 @@ struct NotificationsSettingsView: View {
 //                        }
 //                    }
                 
-                Toggle("Novos Episódios (Beta)", isOn: $enableNotifications)
+                //Toggle("Novos Episódios (Beta)", isOn: $enableNotifications)
             } header: {
                 Text("Canais")
             }
