@@ -46,6 +46,10 @@ struct NotificationsSettingsView: View {
                             UserSettings.setUserAllowedNotifications(to: newValue)
                         }
                     }
+            } header: {
+                EmptyView()
+            } footer: {
+                Text("Caso a opção acima não esteja surtindo efeito, toque no botão abaixo para habilitar as notificações do app nos Ajustes do sistema.")
             }
             
             Section {
