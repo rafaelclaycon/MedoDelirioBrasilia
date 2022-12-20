@@ -83,11 +83,6 @@ struct SettingsView: View {
             }
             
             if showAskForMoneyView || CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
-                /*Section {
-                    PodcastAuthorsView()
-                        .padding(.vertical, 8)
-                }*/
-                
                 Section {
                     BegForMoneyView()
                         .padding(.vertical)
@@ -110,29 +105,23 @@ struct SettingsView: View {
                 VStack(alignment: .leading) {
                     Text("Criado por Rafael Claycon Schmitt")
                     
-                    HStack(spacing: 25) {
+                    HStack {
                         Spacer()
                         
                         Button {
-                            open(link: "https://twitter.com/claycon_")
+                            open(link: "https://burnthis.town/@rafael")
                         } label: {
-                            Image("twitter")
-                                .renderingMode(.template)
-                                .foregroundColor(.blue)
-                                .padding(.horizontal)
-                        }
-                        .tint(.blue)
-                        .controlSize(.regular)
-                        .buttonStyle(.bordered)
-                        .buttonBorderShape(.roundedRectangle)
-                        
-                        Button {
-                            open(link: "https://toot.wales/@mitt_rafael")
-                        } label: {
-                            Image("mastodon")
-                                .renderingMode(.template)
-                                .foregroundColor(.purple)
-                                .padding(.horizontal)
+                            HStack(spacing: 10) {
+                                Image("mastodon")
+                                    .resizable()
+                                    .renderingMode(.template)
+                                    .frame(width: 24, height: 24)
+                                
+                                Text("Mastodon")
+                                    .bold()
+                            }
+                            .foregroundColor(.purple)
+                            .padding(.horizontal, 10)
                         }
                         .tint(.purple)
                         .controlSize(.regular)
@@ -142,6 +131,18 @@ struct SettingsView: View {
                         Spacer()
                     }
                     .padding(.bottom, 3)
+                    
+                    HStack {
+                        Spacer()
+                        
+                        Button("Como abrir uma conta?") {
+                            open(link: "https://jovemnerd.com.br/nerdbunker/mastodon-como-criar-conta/")
+                        }
+                        .tint(.blue)
+                        
+                        Spacer()
+                    }
+                    .padding(.vertical, 8)
                 }
                 
                 Text("Versão \(Versioneer.appVersion) Build \(Versioneer.buildVersionNumber)")
