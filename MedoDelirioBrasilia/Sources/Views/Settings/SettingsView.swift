@@ -85,7 +85,7 @@ struct SettingsView: View {
             
             if showAskForMoneyView || CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
                 Section {
-                    BegForMoneyView()
+                    BegForMoneyView(donorNames: $donorNames)
                         .padding(.vertical)
                     
                     Button("Copiar chave Pix (e-mail)") {
@@ -171,8 +171,8 @@ struct SettingsView: View {
             networkRabbit.displayAskForMoneyView { shouldDisplay in
                 showAskForMoneyView = shouldDisplay
             }
-            networkRabbit.displayAskForMoneyView { shouldDisplay in
-                showAskForMoneyView = shouldDisplay
+            networkRabbit.getPixDonorNames { names in
+                donorNames = names
             }
         }
         .popover(isPresented: $showEmailClientConfirmationDialog) {
