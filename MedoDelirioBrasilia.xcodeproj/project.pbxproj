@@ -985,6 +985,8 @@
 		D99BBE482947051200BCA901 /* Jair Bolsonaro - Gripezinha ou resfriadinho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99BBE462947051100BCA901 /* Jair Bolsonaro - Gripezinha ou resfriadinho.mp3 */; };
 		D99BBE492947051200BCA901 /* Jair Bolsonaro - Historico de atleta.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99BBE472947051200BCA901 /* Jair Bolsonaro - Historico de atleta.mp3 */; };
 		D99C83BA2945169100385C6F /* Deu errado (Edicao Copa no Catar).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99C83B92945169000385C6F /* Deu errado (Edicao Copa no Catar).mp3 */; };
+		D99C8A942952C5AE002E0C00 /* Paulo Guedes - Uma festa danada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99C8A922952C5AE002E0C00 /* Paulo Guedes - Uma festa danada.mp3 */; };
+		D99C8A952952C5AE002E0C00 /* Gregorio Duvivier - Que tom e esse cara, baixa a bola pra caralho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99C8A932952C5AE002E0C00 /* Gregorio Duvivier - Que tom e esse cara, baixa a bola pra caralho.mp3 */; };
 		D99D0DBF28CAB0FF00EB6F27 /* TV CAMARA - MARCELO FREIXO - Nao adianta desvirtuar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99D0DBE28CAB0FF00EB6F27 /* TV CAMARA - MARCELO FREIXO - Nao adianta desvirtuar.mp3 */; };
 		D99D0DC128CAB3E800EB6F27 /* TV CAMARA - Lula - A esperanca finalmente venceu o medo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99D0DC028CAB3E800EB6F27 /* TV CAMARA - Lula - A esperanca finalmente venceu o medo.mp3 */; };
 		D99D0DC328CAB52700EB6F27 /* TV CAMARA - Alessandro Molon - E obvio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99D0DC228CAB52700EB6F27 /* TV CAMARA - Alessandro Molon - E obvio.mp3 */; };
@@ -2179,6 +2181,8 @@
 		D99BBE462947051100BCA901 /* Jair Bolsonaro - Gripezinha ou resfriadinho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Gripezinha ou resfriadinho.mp3"; sourceTree = "<group>"; };
 		D99BBE472947051200BCA901 /* Jair Bolsonaro - Historico de atleta.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Historico de atleta.mp3"; sourceTree = "<group>"; };
 		D99C83B92945169000385C6F /* Deu errado (Edicao Copa no Catar).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Deu errado (Edicao Copa no Catar).mp3"; sourceTree = "<group>"; };
+		D99C8A922952C5AE002E0C00 /* Paulo Guedes - Uma festa danada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Paulo Guedes - Uma festa danada.mp3"; sourceTree = "<group>"; };
+		D99C8A932952C5AE002E0C00 /* Gregorio Duvivier - Que tom e esse cara, baixa a bola pra caralho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gregorio Duvivier - Que tom e esse cara, baixa a bola pra caralho.mp3"; sourceTree = "<group>"; };
 		D99D0DBE28CAB0FF00EB6F27 /* TV CAMARA - MARCELO FREIXO - Nao adianta desvirtuar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "TV CAMARA - MARCELO FREIXO - Nao adianta desvirtuar.mp3"; sourceTree = "<group>"; };
 		D99D0DC028CAB3E800EB6F27 /* TV CAMARA - Lula - A esperanca finalmente venceu o medo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "TV CAMARA - Lula - A esperanca finalmente venceu o medo.mp3"; sourceTree = "<group>"; };
 		D99D0DC228CAB52700EB6F27 /* TV CAMARA - Alessandro Molon - E obvio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "TV CAMARA - Alessandro Molon - E obvio.mp3"; sourceTree = "<group>"; };
@@ -2408,6 +2412,8 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D99C8A932952C5AE002E0C00 /* Gregorio Duvivier - Que tom e esse cara, baixa a bola pra caralho.mp3 */,
+				D99C8A922952C5AE002E0C00 /* Paulo Guedes - Uma festa danada.mp3 */,
 				D9588A47294EC3FD0082E2DC /* Jair Bolsonaro - Alguem conhece a senhora Jeanine Anez.mp3 */,
 				D9832C42294DFA21000F08B6 /* Biu de Lira - Resmungos.mp3 */,
 				D94C8392294BAF7100E083F3 /* Jair Bolsonaro - Podemos ate viver sem oxigenio mas jamais sem liberdade.mp3 */,
@@ -4694,6 +4700,7 @@
 				D975003E2880B4F20035E6F2 /* Silvio Santos - Essa nao e boa ninguem deu risada.mp3 in Resources */,
 				D975003D2880B4F20035E6F2 /* PLANALTO - Bolsonaro - Presidente Putin Pretiputi remix house.mp3 in Resources */,
 				D975FFCD2880B4F20035E6F2 /* Bolsonaro - Presente Puti prentiputi pretiputi presidente putin.mp3 in Resources */,
+				D99C8A952952C5AE002E0C00 /* Gregorio Duvivier - Que tom e esse cara, baixa a bola pra caralho.mp3 in Resources */,
 				D975FED22880B4F20035E6F2 /* Moro dizendo que nao seria ministro nem candidato a presidencia.mp3 in Resources */,
 				D975FF612880B4F20035E6F2 /* CIRO GOMES - Paulo Guedes mentiroso ta enganando a rapazeada paulo guedes.mp3 in Resources */,
 				D975FE362880B4F20035E6F2 /* Bolsonaro - Problemas.mp3 in Resources */,
@@ -4891,6 +4898,7 @@
 				D975FE372880B4F20035E6F2 /* Fudeu meme short.mp3 in Resources */,
 				D975FF532880B4F20035E6F2 /* Damares - Uau.mp3 in Resources */,
 				D923127028AB049800436336 /* E pra glorificar de pe, igreja.mp3 in Resources */,
+				D99C8A942952C5AE002E0C00 /* Paulo Guedes - Uma festa danada.mp3 in Resources */,
 				D921F88A288B0177003979CC /* Eu to passada chocada - meme.mp3 in Resources */,
 				D9F185D028D6729A00BE2F69 /* Lula - E como se fosse um sorvete, chupou, acabou, fica com o palito na mao.mp3 in Resources */,
 				49DEA9D62881173B008C9BA1 /* Eu quero dormir porra short meme.mp3 in Resources */,

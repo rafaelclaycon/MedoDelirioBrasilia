@@ -8381,6 +8381,26 @@
         "filename": "Jair Bolsonaro - Alguem conhece a senhora Jeanine Anez.mp3",
         "dateAdded": "2022-12-18T00:00:00Z",
         "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "89A8DCD2-7474-4B84-88CA-414E4AA5D843",
+        "title": "Uma festa danada",
+        "authorId": "BB392894-327A-48BA-9C7D-4F0601E947EB",
+        "description": "Uma festa danada",
+        "filename": "Paulo Guedes - Uma festa danada.mp3",
+        "dateAdded": "2022-12-21T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "E219F666-8D56-4084-A5A1-960016E9846D",
+        "title": "Que tom é esse cara? Baixa a bola pra caralho",
+        "authorId": "4234ACB1-5D43-4EFA-A61E-7D80EC749866",
+        "description": "Que tom e esse cara baixa a bola pra caralho",
+        "filename": "Gregorio Duvivier - Que tom e esse cara, baixa a bola pra caralho.mp3",
+        "dateAdded": "2022-12-21T00:00:00Z",
+        "isOffensive": true,
         "isNew": true
     }
 ]

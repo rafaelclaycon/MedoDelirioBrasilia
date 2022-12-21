@@ -130,7 +130,7 @@ struct SettingsView: View {
                         
                         Spacer()
                     }
-                    .padding(.bottom, 3)
+                    .padding(.vertical, 6)
                     
                     HStack {
                         Spacer()
