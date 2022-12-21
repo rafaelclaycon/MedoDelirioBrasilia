@@ -15,6 +15,7 @@ struct SettingsView: View {
     
     @State private var showAskForMoneyView: Bool = false
     @State private var showPixKeyCopiedAlert: Bool = false
+    @State private var donorNames: String = ""
     
     @State private var showEmailClientConfirmationDialog: Bool = false
     
@@ -84,7 +85,7 @@ struct SettingsView: View {
             
             if showAskForMoneyView || CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
                 Section {
-                    BegForMoneyView()
+                    BegForMoneyView(donorNames: $donorNames)
                         .padding(.vertical)
                     
                     Button("Copiar chave Pix (e-mail)") {
@@ -169,6 +170,9 @@ struct SettingsView: View {
         .onAppear {
             networkRabbit.displayAskForMoneyView { shouldDisplay in
                 showAskForMoneyView = shouldDisplay
+            }
+            networkRabbit.getPixDonorNames { names in
+                donorNames = names
             }
         }
         .popover(isPresented: $showEmailClientConfirmationDialog) {
