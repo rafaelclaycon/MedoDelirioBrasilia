@@ -86,7 +86,7 @@ class NetworkRabbit: NetworkRabbitProtocol {
         let task = URLSession.shared.dataTask(with: url) { data, _, error in
             if let data = data {
                 let response = String(data: data, encoding: .utf8)!
-                if response.contains(Versioneer.appVersion) {
+                if response == Versioneer.appVersion {
                     completionHandler(false)
                 } else {
                     completionHandler(true)
