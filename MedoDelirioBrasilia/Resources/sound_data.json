@@ -7936,7 +7936,7 @@
     {
         "id": "96A7026E-61B6-4A3C-B844-DEF32262E4A4",
         "title": "Eu não sabia que ele era safado assim não, moço",
-        "authorId": "08E925A9-9553-456B-8541-499BF578225B",
+        "authorId": "382AD303-4621-4E69-8D87-B4D3C896C887",
         "description": "eu não sabia que ele era safado assim não, moço",
         "filename": "Jojo Todynho - Eu nao sabia que ele era safado assim nao moco.mp3",
         "dateAdded": "2022-11-17T00:00:00Z",
@@ -8251,7 +8251,7 @@
         "filename": "Heraclito Sobral Pinto - Militares e Republica nao combinam.mp3",
         "dateAdded": "2022-12-13T15:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "23E20E87-6C49-4F63-86A0-87C00F5F61C1",
@@ -8261,6 +8261,146 @@
         "filename": "Rafael Infante - Errou feio, errou rude.mp3",
         "dateAdded": "2022-12-14T00:00:00Z",
         "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "F7721AFD-8BD3-4228-A5CD-D955319941F8",
+        "title": "Agora, agorinha",
+        "authorId": "1162C5CF-E12D-44E5-91D2-55BCC316F672",
+        "description": "agora agorinha morreu",
+        "filename": "Pastor Marcio Valadao - Agora agorinha agorinha.mp3",
+        "dateAdded": "2022-12-15T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "B2538838-51D1-4DE5-B23C-C7A009940B59",
+        "title": "Fia da Puta",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "ha ha ha fia da puta veia",
+        "filename": "Veia - Fia da Puta.mp3",
+        "dateAdded": "2022-12-15T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "558CB470-4489-4A00-A9FB-117BC85017A6",
+        "title": "Tava bom, meio ruim, mas piorou",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "Mudava pra melhor, com certeza, ele disse que ia mudar melhor, já tava bom, disse que ia mudar pra melhor, não tava muito bom, tava meio ruim também, tava ruim, agora parece que piorou",
+        "filename": "Meme - Tava ruim, tava bom, mas parece que piorou.mp3",
+        "dateAdded": "2022-12-15T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "FF1B7A58-079F-4F95-B56C-D39507E6C942",
+        "title": "Brasil é bagunça",
+        "authorId": "A329D501-7BD3-4B9C-8FBD-99BFD3AF3E13",
+        "description": "brasil é bagunça",
+        "filename": "Renan (Choque de Cultura) - Brasil e bagunca.mp3",
+        "dateAdded": "2022-12-15T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "0F703B70-3D94-4823-9043-785FD289A141",
+        "title": "Enfia um abacaxi no meu c* mas não me mete nisso",
+        "authorId": "959D8DD0-0EFB-4CC2-98C2-C61182BCFEC3",
+        "description": "Não não, deus me livre, enfia um abacaxi no meu cu mas nao me mete nisso to fora ta amarrado em nome de jesus",
+        "filename": "Igor Guimaraes - Enfia um abacaxi no meu cu mas nao me mete nisso.mp3",
+        "dateAdded": "2022-12-15T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "6C930AD8-0823-405A-B688-12389C68F3DB",
+        "title": "Forças Sambadas, salvem o Brasil",
+        "authorId": "2C2352DD-2357-4B9E-99AD-4E7323664449",
+        "description": "forças sambadas salvem o Brasil",
+        "filename": "Milton Cunha - Forcas sambadas salvem o Brasil.mp3",
+        "dateAdded": "2022-12-15T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "4E4D62E8-6328-4546-A36F-4F0C7008E84C",
+        "title": "Podemos até viver sem oxigênio, mas jamais sem liberdade",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "podemos até viver sem oxigênio, mas jamais sem liberdade imita pessoa sem ar tomar no cu rapaz",
+        "filename": "Jair Bolsonaro - Podemos ate viver sem oxigenio mas jamais sem liberdade.mp3",
+        "dateAdded": "2022-12-15T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "31CF3C10-6FE2-4F7D-B28B-D436DEDFF274",
+        "title": "Foi tão bom mas acabou",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "foi tão bom mas acabou tava bom demais pra ser verdade",
+        "filename": "Foi tao bom mas acabou.mp3",
+        "dateAdded": "2022-12-15T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "3DDDDEC7-DE23-4A0F-92C5-513CC0FC58AA",
+        "title": "É a sua mão em meu pau",
+        "authorId": "0258693D-31D6-4A9E-8BA8-F11973BA79CF",
+        "description": "é a sua mão em meu pau",
+        "filename": "Franciel Cruz - E a sua mao em meu pau.mp3",
+        "dateAdded": "2022-12-15T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "09C02279-37FB-409F-813B-855B833A0103",
+        "title": "Xô! Xô!",
+        "authorId": "2C2352DD-2357-4B9E-99AD-4E7323664449",
+        "description": "Xô xô",
+        "filename": "Milton Cunha - Xo xo.mp3",
+        "dateAdded": "2022-12-15T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "6A2C5D8D-1472-49A4-8994-FA26089F9728",
+        "title": "Resmungos",
+        "authorId": "C515748D-92E1-4732-A130-8D3BDCA187BD",
+        "description": "resmungos que bosta vai começar sai daqui e vai embora filho da puta Benedito de Lira",
+        "filename": "Biu de Lira - Resmungos.mp3",
+        "dateAdded": "2022-12-17T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "89820053-5E7B-4817-8E11-3FADB121025F",
+        "title": "Alguém conhece a senhora Jeanine Áñez?",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Alguem conhece a senhora Jeanine Anez",
+        "filename": "Jair Bolsonaro - Alguem conhece a senhora Jeanine Anez.mp3",
+        "dateAdded": "2022-12-18T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "89A8DCD2-7474-4B84-88CA-414E4AA5D843",
+        "title": "Uma festa danada",
+        "authorId": "BB392894-327A-48BA-9C7D-4F0601E947EB",
+        "description": "Uma festa danada",
+        "filename": "Paulo Guedes - Uma festa danada.mp3",
+        "dateAdded": "2022-12-21T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "E219F666-8D56-4084-A5A1-960016E9846D",
+        "title": "Que tom é esse cara? Baixa a bola pra caralho",
+        "authorId": "4234ACB1-5D43-4EFA-A61E-7D80EC749866",
+        "description": "Que tom e esse cara baixa a bola pra caralho",
+        "filename": "Gregorio Duvivier - Que tom e esse cara, baixa a bola pra caralho.mp3",
+        "dateAdded": "2022-12-21T00:00:00Z",
+        "isOffensive": true,
         "isNew": true
     }
 ]

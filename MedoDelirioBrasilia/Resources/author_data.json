@@ -1319,10 +1319,6 @@
         "name": "Raí Saia Rodada"
     },
     {
-        "id": "08E925A9-9553-456B-8541-499BF578225B",
-        "name": "Jojo Todynho"
-    },
-    {
         "id": "2E0605FF-BD9F-4941-BFD7-36027D7EF407",
         "name": "Torcida Jovem do Flamengo"
     },
@@ -1366,5 +1362,13 @@
     {
         "id": "F7AC4187-1AA2-4EBA-AC0C-91247653A590",
         "name": "Rafael Infante"
+    },
+    {
+        "id": "1162C5CF-E12D-44E5-91D2-55BCC316F672",
+        "name": "Pastor Márcio Valadão"
+    },
+    {
+        "id": "C515748D-92E1-4732-A130-8D3BDCA187BD",
+        "name": "Biu de Lira (PP)"
     }
 ]
