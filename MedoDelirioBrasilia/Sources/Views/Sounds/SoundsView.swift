@@ -264,9 +264,7 @@ struct SoundsView: View {
                 }
             }
             .navigationTitle(Text(title))
-            .navigationBarItems(trailing:
-                trailingToolbarControls()
-            )
+            .navigationBarItems(leading: leadingToolbarControls(), trailing: trailingToolbarControls())
             .onAppear {
                 viewModel.reloadList(withSounds: soundData,
                                      andFavorites: try? database.getAllFavorites(),
@@ -418,6 +416,19 @@ struct SoundsView: View {
                                  allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
                                  favoritesOnly: currentMode == .favorites,
                                  sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
+        }
+    }
+    
+    @ViewBuilder func leadingToolbarControls() -> some View {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            Button {
+                subviewToOpen = .settingsView
+                showingModalView = true
+            } label: {
+                Image(systemName: "gearshape")
+            }
+        } else {
+            EmptyView()
         }
     }
     
