@@ -4,6 +4,9 @@ struct NotificationsSettingsView: View {
 
     @State var enableNotifications = false
     
+    @State var enrollOnGeneralChannel = false
+    @State var enrollOnNewEpisodesChannel = false
+    
     var body: some View {
         Form {
 //            Section {
@@ -49,7 +52,7 @@ struct NotificationsSettingsView: View {
             }
             
             Section {
-                Toggle("Geral (novos sons, tendências, novos recursos)", isOn: $enableNotifications)
+                Toggle("Geral (novos sons, tendências, novos recursos)", isOn: $enrollOnGeneralChannel)
 //                    .onChange(of: enableNotifications) { newValue in
 //                        if newValue == true {
 //                            NotificationAide.registerForRemoteNotifications() { _ in
@@ -60,7 +63,7 @@ struct NotificationsSettingsView: View {
 //                        }
 //                    }
                 
-                //Toggle("Novos Episódios (Beta)", isOn: $enableNotifications)
+                Toggle("Novos Episódios (Beta)", isOn: $enrollOnNewEpisodesChannel)
             } header: {
                 Text("Canais")
             }
@@ -77,17 +80,17 @@ struct NotificationsSettingsView: View {
                 Text("Use a opção acima para verificar se você não bloqueou o app de mandar notificações a nível de sistema.")
             }
             
-            if CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
-                Section {
-                    Button("Habilitar re-tentativa de envio do token de notificação para o servidor") {
-                        AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: true)
-                    }
-                } header: {
-                    Text("Apenas para testes")
-                } footer: {
-                    Text("Use o botão acima caso você tenha desinstalado o app, reinstalado, concordado novamente em receber notificações e não recebeu mais.\n\nDepois disso, toque em Ajustes no topo da tela para voltar para a tela de Ajustes e re-abra essa tela (Notificações) para que a re-tentativa seja feita.")
-                }
-            }
+//            if CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
+//                Section {
+//                    Button("Habilitar re-tentativa de envio do token de notificação para o servidor") {
+//                        AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: true)
+//                    }
+//                } header: {
+//                    Text("Apenas para testes")
+//                } footer: {
+//                    Text("Use o botão acima caso você tenha desinstalado o app, reinstalado, concordado novamente em receber notificações e não recebeu mais.\n\nDepois disso, toque em Ajustes no topo da tela para voltar para a tela de Ajustes e re-abra essa tela (Notificações) para que a re-tentativa seja feita.")
+//                }
+//            }
         }
         .navigationTitle("Notificações")
         .navigationBarTitleDisplayMode(.inline)
