@@ -15,6 +15,7 @@ struct SidebarView: View {
     @Binding var updateSoundsList: Bool
     @Binding var isShowingFolderInfoEditingSheet: Bool
     @Binding var updateFolderList: Bool
+    @EnvironmentObject var settingsHelper: SettingsHelper
     
     // Trends
     @EnvironmentObject var trendsHelper: TrendsHelper
@@ -26,7 +27,7 @@ struct SidebarView: View {
                     destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
                                                                            authorSortOption: AuthorSortOption.nameAscending.rawValue),
                                             currentMode: .allSounds,
-                                            updateSoundsList: $updateSoundsList).environmentObject(trendsHelper),
+                                            updateSoundsList: $updateSoundsList).environmentObject(trendsHelper).environmentObject(settingsHelper),
                     tag: PadScreen.allSounds,
                     selection: $state,
                     label: {

@@ -13,6 +13,7 @@ struct MainView: View {
     @State var state: PadScreen? = PadScreen.allSounds
     @State var isShowingSettingsSheet: Bool = false
     @State var updateSoundsList: Bool = false
+    @StateObject var settingsHelper = SettingsHelper()
     @State var isShowingFolderInfoEditingSheet: Bool = false
     @State var updateFolderList: Bool = false
     
@@ -29,6 +30,7 @@ struct MainView: View {
                                currentMode: .allSounds,
                                updateSoundsList: .constant(false))
                         .environmentObject(trendsHelper)
+                        .environmentObject(settingsHelper)
                 }
                 .tabItem {
                     Label("Sons", systemImage: "speaker.wave.3.fill")
@@ -94,17 +96,20 @@ struct MainView: View {
                             isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet,
                             updateFolderList: $updateFolderList)
                     .environmentObject(trendsHelper)
+                    .environmentObject(settingsHelper)
                 SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
                                                           authorSortOption: AuthorSortOption.nameAscending.rawValue),
                            currentMode: .allSounds,
                            updateSoundsList: $updateSoundsList)
                     .environmentObject(trendsHelper)
+                    .environmentObject(settingsHelper)
             }
             .navigationViewStyle(DoubleColumnNavigationViewStyle())
             .sheet(isPresented: $isShowingSettingsSheet, onDismiss: {
                 updateSoundsList = true
             }) {
-                SettingsCasingWithCloseView(isBeingShown: $isShowingSettingsSheet, updateSoundsList: $updateSoundsList)
+                SettingsCasingWithCloseView(isBeingShown: $isShowingSettingsSheet)
+                    .environmentObject(settingsHelper)
             }
             .sheet(isPresented: $isShowingFolderInfoEditingSheet, onDismiss: {
                 updateFolderList = true

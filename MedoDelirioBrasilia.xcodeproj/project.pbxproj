@@ -343,6 +343,7 @@
 		D967E2BA290196F900B21C11 /* WallE.swift in Sources */ = {isa = PBXBuildFile; fileRef = D967E2B9290196F900B21C11 /* WallE.swift */; };
 		D967E2BC2901C40700B21C11 /* CustomPhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D967E2BB2901C40700B21C11 /* CustomPhotoAlbum.swift */; };
 		D969BA4E292D892C006A7D2F /* Desconhecido - Pra conversar com doido, so outro doido.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D969BA4D292D892C006A7D2F /* Desconhecido - Pra conversar com doido, so outro doido.mp3 */; };
+		D96A64202955F32F00DC0F03 /* SettingsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96A641F2955F32F00DC0F03 /* SettingsHelper.swift */; };
 		D96E115D28459D8800306859 /* UserActivityWaiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96E115C28459D8800306859 /* UserActivityWaiter.swift */; };
 		D972E9C22927175B0091F949 /* MIDCast - Um pequeno passo para o homem.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D972E9C12927175B0091F949 /* MIDCast - Um pequeno passo para o homem.mp3 */; };
 		D973076C28AC49B100FBB3B8 /* DiagnosticsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D973076B28AC49B100FBB3B8 /* DiagnosticsViewViewModel.swift */; };
@@ -1539,6 +1540,7 @@
 		D967E2B9290196F900B21C11 /* WallE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallE.swift; sourceTree = "<group>"; };
 		D967E2BB2901C40700B21C11 /* CustomPhotoAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPhotoAlbum.swift; sourceTree = "<group>"; };
 		D969BA4D292D892C006A7D2F /* Desconhecido - Pra conversar com doido, so outro doido.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Desconhecido - Pra conversar com doido, so outro doido.mp3"; sourceTree = "<group>"; };
+		D96A641F2955F32F00DC0F03 /* SettingsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHelper.swift; sourceTree = "<group>"; };
 		D96E115C28459D8800306859 /* UserActivityWaiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserActivityWaiter.swift; sourceTree = "<group>"; };
 		D972E9C12927175B0091F949 /* MIDCast - Um pequeno passo para o homem.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "MIDCast - Um pequeno passo para o homem.mp3"; sourceTree = "<group>"; };
 		D973076B28AC49B100FBB3B8 /* DiagnosticsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticsViewViewModel.swift; sourceTree = "<group>"; };
@@ -3707,6 +3709,7 @@
 				D97B2DD828E5EA0500C3B50B /* DeleteFolderViewAide.swift */,
 				D9A3AB6A28F03C970064CB7A /* ViewStates.swift */,
 				D9F9BB38294A167C0005BE56 /* TrendsHelper.swift */,
+				D96A641F2955F32F00DC0F03 /* SettingsHelper.swift */,
 			);
 			path = ViewAid;
 			sourceTree = "<group>";
@@ -5210,6 +5213,7 @@
 				D92C0CAE284076CD009CF19A /* UIApplication+KeyWindow.swift in Sources */,
 				D9D3D493288750C400C42FDE /* FolderListViewModel.swift in Sources */,
 				D9DCC5D3287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift in Sources */,
+				D96A64202955F32F00DC0F03 /* SettingsHelper.swift in Sources */,
 				D93CCB7B286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift in Sources */,
 				D9625E7E28238F9A00080852 /* MedoDelirioBrasiliaApp.swift in Sources */,
 				D958B1AC28394DCD0010F133 /* AuthorsView.swift in Sources */,

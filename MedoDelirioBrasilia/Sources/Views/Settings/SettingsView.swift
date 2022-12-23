@@ -9,7 +9,8 @@ import SwiftUI
 
 struct SettingsView: View {
 
-    @Binding var updateSoundsList: Bool
+    //@Binding var updateSoundsList: Bool
+    @EnvironmentObject var helper: SettingsHelper
     
     @State private var showExplicitSounds: Bool = UserSettings.getShowOffensiveSounds()
     
@@ -27,8 +28,9 @@ struct SettingsView: View {
         Form {
             Section {
                 Toggle("Exibir conteúdo explícito", isOn: $showExplicitSounds)
-                    .onChange(of: showExplicitSounds) { newValue in
-                        UserSettings.setShowOffensiveSounds(to: newValue)
+                    .onChange(of: showExplicitSounds) { showExplicitSounds in
+                        UserSettings.setShowOffensiveSounds(to: showExplicitSounds)
+                        helper.updateSoundsList = true
                     }
             } footer: {
                 Text("Alguns conteúdos contam com muitos palavrões. Ao marcar essa opção, você concorda que tem mais de 18 anos e que deseja ver esses conteúdos.")
@@ -177,9 +179,6 @@ struct SettingsView: View {
                 donorNames = names
             }
         }
-        .onDisappear {
-            print("HERMIONE")
-        }
         .popover(isPresented: $showEmailClientConfirmationDialog) {
             EmailAppPickerView(isBeingShown: $showEmailClientConfirmationDialog, subject: Shared.issueSuggestionEmailSubject, emailBody: Shared.issueSuggestionEmailBody)
         }
@@ -195,7 +194,7 @@ struct SettingsView: View {
 struct AboutView_Previews: PreviewProvider {
 
     static var previews: some View {
-        SettingsView(updateSoundsList: .constant(false))
+        SettingsView()
     }
 
 }

@@ -3,11 +3,11 @@ import SwiftUI
 struct SettingsCasingWithCloseView: View {
 
     @Binding var isBeingShown: Bool
-    @Binding var updateSoundsList: Bool
+    @EnvironmentObject var helper: SettingsHelper
     
     var body: some View {
         NavigationView {
-            SettingsView(updateSoundsList: $updateSoundsList)
+            SettingsView()
                 .navigationTitle("Ajustes")
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarItems(leading:
@@ -15,6 +15,7 @@ struct SettingsCasingWithCloseView: View {
                         self.isBeingShown = false
                     }
                 )
+                .environmentObject(helper)
         }
     }
 
@@ -23,7 +24,7 @@ struct SettingsCasingWithCloseView: View {
 struct SettingsCasingWithCloseView_Previews: PreviewProvider {
 
     static var previews: some View {
-        SettingsCasingWithCloseView(isBeingShown: .constant(true), updateSoundsList: .constant(false))
+        SettingsCasingWithCloseView(isBeingShown: .constant(true))
     }
 
 }

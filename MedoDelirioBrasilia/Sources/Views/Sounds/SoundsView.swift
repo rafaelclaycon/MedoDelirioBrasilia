@@ -33,6 +33,9 @@ struct SoundsView: View {
     // Temporary banners
     //@State private var shouldDisplayHotWheatherBanner: Bool = false
     
+    // Settings
+    @EnvironmentObject var settingsHelper: SettingsHelper
+    
     // Add to Folder vars
     @State private var hadSuccessAddingToFolder: Bool = false
     @State private var folderName: String? = nil
@@ -331,10 +334,11 @@ struct SoundsView: View {
                     ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: false)
                     
                 case .settingsView:
-                    SettingsCasingWithCloseView(isBeingShown: $showingModalView, updateSoundsList: $updateSoundsList)
+                    SettingsCasingWithCloseView(isBeingShown: $showingModalView)
+                        .environmentObject(settingsHelper)
                 }
             }
-            .onChange(of: updateSoundsList) { shouldUpdate in
+            .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in
                 if shouldUpdate {
                     viewModel.reloadList(withSounds: soundData,
                                          andFavorites: try? database.getAllFavorites(),
