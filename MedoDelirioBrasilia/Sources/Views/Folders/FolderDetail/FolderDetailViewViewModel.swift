@@ -11,9 +11,10 @@ import SwiftUI
 class FolderDetailViewViewModel: ObservableObject {
 
     @Published var sounds = [Sound]()
-    @Published var isPlayingSound = false
+    
     @Published var hasSoundsToDisplay: Bool = false
     @Published var selectedSound: Sound? = nil
+    @Published var nowPlayingKeeper = Set<String>()
     
     // Sharing
     @Published var iPadShareSheet = ActivityViewController(activityItems: [URL(string: "https://www.apple.com")!])
@@ -63,15 +64,12 @@ class FolderDetailViewViewModel: ObservableObject {
 
         player = AudioPlayer(url: url, update: { [weak self] state in
             guard let self = self else { return }
-            self.isPlayingSound = state?.activity != .stopped
+            if state?.activity == .stopped {
+                self.nowPlayingKeeper.removeAll()
+            }
         })
         
         player?.togglePlay()
-    }
-    
-    func stopPlayback() {
-        player?.togglePlay()
-        isPlayingSound = false
     }
     
     func shareSound(withPath filepath: String, andContentId contentId: String) {
