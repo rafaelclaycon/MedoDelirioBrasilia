@@ -12,9 +12,9 @@ struct SidebarView: View {
     @StateObject private var viewModel = SidebarViewViewModel()
     @Binding var state: PadScreen?
     @Binding var isShowingSettingsSheet: Bool
-    @Binding var updateSoundsList: Bool
     @Binding var isShowingFolderInfoEditingSheet: Bool
     @Binding var updateFolderList: Bool
+    @EnvironmentObject var settingsHelper: SettingsHelper
     
     // Trends
     @EnvironmentObject var trendsHelper: TrendsHelper
@@ -25,8 +25,7 @@ struct SidebarView: View {
                 NavigationLink(
                     destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
                                                                            authorSortOption: AuthorSortOption.nameAscending.rawValue),
-                                            currentMode: .allSounds,
-                                            updateSoundsList: $updateSoundsList).environmentObject(trendsHelper),
+                                            currentMode: .allSounds).environmentObject(trendsHelper).environmentObject(settingsHelper),
                     tag: PadScreen.allSounds,
                     selection: $state,
                     label: {
@@ -34,7 +33,7 @@ struct SidebarView: View {
                     })
                 
                 NavigationLink(
-                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(), authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .favorites, updateSoundsList: .constant(false)).environmentObject(trendsHelper),
+                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(), authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .favorites).environmentObject(trendsHelper).environmentObject(settingsHelper),
                     tag: PadScreen.favorites,
                     selection: $state,
                     label: {
@@ -42,7 +41,7 @@ struct SidebarView: View {
                     })
                 
                 NavigationLink(
-                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .byAuthor, updateSoundsList: .constant(false)).environmentObject(trendsHelper),
+                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .byAuthor).environmentObject(trendsHelper).environmentObject(settingsHelper),
                     tag: PadScreen.groupedByAuthor,
                     selection: $state,
                     label: {
@@ -60,7 +59,7 @@ struct SidebarView: View {
             
             Section("Mais") {
                 NavigationLink(
-                    destination: SongsView(),
+                    destination: SongsView().environmentObject(settingsHelper),
                     tag: PadScreen.songs,
                     selection: $state,
                     label: {
@@ -133,7 +132,6 @@ struct SidebarView_Previews: PreviewProvider {
     static var previews: some View {
         SidebarView(state: .constant(PadScreen.allSounds),
                     isShowingSettingsSheet: .constant(false),
-                    updateSoundsList: .constant(false),
                     isShowingFolderInfoEditingSheet: .constant(false),
                     updateFolderList: .constant(false))
     }
