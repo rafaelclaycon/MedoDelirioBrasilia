@@ -3,6 +3,7 @@ import SwiftUI
 struct SettingsCasingWithCloseView: View {
 
     @Binding var isBeingShown: Bool
+    @EnvironmentObject var helper: SettingsHelper
     
     var body: some View {
         NavigationView {
@@ -14,6 +15,7 @@ struct SettingsCasingWithCloseView: View {
                         self.isBeingShown = false
                     }
                 )
+                .environmentObject(helper)
         }
     }
 

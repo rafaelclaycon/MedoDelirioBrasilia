@@ -30,11 +30,18 @@ struct FolderDetailView: View {
                         ScrollView {
                             LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
                                 ForEach(viewModel.sounds) { sound in
-                                    SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", isNew: sound.isNew ?? false, favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()))
+                                    SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", isNew: sound.isNew ?? false, favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()), nowPlaying: $viewModel.nowPlayingKeeper)
                                         .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
                                         .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                                         .onTapGesture {
-                                            viewModel.playSound(fromPath: sound.filename)
+                                            if viewModel.nowPlayingKeeper.contains(sound.id) {
+                                                player?.togglePlay()
+                                                viewModel.nowPlayingKeeper.removeAll()
+                                            } else {
+                                                viewModel.playSound(fromPath: sound.filename)
+                                                viewModel.nowPlayingKeeper.removeAll()
+                                                viewModel.nowPlayingKeeper.insert(sound.id)
+                                            }
                                         }
                                         .contextMenu {
                                             Section {
@@ -77,16 +84,8 @@ struct FolderDetailView: View {
                 }
             }
             .navigationTitle("\(folder.symbol)  \(folder.name)")
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(trailing:
-                HStack(spacing: 15) {
-                    Button {
-                        viewModel.stopPlayback()
-                    } label: {
-                        Image(systemName: "stop.fill")
-                    }
-                    .disabled(!viewModel.isPlayingSound)
-                    
+//            .navigationBarItems(trailing:
+//                HStack {
 //                    Menu {
 //                        if UIDevice.current.userInterfaceIdiom == .phone {
 //                            Section {
@@ -111,8 +110,8 @@ struct FolderDetailView: View {
 //                    } label: {
 //                        Image(systemName: "ellipsis.circle")
 //                    }
-                }
-            )
+//                }
+//            )
             .onAppear {
                 viewModel.reloadSoundList(withSoundIds: try? database.getAllSoundIdsInsideUserFolder(withId: folder.id))
                 columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)

@@ -19,9 +19,9 @@ struct Shared {
     static let shareSongButtonText = "Compartilhar Música"
     static let shareAsVideoButtonText = "Compartilhar como Vídeo"
     
-    static let contentFilterMessageForSoundsiPhone = "Alguns sons não estão sendo exibidos pois a opção Exibir Conteúdo Explícito está desabilitada. Você pode mudar isso na aba Ajustes (aqui dentro do app)."
+    static let contentFilterMessageForSoundsiPhone = "Alguns sons não estão sendo exibidos pois a opção Exibir Conteúdo Explícito está desabilitada. Você pode mudar isso nos Ajustes (ícone de engrenagem aqui no topo esquerdo da tela)."
     static let contentFilterMessageForSoundsiPadMac = "Alguns sons não estão sendo exibidos pois a opção Exibir Conteúdo Explícito está desabilitada. Você pode mudar isso na tela de Ajustes (ícone de engrenagem no topo da barra lateral do app)."
-    static let contentFilterMessageForSongsiPhone = "Algumas músicas não estão sendo exibidas pois a opção Exibir Conteúdo Explícito está desabilitada. Você pode mudar isso na aba Ajustes (aqui dentro do app)."
+    static let contentFilterMessageForSongsiPhone = "Algumas músicas não estão sendo exibidas pois a opção Exibir Conteúdo Explícito está desabilitada. Você pode mudar isso nos Ajustes (ícone de engrenagem no topo da aba Sons do app)."
     static let contentFilterMessageForSongsiPadMac = "Algumas músicas não estão sendo exibidas pois a opção Exibir Conteúdo Explícito está desabilitada. Você pode mudar isso na tela de Ajustes (ícone de engrenagem no topo da barra lateral do app)."
     
     static let soundNotFoundAlertTitle = "Som Indisponível"

@@ -1234,10 +1234,6 @@
         "photo": "https://www.piie.com/sites/default/files/headshots/monica-debolle.jpg"
     },
     {
-        "id": "004757BC-BDE7-4630-BE06-C3AAF387D359",
-        "name": "Neide Maria"
-    },
-    {
         "id": "87AC9F8E-E81F-4B71-A1D9-8646FED0D86B",
         "name": "Frederico D'Avila (PL-SP)"
     },
@@ -1370,5 +1366,13 @@
     {
         "id": "C515748D-92E1-4732-A130-8D3BDCA187BD",
         "name": "Biu de Lira (PP)"
+    },
+    {
+        "id": "EAA8F85D-5D5A-4EB4-842D-9F4712F2D1FE",
+        "name": "Eliane Cantanhêde"
+    },
+    {
+        "id": "0E61B7AA-BD4B-450D-9370-3CB1A1F6934C",
+        "name": "Mark Snow"
     }
 ]
