@@ -55,6 +55,7 @@ struct MainView: View {
                 
                 NavigationView {
                     SongsView()
+                        .environmentObject(settingsHelper)
                 }
                 .tabItem {
                     Label("Músicas", systemImage: "music.quarternote.3")
