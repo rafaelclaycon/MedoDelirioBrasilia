@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SettingsView: View {
 
+    @Binding var updateSoundsList: Bool
+    
     @State private var showExplicitSounds: Bool = UserSettings.getShowOffensiveSounds()
     
     @State private var showChangeAppIcon: Bool = ProcessInfo.processInfo.isMacCatalystApp == false
@@ -175,6 +177,9 @@ struct SettingsView: View {
                 donorNames = names
             }
         }
+        .onDisappear {
+            print("HERMIONE")
+        }
         .popover(isPresented: $showEmailClientConfirmationDialog) {
             EmailAppPickerView(isBeingShown: $showEmailClientConfirmationDialog, subject: Shared.issueSuggestionEmailSubject, emailBody: Shared.issueSuggestionEmailBody)
         }
@@ -190,7 +195,7 @@ struct SettingsView: View {
 struct AboutView_Previews: PreviewProvider {
 
     static var previews: some View {
-        SettingsView()
+        SettingsView(updateSoundsList: .constant(false))
     }
 
 }

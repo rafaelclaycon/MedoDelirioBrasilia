@@ -44,14 +44,6 @@ struct MainView: View {
 //                .tag(PhoneTab.collections)
                 
                 NavigationView {
-                    SongsView()
-                }
-                .tabItem {
-                    Label("Músicas", systemImage: "music.quarternote.3")
-                }
-                .tag(PhoneTab.songs)
-                
-                NavigationView {
                     TrendsView(tabSelection: $tabSelection,
                                activePadScreen: .constant(.trends))
                         .environmentObject(trendsHelper)
@@ -62,12 +54,12 @@ struct MainView: View {
                 .tag(PhoneTab.trends)
                 
                 NavigationView {
-                    SettingsView()
+                    SongsView()
                 }
                 .tabItem {
-                    Label("Ajustes", systemImage: "gearshape.fill")
+                    Label("Músicas", systemImage: "music.quarternote.3")
                 }
-                .tag(PhoneTab.settings)
+                .tag(PhoneTab.songs)
             }
             .onContinueUserActivity(Shared.ActivityTypes.playAndShareSounds, perform: { _ in
                 tabSelection = .sounds
@@ -112,7 +104,7 @@ struct MainView: View {
             .sheet(isPresented: $isShowingSettingsSheet, onDismiss: {
                 updateSoundsList = true
             }) {
-                SettingsCasingWithCloseView(isBeingShown: $isShowingSettingsSheet)
+                SettingsCasingWithCloseView(isBeingShown: $isShowingSettingsSheet, updateSoundsList: $updateSoundsList)
             }
             .sheet(isPresented: $isShowingFolderInfoEditingSheet, onDismiss: {
                 updateFolderList = true

@@ -14,7 +14,7 @@ struct SoundsView: View {
     }
     
     enum SubviewToOpen {
-        case onboardingView, addToFolderView, shareAsVideoView
+        case onboardingView, addToFolderView, shareAsVideoView, settingsView
     }
     
     @StateObject var viewModel: SoundsViewViewModel
@@ -174,8 +174,8 @@ struct SoundsView: View {
                                                         } label: {
                                                             Label(Shared.addToFolderButtonText, systemImage: "folder.badge.plus")
                                                         }
-                                                        .onChange(of: showingModalView) { newValue in
-                                                            if (newValue == false) && hadSuccessAddingToFolder {
+                                                        .onChange(of: showingModalView) { showingModalView in
+                                                            if (showingModalView == false) && hadSuccessAddingToFolder {
                                                                 DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
                                                                     withAnimation {
                                                                         shouldDisplayAddedToFolderToast = true
@@ -329,6 +329,9 @@ struct SoundsView: View {
                     
                 case .shareAsVideoView:
                     ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: false)
+                    
+                case .settingsView:
+                    SettingsCasingWithCloseView(isBeingShown: $showingModalView, updateSoundsList: $updateSoundsList)
                 }
             }
             .onChange(of: updateSoundsList) { shouldUpdate in
