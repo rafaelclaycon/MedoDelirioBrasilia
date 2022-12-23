@@ -48,6 +48,15 @@ struct SidebarView: View {
                         Label("Por Autor", systemImage: "person")
                     })
                 
+                NavigationLink(
+                    destination: TrendsView(tabSelection: .constant(.trends),
+                                            activePadScreen: $state).environmentObject(trendsHelper),
+                    tag: PadScreen.trends,
+                    selection: $state,
+                    label: {
+                        Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
+                    })
+                
 //                NavigationLink(
 //                    destination: CollectionsView(),
 //                    tag: PadScreen.collections,
@@ -64,15 +73,6 @@ struct SidebarView: View {
                     selection: $state,
                     label: {
                         Label("Músicas", systemImage: "music.quarternote.3")
-                    })
-                
-                NavigationLink(
-                    destination: TrendsView(tabSelection: .constant(.trends),
-                                            activePadScreen: $state).environmentObject(trendsHelper),
-                    tag: PadScreen.trends,
-                    selection: $state,
-                    label: {
-                        Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
                     })
             }
             
