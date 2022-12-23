@@ -8391,7 +8391,7 @@
         "filename": "Paulo Guedes - Uma festa danada.mp3",
         "dateAdded": "2022-12-21T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "E219F666-8D56-4084-A5A1-960016E9846D",
@@ -8401,6 +8401,26 @@
         "filename": "Gregorio Duvivier - Que tom e esse cara, baixa a bola pra caralho.mp3",
         "dateAdded": "2022-12-21T00:00:00Z",
         "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "1EDCE447-1F91-4EB6-B7FB-0B1A7E7B74DA",
+        "title": "Tema do Arquivo X",
+        "authorId": "0E61B7AA-BD4B-450D-9370-3CB1A1F6934C",
+        "description": "Tema do Arquivo X",
+        "filename": "Tema do Arquivo X.mp3",
+        "dateAdded": "2022-12-23T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "51CE3695-975C-4B8D-89FB-E61CCDCEE276",
+        "title": "Uau",
+        "authorId": "EAA8F85D-5D5A-4EB4-842D-9F4712F2D1FE",
+        "description": "uau wow",
+        "filename": "Eliane Cantanhede - Uau.mp3",
+        "dateAdded": "2022-12-23T00:00:00Z",
+        "isOffensive": false,
         "isNew": true
     }
 ]
