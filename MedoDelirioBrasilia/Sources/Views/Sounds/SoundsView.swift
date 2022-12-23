@@ -28,8 +28,6 @@ struct SoundsView: View {
     @State private var subviewToOpen: SubviewToOpen = .onboardingView
     @State private var showingModalView = false
     
-    @Binding var updateSoundsList: Bool
-    
     // Temporary banners
     //@State private var shouldDisplayHotWheatherBanner: Bool = false
     
@@ -345,7 +343,6 @@ struct SoundsView: View {
                                          allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
                                          favoritesOnly: currentMode == .favorites,
                                          sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
-                    updateSoundsList = false
                 }
             }
             .onChange(of: shareAsVideo_Result.videoFilepath) { videoResultPath in
@@ -546,7 +543,7 @@ struct SoundsView: View {
 struct SoundsView_Previews: PreviewProvider {
 
     static var previews: some View {
-        SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .allSounds, updateSoundsList: .constant(false))
+        SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .allSounds)
     }
 
 }

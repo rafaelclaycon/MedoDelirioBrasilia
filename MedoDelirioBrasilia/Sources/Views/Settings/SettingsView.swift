@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SettingsView: View {
 
-    //@Binding var updateSoundsList: Bool
     @EnvironmentObject var helper: SettingsHelper
     
     @State private var showExplicitSounds: Bool = UserSettings.getShowOffensiveSounds()

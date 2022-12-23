@@ -12,7 +12,6 @@ struct MainView: View {
     @State var tabSelection: PhoneTab = .sounds
     @State var state: PadScreen? = PadScreen.allSounds
     @State var isShowingSettingsSheet: Bool = false
-    @State var updateSoundsList: Bool = false
     @StateObject var settingsHelper = SettingsHelper()
     @State var isShowingFolderInfoEditingSheet: Bool = false
     @State var updateFolderList: Bool = false
@@ -27,8 +26,7 @@ struct MainView: View {
                 NavigationView {
                     SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
                                                               authorSortOption: AuthorSortOption.nameAscending.rawValue),
-                               currentMode: .allSounds,
-                               updateSoundsList: .constant(false))
+                               currentMode: .allSounds)
                         .environmentObject(trendsHelper)
                         .environmentObject(settingsHelper)
                 }
@@ -92,22 +90,18 @@ struct MainView: View {
             NavigationView {
                 SidebarView(state: $state,
                             isShowingSettingsSheet: $isShowingSettingsSheet,
-                            updateSoundsList: $updateSoundsList,
                             isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet,
                             updateFolderList: $updateFolderList)
                     .environmentObject(trendsHelper)
                     .environmentObject(settingsHelper)
                 SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
                                                           authorSortOption: AuthorSortOption.nameAscending.rawValue),
-                           currentMode: .allSounds,
-                           updateSoundsList: $updateSoundsList)
+                           currentMode: .allSounds)
                     .environmentObject(trendsHelper)
                     .environmentObject(settingsHelper)
             }
             .navigationViewStyle(DoubleColumnNavigationViewStyle())
-            .sheet(isPresented: $isShowingSettingsSheet, onDismiss: {
-                updateSoundsList = true
-            }) {
+            .sheet(isPresented: $isShowingSettingsSheet) {
                 SettingsCasingWithCloseView(isBeingShown: $isShowingSettingsSheet)
                     .environmentObject(settingsHelper)
             }
