@@ -343,6 +343,7 @@ struct SoundsView: View {
                                          allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
                                          favoritesOnly: currentMode == .favorites,
                                          sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
+                    settingsHelper.updateSoundsList = false
                 }
             }
             .onChange(of: shareAsVideo_Result.videoFilepath) { videoResultPath in

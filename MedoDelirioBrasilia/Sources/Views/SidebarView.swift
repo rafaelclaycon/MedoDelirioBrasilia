@@ -59,7 +59,7 @@ struct SidebarView: View {
             
             Section("Mais") {
                 NavigationLink(
-                    destination: SongsView(),
+                    destination: SongsView().environmentObject(settingsHelper),
                     tag: PadScreen.songs,
                     selection: $state,
                     label: {
