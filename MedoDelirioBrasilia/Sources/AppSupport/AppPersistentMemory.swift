@@ -85,6 +85,14 @@ class AppPersistentMemory {
         return Bool(value as! Bool)
     }
     
+    static func getDevicePushNotificationToken() -> String? {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "devicePushNotificationToken") else {
+            return nil
+        }
+        return String(value as! String)
+    }
+    
     // MARK: - Setters
     
     static func setHasSentDeviceModelToServer(to newValue: Bool) {
@@ -135,6 +143,11 @@ class AppPersistentMemory {
     static func setHasSentFolderResearchInfo(to newValue: Bool) {
         let userDefaults = UserDefaults.standard
         userDefaults.set(newValue, forKey: "hasSentFolderResearchInfo")
+    }
+    
+    static func setDevicePushNotificationToken(to newValue: String) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(newValue, forKey: "devicePushNotificationToken")
     }
 
 }
