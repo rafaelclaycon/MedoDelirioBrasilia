@@ -14,7 +14,7 @@ struct SoundsView: View {
     }
     
     enum SubviewToOpen {
-        case onboardingView, addToFolderView, shareAsVideoView
+        case onboardingView, addToFolderView, shareAsVideoView, settingsView
     }
     
     @StateObject var viewModel: SoundsViewViewModel
@@ -28,10 +28,11 @@ struct SoundsView: View {
     @State private var subviewToOpen: SubviewToOpen = .onboardingView
     @State private var showingModalView = false
     
-    @Binding var updateSoundsList: Bool
-    
     // Temporary banners
     //@State private var shouldDisplayHotWheatherBanner: Bool = false
+    
+    // Settings
+    @EnvironmentObject var settingsHelper: SettingsHelper
     
     // Add to Folder vars
     @State private var hadSuccessAddingToFolder: Bool = false
@@ -122,11 +123,18 @@ struct SoundsView: View {
                                         .padding(.vertical, UIScreen.main.bounds.height / 3)
                                     } else {
                                         ForEach(searchResults) { sound in
-                                            SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", isNew: sound.isNew ?? false, favorites: $viewModel.favoritesKeeper, highlighted: $viewModel.highlightKeeper)
+                                            SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", isNew: sound.isNew ?? false, favorites: $viewModel.favoritesKeeper, highlighted: $viewModel.highlightKeeper, nowPlaying: $viewModel.nowPlayingKeeper)
                                                 .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
                                                 .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                                                 .onTapGesture {
-                                                    viewModel.playSound(fromPath: sound.filename)
+                                                    if viewModel.nowPlayingKeeper.contains(sound.id) {
+                                                        player?.togglePlay()
+                                                        viewModel.nowPlayingKeeper.removeAll()
+                                                    } else {
+                                                        viewModel.playSound(fromPath: sound.filename)
+                                                        viewModel.nowPlayingKeeper.removeAll()
+                                                        viewModel.nowPlayingKeeper.insert(sound.id)
+                                                    }
                                                 }
                                                 .contextMenu(menuItems: {
                                                     Section {
@@ -174,8 +182,8 @@ struct SoundsView: View {
                                                         } label: {
                                                             Label(Shared.addToFolderButtonText, systemImage: "folder.badge.plus")
                                                         }
-                                                        .onChange(of: showingModalView) { newValue in
-                                                            if (newValue == false) && hadSuccessAddingToFolder {
+                                                        .onChange(of: showingModalView) { showingModalView in
+                                                            if (showingModalView == false) && hadSuccessAddingToFolder {
                                                                 DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
                                                                     withAnimation {
                                                                         shouldDisplayAddedToFolderToast = true
@@ -264,9 +272,7 @@ struct SoundsView: View {
                 }
             }
             .navigationTitle(Text(title))
-            .navigationBarItems(trailing:
-                trailingToolbarControls()
-            )
+            .navigationBarItems(leading: leadingToolbarControls(), trailing: trailingToolbarControls())
             .onAppear {
                 viewModel.reloadList(withSounds: soundData,
                                      andFavorites: try? database.getAllFavorites(),
@@ -331,16 +337,20 @@ struct SoundsView: View {
                     
                 case .shareAsVideoView:
                     ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: false)
+                    
+                case .settingsView:
+                    SettingsCasingWithCloseView(isBeingShown: $showingModalView)
+                        .environmentObject(settingsHelper)
                 }
             }
-            .onChange(of: updateSoundsList) { shouldUpdate in
+            .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in
                 if shouldUpdate {
                     viewModel.reloadList(withSounds: soundData,
                                          andFavorites: try? database.getAllFavorites(),
                                          allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
                                          favoritesOnly: currentMode == .favorites,
                                          sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
-                    updateSoundsList = false
+                    settingsHelper.updateSoundsList = false
                 }
             }
             .onChange(of: shareAsVideo_Result.videoFilepath) { videoResultPath in
@@ -421,20 +431,24 @@ struct SoundsView: View {
         }
     }
     
+    @ViewBuilder func leadingToolbarControls() -> some View {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            Button {
+                subviewToOpen = .settingsView
+                showingModalView = true
+            } label: {
+                Image(systemName: "gearshape")
+            }
+        } else {
+            EmptyView()
+        }
+    }
+    
     @ViewBuilder func trailingToolbarControls() -> some View {
         if currentMode == .folders {
             EmptyView()
         } else {
             HStack(spacing: 15) {
-                if currentMode != .byAuthor {
-                    Button {
-                        viewModel.stopPlayback()
-                    } label: {
-                        Image(systemName: "stop.fill")
-                    }
-                    .disabled(!viewModel.isPlayingSound)
-                }
-                
                 if currentMode == .byAuthor {
                     Menu {
                         Section {
@@ -528,7 +542,7 @@ struct SoundsView: View {
 struct SoundsView_Previews: PreviewProvider {
 
     static var previews: some View {
-        SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .allSounds, updateSoundsList: .constant(false))
+        SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .allSounds)
     }
 
 }

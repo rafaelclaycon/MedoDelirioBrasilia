@@ -20,6 +20,8 @@ struct SongsView: View {
     // Share as Video
     @State private var shareAsVideo_Result = ShareAsVideoResult()
     
+    @EnvironmentObject var settingsHelper: SettingsHelper
+    
     private var columns: [GridItem] {
         if UIDevice.current.userInterfaceIdiom == .phone {
             return [
@@ -189,6 +191,14 @@ struct SongsView: View {
             }
             .sheet(isPresented: $showingModalView) {
                 ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSong?.id ?? .empty, contentTitle: viewModel.selectedSong?.title ?? .empty, audioFilename: viewModel.selectedSong?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: true)
+            }
+            .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in
+                if shouldUpdate {
+                    viewModel.reloadList(withSongs: songData,
+                                         allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+                                         sortedBy: SongSortOption(rawValue: UserSettings.getSongSortOption()) ?? .titleAscending)
+                    settingsHelper.updateSoundsList = false
+                }
             }
             
             if viewModel.displaySharedSuccessfullyToast {

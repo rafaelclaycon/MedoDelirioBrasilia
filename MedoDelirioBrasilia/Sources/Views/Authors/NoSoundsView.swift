@@ -21,7 +21,7 @@ struct NoSoundsView: View {
                 .bold()
                 .multilineTextAlignment(.center)
             
-            Text("Visite a aba Ajustes e habilite a opção Exibir Conteúdo Explícito para ver os sons desse autor.")
+            Text("Visite os Ajustes aqui no app e habilite a opção Exibir Conteúdo Explícito para ver os sons desse autor.")
                 .multilineTextAlignment(.center)
         }
     }

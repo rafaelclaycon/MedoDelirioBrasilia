@@ -15,6 +15,7 @@ struct SoundCell: View {
     @State var isNew: Bool
     @Binding var favorites: Set<String>
     @Binding var highlighted: Set<String>
+    @Binding var nowPlaying: Set<String>
     
     enum Mode {
         case regular, favorite, highlighted
@@ -79,6 +80,10 @@ struct SoundCell: View {
         }
     }
     
+    private var isPlaying: Bool {
+        nowPlaying.contains(soundId)
+    }
+    
     private let regularGradient = LinearGradient(gradient: Gradient(colors: [.green, .green, .brightYellow]), startPoint: .topLeading, endPoint: .bottomTrailing)
     private let favoriteGradient = LinearGradient(gradient: Gradient(colors: [.red]), startPoint: .topLeading, endPoint: .bottomTrailing)
     private let highlightGradient = LinearGradient(gradient: Gradient(colors: [.yellow]), startPoint: .topLeading, endPoint: .bottomTrailing)
@@ -88,8 +93,9 @@ struct SoundCell: View {
             RoundedRectangle(cornerRadius: 20, style: .continuous)
                 .fill(cellFill)
                 .frame(height: cellHeight)
+                .opacity(isPlaying ? 0.7 : 1.0)
             
-            if currentMode == .favorite {
+            if currentMode == .favorite, isPlaying == false {
                 VStack {
                     Spacer()
                     HStack {
@@ -123,7 +129,7 @@ struct SoundCell: View {
             }
             .padding(.leading, UIDevice.is4InchDevice ? 10 : 20)
             
-            if isNew, currentMode == .regular {
+            if isNew, currentMode == .regular, isPlaying == false {
                 VStack {
                     Spacer()
                     HStack {
@@ -145,6 +151,21 @@ struct SoundCell: View {
                 }
                 .frame(height: cellHeight)
             }
+            
+            if isPlaying {
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        Image(systemName: "stop.circle")
+                            .font(.largeTitle)
+                            .foregroundColor(.primary)
+                            .padding(.trailing, 10)
+                            .padding(.bottom, 10)
+                    }
+                }
+                .frame(height: cellHeight)
+            }
         }
     }
 
@@ -155,22 +176,22 @@ struct SoundRow_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             // Regular
-            SoundCell(soundId: "ABC", title: "A gente vai cansando", author: "Soraya Thronicke", isNew: false, favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()))
+            SoundCell(soundId: "ABC", title: "A gente vai cansando", author: "Soraya Thronicke", isNew: false, favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()), nowPlaying: .constant(Set<String>()))
             //SoundCell(soundId: "ABC", title: "Funk do Xandão", author: "Roberto Jeferson", favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()))
-            SoundCell(soundId: "ABC", title: "Às vezes o ódio é a única emoção possível", author: "Soraya Thronicke", isNew: false, favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()))
-            SoundCell(soundId: "ABC", title: "É simples assim, um manda e o outro obedece", author: "Soraya Thronicke", isNew: false, favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()))
-            SoundCell(soundId: "ABC", title: "Você tá falando isso porque você é a putinha do Bozo", author: "Soraya Thronicke", isNew: false, favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()))
-            SoundCell(soundId: "ABC", title: "A decisão não cabe a gente, cabe ao TSE", author: "Paulo Sérgio Nogueira", isNew: false, favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()))
+            SoundCell(soundId: "ABC", title: "Às vezes o ódio é a única emoção possível", author: "Soraya Thronicke", isNew: false, favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()), nowPlaying: .constant(Set<String>()))
+            SoundCell(soundId: "ABC", title: "É simples assim, um manda e o outro obedece", author: "Soraya Thronicke", isNew: false, favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()), nowPlaying: .constant(Set<String>()))
+            SoundCell(soundId: "ABC", title: "Você tá falando isso porque você é a putinha do Bozo", author: "Soraya Thronicke", isNew: false, favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()), nowPlaying: .constant(Set<String>()))
+            SoundCell(soundId: "ABC", title: "A decisão não cabe a gente, cabe ao TSE", author: "Paulo Sérgio Nogueira", isNew: false, favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()), nowPlaying: .constant(Set<String>()))
             
             // With New tag
-            SoundCell(soundId: "ABC", title: "A decisão não cabe a gente, cabe ao TSE", author: "Paulo Sérgio Nogueira", isNew: true, favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()))
+            SoundCell(soundId: "ABC", title: "A decisão não cabe a gente, cabe ao TSE", author: "Paulo Sérgio Nogueira", isNew: true, favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()), nowPlaying: .constant(Set<String>()))
             
             // Favorite
-            SoundCell(soundId: "DEF", title: "A gente vai cansando", author: "Soraya Thronicke", isNew: false, favorites: .constant(Set<String>(arrayLiteral: "DEF")), highlighted: .constant(Set<String>()))
-            SoundCell(soundId: "GHI", title: "Funk do Xandão", author: "Roberto Jeferson", isNew: false, favorites: .constant(Set<String>(arrayLiteral: "GHI")), highlighted: .constant(Set<String>()))
+            SoundCell(soundId: "DEF", title: "A gente vai cansando", author: "Soraya Thronicke", isNew: false, favorites: .constant(Set<String>(arrayLiteral: "DEF")), highlighted: .constant(Set<String>()), nowPlaying: .constant(Set<String>()))
+            SoundCell(soundId: "GHI", title: "Funk do Xandão", author: "Roberto Jeferson", isNew: false, favorites: .constant(Set<String>(arrayLiteral: "GHI")), highlighted: .constant(Set<String>()), nowPlaying: .constant(Set<String>()))
             
             // Highlighted
-            SoundCell(soundId: "JKL", title: "Bom dia", author: "Hamilton Mourão", isNew: false, favorites: .constant(Set<String>()), highlighted: .constant(Set<String>(arrayLiteral: "JKL")))
+            SoundCell(soundId: "JKL", title: "Bom dia", author: "Hamilton Mourão", isNew: false, favorites: .constant(Set<String>()), highlighted: .constant(Set<String>(arrayLiteral: "JKL")), nowPlaying: .constant(Set<String>()))
         }
         .previewLayout(.fixed(width: 170, height: 100))
     }
