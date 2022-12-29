@@ -1101,6 +1101,9 @@
 		D9E142C4293BF17400B7FF04 /* Isa Penna - Eu nao permito, nao sou obrigada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E142C3293BF17400B7FF04 /* Isa Penna - Eu nao permito, nao sou obrigada.mp3 */; };
 		D9E1A8D02914CB3A00694A74 /* Monica de Bolle - Pronto, falei.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E1A8CF2914CB3900694A74 /* Monica de Bolle - Pronto, falei.mp3 */; };
 		D9E1A8D22914CD8200694A74 /* MyFoldersiPhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E1A8D12914CD8200694A74 /* MyFoldersiPhoneView.swift */; };
+		D9E2C707295E13B200B5814C /* Vinheta Dedo no cu e gritaria.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E2C705295E13B200B5814C /* Vinheta Dedo no cu e gritaria.mp3 */; };
+		D9E2C708295E13B200B5814C /* Anderson Rangel - Lembra de onde voce veio e aonde que voce chegou.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E2C706295E13B200B5814C /* Anderson Rangel - Lembra de onde voce veio e aonde que voce chegou.mp3 */; };
+		D9E2C70A295E172600B5814C /* Pedro Doria - A culpa, a culpa e de Bolsonaro, sim.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E2C709295E172600B5814C /* Pedro Doria - A culpa, a culpa e de Bolsonaro, sim.mp3 */; };
 		D9E5056028F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E5055F28F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift */; };
 		D9E5056228F79ECB008DAA1E /* Luiz Felipe D'Avila - Que tistreza.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E5056128F79ECB008DAA1E /* Luiz Felipe D'Avila - Que tistreza.mp3 */; };
 		D9E5100A286084F2003DB3A3 /* Date+OnlyDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E51009286084F2003DB3A3 /* Date+OnlyDate.swift */; };
@@ -2301,6 +2304,9 @@
 		D9E142C3293BF17400B7FF04 /* Isa Penna - Eu nao permito, nao sou obrigada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Isa Penna - Eu nao permito, nao sou obrigada.mp3"; sourceTree = "<group>"; };
 		D9E1A8CF2914CB3900694A74 /* Monica de Bolle - Pronto, falei.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Monica de Bolle - Pronto, falei.mp3"; sourceTree = "<group>"; };
 		D9E1A8D12914CD8200694A74 /* MyFoldersiPhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFoldersiPhoneView.swift; sourceTree = "<group>"; };
+		D9E2C705295E13B200B5814C /* Vinheta Dedo no cu e gritaria.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Vinheta Dedo no cu e gritaria.mp3"; sourceTree = "<group>"; };
+		D9E2C706295E13B200B5814C /* Anderson Rangel - Lembra de onde voce veio e aonde que voce chegou.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Anderson Rangel - Lembra de onde voce veio e aonde que voce chegou.mp3"; sourceTree = "<group>"; };
+		D9E2C709295E172600B5814C /* Pedro Doria - A culpa, a culpa e de Bolsonaro, sim.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pedro Doria - A culpa, a culpa e de Bolsonaro, sim.mp3"; sourceTree = "<group>"; };
 		D9E5055F28F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAudienceSharingStatisticTable.swift; sourceTree = "<group>"; };
 		D9E5056128F79ECB008DAA1E /* Luiz Felipe D'Avila - Que tistreza.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Luiz Felipe D'Avila - Que tistreza.mp3"; sourceTree = "<group>"; };
 		D9E51009286084F2003DB3A3 /* Date+OnlyDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+OnlyDate.swift"; sourceTree = "<group>"; };
@@ -2420,6 +2426,9 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9E2C709295E172600B5814C /* Pedro Doria - A culpa, a culpa e de Bolsonaro, sim.mp3 */,
+				D9E2C706295E13B200B5814C /* Anderson Rangel - Lembra de onde voce veio e aonde que voce chegou.mp3 */,
+				D9E2C705295E13B200B5814C /* Vinheta Dedo no cu e gritaria.mp3 */,
 				D9B9ED90295651FE00C25181 /* Eliane Cantanhede - Uau.mp3 */,
 				D9B9ED91295651FE00C25181 /* Tema do Arquivo X.mp3 */,
 				D99C8A932952C5AE002E0C00 /* Gregorio Duvivier - Que tom e esse cara, baixa a bola pra caralho.mp3 */,
@@ -4424,6 +4433,7 @@
 				D975FF782880B4F20035E6F2 /* Bolsonaro - Estou com covid.mp3 in Resources */,
 				D921F894288B07CB003979CC /* Fa do Armandinho - Vamo pra cima Gremio.mp3 in Resources */,
 				D975FFA42880B4F20035E6F2 /* Cid Moreira - Vai chorar e chore na minha.mp3 in Resources */,
+				D9E2C70A295E172600B5814C /* Pedro Doria - A culpa, a culpa e de Bolsonaro, sim.mp3 in Resources */,
 				D975FF732880B4F20035E6F2 /* LEANDRO HASSUM - Adora falar rebuscado.mp3 in Resources */,
 				D975FE4D2880B4F20035E6F2 /* Lula - Eu vou tomar a minha vacina.mp3 in Resources */,
 				D975FFD52880B4F20035E6F2 /* Pretty please meme infantil crianca begging.mp3 in Resources */,
@@ -4678,6 +4688,7 @@
 				D975FE5F2880B4F20035E6F2 /* Danca do Creu - 30 mil passou a meta em 8x.mp3 in Resources */,
 				D92DAB242937BD5500E0CA82 /* Eduardo Pazuello - Sabe o que que me doi.mp3 in Resources */,
 				D92EF4BF291CA5B9009E3E0A /* Jair Bolsonaro - Pode botar, CODIB-19.mp3 in Resources */,
+				D9E2C708295E13B200B5814C /* Anderson Rangel - Lembra de onde voce veio e aonde que voce chegou.mp3 in Resources */,
 				49DEA9A228810D79008C9BA1 /* Baroes da pisadinha - Status - Por mim tudo bem short meme.mp3 in Resources */,
 				D975FF542880B4F20035E6F2 /* Bolsonaro - Tem que deixar de ser um pais de maricas.mp3 in Resources */,
 				D975FEF62880B4F20035E6F2 /* ESSE MENINO - Ta passada.mp3 in Resources */,
@@ -4803,6 +4814,7 @@
 				D975FE1B2880B4F20035E6F2 /* Pazuello - E simples assim, um manda e o outro obedece.mp3 in Resources */,
 				D975FFB82880B4F20035E6F2 /* Jacquin - Cala a boca short.mp3 in Resources */,
 				D975FFE12880B4F20035E6F2 /* Ze Gotinha - Ola meu nome e Ze Gotinha.mp3 in Resources */,
+				D9E2C707295E13B200B5814C /* Vinheta Dedo no cu e gritaria.mp3 in Resources */,
 				491110262926B9CC0055F4EE /* Desconhecido - Eu por forca de lei sou obrigado.mp3 in Resources */,
 				4979105928BEC71400CDF01C /* Dentro do Carro Funk.mp3 in Resources */,
 				D975FEB22880B4F20035E6F2 /* Vai Dar Namoro - Aruaruaruaarua.mp3 in Resources */,
@@ -5393,7 +5405,7 @@
 				CODE_SIGN_ENTITLEMENTS = MedoWidget/Sources/WidgetSupport/MedoWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MedoWidget/Sources/WidgetSupport/Info.plist;
@@ -5405,7 +5417,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 5.36;
+				MARKETING_VERSION = 5.37;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -5425,7 +5437,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_ENTITLEMENTS = MedoWidget/Sources/WidgetSupport/MedoWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MedoWidget/Sources/WidgetSupport/Info.plist;
@@ -5437,7 +5449,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 5.36;
+				MARKETING_VERSION = 5.37;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -5573,7 +5585,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/Sources/AppSupport/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -5593,7 +5605,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.36;
+				MARKETING_VERSION = 5.37;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -5614,7 +5626,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/Sources/AppSupport/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -5634,7 +5646,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.36;
+				MARKETING_VERSION = 5.37;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

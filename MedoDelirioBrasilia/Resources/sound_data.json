@@ -8411,7 +8411,7 @@
         "filename": "Tema do Arquivo X.mp3",
         "dateAdded": "2022-12-23T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "51CE3695-975C-4B8D-89FB-E61CCDCEE276",
@@ -8421,6 +8421,36 @@
         "filename": "Eliane Cantanhede - Uau.mp3",
         "dateAdded": "2022-12-23T00:00:00Z",
         "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "61DC56B2-A4E2-45D5-9A3C-CC4C544F1A57",
+        "title": "Lembra de onde você veio e aonde que você chegou",
+        "authorId": "906374B3-8B1A-40C7-84B0-2BDE58D89504",
+        "description": "Lembra de onde voce veio e aonde que voce chegou",
+        "filename": "Anderson Rangel - Lembra de onde voce veio e aonde que voce chegou.mp3",
+        "dateAdded": "2022-12-29T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "A89B9309-8C40-498F-A784-88C40E54A355",
+        "title": "Vinheta Dedo no Cu e Gritaria",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Vinheta Dedo no cu e gritaria",
+        "filename": "Vinheta Dedo no cu e gritaria.mp3",
+        "dateAdded": "2022-12-29T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "126A21C0-D745-456D-8DC0-8C234B03842D",
+        "title": "A culpa? A culpa é de Bolsonaro, sim",
+        "authorId": "B68A894C-8412-444B-B81F-ADC44DF128DC",
+        "description": "A culpa a culpa e de Bolsonaro sim",
+        "filename": "Pedro Doria - A culpa, a culpa e de Bolsonaro, sim.mp3",
+        "dateAdded": "2022-12-29T00:00:00Z",
+        "isOffensive": true,
         "isNew": true
     }
 ]
