@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SettingsView: View {
 
+    @EnvironmentObject var helper: SettingsHelper
+    
     @State private var showExplicitSounds: Bool = UserSettings.getShowOffensiveSounds()
     
     @State private var showChangeAppIcon: Bool = ProcessInfo.processInfo.isMacCatalystApp == false
@@ -25,8 +27,9 @@ struct SettingsView: View {
         Form {
             Section {
                 Toggle("Exibir conteúdo explícito", isOn: $showExplicitSounds)
-                    .onChange(of: showExplicitSounds) { newValue in
-                        UserSettings.setShowOffensiveSounds(to: newValue)
+                    .onChange(of: showExplicitSounds) { showExplicitSounds in
+                        UserSettings.setShowOffensiveSounds(to: showExplicitSounds)
+                        helper.updateSoundsList = true
                     }
             } footer: {
                 Text("Alguns conteúdos contam com muitos palavrões. Ao marcar essa opção, você concorda que tem mais de 18 anos e que deseja ver esses conteúdos.")
