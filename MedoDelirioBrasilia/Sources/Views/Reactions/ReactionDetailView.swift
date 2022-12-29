@@ -51,7 +51,7 @@ struct ReactionDetailView: View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
                 ForEach(viewModel.sounds) { sound in
-                    SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", isNew: false, favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()))
+                    SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", isNew: false, favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()), nowPlaying: .constant(Set<String>()))
                         .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
                         .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                         .onTapGesture {

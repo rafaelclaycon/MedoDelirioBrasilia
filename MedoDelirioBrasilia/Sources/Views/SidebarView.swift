@@ -41,19 +41,19 @@ struct SidebarView: View {
                     })
                 
                 NavigationLink(
-                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .byAuthor).environmentObject(trendsHelper).environmentObject(settingsHelper),
-                    tag: PadScreen.groupedByAuthor,
-                    selection: $state,
-                    label: {
-                        Label("Por Autor", systemImage: "person")
-                    })
-                
-                NavigationLink(
                     destination: ReactionsView(),
                     tag: PadScreen.collections,
                     selection: $state,
                     label: {
                         Label("Reações", systemImage: "theatermasks")
+                    })
+                
+                NavigationLink(
+                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .byAuthor).environmentObject(trendsHelper).environmentObject(settingsHelper),
+                    tag: PadScreen.groupedByAuthor,
+                    selection: $state,
+                    label: {
+                        Label("Por Autor", systemImage: "person")
                     })
 
                 NavigationLink(
