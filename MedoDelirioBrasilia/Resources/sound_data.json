@@ -8431,17 +8431,17 @@
         "filename": "Anderson Rangel - Lembra de onde voce veio e aonde que voce chegou.mp3",
         "dateAdded": "2022-12-29T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "A89B9309-8C40-498F-A784-88C40E54A355",
         "title": "Vinheta Dedo no Cu e Gritaria",
-        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "authorId": "CDAA83B1-66DC-4050-8210-3BA2B11A16EB",
         "description": "Vinheta Dedo no cu e gritaria",
         "filename": "Vinheta Dedo no cu e gritaria.mp3",
         "dateAdded": "2022-12-29T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "126A21C0-D745-456D-8DC0-8C234B03842D",
@@ -8451,6 +8451,6 @@
         "filename": "Pedro Doria - A culpa, a culpa e de Bolsonaro, sim.mp3",
         "dateAdded": "2022-12-29T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     }
 ]
