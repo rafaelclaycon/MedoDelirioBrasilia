@@ -165,6 +165,8 @@
 		D923127028AB049800436336 /* E pra glorificar de pe, igreja.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D923126F28AB049800436336 /* E pra glorificar de pe, igreja.mp3 */; };
 		D923127328AB0A6100436336 /* Novo e diferente, e top, e moderno (curto).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D923127128AB0A6100436336 /* Novo e diferente, e top, e moderno (curto).mp3 */; };
 		D923127428AB0A6100436336 /* Novo e diferente, e top, e moderno (completo).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D923127228AB0A6100436336 /* Novo e diferente, e top, e moderno (completo).mp3 */; };
+		D9235E242969BF31001F8167 /* Roberto Jefferson - Um sujeito lombrosiano.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9235E232969BF31001F8167 /* Roberto Jefferson - Um sujeito lombrosiano.mp3 */; };
+		D9235E262969C08E001F8167 /* Rotina dos acampamentos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9235E252969C08E001F8167 /* Rotina dos acampamentos.mp3 */; };
 		D9265741285A1EE700947165 /* LocalDatabase+Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9265740285A1EE700947165 /* LocalDatabase+Log.swift */; };
 		D9267EE728D1271400C0DC6C /* Mc Douglinhas - Ui, que brega.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9267EE528D1271300C0DC6C /* Mc Douglinhas - Ui, que brega.mp3 */; };
 		D9267EE828D1271400C0DC6C /* Milton Leite - Chato pra caralho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9267EE628D1271400C0DC6C /* Milton Leite - Chato pra caralho.mp3 */; };
@@ -1366,6 +1368,8 @@
 		D923126F28AB049800436336 /* E pra glorificar de pe, igreja.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "E pra glorificar de pe, igreja.mp3"; sourceTree = "<group>"; };
 		D923127128AB0A6100436336 /* Novo e diferente, e top, e moderno (curto).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Novo e diferente, e top, e moderno (curto).mp3"; sourceTree = "<group>"; };
 		D923127228AB0A6100436336 /* Novo e diferente, e top, e moderno (completo).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Novo e diferente, e top, e moderno (completo).mp3"; sourceTree = "<group>"; };
+		D9235E232969BF31001F8167 /* Roberto Jefferson - Um sujeito lombrosiano.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Roberto Jefferson - Um sujeito lombrosiano.mp3"; sourceTree = "<group>"; };
+		D9235E252969C08E001F8167 /* Rotina dos acampamentos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rotina dos acampamentos.mp3"; sourceTree = "<group>"; };
 		D9265740285A1EE700947165 /* LocalDatabase+Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+Log.swift"; sourceTree = "<group>"; };
 		D9267EE528D1271300C0DC6C /* Mc Douglinhas - Ui, que brega.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mc Douglinhas - Ui, que brega.mp3"; sourceTree = "<group>"; };
 		D9267EE628D1271400C0DC6C /* Milton Leite - Chato pra caralho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Milton Leite - Chato pra caralho.mp3"; sourceTree = "<group>"; };
@@ -2426,6 +2430,8 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9235E252969C08E001F8167 /* Rotina dos acampamentos.mp3 */,
+				D9235E232969BF31001F8167 /* Roberto Jefferson - Um sujeito lombrosiano.mp3 */,
 				D9E2C709295E172600B5814C /* Pedro Doria - A culpa, a culpa e de Bolsonaro, sim.mp3 */,
 				D9E2C706295E13B200B5814C /* Anderson Rangel - Lembra de onde voce veio e aonde que voce chegou.mp3 */,
 				D9E2C705295E13B200B5814C /* Vinheta Dedo no cu e gritaria.mp3 */,
@@ -4809,6 +4815,7 @@
 				49DEA9B8288111CA008C9BA1 /* CANAL MEIO - Pedro doria - Vamos sonhar short meme.mp3 in Resources */,
 				D975FFCC2880B4F20035E6F2 /* Dudu Marfetan - Agora tu aguenta.mp3 in Resources */,
 				D91C4D16291AD1A3000E13E8 /* Desconhecido - Nao existe segunda-feira no comunismo.mp3 in Resources */,
+				D9235E242969BF31001F8167 /* Roberto Jefferson - Um sujeito lombrosiano.mp3 in Resources */,
 				D975FE962880B4F20035E6F2 /* Ciro Gomes - Veja bem, se eu estiver errado me corrija.mp3 in Resources */,
 				D975FFBD2880B4F20035E6F2 /* Eu nao entendi o que ele falou.mp3 in Resources */,
 				D975FE1B2880B4F20035E6F2 /* Pazuello - E simples assim, um manda e o outro obedece.mp3 in Resources */,
@@ -5103,6 +5110,7 @@
 				D923126828AB001300436336 /* Billy Madison Um Herdeiro Bobalhao - Todos nesse salao estao mais burros por terem escutado isso.mp3 in Resources */,
 				D92879E8283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 in Resources */,
 				D937E11A29097D58004137ED /* BAND JORNALISMO - Onyx - E o gesto que so um homem forte politicamente e respaldado em sua populacao poderia fazer.mp3 in Resources */,
+				D9235E262969C08E001F8167 /* Rotina dos acampamentos.mp3 in Resources */,
 				D975FE662880B4F20035E6F2 /* Eu fico muito triste com uma noticia dessas filha da puta fogos short.mp3 in Resources */,
 				D975FFD92880B4F20035E6F2 /* Malafaia - Concordamos.mp3 in Resources */,
 				D975FFFA2880B4F20035E6F2 /* Vai Dar Namoro - Demais.mp3 in Resources */,
@@ -5417,7 +5425,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 5.37.1;
+				MARKETING_VERSION = 5.38;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -5449,7 +5457,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 5.37.1;
+				MARKETING_VERSION = 5.38;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -5605,7 +5613,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.37.1;
+				MARKETING_VERSION = 5.38;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -5646,7 +5654,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.37.1;
+				MARKETING_VERSION = 5.38;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
