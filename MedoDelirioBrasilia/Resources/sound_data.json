@@ -3549,7 +3549,7 @@
         "id": "873A547A-D560-4D96-8AC2-3729A06CBD56",
         "title": "Em 50 metros, tire o cu da reta",
         "authorId": "0DF6839C-6E51-4138-A4A3-D3D9EF6BA9E5",
-        "description": "Em cinquenta metros tire o cu da reta",
+        "description": "Em cinquenta metros tire o cu da reta Em 50 metros tire o cu da reta",
         "filename": "Em cinquenta metros, tire o cu da reta.mp3",
         "dateAdded": "2022-06-18T00:00:00Z",
         "isOffensive": true
@@ -8461,7 +8461,7 @@
         "filename": "Roberto Jefferson - Um sujeito lombrosiano.mp3",
         "dateAdded": "2023-01-10T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "BE3736BF-1807-45D3-AC2A-B61557214254",
@@ -8470,6 +8470,16 @@
         "description": "Rotina dos acampamentos",
         "filename": "Rotina dos acampamentos.mp3",
         "dateAdded": "2023-01-10T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "B4354931-3E9A-4254-AE97-75B099F42226",
+        "title": "A Papuda lhe espera!",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "A papuda lhe espera boa estadia la valeu",
+        "filename": "Jair Bolsonaro - A papuda lhe espera boa estadia la valeu.mp3",
+        "dateAdded": "2023-01-11T00:00:00Z",
         "isOffensive": true,
         "isNew": true
     }
