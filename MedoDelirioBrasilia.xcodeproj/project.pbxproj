@@ -26,9 +26,6 @@
 		491110462926C0B20055F4EE /* Cristiano Botafogo - Confira comigo no replay.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 491110452926C0B20055F4EE /* Cristiano Botafogo - Confira comigo no replay.mp3 */; };
 		491110482926C2F70055F4EE /* Cristiano Botafogo - O terrivel editorialista do Globo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 491110472926C2F70055F4EE /* Cristiano Botafogo - O terrivel editorialista do Globo.mp3 */; };
 		494EAD2B28FC614A00BF822C /* Tá na hora de votar (Ilarie) - Lula.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 494EAD2A28FC614900BF822C /* Tá na hora de votar (Ilarie) - Lula.mp3 */; };
-		4979103D28BE844D00CDF01C /* MedoWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4979103C28BE844D00CDF01C /* MedoWidget.swift */; };
-		4979103F28BE844E00CDF01C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4979103E28BE844E00CDF01C /* Assets.xcassets */; };
-		4979104328BE844E00CDF01C /* MedoWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4979103528BE844D00CDF01C /* MedoWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4979105228BEC6F700CDF01C /* Vai Tomar no Cu Vai Pro Caralho - Palhaco Gozo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4979104C28BEC6F700CDF01C /* Vai Tomar no Cu Vai Pro Caralho - Palhaco Gozo.mp3 */; };
 		4979105428BEC6F700CDF01C /* Desculpa perdao lamento - Pedro Daltro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4979104E28BEC6F700CDF01C /* Desculpa perdao lamento - Pedro Daltro.mp3 */; };
 		4979105528BEC6F700CDF01C /* Me deixa bastante chateado - Paulo Sergio Nogueira.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4979104F28BEC6F700CDF01C /* Me deixa bastante chateado - Paulo Sergio Nogueira.mp3 */; };
@@ -212,7 +209,6 @@
 		D92E7075283C5F620035826C /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92E7074283C5F620035826C /* SongCell.swift */; };
 		D92EF4BF291CA5B9009E3E0A /* Jair Bolsonaro - Pode botar, CODIB-19.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92EF4BD291CA5B9009E3E0A /* Jair Bolsonaro - Pode botar, CODIB-19.mp3 */; };
 		D92EF4C0291CA5B9009E3E0A /* Jair Bolsonaro - CODIB-19.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92EF4BE291CA5B9009E3E0A /* Jair Bolsonaro - CODIB-19.mp3 */; };
-		D92EF4C2291D721D009E3E0A /* FunnyPhrase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92EF4C1291D721D009E3E0A /* FunnyPhrase.swift */; };
 		D92F8BAD286A6D2100EB9470 /* AlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92F8BAC286A6D2100EB9470 /* AlertType.swift */; };
 		D933251E28835E41004EFACB /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D933251D28835E41004EFACB /* ActivityViewController.swift */; };
 		D9344323283812AD00ADCD38 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9344322283812AD00ADCD38 /* Author.swift */; };
@@ -1178,13 +1174,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4979104128BE844E00CDF01C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D9625E7228238F9A00080852 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4979103428BE844D00CDF01C;
-			remoteInfo = MedoWidgetExtension;
-		};
 		D9625E8B28238F9B00080852 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D9625E7228238F9A00080852 /* Project object */;
@@ -1201,7 +1190,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				4979104328BE844E00CDF01C /* MedoWidgetExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1228,11 +1216,6 @@
 		491110452926C0B20055F4EE /* Cristiano Botafogo - Confira comigo no replay.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano Botafogo - Confira comigo no replay.mp3"; sourceTree = "<group>"; };
 		491110472926C2F70055F4EE /* Cristiano Botafogo - O terrivel editorialista do Globo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano Botafogo - O terrivel editorialista do Globo.mp3"; sourceTree = "<group>"; };
 		494EAD2A28FC614900BF822C /* Tá na hora de votar (Ilarie) - Lula.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tá na hora de votar (Ilarie) - Lula.mp3"; sourceTree = "<group>"; };
-		4979103528BE844D00CDF01C /* MedoWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MedoWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		4979103C28BE844D00CDF01C /* MedoWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedoWidget.swift; sourceTree = "<group>"; };
-		4979103E28BE844E00CDF01C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		4979104028BE844E00CDF01C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4979104428BE844E00CDF01C /* MedoWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MedoWidgetExtension.entitlements; sourceTree = "<group>"; };
 		4979104C28BEC6F700CDF01C /* Vai Tomar no Cu Vai Pro Caralho - Palhaco Gozo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Vai Tomar no Cu Vai Pro Caralho - Palhaco Gozo.mp3"; sourceTree = "<group>"; };
 		4979104E28BEC6F700CDF01C /* Desculpa perdao lamento - Pedro Daltro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Desculpa perdao lamento - Pedro Daltro.mp3"; sourceTree = "<group>"; };
 		4979104F28BEC6F700CDF01C /* Me deixa bastante chateado - Paulo Sergio Nogueira.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Me deixa bastante chateado - Paulo Sergio Nogueira.mp3"; sourceTree = "<group>"; };
@@ -1416,7 +1399,6 @@
 		D92E7074283C5F620035826C /* SongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
 		D92EF4BD291CA5B9009E3E0A /* Jair Bolsonaro - Pode botar, CODIB-19.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Pode botar, CODIB-19.mp3"; sourceTree = "<group>"; };
 		D92EF4BE291CA5B9009E3E0A /* Jair Bolsonaro - CODIB-19.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - CODIB-19.mp3"; sourceTree = "<group>"; };
-		D92EF4C1291D721D009E3E0A /* FunnyPhrase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunnyPhrase.swift; sourceTree = "<group>"; };
 		D92F8BAC286A6D2100EB9470 /* AlertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertType.swift; sourceTree = "<group>"; };
 		D933251D28835E41004EFACB /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		D9344322283812AD00ADCD38 /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
@@ -2383,13 +2365,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		4979103228BE844D00CDF01C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D9625E7728238F9A00080852 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -2411,15 +2386,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4979103B28BE844D00CDF01C /* MedoWidget */ = {
-			isa = PBXGroup;
-			children = (
-				D9DB6F8828CD791500E24BDE /* Sources */,
-				D9DB6F8928CD791A00E24BDE /* Resources */,
-			);
-			path = MedoWidget;
-			sourceTree = "<group>";
-		};
 		D916627B2874F1E2000A1B23 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -3582,7 +3548,6 @@
 			children = (
 				D9625E7C28238F9A00080852 /* MedoDelirioBrasilia */,
 				D9625E8D28238F9B00080852 /* MedoDelirioBrasiliaTests */,
-				4979103B28BE844D00CDF01C /* MedoWidget */,
 				D9625E7B28238F9A00080852 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -3592,7 +3557,6 @@
 			children = (
 				D9625E7A28238F9A00080852 /* MedoDelirio.app */,
 				D9625E8A28238F9B00080852 /* MedoDelirioBrasiliaTests.xctest */,
-				4979103528BE844D00CDF01C /* MedoWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3981,33 +3945,6 @@
 			path = iPad;
 			sourceTree = "<group>";
 		};
-		D9DB6F8728CD790100E24BDE /* WidgetSupport */ = {
-			isa = PBXGroup;
-			children = (
-				4979104028BE844E00CDF01C /* Info.plist */,
-				4979104428BE844E00CDF01C /* MedoWidgetExtension.entitlements */,
-			);
-			path = WidgetSupport;
-			sourceTree = "<group>";
-		};
-		D9DB6F8828CD791500E24BDE /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				4979103C28BE844D00CDF01C /* MedoWidget.swift */,
-				D92EF4C1291D721D009E3E0A /* FunnyPhrase.swift */,
-				D9DB6F8728CD790100E24BDE /* WidgetSupport */,
-			);
-			path = Sources;
-			sourceTree = "<group>";
-		};
-		D9DB6F8928CD791A00E24BDE /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				4979103E28BE844E00CDF01C /* Assets.xcassets */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		D9E69595283D54EA00C341B2 /* DataHandlers */ = {
 			isa = PBXGroup;
 			children = (
@@ -4062,23 +3999,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4979103428BE844D00CDF01C /* MedoWidgetExtension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4979104528BE844E00CDF01C /* Build configuration list for PBXNativeTarget "MedoWidgetExtension" */;
-			buildPhases = (
-				4979103128BE844D00CDF01C /* Sources */,
-				4979103228BE844D00CDF01C /* Frameworks */,
-				4979103328BE844D00CDF01C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = MedoWidgetExtension;
-			productName = MedoWidgetExtension;
-			productReference = 4979103528BE844D00CDF01C /* MedoWidgetExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		D9625E7928238F9A00080852 /* MedoDelirioBrasilia */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D9625E9E28238F9B00080852 /* Build configuration list for PBXNativeTarget "MedoDelirioBrasilia" */;
@@ -4091,7 +4011,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				4979104228BE844E00CDF01C /* PBXTargetDependency */,
 			);
 			name = MedoDelirioBrasilia;
 			packageProductDependencies = (
@@ -4132,9 +4051,6 @@
 				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
-					4979103428BE844D00CDF01C = {
-						CreatedOnToolsVersion = 14.0;
-					};
 					D9625E7928238F9A00080852 = {
 						CreatedOnToolsVersion = 13.3.1;
 					};
@@ -4166,20 +4082,11 @@
 			targets = (
 				D9625E7928238F9A00080852 /* MedoDelirioBrasilia */,
 				D9625E8928238F9B00080852 /* MedoDelirioBrasiliaTests */,
-				4979103428BE844D00CDF01C /* MedoWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		4979103328BE844D00CDF01C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4979103F28BE844E00CDF01C /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D9625E7828238F9A00080852 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -5186,15 +5093,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		4979103128BE844D00CDF01C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4979103D28BE844D00CDF01C /* MedoWidget.swift in Sources */,
-				D92EF4C2291D721D009E3E0A /* FunnyPhrase.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D9625E7628238F9A00080852 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -5383,11 +5281,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		4979104228BE844E00CDF01C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4979103428BE844D00CDF01C /* MedoWidgetExtension */;
-			targetProxy = 4979104128BE844E00CDF01C /* PBXContainerItemProxy */;
-		};
 		D9625E8C28238F9B00080852 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D9625E7928238F9A00080852 /* MedoDelirioBrasilia */;
@@ -5408,70 +5301,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		4979104628BE844E00CDF01C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_ENTITLEMENTS = MedoWidget/Sources/WidgetSupport/MedoWidgetExtension.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = L8X3H5XA82;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MedoWidget/Sources/WidgetSupport/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = MedoWidget;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 5.39;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Debug;
-		};
-		4979104728BE844E00CDF01C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_ENTITLEMENTS = MedoWidget/Sources/WidgetSupport/MedoWidgetExtension.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = L8X3H5XA82;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MedoWidget/Sources/WidgetSupport/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = MedoWidget;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 5.39;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Release;
-		};
 		D9625E9C28238F9B00080852 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -5719,15 +5548,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4979104528BE844E00CDF01C /* Build configuration list for PBXNativeTarget "MedoWidgetExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4979104628BE844E00CDF01C /* Debug */,
-				4979104728BE844E00CDF01C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		D9625E7528238F9A00080852 /* Build configuration list for PBXProject "MedoDelirioBrasilia" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
