@@ -528,8 +528,30 @@
         "genre": 3,
         "duration": "01:47",
         "filename": "Funk do Desespero Pos-Primeiro Turno de 2022.mp3",
-        "dateAdded": "2022-12-08T04:00:00Z",
+        "dateAdded": "2022-12-08T00:00:00Z",
         "isOffensive": true,
         "isNew": false
+    },
+    {
+        "id": "563BD7D4-E012-44BD-8960-66963333BA17",
+        "title": "Funk da Cidinha",
+        "description": "",
+        "genre": 3,
+        "duration": "00:46",
+        "filename": "Funk da Cidinha.mp3",
+        "dateAdded": "2023-01-16T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "38FE802E-0D63-43BD-8599-783899773ED4",
+        "title": "Pisero da Cidinha",
+        "description": "",
+        "genre": 16,
+        "duration": "00:08",
+        "filename": "Pisero da Cidinha.mp3",
+        "dateAdded": "2023-01-16T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
     }
 ]

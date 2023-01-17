@@ -1128,6 +1128,10 @@
 		D9F185CC28D6705100BE2F69 /* Bolsonaro - Presta atencao que e importante, pessoal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F185CB28D6705100BE2F69 /* Bolsonaro - Presta atencao que e importante, pessoal.mp3 */; };
 		D9F185CF28D6729A00BE2F69 /* Lula - Chupou, acabou.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F185CD28D6729A00BE2F69 /* Lula - Chupou, acabou.mp3 */; };
 		D9F185D028D6729A00BE2F69 /* Lula - E como se fosse um sorvete, chupou, acabou, fica com o palito na mao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F185CE28D6729A00BE2F69 /* Lula - E como se fosse um sorvete, chupou, acabou, fica com o palito na mao.mp3 */; };
+		D9F487EA29761F8C00DCFE07 /* Cidinha R e Eliana Brasil - E quem ta preso, Cidinha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F487E829761F8C00DCFE07 /* Cidinha R e Eliana Brasil - E quem ta preso, Cidinha.mp3 */; };
+		D9F487EB29761F8C00DCFE07 /* Eliana Brasil - Cidinha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F487E929761F8C00DCFE07 /* Eliana Brasil - Cidinha.mp3 */; };
+		D9F487EE29761F9500DCFE07 /* Pisero da Cidinha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F487EC29761F9500DCFE07 /* Pisero da Cidinha.mp3 */; };
+		D9F487EF29761F9500DCFE07 /* Funk da Cidinha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F487ED29761F9500DCFE07 /* Funk da Cidinha.mp3 */; };
 		D9F6420528CFD57600003A0E /* Bolsonaro - Eu acho que ate um fake news e valido, com todo o respeito.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F6420428CFD57600003A0E /* Bolsonaro - Eu acho que ate um fake news e valido, com todo o respeito.mp3 */; };
 		D9F6420728D1211700003A0E /* Casimiro - Misericordia, jornalista, tenha do.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F6420628D1211700003A0E /* Casimiro - Misericordia, jornalista, tenha do.mp3 */; };
 		D9F6420928D122C500003A0E /* Moderador, tira o moleque desse grupo agora.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F6420828D122C500003A0E /* Moderador, tira o moleque desse grupo agora.mp3 */; };
@@ -2319,6 +2323,10 @@
 		D9F185CB28D6705100BE2F69 /* Bolsonaro - Presta atencao que e importante, pessoal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Presta atencao que e importante, pessoal.mp3"; sourceTree = "<group>"; };
 		D9F185CD28D6729A00BE2F69 /* Lula - Chupou, acabou.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - Chupou, acabou.mp3"; sourceTree = "<group>"; };
 		D9F185CE28D6729A00BE2F69 /* Lula - E como se fosse um sorvete, chupou, acabou, fica com o palito na mao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - E como se fosse um sorvete, chupou, acabou, fica com o palito na mao.mp3"; sourceTree = "<group>"; };
+		D9F487E829761F8C00DCFE07 /* Cidinha R e Eliana Brasil - E quem ta preso, Cidinha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cidinha R e Eliana Brasil - E quem ta preso, Cidinha.mp3"; sourceTree = "<group>"; };
+		D9F487E929761F8C00DCFE07 /* Eliana Brasil - Cidinha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eliana Brasil - Cidinha.mp3"; sourceTree = "<group>"; };
+		D9F487EC29761F9500DCFE07 /* Pisero da Cidinha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pisero da Cidinha.mp3"; sourceTree = "<group>"; };
+		D9F487ED29761F9500DCFE07 /* Funk da Cidinha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Funk da Cidinha.mp3"; sourceTree = "<group>"; };
 		D9F6420428CFD57600003A0E /* Bolsonaro - Eu acho que ate um fake news e valido, com todo o respeito.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Eu acho que ate um fake news e valido, com todo o respeito.mp3"; sourceTree = "<group>"; };
 		D9F6420628D1211700003A0E /* Casimiro - Misericordia, jornalista, tenha do.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Casimiro - Misericordia, jornalista, tenha do.mp3"; sourceTree = "<group>"; };
 		D9F6420828D122C500003A0E /* Moderador, tira o moleque desse grupo agora.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Moderador, tira o moleque desse grupo agora.mp3"; sourceTree = "<group>"; };
@@ -2398,6 +2406,8 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9F487E829761F8C00DCFE07 /* Cidinha R e Eliana Brasil - E quem ta preso, Cidinha.mp3 */,
+				D9F487E929761F8C00DCFE07 /* Eliana Brasil - Cidinha.mp3 */,
 				D9CBBB85296F7FFD0089F74B /* Jair Bolsonaro - A papuda lhe espera boa estadia la valeu.mp3 */,
 				D9235E252969C08E001F8167 /* Rotina dos acampamentos.mp3 */,
 				D9235E232969BF31001F8167 /* Roberto Jefferson - Um sujeito lombrosiano.mp3 */,
@@ -3351,6 +3361,8 @@
 		D92E7068283C5C120035826C /* Songs */ = {
 			isa = PBXGroup;
 			children = (
+				D9F487ED29761F9500DCFE07 /* Funk da Cidinha.mp3 */,
+				D9F487EC29761F9500DCFE07 /* Pisero da Cidinha.mp3 */,
 				D92230AE2942391000C59227 /* Funk do Desespero Pos-Primeiro Turno de 2022.mp3 */,
 				D9DACB0029199E9200D917BB /* E hora de rir um pouco dos militares.mp3 */,
 				D9DACB0129199E9200D917BB /* Musica da Vitoria - Lula Eleito.mp3 */,
@@ -4154,6 +4166,7 @@
 				D99BBE492947051200BCA901 /* Jair Bolsonaro - Historico de atleta.mp3 in Resources */,
 				D97500362880B4F20035E6F2 /* Bolsonaro - Pra midia o virus sou eu.mp3 in Resources */,
 				D975FEE62880B4F20035E6F2 /* Vai Dar Namoro - Danca gatinho danca.mp3 in Resources */,
+				D9F487EB29761F8C00DCFE07 /* Eliana Brasil - Cidinha.mp3 in Resources */,
 				D975FFBB2880B4F20035E6F2 /* Caetano - Que loucura, que coisa absurda short.mp3 in Resources */,
 				D975FEF32880B4F20035E6F2 /* FRANCIEL CRUZ - LIVE DAS CANJEBRINAS - Polarizacao e meu pau em sua mao, porra que polarizacao meu pai.mp3 in Resources */,
 				D99151322873E4C100FFAA29 /* pagode-osmar-cloroquina-mdb.mp3 in Resources */,
@@ -4276,6 +4289,7 @@
 				D975FE102880B4F20035E6F2 /* Lula - Nao.mp3 in Resources */,
 				D9DACB0229199E9200D917BB /* E hora de rir um pouco dos militares.mp3 in Resources */,
 				D9C7D18C292EEA81003F500C /* Cidade Oculta e Google Tradutor - Putinha do Jobs.mp3 in Resources */,
+				D9F487EE29761F9500DCFE07 /* Pisero da Cidinha.mp3 in Resources */,
 				49DEA9BE288112D8008C9BA1 /* CARTOON NETWORK - MAS ESTA ERRADO short meme.mp3 in Resources */,
 				D934432728381DEF00ADCD38 /* author_data.json in Resources */,
 				D921F87F288B0177003979CC /* Aglomeracao de idosos todos doentes.mp3 in Resources */,
@@ -4359,6 +4373,7 @@
 				49DEA9AE28810F5E008C9BA1 /* UOL- BOLSONARO -  MORRE MAIS GENTE DE PAVOR DO QUE DE UM ATO EM SI short meme.mp3 in Resources */,
 				D9FA62FE2924A5D000790F55 /* Desconhecido - A razao de ser da economia e o bem estar do povo.mp3 in Resources */,
 				D975FFF12880B4F20035E6F2 /* Costinha - Se fudeu short.mp3 in Resources */,
+				D9F487EF29761F9500DCFE07 /* Funk da Cidinha.mp3 in Resources */,
 				D9FD0F0E28B2B2EE0000616A /* Calma poxa - Desesperado.mp3 in Resources */,
 				D937E11029097D58004137ED /* Renan Calheiros - Onyx Lorenzeti parece nome de chuveiro.mp3 in Resources */,
 				D975FE132880B4F20035E6F2 /* Midcast - Freixo - Tem rabo de jacare tem couro de jacare e jacare gente.mp3 in Resources */,
@@ -4767,6 +4782,7 @@
 				D9F185CC28D6705100BE2F69 /* Bolsonaro - Presta atencao que e importante, pessoal.mp3 in Resources */,
 				D975FF842880B4F20035E6F2 /* Bolsonaro - Sem o vies ideologico.mp3 in Resources */,
 				D975FFC62880B4F20035E6F2 /* Cidade Oculta - Voce fala isso porque e a putinha do bozo.mp3 in Resources */,
+				D9F487EA29761F8C00DCFE07 /* Cidinha R e Eliana Brasil - E quem ta preso, Cidinha.mp3 in Resources */,
 				D991512D2873E4C100FFAA29 /* rock-comunismo-ai-seis-mdb.mp3 in Resources */,
 				D975FE632880B4F20035E6F2 /* Ai seu grosso.mp3 in Resources */,
 				49F9220028E334C1009AC743 /* Eu to esmagada.mp3 in Resources */,
@@ -5446,7 +5462,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.39;
+				MARKETING_VERSION = 5.40;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -5487,7 +5503,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.39;
+				MARKETING_VERSION = 5.40;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
