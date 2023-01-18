@@ -8491,7 +8491,7 @@
         "filename": "Eliana Brasil - Cidinha.mp3",
         "dateAdded": "2023-01-16T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "3EFAC109-3F66-4C96-9163-5F0D8648083C",
@@ -8500,6 +8500,16 @@
         "description": "E quem ta preso Cidinha vai continuar",
         "filename": "Cidinha R e Eliana Brasil - E quem ta preso, Cidinha.mp3",
         "dateAdded": "2023-01-16T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "3A88E249-0857-4A59-ABC1-378DF5C296B0",
+        "title": "As Forças Armadas são burocracia do Estado",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "As forcas armadas sao burocracia do Estado burocracia do estado obedece nao manda burocracia do estado nao da palpite",
+        "filename": "As Forcas Armadas sao burocracia do Estado.mp3",
+        "dateAdded": "2023-01-18T00:00:00Z",
         "isOffensive": true,
         "isNew": true
     }
