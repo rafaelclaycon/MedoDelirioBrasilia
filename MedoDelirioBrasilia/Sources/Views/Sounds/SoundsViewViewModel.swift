@@ -253,7 +253,7 @@ class SoundsViewViewModel: ObservableObject {
     func showVideoSavedSuccessfullyToast() {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
             withAnimation {
-                self.shareBannerMessage = "Vídeo salvo com sucesso."
+                self.shareBannerMessage = ProcessInfo.processInfo.isiOSAppOnMac ? Shared.ShareAsVideo.videoSavedSucessfullyMac : Shared.ShareAsVideo.videoSavedSucessfully
                 self.displaySharedSuccessfullyToast = true
             }
             TapticFeedback.success()
