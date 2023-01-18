@@ -3549,7 +3549,7 @@
         "id": "873A547A-D560-4D96-8AC2-3729A06CBD56",
         "title": "Em 50 metros, tire o cu da reta",
         "authorId": "0DF6839C-6E51-4138-A4A3-D3D9EF6BA9E5",
-        "description": "Em cinquenta metros tire o cu da reta",
+        "description": "Em cinquenta metros tire o cu da reta Em 50 metros tire o cu da reta",
         "filename": "Em cinquenta metros, tire o cu da reta.mp3",
         "dateAdded": "2022-06-18T00:00:00Z",
         "isOffensive": true
@@ -8452,5 +8452,55 @@
         "dateAdded": "2022-12-29T00:00:00Z",
         "isOffensive": true,
         "isNew": false
+    },
+    {
+        "id": "C7871BBF-47A1-42B7-B18E-8DA7866B3915",
+        "title": "Um sujeito lombrosiano",
+        "authorId": "D651B333-E338-4EEA-A397-BF49D2929420",
+        "description": "Um sujeito lombrosiano",
+        "filename": "Roberto Jefferson - Um sujeito lombrosiano.mp3",
+        "dateAdded": "2023-01-10T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "BE3736BF-1807-45D3-AC2A-B61557214254",
+        "title": "Rotina dos acampamentos",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Rotina dos acampamentos",
+        "filename": "Rotina dos acampamentos.mp3",
+        "dateAdded": "2023-01-10T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "B4354931-3E9A-4254-AE97-75B099F42226",
+        "title": "A Papuda lhe espera!",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "A papuda lhe espera boa estadia la valeu",
+        "filename": "Jair Bolsonaro - A papuda lhe espera boa estadia la valeu.mp3",
+        "dateAdded": "2023-01-11T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "2BC865CA-412D-4FB2-BA08-61412996B02B",
+        "title": "Cidinha",
+        "authorId": "549E5A35-0008-4B26-BE54-EECFB3A108DD",
+        "description": "ô cidinha cidinha eu acho que o presidente realmente jogou a toalha cidinha como é que ele não acabou isso cidinha meus filhos cidinha eles casaram na porta la do quartel nao foram pra lua de mel minha familia inteira a gente nao teve ceia de natal nao eu fui levar é marmita pra todo mundo em porta de quartel pro presidente vir fazer isso agora cidinha cidinha eu to toda arrepiada meus amigos presos cidinha muita gente deixou o comercio fechado cidinha muita gente olha eu nem sei nem consigo falar direito",
+        "filename": "Eliana Brasil - Cidinha.mp3",
+        "dateAdded": "2023-01-16T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "3EFAC109-3F66-4C96-9163-5F0D8648083C",
+        "title": "E quem tá preso, Cidinha?",
+        "authorId": "50FFC08A-8B32-43DD-9D60-5116616AA351",
+        "description": "E quem ta preso Cidinha vai continuar",
+        "filename": "Cidinha R e Eliana Brasil - E quem ta preso, Cidinha.mp3",
+        "dateAdded": "2023-01-16T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
     }
 ]

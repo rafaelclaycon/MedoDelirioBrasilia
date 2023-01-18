@@ -26,9 +26,6 @@
 		491110462926C0B20055F4EE /* Cristiano Botafogo - Confira comigo no replay.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 491110452926C0B20055F4EE /* Cristiano Botafogo - Confira comigo no replay.mp3 */; };
 		491110482926C2F70055F4EE /* Cristiano Botafogo - O terrivel editorialista do Globo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 491110472926C2F70055F4EE /* Cristiano Botafogo - O terrivel editorialista do Globo.mp3 */; };
 		494EAD2B28FC614A00BF822C /* Tá na hora de votar (Ilarie) - Lula.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 494EAD2A28FC614900BF822C /* Tá na hora de votar (Ilarie) - Lula.mp3 */; };
-		4979103D28BE844D00CDF01C /* MedoWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4979103C28BE844D00CDF01C /* MedoWidget.swift */; };
-		4979103F28BE844E00CDF01C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4979103E28BE844E00CDF01C /* Assets.xcassets */; };
-		4979104328BE844E00CDF01C /* MedoWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4979103528BE844D00CDF01C /* MedoWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4979105228BEC6F700CDF01C /* Vai Tomar no Cu Vai Pro Caralho - Palhaco Gozo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4979104C28BEC6F700CDF01C /* Vai Tomar no Cu Vai Pro Caralho - Palhaco Gozo.mp3 */; };
 		4979105428BEC6F700CDF01C /* Desculpa perdao lamento - Pedro Daltro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4979104E28BEC6F700CDF01C /* Desculpa perdao lamento - Pedro Daltro.mp3 */; };
 		4979105528BEC6F700CDF01C /* Me deixa bastante chateado - Paulo Sergio Nogueira.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4979104F28BEC6F700CDF01C /* Me deixa bastante chateado - Paulo Sergio Nogueira.mp3 */; };
@@ -165,6 +162,8 @@
 		D923127028AB049800436336 /* E pra glorificar de pe, igreja.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D923126F28AB049800436336 /* E pra glorificar de pe, igreja.mp3 */; };
 		D923127328AB0A6100436336 /* Novo e diferente, e top, e moderno (curto).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D923127128AB0A6100436336 /* Novo e diferente, e top, e moderno (curto).mp3 */; };
 		D923127428AB0A6100436336 /* Novo e diferente, e top, e moderno (completo).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D923127228AB0A6100436336 /* Novo e diferente, e top, e moderno (completo).mp3 */; };
+		D9235E242969BF31001F8167 /* Roberto Jefferson - Um sujeito lombrosiano.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9235E232969BF31001F8167 /* Roberto Jefferson - Um sujeito lombrosiano.mp3 */; };
+		D9235E262969C08E001F8167 /* Rotina dos acampamentos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9235E252969C08E001F8167 /* Rotina dos acampamentos.mp3 */; };
 		D9265741285A1EE700947165 /* LocalDatabase+Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9265740285A1EE700947165 /* LocalDatabase+Log.swift */; };
 		D9267EE728D1271400C0DC6C /* Mc Douglinhas - Ui, que brega.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9267EE528D1271300C0DC6C /* Mc Douglinhas - Ui, que brega.mp3 */; };
 		D9267EE828D1271400C0DC6C /* Milton Leite - Chato pra caralho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9267EE628D1271400C0DC6C /* Milton Leite - Chato pra caralho.mp3 */; };
@@ -210,7 +209,6 @@
 		D92E7075283C5F620035826C /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92E7074283C5F620035826C /* SongCell.swift */; };
 		D92EF4BF291CA5B9009E3E0A /* Jair Bolsonaro - Pode botar, CODIB-19.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92EF4BD291CA5B9009E3E0A /* Jair Bolsonaro - Pode botar, CODIB-19.mp3 */; };
 		D92EF4C0291CA5B9009E3E0A /* Jair Bolsonaro - CODIB-19.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92EF4BE291CA5B9009E3E0A /* Jair Bolsonaro - CODIB-19.mp3 */; };
-		D92EF4C2291D721D009E3E0A /* FunnyPhrase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92EF4C1291D721D009E3E0A /* FunnyPhrase.swift */; };
 		D92F8BAD286A6D2100EB9470 /* AlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92F8BAC286A6D2100EB9470 /* AlertType.swift */; };
 		D933251E28835E41004EFACB /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D933251D28835E41004EFACB /* ActivityViewController.swift */; };
 		D9344323283812AD00ADCD38 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9344322283812AD00ADCD38 /* Author.swift */; };
@@ -1075,6 +1073,7 @@
 		D9C7D18D292EEA81003F500C /* Cidade Oculta e Google Tradutor - Voce ta falando isso porque voce e a putinha do Jobs.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C7D18B292EEA81003F500C /* Cidade Oculta e Google Tradutor - Voce ta falando isso porque voce e a putinha do Jobs.mp3 */; };
 		D9CA8BB72908802300C6B492 /* Jair Bolsonaro - Nao tenho provas.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CA8BB62908802300C6B492 /* Jair Bolsonaro - Nao tenho provas.mp3 */; };
 		D9CB84F528B2E31D00E815C2 /* Alvaro Borba - A Verdadeira Polarizacao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CB84F428B2E31D00E815C2 /* Alvaro Borba - A Verdadeira Polarizacao.mp3 */; };
+		D9CBBB86296F7FFD0089F74B /* Jair Bolsonaro - A papuda lhe espera boa estadia la valeu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CBBB85296F7FFD0089F74B /* Jair Bolsonaro - A papuda lhe espera boa estadia la valeu.mp3 */; };
 		D9CC025D28BD9EBD0021C1E6 /* GridHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CC025C28BD9EBD0021C1E6 /* GridHelper.swift */; };
 		D9CC893328EB7BB500576492 /* MostSharedByAudienceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CC893228EB7BB500576492 /* MostSharedByAudienceView.swift */; };
 		D9CC893528EB7CF800576492 /* MostSharedByAudienceViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CC893428EB7CF800576492 /* MostSharedByAudienceViewViewModel.swift */; };
@@ -1129,6 +1128,10 @@
 		D9F185CC28D6705100BE2F69 /* Bolsonaro - Presta atencao que e importante, pessoal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F185CB28D6705100BE2F69 /* Bolsonaro - Presta atencao que e importante, pessoal.mp3 */; };
 		D9F185CF28D6729A00BE2F69 /* Lula - Chupou, acabou.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F185CD28D6729A00BE2F69 /* Lula - Chupou, acabou.mp3 */; };
 		D9F185D028D6729A00BE2F69 /* Lula - E como se fosse um sorvete, chupou, acabou, fica com o palito na mao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F185CE28D6729A00BE2F69 /* Lula - E como se fosse um sorvete, chupou, acabou, fica com o palito na mao.mp3 */; };
+		D9F487EA29761F8C00DCFE07 /* Cidinha R e Eliana Brasil - E quem ta preso, Cidinha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F487E829761F8C00DCFE07 /* Cidinha R e Eliana Brasil - E quem ta preso, Cidinha.mp3 */; };
+		D9F487EB29761F8C00DCFE07 /* Eliana Brasil - Cidinha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F487E929761F8C00DCFE07 /* Eliana Brasil - Cidinha.mp3 */; };
+		D9F487EE29761F9500DCFE07 /* Pisero da Cidinha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F487EC29761F9500DCFE07 /* Pisero da Cidinha.mp3 */; };
+		D9F487EF29761F9500DCFE07 /* Funk da Cidinha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F487ED29761F9500DCFE07 /* Funk da Cidinha.mp3 */; };
 		D9F6420528CFD57600003A0E /* Bolsonaro - Eu acho que ate um fake news e valido, com todo o respeito.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F6420428CFD57600003A0E /* Bolsonaro - Eu acho que ate um fake news e valido, com todo o respeito.mp3 */; };
 		D9F6420728D1211700003A0E /* Casimiro - Misericordia, jornalista, tenha do.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F6420628D1211700003A0E /* Casimiro - Misericordia, jornalista, tenha do.mp3 */; };
 		D9F6420928D122C500003A0E /* Moderador, tira o moleque desse grupo agora.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F6420828D122C500003A0E /* Moderador, tira o moleque desse grupo agora.mp3 */; };
@@ -1175,13 +1178,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4979104128BE844E00CDF01C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D9625E7228238F9A00080852 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4979103428BE844D00CDF01C;
-			remoteInfo = MedoWidgetExtension;
-		};
 		D9625E8B28238F9B00080852 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D9625E7228238F9A00080852 /* Project object */;
@@ -1198,7 +1194,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				4979104328BE844E00CDF01C /* MedoWidgetExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1225,11 +1220,6 @@
 		491110452926C0B20055F4EE /* Cristiano Botafogo - Confira comigo no replay.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano Botafogo - Confira comigo no replay.mp3"; sourceTree = "<group>"; };
 		491110472926C2F70055F4EE /* Cristiano Botafogo - O terrivel editorialista do Globo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano Botafogo - O terrivel editorialista do Globo.mp3"; sourceTree = "<group>"; };
 		494EAD2A28FC614900BF822C /* Tá na hora de votar (Ilarie) - Lula.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tá na hora de votar (Ilarie) - Lula.mp3"; sourceTree = "<group>"; };
-		4979103528BE844D00CDF01C /* MedoWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MedoWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		4979103C28BE844D00CDF01C /* MedoWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedoWidget.swift; sourceTree = "<group>"; };
-		4979103E28BE844E00CDF01C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		4979104028BE844E00CDF01C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4979104428BE844E00CDF01C /* MedoWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MedoWidgetExtension.entitlements; sourceTree = "<group>"; };
 		4979104C28BEC6F700CDF01C /* Vai Tomar no Cu Vai Pro Caralho - Palhaco Gozo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Vai Tomar no Cu Vai Pro Caralho - Palhaco Gozo.mp3"; sourceTree = "<group>"; };
 		4979104E28BEC6F700CDF01C /* Desculpa perdao lamento - Pedro Daltro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Desculpa perdao lamento - Pedro Daltro.mp3"; sourceTree = "<group>"; };
 		4979104F28BEC6F700CDF01C /* Me deixa bastante chateado - Paulo Sergio Nogueira.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Me deixa bastante chateado - Paulo Sergio Nogueira.mp3"; sourceTree = "<group>"; };
@@ -1366,6 +1356,8 @@
 		D923126F28AB049800436336 /* E pra glorificar de pe, igreja.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "E pra glorificar de pe, igreja.mp3"; sourceTree = "<group>"; };
 		D923127128AB0A6100436336 /* Novo e diferente, e top, e moderno (curto).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Novo e diferente, e top, e moderno (curto).mp3"; sourceTree = "<group>"; };
 		D923127228AB0A6100436336 /* Novo e diferente, e top, e moderno (completo).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Novo e diferente, e top, e moderno (completo).mp3"; sourceTree = "<group>"; };
+		D9235E232969BF31001F8167 /* Roberto Jefferson - Um sujeito lombrosiano.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Roberto Jefferson - Um sujeito lombrosiano.mp3"; sourceTree = "<group>"; };
+		D9235E252969C08E001F8167 /* Rotina dos acampamentos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rotina dos acampamentos.mp3"; sourceTree = "<group>"; };
 		D9265740285A1EE700947165 /* LocalDatabase+Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+Log.swift"; sourceTree = "<group>"; };
 		D9267EE528D1271300C0DC6C /* Mc Douglinhas - Ui, que brega.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mc Douglinhas - Ui, que brega.mp3"; sourceTree = "<group>"; };
 		D9267EE628D1271400C0DC6C /* Milton Leite - Chato pra caralho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Milton Leite - Chato pra caralho.mp3"; sourceTree = "<group>"; };
@@ -1411,7 +1403,6 @@
 		D92E7074283C5F620035826C /* SongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
 		D92EF4BD291CA5B9009E3E0A /* Jair Bolsonaro - Pode botar, CODIB-19.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Pode botar, CODIB-19.mp3"; sourceTree = "<group>"; };
 		D92EF4BE291CA5B9009E3E0A /* Jair Bolsonaro - CODIB-19.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - CODIB-19.mp3"; sourceTree = "<group>"; };
-		D92EF4C1291D721D009E3E0A /* FunnyPhrase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunnyPhrase.swift; sourceTree = "<group>"; };
 		D92F8BAC286A6D2100EB9470 /* AlertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertType.swift; sourceTree = "<group>"; };
 		D933251D28835E41004EFACB /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		D9344322283812AD00ADCD38 /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
@@ -2278,6 +2269,7 @@
 		D9C7D18B292EEA81003F500C /* Cidade Oculta e Google Tradutor - Voce ta falando isso porque voce e a putinha do Jobs.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cidade Oculta e Google Tradutor - Voce ta falando isso porque voce e a putinha do Jobs.mp3"; sourceTree = "<group>"; };
 		D9CA8BB62908802300C6B492 /* Jair Bolsonaro - Nao tenho provas.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Nao tenho provas.mp3"; sourceTree = "<group>"; };
 		D9CB84F428B2E31D00E815C2 /* Alvaro Borba - A Verdadeira Polarizacao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alvaro Borba - A Verdadeira Polarizacao.mp3"; sourceTree = "<group>"; };
+		D9CBBB85296F7FFD0089F74B /* Jair Bolsonaro - A papuda lhe espera boa estadia la valeu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - A papuda lhe espera boa estadia la valeu.mp3"; sourceTree = "<group>"; };
 		D9CC025C28BD9EBD0021C1E6 /* GridHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridHelper.swift; sourceTree = "<group>"; };
 		D9CC893228EB7BB500576492 /* MostSharedByAudienceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostSharedByAudienceView.swift; sourceTree = "<group>"; };
 		D9CC893428EB7CF800576492 /* MostSharedByAudienceViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostSharedByAudienceViewViewModel.swift; sourceTree = "<group>"; };
@@ -2331,6 +2323,10 @@
 		D9F185CB28D6705100BE2F69 /* Bolsonaro - Presta atencao que e importante, pessoal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Presta atencao que e importante, pessoal.mp3"; sourceTree = "<group>"; };
 		D9F185CD28D6729A00BE2F69 /* Lula - Chupou, acabou.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - Chupou, acabou.mp3"; sourceTree = "<group>"; };
 		D9F185CE28D6729A00BE2F69 /* Lula - E como se fosse um sorvete, chupou, acabou, fica com o palito na mao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - E como se fosse um sorvete, chupou, acabou, fica com o palito na mao.mp3"; sourceTree = "<group>"; };
+		D9F487E829761F8C00DCFE07 /* Cidinha R e Eliana Brasil - E quem ta preso, Cidinha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cidinha R e Eliana Brasil - E quem ta preso, Cidinha.mp3"; sourceTree = "<group>"; };
+		D9F487E929761F8C00DCFE07 /* Eliana Brasil - Cidinha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eliana Brasil - Cidinha.mp3"; sourceTree = "<group>"; };
+		D9F487EC29761F9500DCFE07 /* Pisero da Cidinha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pisero da Cidinha.mp3"; sourceTree = "<group>"; };
+		D9F487ED29761F9500DCFE07 /* Funk da Cidinha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Funk da Cidinha.mp3"; sourceTree = "<group>"; };
 		D9F6420428CFD57600003A0E /* Bolsonaro - Eu acho que ate um fake news e valido, com todo o respeito.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Eu acho que ate um fake news e valido, com todo o respeito.mp3"; sourceTree = "<group>"; };
 		D9F6420628D1211700003A0E /* Casimiro - Misericordia, jornalista, tenha do.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Casimiro - Misericordia, jornalista, tenha do.mp3"; sourceTree = "<group>"; };
 		D9F6420828D122C500003A0E /* Moderador, tira o moleque desse grupo agora.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Moderador, tira o moleque desse grupo agora.mp3"; sourceTree = "<group>"; };
@@ -2377,13 +2373,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		4979103228BE844D00CDF01C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D9625E7728238F9A00080852 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -2405,15 +2394,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4979103B28BE844D00CDF01C /* MedoWidget */ = {
-			isa = PBXGroup;
-			children = (
-				D9DB6F8828CD791500E24BDE /* Sources */,
-				D9DB6F8928CD791A00E24BDE /* Resources */,
-			);
-			path = MedoWidget;
-			sourceTree = "<group>";
-		};
 		D916627B2874F1E2000A1B23 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -2426,6 +2406,11 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9F487E829761F8C00DCFE07 /* Cidinha R e Eliana Brasil - E quem ta preso, Cidinha.mp3 */,
+				D9F487E929761F8C00DCFE07 /* Eliana Brasil - Cidinha.mp3 */,
+				D9CBBB85296F7FFD0089F74B /* Jair Bolsonaro - A papuda lhe espera boa estadia la valeu.mp3 */,
+				D9235E252969C08E001F8167 /* Rotina dos acampamentos.mp3 */,
+				D9235E232969BF31001F8167 /* Roberto Jefferson - Um sujeito lombrosiano.mp3 */,
 				D9E2C709295E172600B5814C /* Pedro Doria - A culpa, a culpa e de Bolsonaro, sim.mp3 */,
 				D9E2C706295E13B200B5814C /* Anderson Rangel - Lembra de onde voce veio e aonde que voce chegou.mp3 */,
 				D9E2C705295E13B200B5814C /* Vinheta Dedo no cu e gritaria.mp3 */,
@@ -3376,6 +3361,8 @@
 		D92E7068283C5C120035826C /* Songs */ = {
 			isa = PBXGroup;
 			children = (
+				D9F487ED29761F9500DCFE07 /* Funk da Cidinha.mp3 */,
+				D9F487EC29761F9500DCFE07 /* Pisero da Cidinha.mp3 */,
 				D92230AE2942391000C59227 /* Funk do Desespero Pos-Primeiro Turno de 2022.mp3 */,
 				D9DACB0029199E9200D917BB /* E hora de rir um pouco dos militares.mp3 */,
 				D9DACB0129199E9200D917BB /* Musica da Vitoria - Lula Eleito.mp3 */,
@@ -3573,7 +3560,6 @@
 			children = (
 				D9625E7C28238F9A00080852 /* MedoDelirioBrasilia */,
 				D9625E8D28238F9B00080852 /* MedoDelirioBrasiliaTests */,
-				4979103B28BE844D00CDF01C /* MedoWidget */,
 				D9625E7B28238F9A00080852 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -3583,7 +3569,6 @@
 			children = (
 				D9625E7A28238F9A00080852 /* MedoDelirio.app */,
 				D9625E8A28238F9B00080852 /* MedoDelirioBrasiliaTests.xctest */,
-				4979103528BE844D00CDF01C /* MedoWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3972,33 +3957,6 @@
 			path = iPad;
 			sourceTree = "<group>";
 		};
-		D9DB6F8728CD790100E24BDE /* WidgetSupport */ = {
-			isa = PBXGroup;
-			children = (
-				4979104028BE844E00CDF01C /* Info.plist */,
-				4979104428BE844E00CDF01C /* MedoWidgetExtension.entitlements */,
-			);
-			path = WidgetSupport;
-			sourceTree = "<group>";
-		};
-		D9DB6F8828CD791500E24BDE /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				4979103C28BE844D00CDF01C /* MedoWidget.swift */,
-				D92EF4C1291D721D009E3E0A /* FunnyPhrase.swift */,
-				D9DB6F8728CD790100E24BDE /* WidgetSupport */,
-			);
-			path = Sources;
-			sourceTree = "<group>";
-		};
-		D9DB6F8928CD791A00E24BDE /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				4979103E28BE844E00CDF01C /* Assets.xcassets */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		D9E69595283D54EA00C341B2 /* DataHandlers */ = {
 			isa = PBXGroup;
 			children = (
@@ -4053,23 +4011,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4979103428BE844D00CDF01C /* MedoWidgetExtension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4979104528BE844E00CDF01C /* Build configuration list for PBXNativeTarget "MedoWidgetExtension" */;
-			buildPhases = (
-				4979103128BE844D00CDF01C /* Sources */,
-				4979103228BE844D00CDF01C /* Frameworks */,
-				4979103328BE844D00CDF01C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = MedoWidgetExtension;
-			productName = MedoWidgetExtension;
-			productReference = 4979103528BE844D00CDF01C /* MedoWidgetExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		D9625E7928238F9A00080852 /* MedoDelirioBrasilia */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D9625E9E28238F9B00080852 /* Build configuration list for PBXNativeTarget "MedoDelirioBrasilia" */;
@@ -4082,7 +4023,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				4979104228BE844E00CDF01C /* PBXTargetDependency */,
 			);
 			name = MedoDelirioBrasilia;
 			packageProductDependencies = (
@@ -4123,9 +4063,6 @@
 				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
-					4979103428BE844D00CDF01C = {
-						CreatedOnToolsVersion = 14.0;
-					};
 					D9625E7928238F9A00080852 = {
 						CreatedOnToolsVersion = 13.3.1;
 					};
@@ -4157,20 +4094,11 @@
 			targets = (
 				D9625E7928238F9A00080852 /* MedoDelirioBrasilia */,
 				D9625E8928238F9B00080852 /* MedoDelirioBrasiliaTests */,
-				4979103428BE844D00CDF01C /* MedoWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		4979103328BE844D00CDF01C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4979103F28BE844E00CDF01C /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D9625E7828238F9A00080852 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -4238,6 +4166,7 @@
 				D99BBE492947051200BCA901 /* Jair Bolsonaro - Historico de atleta.mp3 in Resources */,
 				D97500362880B4F20035E6F2 /* Bolsonaro - Pra midia o virus sou eu.mp3 in Resources */,
 				D975FEE62880B4F20035E6F2 /* Vai Dar Namoro - Danca gatinho danca.mp3 in Resources */,
+				D9F487EB29761F8C00DCFE07 /* Eliana Brasil - Cidinha.mp3 in Resources */,
 				D975FFBB2880B4F20035E6F2 /* Caetano - Que loucura, que coisa absurda short.mp3 in Resources */,
 				D975FEF32880B4F20035E6F2 /* FRANCIEL CRUZ - LIVE DAS CANJEBRINAS - Polarizacao e meu pau em sua mao, porra que polarizacao meu pai.mp3 in Resources */,
 				D99151322873E4C100FFAA29 /* pagode-osmar-cloroquina-mdb.mp3 in Resources */,
@@ -4360,6 +4289,7 @@
 				D975FE102880B4F20035E6F2 /* Lula - Nao.mp3 in Resources */,
 				D9DACB0229199E9200D917BB /* E hora de rir um pouco dos militares.mp3 in Resources */,
 				D9C7D18C292EEA81003F500C /* Cidade Oculta e Google Tradutor - Putinha do Jobs.mp3 in Resources */,
+				D9F487EE29761F9500DCFE07 /* Pisero da Cidinha.mp3 in Resources */,
 				49DEA9BE288112D8008C9BA1 /* CARTOON NETWORK - MAS ESTA ERRADO short meme.mp3 in Resources */,
 				D934432728381DEF00ADCD38 /* author_data.json in Resources */,
 				D921F87F288B0177003979CC /* Aglomeracao de idosos todos doentes.mp3 in Resources */,
@@ -4443,6 +4373,7 @@
 				49DEA9AE28810F5E008C9BA1 /* UOL- BOLSONARO -  MORRE MAIS GENTE DE PAVOR DO QUE DE UM ATO EM SI short meme.mp3 in Resources */,
 				D9FA62FE2924A5D000790F55 /* Desconhecido - A razao de ser da economia e o bem estar do povo.mp3 in Resources */,
 				D975FFF12880B4F20035E6F2 /* Costinha - Se fudeu short.mp3 in Resources */,
+				D9F487EF29761F9500DCFE07 /* Funk da Cidinha.mp3 in Resources */,
 				D9FD0F0E28B2B2EE0000616A /* Calma poxa - Desesperado.mp3 in Resources */,
 				D937E11029097D58004137ED /* Renan Calheiros - Onyx Lorenzeti parece nome de chuveiro.mp3 in Resources */,
 				D975FE132880B4F20035E6F2 /* Midcast - Freixo - Tem rabo de jacare tem couro de jacare e jacare gente.mp3 in Resources */,
@@ -4719,6 +4650,7 @@
 				D98B9AD628CEBD2D00B82EDE /* Imbrochavel 5 vezes.mp3 in Resources */,
 				D975FEC42880B4F20035E6F2 /* ROY ORBISON - Oh Pretty Woman Pretiputi parodia.mp3 in Resources */,
 				D975FE5E2880B4F20035E6F2 /* Harry e Helen - I've heard that song before short meme.mp3 in Resources */,
+				D9CBBB86296F7FFD0089F74B /* Jair Bolsonaro - A papuda lhe espera boa estadia la valeu.mp3 in Resources */,
 				D975FE122880B4F20035E6F2 /* Cleber Machado - Hoje nao hoje nao.mp3 in Resources */,
 				D975FE552880B4F20035E6F2 /* Caetano Veloso - Voce fala de uma maneira burra.mp3 in Resources */,
 				D975003E2880B4F20035E6F2 /* Silvio Santos - Essa nao e boa ninguem deu risada.mp3 in Resources */,
@@ -4809,6 +4741,7 @@
 				49DEA9B8288111CA008C9BA1 /* CANAL MEIO - Pedro doria - Vamos sonhar short meme.mp3 in Resources */,
 				D975FFCC2880B4F20035E6F2 /* Dudu Marfetan - Agora tu aguenta.mp3 in Resources */,
 				D91C4D16291AD1A3000E13E8 /* Desconhecido - Nao existe segunda-feira no comunismo.mp3 in Resources */,
+				D9235E242969BF31001F8167 /* Roberto Jefferson - Um sujeito lombrosiano.mp3 in Resources */,
 				D975FE962880B4F20035E6F2 /* Ciro Gomes - Veja bem, se eu estiver errado me corrija.mp3 in Resources */,
 				D975FFBD2880B4F20035E6F2 /* Eu nao entendi o que ele falou.mp3 in Resources */,
 				D975FE1B2880B4F20035E6F2 /* Pazuello - E simples assim, um manda e o outro obedece.mp3 in Resources */,
@@ -4849,6 +4782,7 @@
 				D9F185CC28D6705100BE2F69 /* Bolsonaro - Presta atencao que e importante, pessoal.mp3 in Resources */,
 				D975FF842880B4F20035E6F2 /* Bolsonaro - Sem o vies ideologico.mp3 in Resources */,
 				D975FFC62880B4F20035E6F2 /* Cidade Oculta - Voce fala isso porque e a putinha do bozo.mp3 in Resources */,
+				D9F487EA29761F8C00DCFE07 /* Cidinha R e Eliana Brasil - E quem ta preso, Cidinha.mp3 in Resources */,
 				D991512D2873E4C100FFAA29 /* rock-comunismo-ai-seis-mdb.mp3 in Resources */,
 				D975FE632880B4F20035E6F2 /* Ai seu grosso.mp3 in Resources */,
 				49F9220028E334C1009AC743 /* Eu to esmagada.mp3 in Resources */,
@@ -5103,6 +5037,7 @@
 				D923126828AB001300436336 /* Billy Madison Um Herdeiro Bobalhao - Todos nesse salao estao mais burros por terem escutado isso.mp3 in Resources */,
 				D92879E8283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 in Resources */,
 				D937E11A29097D58004137ED /* BAND JORNALISMO - Onyx - E o gesto que so um homem forte politicamente e respaldado em sua populacao poderia fazer.mp3 in Resources */,
+				D9235E262969C08E001F8167 /* Rotina dos acampamentos.mp3 in Resources */,
 				D975FE662880B4F20035E6F2 /* Eu fico muito triste com uma noticia dessas filha da puta fogos short.mp3 in Resources */,
 				D975FFD92880B4F20035E6F2 /* Malafaia - Concordamos.mp3 in Resources */,
 				D975FFFA2880B4F20035E6F2 /* Vai Dar Namoro - Demais.mp3 in Resources */,
@@ -5174,15 +5109,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		4979103128BE844D00CDF01C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4979103D28BE844D00CDF01C /* MedoWidget.swift in Sources */,
-				D92EF4C2291D721D009E3E0A /* FunnyPhrase.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D9625E7628238F9A00080852 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -5371,11 +5297,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		4979104228BE844E00CDF01C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4979103428BE844D00CDF01C /* MedoWidgetExtension */;
-			targetProxy = 4979104128BE844E00CDF01C /* PBXContainerItemProxy */;
-		};
 		D9625E8C28238F9B00080852 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D9625E7928238F9A00080852 /* MedoDelirioBrasilia */;
@@ -5396,70 +5317,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		4979104628BE844E00CDF01C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_ENTITLEMENTS = MedoWidget/Sources/WidgetSupport/MedoWidgetExtension.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = L8X3H5XA82;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MedoWidget/Sources/WidgetSupport/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = MedoWidget;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 5.37.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Debug;
-		};
-		4979104728BE844E00CDF01C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_ENTITLEMENTS = MedoWidget/Sources/WidgetSupport/MedoWidgetExtension.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = L8X3H5XA82;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MedoWidget/Sources/WidgetSupport/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = MedoWidget;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 5.37.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoWidget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Release;
-		};
 		D9625E9C28238F9B00080852 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -5605,7 +5462,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.37.1;
+				MARKETING_VERSION = 5.40;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -5646,7 +5503,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.37.1;
+				MARKETING_VERSION = 5.40;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -5707,15 +5564,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4979104528BE844E00CDF01C /* Build configuration list for PBXNativeTarget "MedoWidgetExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4979104628BE844E00CDF01C /* Debug */,
-				4979104728BE844E00CDF01C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		D9625E7528238F9A00080852 /* Build configuration list for PBXProject "MedoDelirioBrasilia" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
