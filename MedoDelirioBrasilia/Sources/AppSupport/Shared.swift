@@ -51,6 +51,8 @@ struct Shared {
         
         static let generatingVideoShortMessage = "Gerando vídeo..."
         static let generatingVideoLongMessage = "Gerando vídeo...\nIsso pode demorar um pouco."
+        static let videoSavedSucessfully = "Vídeo salvo com sucesso."
+        static let videoSavedSucessfullyMac = "Vídeo salvo com sucesso no app Fotos."
         
     }
     
