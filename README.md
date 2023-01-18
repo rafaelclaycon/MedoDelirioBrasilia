@@ -34,7 +34,6 @@ GIF demos below (they may take a while to load due to size).
 1. User sharing statistics synced with server (opt-out available).
 1. Receive push notifications about new content, features and trends.
 1. View a top 10 ranking of the audience's most shared sounds from last week, last month and all time on the Trends tab.
-1. Count the days until Lula's inauguration with 2 Lock Screen widgets.
 
 ## How to run the project
 
@@ -59,6 +58,6 @@ For support needs, please send an e-mail to [our support address](mailto:medodel
 
 ## About this repo
 
-Rafael C. Schmitt – [@claycon_](https://twitter.com/claycon_)
+Rafael C. Schmitt – [@mitt_rafael@toot.wales](https://toot.wales/@mitt_rafael)
 
 Distributed under the MIT license. See ``LICENSE`` for more information.
