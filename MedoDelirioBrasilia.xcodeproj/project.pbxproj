@@ -111,6 +111,7 @@
 		D91793B7288E3F0E009C3165 /* Abraham Weintraub - Muito muito pipi mole, o pipizinho dele e bem mole.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793B5288E3F0E009C3165 /* Abraham Weintraub - Muito muito pipi mole, o pipizinho dele e bem mole.mp3 */; };
 		D91793BA288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao no MARXISMO CULTURAL.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793B8288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao no MARXISMO CULTURAL.mp3 */; };
 		D91793BB288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793B9288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao.mp3 */; };
+		D91895F9297AD6DC00156A68 /* Julio Cesar Strassera - Consideracoes finais do julgamento dos militares argentinos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91895F8297AD6DC00156A68 /* Julio Cesar Strassera - Consideracoes finais do julgamento dos militares argentinos.mp3 */; };
 		D91B7F892943C44600B9A43F /* O homem e forte em Brasilia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91B7F862943C44600B9A43F /* O homem e forte em Brasilia.mp3 */; };
 		D91B7F8A2943C44600B9A43F /* Arthur Lira e foda (curto).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91B7F872943C44600B9A43F /* Arthur Lira e foda (curto).mp3 */; };
 		D91B7F8B2943C44600B9A43F /* Arthur Lira e foda (completo).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91B7F882943C44600B9A43F /* Arthur Lira e foda (completo).mp3 */; };
@@ -1306,6 +1307,7 @@
 		D91793B5288E3F0E009C3165 /* Abraham Weintraub - Muito muito pipi mole, o pipizinho dele e bem mole.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Abraham Weintraub - Muito muito pipi mole, o pipizinho dele e bem mole.mp3"; sourceTree = "<group>"; };
 		D91793B8288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao no MARXISMO CULTURAL.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "METEORO BRASIL - Carga pesadissima de loucura e conspiracao no MARXISMO CULTURAL.mp3"; sourceTree = "<group>"; };
 		D91793B9288E4116009C3165 /* METEORO BRASIL - Carga pesadissima de loucura e conspiracao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "METEORO BRASIL - Carga pesadissima de loucura e conspiracao.mp3"; sourceTree = "<group>"; };
+		D91895F8297AD6DC00156A68 /* Julio Cesar Strassera - Consideracoes finais do julgamento dos militares argentinos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Julio Cesar Strassera - Consideracoes finais do julgamento dos militares argentinos.mp3"; sourceTree = "<group>"; };
 		D91B7F862943C44600B9A43F /* O homem e forte em Brasilia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O homem e forte em Brasilia.mp3"; sourceTree = "<group>"; };
 		D91B7F872943C44600B9A43F /* Arthur Lira e foda (curto).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Arthur Lira e foda (curto).mp3"; sourceTree = "<group>"; };
 		D91B7F882943C44600B9A43F /* Arthur Lira e foda (completo).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Arthur Lira e foda (completo).mp3"; sourceTree = "<group>"; };
@@ -2408,6 +2410,7 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D91895F8297AD6DC00156A68 /* Julio Cesar Strassera - Consideracoes finais do julgamento dos militares argentinos.mp3 */,
 				D9BCC5912978A50600BE70E9 /* As Forcas Armadas sao burocracia do Estado.mp3 */,
 				D9F487E829761F8C00DCFE07 /* Cidinha R e Eliana Brasil - E quem ta preso, Cidinha.mp3 */,
 				D9F487E929761F8C00DCFE07 /* Eliana Brasil - Cidinha.mp3 */,
@@ -4283,6 +4286,7 @@
 				D975FE952880B4F20035E6F2 /* Bolsonaro - A coisa e seria pessoal.mp3 in Resources */,
 				D97500212880B4F20035E6F2 /* Ernesto Araujo - Thats not true.mp3 in Resources */,
 				D9BB8F8928ECB2A900659D4A /* Alvaro Borba - Panico Moral funk 2.mp3 in Resources */,
+				D91895F9297AD6DC00156A68 /* Julio Cesar Strassera - Consideracoes finais do julgamento dos militares argentinos.mp3 in Resources */,
 				D975FF762880B4F20035E6F2 /* Gumball - ooo que mais.mp3 in Resources */,
 				D975FECD2880B4F20035E6F2 /* Bolsonaro - Porra.mp3 in Resources */,
 				D975FF3A2880B4F20035E6F2 /* Reinaldo Azevedo - E mentira.mp3 in Resources */,
@@ -5466,7 +5470,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.41;
+				MARKETING_VERSION = 5.42;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -5507,7 +5511,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.41;
+				MARKETING_VERSION = 5.42;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
