@@ -8599,6 +8599,77 @@
         "description": "Todos vocês sabem que eu sou o maior perdedor de eleição presidencial nesse país não tem ninguem que perdeu mais do que eu mas também não tem ninguém que ganhou mais do que eu",
         "filename": "Lula - Todos vocês sabem que eu sou o maior perdedor de eleicoes presidenciais .mp3",
         "dateAdded": "2023-01-18T00:00:00Z",
-        "isOffensive": false
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "22BE3CF7-356E-46BC-8235-8ABBD92162C6",
+        "title": "Exército Filho da Puta",
+        "authorId": "5F25AF82-A015-4B12-A146-3ADEE371A6CD",
+        "description": "exercito filha filho da puta vão tudo tomar no cu generais merda",
+        "filename": "Coronel Adriano Testoni - Forcas Armadas filha da puta.mp3",
+        "dateAdded": "2023-01-23T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "3684E0B9-393E-4012-B672-56C7E63E1866",
+        "title": "Sabe o que é anistia?",
+        "authorId": "5F25AF82-A015-4B12-A146-3ADEE371A6CD",
+        "description": "anistia sabe o que é anistia é quando eu como você e a sua tia a para com o negócio de anistia rapaz não vai ter anistia",
+        "filename": "Franciel Cruz - Sabe o que é anistia.mp3",
+        "dateAdded": "2023-01-23T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "D94585EA-507B-4933-A55A-1557D5F7930C",
+        "title": "What the fuck is going on?",
+        "authorId": "60174E46-30D8-40A6-9288-7F4032E3D807",
+        "description": "gringo what the fuck is going on",
+        "filename": "Gringo lendo - What the fuck is going on.mp3",
+        "dateAdded": "2023-01-23T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "49574F40-F4C7-46A9-89C3-B09494D133EF",
+        "title": "Eu não sei que vontade é essa que você tem de fazer merda",
+        "authorId": "E48F93C0-E59E-4913-9E84-711CC06EA83C",
+        "description": "eu não sei que vontade é essa que você tem de fazer merda eu não vou entender",
+        "filename": "Nascimento - Eu nao sei que vontade e essa que voce tem de fazer merda.mp3",
+        "dateAdded": "2023-01-23T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "8BB422B2-6456-46A1-B009-E062071EB7F9",
+        "title": "Nós temos que punir, seja quem for",
+        "authorId": "4AE135DD-B688-45D7-B20B-88DCFE8CDD8A",
+        "description": "Vou sugerir a vossa excelência que crie uma comissão de senadores e senadoras para que acompanhe as investigações que estão sendo feitas porque agora não vai ser que nem a comissão da verdade que nós vamos deixar para trás nós temos que punir seja quem for seja lá do meu estado quem financiou isso ou quem tem estrelas nos ombros que está por trás disso sem medo",
+        "filename": "Omar Aziz - Nos temos que punir seja quem for sem medo #semanistia.mp3",
+        "dateAdded": "2023-01-23T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "C76DCCEF-0EFE-4CDC-94A9-E8854F524523",
+        "title": "Eles tão deixando a gente sonhar",
+        "authorId": "1C507BD6-B19C-41EA-BF5B-4ADF7537A6A9",
+        "description": "eles tão deixando a gente sonhar",
+        "filename": "Ronaldinho Gaucho - Eles estao deixando a gente sonhar.mp3",
+        "dateAdded": "2023-01-23T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "88371940-846A-404C-8881-EEE0A704C4D9",
+        "title": "Sem anistia",
+        "authorId": "1C507BD6-B19C-41EA-BF5B-4ADF7537A6A9",
+        "description": "sem anistia",
+        "filename": "Sem anistia.mp3",
+        "dateAdded": "2023-01-23T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
     }
 ]
