@@ -342,7 +342,7 @@ class SoundsViewViewModel: ObservableObject {
         TapticFeedback.error()
         alertType = .singleOption
         alertTitle = "Problema ao Mover o Banco de Dados"
-        alertMessage = "Houve um problema ao tentar mover o banco de dados do app. Por favor, envie um print desse erro para o desenvolvedor (e-mail nos Ajustes):\n\n\(moveDatabaseIssue)"
+        alertMessage = "Houve um problema ao tentar mover o banco de dados do app. Por favor, envie um print desse erro para o desenvolvedor (e-mail nas Configurações):\n\n\(moveDatabaseIssue)"
         showAlert = true
     }
 

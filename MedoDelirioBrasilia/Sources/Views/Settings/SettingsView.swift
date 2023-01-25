@@ -169,7 +169,7 @@ struct SettingsView: View {
                 }
             }
         }
-        .navigationTitle("Ajustes")
+        .navigationTitle("Configurações")
         .onAppear {
             networkRabbit.displayAskForMoneyView { shouldDisplay in
                 showAskForMoneyView = shouldDisplay
