@@ -121,7 +121,7 @@ struct SettingsView: View {
                                     .renderingMode(.template)
                                     .frame(width: 24, height: 24)
                                 
-                                Text("Mastodon")
+                                Text("Seguir no Mastodon")
                                     .bold()
                             }
                             .foregroundColor(.purple)
