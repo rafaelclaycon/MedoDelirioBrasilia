@@ -8,7 +8,7 @@ struct SettingsCasingWithCloseView: View {
     var body: some View {
         NavigationView {
             SettingsView()
-                .navigationTitle("Ajustes")
+                .navigationTitle("Configurações")
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarItems(leading:
                     Button("Fechar") {

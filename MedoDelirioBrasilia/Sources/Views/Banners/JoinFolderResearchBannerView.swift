@@ -163,7 +163,7 @@ struct JoinFolderResearchBannerView: View {
                     .multilineTextAlignment(.center)
                     .font(.title3)
                 
-                Text("Você faz parte da pesquisa. Para descadastrar, vá em Ajustes > Privacidade > Pesquisa Sobre as Pastas.")
+                Text("Você faz parte da pesquisa. Para descadastrar, vá em Configurações > Privacidade > Pesquisa Sobre as Pastas.")
                     .multilineTextAlignment(.center)
                     .font(.footnote)
                     .padding(.horizontal)
@@ -203,7 +203,7 @@ struct JoinFolderResearchBannerView: View {
                     .multilineTextAlignment(.center)
                     .font(.title3)
                 
-                Text("Tente novamente mais tarde. Para cadastrar nos Ajustes, vá em Privacidade > Pesquisa Sobre as Pastas.")
+                Text("Tente novamente mais tarde. Para cadastrar nas Configurações, vá em Privacidade > Pesquisa Sobre as Pastas.")
                     .multilineTextAlignment(.center)
                     .font(.footnote)
                     .padding(.horizontal)

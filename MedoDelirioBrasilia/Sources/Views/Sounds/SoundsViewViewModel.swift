@@ -253,7 +253,7 @@ class SoundsViewViewModel: ObservableObject {
     func showVideoSavedSuccessfullyToast() {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
             withAnimation {
-                self.shareBannerMessage = "Vídeo salvo com sucesso."
+                self.shareBannerMessage = ProcessInfo.processInfo.isiOSAppOnMac ? Shared.ShareAsVideo.videoSavedSucessfullyMac : Shared.ShareAsVideo.videoSavedSucessfully
                 self.displaySharedSuccessfullyToast = true
             }
             TapticFeedback.success()
@@ -342,7 +342,7 @@ class SoundsViewViewModel: ObservableObject {
         TapticFeedback.error()
         alertType = .singleOption
         alertTitle = "Problema ao Mover o Banco de Dados"
-        alertMessage = "Houve um problema ao tentar mover o banco de dados do app. Por favor, envie um print desse erro para o desenvolvedor (e-mail nos Ajustes):\n\n\(moveDatabaseIssue)"
+        alertMessage = "Houve um problema ao tentar mover o banco de dados do app. Por favor, envie um print desse erro para o desenvolvedor (e-mail nas Configurações):\n\n\(moveDatabaseIssue)"
         showAlert = true
     }
 
