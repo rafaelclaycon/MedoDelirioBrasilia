@@ -5,6 +5,7 @@ import ImageIO
 let soundData: [Sound] = load("sound_data.json")
 let authorData: [Author] = load("author_data.json")
 let songData: [Song] = load("song_data.json")
+let reactionData: [Reaction] = load("reaction_data.json")
 
 func load<T: Decodable>(_ filename: String) -> T {
     let data: Data

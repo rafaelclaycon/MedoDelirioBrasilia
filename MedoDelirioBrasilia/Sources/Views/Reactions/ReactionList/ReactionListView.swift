@@ -30,7 +30,7 @@ struct ReactionListView: View {
             }
         }
         .onAppear {
-            viewModel.fetchCollections()
+            viewModel.fetchReactions()
         }
     }
     
@@ -49,11 +49,11 @@ struct ReactionListView: View {
     @ViewBuilder private func listView() -> some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
-                ForEach(viewModel.collections) { collection in
+                ForEach(viewModel.reactions) { reaction in
                     NavigationLink {
-                        ReactionDetailView(collection: collection)
+                        ReactionDetailView(reaction: reaction)
                     } label: {
-                        ReactionCell(title: collection.title, imageURL: collection.imageURL)
+                        ReactionCell(title: reaction.title, imageURL: reaction.imageUrl)
                     }
                 }
             }

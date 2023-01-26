@@ -10,7 +10,7 @@ import SwiftUI
 struct ReactionDetailView: View {
 
     @StateObject var viewModel = ReactionDetailViewViewModel(state: .loading)
-    @State var collection: ContentCollection
+    @State var reaction: Reaction
     
     private let columns = [
         GridItem(.flexible()),
@@ -168,7 +168,7 @@ struct ReactionDetailView: View {
 struct CollectionDetailView_Previews: PreviewProvider {
 
     static var previews: some View {
-        ReactionDetailView(collection: ContentCollection(title: "Teste", imageURL: .empty))
+        ReactionDetailView(reaction: Reaction(title: "Teste", imageUrl: .empty, contentFile: .empty))
     }
 
 }
