@@ -8580,7 +8580,7 @@
         "description": "é muito burro é muito burro",
         "filename": "E muito burro funk.mp3",
         "dateAdded": "2023-01-25T00:00:00Z",
-        "isOffensive": false,
+        "isOffensive": true,
         "isNew": true
     },
     {
