@@ -16,12 +16,12 @@ struct NoSoundsView: View {
                 .foregroundColor(.blue)
                 .frame(width: 100)
             
-            Text("Nenhum Som A Ser Exibido Para os Ajustes Atuais")
+            Text("Nenhum Som A Ser Exibido Para as Configurações Atuais")
                 .font(.title)
                 .bold()
                 .multilineTextAlignment(.center)
             
-            Text("Visite os Ajustes aqui no app e habilite a opção Exibir Conteúdo Explícito para ver os sons desse autor.")
+            Text("Visite as Configurações aqui no app e habilite a opção Exibir Conteúdo Explícito para ver os sons desse autor.")
                 .multilineTextAlignment(.center)
         }
     }

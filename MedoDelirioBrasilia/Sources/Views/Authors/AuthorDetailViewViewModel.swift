@@ -73,7 +73,7 @@ class AuthorDetailViewViewModel: ObservableObject {
         self.sounds.sort(by: { $0.title.withoutDiacritics() < $1.title.withoutDiacritics() })
     }
     
-    func playSound(fromPath filepath: String) {
+    func playSound(fromPath filepath: String, withId soundId: String) {
         guard filepath.isEmpty == false else {
             return
         }
@@ -82,6 +82,9 @@ class AuthorDetailViewViewModel: ObservableObject {
             return showUnableToGetSoundAlert()
         }
         let url = URL(fileURLWithPath: path)
+        
+        nowPlayingKeeper.removeAll()
+        nowPlayingKeeper.insert(soundId)
 
         player = AudioPlayer(url: url, update: { [weak self] state in
             guard let self = self else { return }

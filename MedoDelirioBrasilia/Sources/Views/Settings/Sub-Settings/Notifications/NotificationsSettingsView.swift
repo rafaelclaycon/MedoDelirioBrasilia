@@ -68,7 +68,7 @@ struct NotificationsSettingsView: View {
                 } header: {
                     Text("Apenas para testes")
                 } footer: {
-                    Text("Use o botão acima caso você tenha desinstalado o app, reinstalado, concordado novamente em receber notificações e não recebeu mais.\n\nDepois disso, toque em Ajustes no topo da tela para voltar para a tela de Ajustes e re-abra essa tela (Notificações) para que a re-tentativa seja feita.")
+                    Text("Use o botão acima caso você tenha desinstalado o app, reinstalado, concordado novamente em receber notificações e não recebeu mais.\n\nDepois disso, toque em Configurações no topo da tela para voltar para a tela de Configurações e re-abra essa tela (Notificações) para que a re-tentativa seja feita.")
                 }
             }
         }

@@ -46,9 +46,7 @@ struct AuthorDetailView: View {
                                                 player?.togglePlay()
                                                 viewModel.nowPlayingKeeper.removeAll()
                                             } else {
-                                                viewModel.playSound(fromPath: sound.filename)
-                                                viewModel.nowPlayingKeeper.removeAll()
-                                                viewModel.nowPlayingKeeper.insert(sound.id)
+                                                viewModel.playSound(fromPath: sound.filename, withId: sound.id)
                                             }
                                         }
                                         .contextMenu(menuItems: {

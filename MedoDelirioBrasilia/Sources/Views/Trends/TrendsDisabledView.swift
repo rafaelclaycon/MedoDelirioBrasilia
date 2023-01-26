@@ -22,7 +22,7 @@ struct TrendsDisabledView: View {
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
             
-            Text("Para descobrir quais sons são mais compartilhados por você e pelos demais usuários do app, habilite o recurso Tendências em Ajustes > Privacidade.")
+            Text("Para descobrir quais sons são mais compartilhados por você e pelos demais usuários do app, habilite o recurso Tendências em Configurações > Privacidade.")
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
             
