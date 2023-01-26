@@ -1049,6 +1049,7 @@
 		D9B83361291890D9007E47EB /* Pedro Daltro e Cristiano Botafogo - Comemorando a vitoria.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B83360291890D9007E47EB /* Pedro Daltro e Cristiano Botafogo - Comemorando a vitoria.mp3 */; };
 		D9B9ED92295651FE00C25181 /* Eliane Cantanhede - Uau.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B9ED90295651FE00C25181 /* Eliane Cantanhede - Uau.mp3 */; };
 		D9B9ED93295651FE00C25181 /* Tema do Arquivo X.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B9ED91295651FE00C25181 /* Tema do Arquivo X.mp3 */; };
+		D9BAA6F42982F4340060982A /* CreateFolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BAA6F32982F4340060982A /* CreateFolderCell.swift */; };
 		D9BB1E7728B3200700C5FFAA /* AppIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BB1E7628B3200700C5FFAA /* AppIcon.swift */; };
 		D9BB3A2D28F4BAD500EF7E8D /* Jair Bolsonaro - Paz, tranquilidade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BB3A2C28F4BAD500EF7E8D /* Jair Bolsonaro - Paz, tranquilidade.mp3 */; };
 		D9BB8F7628EC6D9E00659D4A /* Amigo do Pedro Daltro - Risada caralho (curto).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BB8F7428EC6D9E00659D4A /* Amigo do Pedro Daltro - Risada caralho (curto).mp3 */; };
@@ -2266,6 +2267,7 @@
 		D9B83360291890D9007E47EB /* Pedro Daltro e Cristiano Botafogo - Comemorando a vitoria.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pedro Daltro e Cristiano Botafogo - Comemorando a vitoria.mp3"; sourceTree = "<group>"; };
 		D9B9ED90295651FE00C25181 /* Eliane Cantanhede - Uau.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eliane Cantanhede - Uau.mp3"; sourceTree = "<group>"; };
 		D9B9ED91295651FE00C25181 /* Tema do Arquivo X.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tema do Arquivo X.mp3"; sourceTree = "<group>"; };
+		D9BAA6F32982F4340060982A /* CreateFolderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFolderCell.swift; sourceTree = "<group>"; };
 		D9BB1E7628B3200700C5FFAA /* AppIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcon.swift; sourceTree = "<group>"; };
 		D9BB3A2C28F4BAD500EF7E8D /* Jair Bolsonaro - Paz, tranquilidade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Paz, tranquilidade.mp3"; sourceTree = "<group>"; };
 		D9BB8F7428EC6D9E00659D4A /* Amigo do Pedro Daltro - Risada caralho (curto).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Amigo do Pedro Daltro - Risada caralho (curto).mp3"; sourceTree = "<group>"; };
@@ -3988,6 +3990,7 @@
 				D9E1A8D12914CD8200694A74 /* MyFoldersiPhoneView.swift */,
 				D9E9CFA2292C3DD1002BC918 /* NoFoldersView.swift */,
 				D9E9CFA4292C40BF002BC918 /* NoFoldersSymbol.swift */,
+				D9BAA6F32982F4340060982A /* CreateFolderCell.swift */,
 			);
 			path = FolderList;
 			sourceTree = "<group>";
@@ -5327,6 +5330,7 @@
 				D99BBE43294676B200BCA901 /* NetworkRabbit+UsageMetric.swift in Sources */,
 				D991E598284A94F70005705F /* Podium.swift in Sources */,
 				D911070D2862BA4C000B6F8F /* StillAliveSignal.swift in Sources */,
+				D9BAA6F42982F4340060982A /* CreateFolderCell.swift in Sources */,
 				D95DB0F82882491A00D4FEDF /* ScreenAndTabs.swift in Sources */,
 				D9FA0CD92850864C000F6ADE /* ClientDeviceInfo.swift in Sources */,
 				D9D3D4912887495B00C42FDE /* FolderList.swift in Sources */,
