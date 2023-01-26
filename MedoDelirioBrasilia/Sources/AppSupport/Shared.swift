@@ -32,6 +32,13 @@ struct Shared {
     
     static let unknownAuthor = "Desconhecido"
     
+    struct Songs {
+        
+        static let songNotFoundAlertTitle = "Música Indisponível"
+        static let songNotFoundAlertMessage = "Devido a um problema técnico, a música que você quer acessar não está disponível."
+        
+    }
+    
     // E-mail
     
     static let pickAMailApp = "Escolha um app de e-mail"
