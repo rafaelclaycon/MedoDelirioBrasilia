@@ -8532,5 +8532,185 @@
         "dateAdded": "2023-01-25T00:00:00Z",
         "isOffensive": true,
         "isNew": true
+    },
+    {
+        "id": "B1391F1F-64DD-4CD0-A45C-3A482CE554A0",
+        "title": "Alô, Bolívia, o Atlântico tá logo aí!",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "alô Bolívia esquece o pacífico o atlântico tá logo aí",
+        "filename": "Cristiano Botafogo - Alo, Bolivia, o atlantico ta logo ai.mp3",
+        "dateAdded": "2023-01-25T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "EA33E4CD-10FE-4BA6-9772-3CBA6783F8FD",
+        "title": "Bora, Exército, fecha a linha! (Trapalhões)",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Bora exercito fecha a linha",
+        "filename": "Bora exercito fecha a linha.mp3",
+        "dateAdded": "2023-01-25T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "87107E3F-5365-41A5-BFF1-E883A4D2D12B",
+        "title": "Mas façamos um flashback",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "mas façamos um flashback",
+        "filename": "Cristiano Botafogo - Mas facamos um flashback.mp3",
+        "dateAdded": "2023-01-25T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "F3BE8361-BB9C-4390-8493-51C8D93C7016",
+        "title": "Acabou o flashback",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "acabou o flashback",
+        "filename": "Cristiano Botafogo - Acabou flashback.mp3",
+        "dateAdded": "2023-01-25T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "306D4EDF-9215-41B4-9DEE-F7872E0DB7BE",
+        "title": "É muito burro!",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "é muito burro é muito burro",
+        "filename": "E muito burro funk.mp3",
+        "dateAdded": "2023-01-25T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "4848E0FE-C158-4517-A7AF-3BCC8C91D0B7",
+        "title": "Flávio Dino não esquece de ninguém",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Flávio Dino não esquece de ninguém",
+        "filename": "Flavio Dino nao esquece de ninguem.mp3",
+        "dateAdded": "2023-01-25T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "279EF22C-806B-4374-B0FE-3831B7D5B999",
+        "title": "Flávio Dino vai vacinar você",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Flavio dino vai vacinar você",
+        "filename": "Flavio Dino vai vacinar voce.mp3",
+        "dateAdded": "2023-01-25T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "BB2F5FDC-97D1-4715-B7A8-D8743511B22C",
+        "title": "Da agulha do Dino não escapa ninguém",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Da agulha do Dino nao escapa ninguem",
+        "filename": "Da agulha do Dino nao escapa ninguem.mp3",
+        "dateAdded": "2023-01-25T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "04E4BC1A-561B-4A2C-84BA-6740C6E54BFB",
+        "title": "Kamala Erris",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Kamala Erris Harris",
+        "filename": "Jair Bolsonaro - Kamala Erris.mp3",
+        "dateAdded": "2023-01-25T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "EE1535F6-C39E-4A86-BCC9-CCBEAF9283BD",
+        "title": "Obrigado, Comandante Villas Boas",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Muito obrigado comandante villas boas, o que nós já conversamos morrerá entre nós, o senhor é o r",
+        "filename": "Jair Bolsonaro - Muito obrigado Comandande Villas Boas.mp3",
+        "dateAdded": "2023-01-25T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "D90061E2-5BC6-457F-8FCD-7D614574429B",
+        "title": "Eu sou o maior perdedor da eleição para presidente nesse país",
+        "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
+        "description": "Todos vocês sabem que eu sou o maior perdedor de eleição presidencial nesse país não tem ninguem que perdeu mais do que eu mas também não tem ninguém que ganhou mais do que eu",
+        "filename": "Lula - Todos voces sabem que eu sou o maior perdedor de eleicoes presidenciais.mp3",
+        "dateAdded": "2023-01-25T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "22BE3CF7-356E-46BC-8235-8ABBD92162C6",
+        "title": "Exército Filho da Puta",
+        "authorId": "5F25AF82-A015-4B12-A146-3ADEE371A6CD",
+        "description": "exercito filha filho da puta vão tudo tomar no cu generais merda",
+        "filename": "Coronel Adriano Testoni - Forcas Armadas filha da puta.mp3",
+        "dateAdded": "2023-01-25T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "3684E0B9-393E-4012-B672-56C7E63E1866",
+        "title": "Sabe o que é anistia?",
+        "authorId": "5F25AF82-A015-4B12-A146-3ADEE371A6CD",
+        "description": "anistia sabe o que é anistia é quando eu como você e a sua tia a para com o negócio de anistia rapaz não vai ter anistia",
+        "filename": "Franciel Cruz - Sabe o que e anistia.mp3",
+        "dateAdded": "2023-01-25T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "D94585EA-507B-4933-A55A-1557D5F7930C",
+        "title": "What the fuck is going on?",
+        "authorId": "60174E46-30D8-40A6-9288-7F4032E3D807",
+        "description": "gringo what the fuck is going on",
+        "filename": "Gringo lendo - What the fuck is going on.mp3",
+        "dateAdded": "2023-01-25T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "49574F40-F4C7-46A9-89C3-B09494D133EF",
+        "title": "Eu não sei que vontade é essa que você tem de fazer merda",
+        "authorId": "E48F93C0-E59E-4913-9E84-711CC06EA83C",
+        "description": "eu não sei que vontade é essa que você tem de fazer merda eu não vou entender",
+        "filename": "Nascimento - Eu nao sei que vontade e essa que voce tem de fazer merda.mp3",
+        "dateAdded": "2023-01-25T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "8BB422B2-6456-46A1-B009-E062071EB7F9",
+        "title": "Nós temos que punir, seja quem for",
+        "authorId": "4AE135DD-B688-45D7-B20B-88DCFE8CDD8A",
+        "description": "Vou sugerir a vossa excelência que crie uma comissão de senadores e senadoras para que acompanhe as investigações que estão sendo feitas porque agora não vai ser que nem a comissão da verdade que nós vamos deixar para trás nós temos que punir seja quem for seja lá do meu estado quem financiou isso ou quem tem estrelas nos ombros que está por trás disso sem medo",
+        "filename": "Omar Aziz - Nos temos que punir seja quem for sem medo sem anistia.mp3",
+        "dateAdded": "2023-01-25T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "C76DCCEF-0EFE-4CDC-94A9-E8854F524523",
+        "title": "Eles tão deixando a gente sonhar",
+        "authorId": "76220CAD-58BC-4117-BA66-D18274131AE4",
+        "description": "eles tão deixando a gente sonhar",
+        "filename": "Ronaldinho Gaucho - Eles estao deixando a gente sonhar.mp3",
+        "dateAdded": "2023-01-25T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "88371940-846A-404C-8881-EEE0A704C4D9",
+        "title": "Sem anistia",
+        "authorId": "1C507BD6-B19C-41EA-BF5B-4ADF7537A6A9",
+        "description": "sem anistia",
+        "filename": "Sem anistia.mp3",
+        "dateAdded": "2023-01-25T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
     }
 ]
