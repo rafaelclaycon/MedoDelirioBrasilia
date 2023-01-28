@@ -17,6 +17,14 @@ struct AddToFolderView: View {
     @State var selectedSoundId: String
     @State private var isShowingCreateNewFolderScreen: Bool = false
     
+    private var createNewFolderCellWidth: CGFloat {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            return (UIScreen.main.bounds.size.width / 2) - 20
+        } else {
+            return 250
+        }
+    }
+    
     private let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
@@ -53,7 +61,7 @@ struct AddToFolderView: View {
                             CreateFolderCell()
                         }
                         .foregroundColor(.primary)
-                        .frame(width: (UIScreen.main.bounds.size.width / 2) - 20)
+                        .frame(width: createNewFolderCellWidth)
 
                         Spacer()
                     }
@@ -108,7 +116,7 @@ struct AddToFolderView: View {
             .alert(isPresented: $viewModel.showAlert) {
                 Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
             }
-            .popover(isPresented: $isShowingCreateNewFolderScreen) {
+            .sheet(isPresented: $isShowingCreateNewFolderScreen) {
                 FolderInfoEditingView(isBeingShown: $isShowingCreateNewFolderScreen, selectedBackgroundColor: Shared.Folders.defaultFolderColor)
             }
             .onChange(of: isShowingCreateNewFolderScreen) { isShowingCreateNewFolderScreen in
