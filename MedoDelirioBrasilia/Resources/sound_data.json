@@ -8531,7 +8531,7 @@
         "filename": "Desconhecido - Primeiramente.mp3",
         "dateAdded": "2023-01-25T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "B1391F1F-64DD-4CD0-A45C-3A482CE554A0",
@@ -8541,7 +8541,7 @@
         "filename": "Cristiano Botafogo - Alo, Bolivia, o atlantico ta logo ai.mp3",
         "dateAdded": "2023-01-25T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "EA33E4CD-10FE-4BA6-9772-3CBA6783F8FD",
@@ -8551,7 +8551,7 @@
         "filename": "Bora exercito fecha a linha.mp3",
         "dateAdded": "2023-01-25T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "87107E3F-5365-41A5-BFF1-E883A4D2D12B",
@@ -8561,7 +8561,7 @@
         "filename": "Cristiano Botafogo - Mas facamos um flashback.mp3",
         "dateAdded": "2023-01-25T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "F3BE8361-BB9C-4390-8493-51C8D93C7016",
@@ -8571,7 +8571,7 @@
         "filename": "Cristiano Botafogo - Acabou flashback.mp3",
         "dateAdded": "2023-01-25T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "306D4EDF-9215-41B4-9DEE-F7872E0DB7BE",
@@ -8581,7 +8581,7 @@
         "filename": "E muito burro funk.mp3",
         "dateAdded": "2023-01-25T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "4848E0FE-C158-4517-A7AF-3BCC8C91D0B7",
@@ -8591,7 +8591,7 @@
         "filename": "Flavio Dino nao esquece de ninguem.mp3",
         "dateAdded": "2023-01-25T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "279EF22C-806B-4374-B0FE-3831B7D5B999",
@@ -8601,7 +8601,7 @@
         "filename": "Flavio Dino vai vacinar voce.mp3",
         "dateAdded": "2023-01-25T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "BB2F5FDC-97D1-4715-B7A8-D8743511B22C",
@@ -8611,7 +8611,7 @@
         "filename": "Da agulha do Dino nao escapa ninguem.mp3",
         "dateAdded": "2023-01-25T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "04E4BC1A-561B-4A2C-84BA-6740C6E54BFB",
@@ -8621,7 +8621,7 @@
         "filename": "Jair Bolsonaro - Kamala Erris.mp3",
         "dateAdded": "2023-01-25T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "EE1535F6-C39E-4A86-BCC9-CCBEAF9283BD",
@@ -8631,7 +8631,7 @@
         "filename": "Jair Bolsonaro - Muito obrigado Comandande Villas Boas.mp3",
         "dateAdded": "2023-01-25T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "D90061E2-5BC6-457F-8FCD-7D614574429B",
@@ -8641,7 +8641,7 @@
         "filename": "Lula - Todos voces sabem que eu sou o maior perdedor de eleicoes presidenciais.mp3",
         "dateAdded": "2023-01-25T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "22BE3CF7-356E-46BC-8235-8ABBD92162C6",
@@ -8651,7 +8651,7 @@
         "filename": "Coronel Adriano Testoni - Forcas Armadas filha da puta.mp3",
         "dateAdded": "2023-01-25T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "3684E0B9-393E-4012-B672-56C7E63E1866",
@@ -8661,7 +8661,7 @@
         "filename": "Franciel Cruz - Sabe o que e anistia.mp3",
         "dateAdded": "2023-01-25T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "D94585EA-507B-4933-A55A-1557D5F7930C",
@@ -8671,7 +8671,7 @@
         "filename": "Gringo lendo - What the fuck is going on.mp3",
         "dateAdded": "2023-01-25T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "49574F40-F4C7-46A9-89C3-B09494D133EF",
@@ -8681,7 +8681,7 @@
         "filename": "Nascimento - Eu nao sei que vontade e essa que voce tem de fazer merda.mp3",
         "dateAdded": "2023-01-25T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "8BB422B2-6456-46A1-B009-E062071EB7F9",
@@ -8691,7 +8691,7 @@
         "filename": "Omar Aziz - Nos temos que punir seja quem for sem medo sem anistia.mp3",
         "dateAdded": "2023-01-25T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "C76DCCEF-0EFE-4CDC-94A9-E8854F524523",
@@ -8701,7 +8701,7 @@
         "filename": "Ronaldinho Gaucho - Eles estao deixando a gente sonhar.mp3",
         "dateAdded": "2023-01-25T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "88371940-846A-404C-8881-EEE0A704C4D9",
@@ -8711,6 +8711,6 @@
         "filename": "Sem anistia.mp3",
         "dateAdded": "2023-01-25T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     }
 ]
