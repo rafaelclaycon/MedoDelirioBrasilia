@@ -15,6 +15,7 @@ struct AddToFolderView: View {
     @Binding var folderName: String?
     @State var selectedSoundName: String
     @State var selectedSoundId: String
+    @State private var isShowingCreateNewFolderScreen: Bool = false
     
     private let columns = [
         GridItem(.flexible()),
@@ -47,7 +48,7 @@ struct AddToFolderView: View {
                 ScrollView {
                     HStack {
                         Button {
-                            print("Add")
+                            isShowingCreateNewFolderScreen = true
                         } label: {
                             CreateFolderCell()
                         }
@@ -68,23 +69,30 @@ struct AddToFolderView: View {
                     .padding(.horizontal)
                     .padding(.top)
                     
-                    LazyVGrid(columns: columns, spacing: 14) {
-                        ForEach(viewModel.folders) { folder in
-                            Button {
-                                guard viewModel.soundIsNotYetOnFolder(folderId: folder.id, contentId: selectedSoundId) else {
-                                    return viewModel.showSoundAlredyInFolderAlert(folderName: folder.name)
+                    if viewModel.folders.count == 0 {
+                        Text("Nenhuma Pasta")
+                            .font(.title2)
+                            .foregroundColor(.gray)
+                            .padding(.vertical, 200)
+                    } else {
+                        LazyVGrid(columns: columns, spacing: 14) {
+                            ForEach(viewModel.folders) { folder in
+                                Button {
+                                    guard viewModel.soundIsNotYetOnFolder(folderId: folder.id, contentId: selectedSoundId) else {
+                                        return viewModel.showSoundAlredyInFolderAlert(folderName: folder.name)
+                                    }
+                                    try? database.insert(contentId: selectedSoundId, intoUserFolder: folder.id)
+                                    folderName = "\(folder.symbol) \(folder.name)"
+                                    hadSuccess = true
+                                    isBeingShown = false
+                                } label: {
+                                    FolderCell(symbol: folder.symbol, name: folder.name, backgroundColor: folder.backgroundColor.toColor())
                                 }
-                                try? database.insert(contentId: selectedSoundId, intoUserFolder: folder.id)
-                                folderName = "\(folder.symbol) \(folder.name)"
-                                hadSuccess = true
-                                isBeingShown = false
-                            } label: {
-                                FolderCell(symbol: folder.symbol, name: folder.name, backgroundColor: folder.backgroundColor.toColor())
+                                .foregroundColor(.primary)
                             }
-                            .foregroundColor(.primary)
                         }
+                        .padding(.horizontal)
                     }
-                    .padding(.horizontal)
                 }
             }
             .navigationTitle("Adicionar a Pasta")
@@ -99,6 +107,14 @@ struct AddToFolderView: View {
             }
             .alert(isPresented: $viewModel.showAlert) {
                 Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
+            }
+            .popover(isPresented: $isShowingCreateNewFolderScreen) {
+                FolderInfoEditingView(isBeingShown: $isShowingCreateNewFolderScreen, selectedBackgroundColor: Shared.Folders.defaultFolderColor)
+            }
+            .onChange(of: isShowingCreateNewFolderScreen) { isShowingCreateNewFolderScreen in
+                if isShowingCreateNewFolderScreen == false {
+                    viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
+                }
             }
         }
     }

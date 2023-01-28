@@ -290,13 +290,5 @@ class AuthorDetailViewViewModel: ObservableObject {
         alertMessage = Shared.soundNotFoundAlertMessage
         showAlert = true
     }
-    
-    func showNoFoldersAlert() {
-        TapticFeedback.error()
-        alertType = .singleOption
-        alertTitle = Shared.Folders.noFoldersAlertTitle
-        alertMessage = UIDevice.current.userInterfaceIdiom == .phone ? Shared.Folders.noFoldersAlertMessagePhone : Shared.Folders.noFoldersAlertMessagePadMac
-        showAlert = true
-    }
 
 }

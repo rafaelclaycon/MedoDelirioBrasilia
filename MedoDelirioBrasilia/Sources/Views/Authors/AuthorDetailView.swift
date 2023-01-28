@@ -78,10 +78,6 @@ struct AuthorDetailView: View {
                                                 
                                                 Button {
                                                     viewModel.selectedSound = sound
-                                                    let hasFolders = try? database.hasAnyUserFolder()
-                                                    guard hasFolders ?? false else {
-                                                        return viewModel.showNoFoldersAlert()
-                                                    }
                                                     showingAddToFolderModal = true
                                                 } label: {
                                                     Label(Shared.addToFolderButtonText, systemImage: "folder.badge.plus")
