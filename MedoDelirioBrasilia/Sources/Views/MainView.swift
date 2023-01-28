@@ -109,7 +109,7 @@ struct MainView: View {
             .sheet(isPresented: $isShowingFolderInfoEditingSheet, onDismiss: {
                 updateFolderList = true
             }) {
-                FolderInfoEditingView(isBeingShown: $isShowingFolderInfoEditingSheet, selectedBackgroundColor: "pastelPurple")
+                FolderInfoEditingView(isBeingShown: $isShowingFolderInfoEditingSheet, selectedBackgroundColor: Shared.Folders.defaultFolderColor)
             }
         }
     }

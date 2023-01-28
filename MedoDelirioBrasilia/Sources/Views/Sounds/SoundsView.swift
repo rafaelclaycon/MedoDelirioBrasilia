@@ -171,10 +171,6 @@ struct SoundsView: View {
                                                         
                                                         Button {
                                                             viewModel.selectedSound = sound
-                                                            let hasFolders = try? database.hasAnyUserFolder()
-                                                            guard hasFolders ?? false else {
-                                                                return viewModel.showNoFoldersAlert()
-                                                            }
                                                             subviewToOpen = .addToFolderView
                                                             showingModalView = true
                                                         } label: {
