@@ -8712,5 +8712,45 @@
         "dateAdded": "2023-01-25T00:00:00Z",
         "isOffensive": false,
         "isNew": false
+    },
+    {
+        "id": "3627E878-A552-4F89-90BC-B932CA369A76",
+        "title": "Aí eu acho exagero",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Ai eu acho exagero",
+        "filename": "Ai eu acho exagero.mp3",
+        "dateAdded": "2023-01-29T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "0B20AE34-9099-43B8-83FC-7CE58542EB8D",
+        "title": "Bem-vindos ao devido processo legal?",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Bem-vindos ao devido processo legal",
+        "filename": "Bem-vindos ao devido processo legal.mp3",
+        "dateAdded": "2023-01-29T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "499B5437-8417-46A5-AFE0-F7919AE072CE",
+        "title": "Senhores, selva",
+        "authorId": "EBD45548-26E5-42BA-BFDB-1F7B383DF302",
+        "description": "Senhores selva",
+        "filename": "Ana Priscila Azevedo (golpista) - Senhores, selva.mp3",
+        "dateAdded": "2023-01-29T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "0993D9E1-A1EF-447E-80BC-A17F22BB9B38",
+        "title": "Senhores, selva (funk)",
+        "authorId": "EBD45548-26E5-42BA-BFDB-1F7B383DF302",
+        "description": "Senhores selva funk",
+        "filename": "Ana Priscila Azevedo (golpista) - Senhores, selva (funk).mp3",
+        "dateAdded": "2023-01-29T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
     }
 ]
