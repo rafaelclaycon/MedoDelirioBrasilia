@@ -14,7 +14,8 @@ struct MainView: View {
     @State var isShowingSettingsSheet: Bool = false
     @StateObject var settingsHelper = SettingsHelper()
     @State var isShowingFolderInfoEditingSheet: Bool = false
-    @State var updateFolderList: Bool = false
+    //@State var updateFolderList: Bool = false
+    @StateObject var foldersHelper = FoldersHelper()
     
     // Trends
     @State var soundIdToGoToFromTrends: String = .empty
@@ -91,10 +92,10 @@ struct MainView: View {
             NavigationView {
                 SidebarView(state: $state,
                             isShowingSettingsSheet: $isShowingSettingsSheet,
-                            isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet,
-                            updateFolderList: $updateFolderList)
+                            isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet)
                     .environmentObject(trendsHelper)
                     .environmentObject(settingsHelper)
+                    .environmentObject(foldersHelper)
                 SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
                                                           authorSortOption: AuthorSortOption.nameAscending.rawValue),
                            currentMode: .allSounds)
@@ -107,7 +108,7 @@ struct MainView: View {
                     .environmentObject(settingsHelper)
             }
             .sheet(isPresented: $isShowingFolderInfoEditingSheet, onDismiss: {
-                updateFolderList = true
+                foldersHelper.updateFolderList = true
             }) {
                 FolderInfoEditingView(isBeingShown: $isShowingFolderInfoEditingSheet, selectedBackgroundColor: Shared.Folders.defaultFolderColor)
             }

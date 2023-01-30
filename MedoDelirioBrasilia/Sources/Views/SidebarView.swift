@@ -13,8 +13,9 @@ struct SidebarView: View {
     @Binding var state: PadScreen?
     @Binding var isShowingSettingsSheet: Bool
     @Binding var isShowingFolderInfoEditingSheet: Bool
-    @Binding var updateFolderList: Bool
+    //@Binding var updateFolderList: Bool
     @EnvironmentObject var settingsHelper: SettingsHelper
+    @EnvironmentObject var foldersHelper: SettingsHelper
     
     // Trends
     @EnvironmentObject var trendsHelper: TrendsHelper
@@ -78,7 +79,7 @@ struct SidebarView: View {
             
             Section("Minhas Pastas") {
                 NavigationLink(
-                    destination: AllFoldersiPadView(isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet, updateFolderList: $updateFolderList),
+                    destination: AllFoldersiPadView(isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet),
                     tag: PadScreen.allFolders,
                     selection: $state,
                     label: {
@@ -96,6 +97,40 @@ struct SidebarView: View {
                                 Text(folder.name)
                             }
                         })
+                    .contextMenu {
+                        //if UIDevice.current.userInterfaceIdiom == .phone {
+                            Section {
+                                Button {
+                                    //folderIdForEditing = folder.id
+                                } label: {
+                                    Label("Editar Detalhes da Pasta", systemImage: "pencil")
+                                }
+                            }
+                        //}
+                        
+                        Section {
+                            Button(role: .destructive, action: {
+//                                if UIDevice.current.userInterfaceIdiom == .phone {
+//                                    let folderName = "\(folder.symbol) \(folder.name)"
+//                                    deleteFolderAideiPhone.alertTitle = "Apagar \"\(folderName)\""
+//                                    deleteFolderAideiPhone.alertMessage = "Tem certeza de que deseja apagar a pasta \"\(folderName)\"? Os sons não serão apagados."
+//                                    deleteFolderAideiPhone.folderIdForDeletion = folder.id
+//                                    deleteFolderAideiPhone.showAlert = true
+//                                } else {
+//                                    let folderName = "\(folder.symbol) \(folder.name)"
+//                                    deleteFolderAide.alertTitle = "Apagar \"\(folderName)\""
+//                                    deleteFolderAide.alertMessage = "Tem certeza de que deseja apagar a pasta \"\(folderName)\"? Os sons não serão apagados."
+//                                    deleteFolderAide.folderIdForDeletion = folder.id
+//                                    deleteFolderAide.showAlert = true
+//                                }
+                            }, label: {
+                                HStack {
+                                    Text("Apagar Pasta")
+                                    Image(systemName: "trash")
+                                }
+                            })
+                        }
+                    }
                 }
                 
                 Button {
@@ -108,6 +143,11 @@ struct SidebarView: View {
         }
         .listStyle(SidebarListStyle())
         .navigationTitle(LocalizableStrings.MainView.title)
+        .onReceive(foldersHelper.$updateFolderList) { updateFolderList in
+            if updateFolderList {
+                viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
+            }
+        }
         .toolbar {
             Button {
                 isShowingSettingsSheet = true
@@ -118,11 +158,6 @@ struct SidebarView: View {
         .onAppear {
             viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
         }
-        .onChange(of: updateFolderList) { shouldUpdate in
-            if shouldUpdate {
-                viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
-            }
-        }
     }
 
 }
@@ -132,8 +167,7 @@ struct SidebarView_Previews: PreviewProvider {
     static var previews: some View {
         SidebarView(state: .constant(PadScreen.allSounds),
                     isShowingSettingsSheet: .constant(false),
-                    isShowingFolderInfoEditingSheet: .constant(false),
-                    updateFolderList: .constant(false))
+                    isShowingFolderInfoEditingSheet: .constant(false))
     }
 
 }

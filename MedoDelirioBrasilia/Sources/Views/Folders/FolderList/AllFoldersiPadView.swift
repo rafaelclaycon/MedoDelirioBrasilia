@@ -11,7 +11,7 @@ import SwiftUI
 struct AllFoldersiPadView: View {
 
     @Binding var isShowingFolderInfoEditingSheet: Bool
-    @Binding var updateFolderList: Bool
+    //@Binding var updateFolderList: Bool
     @State var deleteFolderAide = DeleteFolderViewAide()
     @State var folderIdForEditing: String = .empty
     @StateObject var deleteFolderAideiPhone = DeleteFolderViewAideiPhone() // Not used, here just so FolderList does not crash on iPad
@@ -19,7 +19,7 @@ struct AllFoldersiPadView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .center) {
-                FolderList(updateFolderList: $updateFolderList,
+                FolderList(updateFolderList: .constant(false),
                            deleteFolderAide: $deleteFolderAide,
                            folderIdForEditing: $folderIdForEditing)
                     .environmentObject(deleteFolderAideiPhone)
@@ -48,7 +48,7 @@ struct AllFoldersiPadView: View {
                     return
                 }
                 try? database.deleteUserFolder(withId: deleteFolderAide.folderIdForDeletion)
-                updateFolderList = true
+                //updateFolderList = true
             }), secondaryButton: .cancel(Text("Cancelar")))
         }
         .onChange(of: folderIdForEditing) { folderIdForEditing in
@@ -64,7 +64,7 @@ struct AllFoldersiPadView: View {
 struct AllFoldersiPadView_Previews: PreviewProvider {
 
     static var previews: some View {
-        AllFoldersiPadView(isShowingFolderInfoEditingSheet: .constant(false), updateFolderList: .constant(false))
+        AllFoldersiPadView(isShowingFolderInfoEditingSheet: .constant(false))
     }
 
 }

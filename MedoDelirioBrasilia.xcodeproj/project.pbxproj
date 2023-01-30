@@ -1044,6 +1044,7 @@
 		D9AF10D1290AD50D0054741F /* CARA A TAPA - Rica Perrone - Puta, mas isso e uma merda.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AF10BF290AD50D0054741F /* CARA A TAPA - Rica Perrone - Puta, mas isso e uma merda.mp3 */; };
 		D9AF10D2290AD50D0054741F /* REDE GLOBO - Bolsonaro - Espero que seja uma pagina virada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AF10C0290AD50D0054741F /* REDE GLOBO - Bolsonaro - Espero que seja uma pagina virada.mp3 */; };
 		D9AF10D3290AD50D0054741F /* PODER360 - Paulo Guedes - Foda-se.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AF10C1290AD50D0054741F /* PODER360 - Paulo Guedes - Foda-se.mp3 */; };
+		D9B07E702987614400A1C20B /* FoldersHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B07E6F2987614400A1C20B /* FoldersHelper.swift */; };
 		D9B24E2228C6A68800D76F7D /* NumberBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B24E2128C6A68800D76F7D /* NumberBadgeView.swift */; };
 		D9B2BFC6290441C100D161AF /* Jair Bolsonaro - Nem que nao tem nem que tem.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B2BFC5290441C100D161AF /* Jair Bolsonaro - Nem que nao tem nem que tem.mp3 */; };
 		D9B47636290DE3C1007C8ED0 /* Padre Kelmon - Nao existira pessoas.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B47635290DE3C0007C8ED0 /* Padre Kelmon - Nao existira pessoas.mp3 */; };
@@ -2266,6 +2267,7 @@
 		D9AF10BF290AD50D0054741F /* CARA A TAPA - Rica Perrone - Puta, mas isso e uma merda.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "CARA A TAPA - Rica Perrone - Puta, mas isso e uma merda.mp3"; sourceTree = "<group>"; };
 		D9AF10C0290AD50D0054741F /* REDE GLOBO - Bolsonaro - Espero que seja uma pagina virada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "REDE GLOBO - Bolsonaro - Espero que seja uma pagina virada.mp3"; sourceTree = "<group>"; };
 		D9AF10C1290AD50D0054741F /* PODER360 - Paulo Guedes - Foda-se.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "PODER360 - Paulo Guedes - Foda-se.mp3"; sourceTree = "<group>"; };
+		D9B07E6F2987614400A1C20B /* FoldersHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersHelper.swift; sourceTree = "<group>"; };
 		D9B24E2128C6A68800D76F7D /* NumberBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberBadgeView.swift; sourceTree = "<group>"; };
 		D9B2BFC5290441C100D161AF /* Jair Bolsonaro - Nem que nao tem nem que tem.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Nem que nao tem nem que tem.mp3"; sourceTree = "<group>"; };
 		D9B47635290DE3C0007C8ED0 /* Padre Kelmon - Nao existira pessoas.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Padre Kelmon - Nao existira pessoas.mp3"; sourceTree = "<group>"; };
@@ -3787,6 +3789,7 @@
 				D9A3AB6A28F03C970064CB7A /* ViewStates.swift */,
 				D9F9BB38294A167C0005BE56 /* TrendsHelper.swift */,
 				D96A641F2955F32F00DC0F03 /* SettingsHelper.swift */,
+				D9B07E6F2987614400A1C20B /* FoldersHelper.swift */,
 			);
 			path = ViewAid;
 			sourceTree = "<group>";
@@ -5221,6 +5224,7 @@
 				D9877D2928694F3200B541F9 /* LocalDatabase+UserFolderContent.swift in Sources */,
 				D99BBE4129466D9800BCA901 /* UsageMetric.swift in Sources */,
 				D9CC893328EB7BB500576492 /* MostSharedByAudienceView.swift in Sources */,
+				D9B07E702987614400A1C20B /* FoldersHelper.swift in Sources */,
 				D912A33A28B5321400F7293D /* ShareAsVideoResult.swift in Sources */,
 				D958B1AA28394D400010F133 /* MainView.swift in Sources */,
 				D92F8BAD286A6D2100EB9470 /* AlertType.swift in Sources */,
