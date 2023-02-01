@@ -8716,12 +8716,12 @@
     {
         "id": "3627E878-A552-4F89-90BC-B932CA369A76",
         "title": "Aí eu acho exagero",
-        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "authorId": "8BEC79BB-B52B-4719-A190-70A682A13119",
         "description": "Ai eu acho exagero",
         "filename": "Ai eu acho exagero.mp3",
         "dateAdded": "2023-01-29T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "0B20AE34-9099-43B8-83FC-7CE58542EB8D",
@@ -8731,7 +8731,7 @@
         "filename": "Bem-vindos ao devido processo legal.mp3",
         "dateAdded": "2023-01-29T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "499B5437-8417-46A5-AFE0-F7919AE072CE",
@@ -8741,7 +8741,7 @@
         "filename": "Ana Priscila Azevedo (golpista) - Senhores, selva.mp3",
         "dateAdded": "2023-01-29T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "0993D9E1-A1EF-447E-80BC-A17F22BB9B38",
@@ -8751,6 +8751,46 @@
         "filename": "Ana Priscila Azevedo (golpista) - Senhores, selva (funk).mp3",
         "dateAdded": "2023-01-29T00:00:00Z",
         "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "399DDDBD-6FAB-4721-AA01-9239E0CF9D8C",
+        "title": "Complicado isso tudo aí",
+        "authorId": "952A6D42-3C63-4795-8A20-73C008B406F0",
+        "description": "Complicado o que que é complicado tudo isso ai né tudo isso o que tudo essa situação que a gente tá",
+        "filename": "Leandro Ramos - Complicado isso tudo ai.mp3",
+        "dateAdded": "2023-02-01T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "1B464541-565C-4309-8E72-D3770CCE0235",
+        "title": "É o caralho",
+        "authorId": "F1683588-F547-4F2F-B3E4-8A328FAFC1AB",
+        "description": "E o caralho",
+        "filename": "Casimiro - E o caralho.mp3",
+        "dateAdded": "2023-02-01T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "00EFBF2F-E01F-43BA-A21E-BCFCE6A78579",
+        "title": "Do nada, mané",
+        "authorId": "F1683588-F547-4F2F-B3E4-8A328FAFC1AB",
+        "description": "Do nada mane",
+        "filename": "Casimiro - Do nada mane.mp3",
+        "dateAdded": "2023-02-01T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "DF7A1BD1-D916-4666-B9F1-D2FEF492741A",
+        "title": "É o gol da Alemanha",
+        "authorId": "C5126821-321C-4705-AB9A-2785995DFABF",
+        "description": "E o gol da alemanha",
+        "filename": "Galvao - E o gol da alemanha.mp3",
+        "dateAdded": "2023-02-01T00:00:00Z",
+        "isOffensive": false,
         "isNew": true
     }
 ]

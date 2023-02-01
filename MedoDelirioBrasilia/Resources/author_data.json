@@ -1464,5 +1464,17 @@
         "id": "EBD45548-26E5-42BA-BFDB-1F7B383DF302",
         "name": "Ana Priscila Azevedo",
         "description": "Golpista."
+    },
+    {
+        "id": "8BEC79BB-B52B-4719-A190-70A682A13119",
+        "name": "Thiago Asmar",
+        "photo": "https://media.licdn.com/dms/image/C4E03AQESAAOgZULw8A/profile-displayphoto-shrink_400_400/0/1549675236872?e=1680739200&v=beta&t=HK2jdKbRFdMUCq5rnCNXSY0X-LUeb6sT3FKkK_iW8zA",
+        "description": "Apresentador do canal Pilhado no YouTube."
+    },
+    {
+        "id": "952A6D42-3C63-4795-8A20-73C008B406F0",
+        "name": "Lenadro Ramos",
+        "photo": "https://i.pinimg.com/originals/bc/0c/df/bc0cdf07ae08db5dc7b706b70ac8d444.jpg",
+        "description": "Roteirista, diretor e ator. Interpreta o personagem Julinho da Van no Choque de Cultura."
     }
 ]
