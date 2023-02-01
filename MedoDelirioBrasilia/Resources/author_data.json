@@ -2,7 +2,8 @@
     {
         "id": "E49C6318-B890-4976-B90F-01B60A4FE6D7",
         "name": "Ady Ferrer",
-        "photo": "https://cachedimages.podchaser.com/256x256/aHR0cHM6Ly9jcmVhdG9yLWltYWdlcy5wb2RjaGFzZXIuY29tLzZiMzQ4NWQxOTBlYmFlZWMwOTI3NDk0OTBlOTE1OTUwLmpwZWc%3D/aHR0cHM6Ly93d3cucG9kY2hhc2VyLmNvbS9pbWFnZXMvbWlzc2luZy1pbWFnZS5wbmc%3D"
+        "photo": "https://cachedimages.podchaser.com/256x256/aHR0cHM6Ly9jcmVhdG9yLWltYWdlcy5wb2RjaGFzZXIuY29tLzZiMzQ4NWQxOTBlYmFlZWMwOTI3NDk0OTBlOTE1OTUwLmpwZWc%3D/aHR0cHM6Ly93d3cucG9kY2hhc2VyLmNvbS9pbWFnZXMvbWlzc2luZy1pbWFnZS5wbmc%3D",
+        "description": "Produtora, repórter e apresentadora. Faz parte da equipe do MIDcast Política."
     },
     {
         "id": "089EBD4E-486E-4DF2-9918-E404B5CA7A7E",
@@ -15,12 +16,14 @@
     {
         "id": "045F8453-244C-4B94-8F89-395FE8986139",
         "name": "Kleber Bambam",
-        "photo": "https://upload.wikimedia.org/wikipedia/commons/6/65/KleberBambam.jpg"
+        "photo": "https://upload.wikimedia.org/wikipedia/commons/6/65/KleberBambam.jpg",
+        "description": "Fisiculturista brasileiro. Campeão do BBB 1."
     },
     {
         "id": "2982E359-0A6C-4005-AED8-2D5BB7F39599",
         "name": "Alborghetti",
-        "photo": "https://pbs.twimg.com/profile_images/1257904807/alborghetti_400x400.jpg"
+        "photo": "https://pbs.twimg.com/profile_images/1257904807/alborghetti_400x400.jpg",
+        "description": "Jornalista policial, radialista, apresentador de televisão e político brasileiro."
     },
     {
         "id": "2267C284-7BA1-42DB-8AE8-E329E28CF43C",
@@ -35,7 +38,8 @@
     {
         "id": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
         "name": "Jair Bolsonaro",
-        "photo": "https://p2.trrsf.com/image/fget/cf/1200/1200/middle/images.terra.com/2022/04/08/2022-04-06t135923z_1_lynxnpei350p9_rtroptp_4_brazil-politics-vb439uzay8mr.JPG"
+        "photo": "https://p2.trrsf.com/image/fget/cf/1200/1200/middle/images.terra.com/2022/04/08/2022-04-06t135923z_1_lynxnpei350p9_rtroptp_4_brazil-politics-vb439uzay8mr.JPG",
+        "description": "38º presidente do Brasil, de 1º de janeiro de 2019 a 1º de janeiro de 2023."
     },
     {
         "id": "ED9593A4-B314-405D-B7F9-3BF8B21FA54A",
@@ -48,7 +52,8 @@
     },
     {
         "id": "BDC113E6-423F-4E2E-9BDA-EDEDB225A592",
-        "name": "Dallangnol"
+        "name": "Deltan Dallangnol",
+        "description": "Jurista e político brasileiro. Foi procurador da República de 2003 a 2021 e ganhou notoriedade por integrar e coordenar a força-tarefa da Operação Lava Jato."
     },
     {
         "id": "3FE2F541-6B10-47A8-A1FB-640AB6E55FA9",
@@ -71,7 +76,8 @@
     {
         "id": "69EFC7D8-8922-4FC4-A0F8-881136B69564",
         "name": "Gloria Groove",
-        "photo": "https://yt3.ggpht.com/bB-BjsfmyCs27_PW0RmtI6O6Ox7_TPekQHLGgyOQDYt5nBOkvAv_rNd0xI0cIqaEAbimaqjo=s900-c-k-c0x00ffffff-no-rj"
+        "photo": "https://s2.glbimg.com/suf3TwWYeVQcKQUIcnNjZznIPmI=/0x0:1600x1600/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2019/D/C/blOIOwTVq3Fbt0h919oA/gloriagroove.jpg",
+        "description": "Cantor, rapper, compositor, drag queen e dublador brasileiro."
     },
     {
         "id": "6C973E63-4682-49A8-BDA3-EA20113A827A",
@@ -112,7 +118,8 @@
     {
         "id": "BB392894-327A-48BA-9C7D-4F0601E947EB",
         "name": "Paulo Guedes",
-        "photo": "https://conteudo.imguol.com.br/c/noticias/e8/2022/01/14/brasilia-df---17122021---nesta-sexta-17-o-ministro-da-economia-paulo-guedes-realiza-coletiva-de-imprensa-para-passar-o-balanco-economico-de-2021-durante-o-segundo-ano-da-pandemia-de-covid19-e-1642181867541_v2_450x450.jpg"
+        "photo": "https://conteudo.imguol.com.br/c/noticias/e8/2022/01/14/brasilia-df---17122021---nesta-sexta-17-o-ministro-da-economia-paulo-guedes-realiza-coletiva-de-imprensa-para-passar-o-balanco-economico-de-2021-durante-o-segundo-ano-da-pandemia-de-covid19-e-1642181867541_v2_450x450.jpg",
+        "description": "Ministro da Economia do Brasil no governo Jair Bolsonaro, de 2019 a 2023."
     },
     {
         "id": "332C6028-19BF-4027-AEC4-982E7B36880F",
@@ -169,7 +176,8 @@
     },
     {
         "id": "19F699FE-FFE1-4A9C-B19F-9C29D58A862E",
-        "name": "Boulos"
+        "name": "Guilherme Boulos",
+        "description": "Professor e ativista político brasileiro. Foi candidato a presidente da República pelo PSOL nas eleições gerais do Brasil em 2018."
     },
     {
         "id": "F0A2EC08-8C98-42E8-8C23-C4EBD9314E14",
@@ -235,7 +243,9 @@
     },
     {
         "id": "0D944922-7E50-4DED-A8FD-F44EFCAE82A2",
-        "name": "Abraham Weintraub"
+        "name": "Abraham Weintraub",
+        "photo": "https://conteudo.imguol.com.br/c/noticias/fd/2020/06/22/11fev2020---o-entao-ministro-da-educacao-abraham-weintraub-falando-a-comissao-do-senado-sobre-problemas-na-correcao-das-provas-do-enem-1592860563916_v2_3x4.jpg",
+        "description": "Ministro da Educação do Brasil entre 2019 e 2020."
     },
     {
         "id": "FD772147-0CA9-4D48-A1E4-B121DB3D4D73",
@@ -251,7 +261,8 @@
     },
     {
         "id": "34B0EC7E-9E61-49F8-B407-C034693C97FC",
-        "name": "Bonitinha Mas Ordinária"
+        "name": "Bonitinha Mas Ordinária",
+        "description": "Filme brasileiro de 1963."
     },
     {
         "id": "C85B6755-6598-47C4-BDAF-DD8E8FFEDBE3",
@@ -273,11 +284,14 @@
     {
         "id": "321C3F81-51C6-4AB2-917C-81DCAF13A515",
         "name": "Carl Orff",
-        "photo": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Carl_Orff_um_1970.jpg"
+        "photo": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Carl_Orff_um_1970.jpg",
+        "description": "Compositor alemão."
     },
     {
         "id": "71128756-78A9-4B31-A7D8-CE120147C481",
-        "name": "Eduardo Pazuello"
+        "name": "Eduardo Pazuello",
+        "photo": "https://estaticos.globoradio.globo.com/fotos/2021/05/56a6514b-b5d7-410f-9638-8317408a710d.jpg.400x400_q75_box-669%2C0%2C3342%2C2674_crop_detail.jpg",
+        "description": "General do Exército Brasileiro. Foi ministro da Saúde do Brasil durante a pandemia de COVID-19 no país, entre 2020 e 2021."
     },
     {
         "id": "DF927B93-F8C7-426B-BDBD-EE4AAD6D06AC",
@@ -330,12 +344,14 @@
     {
         "id": "58382B3D-4014-42C0-B0A7-D02733E9BCE3",
         "name": "Samira Close",
-        "photo": "https://yt3.ggpht.com/ytc/AKedOLRjdzsZyL8rKC0c83BV7_muqPkBtd2TM1kYrV76iA=s900-c-k-c0x00ffffff-no-rj"
+        "photo": "https://yt3.ggpht.com/ytc/AKedOLRjdzsZyL8rKC0c83BV7_muqPkBtd2TM1kYrV76iA=s900-c-k-c0x00ffffff-no-rj",
+        "description": "Streamer e drag queen brasileira."
     },
     {
         "id": "A641DDF3-E419-4488-8F1F-20A823218212",
         "name": "Natalie Wynn (ContraPoints)",
-        "photo": "https://i.guim.co.uk/img/media/b49bfc77c20b4944855f483d26f9dba511d8bf5a/3_0_7509_4508/master/7509.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=eadce18aa3043b6560cc9aa4adacbb01"
+        "photo": "https://i.guim.co.uk/img/media/b49bfc77c20b4944855f483d26f9dba511d8bf5a/3_0_7509_4508/master/7509.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=eadce18aa3043b6560cc9aa4adacbb01",
+        "description": "Criadora de conteúdo para o YouTube cujos vídeos de seu canal ContraPoints exploram temas como política, gênero, ética, raça e filosofia."
     },
     {
         "id": "5908EC21-A47D-49A0-A081-651B702D95C9",
@@ -351,7 +367,8 @@
     },
     {
         "id": "994E7B6C-FB8D-49D3-8865-1F1EF9F90F72",
-        "name": "A Mãe Copilota"
+        "name": "A Mãe Copilota",
+        "description": "Meme da mãe ajudando o filho a atravessar de carro um trecho de estrada alagado."
     },
     {
         "id": "79AF542F-72A5-43F3-A77A-20656C173890",
@@ -368,7 +385,8 @@
     {
         "id": "677BDC27-06EF-44D4-BF8F-15E64245CC0F",
         "name": "Bezerra da Silva",
-        "photo": "https://www.vagalume.com.br/bezerra-da-silva/images/bezerra-da-silva.jpg"
+        "photo": "https://www.vagalume.com.br/bezerra-da-silva/images/bezerra-da-silva.jpg",
+        "description": "Cantor, compositor, violonista, percussionista e intérprete brasileiro."
     },
     {
         "id": "9DD28494-F33B-471F-8AD6-D4F86978DD42",
@@ -400,11 +418,14 @@
     {
         "id": "96BDE4FA-E1BE-408A-A8EC-8014BCED7699",
         "name": "Jonathan Frakes",
-        "photo": "https://s3.amazonaws.com/app.growtix.com/media/big/54/64/89/da52a218-0940-4223-8f3b-85d060adea69.jpg"
+        "photo": "https://s3.amazonaws.com/app.growtix.com/media/big/54/64/89/da52a218-0940-4223-8f3b-85d060adea69.jpg",
+        "description": "Ator e diretor americano. Mais conhecido por seu papel de comandante William T. Riker na série de televisão Jornada nas Estrelas: A Nova Geração."
     },
     {
         "id": "3C41E7C2-BA19-456E-90DC-97ADC57B81C0",
-        "name": "Gilmar Mendes"
+        "name": "Gilmar Mendes",
+        "photo": "https://conteudo.imguol.com.br/c/parceiros/a4/2022/12/19/decisao-de-gilmar-mendes-dissocia-programas-sociais-do-teto-de-gastos-1671452609071_v2_450x450.jpg",
+        "description": "É ministro do Supremo Tribunal Federal (STF) desde 20 de junho de 2002, tendo presidido a corte entre 2008 e 2010 e sendo o atual decano (membro mais antigo)."
     },
     {
         "id": "CCD571EF-00FF-47F0-B6CE-429518BEDFF1",
@@ -484,7 +505,8 @@
     {
         "id": "495C92AE-56FA-4882-A962-188FCCEBCA01",
         "name": "Lula",
-        "photo": "https://pbs.twimg.com/profile_images/710844355452522496/gOAhmKxr_400x400.jpg"
+        "photo": "https://pbs.twimg.com/profile_images/710844355452522496/gOAhmKxr_400x400.jpg",
+        "description": "Ex-metalúrgico, ex-sindicalista e político brasileiro. É o 39º presidente do Brasil desde 1º de janeiro de 2023."
     },
     {
         "id": "F40DEA6D-D795-4697-8911-275FAB2869AD",
@@ -504,12 +526,14 @@
     },
     {
         "id": "E2F0F465-9D58-4A9F-97D5-432E5DAD5582",
-        "name": "Pedro Daltro"
+        "name": "Pedro Daltro",
+        "description": "Escritor do podcast Medo e Delírio em Brasília."
     },
     {
         "id": "52541553-B287-465F-BD13-EEA5EAC40044",
         "name": "Cristiano Botafogo",
-        "photo": "https://pbs.twimg.com/profile_images/1559986839850713090/m747gZDM_400x400.jpg"
+        "photo": "https://pbs.twimg.com/profile_images/1559986839850713090/m747gZDM_400x400.jpg",
+        "description": "Narrador e editor do podcast Medo e Delírio em Brasília, tradutor e músico."
     },
     {
         "id": "4AE135DD-B688-45D7-B20B-88DCFE8CDD8A",
@@ -554,7 +578,8 @@
     {
         "id": "F1683588-F547-4F2F-B3E4-8A328FAFC1AB",
         "name": "Casimiro",
-        "photo": "https://pbs.twimg.com/profile_images/1495509561377177601/WljXGF65_400x400.jpg"
+        "photo": "https://pbs.twimg.com/profile_images/1495509561377177601/WljXGF65_400x400.jpg",
+        "description": "Jornalista, apresentador, comentarista esportivo, influenciador digital, humorista, youtuber e streamer brasileiro."
     },
     {
         "id": "94004C99-7373-4880-B551-1BC283992BDC",
@@ -689,8 +714,9 @@
     },
     {
         "id": "248A6A3B-3EEF-45D6-9A2F-A81768B7B370",
-        "name": "Álvaro Borba (Meteoro Brasil)",
-        "photo": "https://static1.personality-database.com/profile_images/1c8edd51ae88481a847995a1772b8cd2.png"
+        "name": "Álvaro Borba",
+        "photo": "https://static1.personality-database.com/profile_images/1c8edd51ae88481a847995a1772b8cd2.png",
+        "description": "Jornalista, escritor e youtuber do canal Meteoro Brasil."
     },
     {
         "id": "026D606A-356F-47C9-8D42-D5C838653E02",
@@ -822,7 +848,8 @@
     },
     {
         "id": "42EDB2DA-51E7-40B1-BABA-FD28066AF001",
-        "name": "Milton Leite"
+        "name": "Milton Leite",
+        "description": "Jornalista e locutor esportivo brasileiro."
     },
     {
         "id": "50401E09-4DE2-4A1A-B49B-AF75C99904FF",
@@ -933,7 +960,9 @@
     },
     {
         "id": "57180528-C9BA-4668-B795-BDA000642445",
-        "name": "Aécio Neves"
+        "name": "Aécio Neves",
+        "photo": "https://imagens.brasil.elpais.com/resizer/ktHb45vWpsAG9NuzUsmymCowHw8=/980x980/cloudfront-eu-central-1.images.arcpublishing.com/prisa/T7VAZEG3SMDT4F6RRKCHNBQ7EU.jpg",
+        "description": "Governador de Minas Gerais, entre 1º de janeiro de 2003 e 31 de março de 2010, e senador pelo mesmo estado entre 2011 e 2019."
     },
     {
         "id": "287808FB-BAF5-41DC-8CD2-DF60C4323796",
@@ -941,8 +970,9 @@
     },
     {
         "id": "5F0EAB9B-2267-4C31-944A-F73D76AC1020",
-        "name": "Ana Paula (BBB 16)",
-        "photo": "https://media.gazetadopovo.com.br/2016/05/e6892dd551f179aa7d7ec2045ef3088b-gpLarge.jpg"
+        "name": "Ana Paula Renault",
+        "photo": "https://media.gazetadopovo.com.br/2016/05/e6892dd551f179aa7d7ec2045ef3088b-gpLarge.jpg",
+        "description": "Jornalista e repórter brasileira. Participante do BBB 16."
     },
     {
         "id": "9796134C-BC7F-4121-9008-ACE479834FD5",
@@ -996,7 +1026,8 @@
     },
     {
         "id": "A7D44066-DAFE-435D-8987-5A1C17EB2A69",
-        "name": "Billy Madison: Um Herdeiro Bobalhão"
+        "name": "Billy Madison: Um Herdeiro Bobalhão",
+        "description": "Filme de comédia estadunidense de 1995 estrelado por Adam Sandler."
     },
     {
         "id": "15A5B647-F367-47C3-A344-D2F57F3351F7",
@@ -1125,7 +1156,8 @@
     {
         "id": "2C2352DD-2357-4B9E-99AD-4E7323664449",
         "name": "Milton Cunha",
-        "photo": "https://yt3.ggpht.com/ytc/AMLnZu-QuZehD3P8ypCjoe4nvultRgWk7ObUJSnaJLF55Q=s900-c-k-c0x00ffffff-no-rj"
+        "photo": "https://yt3.ggpht.com/ytc/AMLnZu-QuZehD3P8ypCjoe4nvultRgWk7ObUJSnaJLF55Q=s900-c-k-c0x00ffffff-no-rj",
+        "description": "Carnavalesco, cenógrafo e comentarista de carnaval brasileiro."
     },
     {
         "id": "AD02C7FB-8F0D-48F1-AC4B-962858DE678B",
@@ -1139,8 +1171,9 @@
     },
     {
         "id": "A32CFB2A-8DF2-41AC-88A1-8AF4DF7DEF82",
-        "name": "Rita von Hunty (Guilherme Terreri)",
-        "photo": "https://conteudo.imguol.com.br/c/entretenimento/65/2021/08/30/rita-von-hunty-transforma-o-youtube-em-sala-de-aula-1630361549320_v2_450x450.jpg"
+        "name": "Rita von Hunty",
+        "photo": "https://conteudo.imguol.com.br/c/entretenimento/65/2021/08/30/rita-von-hunty-transforma-o-youtube-em-sala-de-aula-1630361549320_v2_450x450.jpg",
+        "description": "Persona de Guilherme Terreri, professor, ator, youtuber, comediante, palestrante e drag queen brasileiro."
     },
     {
         "id": "A340D90D-552C-4478-ABE6-E90B536351B6",
@@ -1267,8 +1300,9 @@
     },
     {
         "id": "EE070B17-4C63-4BF4-BF5C-62894B70F390",
-        "name": "Bárbara Saccomori (IG: barbarasaccomori)",
-        "photo": "https://cachedimages.podchaser.com/256x256/aHR0cHM6Ly9jcmVhdG9yLWltYWdlcy5wb2RjaGFzZXIuY29tL2EzODc4MzFlMTJhY2JmMDJiZTJiMjVkMTg4Mzg3MWFmLmpwZWc%3D/aHR0cHM6Ly93d3cucG9kY2hhc2VyLmNvbS9pbWFnZXMvbWlzc2luZy1pbWFnZS5wbmc%3D"
+        "name": "Bárbara Saccomori",
+        "photo": "https://cachedimages.podchaser.com/256x256/aHR0cHM6Ly9jcmVhdG9yLWltYWdlcy5wb2RjaGFzZXIuY29tL2EzODc4MzFlMTJhY2JmMDJiZTJiMjVkMTg4Mzg3MWFmLmpwZWc%3D/aHR0cHM6Ly93d3cucG9kY2hhc2VyLmNvbS9pbWFnZXMvbWlzc2luZy1pbWFnZS5wbmc%3D",
+        "description": "Humorista e podcaster. Instagram: @barbarasaccomori"
     },
     {
         "id": "88E55EFF-549F-4047-86B9-7A5D551201A7",
@@ -1365,7 +1399,8 @@
     },
     {
         "id": "C515748D-92E1-4732-A130-8D3BDCA187BD",
-        "name": "Biu de Lira (PP)"
+        "name": "Biu de Lira (PP)",
+        "description": "Político de Alagoas filiado ao Progressistas (PP). Pai do também político e atual Presidente da Câmara dos Deputados Arthur Lira."
     },
     {
         "id": "EAA8F85D-5D5A-4EB4-842D-9F4712F2D1FE",
@@ -1377,7 +1412,8 @@
     },
     {
         "id": "906374B3-8B1A-40C7-84B0-2BDE58D89504",
-        "name": "Anderson Rangel (cantor evangélico)"
+        "name": "Anderson Rangel",
+        "description": "Cantor evangélico."
     },
     {
         "id": "CDAA83B1-66DC-4050-8210-3BA2B11A16EB",
@@ -1413,6 +1449,7 @@
     },
     {
         "id": "EBD45548-26E5-42BA-BFDB-1F7B383DF302",
-        "name": "Ana Priscila Azevedo (golpista)"
+        "name": "Ana Priscila Azevedo",
+        "description": "Golpista."
     }
 ]

@@ -263,9 +263,9 @@ class AuthorDetailViewViewModel: ObservableObject {
     
     func getSoundCount() -> String {
         if sounds.count == 1 {
-            return "1 som"
+            return "1 SOM"
         } else {
-            return "\(sounds.count) sons"
+            return "\(sounds.count) SONS"
         }
     }
     

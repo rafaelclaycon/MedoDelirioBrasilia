@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct AuthorDetailView: View {
 
@@ -27,6 +28,10 @@ struct AuthorDetailView: View {
     // Share as Video
     @State private var shareAsVideo_Result = ShareAsVideoResult()
     
+    private var edgesToIgnore: SwiftUI.Edge.Set {
+        return author.photo == nil ? [] : .top
+    }
+    
     var body: some View {
         ZStack {
             VStack {
@@ -36,6 +41,43 @@ struct AuthorDetailView: View {
                 } else {
                     GeometryReader { geometry in
                         ScrollView {
+                            if author.photo != nil {
+                                KFImage(URL(string: author.photo ?? .empty))
+                                    .placeholder {
+                                        Image(systemName: "photo.on.rectangle")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(height: 100)
+                                            .foregroundColor(.gray)
+                                            .opacity(0.3)
+                                    }
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(height: 200)
+                                    .clipped()
+                            }
+                            
+                            VStack(alignment: .leading, spacing: 15) {
+                                HStack {
+                                    Text(author.name)
+                                        .font(.title)
+                                        .bold()
+                                    
+                                    Spacer()
+                                }
+                                
+                                if author.description != nil {
+                                    Text(author.description ?? "")
+                                }
+                                
+                                Text(viewModel.getSoundCount())
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray)
+                                    .bold()
+                            }
+                            .padding(.horizontal, 20)
+                            .padding(.vertical)
+                            
                             LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
                                 ForEach(viewModel.sounds) { sound in
                                     SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", isNew: sound.isNew ?? false, favorites: $viewModel.favoritesKeeper, highlighted: .constant(Set<String>()), nowPlaying: $viewModel.nowPlayingKeeper)
@@ -114,22 +156,17 @@ struct AuthorDetailView: View {
                                 }
                             }
                             .padding(.horizontal)
-                            .padding(.top, 7)
+                            .padding(.bottom, 18)
                             .onChange(of: geometry.size.width) { newWidth in
                                 self.listWidth = newWidth
                                 columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
                             }
-                            
-                            Text(viewModel.getSoundCount())
-                                .font(.subheadline)
-                                .foregroundColor(.gray)
-                                .padding(.top, 10)
-                                .padding(.bottom, 18)
                         }
                     }
+                    .edgesIgnoringSafeArea(edgesToIgnore)
                 }
             }
-            .navigationTitle(author.name)
+            .navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 viewModel.reloadList(withSounds: soundData.filter({ $0.authorId == author.id }),
                                      andFavorites: try? database.getAllFavorites(),
