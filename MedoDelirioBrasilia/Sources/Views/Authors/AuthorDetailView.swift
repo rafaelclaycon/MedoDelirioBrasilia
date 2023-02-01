@@ -32,6 +32,28 @@ struct AuthorDetailView: View {
         return author.photo == nil ? [] : .top
     }
     
+    private func getScrollOffset(_ geometry: GeometryProxy) -> CGFloat {
+        geometry.frame(in: .global).minY
+    }
+    
+    private func getOffsetForHeaderImage(_ geometry: GeometryProxy) -> CGFloat {
+        let offset = getScrollOffset(geometry)
+        // Image was pulled down
+        if offset > 0 {
+            return -offset
+        }
+        return 0
+    }
+    
+    private func getHeightForHeaderImage(_ geometry: GeometryProxy) -> CGFloat {
+        let offset = getScrollOffset(geometry)
+        let imageHeight = geometry.size.height
+        if offset > 0 {
+            return imageHeight + offset
+        }
+        return imageHeight
+    }
+    
     var body: some View {
         ZStack {
             VStack {
@@ -42,19 +64,22 @@ struct AuthorDetailView: View {
                     GeometryReader { geometry in
                         ScrollView {
                             if author.photo != nil {
-                                KFImage(URL(string: author.photo ?? .empty))
-                                    .placeholder {
-                                        Image(systemName: "photo.on.rectangle")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(height: 100)
-                                            .foregroundColor(.gray)
-                                            .opacity(0.3)
-                                    }
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(height: 200)
-                                    .clipped()
+                                GeometryReader { otherGeometry in
+                                    KFImage(URL(string: author.photo ?? .empty))
+                                        .placeholder {
+                                            Image(systemName: "photo.on.rectangle")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(height: 100)
+                                                .foregroundColor(.gray)
+                                                .opacity(0.3)
+                                        }
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: otherGeometry.size.width, height: self.getHeightForHeaderImage(otherGeometry))
+                                        .clipped()
+                                        .offset(x: 0, y: self.getOffsetForHeaderImage(otherGeometry))
+                                }.frame(height: 250)
                             }
                             
                             VStack(alignment: .leading, spacing: 15) {
