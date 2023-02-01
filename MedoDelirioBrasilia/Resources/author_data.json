@@ -657,7 +657,8 @@
     },
     {
         "id": "A68C0AA4-546E-4E24-8153-832BB84FD68B",
-        "name": "Dudu Marfetan (@EMarfetan)"
+        "name": "Dudu Marfetan",
+        "description": "Carioca. Twitter: @EMarfetan"
     },
     {
         "id": "C159C27D-3CCD-4622-8716-35162B89AB9F",
@@ -728,7 +729,9 @@
     },
     {
         "id": "A329D501-7BD3-4B9C-8FBD-99BFD3AF3E13",
-        "name": "Renan (Choque de Cultura)"
+        "name": "Renan (Choque de Cultura)",
+        "photo": "https://media.tenor.com/-6x4Awn4fb0AAAAC/choque-de-cultura-renan.gif",
+        "description": "Conhecido pelo seu cavanhaque, seus óculos escuros na cabeça e sua língua presa, é o que mais faz comentários absurdos entre os pilotos. Interpretado por Daniel Furlan."
     },
     {
         "id": "601139B6-5703-48DC-A1B6-1E3C3E713813",
@@ -736,15 +739,21 @@
     },
     {
         "id": "F16C8B71-E8A4-4E36-B869-98C6871ED694",
-        "name": "Julinho da Van (Choque de Cultura)"
+        "name": "Julinho da Van (Choque de Cultura)",
+        "photo": "https://i1.sndcdn.com/artworks-000447180843-soockj-t500x500.jpg",
+        "description": "Com seu bigode e regata, é o mais tranquilo dos pilotos, tanto em seu linguajar quanto em seu comportamento. Interpretado por Leandro Ramos."
     },
     {
         "id": "2BBB826D-24E5-4DFE-95DF-A6FFE41155D9",
-        "name": "Rogerinho (Choque de Cultura)"
+        "name": "Rogerinho do Ingá (Choque de Cultura)",
+        "photo": "https://choquedecultura.netlify.app/static/social-31d989d98ddfe1d7bebf54141dbd8073.jpg",
+        "description": "Apresentador e líder do programa, conhecido por sua personalidade psicótica, camisa do Brasil com manga longa por baixo e falha no cabelo. Interpretado por Caito Mainier."
     },
     {
         "id": "E3F705A3-74B1-4B62-B6AD-9A230A597B5D",
-        "name": "Maurílio dos Anjos (Choque de Cultura)"
+        "name": "Maurílio dos Anjos (Choque de Cultura)",
+        "photo": "https://static.wikia.nocookie.net/tv-quase/images/2/21/IMG_7058.JPG/revision/latest/scale-to-width-down/250?cb=20180823221553&path-prefix=pt-br",
+        "description": "Caracterizado por sua ingenuidade e por seu sorriso contagiante, é quem conhece um pouco mais de cinema (mas nem tanto) entre os pilotos. Interpretado por Raul Chequer."
     },
     {
         "id": "53202065-71B1-459F-A3C6-650379874255",
@@ -781,7 +790,8 @@
     },
     {
         "id": "0258693D-31D6-4A9E-8BA8-F11973BA79CF",
-        "name": "Franciel Cruz (Laive das Canjebrinas)"
+        "name": "Franciel Cruz",
+        "description": "Jornalista, escritor e agitador social baiano. Conhecido pela Laive das Canjebrinas."
     },
     {
         "id": "CBDBB613-B887-473F-956D-BE497F31E549",
@@ -1421,7 +1431,8 @@
     },
     {
         "id": "549E5A35-0008-4B26-BE54-EECFB3A108DD",
-        "name": "Eliana Brasil (Twitter)"
+        "name": "Eliana Brasil",
+        "description": "Golpista que participou de Spaces do Twitter."
     },
     {
         "id": "50FFC08A-8B32-43DD-9D60-5116616AA351",
@@ -1429,11 +1440,13 @@
     },
     {
         "id": "93B02C4A-2958-4831-95F2-57717AC79FAE",
-        "name": "Daniel Sousa (Petit Journal)"
+        "name": "Daniel Sousa",
+        "description": "Comentarista do Estúdio i da GloboNews, professor de Economia e co-fundador do Petit Journal."
     },
     {
         "id": "88B74E10-49CD-43DE-B708-25DCAAABF460",
-        "name": "Julio César Strassera"
+        "name": "Julio César Strassera",
+        "description": "Promotor responsável pela condenação dos líderes da ditadura militar argentina."
     },
     {
         "id": "5F25AF82-A015-4B12-A146-3ADEE371A6CD",
