@@ -18,7 +18,7 @@ final class AddToFolderViewViewModelTests: XCTestCase {
         sut = nil
     }
     
-    func test_canBeAddedToFolder_whenSingleSoundAndNotOnFolder_shouldReturnArrayWithOneString() throws {
+    func test_canBeAddedToFolder_whenSingleSoundAndNotInFolder_shouldReturnArrayWithSameSound() throws {
         localDatabaseStub = LocalDatabaseStub()
         
         sut = AddToFolderViewViewModel(database: localDatabaseStub)
@@ -32,7 +32,7 @@ final class AddToFolderViewViewModelTests: XCTestCase {
         XCTAssertEqual(result.first!.id, "123")
     }
     
-    func test_canBeAddedToFolder_whenSingleSoundAndIsOnFolder_shouldReturnEmptyArray() throws {
+    func test_canBeAddedToFolder_whenSingleSoundAndIsInFolder_shouldReturnEmptyArray() throws {
         localDatabaseStub = LocalDatabaseStub()
         localDatabaseStub.contentInsideFolder = [String]()
         localDatabaseStub.contentInsideFolder?.append("123")
@@ -47,7 +47,7 @@ final class AddToFolderViewViewModelTests: XCTestCase {
         XCTAssertEqual(result.count, 0)
     }
     
-    func test_canBeAddedToFolder_whenMultipleSoundsAndNoneIsOnFolder_shouldReturnAllSoundsOnArray() throws {
+    func test_canBeAddedToFolder_whenMultipleSoundsAndNoneAreInFolder_shouldReturnAllSoundsOnArray() throws {
         localDatabaseStub = LocalDatabaseStub()
         
         sut = AddToFolderViewViewModel(database: localDatabaseStub)
@@ -67,7 +67,7 @@ final class AddToFolderViewViewModelTests: XCTestCase {
         XCTAssertEqual(result.last!.id, "101112")
     }
     
-    func test_canBeAddedToFolder_whenMultipleSoundsAndAllAreOnFolder_shouldReturnEmptyArray() throws {
+    func test_canBeAddedToFolder_whenMultipleSoundsAndAllAreInFolder_shouldReturnEmptyArray() throws {
         localDatabaseStub = LocalDatabaseStub()
         localDatabaseStub.contentInsideFolder = [String]()
         localDatabaseStub.contentInsideFolder?.append("123")
@@ -88,7 +88,7 @@ final class AddToFolderViewViewModelTests: XCTestCase {
         XCTAssertEqual(result.count, 0)
     }
     
-    func test_canBeAddedToFolder_whenMultipleSoundsAndSomeAreOnFolder_shouldReturnArrayWithTheOnesThatAreNotOnTheFolder() throws {
+    func test_canBeAddedToFolder_whenMultipleSoundsAndSomeAreInFolder_shouldReturnArrayWithTheOnesThatAreNotOnTheFolder() throws {
         localDatabaseStub = LocalDatabaseStub()
         localDatabaseStub.contentInsideFolder = [String]()
         localDatabaseStub.contentInsideFolder?.append("123")
