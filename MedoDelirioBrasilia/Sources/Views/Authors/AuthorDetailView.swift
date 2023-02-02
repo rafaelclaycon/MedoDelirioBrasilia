@@ -106,6 +106,39 @@ struct AuthorDetailView: View {
                                         .bold()
                                     
                                     Spacer()
+                                    
+                                    Menu {
+                                        Section {
+                                            Button {
+                                                viewModel.selectedSoundsForAddToFolder = viewModel.sounds
+                                                showingAddToFolderModal = true
+                                            } label: {
+                                                Label("Adicionar Todos a Pasta", systemImage: "folder.badge.plus")
+                                            }
+                                        }
+                                        
+                                        Section {
+                                            Button {
+                                                print("Não implementado")
+                                            } label: {
+                                                Label("Pedir Som Desse Autor", systemImage: "plus.circle")
+                                            }
+                                        }
+                                        
+                                        Section {
+                                            Button {
+                                                print("Não implementado")
+                                            } label: {
+                                                Label("Relatar Problema com os Detalhes Desse Autor", systemImage: "person.crop.circle.badge.exclamationmark")
+                                            }
+                                        }
+                                    } label: {
+                                        Image(systemName: "ellipsis.circle")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(height: 28)
+                                    }
+                                    .disabled(viewModel.sounds.count == 0)
                                 }
                                 
                                 if author.description != nil {
@@ -218,37 +251,6 @@ struct AuthorDetailView: View {
                 updateNavBarTitle(offset)
             }
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                Menu {
-                    Section {
-                        Button {
-                            viewModel.selectedSoundsForAddToFolder = viewModel.sounds
-                            showingAddToFolderModal = true
-                        } label: {
-                            Label("Adicionar Todos a Pasta", systemImage: "folder.badge.plus")
-                        }
-                    }
-                    
-                    Section {
-                        Button {
-                            print("Não implementado")
-                        } label: {
-                            Label("Pedir Som Desse Autor", systemImage: "plus.circle")
-                        }
-                    }
-                    
-                    Section {
-                        Button {
-                            print("Não implementado")
-                        } label: {
-                            Label("Relatar Problema com os Detalhes Desse Autor", systemImage: "person.crop.circle.badge.exclamationmark")
-                        }
-                    }
-                } label: {
-                    Image(systemName: "ellipsis.circle")
-                }
-                .disabled(viewModel.sounds.count == 0)
-            }
             .onAppear {
                 viewModel.reloadList(withSounds: soundData.filter({ $0.authorId == author.id }),
                                      andFavorites: try? database.getAllFavorites(),
