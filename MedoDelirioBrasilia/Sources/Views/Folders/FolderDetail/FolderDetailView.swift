@@ -28,6 +28,19 @@ struct FolderDetailView: View {
                 if viewModel.hasSoundsToDisplay {
                     GeometryReader { geometry in
                         ScrollView {
+                            VStack(alignment: .leading) {
+                                HStack {
+                                    Text(viewModel.getSoundCount())
+                                        .font(.callout)
+                                        .foregroundColor(.gray)
+                                        .bold()
+                                    
+                                    Spacer()
+                                }
+                            }
+                            .padding(.horizontal, 20)
+                            .padding(.vertical)
+                            
                             LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
                                 ForEach(viewModel.sounds) { sound in
                                     SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", isNew: sound.isNew ?? false, favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()), nowPlaying: $viewModel.nowPlayingKeeper)
