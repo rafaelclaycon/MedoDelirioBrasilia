@@ -19,8 +19,9 @@ class AddToFolderViewViewModel: ObservableObject {
     @Published var hasFoldersToDisplay: Bool = false
     
     // Alerts
-    @Published var alertTitle: String = ""
-    @Published var alertMessage: String = ""
+    @Published var alertTitle: String = .empty
+    @Published var alertMessage: String = .empty
+    @Published var alertType: AlertType = .singleOption
     @Published var showAlert: Bool = false
     
     func reloadFolderList(withFolders outsideFolders: [UserFolder]?) {
@@ -41,7 +42,7 @@ class AddToFolderViewViewModel: ObservableObject {
         return allowedList
     }
     
-    func soundIsNotYetOnFolder(folderId: String, contentId: String) -> Bool {
+    private func soundIsNotYetOnFolder(folderId: String, contentId: String) -> Bool {
         var contentExistsInsideUserFolder = true
         do {
             contentExistsInsideUserFolder = try self.database.contentExistsInsideUserFolder(withId: folderId, contentId: contentId)
@@ -53,9 +54,28 @@ class AddToFolderViewViewModel: ObservableObject {
     
     // MARK: - Alerts
     
-    func showSoundAlredyInFolderAlert(folderName: String) {
+    func showSingleSoundAlredyInFolderAlert(folderName: String) {
         alertTitle = "Já Adicionado"
         alertMessage = "Esse som já está na pasta \"\(folderName)\"."
+        alertType = .singleOption
+        showAlert = true
+    }
+    
+    func showSomeSoundsAlreadyInFolderAlert(soundCountAlreadyInFolder: Int, folderName: String) {
+        if soundCountAlreadyInFolder == 1 {
+            alertTitle = "1 Som Já Adicionado"
+        } else {
+            alertTitle = "\(soundCountAlreadyInFolder) Sons Já Adicionados"
+        }
+        alertMessage = "Deseja adicionar o restante à pasta \"\(folderName)\"?"
+        alertType = .twoOptions
+        showAlert = true
+    }
+    
+    func showAllSoundsAlredyInFolderAlert(folderName: String) {
+        alertTitle = "Já Adicionados"
+        alertMessage = "Todos os sons já estão na pasta \"\(folderName)\"."
+        alertType = .singleOption
         showAlert = true
     }
 

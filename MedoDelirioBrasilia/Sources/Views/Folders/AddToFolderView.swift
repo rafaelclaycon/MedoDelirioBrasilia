@@ -16,6 +16,9 @@ struct AddToFolderView: View {
     @State var selectedSounds: [Sound]
     @State private var isShowingCreateNewFolderScreen: Bool = false
     
+    @State private var soundsThatCanBeAdded: [Sound]? = nil
+    @State private var folderForSomeSoundsAlreadyInFolder: UserFolder? = nil
+    
     private var createNewFolderCellWidth: CGFloat {
         if UIDevice.current.userInterfaceIdiom == .phone {
             return (UIScreen.main.bounds.size.width / 2) - 20
@@ -93,20 +96,26 @@ struct AddToFolderView: View {
                         LazyVGrid(columns: columns, spacing: 14) {
                             ForEach(viewModel.folders) { folder in
                                 Button {
-                                    selectedSounds.forEach { sound in
-                                        guard viewModel.soundIsNotYetOnFolder(folderId: folder.id, contentId: sound.id) else {
-                                            if selectedSounds.count == 1 {
-                                                return viewModel.showSoundAlredyInFolderAlert(folderName: folder.name)
-                                            } else {
-                                                return print(sound.title)
-                                            }
-                                        }
-                                        try? database.insert(contentId: sound.id, intoUserFolder: folder.id)
-                                    }
+                                    soundsThatCanBeAdded = viewModel.canBeAddedToFolder(sounds: selectedSounds, folderId: folder.id)
                                     
-                                    folderName = "\(folder.symbol) \(folder.name)"
-                                    hadSuccess = true
-                                    isBeingShown = false
+                                    let soundsAlreadyInFolder = selectedSounds.count - (soundsThatCanBeAdded?.count ?? 0)
+                                    
+                                    if selectedSounds.count == soundsThatCanBeAdded?.count {
+                                        selectedSounds.forEach { sound in
+                                            try? database.insert(contentId: sound.id, intoUserFolder: folder.id)
+                                        }
+                                        
+                                        folderName = "\(folder.symbol) \(folder.name)"
+                                        hadSuccess = true
+                                        isBeingShown = false
+                                    } else if soundsAlreadyInFolder == 1, selectedSounds.count == 1 {
+                                        viewModel.showSingleSoundAlredyInFolderAlert(folderName: folder.name)
+                                    } else if soundsAlreadyInFolder == selectedSounds.count {
+                                        viewModel.showAllSoundsAlredyInFolderAlert(folderName: folder.name)
+                                    } else {
+                                        folderForSomeSoundsAlreadyInFolder = folder
+                                        viewModel.showSomeSoundsAlreadyInFolderAlert(soundCountAlreadyInFolder: soundsAlreadyInFolder, folderName: folder.name)
+                                    }
                                 } label: {
                                     FolderCell(symbol: folder.symbol, name: folder.name, backgroundColor: folder.backgroundColor.toColor())
                                 }
@@ -128,7 +137,23 @@ struct AddToFolderView: View {
                 viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
             }
             .alert(isPresented: $viewModel.showAlert) {
-                Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
+                switch viewModel.alertType {
+                case .twoOptions:
+                    return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .default(Text("Adicionar"), action: {
+                        soundsThatCanBeAdded?.forEach { sound in
+                            try? database.insert(contentId: sound.id, intoUserFolder: folderForSomeSoundsAlreadyInFolder?.id ?? .empty)
+                        }
+                        
+                        if let folder = folderForSomeSoundsAlreadyInFolder {
+                            folderName = "\(folder.symbol) \(folder.name)"
+                        }
+                        hadSuccess = true
+                        isBeingShown = false
+                    }), secondaryButton: .cancel(Text("Cancelar")))
+
+                default:
+                    return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
+                }
             }
             .sheet(isPresented: $isShowingCreateNewFolderScreen) {
                 FolderInfoEditingView(isBeingShown: $isShowingCreateNewFolderScreen, selectedBackgroundColor: Shared.Folders.defaultFolderColor)

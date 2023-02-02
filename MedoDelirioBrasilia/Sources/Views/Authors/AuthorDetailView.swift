@@ -161,7 +161,8 @@ struct AuthorDetailView: View {
                                                 }
                                                 
                                                 Button {
-                                                    viewModel.selectedSound = sound
+                                                    viewModel.selectedSoundsForAddToFolder = [Sound]()
+                                                    viewModel.selectedSoundsForAddToFolder?.append(sound)
                                                     showingAddToFolderModal = true
                                                 } label: {
                                                     Label(Shared.addToFolderButtonText, systemImage: "folder.badge.plus")
