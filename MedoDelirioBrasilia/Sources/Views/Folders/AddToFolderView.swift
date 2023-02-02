@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddToFolderView: View {
 
-    @StateObject private var viewModel = AddToFolderViewViewModel()
+    @StateObject private var viewModel = AddToFolderViewViewModel(database: database)
     @Binding var isBeingShown: Bool
     @Binding var hadSuccess: Bool
     @Binding var folderName: String?

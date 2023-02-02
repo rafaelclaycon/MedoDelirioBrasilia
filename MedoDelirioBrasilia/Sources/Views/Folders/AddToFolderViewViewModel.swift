@@ -9,6 +9,12 @@ import Combine
 
 class AddToFolderViewViewModel: ObservableObject {
 
+    private var database: LocalDatabaseProtocol
+    
+    init(database injectedDatabase: LocalDatabaseProtocol) {
+        self.database = injectedDatabase
+    }
+    
     @Published var folders = [UserFolder]()
     @Published var hasFoldersToDisplay: Bool = false
     
@@ -25,10 +31,20 @@ class AddToFolderViewViewModel: ObservableObject {
         self.hasFoldersToDisplay = true
     }
     
+    func canBeAddedToFolder(sounds: [Sound], folderId: String) -> [Sound] {
+        var allowedList = [Sound]()
+        sounds.forEach { sound in
+            if soundIsNotYetOnFolder(folderId: folderId, contentId: sound.id) {
+                allowedList.append(sound)
+            }
+        }
+        return allowedList
+    }
+    
     func soundIsNotYetOnFolder(folderId: String, contentId: String) -> Bool {
         var contentExistsInsideUserFolder = true
         do {
-            contentExistsInsideUserFolder = try database.contentExistsInsideUserFolder(withId: folderId, contentId: contentId)
+            contentExistsInsideUserFolder = try self.database.contentExistsInsideUserFolder(withId: folderId, contentId: contentId)
         } catch {
             return true
         }
