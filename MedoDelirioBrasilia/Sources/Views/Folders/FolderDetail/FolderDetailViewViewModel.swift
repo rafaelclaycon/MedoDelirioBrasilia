@@ -52,6 +52,14 @@ class FolderDetailViewViewModel: ObservableObject {
         self.hasSoundsToDisplay = true
     }
     
+    func getSoundCount() -> String {
+        if sounds.count == 1 {
+            return "1 SOM"
+        } else {
+            return "\(sounds.count) SONS"
+        }
+    }
+    
     func playSound(fromPath filepath: String, withId soundId: String) {
         guard filepath.isEmpty == false else {
             return
