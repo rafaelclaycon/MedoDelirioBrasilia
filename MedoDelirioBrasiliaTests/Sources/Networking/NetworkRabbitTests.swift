@@ -15,25 +15,25 @@ class NetworkRabbitTests: XCTestCase {
         super.tearDown()
     }
     
-    func test_checkServerStatus_whenCallIsOkAndServerIsRunning_shouldReturnCorrectString() throws {
-        let e = expectation(description: "Server call")
-        var testResult = false
-        
-        sut.checkServerStatus { serverIsAvailable, returnString  in
-            guard serverIsAvailable else {
-                fatalError(returnString)
-            }
-            testResult = serverIsAvailable
-            e.fulfill()
-        }
-        
-        waitForExpectations(timeout: 5.0) { error in
-            if let error = error {
-                XCTFail("timeout errored: \(error)")
-            }
-            XCTAssertTrue(testResult)
-        }
-    }
+//    func test_checkServerStatus_whenCallIsOkAndServerIsRunning_shouldReturnCorrectString() throws {
+//        let e = expectation(description: "Server call")
+//        var testResult = false
+//        
+//        sut.checkServerStatus { serverIsAvailable in
+//            guard serverIsAvailable else {
+//                fatalError()
+//            }
+//            testResult = serverIsAvailable
+//            e.fulfill()
+//        }
+//        
+//        waitForExpectations(timeout: 5.0) { error in
+//            if let error = error {
+//                XCTFail("timeout errored: \(error)")
+//            }
+//            XCTAssertTrue(testResult)
+//        }
+//    }
     
 //    func test_postShareCountStats_whenCallIsOkAndServerIsRunning_shouldReturnCorrectData() throws {
 //        let e = expectation(description: "Server call")

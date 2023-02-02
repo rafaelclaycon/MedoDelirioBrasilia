@@ -5,12 +5,8 @@ class NetworkRabbitStub: NetworkRabbitProtocol {
 
     var serverShouldBeUnavailable = false
     
-    func checkServerStatus(completionHandler: @escaping (Bool, String) -> Void) {
-        if serverShouldBeUnavailable {
-            completionHandler(false, .empty)
-        } else {
-            completionHandler(true, "Conexão com o servidor OK.")
-        }
+    func checkServerStatus(completionHandler: @escaping (Bool) -> Void) {
+        completionHandler(!serverShouldBeUnavailable)
     }
     
     func getSoundShareCountStats(timeInterval: TrendsTimeInterval, completionHandler: @escaping ([ServerShareCountStat]?, NetworkRabbitError?) -> Void) {
