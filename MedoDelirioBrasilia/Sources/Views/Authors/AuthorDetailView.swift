@@ -12,6 +12,7 @@ struct AuthorDetailView: View {
 
     @StateObject var viewModel: AuthorDetailViewViewModel
     @State var author: Author
+    @State private var navBarTitle: String = .empty
     
     @State private var listWidth: CGFloat = 700
     @State private var columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
@@ -54,6 +55,22 @@ struct AuthorDetailView: View {
         return imageHeight
     }
     
+    private func getOffsetBeforeShowingTitle() -> CGFloat {
+        author.photo == nil ? 50 : 250
+    }
+    
+    private func updateNavBarTitle(_ offset: CGFloat) {
+        if offset < getOffsetBeforeShowingTitle() {
+            DispatchQueue.main.async {
+                navBarTitle = author.name
+            }
+        } else {
+            DispatchQueue.main.async {
+                navBarTitle = .empty
+            }
+        }
+    }
+    
     var body: some View {
         ZStack {
             VStack {
@@ -61,10 +78,10 @@ struct AuthorDetailView: View {
                     NoSoundsView()
                         .padding(.horizontal, 25)
                 } else {
-                    GeometryReader { geometry in
+                    GeometryReader { scrollViewGeometry in
                         ScrollView {
                             if author.photo != nil {
-                                GeometryReader { otherGeometry in
+                                GeometryReader { headerPhotoGeometry in
                                     KFImage(URL(string: author.photo ?? .empty))
                                         .placeholder {
                                             Image(systemName: "photo.on.rectangle")
@@ -76,9 +93,9 @@ struct AuthorDetailView: View {
                                         }
                                         .resizable()
                                         .scaledToFill()
-                                        .frame(width: otherGeometry.size.width, height: self.getHeightForHeaderImage(otherGeometry))
+                                        .frame(width: headerPhotoGeometry.size.width, height: self.getHeightForHeaderImage(headerPhotoGeometry))
                                         .clipped()
-                                        .offset(x: 0, y: self.getOffsetForHeaderImage(otherGeometry))
+                                        .offset(x: 0, y: self.getOffsetForHeaderImage(headerPhotoGeometry))
                                 }.frame(height: 250)
                             }
                             
@@ -182,14 +199,22 @@ struct AuthorDetailView: View {
                             }
                             .padding(.horizontal)
                             .padding(.bottom, 18)
-                            .onChange(of: geometry.size.width) { newWidth in
+                            .onChange(of: scrollViewGeometry.size.width) { newWidth in
                                 self.listWidth = newWidth
                                 columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
                             }
+                            .background(GeometryReader {
+                                Color.clear.preference(key: ViewOffsetKey.self, value: $0.frame(in: .named("scroll")).minY)
+                            })
                         }
+                        .coordinateSpace(name: "scroll")
                     }
                     .edgesIgnoringSafeArea(edgesToIgnore)
                 }
+            }
+            .navigationTitle(navBarTitle)
+            .onPreferenceChange(ViewOffsetKey.self) { offset in
+                updateNavBarTitle(offset)
             }
             .navigationBarTitleDisplayMode(.inline)
             .onAppear {
@@ -253,6 +278,18 @@ struct AuthorDetailView: View {
                 .transition(.moveAndFade)
             }
         }
+    }
+
+}
+
+struct ViewOffsetKey: PreferenceKey {
+
+    typealias Value = CGFloat
+    
+    static var defaultValue = CGFloat.zero
+    
+    static func reduce(value: inout Value, nextValue: () -> Value) {
+        value += nextValue()
     }
 
 }
