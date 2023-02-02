@@ -13,8 +13,7 @@ struct AddToFolderView: View {
     @Binding var isBeingShown: Bool
     @Binding var hadSuccess: Bool
     @Binding var folderName: String?
-    @State var selectedSoundName: String
-    @State var selectedSoundId: String
+    @State var selectedSounds: [Sound]
     @State private var isShowingCreateNewFolderScreen: Bool = false
     
     private var createNewFolderCellWidth: CGFloat {
@@ -30,6 +29,14 @@ struct AddToFolderView: View {
         GridItem(.flexible())
     ]
     
+    private func getSoundText() -> String {
+        if selectedSounds.count == 1 {
+            return "Som:  \(selectedSounds.first!.title)"
+        } else {
+            return "\(selectedSounds.count) sons selecionados"
+        }
+    }
+    
     var body: some View {
         NavigationView {
             VStack(alignment: .center, spacing: 20) {
@@ -40,7 +47,7 @@ struct AddToFolderView: View {
                         .frame(height: 24)
                         .padding(.leading, 7)
                     
-                    Text("Som:  \(selectedSoundName)")
+                    Text(getSoundText())
                         .bold()
                         .multilineTextAlignment(.leading)
                     
@@ -86,10 +93,17 @@ struct AddToFolderView: View {
                         LazyVGrid(columns: columns, spacing: 14) {
                             ForEach(viewModel.folders) { folder in
                                 Button {
-                                    guard viewModel.soundIsNotYetOnFolder(folderId: folder.id, contentId: selectedSoundId) else {
-                                        return viewModel.showSoundAlredyInFolderAlert(folderName: folder.name)
+                                    selectedSounds.forEach { sound in
+                                        guard viewModel.soundIsNotYetOnFolder(folderId: folder.id, contentId: sound.id) else {
+                                            if selectedSounds.count == 1 {
+                                                return viewModel.showSoundAlredyInFolderAlert(folderName: folder.name)
+                                            } else {
+                                                return print(sound.title)
+                                            }
+                                        }
+                                        try? database.insert(contentId: sound.id, intoUserFolder: folder.id)
                                     }
-                                    try? database.insert(contentId: selectedSoundId, intoUserFolder: folder.id)
+                                    
                                     folderName = "\(folder.symbol) \(folder.name)"
                                     hadSuccess = true
                                     isBeingShown = false
@@ -132,7 +146,7 @@ struct AddToFolderView: View {
 struct AddToFolderView_Previews: PreviewProvider {
 
     static var previews: some View {
-        AddToFolderView(isBeingShown: .constant(true), hadSuccess: .constant(false), folderName: .constant(nil), selectedSoundName: "Aham, sei", selectedSoundId: "ABCD")
+        AddToFolderView(isBeingShown: .constant(true), hadSuccess: .constant(false), folderName: .constant(nil), selectedSounds: [Sound(title: "ABCD", description: "", isNew: false)])
             .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
     }
 

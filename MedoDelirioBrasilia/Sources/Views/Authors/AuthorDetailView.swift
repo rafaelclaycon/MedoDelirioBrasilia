@@ -221,7 +221,7 @@ struct AuthorDetailView: View {
                 Menu {
                     Section {
                         Button {
-                            viewModel.selectedSound = viewModel.sounds.first!
+                            viewModel.selectedSoundsForAddToFolder = viewModel.sounds
                             showingAddToFolderModal = true
                         } label: {
                             Label("Adicionar Todos a Pasta", systemImage: "folder.badge.plus")
@@ -230,7 +230,7 @@ struct AuthorDetailView: View {
                     
                     Section {
                         Button {
-                            showingAddToFolderModal = true
+                            print("Não implementado")
                         } label: {
                             Label("Pedir Som Desse Autor", systemImage: "plus.circle")
                         }
@@ -238,7 +238,7 @@ struct AuthorDetailView: View {
                     
                     Section {
                         Button {
-                            showingAddToFolderModal = true
+                            print("Não implementado")
                         } label: {
                             Label("Relatar Problema com os Detalhes Desse Autor", systemImage: "person.crop.circle.badge.exclamationmark")
                         }
@@ -265,7 +265,7 @@ struct AuthorDetailView: View {
                 }
             }
             .sheet(isPresented: $showingAddToFolderModal) {
-                AddToFolderView(isBeingShown: $showingAddToFolderModal, hadSuccess: $hadSuccessAddingToFolder, folderName: $folderName, selectedSoundName: viewModel.selectedSound!.title, selectedSoundId: viewModel.selectedSound!.id)
+                AddToFolderView(isBeingShown: $showingAddToFolderModal, hadSuccess: $hadSuccessAddingToFolder, folderName: $folderName, selectedSounds: viewModel.selectedSoundsForAddToFolder!)
             }
             .sheet(isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog) {
                 EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog, subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.selectedSound?.title ?? ""), emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.selectedSound?.authorName ?? "", viewModel.selectedSound?.id ?? ""))

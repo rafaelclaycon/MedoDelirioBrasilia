@@ -326,8 +326,7 @@ struct SoundsView: View {
                     AddToFolderView(isBeingShown: $showingModalView,
                                     hadSuccess: $hadSuccessAddingToFolder,
                                     folderName: $folderName,
-                                    selectedSoundName: viewModel.selectedSound!.title,
-                                    selectedSoundId: viewModel.selectedSound!.id)
+                                    selectedSounds: viewModel.selectedSoundsForAddToFolder!)
                     
                 case .shareAsVideoView:
                     ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: false)

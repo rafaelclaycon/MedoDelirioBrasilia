@@ -15,6 +15,7 @@ class AuthorDetailViewViewModel: ObservableObject {
     @Published var favoritesKeeper = Set<String>()
     @Published var nowPlayingKeeper = Set<String>()
     @Published var selectedSound: Sound? = nil
+    @Published var selectedSoundsForAddToFolder: [Sound]? = nil
     
     @Published var showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = false
     @Published var showEmailAppPicker_soundUnavailableConfirmationDialog = false
