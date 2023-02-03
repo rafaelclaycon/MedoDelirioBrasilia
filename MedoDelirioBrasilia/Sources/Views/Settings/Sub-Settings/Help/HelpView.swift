@@ -13,9 +13,9 @@ struct HelpView: View {
     
     private var toPlayInstruction: String {
         if ProcessInfo.processInfo.isMacCatalystApp {
-            return "Para reproduzir um som, clique nele 1 vez."
+            return "Para reproduzir um som, clique nele 1 vez. Para parar de reproduzir, clique nele novamente."
         } else {
-            return "Para reproduzir um som, toque nele 1 vez."
+            return "Para reproduzir um som, toque nele 1 vez. Para parar de reproduzir, toque nele novamente."
         }
     }
     
@@ -44,7 +44,7 @@ struct HelpView: View {
             return "Para favoritar, clique com o botão direito em um som e escolha Adicionar aos Favoritos.\n\nPara ver apenas os favoritos, clique em Favoritos na barra lateral.\n\nÉ possível pesquisar entre os favoritos usando o campo de Busca no topo direito da tela de Favoritos."
         } else {
             if UIDevice.current.userInterfaceIdiom == .phone {
-                return "Para favoritar, segure o som e escolha Adicionar aos Favoritos.\n\nPara ver apenas os favoritos, na aba Sons, toque na estrela no topo da tela para trocar para a visão de Favoritos.\n\nÉ possível pesquisar entre os favoritos usando a barra de Busca. Para isso, na lista de favoritos, vá até o topo e puxe mais um pouco para baixo até ver a barra."
+                return "Para favoritar, segure o som e escolha Adicionar aos Favoritos.\n\nPara ver apenas os favoritos, toque em Favoritos na barra flutuante na parte inferior da tela.\n\nÉ possível pesquisar entre os favoritos usando a barra de Busca. Para isso, na lista de favoritos, vá até o topo e puxe mais um pouco para baixo até ver a barra."
             } else {
                 return "Para favoritar, segure o som e escolha Adicionar aos Favoritos.\n\nPara ver apenas os favoritos, toque em Favoritos na barra lateral.\n\nÉ possível pesquisar entre os favoritos usando o campo de Busca no topo direito da tela de Favoritos."
             }
@@ -58,6 +58,7 @@ struct HelpView: View {
                     HStack {
                         Text("Sons")
                             .font(.title)
+                            .bold()
                         
                         Spacer()
                     }
@@ -105,6 +106,7 @@ struct HelpView: View {
                     HStack {
                         Text("Músicas")
                             .font(.title)
+                            .bold()
 
                         Spacer()
                     }

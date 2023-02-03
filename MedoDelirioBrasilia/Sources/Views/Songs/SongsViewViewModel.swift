@@ -16,6 +16,7 @@ class SongsViewViewModel: ObservableObject {
     @Published var sortOption: Int = 0
     @Published var nowPlayingKeeper = Set<String>()
     @Published var showEmailAppPicker_suggestChangeConfirmationDialog = false
+    @Published var showEmailAppPicker_songUnavailableConfirmationDialog = false
     @Published var selectedSong: Song? = nil
     
     @Published var currentActivity: NSUserActivity? = nil
@@ -25,6 +26,12 @@ class SongsViewViewModel: ObservableObject {
     @Published var isShowingShareSheet: Bool = false
     @Published var shareBannerMessage: String = .empty
     @Published var displaySharedSuccessfullyToast: Bool = false
+    
+    // Alerts
+    @Published var alertTitle: String = ""
+    @Published var alertMessage: String = ""
+    @Published var showAlert: Bool = false
+    @Published var alertType: AlertType = .singleOption
     
     func reloadList(withSongs allSongs: [Song],
                     allowSensitiveContent: Bool,
@@ -67,15 +74,18 @@ class SongsViewViewModel: ObservableObject {
         self.songs.sort(by: { $0.duration < $1.duration })
     }
     
-    func playSong(fromPath filepath: String) {
+    func playSong(fromPath filepath: String, withId songId: String) {
         guard filepath.isEmpty == false else {
             return
         }
         
         guard let path = Bundle.main.path(forResource: filepath, ofType: nil) else {
-            return
+            return showSongUnavailableAlert()
         }
         let url = URL(fileURLWithPath: path)
+        
+        nowPlayingKeeper.removeAll()
+        nowPlayingKeeper.insert(songId)
         
         player = AudioPlayer(url: url, update: { [weak self] state in
             //print(state?.activity as Any)
@@ -237,6 +247,16 @@ class SongsViewViewModel: ObservableObject {
     func donateActivity() {
         self.currentActivity = UserActivityWaiter.getDonatableActivity(withType: Shared.ActivityTypes.playAndShareSongs, andTitle: "Ouvir e compartilhar músicas")
         self.currentActivity?.becomeCurrent()
+    }
+    
+    // MARK: - Alerts
+    
+    func showSongUnavailableAlert() {
+        TapticFeedback.error()
+        alertType = .twoOptions
+        alertTitle = Shared.Songs.songNotFoundAlertTitle
+        alertMessage = Shared.Songs.songNotFoundAlertMessage
+        showAlert = true
     }
 
 }

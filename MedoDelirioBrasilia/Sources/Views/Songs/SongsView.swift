@@ -64,9 +64,7 @@ struct SongsView: View {
                                         player?.togglePlay()
                                         viewModel.nowPlayingKeeper.removeAll()
                                     } else {
-                                        viewModel.playSong(fromPath: song.filename)
-                                        viewModel.nowPlayingKeeper.removeAll()
-                                        viewModel.nowPlayingKeeper.insert(song.id)
+                                        viewModel.playSong(fromPath: song.filename, withId: song.id)
                                     }
                                 }
                                 .contextMenu(menuItems: {
@@ -191,6 +189,20 @@ struct SongsView: View {
             }
             .sheet(isPresented: $showingModalView) {
                 ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSong?.id ?? .empty, contentTitle: viewModel.selectedSong?.title ?? .empty, audioFilename: viewModel.selectedSong?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: true)
+            }
+            .sheet(isPresented: $viewModel.showEmailAppPicker_songUnavailableConfirmationDialog) {
+                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_songUnavailableConfirmationDialog, subject: Shared.issueSuggestionEmailSubject, emailBody: Shared.issueSuggestionEmailBody)
+            }
+            .alert(isPresented: $viewModel.showAlert) {
+                switch viewModel.alertType {
+                case .singleOption:
+                    return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
+                    
+                default:
+                    return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .default(Text("Relatar Problema por E-mail"), action: {
+                        viewModel.showEmailAppPicker_songUnavailableConfirmationDialog = true
+                    }), secondaryButton: .cancel(Text("Fechar")))
+                }
             }
             .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in
                 if shouldUpdate {

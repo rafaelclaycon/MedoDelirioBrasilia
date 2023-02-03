@@ -52,7 +52,15 @@ class FolderDetailViewViewModel: ObservableObject {
         self.hasSoundsToDisplay = true
     }
     
-    func playSound(fromPath filepath: String) {
+    func getSoundCount() -> String {
+        if sounds.count == 1 {
+            return "1 SOM"
+        } else {
+            return "\(sounds.count) SONS"
+        }
+    }
+    
+    func playSound(fromPath filepath: String, withId soundId: String) {
         guard filepath.isEmpty == false else {
             return
         }
@@ -61,6 +69,9 @@ class FolderDetailViewViewModel: ObservableObject {
             return showUnableToGetSoundAlert()
         }
         let url = URL(fileURLWithPath: path)
+        
+        nowPlayingKeeper.removeAll()
+        nowPlayingKeeper.insert(soundId)
 
         player = AudioPlayer(url: url, update: { [weak self] state in
             guard let self = self else { return }

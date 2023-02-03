@@ -15,6 +15,7 @@ class AuthorDetailViewViewModel: ObservableObject {
     @Published var favoritesKeeper = Set<String>()
     @Published var nowPlayingKeeper = Set<String>()
     @Published var selectedSound: Sound? = nil
+    @Published var selectedSoundsForAddToFolder: [Sound]? = nil
     
     @Published var showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = false
     @Published var showEmailAppPicker_soundUnavailableConfirmationDialog = false
@@ -73,7 +74,7 @@ class AuthorDetailViewViewModel: ObservableObject {
         self.sounds.sort(by: { $0.title.withoutDiacritics() < $1.title.withoutDiacritics() })
     }
     
-    func playSound(fromPath filepath: String) {
+    func playSound(fromPath filepath: String, withId soundId: String) {
         guard filepath.isEmpty == false else {
             return
         }
@@ -82,6 +83,9 @@ class AuthorDetailViewViewModel: ObservableObject {
             return showUnableToGetSoundAlert()
         }
         let url = URL(fileURLWithPath: path)
+        
+        nowPlayingKeeper.removeAll()
+        nowPlayingKeeper.insert(soundId)
 
         player = AudioPlayer(url: url, update: { [weak self] state in
             guard let self = self else { return }
@@ -260,9 +264,9 @@ class AuthorDetailViewViewModel: ObservableObject {
     
     func getSoundCount() -> String {
         if sounds.count == 1 {
-            return "1 som"
+            return "1 SOM"
         } else {
-            return "\(sounds.count) sons"
+            return "\(sounds.count) SONS"
         }
     }
     
@@ -278,6 +282,14 @@ class AuthorDetailViewViewModel: ObservableObject {
         networkRabbit.post(usageMetric: usageMetric)
     }
     
+    func getAddedToFolderToastText(pluralization: WordPluralization, folderName: String?) -> String {
+        if pluralization == .singular {
+            return "Som adicionado à pasta \(folderName ?? "")."
+        } else {
+            return "Sons adicionados à pasta \(folderName ?? "")."
+        }
+    }
+    
     // MARK: - Alerts
     
     func showUnableToGetSoundAlert() {
@@ -285,14 +297,6 @@ class AuthorDetailViewViewModel: ObservableObject {
         alertType = .twoOptions
         alertTitle = Shared.soundNotFoundAlertTitle
         alertMessage = Shared.soundNotFoundAlertMessage
-        showAlert = true
-    }
-    
-    func showNoFoldersAlert() {
-        TapticFeedback.error()
-        alertType = .singleOption
-        alertTitle = Shared.Folders.noFoldersAlertTitle
-        alertMessage = UIDevice.current.userInterfaceIdiom == .phone ? Shared.Folders.noFoldersAlertMessagePhone : Shared.Folders.noFoldersAlertMessagePadMac
         showAlert = true
     }
 

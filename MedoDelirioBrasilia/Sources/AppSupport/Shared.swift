@@ -19,10 +19,10 @@ struct Shared {
     static let shareSongButtonText = "Compartilhar Música"
     static let shareAsVideoButtonText = "Compartilhar como Vídeo"
     
-    static let contentFilterMessageForSoundsiPhone = "Alguns sons não estão sendo exibidos pois a opção Exibir Conteúdo Explícito está desabilitada. Você pode mudar isso nos Ajustes (ícone de engrenagem aqui no topo esquerdo da tela)."
-    static let contentFilterMessageForSoundsiPadMac = "Alguns sons não estão sendo exibidos pois a opção Exibir Conteúdo Explícito está desabilitada. Você pode mudar isso na tela de Ajustes (ícone de engrenagem no topo da barra lateral do app)."
-    static let contentFilterMessageForSongsiPhone = "Algumas músicas não estão sendo exibidas pois a opção Exibir Conteúdo Explícito está desabilitada. Você pode mudar isso nos Ajustes (ícone de engrenagem no topo da aba Sons do app)."
-    static let contentFilterMessageForSongsiPadMac = "Algumas músicas não estão sendo exibidas pois a opção Exibir Conteúdo Explícito está desabilitada. Você pode mudar isso na tela de Ajustes (ícone de engrenagem no topo da barra lateral do app)."
+    static let contentFilterMessageForSoundsiPhone = "Alguns sons não estão sendo exibidos pois a opção Exibir Conteúdo Explícito está desabilitada. Você pode mudar isso nas Configurações (ícone de engrenagem aqui no topo esquerdo da tela)."
+    static let contentFilterMessageForSoundsiPadMac = "Alguns sons não estão sendo exibidos pois a opção Exibir Conteúdo Explícito está desabilitada. Você pode mudar isso na tela de Configurações (ícone de engrenagem no topo da barra lateral do app)."
+    static let contentFilterMessageForSongsiPhone = "Algumas músicas não estão sendo exibidas pois a opção Exibir Conteúdo Explícito está desabilitada. Você pode mudar isso nas Configurações (ícone de engrenagem no topo da aba Sons do app)."
+    static let contentFilterMessageForSongsiPadMac = "Algumas músicas não estão sendo exibidas pois a opção Exibir Conteúdo Explícito está desabilitada. Você pode mudar isso na tela de Configurações (ícone de engrenagem no topo da barra lateral do app)."
     
     static let soundNotFoundAlertTitle = "Som Indisponível"
     static let soundNotFoundAlertMessage = "Devido a um problema técnico, o som que você quer acessar não está disponível."
@@ -31,6 +31,13 @@ struct Shared {
     static let videoSharedSuccessfullyMessage = "Vídeo compartilhado com sucesso."
     
     static let unknownAuthor = "Desconhecido"
+    
+    struct Songs {
+        
+        static let songNotFoundAlertTitle = "Música Indisponível"
+        static let songNotFoundAlertMessage = "Devido a um problema técnico, a música que você quer acessar não está disponível."
+        
+    }
     
     // E-mail
     
@@ -67,9 +74,7 @@ struct Shared {
     
     struct Folders {
         
-        static let noFoldersAlertTitle = "Nenhuma Pasta Criada"
-        static let noFoldersAlertMessagePhone = "Para continuar, crie uma pasta de sons tocando em Pastas aqui embaixo."
-        static let noFoldersAlertMessagePadMac = "Para continuar, crie uma pasta de sons. Toque em Nova Pasta na barra lateral."
+        static let defaultFolderColor = "pastelPurple"
         
     }
     

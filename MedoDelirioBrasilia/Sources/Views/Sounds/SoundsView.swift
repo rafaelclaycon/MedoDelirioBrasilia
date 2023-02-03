@@ -131,9 +131,7 @@ struct SoundsView: View {
                                                         player?.togglePlay()
                                                         viewModel.nowPlayingKeeper.removeAll()
                                                     } else {
-                                                        viewModel.playSound(fromPath: sound.filename)
-                                                        viewModel.nowPlayingKeeper.removeAll()
-                                                        viewModel.nowPlayingKeeper.insert(sound.id)
+                                                        viewModel.playSound(fromPath: sound.filename, withId: sound.id)
                                                     }
                                                 }
                                                 .contextMenu(menuItems: {
@@ -172,11 +170,8 @@ struct SoundsView: View {
                                                         }
                                                         
                                                         Button {
-                                                            viewModel.selectedSound = sound
-                                                            let hasFolders = try? database.hasAnyUserFolder()
-                                                            guard hasFolders ?? false else {
-                                                                return viewModel.showNoFoldersAlert()
-                                                            }
+                                                            viewModel.selectedSoundsForAddToFolder = [Sound]()
+                                                            viewModel.selectedSoundsForAddToFolder?.append(sound)
                                                             subviewToOpen = .addToFolderView
                                                             showingModalView = true
                                                         } label: {
@@ -332,8 +327,8 @@ struct SoundsView: View {
                     AddToFolderView(isBeingShown: $showingModalView,
                                     hadSuccess: $hadSuccessAddingToFolder,
                                     folderName: $folderName,
-                                    selectedSoundName: viewModel.selectedSound!.title,
-                                    selectedSoundId: viewModel.selectedSound!.id)
+                                    pluralization: .constant(.singular),
+                                    selectedSounds: viewModel.selectedSoundsForAddToFolder!)
                     
                 case .shareAsVideoView:
                     ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: false)

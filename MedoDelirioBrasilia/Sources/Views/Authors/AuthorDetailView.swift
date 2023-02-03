@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct AuthorDetailView: View {
 
     @StateObject var viewModel: AuthorDetailViewViewModel
     @State var author: Author
+    @State private var navBarTitle: String = .empty
     
     @State private var listWidth: CGFloat = 700
     @State private var columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
@@ -22,10 +24,53 @@ struct AuthorDetailView: View {
     @State private var showingAddToFolderModal = false
     @State private var hadSuccessAddingToFolder: Bool = false
     @State private var folderName: String? = nil
+    @State private var pluralization: WordPluralization = .singular
     @State private var shouldDisplayAddedToFolderToast: Bool = false
     
     // Share as Video
     @State private var shareAsVideo_Result = ShareAsVideoResult()
+    
+    private var edgesToIgnore: SwiftUI.Edge.Set {
+        return author.photo == nil ? [] : .top
+    }
+    
+    private func getScrollOffset(_ geometry: GeometryProxy) -> CGFloat {
+        geometry.frame(in: .global).minY
+    }
+    
+    private func getOffsetForHeaderImage(_ geometry: GeometryProxy) -> CGFloat {
+        let offset = getScrollOffset(geometry)
+        // Image was pulled down
+        if offset > 0 {
+            return -offset
+        }
+        return 0
+    }
+    
+    private func getHeightForHeaderImage(_ geometry: GeometryProxy) -> CGFloat {
+        let offset = getScrollOffset(geometry)
+        let imageHeight = geometry.size.height
+        if offset > 0 {
+            return imageHeight + offset
+        }
+        return imageHeight
+    }
+    
+    private func getOffsetBeforeShowingTitle() -> CGFloat {
+        author.photo == nil ? 50 : 250
+    }
+    
+    private func updateNavBarTitle(_ offset: CGFloat) {
+        if offset < getOffsetBeforeShowingTitle() {
+            DispatchQueue.main.async {
+                navBarTitle = author.name
+            }
+        } else {
+            DispatchQueue.main.async {
+                navBarTitle = .empty
+            }
+        }
+    }
     
     var body: some View {
         ZStack {
@@ -34,8 +79,81 @@ struct AuthorDetailView: View {
                     NoSoundsView()
                         .padding(.horizontal, 25)
                 } else {
-                    GeometryReader { geometry in
+                    GeometryReader { scrollViewGeometry in
                         ScrollView {
+                            if author.photo != nil {
+                                GeometryReader { headerPhotoGeometry in
+                                    KFImage(URL(string: author.photo ?? .empty))
+                                        .placeholder {
+                                            Image(systemName: "photo.on.rectangle")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(height: 100)
+                                                .foregroundColor(.gray)
+                                                .opacity(0.3)
+                                        }
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: headerPhotoGeometry.size.width, height: self.getHeightForHeaderImage(headerPhotoGeometry))
+                                        .clipped()
+                                        .offset(x: 0, y: self.getOffsetForHeaderImage(headerPhotoGeometry))
+                                }.frame(height: 250)
+                            }
+                            
+                            VStack(alignment: .leading, spacing: 15) {
+                                HStack {
+                                    Text(author.name)
+                                        .font(.title)
+                                        .bold()
+                                    
+                                    Spacer()
+                                    
+                                    Menu {
+                                        Section {
+                                            Button {
+                                                viewModel.selectedSoundsForAddToFolder = viewModel.sounds
+                                                showingAddToFolderModal = true
+                                            } label: {
+                                                Label("Adicionar Todos a Pasta", systemImage: "folder.badge.plus")
+                                            }
+                                        }
+                                        
+//                                        Section {
+//                                            Button {
+//                                                print("Não implementado")
+//                                            } label: {
+//                                                Label("Pedir Som Desse Autor", systemImage: "plus.circle")
+//                                            }
+//                                        }
+//                                        
+//                                        Section {
+//                                            Button {
+//                                                print("Não implementado")
+//                                            } label: {
+//                                                Label("Relatar Problema com os Detalhes Desse Autor", systemImage: "person.crop.circle.badge.exclamationmark")
+//                                            }
+//                                        }
+                                    } label: {
+                                        Image(systemName: "ellipsis.circle")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(height: 28)
+                                    }
+                                    .disabled(viewModel.sounds.count == 0)
+                                }
+                                
+                                if author.description != nil {
+                                    Text(author.description ?? "")
+                                }
+                                
+                                Text(viewModel.getSoundCount())
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray)
+                                    .bold()
+                            }
+                            .padding(.horizontal, 20)
+                            .padding(.vertical)
+                            
                             LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
                                 ForEach(viewModel.sounds) { sound in
                                     SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", isNew: sound.isNew ?? false, favorites: $viewModel.favoritesKeeper, highlighted: .constant(Set<String>()), nowPlaying: $viewModel.nowPlayingKeeper)
@@ -46,9 +164,7 @@ struct AuthorDetailView: View {
                                                 player?.togglePlay()
                                                 viewModel.nowPlayingKeeper.removeAll()
                                             } else {
-                                                viewModel.playSound(fromPath: sound.filename)
-                                                viewModel.nowPlayingKeeper.removeAll()
-                                                viewModel.nowPlayingKeeper.insert(sound.id)
+                                                viewModel.playSound(fromPath: sound.filename, withId: sound.id)
                                             }
                                         }
                                         .contextMenu(menuItems: {
@@ -79,32 +195,11 @@ struct AuthorDetailView: View {
                                                 }
                                                 
                                                 Button {
-                                                    viewModel.selectedSound = sound
-                                                    let hasFolders = try? database.hasAnyUserFolder()
-                                                    guard hasFolders ?? false else {
-                                                        return viewModel.showNoFoldersAlert()
-                                                    }
+                                                    viewModel.selectedSoundsForAddToFolder = [Sound]()
+                                                    viewModel.selectedSoundsForAddToFolder?.append(sound)
                                                     showingAddToFolderModal = true
                                                 } label: {
                                                     Label(Shared.addToFolderButtonText, systemImage: "folder.badge.plus")
-                                                }
-                                                .onChange(of: showingAddToFolderModal) { newValue in
-                                                    if (newValue == false) && hadSuccessAddingToFolder {
-                                                        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-                                                            withAnimation {
-                                                                shouldDisplayAddedToFolderToast = true
-                                                            }
-                                                            TapticFeedback.success()
-                                                        }
-                                                        
-                                                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                                                            withAnimation {
-                                                                shouldDisplayAddedToFolderToast = false
-                                                                folderName = nil
-                                                                hadSuccessAddingToFolder = false
-                                                            }
-                                                        }
-                                                    }
                                                 }
                                             }
                                             
@@ -120,22 +215,25 @@ struct AuthorDetailView: View {
                                 }
                             }
                             .padding(.horizontal)
-                            .padding(.top, 7)
-                            .onChange(of: geometry.size.width) { newWidth in
+                            .padding(.bottom, 18)
+                            .onChange(of: scrollViewGeometry.size.width) { newWidth in
                                 self.listWidth = newWidth
                                 columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
                             }
-                            
-                            Text(viewModel.getSoundCount())
-                                .font(.subheadline)
-                                .foregroundColor(.gray)
-                                .padding(.top, 10)
-                                .padding(.bottom, 18)
+                            .background(GeometryReader {
+                                Color.clear.preference(key: ViewOffsetKey.self, value: $0.frame(in: .named("scroll")).minY)
+                            })
                         }
+                        .coordinateSpace(name: "scroll")
                     }
+                    .edgesIgnoringSafeArea(edgesToIgnore)
                 }
             }
-            .navigationTitle(author.name)
+            .navigationTitle(navBarTitle)
+            .onPreferenceChange(ViewOffsetKey.self) { offset in
+                updateNavBarTitle(offset)
+            }
+            .navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 viewModel.reloadList(withSounds: soundData.filter({ $0.authorId == author.id }),
                                      andFavorites: try? database.getAllFavorites(),
@@ -153,7 +251,7 @@ struct AuthorDetailView: View {
                 }
             }
             .sheet(isPresented: $showingAddToFolderModal) {
-                AddToFolderView(isBeingShown: $showingAddToFolderModal, hadSuccess: $hadSuccessAddingToFolder, folderName: $folderName, selectedSoundName: viewModel.selectedSound!.title, selectedSoundId: viewModel.selectedSound!.id)
+                AddToFolderView(isBeingShown: $showingAddToFolderModal, hadSuccess: $hadSuccessAddingToFolder, folderName: $folderName, pluralization: $pluralization, selectedSounds: viewModel.selectedSoundsForAddToFolder ?? [Sound]())
             }
             .sheet(isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog) {
                 EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog, subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.selectedSound?.title ?? ""), emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.selectedSound?.authorName ?? "", viewModel.selectedSound?.id ?? ""))
@@ -176,12 +274,30 @@ struct AuthorDetailView: View {
                     }
                 }
             }
+            .onChange(of: showingAddToFolderModal) { showingAddToFolderModal in
+                if (showingAddToFolderModal == false) && hadSuccessAddingToFolder {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                        withAnimation {
+                            shouldDisplayAddedToFolderToast = true
+                        }
+                        TapticFeedback.success()
+                    }
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        withAnimation {
+                            shouldDisplayAddedToFolderToast = false
+                            folderName = nil
+                            hadSuccessAddingToFolder = false
+                        }
+                    }
+                }
+            }
             
             if shouldDisplayAddedToFolderToast {
                 VStack {
                     Spacer()
                     
-                    ToastView(text: "Som adicionado à pasta \(folderName ?? "").")
+                    ToastView(text: viewModel.getAddedToFolderToastText(pluralization: pluralization, folderName: folderName))
                         .padding()
                 }
                 .transition(.moveAndFade)
@@ -197,6 +313,18 @@ struct AuthorDetailView: View {
                 .transition(.moveAndFade)
             }
         }
+    }
+
+}
+
+struct ViewOffsetKey: PreferenceKey {
+
+    typealias Value = CGFloat
+    
+    static var defaultValue = CGFloat.zero
+    
+    static func reduce(value: inout Value, nextValue: () -> Value) {
+        value += nextValue()
     }
 
 }

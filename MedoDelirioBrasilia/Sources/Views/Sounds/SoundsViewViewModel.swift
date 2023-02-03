@@ -21,6 +21,7 @@ class SoundsViewViewModel: ObservableObject {
     @Published var showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = false
     @Published var showEmailAppPicker_soundUnavailableConfirmationDialog = false
     @Published var selectedSound: Sound? = nil
+    @Published var selectedSoundsForAddToFolder: [Sound]? = nil
     
     @Published var currentActivity: NSUserActivity? = nil
     
@@ -99,7 +100,7 @@ class SoundsViewViewModel: ObservableObject {
         self.sounds.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
     }
     
-    func playSound(fromPath filepath: String) {
+    func playSound(fromPath filepath: String, withId soundId: String) {
         guard filepath.isEmpty == false else {
             return
         }
@@ -108,7 +109,10 @@ class SoundsViewViewModel: ObservableObject {
             return showUnableToGetSoundAlert()
         }
         let url = URL(fileURLWithPath: path)
-
+        
+        nowPlayingKeeper.removeAll()
+        nowPlayingKeeper.insert(soundId)
+        
         player = AudioPlayer(url: url, update: { [weak self] state in
             guard let self = self else { return }
             if state?.activity == .stopped {
@@ -330,19 +334,11 @@ class SoundsViewViewModel: ObservableObject {
         showAlert = true
     }
     
-    func showNoFoldersAlert() {
-        TapticFeedback.error()
-        alertType = .singleOption
-        alertTitle = Shared.Folders.noFoldersAlertTitle
-        alertMessage = UIDevice.current.userInterfaceIdiom == .phone ? Shared.Folders.noFoldersAlertMessagePhone : Shared.Folders.noFoldersAlertMessagePadMac
-        showAlert = true
-    }
-    
     func showMoveDatabaseIssueAlert() {
         TapticFeedback.error()
         alertType = .singleOption
         alertTitle = "Problema ao Mover o Banco de Dados"
-        alertMessage = "Houve um problema ao tentar mover o banco de dados do app. Por favor, envie um print desse erro para o desenvolvedor (e-mail nos Ajustes):\n\n\(moveDatabaseIssue)"
+        alertMessage = "Houve um problema ao tentar mover o banco de dados do app. Por favor, envie um print desse erro para o desenvolvedor (e-mail nas Configurações):\n\n\(moveDatabaseIssue)"
         showAlert = true
     }
 
