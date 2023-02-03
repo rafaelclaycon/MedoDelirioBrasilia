@@ -12,3 +12,9 @@ enum AlertType {
     case singleOption, twoOptions, twoOptionsOneDelete
 
 }
+
+enum AuthorDetailAlertType {
+
+    case ok, reportSoundIssue, askForNewSound
+
+}

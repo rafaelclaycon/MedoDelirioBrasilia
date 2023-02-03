@@ -19,6 +19,8 @@ class AuthorDetailViewViewModel: ObservableObject {
     
     @Published var showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = false
     @Published var showEmailAppPicker_soundUnavailableConfirmationDialog = false
+    @Published var showEmailAppPicker_askForNewSound = false
+    @Published var showEmailAppPicker_reportAuthorDetailIssue = false
     
     // Sharing
     @Published var iPadShareSheet = ActivityViewController(activityItems: [URL(string: "https://www.apple.com")!])
@@ -30,7 +32,7 @@ class AuthorDetailViewViewModel: ObservableObject {
     @Published var alertTitle: String = ""
     @Published var alertMessage: String = ""
     @Published var showAlert: Bool = false
-    @Published var alertType: AlertType = .singleOption
+    @Published var alertType: AuthorDetailAlertType = .ok
     
     init(originatingScreenName: String, authorName: String) {
         // Sends metric only from iPhones because iPad and Mac are calling this methos twice instead of once upon each screen opening.
@@ -294,9 +296,17 @@ class AuthorDetailViewViewModel: ObservableObject {
     
     func showUnableToGetSoundAlert() {
         TapticFeedback.error()
-        alertType = .twoOptions
+        alertType = .reportSoundIssue
         alertTitle = Shared.soundNotFoundAlertTitle
         alertMessage = Shared.soundNotFoundAlertMessage
+        showAlert = true
+    }
+    
+    func showAskForNewSoundAlert() {
+        TapticFeedback.warning()
+        alertType = .askForNewSound
+        alertTitle = Shared.AuthorDetail.AskForNewSoundAlert.title
+        alertMessage = Shared.AuthorDetail.AskForNewSoundAlert.message
         showAlert = true
     }
 

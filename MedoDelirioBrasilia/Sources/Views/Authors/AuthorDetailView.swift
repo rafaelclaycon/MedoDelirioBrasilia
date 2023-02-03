@@ -230,12 +230,16 @@ struct AuthorDetailView: View {
             }
             .alert(isPresented: $viewModel.showAlert) {
                 switch viewModel.alertType {
-                case .singleOption:
+                case .ok:
                     return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
-                default:
+                case .reportSoundIssue:
                     return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .default(Text("Relatar Problema por E-mail"), action: {
                         viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog = true
                     }), secondaryButton: .cancel(Text("Fechar")))
+                case .askForNewSound:
+                    return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .default(Text("Li e Entendi"), action: {
+                        viewModel.showEmailAppPicker_askForNewSound = true
+                    }), secondaryButton: .cancel(Text("Cancelar")))
                 }
             }
             .sheet(isPresented: $showingAddToFolderModal) {
@@ -246,6 +250,12 @@ struct AuthorDetailView: View {
             }
             .sheet(isPresented: $viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog) {
                 EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog, subject: Shared.issueSuggestionEmailSubject, emailBody: Shared.issueSuggestionEmailBody)
+            }
+            .sheet(isPresented: $viewModel.showEmailAppPicker_askForNewSound) {
+                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_askForNewSound, subject: String(format: Shared.Email.AskForNewSound.subject, self.author.name), emailBody: Shared.Email.AskForNewSound.body)
+            }
+            .sheet(isPresented: $viewModel.showEmailAppPicker_reportAuthorDetailIssue) {
+                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_reportAuthorDetailIssue, subject: String(format: Shared.Email.AuthorDetailIssue.subject, self.author.name), emailBody: Shared.Email.AuthorDetailIssue.body)
             }
             .sheet(isPresented: $viewModel.isShowingShareSheet) {
                 viewModel.iPadShareSheet
@@ -314,21 +324,21 @@ struct AuthorDetailView: View {
                 }
             }
             
-            //                                        Section {
-            //                                            Button {
-            //                                                print("Não implementado")
-            //                                            } label: {
-            //                                                Label("Pedir Som Desse Autor", systemImage: "plus.circle")
-            //                                            }
-            //                                        }
-            //
-            //                                        Section {
-            //                                            Button {
-            //                                                print("Não implementado")
-            //                                            } label: {
-            //                                                Label("Relatar Problema com os Detalhes Desse Autor", systemImage: "person.crop.circle.badge.exclamationmark")
-            //                                            }
-            //                                        }
+            Section {
+                Button {
+                    viewModel.showAskForNewSoundAlert()
+                } label: {
+                    Label("Pedir Som Desse Autor", systemImage: "plus.circle")
+                }
+            }
+            
+            Section {
+                Button {
+                    viewModel.showEmailAppPicker_reportAuthorDetailIssue = true
+                } label: {
+                    Label("Relatar Problema com os Detalhes Desse Autor", systemImage: "person.crop.circle.badge.exclamationmark")
+                }
+            }
         } label: {
             if isOnToolbar {
                 Image(systemName: "ellipsis.circle")

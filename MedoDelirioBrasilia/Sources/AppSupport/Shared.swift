@@ -52,6 +52,20 @@ struct Shared {
         static let suggestSongChangeSubject = "Sugestão de Alteração Para a Música '%@'"
         static let suggestSongChangeBody = "\n\n\nID do conteúdo: %@ (para uso interno)"
         
+        struct AskForNewSound {
+            
+            static let subject = "Pedido de som de %@"
+            static let body = "Inclua link para vídeo ou nome do episódio e minuto; qualquer dado que facilite o nosso trabalho."
+            
+        }
+        
+        struct AuthorDetailIssue {
+            
+            static let subject = "Problema com %@ no app iOS \(Versioneer.appVersion) Build \(Versioneer.buildVersionNumber)"
+            static let body = "Por favor, descreva o problema."
+            
+        }
+        
     }
     
     struct ShareAsVideo {
@@ -83,6 +97,17 @@ struct Shared {
         static let soundsView = "SoundsView"
         static let authorsView = "AuthorsView"
         static let authorDetailView = "AuthorDetailView"
+        
+    }
+    
+    struct AuthorDetail {
+        
+        struct AskForNewSoundAlert {
+            
+            static let title = "Nos Ajude a Te Ajudar"
+            static let message = "Somos uma equipe minúscula e pouquíssimos sons do podcast já estão pré-cortados e separados.\n\nPara aumentar as chances do seu som ser incluído, coloque no e-mail o máximo de informações possível, como link para vídeo, nome do episódio e minuto no qual o som que você quer apareceu, etc."
+            
+        }
         
     }
 
