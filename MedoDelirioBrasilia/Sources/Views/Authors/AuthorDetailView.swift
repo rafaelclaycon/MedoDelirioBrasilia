@@ -118,21 +118,21 @@ struct AuthorDetailView: View {
                                             }
                                         }
                                         
-                                        Section {
-                                            Button {
-                                                print("Não implementado")
-                                            } label: {
-                                                Label("Pedir Som Desse Autor", systemImage: "plus.circle")
-                                            }
-                                        }
-                                        
-                                        Section {
-                                            Button {
-                                                print("Não implementado")
-                                            } label: {
-                                                Label("Relatar Problema com os Detalhes Desse Autor", systemImage: "person.crop.circle.badge.exclamationmark")
-                                            }
-                                        }
+//                                        Section {
+//                                            Button {
+//                                                print("Não implementado")
+//                                            } label: {
+//                                                Label("Pedir Som Desse Autor", systemImage: "plus.circle")
+//                                            }
+//                                        }
+//                                        
+//                                        Section {
+//                                            Button {
+//                                                print("Não implementado")
+//                                            } label: {
+//                                                Label("Relatar Problema com os Detalhes Desse Autor", systemImage: "person.crop.circle.badge.exclamationmark")
+//                                            }
+//                                        }
                                     } label: {
                                         Image(systemName: "ellipsis.circle")
                                             .resizable()

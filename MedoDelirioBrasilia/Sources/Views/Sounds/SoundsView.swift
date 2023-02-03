@@ -170,7 +170,8 @@ struct SoundsView: View {
                                                         }
                                                         
                                                         Button {
-                                                            viewModel.selectedSound = sound
+                                                            viewModel.selectedSoundsForAddToFolder = [Sound]()
+                                                            viewModel.selectedSoundsForAddToFolder?.append(sound)
                                                             subviewToOpen = .addToFolderView
                                                             showingModalView = true
                                                         } label: {
