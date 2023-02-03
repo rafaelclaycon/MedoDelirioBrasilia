@@ -8761,7 +8761,7 @@
         "filename": "Leandro Ramos - Complicado isso tudo ai.mp3",
         "dateAdded": "2023-02-01T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "1B464541-565C-4309-8E72-D3770CCE0235",
@@ -8771,7 +8771,7 @@
         "filename": "Casimiro - E o caralho.mp3",
         "dateAdded": "2023-02-01T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "00EFBF2F-E01F-43BA-A21E-BCFCE6A78579",
@@ -8781,15 +8781,75 @@
         "filename": "Casimiro - Do nada mane.mp3",
         "dateAdded": "2023-02-01T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "DF7A1BD1-D916-4666-B9F1-D2FEF492741A",
-        "title": "É o gol da Alemanha",
+        "title": "É o goool da Alemanha",
         "authorId": "C5126821-321C-4705-AB9A-2785995DFABF",
-        "description": "E o gol da alemanha",
+        "description": "E o gol da alemanha E o goool da alemanha",
         "filename": "Galvao - E o gol da alemanha.mp3",
         "dateAdded": "2023-02-01T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "4593CD93-9F44-407D-A29A-B85B87D2E74F",
+        "title": "Tu é maluco é? Ou você é idiota?",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Tu e maluco e ou voce e idiota",
+        "filename": "Tu e maluco ou idiota.mp3",
+        "dateAdded": "2023-02-03T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "1CE55541-513A-4D5F-8A2C-9A2420056AA4",
+        "title": "Recuou é um eufemismo, né? Arregou",
+        "authorId": "32DECC5A-FEE3-42B7-BBCC-B34126C317DE",
+        "description": "Recuou e um eufemismo ne arregou",
+        "filename": "Rodrigo Constantino - Recuou e um eufemismo ne arregou.mp3",
+        "dateAdded": "2023-02-03T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "04B2D3F7-0459-44C0-852C-AF0C77FDE411",
+        "title": "Quél",
+        "authorId": "C066E971-8702-4261-955D-00CF642A465A",
+        "description": "quel",
+        "filename": "Silas Malafaia - Quel.mp3",
+        "dateAdded": "2023-02-03T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "0BCB6A08-5F2C-4846-BA98-B2FA6192D666",
+        "title": "Covarde, frouxo!",
+        "authorId": "C066E971-8702-4261-955D-00CF642A465A",
+        "description": "Covarde frouxo",
+        "filename": "Silas Malafaia - Covarde frouxo.mp3",
+        "dateAdded": "2023-02-03T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "FB193A56-6A60-41E4-B265-3D354610B7E4",
+        "title": "Tu acha?",
+        "authorId": "C066E971-8702-4261-955D-00CF642A465A",
+        "description": "Tu acha",
+        "filename": "Silas Malafaia - Tu acha.mp3",
+        "dateAdded": "2023-02-03T00:00:00Z",
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "0E92147D-339B-444D-8403-887A2C4CD210",
+        "title": "Eu tenho pena",
+        "authorId": "C066E971-8702-4261-955D-00CF642A465A",
+        "description": "Eu tenho pena",
+        "filename": "Silas Malafaia - Eu tenho pena.mp3",
+        "dateAdded": "2023-02-03T00:00:00Z",
         "isOffensive": false,
         "isNew": true
     }

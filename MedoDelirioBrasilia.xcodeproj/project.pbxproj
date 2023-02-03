@@ -298,6 +298,12 @@
 		D94C8390294BACE000E083F3 /* Foi tao bom mas acabou.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94C838F294BACE000E083F3 /* Foi tao bom mas acabou.mp3 */; };
 		D94C8393294BAF7100E083F3 /* Renan (Choque de Cultura) - Brasil e bagunca.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94C8391294BAF7100E083F3 /* Renan (Choque de Cultura) - Brasil e bagunca.mp3 */; };
 		D94C8394294BAF7100E083F3 /* Jair Bolsonaro - Podemos ate viver sem oxigenio mas jamais sem liberdade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94C8392294BAF7100E083F3 /* Jair Bolsonaro - Podemos ate viver sem oxigenio mas jamais sem liberdade.mp3 */; };
+		D94D9EF9298D871E006F14A5 /* Tu e maluco ou idiota.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94D9EF8298D871E006F14A5 /* Tu e maluco ou idiota.mp3 */; };
+		D94D9EFB298D87DA006F14A5 /* Rodrigo Constantino - Recuou e um eufemismo ne arregou.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94D9EFA298D87DA006F14A5 /* Rodrigo Constantino - Recuou e um eufemismo ne arregou.mp3 */; };
+		D94D9EFD298D88BD006F14A5 /* Silas Malafaia - Quel.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94D9EFC298D88BD006F14A5 /* Silas Malafaia - Quel.mp3 */; };
+		D94D9F01298D8AFC006F14A5 /* Silas Malafaia - Covarde frouxo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94D9EFE298D8AFC006F14A5 /* Silas Malafaia - Covarde frouxo.mp3 */; };
+		D94D9F02298D8AFC006F14A5 /* Silas Malafaia - Tu acha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94D9EFF298D8AFC006F14A5 /* Silas Malafaia - Tu acha.mp3 */; };
+		D94D9F03298D8AFC006F14A5 /* Silas Malafaia - Eu tenho pena.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94D9F00298D8AFC006F14A5 /* Silas Malafaia - Eu tenho pena.mp3 */; };
 		D94FBD342948F64F001FA3A8 /* Heraclito Sobral Pinto - Militares e Republica nao combinam.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94FBD332948F64E001FA3A8 /* Heraclito Sobral Pinto - Militares e Republica nao combinam.mp3 */; };
 		D9523741285BF98A00E6C838 /* NetworkRabbitStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */; };
 		D9523743285BF99800E6C838 /* LocalDatabaseSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9523742285BF99800E6C838 /* LocalDatabaseSpy.swift */; };
@@ -1524,6 +1530,12 @@
 		D94C838F294BACE000E083F3 /* Foi tao bom mas acabou.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Foi tao bom mas acabou.mp3"; sourceTree = "<group>"; };
 		D94C8391294BAF7100E083F3 /* Renan (Choque de Cultura) - Brasil e bagunca.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Renan (Choque de Cultura) - Brasil e bagunca.mp3"; sourceTree = "<group>"; };
 		D94C8392294BAF7100E083F3 /* Jair Bolsonaro - Podemos ate viver sem oxigenio mas jamais sem liberdade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Podemos ate viver sem oxigenio mas jamais sem liberdade.mp3"; sourceTree = "<group>"; };
+		D94D9EF8298D871E006F14A5 /* Tu e maluco ou idiota.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tu e maluco ou idiota.mp3"; sourceTree = "<group>"; };
+		D94D9EFA298D87DA006F14A5 /* Rodrigo Constantino - Recuou e um eufemismo ne arregou.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rodrigo Constantino - Recuou e um eufemismo ne arregou.mp3"; sourceTree = "<group>"; };
+		D94D9EFC298D88BD006F14A5 /* Silas Malafaia - Quel.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Silas Malafaia - Quel.mp3"; sourceTree = "<group>"; };
+		D94D9EFE298D8AFC006F14A5 /* Silas Malafaia - Covarde frouxo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Silas Malafaia - Covarde frouxo.mp3"; sourceTree = "<group>"; };
+		D94D9EFF298D8AFC006F14A5 /* Silas Malafaia - Tu acha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Silas Malafaia - Tu acha.mp3"; sourceTree = "<group>"; };
+		D94D9F00298D8AFC006F14A5 /* Silas Malafaia - Eu tenho pena.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Silas Malafaia - Eu tenho pena.mp3"; sourceTree = "<group>"; };
 		D94FBD332948F64E001FA3A8 /* Heraclito Sobral Pinto - Militares e Republica nao combinam.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Heraclito Sobral Pinto - Militares e Republica nao combinam.mp3"; sourceTree = "<group>"; };
 		D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRabbitStub.swift; sourceTree = "<group>"; };
 		D9523742285BF99800E6C838 /* LocalDatabaseSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDatabaseSpy.swift; sourceTree = "<group>"; };
@@ -2472,6 +2484,12 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D94D9EFE298D8AFC006F14A5 /* Silas Malafaia - Covarde frouxo.mp3 */,
+				D94D9F00298D8AFC006F14A5 /* Silas Malafaia - Eu tenho pena.mp3 */,
+				D94D9EFF298D8AFC006F14A5 /* Silas Malafaia - Tu acha.mp3 */,
+				D94D9EFC298D88BD006F14A5 /* Silas Malafaia - Quel.mp3 */,
+				D94D9EFA298D87DA006F14A5 /* Rodrigo Constantino - Recuou e um eufemismo ne arregou.mp3 */,
+				D94D9EF8298D871E006F14A5 /* Tu e maluco ou idiota.mp3 */,
 				D9B88BD5298AFAF30077D9A0 /* Casimiro - Do nada mane.mp3 */,
 				D9B88BD4298AFAF30077D9A0 /* Casimiro - E o caralho.mp3 */,
 				D9B88BD7298AFAF30077D9A0 /* Galvao - E o gol da alemanha.mp3 */,
@@ -4272,6 +4290,7 @@
 				D975FF172880B4F20035E6F2 /* Xuxa - Aham Claudia Senta la short meme.mp3 in Resources */,
 				D961D01328371F1700EFEDEB /* sound_data.json in Resources */,
 				D975FE2A2880B4F20035E6F2 /* Fernando Collor - Isso e uma mentira uma pantomima uma patuscada short.mp3 in Resources */,
+				D94D9EF9298D871E006F14A5 /* Tu e maluco ou idiota.mp3 in Resources */,
 				D975FF912880B4F20035E6F2 /* O Terrivel Editorialista do Estadao.mp3 in Resources */,
 				D9AF10CA290AD50D0054741F /* Jair Bolsonaro - O pessoal que malha.mp3 in Resources */,
 				D975FFF62880B4F20035E6F2 /* Malditos Milicos robo.mp3 in Resources */,
@@ -4279,9 +4298,11 @@
 				D975FF112880B4F20035E6F2 /* SBT - Casos de Familia.mp3 in Resources */,
 				D975FEA82880B4F20035E6F2 /* Silas Malafaia - Mentiroso sem vergonha vai pro inferno short.mp3 in Resources */,
 				D975FFA62880B4F20035E6F2 /* Gaucho Puto - Uma bosta, nao sabe, uma merda.mp3 in Resources */,
+				D94D9F02298D8AFC006F14A5 /* Silas Malafaia - Tu acha.mp3 in Resources */,
 				D975FEFD2880B4F20035E6F2 /* Silvio Santos - Quem e que nao gosta de dinheiro.mp3 in Resources */,
 				D92AD1BF28833E4E001CBCDF /* Ricardo Boechat - Diferente de voce, nao sou um idiota.mp3 in Resources */,
 				D99BBE492947051200BCA901 /* Jair Bolsonaro - Historico de atleta.mp3 in Resources */,
+				D94D9F01298D8AFC006F14A5 /* Silas Malafaia - Covarde frouxo.mp3 in Resources */,
 				D97500362880B4F20035E6F2 /* Bolsonaro - Pra midia o virus sou eu.mp3 in Resources */,
 				D975FEE62880B4F20035E6F2 /* Vai Dar Namoro - Danca gatinho danca.mp3 in Resources */,
 				D9F487EB29761F8C00DCFE07 /* Eliana Brasil - Cidinha.mp3 in Resources */,
@@ -4304,6 +4325,7 @@
 				D975FF412880B4F20035E6F2 /* PLANALTO - Bolsonaro - Mente.mp3 in Resources */,
 				D975FE782880B4F20035E6F2 /* Damares - A princesa do Frozen vai voltar pra acordar a Bela Adormecida com um beijo gay.mp3 in Resources */,
 				D975FE6C2880B4F20035E6F2 /* Que porra e essa batata.mp3 in Resources */,
+				D94D9EFB298D87DA006F14A5 /* Rodrigo Constantino - Recuou e um eufemismo ne arregou.mp3 in Resources */,
 				D921F8A0288B0DC4003979CC /* Au au (Parabens sancao) - Bolsonaro.mp3 in Resources */,
 				D975000A2880B4F20035E6F2 /* Atila Iamarino - No minimo.mp3 in Resources */,
 				D975FFC22880B4F20035E6F2 /* Bolsonaro - O caos vem ai.mp3 in Resources */,
@@ -4670,6 +4692,7 @@
 				D975FFE62880B4F20035E6F2 /* Natalia Pasternak - Tem gente morrendo.mp3 in Resources */,
 				D97500552880B5190035E6F2 /* MULTISHOW - Lulu Santos - Censura nunca mais.mp3 in Resources */,
 				D975FE5D2880B4F20035E6F2 /* Bolsonaro - Nao leio a imprensa nao vejo Jornal Nacional faca o que eu faco.mp3 in Resources */,
+				D94D9EFD298D88BD006F14A5 /* Silas Malafaia - Quel.mp3 in Resources */,
 				D975FF402880B4F20035E6F2 /* Drauzio - E os outros problema deles nao tenho nada a ver com isso.mp3 in Resources */,
 				D937E11429097D58004137ED /* Onyx Lorenzoni - Alguem consegue fazer o lockdown dos insetos.mp3 in Resources */,
 				D975FFC32880B4F20035E6F2 /* Bolsonaro - Ganhou porra.mp3 in Resources */,
@@ -4970,6 +4993,7 @@
 				491110382926BEA20055F4EE /* Saiddy Bamba - Nao nao nao nao short.mp3 in Resources */,
 				D975FE322880B4F20035E6F2 /* LUVA DE PEDREIRO - E, caralho carai, RECEBA.mp3 in Resources */,
 				D975FF792880B4F20035E6F2 /* Que merda hein short.mp3 in Resources */,
+				D94D9F03298D8AFC006F14A5 /* Silas Malafaia - Eu tenho pena.mp3 in Resources */,
 				497E63CD291948B700FBC539 /* Gilmar Mendes - Essa gente anda fumando erva estragada.mp3 in Resources */,
 				D975FF512880B4F20035E6F2 /* PODER360 - Barroso - Nao e de surpreender.mp3 in Resources */,
 				D97500242880B4F20035E6F2 /* Diogo Defante - Tu entendeu a pergunta, nao.mp3 in Resources */,
@@ -5590,7 +5614,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/Sources/AppSupport/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -5610,7 +5634,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.45;
+				MARKETING_VERSION = 5.46;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -5631,7 +5655,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/Sources/AppSupport/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -5651,7 +5675,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 5.45;
+				MARKETING_VERSION = 5.46;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
