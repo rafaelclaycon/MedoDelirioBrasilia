@@ -346,7 +346,7 @@ struct AuthorDetailView: View {
                 Image(systemName: "ellipsis.circle")
                     .resizable()
                     .scaledToFit()
-                    .frame(height: 28)
+                    .frame(height: 26)
             }
         }
         .disabled(viewModel.sounds.count == 0)
