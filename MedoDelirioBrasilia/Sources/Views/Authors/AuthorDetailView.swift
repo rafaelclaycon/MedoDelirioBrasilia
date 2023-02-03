@@ -34,6 +34,18 @@ struct AuthorDetailView: View {
         return author.photo == nil ? [] : .top
     }
     
+    private var shouldDisplayMenuOnToolbar: Bool {
+        if #available(iOS 16, *) {
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    private var shouldDisplayMenuBesideAuthorName: Bool {
+        !shouldDisplayMenuOnToolbar
+    }
+    
     private func getScrollOffset(_ geometry: GeometryProxy) -> CGFloat {
         geometry.frame(in: .global).minY
     }
@@ -108,39 +120,8 @@ struct AuthorDetailView: View {
                                     
                                     Spacer()
                                     
-                                    if #available(iOS 16, *) {
-                                        Menu {
-                                            Section {
-                                                Button {
-                                                    viewModel.selectedSoundsForAddToFolder = viewModel.sounds
-                                                    showingAddToFolderModal = true
-                                                } label: {
-                                                    Label("Adicionar Todos a Pasta", systemImage: "folder.badge.plus")
-                                                }
-                                            }
-                                            
-                                            //                                        Section {
-                                            //                                            Button {
-                                            //                                                print("Não implementado")
-                                            //                                            } label: {
-                                            //                                                Label("Pedir Som Desse Autor", systemImage: "plus.circle")
-                                            //                                            }
-                                            //                                        }
-                                            //
-                                            //                                        Section {
-                                            //                                            Button {
-                                            //                                                print("Não implementado")
-                                            //                                            } label: {
-                                            //                                                Label("Relatar Problema com os Detalhes Desse Autor", systemImage: "person.crop.circle.badge.exclamationmark")
-                                            //                                            }
-                                            //                                        }
-                                        } label: {
-                                            Image(systemName: "ellipsis.circle")
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(height: 28)
-                                        }
-                                        .disabled(viewModel.sounds.count == 0)
+                                    if shouldDisplayMenuBesideAuthorName {
+                                        moreOptionsMenu(isOnToolbar: false)
                                     }
                                 }
                                 
@@ -236,6 +217,11 @@ struct AuthorDetailView: View {
                 updateNavBarTitle(offset)
             }
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                if shouldDisplayMenuOnToolbar {
+                    moreOptionsMenu(isOnToolbar: true)
+                }
+            }
             .onAppear {
                 viewModel.reloadList(withSounds: soundData.filter({ $0.authorId == author.id }),
                                      andFavorites: try? database.getAllFavorites(),
@@ -315,6 +301,45 @@ struct AuthorDetailView: View {
                 .transition(.moveAndFade)
             }
         }
+    }
+    
+    @ViewBuilder func moreOptionsMenu(isOnToolbar: Bool) -> some View {
+        Menu {
+            Section {
+                Button {
+                    viewModel.selectedSoundsForAddToFolder = viewModel.sounds
+                    showingAddToFolderModal = true
+                } label: {
+                    Label("Adicionar Todos a Pasta", systemImage: "folder.badge.plus")
+                }
+            }
+            
+            //                                        Section {
+            //                                            Button {
+            //                                                print("Não implementado")
+            //                                            } label: {
+            //                                                Label("Pedir Som Desse Autor", systemImage: "plus.circle")
+            //                                            }
+            //                                        }
+            //
+            //                                        Section {
+            //                                            Button {
+            //                                                print("Não implementado")
+            //                                            } label: {
+            //                                                Label("Relatar Problema com os Detalhes Desse Autor", systemImage: "person.crop.circle.badge.exclamationmark")
+            //                                            }
+            //                                        }
+        } label: {
+            if isOnToolbar {
+                Image(systemName: "ellipsis.circle")
+            } else {
+                Image(systemName: "ellipsis.circle")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 28)
+            }
+        }
+        .disabled(viewModel.sounds.count == 0)
     }
 
 }
