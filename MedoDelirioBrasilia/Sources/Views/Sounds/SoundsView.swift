@@ -326,6 +326,7 @@ struct SoundsView: View {
                     AddToFolderView(isBeingShown: $showingModalView,
                                     hadSuccess: $hadSuccessAddingToFolder,
                                     folderName: $folderName,
+                                    pluralization: .constant(.singular),
                                     selectedSounds: viewModel.selectedSoundsForAddToFolder!)
                     
                 case .shareAsVideoView:

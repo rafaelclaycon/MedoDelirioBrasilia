@@ -13,6 +13,7 @@ struct AddToFolderView: View {
     @Binding var isBeingShown: Bool
     @Binding var hadSuccess: Bool
     @Binding var folderName: String?
+    @Binding var pluralization: WordPluralization
     @State var selectedSounds: [Sound]
     @State private var isShowingCreateNewFolderScreen: Bool = false
     
@@ -106,6 +107,7 @@ struct AddToFolderView: View {
                                         }
                                         
                                         folderName = "\(folder.symbol) \(folder.name)"
+                                        pluralization = selectedSounds.count > 1 ? .plural : .singular
                                         hadSuccess = true
                                         isBeingShown = false
                                     } else if soundsAlreadyInFolder == 1, selectedSounds.count == 1 {
@@ -147,6 +149,7 @@ struct AddToFolderView: View {
                         if let folder = folderForSomeSoundsAlreadyInFolder {
                             folderName = "\(folder.symbol) \(folder.name)"
                         }
+                        pluralization = soundsThatCanBeAdded?.count ?? 0 > 1 ? .plural : .singular
                         hadSuccess = true
                         isBeingShown = false
                     }), secondaryButton: .cancel(Text("Cancelar")))
@@ -171,7 +174,7 @@ struct AddToFolderView: View {
 struct AddToFolderView_Previews: PreviewProvider {
 
     static var previews: some View {
-        AddToFolderView(isBeingShown: .constant(true), hadSuccess: .constant(false), folderName: .constant(nil), selectedSounds: [Sound(title: "ABCD", description: "", isNew: false)])
+        AddToFolderView(isBeingShown: .constant(true), hadSuccess: .constant(false), folderName: .constant(nil), pluralization: .constant(.singular), selectedSounds: [Sound(title: "ABCD", description: "", isNew: false)])
             .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
     }
 

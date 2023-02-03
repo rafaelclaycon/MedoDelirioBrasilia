@@ -24,6 +24,7 @@ struct AuthorDetailView: View {
     @State private var showingAddToFolderModal = false
     @State private var hadSuccessAddingToFolder: Bool = false
     @State private var folderName: String? = nil
+    @State private var pluralization: WordPluralization = .singular
     @State private var shouldDisplayAddedToFolderToast: Bool = false
     
     // Share as Video
@@ -200,24 +201,6 @@ struct AuthorDetailView: View {
                                                 } label: {
                                                     Label(Shared.addToFolderButtonText, systemImage: "folder.badge.plus")
                                                 }
-                                                .onChange(of: showingAddToFolderModal) { newValue in
-                                                    if (newValue == false) && hadSuccessAddingToFolder {
-                                                        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-                                                            withAnimation {
-                                                                shouldDisplayAddedToFolderToast = true
-                                                            }
-                                                            TapticFeedback.success()
-                                                        }
-                                                        
-                                                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                                                            withAnimation {
-                                                                shouldDisplayAddedToFolderToast = false
-                                                                folderName = nil
-                                                                hadSuccessAddingToFolder = false
-                                                            }
-                                                        }
-                                                    }
-                                                }
                                             }
                                             
                                             Section {
@@ -268,7 +251,7 @@ struct AuthorDetailView: View {
                 }
             }
             .sheet(isPresented: $showingAddToFolderModal) {
-                AddToFolderView(isBeingShown: $showingAddToFolderModal, hadSuccess: $hadSuccessAddingToFolder, folderName: $folderName, selectedSounds: viewModel.selectedSoundsForAddToFolder!)
+                AddToFolderView(isBeingShown: $showingAddToFolderModal, hadSuccess: $hadSuccessAddingToFolder, folderName: $folderName, pluralization: $pluralization, selectedSounds: viewModel.selectedSoundsForAddToFolder ?? [Sound]())
             }
             .sheet(isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog) {
                 EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog, subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.selectedSound?.title ?? ""), emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.selectedSound?.authorName ?? "", viewModel.selectedSound?.id ?? ""))
@@ -291,12 +274,30 @@ struct AuthorDetailView: View {
                     }
                 }
             }
+            .onChange(of: showingAddToFolderModal) { showingAddToFolderModal in
+                if (showingAddToFolderModal == false) && hadSuccessAddingToFolder {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                        withAnimation {
+                            shouldDisplayAddedToFolderToast = true
+                        }
+                        TapticFeedback.success()
+                    }
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        withAnimation {
+                            shouldDisplayAddedToFolderToast = false
+                            folderName = nil
+                            hadSuccessAddingToFolder = false
+                        }
+                    }
+                }
+            }
             
             if shouldDisplayAddedToFolderToast {
                 VStack {
                     Spacer()
                     
-                    ToastView(text: "Som adicionado à pasta \(folderName ?? "").")
+                    ToastView(text: viewModel.getAddedToFolderToastText(pluralization: pluralization, folderName: folderName))
                         .padding()
                 }
                 .transition(.moveAndFade)
