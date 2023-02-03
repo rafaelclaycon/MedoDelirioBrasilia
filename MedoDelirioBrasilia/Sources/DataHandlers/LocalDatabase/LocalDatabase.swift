@@ -4,14 +4,11 @@ import SQLiteMigrationManager
 
 internal protocol LocalDatabaseProtocol {
 
-    func checkServerStatus(completionHandler: @escaping (Bool, String) -> Void)
-    func getSoundShareCountStats(completionHandler: @escaping ([ServerShareCountStat]?, NetworkRabbitError?) -> Void)
-    func post(shareCountStat: ServerShareCountStat, completionHandler: @escaping (String) -> Void)
-    func post(clientDeviceInfo: ClientDeviceInfo, completionHandler: @escaping (Bool?, NetworkRabbitError?) -> Void)
+    func contentExistsInsideUserFolder(withId folderId: String, contentId: String) throws -> Bool
 
 }
 
-class LocalDatabase {
+class LocalDatabase: LocalDatabaseProtocol {
 
     var db: Connection
     var migrationManager: SQLiteMigrationManager

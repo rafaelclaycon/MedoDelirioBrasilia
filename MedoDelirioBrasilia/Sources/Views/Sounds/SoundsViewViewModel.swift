@@ -21,6 +21,7 @@ class SoundsViewViewModel: ObservableObject {
     @Published var showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = false
     @Published var showEmailAppPicker_soundUnavailableConfirmationDialog = false
     @Published var selectedSound: Sound? = nil
+    @Published var selectedSoundsForAddToFolder: [Sound]? = nil
     
     @Published var currentActivity: NSUserActivity? = nil
     

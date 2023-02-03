@@ -15,6 +15,7 @@ class AuthorDetailViewViewModel: ObservableObject {
     @Published var favoritesKeeper = Set<String>()
     @Published var nowPlayingKeeper = Set<String>()
     @Published var selectedSound: Sound? = nil
+    @Published var selectedSoundsForAddToFolder: [Sound]? = nil
     
     @Published var showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = false
     @Published var showEmailAppPicker_soundUnavailableConfirmationDialog = false
@@ -279,6 +280,14 @@ class AuthorDetailViewViewModel: ObservableObject {
                                       dateTime: Date.now.iso8601withFractionalSeconds,
                                       currentTimeZone: TimeZone.current.abbreviation() ?? .empty)
         networkRabbit.post(usageMetric: usageMetric)
+    }
+    
+    func getAddedToFolderToastText(pluralization: WordPluralization, folderName: String?) -> String {
+        if pluralization == .singular {
+            return "Som adicionado à pasta \(folderName ?? "")."
+        } else {
+            return "Sons adicionados à pasta \(folderName ?? "")."
+        }
     }
     
     // MARK: - Alerts
