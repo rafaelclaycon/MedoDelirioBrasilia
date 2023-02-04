@@ -124,6 +124,7 @@ struct FolderDetailView: View {
                                 .tag(2)
                             }
                         }
+                        .disabled(viewModel.sounds.count == 0)
                     }
                     
                     Section {
@@ -146,16 +147,19 @@ struct FolderDetailView: View {
                     Image(systemName: "ellipsis.circle")
                 }
                 .onChange(of: viewModel.soundSortOption, perform: { soundSortOption in
-                    viewModel.reloadList(withSounds: soundData,
-                                         andFavorites: try? database.getAllFavorites(),
-                                         allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
-                                         favoritesOnly: currentMode == .favorites,
-                                         sortedBy: SoundSortOption(rawValue: soundSortOption) ?? .titleAscending)
-                    UserSettings.setSoundSortOption(to: soundSortOption)
+                    switch soundSortOption {
+                    case 1:
+                        viewModel.sortSoundsInPlaceByAuthorNameAscending()
+                    case 2:
+                        viewModel.sortSoundsInPlaceByDateAddedDescending()
+                    default:
+                        viewModel.sortSoundsInPlaceByTitleAscending()
+                    }
+                    //UserSettings.setSoundSortOption(to: soundSortOption)
                 })
             }
             .onAppear {
-                viewModel.reloadSoundList(withSoundIds: try? database.getAllSoundIdsInsideUserFolder(withId: folder.id))
+                viewModel.reloadSoundList(withSoundIds: try? database.getAllSoundIdsInsideUserFolder(withId: folder.id), sortedBy: .titleAscending)
                 columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
             }
             .sheet(isPresented: $showingFolderInfoEditingView) {
