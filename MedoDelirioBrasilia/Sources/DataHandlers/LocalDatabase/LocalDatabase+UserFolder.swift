@@ -87,5 +87,14 @@ extension LocalDatabase {
     func hasAnyUserFolder() throws -> Bool {
         return try db.scalar(userFolder.count) > 0
     }
+    
+    func update(userSortPreference: Int, forFolderId userFolderId: String) throws {
+        let id = Expression<String>("id")
+        let user_sort_preference = Expression<Int?>("userSortPreference")
+        
+        let folder = userFolder.filter(id == userFolderId)
+        let update = folder.update(user_sort_preference <- userSortPreference)
+        try db.run(update)
+    }
 
 }

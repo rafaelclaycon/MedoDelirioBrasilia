@@ -50,14 +50,7 @@ class FolderDetailViewViewModel: ObservableObject {
             self.sounds[i].authorName = authorData.first(where: { $0.id == self.sounds[i].authorId })?.name ?? Shared.unknownAuthor
         }
         
-        switch sortOption {
-        case .titleAscending:
-            sortSoundsInPlaceByTitleAscending()
-        case .authorNameAscending:
-            sortSoundsInPlaceByAuthorNameAscending()
-        case .dateAddedDescending:
-            sortSoundsInPlaceByDateAddedDescending()
-        }
+        self.soundSortOption = sortOption.rawValue
         
         self.hasSoundsToDisplay = true
     }

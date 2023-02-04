@@ -18,7 +18,7 @@ struct AddDateAndVersionToUserFolderTables: Migration {
     
     func migrateDatabase(_ db: Connection) throws {
         try createDateAddedField(db)
-        try createCreationDateAndVersionFields(db)
+        try createUserFolderFields(db)
     }
     
     private func createDateAddedField(_ db: Connection) throws {
@@ -26,11 +26,13 @@ struct AddDateAndVersionToUserFolderTables: Migration {
         try db.run(userFolderContent.addColumn(date_added))
     }
     
-    private func createCreationDateAndVersionFields(_ db: Connection) throws {
+    private func createUserFolderFields(_ db: Connection) throws {
         let creation_date = Expression<Date?>("creationDate")
         try db.run(userFolder.addColumn(creation_date))
         let version = Expression<String?>("version")
         try db.run(userFolder.addColumn(version))
+        let user_sort_preference = Expression<Int?>("userSortPreference")
+        try db.run(userFolder.addColumn(user_sort_preference))
     }
 
 }

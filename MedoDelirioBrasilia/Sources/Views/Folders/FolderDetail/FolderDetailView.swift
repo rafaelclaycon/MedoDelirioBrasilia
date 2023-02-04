@@ -131,6 +131,20 @@ struct FolderDetailView: View {
                         Button {
                             showingFolderInfoEditingView = true
                         } label: {
+                            Label("Exportar", systemImage: "square.and.arrow.up")
+                        }
+                        
+//                        Button {
+//                            showingFolderInfoEditingView = true
+//                        } label: {
+//                            Label("Importar", systemImage: "square.and.arrow.down")
+//                        }
+                    }
+                    
+                    Section {
+                        Button {
+                            showingFolderInfoEditingView = true
+                        } label: {
                             Label("Editar Pasta", systemImage: "pencil")
                         }
                         
@@ -155,11 +169,11 @@ struct FolderDetailView: View {
                     default:
                         viewModel.sortSoundsInPlaceByTitleAscending()
                     }
-                    //UserSettings.setSoundSortOption(to: soundSortOption)
+                    try? database.update(userSortPreference: soundSortOption, forFolderId: folder.id)
                 })
             }
             .onAppear {
-                viewModel.reloadSoundList(withSoundIds: try? database.getAllSoundIdsInsideUserFolder(withId: folder.id), sortedBy: .titleAscending)
+                viewModel.reloadSoundList(withSoundIds: try? database.getAllSoundIdsInsideUserFolder(withId: folder.id), sortedBy: FolderSoundSortOption(rawValue: folder.userSortPreference ?? 0) ?? .titleAscending)
                 columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
             }
             .sheet(isPresented: $showingFolderInfoEditingView) {
