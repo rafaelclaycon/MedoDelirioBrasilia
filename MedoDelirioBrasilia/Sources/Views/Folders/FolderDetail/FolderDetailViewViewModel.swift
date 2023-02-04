@@ -15,6 +15,7 @@ class FolderDetailViewViewModel: ObservableObject {
     @Published var hasSoundsToDisplay: Bool = false
     @Published var selectedSound: Sound? = nil
     @Published var nowPlayingKeeper = Set<String>()
+    @Published var soundSortOption: Int = FolderSoundSortOption.titleAscending.rawValue
     
     // Sharing
     @Published var iPadShareSheet = ActivityViewController(activityItems: [URL(string: "https://www.apple.com")!])

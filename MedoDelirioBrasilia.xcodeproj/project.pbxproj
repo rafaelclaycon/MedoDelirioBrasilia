@@ -304,6 +304,7 @@
 		D94D9F01298D8AFC006F14A5 /* Silas Malafaia - Covarde frouxo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94D9EFE298D8AFC006F14A5 /* Silas Malafaia - Covarde frouxo.mp3 */; };
 		D94D9F02298D8AFC006F14A5 /* Silas Malafaia - Tu acha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94D9EFF298D8AFC006F14A5 /* Silas Malafaia - Tu acha.mp3 */; };
 		D94D9F03298D8AFC006F14A5 /* Silas Malafaia - Eu tenho pena.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94D9F00298D8AFC006F14A5 /* Silas Malafaia - Eu tenho pena.mp3 */; };
+		D94D9F05298DB98D006F14A5 /* AddDateAndVersionToUserFolderTables.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94D9F04298DB98D006F14A5 /* AddDateAndVersionToUserFolderTables.swift */; };
 		D94FBD342948F64F001FA3A8 /* Heraclito Sobral Pinto - Militares e Republica nao combinam.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94FBD332948F64E001FA3A8 /* Heraclito Sobral Pinto - Militares e Republica nao combinam.mp3 */; };
 		D9523741285BF98A00E6C838 /* NetworkRabbitStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */; };
 		D9523743285BF99800E6C838 /* LocalDatabaseSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9523742285BF99800E6C838 /* LocalDatabaseSpy.swift */; };
@@ -1536,6 +1537,7 @@
 		D94D9EFE298D8AFC006F14A5 /* Silas Malafaia - Covarde frouxo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Silas Malafaia - Covarde frouxo.mp3"; sourceTree = "<group>"; };
 		D94D9EFF298D8AFC006F14A5 /* Silas Malafaia - Tu acha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Silas Malafaia - Tu acha.mp3"; sourceTree = "<group>"; };
 		D94D9F00298D8AFC006F14A5 /* Silas Malafaia - Eu tenho pena.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Silas Malafaia - Eu tenho pena.mp3"; sourceTree = "<group>"; };
+		D94D9F04298DB98D006F14A5 /* AddDateAndVersionToUserFolderTables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDateAndVersionToUserFolderTables.swift; sourceTree = "<group>"; };
 		D94FBD332948F64E001FA3A8 /* Heraclito Sobral Pinto - Militares e Republica nao combinam.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Heraclito Sobral Pinto - Militares e Republica nao combinam.mp3"; sourceTree = "<group>"; };
 		D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRabbitStub.swift; sourceTree = "<group>"; };
 		D9523742285BF99800E6C838 /* LocalDatabaseSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDatabaseSpy.swift; sourceTree = "<group>"; };
@@ -3956,6 +3958,7 @@
 				D9F87A9128F6EA51002EE8AA /* RemoveFavoriteLogTable.swift */,
 				D9E5055F28F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift */,
 				D9A3984828FDEE0D00039B7B /* AddRankingTypeToAudienceSharingStatisticTable.swift */,
+				D94D9F04298DB98D006F14A5 /* AddDateAndVersionToUserFolderTables.swift */,
 			);
 			path = Migrations;
 			sourceTree = "<group>";
@@ -5331,6 +5334,7 @@
 				D93CCB7B286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift in Sources */,
 				D9625E7E28238F9A00080852 /* MedoDelirioBrasiliaApp.swift in Sources */,
 				D958B1AC28394DCD0010F133 /* AuthorsView.swift in Sources */,
+				D94D9F05298DB98D006F14A5 /* AddDateAndVersionToUserFolderTables.swift in Sources */,
 				D92E7072283C5D990035826C /* SongsViewViewModel.swift in Sources */,
 				D92C0CAC28406EA5009CF19A /* UserShareLog.swift in Sources */,
 				D961D016283722AB00EFEDEB /* Color+CustomColors.swift in Sources */,

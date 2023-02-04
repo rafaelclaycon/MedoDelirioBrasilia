@@ -22,6 +22,11 @@ struct FolderDetailView: View {
     // Share as Video
     @State private var shareAsVideo_Result = ShareAsVideoResult()
     
+    private var showSortByDateAddedOption: Bool {
+        guard let folderVersion = folder.version else { return false }
+        return folderVersion == "2"
+    }
+    
     var body: some View {
         ZStack {
             VStack {
@@ -82,7 +87,7 @@ struct FolderDetailView: View {
                                 }
                             }
                             .padding(.horizontal)
-                            .padding(.top, 7)
+                            .padding(.bottom, 18)
                             .onChange(of: geometry.size.width) { newWidth in
                                 self.listWidth = newWidth
                                 columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
@@ -95,34 +100,60 @@ struct FolderDetailView: View {
                 }
             }
             .navigationTitle("\(folder.symbol)  \(folder.name)")
-//            .navigationBarItems(trailing:
-//                HStack {
-//                    Menu {
-//                        if UIDevice.current.userInterfaceIdiom == .phone {
-//                            Section {
-//                                Button {
-//                                    showingFolderInfoEditingView = true
-//                                } label: {
-//                                    Label("Editar Pasta", systemImage: "pencil")
-//                                }
-//                            }
-//                        }
-//                        
-//                        Section {
-//                            Button(role: .destructive, action: {
-//                                //viewModel.dummyCall()
-//                            }, label: {
-//                                HStack {
-//                                    Text("Apagar Pasta")
-//                                    Image(systemName: "trash")
-//                                }
-//                            })
-//                        }
-//                    } label: {
-//                        Image(systemName: "ellipsis.circle")
-//                    }
-//                }
-//            )
+            .toolbar {
+                Menu {
+                    Section {
+                        Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
+                            HStack {
+                                Text("Título")
+                                Image(systemName: "a.circle")
+                            }
+                            .tag(0)
+                            
+                            HStack {
+                                Text("Nome do(a) Autor(a)")
+                                Image(systemName: "person")
+                            }
+                            .tag(1)
+                            
+                            if showSortByDateAddedOption {
+                                HStack {
+                                    Text("Adição à Pasta (Mais Recentes no Topo)")
+                                    Image(systemName: "calendar")
+                                }
+                                .tag(2)
+                            }
+                        }
+                    }
+                    
+                    Section {
+                        Button {
+                            showingFolderInfoEditingView = true
+                        } label: {
+                            Label("Editar Pasta", systemImage: "pencil")
+                        }
+                        
+                        Button(role: .destructive, action: {
+                            //viewModel.dummyCall()
+                        }, label: {
+                            HStack {
+                                Text("Apagar Pasta")
+                                Image(systemName: "trash")
+                            }
+                        })
+                    }
+                } label: {
+                    Image(systemName: "ellipsis.circle")
+                }
+                .onChange(of: viewModel.soundSortOption, perform: { soundSortOption in
+                    viewModel.reloadList(withSounds: soundData,
+                                         andFavorites: try? database.getAllFavorites(),
+                                         allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+                                         favoritesOnly: currentMode == .favorites,
+                                         sortedBy: SoundSortOption(rawValue: soundSortOption) ?? .titleAscending)
+                    UserSettings.setSoundSortOption(to: soundSortOption)
+                })
+            }
             .onAppear {
                 viewModel.reloadSoundList(withSoundIds: try? database.getAllSoundIdsInsideUserFolder(withId: folder.id))
                 columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)

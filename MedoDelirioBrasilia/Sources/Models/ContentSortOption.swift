@@ -24,3 +24,9 @@ enum AuthorSortOption: Int {
     case nameAscending, soundCountDescending, soundCountAscending
 
 }
+
+enum FolderSoundSortOption: Int {
+
+    case titleAscending, authorNameAscending, dateAddedDescending
+
+}

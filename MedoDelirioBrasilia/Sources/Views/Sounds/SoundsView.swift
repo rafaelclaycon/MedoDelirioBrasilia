@@ -449,7 +449,7 @@ struct SoundsView: View {
                         Section {
                             Picker("Ordenação de Autores", selection: $viewModel.authorSortOption) {
                                 HStack {
-                                    Text("Ordenar por Nome")
+                                    Text("Nome")
                                     Image(systemName: "a.circle")
                                 }
                                 .tag(0)
@@ -478,13 +478,13 @@ struct SoundsView: View {
                         Section {
                             Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
                                 HStack {
-                                    Text("Ordenar por Título")
+                                    Text("Título")
                                     Image(systemName: "a.circle")
                                 }
                                 .tag(0)
                                 
                                 HStack {
-                                    Text("Ordenar por Nome do Autor")
+                                    Text("Nome do(a) Autor(a)")
                                     Image(systemName: "person")
                                 }
                                 .tag(1)
