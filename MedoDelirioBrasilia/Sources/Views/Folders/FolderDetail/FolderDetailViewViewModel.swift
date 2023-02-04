@@ -29,14 +29,16 @@ class FolderDetailViewViewModel: ObservableObject {
     @Published var showAlert: Bool = false
     @Published var alertType: AlertType = .singleOption
     
-    func reloadSoundList(withSoundIds soundIds: [String]?, sortedBy sortOption: FolderSoundSortOption) {
-        guard let soundIds = soundIds else {
+    func reloadSoundList(withFolderContents folderContents: [UserFolderContent]?, sortedBy sortOption: FolderSoundSortOption) {
+        guard let folderContents = folderContents else {
             self.sounds = [Sound]()
             self.hasSoundsToDisplay = false
             return
         }
         
-        let sounds = soundData.filter({ soundIds.contains($0.id) })
+        let sounds = soundData.filter { sound in
+            folderContents.contains { $0.contentId == sound.id }
+        }
         
         guard sounds.count > 0 else {
             self.sounds = [Sound]()
@@ -48,6 +50,8 @@ class FolderDetailViewViewModel: ObservableObject {
         
         for i in stride(from: 0, to: self.sounds.count, by: 1) {
             self.sounds[i].authorName = authorData.first(where: { $0.id == self.sounds[i].authorId })?.name ?? Shared.unknownAuthor
+            // DateAdded here is date added to folder not to the app as it means outside folders.
+            self.sounds[i].dateAdded = folderContents.first(where: { $0.contentId == self.sounds[i].id })?.dateAdded
         }
         
         if sortOption.rawValue == self.soundSortOption {
@@ -76,10 +80,6 @@ class FolderDetailViewViewModel: ObservableObject {
     
     func sortSoundsInPlaceByDateAddedDescending() {
         self.sounds.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
-        
-        self.sounds.forEach { sound in
-            print("\(sound.title): \(sound.dateAdded)")
-        }
     }
     
     func getSoundCount() -> String {
@@ -260,7 +260,7 @@ class FolderDetailViewViewModel: ObservableObject {
     
     func removeSoundFromFolder(folderId: String, soundId: String) {
         try? database.deleteUserContentFromFolder(withId: folderId, contentId: soundId)
-        reloadSoundList(withSoundIds: try? database.getAllSoundIdsInsideUserFolder(withId: folderId), sortedBy: FolderSoundSortOption(rawValue: soundSortOption) ?? .titleAscending)
+        reloadSoundList(withFolderContents: try? database.getAllContentsInsideUserFolder(withId: folderId), sortedBy: FolderSoundSortOption(rawValue: soundSortOption) ?? .titleAscending)
     }
     
     // MARK: - Alerts

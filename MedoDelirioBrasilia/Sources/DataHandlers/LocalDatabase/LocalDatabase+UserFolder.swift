@@ -72,6 +72,17 @@ extension LocalDatabase {
         return queriedIds
     }
     
+    func getAllContentsInsideUserFolder(withId userFolderId: String) throws -> [UserFolderContent] {
+        var queriedContents = [UserFolderContent]()
+        let user_folder_id = Expression<String>("userFolderId")
+        
+        for queriedContent in try db.prepare(userFolderContent.where(user_folder_id == userFolderId)) {
+            queriedContents.append(try queriedContent.decode())
+        }
+        
+        return queriedContents
+    }
+    
     func deleteUserFolder(withId folderId: String) throws {
         let folder_id_on_folder_content_table = Expression<String>("userFolderId")
         let allFolderContent = userFolderContent.filter(folder_id_on_folder_content_table == folderId)

@@ -173,7 +173,7 @@ struct FolderDetailView: View {
                 })
             }
             .onAppear {
-                viewModel.reloadSoundList(withSoundIds: try? database.getAllSoundIdsInsideUserFolder(withId: folder.id), sortedBy: FolderSoundSortOption(rawValue: folder.userSortPreference ?? 0) ?? .titleAscending)
+                viewModel.reloadSoundList(withFolderContents: try? database.getAllContentsInsideUserFolder(withId: folder.id), sortedBy: FolderSoundSortOption(rawValue: folder.userSortPreference ?? 0) ?? .titleAscending)
                 columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
             }
             .sheet(isPresented: $showingFolderInfoEditingView) {
