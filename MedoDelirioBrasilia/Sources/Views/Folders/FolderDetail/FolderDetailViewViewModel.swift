@@ -50,7 +50,18 @@ class FolderDetailViewViewModel: ObservableObject {
             self.sounds[i].authorName = authorData.first(where: { $0.id == self.sounds[i].authorId })?.name ?? Shared.unknownAuthor
         }
         
-        self.soundSortOption = sortOption.rawValue
+        if sortOption.rawValue == self.soundSortOption {
+            switch sortOption {
+            case .titleAscending:
+                sortSoundsInPlaceByTitleAscending()
+            case .authorNameAscending:
+                sortSoundsInPlaceByAuthorNameAscending()
+            case .dateAddedDescending:
+                sortSoundsInPlaceByDateAddedDescending()
+            }
+        } else {
+            self.soundSortOption = sortOption.rawValue
+        }
         
         self.hasSoundsToDisplay = true
     }
@@ -65,6 +76,10 @@ class FolderDetailViewViewModel: ObservableObject {
     
     func sortSoundsInPlaceByDateAddedDescending() {
         self.sounds.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
+        
+        self.sounds.forEach { sound in
+            print("\(sound.title): \(sound.dateAdded)")
+        }
     }
     
     func getSoundCount() -> String {
