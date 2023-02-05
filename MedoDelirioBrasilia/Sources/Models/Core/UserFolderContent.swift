@@ -11,11 +11,14 @@ struct UserFolderContent: Hashable, Codable {
 
     var userFolderId: String
     var contentId: String
+    var dateAdded: Date?
     
     init(userFolderId: String,
-         contentId: String) {
+         contentId: String,
+         dateAdded: Date? = nil) {
         self.userFolderId = userFolderId
         self.contentId = contentId
+        self.dateAdded = dateAdded
     }
 
 }

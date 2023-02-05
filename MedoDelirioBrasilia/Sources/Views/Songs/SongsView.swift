@@ -126,7 +126,7 @@ struct SongsView: View {
                     Section {
                         Picker("Ordenação", selection: $viewModel.sortOption) {
                             HStack {
-                                Text("Ordenar por Título")
+                                Text("Título")
                                 Image(systemName: "a.circle")
                             }
                             .tag(0)
