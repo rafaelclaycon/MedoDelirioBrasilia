@@ -127,36 +127,36 @@ struct FolderDetailView: View {
                         .disabled(viewModel.sounds.count == 0)
                     }
                     
-                    Section {
-                        Button {
-                            showingFolderInfoEditingView = true
-                        } label: {
-                            Label("Exportar", systemImage: "square.and.arrow.up")
-                        }
-                        
+//                    Section {
+//                        Button {
+//                            showingFolderInfoEditingView = true
+//                        } label: {
+//                            Label("Exportar", systemImage: "square.and.arrow.up")
+//                        }
+//
 //                        Button {
 //                            showingFolderInfoEditingView = true
 //                        } label: {
 //                            Label("Importar", systemImage: "square.and.arrow.down")
 //                        }
-                    }
+//                    }
                     
-                    Section {
-                        Button {
-                            showingFolderInfoEditingView = true
-                        } label: {
-                            Label("Editar Pasta", systemImage: "pencil")
-                        }
-                        
-                        Button(role: .destructive, action: {
-                            //viewModel.dummyCall()
-                        }, label: {
-                            HStack {
-                                Text("Apagar Pasta")
-                                Image(systemName: "trash")
-                            }
-                        })
-                    }
+//                    Section {
+//                        Button {
+//                            showingFolderInfoEditingView = true
+//                        } label: {
+//                            Label("Editar Pasta", systemImage: "pencil")
+//                        }
+//                        
+//                        Button(role: .destructive, action: {
+//                            //viewModel.dummyCall()
+//                        }, label: {
+//                            HStack {
+//                                Text("Apagar Pasta")
+//                                Image(systemName: "trash")
+//                            }
+//                        })
+//                    }
                 } label: {
                     Image(systemName: "ellipsis.circle")
                 }
