@@ -315,29 +315,23 @@ struct AuthorDetailView: View {
     
     @ViewBuilder func moreOptionsMenu(isOnToolbar: Bool) -> some View {
         Menu {
-            Section {
-                Button {
-                    viewModel.selectedSoundsForAddToFolder = viewModel.sounds
-                    showingAddToFolderModal = true
-                } label: {
-                    Label("Adicionar Todos a Pasta", systemImage: "folder.badge.plus")
-                }
+            Button {
+                viewModel.selectedSoundsForAddToFolder = viewModel.sounds
+                showingAddToFolderModal = true
+            } label: {
+                Label("Adicionar Todos a Pasta", systemImage: "folder.badge.plus")
             }
             
-            Section {
-                Button {
-                    viewModel.showAskForNewSoundAlert()
-                } label: {
-                    Label("Pedir Som Desse Autor", systemImage: "plus.circle")
-                }
+            Button {
+                viewModel.showAskForNewSoundAlert()
+            } label: {
+                Label("Pedir Som Desse Autor", systemImage: "plus.circle")
             }
             
-            Section {
-                Button {
-                    viewModel.showEmailAppPicker_reportAuthorDetailIssue = true
-                } label: {
-                    Label("Relatar Problema com os Detalhes Desse Autor", systemImage: "person.crop.circle.badge.exclamationmark")
-                }
+            Button {
+                viewModel.showEmailAppPicker_reportAuthorDetailIssue = true
+            } label: {
+                Label("Relatar Problema com os Detalhes Desse Autor", systemImage: "person.crop.circle.badge.exclamationmark")
             }
         } label: {
             if isOnToolbar {

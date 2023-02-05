@@ -65,7 +65,7 @@ struct SoundCell: View {
     }
     
     private var authorNameLineLimit: Int {
-        if (UIScreen.main.bounds.width < 380) && (title.count > 20) {
+        if (UIScreen.main.bounds.width <= 390) && (title.count > 20) {
             return 1
         } else {
             return 2

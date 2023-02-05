@@ -8801,7 +8801,7 @@
         "filename": "Tu e maluco ou idiota.mp3",
         "dateAdded": "2023-02-03T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "1CE55541-513A-4D5F-8A2C-9A2420056AA4",
@@ -8811,7 +8811,7 @@
         "filename": "Rodrigo Constantino - Recuou e um eufemismo ne arregou.mp3",
         "dateAdded": "2023-02-03T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "04B2D3F7-0459-44C0-852C-AF0C77FDE411",
@@ -8821,7 +8821,7 @@
         "filename": "Silas Malafaia - Quel.mp3",
         "dateAdded": "2023-02-03T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "0BCB6A08-5F2C-4846-BA98-B2FA6192D666",
@@ -8831,7 +8831,7 @@
         "filename": "Silas Malafaia - Covarde frouxo.mp3",
         "dateAdded": "2023-02-03T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "FB193A56-6A60-41E4-B265-3D354610B7E4",
@@ -8841,7 +8841,7 @@
         "filename": "Silas Malafaia - Tu acha.mp3",
         "dateAdded": "2023-02-03T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "0E92147D-339B-444D-8403-887A2C4CD210",
@@ -8851,6 +8851,6 @@
         "filename": "Silas Malafaia - Eu tenho pena.mp3",
         "dateAdded": "2023-02-03T00:00:00Z",
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     }
 ]
