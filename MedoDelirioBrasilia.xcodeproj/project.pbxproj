@@ -1146,6 +1146,11 @@
 		D9E5056028F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E5055F28F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift */; };
 		D9E5056228F79ECB008DAA1E /* Luiz Felipe D'Avila - Que tistreza.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E5056128F79ECB008DAA1E /* Luiz Felipe D'Avila - Que tistreza.mp3 */; };
 		D9E5100A286084F2003DB3A3 /* Date+OnlyDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E51009286084F2003DB3A3 /* Date+OnlyDate.swift */; };
+		D9E60F69298F2CC000E723C6 /* MixSoundsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E60F68298F2CC000E723C6 /* MixSoundsView.swift */; };
+		D9E60F6B298F2F8000E723C6 /* WaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E60F6A298F2F8000E723C6 /* WaveformView.swift */; };
+		D9E60F6D298F323B00E723C6 /* SoundMixHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E60F6C298F323B00E723C6 /* SoundMixHelper.swift */; };
+		D9E60F6F299002AF00E723C6 /* SoundInMixCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E60F6E299002AF00E723C6 /* SoundInMixCell.swift */; };
+		D9E60F712990056C00E723C6 /* SoundInMix.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E60F702990056C00E723C6 /* SoundInMix.swift */; };
 		D9E69592283D2E2C00C341B2 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = D9E69591283D2E2C00C341B2 /* SQLite */; };
 		D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E69593283D2F2F00C341B2 /* Favorite.swift */; };
 		D9E7D0EA28AC6195001E909E /* Dose segura de crack, os tios e as tias do Zap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E7D0E928AC6195001E909E /* Dose segura de crack, os tios e as tias do Zap.mp3 */; };
@@ -2382,6 +2387,11 @@
 		D9E5055F28F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAudienceSharingStatisticTable.swift; sourceTree = "<group>"; };
 		D9E5056128F79ECB008DAA1E /* Luiz Felipe D'Avila - Que tistreza.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Luiz Felipe D'Avila - Que tistreza.mp3"; sourceTree = "<group>"; };
 		D9E51009286084F2003DB3A3 /* Date+OnlyDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+OnlyDate.swift"; sourceTree = "<group>"; };
+		D9E60F68298F2CC000E723C6 /* MixSoundsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixSoundsView.swift; sourceTree = "<group>"; };
+		D9E60F6A298F2F8000E723C6 /* WaveformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveformView.swift; sourceTree = "<group>"; };
+		D9E60F6C298F323B00E723C6 /* SoundMixHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundMixHelper.swift; sourceTree = "<group>"; };
+		D9E60F6E299002AF00E723C6 /* SoundInMixCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundInMixCell.swift; sourceTree = "<group>"; };
+		D9E60F702990056C00E723C6 /* SoundInMix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundInMix.swift; sourceTree = "<group>"; };
 		D9E69593283D2F2F00C341B2 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		D9E7D0E928AC6195001E909E /* Dose segura de crack, os tios e as tias do Zap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Dose segura de crack, os tios e as tias do Zap.mp3"; sourceTree = "<group>"; };
 		D9E7D0EB28AC6348001E909E /* REDE GLOBO - GIL DO VIGOR - Eu estou to indignado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "REDE GLOBO - GIL DO VIGOR - Eu estou to indignado.mp3"; sourceTree = "<group>"; };
@@ -3753,6 +3763,7 @@
 				D98622DE283FC53B00E9F630 /* Authors */,
 				D95F363828AD385100743026 /* ShareAsVideo */,
 				D9943F2428641FB7002C6B97 /* Folders */,
+				D9E60F67298F2CA300E723C6 /* SoundMix */,
 				D9EB18A32857CDE200A2F8A8 /* Collections */,
 				D92E7073283C5D9E0035826C /* Songs */,
 				D9BF90BC2842EAB100BDDD7D /* Trends */,
@@ -3826,6 +3837,7 @@
 				D9A3AB6A28F03C970064CB7A /* ViewStates.swift */,
 				D9F9BB38294A167C0005BE56 /* TrendsHelper.swift */,
 				D96A641F2955F32F00DC0F03 /* SettingsHelper.swift */,
+				D9E60F6C298F323B00E723C6 /* SoundMixHelper.swift */,
 			);
 			path = ViewAid;
 			sourceTree = "<group>";
@@ -4091,6 +4103,17 @@
 				D97D76F82885B1BD005210D9 /* SidebarFolderIcon.swift */,
 			);
 			path = iPad;
+			sourceTree = "<group>";
+		};
+		D9E60F67298F2CA300E723C6 /* SoundMix */ = {
+			isa = PBXGroup;
+			children = (
+				D9E60F68298F2CC000E723C6 /* MixSoundsView.swift */,
+				D9E60F6A298F2F8000E723C6 /* WaveformView.swift */,
+				D9E60F6E299002AF00E723C6 /* SoundInMixCell.swift */,
+				D9E60F702990056C00E723C6 /* SoundInMix.swift */,
+			);
+			path = SoundMix;
 			sourceTree = "<group>";
 		};
 		D9E69595283D54EA00C341B2 /* DataHandlers */ = {
@@ -5287,6 +5310,7 @@
 				D9625E8028238F9A00080852 /* SoundsView.swift in Sources */,
 				D91107142863B5FD000B6F8F /* ContentCollection.swift in Sources */,
 				D9877D2928694F3200B541F9 /* LocalDatabase+UserFolderContent.swift in Sources */,
+				D9E60F69298F2CC000E723C6 /* MixSoundsView.swift in Sources */,
 				D99BBE4129466D9800BCA901 /* UsageMetric.swift in Sources */,
 				D9CC893328EB7BB500576492 /* MostSharedByAudienceView.swift in Sources */,
 				D912A33A28B5321400F7293D /* ShareAsVideoResult.swift in Sources */,
@@ -5306,6 +5330,7 @@
 				D92E7067283C51D20035826C /* Song.swift in Sources */,
 				D93CCB79286A8A220002CF81 /* ToastView.swift in Sources */,
 				D958BC752869000A000B2EDA /* FolderInfoEditingViewViewModel.swift in Sources */,
+				D9E60F6F299002AF00E723C6 /* SoundInMixCell.swift in Sources */,
 				D9F87A9228F6EA51002EE8AA /* RemoveFavoriteLogTable.swift in Sources */,
 				D9DCC5D52875CB59008DD4A3 /* AppPersistentMemory.swift in Sources */,
 				D938132F287E12B3009EE24F /* NotificationAide.swift in Sources */,
@@ -5313,6 +5338,7 @@
 				D976FF3828674BAC00998E1B /* FoldersBannerView.swift in Sources */,
 				D90EDDBA2908505000ED87A8 /* FolderResearchHelper.swift in Sources */,
 				D97D76FB2885B794005210D9 /* EmailAppPickerView.swift in Sources */,
+				D9E60F712990056C00E723C6 /* SoundInMix.swift in Sources */,
 				D9A3AB6B28F03C970064CB7A /* ViewStates.swift in Sources */,
 				D99B9DCA2848148600897930 /* ServerStatsAndLogs.swift in Sources */,
 				D9758C3828616E650094D388 /* FolderColor.swift in Sources */,
@@ -5360,6 +5386,7 @@
 				D9FB489A2870FE7800FF90D0 /* TapticHelper.swift in Sources */,
 				D957047D28AEF733008DEF8C /* ProcessingView.swift in Sources */,
 				D9A3984928FDEE0D00039B7B /* AddRankingTypeToAudienceSharingStatisticTable.swift in Sources */,
+				D9E60F6B298F2F8000E723C6 /* WaveformView.swift in Sources */,
 				D967E2BA290196F900B21C11 /* WallE.swift in Sources */,
 				D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */,
 				D93A02982906DE8C00A85FE2 /* UserFolderLog.swift in Sources */,
@@ -5448,6 +5475,7 @@
 				D9C35D23288713990065F3E7 /* HotWeatherAdBannerView.swift in Sources */,
 				D9BF90972842D3CB00BDDD7D /* NoSoundsView.swift in Sources */,
 				D927C424285245CE0041970A /* SoundOptionsHelper.swift in Sources */,
+				D9E60F6D298F323B00E723C6 /* SoundMixHelper.swift in Sources */,
 				D9A8AB282854436500B5A94B /* Date+ToString.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -14,7 +14,7 @@ struct SoundsView: View {
     }
     
     enum SubviewToOpen {
-        case onboardingView, addToFolderView, shareAsVideoView, settingsView
+        case onboardingView, addToFolderView, shareAsVideoView, settingsView, mixSounds
     }
     
     @StateObject var viewModel: SoundsViewViewModel
@@ -58,6 +58,8 @@ struct SoundsView: View {
     // Toast views
     private let toastViewBottomPaddingPhone: CGFloat = 60
     private let toastViewBottomPaddingPad: CGFloat = 15
+    
+    @StateObject var soundMixHelper = SoundMixHelper()
     
     private var searchResults: [Sound] {
         if searchText.isEmpty {
@@ -194,6 +196,14 @@ struct SoundsView: View {
                                                                     }
                                                                 }
                                                             }
+                                                        }
+                                                    }
+                                                    
+                                                    Section {
+                                                        Button {
+                                                            soundMixHelper.sounds.append(sound)
+                                                        } label: {
+                                                            Label("Adicionar à Mistura", systemImage: "shuffle")
                                                         }
                                                     }
                                                     
@@ -336,6 +346,10 @@ struct SoundsView: View {
                 case .settingsView:
                     SettingsCasingWithCloseView(isBeingShown: $showingModalView)
                         .environmentObject(settingsHelper)
+                    
+                case .mixSounds:
+                    MixSoundsView(isBeingShown: $showingModalView)
+                        .environmentObject(soundMixHelper)
                 }
             }
             .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in
@@ -474,39 +488,48 @@ struct SoundsView: View {
                         authorSortAction = AuthorSortOption(rawValue: authorSortOption) ?? .nameAscending
                     })
                 } else {
-                    Menu {
-                        Section {
-                            Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
-                                HStack {
-                                    Text("Título")
-                                    Image(systemName: "a.circle")
-                                }
-                                .tag(0)
-                                
-                                HStack {
-                                    Text("Nome do(a) Autor(a)")
-                                    Image(systemName: "person")
-                                }
-                                .tag(1)
-                                
-                                HStack {
-                                    Text("Mais Recentes no Topo")
-                                    Image(systemName: "calendar")
-                                }
-                                .tag(2)
-                            }
+                    HStack {
+                        Button {
+                            subviewToOpen = .mixSounds
+                            showingModalView = true
+                        } label: {
+                            Image(systemName: "shuffle")
                         }
-                    } label: {
-                        Image(systemName: "arrow.up.arrow.down")
+                        
+                        Menu {
+                            Section {
+                                Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
+                                    HStack {
+                                        Text("Título")
+                                        Image(systemName: "a.circle")
+                                    }
+                                    .tag(0)
+                                    
+                                    HStack {
+                                        Text("Nome do(a) Autor(a)")
+                                        Image(systemName: "person")
+                                    }
+                                    .tag(1)
+                                    
+                                    HStack {
+                                        Text("Mais Recentes no Topo")
+                                        Image(systemName: "calendar")
+                                    }
+                                    .tag(2)
+                                }
+                            }
+                        } label: {
+                            Image(systemName: "arrow.up.arrow.down")
+                        }
+                        .onChange(of: viewModel.soundSortOption, perform: { soundSortOption in
+                            viewModel.reloadList(withSounds: soundData,
+                                                 andFavorites: try? database.getAllFavorites(),
+                                                 allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+                                                 favoritesOnly: currentMode == .favorites,
+                                                 sortedBy: SoundSortOption(rawValue: soundSortOption) ?? .titleAscending)
+                            UserSettings.setSoundSortOption(to: soundSortOption)
+                        })
                     }
-                    .onChange(of: viewModel.soundSortOption, perform: { soundSortOption in
-                        viewModel.reloadList(withSounds: soundData,
-                                             andFavorites: try? database.getAllFavorites(),
-                                             allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
-                                             favoritesOnly: currentMode == .favorites,
-                                             sortedBy: SoundSortOption(rawValue: soundSortOption) ?? .titleAscending)
-                        UserSettings.setSoundSortOption(to: soundSortOption)
-                    })
                 }
             }
         }
