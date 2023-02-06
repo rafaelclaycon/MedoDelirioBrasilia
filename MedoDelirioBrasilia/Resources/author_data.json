@@ -11,7 +11,8 @@
     },
     {
         "id": "959D8DD0-0EFB-4CC2-98C2-C61182BCFEC3",
-        "name": "Igor Guimarães"
+        "name": "Igor Guimarães",
+        "description": "Comediante de stand-up."
     },
     {
         "id": "045F8453-244C-4B94-8F89-395FE8986139",
@@ -28,12 +29,14 @@
     {
         "id": "2267C284-7BA1-42DB-8AE8-E329E28CF43C",
         "name": "Alceu Valença",
-        "photo": "https://dicionariompb.com.br/wp-content/uploads/2021/04/channels4_profile.jpg"
+        "photo": "https://dicionariompb.com.br/wp-content/uploads/2021/04/channels4_profile.jpg",
+        "description": "Cantor, compositor, instrumentista e advogado brasileiro."
     },
     {
         "id": "17860F3D-A18C-4684-86D0-931306A6937A",
         "name": "Gil Brother (Away de Petrópolis)",
-        "photo": "https://pm1.narvii.com/6755/9f46f1336fd3f526f21dc8b64dfc952a5c3e7ddbv2_hq.jpg"
+        "photo": "https://pm1.narvii.com/6755/9f46f1336fd3f526f21dc8b64dfc952a5c3e7ddbv2_hq.jpg",
+        "description": "Ator, comediante, youtuber e ex-dançarino brasileiro. Conhecido por ter participado do grupo humorístico Hermes e Renato na MTV Brasil."
     },
     {
         "id": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
@@ -48,7 +51,9 @@
     },
     {
         "id": "51706210-3329-4A43-A823-2F91EBC4B546",
-        "name": "Ciro Gomes"
+        "name": "Ciro Gomes",
+        "photo": "https://conteudo.imguol.com.br/c/noticias/12/2022/09/24/ciro-gomes-pdt-durante-debate-entre-presidenciaveis-1664063738021_v2_1x1.jpg",
+        "description": "Advogado, professor universitário e político brasileiro. Foi candidato à presidência da República em 2018 e 2022."
     },
     {
         "id": "BDC113E6-423F-4E2E-9BDA-EDEDB225A592",
@@ -58,20 +63,26 @@
     {
         "id": "3FE2F541-6B10-47A8-A1FB-640AB6E55FA9",
         "name": "Dilma Rousseff",
-        "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Dilma_Rousseff_-_foto_oficial_2011-01-09.jpg/640px-Dilma_Rousseff_-_foto_oficial_2011-01-09.jpg"
+        "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Dilma_Rousseff_-_foto_oficial_2011-01-09.jpg/640px-Dilma_Rousseff_-_foto_oficial_2011-01-09.jpg",
+        "description": "Economista e política brasileira. 36ª Presidente do Brasil, tendo exercido o cargo de 2011 até seu afastamento por um processo de impeachment em 2016."
     },
     {
         "id": "691D4F55-79F7-407A-B0AA-71CD09059E60",
         "name": "Diogo Defante",
-        "photo": "https://criadoresid.com/wp-content/uploads/2020/08/diegodefante.jpg"
+        "photo": "https://criadoresid.com/wp-content/uploads/2020/08/diegodefante.jpg",
+        "description": "Humorista e youtuber brasileiro."
     },
     {
         "id": "4FC19D8E-7DE3-443F-B19E-90C9272F53E4",
-        "name": "Emicida"
+        "name": "Emicida",
+        "photo": "https://upload.wikimedia.org/wikipedia/commons/1/16/Emicida_Festival_Sensacional_2020_%28cropped%29.jpg",
+        "description": "Rapper, cantor, compositor e apresentador brasileiro."
     },
     {
         "id": "DD2E1B0E-21D0-4DE6-B2C5-C0FAE39BDFE4",
-        "name": "Feiticeira"
+        "name": "Feiticeira",
+        "photo": "https://upload.wikimedia.org/wikipedia/commons/2/23/Joana_Prado.jpg",
+        "description": "Personagem de dança da empresária Joana Prado Belfort."
     },
     {
         "id": "69EFC7D8-8922-4FC4-A0F8-881136B69564",
@@ -81,7 +92,9 @@
     },
     {
         "id": "6C973E63-4682-49A8-BDA3-EA20113A827A",
-        "name": "Lulu Santos"
+        "name": "Lulu Santos",
+        "photo": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Lulu_Santos_Tom_Brasil_%2845615278041%29.jpg",
+        "description": "Cantor, compositor, produtor musical e guitarrista brasileiro."
     },
     {
         "id": "7BB7B9E2-5115-4CC2-89DB-20FDA7D2287E",
@@ -253,7 +266,9 @@
     },
     {
         "id": "C066E971-8702-4261-955D-00CF642A465A",
-        "name": "Silas Malafaia"
+        "name": "Silas Malafaia",
+        "photo": "https://upload.wikimedia.org/wikipedia/commons/6/69/Silas_Malafaia_em_abril_de_2019_%28cropped%29.jpg",
+        "description": "Pastor protestante neopentecostal brasileiro, líder da Assembleia de Deus Vitória em Cristo."
     },
     {
         "id": "BC2818F5-4FA5-46FC-90C3-075691F3E979",
@@ -537,7 +552,9 @@
     },
     {
         "id": "4AE135DD-B688-45D7-B20B-88DCFE8CDD8A",
-        "name": "Omar Aziz"
+        "name": "Omar Aziz",
+        "photo": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Senadores_da_56ª_Legislatura_-_Omar_Aziz_%2846293125674%29.jpg",
+        "description": "Senador pelo Amazonas desde 2015."
     },
     {
         "id": "7E6746E4-02DF-4C86-B446-69A46EE8968B",
@@ -545,7 +562,8 @@
     },
     {
         "id": "9430814C-F738-41A5-A595-3D06C6C27CC1",
-        "name": "Jair Renan"
+        "name": "Jair Renan Bolsonaro",
+        "description": "Autointitulado filho \"04\" de Bolsonaro."
     },
     {
         "id": "57E6841C-A62E-4CE5-BBED-C967C1A38625",
@@ -569,7 +587,8 @@
     },
     {
         "id": "745CE871-B6F7-4278-B7D5-CA065D5DD946",
-        "name": "Fabrício Queiroz"
+        "name": "Fabrício Queiroz",
+        "description": "Ex-assessor parlamentar de Flávio Bolsonaro envolvido no esquema de desvio de salários do gabinete do então deputado."
     },
     {
         "id": "24F2C199-3AD3-4F2B-A68A-FF4A6873DC33",
@@ -588,7 +607,8 @@
     },
     {
         "id": "AA4313EE-E9E1-4EDB-9D40-3A9C5C286DA6",
-        "name": "Sergio Moro"
+        "name": "Sergio Moro",
+        "description": "Notório por comendar a Operação Lava Jato. Atual senador pelo Paraná desde 2023."
     },
     {
         "id": "44EBAE6B-89FF-4766-9C90-60CC84B87991",
@@ -600,7 +620,8 @@
     },
     {
         "id": "7093D0D1-97C6-479F-968F-A9BF89E4C9C1",
-        "name": "Eduardo Cunha"
+        "name": "Eduardo Cunha",
+        "description": "Presidente da Câmara dos Deputados de 2015 a 2016. Instaurou e conduziu o impeachment da presidente Dilma. Preso em 2016 por corrupção passiva e lavagem de dinheiro na Operação Lava Jato."
     },
     {
         "id": "042C48ED-4CC9-4260-9FAD-EFA1DC5930F3",
@@ -675,7 +696,8 @@
     {
         "id": "AE8E527E-23D5-41FF-9A8D-140A2A28A275",
         "name": "Alanzoka",
-        "photo": "https://i1.sndcdn.com/artworks-000465890313-x6cae8-t500x500.jpg"
+        "photo": "https://i1.sndcdn.com/artworks-000465890313-x6cae8-t500x500.jpg",
+        "description": "Streamer brasileiro."
     },
     {
         "id": "54AD2984-8D05-44CD-B4A7-72325B59E947",
@@ -707,11 +729,13 @@
     },
     {
         "id": "32DECC5A-FEE3-42B7-BBCC-B34126C317DE",
-        "name": "Rodrigo Constantino"
+        "name": "Rodrigo Constantino",
+        "description": "Economista, comentarista, colunista e escritor brasileiro ideólogo de extrema-direita e teórico da conspiração."
     },
     {
         "id": "9F5424EA-2C65-41F6-B925-F9CC6CC70787",
-        "name": "André Starqueza"
+        "name": "André Starqueza",
+        "description": "Persona de André Luis Borges Santos, também conhecido como Felina do Povão."
     },
     {
         "id": "248A6A3B-3EEF-45D6-9A2F-A81768B7B370",
@@ -1032,7 +1056,8 @@
     },
     {
         "id": "07F09910-4B4C-4C19-BFCF-4D261CE5E1BA",
-        "name": "Eduardo Bolsonaro"
+        "name": "Eduardo Bolsonaro",
+        "description": "Deputado federal por São Paulo desde 2015. Autointitulado filho \"03\" de Bolsonaro."
     },
     {
         "id": "A7D44066-DAFE-435D-8987-5A1C17EB2A69",
@@ -1147,12 +1172,14 @@
     {
         "id": "97F98648-0862-423D-B938-E80C6B5A52B9",
         "name": "Ciro Nogueira",
-        "photo": "https://i.em.com.br/Z6CDTbWP9ZTngft_os96aGaAPzc=/1200x1200/smart/imgsapp.em.com.br/app/noticia_127983242361/2022/09/26/1398378/jair-bolsonaro-e-ciro-nogueira-em-evento-no-palacio-do-planalto-_1_72364.jpg"
+        "photo": "https://i.em.com.br/Z6CDTbWP9ZTngft_os96aGaAPzc=/1200x1200/smart/imgsapp.em.com.br/app/noticia_127983242361/2022/09/26/1398378/jair-bolsonaro-e-ciro-nogueira-em-evento-no-palacio-do-planalto-_1_72364.jpg",
+        "description": "Senador pelo Piauí, filiado ao PP. Foi o ministro-chefe da Casa Civil entre agosto de 2021 e dezembro de 2022."
     },
     {
         "id": "BB05B606-9553-48B9-BC59-3BA58B3F0181",
         "name": "Flávio Bolsonaro",
-        "photo": "https://p2.trrsf.com/image/fget/cf/1200/1200/middle/images.terra.com/2019/12/19/2019-12-19T232813Z_1_LYNXMPEFBI2A6_RTROPTP_4_POLITICA-OPERACAO-FLAVIO-BOLSONARO-QUEIROZ-MP.JPG"
+        "photo": "https://p2.trrsf.com/image/fget/cf/1200/1200/middle/images.terra.com/2019/12/19/2019-12-19T232813Z_1_LYNXMPEFBI2A6_RTROPTP_4_POLITICA-OPERACAO-FLAVIO-BOLSONARO-QUEIROZ-MP.JPG",
+        "description": "Senador pelo Rio de Janeiro desde 2019. Autointitulado filho \"01\" de Bolsonaro."
     },
     {
         "id": "B8ABD61F-9C7F-449E-AFE0-092C4BBA4BDF",
@@ -1405,7 +1432,8 @@
     },
     {
         "id": "1162C5CF-E12D-44E5-91D2-55BCC316F672",
-        "name": "Pastor Márcio Valadão"
+        "name": "Pastor Márcio Valadão",
+        "description": "Líder religioso e fundador da Igreja Batista da Lagoinha, localizada em Belo Horizonte, MG, uma das maiores igrejas evangélicas do Brasil."
     },
     {
         "id": "C515748D-92E1-4732-A130-8D3BDCA187BD",
@@ -1414,7 +1442,8 @@
     },
     {
         "id": "EAA8F85D-5D5A-4EB4-842D-9F4712F2D1FE",
-        "name": "Eliane Cantanhêde"
+        "name": "Eliane Cantanhêde",
+        "description": "Jornalista brasileira."
     },
     {
         "id": "0E61B7AA-BD4B-450D-9370-3CB1A1F6934C",
@@ -1446,11 +1475,13 @@
     {
         "id": "88B74E10-49CD-43DE-B708-25DCAAABF460",
         "name": "Julio César Strassera",
+        "photo": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Strassera.jpg",
         "description": "Promotor responsável pela condenação dos líderes da ditadura militar argentina."
     },
     {
         "id": "5F25AF82-A015-4B12-A146-3ADEE371A6CD",
-        "name": "Coronel Adriano Testoni"
+        "name": "Coronel Adriano Testoni",
+        "description": "Coronel da reserva que participou dos atos golpistas de 8 de janeiro de 2023."
     },
     {
         "id": "E48F93C0-E59E-4913-9E84-711CC06EA83C",
@@ -1463,7 +1494,7 @@
     {
         "id": "EBD45548-26E5-42BA-BFDB-1F7B383DF302",
         "name": "Ana Priscila Azevedo",
-        "description": "Golpista."
+        "description": "Golpista de extrema-direita. Uma das organizadoras dos atos terroristas em Brasília em 8 de janeiro de 2023."
     },
     {
         "id": "8BEC79BB-B52B-4719-A190-70A682A13119",
