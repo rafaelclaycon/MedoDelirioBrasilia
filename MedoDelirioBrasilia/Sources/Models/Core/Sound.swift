@@ -5,7 +5,7 @@
 //  Created by Rafael Claycon Schmitt on 19/05/22.
 //
 
-import Foundation
+import AVFoundation
 
 struct Sound: Hashable, Codable, Identifiable {
 
@@ -16,7 +16,7 @@ struct Sound: Hashable, Codable, Identifiable {
     var description: String
     var filename: String
     var dateAdded: Date?
-    let duration: Int
+    let duration: Double
     let isOffensive: Bool
     let isNew: Bool?
     
@@ -26,7 +26,7 @@ struct Sound: Hashable, Codable, Identifiable {
          description: String = "",
          filename: String = "",
          dateAdded: Date? = Date(),
-         duration: Int = 0,
+         duration: Double = 0,
          isOffensive: Bool = false,
          isNew: Bool? = nil) {
         self.id = id
@@ -38,6 +38,16 @@ struct Sound: Hashable, Codable, Identifiable {
         self.duration = duration
         self.isOffensive = isOffensive
         self.isNew = isNew
+    }
+
+}
+
+extension Sound {
+
+    func getDuration() -> Double {
+        let url = URL(fileURLWithPath: Bundle.main.path(forResource: self.filename, ofType: nil)!)
+        let asset = AVURLAsset(url: url)
+        return asset.duration.seconds
     }
 
 }

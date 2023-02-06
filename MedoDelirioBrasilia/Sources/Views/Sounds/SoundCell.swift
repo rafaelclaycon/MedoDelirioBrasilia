@@ -12,12 +12,12 @@ struct SoundCell: View {
     @State var soundId: String
     @State var title: String
     @State var author: String
-    @State var duration: Int
+    @State var duration: Double
     @State var isNew: Bool
     @Binding var favorites: Set<String>
     @Binding var highlighted: Set<String>
     @Binding var nowPlaying: Set<String>
-    @State private var timeRemaining = 0
+    @State private var timeRemaining: Double = 0
     
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
@@ -90,6 +90,9 @@ struct SoundCell: View {
     
     private var subtitle: String {
         if isPlaying {
+            if duration < 1.0 {
+                return "< 1 s"
+            }
             return timeRemaining.asString()
         } else {
             return author

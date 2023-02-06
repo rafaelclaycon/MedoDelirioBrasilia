@@ -12,11 +12,11 @@ struct SongCell: View {
     @State var songId: String
     @State var title: String
     @State var genre: MusicGenre
-    @State var duration: Int
+    @State var duration: Double
     @State var isNew: Bool
     @Binding var nowPlaying: Set<String>
     @Environment(\.sizeCategory) var sizeCategory
-    @State private var timeRemaining = 0
+    @State private var timeRemaining: Double = 0
     
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     

@@ -989,7 +989,7 @@
 		D9917A0C2990850700FB6274 /* Julio Cesar Strassera - Esta es nuestra oportunidad y quica sea la ultima.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9917A0A2990850700FB6274 /* Julio Cesar Strassera - Esta es nuestra oportunidad y quica sea la ultima.mp3 */; };
 		D9917A0D2990850700FB6274 /* Compilacao de foda-se.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9917A0B2990850700FB6274 /* Compilacao de foda-se.mp3 */; };
 		D9917A0F2990856C00FB6274 /* Cristiano Botafogo - Generais na casa do caralho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9917A0E2990856C00FB6274 /* Cristiano Botafogo - Generais na casa do caralho.mp3 */; };
-		D9917A112991530000FB6274 /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9917A102991530000FB6274 /* Int+Extensions.swift */; };
+		D9917A112991530000FB6274 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9917A102991530000FB6274 /* Double+Extensions.swift */; };
 		D991E598284A94F70005705F /* Podium.swift in Sources */ = {isa = PBXBuildFile; fileRef = D991E597284A94F70005705F /* Podium.swift */; };
 		D9943F152863CC4D002C6B97 /* A impiedosa justica de Deus.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9943F142863CC4D002C6B97 /* A impiedosa justica de Deus.mp3 */; };
 		D9943F172863DAE1002C6B97 /* FolderDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F162863DAE1002C6B97 /* FolderDetailView.swift */; };
@@ -2229,7 +2229,7 @@
 		D9917A0A2990850700FB6274 /* Julio Cesar Strassera - Esta es nuestra oportunidad y quica sea la ultima.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Julio Cesar Strassera - Esta es nuestra oportunidad y quica sea la ultima.mp3"; sourceTree = "<group>"; };
 		D9917A0B2990850700FB6274 /* Compilacao de foda-se.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Compilacao de foda-se.mp3"; sourceTree = "<group>"; };
 		D9917A0E2990856C00FB6274 /* Cristiano Botafogo - Generais na casa do caralho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano Botafogo - Generais na casa do caralho.mp3"; sourceTree = "<group>"; };
-		D9917A102991530000FB6274 /* Int+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
+		D9917A102991530000FB6274 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		D991E597284A94F70005705F /* Podium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Podium.swift; sourceTree = "<group>"; };
 		D9943F142863CC4D002C6B97 /* A impiedosa justica de Deus.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "A impiedosa justica de Deus.mp3"; sourceTree = "<group>"; };
 		D9943F162863DAE1002C6B97 /* FolderDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetailView.swift; sourceTree = "<group>"; };
@@ -3675,7 +3675,7 @@
 				D958BC722868FE8C000B2EDA /* EmojiIdentification.swift */,
 				D93CCB7A286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift */,
 				D9D8C4A7287CD1B600812EE5 /* UIDevice+DevicePhysicalCharacteristics.swift */,
-				D9917A102991530000FB6274 /* Int+Extensions.swift */,
+				D9917A102991530000FB6274 /* Double+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -5316,7 +5316,7 @@
 				D94AD34928811ADC00D3E4F0 /* Versioneer.swift in Sources */,
 				D92E7067283C51D20035826C /* Song.swift in Sources */,
 				D93CCB79286A8A220002CF81 /* ToastView.swift in Sources */,
-				D9917A112991530000FB6274 /* Int+Extensions.swift in Sources */,
+				D9917A112991530000FB6274 /* Double+Extensions.swift in Sources */,
 				D958BC752869000A000B2EDA /* FolderInfoEditingViewViewModel.swift in Sources */,
 				D9F87A9228F6EA51002EE8AA /* RemoveFavoriteLogTable.swift in Sources */,
 				D9DCC5D52875CB59008DD4A3 /* AppPersistentMemory.swift in Sources */,
