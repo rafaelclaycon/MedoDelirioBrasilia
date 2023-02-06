@@ -13,6 +13,7 @@ struct AuthorsView: View {
     @State private var searchText = ""
     @Binding var sortOption: Int
     @Binding var sortAction: AuthorSortOption
+    @Binding var searchTextForControl: String
     
     var searchResults: [Author] {
         if searchText.isEmpty {
@@ -68,6 +69,9 @@ struct AuthorsView: View {
                     viewModel.sortAuthorsInPlaceBySoundCountAscending()
                 }
             }
+            .onChange(of: searchText) { searchText in
+                searchTextForControl = searchText
+            }
         }
     }
 
@@ -76,7 +80,7 @@ struct AuthorsView: View {
 struct FavoritesView_Previews: PreviewProvider {
 
     static var previews: some View {
-        AuthorsView(sortOption: .constant(AuthorSortOption.nameAscending.rawValue), sortAction: .constant(.nameAscending))
+        AuthorsView(sortOption: .constant(AuthorSortOption.nameAscending.rawValue), sortAction: .constant(.nameAscending), searchTextForControl: .constant(.empty))
     }
 
 }

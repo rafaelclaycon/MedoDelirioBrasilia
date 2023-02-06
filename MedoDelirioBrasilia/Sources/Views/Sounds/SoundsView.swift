@@ -48,6 +48,7 @@ struct SoundsView: View {
     
     // Sort Authors
     @State var authorSortAction: AuthorSortOption = .nameAscending
+    @State var authorSearchText: String = .empty
     
     // Trends
     @EnvironmentObject var trendsHelper: TrendsHelper
@@ -87,6 +88,15 @@ struct SoundsView: View {
         }
     }
     
+    private var displayFloatingSelectorView: Bool {
+        guard UIDevice.current.userInterfaceIdiom == .phone else { return false }
+        if currentMode == .byAuthor {
+            return authorSearchText.isEmpty
+        } else {
+            return searchText.isEmpty
+        }
+    }
+    
     var body: some View {
         ZStack {
             VStack {
@@ -103,7 +113,7 @@ struct SoundsView: View {
                     MyFoldersiPhoneView()
                         .environmentObject(deleteFolderAide)
                 } else if currentMode == .byAuthor {
-                    AuthorsView(sortOption: $viewModel.authorSortOption, sortAction: $authorSortAction)
+                    AuthorsView(sortOption: $viewModel.authorSortOption, sortAction: $authorSortAction, searchTextForControl: $authorSearchText)
                 } else {
                     GeometryReader { geometry in
                         ScrollView {
@@ -364,7 +374,7 @@ struct SoundsView: View {
                 }
             }
             
-            if UIDevice.current.userInterfaceIdiom == .phone, searchText.isEmpty {
+            if displayFloatingSelectorView {
                 VStack {
                     Spacer()
 
