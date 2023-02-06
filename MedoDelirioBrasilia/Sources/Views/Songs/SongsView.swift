@@ -56,7 +56,7 @@ struct SongsView: View {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 14) {
                         ForEach(searchResults) { song in
-                            SongCell(songId: song.id, title: song.title, genre: song.genre, duration: song.duration.asString(), isNew: song.isNew ?? false, nowPlaying: $viewModel.nowPlayingKeeper)
+                            SongCell(songId: song.id, title: song.title, genre: song.genre, duration: song.duration, isNew: song.isNew ?? false, nowPlaying: $viewModel.nowPlayingKeeper)
                                 .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
                                 .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                                 .onTapGesture {
