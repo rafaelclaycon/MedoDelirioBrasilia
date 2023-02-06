@@ -296,19 +296,6 @@ struct SoundsView: View {
                 if moveDatabaseIssue.isEmpty == false {
                     viewModel.showMoveDatabaseIssueAlert()
                 }
-                
-                soundData.forEach { sound in
-                    let path = Bundle.main.path(forResource: sound.filename, ofType: nil)!
-                    let url = URL(fileURLWithPath: path)
-                    let duration = getDuration(of: url)
-                    
-                    if sound.duration == 0 {
-                        print("\(sound.title)\n\(duration)\n")
-                    }
-//                    } else if sound.duration != duration {
-//                        print(">>>\(sound.filename)\n\(duration)\n")
-//                    }
-                }
             }
             .sheet(isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog) {
                 EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog, subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.selectedSound?.title ?? ""), emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.selectedSound?.authorName ?? "", viewModel.selectedSound?.id ?? ""))
