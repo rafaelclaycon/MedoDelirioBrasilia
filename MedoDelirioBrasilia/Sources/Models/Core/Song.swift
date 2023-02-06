@@ -13,7 +13,7 @@ struct Song: Hashable, Codable, Identifiable {
     var title: String
     var description: String
     var genre: MusicGenre
-    var duration: String
+    var duration: Int
     var filename: String
     var dateAdded: Date?
     let isOffensive: Bool
@@ -23,7 +23,7 @@ struct Song: Hashable, Codable, Identifiable {
          title: String,
          description: String = "",
          genre: MusicGenre = .undefined,
-         duration: String = "",
+         duration: Int = 0,
          filename: String = "",
          dateAdded: Date = Date(),
          isOffensive: Bool = false,
