@@ -9818,7 +9818,7 @@
         "dateAdded": "2023-02-05T00:00:00Z",
         "duration": 10.4,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "5AA39A46-17A7-4474-A345-EAEBA55B421E",
@@ -9829,7 +9829,7 @@
         "dateAdded": "2023-02-05T00:00:00Z",
         "duration": 14.55,
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "1EF20ED9-B6C9-471B-91C4-D0E3B57340B3",
@@ -9840,6 +9840,6 @@
         "dateAdded": "2023-02-05T00:00:00Z",
         "duration": 7.65,
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     }
 ]
