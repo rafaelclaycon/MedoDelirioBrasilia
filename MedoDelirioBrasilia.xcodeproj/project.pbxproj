@@ -290,6 +290,10 @@
 		D94B03F72993248300EB03CA /* Dudu Marfetan - Ate o final (completo).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94B03F62993248300EB03CA /* Dudu Marfetan - Ate o final (completo).mp3 */; };
 		D94B03F92993249500EB03CA /* Mr. Catra - Po, que vacilacao mermao meu irmao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94B03F82993249500EB03CA /* Mr. Catra - Po, que vacilacao mermao meu irmao.mp3 */; };
 		D94B03FF2993354500EB03CA /* Road Trip do Medo e Delirio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94B03FE2993354400EB03CA /* Road Trip do Medo e Delirio.mp3 */; };
+		D94B040D2993383F00EB03CA /* Sobral Pinto - Os militares julgaram-se donos da republica.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94B04092993383F00EB03CA /* Sobral Pinto - Os militares julgaram-se donos da republica.mp3 */; };
+		D94B040E2993383F00EB03CA /* Susto caralho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94B040A2993383F00EB03CA /* Susto caralho.mp3 */; };
+		D94B040F2993383F00EB03CA /* Medo e Delirio - Atencao la vem besteira.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94B040B2993383F00EB03CA /* Medo e Delirio - Atencao la vem besteira.mp3 */; };
+		D94B04112993388900EB03CA /* Mc Presuntinho - Cortina de fumaca trecho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94B04102993388900EB03CA /* Mc Presuntinho - Cortina de fumaca trecho.mp3 */; };
 		D94BA9ED2879EC7F001BD09C /* JoinFolderResearchBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94BA9EC2879EC7F001BD09C /* JoinFolderResearchBannerView.swift */; };
 		D94C8385294BAC8500E083F3 /* Pastor Marcio Valadao - Agora agorinha agorinha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94C837B294BAC8500E083F3 /* Pastor Marcio Valadao - Agora agorinha agorinha.mp3 */; };
 		D94C8386294BAC8500E083F3 /* Meme - Tava ruim, tava bom, mas parece que piorou.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94C837C294BAC8500E083F3 /* Meme - Tava ruim, tava bom, mas parece que piorou.mp3 */; };
@@ -1527,6 +1531,10 @@
 		D94B03F62993248300EB03CA /* Dudu Marfetan - Ate o final (completo).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Dudu Marfetan - Ate o final (completo).mp3"; sourceTree = "<group>"; };
 		D94B03F82993249500EB03CA /* Mr. Catra - Po, que vacilacao mermao meu irmao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mr. Catra - Po, que vacilacao mermao meu irmao.mp3"; sourceTree = "<group>"; };
 		D94B03FE2993354400EB03CA /* Road Trip do Medo e Delirio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Road Trip do Medo e Delirio.mp3"; sourceTree = "<group>"; };
+		D94B04092993383F00EB03CA /* Sobral Pinto - Os militares julgaram-se donos da republica.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Sobral Pinto - Os militares julgaram-se donos da republica.mp3"; sourceTree = "<group>"; };
+		D94B040A2993383F00EB03CA /* Susto caralho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Susto caralho.mp3"; sourceTree = "<group>"; };
+		D94B040B2993383F00EB03CA /* Medo e Delirio - Atencao la vem besteira.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Medo e Delirio - Atencao la vem besteira.mp3"; sourceTree = "<group>"; };
+		D94B04102993388900EB03CA /* Mc Presuntinho - Cortina de fumaca trecho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mc Presuntinho - Cortina de fumaca trecho.mp3"; sourceTree = "<group>"; };
 		D94BA9EC2879EC7F001BD09C /* JoinFolderResearchBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinFolderResearchBannerView.swift; sourceTree = "<group>"; };
 		D94C837B294BAC8500E083F3 /* Pastor Marcio Valadao - Agora agorinha agorinha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pastor Marcio Valadao - Agora agorinha agorinha.mp3"; sourceTree = "<group>"; };
 		D94C837C294BAC8500E083F3 /* Meme - Tava ruim, tava bom, mas parece que piorou.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Meme - Tava ruim, tava bom, mas parece que piorou.mp3"; sourceTree = "<group>"; };
@@ -2494,6 +2502,10 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D94B04102993388900EB03CA /* Mc Presuntinho - Cortina de fumaca trecho.mp3 */,
+				D94B040B2993383F00EB03CA /* Medo e Delirio - Atencao la vem besteira.mp3 */,
+				D94B04092993383F00EB03CA /* Sobral Pinto - Os militares julgaram-se donos da republica.mp3 */,
+				D94B040A2993383F00EB03CA /* Susto caralho.mp3 */,
 				D94B03F82993249500EB03CA /* Mr. Catra - Po, que vacilacao mermao meu irmao.mp3 */,
 				D94B03F62993248300EB03CA /* Dudu Marfetan - Ate o final (completo).mp3 */,
 				D9917A0E2990856C00FB6274 /* Cristiano Botafogo - Generais na casa do caralho.mp3 */,
@@ -4910,6 +4922,7 @@
 				D975FF002880B4F20035E6F2 /* Datena - Gol do presidente Bolsonaro.mp3 in Resources */,
 				49DEA9B8288111CA008C9BA1 /* CANAL MEIO - Pedro doria - Vamos sonhar short meme.mp3 in Resources */,
 				D975FFCC2880B4F20035E6F2 /* Dudu Marfetan - Agora tu aguenta.mp3 in Resources */,
+				D94B04112993388900EB03CA /* Mc Presuntinho - Cortina de fumaca trecho.mp3 in Resources */,
 				D91C4D16291AD1A3000E13E8 /* Desconhecido - Nao existe segunda-feira no comunismo.mp3 in Resources */,
 				D9235E242969BF31001F8167 /* Roberto Jefferson - Um sujeito lombrosiano.mp3 in Resources */,
 				D975FE962880B4F20035E6F2 /* Ciro Gomes - Veja bem, se eu estiver errado me corrija.mp3 in Resources */,
@@ -4943,6 +4956,7 @@
 				D975FFBE2880B4F20035E6F2 /* Malafaia - JAIR MESSIAS BOLSONARO.mp3 in Resources */,
 				D92AD1B928833150001CBCDF /* Temer - Repito.mp3 in Resources */,
 				D975FFFB2880B4F20035E6F2 /* Choque de Cultura - Nem existe isso, ce ta inventando palavra.mp3 in Resources */,
+				D94B040D2993383F00EB03CA /* Sobral Pinto - Os militares julgaram-se donos da republica.mp3 in Resources */,
 				D921F884288B0177003979CC /* Eduardo voce e burro.mp3 in Resources */,
 				D9BB8F8A28ECB2A900659D4A /* Jair Bolsonaro - Trilhoes de reais.mp3 in Resources */,
 				D975FEDC2880B4F20035E6F2 /* Bolsonaro - Lamento, quer que eu faca o que.mp3 in Resources */,
@@ -5132,6 +5146,7 @@
 				D975FF2D2880B4F20035E6F2 /* GALAS FEIOS - Moro desafinando no corrupcao.mp3 in Resources */,
 				D975FEE12880B4F20035E6F2 /* Bolsonaro - Finalzinho de pandemia.mp3 in Resources */,
 				D9BB8F7F28ECB01F00659D4A /* Joao Kleber - Paaara para para para.mp3 in Resources */,
+				D94B040F2993383F00EB03CA /* Medo e Delirio - Atencao la vem besteira.mp3 in Resources */,
 				D975FEB62880B4F20035E6F2 /* Nao fez mais que sua obrigacao short meme.mp3 in Resources */,
 				D975FF662880B4F20035E6F2 /* Magno Malta - So o escolhido de deus.mp3 in Resources */,
 				D975FE4F2880B4F20035E6F2 /* Saiddy Bamba - Sim sim sim sim sim.mp3 in Resources */,
@@ -5232,6 +5247,7 @@
 				D9B47636290DE3C1007C8ED0 /* Padre Kelmon - Nao existira pessoas.mp3 in Resources */,
 				D92AD1B328832E07001CBCDF /* Casimiro - Quer jogar luz pra falar que ta errado ja ta errado nao precisa jogar luz tem que jogar na merda.mp3 in Resources */,
 				D975FE812880B4F20035E6F2 /* UOL - Otoni de Paula - Eu nao vou recuar um milimetro.mp3 in Resources */,
+				D94B040E2993383F00EB03CA /* Susto caralho.mp3 in Resources */,
 				D9FA63002924A5D000790F55 /* Ian Neves - Todo e qualquer direito trabalhista vai quebrar a burguesia.mp3 in Resources */,
 				D975FFEC2880B4F20035E6F2 /* Calma Que Piora.mp3 in Resources */,
 				D975FFCA2880B4F20035E6F2 /* LAILA BRANDAO - Falsiane short meme.mp3 in Resources */,

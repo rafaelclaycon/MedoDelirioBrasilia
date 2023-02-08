@@ -9841,5 +9841,49 @@
         "duration": 7.65,
         "isOffensive": true,
         "isNew": false
+    },
+    {
+        "id": "98A3E6FE-227B-4235-8814-85C2629CB9B0",
+        "title": "Susto, caralho",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "susto caralho",
+        "filename": "Susto caralho.mp3",
+        "dateAdded": "2023-02-07T00:00:00Z",
+        "duration": 1.12,
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "0AF73C39-A964-4404-8B6E-790FBA2A8308",
+        "title": "Os militares julgaram-se donos da república",
+        "authorId": "76F3DFA1-0838-4EB7-BF6B-2C2381341DC0",
+        "description": "Os militares tendo proclamado a republica julgaram-se donos da republica e nunca aceitaram nao serem os donos da republica",
+        "filename": "Sobral Pinto - Os militares julgaram-se donos da republica.mp3",
+        "dateAdded": "2023-02-07T00:00:00Z",
+        "duration": 8.75,
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "9545A06A-9553-453E-9A56-777BC9B5A38D",
+        "title": "[Atenção] lá vem besteira",
+        "authorId": "5A5F01C2-BB89-4DDB-82DB-33FF0EF6F1BB",
+        "description": "atencao la vem besteira la vem besteira atencao essa eu quero ver nao nao quero ver nao nao nao quero ver nao funk",
+        "filename": "Medo e Delirio - Atencao la vem besteira.mp3",
+        "dateAdded": "2023-02-07T00:00:00Z",
+        "duration": 7.81,
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "F193E1E0-5860-4632-905F-14601E7353B3",
+        "title": "Cortina de Fumaça",
+        "authorId": "9D4FB651-5360-467E-8C5A-DF859980879D",
+        "description": "nos se amarra nos adora fazer cortina de fumaca sempre na atividade só mente criativa os menino tao suave",
+        "filename": "Mc Presuntinho - Cortina de fumaca trecho.mp3",
+        "dateAdded": "2023-02-07T00:00:00Z",
+        "duration": 9.69,
+        "isOffensive": false,
+        "isNew": true
     }
 ]
