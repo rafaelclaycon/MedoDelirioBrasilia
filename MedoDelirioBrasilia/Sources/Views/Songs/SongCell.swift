@@ -12,10 +12,13 @@ struct SongCell: View {
     @State var songId: String
     @State var title: String
     @State var genre: MusicGenre
-    @State var duration: String
+    @State var duration: Double
     @State var isNew: Bool
     @Binding var nowPlaying: Set<String>
     @Environment(\.sizeCategory) var sizeCategory
+    @State private var timeRemaining: Double = 0
+    
+    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var isPlaying: Bool {
         nowPlaying.contains(songId)
@@ -26,6 +29,14 @@ struct SongCell: View {
             return 115
         } else {
             return 90
+        }
+    }
+    
+    private var durationForDisplay: String {
+        if isPlaying {
+            return timeRemaining.asString()
+        } else {
+            return duration.asString()
         }
     }
     
@@ -47,10 +58,16 @@ struct SongCell: View {
                             .multilineTextAlignment(.leading)
                         
                         HStack(spacing: 10) {
-                            Text("\(genre.name) · \(duration)")
+                            Text("\(genre.name) · \(durationForDisplay)")
                                 .foregroundColor(.white)
                                 .font(.callout)
                                 .multilineTextAlignment(.leading)
+                                .onReceive(timer) { time in
+                                    guard isPlaying else { return }
+                                    if timeRemaining > 0 {
+                                        timeRemaining -= 1
+                                    }
+                                }
                             
                             if isNew {
                                 ZStack {
@@ -79,6 +96,16 @@ struct SongCell: View {
                 }
             }
             .padding(.leading, 20)
+            .onAppear {
+                if !isPlaying {
+                    timeRemaining = duration
+                }
+            }
+            .onChange(of: isPlaying) { isPlaying in
+                if !isPlaying {
+                    timeRemaining = duration
+                }
+            }
         }
     }
 
@@ -87,7 +114,7 @@ struct SongCell: View {
 struct SongCell_Previews: PreviewProvider {
 
     static var previews: some View {
-        SongCell(songId: "ABC", title: "Funk do Morto", genre: .funk, duration: "01:00", isNew: false, nowPlaying: .constant(Set<String>()))
+        SongCell(songId: "ABC", title: "Funk do Morto", genre: .funk, duration: 60, isNew: false, nowPlaying: .constant(Set<String>()))
             .padding(.horizontal)
             .previewLayout(.fixed(width: 414, height: 100))
     }

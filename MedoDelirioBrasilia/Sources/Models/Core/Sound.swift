@@ -16,6 +16,7 @@ struct Sound: Hashable, Codable, Identifiable {
     var description: String
     var filename: String
     var dateAdded: Date?
+    let duration: Double
     let isOffensive: Bool
     let isNew: Bool?
     
@@ -25,6 +26,7 @@ struct Sound: Hashable, Codable, Identifiable {
          description: String = "",
          filename: String = "",
          dateAdded: Date? = Date(),
+         duration: Double = 0,
          isOffensive: Bool = false,
          isNew: Bool? = nil) {
         self.id = id
@@ -33,6 +35,7 @@ struct Sound: Hashable, Codable, Identifiable {
         self.description = description
         self.filename = filename
         self.dateAdded = dateAdded
+        self.duration = duration
         self.isOffensive = isOffensive
         self.isNew = isNew
     }

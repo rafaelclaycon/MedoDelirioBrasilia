@@ -48,6 +48,7 @@ struct SoundsView: View {
     
     // Sort Authors
     @State var authorSortAction: AuthorSortOption = .nameAscending
+    @State var authorSearchText: String = .empty
     
     // Trends
     @EnvironmentObject var trendsHelper: TrendsHelper
@@ -87,6 +88,15 @@ struct SoundsView: View {
         }
     }
     
+    private var displayFloatingSelectorView: Bool {
+        guard UIDevice.current.userInterfaceIdiom == .phone else { return false }
+        if currentMode == .byAuthor {
+            return authorSearchText.isEmpty
+        } else {
+            return searchText.isEmpty
+        }
+    }
+    
     var body: some View {
         ZStack {
             VStack {
@@ -103,7 +113,7 @@ struct SoundsView: View {
                     MyFoldersiPhoneView()
                         .environmentObject(deleteFolderAide)
                 } else if currentMode == .byAuthor {
-                    AuthorsView(sortOption: $viewModel.authorSortOption, sortAction: $authorSortAction)
+                    AuthorsView(sortOption: $viewModel.authorSortOption, sortAction: $authorSortAction, searchTextForControl: $authorSearchText)
                 } else {
                     GeometryReader { geometry in
                         ScrollView {
@@ -123,7 +133,7 @@ struct SoundsView: View {
                                         .padding(.vertical, UIScreen.main.bounds.height / 3)
                                     } else {
                                         ForEach(searchResults) { sound in
-                                            SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", isNew: sound.isNew ?? false, favorites: $viewModel.favoritesKeeper, highlighted: $viewModel.highlightKeeper, nowPlaying: $viewModel.nowPlayingKeeper)
+                                            SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", duration: sound.duration, isNew: sound.isNew ?? false, favorites: $viewModel.favoritesKeeper, highlighted: $viewModel.highlightKeeper, nowPlaying: $viewModel.nowPlayingKeeper)
                                                 .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
                                                 .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                                                 .onTapGesture {
@@ -364,7 +374,7 @@ struct SoundsView: View {
                 }
             }
             
-            if UIDevice.current.userInterfaceIdiom == .phone, searchText.isEmpty {
+            if displayFloatingSelectorView {
                 VStack {
                     Spacer()
 
@@ -449,7 +459,7 @@ struct SoundsView: View {
                         Section {
                             Picker("Ordenação de Autores", selection: $viewModel.authorSortOption) {
                                 HStack {
-                                    Text("Ordenar por Nome")
+                                    Text("Nome")
                                     Image(systemName: "a.circle")
                                 }
                                 .tag(0)
@@ -478,13 +488,13 @@ struct SoundsView: View {
                         Section {
                             Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
                                 HStack {
-                                    Text("Ordenar por Título")
+                                    Text("Título")
                                     Image(systemName: "a.circle")
                                 }
                                 .tag(0)
                                 
                                 HStack {
-                                    Text("Ordenar por Nome do Autor")
+                                    Text("Nome do(a) Autor(a)")
                                     Image(systemName: "person")
                                 }
                                 .tag(1)

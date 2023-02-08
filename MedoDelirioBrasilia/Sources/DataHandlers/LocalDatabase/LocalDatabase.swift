@@ -59,7 +59,8 @@ extension LocalDatabase {
                 AddUserFolderTables(),
                 RemoveFavoriteLogTable(),
                 AddAudienceSharingStatisticTable(),
-                AddRankingTypeToAudienceSharingStatisticTable()]
+                AddRankingTypeToAudienceSharingStatisticTable(),
+                AddDateAndVersionToUserFolderTables()]
     }
     
     var needsMigration: Bool {

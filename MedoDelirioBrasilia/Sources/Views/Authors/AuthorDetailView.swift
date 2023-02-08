@@ -34,6 +34,18 @@ struct AuthorDetailView: View {
         return author.photo == nil ? [] : .top
     }
     
+    private var shouldDisplayMenuOnToolbar: Bool {
+        if #available(iOS 16, *) {
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    private var shouldDisplayMenuBesideAuthorName: Bool {
+        !shouldDisplayMenuOnToolbar
+    }
+    
     private func getScrollOffset(_ geometry: GeometryProxy) -> CGFloat {
         geometry.frame(in: .global).minY
     }
@@ -108,38 +120,9 @@ struct AuthorDetailView: View {
                                     
                                     Spacer()
                                     
-                                    Menu {
-                                        Section {
-                                            Button {
-                                                viewModel.selectedSoundsForAddToFolder = viewModel.sounds
-                                                showingAddToFolderModal = true
-                                            } label: {
-                                                Label("Adicionar Todos a Pasta", systemImage: "folder.badge.plus")
-                                            }
-                                        }
-                                        
-//                                        Section {
-//                                            Button {
-//                                                print("Não implementado")
-//                                            } label: {
-//                                                Label("Pedir Som Desse Autor", systemImage: "plus.circle")
-//                                            }
-//                                        }
-//                                        
-//                                        Section {
-//                                            Button {
-//                                                print("Não implementado")
-//                                            } label: {
-//                                                Label("Relatar Problema com os Detalhes Desse Autor", systemImage: "person.crop.circle.badge.exclamationmark")
-//                                            }
-//                                        }
-                                    } label: {
-                                        Image(systemName: "ellipsis.circle")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(height: 28)
+                                    if shouldDisplayMenuBesideAuthorName {
+                                        moreOptionsMenu(isOnToolbar: false)
                                     }
-                                    .disabled(viewModel.sounds.count == 0)
                                 }
                                 
                                 if author.description != nil {
@@ -156,7 +139,7 @@ struct AuthorDetailView: View {
                             
                             LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
                                 ForEach(viewModel.sounds) { sound in
-                                    SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", isNew: sound.isNew ?? false, favorites: $viewModel.favoritesKeeper, highlighted: .constant(Set<String>()), nowPlaying: $viewModel.nowPlayingKeeper)
+                                    SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", duration: sound.duration, isNew: sound.isNew ?? false, favorites: $viewModel.favoritesKeeper, highlighted: .constant(Set<String>()), nowPlaying: $viewModel.nowPlayingKeeper)
                                         .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
                                         .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                                         .onTapGesture {
@@ -234,6 +217,11 @@ struct AuthorDetailView: View {
                 updateNavBarTitle(offset)
             }
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                if shouldDisplayMenuOnToolbar {
+                    moreOptionsMenu(isOnToolbar: true)
+                }
+            }
             .onAppear {
                 viewModel.reloadList(withSounds: soundData.filter({ $0.authorId == author.id }),
                                      andFavorites: try? database.getAllFavorites(),
@@ -242,12 +230,16 @@ struct AuthorDetailView: View {
             }
             .alert(isPresented: $viewModel.showAlert) {
                 switch viewModel.alertType {
-                case .singleOption:
+                case .ok:
                     return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
-                default:
+                case .reportSoundIssue:
                     return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .default(Text("Relatar Problema por E-mail"), action: {
                         viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog = true
                     }), secondaryButton: .cancel(Text("Fechar")))
+                case .askForNewSound:
+                    return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .default(Text("Li e Entendi"), action: {
+                        viewModel.showEmailAppPicker_askForNewSound = true
+                    }), secondaryButton: .cancel(Text("Cancelar")))
                 }
             }
             .sheet(isPresented: $showingAddToFolderModal) {
@@ -258,6 +250,12 @@ struct AuthorDetailView: View {
             }
             .sheet(isPresented: $viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog) {
                 EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog, subject: Shared.issueSuggestionEmailSubject, emailBody: Shared.issueSuggestionEmailBody)
+            }
+            .sheet(isPresented: $viewModel.showEmailAppPicker_askForNewSound) {
+                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_askForNewSound, subject: String(format: Shared.Email.AskForNewSound.subject, self.author.name), emailBody: Shared.Email.AskForNewSound.body)
+            }
+            .sheet(isPresented: $viewModel.showEmailAppPicker_reportAuthorDetailIssue) {
+                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_reportAuthorDetailIssue, subject: String(format: Shared.Email.AuthorDetailIssue.subject, self.author.name), emailBody: Shared.Email.AuthorDetailIssue.body)
             }
             .sheet(isPresented: $viewModel.isShowingShareSheet) {
                 viewModel.iPadShareSheet
@@ -313,6 +311,39 @@ struct AuthorDetailView: View {
                 .transition(.moveAndFade)
             }
         }
+    }
+    
+    @ViewBuilder func moreOptionsMenu(isOnToolbar: Bool) -> some View {
+        Menu {
+            Button {
+                viewModel.selectedSoundsForAddToFolder = viewModel.sounds
+                showingAddToFolderModal = true
+            } label: {
+                Label("Adicionar Todos a Pasta", systemImage: "folder.badge.plus")
+            }
+            
+            Button {
+                viewModel.showAskForNewSoundAlert()
+            } label: {
+                Label("Pedir Som Desse Autor", systemImage: "plus.circle")
+            }
+            
+            Button {
+                viewModel.showEmailAppPicker_reportAuthorDetailIssue = true
+            } label: {
+                Label("Relatar Problema com os Detalhes Desse Autor", systemImage: "person.crop.circle.badge.exclamationmark")
+            }
+        } label: {
+            if isOnToolbar {
+                Image(systemName: "ellipsis.circle")
+            } else {
+                Image(systemName: "ellipsis.circle")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 26)
+            }
+        }
+        .disabled(viewModel.sounds.count == 0)
     }
 
 }

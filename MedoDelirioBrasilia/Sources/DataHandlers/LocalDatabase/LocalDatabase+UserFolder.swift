@@ -54,7 +54,7 @@ extension LocalDatabase {
     }
     
     func insert(contentId: String, intoUserFolder userFolderId: String) throws {
-        let folderContent = UserFolderContent(userFolderId: userFolderId, contentId: contentId)
+        let folderContent = UserFolderContent(userFolderId: userFolderId, contentId: contentId, dateAdded: .now)
         let insert = try userFolderContent.insert(folderContent)
         try db.run(insert)
     }
@@ -72,6 +72,17 @@ extension LocalDatabase {
         return queriedIds
     }
     
+    func getAllContentsInsideUserFolder(withId userFolderId: String) throws -> [UserFolderContent] {
+        var queriedContents = [UserFolderContent]()
+        let user_folder_id = Expression<String>("userFolderId")
+        
+        for queriedContent in try db.prepare(userFolderContent.where(user_folder_id == userFolderId)) {
+            queriedContents.append(try queriedContent.decode())
+        }
+        
+        return queriedContents
+    }
+    
     func deleteUserFolder(withId folderId: String) throws {
         let folder_id_on_folder_content_table = Expression<String>("userFolderId")
         let allFolderContent = userFolderContent.filter(folder_id_on_folder_content_table == folderId)
@@ -86,6 +97,15 @@ extension LocalDatabase {
     
     func hasAnyUserFolder() throws -> Bool {
         return try db.scalar(userFolder.count) > 0
+    }
+    
+    func update(userSortPreference: Int, forFolderId userFolderId: String) throws {
+        let id = Expression<String>("id")
+        let user_sort_preference = Expression<Int?>("userSortPreference")
+        
+        let folder = userFolder.filter(id == userFolderId)
+        let update = folder.update(user_sort_preference <- userSortPreference)
+        try db.run(update)
     }
 
 }
