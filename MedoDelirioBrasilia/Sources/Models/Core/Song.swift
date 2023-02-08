@@ -9,12 +9,12 @@ import AVFoundation
 
 struct Song: Hashable, Codable, Identifiable {
 
-    var id: String
-    var title: String
-    var description: String
-    var genre: MusicGenre
-    var duration: Double
-    var filename: String
+    let id: String
+    let title: String
+    let description: String
+    let genre: MusicGenre
+    let duration: Double
+    let filename: String
     var dateAdded: Date?
     let isOffensive: Bool
     let isNew: Bool?
@@ -37,16 +37,6 @@ struct Song: Hashable, Codable, Identifiable {
         self.dateAdded = dateAdded
         self.isOffensive = isOffensive
         self.isNew = isNew
-    }
-
-}
-
-extension Song {
-
-    func getDuration() -> Double {
-        let url = URL(fileURLWithPath: Bundle.main.path(forResource: self.filename, ofType: nil)!)
-        let asset = AVURLAsset(url: url)
-        return asset.duration.seconds
     }
 
 }

@@ -41,13 +41,3 @@ struct Sound: Hashable, Codable, Identifiable {
     }
 
 }
-
-extension Sound {
-
-    func getDuration() -> Double {
-        let url = URL(fileURLWithPath: Bundle.main.path(forResource: self.filename, ofType: nil)!)
-        let asset = AVURLAsset(url: url)
-        return asset.duration.seconds
-    }
-
-}

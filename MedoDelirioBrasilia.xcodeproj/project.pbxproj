@@ -287,6 +287,8 @@
 		D9491810288606E00079F545 /* SettingsCasingWithCloseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D949180F288606E00079F545 /* SettingsCasingWithCloseView.swift */; };
 		D949181228860ABC0079F545 /* AllFoldersiPadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D949181128860ABC0079F545 /* AllFoldersiPadView.swift */; };
 		D94AD34928811ADC00D3E4F0 /* Versioneer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94AD34828811ADC00D3E4F0 /* Versioneer.swift */; };
+		D94B03F72993248300EB03CA /* Dudu Marfetan - Ate o final (completo).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94B03F62993248300EB03CA /* Dudu Marfetan - Ate o final (completo).mp3 */; };
+		D94B03F92993249500EB03CA /* Mr. Catra - Po, que vacilacao mermao meu irmao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94B03F82993249500EB03CA /* Mr. Catra - Po, que vacilacao mermao meu irmao.mp3 */; };
 		D94BA9ED2879EC7F001BD09C /* JoinFolderResearchBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94BA9EC2879EC7F001BD09C /* JoinFolderResearchBannerView.swift */; };
 		D94C8385294BAC8500E083F3 /* Pastor Marcio Valadao - Agora agorinha agorinha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94C837B294BAC8500E083F3 /* Pastor Marcio Valadao - Agora agorinha agorinha.mp3 */; };
 		D94C8386294BAC8500E083F3 /* Meme - Tava ruim, tava bom, mas parece que piorou.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94C837C294BAC8500E083F3 /* Meme - Tava ruim, tava bom, mas parece que piorou.mp3 */; };
@@ -412,7 +414,6 @@
 		D975002A2880B4F20035E6F2 /* SUPERPOP - Luciana Gimenez - Mas ce ta brava.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FDF32880B4F10035E6F2 /* SUPERPOP - Luciana Gimenez - Mas ce ta brava.mp3 */; };
 		D975002B2880B4F20035E6F2 /* FUP - Marcele - Nao esta nem ai pro preto, pobre, favelado so esta ai por ele mesmo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FDF42880B4F10035E6F2 /* FUP - Marcele - Nao esta nem ai pro preto, pobre, favelado so esta ai por ele mesmo.mp3 */; };
 		D975002C2880B4F20035E6F2 /* Drauzio - As pessoas nao tem consciencia disso.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FDF52880B4F10035E6F2 /* Drauzio - As pessoas nao tem consciencia disso.mp3 */; };
-		D975002D2880B4F20035E6F2 /* Dudu Marfetan - Até o final (completo).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FDF62880B4F10035E6F2 /* Dudu Marfetan - Até o final (completo).mp3 */; };
 		D975002E2880B4F20035E6F2 /* LINGUICETA - Diogo Defante - Eu queria deixar claro que eu fico puto.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FDF72880B4F10035E6F2 /* LINGUICETA - Diogo Defante - Eu queria deixar claro que eu fico puto.mp3 */; };
 		D975002F2880B4F20035E6F2 /* Vai Dar Namoro - Que isso meu filho calma.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FDF82880B4F10035E6F2 /* Vai Dar Namoro - Que isso meu filho calma.mp3 */; };
 		D97500302880B4F20035E6F2 /* Malafaia - criticas a teologia da prosperidade resumo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FDF92880B4F10035E6F2 /* Malafaia - criticas a teologia da prosperidade resumo.mp3 */; };
@@ -908,7 +909,6 @@
 		D975FFDD2880B4F20035E6F2 /* Pazuello - Nao tem o que fazer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FDA62880B4F00035E6F2 /* Pazuello - Nao tem o que fazer.mp3 */; };
 		D975FFDE2880B4F20035E6F2 /* Eu sou RICA! short meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FDA72880B4F00035E6F2 /* Eu sou RICA! short meme.mp3 */; };
 		D975FFDF2880B4F20035E6F2 /* Silvio Santos - E mesmo e verdade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FDA82880B4F00035E6F2 /* Silvio Santos - E mesmo e verdade.mp3 */; };
-		D975FFE02880B4F20035E6F2 /* Mr. Catra - Po, que vacilaçao mermao meu irmao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FDA92880B4F00035E6F2 /* Mr. Catra - Po, que vacilaçao mermao meu irmao.mp3 */; };
 		D975FFE12880B4F20035E6F2 /* Ze Gotinha - Ola meu nome e Ze Gotinha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FDAA2880B4F00035E6F2 /* Ze Gotinha - Ola meu nome e Ze Gotinha.mp3 */; };
 		D975FFE22880B4F20035E6F2 /* Brizola - Filhotes da ditadura.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FDAB2880B4F00035E6F2 /* Brizola - Filhotes da ditadura.mp3 */; };
 		D975FFE32880B4F20035E6F2 /* Gaucho Puto - Seu bosta, seu lixo, tu e um ser tao repulsivo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FDAC2880B4F00035E6F2 /* Gaucho Puto - Seu bosta, seu lixo, tu e um ser tao repulsivo.mp3 */; };
@@ -1523,6 +1523,8 @@
 		D949180F288606E00079F545 /* SettingsCasingWithCloseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCasingWithCloseView.swift; sourceTree = "<group>"; };
 		D949181128860ABC0079F545 /* AllFoldersiPadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllFoldersiPadView.swift; sourceTree = "<group>"; };
 		D94AD34828811ADC00D3E4F0 /* Versioneer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Versioneer.swift; sourceTree = "<group>"; };
+		D94B03F62993248300EB03CA /* Dudu Marfetan - Ate o final (completo).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Dudu Marfetan - Ate o final (completo).mp3"; sourceTree = "<group>"; };
+		D94B03F82993249500EB03CA /* Mr. Catra - Po, que vacilacao mermao meu irmao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mr. Catra - Po, que vacilacao mermao meu irmao.mp3"; sourceTree = "<group>"; };
 		D94BA9EC2879EC7F001BD09C /* JoinFolderResearchBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinFolderResearchBannerView.swift; sourceTree = "<group>"; };
 		D94C837B294BAC8500E083F3 /* Pastor Marcio Valadao - Agora agorinha agorinha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pastor Marcio Valadao - Agora agorinha agorinha.mp3"; sourceTree = "<group>"; };
 		D94C837C294BAC8500E083F3 /* Meme - Tava ruim, tava bom, mas parece que piorou.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Meme - Tava ruim, tava bom, mas parece que piorou.mp3"; sourceTree = "<group>"; };
@@ -2076,7 +2078,6 @@
 		D975FDA62880B4F00035E6F2 /* Pazuello - Nao tem o que fazer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pazuello - Nao tem o que fazer.mp3"; sourceTree = "<group>"; };
 		D975FDA72880B4F00035E6F2 /* Eu sou RICA! short meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu sou RICA! short meme.mp3"; sourceTree = "<group>"; };
 		D975FDA82880B4F00035E6F2 /* Silvio Santos - E mesmo e verdade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Silvio Santos - E mesmo e verdade.mp3"; sourceTree = "<group>"; };
-		D975FDA92880B4F00035E6F2 /* Mr. Catra - Po, que vacilaçao mermao meu irmao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mr. Catra - Po, que vacilaçao mermao meu irmao.mp3"; sourceTree = "<group>"; };
 		D975FDAA2880B4F00035E6F2 /* Ze Gotinha - Ola meu nome e Ze Gotinha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ze Gotinha - Ola meu nome e Ze Gotinha.mp3"; sourceTree = "<group>"; };
 		D975FDAB2880B4F00035E6F2 /* Brizola - Filhotes da ditadura.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Brizola - Filhotes da ditadura.mp3"; sourceTree = "<group>"; };
 		D975FDAC2880B4F00035E6F2 /* Gaucho Puto - Seu bosta, seu lixo, tu e um ser tao repulsivo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gaucho Puto - Seu bosta, seu lixo, tu e um ser tao repulsivo.mp3"; sourceTree = "<group>"; };
@@ -2153,7 +2154,6 @@
 		D975FDF32880B4F10035E6F2 /* SUPERPOP - Luciana Gimenez - Mas ce ta brava.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "SUPERPOP - Luciana Gimenez - Mas ce ta brava.mp3"; sourceTree = "<group>"; };
 		D975FDF42880B4F10035E6F2 /* FUP - Marcele - Nao esta nem ai pro preto, pobre, favelado so esta ai por ele mesmo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "FUP - Marcele - Nao esta nem ai pro preto, pobre, favelado so esta ai por ele mesmo.mp3"; sourceTree = "<group>"; };
 		D975FDF52880B4F10035E6F2 /* Drauzio - As pessoas nao tem consciencia disso.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Drauzio - As pessoas nao tem consciencia disso.mp3"; sourceTree = "<group>"; };
-		D975FDF62880B4F10035E6F2 /* Dudu Marfetan - Até o final (completo).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Dudu Marfetan - Até o final (completo).mp3"; sourceTree = "<group>"; };
 		D975FDF72880B4F10035E6F2 /* LINGUICETA - Diogo Defante - Eu queria deixar claro que eu fico puto.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "LINGUICETA - Diogo Defante - Eu queria deixar claro que eu fico puto.mp3"; sourceTree = "<group>"; };
 		D975FDF82880B4F10035E6F2 /* Vai Dar Namoro - Que isso meu filho calma.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Vai Dar Namoro - Que isso meu filho calma.mp3"; sourceTree = "<group>"; };
 		D975FDF92880B4F10035E6F2 /* Malafaia - criticas a teologia da prosperidade resumo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Malafaia - criticas a teologia da prosperidade resumo.mp3"; sourceTree = "<group>"; };
@@ -2492,6 +2492,8 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D94B03F82993249500EB03CA /* Mr. Catra - Po, que vacilacao mermao meu irmao.mp3 */,
+				D94B03F62993248300EB03CA /* Dudu Marfetan - Ate o final (completo).mp3 */,
 				D9917A0E2990856C00FB6274 /* Cristiano Botafogo - Generais na casa do caralho.mp3 */,
 				D9917A0B2990850700FB6274 /* Compilacao de foda-se.mp3 */,
 				D9917A0A2990850700FB6274 /* Julio Cesar Strassera - Esta es nuestra oportunidad y quica sea la ultima.mp3 */,
@@ -3119,7 +3121,6 @@
 				D975FCF52880B4ED0035E6F2 /* Drauzio - E verdade quer dizer as vezes nao meme short.mp3 */,
 				D975FCD92880B4EC0035E6F2 /* Drauzio - procura um psiquiatra, voce nao ta legal.mp3 */,
 				D975FD952880B4EF0035E6F2 /* Dudu Marfetan - Agora tu aguenta.mp3 */,
-				D975FDF62880B4F10035E6F2 /* Dudu Marfetan - Até o final (completo).mp3 */,
 				D975FC542880B4EA0035E6F2 /* E desesperador.mp3 */,
 				D975FD212880B4ED0035E6F2 /* E O TCHAN - Loop.mp3 */,
 				D975FC5B2880B4EA0035E6F2 /* Eduardo Cunha - Que Deus tenha misericordia dessa nacao.mp3 */,
@@ -3308,7 +3309,6 @@
 				D975FD612880B4EE0035E6F2 /* Mourao - Voce e muito mais fisico do que intelectual short.mp3 */,
 				D975FC022880B4E90035E6F2 /* MR CATRA - vai comecar a putaria long.mp3 */,
 				D975FC722880B4EB0035E6F2 /* MR CATRA - Vai comecar a putaria short.mp3 */,
-				D975FDA92880B4F00035E6F2 /* Mr. Catra - Po, que vacilaçao mermao meu irmao.mp3 */,
 				D975FBFA2880B4E90035E6F2 /* MY NEWS - Antonio Tabet - Bolsonaro fala merda.mp3 */,
 				D975FC832880B4EB0035E6F2 /* MY NEWS - Antonio Tabet - Tem uma editoria da imprensa que todo dia rende noticia Bolsonaro fala merda.mp3 */,
 				D975FCF92880B4ED0035E6F2 /* Naiara Azevedo - Deus Te Ouca hein short meme.mp3 */,
@@ -4336,6 +4336,7 @@
 				D9FD0F0128B2B2EE0000616A /* Gemidao do Delirio.mp3 in Resources */,
 				D975FF412880B4F20035E6F2 /* PLANALTO - Bolsonaro - Mente.mp3 in Resources */,
 				D975FE782880B4F20035E6F2 /* Damares - A princesa do Frozen vai voltar pra acordar a Bela Adormecida com um beijo gay.mp3 in Resources */,
+				D94B03F92993249500EB03CA /* Mr. Catra - Po, que vacilacao mermao meu irmao.mp3 in Resources */,
 				D975FE6C2880B4F20035E6F2 /* Que porra e essa batata.mp3 in Resources */,
 				D94D9EFB298D87DA006F14A5 /* Rodrigo Constantino - Recuou e um eufemismo ne arregou.mp3 in Resources */,
 				D921F8A0288B0DC4003979CC /* Au au (Parabens sancao) - Bolsonaro.mp3 in Resources */,
@@ -4356,7 +4357,6 @@
 				D975FF5F2880B4F20035E6F2 /* Nunca foi meritocracia, sempre foi desigualdade.mp3 in Resources */,
 				D975FFB72880B4F20035E6F2 /* Trote Luiz Pareto - Trote da TELERJ (grandes merdas que o senhor e advogado).mp3 in Resources */,
 				D975FFD72880B4F20035E6F2 /* Bolsonaro - Enfrentar como homem.mp3 in Resources */,
-				D975FFE02880B4F20035E6F2 /* Mr. Catra - Po, que vacilaçao mermao meu irmao.mp3 in Resources */,
 				D975FFB22880B4F20035E6F2 /* Damares - Inserir no anus.mp3 in Resources */,
 				D975000E2880B4F20035E6F2 /* Face palm - Corra que a policia vem ai.mp3 in Resources */,
 				D975FF502880B4F20035E6F2 /* Bolsonaro - So se for na casa da tua mae.mp3 in Resources */,
@@ -4382,6 +4382,7 @@
 				49DEA9B428811104008C9BA1 /* SpongeBob end of flashback short meme.mp3 in Resources */,
 				D975FE342880B4F20035E6F2 /* Belo - Quem sera.mp3 in Resources */,
 				D9EBC932294834D200960AE3 /* Jair Bolsonaro - Ministro Fachin, marxista, leninista (completo).mp3 in Resources */,
+				D94B03F72993248300EB03CA /* Dudu Marfetan - Ate o final (completo).mp3 in Resources */,
 				D975FF722880B4F20035E6F2 /* lula ou bolsonaro.mp3 in Resources */,
 				D975FFBA2880B4F20035E6F2 /* BandNews FM - Ciro Gomes - Esse Braga Netto, que e um bosta.mp3 in Resources */,
 				D975002C2880B4F20035E6F2 /* Drauzio - As pessoas nao tem consciencia disso.mp3 in Resources */,
@@ -4774,7 +4775,6 @@
 				D921F89F288B0DC4003979CC /* Toma cloroquina - Cristiano Botafogo (feat Vitor Midcast) - vassourinha.mp3 in Resources */,
 				D975FE282880B4F20035E6F2 /* Quercia - Mentiroso e caluniador, caluniador e mentiroso.mp3 in Resources */,
 				D9AF10CB290AD50D0054741F /* Desconhecido - Babaca do caralho.mp3 in Resources */,
-				D975002D2880B4F20035E6F2 /* Dudu Marfetan - Até o final (completo).mp3 in Resources */,
 				D975FF2B2880B4F20035E6F2 /* ATILA IAMARINO - Que que eu posso tomar voce pode tomar cuidado e vacina.mp3 in Resources */,
 				D97500432880B4F20035E6F2 /* Falha de Cobertura - Cerginho da Pereira Nunes - Doidera.mp3 in Resources */,
 				D93752122902C94200E2F27B /* Joaquim Barbosa - Bolsonaro e um ser abjeto, Lula no primeiro turno.mp3 in Resources */,
