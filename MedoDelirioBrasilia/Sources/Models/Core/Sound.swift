@@ -5,7 +5,7 @@
 //  Created by Rafael Claycon Schmitt on 19/05/22.
 //
 
-import AVFoundation
+import Foundation
 
 struct Sound: Hashable, Codable, Identifiable {
 

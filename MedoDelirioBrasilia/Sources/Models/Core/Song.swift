@@ -5,7 +5,7 @@
 //  Created by Rafael Claycon Schmitt on 19/05/22.
 //
 
-import AVFoundation
+import Foundation
 
 struct Song: Hashable, Codable, Identifiable {
 
