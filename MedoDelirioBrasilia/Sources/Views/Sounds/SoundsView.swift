@@ -504,6 +504,18 @@ struct SoundsView: View {
                                     Image(systemName: "calendar")
                                 }
                                 .tag(2)
+                                
+                                HStack {
+                                    Text("Mais Curtos no Topo")
+                                    Image(systemName: "hare")
+                                }
+                                .tag(3)
+                                
+                                HStack {
+                                    Text("Mais Longos no Topo")
+                                    Image(systemName: "tortoise")
+                                }
+                                .tag(4)
                             }
                         }
                     } label: {

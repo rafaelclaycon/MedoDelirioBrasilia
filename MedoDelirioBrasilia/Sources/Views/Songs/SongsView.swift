@@ -138,14 +138,14 @@ struct SongsView: View {
                             .tag(1)
                             
                             HStack {
-                                Text("Maior Duração no Topo")
-                                Image(systemName: "chevron.down.square")
+                                Text("Mais Longas no Topo")
+                                Image(systemName: "tortoise")
                             }
                             .tag(2)
                             
                             HStack {
-                                Text("Menor Duração no Topo")
-                                Image(systemName: "chevron.up.square")
+                                Text("Mais Curtas no Topo")
+                                Image(systemName: "hare")
                             }
                             .tag(3)
                         }

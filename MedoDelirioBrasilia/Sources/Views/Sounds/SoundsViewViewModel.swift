@@ -84,6 +84,10 @@ class SoundsViewViewModel: ObservableObject {
                 sortSoundsInPlaceByAuthorNameAscending()
             case .dateAddedDescending:
                 sortSoundsInPlaceByDateAddedDescending()
+            case .shortestFirst:
+                sortSoundsInPlaceByDurationAscending()
+            case .longestFirst:
+                sortSoundsInPlaceByDurationDescending()
             }
         }
     }
@@ -98,6 +102,14 @@ class SoundsViewViewModel: ObservableObject {
     
     private func sortSoundsInPlaceByDateAddedDescending() {
         self.sounds.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
+    }
+    
+    private func sortSoundsInPlaceByDurationAscending() {
+        self.sounds.sort(by: { $0.duration < $1.duration })
+    }
+    
+    private func sortSoundsInPlaceByDurationDescending() {
+        self.sounds.sort(by: { $0.duration > $1.duration })
     }
     
     func playSound(fromPath filepath: String, withId soundId: String) {
