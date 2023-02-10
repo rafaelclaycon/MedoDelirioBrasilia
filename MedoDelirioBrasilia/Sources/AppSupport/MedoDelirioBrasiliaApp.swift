@@ -31,8 +31,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
     ) -> Bool {
-        print(UserDefaults.standard.data(forKey: "skipGetLinkInstructions"))
-        
         // Fixes
         moveDatabaseFileIfNeeded()
         replaceUserSettingFlag()
