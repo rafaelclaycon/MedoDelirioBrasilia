@@ -9851,7 +9851,7 @@
         "dateAdded": "2023-02-07T00:00:00Z",
         "duration": 1.12,
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "0AF73C39-A964-4404-8B6E-790FBA2A8308",
@@ -9862,7 +9862,7 @@
         "dateAdded": "2023-02-07T00:00:00Z",
         "duration": 8.75,
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "9545A06A-9553-453E-9A56-777BC9B5A38D",
@@ -9873,7 +9873,7 @@
         "dateAdded": "2023-02-07T00:00:00Z",
         "duration": 7.81,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "F193E1E0-5860-4632-905F-14601E7353B3",
@@ -9883,6 +9883,17 @@
         "filename": "Mc Presuntinho - Cortina de fumaca trecho.mp3",
         "dateAdded": "2023-02-07T00:00:00Z",
         "duration": 9.69,
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "A1ED9B72-2132-493F-A12C-B5B91251281D",
+        "title": "Traz pra mim, Marquinho",
+        "authorId": "F0A2EC08-8C98-42E8-8C23-C4EBD9314E14",
+        "description": "traz pra mim marquinho traz pra mim muito bom muito bom",
+        "filename": "Usuario do Boldo Bom - Traz pra mim, Marquinho.mp3",
+        "dateAdded": "2023-02-10T00:00:00Z",
+        "duration": 3.66,
         "isOffensive": false,
         "isNew": true
     }

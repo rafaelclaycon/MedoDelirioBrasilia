@@ -144,7 +144,7 @@ struct SoundsView: View {
                                                         viewModel.playSound(fromPath: sound.filename, withId: sound.id)
                                                     }
                                                 }
-                                                .contextMenu(menuItems: {
+                                                .contextMenu {
                                                     Section {
                                                         Button {
                                                             viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
@@ -225,7 +225,7 @@ struct SoundsView: View {
                                                             Label(SoundOptionsHelper.getSuggestOtherAuthorNameButtonTitle(authorId: sound.authorId), systemImage: "exclamationmark.bubble")
                                                         }
                                                     }
-                                                })
+                                                }
                                         }
                                     }
                                 }
