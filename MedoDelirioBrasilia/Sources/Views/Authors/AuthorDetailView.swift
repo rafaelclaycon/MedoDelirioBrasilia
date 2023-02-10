@@ -315,23 +315,48 @@ struct AuthorDetailView: View {
     
     @ViewBuilder func moreOptionsMenu(isOnToolbar: Bool) -> some View {
         Menu {
-            Button {
-                viewModel.selectedSoundsForAddToFolder = viewModel.sounds
-                showingAddToFolderModal = true
-            } label: {
-                Label("Adicionar Todos a Pasta", systemImage: "folder.badge.plus")
+            Section {
+                Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
+                    HStack {
+                        Text("Título")
+                        Image(systemName: "a.circle")
+                    }
+                    .tag(0)
+                    
+                    HStack {
+                        Text("Mais Recentes no Topo")
+                        Image(systemName: "calendar")
+                    }
+                    .tag(1)
+                }
+                .onChange(of: viewModel.soundSortOption, perform: { soundSortOption in
+                    if soundSortOption == 0 {
+                        viewModel.sortSoundsInPlaceByTitleAscending()
+                    } else {
+                        viewModel.sortSoundsInPlaceByDateAddedDescending()
+                    }
+                })
             }
             
-            Button {
-                viewModel.showAskForNewSoundAlert()
-            } label: {
-                Label("Pedir Som Desse Autor", systemImage: "plus.circle")
-            }
-            
-            Button {
-                viewModel.showEmailAppPicker_reportAuthorDetailIssue = true
-            } label: {
-                Label("Relatar Problema com os Detalhes Desse Autor", systemImage: "person.crop.circle.badge.exclamationmark")
+            Section {
+                Button {
+                    viewModel.selectedSoundsForAddToFolder = viewModel.sounds
+                    showingAddToFolderModal = true
+                } label: {
+                    Label("Adicionar Todos a Pasta", systemImage: "folder.badge.plus")
+                }
+                
+                Button {
+                    viewModel.showAskForNewSoundAlert()
+                } label: {
+                    Label("Pedir Som Desse Autor", systemImage: "plus.circle")
+                }
+                
+                Button {
+                    viewModel.showEmailAppPicker_reportAuthorDetailIssue = true
+                } label: {
+                    Label("Relatar Problema com os Detalhes Desse Autor", systemImage: "person.crop.circle.badge.exclamationmark")
+                }
             }
         } label: {
             if isOnToolbar {
