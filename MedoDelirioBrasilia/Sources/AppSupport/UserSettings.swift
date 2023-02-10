@@ -6,7 +6,7 @@ class UserSettings {
     
     static func getShowOffensiveSounds() -> Bool {
         let userDefaults = UserDefaults.standard
-        guard let value = userDefaults.object(forKey: "skipGetLinkInstructions") else {
+        guard let value = userDefaults.object(forKey: "showExplicitContent") else {
             return false
         }
         return Bool(value as! Bool)
@@ -102,9 +102,9 @@ class UserSettings {
     
     // MARK: - Setters
     
-    static func setShowOffensiveSounds(to newValue: Bool) {
+    static func setShowExplicitContent(to newValue: Bool) {
         let userDefaults = UserDefaults.standard
-        userDefaults.set(newValue, forKey: "skipGetLinkInstructions")
+        userDefaults.set(newValue, forKey: "showExplicitContent")
     }
     
     static func setSoundSortOption(to newValue: Int) {

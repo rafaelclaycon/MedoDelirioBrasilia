@@ -31,8 +31,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
     ) -> Bool {
-        // Fix missing Favorites bug
+        // Fixes
         moveDatabaseFileIfNeeded()
+        replaceUserSettingFlag()
         
         do {
             try database.migrateIfNeeded()
@@ -147,6 +148,22 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             return fileManager.fileExists(atPath: filePath)
         } else {
             return false
+        }
+    }
+    
+    // MARK: - Fix UserSetting flag name
+    
+    private func hasSkipGetLinkInstructionsSet() -> Bool {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "skipGetLinkInstructions") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
+    
+    private func replaceUserSettingFlag() {
+        if hasSkipGetLinkInstructionsSet() {
+            UserSettings.setShowExplicitContent(to: true)
         }
     }
 

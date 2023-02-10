@@ -28,7 +28,7 @@ struct SettingsView: View {
             Section {
                 Toggle("Exibir conteúdo explícito", isOn: $showExplicitSounds)
                     .onChange(of: showExplicitSounds) { showExplicitSounds in
-                        UserSettings.setShowOffensiveSounds(to: showExplicitSounds)
+                        UserSettings.setShowExplicitContent(to: showExplicitSounds)
                         helper.updateSoundsList = true
                     }
             } footer: {
