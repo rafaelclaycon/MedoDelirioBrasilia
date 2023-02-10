@@ -168,7 +168,7 @@ struct SoundsView: View {
                                                                 if currentMode == .favorites {
                                                                     viewModel.reloadList(withSounds: soundData,
                                                                                          andFavorites: try? database.getAllFavorites(),
-                                                                                         allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+                                                                                         allowSensitiveContent: UserSettings.getShowExplicitContent(),
                                                                                          favoritesOnly: currentMode == .favorites,
                                                                                          sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
                                                                 }
@@ -256,7 +256,7 @@ struct SoundsView: View {
                                 }
                             }
                             
-                            if UserSettings.getShowOffensiveSounds() == false, currentMode != .favorites {
+                            if UserSettings.getShowExplicitContent() == false, currentMode != .favorites {
                                 Text(UIDevice.current.userInterfaceIdiom == .phone ? Shared.contentFilterMessageForSoundsiPhone : Shared.contentFilterMessageForSoundsiPadMac)
                                     .font(.footnote)
                                     .foregroundColor(.gray)
@@ -281,7 +281,7 @@ struct SoundsView: View {
             .onAppear {
                 viewModel.reloadList(withSounds: soundData,
                                      andFavorites: try? database.getAllFavorites(),
-                                     allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+                                     allowSensitiveContent: UserSettings.getShowExplicitContent(),
                                      favoritesOnly: currentMode == .favorites,
                                      sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
                 columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
@@ -352,7 +352,7 @@ struct SoundsView: View {
                 if shouldUpdate {
                     viewModel.reloadList(withSounds: soundData,
                                          andFavorites: try? database.getAllFavorites(),
-                                         allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+                                         allowSensitiveContent: UserSettings.getShowExplicitContent(),
                                          favoritesOnly: currentMode == .favorites,
                                          sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
                     settingsHelper.updateSoundsList = false
@@ -430,7 +430,7 @@ struct SoundsView: View {
             }
             viewModel.reloadList(withSounds: soundData,
                                  andFavorites: try? database.getAllFavorites(),
-                                 allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+                                 allowSensitiveContent: UserSettings.getShowExplicitContent(),
                                  favoritesOnly: currentMode == .favorites,
                                  sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
         }
@@ -512,7 +512,7 @@ struct SoundsView: View {
                     .onChange(of: viewModel.soundSortOption, perform: { soundSortOption in
                         viewModel.reloadList(withSounds: soundData,
                                              andFavorites: try? database.getAllFavorites(),
-                                             allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+                                             allowSensitiveContent: UserSettings.getShowExplicitContent(),
                                              favoritesOnly: currentMode == .favorites,
                                              sortedBy: SoundSortOption(rawValue: soundSortOption) ?? .titleAscending)
                         UserSettings.setSoundSortOption(to: soundSortOption)

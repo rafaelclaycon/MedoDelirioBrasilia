@@ -11,7 +11,7 @@ struct SettingsView: View {
 
     @EnvironmentObject var helper: SettingsHelper
     
-    @State private var showExplicitSounds: Bool = UserSettings.getShowOffensiveSounds()
+    @State private var showExplicitSounds: Bool = UserSettings.getShowExplicitContent()
     
     @State private var showChangeAppIcon: Bool = ProcessInfo.processInfo.isMacCatalystApp == false
     

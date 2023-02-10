@@ -4,7 +4,7 @@ class UserSettings {
 
     // MARK: - Getters
     
-    static func getShowOffensiveSounds() -> Bool {
+    static func getShowExplicitContent() -> Bool {
         let userDefaults = UserDefaults.standard
         guard let value = userDefaults.object(forKey: "showExplicitContent") else {
             return false

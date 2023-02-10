@@ -99,7 +99,7 @@ struct SongsView: View {
                     .padding(.horizontal)
                     .padding(.top, 7)
                     
-                    if UserSettings.getShowOffensiveSounds() == false {
+                    if UserSettings.getShowExplicitContent() == false {
                         Text(UIDevice.current.userInterfaceIdiom == .phone ? Shared.contentFilterMessageForSongsiPhone : Shared.contentFilterMessageForSongsiPadMac)
                             .font(.footnote)
                             .foregroundColor(.gray)
@@ -155,7 +155,7 @@ struct SongsView: View {
                 }
                 .onChange(of: viewModel.sortOption, perform: { newSortOption in
                     viewModel.reloadList(withSongs: songData,
-                                         allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+                                         allowSensitiveContent: UserSettings.getShowExplicitContent(),
                                          sortedBy: SongSortOption(rawValue: newSortOption) ?? .titleAscending)
                     UserSettings.setSongSortOption(to: newSortOption)
                 })
@@ -171,7 +171,7 @@ struct SongsView: View {
             }
             .onAppear {
                 viewModel.reloadList(withSongs: songData,
-                                     allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+                                     allowSensitiveContent: UserSettings.getShowExplicitContent(),
                                      sortedBy: SongSortOption(rawValue: UserSettings.getSongSortOption()) ?? .titleAscending)
                 viewModel.donateActivity()
             }
@@ -207,7 +207,7 @@ struct SongsView: View {
             .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in
                 if shouldUpdate {
                     viewModel.reloadList(withSongs: songData,
-                                         allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+                                         allowSensitiveContent: UserSettings.getShowExplicitContent(),
                                          sortedBy: SongSortOption(rawValue: UserSettings.getSongSortOption()) ?? .titleAscending)
                     settingsHelper.updateSoundsList = false
                 }

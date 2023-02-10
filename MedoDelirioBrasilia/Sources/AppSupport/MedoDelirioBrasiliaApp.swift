@@ -31,6 +31,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
     ) -> Bool {
+        print(UserDefaults.standard.data(forKey: "skipGetLinkInstructions"))
+        
         // Fixes
         moveDatabaseFileIfNeeded()
         replaceUserSettingFlag()
@@ -164,6 +166,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     private func replaceUserSettingFlag() {
         if hasSkipGetLinkInstructionsSet() {
             UserSettings.setShowExplicitContent(to: true)
+            UserDefaults.standard.removeObject(forKey: "skipGetLinkInstructions")
         }
     }
 
