@@ -337,6 +337,7 @@ struct AuthorDetailView: View {
                     }
                 })
             }
+            .disabled(viewModel.sounds.count < 2)
             
             Section {
                 Button {
