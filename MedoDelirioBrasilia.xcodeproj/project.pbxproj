@@ -1124,6 +1124,7 @@
 		D9CEB7522998009900DF8497 /* Lula (Cristiano Botafogo) - Voce e maluco ou voce e idiota me responde companheiro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CEB7512998009900DF8497 /* Lula (Cristiano Botafogo) - Voce e maluco ou voce e idiota me responde companheiro.mp3 */; };
 		D9CEB75A2998031D00DF8497 /* Jair Bolsonaro - O soldado que vai a guerra e tem medo de morrer e um covarde.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CEB7592998031D00DF8497 /* Jair Bolsonaro - O soldado que vai a guerra e tem medo de morrer e um covarde.mp3 */; };
 		D9CEB75E2998046F00DF8497 /* Ta todo mundo preso.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CEB75D2998046F00DF8497 /* Ta todo mundo preso.mp3 */; };
+		D9CEB760299806FF00DF8497 /* Meu irmao ta no Supremo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CEB75F299806FF00DF8497 /* Meu irmao ta no Supremo.mp3 */; };
 		D9D192772909D4F200713804 /* NetworkCallLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D192762909D4F200713804 /* NetworkCallLog.swift */; };
 		D9D3D4912887495B00C42FDE /* FolderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3D4902887495B00C42FDE /* FolderList.swift */; };
 		D9D3D493288750C400C42FDE /* FolderListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3D492288750C400C42FDE /* FolderListViewModel.swift */; };
@@ -2371,6 +2372,7 @@
 		D9CEB7512998009900DF8497 /* Lula (Cristiano Botafogo) - Voce e maluco ou voce e idiota me responde companheiro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula (Cristiano Botafogo) - Voce e maluco ou voce e idiota me responde companheiro.mp3"; sourceTree = "<group>"; };
 		D9CEB7592998031D00DF8497 /* Jair Bolsonaro - O soldado que vai a guerra e tem medo de morrer e um covarde.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - O soldado que vai a guerra e tem medo de morrer e um covarde.mp3"; sourceTree = "<group>"; };
 		D9CEB75D2998046F00DF8497 /* Ta todo mundo preso.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ta todo mundo preso.mp3"; sourceTree = "<group>"; };
+		D9CEB75F299806FF00DF8497 /* Meu irmao ta no Supremo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Meu irmao ta no Supremo.mp3"; sourceTree = "<group>"; };
 		D9D192762909D4F200713804 /* NetworkCallLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkCallLog.swift; sourceTree = "<group>"; };
 		D9D3D4902887495B00C42FDE /* FolderList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderList.swift; sourceTree = "<group>"; };
 		D9D3D492288750C400C42FDE /* FolderListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListViewModel.swift; sourceTree = "<group>"; };
@@ -3510,6 +3512,7 @@
 		D92E7068283C5C120035826C /* Songs */ = {
 			isa = PBXGroup;
 			children = (
+				D9CEB75F299806FF00DF8497 /* Meu irmao ta no Supremo.mp3 */,
 				D94B03FE2993354400EB03CA /* Road Trip do Medo e Delirio.mp3 */,
 				D9F487ED29761F9500DCFE07 /* Funk da Cidinha.mp3 */,
 				D9F487EC29761F9500DCFE07 /* Pisero da Cidinha.mp3 */,
@@ -4839,6 +4842,7 @@
 				D9AF10C4290AD50D0054741F /* Wajngarten - Ate aqui todo mundo ta acompanhando.mp3 in Resources */,
 				D97500102880B4F20035E6F2 /* CHOQUE DE CULTURA - Renan - Inescrupulosos.mp3 in Resources */,
 				D92AD1AB28832BDF001CBCDF /* PETIT JOURNAL - Tanguy Baghdadi - Porra, ta errado.mp3 in Resources */,
+				D9CEB760299806FF00DF8497 /* Meu irmao ta no Supremo.mp3 in Resources */,
 				D975FF712880B4F20035E6F2 /* Malditos milicos robo grave.mp3 in Resources */,
 				D98B9AD628CEBD2D00B82EDE /* Imbrochavel 5 vezes.mp3 in Resources */,
 				D975FEC42880B4F20035E6F2 /* ROY ORBISON - Oh Pretty Woman Pretiputi parodia.mp3 in Resources */,
