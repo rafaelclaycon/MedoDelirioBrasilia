@@ -9896,5 +9896,38 @@
         "duration": 3.66,
         "isOffensive": false,
         "isNew": true
+    },
+    {
+        "id": "A64B2A27-0E98-4FE8-9148-F33C4F800204",
+        "title": "Você é maluco ou você é idiota, companheiro?",
+        "authorId": "26BD3CA0-B65D-4946-BFA6-88A4B614D361",
+        "description": "voce é maluco é porra ou voce e idiota me responde porque eu to na duvida companheiro",
+        "filename": "Lula (Cristiano Botafogo) - Voce e maluco ou voce e idiota me responde companheiro.mp3",
+        "dateAdded": "2023-02-11T00:00:00Z",
+        "duration": 4.99,
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "D1974974-CA2A-4862-B9C9-9C77F140B789",
+        "title": "O soldado que vai a guerra e tem medo de morrer é um covarde",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "O soldado que vai a guerra e tem medo de morrer é um covarde",
+        "filename": "Jair Bolsonaro - O soldado que vai a guerra e tem medo de morrer e um covarde.mp3",
+        "dateAdded": "2023-02-11T00:00:00Z",
+        "duration": 2.51,
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "3E042BC8-E36E-4CF2-B075-0CA06260923B",
+        "title": "Tá todo mundo preso?",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Ta todo mundo preso Ta todo mundo preso calma estao todos preso beleza ninguem vai descer nao coronel",
+        "filename": "Ta todo mundo preso.mp3",
+        "dateAdded": "2023-02-11T00:00:00Z",
+        "duration": 12.7,
+        "isOffensive": true,
+        "isNew": true
     }
 ]
