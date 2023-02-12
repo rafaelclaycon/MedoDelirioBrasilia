@@ -56,6 +56,7 @@ struct SongCell: View {
                             .foregroundColor(.black)
                             .bold()
                             .multilineTextAlignment(.leading)
+                            .lineLimit(2)
                         
                         HStack(spacing: 10) {
                             Text("\(genre.name) · \(durationForDisplay)")
