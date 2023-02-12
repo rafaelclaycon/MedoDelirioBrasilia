@@ -9895,7 +9895,7 @@
         "dateAdded": "2023-02-10T00:00:00Z",
         "duration": 3.66,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "A64B2A27-0E98-4FE8-9148-F33C4F800204",
@@ -9906,7 +9906,7 @@
         "dateAdded": "2023-02-11T00:00:00Z",
         "duration": 4.99,
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "D1974974-CA2A-4862-B9C9-9C77F140B789",
@@ -9917,7 +9917,7 @@
         "dateAdded": "2023-02-11T00:00:00Z",
         "duration": 2.51,
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "3E042BC8-E36E-4CF2-B075-0CA06260923B",
@@ -9928,6 +9928,17 @@
         "dateAdded": "2023-02-11T00:00:00Z",
         "duration": 12.7,
         "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "4C74FD47-38D6-413F-9380-629E97D2530F",
+        "title": "Esqueceu-se",
+        "authorId": "E50B9302-E5FB-413F-9432-53424E12831A",
+        "description": "Esqueceu-se",
+        "filename": "Bruno Aleixo - Esqueceu-se.mp3",
+        "dateAdded": "2023-02-12T00:00:00Z",
+        "duration": 0.76,
+        "isOffensive": false,
         "isNew": true
     }
 ]

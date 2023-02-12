@@ -1125,6 +1125,7 @@
 		D9CEB75A2998031D00DF8497 /* Jair Bolsonaro - O soldado que vai a guerra e tem medo de morrer e um covarde.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CEB7592998031D00DF8497 /* Jair Bolsonaro - O soldado que vai a guerra e tem medo de morrer e um covarde.mp3 */; };
 		D9CEB75E2998046F00DF8497 /* Ta todo mundo preso.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CEB75D2998046F00DF8497 /* Ta todo mundo preso.mp3 */; };
 		D9CEB760299806FF00DF8497 /* Meu irmao ta no Supremo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CEB75F299806FF00DF8497 /* Meu irmao ta no Supremo.mp3 */; };
+		D9CEB76629991B8C00DF8497 /* Bruno Aleixo - Esqueceu-se.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CEB76529991B8C00DF8497 /* Bruno Aleixo - Esqueceu-se.mp3 */; };
 		D9D192772909D4F200713804 /* NetworkCallLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D192762909D4F200713804 /* NetworkCallLog.swift */; };
 		D9D3D4912887495B00C42FDE /* FolderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3D4902887495B00C42FDE /* FolderList.swift */; };
 		D9D3D493288750C400C42FDE /* FolderListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3D492288750C400C42FDE /* FolderListViewModel.swift */; };
@@ -2373,6 +2374,7 @@
 		D9CEB7592998031D00DF8497 /* Jair Bolsonaro - O soldado que vai a guerra e tem medo de morrer e um covarde.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - O soldado que vai a guerra e tem medo de morrer e um covarde.mp3"; sourceTree = "<group>"; };
 		D9CEB75D2998046F00DF8497 /* Ta todo mundo preso.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ta todo mundo preso.mp3"; sourceTree = "<group>"; };
 		D9CEB75F299806FF00DF8497 /* Meu irmao ta no Supremo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Meu irmao ta no Supremo.mp3"; sourceTree = "<group>"; };
+		D9CEB76529991B8C00DF8497 /* Bruno Aleixo - Esqueceu-se.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bruno Aleixo - Esqueceu-se.mp3"; sourceTree = "<group>"; };
 		D9D192762909D4F200713804 /* NetworkCallLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkCallLog.swift; sourceTree = "<group>"; };
 		D9D3D4902887495B00C42FDE /* FolderList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderList.swift; sourceTree = "<group>"; };
 		D9D3D492288750C400C42FDE /* FolderListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListViewModel.swift; sourceTree = "<group>"; };
@@ -2511,6 +2513,7 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9CEB76529991B8C00DF8497 /* Bruno Aleixo - Esqueceu-se.mp3 */,
 				D9CEB75D2998046F00DF8497 /* Ta todo mundo preso.mp3 */,
 				D9CEB7592998031D00DF8497 /* Jair Bolsonaro - O soldado que vai a guerra e tem medo de morrer e um covarde.mp3 */,
 				D9CEB7512998009900DF8497 /* Lula (Cristiano Botafogo) - Voce e maluco ou voce e idiota me responde companheiro.mp3 */,
@@ -5014,6 +5017,7 @@
 				D989D3B72921AD3500DFB333 /* Renan (Choque de Cultura) - A sensibilidade incrivel desse homem.mp3 in Resources */,
 				D975FFB42880B4F20035E6F2 /* Bolsonaro - Assim como na China, a curva ja esta na descendente, nos vamos passar por isso tambem.mp3 in Resources */,
 				D969BA4E292D892C006A7D2F /* Desconhecido - Pra conversar com doido, so outro doido.mp3 in Resources */,
+				D9CEB76629991B8C00DF8497 /* Bruno Aleixo - Esqueceu-se.mp3 in Resources */,
 				D9BB8F7728EC6D9E00659D4A /* Amigo do Pedro Daltro - Risada caralho.mp3 in Resources */,
 				491110282926BA2F0055F4EE /* Desconhecido - Socorro nos ajudem.mp3 in Resources */,
 				D97500192880B4F20035E6F2 /* JOVEM PAN NEWS - Constantino - Pro audio vazar, alguem quer sabotar o MEC e o Milton Ribeiro se deu mal.mp3 in Resources */,
