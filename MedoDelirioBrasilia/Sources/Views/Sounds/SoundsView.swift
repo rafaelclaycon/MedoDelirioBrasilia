@@ -549,7 +549,7 @@ struct SoundsView: View {
                                 Label("Compartilhar", systemImage: "square.and.arrow.up")
                             }
                         }
-                        .disabled(true)
+                        .disabled(viewModel.selectionKeeper.count == 0)
                         
                         Section {
                             Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {

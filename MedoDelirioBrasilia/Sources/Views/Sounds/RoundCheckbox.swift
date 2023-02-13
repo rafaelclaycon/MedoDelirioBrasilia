@@ -43,7 +43,7 @@ struct RoundCheckbox: View {
                 
                 Image(systemName: "checkmark")
                     .foregroundColor(style == .holePunch ? selectedFillColor : unselectedFillColor)
-                    .font(.title3.bold())
+                    .font(.system(size: 15).bold())
                     .frame(width: circleSize, height: circleSize)
             } else {
                 Circle()
