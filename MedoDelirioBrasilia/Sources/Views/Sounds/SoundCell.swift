@@ -21,6 +21,7 @@ struct SoundCell: View {
     @State private var timeRemaining: Double = 0
     
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    private let unselectedForegroundColor: Color = .gray
     
     enum Background {
         case regular, favorite, highlighted
@@ -148,22 +149,18 @@ struct SoundCell: View {
                 .frame(height: cellHeight)
             }
             
-//            if currentMode == .upForSelection {
-//                VStack {
-//                    Spacer()
-//                    HStack {
-//                        Spacer()
-//                        Image(systemName: "star.fill")
-//                            .resizable()
-//                            .scaledToFit()
-//                            .frame(height: 24)
-//                            .foregroundColor(.yellow)
-//                            .padding(.trailing, 10)
-//                            .padding(.bottom)
-//                    }
-//                }
-//                .frame(height: cellHeight)
-//            }
+            if currentMode == .upForSelection {
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        RoundCheckbox(selected: .constant(false), style: .default)
+                            .padding(.trailing, 10)
+                            .padding(.bottom, 10)
+                    }
+                }
+                .frame(height: cellHeight)
+            }
             
             HStack {
                 VStack(alignment: .leading, spacing: 8) {
