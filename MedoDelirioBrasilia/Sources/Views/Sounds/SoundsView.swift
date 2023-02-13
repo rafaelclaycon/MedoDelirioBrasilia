@@ -486,40 +486,54 @@ struct SoundsView: View {
                 } else {
                     Menu {
                         Section {
+                            Button {
+                                print("Selecionar tapped")
+                            } label: {
+                                Label("Selecionar", systemImage: "checkmark.circle")
+                            }
+                        }
+                        
+                        Section {
+                            Button {
+                                print("Adicionar aos Favoritos tapped")
+                            } label: {
+                                Label("Adicionar aos Favoritos", systemImage: "star")
+                            }
+                            
+                            Button {
+                                print("Adicionar a Pasta tapped")
+                            } label: {
+                                Label("Adicionar a Pasta", systemImage: "folder.badge.plus")
+                            }
+                            
+                            Button {
+                                print("Compartilhar tapped")
+                            } label: {
+                                Label("Compartilhar", systemImage: "square.and.arrow.up")
+                            }
+                        }
+                        .disabled(true)
+                        
+                        Section {
                             Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
-                                HStack {
-                                    Text("Título")
-                                    Image(systemName: "a.circle")
-                                }
-                                .tag(0)
+                                Text("Título")
+                                    .tag(0)
                                 
-                                HStack {
-                                    Text("Nome do(a) Autor(a)")
-                                    Image(systemName: "person")
-                                }
-                                .tag(1)
+                                Text("Nome do(a) Autor(a)")
+                                    .tag(1)
                                 
-                                HStack {
-                                    Text("Mais Recentes no Topo")
-                                    Image(systemName: "calendar")
-                                }
-                                .tag(2)
+                                Text("Mais Recentes no Topo")
+                                    .tag(2)
                                 
-                                HStack {
-                                    Text("Mais Curtos no Topo")
-                                    Image(systemName: "hare")
-                                }
-                                .tag(3)
+                                Text("Mais Curtos no Topo")
+                                    .tag(3)
                                 
-                                HStack {
-                                    Text("Mais Longos no Topo")
-                                    Image(systemName: "tortoise")
-                                }
-                                .tag(4)
+                                Text("Mais Longos no Topo")
+                                    .tag(4)
                             }
                         }
                     } label: {
-                        Image(systemName: "arrow.up.arrow.down")
+                        Image(systemName: "ellipsis.circle")
                     }
                     .onChange(of: viewModel.soundSortOption, perform: { soundSortOption in
                         viewModel.reloadList(withSounds: soundData,
