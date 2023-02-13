@@ -18,7 +18,14 @@ struct Shared {
     static let shareSoundButtonText = "Compartilhar Som"
     static let shareSongButtonText = "Compartilhar Música"
     static let shareAsVideoButtonText = "Compartilhar como Vídeo"
-    static let selectItems = "Selecionar Itens"
+    
+    struct ItemSelection {
+        
+        static let selectItems = "Selecionar Itens"
+        static let itemsSelectedSingular = "1 Selecionado"
+        static let itemsSelectedPlural = "%d Selecionados"
+        
+    }
     
     static let contentFilterMessageForSoundsiPhone = "Alguns sons não estão sendo exibidos pois a opção Exibir Conteúdo Explícito está desabilitada.\n\nVocê pode mudar isso nas Configurações (ícone de engrenagem aqui no topo esquerdo da tela)."
     static let contentFilterMessageForSoundsiPadMac = "Alguns sons não estão sendo exibidos pois a opção Exibir Conteúdo Explícito está desabilitada.\n\nVocê pode mudar isso na tela de Configurações (ícone de engrenagem no topo da barra lateral do app)."

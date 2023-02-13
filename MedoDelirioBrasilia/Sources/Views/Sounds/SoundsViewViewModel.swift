@@ -18,6 +18,7 @@ class SoundsViewViewModel: ObservableObject {
     @Published var favoritesKeeper = Set<String>()
     @Published var highlightKeeper = Set<String>()
     @Published var nowPlayingKeeper = Set<String>()
+    @Published var selectionKeeper = Set<String>()
     @Published var showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = false
     @Published var showEmailAppPicker_soundUnavailableConfirmationDialog = false
     @Published var selectedSound: Sound? = nil

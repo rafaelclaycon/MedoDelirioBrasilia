@@ -19,7 +19,7 @@ struct RoundCheckbox: View {
     private let unselectedForegroundColor: Color = .gray
     
     // Checked
-    private let selectedFillColor: Color = .pink
+    private let selectedFillColor: Color = .blue
     private let selectedForegroundColor: Color = .systemBackground
     
     public enum RoundCheckboxStyle {

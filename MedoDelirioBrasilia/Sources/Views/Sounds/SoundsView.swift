@@ -78,7 +78,13 @@ struct SoundsView: View {
     
     private var title: String {
         guard currentSoundsListMode == .regular else {
-            return Shared.selectItems
+            if viewModel.selectionKeeper.count == 0 {
+                return Shared.ItemSelection.selectItems
+            } else if viewModel.selectionKeeper.count == 1 {
+                return Shared.ItemSelection.itemsSelectedSingular
+            } else {
+                return String(format: Shared.ItemSelection.itemsSelectedPlural, viewModel.selectionKeeper.count)
+            }
         }
         switch currentViewMode {
         case .allSounds:
@@ -138,15 +144,23 @@ struct SoundsView: View {
                                         .padding(.vertical, UIScreen.main.bounds.height / 3)
                                     } else {
                                         ForEach(searchResults) { sound in
-                                            SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", duration: sound.duration, isNew: sound.isNew ?? false, favorites: $viewModel.favoritesKeeper, highlighted: $viewModel.highlightKeeper, nowPlaying: $viewModel.nowPlayingKeeper, currentSoundsListMode: $currentSoundsListMode)
+                                            SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", duration: sound.duration, isNew: sound.isNew ?? false, favorites: $viewModel.favoritesKeeper, highlighted: $viewModel.highlightKeeper, nowPlaying: $viewModel.nowPlayingKeeper, selectedItems: $viewModel.selectionKeeper, currentSoundsListMode: $currentSoundsListMode)
                                                 .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
                                                 .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                                                 .onTapGesture {
-                                                    if viewModel.nowPlayingKeeper.contains(sound.id) {
-                                                        player?.togglePlay()
-                                                        viewModel.nowPlayingKeeper.removeAll()
+                                                    if currentSoundsListMode == .regular {
+                                                        if viewModel.nowPlayingKeeper.contains(sound.id) {
+                                                            player?.togglePlay()
+                                                            viewModel.nowPlayingKeeper.removeAll()
+                                                        } else {
+                                                            viewModel.playSound(fromPath: sound.filename, withId: sound.id)
+                                                        }
                                                     } else {
-                                                        viewModel.playSound(fromPath: sound.filename, withId: sound.id)
+                                                        if viewModel.selectionKeeper.contains(sound.id) {
+                                                            viewModel.selectionKeeper.remove(sound.id)
+                                                        } else {
+                                                            viewModel.selectionKeeper.insert(sound.id)
+                                                        }
                                                     }
                                                 }
                                                 .contextMenu {
@@ -455,6 +469,7 @@ struct SoundsView: View {
             } else {
                 Button {
                     currentSoundsListMode = .regular
+                    viewModel.selectionKeeper.removeAll()
                 } label: {
                     Text("Cancelar")
                         .bold()
