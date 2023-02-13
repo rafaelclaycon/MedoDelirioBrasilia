@@ -17,10 +17,6 @@ struct SoundsView: View {
         case onboardingView, addToFolderView, shareAsVideoView, settingsView
     }
     
-    enum SoundsListMode: Int {
-        case regular, selection
-    }
-    
     @StateObject var viewModel: SoundsViewViewModel
     @State var currentViewMode: ViewMode
     @State var currentSoundsListMode: SoundsListMode = .regular
@@ -81,6 +77,9 @@ struct SoundsView: View {
     }
     
     private var title: String {
+        guard currentSoundsListMode == .regular else {
+            return Shared.selectItems
+        }
         switch currentViewMode {
         case .allSounds:
             return "Sons"
@@ -139,7 +138,7 @@ struct SoundsView: View {
                                         .padding(.vertical, UIScreen.main.bounds.height / 3)
                                     } else {
                                         ForEach(searchResults) { sound in
-                                            SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", duration: sound.duration, isNew: sound.isNew ?? false, favorites: $viewModel.favoritesKeeper, highlighted: $viewModel.highlightKeeper, nowPlaying: $viewModel.nowPlayingKeeper)
+                                            SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", duration: sound.duration, isNew: sound.isNew ?? false, favorites: $viewModel.favoritesKeeper, highlighted: $viewModel.highlightKeeper, nowPlaying: $viewModel.nowPlayingKeeper, currentSoundsListMode: $currentSoundsListMode)
                                                 .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
                                                 .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                                                 .onTapGesture {
