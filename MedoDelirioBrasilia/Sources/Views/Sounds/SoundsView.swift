@@ -197,7 +197,7 @@ struct SoundsView: View {
                                                                     viewModel.addToFavorites(soundId: sound.id)
                                                                 }
                                                             } label: {
-                                                                Label(viewModel.favoritesKeeper.contains(sound.id) ? "Remover dos Favoritos" : "Adicionar aos Favoritos", systemImage: viewModel.favoritesKeeper.contains(sound.id) ? "star.slash" : "star")
+                                                                Label(viewModel.favoritesKeeper.contains(sound.id) ? Shared.removeFromFavorites : Shared.addToFavorites, systemImage: viewModel.favoritesKeeper.contains(sound.id) ? "star.slash" : "star")
                                                             }
                                                             
                                                             Button {
@@ -525,16 +525,26 @@ struct SoundsView: View {
                             Button {
                                 viewModel.startSelecting()
                             } label: {
-                                Label("Selecionar", systemImage: "checkmark.circle")
+                                Label(currentSoundsListMode == .selection ? "Cancelar Seleção" : "Selecionar", systemImage: currentSoundsListMode == .selection ? "xmark.circle" : "checkmark.circle")
                             }
                         }
                         
                         Section {
                             Button {
-                                viewModel.addSelectedToFavorites()
-                                viewModel.stopSelecting()
+                                if currentViewMode == .favorites {
+                                    viewModel.removeSelectedFromFavorites()
+                                    viewModel.stopSelecting()
+                                    viewModel.reloadList(withSounds: soundData,
+                                                         andFavorites: try? database.getAllFavorites(),
+                                                         allowSensitiveContent: UserSettings.getShowExplicitContent(),
+                                                         favoritesOnly: currentViewMode == .favorites,
+                                                         sortedBy: SoundSortOption(rawValue: viewModel.soundSortOption) ?? .titleAscending)
+                                } else {
+                                    viewModel.addSelectedToFavorites()
+                                    viewModel.stopSelecting()
+                                }
                             } label: {
-                                Label("Adicionar aos Favoritos", systemImage: "star")
+                                Label(currentViewMode == .favorites ? Shared.removeFromFavorites : Shared.addToFavorites, systemImage: currentViewMode == .favorites ? "star.slash" : "star")
                             }.disabled(viewModel.selectionKeeper.count == 0)
                             
                             Button {

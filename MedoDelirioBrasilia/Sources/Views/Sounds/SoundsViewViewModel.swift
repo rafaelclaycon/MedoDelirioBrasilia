@@ -337,6 +337,13 @@ class SoundsViewViewModel: ObservableObject {
         }
     }
     
+    func removeSelectedFromFavorites() {
+        guard selectionKeeper.count > 0 else { return }
+        selectionKeeper.forEach { selectedSound in
+            removeFromFavorites(soundId: selectedSound)
+        }
+    }
+    
     func prepareSelectedToAddToFolder() {
         guard selectionKeeper.count > 0 else { return }
         selectedSounds = [Sound]()

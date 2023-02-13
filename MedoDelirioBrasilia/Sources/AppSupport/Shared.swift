@@ -18,6 +18,8 @@ struct Shared {
     static let shareSoundButtonText = "Compartilhar Som"
     static let shareSongButtonText = "Compartilhar Música"
     static let shareAsVideoButtonText = "Compartilhar como Vídeo"
+    static let addToFavorites = "Adicionar aos Favoritos"
+    static let removeFromFavorites = "Remover dos Favoritos"
     
     struct SoundSelection {
         
