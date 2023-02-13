@@ -21,15 +21,18 @@ struct SoundCell: View {
     
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
-    enum Mode {
+    enum Background {
         case regular, favorite, highlighted
     }
     
-    private var currentMode: Mode {
+    enum Mode {
+        case regular, playing, upForSelection, selected
+    }
+    
+    private var background: Background {
         guard highlighted.contains(soundId) == false else {
             return .highlighted
         }
-        
         if favorites.contains(soundId) {
             return .favorite
         } else {
@@ -37,8 +40,15 @@ struct SoundCell: View {
         }
     }
     
+    private var currentMode: Mode {
+        guard nowPlaying.contains(soundId) else {
+            return .regular
+        }
+        return .playing
+    }
+    
     private var cellFill: LinearGradient {
-        switch currentMode {
+        switch background {
         case .regular:
             return regularGradient
         case .favorite:
@@ -84,12 +94,8 @@ struct SoundCell: View {
         }
     }
     
-    private var isPlaying: Bool {
-        nowPlaying.contains(soundId)
-    }
-    
     private var subtitle: String {
-        if isPlaying {
+        if currentMode == .playing {
             if duration < 1.0 {
                 return "< 1 s"
             }
@@ -108,9 +114,9 @@ struct SoundCell: View {
             RoundedRectangle(cornerRadius: 20, style: .continuous)
                 .fill(cellFill)
                 .frame(height: cellHeight)
-                .opacity(isPlaying ? 0.7 : 1.0)
+                .opacity(currentMode == .playing ? 0.7 : 1.0)
             
-            if currentMode == .favorite, isPlaying == false {
+            if background == .favorite, currentMode == .regular {
                 VStack {
                     Spacer()
                     HStack {
@@ -139,7 +145,7 @@ struct SoundCell: View {
                         .foregroundColor(.white)
                         .lineLimit(authorNameLineLimit)
                         .onReceive(timer) { time in
-                            guard isPlaying else { return }
+                            guard currentMode == .playing else { return }
                             if timeRemaining > 0 {
                                 timeRemaining -= 1
                             }
@@ -150,7 +156,7 @@ struct SoundCell: View {
             }
             .padding(.leading, UIDevice.is4InchDevice ? 10 : 20)
             
-            if isNew, currentMode == .regular, isPlaying == false {
+            if isNew, background == .regular, currentMode == .regular {
                 VStack {
                     Spacer()
                     HStack {
@@ -173,7 +179,7 @@ struct SoundCell: View {
                 .frame(height: cellHeight)
             }
             
-            if isPlaying {
+            if currentMode == .playing {
                 VStack {
                     Spacer()
                     HStack {
@@ -189,12 +195,12 @@ struct SoundCell: View {
             }
         }
         .onAppear {
-            if !isPlaying {
+            if currentMode != .playing {
                 timeRemaining = duration
             }
         }
-        .onChange(of: isPlaying) { isPlaying in
-            if !isPlaying {
+        .onChange(of: currentMode) { currentMode in
+            if currentMode != .playing {
                 timeRemaining = duration
             }
         }
