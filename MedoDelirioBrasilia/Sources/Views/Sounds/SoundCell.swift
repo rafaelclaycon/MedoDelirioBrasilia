@@ -216,7 +216,7 @@ struct SoundCell: View {
                     Spacer()
                     HStack {
                         Spacer()
-                        RoundCheckbox(selected: .constant(false), style: .default)
+                        RoundCheckbox(selected: .constant(false))
                             .padding(.trailing, 10)
                             .padding(.bottom, 10)
                     }
@@ -227,7 +227,7 @@ struct SoundCell: View {
                     Spacer()
                     HStack {
                         Spacer()
-                        RoundCheckbox(selected: .constant(true), style: .default)
+                        RoundCheckbox(selected: .constant(true))
                             .padding(.trailing, 10)
                             .padding(.bottom, 10)
                     }
