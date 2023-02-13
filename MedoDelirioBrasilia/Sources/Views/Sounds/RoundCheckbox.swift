@@ -11,6 +11,7 @@ struct RoundCheckbox: View {
     
     @Binding var selected: Bool
     @State var style: RoundCheckboxStyle
+    @Environment(\.colorScheme) var colorScheme
 
     private let circleSize: CGFloat = 28.0
     
@@ -42,14 +43,14 @@ struct RoundCheckbox: View {
                 }
                 
                 Image(systemName: "checkmark")
-                    .foregroundColor(style == .holePunch ? selectedFillColor : unselectedFillColor)
+                    .foregroundColor(.white)
                     .font(.system(size: 15).bold())
                     .frame(width: circleSize, height: circleSize)
             } else {
                 Circle()
-                    .stroke(unselectedForegroundColor, lineWidth: 1.7)
+                    .stroke(colorScheme == .dark ? .white : .gray, lineWidth: 1.7)
                     .frame(width: circleSize, height: circleSize)
-                    .opacity(0.7)
+                    .opacity(colorScheme == .dark ? 1.0 : 0.7)
             }
         }
         .onTapGesture {
