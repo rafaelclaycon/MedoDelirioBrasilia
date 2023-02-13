@@ -317,17 +317,11 @@ struct AuthorDetailView: View {
         Menu {
             Section {
                 Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
-                    HStack {
-                        Text("Título")
-                        Image(systemName: "a.circle")
-                    }
-                    .tag(0)
+                    Text("Título")
+                        .tag(0)
                     
-                    HStack {
-                        Text("Mais Recentes no Topo")
-                        Image(systemName: "calendar")
-                    }
-                    .tag(1)
+                    Text("Mais Recentes no Topo")
+                        .tag(1)
                 }
                 .onChange(of: viewModel.soundSortOption, perform: { soundSortOption in
                     if soundSortOption == 0 {
