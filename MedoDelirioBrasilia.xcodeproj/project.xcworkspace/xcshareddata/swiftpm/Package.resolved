@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/onevcat/Kingfisher",
       "state" : {
-        "revision" : "44e891bdb61426a95e31492a67c7c0dfad1f87c5",
-        "version" : "7.4.1"
+        "revision" : "415b1d97fb38bda1e5a6b2dde63354720832110b",
+        "version" : "7.6.1"
       }
     },
     {
@@ -15,7 +15,7 @@
       "location" : "https://github.com/joekndy/MarqueeText",
       "state" : {
         "branch" : "master",
-        "revision" : "7a8415b7e27d8f2919a7b502b4bc85eaea3ff3ee"
+        "revision" : "e18d514455563ad00581e0d825146c6f15b1c6c4"
       }
     },
     {
