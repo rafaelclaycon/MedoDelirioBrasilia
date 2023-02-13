@@ -518,11 +518,12 @@ struct SoundsView: View {
                     Menu {
                         Section {
                             Button {
-                                print("Selecionar tapped")
+                                viewModel.stopPlaying()
                                 if currentSoundsListMode == .regular {
                                     currentSoundsListMode = .selection
                                 } else {
                                     currentSoundsListMode = .regular
+                                    viewModel.selectionKeeper.removeAll()
                                 }
                             } label: {
                                 Label("Selecionar", systemImage: "checkmark.circle")

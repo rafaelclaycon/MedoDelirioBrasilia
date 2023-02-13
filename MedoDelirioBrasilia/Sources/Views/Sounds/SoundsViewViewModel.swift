@@ -136,6 +136,13 @@ class SoundsViewViewModel: ObservableObject {
         player?.togglePlay()
     }
     
+    func stopPlaying() {
+        if nowPlayingKeeper.count > 0 {
+            player?.togglePlay()
+            nowPlayingKeeper.removeAll()
+        }
+    }
+    
     func shareSound(withPath filepath: String, andContentId contentId: String) {
         if UIDevice.current.userInterfaceIdiom == .phone {
             do {
