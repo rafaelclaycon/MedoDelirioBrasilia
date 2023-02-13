@@ -26,7 +26,7 @@ struct MainView: View {
                 NavigationView {
                     SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
                                                               authorSortOption: AuthorSortOption.nameAscending.rawValue),
-                               currentMode: .allSounds)
+                               currentViewMode: .allSounds)
                         .environmentObject(trendsHelper)
                         .environmentObject(settingsHelper)
                 }
@@ -97,7 +97,7 @@ struct MainView: View {
                     .environmentObject(settingsHelper)
                 SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
                                                           authorSortOption: AuthorSortOption.nameAscending.rawValue),
-                           currentMode: .allSounds)
+                           currentViewMode: .allSounds)
                     .environmentObject(trendsHelper)
                     .environmentObject(settingsHelper)
             }

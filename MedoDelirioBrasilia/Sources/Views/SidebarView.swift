@@ -25,7 +25,7 @@ struct SidebarView: View {
                 NavigationLink(
                     destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
                                                                            authorSortOption: AuthorSortOption.nameAscending.rawValue),
-                                            currentMode: .allSounds).environmentObject(trendsHelper).environmentObject(settingsHelper),
+                                            currentViewMode: .allSounds).environmentObject(trendsHelper).environmentObject(settingsHelper),
                     tag: PadScreen.allSounds,
                     selection: $state,
                     label: {
@@ -33,7 +33,7 @@ struct SidebarView: View {
                     })
                 
                 NavigationLink(
-                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(), authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .favorites).environmentObject(trendsHelper).environmentObject(settingsHelper),
+                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(), authorSortOption: AuthorSortOption.nameAscending.rawValue), currentViewMode: .favorites).environmentObject(trendsHelper).environmentObject(settingsHelper),
                     tag: PadScreen.favorites,
                     selection: $state,
                     label: {
@@ -41,7 +41,7 @@ struct SidebarView: View {
                     })
                 
                 NavigationLink(
-                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .byAuthor).environmentObject(trendsHelper).environmentObject(settingsHelper),
+                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue), currentViewMode: .byAuthor).environmentObject(trendsHelper).environmentObject(settingsHelper),
                     tag: PadScreen.groupedByAuthor,
                     selection: $state,
                     label: {

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SoundsView: View {
 
-    enum Mode: Int {
+    enum ViewMode: Int {
         case allSounds, favorites, folders, byAuthor
     }
     
@@ -17,8 +17,13 @@ struct SoundsView: View {
         case onboardingView, addToFolderView, shareAsVideoView, settingsView
     }
     
+    enum SoundsListMode: Int {
+        case regular, selection
+    }
+    
     @StateObject var viewModel: SoundsViewViewModel
-    @State var currentMode: Mode
+    @State var currentViewMode: ViewMode
+    @State var currentSoundsListMode: SoundsListMode = .regular
     @State private var searchText: String = .empty
     
     @State private var listWidth: CGFloat = 700
@@ -72,11 +77,11 @@ struct SoundsView: View {
     }
     
     private var showNoFavoritesView: Bool {
-        searchResults.isEmpty && currentMode == .favorites && searchText.isEmpty
+        searchResults.isEmpty && currentViewMode == .favorites && searchText.isEmpty
     }
     
     private var title: String {
-        switch currentMode {
+        switch currentViewMode {
         case .allSounds:
             return "Sons"
         case .favorites:
@@ -90,7 +95,8 @@ struct SoundsView: View {
     
     private var displayFloatingSelectorView: Bool {
         guard UIDevice.current.userInterfaceIdiom == .phone else { return false }
-        if currentMode == .byAuthor {
+        guard currentSoundsListMode == .regular else { return false }
+        if currentViewMode == .byAuthor {
             return authorSearchText.isEmpty
         } else {
             return searchText.isEmpty
@@ -109,10 +115,10 @@ struct SoundsView: View {
                     NoFavoritesView()
                         .padding(.horizontal, 25)
                         .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? 100 : 15)
-                } else if currentMode == .folders {
+                } else if currentViewMode == .folders {
                     MyFoldersiPhoneView()
                         .environmentObject(deleteFolderAide)
-                } else if currentMode == .byAuthor {
+                } else if currentViewMode == .byAuthor {
                     AuthorsView(sortOption: $viewModel.authorSortOption, sortAction: $authorSortAction, searchTextForControl: $authorSearchText)
                 } else {
                     GeometryReader { geometry in
@@ -165,11 +171,11 @@ struct SoundsView: View {
                                                         Button {
                                                             if viewModel.favoritesKeeper.contains(sound.id) {
                                                                 viewModel.removeFromFavorites(soundId: sound.id)
-                                                                if currentMode == .favorites {
+                                                                if currentViewMode == .favorites {
                                                                     viewModel.reloadList(withSounds: soundData,
                                                                                          andFavorites: try? database.getAllFavorites(),
                                                                                          allowSensitiveContent: UserSettings.getShowExplicitContent(),
-                                                                                         favoritesOnly: currentMode == .favorites,
+                                                                                         favoritesOnly: currentViewMode == .favorites,
                                                                                          sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
                                                                 }
                                                             } else {
@@ -256,7 +262,7 @@ struct SoundsView: View {
                                 }
                             }
                             
-                            if UserSettings.getShowExplicitContent() == false, currentMode != .favorites {
+                            if UserSettings.getShowExplicitContent() == false, currentViewMode != .favorites {
                                 Text(UIDevice.current.userInterfaceIdiom == .phone ? Shared.contentFilterMessageForSoundsiPhone : Shared.contentFilterMessageForSoundsiPadMac)
                                     .font(.footnote)
                                     .foregroundColor(.gray)
@@ -265,7 +271,7 @@ struct SoundsView: View {
                                     .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 20 : 40)
                             }
                             
-                            if searchText.isEmpty, currentMode != .favorites {
+                            if searchText.isEmpty, currentViewMode != .favorites {
                                 Text("\(viewModel.sounds.count) sons. Atualizado em \(soundsLastUpdateDate).")
                                     .font(.subheadline)
                                     .bold()
@@ -282,7 +288,7 @@ struct SoundsView: View {
                 viewModel.reloadList(withSounds: soundData,
                                      andFavorites: try? database.getAllFavorites(),
                                      allowSensitiveContent: UserSettings.getShowExplicitContent(),
-                                     favoritesOnly: currentMode == .favorites,
+                                     favoritesOnly: currentViewMode == .favorites,
                                      sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
                 columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
                 viewModel.donateActivity()
@@ -353,7 +359,7 @@ struct SoundsView: View {
                     viewModel.reloadList(withSounds: soundData,
                                          andFavorites: try? database.getAllFavorites(),
                                          allowSensitiveContent: UserSettings.getShowExplicitContent(),
-                                         favoritesOnly: currentMode == .favorites,
+                                         favoritesOnly: currentViewMode == .favorites,
                                          sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
                     settingsHelper.updateSoundsList = false
                 }
@@ -408,23 +414,23 @@ struct SoundsView: View {
     }
     
     @ViewBuilder func floatingSelectorView() -> some View {
-        Picker("Exibição", selection: $currentMode) {
+        Picker("Exibição", selection: $currentViewMode) {
             Text("Todos")
-                .tag(Mode.allSounds)
+                .tag(ViewMode.allSounds)
             
             Text("Favoritos")
-                .tag(Mode.favorites)
+                .tag(ViewMode.favorites)
             
             Text("Pastas")
-                .tag(Mode.folders)
+                .tag(ViewMode.folders)
             
             Text("Por Autor")
-                .tag(Mode.byAuthor)
+                .tag(ViewMode.byAuthor)
         }
         .pickerStyle(.segmented)
         .background(.regularMaterial)
         .cornerRadius(8)
-        .onChange(of: currentMode) { currentMode in
+        .onChange(of: currentViewMode) { currentMode in
             guard currentMode == .allSounds || currentMode == .favorites else {
                 return
             }
@@ -438,11 +444,20 @@ struct SoundsView: View {
     
     @ViewBuilder func leadingToolbarControls() -> some View {
         if UIDevice.current.userInterfaceIdiom == .phone {
-            Button {
-                subviewToOpen = .settingsView
-                showingModalView = true
-            } label: {
-                Image(systemName: "gearshape")
+            if currentSoundsListMode == .regular {
+                Button {
+                    subviewToOpen = .settingsView
+                    showingModalView = true
+                } label: {
+                    Image(systemName: "gearshape")
+                }
+            } else {
+                Button {
+                    currentSoundsListMode = .regular
+                } label: {
+                    Text("Cancelar")
+                        .bold()
+                }
             }
         } else {
             EmptyView()
@@ -450,11 +465,11 @@ struct SoundsView: View {
     }
     
     @ViewBuilder func trailingToolbarControls() -> some View {
-        if currentMode == .folders {
+        if currentViewMode == .folders {
             EmptyView()
         } else {
             HStack(spacing: 15) {
-                if currentMode == .byAuthor {
+                if currentViewMode == .byAuthor {
                     Menu {
                         Section {
                             Picker("Ordenação de Autores", selection: $viewModel.authorSortOption) {
@@ -488,6 +503,11 @@ struct SoundsView: View {
                         Section {
                             Button {
                                 print("Selecionar tapped")
+                                if currentSoundsListMode == .regular {
+                                    currentSoundsListMode = .selection
+                                } else {
+                                    currentSoundsListMode = .regular
+                                }
                             } label: {
                                 Label("Selecionar", systemImage: "checkmark.circle")
                             }
@@ -539,7 +559,7 @@ struct SoundsView: View {
                         viewModel.reloadList(withSounds: soundData,
                                              andFavorites: try? database.getAllFavorites(),
                                              allowSensitiveContent: UserSettings.getShowExplicitContent(),
-                                             favoritesOnly: currentMode == .favorites,
+                                             favoritesOnly: currentViewMode == .favorites,
                                              sortedBy: SoundSortOption(rawValue: soundSortOption) ?? .titleAscending)
                         UserSettings.setSoundSortOption(to: soundSortOption)
                     })
@@ -552,7 +572,7 @@ struct SoundsView: View {
         guard soundId.isEmpty == false else {
             return false
         }
-        currentMode = .allSounds
+        currentViewMode = .allSounds
         
         if searchText.isEmpty == false {
             searchText = .empty
@@ -573,7 +593,7 @@ struct SoundsView: View {
 struct SoundsView_Previews: PreviewProvider {
 
     static var previews: some View {
-        SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .allSounds)
+        SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue), currentViewMode: .allSounds)
     }
 
 }
