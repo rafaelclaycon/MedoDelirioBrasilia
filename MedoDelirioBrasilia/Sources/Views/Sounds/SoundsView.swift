@@ -19,7 +19,7 @@ struct SoundsView: View {
     
     @StateObject var viewModel: SoundsViewViewModel
     @State var currentViewMode: ViewMode
-    @State var currentSoundsListMode: SoundsListMode = .regular
+    @Binding var currentSoundsListMode: SoundsListMode
     @State private var searchText: String = .empty
     
     @State private var listWidth: CGFloat = 700
@@ -518,13 +518,7 @@ struct SoundsView: View {
                     Menu {
                         Section {
                             Button {
-                                viewModel.stopPlaying()
-                                if currentSoundsListMode == .regular {
-                                    currentSoundsListMode = .selection
-                                } else {
-                                    currentSoundsListMode = .regular
-                                    viewModel.selectionKeeper.removeAll()
-                                }
+                                viewModel.startSelecting()
                             } label: {
                                 Label("Selecionar", systemImage: "checkmark.circle")
                             }
@@ -532,7 +526,8 @@ struct SoundsView: View {
                         
                         Section {
                             Button {
-                                print("Adicionar aos Favoritos tapped")
+                                viewModel.addSelectedToFavorites()
+                                viewModel.stopSelecting()
                             } label: {
                                 Label("Adicionar aos Favoritos", systemImage: "star")
                             }
@@ -610,7 +605,7 @@ struct SoundsView: View {
 struct SoundsView_Previews: PreviewProvider {
 
     static var previews: some View {
-        SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue), currentViewMode: .allSounds)
+        SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue, currentSoundsListMode: .constant(.regular)), currentViewMode: .allSounds, currentSoundsListMode: .constant(.regular))
     }
 
 }

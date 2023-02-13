@@ -23,6 +23,7 @@ class SoundsViewViewModel: ObservableObject {
     @Published var showEmailAppPicker_soundUnavailableConfirmationDialog = false
     @Published var selectedSound: Sound? = nil
     @Published var selectedSoundsForAddToFolder: [Sound]? = nil
+    var currentSoundsListMode: Binding<SoundsListMode>
     
     @Published var currentActivity: NSUserActivity? = nil
     
@@ -38,9 +39,10 @@ class SoundsViewViewModel: ObservableObject {
     @Published var showAlert: Bool = false
     @Published var alertType: AlertType = .singleOption
     
-    init(soundSortOption: Int, authorSortOption: Int) {
+    init(soundSortOption: Int, authorSortOption: Int, currentSoundsListMode: Binding<SoundsListMode>) {
         self.soundSortOption = soundSortOption
         self.authorSortOption = authorSortOption
+        self.currentSoundsListMode = currentSoundsListMode
     }
     
     func reloadList(withSounds allSounds: [Sound],
@@ -294,10 +296,13 @@ class SoundsViewViewModel: ObservableObject {
         let newFavorite = Favorite(contentId: soundId, dateAdded: Date())
         
         do {
+            let favorteAlreadyExists = try database.exists(contentId: soundId)
+            guard favorteAlreadyExists == false else { return }
+            
             try database.insert(favorite: newFavorite)
             favoritesKeeper.insert(newFavorite.contentId)
         } catch {
-            print("Problem saving favorite \(newFavorite.contentId)")
+            print("Problem saving favorite \(newFavorite.contentId): \(error.localizedDescription)")
         }
     }
     
@@ -307,6 +312,28 @@ class SoundsViewViewModel: ObservableObject {
             favoritesKeeper.remove(soundId)
         } catch {
             print("Problem removing favorite \(soundId)")
+        }
+    }
+    
+    func startSelecting() {
+        stopPlaying()
+        if currentSoundsListMode.wrappedValue == .regular {
+            currentSoundsListMode.wrappedValue = .selection
+        } else {
+            currentSoundsListMode.wrappedValue = .regular
+            selectionKeeper.removeAll()
+        }
+    }
+    
+    func stopSelecting() {
+        currentSoundsListMode.wrappedValue = .regular
+        selectionKeeper.removeAll()
+    }
+    
+    func addSelectedToFavorites() {
+        guard selectionKeeper.count > 0 else { return }
+        selectionKeeper.forEach { selectedSound in
+            addToFavorites(soundId: selectedSound)
         }
     }
     
