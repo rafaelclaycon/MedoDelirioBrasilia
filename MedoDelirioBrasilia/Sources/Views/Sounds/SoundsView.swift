@@ -201,8 +201,8 @@ struct SoundsView: View {
                                                             }
                                                             
                                                             Button {
-                                                                viewModel.selectedSoundsForAddToFolder = [Sound]()
-                                                                viewModel.selectedSoundsForAddToFolder?.append(sound)
+                                                                viewModel.selectedSounds = [Sound]()
+                                                                viewModel.selectedSounds?.append(sound)
                                                                 subviewToOpen = .addToFolderView
                                                                 showingModalView = true
                                                             } label: {
@@ -342,7 +342,7 @@ struct SoundsView: View {
                                     hadSuccess: $hadSuccessAddingToFolder,
                                     folderName: $folderName,
                                     pluralization: $pluralization,
-                                    selectedSounds: viewModel.selectedSoundsForAddToFolder!)
+                                    selectedSounds: viewModel.selectedSounds!)
                     
                 case .shareAsVideoView:
                     ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: false)
@@ -545,11 +545,11 @@ struct SoundsView: View {
                                 Label("Adicionar a Pasta", systemImage: "folder.badge.plus")
                             }.disabled(viewModel.selectionKeeper.count == 0)
                             
-                            Button {
-                                print("Compartilhar tapped")
-                            } label: {
-                                Label("Compartilhar", systemImage: "square.and.arrow.up")
-                            }.disabled(viewModel.selectionKeeper.count == 0 || viewModel.selectionKeeper.count > 5)
+//                            Button {
+//                                viewModel.shareSelected()
+//                            } label: {
+//                                Label("Compartilhar", systemImage: "square.and.arrow.up")
+//                            }.disabled(viewModel.selectionKeeper.count == 0 || viewModel.selectionKeeper.count > 5)
                         }
                         
                         Section {

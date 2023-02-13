@@ -22,7 +22,7 @@ class SoundsViewViewModel: ObservableObject {
     @Published var showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = false
     @Published var showEmailAppPicker_soundUnavailableConfirmationDialog = false
     @Published var selectedSound: Sound? = nil
-    @Published var selectedSoundsForAddToFolder: [Sound]? = nil
+    @Published var selectedSounds: [Sound]? = nil
     var currentSoundsListMode: Binding<SoundsListMode>
     
     @Published var currentActivity: NSUserActivity? = nil
@@ -339,10 +339,41 @@ class SoundsViewViewModel: ObservableObject {
     
     func prepareSelectedToAddToFolder() {
         guard selectionKeeper.count > 0 else { return }
-        selectedSoundsForAddToFolder = [Sound]()
+        selectedSounds = [Sound]()
         selectionKeeper.forEach { selectedSoundId in
             guard let sound = soundData.filter({ $0.id == selectedSoundId }).first else { return }
-            selectedSoundsForAddToFolder?.append(sound)
+            selectedSounds?.append(sound)
+        }
+    }
+    
+    func shareSelected() {
+        guard selectionKeeper.count > 0 else { return }
+        selectedSounds = [Sound]()
+        selectionKeeper.forEach { selectedSoundId in
+            guard let sound = soundData.filter({ $0.id == selectedSoundId }).first else { return }
+            selectedSounds?.append(sound)
+        }
+        
+        do {
+            try Sharer.share(sounds: selectedSounds ?? [Sound]()) { didShareSuccessfully in
+                if didShareSuccessfully {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                        withAnimation {
+                            self.shareBannerMessage = Shared.soundSharedSuccessfullyMessage
+                            self.displaySharedSuccessfullyToast = true
+                        }
+                        TapticFeedback.success()
+                    }
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        withAnimation {
+                            self.displaySharedSuccessfullyToast = false
+                        }
+                    }
+                }
+            }
+        } catch {
+            showUnableToGetSoundAlert()
         }
     }
     
