@@ -38,6 +38,7 @@ struct SoundsView: View {
     // Add to Folder vars
     @State private var hadSuccessAddingToFolder: Bool = false
     @State private var folderName: String? = nil
+    @State private var pluralization: WordPluralization = .singular
     @State private var shouldDisplayAddedToFolderToast: Bool = false
     
     // Share as Video
@@ -79,11 +80,11 @@ struct SoundsView: View {
     private var title: String {
         guard currentSoundsListMode == .regular else {
             if viewModel.selectionKeeper.count == 0 {
-                return Shared.ItemSelection.selectItems
+                return Shared.SoundSelection.selectSounds
             } else if viewModel.selectionKeeper.count == 1 {
-                return Shared.ItemSelection.itemsSelectedSingular
+                return Shared.SoundSelection.soundSelectedSingular
             } else {
-                return String(format: Shared.ItemSelection.itemsSelectedPlural, viewModel.selectionKeeper.count)
+                return String(format: Shared.SoundSelection.soundsSelectedPlural, viewModel.selectionKeeper.count)
             }
         }
         switch currentViewMode {
@@ -206,24 +207,6 @@ struct SoundsView: View {
                                                                 showingModalView = true
                                                             } label: {
                                                                 Label(Shared.addToFolderButtonText, systemImage: "folder.badge.plus")
-                                                            }
-                                                            .onChange(of: showingModalView) { showingModalView in
-                                                                if (showingModalView == false) && hadSuccessAddingToFolder {
-                                                                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-                                                                        withAnimation {
-                                                                            shouldDisplayAddedToFolderToast = true
-                                                                        }
-                                                                        TapticFeedback.success()
-                                                                    }
-                                                                    
-                                                                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                                                                        withAnimation {
-                                                                            shouldDisplayAddedToFolderToast = false
-                                                                            folderName = nil
-                                                                            hadSuccessAddingToFolder = false
-                                                                        }
-                                                                    }
-                                                                }
                                                             }
                                                         }
                                                         
@@ -358,7 +341,7 @@ struct SoundsView: View {
                     AddToFolderView(isBeingShown: $showingModalView,
                                     hadSuccess: $hadSuccessAddingToFolder,
                                     folderName: $folderName,
-                                    pluralization: .constant(.singular),
+                                    pluralization: $pluralization,
                                     selectedSounds: viewModel.selectedSoundsForAddToFolder!)
                     
                 case .shareAsVideoView:
@@ -394,6 +377,28 @@ struct SoundsView: View {
                     viewModel.showAlert = true
                 }
             }
+            .onChange(of: showingModalView) { showingModalView in
+                if (showingModalView == false) && hadSuccessAddingToFolder {
+                    if currentSoundsListMode == .selection {
+                        viewModel.stopSelecting()
+                    }
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                        withAnimation {
+                            shouldDisplayAddedToFolderToast = true
+                        }
+                        TapticFeedback.success()
+                    }
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        withAnimation {
+                            shouldDisplayAddedToFolderToast = false
+                            folderName = nil
+                            hadSuccessAddingToFolder = false
+                        }
+                    }
+                }
+            }
             
             if displayFloatingSelectorView {
                 VStack {
@@ -407,8 +412,8 @@ struct SoundsView: View {
             if shouldDisplayAddedToFolderToast {
                 VStack {
                     Spacer()
-
-                    ToastView(text: "Som adicionado à pasta \(folderName ?? "").")
+                    
+                    ToastView(text: pluralization.getAddedToFolderToastText(folderName: folderName))
                         .padding(.horizontal)
                         .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? toastViewBottomPaddingPhone : toastViewBottomPaddingPad)
                 }
@@ -530,21 +535,22 @@ struct SoundsView: View {
                                 viewModel.stopSelecting()
                             } label: {
                                 Label("Adicionar aos Favoritos", systemImage: "star")
-                            }
+                            }.disabled(viewModel.selectionKeeper.count == 0)
                             
                             Button {
-                                print("Adicionar a Pasta tapped")
+                                viewModel.prepareSelectedToAddToFolder()
+                                subviewToOpen = .addToFolderView
+                                showingModalView = true
                             } label: {
                                 Label("Adicionar a Pasta", systemImage: "folder.badge.plus")
-                            }
+                            }.disabled(viewModel.selectionKeeper.count == 0)
                             
                             Button {
                                 print("Compartilhar tapped")
                             } label: {
                                 Label("Compartilhar", systemImage: "square.and.arrow.up")
-                            }
+                            }.disabled(viewModel.selectionKeeper.count == 0 || viewModel.selectionKeeper.count > 5)
                         }
-                        .disabled(viewModel.selectionKeeper.count == 0)
                         
                         Section {
                             Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {

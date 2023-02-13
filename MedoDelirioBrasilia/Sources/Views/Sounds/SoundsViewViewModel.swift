@@ -337,6 +337,15 @@ class SoundsViewViewModel: ObservableObject {
         }
     }
     
+    func prepareSelectedToAddToFolder() {
+        guard selectionKeeper.count > 0 else { return }
+        selectedSoundsForAddToFolder = [Sound]()
+        selectionKeeper.forEach { selectedSoundId in
+            guard let sound = soundData.filter({ $0.id == selectedSoundId }).first else { return }
+            selectedSoundsForAddToFolder?.append(sound)
+        }
+    }
+    
     // MARK: - Other
     
     func donateActivity() {

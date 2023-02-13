@@ -19,11 +19,11 @@ struct Shared {
     static let shareSongButtonText = "Compartilhar Música"
     static let shareAsVideoButtonText = "Compartilhar como Vídeo"
     
-    struct ItemSelection {
+    struct SoundSelection {
         
-        static let selectItems = "Selecionar Itens"
-        static let itemsSelectedSingular = "1 Selecionado"
-        static let itemsSelectedPlural = "%d Selecionados"
+        static let selectSounds = "Selecionar Sons"
+        static let soundSelectedSingular = "1 Selecionado"
+        static let soundsSelectedPlural = "%d Selecionados"
         
     }
     

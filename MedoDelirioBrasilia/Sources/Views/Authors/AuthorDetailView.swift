@@ -295,7 +295,7 @@ struct AuthorDetailView: View {
                 VStack {
                     Spacer()
                     
-                    ToastView(text: viewModel.getAddedToFolderToastText(pluralization: pluralization, folderName: folderName))
+                    ToastView(text: pluralization.getAddedToFolderToastText(folderName: folderName))
                         .padding()
                 }
                 .transition(.moveAndFade)
