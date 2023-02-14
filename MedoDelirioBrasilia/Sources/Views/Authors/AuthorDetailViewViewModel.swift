@@ -289,14 +289,6 @@ class AuthorDetailViewViewModel: ObservableObject {
         networkRabbit.post(usageMetric: usageMetric)
     }
     
-    func getAddedToFolderToastText(pluralization: WordPluralization, folderName: String?) -> String {
-        if pluralization == .singular {
-            return "Som adicionado à pasta \(folderName ?? "")."
-        } else {
-            return "Sons adicionados à pasta \(folderName ?? "")."
-        }
-    }
-    
     // MARK: - Alerts
     
     func showUnableToGetSoundAlert() {

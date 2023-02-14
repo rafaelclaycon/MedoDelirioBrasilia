@@ -125,29 +125,17 @@ struct SongsView: View {
                 Menu {
                     Section {
                         Picker("Ordenação", selection: $viewModel.sortOption) {
-                            HStack {
-                                Text("Título")
-                                Image(systemName: "a.circle")
-                            }
-                            .tag(0)
+                            Text("Título")
+                                .tag(0)
                             
-                            HStack {
-                                Text("Mais Recentes no Topo")
-                                Image(systemName: "calendar")
-                            }
-                            .tag(1)
+                            Text("Mais Recentes no Topo")
+                                .tag(1)
                             
-                            HStack {
-                                Text("Mais Longas no Topo")
-                                Image(systemName: "tortoise")
-                            }
-                            .tag(2)
+                            Text("Mais Longas no Topo")
+                                .tag(2)
                             
-                            HStack {
-                                Text("Mais Curtas no Topo")
-                                Image(systemName: "hare")
-                            }
-                            .tag(3)
+                            Text("Mais Curtas no Topo")
+                                .tag(3)
                         }
                     }
                 } label: {
