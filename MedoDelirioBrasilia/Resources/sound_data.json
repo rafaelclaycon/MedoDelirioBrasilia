@@ -2931,9 +2931,9 @@
     },
     {
         "id": "8490C3E6-2DA0-4B13-AD70-9EDA1F4E8C41",
-        "title": "Diga lá, Tino",
+        "title": "Galvão... Diga lá, Tino",
         "authorId": "C5126821-321C-4705-AB9A-2785995DFABF",
-        "description": "diga la tino",
+        "description": "galvao diga la tino",
         "filename": "Galvao Bueno - Diga la Tino meme short.mp3",
         "dateAdded": "2022-06-08T00:00:00Z",
         "duration": 1.52,
@@ -9938,6 +9938,50 @@
         "filename": "Bruno Aleixo - Esqueceu-se.mp3",
         "dateAdded": "2023-02-12T00:00:00Z",
         "duration": 0.76,
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "429679B4-7D19-4B0C-8748-B3A8AC43D266",
+        "title": "Já tá claro",
+        "authorId": "D4D53537-EAA1-4845-805F-29A34E45B541",
+        "description": "Já tá claro",
+        "filename": "Kaelzinho Ferraz - Ja ta claro.mp3",
+        "dateAdded": "2023-02-14T00:00:00Z",
+        "duration": 2.64,
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "CAE4A88D-2C3B-4A34-BC8F-2E482A8EF612",
+        "title": "Foda-se",
+        "authorId": "18B27A36-2422-4C50-A7A4-86A412AB40C2",
+        "description": "Foda-se",
+        "filename": "Juliane Furno - Foda-se.mp3",
+        "dateAdded": "2023-02-14T00:00:00Z",
+        "duration": 1.18,
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "83F50F63-0473-41C7-BBF9-757F292102AA",
+        "title": "Tristeza",
+        "authorId": "E80E3A19-9784-4935-A672-107715E0C87B",
+        "description": "Tristeza Tristeeezaaa",
+        "filename": "Jair Rodrigues - Tristeza.mp3",
+        "dateAdded": "2023-02-14T00:00:00Z",
+        "duration": 3.4,
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "47439115-76BA-4B06-AB5E-3D6A6BAF2C40",
+        "title": "Se gritar \"Pega centrão\"",
+        "authorId": "BBD5570D-18FF-4099-81C8-AD6CFCA64B26",
+        "description": "Se gritar pega centrao",
+        "filename": "Augusto Heleno - Se gritar pega centrao.mp3",
+        "dateAdded": "2023-02-14T00:00:00Z",
+        "duration": 4.91,
         "isOffensive": false,
         "isNew": true
     }

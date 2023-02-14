@@ -585,6 +585,17 @@
         "filename": "Te amo te amo te amo, democracia (Natuza Nery).mp3",
         "dateAdded": "2023-02-12T00:00:00Z",
         "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "455E0865-4169-4310-AF98-3D9B85EF569C",
+        "title": "Ódio e Nojo (Versão Militar)",
+        "description": "",
+        "genre": 3,
+        "duration": 17.42,
+        "filename": "Odio e Nojo (Versao Militar).mp3",
+        "dateAdded": "2023-02-14T00:00:00Z",
+        "isOffensive": false,
         "isNew": true
     }
 ]
