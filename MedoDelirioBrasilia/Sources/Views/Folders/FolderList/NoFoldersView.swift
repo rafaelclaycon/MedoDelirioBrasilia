@@ -10,13 +10,12 @@ import SwiftUI
 struct NoFoldersView: View {
 
     var body: some View {
-        VStack(spacing: 20) {
-            Spacer()
-            
+        VStack(alignment: .center, spacing: 24) {
             NoFoldersSymbol()
             
             Text("Nenhuma Pasta Criada (Ainda)")
                 .font(.title3)
+                .bold()
                 .multilineTextAlignment(.center)
             
             Text("Pastas são uma maneira de organizar sons que você usa com frequência para acesso fácil.")
@@ -28,8 +27,6 @@ struct NoFoldersView: View {
                 .foregroundColor(.gray)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
-            
-            Spacer()
         }
     }
 

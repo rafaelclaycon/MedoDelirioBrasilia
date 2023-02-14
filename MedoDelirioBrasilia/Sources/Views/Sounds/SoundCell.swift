@@ -253,6 +253,9 @@ struct SoundRow_Previews: PreviewProvider {
 
     static var previews: some View {
         Group {
+            // Playing
+            SoundCell(soundId: "ABC", title: "A gente vai cansando", author: "Soraya Thronicke", duration: 2, isNew: false, favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()), nowPlaying: .constant(Set<String>(arrayLiteral: "ABC")), selectedItems: .constant(Set<String>()), currentSoundsListMode: .constant(.regular))
+            
             // Regular
             SoundCell(soundId: "ABC", title: "A gente vai cansando", author: "Soraya Thronicke", duration: 2, isNew: false, favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()), nowPlaying: .constant(Set<String>()), selectedItems: .constant(Set<String>()), currentSoundsListMode: .constant(.regular))
             //SoundCell(soundId: "ABC", title: "Funk do Xandão", author: "Roberto Jeferson", favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()))
