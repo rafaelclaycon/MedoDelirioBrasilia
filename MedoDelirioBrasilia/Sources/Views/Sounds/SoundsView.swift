@@ -296,8 +296,16 @@ struct SoundsView: View {
                     subviewToOpen = .onboardingView
                     showingModalView = true
                 } else if AppPersistentMemory.getLastVersionUserHasDismissedWhatsNewScreen() != Versioneer.appVersion {
-                    subviewToOpen = .whatsNewView
-                    showingModalView = true
+                    #warning("Remove this part when a version doesn't have a What's New to show")
+                    if UIDevice.current.userInterfaceIdiom == .phone {
+                        subviewToOpen = .whatsNewView
+                        showingModalView = true
+                    } else {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            subviewToOpen = .whatsNewView
+                            showingModalView = true
+                        }
+                    }
                 }
                 
                 if moveDatabaseIssue.isEmpty == false {
@@ -334,7 +342,11 @@ struct SoundsView: View {
             .sheet(isPresented: $viewModel.isShowingShareSheet) {
                 viewModel.iPadShareSheet
             }
-            .sheet(isPresented: $showingModalView) {
+            .sheet(isPresented: $showingModalView, onDismiss: {
+                if subviewToOpen == .whatsNewView {
+                    AppPersistentMemory.setLastVersionUserHasDismissedWhatsNewScreen(to: Versioneer.appVersion)
+                }
+            }) {
                 switch subviewToOpen {
                  case .onboardingView:
                     OnboardingView(isBeingShown: $showingModalView)

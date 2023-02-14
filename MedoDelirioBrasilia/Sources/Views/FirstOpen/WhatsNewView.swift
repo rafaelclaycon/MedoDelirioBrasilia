@@ -11,6 +11,10 @@ struct WhatsNewView: View {
     
     @Binding var isBeingShown: Bool
     
+    private var spacingTopBottom: CGFloat {
+        UIScreen.main.bounds.width > 389 ? 100 : 50
+    }
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .center, spacing: 40) {
@@ -94,8 +98,8 @@ struct WhatsNewView: View {
                 .padding(.horizontal, 24)
                 .padding(.top)
             }
-            .padding(.top, 100)
-            .padding(.bottom, 100)
+            .padding(.top, spacingTopBottom)
+            .padding(.bottom, spacingTopBottom)
         }
     }
     
