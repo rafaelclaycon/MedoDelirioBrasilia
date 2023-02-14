@@ -65,7 +65,7 @@ class Sharer {
                     guard let activity = activity else {
                         return
                     }
-                    let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
+                    _ = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
     //                Logger.logSharedSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
                     
                     AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
