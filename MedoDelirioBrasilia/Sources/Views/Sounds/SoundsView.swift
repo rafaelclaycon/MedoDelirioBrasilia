@@ -295,18 +295,20 @@ struct SoundsView: View {
                 if AppPersistentMemory.getHasShownNotificationsOnboarding() == false {
                     subviewToOpen = .onboardingView
                     showingModalView = true
-                } else if AppPersistentMemory.getLastVersionUserHasDismissedWhatsNewScreen() != Versioneer.appVersion {
-                    #warning("Remove this part when a version doesn't have a What's New to show")
-                    if UIDevice.current.userInterfaceIdiom == .phone {
-                        subviewToOpen = .whatsNewView
-                        showingModalView = true
-                    } else {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                            subviewToOpen = .whatsNewView
-                            showingModalView = true
-                        }
-                    }
                 }
+                
+//                if AppPersistentMemory.getLastVersionUserHasDismissedWhatsNewScreen() != Versioneer.appVersion {
+//                    #warning("Remove this part when a version doesn't have a What's New to show")
+//                    if UIDevice.current.userInterfaceIdiom == .phone {
+//                        subviewToOpen = .whatsNewView
+//                        showingModalView = true
+//                    } else {
+//                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//                            subviewToOpen = .whatsNewView
+//                            showingModalView = true
+//                        }
+//                    }
+//                }
                 
                 if moveDatabaseIssue.isEmpty == false {
                     viewModel.showMoveDatabaseIssueAlert()
