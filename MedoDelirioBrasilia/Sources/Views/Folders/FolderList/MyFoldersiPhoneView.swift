@@ -14,6 +14,7 @@ struct MyFoldersiPhoneView: View {
     @State var updateFolderList: Bool = false // Does nothing, just here to satisfy FolderList :)
     @State var deleteFolderAide = DeleteFolderViewAide() // Same as above
     @State var folderIdForEditing: String = .empty
+    @State private var createSmartFolder: Bool = true
     
     var body: some View {
         ScrollView {
@@ -28,27 +29,49 @@ struct MyFoldersiPhoneView: View {
         }
         .navigationTitle("Minhas Pastas")
         .toolbar {
-            ToolbarItem(placement: .primaryAction) {
+            Menu {
                 Button {
+                    createSmartFolder = false
                     isShowingFolderInfoEditingSheet = true
                 } label: {
-                    HStack {
-                        Image(systemName: "plus")
-                    }
+                    Label("Nova Pasta", systemImage: "plus")
                 }
-                .onChange(of: isShowingFolderInfoEditingSheet) { isShowing in
-                    if isShowing == false {
-                        updateFolderList = true
-                        folderForEditingOnSheet = nil
-                    }
+                
+                Button {
+                    createSmartFolder = true
+                    isShowingFolderInfoEditingSheet = true
+                } label: {
+                    Label("Nova Pasta Inteligente", systemImage: "sparkles")
                 }
+            } label: {
+                Image(systemName: "plus")
             }
+            
+//            ToolbarItem(placement: .primaryAction) {
+//                Button {
+//                    isShowingFolderInfoEditingSheet = true
+//                } label: {
+//                    HStack {
+//                        Image(systemName: "plus")
+//                    }
+//                }
+//                .onChange(of: isShowingFolderInfoEditingSheet) { isShowing in
+//                    if isShowing == false {
+//                        updateFolderList = true
+//                        folderForEditingOnSheet = nil
+//                    }
+//                }
+//            }
         }
         .sheet(isPresented: $isShowingFolderInfoEditingSheet) {
             if let folder = folderForEditingOnSheet {
-                FolderInfoEditingView(isBeingShown: $isShowingFolderInfoEditingSheet, symbol: folder.symbol, folderName: folder.name, selectedBackgroundColor: folder.backgroundColor, isEditing: true, folderIdWhenEditing: folder.id)
+                FolderInfoEditingView(isBeingShown: $isShowingFolderInfoEditingSheet, symbol: folder.symbol, folderName: folder.name, selectedBackgroundColor: folder.backgroundColor, isEditing: true, folderIdWhenEditing: folder.id, isSmartFolder: false)
             } else {
-                FolderInfoEditingView(isBeingShown: $isShowingFolderInfoEditingSheet, selectedBackgroundColor: Shared.Folders.defaultFolderColor)
+                if createSmartFolder {
+                    FolderInfoEditingView(isBeingShown: $isShowingFolderInfoEditingSheet, selectedBackgroundColor: Shared.Folders.defaultFolderColor, isSmartFolder: true)
+                } else {
+                    FolderInfoEditingView(isBeingShown: $isShowingFolderInfoEditingSheet, selectedBackgroundColor: Shared.Folders.defaultFolderColor, isSmartFolder: false)
+                }
             }
         }
         .onChange(of: folderIdForEditing) { folderIdForEditing in

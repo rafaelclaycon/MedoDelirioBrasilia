@@ -21,11 +21,27 @@ struct FolderInfoEditingView: View {
     @State var selectedBackgroundColor: String
     @State var isEditing: Bool = false
     @State var folderIdWhenEditing: String = ""
+    @State var isSmartFolder: Bool
     @FocusState private var focusedField: Field?
     
     private let rows = [
         GridItem(.flexible())
     ]
+    
+    private var navBarTitle: String {
+        if isEditing {
+            return isSmartFolder ? "Editar Pasta Inteligente" : "Editar Pasta"
+        } else {
+            return isSmartFolder ? "Nova Pasta Inteligente" : "Nova Pasta"
+        }
+    }
+    
+    private var goOnButtonText: String {
+        guard isSmartFolder == false else {
+            return "Continuar"
+        }
+        return isEditing ? "Salvar" : "Criar"
+    }
     
     var body: some View {
         NavigationView {
@@ -69,7 +85,7 @@ struct FolderInfoEditingView: View {
                 }
                 
                 VStack {
-                    TextField("Nome da pasta", text: $folderName)
+                    TextField(isSmartFolder ? "Nome da pasta inteligente" : "Nome da pasta", text: $folderName)
                         .textFieldStyle(.roundedBorder)
                         .onReceive(Just(folderName)) { _ in
                             limitFolderNameText(25)
@@ -99,7 +115,7 @@ struct FolderInfoEditingView: View {
                     .padding(.trailing)
                 }
             }
-            .navigationTitle(isEditing ? "Editar Pasta" : "Nova Pasta")
+            .navigationTitle(navBarTitle)
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(leading:
                 Button("Cancelar") {
@@ -120,7 +136,7 @@ struct FolderInfoEditingView: View {
                         }
                     }
                 } label: {
-                    Text(isEditing ? "Salvar" : "Criar")
+                    Text(goOnButtonText)
                         .bold()
                 }
                 .disabled(symbol.isEmpty || folderName.isEmpty)
@@ -157,7 +173,7 @@ struct FolderInfoEditingView: View {
 struct FolderInfoEditingView_Previews: PreviewProvider {
 
     static var previews: some View {
-        FolderInfoEditingView(isBeingShown: .constant(true), selectedBackgroundColor: "pastelBabyBlue")
+        FolderInfoEditingView(isBeingShown: .constant(true), selectedBackgroundColor: "pastelBabyBlue", isSmartFolder: false)
     }
 
 }

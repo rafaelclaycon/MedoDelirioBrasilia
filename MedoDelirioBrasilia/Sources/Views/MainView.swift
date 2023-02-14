@@ -115,7 +115,7 @@ struct MainView: View {
             .sheet(isPresented: $isShowingFolderInfoEditingSheet, onDismiss: {
                 updateFolderList = true
             }) {
-                FolderInfoEditingView(isBeingShown: $isShowingFolderInfoEditingSheet, selectedBackgroundColor: Shared.Folders.defaultFolderColor)
+                FolderInfoEditingView(isBeingShown: $isShowingFolderInfoEditingSheet, selectedBackgroundColor: Shared.Folders.defaultFolderColor, isSmartFolder: false)
             }
         }
     }

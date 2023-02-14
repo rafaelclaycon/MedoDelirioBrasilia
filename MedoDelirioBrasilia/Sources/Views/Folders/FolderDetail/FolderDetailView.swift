@@ -168,7 +168,7 @@ struct FolderDetailView: View {
                 columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
             }
             .sheet(isPresented: $showingFolderInfoEditingView) {
-                FolderInfoEditingView(isBeingShown: $showingFolderInfoEditingView, symbol: folder.symbol, folderName: folder.name, selectedBackgroundColor: folder.backgroundColor, isEditing: true, folderIdWhenEditing: folder.id)
+                FolderInfoEditingView(isBeingShown: $showingFolderInfoEditingView, symbol: folder.symbol, folderName: folder.name, selectedBackgroundColor: folder.backgroundColor, isEditing: true, folderIdWhenEditing: folder.id, isSmartFolder: false)
             }
             .alert(isPresented: $viewModel.showAlert) {
                 switch viewModel.alertType {

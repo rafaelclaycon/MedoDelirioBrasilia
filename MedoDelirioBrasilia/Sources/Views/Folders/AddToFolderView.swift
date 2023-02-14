@@ -159,7 +159,7 @@ struct AddToFolderView: View {
                 }
             }
             .sheet(isPresented: $isShowingCreateNewFolderScreen) {
-                FolderInfoEditingView(isBeingShown: $isShowingCreateNewFolderScreen, selectedBackgroundColor: Shared.Folders.defaultFolderColor)
+                FolderInfoEditingView(isBeingShown: $isShowingCreateNewFolderScreen, selectedBackgroundColor: Shared.Folders.defaultFolderColor, isSmartFolder: false)
             }
             .onChange(of: isShowingCreateNewFolderScreen) { isShowingCreateNewFolderScreen in
                 if isShowingCreateNewFolderScreen == false {
