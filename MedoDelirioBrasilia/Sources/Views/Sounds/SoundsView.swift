@@ -14,7 +14,7 @@ struct SoundsView: View {
     }
     
     enum SubviewToOpen {
-        case onboardingView, addToFolderView, shareAsVideoView, settingsView
+        case onboardingView, addToFolderView, shareAsVideoView, settingsView, whatsNewView
     }
     
     @StateObject var viewModel: SoundsViewViewModel
@@ -295,6 +295,9 @@ struct SoundsView: View {
                 if AppPersistentMemory.getHasShownNotificationsOnboarding() == false {
                     subviewToOpen = .onboardingView
                     showingModalView = true
+                } else if AppPersistentMemory.getLastVersionUserHasDismissedWhatsNewScreen() != Versioneer.appVersion {
+                    subviewToOpen = .whatsNewView
+                    showingModalView = true
                 }
                 
                 if moveDatabaseIssue.isEmpty == false {
@@ -350,6 +353,9 @@ struct SoundsView: View {
                 case .settingsView:
                     SettingsCasingWithCloseView(isBeingShown: $showingModalView)
                         .environmentObject(settingsHelper)
+                    
+                case .whatsNewView:
+                    WhatsNewView(isBeingShown: $showingModalView)
                 }
             }
             .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in
