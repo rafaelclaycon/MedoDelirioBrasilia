@@ -85,6 +85,14 @@ class AppPersistentMemory {
         return Bool(value as! Bool)
     }
     
+    static func getLastVersionUserHasDismissedWhatsNewScreen() -> String {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "lastVersionUserHasDismissedWhatsNewScreen") else {
+            return .empty
+        }
+        return String(value as! String)
+    }
+    
     // MARK: - Setters
     
     static func setHasSentDeviceModelToServer(to newValue: Bool) {
@@ -135,6 +143,11 @@ class AppPersistentMemory {
     static func setHasSentFolderResearchInfo(to newValue: Bool) {
         let userDefaults = UserDefaults.standard
         userDefaults.set(newValue, forKey: "hasSentFolderResearchInfo")
+    }
+    
+    static func setLastVersionUserHasDismissedWhatsNewScreen(to newValue: String) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(newValue, forKey: "lastVersionUserHasDismissedWhatsNewScreen")
     }
 
 }

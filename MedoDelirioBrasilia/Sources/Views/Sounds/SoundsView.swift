@@ -14,7 +14,7 @@ struct SoundsView: View {
     }
     
     enum SubviewToOpen {
-        case onboardingView, addToFolderView, shareAsVideoView, settingsView
+        case onboardingView, addToFolderView, shareAsVideoView, settingsView, whatsNewView
     }
     
     @StateObject var viewModel: SoundsViewViewModel
@@ -295,6 +295,17 @@ struct SoundsView: View {
                 if AppPersistentMemory.getHasShownNotificationsOnboarding() == false {
                     subviewToOpen = .onboardingView
                     showingModalView = true
+                } else if AppPersistentMemory.getLastVersionUserHasDismissedWhatsNewScreen() != Versioneer.appVersion {
+                    #warning("Remove this part when a version doesn't have a What's New to show")
+                    if UIDevice.current.userInterfaceIdiom == .phone {
+                        subviewToOpen = .whatsNewView
+                        showingModalView = true
+                    } else {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            subviewToOpen = .whatsNewView
+                            showingModalView = true
+                        }
+                    }
                 }
                 
                 if moveDatabaseIssue.isEmpty == false {
@@ -331,7 +342,11 @@ struct SoundsView: View {
             .sheet(isPresented: $viewModel.isShowingShareSheet) {
                 viewModel.iPadShareSheet
             }
-            .sheet(isPresented: $showingModalView) {
+            .sheet(isPresented: $showingModalView, onDismiss: {
+                if subviewToOpen == .whatsNewView {
+                    AppPersistentMemory.setLastVersionUserHasDismissedWhatsNewScreen(to: Versioneer.appVersion)
+                }
+            }) {
                 switch subviewToOpen {
                  case .onboardingView:
                     OnboardingView(isBeingShown: $showingModalView)
@@ -350,6 +365,9 @@ struct SoundsView: View {
                 case .settingsView:
                     SettingsCasingWithCloseView(isBeingShown: $showingModalView)
                         .environmentObject(settingsHelper)
+                    
+                case .whatsNewView:
+                    WhatsNewView(isBeingShown: $showingModalView)
                 }
             }
             .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in
