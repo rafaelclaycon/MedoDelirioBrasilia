@@ -7,8 +7,8 @@ var database = LocalDatabase()
 let networkRabbit = NetworkRabbit(serverPath: CommandLine.arguments.contains("-UNDER_DEVELOPMENT") ? "http://127.0.0.1:8080/api/" : "http://170.187.145.233:8080/api/")
 let podium = Podium(database: database, networkRabbit: networkRabbit)
 
-let soundsLastUpdateDate: String = "07/02/2023"
-let songsLastUpdateDate: String = "07/02/2023"
+let soundsLastUpdateDate: String = "14/02/2023"
+let songsLastUpdateDate: String = "14/02/2023"
 
 var moveDatabaseIssue: String = .empty
 
@@ -31,8 +31,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
     ) -> Bool {
-        // Fix missing Favorites bug
+        // Fixes
         moveDatabaseFileIfNeeded()
+        replaceUserSettingFlag()
         
         do {
             try database.migrateIfNeeded()
@@ -147,6 +148,23 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             return fileManager.fileExists(atPath: filePath)
         } else {
             return false
+        }
+    }
+    
+    // MARK: - Fix UserSetting flag name
+    
+    private func hasSkipGetLinkInstructionsSet() -> Bool {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "skipGetLinkInstructions") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
+    
+    private func replaceUserSettingFlag() {
+        if hasSkipGetLinkInstructionsSet() {
+            UserSettings.setShowExplicitContent(to: true)
+            UserDefaults.standard.removeObject(forKey: "skipGetLinkInstructions")
         }
     }
 

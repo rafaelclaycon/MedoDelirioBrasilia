@@ -10,18 +10,23 @@ import SwiftUI
 struct NoFavoritesView: View {
 
     var body: some View {
-        VStack(alignment: .center, spacing: 20) {
+        VStack(alignment: .center, spacing: 24) {
             Image(systemName: "star")
-                .font(.system(size: 70))
+                .font(.system(size: 74))
                 .foregroundColor(.red)
-                .frame(width: 100)
             
             Text("Nenhum Favorito")
-                .font(.title)
+                .font(.title2)
                 .bold()
                 .multilineTextAlignment(.center)
             
             Text("Para adicionar um som aos Favoritos, volte para os sons, segure em um deles e escolha Adicionar aos Favoritos.")
+                .foregroundColor(.gray)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal)
+            
+            Text("Para adicionar vários, escolha Selecionar no menu do canto superior direito, toque nos sons que quer favoritar e então em Adicionar aos Favoritos no mesmo menu.")
+                .foregroundColor(.gray)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
         }

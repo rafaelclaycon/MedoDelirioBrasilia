@@ -563,6 +563,39 @@
         "filename": "Road Trip do Medo e Delirio.mp3",
         "dateAdded": "2023-02-07T00:00:00Z",
         "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "046F987D-441F-4283-9825-7F9E95E8E31B",
+        "title": "Meu irmão tá no Supremo",
+        "description": "",
+        "genre": 9,
+        "duration": 11.7,
+        "filename": "Meu irmao ta no Supremo.mp3",
+        "dateAdded": "2023-02-11T00:00:00Z",
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "DF9EE3CE-89D3-4DED-862D-F9EDDB94B69B",
+        "title": "Te amo te amo te amo, democracia (versão Natuza Nery)",
+        "description": "",
+        "genre": 6,
+        "duration": 29.23,
+        "filename": "Te amo te amo te amo, democracia (Natuza Nery).mp3",
+        "dateAdded": "2023-02-12T00:00:00Z",
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "455E0865-4169-4310-AF98-3D9B85EF569C",
+        "title": "Ódio e Nojo (Versão Militar)",
+        "description": "",
+        "genre": 3,
+        "duration": 17.42,
+        "filename": "Odio e Nojo (Versao Militar).mp3",
+        "dateAdded": "2023-02-14T00:00:00Z",
+        "isOffensive": false,
         "isNew": true
     }
 ]

@@ -194,7 +194,8 @@
     },
     {
         "id": "F0A2EC08-8C98-42E8-8C23-C4EBD9314E14",
-        "name": "Boldo"
+        "name": "Usuário do Boldo Bom",
+        "description": "Que boldo bom, Marquinhos. Muito bom, muito bom."
     },
     {
         "id": "9598A083-571E-4E75-B610-B0C1DE01542B",
@@ -1219,7 +1220,8 @@
     },
     {
         "id": "BBD5570D-18FF-4099-81C8-AD6CFCA64B26",
-        "name": "Gen. Augusto Heleno"
+        "name": "General Augusto Heleno",
+        "description": "General da reserva. Foi chefe do Gabinete de Segurança Institucional da Presidência da República no governo Bolsonaro. Pertenceu à linha dura da Ditadura, contra a democratização."
     },
     {
         "id": "DDEBD7C4-9CC5-4DD6-B207-58A27C37A8E0",
@@ -1516,5 +1518,29 @@
     {
         "id": "9D4FB651-5360-467E-8C5A-DF859980879D",
         "name": "MC Presuntinho"
+    },
+    {
+        "id": "26BD3CA0-B65D-4946-BFA6-88A4B614D361",
+        "name": "Lula (Cristiano Botafogo)"
+    },
+    {
+        "id": "E50B9302-E5FB-413F-9432-53424E12831A",
+        "name": "Bruno Aleixo",
+        "description": "Personagem de animação digital português. Criado por João Moreira, Pedro Santo e João Pombeiro."
+    },
+    {
+        "id": "D4D53537-EAA1-4845-805F-29A34E45B541",
+        "name": "Kaelzinho Ferraz",
+        "description": "Cantor."
+    },
+    {
+        "id": "18B27A36-2422-4C50-A7A4-86A412AB40C2",
+        "name": "Juliane Furno",
+        "description": "Colunista, militante e youtuber."
+    },
+    {
+        "id": "E80E3A19-9784-4935-A672-107715E0C87B",
+        "name": "Jair Rodrigues",
+        "description": "Cantor. Considerado o primeiro rapper brasileiro."
     }
 ]

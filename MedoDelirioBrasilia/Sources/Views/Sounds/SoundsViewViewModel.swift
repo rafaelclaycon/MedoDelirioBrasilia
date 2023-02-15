@@ -18,10 +18,12 @@ class SoundsViewViewModel: ObservableObject {
     @Published var favoritesKeeper = Set<String>()
     @Published var highlightKeeper = Set<String>()
     @Published var nowPlayingKeeper = Set<String>()
+    @Published var selectionKeeper = Set<String>()
     @Published var showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = false
     @Published var showEmailAppPicker_soundUnavailableConfirmationDialog = false
     @Published var selectedSound: Sound? = nil
-    @Published var selectedSoundsForAddToFolder: [Sound]? = nil
+    @Published var selectedSounds: [Sound]? = nil
+    var currentSoundsListMode: Binding<SoundsListMode>
     
     @Published var currentActivity: NSUserActivity? = nil
     
@@ -37,9 +39,10 @@ class SoundsViewViewModel: ObservableObject {
     @Published var showAlert: Bool = false
     @Published var alertType: AlertType = .singleOption
     
-    init(soundSortOption: Int, authorSortOption: Int) {
+    init(soundSortOption: Int, authorSortOption: Int, currentSoundsListMode: Binding<SoundsListMode>) {
         self.soundSortOption = soundSortOption
         self.authorSortOption = authorSortOption
+        self.currentSoundsListMode = currentSoundsListMode
     }
     
     func reloadList(withSounds allSounds: [Sound],
@@ -84,6 +87,10 @@ class SoundsViewViewModel: ObservableObject {
                 sortSoundsInPlaceByAuthorNameAscending()
             case .dateAddedDescending:
                 sortSoundsInPlaceByDateAddedDescending()
+            case .shortestFirst:
+                sortSoundsInPlaceByDurationAscending()
+            case .longestFirst:
+                sortSoundsInPlaceByDurationDescending()
             }
         }
     }
@@ -98,6 +105,14 @@ class SoundsViewViewModel: ObservableObject {
     
     private func sortSoundsInPlaceByDateAddedDescending() {
         self.sounds.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
+    }
+    
+    private func sortSoundsInPlaceByDurationAscending() {
+        self.sounds.sort(by: { $0.duration < $1.duration })
+    }
+    
+    private func sortSoundsInPlaceByDurationDescending() {
+        self.sounds.sort(by: { $0.duration > $1.duration })
     }
     
     func playSound(fromPath filepath: String, withId soundId: String) {
@@ -121,6 +136,13 @@ class SoundsViewViewModel: ObservableObject {
         })
         
         player?.togglePlay()
+    }
+    
+    func stopPlaying() {
+        if nowPlayingKeeper.count > 0 {
+            player?.togglePlay()
+            nowPlayingKeeper.removeAll()
+        }
     }
     
     func shareSound(withPath filepath: String, andContentId contentId: String) {
@@ -274,10 +296,13 @@ class SoundsViewViewModel: ObservableObject {
         let newFavorite = Favorite(contentId: soundId, dateAdded: Date())
         
         do {
+            let favorteAlreadyExists = try database.exists(contentId: soundId)
+            guard favorteAlreadyExists == false else { return }
+            
             try database.insert(favorite: newFavorite)
             favoritesKeeper.insert(newFavorite.contentId)
         } catch {
-            print("Problem saving favorite \(newFavorite.contentId)")
+            print("Problem saving favorite \(newFavorite.contentId): \(error.localizedDescription)")
         }
     }
     
@@ -287,6 +312,75 @@ class SoundsViewViewModel: ObservableObject {
             favoritesKeeper.remove(soundId)
         } catch {
             print("Problem removing favorite \(soundId)")
+        }
+    }
+    
+    func startSelecting() {
+        stopPlaying()
+        if currentSoundsListMode.wrappedValue == .regular {
+            currentSoundsListMode.wrappedValue = .selection
+        } else {
+            currentSoundsListMode.wrappedValue = .regular
+            selectionKeeper.removeAll()
+        }
+    }
+    
+    func stopSelecting() {
+        currentSoundsListMode.wrappedValue = .regular
+        selectionKeeper.removeAll()
+    }
+    
+    func addSelectedToFavorites() {
+        guard selectionKeeper.count > 0 else { return }
+        selectionKeeper.forEach { selectedSound in
+            addToFavorites(soundId: selectedSound)
+        }
+    }
+    
+    func removeSelectedFromFavorites() {
+        guard selectionKeeper.count > 0 else { return }
+        selectionKeeper.forEach { selectedSound in
+            removeFromFavorites(soundId: selectedSound)
+        }
+    }
+    
+    func prepareSelectedToAddToFolder() {
+        guard selectionKeeper.count > 0 else { return }
+        selectedSounds = [Sound]()
+        selectionKeeper.forEach { selectedSoundId in
+            guard let sound = soundData.filter({ $0.id == selectedSoundId }).first else { return }
+            selectedSounds?.append(sound)
+        }
+    }
+    
+    func shareSelected() {
+        guard selectionKeeper.count > 0 else { return }
+        selectedSounds = [Sound]()
+        selectionKeeper.forEach { selectedSoundId in
+            guard let sound = soundData.filter({ $0.id == selectedSoundId }).first else { return }
+            selectedSounds?.append(sound)
+        }
+        
+        do {
+            try Sharer.share(sounds: selectedSounds ?? [Sound]()) { didShareSuccessfully in
+                if didShareSuccessfully {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                        withAnimation {
+                            self.shareBannerMessage = Shared.soundSharedSuccessfullyMessage
+                            self.displaySharedSuccessfullyToast = true
+                        }
+                        TapticFeedback.success()
+                    }
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        withAnimation {
+                            self.displaySharedSuccessfullyToast = false
+                        }
+                    }
+                }
+            }
+        } catch {
+            showUnableToGetSoundAlert()
         }
     }
     

@@ -9,7 +9,7 @@ import Foundation
 
 enum SoundSortOption: Int {
 
-    case titleAscending, authorNameAscending, dateAddedDescending
+    case titleAscending, authorNameAscending, dateAddedDescending, shortestFirst, longestFirst
 
 }
 

@@ -99,7 +99,7 @@ struct SongsView: View {
                     .padding(.horizontal)
                     .padding(.top, 7)
                     
-                    if UserSettings.getShowOffensiveSounds() == false {
+                    if UserSettings.getShowExplicitContent() == false {
                         Text(UIDevice.current.userInterfaceIdiom == .phone ? Shared.contentFilterMessageForSongsiPhone : Shared.contentFilterMessageForSongsiPadMac)
                             .font(.footnote)
                             .foregroundColor(.gray)
@@ -125,29 +125,17 @@ struct SongsView: View {
                 Menu {
                     Section {
                         Picker("Ordenação", selection: $viewModel.sortOption) {
-                            HStack {
-                                Text("Título")
-                                Image(systemName: "a.circle")
-                            }
-                            .tag(0)
+                            Text("Título")
+                                .tag(0)
                             
-                            HStack {
-                                Text("Mais Recentes no Topo")
-                                Image(systemName: "calendar")
-                            }
-                            .tag(1)
+                            Text("Mais Recentes no Topo")
+                                .tag(1)
                             
-                            HStack {
-                                Text("Maior Duração no Topo")
-                                Image(systemName: "chevron.down.square")
-                            }
-                            .tag(2)
+                            Text("Mais Longas no Topo")
+                                .tag(2)
                             
-                            HStack {
-                                Text("Menor Duração no Topo")
-                                Image(systemName: "chevron.up.square")
-                            }
-                            .tag(3)
+                            Text("Mais Curtas no Topo")
+                                .tag(3)
                         }
                     }
                 } label: {
@@ -155,7 +143,7 @@ struct SongsView: View {
                 }
                 .onChange(of: viewModel.sortOption, perform: { newSortOption in
                     viewModel.reloadList(withSongs: songData,
-                                         allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+                                         allowSensitiveContent: UserSettings.getShowExplicitContent(),
                                          sortedBy: SongSortOption(rawValue: newSortOption) ?? .titleAscending)
                     UserSettings.setSongSortOption(to: newSortOption)
                 })
@@ -171,7 +159,7 @@ struct SongsView: View {
             }
             .onAppear {
                 viewModel.reloadList(withSongs: songData,
-                                     allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+                                     allowSensitiveContent: UserSettings.getShowExplicitContent(),
                                      sortedBy: SongSortOption(rawValue: UserSettings.getSongSortOption()) ?? .titleAscending)
                 viewModel.donateActivity()
             }
@@ -184,6 +172,7 @@ struct SongsView: View {
             }
             .sheet(isPresented: $viewModel.showEmailAppPicker_suggestChangeConfirmationDialog) {
                 EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_suggestChangeConfirmationDialog,
+                                   didCopySupportAddress: .constant(false),
                                    subject: String(format: Shared.Email.suggestSongChangeSubject, viewModel.selectedSong?.title ?? ""),
                                    emailBody: String(format: Shared.Email.suggestSongChangeBody, viewModel.selectedSong?.id ?? ""))
             }
@@ -191,7 +180,10 @@ struct SongsView: View {
                 ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSong?.id ?? .empty, contentTitle: viewModel.selectedSong?.title ?? .empty, audioFilename: viewModel.selectedSong?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: true)
             }
             .sheet(isPresented: $viewModel.showEmailAppPicker_songUnavailableConfirmationDialog) {
-                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_songUnavailableConfirmationDialog, subject: Shared.issueSuggestionEmailSubject, emailBody: Shared.issueSuggestionEmailBody)
+                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_songUnavailableConfirmationDialog,
+                                   didCopySupportAddress: .constant(false),
+                                   subject: Shared.issueSuggestionEmailSubject,
+                                   emailBody: Shared.issueSuggestionEmailBody)
             }
             .alert(isPresented: $viewModel.showAlert) {
                 switch viewModel.alertType {
@@ -207,7 +199,7 @@ struct SongsView: View {
             .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in
                 if shouldUpdate {
                     viewModel.reloadList(withSongs: songData,
-                                         allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
+                                         allowSensitiveContent: UserSettings.getShowExplicitContent(),
                                          sortedBy: SongSortOption(rawValue: UserSettings.getSongSortOption()) ?? .titleAscending)
                     settingsHelper.updateSoundsList = false
                 }

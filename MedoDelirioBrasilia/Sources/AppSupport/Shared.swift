@@ -18,11 +18,21 @@ struct Shared {
     static let shareSoundButtonText = "Compartilhar Som"
     static let shareSongButtonText = "Compartilhar Música"
     static let shareAsVideoButtonText = "Compartilhar como Vídeo"
+    static let addToFavorites = "Adicionar aos Favoritos"
+    static let removeFromFavorites = "Remover dos Favoritos"
     
-    static let contentFilterMessageForSoundsiPhone = "Alguns sons não estão sendo exibidos pois a opção Exibir Conteúdo Explícito está desabilitada. Você pode mudar isso nas Configurações (ícone de engrenagem aqui no topo esquerdo da tela)."
-    static let contentFilterMessageForSoundsiPadMac = "Alguns sons não estão sendo exibidos pois a opção Exibir Conteúdo Explícito está desabilitada. Você pode mudar isso na tela de Configurações (ícone de engrenagem no topo da barra lateral do app)."
-    static let contentFilterMessageForSongsiPhone = "Algumas músicas não estão sendo exibidas pois a opção Exibir Conteúdo Explícito está desabilitada. Você pode mudar isso nas Configurações (ícone de engrenagem no topo da aba Sons do app)."
-    static let contentFilterMessageForSongsiPadMac = "Algumas músicas não estão sendo exibidas pois a opção Exibir Conteúdo Explícito está desabilitada. Você pode mudar isso na tela de Configurações (ícone de engrenagem no topo da barra lateral do app)."
+    struct SoundSelection {
+        
+        static let selectSounds = "Selecionar Sons"
+        static let soundSelectedSingular = "1 Selecionado"
+        static let soundsSelectedPlural = "%d Selecionados"
+        
+    }
+    
+    static let contentFilterMessageForSoundsiPhone = "Alguns sons não estão sendo exibidos pois a opção Exibir Conteúdo Explícito está desabilitada.\n\nVocê pode mudar isso nas Configurações (ícone de engrenagem aqui no topo esquerdo da tela)."
+    static let contentFilterMessageForSoundsiPadMac = "Alguns sons não estão sendo exibidos pois a opção Exibir Conteúdo Explícito está desabilitada.\n\nVocê pode mudar isso na tela de Configurações (ícone de engrenagem no topo da barra lateral do app)."
+    static let contentFilterMessageForSongsiPhone = "Algumas músicas não estão sendo exibidas pois a opção Exibir Conteúdo Explícito está desabilitada.\n\nVocê pode mudar isso nas Configurações (ícone de engrenagem no topo da aba Sons)."
+    static let contentFilterMessageForSongsiPadMac = "Algumas músicas não estão sendo exibidas pois a opção Exibir Conteúdo Explícito está desabilitada.\n\nVocê pode mudar isso na tela de Configurações (ícone de engrenagem no topo da barra lateral do app)."
     
     static let soundNotFoundAlertTitle = "Som Indisponível"
     static let soundNotFoundAlertMessage = "Devido a um problema técnico, o som que você quer acessar não está disponível."
@@ -41,7 +51,6 @@ struct Shared {
     
     // E-mail
     
-    static let pickAMailApp = "Escolha um app de e-mail"
     static let issueSuggestionEmailSubject = "Problema/sugestão no app iOS \(Versioneer.appVersion) Build \(Versioneer.buildVersionNumber)"
     static let issueSuggestionEmailBody = "Para um problema, inclua passos para reproduzir e prints se possível."
     static let suggestOtherAuthorNameEmailSubject = "Sugestão de Outro Nome de Autor Para %@"

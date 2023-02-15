@@ -12,6 +12,7 @@ class AuthorDetailViewViewModel: ObservableObject {
 
     @Published var sounds = [Sound]()
     
+    @Published var soundSortOption: Int = 1
     @Published var favoritesKeeper = Set<String>()
     @Published var nowPlayingKeeper = Set<String>()
     @Published var selectedSound: Sound? = nil
@@ -68,12 +69,16 @@ class AuthorDetailViewViewModel: ObservableObject {
                 favoritesKeeper.removeAll()
             }
 
-            sortSoundsInPlaceByTitleAscending()
+            sortSoundsInPlaceByDateAddedDescending()
         }
     }
     
-    private func sortSoundsInPlaceByTitleAscending() {
+    func sortSoundsInPlaceByTitleAscending() {
         self.sounds.sort(by: { $0.title.withoutDiacritics() < $1.title.withoutDiacritics() })
+    }
+    
+    func sortSoundsInPlaceByDateAddedDescending() {
+        self.sounds.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
     }
     
     func playSound(fromPath filepath: String, withId soundId: String) {
@@ -282,14 +287,6 @@ class AuthorDetailViewViewModel: ObservableObject {
                                       dateTime: Date.now.iso8601withFractionalSeconds,
                                       currentTimeZone: TimeZone.current.abbreviation() ?? .empty)
         networkRabbit.post(usageMetric: usageMetric)
-    }
-    
-    func getAddedToFolderToastText(pluralization: WordPluralization, folderName: String?) -> String {
-        if pluralization == .singular {
-            return "Som adicionado à pasta \(folderName ?? "")."
-        } else {
-            return "Sons adicionados à pasta \(folderName ?? "")."
-        }
     }
     
     // MARK: - Alerts

@@ -139,7 +139,7 @@ struct AuthorDetailView: View {
                             
                             LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
                                 ForEach(viewModel.sounds) { sound in
-                                    SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", duration: sound.duration, isNew: sound.isNew ?? false, favorites: $viewModel.favoritesKeeper, highlighted: .constant(Set<String>()), nowPlaying: $viewModel.nowPlayingKeeper)
+                                    SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", duration: sound.duration, isNew: sound.isNew ?? false, favorites: $viewModel.favoritesKeeper, highlighted: .constant(Set<String>()), nowPlaying: $viewModel.nowPlayingKeeper, selectedItems: .constant(Set<String>()), currentSoundsListMode: .constant(.regular))
                                         .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
                                         .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                                         .onTapGesture {
@@ -225,7 +225,7 @@ struct AuthorDetailView: View {
             .onAppear {
                 viewModel.reloadList(withSounds: soundData.filter({ $0.authorId == author.id }),
                                      andFavorites: try? database.getAllFavorites(),
-                                     allowSensitiveContent: UserSettings.getShowOffensiveSounds())
+                                     allowSensitiveContent: UserSettings.getShowExplicitContent())
                 columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
             }
             .alert(isPresented: $viewModel.showAlert) {
@@ -246,16 +246,28 @@ struct AuthorDetailView: View {
                 AddToFolderView(isBeingShown: $showingAddToFolderModal, hadSuccess: $hadSuccessAddingToFolder, folderName: $folderName, pluralization: $pluralization, selectedSounds: viewModel.selectedSoundsForAddToFolder ?? [Sound]())
             }
             .sheet(isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog) {
-                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog, subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.selectedSound?.title ?? ""), emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.selectedSound?.authorName ?? "", viewModel.selectedSound?.id ?? ""))
+                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog,
+                                   didCopySupportAddress: .constant(false),
+                                   subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.selectedSound?.title ?? ""),
+                                   emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.selectedSound?.authorName ?? "", viewModel.selectedSound?.id ?? ""))
             }
             .sheet(isPresented: $viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog) {
-                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog, subject: Shared.issueSuggestionEmailSubject, emailBody: Shared.issueSuggestionEmailBody)
+                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog,
+                                   didCopySupportAddress: .constant(false),
+                                   subject: Shared.issueSuggestionEmailSubject,
+                                   emailBody: Shared.issueSuggestionEmailBody)
             }
             .sheet(isPresented: $viewModel.showEmailAppPicker_askForNewSound) {
-                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_askForNewSound, subject: String(format: Shared.Email.AskForNewSound.subject, self.author.name), emailBody: Shared.Email.AskForNewSound.body)
+                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_askForNewSound,
+                                   didCopySupportAddress: .constant(false),
+                                   subject: String(format: Shared.Email.AskForNewSound.subject, self.author.name),
+                                   emailBody: Shared.Email.AskForNewSound.body)
             }
             .sheet(isPresented: $viewModel.showEmailAppPicker_reportAuthorDetailIssue) {
-                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_reportAuthorDetailIssue, subject: String(format: Shared.Email.AuthorDetailIssue.subject, self.author.name), emailBody: Shared.Email.AuthorDetailIssue.body)
+                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_reportAuthorDetailIssue,
+                                   didCopySupportAddress: .constant(false),
+                                   subject: String(format: Shared.Email.AuthorDetailIssue.subject, self.author.name),
+                                   emailBody: Shared.Email.AuthorDetailIssue.body)
             }
             .sheet(isPresented: $viewModel.isShowingShareSheet) {
                 viewModel.iPadShareSheet
@@ -295,7 +307,7 @@ struct AuthorDetailView: View {
                 VStack {
                     Spacer()
                     
-                    ToastView(text: viewModel.getAddedToFolderToastText(pluralization: pluralization, folderName: folderName))
+                    ToastView(text: pluralization.getAddedToFolderToastText(folderName: folderName))
                         .padding()
                 }
                 .transition(.moveAndFade)
@@ -315,23 +327,43 @@ struct AuthorDetailView: View {
     
     @ViewBuilder func moreOptionsMenu(isOnToolbar: Bool) -> some View {
         Menu {
-            Button {
-                viewModel.selectedSoundsForAddToFolder = viewModel.sounds
-                showingAddToFolderModal = true
-            } label: {
-                Label("Adicionar Todos a Pasta", systemImage: "folder.badge.plus")
+            Section {
+                Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
+                    Text("Título")
+                        .tag(0)
+                    
+                    Text("Mais Recentes no Topo")
+                        .tag(1)
+                }
+                .onChange(of: viewModel.soundSortOption, perform: { soundSortOption in
+                    if soundSortOption == 0 {
+                        viewModel.sortSoundsInPlaceByTitleAscending()
+                    } else {
+                        viewModel.sortSoundsInPlaceByDateAddedDescending()
+                    }
+                })
             }
+            .disabled(viewModel.sounds.count < 2)
             
-            Button {
-                viewModel.showAskForNewSoundAlert()
-            } label: {
-                Label("Pedir Som Desse Autor", systemImage: "plus.circle")
-            }
-            
-            Button {
-                viewModel.showEmailAppPicker_reportAuthorDetailIssue = true
-            } label: {
-                Label("Relatar Problema com os Detalhes Desse Autor", systemImage: "person.crop.circle.badge.exclamationmark")
+            Section {
+                Button {
+                    viewModel.selectedSoundsForAddToFolder = viewModel.sounds
+                    showingAddToFolderModal = true
+                } label: {
+                    Label("Adicionar Todos a Pasta", systemImage: "folder.badge.plus")
+                }
+                
+                Button {
+                    viewModel.showAskForNewSoundAlert()
+                } label: {
+                    Label("Pedir Som Desse Autor", systemImage: "plus.circle")
+                }
+                
+                Button {
+                    viewModel.showEmailAppPicker_reportAuthorDetailIssue = true
+                } label: {
+                    Label("Relatar Problema com os Detalhes Desse Autor", systemImage: "person.crop.circle.badge.exclamationmark")
+                }
             }
         } label: {
             if isOnToolbar {

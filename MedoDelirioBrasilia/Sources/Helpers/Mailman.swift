@@ -2,7 +2,7 @@ import SwiftUI
 
 class Mailman {
 
-    static let recipient = "medodeliriosuporte@gmail.com"
+    static let supportEmail = "medodeliriosuporte@gmail.com"
     
     static let gmailMailToUrl = "googlegmail://co"
     static let outlookMailToUrl = "ms-outlook://compose"

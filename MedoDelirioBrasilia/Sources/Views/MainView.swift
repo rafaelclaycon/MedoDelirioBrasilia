@@ -15,6 +15,7 @@ struct MainView: View {
     @StateObject var settingsHelper = SettingsHelper()
     @State var isShowingFolderInfoEditingSheet: Bool = false
     @State var updateFolderList: Bool = false
+    @State var currentSoundsListMode: SoundsListMode = .regular
     
     // Trends
     @State var soundIdToGoToFromTrends: String = .empty
@@ -25,8 +26,10 @@ struct MainView: View {
             TabView(selection: $tabSelection) {
                 NavigationView {
                     SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
-                                                              authorSortOption: AuthorSortOption.nameAscending.rawValue),
-                               currentMode: .allSounds)
+                                                              authorSortOption: AuthorSortOption.nameAscending.rawValue,
+                                                              currentSoundsListMode: $currentSoundsListMode),
+                               currentViewMode: .allSounds,
+                               currentSoundsListMode: $currentSoundsListMode)
                         .environmentObject(trendsHelper)
                         .environmentObject(settingsHelper)
                 }
@@ -92,12 +95,15 @@ struct MainView: View {
                 SidebarView(state: $state,
                             isShowingSettingsSheet: $isShowingSettingsSheet,
                             isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet,
-                            updateFolderList: $updateFolderList)
+                            updateFolderList: $updateFolderList,
+                            currentSoundsListMode: $currentSoundsListMode)
                     .environmentObject(trendsHelper)
                     .environmentObject(settingsHelper)
                 SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
-                                                          authorSortOption: AuthorSortOption.nameAscending.rawValue),
-                           currentMode: .allSounds)
+                                                          authorSortOption: AuthorSortOption.nameAscending.rawValue,
+                                                          currentSoundsListMode: $currentSoundsListMode),
+                           currentViewMode: .allSounds,
+                           currentSoundsListMode: $currentSoundsListMode)
                     .environmentObject(trendsHelper)
                     .environmentObject(settingsHelper)
             }

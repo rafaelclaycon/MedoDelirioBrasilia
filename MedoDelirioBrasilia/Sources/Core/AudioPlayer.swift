@@ -87,9 +87,20 @@ class AudioPlayer: NSObject, AVAudioPlayerDelegate {
     var activity: Activity {
         audioPlayer.isPlaying ? .playing : isPaused ? .paused : .stopped
     }
+    
+    var isPlaying: Bool {
+        audioPlayer.isPlaying
+    }
 
     var isPaused: Bool {
         !audioPlayer.isPlaying && audioPlayer.currentTime > 0
+    }
+    
+    func stop() {
+        audioPlayer.pause()
+        timer?.invalidate()
+        timer = nil
+        notify()
     }
 
     func cancel() {

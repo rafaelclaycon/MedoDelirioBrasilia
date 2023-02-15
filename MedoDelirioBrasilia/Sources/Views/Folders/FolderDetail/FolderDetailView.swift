@@ -48,7 +48,7 @@ struct FolderDetailView: View {
                             
                             LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
                                 ForEach(viewModel.sounds) { sound in
-                                    SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", duration: sound.duration, isNew: sound.isNew ?? false, favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()), nowPlaying: $viewModel.nowPlayingKeeper)
+                                    SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", duration: sound.duration, isNew: sound.isNew ?? false, favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()), nowPlaying: $viewModel.nowPlayingKeeper, selectedItems: .constant(Set<String>()), currentSoundsListMode: .constant(.regular))
                                         .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
                                         .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                                         .onTapGesture {
@@ -104,24 +104,15 @@ struct FolderDetailView: View {
                 Menu {
                     Section {
                         Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
-                            HStack {
-                                Text("Título")
-                                Image(systemName: "a.circle")
-                            }
-                            .tag(0)
+                            Text("Título")
+                                .tag(0)
                             
-                            HStack {
-                                Text("Nome do(a) Autor(a)")
-                                Image(systemName: "person")
-                            }
-                            .tag(1)
+                            Text("Nome do(a) Autor(a)")
+                                .tag(1)
                             
                             if showSortByDateAddedOption {
-                                HStack {
-                                    Text("Adição à Pasta (Mais Recentes no Topo)")
-                                    Image(systemName: "calendar")
-                                }
-                                .tag(2)
+                                Text("Adição à Pasta (Mais Recentes no Topo)")
+                                    .tag(2)
                             }
                         }
                         .disabled(viewModel.sounds.count == 0)

@@ -12,3 +12,16 @@ enum WordPluralization {
     case singular, plural
 
 }
+
+extension WordPluralization {
+    
+    func getAddedToFolderToastText(folderName: String?) -> String {
+        switch self {
+        case .singular:
+            return "Som adicionado à pasta \(folderName ?? "")."
+        case .plural:
+            return "Sons adicionados à pasta \(folderName ?? "")."
+        }
+    }
+    
+}
