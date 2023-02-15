@@ -8,63 +8,72 @@ struct EmailAppPickerView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                Button("Mail") {
-                    let encodedSubject = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-                    let encodedBody = emailBody.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-                    let mailToString = "mailto:\(Mailman.recipient)?subject=\(encodedSubject)&body=\(encodedBody)"
-                    guard let mailToUrl = URL(string: mailToString) else {
-                        return
-                    }
-                    UIApplication.shared.open(mailToUrl)
-                    self.isBeingShown = false
-                }
-                
-                if Mailman.hasGmail {
-                    Button("Gmail") {
-                        let mailToString = "\(Mailman.gmailMailToUrl)?to=\(Mailman.recipient)"
+            Form {
+                Section("Apps de e-mail instalados") {
+                    Button("Mail") {
+                        let encodedSubject = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+                        let encodedBody = emailBody.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+                        let mailToString = "mailto:\(Mailman.supportEmail)?subject=\(encodedSubject)&body=\(encodedBody)"
                         guard let mailToUrl = URL(string: mailToString) else {
                             return
                         }
                         UIApplication.shared.open(mailToUrl)
                         self.isBeingShown = false
                     }
-                }
-                
-                if Mailman.hasOutlook {
-                    Button("Outlook") {
-                        let mailToString = "\(Mailman.outlookMailToUrl)?to=\(Mailman.recipient)"
-                        guard let mailToUrl = URL(string: mailToString) else {
-                            return
+                    
+                    if Mailman.hasGmail {
+                        Button("Gmail") {
+                            let mailToString = "\(Mailman.gmailMailToUrl)?to=\(Mailman.supportEmail)"
+                            guard let mailToUrl = URL(string: mailToString) else {
+                                return
+                            }
+                            UIApplication.shared.open(mailToUrl)
+                            self.isBeingShown = false
                         }
-                        UIApplication.shared.open(mailToUrl)
-                        self.isBeingShown = false
+                    }
+                    
+                    if Mailman.hasOutlook {
+                        Button("Outlook") {
+                            let mailToString = "\(Mailman.outlookMailToUrl)?to=\(Mailman.supportEmail)"
+                            guard let mailToUrl = URL(string: mailToString) else {
+                                return
+                            }
+                            UIApplication.shared.open(mailToUrl)
+                            self.isBeingShown = false
+                        }
+                    }
+                    
+                    if Mailman.hasYahooMail {
+                        Button("Yahoo Mail") {
+                            let mailToString = "\(Mailman.yahooMailToUrl)?to=\(Mailman.supportEmail)"
+                            guard let mailToUrl = URL(string: mailToString) else {
+                                return
+                            }
+                            UIApplication.shared.open(mailToUrl)
+                            self.isBeingShown = false
+                        }
+                    }
+                    
+                    if Mailman.hasSpark {
+                        Button("Spark") {
+                            let mailToString = "\(Mailman.sparkMailToUrl)?supportEmail=\(Mailman.supportEmail)"
+                            guard let mailToUrl = URL(string: mailToString) else {
+                                return
+                            }
+                            UIApplication.shared.open(mailToUrl)
+                            self.isBeingShown = false
+                        }
                     }
                 }
                 
-                if Mailman.hasYahooMail {
-                    Button("Yahoo Mail") {
-                        let mailToString = "\(Mailman.yahooMailToUrl)?to=\(Mailman.recipient)"
-                        guard let mailToUrl = URL(string: mailToString) else {
-                            return
-                        }
-                        UIApplication.shared.open(mailToUrl)
-                        self.isBeingShown = false
-                    }
-                }
-                
-                if Mailman.hasSpark {
-                    Button("Spark") {
-                        let mailToString = "\(Mailman.sparkMailToUrl)?recipient=\(Mailman.recipient)"
-                        guard let mailToUrl = URL(string: mailToString) else {
-                            return
-                        }
-                        UIApplication.shared.open(mailToUrl)
+                Section("Outras opções") {
+                    Button("Copiar endereço de e-mail") {
+                        UIPasteboard.general.string = Mailman.supportEmail
                         self.isBeingShown = false
                     }
                 }
             }
-            .navigationTitle(Shared.pickAMailApp)
+            .navigationTitle("Escolha uma opção")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(leading:
                 Button("Cancelar") {
