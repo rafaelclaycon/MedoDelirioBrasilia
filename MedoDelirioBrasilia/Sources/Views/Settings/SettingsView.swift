@@ -23,6 +23,10 @@ struct SettingsView: View {
     
     private let pixKey: String = "medodeliriosuporte@gmail.com"
     
+    private var copyPixKeyButtonHorizontalPadding: CGFloat {
+        UIScreen.main.bounds.width > 400 ? 20 : 10
+    }
+    
     var body: some View {
         Form {
             Section {
@@ -98,11 +102,19 @@ struct SettingsView: View {
                             UIPasteboard.general.string = pixKey
                             showPixKeyCopiedAlert = true
                         } label: {
-                            Text("Copiar chave Pix (e-mail)")
-                                .bold()
-                                .foregroundColor(.green)
-                                .padding(.horizontal, 20)
-                                .padding(.vertical, 8)
+                            HStack(spacing: 15) {
+                                Image(systemName: "doc.on.doc")
+                                    .renderingMode(.template)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 20)
+                                
+                                Text("Copiar chave Pix (e-mail)")
+                                    .bold()
+                                    .foregroundColor(.green)
+                            }
+                            .padding(.horizontal, copyPixKeyButtonHorizontalPadding)
+                            .padding(.vertical, 8)
                         }
                         .tint(.green)
                         .controlSize(.regular)
