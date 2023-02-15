@@ -85,12 +85,24 @@ class AppPersistentMemory {
         return Bool(value as! Bool)
     }
     
-    static func getLastVersionUserHasDismissedWhatsNewScreen() -> String {
+    private static func getLastVersionUserHasDismissedWhatsNewScreen() -> String {
         let userDefaults = UserDefaults.standard
         guard let value = userDefaults.object(forKey: "lastVersionUserHasDismissedWhatsNewScreen") else {
             return .empty
         }
         return String(value as! String)
+    }
+    
+    static func getHasSeen60WhatsNewScreen() -> Bool {
+        guard getLastVersionUserHasDismissedWhatsNewScreen() == .empty else {
+            // Logic: if had anything in lastVersion, it means the user has downloaded 6.0 and seen its What's New screen already
+            return true
+        }
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "hasSeen60WhatsNewScreen") else {
+            return false
+        }
+        return Bool(value as! Bool)
     }
     
     // MARK: - Setters
@@ -145,9 +157,9 @@ class AppPersistentMemory {
         userDefaults.set(newValue, forKey: "hasSentFolderResearchInfo")
     }
     
-    static func setLastVersionUserHasDismissedWhatsNewScreen(to newValue: String) {
+    static func setHasSeen60WhatsNewScreen(to newValue: Bool) {
         let userDefaults = UserDefaults.standard
-        userDefaults.set(newValue, forKey: "lastVersionUserHasDismissedWhatsNewScreen")
+        userDefaults.set(newValue, forKey: "hasSeen60WhatsNewScreen")
     }
 
 }

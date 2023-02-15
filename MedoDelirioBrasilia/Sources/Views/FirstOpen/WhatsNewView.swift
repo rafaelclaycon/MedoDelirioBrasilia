@@ -83,7 +83,7 @@ struct WhatsNewView: View {
                 .padding(.horizontal, 20)
                 
                 Button {
-                    AppPersistentMemory.setLastVersionUserHasDismissedWhatsNewScreen(to: Versioneer.appVersion)
+                    AppPersistentMemory.setHasSeen60WhatsNewScreen(to: true)
                     isBeingShown = false
                 } label: {
                     Text("Continuar")
