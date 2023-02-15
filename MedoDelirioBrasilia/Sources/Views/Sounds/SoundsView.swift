@@ -514,23 +514,14 @@ struct SoundsView: View {
                     Menu {
                         Section {
                             Picker("Ordenação de Autores", selection: $viewModel.authorSortOption) {
-                                HStack {
-                                    Text("Nome")
-                                    Image(systemName: "a.circle")
-                                }
-                                .tag(0)
+                                Text("Nome")
+                                    .tag(0)
                                 
-                                HStack {
-                                    Text("Autores com Mais Sons no Topo")
-                                    Image(systemName: "chevron.down.square")
-                                }
-                                .tag(1)
+                                Text("Autores com Mais Sons no Topo")
+                                    .tag(1)
                                 
-                                HStack {
-                                    Text("Autores com Menos Sons no Topo")
-                                    Image(systemName: "chevron.up.square")
-                                }
-                                .tag(2)
+                                Text("Autores com Menos Sons no Topo")
+                                    .tag(2)
                             }
                         }
                     } label: {
