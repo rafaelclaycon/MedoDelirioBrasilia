@@ -51,7 +51,6 @@ struct Shared {
     
     // E-mail
     
-    static let pickAMailApp = "Escolha um app de e-mail"
     static let issueSuggestionEmailSubject = "Problema/sugestão no app iOS \(Versioneer.appVersion) Build \(Versioneer.buildVersionNumber)"
     static let issueSuggestionEmailBody = "Para um problema, inclua passos para reproduzir e prints se possível."
     static let suggestOtherAuthorNameEmailSubject = "Sugestão de Outro Nome de Autor Para %@"

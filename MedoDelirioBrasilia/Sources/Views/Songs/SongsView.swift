@@ -172,6 +172,7 @@ struct SongsView: View {
             }
             .sheet(isPresented: $viewModel.showEmailAppPicker_suggestChangeConfirmationDialog) {
                 EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_suggestChangeConfirmationDialog,
+                                   didCopySupportAddress: .constant(false),
                                    subject: String(format: Shared.Email.suggestSongChangeSubject, viewModel.selectedSong?.title ?? ""),
                                    emailBody: String(format: Shared.Email.suggestSongChangeBody, viewModel.selectedSong?.id ?? ""))
             }
@@ -179,7 +180,10 @@ struct SongsView: View {
                 ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSong?.id ?? .empty, contentTitle: viewModel.selectedSong?.title ?? .empty, audioFilename: viewModel.selectedSong?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: true)
             }
             .sheet(isPresented: $viewModel.showEmailAppPicker_songUnavailableConfirmationDialog) {
-                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_songUnavailableConfirmationDialog, subject: Shared.issueSuggestionEmailSubject, emailBody: Shared.issueSuggestionEmailBody)
+                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_songUnavailableConfirmationDialog,
+                                   didCopySupportAddress: .constant(false),
+                                   subject: Shared.issueSuggestionEmailSubject,
+                                   emailBody: Shared.issueSuggestionEmailBody)
             }
             .alert(isPresented: $viewModel.showAlert) {
                 switch viewModel.alertType {

@@ -246,16 +246,28 @@ struct AuthorDetailView: View {
                 AddToFolderView(isBeingShown: $showingAddToFolderModal, hadSuccess: $hadSuccessAddingToFolder, folderName: $folderName, pluralization: $pluralization, selectedSounds: viewModel.selectedSoundsForAddToFolder ?? [Sound]())
             }
             .sheet(isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog) {
-                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog, subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.selectedSound?.title ?? ""), emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.selectedSound?.authorName ?? "", viewModel.selectedSound?.id ?? ""))
+                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog,
+                                   didCopySupportAddress: .constant(false),
+                                   subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.selectedSound?.title ?? ""),
+                                   emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.selectedSound?.authorName ?? "", viewModel.selectedSound?.id ?? ""))
             }
             .sheet(isPresented: $viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog) {
-                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog, subject: Shared.issueSuggestionEmailSubject, emailBody: Shared.issueSuggestionEmailBody)
+                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog,
+                                   didCopySupportAddress: .constant(false),
+                                   subject: Shared.issueSuggestionEmailSubject,
+                                   emailBody: Shared.issueSuggestionEmailBody)
             }
             .sheet(isPresented: $viewModel.showEmailAppPicker_askForNewSound) {
-                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_askForNewSound, subject: String(format: Shared.Email.AskForNewSound.subject, self.author.name), emailBody: Shared.Email.AskForNewSound.body)
+                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_askForNewSound,
+                                   didCopySupportAddress: .constant(false),
+                                   subject: String(format: Shared.Email.AskForNewSound.subject, self.author.name),
+                                   emailBody: Shared.Email.AskForNewSound.body)
             }
             .sheet(isPresented: $viewModel.showEmailAppPicker_reportAuthorDetailIssue) {
-                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_reportAuthorDetailIssue, subject: String(format: Shared.Email.AuthorDetailIssue.subject, self.author.name), emailBody: Shared.Email.AuthorDetailIssue.body)
+                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_reportAuthorDetailIssue,
+                                   didCopySupportAddress: .constant(false),
+                                   subject: String(format: Shared.Email.AuthorDetailIssue.subject, self.author.name),
+                                   emailBody: Shared.Email.AuthorDetailIssue.body)
             }
             .sheet(isPresented: $viewModel.isShowingShareSheet) {
                 viewModel.iPadShareSheet

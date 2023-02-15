@@ -3,6 +3,7 @@ import SwiftUI
 struct EmailAppPickerView: View {
 
     @Binding var isBeingShown: Bool
+    @Binding var didCopySupportAddress: Bool
     @State var subject: String
     @State var emailBody: String
     
@@ -69,6 +70,7 @@ struct EmailAppPickerView: View {
                 Section("Outras opções") {
                     Button("Copiar endereço de e-mail") {
                         UIPasteboard.general.string = Mailman.supportEmail
+                        self.didCopySupportAddress = true
                         self.isBeingShown = false
                     }
                 }
@@ -89,7 +91,7 @@ struct EmailAppPickerView: View {
 struct EmailAppPickerView_Previews: PreviewProvider {
 
     static var previews: some View {
-        EmailAppPickerView(isBeingShown: .constant(true), subject: "", emailBody: "")
+        EmailAppPickerView(isBeingShown: .constant(true), didCopySupportAddress: .constant(false), subject: "", emailBody: "")
     }
 
 }

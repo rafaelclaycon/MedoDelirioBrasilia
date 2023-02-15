@@ -16,10 +16,11 @@ struct SettingsView: View {
     @State private var showChangeAppIcon: Bool = ProcessInfo.processInfo.isMacCatalystApp == false
     
     @State private var showAskForMoneyView: Bool = false
-    @State private var showPixKeyCopiedToast: Bool = false
+    @State private var showToastView: Bool = false
     @State private var donorNames: String = ""
     
     @State private var showEmailClientConfirmationDialog: Bool = false
+    @State private var didCopySupportAddressOnEmailPicker: Bool = false
     
     private let pixKey: String = "medodeliriosuporte@gmail.com"
     
@@ -102,13 +103,13 @@ struct SettingsView: View {
                             Button {
                                 UIPasteboard.general.string = pixKey
                                 withAnimation {
-                                    showPixKeyCopiedToast = true
+                                    showToastView = true
                                 }
                                 TapticFeedback.success()
                                 
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                                     withAnimation {
-                                        showPixKeyCopiedToast = false
+                                        showToastView = false
                                     }
                                 }
                             } label: {
@@ -191,14 +192,35 @@ struct SettingsView: View {
                 }
             }
             .popover(isPresented: $showEmailClientConfirmationDialog) {
-                EmailAppPickerView(isBeingShown: $showEmailClientConfirmationDialog, subject: Shared.issueSuggestionEmailSubject, emailBody: Shared.issueSuggestionEmailBody)
+                EmailAppPickerView(isBeingShown: $showEmailClientConfirmationDialog,
+                                   didCopySupportAddress: $didCopySupportAddressOnEmailPicker,
+                                   subject: Shared.issueSuggestionEmailSubject,
+                                   emailBody: Shared.issueSuggestionEmailBody)
+            }
+            .onChange(of: showEmailClientConfirmationDialog) { showEmailClientConfirmationDialog in
+                if showEmailClientConfirmationDialog == false {
+                    if didCopySupportAddressOnEmailPicker {
+                        withAnimation {
+                            showToastView = true
+                        }
+                        TapticFeedback.success()
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            withAnimation {
+                                showToastView = false
+                            }
+                        }
+                        
+                        didCopySupportAddressOnEmailPicker = false
+                    }
+                }
             }
             
-            if showPixKeyCopiedToast {
+            if showToastView {
                 VStack {
                     Spacer()
                     
-                    ToastView(text: "Chave copiada com sucesso!")
+                    ToastView(text: didCopySupportAddressOnEmailPicker ? "E-mail de suporte copiado com sucesso." : "Chave copiada com sucesso!")
                         .padding(.horizontal)
                         .padding(.bottom, 15)
                 }
