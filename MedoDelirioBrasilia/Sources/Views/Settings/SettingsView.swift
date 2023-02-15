@@ -91,10 +91,27 @@ struct SettingsView: View {
                     BegForMoneyView(donorNames: $donorNames)
                         .padding(.vertical)
                     
-                    Button("Copiar chave Pix (e-mail)") {
-                        UIPasteboard.general.string = pixKey
-                        showPixKeyCopiedAlert = true
+                    HStack {
+                        Spacer()
+                        
+                        Button {
+                            UIPasteboard.general.string = pixKey
+                            showPixKeyCopiedAlert = true
+                        } label: {
+                            Text("Copiar chave Pix (e-mail)")
+                                .bold()
+                                .foregroundColor(.green)
+                                .padding(.horizontal, 20)
+                                .padding(.vertical, 8)
+                        }
+                        .tint(.green)
+                        .controlSize(.regular)
+                        .buttonStyle(.bordered)
+                        .buttonBorderShape(.roundedRectangle)
+                        
+                        Spacer()
                     }
+                    .padding(.vertical, 10)
                     .alert(isPresented: $showPixKeyCopiedAlert) {
                         Alert(title: Text("Chave copiada com sucesso!"), dismissButton: .default(Text("OK")))
                     }
@@ -106,47 +123,23 @@ struct SettingsView: View {
             }
             
             Section("Sobre") {
-                VStack(alignment: .leading) {
-                    Text("Criado por Rafael Claycon Schmitt")
-                    
-                    HStack {
-                        Spacer()
+                Text("Criado por Rafael Claycon Schmitt")
+                
+                Button {
+                    open(link: "https://burnthis.town/@rafael")
+                } label: {
+                    HStack(spacing: 12) {
+                        Image("mastodon")
+                            .resizable()
+                            .renderingMode(.template)
+                            .frame(width: 24, height: 24)
                         
-                        Button {
-                            open(link: "https://burnthis.town/@rafael")
-                        } label: {
-                            HStack(spacing: 10) {
-                                Image("mastodon")
-                                    .resizable()
-                                    .renderingMode(.template)
-                                    .frame(width: 24, height: 24)
-                                
-                                Text("Seguir no Mastodon")
-                                    .bold()
-                            }
-                            .foregroundColor(.purple)
-                            .padding(.horizontal, 10)
-                        }
-                        .tint(.purple)
-                        .controlSize(.regular)
-                        .buttonStyle(.bordered)
-                        .buttonBorderShape(.roundedRectangle)
-                        
-                        Spacer()
+                        Text("Seguir no Mastodon")
                     }
-                    .padding(.vertical, 6)
-                    
-                    HStack {
-                        Spacer()
-                        
-                        Button("Como abrir uma conta?") {
-                            open(link: "https://jovemnerd.com.br/nerdbunker/mastodon-como-criar-conta/")
-                        }
-                        .tint(.blue)
-                        
-                        Spacer()
-                    }
-                    .padding(.vertical, 8)
+                }
+                
+                Button("Como abrir uma conta no Mastodon?") {
+                    open(link: "https://jovemnerd.com.br/nerdbunker/mastodon-como-criar-conta/")
                 }
                 
                 Text("Versão \(Versioneer.appVersion) Build \(Versioneer.buildVersionNumber)")
