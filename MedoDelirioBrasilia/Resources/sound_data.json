@@ -832,7 +832,7 @@
     {
         "id": "E6D61C37-3FFD-447B-952B-BB570B774BD5",
         "title": "Queima quengaral wooo",
-        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "authorId": "B32B3681-DD67-4298-8036-75A4DF77DD6C",
         "description": "Queima quengaral wooo",
         "filename": "Queima quengaral wooo short.mp3",
         "dateAdded": "2021-02-19T00:00:00Z",
@@ -9994,6 +9994,17 @@
         "dateAdded": "2023-02-15T00:00:00Z",
         "duration": 3.03,
         "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "640803B6-A6DD-4EE0-9AFC-71D12FB30F2C",
+        "title": "Taca o pau iiiih",
+        "authorId": "B32B3681-DD67-4298-8036-75A4DF77DD6C",
+        "description": "taca o pau",
+        "filename": "Queima Quengaral - Taca o pau.mp3",
+        "dateAdded": "2023-02-15T00:00:00Z",
+        "duration": 1.93,
+        "isOffensive": true,
         "isNew": true
     }
 ]
