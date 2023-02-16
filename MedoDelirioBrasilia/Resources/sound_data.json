@@ -9994,7 +9994,7 @@
         "dateAdded": "2023-02-15T00:00:00Z",
         "duration": 3.03,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "640803B6-A6DD-4EE0-9AFC-71D12FB30F2C",
@@ -10005,6 +10005,6 @@
         "dateAdded": "2023-02-15T00:00:00Z",
         "duration": 1.93,
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     }
 ]
