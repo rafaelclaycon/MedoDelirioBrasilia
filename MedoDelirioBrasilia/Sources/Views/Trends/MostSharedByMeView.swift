@@ -18,7 +18,7 @@ struct MostSharedByMeView: View {
     var body: some View {
         VStack {
             HStack {
-                Text("Sons Mais Compartilhados Por Mim")
+                Text("Sons Mais Compartilhados Por Mim 🙎")
                     .font(.title2)
                 Spacer()
             }
@@ -36,21 +36,21 @@ struct MostSharedByMeView: View {
                 }
             } else {
                 VStack {
-                    HStack {
-                        Spacer()
-                        
-                        Button {
-                            //viewModel.reloadPersonalList(withTopChartItems: <#T##[TopChartItem]?#>)
-                        } label: {
-                            HStack {
-                                Image(systemName: "arrow.triangle.2.circlepath")
-                                Text("Atualizar")
-                            }
-                        }
-                        .padding(.trailing)
-                        .padding(.top, 1)
-                        .padding(.bottom, 10)
-                    }
+//                    HStack {
+//                        Spacer()
+//                        
+//                        Button {
+//                            //viewModel.reloadPersonalList(withTopChartItems: <#T##[TopChartItem]?#>)
+//                        } label: {
+//                            HStack {
+//                                Image(systemName: "arrow.triangle.2.circlepath")
+//                                Text("Atualizar")
+//                            }
+//                        }
+//                        .padding(.trailing)
+//                        .padding(.top, 1)
+//                        .padding(.bottom, 10)
+//                    }
                     
                     LazyVGrid(columns: columns, spacing: 14) {
                         ForEach(viewModel.personalTop5!) { item in
