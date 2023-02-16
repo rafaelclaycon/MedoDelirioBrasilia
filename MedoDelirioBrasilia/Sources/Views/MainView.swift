@@ -47,6 +47,15 @@ struct MainView: View {
 //                .tag(PhoneTab.collections)
                 
                 NavigationView {
+                    SongsView()
+                        .environmentObject(settingsHelper)
+                }
+                .tabItem {
+                    Label("Músicas", systemImage: "music.quarternote.3")
+                }
+                .tag(PhoneTab.songs)
+                
+                NavigationView {
                     TrendsView(tabSelection: $tabSelection,
                                activePadScreen: .constant(.trends))
                         .environmentObject(trendsHelper)
@@ -55,15 +64,6 @@ struct MainView: View {
                     Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
                 }
                 .tag(PhoneTab.trends)
-                
-                NavigationView {
-                    SongsView()
-                        .environmentObject(settingsHelper)
-                }
-                .tabItem {
-                    Label("Músicas", systemImage: "music.quarternote.3")
-                }
-                .tag(PhoneTab.songs)
             }
             .onContinueUserActivity(Shared.ActivityTypes.playAndShareSounds, perform: { _ in
                 tabSelection = .sounds
