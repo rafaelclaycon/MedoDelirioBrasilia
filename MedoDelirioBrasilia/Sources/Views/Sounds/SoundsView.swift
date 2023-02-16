@@ -402,6 +402,9 @@ struct SoundsView: View {
             }
             .onChange(of: showingModalView) { showingModalView in
                 if (showingModalView == false) && hadSuccessAddingToFolder {
+                    // Need to get count before clearing the Set.
+                    let selectedCount: Int = viewModel.selectionKeeper.count
+                    
                     if currentSoundsListMode == .selection {
                         viewModel.stopSelecting()
                     }
@@ -419,6 +422,10 @@ struct SoundsView: View {
                             folderName = nil
                             hadSuccessAddingToFolder = false
                         }
+                    }
+                    
+                    if pluralization == .plural {
+                        viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFolder(\(selectedCount))")
                     }
                 }
             }
@@ -545,6 +552,9 @@ struct SoundsView: View {
                         
                         Section {
                             Button {
+                                // Need to get count before clearing the Set.
+                                let selectedCount: Int = viewModel.selectionKeeper.count
+                                
                                 if currentViewMode == .favorites {
                                     viewModel.removeSelectedFromFavorites()
                                     viewModel.stopSelecting()
@@ -553,9 +563,11 @@ struct SoundsView: View {
                                                          allowSensitiveContent: UserSettings.getShowExplicitContent(),
                                                          favoritesOnly: currentViewMode == .favorites,
                                                          sortedBy: SoundSortOption(rawValue: viewModel.soundSortOption) ?? .titleAscending)
+                                    viewModel.sendUsageMetricToServer(action: "didRemoveManySoundsFromFavorites(\(selectedCount))")
                                 } else {
                                     viewModel.addSelectedToFavorites()
                                     viewModel.stopSelecting()
+                                    viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFavorites(\(selectedCount))")
                                 }
                             } label: {
                                 Label(currentViewMode == .favorites ? Shared.removeFromFavorites : Shared.addToFavorites, systemImage: currentViewMode == .favorites ? "star.slash" : "star")

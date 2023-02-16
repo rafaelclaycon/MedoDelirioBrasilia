@@ -36,7 +36,7 @@ class AuthorDetailViewViewModel: ObservableObject {
     @Published var alertType: AuthorDetailAlertType = .ok
     
     init(originatingScreenName: String, authorName: String) {
-        // Sends metric only from iPhones because iPad and Mac are calling this methos twice instead of once upon each screen opening.
+        // Sends metric only from iPhones because iPad and Mac are calling this methods twice instead of once upon each screen opening.
         if UIDevice.current.userInterfaceIdiom == .phone {
             sendUsageMetricToServer(originatingScreenName: originatingScreenName, authorName: authorName)
         }

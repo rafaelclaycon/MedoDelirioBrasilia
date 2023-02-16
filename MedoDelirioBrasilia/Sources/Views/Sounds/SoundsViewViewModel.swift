@@ -384,6 +384,18 @@ class SoundsViewViewModel: ObservableObject {
         }
     }
     
+    func sendUsageMetricToServer(action: String) {
+        let usageMetric = UsageMetric(customInstallId: UIDevice.customInstallId,
+                                      originatingScreen: "SoundsView",
+                                      destinationScreen: action,
+                                      systemName: UIDevice.current.systemName,
+                                      isiOSAppOnMac: ProcessInfo.processInfo.isiOSAppOnMac,
+                                      appVersion: Versioneer.appVersion,
+                                      dateTime: Date.now.iso8601withFractionalSeconds,
+                                      currentTimeZone: TimeZone.current.abbreviation() ?? .empty)
+        networkRabbit.post(usageMetric: usageMetric)
+    }
+    
     // MARK: - Other
     
     func donateActivity() {
