@@ -103,6 +103,54 @@ struct FolderDetailView: View {
             .toolbar {
                 Menu {
                     Section {
+                        Button {
+                            //viewModel.startSelecting()
+                        } label: {
+                            //Label(currentSoundsListMode == .selection ? "Cancelar Seleção" : "Selecionar", systemImage: currentSoundsListMode == .selection ? "xmark.circle" : "checkmark.circle")
+                            Label("Selecionar", systemImage: "checkmark.circle")
+                        }
+                    }
+                    
+                    Section {
+                        Button {
+                            // Need to get count before clearing the Set.
+//                            let selectedCount: Int = viewModel.selectionKeeper.count
+//
+//                            if currentViewMode == .favorites {
+//                                viewModel.removeSelectedFromFavorites()
+//                                viewModel.stopSelecting()
+//                                viewModel.reloadList(withSounds: soundData,
+//                                                     andFavorites: try? database.getAllFavorites(),
+//                                                     allowSensitiveContent: UserSettings.getShowExplicitContent(),
+//                                                     favoritesOnly: currentViewMode == .favorites,
+//                                                     sortedBy: SoundSortOption(rawValue: viewModel.soundSortOption) ?? .titleAscending)
+//                                viewModel.sendUsageMetricToServer(action: "didRemoveManySoundsFromFavorites(\(selectedCount))")
+//                            } else {
+//                                viewModel.addSelectedToFavorites()
+//                                viewModel.stopSelecting()
+//                                viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFavorites(\(selectedCount))")
+//                            }
+                        } label: {
+                            //Label(currentViewMode == .favorites ? Shared.removeFromFavorites : Shared.addToFavorites, systemImage: currentViewMode == .favorites ? "star.slash" : "star")
+                            Label(Shared.addToFavorites, systemImage: "star")
+                        }.disabled(viewModel.selectionKeeper.count == 0)
+                        
+                        Button {
+//                            viewModel.prepareSelectedToAddToFolder()
+//                            subviewToOpen = .addToFolderView
+//                            showingModalView = true
+                        } label: {
+                            Label("Remover da Pasta", systemImage: "folder.badge.minus")
+                        }.disabled(viewModel.selectionKeeper.count == 0)
+                        
+//                            Button {
+//                                viewModel.shareSelected()
+//                            } label: {
+//                                Label("Compartilhar", systemImage: "square.and.arrow.up")
+//                            }.disabled(viewModel.selectionKeeper.count == 0 || viewModel.selectionKeeper.count > 5)
+                    }
+                    
+                    Section {
                         Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
                             Text("Título")
                                 .tag(0)

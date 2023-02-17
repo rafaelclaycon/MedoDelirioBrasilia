@@ -555,7 +555,7 @@ struct SoundsView: View {
                                 // Need to get count before clearing the Set.
                                 let selectedCount: Int = viewModel.selectionKeeper.count
                                 
-                                if currentViewMode == .favorites {
+                                if currentViewMode == .favorites || viewModel.allSelectedAreFavorites() {
                                     viewModel.removeSelectedFromFavorites()
                                     viewModel.stopSelecting()
                                     viewModel.reloadList(withSounds: soundData,
@@ -570,7 +570,7 @@ struct SoundsView: View {
                                     viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFavorites(\(selectedCount))")
                                 }
                             } label: {
-                                Label(currentViewMode == .favorites ? Shared.removeFromFavorites : Shared.addToFavorites, systemImage: currentViewMode == .favorites ? "star.slash" : "star")
+                                Label(currentViewMode == .favorites || viewModel.allSelectedAreFavorites() ? Shared.removeFromFavorites : Shared.addToFavorites, systemImage: currentViewMode == .favorites || viewModel.allSelectedAreFavorites() ? "star.slash" : "star")
                             }.disabled(viewModel.selectionKeeper.count == 0)
                             
                             Button {

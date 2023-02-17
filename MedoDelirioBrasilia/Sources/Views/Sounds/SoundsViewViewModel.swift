@@ -344,6 +344,11 @@ class SoundsViewViewModel: ObservableObject {
         }
     }
     
+    func allSelectedAreFavorites() -> Bool {
+        guard selectionKeeper.count > 0 else { return false }
+        return selectionKeeper.isSubset(of: favoritesKeeper)
+    }
+    
     func prepareSelectedToAddToFolder() {
         guard selectionKeeper.count > 0 else { return }
         selectedSounds = [Sound]()
