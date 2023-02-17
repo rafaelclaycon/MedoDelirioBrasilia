@@ -295,20 +295,17 @@ struct SoundsView: View {
                 if AppPersistentMemory.getHasShownNotificationsOnboarding() == false {
                     subviewToOpen = .onboardingView
                     showingModalView = true
+                } else if AppPersistentMemory.getHasSeen60WhatsNewScreen() == false {
+                    if UIDevice.current.userInterfaceIdiom == .phone {
+                        subviewToOpen = .whatsNewView
+                        showingModalView = true
+                    } else {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            subviewToOpen = .whatsNewView
+                            showingModalView = true
+                        }
+                    }
                 }
-                
-//                if AppPersistentMemory.getLastVersionUserHasDismissedWhatsNewScreen() != Versioneer.appVersion {
-//                    #warning("Remove this part when a version doesn't have a What's New to show")
-//                    if UIDevice.current.userInterfaceIdiom == .phone {
-//                        subviewToOpen = .whatsNewView
-//                        showingModalView = true
-//                    } else {
-//                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//                            subviewToOpen = .whatsNewView
-//                            showingModalView = true
-//                        }
-//                    }
-//                }
                 
                 if moveDatabaseIssue.isEmpty == false {
                     viewModel.showMoveDatabaseIssueAlert()
@@ -352,7 +349,7 @@ struct SoundsView: View {
             }
             .sheet(isPresented: $showingModalView, onDismiss: {
                 if subviewToOpen == .whatsNewView {
-                    AppPersistentMemory.setLastVersionUserHasDismissedWhatsNewScreen(to: Versioneer.appVersion)
+                    AppPersistentMemory.setHasSeen60WhatsNewScreen(to: true)
                 }
             }) {
                 switch subviewToOpen {
@@ -405,6 +402,9 @@ struct SoundsView: View {
             }
             .onChange(of: showingModalView) { showingModalView in
                 if (showingModalView == false) && hadSuccessAddingToFolder {
+                    // Need to get count before clearing the Set.
+                    let selectedCount: Int = viewModel.selectionKeeper.count
+                    
                     if currentSoundsListMode == .selection {
                         viewModel.stopSelecting()
                     }
@@ -422,6 +422,10 @@ struct SoundsView: View {
                             folderName = nil
                             hadSuccessAddingToFolder = false
                         }
+                    }
+                    
+                    if pluralization == .plural {
+                        viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFolder(\(selectedCount))")
                     }
                 }
             }
@@ -548,6 +552,9 @@ struct SoundsView: View {
                         
                         Section {
                             Button {
+                                // Need to get count before clearing the Set.
+                                let selectedCount: Int = viewModel.selectionKeeper.count
+                                
                                 if currentViewMode == .favorites {
                                     viewModel.removeSelectedFromFavorites()
                                     viewModel.stopSelecting()
@@ -556,9 +563,11 @@ struct SoundsView: View {
                                                          allowSensitiveContent: UserSettings.getShowExplicitContent(),
                                                          favoritesOnly: currentViewMode == .favorites,
                                                          sortedBy: SoundSortOption(rawValue: viewModel.soundSortOption) ?? .titleAscending)
+                                    viewModel.sendUsageMetricToServer(action: "didRemoveManySoundsFromFavorites(\(selectedCount))")
                                 } else {
                                     viewModel.addSelectedToFavorites()
                                     viewModel.stopSelecting()
+                                    viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFavorites(\(selectedCount))")
                                 }
                             } label: {
                                 Label(currentViewMode == .favorites ? Shared.removeFromFavorites : Shared.addToFavorites, systemImage: currentViewMode == .favorites ? "star.slash" : "star")

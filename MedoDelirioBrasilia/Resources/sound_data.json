@@ -832,7 +832,7 @@
     {
         "id": "E6D61C37-3FFD-447B-952B-BB570B774BD5",
         "title": "Queima quengaral wooo",
-        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "authorId": "B32B3681-DD67-4298-8036-75A4DF77DD6C",
         "description": "Queima quengaral wooo",
         "filename": "Queima quengaral wooo short.mp3",
         "dateAdded": "2021-02-19T00:00:00Z",
@@ -9950,7 +9950,7 @@
         "dateAdded": "2023-02-14T00:00:00Z",
         "duration": 2.64,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "CAE4A88D-2C3B-4A34-BC8F-2E482A8EF612",
@@ -9961,7 +9961,7 @@
         "dateAdded": "2023-02-14T00:00:00Z",
         "duration": 1.18,
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "83F50F63-0473-41C7-BBF9-757F292102AA",
@@ -9972,7 +9972,7 @@
         "dateAdded": "2023-02-14T00:00:00Z",
         "duration": 3.4,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "47439115-76BA-4B06-AB5E-3D6A6BAF2C40",
@@ -9983,6 +9983,28 @@
         "dateAdded": "2023-02-14T00:00:00Z",
         "duration": 4.91,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
+    },
+    {
+        "id": "70114C90-2306-474C-908A-52E2A9C55BB8",
+        "title": "Lula é bicampeão mundial de conciliação",
+        "authorId": "0258693D-31D6-4A9E-8BA8-F11973BA79CF",
+        "description": "Lula e bicampeao mundial de conciliacao",
+        "filename": "Franciel Cruz - Lula e bicampeao mundial de conciliacao.mp3",
+        "dateAdded": "2023-02-15T00:00:00Z",
+        "duration": 3.03,
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "640803B6-A6DD-4EE0-9AFC-71D12FB30F2C",
+        "title": "Taca o pau iiiih",
+        "authorId": "B32B3681-DD67-4298-8036-75A4DF77DD6C",
+        "description": "taca o pau",
+        "filename": "Queima Quengaral - Taca o pau.mp3",
+        "dateAdded": "2023-02-15T00:00:00Z",
+        "duration": 1.93,
+        "isOffensive": true,
+        "isNew": false
     }
 ]
