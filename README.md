@@ -21,15 +21,16 @@ GIF demos below (they may take a while to load due to size).
 1. Play sounds.
 1. Share sounds.
 1. Favorite sounds.
-1. View sounds sorted by title, author name or date added.
+1. View sounds sorted by title, author name, date added and length.
 1. View sounds grouped by author.
+1. Select multiple sounds at once to add to Favorites or to a folder.
 1. Play songs from the podcast.
 1. Filter sounds by Favorites.
 1. Group sounds into Folders for easy access (just like tagging).
-1. Share sound as video on Twitter, TikTok and Instagram.
+1. Share sound as video on Twitter, Mastodon, TikTok and Instagram.
 1. Support for iPhone, iPad and Apple Silicon Macs.
 1. Dark Mode support.
-1. View songs sorted by title, date added and duration.
+1. View songs sorted by title, date added and length.
 1. Filter songs by music genre.
 1. User sharing statistics synced with server (opt-out available).
 1. Receive push notifications about new content, features and trends.
