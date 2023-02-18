@@ -5,8 +5,8 @@
 //  Created by Rafael Claycon Schmitt on 28/06/22.
 //
 
+import Foundation
 import Combine
-import UIKit
 
 class FolderListViewModel: ObservableObject {
 

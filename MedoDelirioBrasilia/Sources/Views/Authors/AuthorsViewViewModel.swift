@@ -5,8 +5,8 @@
 //  Created by Rafael Claycon Schmitt on 26/05/22.
 //
 
+import Foundation
 import Combine
-import UIKit
 
 class AuthorsViewViewModel: ObservableObject {
 

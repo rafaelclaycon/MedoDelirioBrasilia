@@ -5,8 +5,8 @@
 //  Created by Rafael Claycon Schmitt on 24/10/22.
 //
 
+import Foundation
 import Combine
-import UIKit
 
 class JoinFolderResearchBannerViewViewModel: ObservableObject {
 
