@@ -5,7 +5,6 @@
 //  Created by Rafael Claycon Schmitt on 24/08/22.
 //
 
-import Foundation
 import UIKit
 
 /// The alternate app icons available for this app to use.

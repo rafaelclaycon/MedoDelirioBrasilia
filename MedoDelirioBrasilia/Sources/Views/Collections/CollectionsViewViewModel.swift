@@ -6,7 +6,6 @@
 //
 
 import Combine
-import UIKit
 
 class CollectionsViewViewModel: ObservableObject {
 
