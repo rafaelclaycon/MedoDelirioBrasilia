@@ -6,7 +6,6 @@
 //
 
 import Combine
-import UIKit
 import PhotosUI
 
 class ShareAsVideoViewViewModel: ObservableObject {

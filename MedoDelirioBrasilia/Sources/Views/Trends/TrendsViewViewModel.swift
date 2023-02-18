@@ -6,7 +6,7 @@
 //
 
 import Combine
-import UIKit
+import Foundation
 
 class TrendsViewViewModel: ObservableObject {
 

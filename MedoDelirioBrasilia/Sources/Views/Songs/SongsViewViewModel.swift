@@ -5,9 +5,9 @@
 //  Created by Rafael Claycon Schmitt on 19/05/22.
 //
 
+import Foundation
 import Combine
 import SwiftUI
-import UIKit
 
 class SongsViewViewModel: ObservableObject {
 
