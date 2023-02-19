@@ -315,6 +315,8 @@ class SoundsViewViewModel: ObservableObject {
         }
     }
     
+    // MARK: - Multi-Select
+    
     func startSelecting() {
         stopPlaying()
         if currentSoundsListMode.wrappedValue == .regular {
@@ -342,6 +344,11 @@ class SoundsViewViewModel: ObservableObject {
         selectionKeeper.forEach { selectedSound in
             removeFromFavorites(soundId: selectedSound)
         }
+    }
+    
+    func allSelectedAreFavorites() -> Bool {
+        guard selectionKeeper.count > 0 else { return false }
+        return selectionKeeper.isSubset(of: favoritesKeeper)
     }
     
     func prepareSelectedToAddToFolder() {

@@ -90,7 +90,7 @@ struct SidebarView: View {
                 
                 ForEach(viewModel.folders) { folder in
                     NavigationLink(
-                        destination: FolderDetailView(folder: folder),
+                        destination: FolderDetailView(viewModel: FolderDetailViewViewModel(currentSoundsListMode: $currentSoundsListMode), folder: folder, currentSoundsListMode: $currentSoundsListMode),
                         tag: .specificFolder,
                         selection: $state,
                         label: {

@@ -12,10 +12,14 @@ class FolderDetailViewViewModel: ObservableObject {
 
     @Published var sounds = [Sound]()
     
+    @Published var soundSortOption: Int = FolderSoundSortOption.titleAscending.rawValue
+    
     @Published var hasSoundsToDisplay: Bool = false
     @Published var selectedSound: Sound? = nil
+    @Published var selectedSounds: [Sound]? = nil
     @Published var nowPlayingKeeper = Set<String>()
-    @Published var soundSortOption: Int = FolderSoundSortOption.titleAscending.rawValue
+    @Published var selectionKeeper = Set<String>()
+    var currentSoundsListMode: Binding<SoundsListMode>
     
     // Sharing
     @Published var iPadShareSheet = ActivityViewController(activityItems: [URL(string: "https://www.apple.com")!])
@@ -27,7 +31,11 @@ class FolderDetailViewViewModel: ObservableObject {
     @Published var alertTitle: String = ""
     @Published var alertMessage: String = ""
     @Published var showAlert: Bool = false
-    @Published var alertType: AlertType = .singleOption
+    @Published var alertType: FolderDetailAlertType = .ok
+    
+    init(currentSoundsListMode: Binding<SoundsListMode>) {
+        self.currentSoundsListMode = currentSoundsListMode
+    }
     
     func reloadSoundList(withFolderContents folderContents: [UserFolderContent]?, sortedBy sortOption: FolderSoundSortOption) {
         guard let folderContents = folderContents else {
@@ -111,6 +119,13 @@ class FolderDetailViewViewModel: ObservableObject {
         })
         
         player?.togglePlay()
+    }
+    
+    func stopPlaying() {
+        if nowPlayingKeeper.count > 0 {
+            player?.togglePlay()
+            nowPlayingKeeper.removeAll()
+        }
     }
     
     func shareSound(withPath filepath: String, andContentId contentId: String) {
@@ -263,20 +278,65 @@ class FolderDetailViewViewModel: ObservableObject {
         reloadSoundList(withFolderContents: try? database.getAllContentsInsideUserFolder(withId: folderId), sortedBy: FolderSoundSortOption(rawValue: soundSortOption) ?? .titleAscending)
     }
     
+    // MARK: - Multi-Select
+    
+    func startSelecting() {
+        stopPlaying()
+        if currentSoundsListMode.wrappedValue == .regular {
+            currentSoundsListMode.wrappedValue = .selection
+        } else {
+            currentSoundsListMode.wrappedValue = .regular
+            selectionKeeper.removeAll()
+        }
+    }
+    
+    func stopSelecting() {
+        currentSoundsListMode.wrappedValue = .regular
+        selectionKeeper.removeAll()
+    }
+    
+    func removeMultipleSoundsFromFolder(folderId: String) {
+        guard selectionKeeper.count > 0 else { return }
+        selectionKeeper.forEach { selectedSoundId in
+            try? database.deleteUserContentFromFolder(withId: folderId, contentId: selectedSoundId)
+        }
+        selectionKeeper.removeAll()
+        reloadSoundList(withFolderContents: try? database.getAllContentsInsideUserFolder(withId: folderId), sortedBy: FolderSoundSortOption(rawValue: soundSortOption) ?? .titleAscending)
+    }
+    
+    func sendUsageMetricToServer(action: String, folderName: String) {
+        let usageMetric = UsageMetric(customInstallId: UIDevice.customInstallId,
+                                      originatingScreen: "FolderDetailView(\(folderName))",
+                                      destinationScreen: action,
+                                      systemName: UIDevice.current.systemName,
+                                      isiOSAppOnMac: ProcessInfo.processInfo.isiOSAppOnMac,
+                                      appVersion: Versioneer.appVersion,
+                                      dateTime: Date.now.iso8601withFractionalSeconds,
+                                      currentTimeZone: TimeZone.current.abbreviation() ?? .empty)
+        networkRabbit.post(usageMetric: usageMetric)
+    }
+    
     // MARK: - Alerts
     
     func showUnableToGetSoundAlert() {
         TapticFeedback.error()
         alertTitle = Shared.soundNotFoundAlertTitle
         alertMessage = Shared.soundNotFoundAlertMessage
-        alertType = .singleOption
+        alertType = .ok
         showAlert = true
     }
     
     func showSoundRemovalConfirmation(soundTitle: String) {
         alertTitle = "Remover \"\(soundTitle)\"?"
         alertMessage = "O som continuará disponível fora da pasta."
-        alertType = .twoOptions
+        alertType = .removeSingleSound
+        showAlert = true
+    }
+    
+    func showRemoveMultipleSoundsConfirmation() {
+        alertTitle = "Remover os sons selecionados?"
+        alertMessage = "Os sons continuarão disponíveis fora da pasta."
+        alertType = .removeMultipleSounds
         showAlert = true
     }
 

@@ -493,8 +493,16 @@ struct SoundsView: View {
     }
     
     @ViewBuilder func leadingToolbarControls() -> some View {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            if currentSoundsListMode == .regular {
+        if currentSoundsListMode == .selection {
+            Button {
+                currentSoundsListMode = .regular
+                viewModel.selectionKeeper.removeAll()
+            } label: {
+                Text("Cancelar")
+                    .bold()
+            }
+        } else {
+            if UIDevice.current.userInterfaceIdiom == .phone {
                 Button {
                     subviewToOpen = .settingsView
                     showingModalView = true
@@ -502,16 +510,8 @@ struct SoundsView: View {
                     Image(systemName: "gearshape")
                 }
             } else {
-                Button {
-                    currentSoundsListMode = .regular
-                    viewModel.selectionKeeper.removeAll()
-                } label: {
-                    Text("Cancelar")
-                        .bold()
-                }
+                EmptyView()
             }
-        } else {
-            EmptyView()
         }
     }
     
@@ -555,7 +555,7 @@ struct SoundsView: View {
                                 // Need to get count before clearing the Set.
                                 let selectedCount: Int = viewModel.selectionKeeper.count
                                 
-                                if currentViewMode == .favorites {
+                                if currentViewMode == .favorites || viewModel.allSelectedAreFavorites() {
                                     viewModel.removeSelectedFromFavorites()
                                     viewModel.stopSelecting()
                                     viewModel.reloadList(withSounds: soundData,
@@ -570,7 +570,7 @@ struct SoundsView: View {
                                     viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFavorites(\(selectedCount))")
                                 }
                             } label: {
-                                Label(currentViewMode == .favorites ? Shared.removeFromFavorites : Shared.addToFavorites, systemImage: currentViewMode == .favorites ? "star.slash" : "star")
+                                Label(currentViewMode == .favorites || viewModel.allSelectedAreFavorites() ? Shared.removeFromFavorites : Shared.addToFavorites, systemImage: currentViewMode == .favorites || viewModel.allSelectedAreFavorites() ? "star.slash" : "star")
                             }.disabled(viewModel.selectionKeeper.count == 0)
                             
                             Button {

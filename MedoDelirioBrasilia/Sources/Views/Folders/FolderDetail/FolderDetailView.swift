@@ -9,9 +9,10 @@ import SwiftUI
 
 struct FolderDetailView: View {
 
-    @StateObject var viewModel = FolderDetailViewViewModel()
+    @StateObject var viewModel: FolderDetailViewViewModel
     @State var folder: UserFolder
     @State private var showingFolderInfoEditingView = false
+    @Binding var currentSoundsListMode: SoundsListMode
     
     @State private var listWidth: CGFloat = 700
     @State private var columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
@@ -25,6 +26,19 @@ struct FolderDetailView: View {
     private var showSortByDateAddedOption: Bool {
         guard let folderVersion = folder.version else { return false }
         return folderVersion == "2"
+    }
+    
+    private var title: String {
+        guard currentSoundsListMode == .regular else {
+            if viewModel.selectionKeeper.count == 0 {
+                return Shared.SoundSelection.selectSounds
+            } else if viewModel.selectionKeeper.count == 1 {
+                return Shared.SoundSelection.soundSelectedSingular
+            } else {
+                return String(format: Shared.SoundSelection.soundsSelectedPlural, viewModel.selectionKeeper.count)
+            }
+        }
+        return "\(folder.symbol)  \(folder.name)"
     }
     
     var body: some View {
@@ -48,15 +62,23 @@ struct FolderDetailView: View {
                             
                             LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
                                 ForEach(viewModel.sounds) { sound in
-                                    SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", duration: sound.duration, isNew: sound.isNew ?? false, favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()), nowPlaying: $viewModel.nowPlayingKeeper, selectedItems: .constant(Set<String>()), currentSoundsListMode: .constant(.regular))
+                                    SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", duration: sound.duration, isNew: sound.isNew ?? false, favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()), nowPlaying: $viewModel.nowPlayingKeeper, selectedItems: $viewModel.selectionKeeper, currentSoundsListMode: $viewModel.currentSoundsListMode.wrappedValue)
                                         .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
                                         .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                                         .onTapGesture {
-                                            if viewModel.nowPlayingKeeper.contains(sound.id) {
-                                                player?.togglePlay()
-                                                viewModel.nowPlayingKeeper.removeAll()
+                                            if viewModel.currentSoundsListMode.wrappedValue == .regular {
+                                                if viewModel.nowPlayingKeeper.contains(sound.id) {
+                                                    player?.togglePlay()
+                                                    viewModel.nowPlayingKeeper.removeAll()
+                                                } else {
+                                                    viewModel.playSound(fromPath: sound.filename, withId: sound.id)
+                                                }
                                             } else {
-                                                viewModel.playSound(fromPath: sound.filename, withId: sound.id)
+                                                if viewModel.selectionKeeper.contains(sound.id) {
+                                                    viewModel.selectionKeeper.remove(sound.id)
+                                                } else {
+                                                    viewModel.selectionKeeper.insert(sound.id)
+                                                }
                                             }
                                         }
                                         .contextMenu {
@@ -99,9 +121,33 @@ struct FolderDetailView: View {
                         .padding(.horizontal, 30)
                 }
             }
-            .navigationTitle("\(folder.symbol)  \(folder.name)")
+            .navigationTitle(title)
             .toolbar {
+                selectionCancelControl()
+                
                 Menu {
+                    Section {
+                        Button {
+                            viewModel.startSelecting()
+                        } label: {
+                            Label(currentSoundsListMode == .selection ? "Cancelar Seleção" : "Selecionar", systemImage: currentSoundsListMode == .selection ? "xmark.circle" : "checkmark.circle")
+                        }
+                    }
+                    
+                    Section {                        
+                        Button {
+                            viewModel.showRemoveMultipleSoundsConfirmation()
+                        } label: {
+                            Label("Remover da Pasta", systemImage: "folder.badge.minus")
+                        }.disabled(viewModel.selectionKeeper.count == 0)
+                        
+//                            Button {
+//                                viewModel.shareSelected()
+//                            } label: {
+//                                Label("Compartilhar", systemImage: "square.and.arrow.up")
+//                            }.disabled(viewModel.selectionKeeper.count == 0 || viewModel.selectionKeeper.count > 5)
+                    }
+                    
                     Section {
                         Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
                             Text("Título")
@@ -167,19 +213,34 @@ struct FolderDetailView: View {
                 viewModel.reloadSoundList(withFolderContents: try? database.getAllContentsInsideUserFolder(withId: folder.id), sortedBy: FolderSoundSortOption(rawValue: folder.userSortPreference ?? 0) ?? .titleAscending)
                 columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
             }
+            .onDisappear {
+                if currentSoundsListMode == .selection {
+                    viewModel.stopSelecting()
+                }
+            }
             .sheet(isPresented: $showingFolderInfoEditingView) {
                 FolderInfoEditingView(isBeingShown: $showingFolderInfoEditingView, symbol: folder.symbol, folderName: folder.name, selectedBackgroundColor: folder.backgroundColor, isEditing: true, folderIdWhenEditing: folder.id)
             }
             .alert(isPresented: $viewModel.showAlert) {
                 switch viewModel.alertType {
-                case .singleOption:
+                case .ok:
                     return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
-                default:
+                    
+                case .removeSingleSound:
                     return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .destructive(Text("Remover"), action: {
                         guard let sound = viewModel.selectedSound else {
                             return
                         }
                         viewModel.removeSoundFromFolder(folderId: folder.id, soundId: sound.id)
+                    }), secondaryButton: .cancel(Text("Cancelar")))
+                    
+                case .removeMultipleSounds:
+                    return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .destructive(Text("Remover"), action: {
+                        // Need to get count before clearing the Set.
+                        let selectedCount: Int = viewModel.selectionKeeper.count
+                        viewModel.removeMultipleSoundsFromFolder(folderId: folder.id)
+                        viewModel.stopSelecting()
+                        viewModel.sendUsageMetricToServer(action: "didRemoveManySoundsFromFolder(\(selectedCount))", folderName: "\(folder.symbol) \(folder.name)")
                     }), secondaryButton: .cancel(Text("Cancelar")))
                 }
             }
@@ -210,13 +271,27 @@ struct FolderDetailView: View {
             }
         }
     }
+    
+    @ViewBuilder func selectionCancelControl() -> some View {
+        if currentSoundsListMode == .regular {
+            EmptyView()
+        } else {
+            Button {
+                currentSoundsListMode = .regular
+                viewModel.selectionKeeper.removeAll()
+            } label: {
+                Text("Cancelar")
+                    .bold()
+            }
+        }
+    }
 
 }
 
 struct FolderDetailView_Previews: PreviewProvider {
 
     static var previews: some View {
-        FolderDetailView(folder: UserFolder(symbol: "🤑", name: "Grupo da Economia", backgroundColor: "pastelBabyBlue"))
+        FolderDetailView(viewModel: FolderDetailViewViewModel(currentSoundsListMode: .constant(.regular)), folder: UserFolder(symbol: "🤑", name: "Grupo da Economia", backgroundColor: "pastelBabyBlue"), currentSoundsListMode: .constant(.regular))
     }
 
 }

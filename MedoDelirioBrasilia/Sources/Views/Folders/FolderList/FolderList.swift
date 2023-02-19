@@ -16,6 +16,7 @@ struct FolderList: View {
     @Binding var deleteFolderAide: DeleteFolderViewAide
     @Binding var folderIdForEditing: String
     @EnvironmentObject var deleteFolderAideiPhone: DeleteFolderViewAideiPhone
+    @State var currentSoundsListMode: SoundsListMode = .regular
     
     private var columns: [GridItem] {
         if UIDevice.current.userInterfaceIdiom == .phone {
@@ -60,7 +61,7 @@ struct FolderList: View {
                 LazyVGrid(columns: columns, spacing: 14) {
                     ForEach(viewModel.folders, id: \.editingIdentifyingId) { folder in
                         NavigationLink {
-                            FolderDetailView(folder: folder)
+                            FolderDetailView(viewModel: FolderDetailViewViewModel(currentSoundsListMode: $currentSoundsListMode), folder: folder, currentSoundsListMode: $currentSoundsListMode)
                         } label: {
                             FolderCell(symbol: folder.symbol, name: folder.name, backgroundColor: folder.backgroundColor.toColor())
                                 .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
