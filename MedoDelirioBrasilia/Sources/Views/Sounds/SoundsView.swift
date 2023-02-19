@@ -493,8 +493,16 @@ struct SoundsView: View {
     }
     
     @ViewBuilder func leadingToolbarControls() -> some View {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            if currentSoundsListMode == .regular {
+        if currentSoundsListMode == .selection {
+            Button {
+                currentSoundsListMode = .regular
+                viewModel.selectionKeeper.removeAll()
+            } label: {
+                Text("Cancelar")
+                    .bold()
+            }
+        } else {
+            if UIDevice.current.userInterfaceIdiom == .phone {
                 Button {
                     subviewToOpen = .settingsView
                     showingModalView = true
@@ -502,16 +510,8 @@ struct SoundsView: View {
                     Image(systemName: "gearshape")
                 }
             } else {
-                Button {
-                    currentSoundsListMode = .regular
-                    viewModel.selectionKeeper.removeAll()
-                } label: {
-                    Text("Cancelar")
-                        .bold()
-                }
+                EmptyView()
             }
-        } else {
-            EmptyView()
         }
     }
     
