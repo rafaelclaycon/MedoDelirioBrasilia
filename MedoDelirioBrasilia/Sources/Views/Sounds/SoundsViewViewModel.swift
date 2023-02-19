@@ -315,6 +315,8 @@ class SoundsViewViewModel: ObservableObject {
         }
     }
     
+    // MARK: - Multi-Select
+    
     func startSelecting() {
         stopPlaying()
         if currentSoundsListMode.wrappedValue == .regular {

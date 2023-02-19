@@ -14,6 +14,7 @@ struct MyFoldersiPhoneView: View {
     @State var updateFolderList: Bool = false // Does nothing, just here to satisfy FolderList :)
     @State var deleteFolderAide = DeleteFolderViewAide() // Same as above
     @State var folderIdForEditing: String = .empty
+    @State var currentSoundsListMode: SoundsListMode = .regular
     
     var body: some View {
         ScrollView {

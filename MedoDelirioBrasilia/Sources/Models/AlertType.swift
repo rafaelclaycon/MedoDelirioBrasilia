@@ -18,3 +18,9 @@ enum AuthorDetailAlertType {
     case ok, reportSoundIssue, askForNewSound
 
 }
+
+enum FolderDetailAlertType {
+
+    case ok, removeSingleSound, removeMultipleSounds
+
+}
