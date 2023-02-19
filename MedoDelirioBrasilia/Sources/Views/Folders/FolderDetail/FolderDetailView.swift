@@ -236,8 +236,11 @@ struct FolderDetailView: View {
                     
                 case .removeMultipleSounds:
                     return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .destructive(Text("Remover"), action: {
+                        // Need to get count before clearing the Set.
+                        let selectedCount: Int = viewModel.selectionKeeper.count
                         viewModel.removeMultipleSoundsFromFolder(folderId: folder.id)
                         viewModel.stopSelecting()
+                        viewModel.sendUsageMetricToServer(action: "didRemoveManySoundsFromFolder(\(selectedCount))", folderName: "\(folder.symbol) \(folder.name)")
                     }), secondaryButton: .cancel(Text("Cancelar")))
                 }
             }

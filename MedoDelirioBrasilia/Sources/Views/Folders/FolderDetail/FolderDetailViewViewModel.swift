@@ -304,9 +304,9 @@ class FolderDetailViewViewModel: ObservableObject {
         reloadSoundList(withFolderContents: try? database.getAllContentsInsideUserFolder(withId: folderId), sortedBy: FolderSoundSortOption(rawValue: soundSortOption) ?? .titleAscending)
     }
     
-    func sendUsageMetricToServer(action: String) {
+    func sendUsageMetricToServer(action: String, folderName: String) {
         let usageMetric = UsageMetric(customInstallId: UIDevice.customInstallId,
-                                      originatingScreen: "FolderDetailView",
+                                      originatingScreen: "FolderDetailView(\(folderName))",
                                       destinationScreen: action,
                                       systemName: UIDevice.current.systemName,
                                       isiOSAppOnMac: ProcessInfo.processInfo.isiOSAppOnMac,
