@@ -327,23 +327,49 @@ struct AuthorDetailView: View {
     
     @ViewBuilder func moreOptionsMenu(isOnToolbar: Bool) -> some View {
         Menu {
-            Section {
-                Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
-                    Text("Título")
-                        .tag(0)
-                    
-                    Text("Mais Recentes no Topo")
-                        .tag(1)
-                }
-                .onChange(of: viewModel.soundSortOption, perform: { soundSortOption in
-                    if soundSortOption == 0 {
-                        viewModel.sortSoundsInPlaceByTitleAscending()
-                    } else {
-                        viewModel.sortSoundsInPlaceByDateAddedDescending()
+            if viewModel.sounds.count > 1 {
+                Section {
+                    Button {
+                        //viewModel.startSelecting()
+                    } label: {
+                        //Label(currentSoundsListMode == .selection ? "Cancelar Seleção" : "Selecionar", systemImage: currentSoundsListMode == .selection ? "xmark.circle" : "checkmark.circle")
+                        Label("Selecionar", systemImage: "checkmark.circle")
                     }
-                })
+                }
+                
+                Section {
+                    Button {
+                        // Need to get count before clearing the Set.
+                        //let selectedCount: Int = viewModel.selectionKeeper.count
+                        
+                        //                    if currentViewMode == .favorites || viewModel.allSelectedAreFavorites() {
+                        //                        viewModel.removeSelectedFromFavorites()
+                        //                        viewModel.stopSelecting()
+                        //                        viewModel.reloadList(withSounds: soundData,
+                        //                                             andFavorites: try? database.getAllFavorites(),
+                        //                                             allowSensitiveContent: UserSettings.getShowExplicitContent(),
+                        //                                             favoritesOnly: currentViewMode == .favorites,
+                        //                                             sortedBy: SoundSortOption(rawValue: viewModel.soundSortOption) ?? .titleAscending)
+                        //                        viewModel.sendUsageMetricToServer(action: "didRemoveManySoundsFromFavorites(\(selectedCount))")
+                        //                    } else {
+                        //                        viewModel.addSelectedToFavorites()
+                        //                        viewModel.stopSelecting()
+                        //                        viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFavorites(\(selectedCount))")
+                        //                    }
+                    } label: {
+                        //Label(currentViewMode == .favorites || viewModel.allSelectedAreFavorites() ? Shared.removeFromFavorites : Shared.addToFavorites, systemImage: currentViewMode == .favorites || viewModel.allSelectedAreFavorites() ? "star.slash" : "star")
+                        Label(Shared.addToFavorites, systemImage: "star")
+                    }.disabled(true)//.disabled(viewModel.selectionKeeper.count == 0)
+                    
+                    Button {
+                        //                    viewModel.prepareSelectedToAddToFolder()
+                        //                    subviewToOpen = .addToFolderView
+                        //                    showingModalView = true
+                    } label: {
+                        Label("Adicionar a Pasta", systemImage: "folder.badge.plus")
+                    }.disabled(true)//.disabled(viewModel.selectionKeeper.count == 0)
+                }
             }
-            .disabled(viewModel.sounds.count < 2)
             
             Section {
                 Button {
@@ -363,6 +389,25 @@ struct AuthorDetailView: View {
                     viewModel.showEmailAppPicker_reportAuthorDetailIssue = true
                 } label: {
                     Label("Relatar Problema com os Detalhes Desse Autor", systemImage: "person.crop.circle.badge.exclamationmark")
+                }
+            }
+            
+            if viewModel.sounds.count > 1 {
+                Section {
+                    Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
+                        Text("Título")
+                            .tag(0)
+                        
+                        Text("Mais Recentes no Topo")
+                            .tag(1)
+                    }
+                    .onChange(of: viewModel.soundSortOption, perform: { soundSortOption in
+                        if soundSortOption == 0 {
+                            viewModel.sortSoundsInPlaceByTitleAscending()
+                        } else {
+                            viewModel.sortSoundsInPlaceByDateAddedDescending()
+                        }
+                    })
                 }
             }
         } label: {
