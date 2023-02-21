@@ -123,7 +123,7 @@ struct FolderDetailView: View {
             }
             .navigationTitle(title)
             .toolbar {
-                selectionCancelControl()
+                selectionControls()
                 
                 Menu {
                     Section {
@@ -135,17 +135,7 @@ struct FolderDetailView: View {
                     }
                     
                     Section {                        
-                        Button {
-                            viewModel.showRemoveMultipleSoundsConfirmation()
-                        } label: {
-                            Label("Remover da Pasta", systemImage: "folder.badge.minus")
-                        }.disabled(viewModel.selectionKeeper.count == 0)
                         
-//                            Button {
-//                                viewModel.shareSelected()
-//                            } label: {
-//                                Label("Compartilhar", systemImage: "square.and.arrow.up")
-//                            }.disabled(viewModel.selectionKeeper.count == 0 || viewModel.selectionKeeper.count > 5)
                     }
                     
                     Section {
@@ -272,16 +262,24 @@ struct FolderDetailView: View {
         }
     }
     
-    @ViewBuilder func selectionCancelControl() -> some View {
+    @ViewBuilder func selectionControls() -> some View {
         if currentSoundsListMode == .regular {
             EmptyView()
         } else {
-            Button {
-                currentSoundsListMode = .regular
-                viewModel.selectionKeeper.removeAll()
-            } label: {
-                Text("Cancelar")
-                    .bold()
+            HStack {
+                Button {
+                    currentSoundsListMode = .regular
+                    viewModel.selectionKeeper.removeAll()
+                } label: {
+                    Text("Cancelar")
+                        .bold()
+                }
+                
+                Button {
+                    viewModel.showRemoveMultipleSoundsConfirmation()
+                } label: {
+                    Label("Remover da Pasta", systemImage: "folder.badge.minus")
+                }.disabled(viewModel.selectionKeeper.count == 0)
             }
         }
     }

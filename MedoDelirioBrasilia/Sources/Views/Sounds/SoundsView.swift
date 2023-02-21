@@ -501,6 +501,12 @@ struct SoundsView: View {
                 Text("Cancelar")
                     .bold()
             }
+            
+//            Button {
+//                viewModel.shareSelected()
+//            } label: {
+//                Label("Compartilhar", systemImage: "square.and.arrow.up")
+//            }.disabled(viewModel.selectionKeeper.count == 0 || viewModel.selectionKeeper.count > 5)
         } else {
             if UIDevice.current.userInterfaceIdiom == .phone {
                 Button {
@@ -541,51 +547,45 @@ struct SoundsView: View {
                         authorSortAction = AuthorSortOption(rawValue: authorSortOption) ?? .nameAscending
                     })
                 } else {
+                    if currentSoundsListMode == .selection {
+                        Button {
+                            // Need to get count before clearing the Set.
+                            let selectedCount: Int = viewModel.selectionKeeper.count
+                            
+                            if currentViewMode == .favorites || viewModel.allSelectedAreFavorites() {
+                                viewModel.removeSelectedFromFavorites()
+                                viewModel.stopSelecting()
+                                viewModel.reloadList(withSounds: soundData,
+                                                     andFavorites: try? database.getAllFavorites(),
+                                                     allowSensitiveContent: UserSettings.getShowExplicitContent(),
+                                                     favoritesOnly: currentViewMode == .favorites,
+                                                     sortedBy: SoundSortOption(rawValue: viewModel.soundSortOption) ?? .titleAscending)
+                                viewModel.sendUsageMetricToServer(action: "didRemoveManySoundsFromFavorites(\(selectedCount))")
+                            } else {
+                                viewModel.addSelectedToFavorites()
+                                viewModel.stopSelecting()
+                                viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFavorites(\(selectedCount))")
+                            }
+                        } label: {
+                            Image(systemName: currentViewMode == .favorites || viewModel.allSelectedAreFavorites() ? "star.slash" : "star")
+                        }.disabled(viewModel.selectionKeeper.count == 0)
+                        
+                        Button {
+                            viewModel.prepareSelectedToAddToFolder()
+                            subviewToOpen = .addToFolderView
+                            showingModalView = true
+                        } label: {
+                            Image(systemName: "folder.badge.plus")
+                        }.disabled(viewModel.selectionKeeper.count == 0)
+                    }
+                    
                     Menu {
                         Section {
                             Button {
                                 viewModel.startSelecting()
                             } label: {
                                 Label(currentSoundsListMode == .selection ? "Cancelar Seleção" : "Selecionar", systemImage: currentSoundsListMode == .selection ? "xmark.circle" : "checkmark.circle")
-                            }
-                        }
-                        
-                        Section {
-                            Button {
-                                // Need to get count before clearing the Set.
-                                let selectedCount: Int = viewModel.selectionKeeper.count
-                                
-                                if currentViewMode == .favorites || viewModel.allSelectedAreFavorites() {
-                                    viewModel.removeSelectedFromFavorites()
-                                    viewModel.stopSelecting()
-                                    viewModel.reloadList(withSounds: soundData,
-                                                         andFavorites: try? database.getAllFavorites(),
-                                                         allowSensitiveContent: UserSettings.getShowExplicitContent(),
-                                                         favoritesOnly: currentViewMode == .favorites,
-                                                         sortedBy: SoundSortOption(rawValue: viewModel.soundSortOption) ?? .titleAscending)
-                                    viewModel.sendUsageMetricToServer(action: "didRemoveManySoundsFromFavorites(\(selectedCount))")
-                                } else {
-                                    viewModel.addSelectedToFavorites()
-                                    viewModel.stopSelecting()
-                                    viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFavorites(\(selectedCount))")
-                                }
-                            } label: {
-                                Label(currentViewMode == .favorites || viewModel.allSelectedAreFavorites() ? Shared.removeFromFavorites : Shared.addToFavorites, systemImage: currentViewMode == .favorites || viewModel.allSelectedAreFavorites() ? "star.slash" : "star")
-                            }.disabled(viewModel.selectionKeeper.count == 0)
-                            
-                            Button {
-                                viewModel.prepareSelectedToAddToFolder()
-                                subviewToOpen = .addToFolderView
-                                showingModalView = true
-                            } label: {
-                                Label("Adicionar a Pasta", systemImage: "folder.badge.plus")
-                            }.disabled(viewModel.selectionKeeper.count == 0)
-                            
-//                            Button {
-//                                viewModel.shareSelected()
-//                            } label: {
-//                                Label("Compartilhar", systemImage: "square.and.arrow.up")
-//                            }.disabled(viewModel.selectionKeeper.count == 0 || viewModel.selectionKeeper.count > 5)
+                            }.disabled(currentViewMode == .favorites && viewModel.sounds.count == 0)
                         }
                         
                         Section {
