@@ -1068,7 +1068,8 @@
     },
     {
         "id": "15A5B647-F367-47C3-A344-D2F57F3351F7",
-        "name": "Donald Trump"
+        "name": "Donald Trump",
+        "description": "Presidente dos Estados Unidos de 2017 a 2020."
     },
     {
         "id": "46663734-58F2-4CC3-85E1-22E641518F3E",
@@ -1546,5 +1547,15 @@
     {
         "id": "B32B3681-DD67-4298-8036-75A4DF77DD6C",
         "name": "Queima Quengaral"
+    },
+    {
+        "id": "E76C0AAF-0B3B-4391-B866-961F611B5714",
+        "name": "Edilson Farias",
+        "description": "Cantor."
+    },
+    {
+        "id": "11D847C6-1612-4B07-B40A-C8B4E4DAD3D7",
+        "name": "Natuza Nery",
+        "description": "Jornalista. Comentarista de política no canal GloboNews."
     }
 ]

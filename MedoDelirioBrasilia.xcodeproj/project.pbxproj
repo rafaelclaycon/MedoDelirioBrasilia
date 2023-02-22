@@ -1172,6 +1172,11 @@
 		D9E5056028F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E5055F28F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift */; };
 		D9E5056228F79ECB008DAA1E /* Luiz Felipe D'Avila - Que tistreza.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E5056128F79ECB008DAA1E /* Luiz Felipe D'Avila - Que tistreza.mp3 */; };
 		D9E5100A286084F2003DB3A3 /* Date+OnlyDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E51009286084F2003DB3A3 /* Date+OnlyDate.swift */; };
+		D9E53F9A29A6945D00BF9D31 /* Edilson Farias - Na casa do caralho, na casa do caralho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E53F9929A6945D00BF9D31 /* Edilson Farias - Na casa do caralho, na casa do caralho.mp3 */; };
+		D9E53FA129A695C600BF9D31 /* Donald Trump - China all the time.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E53F9F29A695C600BF9D31 /* Donald Trump - China all the time.mp3 */; };
+		D9E53FA229A695C600BF9D31 /* Donald Trump - China china china.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E53FA029A695C600BF9D31 /* Donald Trump - China china china.mp3 */; };
+		D9E53FA629A696A800BF9D31 /* Natuza Nery - Olha so (triste).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E53FA529A696A800BF9D31 /* Natuza Nery - Olha so (triste).mp3 */; };
+		D9E53FAA29A697A400BF9D31 /* Pipino de novo de novo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E53FA929A697A400BF9D31 /* Pipino de novo de novo.mp3 */; };
 		D9E69592283D2E2C00C341B2 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = D9E69591283D2E2C00C341B2 /* SQLite */; };
 		D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E69593283D2F2F00C341B2 /* Favorite.swift */; };
 		D9E7D0EA28AC6195001E909E /* Dose segura de crack, os tios e as tias do Zap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E7D0E928AC6195001E909E /* Dose segura de crack, os tios e as tias do Zap.mp3 */; };
@@ -2433,6 +2438,11 @@
 		D9E5055F28F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAudienceSharingStatisticTable.swift; sourceTree = "<group>"; };
 		D9E5056128F79ECB008DAA1E /* Luiz Felipe D'Avila - Que tistreza.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Luiz Felipe D'Avila - Que tistreza.mp3"; sourceTree = "<group>"; };
 		D9E51009286084F2003DB3A3 /* Date+OnlyDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+OnlyDate.swift"; sourceTree = "<group>"; };
+		D9E53F9929A6945D00BF9D31 /* Edilson Farias - Na casa do caralho, na casa do caralho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Edilson Farias - Na casa do caralho, na casa do caralho.mp3"; sourceTree = "<group>"; };
+		D9E53F9F29A695C600BF9D31 /* Donald Trump - China all the time.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Donald Trump - China all the time.mp3"; sourceTree = "<group>"; };
+		D9E53FA029A695C600BF9D31 /* Donald Trump - China china china.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Donald Trump - China china china.mp3"; sourceTree = "<group>"; };
+		D9E53FA529A696A800BF9D31 /* Natuza Nery - Olha so (triste).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Natuza Nery - Olha so (triste).mp3"; sourceTree = "<group>"; };
+		D9E53FA929A697A400BF9D31 /* Pipino de novo de novo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pipino de novo de novo.mp3"; sourceTree = "<group>"; };
 		D9E69593283D2F2F00C341B2 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		D9E7D0E928AC6195001E909E /* Dose segura de crack, os tios e as tias do Zap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Dose segura de crack, os tios e as tias do Zap.mp3"; sourceTree = "<group>"; };
 		D9E7D0EB28AC6348001E909E /* REDE GLOBO - GIL DO VIGOR - Eu estou to indignado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "REDE GLOBO - GIL DO VIGOR - Eu estou to indignado.mp3"; sourceTree = "<group>"; };
@@ -2546,6 +2556,11 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9E53FA929A697A400BF9D31 /* Pipino de novo de novo.mp3 */,
+				D9E53FA529A696A800BF9D31 /* Natuza Nery - Olha so (triste).mp3 */,
+				D9E53F9F29A695C600BF9D31 /* Donald Trump - China all the time.mp3 */,
+				D9E53FA029A695C600BF9D31 /* Donald Trump - China china china.mp3 */,
+				D9E53F9929A6945D00BF9D31 /* Edilson Farias - Na casa do caralho, na casa do caralho.mp3 */,
 				D9545ED9299D64DC00A130B1 /* Queima Quengaral - Taca o pau.mp3 */,
 				D9545ED5299D579D00A130B1 /* Franciel Cruz - Lula e bicampeao mundial de conciliacao.mp3 */,
 				D9AE443C299BF1D1009E8597 /* Augusto Heleno - Se gritar pega centrao.mp3 */,
@@ -4464,6 +4479,7 @@
 				D975FFBA2880B4F20035E6F2 /* BandNews FM - Ciro Gomes - Esse Braga Netto, que e um bosta.mp3 in Resources */,
 				D975002C2880B4F20035E6F2 /* Drauzio - As pessoas nao tem consciencia disso.mp3 in Resources */,
 				D975FE2B2880B4F20035E6F2 /* Jonathan Frakes - pure fiction.mp3 in Resources */,
+				D9E53FA129A695C600BF9D31 /* Donald Trump - China all the time.mp3 in Resources */,
 				D948E9962921F74F00D047D3 /* Alessandro Molon - Estrategia golpista para criar o caos nao e contragolpe, e golpe.mp3 in Resources */,
 				D97500172880B4F20035E6F2 /* Queiroz - Eu sou um cara de negocios, eu faco dinheiro eu faco.mp3 in Resources */,
 				D975FEB12880B4F20035E6F2 /* NENHO - Desca dai seu corno short meme.mp3 in Resources */,
@@ -4676,6 +4692,7 @@
 				D9E7D0F428AC699B001E909E /* Cristiano Botafogo - Vista o seu traje quimico.mp3 in Resources */,
 				D975FEF02880B4F20035E6F2 /* Boldo - Esse e o boldo bao.mp3 in Resources */,
 				D937E11229097D58004137ED /* BAND JORNALISMO - Onyx - Golpismo ou golpista.mp3 in Resources */,
+				D9E53F9A29A6945D00BF9D31 /* Edilson Farias - Na casa do caralho, na casa do caralho.mp3 in Resources */,
 				D975FEE32880B4F20035E6F2 /* MIDCAST - Teu cu.mp3 in Resources */,
 				4979105A28BEC71400CDF01C /* Agora vai sentar na mesa Funk.mp3 in Resources */,
 				D975FE682880B4F20035E6F2 /* Natalie Wynn Contrapoints - Cancel culture.mp3 in Resources */,
@@ -4796,6 +4813,7 @@
 				D975FEB92880B4F20035E6F2 /* ATILA IAMARINO - E um virus mais transmissivel que mata mais.mp3 in Resources */,
 				D975FE582880B4F20035E6F2 /* Bolsonaro - Eu sou favoravel a tortura, tu sabe disso.mp3 in Resources */,
 				D975FEDF2880B4F20035E6F2 /* Emicida - So isso mesmo short meme.mp3 in Resources */,
+				D9E53FA229A695C600BF9D31 /* Donald Trump - China china china.mp3 in Resources */,
 				D90D7DE628E2A57A003B272A /* NUNES MARQUES Dont stop till you get enough michael jackson.mp3 in Resources */,
 				D975FEF92880B4F20035E6F2 /* Bolsonaro - Nao temos provas.mp3 in Resources */,
 				D975FEC22880B4F20035E6F2 /* Caetano - Nao short.mp3 in Resources */,
@@ -4931,6 +4949,7 @@
 				D975FF042880B4F20035E6F2 /* Samira Close - Deixa eu te falar uma coisa voce tem quantos anos menino.mp3 in Resources */,
 				D975FE9A2880B4F20035E6F2 /* Tite - Fala muito!.mp3 in Resources */,
 				49DEA9C8288114F6008C9BA1 /* CIDINHO e DOCA - Fogo no x9 da cabeca ao pe short meme.mp3 in Resources */,
+				D9E53FA629A696A800BF9D31 /* Natuza Nery - Olha so (triste).mp3 in Resources */,
 				D975FE7E2880B4F20035E6F2 /* MATHEUS CANELLA - Poxa ficou putinho, vem ca.mp3 in Resources */,
 				D948E9922921F74F00D047D3 /* Propaganda da Ditadura Militar.mp3 in Resources */,
 				D975FE672880B4F20035E6F2 /* Lobao (imitando gil) - Procure saber.mp3 in Resources */,
@@ -4999,6 +5018,7 @@
 				D975FFBD2880B4F20035E6F2 /* Eu nao entendi o que ele falou.mp3 in Resources */,
 				D975FE1B2880B4F20035E6F2 /* Pazuello - E simples assim, um manda e o outro obedece.mp3 in Resources */,
 				D975FFB82880B4F20035E6F2 /* Jacquin - Cala a boca short.mp3 in Resources */,
+				D9E53FAA29A697A400BF9D31 /* Pipino de novo de novo.mp3 in Resources */,
 				D975FFE12880B4F20035E6F2 /* Ze Gotinha - Ola meu nome e Ze Gotinha.mp3 in Resources */,
 				D9E2C707295E13B200B5814C /* Vinheta Dedo no cu e gritaria.mp3 in Resources */,
 				491110262926B9CC0055F4EE /* Desconhecido - Eu por forca de lei sou obrigado.mp3 in Resources */,
@@ -5747,7 +5767,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.1.1;
+				MARKETING_VERSION = 6.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -5787,7 +5807,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.1.1;
+				MARKETING_VERSION = 6.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

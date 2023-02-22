@@ -10006,5 +10006,60 @@
         "duration": 1.93,
         "isOffensive": true,
         "isNew": false
+    },
+    {
+        "id": "6C63FFC8-09F4-4AF8-B7BC-7D0FB0C34113",
+        "title": "Na casa do caralho, na casa do caralho",
+        "authorId": "E76C0AAF-0B3B-4391-B866-961F611B5714",
+        "description": "Na casa do caralho na casa do caralho",
+        "filename": "Edilson Farias - Na casa do caralho, na casa do caralho.mp3",
+        "dateAdded": "2023-02-22T00:00:00Z",
+        "duration": 3.37,
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "6D507891-36F5-4A42-BDF5-5554700BD48B",
+        "title": "China, China! China...",
+        "authorId": "15A5B647-F367-47C3-A344-D2F57F3351F7",
+        "description": "China china china",
+        "filename": "Donald Trump - China china china.mp3",
+        "dateAdded": "2023-02-22T00:00:00Z",
+        "duration": 2.27,
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "7466744B-91E4-44C3-92C8-A9B1288A63CE",
+        "title": "China all the time",
+        "authorId": "15A5B647-F367-47C3-A344-D2F57F3351F7",
+        "description": "China all the time",
+        "filename": "Donald Trump - China all the time.mp3",
+        "dateAdded": "2023-02-22T00:00:00Z",
+        "duration": 1.52,
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "D087ACB6-C1D2-46E9-AE71-C5A218A84B59",
+        "title": "Olha só...",
+        "authorId": "11D847C6-1612-4B07-B40A-C8B4E4DAD3D7",
+        "description": "Olha so",
+        "filename": "Natuza Nery - Olha so (triste).mp3",
+        "dateAdded": "2023-02-22T00:00:00Z",
+        "duration": 1.18,
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "64AF9311-EDC4-4D7B-82F4-D55A81365520",
+        "title": "Pipino de novo! De novo!",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Pipino de novo de novo",
+        "filename": "Pipino de novo de novo.mp3",
+        "dateAdded": "2023-02-22T00:00:00Z",
+        "duration": 2.27,
+        "isOffensive": true,
+        "isNew": true
     }
 ]
