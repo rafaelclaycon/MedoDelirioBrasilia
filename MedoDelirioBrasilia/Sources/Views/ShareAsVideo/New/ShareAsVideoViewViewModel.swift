@@ -15,7 +15,7 @@ class ShareAsVideoViewViewModel: ObservableObject {
     var contentAuthor: String
     private var audioFilename: String
     
-    @Published var image: UIImage
+    //@Published var imageForProcessing: UIImage
     @Published var includeSoundWarning: Bool = true
     
     @Published var isShowingProcessingView = false
@@ -34,23 +34,23 @@ class ShareAsVideoViewViewModel: ObservableObject {
         self.contentTitle = contentTitle
         self.contentAuthor = contentAuthor
         self.audioFilename = audioFilename
-        self.image = UIImage()
-        reloadImage()
+//        self.imageForProcessing = UIImage()
+//        reloadImage()
     }
     
-    func reloadImage() {
-        if selectedSocialNetwork == IntendedVideoDestination.twitter.rawValue {
-            image = VideoMaker.textToImage(drawText: contentTitle.uppercased(),
-                                           inImage: UIImage(named: "square_video_background")!,
-                                           atPoint: CGPoint(x: 80, y: 300))
-        } else {
-            image = VideoMaker.textToImage(drawText: contentTitle.uppercased(),
-                                           inImage: UIImage(named: includeSoundWarning ? "9_16_video_background_with_warning" : "9_16_video_background_no_warning")!,
-                                           atPoint: CGPoint(x: 80, y: 600))
-        }
-    }
+//    func reloadImage() {
+//        if selectedSocialNetwork == IntendedVideoDestination.twitter.rawValue {
+//            imageForProcessing = VideoMaker.textToImage(drawText: contentTitle.uppercased(),
+//                                           inImage: UIImage(named: "square_video_background")!,
+//                                           atPoint: CGPoint(x: 80, y: 300))
+//        } else {
+//            imageForProcessing = VideoMaker.textToImage(drawText: contentTitle.uppercased(),
+//                                           inImage: UIImage(named: includeSoundWarning ? "9_16_video_background_with_warning" : "9_16_video_background_no_warning")!,
+//                                           atPoint: CGPoint(x: 80, y: 600))
+//        }
+//    }
     
-    func generateVideo(completion: @escaping (String?, VideoMakerError?) -> Void) {
+    func generateVideo(withImage image: UIImage, completion: @escaping (String?, VideoMakerError?) -> Void) {
         DispatchQueue.main.async {
             self.isShowingProcessingView = true
         }
@@ -81,7 +81,7 @@ class ShareAsVideoViewViewModel: ObservableObject {
         }
     }
     
-    func saveVideoToPhotos(completion: @escaping (Bool, String?) -> Void) {
+    func saveVideoToPhotos(withImage image: UIImage, completion: @escaping (Bool, String?) -> Void) {
         DispatchQueue.main.async {
             self.isShowingProcessingView = true
         }
@@ -100,7 +100,7 @@ class ShareAsVideoViewViewModel: ObservableObject {
 //            CustomPhotoAlbum.sharedInstance.requestAuthorizationHandler(status: .authorized)
 //        }
         
-        generateVideo { videoPath, error in
+        generateVideo(withImage: image) { videoPath, error in
             if let error = error {
                 DispatchQueue.main.async {
                     self.isShowingProcessingView = false

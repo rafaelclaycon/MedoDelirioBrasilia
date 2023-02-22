@@ -39,16 +39,12 @@ struct ShareAsVideoView: View {
                         .disabled(viewModel.isShowingProcessingView)
                         .onChange(of: viewModel.selectedSocialNetwork) { newValue in
                             tipText = newValue == IntendedVideoDestination.twitter.rawValue ? twitterTip : instagramTip
-                            viewModel.reloadImage()
                         }
                         
                         cover
                         
                         if viewModel.selectedSocialNetwork == IntendedVideoDestination.instagramTikTok.rawValue {
                             Toggle("Incluir aviso Ligue o Som", isOn: $viewModel.includeSoundWarning)
-                                .onChange(of: viewModel.includeSoundWarning) { _ in
-                                    viewModel.reloadImage()
-                                }
                                 .padding(.horizontal, 25)
                                 .padding(.top)
                                 .disabled(viewModel.isShowingProcessingView)
@@ -68,14 +64,14 @@ struct ShareAsVideoView: View {
                         
                         if UIDevice.current.userInterfaceIdiom == .phone {
                             HStack(spacing: 10) {
-                                getShareButton()
-                                getShareAsVideoButton()
+                                getShareButton(cover: cover)
+                                getShareAsVideoButton(cover: cover)
                             }
                             .padding(.vertical)
                         } else {
                             HStack(spacing: 20) {
-                                getShareButton(withWidth: 40)
-                                getShareAsVideoButton(withWidth: 40)
+                                getShareButton(withWidth: 40, cover: cover)
+                                getShareAsVideoButton(withWidth: 40, cover: cover)
                             }
                             .padding(.vertical, 20)
                         }
@@ -144,9 +140,11 @@ struct ShareAsVideoView: View {
                     Text(contentName)
                         .font(.title)
                         .bold()
+                        .foregroundColor(.black)
                     
                     Text(contentAuthor)
                         .font(.title2)
+                        .foregroundColor(.black)
                 }
                 Spacer()
             }
@@ -157,33 +155,30 @@ struct ShareAsVideoView: View {
         .frame(width: 350, height: 350)
     }
     
-    @ViewBuilder func getShareButton(withWidth buttonInternalPadding: CGFloat = 0) -> some View {
+    @ViewBuilder func getShareButton(withWidth buttonInternalPadding: CGFloat = 0, cover: some View) -> some View {
         Button {
-//            viewModel.generateVideo { videoPath, error in
-//                if let error = error {
-//                    DispatchQueue.main.async {
-//                        viewModel.isShowingProcessingView = false
-//                        viewModel.showOtherError(errorTitle: "Falha na Geração do Vídeo",
-//                                                 errorBody: error.localizedDescription)
-//                    }
-//                    return
-//                }
-//                guard let videoPath = videoPath else { return }
-//                DispatchQueue.main.async {
-//                    viewModel.isShowingProcessingView = false
-//                    viewModel.pathToVideoFile = videoPath
-//                    result.exportMethod = .shareSheet
-//                    viewModel.shouldCloseView = true
-//                }
-//            }
-            
-            let view = HStack {
-                Text("This is a test")
-            }
-            
             if #available(iOS 16.0, *) {
-                let renderer = ImageRenderer(content: view)
-                viewModel.image = renderer.uiImage ?? UIImage()
+                let renderer = ImageRenderer(content: cover)
+                renderer.scale = 3.0
+                if let image = renderer.uiImage {
+                    viewModel.generateVideo(withImage: image) { videoPath, error in
+                        if let error = error {
+                            DispatchQueue.main.async {
+                                viewModel.isShowingProcessingView = false
+                                viewModel.showOtherError(errorTitle: "Falha na Geração do Vídeo",
+                                                         errorBody: error.localizedDescription)
+                            }
+                            return
+                        }
+                        guard let videoPath = videoPath else { return }
+                        DispatchQueue.main.async {
+                            viewModel.isShowingProcessingView = false
+                            viewModel.pathToVideoFile = videoPath
+                            result.exportMethod = .shareSheet
+                            viewModel.shouldCloseView = true
+                        }
+                    }
+                }
             }
         } label: {
             HStack(spacing: 15) {
@@ -204,14 +199,20 @@ struct ShareAsVideoView: View {
         .disabled(viewModel.isShowingProcessingView)
     }
     
-    @ViewBuilder func getShareAsVideoButton(withWidth buttonInternalPadding: CGFloat = 0) -> some View {
+    @ViewBuilder func getShareAsVideoButton(withWidth buttonInternalPadding: CGFloat = 0, cover: some View) -> some View {
         Button {
-            viewModel.saveVideoToPhotos() { success, videoPath in
-                if success {
-                    DispatchQueue.main.async {
-                        viewModel.pathToVideoFile = videoPath ?? .empty
-                        result.exportMethod = .saveAsVideo
-                        viewModel.shouldCloseView = true
+            if #available(iOS 16.0, *) {
+                let renderer = ImageRenderer(content: cover)
+                renderer.scale = 3.0
+                if let image = renderer.uiImage {
+                    viewModel.saveVideoToPhotos(withImage: image) { success, videoPath in
+                        if success {
+                            DispatchQueue.main.async {
+                                viewModel.pathToVideoFile = videoPath ?? .empty
+                                result.exportMethod = .saveAsVideo
+                                viewModel.shouldCloseView = true
+                            }
+                        }
                     }
                 }
             }
