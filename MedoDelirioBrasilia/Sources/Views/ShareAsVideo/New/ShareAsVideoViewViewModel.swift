@@ -2,7 +2,7 @@
 //  ShareAsVideoViewViewModel.swift
 //  MedoDelirioBrasilia
 //
-//  Created by Rafael Claycon Schmitt on 21/08/22.
+//  Created by Rafael Schmitt on 22/02/23.
 //
 
 import Combine
@@ -11,7 +11,8 @@ import PhotosUI
 class ShareAsVideoViewViewModel: ObservableObject {
 
     var contentId: String
-    private var contentTitle: String
+    var contentTitle: String
+    var contentAuthor: String
     private var audioFilename: String
     
     @Published var image: UIImage
@@ -28,9 +29,10 @@ class ShareAsVideoViewViewModel: ObservableObject {
     @Published var alertMessage: String = .empty
     @Published var showAlert: Bool = false
     
-    init(contentId: String, contentTitle: String, audioFilename: String) {
+    init(contentId: String, contentTitle: String, contentAuthor: String, audioFilename: String) {
         self.contentId = contentId
         self.contentTitle = contentTitle
+        self.contentAuthor = contentAuthor
         self.audioFilename = audioFilename
         self.image = UIImage()
         reloadImage()

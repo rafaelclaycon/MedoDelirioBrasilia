@@ -2,13 +2,13 @@
 //  ShareAsVideoView.swift
 //  MedoDelirioBrasilia
 //
-//  Created by Rafael Claycon Schmitt on 21/08/22.
+//  Created by Rafael Schmitt on 22/02/23.
 //
 
 import SwiftUI
 
 struct ShareAsVideoView: View {
-
+    
     @StateObject var viewModel: ShareAsVideoViewViewModel
     @Binding var isBeingShown: Bool
     @Binding var result: ShareAsVideoResult
@@ -23,13 +23,15 @@ struct ShareAsVideoView: View {
     private let instagramTip = "Para fazer um Story, escolha Salvar Vídeo e depois adicione o vídeo ao seu Story a partir do Instagram."
     
     var body: some View {
+        let cover = createCoverView(contentName: viewModel.contentTitle, contentAuthor: viewModel.contentAuthor)
+        
         ZStack {
             NavigationView {
                 ScrollView {
                     VStack {
                         Picker(selection: $viewModel.selectedSocialNetwork, label: Text("Rede social")) {
-                            Text("Twitter / WhatsApp").tag(0)
-                            Text("Instagram / TikTok").tag(1)
+                            Text("Quadrado").tag(0)
+                            Text("9 : 16").tag(1)
                         }
                         .pickerStyle(SegmentedPickerStyle())
                         .padding(.horizontal, 25)
@@ -40,10 +42,7 @@ struct ShareAsVideoView: View {
                             viewModel.reloadImage()
                         }
                         
-                        Image(uiImage: viewModel.image)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 350)
+                        cover
                         
                         if viewModel.selectedSocialNetwork == IntendedVideoDestination.instagramTikTok.rawValue {
                             Toggle("Incluir aviso Ligue o Som", isOn: $viewModel.includeSoundWarning)
@@ -134,24 +133,57 @@ struct ShareAsVideoView: View {
         }
     }
     
+    private func createCoverView(contentName: String, contentAuthor: String) -> some View {
+        ZStack {
+            Image("square_video_background")
+                .resizable()
+                .frame(width: 350, height: 350)
+            
+            HStack {
+                VStack(alignment: .leading, spacing: 15) {
+                    Text(contentName)
+                        .font(.title)
+                        .bold()
+                    
+                    Text(contentAuthor)
+                        .font(.title2)
+                }
+                Spacer()
+            }
+            .padding(.leading, 25)
+            .padding(.trailing)
+            .padding(.bottom)
+        }
+        .frame(width: 350, height: 350)
+    }
+    
     @ViewBuilder func getShareButton(withWidth buttonInternalPadding: CGFloat = 0) -> some View {
         Button {
-            viewModel.generateVideo { videoPath, error in
-                if let error = error {
-                    DispatchQueue.main.async {
-                        viewModel.isShowingProcessingView = false
-                        viewModel.showOtherError(errorTitle: "Falha na Geração do Vídeo",
-                                                 errorBody: error.localizedDescription)
-                    }
-                    return
-                }
-                guard let videoPath = videoPath else { return }
-                DispatchQueue.main.async {
-                    viewModel.isShowingProcessingView = false
-                    viewModel.pathToVideoFile = videoPath
-                    result.exportMethod = .shareSheet
-                    viewModel.shouldCloseView = true
-                }
+//            viewModel.generateVideo { videoPath, error in
+//                if let error = error {
+//                    DispatchQueue.main.async {
+//                        viewModel.isShowingProcessingView = false
+//                        viewModel.showOtherError(errorTitle: "Falha na Geração do Vídeo",
+//                                                 errorBody: error.localizedDescription)
+//                    }
+//                    return
+//                }
+//                guard let videoPath = videoPath else { return }
+//                DispatchQueue.main.async {
+//                    viewModel.isShowingProcessingView = false
+//                    viewModel.pathToVideoFile = videoPath
+//                    result.exportMethod = .shareSheet
+//                    viewModel.shouldCloseView = true
+//                }
+//            }
+            
+            let view = HStack {
+                Text("This is a test")
+            }
+            
+            if #available(iOS 16.0, *) {
+                let renderer = ImageRenderer(content: view)
+                viewModel.image = renderer.uiImage ?? UIImage()
             }
         } label: {
             HStack(spacing: 15) {
@@ -202,13 +234,13 @@ struct ShareAsVideoView: View {
         .buttonBorderShape(.capsule)
         .disabled(viewModel.isShowingProcessingView)
     }
-
+    
 }
 
-struct ShareAsVideoView_Previews: PreviewProvider {
-
+struct ShareAsVideoNewView_Previews: PreviewProvider {
+    
     static var previews: some View {
-        ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: "ABC", contentTitle: "Test", audioFilename: .empty), isBeingShown: .constant(true), result: .constant(ShareAsVideoResult()), useLongerGeneratingVideoMessage: false)
+        ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: "ABC", contentTitle: "Test", contentAuthor: "Test Author", audioFilename: .empty), isBeingShown: .constant(true), result: .constant(ShareAsVideoResult()), useLongerGeneratingVideoMessage: false)
     }
-
+    
 }
