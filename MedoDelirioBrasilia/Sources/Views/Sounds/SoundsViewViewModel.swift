@@ -91,6 +91,10 @@ class SoundsViewViewModel: ObservableObject {
                 sortSoundsInPlaceByDurationAscending()
             case .longestFirst:
                 sortSoundsInPlaceByDurationDescending()
+            case .longestTitleFirst:
+                sortSoundsInPlaceByTitleLengthDescending()
+            case .shortestTitleFirst:
+                sortSoundsInPlaceByTitleLengthAscending()
             }
         }
     }
@@ -113,6 +117,14 @@ class SoundsViewViewModel: ObservableObject {
     
     private func sortSoundsInPlaceByDurationDescending() {
         self.sounds.sort(by: { $0.duration > $1.duration })
+    }
+    
+    private func sortSoundsInPlaceByTitleLengthAscending() {
+        self.sounds.sort(by: { $0.title.count < $1.title.count })
+    }
+    
+    private func sortSoundsInPlaceByTitleLengthDescending() {
+        self.sounds.sort(by: { $0.title.count > $1.title.count })
     }
     
     func playSound(fromPath filepath: String, withId soundId: String) {
@@ -315,6 +327,8 @@ class SoundsViewViewModel: ObservableObject {
         }
     }
     
+    // MARK: - Multi-Select
+    
     func startSelecting() {
         stopPlaying()
         if currentSoundsListMode.wrappedValue == .regular {
@@ -342,6 +356,11 @@ class SoundsViewViewModel: ObservableObject {
         selectionKeeper.forEach { selectedSound in
             removeFromFavorites(soundId: selectedSound)
         }
+    }
+    
+    func allSelectedAreFavorites() -> Bool {
+        guard selectionKeeper.count > 0 else { return false }
+        return selectionKeeper.isSubset(of: favoritesKeeper)
     }
     
     func prepareSelectedToAddToFolder() {

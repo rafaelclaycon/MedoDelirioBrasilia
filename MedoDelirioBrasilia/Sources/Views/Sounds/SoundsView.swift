@@ -295,7 +295,8 @@ struct SoundsView: View {
                 if AppPersistentMemory.getHasShownNotificationsOnboarding() == false {
                     subviewToOpen = .onboardingView
                     showingModalView = true
-                } else if AppPersistentMemory.getHasSeen60WhatsNewScreen() == false {
+                    AppPersistentMemory.setHasSeen63WhatsNewScreen(to: true) // Prevent the What's New screen from appearing when switching tabs
+                } else if AppPersistentMemory.getHasSeen63WhatsNewScreen() == false {
                     if UIDevice.current.userInterfaceIdiom == .phone {
                         subviewToOpen = .whatsNewView
                         showingModalView = true
@@ -349,7 +350,7 @@ struct SoundsView: View {
             }
             .sheet(isPresented: $showingModalView, onDismiss: {
                 if subviewToOpen == .whatsNewView {
-                    AppPersistentMemory.setHasSeen60WhatsNewScreen(to: true)
+                    AppPersistentMemory.setHasSeen63WhatsNewScreen(to: true)
                 }
             }) {
                 switch subviewToOpen {
@@ -365,7 +366,11 @@ struct SoundsView: View {
                                     selectedSounds: viewModel.selectedSounds!)
                     
                 case .shareAsVideoView:
-                    ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: false)
+                    if #available(iOS 16.0, *) {
+                        ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, contentAuthor: viewModel.selectedSound?.authorName ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: false)
+                    } else {
+                        ShareAsVideoLegacyView(viewModel: ShareAsVideoLegacyViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: false)
+                    }
                     
                 case .settingsView:
                     SettingsCasingWithCloseView(isBeingShown: $showingModalView)
@@ -493,8 +498,22 @@ struct SoundsView: View {
     }
     
     @ViewBuilder func leadingToolbarControls() -> some View {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            if currentSoundsListMode == .regular {
+        if currentSoundsListMode == .selection {
+            Button {
+                currentSoundsListMode = .regular
+                viewModel.selectionKeeper.removeAll()
+            } label: {
+                Text("Cancelar")
+                    .bold()
+            }
+            
+//            Button {
+//                viewModel.shareSelected()
+//            } label: {
+//                Label("Compartilhar", systemImage: "square.and.arrow.up")
+//            }.disabled(viewModel.selectionKeeper.count == 0 || viewModel.selectionKeeper.count > 5)
+        } else {
+            if UIDevice.current.userInterfaceIdiom == .phone {
                 Button {
                     subviewToOpen = .settingsView
                     showingModalView = true
@@ -502,16 +521,8 @@ struct SoundsView: View {
                     Image(systemName: "gearshape")
                 }
             } else {
-                Button {
-                    currentSoundsListMode = .regular
-                    viewModel.selectionKeeper.removeAll()
-                } label: {
-                    Text("Cancelar")
-                        .bold()
-                }
+                EmptyView()
             }
-        } else {
-            EmptyView()
         }
     }
     
@@ -541,51 +552,45 @@ struct SoundsView: View {
                         authorSortAction = AuthorSortOption(rawValue: authorSortOption) ?? .nameAscending
                     })
                 } else {
+                    if currentSoundsListMode == .selection {
+                        Button {
+                            // Need to get count before clearing the Set.
+                            let selectedCount: Int = viewModel.selectionKeeper.count
+                            
+                            if currentViewMode == .favorites || viewModel.allSelectedAreFavorites() {
+                                viewModel.removeSelectedFromFavorites()
+                                viewModel.stopSelecting()
+                                viewModel.reloadList(withSounds: soundData,
+                                                     andFavorites: try? database.getAllFavorites(),
+                                                     allowSensitiveContent: UserSettings.getShowExplicitContent(),
+                                                     favoritesOnly: currentViewMode == .favorites,
+                                                     sortedBy: SoundSortOption(rawValue: viewModel.soundSortOption) ?? .titleAscending)
+                                viewModel.sendUsageMetricToServer(action: "didRemoveManySoundsFromFavorites(\(selectedCount))")
+                            } else {
+                                viewModel.addSelectedToFavorites()
+                                viewModel.stopSelecting()
+                                viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFavorites(\(selectedCount))")
+                            }
+                        } label: {
+                            Image(systemName: currentViewMode == .favorites || viewModel.allSelectedAreFavorites() ? "star.slash" : "star")
+                        }.disabled(viewModel.selectionKeeper.count == 0)
+                        
+                        Button {
+                            viewModel.prepareSelectedToAddToFolder()
+                            subviewToOpen = .addToFolderView
+                            showingModalView = true
+                        } label: {
+                            Image(systemName: "folder.badge.plus")
+                        }.disabled(viewModel.selectionKeeper.count == 0)
+                    }
+                    
                     Menu {
                         Section {
                             Button {
                                 viewModel.startSelecting()
                             } label: {
                                 Label(currentSoundsListMode == .selection ? "Cancelar Seleção" : "Selecionar", systemImage: currentSoundsListMode == .selection ? "xmark.circle" : "checkmark.circle")
-                            }
-                        }
-                        
-                        Section {
-                            Button {
-                                // Need to get count before clearing the Set.
-                                let selectedCount: Int = viewModel.selectionKeeper.count
-                                
-                                if currentViewMode == .favorites {
-                                    viewModel.removeSelectedFromFavorites()
-                                    viewModel.stopSelecting()
-                                    viewModel.reloadList(withSounds: soundData,
-                                                         andFavorites: try? database.getAllFavorites(),
-                                                         allowSensitiveContent: UserSettings.getShowExplicitContent(),
-                                                         favoritesOnly: currentViewMode == .favorites,
-                                                         sortedBy: SoundSortOption(rawValue: viewModel.soundSortOption) ?? .titleAscending)
-                                    viewModel.sendUsageMetricToServer(action: "didRemoveManySoundsFromFavorites(\(selectedCount))")
-                                } else {
-                                    viewModel.addSelectedToFavorites()
-                                    viewModel.stopSelecting()
-                                    viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFavorites(\(selectedCount))")
-                                }
-                            } label: {
-                                Label(currentViewMode == .favorites ? Shared.removeFromFavorites : Shared.addToFavorites, systemImage: currentViewMode == .favorites ? "star.slash" : "star")
-                            }.disabled(viewModel.selectionKeeper.count == 0)
-                            
-                            Button {
-                                viewModel.prepareSelectedToAddToFolder()
-                                subviewToOpen = .addToFolderView
-                                showingModalView = true
-                            } label: {
-                                Label("Adicionar a Pasta", systemImage: "folder.badge.plus")
-                            }.disabled(viewModel.selectionKeeper.count == 0)
-                            
-//                            Button {
-//                                viewModel.shareSelected()
-//                            } label: {
-//                                Label("Compartilhar", systemImage: "square.and.arrow.up")
-//                            }.disabled(viewModel.selectionKeeper.count == 0 || viewModel.selectionKeeper.count > 5)
+                            }.disabled(currentViewMode == .favorites && viewModel.sounds.count == 0)
                         }
                         
                         Section {
@@ -604,6 +609,14 @@ struct SoundsView: View {
                                 
                                 Text("Mais Longos no Topo")
                                     .tag(4)
+                                
+                                if CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
+                                    Text("Título Mais Longo no Topo")
+                                        .tag(5)
+                                    
+                                    Text("Título Mais Curto no Topo")
+                                        .tag(6)
+                                }
                             }
                         }
                     } label: {
