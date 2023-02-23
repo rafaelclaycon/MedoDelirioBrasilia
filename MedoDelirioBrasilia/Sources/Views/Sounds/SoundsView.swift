@@ -365,7 +365,11 @@ struct SoundsView: View {
                                     selectedSounds: viewModel.selectedSounds!)
                     
                 case .shareAsVideoView:
-                    ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: false)
+                    if #available(iOS 16.0, *) {
+                        ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, contentAuthor: viewModel.selectedSound?.authorName ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: false)
+                    } else {
+                        ShareAsVideoLegacyView(viewModel: ShareAsVideoLegacyViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: false)
+                    }
                     
                 case .settingsView:
                     SettingsCasingWithCloseView(isBeingShown: $showingModalView)
@@ -604,6 +608,14 @@ struct SoundsView: View {
                                 
                                 Text("Mais Longos no Topo")
                                     .tag(4)
+                                
+                                if CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
+                                    Text("Título Mais Longo no Topo")
+                                        .tag(5)
+                                    
+                                    Text("Título Mais Curto no Topo")
+                                        .tag(6)
+                                }
                             }
                         }
                     } label: {

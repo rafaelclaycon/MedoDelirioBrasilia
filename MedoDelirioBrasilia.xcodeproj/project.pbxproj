@@ -114,7 +114,7 @@
 		D912A33A28B5321400F7293D /* ShareAsVideoResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D912A33928B5321400F7293D /* ShareAsVideoResult.swift */; };
 		D914CF3B2981C6D30013B3E2 /* Desconhecido - Primeiramente.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D914CF3A2981C6D30013B3E2 /* Desconhecido - Primeiramente.mp3 */; };
 		D916536428AD7FF7007F141D /* VideoMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D916536328AD7FF7007F141D /* VideoMaker.swift */; };
-		D916536628ADCD9B007F141D /* ShareAsVideoViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D916536528ADCD9B007F141D /* ShareAsVideoViewViewModel.swift */; };
+		D916536628ADCD9B007F141D /* ShareAsVideoLegacyViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D916536528ADCD9B007F141D /* ShareAsVideoLegacyViewViewModel.swift */; };
 		D916627D2874F1F9000A1B23 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D916627C2874F1F9000A1B23 /* OnboardingView.swift */; };
 		D916627F2874F838000A1B23 /* NotificationsSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D916627E2874F838000A1B23 /* NotificationsSymbol.swift */; };
 		D91793A9288E1B51009C3165 /* Um Ministerio Tecnico.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91793A8288E1B51009C3165 /* Um Ministerio Tecnico.mp3 */; };
@@ -269,6 +269,8 @@
 		D93CCB79286A8A220002CF81 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93CCB78286A8A220002CF81 /* ToastView.swift */; };
 		D93CCB7B286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93CCB7A286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift */; };
 		D93D24E02849DAAB00300541 /* DiagnosticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D24DF2849DAAB00300541 /* DiagnosticsView.swift */; };
+		D93F642E29A6A5FF003E7550 /* ShareAsVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F642D29A6A5FF003E7550 /* ShareAsVideoView.swift */; };
+		D93F643029A6A692003E7550 /* ShareAsVideoViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F642F29A6A692003E7550 /* ShareAsVideoViewViewModel.swift */; };
 		D946116E28611F1000C4FB7E /* FolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D946116D28611F1000C4FB7E /* FolderCell.swift */; };
 		D946117E28613D3200C4FB7E /* CollectionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D946117D28613D3200C4FB7E /* CollectionDetailView.swift */; };
 		D94611802861480A00C4FB7E /* FolderInfoEditingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D946117F2861480A00C4FB7E /* FolderInfoEditingView.swift */; };
@@ -355,7 +357,7 @@
 		D95A463229183843006B4023 /* Eleitores do Lula no Maranhao - Urubu, cabelo liso, tu vai pro inferno.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95A463129183843006B4023 /* Eleitores do Lula no Maranhao - Urubu, cabelo liso, tu vai pro inferno.mp3 */; };
 		D95DB0F6288248A300D4FEDF /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95DB0F5288248A300D4FEDF /* SidebarView.swift */; };
 		D95DB0F82882491A00D4FEDF /* ScreenAndTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95DB0F72882491A00D4FEDF /* ScreenAndTabs.swift */; };
-		D95F363A28AD386D00743026 /* ShareAsVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95F363928AD386D00743026 /* ShareAsVideoView.swift */; };
+		D95F363A28AD386D00743026 /* ShareAsVideoLegacyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95F363928AD386D00743026 /* ShareAsVideoLegacyView.swift */; };
 		D960AF272845BFE700ADF1F6 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = D960AF262845BFE700ADF1F6 /* UserDefaultsKeys.swift */; };
 		D960AF292845C82E00ADF1F6 /* AppStoreReviewSteward.swift in Sources */ = {isa = PBXBuildFile; fileRef = D960AF282845C82E00ADF1F6 /* AppStoreReviewSteward.swift */; };
 		D961D01128371EE800EFEDEB /* FixedLocalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D961D01028371EE800EFEDEB /* FixedLocalData.swift */; };
@@ -1379,7 +1381,7 @@
 		D912A33928B5321400F7293D /* ShareAsVideoResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAsVideoResult.swift; sourceTree = "<group>"; };
 		D914CF3A2981C6D30013B3E2 /* Desconhecido - Primeiramente.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Desconhecido - Primeiramente.mp3"; sourceTree = "<group>"; };
 		D916536328AD7FF7007F141D /* VideoMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoMaker.swift; sourceTree = "<group>"; };
-		D916536528ADCD9B007F141D /* ShareAsVideoViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAsVideoViewViewModel.swift; sourceTree = "<group>"; };
+		D916536528ADCD9B007F141D /* ShareAsVideoLegacyViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAsVideoLegacyViewViewModel.swift; sourceTree = "<group>"; };
 		D916627C2874F1F9000A1B23 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		D916627E2874F838000A1B23 /* NotificationsSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSymbol.swift; sourceTree = "<group>"; };
 		D91793A8288E1B51009C3165 /* Um Ministerio Tecnico.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Um Ministerio Tecnico.mp3"; sourceTree = "<group>"; };
@@ -1534,6 +1536,8 @@
 		D93CCB78286A8A220002CF81 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		D93CCB7A286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyTransition+MoveAndFade.swift"; sourceTree = "<group>"; };
 		D93D24DF2849DAAB00300541 /* DiagnosticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticsView.swift; sourceTree = "<group>"; };
+		D93F642D29A6A5FF003E7550 /* ShareAsVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAsVideoView.swift; sourceTree = "<group>"; };
+		D93F642F29A6A692003E7550 /* ShareAsVideoViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAsVideoViewViewModel.swift; sourceTree = "<group>"; };
 		D946116D28611F1000C4FB7E /* FolderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderCell.swift; sourceTree = "<group>"; };
 		D946117D28613D3200C4FB7E /* CollectionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDetailView.swift; sourceTree = "<group>"; };
 		D946117F2861480A00C4FB7E /* FolderInfoEditingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderInfoEditingView.swift; sourceTree = "<group>"; };
@@ -1618,7 +1622,7 @@
 		D95A463129183843006B4023 /* Eleitores do Lula no Maranhao - Urubu, cabelo liso, tu vai pro inferno.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eleitores do Lula no Maranhao - Urubu, cabelo liso, tu vai pro inferno.mp3"; sourceTree = "<group>"; };
 		D95DB0F5288248A300D4FEDF /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		D95DB0F72882491A00D4FEDF /* ScreenAndTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenAndTabs.swift; sourceTree = "<group>"; };
-		D95F363928AD386D00743026 /* ShareAsVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAsVideoView.swift; sourceTree = "<group>"; };
+		D95F363928AD386D00743026 /* ShareAsVideoLegacyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAsVideoLegacyView.swift; sourceTree = "<group>"; };
 		D960AF262845BFE700ADF1F6 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		D960AF282845C82E00ADF1F6 /* AppStoreReviewSteward.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreReviewSteward.swift; sourceTree = "<group>"; };
 		D961D01028371EE800EFEDEB /* FixedLocalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedLocalData.swift; sourceTree = "<group>"; };
@@ -3681,6 +3685,25 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		D93F642B29A6A532003E7550 /* Legacy */ = {
+			isa = PBXGroup;
+			children = (
+				D95F363928AD386D00743026 /* ShareAsVideoLegacyView.swift */,
+				D916536528ADCD9B007F141D /* ShareAsVideoLegacyViewViewModel.swift */,
+				D912A33728B3F2C000F7293D /* TipView.swift */,
+			);
+			path = Legacy;
+			sourceTree = "<group>";
+		};
+		D93F642C29A6A545003E7550 /* New */ = {
+			isa = PBXGroup;
+			children = (
+				D93F642D29A6A5FF003E7550 /* ShareAsVideoView.swift */,
+				D93F642F29A6A692003E7550 /* ShareAsVideoViewViewModel.swift */,
+			);
+			path = New;
+			sourceTree = "<group>";
+		};
 		D94BA9EB2879E964001BD09C /* Banners */ = {
 			isa = PBXGroup;
 			children = (
@@ -3742,9 +3765,8 @@
 		D95F363828AD385100743026 /* ShareAsVideo */ = {
 			isa = PBXGroup;
 			children = (
-				D95F363928AD386D00743026 /* ShareAsVideoView.swift */,
-				D916536528ADCD9B007F141D /* ShareAsVideoViewViewModel.swift */,
-				D912A33728B3F2C000F7293D /* TipView.swift */,
+				D93F642B29A6A532003E7550 /* Legacy */,
+				D93F642C29A6A545003E7550 /* New */,
 			);
 			path = ShareAsVideo;
 			sourceTree = "<group>";
@@ -5443,6 +5465,7 @@
 				D9A3AB6B28F03C970064CB7A /* ViewStates.swift in Sources */,
 				D99B9DCA2848148600897930 /* ServerStatsAndLogs.swift in Sources */,
 				D9758C3828616E650094D388 /* FolderColor.swift in Sources */,
+				D93F642E29A6A5FF003E7550 /* ShareAsVideoView.swift in Sources */,
 				D9DCC5D72875D7E5008DD4A3 /* NotificationSymbolPlusText.swift in Sources */,
 				D960AF292845C82E00ADF1F6 /* AppStoreReviewSteward.swift in Sources */,
 				D95DB0F6288248A300D4FEDF /* SidebarView.swift in Sources */,
@@ -5488,6 +5511,7 @@
 				D957047D28AEF733008DEF8C /* ProcessingView.swift in Sources */,
 				D9A3984928FDEE0D00039B7B /* AddRankingTypeToAudienceSharingStatisticTable.swift in Sources */,
 				D967E2BA290196F900B21C11 /* WallE.swift in Sources */,
+				D93F643029A6A692003E7550 /* ShareAsVideoViewViewModel.swift in Sources */,
 				D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */,
 				D93A02982906DE8C00A85FE2 /* UserFolderLog.swift in Sources */,
 				D9E9CFA5292C40BF002BC918 /* NoFoldersSymbol.swift in Sources */,
@@ -5509,7 +5533,7 @@
 				D961D01828372B1800EFEDEB /* AudioPlayer.swift in Sources */,
 				D9E9CFA3292C3DD1002BC918 /* NoFoldersView.swift in Sources */,
 				D916536428AD7FF7007F141D /* VideoMaker.swift in Sources */,
-				D95F363A28AD386D00743026 /* ShareAsVideoView.swift in Sources */,
+				D95F363A28AD386D00743026 /* ShareAsVideoLegacyView.swift in Sources */,
 				D9C1372729063A78003E4ABF /* FolderResearchSettingsView.swift in Sources */,
 				D98EC5DE282596C300340BE5 /* SoundCell.swift in Sources */,
 				D973076C28AC49B100FBB3B8 /* DiagnosticsViewViewModel.swift in Sources */,
@@ -5570,7 +5594,7 @@
 				D9461182286159BC00C4FB7E /* UserFolder.swift in Sources */,
 				D9FA0CD728508590000F6ADE /* UIDevice+DeviceInfo.swift in Sources */,
 				D9943F2328641C00002C6B97 /* LocalDatabase.swift in Sources */,
-				D916536628ADCD9B007F141D /* ShareAsVideoViewViewModel.swift in Sources */,
+				D916536628ADCD9B007F141D /* ShareAsVideoLegacyViewViewModel.swift in Sources */,
 				D93D24E02849DAAB00300541 /* DiagnosticsView.swift in Sources */,
 				D90E2E5728853CDC00F406B6 /* AuthorCell.swift in Sources */,
 				D9A096D8287CE72300773869 /* Mailman.swift in Sources */,

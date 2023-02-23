@@ -1,5 +1,5 @@
 //
-//  ShareAsVideoView.swift
+//  ShareAsVideoLegacyView.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Claycon Schmitt on 21/08/22.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct ShareAsVideoView: View {
-
-    @StateObject var viewModel: ShareAsVideoViewViewModel
+struct ShareAsVideoLegacyView: View {
+    
+    @StateObject var viewModel: ShareAsVideoLegacyViewViewModel
     @Binding var isBeingShown: Bool
     @Binding var result: ShareAsVideoResult
     @State var useLongerGeneratingVideoMessage: Bool
@@ -205,10 +205,10 @@ struct ShareAsVideoView: View {
 
 }
 
-struct ShareAsVideoView_Previews: PreviewProvider {
+struct ShareAsVideoLegacyView_Previews: PreviewProvider {
 
     static var previews: some View {
-        ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: "ABC", contentTitle: "Test", audioFilename: .empty), isBeingShown: .constant(true), result: .constant(ShareAsVideoResult()), useLongerGeneratingVideoMessage: false)
+        ShareAsVideoLegacyView(viewModel: ShareAsVideoLegacyViewViewModel(contentId: "ABC", contentTitle: "Test", audioFilename: .empty), isBeingShown: .constant(true), result: .constant(ShareAsVideoResult()), useLongerGeneratingVideoMessage: false)
     }
 
 }
