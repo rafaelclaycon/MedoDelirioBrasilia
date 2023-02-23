@@ -23,7 +23,8 @@ struct ShareAsVideoView: View {
     private let instagramTip = "Para fazer um Story, escolha Salvar Vídeo e depois adicione o vídeo ao seu Story a partir do Instagram."
     
     var body: some View {
-        let cover = createCoverView(contentName: viewModel.contentTitle, contentAuthor: viewModel.contentAuthor)
+        let squareImage = createSquareImageView(contentName: viewModel.contentTitle, contentAuthor: viewModel.contentAuthor)
+        let nineBySixteenImage = create9By16ImageView(contentName: viewModel.contentTitle, contentAuthor: viewModel.contentAuthor)
         
         ZStack {
             NavigationView {
@@ -41,7 +42,11 @@ struct ShareAsVideoView: View {
                             tipText = newValue == IntendedVideoDestination.twitter.rawValue ? twitterTip : instagramTip
                         }
                         
-                        cover
+                        if viewModel.selectedSocialNetwork == 0 {
+                            squareImage
+                        } else {
+                            nineBySixteenImage
+                        }
                         
                         if viewModel.selectedSocialNetwork == IntendedVideoDestination.instagramTikTok.rawValue {
                             Toggle("Incluir aviso Ligue o Som", isOn: $viewModel.includeSoundWarning)
@@ -64,14 +69,24 @@ struct ShareAsVideoView: View {
                         
                         if UIDevice.current.userInterfaceIdiom == .phone {
                             HStack(spacing: 10) {
-                                getShareButton(cover: cover)
-                                getShareAsVideoButton(cover: cover)
+                                if viewModel.selectedSocialNetwork == 0 {
+                                    getShareButton(view: squareImage)
+                                    getShareAsVideoButton(view: squareImage)
+                                } else {
+                                    getShareButton(view: nineBySixteenImage)
+                                    getShareAsVideoButton(view: nineBySixteenImage)
+                                }
                             }
                             .padding(.vertical)
                         } else {
                             HStack(spacing: 20) {
-                                getShareButton(withWidth: 40, cover: cover)
-                                getShareAsVideoButton(withWidth: 40, cover: cover)
+                                if viewModel.selectedSocialNetwork == 0 {
+                                    getShareButton(withWidth: 40, view: squareImage)
+                                    getShareAsVideoButton(withWidth: 40, view: squareImage)
+                                } else {
+                                    getShareButton(withWidth: 40, view: nineBySixteenImage)
+                                    getShareAsVideoButton(withWidth: 40, view: nineBySixteenImage)
+                                }
                             }
                             .padding(.vertical, 20)
                         }
@@ -129,7 +144,7 @@ struct ShareAsVideoView: View {
         }
     }
     
-    private func createCoverView(contentName: String, contentAuthor: String) -> some View {
+    private func createSquareImageView(contentName: String, contentAuthor: String) -> some View {
         ZStack {
             Image("square_video_background")
                 .resizable()
@@ -155,11 +170,38 @@ struct ShareAsVideoView: View {
         .frame(width: 350, height: 350)
     }
     
-    @ViewBuilder func getShareButton(withWidth buttonInternalPadding: CGFloat = 0, cover: some View) -> some View {
+    private func create9By16ImageView(contentName: String, contentAuthor: String) -> some View {
+        ZStack {
+            Image(viewModel.includeSoundWarning ? "9_16_video_background_with_warning" : "9_16_video_background_no_warning")
+                .resizable()
+                .scaledToFit()
+                .frame(height: 350)
+            
+            HStack {
+                VStack(alignment: .leading, spacing: 7) {
+                    Text(contentName)
+                        .font(Font.system(size: 14))
+                        .bold()
+                        .foregroundColor(.black)
+                    
+                    Text(contentAuthor)
+                        .font(Font.system(size: 12))
+                        .foregroundColor(.black)
+                }
+                Spacer()
+            }
+            .padding(.leading, 12)
+            .padding(.trailing)
+            .padding(.bottom)
+        }
+        .frame(width: 196, height: 350)
+    }
+    
+    @ViewBuilder func getShareButton(withWidth buttonInternalPadding: CGFloat = 0, view: some View) -> some View {
         Button {
             if #available(iOS 16.0, *) {
-                let renderer = ImageRenderer(content: cover)
-                renderer.scale = 3.0
+                let renderer = ImageRenderer(content: view)
+                renderer.scale = viewModel.selectedSocialNetwork == 0 ? 3.0 : 4.0
                 if let image = renderer.uiImage {
                     viewModel.generateVideo(withImage: image) { videoPath, error in
                         if let error = error {
@@ -199,11 +241,11 @@ struct ShareAsVideoView: View {
         .disabled(viewModel.isShowingProcessingView)
     }
     
-    @ViewBuilder func getShareAsVideoButton(withWidth buttonInternalPadding: CGFloat = 0, cover: some View) -> some View {
+    @ViewBuilder func getShareAsVideoButton(withWidth buttonInternalPadding: CGFloat = 0, view: some View) -> some View {
         Button {
             if #available(iOS 16.0, *) {
-                let renderer = ImageRenderer(content: cover)
-                renderer.scale = 3.0
+                let renderer = ImageRenderer(content: view)
+                renderer.scale = viewModel.selectedSocialNetwork == 0 ? 3.0 : 4.0
                 if let image = renderer.uiImage {
                     viewModel.saveVideoToPhotos(withImage: image) { success, videoPath in
                         if success {
@@ -241,7 +283,7 @@ struct ShareAsVideoView: View {
 struct ShareAsVideoNewView_Previews: PreviewProvider {
     
     static var previews: some View {
-        ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: "ABC", contentTitle: "Test", contentAuthor: "Test Author", audioFilename: .empty), isBeingShown: .constant(true), result: .constant(ShareAsVideoResult()), useLongerGeneratingVideoMessage: false)
+        ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: "ABC", contentTitle: "Você é maluco ou você é idiota, companheiro?", contentAuthor: "Lula (Cristiano Botafogo)", audioFilename: .empty), isBeingShown: .constant(true), result: .constant(ShareAsVideoResult()), useLongerGeneratingVideoMessage: false)
     }
     
 }
