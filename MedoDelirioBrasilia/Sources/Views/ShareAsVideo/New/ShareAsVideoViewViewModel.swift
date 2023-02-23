@@ -2,7 +2,7 @@
 //  ShareAsVideoViewViewModel.swift
 //  MedoDelirioBrasilia
 //
-//  Created by Rafael Claycon Schmitt on 21/08/22.
+//  Created by Rafael Schmitt on 22/02/23.
 //
 
 import Combine
@@ -11,10 +11,10 @@ import PhotosUI
 class ShareAsVideoViewViewModel: ObservableObject {
 
     var contentId: String
-    private var contentTitle: String
+    var contentTitle: String
+    var contentAuthor: String
     private var audioFilename: String
     
-    @Published var image: UIImage
     @Published var includeSoundWarning: Bool = true
     
     @Published var isShowingProcessingView = false
@@ -28,27 +28,14 @@ class ShareAsVideoViewViewModel: ObservableObject {
     @Published var alertMessage: String = .empty
     @Published var showAlert: Bool = false
     
-    init(contentId: String, contentTitle: String, audioFilename: String) {
+    init(contentId: String, contentTitle: String, contentAuthor: String, audioFilename: String) {
         self.contentId = contentId
         self.contentTitle = contentTitle
+        self.contentAuthor = contentAuthor
         self.audioFilename = audioFilename
-        self.image = UIImage()
-        reloadImage()
     }
     
-    func reloadImage() {
-        if selectedSocialNetwork == IntendedVideoDestination.twitter.rawValue {
-            image = VideoMaker.textToImage(drawText: contentTitle.uppercased(),
-                                           inImage: UIImage(named: "square_video_background")!,
-                                           atPoint: CGPoint(x: 80, y: 300))
-        } else {
-            image = VideoMaker.textToImage(drawText: contentTitle.uppercased(),
-                                           inImage: UIImage(named: includeSoundWarning ? "9_16_video_background_with_warning" : "9_16_video_background_no_warning")!,
-                                           atPoint: CGPoint(x: 80, y: 600))
-        }
-    }
-    
-    func generateVideo(completion: @escaping (String?, VideoMakerError?) -> Void) {
+    func generateVideo(withImage image: UIImage, completion: @escaping (String?, VideoMakerError?) -> Void) {
         DispatchQueue.main.async {
             self.isShowingProcessingView = true
         }
@@ -79,7 +66,7 @@ class ShareAsVideoViewViewModel: ObservableObject {
         }
     }
     
-    func saveVideoToPhotos(completion: @escaping (Bool, String?) -> Void) {
+    func saveVideoToPhotos(withImage image: UIImage, completion: @escaping (Bool, String?) -> Void) {
         DispatchQueue.main.async {
             self.isShowingProcessingView = true
         }
@@ -98,7 +85,7 @@ class ShareAsVideoViewViewModel: ObservableObject {
 //            CustomPhotoAlbum.sharedInstance.requestAuthorizationHandler(status: .authorized)
 //        }
         
-        generateVideo { videoPath, error in
+        generateVideo(withImage: image) { videoPath, error in
             if let error = error {
                 DispatchQueue.main.async {
                     self.isShowingProcessingView = false
