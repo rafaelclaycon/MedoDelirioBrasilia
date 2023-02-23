@@ -10016,7 +10016,7 @@
         "dateAdded": "2023-02-22T00:00:00Z",
         "duration": 3.37,
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "6D507891-36F5-4A42-BDF5-5554700BD48B",
@@ -10027,7 +10027,7 @@
         "dateAdded": "2023-02-22T00:00:00Z",
         "duration": 2.27,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "7466744B-91E4-44C3-92C8-A9B1288A63CE",
@@ -10038,7 +10038,7 @@
         "dateAdded": "2023-02-22T00:00:00Z",
         "duration": 1.52,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "D087ACB6-C1D2-46E9-AE71-C5A218A84B59",
@@ -10049,7 +10049,7 @@
         "dateAdded": "2023-02-22T00:00:00Z",
         "duration": 1.18,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "64AF9311-EDC4-4D7B-82F4-D55A81365520",
@@ -10060,6 +10060,6 @@
         "dateAdded": "2023-02-22T00:00:00Z",
         "duration": 2.27,
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     }
 ]
