@@ -375,9 +375,9 @@ class AuthorDetailViewViewModel: ObservableObject {
         }
     }
     
-    func sendUsageMetricToServer(action: String) {
+    func sendUsageMetricToServer(action: String, authorName: String) {
         let usageMetric = UsageMetric(customInstallId: UIDevice.customInstallId,
-                                      originatingScreen: "SoundsView",
+                                      originatingScreen: "AuthorDetailView(\(authorName))",
                                       destinationScreen: action,
                                       systemName: UIDevice.current.systemName,
                                       isiOSAppOnMac: ProcessInfo.processInfo.isiOSAppOnMac,

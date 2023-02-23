@@ -344,6 +344,13 @@ struct AuthorDetailView: View {
             }
             .onChange(of: showingAddToFolderModal) { showingAddToFolderModal in
                 if (showingAddToFolderModal == false) && hadSuccessAddingToFolder {
+                    // Need to get count before clearing the Set.
+                    let selectedCount: Int = viewModel.selectionKeeper.count
+                    
+                    if currentSoundsListMode == .selection {
+                        viewModel.stopSelecting()
+                    }
+                    
                     DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
                         withAnimation {
                             shouldDisplayAddedToFolderToast = true
@@ -357,6 +364,10 @@ struct AuthorDetailView: View {
                             folderName = nil
                             hadSuccessAddingToFolder = false
                         }
+                    }
+                    
+                    if pluralization == .plural {
+                        viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFolder(\(selectedCount))", authorName: author.name)
                     }
                 }
             }
@@ -404,6 +415,7 @@ struct AuthorDetailView: View {
             
             Section {
                 Button {
+                    viewModel.stopSelecting()
                     viewModel.selectedSounds = viewModel.sounds
                     showingAddToFolderModal = true
                 } label: {
@@ -411,12 +423,14 @@ struct AuthorDetailView: View {
                 }
                 
                 Button {
+                    viewModel.stopSelecting()
                     viewModel.showAskForNewSoundAlert()
                 } label: {
                     Label("Pedir Som Desse Autor", systemImage: "plus.circle")
                 }
                 
                 Button {
+                    viewModel.stopSelecting()
                     viewModel.showEmailAppPicker_reportAuthorDetailIssue = true
                 } label: {
                     Label("Relatar Problema com os Detalhes Desse Autor", systemImage: "person.crop.circle.badge.exclamationmark")
@@ -518,11 +532,11 @@ struct AuthorDetailView: View {
             viewModel.reloadList(withSounds: soundData.filter({ $0.authorId == author.id }),
                                  andFavorites: try? database.getAllFavorites(),
                                  allowSensitiveContent: UserSettings.getShowExplicitContent())
-            viewModel.sendUsageMetricToServer(action: "didRemoveManySoundsFromFavorites(\(selectedCount))")
+            viewModel.sendUsageMetricToServer(action: "didRemoveManySoundsFromFavorites(\(selectedCount))", authorName: author.name)
         } else {
             viewModel.addSelectedToFavorites()
             viewModel.stopSelecting()
-            viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFavorites(\(selectedCount))")
+            viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFavorites(\(selectedCount))", authorName: author.name)
         }
     }
     
