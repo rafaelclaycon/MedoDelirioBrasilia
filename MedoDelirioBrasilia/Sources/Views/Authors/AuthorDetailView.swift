@@ -75,7 +75,7 @@ struct AuthorDetailView: View {
         author.photo == nil ? 50 : 250
     }
     
-    private func updateNavBarTitle(_ offset: CGFloat) {
+    private func updateNavBarContent(_ offset: CGFloat) {
         if offset < getOffsetBeforeShowingTitle() {
             DispatchQueue.main.async {
                 navBarTitle = title
@@ -246,7 +246,7 @@ struct AuthorDetailView: View {
             }
             .navigationTitle(navBarTitle)
             .onPreferenceChange(ViewOffsetKey.self) { offset in
-                updateNavBarTitle(offset)
+                updateNavBarContent(offset)
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

@@ -344,37 +344,6 @@ class AuthorDetailViewViewModel: ObservableObject {
         }
     }
     
-    func shareSelected() {
-        guard selectionKeeper.count > 0 else { return }
-        selectedSounds = [Sound]()
-        selectionKeeper.forEach { selectedSoundId in
-            guard let sound = soundData.filter({ $0.id == selectedSoundId }).first else { return }
-            selectedSounds?.append(sound)
-        }
-        
-        do {
-            try Sharer.share(sounds: selectedSounds ?? [Sound]()) { didShareSuccessfully in
-                if didShareSuccessfully {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-                        withAnimation {
-                            self.shareBannerMessage = Shared.soundSharedSuccessfullyMessage
-                            self.displaySharedSuccessfullyToast = true
-                        }
-                        TapticFeedback.success()
-                    }
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                        withAnimation {
-                            self.displaySharedSuccessfullyToast = false
-                        }
-                    }
-                }
-            }
-        } catch {
-            showUnableToGetSoundAlert()
-        }
-    }
-    
     func sendUsageMetricToServer(action: String, authorName: String) {
         let usageMetric = UsageMetric(customInstallId: UIDevice.customInstallId,
                                       originatingScreen: "AuthorDetailView(\(authorName))",
