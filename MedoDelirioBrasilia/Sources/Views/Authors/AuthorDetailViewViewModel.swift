@@ -15,13 +15,15 @@ class AuthorDetailViewViewModel: ObservableObject {
     @Published var soundSortOption: Int = 1
     @Published var favoritesKeeper = Set<String>()
     @Published var nowPlayingKeeper = Set<String>()
+    @Published var selectionKeeper = Set<String>()
     @Published var selectedSound: Sound? = nil
-    @Published var selectedSoundsForAddToFolder: [Sound]? = nil
+    @Published var selectedSounds: [Sound]? = nil
     
     @Published var showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = false
     @Published var showEmailAppPicker_soundUnavailableConfirmationDialog = false
     @Published var showEmailAppPicker_askForNewSound = false
     @Published var showEmailAppPicker_reportAuthorDetailIssue = false
+    var currentSoundsListMode: Binding<SoundsListMode>
     
     // Sharing
     @Published var iPadShareSheet = ActivityViewController(activityItems: [URL(string: "https://www.apple.com")!])
@@ -35,7 +37,8 @@ class AuthorDetailViewViewModel: ObservableObject {
     @Published var showAlert: Bool = false
     @Published var alertType: AuthorDetailAlertType = .ok
     
-    init(originatingScreenName: String, authorName: String) {
+    init(originatingScreenName: String, authorName: String, currentSoundsListMode: Binding<SoundsListMode>) {
+        self.currentSoundsListMode = currentSoundsListMode
         // Sends metric only from iPhones because iPad and Mac are calling this methods twice instead of once upon each screen opening.
         if UIDevice.current.userInterfaceIdiom == .phone {
             sendUsageMetricToServer(originatingScreenName: originatingScreenName, authorName: authorName)
@@ -102,6 +105,13 @@ class AuthorDetailViewViewModel: ObservableObject {
         })
         
         player?.togglePlay()
+    }
+    
+    func stopPlaying() {
+        if nowPlayingKeeper.count > 0 {
+            player?.togglePlay()
+            nowPlayingKeeper.removeAll()
+        }
     }
     
     func shareSound(withPath filepath: String, andContentId contentId: String) {
@@ -281,6 +291,94 @@ class AuthorDetailViewViewModel: ObservableObject {
         let usageMetric = UsageMetric(customInstallId: UIDevice.customInstallId,
                                       originatingScreen: originatingScreenName,
                                       destinationScreen: "\(Shared.ScreenNames.authorDetailView)(\(authorName))",
+                                      systemName: UIDevice.current.systemName,
+                                      isiOSAppOnMac: ProcessInfo.processInfo.isiOSAppOnMac,
+                                      appVersion: Versioneer.appVersion,
+                                      dateTime: Date.now.iso8601withFractionalSeconds,
+                                      currentTimeZone: TimeZone.current.abbreviation() ?? .empty)
+        networkRabbit.post(usageMetric: usageMetric)
+    }
+    
+    // MARK: - Multi-Select
+    
+    func startSelecting() {
+        stopPlaying()
+        if currentSoundsListMode.wrappedValue == .regular {
+            currentSoundsListMode.wrappedValue = .selection
+        } else {
+            currentSoundsListMode.wrappedValue = .regular
+            selectionKeeper.removeAll()
+        }
+    }
+    
+    func stopSelecting() {
+        currentSoundsListMode.wrappedValue = .regular
+        selectionKeeper.removeAll()
+    }
+    
+    func addSelectedToFavorites() {
+        guard selectionKeeper.count > 0 else { return }
+        selectionKeeper.forEach { selectedSound in
+            addToFavorites(soundId: selectedSound)
+        }
+    }
+    
+    func removeSelectedFromFavorites() {
+        guard selectionKeeper.count > 0 else { return }
+        selectionKeeper.forEach { selectedSound in
+            removeFromFavorites(soundId: selectedSound)
+        }
+    }
+    
+    func allSelectedAreFavorites() -> Bool {
+        guard selectionKeeper.count > 0 else { return false }
+        return selectionKeeper.isSubset(of: favoritesKeeper)
+    }
+    
+    func prepareSelectedToAddToFolder() {
+        guard selectionKeeper.count > 0 else { return }
+        selectedSounds = [Sound]()
+        selectionKeeper.forEach { selectedSoundId in
+            guard let sound = soundData.filter({ $0.id == selectedSoundId }).first else { return }
+            selectedSounds?.append(sound)
+        }
+    }
+    
+    func shareSelected() {
+        guard selectionKeeper.count > 0 else { return }
+        selectedSounds = [Sound]()
+        selectionKeeper.forEach { selectedSoundId in
+            guard let sound = soundData.filter({ $0.id == selectedSoundId }).first else { return }
+            selectedSounds?.append(sound)
+        }
+        
+        do {
+            try Sharer.share(sounds: selectedSounds ?? [Sound]()) { didShareSuccessfully in
+                if didShareSuccessfully {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                        withAnimation {
+                            self.shareBannerMessage = Shared.soundSharedSuccessfullyMessage
+                            self.displaySharedSuccessfullyToast = true
+                        }
+                        TapticFeedback.success()
+                    }
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        withAnimation {
+                            self.displaySharedSuccessfullyToast = false
+                        }
+                    }
+                }
+            }
+        } catch {
+            showUnableToGetSoundAlert()
+        }
+    }
+    
+    func sendUsageMetricToServer(action: String) {
+        let usageMetric = UsageMetric(customInstallId: UIDevice.customInstallId,
+                                      originatingScreen: "SoundsView",
+                                      destinationScreen: action,
                                       systemName: UIDevice.current.systemName,
                                       isiOSAppOnMac: ProcessInfo.processInfo.isiOSAppOnMac,
                                       appVersion: Versioneer.appVersion,
