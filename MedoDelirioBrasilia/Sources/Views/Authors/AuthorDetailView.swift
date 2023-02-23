@@ -14,6 +14,8 @@ struct AuthorDetailView: View {
     @State var author: Author
     @State private var navBarTitle: String = .empty
     @Binding var currentSoundsListMode: SoundsListMode
+    @State private var showSelectionControlsInToolbar = false
+    @State private var showMenuOnToolbarForiOS16AndHigher = false
     
     @State private var listWidth: CGFloat = 700
     @State private var columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
@@ -35,7 +37,7 @@ struct AuthorDetailView: View {
         return author.photo == nil ? [] : .top
     }
     
-    private var shouldDisplayMenuOnToolbar: Bool {
+    private var isiOS15: Bool {
         if #available(iOS 16, *) {
             return false
         } else {
@@ -44,7 +46,7 @@ struct AuthorDetailView: View {
     }
     
     private var shouldDisplayMenuBesideAuthorName: Bool {
-        !shouldDisplayMenuOnToolbar
+        !isiOS15
     }
     
     private func getScrollOffset(_ geometry: GeometryProxy) -> CGFloat {
@@ -77,10 +79,14 @@ struct AuthorDetailView: View {
         if offset < getOffsetBeforeShowingTitle() {
             DispatchQueue.main.async {
                 navBarTitle = title
+                showSelectionControlsInToolbar = currentSoundsListMode == .selection
+                showMenuOnToolbarForiOS16AndHigher = currentSoundsListMode == .regular
             }
         } else {
             DispatchQueue.main.async {
                 navBarTitle = .empty
+                showSelectionControlsInToolbar = false
+                showMenuOnToolbarForiOS16AndHigher = false
             }
         }
     }
@@ -140,7 +146,7 @@ struct AuthorDetailView: View {
                                 }
                                 
                                 if currentSoundsListMode == .selection {
-                                    selectionControls()
+                                    inlineSelectionControls()
                                 } else {
                                     if author.description != nil {
                                         Text(author.description ?? "")
@@ -244,8 +250,25 @@ struct AuthorDetailView: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                if shouldDisplayMenuOnToolbar {
-                    moreOptionsMenu(isOnToolbar: true)
+                if isiOS15 {
+                    // On regular mode, just show the ... menu
+                    if currentSoundsListMode == .regular {
+                        moreOptionsMenu(isOnToolbar: true)
+                    } else {
+                        // On scroll, show Select controls if not at the top
+                        if showSelectionControlsInToolbar {
+                            toolbarSelectionControls()
+                        } else {
+                            // Otherwise, show just the ... menu
+                            moreOptionsMenu(isOnToolbar: true)
+                        }
+                    }
+                } else {
+                    if showSelectionControlsInToolbar {
+                        toolbarSelectionControls()
+                    } else if showMenuOnToolbarForiOS16AndHigher {
+                        moreOptionsMenu(isOnToolbar: true)
+                    }
                 }
             }
             .onAppear {
@@ -337,6 +360,13 @@ struct AuthorDetailView: View {
                     }
                 }
             }
+            .onChange(of: viewModel.selectionKeeper.count) { selectionKeeperCount in
+                if navBarTitle.isEmpty == false {
+                    DispatchQueue.main.async {
+                        navBarTitle = title
+                    }
+                }
+            }
             
             if shouldDisplayAddedToFolderToast {
                 VStack {
@@ -424,43 +454,81 @@ struct AuthorDetailView: View {
         .disabled(viewModel.sounds.count == 0)
     }
     
-    @ViewBuilder func selectionControls() -> some View {
+    @ViewBuilder func inlineSelectionControls() -> some View {
         HStack(spacing: 25) {
             Button {
-                currentSoundsListMode = .regular
-                viewModel.selectionKeeper.removeAll()
+                cancelSelectionAction()
             } label: {
                 Text("Cancelar")
                     .bold()
             }
             
             Button {
-                // Need to get count before clearing the Set.
-                let selectedCount: Int = viewModel.selectionKeeper.count
-                
-                if viewModel.allSelectedAreFavorites() {
-                    viewModel.removeSelectedFromFavorites()
-                    viewModel.stopSelecting()
-                    viewModel.reloadList(withSounds: soundData.filter({ $0.authorId == author.id }),
-                                         andFavorites: try? database.getAllFavorites(),
-                                         allowSensitiveContent: UserSettings.getShowExplicitContent())
-                    viewModel.sendUsageMetricToServer(action: "didRemoveManySoundsFromFavorites(\(selectedCount))")
-                } else {
-                    viewModel.addSelectedToFavorites()
-                    viewModel.stopSelecting()
-                    viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFavorites(\(selectedCount))")
-                }
+                favoriteAction()
             } label: {
                 Label("Favoritos", systemImage: viewModel.allSelectedAreFavorites() ? "star.slash" : "star")
             }.disabled(viewModel.selectionKeeper.count == 0)
             
             Button {
-                viewModel.prepareSelectedToAddToFolder()
-                showingAddToFolderModal = true
+                addToFolderAction()
             } label: {
                 Label("Pasta", systemImage: "folder.badge.plus")
             }.disabled(viewModel.selectionKeeper.count == 0)
         }
+        .padding(.vertical, 10)
+    }
+    
+    @ViewBuilder func toolbarSelectionControls() -> some View {
+        HStack(spacing: 15) {
+            Button {
+                cancelSelectionAction()
+            } label: {
+                Text("Cancelar")
+                    .bold()
+            }
+            
+            Button {
+                favoriteAction()
+            } label: {
+                Image(systemName: viewModel.allSelectedAreFavorites() ? "star.slash" : "star")
+            }.disabled(viewModel.selectionKeeper.count == 0)
+            
+            Button {
+                addToFolderAction()
+            } label: {
+                Image(systemName: "folder.badge.plus")
+            }.disabled(viewModel.selectionKeeper.count == 0)
+            
+            moreOptionsMenu(isOnToolbar: true)
+        }
+    }
+    
+    private func cancelSelectionAction() {
+        currentSoundsListMode = .regular
+        viewModel.selectionKeeper.removeAll()
+    }
+    
+    private func favoriteAction() {
+        // Need to get count before clearing the Set.
+        let selectedCount: Int = viewModel.selectionKeeper.count
+        
+        if viewModel.allSelectedAreFavorites() {
+            viewModel.removeSelectedFromFavorites()
+            viewModel.stopSelecting()
+            viewModel.reloadList(withSounds: soundData.filter({ $0.authorId == author.id }),
+                                 andFavorites: try? database.getAllFavorites(),
+                                 allowSensitiveContent: UserSettings.getShowExplicitContent())
+            viewModel.sendUsageMetricToServer(action: "didRemoveManySoundsFromFavorites(\(selectedCount))")
+        } else {
+            viewModel.addSelectedToFavorites()
+            viewModel.stopSelecting()
+            viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFavorites(\(selectedCount))")
+        }
+    }
+    
+    private func addToFolderAction() {
+        viewModel.prepareSelectedToAddToFolder()
+        showingAddToFolderModal = true
     }
 
 }
