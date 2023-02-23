@@ -15,10 +15,18 @@ struct WhatsNewView: View {
         UIScreen.main.bounds.width > 389 ? 100 : 50
     }
     
+    private var systemName: String {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            return "iOS 16"
+        } else {
+            return ProcessInfo.processInfo.isiOSAppOnMac ? "macOS Ventura" : "iPadOS 16"
+        }
+    }
+    
     var body: some View {
         ScrollView {
-            VStack(alignment: .center, spacing: 40) {
-                Text("Novidades do App Medo e Delírio")
+            VStack(alignment: .center, spacing: 50) {
+                Text("Novidade da Versão 6.3")
                     .font(.largeTitle)
                     .bold()
                     .multilineTextAlignment(.center)
@@ -26,33 +34,18 @@ struct WhatsNewView: View {
                 
                 VStack(alignment: .center, spacing: 24) {
                     HStack(spacing: 15) {
-                        SelectMultipleSymbol()
-                        
-                        VStack(alignment: .leading, spacing: 5) {
-                            Text("Selecione Múltiplos Sons")
-                                .font(.callout)
-                                .bold()
-                            Text("Adicione vários sons aos Favoritos ou a uma pasta escolhendo Selecionar no menu do topo direito da aba Sons.")
-                                .font(.callout)
-                                .foregroundColor(.gray)
-                        }
-                        
-                        Spacer()
-                    }
-                    
-                    HStack(spacing: 15) {
-                        Image(systemName: "folder.fill")
+                        Image(systemName: "film")
                             .resizable()
                             .scaledToFit()
                             .frame(width: 40)
                             .foregroundColor(.green)
-                            .padding(.horizontal, 4)
+                            .padding(.horizontal, 6)
                         
                         VStack(alignment: .leading, spacing: 5) {
-                            Text("Pastas Mais Espertas")
+                            Text("Melhorias no Compartilhar como Vídeo")
                                 .font(.callout)
                                 .bold()
-                            Text("Ordene o conteúdo da pasta pela data na qual o som foi adicionado a ela. Disponível para pastas criadas a partir da versão 5.47.")
+                            Text("Agora os vídeos contam com o nome do(a) autor(a) e uma fonte de texto mais bonita. Requer \(systemName).")
                                 .font(.callout)
                                 .foregroundColor(.gray)
                         }
@@ -60,30 +53,52 @@ struct WhatsNewView: View {
                         Spacer()
                     }
                     
-                    HStack(spacing: 15) {
-                        Image(systemName: "person.crop.artframe")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 36)
-                            .foregroundColor(.green)
-                            .padding(.horizontal, 6)
-                        
-                        VStack(alignment: .leading, spacing: 5) {
-                            Text("Nova Experiência de Autor")
-                                .font(.callout)
-                                .bold()
-                            Text("Veja uma foto e uma breve descrição da relevância da pessoa ao abrir a tela de autor de cada som.")
-                                .font(.callout)
-                                .foregroundColor(.gray)
-                        }
-                        
-                        Spacer()
-                    }
+                    Spacer()
+                    
+//                    HStack(spacing: 15) {
+//                        Image(systemName: "folder.fill")
+//                            .resizable()
+//                            .scaledToFit()
+//                            .frame(width: 40)
+//                            .foregroundColor(.green)
+//                            .padding(.horizontal, 4)
+//
+//                        VStack(alignment: .leading, spacing: 5) {
+//                            Text("Pastas Mais Espertas")
+//                                .font(.callout)
+//                                .bold()
+//                            Text("Ordene o conteúdo da pasta pela data na qual o som foi adicionado a ela. Disponível para pastas criadas a partir da versão 5.47.")
+//                                .font(.callout)
+//                                .foregroundColor(.gray)
+//                        }
+//
+//                        Spacer()
+//                    }
+//
+//                    HStack(spacing: 15) {
+//                        Image(systemName: "person.crop.artframe")
+//                            .resizable()
+//                            .scaledToFit()
+//                            .frame(width: 36)
+//                            .foregroundColor(.green)
+//                            .padding(.horizontal, 6)
+//
+//                        VStack(alignment: .leading, spacing: 5) {
+//                            Text("Nova Experiência de Autor")
+//                                .font(.callout)
+//                                .bold()
+//                            Text("Veja uma foto e uma breve descrição da relevância da pessoa ao abrir a tela de autor de cada som.")
+//                                .font(.callout)
+//                                .foregroundColor(.gray)
+//                        }
+//
+//                        Spacer()
+//                    }
                 }
                 .padding(.horizontal, 20)
                 
                 Button {
-                    AppPersistentMemory.setHasSeen60WhatsNewScreen(to: true)
+                    AppPersistentMemory.setHasSeen63WhatsNewScreen(to: true)
                     isBeingShown = false
                 } label: {
                     Text("Continuar")

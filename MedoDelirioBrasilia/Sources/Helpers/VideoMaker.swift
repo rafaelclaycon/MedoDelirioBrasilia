@@ -50,7 +50,7 @@ class VideoMaker {
         }
     }
     
-    @available(*, deprecated, message: "Abandoned in favor of ImageRenderer from iOS 16 onwards")
+    // TODO: - Remove this method when dropping support for iOS 15.
     static func textToImage(drawText text: String, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
         let textColor = UIColor.black
         let textFont = UIFont.systemFont(ofSize: 72, weight: .bold)

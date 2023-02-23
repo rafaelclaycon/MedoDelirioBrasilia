@@ -295,7 +295,8 @@ struct SoundsView: View {
                 if AppPersistentMemory.getHasShownNotificationsOnboarding() == false {
                     subviewToOpen = .onboardingView
                     showingModalView = true
-                } else if AppPersistentMemory.getHasSeen60WhatsNewScreen() == false {
+                    AppPersistentMemory.setHasSeen63WhatsNewScreen(to: true) // Prevent the What's New screen from appearing when switching tabs
+                } else if AppPersistentMemory.getHasSeen63WhatsNewScreen() == false {
                     if UIDevice.current.userInterfaceIdiom == .phone {
                         subviewToOpen = .whatsNewView
                         showingModalView = true
@@ -349,7 +350,7 @@ struct SoundsView: View {
             }
             .sheet(isPresented: $showingModalView, onDismiss: {
                 if subviewToOpen == .whatsNewView {
-                    AppPersistentMemory.setHasSeen60WhatsNewScreen(to: true)
+                    AppPersistentMemory.setHasSeen63WhatsNewScreen(to: true)
                 }
             }) {
                 switch subviewToOpen {
