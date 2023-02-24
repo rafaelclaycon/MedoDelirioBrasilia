@@ -21,6 +21,10 @@ class FolderDetailViewViewModel: ObservableObject {
     @Published var selectionKeeper = Set<String>()
     var currentSoundsListMode: Binding<SoundsListMode>
     
+    // Playlist
+    @Published var isPlayingPlaylist: Bool = false
+    private var currentTrackIndex: Int = 0
+    
     // Sharing
     @Published var iPadShareSheet = ActivityViewController(activityItems: [URL(string: "https://www.apple.com")!])
     @Published var isShowingShareSheet: Bool = false
@@ -115,6 +119,17 @@ class FolderDetailViewViewModel: ObservableObject {
             guard let self = self else { return }
             if state?.activity == .stopped {
                 self.nowPlayingKeeper.removeAll()
+                
+                if self.isPlayingPlaylist {
+                    self.currentTrackIndex += 1
+                    
+                    if self.currentTrackIndex >= self.sounds.count {
+                        self.doPlaylistCleanup()
+                        return
+                    }
+                    
+                    self.playSound(fromPath: self.sounds[self.currentTrackIndex].filename, withId: self.sounds[self.currentTrackIndex].id)
+                }
             }
         })
         
@@ -125,6 +140,7 @@ class FolderDetailViewViewModel: ObservableObject {
         if nowPlayingKeeper.count > 0 {
             player?.togglePlay()
             nowPlayingKeeper.removeAll()
+            doPlaylistCleanup()
         }
     }
     
@@ -314,6 +330,27 @@ class FolderDetailViewViewModel: ObservableObject {
                                       dateTime: Date.now.iso8601withFractionalSeconds,
                                       currentTimeZone: TimeZone.current.abbreviation() ?? .empty)
         networkRabbit.post(usageMetric: usageMetric)
+    }
+    
+    // MARK: - Playlist
+    
+    func playAllSoundsOneAfterTheOther() {
+        guard let firstSound = sounds.first else { return }
+        isPlayingPlaylist = true
+        playSound(fromPath: firstSound.filename, withId: firstSound.id)
+    }
+    
+    func playFrom(sound: Sound) {
+        guard let soundIndex = sounds.firstIndex(where: { $0.id == sound.id }) else { return }
+        let soundInArray = sounds[soundIndex]
+        currentTrackIndex = soundIndex
+        isPlayingPlaylist = true
+        playSound(fromPath: soundInArray.filename, withId: soundInArray.id)
+    }
+    
+    func doPlaylistCleanup() {
+        currentTrackIndex = 0
+        isPlayingPlaylist = false
     }
     
     // MARK: - Alerts

@@ -47,72 +47,92 @@ struct FolderDetailView: View {
                 if viewModel.hasSoundsToDisplay {
                     GeometryReader { geometry in
                         ScrollView {
-                            VStack(alignment: .leading) {
-                                HStack {
-                                    Text(viewModel.getSoundCount())
-                                        .font(.callout)
-                                        .foregroundColor(.gray)
-                                        .bold()
-                                    
-                                    Spacer()
+                            ScrollViewReader { proxy in
+                                VStack(alignment: .leading) {
+                                    HStack {
+                                        Text(viewModel.getSoundCount())
+                                            .font(.callout)
+                                            .foregroundColor(.gray)
+                                            .bold()
+                                        
+                                        Spacer()
+                                    }
                                 }
-                            }
-                            .padding(.horizontal, 20)
-                            .padding(.vertical)
-                            
-                            LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
-                                ForEach(viewModel.sounds) { sound in
-                                    SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", duration: sound.duration, isNew: sound.isNew ?? false, favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()), nowPlaying: $viewModel.nowPlayingKeeper, selectedItems: $viewModel.selectionKeeper, currentSoundsListMode: $viewModel.currentSoundsListMode.wrappedValue)
-                                        .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
-                                        .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
-                                        .onTapGesture {
-                                            if viewModel.currentSoundsListMode.wrappedValue == .regular {
-                                                if viewModel.nowPlayingKeeper.contains(sound.id) {
-                                                    player?.togglePlay()
-                                                    viewModel.nowPlayingKeeper.removeAll()
+                                .padding(.horizontal, 20)
+                                .padding(.vertical)
+                                
+                                LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
+                                    ForEach(viewModel.sounds) { sound in
+                                        SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", duration: sound.duration, isNew: sound.isNew ?? false, favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()), nowPlaying: $viewModel.nowPlayingKeeper, selectedItems: $viewModel.selectionKeeper, currentSoundsListMode: $viewModel.currentSoundsListMode.wrappedValue)
+                                            .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
+                                            .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
+                                            .onTapGesture {
+                                                if viewModel.currentSoundsListMode.wrappedValue == .regular {
+                                                    if viewModel.nowPlayingKeeper.contains(sound.id) {
+                                                        player?.togglePlay()
+                                                        viewModel.nowPlayingKeeper.removeAll()
+                                                        viewModel.doPlaylistCleanup()
+                                                    } else {
+                                                        viewModel.playSound(fromPath: sound.filename, withId: sound.id)
+                                                    }
                                                 } else {
-                                                    viewModel.playSound(fromPath: sound.filename, withId: sound.id)
-                                                }
-                                            } else {
-                                                if viewModel.selectionKeeper.contains(sound.id) {
-                                                    viewModel.selectionKeeper.remove(sound.id)
-                                                } else {
-                                                    viewModel.selectionKeeper.insert(sound.id)
+                                                    if viewModel.selectionKeeper.contains(sound.id) {
+                                                        viewModel.selectionKeeper.remove(sound.id)
+                                                    } else {
+                                                        viewModel.selectionKeeper.insert(sound.id)
+                                                    }
                                                 }
                                             }
-                                        }
-                                        .contextMenu {
-                                            Section {
-                                                Button {
-                                                    viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
-                                                } label: {
-                                                    Label(Shared.shareSoundButtonText, systemImage: "square.and.arrow.up")
+                                            .contextMenu {
+                                                Section {
+                                                    Button {
+                                                        viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
+                                                    } label: {
+                                                        Label(Shared.shareSoundButtonText, systemImage: "square.and.arrow.up")
+                                                    }
+                                                    
+                                                    Button {
+                                                        viewModel.selectedSound = sound
+                                                        showingModalView = true
+                                                    } label: {
+                                                        Label(Shared.shareAsVideoButtonText, systemImage: "film")
+                                                    }
                                                 }
                                                 
-                                                Button {
-                                                    viewModel.selectedSound = sound
-                                                    showingModalView = true
-                                                } label: {
-                                                    Label(Shared.shareAsVideoButtonText, systemImage: "film")
+                                                Section {
+                                                    Button {
+                                                        viewModel.playFrom(sound: sound)
+                                                    } label: {
+                                                        Label("Reproduzir a Partir Desse", systemImage: "play")
+                                                    }
+                                                }
+                                                
+                                                Section {
+                                                    Button {
+                                                        viewModel.selectedSound = sound
+                                                        viewModel.showSoundRemovalConfirmation(soundTitle: sound.title)
+                                                    } label: {
+                                                        Label("Remover da Pasta", systemImage: "folder.badge.minus")
+                                                    }
                                                 }
                                             }
-                                            
-                                            Section {
-                                                Button {
-                                                    viewModel.selectedSound = sound
-                                                    viewModel.showSoundRemovalConfirmation(soundTitle: sound.title)
-                                                } label: {
-                                                    Label("Remover da Pasta", systemImage: "folder.badge.minus")
-                                                }
+                                    }
+                                }
+                                .padding(.horizontal)
+                                .padding(.bottom, 18)
+                                .onChange(of: geometry.size.width) { newWidth in
+                                    self.listWidth = newWidth
+                                    columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
+                                }
+                                .onChange(of: viewModel.nowPlayingKeeper) { nowPlayingKeeper in
+                                    if viewModel.isPlayingPlaylist, !nowPlayingKeeper.isEmpty, let playingSoundId = nowPlayingKeeper.first {
+                                        DispatchQueue.main.async {
+                                            withAnimation {
+                                                proxy.scrollTo(playingSoundId, anchor: .center)
                                             }
                                         }
+                                    }
                                 }
-                            }
-                            .padding(.horizontal)
-                            .padding(.bottom, 18)
-                            .onChange(of: geometry.size.width) { newWidth in
-                                self.listWidth = newWidth
-                                columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
                             }
                         }
                     }
@@ -124,6 +144,16 @@ struct FolderDetailView: View {
             .navigationTitle(title)
             .toolbar {
                 selectionControls()
+                
+                Button {
+                    if viewModel.isPlayingPlaylist {
+                        viewModel.stopPlaying()
+                    } else {
+                        viewModel.playAllSoundsOneAfterTheOther()
+                    }
+                } label: {
+                    Image(systemName: viewModel.isPlayingPlaylist ? "stop.fill" : "play.fill")
+                }
                 
                 Menu {
                     Section {
@@ -187,6 +217,7 @@ struct FolderDetailView: View {
                 } label: {
                     Image(systemName: "ellipsis.circle")
                 }
+                .disabled(viewModel.isPlayingPlaylist)
                 .onChange(of: viewModel.soundSortOption, perform: { soundSortOption in
                     switch soundSortOption {
                     case 1:
