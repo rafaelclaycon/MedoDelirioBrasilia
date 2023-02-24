@@ -133,17 +133,8 @@ struct SoundsView: View {
                             ScrollViewReader { proxy in
                                 LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
                                     if searchResults.isEmpty {
-                                        VStack {
-                                            Spacer()
-                                            
-                                            Text("Nenhum Resultado")
-                                                .foregroundColor(.gray)
-                                                .font(.title3)
-                                                .multilineTextAlignment(.center)
-                                            
-                                            Spacer()
-                                        }
-                                        .padding(.vertical, UIScreen.main.bounds.height / 3)
+                                        NoSearchResultsView(searchText: $searchText)
+                                            .padding(.vertical, UIScreen.main.bounds.height / 4)
                                     } else {
                                         ForEach(searchResults) { sound in
                                             SoundCell(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", duration: sound.duration, isNew: sound.isNew ?? false, favorites: $viewModel.favoritesKeeper, highlighted: $viewModel.highlightKeeper, nowPlaying: $viewModel.nowPlayingKeeper, selectedItems: $viewModel.selectionKeeper, currentSoundsListMode: $currentSoundsListMode)
