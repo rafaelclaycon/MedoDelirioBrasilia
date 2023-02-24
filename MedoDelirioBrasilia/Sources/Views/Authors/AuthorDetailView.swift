@@ -182,51 +182,53 @@ struct AuthorDetailView: View {
                                                 }
                                             }
                                         }
-                                        .contextMenu(menuItems: {
-                                            Section {
-                                                Button {
-                                                    viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
-                                                } label: {
-                                                    Label(Shared.shareSoundButtonText, systemImage: "square.and.arrow.up")
-                                                }
-                                                
-                                                Button {
-                                                    viewModel.selectedSound = sound
-                                                    showingModalView = true
-                                                } label: {
-                                                    Label(Shared.shareAsVideoButtonText, systemImage: "film")
-                                                }
-                                            }
-                                            
-                                            Section {
-                                                Button {
-                                                    if viewModel.favoritesKeeper.contains(sound.id) {
-                                                        viewModel.removeFromFavorites(soundId: sound.id)
-                                                    } else {
-                                                        viewModel.addToFavorites(soundId: sound.id)
+                                        .contextMenu {
+                                            if currentSoundsListMode != .selection {
+                                                Section {
+                                                    Button {
+                                                        viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
+                                                    } label: {
+                                                        Label(Shared.shareSoundButtonText, systemImage: "square.and.arrow.up")
                                                     }
-                                                } label: {
-                                                    Label(viewModel.favoritesKeeper.contains(sound.id) ? "Remover dos Favoritos" : "Adicionar aos Favoritos", systemImage: viewModel.favoritesKeeper.contains(sound.id) ? "star.slash" : "star")
+                                                    
+                                                    Button {
+                                                        viewModel.selectedSound = sound
+                                                        showingModalView = true
+                                                    } label: {
+                                                        Label(Shared.shareAsVideoButtonText, systemImage: "film")
+                                                    }
                                                 }
                                                 
-                                                Button {
-                                                    viewModel.selectedSounds = [Sound]()
-                                                    viewModel.selectedSounds?.append(sound)
-                                                    showingAddToFolderModal = true
-                                                } label: {
-                                                    Label(Shared.addToFolderButtonText, systemImage: "folder.badge.plus")
+                                                Section {
+                                                    Button {
+                                                        if viewModel.favoritesKeeper.contains(sound.id) {
+                                                            viewModel.removeFromFavorites(soundId: sound.id)
+                                                        } else {
+                                                            viewModel.addToFavorites(soundId: sound.id)
+                                                        }
+                                                    } label: {
+                                                        Label(viewModel.favoritesKeeper.contains(sound.id) ? "Remover dos Favoritos" : "Adicionar aos Favoritos", systemImage: viewModel.favoritesKeeper.contains(sound.id) ? "star.slash" : "star")
+                                                    }
+                                                    
+                                                    Button {
+                                                        viewModel.selectedSounds = [Sound]()
+                                                        viewModel.selectedSounds?.append(sound)
+                                                        showingAddToFolderModal = true
+                                                    } label: {
+                                                        Label(Shared.addToFolderButtonText, systemImage: "folder.badge.plus")
+                                                    }
+                                                }
+                                                
+                                                Section {
+                                                    Button {
+                                                        viewModel.selectedSound = sound
+                                                        viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = true
+                                                    } label: {
+                                                        Label(SoundOptionsHelper.getSuggestOtherAuthorNameButtonTitle(authorId: sound.authorId), systemImage: "exclamationmark.bubble")
+                                                    }
                                                 }
                                             }
-                                            
-                                            Section {
-                                                Button {
-                                                    viewModel.selectedSound = sound
-                                                    viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = true
-                                                } label: {
-                                                    Label(SoundOptionsHelper.getSuggestOtherAuthorNameButtonTitle(authorId: sound.authorId), systemImage: "exclamationmark.bubble")
-                                                }
-                                            }
-                                        })
+                                        }
                                 }
                             }
                             .padding(.horizontal)
