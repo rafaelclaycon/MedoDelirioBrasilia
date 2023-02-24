@@ -1182,6 +1182,7 @@
 		D9E69592283D2E2C00C341B2 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = D9E69591283D2E2C00C341B2 /* SQLite */; };
 		D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E69593283D2F2F00C341B2 /* Favorite.swift */; };
 		D9E747FB29A8ED1100009C8D /* NoSearchResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E747FA29A8ED1100009C8D /* NoSearchResultsView.swift */; };
+		D9E747FD29A8F03000009C8D /* SoundsSearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E747FC29A8F03000009C8D /* SoundsSearchResults.swift */; };
 		D9E7D0EA28AC6195001E909E /* Dose segura de crack, os tios e as tias do Zap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E7D0E928AC6195001E909E /* Dose segura de crack, os tios e as tias do Zap.mp3 */; };
 		D9E7D0EC28AC6349001E909E /* REDE GLOBO - GIL DO VIGOR - Eu estou to indignado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E7D0EB28AC6348001E909E /* REDE GLOBO - GIL DO VIGOR - Eu estou to indignado.mp3 */; };
 		D9E7D0EE28AC64F4001E909E /* Rogerinho - Ta certa a indignacao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E7D0ED28AC64F4001E909E /* Rogerinho - Ta certa a indignacao.mp3 */; };
@@ -2450,6 +2451,7 @@
 		D9E53FA929A697A400BF9D31 /* Pipino de novo de novo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pipino de novo de novo.mp3"; sourceTree = "<group>"; };
 		D9E69593283D2F2F00C341B2 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		D9E747FA29A8ED1100009C8D /* NoSearchResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSearchResultsView.swift; sourceTree = "<group>"; };
+		D9E747FC29A8F03000009C8D /* SoundsSearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsSearchResults.swift; sourceTree = "<group>"; };
 		D9E7D0E928AC6195001E909E /* Dose segura de crack, os tios e as tias do Zap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Dose segura de crack, os tios e as tias do Zap.mp3"; sourceTree = "<group>"; };
 		D9E7D0EB28AC6348001E909E /* REDE GLOBO - GIL DO VIGOR - Eu estou to indignado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "REDE GLOBO - GIL DO VIGOR - Eu estou to indignado.mp3"; sourceTree = "<group>"; };
 		D9E7D0ED28AC64F4001E909E /* Rogerinho - Ta certa a indignacao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rogerinho - Ta certa a indignacao.mp3"; sourceTree = "<group>"; };
@@ -4104,6 +4106,7 @@
 				D92C0CA928405B2D009CF19A /* NoFavoritesView.swift */,
 				D99A961B299A733E00BB5F0D /* RoundCheckbox.swift */,
 				D9E747FA29A8ED1100009C8D /* NoSearchResultsView.swift */,
+				D9E747FC29A8F03000009C8D /* SoundsSearchResults.swift */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -5465,6 +5468,7 @@
 				D976FF3828674BAC00998E1B /* FoldersBannerView.swift in Sources */,
 				D90EDDBA2908505000ED87A8 /* FolderResearchHelper.swift in Sources */,
 				D97D76FB2885B794005210D9 /* EmailAppPickerView.swift in Sources */,
+				D9E747FD29A8F03000009C8D /* SoundsSearchResults.swift in Sources */,
 				D9A3AB6B28F03C970064CB7A /* ViewStates.swift in Sources */,
 				D99B9DCA2848148600897930 /* ServerStatsAndLogs.swift in Sources */,
 				D9758C3828616E650094D388 /* FolderColor.swift in Sources */,
