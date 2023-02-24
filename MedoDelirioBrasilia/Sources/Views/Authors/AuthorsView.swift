@@ -14,6 +14,7 @@ struct AuthorsView: View {
     @Binding var sortOption: Int
     @Binding var sortAction: AuthorSortOption
     @Binding var searchTextForControl: String
+    @State var currentSoundsListMode: SoundsListMode = .regular
     
     var searchResults: [Author] {
         if searchText.isEmpty {
@@ -40,10 +41,15 @@ struct AuthorsView: View {
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 20) {
-                ForEach(searchResults) { author in
-                    NavigationLink(destination: AuthorDetailView(viewModel: AuthorDetailViewViewModel(originatingScreenName: searchText.isEmpty ? Shared.ScreenNames.authorsView : "\(Shared.ScreenNames.authorsView)(\(searchText))", authorName: author.name), author: author)) {
-                        AuthorCell(authorName: author.name, authorImageURL: author.photo ?? "", soundCount: "\(author.soundCount ?? 0)")
-                            .padding(.horizontal, 5)
+                if searchResults.isEmpty {
+                    NoSearchResultsView(searchText: $searchText)
+                        .padding(.vertical, UIScreen.main.bounds.height / 4)
+                } else {
+                    ForEach(searchResults) { author in
+                        NavigationLink(destination: AuthorDetailView(viewModel: AuthorDetailViewViewModel(originatingScreenName: searchText.isEmpty ? Shared.ScreenNames.authorsView : "\(Shared.ScreenNames.authorsView)(\(searchText))", authorName: author.name, currentSoundsListMode: $currentSoundsListMode), author: author, currentSoundsListMode: $currentSoundsListMode)) {
+                            AuthorCell(authorName: author.name, authorImageURL: author.photo ?? "", soundCount: "\(author.soundCount ?? 0)")
+                                .padding(.horizontal, 5)
+                        }
                     }
                 }
             }
