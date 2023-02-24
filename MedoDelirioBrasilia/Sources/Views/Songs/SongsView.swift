@@ -55,43 +55,48 @@ struct SongsView: View {
             VStack {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 14) {
-                        ForEach(searchResults) { song in
-                            SongCell(songId: song.id, title: song.title, genre: song.genre, duration: song.duration, isNew: song.isNew ?? false, nowPlaying: $viewModel.nowPlayingKeeper)
-                                .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
-                                .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
-                                .onTapGesture {
-                                    if viewModel.nowPlayingKeeper.contains(song.id) {
-                                        player?.togglePlay()
-                                        viewModel.nowPlayingKeeper.removeAll()
-                                    } else {
-                                        viewModel.playSong(fromPath: song.filename, withId: song.id)
+                        if searchResults.isEmpty {
+                            NoSearchResultsView(searchText: $searchText)
+                                .padding(.vertical, UIScreen.main.bounds.height / 4)
+                        } else {
+                            ForEach(searchResults) { song in
+                                SongCell(songId: song.id, title: song.title, genre: song.genre, duration: song.duration, isNew: song.isNew ?? false, nowPlaying: $viewModel.nowPlayingKeeper)
+                                    .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
+                                    .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
+                                    .onTapGesture {
+                                        if viewModel.nowPlayingKeeper.contains(song.id) {
+                                            player?.togglePlay()
+                                            viewModel.nowPlayingKeeper.removeAll()
+                                        } else {
+                                            viewModel.playSong(fromPath: song.filename, withId: song.id)
+                                        }
                                     }
-                                }
-                                .contextMenu(menuItems: {
-                                    Section {
-                                        Button {
-                                            viewModel.shareSong(withPath: song.filename, andContentId: song.id)
-                                        } label: {
-                                            Label(Shared.shareSongButtonText, systemImage: "square.and.arrow.up")
+                                    .contextMenu(menuItems: {
+                                        Section {
+                                            Button {
+                                                viewModel.shareSong(withPath: song.filename, andContentId: song.id)
+                                            } label: {
+                                                Label(Shared.shareSongButtonText, systemImage: "square.and.arrow.up")
+                                            }
+                                            
+                                            Button {
+                                                viewModel.selectedSong = song
+                                                showingModalView = true
+                                            } label: {
+                                                Label(Shared.shareAsVideoButtonText, systemImage: "film")
+                                            }
                                         }
                                         
-                                        Button {
-                                            viewModel.selectedSong = song
-                                            showingModalView = true
-                                        } label: {
-                                            Label(Shared.shareAsVideoButtonText, systemImage: "film")
+                                        Section {
+                                            Button {
+                                                viewModel.selectedSong = song
+                                                viewModel.showEmailAppPicker_suggestChangeConfirmationDialog = true
+                                            } label: {
+                                                Label("Sugerir Alteração", systemImage: "exclamationmark.bubble")
+                                            }
                                         }
-                                    }
-                                    
-                                    Section {
-                                        Button {
-                                            viewModel.selectedSong = song
-                                            viewModel.showEmailAppPicker_suggestChangeConfirmationDialog = true
-                                        } label: {
-                                            Label("Sugerir Alteração", systemImage: "exclamationmark.bubble")
-                                        }
-                                    }
-                                })
+                                    })
+                            }
                         }
                     }
                     .searchable(text: $searchText)
