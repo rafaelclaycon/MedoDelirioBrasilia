@@ -1002,6 +1002,8 @@
 		D9917A0F2990856C00FB6274 /* Cristiano Botafogo - Generais na casa do caralho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9917A0E2990856C00FB6274 /* Cristiano Botafogo - Generais na casa do caralho.mp3 */; };
 		D9917A112991530000FB6274 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9917A102991530000FB6274 /* Double+Extensions.swift */; };
 		D991E598284A94F70005705F /* Podium.swift in Sources */ = {isa = PBXBuildFile; fileRef = D991E597284A94F70005705F /* Podium.swift */; };
+		D993E68829A9920600F4DE9A /* AddPlaylistTables.swift in Sources */ = {isa = PBXBuildFile; fileRef = D993E68729A9920600F4DE9A /* AddPlaylistTables.swift */; };
+		D993E68A29A993AB00F4DE9A /* LocalDatabase+Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = D993E68929A993AB00F4DE9A /* LocalDatabase+Playlist.swift */; };
 		D9943F152863CC4D002C6B97 /* A impiedosa justica de Deus.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9943F142863CC4D002C6B97 /* A impiedosa justica de Deus.mp3 */; };
 		D9943F172863DAE1002C6B97 /* FolderDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F162863DAE1002C6B97 /* FolderDetailView.swift */; };
 		D9943F1A286406AF002C6B97 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D9943F19286406AF002C6B97 /* Kingfisher */; };
@@ -1182,6 +1184,11 @@
 		D9E69592283D2E2C00C341B2 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = D9E69591283D2E2C00C341B2 /* SQLite */; };
 		D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E69593283D2F2F00C341B2 /* Favorite.swift */; };
 		D9E747FB29A8ED1100009C8D /* NoSearchResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E747FA29A8ED1100009C8D /* NoSearchResultsView.swift */; };
+		D9E7480029A93DDF00009C8D /* PlaylistList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E747FF29A93DDF00009C8D /* PlaylistList.swift */; };
+		D9E7480229A93F4900009C8D /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E7480129A93F4900009C8D /* Playlist.swift */; };
+		D9E7480429A9400600009C8D /* PlaylistDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E7480329A9400600009C8D /* PlaylistDetailView.swift */; };
+		D9E7480629A940CA00009C8D /* PlaylistRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E7480529A940CA00009C8D /* PlaylistRow.swift */; };
+		D9E7480829A9435700009C8D /* PlaylistSoundRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E7480729A9435700009C8D /* PlaylistSoundRow.swift */; };
 		D9E7D0EA28AC6195001E909E /* Dose segura de crack, os tios e as tias do Zap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E7D0E928AC6195001E909E /* Dose segura de crack, os tios e as tias do Zap.mp3 */; };
 		D9E7D0EC28AC6349001E909E /* REDE GLOBO - GIL DO VIGOR - Eu estou to indignado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E7D0EB28AC6348001E909E /* REDE GLOBO - GIL DO VIGOR - Eu estou to indignado.mp3 */; };
 		D9E7D0EE28AC64F4001E909E /* Rogerinho - Ta certa a indignacao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E7D0ED28AC64F4001E909E /* Rogerinho - Ta certa a indignacao.mp3 */; };
@@ -2272,6 +2279,8 @@
 		D9917A0E2990856C00FB6274 /* Cristiano Botafogo - Generais na casa do caralho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano Botafogo - Generais na casa do caralho.mp3"; sourceTree = "<group>"; };
 		D9917A102991530000FB6274 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		D991E597284A94F70005705F /* Podium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Podium.swift; sourceTree = "<group>"; };
+		D993E68729A9920600F4DE9A /* AddPlaylistTables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlaylistTables.swift; sourceTree = "<group>"; };
+		D993E68929A993AB00F4DE9A /* LocalDatabase+Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+Playlist.swift"; sourceTree = "<group>"; };
 		D9943F142863CC4D002C6B97 /* A impiedosa justica de Deus.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "A impiedosa justica de Deus.mp3"; sourceTree = "<group>"; };
 		D9943F162863DAE1002C6B97 /* FolderDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetailView.swift; sourceTree = "<group>"; };
 		D9943F1B28641917002C6B97 /* LocalDatabase+Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+Favorite.swift"; sourceTree = "<group>"; };
@@ -2450,6 +2459,11 @@
 		D9E53FA929A697A400BF9D31 /* Pipino de novo de novo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pipino de novo de novo.mp3"; sourceTree = "<group>"; };
 		D9E69593283D2F2F00C341B2 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		D9E747FA29A8ED1100009C8D /* NoSearchResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSearchResultsView.swift; sourceTree = "<group>"; };
+		D9E747FF29A93DDF00009C8D /* PlaylistList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistList.swift; sourceTree = "<group>"; };
+		D9E7480129A93F4900009C8D /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
+		D9E7480329A9400600009C8D /* PlaylistDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistDetailView.swift; sourceTree = "<group>"; };
+		D9E7480529A940CA00009C8D /* PlaylistRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistRow.swift; sourceTree = "<group>"; };
+		D9E7480729A9435700009C8D /* PlaylistSoundRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistSoundRow.swift; sourceTree = "<group>"; };
 		D9E7D0E928AC6195001E909E /* Dose segura de crack, os tios e as tias do Zap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Dose segura de crack, os tios e as tias do Zap.mp3"; sourceTree = "<group>"; };
 		D9E7D0EB28AC6348001E909E /* REDE GLOBO - GIL DO VIGOR - Eu estou to indignado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "REDE GLOBO - GIL DO VIGOR - Eu estou to indignado.mp3"; sourceTree = "<group>"; };
 		D9E7D0ED28AC64F4001E909E /* Rogerinho - Ta certa a indignacao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rogerinho - Ta certa a indignacao.mp3"; sourceTree = "<group>"; };
@@ -3874,6 +3888,7 @@
 				D98622DE283FC53B00E9F630 /* Authors */,
 				D95F363828AD385100743026 /* ShareAsVideo */,
 				D9943F2428641FB7002C6B97 /* Folders */,
+				D9E747FE29A93D5800009C8D /* Playlists */,
 				D9EB18A32857CDE200A2F8A8 /* Collections */,
 				D92E7073283C5D9E0035826C /* Songs */,
 				D9BF90BC2842EAB100BDDD7D /* Trends */,
@@ -4038,6 +4053,7 @@
 				D9943F1F286419CE002C6B97 /* LocalDatabase+Statistic.swift */,
 				D9758C3B28617C980094D388 /* LocalDatabase+UserFolder.swift */,
 				D9877D2828694F3200B541F9 /* LocalDatabase+UserFolderContent.swift */,
+				D993E68929A993AB00F4DE9A /* LocalDatabase+Playlist.swift */,
 			);
 			path = LocalDatabase;
 			sourceTree = "<group>";
@@ -4082,6 +4098,7 @@
 				D9E5055F28F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift */,
 				D9A3984828FDEE0D00039B7B /* AddRankingTypeToAudienceSharingStatisticTable.swift */,
 				D94D9F04298DB98D006F14A5 /* AddDateAndVersionToUserFolderTables.swift */,
+				D993E68729A9920600F4DE9A /* AddPlaylistTables.swift */,
 			);
 			path = Migrations;
 			sourceTree = "<group>";
@@ -4130,6 +4147,7 @@
 				D9461181286159BC00C4FB7E /* UserFolder.swift */,
 				D91107132863B5FD000B6F8F /* ContentCollection.swift */,
 				D9943F2928642EC3002C6B97 /* UserFolderContent.swift */,
+				D9E7480129A93F4900009C8D /* Playlist.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -4246,6 +4264,17 @@
 				D9625E8E28238F9B00080852 /* LocalDatabaseTests.swift */,
 			);
 			path = DataHandlers;
+			sourceTree = "<group>";
+		};
+		D9E747FE29A93D5800009C8D /* Playlists */ = {
+			isa = PBXGroup;
+			children = (
+				D9E747FF29A93DDF00009C8D /* PlaylistList.swift */,
+				D9E7480329A9400600009C8D /* PlaylistDetailView.swift */,
+				D9E7480529A940CA00009C8D /* PlaylistRow.swift */,
+				D9E7480729A9435700009C8D /* PlaylistSoundRow.swift */,
+			);
+			path = Playlists;
 			sourceTree = "<group>";
 		};
 		D9EB18A32857CDE200A2F8A8 /* Collections */ = {
@@ -5487,6 +5516,7 @@
 				D93CCB7B286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift in Sources */,
 				D9625E7E28238F9A00080852 /* MedoDelirioBrasiliaApp.swift in Sources */,
 				D958B1AC28394DCD0010F133 /* AuthorsView.swift in Sources */,
+				D9E7480829A9435700009C8D /* PlaylistSoundRow.swift in Sources */,
 				D94D9F05298DB98D006F14A5 /* AddDateAndVersionToUserFolderTables.swift in Sources */,
 				D92E7072283C5D990035826C /* SongsViewViewModel.swift in Sources */,
 				D92C0CAC28406EA5009CF19A /* UserShareLog.swift in Sources */,
@@ -5529,6 +5559,7 @@
 				D91B4DF6299BBE5B00E92824 /* SelectMultipleSymbol.swift in Sources */,
 				D9877D2B2869845400B541F9 /* Sharer.swift in Sources */,
 				D988C523283C33E100D64404 /* UserSettings.swift in Sources */,
+				D9E7480229A93F4900009C8D /* Playlist.swift in Sources */,
 				D92E7075283C5F620035826C /* SongCell.swift in Sources */,
 				D9943F1C28641917002C6B97 /* LocalDatabase+Favorite.swift in Sources */,
 				D9A8AB2528543F8E00B5A94B /* SharingLogCell.swift in Sources */,
@@ -5572,6 +5603,7 @@
 				D933251E28835E41004EFACB /* ActivityViewController.swift in Sources */,
 				D99BBE43294676B200BCA901 /* NetworkRabbit+UsageMetric.swift in Sources */,
 				D991E598284A94F70005705F /* Podium.swift in Sources */,
+				D993E68829A9920600F4DE9A /* AddPlaylistTables.swift in Sources */,
 				D911070D2862BA4C000B6F8F /* StillAliveSignal.swift in Sources */,
 				D9BAA6F42982F4340060982A /* CreateFolderCell.swift in Sources */,
 				D95DB0F82882491A00D4FEDF /* ScreenAndTabs.swift in Sources */,
@@ -5580,7 +5612,9 @@
 				D9D3D4912887495B00C42FDE /* FolderList.swift in Sources */,
 				D97B2DD928E5EA0500C3B50B /* DeleteFolderViewAide.swift in Sources */,
 				D9758C3A28617BA70094D388 /* AddUserFolderTables.swift in Sources */,
+				D993E68A29A993AB00F4DE9A /* LocalDatabase+Playlist.swift in Sources */,
 				D9265741285A1EE700947165 /* LocalDatabase+Log.swift in Sources */,
+				D9E7480429A9400600009C8D /* PlaylistDetailView.swift in Sources */,
 				D980456228380F66003B2E83 /* LocalizableStrings.swift in Sources */,
 				D961D025283731AA00EFEDEB /* HelpView.swift in Sources */,
 				D90CDF0928F65C7200CC992D /* TrendsTimeInterval.swift in Sources */,
@@ -5594,6 +5628,7 @@
 				D9E747FB29A8ED1100009C8D /* NoSearchResultsView.swift in Sources */,
 				D98EC5E12825A05900340BE5 /* Sound.swift in Sources */,
 				D9DCC5D128751256008DD4A3 /* PushDevice.swift in Sources */,
+				D9E7480629A940CA00009C8D /* PlaylistRow.swift in Sources */,
 				D9D192772909D4F200713804 /* NetworkCallLog.swift in Sources */,
 				D9461182286159BC00C4FB7E /* UserFolder.swift in Sources */,
 				D9FA0CD728508590000F6ADE /* UIDevice+DeviceInfo.swift in Sources */,
@@ -5602,6 +5637,7 @@
 				D93D24E02849DAAB00300541 /* DiagnosticsView.swift in Sources */,
 				D90E2E5728853CDC00F406B6 /* AuthorCell.swift in Sources */,
 				D9A096D8287CE72300773869 /* Mailman.swift in Sources */,
+				D9E7480029A93DDF00009C8D /* PlaylistList.swift in Sources */,
 				D958B1AE28394E420010F133 /* SongsView.swift in Sources */,
 				D912A33828B3F2C000F7293D /* TipView.swift in Sources */,
 				D9C35D23288713990065F3E7 /* HotWeatherAdBannerView.swift in Sources */,

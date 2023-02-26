@@ -10,7 +10,7 @@ import SwiftUI
 struct SoundsView: View {
 
     enum ViewMode: Int {
-        case allSounds, favorites, folders, byAuthor
+        case allSounds, favorites, folders, playlists, byAuthor
     }
     
     enum SubviewToOpen {
@@ -94,6 +94,8 @@ struct SoundsView: View {
             return "Favoritos"
         case .folders:
             return "Minhas Pastas"
+        case .playlists:
+            return "Playlists"
         case .byAuthor:
             return "Autores"
         }
@@ -125,6 +127,8 @@ struct SoundsView: View {
                 } else if currentViewMode == .folders {
                     MyFoldersiPhoneView()
                         .environmentObject(deleteFolderAide)
+                } else if currentViewMode == .playlists {
+                    PlaylistList()
                 } else if currentViewMode == .byAuthor {
                     AuthorsView(sortOption: $viewModel.authorSortOption, sortAction: $authorSortAction, searchTextForControl: $authorSearchText)
                 } else {
@@ -175,8 +179,8 @@ struct SoundsView: View {
                                                         }
                                                         
                                                         Section {
-                                                            Button {
-                                                                if viewModel.favoritesKeeper.contains(sound.id) {
+                                                            if viewModel.favoritesKeeper.contains(sound.id) {
+                                                                Button {
                                                                     viewModel.removeFromFavorites(soundId: sound.id)
                                                                     if currentViewMode == .favorites {
                                                                         viewModel.reloadList(withSounds: soundData,
@@ -185,20 +189,37 @@ struct SoundsView: View {
                                                                                              favoritesOnly: currentViewMode == .favorites,
                                                                                              sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
                                                                     }
-                                                                } else {
-                                                                    viewModel.addToFavorites(soundId: sound.id)
+                                                                } label: {
+                                                                    Label(Shared.removeFromFavorites, systemImage: "star.slash")
                                                                 }
-                                                            } label: {
-                                                                Label(viewModel.favoritesKeeper.contains(sound.id) ? Shared.removeFromFavorites : Shared.addToFavorites, systemImage: viewModel.favoritesKeeper.contains(sound.id) ? "star.slash" : "star")
                                                             }
                                                             
-                                                            Button {
-                                                                viewModel.selectedSounds = [Sound]()
-                                                                viewModel.selectedSounds?.append(sound)
-                                                                subviewToOpen = .addToFolderView
-                                                                showingModalView = true
-                                                            } label: {
-                                                                Label(Shared.addToFolderButtonText, systemImage: "folder.badge.plus")
+                                                            Menu("Adicionar a...") {
+                                                                if !viewModel.favoritesKeeper.contains(sound.id) {
+                                                                    Button {
+                                                                        viewModel.addToFavorites(soundId: sound.id)
+                                                                    } label: {
+                                                                        Label("Favoritos", systemImage: "star")
+                                                                    }
+                                                                }
+                                                                
+                                                                Button {
+                                                                    viewModel.selectedSounds = [Sound]()
+                                                                    viewModel.selectedSounds?.append(sound)
+                                                                    subviewToOpen = .addToFolderView
+                                                                    showingModalView = true
+                                                                } label: {
+                                                                    Label("Pasta", systemImage: "folder.badge.plus")
+                                                                }
+                                                                
+                                                                Button {
+                                                                    viewModel.selectedSounds = [Sound]()
+                                                                    viewModel.selectedSounds?.append(sound)
+                                                                    subviewToOpen = .addToFolderView
+                                                                    showingModalView = true
+                                                                } label: {
+                                                                    Label("Playlist", systemImage: "music.note.list")
+                                                                }
                                                             }
                                                         }
                                                         
@@ -470,6 +491,9 @@ struct SoundsView: View {
             
             Text("Pastas")
                 .tag(ViewMode.folders)
+            
+            Text("Playlists")
+                .tag(ViewMode.playlists)
             
             Text("Por Autor")
                 .tag(ViewMode.byAuthor)
