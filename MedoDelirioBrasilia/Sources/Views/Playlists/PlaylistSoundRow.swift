@@ -83,10 +83,12 @@ struct PlaylistSoundRow: View {
                     Text(title)
                         .font(.body)
                         .bold()
+                        .opacity(currentMode == .playing ? 0.7 : 1.0)
                     
                     Text(subtitle)
                         .font(.subheadline)
                         .lineLimit(1)
+                        .opacity(currentMode == .playing ? 0.7 : 1.0)
                         .onReceive(timer) { time in
                             guard currentMode == .playing else { return }
                             if timeRemaining > 0 {
@@ -100,21 +102,6 @@ struct PlaylistSoundRow: View {
                 Image(systemName: "line.3.horizontal")
                     .font(.system(size: 24))
                     .foregroundColor(.gray)
-            }
-            
-            if currentMode == .playing {
-                VStack {
-                    Spacer()
-                    HStack {
-                        Spacer()
-                        Image(systemName: "stop.circle")
-                            .font(.largeTitle)
-                            .foregroundColor(.primary)
-                            .padding(.trailing, 10)
-                            .padding(.bottom, 10)
-                    }
-                }
-                .frame(height: cellHeight)
             }
         }
         .onAppear {

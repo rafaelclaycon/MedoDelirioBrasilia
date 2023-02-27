@@ -17,7 +17,7 @@ struct PlaylistDetailView: View {
             if viewModel.hasSoundsToDisplay {
                 List {
                     ForEach(Array(viewModel.sounds.enumerated()), id: \.1) { index, sound in
-                        PlaylistSoundRow(index: index, soundId: sound.id, title: sound.title, author: sound.authorName ?? "", duration: sound.duration, nowPlaying: .constant(Set<String>()))
+                        PlaylistSoundRow(index: index, soundId: sound.id, title: sound.title, author: sound.authorName ?? "", duration: sound.duration, nowPlaying: $viewModel.nowPlayingKeeper)
                     }
                     .onMove(perform: move)
                     .onDelete(perform: delete)
@@ -39,15 +39,19 @@ struct PlaylistDetailView: View {
                 }.disabled(true)
                 
                 Button {
-                    print("Shuffle tapped")
+                    viewModel.sounds.shuffle()
                 } label: {
                     Image(systemName: "shuffle")
                 }
                 
                 Button {
-                    print("Play tapped")
+                    if viewModel.isPlayingPlaylist {
+                        viewModel.stopPlaying()
+                    } else {
+                        viewModel.playAllSoundsOneAfterTheOther()
+                    }
                 } label: {
-                    Image(systemName: "play.fill")
+                    Image(systemName: viewModel.isPlayingPlaylist ? "stop.fill" : "play.fill")
                 }
             }
         }
