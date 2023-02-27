@@ -95,18 +95,18 @@ extension LocalDatabase {
         return queriedContents
     }
     
-//    func deleteUserFolder(withId folderId: String) throws {
-//        let folder_id_on_folder_content_table = Expression<String>("userFolderId")
-//        let allFolderContent = userFolderContent.filter(folder_id_on_folder_content_table == folderId)
-//        try db.run(allFolderContent.delete())
-//
-//        let folder_id_on_folder_table = Expression<String>("id")
-//        let folder = userFolder.filter(folder_id_on_folder_table == folderId)
-//        if try db.run(folder.delete()) == 0 {
-//            throw LocalDatabaseError.folderNotFound
-//        }
-//    }
-//
+    func deletePlaylist(withId playlistId: String) throws {
+        let playlist_id_on_playlist_content_table = Expression<String>("playlistId")
+        let allPlaylistContent = playlistContent.filter(playlist_id_on_playlist_content_table == playlistId)
+        try db.run(allPlaylistContent.delete())
+
+        let playlist_id_on_playlist_table = Expression<String>("id")
+        let folder = playlist.filter(playlist_id_on_playlist_table == playlistId)
+        if try db.run(folder.delete()) == 0 {
+            throw LocalDatabaseError.folderNotFound
+        }
+    }
+    
 //    func hasAnyUserFolder() throws -> Bool {
 //        return try db.scalar(userFolder.count) > 0
 //    }

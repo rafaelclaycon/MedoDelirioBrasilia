@@ -14,10 +14,10 @@ struct PlaylistRow: View {
     var body: some View {
         HStack(spacing: 16) {
             Image(systemName: "music.note.list")
-                .font(.system(size: 26))
+                .font(.system(size: 22))
             
             Text(playlist.name)
-                .font(.title2)
+                .font(.body)
             
             Spacer()
         }

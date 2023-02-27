@@ -10,35 +10,50 @@ import SwiftUI
 struct PlaylistList: View {
     
     @StateObject private var viewModel = PlaylistListViewModel()
-    //private var playlists = [Playlist](arrayLiteral: Playlist(name: "Bolsonaro fede"))
-    @State private var showAlert = false
-    @State private var newPlaylistName = ""
+    @State private var showAlert: Bool = false
+    @State private var newPlaylistName: String = .empty
+    @State private var updatePlaylistList: Bool = false
     
-    private var columns: [GridItem] {
-        [GridItem(.flexible())]
+    private var noPlaylistsScrollHeight: CGFloat {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            let screenWidth = UIScreen.main.bounds.height
+            if screenWidth < 600 {
+                return 0
+            } else if screenWidth < 800 {
+                return 50
+            } else {
+                return 100
+            }
+        } else {
+            return 100
+        }
     }
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .center) {
-                if viewModel.hasPlaylistsToDisplay {
-                    LazyVGrid(columns: columns, spacing: 24) {
-                        ForEach(viewModel.playlists) { playlist in
-                            NavigationLink {
-                                PlaylistDetailView(viewModel: PlaylistDetailViewViewModel(), playlist: playlist)
-                            } label: {
-                                PlaylistRow(playlist: playlist)
-                            }
-                            //.foregroundColor(.primary)
+        VStack(alignment: .center) {
+            if viewModel.hasPlaylistsToDisplay {
+                List {
+                    ForEach(viewModel.playlists) { playlist in
+                        NavigationLink {
+                            PlaylistDetailView(viewModel: PlaylistDetailViewViewModel(), playlist: playlist)
+                        } label: {
+                            PlaylistRow(playlist: playlist)
                         }
                     }
-                } else {
+                    .onDelete(perform: delete)
+                }
+                .onChange(of: updatePlaylistList) { updatePlaylistList in
+                    if updatePlaylistList {
+                        viewModel.reloadPlaylistList(withPlaylists: try? database.getAllPlaylists())
+                        self.updatePlaylistList = false
+                    }
+                }
+            } else {
+                ScrollView {
                     NoPlaylistsView()
+                        .padding(.vertical, noPlaylistsScrollHeight)
                 }
             }
-            .padding(.horizontal)
-            .padding(.top, 16)
-            .padding(.bottom, 18)
         }
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
@@ -49,16 +64,11 @@ struct PlaylistList: View {
                         Image(systemName: "plus")
                     }
                 }
-//                .onChange(of: isShowingFolderInfoEditingSheet) { isShowing in
-//                    if isShowing == false {
-//                        updateFolderList = true
-//                        folderForEditingOnSheet = nil
-//                    }
-//                }
             }
         }
         .alert("Nova playlist", isPresented: $showAlert) {
             TextField("Digite um nome", text: $newPlaylistName)
+                .autocorrectionDisabled(true)
             Button("Criar Playlist", action: createNewPlaylist)
             Button("Cancelar",  role: .cancel, action: cancelPlaylistCreation)
         }
@@ -70,12 +80,22 @@ struct PlaylistList: View {
     func createNewPlaylist() {
         guard !newPlaylistName.isEmpty else { return }
         try? database.insert(playlist: Playlist(name: newPlaylistName))
+        updatePlaylistList = true
         newPlaylistName = .empty
     }
     
     func cancelPlaylistCreation() {
         showAlert = false
         newPlaylistName = .empty
+    }
+    
+    func delete(at offsets: IndexSet) {
+        let itemToRemove = offsets.map { index in
+            viewModel.playlists[index]
+        }
+        guard let item = itemToRemove.first else { return }
+        try? database.deletePlaylist(withId: item.id)
+        updatePlaylistList = true
     }
     
 }

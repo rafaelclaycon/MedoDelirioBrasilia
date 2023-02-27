@@ -26,7 +26,17 @@ class PlaylistListViewModel: ObservableObject {
             return hasPlaylistsToDisplay = false
         }
         self.playlists = actualPlaylists
-        self.hasPlaylistsToDisplay = true
+        self.hasPlaylistsToDisplay = self.playlists.count > 0
+        
+        sortPlaylistsInPlaceByCreationDateDescending()
+    }
+    
+    func sortPlaylistsInPlaceByTitleAscending() {
+        self.playlists.sort(by: { $0.name.withoutDiacritics() < $1.name.withoutDiacritics() })
+    }
+    
+    func sortPlaylistsInPlaceByCreationDateDescending() {
+        self.playlists.sort(by: { $0.creationDate > $1.creationDate })
     }
     
 }
