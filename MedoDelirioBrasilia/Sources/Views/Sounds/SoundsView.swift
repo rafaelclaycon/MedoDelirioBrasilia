@@ -14,7 +14,7 @@ struct SoundsView: View {
     }
     
     enum SubviewToOpen {
-        case onboardingView, addToFolderView, shareAsVideoView, settingsView, whatsNewView
+        case onboardingView, addToFolderView, addToPlaylistView, shareAsVideoView, settingsView, whatsNewView
     }
     
     @StateObject var viewModel: SoundsViewViewModel
@@ -40,6 +40,9 @@ struct SoundsView: View {
     @State private var folderName: String? = nil
     @State private var pluralization: WordPluralization = .singular
     @State private var shouldDisplayAddedToFolderToast: Bool = false
+    
+    // Add to Playlist
+    @StateObject var addToPlaylistHelper = AddToPlaylistHelper()
     
     // Share as Video
     @State private var shareAsVideo_Result = ShareAsVideoResult()
@@ -215,7 +218,7 @@ struct SoundsView: View {
                                                                 Button {
                                                                     viewModel.selectedSounds = [Sound]()
                                                                     viewModel.selectedSounds?.append(sound)
-                                                                    subviewToOpen = .addToFolderView
+                                                                    subviewToOpen = .addToPlaylistView
                                                                     showingModalView = true
                                                                 } label: {
                                                                     Label("Playlist", systemImage: "music.note.list")
@@ -377,6 +380,10 @@ struct SoundsView: View {
                                     folderName: $folderName,
                                     pluralization: $pluralization,
                                     selectedSounds: viewModel.selectedSounds!)
+                    
+                case .addToPlaylistView:
+                    AddToPlaylistView(isBeingShown: $showingModalView)
+                        .environmentObject(addToPlaylistHelper)
                     
                 case .shareAsVideoView:
                     if #available(iOS 16.0, *) {
@@ -626,13 +633,13 @@ struct SoundsView: View {
                                 Text("Mais Longos no Topo")
                                     .tag(4)
                                 
-                                if CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
-                                    Text("Título Mais Longo no Topo")
-                                        .tag(5)
-                                    
-                                    Text("Título Mais Curto no Topo")
-                                        .tag(6)
-                                }
+//                                if CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
+//                                    Text("Título Mais Longo no Topo")
+//                                        .tag(5)
+//
+//                                    Text("Título Mais Curto no Topo")
+//                                        .tag(6)
+//                                }
                             }
                         }
                     } label: {

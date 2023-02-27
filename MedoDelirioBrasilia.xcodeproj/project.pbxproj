@@ -318,6 +318,7 @@
 		D94FBD342948F64F001FA3A8 /* Heraclito Sobral Pinto - Militares e Republica nao combinam.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94FBD332948F64E001FA3A8 /* Heraclito Sobral Pinto - Militares e Republica nao combinam.mp3 */; };
 		D9523741285BF98A00E6C838 /* NetworkRabbitStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */; };
 		D9523743285BF99800E6C838 /* LocalDatabaseSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9523742285BF99800E6C838 /* LocalDatabaseSpy.swift */; };
+		D9537D0229AC22C50040E406 /* NoPlaylistsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9537D0129AC22C50040E406 /* NoPlaylistsView.swift */; };
 		D9545ED6299D579D00A130B1 /* Franciel Cruz - Lula e bicampeao mundial de conciliacao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9545ED5299D579D00A130B1 /* Franciel Cruz - Lula e bicampeao mundial de conciliacao.mp3 */; };
 		D9545EDA299D64DD00A130B1 /* Queima Quengaral - Taca o pau.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9545ED9299D64DC00A130B1 /* Queima Quengaral - Taca o pau.mp3 */; };
 		D9547D7D28FDD7190020A800 /* Franciel Cruz - Rapaz.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9547D7528FDD7180020A800 /* Franciel Cruz - Rapaz.mp3 */; };
@@ -1004,6 +1005,9 @@
 		D991E598284A94F70005705F /* Podium.swift in Sources */ = {isa = PBXBuildFile; fileRef = D991E597284A94F70005705F /* Podium.swift */; };
 		D993E68829A9920600F4DE9A /* AddPlaylistTables.swift in Sources */ = {isa = PBXBuildFile; fileRef = D993E68729A9920600F4DE9A /* AddPlaylistTables.swift */; };
 		D993E68A29A993AB00F4DE9A /* LocalDatabase+Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = D993E68929A993AB00F4DE9A /* LocalDatabase+Playlist.swift */; };
+		D993E68C29ABCA2300F4DE9A /* AddToPlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D993E68B29ABCA2300F4DE9A /* AddToPlaylistView.swift */; };
+		D993E68E29ABCA5A00F4DE9A /* AddToPlaylistViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D993E68D29ABCA5A00F4DE9A /* AddToPlaylistViewViewModel.swift */; };
+		D993E69029ABD37900F4DE9A /* AddToPlaylistHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D993E68F29ABD37900F4DE9A /* AddToPlaylistHelper.swift */; };
 		D9943F152863CC4D002C6B97 /* A impiedosa justica de Deus.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9943F142863CC4D002C6B97 /* A impiedosa justica de Deus.mp3 */; };
 		D9943F172863DAE1002C6B97 /* FolderDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F162863DAE1002C6B97 /* FolderDetailView.swift */; };
 		D9943F1A286406AF002C6B97 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D9943F19286406AF002C6B97 /* Kingfisher */; };
@@ -1592,6 +1596,7 @@
 		D94FBD332948F64E001FA3A8 /* Heraclito Sobral Pinto - Militares e Republica nao combinam.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Heraclito Sobral Pinto - Militares e Republica nao combinam.mp3"; sourceTree = "<group>"; };
 		D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRabbitStub.swift; sourceTree = "<group>"; };
 		D9523742285BF99800E6C838 /* LocalDatabaseSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDatabaseSpy.swift; sourceTree = "<group>"; };
+		D9537D0129AC22C50040E406 /* NoPlaylistsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoPlaylistsView.swift; sourceTree = "<group>"; };
 		D9545ED5299D579D00A130B1 /* Franciel Cruz - Lula e bicampeao mundial de conciliacao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Franciel Cruz - Lula e bicampeao mundial de conciliacao.mp3"; sourceTree = "<group>"; };
 		D9545ED9299D64DC00A130B1 /* Queima Quengaral - Taca o pau.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Queima Quengaral - Taca o pau.mp3"; sourceTree = "<group>"; };
 		D9547D7528FDD7180020A800 /* Franciel Cruz - Rapaz.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Franciel Cruz - Rapaz.mp3"; sourceTree = "<group>"; };
@@ -2281,6 +2286,9 @@
 		D991E597284A94F70005705F /* Podium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Podium.swift; sourceTree = "<group>"; };
 		D993E68729A9920600F4DE9A /* AddPlaylistTables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlaylistTables.swift; sourceTree = "<group>"; };
 		D993E68929A993AB00F4DE9A /* LocalDatabase+Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+Playlist.swift"; sourceTree = "<group>"; };
+		D993E68B29ABCA2300F4DE9A /* AddToPlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToPlaylistView.swift; sourceTree = "<group>"; };
+		D993E68D29ABCA5A00F4DE9A /* AddToPlaylistViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToPlaylistViewViewModel.swift; sourceTree = "<group>"; };
+		D993E68F29ABD37900F4DE9A /* AddToPlaylistHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToPlaylistHelper.swift; sourceTree = "<group>"; };
 		D9943F142863CC4D002C6B97 /* A impiedosa justica de Deus.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "A impiedosa justica de Deus.mp3"; sourceTree = "<group>"; };
 		D9943F162863DAE1002C6B97 /* FolderDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetailView.swift; sourceTree = "<group>"; };
 		D9943F1B28641917002C6B97 /* LocalDatabase+Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+Favorite.swift"; sourceTree = "<group>"; };
@@ -3964,6 +3972,7 @@
 				D9F9BB38294A167C0005BE56 /* TrendsHelper.swift */,
 				D96A641F2955F32F00DC0F03 /* SettingsHelper.swift */,
 				D99A9619299A6CC700BB5F0D /* SoundsListMode.swift */,
+				D993E68F29ABD37900F4DE9A /* AddToPlaylistHelper.swift */,
 			);
 			path = ViewAid;
 			sourceTree = "<group>";
@@ -4273,6 +4282,9 @@
 				D9E7480329A9400600009C8D /* PlaylistDetailView.swift */,
 				D9E7480529A940CA00009C8D /* PlaylistRow.swift */,
 				D9E7480729A9435700009C8D /* PlaylistSoundRow.swift */,
+				D993E68B29ABCA2300F4DE9A /* AddToPlaylistView.swift */,
+				D993E68D29ABCA5A00F4DE9A /* AddToPlaylistViewViewModel.swift */,
+				D9537D0129AC22C50040E406 /* NoPlaylistsView.swift */,
 			);
 			path = Playlists;
 			sourceTree = "<group>";
@@ -5596,9 +5608,11 @@
 				D9A8AB212853EB5500B5A94B /* InitialMigration.swift in Sources */,
 				D946117E28613D3200C4FB7E /* CollectionDetailView.swift in Sources */,
 				D93A029C2906E8E200A85FE2 /* NetworkRabbit+UserFolderLog.swift in Sources */,
+				D993E68E29ABCA5A00F4DE9A /* AddToPlaylistViewViewModel.swift in Sources */,
 				D92CAA4128593B1700D6C1EA /* NetworkLogCell.swift in Sources */,
 				D9BB1E7728B3200700C5FFAA /* AppIcon.swift in Sources */,
 				D9B24E2228C6A68800D76F7D /* NumberBadgeView.swift in Sources */,
+				D993E69029ABD37900F4DE9A /* AddToPlaylistHelper.swift in Sources */,
 				D998F28F284F177B0013E709 /* TrendsDisabledView.swift in Sources */,
 				D933251E28835E41004EFACB /* ActivityViewController.swift in Sources */,
 				D99BBE43294676B200BCA901 /* NetworkRabbit+UsageMetric.swift in Sources */,
@@ -5633,7 +5647,9 @@
 				D9461182286159BC00C4FB7E /* UserFolder.swift in Sources */,
 				D9FA0CD728508590000F6ADE /* UIDevice+DeviceInfo.swift in Sources */,
 				D9943F2328641C00002C6B97 /* LocalDatabase.swift in Sources */,
+				D993E68C29ABCA2300F4DE9A /* AddToPlaylistView.swift in Sources */,
 				D916536628ADCD9B007F141D /* ShareAsVideoLegacyViewViewModel.swift in Sources */,
+				D9537D0229AC22C50040E406 /* NoPlaylistsView.swift in Sources */,
 				D93D24E02849DAAB00300541 /* DiagnosticsView.swift in Sources */,
 				D90E2E5728853CDC00F406B6 /* AuthorCell.swift in Sources */,
 				D9A096D8287CE72300773869 /* Mailman.swift in Sources */,

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PlaylistSoundRow: View {
     
+    let index: Int
     @State var soundId: String
     @State var title: String
     @State var author: String
@@ -17,11 +18,6 @@ struct PlaylistSoundRow: View {
     @State private var timeRemaining: Double = 0
     
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    private let unselectedForegroundColor: Color = .gray
-    
-    enum Background {
-        case regular, favorite, highlighted
-    }
     
     enum Mode {
         case regular, playing, upForSelection, selected
@@ -29,18 +25,6 @@ struct PlaylistSoundRow: View {
     
     private var currentMode: Mode {
         return nowPlaying.contains(soundId) ? .playing : .regular
-    }
-    
-    private var background: Background {
-        return .regular
-    }
-    
-    private var backgroundOpacity: Double {
-        return 0.7
-    }
-    
-    private var cellFill: Color {
-        return .green
     }
     
     private var titleFont: Font {
@@ -92,39 +76,17 @@ struct PlaylistSoundRow: View {
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 20, style: .continuous)
-                .fill(cellFill)
-                .frame(height: cellHeight)
-                .opacity(backgroundOpacity)
-            
-            if background == .favorite, currentMode == .regular {
-                VStack {
-                    Spacer()
-                    HStack {
-                        Spacer()
-                        Image(systemName: "star.fill")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 24)
-                            .foregroundColor(.yellow)
-                            .padding(.trailing, 10)
-                            .padding(.bottom)
-                    }
-                }
-                .frame(height: cellHeight)
-            }
-            
-            HStack {
-                VStack(alignment: .leading, spacing: 8) {
+            HStack(spacing: 15) {
+                Text("\(index + 1)")
+                
+                VStack(alignment: .leading, spacing: 6) {
                     Text(title)
-                        .foregroundColor(.black)
-                        .font(titleFont)
+                        .font(.body)
                         .bold()
                     
                     Text(subtitle)
-                        .font(UIDevice.is4InchDevice ? .footnote : authorFont)
-                        .foregroundColor(.white)
-                        .lineLimit(authorNameLineLimit)
+                        .font(.subheadline)
+                        .lineLimit(1)
                         .onReceive(timer) { time in
                             guard currentMode == .playing else { return }
                             if timeRemaining > 0 {
@@ -134,8 +96,11 @@ struct PlaylistSoundRow: View {
                 }
                 
                 Spacer()
+                
+                Image(systemName: "line.3.horizontal")
+                    .font(.system(size: 24))
+                    .foregroundColor(.gray)
             }
-            .padding(.leading, UIDevice.is4InchDevice ? 10 : 20)
             
             if currentMode == .playing {
                 VStack {
@@ -145,30 +110,6 @@ struct PlaylistSoundRow: View {
                         Image(systemName: "stop.circle")
                             .font(.largeTitle)
                             .foregroundColor(.primary)
-                            .padding(.trailing, 10)
-                            .padding(.bottom, 10)
-                    }
-                }
-                .frame(height: cellHeight)
-            }
-            
-            if currentMode == .upForSelection {
-                VStack {
-                    Spacer()
-                    HStack {
-                        Spacer()
-                        RoundCheckbox(selected: .constant(false))
-                            .padding(.trailing, 10)
-                            .padding(.bottom, 10)
-                    }
-                }
-                .frame(height: cellHeight)
-            } else if currentMode == .selected {
-                VStack {
-                    Spacer()
-                    HStack {
-                        Spacer()
-                        RoundCheckbox(selected: .constant(true))
                             .padding(.trailing, 10)
                             .padding(.bottom, 10)
                     }
@@ -193,7 +134,7 @@ struct PlaylistSoundRow: View {
 struct PlaylistSoundRow_Previews: PreviewProvider {
     
     static var previews: some View {
-        PlaylistSoundRow(soundId: "ABC", title: "A gente vai cansando", author: "Soraya Thronicke", duration: 2, nowPlaying: .constant(Set<String>()))
+        PlaylistSoundRow(index: 0, soundId: "ABC", title: "A gente vai cansando", author: "Soraya Thronicke", duration: 2, nowPlaying: .constant(Set<String>()))
     }
     
 }

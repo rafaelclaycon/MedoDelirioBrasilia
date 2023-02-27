@@ -9,7 +9,8 @@ import SwiftUI
 
 struct PlaylistDetailView: View {
     
-    private var sounds = [Sound](arrayLiteral: Sound(title: "Test"))
+    @State var playlist: Playlist
+    @State private var sounds = [Sound]()
     
     private var columns: [GridItem] {
         [GridItem(.flexible())]
@@ -17,10 +18,12 @@ struct PlaylistDetailView: View {
     
     var body: some View {
         VStack {
-            LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
-                ForEach(sounds) { sound in
-                    PlaylistSoundRow(soundId: sound.id, title: sound.title, author: sound.authorName ?? "", duration: sound.duration, nowPlaying: .constant(Set<String>()))
+            List {
+                ForEach(Array(sounds.enumerated()), id: \.1) { index, sound in
+                    PlaylistSoundRow(index: index, soundId: sound.id, title: sound.title, author: sound.authorName ?? "", duration: sound.duration, nowPlaying: .constant(Set<String>()))
                 }
+                .onMove(perform: move)
+                .onDelete(perform: delete)
             }
         }
         .toolbar {
@@ -29,7 +32,7 @@ struct PlaylistDetailView: View {
                     print("Repeat tapped")
                 } label: {
                     Image(systemName: "repeat")
-                }
+                }.disabled(true)
                 
                 Button {
                     print("Shuffle tapped")
@@ -44,7 +47,21 @@ struct PlaylistDetailView: View {
                 }
             }
         }
-        .padding(.horizontal)
+        .onAppear {
+            sounds.append(contentsOf: soundData.shuffled().prefix(10))
+        }
+        .navigationTitle(playlist.name)
+    }
+    
+    func move(from source: IndexSet, to destination: Int) {
+        sounds.move(fromOffsets: source, toOffset: destination)
+        for i in 0...(self.sounds.count - 1) {
+            self.sounds[i].authorName = authorData.first(where: { $0.id == self.sounds[i].authorId })?.name ?? Shared.unknownAuthor
+        }
+    }
+    
+    func delete(at offsets: IndexSet) {
+        sounds.remove(atOffsets: offsets)
     }
     
 }
@@ -52,7 +69,7 @@ struct PlaylistDetailView: View {
 struct PlaylistDetailView_Previews: PreviewProvider {
     
     static var previews: some View {
-        PlaylistDetailView()
+        PlaylistDetailView(playlist: Playlist(name: "Minha Playlist Maravilhosa"))
     }
     
 }

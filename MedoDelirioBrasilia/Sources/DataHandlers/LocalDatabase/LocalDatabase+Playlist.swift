@@ -43,21 +43,21 @@ extension LocalDatabase {
 //        let update = folder.update(symbol <- newSymbol, name <- newName, background_color <- newBackgroundColor)
 //        try db.run(update)
 //    }
-//
-//    func getAllUserFolders() throws -> [UserFolder] {
-//        var queriedFolders = [UserFolder]()
-//
-//        for queriedFolder in try db.prepare(userFolder) {
-//            queriedFolders.append(try queriedFolder.decode())
-//        }
-//
+    
+    func getAllPlaylists() throws -> [Playlist] {
+        var queriedPlaylists = [Playlist]()
+
+        for queriedPlaylist in try db.prepare(playlist) {
+            queriedPlaylists.append(try queriedPlaylist.decode())
+        }
+
 //        for i in 0..<queriedFolders.count {
 //            queriedFolders[i].editingIdentifyingId = UUID().uuidString
 //        }
-//
-//        return queriedFolders
-//    }
-//
+
+        return queriedPlaylists
+    }
+    
 //    func insert(contentId: String, intoUserFolder userFolderId: String) throws {
 //        let folderContent = UserFolderContent(userFolderId: userFolderId, contentId: contentId, dateAdded: .now)
 //        let insert = try userFolderContent.insert(folderContent)

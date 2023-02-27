@@ -23,7 +23,7 @@ struct PlaylistList: View {
                 LazyVGrid(columns: columns, spacing: 14) {
                     ForEach(playlists) { playlist in
                         NavigationLink {
-                            PlaylistDetailView()
+                            PlaylistDetailView(playlist: playlist)
                         } label: {
                             PlaylistRow(playlist: playlist)
                         }
