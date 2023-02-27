@@ -59,7 +59,7 @@ extension LocalDatabase {
     }
     
     func insert(contentId: String, intoPlaylist playlistId: String) throws {
-        let content = PlaylistContent(playlistId: playlistId, contentId: contentId, dateAdded: .now)
+        let content = PlaylistContent(playlistId: playlistId, contentId: contentId, order: 0, dateAdded: .now)
         let insert = try playlistContent.insert(content)
         try db.run(insert)
     }

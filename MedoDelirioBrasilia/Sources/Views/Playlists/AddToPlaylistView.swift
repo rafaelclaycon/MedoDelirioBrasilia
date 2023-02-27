@@ -81,7 +81,7 @@ struct AddToPlaylistView: View {
                             ForEach(viewModel.playlists) { playlist in
                                 Button {
                                     addToPlaylistHelper.selectedSounds?.forEach { sound in
-                                        try? database.insert(contentId: sound.id, intoUserFolder: playlist.id)
+                                        try? database.insert(contentId: sound.id, intoPlaylist: playlist.id)
                                     }
                                     
                                     addToPlaylistHelper.playlistName = playlist.name

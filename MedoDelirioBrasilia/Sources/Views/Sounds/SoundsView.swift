@@ -216,8 +216,8 @@ struct SoundsView: View {
                                                                 }
                                                                 
                                                                 Button {
-                                                                    viewModel.selectedSounds = [Sound]()
-                                                                    viewModel.selectedSounds?.append(sound)
+                                                                    addToPlaylistHelper.selectedSounds = [Sound]()
+                                                                    addToPlaylistHelper.selectedSounds?.append(sound)
                                                                     subviewToOpen = .addToPlaylistView
                                                                     showingModalView = true
                                                                 } label: {
@@ -565,89 +565,66 @@ struct SoundsView: View {
     }
     
     @ViewBuilder func trailingToolbarControls() -> some View {
-        if currentViewMode == .folders {
-            EmptyView()
-        } else {
-            HStack(spacing: 15) {
-                if currentViewMode == .byAuthor {
-                    Menu {
-                        Section {
-                            Picker("Ordenação de Autores", selection: $viewModel.authorSortOption) {
-                                Text("Nome")
-                                    .tag(0)
-                                
-                                Text("Autores com Mais Sons no Topo")
-                                    .tag(1)
-                                
-                                Text("Autores com Menos Sons no Topo")
-                                    .tag(2)
-                            }
-                        }
-                    } label: {
-                        Image(systemName: "arrow.up.arrow.down")
-                    }
-                    .onChange(of: viewModel.authorSortOption, perform: { authorSortOption in
-                        authorSortAction = AuthorSortOption(rawValue: authorSortOption) ?? .nameAscending
-                    })
-                } else {
-                    if currentSoundsListMode == .selection {
-                        Button {
-                            // Need to get count before clearing the Set.
-                            let selectedCount: Int = viewModel.selectionKeeper.count
-                            
-                            if currentViewMode == .favorites || viewModel.allSelectedAreFavorites() {
-                                viewModel.removeSelectedFromFavorites()
-                                viewModel.stopSelecting()
-                                viewModel.reloadList(withSounds: soundData,
-                                                     andFavorites: try? database.getAllFavorites(),
-                                                     allowSensitiveContent: UserSettings.getShowExplicitContent(),
-                                                     favoritesOnly: currentViewMode == .favorites,
-                                                     sortedBy: SoundSortOption(rawValue: viewModel.soundSortOption) ?? .titleAscending)
-                                viewModel.sendUsageMetricToServer(action: "didRemoveManySoundsFromFavorites(\(selectedCount))")
-                            } else {
-                                viewModel.addSelectedToFavorites()
-                                viewModel.stopSelecting()
-                                viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFavorites(\(selectedCount))")
-                            }
-                        } label: {
-                            Image(systemName: currentViewMode == .favorites || viewModel.allSelectedAreFavorites() ? "star.slash" : "star")
-                        }.disabled(viewModel.selectionKeeper.count == 0)
-                        
-                        Button {
-                            viewModel.prepareSelectedToAddToFolder()
-                            subviewToOpen = .addToFolderView
-                            showingModalView = true
-                        } label: {
-                            Image(systemName: "folder.badge.plus")
-                        }.disabled(viewModel.selectionKeeper.count == 0)
-                    }
+        switch currentViewMode {
+        case .allSounds, .favorites:
+            if currentSoundsListMode == .selection {
+                Button {
+                    // Need to get count before clearing the Set.
+                    let selectedCount: Int = viewModel.selectionKeeper.count
                     
-                    Menu {
-                        Section {
-                            Button {
-                                viewModel.startSelecting()
-                            } label: {
-                                Label(currentSoundsListMode == .selection ? "Cancelar Seleção" : "Selecionar", systemImage: currentSoundsListMode == .selection ? "xmark.circle" : "checkmark.circle")
-                            }.disabled(currentViewMode == .favorites && viewModel.sounds.count == 0)
-                        }
+                    if currentViewMode == .favorites || viewModel.allSelectedAreFavorites() {
+                        viewModel.removeSelectedFromFavorites()
+                        viewModel.stopSelecting()
+                        viewModel.reloadList(withSounds: soundData,
+                                             andFavorites: try? database.getAllFavorites(),
+                                             allowSensitiveContent: UserSettings.getShowExplicitContent(),
+                                             favoritesOnly: currentViewMode == .favorites,
+                                             sortedBy: SoundSortOption(rawValue: viewModel.soundSortOption) ?? .titleAscending)
+                        viewModel.sendUsageMetricToServer(action: "didRemoveManySoundsFromFavorites(\(selectedCount))")
+                    } else {
+                        viewModel.addSelectedToFavorites()
+                        viewModel.stopSelecting()
+                        viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFavorites(\(selectedCount))")
+                    }
+                } label: {
+                    Image(systemName: currentViewMode == .favorites || viewModel.allSelectedAreFavorites() ? "star.slash" : "star")
+                }.disabled(viewModel.selectionKeeper.count == 0)
+                
+                Button {
+                    viewModel.prepareSelectedToAddToFolder()
+                    subviewToOpen = .addToFolderView
+                    showingModalView = true
+                } label: {
+                    Image(systemName: "folder.badge.plus")
+                }.disabled(viewModel.selectionKeeper.count == 0)
+            }
+            
+            Menu {
+                Section {
+                    Button {
+                        viewModel.startSelecting()
+                    } label: {
+                        Label(currentSoundsListMode == .selection ? "Cancelar Seleção" : "Selecionar", systemImage: currentSoundsListMode == .selection ? "xmark.circle" : "checkmark.circle")
+                    }.disabled(currentViewMode == .favorites && viewModel.sounds.count == 0)
+                }
+                
+                Section {
+                    Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
+                        Text("Título")
+                            .tag(0)
                         
-                        Section {
-                            Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
-                                Text("Título")
-                                    .tag(0)
-                                
-                                Text("Nome do(a) Autor(a)")
-                                    .tag(1)
-                                
-                                Text("Mais Recentes no Topo")
-                                    .tag(2)
-                                
-                                Text("Mais Curtos no Topo")
-                                    .tag(3)
-                                
-                                Text("Mais Longos no Topo")
-                                    .tag(4)
-                                
+                        Text("Nome do(a) Autor(a)")
+                            .tag(1)
+                        
+                        Text("Mais Recentes no Topo")
+                            .tag(2)
+                        
+                        Text("Mais Curtos no Topo")
+                            .tag(3)
+                        
+                        Text("Mais Longos no Topo")
+                            .tag(4)
+                        
 //                                if CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
 //                                    Text("Título Mais Longo no Topo")
 //                                        .tag(5)
@@ -655,21 +632,43 @@ struct SoundsView: View {
 //                                    Text("Título Mais Curto no Topo")
 //                                        .tag(6)
 //                                }
-                            }
-                        }
-                    } label: {
-                        Image(systemName: "ellipsis.circle")
                     }
-                    .onChange(of: viewModel.soundSortOption, perform: { soundSortOption in
-                        viewModel.reloadList(withSounds: soundData,
-                                             andFavorites: try? database.getAllFavorites(),
-                                             allowSensitiveContent: UserSettings.getShowExplicitContent(),
-                                             favoritesOnly: currentViewMode == .favorites,
-                                             sortedBy: SoundSortOption(rawValue: soundSortOption) ?? .titleAscending)
-                        UserSettings.setSoundSortOption(to: soundSortOption)
-                    })
                 }
+            } label: {
+                Image(systemName: "ellipsis.circle")
             }
+            .onChange(of: viewModel.soundSortOption, perform: { soundSortOption in
+                viewModel.reloadList(withSounds: soundData,
+                                     andFavorites: try? database.getAllFavorites(),
+                                     allowSensitiveContent: UserSettings.getShowExplicitContent(),
+                                     favoritesOnly: currentViewMode == .favorites,
+                                     sortedBy: SoundSortOption(rawValue: soundSortOption) ?? .titleAscending)
+                UserSettings.setSoundSortOption(to: soundSortOption)
+            })
+            
+        case .folders, .playlists:
+            EmptyView()
+            
+        case .byAuthor:
+            Menu {
+                Section {
+                    Picker("Ordenação de Autores", selection: $viewModel.authorSortOption) {
+                        Text("Nome")
+                            .tag(0)
+                        
+                        Text("Autores com Mais Sons no Topo")
+                            .tag(1)
+                        
+                        Text("Autores com Menos Sons no Topo")
+                            .tag(2)
+                    }
+                }
+            } label: {
+                Image(systemName: "arrow.up.arrow.down")
+            }
+            .onChange(of: viewModel.authorSortOption, perform: { authorSortOption in
+                authorSortAction = AuthorSortOption(rawValue: authorSortOption) ?? .nameAscending
+            })
         }
     }
     

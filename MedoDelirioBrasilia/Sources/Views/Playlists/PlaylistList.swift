@@ -9,7 +9,8 @@ import SwiftUI
 
 struct PlaylistList: View {
     
-    private var playlists = [Playlist](arrayLiteral: Playlist(name: "Bolsonaro fede"))
+    @StateObject private var viewModel = PlaylistListViewModel()
+    //private var playlists = [Playlist](arrayLiteral: Playlist(name: "Bolsonaro fede"))
     @State private var showAlert = false
     @State private var newPlaylistName = ""
     
@@ -20,19 +21,23 @@ struct PlaylistList: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .center) {
-                LazyVGrid(columns: columns, spacing: 14) {
-                    ForEach(playlists) { playlist in
-                        NavigationLink {
-                            PlaylistDetailView(viewModel: PlaylistDetailViewViewModel(), playlist: playlist)
-                        } label: {
-                            PlaylistRow(playlist: playlist)
+                if viewModel.hasPlaylistsToDisplay {
+                    LazyVGrid(columns: columns, spacing: 24) {
+                        ForEach(viewModel.playlists) { playlist in
+                            NavigationLink {
+                                PlaylistDetailView(viewModel: PlaylistDetailViewViewModel(), playlist: playlist)
+                            } label: {
+                                PlaylistRow(playlist: playlist)
+                            }
+                            //.foregroundColor(.primary)
                         }
-                        //.foregroundColor(.primary)
                     }
+                } else {
+                    NoPlaylistsView()
                 }
             }
             .padding(.horizontal)
-            .padding(.top, 7)
+            .padding(.top, 16)
             .padding(.bottom, 18)
         }
         .toolbar {
@@ -56,6 +61,9 @@ struct PlaylistList: View {
             TextField("Digite um nome", text: $newPlaylistName)
             Button("Criar Playlist", action: createNewPlaylist)
             Button("Cancelar",  role: .cancel, action: cancelPlaylistCreation)
+        }
+        .onAppear {
+            viewModel.reloadPlaylistList(withPlaylists: try? database.getAllPlaylists())
         }
     }
     

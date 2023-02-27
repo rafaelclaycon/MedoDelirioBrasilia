@@ -11,12 +11,11 @@ struct PlaylistDetailView: View {
     
     @StateObject var viewModel: PlaylistDetailViewViewModel
     @State var playlist: Playlist
-    @State private var sounds = [Sound]()
     
     var body: some View {
         VStack {
             List {
-                ForEach(Array(sounds.enumerated()), id: \.1) { index, sound in
+                ForEach(Array(viewModel.sounds.enumerated()), id: \.1) { index, sound in
                     PlaylistSoundRow(index: index, soundId: sound.id, title: sound.title, author: sound.authorName ?? "", duration: sound.duration, nowPlaying: .constant(Set<String>()))
                 }
                 .onMove(perform: move)
@@ -45,22 +44,17 @@ struct PlaylistDetailView: View {
             }
         }
         .onAppear {
-            //sounds.append(contentsOf: soundData.shuffled().prefix(10))
-            
             viewModel.reloadSoundList(withPlaylistContents: try? database.getAllContentsInsidePlaylist(withId: playlist.id))
         }
         .navigationTitle(playlist.name)
     }
     
     func move(from source: IndexSet, to destination: Int) {
-        sounds.move(fromOffsets: source, toOffset: destination)
-        for i in 0...(self.sounds.count - 1) {
-            self.sounds[i].authorName = authorData.first(where: { $0.id == self.sounds[i].authorId })?.name ?? Shared.unknownAuthor
-        }
+        viewModel.sounds.move(fromOffsets: source, toOffset: destination)
     }
     
     func delete(at offsets: IndexSet) {
-        sounds.remove(atOffsets: offsets)
+        viewModel.sounds.remove(atOffsets: offsets)
     }
     
 }
