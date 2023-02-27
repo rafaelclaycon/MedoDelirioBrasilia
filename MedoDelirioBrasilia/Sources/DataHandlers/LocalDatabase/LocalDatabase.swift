@@ -19,6 +19,8 @@ class LocalDatabase: LocalDatabaseProtocol {
     var networkCallLog = Table("networkCallLog")
     var userFolder = Table("userFolder")
     var userFolderContent = Table("userFolderContent")
+    var playlist = Table("playlist")
+    var playlistContent = Table("playlistContent")
     
     // MARK: - Setup
     
@@ -60,7 +62,8 @@ extension LocalDatabase {
                 RemoveFavoriteLogTable(),
                 AddAudienceSharingStatisticTable(),
                 AddRankingTypeToAudienceSharingStatisticTable(),
-                AddDateAndVersionToUserFolderTables()]
+                AddDateAndVersionToUserFolderTables(),
+                AddPlaylistTables()]
     }
     
     var needsMigration: Bool {
