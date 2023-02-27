@@ -1128,6 +1128,7 @@
 		D9C1372729063A78003E4ABF /* FolderResearchSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C1372629063A78003E4ABF /* FolderResearchSettingsView.swift */; };
 		D9C1372B29063D7D003E4ABF /* PrivacySettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C1372A29063D7D003E4ABF /* PrivacySettingsView.swift */; };
 		D9C35D23288713990065F3E7 /* HotWeatherAdBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C35D22288713990065F3E7 /* HotWeatherAdBannerView.swift */; };
+		D9C558D629ACF01B00143866 /* EmptyPlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C558D529ACF01B00143866 /* EmptyPlaylistView.swift */; };
 		D9C5EC3128C7DEEA0099EA86 /* Jair Bolsonaro - O que nos queremos paz tranquilidade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C5EC3028C7DEE90099EA86 /* Jair Bolsonaro - O que nos queremos paz tranquilidade.mp3 */; };
 		D9C5EC3328C7F3150099EA86 /* Fora Genocida.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C5EC3228C7F3150099EA86 /* Fora Genocida.mp3 */; };
 		D9C5EC3628C7F7F70099EA86 /* Jair Bolsonaro - Ato falho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C5EC3428C7F7F70099EA86 /* Jair Bolsonaro - Ato falho.mp3 */; };
@@ -2412,6 +2413,7 @@
 		D9C1372629063A78003E4ABF /* FolderResearchSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderResearchSettingsView.swift; sourceTree = "<group>"; };
 		D9C1372A29063D7D003E4ABF /* PrivacySettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacySettingsView.swift; sourceTree = "<group>"; };
 		D9C35D22288713990065F3E7 /* HotWeatherAdBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotWeatherAdBannerView.swift; sourceTree = "<group>"; };
+		D9C558D529ACF01B00143866 /* EmptyPlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyPlaylistView.swift; sourceTree = "<group>"; };
 		D9C5EC3028C7DEE90099EA86 /* Jair Bolsonaro - O que nos queremos paz tranquilidade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - O que nos queremos paz tranquilidade.mp3"; sourceTree = "<group>"; };
 		D9C5EC3228C7F3150099EA86 /* Fora Genocida.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fora Genocida.mp3"; sourceTree = "<group>"; };
 		D9C5EC3428C7F7F70099EA86 /* Jair Bolsonaro - Ato falho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Ato falho.mp3"; sourceTree = "<group>"; };
@@ -4297,6 +4299,7 @@
 				D993E68B29ABCA2300F4DE9A /* AddToPlaylistView.swift */,
 				D993E68D29ABCA5A00F4DE9A /* AddToPlaylistViewViewModel.swift */,
 				D9537D0129AC22C50040E406 /* NoPlaylistsView.swift */,
+				D9C558D529ACF01B00143866 /* EmptyPlaylistView.swift */,
 			);
 			path = Playlists;
 			sourceTree = "<group>";
@@ -5553,6 +5556,7 @@
 				D9B763282845B5E600CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift in Sources */,
 				D9A4D010290A18ED00EB57B3 /* NetworkRabbit+StillAliveSignal.swift in Sources */,
 				D958BC732868FE8C000B2EDA /* EmojiIdentification.swift in Sources */,
+				D9C558D629ACF01B00143866 /* EmptyPlaylistView.swift in Sources */,
 				D9537D0829AC3D720040E406 /* LocalDatabase+PlaylistContent.swift in Sources */,
 				D9E5056028F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift in Sources */,
 				D9CC025D28BD9EBD0021C1E6 /* GridHelper.swift in Sources */,

@@ -14,12 +14,20 @@ struct PlaylistDetailView: View {
     
     var body: some View {
         VStack {
-            List {
-                ForEach(Array(viewModel.sounds.enumerated()), id: \.1) { index, sound in
-                    PlaylistSoundRow(index: index, soundId: sound.id, title: sound.title, author: sound.authorName ?? "", duration: sound.duration, nowPlaying: .constant(Set<String>()))
+            if viewModel.hasSoundsToDisplay {
+                List {
+                    ForEach(Array(viewModel.sounds.enumerated()), id: \.1) { index, sound in
+                        PlaylistSoundRow(index: index, soundId: sound.id, title: sound.title, author: sound.authorName ?? "", duration: sound.duration, nowPlaying: .constant(Set<String>()))
+                    }
+                    .onMove(perform: move)
+                    .onDelete(perform: delete)
                 }
-                .onMove(perform: move)
-                .onDelete(perform: delete)
+            } else {
+                ScrollView {
+                    EmptyPlaylistView()
+                        .padding(.vertical, 100)
+                        .padding(.horizontal, 30)
+                }
             }
         }
         .toolbar {
