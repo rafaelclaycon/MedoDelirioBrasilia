@@ -59,7 +59,14 @@ extension LocalDatabase {
     }
     
     func insert(contentId: String, intoPlaylist playlistId: String) throws {
-        let content = PlaylistContent(playlistId: playlistId, contentId: contentId, order: 0, dateAdded: .now)
+        let order_on_table = Expression<Int>("order")
+        let playlist_id = Expression<String>("playlistId")
+        var newOrder = 0
+        if let maxOrder = try db.scalar(playlistContent.select(order_on_table.max).where(playlist_id == playlistId)) {
+            newOrder = maxOrder + 1
+        }
+        
+        let content = PlaylistContent(playlistId: playlistId, contentId: contentId, order: newOrder, dateAdded: .now)
         let insert = try playlistContent.insert(content)
         try db.run(insert)
     }
