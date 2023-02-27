@@ -12,10 +12,6 @@ struct AddToPlaylistView: View {
     @StateObject private var viewModel = AddToPlaylistViewViewModel(database: database)
     @Binding var isBeingShown: Bool
     
-//    @Binding var hadSuccess: Bool
-//    @Binding var playlistName: String?
-//    @Binding var pluralization: WordPluralization
-//    @State var selectedSounds: [Sound]
     @EnvironmentObject var addToPlaylistHelper: AddToPlaylistHelper
     
     @State private var isShowingCreateNewPlaylistAlert: Bool = false
@@ -84,10 +80,16 @@ struct AddToPlaylistView: View {
                         LazyVGrid(columns: columns, spacing: 14) {
                             ForEach(viewModel.playlists) { playlist in
                                 Button {
-                                    print(playlist.name)
+                                    addToPlaylistHelper.selectedSounds?.forEach { sound in
+                                        try? database.insert(contentId: sound.id, intoUserFolder: playlist.id)
+                                    }
+                                    
+                                    addToPlaylistHelper.playlistName = playlist.name
+                                    addToPlaylistHelper.pluralization = addToPlaylistHelper.selectedSounds?.count ?? 0 > 1 ? .plural : .singular
+                                    addToPlaylistHelper.hadSuccess = true
+                                    isBeingShown = false
                                 } label: {
-                                    //PlaylistRow(playlist: playlist)
-                                    Text(playlist.name)
+                                    PlaylistRow(playlist: playlist)
                                 }
                             }
                         }
@@ -95,16 +97,16 @@ struct AddToPlaylistView: View {
                     }
                 }
             }
-//            .navigationTitle("Adicionar a Playlist")
-//            .navigationBarTitleDisplayMode(.inline)
-//            .navigationBarItems(leading:
-//                Button("Cancelar") {
-//                    self.isBeingShown = false
-//                }
-//            )
-//            .onAppear {
-//                viewModel.reloadFolderList(withPlaylists: try? database.getAllUserFolders())
-//            }
+            .navigationTitle("Adicionar a Playlist")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarItems(leading:
+                Button("Cancelar") {
+                    self.isBeingShown = false
+                }
+            )
+            .onAppear {
+                viewModel.reloadFolderList(withPlaylists: try? database.getAllPlaylists())
+            }
         }
     }
     

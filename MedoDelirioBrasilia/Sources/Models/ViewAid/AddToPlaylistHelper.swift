@@ -9,9 +9,9 @@ import Foundation
 
 class AddToPlaylistHelper: ObservableObject {
     
-    @Published var hadSuccessAddingToFolder: Bool = false
+    @Published var selectedSounds: [Sound]? = nil
     @Published var playlistName: String = .empty
     @Published var pluralization: WordPluralization = .singular
-    @Published var selectedSounds: [Sound]? = nil
+    @Published var hadSuccess: Bool = false
     
 }

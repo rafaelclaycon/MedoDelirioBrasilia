@@ -39,7 +39,7 @@ struct SoundsView: View {
     @State private var hadSuccessAddingToFolder: Bool = false
     @State private var folderName: String? = nil
     @State private var pluralization: WordPluralization = .singular
-    @State private var shouldDisplayAddedToFolderToast: Bool = false
+    @State private var shouldDisplayToastView: Bool = false
     
     // Add to Playlist
     @StateObject var addToPlaylistHelper = AddToPlaylistHelper()
@@ -436,14 +436,14 @@ struct SoundsView: View {
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
                         withAnimation {
-                            shouldDisplayAddedToFolderToast = true
+                            shouldDisplayToastView = true
                         }
                         TapticFeedback.success()
                     }
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                         withAnimation {
-                            shouldDisplayAddedToFolderToast = false
+                            shouldDisplayToastView = false
                             folderName = nil
                             hadSuccessAddingToFolder = false
                         }
@@ -451,6 +451,21 @@ struct SoundsView: View {
                     
                     if pluralization == .plural {
                         viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFolder(\(selectedCount))")
+                    }
+                } else if (showingModalView == false) && addToPlaylistHelper.hadSuccess {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                        withAnimation {
+                            shouldDisplayToastView = true
+                        }
+                        TapticFeedback.success()
+                    }
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        withAnimation {
+                            shouldDisplayToastView = false
+                            addToPlaylistHelper.playlistName = .empty
+                            addToPlaylistHelper.hadSuccess = false
+                        }
                     }
                 }
             }
@@ -464,11 +479,11 @@ struct SoundsView: View {
                 }
             }
             
-            if shouldDisplayAddedToFolderToast {
+            if shouldDisplayToastView {
                 VStack {
                     Spacer()
                     
-                    ToastView(text: pluralization.getAddedToFolderToastText(folderName: folderName))
+                    ToastView(text: addToPlaylistHelper.playlistName != .empty ? pluralization.getAddedToPlaylistToastText(playlistName: addToPlaylistHelper.playlistName) : pluralization.getAddedToFolderToastText(folderName: folderName))
                         .padding(.horizontal)
                         .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? toastViewBottomPaddingPhone : toastViewBottomPaddingPad)
                 }

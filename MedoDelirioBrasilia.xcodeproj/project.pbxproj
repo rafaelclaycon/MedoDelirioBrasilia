@@ -319,6 +319,9 @@
 		D9523741285BF98A00E6C838 /* NetworkRabbitStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */; };
 		D9523743285BF99800E6C838 /* LocalDatabaseSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9523742285BF99800E6C838 /* LocalDatabaseSpy.swift */; };
 		D9537D0229AC22C50040E406 /* NoPlaylistsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9537D0129AC22C50040E406 /* NoPlaylistsView.swift */; };
+		D9537D0429AC38080040E406 /* PlaylistDetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9537D0329AC38080040E406 /* PlaylistDetailViewViewModel.swift */; };
+		D9537D0629AC390B0040E406 /* PlaylistContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9537D0529AC390B0040E406 /* PlaylistContent.swift */; };
+		D9537D0829AC3D720040E406 /* LocalDatabase+PlaylistContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9537D0729AC3D720040E406 /* LocalDatabase+PlaylistContent.swift */; };
 		D9545ED6299D579D00A130B1 /* Franciel Cruz - Lula e bicampeao mundial de conciliacao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9545ED5299D579D00A130B1 /* Franciel Cruz - Lula e bicampeao mundial de conciliacao.mp3 */; };
 		D9545EDA299D64DD00A130B1 /* Queima Quengaral - Taca o pau.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9545ED9299D64DC00A130B1 /* Queima Quengaral - Taca o pau.mp3 */; };
 		D9547D7D28FDD7190020A800 /* Franciel Cruz - Rapaz.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9547D7528FDD7180020A800 /* Franciel Cruz - Rapaz.mp3 */; };
@@ -1597,6 +1600,9 @@
 		D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRabbitStub.swift; sourceTree = "<group>"; };
 		D9523742285BF99800E6C838 /* LocalDatabaseSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDatabaseSpy.swift; sourceTree = "<group>"; };
 		D9537D0129AC22C50040E406 /* NoPlaylistsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoPlaylistsView.swift; sourceTree = "<group>"; };
+		D9537D0329AC38080040E406 /* PlaylistDetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistDetailViewViewModel.swift; sourceTree = "<group>"; };
+		D9537D0529AC390B0040E406 /* PlaylistContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistContent.swift; sourceTree = "<group>"; };
+		D9537D0729AC3D720040E406 /* LocalDatabase+PlaylistContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+PlaylistContent.swift"; sourceTree = "<group>"; };
 		D9545ED5299D579D00A130B1 /* Franciel Cruz - Lula e bicampeao mundial de conciliacao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Franciel Cruz - Lula e bicampeao mundial de conciliacao.mp3"; sourceTree = "<group>"; };
 		D9545ED9299D64DC00A130B1 /* Queima Quengaral - Taca o pau.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Queima Quengaral - Taca o pau.mp3"; sourceTree = "<group>"; };
 		D9547D7528FDD7180020A800 /* Franciel Cruz - Rapaz.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Franciel Cruz - Rapaz.mp3"; sourceTree = "<group>"; };
@@ -4063,6 +4069,7 @@
 				D9758C3B28617C980094D388 /* LocalDatabase+UserFolder.swift */,
 				D9877D2828694F3200B541F9 /* LocalDatabase+UserFolderContent.swift */,
 				D993E68929A993AB00F4DE9A /* LocalDatabase+Playlist.swift */,
+				D9537D0729AC3D720040E406 /* LocalDatabase+PlaylistContent.swift */,
 			);
 			path = LocalDatabase;
 			sourceTree = "<group>";
@@ -4157,6 +4164,7 @@
 				D91107132863B5FD000B6F8F /* ContentCollection.swift */,
 				D9943F2928642EC3002C6B97 /* UserFolderContent.swift */,
 				D9E7480129A93F4900009C8D /* Playlist.swift */,
+				D9537D0529AC390B0040E406 /* PlaylistContent.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -4280,6 +4288,7 @@
 			children = (
 				D9E747FF29A93DDF00009C8D /* PlaylistList.swift */,
 				D9E7480329A9400600009C8D /* PlaylistDetailView.swift */,
+				D9537D0329AC38080040E406 /* PlaylistDetailViewViewModel.swift */,
 				D9E7480529A940CA00009C8D /* PlaylistRow.swift */,
 				D9E7480729A9435700009C8D /* PlaylistSoundRow.swift */,
 				D993E68B29ABCA2300F4DE9A /* AddToPlaylistView.swift */,
@@ -5493,6 +5502,7 @@
 				D9E5100A286084F2003DB3A3 /* Date+OnlyDate.swift in Sources */,
 				D9DB6F7F28CBDA8000E24BDE /* MostSharedByMeView.swift in Sources */,
 				D91107112863B481000B6F8F /* CollectionsViewViewModel.swift in Sources */,
+				D9537D0629AC390B0040E406 /* PlaylistContent.swift in Sources */,
 				D98622E0283FC57100E9F630 /* AuthorDetailView.swift in Sources */,
 				D94AD34928811ADC00D3E4F0 /* Versioneer.swift in Sources */,
 				D92E7067283C51D20035826C /* Song.swift in Sources */,
@@ -5539,6 +5549,7 @@
 				D9B763282845B5E600CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift in Sources */,
 				D9A4D010290A18ED00EB57B3 /* NetworkRabbit+StillAliveSignal.swift in Sources */,
 				D958BC732868FE8C000B2EDA /* EmojiIdentification.swift in Sources */,
+				D9537D0829AC3D720040E406 /* LocalDatabase+PlaylistContent.swift in Sources */,
 				D9E5056028F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift in Sources */,
 				D9CC025D28BD9EBD0021C1E6 /* GridHelper.swift in Sources */,
 				D9E18173298C82C700705DCA /* WordPluralization.swift in Sources */,
@@ -5601,6 +5612,7 @@
 				D99A961C299A733E00BB5F0D /* RoundCheckbox.swift in Sources */,
 				D90F6A6628446C250050FFFF /* TrendsSettingsView.swift in Sources */,
 				D92C0CAA28405B2D009CF19A /* NoFavoritesView.swift in Sources */,
+				D9537D0429AC38080040E406 /* PlaylistDetailViewViewModel.swift in Sources */,
 				D957048328AFCC93008DEF8C /* ChangeAppIconView.swift in Sources */,
 				D9BF90BE2842EAED00BDDD7D /* TopChartCellView.swift in Sources */,
 				D9A3AB6D28F062580064CB7A /* TimeKeeper.swift in Sources */,

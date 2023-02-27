@@ -58,12 +58,12 @@ extension LocalDatabase {
         return queriedPlaylists
     }
     
-//    func insert(contentId: String, intoUserFolder userFolderId: String) throws {
-//        let folderContent = UserFolderContent(userFolderId: userFolderId, contentId: contentId, dateAdded: .now)
-//        let insert = try userFolderContent.insert(folderContent)
-//        try db.run(insert)
-//    }
-//
+    func insert(contentId: String, intoPlaylist playlistId: String) throws {
+        let content = PlaylistContent(playlistId: playlistId, contentId: contentId, dateAdded: .now)
+        let insert = try playlistContent.insert(content)
+        try db.run(insert)
+    }
+    
 //    func getAllSoundIdsInsideUserFolder(withId userFolderId: String) throws -> [String] {
 //        var queriedIds = [String]()
 //        let user_folder_id = Expression<String>("userFolderId")
@@ -76,18 +76,18 @@ extension LocalDatabase {
 //        }
 //        return queriedIds
 //    }
-//
-//    func getAllContentsInsideUserFolder(withId userFolderId: String) throws -> [UserFolderContent] {
-//        var queriedContents = [UserFolderContent]()
-//        let user_folder_id = Expression<String>("userFolderId")
-//
-//        for queriedContent in try db.prepare(userFolderContent.where(user_folder_id == userFolderId)) {
-//            queriedContents.append(try queriedContent.decode())
-//        }
-//
-//        return queriedContents
-//    }
-//
+    
+    func getAllContentsInsidePlaylist(withId playlistId: String) throws -> [PlaylistContent] {
+        var queriedContents = [PlaylistContent]()
+        let playlist_id = Expression<String>("playlistId")
+        
+        for queriedContent in try db.prepare(playlistContent.where(playlist_id == playlistId)) {
+            queriedContents.append(try queriedContent.decode())
+        }
+        
+        return queriedContents
+    }
+    
 //    func deleteUserFolder(withId folderId: String) throws {
 //        let folder_id_on_folder_content_table = Expression<String>("userFolderId")
 //        let allFolderContent = userFolderContent.filter(folder_id_on_folder_content_table == folderId)

@@ -9,12 +9,9 @@ import SwiftUI
 
 struct PlaylistDetailView: View {
     
+    @StateObject var viewModel: PlaylistDetailViewViewModel
     @State var playlist: Playlist
     @State private var sounds = [Sound]()
-    
-    private var columns: [GridItem] {
-        [GridItem(.flexible())]
-    }
     
     var body: some View {
         VStack {
@@ -48,7 +45,9 @@ struct PlaylistDetailView: View {
             }
         }
         .onAppear {
-            sounds.append(contentsOf: soundData.shuffled().prefix(10))
+            //sounds.append(contentsOf: soundData.shuffled().prefix(10))
+            
+            viewModel.reloadSoundList(withPlaylistContents: try? database.getAllContentsInsidePlaylist(withId: playlist.id))
         }
         .navigationTitle(playlist.name)
     }
@@ -69,7 +68,7 @@ struct PlaylistDetailView: View {
 struct PlaylistDetailView_Previews: PreviewProvider {
     
     static var previews: some View {
-        PlaylistDetailView(playlist: Playlist(name: "Minha Playlist Maravilhosa"))
+        PlaylistDetailView(viewModel: PlaylistDetailViewViewModel(), playlist: Playlist(name: "Minha Playlist Maravilhosa"))
     }
     
 }
