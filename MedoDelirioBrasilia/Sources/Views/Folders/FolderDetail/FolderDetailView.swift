@@ -244,6 +244,9 @@ struct FolderDetailView: View {
                 if currentSoundsListMode == .selection {
                     viewModel.stopSelecting()
                 }
+                if viewModel.isPlayingPlaylist {
+                    viewModel.stopPlaying()
+                }
             }
             .sheet(isPresented: $showingFolderInfoEditingView) {
                 FolderInfoEditingView(isBeingShown: $showingFolderInfoEditingView, symbol: folder.symbol, folderName: folder.name, selectedBackgroundColor: folder.backgroundColor, isEditing: true, folderIdWhenEditing: folder.id)

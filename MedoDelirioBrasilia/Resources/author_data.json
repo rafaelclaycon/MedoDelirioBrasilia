@@ -1557,5 +1557,11 @@
         "id": "11D847C6-1612-4B07-B40A-C8B4E4DAD3D7",
         "name": "Natuza Nery",
         "description": "Jornalista. Comentarista de política no canal GloboNews."
+    },
+    {
+        "id": "44C84219-8199-4E4D-96B7-AE47173755DA",
+        "name": "Lourdes Melo",
+        "photo": "https://www.rbsdirect.com.br/filestore/0/6/2/9/0/7/3_522f8e5afe4e4c4/3709260_640f3591da0b78e.jpg?w=1024&h=1024&a=c",
+        "description": "Política brasileira, filiada ao Partido da Causa Operária (PCO). Ficou conhecida nos debates para governador das eleições estaduais no Piauí em 2022."
     }
 ]
