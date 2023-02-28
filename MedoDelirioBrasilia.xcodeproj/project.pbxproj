@@ -1140,6 +1140,9 @@
 		D9CEB760299806FF00DF8497 /* Meu irmao ta no Supremo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CEB75F299806FF00DF8497 /* Meu irmao ta no Supremo.mp3 */; };
 		D9CEB76629991B8C00DF8497 /* Bruno Aleixo - Esqueceu-se.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CEB76529991B8C00DF8497 /* Bruno Aleixo - Esqueceu-se.mp3 */; };
 		D9CEB76A29991ED100DF8497 /* Te amo te amo te amo, democracia (Natuza Nery).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CEB76929991ED100DF8497 /* Te amo te amo te amo, democracia (Natuza Nery).mp3 */; };
+		D9D103EF29AE35CD0028F1E1 /* Lourdes Melo - O ministro cabeca de ovo lustrada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D103EE29AE35CC0028F1E1 /* Lourdes Melo - O ministro cabeca de ovo lustrada.mp3 */; };
+		D9D103F329AE36980028F1E1 /* Lourdes Melo - Cabeca de ovo cabeca lustrada de ovo de cabeca lustrada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D103F229AE36980028F1E1 /* Lourdes Melo - Cabeca de ovo cabeca lustrada de ovo de cabeca lustrada.mp3 */; };
+		D9D103F729AE395A0028F1E1 /* O sangue de jesus tem poder.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D103F629AE395A0028F1E1 /* O sangue de jesus tem poder.mp3 */; };
 		D9D192772909D4F200713804 /* NetworkCallLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D192762909D4F200713804 /* NetworkCallLog.swift */; };
 		D9D3D4912887495B00C42FDE /* FolderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3D4902887495B00C42FDE /* FolderList.swift */; };
 		D9D3D493288750C400C42FDE /* FolderListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3D492288750C400C42FDE /* FolderListViewModel.swift */; };
@@ -2409,6 +2412,9 @@
 		D9CEB75F299806FF00DF8497 /* Meu irmao ta no Supremo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Meu irmao ta no Supremo.mp3"; sourceTree = "<group>"; };
 		D9CEB76529991B8C00DF8497 /* Bruno Aleixo - Esqueceu-se.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bruno Aleixo - Esqueceu-se.mp3"; sourceTree = "<group>"; };
 		D9CEB76929991ED100DF8497 /* Te amo te amo te amo, democracia (Natuza Nery).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Te amo te amo te amo, democracia (Natuza Nery).mp3"; sourceTree = "<group>"; };
+		D9D103EE29AE35CC0028F1E1 /* Lourdes Melo - O ministro cabeca de ovo lustrada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lourdes Melo - O ministro cabeca de ovo lustrada.mp3"; sourceTree = "<group>"; };
+		D9D103F229AE36980028F1E1 /* Lourdes Melo - Cabeca de ovo cabeca lustrada de ovo de cabeca lustrada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lourdes Melo - Cabeca de ovo cabeca lustrada de ovo de cabeca lustrada.mp3"; sourceTree = "<group>"; };
+		D9D103F629AE395A0028F1E1 /* O sangue de jesus tem poder.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O sangue de jesus tem poder.mp3"; sourceTree = "<group>"; };
 		D9D192762909D4F200713804 /* NetworkCallLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkCallLog.swift; sourceTree = "<group>"; };
 		D9D3D4902887495B00C42FDE /* FolderList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderList.swift; sourceTree = "<group>"; };
 		D9D3D492288750C400C42FDE /* FolderListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListViewModel.swift; sourceTree = "<group>"; };
@@ -2562,6 +2568,9 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9D103F629AE395A0028F1E1 /* O sangue de jesus tem poder.mp3 */,
+				D9D103F229AE36980028F1E1 /* Lourdes Melo - Cabeca de ovo cabeca lustrada de ovo de cabeca lustrada.mp3 */,
+				D9D103EE29AE35CC0028F1E1 /* Lourdes Melo - O ministro cabeca de ovo lustrada.mp3 */,
 				D9E53FA929A697A400BF9D31 /* Pipino de novo de novo.mp3 */,
 				D9E53FA529A696A800BF9D31 /* Natuza Nery - Olha so (triste).mp3 */,
 				D9E53F9F29A695C600BF9D31 /* Donald Trump - China all the time.mp3 */,
@@ -4476,6 +4485,7 @@
 				D975FFD72880B4F20035E6F2 /* Bolsonaro - Enfrentar como homem.mp3 in Resources */,
 				D975FFB22880B4F20035E6F2 /* Damares - Inserir no anus.mp3 in Resources */,
 				D975000E2880B4F20035E6F2 /* Face palm - Corra que a policia vem ai.mp3 in Resources */,
+				D9D103F329AE36980028F1E1 /* Lourdes Melo - Cabeca de ovo cabeca lustrada de ovo de cabeca lustrada.mp3 in Resources */,
 				D975FF502880B4F20035E6F2 /* Bolsonaro - So se for na casa da tua mae.mp3 in Resources */,
 				D95A462C29182FF3006B4023 /* Gregorio Duvivier - Vencemos a milicia sem dar um tiro.mp3 in Resources */,
 				D975FF142880B4F20035E6F2 /* Abraham Weintraub - odeio odeio odeio short.mp3 in Resources */,
@@ -4919,6 +4929,7 @@
 				D975FEAA2880B4F20035E6F2 /* Malditos milicos - bomba.mp3 in Resources */,
 				D9CEB75E2998046F00DF8497 /* Ta todo mundo preso.mp3 in Resources */,
 				D975FEA22880B4F20035E6F2 /* ATILA IAMARINO - A gente esta basicamente sabotando a campanha de vacinacao do mundo.mp3 in Resources */,
+				D9D103EF29AE35CD0028F1E1 /* Lourdes Melo - O ministro cabeca de ovo lustrada.mp3 in Resources */,
 				D975FF0F2880B4F20035E6F2 /* Tati Quebra Barraco - Ce num tinha nem que ta aqui linda.mp3 in Resources */,
 				D975FF032880B4F20035E6F2 /* Milton Ribeiro - O mundo foi perdendo a referencia do que e certo e do que e errado em termos de conduta sexual.mp3 in Resources */,
 				D91B7F8A2943C44600B9A43F /* Arthur Lira e foda (curto).mp3 in Resources */,
@@ -5198,6 +5209,7 @@
 				D975FE402880B4F20035E6F2 /* CASIMIRO - Voce acha isso legal.mp3 in Resources */,
 				D975FF852880B4F20035E6F2 /* Choque de Cultura - Renan - E Paradoxo que chama isso ai.mp3 in Resources */,
 				D97B2DE728E60B8600C3B50B /* Michael The Office - No god please no.mp3 in Resources */,
+				D9D103F729AE395A0028F1E1 /* O sangue de jesus tem poder.mp3 in Resources */,
 				D975FE242880B4F20035E6F2 /* CHOQUE DE CULTURA - Rogerinho As vezes o odio e a unica emocao possivel short.mp3 in Resources */,
 				D975FEF12880B4F20035E6F2 /* Vai Dar Namoro - Tome.mp3 in Resources */,
 				D9F696BD28BBFDD700C984E6 /* Jair Bolsonaro e Conrado Hubner - Os escandalos do Jair, enumerados.mp3 in Resources */,
@@ -5795,7 +5807,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.5;
+				MARKETING_VERSION = 6.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -5835,7 +5847,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.5;
+				MARKETING_VERSION = 6.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
