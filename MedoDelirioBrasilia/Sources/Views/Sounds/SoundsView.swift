@@ -514,9 +514,6 @@ struct SoundsView: View {
             Text("Pastas")
                 .tag(ViewMode.folders)
             
-            Text("Playlists")
-                .tag(ViewMode.playlists)
-            
             Text("Por Autor")
                 .tag(ViewMode.byAuthor)
         }
