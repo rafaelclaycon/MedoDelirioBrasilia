@@ -318,6 +318,18 @@
 		D94FBD342948F64F001FA3A8 /* Heraclito Sobral Pinto - Militares e Republica nao combinam.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94FBD332948F64E001FA3A8 /* Heraclito Sobral Pinto - Militares e Republica nao combinam.mp3 */; };
 		D9523741285BF98A00E6C838 /* NetworkRabbitStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */; };
 		D9523743285BF99800E6C838 /* LocalDatabaseSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9523742285BF99800E6C838 /* LocalDatabaseSpy.swift */; };
+		D952DB7E29B3C7A4001F1E0E /* Manoel Gomes - La ele.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D952DB7B29B3C7A4001F1E0E /* Manoel Gomes - La ele.mp3 */; };
+		D952DB7F29B3C7A4001F1E0E /* Manoel Gomes - La ele mil vezes.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D952DB7C29B3C7A4001F1E0E /* Manoel Gomes - La ele mil vezes.mp3 */; };
+		D952DB8029B3C7A4001F1E0E /* Manoel Gomes - La ele (animado).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D952DB7D29B3C7A4001F1E0E /* Manoel Gomes - La ele (animado).mp3 */; };
+		D952DB9C29B3CB03001F1E0E /* Jair Renan - Porrada de nao me recordo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D952DB9329B3CB01001F1E0E /* Jair Renan - Porrada de nao me recordo.mp3 */; };
+		D952DB9D29B3CB03001F1E0E /* Voz do Google - Em 50 metros tire o cu verde oliva da reta.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D952DB9429B3CB02001F1E0E /* Voz do Google - Em 50 metros tire o cu verde oliva da reta.mp3 */; };
+		D952DB9E29B3CB03001F1E0E /* Sandra Annenberg - Que deselegante.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D952DB9529B3CB02001F1E0E /* Sandra Annenberg - Que deselegante.mp3 */; };
+		D952DB9F29B3CB03001F1E0E /* Away - Teu corpo com anabolizante.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D952DB9629B3CB02001F1E0E /* Away - Teu corpo com anabolizante.mp3 */; };
+		D952DBA029B3CB03001F1E0E /* Cebolinha - Meu plano infalivel tem tudo pla da celto.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D952DB9729B3CB02001F1E0E /* Cebolinha - Meu plano infalivel tem tudo pla da celto.mp3 */; };
+		D952DBA129B3CB03001F1E0E /* Antonio Tabet - Foda-se o medo e delirio em brasilia porra.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D952DB9829B3CB02001F1E0E /* Antonio Tabet - Foda-se o medo e delirio em brasilia porra.mp3 */; };
+		D952DBA229B3CB03001F1E0E /* Rogerinho do Inga - Eu ja falei legal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D952DB9929B3CB03001F1E0E /* Rogerinho do Inga - Eu ja falei legal.mp3 */; };
+		D952DBA329B3CB03001F1E0E /* Igor Guimaraes - Se amar e crime eu sou traficante.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D952DB9A29B3CB03001F1E0E /* Igor Guimaraes - Se amar e crime eu sou traficante.mp3 */; };
+		D952DBA429B3CB03001F1E0E /* Rogerinho do Inga - Legal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D952DB9B29B3CB03001F1E0E /* Rogerinho do Inga - Legal.mp3 */; };
 		D9545ED6299D579D00A130B1 /* Franciel Cruz - Lula e bicampeao mundial de conciliacao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9545ED5299D579D00A130B1 /* Franciel Cruz - Lula e bicampeao mundial de conciliacao.mp3 */; };
 		D9545EDA299D64DD00A130B1 /* Queima Quengaral - Taca o pau.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9545ED9299D64DC00A130B1 /* Queima Quengaral - Taca o pau.mp3 */; };
 		D9547D7D28FDD7190020A800 /* Franciel Cruz - Rapaz.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9547D7528FDD7180020A800 /* Franciel Cruz - Rapaz.mp3 */; };
@@ -1588,6 +1600,18 @@
 		D94FBD332948F64E001FA3A8 /* Heraclito Sobral Pinto - Militares e Republica nao combinam.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Heraclito Sobral Pinto - Militares e Republica nao combinam.mp3"; sourceTree = "<group>"; };
 		D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRabbitStub.swift; sourceTree = "<group>"; };
 		D9523742285BF99800E6C838 /* LocalDatabaseSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDatabaseSpy.swift; sourceTree = "<group>"; };
+		D952DB7B29B3C7A4001F1E0E /* Manoel Gomes - La ele.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Manoel Gomes - La ele.mp3"; sourceTree = "<group>"; };
+		D952DB7C29B3C7A4001F1E0E /* Manoel Gomes - La ele mil vezes.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Manoel Gomes - La ele mil vezes.mp3"; sourceTree = "<group>"; };
+		D952DB7D29B3C7A4001F1E0E /* Manoel Gomes - La ele (animado).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Manoel Gomes - La ele (animado).mp3"; sourceTree = "<group>"; };
+		D952DB9329B3CB01001F1E0E /* Jair Renan - Porrada de nao me recordo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Renan - Porrada de nao me recordo.mp3"; sourceTree = "<group>"; };
+		D952DB9429B3CB02001F1E0E /* Voz do Google - Em 50 metros tire o cu verde oliva da reta.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Voz do Google - Em 50 metros tire o cu verde oliva da reta.mp3"; sourceTree = "<group>"; };
+		D952DB9529B3CB02001F1E0E /* Sandra Annenberg - Que deselegante.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Sandra Annenberg - Que deselegante.mp3"; sourceTree = "<group>"; };
+		D952DB9629B3CB02001F1E0E /* Away - Teu corpo com anabolizante.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Away - Teu corpo com anabolizante.mp3"; sourceTree = "<group>"; };
+		D952DB9729B3CB02001F1E0E /* Cebolinha - Meu plano infalivel tem tudo pla da celto.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cebolinha - Meu plano infalivel tem tudo pla da celto.mp3"; sourceTree = "<group>"; };
+		D952DB9829B3CB02001F1E0E /* Antonio Tabet - Foda-se o medo e delirio em brasilia porra.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Antonio Tabet - Foda-se o medo e delirio em brasilia porra.mp3"; sourceTree = "<group>"; };
+		D952DB9929B3CB03001F1E0E /* Rogerinho do Inga - Eu ja falei legal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rogerinho do Inga - Eu ja falei legal.mp3"; sourceTree = "<group>"; };
+		D952DB9A29B3CB03001F1E0E /* Igor Guimaraes - Se amar e crime eu sou traficante.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Igor Guimaraes - Se amar e crime eu sou traficante.mp3"; sourceTree = "<group>"; };
+		D952DB9B29B3CB03001F1E0E /* Rogerinho do Inga - Legal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rogerinho do Inga - Legal.mp3"; sourceTree = "<group>"; };
 		D9545ED5299D579D00A130B1 /* Franciel Cruz - Lula e bicampeao mundial de conciliacao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Franciel Cruz - Lula e bicampeao mundial de conciliacao.mp3"; sourceTree = "<group>"; };
 		D9545ED9299D64DC00A130B1 /* Queima Quengaral - Taca o pau.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Queima Quengaral - Taca o pau.mp3"; sourceTree = "<group>"; };
 		D9547D7528FDD7180020A800 /* Franciel Cruz - Rapaz.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Franciel Cruz - Rapaz.mp3"; sourceTree = "<group>"; };
@@ -2568,6 +2592,18 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D952DB9829B3CB02001F1E0E /* Antonio Tabet - Foda-se o medo e delirio em brasilia porra.mp3 */,
+				D952DB9629B3CB02001F1E0E /* Away - Teu corpo com anabolizante.mp3 */,
+				D952DB9729B3CB02001F1E0E /* Cebolinha - Meu plano infalivel tem tudo pla da celto.mp3 */,
+				D952DB9A29B3CB03001F1E0E /* Igor Guimaraes - Se amar e crime eu sou traficante.mp3 */,
+				D952DB9329B3CB01001F1E0E /* Jair Renan - Porrada de nao me recordo.mp3 */,
+				D952DB9929B3CB03001F1E0E /* Rogerinho do Inga - Eu ja falei legal.mp3 */,
+				D952DB9B29B3CB03001F1E0E /* Rogerinho do Inga - Legal.mp3 */,
+				D952DB9529B3CB02001F1E0E /* Sandra Annenberg - Que deselegante.mp3 */,
+				D952DB9429B3CB02001F1E0E /* Voz do Google - Em 50 metros tire o cu verde oliva da reta.mp3 */,
+				D952DB7D29B3C7A4001F1E0E /* Manoel Gomes - La ele (animado).mp3 */,
+				D952DB7C29B3C7A4001F1E0E /* Manoel Gomes - La ele mil vezes.mp3 */,
+				D952DB7B29B3C7A4001F1E0E /* Manoel Gomes - La ele.mp3 */,
 				D9D103F629AE395A0028F1E1 /* O sangue de jesus tem poder.mp3 */,
 				D9D103F229AE36980028F1E1 /* Lourdes Melo - Cabeca de ovo cabeca lustrada de ovo de cabeca lustrada.mp3 */,
 				D9D103EE29AE35CC0028F1E1 /* Lourdes Melo - O ministro cabeca de ovo lustrada.mp3 */,
@@ -4509,6 +4545,8 @@
 				49DEA9B428811104008C9BA1 /* SpongeBob end of flashback short meme.mp3 in Resources */,
 				D975FE342880B4F20035E6F2 /* Belo - Quem sera.mp3 in Resources */,
 				D9EBC932294834D200960AE3 /* Jair Bolsonaro - Ministro Fachin, marxista, leninista (completo).mp3 in Resources */,
+				D952DBA429B3CB03001F1E0E /* Rogerinho do Inga - Legal.mp3 in Resources */,
+				D952DB7E29B3C7A4001F1E0E /* Manoel Gomes - La ele.mp3 in Resources */,
 				D94B03F72993248300EB03CA /* Dudu Marfetan - Ate o final (completo).mp3 in Resources */,
 				D975FF722880B4F20035E6F2 /* lula ou bolsonaro.mp3 in Resources */,
 				D975FFBA2880B4F20035E6F2 /* BandNews FM - Ciro Gomes - Esse Braga Netto, que e um bosta.mp3 in Resources */,
@@ -4579,6 +4617,7 @@
 				D934432728381DEF00ADCD38 /* author_data.json in Resources */,
 				D921F87F288B0177003979CC /* Aglomeracao de idosos todos doentes.mp3 in Resources */,
 				D975FF7A2880B4F20035E6F2 /* Dilma - Vai todo mundo perder.mp3 in Resources */,
+				D952DBA229B3CB03001F1E0E /* Rogerinho do Inga - Eu ja falei legal.mp3 in Resources */,
 				D964CF3928EEF83A004DECAF /* Casimiro - Eu vou votar no barba, nao tem jeito.mp3 in Resources */,
 				D9625E8528238F9B00080852 /* Preview Assets.xcassets in Resources */,
 				D9AE4442299BF1D2009E8597 /* Kaelzinho Ferraz - Ja ta claro.mp3 in Resources */,
@@ -4749,6 +4788,7 @@
 				D923126628AAFE1E00436336 /* Eduardo Bolsonaro - Nos, tios tias do zap democracia base governo bolsonaro.mp3 in Resources */,
 				D9AF10D1290AD50D0054741F /* CARA A TAPA - Rica Perrone - Puta, mas isso e uma merda.mp3 in Resources */,
 				D975FFF82880B4F20035E6F2 /* Bolsonaro e Pazuello - Sobre quando foram avisados da crise de Manaus oxigenio.mp3 in Resources */,
+				D952DB9C29B3CB03001F1E0E /* Jair Renan - Porrada de nao me recordo.mp3 in Resources */,
 				D975FF302880B4F20035E6F2 /* Naiara Azevedo - Deus Te Ouca hein short meme.mp3 in Resources */,
 				D975FF5A2880B4F20035E6F2 /* Michel Temer - e mentira short meme.mp3 in Resources */,
 				D975FF492880B4F20035E6F2 /* Marcelo Adnet - Galvao Bueno - Vai se criando um clima terrivel.mp3 in Resources */,
@@ -4826,6 +4866,7 @@
 				D975FE882880B4F20035E6F2 /* Pedro Pedreira - Pedra 90 ha controversias.mp3 in Resources */,
 				494EAD2B28FC614A00BF822C /* Tá na hora de votar (Ilarie) - Lula.mp3 in Resources */,
 				D975000C2880B4F20035E6F2 /* Bolsonaro - Fica em casa.mp3 in Resources */,
+				D952DB8029B3C7A4001F1E0E /* Manoel Gomes - La ele (animado).mp3 in Resources */,
 				4979105528BEC6F700CDF01C /* Me deixa bastante chateado - Paulo Sergio Nogueira.mp3 in Resources */,
 				D92879E7283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 in Resources */,
 				D975FFA52880B4F20035E6F2 /* Away - nao fode mermao.mp3 in Resources */,
@@ -5024,6 +5065,7 @@
 				D975FEC62880B4F20035E6F2 /* Away - Que.mp3 in Resources */,
 				49DEA9CA2881156A008C9BA1 /* CNN - Aecio Neves Nao tenho indicio que aponte para fraude nas eleicoes de 2014 short meme.mp3 in Resources */,
 				D9AF10C6290AD50D0054741F /* Pastor Valdemiro - Isso e enganar.mp3 in Resources */,
+				D952DBA029B3CB03001F1E0E /* Cebolinha - Meu plano infalivel tem tudo pla da celto.mp3 in Resources */,
 				D975FED72880B4F20035E6F2 /* Pega essa buceta e enfia no cu short meme.mp3 in Resources */,
 				D9943F152863CC4D002C6B97 /* A impiedosa justica de Deus.mp3 in Resources */,
 				49DEA9A628810E38008C9BA1 /* TV BRASIL - Bolsonaro - Tem muita gente melhor do que eu por ai short meme.mp3 in Resources */,
@@ -5180,6 +5222,7 @@
 				D9F185D028D6729A00BE2F69 /* Lula - E como se fosse um sorvete, chupou, acabou, fica com o palito na mao.mp3 in Resources */,
 				49DEA9D62881173B008C9BA1 /* Eu quero dormir porra short meme.mp3 in Resources */,
 				D975FECF2880B4F20035E6F2 /* Hassum - Nem fodendo.mp3 in Resources */,
+				D952DB9F29B3CB03001F1E0E /* Away - Teu corpo com anabolizante.mp3 in Resources */,
 				D97500372880B4F20035E6F2 /* ATILA IAMARINO - Ele faz sexo.mp3 in Resources */,
 				D955756A2913419A002EFC50 /* Jair Bolsonaro - Precisa ter provas.mp3 in Resources */,
 				4936E767297EC7AA006060F8 /* Nascimento - Eu nao sei que vontade e essa que voce tem de fazer merda.mp3 in Resources */,
@@ -5203,6 +5246,7 @@
 				D92AD1AD28832C80001CBCDF /* PETIT JOURNAL - Tanguy Baghdadi - Ele leu errado.mp3 in Resources */,
 				D9FA63012924A5D000790F55 /* Ygona Moura - Apaga isso agora.mp3 in Resources */,
 				D97500202880B4F20035E6F2 /* Choque de cultura - Rogerinho - Nao vamos falar de porno aqui nao.mp3 in Resources */,
+				D952DB9E29B3CB03001F1E0E /* Sandra Annenberg - Que deselegante.mp3 in Resources */,
 				D975FE162880B4F20035E6F2 /* Esse Menino - Vai responder nao, puta.mp3 in Resources */,
 				D975FF9B2880B4F20035E6F2 /* UOL - Pazuello - No dia D, na hora H.mp3 in Resources */,
 				499624DE2977B479008A6FFD /* Cristiano Botafogo - Mas facamos um flashback.mp3 in Resources */,
@@ -5252,7 +5296,9 @@
 				D9FD0F0528B2B2EE0000616A /* Volta pra sua casa, vaza - pedro daltro.mp3 in Resources */,
 				D9917A0F2990856C00FB6274 /* Cristiano Botafogo - Generais na casa do caralho.mp3 in Resources */,
 				D9AF10CF290AD50D0054741F /* Gilmar Mendes - Ministro Castro Nunes.mp3 in Resources */,
+				D952DB7F29B3C7A4001F1E0E /* Manoel Gomes - La ele mil vezes.mp3 in Resources */,
 				D91793B7288E3F0E009C3165 /* Abraham Weintraub - Muito muito pipi mole, o pipizinho dele e bem mole.mp3 in Resources */,
+				D952DBA329B3CB03001F1E0E /* Igor Guimaraes - Se amar e crime eu sou traficante.mp3 in Resources */,
 				D975FF6C2880B4F20035E6F2 /* Lula - Eu vou repetir.mp3 in Resources */,
 				D975FFB62880B4F20035E6F2 /* Lula - Cade o nosso querido Ze gotinha.mp3 in Resources */,
 				D975FFA82880B4F20035E6F2 /* VICTOR CAMEJO - JORNAL DE CASA 82 - Humor, alegria, piada, humorismo.mp3 in Resources */,
@@ -5340,6 +5386,7 @@
 				D975FEE42880B4F20035E6F2 /* Luciano Hang - Comunista, ne short meme.mp3 in Resources */,
 				D9C7D18D292EEA81003F500C /* Cidade Oculta e Google Tradutor - Voce ta falando isso porque voce e a putinha do Jobs.mp3 in Resources */,
 				49C0938E28E5EEA200960B7E /* Vou de Lula, Ce Sabe - Neide e Lula.mp3 in Resources */,
+				D952DBA129B3CB03001F1E0E /* Antonio Tabet - Foda-se o medo e delirio em brasilia porra.mp3 in Resources */,
 				D97500522880B5190035E6F2 /* Mulheres de Areia - Abertura - Tonho da Lua Acordes Sexy Iemanja.mp3 in Resources */,
 				D975FFA32880B4F20035E6F2 /* ATILA IAMARINO - Voce vai morrer (resumo da live).mp3 in Resources */,
 				D975FFAE2880B4F20035E6F2 /* Bolsonaro - E so voce fazer coco dia sim, dia nao, que melhora bastante.mp3 in Resources */,
@@ -5413,6 +5460,7 @@
 				D9DF2B4E29821E5F0083765A /* Cristiano Botafogo - Alo, Bolivia, o atlantico ta logo ai.mp3 in Resources */,
 				D975FEAE2880B4F20035E6F2 /* Mourao - A gente nao tem que ser mendigo nisso ai ne vamos colocar a coisa muito clara.mp3 in Resources */,
 				D975FECC2880B4F20035E6F2 /* CNN BRASIL - Milton Ribeiro - A versao verdadeira e a versao que a gente pode escutar no audio.mp3 in Resources */,
+				D952DB9D29B3CB03001F1E0E /* Voz do Google - Em 50 metros tire o cu verde oliva da reta.mp3 in Resources */,
 				D975FEEF2880B4F20035E6F2 /* Bolsonaro - Da um tapa na minha cara slap sound.mp3 in Resources */,
 				D93752192902CD1A00E2F27B /* Genocida, miliciano, canibal.mp3 in Resources */,
 				D975FF812880B4F20035E6F2 /* Alborghetti - Ah, va a merda porra.mp3 in Resources */,
@@ -5807,7 +5855,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.6;
+				MARKETING_VERSION = 6.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -5847,7 +5895,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.6;
+				MARKETING_VERSION = 6.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
