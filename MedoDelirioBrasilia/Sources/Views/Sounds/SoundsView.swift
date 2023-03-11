@@ -10,11 +10,11 @@ import SwiftUI
 struct SoundsView: View {
 
     enum ViewMode: Int {
-        case allSounds, favorites, folders, playlists, byAuthor
+        case allSounds, favorites, folders, byAuthor
     }
     
     enum SubviewToOpen {
-        case onboardingView, addToFolderView, addToPlaylistView, shareAsVideoView, settingsView, whatsNewView
+        case onboardingView, addToFolderView, addToPlaylistView, shareAsVideoView, settingsView, whatsNewView, playlists
     }
     
     @StateObject var viewModel: SoundsViewViewModel
@@ -97,8 +97,6 @@ struct SoundsView: View {
             return "Favoritos"
         case .folders:
             return "Minhas Pastas"
-        case .playlists:
-            return "Playlists"
         case .byAuthor:
             return "Autores"
         }
@@ -130,8 +128,6 @@ struct SoundsView: View {
                 } else if currentViewMode == .folders {
                     MyFoldersiPhoneView()
                         .environmentObject(deleteFolderAide)
-                } else if currentViewMode == .playlists {
-                    PlaylistList()
                 } else if currentViewMode == .byAuthor {
                     AuthorsView(sortOption: $viewModel.authorSortOption, sortAction: $authorSortAction, searchTextForControl: $authorSearchText)
                 } else {
@@ -398,6 +394,9 @@ struct SoundsView: View {
                     
                 case .whatsNewView:
                     WhatsNewView(isBeingShown: $showingModalView)
+                    
+                case .playlists:
+                    PlaylistsCasingWithCloseView(isBeingShown: $showingModalView)
                 }
             }
             .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in
@@ -594,6 +593,13 @@ struct SoundsView: View {
                 } label: {
                     Image(systemName: "folder.badge.plus")
                 }.disabled(viewModel.selectionKeeper.count == 0)
+            } else {
+                Button {
+                    subviewToOpen = .playlists
+                    showingModalView = true
+                } label: {
+                    Image(systemName: "music.note.list")
+                }
             }
             
             Menu {
@@ -643,7 +649,7 @@ struct SoundsView: View {
                 UserSettings.setSoundSortOption(to: soundSortOption)
             })
             
-        case .folders, .playlists:
+        case .folders:
             EmptyView()
             
         case .byAuthor:
