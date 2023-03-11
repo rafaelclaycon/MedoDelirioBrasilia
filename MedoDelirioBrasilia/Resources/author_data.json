@@ -1563,5 +1563,19 @@
         "name": "Lourdes Melo",
         "photo": "https://www.rbsdirect.com.br/filestore/0/6/2/9/0/7/3_522f8e5afe4e4c4/3709260_640f3591da0b78e.jpg?w=1024&h=1024&a=c",
         "description": "Política brasileira, filiada ao Partido da Causa Operária (PCO). Ficou conhecida nos debates para governador das eleições estaduais no Piauí em 2022."
+    },
+    {
+        "id": "F2DCD7C0-1848-4888-8E75-A2DCEEA2B1B8",
+        "name": "Manoel Gomes",
+        "photo": "https://www.entornonews.com.br/cache/manoel-gomes-caneta-azul-ira-se-apresentar-em-casa-de-show-do-df-165aa-720x720.webp",
+        "description": "Cantor e compositor brasileiro de brega."
+    },
+    {
+        "id": "90ABC9D9-506E-4DEC-81FA-A659D240194A",
+        "name": "Cebolinha"
+    },
+    {
+        "id": "BFF38211-6918-4A4E-A491-DECB5952AB88",
+        "name": "Sandra Annenberg"
     }
 ]
