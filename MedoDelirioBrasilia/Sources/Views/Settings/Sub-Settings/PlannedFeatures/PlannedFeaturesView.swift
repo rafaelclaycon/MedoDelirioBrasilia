@@ -19,7 +19,7 @@ struct PlannedFeaturesView: View {
                 header: {
                     GroupBox {
                         HStack {
-                            Text("Vote nas funcionalidades que gostaria de ver no app. Sou apenas 1 dev, então não posso garantir se e quando ela aparecerá no app.")
+                            Text("Vote nas funcionalidades que gostaria de ver no app. Sou apenas 1 desenvolvedor, então não posso garantir se e quando ela aparecerá no app.")
                                 .padding(10)
                             Spacer()
                         }
