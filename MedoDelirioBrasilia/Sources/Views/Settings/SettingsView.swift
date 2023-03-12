@@ -41,12 +41,24 @@ struct SettingsView: View {
                     Text("Alguns conteúdos contam com muitos palavrões. Ao marcar essa opção, você concorda que tem mais de 18 anos e que deseja ver esses conteúdos.")
                 }
                 
+//                Section {
+//                    NavigationLink(destination: HelpView()) {
+//                        Label {
+//                            Text("Ajuda")
+//                        } icon: {
+//                            Image(systemName: "questionmark")
+//                                .foregroundColor(.blue)
+//                        }
+//
+//                    }
+//                }
+                
                 Section {
-                    NavigationLink(destination: HelpView()) {
+                    NavigationLink(destination: PlannedFeaturesView()) {
                         Label {
-                            Text("Ajuda")
+                            Text("Planejamento do app")
                         } icon: {
-                            Image(systemName: "questionmark")
+                            Image(systemName: "map")
                                 .foregroundColor(.blue)
                         }
                         
