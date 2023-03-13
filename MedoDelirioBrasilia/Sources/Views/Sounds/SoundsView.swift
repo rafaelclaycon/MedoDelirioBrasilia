@@ -208,7 +208,7 @@ struct SoundsView: View {
                                                                     subviewToOpen = .addToFolderView
                                                                     showingModalView = true
                                                                 } label: {
-                                                                    Label("Pasta", systemImage: "folder.badge.plus")
+                                                                    Label("Pasta", systemImage: "folder")
                                                                 }
                                                                 
                                                                 Button {
@@ -563,91 +563,48 @@ struct SoundsView: View {
     @ViewBuilder func trailingToolbarControls() -> some View {
         switch currentViewMode {
         case .allSounds, .favorites:
-            if currentSoundsListMode == .selection {
-                Button {
-                    // Need to get count before clearing the Set.
-                    let selectedCount: Int = viewModel.selectionKeeper.count
-                    
-                    if currentViewMode == .favorites || viewModel.allSelectedAreFavorites() {
-                        viewModel.removeSelectedFromFavorites()
-                        viewModel.stopSelecting()
-                        viewModel.reloadList(withSounds: soundData,
-                                             andFavorites: try? database.getAllFavorites(),
-                                             allowSensitiveContent: UserSettings.getShowExplicitContent(),
-                                             favoritesOnly: currentViewMode == .favorites,
-                                             sortedBy: SoundSortOption(rawValue: viewModel.soundSortOption) ?? .titleAscending)
-                        viewModel.sendUsageMetricToServer(action: "didRemoveManySoundsFromFavorites(\(selectedCount))")
-                    } else {
-                        viewModel.addSelectedToFavorites()
-                        viewModel.stopSelecting()
-                        viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFavorites(\(selectedCount))")
-                    }
-                } label: {
-                    Image(systemName: currentViewMode == .favorites || viewModel.allSelectedAreFavorites() ? "star.slash" : "star")
-                }.disabled(viewModel.selectionKeeper.count == 0)
-                
-                Button {
-                    viewModel.prepareSelectedToAddToFolder()
-                    subviewToOpen = .addToFolderView
-                    showingModalView = true
-                } label: {
-                    Image(systemName: "folder.badge.plus")
-                }.disabled(viewModel.selectionKeeper.count == 0)
-            } else {
-                Button {
-                    subviewToOpen = .playlists
-                    showingModalView = true
-                } label: {
-                    Image(systemName: "music.note.list")
-                }
-            }
-            
-            Menu {
-                Section {
+            HStack(spacing: 16) {
+                if currentSoundsListMode == .selection {
                     Button {
-                        viewModel.startSelecting()
+                        // Need to get count before clearing the Set.
+                        let selectedCount: Int = viewModel.selectionKeeper.count
+                        
+                        if currentViewMode == .favorites || viewModel.allSelectedAreFavorites() {
+                            viewModel.removeSelectedFromFavorites()
+                            viewModel.stopSelecting()
+                            viewModel.reloadList(withSounds: soundData,
+                                                 andFavorites: try? database.getAllFavorites(),
+                                                 allowSensitiveContent: UserSettings.getShowExplicitContent(),
+                                                 favoritesOnly: currentViewMode == .favorites,
+                                                 sortedBy: SoundSortOption(rawValue: viewModel.soundSortOption) ?? .titleAscending)
+                            viewModel.sendUsageMetricToServer(action: "didRemoveManySoundsFromFavorites(\(selectedCount))")
+                        } else {
+                            viewModel.addSelectedToFavorites()
+                            viewModel.stopSelecting()
+                            viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFavorites(\(selectedCount))")
+                        }
                     } label: {
-                        Label(currentSoundsListMode == .selection ? "Cancelar Seleção" : "Selecionar", systemImage: currentSoundsListMode == .selection ? "xmark.circle" : "checkmark.circle")
-                    }.disabled(currentViewMode == .favorites && viewModel.sounds.count == 0)
-                }
-                
-                Section {
-                    Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
-                        Text("Título")
-                            .tag(0)
-                        
-                        Text("Nome do(a) Autor(a)")
-                            .tag(1)
-                        
-                        Text("Mais Recentes no Topo")
-                            .tag(2)
-                        
-                        Text("Mais Curtos no Topo")
-                            .tag(3)
-                        
-                        Text("Mais Longos no Topo")
-                            .tag(4)
-                        
-//                                if CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
-//                                    Text("Título Mais Longo no Topo")
-//                                        .tag(5)
-//
-//                                    Text("Título Mais Curto no Topo")
-//                                        .tag(6)
-//                                }
+                        Image(systemName: currentViewMode == .favorites || viewModel.allSelectedAreFavorites() ? "star.slash" : "star")
+                    }.disabled(viewModel.selectionKeeper.count == 0)
+                    
+                    Button {
+                        viewModel.prepareSelectedToAddToFolder()
+                        subviewToOpen = .addToFolderView
+                        showingModalView = true
+                    } label: {
+                        Image(systemName: "folder.badge.plus")
+                    }.disabled(viewModel.selectionKeeper.count == 0)
+                } else if UIDevice.current.userInterfaceIdiom == .phone {
+                    Button {
+                        subviewToOpen = .playlists
+                        showingModalView = true
+                    } label: {
+                        Image(systemName: "music.note.list")
                     }
                 }
-            } label: {
-                Image(systemName: "ellipsis.circle")
+                
+                allSoundsAndFavoritesMenu()
             }
-            .onChange(of: viewModel.soundSortOption, perform: { soundSortOption in
-                viewModel.reloadList(withSounds: soundData,
-                                     andFavorites: try? database.getAllFavorites(),
-                                     allowSensitiveContent: UserSettings.getShowExplicitContent(),
-                                     favoritesOnly: currentViewMode == .favorites,
-                                     sortedBy: SoundSortOption(rawValue: soundSortOption) ?? .titleAscending)
-                UserSettings.setSoundSortOption(to: soundSortOption)
-            })
             
         case .folders:
             EmptyView()
@@ -673,6 +630,55 @@ struct SoundsView: View {
                 authorSortAction = AuthorSortOption(rawValue: authorSortOption) ?? .nameAscending
             })
         }
+    }
+    
+    @ViewBuilder func allSoundsAndFavoritesMenu() -> some View {
+        Menu {
+            Section {
+                Button {
+                    viewModel.startSelecting()
+                } label: {
+                    Label(currentSoundsListMode == .selection ? "Cancelar Seleção" : "Selecionar", systemImage: currentSoundsListMode == .selection ? "xmark.circle" : "checkmark.circle")
+                }.disabled(currentViewMode == .favorites && viewModel.sounds.count == 0)
+            }
+            
+            Section {
+                Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
+                    Text("Título")
+                        .tag(0)
+                    
+                    Text("Nome do(a) Autor(a)")
+                        .tag(1)
+                    
+                    Text("Mais Recentes no Topo")
+                        .tag(2)
+                    
+                    Text("Mais Curtos no Topo")
+                        .tag(3)
+                    
+                    Text("Mais Longos no Topo")
+                        .tag(4)
+                    
+//                    if CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
+//                        Text("Título Mais Longo no Topo")
+//                            .tag(5)
+//
+//                        Text("Título Mais Curto no Topo")
+//                            .tag(6)
+//                    }
+                }
+            }
+        } label: {
+            Image(systemName: "ellipsis.circle")
+        }
+        .onChange(of: viewModel.soundSortOption, perform: { soundSortOption in
+            viewModel.reloadList(withSounds: soundData,
+                                 andFavorites: try? database.getAllFavorites(),
+                                 allowSensitiveContent: UserSettings.getShowExplicitContent(),
+                                 favoritesOnly: currentViewMode == .favorites,
+                                 sortedBy: SoundSortOption(rawValue: soundSortOption) ?? .titleAscending)
+            UserSettings.setSoundSortOption(to: soundSortOption)
+        })
     }
     
     private func shouldScrollToAndHighlight(soundId: String) -> Bool {

@@ -170,7 +170,11 @@ struct FolderDetailView: View {
                         }
                         
                         Section {
-                            
+                            Button {
+                                //viewModel.startSelecting()
+                            } label: {
+                                Label("Criar Playlist com o Mesmo Conteúdo", systemImage: "music.note.list")
+                            }
                         }
                         
                         Section {
@@ -182,7 +186,7 @@ struct FolderDetailView: View {
                                     .tag(1)
                                 
                                 if showSortByDateAddedOption {
-                                    Text("Adição à Pasta (Mais Recentes no Topo)")
+                                    Text("Adicionados Por Último no Topo")
                                         .tag(2)
                                 }
                             }

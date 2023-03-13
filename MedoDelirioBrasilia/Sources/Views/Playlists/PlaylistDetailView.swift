@@ -21,7 +21,7 @@ struct PlaylistDetailView: View {
                     }
                     .onMove(perform: move)
                     .onDelete(perform: delete)
-                }
+                }.moveDisabled(viewModel.isPlayingPlaylist)
             } else {
                 ScrollView {
                     EmptyPlaylistView()
