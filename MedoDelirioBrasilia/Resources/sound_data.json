@@ -10104,7 +10104,7 @@
         "dateAdded": "2023-03-04T00:00:00Z",
         "duration": 0.91,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "907A1E1A-04FB-4C01-ABCF-6F94F2B55713",
@@ -10115,7 +10115,7 @@
         "dateAdded": "2023-03-04T00:00:00Z",
         "duration": 0.91,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "D9D75F7C-DB46-472B-BC11-79D8ACD45901",
@@ -10126,7 +10126,7 @@
         "dateAdded": "2023-03-04T00:00:00Z",
         "duration": 1.93,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "3A3C9480-5D31-4197-8D44-3DD8489EFDF0",
@@ -10137,7 +10137,7 @@
         "dateAdded": "2023-03-04T00:00:00Z",
         "duration": 2.06,
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "3494891C-4C9C-4CF9-93B6-B7E9775D12B9",
@@ -10148,7 +10148,7 @@
         "dateAdded": "2023-03-04T00:00:00Z",
         "duration": 3.94,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "C7DCA16D-24D4-4FD9-88C2-37D6215143B2",
@@ -10159,7 +10159,7 @@
         "dateAdded": "2023-03-04T00:00:00Z",
         "duration": 1.65,
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "090D7919-4E30-45CC-B762-E47179D3B940",
@@ -10170,7 +10170,7 @@
         "dateAdded": "2023-03-04T00:00:00Z",
         "duration": 4.47,
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "62A7B175-B256-4A92-B24B-11E674AD7C86",
@@ -10181,7 +10181,7 @@
         "dateAdded": "2023-03-04T00:00:00Z",
         "duration": 3.86,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "BAFED797-5B22-4202-8D90-F30F6F99EA65",
@@ -10192,7 +10192,7 @@
         "dateAdded": "2023-03-04T00:00:00Z",
         "duration": 1.38,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "6D53952D-171F-4386-A278-9AFA5C877263",
@@ -10203,7 +10203,7 @@
         "dateAdded": "2023-03-04T00:00:00Z",
         "duration": 0.5,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "F7472AFE-C789-400F-A1CE-2E585F8C0F2B",
@@ -10214,7 +10214,7 @@
         "dateAdded": "2023-03-04T00:00:00Z",
         "duration": 2.19,
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "20C6974A-D916-4719-AA79-772F2B8C2E9A",
@@ -10225,6 +10225,72 @@
         "dateAdded": "2023-03-04T00:00:00Z",
         "duration": 1.33,
         "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "B37112BC-DBA6-4A77-B649-4DB2F11CC4F7",
+        "title": "Quem fala aqui é um advogado",
+        "authorId": "B7CB79F9-4CAC-4832-BB47-2EA96A4AC576",
+        "description": "Quem fala aqui e um advogado",
+        "filename": "Trote Luiz Pareto - Quem fala aqui e um advogado.mp3",
+        "dateAdded": "2023-03-17T00:00:00Z",
+        "duration": 1.28,
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "5BB599DD-D17D-454E-A19F-3BF136E7C4A4",
+        "title": "Suspeito...",
+        "authorId": "0D442A43-9C9F-4EB1-A4A5-8DACB5439791",
+        "description": "Suspeito",
+        "filename": "O ASSUNTO - Suspeito.mp3",
+        "dateAdded": "2023-03-17T00:00:00Z",
+        "duration": 1.15,
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "0687AD0F-4C56-4D07-84CB-484965232F7E",
+        "title": "Você sabe o que é ônus da prova?",
+        "authorId": "9358F27E-61FF-4812-9322-0C8FBE7448B9",
+        "description": "Voce sabe o que e onus da prova",
+        "filename": "Advocacia Geral da Uniao - Voce sabe o que e onus da prova.mp3",
+        "dateAdded": "2023-03-17T00:00:00Z",
+        "duration": 2.64,
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "45F6A4AD-64B6-42DC-867A-454D1C8B972A",
+        "title": "Como eu odeio isso, cara",
+        "authorId": "34BF350C-B993-4918-8927-9E415EC93C63",
+        "description": "Como eu odeio isso cara",
+        "filename": "FLOW PODCAST - Igor 3k - Como eu odeio isso cara.mp3",
+        "dateAdded": "2023-03-17T00:00:00Z",
+        "duration": 1.52,
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "5B784E80-5FEC-4E1C-BF45-3C1E9EC86232",
+        "title": "Pode continuar",
+        "authorId": "E895845F-2B88-484F-A12C-310238A628B8",
+        "description": "Pode continuar",
+        "filename": "FLOW PODCAST - ELIAS JABBOUR - Pode continuar.mp3",
+        "dateAdded": "2023-03-17T00:00:00Z",
+        "duration": 0.81,
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "65579765-D73E-453E-A788-06EF8603D85D",
+        "title": "E daí, eu não sou psicólogo",
+        "authorId": "DE745F28-5E6C-42DF-B0BD-6F80E907EECB",
+        "description": "E dai eu nao sou psicologo",
+        "filename": "GLOBONEWS - Octavio Guedes - E dai, eu nao sou psicologo.mp3",
+        "dateAdded": "2023-03-17T00:00:00Z",
+        "duration": 1.93,
+        "isOffensive": true,
         "isNew": true
     }
 ]

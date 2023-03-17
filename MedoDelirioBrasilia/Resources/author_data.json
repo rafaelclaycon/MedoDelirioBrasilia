@@ -1248,7 +1248,7 @@
     },
     {
         "id": "CA83F4BE-1466-4AD2-9BDF-D96B515B4681",
-        "name": "Igor Guimaraes e Luiz Felipe D'Avila"
+        "name": "Igor Guimarães e Luiz Felipe D'Avila"
     },
     {
         "id": "AF4BE658-13CF-4468-8AB2-C03B73A2EE34",
@@ -1577,5 +1577,28 @@
     {
         "id": "BFF38211-6918-4A4E-A491-DECB5952AB88",
         "name": "Sandra Annenberg"
+    },
+    {
+        "id": "0D442A43-9C9F-4EB1-A4A5-8DACB5439791",
+        "name": "Alguém no podcast O Assunto"
+    },
+    {
+        "id": "9358F27E-61FF-4812-9322-0C8FBE7448B9",
+        "name": "Advocacia Geral da União"
+    },
+    {
+        "id": "34BF350C-B993-4918-8927-9E415EC93C63",
+        "name": "Igor Coelho (Igor 3k)",
+        "description": "Apresentador do podcast Flow."
+    },
+    {
+        "id": "E895845F-2B88-484F-A12C-310238A628B8",
+        "name": "Elias Khalil Jabbour",
+        "description": "Professor da UERJ. Autor do livro \"China: O socialismo do século XXI\"."
+    },
+    {
+        "id": "DE745F28-5E6C-42DF-B0BD-6F80E907EECB",
+        "name": "Octavio Guedes",
+        "description": "Escritor, jornalista e comentarista da GloboNews."
     }
 ]

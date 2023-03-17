@@ -20,7 +20,7 @@ struct BegForMoneyView: View {
             }
             
             VStack(alignment: .leading, spacing: 18) {
-                Text("Esse trabalho é voluntário e envolve custos mensais com servidor (~R$ 30). Qualquer tipo de contribuição é bem-vinda!")
+                Text("Esse trabalho é voluntário e envolve custos mensais com servidor (~R$ 30). Toda contribuição é bem-vinda!")
                     .fixedSize(horizontal: false, vertical: true)
                 
                 if donorNames.isEmpty == false {
