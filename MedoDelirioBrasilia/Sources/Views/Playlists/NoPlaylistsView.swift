@@ -20,7 +20,7 @@ struct NoPlaylistsView: View {
                 .bold()
                 .multilineTextAlignment(.center)
             
-            Text("Playlists permitem ordenar sons para reproduzir em sequência, em modo aleatório ou repetindo.")
+            Text("Playlists permitem ordenar sons para reproduzir em sequência.") // , em modo aleatório ou repetindo
                 .foregroundColor(.gray)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)

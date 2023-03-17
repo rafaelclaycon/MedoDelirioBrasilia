@@ -10,7 +10,7 @@ import SwiftUI
 
 class PlaylistDetailViewViewModel: ObservableObject {
 
-    @Published var sounds = [Sound]()
+    @Published var content = [PlaylistContent]()
     @Published var hasSoundsToDisplay: Bool = false
     @Published var nowPlayingKeeper = Set<String>()
     
@@ -26,30 +26,39 @@ class PlaylistDetailViewViewModel: ObservableObject {
     
     func reloadSoundList(withPlaylistContents playlistContents: [PlaylistContent]?) {
         guard let playlistContents = playlistContents else {
-            self.sounds = [Sound]()
-            self.hasSoundsToDisplay = false
+            content = []
+            hasSoundsToDisplay = false
             return
         }
         
-        let sounds = soundData.filter { sound in
+        var sounds = soundData.filter { sound in
             playlistContents.contains { $0.contentId == sound.id }
         }
         
         guard sounds.count > 0 else {
-            self.sounds = [Sound]()
-            self.hasSoundsToDisplay = false
+            content = []
+            hasSoundsToDisplay = false
             return
         }
         
-        self.sounds = sounds
-        
-        for i in stride(from: 0, to: self.sounds.count, by: 1) {
-            self.sounds[i].authorName = authorData.first(where: { $0.id == self.sounds[i].authorId })?.name ?? Shared.unknownAuthor
+        for i in 0..<sounds.count {
+            sounds[i].authorName = authorData.first(where: { $0.id == sounds[i].authorId })?.name ?? Shared.unknownAuthor
             // DateAdded here is date added to folder not to the app as it means outside folders.
-            self.sounds[i].dateAdded = playlistContents.first(where: { $0.contentId == self.sounds[i].id })?.dateAdded
+            sounds[i].dateAdded = playlistContents.first(where: { $0.contentId == sounds[i].id })?.dateAdded
         }
         
-        self.hasSoundsToDisplay = true
+        content = []
+        for i in 0..<playlistContents.count {
+            content.append(PlaylistContent(content: playlistContents[i], sound: sounds.first(where: { $0.id == playlistContents[i].contentId })))
+        }
+        
+        hasSoundsToDisplay = true
+        
+        print(self.content)
+    }
+    
+    private func sortSoundsInPlaceByOrderDescending() {
+        content.sort(by: { $0.order > $1.order })
     }
     
 //    func getSoundCount() -> String {
@@ -81,12 +90,14 @@ class PlaylistDetailViewViewModel: ObservableObject {
                 if self.isPlayingPlaylist {
                     self.currentTrackIndex += 1
                     
-                    if self.currentTrackIndex >= self.sounds.count {
+                    if self.currentTrackIndex >= self.content.count {
                         self.doPlaylistCleanup()
                         return
                     }
                     
-                    self.playSound(fromPath: self.sounds[self.currentTrackIndex].filename, withId: self.sounds[self.currentTrackIndex].id)
+                    guard let sound = self.content[self.currentTrackIndex].sound else { return }
+                    
+                    self.playSound(fromPath: sound.filename, withId: sound.id)
                 }
             }
         })
@@ -117,18 +128,18 @@ class PlaylistDetailViewViewModel: ObservableObject {
     // MARK: - Playlist
     
     func playAllSoundsOneAfterTheOther() {
-        guard let firstSound = sounds.first else { return }
+        guard let firstContent = content.first, let sound = firstContent.sound else { return }
         isPlayingPlaylist = true
-        playSound(fromPath: firstSound.filename, withId: firstSound.id)
+        playSound(fromPath: sound.filename, withId: sound.id)
     }
     
-    func playFrom(sound: Sound) {
-        guard let soundIndex = sounds.firstIndex(where: { $0.id == sound.id }) else { return }
-        let soundInArray = sounds[soundIndex]
-        currentTrackIndex = soundIndex
-        isPlayingPlaylist = true
-        playSound(fromPath: soundInArray.filename, withId: soundInArray.id)
-    }
+//    func playFrom(sound: Sound) {
+//        guard let soundIndex = content.firstIndex(where: { $0.id == sound.id }) else { return }
+//        let soundInArray = sounds[soundIndex]
+//        currentTrackIndex = soundIndex
+//        isPlayingPlaylist = true
+//        playSound(fromPath: soundInArray.filename, withId: soundInArray.id)
+//    }
     
     func doPlaylistCleanup() {
         currentTrackIndex = 0

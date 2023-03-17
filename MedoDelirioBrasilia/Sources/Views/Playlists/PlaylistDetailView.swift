@@ -16,8 +16,13 @@ struct PlaylistDetailView: View {
         VStack {
             if viewModel.hasSoundsToDisplay {
                 List {
-                    ForEach(Array(viewModel.sounds.enumerated()), id: \.1) { index, sound in
-                        PlaylistSoundRow(index: index, soundId: sound.id, title: sound.title, author: sound.authorName ?? "", duration: sound.duration, nowPlaying: $viewModel.nowPlayingKeeper)
+                    ForEach(Array(viewModel.content.enumerated()), id: \.1) { index, content in
+                        PlaylistSoundRow(index: index,
+                                         soundId: content.sound?.id ?? "",
+                                         title: content.sound?.title ?? "",
+                                         author: content.sound?.authorName ?? "",
+                                         duration: content.sound?.duration ?? 0.0,
+                                         nowPlaying: $viewModel.nowPlayingKeeper)
                     }
                     .onMove(perform: move)
                     .onDelete(perform: delete)
@@ -32,17 +37,17 @@ struct PlaylistDetailView: View {
         }
         .toolbar {
             HStack(spacing: 16) {
-                Button {
-                    print("Repeat tapped")
-                } label: {
-                    Image(systemName: "repeat")
-                }.disabled(true)
-                
-                Button {
-                    viewModel.sounds.shuffle()
-                } label: {
-                    Image(systemName: "shuffle")
-                }
+//                Button {
+//                    print("Repeat tapped")
+//                } label: {
+//                    Image(systemName: "repeat")
+//                }.disabled(true)
+//
+//                Button {
+//                    viewModel.sounds.shuffle()
+//                } label: {
+//                    Image(systemName: "shuffle")
+//                }
                 
                 Button {
                     if viewModel.isPlayingPlaylist {
@@ -52,7 +57,7 @@ struct PlaylistDetailView: View {
                     }
                 } label: {
                     Image(systemName: viewModel.isPlayingPlaylist ? "stop.fill" : "play.fill")
-                }
+                }.disabled(!viewModel.hasSoundsToDisplay)
             }
         }
         .onAppear {
@@ -62,11 +67,11 @@ struct PlaylistDetailView: View {
     }
     
     func move(from source: IndexSet, to destination: Int) {
-        viewModel.sounds.move(fromOffsets: source, toOffset: destination)
+        viewModel.content.move(fromOffsets: source, toOffset: destination)
     }
     
     func delete(at offsets: IndexSet) {
-        viewModel.sounds.remove(atOffsets: offsets)
+        viewModel.content.remove(atOffsets: offsets)
     }
     
 }

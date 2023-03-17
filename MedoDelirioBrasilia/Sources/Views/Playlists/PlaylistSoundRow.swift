@@ -20,11 +20,15 @@ struct PlaylistSoundRow: View {
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     enum Mode {
-        case regular, playing, upForSelection, selected
+        case regular, playing
     }
     
     private var currentMode: Mode {
         return nowPlaying.contains(soundId) ? .playing : .regular
+    }
+    
+    private var playlistIsPlaying: Bool {
+        return !nowPlaying.isEmpty
     }
     
     private var titleFont: Font {
@@ -102,6 +106,7 @@ struct PlaylistSoundRow: View {
                 Image(systemName: "line.3.horizontal")
                     .font(.system(size: 24))
                     .foregroundColor(.gray)
+                    .opacity(playlistIsPlaying ? 0.1 : 1.0)
             }
         }
         .onAppear {

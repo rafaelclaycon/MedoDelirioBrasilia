@@ -42,12 +42,6 @@ struct PlaylistList: View {
                     }
                     .onDelete(perform: delete)
                 }
-                .onChange(of: updatePlaylistList) { updatePlaylistList in
-                    if updatePlaylistList {
-                        viewModel.reloadPlaylistList(withPlaylists: try? database.getAllPlaylists())
-                        self.updatePlaylistList = false
-                    }
-                }
             } else {
                 ScrollView {
                     NoPlaylistsView()
@@ -74,6 +68,12 @@ struct PlaylistList: View {
         }
         .onAppear {
             viewModel.reloadPlaylistList(withPlaylists: try? database.getAllPlaylists())
+        }
+        .onChange(of: updatePlaylistList) { updatePlaylistList in
+            if updatePlaylistList {
+                viewModel.reloadPlaylistList(withPlaylists: try? database.getAllPlaylists())
+                self.updatePlaylistList = false
+            }
         }
     }
     
