@@ -9614,7 +9614,7 @@
     {
         "id": "D94585EA-507B-4933-A55A-1557D5F7930C",
         "title": "What the fuck is going on?",
-        "authorId": "60174E46-30D8-40A6-9288-7F4032E3D807",
+        "authorId": "8B7B79DF-3452-4C63-A389-929EFEE396D1",
         "description": "gringo what the fuck is going on",
         "filename": "Gringo lendo - What the fuck is going on.mp3",
         "dateAdded": "2023-01-25T00:00:00Z",
@@ -10236,7 +10236,7 @@
         "dateAdded": "2023-03-17T00:00:00Z",
         "duration": 1.28,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "5BB599DD-D17D-454E-A19F-3BF136E7C4A4",
@@ -10247,7 +10247,7 @@
         "dateAdded": "2023-03-17T00:00:00Z",
         "duration": 1.15,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "0687AD0F-4C56-4D07-84CB-484965232F7E",
@@ -10258,7 +10258,7 @@
         "dateAdded": "2023-03-17T00:00:00Z",
         "duration": 2.64,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "45F6A4AD-64B6-42DC-867A-454D1C8B972A",
@@ -10269,7 +10269,7 @@
         "dateAdded": "2023-03-17T00:00:00Z",
         "duration": 1.52,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "5B784E80-5FEC-4E1C-BF45-3C1E9EC86232",
@@ -10280,7 +10280,7 @@
         "dateAdded": "2023-03-17T00:00:00Z",
         "duration": 0.81,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "65579765-D73E-453E-A788-06EF8603D85D",
@@ -10290,6 +10290,50 @@
         "filename": "GLOBONEWS - Octavio Guedes - E dai, eu nao sou psicologo.mp3",
         "dateAdded": "2023-03-17T00:00:00Z",
         "duration": 1.93,
+        "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "DB9E1647-14CF-407B-A341-DCEF432CF550",
+        "title": "Cês não querem café?",
+        "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
+        "description": "Ces nao querem cafe",
+        "filename": "Lula - Ces nao querem cafe.mp3",
+        "dateAdded": "2023-03-24T00:00:00Z",
+        "duration": 1.28,
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "F94EBF26-C636-473D-A21A-762C0615AA23",
+        "title": "Queremo café",
+        "authorId": "946B5305-0FD4-4C9A-A335-3EB5EA68BD05",
+        "description": "Queremo cafe queremos cafe",
+        "filename": "Leonardo Attuch - Queremo cafe.mp3",
+        "dateAdded": "2023-03-24T00:00:00Z",
+        "duration": 1.38,
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "2F0718E2-3700-4ED4-976A-BE455F25FF68",
+        "title": "Eu posso tomar café?",
+        "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
+        "description": "Eu posso tomar cafe",
+        "filename": "Lula - Eu posso tomar cafe.mp3",
+        "dateAdded": "2023-03-24T00:00:00Z",
+        "duration": 4.23,
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "21A4FA37-B3F6-4956-9FAE-364B3D0D4C24",
+        "title": "Senhor, meu leitinho ainda tá ralo",
+        "authorId": "87138168-E9AC-4BF0-A486-2C5F098CD541",
+        "description": "Senhor meu leitinho ainda ta ralo",
+        "filename": "Michelle Bolsonaro - Senhor, meu leitinho ainda ta ralo.mp3",
+        "dateAdded": "2023-03-24T00:00:00Z",
+        "duration": 2.51,
         "isOffensive": true,
         "isNew": true
     }

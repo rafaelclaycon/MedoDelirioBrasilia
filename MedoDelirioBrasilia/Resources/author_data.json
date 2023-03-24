@@ -1600,5 +1600,14 @@
         "id": "DE745F28-5E6C-42DF-B0BD-6F80E907EECB",
         "name": "Octavio Guedes",
         "description": "Escritor, jornalista e comentarista da GloboNews."
+    },
+    {
+        "id": "946B5305-0FD4-4C9A-A335-3EB5EA68BD05",
+        "name": "Leonardo Attuch",
+        "description": "Editor-responsável do Brasil 247"
+    },
+    {
+        "id": "8B7B79DF-3452-4C63-A389-929EFEE396D1",
+        "name": "Stu (Se Beber, Não Case!)"
     }
 ]
