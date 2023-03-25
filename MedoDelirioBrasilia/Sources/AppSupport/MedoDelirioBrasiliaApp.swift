@@ -43,9 +43,17 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         
         //print(database)
         
+        prepareAudioPlayer()
         collectTelemetry()
         
         return true
+    }
+    
+    private func prepareAudioPlayer() {
+        guard let path = Bundle.main.path(forResource: "Lula - Eu posso tomar cafe.mp3", ofType: nil) else { return }
+        let url = URL(fileURLWithPath: path)
+        player = AudioPlayer(url: url, update: { _ in })
+        player?.prepareToPlay()
     }
     
     // MARK: - Telemetry
