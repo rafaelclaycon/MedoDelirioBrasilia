@@ -10302,7 +10302,7 @@
         "dateAdded": "2023-03-24T00:00:00Z",
         "duration": 1.28,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "F94EBF26-C636-473D-A21A-762C0615AA23",
@@ -10313,7 +10313,7 @@
         "dateAdded": "2023-03-24T00:00:00Z",
         "duration": 1.38,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "2F0718E2-3700-4ED4-976A-BE455F25FF68",
@@ -10324,7 +10324,7 @@
         "dateAdded": "2023-03-24T00:00:00Z",
         "duration": 4.23,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "21A4FA37-B3F6-4956-9FAE-364B3D0D4C24",
@@ -10335,6 +10335,6 @@
         "dateAdded": "2023-03-24T00:00:00Z",
         "duration": 2.51,
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     }
 ]
