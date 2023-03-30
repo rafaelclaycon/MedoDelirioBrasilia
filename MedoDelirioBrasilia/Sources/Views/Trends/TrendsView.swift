@@ -83,6 +83,7 @@ struct TrendsView: View {
                                                              activePadScreen: $activePadScreen)
                                     Spacer()
                                 }
+                                .padding(.top, 10)
                             }
                         }
                     }

@@ -17,6 +17,9 @@ struct MostSharedByAudienceView: View {
     private let columns = [
         GridItem(.flexible())
     ]
+    private let columnsMac = [
+        GridItem(.fixed(500))
+    ]
     private let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
     
     private var dropDownText: String {
@@ -54,65 +57,8 @@ struct MostSharedByAudienceView: View {
             }
             .padding(.horizontal)
             
-            HStack {
-                Menu {
-                    Picker("Período", selection: $viewModel.timeIntervalOption) {
-                        Text(Shared.Trends.last24Hours).tag(TrendsTimeInterval.last24Hours)
-                        Text(Shared.Trends.lastWeek).tag(TrendsTimeInterval.lastWeek)
-                        Text(Shared.Trends.lastMonth).tag(TrendsTimeInterval.lastMonth)
-                        Text(Shared.Trends.allTime).tag(TrendsTimeInterval.allTime)
-                    }
-                } label: {
-                    HStack {
-                        Text(dropDownText)
-                        Image(systemName: "chevron.up.chevron.down")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 15)
-                    }
-                }
-                .onChange(of: viewModel.timeIntervalOption) { timeIntervalOption in
-                    DispatchQueue.main.async {
-                        switch viewModel.timeIntervalOption {
-                        case .last24Hours:
-                            if viewModel.last24HoursRanking == nil {
-                                viewModel.viewState = .noDataToDisplay
-                            } else {
-                                viewModel.viewState = .displayingData
-                            }
-                            
-                        case .lastWeek:
-                            if viewModel.lastWeekRanking == nil {
-                                viewModel.viewState = .noDataToDisplay
-                            } else {
-                                viewModel.viewState = .displayingData
-                            }
-                            
-                        case .lastMonth:
-                            if viewModel.lastMonthRanking == nil {
-                                viewModel.viewState = .noDataToDisplay
-                            } else {
-                                viewModel.viewState = .displayingData
-                            }
-                            
-                        case .allTime:
-                            if viewModel.allTimeRanking == nil {
-                                viewModel.viewState = .noDataToDisplay
-                            } else {
-                                viewModel.viewState = .displayingData
-                            }
-                        }
-                    }
-                    
-                    viewModel.donateActivity(forTimeInterval: timeIntervalOption)
-                }
-                .onReceive(trendsHelper.$timeIntervalToGoTo) { timeIntervalToGoTo in
-                    if let option = timeIntervalToGoTo {
-                        DispatchQueue.main.async {
-                            viewModel.timeIntervalOption = option
-                        }
-                    }
-                }
+            HStack(spacing: 20) {
+                timeIntervalSelector()
                 
                 Spacer()
                 
@@ -160,7 +106,7 @@ struct MostSharedByAudienceView: View {
                 
             case .displayingData:
                 VStack {
-                    LazyVGrid(columns: columns, spacing: 20) {
+                    LazyVGrid(columns: UIDevice.isMac ? columnsMac : columns, spacing: 20) {
                         ForEach(list) { item in
                             TopChartCellView(item: item)
                                 .onTapGesture {
@@ -194,6 +140,77 @@ struct MostSharedByAudienceView: View {
         }
         .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
+        }
+    }
+    
+    @ViewBuilder func timeIntervalSelector() -> some View {
+        if UIDevice.isMac {
+            Picker("Período", selection: $viewModel.timeIntervalOption) {
+                Text(Shared.Trends.allTime).tag(TrendsTimeInterval.allTime)
+                Text(Shared.Trends.lastMonth).tag(TrendsTimeInterval.lastMonth)
+                Text(Shared.Trends.lastWeek).tag(TrendsTimeInterval.lastWeek)
+                Text(Shared.Trends.last24Hours).tag(TrendsTimeInterval.last24Hours)
+            }
+            .pickerStyle(.segmented)
+        } else {
+            Menu {
+                Picker("Período", selection: $viewModel.timeIntervalOption) {
+                    Text(Shared.Trends.last24Hours).tag(TrendsTimeInterval.last24Hours)
+                    Text(Shared.Trends.lastWeek).tag(TrendsTimeInterval.lastWeek)
+                    Text(Shared.Trends.lastMonth).tag(TrendsTimeInterval.lastMonth)
+                    Text(Shared.Trends.allTime).tag(TrendsTimeInterval.allTime)
+                }
+            } label: {
+                HStack {
+                    Text(dropDownText)
+                    Image(systemName: "chevron.up.chevron.down")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 15)
+                }
+            }
+            .onChange(of: viewModel.timeIntervalOption) { timeIntervalOption in
+                DispatchQueue.main.async {
+                    switch viewModel.timeIntervalOption {
+                    case .last24Hours:
+                        if viewModel.last24HoursRanking == nil {
+                            viewModel.viewState = .noDataToDisplay
+                        } else {
+                            viewModel.viewState = .displayingData
+                        }
+                        
+                    case .lastWeek:
+                        if viewModel.lastWeekRanking == nil {
+                            viewModel.viewState = .noDataToDisplay
+                        } else {
+                            viewModel.viewState = .displayingData
+                        }
+                        
+                    case .lastMonth:
+                        if viewModel.lastMonthRanking == nil {
+                            viewModel.viewState = .noDataToDisplay
+                        } else {
+                            viewModel.viewState = .displayingData
+                        }
+                        
+                    case .allTime:
+                        if viewModel.allTimeRanking == nil {
+                            viewModel.viewState = .noDataToDisplay
+                        } else {
+                            viewModel.viewState = .displayingData
+                        }
+                    }
+                }
+                
+                viewModel.donateActivity(forTimeInterval: timeIntervalOption)
+            }
+            .onReceive(trendsHelper.$timeIntervalToGoTo) { timeIntervalToGoTo in
+                if let option = timeIntervalToGoTo {
+                    DispatchQueue.main.async {
+                        viewModel.timeIntervalOption = option
+                    }
+                }
+            }
         }
     }
     

@@ -50,7 +50,7 @@ struct AuthorCell: View {
                 
                 Spacer()
                 
-                NumberBadgeView(number: soundCount)
+                NumberBadgeView(number: soundCount, showBackgroundCircle: true)
                     .foregroundColor(.primary)
                     .padding(.trailing, 10)
                 

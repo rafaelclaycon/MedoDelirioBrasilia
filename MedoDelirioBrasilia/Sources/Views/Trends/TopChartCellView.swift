@@ -11,21 +11,45 @@ struct TopChartCellView: View {
 
     @State var item: TopChartItem
     
+    private var isEven: Bool {
+        if let idAsInt = Int(item.rankNumber), idAsInt.isMultiple(of: 2) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    private var cellFill: Color {
+        if isEven {
+            return .gray
+        } else {
+            return .clear
+        }
+    }
+    
     var body: some View {
-        HStack(spacing: 15) {
-            NumberBadgeView(number: item.rankNumber)
-            
-            VStack(alignment: .leading, spacing: 2) {
-                Text(item.contentName)
-                    .bold()
-                Text(item.contentAuthorName)
+        ZStack {
+            if UIDevice.isMac {
+                RoundedRectangle(cornerRadius: 5, style: .continuous)
+                    .fill(cellFill)
+                    .opacity(0.2)
             }
             
-            Spacer()
-            
-            Text("\(item.shareCount)")
+            HStack(spacing: 15) {
+                NumberBadgeView(number: item.rankNumber, showBackgroundCircle: !UIDevice.isMac)
+                
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(item.contentName)
+                        .bold()
+                    Text(item.contentAuthorName)
+                }
+                
+                Spacer()
+                
+                Text("\(item.shareCount)")
+            }
+            .padding(.horizontal)
         }
-        .padding(.horizontal)
     }
 
 }
