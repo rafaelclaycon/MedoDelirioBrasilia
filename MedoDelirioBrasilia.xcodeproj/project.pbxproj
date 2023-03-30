@@ -360,6 +360,10 @@
 		D958BC732868FE8C000B2EDA /* EmojiIdentification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958BC722868FE8C000B2EDA /* EmojiIdentification.swift */; };
 		D958BC752869000A000B2EDA /* FolderInfoEditingViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958BC742869000A000B2EDA /* FolderInfoEditingViewViewModel.swift */; };
 		D959B0482887E83D00A215AD /* SidebarViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D959B0472887E83D00A215AD /* SidebarViewViewModel.swift */; };
+		D95A195F29D5D55500909096 /* Rui Falcao - Vai, chupetinha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95A195E29D5D55400909096 /* Rui Falcao - Vai, chupetinha.mp3 */; };
+		D95A196129D5DA7C00909096 /* Maria da Conceicao Tavares - A situacao brasileira da cobranca de impostos e uma vergonha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95A196029D5DA7C00909096 /* Maria da Conceicao Tavares - A situacao brasileira da cobranca de impostos e uma vergonha.mp3 */; };
+		D95A196A29D5DC7A00909096 /* Valentina Bandeira - Olha o respeito, porra.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95A196829D5DC7A00909096 /* Valentina Bandeira - Olha o respeito, porra.mp3 */; };
+		D95A196B29D5DC7A00909096 /* Valentina Bandeira - Ninguem presta aqui, nao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95A196929D5DC7A00909096 /* Valentina Bandeira - Ninguem presta aqui, nao.mp3 */; };
 		D95A462929182FF3006B4023 /* Gregorio Duvivier - Alem do Lula, agora o choro tambem e livre.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95A462529182FF3006B4023 /* Gregorio Duvivier - Alem do Lula, agora o choro tambem e livre.mp3 */; };
 		D95A462A29182FF3006B4023 /* Gregorio Duvivier - Greg News pos-vitoria do Lula.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95A462629182FF3006B4023 /* Gregorio Duvivier - Greg News pos-vitoria do Lula.mp3 */; };
 		D95A462B29182FF3006B4023 /* Gregorio Duvivier - A frente ampla.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95A462729182FF3006B4023 /* Gregorio Duvivier - A frente ampla.mp3 */; };
@@ -1651,6 +1655,10 @@
 		D958BC722868FE8C000B2EDA /* EmojiIdentification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiIdentification.swift; sourceTree = "<group>"; };
 		D958BC742869000A000B2EDA /* FolderInfoEditingViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderInfoEditingViewViewModel.swift; sourceTree = "<group>"; };
 		D959B0472887E83D00A215AD /* SidebarViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewViewModel.swift; sourceTree = "<group>"; };
+		D95A195E29D5D55400909096 /* Rui Falcao - Vai, chupetinha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rui Falcao - Vai, chupetinha.mp3"; sourceTree = "<group>"; };
+		D95A196029D5DA7C00909096 /* Maria da Conceicao Tavares - A situacao brasileira da cobranca de impostos e uma vergonha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Maria da Conceicao Tavares - A situacao brasileira da cobranca de impostos e uma vergonha.mp3"; sourceTree = "<group>"; };
+		D95A196829D5DC7A00909096 /* Valentina Bandeira - Olha o respeito, porra.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Valentina Bandeira - Olha o respeito, porra.mp3"; sourceTree = "<group>"; };
+		D95A196929D5DC7A00909096 /* Valentina Bandeira - Ninguem presta aqui, nao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Valentina Bandeira - Ninguem presta aqui, nao.mp3"; sourceTree = "<group>"; };
 		D95A462529182FF3006B4023 /* Gregorio Duvivier - Alem do Lula, agora o choro tambem e livre.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gregorio Duvivier - Alem do Lula, agora o choro tambem e livre.mp3"; sourceTree = "<group>"; };
 		D95A462629182FF3006B4023 /* Gregorio Duvivier - Greg News pos-vitoria do Lula.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gregorio Duvivier - Greg News pos-vitoria do Lula.mp3"; sourceTree = "<group>"; };
 		D95A462729182FF3006B4023 /* Gregorio Duvivier - A frente ampla.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gregorio Duvivier - A frente ampla.mp3"; sourceTree = "<group>"; };
@@ -2612,6 +2620,10 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D95A196929D5DC7A00909096 /* Valentina Bandeira - Ninguem presta aqui, nao.mp3 */,
+				D95A196829D5DC7A00909096 /* Valentina Bandeira - Olha o respeito, porra.mp3 */,
+				D95A196029D5DA7C00909096 /* Maria da Conceicao Tavares - A situacao brasileira da cobranca de impostos e uma vergonha.mp3 */,
+				D95A195E29D5D55400909096 /* Rui Falcao - Vai, chupetinha.mp3 */,
 				D9A9375729CDDC0900758A5A /* Leonardo Attuch - Queremo cafe.mp3 */,
 				D9A9375629CDDC0900758A5A /* Lula - Ces nao querem cafe.mp3 */,
 				D9A9375829CDDC0900758A5A /* Lula - Eu posso tomar cafe.mp3 */,
@@ -4455,6 +4467,7 @@
 				D975FF282880B4F20035E6F2 /* Dedo no cu e gritaria short meme.mp3 in Resources */,
 				D906BA4F28D909A0007F4701 /* Jingle Bolsonaro 2022.mp3 in Resources */,
 				499624DC2977B40D008A6FFD /* Bora exercito fecha a linha.mp3 in Resources */,
+				D95A196B29D5DC7A00909096 /* Valentina Bandeira - Ninguem presta aqui, nao.mp3 in Resources */,
 				D9B4F740283C8F4D0000EEF7 /* O roque ativa.mp3 in Resources */,
 				D921F88B288B0177003979CC /* Air quotes.mp3 in Resources */,
 				D975FEE72880B4F20035E6F2 /* Away -  Fora das condicoes normais.mp3 in Resources */,
@@ -4835,6 +4848,7 @@
 				D975FE932880B4F20035E6F2 /* Nunca as funerarias trabalharam tanto.mp3 in Resources */,
 				D975FE312880B4F20035E6F2 /* MY NEWS - Antonio Tabet - Bolsonaro fala merda.mp3 in Resources */,
 				D975FF972880B4F20035E6F2 /* BORA (Bam Bam).mp3 in Resources */,
+				D95A196129D5DA7C00909096 /* Maria da Conceicao Tavares - A situacao brasileira da cobranca de impostos e uma vergonha.mp3 in Resources */,
 				D975FEE02880B4F20035E6F2 /* Choque de Cultura - Rogerinho - Aqui tem informacao.mp3 in Resources */,
 				D975FE8F2880B4F20035E6F2 /* MC Cidinho e MC Doca - nao Peida Nao hein short meme com peito pum fart.mp3 in Resources */,
 				D9FD0F0028B2B2EE0000616A /* polarizacao e meu pau em sua mao.mp3 in Resources */,
@@ -5094,6 +5108,7 @@
 				D9547D8228FDD7190020A800 /* Igor Guimaraes e Luiz Felipe D'Avila - Que alegria, que tistreza.mp3 in Resources */,
 				D9C7310C292D62C300090DED /* Meme - Vamo la tomar uma la no bar.mp3 in Resources */,
 				49DEA99E28810C88008C9BA1 /* Ana Paula - Olha Ela short meme.mp3 in Resources */,
+				D95A196A29D5DC7A00909096 /* Valentina Bandeira - Olha o respeito, porra.mp3 in Resources */,
 				D975FEEE2880B4F20035E6F2 /* Xaropinho - Rapaz short.mp3 in Resources */,
 				D921F879288B0177003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 in Resources */,
 				D9B4F73F283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 in Resources */,
@@ -5243,6 +5258,7 @@
 				D9F9BB37294A0FF90005BE56 /* Rafael Infante - Errou feio, errou rude.mp3 in Resources */,
 				D923125E28AAD5C300436336 /* Vai dar merda, vai dar meeerda.mp3 in Resources */,
 				D975FF152880B4F20035E6F2 /* Nhonho olha ele olha ele short.mp3 in Resources */,
+				D95A195F29D5D55500909096 /* Rui Falcao - Vai, chupetinha.mp3 in Resources */,
 				D975FF372880B4F20035E6F2 /* Lula - Nao siga nenhuma decisao imbecil do presidente da republica.mp3 in Resources */,
 				491110302926BD840055F4EE /* Locutor Militar - As Forcas Armadas emitiram duas notas.mp3 in Resources */,
 				D975FF422880B4F20035E6F2 /* Nao sei meme short exaltado.mp3 in Resources */,
@@ -5895,7 +5911,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.9.1;
+				MARKETING_VERSION = 6.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -5935,7 +5951,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.9.1;
+				MARKETING_VERSION = 6.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

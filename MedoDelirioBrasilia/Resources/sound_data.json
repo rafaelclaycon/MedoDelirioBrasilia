@@ -10336,5 +10336,49 @@
         "duration": 2.51,
         "isOffensive": true,
         "isNew": false
+    },
+    {
+        "id": "6DB38A88-F989-4FCB-AB9C-F52CA5477590",
+        "title": "Vai, Chupetinha",
+        "authorId": "7C517EA6-0067-4652-8E7F-18BA3EA877B9",
+        "description": "Vai chupetinha Vai, chupetinha",
+        "filename": "Rui Falcao - Vai, chupetinha.mp3",
+        "dateAdded": "2023-03-30T00:00:00Z",
+        "duration": 1.02,
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "0D7DC11C-FEEF-4146-8049-5911128B68D9",
+        "title": "A situação brasileira da cobrança de impostos é uma vergonha!",
+        "authorId": "F546B81B-ABF6-4DC1-8E54-A36119A599E5",
+        "description": "A situacao brasileira em materia de cobranca de impostos dos ricos e das empresas e uma vergonha",
+        "filename": "Maria da Conceicao Tavares - A situacao brasileira da cobranca de impostos e uma vergonha.mp3",
+        "dateAdded": "2023-03-30T00:00:00Z",
+        "duration": 7.05,
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "59873A8F-5ECC-4410-9310-9DACFBA0230D",
+        "title": "Olha o respeito, porra",
+        "authorId": "FE2D6CB6-81F2-4A6B-B312-44E8AD9C8C4B",
+        "description": "Olha o respeito porra",
+        "filename": "Valentina Bandeira - Olha o respeito, porra.mp3",
+        "dateAdded": "2023-03-30T00:00:00Z",
+        "duration": 1.52,
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "C410467D-20ED-4031-AFF4-5071F9BDE6CC",
+        "title": "Ninguém presta aqui, não",
+        "authorId": "FE2D6CB6-81F2-4A6B-B312-44E8AD9C8C4B",
+        "description": "Ninguem presta aqui nao",
+        "filename": "Valentina Bandeira - Ninguem presta aqui, nao.mp3",
+        "dateAdded": "2023-03-30T00:00:00Z",
+        "duration": 1.52,
+        "isOffensive": false,
+        "isNew": true
     }
 ]
