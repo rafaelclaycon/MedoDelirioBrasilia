@@ -10468,5 +10468,16 @@
         "duration": 1.46,
         "isOffensive": false,
         "isNew": true
+    },
+    {
+        "id": "9E4CBC09-7098-40CE-8F92-8C712D6126CE",
+        "title": "A guerra, a guerrrrrraaaa",
+        "authorId": "8D066077-11F5-4D87-8E3F-7BA3DEC13A21",
+        "description": "A guerra, a guerrrrrraaaa",
+        "filename": "Patriota no QG - A guerra, a guerrrrrraaaa.mp3",
+        "dateAdded": "2023-04-05T00:00:00Z",
+        "duration": 5.96,
+        "isOffensive": true,
+        "isNew": true
     }
 ]

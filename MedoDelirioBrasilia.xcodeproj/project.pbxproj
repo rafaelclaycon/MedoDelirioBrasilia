@@ -217,6 +217,7 @@
 		D92B6CF529DDC2D9003A2B73 /* Tati Quebra Barraco - 69 Frango Assado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92B6CEE29DDC2D8003A2B73 /* Tati Quebra Barraco - 69 Frango Assado.mp3 */; };
 		D92B6CF629DDC2D9003A2B73 /* Antonio Tabet - Ai e Medo e Delirio de verdade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92B6CEF29DDC2D9003A2B73 /* Antonio Tabet - Ai e Medo e Delirio de verdade.mp3 */; };
 		D92B6CF729DDC2D9003A2B73 /* Voce e antirracista.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92B6CF029DDC2D9003A2B73 /* Voce e antirracista.mp3 */; };
+		D92B6CFB29DDDA65003A2B73 /* Patriota no QG - A guerra, a guerrrrrraaaa.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92B6CFA29DDDA65003A2B73 /* Patriota no QG - A guerra, a guerrrrrraaaa.mp3 */; };
 		D92C0CA62840125B009CF19A /* SoundsViewViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92C0CA52840125B009CF19A /* SoundsViewViewModelTests.swift */; };
 		D92C0CA82840162F009CF19A /* ContentSortOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92C0CA72840162F009CF19A /* ContentSortOption.swift */; };
 		D92C0CAA28405B2D009CF19A /* NoFavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92C0CA928405B2D009CF19A /* NoFavoritesView.swift */; };
@@ -1522,6 +1523,7 @@
 		D92B6CEE29DDC2D8003A2B73 /* Tati Quebra Barraco - 69 Frango Assado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tati Quebra Barraco - 69 Frango Assado.mp3"; sourceTree = "<group>"; };
 		D92B6CEF29DDC2D9003A2B73 /* Antonio Tabet - Ai e Medo e Delirio de verdade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Antonio Tabet - Ai e Medo e Delirio de verdade.mp3"; sourceTree = "<group>"; };
 		D92B6CF029DDC2D9003A2B73 /* Voce e antirracista.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Voce e antirracista.mp3"; sourceTree = "<group>"; };
+		D92B6CFA29DDDA65003A2B73 /* Patriota no QG - A guerra, a guerrrrrraaaa.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Patriota no QG - A guerra, a guerrrrrraaaa.mp3"; sourceTree = "<group>"; };
 		D92C0CA52840125B009CF19A /* SoundsViewViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsViewViewModelTests.swift; sourceTree = "<group>"; };
 		D92C0CA72840162F009CF19A /* ContentSortOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSortOption.swift; sourceTree = "<group>"; };
 		D92C0CA928405B2D009CF19A /* NoFavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFavoritesView.swift; sourceTree = "<group>"; };
@@ -2636,6 +2638,7 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D92B6CFA29DDDA65003A2B73 /* Patriota no QG - A guerra, a guerrrrrraaaa.mp3 */,
 				D92B6CEF29DDC2D9003A2B73 /* Antonio Tabet - Ai e Medo e Delirio de verdade.mp3 */,
 				D92B6CEA29DDC2D8003A2B73 /* Hermes e Renato - Away - Viva a morte do meu pau.mp3 */,
 				D92B6CEC29DDC2D8003A2B73 /* Jair Bolsonaro - Vai morrer gente, tinha que matar mais, minha especialidade e matar.mp3 */,
@@ -5470,6 +5473,7 @@
 				D9DF2B5029821E5F0083765A /* Franciel Cruz - Sabe o que e anistia.mp3 in Resources */,
 				D975FEE42880B4F20035E6F2 /* Luciano Hang - Comunista, ne short meme.mp3 in Resources */,
 				D9C7D18D292EEA81003F500C /* Cidade Oculta e Google Tradutor - Voce ta falando isso porque voce e a putinha do Jobs.mp3 in Resources */,
+				D92B6CFB29DDDA65003A2B73 /* Patriota no QG - A guerra, a guerrrrrraaaa.mp3 in Resources */,
 				49C0938E28E5EEA200960B7E /* Vou de Lula, Ce Sabe - Neide e Lula.mp3 in Resources */,
 				D952DBA129B3CB03001F1E0E /* Antonio Tabet - Foda-se o medo e delirio em brasilia porra.mp3 in Resources */,
 				D97500522880B5190035E6F2 /* Mulheres de Areia - Abertura - Tonho da Lua Acordes Sexy Iemanja.mp3 in Resources */,
