@@ -7713,7 +7713,7 @@
         "id": "9CCC04C0-BAB6-4CAA-9BAB-34E4DEFF7251",
         "title": "22 só se for de 🍆",
         "authorId": "58382B3D-4014-42C0-B0A7-D02733E9BCE3",
-        "description": "22 só se for de pica na urna é 13",
+        "description": "22 só se for de pica na urna é 13 🍆",
         "filename": "Samira Close - 22 so se for de pica.mp3",
         "dateAdded": "2022-10-18T00:00:00Z",
         "duration": 8.05,
@@ -10102,7 +10102,7 @@
         "description": "La ele",
         "filename": "Manoel Gomes - La ele.mp3",
         "dateAdded": "2023-03-04T00:00:00Z",
-        "duration": 0.91,
+        "duration": 1.18,
         "isOffensive": false,
         "isNew": false
     },
@@ -10346,7 +10346,7 @@
         "dateAdded": "2023-03-30T00:00:00Z",
         "duration": 1.02,
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "0D7DC11C-FEEF-4146-8049-5911128B68D9",
@@ -10357,7 +10357,7 @@
         "dateAdded": "2023-03-30T00:00:00Z",
         "duration": 7.05,
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "59873A8F-5ECC-4410-9310-9DACFBA0230D",
@@ -10368,7 +10368,7 @@
         "dateAdded": "2023-03-30T00:00:00Z",
         "duration": 1.52,
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "C410467D-20ED-4031-AFF4-5071F9BDE6CC",
@@ -10378,6 +10378,94 @@
         "filename": "Valentina Bandeira - Ninguem presta aqui, nao.mp3",
         "dateAdded": "2023-03-30T00:00:00Z",
         "duration": 1.52,
+        "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "1E89F357-287C-4B92-946E-2DDDD3694808",
+        "title": "Maravilhoso!",
+        "authorId": "2C2352DD-2357-4B9E-99AD-4E7323664449",
+        "description": "Maravilhoso",
+        "filename": "Milton Cunha - Maravilhoso.mp3",
+        "dateAdded": "2023-04-05T00:00:00Z",
+        "duration": 1.20,
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "C3A58E1B-9AD9-41D1-9D42-53B91CAA8234",
+        "title": "Sobre meritocracia e aparelhos ideológicos",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Sobre meritocracia e aparelhos ideologicos",
+        "filename": "Sobre meritocracia e aparelhos ideologicos.mp3",
+        "dateAdded": "2023-04-05T00:00:00Z",
+        "duration": 52.01,
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "C93449C7-8A8C-4CA6-83F8-E290CDC5A1A4",
+        "title": "Você é antirracista?",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Voce e antirracista",
+        "filename": "Voce e antirracista.mp3",
+        "dateAdded": "2023-04-05T00:00:00Z",
+        "duration": 44.83,
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "791CA36E-843F-4FCF-8B82-7D5B0B6DB2EA",
+        "title": "Não basta não ser racista, é preciso ser antirracista",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Nao basta nao ser racista, e preciso ser antirracista",
+        "filename": "Nao basta nao ser racista, e preciso ser antirracista.mp3",
+        "dateAdded": "2023-04-05T00:00:00Z",
+        "duration": 3.74,
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "F77A064B-93DB-4829-BC5D-176506477B71",
+        "title": "Vai morrer gente, tinha que matar mais, minha especialidade é matar",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Vai morrer gente, tinha que matar mais, minha especialidade e matar",
+        "filename": "Jair Bolsonaro - Vai morrer gente, tinha que matar mais, minha especialidade e matar.mp3",
+        "dateAdded": "2023-04-05T00:00:00Z",
+        "duration": 6.92,
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "8A531EC0-6D8C-41A9-A30B-B84E52BB1863",
+        "title": "Viva a morte do meu 🍆",
+        "authorId": "17860F3D-A18C-4684-86D0-931306A6937A",
+        "description": "Viva a morte do meu pau 🍆",
+        "filename": "Hermes e Renato - Away - Viva a morte do meu pau.mp3",
+        "dateAdded": "2023-04-05T00:00:00Z",
+        "duration": 5.12,
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "F9FFACBE-0B39-46E6-A913-2A46EC92C931",
+        "title": "69, frango assado",
+        "authorId": "716DB19B-1DC3-4826-855B-B480DB9E6D53",
+        "description": "69 Frango Assado",
+        "filename": "Tati Quebra Barraco - 69 Frango Assado.mp3",
+        "dateAdded": "2023-04-05T00:00:00Z",
+        "duration": 2.19,
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "CF57264E-8771-49AE-847D-13F719AEED33",
+        "title": "Aí é Medo e Delírio de verdade",
+        "authorId": "AB5C4677-E814-4A78-8D9C-68AC8DE1B03F",
+        "description": "Ai e Medo e Delirio de verdade",
+        "filename": "Antonio Tabet - Ai e Medo e Delirio de verdade.mp3",
+        "dateAdded": "2023-04-05T00:00:00Z",
+        "duration": 1.46,
         "isOffensive": false,
         "isNew": true
     }
