@@ -25,7 +25,7 @@ struct NoFavoritesView: View {
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
             
-            Text("Para adicionar vários, escolha Selecionar no menu do canto superior direito, toque nos sons que quer favoritar e então em Adicionar aos Favoritos no mesmo menu.")
+            Text("Para adicionar vários, escolha Selecionar no menu do canto superior direito, toque nos sons que quer favoritar e então na estrela que aparecerá ao lado do menu.")
                 .foregroundColor(.gray)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
