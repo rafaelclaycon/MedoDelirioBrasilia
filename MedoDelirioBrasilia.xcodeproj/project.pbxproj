@@ -91,6 +91,11 @@
 		49F9220028E334C1009AC743 /* Eu to esmagada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49F921FF28E334C1009AC743 /* Eu to esmagada.mp3 */; };
 		49F9220228E33576009AC743 /* Ey ey eymael funk meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49F9220128E33576009AC743 /* Ey ey eymael funk meme.mp3 */; };
 		D901B06428BC795200B1A610 /* MusicGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = D901B06328BC795200B1A610 /* MusicGenre.swift */; };
+		D903DB0429DF3FD300D9BE42 /* Bolsonaro e morte, Bolsonaro e uma peste.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D903DB0329DF3FD300D9BE42 /* Bolsonaro e morte, Bolsonaro e uma peste.mp3 */; };
+		D903DB0929DF42A500D9BE42 /* Ei, Bolsonaro, vai tomar no cu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D903DB0529DF42A400D9BE42 /* Ei, Bolsonaro, vai tomar no cu.mp3 */; };
+		D903DB0A29DF42A500D9BE42 /* Hino Mimimi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D903DB0629DF42A400D9BE42 /* Hino Mimimi.mp3 */; };
+		D903DB0B29DF42A500D9BE42 /* A pandemia ainda nao acabou porra remix.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D903DB0729DF42A400D9BE42 /* A pandemia ainda nao acabou porra remix.mp3 */; };
+		D903DB0C29DF42A500D9BE42 /* 04 E Transao Versao Definitiva.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D903DB0829DF42A400D9BE42 /* 04 E Transao Versao Definitiva.mp3 */; };
 		D905B4C52857FF3D0096D466 /* AddNetworkCallLogTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D905B4C42857FF3D0096D466 /* AddNetworkCallLogTable.swift */; };
 		D906BA4D28D90999007F4701 /* Cristiano Botafogo - Porra, Brasil.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D906BA4C28D90999007F4701 /* Cristiano Botafogo - Porra, Brasil.mp3 */; };
 		D906BA4F28D909A0007F4701 /* Jingle Bolsonaro 2022.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D906BA4E28D909A0007F4701 /* Jingle Bolsonaro 2022.mp3 */; };
@@ -1397,6 +1402,11 @@
 		49F921FF28E334C1009AC743 /* Eu to esmagada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu to esmagada.mp3"; sourceTree = "<group>"; };
 		49F9220128E33576009AC743 /* Ey ey eymael funk meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ey ey eymael funk meme.mp3"; sourceTree = "<group>"; };
 		D901B06328BC795200B1A610 /* MusicGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicGenre.swift; sourceTree = "<group>"; };
+		D903DB0329DF3FD300D9BE42 /* Bolsonaro e morte, Bolsonaro e uma peste.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro e morte, Bolsonaro e uma peste.mp3"; sourceTree = "<group>"; };
+		D903DB0529DF42A400D9BE42 /* Ei, Bolsonaro, vai tomar no cu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ei, Bolsonaro, vai tomar no cu.mp3"; sourceTree = "<group>"; };
+		D903DB0629DF42A400D9BE42 /* Hino Mimimi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Hino Mimimi.mp3"; sourceTree = "<group>"; };
+		D903DB0729DF42A400D9BE42 /* A pandemia ainda nao acabou porra remix.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "A pandemia ainda nao acabou porra remix.mp3"; sourceTree = "<group>"; };
+		D903DB0829DF42A400D9BE42 /* 04 E Transao Versao Definitiva.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "04 E Transao Versao Definitiva.mp3"; sourceTree = "<group>"; };
 		D905B4C42857FF3D0096D466 /* AddNetworkCallLogTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNetworkCallLogTable.swift; sourceTree = "<group>"; };
 		D906BA4C28D90999007F4701 /* Cristiano Botafogo - Porra, Brasil.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano Botafogo - Porra, Brasil.mp3"; sourceTree = "<group>"; };
 		D906BA4E28D909A0007F4701 /* Jingle Bolsonaro 2022.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jingle Bolsonaro 2022.mp3"; sourceTree = "<group>"; };
@@ -3689,6 +3699,11 @@
 		D92E7068283C5C120035826C /* Songs */ = {
 			isa = PBXGroup;
 			children = (
+				D903DB0829DF42A400D9BE42 /* 04 E Transao Versao Definitiva.mp3 */,
+				D903DB0729DF42A400D9BE42 /* A pandemia ainda nao acabou porra remix.mp3 */,
+				D903DB0529DF42A400D9BE42 /* Ei, Bolsonaro, vai tomar no cu.mp3 */,
+				D903DB0629DF42A400D9BE42 /* Hino Mimimi.mp3 */,
+				D903DB0329DF3FD300D9BE42 /* Bolsonaro e morte, Bolsonaro e uma peste.mp3 */,
 				D9AE4446299BF78C009E8597 /* Odio e Nojo (Versao Militar).mp3 */,
 				D9CEB76929991ED100DF8497 /* Te amo te amo te amo, democracia (Natuza Nery).mp3 */,
 				D9CEB75F299806FF00DF8497 /* Meu irmao ta no Supremo.mp3 */,
@@ -4569,6 +4584,7 @@
 				D92B6CF629DDC2D9003A2B73 /* Antonio Tabet - Ai e Medo e Delirio de verdade.mp3 in Resources */,
 				D9FD0F0128B2B2EE0000616A /* Gemidao do Delirio.mp3 in Resources */,
 				D975FF412880B4F20035E6F2 /* PLANALTO - Bolsonaro - Mente.mp3 in Resources */,
+				D903DB0A29DF42A500D9BE42 /* Hino Mimimi.mp3 in Resources */,
 				D975FE782880B4F20035E6F2 /* Damares - A princesa do Frozen vai voltar pra acordar a Bela Adormecida com um beijo gay.mp3 in Resources */,
 				D94B03F92993249500EB03CA /* Mr. Catra - Po, que vacilacao mermao meu irmao.mp3 in Resources */,
 				D975FE6C2880B4F20035E6F2 /* Que porra e essa batata.mp3 in Resources */,
@@ -4759,6 +4775,7 @@
 				D975FE992880B4F20035E6F2 /* O Terrivel Homem do Broche de Caveira.mp3 in Resources */,
 				D975FE1C2880B4F20035E6F2 /* Milton Leite - Que Beleza short.mp3 in Resources */,
 				D97500012880B4F20035E6F2 /* Vai Dar Namoro - Nao.mp3 in Resources */,
+				D903DB0929DF42A500D9BE42 /* Ei, Bolsonaro, vai tomar no cu.mp3 in Resources */,
 				D975FEC12880B4F20035E6F2 /* Lula - Ou seja voces percebem a loucura.mp3 in Resources */,
 				D975FF782880B4F20035E6F2 /* Bolsonaro - Estou com covid.mp3 in Resources */,
 				D921F894288B07CB003979CC /* Fa do Armandinho - Vamo pra cima Gremio.mp3 in Resources */,
@@ -5214,6 +5231,7 @@
 				D975FE222880B4F20035E6F2 /* Bolsonaro - Esposa, ne, tem que aguentar, mas ta tudo bem.mp3 in Resources */,
 				D975FF272880B4F20035E6F2 /* Fred - Ce ta falando serio.mp3 in Resources */,
 				D975FEBE2880B4F20035E6F2 /* Craque Neto - E cuidado com a cueca hein, cuidado com a cueca.mp3 in Resources */,
+				D903DB0429DF3FD300D9BE42 /* Bolsonaro e morte, Bolsonaro e uma peste.mp3 in Resources */,
 				4911103E2926BFA50055F4EE /* Jair Bolsonaro - Tarado.mp3 in Resources */,
 				D9EBC933294834D200960AE3 /* Max Gheringer - A historia da humanidade esta cheia de puxa-sacos.mp3 in Resources */,
 				D975FF262880B4F20035E6F2 /* PLANALTO - Bolsonaro - Presidente Putin Pretiputi.mp3 in Resources */,
@@ -5261,6 +5279,7 @@
 				491110482926C2F70055F4EE /* Cristiano Botafogo - O terrivel editorialista do Globo.mp3 in Resources */,
 				D9AF10C7290AD50D0054741F /* PODER360 - Bolsonaro - Tao se vitimizando.mp3 in Resources */,
 				49DEA9A428810DE8008C9BA1 /* BOLSONARO - Nao precisa ser inteligente pra entender isso short meme.mp3 in Resources */,
+				D903DB0C29DF42A500D9BE42 /* 04 E Transao Versao Definitiva.mp3 in Resources */,
 				D975FFE42880B4F20035E6F2 /* MARCO FELICIANO - Decisao judicial nao se discute se cumpre SHORT MEME.mp3 in Resources */,
 				D975001E2880B4F20035E6F2 /* Choque de Cultura - Maurilio - O ultimo idoso alegre do planeta e o Ary Fontoura.mp3 in Resources */,
 				D975FFCF2880B4F20035E6F2 /* Atila Iamarino - E como se fosse uma crianca de cinco anos.mp3 in Resources */,
@@ -5475,6 +5494,7 @@
 				D9C7D18D292EEA81003F500C /* Cidade Oculta e Google Tradutor - Voce ta falando isso porque voce e a putinha do Jobs.mp3 in Resources */,
 				D92B6CFB29DDDA65003A2B73 /* Patriota no QG - A guerra, a guerrrrrraaaa.mp3 in Resources */,
 				49C0938E28E5EEA200960B7E /* Vou de Lula, Ce Sabe - Neide e Lula.mp3 in Resources */,
+				D903DB0B29DF42A500D9BE42 /* A pandemia ainda nao acabou porra remix.mp3 in Resources */,
 				D952DBA129B3CB03001F1E0E /* Antonio Tabet - Foda-se o medo e delirio em brasilia porra.mp3 in Resources */,
 				D97500522880B5190035E6F2 /* Mulheres de Areia - Abertura - Tonho da Lua Acordes Sexy Iemanja.mp3 in Resources */,
 				D975FFA32880B4F20035E6F2 /* ATILA IAMARINO - Voce vai morrer (resumo da live).mp3 in Resources */,
@@ -5947,7 +5967,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.11;
+				MARKETING_VERSION = 6.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -5987,7 +6007,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.11;
+				MARKETING_VERSION = 6.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
