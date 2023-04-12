@@ -10390,7 +10390,7 @@
         "dateAdded": "2023-04-05T00:00:00Z",
         "duration": 1.20,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "C3A58E1B-9AD9-41D1-9D42-53B91CAA8234",
@@ -10401,7 +10401,7 @@
         "dateAdded": "2023-04-05T00:00:00Z",
         "duration": 52.01,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "C93449C7-8A8C-4CA6-83F8-E290CDC5A1A4",
@@ -10412,7 +10412,7 @@
         "dateAdded": "2023-04-05T00:00:00Z",
         "duration": 44.83,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "791CA36E-843F-4FCF-8B82-7D5B0B6DB2EA",
@@ -10423,7 +10423,7 @@
         "dateAdded": "2023-04-05T00:00:00Z",
         "duration": 3.74,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "F77A064B-93DB-4829-BC5D-176506477B71",
@@ -10434,7 +10434,7 @@
         "dateAdded": "2023-04-05T00:00:00Z",
         "duration": 6.92,
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "8A531EC0-6D8C-41A9-A30B-B84E52BB1863",
@@ -10445,7 +10445,7 @@
         "dateAdded": "2023-04-05T00:00:00Z",
         "duration": 5.12,
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "F9FFACBE-0B39-46E6-A913-2A46EC92C931",
@@ -10456,7 +10456,7 @@
         "dateAdded": "2023-04-05T00:00:00Z",
         "duration": 2.19,
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "CF57264E-8771-49AE-847D-13F719AEED33",
@@ -10467,7 +10467,7 @@
         "dateAdded": "2023-04-05T00:00:00Z",
         "duration": 1.46,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "9E4CBC09-7098-40CE-8F92-8C712D6126CE",
@@ -10478,6 +10478,39 @@
         "dateAdded": "2023-04-05T00:00:00Z",
         "duration": 5.96,
         "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "B08072E8-205E-4058-A062-DC9BE64425AF",
+        "title": "Que (Cuíca Edition)",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Que (meme cuica)",
+        "filename": "Jair Bolsonaro - Que (meme cuica).mp3",
+        "dateAdded": "2023-04-12T00:00:00Z",
+        "duration": 16.4,
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "60F20310-B4C0-4C53-BB6D-2AF76A877D1A",
+        "title": "Biu, aqui é bodybuilder, porra",
+        "authorId": "045F8453-244C-4B94-8F89-395FE8986139",
+        "description": "Biu aqui e bodybuilder porra",
+        "filename": "Kleber Bambam - Biu, aqui e bodybuilder, porra.mp3",
+        "dateAdded": "2023-04-12T00:00:00Z",
+        "duration": 3.21,
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "49FB4E3E-99B0-4B4C-B253-A5D425FF436E",
+        "title": "O Terrível Roteirista do Medo e Delírio",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "O terrivel roteirista do Medo e Delirio",
+        "filename": "Cristiano Botafogo - O terrivel roteirista do Medo e Delirio.mp3",
+        "dateAdded": "2023-04-12T00:00:00Z",
+        "duration": 5.07,
+        "isOffensive": false,
         "isNew": true
     }
 ]

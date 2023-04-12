@@ -607,7 +607,7 @@
         "filename": "Bolsonaro e morte, Bolsonaro e uma peste.mp3",
         "dateAdded": "2023-04-06T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "A6C2406F-8C92-4BC5-96B7-30F4A3688A1B",
@@ -618,7 +618,7 @@
         "filename": "04 E Transao Versao Definitiva.mp3",
         "dateAdded": "2023-04-06T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "7521B840-9328-45D8-A6EE-50DDC65E9609",
@@ -629,7 +629,7 @@
         "filename": "A pandemia ainda nao acabou porra remix.mp3",
         "dateAdded": "2023-04-06T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "1440287B-3609-43D2-B113-59F45889CBB9",
@@ -640,7 +640,7 @@
         "filename": "Hino Mimimi.mp3",
         "dateAdded": "2023-04-06T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "E79A74F9-8D87-4D96-BFB8-25FCAC697E5B",
@@ -651,6 +651,6 @@
         "filename": "Ei, Bolsonaro, vai tomar no cu.mp3",
         "dateAdded": "2023-04-06T00:00:00Z",
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     }
 ]
