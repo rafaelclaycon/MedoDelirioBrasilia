@@ -326,6 +326,13 @@
 		D94C8390294BACE000E083F3 /* Foi tao bom mas acabou.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94C838F294BACE000E083F3 /* Foi tao bom mas acabou.mp3 */; };
 		D94C8393294BAF7100E083F3 /* Renan (Choque de Cultura) - Brasil e bagunca.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94C8391294BAF7100E083F3 /* Renan (Choque de Cultura) - Brasil e bagunca.mp3 */; };
 		D94C8394294BAF7100E083F3 /* Jair Bolsonaro - Podemos ate viver sem oxigenio mas jamais sem liberdade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94C8392294BAF7100E083F3 /* Jair Bolsonaro - Podemos ate viver sem oxigenio mas jamais sem liberdade.mp3 */; };
+		D94C9F4D29E873BD00A2F0BE /* Augusto Heleno - Eu tenho vergonha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94C9F4C29E873BD00A2F0BE /* Augusto Heleno - Eu tenho vergonha.mp3 */; };
+		D94C9F6229E87A8900A2F0BE /* Andre Starqueza - Ai, que delicia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94C9F5C29E87A8900A2F0BE /* Andre Starqueza - Ai, que delicia.mp3 */; };
+		D94C9F6329E87A8900A2F0BE /* Doidao do Napster - No cu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94C9F5D29E87A8900A2F0BE /* Doidao do Napster - No cu.mp3 */; };
+		D94C9F6429E87A8900A2F0BE /* Andre Starqueza - Que demais.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94C9F5E29E87A8900A2F0BE /* Andre Starqueza - Que demais.mp3 */; };
+		D94C9F6529E87A8900A2F0BE /* Doidao do Napster - Vai tomar no cu, no cu, no cu, eu nao to doido nao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94C9F5F29E87A8900A2F0BE /* Doidao do Napster - Vai tomar no cu, no cu, no cu, eu nao to doido nao.mp3 */; };
+		D94C9F6629E87A8900A2F0BE /* Andre Starqueza - Ai, eu tambem.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94C9F6029E87A8900A2F0BE /* Andre Starqueza - Ai, eu tambem.mp3 */; };
+		D94C9F6729E87A8900A2F0BE /* Doidao do Napster - Eu nao to doido nao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94C9F6129E87A8900A2F0BE /* Doidao do Napster - Eu nao to doido nao.mp3 */; };
 		D94D9EF9298D871E006F14A5 /* Tu e maluco ou idiota.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94D9EF8298D871E006F14A5 /* Tu e maluco ou idiota.mp3 */; };
 		D94D9EFB298D87DA006F14A5 /* Rodrigo Constantino - Recuou e um eufemismo ne arregou.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94D9EFA298D87DA006F14A5 /* Rodrigo Constantino - Recuou e um eufemismo ne arregou.mp3 */; };
 		D94D9EFD298D88BD006F14A5 /* Silas Malafaia - Quel.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94D9EFC298D88BD006F14A5 /* Silas Malafaia - Quel.mp3 */; };
@@ -1639,6 +1646,13 @@
 		D94C838F294BACE000E083F3 /* Foi tao bom mas acabou.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Foi tao bom mas acabou.mp3"; sourceTree = "<group>"; };
 		D94C8391294BAF7100E083F3 /* Renan (Choque de Cultura) - Brasil e bagunca.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Renan (Choque de Cultura) - Brasil e bagunca.mp3"; sourceTree = "<group>"; };
 		D94C8392294BAF7100E083F3 /* Jair Bolsonaro - Podemos ate viver sem oxigenio mas jamais sem liberdade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Podemos ate viver sem oxigenio mas jamais sem liberdade.mp3"; sourceTree = "<group>"; };
+		D94C9F4C29E873BD00A2F0BE /* Augusto Heleno - Eu tenho vergonha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Augusto Heleno - Eu tenho vergonha.mp3"; sourceTree = "<group>"; };
+		D94C9F5C29E87A8900A2F0BE /* Andre Starqueza - Ai, que delicia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Andre Starqueza - Ai, que delicia.mp3"; sourceTree = "<group>"; };
+		D94C9F5D29E87A8900A2F0BE /* Doidao do Napster - No cu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Doidao do Napster - No cu.mp3"; sourceTree = "<group>"; };
+		D94C9F5E29E87A8900A2F0BE /* Andre Starqueza - Que demais.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Andre Starqueza - Que demais.mp3"; sourceTree = "<group>"; };
+		D94C9F5F29E87A8900A2F0BE /* Doidao do Napster - Vai tomar no cu, no cu, no cu, eu nao to doido nao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Doidao do Napster - Vai tomar no cu, no cu, no cu, eu nao to doido nao.mp3"; sourceTree = "<group>"; };
+		D94C9F6029E87A8900A2F0BE /* Andre Starqueza - Ai, eu tambem.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Andre Starqueza - Ai, eu tambem.mp3"; sourceTree = "<group>"; };
+		D94C9F6129E87A8900A2F0BE /* Doidao do Napster - Eu nao to doido nao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Doidao do Napster - Eu nao to doido nao.mp3"; sourceTree = "<group>"; };
 		D94D9EF8298D871E006F14A5 /* Tu e maluco ou idiota.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tu e maluco ou idiota.mp3"; sourceTree = "<group>"; };
 		D94D9EFA298D87DA006F14A5 /* Rodrigo Constantino - Recuou e um eufemismo ne arregou.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rodrigo Constantino - Recuou e um eufemismo ne arregou.mp3"; sourceTree = "<group>"; };
 		D94D9EFC298D88BD006F14A5 /* Silas Malafaia - Quel.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Silas Malafaia - Quel.mp3"; sourceTree = "<group>"; };
@@ -2654,6 +2668,13 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D94C9F6029E87A8900A2F0BE /* Andre Starqueza - Ai, eu tambem.mp3 */,
+				D94C9F5C29E87A8900A2F0BE /* Andre Starqueza - Ai, que delicia.mp3 */,
+				D94C9F5E29E87A8900A2F0BE /* Andre Starqueza - Que demais.mp3 */,
+				D94C9F6129E87A8900A2F0BE /* Doidao do Napster - Eu nao to doido nao.mp3 */,
+				D94C9F5D29E87A8900A2F0BE /* Doidao do Napster - No cu.mp3 */,
+				D94C9F5F29E87A8900A2F0BE /* Doidao do Napster - Vai tomar no cu, no cu, no cu, eu nao to doido nao.mp3 */,
+				D94C9F4C29E873BD00A2F0BE /* Augusto Heleno - Eu tenho vergonha.mp3 */,
 				D94C393B29E6F0AB009169A7 /* Cristiano Botafogo - O terrivel roteirista do Medo e Delirio.mp3 */,
 				D94C393A29E6F0AB009169A7 /* Jair Bolsonaro - Que (meme cuica).mp3 */,
 				D94C393C29E6F0AB009169A7 /* Kleber Bambam - Biu, aqui e bodybuilder, porra.mp3 */,
@@ -4547,6 +4568,7 @@
 				D97500112880B4F20035E6F2 /* Idosa - Ah! Peste grito idosa vacina.mp3 in Resources */,
 				D975FEBD2880B4F20035E6F2 /* Joao Doria - Isso exige medidas urgentes.mp3 in Resources */,
 				D97500032880B4F20035E6F2 /* Bolsonaro - Sera que eu to errando ao falar isso dai.mp3 in Resources */,
+				D94C9F6329E87A8900A2F0BE /* Doidao do Napster - No cu.mp3 in Resources */,
 				D975FFFF2880B4F20035E6F2 /* Bolsonaro - Polemizar esse assunto.mp3 in Resources */,
 				D92B6CF229DDC2D9003A2B73 /* Nao basta nao ser racista, e preciso ser antirracista.mp3 in Resources */,
 				D975FFDA2880B4F20035E6F2 /* Bolsonaro - Paralelepipedo de crack.mp3 in Resources */,
@@ -4647,6 +4669,7 @@
 				D94B03F72993248300EB03CA /* Dudu Marfetan - Ate o final (completo).mp3 in Resources */,
 				D975FF722880B4F20035E6F2 /* lula ou bolsonaro.mp3 in Resources */,
 				D975FFBA2880B4F20035E6F2 /* BandNews FM - Ciro Gomes - Esse Braga Netto, que e um bosta.mp3 in Resources */,
+				D94C9F6729E87A8900A2F0BE /* Doidao do Napster - Eu nao to doido nao.mp3 in Resources */,
 				D975002C2880B4F20035E6F2 /* Drauzio - As pessoas nao tem consciencia disso.mp3 in Resources */,
 				D975FE2B2880B4F20035E6F2 /* Jonathan Frakes - pure fiction.mp3 in Resources */,
 				D9E53FA129A695C600BF9D31 /* Donald Trump - China all the time.mp3 in Resources */,
@@ -5163,6 +5186,7 @@
 				D921F885288B0177003979CC /* Ihu compilacao.mp3 in Resources */,
 				D94C8386294BAC8500E083F3 /* Meme - Tava ruim, tava bom, mas parece que piorou.mp3 in Resources */,
 				D975FE1E2880B4F20035E6F2 /* Matheuzinho e  Menor Nico - O Golpe ta ai short meme.mp3 in Resources */,
+				D94C9F6429E87A8900A2F0BE /* Andre Starqueza - Que demais.mp3 in Resources */,
 				D91793A9288E1B51009C3165 /* Um Ministerio Tecnico.mp3 in Resources */,
 				D9547D8228FDD7190020A800 /* Igor Guimaraes e Luiz Felipe D'Avila - Que alegria, que tistreza.mp3 in Resources */,
 				D9C7310C292D62C300090DED /* Meme - Vamo la tomar uma la no bar.mp3 in Resources */,
@@ -5184,6 +5208,7 @@
 				D923127428AB0A6100436336 /* Novo e diferente, e top, e moderno (completo).mp3 in Resources */,
 				D975FF592880B4F20035E6F2 /* Silvio Santos - Ele fala e voces deliram, ele fala e voces deliram.mp3 in Resources */,
 				D975FF9F2880B4F20035E6F2 /* De cair o cu da bunda short meme.mp3 in Resources */,
+				D94C9F6529E87A8900A2F0BE /* Doidao do Napster - Vai tomar no cu, no cu, no cu, eu nao to doido nao.mp3 in Resources */,
 				D975FF522880B4F20035E6F2 /* TV SENADO - Soraya Thronicke - A gente vai cansando sabe.mp3 in Resources */,
 				D92DAB232937BD5500E0CA82 /* Eduardo Pazuello - E a doenca politica.mp3 in Resources */,
 				D9AF10C5290AD50D0054741F /* Mae Copiloto Celera bem - Bora.mp3 in Resources */,
@@ -5206,6 +5231,7 @@
 				D975FE1B2880B4F20035E6F2 /* Pazuello - E simples assim, um manda e o outro obedece.mp3 in Resources */,
 				D975FFB82880B4F20035E6F2 /* Jacquin - Cala a boca short.mp3 in Resources */,
 				D9E53FAA29A697A400BF9D31 /* Pipino de novo de novo.mp3 in Resources */,
+				D94C9F4D29E873BD00A2F0BE /* Augusto Heleno - Eu tenho vergonha.mp3 in Resources */,
 				D975FFE12880B4F20035E6F2 /* Ze Gotinha - Ola meu nome e Ze Gotinha.mp3 in Resources */,
 				D9E2C707295E13B200B5814C /* Vinheta Dedo no cu e gritaria.mp3 in Resources */,
 				491110262926B9CC0055F4EE /* Desconhecido - Eu por forca de lei sou obrigado.mp3 in Resources */,
@@ -5398,6 +5424,7 @@
 				D975FE442880B4F20035E6F2 /* Nando Moura - Bibibibi Mito (longo).mp3 in Resources */,
 				499624E82977B67F008A6FFD /* Flavio Dino vai vacinar voce.mp3 in Resources */,
 				D975FE3A2880B4F20035E6F2 /* Malafaia - Jair Messias Bolsonaro sem respostas.mp3 in Resources */,
+				D94C9F6629E87A8900A2F0BE /* Andre Starqueza - Ai, eu tambem.mp3 in Resources */,
 				D975FFB12880B4F20035E6F2 /* Bolsonaro - Que e a maneira que voce tem de realmente pensar em coisa seria no pais.mp3 in Resources */,
 				D9CEB7522998009900DF8497 /* Lula (Cristiano Botafogo) - Voce e maluco ou voce e idiota me responde companheiro.mp3 in Resources */,
 				D975FFA92880B4F20035E6F2 /* Boldo - Deixa com a cara magoada.mp3 in Resources */,
@@ -5531,6 +5558,7 @@
 				D9BB8F7D28EC760500659D4A /* Heleno - Amigos e amigas, tenho uma mensagem para voces.mp3 in Resources */,
 				D975FE622880B4F20035E6F2 /* Engracadao voce hein meme short.mp3 in Resources */,
 				D975FF342880B4F20035E6F2 /* Tim Maia - Me De Motivo.mp3 in Resources */,
+				D94C9F6229E87A8900A2F0BE /* Andre Starqueza - Ai, que delicia.mp3 in Resources */,
 				D975FF1C2880B4F20035E6F2 /* Paulo Guedes - Sexo Selvagem.mp3 in Resources */,
 				D975FE692880B4F20035E6F2 /* NEIVA - Neiva do ceu short meme.mp3 in Resources */,
 				D975FFB32880B4F20035E6F2 /* CHOQUE DE CULTURA - Renan - E energia aqui o ta em cima carnaval alegria.mp3 in Resources */,
@@ -5979,7 +6007,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.13;
+				MARKETING_VERSION = 6.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -6019,7 +6047,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.13;
+				MARKETING_VERSION = 6.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

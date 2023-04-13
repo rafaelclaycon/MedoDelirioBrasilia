@@ -10489,7 +10489,7 @@
         "dateAdded": "2023-04-12T00:00:00Z",
         "duration": 16.4,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "60F20310-B4C0-4C53-BB6D-2AF76A877D1A",
@@ -10500,7 +10500,7 @@
         "dateAdded": "2023-04-12T00:00:00Z",
         "duration": 3.21,
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "49FB4E3E-99B0-4B4C-B253-A5D425FF436E",
@@ -10511,6 +10511,83 @@
         "dateAdded": "2023-04-12T00:00:00Z",
         "duration": 5.07,
         "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "7B614361-D2AC-4579-8568-9ABEAD8F6662",
+        "title": "Eu tenho vergonha",
+        "authorId": "BBD5570D-18FF-4099-81C8-AD6CFCA64B26",
+        "description": "Eu tenho vergonha",
+        "filename": "Augusto Heleno - Eu tenho vergonha.mp3",
+        "dateAdded": "2023-04-13T00:00:00Z",
+        "duration": 1.04,
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "1FCF8F41-2CE1-4F34-927E-0E8D334E39CC",
+        "title": "Ai, eu também",
+        "authorId": "9F5424EA-2C65-41F6-B925-F9CC6CC70787",
+        "description": "Ai eu tambem",
+        "filename": "Andre Starqueza - Ai, eu tambem.mp3",
+        "dateAdded": "2023-04-13T00:00:00Z",
+        "duration": 2.3,
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "53CB9CAA-860B-412E-8E46-02D8DF0B55C5",
+        "title": "Ai, que delícia",
+        "authorId": "9F5424EA-2C65-41F6-B925-F9CC6CC70787",
+        "description": "Ai que delicia",
+        "filename": "Andre Starqueza - Ai, que delicia.mp3",
+        "dateAdded": "2023-04-13T00:00:00Z",
+        "duration": 2.14,
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "C3A036B9-4851-4BA9-8BEF-3D53A7B199EE",
+        "title": "Que demais",
+        "authorId": "9F5424EA-2C65-41F6-B925-F9CC6CC70787",
+        "description": "Que demais",
+        "filename": "Andre Starqueza - Que demais.mp3",
+        "dateAdded": "2023-04-13T00:00:00Z",
+        "duration": 1.44,
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "6A8DCEA9-622F-4AA4-8752-EE26A4966634",
+        "title": "Vai tomar no cu, no cu (completo)",
+        "authorId": "F4242ED6-C220-44D4-AA15-1B85F2EED91F",
+        "description": "Vai tomar no cu no cu no cu eu nao to doido nao",
+        "filename": "Doidao do Napster - Vai tomar no cu, no cu, no cu, eu nao to doido nao.mp3",
+        "dateAdded": "2023-04-13T00:00:00Z",
+        "duration": 7.97,
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "DFBDFA22-FB13-4836-BDCC-17A1E39C4132",
+        "title": "No cu",
+        "authorId": "F4242ED6-C220-44D4-AA15-1B85F2EED91F",
+        "description": "No cu",
+        "filename": "Doidao do Napster - No cu.mp3",
+        "dateAdded": "2023-04-13T00:00:00Z",
+        "duration": 1.52,
+        "isOffensive": true,
+        "isNew": true
+    },
+    {
+        "id": "5EB4BFE8-9082-4A99-9AB3-18EA25DA676A",
+        "title": "Eu não tô doido não",
+        "authorId": "F4242ED6-C220-44D4-AA15-1B85F2EED91F",
+        "description": "Eu nao to doido nao",
+        "filename": "Doidao do Napster - Eu nao to doido nao.mp3",
+        "dateAdded": "2023-04-13T00:00:00Z",
+        "duration": 1.38,
+        "isOffensive": true,
         "isNew": true
     }
 ]
