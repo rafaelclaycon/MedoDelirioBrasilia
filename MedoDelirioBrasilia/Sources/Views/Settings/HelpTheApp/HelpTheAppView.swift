@@ -1,9 +1,17 @@
+//
+//  LargeCreatorView.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 18/06/22.
+//
+
 import SwiftUI
 import MarqueeText
 
-struct BegForMoneyView: View {
+struct HelpTheAppView: View {
 
     @Binding var donorNames: String
+    @Binding var imageIsSelected: Bool
     
     var body: some View {
         VStack(alignment: .center, spacing: 18) {
@@ -13,6 +21,11 @@ struct BegForMoneyView: View {
                     .scaledToFit()
                     .clipShape(Circle())
                     .frame(width: 80)
+                    .onTapGesture {
+                        withAnimation {
+                            imageIsSelected.toggle()
+                        }
+                    }
                 
                 Text("Rafael aqui, criador do app Medo e Delírio para iPhone, iPad e Mac.")
                     .multilineTextAlignment(.center)
@@ -42,7 +55,7 @@ struct BegForMoneyView: View {
 struct BegForMoneyView_Previews: PreviewProvider {
 
     static var previews: some View {
-        BegForMoneyView(donorNames: .constant("Roberto B. E. T.     Carolina P. L.     Pedro O. R.     Maria Augusta M. C.     Luiz Fernando L. F."))
+        HelpTheAppView(donorNames: .constant("Roberto B. E. T.     Carolina P. L.     Pedro O. R.     Maria Augusta M. C.     Luiz Fernando L. F."), imageIsSelected: .constant(false))
     }
 
 }

@@ -395,6 +395,7 @@
 		D95A462E291831A7006B4023 /* Henrique Oliveira - Doses seguras de crack.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95A462D291831A7006B4023 /* Henrique Oliveira - Doses seguras de crack.mp3 */; };
 		D95A4630291832F0006B4023 /* Romeu Zema - Eu quero me drogar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95A462F291832F0006B4023 /* Romeu Zema - Eu quero me drogar.mp3 */; };
 		D95A463229183843006B4023 /* Eleitores do Lula no Maranhao - Urubu, cabelo liso, tu vai pro inferno.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95A463129183843006B4023 /* Eleitores do Lula no Maranhao - Urubu, cabelo liso, tu vai pro inferno.mp3 */; };
+		D95BFEF129E8866700E42A23 /* LargeCreatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95BFEF029E8866700E42A23 /* LargeCreatorView.swift */; };
 		D95DB0F6288248A300D4FEDF /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95DB0F5288248A300D4FEDF /* SidebarView.swift */; };
 		D95DB0F82882491A00D4FEDF /* ScreenAndTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95DB0F72882491A00D4FEDF /* ScreenAndTabs.swift */; };
 		D95F363A28AD386D00743026 /* ShareAsVideoLegacyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95F363928AD386D00743026 /* ShareAsVideoLegacyView.swift */; };
@@ -1154,7 +1155,7 @@
 		D9BB8F8B28ECB2A900659D4A /* Alvaro Borba - Bolsonarismo usa Panico Moral para evitar debates que realmente importam.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BB8F8428ECB2A900659D4A /* Alvaro Borba - Bolsonarismo usa Panico Moral para evitar debates que realmente importam.mp3 */; };
 		D9BB8F8C28ECB2A900659D4A /* Alvaro Borba - Panico comunista funk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BB8F8528ECB2A900659D4A /* Alvaro Borba - Panico comunista funk.mp3 */; };
 		D9BB8F8D28ECB2A900659D4A /* Alvaro Borba - Funk Panico Moral trecho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BB8F8628ECB2A900659D4A /* Alvaro Borba - Funk Panico Moral trecho.mp3 */; };
-		D9BB9265285DAA8E005CD6DD /* BegForMoneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BB9264285DAA8E005CD6DD /* BegForMoneyView.swift */; };
+		D9BB9265285DAA8E005CD6DD /* HelpTheAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BB9264285DAA8E005CD6DD /* HelpTheAppView.swift */; };
 		D9BC1E1328F1CD6700AC0C8D /* Falha de Cobertura - Craque Daniel - Vou dedicar minha existencia a partir de agora a odiar esse rapaz esse cidadao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BC1E1228F1CD6700AC0C8D /* Falha de Cobertura - Craque Daniel - Vou dedicar minha existencia a partir de agora a odiar esse rapaz esse cidadao.mp3 */; };
 		D9BC1E1528F1CFBD00AC0C8D /* Eu acho e pouco.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BC1E1428F1CFBD00AC0C8D /* Eu acho e pouco.mp3 */; };
 		D9BCAC2D28B598FB0098FE15 /* AppIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BCAC2C28B598FA0098FE15 /* AppIconCell.swift */; };
@@ -1714,6 +1715,7 @@
 		D95A462D291831A7006B4023 /* Henrique Oliveira - Doses seguras de crack.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Henrique Oliveira - Doses seguras de crack.mp3"; sourceTree = "<group>"; };
 		D95A462F291832F0006B4023 /* Romeu Zema - Eu quero me drogar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Romeu Zema - Eu quero me drogar.mp3"; sourceTree = "<group>"; };
 		D95A463129183843006B4023 /* Eleitores do Lula no Maranhao - Urubu, cabelo liso, tu vai pro inferno.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eleitores do Lula no Maranhao - Urubu, cabelo liso, tu vai pro inferno.mp3"; sourceTree = "<group>"; };
+		D95BFEF029E8866700E42A23 /* LargeCreatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeCreatorView.swift; sourceTree = "<group>"; };
 		D95DB0F5288248A300D4FEDF /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		D95DB0F72882491A00D4FEDF /* ScreenAndTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenAndTabs.swift; sourceTree = "<group>"; };
 		D95F363928AD386D00743026 /* ShareAsVideoLegacyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAsVideoLegacyView.swift; sourceTree = "<group>"; };
@@ -2476,7 +2478,7 @@
 		D9BB8F8428ECB2A900659D4A /* Alvaro Borba - Bolsonarismo usa Panico Moral para evitar debates que realmente importam.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alvaro Borba - Bolsonarismo usa Panico Moral para evitar debates que realmente importam.mp3"; sourceTree = "<group>"; };
 		D9BB8F8528ECB2A900659D4A /* Alvaro Borba - Panico comunista funk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alvaro Borba - Panico comunista funk.mp3"; sourceTree = "<group>"; };
 		D9BB8F8628ECB2A900659D4A /* Alvaro Borba - Funk Panico Moral trecho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alvaro Borba - Funk Panico Moral trecho.mp3"; sourceTree = "<group>"; };
-		D9BB9264285DAA8E005CD6DD /* BegForMoneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BegForMoneyView.swift; sourceTree = "<group>"; };
+		D9BB9264285DAA8E005CD6DD /* HelpTheAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpTheAppView.swift; sourceTree = "<group>"; };
 		D9BC1E1228F1CD6700AC0C8D /* Falha de Cobertura - Craque Daniel - Vou dedicar minha existencia a partir de agora a odiar esse rapaz esse cidadao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Falha de Cobertura - Craque Daniel - Vou dedicar minha existencia a partir de agora a odiar esse rapaz esse cidadao.mp3"; sourceTree = "<group>"; };
 		D9BC1E1428F1CFBD00AC0C8D /* Eu acho e pouco.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu acho e pouco.mp3"; sourceTree = "<group>"; };
 		D9BCAC2C28B598FA0098FE15 /* AppIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconCell.swift; sourceTree = "<group>"; };
@@ -3915,12 +3917,21 @@
 			isa = PBXGroup;
 			children = (
 				D958B1B12839534D0010F133 /* SettingsView.swift */,
-				D9BB9264285DAA8E005CD6DD /* BegForMoneyView.swift */,
+				D95BFEEF29E884E500E42A23 /* HelpTheApp */,
 				D970162D28CE797B0003AA00 /* Sub-Settings */,
 				D970162E28CE79C30003AA00 /* Diagnostics */,
 				D970163028CE7A540003AA00 /* iPad */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		D95BFEEF29E884E500E42A23 /* HelpTheApp */ = {
+			isa = PBXGroup;
+			children = (
+				D9BB9264285DAA8E005CD6DD /* HelpTheAppView.swift */,
+				D95BFEF029E8866700E42A23 /* LargeCreatorView.swift */,
+			);
+			path = HelpTheApp;
 			sourceTree = "<group>";
 		};
 		D95F363828AD385100743026 /* ShareAsVideo */ = {
@@ -5719,7 +5730,7 @@
 				D959B0482887E83D00A215AD /* SidebarViewViewModel.swift in Sources */,
 				D97B2DD628E3E85400C3B50B /* MostSharedByMeViewViewModel.swift in Sources */,
 				D916627F2874F838000A1B23 /* NotificationsSymbol.swift in Sources */,
-				D9BB9265285DAA8E005CD6DD /* BegForMoneyView.swift in Sources */,
+				D9BB9265285DAA8E005CD6DD /* HelpTheAppView.swift in Sources */,
 				D912A33628B3E8F000F7293D /* VideoExportType.swift in Sources */,
 				D901B06428BC795200B1A610 /* MusicGenre.swift in Sources */,
 				D9FB489A2870FE7800FF90D0 /* TapticHelper.swift in Sources */,
@@ -5766,6 +5777,7 @@
 				D9E1A8D22914CD8200694A74 /* MyFoldersiPhoneView.swift in Sources */,
 				D98622E2283FCEDC00E9F630 /* AuthorsViewViewModel.swift in Sources */,
 				D958B1B22839534D0010F133 /* SettingsView.swift in Sources */,
+				D95BFEF129E8866700E42A23 /* LargeCreatorView.swift in Sources */,
 				D9ECD81528B3C470003C033A /* IconImage.swift in Sources */,
 				D99A961C299A733E00BB5F0D /* RoundCheckbox.swift in Sources */,
 				D90F6A6628446C250050FFFF /* TrendsSettingsView.swift in Sources */,

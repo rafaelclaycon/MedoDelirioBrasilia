@@ -8,5 +8,4 @@ extension AnyTransition {
             removal: .opacity
         )
     }
-
 }

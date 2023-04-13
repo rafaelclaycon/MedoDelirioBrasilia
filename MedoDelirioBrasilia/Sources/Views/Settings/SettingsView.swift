@@ -22,6 +22,8 @@ struct SettingsView: View {
     @State private var showEmailClientConfirmationDialog: Bool = false
     @State private var didCopySupportAddressOnEmailPicker: Bool = false
     
+    @State private var showLargeCreatorImage: Bool = false
+    
     private let pixKey: String = "medodeliriosuporte@gmail.com"
     
     private var copyPixKeyButtonHorizontalPadding: CGFloat {
@@ -94,7 +96,7 @@ struct SettingsView: View {
                 
                 if showAskForMoneyView || CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
                     Section {
-                        BegForMoneyView(donorNames: $donorNames)
+                        HelpTheAppView(donorNames: $donorNames, imageIsSelected: $showLargeCreatorImage)
                             .padding(.vertical)
                         
                         HStack {
@@ -214,6 +216,10 @@ struct SettingsView: View {
                         didCopySupportAddressOnEmailPicker = false
                     }
                 }
+            }
+            
+            if showLargeCreatorImage {
+                LargeCreatorView(showLargeCreatorImage: $showLargeCreatorImage)
             }
             
             if showToastView {
