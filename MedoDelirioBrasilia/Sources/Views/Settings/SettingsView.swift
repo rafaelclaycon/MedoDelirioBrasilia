@@ -94,7 +94,7 @@ struct SettingsView: View {
                     }
                 }
                 
-                if showAskForMoneyView || CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
+                //if showAskForMoneyView || CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
                     Section {
                         HelpTheAppView(donorNames: $donorNames, imageIsSelected: $showLargeCreatorImage)
                             .padding(.vertical)
@@ -142,7 +142,7 @@ struct SettingsView: View {
                     } footer: {
                         Text("Selecione E-mail como tipo de chave no app do seu banco. Evite qualquer opção que mencione QR Code.")
                     }
-                }
+                //}
                 
                 Section("Sobre") {
                     Text("Criado por Rafael Claycon Schmitt")

@@ -36,16 +36,20 @@ struct HelpTheAppView: View {
                 Text("Esse trabalho é voluntário e envolve custos mensais com servidor (~R$ 30). Toda contribuição é bem-vinda!")
                     .fixedSize(horizontal: false, vertical: true)
                 
-                if donorNames.isEmpty == false {
+                //if donorNames.isEmpty == false {
                     Text("**Últimas contribuições:**")
                     
-                    MarqueeText(text: donorNames,
-                                font: UIFont.preferredFont(forTextStyle: .body),
-                                leftFade: 16,
-                                rightFade: 16,
-                                startDelay: 1)
-                        .padding(.bottom, -5)
-                }
+                    ScrollingTagView()
+                        //.border(.black, width: 1)
+                        .padding(.bottom, 10)
+                    
+//                    MarqueeText(text: donorNames,
+//                                font: UIFont.preferredFont(forTextStyle: .body),
+//                                leftFade: 16,
+//                                rightFade: 16,
+//                                startDelay: 1)
+//                        .padding(.bottom, -5)
+                //}
             }
         }
     }
