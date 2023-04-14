@@ -23,37 +23,44 @@ private struct ScrollingContentWidthPreferenceKey: PreferenceKey {
 
 struct ScrollingTagView: View {
     
-    @State private var textoffset = 300.0
-    @State private var yTextOffset: CGFloat = 0
-    @State private var donorsFrame: CGRect = .zero
+    @State private var offSet: CGFloat = 0
+    @State private var contentWidth: CGFloat = 0
     
     let donors: [Donor] = [Donor(name: "Bruno P. G. P."),
                           Donor(name: "Clarissa P. S.", isRecurringDonor: true),
                           Donor(name: "Pedro Henrique B. P.")]
     
+//    let donors: [Donor] = [Donor(name: "Bruno P. G. P."),
+//                          Donor(name: "Clarissa P. S.")]
+    
     var body: some View {
-        Color.yellow
-            .opacity(0)
-            .frame(height: donorsFrame.size.height)
-            .overlay(alignment: .top) {
+        GeometryReader { geometry in
+            VStack(spacing: 0) {
                 HStack(spacing: 15) {
                     ForEach(donors, id: \.name) { donor in
                         DonorView(donor: donor)
+                            .anchorPreference(key: ScrollingContentWidthPreferenceKey.self, value: .bounds) { anchor in
+                                print("HERMIONE geometry[anchor].width: \(geometry[anchor].width)")
+                                return geometry[anchor].width
+                            }
                     }
                 }
-                .fixedSize()
-                .measuringFrame(assign: $donorsFrame)
-                .offset(x: textoffset, y: yTextOffset)
-                .border(.red, width: 1)
+                .offset(x: geometry.size.width + abs(contentWidth - geometry.size.width))
+                .offset(x: offSet)
+                .padding()
+                .animation(.linear(duration: 12.0).repeatForever(autoreverses: false), value: offSet)  // Some function of the width of the screen and the content
             }
-            .animation(.linear(duration: 15)
-                       .repeatForever(autoreverses: false), value: textoffset)
-            //.clipped()
+            .frame(width: geometry.size.width, alignment: .center)
+            .clipShape(RoundedRectangle(cornerRadius: 20))
             .onAppear {
-                textoffset = -(donorsFrame.size.width * 1.5)
-                yTextOffset = 0
+                print("HERMIONE geometry.size.width: \(geometry.size.width)")
+                offSet = -geometry.size.width - contentWidth - abs(contentWidth - geometry.size.width)
             }
-            .border(.black, width: 1)
+            .onPreferenceChange(ScrollingContentWidthPreferenceKey.self) { newWidth in
+                self.contentWidth = newWidth
+            }
+        }
+        .scenePadding()
     }
 }
 

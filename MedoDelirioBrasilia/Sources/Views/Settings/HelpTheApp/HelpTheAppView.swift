@@ -40,15 +40,7 @@ struct HelpTheAppView: View {
                     Text("**Últimas contribuições:**")
                     
                     ScrollingTagView()
-                        //.border(.black, width: 1)
                         .padding(.bottom, 10)
-                    
-//                    MarqueeText(text: donorNames,
-//                                font: UIFont.preferredFont(forTextStyle: .body),
-//                                leftFade: 16,
-//                                rightFade: 16,
-//                                startDelay: 1)
-//                        .padding(.bottom, -5)
                 //}
             }
         }

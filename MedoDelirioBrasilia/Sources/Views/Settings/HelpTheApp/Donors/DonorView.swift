@@ -13,7 +13,7 @@ struct DonorView: View {
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        ZStack(alignment: .top) {
+        ZStack {
             Text(donor.name)
                 .foregroundColor(.primary)
                 .bold()
@@ -32,6 +32,7 @@ struct DonorView: View {
                     .offset(y: 25)
             }
         }
+        .fixedSize()
     }
 }
 
