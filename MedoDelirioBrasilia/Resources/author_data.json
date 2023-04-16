@@ -1503,7 +1503,6 @@
     {
         "id": "8BEC79BB-B52B-4719-A190-70A682A13119",
         "name": "Thiago Asmar",
-        "photo": "https://media.licdn.com/dms/image/C4E03AQESAAOgZULw8A/profile-displayphoto-shrink_400_400/0/1549675236872?e=1680739200&v=beta&t=HK2jdKbRFdMUCq5rnCNXSY0X-LUeb6sT3FKkK_iW8zA",
         "description": "Apresentador do canal Pilhado no YouTube."
     },
     {
@@ -1629,5 +1628,11 @@
     {
         "id": "F4242ED6-C220-44D4-AA15-1B85F2EED91F",
         "name": "Doidão do Napster"
+    },
+    {
+        "id": "CE7972FD-4887-4F03-AF4A-47A0863186F2",
+        "name": "Elisa Lucinda",
+        "photo": "https://pbs.twimg.com/profile_images/1526293214893850625/UnN0Dscw_400x400.jpg",
+        "description": "Atriz, poetisa, escritora e cantora brasileira."
     }
 ]
