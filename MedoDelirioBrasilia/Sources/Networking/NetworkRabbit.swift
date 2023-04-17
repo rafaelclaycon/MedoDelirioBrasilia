@@ -80,19 +80,21 @@ class NetworkRabbit: NetworkRabbitProtocol {
         task.resume()
     }
     
-    func displayAskForMoneyView(completionHandler: @escaping (Bool) -> Void) {
+    func displayAskForMoneyView(completion: @escaping (Bool) -> Void) {
         let url = URL(string: serverPath + "v2/current-test-version")!
         
-        let task = URLSession.shared.dataTask(with: url) { data, _, error in
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let httpResponse = response as? HTTPURLResponse else { return completion(false) }
+            guard httpResponse.statusCode == 200 else { return completion(false) }
             if let data = data {
-                let response = String(data: data, encoding: .utf8)!
-                if response == Versioneer.appVersion {
-                    completionHandler(false)
+                let versionFromServer = String(data: data, encoding: .utf8)!
+                if versionFromServer == Versioneer.appVersion {
+                    completion(false)
                 } else {
-                    completionHandler(true)
+                    completion(true)
                 }
             } else if error != nil {
-                completionHandler(false)
+                completion(false)
             }
         }
         
