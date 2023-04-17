@@ -10406,7 +10406,7 @@
     {
         "id": "C93449C7-8A8C-4CA6-83F8-E290CDC5A1A4",
         "title": "Você é antirracista?",
-        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "authorId": "CE7972FD-4887-4F03-AF4A-47A0863186F2",
         "description": "Voce e antirracista",
         "filename": "Voce e antirracista.mp3",
         "dateAdded": "2023-04-05T00:00:00Z",
@@ -10417,7 +10417,7 @@
     {
         "id": "791CA36E-843F-4FCF-8B82-7D5B0B6DB2EA",
         "title": "Não basta não ser racista, é preciso ser antirracista",
-        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "authorId": "CE7972FD-4887-4F03-AF4A-47A0863186F2",
         "description": "Nao basta nao ser racista, e preciso ser antirracista",
         "filename": "Nao basta nao ser racista, e preciso ser antirracista.mp3",
         "dateAdded": "2023-04-05T00:00:00Z",
@@ -10522,7 +10522,7 @@
         "dateAdded": "2023-04-13T00:00:00Z",
         "duration": 1.04,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "1FCF8F41-2CE1-4F34-927E-0E8D334E39CC",
@@ -10533,7 +10533,7 @@
         "dateAdded": "2023-04-13T00:00:00Z",
         "duration": 2.3,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "53CB9CAA-860B-412E-8E46-02D8DF0B55C5",
@@ -10544,7 +10544,7 @@
         "dateAdded": "2023-04-13T00:00:00Z",
         "duration": 2.14,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "C3A036B9-4851-4BA9-8BEF-3D53A7B199EE",
@@ -10555,7 +10555,7 @@
         "dateAdded": "2023-04-13T00:00:00Z",
         "duration": 1.44,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "6A8DCEA9-622F-4AA4-8752-EE26A4966634",
@@ -10566,7 +10566,7 @@
         "dateAdded": "2023-04-13T00:00:00Z",
         "duration": 7.97,
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "DFBDFA22-FB13-4836-BDCC-17A1E39C4132",
@@ -10577,7 +10577,7 @@
         "dateAdded": "2023-04-13T00:00:00Z",
         "duration": 1.52,
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "5EB4BFE8-9082-4A99-9AB3-18EA25DA676A",
@@ -10588,6 +10588,17 @@
         "dateAdded": "2023-04-13T00:00:00Z",
         "duration": 1.38,
         "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "E029ED09-CAE3-43B2-A478-422061A08B5A",
+        "title": "Que fase",
+        "authorId": "42EDB2DA-51E7-40B1-BABA-FD28066AF001",
+        "description": "Que fase",
+        "filename": "Milton Leite - Que fase.mp3",
+        "dateAdded": "2023-04-16T00:00:00Z",
+        "duration": 1.7,
+        "isOffensive": false,
         "isNew": true
     }
 ]
