@@ -652,5 +652,16 @@
         "dateAdded": "2023-04-06T00:00:00Z",
         "isOffensive": true,
         "isNew": false
+    },
+    {
+        "id": "9EC4CF55-65B2-4A05-B45E-0DAEAA5E4282",
+        "title": "Funk da Vanicação do Craque Neto",
+        "description": "",
+        "genre": 3,
+        "duration": 109.27,
+        "filename": "Funk de Vacinacao do Craque Neto.mp3",
+        "dateAdded": "2023-04-16T00:00:00Z",
+        "isOffensive": true,
+        "isNew": true
     }
 ]

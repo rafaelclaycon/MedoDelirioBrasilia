@@ -241,6 +241,8 @@
 		D92E7075283C5F620035826C /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92E7074283C5F620035826C /* SongCell.swift */; };
 		D92EF4BF291CA5B9009E3E0A /* Jair Bolsonaro - Pode botar, CODIB-19.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92EF4BD291CA5B9009E3E0A /* Jair Bolsonaro - Pode botar, CODIB-19.mp3 */; };
 		D92EF4C0291CA5B9009E3E0A /* Jair Bolsonaro - CODIB-19.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92EF4BE291CA5B9009E3E0A /* Jair Bolsonaro - CODIB-19.mp3 */; };
+		D92F095D29EC8AC200CC382F /* Milton Leite - Que fase.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92F095C29EC8AC100CC382F /* Milton Leite - Que fase.mp3 */; };
+		D92F095F29EC8AD100CC382F /* Funk de Vacinacao do Craque Neto.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92F095E29EC8AD100CC382F /* Funk de Vacinacao do Craque Neto.mp3 */; };
 		D92F8BAD286A6D2100EB9470 /* AlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92F8BAC286A6D2100EB9470 /* AlertType.swift */; };
 		D933251E28835E41004EFACB /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D933251D28835E41004EFACB /* ActivityViewController.swift */; };
 		D9344323283812AD00ADCD38 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9344322283812AD00ADCD38 /* Author.swift */; };
@@ -1563,6 +1565,8 @@
 		D92E7074283C5F620035826C /* SongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
 		D92EF4BD291CA5B9009E3E0A /* Jair Bolsonaro - Pode botar, CODIB-19.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Pode botar, CODIB-19.mp3"; sourceTree = "<group>"; };
 		D92EF4BE291CA5B9009E3E0A /* Jair Bolsonaro - CODIB-19.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - CODIB-19.mp3"; sourceTree = "<group>"; };
+		D92F095C29EC8AC100CC382F /* Milton Leite - Que fase.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Milton Leite - Que fase.mp3"; sourceTree = "<group>"; };
+		D92F095E29EC8AD100CC382F /* Funk de Vacinacao do Craque Neto.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Funk de Vacinacao do Craque Neto.mp3"; sourceTree = "<group>"; };
 		D92F8BAC286A6D2100EB9470 /* AlertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertType.swift; sourceTree = "<group>"; };
 		D933251D28835E41004EFACB /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		D9344322283812AD00ADCD38 /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
@@ -2670,6 +2674,7 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D92F095C29EC8AC100CC382F /* Milton Leite - Que fase.mp3 */,
 				D94C9F6029E87A8900A2F0BE /* Andre Starqueza - Ai, eu tambem.mp3 */,
 				D94C9F5C29E87A8900A2F0BE /* Andre Starqueza - Ai, que delicia.mp3 */,
 				D94C9F5E29E87A8900A2F0BE /* Andre Starqueza - Que demais.mp3 */,
@@ -3731,6 +3736,7 @@
 		D92E7068283C5C120035826C /* Songs */ = {
 			isa = PBXGroup;
 			children = (
+				D92F095E29EC8AD100CC382F /* Funk de Vacinacao do Craque Neto.mp3 */,
 				D903DB0829DF42A400D9BE42 /* 04 E Transao Versao Definitiva.mp3 */,
 				D903DB0729DF42A400D9BE42 /* A pandemia ainda nao acabou porra remix.mp3 */,
 				D903DB0529DF42A400D9BE42 /* Ei, Bolsonaro, vai tomar no cu.mp3 */,
@@ -5416,6 +5422,7 @@
 				D921F88E288B063A003979CC /* Ih rapaz - fred.mp3 in Resources */,
 				D975FFB52880B4F20035E6F2 /* Malafaia - Deus escolheu as coisas loucas.mp3 in Resources */,
 				D94C8385294BAC8500E083F3 /* Pastor Marcio Valadao - Agora agorinha agorinha.mp3 in Resources */,
+				D92F095D29EC8AC200CC382F /* Milton Leite - Que fase.mp3 in Resources */,
 				D94C8390294BACE000E083F3 /* Foi tao bom mas acabou.mp3 in Resources */,
 				D9E7D0F628AC6BC6001E909E /* PORTA DOS FUNDOS - Nao, brother broder.mp3 in Resources */,
 				49DEA9B02881101C008C9BA1 /* SpongeBob Time Cards - A few moments later.mp3 in Resources */,
@@ -5444,6 +5451,7 @@
 				D991512F2873E4C100FFAA29 /* funk-capricha-renan-mdb.mp3 in Resources */,
 				D975FE392880B4F20035E6F2 /* MR CATRA - vai comecar a putaria long.mp3 in Resources */,
 				D95A4630291832F0006B4023 /* Romeu Zema - Eu quero me drogar.mp3 in Resources */,
+				D92F095F29EC8AD100CC382F /* Funk de Vacinacao do Craque Neto.mp3 in Resources */,
 				D90D7DE428E2A4B1003B272A /* Eduardo Pazuello - Medo, medo, medo.mp3 in Resources */,
 				D975FFAA2880B4F20035E6F2 /* Trote Pareto - Calma filha da puta calma.mp3 in Resources */,
 				D9FD0F0528B2B2EE0000616A /* Volta pra sua casa, vaza - pedro daltro.mp3 in Resources */,
