@@ -10,7 +10,7 @@ import MarqueeText
 
 struct HelpTheAppView: View {
 
-    @Binding var donorNames: String
+    @Binding var donors: [Donor]?
     @Binding var imageIsSelected: Bool
     
     var body: some View {
@@ -36,23 +36,25 @@ struct HelpTheAppView: View {
                 Text("Esse trabalho é voluntário e envolve custos mensais com servidor (~R$ 30). Toda contribuição é bem-vinda!")
                     .fixedSize(horizontal: false, vertical: true)
                 
-                //if donorNames.isEmpty == false {
+                if donors != nil, #available(iOS 16.0, *) {
                     Text("**Últimas contribuições:**")
                     
-                    ScrollingTagView()
+                    DonorsView(donors: $donors)
                         .padding(.bottom, 5)
                         .marquee()
-                //}
+                }
             }
         }
     }
 
 }
 
-struct BegForMoneyView_Previews: PreviewProvider {
+struct HelpTheAppView_Previews: PreviewProvider {
 
     static var previews: some View {
-        HelpTheAppView(donorNames: .constant("Roberto B. E. T.     Carolina P. L.     Pedro O. R.     Maria Augusta M. C.     Luiz Fernando L. F."), imageIsSelected: .constant(false))
+        HelpTheAppView(donors: .constant([Donor(name: "Bruno P. G. P."),
+                                          Donor(name: "Clarissa P. S.", isRecurringDonor: true),
+                                          Donor(name: "Pedro Henrique B. P.")]),
+                       imageIsSelected: .constant(false))
     }
-
 }

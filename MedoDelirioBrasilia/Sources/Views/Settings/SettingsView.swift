@@ -17,7 +17,7 @@ struct SettingsView: View {
     
     @State private var showAskForMoneyView: Bool = false
     @State private var showToastView: Bool = false
-    @State private var donorNames: String = ""
+    @State private var donors: [Donor]? = nil
     
     @State private var showEmailClientConfirmationDialog: Bool = false
     @State private var didCopySupportAddressOnEmailPicker: Bool = false
@@ -96,8 +96,8 @@ struct SettingsView: View {
                 
                 //if showAskForMoneyView || CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
                     Section {
-                        HelpTheAppView(donorNames: $donorNames, imageIsSelected: $showLargeCreatorImage)
-                            .padding(.top)
+                        HelpTheAppView(donors: $donors, imageIsSelected: $showLargeCreatorImage)
+                            .padding(donors != nil ? .top : .vertical)
                         
                         HStack {
                             Spacer()
@@ -140,7 +140,7 @@ struct SettingsView: View {
                     } header: {
                         Text("Ajude o app")
                     } footer: {
-                        Text("Selecione E-mail como tipo de chave no app do seu banco. Evite qualquer opção que mencione QR Code.")
+                        Text("Já doou antes? Inclua essa informação na mensagem do Pix para ganhar um selo especial aqui :)")
                     }
                 //}
                 
@@ -189,8 +189,8 @@ struct SettingsView: View {
                 networkRabbit.displayAskForMoneyView { shouldDisplay in
                     showAskForMoneyView = shouldDisplay
                 }
-                networkRabbit.getPixDonorNames { names in
-                    donorNames = names
+                networkRabbit.getPixDonorNames { donors in
+                    self.donors = donors
                 }
             }
             .popover(isPresented: $showEmailClientConfirmationDialog) {

@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct Donor {
+struct Donor: Decodable {
     
     let name: String
-    let isRepeatDonor: Bool
+    let hasDonatedBefore: Bool
     
     init(name: String, isRecurringDonor: Bool = false) {
         self.name = name
-        self.isRepeatDonor = isRecurringDonor
+        self.hasDonatedBefore = isRecurringDonor
     }
 }

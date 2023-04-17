@@ -1,8 +1,8 @@
 //
-//  View+marquee.swift
-//  GitLabStatusMenuBarItem
+//  View+Marquee.swift
+//  MedoDelirioBrasilia
 //
-//  Created by Kevin Conner on 2023-04-15.
+//  Created by Kevin Conner on 15/04/2023.
 //
 
 import SwiftUI
@@ -40,6 +40,7 @@ enum SpeedBasis {
     }
 }
 
+@available(iOS 16.0, *)
 struct MarqueeModifier: ViewModifier {
     
     let spacing: CGFloat
@@ -105,6 +106,7 @@ struct MarqueeModifier: ViewModifier {
     }
 }
 
+@available(iOS 16.0, *)
 extension View {
     
     func marquee(
@@ -122,48 +124,48 @@ extension View {
     }
 }
 
-struct MarqueeModifier_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        VStack(spacing: 20) {
-            Text("Short; usually avoids animating.")
-                .padding(5)
-                .marquee()
-                .background(Color.red.gradient)
-            
-            VStack(alignment: .leading) {
-                Text("This text pauses at the beginning of each loop of its animation.")
-                    .font(.headline)
-                Text("iPod 4 life")
-                    .font(.subheadline)
-            }
-            .padding(5)
-            .marquee()
-            .background(Color.yellow.gradient)
-            
-            let interitemSpacing: CGFloat = 20
-            
-            HStack(spacing: interitemSpacing) {
-                ForEach(["One", "Two", "Three", "Four"], id: \.self) { title in
-                    HStack(spacing: 5) {
-                        Image(systemName: "music.quarternote.3")
-                        Text(title)
-                    }
-                    .font(.title3.bold())
-                    .padding(.vertical, 3)
-                    .padding(.horizontal, 6)
-                    .frame(width: 100, alignment: .leading)
-                    .background(
-                        RoundedRectangle(cornerRadius: 5, style: .continuous)
-                            .fill(Color.mint.gradient)
-                            .shadow(radius: 2, y: 2)
-                    )
-                }
-            }
-            .padding(.horizontal, interitemSpacing)
-            .marquee(spacing: -interitemSpacing, delay: 0, speedBasis: .period(2))
-            
-        }
-        .frame(width: 250, height: 200)
-    }
-}
+//struct MarqueeModifier_Previews: PreviewProvider {
+//
+//    static var previews: some View {
+//        VStack(spacing: 20) {
+//            Text("Short; usually avoids animating.")
+//                .padding(5)
+//                .marquee()
+//                .background(Color.red.gradient)
+//
+//            VStack(alignment: .leading) {
+//                Text("This text pauses at the beginning of each loop of its animation.")
+//                    .font(.headline)
+//                Text("iPod 4 life")
+//                    .font(.subheadline)
+//            }
+//            .padding(5)
+//            .marquee()
+//            .background(Color.yellow.gradient)
+//
+//            let interitemSpacing: CGFloat = 20
+//
+//            HStack(spacing: interitemSpacing) {
+//                ForEach(["One", "Two", "Three", "Four"], id: \.self) { title in
+//                    HStack(spacing: 5) {
+//                        Image(systemName: "music.quarternote.3")
+//                        Text(title)
+//                    }
+//                    .font(.title3.bold())
+//                    .padding(.vertical, 3)
+//                    .padding(.horizontal, 6)
+//                    .frame(width: 100, alignment: .leading)
+//                    .background(
+//                        RoundedRectangle(cornerRadius: 5, style: .continuous)
+//                            .fill(Color.mint.gradient)
+//                            .shadow(radius: 2, y: 2)
+//                    )
+//                }
+//            }
+//            .padding(.horizontal, interitemSpacing)
+//            .marquee(spacing: -interitemSpacing, delay: 0, speedBasis: .period(2))
+//
+//        }
+//        .frame(width: 250, height: 200)
+//    }
+//}

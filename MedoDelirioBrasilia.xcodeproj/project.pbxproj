@@ -398,7 +398,7 @@
 		D95A463229183843006B4023 /* Eleitores do Lula no Maranhao - Urubu, cabelo liso, tu vai pro inferno.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95A463129183843006B4023 /* Eleitores do Lula no Maranhao - Urubu, cabelo liso, tu vai pro inferno.mp3 */; };
 		D95BFEF129E8866700E42A23 /* LargeCreatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95BFEF029E8866700E42A23 /* LargeCreatorView.swift */; };
 		D95BFEF329E88C9800E42A23 /* DonorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95BFEF229E88C9800E42A23 /* DonorView.swift */; };
-		D95BFEF529E8CD2600E42A23 /* ScrollingTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95BFEF429E8CD2600E42A23 /* ScrollingTagView.swift */; };
+		D95BFEF529E8CD2600E42A23 /* DonorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95BFEF429E8CD2600E42A23 /* DonorsView.swift */; };
 		D95BFEF829E8D07B00E42A23 /* Donor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95BFEF729E8D07B00E42A23 /* Donor.swift */; };
 		D95DB0F6288248A300D4FEDF /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95DB0F5288248A300D4FEDF /* SidebarView.swift */; };
 		D95DB0F82882491A00D4FEDF /* ScreenAndTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95DB0F72882491A00D4FEDF /* ScreenAndTabs.swift */; };
@@ -1722,7 +1722,7 @@
 		D95A463129183843006B4023 /* Eleitores do Lula no Maranhao - Urubu, cabelo liso, tu vai pro inferno.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eleitores do Lula no Maranhao - Urubu, cabelo liso, tu vai pro inferno.mp3"; sourceTree = "<group>"; };
 		D95BFEF029E8866700E42A23 /* LargeCreatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeCreatorView.swift; sourceTree = "<group>"; };
 		D95BFEF229E88C9800E42A23 /* DonorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonorView.swift; sourceTree = "<group>"; };
-		D95BFEF429E8CD2600E42A23 /* ScrollingTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollingTagView.swift; sourceTree = "<group>"; };
+		D95BFEF429E8CD2600E42A23 /* DonorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonorsView.swift; sourceTree = "<group>"; };
 		D95BFEF729E8D07B00E42A23 /* Donor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Donor.swift; sourceTree = "<group>"; };
 		D95DB0F5288248A300D4FEDF /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		D95DB0F72882491A00D4FEDF /* ScreenAndTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenAndTabs.swift; sourceTree = "<group>"; };
@@ -3947,8 +3947,7 @@
 			isa = PBXGroup;
 			children = (
 				D95BFEF229E88C9800E42A23 /* DonorView.swift */,
-				D95BFEF429E8CD2600E42A23 /* ScrollingTagView.swift */,
-				D92F096429ED844300CC382F /* View+Marquee.swift */,
+				D95BFEF429E8CD2600E42A23 /* DonorsView.swift */,
 			);
 			path = Donors;
 			sourceTree = "<group>";
@@ -3977,6 +3976,7 @@
 				D93CCB7A286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift */,
 				D9D8C4A7287CD1B600812EE5 /* UIDevice+DevicePhysicalCharacteristics.swift */,
 				D9917A102991530000FB6274 /* Double+Extensions.swift */,
+				D92F096429ED844300CC382F /* View+Marquee.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -5813,7 +5813,7 @@
 				D93A029C2906E8E200A85FE2 /* NetworkRabbit+UserFolderLog.swift in Sources */,
 				D92CAA4128593B1700D6C1EA /* NetworkLogCell.swift in Sources */,
 				D9BB1E7728B3200700C5FFAA /* AppIcon.swift in Sources */,
-				D95BFEF529E8CD2600E42A23 /* ScrollingTagView.swift in Sources */,
+				D95BFEF529E8CD2600E42A23 /* DonorsView.swift in Sources */,
 				D9B24E2228C6A68800D76F7D /* NumberBadgeView.swift in Sources */,
 				D998F28F284F177B0013E709 /* TrendsDisabledView.swift in Sources */,
 				D933251E28835E41004EFACB /* ActivityViewController.swift in Sources */,
@@ -5950,7 +5950,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -6005,7 +6005,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -6038,7 +6038,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -6078,7 +6078,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -21,7 +21,7 @@ struct DonorView: View {
                 .padding(.vertical, 8)
                 .background(RoundedRectangle(cornerRadius: 9).fill(.gray).opacity(colorScheme == .dark ? 0.5 : 0.1))
             
-            if donor.isRepeatDonor {
+            if donor.hasDonatedBefore {
                 Text("⭐️  JÁ DOOU ANTES")
                     .font(.caption)
                     .foregroundColor(colorScheme == .dark ? .black : .white)
