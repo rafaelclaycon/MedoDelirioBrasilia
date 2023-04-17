@@ -22,14 +22,14 @@ struct DonorView: View {
                 .background(RoundedRectangle(cornerRadius: 9).fill(.gray).opacity(colorScheme == .dark ? 0.5 : 0.1))
             
             if donor.isRepeatDonor {
-                Text("⭐️ RECORRENTE")
+                Text("⭐️  JÁ DOOU ANTES")
                     .font(.caption)
                     .foregroundColor(colorScheme == .dark ? .black : .white)
                     .bold()
-                    .padding(.horizontal, 12)
+                    .padding(.horizontal, 10)
                     .padding(.vertical, 4)
                     .background(RoundedRectangle(cornerRadius: 9).fill(.primary))
-                    .offset(y: 25)
+                    .offset(y: 22)
             }
         }
         .fixedSize()

@@ -97,7 +97,7 @@ struct SettingsView: View {
                 //if showAskForMoneyView || CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
                     Section {
                         HelpTheAppView(donorNames: $donorNames, imageIsSelected: $showLargeCreatorImage)
-                            .padding(.vertical)
+                            .padding(.top)
                         
                         HStack {
                             Spacer()

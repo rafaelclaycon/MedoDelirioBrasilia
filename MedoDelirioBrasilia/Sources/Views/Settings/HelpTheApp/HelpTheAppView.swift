@@ -40,7 +40,8 @@ struct HelpTheAppView: View {
                     Text("**Últimas contribuições:**")
                     
                     ScrollingTagView()
-                        .padding(.bottom, 10)
+                        .padding(.bottom, 5)
+                        .marquee()
                 //}
             }
         }
