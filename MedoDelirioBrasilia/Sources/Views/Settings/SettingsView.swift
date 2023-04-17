@@ -94,7 +94,7 @@ struct SettingsView: View {
                     }
                 }
                 
-                //if showAskForMoneyView || CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
+                if showAskForMoneyView {
                     Section {
                         HelpTheAppView(donors: $donors, imageIsSelected: $showLargeCreatorImage)
                             .padding(donors != nil ? .top : .vertical)
@@ -142,7 +142,7 @@ struct SettingsView: View {
                     } footer: {
                         Text("Já doou antes? Inclua essa informação na mensagem do Pix para ganhar um selo especial aqui :)")
                     }
-                //}
+                }
                 
                 Section("Sobre") {
                     Text("Criado por Rafael Claycon Schmitt")
