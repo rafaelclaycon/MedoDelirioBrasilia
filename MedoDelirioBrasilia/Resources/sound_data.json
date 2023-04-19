@@ -10054,8 +10054,8 @@
     {
         "id": "64AF9311-EDC4-4D7B-82F4-D55A81365520",
         "title": "Pipino de novo! De novo!",
-        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
-        "description": "Pipino de novo de novo",
+        "authorId": "1FEA6415-0830-4CDE-9490-CF67EC0F8AFF",
+        "description": "Pipino de novo de novo pepino de novo de novo",
         "filename": "Pipino de novo de novo.mp3",
         "dateAdded": "2023-02-22T00:00:00Z",
         "duration": 2.27,
@@ -10599,6 +10599,17 @@
         "dateAdded": "2023-04-16T00:00:00Z",
         "duration": 1.7,
         "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "D9C61CF1-A83D-4FEC-9A3B-446148EDD125",
+        "title": "Desconta... Des... Contextualizadas",
+        "authorId": "AA4313EE-E9E1-4EDB-9D40-3A9C5C286DA6",
+        "description": "isso sao falas que foram desconta descontextualizadas e divulgadas em fragmentos para",
+        "filename": "Sergio Moro - Descont... Des... Contextualizadas.mp3",
+        "dateAdded": "2023-04-19T00:00:00Z",
+        "duration": 9.43,
+        "isOffensive": true,
         "isNew": true
     }
 ]
