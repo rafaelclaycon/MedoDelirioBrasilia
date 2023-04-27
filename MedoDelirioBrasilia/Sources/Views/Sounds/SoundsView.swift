@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct SoundsView: View {
-
+    
+    @State private var downloadedFilepath: String = ""
+    
     enum ViewMode: Int {
         case allSounds, favorites, folders, byAuthor
     }
@@ -574,6 +576,25 @@ struct SoundsView: View {
                         } label: {
                             Image(systemName: "folder.badge.plus")
                         }.disabled(viewModel.selectionKeeper.count == 0)
+                    }
+                    
+                    Menu {
+                        Button {
+                            let url = URL(string: "http://170.187.141.103:8080/05C998A0-4085-434A-A8F3-12DA86270CD4.mp3")!
+                            NetworkRabbit.downloadFile(url: url) { filepath, error in
+                                guard error == nil else {
+                                    return print(error!)
+                                }
+                                guard let filepath = filepath else {
+                                    return
+                                }
+                                downloadedFilepath = filepath
+                            }
+                        } label: {
+                            Label("Baixar som", systemImage: "speaker.wave.3.fill")
+                        }
+                    } label: {
+                        Image(systemName: "arrow.down.circle")
                     }
                     
                     Menu {
