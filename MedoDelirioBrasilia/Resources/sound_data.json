@@ -10603,13 +10603,35 @@
     },
     {
         "id": "D9C61CF1-A83D-4FEC-9A3B-446148EDD125",
-        "title": "Desconta... Des... Contextualizadas",
+        "title": "Desconta... Des... Contextualizadas (completo)",
         "authorId": "AA4313EE-E9E1-4EDB-9D40-3A9C5C286DA6",
         "description": "isso sao falas que foram desconta descontextualizadas e divulgadas em fragmentos para",
-        "filename": "Sergio Moro - Descont... Des... Contextualizadas.mp3",
+        "filename": "Sergio Moro - Descont... Des... Contextualizadas (completo).mp3",
         "dateAdded": "2023-04-19T00:00:00Z",
         "duration": 9.43,
         "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "C3F5F90A-FA82-4771-87CE-B330D745907C",
+        "title": "Desconta... Des... Contextualizadas",
+        "authorId": "AA4313EE-E9E1-4EDB-9D40-3A9C5C286DA6",
+        "description": "isso sao falas que foram desconta descontextualizadas",
+        "filename": "Sergio Moro - Descont... Des... Contextualizadas.mp3",
+        "dateAdded": "2023-04-27T00:00:00Z",
+        "duration": 4.81,
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "EAE25382-F0DA-48C0-9CC9-937E28D13A1E",
+        "title": "Olha-Que-Legal!",
+        "authorId": "E3688B09-6DAC-4763-A004-5186E636DC5B",
+        "description": "olha que legal olha-que-legal",
+        "filename": "Mauro Reginato - Olha que legal.mp3",
+        "dateAdded": "2023-04-27T00:00:00Z",
+        "duration": 1.57,
+        "isOffensive": false,
         "isNew": true
     }
 ]

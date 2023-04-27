@@ -342,6 +342,8 @@
 		D94D9F01298D8AFC006F14A5 /* Silas Malafaia - Covarde frouxo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94D9EFE298D8AFC006F14A5 /* Silas Malafaia - Covarde frouxo.mp3 */; };
 		D94D9F02298D8AFC006F14A5 /* Silas Malafaia - Tu acha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94D9EFF298D8AFC006F14A5 /* Silas Malafaia - Tu acha.mp3 */; };
 		D94D9F05298DB98D006F14A5 /* AddDateAndVersionToUserFolderTables.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94D9F04298DB98D006F14A5 /* AddDateAndVersionToUserFolderTables.swift */; };
+		D94EAB4929FAE377004CD604 /* Mauro Reginato - Olha que legal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94EAB4829FAE377004CD604 /* Mauro Reginato - Olha que legal.mp3 */; };
+		D94EAB4D29FAE51B004CD604 /* Sergio Moro - Descont... Des... Contextualizadas (completo).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94EAB4C29FAE51B004CD604 /* Sergio Moro - Descont... Des... Contextualizadas (completo).mp3 */; };
 		D94FBD342948F64F001FA3A8 /* Heraclito Sobral Pinto - Militares e Republica nao combinam.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94FBD332948F64E001FA3A8 /* Heraclito Sobral Pinto - Militares e Republica nao combinam.mp3 */; };
 		D9523741285BF98A00E6C838 /* NetworkRabbitStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */; };
 		D9523743285BF99800E6C838 /* LocalDatabaseSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9523742285BF99800E6C838 /* LocalDatabaseSpy.swift */; };
@@ -1670,6 +1672,8 @@
 		D94D9EFE298D8AFC006F14A5 /* Silas Malafaia - Covarde frouxo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Silas Malafaia - Covarde frouxo.mp3"; sourceTree = "<group>"; };
 		D94D9EFF298D8AFC006F14A5 /* Silas Malafaia - Tu acha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Silas Malafaia - Tu acha.mp3"; sourceTree = "<group>"; };
 		D94D9F04298DB98D006F14A5 /* AddDateAndVersionToUserFolderTables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDateAndVersionToUserFolderTables.swift; sourceTree = "<group>"; };
+		D94EAB4829FAE377004CD604 /* Mauro Reginato - Olha que legal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mauro Reginato - Olha que legal.mp3"; sourceTree = "<group>"; };
+		D94EAB4C29FAE51B004CD604 /* Sergio Moro - Descont... Des... Contextualizadas (completo).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Sergio Moro - Descont... Des... Contextualizadas (completo).mp3"; sourceTree = "<group>"; };
 		D94FBD332948F64E001FA3A8 /* Heraclito Sobral Pinto - Militares e Republica nao combinam.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Heraclito Sobral Pinto - Militares e Republica nao combinam.mp3"; sourceTree = "<group>"; };
 		D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRabbitStub.swift; sourceTree = "<group>"; };
 		D9523742285BF99800E6C838 /* LocalDatabaseSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDatabaseSpy.swift; sourceTree = "<group>"; };
@@ -2684,6 +2688,8 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D94EAB4C29FAE51B004CD604 /* Sergio Moro - Descont... Des... Contextualizadas (completo).mp3 */,
+				D94EAB4829FAE377004CD604 /* Mauro Reginato - Olha que legal.mp3 */,
 				D9F3FC1529F019BB0090FFAF /* Pipino de novo de novo.mp3 */,
 				D9F3FC1129F015E40090FFAF /* Sergio Moro - Descont... Des... Contextualizadas.mp3 */,
 				D92F095C29EC8AC100CC382F /* Milton Leite - Que fase.mp3 */,
@@ -4727,6 +4733,7 @@
 				D9FD0F0328B2B2EE0000616A /* Vossa excelencia permite um aparte.mp3 in Resources */,
 				D92AD1B628832EB1001CBCDF /* ConservaTalk - Abraham Weintraub - Nao, ta errado.mp3 in Resources */,
 				D975FE512880B4F20035E6F2 /* Marcel van Hatten - Acuse os adversarios do que voce faz.mp3 in Resources */,
+				D94EAB4929FAE377004CD604 /* Mauro Reginato - Olha que legal.mp3 in Resources */,
 				D975FF632880B4F20035E6F2 /* Boldo - Parece ate que um helicoptero pousou em cima da tua cara.mp3 in Resources */,
 				D975FE852880B4F20035E6F2 /* BENDER Ahh, agora eu entendi short.mp3 in Resources */,
 				D975FE3D2880B4F20035E6F2 /* JOVEM PAN NEWS - Sem querer colocar o senhor numa situacao delicada ai.mp3 in Resources */,
@@ -5625,6 +5632,7 @@
 				D975FFCA2880B4F20035E6F2 /* LAILA BRANDAO - Falsiane short meme.mp3 in Resources */,
 				49DEA9C028811391008C9BA1 /* CHAVEZ - DR CHAPATIM - INSINUA QUE SOU VELHO short meme.mp3 in Resources */,
 				D9AF10CD290AD50D0054741F /* REDE GLOBO - Bolsonaro - Destruidor de florestas.mp3 in Resources */,
+				D94EAB4D29FAE51B004CD604 /* Sergio Moro - Descont... Des... Contextualizadas (completo).mp3 in Resources */,
 				D9F6420928D122C500003A0E /* Moderador, tira o moleque desse grupo agora.mp3 in Resources */,
 				D9FD0F1428B2B2FA0000616A /* Coreia do Norte, Cuba, Venezuela musica.mp3 in Resources */,
 				D975FFEF2880B4F20035E6F2 /* Omar Aziz - Ah, me erre.mp3 in Resources */,
@@ -6055,7 +6063,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.16;
+				MARKETING_VERSION = 6.17;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -6095,7 +6103,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.16;
+				MARKETING_VERSION = 6.17;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
