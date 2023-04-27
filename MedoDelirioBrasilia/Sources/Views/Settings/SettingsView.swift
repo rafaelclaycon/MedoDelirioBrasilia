@@ -145,23 +145,24 @@ struct SettingsView: View {
                 }
                 
                 Section("Sobre") {
-                    Text("Criado por Rafael Claycon Schmitt")
-                    
-                    Button {
-                        open(link: "https://burnthis.town/@rafael")
-                    } label: {
-                        HStack(spacing: 12) {
-                            Image("mastodon")
-                                .resizable()
-                                .renderingMode(.template)
-                                .frame(width: 24, height: 24)
-                            
-                            Text("Seguir no Mastodon")
+                    Menu {
+                        Section {
+                            Button {
+                                open(link: "https://burnthis.town/@rafael")
+                            } label: {
+                                Label("Seguir no Mastodon", image: "mastodon")
+                            }
                         }
-                    }
-                    
-                    Button("Como abrir uma conta no Mastodon?") {
-                        open(link: "https://jovemnerd.com.br/nerdbunker/mastodon-como-criar-conta/")
+                        
+                        Section {
+                            Button {
+                                open(link: "https://jovemnerd.com.br/nerdbunker/mastodon-como-criar-conta/")
+                            } label: {
+                                Label("Como abrir uma conta no Mastodon?", systemImage: "arrow.up.right.square")
+                            }
+                        }
+                    } label: {
+                        Text("Criado por Rafael Claycon Schmitt")
                     }
                     
                     Text("Versão \(Versioneer.appVersion) Build \(Versioneer.buildVersionNumber)")
