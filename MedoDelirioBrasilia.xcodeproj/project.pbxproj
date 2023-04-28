@@ -1098,6 +1098,7 @@
 		D9A3AB6D28F062580064CB7A /* TimeKeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A3AB6C28F062580064CB7A /* TimeKeeper.swift */; };
 		D9A3AB6F28F063FF0064CB7A /* TimeKeeperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A3AB6E28F063FF0064CB7A /* TimeKeeperTests.swift */; };
 		D9A4D010290A18ED00EB57B3 /* NetworkRabbit+StillAliveSignal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A4D00F290A18ED00EB57B3 /* NetworkRabbit+StillAliveSignal.swift */; };
+		D9A7D85F29FB448500A964AC /* AddSoundAndAuthorTables.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A7D85E29FB448500A964AC /* AddSoundAndAuthorTables.swift */; };
 		D9A8AB212853EB5500B5A94B /* InitialMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A8AB202853EB5500B5A94B /* InitialMigration.swift */; };
 		D9A8AB2528543F8E00B5A94B /* SharingLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A8AB2428543F8E00B5A94B /* SharingLogCell.swift */; };
 		D9A8AB282854436500B5A94B /* Date+ToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A8AB272854436500B5A94B /* Date+ToString.swift */; };
@@ -2431,6 +2432,7 @@
 		D9A3AB6C28F062580064CB7A /* TimeKeeper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeKeeper.swift; sourceTree = "<group>"; };
 		D9A3AB6E28F063FF0064CB7A /* TimeKeeperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeKeeperTests.swift; sourceTree = "<group>"; };
 		D9A4D00F290A18ED00EB57B3 /* NetworkRabbit+StillAliveSignal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+StillAliveSignal.swift"; sourceTree = "<group>"; };
+		D9A7D85E29FB448500A964AC /* AddSoundAndAuthorTables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSoundAndAuthorTables.swift; sourceTree = "<group>"; };
 		D9A8AB202853EB5500B5A94B /* InitialMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialMigration.swift; sourceTree = "<group>"; };
 		D9A8AB2428543F8E00B5A94B /* SharingLogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingLogCell.swift; sourceTree = "<group>"; };
 		D9A8AB272854436500B5A94B /* Date+ToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ToString.swift"; sourceTree = "<group>"; };
@@ -4290,6 +4292,7 @@
 				D9E5055F28F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift */,
 				D9A3984828FDEE0D00039B7B /* AddRankingTypeToAudienceSharingStatisticTable.swift */,
 				D94D9F04298DB98D006F14A5 /* AddDateAndVersionToUserFolderTables.swift */,
+				D9A7D85E29FB448500A964AC /* AddSoundAndAuthorTables.swift */,
 			);
 			path = Migrations;
 			sourceTree = "<group>";
@@ -5708,6 +5711,7 @@
 				D9CC893328EB7BB500576492 /* MostSharedByAudienceView.swift in Sources */,
 				D912A33A28B5321400F7293D /* ShareAsVideoResult.swift in Sources */,
 				D958B1AA28394D400010F133 /* MainView.swift in Sources */,
+				D9A7D85F29FB448500A964AC /* AddSoundAndAuthorTables.swift in Sources */,
 				D92F8BAD286A6D2100EB9470 /* AlertType.swift in Sources */,
 				D94BA9ED2879EC7F001BD09C /* JoinFolderResearchBannerView.swift in Sources */,
 				D93443292838230500ADCD38 /* String+Extensions.swift in Sources */,
