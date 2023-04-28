@@ -19,16 +19,20 @@ struct Sound: Hashable, Codable, Identifiable {
     let duration: Double
     let isOffensive: Bool
     let isNew: Bool?
+    let isFromServer: Bool?
     
-    init(id: String = UUID().uuidString,
-         title: String,
-         authorId: String = UUID().uuidString,
-         description: String = "",
-         filename: String = "",
-         dateAdded: Date? = Date(),
-         duration: Double = 0,
-         isOffensive: Bool = false,
-         isNew: Bool? = nil) {
+    init(
+        id: String = UUID().uuidString,
+        title: String,
+        authorId: String = UUID().uuidString,
+        description: String = "",
+        filename: String = "",
+        dateAdded: Date? = Date(),
+        duration: Double = 0,
+        isOffensive: Bool = false,
+        isNew: Bool? = nil,
+        isFromServer: Bool? = false
+    ) {
         self.id = id
         self.title = title
         self.authorId = authorId
@@ -38,6 +42,23 @@ struct Sound: Hashable, Codable, Identifiable {
         self.duration = duration
         self.isOffensive = isOffensive
         self.isNew = isNew
+        self.isFromServer = isFromServer
     }
+    
+    func fileURL() throws -> URL {
+        if isFromServer ?? false {
+            // TODO: - Implement
+            return URL(fileURLWithPath: "")
+        } else {
+            guard let path = Bundle.main.path(forResource: self.filename, ofType: nil) else {
+                throw SoundError.fileNotFound
+            }
+            return URL(fileURLWithPath: path)
+        }
+    }
+}
 
+enum SoundError: Error {
+
+    case fileNotFound
 }

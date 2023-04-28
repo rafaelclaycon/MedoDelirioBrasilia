@@ -62,13 +62,13 @@ extension LocalDatabase {
                 RemoveFavoriteLogTable(),
                 AddAudienceSharingStatisticTable(),
                 AddRankingTypeToAudienceSharingStatisticTable(),
-                AddDateAndVersionToUserFolderTables()]
+                AddDateAndVersionToUserFolderTables(),
+                AddSoundAndAuthorTables()]
     }
     
     var needsMigration: Bool {
         return migrationManager.needsMigration()
     }
-
 }
 
 extension LocalDatabase: CustomStringConvertible {

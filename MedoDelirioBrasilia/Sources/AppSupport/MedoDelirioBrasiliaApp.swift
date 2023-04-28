@@ -26,7 +26,9 @@ struct MedoDelirioBrasiliaApp: App {
 }
 
 class AppDelegate: NSObject, UIApplicationDelegate {
-
+    
+    @AppStorage("hasMigratedSoundsAuthors") private var hasMigratedSoundsAuthors = false
+    
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
@@ -42,6 +44,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         }
         
         //print(database)
+        
+        if !hasMigratedSoundsAuthors {
+            if moveSoundsAndAuthorsToDatabase() {
+                hasMigratedSoundsAuthors = true
+            } else {
+                print("Issue moving Sounds.")
+            }
+        }
         
         prepareAudioPlayerOnMac()
         collectTelemetry()
@@ -177,5 +187,4 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             UserDefaults.standard.removeObject(forKey: "skipGetLinkInstructions")
         }
     }
-
 }

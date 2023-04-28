@@ -44,5 +44,4 @@ extension LocalDatabase {
         }
         return queriedFavorites.count > 0
     }
-
 }

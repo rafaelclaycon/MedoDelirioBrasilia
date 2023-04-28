@@ -213,5 +213,4 @@ enum NetworkRabbitError: Error {
     case responseWasNotAnHTTPURLResponse
     case invalidResponse
     case httpRequestFailed
-
 }
