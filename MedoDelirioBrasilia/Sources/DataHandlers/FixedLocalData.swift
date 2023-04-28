@@ -2,7 +2,6 @@ import Foundation
 import SwiftUI
 import ImageIO
 
-let soundData: [Sound] = load("sound_data.json")
 let authorData: [Author] = load("author_data.json")
 let songData: [Song] = load("song_data.json")
 

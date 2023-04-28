@@ -94,7 +94,8 @@ struct DiagnosticsView: View {
     }
     
     func getContentName(contentId: String) -> String {
-        let sounds = soundData.filter({ $0.id == contentId })
+        // TODO: - Fix this
+        let sounds: [Sound] = [] // soundData.filter({ $0.id == contentId })
         let songs = songData.filter({ $0.id == contentId })
         var contentTitle = ""
         if sounds.count == 1 {

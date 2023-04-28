@@ -48,9 +48,11 @@ class FolderDetailViewViewModel: ObservableObject {
             return
         }
         
-        let sounds = soundData.filter { sound in
-            folderContents.contains { $0.contentId == sound.id }
-        }
+        // TODO: - Fix this
+//        let sounds = soundData.filter { sound in
+//            folderContents.contains { $0.contentId == sound.id }
+//        }
+        let sounds: [Sound] = []
         
         guard sounds.count > 0 else {
             self.sounds = [Sound]()

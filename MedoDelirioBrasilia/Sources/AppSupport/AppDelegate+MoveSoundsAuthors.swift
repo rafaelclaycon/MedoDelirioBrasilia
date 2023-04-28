@@ -10,6 +10,7 @@ import Foundation
 extension AppDelegate {
     
     internal func moveSoundsAndAuthorsToDatabase() -> Bool {
+        let soundData: [Sound] = Bundle.main.decodeJSON("sound_data.json")
         soundData.forEach { sound in
             do {
                 try database.insert(sound: sound)
@@ -17,7 +18,7 @@ extension AppDelegate {
                 print("Problem inserting Sound '\(sound.title)': \(error.localizedDescription)")
             }
         }
-        guard try! database.getSoundCount() == 1041 else {
+        guard try! database.soundCount() == 1041 else {
             return false
         }
         authorData.forEach { author in

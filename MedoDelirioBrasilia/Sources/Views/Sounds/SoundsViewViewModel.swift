@@ -367,7 +367,7 @@ class SoundsViewViewModel: ObservableObject {
         guard selectionKeeper.count > 0 else { return }
         selectedSounds = [Sound]()
         selectionKeeper.forEach { selectedSoundId in
-            guard let sound = soundData.filter({ $0.id == selectedSoundId }).first else { return }
+            guard let sound = try? database.sound(withId: selectedSoundId) else { return }
             selectedSounds?.append(sound)
         }
     }
@@ -376,7 +376,7 @@ class SoundsViewViewModel: ObservableObject {
         guard selectionKeeper.count > 0 else { return }
         selectedSounds = [Sound]()
         selectionKeeper.forEach { selectedSoundId in
-            guard let sound = soundData.filter({ $0.id == selectedSoundId }).first else { return }
+            guard let sound = try? database.sound(withId: selectedSoundId) else { return }
             selectedSounds?.append(sound)
         }
         

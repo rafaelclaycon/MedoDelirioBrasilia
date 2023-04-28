@@ -181,7 +181,7 @@ struct SoundsView: View {
                                                                 if viewModel.favoritesKeeper.contains(sound.id) {
                                                                     viewModel.removeFromFavorites(soundId: sound.id)
                                                                     if currentViewMode == .favorites {
-                                                                        viewModel.reloadList(withSounds: soundData,
+                                                                        viewModel.reloadList(withSounds: try! database.allSounds(),
                                                                                              andFavorites: try? database.getAllFavorites(),
                                                                                              allowSensitiveContent: UserSettings.getShowExplicitContent(),
                                                                                              favoritesOnly: currentViewMode == .favorites,
@@ -277,7 +277,7 @@ struct SoundsView: View {
             .navigationTitle(Text(title))
             .navigationBarItems(leading: leadingToolbarControls(), trailing: trailingToolbarControls())
             .onAppear {
-                viewModel.reloadList(withSounds: soundData,
+                viewModel.reloadList(withSounds: try! database.allSounds(),
                                      andFavorites: try? database.getAllFavorites(),
                                      allowSensitiveContent: UserSettings.getShowExplicitContent(),
                                      favoritesOnly: currentViewMode == .favorites,
@@ -376,7 +376,7 @@ struct SoundsView: View {
             }
             .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in
                 if shouldUpdate {
-                    viewModel.reloadList(withSounds: soundData,
+                    viewModel.reloadList(withSounds: try! database.allSounds(),
                                          andFavorites: try? database.getAllFavorites(),
                                          allowSensitiveContent: UserSettings.getShowExplicitContent(),
                                          favoritesOnly: currentViewMode == .favorites,
@@ -483,7 +483,7 @@ struct SoundsView: View {
             guard currentMode == .allSounds || currentMode == .favorites else {
                 return
             }
-            viewModel.reloadList(withSounds: soundData,
+            viewModel.reloadList(withSounds: try! database.allSounds(),
                                  andFavorites: try? database.getAllFavorites(),
                                  allowSensitiveContent: UserSettings.getShowExplicitContent(),
                                  favoritesOnly: currentMode == .favorites,
@@ -554,7 +554,7 @@ struct SoundsView: View {
                             if currentViewMode == .favorites || viewModel.allSelectedAreFavorites() {
                                 viewModel.removeSelectedFromFavorites()
                                 viewModel.stopSelecting()
-                                viewModel.reloadList(withSounds: soundData,
+                                viewModel.reloadList(withSounds: try! database.allSounds(),
                                                      andFavorites: try? database.getAllFavorites(),
                                                      allowSensitiveContent: UserSettings.getShowExplicitContent(),
                                                      favoritesOnly: currentViewMode == .favorites,
@@ -636,7 +636,7 @@ struct SoundsView: View {
                         Image(systemName: "ellipsis.circle")
                     }
                     .onChange(of: viewModel.soundSortOption, perform: { soundSortOption in
-                        viewModel.reloadList(withSounds: soundData,
+                        viewModel.reloadList(withSounds: try! database.allSounds(),
                                              andFavorites: try? database.getAllFavorites(),
                                              allowSensitiveContent: UserSettings.getShowExplicitContent(),
                                              favoritesOnly: currentViewMode == .favorites,

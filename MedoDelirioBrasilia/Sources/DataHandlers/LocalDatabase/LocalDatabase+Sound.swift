@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import SQLite
 
 extension LocalDatabase {
 
-    func getSoundCount() throws -> Int {
+    func soundCount() throws -> Int {
         try db.scalar(sound.count)
     }
     
@@ -18,11 +19,21 @@ extension LocalDatabase {
         try db.run(insert)
     }
     
-    func getAllSounds() throws -> [Sound] {
+    func allSounds() throws -> [Sound] {
         var queriedSounds = [Sound]()
         for queriedSound in try db.prepare(sound) {
             queriedSounds.append(try queriedSound.decode())
         }
         return queriedSounds
+    }
+    
+    func sound(withId soundId: String) throws -> Sound? {
+        var queriedSounds = [Sound]()
+        let id = Expression<String>("id")
+        let query = sound.filter(id == soundId)
+        for queriedSound in try db.prepare(query) {
+            queriedSounds.append(try queriedSound.decode())
+        }
+        return queriedSounds.first
     }
 }

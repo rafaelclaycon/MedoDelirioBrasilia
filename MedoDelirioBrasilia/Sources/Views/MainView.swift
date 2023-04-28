@@ -25,13 +25,14 @@ struct MainView: View {
         if UIDevice.current.userInterfaceIdiom == .phone {
             TabView(selection: $tabSelection) {
                 NavigationView {
-                    SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
-                                                              authorSortOption: AuthorSortOption.nameAscending.rawValue,
-                                                              currentSoundsListMode: $currentSoundsListMode),
-                               currentViewMode: .allSounds,
-                               currentSoundsListMode: $currentSoundsListMode)
-                        .environmentObject(trendsHelper)
-                        .environmentObject(settingsHelper)
+                    NewSoundsView()
+//                    SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
+//                                                              authorSortOption: AuthorSortOption.nameAscending.rawValue,
+//                                                              currentSoundsListMode: $currentSoundsListMode),
+//                               currentViewMode: .allSounds,
+//                               currentSoundsListMode: $currentSoundsListMode)
+//                        .environmentObject(trendsHelper)
+//                        .environmentObject(settingsHelper)
                 }
                 .tabItem {
                     Label("Sons", systemImage: "speaker.wave.3.fill")

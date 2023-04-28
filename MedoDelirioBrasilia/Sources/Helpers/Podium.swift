@@ -21,7 +21,8 @@ class Podium {
         }
         
         for i in 0...(dimItems.count - 1) {
-            filteredSounds = soundData.filter({ $0.id == dimItems[i].contentId })
+            // TODO: - Fix this
+            filteredSounds = [] // soundData.filter({ $0.id == dimItems[i].contentId })
             
             guard filteredSounds.count > 0 else {
                 continue
@@ -56,7 +57,8 @@ class Podium {
         }
         
         for i in 0...(dimItems.count - 1) {
-            filteredSounds = soundData.filter({ $0.id == dimItems[i].contentId })
+            // TODO: - Fix this
+            filteredSounds = [] // soundData.filter({ $0.id == dimItems[i].contentId })
             
             guard filteredSounds.count > 0 else {
                 continue

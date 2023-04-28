@@ -20,7 +20,8 @@ class AuthorsViewViewModel: ObservableObject {
         if self.authors.count > 0 {
             self.authors.indices.forEach {
                 let authorId = self.authors[$0].id
-                self.authors[$0].soundCount = soundData.filter({ $0.authorId == authorId }).count
+                // TODO: - Fix this
+                self.authors[$0].soundCount = 0 // soundData.filter({ $0.authorId == authorId }).count
             }
             
             switch sortOption {
