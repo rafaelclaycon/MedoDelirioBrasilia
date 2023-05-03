@@ -414,6 +414,11 @@
 		D95BFEF329E88C9800E42A23 /* DonorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95BFEF229E88C9800E42A23 /* DonorView.swift */; };
 		D95BFEF529E8CD2600E42A23 /* DonorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95BFEF429E8CD2600E42A23 /* DonorsView.swift */; };
 		D95BFEF829E8D07B00E42A23 /* Donor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95BFEF729E8D07B00E42A23 /* Donor.swift */; };
+		D95C3E0A2A02AB1800172C17 /* SoundServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95C3E092A02AB1800172C17 /* SoundServiceTests.swift */; };
+		D95C3E0D2A02ABE500172C17 /* ConnectionManagerStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95C3E0C2A02ABE500172C17 /* ConnectionManagerStub.swift */; };
+		D95C3E0F2A02D7C400172C17 /* NetworkRabbit+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95C3E0E2A02D7C400172C17 /* NetworkRabbit+Sync.swift */; };
+		D95C3E122A02E6D300172C17 /* SyncTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95C3E112A02E6D300172C17 /* SyncTypes.swift */; };
+		D95C3E142A02E70D00172C17 /* UpdateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95C3E132A02E70D00172C17 /* UpdateEvent.swift */; };
 		D95DB0F6288248A300D4FEDF /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95DB0F5288248A300D4FEDF /* SidebarView.swift */; };
 		D95DB0F82882491A00D4FEDF /* ScreenAndTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95DB0F72882491A00D4FEDF /* ScreenAndTabs.swift */; };
 		D95F363A28AD386D00743026 /* ShareAsVideoLegacyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95F363928AD386D00743026 /* ShareAsVideoLegacyView.swift */; };
@@ -1753,6 +1758,11 @@
 		D95BFEF229E88C9800E42A23 /* DonorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonorView.swift; sourceTree = "<group>"; };
 		D95BFEF429E8CD2600E42A23 /* DonorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonorsView.swift; sourceTree = "<group>"; };
 		D95BFEF729E8D07B00E42A23 /* Donor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Donor.swift; sourceTree = "<group>"; };
+		D95C3E092A02AB1800172C17 /* SoundServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundServiceTests.swift; sourceTree = "<group>"; };
+		D95C3E0C2A02ABE500172C17 /* ConnectionManagerStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionManagerStub.swift; sourceTree = "<group>"; };
+		D95C3E0E2A02D7C400172C17 /* NetworkRabbit+Sync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+Sync.swift"; sourceTree = "<group>"; };
+		D95C3E112A02E6D300172C17 /* SyncTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncTypes.swift; sourceTree = "<group>"; };
+		D95C3E132A02E70D00172C17 /* UpdateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateEvent.swift; sourceTree = "<group>"; };
 		D95DB0F5288248A300D4FEDF /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		D95DB0F72882491A00D4FEDF /* ScreenAndTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenAndTabs.swift; sourceTree = "<group>"; };
 		D95F363928AD386D00743026 /* ShareAsVideoLegacyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAsVideoLegacyView.swift; sourceTree = "<group>"; };
@@ -4014,6 +4024,32 @@
 			path = Donors;
 			sourceTree = "<group>";
 		};
+		D95C3E082A02AAFC00172C17 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D95C3E0B2A02ABD100172C17 /* Doubles */,
+				D95C3E092A02AB1800172C17 /* SoundServiceTests.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		D95C3E0B2A02ABD100172C17 /* Doubles */ = {
+			isa = PBXGroup;
+			children = (
+				D95C3E0C2A02ABE500172C17 /* ConnectionManagerStub.swift */,
+			);
+			path = Doubles;
+			sourceTree = "<group>";
+		};
+		D95C3E102A02E6BB00172C17 /* Sync */ = {
+			isa = PBXGroup;
+			children = (
+				D95C3E112A02E6D300172C17 /* SyncTypes.swift */,
+				D95C3E132A02E70D00172C17 /* UpdateEvent.swift */,
+			);
+			path = Sync;
+			sourceTree = "<group>";
+		};
 		D95F363828AD385100743026 /* ShareAsVideo */ = {
 			isa = PBXGroup;
 			children = (
@@ -4247,6 +4283,7 @@
 				D99BBE42294676B200BCA901 /* NetworkRabbit+UsageMetric.swift */,
 				D99C8A962952C904002E0C00 /* NetworkRabbit+DonorNames.swift */,
 				D94EAB4E29FB1524004CD604 /* NetworkRabbit+Files.swift */,
+				D95C3E0E2A02D7C400172C17 /* NetworkRabbit+Sync.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -4254,6 +4291,7 @@
 		D98DBD36284921A0008544F8 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				D95C3E082A02AAFC00172C17 /* Services */,
 				D98DBD37284921B5008544F8 /* NetworkRabbitTests.swift */,
 			);
 			path = Networking;
@@ -4262,6 +4300,7 @@
 		D98EC5DF2825A04000340BE5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D95C3E102A02E6BB00172C17 /* Sync */,
 				D97B2DD728E5E9E400C3B50B /* ViewAid */,
 				D9BB1E7928B3212000C5FFAA /* Core */,
 				D9BB1E7828B3210D00C5FFAA /* Logs */,
@@ -5786,6 +5825,7 @@
 				D958BC752869000A000B2EDA /* FolderInfoEditingViewViewModel.swift in Sources */,
 				D9F87A9228F6EA51002EE8AA /* RemoveFavoriteLogTable.swift in Sources */,
 				D9DCC5D52875CB59008DD4A3 /* AppPersistentMemory.swift in Sources */,
+				D95C3E122A02E6D300172C17 /* SyncTypes.swift in Sources */,
 				D938132F287E12B3009EE24F /* NotificationAide.swift in Sources */,
 				D9F9BB39294A167C0005BE56 /* TrendsHelper.swift in Sources */,
 				D976FF3828674BAC00998E1B /* FoldersBannerView.swift in Sources */,
@@ -5839,6 +5879,7 @@
 				D912A33628B3E8F000F7293D /* VideoExportType.swift in Sources */,
 				D901B06428BC795200B1A610 /* MusicGenre.swift in Sources */,
 				D9FB489A2870FE7800FF90D0 /* TapticHelper.swift in Sources */,
+				D95C3E142A02E70D00172C17 /* UpdateEvent.swift in Sources */,
 				D957047D28AEF733008DEF8C /* ProcessingView.swift in Sources */,
 				D9A3984928FDEE0D00039B7B /* AddRankingTypeToAudienceSharingStatisticTable.swift in Sources */,
 				D967E2BA290196F900B21C11 /* WallE.swift in Sources */,
@@ -5932,6 +5973,7 @@
 				D95BFEF329E88C9800E42A23 /* DonorView.swift in Sources */,
 				D94EAB5329FC09A8004CD604 /* LocalDatabase+Sound.swift in Sources */,
 				D9461182286159BC00C4FB7E /* UserFolder.swift in Sources */,
+				D95C3E0F2A02D7C400172C17 /* NetworkRabbit+Sync.swift in Sources */,
 				D9FA0CD728508590000F6ADE /* UIDevice+DeviceInfo.swift in Sources */,
 				D9943F2328641C00002C6B97 /* LocalDatabase.swift in Sources */,
 				D916536628ADCD9B007F141D /* ShareAsVideoLegacyViewViewModel.swift in Sources */,
@@ -5958,6 +6000,8 @@
 				D9A0641A298B6749006075D1 /* LocalDatabaseStub.swift in Sources */,
 				D92C0CA62840125B009CF19A /* SoundsViewViewModelTests.swift in Sources */,
 				D9A06417298B59D5006075D1 /* AddToFolderViewViewModelTests.swift in Sources */,
+				D95C3E0D2A02ABE500172C17 /* ConnectionManagerStub.swift in Sources */,
+				D95C3E0A2A02AB1800172C17 /* SoundServiceTests.swift in Sources */,
 				D9A32DC7285ACE880038A370 /* PodiumTests.swift in Sources */,
 				D9523743285BF99800E6C838 /* LocalDatabaseSpy.swift in Sources */,
 				D9575092284427C70094AEA6 /* ShareLogsDummy.swift in Sources */,

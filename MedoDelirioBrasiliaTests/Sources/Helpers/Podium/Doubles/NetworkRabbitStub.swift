@@ -2,8 +2,9 @@
 import Foundation
 
 class NetworkRabbitStub: NetworkRabbitProtocol {
-
+    
     var serverShouldBeUnavailable = false
+    var fetchUpdateEventsResult: SyncResult = .nothingToUpdate
     
     func checkServerStatus(completionHandler: @escaping (Bool) -> Void) {
         completionHandler(!serverShouldBeUnavailable)
@@ -24,5 +25,13 @@ class NetworkRabbitStub: NetworkRabbitProtocol {
     func post(bundleIdLog: ServerShareBundleIdLog, completionHandler: @escaping (Bool, String) -> Void) {
         completionHandler(false, "")
     }
-
+    
+    func fetchUpdateEvents() async throws -> [MedoDelirio.UpdateEvent] {
+        switch fetchUpdateEventsResult {
+        case .updateError:
+            throw NetworkRabbitError.unexpectedStatusCode
+        default:
+            return []
+        }
+    }
 }
