@@ -2,7 +2,7 @@
 import XCTest
 
 class SoundsViewViewModelTests: XCTestCase {
-
+    
     private var sut: SoundsViewViewModel!
     
     override func tearDown() {
@@ -16,9 +16,11 @@ class SoundsViewViewModelTests: XCTestCase {
     /// - Has favorites or not;
     /// - Is showing only favorites or not;
     /// - Sorted by title, author or date added.
-
+    
     func test_reloadList_whenOnlyCleanContentNoFavoritesAndSortedByTitle_shouldDisplay4Sounds() throws {
-        sut = SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue)
+        sut = SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue,
+                                  authorSortOption: AuthorSortOption.nameAscending.rawValue,
+                                  currentSoundsListMode: .constant(.regular))
         
         var mockSounds = [Sound]()
         mockSounds.append(Sound(title: "Deu errado", isOffensive: false))
@@ -35,7 +37,9 @@ class SoundsViewViewModelTests: XCTestCase {
     }
     
     func test_reloadList_whenAllowsOffensiveContentNoFavoritesAndSortedByTitle_shouldDisplay5Sounds() throws {
-        sut = SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue)
+        sut = SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue,
+                                  authorSortOption: AuthorSortOption.nameAscending.rawValue,
+                                  currentSoundsListMode: .constant(.regular))
         
         var mockSounds = [Sound]()
         mockSounds.append(Sound(title: "Deu errado", isOffensive: false))
@@ -52,7 +56,9 @@ class SoundsViewViewModelTests: XCTestCase {
     }
     
     func test_reloadList_whenAllowsOffensiveContent_favoritesOnly_andSortedByTitle_shouldDisplay1Sound() throws {
-        sut = SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue)
+        sut = SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue,
+                                  authorSortOption: AuthorSortOption.nameAscending.rawValue,
+                                  currentSoundsListMode: .constant(.regular))
         
         var mockSounds = [Sound]()
         mockSounds.append(Sound(title: "Deu errado", isOffensive: false))
@@ -71,7 +77,9 @@ class SoundsViewViewModelTests: XCTestCase {
     }
     
     func test_reloadList_whenAllowsOffensiveContent_favoritesOnly_andSortedByTitle_butNoFavoritesExist_shouldDisplayNoSounds() throws {
-        sut = SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue)
+        sut = SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue,
+                                  authorSortOption: AuthorSortOption.nameAscending.rawValue,
+                                  currentSoundsListMode: .constant(.regular))
         
         var mockSounds = [Sound]()
         mockSounds.append(Sound(title: "Deu errado", isOffensive: false))
@@ -86,5 +94,4 @@ class SoundsViewViewModelTests: XCTestCase {
         
         XCTAssertEqual(sut.sounds.count, 0)
     }
-
 }
