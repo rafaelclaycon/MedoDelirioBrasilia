@@ -190,6 +190,9 @@
 		D9265741285A1EE700947165 /* LocalDatabase+Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9265740285A1EE700947165 /* LocalDatabase+Log.swift */; };
 		D9267EE728D1271400C0DC6C /* Mc Douglinhas - Ui, que brega.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9267EE528D1271300C0DC6C /* Mc Douglinhas - Ui, que brega.mp3 */; };
 		D9267EE828D1271400C0DC6C /* Milton Leite - Chato pra caralho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9267EE628D1271400C0DC6C /* Milton Leite - Chato pra caralho.mp3 */; };
+		D92694062A029A62007872D9 /* SoundService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92694052A029A62007872D9 /* SoundService.swift */; };
+		D92694472A029FD9007872D9 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = D92694462A029FD9007872D9 /* Reachability */; };
+		D92694492A029FFE007872D9 /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92694482A029FFE007872D9 /* ConnectionManager.swift */; };
 		D92722FE289246AC001D5E47 /* Parafernalha - Ta errado, ta muito errado isso.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92722FD289246AC001D5E47 /* Parafernalha - Ta errado, ta muito errado isso.mp3 */; };
 		D9272300289248C1001D5E47 /* Bolsonaro - Ah, como o cara e grosso.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92722FF289248C1001D5E47 /* Bolsonaro - Ah, como o cara e grosso.mp3 */; };
 		D927230228924E2F001D5E47 /* Bolsonaro - Vai dar vitoria pro Lula, sem problema nenhum.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D927230128924E2F001D5E47 /* Bolsonaro - Vai dar vitoria pro Lula, sem problema nenhum.mp3 */; };
@@ -1529,6 +1532,8 @@
 		D9265740285A1EE700947165 /* LocalDatabase+Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+Log.swift"; sourceTree = "<group>"; };
 		D9267EE528D1271300C0DC6C /* Mc Douglinhas - Ui, que brega.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mc Douglinhas - Ui, que brega.mp3"; sourceTree = "<group>"; };
 		D9267EE628D1271400C0DC6C /* Milton Leite - Chato pra caralho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Milton Leite - Chato pra caralho.mp3"; sourceTree = "<group>"; };
+		D92694052A029A62007872D9 /* SoundService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundService.swift; sourceTree = "<group>"; };
+		D92694482A029FFE007872D9 /* ConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
 		D92722FD289246AC001D5E47 /* Parafernalha - Ta errado, ta muito errado isso.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Parafernalha - Ta errado, ta muito errado isso.mp3"; sourceTree = "<group>"; };
 		D92722FF289248C1001D5E47 /* Bolsonaro - Ah, como o cara e grosso.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Ah, como o cara e grosso.mp3"; sourceTree = "<group>"; };
 		D927230128924E2F001D5E47 /* Bolsonaro - Vai dar vitoria pro Lula, sem problema nenhum.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Vai dar vitoria pro Lula, sem problema nenhum.mp3"; sourceTree = "<group>"; };
@@ -2668,6 +2673,7 @@
 			files = (
 				D9557566291309B2002EFC50 /* MarqueeText in Frameworks */,
 				D9943F1A286406AF002C6B97 /* Kingfisher in Frameworks */,
+				D92694472A029FD9007872D9 /* Reachability in Frameworks */,
 				D9E69592283D2E2C00C341B2 /* SQLite in Frameworks */,
 				D94656D928450535008B4785 /* SQLiteMigrationManager in Frameworks */,
 			);
@@ -3749,6 +3755,22 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
+		D92694042A02999B007872D9 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D92694052A029A62007872D9 /* SoundService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		D926944A2A02A004007872D9 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				D92694482A029FFE007872D9 /* ConnectionManager.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		D92C0CA328401220009CF19A /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -4216,6 +4238,8 @@
 		D98DBD3328491995008544F8 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				D926944A2A02A004007872D9 /* Utilities */,
+				D92694042A02999B007872D9 /* Services */,
 				D98DBD34284919B1008544F8 /* NetworkRabbit.swift */,
 				D9DCC5D2287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift */,
 				D93A029B2906E8E200A85FE2 /* NetworkRabbit+UserFolderLog.swift */,
@@ -4528,6 +4552,7 @@
 				D94656D828450535008B4785 /* SQLiteMigrationManager */,
 				D9943F19286406AF002C6B97 /* Kingfisher */,
 				D9557565291309B2002EFC50 /* MarqueeText */,
+				D92694462A029FD9007872D9 /* Reachability */,
 			);
 			productName = MedoDelirioBrasilia;
 			productReference = D9625E7A28238F9A00080852 /* MedoDelirio.app */;
@@ -4585,6 +4610,7 @@
 				D94656D728450535008B4785 /* XCRemoteSwiftPackageReference "SQLiteMigrationManager" */,
 				D9943F18286406AF002C6B97 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				D9557564291309B2002EFC50 /* XCRemoteSwiftPackageReference "MarqueeText" */,
+				D92694452A029FD9007872D9 /* XCRemoteSwiftPackageReference "Reachability" */,
 			);
 			productRefGroup = D9625E7B28238F9A00080852 /* Products */;
 			projectDirPath = "";
@@ -5783,6 +5809,7 @@
 				D9ABDDB0287411C9007B25EA /* SongHelpView.swift in Sources */,
 				D92C0CAE284076CD009CF19A /* UIApplication+KeyWindow.swift in Sources */,
 				D9D3D493288750C400C42FDE /* FolderListViewModel.swift in Sources */,
+				D92694492A029FFE007872D9 /* ConnectionManager.swift in Sources */,
 				D9DCC5D3287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift in Sources */,
 				D96A64202955F32F00DC0F03 /* SettingsHelper.swift in Sources */,
 				D93CCB7B286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift in Sources */,
@@ -5826,6 +5853,7 @@
 				D93443252838177000ADCD38 /* UserInfo.swift in Sources */,
 				D905B4C52857FF3D0096D466 /* AddNetworkCallLogTable.swift in Sources */,
 				D946116E28611F1000C4FB7E /* FolderCell.swift in Sources */,
+				D92694062A029A62007872D9 /* SoundService.swift in Sources */,
 				D960AF272845BFE700ADF1F6 /* UserDefaultsKeys.swift in Sources */,
 				D91B4DF6299BBE5B00E92824 /* SelectMultipleSymbol.swift in Sources */,
 				D9877D2B2869845400B541F9 /* Sharer.swift in Sources */,
@@ -6234,6 +6262,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D92694452A029FD9007872D9 /* XCRemoteSwiftPackageReference "Reachability" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		D94656D728450535008B4785 /* XCRemoteSwiftPackageReference "SQLiteMigrationManager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/garriguv/SQLiteMigrationManager.swift";
@@ -6269,6 +6305,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D92694462A029FD9007872D9 /* Reachability */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D92694452A029FD9007872D9 /* XCRemoteSwiftPackageReference "Reachability" */;
+			productName = Reachability;
+		};
 		D94656D828450535008B4785 /* SQLiteMigrationManager */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D94656D728450535008B4785 /* XCRemoteSwiftPackageReference "SQLiteMigrationManager" */;

@@ -5,7 +5,6 @@ import SQLiteMigrationManager
 internal protocol LocalDatabaseProtocol {
 
     func contentExistsInsideUserFolder(withId folderId: String, contentId: String) throws -> Bool
-
 }
 
 class LocalDatabase: LocalDatabaseProtocol {

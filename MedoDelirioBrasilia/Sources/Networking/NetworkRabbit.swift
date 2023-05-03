@@ -7,7 +7,6 @@ internal protocol NetworkRabbitProtocol {
     func post(shareCountStat: ServerShareCountStat, completionHandler: @escaping (Bool, String) -> Void)
     func post(clientDeviceInfo: ClientDeviceInfo, completionHandler: @escaping (Bool?, NetworkRabbitError?) -> Void)
     func post(bundleIdLog: ServerShareBundleIdLog, completionHandler: @escaping (Bool, String) -> Void)
-
 }
 
 class NetworkRabbit: NetworkRabbitProtocol {
