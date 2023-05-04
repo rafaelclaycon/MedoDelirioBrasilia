@@ -9,7 +9,7 @@
 import Foundation
 
 class LocalDatabaseStub: LocalDatabaseProtocol {
-
+    
     var contentInsideFolder: [String]? = nil
     
     func contentExistsInsideUserFolder(withId folderId: String, contentId: String) throws -> Bool {
@@ -18,5 +18,8 @@ class LocalDatabaseStub: LocalDatabaseProtocol {
         }
         return content.contains(contentId)
     }
-
+    
+    func insert(sound newSound: MedoDelirio.Sound) throws {
+        print("insert(sound) called.")
+    }
 }

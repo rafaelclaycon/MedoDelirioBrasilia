@@ -1,13 +1,15 @@
 import Foundation
 
 internal protocol NetworkRabbitProtocol {
-
+    
+    var serverPath: String { get }
+    
     func checkServerStatus(completionHandler: @escaping (Bool) -> Void)
     func getSoundShareCountStats(timeInterval: TrendsTimeInterval, completionHandler: @escaping ([ServerShareCountStat]?, NetworkRabbitError?) -> Void)
     func post(shareCountStat: ServerShareCountStat, completionHandler: @escaping (Bool, String) -> Void)
     func post(clientDeviceInfo: ClientDeviceInfo, completionHandler: @escaping (Bool?, NetworkRabbitError?) -> Void)
     func post(bundleIdLog: ServerShareBundleIdLog, completionHandler: @escaping (Bool, String) -> Void)
-    func fetchUpdateEvents() async throws -> [UpdateEvent]
+    func fetchUpdateEvents(from lastDate: String) async throws -> [UpdateEvent]
 }
 
 class NetworkRabbit: NetworkRabbitProtocol {

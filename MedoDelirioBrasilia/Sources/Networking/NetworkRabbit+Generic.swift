@@ -1,16 +1,15 @@
 //
-//  NetworkRabbit+Sync.swift
+//  NetworkRabbit+Generic.swift
 //  MedoDelirioBrasilia
 //
-//  Created by Rafael Schmitt on 03/05/23.
+//  Created by Rafael Schmitt on 04/05/23.
 //
 
 import Foundation
 
 extension NetworkRabbit {
     
-    func fetchUpdateEvents(from lastDate: String) async throws -> [UpdateEvent] {
-        let url = URL(string: serverPath + "v3/update-events/\(lastDate)")!
+    static func `get`<T: Codable>(from url: URL) async throws -> T {
         let (data, response) = try await URLSession.shared.data(from: url)
         
         guard let response = response as? HTTPURLResponse else {
@@ -23,7 +22,8 @@ extension NetworkRabbit {
         
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
+        decoder.dateDecodingStrategy = .iso8601
         
-        return try decoder.decode([UpdateEvent].self, from: data)
+        return try decoder.decode(T.self, from: data)
     }
 }
