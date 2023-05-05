@@ -10,6 +10,7 @@ import SwiftUI
 struct SoundList: View {
     
     @State var sounds: [Sound] = []
+    @StateObject var viewModel = SoundsViewViewModel(soundSortOption: 0, authorSortOption: 0, currentSoundsListMode: .constant(.regular))
     
     private let columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
     
@@ -43,6 +44,9 @@ struct SoundList: View {
                                       currentSoundsListMode: .constant(.regular))
                                 .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
                                 .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
+                                .onTapGesture {
+                                    viewModel.play(sound: sound)
+                                }
                         }
                     }
                     .padding(.horizontal)
@@ -58,12 +62,12 @@ struct SoundList: View {
     func fetchSounds() {
         Task {
             do {
-                let service = SyncService(connectionManager: ConnectionManager.shared,
-                                          networkRabbit: networkRabbit,
-                                          localDatabase: database)
-                let syncResult = await service.syncWithServer()
-                
-                print(syncResult)
+//                let service = SyncService(connectionManager: ConnectionManager.shared,
+//                                          networkRabbit: networkRabbit,
+//                                          localDatabase: database)
+//                let syncResult = await service.syncWithServer()
+//
+//                print(syncResult)
                 
                 //print(Date.now.iso8601withFractionalSeconds)
                 

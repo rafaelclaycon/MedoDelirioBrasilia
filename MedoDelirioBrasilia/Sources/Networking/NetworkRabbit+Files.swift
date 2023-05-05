@@ -9,38 +9,29 @@ import Foundation
 
 extension NetworkRabbit {
     
-    static func downloadFile(url: URL, completion: @escaping (String?, Error?) -> Void) {
+    static func downloadFile(url: URL) async throws -> String {
         let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
 
         let destinationUrl = documentsUrl.appendingPathComponent(url.lastPathComponent)
         
         if FileManager().fileExists(atPath: destinationUrl.path) {
             print("File already exists [\(destinationUrl.path)]")
-            completion(destinationUrl.path, nil)
+            return destinationUrl.path
         } else {
-            let session = URLSession(configuration: URLSessionConfiguration.default, delegate: nil, delegateQueue: nil)
+            let session = URLSession(configuration: URLSessionConfiguration.default)
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
-            let task = session.dataTask(with: request) { data, response, error in
-                if error == nil {
-                    if let response = response as? HTTPURLResponse {
-                        if response.statusCode == 200 {
-                            if let data = data {
-                                if let _ = try? data.write(to: destinationUrl, options: Data.WritingOptions.atomic) {
-                                    completion(destinationUrl.path, error)
-                                } else {
-                                    completion(destinationUrl.path, error)
-                                }
-                            } else {
-                                completion(destinationUrl.path, error)
-                            }
-                        }
-                    }
-                } else {
-                    completion(destinationUrl.path, error)
-                }
+            let (data, response) = try await session.data(for: request)
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                throw FileError.downloadFailed
             }
-            task.resume()
+            try data.write(to: destinationUrl, options: .atomic)
+            return destinationUrl.path
         }
     }
+}
+
+enum FileError: Error {
+    
+    case fileExists, downloadFailed
 }

@@ -148,7 +148,7 @@ struct SoundsView: View {
                                                             player?.togglePlay()
                                                             viewModel.nowPlayingKeeper.removeAll()
                                                         } else {
-                                                            viewModel.playSound(fromPath: sound.filename, withId: sound.id)
+                                                            viewModel.play(sound: sound)
                                                         }
                                                     } else {
                                                         if viewModel.selectionKeeper.contains(sound.id) {
@@ -580,15 +580,13 @@ struct SoundsView: View {
                     
                     Menu {
                         Button {
-                            let url = URL(string: "http://170.187.141.103:8080/05C998A0-4085-434A-A8F3-12DA86270CD4.mp3")!
-                            NetworkRabbit.downloadFile(url: url) { filepath, error in
-                                guard error == nil else {
-                                    return print(error!)
+                            Task {
+                                let url = URL(string: "http://170.187.141.103:8080/05C998A0-4085-434A-A8F3-12DA86270CD4.mp3")!
+                                do {
+                                    downloadedFilepath = try await NetworkRabbit.downloadFile(url: url)
+                                } catch {
+                                    print(error.localizedDescription)
                                 }
-                                guard let filepath = filepath else {
-                                    return
-                                }
-                                downloadedFilepath = filepath
                             }
                         } label: {
                             Label("Baixar som", systemImage: "speaker.wave.3.fill")

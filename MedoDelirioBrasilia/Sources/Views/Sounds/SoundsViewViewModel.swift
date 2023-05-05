@@ -127,27 +127,24 @@ class SoundsViewViewModel: ObservableObject {
         self.sounds.sort(by: { $0.title.count > $1.title.count })
     }
     
-    func playSound(fromPath filepath: String, withId soundId: String) {
-        guard filepath.isEmpty == false else {
-            return
+    func play(sound: Sound) {
+        do {
+            let url = try sound.fileURL()
+            
+            nowPlayingKeeper.removeAll()
+            nowPlayingKeeper.insert(sound.id)
+            
+            player = AudioPlayer(url: url, update: { [weak self] state in
+                guard let self = self else { return }
+                if state?.activity == .stopped {
+                    self.nowPlayingKeeper.removeAll()
+                }
+            })
+            
+            player?.togglePlay()
+        } catch {
+            print(error)
         }
-        
-        guard let path = Bundle.main.path(forResource: filepath, ofType: nil) else {
-            return showUnableToGetSoundAlert()
-        }
-        let url = URL(fileURLWithPath: path)
-        
-        nowPlayingKeeper.removeAll()
-        nowPlayingKeeper.insert(soundId)
-        
-        player = AudioPlayer(url: url, update: { [weak self] state in
-            guard let self = self else { return }
-            if state?.activity == .stopped {
-                self.nowPlayingKeeper.removeAll()
-            }
-        })
-        
-        player?.togglePlay()
     }
     
     func stopPlaying() {
