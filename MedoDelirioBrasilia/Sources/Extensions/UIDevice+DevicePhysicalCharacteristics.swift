@@ -14,9 +14,8 @@ extension UIDevice {
         return model.contains("iPad mini")
     }
     
-    static var hasDynamicIsland: Bool {
-        let model = UIDevice.modelName
-        return model.contains("14 Pro")
+    static var isMac: Bool {
+        ProcessInfo.processInfo.isiOSAppOnMac
     }
 
 }

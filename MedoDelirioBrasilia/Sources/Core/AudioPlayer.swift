@@ -107,6 +107,10 @@ class AudioPlayer: NSObject, AVAudioPlayerDelegate {
         audioPlayer.stop()
         timer?.invalidate()
     }
+    
+    func prepareToPlay() {
+        audioPlayer.prepareToPlay()
+    }
 
     deinit {
         cancel()

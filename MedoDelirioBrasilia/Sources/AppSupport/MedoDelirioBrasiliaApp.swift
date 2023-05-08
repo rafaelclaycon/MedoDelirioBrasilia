@@ -7,8 +7,8 @@ var database = LocalDatabase()
 let networkRabbit = NetworkRabbit(serverPath: CommandLine.arguments.contains("-UNDER_DEVELOPMENT") ? "http://127.0.0.1:8080/api/" : "http://medodelirioios.lat:8080/api/")
 let podium = Podium(database: database, networkRabbit: networkRabbit)
 
-let soundsLastUpdateDate: String = "04/03/2023"
-let songsLastUpdateDate: String = "14/02/2023"
+let soundsLastUpdateDate: String = "08/05/2023"
+let songsLastUpdateDate: String = "16/04/2023"
 
 var moveDatabaseIssue: String = .empty
 
@@ -43,9 +43,19 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         
         //print(database)
         
+        prepareAudioPlayerOnMac()
         collectTelemetry()
         
         return true
+    }
+    
+    // This fixes the issue in which a sound would take 10 seconds to play on the Mac
+    private func prepareAudioPlayerOnMac() {
+        guard ProcessInfo.processInfo.isiOSAppOnMac else { return }
+        guard let path = Bundle.main.path(forResource: "Lula - Eu posso tomar cafe.mp3", ofType: nil) else { return }
+        let url = URL(fileURLWithPath: path)
+        player = AudioPlayer(url: url, update: { _ in })
+        player?.prepareToPlay()
     }
     
     // MARK: - Telemetry

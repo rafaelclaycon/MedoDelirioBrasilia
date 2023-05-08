@@ -554,7 +554,7 @@
     {
         "id": "4AE135DD-B688-45D7-B20B-88DCFE8CDD8A",
         "name": "Omar Aziz",
-        "photo": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Senadores_da_56ª_Legislatura_-_Omar_Aziz_%2846293125674%29.jpg",
+        "photo": "https://conteudo.imguol.com.br/c/noticias/a2/2019/09/18/06jul2019---o-senador-omar-aziz-apos-reuniao-na-residencia-oficial-da-presidencia-da-camara-com-rodrigo-maia-1568847478325_v2_1x1.jpg",
         "description": "Senador pelo Amazonas desde 2015."
     },
     {
@@ -667,7 +667,8 @@
     },
     {
         "id": "E3688B09-6DAC-4763-A004-5186E636DC5B",
-        "name": "Mauro Reginato"
+        "name": "Mauro Reginato",
+        "description": "Professor de Física"
     },
     {
         "id": "6BCF1C16-A416-4612-B2DE-A7E8D3705601",
@@ -1100,7 +1101,7 @@
     {
         "id": "2DC1E766-27D5-4469-954C-1B9DF729ADFE",
         "name": "João Carvalho (@assimdisseojoao)",
-        "photo": "https://pbs.twimg.com/profile_images/1502681039621267457/gxocWXCV_400x400.jpg"
+        "photo": "https://pbs.twimg.com/profile_images/1638132641542053888/GIaFlmqM_400x400.jpg"
     },
     {
         "id": "B8EB0642-1907-439C-A118-46F21AD24A92",
@@ -1248,7 +1249,7 @@
     },
     {
         "id": "CA83F4BE-1466-4AD2-9BDF-D96B515B4681",
-        "name": "Igor Guimaraes e Luiz Felipe D'Avila"
+        "name": "Igor Guimarães e Luiz Felipe D'Avila"
     },
     {
         "id": "AF4BE658-13CF-4468-8AB2-C03B73A2EE34",
@@ -1503,12 +1504,11 @@
     {
         "id": "8BEC79BB-B52B-4719-A190-70A682A13119",
         "name": "Thiago Asmar",
-        "photo": "https://media.licdn.com/dms/image/C4E03AQESAAOgZULw8A/profile-displayphoto-shrink_400_400/0/1549675236872?e=1680739200&v=beta&t=HK2jdKbRFdMUCq5rnCNXSY0X-LUeb6sT3FKkK_iW8zA",
         "description": "Apresentador do canal Pilhado no YouTube."
     },
     {
         "id": "952A6D42-3C63-4795-8A20-73C008B406F0",
-        "name": "Lenadro Ramos",
+        "name": "Leandro Ramos",
         "photo": "https://i.pinimg.com/originals/bc/0c/df/bc0cdf07ae08db5dc7b706b70ac8d444.jpg",
         "description": "Roteirista, diretor e ator. Interpreta o personagem Julinho da Van no Choque de Cultura."
     },
@@ -1567,7 +1567,7 @@
     {
         "id": "F2DCD7C0-1848-4888-8E75-A2DCEEA2B1B8",
         "name": "Manoel Gomes",
-        "photo": "https://www.entornonews.com.br/cache/manoel-gomes-caneta-azul-ira-se-apresentar-em-casa-de-show-do-df-165aa-720x720.webp",
+        "photo": "https://static.wixstatic.com/media/368834_fe09ceaea3ac4992b8d81bfed572de23~mv2.png/v1/fill/w_730,h_730,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/368834_fe09ceaea3ac4992b8d81bfed572de23~mv2.png",
         "description": "Cantor e compositor brasileiro de brega."
     },
     {
@@ -1577,5 +1577,73 @@
     {
         "id": "BFF38211-6918-4A4E-A491-DECB5952AB88",
         "name": "Sandra Annenberg"
+    },
+    {
+        "id": "0D442A43-9C9F-4EB1-A4A5-8DACB5439791",
+        "name": "Alguém no podcast O Assunto"
+    },
+    {
+        "id": "9358F27E-61FF-4812-9322-0C8FBE7448B9",
+        "name": "Advocacia Geral da União"
+    },
+    {
+        "id": "34BF350C-B993-4918-8927-9E415EC93C63",
+        "name": "Igor Coelho (Igor 3k)",
+        "description": "Apresentador do podcast Flow."
+    },
+    {
+        "id": "E895845F-2B88-484F-A12C-310238A628B8",
+        "name": "Elias Khalil Jabbour",
+        "description": "Professor da UERJ. Autor do livro \"China: O socialismo do século XXI\"."
+    },
+    {
+        "id": "DE745F28-5E6C-42DF-B0BD-6F80E907EECB",
+        "name": "Octavio Guedes",
+        "description": "Escritor, jornalista e comentarista da GloboNews."
+    },
+    {
+        "id": "946B5305-0FD4-4C9A-A335-3EB5EA68BD05",
+        "name": "Leonardo Attuch",
+        "description": "Editor-responsável do Brasil 247"
+    },
+    {
+        "id": "8B7B79DF-3452-4C63-A389-929EFEE396D1",
+        "name": "Stu (Se Beber, Não Case!)"
+    },
+    {
+        "id": "7C517EA6-0067-4652-8E7F-18BA3EA877B9",
+        "name": "André Janones",
+        "photo": "https://conteudo.imguol.com.br/c/noticias/dd/2022/08/16/andre-janones-foi-o-terceiro-deputado-federal-mais-votado-de-minas-gerais-em-2018-e-apoia-lula-na-atual-eleicao-1660674089676_v2_1x1.jpg",
+        "description": "Deputado federal por Minas Gerais."
+    },
+    {
+        "id": "8D066077-11F5-4D87-8E3F-7BA3DEC13A21",
+        "name": "Patriota no QG"
+    },
+    {
+        "id": "59BDC0EF-8377-4172-8E71-D0FAC0E35A93",
+        "name": "Alysson Mascaro",
+        "photo": "https://direito.usp.br/pca/arquivos/047a5a21a396_alysson-leandro-barbate-mascaro.jpg",
+        "description": "Jurista e filósofo do direito marxista brasileiro."
+    },
+    {
+        "id": "F4242ED6-C220-44D4-AA15-1B85F2EED91F",
+        "name": "Doidão do Napster"
+    },
+    {
+        "id": "CE7972FD-4887-4F03-AF4A-47A0863186F2",
+        "name": "Elisa Lucinda",
+        "photo": "https://pbs.twimg.com/profile_images/1526293214893850625/UnN0Dscw_400x400.jpg",
+        "description": "Atriz, poetisa, escritora e cantora brasileira."
+    },
+    {
+        "id": "1FEA6415-0830-4CDE-9490-CF67EC0F8AFF",
+        "name": "Sempre a Subir (Televisão Pública de Angola)"
+    },
+    {
+        "id": "CCD4F465-3F6D-4BAD-A4BB-6577FAB9791D",
+        "name": "Duda Salabert",
+        "photo": "https://revistatrip.uol.com.br/upload/2021/03/605b91c1bbe93/duda-salabert-vereadoras-trans-tpm-mq3.jpg",
+        "description": "Professora de literatura, ambientalista, e ativista filiada ao PDT. Em 2022, foi eleita uma das primeiras deputadas federais trans da história, junto com Erika Hilton."
     }
 ]

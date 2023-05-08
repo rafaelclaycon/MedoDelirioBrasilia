@@ -17,10 +17,12 @@ struct SettingsView: View {
     
     @State private var showAskForMoneyView: Bool = false
     @State private var showToastView: Bool = false
-    @State private var donorNames: String = ""
+    @State private var donors: [Donor]? = nil
     
     @State private var showEmailClientConfirmationDialog: Bool = false
     @State private var didCopySupportAddressOnEmailPicker: Bool = false
+    
+    @State private var showLargeCreatorImage: Bool = false
     
     private let pixKey: String = "medodeliriosuporte@gmail.com"
     
@@ -92,10 +94,10 @@ struct SettingsView: View {
                     }
                 }
                 
-                if showAskForMoneyView || CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
+                if showAskForMoneyView {
                     Section {
-                        BegForMoneyView(donorNames: $donorNames)
-                            .padding(.vertical)
+                        HelpTheAppView(donors: $donors, imageIsSelected: $showLargeCreatorImage)
+                            .padding(donors != nil ? .top : .vertical)
                         
                         HStack {
                             Spacer()
@@ -138,28 +140,29 @@ struct SettingsView: View {
                     } header: {
                         Text("Ajude o app")
                     } footer: {
-                        Text("Selecione E-mail como tipo de chave no app do seu banco. Evite qualquer opção que mencione QR Code.")
+                        Text("Já doou antes? Inclua essa informação na mensagem do Pix para ganhar um selo especial aqui :)")
                     }
                 }
                 
                 Section("Sobre") {
-                    Text("Criado por Rafael Claycon Schmitt")
-                    
-                    Button {
-                        open(link: "https://burnthis.town/@rafael")
-                    } label: {
-                        HStack(spacing: 12) {
-                            Image("mastodon")
-                                .resizable()
-                                .renderingMode(.template)
-                                .frame(width: 24, height: 24)
-                            
-                            Text("Seguir no Mastodon")
+                    Menu {
+                        Section {
+                            Button {
+                                open(link: "https://burnthis.town/@rafael")
+                            } label: {
+                                Label("Seguir no Mastodon", image: "mastodon")
+                            }
                         }
-                    }
-                    
-                    Button("Como abrir uma conta no Mastodon?") {
-                        open(link: "https://jovemnerd.com.br/nerdbunker/mastodon-como-criar-conta/")
+                        
+                        Section {
+                            Button {
+                                open(link: "https://jovemnerd.com.br/nerdbunker/mastodon-como-criar-conta/")
+                            } label: {
+                                Label("Como abrir uma conta no Mastodon?", systemImage: "arrow.up.right.square")
+                            }
+                        }
+                    } label: {
+                        Text("Criado por Rafael Claycon Schmitt")
                     }
                     
                     Text("Versão \(Versioneer.appVersion) Build \(Versioneer.buildVersionNumber)")
@@ -187,8 +190,8 @@ struct SettingsView: View {
                 networkRabbit.displayAskForMoneyView { shouldDisplay in
                     showAskForMoneyView = shouldDisplay
                 }
-                networkRabbit.getPixDonorNames { names in
-                    donorNames = names
+                networkRabbit.getPixDonorNames { donors in
+                    self.donors = donors
                 }
             }
             .popover(isPresented: $showEmailClientConfirmationDialog) {
@@ -214,6 +217,10 @@ struct SettingsView: View {
                         didCopySupportAddressOnEmailPicker = false
                     }
                 }
+            }
+            
+            if showLargeCreatorImage {
+                LargeCreatorView(showLargeCreatorImage: $showLargeCreatorImage)
             }
             
             if showToastView {
