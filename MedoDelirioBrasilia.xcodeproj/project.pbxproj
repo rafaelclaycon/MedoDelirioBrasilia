@@ -1205,6 +1205,15 @@
 		D9D192772909D4F200713804 /* NetworkCallLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D192762909D4F200713804 /* NetworkCallLog.swift */; };
 		D9D3D4912887495B00C42FDE /* FolderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3D4902887495B00C42FDE /* FolderList.swift */; };
 		D9D3D493288750C400C42FDE /* FolderListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3D492288750C400C42FDE /* FolderListViewModel.swift */; };
+		D9D798742A082955002B2D77 /* Diogo Defante - Ih, a porrada ta lambrando ainda.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D798732A082955002B2D77 /* Diogo Defante - Ih, a porrada ta lambrando ainda.mp3 */; };
+		D9D7988F2A093A54002B2D77 /* Caetano Veloso - Deus e um cara gozador, adora brincadeira.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D798872A093A54002B2D77 /* Caetano Veloso - Deus e um cara gozador, adora brincadeira.mp3 */; };
+		D9D798902A093A54002B2D77 /* Que viagem e essa, vei.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D798882A093A54002B2D77 /* Que viagem e essa, vei.mp3 */; };
+		D9D798912A093A54002B2D77 /* Duda Salabert - Beijinho, sigamos, com muito amor e poesia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D798892A093A54002B2D77 /* Duda Salabert - Beijinho, sigamos, com muito amor e poesia.mp3 */; };
+		D9D798922A093A54002B2D77 /* Caetano Veloso - Deus e um cara gozador, adora brincadeira (1,5x).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D7988A2A093A54002B2D77 /* Caetano Veloso - Deus e um cara gozador, adora brincadeira (1,5x).mp3 */; };
+		D9D798932A093A54002B2D77 /* Galvao Bueno - Rubens, Rubens.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D7988B2A093A54002B2D77 /* Galvao Bueno - Rubens, Rubens.mp3 */; };
+		D9D798942A093A54002B2D77 /* Galvao Bueno - Rubens, Rubens, Rubens Barichello do Brasil.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D7988C2A093A54002B2D77 /* Galvao Bueno - Rubens, Rubens, Rubens Barichello do Brasil.mp3 */; };
+		D9D798952A093A54002B2D77 /* Duda Salabert - Beijinho, sigamos, com muito amor e poesia (completo).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D7988D2A093A54002B2D77 /* Duda Salabert - Beijinho, sigamos, com muito amor e poesia (completo).mp3 */; };
+		D9D798962A093A54002B2D77 /* O, perae hahahaha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D7988E2A093A54002B2D77 /* O, perae hahahaha.mp3 */; };
 		D9D856F5288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D856F3288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3 */; };
 		D9D856F6288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Se numero elevado de mortes policia e uma caracteristica, ta errado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D856F4288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Se numero elevado de mortes policia e uma caracteristica, ta errado.mp3 */; };
 		D9D8C4A8287CD1B600812EE5 /* UIDevice+DevicePhysicalCharacteristics.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D8C4A7287CD1B600812EE5 /* UIDevice+DevicePhysicalCharacteristics.swift */; };
@@ -2537,6 +2546,15 @@
 		D9D192762909D4F200713804 /* NetworkCallLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkCallLog.swift; sourceTree = "<group>"; };
 		D9D3D4902887495B00C42FDE /* FolderList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderList.swift; sourceTree = "<group>"; };
 		D9D3D492288750C400C42FDE /* FolderListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListViewModel.swift; sourceTree = "<group>"; };
+		D9D798732A082955002B2D77 /* Diogo Defante - Ih, a porrada ta lambrando ainda.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Diogo Defante - Ih, a porrada ta lambrando ainda.mp3"; sourceTree = "<group>"; };
+		D9D798872A093A54002B2D77 /* Caetano Veloso - Deus e um cara gozador, adora brincadeira.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Caetano Veloso - Deus e um cara gozador, adora brincadeira.mp3"; sourceTree = "<group>"; };
+		D9D798882A093A54002B2D77 /* Que viagem e essa, vei.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Que viagem e essa, vei.mp3"; sourceTree = "<group>"; };
+		D9D798892A093A54002B2D77 /* Duda Salabert - Beijinho, sigamos, com muito amor e poesia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Duda Salabert - Beijinho, sigamos, com muito amor e poesia.mp3"; sourceTree = "<group>"; };
+		D9D7988A2A093A54002B2D77 /* Caetano Veloso - Deus e um cara gozador, adora brincadeira (1,5x).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Caetano Veloso - Deus e um cara gozador, adora brincadeira (1,5x).mp3"; sourceTree = "<group>"; };
+		D9D7988B2A093A54002B2D77 /* Galvao Bueno - Rubens, Rubens.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Galvao Bueno - Rubens, Rubens.mp3"; sourceTree = "<group>"; };
+		D9D7988C2A093A54002B2D77 /* Galvao Bueno - Rubens, Rubens, Rubens Barichello do Brasil.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Galvao Bueno - Rubens, Rubens, Rubens Barichello do Brasil.mp3"; sourceTree = "<group>"; };
+		D9D7988D2A093A54002B2D77 /* Duda Salabert - Beijinho, sigamos, com muito amor e poesia (completo).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Duda Salabert - Beijinho, sigamos, com muito amor e poesia (completo).mp3"; sourceTree = "<group>"; };
+		D9D7988E2A093A54002B2D77 /* O, perae hahahaha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O, perae hahahaha.mp3"; sourceTree = "<group>"; };
 		D9D856F3288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3"; sourceTree = "<group>"; };
 		D9D856F4288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Se numero elevado de mortes policia e uma caracteristica, ta errado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "RADIO BANDNEWS FM - Eduardo Oinegue - Se numero elevado de mortes policia e uma caracteristica, ta errado.mp3"; sourceTree = "<group>"; };
 		D9D8C4A7287CD1B600812EE5 /* UIDevice+DevicePhysicalCharacteristics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+DevicePhysicalCharacteristics.swift"; sourceTree = "<group>"; };
@@ -2688,6 +2706,15 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9D7988A2A093A54002B2D77 /* Caetano Veloso - Deus e um cara gozador, adora brincadeira (1,5x).mp3 */,
+				D9D798872A093A54002B2D77 /* Caetano Veloso - Deus e um cara gozador, adora brincadeira.mp3 */,
+				D9D7988D2A093A54002B2D77 /* Duda Salabert - Beijinho, sigamos, com muito amor e poesia (completo).mp3 */,
+				D9D798892A093A54002B2D77 /* Duda Salabert - Beijinho, sigamos, com muito amor e poesia.mp3 */,
+				D9D7988C2A093A54002B2D77 /* Galvao Bueno - Rubens, Rubens, Rubens Barichello do Brasil.mp3 */,
+				D9D7988B2A093A54002B2D77 /* Galvao Bueno - Rubens, Rubens.mp3 */,
+				D9D7988E2A093A54002B2D77 /* O, perae hahahaha.mp3 */,
+				D9D798882A093A54002B2D77 /* Que viagem e essa, vei.mp3 */,
+				D9D798732A082955002B2D77 /* Diogo Defante - Ih, a porrada ta lambrando ainda.mp3 */,
 				D94EAB4C29FAE51B004CD604 /* Sergio Moro - Descont... Des... Contextualizadas (completo).mp3 */,
 				D94EAB4829FAE377004CD604 /* Mauro Reginato - Olha que legal.mp3 */,
 				D9F3FC1529F019BB0090FFAF /* Pipino de novo de novo.mp3 */,
@@ -4621,6 +4648,7 @@
 				D975FE472880B4F20035E6F2 /* CNN BRASIL BUSINESS - Conseguimos atenuar o choque do petr¢leo que veio de fora diz Guedes voz rouca.mp3 in Resources */,
 				D977294A28E1F99D003B0CD3 /* Balde de cerveja gelada no final do arco-iris.mp3 in Resources */,
 				D975000F2880B4F20035E6F2 /* Gilmar Mendes - aha uhu o Fachin e nosso.mp3 in Resources */,
+				D9D7988F2A093A54002B2D77 /* Caetano Veloso - Deus e um cara gozador, adora brincadeira.mp3 in Resources */,
 				D975FE642880B4F20035E6F2 /* King Size do Rio de Janeiro - A mafia chinesa short meme.mp3 in Resources */,
 				D975FE592880B4F20035E6F2 /* Leo Stronda - Caralho o maluco e brabo short.mp3 in Resources */,
 				D975FF312880B4F20035E6F2 /* MC Creu - E creu, e creu neles.mp3 in Resources */,
@@ -4654,6 +4682,7 @@
 				D975FF4D2880B4F20035E6F2 /* Bolsonaro - E todos esperavam exatamente o contrario.mp3 in Resources */,
 				D975FFBF2880B4F20035E6F2 /* MC Jefinho Farao - Pastor marginal.mp3 in Resources */,
 				D90CDF0728F620F100CC992D /* Darcy Ribeiro - Uma classe dominante ruim (fala completa).mp3 in Resources */,
+				D9D798742A082955002B2D77 /* Diogo Defante - Ih, a porrada ta lambrando ainda.mp3 in Resources */,
 				D975FF622880B4F20035E6F2 /* Maysa - La vem besteira, la vem besteira.mp3 in Resources */,
 				D975FECA2880B4F20035E6F2 /* Bolsonaro - E um partido de pirocas ta ok.mp3 in Resources */,
 				D975FF822880B4F20035E6F2 /* Bolsonaro - Sou ousado.mp3 in Resources */,
@@ -4863,6 +4892,7 @@
 				D9E2C70A295E172600B5814C /* Pedro Doria - A culpa, a culpa e de Bolsonaro, sim.mp3 in Resources */,
 				D975FF732880B4F20035E6F2 /* LEANDRO HASSUM - Adora falar rebuscado.mp3 in Resources */,
 				D975FE4D2880B4F20035E6F2 /* Lula - Eu vou tomar a minha vacina.mp3 in Resources */,
+				D9D798922A093A54002B2D77 /* Caetano Veloso - Deus e um cara gozador, adora brincadeira (1,5x).mp3 in Resources */,
 				D975FFD52880B4F20035E6F2 /* Pretty please meme infantil crianca begging.mp3 in Resources */,
 				D91B7F892943C44600B9A43F /* O homem e forte em Brasilia.mp3 in Resources */,
 				D975FFC82880B4F20035E6F2 /* Bolsonaro - No que depender de mim nunca teremos lockdown.mp3 in Resources */,
@@ -4954,6 +4984,7 @@
 				D9B9ED93295651FE00C25181 /* Tema do Arquivo X.mp3 in Resources */,
 				D975FF552880B4F20035E6F2 /* Lula - Cloroquina.mp3 in Resources */,
 				D975FFDD2880B4F20035E6F2 /* Pazuello - Nao tem o que fazer.mp3 in Resources */,
+				D9D798942A093A54002B2D77 /* Galvao Bueno - Rubens, Rubens, Rubens Barichello do Brasil.mp3 in Resources */,
 				D975003F2880B4F20035E6F2 /* Patricia Miguez - E um merda.mp3 in Resources */,
 				D99151272873E4C100FFAA29 /* rock-eu-vou-pra-ceilandia-mdb.mp3 in Resources */,
 				D975FEB72880B4F20035E6F2 /* REVELACAO - Nao mete essa short meme.mp3 in Resources */,
@@ -5021,6 +5052,7 @@
 				D975FEE22880B4F20035E6F2 /* Caetano Veloso - Como voce e burro short.mp3 in Resources */,
 				D97B2DE628E60B8600C3B50B /* Igor Guimaraes - Reaja a assaltos.mp3 in Resources */,
 				D9388F9E288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Bonsai de pica.mp3 in Resources */,
+				D9D798902A093A54002B2D77 /* Que viagem e essa, vei.mp3 in Resources */,
 				D92B6CF329DDC2D9003A2B73 /* Jair Bolsonaro - Vai morrer gente, tinha que matar mais, minha especialidade e matar.mp3 in Resources */,
 				D975FE5A2880B4F20035E6F2 /* Alanzoka - Sai, maluco, todo dia isso.mp3 in Resources */,
 				D97500162880B4F20035E6F2 /* Olavo - Porrrrra.mp3 in Resources */,
@@ -5117,6 +5149,7 @@
 				D9DB6F8328CD6F3600E24BDE /* Edu Santos - Totalmente embriagado.mp3 in Resources */,
 				D9BE7703290A8E8300C8C0A6 /* Galvao Bueno - Virou passeio.mp3 in Resources */,
 				D9AE4440299BF1D2009E8597 /* Augusto Heleno - Se gritar pega centrao.mp3 in Resources */,
+				D9D798952A093A54002B2D77 /* Duda Salabert - Beijinho, sigamos, com muito amor e poesia (completo).mp3 in Resources */,
 				D975FEB02880B4F20035E6F2 /* Mourao - Herois matam short.mp3 in Resources */,
 				4911102A2926BA6F0055F4EE /* Desconhecido - Um movimento passivo.mp3 in Resources */,
 				D975FE772880B4F20035E6F2 /* Pedro Daltro - Fala direito, Cristiano, porra.mp3 in Resources */,
@@ -5364,6 +5397,7 @@
 				D9AF10C7290AD50D0054741F /* PODER360 - Bolsonaro - Tao se vitimizando.mp3 in Resources */,
 				49DEA9A428810DE8008C9BA1 /* BOLSONARO - Nao precisa ser inteligente pra entender isso short meme.mp3 in Resources */,
 				D903DB0C29DF42A500D9BE42 /* 04 E Transao Versao Definitiva.mp3 in Resources */,
+				D9D798912A093A54002B2D77 /* Duda Salabert - Beijinho, sigamos, com muito amor e poesia.mp3 in Resources */,
 				D975FFE42880B4F20035E6F2 /* MARCO FELICIANO - Decisao judicial nao se discute se cumpre SHORT MEME.mp3 in Resources */,
 				D975001E2880B4F20035E6F2 /* Choque de Cultura - Maurilio - O ultimo idoso alegre do planeta e o Ary Fontoura.mp3 in Resources */,
 				D975FFCF2880B4F20035E6F2 /* Atila Iamarino - E como se fosse uma crianca de cinco anos.mp3 in Resources */,
@@ -5441,6 +5475,7 @@
 				499624DE2977B479008A6FFD /* Cristiano Botafogo - Mas facamos um flashback.mp3 in Resources */,
 				D975FE402880B4F20035E6F2 /* CASIMIRO - Voce acha isso legal.mp3 in Resources */,
 				D975FF852880B4F20035E6F2 /* Choque de Cultura - Renan - E Paradoxo que chama isso ai.mp3 in Resources */,
+				D9D798932A093A54002B2D77 /* Galvao Bueno - Rubens, Rubens.mp3 in Resources */,
 				D97B2DE728E60B8600C3B50B /* Michael The Office - No god please no.mp3 in Resources */,
 				D9D103F729AE395A0028F1E1 /* O sangue de jesus tem poder.mp3 in Resources */,
 				D975FE242880B4F20035E6F2 /* CHOQUE DE CULTURA - Rogerinho As vezes o odio e a unica emocao possivel short.mp3 in Resources */,
@@ -5469,6 +5504,7 @@
 				D975FFE52880B4F20035E6F2 /* Lula - Ele fala e tudo por conta do guedes.mp3 in Resources */,
 				D937E11329097D58004137ED /* Claudio Couto, Queiroga, Caetano, Pasquale, Lula e Onyx - Naos, e obvio que nao.mp3 in Resources */,
 				D975FE3C2880B4F20035E6F2 /* Gilmar Mendes - Eu ja disse aqui.mp3 in Resources */,
+				D9D798962A093A54002B2D77 /* O, perae hahahaha.mp3 in Resources */,
 				D975FE902880B4F20035E6F2 /* Fernando Collor - Tres vezes dizendo que e mentira.mp3 in Resources */,
 				D975FE442880B4F20035E6F2 /* Nando Moura - Bibibibi Mito (longo).mp3 in Resources */,
 				499624E82977B67F008A6FFD /* Flavio Dino vai vacinar voce.mp3 in Resources */,
@@ -6063,7 +6099,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.17;
+				MARKETING_VERSION = 6.18;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -6103,7 +6139,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.17;
+				MARKETING_VERSION = 6.18;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
