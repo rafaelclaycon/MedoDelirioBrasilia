@@ -36,4 +36,25 @@ extension LocalDatabase {
         }
         return queriedSounds.first
     }
+    
+//    func update(sound updatedSound: Sound) throws {
+//        let id = Expression<String>("id")
+//        let filter = sound.filter(id == updatedSound.id)
+//        let update = try filter.update(updatedSound)
+//        try db.run(update)
+//    }
+    
+    func update(sound updatedSound: Sound) throws {
+        let id = Expression<String>("id")
+        let query = sound.filter(id == updatedSound.id)
+        let updateQuery = query.update(
+            Expression<String>("title") <- updatedSound.title,
+            Expression<String>("authorId") <- updatedSound.authorId,
+            Expression<String>("description") <- updatedSound.description,
+            Expression<Double>("duration") <- updatedSound.duration,
+            Expression<Bool>("isOffensive") <- updatedSound.isOffensive
+        )
+        
+        try db.run(updateQuery)
+    }
 }

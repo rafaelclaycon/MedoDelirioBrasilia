@@ -62,12 +62,12 @@ struct SoundList: View {
     func fetchSounds() {
         Task {
             do {
-//                let service = SyncService(connectionManager: ConnectionManager.shared,
-//                                          networkRabbit: networkRabbit,
-//                                          localDatabase: database)
-//                let syncResult = await service.syncWithServer()
-//
-//                print(syncResult)
+                let service = SyncService(connectionManager: ConnectionManager.shared,
+                                          networkRabbit: networkRabbit,
+                                          localDatabase: database)
+                let syncResult = await service.syncWithServer()
+
+                print(syncResult)
                 
                 //print(Date.now.iso8601withFractionalSeconds)
                 

@@ -6,6 +6,7 @@ internal protocol LocalDatabaseProtocol {
 
     func contentExistsInsideUserFolder(withId folderId: String, contentId: String) throws -> Bool
     func insert(sound newSound: Sound) throws
+    func update(sound updatedSound: Sound) throws
 }
 
 class LocalDatabase: LocalDatabaseProtocol {

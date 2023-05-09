@@ -69,7 +69,13 @@ class SyncService {
                 }
                 
             case .metadataUpdated:
-                print("Coming soon")
+                let url = URL(string: networkRabbit.serverPath + "v3/sound/\(updateEvent.contentId)")!
+                do {
+                    let sound: Sound = try await NetworkRabbit.get(from: url)
+                    try localDatabase.update(sound: sound)
+                } catch {
+                    print(error)
+                }
                 
             default:
                 print("Not implemented yet")
