@@ -143,20 +143,21 @@ struct SoundsView: View {
                                                 .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
                                                 .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                                                 .onTapGesture {
-                                                    if currentSoundsListMode == .regular {
-                                                        if viewModel.nowPlayingKeeper.contains(sound.id) {
-                                                            player?.togglePlay()
-                                                            viewModel.nowPlayingKeeper.removeAll()
-                                                        } else {
-                                                            viewModel.play(sound: sound)
-                                                        }
-                                                    } else {
-                                                        if viewModel.selectionKeeper.contains(sound.id) {
-                                                            viewModel.selectionKeeper.remove(sound.id)
-                                                        } else {
-                                                            viewModel.selectionKeeper.insert(sound.id)
-                                                        }
-                                                    }
+                                                    dump(sound)
+//                                                    if currentSoundsListMode == .regular {
+//                                                        if viewModel.nowPlayingKeeper.contains(sound.id) {
+//                                                            player?.togglePlay()
+//                                                            viewModel.nowPlayingKeeper.removeAll()
+//                                                        } else {
+//                                                            viewModel.play(sound: sound)
+//                                                        }
+//                                                    } else {
+//                                                        if viewModel.selectionKeeper.contains(sound.id) {
+//                                                            viewModel.selectionKeeper.remove(sound.id)
+//                                                        } else {
+//                                                            viewModel.selectionKeeper.insert(sound.id)
+//                                                        }
+//                                                    }
                                                 }
                                                 .contextMenu {
                                                     if currentSoundsListMode != .selection {

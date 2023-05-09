@@ -43,6 +43,8 @@ class SyncService {
                 await process(updateEvent: update)
             }
             
+            lastUpdateDate = Date.now.iso8601withFractionalSeconds
+            
             return .updated
         } catch {
             print(error.localizedDescription)

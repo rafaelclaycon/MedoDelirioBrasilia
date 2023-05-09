@@ -45,7 +45,8 @@ struct SoundList: View {
                                 .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
                                 .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                                 .onTapGesture {
-                                    viewModel.play(sound: sound)
+                                    dump(sound)
+                                    //viewModel.play(sound: sound)
                                 }
                         }
                     }
