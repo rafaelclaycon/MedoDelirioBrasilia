@@ -10643,7 +10643,7 @@
         "dateAdded": "2023-05-08T00:00:00Z",
         "duration": 1.85,
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "C0FEE97E-ACDD-4584-B1EE-77614E6E3FA7",
@@ -10654,7 +10654,7 @@
         "dateAdded": "2023-05-08T00:00:00Z",
         "duration": 4.28,
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "ED442E65-8E8D-4163-A8B2-41BFC9E2E823",
@@ -10665,7 +10665,7 @@
         "dateAdded": "2023-05-08T00:00:00Z",
         "duration": 2.87,
         "isOffensive": true,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "D660F9E1-BF17-49C0-BDDF-FAD139E51C3C",
@@ -10676,7 +10676,7 @@
         "dateAdded": "2023-05-08T00:00:00Z",
         "duration": 1.52,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "DC1BF0C8-9445-48B6-9024-A8C6B6525F80",
@@ -10687,7 +10687,7 @@
         "dateAdded": "2023-05-08T00:00:00Z",
         "duration": 5.9,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "336F4103-85E5-4558-90D1-61C74DE36A71",
@@ -10698,7 +10698,7 @@
         "dateAdded": "2023-05-08T00:00:00Z",
         "duration": 1.85,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "D6D23B9A-85A2-4A45-B03A-6CD4E4EAAD63",
@@ -10709,7 +10709,7 @@
         "dateAdded": "2023-05-08T00:00:00Z",
         "duration": 9.33,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "7D45C5AA-426E-41A2-BEB7-CBE3CEBE2E61",
@@ -10720,7 +10720,7 @@
         "dateAdded": "2023-05-08T00:00:00Z",
         "duration": 3.66,
         "isOffensive": false,
-        "isNew": true
+        "isNew": false
     },
     {
         "id": "A4F5CF74-5BD4-4244-9813-414F9194E662",
@@ -10731,6 +10731,17 @@
         "dateAdded": "2023-05-08T00:00:00Z",
         "duration": 3.76,
         "isOffensive": false,
+        "isNew": false
+    },
+    {
+        "id": "059F4113-D2D5-4063-B2FE-DCB51DFD5CB3",
+        "title": "Se o senhor é da SWAT, eu sou dos Vingadores",
+        "authorId": "C8BA79D4-6D75-440D-915B-14BAFDF41B46",
+        "description": "Se o senhor e da SWAT eu sou dos Vingadores",
+        "filename": "Flavio Dino - Se o senhor e da SWAT, eu sou dos Vingadores.mp3",
+        "dateAdded": "2023-05-09T00:00:00Z",
+        "duration": 2.74,
+        "isOffensive": true,
         "isNew": true
     }
 ]
