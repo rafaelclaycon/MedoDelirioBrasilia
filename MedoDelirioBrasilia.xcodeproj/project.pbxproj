@@ -1040,6 +1040,7 @@
 		D989D3B72921AD3500DFB333 /* Renan (Choque de Cultura) - A sensibilidade incrivel desse homem.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D989D3B62921AD3400DFB333 /* Renan (Choque de Cultura) - A sensibilidade incrivel desse homem.mp3 */; };
 		D989D3BB2921AE1C00DFB333 /* Jair Bolsonaro - Nao tem qualquer sensibilidade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D989D3B92921AE1C00DFB333 /* Jair Bolsonaro - Nao tem qualquer sensibilidade.mp3 */; };
 		D98B291D28691C5C008A78AE /* ColorSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98B291C28691C5C008A78AE /* ColorSelectionCell.swift */; };
+		D98B6E1F2A0AD8910009E7F2 /* Flavio Dino - Se o senhor e da SWAT, eu sou dos Vingadores.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98B6E1E2A0AD8910009E7F2 /* Flavio Dino - Se o senhor e da SWAT, eu sou dos Vingadores.mp3 */; };
 		D98B9AD628CEBD2D00B82EDE /* Imbrochavel 5 vezes.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98B9AD328CEBD2D00B82EDE /* Imbrochavel 5 vezes.mp3 */; };
 		D98B9AD728CEBD2D00B82EDE /* Michelle Bolsonaro - Ele e meio sem nocao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98B9AD428CEBD2D00B82EDE /* Michelle Bolsonaro - Ele e meio sem nocao.mp3 */; };
 		D98B9AD828CEBD2D00B82EDE /* Tropa de Elite - Que satisfacao, aspira.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98B9AD528CEBD2D00B82EDE /* Tropa de Elite - Que satisfacao, aspira.mp3 */; };
@@ -2397,6 +2398,7 @@
 		D989D3B62921AD3400DFB333 /* Renan (Choque de Cultura) - A sensibilidade incrivel desse homem.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Renan (Choque de Cultura) - A sensibilidade incrivel desse homem.mp3"; sourceTree = "<group>"; };
 		D989D3B92921AE1C00DFB333 /* Jair Bolsonaro - Nao tem qualquer sensibilidade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Nao tem qualquer sensibilidade.mp3"; sourceTree = "<group>"; };
 		D98B291C28691C5C008A78AE /* ColorSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSelectionCell.swift; sourceTree = "<group>"; };
+		D98B6E1E2A0AD8910009E7F2 /* Flavio Dino - Se o senhor e da SWAT, eu sou dos Vingadores.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Flavio Dino - Se o senhor e da SWAT, eu sou dos Vingadores.mp3"; sourceTree = "<group>"; };
 		D98B9AD328CEBD2D00B82EDE /* Imbrochavel 5 vezes.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Imbrochavel 5 vezes.mp3"; sourceTree = "<group>"; };
 		D98B9AD428CEBD2D00B82EDE /* Michelle Bolsonaro - Ele e meio sem nocao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Michelle Bolsonaro - Ele e meio sem nocao.mp3"; sourceTree = "<group>"; };
 		D98B9AD528CEBD2D00B82EDE /* Tropa de Elite - Que satisfacao, aspira.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tropa de Elite - Que satisfacao, aspira.mp3"; sourceTree = "<group>"; };
@@ -2740,6 +2742,7 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D98B6E1E2A0AD8910009E7F2 /* Flavio Dino - Se o senhor e da SWAT, eu sou dos Vingadores.mp3 */,
 				D9D7988A2A093A54002B2D77 /* Caetano Veloso - Deus e um cara gozador, adora brincadeira (1,5x).mp3 */,
 				D9D798872A093A54002B2D77 /* Caetano Veloso - Deus e um cara gozador, adora brincadeira.mp3 */,
 				D9D7988D2A093A54002B2D77 /* Duda Salabert - Beijinho, sigamos, com muito amor e poesia (completo).mp3 */,
@@ -5238,6 +5241,7 @@
 				D975FEAF2880B4F20035E6F2 /* Caue Moura - Foi mal tava doidao.mp3 in Resources */,
 				D9E7D0F228AC677B001E909E /* Paulo Guedes - Empregada domestica na Disney (curto).mp3 in Resources */,
 				D94C8393294BAF7100E083F3 /* Renan (Choque de Cultura) - Brasil e bagunca.mp3 in Resources */,
+				D98B6E1F2A0AD8910009E7F2 /* Flavio Dino - Se o senhor e da SWAT, eu sou dos Vingadores.mp3 in Resources */,
 				4911102E2926BD380055F4EE /* Leonardo Bastos - Vontade de chorar e morrer so isso.mp3 in Resources */,
 				D9588A48294EC3FD0082E2DC /* Jair Bolsonaro - Alguem conhece a senhora Jeanine Anez.mp3 in Resources */,
 				491110422926C0100055F4EE /* Eduardo Pazuello - Tu demorou pra sentar aqui na mesa.mp3 in Resources */,
@@ -6215,7 +6219,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.18;
+				MARKETING_VERSION = 6.19;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -6255,7 +6259,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.18;
+				MARKETING_VERSION = 6.19;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
