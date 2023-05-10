@@ -1791,7 +1791,7 @@
     },
     {
         "id": "23721A8D-B2CD-4B29-93F7-C23EDDF27E77",
-        "title": "Que porra é essa batata",
+        "title": "Que porra é essa, batata",
         "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
         "description": "Que porra e essa batata",
         "filename": "Que porra e essa batata.mp3",
@@ -10742,6 +10742,17 @@
         "dateAdded": "2023-05-09T00:00:00Z",
         "duration": 2.74,
         "isOffensive": true,
+        "isNew": false
+    },
+    {
+        "id": "5D61511A-1341-4C9B-8E77-1E0C984429E3",
+        "title": "É que quero evitar a fadiga",
+        "authorId": "3D69562A-59D1-4A59-8EB2-3BA592CB0881",
+        "description": "E que quero evitar a fadiga",
+        "filename": "Jaiminho - E que quero evitar a fadiga.mp3",
+        "dateAdded": "2023-05-10T00:00:00Z",
+        "duration": 3.43,
+        "isOffensive": false,
         "isNew": true
     }
 ]
