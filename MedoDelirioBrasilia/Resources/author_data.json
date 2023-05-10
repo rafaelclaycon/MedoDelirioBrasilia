@@ -1645,5 +1645,15 @@
         "name": "Duda Salabert",
         "photo": "https://revistatrip.uol.com.br/upload/2021/03/605b91c1bbe93/duda-salabert-vereadoras-trans-tpm-mq3.jpg",
         "description": "Professora de literatura, ambientalista, e ativista filiada ao PDT. Em 2022, foi eleita uma das primeiras deputadas federais trans da história, junto com Erika Hilton."
+    },
+    {
+        "id": "225E06F7-2CC2-4429-9DA8-380DC8F92218",
+        "name": "Marco Luque",
+        "description": "Humorista, apresentador e ex-futebolista brasileiro."
+    },
+    {
+        "id": "3D69562A-59D1-4A59-8EB2-3BA592CB0881",
+        "name": "Jaiminho, o Carteiro",
+        "description": "Jaiminho é um carteiro idoso, que já trabalhou muito na vida (e hoje em dia trabalha com mais preguiça do que na juventude)."
     }
 ]
