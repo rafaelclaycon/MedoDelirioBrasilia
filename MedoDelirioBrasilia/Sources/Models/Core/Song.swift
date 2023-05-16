@@ -27,7 +27,7 @@ struct Song: Hashable, Codable, Identifiable {
          filename: String = "",
          dateAdded: Date = Date(),
          isOffensive: Bool = false,
-         isNew: Bool?) {
+         isNew: Bool? = nil) {
         self.id = id
         self.title = title
         self.description = description
@@ -38,5 +38,4 @@ struct Song: Hashable, Codable, Identifiable {
         self.isOffensive = isOffensive
         self.isNew = isNew
     }
-
 }
