@@ -14,7 +14,7 @@ class SyncService {
     private let networkRabbit: NetworkRabbitProtocol
     private let localDatabase: LocalDatabaseProtocol
     
-    @AppStorage("lastUpdateDate") private var lastUpdateDate = "all"
+    
     
     init(
         connectionManager: ConnectionManagerProtocol,
@@ -26,29 +26,34 @@ class SyncService {
         self.localDatabase = localDatabase
     }
     
-    func syncWithServer() async -> SyncResult {
-        guard connectionManager.hasConnectivity() else {
-            return .noInternet
-        }
+    func getUpdates(from updateDateToConsider: String) async throws -> [UpdateEvent] {
+        return [
+            UpdateEvent(id: UUID(), contentId: UUID().uuidString, dateTime: Date.now.iso8601withFractionalSeconds, mediaType: .song, eventType: .metadataUpdated),
+            UpdateEvent(id: UUID(), contentId: UUID().uuidString, dateTime: Date.now.iso8601withFractionalSeconds, mediaType: .song, eventType: .metadataUpdated),
+            UpdateEvent(id: UUID(), contentId: UUID().uuidString, dateTime: Date.now.iso8601withFractionalSeconds, mediaType: .song, eventType: .metadataUpdated),
+            UpdateEvent(id: UUID(), contentId: UUID().uuidString, dateTime: Date.now.iso8601withFractionalSeconds, mediaType: .song, eventType: .metadataUpdated),
+            UpdateEvent(id: UUID(), contentId: UUID().uuidString, dateTime: Date.now.iso8601withFractionalSeconds, mediaType: .song, eventType: .metadataUpdated)
+        ]
         
-        do {
-            print(lastUpdateDate)
-            
-            let updates = try await networkRabbit.fetchUpdateEvents(from: lastUpdateDate)
-            
-            guard !updates.isEmpty else { return .nothingToUpdate }
-            
-            for update in updates {
-                print(update.id)
-                await process(updateEvent: update)
-            }
-            
-            lastUpdateDate = Date.now.iso8601withFractionalSeconds
-            
-            return .updated
-        } catch {
-            print(error.localizedDescription)
-            return .updateError
+//        guard connectionManager.hasConnectivity() else {
+//            throw SyncError.noInternet
+//        }
+//        print(updateDateToConsider)
+//        return try await networkRabbit.fetchUpdateEvents(from: updateDateToConsider)
+    }
+    
+    @MainActor
+    func syncWithServer(updates: [UpdateEvent], progressHandler: @escaping (Double) -> Void) async throws {
+        guard connectionManager.hasConnectivity() else {
+            throw SyncError.noInternet
+        }
+        guard !updates.isEmpty else { return }
+        var currentAmount = 0.0
+        for update in updates {
+            //await process(updateEvent: update)
+            sleep(3)
+            currentAmount += 1.0
+            progressHandler(currentAmount)
         }
     }
     
@@ -94,5 +99,10 @@ class SyncService {
 
 enum SyncResult {
     
-    case noInternet, nothingToUpdate, updateError, updated, unableToGetLastDate
+    case nothingToUpdate, updated
+}
+
+enum SyncError: Error {
+    
+    case noInternet, updateError
 }
