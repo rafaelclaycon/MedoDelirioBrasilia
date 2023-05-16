@@ -46,11 +46,7 @@ struct SoundList: View {
                     
                     LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
                         ForEach(sounds) { sound in
-                            SoundCell(soundId: sound.id,
-                                      title: sound.title,
-                                      author: sound.authorName ?? "",
-                                      duration: sound.duration,
-                                      isNew: sound.isNew ?? false,
+                            SoundCell(sound: sound,
                                       favorites: .constant(Set<String>()),
                                       highlighted: .constant(Set<String>()),
                                       nowPlaying: .constant(Set<String>()),
