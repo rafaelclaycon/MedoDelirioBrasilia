@@ -120,7 +120,7 @@ struct SoundCell: View {
     }
     
     private var isNew: Bool {
-        return true
+        return Date.isDateWithinLast7Days(sound.dateAdded)
     }
     
     private let regularGradient = LinearGradient(gradient: Gradient(colors: [.green, .green, .brightYellow]), startPoint: .topLeading, endPoint: .bottomTrailing)

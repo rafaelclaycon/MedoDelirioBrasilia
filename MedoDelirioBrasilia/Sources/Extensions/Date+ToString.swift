@@ -6,25 +6,21 @@ extension ISO8601DateFormatter {
         self.init()
         self.formatOptions = formatOptions
     }
-
 }
 
 extension Formatter {
 
     static let iso8601withFractionalSeconds = ISO8601DateFormatter([.withInternetDateTime, .withFractionalSeconds])
-
 }
 
 extension Date {
 
     var iso8601withFractionalSeconds: String { return Formatter.iso8601withFractionalSeconds.string(from: self) }
-
 }
 
 extension String {
 
     var iso8601withFractionalSeconds: Date? { return Formatter.iso8601withFractionalSeconds.date(from: self) }
-
 }
 
 extension Date {
@@ -42,5 +38,23 @@ extension Date {
         formatter.unitsStyle = .full
         return formatter.localizedString(for: self, relativeTo: Date.now)
     }
+}
 
+extension Date {
+    
+    static func isDateWithinLast7Days(_ date: Date?) -> Bool {
+        guard let date = date else {
+            return false
+        }
+        
+        let calendar = Calendar.current
+        let currentDate = calendar.startOfDay(for: .now)
+        
+        // -8 used below to compensate for +3 hours .now has
+        if let last7Days = calendar.date(byAdding: .day, value: -8, to: currentDate) {
+            return calendar.isDate(date, inSameDayAs: currentDate) || date > last7Days
+        }
+        
+        return false
+    }
 }
