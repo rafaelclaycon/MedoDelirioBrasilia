@@ -14,8 +14,6 @@ class SyncService {
     private let networkRabbit: NetworkRabbitProtocol
     private let localDatabase: LocalDatabaseProtocol
     
-    
-    
     init(
         connectionManager: ConnectionManagerProtocol,
         networkRabbit: NetworkRabbitProtocol,
@@ -42,22 +40,11 @@ class SyncService {
 //        return try await networkRabbit.fetchUpdateEvents(from: updateDateToConsider)
     }
     
-    @MainActor
-    func syncWithServer(updates: [UpdateEvent], progressHandler: @escaping (Double) -> Void) async throws {
-        guard connectionManager.hasConnectivity() else {
-            throw SyncError.noInternet
-        }
-        guard !updates.isEmpty else { return }
-        var currentAmount = 0.0
-        for update in updates {
-            //await process(updateEvent: update)
-            sleep(3)
-            currentAmount += 1.0
-            progressHandler(currentAmount)
-        }
+    func hasConnectivity() -> Bool {
+        return connectionManager.hasConnectivity()
     }
     
-    private func process(updateEvent: UpdateEvent) async {
+    func process(updateEvent: UpdateEvent) async {
         switch updateEvent.mediaType {
         case .sound:
             switch updateEvent.eventType {

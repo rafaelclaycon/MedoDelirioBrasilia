@@ -16,6 +16,7 @@ struct SoundList: View {
     @State var totalAmount = 0.0
     @AppStorage("lastUpdateDate") private var lastUpdateDate = "all"
     @State private var updates: [UpdateEvent]? = nil
+    @State private var showSyncProgressView = false
     
     private let columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
     
@@ -39,8 +40,9 @@ struct SoundList: View {
                     .frame(width: geometry.size.width)
                     .frame(minHeight: geometry.size.height)
                 } else {
-                    SyncProgressView(currentAmount: $currentAmount, totalAmount: $totalAmount)
-                        //.border(.red, width: 1)
+                    if showSyncProgressView {
+                        SyncProgressView(isBeingShown: $showSyncProgressView, currentAmount: $currentAmount, totalAmount: $totalAmount)
+                    }
                     
                     LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
                         ForEach(sounds) { sound in
@@ -74,6 +76,7 @@ struct SoundList: View {
                             print("Resultado do fetchUpdates: \(result)")
                             if result > 0 {
                                 await MainActor.run {
+                                    showSyncProgressView = true
                                     totalAmount = result
                                 }
                                 try await sync()
@@ -96,16 +99,22 @@ struct SoundList: View {
     
     func sync() async throws {
         print("sync()")
-        guard updates?.isEmpty == false else {
+        guard let updates = updates else { return }
+        guard updates.isEmpty == false else {
             return print("NO UPDATES")
         }
+        guard service.hasConnectivity() else {
+            throw SyncError.noInternet
+        }
         
-        try await service.syncWithServer(updates: updates!, progressHandler: { currentAmount in
-            DispatchQueue.main.async {
-                self.currentAmount = currentAmount
-                print(currentAmount)
+        currentAmount = 0.0
+        for update in updates {
+            await service.process(updateEvent: update)
+            sleep(1)
+            await MainActor.run {
+                currentAmount += 1.0
             }
-        })
+        }
         
         lastUpdateDate = Date.now.iso8601withFractionalSeconds
         
