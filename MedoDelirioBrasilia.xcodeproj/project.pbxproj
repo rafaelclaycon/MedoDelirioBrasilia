@@ -1188,6 +1188,8 @@
 		D9C77B6F28CAC07B006CA17B /* Thiago Arruda - Passarinho que come cu nao sabe a pedra que tem.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C77B6E28CAC07B006CA17B /* Thiago Arruda - Passarinho que come cu nao sabe a pedra que tem.mp3 */; };
 		D9C7D18C292EEA81003F500C /* Cidade Oculta e Google Tradutor - Putinha do Jobs.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C7D18A292EEA80003F500C /* Cidade Oculta e Google Tradutor - Putinha do Jobs.mp3 */; };
 		D9C7D18D292EEA81003F500C /* Cidade Oculta e Google Tradutor - Voce ta falando isso porque voce e a putinha do Jobs.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C7D18B292EEA81003F500C /* Cidade Oculta e Google Tradutor - Voce ta falando isso porque voce e a putinha do Jobs.mp3 */; };
+		D9C91F842A1534EF008F0BCD /* Esse Menino - Rimou.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C91F822A1534EF008F0BCD /* Esse Menino - Rimou.mp3 */; };
+		D9C91F852A1534EF008F0BCD /* Michelle Bolsonaro - Vamos apoiar o circo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C91F832A1534EF008F0BCD /* Michelle Bolsonaro - Vamos apoiar o circo.mp3 */; };
 		D9CA8BB72908802300C6B492 /* Jair Bolsonaro - Nao tenho provas.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CA8BB62908802300C6B492 /* Jair Bolsonaro - Nao tenho provas.mp3 */; };
 		D9CB84F528B2E31D00E815C2 /* Alvaro Borba - A Verdadeira Polarizacao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CB84F428B2E31D00E815C2 /* Alvaro Borba - A Verdadeira Polarizacao.mp3 */; };
 		D9CBBB86296F7FFD0089F74B /* Jair Bolsonaro - A papuda lhe espera boa estadia la valeu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CBBB85296F7FFD0089F74B /* Jair Bolsonaro - A papuda lhe espera boa estadia la valeu.mp3 */; };
@@ -2531,6 +2533,8 @@
 		D9C77B6E28CAC07B006CA17B /* Thiago Arruda - Passarinho que come cu nao sabe a pedra que tem.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Thiago Arruda - Passarinho que come cu nao sabe a pedra que tem.mp3"; sourceTree = "<group>"; };
 		D9C7D18A292EEA80003F500C /* Cidade Oculta e Google Tradutor - Putinha do Jobs.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cidade Oculta e Google Tradutor - Putinha do Jobs.mp3"; sourceTree = "<group>"; };
 		D9C7D18B292EEA81003F500C /* Cidade Oculta e Google Tradutor - Voce ta falando isso porque voce e a putinha do Jobs.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cidade Oculta e Google Tradutor - Voce ta falando isso porque voce e a putinha do Jobs.mp3"; sourceTree = "<group>"; };
+		D9C91F822A1534EF008F0BCD /* Esse Menino - Rimou.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Esse Menino - Rimou.mp3"; sourceTree = "<group>"; };
+		D9C91F832A1534EF008F0BCD /* Michelle Bolsonaro - Vamos apoiar o circo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Michelle Bolsonaro - Vamos apoiar o circo.mp3"; sourceTree = "<group>"; };
 		D9CA8BB62908802300C6B492 /* Jair Bolsonaro - Nao tenho provas.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Nao tenho provas.mp3"; sourceTree = "<group>"; };
 		D9CB84F428B2E31D00E815C2 /* Alvaro Borba - A Verdadeira Polarizacao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alvaro Borba - A Verdadeira Polarizacao.mp3"; sourceTree = "<group>"; };
 		D9CBBB85296F7FFD0089F74B /* Jair Bolsonaro - A papuda lhe espera boa estadia la valeu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - A papuda lhe espera boa estadia la valeu.mp3"; sourceTree = "<group>"; };
@@ -2708,6 +2712,8 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9C91F822A1534EF008F0BCD /* Esse Menino - Rimou.mp3 */,
+				D9C91F832A1534EF008F0BCD /* Michelle Bolsonaro - Vamos apoiar o circo.mp3 */,
 				D9310C252A0BDA90006A3058 /* Jaiminho - E que quero evitar a fadiga.mp3 */,
 				D98B6E1E2A0AD8910009E7F2 /* Flavio Dino - Se o senhor e da SWAT, eu sou dos Vingadores.mp3 */,
 				D9D7988A2A093A54002B2D77 /* Caetano Veloso - Deus e um cara gozador, adora brincadeira (1,5x).mp3 */,
@@ -5158,6 +5164,7 @@
 				D975FE772880B4F20035E6F2 /* Pedro Daltro - Fala direito, Cristiano, porra.mp3 in Resources */,
 				D975FF3D2880B4F20035E6F2 /* Carmina burana trecho.mp3 in Resources */,
 				D97500312880B4F20035E6F2 /* Marcelo Adnet - Da quase bilhao com b de bananada.mp3 in Resources */,
+				D9C91F842A1534EF008F0BCD /* Esse Menino - Rimou.mp3 in Resources */,
 				D95A462E291831A7006B4023 /* Henrique Oliveira - Doses seguras de crack.mp3 in Resources */,
 				D975FE182880B4F20035E6F2 /* Bolsonaro - Nao errei nenhuma short meme.mp3 in Resources */,
 				D975FE432880B4F20035E6F2 /* Galo Cego - Nada a ver irmao.mp3 in Resources */,
@@ -5453,6 +5460,7 @@
 				D97500372880B4F20035E6F2 /* ATILA IAMARINO - Ele faz sexo.mp3 in Resources */,
 				D955756A2913419A002EFC50 /* Jair Bolsonaro - Precisa ter provas.mp3 in Resources */,
 				4936E767297EC7AA006060F8 /* Nascimento - Eu nao sei que vontade e essa que voce tem de fazer merda.mp3 in Resources */,
+				D9C91F852A1534EF008F0BCD /* Michelle Bolsonaro - Vamos apoiar o circo.mp3 in Resources */,
 				D975FF322880B4F20035E6F2 /* Nao parece short meme.mp3 in Resources */,
 				497E63CB2919484600FBC539 /* Frederico Davila - Gente nojenta como voce.mp3 in Resources */,
 				D9E1A8D02914CB3A00694A74 /* Monica de Bolle - Pronto, falei.mp3 in Resources */,
@@ -6103,7 +6111,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.20.1;
+				MARKETING_VERSION = 6.21;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -6143,7 +6151,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.20.1;
+				MARKETING_VERSION = 6.21;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

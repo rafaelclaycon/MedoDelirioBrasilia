@@ -10754,5 +10754,27 @@
         "duration": 3.43,
         "isOffensive": false,
         "isNew": true
+    },
+    {
+        "id": "5C0B6678-E7A0-4A59-BBAA-666EF5976CD8",
+        "title": "Rimou!",
+        "authorId": "6BCF1C16-A416-4612-B2DE-A7E8D3705601",
+        "description": "rimou",
+        "filename": "Esse Menino - Rimou.mp3",
+        "dateAdded": "2023-05-17T00:00:00Z",
+        "duration": 0.86,
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "15707FC7-69A5-44AC-AD87-ACCA87C34D19",
+        "title": "Vamos apoiar o circo",
+        "authorId": "87138168-E9AC-4BF0-A486-2C5F098CD541",
+        "description": "Vamos apoiar o circo",
+        "filename": "Michelle Bolsonaro - Vamos apoiar o circo.mp3",
+        "dateAdded": "2023-05-17T00:00:00Z",
+        "duration": 2.3,
+        "isOffensive": false,
+        "isNew": true
     }
 ]
