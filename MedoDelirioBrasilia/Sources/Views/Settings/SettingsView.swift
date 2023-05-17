@@ -30,6 +30,14 @@ struct SettingsView: View {
         UIScreen.main.bounds.width > 400 ? 20 : 10
     }
     
+    private var helpTheAppFooterText: String {
+        if #available(iOS 16.0, *) {
+            return "Já doou antes? Inclua essa informação na mensagem do Pix para ganhar um selo especial aqui :)"
+        } else {
+            return ""
+        }
+    }
+    
     var body: some View {
         ZStack {
             Form {
@@ -140,7 +148,7 @@ struct SettingsView: View {
                     } header: {
                         Text("Ajude o app")
                     } footer: {
-                        Text("Já doou antes? Inclua essa informação na mensagem do Pix para ganhar um selo especial aqui :)")
+                        Text(helpTheAppFooterText)
                     }
                 }
                 
