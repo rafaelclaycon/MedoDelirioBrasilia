@@ -40,9 +40,9 @@ GIF demos below (they may take a while to load due to size).
 
 To build and run this project, you'll need:
 
-- A Mac running macOS 12 Monterey or newer;
-- Xcode 13.4+;
-- iOS 15.0+ simulators installed.
+- A Mac running macOS 13 Ventura;
+- Xcode 14.3;
+- iOS 15.0+ simulators installed (Xcode 14.3 comes with iOS 16.4, so you'll be fine).
 
 To test and fiddle with the Trends tab, you'll need:
 
