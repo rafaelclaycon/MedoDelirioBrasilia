@@ -23,6 +23,7 @@ struct Sound: Hashable, Codable, Identifiable {
     init(id: String = UUID().uuidString,
          title: String,
          authorId: String = UUID().uuidString,
+         authorName: String? = nil,
          description: String = "",
          filename: String = "",
          dateAdded: Date? = Date(),
@@ -32,6 +33,7 @@ struct Sound: Hashable, Codable, Identifiable {
         self.id = id
         self.title = title
         self.authorId = authorId
+        self.authorName = authorName
         self.description = description
         self.filename = filename
         self.dateAdded = dateAdded
