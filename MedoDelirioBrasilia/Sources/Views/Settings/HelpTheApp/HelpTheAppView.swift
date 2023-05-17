@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import MarqueeText
 
 struct HelpTheAppView: View {
 

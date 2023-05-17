@@ -10,15 +10,6 @@
       }
     },
     {
-      "identity" : "marqueetext",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/joekndy/MarqueeText",
-      "state" : {
-        "branch" : "master",
-        "revision" : "e18d514455563ad00581e0d825146c6f15b1c6c4"
-      }
-    },
-    {
       "identity" : "sqlite.swift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stephencelis/SQLite.swift",
