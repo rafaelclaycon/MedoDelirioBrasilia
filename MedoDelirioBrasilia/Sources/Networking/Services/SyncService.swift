@@ -25,19 +25,19 @@ class SyncService {
     }
     
     func getUpdates(from updateDateToConsider: String) async throws -> [UpdateEvent] {
-        return [
-            UpdateEvent(id: UUID(), contentId: UUID().uuidString, dateTime: Date.now.iso8601withFractionalSeconds, mediaType: .song, eventType: .metadataUpdated),
-            UpdateEvent(id: UUID(), contentId: UUID().uuidString, dateTime: Date.now.iso8601withFractionalSeconds, mediaType: .song, eventType: .metadataUpdated),
-            UpdateEvent(id: UUID(), contentId: UUID().uuidString, dateTime: Date.now.iso8601withFractionalSeconds, mediaType: .song, eventType: .metadataUpdated),
-            UpdateEvent(id: UUID(), contentId: UUID().uuidString, dateTime: Date.now.iso8601withFractionalSeconds, mediaType: .song, eventType: .metadataUpdated),
-            UpdateEvent(id: UUID(), contentId: UUID().uuidString, dateTime: Date.now.iso8601withFractionalSeconds, mediaType: .song, eventType: .metadataUpdated)
-        ]
+//        return [
+//            UpdateEvent(id: UUID(), contentId: UUID().uuidString, dateTime: Date.now.iso8601withFractionalSeconds, mediaType: .song, eventType: .metadataUpdated),
+//            UpdateEvent(id: UUID(), contentId: UUID().uuidString, dateTime: Date.now.iso8601withFractionalSeconds, mediaType: .song, eventType: .metadataUpdated),
+//            UpdateEvent(id: UUID(), contentId: UUID().uuidString, dateTime: Date.now.iso8601withFractionalSeconds, mediaType: .song, eventType: .metadataUpdated),
+//            UpdateEvent(id: UUID(), contentId: UUID().uuidString, dateTime: Date.now.iso8601withFractionalSeconds, mediaType: .song, eventType: .metadataUpdated),
+//            UpdateEvent(id: UUID(), contentId: UUID().uuidString, dateTime: Date.now.iso8601withFractionalSeconds, mediaType: .song, eventType: .metadataUpdated)
+//        ]
         
-//        guard connectionManager.hasConnectivity() else {
-//            throw SyncError.noInternet
-//        }
-//        print(updateDateToConsider)
-//        return try await networkRabbit.fetchUpdateEvents(from: updateDateToConsider)
+        guard connectionManager.hasConnectivity() else {
+            throw SyncError.noInternet
+        }
+        print(updateDateToConsider)
+        return try await networkRabbit.fetchUpdateEvents(from: updateDateToConsider)
     }
     
     func hasConnectivity() -> Bool {
@@ -54,8 +54,8 @@ class SyncService {
                     let sound: Sound = try await NetworkRabbit.get(from: url)
                     try localDatabase.insert(sound: sound)
                     
-                    let fileUrl = URL(string: "http://170.187.141.103:8080/sounds/\(updateEvent.contentId).mp3")!
-                    let downloadedFileUrl = try await NetworkRabbit.downloadFile(url: fileUrl)
+                    let fileUrl = URL(string: "http://127.0.0.1:8080/sounds/\(updateEvent.contentId).mp3")!
+                    let downloadedFileUrl = try await NetworkRabbit.downloadFile(from: fileUrl, into: InternalFolderNames.downloadedSounds)
                     print("File downloaded successfully at: \(downloadedFileUrl)")
                 } catch {
                     print(error)
@@ -71,8 +71,11 @@ class SyncService {
                     print(error)
                 }
                 
-            default:
-                print("Not implemented yet")
+            case .fileUpdated:
+                print("File updated - Not implemented yet")
+                
+            case .deleted:
+                print("Deleted - Not implemented yet")
             }
             
         case .author:

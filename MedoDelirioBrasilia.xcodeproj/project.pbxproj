@@ -1068,6 +1068,7 @@
 		D9917A0F2990856C00FB6274 /* Cristiano Botafogo - Generais na casa do caralho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9917A0E2990856C00FB6274 /* Cristiano Botafogo - Generais na casa do caralho.mp3 */; };
 		D9917A112991530000FB6274 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9917A102991530000FB6274 /* Double+Extensions.swift */; };
 		D991E598284A94F70005705F /* Podium.swift in Sources */ = {isa = PBXBuildFile; fileRef = D991E597284A94F70005705F /* Podium.swift */; };
+		D992E8262A185C8A00137469 /* InternalFolderNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = D992E8252A185C8A00137469 /* InternalFolderNames.swift */; };
 		D9943F152863CC4D002C6B97 /* A impiedosa justica de Deus.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9943F142863CC4D002C6B97 /* A impiedosa justica de Deus.mp3 */; };
 		D9943F172863DAE1002C6B97 /* FolderDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F162863DAE1002C6B97 /* FolderDetailView.swift */; };
 		D9943F1A286406AF002C6B97 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D9943F19286406AF002C6B97 /* Kingfisher */; };
@@ -1205,9 +1206,9 @@
 		D9C77B6F28CAC07B006CA17B /* Thiago Arruda - Passarinho que come cu nao sabe a pedra que tem.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C77B6E28CAC07B006CA17B /* Thiago Arruda - Passarinho que come cu nao sabe a pedra que tem.mp3 */; };
 		D9C7D18C292EEA81003F500C /* Cidade Oculta e Google Tradutor - Putinha do Jobs.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C7D18A292EEA80003F500C /* Cidade Oculta e Google Tradutor - Putinha do Jobs.mp3 */; };
 		D9C7D18D292EEA81003F500C /* Cidade Oculta e Google Tradutor - Voce ta falando isso porque voce e a putinha do Jobs.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C7D18B292EEA81003F500C /* Cidade Oculta e Google Tradutor - Voce ta falando isso porque voce e a putinha do Jobs.mp3 */; };
-		D9CA301E2A03EE2300F1F23D /* NetworkRabbit+Generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CA301D2A03EE2300F1F23D /* NetworkRabbit+Generic.swift */; };
 		D9C91F842A1534EF008F0BCD /* Esse Menino - Rimou.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C91F822A1534EF008F0BCD /* Esse Menino - Rimou.mp3 */; };
 		D9C91F852A1534EF008F0BCD /* Michelle Bolsonaro - Vamos apoiar o circo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C91F832A1534EF008F0BCD /* Michelle Bolsonaro - Vamos apoiar o circo.mp3 */; };
+		D9CA301E2A03EE2300F1F23D /* NetworkRabbit+Generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CA301D2A03EE2300F1F23D /* NetworkRabbit+Generic.swift */; };
 		D9CA8BB72908802300C6B492 /* Jair Bolsonaro - Nao tenho provas.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CA8BB62908802300C6B492 /* Jair Bolsonaro - Nao tenho provas.mp3 */; };
 		D9CB84F528B2E31D00E815C2 /* Alvaro Borba - A Verdadeira Polarizacao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CB84F428B2E31D00E815C2 /* Alvaro Borba - A Verdadeira Polarizacao.mp3 */; };
 		D9CBBB86296F7FFD0089F74B /* Jair Bolsonaro - A papuda lhe espera boa estadia la valeu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CBBB85296F7FFD0089F74B /* Jair Bolsonaro - A papuda lhe espera boa estadia la valeu.mp3 */; };
@@ -2431,6 +2432,7 @@
 		D9917A0E2990856C00FB6274 /* Cristiano Botafogo - Generais na casa do caralho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano Botafogo - Generais na casa do caralho.mp3"; sourceTree = "<group>"; };
 		D9917A102991530000FB6274 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		D991E597284A94F70005705F /* Podium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Podium.swift; sourceTree = "<group>"; };
+		D992E8252A185C8A00137469 /* InternalFolderNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalFolderNames.swift; sourceTree = "<group>"; };
 		D9943F142863CC4D002C6B97 /* A impiedosa justica de Deus.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "A impiedosa justica de Deus.mp3"; sourceTree = "<group>"; };
 		D9943F162863DAE1002C6B97 /* FolderDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetailView.swift; sourceTree = "<group>"; };
 		D9943F1B28641917002C6B97 /* LocalDatabase+Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+Favorite.swift"; sourceTree = "<group>"; };
@@ -2567,9 +2569,9 @@
 		D9C77B6E28CAC07B006CA17B /* Thiago Arruda - Passarinho que come cu nao sabe a pedra que tem.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Thiago Arruda - Passarinho que come cu nao sabe a pedra que tem.mp3"; sourceTree = "<group>"; };
 		D9C7D18A292EEA80003F500C /* Cidade Oculta e Google Tradutor - Putinha do Jobs.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cidade Oculta e Google Tradutor - Putinha do Jobs.mp3"; sourceTree = "<group>"; };
 		D9C7D18B292EEA81003F500C /* Cidade Oculta e Google Tradutor - Voce ta falando isso porque voce e a putinha do Jobs.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cidade Oculta e Google Tradutor - Voce ta falando isso porque voce e a putinha do Jobs.mp3"; sourceTree = "<group>"; };
-		D9CA301D2A03EE2300F1F23D /* NetworkRabbit+Generic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+Generic.swift"; sourceTree = "<group>"; };
 		D9C91F822A1534EF008F0BCD /* Esse Menino - Rimou.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Esse Menino - Rimou.mp3"; sourceTree = "<group>"; };
 		D9C91F832A1534EF008F0BCD /* Michelle Bolsonaro - Vamos apoiar o circo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Michelle Bolsonaro - Vamos apoiar o circo.mp3"; sourceTree = "<group>"; };
+		D9CA301D2A03EE2300F1F23D /* NetworkRabbit+Generic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+Generic.swift"; sourceTree = "<group>"; };
 		D9CA8BB62908802300C6B492 /* Jair Bolsonaro - Nao tenho provas.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Nao tenho provas.mp3"; sourceTree = "<group>"; };
 		D9CB84F428B2E31D00E815C2 /* Alvaro Borba - A Verdadeira Polarizacao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alvaro Borba - A Verdadeira Polarizacao.mp3"; sourceTree = "<group>"; };
 		D9CBBB85296F7FFD0089F74B /* Jair Bolsonaro - A papuda lhe espera boa estadia la valeu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - A papuda lhe espera boa estadia la valeu.mp3"; sourceTree = "<group>"; };
@@ -4296,6 +4298,7 @@
 				D9653D9C2882749C00C745F4 /* MedoDelirioBrasilia.entitlements */,
 				D98DBD3228491909008544F8 /* Info.plist */,
 				D9625E8328238F9B00080852 /* Preview Content */,
+				D992E8252A185C8A00137469 /* InternalFolderNames.swift */,
 			);
 			path = AppSupport;
 			sourceTree = "<group>";
@@ -5973,6 +5976,7 @@
 				D9943F2A28642EC3002C6B97 /* UserFolderContent.swift in Sources */,
 				D9943F2828642200002C6B97 /* AddToFolderViewViewModel.swift in Sources */,
 				D98B291D28691C5C008A78AE /* ColorSelectionCell.swift in Sources */,
+				D992E8262A185C8A00137469 /* InternalFolderNames.swift in Sources */,
 				D9344323283812AD00ADCD38 /* Author.swift in Sources */,
 				D9758C3E28617DAC0094D388 /* Color+Name.swift in Sources */,
 				D9491810288606E00079F545 /* SettingsCasingWithCloseView.swift in Sources */,

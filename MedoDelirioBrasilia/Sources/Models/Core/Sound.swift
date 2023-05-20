@@ -50,7 +50,7 @@ struct Sound: Hashable, Codable, Identifiable {
     func fileURL() throws -> URL {
         if isFromServer ?? false {
             let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-            let fileUrl = documentsUrl.appendingPathComponent("\(id).mp3")
+            let fileUrl = documentsUrl.appendingPathComponent("\(InternalFolderNames.downloadedSounds)\(id).mp3")
             guard FileManager().fileExists(atPath: fileUrl.path) else {
                 throw SoundError.fileNotFound
             }

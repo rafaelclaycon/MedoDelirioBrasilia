@@ -55,8 +55,8 @@ struct SoundList: View {
                                 .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
                                 .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                                 .onTapGesture {
-                                    dump(sound)
-                                    //viewModel.play(sound: sound)
+                                    //dump(sound)
+                                    viewModel.play(sound: sound)
                                 }
                         }
                     }
@@ -114,6 +114,7 @@ struct SoundList: View {
         
         lastUpdateDate = Date.now.iso8601withFractionalSeconds
         
+        _ = await loadLocalSounds()
         //print(Date.now.iso8601withFractionalSeconds)
     }
     

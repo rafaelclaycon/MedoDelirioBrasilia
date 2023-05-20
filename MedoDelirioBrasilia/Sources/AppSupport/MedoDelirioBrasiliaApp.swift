@@ -55,6 +55,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         
         prepareAudioPlayerOnMac()
         collectTelemetry()
+        createFoldersForDownloadedContent()
         
         return true
     }
@@ -185,6 +186,36 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         if hasSkipGetLinkInstructionsSet() {
             UserSettings.setShowExplicitContent(to: true)
             UserDefaults.standard.removeObject(forKey: "skipGetLinkInstructions")
+        }
+    }
+}
+
+extension AppDelegate {
+    
+    func createFoldersForDownloadedContent() {
+        createFolder(named: InternalFolderNames.downloadedSounds)
+        createFolder(named: InternalFolderNames.downloadedSongs)
+    }
+    
+    func createFolder(named folderName: String) {
+        let fileManager = FileManager.default
+        let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let downloadedSoundsURL = documentsURL.appendingPathComponent(folderName)
+        
+        do {
+            var isDirectory: ObjCBool = false
+            if !fileManager.fileExists(atPath: downloadedSoundsURL.path, isDirectory: &isDirectory) {
+                try fileManager.createDirectory(at: downloadedSoundsURL, withIntermediateDirectories: true, attributes: nil)
+                print(folderName + " folder created.")
+            } else {
+                if isDirectory.boolValue {
+                    print(folderName + " folder already exists.")
+                } else {
+                    print("A file with the name \(folderName) already exists.")
+                }
+            }
+        } catch {
+            print("Error creating \(folderName) folder: \(error)")
         }
     }
 }

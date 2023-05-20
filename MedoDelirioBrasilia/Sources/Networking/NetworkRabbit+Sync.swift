@@ -16,8 +16,8 @@ extension NetworkRabbit {
         guard let response = response as? HTTPURLResponse else {
             throw NetworkRabbitError.responseWasNotAnHTTPURLResponse
         }
-        guard response.statusCode == 200 else {
-            print(response.statusCode)
+        guard (200...299).contains(response.statusCode) else {
+            print(serverPath + "v3/update-events/\(lastDate) - Response: \(response.statusCode)")
             throw NetworkRabbitError.unexpectedStatusCode
         }
         

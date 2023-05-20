@@ -584,9 +584,9 @@ struct SoundsView: View {
                             Task {
                                 let url = URL(string: "http://170.187.141.103:8080/05C998A0-4085-434A-A8F3-12DA86270CD4.mp3")!
                                 do {
-                                    downloadedFilepath = try await NetworkRabbit.downloadFile(url: url)
+                                    downloadedFilepath = try await NetworkRabbit.downloadFile(from: url, into: "")
                                 } catch {
-                                    print(error.localizedDescription)
+                                    print(error)
                                 }
                             }
                         } label: {

@@ -9,10 +9,11 @@ import Foundation
 
 extension NetworkRabbit {
     
-    static func downloadFile(url: URL) async throws -> String {
-        let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-
-        let destinationUrl = documentsUrl.appendingPathComponent(url.lastPathComponent)
+    static func downloadFile(from url: URL, into subfolder: String) async throws -> String {
+        let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        print(documentsUrl.absoluteString)
+        let destinationUrl = documentsUrl.appendingPathComponent(subfolder + url.lastPathComponent)
+        print(destinationUrl)
         
         if FileManager().fileExists(atPath: destinationUrl.path) {
             print("File already exists [\(destinationUrl.path)]")
@@ -22,7 +23,11 @@ extension NetworkRabbit {
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
             let (data, response) = try await session.data(for: request)
-            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            guard let httpResponse = response as? HTTPURLResponse else {
+                throw FileError.unableToParseResponse
+            }
+            guard (200...299).contains(httpResponse.statusCode) else {
+                print("downloadFile() - Response: \(httpResponse.statusCode)")
                 throw FileError.downloadFailed
             }
             try data.write(to: destinationUrl, options: .atomic)
@@ -33,5 +38,5 @@ extension NetworkRabbit {
 
 enum FileError: Error {
     
-    case fileExists, downloadFailed
+    case fileExists, downloadFailed, unableToParseResponse
 }
