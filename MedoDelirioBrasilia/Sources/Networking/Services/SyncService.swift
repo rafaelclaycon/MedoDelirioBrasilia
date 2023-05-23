@@ -12,7 +12,7 @@ class SyncService {
     
     private let connectionManager: ConnectionManagerProtocol
     private let networkRabbit: NetworkRabbitProtocol
-    private let localDatabase: LocalDatabaseProtocol
+    let localDatabase: LocalDatabaseProtocol
     
     init(
         connectionManager: ConnectionManagerProtocol,
@@ -49,37 +49,32 @@ class SyncService {
         case .sound:
             switch updateEvent.eventType {
             case .created:
-                let url = URL(string: networkRabbit.serverPath + "v3/sound/\(updateEvent.contentId)")!
-                do {
-                    let sound: Sound = try await NetworkRabbit.get(from: url)
-                    try localDatabase.insert(sound: sound)
-                    
-                    let fileUrl = URL(string: "http://127.0.0.1:8080/sounds/\(updateEvent.contentId).mp3")!
-                    let downloadedFileUrl = try await NetworkRabbit.downloadFile(from: fileUrl, into: InternalFolderNames.downloadedSounds)
-                    print("File downloaded successfully at: \(downloadedFileUrl)")
-                } catch {
-                    print(error)
-                    print(error.localizedDescription)
-                }
+                await createSound(from: updateEvent)
                 
             case .metadataUpdated:
-                let url = URL(string: networkRabbit.serverPath + "v3/sound/\(updateEvent.contentId)")!
-                do {
-                    let sound: Sound = try await NetworkRabbit.get(from: url)
-                    try localDatabase.update(sound: sound)
-                } catch {
-                    print(error)
-                }
+                await updateSoundMetadata(with: updateEvent)
                 
             case .fileUpdated:
-                print("File updated - Not implemented yet")
+                updateSoundFile(updateEvent)
                 
             case .deleted:
-                print("Deleted - Not implemented yet")
+                deleteSound(updateEvent)
             }
             
         case .author:
-            print("Not implemented yet")
+            switch updateEvent.eventType {
+            case .created:
+                await createAuthor(from: updateEvent)
+                
+            case .metadataUpdated:
+                updateAuthorMetadata(with: updateEvent)
+                
+            case .fileUpdated:
+                break
+                
+            case .deleted:
+                deleteAuthor(updateEvent)
+            }
             
         case .song:
             print("Not implemented yet")

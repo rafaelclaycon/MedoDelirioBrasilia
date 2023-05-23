@@ -320,6 +320,8 @@
 		D94B040E2993383F00EB03CA /* Susto caralho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94B040A2993383F00EB03CA /* Susto caralho.mp3 */; };
 		D94B040F2993383F00EB03CA /* Medo e Delirio - Atencao la vem besteira.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94B040B2993383F00EB03CA /* Medo e Delirio - Atencao la vem besteira.mp3 */; };
 		D94B04112993388900EB03CA /* Mc Presuntinho - Cortina de fumaca trecho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94B04102993388900EB03CA /* Mc Presuntinho - Cortina de fumaca trecho.mp3 */; };
+		D94B5F662A1C9CF600B3A688 /* SyncService+Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94B5F652A1C9CF600B3A688 /* SyncService+Author.swift */; };
+		D94B5F682A1C9D0900B3A688 /* SyncService+Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94B5F672A1C9D0900B3A688 /* SyncService+Song.swift */; };
 		D94BA9ED2879EC7F001BD09C /* JoinFolderResearchBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94BA9EC2879EC7F001BD09C /* JoinFolderResearchBannerView.swift */; };
 		D94C393D29E6F0AB009169A7 /* Jair Bolsonaro - Que (meme cuica).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94C393A29E6F0AB009169A7 /* Jair Bolsonaro - Que (meme cuica).mp3 */; };
 		D94C393E29E6F0AB009169A7 /* Cristiano Botafogo - O terrivel roteirista do Medo e Delirio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94C393B29E6F0AB009169A7 /* Cristiano Botafogo - O terrivel roteirista do Medo e Delirio.mp3 */; };
@@ -1069,6 +1071,7 @@
 		D9917A112991530000FB6274 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9917A102991530000FB6274 /* Double+Extensions.swift */; };
 		D991E598284A94F70005705F /* Podium.swift in Sources */ = {isa = PBXBuildFile; fileRef = D991E597284A94F70005705F /* Podium.swift */; };
 		D992E8262A185C8A00137469 /* InternalFolderNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = D992E8252A185C8A00137469 /* InternalFolderNames.swift */; };
+		D992E8282A1BFF3100137469 /* SyncService+Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = D992E8272A1BFF3100137469 /* SyncService+Sound.swift */; };
 		D9943F152863CC4D002C6B97 /* A impiedosa justica de Deus.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9943F142863CC4D002C6B97 /* A impiedosa justica de Deus.mp3 */; };
 		D9943F172863DAE1002C6B97 /* FolderDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F162863DAE1002C6B97 /* FolderDetailView.swift */; };
 		D9943F1A286406AF002C6B97 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D9943F19286406AF002C6B97 /* Kingfisher */; };
@@ -1680,6 +1683,8 @@
 		D94B040A2993383F00EB03CA /* Susto caralho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Susto caralho.mp3"; sourceTree = "<group>"; };
 		D94B040B2993383F00EB03CA /* Medo e Delirio - Atencao la vem besteira.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Medo e Delirio - Atencao la vem besteira.mp3"; sourceTree = "<group>"; };
 		D94B04102993388900EB03CA /* Mc Presuntinho - Cortina de fumaca trecho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mc Presuntinho - Cortina de fumaca trecho.mp3"; sourceTree = "<group>"; };
+		D94B5F652A1C9CF600B3A688 /* SyncService+Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SyncService+Author.swift"; sourceTree = "<group>"; };
+		D94B5F672A1C9D0900B3A688 /* SyncService+Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SyncService+Song.swift"; sourceTree = "<group>"; };
 		D94BA9EC2879EC7F001BD09C /* JoinFolderResearchBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinFolderResearchBannerView.swift; sourceTree = "<group>"; };
 		D94C393A29E6F0AB009169A7 /* Jair Bolsonaro - Que (meme cuica).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Que (meme cuica).mp3"; sourceTree = "<group>"; };
 		D94C393B29E6F0AB009169A7 /* Cristiano Botafogo - O terrivel roteirista do Medo e Delirio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano Botafogo - O terrivel roteirista do Medo e Delirio.mp3"; sourceTree = "<group>"; };
@@ -2433,6 +2438,7 @@
 		D9917A102991530000FB6274 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		D991E597284A94F70005705F /* Podium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Podium.swift; sourceTree = "<group>"; };
 		D992E8252A185C8A00137469 /* InternalFolderNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalFolderNames.swift; sourceTree = "<group>"; };
+		D992E8272A1BFF3100137469 /* SyncService+Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SyncService+Sound.swift"; sourceTree = "<group>"; };
 		D9943F142863CC4D002C6B97 /* A impiedosa justica de Deus.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "A impiedosa justica de Deus.mp3"; sourceTree = "<group>"; };
 		D9943F162863DAE1002C6B97 /* FolderDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetailView.swift; sourceTree = "<group>"; };
 		D9943F1B28641917002C6B97 /* LocalDatabase+Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+Favorite.swift"; sourceTree = "<group>"; };
@@ -3812,6 +3818,9 @@
 			isa = PBXGroup;
 			children = (
 				D92694052A029A62007872D9 /* SyncService.swift */,
+				D992E8272A1BFF3100137469 /* SyncService+Sound.swift */,
+				D94B5F652A1C9CF600B3A688 /* SyncService+Author.swift */,
+				D94B5F672A1C9D0900B3A688 /* SyncService+Song.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -5898,8 +5907,10 @@
 				D9943F2C28643317002C6B97 /* FolderDetailViewViewModel.swift in Sources */,
 				D9C1372B29063D7D003E4ABF /* PrivacySettingsView.swift in Sources */,
 				D92C0CA82840162F009CF19A /* ContentSortOption.swift in Sources */,
+				D94B5F682A1C9D0900B3A688 /* SyncService+Song.swift in Sources */,
 				D93A029E2906E9F100A85FE2 /* JoinFolderResearchBannerViewViewModel.swift in Sources */,
 				D94EAB4F29FB1524004CD604 /* NetworkRabbit+Files.swift in Sources */,
+				D992E8282A1BFF3100137469 /* SyncService+Sound.swift in Sources */,
 				D958B1B028394EA40010F133 /* TrendsView.swift in Sources */,
 				D911070B28627216000B6F8F /* NotificationsSettingsView.swift in Sources */,
 				D9BCAC2D28B598FB0098FE15 /* AppIconCell.swift in Sources */,
@@ -5926,6 +5937,7 @@
 				D9CC025D28BD9EBD0021C1E6 /* GridHelper.swift in Sources */,
 				D9E18173298C82C700705DCA /* WordPluralization.swift in Sources */,
 				D916627D2874F1F9000A1B23 /* OnboardingView.swift in Sources */,
+				D94B5F662A1C9CF600B3A688 /* SyncService+Author.swift in Sources */,
 				D99DC19D28423AD7002B03B6 /* AuthorDetailViewViewModel.swift in Sources */,
 				D967E2BC2901C40700B21C11 /* CustomPhotoAlbum.swift in Sources */,
 				D98DBD35284919B1008544F8 /* NetworkRabbit.swift in Sources */,

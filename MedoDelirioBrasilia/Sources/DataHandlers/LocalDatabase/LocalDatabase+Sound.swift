@@ -57,4 +57,10 @@ extension LocalDatabase {
         
         try db.run(updateQuery)
     }
+    
+    func delete(soundId: String) throws {
+        let id = Expression<String>("id")
+        let deleteQuery = sound.filter(id == soundId).delete()
+        try db.run(deleteQuery)
+    }
 }
