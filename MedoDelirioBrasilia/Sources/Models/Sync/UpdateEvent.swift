@@ -14,4 +14,5 @@ struct UpdateEvent: Hashable, Codable, Identifiable {
     let dateTime: String
     let mediaType: MediaType
     let eventType: EventType
+    var didSucceed: Bool?
 }

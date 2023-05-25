@@ -18,9 +18,11 @@ extension SyncService {
             let fileUrl = URL(string: "http://127.0.0.1:8080/sounds/\(updateEvent.contentId).mp3")!
             let downloadedFileUrl = try await NetworkRabbit.downloadFile(from: fileUrl, into: InternalFolderNames.downloadedSounds)
             print("File downloaded successfully at: \(downloadedFileUrl)")
+            
+            try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
         } catch {
             print(error)
-            print(error.localizedDescription)
+            Logger.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
         }
     }
     
@@ -29,8 +31,10 @@ extension SyncService {
         do {
             let sound: Sound = try await NetworkRabbit.get(from: url)
             try localDatabase.update(sound: sound)
+            try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
         } catch {
             print(error)
+            Logger.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
         }
     }
     
@@ -42,8 +46,10 @@ extension SyncService {
         do {
             try localDatabase.delete(soundId: updateEvent.contentId)
             try removeSoundFile(named: "\(updateEvent.contentId).mp3")
+            try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
         } catch {
             print(error)
+            Logger.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
         }
     }
     

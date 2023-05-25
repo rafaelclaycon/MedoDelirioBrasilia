@@ -8,6 +8,8 @@ internal protocol LocalDatabaseProtocol {
     func insert(sound newSound: Sound) throws
     func update(sound updatedSound: Sound) throws
     func delete(soundId: String) throws
+    func markAsSucceeded(updateEventId: UUID) throws
+    func insert(syncLog newSyncLog: SyncLog)
 }
 
 class LocalDatabase: LocalDatabaseProtocol {
@@ -23,6 +25,8 @@ class LocalDatabase: LocalDatabaseProtocol {
     var userFolderContent = Table("userFolderContent")
     var sound = Table("sound")
     var author = Table("author")
+    var updateEventTable = Table("updateEvent")
+    var syncLogTable = Table("syncLog")
     
     // MARK: - Setup
     
@@ -65,7 +69,7 @@ extension LocalDatabase {
                 AddAudienceSharingStatisticTable(),
                 AddRankingTypeToAudienceSharingStatisticTable(),
                 AddDateAndVersionToUserFolderTables(),
-                AddSoundAndAuthorTables()]
+                AddSyncTables()]
     }
     
     var needsMigration: Bool {

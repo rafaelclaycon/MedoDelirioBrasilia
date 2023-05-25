@@ -18,7 +18,7 @@ extension AppDelegate {
                 print("Problem inserting Sound '\(sound.title)': \(error.localizedDescription)")
             }
         }
-        guard try! database.soundCount() == 1041 else {
+        guard try! database.soundCount() == 1054 else {
             return false
         }
         authorData.forEach { author in
@@ -28,6 +28,6 @@ extension AppDelegate {
                 print("Problem inserting Author '\(author.name)': \(error.localizedDescription)")
             }
         }
-        return try! database.getAuthorCount() == 367
+        return try! database.getAuthorCount() == 371
     }
 }

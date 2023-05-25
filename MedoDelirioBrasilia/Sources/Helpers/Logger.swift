@@ -61,5 +61,11 @@ class Logger {
                                  wasSuccessful: wasSuccessful)
         try? database.insert(networkCallLog: log)
     }
-
+    
+    static func logSyncError(description: String, updateEventId: String) {
+        let syncLog = SyncLog(logType: .error,
+                              description: description,
+                              updateEventId: updateEventId)
+        database.insert(syncLog: syncLog)
+    }
 }

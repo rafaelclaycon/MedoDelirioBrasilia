@@ -90,6 +90,12 @@ struct SoundList: View {
         print("fetchUpdates()")
         showUpdatingView = true
         updates = try await service.getUpdates(from: lastUpdateDate)
+        if var updates = updates {
+            for i in updates.indices {
+                updates[i].didSucceed = false
+                try database.insert(updateEvent: updates[i])
+            }
+        }
         return Double(updates?.count ?? 0)
     }
     
