@@ -9,25 +9,28 @@ import Foundation
 
 extension AppDelegate {
     
-    internal func moveSoundsAndAuthorsToDatabase() -> Bool {
+    internal func moveSoundsAndAuthorsToDatabase() {
         let soundData: [Sound] = Bundle.main.decodeJSON("sound_data.json")
         soundData.forEach { sound in
             do {
                 try database.insert(sound: sound)
             } catch {
-                print("Problem inserting Sound '\(sound.title)': \(error.localizedDescription)")
+                Logger.logSyncError(description: "Problem inserting Sound '\(sound.title)': \(error.localizedDescription)", updateEventId: "")
             }
         }
-        guard try! database.soundCount() == 1054 else {
-            return false
+        if let soundCount = try? database.soundCount() {
+            Logger.logSyncSuccess(description: "\(soundCount) Sounds imported from fixed data successfully.", updateEventId: "")
         }
+        
         authorData.forEach { author in
             do {
                 try database.insert(author: author)
             } catch {
-                print("Problem inserting Author '\(author.name)': \(error.localizedDescription)")
+                Logger.logSyncError(description: "Problem inserting Author '\(author.name)': \(error.localizedDescription)", updateEventId: "")
             }
         }
-        return try! database.getAuthorCount() == 371
+        if let authorCount = try? database.getAuthorCount() {
+            Logger.logSyncSuccess(description: "\(authorCount) Authors imported from fixed data successfully.", updateEventId: "")
+        }
     }
 }

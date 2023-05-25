@@ -46,11 +46,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         //print(database)
         
         if !hasMigratedSoundsAuthors {
-            if moveSoundsAndAuthorsToDatabase() {
-                hasMigratedSoundsAuthors = true
-            } else {
-                print("Issue moving Sounds.")
-            }
+            moveSoundsAndAuthorsToDatabase()
+            hasMigratedSoundsAuthors = true
         }
         
         prepareAudioPlayerOnMac()
