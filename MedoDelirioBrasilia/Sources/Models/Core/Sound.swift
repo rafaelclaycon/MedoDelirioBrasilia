@@ -18,7 +18,6 @@ struct Sound: Hashable, Codable, Identifiable {
     var dateAdded: Date?
     let duration: Double
     let isOffensive: Bool
-    let isNew: Bool?
     
     init(id: String = UUID().uuidString,
          title: String,
@@ -28,8 +27,8 @@ struct Sound: Hashable, Codable, Identifiable {
          filename: String = "",
          dateAdded: Date? = Date(),
          duration: Double = 0,
-         isOffensive: Bool = false,
-         isNew: Bool? = nil) {
+         isOffensive: Bool = false
+    ) {
         self.id = id
         self.title = title
         self.authorId = authorId
@@ -39,7 +38,5 @@ struct Sound: Hashable, Codable, Identifiable {
         self.dateAdded = dateAdded
         self.duration = duration
         self.isOffensive = isOffensive
-        self.isNew = isNew
     }
-
 }
