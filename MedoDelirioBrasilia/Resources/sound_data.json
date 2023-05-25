@@ -10776,5 +10776,27 @@
         "duration": 2.3,
         "isOffensive": false,
         "isNew": true
+    },
+    {
+        "id": "87EFA0B2-CC38-4B9F-B441-A832300CD483",
+        "title": "Tadinha, que barra",
+        "authorId": "E89F3DE4-7134-41BC-B833-CD734EA53D70",
+        "description": "Tadinha que barra",
+        "filename": "Marcus Majella e Paulo Gustavo - Tadinha, que barra.mp3",
+        "dateAdded": "2023-05-25T00:00:00Z",
+        "duration": 4.44,
+        "isOffensive": false,
+        "isNew": true
+    },
+    {
+        "id": "1183CF8C-5D28-436F-94AD-9ADB1297DB59",
+        "title": "Viii-aaaa-dooo",
+        "authorId": "E89F3DE4-7134-41BC-B833-CD734EA53D70",
+        "description": "Viii-aaaa-dooo viado",
+        "filename": "Marcus Majella e Paulo Gustavo - Vi-a-dooo.mp3",
+        "dateAdded": "2023-05-25T00:00:00Z",
+        "duration": 4.96,
+        "isOffensive": true,
+        "isNew": true
     }
 ]
