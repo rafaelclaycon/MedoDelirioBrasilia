@@ -34,7 +34,6 @@ struct AddSyncTables: Migration {
         let date_added = Expression<Date?>("dateAdded")
         let duration = Expression<Double>("duration")
         let is_offensive = Expression<Bool>("isOffensive")
-        let is_new = Expression<Bool?>("isNew")
         let is_from_server = Expression<Bool?>("isFromServer")
         
         try db.run(soundTable.create(ifNotExists: true) { t in
@@ -46,7 +45,6 @@ struct AddSyncTables: Migration {
             t.column(date_added)
             t.column(duration)
             t.column(is_offensive)
-            t.column(is_new)
             t.column(is_from_server)
         })
     }
