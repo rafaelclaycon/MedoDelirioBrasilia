@@ -174,7 +174,7 @@ struct AddToFolderView: View {
 struct AddToFolderView_Previews: PreviewProvider {
 
     static var previews: some View {
-        AddToFolderView(isBeingShown: .constant(true), hadSuccess: .constant(false), folderName: .constant(nil), pluralization: .constant(.singular), selectedSounds: [Sound(title: "ABCD", description: "", isNew: false)])
+        AddToFolderView(isBeingShown: .constant(true), hadSuccess: .constant(false), folderName: .constant(nil), pluralization: .constant(.singular), selectedSounds: [Sound(title: "ABCD", description: "")])
             .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
     }
 

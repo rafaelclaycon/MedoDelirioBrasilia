@@ -63,7 +63,13 @@ struct FolderDetailView: View {
                                 
                                 LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
                                     ForEach(viewModel.sounds) { sound in
-                                        SoundCell(sound: sound, favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()), nowPlaying: $viewModel.nowPlayingKeeper, selectedItems: $viewModel.selectionKeeper, currentSoundsListMode: $viewModel.currentSoundsListMode.wrappedValue)
+                                        SoundCell(sound: sound,
+                                                  isInsideFolder: true,
+                                                  favorites: .constant(Set<String>()),
+                                                  highlighted: .constant(Set<String>()),
+                                                  nowPlaying: $viewModel.nowPlayingKeeper,
+                                                  selectedItems: $viewModel.selectionKeeper,
+                                                  currentSoundsListMode: $viewModel.currentSoundsListMode.wrappedValue)
                                             .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
                                             .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                                             .onTapGesture {

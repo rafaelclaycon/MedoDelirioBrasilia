@@ -163,7 +163,12 @@ struct AuthorDetailView: View {
                             
                             LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
                                 ForEach(viewModel.sounds) { sound in
-                                    SoundCell(sound: sound, favorites: $viewModel.favoritesKeeper, highlighted: .constant(Set<String>()), nowPlaying: $viewModel.nowPlayingKeeper, selectedItems: $viewModel.selectionKeeper, currentSoundsListMode: $currentSoundsListMode)
+                                    SoundCell(sound: sound,
+                                              favorites: $viewModel.favoritesKeeper,
+                                              highlighted: .constant(Set<String>()),
+                                              nowPlaying: $viewModel.nowPlayingKeeper,
+                                              selectedItems: $viewModel.selectionKeeper,
+                                              currentSoundsListMode: $currentSoundsListMode)
                                         .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
                                         .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                                         .onTapGesture {
