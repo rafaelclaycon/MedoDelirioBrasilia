@@ -15,9 +15,7 @@ extension SyncService {
             let sound: Sound = try await NetworkRabbit.get(from: url)
             try localDatabase.insert(sound: sound)
             
-            let fileUrl = URL(string: "http://127.0.0.1:8080/sounds/\(updateEvent.contentId).mp3")!
-            let downloadedFileUrl = try await NetworkRabbit.downloadFile(from: fileUrl, into: InternalFolderNames.downloadedSounds)
-            print("File downloaded successfully at: \(downloadedFileUrl)")
+            try await downloadFile(updateEvent.contentId)
             
             try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
         } catch {
@@ -38,8 +36,13 @@ extension SyncService {
         }
     }
     
-    func updateSoundFile(_ updateEvent: UpdateEvent) {
-        print("File updated - Not implemented yet")
+    func updateSoundFile(_ updateEvent: UpdateEvent) async {
+        do {
+            try await downloadFile(updateEvent.contentId)
+        } catch {
+            print(error)
+            Logger.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
+        }
     }
     
     func deleteSound(_ updateEvent: UpdateEvent) {
@@ -61,5 +64,14 @@ extension SyncService {
         if fileManager.fileExists(atPath: file.path) {
             try fileManager.removeItem(at: file)
         }
+    }
+    
+    private func downloadFile(_ contentId: String) async throws {
+        let fileUrl = URL(string: "http://127.0.0.1:8080/sounds/\(contentId).mp3")!
+        
+        try removeSoundFile(named: "\(contentId).mp3")
+        
+        let downloadedFileUrl = try await NetworkRabbit.downloadFile(from: fileUrl, into: InternalFolderNames.downloadedSounds)
+        print("File downloaded successfully at: \(downloadedFileUrl)")
     }
 }
