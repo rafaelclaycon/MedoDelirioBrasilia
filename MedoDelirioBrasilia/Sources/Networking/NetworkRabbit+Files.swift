@@ -28,7 +28,7 @@ extension NetworkRabbit {
             }
             guard (200...299).contains(httpResponse.statusCode) else {
                 print("downloadFile() - Response: \(httpResponse.statusCode)")
-                throw FileError.downloadFailed
+                throw FileError.downloadFailed(httpResponse.statusCode)
             }
             try data.write(to: destinationUrl, options: .atomic)
             return destinationUrl.path
@@ -38,5 +38,19 @@ extension NetworkRabbit {
 
 enum FileError: Error {
     
-    case fileExists, downloadFailed, unableToParseResponse
+    case fileExists, downloadFailed(Int), unableToParseResponse
+}
+
+extension FileError: LocalizedError {
+    
+    public var errorDescription: String? {
+        switch self {
+        case .fileExists:
+            return NSLocalizedString("File exists.", comment: "")
+        case .downloadFailed(let errorCode):
+            return NSLocalizedString("Download failed. HTTP response code: \(errorCode)", comment: "")
+        case .unableToParseResponse:
+            return NSLocalizedString("Unable to parse response.", comment: "")
+        }
+    }
 }

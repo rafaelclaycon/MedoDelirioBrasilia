@@ -13,11 +13,11 @@ extension SyncService {
         let url = URL(string: networkRabbit.serverPath + "v3/sound/\(updateEvent.contentId)")!
         do {
             let sound: Sound = try await NetworkRabbit.get(from: url)
-            try localDatabase.insert(sound: sound)
+            try injectedDatabase.insert(sound: sound)
             
             try await downloadFile(updateEvent.contentId)
             
-            try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
+            try injectedDatabase.markAsSucceeded(updateEventId: updateEvent.id)
         } catch {
             print(error)
             Logger.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
@@ -28,8 +28,8 @@ extension SyncService {
         let url = URL(string: networkRabbit.serverPath + "v3/sound/\(updateEvent.contentId)")!
         do {
             let sound: Sound = try await NetworkRabbit.get(from: url)
-            try localDatabase.update(sound: sound)
-            try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
+            try injectedDatabase.update(sound: sound)
+            try injectedDatabase.markAsSucceeded(updateEventId: updateEvent.id)
         } catch {
             print(error)
             Logger.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
@@ -39,6 +39,8 @@ extension SyncService {
     func updateSoundFile(_ updateEvent: UpdateEvent) async {
         do {
             try await downloadFile(updateEvent.contentId)
+            try injectedDatabase.setIsFromServer(to: true, on: updateEvent.contentId)
+            try injectedDatabase.markAsSucceeded(updateEventId: updateEvent.id)
         } catch {
             print(error)
             Logger.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
@@ -47,19 +49,21 @@ extension SyncService {
     
     func deleteSound(_ updateEvent: UpdateEvent) {
         do {
-            try localDatabase.delete(soundId: updateEvent.contentId)
-            try removeSoundFile(named: "\(updateEvent.contentId).mp3")
-            try localDatabase.markAsSucceeded(updateEventId: updateEvent.id)
+            try injectedDatabase.delete(soundId: updateEvent.contentId)
+            try removeSoundFileIfExists(named: updateEvent.contentId)
+            try injectedDatabase.markAsSucceeded(updateEventId: updateEvent.id)
         } catch {
             print(error)
             Logger.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
         }
     }
     
-    private func removeSoundFile(named filename: String) throws {
+    // MARK: - Internal
+    
+    private func removeSoundFileIfExists(named filename: String) throws {
         let documentsFolder = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let fileManager = FileManager.default
-        let file = documentsFolder.appendingPathComponent(filename)
+        let file = documentsFolder.appendingPathComponent("\(InternalFolderNames.downloadedSounds)\(filename).mp3")
         
         if fileManager.fileExists(atPath: file.path) {
             try fileManager.removeItem(at: file)
@@ -69,7 +73,7 @@ extension SyncService {
     private func downloadFile(_ contentId: String) async throws {
         let fileUrl = URL(string: "http://127.0.0.1:8080/sounds/\(contentId).mp3")!
         
-        try removeSoundFile(named: "\(contentId).mp3")
+        try removeSoundFileIfExists(named: contentId)
         
         let downloadedFileUrl = try await NetworkRabbit.downloadFile(from: fileUrl, into: InternalFolderNames.downloadedSounds)
         print("File downloaded successfully at: \(downloadedFileUrl)")

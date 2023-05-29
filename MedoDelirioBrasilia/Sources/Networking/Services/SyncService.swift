@@ -12,7 +12,7 @@ class SyncService {
     
     private let connectionManager: ConnectionManagerProtocol
     private let networkRabbit: NetworkRabbitProtocol
-    let localDatabase: LocalDatabaseProtocol
+    let injectedDatabase: LocalDatabaseProtocol
     
     init(
         connectionManager: ConnectionManagerProtocol,
@@ -21,7 +21,7 @@ class SyncService {
     ) {
         self.connectionManager = connectionManager
         self.networkRabbit = networkRabbit
-        self.localDatabase = localDatabase
+        self.injectedDatabase = localDatabase
     }
     
     func getUpdates(from updateDateToConsider: String) async throws -> [UpdateEvent] {
@@ -55,7 +55,7 @@ class SyncService {
                 await updateSoundMetadata(with: updateEvent)
                 
             case .fileUpdated:
-                updateSoundFile(updateEvent)
+                await updateSoundFile(updateEvent)
                 
             case .deleted:
                 deleteSound(updateEvent)

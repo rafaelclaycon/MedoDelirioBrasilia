@@ -10,6 +10,7 @@ internal protocol LocalDatabaseProtocol {
     func delete(soundId: String) throws
     func markAsSucceeded(updateEventId: UUID) throws
     func insert(syncLog newSyncLog: SyncLog)
+    func setIsFromServer(to value: Bool, on soundId: String) throws
 }
 
 class LocalDatabase: LocalDatabaseProtocol {
