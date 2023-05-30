@@ -11,6 +11,7 @@ internal protocol LocalDatabaseProtocol {
     func markAsSucceeded(updateEventId: UUID) throws
     func insert(syncLog newSyncLog: SyncLog)
     func setIsFromServer(to value: Bool, on soundId: String) throws
+    func insert(author newAuthor: Author) throws
 }
 
 class LocalDatabase: LocalDatabaseProtocol {

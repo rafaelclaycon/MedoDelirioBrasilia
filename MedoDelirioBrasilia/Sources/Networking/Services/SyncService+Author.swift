@@ -10,11 +10,11 @@ import Foundation
 extension SyncService {
     
     func createAuthor(from updateEvent: UpdateEvent) async {
-        let url = URL(string: networkRabbit.serverPath + "v3/sound/\(updateEvent.contentId)")!
+        let url = URL(string: networkRabbit.serverPath + "v3/author/\(updateEvent.contentId)")!
         do {
-            let sound: Sound = try await NetworkRabbit.get(from: url)
+            let author: Author = try await NetworkRabbit.get(from: url)
             
-            try injectedDatabase.insert(sound: sound)
+            try injectedDatabase.insert(author: author)
             
             try injectedDatabase.markAsSucceeded(updateEventId: updateEvent.id)
         } catch {
