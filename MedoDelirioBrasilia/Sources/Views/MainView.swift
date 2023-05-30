@@ -28,13 +28,18 @@ struct MainView: View {
     @AppStorage("lastUpdateDate") private var lastUpdateDate = "all"
     @State private var localUnsuccessfulUpdates: [UpdateEvent]? = nil
     @State private var serverUpdates: [UpdateEvent]? = nil
+    @State private var updateSoundList: Bool = false
+    
+    private let service = SyncService(connectionManager: ConnectionManager.shared,
+                                      networkRabbit: networkRabbit,
+                                      localDatabase: database)
     
     var body: some View {
         ZStack {
             if UIDevice.current.userInterfaceIdiom == .phone {
                 TabView(selection: $tabSelection) {
                     NavigationView {
-                        NewSoundsView()
+                        NewSoundsView(updateList: $updateSoundList)
 //                        SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
 //                                                                  authorSortOption: AuthorSortOption.nameAscending.rawValue,
 //                                                                  currentSoundsListMode: $currentSoundsListMode),
@@ -143,6 +148,8 @@ struct MainView: View {
             do {
                 try await retryLocal()
                 try await syncDataWithServer()
+                updateSoundList = true
+                showSyncProgressView = false
             } catch {
                 print(error)
             }
@@ -211,8 +218,6 @@ struct MainView: View {
         }
         
         lastUpdateDate = Date.now.iso8601withFractionalSeconds
-        
-        _ = await loadLocalSounds()
         //print(Date.now.iso8601withFractionalSeconds)
     }
     
@@ -234,8 +239,6 @@ struct MainView: View {
                 currentAmount += 1.0
             }
         }
-        
-        _ = await loadLocalSounds()
     }
 }
 

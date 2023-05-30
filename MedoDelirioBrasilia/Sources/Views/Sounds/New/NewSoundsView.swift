@@ -9,10 +9,12 @@ import SwiftUI
 
 struct NewSoundsView: View {
     
+    @Binding var updateList: Bool
+    
     var body: some View {
         ZStack {
             VStack {
-                SoundList()
+                SoundList(updateList: $updateList)
             }
             .navigationTitle(Text("Sons"))
         }
@@ -22,6 +24,6 @@ struct NewSoundsView: View {
 struct NewSoundsView_Previews: PreviewProvider {
     
     static var previews: some View {
-        NewSoundsView()
+        NewSoundsView(updateList: .constant(false))
     }
 }
