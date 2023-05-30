@@ -48,6 +48,8 @@ class AuthorDetailViewViewModel: ObservableObject {
     func reloadList(withSounds allSounds: [Sound],
                     andFavorites favorites: [Favorite]?,
                     allowSensitiveContent: Bool) {
+        guard let allAuthors = try? database.allAuthors() else { return }
+        
         var soundsCopy = allSounds
         
         if allowSensitiveContent == false {
@@ -60,7 +62,7 @@ class AuthorDetailViewViewModel: ObservableObject {
         if self.sounds.count > 0 {
             // Needed because author names live in a different file.
             for i in 0...(self.sounds.count - 1) {
-                self.sounds[i].authorName = authorData.first(where: { $0.id == self.sounds[i].authorId })?.name ?? Shared.unknownAuthor
+                self.sounds[i].authorName = allAuthors.first(where: { $0.id == self.sounds[i].authorId })?.name ?? Shared.unknownAuthor
             }
             
             // Populate Favorites Keeper to display favorite cells accordingly

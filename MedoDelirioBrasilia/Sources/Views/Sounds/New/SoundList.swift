@@ -81,11 +81,6 @@ struct SoundList: View {
             
             do {
                 var allSounds = try database.allSounds()
-                
-                for i in 0...(allSounds.count - 1) {
-                    allSounds[i].authorName = authorData.first(where: { $0.id == allSounds[i].authorId })?.name ?? Shared.unknownAuthor
-                }
-                
                 allSounds.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
                 
                 await MainActor.run {

@@ -28,7 +28,8 @@ class Podium {
                 continue
             }
             
-            filteredAuthors = authorData.filter({ $0.id == filteredSounds[0].authorId })
+            guard let allAuthors = try? database.allAuthors() else { return nil }
+            filteredAuthors = allAuthors.filter({ $0.id == filteredSounds[0].authorId })
             
             guard filteredAuthors.count > 0 else {
                 continue
@@ -64,7 +65,8 @@ class Podium {
                 continue
             }
             
-            filteredAuthors = authorData.filter({ $0.id == filteredSounds[0].authorId })
+            guard let allAuthors = try? database.allAuthors() else { return nil }
+            filteredAuthors = allAuthors.filter({ $0.id == filteredSounds[0].authorId })
             
             guard filteredAuthors.count > 0 else {
                 continue

@@ -22,6 +22,7 @@ extension AppDelegate {
             Logger.logSyncSuccess(description: "\(soundCount) Sounds imported from fixed data successfully.", updateEventId: "")
         }
         
+        let authorData: [Author] = Bundle.main.decodeJSON("author_data.json")
         authorData.forEach { author in
             do {
                 try database.insert(author: author)

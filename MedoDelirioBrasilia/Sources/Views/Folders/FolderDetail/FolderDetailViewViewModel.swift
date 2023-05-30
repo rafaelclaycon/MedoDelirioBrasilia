@@ -48,11 +48,8 @@ class FolderDetailViewViewModel: ObservableObject {
             return
         }
         
-        // TODO: - Fix this
-//        let sounds = soundData.filter { sound in
-//            folderContents.contains { $0.contentId == sound.id }
-//        }
-        let sounds: [Sound] = []
+        let contentIds = folderContents.map { $0.contentId }
+        guard let sounds = try? database.sounds(withIds: contentIds) else { return }
         
         guard sounds.count > 0 else {
             self.sounds = [Sound]()
@@ -63,7 +60,6 @@ class FolderDetailViewViewModel: ObservableObject {
         self.sounds = sounds
         
         for i in stride(from: 0, to: self.sounds.count, by: 1) {
-            self.sounds[i].authorName = authorData.first(where: { $0.id == self.sounds[i].authorId })?.name ?? Shared.unknownAuthor
             // DateAdded here is date added to folder not to the app as it means outside folders.
             self.sounds[i].dateAdded = folderContents.first(where: { $0.contentId == self.sounds[i].id })?.dateAdded
         }

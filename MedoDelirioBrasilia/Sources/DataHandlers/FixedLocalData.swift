@@ -2,7 +2,6 @@ import Foundation
 import SwiftUI
 import ImageIO
 
-let authorData: [Author] = load("author_data.json")
 let songData: [Song] = load("song_data.json")
 
 func load<T: Decodable>(_ filename: String) -> T {

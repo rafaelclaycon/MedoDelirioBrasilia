@@ -66,6 +66,10 @@
             argument = "-UNDER_DEVELOPMENT"
             isEnabled = "YES">
          </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-USE_NEW_SOUND_LIST"
+            isEnabled = "NO">
+         </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>
    <ProfileAction

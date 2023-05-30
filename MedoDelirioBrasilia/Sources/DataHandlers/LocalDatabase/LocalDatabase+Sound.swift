@@ -21,20 +21,56 @@ extension LocalDatabase {
     
     func allSounds() throws -> [Sound] {
         var queriedSounds = [Sound]()
-        for queriedSound in try db.prepare(sound) {
-            queriedSounds.append(try queriedSound.decode())
+        
+        let author_id = Expression<String>("authorId")
+        let id = Expression<String>("id")
+        let name = Expression<String>("name")
+        
+        for queriedSound in try db.prepare(sound.select(sound[*], author[name]).join(author, on: sound[author_id] == author[id])) {
+            var soundData: Sound = try queriedSound.decode()
+            let authorName = try queriedSound.get(author[name])
+            soundData.authorName = authorName
+            queriedSounds.append(soundData)
         }
         return queriedSounds
     }
     
     func sound(withId soundId: String) throws -> Sound? {
         var queriedSounds = [Sound]()
+        
+        let author_id = Expression<String>("authorId")
         let id = Expression<String>("id")
-        let query = sound.filter(id == soundId)
+        let name = Expression<String>("name")
+        
+        let query = sound.select(sound[*], author[name]).join(author, on: sound[author_id] == author[id]).filter(id == soundId)
         for queriedSound in try db.prepare(query) {
-            queriedSounds.append(try queriedSound.decode())
+            var soundData: Sound = try queriedSound.decode()
+            let authorName = try queriedSound.get(author[name])
+            soundData.authorName = authorName
+            queriedSounds.append(soundData)
         }
         return queriedSounds.first
+    }
+    
+    func sounds(withIds soundIds: [String]) throws -> [Sound] {
+        var queriedSounds = [Sound]()
+        
+        let author_id = Expression<String>("authorId")
+        let id = Expression<String>("id")
+        let name = Expression<String>("name")
+        
+        let query = sound
+            .select(sound[*], author[name])
+            .join(author, on: sound[author_id] == author[id])
+            .filter(soundIds.contains(sound[id]))
+        
+        for queriedSound in try db.prepare(query) {
+            var soundData: Sound = try queriedSound.decode()
+            let authorName = try queriedSound.get(author[name])
+            soundData.authorName = authorName
+            queriedSounds.append(soundData)
+        }
+        return queriedSounds
     }
     
 //    func update(sound updatedSound: Sound) throws {

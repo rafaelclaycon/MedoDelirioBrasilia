@@ -15,7 +15,8 @@ class AuthorsViewViewModel: ObservableObject {
     @Published var currentActivity: NSUserActivity? = nil
     
     func reloadList(sortedBy sortOption: AuthorSortOption) {
-        self.authors = authorData
+        guard let allAuthors = try? database.allAuthors() else { return }
+        self.authors = allAuthors
         
         if self.authors.count > 0 {
             self.authors.indices.forEach {
