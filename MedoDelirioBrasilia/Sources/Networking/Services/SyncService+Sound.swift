@@ -71,7 +71,7 @@ extension SyncService {
     }
     
     private func downloadFile(_ contentId: String) async throws {
-        let fileUrl = URL(string: "http://127.0.0.1:8080/sounds/\(contentId).mp3")!
+        let fileUrl = URL(string: baseURL + "sounds/\(contentId).mp3")!
         
         try removeSoundFileIfExists(named: contentId)
         
