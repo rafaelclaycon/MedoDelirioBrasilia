@@ -65,35 +65,35 @@ struct SoundList: View {
                     .padding(.top, 7)
                 }
             }
-            .onAppear {
-                Task { @MainActor in
-                    if await loadLocalSounds() {
-                        do {
-                            let localResult = try await fetchLocalUnsuccessfulUpdates()
-                            print("Resultado do fetchLocalUnsuccessfulUpdates: \(localResult)")
-                            if localResult > 0 {
-                                await MainActor.run {
-                                    showSyncProgressView = true
-                                    totalAmount = localResult
-                                }
-                                try await syncUnsuccessful()
-                            }
-                            
-                            let result = try await fetchServerUpdates()
-                            print("Resultado do fetchServerUpdates: \(result)")
-                            if result > 0 {
-                                await MainActor.run {
-                                    showSyncProgressView = true
-                                    totalAmount = result
-                                }
-                                try await serverSync()
-                            }
-                        } catch {
-                            print(error)
-                        }
-                    }
-                }
-            }
+//            .onAppear {
+//                Task { @MainActor in
+//                    if await loadLocalSounds() {
+//                        do {
+//                            let localResult = try await fetchLocalUnsuccessfulUpdates()
+//                            print("Resultado do fetchLocalUnsuccessfulUpdates: \(localResult)")
+//                            if localResult > 0 {
+//                                await MainActor.run {
+//                                    showSyncProgressView = true
+//                                    totalAmount = localResult
+//                                }
+//                                try await syncUnsuccessful()
+//                            }
+//                            
+//                            let result = try await fetchServerUpdates()
+//                            print("Resultado do fetchServerUpdates: \(result)")
+//                            if result > 0 {
+//                                await MainActor.run {
+//                                    showSyncProgressView = true
+//                                    totalAmount = result
+//                                }
+//                                try await serverSync()
+//                            }
+//                        } catch {
+//                            print(error)
+//                        }
+//                    }
+//                }
+//            }
         }
     }
     
