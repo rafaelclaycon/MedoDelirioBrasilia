@@ -12,7 +12,7 @@ import UIKit
 /// These raw values match the names in the app's project settings under
 /// `ASSETCATALOG_COMPILER_APPICON_NAME` and `ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES`.
 enum Icon: String, CaseIterable, Identifiable {
-
+    
     case primary              = "AppIcon"
     case odioNojo             = "AppIcon-OdioNojo"
 //    case terrivelEdit         = "AppIcon-TerrivelEdit"
@@ -26,6 +26,7 @@ enum Icon: String, CaseIterable, Identifiable {
     case wwdc23               = "AppIcon-WWDC23"
     
     var id: String { self.rawValue }
+    
     var marketingName: String {
         switch self {
         case .primary:
@@ -52,6 +53,7 @@ enum Icon: String, CaseIterable, Identifiable {
             return "WWDC 2023"
         }
     }
+    
     var isOffensive: Bool {
         switch self {
         case .primary:
@@ -78,11 +80,10 @@ enum Icon: String, CaseIterable, Identifiable {
             return false
         }
     }
-
 }
 
 class AppIcon: ObservableObject, Equatable {
-
+    
     @Published var appIcon: Icon = .primary
     
     static func == (lhs: AppIcon, rhs: AppIcon) -> Bool {
@@ -117,5 +118,4 @@ class AppIcon: ObservableObject, Equatable {
             appIcon = Icon(rawValue: iconName!)!
         }
     }
-
 }

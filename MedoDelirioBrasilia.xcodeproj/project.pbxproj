@@ -1100,6 +1100,11 @@
 		D9A3AB6D28F062580064CB7A /* TimeKeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A3AB6C28F062580064CB7A /* TimeKeeper.swift */; };
 		D9A3AB6F28F063FF0064CB7A /* TimeKeeperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A3AB6E28F063FF0064CB7A /* TimeKeeperTests.swift */; };
 		D9A4D010290A18ED00EB57B3 /* NetworkRabbit+StillAliveSignal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A4D00F290A18ED00EB57B3 /* NetworkRabbit+StillAliveSignal.swift */; };
+		D9A7AAA02A2A9B580039012E /* Jair Bolsonaro - Chega de frescura e de mimimi vao ficar chorando ate quando.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9A7AA9B2A2A9B580039012E /* Jair Bolsonaro - Chega de frescura e de mimimi vao ficar chorando ate quando.mp3 */; };
+		D9A7AAA12A2A9B580039012E /* Silas Malafaia - O PT.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9A7AA9C2A2A9B580039012E /* Silas Malafaia - O PT.mp3 */; };
+		D9A7AAA22A2A9B580039012E /* Rogerinho do Inga - Bater uma salva de palmas aqui pro profissional.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9A7AA9D2A2A9B580039012E /* Rogerinho do Inga - Bater uma salva de palmas aqui pro profissional.mp3 */; };
+		D9A7AAA32A2A9B580039012E /* Jair Bolsonaro - Po, querem me deixar como a rainha da Inglaterra.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9A7AA9E2A2A9B580039012E /* Jair Bolsonaro - Po, querem me deixar como a rainha da Inglaterra.mp3 */; };
+		D9A7AAA42A2A9B580039012E /* Eduardo Pazuello - Pra que essa ansiedade, essa angustia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9A7AA9F2A2A9B580039012E /* Eduardo Pazuello - Pra que essa ansiedade, essa angustia.mp3 */; };
 		D9A8AB212853EB5500B5A94B /* InitialMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A8AB202853EB5500B5A94B /* InitialMigration.swift */; };
 		D9A8AB2528543F8E00B5A94B /* SharingLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A8AB2428543F8E00B5A94B /* SharingLogCell.swift */; };
 		D9A8AB282854436500B5A94B /* Date+ToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A8AB272854436500B5A94B /* Date+ToString.swift */; };
@@ -2447,6 +2452,11 @@
 		D9A3AB6C28F062580064CB7A /* TimeKeeper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeKeeper.swift; sourceTree = "<group>"; };
 		D9A3AB6E28F063FF0064CB7A /* TimeKeeperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeKeeperTests.swift; sourceTree = "<group>"; };
 		D9A4D00F290A18ED00EB57B3 /* NetworkRabbit+StillAliveSignal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+StillAliveSignal.swift"; sourceTree = "<group>"; };
+		D9A7AA9B2A2A9B580039012E /* Jair Bolsonaro - Chega de frescura e de mimimi vao ficar chorando ate quando.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Chega de frescura e de mimimi vao ficar chorando ate quando.mp3"; sourceTree = "<group>"; };
+		D9A7AA9C2A2A9B580039012E /* Silas Malafaia - O PT.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Silas Malafaia - O PT.mp3"; sourceTree = "<group>"; };
+		D9A7AA9D2A2A9B580039012E /* Rogerinho do Inga - Bater uma salva de palmas aqui pro profissional.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rogerinho do Inga - Bater uma salva de palmas aqui pro profissional.mp3"; sourceTree = "<group>"; };
+		D9A7AA9E2A2A9B580039012E /* Jair Bolsonaro - Po, querem me deixar como a rainha da Inglaterra.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Po, querem me deixar como a rainha da Inglaterra.mp3"; sourceTree = "<group>"; };
+		D9A7AA9F2A2A9B580039012E /* Eduardo Pazuello - Pra que essa ansiedade, essa angustia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eduardo Pazuello - Pra que essa ansiedade, essa angustia.mp3"; sourceTree = "<group>"; };
 		D9A8AB202853EB5500B5A94B /* InitialMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialMigration.swift; sourceTree = "<group>"; };
 		D9A8AB2428543F8E00B5A94B /* SharingLogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingLogCell.swift; sourceTree = "<group>"; };
 		D9A8AB272854436500B5A94B /* Date+ToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ToString.swift"; sourceTree = "<group>"; };
@@ -2716,6 +2726,11 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9A7AA9F2A2A9B580039012E /* Eduardo Pazuello - Pra que essa ansiedade, essa angustia.mp3 */,
+				D9A7AA9B2A2A9B580039012E /* Jair Bolsonaro - Chega de frescura e de mimimi vao ficar chorando ate quando.mp3 */,
+				D9A7AA9E2A2A9B580039012E /* Jair Bolsonaro - Po, querem me deixar como a rainha da Inglaterra.mp3 */,
+				D9A7AA9D2A2A9B580039012E /* Rogerinho do Inga - Bater uma salva de palmas aqui pro profissional.mp3 */,
+				D9A7AA9C2A2A9B580039012E /* Silas Malafaia - O PT.mp3 */,
 				D94F2FC42A1FDC7500214519 /* Marcus Majella e Paulo Gustavo - Tadinha, que barra.mp3 */,
 				D94F2FC32A1FDC7500214519 /* Marcus Majella e Paulo Gustavo - Vi-a-dooo.mp3 */,
 				D9C91F822A1534EF008F0BCD /* Esse Menino - Rimou.mp3 */,
@@ -5214,6 +5229,7 @@
 				D975FEC92880B4F20035E6F2 /* SBT NEWS - Bolsonaro - Qualquer decisao do Alexandre de Moraes esse presidente nao mais cumprira.mp3 in Resources */,
 				D975FED32880B4F20035E6F2 /* Pazuello - O cu dilatado.mp3 in Resources */,
 				D9AF10C4290AD50D0054741F /* Wajngarten - Ate aqui todo mundo ta acompanhando.mp3 in Resources */,
+				D9A7AAA12A2A9B580039012E /* Silas Malafaia - O PT.mp3 in Resources */,
 				D97500102880B4F20035E6F2 /* CHOQUE DE CULTURA - Renan - Inescrupulosos.mp3 in Resources */,
 				D92AD1AB28832BDF001CBCDF /* PETIT JOURNAL - Tanguy Baghdadi - Porra, ta errado.mp3 in Resources */,
 				D9CEB760299806FF00DF8497 /* Meu irmao ta no Supremo.mp3 in Resources */,
@@ -5244,12 +5260,14 @@
 				D921F896288B07CB003979CC /* Fa do Armandinho - Vou ver se pego um corpinho hoje la.mp3 in Resources */,
 				D975FE802880B4F20035E6F2 /* jonathan frakes - You're wrong.mp3 in Resources */,
 				D975001D2880B4F20035E6F2 /* Quercia - E mentira, e tudo mentira.mp3 in Resources */,
+				D9A7AAA42A2A9B580039012E /* Eduardo Pazuello - Pra que essa ansiedade, essa angustia.mp3 in Resources */,
 				D975FE352880B4F20035E6F2 /* Pazuello - Que que ce vai fazer nada.mp3 in Resources */,
 				D975FF8A2880B4F20035E6F2 /* Raca Negra - Que Pena short meme.mp3 in Resources */,
 				D97500322880B4F20035E6F2 /* Bolsonaro - Nao tem como nao dar errado vai dar errado.mp3 in Resources */,
 				D97500402880B4F20035E6F2 /* Heloisa Faissol - Cala a boca vai tomar no cu.mp3 in Resources */,
 				D975FE822880B4F20035E6F2 /* TV BRASIL - Bolsonaro - Bom dia a todos, menos pra primeira dama.mp3 in Resources */,
 				D9B9ED92295651FE00C25181 /* Eliane Cantanhede - Uau.mp3 in Resources */,
+				D9A7AAA32A2A9B580039012E /* Jair Bolsonaro - Po, querem me deixar como a rainha da Inglaterra.mp3 in Resources */,
 				D975FFA12880B4F20035E6F2 /* Pedro Doria - Eles mentem mentem na cara dura mentem sem ter vergonha de mentir.mp3 in Resources */,
 				D975FF042880B4F20035E6F2 /* Samira Close - Deixa eu te falar uma coisa voce tem quantos anos menino.mp3 in Resources */,
 				D975FE9A2880B4F20035E6F2 /* Tite - Fala muito!.mp3 in Resources */,
@@ -5395,6 +5413,7 @@
 				D975FFFC2880B4F20035E6F2 /* Keila Mellman -  nao e de bom tom short meme.mp3 in Resources */,
 				D97500272880B4F20035E6F2 /* Carioca puto - Vai tomar no cu cara toda hora essa discussao cara.mp3 in Resources */,
 				D975FF1A2880B4F20035E6F2 /* Bolsonaro - Ta sendo superdimensionado o poder destruidor desse virus.mp3 in Resources */,
+				D9A7AAA22A2A9B580039012E /* Rogerinho do Inga - Bater uma salva de palmas aqui pro profissional.mp3 in Resources */,
 				D989D3B72921AD3500DFB333 /* Renan (Choque de Cultura) - A sensibilidade incrivel desse homem.mp3 in Resources */,
 				D975FFB42880B4F20035E6F2 /* Bolsonaro - Assim como na China, a curva ja esta na descendente, nos vamos passar por isso tambem.mp3 in Resources */,
 				D998815629C4A588007A8C7B /* Trote Luiz Pareto - Quem fala aqui e um advogado.mp3 in Resources */,
@@ -5529,6 +5548,7 @@
 				499624E82977B67F008A6FFD /* Flavio Dino vai vacinar voce.mp3 in Resources */,
 				D975FE3A2880B4F20035E6F2 /* Malafaia - Jair Messias Bolsonaro sem respostas.mp3 in Resources */,
 				D94C9F6629E87A8900A2F0BE /* Andre Starqueza - Ai, eu tambem.mp3 in Resources */,
+				D9A7AAA02A2A9B580039012E /* Jair Bolsonaro - Chega de frescura e de mimimi vao ficar chorando ate quando.mp3 in Resources */,
 				D975FFB12880B4F20035E6F2 /* Bolsonaro - Que e a maneira que voce tem de realmente pensar em coisa seria no pais.mp3 in Resources */,
 				D9CEB7522998009900DF8497 /* Lula (Cristiano Botafogo) - Voce e maluco ou voce e idiota me responde companheiro.mp3 in Resources */,
 				D975FFA92880B4F20035E6F2 /* Boldo - Deixa com a cara magoada.mp3 in Resources */,

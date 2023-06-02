@@ -10558,5 +10558,55 @@
         "dateAdded": "2023-05-25T00:00:00Z",
         "duration": 4.96,
         "isOffensive": true
+    },
+    {
+        "id": "4439C46B-EBB2-475A-A802-05F5F1B5A021",
+        "title": "Chega de frescura e de mimimi, vão ficar chorando até quando",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Chega de frescura e de mimimi vao ficar chorando ate quando",
+        "filename": "Jair Bolsonaro - Chega de frescura e de mimimi vao ficar chorando ate quando.mp3",
+        "dateAdded": "2023-06-02T00:00:00Z",
+        "duration": 3.84,
+        "isOffensive": true
+    },
+    {
+        "id": "C7D9C889-A16E-4875-B166-2A50101B2084",
+        "title": "O PT",
+        "authorId": "C066E971-8702-4261-955D-00CF642A465A",
+        "description": "O PT",
+        "filename": "Silas Malafaia - O PT.mp3",
+        "dateAdded": "2023-06-02T00:00:00Z",
+        "duration": 1.23,
+        "isOffensive": false
+    },
+    {
+        "id": "C3EDD028-E744-4BC8-8E7E-25669BB8CC4B",
+        "title": "Pô, querem me deixar como a rainha da Inglaterra?",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Po querem me deixar como a rainha da Inglaterra",
+        "filename": "Jair Bolsonaro - Po, querem me deixar como a rainha da Inglaterra.mp3",
+        "dateAdded": "2023-06-02T00:00:00Z",
+        "duration": 2.19,
+        "isOffensive": true
+    },
+    {
+        "id": "245B4F22-C080-4255-A154-64F8905EA052",
+        "title": "Bater uma salva de palmas aqui pro profissional",
+        "authorId": "2BBB826D-24E5-4DFE-95DF-A6FFE41155D9",
+        "description": "Bater uma salva de palmas aqui pro profissional",
+        "filename": "Rogerinho do Inga - Bater uma salva de palmas aqui pro profissional.mp3",
+        "dateAdded": "2023-06-02T00:00:00Z",
+        "duration": 4.18,
+        "isOffensive": false
+    },
+    {
+        "id": "05BB93EC-1A1C-4836-99F2-49C8A0724319",
+        "title": "Pra que essa ansiedade, essa angústia?",
+        "authorId": "2BBB826D-24E5-4DFE-95DF-A6FFE41155D9",
+        "description": "Pra que essa ansiedade essa angustia",
+        "filename": "Eduardo Pazuello - Pra que essa ansiedade, essa angustia.mp3",
+        "dateAdded": "2023-06-02T00:00:00Z",
+        "duration": 2.66,
+        "isOffensive": false
     }
 ]
