@@ -12,6 +12,7 @@ internal protocol LocalDatabaseProtocol {
     func insert(syncLog newSyncLog: SyncLog)
     func setIsFromServer(to value: Bool, on soundId: String) throws
     func insert(author newAuthor: Author) throws
+    func update(author updatedAuthor: Author) throws
 }
 
 class LocalDatabase: LocalDatabaseProtocol {

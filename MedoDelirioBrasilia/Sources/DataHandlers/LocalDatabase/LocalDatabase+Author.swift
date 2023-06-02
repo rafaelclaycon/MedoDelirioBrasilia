@@ -36,4 +36,15 @@ extension LocalDatabase {
         }
         return queriedItems.first
     }
+    
+    func update(author updatedAuthor: Author) throws {
+        let id = Expression<String>("id")
+        let query = author.filter(id == updatedAuthor.id)
+        let updateQuery = query.update(
+            Expression<String>("name") <- updatedAuthor.name,
+            Expression<String?>("photo") <- updatedAuthor.photo,
+            Expression<String?>("description") <- updatedAuthor.description
+        )
+        try db.run(updateQuery)
+    }
 }
