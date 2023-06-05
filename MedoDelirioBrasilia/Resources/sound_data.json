@@ -10608,5 +10608,25 @@
         "dateAdded": "2023-06-02T00:00:00Z",
         "duration": 2.66,
         "isOffensive": false
+    },
+    {
+        "id": "E86DAFE5-0F51-402B-B947-2863797E41FD",
+        "title": "Eu não sou povo desse rapaz",
+        "authorId": "DDEBD7C4-9CC5-4DD6-B207-58A27C37A8E0",
+        "description": "Eu não sou povo desse rapaz",
+        "filename": "Falha de Cobertura - Eu nao sou povo desse rapaz.mp3",
+        "dateAdded": "2023-06-04T00:00:00Z",
+        "duration": 1.57,
+        "isOffensive": false
+    },
+    {
+        "id": "D3E52DD6-118F-446B-99F7-E10903D50027",
+        "title": "Um pouco droga, um pouco salada",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Um pouco droga, um pouco salada",
+        "filename": "Um pouco droga, um pouco salada.mp3",
+        "dateAdded": "2023-06-04T00:00:00Z",
+        "duration": 6.27,
+        "isOffensive": true
     }
 ]

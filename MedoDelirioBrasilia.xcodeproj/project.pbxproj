@@ -348,6 +348,8 @@
 		D94F2FC52A1FDC7500214519 /* Marcus Majella e Paulo Gustavo - Vi-a-dooo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94F2FC32A1FDC7500214519 /* Marcus Majella e Paulo Gustavo - Vi-a-dooo.mp3 */; };
 		D94F2FC62A1FDC7500214519 /* Marcus Majella e Paulo Gustavo - Tadinha, que barra.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94F2FC42A1FDC7500214519 /* Marcus Majella e Paulo Gustavo - Tadinha, que barra.mp3 */; };
 		D94FBD342948F64F001FA3A8 /* Heraclito Sobral Pinto - Militares e Republica nao combinam.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94FBD332948F64E001FA3A8 /* Heraclito Sobral Pinto - Militares e Republica nao combinam.mp3 */; };
+		D94FBF442A2D831200347016 /* Falha de Cobertura - Eu nao sou povo desse rapaz.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94FBF432A2D831200347016 /* Falha de Cobertura - Eu nao sou povo desse rapaz.mp3 */; };
+		D94FBF462A2D84F800347016 /* Um pouco droga, um pouco salada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94FBF452A2D84F800347016 /* Um pouco droga, um pouco salada.mp3 */; };
 		D9523741285BF98A00E6C838 /* NetworkRabbitStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */; };
 		D9523743285BF99800E6C838 /* LocalDatabaseSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9523742285BF99800E6C838 /* LocalDatabaseSpy.swift */; };
 		D952DB7E29B3C7A4001F1E0E /* Manoel Gomes - La ele.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D952DB7B29B3C7A4001F1E0E /* Manoel Gomes - La ele.mp3 */; };
@@ -1697,6 +1699,8 @@
 		D94F2FC32A1FDC7500214519 /* Marcus Majella e Paulo Gustavo - Vi-a-dooo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Marcus Majella e Paulo Gustavo - Vi-a-dooo.mp3"; sourceTree = "<group>"; };
 		D94F2FC42A1FDC7500214519 /* Marcus Majella e Paulo Gustavo - Tadinha, que barra.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Marcus Majella e Paulo Gustavo - Tadinha, que barra.mp3"; sourceTree = "<group>"; };
 		D94FBD332948F64E001FA3A8 /* Heraclito Sobral Pinto - Militares e Republica nao combinam.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Heraclito Sobral Pinto - Militares e Republica nao combinam.mp3"; sourceTree = "<group>"; };
+		D94FBF432A2D831200347016 /* Falha de Cobertura - Eu nao sou povo desse rapaz.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Falha de Cobertura - Eu nao sou povo desse rapaz.mp3"; sourceTree = "<group>"; };
+		D94FBF452A2D84F800347016 /* Um pouco droga, um pouco salada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Um pouco droga, um pouco salada.mp3"; sourceTree = "<group>"; };
 		D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRabbitStub.swift; sourceTree = "<group>"; };
 		D9523742285BF99800E6C838 /* LocalDatabaseSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDatabaseSpy.swift; sourceTree = "<group>"; };
 		D952DB7B29B3C7A4001F1E0E /* Manoel Gomes - La ele.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Manoel Gomes - La ele.mp3"; sourceTree = "<group>"; };
@@ -2726,6 +2730,8 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D94FBF452A2D84F800347016 /* Um pouco droga, um pouco salada.mp3 */,
+				D94FBF432A2D831200347016 /* Falha de Cobertura - Eu nao sou povo desse rapaz.mp3 */,
 				D9A7AA9F2A2A9B580039012E /* Eduardo Pazuello - Pra que essa ansiedade, essa angustia.mp3 */,
 				D9A7AA9B2A2A9B580039012E /* Jair Bolsonaro - Chega de frescura e de mimimi vao ficar chorando ate quando.mp3 */,
 				D9A7AA9E2A2A9B580039012E /* Jair Bolsonaro - Po, querem me deixar como a rainha da Inglaterra.mp3 */,
@@ -4785,6 +4791,7 @@
 				D975FF1D2880B4F20035E6F2 /* BandNews FM - Ciro Gomes - Esse neto bosta, esse braga bosta, esse neto braga.mp3 in Resources */,
 				D975FF4A2880B4F20035E6F2 /* ATILA IAMARINO - Que que isso quer dizer.mp3 in Resources */,
 				D975FF2E2880B4F20035E6F2 /* Moderador ah que nao sei o que cala a boca moleque muleque.mp3 in Resources */,
+				D94FBF462A2D84F800347016 /* Um pouco droga, um pouco salada.mp3 in Resources */,
 				D975FE232880B4F20035E6F2 /* Choque de Cultura - Rogerinho - O a informacao ai.mp3 in Resources */,
 				D99151332873E4C100FFAA29 /* funk-da-perninha.mp3 in Resources */,
 				D9AF10CE290AD50D0054741F /* FLOW - BOLSONARO - E foda, e foda.mp3 in Resources */,
@@ -5241,6 +5248,7 @@
 				D975FE122880B4F20035E6F2 /* Cleber Machado - Hoje nao hoje nao.mp3 in Resources */,
 				D975FE552880B4F20035E6F2 /* Caetano Veloso - Voce fala de uma maneira burra.mp3 in Resources */,
 				D975003E2880B4F20035E6F2 /* Silvio Santos - Essa nao e boa ninguem deu risada.mp3 in Resources */,
+				D94FBF442A2D831200347016 /* Falha de Cobertura - Eu nao sou povo desse rapaz.mp3 in Resources */,
 				D975003D2880B4F20035E6F2 /* PLANALTO - Bolsonaro - Presidente Putin Pretiputi remix house.mp3 in Resources */,
 				D975FFCD2880B4F20035E6F2 /* Bolsonaro - Presente Puti prentiputi pretiputi presidente putin.mp3 in Resources */,
 				D99C8A952952C5AE002E0C00 /* Gregorio Duvivier - Que tom e esse cara, baixa a bola pra caralho.mp3 in Resources */,
@@ -6139,7 +6147,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.23;
+				MARKETING_VERSION = 6.24;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -6179,7 +6187,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.23;
+				MARKETING_VERSION = 6.24;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
