@@ -9392,7 +9392,7 @@
     {
         "id": "306D4EDF-9215-41B4-9DEE-F7872E0DB7BE",
         "title": "É muito burro!",
-        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "authorId": "AF4BE658-13CF-4468-8AB2-C03B73A2EE34",
         "description": "é muito burro é muito burro",
         "filename": "E muito burro funk.mp3",
         "dateAdded": "2023-01-25T00:00:00Z",
@@ -10627,6 +10627,16 @@
         "filename": "Um pouco droga, um pouco salada.mp3",
         "dateAdded": "2023-06-04T00:00:00Z",
         "duration": 6.27,
+        "isOffensive": true
+    },
+    {
+        "id": "CCA1541F-CC64-4333-8798-590448619393",
+        "title": "E foi droga, em",
+        "authorId": "2BBB826D-24E5-4DFE-95DF-A6FFE41155D9",
+        "description": "e foi droga em",
+        "filename": "Rogerinho do Inga - E foi droga em.mp3",
+        "dateAdded": "2023-06-06T00:00:00Z",
+        "duration": 1.02,
         "isOffensive": true
     }
 ]

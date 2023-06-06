@@ -410,6 +410,7 @@
 		D95BFEF829E8D07B00E42A23 /* Donor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95BFEF729E8D07B00E42A23 /* Donor.swift */; };
 		D95DB0F6288248A300D4FEDF /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95DB0F5288248A300D4FEDF /* SidebarView.swift */; };
 		D95DB0F82882491A00D4FEDF /* ScreenAndTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95DB0F72882491A00D4FEDF /* ScreenAndTabs.swift */; };
+		D95E672C2A2F70ED004226E6 /* Rogerinho do Inga - E foi droga em.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95E672B2A2F70ED004226E6 /* Rogerinho do Inga - E foi droga em.mp3 */; };
 		D95F363A28AD386D00743026 /* ShareAsVideoLegacyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95F363928AD386D00743026 /* ShareAsVideoLegacyView.swift */; };
 		D960AF272845BFE700ADF1F6 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = D960AF262845BFE700ADF1F6 /* UserDefaultsKeys.swift */; };
 		D960AF292845C82E00ADF1F6 /* AppStoreReviewSteward.swift in Sources */ = {isa = PBXBuildFile; fileRef = D960AF282845C82E00ADF1F6 /* AppStoreReviewSteward.swift */; };
@@ -1761,6 +1762,7 @@
 		D95BFEF729E8D07B00E42A23 /* Donor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Donor.swift; sourceTree = "<group>"; };
 		D95DB0F5288248A300D4FEDF /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		D95DB0F72882491A00D4FEDF /* ScreenAndTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenAndTabs.swift; sourceTree = "<group>"; };
+		D95E672B2A2F70ED004226E6 /* Rogerinho do Inga - E foi droga em.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rogerinho do Inga - E foi droga em.mp3"; sourceTree = "<group>"; };
 		D95F363928AD386D00743026 /* ShareAsVideoLegacyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAsVideoLegacyView.swift; sourceTree = "<group>"; };
 		D960AF262845BFE700ADF1F6 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		D960AF282845C82E00ADF1F6 /* AppStoreReviewSteward.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreReviewSteward.swift; sourceTree = "<group>"; };
@@ -2730,6 +2732,7 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D95E672B2A2F70ED004226E6 /* Rogerinho do Inga - E foi droga em.mp3 */,
 				D94FBF452A2D84F800347016 /* Um pouco droga, um pouco salada.mp3 */,
 				D94FBF432A2D831200347016 /* Falha de Cobertura - Eu nao sou povo desse rapaz.mp3 */,
 				D9A7AA9F2A2A9B580039012E /* Eduardo Pazuello - Pra que essa ansiedade, essa angustia.mp3 */,
@@ -5408,6 +5411,7 @@
 				D9FD0F0228B2B2EE0000616A /* presta atencao senao como suas tripa.mp3 in Resources */,
 				D975FE872880B4F20035E6F2 /* Handel - Aleluia short.mp3 in Resources */,
 				D975FF652880B4F20035E6F2 /* Reinaldo Azevedo - Parte Terminal do Aparelho Digestivo.mp3 in Resources */,
+				D95E672C2A2F70ED004226E6 /* Rogerinho do Inga - E foi droga em.mp3 in Resources */,
 				D921F881288B0177003979CC /* Festa estranha com gente esquisita - legiao urbana.mp3 in Resources */,
 				D95A462929182FF3006B4023 /* Gregorio Duvivier - Alem do Lula, agora o choro tambem e livre.mp3 in Resources */,
 				D9547D7E28FDD7190020A800 /* Flavio Bolsonaro - Faz algum sentido pra voce isso.mp3 in Resources */,
