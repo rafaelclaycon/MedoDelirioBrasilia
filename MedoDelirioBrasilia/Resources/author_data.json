@@ -474,7 +474,7 @@
     },
     {
         "id": "5328EB33-A71C-4A07-94CE-B374AC937319",
-        "name": "Gaúcho Puto"
+        "name": "Aluno da UFRGS (gaúcho puto)"
     },
     {
         "id": "B20853C2-0CA7-49B7-B3F7-F023A8E07E81",
@@ -1663,5 +1663,19 @@
     {
         "id": "E89F3DE4-7134-41BC-B833-CD734EA53D70",
         "name": "Marcus Majella e Paulo Gustavo"
+    },
+    {
+        "id": "35058669-052C-4749-9691-794F2C462C18",
+        "name": "Joãozinho do Exú",
+        "description": "Cantor, instrumentista e compositor brasileiro."
+    },
+    {
+        "id": "8E8F8308-7AD0-48C1-B44F-505939B429F4",
+        "name": "Rogério Correia",
+        "description": "Deputado federal por Minas Gerais. Filiado ao PT."
+    },
+    {
+        "id": "3388CB84-A7A9-4BDE-B141-51AA218DA961",
+        "name": "Senhor Pedindo Café"
     }
 ]

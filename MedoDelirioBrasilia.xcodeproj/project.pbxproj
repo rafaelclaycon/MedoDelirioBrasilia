@@ -1087,6 +1087,13 @@
 		D99C8A942952C5AE002E0C00 /* Paulo Guedes - Uma festa danada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99C8A922952C5AE002E0C00 /* Paulo Guedes - Uma festa danada.mp3 */; };
 		D99C8A952952C5AE002E0C00 /* Gregorio Duvivier - Que tom e esse cara, baixa a bola pra caralho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99C8A932952C5AE002E0C00 /* Gregorio Duvivier - Que tom e esse cara, baixa a bola pra caralho.mp3 */; };
 		D99C8A972952C904002E0C00 /* NetworkRabbit+DonorNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99C8A962952C904002E0C00 /* NetworkRabbit+DonorNames.swift */; };
+		D99CC7102A341B7700B21144 /* Senhor Pedindo Cafe - Eeee.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99CC70C2A341B7700B21144 /* Senhor Pedindo Cafe - Eeee.mp3 */; };
+		D99CC7112A341B7700B21144 /* Rogerio Correia - O senador não manja de nada (sobre Marcos do Val).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99CC70D2A341B7700B21144 /* Rogerio Correia - O senador não manja de nada (sobre Marcos do Val).mp3 */; };
+		D99CC7122A341B7700B21144 /* Senhor Pedindo Cafe - Quero cafe.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99CC70E2A341B7700B21144 /* Senhor Pedindo Cafe - Quero cafe.mp3 */; };
+		D99CC7132A341B7700B21144 /* Rogerio Correia - Lembrar que quebraram aqui o Senado federal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99CC70F2A341B7700B21144 /* Rogerio Correia - Lembrar que quebraram aqui o Senado federal.mp3 */; };
+		D99CC7162A341B8500B21144 /* Eu vi papai Jesus na goiabeira.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99CC7142A341B8500B21144 /* Eu vi papai Jesus na goiabeira.mp3 */; };
+		D99CC7172A341B8500B21144 /* Ninguem me ofereceu um cigarro de maconha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99CC7152A341B8500B21144 /* Ninguem me ofereceu um cigarro de maconha.mp3 */; };
+		D99CC7192A341D3100B21144 /* Rogerio Correia - Todos bolsonaristas.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99CC7182A341D3100B21144 /* Rogerio Correia - Todos bolsonaristas.mp3 */; };
 		D99D0DBF28CAB0FF00EB6F27 /* TV CAMARA - MARCELO FREIXO - Nao adianta desvirtuar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99D0DBE28CAB0FF00EB6F27 /* TV CAMARA - MARCELO FREIXO - Nao adianta desvirtuar.mp3 */; };
 		D99D0DC128CAB3E800EB6F27 /* TV CAMARA - Lula - A esperanca finalmente venceu o medo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99D0DC028CAB3E800EB6F27 /* TV CAMARA - Lula - A esperanca finalmente venceu o medo.mp3 */; };
 		D99D0DC328CAB52700EB6F27 /* TV CAMARA - Alessandro Molon - E obvio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99D0DC228CAB52700EB6F27 /* TV CAMARA - Alessandro Molon - E obvio.mp3 */; };
@@ -2442,6 +2449,13 @@
 		D99C8A922952C5AE002E0C00 /* Paulo Guedes - Uma festa danada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Paulo Guedes - Uma festa danada.mp3"; sourceTree = "<group>"; };
 		D99C8A932952C5AE002E0C00 /* Gregorio Duvivier - Que tom e esse cara, baixa a bola pra caralho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gregorio Duvivier - Que tom e esse cara, baixa a bola pra caralho.mp3"; sourceTree = "<group>"; };
 		D99C8A962952C904002E0C00 /* NetworkRabbit+DonorNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+DonorNames.swift"; sourceTree = "<group>"; };
+		D99CC70C2A341B7700B21144 /* Senhor Pedindo Cafe - Eeee.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Senhor Pedindo Cafe - Eeee.mp3"; sourceTree = "<group>"; };
+		D99CC70D2A341B7700B21144 /* Rogerio Correia - O senador não manja de nada (sobre Marcos do Val).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rogerio Correia - O senador não manja de nada (sobre Marcos do Val).mp3"; sourceTree = "<group>"; };
+		D99CC70E2A341B7700B21144 /* Senhor Pedindo Cafe - Quero cafe.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Senhor Pedindo Cafe - Quero cafe.mp3"; sourceTree = "<group>"; };
+		D99CC70F2A341B7700B21144 /* Rogerio Correia - Lembrar que quebraram aqui o Senado federal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rogerio Correia - Lembrar que quebraram aqui o Senado federal.mp3"; sourceTree = "<group>"; };
+		D99CC7142A341B8500B21144 /* Eu vi papai Jesus na goiabeira.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu vi papai Jesus na goiabeira.mp3"; sourceTree = "<group>"; };
+		D99CC7152A341B8500B21144 /* Ninguem me ofereceu um cigarro de maconha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ninguem me ofereceu um cigarro de maconha.mp3"; sourceTree = "<group>"; };
+		D99CC7182A341D3100B21144 /* Rogerio Correia - Todos bolsonaristas.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rogerio Correia - Todos bolsonaristas.mp3"; sourceTree = "<group>"; };
 		D99D0DBE28CAB0FF00EB6F27 /* TV CAMARA - MARCELO FREIXO - Nao adianta desvirtuar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "TV CAMARA - MARCELO FREIXO - Nao adianta desvirtuar.mp3"; sourceTree = "<group>"; };
 		D99D0DC028CAB3E800EB6F27 /* TV CAMARA - Lula - A esperanca finalmente venceu o medo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "TV CAMARA - Lula - A esperanca finalmente venceu o medo.mp3"; sourceTree = "<group>"; };
 		D99D0DC228CAB52700EB6F27 /* TV CAMARA - Alessandro Molon - E obvio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "TV CAMARA - Alessandro Molon - E obvio.mp3"; sourceTree = "<group>"; };
@@ -2732,6 +2746,11 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D99CC7182A341D3100B21144 /* Rogerio Correia - Todos bolsonaristas.mp3 */,
+				D99CC70F2A341B7700B21144 /* Rogerio Correia - Lembrar que quebraram aqui o Senado federal.mp3 */,
+				D99CC70D2A341B7700B21144 /* Rogerio Correia - O senador não manja de nada (sobre Marcos do Val).mp3 */,
+				D99CC70C2A341B7700B21144 /* Senhor Pedindo Cafe - Eeee.mp3 */,
+				D99CC70E2A341B7700B21144 /* Senhor Pedindo Cafe - Quero cafe.mp3 */,
 				D95E672B2A2F70ED004226E6 /* Rogerinho do Inga - E foi droga em.mp3 */,
 				D94FBF452A2D84F800347016 /* Um pouco droga, um pouco salada.mp3 */,
 				D94FBF432A2D831200347016 /* Falha de Cobertura - Eu nao sou povo desse rapaz.mp3 */,
@@ -3820,6 +3839,8 @@
 		D92E7068283C5C120035826C /* Songs */ = {
 			isa = PBXGroup;
 			children = (
+				D99CC7142A341B8500B21144 /* Eu vi papai Jesus na goiabeira.mp3 */,
+				D99CC7152A341B8500B21144 /* Ninguem me ofereceu um cigarro de maconha.mp3 */,
 				D92F095E29EC8AD100CC382F /* Funk de Vacinacao do Craque Neto.mp3 */,
 				D903DB0829DF42A400D9BE42 /* 04 E Transao Versao Definitiva.mp3 */,
 				D903DB0729DF42A400D9BE42 /* A pandemia ainda nao acabou porra remix.mp3 */,
@@ -4654,12 +4675,14 @@
 				D9B4F740283C8F4D0000EEF7 /* O roque ativa.mp3 in Resources */,
 				D921F88B288B0177003979CC /* Air quotes.mp3 in Resources */,
 				D975FEE72880B4F20035E6F2 /* Away -  Fora das condicoes normais.mp3 in Resources */,
+				D99CC7172A341B8500B21144 /* Ninguem me ofereceu um cigarro de maconha.mp3 in Resources */,
 				D99D0DC328CAB52700EB6F27 /* TV CAMARA - Alessandro Molon - E obvio.mp3 in Resources */,
 				D975FE792880B4F20035E6F2 /* Saiddy Bamba - Vai chorar e vai chorar e chore na minha.mp3 in Resources */,
 				D975FE702880B4F20035E6F2 /* UOL - Milton Ribeiro - Enem tem a cara do governo competencia honestidade seriedade.mp3 in Resources */,
 				D9DF2B4F29821E5F0083765A /* Omar Aziz - Nos temos que punir seja quem for sem medo sem anistia.mp3 in Resources */,
 				D9BB8F7928EC72BE00659D4A /* Rita von Hunty - Pra que serve um bilionario.mp3 in Resources */,
 				D975FE2E2880B4F20035E6F2 /* Boldo - Puta que pariu marquinho.mp3 in Resources */,
+				D99CC7192A341D3100B21144 /* Rogerio Correia - Todos bolsonaristas.mp3 in Resources */,
 				49DEA9A828810E7B008C9BA1 /* UOL - Bolsonaro - A GENTE LAMENTA TODOS OS MORTOS MAS E O DESTINO DE TODO MUNDO short meme.mp3 in Resources */,
 				D9DCF738290C2C4B00DB177C /* Valdemiro Santiago - Voce vai semear essa semente.mp3 in Resources */,
 				D9547D7D28FDD7190020A800 /* Franciel Cruz - Rapaz.mp3 in Resources */,
@@ -4798,6 +4821,7 @@
 				D975FE232880B4F20035E6F2 /* Choque de Cultura - Rogerinho - O a informacao ai.mp3 in Resources */,
 				D99151332873E4C100FFAA29 /* funk-da-perninha.mp3 in Resources */,
 				D9AF10CE290AD50D0054741F /* FLOW - BOLSONARO - E foda, e foda.mp3 in Resources */,
+				D99CC7162A341B8500B21144 /* Eu vi papai Jesus na goiabeira.mp3 in Resources */,
 				D9FD0F0328B2B2EE0000616A /* Vossa excelencia permite um aparte.mp3 in Resources */,
 				D92AD1B628832EB1001CBCDF /* ConservaTalk - Abraham Weintraub - Nao, ta errado.mp3 in Resources */,
 				D975FE512880B4F20035E6F2 /* Marcel van Hatten - Acuse os adversarios do que voce faz.mp3 in Resources */,
@@ -4956,6 +4980,7 @@
 				D975FFB92880B4F20035E6F2 /* Michel Temer - Tem que pedir uma pastilha.mp3 in Resources */,
 				D975FE722880B4F20035E6F2 /* Januario de Oliveira - Cruel, muito cruel.mp3 in Resources */,
 				D9545EDA299D64DD00A130B1 /* Queima Quengaral - Taca o pau.mp3 in Resources */,
+				D99CC7132A341B7700B21144 /* Rogerio Correia - Lembrar que quebraram aqui o Senado federal.mp3 in Resources */,
 				D975FE862880B4F20035E6F2 /* Ernesto Araujo - Globalismo.mp3 in Resources */,
 				D975FE262880B4F20035E6F2 /* Andre Starqueza - Ai que delicia.mp3 in Resources */,
 				D9B7996A2996D11000E8CDDA /* Usuario do Boldo Bom - Traz pra mim, Marquinho.mp3 in Resources */,
@@ -4990,6 +5015,7 @@
 				D95A463229183843006B4023 /* Eleitores do Lula no Maranhao - Urubu, cabelo liso, tu vai pro inferno.mp3 in Resources */,
 				D94C8387294BAC8500E083F3 /* Veia - Fia da Puta.mp3 in Resources */,
 				4911103C2926BF700055F4EE /* Jojo Todynho - Eu nao sabia que ele era safado assim nao moco.mp3 in Resources */,
+				D99CC7112A341B7700B21144 /* Rogerio Correia - O senador não manja de nada (sobre Marcos do Val).mp3 in Resources */,
 				D975FE8A2880B4F20035E6F2 /* Choque de Cultura - Cabo cabo cabo ja ta desvirtuando ja short.mp3 in Resources */,
 				D975FE7D2880B4F20035E6F2 /* COMUNISTA MEME.mp3 in Resources */,
 				D975FE172880B4F20035E6F2 /* Malditos Milicos semitons.mp3 in Resources */,
@@ -5352,6 +5378,7 @@
 				D975FFCC2880B4F20035E6F2 /* Dudu Marfetan - Agora tu aguenta.mp3 in Resources */,
 				D94B04112993388900EB03CA /* Mc Presuntinho - Cortina de fumaca trecho.mp3 in Resources */,
 				D91C4D16291AD1A3000E13E8 /* Desconhecido - Nao existe segunda-feira no comunismo.mp3 in Resources */,
+				D99CC7102A341B7700B21144 /* Senhor Pedindo Cafe - Eeee.mp3 in Resources */,
 				D9235E242969BF31001F8167 /* Roberto Jefferson - Um sujeito lombrosiano.mp3 in Resources */,
 				D975FE962880B4F20035E6F2 /* Ciro Gomes - Veja bem, se eu estiver errado me corrija.mp3 in Resources */,
 				D975FFBD2880B4F20035E6F2 /* Eu nao entendi o que ele falou.mp3 in Resources */,
@@ -5733,6 +5760,7 @@
 				D975FF9D2880B4F20035E6F2 /* DIOGO DEFANTE - Calma, ces tao de cabeca quente.mp3 in Resources */,
 				D923126B28AB01A700436336 /* Donald Trump - Its very sad.mp3 in Resources */,
 				D975FEEA2880B4F20035E6F2 /* PODER360 - Roberto Jefferson - Ta bom, Xandao, ta bom.mp3 in Resources */,
+				D99CC7122A341B7700B21144 /* Senhor Pedindo Cafe - Quero cafe.mp3 in Resources */,
 				D92230AC2942390500C59227 /* Jair Bolsonaro - Gases.mp3 in Resources */,
 				D975FE1D2880B4F20035E6F2 /* Bolsonaro - Como etanol.mp3 in Resources */,
 				D975FFC52880B4F20035E6F2 /* CHOQUE DE CULTURA - Julinho da Van - Eles perderam o limite.mp3 in Resources */,
@@ -6151,7 +6179,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.24;
+				MARKETING_VERSION = 6.25;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -6191,7 +6219,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.24;
+				MARKETING_VERSION = 6.25;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
