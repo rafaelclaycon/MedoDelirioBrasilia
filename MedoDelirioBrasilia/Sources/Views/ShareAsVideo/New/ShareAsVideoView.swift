@@ -10,14 +10,20 @@ import SwiftUI
 struct ShareAsVideoView: View {
     
     @StateObject var viewModel: ShareAsVideoViewViewModel
+    
     @Binding var isBeingShown: Bool
     @Binding var result: ShareAsVideoResult
+    
     @State var useLongerGeneratingVideoMessage: Bool
     @State var didCloseTip: Bool = false
     @State var showTwitterTip: Bool = true
     @State var showInstagramTip: Bool = true
-    
     @State private var tipText: String = .empty
+    @State private var verticalOffset: CGFloat = 0.0
+    @State private var isExpanded = false
+    
+    @ScaledMetric var vstackSpacing: CGFloat = 22
+    @ScaledMetric var bottomPadding: CGFloat = 26
     
     private let twitterTip = "Para responder a um tuíte, escolha Salvar Vídeo e depois adicione o vídeo ao seu tuíte a partir do app do Twitter."
     private let instagramTip = "Para fazer um Story, escolha Salvar Vídeo e depois adicione o vídeo ao seu Story a partir do Instagram."
@@ -29,14 +35,12 @@ struct ShareAsVideoView: View {
         ZStack {
             NavigationView {
                 ScrollView {
-                    VStack {
+                    VStack(spacing: vstackSpacing) {
                         Picker(selection: $viewModel.selectedSocialNetwork, label: Text("Rede social")) {
                             Text("Quadrado").tag(0)
                             Text("9 : 16").tag(1)
                         }
                         .pickerStyle(SegmentedPickerStyle())
-                        .padding(.horizontal, 25)
-                        .padding(.bottom, 10)
                         .disabled(viewModel.isShowingProcessingView)
                         .onChange(of: viewModel.selectedSocialNetwork) { newValue in
                             tipText = newValue == IntendedVideoDestination.twitter.rawValue ? twitterTip : instagramTip
@@ -50,20 +54,35 @@ struct ShareAsVideoView: View {
                         
                         if viewModel.selectedSocialNetwork == IntendedVideoDestination.instagramTikTok.rawValue {
                             Toggle("Incluir aviso Ligue o Som", isOn: $viewModel.includeSoundWarning)
-                                .padding(.horizontal, 25)
-                                .padding(.top)
                                 .disabled(viewModel.isShowingProcessingView)
                         }
                         
+                        DisclosureGroup {
+                            Slider(value: $verticalOffset, in: -30...30, step: 1)
+                            .padding(.top, 5)
+                            
+                            HStack {
+                                Spacer()
+                                
+                                Button("REDEFINIR") {
+                                    verticalOffset = 0
+                                }
+                                .tint(.gray)
+                                .controlSize(.mini)
+                                .buttonStyle(.bordered)
+                                .buttonBorderShape(.roundedRectangle)
+                            }
+                        } label: {
+                            Label("Ajustar posição vertical do texto", systemImage: "arrow.up.and.down")
+                                .foregroundColor(.primary)
+                        }
+                        .disabled(viewModel.isShowingProcessingView)
+                        
                         if viewModel.selectedSocialNetwork == IntendedVideoDestination.twitter.rawValue && showTwitterTip {
                             TipView(text: $tipText, didTapClose: $didCloseTip)
-                                .padding(.horizontal)
-                                .padding(.top)
                                 .disabled(viewModel.isShowingProcessingView)
                         } else if viewModel.selectedSocialNetwork == IntendedVideoDestination.instagramTikTok.rawValue && showInstagramTip {
                             TipView(text: $tipText, didTapClose: $didCloseTip)
-                                .padding(.horizontal)
-                                .padding(.top)
                                 .disabled(viewModel.isShowingProcessingView)
                         }
                         
@@ -77,7 +96,6 @@ struct ShareAsVideoView: View {
                                     getShareAsVideoButton(view: nineBySixteenImage)
                                 }
                             }
-                            .padding(.vertical)
                         } else {
                             HStack(spacing: 20) {
                                 if viewModel.selectedSocialNetwork == 0 {
@@ -88,11 +106,12 @@ struct ShareAsVideoView: View {
                                     getShareAsVideoButton(withWidth: 40, view: nineBySixteenImage)
                                 }
                             }
-                            .padding(.vertical, 20)
                         }
                     }
                     .navigationTitle("Gerar Vídeo")
                     .navigationBarTitleDisplayMode(.inline)
+                    .padding(.horizontal, 25)
+                    .padding(.bottom, bottomPadding)
                     .navigationBarItems(leading:
                         Button("Cancelar") {
                             self.isBeingShown = false
@@ -166,6 +185,7 @@ struct ShareAsVideoView: View {
             .padding(.leading, 25)
             .padding(.trailing)
             .padding(.bottom)
+            .offset(y: verticalOffset)
         }
         .frame(width: 350, height: 350)
     }
@@ -193,6 +213,7 @@ struct ShareAsVideoView: View {
             .padding(.leading, 12)
             .padding(.trailing)
             .padding(.bottom)
+            .offset(y: verticalOffset)
         }
         .frame(width: 196, height: 350)
     }
