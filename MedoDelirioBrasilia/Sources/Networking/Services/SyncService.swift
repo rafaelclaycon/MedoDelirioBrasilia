@@ -67,7 +67,7 @@ class SyncService {
                 await createAuthor(from: updateEvent)
                 
             case .metadataUpdated:
-                updateAuthorMetadata(with: updateEvent)
+                await updateAuthorMetadata(with: updateEvent)
                 
             case .fileUpdated:
                 break
