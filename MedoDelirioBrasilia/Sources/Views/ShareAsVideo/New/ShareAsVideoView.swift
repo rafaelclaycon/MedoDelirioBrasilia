@@ -10,33 +10,37 @@ import SwiftUI
 struct ShareAsVideoView: View {
     
     @StateObject var viewModel: ShareAsVideoViewViewModel
+    
     @Binding var isBeingShown: Bool
     @Binding var result: ShareAsVideoResult
+    
     @State var useLongerGeneratingVideoMessage: Bool
     @State var didCloseTip: Bool = false
     @State var showTwitterTip: Bool = true
     @State var showInstagramTip: Bool = true
-    
     @State private var tipText: String = .empty
+    @State private var verticalOffset: CGFloat = 0.0
+    @State private var isExpanded = false
+    
+    @ScaledMetric var vstackSpacing: CGFloat = 22
+    @ScaledMetric var bottomPadding: CGFloat = 26
     
     private let twitterTip = "Para responder a um tuíte, escolha Salvar Vídeo e depois adicione o vídeo ao seu tuíte a partir do app do Twitter."
     private let instagramTip = "Para fazer um Story, escolha Salvar Vídeo e depois adicione o vídeo ao seu Story a partir do Instagram."
     
     var body: some View {
-        let squareImage = createSquareImageView(contentName: viewModel.contentTitle, contentAuthor: viewModel.contentAuthor)
-        let nineBySixteenImage = create9By16ImageView(contentName: viewModel.contentTitle, contentAuthor: viewModel.contentAuthor)
+        let squareImage = squareImageView(contentName: viewModel.contentTitle, contentAuthor: viewModel.contentAuthor)
+        let nineBySixteenImage = nineBySixteenImageView(contentName: viewModel.contentTitle, contentAuthor: viewModel.contentAuthor)
         
         ZStack {
             NavigationView {
                 ScrollView {
-                    VStack {
+                    VStack(spacing: vstackSpacing) {
                         Picker(selection: $viewModel.selectedSocialNetwork, label: Text("Rede social")) {
                             Text("Quadrado").tag(0)
                             Text("9 : 16").tag(1)
                         }
                         .pickerStyle(SegmentedPickerStyle())
-                        .padding(.horizontal, 25)
-                        .padding(.bottom, 10)
                         .disabled(viewModel.isShowingProcessingView)
                         .onChange(of: viewModel.selectedSocialNetwork) { newValue in
                             tipText = newValue == IntendedVideoDestination.twitter.rawValue ? twitterTip : instagramTip
@@ -50,49 +54,61 @@ struct ShareAsVideoView: View {
                         
                         if viewModel.selectedSocialNetwork == IntendedVideoDestination.instagramTikTok.rawValue {
                             Toggle("Incluir aviso Ligue o Som", isOn: $viewModel.includeSoundWarning)
-                                .padding(.horizontal, 25)
-                                .padding(.top)
                                 .disabled(viewModel.isShowingProcessingView)
                         }
                         
+                        DisclosureGroup {
+                            Slider(value: $verticalOffset, in: -30...30, step: 1)
+                            .padding(.top, 5)
+                            
+                            HStack {
+                                Spacer()
+                                
+                                Button("REDEFINIR") {
+                                    verticalOffset = 0
+                                }
+                                .miniButton(colored: .gray)
+                            }
+                        } label: {
+                            Label("Ajustar posição vertical do texto", systemImage: "arrow.up.and.down")
+                                .foregroundColor(.primary)
+                        }
+                        .disabled(viewModel.isShowingProcessingView)
+                        
                         if viewModel.selectedSocialNetwork == IntendedVideoDestination.twitter.rawValue && showTwitterTip {
                             TipView(text: $tipText, didTapClose: $didCloseTip)
-                                .padding(.horizontal)
-                                .padding(.top)
                                 .disabled(viewModel.isShowingProcessingView)
                         } else if viewModel.selectedSocialNetwork == IntendedVideoDestination.instagramTikTok.rawValue && showInstagramTip {
                             TipView(text: $tipText, didTapClose: $didCloseTip)
-                                .padding(.horizontal)
-                                .padding(.top)
                                 .disabled(viewModel.isShowingProcessingView)
                         }
                         
                         if UIDevice.current.userInterfaceIdiom == .phone {
-                            HStack(spacing: 10) {
+                            VStack(spacing: vstackSpacing) {
                                 if viewModel.selectedSocialNetwork == 0 {
-                                    getShareButton(view: squareImage)
-                                    getShareAsVideoButton(view: squareImage)
+                                    shareButton(view: squareImage)
+                                    saveVideoButton(view: squareImage)
                                 } else {
-                                    getShareButton(view: nineBySixteenImage)
-                                    getShareAsVideoButton(view: nineBySixteenImage)
+                                    shareButton(view: nineBySixteenImage)
+                                    saveVideoButton(view: nineBySixteenImage)
                                 }
                             }
-                            .padding(.vertical)
                         } else {
                             HStack(spacing: 20) {
                                 if viewModel.selectedSocialNetwork == 0 {
-                                    getShareButton(withWidth: 40, view: squareImage)
-                                    getShareAsVideoButton(withWidth: 40, view: squareImage)
+                                    shareButton(view: squareImage)
+                                    saveVideoButton(view: squareImage)
                                 } else {
-                                    getShareButton(withWidth: 40, view: nineBySixteenImage)
-                                    getShareAsVideoButton(withWidth: 40, view: nineBySixteenImage)
+                                    shareButton(view: nineBySixteenImage)
+                                    saveVideoButton(view: nineBySixteenImage)
                                 }
                             }
-                            .padding(.vertical, 20)
                         }
                     }
                     .navigationTitle("Gerar Vídeo")
                     .navigationBarTitleDisplayMode(.inline)
+                    .padding(.horizontal, 25)
+                    .padding(.bottom, bottomPadding)
                     .navigationBarItems(leading:
                         Button("Cancelar") {
                             self.isBeingShown = false
@@ -144,7 +160,7 @@ struct ShareAsVideoView: View {
         }
     }
     
-    private func createSquareImageView(contentName: String, contentAuthor: String) -> some View {
+    private func squareImageView(contentName: String, contentAuthor: String) -> some View {
         ZStack {
             Image("square_video_background")
                 .resizable()
@@ -166,11 +182,12 @@ struct ShareAsVideoView: View {
             .padding(.leading, 25)
             .padding(.trailing)
             .padding(.bottom)
+            .offset(y: verticalOffset)
         }
         .frame(width: 350, height: 350)
     }
     
-    private func create9By16ImageView(contentName: String, contentAuthor: String) -> some View {
+    private func nineBySixteenImageView(contentName: String, contentAuthor: String) -> some View {
         ZStack {
             Image(viewModel.includeSoundWarning ? "9_16_video_background_with_warning" : "9_16_video_background_no_warning")
                 .resizable()
@@ -193,11 +210,12 @@ struct ShareAsVideoView: View {
             .padding(.leading, 12)
             .padding(.trailing)
             .padding(.bottom)
+            .offset(y: verticalOffset)
         }
         .frame(width: 196, height: 350)
     }
     
-    @ViewBuilder func getShareButton(withWidth buttonInternalPadding: CGFloat = 0, view: some View) -> some View {
+    @ViewBuilder func shareButton(view: some View) -> some View {
         Button {
             if #available(iOS 16.0, *) {
                 let renderer = ImageRenderer(content: view)
@@ -224,6 +242,8 @@ struct ShareAsVideoView: View {
             }
         } label: {
             HStack(spacing: 15) {
+                Spacer()
+                
                 Image(systemName: "square.and.arrow.up")
                     .resizable()
                     .scaledToFit()
@@ -231,17 +251,15 @@ struct ShareAsVideoView: View {
                 
                 Text("Compartilhar")
                     .font(.headline)
+                
+                Spacer()
             }
-            .padding(.horizontal, buttonInternalPadding)
         }
-        .tint(.accentColor)
-        .controlSize(.large)
-        .buttonStyle(.bordered)
-        .buttonBorderShape(.capsule)
+        .borderedButton(colored: .accentColor)
         .disabled(viewModel.isShowingProcessingView)
     }
     
-    @ViewBuilder func getShareAsVideoButton(withWidth buttonInternalPadding: CGFloat = 0, view: some View) -> some View {
+    @ViewBuilder func saveVideoButton(view: some View) -> some View {
         Button {
             if #available(iOS 16.0, *) {
                 let renderer = ImageRenderer(content: view)
@@ -260,6 +278,8 @@ struct ShareAsVideoView: View {
             }
         } label: {
             HStack(spacing: 15) {
+                Spacer()
+                
                 Image(systemName: "square.and.arrow.down")
                     .resizable()
                     .scaledToFit()
@@ -268,13 +288,11 @@ struct ShareAsVideoView: View {
                 Text("Salvar Vídeo")
                     .font(.headline)
                     .foregroundColor(.white)
+                
+                Spacer()
             }
-            .padding(.horizontal, buttonInternalPadding)
         }
-        .tint(.accentColor)
-        .controlSize(.large)
-        .buttonStyle(.borderedProminent)
-        .buttonBorderShape(.capsule)
+        .borderedProminentButton(colored: .accentColor)
         .disabled(viewModel.isShowingProcessingView)
     }
     

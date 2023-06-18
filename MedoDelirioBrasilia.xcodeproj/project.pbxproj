@@ -1201,6 +1201,9 @@
 		D9C5EC3728C7F7F70099EA86 /* Jair Bolsonaro - Putaria.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C5EC3528C7F7F70099EA86 /* Jair Bolsonaro - Putaria.mp3 */; };
 		D9C5EC3928C7FAA00099EA86 /* Tyrion Lannister - THAT was a threat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C5EC3828C7FAA00099EA86 /* Tyrion Lannister - THAT was a threat.mp3 */; };
 		D9C67C0E2A3E1EB100E74E9D /* Funk do Pix.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C67C0D2A3E1EB100E74E9D /* Funk do Pix.mp3 */; };
+		D9C67C102A3E3C2200E74E9D /* MiniButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C67C0F2A3E3C2200E74E9D /* MiniButtonStyle.swift */; };
+		D9C67C132A3E3D6000E74E9D /* LargeCapsuleBorderedButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C67C122A3E3D6000E74E9D /* LargeCapsuleBorderedButtonStyle.swift */; };
+		D9C67C152A3E3D7E00E74E9D /* LargeCapsuleBorderedProminentButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C67C142A3E3D7E00E74E9D /* LargeCapsuleBorderedProminentButtonStyle.swift */; };
 		D9C7310C292D62C300090DED /* Meme - Vamo la tomar uma la no bar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C7310B292D62C300090DED /* Meme - Vamo la tomar uma la no bar.mp3 */; };
 		D9C77B6D28CAB81F006CA17B /* TIRIRICA - Pior do que ta nao fica.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C77B6C28CAB81F006CA17B /* TIRIRICA - Pior do que ta nao fica.mp3 */; };
 		D9C77B6F28CAC07B006CA17B /* Thiago Arruda - Passarinho que come cu nao sabe a pedra que tem.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C77B6E28CAC07B006CA17B /* Thiago Arruda - Passarinho que come cu nao sabe a pedra que tem.mp3 */; };
@@ -2564,6 +2567,9 @@
 		D9C5EC3528C7F7F70099EA86 /* Jair Bolsonaro - Putaria.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Putaria.mp3"; sourceTree = "<group>"; };
 		D9C5EC3828C7FAA00099EA86 /* Tyrion Lannister - THAT was a threat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tyrion Lannister - THAT was a threat.mp3"; sourceTree = "<group>"; };
 		D9C67C0D2A3E1EB100E74E9D /* Funk do Pix.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Funk do Pix.mp3"; sourceTree = "<group>"; };
+		D9C67C0F2A3E3C2200E74E9D /* MiniButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniButtonStyle.swift; sourceTree = "<group>"; };
+		D9C67C122A3E3D6000E74E9D /* LargeCapsuleBorderedButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeCapsuleBorderedButtonStyle.swift; sourceTree = "<group>"; };
+		D9C67C142A3E3D7E00E74E9D /* LargeCapsuleBorderedProminentButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeCapsuleBorderedProminentButtonStyle.swift; sourceTree = "<group>"; };
 		D9C7310B292D62C300090DED /* Meme - Vamo la tomar uma la no bar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Meme - Vamo la tomar uma la no bar.mp3"; sourceTree = "<group>"; };
 		D9C77B6C28CAB81F006CA17B /* TIRIRICA - Pior do que ta nao fica.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "TIRIRICA - Pior do que ta nao fica.mp3"; sourceTree = "<group>"; };
 		D9C77B6E28CAC07B006CA17B /* Thiago Arruda - Passarinho que come cu nao sabe a pedra que tem.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Thiago Arruda - Passarinho que come cu nao sabe a pedra que tem.mp3"; sourceTree = "<group>"; };
@@ -4177,6 +4183,7 @@
 				D916627B2874F1E2000A1B23 /* Onboarding */,
 				D91B4DF2299BB4CA00E92824 /* FirstOpen */,
 				D9759ACA2872B1D1005F9871 /* Shared */,
+				D9C67C112A3E3C3200E74E9D /* Modifiers */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -4512,6 +4519,16 @@
 				D97D76F82885B1BD005210D9 /* SidebarFolderIcon.swift */,
 			);
 			path = iPad;
+			sourceTree = "<group>";
+		};
+		D9C67C112A3E3C3200E74E9D /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				D9C67C142A3E3D7E00E74E9D /* LargeCapsuleBorderedProminentButtonStyle.swift */,
+				D9C67C122A3E3D6000E74E9D /* LargeCapsuleBorderedButtonStyle.swift */,
+				D9C67C0F2A3E3C2200E74E9D /* MiniButtonStyle.swift */,
+			);
+			path = Modifiers;
 			sourceTree = "<group>";
 		};
 		D9E69595283D54EA00C341B2 /* DataHandlers */ = {
@@ -5866,6 +5883,7 @@
 				D9BCAC2D28B598FB0098FE15 /* AppIconCell.swift in Sources */,
 				D9ABDDB0287411C9007B25EA /* SongHelpView.swift in Sources */,
 				D92C0CAE284076CD009CF19A /* UIApplication+KeyWindow.swift in Sources */,
+				D9C67C132A3E3D6000E74E9D /* LargeCapsuleBorderedButtonStyle.swift in Sources */,
 				D9D3D493288750C400C42FDE /* FolderListViewModel.swift in Sources */,
 				D9DCC5D3287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift in Sources */,
 				D96A64202955F32F00DC0F03 /* SettingsHelper.swift in Sources */,
@@ -5873,6 +5891,7 @@
 				D9625E7E28238F9A00080852 /* MedoDelirioBrasiliaApp.swift in Sources */,
 				D958B1AC28394DCD0010F133 /* AuthorsView.swift in Sources */,
 				D94D9F05298DB98D006F14A5 /* AddDateAndVersionToUserFolderTables.swift in Sources */,
+				D9C67C102A3E3C2200E74E9D /* MiniButtonStyle.swift in Sources */,
 				D92E7072283C5D990035826C /* SongsViewViewModel.swift in Sources */,
 				D92C0CAC28406EA5009CF19A /* UserShareLog.swift in Sources */,
 				D961D016283722AB00EFEDEB /* Color+CustomColors.swift in Sources */,
@@ -5948,6 +5967,7 @@
 				D9BF90BE2842EAED00BDDD7D /* TopChartCellView.swift in Sources */,
 				D9A3AB6D28F062580064CB7A /* TimeKeeper.swift in Sources */,
 				D9943F1E286419C2002C6B97 /* LocalDatabase+TopChart.swift in Sources */,
+				D9C67C152A3E3D7E00E74E9D /* LargeCapsuleBorderedProminentButtonStyle.swift in Sources */,
 				D9A8AB212853EB5500B5A94B /* InitialMigration.swift in Sources */,
 				D946117E28613D3200C4FB7E /* CollectionDetailView.swift in Sources */,
 				D93A029C2906E8E200A85FE2 /* NetworkRabbit+UserFolderLog.swift in Sources */,
