@@ -84,7 +84,7 @@ struct ShareAsVideoView: View {
                         }
                         
                         if UIDevice.current.userInterfaceIdiom == .phone {
-                            HStack(spacing: 10) {
+                            VStack(spacing: vstackSpacing) {
                                 if viewModel.selectedSocialNetwork == 0 {
                                     shareButton(view: squareImage)
                                     saveVideoButton(view: squareImage)
@@ -96,11 +96,11 @@ struct ShareAsVideoView: View {
                         } else {
                             HStack(spacing: 20) {
                                 if viewModel.selectedSocialNetwork == 0 {
-                                    shareButton(withWidth: 40, view: squareImage)
-                                    saveVideoButton(withWidth: 40, view: squareImage)
+                                    shareButton(view: squareImage)
+                                    saveVideoButton(view: squareImage)
                                 } else {
-                                    shareButton(withWidth: 40, view: nineBySixteenImage)
-                                    saveVideoButton(withWidth: 40, view: nineBySixteenImage)
+                                    shareButton(view: nineBySixteenImage)
+                                    saveVideoButton(view: nineBySixteenImage)
                                 }
                             }
                         }
@@ -215,7 +215,7 @@ struct ShareAsVideoView: View {
         .frame(width: 196, height: 350)
     }
     
-    @ViewBuilder func shareButton(withWidth buttonInternalPadding: CGFloat = 0, view: some View) -> some View {
+    @ViewBuilder func shareButton(view: some View) -> some View {
         Button {
             if #available(iOS 16.0, *) {
                 let renderer = ImageRenderer(content: view)
@@ -242,6 +242,8 @@ struct ShareAsVideoView: View {
             }
         } label: {
             HStack(spacing: 15) {
+                Spacer()
+                
                 Image(systemName: "square.and.arrow.up")
                     .resizable()
                     .scaledToFit()
@@ -249,14 +251,15 @@ struct ShareAsVideoView: View {
                 
                 Text("Compartilhar")
                     .font(.headline)
+                
+                Spacer()
             }
-            .padding(.horizontal, buttonInternalPadding)
         }
         .borderedButton(colored: .accentColor)
         .disabled(viewModel.isShowingProcessingView)
     }
     
-    @ViewBuilder func saveVideoButton(withWidth buttonInternalPadding: CGFloat = 0, view: some View) -> some View {
+    @ViewBuilder func saveVideoButton(view: some View) -> some View {
         Button {
             if #available(iOS 16.0, *) {
                 let renderer = ImageRenderer(content: view)
@@ -275,6 +278,8 @@ struct ShareAsVideoView: View {
             }
         } label: {
             HStack(spacing: 15) {
+                Spacer()
+                
                 Image(systemName: "square.and.arrow.down")
                     .resizable()
                     .scaledToFit()
@@ -283,8 +288,9 @@ struct ShareAsVideoView: View {
                 Text("Salvar Vídeo")
                     .font(.headline)
                     .foregroundColor(.white)
+                
+                Spacer()
             }
-            .padding(.horizontal, buttonInternalPadding)
         }
         .borderedProminentButton(colored: .accentColor)
         .disabled(viewModel.isShowingProcessingView)
