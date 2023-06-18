@@ -29,8 +29,8 @@ struct ShareAsVideoView: View {
     private let instagramTip = "Para fazer um Story, escolha Salvar Vídeo e depois adicione o vídeo ao seu Story a partir do Instagram."
     
     var body: some View {
-        let squareImage = createSquareImageView(contentName: viewModel.contentTitle, contentAuthor: viewModel.contentAuthor)
-        let nineBySixteenImage = create9By16ImageView(contentName: viewModel.contentTitle, contentAuthor: viewModel.contentAuthor)
+        let squareImage = squareImageView(contentName: viewModel.contentTitle, contentAuthor: viewModel.contentAuthor)
+        let nineBySixteenImage = nineBySixteenImageView(contentName: viewModel.contentTitle, contentAuthor: viewModel.contentAuthor)
         
         ZStack {
             NavigationView {
@@ -86,21 +86,21 @@ struct ShareAsVideoView: View {
                         if UIDevice.current.userInterfaceIdiom == .phone {
                             HStack(spacing: 10) {
                                 if viewModel.selectedSocialNetwork == 0 {
-                                    getShareButton(view: squareImage)
-                                    getShareAsVideoButton(view: squareImage)
+                                    shareButton(view: squareImage)
+                                    saveVideoButton(view: squareImage)
                                 } else {
-                                    getShareButton(view: nineBySixteenImage)
-                                    getShareAsVideoButton(view: nineBySixteenImage)
+                                    shareButton(view: nineBySixteenImage)
+                                    saveVideoButton(view: nineBySixteenImage)
                                 }
                             }
                         } else {
                             HStack(spacing: 20) {
                                 if viewModel.selectedSocialNetwork == 0 {
-                                    getShareButton(withWidth: 40, view: squareImage)
-                                    getShareAsVideoButton(withWidth: 40, view: squareImage)
+                                    shareButton(withWidth: 40, view: squareImage)
+                                    saveVideoButton(withWidth: 40, view: squareImage)
                                 } else {
-                                    getShareButton(withWidth: 40, view: nineBySixteenImage)
-                                    getShareAsVideoButton(withWidth: 40, view: nineBySixteenImage)
+                                    shareButton(withWidth: 40, view: nineBySixteenImage)
+                                    saveVideoButton(withWidth: 40, view: nineBySixteenImage)
                                 }
                             }
                         }
@@ -160,7 +160,7 @@ struct ShareAsVideoView: View {
         }
     }
     
-    private func createSquareImageView(contentName: String, contentAuthor: String) -> some View {
+    private func squareImageView(contentName: String, contentAuthor: String) -> some View {
         ZStack {
             Image("square_video_background")
                 .resizable()
@@ -187,7 +187,7 @@ struct ShareAsVideoView: View {
         .frame(width: 350, height: 350)
     }
     
-    private func create9By16ImageView(contentName: String, contentAuthor: String) -> some View {
+    private func nineBySixteenImageView(contentName: String, contentAuthor: String) -> some View {
         ZStack {
             Image(viewModel.includeSoundWarning ? "9_16_video_background_with_warning" : "9_16_video_background_no_warning")
                 .resizable()
@@ -215,7 +215,7 @@ struct ShareAsVideoView: View {
         .frame(width: 196, height: 350)
     }
     
-    @ViewBuilder func getShareButton(withWidth buttonInternalPadding: CGFloat = 0, view: some View) -> some View {
+    @ViewBuilder func shareButton(withWidth buttonInternalPadding: CGFloat = 0, view: some View) -> some View {
         Button {
             if #available(iOS 16.0, *) {
                 let renderer = ImageRenderer(content: view)
@@ -256,7 +256,7 @@ struct ShareAsVideoView: View {
         .disabled(viewModel.isShowingProcessingView)
     }
     
-    @ViewBuilder func getShareAsVideoButton(withWidth buttonInternalPadding: CGFloat = 0, view: some View) -> some View {
+    @ViewBuilder func saveVideoButton(withWidth buttonInternalPadding: CGFloat = 0, view: some View) -> some View {
         Button {
             if #available(iOS 16.0, *) {
                 let renderer = ImageRenderer(content: view)
