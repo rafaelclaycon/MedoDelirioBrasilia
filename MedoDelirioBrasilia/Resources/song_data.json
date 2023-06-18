@@ -648,5 +648,35 @@
         "filename": "Funk de Vacinacao do Craque Neto.mp3",
         "dateAdded": "2023-04-16T00:00:00Z",
         "isOffensive": true
+    },
+    {
+        "id": "EDB127FA-3CAC-4BE3-AF42-855505B089EB",
+        "title": "Ninguém me ofereceu um cigarro de maconha",
+        "description": "",
+        "genre": "reggae",
+        "duration": 33.49,
+        "filename": "Ninguem me ofereceu um cigarro de maconha.mp3",
+        "dateAdded": "2023-06-10T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "F8797B1D-4A5F-4D5D-AD2B-485E17478FE0",
+        "title": "Eu vi papai Jesus na goiabeira",
+        "description": "",
+        "genre": "undefined",
+        "duration": 37.09,
+        "filename": "Eu vi papai Jesus na goiabeira.mp3",
+        "dateAdded": "2023-06-10T03:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "D3D278FE-36B6-4468-A492-EA9AE0EF35F1",
+        "title": "Funk do Pix do Valdo Cruz",
+        "description": "",
+        "genre": "funk",
+        "duration": 38.77,
+        "filename": "Funk do Pix.mp3",
+        "dateAdded": "2023-06-17T00:00:00Z",
+        "isOffensive": false
     }
 ]

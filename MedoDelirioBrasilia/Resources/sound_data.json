@@ -9151,12 +9151,12 @@
     },
     {
         "id": "31CF3C10-6FE2-4F7D-B28B-D436DEDFF274",
-        "title": "Foi tão bom mas acabou",
-        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "title": "Foi tão bom, mas acabou",
+        "authorId": "35058669-052C-4749-9691-794F2C462C18",
         "description": "foi tão bom mas acabou tava bom demais pra ser verdade",
         "filename": "Foi tao bom mas acabou.mp3",
         "dateAdded": "2022-12-15T00:00:00Z",
-        "duration": 8.2,
+        "duration": 8.15,
         "isOffensive": false
     },
     {
@@ -9392,7 +9392,7 @@
     {
         "id": "306D4EDF-9215-41B4-9DEE-F7872E0DB7BE",
         "title": "É muito burro!",
-        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "authorId": "AF4BE658-13CF-4468-8AB2-C03B73A2EE34",
         "description": "é muito burro é muito burro",
         "filename": "E muito burro funk.mp3",
         "dateAdded": "2023-01-25T00:00:00Z",
@@ -9661,7 +9661,7 @@
     },
     {
         "id": "93095504-3C9D-44FE-ACFE-FAA235DC9BC7",
-        "title": "Esta es nuestra oportunidad y quiça sea la última",
+        "title": "Esta es nuestra oportunidad y quizá sea la última",
         "authorId": "88B74E10-49CD-43DE-B708-25DCAAABF460",
         "description": "fundar una paz basada no en el olvido sino en la memoria no en la violencia sino en la justicia esta es nuestra oportunidad y quiça sea la última fundar uma paz baseada não no esquecimento mas sim na memória não na violencia mas sim na justica essa é a nossa oportunidade e quiça seja a última argentina",
         "filename": "Julio Cesar Strassera - Esta es nuestra oportunidad y quica sea la ultima.mp3",
@@ -10558,5 +10558,135 @@
         "dateAdded": "2023-05-25T00:00:00Z",
         "duration": 4.96,
         "isOffensive": true
+    },
+    {
+        "id": "4439C46B-EBB2-475A-A802-05F5F1B5A021",
+        "title": "Chega de frescura e de mimimi, vão ficar chorando até quando",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Chega de frescura e de mimimi vao ficar chorando ate quando",
+        "filename": "Jair Bolsonaro - Chega de frescura e de mimimi vao ficar chorando ate quando.mp3",
+        "dateAdded": "2023-06-02T00:00:00Z",
+        "duration": 3.84,
+        "isOffensive": true
+    },
+    {
+        "id": "C7D9C889-A16E-4875-B166-2A50101B2084",
+        "title": "O PT",
+        "authorId": "C066E971-8702-4261-955D-00CF642A465A",
+        "description": "O PT",
+        "filename": "Silas Malafaia - O PT.mp3",
+        "dateAdded": "2023-06-02T00:00:00Z",
+        "duration": 1.23,
+        "isOffensive": false
+    },
+    {
+        "id": "C3EDD028-E744-4BC8-8E7E-25669BB8CC4B",
+        "title": "Pô, querem me deixar como a rainha da Inglaterra?",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Po querem me deixar como a rainha da Inglaterra",
+        "filename": "Jair Bolsonaro - Po, querem me deixar como a rainha da Inglaterra.mp3",
+        "dateAdded": "2023-06-02T00:00:00Z",
+        "duration": 2.19,
+        "isOffensive": true
+    },
+    {
+        "id": "245B4F22-C080-4255-A154-64F8905EA052",
+        "title": "Bater uma salva de palmas aqui pro profissional",
+        "authorId": "2BBB826D-24E5-4DFE-95DF-A6FFE41155D9",
+        "description": "Bater uma salva de palmas aqui pro profissional",
+        "filename": "Rogerinho do Inga - Bater uma salva de palmas aqui pro profissional.mp3",
+        "dateAdded": "2023-06-02T00:00:00Z",
+        "duration": 4.18,
+        "isOffensive": false
+    },
+    {
+        "id": "05BB93EC-1A1C-4836-99F2-49C8A0724319",
+        "title": "Pra que essa ansiedade, essa angústia?",
+        "authorId": "71128756-78A9-4B31-A7D8-CE120147C481",
+        "description": "Pra que essa ansiedade essa angustia",
+        "filename": "Eduardo Pazuello - Pra que essa ansiedade, essa angustia.mp3",
+        "dateAdded": "2023-06-02T00:00:00Z",
+        "duration": 2.66,
+        "isOffensive": false
+    },
+    {
+        "id": "E86DAFE5-0F51-402B-B947-2863797E41FD",
+        "title": "Eu não sou povo desse rapaz",
+        "authorId": "DDEBD7C4-9CC5-4DD6-B207-58A27C37A8E0",
+        "description": "Eu não sou povo desse rapaz",
+        "filename": "Falha de Cobertura - Eu nao sou povo desse rapaz.mp3",
+        "dateAdded": "2023-06-04T00:00:00Z",
+        "duration": 1.57,
+        "isOffensive": false
+    },
+    {
+        "id": "D3E52DD6-118F-446B-99F7-E10903D50027",
+        "title": "Um pouco droga, um pouco salada",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Um pouco droga, um pouco salada",
+        "filename": "Um pouco droga, um pouco salada.mp3",
+        "dateAdded": "2023-06-04T00:00:00Z",
+        "duration": 6.27,
+        "isOffensive": true
+    },
+    {
+        "id": "CCA1541F-CC64-4333-8798-590448619393",
+        "title": "E foi droga, em",
+        "authorId": "2BBB826D-24E5-4DFE-95DF-A6FFE41155D9",
+        "description": "e foi droga em",
+        "filename": "Rogerinho do Inga - E foi droga em.mp3",
+        "dateAdded": "2023-06-06T00:00:00Z",
+        "duration": 1.02,
+        "isOffensive": true
+    },
+    {
+        "id": "DD6B617D-BB34-4C1C-B4A1-F14C4736269E",
+        "title": "Lembrar que quebraram aqui o Senado federal",
+        "authorId": "8E8F8308-7AD0-48C1-B44F-505939B429F4",
+        "description": "Lembrar que quebraram aqui o Senado federal todos bolsonaristas",
+        "filename": "Rogerio Correia - Lembrar que quebraram aqui o Senado federal.mp3",
+        "dateAdded": "2023-06-10T00:00:00Z",
+        "duration": 4.88,
+        "isOffensive": false
+    },
+    {
+        "id": "78F11900-6EA4-4013-9B3C-B9FC43DB354A",
+        "title": "Todos bolsonaristas",
+        "authorId": "8E8F8308-7AD0-48C1-B44F-505939B429F4",
+        "description": "Todos bolsonaristas",
+        "filename": "Rogerio Correia - Todos bolsonaristas.mp3",
+        "dateAdded": "2023-06-10T00:00:00Z",
+        "duration": 1.65,
+        "isOffensive": true
+    },
+    {
+        "id": "E78E7A1B-3DD6-47C2-88A0-69734DA30395",
+        "title": "O senador não manja de nada (sobre Marcos do Val)",
+        "authorId": "8E8F8308-7AD0-48C1-B44F-505939B429F4",
+        "description": "O senador não manja de nada manja so de outras coisas sobre Marcos do Val",
+        "filename": "Rogerio Correia - O senador não manja de nada (sobre Marcos do Val).mp3",
+        "dateAdded": "2023-06-10T00:00:00Z",
+        "duration": 5.36,
+        "isOffensive": true
+    },
+    {
+        "id": "ABE7B137-4312-47C6-8E86-76160AF7F003",
+        "title": "Quero café!",
+        "authorId": "3388CB84-A7A9-4BDE-B141-51AA218DA961",
+        "description": "Quero cafe quero cafe quero cafe",
+        "filename": "Senhor Pedindo Cafe - Quero cafe.mp3",
+        "dateAdded": "2023-06-10T00:00:00Z",
+        "duration": 5.83,
+        "isOffensive": false
+    },
+    {
+        "id": "49564A57-D998-46C2-91F2-E3803A07ADB3",
+        "title": "Éééé",
+        "authorId": "3388CB84-A7A9-4BDE-B141-51AA218DA961",
+        "description": "Eeee",
+        "filename": "Senhor Pedindo Cafe - Eeee.mp3",
+        "dateAdded": "2023-06-10T00:00:00Z",
+        "duration": 0.97,
+        "isOffensive": false
     }
 ]
