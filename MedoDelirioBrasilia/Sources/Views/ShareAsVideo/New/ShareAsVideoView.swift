@@ -67,10 +67,7 @@ struct ShareAsVideoView: View {
                                 Button("REDEFINIR") {
                                     verticalOffset = 0
                                 }
-                                .tint(.gray)
-                                .controlSize(.mini)
-                                .buttonStyle(.bordered)
-                                .buttonBorderShape(.roundedRectangle)
+                                .miniButton(colored: .gray)
                             }
                         } label: {
                             Label("Ajustar posição vertical do texto", systemImage: "arrow.up.and.down")
@@ -255,10 +252,7 @@ struct ShareAsVideoView: View {
             }
             .padding(.horizontal, buttonInternalPadding)
         }
-        .tint(.accentColor)
-        .controlSize(.large)
-        .buttonStyle(.bordered)
-        .buttonBorderShape(.capsule)
+        .borderedButton(colored: .accentColor)
         .disabled(viewModel.isShowingProcessingView)
     }
     
@@ -292,10 +286,7 @@ struct ShareAsVideoView: View {
             }
             .padding(.horizontal, buttonInternalPadding)
         }
-        .tint(.accentColor)
-        .controlSize(.large)
-        .buttonStyle(.borderedProminent)
-        .buttonBorderShape(.capsule)
+        .borderedProminentButton(colored: .accentColor)
         .disabled(viewModel.isShowingProcessingView)
     }
     
