@@ -73,5 +73,4 @@ enum MusicGenre: String, CaseIterable, Identifiable, Codable {
             return "Vários gêneros"
         }
     }
-
 }
