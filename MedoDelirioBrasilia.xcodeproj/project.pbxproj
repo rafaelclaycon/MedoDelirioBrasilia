@@ -1186,6 +1186,7 @@
 		D9BC1E1528F1CFBD00AC0C8D /* Eu acho e pouco.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BC1E1428F1CFBD00AC0C8D /* Eu acho e pouco.mp3 */; };
 		D9BCAC2D28B598FB0098FE15 /* AppIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BCAC2C28B598FA0098FE15 /* AppIconCell.swift */; };
 		D9BCC5922978A50600BE70E9 /* As Forcas Armadas sao burocracia do Estado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BCC5912978A50600BE70E9 /* As Forcas Armadas sao burocracia do Estado.mp3 */; };
+		D9BD3FF52A4483B80078CFB7 /* TopRankingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BD3FF42A4483B80078CFB7 /* TopRankingView.swift */; };
 		D9BE7701290A895B00C8C0A6 /* Luiz Henrique Mandetta - Ta certissimo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BE7700290A895B00C8C0A6 /* Luiz Henrique Mandetta - Ta certissimo.mp3 */; };
 		D9BE7703290A8E8300C8C0A6 /* Galvao Bueno - Virou passeio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BE7702290A8E8300C8C0A6 /* Galvao Bueno - Virou passeio.mp3 */; };
 		D9BF9091284257F500BDDD7D /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF9090284257F500BDDD7D /* Shared.swift */; };
@@ -2552,6 +2553,7 @@
 		D9BC1E1428F1CFBD00AC0C8D /* Eu acho e pouco.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu acho e pouco.mp3"; sourceTree = "<group>"; };
 		D9BCAC2C28B598FA0098FE15 /* AppIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconCell.swift; sourceTree = "<group>"; };
 		D9BCC5912978A50600BE70E9 /* As Forcas Armadas sao burocracia do Estado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "As Forcas Armadas sao burocracia do Estado.mp3"; sourceTree = "<group>"; };
+		D9BD3FF42A4483B80078CFB7 /* TopRankingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRankingView.swift; sourceTree = "<group>"; };
 		D9BE7700290A895B00C8C0A6 /* Luiz Henrique Mandetta - Ta certissimo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Luiz Henrique Mandetta - Ta certissimo.mp3"; sourceTree = "<group>"; };
 		D9BE7702290A8E8300C8C0A6 /* Galvao Bueno - Virou passeio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Galvao Bueno - Virou passeio.mp3"; sourceTree = "<group>"; };
 		D9BF9090284257F500BDDD7D /* Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shared.swift; sourceTree = "<group>"; };
@@ -4448,6 +4450,7 @@
 				D97B2DD528E3E85400C3B50B /* MostSharedByMeViewViewModel.swift */,
 				D9CC893228EB7BB500576492 /* MostSharedByAudienceView.swift */,
 				D9CC893428EB7CF800576492 /* MostSharedByAudienceViewViewModel.swift */,
+				D9BD3FF42A4483B80078CFB7 /* TopRankingView.swift */,
 			);
 			path = Trends;
 			sourceTree = "<group>";
@@ -6002,6 +6005,7 @@
 				D98EC5E12825A05900340BE5 /* Sound.swift in Sources */,
 				D9DCC5D128751256008DD4A3 /* PushDevice.swift in Sources */,
 				D9D192772909D4F200713804 /* NetworkCallLog.swift in Sources */,
+				D9BD3FF52A4483B80078CFB7 /* TopRankingView.swift in Sources */,
 				D95BFEF329E88C9800E42A23 /* DonorView.swift in Sources */,
 				D9461182286159BC00C4FB7E /* UserFolder.swift in Sources */,
 				D9FA0CD728508590000F6ADE /* UIDevice+DeviceInfo.swift in Sources */,

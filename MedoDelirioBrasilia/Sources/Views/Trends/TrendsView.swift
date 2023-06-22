@@ -10,10 +10,14 @@ import SwiftUI
 struct TrendsView: View {
 
     @StateObject private var viewModel = TrendsViewViewModel()
+    
     @Binding var tabSelection: PhoneTab
     @Binding var activePadScreen: PadScreen?
+    
+    @State var selectedType: Int = 0
     @State var showAlert = false
     @State var alertTitle = ""
+    
     @EnvironmentObject var trendsHelper: TrendsHelper
     
     var showTrends: Bool {
@@ -42,6 +46,29 @@ struct TrendsView: View {
                 if UIDevice.current.userInterfaceIdiom == .phone {
                     ScrollView {
                         VStack(alignment: .leading, spacing: 10) {
+                            Picker(selection: $selectedType, label: Text("Tipo")) {
+                                Text("Sons").tag(0)
+                                Text("Músicas").tag(1)
+                            }
+                            .pickerStyle(SegmentedPickerStyle())
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 10)
+                            
+                            if selectedType == 0 {
+                                if showSoundsMostSharedByTheAudience {
+                                    MostSharedByAudienceView(tabSelection: $tabSelection,
+                                                             activePadScreen: $activePadScreen)
+                                        .environmentObject(trendsHelper)
+                                }
+                            } else {
+                                TopRankingView(tabSelection: $tabSelection,
+                                               activePadScreen: $activePadScreen,
+                                               title: "Músicas Mais Compartilhadas Pela Audiência (iOS)",
+                                               ranking: nil,
+                                               itemName: "Música")
+                                .environmentObject(trendsHelper)
+                            }
+                            
                             /*if showMostSharedSoundsByTheUser {
                                 MostSharedByMeView()
                                     .padding(.top, 10)
@@ -52,13 +79,6 @@ struct TrendsView: View {
                              .font(.title2)
                              .padding(.horizontal)
                              }*/
-                            
-                            if showSoundsMostSharedByTheAudience {
-                                MostSharedByAudienceView(tabSelection: $tabSelection,
-                                                         activePadScreen: $activePadScreen)
-                                    .environmentObject(trendsHelper)
-                                    .padding(.top, 10)
-                            }
                             
                             /*if showAppsThroughWhichTheUserSharesTheMost {
                              Text("Apps Pelos Quais Você Mais Compartilha")
