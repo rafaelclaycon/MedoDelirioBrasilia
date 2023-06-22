@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Kingfisher
+//import Kingfisher
 
 struct AuthorCell: View {
 
@@ -23,21 +23,21 @@ struct AuthorCell: View {
                 .opacity(colorScheme == .dark ? 0.25 : 0.15)
             
             HStack {
-                if authorImageURL.isEmpty == false {
-                    KFImage(URL(string: authorImageURL))
-                        .placeholder {
-                            Image(systemName: "person.circle")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(height: 50)
-                                .foregroundColor(.gray)
-                                .opacity(0.3)
-                        }
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 55)
-                        .clipShape(Circle())
-                }
+//                if authorImageURL.isEmpty == false {
+//                    KFImage(URL(string: authorImageURL))
+//                        .placeholder {
+//                            Image(systemName: "person.circle")
+//                                .resizable()
+//                                .scaledToFit()
+//                                .frame(height: 50)
+//                                .foregroundColor(.gray)
+//                                .opacity(0.3)
+//                        }
+//                        .resizable()
+//                        .scaledToFit()
+//                        .frame(width: 55)
+//                        .clipShape(Circle())
+//                }
                 
                 VStack(alignment: .leading, spacing: 8) {
                     Text(authorName)

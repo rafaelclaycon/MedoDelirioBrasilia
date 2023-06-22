@@ -94,11 +94,7 @@ struct SoundCell: View {
     }
     
     private var authorNameLineLimit: Int {
-        if (UIScreen.main.bounds.width <= 390) && (sound.title.count > 20) {
-            return 1
-        } else {
-            return 2
-        }
+        return 2
     }
     
     private var cellHeight: CGFloat {

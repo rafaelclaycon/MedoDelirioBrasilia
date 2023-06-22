@@ -1059,7 +1059,6 @@
 		D991E598284A94F70005705F /* Podium.swift in Sources */ = {isa = PBXBuildFile; fileRef = D991E597284A94F70005705F /* Podium.swift */; };
 		D9943F152863CC4D002C6B97 /* A impiedosa justica de Deus.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9943F142863CC4D002C6B97 /* A impiedosa justica de Deus.mp3 */; };
 		D9943F172863DAE1002C6B97 /* FolderDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F162863DAE1002C6B97 /* FolderDetailView.swift */; };
-		D9943F1A286406AF002C6B97 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D9943F19286406AF002C6B97 /* Kingfisher */; };
 		D9943F1C28641917002C6B97 /* LocalDatabase+Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F1B28641917002C6B97 /* LocalDatabase+Favorite.swift */; };
 		D9943F1E286419C2002C6B97 /* LocalDatabase+TopChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F1D286419C2002C6B97 /* LocalDatabase+TopChart.swift */; };
 		D9943F20286419CE002C6B97 /* LocalDatabase+Statistic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F1F286419CE002C6B97 /* LocalDatabase+Statistic.swift */; };
@@ -2717,7 +2716,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9943F1A286406AF002C6B97 /* Kingfisher in Frameworks */,
 				D9E69592283D2E2C00C341B2 /* SQLite in Frameworks */,
 				D94656D928450535008B4785 /* SQLiteMigrationManager in Frameworks */,
 			);
@@ -4602,7 +4600,6 @@
 			packageProductDependencies = (
 				D9E69591283D2E2C00C341B2 /* SQLite */,
 				D94656D828450535008B4785 /* SQLiteMigrationManager */,
-				D9943F19286406AF002C6B97 /* Kingfisher */,
 			);
 			productName = MedoDelirioBrasilia;
 			productReference = D9625E7A28238F9A00080852 /* MedoDelirio.app */;
@@ -4658,7 +4655,6 @@
 			packageReferences = (
 				D9E69590283D2E2C00C341B2 /* XCRemoteSwiftPackageReference "SQLite" */,
 				D94656D728450535008B4785 /* XCRemoteSwiftPackageReference "SQLiteMigrationManager" */,
-				D9943F18286406AF002C6B97 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = D9625E7B28238F9A00080852 /* Products */;
 			projectDirPath = "";
@@ -6206,9 +6202,10 @@
 				MARKETING_VERSION = 6.26;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -6246,9 +6243,10 @@
 				MARKETING_VERSION = 6.26;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -6342,14 +6340,6 @@
 				minimumVersion = 0.8.0;
 			};
 		};
-		D9943F18286406AF002C6B97 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.3.2;
-			};
-		};
 		D9E69590283D2E2C00C341B2 /* XCRemoteSwiftPackageReference "SQLite" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/stephencelis/SQLite.swift";
@@ -6365,11 +6355,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D94656D728450535008B4785 /* XCRemoteSwiftPackageReference "SQLiteMigrationManager" */;
 			productName = SQLiteMigrationManager;
-		};
-		D9943F19286406AF002C6B97 /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D9943F18286406AF002C6B97 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
 		};
 		D9E69591283D2E2C00C341B2 /* SQLite */ = {
 			isa = XCSwiftPackageProductDependency;

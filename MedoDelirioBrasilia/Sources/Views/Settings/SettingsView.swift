@@ -27,7 +27,7 @@ struct SettingsView: View {
     private let pixKey: String = "medodeliriosuporte@gmail.com"
     
     private var copyPixKeyButtonHorizontalPadding: CGFloat {
-        UIScreen.main.bounds.width > 400 ? 20 : 10
+        20
     }
     
     private var helpTheAppFooterText: String {

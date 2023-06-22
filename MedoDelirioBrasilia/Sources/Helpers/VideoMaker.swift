@@ -55,8 +55,8 @@ class VideoMaker {
         let textColor = UIColor.black
         let textFont = UIFont.systemFont(ofSize: 72, weight: .bold)
 
-        let scale = UIScreen.main.scale
-        UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
+        //let scale = UIScreen.main.scale
+        UIGraphicsBeginImageContextWithOptions(image.size, false, 1.0)
 
         let textFontAttributes = [
             NSAttributedString.Key.font: textFont,
@@ -79,104 +79,7 @@ class VideoMaker {
                                     exportType: IntendedVideoDestination,
                                     success: @escaping ((URL) -> Void),
                                     failure: @escaping ((Error?) -> Void)) {
-        let mixComposition: AVMutableComposition = AVMutableComposition()
-        var mutableCompositionVideoTrack: [AVMutableCompositionTrack] = []
-        var mutableCompositionAudioTrack: [AVMutableCompositionTrack] = []
-        let totalVideoCompositionInstruction: AVMutableVideoCompositionInstruction = AVMutableVideoCompositionInstruction()
-        
-        let aVideoAsset: AVAsset = AVAsset(url: videoUrl)
-        let aAudioAsset: AVAsset = AVAsset(url: audioUrl)
-        
-        if let videoTrack = mixComposition.addMutableTrack(withMediaType: .video, preferredTrackID: kCMPersistentTrackID_Invalid), let audioTrack = mixComposition.addMutableTrack(withMediaType: .audio, preferredTrackID: kCMPersistentTrackID_Invalid) {
-            mutableCompositionVideoTrack.append(videoTrack)
-            mutableCompositionAudioTrack.append(audioTrack)
-
-            if let aVideoAssetTrack: AVAssetTrack = aVideoAsset.tracks(withMediaType: .video).first, let aAudioAssetTrack: AVAssetTrack = aAudioAsset.tracks(withMediaType: .audio).first {
-                do {
-                    try mutableCompositionVideoTrack.first?.insertTimeRange(CMTimeRangeMake(start: CMTime.zero, duration: aVideoAssetTrack.timeRange.duration), of: aVideoAssetTrack, at: CMTime.zero)
-
-                    let videoDuration = aVideoAsset.duration
-                    if CMTimeCompare(videoDuration, aAudioAsset.duration) == -1 {
-                        try mutableCompositionAudioTrack.first?.insertTimeRange(CMTimeRangeMake(start: CMTime.zero, duration: aVideoAssetTrack.timeRange.duration), of: aAudioAssetTrack, at: CMTime.zero)
-                    } else if CMTimeCompare(videoDuration, aAudioAsset.duration) == 1 {
-                        var currentTime = CMTime.zero
-                        while true {
-                            var audioDuration = aAudioAsset.duration
-                            let totalDuration = CMTimeAdd(currentTime, audioDuration)
-                            if CMTimeCompare(totalDuration, videoDuration) == 1 {
-                                audioDuration = CMTimeSubtract(totalDuration, videoDuration)
-                            }
-                            try mutableCompositionAudioTrack.first?.insertTimeRange(CMTimeRangeMake(start: CMTime.zero, duration: aVideoAssetTrack.timeRange.duration), of: aAudioAssetTrack, at: currentTime)
-
-                            currentTime = CMTimeAdd(currentTime, audioDuration)
-                            if CMTimeCompare(currentTime, videoDuration) == 1 || CMTimeCompare(currentTime, videoDuration) == 0 {
-                                break
-                            }
-                        }
-                    }
-                    videoTrack.preferredTransform = aVideoAssetTrack.preferredTransform
-                } catch {
-                    print(error)
-                }
-                
-                totalVideoCompositionInstruction.timeRange = CMTimeRangeMake(start: CMTime.zero, duration: aVideoAssetTrack.timeRange.duration)
-               }
-            }
-
-            let mutableVideoComposition: AVMutableVideoComposition = AVMutableVideoComposition()
-            mutableVideoComposition.frameDuration = CMTimeMake(value: 1, timescale: 30)
-            
-            var videoWidth: Int = 0
-            var videoHeight: Int = 0
-            
-            if exportType == IntendedVideoDestination.twitter {
-                videoWidth = 1000
-                videoHeight = 1000
-            } else {
-                videoWidth = 1080
-                videoHeight = 1920
-            }
-        
-            mutableVideoComposition.renderSize = CGSize(width: videoWidth, height: videoHeight)
-
-            if let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first {
-                let outputURL = URL(fileURLWithPath: documentsPath).appendingPathComponent("\(videoName).mov")
-
-                do {
-                    if FileManager.default.fileExists(atPath: outputURL.path) {
-                        try FileManager.default.removeItem(at: outputURL)
-                    }
-                } catch {
-                    print("Could not remove file: \(error.localizedDescription)")
-                }
-
-                if let exportSession = AVAssetExportSession(asset: mixComposition, presetName: AVAssetExportPresetHighestQuality) {
-                    exportSession.outputURL = outputURL
-                    exportSession.outputFileType = AVFileType.mp4
-                    exportSession.shouldOptimizeForNetworkUse = true
-                   
-                    // try to export the file and handle the status cases
-                    exportSession.exportAsynchronously(completionHandler: {
-                        switch exportSession.status {
-                        case .failed:
-                            if let error = exportSession.error {
-                                failure(error)
-                            }
-
-                        case .cancelled:
-                            if let error = exportSession.error {
-                                failure(error)
-                            }
-
-                        default:
-                            print("finished")
-                            success(outputURL)
-                        }
-                    })
-            } else {
-                failure(nil)
-            }
-        }
+        return
     }
     
     static func createVideo(fromImage image: UIImage,

@@ -35,18 +35,7 @@ struct FolderList: View {
     }
     
     private var noFoldersScrollHeight: CGFloat {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            let screenWidth = UIScreen.main.bounds.height
-            if screenWidth < 600 {
-                return 0
-            } else if screenWidth < 800 {
-                return 50
-            } else {
-                return 100
-            }
-        } else {
-            return 100
-        }
+        return 100
     }
     
     var body: some View {

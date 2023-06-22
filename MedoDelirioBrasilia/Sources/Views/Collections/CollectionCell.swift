@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Kingfisher
 
 struct CollectionCell: View {
 
@@ -17,6 +16,7 @@ struct CollectionCell: View {
     
     var body: some View {
         ZStack {
+            #if !os (xrOS)
             KFImage(URL(string: imageURL))
                 .placeholder {
                     Image(systemName: "photo")
@@ -29,6 +29,7 @@ struct CollectionCell: View {
                 .scaledToFill()
                 .frame(width: 180)
                 .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+            #endif
             
 //            RoundedRectangle(cornerRadius: 20, style: .continuous)
 //                .fill(regularGradient)

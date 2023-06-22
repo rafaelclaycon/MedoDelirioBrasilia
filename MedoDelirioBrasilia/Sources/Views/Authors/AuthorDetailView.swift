@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Kingfisher
+//import Kingfisher
 
 struct AuthorDetailView: View {
 
@@ -113,24 +113,24 @@ struct AuthorDetailView: View {
                 } else {
                     GeometryReader { scrollViewGeometry in
                         ScrollView {
-                            if author.photo != nil {
-                                GeometryReader { headerPhotoGeometry in
-                                    KFImage(URL(string: author.photo ?? .empty))
-                                        .placeholder {
-                                            Image(systemName: "photo.on.rectangle")
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(height: 100)
-                                                .foregroundColor(.gray)
-                                                .opacity(0.3)
-                                        }
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(width: headerPhotoGeometry.size.width, height: self.getHeightForHeaderImage(headerPhotoGeometry))
-                                        .clipped()
-                                        .offset(x: 0, y: self.getOffsetForHeaderImage(headerPhotoGeometry))
-                                }.frame(height: 250)
-                            }
+//                            if author.photo != nil {
+//                                GeometryReader { headerPhotoGeometry in
+//                                    KFImage(URL(string: author.photo ?? .empty))
+//                                        .placeholder {
+//                                            Image(systemName: "photo.on.rectangle")
+//                                                .resizable()
+//                                                .scaledToFit()
+//                                                .frame(height: 100)
+//                                                .foregroundColor(.gray)
+//                                                .opacity(0.3)
+//                                        }
+//                                        .resizable()
+//                                        .scaledToFill()
+//                                        .frame(width: headerPhotoGeometry.size.width, height: self.getHeightForHeaderImage(headerPhotoGeometry))
+//                                        .clipped()
+//                                        .offset(x: 0, y: self.getOffsetForHeaderImage(headerPhotoGeometry))
+//                                }.frame(height: 250)
+//                            }
                             
                             VStack(alignment: .leading, spacing: 15) {
                                 HStack {

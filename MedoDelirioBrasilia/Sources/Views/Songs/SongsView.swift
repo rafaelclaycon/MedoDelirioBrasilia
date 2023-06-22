@@ -57,7 +57,7 @@ struct SongsView: View {
                     LazyVGrid(columns: columns, spacing: 14) {
                         if searchResults.isEmpty {
                             NoSearchResultsView(searchText: $searchText)
-                                .padding(.vertical, UIScreen.main.bounds.height / 4)
+                                //.padding(.vertical, UIScreen.main.bounds.height / 4)
                         } else {
                             ForEach(searchResults) { song in
                                 SongCell(song: song, nowPlaying: $viewModel.nowPlayingKeeper)

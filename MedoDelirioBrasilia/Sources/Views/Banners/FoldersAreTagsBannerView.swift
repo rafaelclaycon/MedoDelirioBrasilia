@@ -6,16 +6,7 @@ struct FoldersAreTagsBannerView: View {
     
     var roundedRectangleHeight: CGFloat {
         if UIDevice.current.userInterfaceIdiom == .phone {
-            switch UIScreen.main.bounds.width {
-            case 320: // iPod touch 7
-                return 204
-            case 375: // iPhone 8
-                return 164
-            case 390: // iPhone 13
-                return 160
-            default: // iPhone 11, 13 Pro Max
-                return 150
-            }
+            return 150
         } else {
             return 100
         }

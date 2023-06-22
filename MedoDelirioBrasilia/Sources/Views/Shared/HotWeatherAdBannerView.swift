@@ -6,22 +6,7 @@ struct HotWeatherAdBannerView: View {
     @Environment(\.colorScheme) var colorScheme
     
     var roundedRectangleHeight: CGFloat {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            switch UIScreen.main.bounds.width {
-            case 320: // iPhone SE 1
-                return 510
-            case 375: // iPhone 8
-                return 500
-            case 390: // iPhone 12/13
-                return 475
-            case 428: // iPhone 13 Pro Max
-                return 380
-            default: // iPhone 11/8 Plus
-                return 400
-            }
-        } else { // iPad/Mac
-            return 200
-        }
+        return 200
     }
     
     var adTitle: String {
