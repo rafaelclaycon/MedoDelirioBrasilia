@@ -63,7 +63,7 @@ struct TrendsView: View {
                             } else {
                                 TopRankingView(tabSelection: $tabSelection,
                                                activePadScreen: $activePadScreen,
-                                               title: "Músicas Mais Compartilhadas Pela Audiência (iOS)",
+                                               title: "🎶  Músicas Mais Compartilhadas Pela Audiência (iOS)",
                                                ranking: nil,
                                                itemName: "Música")
                                 .environmentObject(trendsHelper)

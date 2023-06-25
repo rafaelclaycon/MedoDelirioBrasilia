@@ -51,7 +51,7 @@ struct MostSharedByAudienceView: View {
     var body: some View {
         VStack {
             HStack {
-                Text("Sons Mais Compartilhados Pela Audiência (iOS)")
+                Text("📣  Sons Mais Compartilhados Pela Audiência (iOS)")
                     .font(.title2)
                 Spacer()
             }
