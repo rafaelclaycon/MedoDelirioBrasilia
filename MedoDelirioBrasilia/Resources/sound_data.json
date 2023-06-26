@@ -4581,9 +4581,9 @@
     },
     {
         "id": "68A48196-7020-41D9-BB6E-4CA791503177",
-        "title": "Laudos",
+        "title": "Laudos pisi...",
         "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
-        "description": "laudos pisi laudos aí",
+        "description": "laudos pisi laudos aí laudos psicotecnicos",
         "filename": "Bolsonaro - Laudos.mp3",
         "dateAdded": "2022-07-08T00:00:00Z",
         "duration": 6.35,
@@ -10687,6 +10687,16 @@
         "filename": "Senhor Pedindo Cafe - Eeee.mp3",
         "dateAdded": "2023-06-10T00:00:00Z",
         "duration": 0.97,
+        "isOffensive": false
+    },
+    {
+        "id": "52C72521-ED8A-4213-B0E9-8375C268E4F9",
+        "title": "Ó o passarinho cantando",
+        "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
+        "description": "Ó o passarinho cantando que coisa bonita ó sabe",
+        "filename": "Lula - O o passarinho cantando.mp3",
+        "dateAdded": "2023-06-26T00:00:00Z",
+        "duration": 4.18,
         "isOffensive": false
     }
 ]
