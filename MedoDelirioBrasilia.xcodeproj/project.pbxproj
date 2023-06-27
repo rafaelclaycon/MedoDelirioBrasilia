@@ -450,6 +450,7 @@
 		D967E2BA290196F900B21C11 /* WallE.swift in Sources */ = {isa = PBXBuildFile; fileRef = D967E2B9290196F900B21C11 /* WallE.swift */; };
 		D967E2BC2901C40700B21C11 /* CustomPhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D967E2BB2901C40700B21C11 /* CustomPhotoAlbum.swift */; };
 		D969BA4E292D892C006A7D2F /* Desconhecido - Pra conversar com doido, so outro doido.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D969BA4D292D892C006A7D2F /* Desconhecido - Pra conversar com doido, so outro doido.mp3 */; };
+		D969DCF52A4960F1003F4EB2 /* Lula - O o passarinho cantando.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D969DCF42A4960F1003F4EB2 /* Lula - O o passarinho cantando.mp3 */; };
 		D96A64202955F32F00DC0F03 /* SettingsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96A641F2955F32F00DC0F03 /* SettingsHelper.swift */; };
 		D96E115D28459D8800306859 /* UserActivityWaiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96E115C28459D8800306859 /* UserActivityWaiter.swift */; };
 		D972E9C22927175B0091F949 /* MIDCast - Um pequeno passo para o homem.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D972E9C12927175B0091F949 /* MIDCast - Um pequeno passo para o homem.mp3 */; };
@@ -1841,6 +1842,7 @@
 		D967E2B9290196F900B21C11 /* WallE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallE.swift; sourceTree = "<group>"; };
 		D967E2BB2901C40700B21C11 /* CustomPhotoAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPhotoAlbum.swift; sourceTree = "<group>"; };
 		D969BA4D292D892C006A7D2F /* Desconhecido - Pra conversar com doido, so outro doido.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Desconhecido - Pra conversar com doido, so outro doido.mp3"; sourceTree = "<group>"; };
+		D969DCF42A4960F1003F4EB2 /* Lula - O o passarinho cantando.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - O o passarinho cantando.mp3"; sourceTree = "<group>"; };
 		D96A641F2955F32F00DC0F03 /* SettingsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHelper.swift; sourceTree = "<group>"; };
 		D96E115C28459D8800306859 /* UserActivityWaiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserActivityWaiter.swift; sourceTree = "<group>"; };
 		D972E9C12927175B0091F949 /* MIDCast - Um pequeno passo para o homem.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "MIDCast - Um pequeno passo para o homem.mp3"; sourceTree = "<group>"; };
@@ -2806,6 +2808,7 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D969DCF42A4960F1003F4EB2 /* Lula - O o passarinho cantando.mp3 */,
 				D99CC7182A341D3100B21144 /* Rogerio Correia - Todos bolsonaristas.mp3 */,
 				D99CC70F2A341B7700B21144 /* Rogerio Correia - Lembrar que quebraram aqui o Senado federal.mp3 */,
 				D99CC70D2A341B7700B21144 /* Rogerio Correia - O senador não manja de nada (sobre Marcos do Val).mp3 */,
@@ -5351,6 +5354,7 @@
 				D975FF212880B4F20035E6F2 /* Lucca  Wilker - ME IGNOROU - Ignorou me bloqueou short meme.mp3 in Resources */,
 				D9B88BDA298AFAF30077D9A0 /* Leandro Ramos - Complicado isso tudo ai.mp3 in Resources */,
 				D975FFA72880B4F20035E6F2 /* Ja deu merda, ja deu merda.mp3 in Resources */,
+				D969DCF52A4960F1003F4EB2 /* Lula - O o passarinho cantando.mp3 in Resources */,
 				D975FF222880B4F20035E6F2 /* Ciro Gomes - Conspirador filho da puta.mp3 in Resources */,
 				D921F882288B0177003979CC /* quero que o senhor as engula - collor.mp3 in Resources */,
 				D975FE5C2880B4F20035E6F2 /* Ernesto Araujo - Nao se pode aceitar um lockdown do espirito humano.mp3 in Resources */,
@@ -6344,7 +6348,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/Sources/AppSupport/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -6384,7 +6388,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/Sources/AppSupport/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
