@@ -16,20 +16,20 @@ struct CollectionCell: View {
     
     var body: some View {
         ZStack {
-            #if !os (xrOS)
-            KFImage(URL(string: imageURL))
-                .placeholder {
-                    Image(systemName: "photo")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 35)
-                        .foregroundColor(.gray)
-                }
-                .resizable()
-                .scaledToFill()
-                .frame(width: 180)
-                .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-            #endif
+//            #if !os (xrOS)
+//            KFImage(URL(string: imageURL))
+//                .placeholder {
+//                    Image(systemName: "photo")
+//                        .resizable()
+//                        .scaledToFit()
+//                        .frame(height: 35)
+//                        .foregroundColor(.gray)
+//                }
+//                .resizable()
+//                .scaledToFill()
+//                .frame(width: 180)
+//                .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+//            #endif
             
 //            RoundedRectangle(cornerRadius: 20, style: .continuous)
 //                .fill(regularGradient)
