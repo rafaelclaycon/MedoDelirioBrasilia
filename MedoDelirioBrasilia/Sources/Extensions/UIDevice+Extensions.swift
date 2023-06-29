@@ -4,10 +4,11 @@ import UIKit
 extension UIDevice {
 
     static var is4InchDevice: Bool {
-        guard UIDevice.current.userInterfaceIdiom == .phone else {
-            return false
-        }
-        return UIScreen.main.bounds.width == 320
+//        guard UIDevice.current.userInterfaceIdiom == .phone else {
+//            return false
+//        }
+//        return UIScreen.main.bounds.width == 320
+        return false
     }
     
     static var isiPadMini: Bool {

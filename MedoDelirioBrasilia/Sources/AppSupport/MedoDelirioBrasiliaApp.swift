@@ -46,6 +46,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         prepareAudioPlayerOnMac()
         collectTelemetry()
         
+        print(UIDevice.current.systemName)
+        print(ProcessInfo.processInfo.isiOSAppOnMac)
+        
         return true
     }
     
