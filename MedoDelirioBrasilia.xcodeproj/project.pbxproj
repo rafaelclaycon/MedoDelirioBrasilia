@@ -1265,7 +1265,6 @@
 		D9D798962A093A54002B2D77 /* O, perae hahahaha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D7988E2A093A54002B2D77 /* O, perae hahahaha.mp3 */; };
 		D9D856F5288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D856F3288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3 */; };
 		D9D856F6288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Se numero elevado de mortes policia e uma caracteristica, ta errado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D856F4288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Se numero elevado de mortes policia e uma caracteristica, ta errado.mp3 */; };
-		D9D8C4A8287CD1B600812EE5 /* UIDevice+DevicePhysicalCharacteristics.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D8C4A7287CD1B600812EE5 /* UIDevice+DevicePhysicalCharacteristics.swift */; };
 		D9DACB0229199E9200D917BB /* E hora de rir um pouco dos militares.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DACB0029199E9200D917BB /* E hora de rir um pouco dos militares.mp3 */; };
 		D9DACB0329199E9200D917BB /* Musica da Vitoria - Lula Eleito.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DACB0129199E9200D917BB /* Musica da Vitoria - Lula Eleito.mp3 */; };
 		D9DB6F7F28CBDA8000E24BDE /* MostSharedByMeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DB6F7E28CBDA8000E24BDE /* MostSharedByMeView.swift */; };
@@ -1340,7 +1339,7 @@
 		D9F8E9A428E8D7470098A454 /* Soraya Thronicke - Candidato padre.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F8E9A328E8D7470098A454 /* Soraya Thronicke - Candidato padre.mp3 */; };
 		D9F9BB37294A0FF90005BE56 /* Rafael Infante - Errou feio, errou rude.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F9BB36294A0FF90005BE56 /* Rafael Infante - Errou feio, errou rude.mp3 */; };
 		D9F9BB39294A167C0005BE56 /* TrendsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F9BB38294A167C0005BE56 /* TrendsHelper.swift */; };
-		D9FA0CD728508590000F6ADE /* UIDevice+DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FA0CD628508590000F6ADE /* UIDevice+DeviceInfo.swift */; };
+		D9FA0CD728508590000F6ADE /* UIDevice+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FA0CD628508590000F6ADE /* UIDevice+Extensions.swift */; };
 		D9FA0CD92850864C000F6ADE /* ClientDeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FA0CD82850864C000F6ADE /* ClientDeviceInfo.swift */; };
 		D9FA62F42924252100790F55 /* Luis Roberto Barroso - Perdeu, mane, nao amola.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9FA62F32924252100790F55 /* Luis Roberto Barroso - Perdeu, mane, nao amola.mp3 */; };
 		D9FA62FC2924A5D000790F55 /* Desconhecido - A responsabilidade fiscal nao sera abandonada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9FA62F52924A5D000790F55 /* Desconhecido - A responsabilidade fiscal nao sera abandonada.mp3 */; };
@@ -2657,7 +2656,6 @@
 		D9D7988E2A093A54002B2D77 /* O, perae hahahaha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O, perae hahahaha.mp3"; sourceTree = "<group>"; };
 		D9D856F3288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3"; sourceTree = "<group>"; };
 		D9D856F4288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Se numero elevado de mortes policia e uma caracteristica, ta errado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "RADIO BANDNEWS FM - Eduardo Oinegue - Se numero elevado de mortes policia e uma caracteristica, ta errado.mp3"; sourceTree = "<group>"; };
-		D9D8C4A7287CD1B600812EE5 /* UIDevice+DevicePhysicalCharacteristics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+DevicePhysicalCharacteristics.swift"; sourceTree = "<group>"; };
 		D9DACB0029199E9200D917BB /* E hora de rir um pouco dos militares.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "E hora de rir um pouco dos militares.mp3"; sourceTree = "<group>"; };
 		D9DACB0129199E9200D917BB /* Musica da Vitoria - Lula Eleito.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Musica da Vitoria - Lula Eleito.mp3"; sourceTree = "<group>"; };
 		D9DB6F7E28CBDA8000E24BDE /* MostSharedByMeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostSharedByMeView.swift; sourceTree = "<group>"; };
@@ -2731,7 +2729,7 @@
 		D9F8E9A328E8D7470098A454 /* Soraya Thronicke - Candidato padre.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Soraya Thronicke - Candidato padre.mp3"; sourceTree = "<group>"; };
 		D9F9BB36294A0FF90005BE56 /* Rafael Infante - Errou feio, errou rude.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rafael Infante - Errou feio, errou rude.mp3"; sourceTree = "<group>"; };
 		D9F9BB38294A167C0005BE56 /* TrendsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsHelper.swift; sourceTree = "<group>"; };
-		D9FA0CD628508590000F6ADE /* UIDevice+DeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+DeviceInfo.swift"; sourceTree = "<group>"; };
+		D9FA0CD628508590000F6ADE /* UIDevice+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extensions.swift"; sourceTree = "<group>"; };
 		D9FA0CD82850864C000F6ADE /* ClientDeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientDeviceInfo.swift; sourceTree = "<group>"; };
 		D9FA62F32924252100790F55 /* Luis Roberto Barroso - Perdeu, mane, nao amola.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Luis Roberto Barroso - Perdeu, mane, nao amola.mp3"; sourceTree = "<group>"; };
 		D9FA62F52924A5D000790F55 /* Desconhecido - A responsabilidade fiscal nao sera abandonada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Desconhecido - A responsabilidade fiscal nao sera abandonada.mp3"; sourceTree = "<group>"; };
@@ -4199,13 +4197,12 @@
 				D93443282838230500ADCD38 /* String+Extensions.swift */,
 				D92C0CAD284076CD009CF19A /* UIApplication+KeyWindow.swift */,
 				D9B763272845B5E500CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift */,
-				D9FA0CD628508590000F6ADE /* UIDevice+DeviceInfo.swift */,
+				D9FA0CD628508590000F6ADE /* UIDevice+Extensions.swift */,
 				D9A8AB272854436500B5A94B /* Date+ToString.swift */,
 				D9E51009286084F2003DB3A3 /* Date+OnlyDate.swift */,
 				D9758C3D28617DAC0094D388 /* Color+Name.swift */,
 				D958BC722868FE8C000B2EDA /* EmojiIdentification.swift */,
 				D93CCB7A286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift */,
-				D9D8C4A7287CD1B600812EE5 /* UIDevice+DevicePhysicalCharacteristics.swift */,
 				D9917A102991530000FB6274 /* Double+Extensions.swift */,
 				D92F096429ED844300CC382F /* View+Marquee.swift */,
 				D94EAB5629FC375A004CD604 /* Bundle+Extensions.swift */,
@@ -6155,7 +6152,6 @@
 				D94EAB5929FC4B4B004CD604 /* NewSoundsView.swift in Sources */,
 				D9943F172863DAE1002C6B97 /* FolderDetailView.swift in Sources */,
 				D949181228860ABC0079F545 /* AllFoldersiPadView.swift in Sources */,
-				D9D8C4A8287CD1B600812EE5 /* UIDevice+DevicePhysicalCharacteristics.swift in Sources */,
 				D9E747FB29A8ED1100009C8D /* NoSearchResultsView.swift in Sources */,
 				D98EC5E12825A05900340BE5 /* Sound.swift in Sources */,
 				D944C6912A0C321600AA94EA /* SyncProgressView.swift in Sources */,
@@ -6167,6 +6163,7 @@
 				D95C3E0F2A02D7C400172C17 /* NetworkRabbit+Sync.swift in Sources */,
 				D9FA0CD728508590000F6ADE /* UIDevice+DeviceInfo.swift in Sources */,
 				D9E39DBB2A1E8B320053A527 /* LocalDatabase+SyncLog.swift in Sources */,
+				D9FA0CD728508590000F6ADE /* UIDevice+Extensions.swift in Sources */,
 				D9943F2328641C00002C6B97 /* LocalDatabase.swift in Sources */,
 				D916536628ADCD9B007F141D /* ShareAsVideoLegacyViewViewModel.swift in Sources */,
 				D93D24E02849DAAB00300541 /* DiagnosticsView.swift in Sources */,
