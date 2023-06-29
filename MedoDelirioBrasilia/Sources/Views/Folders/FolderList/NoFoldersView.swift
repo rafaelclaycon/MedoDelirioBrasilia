@@ -8,6 +8,18 @@
 import SwiftUI
 
 struct NoFoldersView: View {
+    
+    private var text: String {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            return "Toque no + no canto superior direito para criar uma nova pasta de sons."
+        } else {
+            if UIDevice.isMac {
+                return "Clique em Nova Pasta acima para criar uma nova pasta de sons."
+            } else {
+                return "Toque em Nova Pasta acima para criar uma nova pasta de sons."
+            }
+        }
+    }
 
     var body: some View {
         VStack(alignment: .center, spacing: 24) {
@@ -23,13 +35,12 @@ struct NoFoldersView: View {
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
             
-            Text("\(UIDevice.current.userInterfaceIdiom == .phone ? "Toque no + no canto superior direito para criar uma nova pasta de sons." : "Toque em Nova Pasta acima para criar uma nova pasta de sons.")")
+            Text(text)
                 .foregroundColor(.gray)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
         }
     }
-
 }
 
 struct NoFoldersView_Previews: PreviewProvider {
@@ -37,5 +48,4 @@ struct NoFoldersView_Previews: PreviewProvider {
     static var previews: some View {
         NoFoldersView()
     }
-
 }
