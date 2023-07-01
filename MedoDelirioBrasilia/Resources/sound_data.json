@@ -3553,7 +3553,7 @@
         "id": "6E148CB9-1320-4C8A-949F-7F18A1B043DE",
         "title": "Moro dizendo que não seria ministro nem candidato à presidência",
         "authorId": "AA4313EE-E9E1-4EDB-9D40-3A9C5C286DA6",
-        "description": "Moro dizendo que nao seria ministro nem candidato a presidencia",
+        "description": "Moro dizendo que nao seria ministro nem candidato a presidencia marreco",
         "filename": "Moro dizendo que nao seria ministro nem candidato a presidencia.mp3",
         "dateAdded": "2022-06-12T00:00:00Z",
         "duration": 42.76,
@@ -10383,7 +10383,7 @@
         "id": "D9C61CF1-A83D-4FEC-9A3B-446148EDD125",
         "title": "Desconta... Des... Contextualizadas (completo)",
         "authorId": "AA4313EE-E9E1-4EDB-9D40-3A9C5C286DA6",
-        "description": "isso sao falas que foram desconta descontextualizadas e divulgadas em fragmentos para",
+        "description": "isso sao falas que foram desconta descontextualizadas e divulgadas em fragmentos para marreco",
         "filename": "Sergio Moro - Descont... Des... Contextualizadas (completo).mp3",
         "dateAdded": "2023-04-19T00:00:00Z",
         "duration": 9.43,
@@ -10393,7 +10393,7 @@
         "id": "C3F5F90A-FA82-4771-87CE-B330D745907C",
         "title": "Desconta... Des... Contextualizadas",
         "authorId": "AA4313EE-E9E1-4EDB-9D40-3A9C5C286DA6",
-        "description": "isso sao falas que foram desconta descontextualizadas",
+        "description": "isso sao falas que foram desconta descontextualizadas marreco",
         "filename": "Sergio Moro - Descont... Des... Contextualizadas.mp3",
         "dateAdded": "2023-04-27T00:00:00Z",
         "duration": 4.81,
@@ -10697,6 +10697,106 @@
         "filename": "Lula - O o passarinho cantando.mp3",
         "dateAdded": "2023-06-26T00:00:00Z",
         "duration": 4.18,
+        "isOffensive": false
+    },
+    {
+        "id": "87ED6294-84E7-4AB1-BAE1-B3CCFC56A734",
+        "title": "Acorda, cara!",
+        "authorId": "5317A042-BE64-4624-B488-F17897F3591A",
+        "description": "acorda cara",
+        "filename": "Monark - Acorda, cara.mp3",
+        "dateAdded": "2023-06-27T00:00:00Z",
+        "duration": 1.52,
+        "isOffensive": false
+    },
+    {
+        "id": "40B2C450-62B7-4340-AA2E-AA83E6A01AC8",
+        "title": "ACORDA!!!",
+        "authorId": "5317A042-BE64-4624-B488-F17897F3591A",
+        "description": "acorda",
+        "filename": "Monark - ACORDA.mp3",
+        "dateAdded": "2023-06-27T00:00:00Z",
+        "duration": 1.25,
+        "isOffensive": false
+    },
+    {
+        "id": "B9CD6B58-D65F-47B0-8A27-D1E04F9C13B0",
+        "title": "É bem interessante",
+        "authorId": "6D74C432-AC62-451A-A1C3-EB6B1ECA3FAA",
+        "description": "É bem interessante",
+        "filename": "Saldo Extra - E bem interessante.mp3",
+        "dateAdded": "2023-06-30T00:00:00Z",
+        "duration": 1.52,
+        "isOffensive": false
+    },
+    {
+        "id": "090D44C7-46F3-4418-A51F-487CF6726149",
+        "title": "Tem que demitir hoje!",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Tem que demitir hoje",
+        "filename": "Tem que demitir hoje.mp3",
+        "dateAdded": "2023-06-30T00:00:00Z",
+        "duration": 1.57,
+        "isOffensive": true
+    },
+    {
+        "id": "CFBE07F9-6586-4830-B2D3-D3824D763DB9",
+        "title": "Vi na Internet, não sei se é procedente ou não essa afirmação",
+        "authorId": "AA4313EE-E9E1-4EDB-9D40-3A9C5C286DA6",
+        "description": "Vi na Internet nao sei se e procedente ou nao essa afirmacao marreco",
+        "filename": "Marreco - Vi na Internet, nao sei se e procedente ou nao essa afirmacao.mp3",
+        "dateAdded": "2023-06-30T00:00:00Z",
+        "duration": 4.55,
+        "isOffensive": false
+    },
+    {
+        "id": "11F6F71D-8553-426E-8587-C81DD4E945F9",
+        "title": "O que é o código-fonte?",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "O que e o codigo-fonte o que e o codigo fonte",
+        "filename": "O que e o codigo-fonte.mp3",
+        "dateAdded": "2023-06-30T00:00:00Z",
+        "duration": 5.07,
+        "isOffensive": false
+    },
+    {
+        "id": "FCDDBA39-B8D5-4116-AFA9-DE4AD8EEB6F9",
+        "title": "Eu não sei o que é o código-fonte",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Eu to perguntando pro senhor o senhor sabe o que e o codigo-fonte eu nao sei o que e o codigo-fonte",
+        "filename": "Eu nao sei o que e o codigo-fonte.mp3",
+        "dateAdded": "2023-06-30T00:00:00Z",
+        "duration": 3.13,
+        "isOffensive": false
+    },
+    {
+        "id": "1B8EC7F9-6F56-44D9-A25C-5111FD45AB8B",
+        "title": "Responda x6",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Responda x6 responda responda responda vezes 6",
+        "filename": "Jair Bolsonaro - Responda x6.mp3",
+        "dateAdded": "2023-06-30T00:00:00Z",
+        "duration": 3.68,
+        "isOffensive": false
+    },
+    {
+        "id": "A0F9DD1F-FBD9-449F-81C7-BA4D08004C88",
+        "title": "Eu não aguento maaais",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Eu nao aguento mais maaaaais",
+        "filename": "Eu nao aguento mais.mp3",
+        "dateAdded": "2023-06-30T00:00:00Z",
+        "duration": 3.02,
+        "isOffensive": false
+    },
+    {
+        "id": "E6ECD690-18D3-42C2-AAAC-4EE055C677C7",
+        "title": "Interessante hein, cara",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Interessante hein, cara",
+        "filename": "Interessante hein, cara.mp3",
+        "dateAdded": "2023-06-30T00:00:00Z",
+        "duration": 2.09,
         "isOffensive": false
     }
 ]
