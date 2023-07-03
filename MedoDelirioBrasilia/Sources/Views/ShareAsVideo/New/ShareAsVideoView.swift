@@ -25,7 +25,7 @@ struct ShareAsVideoView: View {
     @ScaledMetric var vstackSpacing: CGFloat = 22
     @ScaledMetric var bottomPadding: CGFloat = 26
     
-    private let twitterTip = "Para responder a um tuíte, escolha Salvar Vídeo e depois adicione o vídeo ao seu tuíte a partir do app do Twitter."
+    private let twitterTip = "Para responder a uma publicação na sua rede social favorita, escolha Salvar Vídeo e depois adicione o vídeo à resposta a partir do app da rede."
     private let instagramTip = "Para fazer um Story, escolha Salvar Vídeo e depois adicione o vídeo ao seu Story a partir do Instagram."
     
     var body: some View {
@@ -129,9 +129,11 @@ struct ShareAsVideoView: View {
                             if viewModel.selectedSocialNetwork == IntendedVideoDestination.twitter.rawValue {
                                 showTwitterTip = false
                                 AppPersistentMemory.setHasHiddenShareAsVideoTwitterTip(to: true)
+                                self.didCloseTip = false
                             } else if viewModel.selectedSocialNetwork == IntendedVideoDestination.instagramTikTok.rawValue {
                                 showInstagramTip = false
                                 AppPersistentMemory.setHasHiddenShareAsVideoInstagramTip(to: true)
+                                self.didCloseTip = false
                             }
                         }
                     }
