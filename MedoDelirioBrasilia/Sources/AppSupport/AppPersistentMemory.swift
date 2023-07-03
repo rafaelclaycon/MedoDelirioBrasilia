@@ -45,7 +45,7 @@ class AppPersistentMemory {
         return Bool(value as! Bool)
     }
     
-    static func getHasHiddenShareAsVideoTwitterTip() -> Bool {
+    static func getHasHiddenShareAsVideoTextSocialNetworkTip() -> Bool {
         let userDefaults = UserDefaults.standard
         guard let value = userDefaults.object(forKey: "hasHiddenShareAsVideoTwitterTip") else {
             return false
@@ -120,7 +120,7 @@ class AppPersistentMemory {
         userDefaults.set(newValue, forKey: "hasShownNotificationsOnboarding")
     }
     
-    static func setHasHiddenShareAsVideoTwitterTip(to newValue: Bool) {
+    static func setHasHiddenShareAsVideoTextSocialNetworkTip(to newValue: Bool) {
         let userDefaults = UserDefaults.standard
         userDefaults.set(newValue, forKey: "hasHiddenShareAsVideoTwitterTip")
     }

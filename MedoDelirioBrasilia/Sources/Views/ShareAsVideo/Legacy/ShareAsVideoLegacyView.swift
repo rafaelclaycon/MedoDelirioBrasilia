@@ -102,10 +102,12 @@ struct ShareAsVideoLegacyView: View {
                         if didCloseTip {
                             if viewModel.selectedSocialNetwork == IntendedVideoDestination.twitter.rawValue {
                                 showTwitterTip = false
-                                AppPersistentMemory.setHasHiddenShareAsVideoTwitterTip(to: true)
+                                AppPersistentMemory.setHasHiddenShareAsVideoTextSocialNetworkTip(to: true)
+                                self.didCloseTip = false
                             } else if viewModel.selectedSocialNetwork == IntendedVideoDestination.instagramTikTok.rawValue {
                                 showInstagramTip = false
                                 AppPersistentMemory.setHasHiddenShareAsVideoInstagramTip(to: true)
+                                self.didCloseTip = false
                             }
                         }
                     }
@@ -129,7 +131,7 @@ struct ShareAsVideoLegacyView: View {
             result.videoFilepath = .empty
             result.contentId = .empty
             
-            showTwitterTip = AppPersistentMemory.getHasHiddenShareAsVideoTwitterTip() == false
+            showTwitterTip = AppPersistentMemory.getHasHiddenShareAsVideoTextSocialNetworkTip() == false
             showInstagramTip = AppPersistentMemory.getHasHiddenShareAsVideoInstagramTip() == false
         }
     }

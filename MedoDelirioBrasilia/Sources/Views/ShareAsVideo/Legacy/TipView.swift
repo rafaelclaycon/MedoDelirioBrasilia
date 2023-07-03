@@ -63,6 +63,6 @@ struct TipView: View {
 struct TipView_Previews: PreviewProvider {
 
     static var previews: some View {
-        TipView(text: .constant("Para responder a um tuíte, escolha Salvar Vídeo na tela de compartilhamento. Depois, adicione o vídeo ao seu tuíte de dentro do Twitter."), didTapClose: .constant(false))
+        TipView(text: .constant("Para responder a uma publicação na sua rede social favorita, escolha Salvar Vídeo e depois adicione o vídeo à resposta a partir do app da rede."), didTapClose: .constant(false))
     }
 }
