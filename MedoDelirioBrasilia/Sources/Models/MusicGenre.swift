@@ -9,7 +9,7 @@ import Foundation
 
 enum MusicGenre: String, CaseIterable, Identifiable, Codable {
 
-    case all, arrocha, electronic, funk, undefined, house, jingle, marchinha, metal, mpb, pagode, pisero, pop, reggae, rock, samba, sertanejo, tecno, variousGenres
+    case all, arrocha, electronic, funk, undefined, house, jingle, marchinha, metal, mpb, pagode, pisero, pop, reggae, rock, salsa, samba, sertanejo, tecno, variousGenres, tvIntro
     
     var id: String { String(self.rawValue) }
     var name: String {
@@ -60,18 +60,23 @@ enum MusicGenre: String, CaseIterable, Identifiable, Codable {
         case .rock:
             return "Rock"
         // 15
+        case .salsa:
+            return "Salsa"
+        // 16
         case .samba:
             return "Samba"
-        // 16
+        // 17
         case .sertanejo:
             return "Sertanejo"
-        // 17
+        // 18
         case .tecno:
             return "Tecno"
-        // 18
+        // 19
         case .variousGenres:
             return "Vários gêneros"
+        // 20
+        case .tvIntro:
+            return "Vinheta"
         }
     }
-
 }

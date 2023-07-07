@@ -1677,5 +1677,27 @@
     {
         "id": "3388CB84-A7A9-4BDE-B141-51AA218DA961",
         "name": "Senhor Pedindo Café"
+    },
+    {
+        "id": "5317A042-BE64-4624-B488-F17897F3591A",
+        "name": "Monark"
+    },
+    {
+        "id": "6D74C432-AC62-451A-A1C3-EB6B1ECA3FAA",
+        "name": "Saldo Extra"
+    },
+    {
+        "id": "C0160F87-5596-4BFC-81F1-F651303913C6",
+        "name": "Choque de Cultura"
+    },
+    {
+        "id": "4AEC2419-3C67-4DAF-90AE-611FF7AD80C2",
+        "name": "Cine Trash",
+        "description": "Programa exibido na Band entre 1996 e 1997. Apresentado por Zé do Caixão, trazia filmes de baixo orçamento (por isso o nome)."
+    },
+    {
+        "id": "0AF9E32C-B61E-4194-82E4-2E59EAA61E6B",
+        "name": "Alexandre Nascimento",
+        "description": "Criador carioca. @ale_nda9 no Instagram."
     }
 ]
