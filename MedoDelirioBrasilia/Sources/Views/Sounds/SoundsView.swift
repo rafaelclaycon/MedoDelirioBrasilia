@@ -64,7 +64,7 @@ struct SoundsView: View {
 
     // Dynamic Type
     @ScaledMetric private var soundCountTopPadding = 10
-    @ScaledMetric private var soundCountPhoneBottomPadding = 66
+    @ScaledMetric private var soundCountPhoneBottomPadding = 68
     @ScaledMetric private var soundCountPadBottomPadding = 22
     
     private var searchResults: [Sound] {
