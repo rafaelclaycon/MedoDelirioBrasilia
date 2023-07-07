@@ -65,8 +65,11 @@ struct SoundsView: View {
     private let toastViewBottomPaddingPad: CGFloat = 15
 
     // Dynamic Type
+    @ScaledMetric private var explicitOffWarningTopPadding = 16
+    @ScaledMetric private var explicitOffWarningPhoneBottomPadding = 20
+    @ScaledMetric private var explicitOffWarningPadBottomPadding = 20
     @ScaledMetric private var soundCountTopPadding = 10
-    @ScaledMetric private var soundCountPhoneBottomPadding = 66
+    @ScaledMetric private var soundCountPhoneBottomPadding = 68
     @ScaledMetric private var soundCountPadBottomPadding = 22
     
     private var searchResults: [Sound] {
@@ -265,11 +268,9 @@ struct SoundsView: View {
                             
                             if UserSettings.getShowExplicitContent() == false, currentViewMode != .favorites {
                                 Text(UIDevice.current.userInterfaceIdiom == .phone ? Shared.contentFilterMessageForSoundsiPhone : Shared.contentFilterMessageForSoundsiPadMac)
-                                    .font(.footnote)
-                                    .foregroundColor(.gray)
                                     .multilineTextAlignment(.center)
-                                    .padding(.top, 15)
-                                    .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 20 : 40)
+                                    .padding(.top, explicitOffWarningTopPadding)
+                                    .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? explicitOffWarningPhoneBottomPadding : explicitOffWarningPadBottomPadding)
                             }
                             
                             if searchText.isEmpty, currentViewMode != .favorites {

@@ -15,6 +15,11 @@ struct AuthorsView: View {
     @Binding var sortAction: AuthorSortOption
     @Binding var searchTextForControl: String
     @State var currentSoundsListMode: SoundsListMode = .regular
+
+    // Dynamic Type
+    @ScaledMetric private var authorCountTopPadding = 10
+    @ScaledMetric private var authorCountPhoneBottomPadding = 68
+    @ScaledMetric private var authorCountPadBottomPadding = 22
     
     var searchResults: [Author] {
         if searchText.isEmpty {
@@ -57,7 +62,6 @@ struct AuthorsView: View {
             .disableAutocorrection(true)
             .padding(.horizontal)
             .padding(.top, 7)
-            .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? 75 : 18)
             .onAppear {
                 if viewModel.authors.isEmpty {
                     viewModel.reloadList(sortedBy: AuthorSortOption(rawValue: sortOption) ?? .nameAscending)
@@ -77,6 +81,15 @@ struct AuthorsView: View {
             }
             .onChange(of: searchText) { searchText in
                 searchTextForControl = searchText
+            }
+
+            if searchText.isEmpty {
+                Text("\(viewModel.authors.count) AUTORES.")
+                    .font(.footnote)
+                    .foregroundColor(.gray)
+                    .multilineTextAlignment(.center)
+                    .padding(.top, authorCountTopPadding)
+                    .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? authorCountPhoneBottomPadding : authorCountPadBottomPadding)
             }
         }
     }
