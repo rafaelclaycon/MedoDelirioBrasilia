@@ -16,7 +16,7 @@ struct ShareAsVideoView: View {
     
     @State var useLongerGeneratingVideoMessage: Bool
     @State var didCloseTip: Bool = false
-    @State var showTwitterTip: Bool = true
+    @State var showTextSocialNetworkTip: Bool = true
     @State var showInstagramTip: Bool = true
     @State private var tipText: String = .empty
     @State private var verticalOffset: CGFloat = 0.0
@@ -25,7 +25,7 @@ struct ShareAsVideoView: View {
     @ScaledMetric var vstackSpacing: CGFloat = 22
     @ScaledMetric var bottomPadding: CGFloat = 26
     
-    private let twitterTip = "Para responder a um tuíte, escolha Salvar Vídeo e depois adicione o vídeo ao seu tuíte a partir do app do Twitter."
+    private let textSocialNetworkTip = "Para responder a uma publicação na sua rede social favorita, escolha Salvar Vídeo e depois adicione o vídeo à resposta a partir do app da rede."
     private let instagramTip = "Para fazer um Story, escolha Salvar Vídeo e depois adicione o vídeo ao seu Story a partir do Instagram."
     
     var body: some View {
@@ -43,7 +43,7 @@ struct ShareAsVideoView: View {
                         .pickerStyle(SegmentedPickerStyle())
                         .disabled(viewModel.isShowingProcessingView)
                         .onChange(of: viewModel.selectedSocialNetwork) { newValue in
-                            tipText = newValue == IntendedVideoDestination.twitter.rawValue ? twitterTip : instagramTip
+                            tipText = newValue == IntendedVideoDestination.twitter.rawValue ? textSocialNetworkTip : instagramTip
                         }
                         
                         if viewModel.selectedSocialNetwork == 0 {
@@ -75,7 +75,7 @@ struct ShareAsVideoView: View {
                         }
                         .disabled(viewModel.isShowingProcessingView)
                         
-                        if viewModel.selectedSocialNetwork == IntendedVideoDestination.twitter.rawValue && showTwitterTip {
+                        if viewModel.selectedSocialNetwork == IntendedVideoDestination.twitter.rawValue && showTextSocialNetworkTip {
                             TipView(text: $tipText, didTapClose: $didCloseTip)
                                 .disabled(viewModel.isShowingProcessingView)
                         } else if viewModel.selectedSocialNetwork == IntendedVideoDestination.instagramTikTok.rawValue && showInstagramTip {
@@ -127,11 +127,13 @@ struct ShareAsVideoView: View {
                     .onChange(of: didCloseTip) { didCloseTip in
                         if didCloseTip {
                             if viewModel.selectedSocialNetwork == IntendedVideoDestination.twitter.rawValue {
-                                showTwitterTip = false
-                                AppPersistentMemory.setHasHiddenShareAsVideoTwitterTip(to: true)
+                                showTextSocialNetworkTip = false
+                                AppPersistentMemory.setHasHiddenShareAsVideoTextSocialNetworkTip(to: true)
+                                self.didCloseTip = false
                             } else if viewModel.selectedSocialNetwork == IntendedVideoDestination.instagramTikTok.rawValue {
                                 showInstagramTip = false
                                 AppPersistentMemory.setHasHiddenShareAsVideoInstagramTip(to: true)
+                                self.didCloseTip = false
                             }
                         }
                     }
@@ -149,13 +151,13 @@ struct ShareAsVideoView: View {
             }
         }
         .onAppear {
-            tipText = twitterTip
+            tipText = textSocialNetworkTip
             
             // Cleaning this string is needed in case the user decides do re-export the same sound
             result.videoFilepath = .empty
             result.contentId = .empty
             
-            showTwitterTip = AppPersistentMemory.getHasHiddenShareAsVideoTwitterTip() == false
+            showTextSocialNetworkTip = AppPersistentMemory.getHasHiddenShareAsVideoTextSocialNetworkTip() == false
             showInstagramTip = AppPersistentMemory.getHasHiddenShareAsVideoInstagramTip() == false
         }
     }

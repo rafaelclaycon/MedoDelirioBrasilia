@@ -19,7 +19,7 @@ struct ShareAsVideoLegacyView: View {
     
     @State private var tipText: String = .empty
     
-    private let twitterTip = "Para responder a um tuíte, escolha Salvar Vídeo e depois adicione o vídeo ao seu tuíte a partir do app do Twitter."
+    private let twitterTip = "Para responder a uma publicação na sua rede social favorita, escolha Salvar Vídeo e depois adicione o vídeo à resposta a partir do app da rede."
     private let instagramTip = "Para fazer um Story, escolha Salvar Vídeo e depois adicione o vídeo ao seu Story a partir do Instagram."
     
     var body: some View {
@@ -28,8 +28,8 @@ struct ShareAsVideoLegacyView: View {
                 ScrollView {
                     VStack {
                         Picker(selection: $viewModel.selectedSocialNetwork, label: Text("Rede social")) {
-                            Text("Twitter / WhatsApp").tag(0)
-                            Text("Instagram / TikTok").tag(1)
+                            Text("Quadrado").tag(0)
+                            Text("9 : 16").tag(1)
                         }
                         .pickerStyle(SegmentedPickerStyle())
                         .padding(.horizontal, 25)
@@ -102,10 +102,12 @@ struct ShareAsVideoLegacyView: View {
                         if didCloseTip {
                             if viewModel.selectedSocialNetwork == IntendedVideoDestination.twitter.rawValue {
                                 showTwitterTip = false
-                                AppPersistentMemory.setHasHiddenShareAsVideoTwitterTip(to: true)
+                                AppPersistentMemory.setHasHiddenShareAsVideoTextSocialNetworkTip(to: true)
+                                self.didCloseTip = false
                             } else if viewModel.selectedSocialNetwork == IntendedVideoDestination.instagramTikTok.rawValue {
                                 showInstagramTip = false
                                 AppPersistentMemory.setHasHiddenShareAsVideoInstagramTip(to: true)
+                                self.didCloseTip = false
                             }
                         }
                     }
@@ -129,7 +131,7 @@ struct ShareAsVideoLegacyView: View {
             result.videoFilepath = .empty
             result.contentId = .empty
             
-            showTwitterTip = AppPersistentMemory.getHasHiddenShareAsVideoTwitterTip() == false
+            showTwitterTip = AppPersistentMemory.getHasHiddenShareAsVideoTextSocialNetworkTip() == false
             showInstagramTip = AppPersistentMemory.getHasHiddenShareAsVideoInstagramTip() == false
         }
     }
