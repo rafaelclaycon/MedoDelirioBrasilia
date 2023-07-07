@@ -61,6 +61,11 @@ struct SoundsView: View {
     // Toast views
     private let toastViewBottomPaddingPhone: CGFloat = 60
     private let toastViewBottomPaddingPad: CGFloat = 15
+
+    // Dynamic Type
+    @ScaledMetric private var soundCountTopPadding = 10
+    @ScaledMetric private var soundCountPhoneBottomPadding = 66
+    @ScaledMetric private var soundCountPadBottomPadding = 22
     
     private var searchResults: [Sound] {
         if searchText.isEmpty {
@@ -267,11 +272,12 @@ struct SoundsView: View {
                             }
                             
                             if searchText.isEmpty, currentViewMode != .favorites {
-                                Text("\(viewModel.sounds.count) sons. Atualizado em \(soundsLastUpdateDate).")
-                                    .font(.subheadline)
-                                    .bold()
-                                    .padding(.top, 10)
-                                    .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? 75 : 18)
+                                Text("\(viewModel.sounds.count) SONS. ATUALIZADO EM \(soundsLastUpdateDate).")
+                                    .font(.footnote)
+                                    .foregroundColor(.gray)
+                                    .multilineTextAlignment(.center)
+                                    .padding(.top, soundCountTopPadding)
+                                    .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? soundCountPhoneBottomPadding : soundCountPadBottomPadding)
                             }
                         }
                     }
