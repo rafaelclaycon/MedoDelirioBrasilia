@@ -21,6 +21,10 @@ struct SongsView: View {
     @State private var shareAsVideo_Result = ShareAsVideoResult()
     
     @EnvironmentObject var settingsHelper: SettingsHelper
+
+    // Dynamic Type
+    @ScaledMetric private var songCountTopPadding = 10
+    @ScaledMetric private var songCountBottomPadding = 22
     
     private var columns: [GridItem] {
         if UIDevice.current.userInterfaceIdiom == .phone {
@@ -114,11 +118,12 @@ struct SongsView: View {
                     }
                     
                     if searchText.isEmpty, currentGenre == .all {
-                        Text("\(viewModel.songs.count) músicas. Atualizado em \(songsLastUpdateDate).")
-                            .font(.subheadline)
-                            .bold()
-                            .padding(.top, 10)
-                            .padding(.bottom, 18)
+                        Text("\(viewModel.songs.count) MÚSICAS. ATUALIZADO EM \(songsLastUpdateDate).")
+                            .font(.footnote)
+                            .foregroundColor(.gray)
+                            .multilineTextAlignment(.center)
+                            .padding(.top, songCountTopPadding)
+                            .padding(.bottom, songCountBottomPadding)
                     }
                 }
             }
