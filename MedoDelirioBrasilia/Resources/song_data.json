@@ -678,5 +678,25 @@
         "filename": "Funk do Pix.mp3",
         "dateAdded": "2023-06-17T00:00:00Z",
         "isOffensive": false
+    },
+    {
+        "id": "B13B2059-AFF5-4F91-8CBF-0E039F7FAA3F",
+        "title": "Marcos! Rogériooo!",
+        "description": "",
+        "genre": "salsa",
+        "duration": 16.72,
+        "filename": "Marcos Rogerio.mp3",
+        "dateAdded": "2023-07-07T00:00:00Z",
+        "isOffensive": true
+    },
+    {
+        "id": "E606BA19-4243-49C2-862A-9B9F9841042F",
+        "title": "Comemoração da Inelegibilidade do Bolsonaro",
+        "description": "",
+        "genre": "tvIntro",
+        "duration": 46.73,
+        "filename": "Comemoracao Inelegibilidade Bolsonaro.mp3",
+        "dateAdded": "2023-07-07T00:00:00Z",
+        "isOffensive": true
     }
 ]

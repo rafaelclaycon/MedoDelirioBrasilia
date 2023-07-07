@@ -1238,6 +1238,17 @@
 		D9D103F329AE36980028F1E1 /* Lourdes Melo - Cabeca de ovo cabeca lustrada de ovo de cabeca lustrada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D103F229AE36980028F1E1 /* Lourdes Melo - Cabeca de ovo cabeca lustrada de ovo de cabeca lustrada.mp3 */; };
 		D9D103F729AE395A0028F1E1 /* O sangue de jesus tem poder.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D103F629AE395A0028F1E1 /* O sangue de jesus tem poder.mp3 */; };
 		D9D192772909D4F200713804 /* NetworkCallLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D192762909D4F200713804 /* NetworkCallLog.swift */; };
+		D9D1A9462A57B31600289AF2 /* Atencao, Bolsonaro preso (Vinheta da Globo).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D1A9452A57B31600289AF2 /* Atencao, Bolsonaro preso (Vinheta da Globo).mp3 */; };
+		D9D1A94F2A57B32400289AF2 /* Away de Petropolis - Isso me irrita, isso me deixa nervoso.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D1A9472A57B32400289AF2 /* Away de Petropolis - Isso me irrita, isso me deixa nervoso.mp3 */; };
+		D9D1A9502A57B32400289AF2 /* Choque de Cultura - Ouve a voz do seu perineo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D1A9482A57B32400289AF2 /* Choque de Cultura - Ouve a voz do seu perineo.mp3 */; };
+		D9D1A9512A57B32400289AF2 /* Away de Petropolis - Isso me irrita.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D1A9492A57B32400289AF2 /* Away de Petropolis - Isso me irrita.mp3 */; };
+		D9D1A9532A57B32400289AF2 /* Alexandre de Moraes, ministro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D1A94B2A57B32400289AF2 /* Alexandre de Moraes, ministro.mp3 */; };
+		D9D1A9542A57B32400289AF2 /* Eduardo Bolsonaro - Ficou irritadinho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D1A94C2A57B32400289AF2 /* Eduardo Bolsonaro - Ficou irritadinho.mp3 */; };
+		D9D1A9552A57B32400289AF2 /* Augusto Heleno - Dois Lexotan na veia por dia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D1A94D2A57B32400289AF2 /* Augusto Heleno - Dois Lexotan na veia por dia.mp3 */; };
+		D9D1A9592A57B71200289AF2 /* Cine Trash - Um terrivel mal entendido.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D1A9572A57B71200289AF2 /* Cine Trash - Um terrivel mal entendido.mp3 */; };
+		D9D1A95A2A57B71200289AF2 /* Cine Trash - Uma terrivel coincidencia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D1A9582A57B71200289AF2 /* Cine Trash - Uma terrivel coincidencia.mp3 */; };
+		D9D1A95C2A57BDF100289AF2 /* Marcos Rogerio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D1A95B2A57BDF100289AF2 /* Marcos Rogerio.mp3 */; };
+		D9D1A95E2A57C44A00289AF2 /* Comemoracao Inelegibilidade Bolsonaro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D1A95D2A57C44A00289AF2 /* Comemoracao Inelegibilidade Bolsonaro.mp3 */; };
 		D9D3D4912887495B00C42FDE /* FolderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3D4902887495B00C42FDE /* FolderList.swift */; };
 		D9D3D493288750C400C42FDE /* FolderListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3D492288750C400C42FDE /* FolderListViewModel.swift */; };
 		D9D798742A082955002B2D77 /* Diogo Defante - Ih, a porrada ta lambrando ainda.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D798732A082955002B2D77 /* Diogo Defante - Ih, a porrada ta lambrando ainda.mp3 */; };
@@ -2614,6 +2625,17 @@
 		D9D103F229AE36980028F1E1 /* Lourdes Melo - Cabeca de ovo cabeca lustrada de ovo de cabeca lustrada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lourdes Melo - Cabeca de ovo cabeca lustrada de ovo de cabeca lustrada.mp3"; sourceTree = "<group>"; };
 		D9D103F629AE395A0028F1E1 /* O sangue de jesus tem poder.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O sangue de jesus tem poder.mp3"; sourceTree = "<group>"; };
 		D9D192762909D4F200713804 /* NetworkCallLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkCallLog.swift; sourceTree = "<group>"; };
+		D9D1A9452A57B31600289AF2 /* Atencao, Bolsonaro preso (Vinheta da Globo).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Atencao, Bolsonaro preso (Vinheta da Globo).mp3"; sourceTree = "<group>"; };
+		D9D1A9472A57B32400289AF2 /* Away de Petropolis - Isso me irrita, isso me deixa nervoso.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Away de Petropolis - Isso me irrita, isso me deixa nervoso.mp3"; sourceTree = "<group>"; };
+		D9D1A9482A57B32400289AF2 /* Choque de Cultura - Ouve a voz do seu perineo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Choque de Cultura - Ouve a voz do seu perineo.mp3"; sourceTree = "<group>"; };
+		D9D1A9492A57B32400289AF2 /* Away de Petropolis - Isso me irrita.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Away de Petropolis - Isso me irrita.mp3"; sourceTree = "<group>"; };
+		D9D1A94B2A57B32400289AF2 /* Alexandre de Moraes, ministro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alexandre de Moraes, ministro.mp3"; sourceTree = "<group>"; };
+		D9D1A94C2A57B32400289AF2 /* Eduardo Bolsonaro - Ficou irritadinho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eduardo Bolsonaro - Ficou irritadinho.mp3"; sourceTree = "<group>"; };
+		D9D1A94D2A57B32400289AF2 /* Augusto Heleno - Dois Lexotan na veia por dia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Augusto Heleno - Dois Lexotan na veia por dia.mp3"; sourceTree = "<group>"; };
+		D9D1A9572A57B71200289AF2 /* Cine Trash - Um terrivel mal entendido.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cine Trash - Um terrivel mal entendido.mp3"; sourceTree = "<group>"; };
+		D9D1A9582A57B71200289AF2 /* Cine Trash - Uma terrivel coincidencia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cine Trash - Uma terrivel coincidencia.mp3"; sourceTree = "<group>"; };
+		D9D1A95B2A57BDF100289AF2 /* Marcos Rogerio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Marcos Rogerio.mp3"; sourceTree = "<group>"; };
+		D9D1A95D2A57C44A00289AF2 /* Comemoracao Inelegibilidade Bolsonaro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Comemoracao Inelegibilidade Bolsonaro.mp3"; sourceTree = "<group>"; };
 		D9D3D4902887495B00C42FDE /* FolderList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderList.swift; sourceTree = "<group>"; };
 		D9D3D492288750C400C42FDE /* FolderListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListViewModel.swift; sourceTree = "<group>"; };
 		D9D798732A082955002B2D77 /* Diogo Defante - Ih, a porrada ta lambrando ainda.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Diogo Defante - Ih, a porrada ta lambrando ainda.mp3"; sourceTree = "<group>"; };
@@ -2774,6 +2796,15 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9D1A9572A57B71200289AF2 /* Cine Trash - Um terrivel mal entendido.mp3 */,
+				D9D1A9582A57B71200289AF2 /* Cine Trash - Uma terrivel coincidencia.mp3 */,
+				D9D1A94B2A57B32400289AF2 /* Alexandre de Moraes, ministro.mp3 */,
+				D9D1A94D2A57B32400289AF2 /* Augusto Heleno - Dois Lexotan na veia por dia.mp3 */,
+				D9D1A9472A57B32400289AF2 /* Away de Petropolis - Isso me irrita, isso me deixa nervoso.mp3 */,
+				D9D1A9492A57B32400289AF2 /* Away de Petropolis - Isso me irrita.mp3 */,
+				D9D1A9482A57B32400289AF2 /* Choque de Cultura - Ouve a voz do seu perineo.mp3 */,
+				D9D1A94C2A57B32400289AF2 /* Eduardo Bolsonaro - Ficou irritadinho.mp3 */,
+				D9D1A9452A57B31600289AF2 /* Atencao, Bolsonaro preso (Vinheta da Globo).mp3 */,
 				D94551262A4EF5E7000A22B1 /* Eu nao aguento mais.mp3 */,
 				D94551242A4EF5E6000A22B1 /* Eu nao sei o que e o codigo-fonte.mp3 */,
 				D94551252A4EF5E7000A22B1 /* Interessante hein, cara.mp3 */,
@@ -3878,6 +3909,8 @@
 		D92E7068283C5C120035826C /* Songs */ = {
 			isa = PBXGroup;
 			children = (
+				D9D1A95D2A57C44A00289AF2 /* Comemoracao Inelegibilidade Bolsonaro.mp3 */,
+				D9D1A95B2A57BDF100289AF2 /* Marcos Rogerio.mp3 */,
 				D9C67C0D2A3E1EB100E74E9D /* Funk do Pix.mp3 */,
 				D99CC7142A341B8500B21144 /* Eu vi papai Jesus na goiabeira.mp3 */,
 				D99CC7152A341B8500B21144 /* Ninguem me ofereceu um cigarro de maconha.mp3 */,
@@ -4725,6 +4758,7 @@
 				D9B4F740283C8F4D0000EEF7 /* O roque ativa.mp3 in Resources */,
 				D921F88B288B0177003979CC /* Air quotes.mp3 in Resources */,
 				D975FEE72880B4F20035E6F2 /* Away -  Fora das condicoes normais.mp3 in Resources */,
+				D9D1A9542A57B32400289AF2 /* Eduardo Bolsonaro - Ficou irritadinho.mp3 in Resources */,
 				D99CC7172A341B8500B21144 /* Ninguem me ofereceu um cigarro de maconha.mp3 in Resources */,
 				D99D0DC328CAB52700EB6F27 /* TV CAMARA - Alessandro Molon - E obvio.mp3 in Resources */,
 				D975FE792880B4F20035E6F2 /* Saiddy Bamba - Vai chorar e vai chorar e chore na minha.mp3 in Resources */,
@@ -4916,6 +4950,7 @@
 				D975FE952880B4F20035E6F2 /* Bolsonaro - A coisa e seria pessoal.mp3 in Resources */,
 				D97500212880B4F20035E6F2 /* Ernesto Araujo - Thats not true.mp3 in Resources */,
 				D9BB8F8928ECB2A900659D4A /* Alvaro Borba - Panico Moral funk 2.mp3 in Resources */,
+				D9D1A95C2A57BDF100289AF2 /* Marcos Rogerio.mp3 in Resources */,
 				D91895F9297AD6DC00156A68 /* Julio Cesar Strassera - Consideracoes finais do julgamento dos militares argentinos.mp3 in Resources */,
 				D975FF762880B4F20035E6F2 /* Gumball - ooo que mais.mp3 in Resources */,
 				D975FECD2880B4F20035E6F2 /* Bolsonaro - Porra.mp3 in Resources */,
@@ -5151,6 +5186,7 @@
 				D975FE912880B4F20035E6F2 /* Away - De novo cara.mp3 in Resources */,
 				D9E142C4293BF17400B7FF04 /* Isa Penna - Eu nao permito, nao sou obrigada.mp3 in Resources */,
 				D975FE942880B4F20035E6F2 /* Ady Ferrer - Oh nao mais um crime contra a humanidade.mp3 in Resources */,
+				D9D1A9502A57B32400289AF2 /* Choque de Cultura - Ouve a voz do seu perineo.mp3 in Resources */,
 				D9C5EC3928C7FAA00099EA86 /* Tyrion Lannister - THAT was a threat.mp3 in Resources */,
 				D9E5056228F79ECB008DAA1E /* Luiz Felipe D'Avila - Que tistreza.mp3 in Resources */,
 				D9FD0F0628B2B2EE0000616A /* alerta de novidade - cristiano botafogo.mp3 in Resources */,
@@ -5303,6 +5339,7 @@
 				D9CEB75E2998046F00DF8497 /* Ta todo mundo preso.mp3 in Resources */,
 				D975FEA22880B4F20035E6F2 /* ATILA IAMARINO - A gente esta basicamente sabotando a campanha de vacinacao do mundo.mp3 in Resources */,
 				D9D103EF29AE35CD0028F1E1 /* Lourdes Melo - O ministro cabeca de ovo lustrada.mp3 in Resources */,
+				D9D1A95A2A57B71200289AF2 /* Cine Trash - Uma terrivel coincidencia.mp3 in Resources */,
 				D975FF0F2880B4F20035E6F2 /* Tati Quebra Barraco - Ce num tinha nem que ta aqui linda.mp3 in Resources */,
 				D975FF032880B4F20035E6F2 /* Milton Ribeiro - O mundo foi perdendo a referencia do que e certo e do que e errado em termos de conduta sexual.mp3 in Resources */,
 				D91B7F8A2943C44600B9A43F /* Arthur Lira e foda (curto).mp3 in Resources */,
@@ -5312,6 +5349,7 @@
 				D94C393F29E6F0AB009169A7 /* Kleber Bambam - Biu, aqui e bodybuilder, porra.mp3 in Resources */,
 				D97B2DE228E60B8600C3B50B /* Soraya Thronicke - Nao cutuque onca com a sua vara curta.mp3 in Resources */,
 				D975FFC42880B4F20035E6F2 /* CASIMIRO - Ta maluco.mp3 in Resources */,
+				D9D1A94F2A57B32400289AF2 /* Away de Petropolis - Isso me irrita, isso me deixa nervoso.mp3 in Resources */,
 				4936E761297EC4F4006060F8 /* Coronel Adriano Testoni - Forcas Armadas filha da puta.mp3 in Resources */,
 				D964CF3428EEEDC6004DECAF /* Abertura Lombardi.mp3 in Resources */,
 				D9DB6F8128CD6E2900E24BDE /* UOL - JOAO GORDO - Doidao de droga.mp3 in Resources */,
@@ -5361,6 +5399,7 @@
 				D9B9ED92295651FE00C25181 /* Eliane Cantanhede - Uau.mp3 in Resources */,
 				D9A7AAA32A2A9B580039012E /* Jair Bolsonaro - Po, querem me deixar como a rainha da Inglaterra.mp3 in Resources */,
 				D975FFA12880B4F20035E6F2 /* Pedro Doria - Eles mentem mentem na cara dura mentem sem ter vergonha de mentir.mp3 in Resources */,
+				D9D1A9592A57B71200289AF2 /* Cine Trash - Um terrivel mal entendido.mp3 in Resources */,
 				D975FF042880B4F20035E6F2 /* Samira Close - Deixa eu te falar uma coisa voce tem quantos anos menino.mp3 in Resources */,
 				D975FE9A2880B4F20035E6F2 /* Tite - Fala muito!.mp3 in Resources */,
 				49DEA9C8288114F6008C9BA1 /* CIDINHO e DOCA - Fogo no x9 da cabeca ao pe short meme.mp3 in Resources */,
@@ -5371,6 +5410,7 @@
 				D975FE672880B4F20035E6F2 /* Lobao (imitando gil) - Procure saber.mp3 in Resources */,
 				D99151302873E4C100FFAA29 /* funk-nao-medico-mas-ousado.mp3 in Resources */,
 				D9547D7F28FDD7190020A800 /* Cristiano Botafogo - Se o Brasil reeleger Bolsonaro.mp3 in Resources */,
+				D9D1A9532A57B32400289AF2 /* Alexandre de Moraes, ministro.mp3 in Resources */,
 				D975FF862880B4F20035E6F2 /* Bolsonaro - O Lula ta elegivel pra 22.mp3 in Resources */,
 				499624E42977B5DA008A6FFD /* E muito burro funk.mp3 in Resources */,
 				D975FFAD2880B4F20035E6F2 /* Ronnie Von - Significa short.mp3 in Resources */,
@@ -5553,6 +5593,7 @@
 				D9EDB87A28E3E477007724E2 /* Flavio Bolsonaro - Quando o couro comer.mp3 in Resources */,
 				D991512C2873E4C100FFAA29 /* rock-comunismo-vale-tudo-mdb.mp3 in Resources */,
 				D975FE482880B4F20035E6F2 /* Seu Sirigueijo - Ola eu gosto de dinheiro.mp3 in Resources */,
+				D9D1A95E2A57C44A00289AF2 /* Comemoracao Inelegibilidade Bolsonaro.mp3 in Resources */,
 				D95575632910A462002EFC50 /* Jair Bolsonaro - O que os caras querem e a nossa hemorroida.mp3 in Resources */,
 				D975FF872880B4F20035E6F2 /* Bolsonaro - Uma crise uma pequena crise ne.mp3 in Resources */,
 				49DEA9E228812015008C9BA1 /* eletronica-eine-grosse-confusion-sexo-selvagem-kraftwerk.mp3 in Resources */,
@@ -5617,6 +5658,7 @@
 				D9F696BD28BBFDD700C984E6 /* Jair Bolsonaro e Conrado Hubner - Os escandalos do Jair, enumerados.mp3 in Resources */,
 				D97500122880B4F20035E6F2 /* Biquini Cavadao - E impossivel.mp3 in Resources */,
 				D975FE502880B4F20035E6F2 /* Bonitinha mas ordinaria - E mentira dele meme short.mp3 in Resources */,
+				D9D1A9552A57B32400289AF2 /* Augusto Heleno - Dois Lexotan na veia por dia.mp3 in Resources */,
 				D975FEFB2880B4F20035E6F2 /* Silas Malafaia - E por isso que Deus te escolheu.mp3 in Resources */,
 				D92DAB1C2936D14800E0CA82 /* Leandro Demori - Precisa de muita gente pra fazer bagunca, nao.mp3 in Resources */,
 				D921F88E288B063A003979CC /* Ih rapaz - fred.mp3 in Resources */,
@@ -5737,6 +5779,7 @@
 				D9FA62F42924252100790F55 /* Luis Roberto Barroso - Perdeu, mane, nao amola.mp3 in Resources */,
 				D975000D2880B4F20035E6F2 /* EMICIDA no loolapalooza - Tira o titulo e bolsonaro vai tomar no cu.mp3 in Resources */,
 				D975FFED2880B4F20035E6F2 /* Datena - Me pareceu uma grande marmelada.mp3 in Resources */,
+				D9D1A9462A57B31600289AF2 /* Atencao, Bolsonaro preso (Vinheta da Globo).mp3 in Resources */,
 				49DEA9CC288115A9008C9BA1 /* Como assim eu nao entendi meme short.mp3 in Resources */,
 				D9C5EC3628C7F7F70099EA86 /* Jair Bolsonaro - Ato falho.mp3 in Resources */,
 				D975FF0C2880B4F20035E6F2 /* Gilmar Mendes - O exercito esta se associando a esse genocidio.mp3 in Resources */,
@@ -5747,6 +5790,7 @@
 				D937E11829097D58004137ED /* Onyx Lorenzoni - Um ministerio tecnico.mp3 in Resources */,
 				D9917A0C2990850700FB6274 /* Julio Cesar Strassera - Esta es nuestra oportunidad y quica sea la ultima.mp3 in Resources */,
 				D9FD0F0928B2B2EE0000616A /* Nao e hora pra desespero - Desesperado.mp3 in Resources */,
+				D9D1A9512A57B32400289AF2 /* Away de Petropolis - Isso me irrita.mp3 in Resources */,
 				D97500262880B4F20035E6F2 /* Dilma - If you speak slowly I understand very well.mp3 in Resources */,
 				D92B6CF129DDC2D9003A2B73 /* Hermes e Renato - Away - Viva a morte do meu pau.mp3 in Resources */,
 				D975FFBC2880B4F20035E6F2 /* Winter is coming, this one will be long.mp3 in Resources */,

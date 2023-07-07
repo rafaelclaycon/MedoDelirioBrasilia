@@ -10792,11 +10792,101 @@
     {
         "id": "E6ECD690-18D3-42C2-AAAC-4EE055C677C7",
         "title": "Interessante hein, cara",
-        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "authorId": "0AF9E32C-B61E-4194-82E4-2E59EAA61E6B",
         "description": "Interessante hein, cara",
         "filename": "Interessante hein, cara.mp3",
         "dateAdded": "2023-06-30T00:00:00Z",
         "duration": 2.09,
         "isOffensive": false
+    },
+    {
+        "id": "E77DB8F7-2845-4096-B598-5887E7DCF7F3",
+        "title": "Atenção, Bolsonaro preso (Vinheta da Globo)",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Atencao Bolsonaro preso (Vinheta da Globo) dizer aos canalhas serei preso preso preso preso",
+        "filename": "Atencao, Bolsonaro preso (Vinheta da Globo).mp3",
+        "dateAdded": "2023-07-07T00:00:00Z",
+        "duration": 17.14,
+        "isOffensive": true
+    },
+    {
+        "id": "015280F7-FF26-4972-89C7-00AF3BECB8E8",
+        "title": "Dois Lexotan na veia por dia",
+        "authorId": "BBD5570D-18FF-4099-81C8-AD6CFCA64B26",
+        "description": "Dois Lexotan na veia por dia",
+        "filename": "Augusto Heleno - Dois Lexotan na veia por dia.mp3",
+        "dateAdded": "2023-07-07T00:00:00Z",
+        "duration": 2.64,
+        "isOffensive": true
+    },
+    {
+        "id": "73B065EA-C054-4D22-96C6-04108BF27E48",
+        "title": "Isso me irrita, isso me deixa nervoso",
+        "authorId": "17860F3D-A18C-4684-86D0-931306A6937A",
+        "description": "Isso me irrita isso me deixa nervoso",
+        "filename": "Away de Petropolis - Isso me irrita, isso me deixa nervoso.mp3",
+        "dateAdded": "2023-07-07T00:00:00Z",
+        "duration": 3.46,
+        "isOffensive": true
+    },
+    {
+        "id": "5FEACB58-BD67-4687-9B5C-F1A13B7F4249",
+        "title": "Isso me irrita",
+        "authorId": "17860F3D-A18C-4684-86D0-931306A6937A",
+        "description": "Isso me irrita",
+        "filename": "Away de Petropolis - Isso me irrita.mp3",
+        "dateAdded": "2023-07-07T00:00:00Z",
+        "duration": 1.63,
+        "isOffensive": false
+    },
+    {
+        "id": "EA71B8AA-B735-44FF-856A-F52F13485170",
+        "title": "Ouve a voz do seu períneo",
+        "authorId": "C0160F87-5596-4BFC-81F1-F651303913C6",
+        "description": "Ouve a voz do seu perineo",
+        "filename": "Choque de Cultura - Ouve a voz do seu perineo.mp3",
+        "dateAdded": "2023-07-07T00:00:00Z",
+        "duration": 2.27,
+        "isOffensive": true
+    },
+    {
+        "id": "DBE3DA08-269C-4D92-9846-AFD3C7814F6B",
+        "title": "Um terrível mal entendido",
+        "authorId": "4AEC2419-3C67-4DAF-90AE-611FF7AD80C2",
+        "description": "Um terrível mal entendido",
+        "filename": "Cine Trash - Um terrivel mal entendido.mp3",
+        "dateAdded": "2023-07-07T00:00:00Z",
+        "duration": 5.25,
+        "isOffensive": true
+    },
+    {
+        "id": "91F3E0DA-CB6B-4A0D-AE50-C630CCCC974C",
+        "title": "Uma terrível coincidência",
+        "authorId": "4AEC2419-3C67-4DAF-90AE-611FF7AD80C2",
+        "description": "Uma terrivel coincidencia",
+        "filename": "Cine Trash - Uma terrivel coincidencia.mp3",
+        "dateAdded": "2023-07-07T00:00:00Z",
+        "duration": 5.62,
+        "isOffensive": true
+    },
+    {
+        "id": "1280EB30-27EE-4043-A5E5-71F446EC5162",
+        "title": "Ficou irritadinho",
+        "authorId": "07F09910-4B4C-4C19-BFCF-4D261CE5E1BA",
+        "description": "Ficou irritadinho",
+        "filename": "Eduardo Bolsonaro - Ficou irritadinho.mp3",
+        "dateAdded": "2023-07-07T00:00:00Z",
+        "duration": 1.23,
+        "isOffensive": true
+    },
+    {
+        "id": "695C1A84-EACA-4311-ACD1-6154314F9E6D",
+        "title": "Alexandre de Moraes, ministro...",
+        "authorId": "07F09910-4B4C-4C19-BFCF-4D261CE5E1BA",
+        "description": "Alexandre de Moraes ministro",
+        "filename": "Alexandre de Moraes, ministro.mp3",
+        "dateAdded": "2023-07-07T00:00:00Z",
+        "duration": 24.84,
+        "isOffensive": true
     }
 ]
