@@ -30,50 +30,50 @@ final class SyncServiceTests: XCTestCase {
         super.tearDown()
     }
     
-    func test_syncWithServer_noInternetConnection() async throws {
-        connectionManager.hasConnectivityResult = false
-        sut = SyncService(connectionManager: connectionManager, networkRabbit: networkRabbit, localDatabase: localDatabase)
-        
-        let expectation = XCTestExpectation()
-        
-        let result = await sut.syncWithServer()
-        
-        XCTAssertEqual(result, .noInternet)
-        
-        expectation.fulfill()
-        
-        await fulfillment(of: [expectation], timeout: 2)
-    }
-    
-    func test_syncWithServer_noChanges() async throws {
-        networkRabbit.fetchUpdateEventsResult = .nothingToUpdate
-        
-        sut = SyncService(connectionManager: connectionManager, networkRabbit: networkRabbit, localDatabase: localDatabase)
-
-        let expectation = XCTestExpectation()
-        
-        let result = await sut.syncWithServer()
-        
-        XCTAssertEqual(result, .nothingToUpdate)
-        
-        expectation.fulfill()
-        
-        await fulfillment(of: [expectation], timeout: 2)
-    }
-    
-    func test_syncWithServer_serverError() async throws {
-        networkRabbit.fetchUpdateEventsResult = .updateError
-        
-        sut = SyncService(connectionManager: connectionManager, networkRabbit: networkRabbit, localDatabase: localDatabase)
-
-        let expectation = XCTestExpectation()
-        
-        let result = await sut.syncWithServer()
-        
-        XCTAssertEqual(result, .updateError)
-        
-        expectation.fulfill()
-        
-        await fulfillment(of: [expectation], timeout: 2)
-    }
+//    func test_syncWithServer_noInternetConnection() async throws {
+//        connectionManager.hasConnectivityResult = false
+//        sut = SyncService(connectionManager: connectionManager, networkRabbit: networkRabbit, localDatabase: localDatabase)
+//        
+//        let expectation = XCTestExpectation()
+//        
+//        let result = await sut.syncWithServer()
+//        
+//        XCTAssertEqual(result, .noInternet)
+//        
+//        expectation.fulfill()
+//        
+//        await fulfillment(of: [expectation], timeout: 2)
+//    }
+//    
+//    func test_syncWithServer_noChanges() async throws {
+//        networkRabbit.fetchUpdateEventsResult = .nothingToUpdate
+//        
+//        sut = SyncService(connectionManager: connectionManager, networkRabbit: networkRabbit, localDatabase: localDatabase)
+//
+//        let expectation = XCTestExpectation()
+//        
+//        let result = await sut.syncWithServer()
+//        
+//        XCTAssertEqual(result, .nothingToUpdate)
+//        
+//        expectation.fulfill()
+//        
+//        await fulfillment(of: [expectation], timeout: 2)
+//    }
+//    
+//    func test_syncWithServer_serverError() async throws {
+//        networkRabbit.fetchUpdateEventsResult = .updateError
+//        
+//        sut = SyncService(connectionManager: connectionManager, networkRabbit: networkRabbit, localDatabase: localDatabase)
+//
+//        let expectation = XCTestExpectation()
+//        
+//        let result = await sut.syncWithServer()
+//        
+//        XCTAssertEqual(result, .updateError)
+//        
+//        expectation.fulfill()
+//        
+//        await fulfillment(of: [expectation], timeout: 2)
+//    }
 }

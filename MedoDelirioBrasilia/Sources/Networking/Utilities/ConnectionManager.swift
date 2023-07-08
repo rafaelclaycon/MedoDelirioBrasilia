@@ -29,8 +29,7 @@ class ConnectionManager: ConnectionManagerProtocol {
             case .wifi, .cellular:
                 return true
             }
-        }
-        catch {
+        } catch {
             return false
         }
     }

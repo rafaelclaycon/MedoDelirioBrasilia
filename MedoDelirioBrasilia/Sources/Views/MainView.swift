@@ -23,8 +23,9 @@ struct MainView: View {
     
     // Sync
     @State private var showSyncProgressView = false
-    @State var currentAmount = 0.0
-    @State var totalAmount = 0.0
+    @State private var message = "Verificando atualizações..."
+    @State private var currentAmount = 0.0
+    @State private var totalAmount = 1.0
     @AppStorage("lastUpdateDate") private var lastUpdateDate = "all"
     @State private var localUnsuccessfulUpdates: [UpdateEvent]? = nil
     @State private var serverUpdates: [UpdateEvent]? = nil
@@ -138,16 +139,33 @@ struct MainView: View {
             }
             
             if showSyncProgressView {
-                OverlaySyncProgressView(message: "Atualizando dados...")
+                OverlaySyncProgressView(message: $message, currentValue: $currentAmount, totalValue: $totalAmount)
             }
         }
         .onAppear {
+            print("RuPaul")
+            showSyncProgressView = true
+
             sync()
+
+//            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+//                totalAmount = 3
+//                message = "Atualizando dados (0/3)..."
+//            }
+//
+//            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
+//                currentAmount = 1
+//                message = "Atualizando dados (1/3)..."
+//            }
         }
     }
     
     private func sync() {
         Task { @MainActor in
+//            guard ConnectionManager.shared.hasConnectivity() else {
+//                return showSyncProgressView = false
+//            }
+
             do {
                 try await retryLocal()
                 try await syncDataWithServer()

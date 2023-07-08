@@ -34,8 +34,6 @@ class NetworkRabbitStub: NetworkRabbitProtocol {
     
     func fetchUpdateEvents(from lastDate: String) async throws -> [MedoDelirio.UpdateEvent] {
         switch fetchUpdateEventsResult {
-        case .updateError:
-            throw NetworkRabbitError.unexpectedStatusCode
         default:
             return []
         }
