@@ -66,6 +66,10 @@
             argument = "-UNDER_DEVELOPMENT"
             isEnabled = "YES">
          </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-FORCE_SHOW_HELP_THE_APP"
+            isEnabled = "YES">
+         </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
