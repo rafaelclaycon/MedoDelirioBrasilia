@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MainView: View {
 
+    @StateObject var viewModel: MainViewViewModel
+
     @State var tabSelection: PhoneTab = .sounds
     @State var state: PadScreen? = PadScreen.allSounds
     @State var isShowingSettingsSheet: Bool = false
@@ -21,27 +23,13 @@ struct MainView: View {
     @State var soundIdToGoToFromTrends: String = .empty
     @StateObject var trendsHelper = TrendsHelper()
     
-    // Sync
-    @State private var showSyncProgressView = false
-    @State private var message = "Verificando atualizações..."
-    @State private var currentAmount = 0.0
-    @State private var totalAmount = 1.0
-    @AppStorage("lastUpdateDate") private var lastUpdateDate = "all"
-    @State private var localUnsuccessfulUpdates: [UpdateEvent]? = nil
-    @State private var serverUpdates: [UpdateEvent]? = nil
-    @State private var updateSoundList: Bool = false
-    
-    private let service = SyncService(connectionManager: ConnectionManager.shared,
-                                      networkRabbit: networkRabbit,
-                                      localDatabase: database)
-    
     var body: some View {
         ZStack {
             if UIDevice.current.userInterfaceIdiom == .phone {
                 TabView(selection: $tabSelection) {
                     NavigationView {
                         if CommandLine.arguments.contains("-USE_NEW_SOUND_LIST") {
-                            NewSoundsView(updateList: $updateSoundList)
+                            NewSoundsView(updateList: $viewModel.updateSoundList)
                         } else {
                             SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
                                                                       authorSortOption: AuthorSortOption.nameAscending.rawValue,
@@ -138,15 +126,16 @@ struct MainView: View {
                 }
             }
             
-            if showSyncProgressView {
-                OverlaySyncProgressView(message: $message, currentValue: $currentAmount, totalValue: $totalAmount)
+            if viewModel.showSyncProgressView {
+                OverlaySyncProgressView(message: $viewModel.message, currentValue: $viewModel.currentAmount, totalValue: $viewModel.totalAmount)
             }
         }
         .onAppear {
             print("RuPaul")
-            showSyncProgressView = true
 
-            sync()
+            Task { @MainActor in
+                await viewModel.sync()
+            }
 
 //            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
 //                totalAmount = 3
@@ -159,114 +148,11 @@ struct MainView: View {
 //            }
         }
     }
-    
-    private func sync() {
-        Task { @MainActor in
-//            guard ConnectionManager.shared.hasConnectivity() else {
-//                return showSyncProgressView = false
-//            }
-
-            do {
-                try await retryLocal()
-                try await syncDataWithServer()
-                updateSoundList = true
-                showSyncProgressView = false
-            } catch {
-                print(error)
-            }
-        }
-    }
-    
-    private func retryLocal() async throws {
-        let localResult = try await fetchLocalUnsuccessfulUpdates()
-        print("Resultado do fetchLocalUnsuccessfulUpdates: \(localResult)")
-        if localResult > 0 {
-            await MainActor.run {
-                showSyncProgressView = true
-                totalAmount = localResult
-            }
-            try await syncUnsuccessful()
-        }
-    }
-    
-    private func syncDataWithServer() async throws {
-        let result = try await fetchServerUpdates()
-        print("Resultado do fetchServerUpdates: \(result)")
-        if result > 0 {
-            await MainActor.run {
-                showSyncProgressView = true
-                totalAmount = result
-            }
-            try await serverSync()
-        }
-    }
-    
-    private func fetchServerUpdates() async throws -> Double {
-        print("fetchServerUpdates()")
-        serverUpdates = try await service.getUpdates(from: lastUpdateDate)
-        if var serverUpdates = serverUpdates {
-            for i in serverUpdates.indices {
-                serverUpdates[i].didSucceed = false
-                try database.insert(updateEvent: serverUpdates[i])
-            }
-        }
-        return Double(serverUpdates?.count ?? 0)
-    }
-    
-    private func fetchLocalUnsuccessfulUpdates() async throws -> Double {
-        print("fetchLocalUnsuccessfulUpdates()")
-        localUnsuccessfulUpdates = try database.unsuccessfulUpdates()
-        return Double(localUnsuccessfulUpdates?.count ?? 0)
-    }
-    
-    private func serverSync() async throws {
-        print("serverSync()")
-        guard let serverUpdates = serverUpdates else { return }
-        guard serverUpdates.isEmpty == false else {
-            return print("NO UPDATES")
-        }
-        guard service.hasConnectivity() else {
-            throw SyncError.noInternet
-        }
-        
-        currentAmount = 0.0
-        for update in serverUpdates {
-            await service.process(updateEvent: update)
-            sleep(1)
-            await MainActor.run {
-                currentAmount += 1.0
-            }
-        }
-        
-        lastUpdateDate = Date.now.iso8601withFractionalSeconds
-        //print(Date.now.iso8601withFractionalSeconds)
-    }
-    
-    private func syncUnsuccessful() async throws {
-        print("syncUnsucceeded()")
-        guard let localUnsuccessfulUpdates = localUnsuccessfulUpdates else { return }
-        guard localUnsuccessfulUpdates.isEmpty == false else {
-            return print("NO LOCAL UNSUCCESSFUL UPDATES")
-        }
-        guard service.hasConnectivity() else {
-            throw SyncError.noInternet
-        }
-        
-        currentAmount = 0.0
-        for update in localUnsuccessfulUpdates {
-            await service.process(updateEvent: update)
-            sleep(1)
-            await MainActor.run {
-                currentAmount += 1.0
-            }
-        }
-    }
 }
 
 struct MainView_Previews: PreviewProvider {
 
     static var previews: some View {
-        MainView()
+        MainView(viewModel: MainViewViewModel(lastUpdateDate: "all", service: SyncService(connectionManager: ConnectionManager.shared, networkRabbit: NetworkRabbit(serverPath: ""), localDatabase: LocalDatabase())))
     }
-
 }

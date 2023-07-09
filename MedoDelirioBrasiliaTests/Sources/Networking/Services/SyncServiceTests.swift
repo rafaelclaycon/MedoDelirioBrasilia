@@ -33,15 +33,15 @@ final class SyncServiceTests: XCTestCase {
 //    func test_syncWithServer_noInternetConnection() async throws {
 //        connectionManager.hasConnectivityResult = false
 //        sut = SyncService(connectionManager: connectionManager, networkRabbit: networkRabbit, localDatabase: localDatabase)
-//        
+//
 //        let expectation = XCTestExpectation()
-//        
+//
 //        let result = await sut.syncWithServer()
-//        
+//
 //        XCTAssertEqual(result, .noInternet)
-//        
+//
 //        expectation.fulfill()
-//        
+//
 //        await fulfillment(of: [expectation], timeout: 2)
 //    }
 //    

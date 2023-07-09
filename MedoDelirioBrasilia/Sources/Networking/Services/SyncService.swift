@@ -8,7 +8,14 @@
 import Foundation
 import SwiftUI
 
-class SyncService {
+internal protocol SyncServiceProtocol {
+
+    func getUpdates(from updateDateToConsider: String) async throws -> [UpdateEvent]
+    func hasConnectivity() -> Bool
+    func process(updateEvent: UpdateEvent) async
+}
+
+class SyncService: SyncServiceProtocol {
     
     private let connectionManager: ConnectionManagerProtocol
     private let networkRabbit: NetworkRabbitProtocol

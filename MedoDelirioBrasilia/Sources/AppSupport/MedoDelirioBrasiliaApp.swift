@@ -17,10 +17,16 @@ var moveDatabaseIssue: String = .empty
 struct MedoDelirioBrasiliaApp: App {
 
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+
+    // Sync
+    @AppStorage("lastUpdateDate") private var lastUpdateDate = "all"
     
     var body: some Scene {
         WindowGroup {
-            MainView()
+            MainView(viewModel: MainViewViewModel(lastUpdateDate: lastUpdateDate,
+                                                  service: SyncService(connectionManager: ConnectionManager.shared,
+                                                                       networkRabbit: networkRabbit,
+                                                                       localDatabase: database)))
         }
     }
 
