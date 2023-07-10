@@ -10888,5 +10888,15 @@
         "dateAdded": "2023-07-07T00:00:00Z",
         "duration": 24.84,
         "isOffensive": true
+    },
+    {
+        "id": "CE52F212-889E-47BF-B694-6A1E329FE1BD",
+        "title": "Bom dia, boa tarde, boa noite a todas, todos e todes",
+        "authorId": "93B06012-F9D6-4D82-AA3E-8D9E5AD82386",
+        "description": "Bom dia boa tarde boa noite a todas todos e todes",
+        "filename": "Candido Dortas - Bom dia, boa tarde, boa noite a todos, todas e todes.mp3",
+        "dateAdded": "2023-07-09T00:00:00Z",
+        "duration": 4.23,
+        "isOffensive": false
     }
 ]
