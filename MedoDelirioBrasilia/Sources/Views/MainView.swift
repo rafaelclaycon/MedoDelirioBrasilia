@@ -134,7 +134,7 @@ struct MainView: View {
             print("RuPaul")
 
             Task { @MainActor in
-                await viewModel.sync()
+                //await viewModel.sync()
             }
 
 //            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {

@@ -102,55 +102,55 @@ struct SettingsView: View {
                     }
                 }
                 
-                if showAskForMoneyView {
-                    Section {
-                        HelpTheAppView(donors: $donors, imageIsSelected: $showLargeCreatorImage)
-                            .padding(donors != nil ? .top : .vertical)
-                        
-                        HStack {
-                            Spacer()
-                            
-                            Button {
-                                UIPasteboard.general.string = pixKey
-                                withAnimation {
-                                    showToastView = true
-                                }
-                                TapticFeedback.success()
-                                
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                                    withAnimation {
-                                        showToastView = false
-                                    }
-                                }
-                            } label: {
-                                HStack(spacing: 15) {
-                                    Image(systemName: "doc.on.doc")
-                                        .renderingMode(.template)
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 20)
-                                    
-                                    Text("Copiar chave Pix (e-mail)")
-                                        .bold()
-                                        .foregroundColor(.green)
-                                }
-                                .padding(.horizontal, copyPixKeyButtonHorizontalPadding)
-                                .padding(.vertical, 8)
-                            }
-                            .tint(.green)
-                            .controlSize(.regular)
-                            .buttonStyle(.bordered)
-                            .buttonBorderShape(.roundedRectangle)
-                            
-                            Spacer()
-                        }
-                        .padding(.vertical, 10)
-                    } header: {
-                        Text("Ajude o app")
-                    } footer: {
-                        Text(helpTheAppFooterText)
-                    }
-                }
+//                if showAskForMoneyView {
+//                    Section {
+//                        HelpTheAppView(donors: $donors, imageIsSelected: $showLargeCreatorImage)
+//                            .padding(donors != nil ? .top : .vertical)
+//                        
+//                        HStack {
+//                            Spacer()
+//                            
+//                            Button {
+//                                UIPasteboard.general.string = pixKey
+//                                withAnimation {
+//                                    showToastView = true
+//                                }
+//                                TapticFeedback.success()
+//                                
+//                                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+//                                    withAnimation {
+//                                        showToastView = false
+//                                    }
+//                                }
+//                            } label: {
+//                                HStack(spacing: 15) {
+//                                    Image(systemName: "doc.on.doc")
+//                                        .renderingMode(.template)
+//                                        .resizable()
+//                                        .scaledToFit()
+//                                        .frame(width: 20)
+//                                    
+//                                    Text("Copiar chave Pix (e-mail)")
+//                                        .bold()
+//                                        .foregroundColor(.green)
+//                                }
+//                                .padding(.horizontal, copyPixKeyButtonHorizontalPadding)
+//                                .padding(.vertical, 8)
+//                            }
+//                            .tint(.green)
+//                            .controlSize(.regular)
+//                            .buttonStyle(.bordered)
+//                            .buttonBorderShape(.roundedRectangle)
+//                            
+//                            Spacer()
+//                        }
+//                        .padding(.vertical, 10)
+//                    } header: {
+//                        Text("Ajude o app")
+//                    } footer: {
+//                        Text(helpTheAppFooterText)
+//                    }
+//                }
                 
                 Section("Sobre") {
                     Menu {
