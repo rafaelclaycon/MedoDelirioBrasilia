@@ -42,11 +42,15 @@ final class MainViewViewModelTests: XCTestCase {
     func test_sync_whenNoUpdates_shouldLoadSoundList() async throws {
         sut = MainViewViewModel(lastUpdateDate: firstRunLastUpdateDate, service: syncService)
 
-        //let expectation = XCTestExpectation()
+        let showSyncProgressViewPublisher = sut.$showSyncProgressView
+            .collect(2)
+            .first()
 
         await sut.sync()
 
-        XCTAssertTrue(sut.showSyncProgressView)
+        let showArrays = try awaitPublisher(showSyncProgressViewPublisher)
+        XCTAssertEqual(showArrays.count, 2)
+        print(showArrays)
         XCTAssertTrue(sut.updateSoundList)
     }
 

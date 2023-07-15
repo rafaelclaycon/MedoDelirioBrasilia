@@ -1354,6 +1354,7 @@
 		D9F487EB29761F8C00DCFE07 /* Eliana Brasil - Cidinha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F487E929761F8C00DCFE07 /* Eliana Brasil - Cidinha.mp3 */; };
 		D9F487EE29761F9500DCFE07 /* Pisero da Cidinha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F487EC29761F9500DCFE07 /* Pisero da Cidinha.mp3 */; };
 		D9F487EF29761F9500DCFE07 /* Funk da Cidinha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F487ED29761F9500DCFE07 /* Funk da Cidinha.mp3 */; };
+		D9F570882A62F27F00596C32 /* XCTestCase+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F570872A62F27F00596C32 /* XCTestCase+Extensions.swift */; };
 		D9F6420528CFD57600003A0E /* Bolsonaro - Eu acho que ate um fake news e valido, com todo o respeito.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F6420428CFD57600003A0E /* Bolsonaro - Eu acho que ate um fake news e valido, com todo o respeito.mp3 */; };
 		D9F6420728D1211700003A0E /* Casimiro - Misericordia, jornalista, tenha do.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F6420628D1211700003A0E /* Casimiro - Misericordia, jornalista, tenha do.mp3 */; };
 		D9F6420928D122C500003A0E /* Moderador, tira o moleque desse grupo agora.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F6420828D122C500003A0E /* Moderador, tira o moleque desse grupo agora.mp3 */; };
@@ -2768,6 +2769,7 @@
 		D9F487E929761F8C00DCFE07 /* Eliana Brasil - Cidinha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eliana Brasil - Cidinha.mp3"; sourceTree = "<group>"; };
 		D9F487EC29761F9500DCFE07 /* Pisero da Cidinha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pisero da Cidinha.mp3"; sourceTree = "<group>"; };
 		D9F487ED29761F9500DCFE07 /* Funk da Cidinha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Funk da Cidinha.mp3"; sourceTree = "<group>"; };
+		D9F570872A62F27F00596C32 /* XCTestCase+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extensions.swift"; sourceTree = "<group>"; };
 		D9F6420428CFD57600003A0E /* Bolsonaro - Eu acho que ate um fake news e valido, com todo o respeito.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro - Eu acho que ate um fake news e valido, com todo o respeito.mp3"; sourceTree = "<group>"; };
 		D9F6420628D1211700003A0E /* Casimiro - Misericordia, jornalista, tenha do.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Casimiro - Misericordia, jornalista, tenha do.mp3"; sourceTree = "<group>"; };
 		D9F6420828D122C500003A0E /* Moderador, tira o moleque desse grupo agora.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Moderador, tira o moleque desse grupo agora.mp3"; sourceTree = "<group>"; };
@@ -4321,6 +4323,7 @@
 		D9625E8D28238F9B00080852 /* MedoDelirioBrasiliaTests */ = {
 			isa = PBXGroup;
 			children = (
+				D9F570862A62F26300596C32 /* Extensions */,
 				D9E69598283D581700C341B2 /* Sources */,
 			);
 			path = MedoDelirioBrasiliaTests;
@@ -4804,6 +4807,14 @@
 				D9BCAC2C28B598FA0098FE15 /* AppIconCell.swift */,
 			);
 			path = AlternateAppIcons;
+			sourceTree = "<group>";
+		};
+		D9F570862A62F26300596C32 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D9F570872A62F27F00596C32 /* XCTestCase+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -6303,6 +6314,7 @@
 				D92C0CA62840125B009CF19A /* SoundsViewViewModelTests.swift in Sources */,
 				D9A06417298B59D5006075D1 /* AddToFolderViewViewModelTests.swift in Sources */,
 				D95C3E0D2A02ABE500172C17 /* ConnectionManagerStub.swift in Sources */,
+				D9F570882A62F27F00596C32 /* XCTestCase+Extensions.swift in Sources */,
 				D95C3E0A2A02AB1800172C17 /* SyncServiceTests.swift in Sources */,
 				D9A32DC7285ACE880038A370 /* PodiumTests.swift in Sources */,
 				D9523743285BF99800E6C838 /* LocalDatabaseSpy.swift in Sources */,

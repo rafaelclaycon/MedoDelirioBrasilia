@@ -21,10 +21,16 @@ class MainViewViewModel: ObservableObject {
     @Published var lastUpdateDate: String
 
     private var service: SyncServiceProtocol
+    private var database: LocalDatabaseProtocol
 
-    init(lastUpdateDate: String, service: SyncServiceProtocol) {
+    init(
+        lastUpdateDate: String,
+        service: SyncServiceProtocol,
+        database: LocalDatabaseProtocol
+    ) {
         self.lastUpdateDate = lastUpdateDate
         self.service = service
+        self.database = database
     }
 
     func sync() async {

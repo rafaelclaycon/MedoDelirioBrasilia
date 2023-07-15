@@ -26,7 +26,8 @@ struct MedoDelirioBrasiliaApp: App {
             MainView(viewModel: MainViewViewModel(lastUpdateDate: lastUpdateDate,
                                                   service: SyncService(connectionManager: ConnectionManager.shared,
                                                                        networkRabbit: networkRabbit,
-                                                                       localDatabase: database)))
+                                                                       localDatabase: database),
+                                                  database: database))
         }
     }
 

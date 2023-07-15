@@ -4,15 +4,26 @@ import SQLiteMigrationManager
 
 internal protocol LocalDatabaseProtocol {
 
-    func contentExistsInsideUserFolder(withId folderId: String, contentId: String) throws -> Bool
+    // Sound
     func insert(sound newSound: Sound) throws
     func update(sound updatedSound: Sound) throws
     func delete(soundId: String) throws
-    func markAsSucceeded(updateEventId: UUID) throws
-    func insert(syncLog newSyncLog: SyncLog)
     func setIsFromServer(to value: Bool, on soundId: String) throws
+
+    // Author
     func insert(author newAuthor: Author) throws
     func update(author updatedAuthor: Author) throws
+
+    // UserFolder
+    func contentExistsInsideUserFolder(withId folderId: String, contentId: String) throws -> Bool
+
+    // UpdateEvent
+    func insert(updateEvent newUpdateEvent: UpdateEvent) throws
+    func markAsSucceeded(updateEventId: UUID) throws
+    func unsuccessfulUpdates() throws -> [UpdateEvent]
+
+    // SyncLog
+    func insert(syncLog newSyncLog: SyncLog)
 }
 
 class LocalDatabase: LocalDatabaseProtocol {
@@ -30,6 +41,8 @@ class LocalDatabase: LocalDatabaseProtocol {
     var author = Table("author")
     var updateEventTable = Table("updateEvent")
     var syncLogTable = Table("syncLog")
+
+    static let shared = LocalDatabase()
     
     // MARK: - Setup
     

@@ -153,6 +153,10 @@ struct MainView: View {
 struct MainView_Previews: PreviewProvider {
 
     static var previews: some View {
-        MainView(viewModel: MainViewViewModel(lastUpdateDate: "all", service: SyncService(connectionManager: ConnectionManager.shared, networkRabbit: NetworkRabbit(serverPath: ""), localDatabase: LocalDatabase())))
+        MainView(viewModel: MainViewViewModel(lastUpdateDate: "all",
+                                              service: SyncService(connectionManager: ConnectionManager.shared,
+                                                                   networkRabbit: NetworkRabbit(serverPath: ""),
+                                                                   localDatabase: LocalDatabase()),
+                                              database: LocalDatabase()))
     }
 }
