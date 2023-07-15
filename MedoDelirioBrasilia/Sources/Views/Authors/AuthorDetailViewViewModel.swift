@@ -263,7 +263,7 @@ class AuthorDetailViewViewModel: ObservableObject {
         let newFavorite = Favorite(contentId: soundId, dateAdded: Date())
         
         do {
-            try database.insert(favorite: newFavorite)
+            try LocalDatabase.shared.insert(favorite: newFavorite)
             favoritesKeeper.insert(newFavorite.contentId)
         } catch {
             print("Problem saving favorite \(newFavorite.contentId)")
@@ -272,7 +272,7 @@ class AuthorDetailViewViewModel: ObservableObject {
     
     func removeFromFavorites(soundId: String) {
         do {
-            try database.deleteFavorite(withId: soundId)
+            try LocalDatabase.shared.deleteFavorite(withId: soundId)
             favoritesKeeper.remove(soundId)
         } catch {
             print("Problem removing favorite \(soundId)")

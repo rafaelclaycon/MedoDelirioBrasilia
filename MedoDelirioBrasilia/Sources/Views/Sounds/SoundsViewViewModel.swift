@@ -308,10 +308,10 @@ class SoundsViewViewModel: ObservableObject {
         let newFavorite = Favorite(contentId: soundId, dateAdded: Date())
         
         do {
-            let favorteAlreadyExists = try database.exists(contentId: soundId)
+            let favorteAlreadyExists = try LocalDatabase.shared.exists(contentId: soundId)
             guard favorteAlreadyExists == false else { return }
             
-            try database.insert(favorite: newFavorite)
+            try LocalDatabase.shared.insert(favorite: newFavorite)
             favoritesKeeper.insert(newFavorite.contentId)
         } catch {
             print("Problem saving favorite \(newFavorite.contentId): \(error.localizedDescription)")
@@ -320,7 +320,7 @@ class SoundsViewViewModel: ObservableObject {
     
     func removeFromFavorites(soundId: String) {
         do {
-            try database.deleteFavorite(withId: soundId)
+            try LocalDatabase.shared.deleteFavorite(withId: soundId)
             favoritesKeeper.remove(soundId)
         } catch {
             print("Problem removing favorite \(soundId)")

@@ -280,7 +280,7 @@ struct AuthorDetailView: View {
             }
             .onAppear {
                 viewModel.reloadList(withSounds: soundData.filter({ $0.authorId == author.id }),
-                                     andFavorites: try? database.getAllFavorites(),
+                                     andFavorites: try? LocalDatabase.shared.getAllFavorites(),
                                      allowSensitiveContent: UserSettings.getShowExplicitContent())
                 columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
             }
@@ -537,7 +537,7 @@ struct AuthorDetailView: View {
             viewModel.removeSelectedFromFavorites()
             viewModel.stopSelecting()
             viewModel.reloadList(withSounds: soundData.filter({ $0.authorId == author.id }),
-                                 andFavorites: try? database.getAllFavorites(),
+                                 andFavorites: try? LocalDatabase.shared.getAllFavorites(),
                                  allowSensitiveContent: UserSettings.getShowExplicitContent())
             viewModel.sendUsageMetricToServer(action: "didRemoveManySoundsFromFavorites(\(selectedCount))", authorName: author.name)
         } else {

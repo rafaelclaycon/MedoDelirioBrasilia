@@ -47,7 +47,7 @@ struct AllFoldersiPadView: View {
                 guard deleteFolderAide.folderIdForDeletion.isEmpty == false else {
                     return
                 }
-                try? database.deleteUserFolder(withId: deleteFolderAide.folderIdForDeletion)
+                try? LocalDatabase.shared.deleteUserFolder(withId: deleteFolderAide.folderIdForDeletion)
                 updateFolderList = true
             }), secondaryButton: .cancel(Text("Cancelar")))
         }

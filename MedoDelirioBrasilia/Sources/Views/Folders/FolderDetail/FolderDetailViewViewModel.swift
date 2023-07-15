@@ -290,8 +290,8 @@ class FolderDetailViewViewModel: ObservableObject {
     }
     
     func removeSoundFromFolder(folderId: String, soundId: String) {
-        try? database.deleteUserContentFromFolder(withId: folderId, contentId: soundId)
-        reloadSoundList(withFolderContents: try? database.getAllContentsInsideUserFolder(withId: folderId), sortedBy: FolderSoundSortOption(rawValue: soundSortOption) ?? .titleAscending)
+        try? LocalDatabase.shared.deleteUserContentFromFolder(withId: folderId, contentId: soundId)
+        reloadSoundList(withFolderContents: try? LocalDatabase.shared.getAllContentsInsideUserFolder(withId: folderId), sortedBy: FolderSoundSortOption(rawValue: soundSortOption) ?? .titleAscending)
     }
     
     // MARK: - Multi-Select
@@ -314,10 +314,10 @@ class FolderDetailViewViewModel: ObservableObject {
     func removeMultipleSoundsFromFolder(folderId: String) {
         guard selectionKeeper.count > 0 else { return }
         selectionKeeper.forEach { selectedSoundId in
-            try? database.deleteUserContentFromFolder(withId: folderId, contentId: selectedSoundId)
+            try? LocalDatabase.shared.deleteUserContentFromFolder(withId: folderId, contentId: selectedSoundId)
         }
         selectionKeeper.removeAll()
-        reloadSoundList(withFolderContents: try? database.getAllContentsInsideUserFolder(withId: folderId), sortedBy: FolderSoundSortOption(rawValue: soundSortOption) ?? .titleAscending)
+        reloadSoundList(withFolderContents: try? LocalDatabase.shared.getAllContentsInsideUserFolder(withId: folderId), sortedBy: FolderSoundSortOption(rawValue: soundSortOption) ?? .titleAscending)
     }
     
     func sendUsageMetricToServer(action: String, folderName: String) {
