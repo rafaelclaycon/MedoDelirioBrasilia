@@ -10732,7 +10732,7 @@
     {
         "id": "090D44C7-46F3-4418-A51F-487CF6726149",
         "title": "Tem que demitir hoje!",
-        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "authorId": "AF4BE658-13CF-4468-8AB2-C03B73A2EE34",
         "description": "Tem que demitir hoje",
         "filename": "Tem que demitir hoje.mp3",
         "dateAdded": "2023-06-30T00:00:00Z",
@@ -10752,7 +10752,7 @@
     {
         "id": "11F6F71D-8553-426E-8587-C81DD4E945F9",
         "title": "O que é o código-fonte?",
-        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "authorId": "FFEE09D2-0994-42D1-BBB2-C0A9E0D53370",
         "description": "O que e o codigo-fonte o que e o codigo fonte",
         "filename": "O que e o codigo-fonte.mp3",
         "dateAdded": "2023-06-30T00:00:00Z",
@@ -10762,7 +10762,7 @@
     {
         "id": "FCDDBA39-B8D5-4116-AFA9-DE4AD8EEB6F9",
         "title": "Eu não sei o que é o código-fonte",
-        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "authorId": "FFEE09D2-0994-42D1-BBB2-C0A9E0D53370",
         "description": "Eu to perguntando pro senhor o senhor sabe o que e o codigo-fonte eu nao sei o que e o codigo-fonte",
         "filename": "Eu nao sei o que e o codigo-fonte.mp3",
         "dateAdded": "2023-06-30T00:00:00Z",
@@ -10897,6 +10897,46 @@
         "filename": "Candido Dortas - Bom dia, boa tarde, boa noite a todos, todas e todes.mp3",
         "dateAdded": "2023-07-09T00:00:00Z",
         "duration": 4.23,
+        "isOffensive": false
+    },
+    {
+        "id": "10EB6DCF-6D82-4EFA-BF4B-0127EBF17212",
+        "title": "Porque ela era bolsominion... Aaaah",
+        "authorId": "E87C2D7D-64FF-4E69-AD36-1FAC5BC76361",
+        "description": "E a sua irma mara havia um tempo que voces nao se falavam muito bem porque ela era bolsominion aaaah",
+        "filename": "Xuxa - Porque ela era bolsominion... Aaaah.mp3",
+        "dateAdded": "2023-07-16T00:00:00Z",
+        "duration": 7.84,
+        "isOffensive": true
+    },
+    {
+        "id": "BFC2A4C5-4DFB-4B96-9C02-E9F0F9E5457E",
+        "title": "Ai ela é toda boazinha, ela é tão galera",
+        "authorId": "AFBCDE78-65B6-4716-B2E7-1404DD1E3C70",
+        "description": "Ai ela e toda boazinha ela e toda do bem ela e tao galera ela e jovem ela e sabe ai vai se fuder sabe chata paca",
+        "filename": "Rita Lee - Ai ela e toda boazinha, ela e tao galera.mp3",
+        "dateAdded": "2023-07-16T00:00:00Z",
+        "duration": 10.99,
+        "isOffensive": true
+    },
+    {
+        "id": "D18B761E-1C86-40D2-8708-55F8C692336C",
+        "title": "Muito legal, muito bacana, muito gentil ele",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Muito legal muito bacana muito gentil ele",
+        "filename": "Muito legal, muito bacana, muito gentil ele.mp3",
+        "dateAdded": "2023-07-16T00:00:00Z",
+        "duration": 2.72,
+        "isOffensive": false
+    },
+    {
+        "id": "CD14DF9E-66FA-49FA-A4B8-6D9DB486A25F",
+        "title": "Iéié, ráá!",
+        "authorId": "4E796A05-874C-4D8A-811E-98BA48394D1E",
+        "description": "ieie raa yeah yeah",
+        "filename": "Sergio Malandro - Ieie, ra.mp3",
+        "dateAdded": "2023-07-16T00:00:00Z",
+        "duration": 1.62,
         "isOffensive": false
     }
 ]
