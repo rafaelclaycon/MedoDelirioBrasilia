@@ -156,7 +156,7 @@ struct SoundsView: View {
                                                 .onTapGesture {
                                                     if currentSoundsListMode == .regular {
                                                         if viewModel.nowPlayingKeeper.contains(sound.id) {
-                                                            player?.togglePlay()
+                                                            AudioPlayer.shared?.togglePlay()
                                                             viewModel.nowPlayingKeeper.removeAll()
                                                         } else {
                                                             viewModel.playSound(fromPath: sound.filename, withId: sound.id)

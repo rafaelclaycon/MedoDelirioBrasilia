@@ -140,19 +140,19 @@ class SoundsViewViewModel: ObservableObject {
         nowPlayingKeeper.removeAll()
         nowPlayingKeeper.insert(soundId)
         
-        player = AudioPlayer(url: url, update: { [weak self] state in
+        AudioPlayer.shared = AudioPlayer(url: url, update: { [weak self] state in
             guard let self = self else { return }
             if state?.activity == .stopped {
                 self.nowPlayingKeeper.removeAll()
             }
         })
         
-        player?.togglePlay()
+        AudioPlayer.shared?.togglePlay()
     }
     
     func stopPlaying() {
         if nowPlayingKeeper.count > 0 {
-            player?.togglePlay()
+            AudioPlayer.shared?.togglePlay()
             nowPlayingKeeper.removeAll()
         }
     }

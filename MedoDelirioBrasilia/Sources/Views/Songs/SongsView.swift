@@ -72,7 +72,7 @@ struct SongsView: View {
                                     .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                                     .onTapGesture {
                                         if viewModel.nowPlayingKeeper.contains(song.id) {
-                                            player?.togglePlay()
+                                            AudioPlayer.shared?.togglePlay()
                                             viewModel.nowPlayingKeeper.removeAll()
                                         } else {
                                             viewModel.playSong(fromPath: song.filename, withId: song.id)
@@ -175,7 +175,7 @@ struct SongsView: View {
                 viewModel.donateActivity()
             }
             .onDisappear {
-                player?.cancel()
+                AudioPlayer.shared?.cancel()
                 viewModel.nowPlayingKeeper.removeAll()
             }
             .sheet(isPresented: $viewModel.isShowingShareSheet) {

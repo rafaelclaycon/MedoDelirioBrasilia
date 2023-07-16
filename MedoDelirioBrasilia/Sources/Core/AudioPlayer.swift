@@ -19,6 +19,8 @@ class AudioPlayer: NSObject, AVAudioPlayerDelegate {
     private var timer: Timer?
     private var update: (State?) -> Void
 
+    static var shared: AudioPlayer?
+
     init?(url: URL, update: @escaping (State?) -> Void) {
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
@@ -115,5 +117,4 @@ class AudioPlayer: NSObject, AVAudioPlayerDelegate {
     deinit {
         cancel()
     }
-
 }

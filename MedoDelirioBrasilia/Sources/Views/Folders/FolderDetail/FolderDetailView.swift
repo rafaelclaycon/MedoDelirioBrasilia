@@ -75,7 +75,7 @@ struct FolderDetailView: View {
                                             .onTapGesture {
                                                 if viewModel.currentSoundsListMode.wrappedValue == .regular {
                                                     if viewModel.nowPlayingKeeper.contains(sound.id) {
-                                                        player?.togglePlay()
+                                                        AudioPlayer.shared?.togglePlay()
                                                         viewModel.nowPlayingKeeper.removeAll()
                                                         viewModel.doPlaylistCleanup()
                                                     } else {
