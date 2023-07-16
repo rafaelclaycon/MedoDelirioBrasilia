@@ -10,7 +10,7 @@ class Logger {
                                     destination: destination.rawValue,
                                     destinationBundleId: destinationBundleId,
                                     sentToServer: false)
-        try? database.insert(userShareLog: shareLog)
+        try? LocalDatabase.shared.insert(userShareLog: shareLog)
     }
     
     static func logSharedSong(contentId: String, destination: ShareDestination, destinationBundleId: String) {
@@ -21,7 +21,7 @@ class Logger {
                                     destination: destination.rawValue,
                                     destinationBundleId: destinationBundleId,
                                     sentToServer: false)
-        try? database.insert(userShareLog: shareLog)
+        try? LocalDatabase.shared.insert(userShareLog: shareLog)
     }
     
     static func logSharedVideoFromSound(contentId: String, destination: ShareDestination, destinationBundleId: String) {
@@ -32,18 +32,18 @@ class Logger {
                                     destination: destination.rawValue,
                                     destinationBundleId: destinationBundleId,
                                     sentToServer: false)
-        try? database.insert(userShareLog: shareLog)
+        try? LocalDatabase.shared.insert(userShareLog: shareLog)
     }
     
     static func getShareCountStatsForServer() -> [ServerShareCountStat]? {
-        guard let items = try? database.getUserShareStatsNotSentToServer(), items.count > 0 else {
+        guard let items = try? LocalDatabase.shared.getUserShareStatsNotSentToServer(), items.count > 0 else {
             return nil
         }
         return items
     }
     
     static func getUniqueBundleIdsForServer() -> [ServerShareBundleIdLog]? {
-        guard let items = try? database.getUniqueBundleIdsThatWereSharedTo(), items.count > 0 else {
+        guard let items = try? LocalDatabase.shared.getUniqueBundleIdsThatWereSharedTo(), items.count > 0 else {
             return nil
         }
         return items
@@ -59,7 +59,7 @@ class Logger {
                                  response: response,
                                  dateTime: Date(),
                                  wasSuccessful: wasSuccessful)
-        try? database.insert(networkCallLog: log)
+        try? LocalDatabase.shared.insert(networkCallLog: log)
     }
     
     static func logSyncError(description: String, updateEventId: String) {

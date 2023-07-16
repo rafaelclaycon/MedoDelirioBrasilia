@@ -113,7 +113,7 @@ class FolderDetailViewViewModel: ObservableObject {
         nowPlayingKeeper.removeAll()
         nowPlayingKeeper.insert(soundId)
 
-        player = AudioPlayer(url: url, update: { [weak self] state in
+        AudioPlayer.shared = AudioPlayer(url: url, update: { [weak self] state in
             guard let self = self else { return }
             if state?.activity == .stopped {
                 self.nowPlayingKeeper.removeAll()
@@ -131,12 +131,12 @@ class FolderDetailViewViewModel: ObservableObject {
             }
         })
         
-        player?.togglePlay()
+        AudioPlayer.shared?.togglePlay()
     }
     
     func stopPlaying() {
         if nowPlayingKeeper.count > 0 {
-            player?.togglePlay()
+            AudioPlayer.shared?.togglePlay()
             nowPlayingKeeper.removeAll()
             doPlaylistCleanup()
         }
@@ -288,8 +288,8 @@ class FolderDetailViewViewModel: ObservableObject {
     }
     
     func removeSoundFromFolder(folderId: String, soundId: String) {
-        try? database.deleteUserContentFromFolder(withId: folderId, contentId: soundId)
-        reloadSoundList(withFolderContents: try? database.getAllContentsInsideUserFolder(withId: folderId), sortedBy: FolderSoundSortOption(rawValue: soundSortOption) ?? .titleAscending)
+        try? LocalDatabase.shared.deleteUserContentFromFolder(withId: folderId, contentId: soundId)
+        reloadSoundList(withFolderContents: try? LocalDatabase.shared.getAllContentsInsideUserFolder(withId: folderId), sortedBy: FolderSoundSortOption(rawValue: soundSortOption) ?? .titleAscending)
     }
     
     // MARK: - Multi-Select
@@ -312,10 +312,10 @@ class FolderDetailViewViewModel: ObservableObject {
     func removeMultipleSoundsFromFolder(folderId: String) {
         guard selectionKeeper.count > 0 else { return }
         selectionKeeper.forEach { selectedSoundId in
-            try? database.deleteUserContentFromFolder(withId: folderId, contentId: selectedSoundId)
+            try? LocalDatabase.shared.deleteUserContentFromFolder(withId: folderId, contentId: selectedSoundId)
         }
         selectionKeeper.removeAll()
-        reloadSoundList(withFolderContents: try? database.getAllContentsInsideUserFolder(withId: folderId), sortedBy: FolderSoundSortOption(rawValue: soundSortOption) ?? .titleAscending)
+        reloadSoundList(withFolderContents: try? LocalDatabase.shared.getAllContentsInsideUserFolder(withId: folderId), sortedBy: FolderSoundSortOption(rawValue: soundSortOption) ?? .titleAscending)
     }
     
     func sendUsageMetricToServer(action: String, folderName: String) {

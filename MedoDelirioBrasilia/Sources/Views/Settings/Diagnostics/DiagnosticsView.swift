@@ -86,7 +86,7 @@ struct DiagnosticsView: View {
         .navigationTitle("Diagnóstico")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-            shareLogs = try? database.getAllUserShareLogs()
+            shareLogs = try? LocalDatabase.shared.getAllUserShareLogs()
             shareLogs?.sort(by: { $0.dateTime > $1.dateTime })
             /*networkLogs = try? database.getAllNetworkCallLogs()
             networkLogs?.sort(by: { $0.dateTime > $1.dateTime })*/

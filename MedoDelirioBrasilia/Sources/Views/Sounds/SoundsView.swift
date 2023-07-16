@@ -159,7 +159,7 @@ struct SoundsView: View {
                                                     //dump(sound)
                                                     if currentSoundsListMode == .regular {
                                                         if viewModel.nowPlayingKeeper.contains(sound.id) {
-                                                            player?.togglePlay()
+                                                            AudioPlayer.shared?.togglePlay()
                                                             viewModel.nowPlayingKeeper.removeAll()
                                                         } else {
                                                             viewModel.play(sound: sound)
@@ -195,8 +195,8 @@ struct SoundsView: View {
                                                                 if viewModel.favoritesKeeper.contains(sound.id) {
                                                                     viewModel.removeFromFavorites(soundId: sound.id)
                                                                     if currentViewMode == .favorites {
-                                                                        viewModel.reloadList(withSounds: try! database.allSounds(),
-                                                                                             andFavorites: try? database.getAllFavorites(),
+                                                                        viewModel.reloadList(withSounds: try! LocalDatabase.shared.allSounds(),
+                                                                                             andFavorites: try? LocalDatabase.shared.getAllFavorites(),
                                                                                              allowSensitiveContent: UserSettings.getShowExplicitContent(),
                                                                                              favoritesOnly: currentViewMode == .favorites,
                                                                                              sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
@@ -288,8 +288,8 @@ struct SoundsView: View {
             .navigationTitle(Text(title))
             .navigationBarItems(leading: leadingToolbarControls(), trailing: trailingToolbarControls())
             .onAppear {
-                viewModel.reloadList(withSounds: try! database.allSounds(),
-                                     andFavorites: try? database.getAllFavorites(),
+                viewModel.reloadList(withSounds: try! LocalDatabase.shared.allSounds(),
+                                     andFavorites: try? LocalDatabase.shared.getAllFavorites(),
                                      allowSensitiveContent: UserSettings.getShowExplicitContent(),
                                      favoritesOnly: currentViewMode == .favorites,
                                      sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
@@ -344,7 +344,7 @@ struct SoundsView: View {
                         guard deleteFolderAide.folderIdForDeletion.isEmpty == false else {
                             return
                         }
-                        try? database.deleteUserFolder(withId: deleteFolderAide.folderIdForDeletion)
+                        try? LocalDatabase.shared.deleteUserFolder(withId: deleteFolderAide.folderIdForDeletion)
                         deleteFolderAide.updateFolderList = true
                         deleteFolderAide.showAlert = false
                     }), secondaryButton: .cancel(Text("Cancelar")))
@@ -387,8 +387,8 @@ struct SoundsView: View {
             }
             .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in
                 if shouldUpdate {
-                    viewModel.reloadList(withSounds: try! database.allSounds(),
-                                         andFavorites: try? database.getAllFavorites(),
+                    viewModel.reloadList(withSounds: try! LocalDatabase.shared.allSounds(),
+                                         andFavorites: try? LocalDatabase.shared.getAllFavorites(),
                                          allowSensitiveContent: UserSettings.getShowExplicitContent(),
                                          favoritesOnly: currentViewMode == .favorites,
                                          sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
@@ -494,8 +494,8 @@ struct SoundsView: View {
             guard currentMode == .allSounds || currentMode == .favorites else {
                 return
             }
-            viewModel.reloadList(withSounds: try! database.allSounds(),
-                                 andFavorites: try? database.getAllFavorites(),
+            viewModel.reloadList(withSounds: try! LocalDatabase.shared.allSounds(),
+                                 andFavorites: try? LocalDatabase.shared.getAllFavorites(),
                                  allowSensitiveContent: UserSettings.getShowExplicitContent(),
                                  favoritesOnly: currentMode == .favorites,
                                  sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
@@ -565,8 +565,8 @@ struct SoundsView: View {
                             if currentViewMode == .favorites || viewModel.allSelectedAreFavorites() {
                                 viewModel.removeSelectedFromFavorites()
                                 viewModel.stopSelecting()
-                                viewModel.reloadList(withSounds: try! database.allSounds(),
-                                                     andFavorites: try? database.getAllFavorites(),
+                                viewModel.reloadList(withSounds: try! LocalDatabase.shared.allSounds(),
+                                                     andFavorites: try? LocalDatabase.shared.getAllFavorites(),
                                                      allowSensitiveContent: UserSettings.getShowExplicitContent(),
                                                      favoritesOnly: currentViewMode == .favorites,
                                                      sortedBy: SoundSortOption(rawValue: viewModel.soundSortOption) ?? .titleAscending)
@@ -645,8 +645,8 @@ struct SoundsView: View {
                         Image(systemName: "ellipsis.circle")
                     }
                     .onChange(of: viewModel.soundSortOption, perform: { soundSortOption in
-                        viewModel.reloadList(withSounds: try! database.allSounds(),
-                                             andFavorites: try? database.getAllFavorites(),
+                        viewModel.reloadList(withSounds: try! LocalDatabase.shared.allSounds(),
+                                             andFavorites: try? LocalDatabase.shared.getAllFavorites(),
                                              allowSensitiveContent: UserSettings.getShowExplicitContent(),
                                              favoritesOnly: currentViewMode == .favorites,
                                              sortedBy: SoundSortOption(rawValue: soundSortOption) ?? .titleAscending)

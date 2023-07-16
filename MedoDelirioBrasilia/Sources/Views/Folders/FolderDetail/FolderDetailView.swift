@@ -75,7 +75,7 @@ struct FolderDetailView: View {
                                             .onTapGesture {
                                                 if viewModel.currentSoundsListMode.wrappedValue == .regular {
                                                     if viewModel.nowPlayingKeeper.contains(sound.id) {
-                                                        player?.togglePlay()
+                                                        AudioPlayer.shared?.togglePlay()
                                                         viewModel.nowPlayingKeeper.removeAll()
                                                         viewModel.doPlaylistCleanup()
                                                     } else {
@@ -238,12 +238,12 @@ struct FolderDetailView: View {
                         default:
                             viewModel.sortSoundsInPlaceByTitleAscending()
                         }
-                        try? database.update(userSortPreference: soundSortOption, forFolderId: folder.id)
+                        try? LocalDatabase.shared.update(userSortPreference: soundSortOption, forFolderId: folder.id)
                     })
                 }
             }
             .onAppear {
-                viewModel.reloadSoundList(withFolderContents: try? database.getAllContentsInsideUserFolder(withId: folder.id), sortedBy: FolderSoundSortOption(rawValue: folder.userSortPreference ?? 0) ?? .titleAscending)
+                viewModel.reloadSoundList(withFolderContents: try? LocalDatabase.shared.getAllContentsInsideUserFolder(withId: folder.id), sortedBy: FolderSoundSortOption(rawValue: folder.userSortPreference ?? 0) ?? .titleAscending)
                 columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
             }
             .onDisappear {
