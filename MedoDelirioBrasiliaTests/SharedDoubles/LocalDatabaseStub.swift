@@ -11,6 +11,8 @@ import Foundation
 class LocalDatabaseStub: LocalDatabaseProtocol {
 
     var contentInsideFolder: [String]? = nil
+    var unsuccessfulUpdatesToReturn: [MedoDelirio.UpdateEvent]? = nil
+
     var didCallInsertSound = false
     var didCallUpdateSound = false
     var didCallDeleteSound = false
@@ -19,6 +21,8 @@ class LocalDatabaseStub: LocalDatabaseProtocol {
     var didCallSetIsFromServer = false
     var didCallInsertAuthor = false
     var didCallUpdateAuthor = false
+    var didCallInsertUpdateEvent = false
+    var didCallUnsuccessfulUpdates = false
 
     func contentExistsInsideUserFolder(withId folderId: String, contentId: String) throws -> Bool {
         guard let content = contentInsideFolder else {
@@ -57,5 +61,17 @@ class LocalDatabaseStub: LocalDatabaseProtocol {
 
     func update(author updatedAuthor: MedoDelirio.Author) throws {
         didCallUpdateAuthor = true
+    }
+
+    func insert(updateEvent newUpdateEvent: MedoDelirio.UpdateEvent) throws {
+        didCallInsertUpdateEvent = true
+    }
+
+    func unsuccessfulUpdates() throws -> [MedoDelirio.UpdateEvent] {
+        didCallUnsuccessfulUpdates = true
+        guard let updates = unsuccessfulUpdatesToReturn else {
+            return []
+        }
+        return updates
     }
 }

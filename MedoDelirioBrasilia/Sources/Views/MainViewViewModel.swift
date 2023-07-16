@@ -38,6 +38,10 @@ class MainViewViewModel: ObservableObject {
             return showYoureOfflineWarning = true
         }
 
+        await MainActor.run {
+            showSyncProgressView = true
+        }
+
         do {
             try await retryLocal()
             try await syncDataWithServer()
@@ -49,7 +53,7 @@ class MainViewViewModel: ObservableObject {
     }
 
     func retryLocal() async throws {
-        let localResult = try await fetchLocalUnsuccessfulUpdates()
+        let localResult = try await retrieveUnsuccessfulLocalUpdates()
         print("Resultado do fetchLocalUnsuccessfulUpdates: \(localResult)")
         if localResult > 0 {
             await MainActor.run {
@@ -61,7 +65,7 @@ class MainViewViewModel: ObservableObject {
     }
 
     func syncDataWithServer() async throws {
-        let result = try await fetchServerUpdates()
+        let result = try await retrieveServerUpdates()
         print("Resultado do fetchServerUpdates: \(result)")
         if result > 0 {
             await MainActor.run {
@@ -72,7 +76,7 @@ class MainViewViewModel: ObservableObject {
         }
     }
 
-    func fetchServerUpdates() async throws -> Double {
+    func retrieveServerUpdates() async throws -> Double {
         print("fetchServerUpdates()")
         serverUpdates = try await service.getUpdates(from: lastUpdateDate)
         if var serverUpdates = serverUpdates {
@@ -84,7 +88,7 @@ class MainViewViewModel: ObservableObject {
         return Double(serverUpdates?.count ?? 0)
     }
 
-    func fetchLocalUnsuccessfulUpdates() async throws -> Double {
+    func retrieveUnsuccessfulLocalUpdates() async throws -> Double {
         print("fetchLocalUnsuccessfulUpdates()")
         localUnsuccessfulUpdates = try database.unsuccessfulUpdates()
         return Double(localUnsuccessfulUpdates?.count ?? 0)

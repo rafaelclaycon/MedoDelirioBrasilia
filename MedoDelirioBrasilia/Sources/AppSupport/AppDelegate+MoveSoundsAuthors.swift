@@ -13,24 +13,24 @@ extension AppDelegate {
         let soundData: [Sound] = Bundle.main.decodeJSON("sound_data.json")
         soundData.forEach { sound in
             do {
-                try database.insert(sound: sound)
+                try LocalDatabase.shared.insert(sound: sound)
             } catch {
                 Logger.logSyncError(description: "Problem inserting Sound '\(sound.title)': \(error.localizedDescription)", updateEventId: "")
             }
         }
-        if let soundCount = try? database.soundCount() {
+        if let soundCount = try? LocalDatabase.shared.soundCount() {
             Logger.logSyncSuccess(description: "\(soundCount) Sounds imported from fixed data successfully.", updateEventId: "")
         }
         
         let authorData: [Author] = Bundle.main.decodeJSON("author_data.json")
         authorData.forEach { author in
             do {
-                try database.insert(author: author)
+                try LocalDatabase.shared.insert(author: author)
             } catch {
                 Logger.logSyncError(description: "Problem inserting Author '\(author.name)': \(error.localizedDescription)", updateEventId: "")
             }
         }
-        if let authorCount = try? database.getAuthorCount() {
+        if let authorCount = try? LocalDatabase.shared.getAuthorCount() {
             Logger.logSyncSuccess(description: "\(authorCount) Authors imported from fixed data successfully.", updateEventId: "")
         }
     }

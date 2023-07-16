@@ -220,7 +220,7 @@ struct SoundsView: View {
                                                         
                                                         Section {
                                                             Button {
-                                                                guard let author = try? database.author(withId: sound.authorId) else { return }
+                                                                guard let author = try? LocalDatabase.shared.author(withId: sound.authorId) else { return }
                                                                 authorToAutoOpen = author
                                                                 autoOpenAuthor = true
                                                             } label: {

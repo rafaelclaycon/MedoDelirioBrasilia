@@ -48,7 +48,7 @@ class AuthorDetailViewViewModel: ObservableObject {
     func reloadList(withSounds allSounds: [Sound],
                     andFavorites favorites: [Favorite]?,
                     allowSensitiveContent: Bool) {
-        guard let allAuthors = try? database.allAuthors() else { return }
+        guard let allAuthors = try? LocalDatabase.shared.allAuthors() else { return }
         
         var soundsCopy = allSounds
         
@@ -341,7 +341,7 @@ class AuthorDetailViewViewModel: ObservableObject {
         guard selectionKeeper.count > 0 else { return }
         selectedSounds = [Sound]()
         selectionKeeper.forEach { selectedSoundId in
-            guard let sound = try? database.sound(withId: selectedSoundId) else { return }
+            guard let sound = try? LocalDatabase.shared.sound(withId: selectedSoundId) else { return }
             selectedSounds?.append(sound)
         }
     }

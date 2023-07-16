@@ -66,13 +66,13 @@ class Logger {
         let syncLog = SyncLog(logType: .error,
                               description: description,
                               updateEventId: updateEventId)
-        database.insert(syncLog: syncLog)
+        LocalDatabase.shared.insert(syncLog: syncLog)
     }
     
     static func logSyncSuccess(description: String, updateEventId: String) {
         let syncLog = SyncLog(logType: .success,
                               description: description,
                               updateEventId: updateEventId)
-        database.insert(syncLog: syncLog)
+        LocalDatabase.shared.insert(syncLog: syncLog)
     }
 }

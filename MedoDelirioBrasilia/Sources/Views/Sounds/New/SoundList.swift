@@ -25,7 +25,7 @@ struct SoundList: View {
     
     private let service = SyncService(connectionManager: ConnectionManager.shared,
                                       networkRabbit: networkRabbit,
-                                      localDatabase: database)
+                                      localDatabase: LocalDatabase.shared)
     
     var body: some View {
         GeometryReader { geometry in
@@ -80,7 +80,7 @@ struct SoundList: View {
             print("loadLocalSounds()")
             
             do {
-                var allSounds = try database.allSounds()
+                var allSounds = try LocalDatabase.shared.allSounds()
                 allSounds.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
                 
                 await MainActor.run {

@@ -49,7 +49,7 @@ class FolderDetailViewViewModel: ObservableObject {
         }
         
         let contentIds = folderContents.map { $0.contentId }
-        guard let sounds = try? database.sounds(withIds: contentIds) else { return }
+        guard let sounds = try? LocalDatabase.shared.sounds(withIds: contentIds) else { return }
         
         guard sounds.count > 0 else {
             self.sounds = [Sound]()

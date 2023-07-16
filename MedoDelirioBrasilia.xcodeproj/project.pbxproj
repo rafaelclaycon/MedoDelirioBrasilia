@@ -4323,6 +4323,7 @@
 		D9625E8D28238F9B00080852 /* MedoDelirioBrasiliaTests */ = {
 			isa = PBXGroup;
 			children = (
+				D9DC8D482A643CA500467DBA /* SharedDoubles */,
 				D9F570862A62F26300596C32 /* Extensions */,
 				D9E69598283D581700C341B2 /* Sources */,
 			);
@@ -4569,18 +4570,9 @@
 		D9A06415298B59B0006075D1 /* Folders */ = {
 			isa = PBXGroup;
 			children = (
-				D9A06418298B673A006075D1 /* Doubles */,
 				D9A06416298B59D5006075D1 /* AddToFolderViewViewModelTests.swift */,
 			);
 			path = Folders;
-			sourceTree = "<group>";
-		};
-		D9A06418298B673A006075D1 /* Doubles */ = {
-			isa = PBXGroup;
-			children = (
-				D9A06419298B6749006075D1 /* LocalDatabaseStub.swift */,
-			);
-			path = Doubles;
 			sourceTree = "<group>";
 		};
 		D9A8AB1E2853D80200B5A94B /* Migrations */ = {
@@ -4756,6 +4748,14 @@
 				D9C67C0F2A3E3C2200E74E9D /* MiniButtonStyle.swift */,
 			);
 			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		D9DC8D482A643CA500467DBA /* SharedDoubles */ = {
+			isa = PBXGroup;
+			children = (
+				D9A06419298B6749006075D1 /* LocalDatabaseStub.swift */,
+			);
+			path = SharedDoubles;
 			sourceTree = "<group>";
 		};
 		D9E69595283D54EA00C341B2 /* DataHandlers */ = {

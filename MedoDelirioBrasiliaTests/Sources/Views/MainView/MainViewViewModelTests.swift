@@ -14,20 +14,26 @@ final class MainViewViewModelTests: XCTestCase {
     private var sut: MainViewViewModel!
 
     private var syncService: SyncServiceStub!
+    private var databaseStub: LocalDatabaseStub!
 
     private let firstRunLastUpdateDate = "all"
 
     override func setUp() {
         syncService = SyncServiceStub()
+        databaseStub = LocalDatabaseStub()
     }
 
     override func tearDown() {
         sut = nil
+        syncService = nil
+        databaseStub = nil
     }
 
     func test_sync_whenNoInternetConnection_shouldDisplayYoureOffline() async throws {
         syncService.hasConnectivityResult = false
-        sut = MainViewViewModel(lastUpdateDate: firstRunLastUpdateDate, service: syncService)
+        sut = MainViewViewModel(lastUpdateDate: firstRunLastUpdateDate,
+                                service: syncService,
+                                database: databaseStub)
 
         //let expectation = XCTestExpectation()
 
@@ -40,7 +46,30 @@ final class MainViewViewModelTests: XCTestCase {
     }
 
     func test_sync_whenNoUpdates_shouldLoadSoundList() async throws {
-        sut = MainViewViewModel(lastUpdateDate: firstRunLastUpdateDate, service: syncService)
+        databaseStub.unsuccessfulUpdatesToReturn = []
+        syncService.predefinedUpdates = []
+        sut = MainViewViewModel(lastUpdateDate: firstRunLastUpdateDate,
+                                service: syncService,
+                                database: databaseStub)
+
+        let showSyncProgressViewPublisher = sut.$showSyncProgressView
+            .collect(2)
+            .first()
+
+        await sut.sync()
+
+        let showArrays = try awaitPublisher(showSyncProgressViewPublisher)
+        XCTAssertEqual(showArrays.count, 2)
+        print(showArrays)
+        XCTAssertTrue(sut.updateSoundList)
+    }
+
+    func test_sync_whenOneSoundCreatedUpdate_shouldDownloadSoundAndLoadSoundList() async throws {
+        databaseStub.unsuccessfulUpdatesToReturn = []
+        syncService.predefinedUpdates = [UpdateEvent(contentId: "123", mediaType: .sound, eventType: .created)]
+        sut = MainViewViewModel(lastUpdateDate: firstRunLastUpdateDate,
+                                service: syncService,
+                                database: databaseStub)
 
         let showSyncProgressViewPublisher = sut.$showSyncProgressView
             .collect(2)

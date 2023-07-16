@@ -129,34 +129,17 @@ class SoundsViewViewModel: ObservableObject {
             nowPlayingKeeper.removeAll()
             nowPlayingKeeper.insert(sound.id)
             
-            player = AudioPlayer(url: url, update: { [weak self] state in
+            AudioPlayer.shared = AudioPlayer(url: url, update: { [weak self] state in
                 guard let self = self else { return }
                 if state?.activity == .stopped {
                     self.nowPlayingKeeper.removeAll()
                 }
             })
             
-            player?.togglePlay()
+            AudioPlayer.shared?.togglePlay()
         } catch {
             print(error)
         }
-        
-        guard let path = Bundle.main.path(forResource: filepath, ofType: nil) else {
-            return showUnableToGetSoundAlert()
-        }
-        let url = URL(fileURLWithPath: path)
-        
-        nowPlayingKeeper.removeAll()
-        nowPlayingKeeper.insert(soundId)
-        
-        AudioPlayer.shared = AudioPlayer(url: url, update: { [weak self] state in
-            guard let self = self else { return }
-            if state?.activity == .stopped {
-                self.nowPlayingKeeper.removeAll()
-            }
-        })
-        
-        AudioPlayer.shared?.togglePlay()
     }
     
     func stopPlaying() {
@@ -376,7 +359,7 @@ class SoundsViewViewModel: ObservableObject {
         guard selectionKeeper.count > 0 else { return }
         selectedSounds = [Sound]()
         selectionKeeper.forEach { selectedSoundId in
-            guard let sound = try? database.sound(withId: selectedSoundId) else { return }
+            guard let sound = try? LocalDatabase.shared.sound(withId: selectedSoundId) else { return }
             selectedSounds?.append(sound)
         }
     }
@@ -385,7 +368,7 @@ class SoundsViewViewModel: ObservableObject {
         guard selectionKeeper.count > 0 else { return }
         selectedSounds = [Sound]()
         selectionKeeper.forEach { selectedSoundId in
-            guard let sound = try? database.sound(withId: selectedSoundId) else { return }
+            guard let sound = try? LocalDatabase.shared.sound(withId: selectedSoundId) else { return }
             selectedSounds?.append(sound)
         }
         
