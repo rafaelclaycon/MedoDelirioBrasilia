@@ -57,7 +57,6 @@ class MainViewViewModel: ObservableObject {
         print("Resultado do fetchLocalUnsuccessfulUpdates: \(localResult)")
         if localResult > 0 {
             await MainActor.run {
-                showSyncProgressView = true
                 totalAmount = localResult
             }
             try await syncUnsuccessful()
@@ -69,7 +68,6 @@ class MainViewViewModel: ObservableObject {
         print("Resultado do fetchServerUpdates: \(result)")
         if result > 0 {
             await MainActor.run {
-                showSyncProgressView = true
                 totalAmount = result
             }
             try await serverSync()

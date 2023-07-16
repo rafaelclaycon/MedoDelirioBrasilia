@@ -35,16 +35,13 @@ final class MainViewViewModelTests: XCTestCase {
                                 service: syncService,
                                 database: databaseStub)
 
-        //let expectation = XCTestExpectation()
-
         await sut.sync()
-
-        //expectation.fulfill()
 
         XCTAssertFalse(sut.showSyncProgressView)
         XCTAssertTrue(sut.showYoureOfflineWarning)
     }
 
+    @MainActor
     func test_sync_whenNoUpdates_shouldLoadSoundList() async throws {
         databaseStub.unsuccessfulUpdatesToReturn = []
         syncService.predefinedUpdates = []
