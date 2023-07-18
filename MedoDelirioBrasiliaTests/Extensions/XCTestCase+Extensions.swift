@@ -56,4 +56,30 @@ extension XCTestCase {
 
         return try unwrappedResult.get()
     }
+
+    func waitUntil<T>(
+        _ propertyPublisher: Published<T>.Publisher,
+        meetsCondition predicate: @escaping (T) -> Bool,
+        timeout: TimeInterval = 10,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        let expectation = expectation(
+            description: "Awaiting value from publisher \(propertyPublisher)"
+        )
+
+        var cancellable: AnyCancellable?
+        cancellable = propertyPublisher
+            .first { value in
+                predicate(value)
+            }
+            .sink { value in
+                XCTAssert(predicate(value), file: file, line: line)
+                cancellable?.cancel()
+                expectation.fulfill()
+            }
+
+        waitForExpectations(timeout: timeout, handler: nil)
+        cancellable?.cancel()
+    }
 }
