@@ -49,15 +49,19 @@ final class MainViewViewModelTests: XCTestCase {
                                 service: syncService,
                                 database: databaseStub)
 
+        var showArray: [Bool] = []
+
         let showSyncProgressViewPublisher = sut.$showSyncProgressView
+            .dropFirst()
+            .removeDuplicates()
+            .sink { value in
+                showArray.append(value)
+            }
 
         await sut.sync()
 
-        waitUntil(showSyncProgressViewPublisher, meetsCondition: { showSyncProgressView in
-            return showSyncProgressView == true
-        })
-//        XCTAssertEqual(showArrays.count, 2)
-//        print(showArrays)
+        XCTAssertEqual(showArray.count, 2)
+        print(showArray)
         XCTAssertTrue(sut.updateSoundList)
     }
 
@@ -68,15 +72,19 @@ final class MainViewViewModelTests: XCTestCase {
                                 service: syncService,
                                 database: databaseStub)
 
+        var showArray: [Bool] = []
+
         let showSyncProgressViewPublisher = sut.$showSyncProgressView
-            .collect(2)
-            .first()
+            .dropFirst()
+            .removeDuplicates()
+            .sink { value in
+                showArray.append(value)
+            }
 
         await sut.sync()
 
-        let showArrays = try awaitPublisher(showSyncProgressViewPublisher)
-        XCTAssertEqual(showArrays.count, 2)
-        print(showArrays)
+        XCTAssertEqual(showArray.count, 2)
+        print(showArray)
         XCTAssertTrue(sut.updateSoundList)
     }
 

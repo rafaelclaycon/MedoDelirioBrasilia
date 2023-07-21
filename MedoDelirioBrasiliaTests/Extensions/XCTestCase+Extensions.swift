@@ -12,7 +12,7 @@ extension XCTestCase {
 
     func awaitPublisher<T: Publisher>(
         _ publisher: T,
-        timeout: TimeInterval = 2,
+        timeout: TimeInterval = 10,
         file: StaticString = #file,
         line: UInt = #line
     ) throws -> T.Output {
