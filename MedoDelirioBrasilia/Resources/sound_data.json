@@ -3561,9 +3561,9 @@
     },
     {
         "id": "B20DC9EF-7BF4-45AA-827C-E253DCC7718D",
-        "title": "Moro desafinando no corrupção",
-        "authorId": "63126808-C5C0-4492-9B21-AF800C5E0AFB",
-        "description": "Moro desafinando no corrupcao",
+        "title": "Corrupção, corrupçãÃÃão",
+        "authorId": "AA4313EE-E9E1-4EDB-9D40-3A9C5C286DA6",
+        "description": "Moro desafinando no corrupcao corrupção corrupção",
         "filename": "GALAS FEIOS - Moro desafinando no corrupcao.mp3",
         "dateAdded": "2022-06-12T00:00:00Z",
         "duration": 3.03,
@@ -10922,7 +10922,7 @@
     {
         "id": "D18B761E-1C86-40D2-8708-55F8C692336C",
         "title": "Muito legal, muito bacana, muito gentil ele",
-        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "authorId": "93B02C4A-2958-4831-95F2-57717AC79FAE",
         "description": "Muito legal muito bacana muito gentil ele",
         "filename": "Muito legal, muito bacana, muito gentil ele.mp3",
         "dateAdded": "2023-07-16T00:00:00Z",
@@ -10938,5 +10938,95 @@
         "dateAdded": "2023-07-16T00:00:00Z",
         "duration": 1.62,
         "isOffensive": false
+    },
+    {
+        "id": "70C8B638-1A19-4139-B9A9-8AF035006686",
+        "title": "Vinheta do Plantão da Globo (versão funk)",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "Vinheta do Plantao da Globo (versao funk)",
+        "filename": "Vinheta do Plantao da Globo (versao funk).mp3",
+        "dateAdded": "2023-07-18T00:00:00Z",
+        "duration": 16.22,
+        "isOffensive": false
+    },
+    {
+        "id": "6DF9A6BD-8E99-4478-A9A7-0416373F1BA2",
+        "title": "Exatamente",
+        "authorId": "54AD2984-8D05-44CD-B4A7-72325B59E947",
+        "description": "Exatamente",
+        "filename": "Kajuru - Exatamente.mp3",
+        "dateAdded": "2023-07-18T00:00:00Z",
+        "duration": 1.23,
+        "isOffensive": false
+    },
+    {
+        "id": "113A2F49-623D-4CD6-9448-628D7E79F325",
+        "title": "Exatamente isso",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Exatamente isso",
+        "filename": "Bolsonaro - Exatamente isso.mp3",
+        "dateAdded": "2023-07-18T00:00:00Z",
+        "duration": 1.49,
+        "isOffensive": false
+    },
+    {
+        "id": "5597BD20-A60C-4E26-907C-2003DB18DB58",
+        "title": "Vai chorar é? (versão da urna)",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "Vai chorar e? (versao da urna)",
+        "filename": "Vai chorar e (versao da urna).mp3",
+        "dateAdded": "2023-07-18T00:00:00Z",
+        "duration": 5.02,
+        "isOffensive": false
+    },
+    {
+        "id": "F1A65711-3D34-4E69-8222-5003F304F522",
+        "title": "De forma discreta, estrategicamente discreta",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "De forma discreta estrategicamente discreta",
+        "filename": "Augusto Aras - De forma discreta, estrategicamente discreta.mp3",
+        "dateAdded": "2023-07-18T00:00:00Z",
+        "duration": 3.37,
+        "isOffensive": true
+    },
+    {
+        "id": "5C3A3D46-7591-432E-8A4E-DC63A4331899",
+        "title": "Copção cupição coopção",
+        "authorId": "AA4313EE-E9E1-4EDB-9D40-3A9C5C286DA6",
+        "description": "Copcao cupicao coopcao",
+        "filename": "Sergio Moro - Copcao cupicao coopcao.mp3",
+        "dateAdded": "2023-07-18T00:00:00Z",
+        "duration": 56.23,
+        "isOffensive": true
+    },
+    {
+        "id": "4E71088A-5E9A-4E1F-959E-9B5B0887D163",
+        "title": "Inteligência x8",
+        "authorId": "96B59EDB-76CA-437A-B89E-016D228898C5",
+        "description": "inteligencia x8 inteligencia vezes 8",
+        "filename": "Marcos do Val - Inteligencia.mp3",
+        "dateAdded": "2023-07-20T00:00:00Z",
+        "duration": 4.41,
+        "isOffensive": true
+    },
+    {
+        "id": "8E38AD80-F6F9-4705-8325-40F337AA6FD8",
+        "title": "Se insere no mesmo continente mental de quem acha que a Terra é plana",
+        "authorId": "C8BA79D4-6D75-440D-915B-14BAFDF41B46",
+        "description": "se insere mais ou menos no mesmo continente mental de quem acha que a terra e plana",
+        "filename": "Flavio Dino - Se insere no mesmo continente mental de quem acha que a terra e plana.mp3",
+        "dateAdded": "2023-07-20T00:00:00Z",
+        "duration": 5.64,
+        "isOffensive": false
+    },
+    {
+        "id": "BBECD4AA-AE14-41F3-8721-B05CF17E0646",
+        "title": "Diz aê, diz aê, Arthur Lira é chato",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "Diz ae diz ae Arthur Lira e chato",
+        "filename": "Diz ae diz ae Arthur Lira e chato.mp3",
+        "dateAdded": "2023-07-20T00:00:00Z",
+        "duration": 2.77,
+        "isOffensive": true
     }
 ]
