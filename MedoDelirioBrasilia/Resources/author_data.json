@@ -1727,5 +1727,15 @@
         "id": "96B59EDB-76CA-437A-B89E-016D228898C5",
         "name": "Marcos do Val",
         "description": "Militar e político brasileiro. Eleito senador pelo estado do Espírito Santo."
+    },
+    {
+        "id": "33AE6708-124E-4DB7-90E9-384E684D3260",
+        "name": "Monica Poli",
+        "description": "Vereadora italiana de extrema-direita que viralizou no TikTok com a conta @cittadininondistratti2."
+    },
+    {
+        "id": "DA5FDEF1-AF28-4D3D-96D0-BE645B50F7B0",
+        "name": "Augusto Aras",
+        "description": "Jurista brasileiro, professor e atual procurador-geral da República."
     }
 ]

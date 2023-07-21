@@ -10982,7 +10982,7 @@
     {
         "id": "F1A65711-3D34-4E69-8222-5003F304F522",
         "title": "De forma discreta, estrategicamente discreta",
-        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "authorId": "DA5FDEF1-AF28-4D3D-96D0-BE645B50F7B0",
         "description": "De forma discreta estrategicamente discreta",
         "filename": "Augusto Aras - De forma discreta, estrategicamente discreta.mp3",
         "dateAdded": "2023-07-18T00:00:00Z",
@@ -11028,5 +11028,35 @@
         "dateAdded": "2023-07-20T00:00:00Z",
         "duration": 2.77,
         "isOffensive": true
+    },
+    {
+        "id": "B28C49FE-456D-474A-A874-322601E7FAD8",
+        "title": "Attenzione, pickpocket (completo)",
+        "authorId": "33AE6708-124E-4DB7-90E9-384E684D3260",
+        "description": "Attenzione pickpocket (completo)",
+        "filename": "Monica Poli - Attenzione, pickpocket (completo).mp3",
+        "dateAdded": "2023-07-21T00:00:00Z",
+        "duration": 12.83,
+        "isOffensive": false
+    },
+    {
+        "id": "06D77599-AB11-416A-83EA-1225CE80F5F8",
+        "title": "Attenzione, pickpocket",
+        "authorId": "33AE6708-124E-4DB7-90E9-384E684D3260",
+        "description": "Attenzione pickpocket",
+        "filename": "Monica Poli - Attenzione, pickpocket.mp3",
+        "dateAdded": "2023-07-21T00:00:00Z",
+        "duration": 3.08,
+        "isOffensive": false
+    },
+    {
+        "id": "76D3BA8B-3E0F-4A1F-9CCF-3B6E1B5B61BF",
+        "title": "Attenzione, borseggiatrici",
+        "authorId": "33AE6708-124E-4DB7-90E9-384E684D3260",
+        "description": "Attenzione borseggiatrici pickpocket batedor de carteira batedores de carteira",
+        "filename": "Monica Poli - Attenzione, borseggiatrici.mp3",
+        "dateAdded": "2023-07-21T00:00:00Z",
+        "duration": 2.85,
+        "isOffensive": false
     }
 ]
