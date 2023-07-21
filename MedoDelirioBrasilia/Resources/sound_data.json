@@ -10998,5 +10998,35 @@
         "dateAdded": "2023-07-18T00:00:00Z",
         "duration": 56.23,
         "isOffensive": true
+    },
+    {
+        "id": "4E71088A-5E9A-4E1F-959E-9B5B0887D163",
+        "title": "Inteligência x8",
+        "authorId": "96B59EDB-76CA-437A-B89E-016D228898C5",
+        "description": "inteligencia x8 inteligencia vezes 8",
+        "filename": "Marcos do Val - Inteligencia.mp3",
+        "dateAdded": "2023-07-20T00:00:00Z",
+        "duration": 4.41,
+        "isOffensive": true
+    },
+    {
+        "id": "8E38AD80-F6F9-4705-8325-40F337AA6FD8",
+        "title": "Se insere no mesmo continente mental de quem acha que a Terra é plana",
+        "authorId": "C8BA79D4-6D75-440D-915B-14BAFDF41B46",
+        "description": "se insere mais ou menos no mesmo continente mental de quem acha que a terra e plana",
+        "filename": "Flavio Dino - Se insere no mesmo continente mental de quem acha que a terra e plana.mp3",
+        "dateAdded": "2023-07-20T00:00:00Z",
+        "duration": 5.64,
+        "isOffensive": false
+    },
+    {
+        "id": "BBECD4AA-AE14-41F3-8721-B05CF17E0646",
+        "title": "Diz aê, diz aê, Arthur Lira é chato",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "Diz ae diz ae Arthur Lira e chato",
+        "filename": "Diz ae diz ae Arthur Lira e chato.mp3",
+        "dateAdded": "2023-07-20T00:00:00Z",
+        "duration": 2.77,
+        "isOffensive": true
     }
 ]
