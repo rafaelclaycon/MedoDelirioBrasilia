@@ -47,6 +47,9 @@ class MainViewViewModel: ObservableObject {
             try await syncDataWithServer()
             updateSoundList = true
             showSyncProgressView = false
+        } catch SyncError.noInternet {
+            updateSoundList = true
+            showSyncProgressView = false
         } catch {
             print(error)
         }
@@ -98,12 +101,12 @@ class MainViewViewModel: ObservableObject {
         guard serverUpdates.isEmpty == false else {
             return print("NO UPDATES")
         }
-        guard service.hasConnectivity() else {
-            throw SyncError.noInternet
-        }
 
-        currentAmount = 0.0
         for update in serverUpdates {
+            guard service.hasConnectivity() else {
+                throw SyncError.noInternet
+            }
+
             await service.process(updateEvent: update)
             sleep(1)
             await MainActor.run {

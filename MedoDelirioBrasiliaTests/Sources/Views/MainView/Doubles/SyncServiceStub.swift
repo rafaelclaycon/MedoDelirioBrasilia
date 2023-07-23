@@ -10,18 +10,24 @@ import Foundation
 
 class SyncServiceStub: SyncServiceProtocol {
 
-    var predefinedUpdates: [MedoDelirio.UpdateEvent] = []
+    var updates: [MedoDelirio.UpdateEvent] = []
     var hasConnectivityResult = true
+    var timesProcessWasCalled: Int = 0
+    var loseConectivityAfterUpdate: Int? = nil
 
     func getUpdates(from updateDateToConsider: String) async throws -> [MedoDelirio.UpdateEvent] {
-        return predefinedUpdates
+        return updates
     }
 
     func hasConnectivity() -> Bool {
+        if let loseConectivityCount = loseConectivityAfterUpdate, timesProcessWasCalled >= loseConectivityCount {
+            return false
+        }
         return hasConnectivityResult
     }
 
     func process(updateEvent: MedoDelirio.UpdateEvent) async {
+        timesProcessWasCalled += 1
         return
     }
 }
