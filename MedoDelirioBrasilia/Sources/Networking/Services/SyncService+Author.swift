@@ -19,7 +19,7 @@ extension SyncService {
             try injectedDatabase.markAsSucceeded(updateEventId: updateEvent.id)
         } catch {
             print(error)
-            Logger.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
+            Logger.shared.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
         }
     }
     
@@ -31,7 +31,7 @@ extension SyncService {
             try injectedDatabase.markAsSucceeded(updateEventId: updateEvent.id)
         } catch {
             print(error)
-            Logger.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
+            Logger.shared.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
         }
     }
     

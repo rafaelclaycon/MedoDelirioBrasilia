@@ -91,7 +91,7 @@ class Podium {
             }
             
             // Prepare local stats to be sent
-            guard let stats = Logger.getShareCountStatsForServer() else {
+            guard let stats = Logger.shared.getShareCountStatsForServer() else {
                 return completionHandler(.noStatsToSend, "No stats to be sent.")
             }
             
@@ -105,7 +105,7 @@ class Podium {
             }
             
             // Send bundles IDs as well
-            if let bundleIdLogs = Logger.getUniqueBundleIdsForServer() {
+            if let bundleIdLogs = Logger.shared.getUniqueBundleIdsForServer() {
                 bundleIdLogs.forEach { log in
                     self.networkRabbit.post(bundleIdLog: log) { wasSuccessful, _ in
                         guard wasSuccessful else {
@@ -150,7 +150,5 @@ class Podium {
     enum ShareCountStatServerExchangeResult {
         
         case successful, noStatsToSend, failed
-        
     }
-
 }

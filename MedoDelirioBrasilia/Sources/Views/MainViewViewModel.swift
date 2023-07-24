@@ -22,15 +22,18 @@ class MainViewViewModel: ObservableObject {
 
     private var service: SyncServiceProtocol
     private var database: LocalDatabaseProtocol
+    private var logger: LoggerProtocol
 
     init(
         lastUpdateDate: String,
         service: SyncServiceProtocol,
-        database: LocalDatabaseProtocol
+        database: LocalDatabaseProtocol,
+        logger: LoggerProtocol
     ) {
         self.lastUpdateDate = lastUpdateDate
         self.service = service
         self.database = database
+        self.logger = logger
     }
 
     func sync() async {
@@ -48,6 +51,11 @@ class MainViewViewModel: ObservableObject {
             updateSoundList = true
             showSyncProgressView = false
         } catch SyncError.noInternet {
+            updateSoundList = true
+            showSyncProgressView = false
+        } catch NetworkRabbitError.errorFetchingUpdateEvents(let errorMessage) {
+            print(errorMessage)
+            logger.logSyncError(description: errorMessage, updateEventId: "")
             updateSoundList = true
             showSyncProgressView = false
         } catch {
@@ -68,7 +76,7 @@ class MainViewViewModel: ObservableObject {
 
     func syncDataWithServer() async throws {
         let result = try await retrieveServerUpdates()
-        print("Resultado do fetchServerUpdates: \(result)")
+        print("Resultado do retrieveServerUpdates: \(result)")
         if result > 0 {
             await MainActor.run {
                 totalAmount = result

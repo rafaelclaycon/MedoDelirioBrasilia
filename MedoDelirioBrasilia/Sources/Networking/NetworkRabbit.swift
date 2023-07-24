@@ -69,7 +69,7 @@ class NetworkRabbit: NetworkRabbitProtocol {
             
             if let data = data {
                 if let stats = try? JSONDecoder().decode([ServerShareCountStat].self, from: data) {
-                    Logger.logNetworkCall(callType: NetworkCallType.getSoundShareCountStats.rawValue, requestUrl: url.absoluteString, requestBody: nil, response: String(data: data, encoding: .utf8)!, wasSuccessful: true)
+                    Logger.shared.logNetworkCall(callType: NetworkCallType.getSoundShareCountStats.rawValue, requestUrl: url.absoluteString, requestBody: nil, response: String(data: data, encoding: .utf8)!, wasSuccessful: true)
                     completionHandler(stats, nil)
                 } else {
                     completionHandler(nil, .invalidResponse)
@@ -215,4 +215,5 @@ enum NetworkRabbitError: Error {
     case responseWasNotAnHTTPURLResponse
     case invalidResponse
     case httpRequestFailed
+    case errorFetchingUpdateEvents(String)
 }

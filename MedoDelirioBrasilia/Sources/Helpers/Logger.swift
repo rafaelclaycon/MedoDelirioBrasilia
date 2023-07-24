@@ -1,8 +1,23 @@
+//
+//  Logger.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Schmitt on 28/05/22.
+//
+
 import UIKit
 
-class Logger {
+internal protocol LoggerProtocol {
 
-    static func logSharedSound(contentId: String, destination: ShareDestination, destinationBundleId: String) {
+    func logSyncError(description: String, updateEventId: String)
+    func logSyncSuccess(description: String, updateEventId: String)
+}
+
+class Logger: LoggerProtocol {
+
+    static let shared = Logger()
+
+    func logSharedSound(contentId: String, destination: ShareDestination, destinationBundleId: String) {
         let shareLog = UserShareLog(installId: UIDevice.customInstallId,
                                     contentId: contentId,
                                     contentType: ContentType.sound.rawValue,
@@ -12,8 +27,8 @@ class Logger {
                                     sentToServer: false)
         try? LocalDatabase.shared.insert(userShareLog: shareLog)
     }
-    
-    static func logSharedSong(contentId: String, destination: ShareDestination, destinationBundleId: String) {
+
+    func logSharedSong(contentId: String, destination: ShareDestination, destinationBundleId: String) {
         let shareLog = UserShareLog(installId: UIDevice.customInstallId,
                                     contentId: contentId,
                                     contentType: ContentType.song.rawValue,
@@ -23,8 +38,8 @@ class Logger {
                                     sentToServer: false)
         try? LocalDatabase.shared.insert(userShareLog: shareLog)
     }
-    
-    static func logSharedVideoFromSound(contentId: String, destination: ShareDestination, destinationBundleId: String) {
+
+    func logSharedVideoFromSound(contentId: String, destination: ShareDestination, destinationBundleId: String) {
         let shareLog = UserShareLog(installId: UIDevice.customInstallId,
                                     contentId: contentId,
                                     contentType: ContentType.videoFromSound.rawValue,
@@ -34,26 +49,26 @@ class Logger {
                                     sentToServer: false)
         try? LocalDatabase.shared.insert(userShareLog: shareLog)
     }
-    
-    static func getShareCountStatsForServer() -> [ServerShareCountStat]? {
+
+    func getShareCountStatsForServer() -> [ServerShareCountStat]? {
         guard let items = try? LocalDatabase.shared.getUserShareStatsNotSentToServer(), items.count > 0 else {
             return nil
         }
         return items
     }
-    
-    static func getUniqueBundleIdsForServer() -> [ServerShareBundleIdLog]? {
+
+    func getUniqueBundleIdsForServer() -> [ServerShareBundleIdLog]? {
         guard let items = try? LocalDatabase.shared.getUniqueBundleIdsThatWereSharedTo(), items.count > 0 else {
             return nil
         }
         return items
     }
-    
-    static func logNetworkCall(callType: Int,
-                               requestUrl: String,
-                               requestBody: String?,
-                               response: String,
-                               wasSuccessful: Bool) {
+
+    func logNetworkCall(callType: Int,
+                        requestUrl: String,
+                        requestBody: String?,
+                        response: String,
+                        wasSuccessful: Bool) {
         let log = NetworkCallLog(callType: callType,
                                  requestBody: requestBody ?? .empty,
                                  response: response,
@@ -61,15 +76,15 @@ class Logger {
                                  wasSuccessful: wasSuccessful)
         try? LocalDatabase.shared.insert(networkCallLog: log)
     }
-    
-    static func logSyncError(description: String, updateEventId: String) {
+
+    func logSyncError(description: String, updateEventId: String) {
         let syncLog = SyncLog(logType: .error,
                               description: description,
                               updateEventId: updateEventId)
         LocalDatabase.shared.insert(syncLog: syncLog)
     }
-    
-    static func logSyncSuccess(description: String, updateEventId: String) {
+
+    func logSyncSuccess(description: String, updateEventId: String) {
         let syncLog = SyncLog(logType: .success,
                               description: description,
                               updateEventId: updateEventId)

@@ -14,8 +14,12 @@ class SyncServiceStub: SyncServiceProtocol {
     var hasConnectivityResult = true
     var timesProcessWasCalled: Int = 0
     var loseConectivityAfterUpdate: Int? = nil
+    var errorToThrowOnUpdate: NetworkRabbitError? = nil
 
     func getUpdates(from updateDateToConsider: String) async throws -> [MedoDelirio.UpdateEvent] {
+        if let errorToThrowOnUpdate = errorToThrowOnUpdate {
+            throw errorToThrowOnUpdate
+        }
         return updates
     }
 

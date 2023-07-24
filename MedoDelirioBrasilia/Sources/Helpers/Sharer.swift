@@ -22,7 +22,7 @@ class Sharer {
                     return
                 }
                 let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
-                Logger.logSharedSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
+                Logger.shared.logSharedSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
                 
                 AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
                 
@@ -97,7 +97,7 @@ class Sharer {
                     return
                 }
                 let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
-                Logger.logSharedVideoFromSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
+                Logger.shared.logSharedVideoFromSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
                 
                 AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
                 

@@ -31,7 +31,8 @@ struct MedoDelirioBrasiliaApp: App {
                                                   service: SyncService(connectionManager: ConnectionManager.shared,
                                                                        networkRabbit: networkRabbit,
                                                                        localDatabase: LocalDatabase.shared),
-                                                  database: LocalDatabase.shared))
+                                                  database: LocalDatabase.shared,
+                                                  logger: Logger.shared))
         }
     }
 

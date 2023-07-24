@@ -134,7 +134,7 @@ struct MainView: View {
             print("RuPaul")
 
             Task { @MainActor in
-                //await viewModel.sync()
+                await viewModel.sync()
             }
 
 //            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
@@ -157,6 +157,7 @@ struct MainView_Previews: PreviewProvider {
                                               service: SyncService(connectionManager: ConnectionManager.shared,
                                                                    networkRabbit: NetworkRabbit(serverPath: ""),
                                                                    localDatabase: LocalDatabase()),
-                                              database: LocalDatabase()))
+                                              database: LocalDatabase(),
+                                              logger: Logger()))
     }
 }
