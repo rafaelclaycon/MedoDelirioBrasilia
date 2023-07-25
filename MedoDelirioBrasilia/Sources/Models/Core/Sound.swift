@@ -9,12 +9,12 @@ import Foundation
 
 struct Sound: Hashable, Codable, Identifiable {
 
-    var id: String
-    var title: String
-    var authorId: String
+    let id: String
+    let title: String
+    let authorId: String
     var authorName: String?
-    var description: String
-    var filename: String
+    let description: String
+    let filename: String
     var dateAdded: Date?
     let duration: Double
     let isOffensive: Bool
@@ -46,7 +46,7 @@ struct Sound: Hashable, Codable, Identifiable {
     
     func fileURL() throws -> URL {
         if isFromServer ?? false {
-            let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
             let fileUrl = documentsUrl.appendingPathComponent("\(InternalFolderNames.downloadedSounds)\(id).mp3")
             guard FileManager().fileExists(atPath: fileUrl.path) else {
                 throw SoundError.fileNotFound
