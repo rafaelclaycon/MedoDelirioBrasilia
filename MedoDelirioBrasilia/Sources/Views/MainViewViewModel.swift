@@ -8,12 +8,13 @@
 import Combine
 import Foundation
 
+@MainActor
 class MainViewViewModel: ObservableObject {
 
     @Published var showSyncProgressView = false
-    @Published var message = "Verificando atualizações..."
-    @Published var currentAmount = 0.0
-    @Published var totalAmount = 1.0
+    @Published var message = "Procurando atualizações..."
+    @Published var currentAmount: Double = 0
+    @Published var totalAmount: Double = 1
     @Published var localUnsuccessfulUpdates: [UpdateEvent]? = nil
     @Published var serverUpdates: [UpdateEvent]? = nil
     @Published var updateSoundList: Bool = false
@@ -44,6 +45,14 @@ class MainViewViewModel: ObservableObject {
         await MainActor.run {
             showSyncProgressView = true
         }
+
+//        if #available(iOS 16, *) {
+//            do {
+//                try await Task.sleep(for: .seconds(15))
+//            } catch {
+//                print(error)
+//            }
+//        }
 
         do {
             try await retryLocal()

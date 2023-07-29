@@ -15,6 +15,7 @@ struct SidebarView: View {
     @Binding var isShowingFolderInfoEditingSheet: Bool
     @Binding var updateFolderList: Bool
     @Binding var currentSoundsListMode: SoundsListMode
+    @Binding var updateSoundList: Bool
     @EnvironmentObject var settingsHelper: SettingsHelper
     
     // Trends
@@ -28,7 +29,7 @@ struct SidebarView: View {
                                                                            authorSortOption: AuthorSortOption.nameAscending.rawValue,
                                                                            currentSoundsListMode: $currentSoundsListMode),
                                             currentViewMode: .allSounds,
-                                            currentSoundsListMode: $currentSoundsListMode).environmentObject(trendsHelper).environmentObject(settingsHelper),
+                                            currentSoundsListMode: $currentSoundsListMode, updateList: $updateSoundList).environmentObject(trendsHelper).environmentObject(settingsHelper),
                     tag: PadScreen.allSounds,
                     selection: $state,
                     label: {
@@ -36,7 +37,7 @@ struct SidebarView: View {
                     })
                 
                 NavigationLink(
-                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(), authorSortOption: AuthorSortOption.nameAscending.rawValue, currentSoundsListMode: $currentSoundsListMode), currentViewMode: .favorites, currentSoundsListMode: $currentSoundsListMode).environmentObject(trendsHelper).environmentObject(settingsHelper),
+                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(), authorSortOption: AuthorSortOption.nameAscending.rawValue, currentSoundsListMode: $currentSoundsListMode), currentViewMode: .favorites, currentSoundsListMode: $currentSoundsListMode, updateList: $updateSoundList).environmentObject(trendsHelper).environmentObject(settingsHelper),
                     tag: PadScreen.favorites,
                     selection: $state,
                     label: {
@@ -44,7 +45,7 @@ struct SidebarView: View {
                     })
                 
                 NavigationLink(
-                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue, currentSoundsListMode: $currentSoundsListMode), currentViewMode: .byAuthor, currentSoundsListMode: $currentSoundsListMode).environmentObject(trendsHelper).environmentObject(settingsHelper),
+                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue, currentSoundsListMode: $currentSoundsListMode), currentViewMode: .byAuthor, currentSoundsListMode: $currentSoundsListMode, updateList: $updateSoundList).environmentObject(trendsHelper).environmentObject(settingsHelper),
                     tag: PadScreen.groupedByAuthor,
                     selection: $state,
                     label: {
@@ -137,7 +138,8 @@ struct SidebarView_Previews: PreviewProvider {
                     isShowingSettingsSheet: .constant(false),
                     isShowingFolderInfoEditingSheet: .constant(false),
                     updateFolderList: .constant(false),
-                    currentSoundsListMode: .constant(.regular))
+                    currentSoundsListMode: .constant(.regular),
+                    updateSoundList: .constant(true))
     }
 
 }

@@ -28,17 +28,14 @@ struct MainView: View {
             if UIDevice.current.userInterfaceIdiom == .phone {
                 TabView(selection: $tabSelection) {
                     NavigationView {
-                        if CommandLine.arguments.contains("-USE_NEW_SOUND_LIST") {
-                            NewSoundsView(updateList: $viewModel.updateSoundList)
-                        } else {
-                            SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
-                                                                      authorSortOption: AuthorSortOption.nameAscending.rawValue,
-                                                                      currentSoundsListMode: $currentSoundsListMode),
-                                       currentViewMode: .allSounds,
-                                       currentSoundsListMode: $currentSoundsListMode)
-                            .environmentObject(trendsHelper)
-                            .environmentObject(settingsHelper)
-                        }
+                        SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
+                                                                  authorSortOption: AuthorSortOption.nameAscending.rawValue,
+                                                                  currentSoundsListMode: $currentSoundsListMode),
+                                   currentViewMode: .allSounds,
+                                   currentSoundsListMode: $currentSoundsListMode,
+                                   updateList: $viewModel.updateSoundList)
+                        .environmentObject(trendsHelper)
+                        .environmentObject(settingsHelper)
                     }
                     .tabItem {
                         Label("Sons", systemImage: "speaker.wave.3.fill")
@@ -103,14 +100,16 @@ struct MainView: View {
                                 isShowingSettingsSheet: $isShowingSettingsSheet,
                                 isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet,
                                 updateFolderList: $updateFolderList,
-                                currentSoundsListMode: $currentSoundsListMode)
+                                currentSoundsListMode: $currentSoundsListMode,
+                                updateSoundList: $viewModel.updateSoundList)
                     .environmentObject(trendsHelper)
                     .environmentObject(settingsHelper)
                     SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
                                                               authorSortOption: AuthorSortOption.nameAscending.rawValue,
                                                               currentSoundsListMode: $currentSoundsListMode),
                                currentViewMode: .allSounds,
-                               currentSoundsListMode: $currentSoundsListMode)
+                               currentSoundsListMode: $currentSoundsListMode,
+                               updateList: $viewModel.updateSoundList)
                     .environmentObject(trendsHelper)
                     .environmentObject(settingsHelper)
                 }

@@ -72,7 +72,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-USE_NEW_SOUND_LIST"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>

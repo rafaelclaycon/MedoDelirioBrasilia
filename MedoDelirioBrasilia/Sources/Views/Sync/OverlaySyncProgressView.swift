@@ -12,7 +12,7 @@ struct OverlaySyncProgressView: View {
     @Binding var message: String
     @Binding var currentValue: Double
     @Binding var totalValue: Double
-    
+
     var body: some View {
         ZStack {
             Rectangle()
@@ -41,6 +41,8 @@ struct OverlaySyncProgressView: View {
 struct OverlaySyncProgressView_Previews: PreviewProvider {
     
     static var previews: some View {
-        OverlaySyncProgressView(message: .constant("Atualizando dados..."), currentValue: .constant(0), totalValue: .constant(1))
+        Group {
+            OverlaySyncProgressView(message: .constant("Atualizando dados..."), currentValue: .constant(0), totalValue: .constant(1))
+        }
     }
 }

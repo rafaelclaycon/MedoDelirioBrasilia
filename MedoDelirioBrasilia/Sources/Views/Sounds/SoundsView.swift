@@ -22,6 +22,7 @@ struct SoundsView: View {
     @StateObject var viewModel: SoundsViewViewModel
     @State var currentViewMode: ViewMode
     @Binding var currentSoundsListMode: SoundsListMode
+    @Binding var updateList: Bool
     @State private var searchText: String = .empty
     
     @State private var listWidth: CGFloat = 700
@@ -118,6 +119,10 @@ struct SoundsView: View {
             return searchText.isEmpty
         }
     }
+
+    private var isLoadingSounds: Bool {
+        searchResults.isEmpty && viewModel.sounds.isEmpty
+    }
     
     var body: some View {
         ZStack {
@@ -127,7 +132,7 @@ struct SoundsView: View {
                                                              author: authorToAutoOpen,
                                                              currentSoundsListMode: $currentSoundsListMode),
                                isActive: $autoOpenAuthor) { EmptyView() }
-                
+
                 if showNoFavoritesView {
                     NoFavoritesView()
                         .padding(.horizontal, 25)
@@ -139,20 +144,34 @@ struct SoundsView: View {
                     AuthorsView(sortOption: $viewModel.authorSortOption, sortAction: $authorSortAction, searchTextForControl: $authorSearchText)
                 } else {
                     GeometryReader { geometry in
-                        ScrollView {
-                            ScrollViewReader { proxy in
-                                LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
-                                    if searchResults.isEmpty {
-                                        NoSearchResultsView(searchText: $searchText)
-                                            .padding(.vertical, UIScreen.main.bounds.height / 4)
-                                    } else {
-                                        ForEach(searchResults) { sound in
-                                            SoundCell(sound: sound,
-                                                      favorites: $viewModel.favoritesKeeper,
-                                                      highlighted: $viewModel.highlightKeeper,
-                                                      nowPlaying: $viewModel.nowPlayingKeeper,
-                                                      selectedItems: $viewModel.selectionKeeper,
-                                                      currentSoundsListMode: $currentSoundsListMode)
+                        if isLoadingSounds {
+                            VStack {
+                                HStack(spacing: 10) {
+                                    ProgressView()
+
+                                    Text("Carregando sons...")
+                                        .foregroundColor(.gray)
+                                }
+                                .frame(maxWidth: .infinity)
+                            }
+                            .frame(width: geometry.size.width)
+                            .frame(minHeight: geometry.size.height)
+                        } else {
+                            ScrollView {
+                                ScrollViewReader { proxy in
+                                    LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
+
+                                        if searchResults.isEmpty {
+                                            NoSearchResultsView(searchText: $searchText)
+                                                .padding(.vertical, UIScreen.main.bounds.height / 4)
+                                        } else {
+                                            ForEach(searchResults) { sound in
+                                                SoundCell(sound: sound,
+                                                          favorites: $viewModel.favoritesKeeper,
+                                                          highlighted: $viewModel.highlightKeeper,
+                                                          nowPlaying: $viewModel.nowPlayingKeeper,
+                                                          selectedItems: $viewModel.selectionKeeper,
+                                                          currentSoundsListMode: $currentSoundsListMode)
                                                 .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
                                                 .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                                                 .onTapGesture {
@@ -180,7 +199,7 @@ struct SoundsView: View {
                                                             } label: {
                                                                 Label(Shared.shareSoundButtonText, systemImage: "square.and.arrow.up")
                                                             }
-                                                            
+
                                                             Button {
                                                                 viewModel.selectedSound = sound
                                                                 subviewToOpen = .shareAsVideoView
@@ -189,7 +208,7 @@ struct SoundsView: View {
                                                                 Label(Shared.shareAsVideoButtonText, systemImage: "film")
                                                             }
                                                         }
-                                                        
+
                                                         Section {
                                                             Button {
                                                                 if viewModel.favoritesKeeper.contains(sound.id) {
@@ -207,7 +226,7 @@ struct SoundsView: View {
                                                             } label: {
                                                                 Label(viewModel.favoritesKeeper.contains(sound.id) ? Shared.removeFromFavorites : Shared.addToFavorites, systemImage: viewModel.favoritesKeeper.contains(sound.id) ? "star.slash" : "star")
                                                             }
-                                                            
+
                                                             Button {
                                                                 viewModel.selectedSounds = [Sound]()
                                                                 viewModel.selectedSounds?.append(sound)
@@ -217,7 +236,7 @@ struct SoundsView: View {
                                                                 Label(Shared.addToFolderButtonText, systemImage: "folder.badge.plus")
                                                             }
                                                         }
-                                                        
+
                                                         Section {
                                                             Button {
                                                                 guard let author = try? LocalDatabase.shared.author(withId: sound.authorId) else { return }
@@ -226,7 +245,7 @@ struct SoundsView: View {
                                                             } label: {
                                                                 Label("Ver Todos os Sons Desse Autor", systemImage: "person")
                                                             }
-                                                            
+
                                                             Button {
                                                                 viewModel.selectedSound = sound
                                                                 viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = true
@@ -236,50 +255,51 @@ struct SoundsView: View {
                                                         }
                                                     }
                                                 }
+                                            }
                                         }
                                     }
-                                }
-                                .searchable(text: $searchText)
-                                .disableAutocorrection(true)
-                                .padding(.horizontal)
-                                .padding(.top, 7)
-                                .onChange(of: geometry.size.width) { newWidth in
-                                    self.listWidth = newWidth
-                                    columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
-                                }
-                                .onChange(of: searchResults) { searchResults in
-                                    if searchResults.isEmpty {
-                                        columns = [GridItem(.flexible())]
-                                    } else {
+                                    .searchable(text: $searchText)
+                                    .disableAutocorrection(true)
+                                    .padding(.horizontal)
+                                    .padding(.top, 7)
+                                    .onChange(of: geometry.size.width) { newWidth in
+                                        self.listWidth = newWidth
                                         columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
                                     }
-                                }
-                                .onReceive(trendsHelper.$soundIdToGoTo) { soundIdToGoTo in
-                                    if shouldScrollToAndHighlight(soundId: soundIdToGoTo) {
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-                                            withAnimation {
-                                                proxy.scrollTo(soundIdToGoTo, anchor: .center)
+                                    .onChange(of: searchResults) { searchResults in
+                                        if searchResults.isEmpty {
+                                            columns = [GridItem(.flexible())]
+                                        } else {
+                                            columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
+                                        }
+                                    }
+                                    .onReceive(trendsHelper.$soundIdToGoTo) { soundIdToGoTo in
+                                        if shouldScrollToAndHighlight(soundId: soundIdToGoTo) {
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                                                withAnimation {
+                                                    proxy.scrollTo(soundIdToGoTo, anchor: .center)
+                                                }
+                                                TapticFeedback.warning()
                                             }
-                                            TapticFeedback.warning()
                                         }
                                     }
                                 }
-                            }
-                            
-                            if UserSettings.getShowExplicitContent() == false, currentViewMode != .favorites {
-                                Text(UIDevice.current.userInterfaceIdiom == .phone ? Shared.contentFilterMessageForSoundsiPhone : Shared.contentFilterMessageForSoundsiPadMac)
-                                    .multilineTextAlignment(.center)
-                                    .padding(.top, explicitOffWarningTopPadding)
-                                    .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? explicitOffWarningPhoneBottomPadding : explicitOffWarningPadBottomPadding)
-                            }
-                            
-                            if searchText.isEmpty, currentViewMode != .favorites {
-                                Text("\(viewModel.sounds.count) SONS. ATUALIZADO EM \(soundsLastUpdateDate).")
-                                    .font(.footnote)
-                                    .foregroundColor(.gray)
-                                    .multilineTextAlignment(.center)
-                                    .padding(.top, soundCountTopPadding)
-                                    .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? soundCountPhoneBottomPadding : soundCountPadBottomPadding)
+
+                                if UserSettings.getShowExplicitContent() == false, currentViewMode != .favorites {
+                                    Text(UIDevice.current.userInterfaceIdiom == .phone ? Shared.contentFilterMessageForSoundsiPhone : Shared.contentFilterMessageForSoundsiPadMac)
+                                        .multilineTextAlignment(.center)
+                                        .padding(.top, explicitOffWarningTopPadding)
+                                        .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? explicitOffWarningPhoneBottomPadding : explicitOffWarningPadBottomPadding)
+                                }
+
+                                if searchText.isEmpty, currentViewMode != .favorites {
+                                    Text("\(viewModel.sounds.count) SONS. ATUALIZADO EM \(soundsLastUpdateDate).")
+                                        .font(.footnote)
+                                        .foregroundColor(.gray)
+                                        .multilineTextAlignment(.center)
+                                        .padding(.top, soundCountTopPadding)
+                                        .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? soundCountPhoneBottomPadding : soundCountPadBottomPadding)
+                                }
                             }
                         }
                     }
@@ -288,11 +308,11 @@ struct SoundsView: View {
             .navigationTitle(Text(title))
             .navigationBarItems(leading: leadingToolbarControls(), trailing: trailingToolbarControls())
             .onAppear {
-                viewModel.reloadList(withSounds: try! LocalDatabase.shared.allSounds(),
-                                     andFavorites: try? LocalDatabase.shared.getAllFavorites(),
-                                     allowSensitiveContent: UserSettings.getShowExplicitContent(),
-                                     favoritesOnly: currentViewMode == .favorites,
-                                     sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
+//                viewModel.reloadList(withSounds: try! LocalDatabase.shared.allSounds(),
+//                                     andFavorites: try? LocalDatabase.shared.getAllFavorites(),
+//                                     allowSensitiveContent: UserSettings.getShowExplicitContent(),
+//                                     favoritesOnly: currentViewMode == .favorites,
+//                                     sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
                 columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
                 viewModel.donateActivity()
                 viewModel.sendUserPersonalTrendsToServerIfEnabled()
@@ -439,6 +459,11 @@ struct SoundsView: View {
                     }
                 }
             }
+            .onChange(of: updateList) { updateList in
+                if updateList {
+                    loadLocalSounds()
+                }
+            }
             
             if displayFloatingSelectorView {
                 VStack {
@@ -472,6 +497,27 @@ struct SoundsView: View {
             }
         }
     }
+
+    private func loadLocalSounds() {
+        Task {
+            print("loadLocalSounds()")
+
+            do {
+                var allSounds = try LocalDatabase.shared.allSounds()
+                allSounds.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
+
+                if #available(iOS 16, *) {
+                    try await Task.sleep(for: .seconds(1))
+                }
+
+                await MainActor.run {
+                    viewModel.sounds = allSounds
+                }
+            } catch {
+                print(error)
+            }
+        }
+    }
     
     @ViewBuilder func floatingSelectorView() -> some View {
         Picker("Exibição", selection: $currentViewMode) {
@@ -500,6 +546,7 @@ struct SoundsView: View {
                                  favoritesOnly: currentMode == .favorites,
                                  sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
         }
+        .disabled(true)
     }
     
     @ViewBuilder func leadingToolbarControls() -> some View {
@@ -588,24 +635,7 @@ struct SoundsView: View {
                             Image(systemName: "folder.badge.plus")
                         }.disabled(viewModel.selectionKeeper.count == 0)
                     }
-                    
-                    Menu {
-                        Button {
-                            Task {
-                                let url = URL(string: "http://170.187.141.103:8080/05C998A0-4085-434A-A8F3-12DA86270CD4.mp3")!
-                                do {
-                                    downloadedFilepath = try await NetworkRabbit.downloadFile(from: url, into: "")
-                                } catch {
-                                    print(error)
-                                }
-                            }
-                        } label: {
-                            Label("Baixar som", systemImage: "speaker.wave.3.fill")
-                        }
-                    } label: {
-                        Image(systemName: "arrow.down.circle")
-                    }
-                    
+
                     Menu {
                         Section {
                             Button {
@@ -676,13 +706,17 @@ struct SoundsView: View {
         self.trendsHelper.soundIdToGoTo = .empty
         return true // This tells the ScrollViewProxy "yes, go ahead and scroll, there was a soundId received". Unfortunately, passing the proxy as a parameter did not work and this code was made more complex because of this.
     }
-
 }
 
 struct SoundsView_Previews: PreviewProvider {
 
     static var previews: some View {
-        SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue, currentSoundsListMode: .constant(.regular)), currentViewMode: .allSounds, currentSoundsListMode: .constant(.regular))
+        SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue,
+                                                  authorSortOption: AuthorSortOption.nameAscending.rawValue,
+                                                  currentSoundsListMode: .constant(.regular)),
+                   currentViewMode: .allSounds,
+                   currentSoundsListMode: .constant(.regular),
+                   updateList: .constant(true))
     }
 
 }

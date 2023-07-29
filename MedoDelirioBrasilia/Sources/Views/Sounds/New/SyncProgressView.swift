@@ -52,6 +52,7 @@ struct SyncProgressView_Previews: PreviewProvider {
     
     static var previews: some View {
         Group {
+            SyncProgressView(isBeingShown: .constant(true), currentAmount: .constant(0), totalAmount: .constant(0))
             SyncProgressView(isBeingShown: .constant(true), currentAmount: .constant(2), totalAmount: .constant(5))
             SyncProgressView(isBeingShown: .constant(true), currentAmount: .constant(0), totalAmount: .constant(1))
             SyncProgressView(isBeingShown: .constant(true), currentAmount: .constant(7), totalAmount: .constant(35))
