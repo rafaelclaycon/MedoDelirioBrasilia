@@ -6,7 +6,7 @@
 //
 
 import Combine
-import Foundation
+import SwiftUI
 
 @MainActor
 class MainViewViewModel: ObservableObject {
@@ -19,7 +19,10 @@ class MainViewViewModel: ObservableObject {
     @Published var serverUpdates: [UpdateEvent]? = nil
     @Published var updateSoundList: Bool = false
     @Published var showYoureOfflineWarning = false
-    @Published var lastUpdateDate: String
+
+    private var lastUpdateDate: String
+
+    @AppStorage("lastUpdateDate") private var lastUpdateDateInUserDefaults = "all"
 
     private var service: SyncServiceProtocol
     private var database: LocalDatabaseProtocol
@@ -67,8 +70,14 @@ class MainViewViewModel: ObservableObject {
             logger.logSyncError(description: errorMessage, updateEventId: "")
             updateSoundList = true
             showSyncProgressView = false
+        } catch SyncError.errorInsertingUpdateEvent(let updateEventId) {
+            logger.logSyncError(description: "Erro ao tentar inserir UpdateEvent no banco de dados.", updateEventId: updateEventId)
+            updateSoundList = true
+            showSyncProgressView = false
         } catch {
-            print(error)
+            logger.logSyncError(description: error.localizedDescription, updateEventId: "")
+            updateSoundList = true
+            showSyncProgressView = false
         }
     }
 
@@ -89,6 +98,7 @@ class MainViewViewModel: ObservableObject {
         if result > 0 {
             await MainActor.run {
                 totalAmount = result
+                message = "Atualizando dados (0/\(Int(totalAmount)))..."
             }
             try await serverSync()
         }
@@ -100,7 +110,11 @@ class MainViewViewModel: ObservableObject {
         if var serverUpdates = serverUpdates {
             for i in serverUpdates.indices {
                 serverUpdates[i].didSucceed = false
-                try database.insert(updateEvent: serverUpdates[i])
+                do {
+                    try database.insert(updateEvent: serverUpdates[i])
+                } catch {
+                    throw SyncError.errorInsertingUpdateEvent(updateEventId: serverUpdates[i].id.uuidString)
+                }
             }
         }
         return Double(serverUpdates?.count ?? 0)
@@ -125,14 +139,14 @@ class MainViewViewModel: ObservableObject {
             }
 
             await service.process(updateEvent: update)
-            sleep(1)
+
             await MainActor.run {
                 currentAmount += 1.0
+                message = "Atualizando dados (\(Int(currentAmount))/\(Int(totalAmount)))..."
             }
         }
 
-        lastUpdateDate = Date.now.iso8601withFractionalSeconds
-        //print(Date.now.iso8601withFractionalSeconds)
+        lastUpdateDateInUserDefaults = Date.now.iso8601withFractionalSeconds
     }
 
     func syncUnsuccessful() async throws {
@@ -148,7 +162,7 @@ class MainViewViewModel: ObservableObject {
         currentAmount = 0.0
         for update in localUnsuccessfulUpdates {
             await service.process(updateEvent: update)
-            sleep(1)
+
             await MainActor.run {
                 currentAmount += 1.0
             }

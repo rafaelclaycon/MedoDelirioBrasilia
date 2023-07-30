@@ -373,38 +373,38 @@ struct SoundsView: View {
             .sheet(isPresented: $viewModel.isShowingShareSheet) {
                 viewModel.iPadShareSheet
             }
-            .sheet(isPresented: $showingModalView, onDismiss: {
-                if subviewToOpen == .whatsNewView {
-                    AppPersistentMemory.setHasSeen63WhatsNewScreen(to: true)
-                }
-            }) {
-                switch subviewToOpen {
-                 case .onboardingView:
-                    OnboardingView(isBeingShown: $showingModalView)
-                        .interactiveDismissDisabled(UIDevice.current.userInterfaceIdiom == .phone ? true : false)
-                    
-                case .addToFolderView:
-                    AddToFolderView(isBeingShown: $showingModalView,
-                                    hadSuccess: $hadSuccessAddingToFolder,
-                                    folderName: $folderName,
-                                    pluralization: $pluralization,
-                                    selectedSounds: viewModel.selectedSounds!)
-                    
-                case .shareAsVideoView:
-                    if #available(iOS 16.0, *) {
-                        ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, contentAuthor: viewModel.selectedSound?.authorName ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: false)
-                    } else {
-                        ShareAsVideoLegacyView(viewModel: ShareAsVideoLegacyViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: false)
-                    }
-                    
-                case .settingsView:
-                    SettingsCasingWithCloseView(isBeingShown: $showingModalView)
-                        .environmentObject(settingsHelper)
-                    
-                case .whatsNewView:
-                    WhatsNewView(isBeingShown: $showingModalView)
-                }
-            }
+//            .sheet(isPresented: $showingModalView, onDismiss: {
+//                if subviewToOpen == .whatsNewView {
+//                    AppPersistentMemory.setHasSeen63WhatsNewScreen(to: true)
+//                }
+//            }) {
+//                switch subviewToOpen {
+//                 case .onboardingView:
+//                    OnboardingView(isBeingShown: $showingModalView)
+//                        .interactiveDismissDisabled(UIDevice.current.userInterfaceIdiom == .phone ? true : false)
+//                    
+//                case .addToFolderView:
+//                    AddToFolderView(isBeingShown: $showingModalView,
+//                                    hadSuccess: $hadSuccessAddingToFolder,
+//                                    folderName: $folderName,
+//                                    pluralization: $pluralization,
+//                                    selectedSounds: viewModel.selectedSounds!)
+//                    
+//                case .shareAsVideoView:
+//                    if #available(iOS 16.0, *) {
+//                        ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, contentAuthor: viewModel.selectedSound?.authorName ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: false)
+//                    } else {
+//                        ShareAsVideoLegacyView(viewModel: ShareAsVideoLegacyViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: false)
+//                    }
+//                    
+//                case .settingsView:
+//                    SettingsCasingWithCloseView(isBeingShown: $showingModalView)
+//                        .environmentObject(settingsHelper)
+//                    
+//                case .whatsNewView:
+//                    WhatsNewView(isBeingShown: $showingModalView)
+//                }
+//            }
             .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in
                 if shouldUpdate {
                     viewModel.reloadList(withSounds: try! LocalDatabase.shared.allSounds(),
@@ -506,9 +506,11 @@ struct SoundsView: View {
                 var allSounds = try LocalDatabase.shared.allSounds()
                 allSounds.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
 
-                if #available(iOS 16, *) {
-                    try await Task.sleep(for: .seconds(1))
-                }
+                //dump(allSounds)
+
+//                if #available(iOS 16, *) {
+//                    try await Task.sleep(for: .seconds(1))
+//                }
 
                 await MainActor.run {
                     viewModel.sounds = allSounds
@@ -546,7 +548,7 @@ struct SoundsView: View {
                                  favoritesOnly: currentMode == .favorites,
                                  sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
         }
-        .disabled(true)
+        .disabled(isLoadingSounds && currentViewMode == .allSounds)
     }
     
     @ViewBuilder func leadingToolbarControls() -> some View {

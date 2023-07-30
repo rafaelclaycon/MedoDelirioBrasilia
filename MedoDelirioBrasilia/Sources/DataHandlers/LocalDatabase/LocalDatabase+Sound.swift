@@ -25,9 +25,19 @@ extension LocalDatabase {
         let author_id = Expression<String>("authorId")
         let id = Expression<String>("id")
         let name = Expression<String>("name")
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
         
         for queriedSound in try db.prepare(sound.select(sound[*], author[name]).join(author, on: sound[author_id] == author[id])) {
             var soundData: Sound = try queriedSound.decode()
+            if let dateString = try queriedSound.get(Expression<String?>("dateAdded")) {
+                if let date = dateFormatter.date(from: dateString) {
+                    soundData.dateAdded = date
+                }
+            }
             let authorName = try queriedSound.get(author[name])
             soundData.authorName = authorName
             queriedSounds.append(soundData)

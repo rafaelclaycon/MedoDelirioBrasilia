@@ -8,10 +8,17 @@
 @testable import MedoDelirio
 import Foundation
 
+enum CustomSQLiteError: Error {
+
+    case databaseError(message: String)
+    case queryError(message: String)
+}
+
 class LocalDatabaseStub: LocalDatabaseProtocol {
 
     var contentInsideFolder: [String]? = nil
     var unsuccessfulUpdatesToReturn: [MedoDelirio.UpdateEvent]? = nil
+    var errorToThrowOnInsertUpdateEvent: CustomSQLiteError? = nil
 
     var didCallInsertSound = false
     var didCallUpdateSound = false
@@ -65,6 +72,9 @@ class LocalDatabaseStub: LocalDatabaseProtocol {
 
     func insert(updateEvent newUpdateEvent: MedoDelirio.UpdateEvent) throws {
         didCallInsertUpdateEvent = true
+        if let error = errorToThrowOnInsertUpdateEvent {
+            throw error
+        }
     }
 
     func unsuccessfulUpdates() throws -> [MedoDelirio.UpdateEvent] {

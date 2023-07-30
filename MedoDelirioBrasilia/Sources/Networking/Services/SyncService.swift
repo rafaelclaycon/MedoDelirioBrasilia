@@ -96,5 +96,7 @@ enum SyncResult {
 
 enum SyncError: Error {
     
-    case noInternet, updateError
+    case noInternet
+    case errorInsertingUpdateEvent(updateEventId: String)
+    case updateError
 }

@@ -20,7 +20,12 @@ class SyncServiceStub: SyncServiceProtocol {
         if let errorToThrowOnUpdate = errorToThrowOnUpdate {
             throw errorToThrowOnUpdate
         }
-        return updates
+
+        guard updateDateToConsider != "all" else { return updates }
+
+        return updates.filter {
+            return $0.dateTime > updateDateToConsider
+        }
     }
 
     func hasConnectivity() -> Bool {
