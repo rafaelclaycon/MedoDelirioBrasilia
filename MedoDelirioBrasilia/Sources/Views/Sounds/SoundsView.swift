@@ -72,6 +72,9 @@ struct SoundsView: View {
     @ScaledMetric private var soundCountTopPadding = 10
     @ScaledMetric private var soundCountPhoneBottomPadding = 68
     @ScaledMetric private var soundCountPadBottomPadding = 22
+
+    // Beta
+    private let isPreShow: Bool = true
     
     private var searchResults: [Sound] {
         if searchText.isEmpty {
@@ -133,7 +136,10 @@ struct SoundsView: View {
                                                              currentSoundsListMode: $currentSoundsListMode),
                                isActive: $autoOpenAuthor) { EmptyView() }
 
-                if showNoFavoritesView {
+                if isPreShow {
+                    Text("Em breve.")
+                        .foregroundColor(.gray)
+                } else if showNoFavoritesView {
                     NoFavoritesView()
                         .padding(.horizontal, 25)
                         .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? 100 : 15)
@@ -373,38 +379,38 @@ struct SoundsView: View {
             .sheet(isPresented: $viewModel.isShowingShareSheet) {
                 viewModel.iPadShareSheet
             }
-//            .sheet(isPresented: $showingModalView, onDismiss: {
-//                if subviewToOpen == .whatsNewView {
-//                    AppPersistentMemory.setHasSeen63WhatsNewScreen(to: true)
-//                }
-//            }) {
-//                switch subviewToOpen {
-//                 case .onboardingView:
-//                    OnboardingView(isBeingShown: $showingModalView)
-//                        .interactiveDismissDisabled(UIDevice.current.userInterfaceIdiom == .phone ? true : false)
-//                    
-//                case .addToFolderView:
-//                    AddToFolderView(isBeingShown: $showingModalView,
-//                                    hadSuccess: $hadSuccessAddingToFolder,
-//                                    folderName: $folderName,
-//                                    pluralization: $pluralization,
-//                                    selectedSounds: viewModel.selectedSounds!)
-//                    
-//                case .shareAsVideoView:
-//                    if #available(iOS 16.0, *) {
-//                        ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, contentAuthor: viewModel.selectedSound?.authorName ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: false)
-//                    } else {
-//                        ShareAsVideoLegacyView(viewModel: ShareAsVideoLegacyViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: false)
-//                    }
-//                    
-//                case .settingsView:
-//                    SettingsCasingWithCloseView(isBeingShown: $showingModalView)
-//                        .environmentObject(settingsHelper)
-//                    
-//                case .whatsNewView:
-//                    WhatsNewView(isBeingShown: $showingModalView)
-//                }
-//            }
+            .sheet(isPresented: $showingModalView, onDismiss: {
+                if subviewToOpen == .whatsNewView {
+                    AppPersistentMemory.setHasSeen63WhatsNewScreen(to: true)
+                }
+            }) {
+                switch subviewToOpen {
+                 case .onboardingView:
+                    OnboardingView(isBeingShown: $showingModalView)
+                        .interactiveDismissDisabled(UIDevice.current.userInterfaceIdiom == .phone ? true : false)
+                    
+                case .addToFolderView:
+                    AddToFolderView(isBeingShown: $showingModalView,
+                                    hadSuccess: $hadSuccessAddingToFolder,
+                                    folderName: $folderName,
+                                    pluralization: $pluralization,
+                                    selectedSounds: viewModel.selectedSounds!)
+                    
+                case .shareAsVideoView:
+                    if #available(iOS 16.0, *) {
+                        ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, contentAuthor: viewModel.selectedSound?.authorName ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: false)
+                    } else {
+                        ShareAsVideoLegacyView(viewModel: ShareAsVideoLegacyViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: false)
+                    }
+                    
+                case .settingsView:
+                    SettingsCasingWithCloseView(isBeingShown: $showingModalView)
+                        .environmentObject(settingsHelper)
+                    
+                case .whatsNewView:
+                    WhatsNewView(isBeingShown: $showingModalView)
+                }
+            }
             .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in
                 if shouldUpdate {
                     viewModel.reloadList(withSounds: try! LocalDatabase.shared.allSounds(),
@@ -568,14 +574,18 @@ struct SoundsView: View {
 //            }.disabled(viewModel.selectionKeeper.count == 0 || viewModel.selectionKeeper.count > 5)
         } else {
             if UIDevice.current.userInterfaceIdiom == .phone {
-                Button {
-                    subviewToOpen = .settingsView
-                    showingModalView = true
-                } label: {
-                    Image(systemName: "gearshape")
+                HStack {
+                    Button {
+                        subviewToOpen = .settingsView
+                        showingModalView = true
+                    } label: {
+                        Image(systemName: "gearshape")
+                    }
+                    
+                    BetaTagView()
                 }
             } else {
-                EmptyView()
+                BetaTagView()
             }
         }
     }

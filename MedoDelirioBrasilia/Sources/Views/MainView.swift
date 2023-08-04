@@ -104,6 +104,7 @@ struct MainView: View {
                                 updateSoundList: $viewModel.updateSoundList)
                     .environmentObject(trendsHelper)
                     .environmentObject(settingsHelper)
+                    
                     SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
                                                               authorSortOption: AuthorSortOption.nameAscending.rawValue,
                                                               currentSoundsListMode: $currentSoundsListMode),
@@ -133,7 +134,7 @@ struct MainView: View {
             print("RuPaul")
 
             Task { @MainActor in
-                await viewModel.sync()
+                //await viewModel.sync()
             }
 
 //            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
