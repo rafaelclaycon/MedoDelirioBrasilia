@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct SoundsView: View {
-    
+
     @State private var downloadedFilepath: String = ""
-    
+
     enum ViewMode: Int {
         case allSounds, favorites, folders, byAuthor
     }
-    
+
     enum SubviewToOpen {
         case onboardingView, addToFolderView, shareAsVideoView, settingsView, whatsNewView
     }
-    
+
     @StateObject var viewModel: SoundsViewViewModel
     @State var currentViewMode: ViewMode
     @Binding var currentSoundsListMode: SoundsListMode
