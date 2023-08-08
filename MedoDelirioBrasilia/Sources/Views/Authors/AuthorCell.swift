@@ -49,10 +49,11 @@ struct AuthorCell: View {
                 .padding(.leading, 5)
                 
                 Spacer()
-                
-                NumberBadgeView(number: soundCount, showBackgroundCircle: true)
-                    .foregroundColor(.primary)
-                    .padding(.trailing, 10)
+
+                // TODO: - Bring this back whenever I have the time.
+//                NumberBadgeView(number: soundCount, showBackgroundCircle: true)
+//                    .foregroundColor(.primary)
+//                    .padding(.trailing, 10)
                 
                 Image(systemName: "chevron.right")
                     .resizable()

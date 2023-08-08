@@ -74,8 +74,8 @@ struct SoundsView: View {
     @ScaledMetric private var soundCountPadBottomPadding = 22
 
     // Beta
-    private let isPreShow: Bool = true
-    
+    private let isPreShow: Bool = false
+
     private var searchResults: [Sound] {
         if searchText.isEmpty {
             return viewModel.sounds
