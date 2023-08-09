@@ -104,10 +104,13 @@ public extension UIDevice {
             case "iPad8,11", "iPad8,12":                           return "iPad Pro (12.9-inch) (4th generation)"
             case "iPad13,8", "iPad13,9", "iPad13,10", "iPad13,11": return "iPad Pro (12.9-inch) (5th generation)"
             case "iPad14,5", "iPad14,6":                           return "iPad Pro (12.9-inch) (6th generation)"
-            case "RealityDevice14,1":                              return "Apple Vision Pro"
             case "i386", "x86_64", "arm64":                        return "Simulator \(mapToDevice(identifier: ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] ?? "iOS"))"
             default:                                              return identifier
             }
+            #endif
+
+            #if os(visionOS)
+            return "Apple Vision Pro"
             #endif
         }
         

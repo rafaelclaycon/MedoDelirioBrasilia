@@ -112,11 +112,12 @@ struct SoundsView: View {
     var body: some View {
         ZStack {
             VStack {
-                NavigationLink(destination: AuthorDetailView(viewModel: AuthorDetailViewViewModel(originatingScreenName: Shared.ScreenNames.soundsView,
-                                                                                                  authorName: authorToAutoOpen.name, currentSoundsListMode: $currentSoundsListMode),
-                                                             author: authorToAutoOpen,
-                                                             currentSoundsListMode: $currentSoundsListMode),
-                               isActive: $autoOpenAuthor) { EmptyView() }
+                // TODO: Replace this with a more modern solution since visionOS shows it as a transparent circle on the window.
+//                NavigationLink(destination: AuthorDetailView(viewModel: AuthorDetailViewViewModel(originatingScreenName: Shared.ScreenNames.soundsView,
+//                                                                                                  authorName: authorToAutoOpen.name, currentSoundsListMode: $currentSoundsListMode),
+//                                                             author: authorToAutoOpen,
+//                                                             currentSoundsListMode: $currentSoundsListMode),
+//                               isActive: $autoOpenAuthor) { EmptyView() }
                 
                 if showNoFavoritesView {
                     NoFavoritesView()
