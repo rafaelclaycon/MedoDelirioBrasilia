@@ -1237,6 +1237,7 @@
 		D9C67C102A3E3C2200E74E9D /* MiniButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C67C0F2A3E3C2200E74E9D /* MiniButtonStyle.swift */; };
 		D9C67C132A3E3D6000E74E9D /* LargeCapsuleBorderedButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C67C122A3E3D6000E74E9D /* LargeCapsuleBorderedButtonStyle.swift */; };
 		D9C67C152A3E3D7E00E74E9D /* LargeCapsuleBorderedProminentButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C67C142A3E3D7E00E74E9D /* LargeCapsuleBorderedProminentButtonStyle.swift */; };
+		D9C6EC212A86CCDC00DB1FA5 /* Jair Bolsonaro - A cor do Cialis.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C6EC202A86CCDC00DB1FA5 /* Jair Bolsonaro - A cor do Cialis.mp3 */; };
 		D9C7310C292D62C300090DED /* Meme - Vamo la tomar uma la no bar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C7310B292D62C300090DED /* Meme - Vamo la tomar uma la no bar.mp3 */; };
 		D9C77B6D28CAB81F006CA17B /* TIRIRICA - Pior do que ta nao fica.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C77B6C28CAB81F006CA17B /* TIRIRICA - Pior do que ta nao fica.mp3 */; };
 		D9C77B6F28CAC07B006CA17B /* Thiago Arruda - Passarinho que come cu nao sabe a pedra que tem.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C77B6E28CAC07B006CA17B /* Thiago Arruda - Passarinho que come cu nao sabe a pedra que tem.mp3 */; };
@@ -2646,6 +2647,7 @@
 		D9C67C0F2A3E3C2200E74E9D /* MiniButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniButtonStyle.swift; sourceTree = "<group>"; };
 		D9C67C122A3E3D6000E74E9D /* LargeCapsuleBorderedButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeCapsuleBorderedButtonStyle.swift; sourceTree = "<group>"; };
 		D9C67C142A3E3D7E00E74E9D /* LargeCapsuleBorderedProminentButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeCapsuleBorderedProminentButtonStyle.swift; sourceTree = "<group>"; };
+		D9C6EC202A86CCDC00DB1FA5 /* Jair Bolsonaro - A cor do Cialis.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - A cor do Cialis.mp3"; sourceTree = "<group>"; };
 		D9C7310B292D62C300090DED /* Meme - Vamo la tomar uma la no bar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Meme - Vamo la tomar uma la no bar.mp3"; sourceTree = "<group>"; };
 		D9C77B6C28CAB81F006CA17B /* TIRIRICA - Pior do que ta nao fica.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "TIRIRICA - Pior do que ta nao fica.mp3"; sourceTree = "<group>"; };
 		D9C77B6E28CAC07B006CA17B /* Thiago Arruda - Passarinho que come cu nao sabe a pedra que tem.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Thiago Arruda - Passarinho que come cu nao sabe a pedra que tem.mp3"; sourceTree = "<group>"; };
@@ -2840,6 +2842,7 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9C6EC202A86CCDC00DB1FA5 /* Jair Bolsonaro - A cor do Cialis.mp3 */,
 				D99D099C2A848D6900A5E65E /* Marcelo Freixo - Voce ta vendo muito filme.mp3 */,
 				D99D09972A848CD500A5E65E /* Jair Bolsonaro - Nao estou criticando nem alfinetando ninguem, estou mostrando o peru indecente.mp3 */,
 				D99D09962A848CD500A5E65E /* Marcos do Val - E ai eu fiz um glamour.mp3 */,
@@ -5193,6 +5196,7 @@
 				D97500222880B4F20035E6F2 /* Silas Malafaia - Agora a coisa vai ser mais profunda.mp3 in Resources */,
 				D921F888288B0177003979CC /* sarcasmo - cristiano botafogo.mp3 in Resources */,
 				D9AF10D3290AD50D0054741F /* PODER360 - Paulo Guedes - Foda-se.mp3 in Resources */,
+				D9C6EC212A86CCDC00DB1FA5 /* Jair Bolsonaro - A cor do Cialis.mp3 in Resources */,
 				D975FEB32880B4F20035E6F2 /* REDE TV - Isso e meio delirante short meme.mp3 in Resources */,
 				D975FE562880B4F20035E6F2 /* Temer - Nao renunciarei short.mp3 in Resources */,
 				D9E7D0F428AC699B001E909E /* Cristiano Botafogo - Vista o seu traje quimico.mp3 in Resources */,
@@ -6375,7 +6379,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.35;
+				MARKETING_VERSION = 6.36;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -6415,7 +6419,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.35;
+				MARKETING_VERSION = 6.36;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
