@@ -12,7 +12,7 @@ let networkRabbit = NetworkRabbit(serverPath: CommandLine.arguments.contains("-U
 let baseURL: String = CommandLine.arguments.contains("-UNDER_DEVELOPMENT") ? "http://127.0.0.1:8080/" : "http://170.187.141.103:8080/"
 let podium = Podium(database: LocalDatabase.shared, networkRabbit: networkRabbit)
 
-let soundsLastUpdateDate: String = "21/07/2023"
+let soundsLastUpdateDate: String = "11/08/2023"
 let songsLastUpdateDate: String = "20/07/2023"
 
 var moveDatabaseIssue: String = .empty

@@ -8834,7 +8834,7 @@
         "title": "Pra conversar com doido, só outro doido",
         "authorId": "B7C31BA4-0E42-4206-8920-B568AA04B608",
         "description": "Pra conversar com doido so outro doido",
-        "filename": "Desconhecido - Pra conversar com doido, so outro doido.mp3",
+        "filename": "Pastor Sargento Isidorio - Pra conversar com doido, so outro doido.mp3",
         "dateAdded": "2022-11-22T00:00:00Z",
         "duration": 2.19,
         "isOffensive": true
@@ -11058,5 +11058,55 @@
         "dateAdded": "2023-07-21T00:00:00Z",
         "duration": 2.85,
         "isOffensive": false
+    },
+    {
+        "id": "CD270E6B-B307-4717-8236-E81816051BF4",
+        "title": "Tá aqui a bala de prata",
+        "authorId": "96B59EDB-76CA-437A-B89E-016D228898C5",
+        "description": "Ta aqui a bala de prata",
+        "filename": "Marcos do Val - Ta aqui a bala de prata.mp3",
+        "dateAdded": "2023-08-09T00:00:00Z",
+        "duration": 1.70,
+        "isOffensive": false
+    },
+    {
+        "id": "E710C70F-601E-4A8C-B077-63D08C333562",
+        "title": "E aí eu fiz um glamour",
+        "authorId": "96B59EDB-76CA-437A-B89E-016D228898C5",
+        "description": "E aí eu fiz um glamour",
+        "filename": "Marcos do Val - E ai eu fiz um glamour.mp3",
+        "dateAdded": "2023-08-10T00:00:00Z",
+        "duration": 1.91,
+        "isOffensive": false
+    },
+    {
+        "id": "EAC41EED-B64E-4438-AE6B-12810931EA84",
+        "title": "Não estou alfinetando nem criticando ninguém",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Nao estou alfinetando nem criticando ninguem estou mostrando o peru indecente",
+        "filename": "Jair Bolsonaro - Nao estou criticando nem alfinetando ninguem, estou mostrando o peru indecente.mp3",
+        "dateAdded": "2023-08-10T00:00:00Z",
+        "duration": 5.98,
+        "isOffensive": true
+    },
+    {
+        "id": "964FB0BB-C69E-40D3-A2A8-83616EC4858A",
+        "title": "Você tá vendo muito filme",
+        "authorId": "9AB96EA6-7AB9-4FF3-BD58-4752D23DCA9B",
+        "description": "Você tá vendo muito filme",
+        "filename": "Marcelo Freixo - Voce ta vendo muito filme.mp3",
+        "dateAdded": "2023-08-10T00:00:00Z",
+        "duration": 1.18,
+        "isOffensive": false
+    },
+    {
+        "id": "C45B8C02-5CEA-49E0-8EDA-9331BCF55E5E",
+        "title": "A cor do Cialis!",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "A cor do Cialis a cor do fialis",
+        "filename": "Jair Bolsonaro - A cor do Cialis.mp3",
+        "dateAdded": "2023-08-11T00:00:00Z",
+        "duration": 1.99,
+        "isOffensive": true
     }
 ]
