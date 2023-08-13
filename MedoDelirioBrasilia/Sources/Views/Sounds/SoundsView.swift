@@ -328,15 +328,15 @@ struct SoundsView: View {
                     showingModalView = true
                     AppPersistentMemory.setHasSeen70WhatsNewScreen(to: true) // Prevent the What's New screen from appearing when switching tabs
                 } else if AppPersistentMemory.getHasSeen70WhatsNewScreen() == false {
-                    if UIDevice.current.userInterfaceIdiom == .phone {
-                        subviewToOpen = .whatsNewView
-                        showingModalView = true
-                    } else {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                            subviewToOpen = .whatsNewView
-                            showingModalView = true
-                        }
-                    }
+//                    if UIDevice.current.userInterfaceIdiom == .phone {
+//                        subviewToOpen = .whatsNewView
+//                        showingModalView = true
+//                    } else {
+//                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//                            subviewToOpen = .whatsNewView
+//                            showingModalView = true
+//                        }
+//                    }
                 }
                 
                 if moveDatabaseIssue.isEmpty == false {
