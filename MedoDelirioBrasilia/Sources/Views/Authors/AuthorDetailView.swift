@@ -283,6 +283,8 @@ struct AuthorDetailView: View {
                                      andFavorites: try? LocalDatabase.shared.getAllFavorites(),
                                      allowSensitiveContent: UserSettings.getShowExplicitContent())
                 columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
+
+                dump(author)
             }
             .onDisappear {
                 if currentSoundsListMode == .selection {
