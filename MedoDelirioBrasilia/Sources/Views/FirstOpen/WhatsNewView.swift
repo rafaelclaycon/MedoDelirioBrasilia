@@ -8,100 +8,51 @@
 import SwiftUI
 
 struct WhatsNewView: View {
-    
     @Binding var isBeingShown: Bool
-    
-    private var spacingTopBottom: CGFloat {
-        UIScreen.main.bounds.width > 389 ? 100 : 50
-    }
-    
-    private var systemName: String {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            return "iOS 16"
-        } else {
-            return ProcessInfo.processInfo.isiOSAppOnMac ? "macOS Ventura" : "iPadOS 16"
-        }
-    }
-    
+
+    @Environment(\.dismiss) private var dismiss
+
     var body: some View {
         ScrollView {
-            VStack(alignment: .center, spacing: 50) {
-                Text("Novidade da Versão 6.3")
+            VStack(alignment: .center, spacing: 40) {
+                Text("☺️")
+                    .font(.system(size: 110))
+                    .background(alignment: .bottomTrailing) {
+                        ZStack {
+                            Image("app-store-icon")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 40)
+
+                            Text("💧")
+                                .font(.system(size: 26))
+                                .offset(x: 15, y: -10)
+                        }
+                        .offset(x: 25)
+                        .opacity(0.5)
+                    }
+                    .overlay(alignment: .bottomLeading) {
+                        Text("🎁")
+                            .font(.system(size: 60))
+                            .offset(x: -35, y: 20)
+                    }
+
+                Text("Atualizar pra Receber Novos Sons É Coisa do Passado")
                     .font(.largeTitle)
                     .bold()
                     .multilineTextAlignment(.center)
-                    .padding(.horizontal, 20)
-                
-                VStack(alignment: .center, spacing: 24) {
-                    HStack(spacing: 15) {
-                        Image(systemName: "film")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 40)
-                            .foregroundColor(.green)
-                            .padding(.horizontal, 6)
-                        
-                        VStack(alignment: .leading, spacing: 5) {
-                            Text("Melhorias no Compartilhar como Vídeo")
-                                .font(.callout)
-                                .bold()
-                            Text("Agora os vídeos contam com o nome do(a) autor(a) e uma fonte de texto mais bonita. Requer \(systemName).")
-                                .font(.callout)
-                                .foregroundColor(.gray)
-                        }
-                        
-                        Spacer()
-                    }
-                    
-                    Spacer()
-                    
-//                    HStack(spacing: 15) {
-//                        Image(systemName: "folder.fill")
-//                            .resizable()
-//                            .scaledToFit()
-//                            .frame(width: 40)
-//                            .foregroundColor(.green)
-//                            .padding(.horizontal, 4)
-//
-//                        VStack(alignment: .leading, spacing: 5) {
-//                            Text("Pastas Mais Espertas")
-//                                .font(.callout)
-//                                .bold()
-//                            Text("Ordene o conteúdo da pasta pela data na qual o som foi adicionado a ela. Disponível para pastas criadas a partir da versão 5.47.")
-//                                .font(.callout)
-//                                .foregroundColor(.gray)
-//                        }
-//
-//                        Spacer()
-//                    }
-//
-//                    HStack(spacing: 15) {
-//                        Image(systemName: "person.crop.artframe")
-//                            .resizable()
-//                            .scaledToFit()
-//                            .frame(width: 36)
-//                            .foregroundColor(.green)
-//                            .padding(.horizontal, 6)
-//
-//                        VStack(alignment: .leading, spacing: 5) {
-//                            Text("Nova Experiência de Autor")
-//                                .font(.callout)
-//                                .bold()
-//                            Text("Veja uma foto e uma breve descrição da relevância da pessoa ao abrir a tela de autor de cada som.")
-//                                .font(.callout)
-//                                .foregroundColor(.gray)
-//                        }
-//
-//                        Spacer()
-//                    }
-                }
-                .padding(.horizontal, 20)
+
+                Text("A moda agora é tudo aparecer baixado.")
+                    .multilineTextAlignment(.center)
+
+                Text("Você faz parte do Beta! Muito obrigado! Toque em Dar Feedback na tela principal e me envie um e-mail para receber o questionário.")
+                    .multilineTextAlignment(.center)
                 
                 Button {
-                    AppPersistentMemory.setHasSeen63WhatsNewScreen(to: true)
-                    isBeingShown = false
+                    AppPersistentMemory.setHasSeen70WhatsNewScreen(to: true)
+                    dismiss()
                 } label: {
-                    Text("Continuar")
+                    Text("Bora!")
                         .bold()
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
@@ -110,20 +61,16 @@ struct WhatsNewView: View {
                 .controlSize(.large)
                 .buttonStyle(.borderedProminent)
                 .buttonBorderShape(.roundedRectangle(radius: 15))
-                .padding(.horizontal, 24)
-                .padding(.top)
             }
-            .padding(.top, spacingTopBottom)
-            .padding(.bottom, spacingTopBottom)
+            .padding(.top, 20)
+            padding(.bottom, 20)
+            .padding(.horizontal, 20)
         }
     }
-    
 }
 
 struct WhatsNewView_Previews: PreviewProvider {
-    
     static var previews: some View {
         WhatsNewView(isBeingShown: .constant(true))
     }
-    
 }

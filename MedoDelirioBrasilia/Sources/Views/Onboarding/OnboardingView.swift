@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct OnboardingView: View {
-
     @Binding var isBeingShown: Bool
     
     var body: some View {
@@ -67,13 +66,10 @@ struct OnboardingView: View {
             .padding(.bottom, 100)
         }
     }
-
 }
 
 struct OnboardingView_Previews: PreviewProvider {
-
     static var previews: some View {
         OnboardingView(isBeingShown: .constant(true))
     }
-
 }

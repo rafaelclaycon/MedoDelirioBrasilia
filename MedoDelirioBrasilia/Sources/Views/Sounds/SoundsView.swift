@@ -326,8 +326,8 @@ struct SoundsView: View {
                 if AppPersistentMemory.getHasShownNotificationsOnboarding() == false {
                     subviewToOpen = .onboardingView
                     showingModalView = true
-                    AppPersistentMemory.setHasSeen63WhatsNewScreen(to: true) // Prevent the What's New screen from appearing when switching tabs
-                } else if AppPersistentMemory.getHasSeen63WhatsNewScreen() == false {
+                    //AppPersistentMemory.setHasSeen70WhatsNewScreen(to: true) // Prevent the What's New screen from appearing when switching tabs
+                } else if AppPersistentMemory.getHasSeen70WhatsNewScreen() == false {
                     if UIDevice.current.userInterfaceIdiom == .phone {
                         subviewToOpen = .whatsNewView
                         showingModalView = true
@@ -381,7 +381,7 @@ struct SoundsView: View {
             }
             .sheet(isPresented: $showingModalView, onDismiss: {
                 if subviewToOpen == .whatsNewView {
-                    AppPersistentMemory.setHasSeen63WhatsNewScreen(to: true)
+                    AppPersistentMemory.setHasSeen70WhatsNewScreen(to: true)
                 }
             }) {
                 switch subviewToOpen {
@@ -511,13 +511,6 @@ struct SoundsView: View {
             do {
                 var allSounds = try LocalDatabase.shared.allSounds()
                 allSounds.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
-
-                //dump(allSounds)
-
-//                if #available(iOS 16, *) {
-//                    try await Task.sleep(for: .seconds(1))
-//                }
-
                 await MainActor.run {
                     viewModel.sounds = allSounds
                 }

@@ -2,7 +2,6 @@ import Foundation
 
 /// Different from User Settings, App Memory are settings that help the app remember stuff to avoid asking again or doing a network job more than once per day.
 class AppPersistentMemory {
-
     // MARK: - Getters
     
     static func getHasSentDeviceModelToServer() -> Bool {
@@ -92,6 +91,14 @@ class AppPersistentMemory {
         }
         return Bool(value as! Bool)
     }
+
+    static func getHasSeen70WhatsNewScreen() -> Bool {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "hasSeen70WhatsNewScreen") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
     
     // MARK: - Setters
     
@@ -150,4 +157,8 @@ class AppPersistentMemory {
         userDefaults.set(newValue, forKey: "hasSeen63WhatsNewScreen")
     }
 
+    static func setHasSeen70WhatsNewScreen(to newValue: Bool) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(newValue, forKey: "hasSeen70WhatsNewScreen")
+    }
 }
