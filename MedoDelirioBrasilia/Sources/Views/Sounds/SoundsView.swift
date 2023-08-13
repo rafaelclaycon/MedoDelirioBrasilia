@@ -326,7 +326,7 @@ struct SoundsView: View {
                 if AppPersistentMemory.getHasShownNotificationsOnboarding() == false {
                     subviewToOpen = .onboardingView
                     showingModalView = true
-                    //AppPersistentMemory.setHasSeen70WhatsNewScreen(to: true) // Prevent the What's New screen from appearing when switching tabs
+                    AppPersistentMemory.setHasSeen70WhatsNewScreen(to: true) // Prevent the What's New screen from appearing when switching tabs
                 } else if AppPersistentMemory.getHasSeen70WhatsNewScreen() == false {
                     if UIDevice.current.userInterfaceIdiom == .phone {
                         subviewToOpen = .whatsNewView
