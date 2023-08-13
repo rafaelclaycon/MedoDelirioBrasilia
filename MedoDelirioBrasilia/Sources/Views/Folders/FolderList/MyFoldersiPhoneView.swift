@@ -54,7 +54,7 @@ struct MyFoldersiPhoneView: View {
         }
         .onChange(of: folderIdForEditing) { folderIdForEditing in
             if folderIdForEditing.isEmpty == false {
-                folderForEditingOnSheet = try? database.getFolder(withId: folderIdForEditing)
+                folderForEditingOnSheet = try? LocalDatabase.shared.getFolder(withId: folderIdForEditing)
                 guard folderForEditingOnSheet != nil else { return }
                 isShowingFolderInfoEditingSheet = true
                 self.folderIdForEditing = .empty

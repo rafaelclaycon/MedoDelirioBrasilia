@@ -19,6 +19,8 @@ class LocalDatabase: LocalDatabaseProtocol {
     var networkCallLog = Table("networkCallLog")
     var userFolder = Table("userFolder")
     var userFolderContent = Table("userFolderContent")
+
+    static let shared = LocalDatabase()
     
     // MARK: - Setup
     

@@ -63,8 +63,11 @@ struct SoundsView: View {
     private let toastViewBottomPaddingPad: CGFloat = 15
 
     // Dynamic Type
+    @ScaledMetric private var explicitOffWarningTopPadding = 16
+    @ScaledMetric private var explicitOffWarningPhoneBottomPadding = 20
+    @ScaledMetric private var explicitOffWarningPadBottomPadding = 20
     @ScaledMetric private var soundCountTopPadding = 10
-    @ScaledMetric private var soundCountPhoneBottomPadding = 66
+    @ScaledMetric private var soundCountPhoneBottomPadding = 68
     @ScaledMetric private var soundCountPadBottomPadding = 22
     
     private var searchResults: [Sound] {
@@ -153,7 +156,7 @@ struct SoundsView: View {
                                                 .onTapGesture {
                                                     if currentSoundsListMode == .regular {
                                                         if viewModel.nowPlayingKeeper.contains(sound.id) {
-                                                            player?.togglePlay()
+                                                            AudioPlayer.shared?.togglePlay()
                                                             viewModel.nowPlayingKeeper.removeAll()
                                                         } else {
                                                             viewModel.playSound(fromPath: sound.filename, withId: sound.id)
@@ -190,7 +193,7 @@ struct SoundsView: View {
                                                                     viewModel.removeFromFavorites(soundId: sound.id)
                                                                     if currentViewMode == .favorites {
                                                                         viewModel.reloadList(withSounds: soundData,
-                                                                                             andFavorites: try? database.getAllFavorites(),
+                                                                                             andFavorites: try? LocalDatabase.shared.getAllFavorites(),
                                                                                              allowSensitiveContent: UserSettings.getShowExplicitContent(),
                                                                                              favoritesOnly: currentViewMode == .favorites,
                                                                                              sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
@@ -264,11 +267,9 @@ struct SoundsView: View {
                             
                             if UserSettings.getShowExplicitContent() == false, currentViewMode != .favorites {
                                 Text(UIDevice.current.userInterfaceIdiom == .phone ? Shared.contentFilterMessageForSoundsiPhone : Shared.contentFilterMessageForSoundsiPadMac)
-                                    .font(.footnote)
-                                    .foregroundColor(.gray)
                                     .multilineTextAlignment(.center)
-                                    .padding(.top, 15)
-                                    .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 20 : 40)
+                                    .padding(.top, explicitOffWarningTopPadding)
+                                    .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? explicitOffWarningPhoneBottomPadding : explicitOffWarningPadBottomPadding)
                             }
                             
                             if searchText.isEmpty, currentViewMode != .favorites {
@@ -287,7 +288,7 @@ struct SoundsView: View {
             .navigationBarItems(leading: leadingToolbarControls(), trailing: trailingToolbarControls())
             .onAppear {
                 viewModel.reloadList(withSounds: soundData,
-                                     andFavorites: try? database.getAllFavorites(),
+                                     andFavorites: try? LocalDatabase.shared.getAllFavorites(),
                                      allowSensitiveContent: UserSettings.getShowExplicitContent(),
                                      favoritesOnly: currentViewMode == .favorites,
                                      sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
@@ -342,7 +343,7 @@ struct SoundsView: View {
                         guard deleteFolderAide.folderIdForDeletion.isEmpty == false else {
                             return
                         }
-                        try? database.deleteUserFolder(withId: deleteFolderAide.folderIdForDeletion)
+                        try? LocalDatabase.shared.deleteUserFolder(withId: deleteFolderAide.folderIdForDeletion)
                         deleteFolderAide.updateFolderList = true
                         deleteFolderAide.showAlert = false
                     }), secondaryButton: .cancel(Text("Cancelar")))
@@ -386,7 +387,7 @@ struct SoundsView: View {
             .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in
                 if shouldUpdate {
                     viewModel.reloadList(withSounds: soundData,
-                                         andFavorites: try? database.getAllFavorites(),
+                                         andFavorites: try? LocalDatabase.shared.getAllFavorites(),
                                          allowSensitiveContent: UserSettings.getShowExplicitContent(),
                                          favoritesOnly: currentViewMode == .favorites,
                                          sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
@@ -493,7 +494,7 @@ struct SoundsView: View {
                 return
             }
             viewModel.reloadList(withSounds: soundData,
-                                 andFavorites: try? database.getAllFavorites(),
+                                 andFavorites: try? LocalDatabase.shared.getAllFavorites(),
                                  allowSensitiveContent: UserSettings.getShowExplicitContent(),
                                  favoritesOnly: currentMode == .favorites,
                                  sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
@@ -564,7 +565,7 @@ struct SoundsView: View {
                                 viewModel.removeSelectedFromFavorites()
                                 viewModel.stopSelecting()
                                 viewModel.reloadList(withSounds: soundData,
-                                                     andFavorites: try? database.getAllFavorites(),
+                                                     andFavorites: try? LocalDatabase.shared.getAllFavorites(),
                                                      allowSensitiveContent: UserSettings.getShowExplicitContent(),
                                                      favoritesOnly: currentViewMode == .favorites,
                                                      sortedBy: SoundSortOption(rawValue: viewModel.soundSortOption) ?? .titleAscending)
@@ -627,7 +628,7 @@ struct SoundsView: View {
                     }
                     .onChange(of: viewModel.soundSortOption, perform: { soundSortOption in
                         viewModel.reloadList(withSounds: soundData,
-                                             andFavorites: try? database.getAllFavorites(),
+                                             andFavorites: try? LocalDatabase.shared.getAllFavorites(),
                                              allowSensitiveContent: UserSettings.getShowExplicitContent(),
                                              favoritesOnly: currentViewMode == .favorites,
                                              sortedBy: SoundSortOption(rawValue: soundSortOption) ?? .titleAscending)

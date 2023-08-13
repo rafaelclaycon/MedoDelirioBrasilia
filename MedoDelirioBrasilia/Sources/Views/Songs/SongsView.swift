@@ -23,6 +23,9 @@ struct SongsView: View {
     @EnvironmentObject var settingsHelper: SettingsHelper
 
     // Dynamic Type
+    @ScaledMetric private var explicitOffWarningTopPadding = 16
+    @ScaledMetric private var explicitOffWarningPhoneBottomPadding = 20
+    @ScaledMetric private var explicitOffWarningPadBottomPadding = 20
     @ScaledMetric private var songCountTopPadding = 10
     @ScaledMetric private var songCountBottomPadding = 22
     
@@ -69,7 +72,7 @@ struct SongsView: View {
                                     .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                                     .onTapGesture {
                                         if viewModel.nowPlayingKeeper.contains(song.id) {
-                                            player?.togglePlay()
+                                            AudioPlayer.shared?.togglePlay()
                                             viewModel.nowPlayingKeeper.removeAll()
                                         } else {
                                             viewModel.playSong(fromPath: song.filename, withId: song.id)
@@ -110,11 +113,9 @@ struct SongsView: View {
                     
                     if UserSettings.getShowExplicitContent() == false {
                         Text(UIDevice.current.userInterfaceIdiom == .phone ? Shared.contentFilterMessageForSongsiPhone : Shared.contentFilterMessageForSongsiPadMac)
-                            .font(.footnote)
-                            .foregroundColor(.gray)
                             .multilineTextAlignment(.center)
-                            .padding(.top, 15)
-                            .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 20 : 40)
+                            .padding(.top, explicitOffWarningTopPadding)
+                            .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? explicitOffWarningPhoneBottomPadding : explicitOffWarningPadBottomPadding)
                     }
                     
                     if searchText.isEmpty, currentGenre == .all {
@@ -174,7 +175,7 @@ struct SongsView: View {
                 viewModel.donateActivity()
             }
             .onDisappear {
-                player?.cancel()
+                AudioPlayer.shared?.cancel()
                 viewModel.nowPlayingKeeper.removeAll()
             }
             .sheet(isPresented: $viewModel.isShowingShareSheet) {

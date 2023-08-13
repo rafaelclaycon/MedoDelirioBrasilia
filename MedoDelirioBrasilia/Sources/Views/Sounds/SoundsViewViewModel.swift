@@ -140,19 +140,19 @@ class SoundsViewViewModel: ObservableObject {
         nowPlayingKeeper.removeAll()
         nowPlayingKeeper.insert(soundId)
         
-        player = AudioPlayer(url: url, update: { [weak self] state in
+        AudioPlayer.shared = AudioPlayer(url: url, update: { [weak self] state in
             guard let self = self else { return }
             if state?.activity == .stopped {
                 self.nowPlayingKeeper.removeAll()
             }
         })
         
-        player?.togglePlay()
+        AudioPlayer.shared?.togglePlay()
     }
     
     func stopPlaying() {
         if nowPlayingKeeper.count > 0 {
-            player?.togglePlay()
+            AudioPlayer.shared?.togglePlay()
             nowPlayingKeeper.removeAll()
         }
     }
@@ -308,10 +308,10 @@ class SoundsViewViewModel: ObservableObject {
         let newFavorite = Favorite(contentId: soundId, dateAdded: Date())
         
         do {
-            let favorteAlreadyExists = try database.exists(contentId: soundId)
+            let favorteAlreadyExists = try LocalDatabase.shared.exists(contentId: soundId)
             guard favorteAlreadyExists == false else { return }
             
-            try database.insert(favorite: newFavorite)
+            try LocalDatabase.shared.insert(favorite: newFavorite)
             favoritesKeeper.insert(newFavorite.contentId)
         } catch {
             print("Problem saving favorite \(newFavorite.contentId): \(error.localizedDescription)")
@@ -320,7 +320,7 @@ class SoundsViewViewModel: ObservableObject {
     
     func removeFromFavorites(soundId: String) {
         do {
-            try database.deleteFavorite(withId: soundId)
+            try LocalDatabase.shared.deleteFavorite(withId: soundId)
             favoritesKeeper.remove(soundId)
         } catch {
             print("Problem removing favorite \(soundId)")
