@@ -49,14 +49,6 @@ class MainViewViewModel: ObservableObject {
             showSyncProgressView = true
         }
 
-//        if #available(iOS 16, *) {
-//            do {
-//                try await Task.sleep(for: .seconds(15))
-//            } catch {
-//                print(error)
-//            }
-//        }
-
         do {
             try await retryLocal()
             try await syncDataWithServer()
@@ -105,7 +97,8 @@ class MainViewViewModel: ObservableObject {
     }
 
     func retrieveServerUpdates() async throws -> Double {
-        print("fetchServerUpdates()")
+        print("retrieveServerUpdates()")
+        print("lastUpdateDate: \(lastUpdateDate)")
         serverUpdates = try await service.getUpdates(from: lastUpdateDate)
         if var serverUpdates = serverUpdates {
             for i in serverUpdates.indices {

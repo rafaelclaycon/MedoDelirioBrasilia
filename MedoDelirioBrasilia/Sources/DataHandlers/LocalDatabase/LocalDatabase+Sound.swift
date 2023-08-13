@@ -38,6 +38,9 @@ extension LocalDatabase {
                     soundData.dateAdded = date
                 }
             }
+            if let isFromServer = try queriedSound.get(Expression<Bool?>("isFromServer")) {
+                soundData.isFromServer = isFromServer
+            }
             let authorName = try queriedSound.get(author[name])
             soundData.authorName = authorName
             queriedSounds.append(soundData)

@@ -18,7 +18,7 @@ struct Sound: Hashable, Codable, Identifiable {
     var dateAdded: Date?
     let duration: Double
     let isOffensive: Bool
-    let isFromServer: Bool?
+    var isFromServer: Bool?
     
     init(
         id: String = UUID().uuidString,

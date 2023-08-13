@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct MainView: View {
-
     @StateObject var viewModel: MainViewViewModel
 
     @State var tabSelection: PhoneTab = .sounds
@@ -131,27 +130,14 @@ struct MainView: View {
             }
         }
         .onAppear {
-            print("RuPaul")
-
             Task { @MainActor in
                 await viewModel.sync()
             }
-
-//            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-//                totalAmount = 3
-//                message = "Atualizando dados (0/3)..."
-//            }
-//
-//            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
-//                currentAmount = 1
-//                message = "Atualizando dados (1/3)..."
-//            }
         }
     }
 }
 
 struct MainView_Previews: PreviewProvider {
-
     static var previews: some View {
         MainView(viewModel: MainViewViewModel(lastUpdateDate: "all",
                                               service: SyncService(connectionManager: ConnectionManager.shared,
