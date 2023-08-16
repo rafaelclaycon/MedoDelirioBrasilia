@@ -73,6 +73,9 @@ struct SoundsView: View {
     @ScaledMetric private var soundCountPhoneBottomPadding = 68
     @ScaledMetric private var soundCountPadBottomPadding = 22
 
+    // Networking
+    @EnvironmentObject var networkMonitor: NetworkMonitor
+
     // Beta
     private let isPreShow: Bool = false
 
@@ -165,8 +168,12 @@ struct SoundsView: View {
                         } else {
                             ScrollView {
                                 ScrollViewReader { proxy in
-                                    LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
+                                    if !networkMonitor.isConnected {
+                                        YoureOfflineView()
+                                            //.padding(.horizontal, 10)
+                                    }
 
+                                    LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
                                         if searchResults.isEmpty {
                                             NoSearchResultsView(searchText: $searchText)
                                                 .padding(.vertical, UIScreen.main.bounds.height / 4)

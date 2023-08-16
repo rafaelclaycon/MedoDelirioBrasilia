@@ -17,6 +17,7 @@ struct SidebarView: View {
     @Binding var currentSoundsListMode: SoundsListMode
     @Binding var updateSoundList: Bool
     @EnvironmentObject var settingsHelper: SettingsHelper
+    @EnvironmentObject var networkMonitor: NetworkMonitor
     
     // Trends
     @EnvironmentObject var trendsHelper: TrendsHelper
@@ -29,7 +30,7 @@ struct SidebarView: View {
                                                                            authorSortOption: AuthorSortOption.nameAscending.rawValue,
                                                                            currentSoundsListMode: $currentSoundsListMode),
                                             currentViewMode: .allSounds,
-                                            currentSoundsListMode: $currentSoundsListMode, updateList: $updateSoundList).environmentObject(trendsHelper).environmentObject(settingsHelper),
+                                            currentSoundsListMode: $currentSoundsListMode, updateList: $updateSoundList).environmentObject(trendsHelper).environmentObject(settingsHelper).environmentObject(networkMonitor),
                     tag: PadScreen.allSounds,
                     selection: $state,
                     label: {

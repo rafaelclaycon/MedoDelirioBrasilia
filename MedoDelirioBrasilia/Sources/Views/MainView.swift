@@ -21,6 +21,9 @@ struct MainView: View {
     // Trends
     @State var soundIdToGoToFromTrends: String = .empty
     @StateObject var trendsHelper = TrendsHelper()
+
+    // Networking
+    let networkMonitor = NetworkMonitor()
     
     var body: some View {
         ZStack {
@@ -35,6 +38,7 @@ struct MainView: View {
                                    updateList: $viewModel.updateSoundList)
                         .environmentObject(trendsHelper)
                         .environmentObject(settingsHelper)
+                        .environmentObject(networkMonitor)
                     }
                     .tabItem {
                         Label("Sons", systemImage: "speaker.wave.3.fill")
@@ -103,6 +107,7 @@ struct MainView: View {
                                 updateSoundList: $viewModel.updateSoundList)
                     .environmentObject(trendsHelper)
                     .environmentObject(settingsHelper)
+                    .environmentObject(networkMonitor)
                     
                     SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
                                                               authorSortOption: AuthorSortOption.nameAscending.rawValue,
@@ -112,6 +117,7 @@ struct MainView: View {
                                updateList: $viewModel.updateSoundList)
                     .environmentObject(trendsHelper)
                     .environmentObject(settingsHelper)
+                    .environmentObject(networkMonitor)
                 }
                 .navigationViewStyle(DoubleColumnNavigationViewStyle())
                 .sheet(isPresented: $isShowingSettingsSheet) {
