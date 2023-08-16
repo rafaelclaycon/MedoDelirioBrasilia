@@ -1,14 +1,18 @@
-import SwiftUI
+//
+//  MedoDelirioBrasiliaApp.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 05/05/22.
+//
 
-var player: AudioPlayer?
-var database = LocalDatabase()
+import SwiftUI
 
 //let networkRabbit = NetworkRabbit(serverPath: "https://654e-2804-1b3-8640-96df-d0b4-dd5d-6922-bb1b.sa.ngrok.io/api/")
 let networkRabbit = NetworkRabbit(serverPath: CommandLine.arguments.contains("-UNDER_DEVELOPMENT") ? "http://127.0.0.1:8080/api/" : "http://medodelirioios.lat:8080/api/")
-let podium = Podium(database: database, networkRabbit: networkRabbit)
+let podium = Podium(database: LocalDatabase.shared, networkRabbit: networkRabbit)
 
-let soundsLastUpdateDate: String = "26/06/2023"
-let songsLastUpdateDate: String = "17/06/2023"
+let soundsLastUpdateDate: String = "11/08/2023"
+let songsLastUpdateDate: String = "20/07/2023"
 
 var moveDatabaseIssue: String = .empty
 
@@ -36,7 +40,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         replaceUserSettingFlag()
         
         do {
-            try database.migrateIfNeeded()
+            try LocalDatabase.shared.migrateIfNeeded()
         } catch {
             fatalError("Failed to migrate database: \(error)")
         }
@@ -57,8 +61,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         guard ProcessInfo.processInfo.isiOSAppOnMac else { return }
         guard let path = Bundle.main.path(forResource: "Lula - Eu posso tomar cafe.mp3", ofType: nil) else { return }
         let url = URL(fileURLWithPath: path)
-        player = AudioPlayer(url: url, update: { _ in })
-        player?.prepareToPlay()
+        AudioPlayer.shared = AudioPlayer(url: url, update: { _ in })
+        AudioPlayer.shared?.prepareToPlay()
     }
     
     // MARK: - Telemetry

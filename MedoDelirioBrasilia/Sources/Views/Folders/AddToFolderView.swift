@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddToFolderView: View {
 
-    @StateObject private var viewModel = AddToFolderViewViewModel(database: database)
+    @StateObject private var viewModel = AddToFolderViewViewModel(database: LocalDatabase.shared)
     @Binding var isBeingShown: Bool
     @Binding var hadSuccess: Bool
     @Binding var folderName: String?
@@ -99,7 +99,7 @@ struct AddToFolderView: View {
                                     
                                     if selectedSounds.count == soundsThatCanBeAdded?.count {
                                         selectedSounds.forEach { sound in
-                                            try? database.insert(contentId: sound.id, intoUserFolder: folder.id)
+                                            try? LocalDatabase.shared.insert(contentId: sound.id, intoUserFolder: folder.id)
                                         }
                                         
                                         folderName = "\(folder.symbol) \(folder.name)"
@@ -132,14 +132,14 @@ struct AddToFolderView: View {
                 }
             )
             .onAppear {
-                viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
+                viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.getAllUserFolders())
             }
             .alert(isPresented: $viewModel.showAlert) {
                 switch viewModel.alertType {
                 case .twoOptions:
                     return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .default(Text("Adicionar"), action: {
                         soundsThatCanBeAdded?.forEach { sound in
-                            try? database.insert(contentId: sound.id, intoUserFolder: folderForSomeSoundsAlreadyInFolder?.id ?? .empty)
+                            try? LocalDatabase.shared.insert(contentId: sound.id, intoUserFolder: folderForSomeSoundsAlreadyInFolder?.id ?? .empty)
                         }
                         
                         if let folder = folderForSomeSoundsAlreadyInFolder {
@@ -159,7 +159,7 @@ struct AddToFolderView: View {
             }
             .onChange(of: isShowingCreateNewFolderScreen) { isShowingCreateNewFolderScreen in
                 if isShowingCreateNewFolderScreen == false {
-                    viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
+                    viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.getAllUserFolders())
                 }
             }
         }

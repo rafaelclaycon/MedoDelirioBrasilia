@@ -87,14 +87,14 @@ class SongsViewViewModel: ObservableObject {
         nowPlayingKeeper.removeAll()
         nowPlayingKeeper.insert(songId)
         
-        player = AudioPlayer(url: url, update: { [weak self] state in
+        AudioPlayer.shared = AudioPlayer(url: url, update: { [weak self] state in
             //print(state?.activity as Any)
             if state?.activity == .stopped {
                 self?.nowPlayingKeeper.removeAll()
             }
         })
         
-        player?.togglePlay()
+        AudioPlayer.shared?.togglePlay()
     }
 
     func shareSong(withPath filepath: String, andContentId contentId: String) {

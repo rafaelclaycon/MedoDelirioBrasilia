@@ -1,4 +1,4 @@
-import Foundation
+import UIKit
 
 struct Shared {
 
@@ -11,7 +11,6 @@ struct Shared {
         static let viewLastWeekTopChart = "com.rafaelschmitt.MedoDelirioBrasilia.ViewLastWeekTopChart"
         static let viewLastMonthTopChart = "com.rafaelschmitt.MedoDelirioBrasilia.ViewLastMonthTopChart"
         static let viewAllTimeTopChart = "com.rafaelschmitt.MedoDelirioBrasilia.ViewAllTimeTopChart"
-        
     }
     
     static let addToFolderButtonText = "Adicionar a Pasta"
@@ -26,7 +25,6 @@ struct Shared {
         static let selectSounds = "Selecionar Sons"
         static let soundSelectedSingular = "1 Selecionado"
         static let soundsSelectedPlural = "%d Selecionados"
-        
     }
     
     static let contentFilterMessageForSoundsiPhone = "Alguns sons não estão sendo exibidos pois a opção Exibir Conteúdo Explícito está desabilitada.\n\nVocê pode mudar isso nas Configurações (ícone de engrenagem aqui no topo esquerdo da tela)."
@@ -46,12 +44,11 @@ struct Shared {
         
         static let songNotFoundAlertTitle = "Música Indisponível"
         static let songNotFoundAlertMessage = "Devido a um problema técnico, a música que você quer acessar não está disponível."
-        
     }
     
     // E-mail
     
-    static let issueSuggestionEmailSubject = "Problema/sugestão no app iOS \(Versioneer.appVersion) Build \(Versioneer.buildVersionNumber)"
+    static let issueSuggestionEmailSubject = "Problema/sugestão no app v\(Versioneer.appVersion) (\(UIDevice.current.systemName) \(UIDevice.current.systemVersion))"
     static let issueSuggestionEmailBody = "Para um problema, inclua passos para reproduzir e prints se possível."
     static let suggestOtherAuthorNameEmailSubject = "Sugestão de Outro Nome de Autor Para %@"
     static let suggestOtherAuthorNameEmailBody = "Nome de autor antigo: %@\nNovo nome de autor: \n\nID do conteúdo: %@ (para uso interno)"
@@ -65,16 +62,13 @@ struct Shared {
             
             static let subject = "Pedido de som de %@"
             static let body = "Inclua link para vídeo ou nome do episódio e minuto; qualquer dado que facilite o nosso trabalho."
-            
         }
         
         struct AuthorDetailIssue {
             
-            static let subject = "Problema com %@ no app iOS \(Versioneer.appVersion) Build \(Versioneer.buildVersionNumber)"
+            static let subject = "Problema com %@ no app v\(Versioneer.appVersion) (\(UIDevice.current.systemName) \(UIDevice.current.systemVersion))"
             static let body = "Por favor, descreva o problema."
-            
         }
-        
     }
     
     struct ShareAsVideo {
@@ -83,7 +77,6 @@ struct Shared {
         static let generatingVideoLongMessage = "Gerando vídeo...\nIsso pode demorar um pouco."
         static let videoSavedSucessfully = "Vídeo salvo com sucesso."
         static let videoSavedSucessfullyMac = "Vídeo salvo com sucesso no app Fotos."
-        
     }
     
     struct Trends {
@@ -92,13 +85,11 @@ struct Shared {
         static let lastWeek = "Última semana"
         static let lastMonth = "Último mês"
         static let allTime = "Todos os tempos"
-
     }
     
     struct Folders {
         
         static let defaultFolderColor = "pastelPurple"
-        
     }
     
     struct ScreenNames {
@@ -106,7 +97,6 @@ struct Shared {
         static let soundsView = "SoundsView"
         static let authorsView = "AuthorsView"
         static let authorDetailView = "AuthorDetailView"
-        
     }
     
     struct AuthorDetail {
@@ -115,9 +105,6 @@ struct Shared {
             
             static let title = "Nos Ajude a Te Ajudar"
             static let message = "Somos uma equipe minúscula e pouquíssimos sons do podcast já estão pré-cortados e separados.\n\nPara aumentar as chances do seu som ser incluído, coloque no e-mail o máximo de informações possível, como link para vídeo, nome do episódio e minuto no qual o som que você quer apareceu, etc."
-            
         }
-        
     }
-
 }

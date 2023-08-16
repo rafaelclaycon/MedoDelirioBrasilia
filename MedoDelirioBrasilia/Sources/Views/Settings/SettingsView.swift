@@ -102,7 +102,7 @@ struct SettingsView: View {
                     }
                 }
                 
-                if showAskForMoneyView {
+                if showAskForMoneyView || CommandLine.arguments.contains("-FORCE_SHOW_HELP_THE_APP") {
                     Section {
                         HelpTheAppView(donors: $donors, imageIsSelected: $showLargeCreatorImage)
                             .padding(donors != nil ? .top : .vertical)
