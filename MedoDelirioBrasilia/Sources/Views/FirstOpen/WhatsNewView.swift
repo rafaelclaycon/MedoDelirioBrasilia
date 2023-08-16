@@ -12,7 +12,7 @@ struct WhatsNewView: View {
     @Binding var isBeingShown: Bool
     
     private var spacingTopBottom: CGFloat {
-        UIScreen.main.bounds.width > 389 ? 100 : 50
+        100
     }
     
     private var systemName: String {

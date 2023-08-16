@@ -21,11 +21,7 @@ struct AddToFolderView: View {
     @State private var folderForSomeSoundsAlreadyInFolder: UserFolder? = nil
     
     private var createNewFolderCellWidth: CGFloat {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            return (UIScreen.main.bounds.size.width / 2) - 20
-        } else {
-            return 250
-        }
+        return 250
     }
     
     private let columns = [

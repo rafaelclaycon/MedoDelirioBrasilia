@@ -5,16 +5,7 @@ struct FoldersBannerView: View {
     @Binding var displayMe: Bool
     
     var roundedRectangleHeight: CGFloat {
-        switch UIScreen.main.bounds.width {
-        case 320:
-            return 220
-        case 375:
-            return 180
-        case 390:
-            return 176
-        default:
-            return 166
-        }
+        return 166
     }
     
     var body: some View {

@@ -3,22 +3,7 @@ import SwiftUI
 struct HitsMedoDelirioBannerView: View {
 
     var roundedRectangleHeight: CGFloat {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            switch UIScreen.main.bounds.width {
-            case 320: // iPhone SE 1
-                return 237
-            case 375: // iPhone 8
-                return 242
-            case 390: // iPhone 12/13
-                return 243
-            case 428: // iPhone 13 Pro Max
-                return 210
-            default: // iPhone 11/8 Plus
-                return 230
-            }
-        } else { // iPad/Mac
-            return 150
-        }
+        return 150
     }
     
     var body: some View {

@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Kingfisher
 
 struct CollectionCell: View {
 
@@ -17,18 +16,20 @@ struct CollectionCell: View {
     
     var body: some View {
         ZStack {
-            KFImage(URL(string: imageURL))
-                .placeholder {
-                    Image(systemName: "photo")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 35)
-                        .foregroundColor(.gray)
-                }
-                .resizable()
-                .scaledToFill()
-                .frame(width: 180)
-                .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+//            #if !os (xrOS)
+//            KFImage(URL(string: imageURL))
+//                .placeholder {
+//                    Image(systemName: "photo")
+//                        .resizable()
+//                        .scaledToFit()
+//                        .frame(height: 35)
+//                        .foregroundColor(.gray)
+//                }
+//                .resizable()
+//                .scaledToFill()
+//                .frame(width: 180)
+//                .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+//            #endif
             
 //            RoundedRectangle(cornerRadius: 20, style: .continuous)
 //                .fill(regularGradient)

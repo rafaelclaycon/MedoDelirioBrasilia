@@ -7,17 +7,7 @@ struct JoinFolderResearchBannerView: View {
     @Environment(\.colorScheme) var colorScheme
     
     var backgroundHeight: CGFloat {
-        guard UIDevice.current.userInterfaceIdiom == .phone else {
-            return 140
-        }
-        switch UIScreen.main.bounds.width {
-        case 320:
-            return 240
-        case 428, 430:
-            return 180
-        default:
-            return 200
-        }
+        return 140
     }
     
     var backgroundOpacity: Double {
@@ -29,17 +19,7 @@ struct JoinFolderResearchBannerView: View {
     }
     
     var buttonInternalPadding: CGFloat {
-        guard UIDevice.current.userInterfaceIdiom == .phone else {
-            return 20
-        }
-        switch UIScreen.main.bounds.width {
-        case 320:
-            return 0
-        case 375:
-            return 10
-        default:
-            return 20
-        }
+        return 20
     }
     
     var body: some View {
