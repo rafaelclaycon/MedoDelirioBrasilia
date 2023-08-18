@@ -1737,5 +1737,16 @@
         "id": "DA5FDEF1-AF28-4D3D-96D0-BE645B50F7B0",
         "name": "Augusto Aras",
         "description": "Jurista brasileiro, professor e atual procurador-geral da República."
+    },
+    {
+        "id": "9AC945E8-5B9C-472A-804D-F3C0BB63F097",
+        "name": "Carlos Osorio",
+        "photo": "https://bolavip.com/__export/1646691574592/sites/bolavip/img/2022/03/07/carlos_roberto_osxrio_crop1646690946027.jpeg_1159711837.jpeg",
+        "description": "Empresário, político e dirigente esportivo brasileiro."
+    },
+    {
+        "id": "E9ECF444-11F2-4B61-B3B4-84DD67E9D9C0",
+        "name": "Júlio Paulucci",
+        "description": "Comediante e ator brasileiro. @talvezsejaojulio no Instagram."
     }
 ]

@@ -3242,7 +3242,7 @@
     {
         "id": "4690BCEE-FF58-41D7-AE5F-4A4BFF8950A7",
         "title": "Não dá pra continuar, tá passando mal",
-        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "authorId": "9AC945E8-5B9C-472A-804D-F3C0BB63F097",
         "description": "Não dá pra continuar tá passando mal Flavio Bolsonaro desmaio",
         "filename": "Osorio - Flavio Bolsonaro desmaio - Nao da pra continuar, ta passando mal short.mp3",
         "dateAdded": "2022-06-09T00:00:00Z",
@@ -11107,6 +11107,16 @@
         "filename": "Jair Bolsonaro - A cor do Cialis.mp3",
         "dateAdded": "2023-08-11T00:00:00Z",
         "duration": 1.99,
+        "isOffensive": true
+    },
+    {
+        "id": "2D031963-C141-408D-BBC9-354592D56351",
+        "title": "Foda-se",
+        "authorId": "E9ECF444-11F2-4B61-B3B4-84DD67E9D9C0",
+        "description": "cara eu não gosto de futebol feminino porque eu acho foda-se foda-se ninguém quer saber na verdade eu só tô falando isso porque eu acho que não tem muito como comparar a marta com o neymar a única coisa que eu queria dizer é que eu acho que o filme da barbie ele tem foda-se",
+        "filename": "Julio Paulucci - Foda-se.mp3",
+        "dateAdded": "2023-08-17T00:00:00Z",
+        "duration": 38.11,
         "isOffensive": true
     }
 ]
