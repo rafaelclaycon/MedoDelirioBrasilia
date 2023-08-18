@@ -36,7 +36,9 @@ struct HelpTheAppView: View {
                     .fixedSize(horizontal: false, vertical: true)
                 
                 if donors != nil, #available(iOS 16.0, *) {
-                    Text("**Últimas contribuições:**")
+                    Text("ÚLTIMAS CONTRIBUIÇÕES:")
+                        .font(.footnote)
+                        .bold()
                     
                     DonorsView(donors: $donors)
                         .padding(.bottom, 5)
