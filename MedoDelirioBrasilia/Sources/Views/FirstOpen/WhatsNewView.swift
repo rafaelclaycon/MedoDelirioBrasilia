@@ -47,7 +47,7 @@ struct WhatsNewView: View {
 
                 Text("Você faz parte do Beta! Muito obrigado! Toque em Dar Feedback na tela principal e me envie um e-mail para receber o questionário.")
                     .multilineTextAlignment(.center)
-                
+
                 Button {
                     AppPersistentMemory.setHasSeen70WhatsNewScreen(to: true)
                     dismiss()
@@ -63,7 +63,7 @@ struct WhatsNewView: View {
                 .buttonBorderShape(.roundedRectangle(radius: 15))
             }
             .padding(.top, 20)
-            padding(.bottom, 20)
+            .padding(.bottom, 20)
             .padding(.horizontal, 20)
         }
     }

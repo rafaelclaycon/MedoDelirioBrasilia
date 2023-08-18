@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct SoundsView: View {
-
-    @State private var downloadedFilepath: String = ""
-
     enum ViewMode: Int {
         case allSounds, favorites, folders, byAuthor
     }
@@ -78,6 +75,7 @@ struct SoundsView: View {
 
     // Beta
     private let isPreShow: Bool = false
+    @State var isSyncing: Bool = true
 
     private var searchResults: [Sound] {
         if searchText.isEmpty {
@@ -335,19 +333,26 @@ struct SoundsView: View {
                     showingModalView = true
                     AppPersistentMemory.setHasSeen70WhatsNewScreen(to: true) // Prevent the What's New screen from appearing when switching tabs
                 } else if AppPersistentMemory.getHasSeen70WhatsNewScreen() == false {
-//                    if UIDevice.current.userInterfaceIdiom == .phone {
-//                        subviewToOpen = .whatsNewView
-//                        showingModalView = true
-//                    } else {
-//                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//                            subviewToOpen = .whatsNewView
-//                            showingModalView = true
-//                        }
-//                    }
+                    if UIDevice.current.userInterfaceIdiom == .phone {
+                        subviewToOpen = .whatsNewView
+                        showingModalView = true
+                    } else {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            subviewToOpen = .whatsNewView
+                            showingModalView = true
+                        }
+                    }
                 }
                 
                 if moveDatabaseIssue.isEmpty == false {
                     viewModel.showMoveDatabaseIssueAlert()
+                }
+
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    isSyncing = false
+                    viewModel.sounds.append(Sound(title: "Batman", dateAdded: .now))
+                    viewModel.sounds.append(Sound(title: "Grindr sucks", dateAdded: .now))
+                    viewModel.sounds.append(Sound(title: "Blocked again", dateAdded: .now))
                 }
             }
             .sheet(isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog) {
@@ -646,6 +651,11 @@ struct SoundsView: View {
                         } label: {
                             Image(systemName: "folder.badge.plus")
                         }.disabled(viewModel.selectionKeeper.count == 0)
+                    } else {
+                        SyncStatusView(isLoading: $isSyncing)
+                            .onTapGesture {
+                                dump(viewModel.sounds.last)
+                            }
                     }
 
                     Menu {
