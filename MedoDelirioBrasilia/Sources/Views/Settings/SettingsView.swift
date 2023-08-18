@@ -113,7 +113,7 @@ struct SettingsView: View {
                     Menu {
                         Section {
                             Button {
-                                SettingsView.open(link: "https://burnthis.town/@rafael")
+                                OpenUtility.open(link: "https://burnthis.town/@rafael")
                             } label: {
                                 Label("Seguir no Mastodon", image: "mastodon")
                             }
@@ -121,7 +121,7 @@ struct SettingsView: View {
                         
                         Section {
                             Button {
-                                SettingsView.open(link: "https://jovemnerd.com.br/nerdbunker/mastodon-como-criar-conta/")
+                                OpenUtility.open(link: "https://jovemnerd.com.br/nerdbunker/mastodon-como-criar-conta/")
                             } label: {
                                 Label("Como abrir uma conta no Mastodon?", systemImage: "arrow.up.right.square")
                             }
@@ -135,7 +135,7 @@ struct SettingsView: View {
                 
                 Section("Contribua ou entenda como funciona") {
                     Button("Ver código fonte no GitHub") {
-                        SettingsView.open(link: "https://github.com/rafaelclaycon/MedoDelirioBrasilia")
+                        OpenUtility.open(link: "https://github.com/rafaelclaycon/MedoDelirioBrasilia")
                     }
                 }
                 
@@ -199,11 +199,6 @@ struct SettingsView: View {
                 .transition(.moveAndFade)
             }
         }
-    }
-    
-    static func open(link: String) {
-        guard let url = URL(string: link) else { return }
-        UIApplication.shared.open(url)
     }
 }
 
@@ -269,7 +264,7 @@ extension SettingsView {
                     Spacer()
 
                     Button {
-                        open(link: "https://apoia.se/app-medo-delirio-ios")
+                        OpenUtility.open(link: "https://apoia.se/app-medo-delirio-ios")
                     } label: {
                         HStack(spacing: 15) {
                             Image(systemName: "dollarsign.arrow.circlepath")
