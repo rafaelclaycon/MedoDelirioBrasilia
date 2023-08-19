@@ -30,7 +30,7 @@ struct SoundsView: View {
     @State private var showingModalView = false
     
     // Temporary banners
-    //@State private var shouldDisplayHotWheatherBanner: Bool = false
+    @State private var shouldDisplayRecurringDonationBanner: Bool = false
     
     // Settings
     @EnvironmentObject var settingsHelper: SettingsHelper
@@ -169,6 +169,11 @@ struct SoundsView: View {
                                     if !networkMonitor.isConnected {
                                         YoureOfflineView()
                                             //.padding(.horizontal, 10)
+                                    }
+
+                                    if shouldDisplayRecurringDonationBanner, searchText.isEmpty {
+                                        RecurringDonationBanner(isBeingShown: $shouldDisplayRecurringDonationBanner)
+                                            .padding(.horizontal, 10)
                                     }
 
                                     LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
@@ -341,6 +346,12 @@ struct SoundsView: View {
                             subviewToOpen = .whatsNewView
                             showingModalView = true
                         }
+                    }
+                }
+
+                if !AppPersistentMemory.getHasSeenRecurringDonationBanner() {
+                    networkRabbit.displayRecurringDonationBanner {
+                        shouldDisplayRecurringDonationBanner = $0
                     }
                 }
                 

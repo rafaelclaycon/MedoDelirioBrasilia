@@ -99,6 +99,14 @@ class AppPersistentMemory {
         }
         return Bool(value as! Bool)
     }
+
+    static func getHasSeenRecurringDonationBanner() -> Bool {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "hasSeenRecurringDonationBanner") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
     
     // MARK: - Setters
     
@@ -160,5 +168,10 @@ class AppPersistentMemory {
     static func setHasSeen70WhatsNewScreen(to newValue: Bool) {
         let userDefaults = UserDefaults.standard
         userDefaults.set(newValue, forKey: "hasSeen70WhatsNewScreen")
+    }
+
+    static func setHasSeenRecurringDonationBanner(to newValue: Bool) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(newValue, forKey: "hasSeenRecurringDonationBanner")
     }
 }
