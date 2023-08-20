@@ -77,7 +77,7 @@ struct SoundsView: View {
     private let isPreShow: Bool = false
 
     // Sync
-    @State var isSyncing: Bool = true
+    //@State var isSyncing: Bool = true
     @AppStorage("lastUpdateDate") private var lastUpdateDate = "all"
 
     private var searchResults: [Sound] {
@@ -363,10 +363,10 @@ struct SoundsView: View {
                 }
 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    isSyncing = false
-                    viewModel.sounds.append(Sound(title: "Batman", dateAdded: .now))
-                    viewModel.sounds.append(Sound(title: "Grindr sucks", dateAdded: .now))
-                    viewModel.sounds.append(Sound(title: "Blocked again", dateAdded: .now))
+                    //isSyncing = false
+//                    viewModel.sounds.append(Sound(title: "Batman", dateAdded: .now))
+//                    viewModel.sounds.append(Sound(title: "Grindr sucks", dateAdded: .now))
+//                    viewModel.sounds.append(Sound(title: "Blocked again", dateAdded: .now))
                 }
 
                 print("MARSHA: \(lastUpdateDate)")
@@ -671,7 +671,7 @@ struct SoundsView: View {
                             Image(systemName: "folder.badge.plus")
                         }.disabled(viewModel.selectionKeeper.count == 0)
                     } else {
-                        SyncStatusView(isLoading: $isSyncing)
+                        SyncStatusView()
                             .onTapGesture {
                                 subviewToOpen = .syncInfoView
                                 showingModalView = true

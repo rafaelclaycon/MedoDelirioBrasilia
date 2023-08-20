@@ -22,9 +22,10 @@ struct MainView: View {
     @State var soundIdToGoToFromTrends: String = .empty
     @StateObject var trendsHelper = TrendsHelper()
 
-    // Networking
+    // Sync
     let networkMonitor = NetworkMonitor()
-    
+    @StateObject private var syncValues = SyncValues()
+
     var body: some View {
         ZStack {
             if UIDevice.current.userInterfaceIdiom == .phone {
@@ -130,11 +131,8 @@ struct MainView: View {
                     FolderInfoEditingView(isBeingShown: $isShowingFolderInfoEditingSheet, selectedBackgroundColor: Shared.Folders.defaultFolderColor)
                 }
             }
-            
-            if viewModel.showSyncProgressView {
-                OverlaySyncProgressView(message: $viewModel.message, currentValue: $viewModel.currentAmount, totalValue: $viewModel.totalAmount)
-            }
         }
+        .environmentObject(syncValues)
         .onAppear {
             Task { @MainActor in
                 await viewModel.sync()

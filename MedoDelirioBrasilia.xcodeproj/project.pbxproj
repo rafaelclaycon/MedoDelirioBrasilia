@@ -1095,6 +1095,7 @@
 		D99070552A905DA300A26F65 /* SyncInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99070542A905DA300A26F65 /* SyncInfoView.swift */; };
 		D99070592A90E20100A26F65 /* SyncInfoView+KnowMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99070582A90E20100A26F65 /* SyncInfoView+KnowMoreView.swift */; };
 		D990705D2A90E6CB00A26F65 /* LargeRoundedRectangleBorderedButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D990705C2A90E6CB00A26F65 /* LargeRoundedRectangleBorderedButtonStyle.swift */; };
+		D99070612A92CE7C00A26F65 /* SyncValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99070602A92CE7C00A26F65 /* SyncValues.swift */; };
 		D99151272873E4C100FFAA29 /* rock-eu-vou-pra-ceilandia-mdb.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D991511A2873E4C100FFAA29 /* rock-eu-vou-pra-ceilandia-mdb.mp3 */; };
 		D99151282873E4C100FFAA29 /* funk-podem-escrever-e-me-cobrem-mdb.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D991511B2873E4C100FFAA29 /* funk-podem-escrever-e-me-cobrem-mdb.mp3 */; };
 		D99151292873E4C100FFAA29 /* house-mascara-no-rabo-mdb.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D991511C2873E4C100FFAA29 /* house-mascara-no-rabo-mdb.mp3 */; };
@@ -2546,6 +2547,7 @@
 		D99070542A905DA300A26F65 /* SyncInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncInfoView.swift; sourceTree = "<group>"; };
 		D99070582A90E20100A26F65 /* SyncInfoView+KnowMoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SyncInfoView+KnowMoreView.swift"; sourceTree = "<group>"; };
 		D990705C2A90E6CB00A26F65 /* LargeRoundedRectangleBorderedButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeRoundedRectangleBorderedButtonStyle.swift; sourceTree = "<group>"; };
+		D99070602A92CE7C00A26F65 /* SyncValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncValues.swift; sourceTree = "<group>"; };
 		D991511A2873E4C100FFAA29 /* rock-eu-vou-pra-ceilandia-mdb.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "rock-eu-vou-pra-ceilandia-mdb.mp3"; sourceTree = "<group>"; };
 		D991511B2873E4C100FFAA29 /* funk-podem-escrever-e-me-cobrem-mdb.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "funk-podem-escrever-e-me-cobrem-mdb.mp3"; sourceTree = "<group>"; };
 		D991511C2873E4C100FFAA29 /* house-mascara-no-rabo-mdb.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "house-mascara-no-rabo-mdb.mp3"; sourceTree = "<group>"; };
@@ -4540,7 +4542,6 @@
 				D97B2DD828E5EA0500C3B50B /* DeleteFolderViewAide.swift */,
 				D9A3AB6A28F03C970064CB7A /* ViewStates.swift */,
 				D9F9BB38294A167C0005BE56 /* TrendsHelper.swift */,
-				D96A641F2955F32F00DC0F03 /* SettingsHelper.swift */,
 				D99A9619299A6CC700BB5F0D /* SoundsListMode.swift */,
 			);
 			path = ViewAid;
@@ -4607,6 +4608,7 @@
 		D98EC5DF2825A04000340BE5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D99070622A92CEB900A26F65 /* EnvironmentObjects */,
 				D95C3E102A02E6BB00172C17 /* Sync */,
 				D97B2DD728E5E9E400C3B50B /* ViewAid */,
 				D9BB1E7928B3212000C5FFAA /* Core */,
@@ -4638,6 +4640,15 @@
 				D99070582A90E20100A26F65 /* SyncInfoView+KnowMoreView.swift */,
 			);
 			path = Sync;
+			sourceTree = "<group>";
+		};
+		D99070622A92CEB900A26F65 /* EnvironmentObjects */ = {
+			isa = PBXGroup;
+			children = (
+				D96A641F2955F32F00DC0F03 /* SettingsHelper.swift */,
+				D99070602A92CE7C00A26F65 /* SyncValues.swift */,
+			);
+			path = EnvironmentObjects;
 			sourceTree = "<group>";
 		};
 		D992146D2A8F219F004E82BC /* Banners */ = {
@@ -6436,6 +6447,7 @@
 				D9E39DBB2A1E8B320053A527 /* LocalDatabase+SyncLog.swift in Sources */,
 				D9943F2328641C00002C6B97 /* LocalDatabase.swift in Sources */,
 				D916536628ADCD9B007F141D /* ShareAsVideoLegacyViewViewModel.swift in Sources */,
+				D99070612A92CE7C00A26F65 /* SyncValues.swift in Sources */,
 				D93D24E02849DAAB00300541 /* DiagnosticsView.swift in Sources */,
 				D90E2E5728853CDC00F406B6 /* AuthorCell.swift in Sources */,
 				D9A096D8287CE72300773869 /* Mailman.swift in Sources */,

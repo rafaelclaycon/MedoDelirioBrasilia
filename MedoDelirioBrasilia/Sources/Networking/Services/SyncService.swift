@@ -9,14 +9,12 @@ import Foundation
 import SwiftUI
 
 internal protocol SyncServiceProtocol {
-
     func getUpdates(from updateDateToConsider: String) async throws -> [UpdateEvent]
     func hasConnectivity() -> Bool
     func process(updateEvent: UpdateEvent) async
 }
 
 class SyncService: SyncServiceProtocol {
-    
     private let connectionManager: ConnectionManagerProtocol
     private let networkRabbit: NetworkRabbitProtocol
     let injectedDatabase: LocalDatabaseProtocol
@@ -90,13 +88,15 @@ class SyncService: SyncServiceProtocol {
 }
 
 enum SyncResult {
-    
     case nothingToUpdate, updated
 }
 
 enum SyncError: Error {
-    
     case noInternet
     case errorInsertingUpdateEvent(updateEventId: String)
     case updateError
+}
+
+enum SyncUIStatus {
+    case updating, done, noInternet, updateError
 }

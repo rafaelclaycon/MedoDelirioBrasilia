@@ -2,7 +2,6 @@
 import Foundation
 
 class NetworkRabbitStub: NetworkRabbitProtocol {
-    
     var serverPath: String
     
     var serverShouldBeUnavailable = false

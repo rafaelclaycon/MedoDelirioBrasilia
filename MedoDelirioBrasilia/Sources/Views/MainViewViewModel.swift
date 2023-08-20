@@ -10,15 +10,11 @@ import SwiftUI
 
 @MainActor
 class MainViewViewModel: ObservableObject {
+    @EnvironmentObject var syncValues: SyncValues
 
-    @Published var showSyncProgressView = false
-    @Published var message = "Procurando atualizações..."
-    @Published var currentAmount: Double = 0
-    @Published var totalAmount: Double = 1
-    @Published var localUnsuccessfulUpdates: [UpdateEvent]? = nil
-    @Published var serverUpdates: [UpdateEvent]? = nil
+    private var localUnsuccessfulUpdates: [UpdateEvent]? = nil
+    private var serverUpdates: [UpdateEvent]? = nil
     @Published var updateSoundList: Bool = false
-    @Published var showYoureOfflineWarning = false
 
     private var lastUpdateDate: String
 
@@ -42,34 +38,31 @@ class MainViewViewModel: ObservableObject {
 
     func sync() async {
         guard service.hasConnectivity() else {
-            return showYoureOfflineWarning = true
+            syncValues.syncStatus = .noInternet
+            return
         }
 
         await MainActor.run {
-            showSyncProgressView = true
+            syncValues.syncStatus = .updating
         }
 
         do {
             try await retryLocal()
             try await syncDataWithServer()
             updateSoundList = true
-            showSyncProgressView = false
+            syncValues.syncStatus = .done
         } catch SyncError.noInternet {
-            updateSoundList = true
-            showSyncProgressView = false
+            syncValues.syncStatus = .noInternet
         } catch NetworkRabbitError.errorFetchingUpdateEvents(let errorMessage) {
             print(errorMessage)
             logger.logSyncError(description: errorMessage, updateEventId: "")
-            updateSoundList = true
-            showSyncProgressView = false
+            syncValues.syncStatus = .done // Maybe .updateError down the line?
         } catch SyncError.errorInsertingUpdateEvent(let updateEventId) {
             logger.logSyncError(description: "Erro ao tentar inserir UpdateEvent no banco de dados.", updateEventId: updateEventId)
-            updateSoundList = true
-            showSyncProgressView = false
+            syncValues.syncStatus = .done
         } catch {
             logger.logSyncError(description: error.localizedDescription, updateEventId: "")
-            updateSoundList = true
-            showSyncProgressView = false
+            syncValues.syncStatus = .done
         }
     }
 
@@ -77,9 +70,6 @@ class MainViewViewModel: ObservableObject {
         let localResult = try await retrieveUnsuccessfulLocalUpdates()
         print("Resultado do fetchLocalUnsuccessfulUpdates: \(localResult)")
         if localResult > 0 {
-            await MainActor.run {
-                totalAmount = localResult
-            }
             try await syncUnsuccessful()
         }
     }
@@ -88,10 +78,6 @@ class MainViewViewModel: ObservableObject {
         let result = try await retrieveServerUpdates()
         print("Resultado do retrieveServerUpdates: \(result)")
         if result > 0 {
-            await MainActor.run {
-                totalAmount = result
-                message = "Atualizando dados (0/\(Int(totalAmount)))..."
-            }
             try await serverSync()
         }
     }
@@ -132,11 +118,6 @@ class MainViewViewModel: ObservableObject {
             }
 
             await service.process(updateEvent: update)
-
-            await MainActor.run {
-                currentAmount += 1.0
-                message = "Atualizando dados (\(Int(currentAmount))/\(Int(totalAmount)))..."
-            }
         }
 
         lastUpdateDateInUserDefaults = Date.now.iso8601withFractionalSeconds
@@ -152,13 +133,8 @@ class MainViewViewModel: ObservableObject {
             throw SyncError.noInternet
         }
 
-        currentAmount = 0.0
         for update in localUnsuccessfulUpdates {
             await service.process(updateEvent: update)
-
-            await MainActor.run {
-                currentAmount += 1.0
-            }
         }
     }
 }
