@@ -13,7 +13,7 @@ struct SoundsView: View {
     }
 
     enum SubviewToOpen {
-        case onboardingView, addToFolderView, shareAsVideoView, settingsView, whatsNewView
+        case onboardingView, addToFolderView, shareAsVideoView, settingsView, whatsNewView, syncInfoView
     }
 
     @StateObject var viewModel: SoundsViewViewModel
@@ -75,7 +75,10 @@ struct SoundsView: View {
 
     // Beta
     private let isPreShow: Bool = false
+
+    // Sync
     @State var isSyncing: Bool = true
+    @AppStorage("lastUpdateDate") private var lastUpdateDate = "all"
 
     private var searchResults: [Sound] {
         if searchText.isEmpty {
@@ -359,12 +362,14 @@ struct SoundsView: View {
                     viewModel.showMoveDatabaseIssueAlert()
                 }
 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     isSyncing = false
                     viewModel.sounds.append(Sound(title: "Batman", dateAdded: .now))
                     viewModel.sounds.append(Sound(title: "Grindr sucks", dateAdded: .now))
                     viewModel.sounds.append(Sound(title: "Blocked again", dateAdded: .now))
                 }
+
+                print("MARSHA: \(lastUpdateDate)")
             }
             .sheet(isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog) {
                 EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog,
@@ -432,6 +437,9 @@ struct SoundsView: View {
                     
                 case .whatsNewView:
                     WhatsNewView(isBeingShown: $showingModalView)
+
+                case .syncInfoView:
+                    SyncInfoView(isBeingShown: $showingModalView, lastUpdateDate: lastUpdateDate)
                 }
             }
             .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in
@@ -665,7 +673,8 @@ struct SoundsView: View {
                     } else {
                         SyncStatusView(isLoading: $isSyncing)
                             .onTapGesture {
-                                dump(viewModel.sounds.last)
+                                subviewToOpen = .syncInfoView
+                                showingModalView = true
                             }
                     }
 
