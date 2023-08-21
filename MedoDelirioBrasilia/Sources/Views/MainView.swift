@@ -133,6 +133,9 @@ struct MainView: View {
             }
         }
         .environmentObject(syncValues)
+        .onChange(of: viewModel.syncStatus) {
+            syncValues.syncStatus = $0
+        }
         .onAppear {
             Task { @MainActor in
                 await viewModel.sync()

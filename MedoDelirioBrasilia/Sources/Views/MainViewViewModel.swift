@@ -10,7 +10,7 @@ import SwiftUI
 
 @MainActor
 class MainViewViewModel: ObservableObject {
-    @EnvironmentObject var syncValues: SyncValues
+    @Published var syncStatus: SyncUIStatus = .updating
 
     private var localUnsuccessfulUpdates: [UpdateEvent]? = nil
     private var serverUpdates: [UpdateEvent]? = nil
@@ -38,31 +38,30 @@ class MainViewViewModel: ObservableObject {
 
     func sync() async {
         guard service.hasConnectivity() else {
-            syncValues.syncStatus = .noInternet
+            syncStatus = .noInternet
             return
         }
 
         await MainActor.run {
-            syncValues.syncStatus = .updating
+            syncStatus = .updating
         }
 
         do {
             try await retryLocal()
             try await syncDataWithServer()
-            updateSoundList = true
-            syncValues.syncStatus = .done
+            syncStatus = .done
         } catch SyncError.noInternet {
-            syncValues.syncStatus = .noInternet
+            syncStatus = .noInternet
         } catch NetworkRabbitError.errorFetchingUpdateEvents(let errorMessage) {
             print(errorMessage)
             logger.logSyncError(description: errorMessage, updateEventId: "")
-            syncValues.syncStatus = .done // Maybe .updateError down the line?
+            syncStatus = .done // Maybe .updateError down the line?
         } catch SyncError.errorInsertingUpdateEvent(let updateEventId) {
             logger.logSyncError(description: "Erro ao tentar inserir UpdateEvent no banco de dados.", updateEventId: updateEventId)
-            syncValues.syncStatus = .done
+            syncStatus = .done
         } catch {
             logger.logSyncError(description: error.localizedDescription, updateEventId: "")
-            syncValues.syncStatus = .done
+            syncStatus = .done
         }
     }
 
