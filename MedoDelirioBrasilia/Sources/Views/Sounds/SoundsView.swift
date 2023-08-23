@@ -174,10 +174,10 @@ struct SoundsView: View {
                                             //.padding(.horizontal, 10)
                                     }
 
-                                    if shouldDisplayRecurringDonationBanner, searchText.isEmpty {
-                                        RecurringDonationBanner(isBeingShown: $shouldDisplayRecurringDonationBanner)
-                                            .padding(.horizontal, 10)
-                                    }
+//                                    if shouldDisplayRecurringDonationBanner, searchText.isEmpty {
+//                                        RecurringDonationBanner(isBeingShown: $shouldDisplayRecurringDonationBanner)
+//                                            .padding(.horizontal, 10)
+//                                    }
 
                                     LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
                                         if searchResults.isEmpty {
@@ -327,11 +327,8 @@ struct SoundsView: View {
             .navigationTitle(Text(title))
             .navigationBarItems(leading: leadingToolbarControls(), trailing: trailingToolbarControls())
             .onAppear {
-//                viewModel.reloadList(withSounds: try! LocalDatabase.shared.allSounds(),
-//                                     andFavorites: try? LocalDatabase.shared.getAllFavorites(),
-//                                     allowSensitiveContent: UserSettings.getShowExplicitContent(),
-//                                     favoritesOnly: currentViewMode == .favorites,
-//                                     sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
+                loadLocalSounds()
+
                 columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
                 viewModel.donateActivity()
                 viewModel.sendUserPersonalTrendsToServerIfEnabled()
@@ -352,11 +349,11 @@ struct SoundsView: View {
                     }
                 }
 
-                if !AppPersistentMemory.getHasSeenRecurringDonationBanner() {
-                    networkRabbit.displayRecurringDonationBanner {
-                        shouldDisplayRecurringDonationBanner = $0
-                    }
-                }
+//                if !AppPersistentMemory.getHasSeenRecurringDonationBanner() {
+//                    networkRabbit.displayRecurringDonationBanner {
+//                        shouldDisplayRecurringDonationBanner = $0
+//                    }
+//                }
                 
                 if moveDatabaseIssue.isEmpty == false {
                     viewModel.showMoveDatabaseIssueAlert()

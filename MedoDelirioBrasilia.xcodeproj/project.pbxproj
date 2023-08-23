@@ -1226,6 +1226,7 @@
 		D9B47636290DE3C1007C8ED0 /* Padre Kelmon - Nao existira pessoas.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B47635290DE3C0007C8ED0 /* Padre Kelmon - Nao existira pessoas.mp3 */; };
 		D9B4F73F283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B4F73D283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 */; };
 		D9B4F740283C8F4D0000EEF7 /* O roque ativa.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B4F73E283C8F4D0000EEF7 /* O roque ativa.mp3 */; };
+		D9B681E32A942C2E00AB7417 /* SyncInfoCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B681E22A942C2E00AB7417 /* SyncInfoCard.swift */; };
 		D9B763282845B5E600CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B763272845B5E500CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift */; };
 		D9B7996A2996D11000E8CDDA /* Usuario do Boldo Bom - Traz pra mim, Marquinho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B799692996D11000E8CDDA /* Usuario do Boldo Bom - Traz pra mim, Marquinho.mp3 */; };
 		D9B83361291890D9007E47EB /* Pedro Daltro e Cristiano Botafogo - Comemorando a vitoria.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B83360291890D9007E47EB /* Pedro Daltro e Cristiano Botafogo - Comemorando a vitoria.mp3 */; };
@@ -2676,6 +2677,7 @@
 		D9B47635290DE3C0007C8ED0 /* Padre Kelmon - Nao existira pessoas.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Padre Kelmon - Nao existira pessoas.mp3"; sourceTree = "<group>"; };
 		D9B4F73D283C8F4D0000EEF7 /* Unidos do Medo e Delírio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Unidos do Medo e Delírio.mp3"; sourceTree = "<group>"; };
 		D9B4F73E283C8F4D0000EEF7 /* O roque ativa.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O roque ativa.mp3"; sourceTree = "<group>"; };
+		D9B681E22A942C2E00AB7417 /* SyncInfoCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncInfoCard.swift; sourceTree = "<group>"; };
 		D9B763272845B5E500CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKStoreReviewController+requestReviewInCurrentScene.swift"; sourceTree = "<group>"; };
 		D9B799692996D11000E8CDDA /* Usuario do Boldo Bom - Traz pra mim, Marquinho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Usuario do Boldo Bom - Traz pra mim, Marquinho.mp3"; sourceTree = "<group>"; };
 		D9B83360291890D9007E47EB /* Pedro Daltro e Cristiano Botafogo - Comemorando a vitoria.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pedro Daltro e Cristiano Botafogo - Comemorando a vitoria.mp3"; sourceTree = "<group>"; };
@@ -4636,6 +4638,7 @@
 		D99070532A905D9200A26F65 /* Sync */ = {
 			isa = PBXGroup;
 			children = (
+				D9B681E12A942C1000AB7417 /* Components */,
 				D99070542A905DA300A26F65 /* SyncInfoView.swift */,
 				D99070582A90E20100A26F65 /* SyncInfoView+KnowMoreView.swift */,
 			);
@@ -4738,6 +4741,14 @@
 				D9ABDDAF287411C9007B25EA /* SongHelpView.swift */,
 			);
 			path = Help;
+			sourceTree = "<group>";
+		};
+		D9B681E12A942C1000AB7417 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				D9B681E22A942C2E00AB7417 /* SyncInfoCard.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		D9B9025C2837485000551239 /* Sounds */ = {
@@ -6343,6 +6354,7 @@
 				D967E2BA290196F900B21C11 /* WallE.swift in Sources */,
 				D93F643029A6A692003E7550 /* ShareAsVideoViewViewModel.swift in Sources */,
 				D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */,
+				D9B681E32A942C2E00AB7417 /* SyncInfoCard.swift in Sources */,
 				D93A02982906DE8C00A85FE2 /* UserFolderLog.swift in Sources */,
 				D992146F2A8F21C2004E82BC /* RecurringDonationBanner.swift in Sources */,
 				D9E9CFA5292C40BF002BC918 /* NoFoldersSymbol.swift in Sources */,

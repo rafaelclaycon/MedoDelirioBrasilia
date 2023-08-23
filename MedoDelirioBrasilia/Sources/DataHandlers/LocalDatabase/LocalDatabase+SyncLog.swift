@@ -18,4 +18,32 @@ extension LocalDatabase {
             print(error)
         }
     }
+
+    func getLastTenRecords() -> [SyncLog] {
+        var syncLogs: [SyncLog] = []
+
+        let id = Expression<String>("id")
+        let log_type = Expression<String>("logType")
+        let description = Expression<String>("description")
+        let date_time = Expression<String>("dateTime")
+        let update_event_id = Expression<String>("updateEventId")
+
+        do {
+            //for row in try db.prepare(syncLogTable.filter(log_type == SyncLogType.error.rawValue).order(Expression<String>("dateTime").desc).limit(10)) {
+            for row in try db.prepare(syncLogTable.order(date_time.desc).limit(5)) {
+                syncLogs.append(
+                    SyncLog(
+                        id: row[id],
+                        logType: SyncLogType(rawValue: row[log_type]) ?? .error,
+                        description: row[description],
+                        dateTime: row[date_time],
+                        updateEventId: row[update_event_id]
+                    )
+                )
+            }
+        } catch {
+            print(error)
+        }
+        return syncLogs
+    }
 }

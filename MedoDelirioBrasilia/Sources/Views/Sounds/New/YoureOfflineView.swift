@@ -12,7 +12,7 @@ struct YoureOfflineView: View {
 
     var body: some View {
         HStack(spacing: 15) {
-            Image(systemName: "wifi")
+            Image(systemName: "wifi.slash")
                 .resizable()
                 .scaledToFit()
                 .frame(width: 36)

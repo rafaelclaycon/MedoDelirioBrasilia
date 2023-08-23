@@ -55,13 +55,13 @@ class MainViewViewModel: ObservableObject {
         } catch NetworkRabbitError.errorFetchingUpdateEvents(let errorMessage) {
             print(errorMessage)
             logger.logSyncError(description: errorMessage, updateEventId: "")
-            syncStatus = .done // Maybe .updateError down the line?
+            syncStatus = .updateError
         } catch SyncError.errorInsertingUpdateEvent(let updateEventId) {
             logger.logSyncError(description: "Erro ao tentar inserir UpdateEvent no banco de dados.", updateEventId: updateEventId)
-            syncStatus = .done
+            syncStatus = .updateError
         } catch {
             logger.logSyncError(description: error.localizedDescription, updateEventId: "")
-            syncStatus = .done
+            syncStatus = .updateError
         }
     }
 

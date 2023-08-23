@@ -70,10 +70,6 @@
             argument = "-FORCE_SHOW_HELP_THE_APP"
             isEnabled = "YES">
          </CommandLineArgument>
-         <CommandLineArgument
-            argument = "-USE_NEW_SOUND_LIST"
-            isEnabled = "NO">
-         </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
