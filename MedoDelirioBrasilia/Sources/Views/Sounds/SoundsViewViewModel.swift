@@ -138,6 +138,11 @@ class SoundsViewViewModel: ObservableObject {
             AudioPlayer.shared?.togglePlay()
         } catch {
             print(error)
+            if sound.isFromServer ?? false {
+                showServerSoundNotAvailableAlert()
+            } else {
+                showUnableToGetSoundAlert()
+            }
         }
     }
     
@@ -450,6 +455,14 @@ class SoundsViewViewModel: ObservableObject {
         showAlert = true
     }
     
+    func showServerSoundNotAvailableAlert() {
+        TapticFeedback.error()
+        alertType = .twoOptions
+        alertTitle = Shared.soundNotFoundAlertTitle
+        alertMessage = "Provavelmente houve um problema com o download desse som.\n\nBeta! 😊"
+        showAlert = true
+    }
+    
     func showMoveDatabaseIssueAlert() {
         TapticFeedback.error()
         alertType = .singleOption
@@ -457,5 +470,4 @@ class SoundsViewViewModel: ObservableObject {
         alertMessage = "Houve um problema ao tentar mover o banco de dados do app. Por favor, envie um print desse erro para o desenvolvedor (e-mail nas Configurações):\n\n\(moveDatabaseIssue)"
         showAlert = true
     }
-
 }
