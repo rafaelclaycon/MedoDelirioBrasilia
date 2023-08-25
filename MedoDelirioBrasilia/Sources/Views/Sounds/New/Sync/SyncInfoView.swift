@@ -172,13 +172,18 @@ extension SyncInfoView {
                     .bold()
                     .multilineTextAlignment(.center)
 
-                Text("Últimos 5 registros de erro:")
+                Text("Últimos registros de erro:")
                     .font(.headline)
 
                 LazyVStack {
                     ForEach(errors) { error in
-                        SyncInfoCard(imageName: "exclamationmark.triangle", imageColor: .gray, title: error.description, timestamp: error.dateTime.formattedDate)
-                            .padding(.vertical, 5)
+                        SyncInfoCard(
+                            imageName: error.logType == .error ? "exclamationmark.triangle" : "checkmark.circle",
+                            imageColor: error.logType == .error ? .orange : .green,
+                            title: error.description,
+                            timestamp: error.dateTime.formattedDate
+                        )
+                        .padding(.vertical, 5)
                     }
                 }
 

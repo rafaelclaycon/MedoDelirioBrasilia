@@ -50,6 +50,7 @@ class MainViewViewModel: ObservableObject {
             try await retryLocal()
             try await syncDataWithServer()
             syncStatus = .done
+            updateSoundList = true
         } catch SyncError.noInternet {
             syncStatus = .noInternet
         } catch NetworkRabbitError.errorFetchingUpdateEvents(let errorMessage) {

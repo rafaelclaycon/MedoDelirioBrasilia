@@ -668,6 +668,10 @@ struct SoundsView: View {
                             Image(systemName: "folder.badge.plus")
                         }.disabled(viewModel.selectionKeeper.count == 0)
                     } else {
+                        Button("Dar Feedback") {
+                            print("Feedback")
+                        }
+
                         SyncStatusView()
                             .onTapGesture {
                                 subviewToOpen = .syncInfoView

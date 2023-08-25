@@ -12,16 +12,18 @@ struct SyncInfoCard: View {
     let imageName: String
     let imageColor: Color
     let title: String
-    //let text: String
     let timestamp: String
 
     var body: some View {
-        HStack(spacing: 14) {
+        HStack(spacing: .zero) {
             Image(systemName: imageName)
                 .resizable()
                 .scaledToFit()
                 .frame(width: 30)
                 .foregroundColor(imageColor)
+
+            Spacer()
+                .frame(width: 14)
 
             VStack(alignment: .leading, spacing: 5) {
                 Text(title)
@@ -45,8 +47,8 @@ struct SyncInfoCard_Previews: PreviewProvider {
 
     static var previews: some View {
         SyncInfoCard(
-            imageName: "exclamationmark.triangle.fill",
-            imageColor: .gray,
+            imageName: "exclamationmark.triangle",
+            imageColor: .orange,
             title: "Não foi possível conectar ao servidor.",
             timestamp: "21/08/2023 18:52"
         )

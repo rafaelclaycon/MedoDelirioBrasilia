@@ -29,8 +29,7 @@ extension LocalDatabase {
         let update_event_id = Expression<String>("updateEventId")
 
         do {
-            //for row in try db.prepare(syncLogTable.filter(log_type == SyncLogType.error.rawValue).order(Expression<String>("dateTime").desc).limit(10)) {
-            for row in try db.prepare(syncLogTable.order(date_time.desc).limit(5)) {
+            for row in try db.prepare(syncLogTable.filter(log_type == "\"error\"").order(date_time.desc).limit(5)) {
                 syncLogs.append(
                     SyncLog(
                         id: row[id],
