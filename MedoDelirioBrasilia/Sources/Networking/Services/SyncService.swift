@@ -82,6 +82,7 @@ class SyncService: SyncServiceProtocol {
             }
             
         case .song:
+            Logger.shared.logSyncError(description: "Nada pôde ser feito com a Música \"\(updateEvent.contentId)\" pois a sincronização de Músicas ainda não existe.", updateEventId: updateEvent.id.uuidString)
             print("Not implemented yet")
         }
     }

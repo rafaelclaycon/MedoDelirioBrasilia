@@ -18,6 +18,7 @@ extension SyncService {
             try await downloadFile(updateEvent.contentId)
             
             try injectedDatabase.markAsSucceeded(updateEventId: updateEvent.id)
+            Logger.shared.logSyncSuccess(description: "Som \"\(sound.title)\" criado com sucesso.", updateEventId: updateEvent.id.uuidString)
         } catch {
             print(error)
             Logger.shared.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
@@ -30,6 +31,7 @@ extension SyncService {
             let sound: Sound = try await NetworkRabbit.get(from: url)
             try injectedDatabase.update(sound: sound)
             try injectedDatabase.markAsSucceeded(updateEventId: updateEvent.id)
+            Logger.shared.logSyncSuccess(description: "Metadados do Som \"\(sound.title)\" atualizados com sucesso.", updateEventId: updateEvent.id.uuidString)
         } catch {
             print(error)
             Logger.shared.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
@@ -41,6 +43,7 @@ extension SyncService {
             try await downloadFile(updateEvent.contentId)
             try injectedDatabase.setIsFromServer(to: true, on: updateEvent.contentId)
             try injectedDatabase.markAsSucceeded(updateEventId: updateEvent.id)
+            Logger.shared.logSyncSuccess(description: "Arquivo do Som \"\(updateEvent.contentId)\" atualizado.", updateEventId: updateEvent.id.uuidString)
         } catch {
             print(error)
             Logger.shared.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
@@ -52,6 +55,7 @@ extension SyncService {
             try injectedDatabase.delete(soundId: updateEvent.contentId)
             try removeSoundFileIfExists(named: updateEvent.contentId)
             try injectedDatabase.markAsSucceeded(updateEventId: updateEvent.id)
+            Logger.shared.logSyncSuccess(description: "Som \"\(updateEvent.contentId)\" apagado com sucesso.", updateEventId: updateEvent.id.uuidString)
         } catch {
             print(error)
             Logger.shared.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)

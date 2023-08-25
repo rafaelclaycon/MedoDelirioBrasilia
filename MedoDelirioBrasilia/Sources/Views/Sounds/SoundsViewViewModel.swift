@@ -20,6 +20,7 @@ class SoundsViewViewModel: ObservableObject {
     @Published var selectionKeeper = Set<String>()
     @Published var showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = false
     @Published var showEmailAppPicker_soundUnavailableConfirmationDialog = false
+    @Published var showEmailAppPicker_sendFeedback = false
     @Published var selectedSound: Sound? = nil
     @Published var selectedSounds: [Sound]? = nil
     var currentSoundsListMode: Binding<SoundsListMode>
