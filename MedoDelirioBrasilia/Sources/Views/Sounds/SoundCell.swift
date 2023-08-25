@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct SoundCell: View {
-    
-    @State var sound: Sound
-    @State var isInsideFolder: Bool = false
+
+    let sound: Sound
+    var isInsideFolder: Bool = false
     
     @Binding var favorites: Set<String>
     @Binding var highlighted: Set<String>
