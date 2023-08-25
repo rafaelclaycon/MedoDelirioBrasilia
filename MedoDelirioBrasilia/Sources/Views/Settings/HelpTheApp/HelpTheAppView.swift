@@ -32,7 +32,7 @@ struct HelpTheAppView: View {
             }
             
             VStack(alignment: .leading, spacing: 18) {
-                Text("Esse trabalho é voluntário e envolve custos mensais com servidor (~R$ 30) e anuais com a Apple (~R$ 600 🥲). Toda contribuição é bem-vinda!")
+                Text("Esse trabalho é voluntário e envolve custos mensais com servidor (~R$ 60) e anuais com a Apple (~R$ 600 🥲). Toda contribuição é bem-vinda!")
                     .fixedSize(horizontal: false, vertical: true)
                 
                 if donors != nil, #available(iOS 16.0, *) {
