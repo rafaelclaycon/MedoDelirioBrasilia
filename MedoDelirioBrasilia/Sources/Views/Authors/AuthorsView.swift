@@ -96,7 +96,7 @@ struct AuthorsView: View {
 
 }
 
-struct FavoritesView_Previews: PreviewProvider {
+struct AuthorsView_Previews: PreviewProvider {
 
     static var previews: some View {
         AuthorsView(sortOption: .constant(AuthorSortOption.nameAscending.rawValue), sortAction: .constant(.nameAscending), searchTextForControl: .constant(.empty))

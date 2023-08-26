@@ -21,8 +21,13 @@ extension LocalDatabase {
     
     func allAuthors() throws -> [Author] {
         var queriedAuthors = [Author]()
+        let author_id = Expression<String>("authorId")
+
         for queriedAuthor in try db.prepare(author) {
-            queriedAuthors.append(try queriedAuthor.decode())
+            var author: Author = try queriedAuthor.decode()
+            let soundsCount = try db.scalar(sound.filter(author_id == author.id).count)
+            author.soundCount = soundsCount
+            queriedAuthors.append(author)
         }
         return queriedAuthors
     }

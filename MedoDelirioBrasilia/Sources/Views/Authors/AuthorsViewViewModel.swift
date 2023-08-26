@@ -18,13 +18,7 @@ class AuthorsViewViewModel: ObservableObject {
         guard let allAuthors = try? LocalDatabase.shared.allAuthors() else { return }
         self.authors = allAuthors
         
-        if self.authors.count > 0 {
-            self.authors.indices.forEach {
-                let _ = self.authors[$0].id
-                // TODO: - Fix this
-                self.authors[$0].soundCount = 0 // soundData.filter({ $0.authorId == authorId }).count
-            }
-            
+        if self.authors.count > 0 {            
             switch sortOption {
             case .nameAscending:
                 sortAuthorsInPlaceByNameAscending()
