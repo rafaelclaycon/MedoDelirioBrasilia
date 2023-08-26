@@ -11,7 +11,7 @@ import SwiftUI
 let networkRabbit = NetworkRabbit(serverPath: CommandLine.arguments.contains("-UNDER_DEVELOPMENT") ? "http://127.0.0.1:8080/api/" : "http://medodelirioios.lat:8080/api/")
 let podium = Podium(database: LocalDatabase.shared, networkRabbit: networkRabbit)
 
-let soundsLastUpdateDate: String = "17/08/2023"
+let soundsLastUpdateDate: String = "26/08/2023"
 let songsLastUpdateDate: String = "20/07/2023"
 
 var moveDatabaseIssue: String = .empty
