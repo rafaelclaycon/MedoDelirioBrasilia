@@ -152,7 +152,11 @@ struct FolderDetailView: View {
             .navigationTitle(title)
             .toolbar { trailingToolbarControls() }
             .onAppear {
-                viewModel.reloadSoundList(withFolderContents: try? LocalDatabase.shared.getAllContentsInsideUserFolder(withId: folder.id), sortedBy: FolderSoundSortOption(rawValue: folder.userSortPreference ?? 0) ?? .titleAscending)
+                viewModel.reloadSoundList(
+                    withFolderContents: try? LocalDatabase.shared.getAllContentsInsideUserFolder(withId: folder.id),
+                    sortedBy: FolderSoundSortOption(rawValue: folder.userSortPreference ?? 0) ?? .titleAscending
+                )
+
                 columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
             }
             .onDisappear {

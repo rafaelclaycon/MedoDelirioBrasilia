@@ -44,32 +44,20 @@ class AuthorDetailViewViewModel: ObservableObject {
             sendUsageMetricToServer(originatingScreenName: originatingScreenName, authorName: authorName)
         }
     }
-    
-    func reloadList(withSounds allSounds: [Sound],
-                    andFavorites favorites: [Favorite]?,
-                    allowSensitiveContent: Bool) {
-        guard let allAuthors = try? LocalDatabase.shared.allAuthors() else { return }
-        
-        var soundsCopy = allSounds
-        
-        if allowSensitiveContent == false {
-            soundsCopy = soundsCopy.filter({ $0.isOffensive == false })
-        }
-        
-        self.sounds = soundsCopy
-        
+
+    func reloadList(
+        withSounds allSounds: [Sound]?,
+        andFavorites favorites: [Favorite]?
+    ) {
+        guard let allSounds else { return self.sounds = [Sound]() }
+
+        self.sounds = allSounds
+
         // From here the sounds array is already set
         if self.sounds.count > 0 {
-            // Needed because author names live in a different file.
-            for i in 0...(self.sounds.count - 1) {
-                self.sounds[i].authorName = allAuthors.first(where: { $0.id == self.sounds[i].authorId })?.name ?? Shared.unknownAuthor
-            }
-            
             // Populate Favorites Keeper to display favorite cells accordingly
-            if let favorites = favorites, favorites.count > 0 {
-                for favorite in favorites {
-                    favoritesKeeper.insert(favorite.contentId)
-                }
+            if let favorites, !favorites.isEmpty {
+                favoritesKeeper = Set(favorites.map { $0.contentId })
             } else {
                 favoritesKeeper.removeAll()
             }

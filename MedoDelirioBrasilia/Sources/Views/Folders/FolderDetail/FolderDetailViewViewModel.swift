@@ -41,7 +41,10 @@ class FolderDetailViewViewModel: ObservableObject {
         self.currentSoundsListMode = currentSoundsListMode
     }
     
-    func reloadSoundList(withFolderContents folderContents: [UserFolderContent]?, sortedBy sortOption: FolderSoundSortOption) {
+    func reloadSoundList(
+        withFolderContents folderContents: [UserFolderContent]?,
+        sortedBy sortOption: FolderSoundSortOption
+    ) {
         guard let folderContents = folderContents else {
             self.sounds = [Sound]()
             self.hasSoundsToDisplay = false

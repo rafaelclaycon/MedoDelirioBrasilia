@@ -85,7 +85,36 @@ extension LocalDatabase {
         }
         return queriedSounds
     }
-    
+
+    func allSounds(
+        forAuthor authorId: String,
+        isSensitiveContentAllowed: Bool
+    ) throws -> [Sound] {
+        var queriedSounds = [Sound]()
+
+        let author_id = Expression<String>("authorId")
+        let id = Expression<String>("id")
+        let name = Expression<String>("name")
+        let is_offensive = Expression<Bool>("isOffensive")
+
+        var query = sound
+            .select(sound[*], author[name])
+            .join(author, on: sound[author_id] == author[id])
+            .filter(author_id == authorId)
+
+        if !isSensitiveContentAllowed {
+            query = query.filter(is_offensive == false)
+        }
+
+        for queriedSound in try db.prepare(query) {
+            var soundData: Sound = try queriedSound.decode()
+            let authorName = try queriedSound.get(author[name])
+            soundData.authorName = authorName
+            queriedSounds.append(soundData)
+        }
+        return queriedSounds
+    }
+
 //    func update(sound updatedSound: Sound) throws {
 //        let id = Expression<String>("id")
 //        let filter = sound.filter(id == updatedSound.id)

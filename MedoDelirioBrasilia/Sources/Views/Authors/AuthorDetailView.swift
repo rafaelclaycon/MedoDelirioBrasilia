@@ -11,7 +11,9 @@ import Kingfisher
 struct AuthorDetailView: View {
 
     @StateObject var viewModel: AuthorDetailViewViewModel
-    @State var author: Author
+
+    let author: Author
+
     @State private var navBarTitle: String = .empty
     @Binding var currentSoundsListMode: SoundsListMode
     @State private var showSelectionControlsInToolbar = false
@@ -279,9 +281,11 @@ struct AuthorDetailView: View {
                 }
             }
             .onAppear {
-                viewModel.reloadList(withSounds: [Sound](), // soundData.filter({ $0.authorId == author.id }), // TODO: - Fix this
-                                     andFavorites: try? LocalDatabase.shared.getAllFavorites(),
-                                     allowSensitiveContent: UserSettings.getShowExplicitContent())
+                viewModel.reloadList(
+                    withSounds: try? LocalDatabase.shared.allSounds(forAuthor: author.id, isSensitiveContentAllowed: UserSettings.getShowExplicitContent()),
+                    andFavorites: try? LocalDatabase.shared.getAllFavorites()
+                )
+                
                 columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
 
                 dump(author)
@@ -538,9 +542,10 @@ struct AuthorDetailView: View {
         if viewModel.allSelectedAreFavorites() {
             viewModel.removeSelectedFromFavorites()
             viewModel.stopSelecting()
-            viewModel.reloadList(withSounds: [Sound](), // soundData.filter({ $0.authorId == author.id }), // TODO: - Fix this
-                                 andFavorites: try? LocalDatabase.shared.getAllFavorites(),
-                                 allowSensitiveContent: UserSettings.getShowExplicitContent())
+            viewModel.reloadList(
+                withSounds: try? LocalDatabase.shared.allSounds(forAuthor: author.id, isSensitiveContentAllowed: UserSettings.getShowExplicitContent()),
+                andFavorites: try? LocalDatabase.shared.getAllFavorites()
+            )
             viewModel.sendUsageMetricToServer(action: "didRemoveManySoundsFromFavorites(\(selectedCount))", authorName: author.name)
         } else {
             viewModel.addSelectedToFavorites()
