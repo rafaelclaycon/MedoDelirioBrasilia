@@ -38,7 +38,7 @@ struct SidebarView: View {
                     })
                 
                 NavigationLink(
-                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(), authorSortOption: AuthorSortOption.nameAscending.rawValue, currentSoundsListMode: $currentSoundsListMode), currentViewMode: .favorites, currentSoundsListMode: $currentSoundsListMode, updateList: $updateSoundList).environmentObject(trendsHelper).environmentObject(settingsHelper),
+                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(), authorSortOption: AuthorSortOption.nameAscending.rawValue, currentSoundsListMode: $currentSoundsListMode), currentViewMode: .favorites, currentSoundsListMode: $currentSoundsListMode, updateList: $updateSoundList).environmentObject(trendsHelper).environmentObject(settingsHelper).environmentObject(networkMonitor),
                     tag: PadScreen.favorites,
                     selection: $state,
                     label: {

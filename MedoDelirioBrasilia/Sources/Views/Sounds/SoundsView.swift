@@ -73,9 +73,6 @@ struct SoundsView: View {
     // Networking
     @EnvironmentObject var networkMonitor: NetworkMonitor
 
-    // Beta
-    private let isPreShow: Bool = false
-
     // Sync
     //@State var isSyncing: Bool = true
     @AppStorage("lastUpdateDate") private var lastUpdateDate = "all"
@@ -140,10 +137,7 @@ struct SoundsView: View {
                                                              currentSoundsListMode: $currentSoundsListMode),
                                isActive: $autoOpenAuthor) { EmptyView() }
 
-                if isPreShow {
-                    Text("Em breve.")
-                        .foregroundColor(.gray)
-                } else if showNoFavoritesView {
+                if showNoFavoritesView {
                     NoFavoritesView()
                         .padding(.horizontal, 25)
                         .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? 100 : 15)
