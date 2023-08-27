@@ -116,7 +116,7 @@ struct SongsView: View {
                     }
                     
                     if searchText.isEmpty, currentGenre == nil {
-                        Text("\(viewModel.songs.count) MÚSICAS. ATUALIZADO EM \(songsLastUpdateDate).")
+                        Text("\(viewModel.songs.count) MÚSICAS.")
                             .font(.footnote)
                             .foregroundColor(.gray)
                             .multilineTextAlignment(.center)

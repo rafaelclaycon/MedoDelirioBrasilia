@@ -49,7 +49,7 @@ extension SyncService {
             Logger.shared.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
         }
     }
-    
+
     func deleteSound(_ updateEvent: UpdateEvent) {
         do {
             try injectedDatabase.delete(soundId: updateEvent.contentId)
@@ -61,7 +61,7 @@ extension SyncService {
             Logger.shared.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
         }
     }
-    
+
     // MARK: - Internal
     
     private func removeSoundFileIfExists(named filename: String) throws {

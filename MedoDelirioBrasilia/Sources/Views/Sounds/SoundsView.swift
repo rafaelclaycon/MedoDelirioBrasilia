@@ -306,7 +306,7 @@ struct SoundsView: View {
                                 }
 
                                 if searchText.isEmpty, currentViewMode != .favorites {
-                                    Text("\(viewModel.sounds.count) SONS. ATUALIZADO EM \(soundsLastUpdateDate).")
+                                    Text("\(viewModel.sounds.count) SONS.")
                                         .font(.footnote)
                                         .foregroundColor(.gray)
                                         .multilineTextAlignment(.center)
