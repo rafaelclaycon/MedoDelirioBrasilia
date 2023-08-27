@@ -60,7 +60,7 @@ struct SongCell: View {
                             .lineLimit(2)
                         
                         HStack(spacing: 10) {
-                            Text("\(song.genre.name) · \(durationForDisplay)")
+                            Text("\(song.genre) · \(durationForDisplay)")
                                 .foregroundColor(.white)
                                 .font(.callout)
                                 .multilineTextAlignment(.leading)
@@ -116,9 +116,16 @@ struct SongCell: View {
 struct SongCell_Previews: PreviewProvider {
 
     static var previews: some View {
-        SongCell(song: Song(id: "ABC", title: "Funk do Morto", genre: .funk, duration: 60), nowPlaying: .constant(Set<String>()))
-            .padding(.horizontal)
-            .previewLayout(.fixed(width: 414, height: 100))
+        SongCell(
+            song: Song(
+                id: "ABC",
+                title: "Funk do Morto",
+                genre: "82BFAA10-C01A-4FE0-8366-1B1690D00A40", // MusicGenre(id: "82BFAA10-C01A-4FE0-8366-1B1690D00A40", name: "Funk", isHidden: false)
+                duration: 60
+            ),
+            nowPlaying: .constant(Set<String>())
+        )
+        .padding(.horizontal)
+        .previewLayout(.fixed(width: 414, height: 100))
     }
-
 }

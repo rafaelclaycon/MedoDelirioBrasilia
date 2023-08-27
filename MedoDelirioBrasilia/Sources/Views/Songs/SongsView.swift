@@ -13,7 +13,7 @@ struct SongsView: View {
     
     @State private var searchText = ""
     @State private var searchBar: UISearchBar?
-    @State var currentGenre: MusicGenre = .all
+    @State var currentGenre: MusicGenre? = nil
     
     @State private var showingModalView = false
     
@@ -44,11 +44,8 @@ struct SongsView: View {
     
     var searchResults: [Song] {
         if searchText.isEmpty {
-            if currentGenre == .all {
-                return viewModel.songs
-            } else {
-                return viewModel.songs.filter({ $0.genre == currentGenre })
-            }
+            guard let currentGenre else { return viewModel.songs }
+            return viewModel.songs.filter({ $0.genre == currentGenre.id })
         } else {
             return viewModel.songs.filter { sound in
                 let searchString = sound.title.lowercased().withoutDiacritics()
@@ -118,7 +115,7 @@ struct SongsView: View {
                             .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? explicitOffWarningPhoneBottomPadding : explicitOffWarningPadBottomPadding)
                     }
                     
-                    if searchText.isEmpty, currentGenre == .all {
+                    if searchText.isEmpty, currentGenre == nil {
                         Text("\(viewModel.songs.count) MÚSICAS. ATUALIZADO EM \(songsLastUpdateDate).")
                             .font(.footnote)
                             .foregroundColor(.gray)
@@ -189,7 +186,7 @@ struct SongsView: View {
             }
             .sheet(isPresented: $showingModalView) {
                 if #available(iOS 16.0, *) {
-                    ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSong?.id ?? .empty, contentTitle: viewModel.selectedSong?.title ?? .empty, contentAuthor: viewModel.selectedSong?.genre.name ?? .empty, audioFilename: viewModel.selectedSong?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: true)
+                    ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSong?.id ?? .empty, contentTitle: viewModel.selectedSong?.title ?? .empty, contentAuthor: viewModel.selectedSong?.genre ?? .empty, audioFilename: viewModel.selectedSong?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: true)
                 } else {
                     ShareAsVideoLegacyView(viewModel: ShareAsVideoLegacyViewViewModel(contentId: viewModel.selectedSong?.id ?? .empty, contentTitle: viewModel.selectedSong?.title ?? .empty, audioFilename: viewModel.selectedSong?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: true)
                 }
@@ -233,16 +230,17 @@ struct SongsView: View {
     }
     
     @ViewBuilder func getLeadingToolbarControl() -> some View {
-        Menu {
-            Picker("Gênero", selection: $currentGenre) {
-                ForEach(MusicGenre.allCases) { genre in
-                    Text(genre.name)
-                        .tag(genre)
-                }
-            }
-        } label: {
-            Image(systemName: currentGenre == .all ? "line.3.horizontal.decrease.circle" : "line.3.horizontal.decrease.circle.fill")
-        }
+//        Menu {
+//            Picker("Gênero", selection: $currentGenre) {
+//                ForEach(MusicGenre.allCases) { genre in
+//                    Text(genre.name)
+//                        .tag(genre)
+//                }
+//            }
+//        } label: {
+//            Image(systemName: currentGenre == .all ? "line.3.horizontal.decrease.circle" : "line.3.horizontal.decrease.circle.fill")
+//        }
+        Text("TBD")
     }
 
 }
