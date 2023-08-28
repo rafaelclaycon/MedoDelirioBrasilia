@@ -13,6 +13,7 @@ internal protocol LocalDatabaseProtocol {
     // Author
     func insert(author newAuthor: Author) throws
     func update(author updatedAuthor: Author) throws
+    func delete(authorId: String) throws
 
     // UserFolder
     func contentExistsInsideUserFolder(withId folderId: String, contentId: String) throws -> Bool
@@ -115,5 +116,23 @@ enum LocalDatabaseError: Error {
     case folderNotFound
     case folderContentNotFound
     case internalError
+    case authorNotFound
+}
 
+extension LocalDatabaseError: LocalizedError {
+
+    public var errorDescription: String? {
+        switch self {
+        case .favoriteNotFound:
+            return NSLocalizedString("O Favorito solicitado não foi encontrado no banco de dados.", comment: "Favorito Não Encontrado")
+        case .folderNotFound:
+            return NSLocalizedString("A Pasta solicitada não foi encontrada no banco de dados.", comment: "Pasta Não Encontrada")
+        case .folderContentNotFound:
+            return NSLocalizedString("O Conteúdo de Pasta solicitado não foi encontrado no banco de dados.", comment: "Conteúdo de Pasta Não Encontrado")
+        case .internalError:
+            return NSLocalizedString("Ocorreu um erro interno.", comment: "Erro Interno")
+        case .authorNotFound:
+            return NSLocalizedString("O Autor solicitado não foi encontrado no banco de dados.", comment: "Autor Não Encontrado")
+        }
+    }
 }

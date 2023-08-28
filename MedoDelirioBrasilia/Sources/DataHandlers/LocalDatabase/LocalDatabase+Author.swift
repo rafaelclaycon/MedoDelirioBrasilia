@@ -52,4 +52,17 @@ extension LocalDatabase {
         )
         try db.run(updateQuery)
     }
+
+    func delete(authorId: String) throws {
+        let id = Expression<String>("id")
+
+        let query = author.filter(id == authorId)
+        let count = try db.scalar(query.count)
+
+        if count != 0 {
+            try db.run(query.delete())
+        } else {
+            throw LocalDatabaseError.authorNotFound
+        }
+    }
 }

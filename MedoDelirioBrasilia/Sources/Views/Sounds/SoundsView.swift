@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SoundsView: View {
+
     enum ViewMode: Int {
         case allSounds, favorites, folders, byAuthor
     }
@@ -353,14 +354,7 @@ struct SoundsView: View {
                     viewModel.showMoveDatabaseIssueAlert()
                 }
 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    //isSyncing = false
-//                    viewModel.sounds.append(Sound(title: "Batman", dateAdded: .now))
-//                    viewModel.sounds.append(Sound(title: "Grindr sucks", dateAdded: .now))
-//                    viewModel.sounds.append(Sound(title: "Blocked again", dateAdded: .now))
-                }
-
-                print("MARSHA: \(lastUpdateDate)")
+                //print("MARSHA: \(lastUpdateDate)")
             }
             .sheet(isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog) {
                 EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog,
