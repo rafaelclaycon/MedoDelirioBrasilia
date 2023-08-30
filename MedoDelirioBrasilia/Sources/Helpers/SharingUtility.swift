@@ -1,17 +1,19 @@
+//
+//  SharingUtility.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 28/06/22.
+//
+
 import UIKit
 
-class Sharer {
+class SharingUtility {
 
-    static func shareSound(withPath filepath: String, andContentId contentId: String, completionHandler: @escaping (Bool) -> Void) throws {
-        guard filepath.isEmpty == false else {
-            return
-        }
-        
-        guard let path = Bundle.main.path(forResource: filepath, ofType: nil) else {
-            throw SharerError.unableToFindSoundFile
-        }
-        let url = URL(fileURLWithPath: path)
-        
+    static func shareSound(
+        from url: URL,
+        andContentId contentId: String,
+        completionHandler: @escaping (Bool) -> Void
+    ) throws {
         let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
         DispatchQueue.main.async {
             UIApplication.shared.keyWindow?.rootViewController?.present(activityVC, animated: true, completion: nil)
@@ -121,11 +123,9 @@ class Sharer {
             UIApplication.shared.keyWindow?.rootViewController?.present(activityVC, animated: true, completion: nil)
         }
     }
-
 }
 
 enum SharerError: Error {
 
     case unableToFindSoundFile
-
 }

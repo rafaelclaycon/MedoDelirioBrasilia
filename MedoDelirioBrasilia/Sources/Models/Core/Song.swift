@@ -36,4 +36,16 @@ struct Song: Hashable, Codable, Identifiable {
         self.dateAdded = dateAdded
         self.isOffensive = isOffensive
     }
+
+    func fileURL() throws -> URL {
+        guard let path = Bundle.main.path(forResource: self.filename, ofType: nil) else {
+            throw SongError.fileNotFound
+        }
+        return URL(fileURLWithPath: path)
+    }
+}
+
+enum SongError: Error {
+
+    case fileNotFound
 }

@@ -78,7 +78,7 @@ struct SongsView: View {
                                     .contextMenu(menuItems: {
                                         Section {
                                             Button {
-                                                viewModel.shareSong(withPath: song.filename, andContentId: song.id)
+                                                viewModel.share(song: song)
                                             } label: {
                                                 Label(Shared.shareSongButtonText, systemImage: "square.and.arrow.up")
                                             }

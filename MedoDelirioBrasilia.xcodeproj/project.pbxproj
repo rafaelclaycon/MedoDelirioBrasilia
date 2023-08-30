@@ -1074,7 +1074,7 @@
 		D98674132A6B4B6800CCB9D3 /* Monica Poli - Attenzione, pickpocket (completo).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98674102A6B4B6800CCB9D3 /* Monica Poli - Attenzione, pickpocket (completo).mp3 */; };
 		D98674142A6B4B6800CCB9D3 /* Monica Poli - Attenzione, pickpocket.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98674112A6B4B6800CCB9D3 /* Monica Poli - Attenzione, pickpocket.mp3 */; };
 		D9877D2928694F3200B541F9 /* LocalDatabase+UserFolderContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9877D2828694F3200B541F9 /* LocalDatabase+UserFolderContent.swift */; };
-		D9877D2B2869845400B541F9 /* Sharer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9877D2A2869845400B541F9 /* Sharer.swift */; };
+		D9877D2B2869845400B541F9 /* SharingUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9877D2A2869845400B541F9 /* SharingUtility.swift */; };
 		D988C523283C33E100D64404 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D988C522283C33E100D64404 /* UserSettings.swift */; };
 		D989D3B72921AD3500DFB333 /* Renan (Choque de Cultura) - A sensibilidade incrivel desse homem.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D989D3B62921AD3400DFB333 /* Renan (Choque de Cultura) - A sensibilidade incrivel desse homem.mp3 */; };
 		D989D3BB2921AE1C00DFB333 /* Jair Bolsonaro - Nao tem qualquer sensibilidade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D989D3B92921AE1C00DFB333 /* Jair Bolsonaro - Nao tem qualquer sensibilidade.mp3 */; };
@@ -2526,7 +2526,7 @@
 		D98674102A6B4B6800CCB9D3 /* Monica Poli - Attenzione, pickpocket (completo).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Monica Poli - Attenzione, pickpocket (completo).mp3"; sourceTree = "<group>"; };
 		D98674112A6B4B6800CCB9D3 /* Monica Poli - Attenzione, pickpocket.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Monica Poli - Attenzione, pickpocket.mp3"; sourceTree = "<group>"; };
 		D9877D2828694F3200B541F9 /* LocalDatabase+UserFolderContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+UserFolderContent.swift"; sourceTree = "<group>"; };
-		D9877D2A2869845400B541F9 /* Sharer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sharer.swift; sourceTree = "<group>"; };
+		D9877D2A2869845400B541F9 /* SharingUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingUtility.swift; sourceTree = "<group>"; };
 		D988C522283C33E100D64404 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		D989D3B62921AD3400DFB333 /* Renan (Choque de Cultura) - A sensibilidade incrivel desse homem.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Renan (Choque de Cultura) - A sensibilidade incrivel desse homem.mp3"; sourceTree = "<group>"; };
 		D989D3B92921AE1C00DFB333 /* Jair Bolsonaro - Nao tem qualquer sensibilidade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Nao tem qualquer sensibilidade.mp3"; sourceTree = "<group>"; };
@@ -4177,7 +4177,7 @@
 				D960AF282845C82E00ADF1F6 /* AppStoreReviewSteward.swift */,
 				D991E597284A94F70005705F /* Podium.swift */,
 				D927C423285245CE0041970A /* SoundOptionsHelper.swift */,
-				D9877D2A2869845400B541F9 /* Sharer.swift */,
+				D9877D2A2869845400B541F9 /* SharingUtility.swift */,
 				D9FB48992870FE7800FF90D0 /* TapticHelper.swift */,
 				D938132E287E12B3009EE24F /* NotificationAide.swift */,
 				D9A096D7287CE72300773869 /* Mailman.swift */,
@@ -6368,7 +6368,7 @@
 				D92694062A029A62007872D9 /* SyncService.swift in Sources */,
 				D960AF272845BFE700ADF1F6 /* UserDefaultsKeys.swift in Sources */,
 				D91B4DF6299BBE5B00E92824 /* SelectMultipleSymbol.swift in Sources */,
-				D9877D2B2869845400B541F9 /* Sharer.swift in Sources */,
+				D9877D2B2869845400B541F9 /* SharingUtility.swift in Sources */,
 				D94EAB5129FC0907004CD604 /* AppDelegate+MoveSoundsAuthors.swift in Sources */,
 				D988C523283C33E100D64404 /* UserSettings.swift in Sources */,
 				D92E7075283C5F620035826C /* SongCell.swift in Sources */,

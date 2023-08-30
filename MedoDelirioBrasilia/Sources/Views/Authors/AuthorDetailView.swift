@@ -193,7 +193,7 @@ struct AuthorDetailView: View {
                                             if currentSoundsListMode != .selection {
                                                 Section {
                                                     Button {
-                                                        viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
+                                                        viewModel.share(sound: sound)
                                                     } label: {
                                                         Label(Shared.shareSoundButtonText, systemImage: "square.and.arrow.up")
                                                     }

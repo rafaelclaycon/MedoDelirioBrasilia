@@ -58,6 +58,14 @@ extension LocalDatabase {
         let query = sound.select(sound[*], author[name]).join(author, on: sound[author_id] == author[id]).filter(id == soundId)
         for queriedSound in try db.prepare(query) {
             var soundData: Sound = try queriedSound.decode()
+            if let dateString = try queriedSound.get(Expression<String?>("dateAdded")) {
+                if let date = dateFormatter.date(from: dateString) {
+                    soundData.dateAdded = date
+                }
+            }
+            if let isFromServer = try queriedSound.get(Expression<Bool?>("isFromServer")) {
+                soundData.isFromServer = isFromServer
+            }
             let authorName = try queriedSound.get(author[name])
             soundData.authorName = authorName
             queriedSounds.append(soundData)
@@ -79,6 +87,14 @@ extension LocalDatabase {
         
         for queriedSound in try db.prepare(query) {
             var soundData: Sound = try queriedSound.decode()
+            if let dateString = try queriedSound.get(Expression<String?>("dateAdded")) {
+                if let date = dateFormatter.date(from: dateString) {
+                    soundData.dateAdded = date
+                }
+            }
+            if let isFromServer = try queriedSound.get(Expression<Bool?>("isFromServer")) {
+                soundData.isFromServer = isFromServer
+            }
             let authorName = try queriedSound.get(author[name])
             soundData.authorName = authorName
             queriedSounds.append(soundData)
@@ -108,6 +124,14 @@ extension LocalDatabase {
 
         for queriedSound in try db.prepare(query) {
             var soundData: Sound = try queriedSound.decode()
+            if let dateString = try queriedSound.get(Expression<String?>("dateAdded")) {
+                if let date = dateFormatter.date(from: dateString) {
+                    soundData.dateAdded = date
+                }
+            }
+            if let isFromServer = try queriedSound.get(Expression<Bool?>("isFromServer")) {
+                soundData.isFromServer = isFromServer
+            }
             let authorName = try queriedSound.get(author[name])
             soundData.authorName = authorName
             queriedSounds.append(soundData)

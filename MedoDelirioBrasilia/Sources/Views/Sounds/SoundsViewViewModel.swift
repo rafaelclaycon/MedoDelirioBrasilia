@@ -155,10 +155,10 @@ class SoundsViewViewModel: ObservableObject {
         }
     }
     
-    func shareSound(withPath filepath: String, andContentId contentId: String) {
+    func share(sound: Sound) {
         if UIDevice.current.userInterfaceIdiom == .phone {
             do {
-                try Sharer.shareSound(withPath: filepath, andContentId: contentId) { didShareSuccessfully in
+                try SharingUtility.shareSound(from: sound.fileURL(), andContentId: sound.id) { didShareSuccessfully in
                     if didShareSuccessfully {
                         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
                             withAnimation {
@@ -179,43 +179,39 @@ class SoundsViewViewModel: ObservableObject {
                 showUnableToGetSoundAlert()
             }
         } else {
-            guard filepath.isEmpty == false else {
-                return
-            }
-            
-            guard let path = Bundle.main.path(forResource: filepath, ofType: nil) else {
-                return showUnableToGetSoundAlert()
-            }
-            let url = URL(fileURLWithPath: path)
-            
-            iPadShareSheet = ActivityViewController(activityItems: [url]) { activity, completed, items, error in
-                if completed {
-                    self.isShowingShareSheet = false
-                    
-                    guard let activity = activity else {
-                        return
-                    }
-                    let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
-                    Logger.shared.logSharedSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
-                    
-                    AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-                        withAnimation {
-                            self.shareBannerMessage = Shared.soundSharedSuccessfullyMessage
-                            self.displaySharedSuccessfullyToast = true
+            do {
+                let url = try sound.fileURL()
+                iPadShareSheet = ActivityViewController(activityItems: [url]) { activity, completed, items, error in
+                    if completed {
+                        self.isShowingShareSheet = false
+
+                        guard let activity = activity else {
+                            return
                         }
-                        TapticFeedback.success()
-                    }
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                        withAnimation {
-                            self.displaySharedSuccessfullyToast = false
+                        let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
+                        Logger.shared.logSharedSound(contentId: sound.id, destination: destination, destinationBundleId: activity.rawValue)
+
+                        AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
+
+                        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                            withAnimation {
+                                self.shareBannerMessage = Shared.soundSharedSuccessfullyMessage
+                                self.displaySharedSuccessfullyToast = true
+                            }
+                            TapticFeedback.success()
+                        }
+
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            withAnimation {
+                                self.displaySharedSuccessfullyToast = false
+                            }
                         }
                     }
                 }
+            } catch {
+                showUnableToGetSoundAlert()
             }
-            
+
             isShowingShareSheet = true
         }
     }
@@ -223,7 +219,7 @@ class SoundsViewViewModel: ObservableObject {
     func shareVideo(withPath filepath: String, andContentId contentId: String) {
         if UIDevice.current.userInterfaceIdiom == .phone {
             do {
-                try Sharer.shareVideoFromSound(withPath: filepath, andContentId: contentId, shareSheetDelayInSeconds: 0.6) { didShareSuccessfully in
+                try SharingUtility.shareVideoFromSound(withPath: filepath, andContentId: contentId, shareSheetDelayInSeconds: 0.6) { didShareSuccessfully in
                     if didShareSuccessfully {
                         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
                             withAnimation {
@@ -379,7 +375,7 @@ class SoundsViewViewModel: ObservableObject {
         }
         
         do {
-            try Sharer.share(sounds: selectedSounds ?? [Sound]()) { didShareSuccessfully in
+            try SharingUtility.share(sounds: selectedSounds ?? [Sound]()) { didShareSuccessfully in
                 if didShareSuccessfully {
                     DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
                         withAnimation {

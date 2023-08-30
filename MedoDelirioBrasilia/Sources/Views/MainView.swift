@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
+
     @StateObject var viewModel: MainViewViewModel
 
     @State var tabSelection: PhoneTab = .sounds
@@ -17,7 +18,7 @@ struct MainView: View {
     @State var isShowingFolderInfoEditingSheet: Bool = false
     @State var updateFolderList: Bool = false
     @State var currentSoundsListMode: SoundsListMode = .regular
-    
+
     // Trends
     @State var soundIdToGoToFromTrends: String = .empty
     @StateObject var trendsHelper = TrendsHelper()
