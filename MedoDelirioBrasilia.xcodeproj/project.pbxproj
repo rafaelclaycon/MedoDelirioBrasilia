@@ -185,7 +185,6 @@
 		D92230AC2942390500C59227 /* Jair Bolsonaro - Gases.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92230AA2942390500C59227 /* Jair Bolsonaro - Gases.mp3 */; };
 		D92230AD2942390500C59227 /* Jair Bolsonaro - Todo relaxado, gostosao, tranquilo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92230AB2942390500C59227 /* Jair Bolsonaro - Todo relaxado, gostosao, tranquilo.mp3 */; };
 		D92230AF2942391000C59227 /* Funk do Desespero Pos-Primeiro Turno de 2022.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92230AE2942391000C59227 /* Funk do Desespero Pos-Primeiro Turno de 2022.mp3 */; };
-		D92249752A8DAE1C002B2C43 /* CircularLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92249742A8DAE1C002B2C43 /* CircularLoader.swift */; };
 		D92249772A8DB08C002B2C43 /* SyncStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92249762A8DB08C002B2C43 /* SyncStatusView.swift */; };
 		D923125E28AAD5C300436336 /* Vai dar merda, vai dar meeerda.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D923125D28AAD5C300436336 /* Vai dar merda, vai dar meeerda.mp3 */; };
 		D923126028AAD5CD00436336 /* Assovio do passarinho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D923125F28AAD5CD00436336 /* Assovio do passarinho.mp3 */; };
@@ -1636,7 +1635,6 @@
 		D92230AA2942390500C59227 /* Jair Bolsonaro - Gases.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Gases.mp3"; sourceTree = "<group>"; };
 		D92230AB2942390500C59227 /* Jair Bolsonaro - Todo relaxado, gostosao, tranquilo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Todo relaxado, gostosao, tranquilo.mp3"; sourceTree = "<group>"; };
 		D92230AE2942391000C59227 /* Funk do Desespero Pos-Primeiro Turno de 2022.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Funk do Desespero Pos-Primeiro Turno de 2022.mp3"; sourceTree = "<group>"; };
-		D92249742A8DAE1C002B2C43 /* CircularLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularLoader.swift; sourceTree = "<group>"; };
 		D92249762A8DB08C002B2C43 /* SyncStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncStatusView.swift; sourceTree = "<group>"; };
 		D923125D28AAD5C300436336 /* Vai dar merda, vai dar meeerda.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Vai dar merda, vai dar meeerda.mp3"; sourceTree = "<group>"; };
 		D923125F28AAD5CD00436336 /* Assovio do passarinho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Assovio do passarinho.mp3"; sourceTree = "<group>"; };
@@ -4249,7 +4247,6 @@
 				D944C6902A0C321600AA94EA /* SyncProgressView.swift */,
 				D9A445A42A7DAE9B00484C0F /* BetaTagView.swift */,
 				D9FD9E8C2A89690C0071F4A9 /* YoureOfflineView.swift */,
-				D92249742A8DAE1C002B2C43 /* CircularLoader.swift */,
 				D92249762A8DB08C002B2C43 /* SyncStatusView.swift */,
 			);
 			path = New;
@@ -6375,7 +6372,6 @@
 				D9943F1C28641917002C6B97 /* LocalDatabase+Favorite.swift in Sources */,
 				D9A8AB2528543F8E00B5A94B /* SharingLogCell.swift in Sources */,
 				D99A961A299A6CC700BB5F0D /* SoundsListMode.swift in Sources */,
-				D92249752A8DAE1C002B2C43 /* CircularLoader.swift in Sources */,
 				D961D01828372B1800EFEDEB /* AudioPlayer.swift in Sources */,
 				D9E9CFA3292C3DD1002BC918 /* NoFoldersView.swift in Sources */,
 				D916536428AD7FF7007F141D /* VideoMaker.swift in Sources */,
