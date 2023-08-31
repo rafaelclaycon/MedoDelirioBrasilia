@@ -19,7 +19,7 @@ extension LocalDatabase {
         }
     }
 
-    func getLastTenRecords() -> [SyncLog] {
+    func lastFewLogs() -> [SyncLog] {
         var syncLogs: [SyncLog] = []
 
         let id = Expression<String>("id")
@@ -29,11 +29,11 @@ extension LocalDatabase {
         let update_event_id = Expression<String>("updateEventId")
 
         do {
-            for row in try db.prepare(syncLogTable.filter(log_type == "\"error\"").order(date_time.desc).limit(5)) {
+            for row in try db.prepare(syncLogTable.order(date_time.desc).limit(20)) { // .filter(log_type == "\"error\"")
                 syncLogs.append(
                     SyncLog(
                         id: row[id],
-                        logType: SyncLogType(rawValue: row[log_type]) ?? .error,
+                        logType: row[log_type] == "\"success\"" ? .success : .error,
                         description: row[description],
                         dateTime: row[date_time],
                         updateEventId: row[update_event_id]

@@ -17,7 +17,7 @@ extension SyncService {
             try injectedDatabase.insert(author: author)
             
             try injectedDatabase.markAsSucceeded(updateEventId: updateEvent.id)
-            Logger.shared.logSyncSuccess(description: "Autor \"\(author.name)\" criado com sucesso.", updateEventId: updateEvent.id.uuidString)
+            Logger.shared.logSyncSuccess(description: "Autor(a) \"\(author.name)\" criado(a) com sucesso.", updateEventId: updateEvent.id.uuidString)
         } catch {
             print(error)
             Logger.shared.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
@@ -30,7 +30,7 @@ extension SyncService {
             let author: Author = try await NetworkRabbit.get(from: url)
             try injectedDatabase.update(author: author)
             try injectedDatabase.markAsSucceeded(updateEventId: updateEvent.id)
-            Logger.shared.logSyncSuccess(description: "Metadados do Autor \"\(author.name)\" atualizados com sucesso.", updateEventId: updateEvent.id.uuidString)
+            Logger.shared.logSyncSuccess(description: "Metadados do(a) Autor(a) \"\(author.name)\" atualizados com sucesso.", updateEventId: updateEvent.id.uuidString)
         } catch {
             print(error)
             Logger.shared.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
@@ -41,7 +41,7 @@ extension SyncService {
         do {
             try injectedDatabase.delete(authorId: updateEvent.contentId)
             try injectedDatabase.markAsSucceeded(updateEventId: updateEvent.id)
-            Logger.shared.logSyncSuccess(description: "Autor \"\(updateEvent.contentId)\" removido com sucesso.", updateEventId: updateEvent.id.uuidString)
+            Logger.shared.logSyncSuccess(description: "Autor(a) \"\(updateEvent.contentId)\" removido(a) com sucesso.", updateEventId: updateEvent.id.uuidString)
         } catch {
             print(error)
             Logger.shared.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)

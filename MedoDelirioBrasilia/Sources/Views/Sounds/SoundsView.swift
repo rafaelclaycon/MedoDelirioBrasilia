@@ -75,7 +75,7 @@ struct SoundsView: View {
     @EnvironmentObject var networkMonitor: NetworkMonitor
 
     // Sync
-    //@State var isSyncing: Bool = true
+    @AppStorage("lastUpdateAttempt") private var lastUpdateAttempt = ""
     @AppStorage("lastUpdateDate") private var lastUpdateDate = "all"
 
     private var searchResults: [Sound] {
@@ -430,7 +430,11 @@ struct SoundsView: View {
                     WhatsNewView(isBeingShown: $showingModalView)
 
                 case .syncInfoView:
-                    SyncInfoView(isBeingShown: $showingModalView, lastUpdateDate: lastUpdateDate)
+                    SyncInfoView(
+                        isBeingShown: $showingModalView,
+                        lastUpdateAttempt: lastUpdateAttempt,
+                        lastUpdateDate: lastUpdateDate
+                    )
                 }
             }
             .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in

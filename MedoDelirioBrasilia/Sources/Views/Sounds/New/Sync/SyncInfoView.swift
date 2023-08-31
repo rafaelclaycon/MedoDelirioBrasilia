@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct SyncInfoView: View {
+
     @Binding var isBeingShown: Bool
 
+    let lastUpdateAttempt: String
     let lastUpdateDate: String
 
     @EnvironmentObject private var syncValues: SyncValues
@@ -21,7 +23,7 @@ struct SyncInfoView: View {
                 case .updating:
                     UpdatingView()
                 case .done:
-                    AllOkView(lastUpdateDate: lastUpdateDate)
+                    AllOkView(lastUpdateAttempt: lastUpdateAttempt)
                 case .noInternet:
                     NoInternetView(lastUpdateDate: lastUpdateDate)
                 case .updateError:
@@ -64,13 +66,16 @@ extension SyncInfoView {
     }
 
     struct AllOkView: View {
-        let lastUpdateDate: String
+
+        let lastUpdateAttempt: String
+
+        @State private var updates: [SyncLog] = []
 
         private var lastUpdateText: String {
-            if lastUpdateDate == "all" {
+            if lastUpdateAttempt == "" {
                 return "A última tentativa de sincronização não retornou resultados.\n\nRelaxa, isso só significa que ainda não existem novos conteúdos no servidor. Você não precisa fazer nada."
             } else {
-                return "Última sincronização em \(lastUpdateDate.formattedDate)."
+                return "Última sincronização \(lastUpdateAttempt.asRelativeDateTime ?? "")."
             }
         }
 
@@ -98,12 +103,35 @@ extension SyncInfoView {
                 Text(lastUpdateText)
                     .foregroundColor(.gray)
                     .multilineTextAlignment(.center)
+
+                HStack {
+                    Text("Registros:")
+                        .bold()
+
+                    Spacer()
+                }
+                .padding(.horizontal, 10)
+
+                VStack(spacing: 15) {
+                    ForEach(updates) { update in
+                        SyncInfoCard(
+                            imageName: update.logType == .success ? "checkmark.circle.fill" : "exclamationmark.triangle.fill",
+                            imageColor: update.logType == .success ? .green : .orange,
+                            title: update.description,
+                            timestamp: update.dateTime.asRelativeDateTime ?? ""
+                        )
+                    }
+                }
             }
             .padding(.horizontal)
+            .onAppear {
+                updates = LocalDatabase.shared.lastFewLogs()
+            }
         }
     }
 
     struct NoInternetView: View {
+
         let lastUpdateDate: String
 
         private var lastUpdateText: String {
@@ -120,7 +148,6 @@ extension SyncInfoView {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 60)
-                    //.foregroundColor(.green)
 
                 VStack(spacing: 15) {
                     Text("Você está offline.")
@@ -147,15 +174,16 @@ extension SyncInfoView {
     }
 
     struct UpdateErrorView: View {
+
         let lastUpdateDate: String
 
-        @State private var errors: [SyncLog] = []
+        @State private var updates: [SyncLog] = []
 
         private var lastUpdateText: String {
             if lastUpdateDate == "all" {
                 return "A última tentativa de sincronização não retornou resultados.\n\nRelaxa, isso só significa que ainda não existem novos conteúdos no servidor. Você não precisa fazer nada."
             } else {
-                return "Última sincronização com sucesso em \(lastUpdateDate.formattedDate)."
+                return "Última sincronização com sucesso \(lastUpdateDate.asRelativeDateTime ?? "")."
             }
         }
 
@@ -172,35 +200,41 @@ extension SyncInfoView {
                     .bold()
                     .multilineTextAlignment(.center)
 
-                Text("Últimos registros de erro:")
-                    .font(.headline)
+                Text(lastUpdateText)
+                    .foregroundColor(.gray)
+                    .multilineTextAlignment(.center)
+
+                HStack {
+                    Text("Registros:")
+                        .bold()
+
+                    Spacer()
+                }
+                .padding(.horizontal, 10)
 
                 LazyVStack {
-                    ForEach(errors) { error in
+                    ForEach(updates) { update in
                         SyncInfoCard(
-                            imageName: error.logType == .error ? "exclamationmark.triangle" : "checkmark.circle",
-                            imageColor: error.logType == .error ? .orange : .green,
-                            title: error.description,
-                            timestamp: error.dateTime.formattedDate
+                            imageName: update.logType == .error ? "exclamationmark.triangle.fill" : "checkmark.circle.fill",
+                            imageColor: update.logType == .error ? .orange : .green,
+                            title: update.description,
+                            timestamp: update.dateTime.asRelativeDateTime ?? ""
                         )
                         .padding(.vertical, 5)
                     }
                 }
-
-                Text(lastUpdateText)
-                    .foregroundColor(.gray)
-                    .multilineTextAlignment(.center)
             }
             .padding(.horizontal)
             .padding(.bottom)
             .onAppear {
-                errors = LocalDatabase.shared.getLastTenRecords()
+                updates = LocalDatabase.shared.lastFewLogs()
             }
         }
     }
 }
 
 struct SyncInfoView_Previews: PreviewProvider {
+
     static let syncValuesUpdating: SyncValues = SyncValues()
     static let syncValuesDone: SyncValues = SyncValues(syncStatus: .done)
     static let syncValuesNoInternet: SyncValues = SyncValues(syncStatus: .noInternet)
@@ -208,16 +242,16 @@ struct SyncInfoView_Previews: PreviewProvider {
 
     static var previews: some View {
         Group {
-            SyncInfoView(isBeingShown: .constant(true), lastUpdateDate: "all")
+            SyncInfoView(isBeingShown: .constant(true), lastUpdateAttempt: "", lastUpdateDate: "all")
                 .environmentObject(syncValuesUpdating)
 
-            SyncInfoView(isBeingShown: .constant(true), lastUpdateDate: "2023-08-11T20:29:46.562Z")
+            SyncInfoView(isBeingShown: .constant(true), lastUpdateAttempt: "", lastUpdateDate: "2023-08-11T20:29:46.562Z")
                 .environmentObject(syncValuesDone)
 
-            SyncInfoView(isBeingShown: .constant(true), lastUpdateDate: "2023-08-11T20:29:46.562Z")
+            SyncInfoView(isBeingShown: .constant(true), lastUpdateAttempt: "", lastUpdateDate: "2023-08-11T20:29:46.562Z")
                 .environmentObject(syncValuesNoInternet)
 
-            SyncInfoView(isBeingShown: .constant(true), lastUpdateDate: "2023-08-11T20:29:46.562Z")
+            SyncInfoView(isBeingShown: .constant(true), lastUpdateAttempt: "", lastUpdateDate: "2023-08-11T20:29:46.562Z")
                 .environmentObject(syncValuesUpdateError)
         }
     }

@@ -21,21 +21,25 @@ struct SyncInfoCard: View {
                 .scaledToFit()
                 .frame(width: 30)
                 .foregroundColor(imageColor)
+                .padding(.leading, 5)
 
             Spacer()
                 .frame(width: 14)
 
             VStack(alignment: .leading, spacing: 5) {
                 Text(title)
+                    .font(.callout)
                     .multilineTextAlignment(.leading)
 
                 Text(timestamp)
                     .foregroundColor(.gray)
-                    .font(.callout)
+                    .font(.footnote)
             }
+
+            Spacer(minLength: 0)
         }
         .frame(maxWidth: .infinity)
-        .padding(.vertical, 14)
+        .padding(.vertical, 10)
         .padding(.horizontal, 5)
         .background(.background)
         .cornerRadius(13)

@@ -19,6 +19,7 @@ class MainViewViewModel: ObservableObject {
     private var lastUpdateDate: String
 
     @AppStorage("lastUpdateDate") private var lastUpdateDateInUserDefaults = "all"
+    @AppStorage("lastUpdateAttempt") private var lastUpdateAttemptInUserDefaults = ""
 
     private var service: SyncServiceProtocol
     private var database: LocalDatabaseProtocol
@@ -64,6 +65,8 @@ class MainViewViewModel: ObservableObject {
             logger.logSyncError(description: error.localizedDescription, updateEventId: "")
             syncStatus = .updateError
         }
+
+        lastUpdateAttemptInUserDefaults = Date.now.iso8601withFractionalSeconds
     }
 
     func retryLocal() async throws {
@@ -79,6 +82,8 @@ class MainViewViewModel: ObservableObject {
         print("Resultado do retrieveServerUpdates: \(result)")
         if result > 0 {
             try await serverSync()
+        } else {
+            logger.logSyncSuccess(description: "Sincronização realizada com sucesso, porém não existem novas atualizações.", updateEventId: "")
         }
     }
 

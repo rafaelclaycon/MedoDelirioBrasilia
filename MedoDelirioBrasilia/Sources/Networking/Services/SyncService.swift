@@ -75,7 +75,7 @@ class SyncService: SyncServiceProtocol {
                 await updateAuthorMetadata(with: updateEvent)
                 
             case .fileUpdated:
-                Logger.shared.logSyncError(description: "Evento do tipo 'arquivo atualizado' recebido para o Autor \"\(updateEvent.contentId)\", porém esse tipo de evento não é válido para Autores.", updateEventId: updateEvent.id.uuidString)
+                Logger.shared.logSyncError(description: "Evento do tipo 'arquivo atualizado' recebido para o Autor(a) \"\(updateEvent.contentId)\", porém esse tipo de evento não é válido para Autores.", updateEventId: updateEvent.id.uuidString)
                 
             case .deleted:
                 await deleteAuthor(with: updateEvent)
