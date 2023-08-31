@@ -88,7 +88,7 @@ extension SyncInfoView {
                     .foregroundColor(.green)
 
                 VStack(spacing: 15) {
-                    Text("Sincronização de conteúdos habilitada.")
+                    Text("Sincronização de Conteúdos Habilitada")
                         .font(.title2)
                         .bold()
                         .multilineTextAlignment(.center)
@@ -105,7 +105,7 @@ extension SyncInfoView {
                     .multilineTextAlignment(.center)
 
                 HStack {
-                    Text("Registros:")
+                    Text("Histórico:")
                         .bold()
 
                     Spacer()
@@ -124,6 +124,7 @@ extension SyncInfoView {
                 }
             }
             .padding(.horizontal)
+            .padding(.bottom, 30)
             .onAppear {
                 updates = LocalDatabase.shared.lastFewLogs()
             }
@@ -205,7 +206,7 @@ extension SyncInfoView {
                     .multilineTextAlignment(.center)
 
                 HStack {
-                    Text("Registros:")
+                    Text("Histórico:")
                         .bold()
 
                     Spacer()
