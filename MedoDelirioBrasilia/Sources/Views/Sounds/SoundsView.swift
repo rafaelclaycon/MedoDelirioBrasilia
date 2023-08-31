@@ -530,21 +530,21 @@ struct SoundsView: View {
         }
     }
 
-    private func loadLocalSounds() {
-        Task {
-            print("loadLocalSounds()")
-
-            do {
-                var allSounds = try LocalDatabase.shared.allSounds()
-                allSounds.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
-                await MainActor.run {
-                    viewModel.sounds = allSounds
-                }
-            } catch {
-                print(error)
-            }
-        }
-    }
+//    private func loadLocalSounds() {
+//        Task {
+//            print("loadLocalSounds()")
+//
+//            do {
+//                var allSounds = try LocalDatabase.shared.allSounds()
+//                allSounds.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
+//                await MainActor.run {
+//                    viewModel.sounds = allSounds
+//                }
+//            } catch {
+//                print(error)
+//            }
+//        }
+//    }
     
     @ViewBuilder func floatingSelectorView() -> some View {
         Picker("Exibição", selection: $currentViewMode) {

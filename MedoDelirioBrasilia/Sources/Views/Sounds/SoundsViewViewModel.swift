@@ -46,53 +46,55 @@ class SoundsViewViewModel: ObservableObject {
         self.currentSoundsListMode = currentSoundsListMode
     }
     
-    func reloadList(withSounds allSounds: [Sound],
-                    andFavorites favorites: [Favorite]?,
-                    allowSensitiveContent: Bool,
-                    favoritesOnly: Bool,
-                    sortedBy sortOption: SoundSortOption) {
-        var soundsCopy = allSounds
-        
-        if favoritesOnly, let favorites = favorites {
-            soundsCopy = soundsCopy.filter({ sound in
-                favorites.contains(where: { $0.contentId == sound.id })
-            })
-        }
-        
-        if allowSensitiveContent == false {
-            soundsCopy = soundsCopy.filter({ $0.isOffensive == false })
-        }
-        
-        self.sounds = soundsCopy
-        
-        // From here the sounds array is already set
-        if self.sounds.count > 0 {
-            // Populate Favorites Keeper to display favorite cells accordingly
-            if let favorites = favorites, favorites.count > 0 {
-                for favorite in favorites {
-                    favoritesKeeper.insert(favorite.contentId)
-                }
-            } else {
-                favoritesKeeper.removeAll()
-            }
-            
-            switch sortOption {
-            case .titleAscending:
-                sortSoundsInPlaceByTitleAscending()
-            case .authorNameAscending:
-                sortSoundsInPlaceByAuthorNameAscending()
-            case .dateAddedDescending:
-                sortSoundsInPlaceByDateAddedDescending()
-            case .shortestFirst:
-                sortSoundsInPlaceByDurationAscending()
-            case .longestFirst:
-                sortSoundsInPlaceByDurationDescending()
-            case .longestTitleFirst:
-                sortSoundsInPlaceByTitleLengthDescending()
-            case .shortestTitleFirst:
-                sortSoundsInPlaceByTitleLengthAscending()
-            }
-        }
+    func reloadList(
+        withSounds allSounds: [Sound],
+        andFavorites favorites: [Favorite]?,
+        allowSensitiveContent: Bool,
+        favoritesOnly: Bool,
+        sortedBy sortOption: SoundSortOption
+    ) {
+//        var soundsCopy = allSounds
+//        
+//        if favoritesOnly, let favorites = favorites {
+//            soundsCopy = soundsCopy.filter({ sound in
+//                favorites.contains(where: { $0.contentId == sound.id })
+//            })
+//        }
+//        
+//        if allowSensitiveContent == false {
+//            soundsCopy = soundsCopy.filter({ $0.isOffensive == false })
+//        }
+//        
+//        self.sounds = soundsCopy
+//        
+//        // From here the sounds array is already set
+//        if self.sounds.count > 0 {
+//            // Populate Favorites Keeper to display favorite cells accordingly
+//            if let favorites = favorites, favorites.count > 0 {
+//                for favorite in favorites {
+//                    favoritesKeeper.insert(favorite.contentId)
+//                }
+//            } else {
+//                favoritesKeeper.removeAll()
+//            }
+//            
+//            switch sortOption {
+//            case .titleAscending:
+//                sortSoundsInPlaceByTitleAscending()
+//            case .authorNameAscending:
+//                sortSoundsInPlaceByAuthorNameAscending()
+//            case .dateAddedDescending:
+//                sortSoundsInPlaceByDateAddedDescending()
+//            case .shortestFirst:
+//                sortSoundsInPlaceByDurationAscending()
+//            case .longestFirst:
+//                sortSoundsInPlaceByDurationDescending()
+//            case .longestTitleFirst:
+//                sortSoundsInPlaceByTitleLengthDescending()
+//            case .shortestTitleFirst:
+//                sortSoundsInPlaceByTitleLengthAscending()
+//            }
+//        }
     }
     
     private func sortSoundsInPlaceByTitleAscending() {
