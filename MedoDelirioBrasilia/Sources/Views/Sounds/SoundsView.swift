@@ -30,7 +30,7 @@ struct SoundsView: View {
     @State private var showingModalView = false
     
     // Temporary banners
-    //@State private var shouldDisplayHotWheatherBanner: Bool = false
+    @State private var shouldDisplayRecurringDonationBanner: Bool = false
     
     // Settings
     @EnvironmentObject var settingsHelper: SettingsHelper
@@ -140,6 +140,11 @@ struct SoundsView: View {
                     GeometryReader { geometry in
                         ScrollView {
                             ScrollViewReader { proxy in
+                                if shouldDisplayRecurringDonationBanner, searchText.isEmpty {
+                                    RecurringDonationBanner(isBeingShown: $shouldDisplayRecurringDonationBanner)
+                                        .padding(.horizontal, 10)
+                                }
+
                                 LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
                                     if searchResults.isEmpty {
                                         NoSearchResultsView(searchText: $searchText)
@@ -310,6 +315,12 @@ struct SoundsView: View {
                             subviewToOpen = .whatsNewView
                             showingModalView = true
                         }
+                    }
+                }
+
+                if !AppPersistentMemory.getHasSeenRecurringDonationBanner() {
+                    networkRabbit.displayRecurringDonationBanner {
+                        shouldDisplayRecurringDonationBanner = $0
                     }
                 }
                 
