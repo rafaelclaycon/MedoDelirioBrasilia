@@ -209,7 +209,7 @@ extension SettingsView {
         @Binding var showToastView: Bool
 
         private var copyPixKeyButtonHorizontalPadding: CGFloat {
-            UIScreen.main.bounds.width > 400 ? 20 : 10
+            return 20
         }
 
         private let pixKey: String = "medodeliriosuporte@gmail.com"
