@@ -19,30 +19,50 @@ extension LocalDatabase {
         try db.run(insert)
     }
     
-    func allSounds() throws -> [Sound] {
+    func sounds(
+        allowSensitive: Bool,
+        favoritesOnly: Bool
+    ) throws -> [Sound] {
         var queriedSounds = [Sound]()
-        
+
         let author_id = Expression<String>("authorId")
         let id = Expression<String>("id")
         let name = Expression<String>("name")
+        let isOffensive = Expression<Bool>("isOffensive")
+        let contentId = Expression<String>("contentid")
 
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
         dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-        
-        for queriedSound in try db.prepare(sound.select(sound[*], author[name]).join(author, on: sound[author_id] == author[id])) {
+
+        var query = sound.select(sound[*], author[name])
+            .join(author, on: sound[author_id] == author[id])
+
+        if favoritesOnly {
+            query = query.join(favorite, on: sound[id] == favorite[contentId])
+        }
+
+        if !allowSensitive {
+            query = query.filter(isOffensive == false)
+        }
+
+        for queriedSound in try db.prepare(query) {
             var soundData: Sound = try queriedSound.decode()
+
             if let dateString = try queriedSound.get(Expression<String?>("dateAdded")) {
                 if let date = dateFormatter.date(from: dateString) {
                     soundData.dateAdded = date
                 }
             }
+
             if let isFromServer = try queriedSound.get(Expression<Bool?>("isFromServer")) {
                 soundData.isFromServer = isFromServer
             }
+
             let authorName = try queriedSound.get(author[name])
             soundData.authorName = authorName
+
             queriedSounds.append(soundData)
         }
         return queriedSounds

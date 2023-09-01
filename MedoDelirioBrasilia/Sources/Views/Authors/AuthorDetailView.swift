@@ -283,7 +283,7 @@ struct AuthorDetailView: View {
             .onAppear {
                 viewModel.reloadList(
                     withSounds: try? LocalDatabase.shared.allSounds(forAuthor: author.id, isSensitiveContentAllowed: UserSettings.getShowExplicitContent()),
-                    andFavorites: try? LocalDatabase.shared.getAllFavorites()
+                    andFavorites: try? LocalDatabase.shared.favorites()
                 )
                 
                 columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
@@ -544,7 +544,7 @@ struct AuthorDetailView: View {
             viewModel.stopSelecting()
             viewModel.reloadList(
                 withSounds: try? LocalDatabase.shared.allSounds(forAuthor: author.id, isSensitiveContentAllowed: UserSettings.getShowExplicitContent()),
-                andFavorites: try? LocalDatabase.shared.getAllFavorites()
+                andFavorites: try? LocalDatabase.shared.favorites()
             )
             viewModel.sendUsageMetricToServer(action: "didRemoveManySoundsFromFavorites(\(selectedCount))", authorName: author.name)
         } else {

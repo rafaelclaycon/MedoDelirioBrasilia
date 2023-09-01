@@ -10,7 +10,7 @@ import SwiftUI
 
 class SoundsViewViewModel: ObservableObject {
 
-    @Published var sounds = [Sound]()
+    @Published var sounds: [Sound] = []
     
     @Published var soundSortOption: Int
     @Published var authorSortOption: Int
@@ -46,83 +46,77 @@ class SoundsViewViewModel: ObservableObject {
         self.currentSoundsListMode = currentSoundsListMode
     }
     
-    func reloadList(
-        withSounds allSounds: [Sound],
-        andFavorites favorites: [Favorite]?,
-        allowSensitiveContent: Bool,
-        favoritesOnly: Bool,
-        sortedBy sortOption: SoundSortOption
-    ) {
-//        var soundsCopy = allSounds
-//        
-//        if favoritesOnly, let favorites = favorites {
-//            soundsCopy = soundsCopy.filter({ sound in
-//                favorites.contains(where: { $0.contentId == sound.id })
-//            })
-//        }
-//        
-//        if allowSensitiveContent == false {
-//            soundsCopy = soundsCopy.filter({ $0.isOffensive == false })
-//        }
-//        
-//        self.sounds = soundsCopy
-//        
-//        // From here the sounds array is already set
-//        if self.sounds.count > 0 {
-//            // Populate Favorites Keeper to display favorite cells accordingly
-//            if let favorites = favorites, favorites.count > 0 {
-//                for favorite in favorites {
-//                    favoritesKeeper.insert(favorite.contentId)
-//                }
-//            } else {
-//                favoritesKeeper.removeAll()
-//            }
-//            
-//            switch sortOption {
-//            case .titleAscending:
-//                sortSoundsInPlaceByTitleAscending()
-//            case .authorNameAscending:
-//                sortSoundsInPlaceByAuthorNameAscending()
-//            case .dateAddedDescending:
-//                sortSoundsInPlaceByDateAddedDescending()
-//            case .shortestFirst:
-//                sortSoundsInPlaceByDurationAscending()
-//            case .longestFirst:
-//                sortSoundsInPlaceByDurationDescending()
-//            case .longestTitleFirst:
-//                sortSoundsInPlaceByTitleLengthDescending()
-//            case .shortestTitleFirst:
-//                sortSoundsInPlaceByTitleLengthAscending()
-//            }
-//        }
+    func reloadList(currentMode: SoundsView.ViewMode) {
+        guard currentMode == .allSounds || currentMode == .favorites else { return }
+
+        do {
+            sounds = try LocalDatabase.shared.sounds(
+                allowSensitive: UserSettings.getShowExplicitContent(),
+                favoritesOnly: currentMode == .favorites
+            )
+
+            guard sounds.count > 0 else { return }
+
+            favoritesKeeper.removeAll()
+            let favorites = try LocalDatabase.shared.favorites()
+            if favorites.count > 0 {
+                for favorite in favorites {
+                    favoritesKeeper.insert(favorite.contentId)
+                }
+            }
+
+            let sortOption: SoundSortOption = SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .dateAddedDescending
+            sortSounds(by: sortOption)
+        } catch {
+            print("Erro")
+        }
+    }
+
+    func sortSounds(by sortOption: SoundSortOption) {
+        switch sortOption {
+        case .titleAscending:
+            sortSoundsInPlaceByTitleAscending()
+        case .authorNameAscending:
+            sortSoundsInPlaceByAuthorNameAscending()
+        case .dateAddedDescending:
+            sortSoundsInPlaceByDateAddedDescending()
+        case .shortestFirst:
+            sortSoundsInPlaceByDurationAscending()
+        case .longestFirst:
+            sortSoundsInPlaceByDurationDescending()
+        case .longestTitleFirst:
+            sortSoundsInPlaceByTitleLengthDescending()
+        case .shortestTitleFirst:
+            sortSoundsInPlaceByTitleLengthAscending()
+        }
     }
     
     private func sortSoundsInPlaceByTitleAscending() {
-        self.sounds.sort(by: { $0.title.withoutDiacritics() < $1.title.withoutDiacritics() })
+        sounds.sort(by: { $0.title.withoutDiacritics() < $1.title.withoutDiacritics() })
     }
     
     private func sortSoundsInPlaceByAuthorNameAscending() {
-        self.sounds.sort(by: { $0.authorName?.withoutDiacritics() ?? "" < $1.authorName?.withoutDiacritics() ?? "" })
+        sounds.sort(by: { $0.authorName?.withoutDiacritics() ?? "" < $1.authorName?.withoutDiacritics() ?? "" })
     }
     
     private func sortSoundsInPlaceByDateAddedDescending() {
-        self.sounds.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
+        sounds.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
     }
     
     private func sortSoundsInPlaceByDurationAscending() {
-        self.sounds.sort(by: { $0.duration < $1.duration })
+        sounds.sort(by: { $0.duration < $1.duration })
     }
     
     private func sortSoundsInPlaceByDurationDescending() {
-        self.sounds.sort(by: { $0.duration > $1.duration })
+        sounds.sort(by: { $0.duration > $1.duration })
     }
     
     private func sortSoundsInPlaceByTitleLengthAscending() {
-        self.sounds.sort(by: { $0.title.count < $1.title.count })
+        sounds.sort(by: { $0.title.count < $1.title.count })
     }
     
     private func sortSoundsInPlaceByTitleLengthDescending() {
-        self.sounds.sort(by: { $0.title.count > $1.title.count })
+        sounds.sort(by: { $0.title.count > $1.title.count })
     }
     
     func play(sound: Sound) {

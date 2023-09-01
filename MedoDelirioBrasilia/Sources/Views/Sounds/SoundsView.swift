@@ -228,11 +228,7 @@ struct SoundsView: View {
                                                                 if viewModel.favoritesKeeper.contains(sound.id) {
                                                                     viewModel.removeFromFavorites(soundId: sound.id)
                                                                     if currentViewMode == .favorites {
-                                                                        viewModel.reloadList(withSounds: try! LocalDatabase.shared.allSounds(),
-                                                                                             andFavorites: try? LocalDatabase.shared.getAllFavorites(),
-                                                                                             allowSensitiveContent: UserSettings.getShowExplicitContent(),
-                                                                                             favoritesOnly: currentViewMode == .favorites,
-                                                                                             sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
+                                                                        viewModel.reloadList(currentMode: currentViewMode)
                                                                     }
                                                                 } else {
                                                                     viewModel.addToFavorites(soundId: sound.id)
@@ -322,7 +318,7 @@ struct SoundsView: View {
             .navigationTitle(Text(title))
             .navigationBarItems(leading: leadingToolbarControls(), trailing: trailingToolbarControls())
             .onAppear {
-                loadLocalSounds()
+                viewModel.reloadList(currentMode: currentViewMode)
 
                 columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
                 viewModel.donateActivity()
@@ -439,11 +435,7 @@ struct SoundsView: View {
             }
             .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in
                 if shouldUpdate {
-                    viewModel.reloadList(withSounds: try! LocalDatabase.shared.allSounds(),
-                                         andFavorites: try? LocalDatabase.shared.getAllFavorites(),
-                                         allowSensitiveContent: UserSettings.getShowExplicitContent(),
-                                         favoritesOnly: currentViewMode == .favorites,
-                                         sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
+                    viewModel.reloadList(currentMode: currentViewMode)
                     settingsHelper.updateSoundsList = false
                 }
             }
@@ -493,7 +485,7 @@ struct SoundsView: View {
             }
             .onChange(of: updateList) { updateList in
                 if updateList {
-                    loadLocalSounds()
+                    viewModel.reloadList(currentMode: currentViewMode)
                 }
             }
             
@@ -563,16 +555,7 @@ struct SoundsView: View {
         .pickerStyle(.segmented)
         .background(.regularMaterial)
         .cornerRadius(8)
-        .onChange(of: currentViewMode) { currentMode in
-            guard currentMode == .allSounds || currentMode == .favorites else {
-                return
-            }
-            viewModel.reloadList(withSounds: try! LocalDatabase.shared.allSounds(),
-                                 andFavorites: try? LocalDatabase.shared.getAllFavorites(),
-                                 allowSensitiveContent: UserSettings.getShowExplicitContent(),
-                                 favoritesOnly: currentMode == .favorites,
-                                 sortedBy: SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .titleAscending)
-        }
+        .onChange(of: currentViewMode) { viewModel.reloadList(currentMode: $0) }
         .disabled(isLoadingSounds && currentViewMode == .allSounds)
     }
     
@@ -643,11 +626,7 @@ struct SoundsView: View {
                             if currentViewMode == .favorites || viewModel.allSelectedAreFavorites() {
                                 viewModel.removeSelectedFromFavorites()
                                 viewModel.stopSelecting()
-                                viewModel.reloadList(withSounds: try! LocalDatabase.shared.allSounds(),
-                                                     andFavorites: try? LocalDatabase.shared.getAllFavorites(),
-                                                     allowSensitiveContent: UserSettings.getShowExplicitContent(),
-                                                     favoritesOnly: currentViewMode == .favorites,
-                                                     sortedBy: SoundSortOption(rawValue: viewModel.soundSortOption) ?? .titleAscending)
+                                viewModel.reloadList(currentMode: currentViewMode)
                                 viewModel.sendUsageMetricToServer(action: "didRemoveManySoundsFromFavorites(\(selectedCount))")
                             } else {
                                 viewModel.addSelectedToFavorites()
@@ -715,14 +694,10 @@ struct SoundsView: View {
                     } label: {
                         Image(systemName: "ellipsis.circle")
                     }
-                    .onChange(of: viewModel.soundSortOption, perform: { soundSortOption in
-                        viewModel.reloadList(withSounds: try! LocalDatabase.shared.allSounds(),
-                                             andFavorites: try? LocalDatabase.shared.getAllFavorites(),
-                                             allowSensitiveContent: UserSettings.getShowExplicitContent(),
-                                             favoritesOnly: currentViewMode == .favorites,
-                                             sortedBy: SoundSortOption(rawValue: soundSortOption) ?? .titleAscending)
-                        UserSettings.setSoundSortOption(to: soundSortOption)
-                    })
+                    .onChange(of: viewModel.soundSortOption) {
+                        viewModel.sortSounds(by: SoundSortOption(rawValue: $0) ?? .dateAddedDescending)
+                        UserSettings.setSoundSortOption(to: $0)
+                    }
                 }
             }
         }

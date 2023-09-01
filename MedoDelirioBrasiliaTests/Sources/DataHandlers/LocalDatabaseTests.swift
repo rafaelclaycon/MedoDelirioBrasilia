@@ -7,7 +7,7 @@ class LocalDatabaseTests: XCTestCase {
     //let testFavorites: [Favorite]? = nil
 
     override func setUpWithError() throws {
-        XCTAssertEqual(try sut.getFavoriteCount(), 0)
+        XCTAssertEqual(try sut.favoriteCount(), 0)
         XCTAssertEqual(try sut.getUserShareLogCount(), 0)
     }
 
@@ -21,7 +21,7 @@ class LocalDatabaseTests: XCTestCase {
     func test_insertFavorite_whenInsertsFavorite_shouldReturnFavoriteCount1() {
         let favorite = Favorite(contentId: "557C08FF-F80F-4E82-99A6-956D14FC881B", dateAdded: Date())
         XCTAssertNoThrow(try sut.insert(favorite: favorite))
-        XCTAssertEqual(try sut.getFavoriteCount(), 1)
+        XCTAssertEqual(try sut.favoriteCount(), 1)
     }
     
     func test_exists_whenFavoriteDoesNotExist_shouldReturnFalse() {
