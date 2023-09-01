@@ -203,7 +203,9 @@ struct SettingsView: View {
 }
 
 extension SettingsView {
+
     struct DonateButtons: View {
+
         @Binding var showToastView: Bool
 
         private var copyPixKeyButtonHorizontalPadding: CGFloat {
@@ -214,6 +216,38 @@ extension SettingsView {
 
         var body: some View {
             VStack(alignment: .leading, spacing: 20) {
+                Text("DOAÇÃO RECORRENTE:")
+                    .font(.footnote)
+                    .bold()
+
+                HStack {
+                    Spacer()
+
+                    Button {
+                        OpenUtility.open(link: "https://apoia.se/app-medo-delirio-ios")
+                    } label: {
+                        HStack(spacing: 15) {
+                            Image(systemName: "dollarsign.arrow.circlepath")
+                                .renderingMode(.template)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 20)
+
+                            Text("Ver campanha no Apoia.se")
+                                .bold()
+                                .foregroundColor(.red)
+                        }
+                        .padding(.horizontal, copyPixKeyButtonHorizontalPadding)
+                        .padding(.vertical, 8)
+                    }
+                    .tint(.red)
+                    .controlSize(.regular)
+                    .buttonStyle(.bordered)
+                    .buttonBorderShape(.roundedRectangle)
+
+                    Spacer()
+                }
+                
                 Text("DOAÇÃO ÚNICA:")
                     .font(.footnote)
                     .bold()
@@ -249,38 +283,6 @@ extension SettingsView {
                         .padding(.vertical, 8)
                     }
                     .tint(.green)
-                    .controlSize(.regular)
-                    .buttonStyle(.bordered)
-                    .buttonBorderShape(.roundedRectangle)
-
-                    Spacer()
-                }
-
-                Text("DOAÇÃO RECORRENTE:")
-                    .font(.footnote)
-                    .bold()
-
-                HStack {
-                    Spacer()
-
-                    Button {
-                        OpenUtility.open(link: "https://apoia.se/app-medo-delirio-ios")
-                    } label: {
-                        HStack(spacing: 15) {
-                            Image(systemName: "dollarsign.arrow.circlepath")
-                                .renderingMode(.template)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 20)
-
-                            Text("Ver campanha no Apoia.se")
-                                .bold()
-                                .foregroundColor(.red)
-                        }
-                        .padding(.horizontal, copyPixKeyButtonHorizontalPadding)
-                        .padding(.vertical, 8)
-                    }
-                    .tint(.red)
                     .controlSize(.regular)
                     .buttonStyle(.bordered)
                     .buttonBorderShape(.roundedRectangle)

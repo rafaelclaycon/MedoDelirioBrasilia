@@ -268,6 +268,8 @@
 		D934432728381DEF00ADCD38 /* author_data.json in Resources */ = {isa = PBXBuildFile; fileRef = D934432628381DEF00ADCD38 /* author_data.json */; };
 		D93443292838230500ADCD38 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93443282838230500ADCD38 /* String+.swift */; };
 		D9345E7628C697F900BADC1B /* Ele Queria Ter 2 Mesa Funk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9345E7528C697F900BADC1B /* Ele Queria Ter 2 Mesa Funk.mp3 */; };
+		D9347DD12AA16AD100648E0B /* Lula - E agora em setembro vai entrar o grosso.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9347DD02AA16AD100648E0B /* Lula - E agora em setembro vai entrar o grosso.mp3 */; };
+		D9347DD32AA1735E00648E0B /* Eu Fico Muito Triste - Summer Eletrohits.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9347DD22AA1735E00648E0B /* Eu Fico Muito Triste - Summer Eletrohits.mp3 */; };
 		D9351C5C2844094E00D4317E /* TopChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9351C5B2844094E00D4317E /* TopChartItem.swift */; };
 		D9351C6128441FA400D4317E /* LoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9351C6028441FA400D4317E /* LoggerTests.swift */; };
 		D93752122902C94200E2F27B /* Joaquim Barbosa - Bolsonaro e um ser abjeto, Lula no primeiro turno.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D93752102902C94200E2F27B /* Joaquim Barbosa - Bolsonaro e um ser abjeto, Lula no primeiro turno.mp3 */; };
@@ -1235,6 +1237,12 @@
 		D9B88BDB298AFAF30077D9A0 /* Galvao - E o gol da alemanha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B88BD7298AFAF30077D9A0 /* Galvao - E o gol da alemanha.mp3 */; };
 		D9B9ED92295651FE00C25181 /* Eliane Cantanhede - Uau.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B9ED90295651FE00C25181 /* Eliane Cantanhede - Uau.mp3 */; };
 		D9B9ED93295651FE00C25181 /* Tema do Arquivo X.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B9ED91295651FE00C25181 /* Tema do Arquivo X.mp3 */; };
+		D9BA1C412A9A920300996332 /* Reinaldo Azevedo - Esse raciocinio e porco.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BA1C3B2A9A920300996332 /* Reinaldo Azevedo - Esse raciocinio e porco.mp3 */; };
+		D9BA1C422A9A920300996332 /* Fabio Porchat - Alegria.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BA1C3C2A9A920300996332 /* Fabio Porchat - Alegria.mp3 */; };
+		D9BA1C432A9A920300996332 /* Jair Bolsonaro - Vamo botar um ponto final nisso.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BA1C3D2A9A920300996332 /* Jair Bolsonaro - Vamo botar um ponto final nisso.mp3 */; };
+		D9BA1C442A9A920300996332 /* Reinaldo Azevedo - E obrigacao dele.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BA1C3E2A9A920300996332 /* Reinaldo Azevedo - E obrigacao dele.mp3 */; };
+		D9BA1C452A9A920300996332 /* Caio Salles - Demais.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BA1C3F2A9A920300996332 /* Caio Salles - Demais.mp3 */; };
+		D9BA1C462A9A920300996332 /* Reinaldo Azevedo - Peca desculpas, diga errei.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BA1C402A9A920300996332 /* Reinaldo Azevedo - Peca desculpas, diga errei.mp3 */; };
 		D9BAA6F42982F4340060982A /* CreateFolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BAA6F32982F4340060982A /* CreateFolderCell.swift */; };
 		D9BB1E7728B3200700C5FFAA /* AppIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BB1E7628B3200700C5FFAA /* AppIcon.swift */; };
 		D9BB3A2D28F4BAD500EF7E8D /* Jair Bolsonaro - Paz, tranquilidade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BB3A2C28F4BAD500EF7E8D /* Jair Bolsonaro - Paz, tranquilidade.mp3 */; };
@@ -1717,6 +1725,8 @@
 		D934432628381DEF00ADCD38 /* author_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = author_data.json; sourceTree = "<group>"; };
 		D93443282838230500ADCD38 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		D9345E7528C697F900BADC1B /* Ele Queria Ter 2 Mesa Funk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ele Queria Ter 2 Mesa Funk.mp3"; sourceTree = "<group>"; };
+		D9347DD02AA16AD100648E0B /* Lula - E agora em setembro vai entrar o grosso.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - E agora em setembro vai entrar o grosso.mp3"; sourceTree = "<group>"; };
+		D9347DD22AA1735E00648E0B /* Eu Fico Muito Triste - Summer Eletrohits.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu Fico Muito Triste - Summer Eletrohits.mp3"; sourceTree = "<group>"; };
 		D9351C5B2844094E00D4317E /* TopChartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartItem.swift; sourceTree = "<group>"; };
 		D9351C6028441FA400D4317E /* LoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerTests.swift; sourceTree = "<group>"; };
 		D93752102902C94200E2F27B /* Joaquim Barbosa - Bolsonaro e um ser abjeto, Lula no primeiro turno.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Joaquim Barbosa - Bolsonaro e um ser abjeto, Lula no primeiro turno.mp3"; sourceTree = "<group>"; };
@@ -2685,6 +2695,12 @@
 		D9B88BD7298AFAF30077D9A0 /* Galvao - E o gol da alemanha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Galvao - E o gol da alemanha.mp3"; sourceTree = "<group>"; };
 		D9B9ED90295651FE00C25181 /* Eliane Cantanhede - Uau.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eliane Cantanhede - Uau.mp3"; sourceTree = "<group>"; };
 		D9B9ED91295651FE00C25181 /* Tema do Arquivo X.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tema do Arquivo X.mp3"; sourceTree = "<group>"; };
+		D9BA1C3B2A9A920300996332 /* Reinaldo Azevedo - Esse raciocinio e porco.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Reinaldo Azevedo - Esse raciocinio e porco.mp3"; sourceTree = "<group>"; };
+		D9BA1C3C2A9A920300996332 /* Fabio Porchat - Alegria.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fabio Porchat - Alegria.mp3"; sourceTree = "<group>"; };
+		D9BA1C3D2A9A920300996332 /* Jair Bolsonaro - Vamo botar um ponto final nisso.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Vamo botar um ponto final nisso.mp3"; sourceTree = "<group>"; };
+		D9BA1C3E2A9A920300996332 /* Reinaldo Azevedo - E obrigacao dele.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Reinaldo Azevedo - E obrigacao dele.mp3"; sourceTree = "<group>"; };
+		D9BA1C3F2A9A920300996332 /* Caio Salles - Demais.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Caio Salles - Demais.mp3"; sourceTree = "<group>"; };
+		D9BA1C402A9A920300996332 /* Reinaldo Azevedo - Peca desculpas, diga errei.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Reinaldo Azevedo - Peca desculpas, diga errei.mp3"; sourceTree = "<group>"; };
 		D9BAA6F32982F4340060982A /* CreateFolderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFolderCell.swift; sourceTree = "<group>"; };
 		D9BB1E7628B3200700C5FFAA /* AppIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcon.swift; sourceTree = "<group>"; };
 		D9BB3A2C28F4BAD500EF7E8D /* Jair Bolsonaro - Paz, tranquilidade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Paz, tranquilidade.mp3"; sourceTree = "<group>"; };
@@ -2926,6 +2942,14 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9347DD22AA1735E00648E0B /* Eu Fico Muito Triste - Summer Eletrohits.mp3 */,
+				D9347DD02AA16AD100648E0B /* Lula - E agora em setembro vai entrar o grosso.mp3 */,
+				D9BA1C3F2A9A920300996332 /* Caio Salles - Demais.mp3 */,
+				D9BA1C3C2A9A920300996332 /* Fabio Porchat - Alegria.mp3 */,
+				D9BA1C3D2A9A920300996332 /* Jair Bolsonaro - Vamo botar um ponto final nisso.mp3 */,
+				D9BA1C3E2A9A920300996332 /* Reinaldo Azevedo - E obrigacao dele.mp3 */,
+				D9BA1C3B2A9A920300996332 /* Reinaldo Azevedo - Esse raciocinio e porco.mp3 */,
+				D9BA1C402A9A920300996332 /* Reinaldo Azevedo - Peca desculpas, diga errei.mp3 */,
 				D992146B2A8F11D6004E82BC /* Julio Paulucci - Foda-se.mp3 */,
 				D9C6EC202A86CCDC00DB1FA5 /* Jair Bolsonaro - A cor do Cialis.mp3 */,
 				D99D099C2A848D6900A5E65E /* Marcelo Freixo - Voce ta vendo muito filme.mp3 */,
@@ -5200,6 +5224,7 @@
 				D952DBA429B3CB03001F1E0E /* Rogerinho do Inga - Legal.mp3 in Resources */,
 				D952DB7E29B3C7A4001F1E0E /* Manoel Gomes - La ele.mp3 in Resources */,
 				D90697662A6A177F00F5B8D0 /* Marcos do Val - Inteligencia.mp3 in Resources */,
+				D9BA1C452A9A920300996332 /* Caio Salles - Demais.mp3 in Resources */,
 				D94B03F72993248300EB03CA /* Dudu Marfetan - Ate o final (completo).mp3 in Resources */,
 				D975FF722880B4F20035E6F2 /* lula ou bolsonaro.mp3 in Resources */,
 				D975FFBA2880B4F20035E6F2 /* BandNews FM - Ciro Gomes - Esse Braga Netto, que e um bosta.mp3 in Resources */,
@@ -5362,6 +5387,7 @@
 				D975FE4D2880B4F20035E6F2 /* Lula - Eu vou tomar a minha vacina.mp3 in Resources */,
 				D9D798922A093A54002B2D77 /* Caetano Veloso - Deus e um cara gozador, adora brincadeira (1,5x).mp3 in Resources */,
 				D975FFD52880B4F20035E6F2 /* Pretty please meme infantil crianca begging.mp3 in Resources */,
+				D9BA1C422A9A920300996332 /* Fabio Porchat - Alegria.mp3 in Resources */,
 				D91B7F892943C44600B9A43F /* O homem e forte em Brasilia.mp3 in Resources */,
 				D975FFC82880B4F20035E6F2 /* Bolsonaro - No que depender de mim nunca teremos lockdown.mp3 in Resources */,
 				D97500092880B4F20035E6F2 /* A mae copiloto - celera bem, acelera short meme.mp3 in Resources */,
@@ -5505,6 +5531,7 @@
 				D975FE152880B4F20035E6F2 /* Ulysses Guimaraes - Temos odio a ditadura, odio e nojo.mp3 in Resources */,
 				D975FE912880B4F20035E6F2 /* Away - De novo cara.mp3 in Resources */,
 				D9E142C4293BF17400B7FF04 /* Isa Penna - Eu nao permito, nao sou obrigada.mp3 in Resources */,
+				D9BA1C412A9A920300996332 /* Reinaldo Azevedo - Esse raciocinio e porco.mp3 in Resources */,
 				D975FE942880B4F20035E6F2 /* Ady Ferrer - Oh nao mais um crime contra a humanidade.mp3 in Resources */,
 				D9D1A9502A57B32400289AF2 /* Choque de Cultura - Ouve a voz do seu perineo.mp3 in Resources */,
 				D9C5EC3928C7FAA00099EA86 /* Tyrion Lannister - THAT was a threat.mp3 in Resources */,
@@ -5646,6 +5673,7 @@
 				D93752122902C94200E2F27B /* Joaquim Barbosa - Bolsonaro e um ser abjeto, Lula no primeiro turno.mp3 in Resources */,
 				D975FE5F2880B4F20035E6F2 /* Danca do Creu - 30 mil passou a meta em 8x.mp3 in Resources */,
 				D92DAB242937BD5500E0CA82 /* Eduardo Pazuello - Sabe o que que me doi.mp3 in Resources */,
+				D9347DD32AA1735E00648E0B /* Eu Fico Muito Triste - Summer Eletrohits.mp3 in Resources */,
 				D92EF4BF291CA5B9009E3E0A /* Jair Bolsonaro - Pode botar, CODIB-19.mp3 in Resources */,
 				D9E2C708295E13B200B5814C /* Anderson Rangel - Lembra de onde voce veio e aonde que voce chegou.mp3 in Resources */,
 				49DEA9A228810D79008C9BA1 /* Baroes da pisadinha - Status - Por mim tudo bem short meme.mp3 in Resources */,
@@ -5801,6 +5829,7 @@
 				D99CC7102A341B7700B21144 /* Senhor Pedindo Cafe - Eeee.mp3 in Resources */,
 				D9235E242969BF31001F8167 /* Roberto Jefferson - Um sujeito lombrosiano.mp3 in Resources */,
 				D975FE962880B4F20035E6F2 /* Ciro Gomes - Veja bem, se eu estiver errado me corrija.mp3 in Resources */,
+				D9BA1C442A9A920300996332 /* Reinaldo Azevedo - E obrigacao dele.mp3 in Resources */,
 				D975FFBD2880B4F20035E6F2 /* Eu nao entendi o que ele falou.mp3 in Resources */,
 				D975FE1B2880B4F20035E6F2 /* Pazuello - E simples assim, um manda e o outro obedece.mp3 in Resources */,
 				D975FFB82880B4F20035E6F2 /* Jacquin - Cala a boca short.mp3 in Resources */,
@@ -6063,6 +6092,7 @@
 				D975FEB62880B4F20035E6F2 /* Nao fez mais que sua obrigacao short meme.mp3 in Resources */,
 				D975FF662880B4F20035E6F2 /* Magno Malta - So o escolhido de deus.mp3 in Resources */,
 				D975FE4F2880B4F20035E6F2 /* Saiddy Bamba - Sim sim sim sim sim.mp3 in Resources */,
+				D9347DD12AA16AD100648E0B /* Lula - E agora em setembro vai entrar o grosso.mp3 in Resources */,
 				D9ADEB6729861BD3001CB004 /* Bem-vindos ao devido processo legal.mp3 in Resources */,
 				D975FFAF2880B4F20035E6F2 /* Bolsonaro - E coisa de viado o que ele estao fazendo.mp3 in Resources */,
 				D975FE0F2880B4F20035E6F2 /* Boldo - e de quanto.mp3 in Resources */,
@@ -6127,6 +6157,7 @@
 				D9A9375B29CDDC0A00758A5A /* Leonardo Attuch - Queremo cafe.mp3 in Resources */,
 				D94C393E29E6F0AB009169A7 /* Cristiano Botafogo - O terrivel roteirista do Medo e Delirio.mp3 in Resources */,
 				D9FB4D5629193CF600AAFA7A /* Fabio Porchat - Bala de borracha e gas lacrimogeneo.mp3 in Resources */,
+				D9BA1C462A9A920300996332 /* Reinaldo Azevedo - Peca desculpas, diga errei.mp3 in Resources */,
 				D9DF2B5029821E5F0083765A /* Franciel Cruz - Sabe o que e anistia.mp3 in Resources */,
 				D975FEE42880B4F20035E6F2 /* Luciano Hang - Comunista, ne short meme.mp3 in Resources */,
 				D9C7D18D292EEA81003F500C /* Cidade Oculta e Google Tradutor - Voce ta falando isso porque voce e a putinha do Jobs.mp3 in Resources */,
@@ -6171,6 +6202,7 @@
 				D975FFFA2880B4F20035E6F2 /* Vai Dar Namoro - Demais.mp3 in Resources */,
 				D98B9AD728CEBD2D00B82EDE /* Michelle Bolsonaro - Ele e meio sem nocao.mp3 in Resources */,
 				D93752132902C94200E2F27B /* Lula - Consideracoes finais debate Band 2o turno.mp3 in Resources */,
+				D9BA1C432A9A920300996332 /* Jair Bolsonaro - Vamo botar um ponto final nisso.mp3 in Resources */,
 				D989F44F2A64A8C900F67858 /* Rita Lee - Ai ela e toda boazinha, ela e tao galera.mp3 in Resources */,
 				D97500072880B4F20035E6F2 /* REDETV - Jair Bolsonaro - Eu pretendo participar de debates, nao participei na ultima porque estava em convalescencia.mp3 in Resources */,
 				D975FF392880B4F20035E6F2 /* PORTA DOS FUNDOS - BALBURDIA - Bom dia, turma, todo mundo tirando a roupa e dedo no cu do colega do lado.mp3 in Resources */,

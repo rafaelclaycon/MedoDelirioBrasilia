@@ -616,10 +616,6 @@
         "name": "SBT"
     },
     {
-        "id": "63126808-C5C0-4492-9B21-AF800C5E0AFB",
-        "name": "Galãs Feios"
-    },
-    {
         "id": "7093D0D1-97C6-479F-968F-A9BF89E4C9C1",
         "name": "Eduardo Cunha",
         "description": "Presidente da Câmara dos Deputados de 2015 a 2016. Instaurou e conduziu o impeachment da presidente Dilma. Preso em 2016 por corrupção passiva e lavagem de dinheiro na Operação Lava Jato."
@@ -1748,5 +1744,15 @@
         "id": "E9ECF444-11F2-4B61-B3B4-84DD67E9D9C0",
         "name": "Júlio Paulucci",
         "description": "Comediante e ator brasileiro. @talvezsejaojulio no Instagram."
+    },
+    {
+        "id": "DE4BF5DF-7051-462D-831A-18B67D38163D",
+        "name": "Don & Juan",
+        "description": "Dupla sertaneja mineira."
+    },
+    {
+        "id": "0833F566-D20E-4207-B6AB-A8D63DA8D10C",
+        "name": "Caio Salles",
+        "description": "Jornalista, produtor e diretor de conteúdo audiovisual. Idealizou e coordena o Projeto Verde Mar, com ações de coletas de resíduos do fundo do mar para sensibilização, educação e pesquisa científica, além da produção de conteúdo para divulgação científica e de assuntos relacionados a temas socioambientais."
     }
 ]

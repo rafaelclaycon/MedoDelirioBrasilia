@@ -2842,8 +2842,8 @@
     {
         "id": "166B52AF-1ED2-4E12-AB88-F7CD7A5919D3",
         "title": "Por que será?!",
-        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
-        "description": "por que sera",
+        "authorId": "DE4BF5DF-7051-462D-831A-18B67D38163D",
+        "description": "por que sera porque sera",
         "filename": "Por que sera short meme.mp3",
         "dateAdded": "2022-05-30T00:00:00Z",
         "duration": 1.15,
@@ -4131,9 +4131,9 @@
     },
     {
         "id": "282F388B-74E2-4BBD-849E-F3BD67562013",
-        "title": "Grandes merda cê adevogado",
+        "title": "Grandes merda ser adevogado",
         "authorId": "B7CB79F9-4CAC-4832-BB47-2EA96A4AC576",
-        "description": "grandes merda cê adevogado grandes merda ser adevogado",
+        "description": "grandes merda ser adevogado grandes merda ce adevogado",
         "filename": "Trote Luiz Pareto - Trote da TELERJ (grandes merdas que o senhor e advogado).mp3",
         "dateAdded": "2022-06-24T00:00:00Z",
         "duration": 1.91,
@@ -11118,5 +11118,85 @@
         "dateAdded": "2023-08-17T00:00:00Z",
         "duration": 38.11,
         "isOffensive": true
+    },
+    {
+        "id": "806B3B07-0C79-4BB1-AAF9-B0DB6DBF2439",
+        "title": "Demais",
+        "authorId": "0833F566-D20E-4207-B6AB-A8D63DA8D10C",
+        "description": "demais",
+        "filename": "Caio Salles - Demais.mp3",
+        "dateAdded": "2023-08-26T00:00:00Z",
+        "duration": 0.65,
+        "isOffensive": false
+    },
+    {
+        "id": "5D0BC959-88E2-4132-925D-E54DA9F79468",
+        "title": "Alegria",
+        "authorId": "CC73ED72-24A6-4191-B9BC-6E608F57E651",
+        "description": "alegria",
+        "filename": "Fabio Porchat - Alegria.mp3",
+        "dateAdded": "2023-08-26T00:00:00Z",
+        "duration": 1.02,
+        "isOffensive": false
+    },
+    {
+        "id": "73FF1009-DDC1-4C2A-BAD6-0C8453A5E69B",
+        "title": "Vamo botar um ponto final nisso?",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Vamo botar um ponto final nisso",
+        "filename": "Jair Bolsonaro - Vamo botar um ponto final nisso.mp3",
+        "dateAdded": "2023-08-26T00:00:00Z",
+        "duration": 1.75,
+        "isOffensive": false
+    },
+    {
+        "id": "2E071033-1CA0-4089-A917-DD74D20EFD0B",
+        "title": "Peça desculpas, diga errei",
+        "authorId": "BC2818F5-4FA5-46FC-90C3-075691F3E979",
+        "description": "Peca desculpas diga errei errou",
+        "filename": "Reinaldo Azevedo - Peca desculpas, diga errei.mp3",
+        "dateAdded": "2023-08-26T00:00:00Z",
+        "duration": 2.30,
+        "isOffensive": false
+    },
+    {
+        "id": "FE246FE6-163B-46CF-A15A-60B5AC2C87F3",
+        "title": "É obrigação dele",
+        "authorId": "BC2818F5-4FA5-46FC-90C3-075691F3E979",
+        "description": "E obrigacao dele",
+        "filename": "Reinaldo Azevedo - E obrigacao dele.mp3",
+        "dateAdded": "2023-08-26T00:00:00Z",
+        "duration": 1.52,
+        "isOffensive": false
+    },
+    {
+        "id": "FD7B1EAC-77DA-4CBD-B461-35115A3CE5CF",
+        "title": "Esse raciocínio é porco",
+        "authorId": "BC2818F5-4FA5-46FC-90C3-075691F3E979",
+        "description": "Esse raciocinio e porco",
+        "filename": "Reinaldo Azevedo - Esse raciocinio e porco.mp3",
+        "dateAdded": "2023-08-26T00:00:00Z",
+        "duration": 1.15,
+        "isOffensive": true
+    },
+    {
+        "id": "521B5B3D-64F1-41ED-85AB-605BFCB26838",
+        "title": "E agora em setembro vai entrar o grosso",
+        "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
+        "description": "E agora em setembro vai entrar o grosso",
+        "filename": "Lula - E agora em setembro vai entrar o grosso.mp3",
+        "dateAdded": "2023-08-31T00:00:00Z",
+        "duration": 2.46,
+        "isOffensive": true
+    },
+    {
+        "id": "01C67BA8-8E38-4773-8310-B14A8DC3AF09",
+        "title": "Eu Fico Muito Triste Short Mix",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "eu fico muito triste com uma noticia dessas porra short mix",
+        "filename": "Eu Fico Muito Triste - Summer Eletrohits.mp3",
+        "dateAdded": "2023-08-31T00:00:00Z",
+        "duration": 9.04,
+        "isOffensive": false
     }
 ]

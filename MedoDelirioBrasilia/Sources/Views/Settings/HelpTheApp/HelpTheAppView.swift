@@ -54,7 +54,7 @@ struct HelpTheAppView_Previews: PreviewProvider {
 
     static var previews: some View {
         HelpTheAppView(donors: .constant([Donor(name: "Bruno P. G. P."),
-                                          Donor(name: "Clarissa P. S.", isRecurringDonor: true),
+                                          Donor(name: "Clarissa P. S.", hasDonatedBefore: true),
                                           Donor(name: "Pedro Henrique B. P.")]),
                        imageIsSelected: .constant(false))
     }
