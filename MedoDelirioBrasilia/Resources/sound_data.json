@@ -11178,5 +11178,25 @@
         "dateAdded": "2023-08-26T00:00:00Z",
         "duration": 1.15,
         "isOffensive": true
+    },
+    {
+        "id": "521B5B3D-64F1-41ED-85AB-605BFCB26838",
+        "title": "E agora em setembro vai entrar o grosso",
+        "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
+        "description": "E agora em setembro vai entrar o grosso",
+        "filename": "Lula - E agora em setembro vai entrar o grosso.mp3",
+        "dateAdded": "2023-08-31T00:00:00Z",
+        "duration": 2.46,
+        "isOffensive": true
+    },
+    {
+        "id": "01C67BA8-8E38-4773-8310-B14A8DC3AF09",
+        "title": "Eu Fico Muito Triste Short Mix",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "eu fico muito triste com uma noticia dessas porra short mix",
+        "filename": "Eu Fico Muito Triste - Summer Eletrohits.mp3",
+        "dateAdded": "2023-08-31T00:00:00Z",
+        "duration": 9.04,
+        "isOffensive": false
     }
 ]
