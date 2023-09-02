@@ -62,7 +62,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         }
 
         if !hasMigratedSongsMusicGenres {
-            moveMusicGenresToDatabase()
+            moveSongsAndMusicGenresToDatabase()
             hasMigratedSongsMusicGenres = true
         }
         
