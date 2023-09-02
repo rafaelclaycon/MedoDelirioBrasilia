@@ -33,19 +33,22 @@ class SongsViewViewModel: ObservableObject {
     @Published var showAlert: Bool = false
     @Published var alertType: AlertType = .singleOption
     
-    func reloadList(withSongs allSongs: [Song],
-                    allowSensitiveContent: Bool,
-                    sortedBy sortOption: SongSortOption) {
-        var songsCopy = allSongs
-        
-        if allowSensitiveContent == false {
-            songsCopy = songsCopy.filter({ $0.isOffensive == false })
+    func reloadList() {
+        do {
+            songs = try LocalDatabase.shared.songs(
+                allowSensitive: UserSettings.getShowExplicitContent()
+            )
+
+            guard songs.count > 0 else { return }
+
+            let sortOption: SongSortOption = SongSortOption(rawValue: UserSettings.getSongSortOption()) ?? .dateAddedDescending
+            sortSongs(by: sortOption)
+        } catch {
+            print("Erro")
         }
-        
-        self.songs = songsCopy
-        
-        self.sortOption = sortOption.rawValue
-        
+    }
+
+    func sortSongs(by sortOption: SongSortOption) {
         switch sortOption {
         case .titleAscending:
             sortSongsInPlaceByTitleAscending()

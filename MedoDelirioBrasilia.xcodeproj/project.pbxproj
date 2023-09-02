@@ -379,7 +379,7 @@
 		D94EAB5129FC0907004CD604 /* AppDelegate+MoveFixedDataToDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94EAB5029FC0907004CD604 /* AppDelegate+MoveFixedDataToDatabase.swift */; };
 		D94EAB5329FC09A8004CD604 /* LocalDatabase+Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94EAB5229FC09A8004CD604 /* LocalDatabase+Sound.swift */; };
 		D94EAB5529FC141F004CD604 /* LocalDatabase+Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94EAB5429FC141F004CD604 /* LocalDatabase+Author.swift */; };
-		D94EAB5729FC375A004CD604 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94EAB5629FC375A004CD604 /* Bundle+Extensions.swift */; };
+		D94EAB5729FC375A004CD604 /* Bundle+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94EAB5629FC375A004CD604 /* Bundle+.swift */; };
 		D94EAB5929FC4B4B004CD604 /* NewSoundsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94EAB5829FC4B4B004CD604 /* NewSoundsView.swift */; };
 		D94EAB5B29FC4CB2004CD604 /* SoundList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94EAB5A29FC4CB2004CD604 /* SoundList.swift */; };
 		D94F2FC52A1FDC7500214519 /* Marcus Majella e Paulo Gustavo - Vi-a-dooo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94F2FC32A1FDC7500214519 /* Marcus Majella e Paulo Gustavo - Vi-a-dooo.mp3 */; };
@@ -464,7 +464,6 @@
 		D95F363A28AD386D00743026 /* ShareAsVideoLegacyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95F363928AD386D00743026 /* ShareAsVideoLegacyView.swift */; };
 		D960AF272845BFE700ADF1F6 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = D960AF262845BFE700ADF1F6 /* UserDefaultsKeys.swift */; };
 		D960AF292845C82E00ADF1F6 /* AppStoreReviewSteward.swift in Sources */ = {isa = PBXBuildFile; fileRef = D960AF282845C82E00ADF1F6 /* AppStoreReviewSteward.swift */; };
-		D961D01128371EE800EFEDEB /* FixedLocalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D961D01028371EE800EFEDEB /* FixedLocalData.swift */; };
 		D961D01328371F1700EFEDEB /* sound_data.json in Resources */ = {isa = PBXBuildFile; fileRef = D961D01228371F1700EFEDEB /* sound_data.json */; };
 		D961D016283722AB00EFEDEB /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D961D015283722AB00EFEDEB /* Color+.swift */; };
 		D961D01828372B1800EFEDEB /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D961D01728372B1800EFEDEB /* AudioPlayer.swift */; };
@@ -1840,7 +1839,7 @@
 		D94EAB5029FC0907004CD604 /* AppDelegate+MoveFixedDataToDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+MoveFixedDataToDatabase.swift"; sourceTree = "<group>"; };
 		D94EAB5229FC09A8004CD604 /* LocalDatabase+Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+Sound.swift"; sourceTree = "<group>"; };
 		D94EAB5429FC141F004CD604 /* LocalDatabase+Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+Author.swift"; sourceTree = "<group>"; };
-		D94EAB5629FC375A004CD604 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
+		D94EAB5629FC375A004CD604 /* Bundle+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+.swift"; sourceTree = "<group>"; };
 		D94EAB5829FC4B4B004CD604 /* NewSoundsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSoundsView.swift; sourceTree = "<group>"; };
 		D94EAB5A29FC4CB2004CD604 /* SoundList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundList.swift; sourceTree = "<group>"; };
 		D94F2FC32A1FDC7500214519 /* Marcus Majella e Paulo Gustavo - Vi-a-dooo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Marcus Majella e Paulo Gustavo - Vi-a-dooo.mp3"; sourceTree = "<group>"; };
@@ -1925,7 +1924,6 @@
 		D95F363928AD386D00743026 /* ShareAsVideoLegacyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAsVideoLegacyView.swift; sourceTree = "<group>"; };
 		D960AF262845BFE700ADF1F6 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		D960AF282845C82E00ADF1F6 /* AppStoreReviewSteward.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreReviewSteward.swift; sourceTree = "<group>"; };
-		D961D01028371EE800EFEDEB /* FixedLocalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedLocalData.swift; sourceTree = "<group>"; };
 		D961D01228371F1700EFEDEB /* sound_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sound_data.json; sourceTree = "<group>"; };
 		D961D015283722AB00EFEDEB /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		D961D01728372B1800EFEDEB /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
@@ -4411,7 +4409,7 @@
 				D93CCB7A286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift */,
 				D9917A102991530000FB6274 /* Double+Extensions.swift */,
 				D92F096429ED844300CC382F /* View+Marquee.swift */,
-				D94EAB5629FC375A004CD604 /* Bundle+Extensions.swift */,
+				D94EAB5629FC375A004CD604 /* Bundle+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -4936,7 +4934,6 @@
 			children = (
 				D9943F2128641A82002C6B97 /* LocalDatabase */,
 				D9A8AB1E2853D80200B5A94B /* Migrations */,
-				D961D01028371EE800EFEDEB /* FixedLocalData.swift */,
 				D967E2BB2901C40700B21C11 /* CustomPhotoAlbum.swift */,
 			);
 			path = DataHandlers;
@@ -6313,7 +6310,6 @@
 				D92F8BAD286A6D2100EB9470 /* AlertType.swift in Sources */,
 				D94BA9ED2879EC7F001BD09C /* JoinFolderResearchBannerView.swift in Sources */,
 				D93443292838230500ADCD38 /* String+.swift in Sources */,
-				D961D01128371EE800EFEDEB /* FixedLocalData.swift in Sources */,
 				D9943F2628641FEF002C6B97 /* AddToFolderView.swift in Sources */,
 				D95BFEF829E8D07B00E42A23 /* Donor.swift in Sources */,
 				D9BF9091284257F500BDDD7D /* Shared.swift in Sources */,
@@ -6323,7 +6319,7 @@
 				D98622E0283FC57100E9F630 /* AuthorDetailView.swift in Sources */,
 				D94AD34928811ADC00D3E4F0 /* Versioneer.swift in Sources */,
 				D92E7067283C51D20035826C /* Song.swift in Sources */,
-				D94EAB5729FC375A004CD604 /* Bundle+Extensions.swift in Sources */,
+				D94EAB5729FC375A004CD604 /* Bundle+.swift in Sources */,
 				D93CCB79286A8A220002CF81 /* ToastView.swift in Sources */,
 				D9917A112991530000FB6274 /* Double+Extensions.swift in Sources */,
 				D92F096529ED844300CC382F /* View+Marquee.swift in Sources */,

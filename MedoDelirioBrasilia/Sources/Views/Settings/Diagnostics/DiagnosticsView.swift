@@ -94,16 +94,17 @@ struct DiagnosticsView: View {
     }
     
     func getContentName(contentId: String) -> String {
-        // TODO: - Fix this
-        let sounds: [Sound] = [] // soundData.filter({ $0.id == contentId })
-        let songs = songData.filter({ $0.id == contentId })
-        var contentTitle = ""
-        if sounds.count == 1 {
-            contentTitle = sounds.first!.title
-        } else if songs.count == 1 {
-            contentTitle = songs.first!.title
+        do {
+            if let sound: Sound = try LocalDatabase.shared.sound(withId: contentId) {
+                return sound.title
+            } else if let song: Song = try LocalDatabase.shared.song(withId: contentId) {
+                return song.title
+            } else {
+                return ""
+            }
+        } catch {
+            return ""
         }
-        return contentTitle
     }
 
 }

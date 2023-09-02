@@ -154,12 +154,10 @@ struct SongsView: View {
                 } label: {
                     Image(systemName: "arrow.up.arrow.down")
                 }
-                .onChange(of: viewModel.sortOption, perform: { newSortOption in
-                    viewModel.reloadList(withSongs: songData,
-                                         allowSensitiveContent: UserSettings.getShowExplicitContent(),
-                                         sortedBy: SongSortOption(rawValue: newSortOption) ?? .titleAscending)
-                    UserSettings.setSongSortOption(to: newSortOption)
-                })
+                .onChange(of: viewModel.sortOption) {
+                    viewModel.sortSongs(by: SongSortOption(rawValue: $0) ?? .dateAddedDescending)
+                    UserSettings.setSongSortOption(to: $0)
+                }
                 .onChange(of: shareAsVideo_Result.videoFilepath) { videoResultPath in
                     if videoResultPath.isEmpty == false {
                         if shareAsVideo_Result.exportMethod == .saveAsVideo {
@@ -171,9 +169,7 @@ struct SongsView: View {
                 }
             }
             .onAppear {
-                viewModel.reloadList(withSongs: songData,
-                                     allowSensitiveContent: UserSettings.getShowExplicitContent(),
-                                     sortedBy: SongSortOption(rawValue: UserSettings.getSongSortOption()) ?? .titleAscending)
+                viewModel.reloadList()
                 viewModel.donateActivity()
             }
             .onDisappear {
@@ -221,9 +217,7 @@ struct SongsView: View {
             }
             .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in
                 if shouldUpdate {
-                    viewModel.reloadList(withSongs: songData,
-                                         allowSensitiveContent: UserSettings.getShowExplicitContent(),
-                                         sortedBy: SongSortOption(rawValue: UserSettings.getSongSortOption()) ?? .titleAscending)
+                    viewModel.reloadList()
                     settingsHelper.updateSoundsList = false
                 }
             }

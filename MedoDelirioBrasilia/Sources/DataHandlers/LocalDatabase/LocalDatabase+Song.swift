@@ -15,14 +15,20 @@ extension LocalDatabase {
         try db.run(insert)
     }
 
-    func songs() throws -> [Song] {
+    func songs(allowSensitive: Bool) throws -> [Song] {
         var queriedGenres = [Song]()
 
         let genre_id = Expression<String>("genreId")
-        let id = Expression<String>("id")
+        let song_id = Expression<String>("song.id")
+        let genre_id_on_genre_table = Expression<String>("id")
         let genre_name = Expression<String>("name")
+        let isOffensive = Expression<Bool>("isOffensive")
 
-        let query = songTable.join(musicGenreTable, on: songTable[genre_id] == musicGenreTable[id])
+        var query = songTable.select(songTable[*], musicGenreTable[genre_name]).join(musicGenreTable, on: songTable[genre_id] == musicGenreTable[genre_id_on_genre_table])
+
+        if !allowSensitive {
+            query = query.filter(isOffensive == false)
+        }
 
         for queriedSong in try db.prepare(query) {
             var song: Song = try queriedSong.decode()
@@ -34,6 +40,23 @@ extension LocalDatabase {
 
     func songCount() throws -> Int {
         try db.scalar(songTable.count)
+    }
+
+    func song(withId songId: String) throws -> Song? {
+        var queriedSongs = [Song]()
+
+        let name = Expression<String>("name")
+        let genre_id = Expression<String>("genreId")
+        let id = Expression<String>("id")
+
+        let query = songTable.select(songTable[*], musicGenreTable[name]).join(musicGenreTable, on: songTable[genre_id] == musicGenreTable[id]).filter(id == songId)
+
+        for queriedSong in try db.prepare(query) {
+            var song: Song = try queriedSong.decode()
+            song.genreName = try queriedSong.get(name)
+            queriedSongs.append(song)
+        }
+        return queriedSongs.first
     }
 
 //    func update(author updatedAuthor: Author) throws {
