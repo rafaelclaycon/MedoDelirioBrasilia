@@ -8,13 +8,18 @@
 import SwiftUI
 
 struct SongsView: View {
+
+    enum SubviewToOpen {
+        case genrePicker, shareAsVideoView
+    }
     
     @StateObject private var viewModel = SongsViewViewModel()
     
     @State private var searchText = ""
     @State private var searchBar: UISearchBar?
     @State var currentGenre: MusicGenre? = nil
-    
+
+    @State private var subviewToOpen: SubviewToOpen = .genrePicker
     @State private var showingModalView = false
     
     // Share as Video
@@ -185,10 +190,16 @@ struct SongsView: View {
                                    emailBody: String(format: Shared.Email.suggestSongChangeBody, viewModel.selectedSong?.id ?? ""))
             }
             .sheet(isPresented: $showingModalView) {
-                if #available(iOS 16.0, *) {
-                    ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSong?.id ?? .empty, contentTitle: viewModel.selectedSong?.title ?? .empty, contentAuthor: viewModel.selectedSong?.genre ?? .empty, audioFilename: viewModel.selectedSong?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: true)
-                } else {
-                    ShareAsVideoLegacyView(viewModel: ShareAsVideoLegacyViewViewModel(contentId: viewModel.selectedSong?.id ?? .empty, contentTitle: viewModel.selectedSong?.title ?? .empty, audioFilename: viewModel.selectedSong?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: true)
+                switch subviewToOpen {
+                case .genrePicker:
+                    GenrePickerView()
+
+                case .shareAsVideoView:
+                    if #available(iOS 16.0, *) {
+                        ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSong?.id ?? .empty, contentTitle: viewModel.selectedSong?.title ?? .empty, contentAuthor: viewModel.selectedSong?.genre ?? .empty, audioFilename: viewModel.selectedSong?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: true)
+                    } else {
+                        ShareAsVideoLegacyView(viewModel: ShareAsVideoLegacyViewViewModel(contentId: viewModel.selectedSong?.id ?? .empty, contentTitle: viewModel.selectedSong?.title ?? .empty, audioFilename: viewModel.selectedSong?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: true)
+                    }
                 }
             }
             .sheet(isPresented: $viewModel.showEmailAppPicker_songUnavailableConfirmationDialog) {
@@ -230,19 +241,13 @@ struct SongsView: View {
     }
     
     @ViewBuilder func getLeadingToolbarControl() -> some View {
-//        Menu {
-//            Picker("Gênero", selection: $currentGenre) {
-//                ForEach(MusicGenre.allCases) { genre in
-//                    Text(genre.name)
-//                        .tag(genre)
-//                }
-//            }
-//        } label: {
-//            Image(systemName: currentGenre == .all ? "line.3.horizontal.decrease.circle" : "line.3.horizontal.decrease.circle.fill")
-//        }
-        Text("TBD")
+        Button {
+            subviewToOpen = .genrePicker
+            showingModalView = true
+        } label: {
+            Image(systemName: currentGenre == nil ? "line.3.horizontal.decrease.circle" : "line.3.horizontal.decrease.circle.fill")
+        }
     }
-
 }
 
 struct SongsView_Previews: PreviewProvider {

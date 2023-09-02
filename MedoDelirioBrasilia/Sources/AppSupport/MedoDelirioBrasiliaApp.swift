@@ -38,6 +38,7 @@ struct MedoDelirioBrasiliaApp: App {
 class AppDelegate: NSObject, UIApplicationDelegate {
     
     @AppStorage("hasMigratedSoundsAuthors") private var hasMigratedSoundsAuthors = false
+    @AppStorage("hasMigratedSongsMusicGenres") private var hasMigratedSongsMusicGenres = false
     
     func application(
         _ application: UIApplication,
@@ -58,6 +59,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         if !hasMigratedSoundsAuthors {
             moveSoundsAndAuthorsToDatabase()
             hasMigratedSoundsAuthors = true
+        }
+
+        if !hasMigratedSongsMusicGenres {
+            moveMusicGenresToDatabase()
+            hasMigratedSongsMusicGenres = true
         }
         
         prepareAudioPlayerOnMac()

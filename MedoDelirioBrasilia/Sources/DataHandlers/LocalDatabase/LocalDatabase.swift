@@ -42,6 +42,7 @@ class LocalDatabase: LocalDatabaseProtocol {
     var author = Table("author")
     var updateEventTable = Table("updateEvent")
     var syncLogTable = Table("syncLog")
+    var musicGenreTable = Table("musicGenre")
 
     static let shared = LocalDatabase()
     
@@ -77,18 +78,21 @@ extension LocalDatabase {
         ).first!
         return "\(path)/medo_db.sqlite3"
     }
-    
+
     static func migrations() -> [Migration] {
-        return [InitialMigration(),
-                AddNetworkCallLogTable(),
-                AddUserFolderTables(),
-                RemoveFavoriteLogTable(),
-                AddAudienceSharingStatisticTable(),
-                AddRankingTypeToAudienceSharingStatisticTable(),
-                AddDateAndVersionToUserFolderTables(),
-                AddSyncTables()]
+        return [
+            InitialMigration(),
+            AddNetworkCallLogTable(),
+            AddUserFolderTables(),
+            RemoveFavoriteLogTable(),
+            AddAudienceSharingStatisticTable(),
+            AddRankingTypeToAudienceSharingStatisticTable(),
+            AddDateAndVersionToUserFolderTables(),
+            AddSyncTables(),
+            AddMusicGenreTable()
+        ]
     }
-    
+
     var needsMigration: Bool {
         return migrationManager.needsMigration()
     }

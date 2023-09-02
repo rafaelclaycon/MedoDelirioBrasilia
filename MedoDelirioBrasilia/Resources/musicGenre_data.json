@@ -1,101 +1,121 @@
 [
     {
         "id": "85086C5E-5630-47C7-A99C-29133794C7BF",
+        "symbol": "💃",
         "name": "Arrocha",
         "isHidden": false
     },
     {
         "id": "2548320E-3060-4351-8DFE-DD844B6C1776",
+        "symbol": "🎧",
         "name": "Eletrônica",
         "isHidden": false
     },
     {
         "id": "82BFAA10-C01A-4FE0-8366-1B1690D00A40",
+        "symbol": "🍑",
         "name": "Funk",
         "isHidden": false
     },
     {
         "id": "16B61F20-5D24-429F-8751-55F62DBB8DA8",
+        "symbol": "🤷",
         "name": "Gênero indefinido",
         "isHidden": false
     },
     {
         "id": "E4285AF9-0A57-4FED-933B-2379DC80BEEF",
+        "symbol": "🪩",
         "name": "House",
         "isHidden": false
     },
     {
         "id": "BFFC856F-1830-4559-AAF4-C0ACF872AED8",
+        "symbol": "🔔",
         "name": "Jingle",
         "isHidden": false
     },
     {
         "id": "2722A5CA-2EB7-4E6F-A0FA-9C814A13E199",
+        "symbol": "🕺🏼",
         "name": "Lambada",
         "isHidden": false
     },
     {
         "id": "59012B52-8186-4B1A-A48C-1C76AA40C9F9",
+        "symbol": "🎭",
         "name": "Marchinha",
         "isHidden": false
     },
     {
         "id": "53E828CD-CAAA-4567-B698-6055AC44DC34",
+        "symbol": "🤘",
         "name": "Metal",
         "isHidden": false
     },
     {
         "id": "D4999B53-F266-404C-A485-DDE842A2695C",
+        "symbol": "🇧🇷",
         "name": "MPB",
         "isHidden": false
     },
     {
         "id": "DDDB0477-3E59-41B6-8EC5-BC6545D632CA",
+        "symbol": "🥁",
         "name": "Pagode",
         "isHidden": false
     },
     {
         "id": "8D620982-9EF3-49EF-B1AC-E2E78E7F9DA5",
+        "symbol": "🤠",
         "name": "Pisero",
         "isHidden": false
     },
     {
         "id": "55B29DB2-6F36-447F-8869-AA85190E6C45",
+        "symbol": "🌟",
         "name": "Pop",
         "isHidden": false
     },
     {
         "id": "22F54036-7CF2-4FA8-AA54-1639F5C5E204",
+        "symbol": "🌴",
         "name": "Reggae",
         "isHidden": false
     },
     {
         "id": "600B1E1A-3D13-4DC0-89F4-E52FDDA04599",
+        "symbol": "🎸",
         "name": "Rock",
         "isHidden": false
     },
     {
         "id": "106D0E3B-1E96-4B48-B986-D3A7DCF7FFEF",
+        "symbol": "🪘",
         "name": "Samba",
         "isHidden": false
     },
     {
         "id": "C50F3F14-F1FA-410C-983B-835BFBF80B29",
+        "symbol": "🐂",
         "name": "Sertanejo",
         "isHidden": false
     },
     {
         "id": "B7FD5D1E-7A90-4481-9AA9-7F72F1278285",
+        "symbol": "💻",
         "name": "Tecno",
         "isHidden": false
     },
     {
         "id": "DCCC2FEC-730C-437F-A5C3-ED37FB41ED27",
+        "symbol": "🎶",
         "name": "Vários gêneros",
         "isHidden": false
     },
     {
         "id": "5270ED7A-7FFD-4467-86F4-ECA7729F3BB4",
+        "symbol": "📺",
         "name": "Vinheta",
         "isHidden": false
     }
