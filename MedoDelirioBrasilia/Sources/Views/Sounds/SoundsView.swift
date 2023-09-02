@@ -31,6 +31,7 @@ struct SoundsView: View {
     
     // Temporary banners
     @State private var shouldDisplayRecurringDonationBanner: Bool = false
+    @State private var shouldDisplayBetaBanner: Bool = false
     
     // Settings
     @EnvironmentObject var settingsHelper: SettingsHelper
@@ -141,6 +142,11 @@ struct SoundsView: View {
                             ScrollViewReader { proxy in
                                 if shouldDisplayRecurringDonationBanner, searchText.isEmpty {
                                     RecurringDonationBanner(isBeingShown: $shouldDisplayRecurringDonationBanner)
+                                        .padding(.horizontal, 10)
+                                }
+
+                                if shouldDisplayBetaBanner, searchText.isEmpty {
+                                    BetaBanner(isBeingShown: $shouldDisplayBetaBanner)
                                         .padding(.horizontal, 10)
                                 }
 
@@ -322,6 +328,8 @@ struct SoundsView: View {
                         shouldDisplayRecurringDonationBanner = $0
                     }
                 }
+
+                shouldDisplayBetaBanner = !AppPersistentMemory.getHasSeenBetaBanner()
                 
                 if moveDatabaseIssue.isEmpty == false {
                     viewModel.showMoveDatabaseIssueAlert()
