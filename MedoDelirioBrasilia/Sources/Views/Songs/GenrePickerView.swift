@@ -14,47 +14,60 @@ struct GenrePickerView: View {
 
     @State private var genres: [MusicGenre] = []
 
+    @Environment(\.colorScheme) var colorScheme
+
     var body: some View {
         NavigationView {
-            VStack {
-                if selectedId != nil {
-                    Button {
-                        selectedId = nil
-                        isBeingShown = false
-                    } label: {
-                        HStack(spacing: 15) {
-                            Image(systemName: "x.circle")
-                                .renderingMode(.template)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 20)
+            ScrollView {
+                VStack(spacing: 15) {
+                    if selectedId != nil {
+                        Button {
+                            selectedId = nil
+                            isBeingShown = false
+                        } label: {
+                            HStack(spacing: 15) {
+                                Image(systemName: "x.circle")
+                                    .renderingMode(.template)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 20)
 
-                            Text("Remover filtro")
-//                                .bold()
-//                                .foregroundColor(.accentColor)
+                                Text("Remover filtro")
+                            }
                         }
-//                        .padding(.horizontal, 5)
-//                        .padding(.vertical, 8)
+                        .borderedButton(colored: .accentColor)
                     }
-                    .borderedButton(colored: .accentColor)
-                }
 
-                List {
-                    ForEach(genres) { genre in
-                        GenreRow(genre: genre, isSelected: selectedId == genre.id)
-                            .onTapGesture {
+                    VStack {
+                        ForEach(genres) { genre in
+                            Button {
                                 selectedId = genre.id
                                 isBeingShown = false
+                            } label: {
+                                GenreRow(genre: genre, isSelected: selectedId == genre.id)
                             }
+                            .foregroundColor(.primary)
+                            .padding(.vertical, 5)
+                            .padding(.horizontal)
+
+                            Divider()
+                                .padding(.horizontal)
+                        }
+                    }
+                    .background {
+                        RoundedRectangle(cornerRadius: 13)
+                            .fill(.gray.opacity(colorScheme == .dark ? 0.3 : 0.1))
                     }
                 }
-                .navigationTitle("Filtrar por Gênero")
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        Button("Fechar") {
-                            isBeingShown = false
-                        }
+                .padding(.horizontal)
+                .padding(.vertical, 10)
+            }
+            .navigationTitle("Filtrar por Gênero")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Fechar") {
+                        isBeingShown = false
                     }
                 }
             }
@@ -83,21 +96,25 @@ extension GenrePickerView {
                 
                 Spacer()
                     .frame(width: 20)
-                
-                Text(genre.name)
-                    .multilineTextAlignment(.leading)
+
+                if isSelected {
+                    Text(genre.name)
+                        .bold()
+                        .multilineTextAlignment(.leading)
+                } else {
+                    Text(genre.name)
+                        .multilineTextAlignment(.leading)
+                }
 
                 Spacer()
 
                 if isSelected {
-                    Image(systemName: "checkmark")
+                    Image(systemName: "checkmark.circle.fill")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 20)
+                        .frame(width: 26)
                         .foregroundColor(.green)
                 }
-                
-                Spacer(minLength: 0)
             }
             .padding(.vertical, 10)
         }
@@ -106,9 +123,16 @@ extension GenrePickerView {
 
 struct GenrePickerView_Previews: PreviewProvider {
     static var previews: some View {
-        GenrePickerView(
-            isBeingShown: .constant(true),
-            selectedId: .constant(nil)
-        )
+        Group {
+            GenrePickerView(
+                isBeingShown: .constant(true),
+                selectedId: .constant(nil)
+            )
+
+            GenrePickerView(
+                isBeingShown: .constant(true),
+                selectedId: .constant("E4285AF9-0A57-4FED-933B-2379DC80BEEF")
+            )
+        }
     }
 }
