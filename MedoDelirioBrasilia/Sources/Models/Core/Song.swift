@@ -13,7 +13,7 @@ struct Song: Hashable, Codable, Identifiable {
     let title: String
     let description: String
     let genreId: String
-    let genreName: String?
+    var genreName: String?
     let duration: Double
     let filename: String
     var dateAdded: Date?

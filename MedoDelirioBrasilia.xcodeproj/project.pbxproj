@@ -376,7 +376,7 @@
 		D94EAB4929FAE377004CD604 /* Mauro Reginato - Olha que legal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94EAB4829FAE377004CD604 /* Mauro Reginato - Olha que legal.mp3 */; };
 		D94EAB4D29FAE51B004CD604 /* Sergio Moro - Descont... Des... Contextualizadas (completo).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94EAB4C29FAE51B004CD604 /* Sergio Moro - Descont... Des... Contextualizadas (completo).mp3 */; };
 		D94EAB4F29FB1524004CD604 /* NetworkRabbit+Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94EAB4E29FB1524004CD604 /* NetworkRabbit+Files.swift */; };
-		D94EAB5129FC0907004CD604 /* AppDelegate+MoveSoundsAuthors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94EAB5029FC0907004CD604 /* AppDelegate+MoveSoundsAuthors.swift */; };
+		D94EAB5129FC0907004CD604 /* AppDelegate+MoveFixedDataToDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94EAB5029FC0907004CD604 /* AppDelegate+MoveFixedDataToDatabase.swift */; };
 		D94EAB5329FC09A8004CD604 /* LocalDatabase+Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94EAB5229FC09A8004CD604 /* LocalDatabase+Sound.swift */; };
 		D94EAB5529FC141F004CD604 /* LocalDatabase+Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94EAB5429FC141F004CD604 /* LocalDatabase+Author.swift */; };
 		D94EAB5729FC375A004CD604 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94EAB5629FC375A004CD604 /* Bundle+Extensions.swift */; };
@@ -434,8 +434,9 @@
 		D958BC752869000A000B2EDA /* FolderInfoEditingViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958BC742869000A000B2EDA /* FolderInfoEditingViewViewModel.swift */; };
 		D9592C402AA2C01100157F5A /* GenrePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9592C3F2AA2C01100157F5A /* GenrePickerView.swift */; };
 		D9592C422AA2F32A00157F5A /* LocalDatabase+MusicGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9592C412AA2F32A00157F5A /* LocalDatabase+MusicGenre.swift */; };
-		D9592C442AA2F59B00157F5A /* AddMusicGenreTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9592C432AA2F59B00157F5A /* AddMusicGenreTable.swift */; };
+		D9592C442AA2F59B00157F5A /* AddSongAndMusicGenreTables.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9592C432AA2F59B00157F5A /* AddSongAndMusicGenreTables.swift */; };
 		D9592C462AA2FBE100157F5A /* musicGenre_data.json in Resources */ = {isa = PBXBuildFile; fileRef = D9592C452AA2FBE100157F5A /* musicGenre_data.json */; };
+		D9592C482AA38C3000157F5A /* LocalDatabase+Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9592C472AA38C3000157F5A /* LocalDatabase+Song.swift */; };
 		D959B0482887E83D00A215AD /* SidebarViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D959B0472887E83D00A215AD /* SidebarViewViewModel.swift */; };
 		D95A195F29D5D55500909096 /* Rui Falcao - Vai, chupetinha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95A195E29D5D55400909096 /* Rui Falcao - Vai, chupetinha.mp3 */; };
 		D95A196129D5DA7C00909096 /* Maria da Conceicao Tavares - A situacao brasileira da cobranca de impostos e uma vergonha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95A196029D5DA7C00909096 /* Maria da Conceicao Tavares - A situacao brasileira da cobranca de impostos e uma vergonha.mp3 */; };
@@ -1836,7 +1837,7 @@
 		D94EAB4829FAE377004CD604 /* Mauro Reginato - Olha que legal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mauro Reginato - Olha que legal.mp3"; sourceTree = "<group>"; };
 		D94EAB4C29FAE51B004CD604 /* Sergio Moro - Descont... Des... Contextualizadas (completo).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Sergio Moro - Descont... Des... Contextualizadas (completo).mp3"; sourceTree = "<group>"; };
 		D94EAB4E29FB1524004CD604 /* NetworkRabbit+Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+Files.swift"; sourceTree = "<group>"; };
-		D94EAB5029FC0907004CD604 /* AppDelegate+MoveSoundsAuthors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+MoveSoundsAuthors.swift"; sourceTree = "<group>"; };
+		D94EAB5029FC0907004CD604 /* AppDelegate+MoveFixedDataToDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+MoveFixedDataToDatabase.swift"; sourceTree = "<group>"; };
 		D94EAB5229FC09A8004CD604 /* LocalDatabase+Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+Sound.swift"; sourceTree = "<group>"; };
 		D94EAB5429FC141F004CD604 /* LocalDatabase+Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+Author.swift"; sourceTree = "<group>"; };
 		D94EAB5629FC375A004CD604 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
@@ -1894,8 +1895,9 @@
 		D958BC742869000A000B2EDA /* FolderInfoEditingViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderInfoEditingViewViewModel.swift; sourceTree = "<group>"; };
 		D9592C3F2AA2C01100157F5A /* GenrePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenrePickerView.swift; sourceTree = "<group>"; };
 		D9592C412AA2F32A00157F5A /* LocalDatabase+MusicGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+MusicGenre.swift"; sourceTree = "<group>"; };
-		D9592C432AA2F59B00157F5A /* AddMusicGenreTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMusicGenreTable.swift; sourceTree = "<group>"; };
+		D9592C432AA2F59B00157F5A /* AddSongAndMusicGenreTables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSongAndMusicGenreTables.swift; sourceTree = "<group>"; };
 		D9592C452AA2FBE100157F5A /* musicGenre_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = musicGenre_data.json; sourceTree = "<group>"; };
+		D9592C472AA38C3000157F5A /* LocalDatabase+Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+Song.swift"; sourceTree = "<group>"; };
 		D959B0472887E83D00A215AD /* SidebarViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewViewModel.swift; sourceTree = "<group>"; };
 		D95A195E29D5D55400909096 /* Rui Falcao - Vai, chupetinha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rui Falcao - Vai, chupetinha.mp3"; sourceTree = "<group>"; };
 		D95A196029D5DA7C00909096 /* Maria da Conceicao Tavares - A situacao brasileira da cobranca de impostos e uma vergonha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Maria da Conceicao Tavares - A situacao brasileira da cobranca de impostos e uma vergonha.mp3"; sourceTree = "<group>"; };
@@ -4584,7 +4586,7 @@
 			isa = PBXGroup;
 			children = (
 				D9625E7D28238F9A00080852 /* MedoDelirioBrasiliaApp.swift */,
-				D94EAB5029FC0907004CD604 /* AppDelegate+MoveSoundsAuthors.swift */,
+				D94EAB5029FC0907004CD604 /* AppDelegate+MoveFixedDataToDatabase.swift */,
 				D980456128380F66003B2E83 /* LocalizableStrings.swift */,
 				D988C522283C33E100D64404 /* UserSettings.swift */,
 				D9DCC5D42875CB59008DD4A3 /* AppPersistentMemory.swift */,
@@ -4706,6 +4708,7 @@
 				D94EAB5429FC141F004CD604 /* LocalDatabase+Author.swift */,
 				D9E39DB82A1E891D0053A527 /* LocalDatabase+UpdateEvent.swift */,
 				D9E39DBA2A1E8B320053A527 /* LocalDatabase+SyncLog.swift */,
+				D9592C472AA38C3000157F5A /* LocalDatabase+Song.swift */,
 				D9592C412AA2F32A00157F5A /* LocalDatabase+MusicGenre.swift */,
 			);
 			path = LocalDatabase;
@@ -4743,7 +4746,7 @@
 				D9A3984828FDEE0D00039B7B /* AddRankingTypeToAudienceSharingStatisticTable.swift */,
 				D94D9F04298DB98D006F14A5 /* AddDateAndVersionToUserFolderTables.swift */,
 				D9A7D85E29FB448500A964AC /* AddSyncTables.swift */,
-				D9592C432AA2F59B00157F5A /* AddMusicGenreTable.swift */,
+				D9592C432AA2F59B00157F5A /* AddSongAndMusicGenreTables.swift */,
 			);
 			path = Migrations;
 			sourceTree = "<group>";
@@ -6408,11 +6411,12 @@
 				D93443252838177000ADCD38 /* UserInfo.swift in Sources */,
 				D905B4C52857FF3D0096D466 /* AddNetworkCallLogTable.swift in Sources */,
 				D946116E28611F1000C4FB7E /* FolderCell.swift in Sources */,
+				D9592C482AA38C3000157F5A /* LocalDatabase+Song.swift in Sources */,
 				D92694062A029A62007872D9 /* SyncService.swift in Sources */,
 				D960AF272845BFE700ADF1F6 /* UserDefaultsKeys.swift in Sources */,
 				D91B4DF6299BBE5B00E92824 /* SelectMultipleSymbol.swift in Sources */,
 				D9877D2B2869845400B541F9 /* SharingUtility.swift in Sources */,
-				D94EAB5129FC0907004CD604 /* AppDelegate+MoveSoundsAuthors.swift in Sources */,
+				D94EAB5129FC0907004CD604 /* AppDelegate+MoveFixedDataToDatabase.swift in Sources */,
 				D988C523283C33E100D64404 /* UserSettings.swift in Sources */,
 				D92E7075283C5F620035826C /* SongCell.swift in Sources */,
 				D9943F1C28641917002C6B97 /* LocalDatabase+Favorite.swift in Sources */,
@@ -6475,7 +6479,7 @@
 				D9CA301E2A03EE2300F1F23D /* NetworkRabbit+Generic.swift in Sources */,
 				D9D3D4912887495B00C42FDE /* FolderList.swift in Sources */,
 				D97B2DD928E5EA0500C3B50B /* DeleteFolderViewAide.swift in Sources */,
-				D9592C442AA2F59B00157F5A /* AddMusicGenreTable.swift in Sources */,
+				D9592C442AA2F59B00157F5A /* AddSongAndMusicGenreTables.swift in Sources */,
 				D9758C3A28617BA70094D388 /* AddUserFolderTables.swift in Sources */,
 				D99070592A90E20100A26F65 /* SyncInfoView+KnowMoreView.swift in Sources */,
 				D9265741285A1EE700947165 /* LocalDatabase+Log.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  AppDelegate+MoveSoundsAuthors.swift
+//  AppDelegate+MoveFixedDataToDatabase.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 28/04/23.
@@ -44,6 +44,25 @@ extension AppDelegate {
 }
 
 extension AppDelegate {
+
+    internal func moveSongsAndMusicGenresToDatabase() {
+        moveSongsToDatabase()
+        moveMusicGenresToDatabase()
+    }
+
+    internal func moveSongsToDatabase() {
+        let songData: [Song] = Bundle.main.decodeJSON("song_data.json")
+        songData.forEach { song in
+            do {
+                try LocalDatabase.shared.insert(song: song)
+            } catch {
+                Logger.shared.logSyncError(description: "Problema ao tentar importar Música '\(song.title)': \(error.localizedDescription)", updateEventId: "")
+            }
+        }
+        if let songCount = try? LocalDatabase.shared.songCount() {
+            Logger.shared.logSyncSuccess(description: "\(formatNumber(songCount)) Músicas importadas dos dados fixos com sucesso.", updateEventId: "")
+        }
+    }
 
     internal func moveMusicGenresToDatabase() {
         let genreData: [MusicGenre] = Bundle.main.decodeJSON("musicGenre_data.json")

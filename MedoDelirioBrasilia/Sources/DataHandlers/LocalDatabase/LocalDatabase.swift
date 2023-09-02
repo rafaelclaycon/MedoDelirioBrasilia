@@ -42,6 +42,7 @@ class LocalDatabase: LocalDatabaseProtocol {
     var author = Table("author")
     var updateEventTable = Table("updateEvent")
     var syncLogTable = Table("syncLog")
+    let songTable = Table("song")
     var musicGenreTable = Table("musicGenre")
 
     static let shared = LocalDatabase()
@@ -89,7 +90,7 @@ extension LocalDatabase {
             AddRankingTypeToAudienceSharingStatisticTable(),
             AddDateAndVersionToUserFolderTables(),
             AddSyncTables(),
-            AddMusicGenreTable()
+            AddSongAndMusicGenreTables()
         ]
     }
 
