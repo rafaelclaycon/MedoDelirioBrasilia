@@ -17,7 +17,7 @@ struct SongsView: View {
     
     @State private var searchText = ""
     @State private var searchBar: UISearchBar?
-    @State var currentGenre: MusicGenre? = nil
+    @State private var currentGenre: String? = nil
 
     @State private var subviewToOpen: SubviewToOpen = .genrePicker
     @State private var showingModalView = false
@@ -50,10 +50,10 @@ struct SongsView: View {
     var searchResults: [Song] {
         if searchText.isEmpty {
             guard let currentGenre else { return viewModel.songs }
-            return viewModel.songs.filter({ $0.genre == currentGenre.id })
+            return viewModel.songs.filter({ $0.genreId == currentGenre })
         } else {
-            return viewModel.songs.filter { sound in
-                let searchString = sound.title.lowercased().withoutDiacritics()
+            return viewModel.songs.filter { song in
+                let searchString = song.title.lowercased().withoutDiacritics()
                 return searchString.contains(searchText.lowercased().withoutDiacritics())
             }
         }
@@ -192,11 +192,11 @@ struct SongsView: View {
             .sheet(isPresented: $showingModalView) {
                 switch subviewToOpen {
                 case .genrePicker:
-                    GenrePickerView()
+                    GenrePickerView(isBeingShown: $showingModalView, selectedId: $currentGenre)
 
                 case .shareAsVideoView:
                     if #available(iOS 16.0, *) {
-                        ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSong?.id ?? .empty, contentTitle: viewModel.selectedSong?.title ?? .empty, contentAuthor: viewModel.selectedSong?.genre ?? .empty, audioFilename: viewModel.selectedSong?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: true)
+                        ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSong?.id ?? .empty, contentTitle: viewModel.selectedSong?.title ?? .empty, contentAuthor: viewModel.selectedSong?.genreName ?? .empty, audioFilename: viewModel.selectedSong?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: true)
                     } else {
                         ShareAsVideoLegacyView(viewModel: ShareAsVideoLegacyViewViewModel(contentId: viewModel.selectedSong?.id ?? .empty, contentTitle: viewModel.selectedSong?.title ?? .empty, audioFilename: viewModel.selectedSong?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: true)
                     }

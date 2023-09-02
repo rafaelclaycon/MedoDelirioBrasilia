@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SongCell: View {
 
-    @State var song: Song
+    let song: Song
     
     @Binding var nowPlaying: Set<String>
     @Environment(\.sizeCategory) var sizeCategory
@@ -60,7 +60,7 @@ struct SongCell: View {
                             .lineLimit(2)
                         
                         HStack(spacing: 10) {
-                            Text("\(song.genre) · \(durationForDisplay)")
+                            Text("\(song.genreName ?? "") · \(durationForDisplay)")
                                 .foregroundColor(.white)
                                 .font(.callout)
                                 .multilineTextAlignment(.leading)
@@ -120,7 +120,8 @@ struct SongCell_Previews: PreviewProvider {
             song: Song(
                 id: "ABC",
                 title: "Funk do Morto",
-                genre: "82BFAA10-C01A-4FE0-8366-1B1690D00A40", // MusicGenre(id: "82BFAA10-C01A-4FE0-8366-1B1690D00A40", name: "Funk", isHidden: false)
+                genreId: "82BFAA10-C01A-4FE0-8366-1B1690D00A40", // MusicGenre(id: "82BFAA10-C01A-4FE0-8366-1B1690D00A40", name: "Funk", isHidden: false)
+                genreName: "Funk",
                 duration: 60
             ),
             nowPlaying: .constant(Set<String>())

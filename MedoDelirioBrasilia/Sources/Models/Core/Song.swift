@@ -12,7 +12,8 @@ struct Song: Hashable, Codable, Identifiable {
     let id: String
     let title: String
     let description: String
-    let genre: String
+    let genreId: String
+    let genreName: String?
     let duration: Double
     let filename: String
     var dateAdded: Date?
@@ -21,7 +22,8 @@ struct Song: Hashable, Codable, Identifiable {
     init(id: String = UUID().uuidString,
          title: String,
          description: String = "",
-         genre: String,
+         genreId: String,
+         genreName: String?,
          duration: Double = 0,
          filename: String = "",
          dateAdded: Date = Date(),
@@ -30,7 +32,8 @@ struct Song: Hashable, Codable, Identifiable {
         self.id = id
         self.title = title
         self.description = description
-        self.genre = genre
+        self.genreId = genreId
+        self.genreName = genreName
         self.duration = duration
         self.filename = filename
         self.dateAdded = dateAdded
