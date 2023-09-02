@@ -31,7 +31,7 @@ struct AddSongAndMusicGenreTables: Migration {
         let date_added = Expression<Date?>("dateAdded")
         let is_offensive = Expression<Bool>("isOffensive")
 
-        try db.run(musicGenreTable.create(ifNotExists: true) { t in
+        try db.run(songTable.create(ifNotExists: true) { t in
             t.column(id, primaryKey: true)
             t.column(title)
             t.column(description)
