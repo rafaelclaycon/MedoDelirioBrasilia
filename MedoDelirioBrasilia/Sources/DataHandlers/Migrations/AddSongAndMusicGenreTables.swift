@@ -30,6 +30,7 @@ struct AddSongAndMusicGenreTables: Migration {
         let filename = Expression<String>("filename")
         let date_added = Expression<Date?>("dateAdded")
         let is_offensive = Expression<Bool>("isOffensive")
+        let is_from_server = Expression<Bool?>("isFromServer")
 
         try db.run(songTable.create(ifNotExists: true) { t in
             t.column(id, primaryKey: true)
@@ -40,6 +41,7 @@ struct AddSongAndMusicGenreTables: Migration {
             t.column(filename)
             t.column(date_added)
             t.column(is_offensive)
+            t.column(is_from_server)
         })
     }
 

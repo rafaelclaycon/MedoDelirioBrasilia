@@ -18,6 +18,7 @@ struct Song: Hashable, Codable, Identifiable {
     let filename: String
     var dateAdded: Date?
     let isOffensive: Bool
+    var isFromServer: Bool?
 
     init(id: String = UUID().uuidString,
          title: String,
@@ -27,7 +28,8 @@ struct Song: Hashable, Codable, Identifiable {
          duration: Double = 0,
          filename: String = "",
          dateAdded: Date = Date(),
-         isOffensive: Bool = false
+         isOffensive: Bool = false,
+         isFromServer: Bool? = false
     ) {
         self.id = id
         self.title = title
@@ -38,6 +40,7 @@ struct Song: Hashable, Codable, Identifiable {
         self.filename = filename
         self.dateAdded = dateAdded
         self.isOffensive = isOffensive
+        self.isFromServer = isFromServer
     }
 
     func fileURL() throws -> URL {

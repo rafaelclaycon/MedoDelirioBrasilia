@@ -19,10 +19,14 @@ extension LocalDatabase {
         var queriedGenres = [Song]()
 
         let genre_id = Expression<String>("genreId")
-        let song_id = Expression<String>("song.id")
         let genre_id_on_genre_table = Expression<String>("id")
         let genre_name = Expression<String>("name")
         let isOffensive = Expression<Bool>("isOffensive")
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
 
         var query = songTable.select(songTable[*], musicGenreTable[genre_name]).join(musicGenreTable, on: songTable[genre_id] == musicGenreTable[genre_id_on_genre_table])
 
@@ -32,6 +36,17 @@ extension LocalDatabase {
 
         for queriedSong in try db.prepare(query) {
             var song: Song = try queriedSong.decode()
+
+            if let dateString = try queriedSong.get(Expression<String?>("dateAdded")) {
+                if let date = dateFormatter.date(from: dateString) {
+                    song.dateAdded = date
+                }
+            }
+
+            if let isFromServer = try queriedSong.get(Expression<Bool?>("isFromServer")) {
+                song.isFromServer = isFromServer
+            }
+
             song.genreName = try queriedSong.get(musicGenreTable[genre_name])
             queriedGenres.append(song)
         }
