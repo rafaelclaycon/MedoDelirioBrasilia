@@ -1286,6 +1286,7 @@
 		D9D3D4912887495B00C42FDE /* FolderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3D4902887495B00C42FDE /* FolderList.swift */; };
 		D9D3D493288750C400C42FDE /* FolderListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3D492288750C400C42FDE /* FolderListViewModel.swift */; };
 		D9D53E3B2AA3F29F00B46558 /* BetaBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D53E3A2AA3F29F00B46558 /* BetaBanner.swift */; };
+		D9D53E3D2AA408AD00B46558 /* Cristiano - Advogados malucos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D53E3C2AA408AD00B46558 /* Cristiano - Advogados malucos.mp3 */; };
 		D9D798742A082955002B2D77 /* Diogo Defante - Ih, a porrada ta lambrando ainda.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D798732A082955002B2D77 /* Diogo Defante - Ih, a porrada ta lambrando ainda.mp3 */; };
 		D9D7988F2A093A54002B2D77 /* Caetano Veloso - Deus e um cara gozador, adora brincadeira.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D798872A093A54002B2D77 /* Caetano Veloso - Deus e um cara gozador, adora brincadeira.mp3 */; };
 		D9D798902A093A54002B2D77 /* Que viagem e essa, vei.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D798882A093A54002B2D77 /* Que viagem e essa, vei.mp3 */; };
@@ -2708,6 +2709,7 @@
 		D9D3D4902887495B00C42FDE /* FolderList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderList.swift; sourceTree = "<group>"; };
 		D9D3D492288750C400C42FDE /* FolderListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListViewModel.swift; sourceTree = "<group>"; };
 		D9D53E3A2AA3F29F00B46558 /* BetaBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetaBanner.swift; sourceTree = "<group>"; };
+		D9D53E3C2AA408AD00B46558 /* Cristiano - Advogados malucos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano - Advogados malucos.mp3"; sourceTree = "<group>"; };
 		D9D798732A082955002B2D77 /* Diogo Defante - Ih, a porrada ta lambrando ainda.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Diogo Defante - Ih, a porrada ta lambrando ainda.mp3"; sourceTree = "<group>"; };
 		D9D798872A093A54002B2D77 /* Caetano Veloso - Deus e um cara gozador, adora brincadeira.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Caetano Veloso - Deus e um cara gozador, adora brincadeira.mp3"; sourceTree = "<group>"; };
 		D9D798882A093A54002B2D77 /* Que viagem e essa, vei.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Que viagem e essa, vei.mp3"; sourceTree = "<group>"; };
@@ -2866,6 +2868,7 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D9D53E3C2AA408AD00B46558 /* Cristiano - Advogados malucos.mp3 */,
 				D9347DD22AA1735E00648E0B /* Eu Fico Muito Triste - Summer Eletrohits.mp3 */,
 				D9347DD02AA16AD100648E0B /* Lula - E agora em setembro vai entrar o grosso.mp3 */,
 				D9BA1C3F2A9A920300996332 /* Caio Salles - Demais.mp3 */,
@@ -5877,6 +5880,7 @@
 				D9ADEB6729861BD3001CB004 /* Bem-vindos ao devido processo legal.mp3 in Resources */,
 				D975FFAF2880B4F20035E6F2 /* Bolsonaro - E coisa de viado o que ele estao fazendo.mp3 in Resources */,
 				D975FE0F2880B4F20035E6F2 /* Boldo - e de quanto.mp3 in Resources */,
+				D9D53E3D2AA408AD00B46558 /* Cristiano - Advogados malucos.mp3 in Resources */,
 				D975003C2880B4F20035E6F2 /* Lu Schievano - Amiga nao tem como te defende short meme.mp3 in Resources */,
 				D975FF992880B4F20035E6F2 /* PODER360 - Roberto Jefferson - O cachorro do supremo, o xandao, alexandre de moraes.mp3 in Resources */,
 				49E5D33B28C634F20057FF7D /* Nao e hora pra desespero completo.mp3 in Resources */,
@@ -6416,7 +6420,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/Sources/AppSupport/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -6435,7 +6439,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.39;
+				MARKETING_VERSION = 6.40;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -6456,7 +6460,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/Sources/AppSupport/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -6475,7 +6479,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.39;
+				MARKETING_VERSION = 6.40;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
