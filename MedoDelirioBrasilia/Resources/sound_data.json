@@ -11198,5 +11198,15 @@
         "dateAdded": "2023-08-31T00:00:00Z",
         "duration": 9.04,
         "isOffensive": false
+    },
+    {
+        "id": "C5088B73-AC8B-458B-8908-BCB3373C5BB8",
+        "title": "Advogados malucos",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "advogados malucos hoje no Discovery Channel",
+        "filename": "Cristiano - Advogados malucos.mp3",
+        "dateAdded": "2023-09-02T00:00:00Z",
+        "duration": 7.44,
+        "isOffensive": true
     }
 ]

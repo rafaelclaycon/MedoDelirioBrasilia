@@ -227,11 +227,11 @@ extension SettingsView {
                         OpenUtility.open(link: "https://apoia.se/app-medo-delirio-ios")
                     } label: {
                         HStack(spacing: 15) {
-                            Image(systemName: "dollarsign.arrow.circlepath")
+                            Image(systemName: "dollarsign.circle")
                                 .renderingMode(.template)
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 20)
+                                .frame(width: 22)
 
                             Text("Ver campanha no Apoia.se")
                                 .bold()

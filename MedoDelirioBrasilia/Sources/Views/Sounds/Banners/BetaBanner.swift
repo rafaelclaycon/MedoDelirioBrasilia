@@ -1,42 +1,42 @@
 //
-//  RecurringDonationBanner.swift
+//  BetaBanner.swift
 //  MedoDelirioBrasilia
 //
-//  Created by Rafael Schmitt on 18/08/23.
+//  Created by Rafael Schmitt on 02/09/23.
 //
 
 import SwiftUI
 
-struct RecurringDonationBanner: View {
+struct BetaBanner: View {
 
     @Binding var isBeingShown: Bool
 
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
-        HStack(spacing: 15) {
-            Image(systemName: "dollarsign.circle")
+        HStack(spacing: 16) {
+            Image(systemName: "app.gift.fill")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 36)
-                .foregroundColor(.red)
+                .frame(height: 36)
+                .foregroundColor(.blue)
 
             VStack(alignment: .leading, spacing: 8) {
-                Text("Chegamos ao Apoia.se!")
-                    .foregroundColor(.red)
+                Text("Vem coisa boa por aí!")
+                    .foregroundColor(.blue)
                     .bold()
 
-                Text("O app Medo e Delírio iOS acaba de entrar para o Apoia.se. Curte o meu trabalho aqui? Considere doar de forma recorrente por lá.")
-                    .foregroundColor(.red)
+                Text("Tá no ar o Beta da funcionalidade de *download* dos conteúdos. Isso mesmo, adeus atualizar pela loja para ter os últimos sons. Bora ajudar a testar?")
+                    .foregroundColor(.blue)
                     .opacity(0.8)
                     .font(.callout)
 
                 Button {
-                    OpenUtility.open(link: "https://apoia.se/app-medo-delirio-ios")
+                    OpenUtility.open(link: "https://testflight.apple.com/join/rMQ3yVaX")
                 } label: {
-                    Text("Ver campanha")
+                    Text("Baixar a versão Beta")
                 }
-                .tint(.red)
+                .tint(.blue)
                 .controlSize(.regular)
                 .buttonStyle(.bordered)
                 .buttonBorderShape(.roundedRectangle)
@@ -45,25 +45,25 @@ struct RecurringDonationBanner: View {
         .padding()
         .background {
             RoundedRectangle(cornerRadius: 15)
-                .foregroundColor(.red)
+                .foregroundColor(.blue)
                 .opacity(colorScheme == .dark ? 0.3 : 0.15)
         }
         .overlay(alignment: .topTrailing) {
             Button {
-                AppPersistentMemory.setHasSeenRecurringDonationBanner(to: true)
+                AppPersistentMemory.setHasSeenBetaBanner(to: true)
                 isBeingShown = false
             } label: {
                 Image(systemName: "xmark")
-                    .foregroundColor(.red)
+                    .foregroundColor(.blue)
             }
             .padding()
         }
     }
 }
 
-struct RecurringDonationBanner_Previews: PreviewProvider {
+struct BetaBanner_Previews: PreviewProvider {
     static var previews: some View {
-        RecurringDonationBanner(isBeingShown: .constant(true))
+        BetaBanner(isBeingShown: .constant(true))
             .padding()
     }
 }
