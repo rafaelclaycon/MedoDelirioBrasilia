@@ -37,7 +37,7 @@ extension SyncService {
 
     func deleteMusicGenre(with updateEvent: UpdateEvent) async {
         do {
-            try injectedDatabase.delete(authorId: updateEvent.contentId)
+            try injectedDatabase.delete(genreId: updateEvent.contentId)
             try injectedDatabase.markAsSucceeded(updateEventId: updateEvent.id)
             Logger.shared.logSyncSuccess(description: "Gênero Musical \"\(updateEvent.contentId)\" removido com sucesso.", updateEventId: updateEvent.id.uuidString)
         } catch {

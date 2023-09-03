@@ -39,13 +39,13 @@ class SoundsViewViewModel: ObservableObject {
     @Published var alertMessage: String = ""
     @Published var showAlert: Bool = false
     @Published var alertType: AlertType = .singleOption
-    
+
     init(soundSortOption: Int, authorSortOption: Int, currentSoundsListMode: Binding<SoundsListMode>) {
         self.soundSortOption = soundSortOption
         self.authorSortOption = authorSortOption
         self.currentSoundsListMode = currentSoundsListMode
     }
-    
+
     func reloadList(currentMode: SoundsView.ViewMode) {
         guard currentMode == .allSounds || currentMode == .favorites else { return }
 
@@ -90,35 +90,35 @@ class SoundsViewViewModel: ObservableObject {
             sortSoundsInPlaceByTitleLengthAscending()
         }
     }
-    
+
     private func sortSoundsInPlaceByTitleAscending() {
         sounds.sort(by: { $0.title.withoutDiacritics() < $1.title.withoutDiacritics() })
     }
-    
+
     private func sortSoundsInPlaceByAuthorNameAscending() {
         sounds.sort(by: { $0.authorName?.withoutDiacritics() ?? "" < $1.authorName?.withoutDiacritics() ?? "" })
     }
-    
+
     private func sortSoundsInPlaceByDateAddedDescending() {
         sounds.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
     }
-    
+
     private func sortSoundsInPlaceByDurationAscending() {
         sounds.sort(by: { $0.duration < $1.duration })
     }
-    
+
     private func sortSoundsInPlaceByDurationDescending() {
         sounds.sort(by: { $0.duration > $1.duration })
     }
-    
+
     private func sortSoundsInPlaceByTitleLengthAscending() {
         sounds.sort(by: { $0.title.count < $1.title.count })
     }
-    
+
     private func sortSoundsInPlaceByTitleLengthDescending() {
         sounds.sort(by: { $0.title.count > $1.title.count })
     }
-    
+
     func play(sound: Sound) {
         do {
             let url = try sound.fileURL()

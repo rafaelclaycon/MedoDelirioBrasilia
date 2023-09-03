@@ -18,6 +18,11 @@ internal protocol LocalDatabaseProtocol {
     // UserFolder
     func contentExistsInsideUserFolder(withId folderId: String, contentId: String) throws -> Bool
     
+    // Song
+    func insert(song newSong: Song) throws
+    func update(song updatedSong: Song) throws
+    func delete(songId: String) throws
+    
     // Music Genre
     func insert(genre newGenre: MusicGenre) throws
     func update(genre updatedGenre: MusicGenre) throws
@@ -127,6 +132,7 @@ enum LocalDatabaseError: Error {
     case folderContentNotFound
     case internalError
     case authorNotFound
+    case songNotFound
     case musicGenreNotFound
 }
 
@@ -144,6 +150,8 @@ extension LocalDatabaseError: LocalizedError {
             return NSLocalizedString("Ocorreu um erro interno.", comment: "Erro Interno")
         case .authorNotFound:
             return NSLocalizedString("O Autor solicitado não foi encontrado no banco de dados.", comment: "Autor Não Encontrado")
+        case .songNotFound:
+            return NSLocalizedString("A Música solicitada não foi encontrada no bando de dados.", comment: "")
         case .musicGenreNotFound:
             return NSLocalizedString("O Gênero Musical solicitado não foi encontrado no banco de dados.", comment: "")
         }

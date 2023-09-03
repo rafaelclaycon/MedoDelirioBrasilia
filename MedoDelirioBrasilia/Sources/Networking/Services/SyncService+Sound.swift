@@ -8,7 +8,7 @@
 import Foundation
 
 extension SyncService {
-    
+
     func createSound(from updateEvent: UpdateEvent) async {
         let url = URL(string: networkRabbit.serverPath + "v3/sound/\(updateEvent.contentId)")!
         do {
@@ -24,7 +24,7 @@ extension SyncService {
             Logger.shared.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
         }
     }
-    
+
     func updateSoundMetadata(with updateEvent: UpdateEvent) async {
         let url = URL(string: networkRabbit.serverPath + "v3/sound/\(updateEvent.contentId)")!
         do {
@@ -37,7 +37,7 @@ extension SyncService {
             Logger.shared.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
         }
     }
-    
+
     func updateSoundFile(_ updateEvent: UpdateEvent) async {
         do {
             try await downloadFile(updateEvent.contentId)
@@ -63,7 +63,7 @@ extension SyncService {
     }
 
     // MARK: - Internal
-    
+
     private func removeSoundFileIfExists(named filename: String) throws {
         let documentsFolder = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let fileManager = FileManager.default
@@ -73,7 +73,7 @@ extension SyncService {
             try fileManager.removeItem(at: file)
         }
     }
-    
+
     private func downloadFile(_ contentId: String) async throws {
         let fileUrl = URL(string: baseURL + "sounds/\(contentId).mp3")!
         

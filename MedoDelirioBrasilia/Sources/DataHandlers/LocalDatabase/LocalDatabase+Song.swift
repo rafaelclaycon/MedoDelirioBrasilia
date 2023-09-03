@@ -74,27 +74,29 @@ extension LocalDatabase {
         return queriedSongs.first
     }
 
-//    func update(author updatedAuthor: Author) throws {
-//        let id = Expression<String>("id")
-//        let query = author.filter(id == updatedAuthor.id)
-//        let updateQuery = query.update(
-//            Expression<String>("name") <- updatedAuthor.name,
-//            Expression<String?>("photo") <- updatedAuthor.photo,
-//            Expression<String?>("description") <- updatedAuthor.description
-//        )
-//        try db.run(updateQuery)
-//    }
-//
-//    func delete(authorId: String) throws {
-//        let id = Expression<String>("id")
-//
-//        let query = author.filter(id == authorId)
-//        let count = try db.scalar(query.count)
-//
-//        if count != 0 {
-//            try db.run(query.delete())
-//        } else {
-//            throw LocalDatabaseError.authorNotFound
-//        }
-//    }
+    func update(song updatedSong: Song) throws {
+        let id = Expression<String>("id")
+        let query = songTable.filter(id == updatedSong.id)
+        let updateQuery = query.update(
+            Expression<String>("title") <- updatedSong.title,
+            Expression<String>("description") <- updatedSong.description,
+            Expression<String>("genreId") <- updatedSong.genreId,
+            Expression<Double>("duration") <- updatedSong.duration,
+            Expression<Bool>("isOffensive") <- updatedSong.isOffensive
+        )
+        try db.run(updateQuery)
+    }
+
+    func delete(songId: String) throws {
+        let id = Expression<String>("id")
+
+        let query = songTable.filter(id == songId)
+        let count = try db.scalar(query.count)
+
+        if count != 0 {
+            try db.run(query.delete())
+        } else {
+            throw LocalDatabaseError.songNotFound
+        }
+    }
 }

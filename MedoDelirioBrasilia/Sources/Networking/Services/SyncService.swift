@@ -9,12 +9,14 @@ import Foundation
 import SwiftUI
 
 internal protocol SyncServiceProtocol {
+
     func getUpdates(from updateDateToConsider: String) async throws -> [UpdateEvent]
     func hasConnectivity() -> Bool
     func process(updateEvent: UpdateEvent) async
 }
 
 class SyncService: SyncServiceProtocol {
+
     private let connectionManager: ConnectionManagerProtocol
     private let networkRabbit: NetworkRabbitProtocol
     let injectedDatabase: LocalDatabaseProtocol
@@ -30,14 +32,6 @@ class SyncService: SyncServiceProtocol {
     }
     
     func getUpdates(from updateDateToConsider: String) async throws -> [UpdateEvent] {
-//        return [
-//            UpdateEvent(id: UUID(), contentId: UUID().uuidString, dateTime: Date.now.iso8601withFractionalSeconds, mediaType: .song, eventType: .metadataUpdated),
-//            UpdateEvent(id: UUID(), contentId: UUID().uuidString, dateTime: Date.now.iso8601withFractionalSeconds, mediaType: .song, eventType: .metadataUpdated),
-//            UpdateEvent(id: UUID(), contentId: UUID().uuidString, dateTime: Date.now.iso8601withFractionalSeconds, mediaType: .song, eventType: .metadataUpdated),
-//            UpdateEvent(id: UUID(), contentId: UUID().uuidString, dateTime: Date.now.iso8601withFractionalSeconds, mediaType: .song, eventType: .metadataUpdated),
-//            UpdateEvent(id: UUID(), contentId: UUID().uuidString, dateTime: Date.now.iso8601withFractionalSeconds, mediaType: .song, eventType: .metadataUpdated)
-//        ]
-        
         guard connectionManager.hasConnectivity() else {
             throw SyncError.noInternet
         }
@@ -82,8 +76,19 @@ class SyncService: SyncServiceProtocol {
             }
 
         case .song:
-            Logger.shared.logSyncError(description: "Nada pôde ser feito com a Música \"\(updateEvent.contentId)\" pois a sincronização de Músicas ainda não existe.", updateEventId: updateEvent.id.uuidString)
-            print("Not implemented yet")
+            switch updateEvent.eventType {
+            case .created:
+                await createSong(from: updateEvent)
+                
+            case .metadataUpdated:
+                await updateSongMetadata(with: updateEvent)
+                
+            case .fileUpdated:
+                await updateSongFile(updateEvent)
+                
+            case .deleted:
+                deleteSong(updateEvent)
+            }
 
         case .musicGenre:
             switch updateEvent.eventType {
@@ -101,6 +106,31 @@ class SyncService: SyncServiceProtocol {
             }
             
         }
+    }
+}
+
+extension SyncService {
+
+    internal func removeContentFile(
+        named filename: String,
+        atFolder contentFolderName: String
+    ) throws {
+        let documentsFolder = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let fileManager = FileManager.default
+        let file = documentsFolder.appendingPathComponent("\(contentFolderName)\(filename).mp3")
+        if fileManager.fileExists(atPath: file.path) {
+            try fileManager.removeItem(at: file)
+        }
+    }
+
+    internal func downloadFile(
+        at fileUrl: URL,
+        to localFolderName: String,
+        contentId: String
+    ) async throws {
+        try removeContentFile(named: contentId, atFolder: localFolderName)
+        let downloadedFileUrl = try await NetworkRabbit.downloadFile(from: fileUrl, into: localFolderName)
+        print("File downloaded successfully at: \(downloadedFileUrl)")
     }
 }
 
