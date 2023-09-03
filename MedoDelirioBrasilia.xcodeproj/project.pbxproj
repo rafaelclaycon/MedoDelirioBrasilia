@@ -212,6 +212,7 @@
 		D927230428924E36001D5E47 /* Carla Zambelliii (Happy cover).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D927230328924E36001D5E47 /* Carla Zambelliii (Happy cover).mp3 */; };
 		D927230628924FC1001D5E47 /* HitsMedoDelirioBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D927230528924FC1001D5E47 /* HitsMedoDelirioBannerView.swift */; };
 		D927C424285245CE0041970A /* SoundOptionsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D927C423285245CE0041970A /* SoundOptionsHelper.swift */; };
+		D928286F2AA4EEA2009E5D37 /* SyncService+MusicGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = D928286E2AA4EEA2009E5D37 /* SyncService+MusicGenre.swift */; };
 		D92879E7283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879E5283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 */; };
 		D92879E8283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92879E6283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 */; };
 		D92AD1A6288328D7001CBCDF /* Propaganda Instituto Tireido Ku Tirey Doku (os dados que vc quer).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92AD1A4288328D7001CBCDF /* Propaganda Instituto Tireido Ku Tirey Doku (os dados que vc quer).mp3 */; };
@@ -1675,6 +1676,7 @@
 		D927230328924E36001D5E47 /* Carla Zambelliii (Happy cover).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Carla Zambelliii (Happy cover).mp3"; sourceTree = "<group>"; };
 		D927230528924FC1001D5E47 /* HitsMedoDelirioBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HitsMedoDelirioBannerView.swift; sourceTree = "<group>"; };
 		D927C423285245CE0041970A /* SoundOptionsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundOptionsHelper.swift; sourceTree = "<group>"; };
+		D928286E2AA4EEA2009E5D37 /* SyncService+MusicGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SyncService+MusicGenre.swift"; sourceTree = "<group>"; };
 		D92879E5283EF00600369CE5 /* Nao era fake news era jornalismo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Nao era fake news era jornalismo.mp3"; sourceTree = "<group>"; };
 		D92879E6283EF00600369CE5 /* Pena que nao pode ver um impeachment.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pena que nao pode ver um impeachment.mp3"; sourceTree = "<group>"; };
 		D92AD1A4288328D7001CBCDF /* Propaganda Instituto Tireido Ku Tirey Doku (os dados que vc quer).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Propaganda Instituto Tireido Ku Tirey Doku (os dados que vc quer).mp3"; sourceTree = "<group>"; };
@@ -4086,6 +4088,7 @@
 				D992E8272A1BFF3100137469 /* SyncService+Sound.swift */,
 				D94B5F652A1C9CF600B3A688 /* SyncService+Author.swift */,
 				D94B5F672A1C9D0900B3A688 /* SyncService+Song.swift */,
+				D928286E2AA4EEA2009E5D37 /* SyncService+MusicGenre.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -6507,6 +6510,7 @@
 				D9461182286159BC00C4FB7E /* UserFolder.swift in Sources */,
 				D95C3E0F2A02D7C400172C17 /* NetworkRabbit+Sync.swift in Sources */,
 				D9A445A52A7DAE9B00484C0F /* BetaTagView.swift in Sources */,
+				D928286F2AA4EEA2009E5D37 /* SyncService+MusicGenre.swift in Sources */,
 				D9E39DBB2A1E8B320053A527 /* LocalDatabase+SyncLog.swift in Sources */,
 				D9943F2328641C00002C6B97 /* LocalDatabase.swift in Sources */,
 				D916536628ADCD9B007F141D /* ShareAsVideoLegacyViewViewModel.swift in Sources */,

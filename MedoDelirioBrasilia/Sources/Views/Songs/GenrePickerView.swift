@@ -75,6 +75,7 @@ struct GenrePickerView: View {
         .onAppear {
             do {
                 genres = try LocalDatabase.shared.musicGenres()
+                genres.sort(by: { $0.name.withoutDiacritics() < $1.name.withoutDiacritics() })
             } catch {
                 print(error)
             }

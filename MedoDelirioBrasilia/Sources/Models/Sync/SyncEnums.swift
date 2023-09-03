@@ -8,11 +8,9 @@
 import Foundation
 
 enum MediaType: Int, Codable {
-    
-    case sound, author, song
+    case sound, author, song, musicGenre
 }
 
 enum EventType: Int, Codable {
-    
     case created, metadataUpdated, fileUpdated, deleted
 }

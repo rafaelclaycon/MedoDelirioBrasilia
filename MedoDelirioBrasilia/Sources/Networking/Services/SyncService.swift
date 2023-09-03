@@ -80,10 +80,26 @@ class SyncService: SyncServiceProtocol {
             case .deleted:
                 await deleteAuthor(with: updateEvent)
             }
-            
+
         case .song:
             Logger.shared.logSyncError(description: "Nada pôde ser feito com a Música \"\(updateEvent.contentId)\" pois a sincronização de Músicas ainda não existe.", updateEventId: updateEvent.id.uuidString)
             print("Not implemented yet")
+
+        case .musicGenre:
+            switch updateEvent.eventType {
+            case .created:
+                await createMusicGenre(from: updateEvent)
+
+            case .metadataUpdated:
+                await updateGenreMetadata(with: updateEvent)
+
+            case .fileUpdated:
+                Logger.shared.logSyncError(description: "Evento do tipo 'arquivo atualizado' recebido para o Gênero Musical \"\(updateEvent.contentId)\", porém esse tipo de evento não é válido para Gêneros Musicais.", updateEventId: updateEvent.id.uuidString)
+
+            case .deleted:
+                await deleteMusicGenre(with: updateEvent)
+            }
+            
         }
     }
 }
