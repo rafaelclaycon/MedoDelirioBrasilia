@@ -368,10 +368,13 @@ struct SoundsView: View {
                                    emailBody: Shared.issueSuggestionEmailBody)
             }
             .sheet(isPresented: $viewModel.showEmailAppPicker_sendFeedback) {
-                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_sendFeedback,
-                                   didCopySupportAddress: .constant(false),
-                                   subject: "Feedback sobre o Medo e Delírio 7.0 Beta",
-                                   emailBody: "Olá! Desejo receber o questionário para te ajudar com o projeto. Além disso, aqui está um feedback sobre o Beta:")
+                EmailAppPickerView(
+                    isBeingShown: $viewModel.showEmailAppPicker_sendFeedback,
+                    didCopySupportAddress: .constant(false),
+                    subject: "Feedback sobre o Medo e Delírio 7.0 Beta",
+                    emailBody: "Olá! Desejo receber o questionário para te ajudar com o projeto. Além disso, aqui está um feedback sobre o Beta:",
+                    showQuizView: true
+                )
             }
             .alert(isPresented: $viewModel.showAlert) {
                 switch viewModel.alertType {
