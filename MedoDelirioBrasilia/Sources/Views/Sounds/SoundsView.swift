@@ -32,7 +32,7 @@ struct SoundsView: View {
     // Temporary banners
     @State private var shouldDisplayRecurringDonationBanner: Bool = false
     @State private var shouldDisplayBetaBanner: Bool = false
-    
+
     // Settings
     @EnvironmentObject var settingsHelper: SettingsHelper
     
@@ -323,14 +323,9 @@ struct SoundsView: View {
                     }
                 }
 
-                if !AppPersistentMemory.getHasSeenRecurringDonationBanner() {
-                    networkRabbit.displayRecurringDonationBanner {
-                        shouldDisplayRecurringDonationBanner = $0
-                    }
-                }
-
+                shouldDisplayRecurringDonationBanner = !AppPersistentMemory.getHasSeenRecurringDonationBanner()
                 shouldDisplayBetaBanner = !AppPersistentMemory.getHasSeenBetaBanner()
-                
+
                 if moveDatabaseIssue.isEmpty == false {
                     viewModel.showMoveDatabaseIssueAlert()
                 }

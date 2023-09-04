@@ -45,12 +45,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         } catch {
             fatalError("Failed to migrate database: \(error)")
         }
-        
-        //print(database)
-        
+
         prepareAudioPlayerOnMac()
         collectTelemetry()
-        
+
         return true
     }
     
