@@ -13,6 +13,7 @@ let podium = Podium(database: LocalDatabase.shared, networkRabbit: networkRabbit
 
 let soundsLastUpdateDate: String = "02/09/2023"
 let songsLastUpdateDate: String = "20/07/2023"
+let testFlightLink: String = "https://testflight.apple.com/join/rMQ3yVaX"
 
 var moveDatabaseIssue: String = .empty
 
