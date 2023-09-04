@@ -44,10 +44,19 @@ struct Song: Hashable, Codable, Identifiable {
     }
 
     func fileURL() throws -> URL {
-        guard let path = Bundle.main.path(forResource: self.filename, ofType: nil) else {
-            throw SongError.fileNotFound
+        if isFromServer ?? false {
+            let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            let fileUrl = documentsUrl.appendingPathComponent("\(InternalFolderNames.downloadedSongs)\(id).mp3")
+            guard FileManager().fileExists(atPath: fileUrl.path) else {
+                throw SoundError.fileNotFound
+            }
+            return fileUrl
+        } else {
+            guard let path = Bundle.main.path(forResource: self.filename, ofType: nil) else {
+                throw SongError.fileNotFound
+            }
+            return URL(fileURLWithPath: path)
         }
-        return URL(fileURLWithPath: path)
     }
 }
 

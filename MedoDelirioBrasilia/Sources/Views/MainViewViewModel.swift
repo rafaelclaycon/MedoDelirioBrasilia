@@ -129,7 +129,7 @@ class MainViewViewModel: ObservableObject {
     }
 
     func syncUnsuccessful() async throws {
-        print("syncUnsucceeded()")
+        print("syncUnsuccessful()")
         guard let localUnsuccessfulUpdates = localUnsuccessfulUpdates else { return }
         guard localUnsuccessfulUpdates.isEmpty == false else {
             return print("NO LOCAL UNSUCCESSFUL UPDATES")

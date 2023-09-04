@@ -77,7 +77,7 @@ struct SongsView: View {
                                             AudioPlayer.shared?.togglePlay()
                                             viewModel.nowPlayingKeeper.removeAll()
                                         } else {
-                                            viewModel.playSong(fromPath: song.filename, withId: song.id)
+                                            viewModel.play(song: song)
                                         }
                                     }
                                     .contextMenu(menuItems: {

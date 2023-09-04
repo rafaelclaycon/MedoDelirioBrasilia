@@ -41,6 +41,10 @@ struct GenrePickerView: View {
                     VStack {
                         ForEach(genres) { genre in
                             Button {
+                                guard selectedId != genre.id else {
+                                    selectedId = nil
+                                    return isBeingShown = false
+                                }
                                 selectedId = genre.id
                                 isBeingShown = false
                             } label: {
@@ -56,7 +60,7 @@ struct GenrePickerView: View {
                     }
                     .background {
                         RoundedRectangle(cornerRadius: 13)
-                            .fill(.gray.opacity(colorScheme == .dark ? 0.3 : 0.1))
+                            .fill(.gray.opacity(colorScheme == .dark ? 0.2 : 0.1))
                     }
                 }
                 .padding(.horizontal)

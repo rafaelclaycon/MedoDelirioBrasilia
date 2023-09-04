@@ -77,27 +77,27 @@ class SongsViewViewModel: ObservableObject {
         self.songs.sort(by: { $0.duration < $1.duration })
     }
     
-    func playSong(fromPath filepath: String, withId songId: String) {
-        guard filepath.isEmpty == false else {
-            return
-        }
-        
-        guard let path = Bundle.main.path(forResource: filepath, ofType: nil) else {
-            return showSongUnavailableAlert()
-        }
-        let url = URL(fileURLWithPath: path)
-        
-        nowPlayingKeeper.removeAll()
-        nowPlayingKeeper.insert(songId)
-        
-        AudioPlayer.shared = AudioPlayer(url: url, update: { [weak self] state in
-            //print(state?.activity as Any)
-            if state?.activity == .stopped {
-                self?.nowPlayingKeeper.removeAll()
+    func play(song: Song) {
+        do {
+            let url = try song.fileURL()
+
+            nowPlayingKeeper.removeAll()
+            nowPlayingKeeper.insert(song.id)
+
+            AudioPlayer.shared = AudioPlayer(url: url, update: { [weak self] state in
+                if state?.activity == .stopped {
+                    self?.nowPlayingKeeper.removeAll()
+                }
+            })
+
+            AudioPlayer.shared?.togglePlay()
+        } catch {
+            if song.isFromServer ?? false {
+                showServerSongNotAvailableAlert()
+            } else {
+                showSongUnavailableAlert()
             }
-        })
-        
-        AudioPlayer.shared?.togglePlay()
+        }
     }
 
     func share(song: Song) {
@@ -256,6 +256,14 @@ class SongsViewViewModel: ObservableObject {
         alertType = .twoOptions
         alertTitle = Shared.Songs.songNotFoundAlertTitle
         alertMessage = Shared.Songs.songNotFoundAlertMessage
+        showAlert = true
+    }
+
+    func showServerSongNotAvailableAlert() {
+        TapticFeedback.error()
+        alertType = .twoOptions
+        alertTitle = Shared.Songs.songNotFoundAlertTitle
+        alertMessage = "Provavelmente houve um problema com o download dessa música.\n\nBeta! 😊"
         showAlert = true
     }
 }

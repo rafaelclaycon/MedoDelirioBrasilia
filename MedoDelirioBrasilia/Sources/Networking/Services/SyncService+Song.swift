@@ -11,7 +11,7 @@ extension SyncService {
 
     func createSong(from updateEvent: UpdateEvent) async {
         guard
-            let contentUrl = URL(string: networkRabbit.serverPath + "v3/sound/\(updateEvent.contentId)"),
+            let contentUrl = URL(string: networkRabbit.serverPath + "v3/song/\(updateEvent.contentId)"),
             let fileUrl = URL(string: baseURL + "songs/\(updateEvent.contentId).mp3")
         else { return }
 
@@ -28,12 +28,12 @@ extension SyncService {
             try injectedDatabase.markAsSucceeded(updateEventId: updateEvent.id)
             Logger.shared.logSyncSuccess(description: "Música \"\(song.title)\" criada com sucesso.", updateEventId: updateEvent.id.uuidString)
         } catch {
-            Logger.shared.logSyncError(description: error.localizedDescription, updateEventId: updateEvent.id.uuidString)
+            Logger.shared.logSyncError(description: "Erro ao tentar criar Música: \(error.localizedDescription)", updateEventId: updateEvent.id.uuidString)
         }
     }
 
     func updateSongMetadata(with updateEvent: UpdateEvent) async {
-        let url = URL(string: networkRabbit.serverPath + "v3/sound/\(updateEvent.contentId)")!
+        let url = URL(string: networkRabbit.serverPath + "v3/song/\(updateEvent.contentId)")!
         do {
             let song: Song = try await NetworkRabbit.get(from: url)
             try injectedDatabase.update(song: song)
