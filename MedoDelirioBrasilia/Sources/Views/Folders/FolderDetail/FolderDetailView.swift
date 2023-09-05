@@ -79,7 +79,7 @@ struct FolderDetailView: View {
                                                         viewModel.nowPlayingKeeper.removeAll()
                                                         viewModel.doPlaylistCleanup()
                                                     } else {
-                                                        viewModel.playSound(fromPath: sound.filename, withId: sound.id)
+                                                        viewModel.play(sound: sound)
                                                     }
                                                 } else {
                                                     if viewModel.selectionKeeper.contains(sound.id) {

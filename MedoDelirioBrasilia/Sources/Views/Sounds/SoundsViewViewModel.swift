@@ -135,7 +135,6 @@ class SoundsViewViewModel: ObservableObject {
             
             AudioPlayer.shared?.togglePlay()
         } catch {
-            print(error)
             if sound.isFromServer ?? false {
                 showServerSoundNotAvailableAlert()
             } else {

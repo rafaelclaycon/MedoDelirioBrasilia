@@ -103,38 +103,39 @@ class FolderDetailViewViewModel: ObservableObject {
         }
     }
     
-    func playSound(fromPath filepath: String, withId soundId: String) {
-        guard filepath.isEmpty == false else {
-            return
-        }
-        
-        guard let path = Bundle.main.path(forResource: filepath, ofType: nil) else {
-            return showUnableToGetSoundAlert()
-        }
-        let url = URL(fileURLWithPath: path)
-        
-        nowPlayingKeeper.removeAll()
-        nowPlayingKeeper.insert(soundId)
+    func play(sound: Sound) {
+        do {
+            let url = try sound.fileURL()
 
-        AudioPlayer.shared = AudioPlayer(url: url, update: { [weak self] state in
-            guard let self = self else { return }
-            if state?.activity == .stopped {
-                self.nowPlayingKeeper.removeAll()
-                
-                if self.isPlayingPlaylist {
-                    self.currentTrackIndex += 1
-                    
-                    if self.currentTrackIndex >= self.sounds.count {
-                        self.doPlaylistCleanup()
-                        return
+            nowPlayingKeeper.removeAll()
+            nowPlayingKeeper.insert(sound.id)
+
+            AudioPlayer.shared = AudioPlayer(url: url, update: { [weak self] state in
+                guard let self = self else { return }
+                if state?.activity == .stopped {
+                    self.nowPlayingKeeper.removeAll()
+
+                    if self.isPlayingPlaylist {
+                        self.currentTrackIndex += 1
+
+                        if self.currentTrackIndex >= self.sounds.count {
+                            self.doPlaylistCleanup()
+                            return
+                        }
+
+                        self.play(sound: self.sounds[self.currentTrackIndex])
                     }
-                    
-                    self.playSound(fromPath: self.sounds[self.currentTrackIndex].filename, withId: self.sounds[self.currentTrackIndex].id)
                 }
+            })
+
+            AudioPlayer.shared?.togglePlay()
+        } catch {
+            if sound.isFromServer ?? false {
+                showServerSoundNotAvailableAlert()
+            } else {
+                showUnableToGetSoundAlert()
             }
-        })
-        
-        AudioPlayer.shared?.togglePlay()
+        }
     }
     
     func stopPlaying() {
@@ -335,7 +336,7 @@ class FolderDetailViewViewModel: ObservableObject {
     func playAllSoundsOneAfterTheOther() {
         guard let firstSound = sounds.first else { return }
         isPlayingPlaylist = true
-        playSound(fromPath: firstSound.filename, withId: firstSound.id)
+        play(sound: firstSound)
     }
     
     func playFrom(sound: Sound) {
@@ -343,7 +344,7 @@ class FolderDetailViewViewModel: ObservableObject {
         let soundInArray = sounds[soundIndex]
         currentTrackIndex = soundIndex
         isPlayingPlaylist = true
-        playSound(fromPath: soundInArray.filename, withId: soundInArray.id)
+        play(sound: soundInArray)
     }
     
     func doPlaylistCleanup() {
@@ -360,19 +361,26 @@ class FolderDetailViewViewModel: ObservableObject {
         alertType = .ok
         showAlert = true
     }
-    
+
+    func showServerSoundNotAvailableAlert() {
+        TapticFeedback.error()
+        alertType = .ok
+        alertTitle = Shared.soundNotFoundAlertTitle
+        alertMessage = "Provavelmente houve um problema com o download desse som.\n\nBeta! 😊"
+        showAlert = true
+    }
+
     func showSoundRemovalConfirmation(soundTitle: String) {
         alertTitle = "Remover \"\(soundTitle)\"?"
         alertMessage = "O som continuará disponível fora da pasta."
         alertType = .removeSingleSound
         showAlert = true
     }
-    
+
     func showRemoveMultipleSoundsConfirmation() {
         alertTitle = "Remover os sons selecionados?"
         alertMessage = "Os sons continuarão disponíveis fora da pasta."
         alertType = .removeMultipleSounds
         showAlert = true
     }
-
 }
