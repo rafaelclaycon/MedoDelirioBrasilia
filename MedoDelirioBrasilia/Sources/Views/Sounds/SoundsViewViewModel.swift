@@ -119,7 +119,7 @@ class SoundsViewViewModel: ObservableObject {
         sounds.sort(by: { $0.title.count > $1.title.count })
     }
 
-    func play(sound: Sound) {
+    func play(_ sound: Sound) {
         do {
             let url = try sound.fileURL()
             
@@ -452,7 +452,7 @@ class SoundsViewViewModel: ObservableObject {
         TapticFeedback.error()
         alertType = .twoOptions
         alertTitle = Shared.soundNotFoundAlertTitle
-        alertMessage = "Provavelmente houve um problema com o download desse som.\n\nBeta! 😊"
+        alertMessage = Shared.serverSoundNotAvailableMessage
         showAlert = true
     }
     

@@ -74,27 +74,28 @@ class AuthorDetailViewViewModel: ObservableObject {
         self.sounds.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
     }
     
-    func playSound(fromPath filepath: String, withId soundId: String) {
-        guard filepath.isEmpty == false else {
-            return
-        }
-        
-        guard let path = Bundle.main.path(forResource: filepath, ofType: nil) else {
-            return showUnableToGetSoundAlert()
-        }
-        let url = URL(fileURLWithPath: path)
-        
-        nowPlayingKeeper.removeAll()
-        nowPlayingKeeper.insert(soundId)
+    func play(_ sound: Sound) {
+        do {
+            let url = try sound.fileURL()
 
-        AudioPlayer.shared = AudioPlayer(url: url, update: { [weak self] state in
-            guard let self = self else { return }
-            if state?.activity == .stopped {
-                self.nowPlayingKeeper.removeAll()
+            nowPlayingKeeper.removeAll()
+            nowPlayingKeeper.insert(sound.id)
+
+            AudioPlayer.shared = AudioPlayer(url: url, update: { [weak self] state in
+                guard let self = self else { return }
+                if state?.activity == .stopped {
+                    self.nowPlayingKeeper.removeAll()
+                }
+            })
+
+            AudioPlayer.shared?.togglePlay()
+        } catch {
+            if sound.isFromServer ?? false {
+                showServerSoundNotAvailableAlert()
+            } else {
+                showUnableToGetSoundAlert()
             }
-        })
-        
-        AudioPlayer.shared?.togglePlay()
+        }
     }
     
     func stopPlaying() {
@@ -344,7 +345,7 @@ class AuthorDetailViewViewModel: ObservableObject {
     }
     
     // MARK: - Alerts
-    
+
     func showUnableToGetSoundAlert() {
         TapticFeedback.error()
         alertType = .reportSoundIssue
@@ -352,7 +353,15 @@ class AuthorDetailViewViewModel: ObservableObject {
         alertMessage = Shared.soundNotFoundAlertMessage
         showAlert = true
     }
-    
+
+    func showServerSoundNotAvailableAlert() {
+        TapticFeedback.error()
+        alertType = .reportSoundIssue
+        alertTitle = Shared.soundNotFoundAlertTitle
+        alertMessage = Shared.serverSoundNotAvailableMessage
+        showAlert = true
+    }
+
     func showAskForNewSoundAlert() {
         TapticFeedback.warning()
         alertType = .askForNewSound
@@ -360,5 +369,4 @@ class AuthorDetailViewViewModel: ObservableObject {
         alertMessage = Shared.AuthorDetail.AskForNewSoundAlert.message
         showAlert = true
     }
-
 }

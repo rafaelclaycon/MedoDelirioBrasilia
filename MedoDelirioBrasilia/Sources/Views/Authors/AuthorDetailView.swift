@@ -179,7 +179,7 @@ struct AuthorDetailView: View {
                                                     AudioPlayer.shared?.togglePlay()
                                                     viewModel.nowPlayingKeeper.removeAll()
                                                 } else {
-                                                    viewModel.playSound(fromPath: sound.filename, withId: sound.id)
+                                                    viewModel.play(sound)
                                                 }
                                             } else {
                                                 if viewModel.selectionKeeper.contains(sound.id) {

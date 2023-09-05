@@ -196,7 +196,7 @@ struct SoundsView: View {
                                                             AudioPlayer.shared?.togglePlay()
                                                             viewModel.nowPlayingKeeper.removeAll()
                                                         } else {
-                                                            viewModel.play(sound: sound)
+                                                            viewModel.play(sound)
                                                         }
                                                     } else {
                                                         if viewModel.selectionKeeper.contains(sound.id) {

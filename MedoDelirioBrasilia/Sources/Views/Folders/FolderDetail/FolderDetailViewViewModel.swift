@@ -103,7 +103,7 @@ class FolderDetailViewViewModel: ObservableObject {
         }
     }
     
-    func play(sound: Sound) {
+    func play(_ sound: Sound) {
         do {
             let url = try sound.fileURL()
 
@@ -123,7 +123,7 @@ class FolderDetailViewViewModel: ObservableObject {
                             return
                         }
 
-                        self.play(sound: self.sounds[self.currentTrackIndex])
+                        self.play(self.sounds[self.currentTrackIndex])
                     }
                 }
             })
@@ -336,7 +336,7 @@ class FolderDetailViewViewModel: ObservableObject {
     func playAllSoundsOneAfterTheOther() {
         guard let firstSound = sounds.first else { return }
         isPlayingPlaylist = true
-        play(sound: firstSound)
+        play(firstSound)
     }
     
     func playFrom(sound: Sound) {
@@ -344,7 +344,7 @@ class FolderDetailViewViewModel: ObservableObject {
         let soundInArray = sounds[soundIndex]
         currentTrackIndex = soundIndex
         isPlayingPlaylist = true
-        play(sound: soundInArray)
+        play(soundInArray)
     }
     
     func doPlaylistCleanup() {
@@ -366,7 +366,7 @@ class FolderDetailViewViewModel: ObservableObject {
         TapticFeedback.error()
         alertType = .ok
         alertTitle = Shared.soundNotFoundAlertTitle
-        alertMessage = "Provavelmente houve um problema com o download desse som.\n\nBeta! 😊"
+        alertMessage = Shared.serverSoundNotAvailableMessage
         showAlert = true
     }
 

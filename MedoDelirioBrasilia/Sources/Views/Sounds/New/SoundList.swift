@@ -59,7 +59,7 @@ struct SoundList: View {
                                 .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                                 .onTapGesture {
                                     dump(sound)
-                                    viewModel.play(sound: sound)
+                                    viewModel.play(sound)
                                 }
                         }
                     }
