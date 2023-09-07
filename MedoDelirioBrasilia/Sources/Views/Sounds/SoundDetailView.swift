@@ -69,7 +69,7 @@ struct SoundDetailView: View {
 
                         Divider()
 
-                        InfoLine(title: "Duração", information: "\(sound.duration)")
+                        InfoLine(title: "Duração", information: sound.duration < 1 ? "< 1 s" : "\(sound.duration.minuteSecondFormatted)")
 
                         Divider()
 

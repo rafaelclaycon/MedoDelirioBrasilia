@@ -31,9 +31,9 @@ struct SongCell: View {
     
     private var durationForDisplay: String {
         if isPlaying {
-            return timeRemaining.asString()
+            return timeRemaining.minuteSecondFormatted
         } else {
-            return song.duration.asString()
+            return song.duration.minuteSecondFormatted
         }
     }
     
