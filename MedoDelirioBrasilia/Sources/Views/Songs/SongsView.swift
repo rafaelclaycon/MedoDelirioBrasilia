@@ -90,7 +90,7 @@ struct SongsView: View {
                                             
                                             Button {
                                                 viewModel.selectedSong = song
-                                                showingModalView = true
+                                                showingModalView.toggle()
                                             } label: {
                                                 Label(Shared.shareAsVideoButtonText, systemImage: "film")
                                             }
@@ -188,7 +188,7 @@ struct SongsView: View {
             .sheet(isPresented: $showingModalView) {
                 switch subviewToOpen {
                 case .genrePicker:
-                    GenrePickerView(isBeingShown: $showingModalView, selectedId: $currentGenre)
+                    GenrePickerView(selectedId: $currentGenre)
 
                 case .shareAsVideoView:
                     if #available(iOS 16.0, *) {
@@ -237,7 +237,7 @@ struct SongsView: View {
     @ViewBuilder func getLeadingToolbarControl() -> some View {
         Button {
             subviewToOpen = .genrePicker
-            showingModalView = true
+            showingModalView.toggle()
         } label: {
             Image(systemName: currentGenre == nil ? "line.3.horizontal.decrease.circle" : "line.3.horizontal.decrease.circle.fill")
         }

@@ -9,21 +9,21 @@ import SwiftUI
 
 struct GenrePickerView: View {
 
-    @Binding var isBeingShown: Bool
     @Binding var selectedId: String?
 
     @State private var genres: [MusicGenre] = []
 
     @Environment(\.colorScheme) var colorScheme
+    @Environment(\.dismiss) var dismiss
 
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack(spacing: 15) {
+                VStack(spacing: 20) {
                     if selectedId != nil {
                         Button {
                             selectedId = nil
-                            isBeingShown = false
+                            dismiss()
                         } label: {
                             HStack(spacing: 15) {
                                 Image(systemName: "x.circle")
@@ -43,10 +43,10 @@ struct GenrePickerView: View {
                             Button {
                                 guard selectedId != genre.id else {
                                     selectedId = nil
-                                    return isBeingShown = false
+                                    return dismiss()
                                 }
                                 selectedId = genre.id
-                                isBeingShown = false
+                                dismiss()
                             } label: {
                                 GenreRow(genre: genre, isSelected: selectedId == genre.id)
                             }
@@ -63,15 +63,15 @@ struct GenrePickerView: View {
                             .fill(.gray.opacity(colorScheme == .dark ? 0.2 : 0.1))
                     }
                 }
-                .padding(.horizontal)
-                .padding(.vertical, 10)
+                .padding(.horizontal, 24)
+                .padding(.vertical, 15)
             }
             .navigationTitle("Filtrar por Gênero")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Fechar") {
-                        isBeingShown = false
+                        dismiss()
                     }
                 }
             }
@@ -129,15 +129,9 @@ extension GenrePickerView {
 struct GenrePickerView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            GenrePickerView(
-                isBeingShown: .constant(true),
-                selectedId: .constant(nil)
-            )
+            GenrePickerView(selectedId: .constant(nil))
 
-            GenrePickerView(
-                isBeingShown: .constant(true),
-                selectedId: .constant("E4285AF9-0A57-4FED-933B-2379DC80BEEF")
-            )
+            GenrePickerView(selectedId: .constant("E4285AF9-0A57-4FED-933B-2379DC80BEEF"))
         }
     }
 }

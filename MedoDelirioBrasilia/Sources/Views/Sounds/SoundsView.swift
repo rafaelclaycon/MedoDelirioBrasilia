@@ -14,7 +14,7 @@ struct SoundsView: View {
     }
 
     enum SubviewToOpen {
-        case onboardingView, addToFolderView, shareAsVideoView, settingsView, whatsNewView, syncInfoView
+        case onboardingView, addToFolderView, shareAsVideoView, settingsView, whatsNewView, syncInfoView, soundDetailView
     }
 
     @StateObject var viewModel: SoundsViewViewModel
@@ -257,11 +257,19 @@ struct SoundsView: View {
                                                                 Label("Ver Todos os Sons Desse Autor", systemImage: "person")
                                                             }
 
+//                                                            Button {
+//                                                                viewModel.selectedSound = sound
+//                                                                viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = true
+//                                                            } label: {
+//                                                                Label(SoundOptionsHelper.getSuggestOtherAuthorNameButtonTitle(authorId: sound.authorId), systemImage: "exclamationmark.bubble")
+//                                                            }
+
                                                             Button {
                                                                 viewModel.selectedSound = sound
-                                                                viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = true
+                                                                subviewToOpen = .soundDetailView
+                                                                showingModalView = true
                                                             } label: {
-                                                                Label(SoundOptionsHelper.getSuggestOtherAuthorNameButtonTitle(authorId: sound.authorId), systemImage: "exclamationmark.bubble")
+                                                                Label("Ver Detalhes", systemImage: "info.circle")
                                                             }
                                                         }
                                                     }
@@ -437,6 +445,9 @@ struct SoundsView: View {
                         lastUpdateAttempt: lastUpdateAttempt,
                         lastUpdateDate: lastUpdateDate
                     )
+
+                case .soundDetailView:
+                    SoundDetailView(isBeingShown: $showingModalView, sound: viewModel.selectedSound ?? Sound(title: ""))
                 }
             }
             .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in
