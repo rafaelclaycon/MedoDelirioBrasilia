@@ -31,8 +31,9 @@ struct SoundsView: View {
     @State private var showingModalView = false
     
     // Temporary banners
-    @State private var shouldDisplayRecurringDonationBanner: Bool = false
-    @State private var shouldDisplayBetaBanner: Bool = false
+    //@State private var shouldDisplayRecurringDonationBanner: Bool = false
+    //@State private var shouldDisplayBetaBanner: Bool = false
+    @State private var shouldDisplaySurveyBanner: Bool = false
     
     // Settings
     @EnvironmentObject var settingsHelper: SettingsHelper
@@ -168,6 +169,11 @@ struct SoundsView: View {
                                     if !networkMonitor.isConnected {
                                         YoureOfflineView()
                                             //.padding(.horizontal, 10)
+                                    }
+
+                                    if shouldDisplaySurveyBanner, searchText.isEmpty {
+                                        PleaseAnswerTheSurveyBanner(isBeingShown: $shouldDisplaySurveyBanner)
+                                            .padding(.horizontal, 10)
                                     }
 
 //                                    if shouldDisplayRecurringDonationBanner, searchText.isEmpty {
@@ -356,7 +362,9 @@ struct SoundsView: View {
                 // }
 
                 // shouldDisplayBetaBanner = !AppPersistentMemory.getHasSeenBetaBanner()
-                
+
+                shouldDisplaySurveyBanner = !AppPersistentMemory.getHasSeenBetaSurveyBanner()
+
                 if moveDatabaseIssue.isEmpty == false {
                     viewModel.showMoveDatabaseIssueAlert()
                 }
@@ -380,7 +388,7 @@ struct SoundsView: View {
                     isBeingShown: $viewModel.showEmailAppPicker_sendFeedback,
                     didCopySupportAddress: .constant(false),
                     subject: "Feedback sobre o Medo e Delírio 7.0 Beta",
-                    emailBody: "Olá! Desejo receber o questionário para te ajudar com o projeto. Além disso, aqui está um feedback sobre o Beta:",
+                    emailBody: "Por favor, inclua prints e detalhes caso tenha encontrado um problema.",
                     showQuizView: true
                 )
             }

@@ -45,7 +45,7 @@ struct WhatsNewView: View {
                 Text("A moda agora é tudo aparecer baixado.")
                     .multilineTextAlignment(.center)
 
-                Text("Você faz parte do Beta! Muito obrigado! Toque em Dar Feedback na tela principal e me envie um e-mail para receber o questionário.")
+                Text("Você faz parte do Beta! Muito obrigado! Por favor, tire alguns minutos para responder ao questionário disponível em **Dar Feedback**.")
                     .multilineTextAlignment(.center)
 
                 Button {

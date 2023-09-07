@@ -92,6 +92,7 @@
 		49F9220228E33576009AC743 /* Ey ey eymael funk meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 49F9220128E33576009AC743 /* Ey ey eymael funk meme.mp3 */; };
 		D900B9C52A6DF6D300C1BC3A /* LoggerStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D900B9C42A6DF6D300C1BC3A /* LoggerStub.swift */; };
 		D90277822AAA242D0061A960 /* AlbumCoverPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90277812AAA242D0061A960 /* AlbumCoverPlayView.swift */; };
+		D90277842AAA32410061A960 /* PleaseAnswerTheSurveyBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90277832AAA32410061A960 /* PleaseAnswerTheSurveyBanner.swift */; };
 		D903DB0429DF3FD300D9BE42 /* Bolsonaro e morte, Bolsonaro e uma peste.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D903DB0329DF3FD300D9BE42 /* Bolsonaro e morte, Bolsonaro e uma peste.mp3 */; };
 		D903DB0929DF42A500D9BE42 /* Ei, Bolsonaro, vai tomar no cu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D903DB0529DF42A400D9BE42 /* Ei, Bolsonaro, vai tomar no cu.mp3 */; };
 		D903DB0A29DF42A500D9BE42 /* Hino Mimimi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D903DB0629DF42A400D9BE42 /* Hino Mimimi.mp3 */; };
@@ -1559,6 +1560,7 @@
 		49F9220128E33576009AC743 /* Ey ey eymael funk meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ey ey eymael funk meme.mp3"; sourceTree = "<group>"; };
 		D900B9C42A6DF6D300C1BC3A /* LoggerStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerStub.swift; sourceTree = "<group>"; };
 		D90277812AAA242D0061A960 /* AlbumCoverPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCoverPlayView.swift; sourceTree = "<group>"; };
+		D90277832AAA32410061A960 /* PleaseAnswerTheSurveyBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PleaseAnswerTheSurveyBanner.swift; sourceTree = "<group>"; };
 		D903DB0329DF3FD300D9BE42 /* Bolsonaro e morte, Bolsonaro e uma peste.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bolsonaro e morte, Bolsonaro e uma peste.mp3"; sourceTree = "<group>"; };
 		D903DB0529DF42A400D9BE42 /* Ei, Bolsonaro, vai tomar no cu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ei, Bolsonaro, vai tomar no cu.mp3"; sourceTree = "<group>"; };
 		D903DB0629DF42A400D9BE42 /* Hino Mimimi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Hino Mimimi.mp3"; sourceTree = "<group>"; };
@@ -4701,6 +4703,7 @@
 			children = (
 				D992146E2A8F21C2004E82BC /* RecurringDonationBanner.swift */,
 				D9D53E3A2AA3F29F00B46558 /* BetaBanner.swift */,
+				D90277832AAA32410061A960 /* PleaseAnswerTheSurveyBanner.swift */,
 			);
 			path = Banners;
 			sourceTree = "<group>";
@@ -6358,6 +6361,7 @@
 				D95DB0F6288248A300D4FEDF /* SidebarView.swift in Sources */,
 				D9943F2C28643317002C6B97 /* FolderDetailViewViewModel.swift in Sources */,
 				D9C1372B29063D7D003E4ABF /* PrivacySettingsView.swift in Sources */,
+				D90277842AAA32410061A960 /* PleaseAnswerTheSurveyBanner.swift in Sources */,
 				D92C0CA82840162F009CF19A /* ContentSortOption.swift in Sources */,
 				D94B5F682A1C9D0900B3A688 /* SyncService+Song.swift in Sources */,
 				D93A029E2906E9F100A85FE2 /* JoinFolderResearchBannerViewViewModel.swift in Sources */,

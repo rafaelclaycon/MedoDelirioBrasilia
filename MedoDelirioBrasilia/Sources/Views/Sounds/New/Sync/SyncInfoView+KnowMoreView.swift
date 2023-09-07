@@ -22,7 +22,12 @@ extension SyncInfoView {
                         .font(.title2)
                         .bold()
 
-                    Text("O sistema de sincronização de dados do Medo e Delírio iOS, do servidor ao app até o sistema de subir arquivos para o servidor, foi desenvolvido por mim usando **Swift**.\n\nAlém de loucura da minha cabeça, tornei esse desafio o Projeto Final do meu curso tecnólogo de Análise e Desenvolvimento de Sistemas.\n\nPor favor, colabore participando da pesquisa que ocorrerá durante o Beta. A tua participação é crítica para eu ganhar nota 😄. A forma de participar é respondendo questionários que serão enviados para o teu e-mail durante o período de testes que irá **de agosto a novembro de 2023**.")
+                    Text("O sistema de sincronização de dados do Medo e Delírio iOS, do servidor ao app até o sistema de subir arquivos para o servidor, foi desenvolvido por mim usando **Swift**.\n\nAlém de loucura da minha cabeça, tornei esse desafio o Projeto Final do meu curso tecnólogo de Análise e Desenvolvimento de Sistemas.\n\nPor favor, colabore respondendo ao questionário no botão abaixo. A tua participação é crítica para eu ganhar nota 😄")
+
+                    Button("Responder questionário") {
+                        OpenUtility.open(link: surveyLink)
+                    }
+                    .largeRoundedRectangleBordered(colored: .blue)
 
                     Button("O que é Swift?") {
                         OpenUtility.open(link: "https://tinyurl.com/yujyu5a3")
@@ -34,7 +39,8 @@ extension SyncInfoView {
                     }
                     .largeRoundedRectangleBordered(colored: .blue)
                 }
-                .padding()
+                .padding(.vertical)
+                .padding(.horizontal, 30)
             }
             .navigationTitle("Sobre o sistema de sincronização")
         }

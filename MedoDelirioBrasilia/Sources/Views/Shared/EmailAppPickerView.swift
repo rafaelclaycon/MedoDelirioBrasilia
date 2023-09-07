@@ -15,12 +15,12 @@ struct EmailAppPickerView: View {
                 if showQuizView {
                     Section {
                         Button("Responder questionário") {
-                            OpenUtility.open(link: "https://forms.gle/jM3DzZy52KdmKYh39")
+                            OpenUtility.open(link: surveyLink)
                             self.isBeingShown = false
                         }
                         .foregroundColor(.blue)
                     } footer: {
-                        Text("Leva apenas 3 minutinhos e ajuda muito! ❤️")
+                        Text("Leva no máximo 3 minutos e ajuda muito! ❤️")
                     }
                 }
 
