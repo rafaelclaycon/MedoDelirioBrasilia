@@ -1270,6 +1270,7 @@
 		D9CEB760299806FF00DF8497 /* Meu irmao ta no Supremo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CEB75F299806FF00DF8497 /* Meu irmao ta no Supremo.mp3 */; };
 		D9CEB76629991B8C00DF8497 /* Bruno Aleixo - Esqueceu-se.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CEB76529991B8C00DF8497 /* Bruno Aleixo - Esqueceu-se.mp3 */; };
 		D9CEB76A29991ED100DF8497 /* Te amo te amo te amo, democracia (Natuza Nery).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CEB76929991ED100DF8497 /* Te amo te amo te amo, democracia (Natuza Nery).mp3 */; };
+		D9CFF04D2AAB7070004DB15B /* Hugo Ojuara - Preto demais.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CFF04C2AAB7070004DB15B /* Hugo Ojuara - Preto demais.mp3 */; };
 		D9D103EF29AE35CD0028F1E1 /* Lourdes Melo - O ministro cabeca de ovo lustrada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D103EE29AE35CC0028F1E1 /* Lourdes Melo - O ministro cabeca de ovo lustrada.mp3 */; };
 		D9D103F329AE36980028F1E1 /* Lourdes Melo - Cabeca de ovo cabeca lustrada de ovo de cabeca lustrada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D103F229AE36980028F1E1 /* Lourdes Melo - Cabeca de ovo cabeca lustrada de ovo de cabeca lustrada.mp3 */; };
 		D9D103F729AE395A0028F1E1 /* O sangue de jesus tem poder.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D103F629AE395A0028F1E1 /* O sangue de jesus tem poder.mp3 */; };
@@ -2695,6 +2696,7 @@
 		D9CEB75F299806FF00DF8497 /* Meu irmao ta no Supremo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Meu irmao ta no Supremo.mp3"; sourceTree = "<group>"; };
 		D9CEB76529991B8C00DF8497 /* Bruno Aleixo - Esqueceu-se.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bruno Aleixo - Esqueceu-se.mp3"; sourceTree = "<group>"; };
 		D9CEB76929991ED100DF8497 /* Te amo te amo te amo, democracia (Natuza Nery).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Te amo te amo te amo, democracia (Natuza Nery).mp3"; sourceTree = "<group>"; };
+		D9CFF04C2AAB7070004DB15B /* Hugo Ojuara - Preto demais.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Hugo Ojuara - Preto demais.mp3"; sourceTree = "<group>"; };
 		D9D103EE29AE35CC0028F1E1 /* Lourdes Melo - O ministro cabeca de ovo lustrada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lourdes Melo - O ministro cabeca de ovo lustrada.mp3"; sourceTree = "<group>"; };
 		D9D103F229AE36980028F1E1 /* Lourdes Melo - Cabeca de ovo cabeca lustrada de ovo de cabeca lustrada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lourdes Melo - Cabeca de ovo cabeca lustrada de ovo de cabeca lustrada.mp3"; sourceTree = "<group>"; };
 		D9D103F629AE395A0028F1E1 /* O sangue de jesus tem poder.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O sangue de jesus tem poder.mp3"; sourceTree = "<group>"; };
@@ -4019,6 +4021,7 @@
 		D92E7068283C5C120035826C /* Songs */ = {
 			isa = PBXGroup;
 			children = (
+				D9CFF04C2AAB7070004DB15B /* Hugo Ojuara - Preto demais.mp3 */,
 				D90697682A6A178400F5B8D0 /* Tecno Biu de Lira Resmungando.mp3 */,
 				D9D1A95D2A57C44A00289AF2 /* Comemoracao Inelegibilidade Bolsonaro.mp3 */,
 				D9D1A95B2A57BDF100289AF2 /* Marcos Rogerio.mp3 */,
@@ -5327,6 +5330,7 @@
 				D9D1A9502A57B32400289AF2 /* Choque de Cultura - Ouve a voz do seu perineo.mp3 in Resources */,
 				D9C5EC3928C7FAA00099EA86 /* Tyrion Lannister - THAT was a threat.mp3 in Resources */,
 				D9E5056228F79ECB008DAA1E /* Luiz Felipe D'Avila - Que tistreza.mp3 in Resources */,
+				D9CFF04D2AAB7070004DB15B /* Hugo Ojuara - Preto demais.mp3 in Resources */,
 				D9FD0F0628B2B2EE0000616A /* alerta de novidade - cristiano botafogo.mp3 in Resources */,
 				D975FEA32880B4F20035E6F2 /* Capitao Falcao - Viboras socialistas.mp3 in Resources */,
 				D975FFAB2880B4F20035E6F2 /* Tu tava fora do brasil irmao short.mp3 in Resources */,
@@ -6428,7 +6432,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/Sources/AppSupport/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -6468,7 +6472,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/Sources/AppSupport/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
