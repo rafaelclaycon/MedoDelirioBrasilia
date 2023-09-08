@@ -11208,5 +11208,25 @@
         "dateAdded": "2023-09-02T00:00:00Z",
         "duration": 7.44,
         "isOffensive": true
+    },
+    {
+        "id": "1300D5D5-9C5D-42C8-83F4-662D848492C0",
+        "title": "Conversa de bêbado",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Conversa de bêbado",
+        "filename": "Conversa de bebado.mp3",
+        "dateAdded": "2023-09-07T00:00:00Z",
+        "duration": 1.31,
+        "isOffensive": true
+    },
+    {
+        "id": "3A9F4C73-DE88-4342-B521-128B121BE389",
+        "title": "Coééé Ô Peraê Remix",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Coééé hahaha Ô Peraê Remix ie ie rá o peraí que coisa maravilhosa que delicia fazer coco",
+        "filename": "Coeee Remix.mp3",
+        "dateAdded": "2023-09-07T00:00:00Z",
+        "duration": 16.04,
+        "isOffensive": true
     }
 ]

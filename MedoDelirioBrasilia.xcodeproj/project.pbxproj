@@ -113,6 +113,8 @@
 		D90D7DE628E2A57A003B272A /* NUNES MARQUES Dont stop till you get enough michael jackson.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90D7DE528E2A579003B272A /* NUNES MARQUES Dont stop till you get enough michael jackson.mp3 */; };
 		D90D7DE828E2A70E003B272A /* Nunes Marques - Dont Stop till you get enough - Parece o Praga.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90D7DE728E2A70E003B272A /* Nunes Marques - Dont Stop till you get enough - Parece o Praga.mp3 */; };
 		D90E2E5728853CDC00F406B6 /* AuthorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90E2E5628853CDC00F406B6 /* AuthorCell.swift */; };
+		D90EDC5C2AAAC02500CA3567 /* Coeee Remix.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90EDC5A2AAAC02500CA3567 /* Coeee Remix.mp3 */; };
+		D90EDC5D2AAAC02500CA3567 /* Conversa de bebado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90EDC5B2AAAC02500CA3567 /* Conversa de bebado.mp3 */; };
 		D90EDDBA2908505000ED87A8 /* FolderResearchHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90EDDB92908505000ED87A8 /* FolderResearchHelper.swift */; };
 		D90F6A6628446C250050FFFF /* TrendsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */; };
 		D911070B28627216000B6F8F /* NotificationsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D911070A28627216000B6F8F /* NotificationsSettingsView.swift */; };
@@ -1534,6 +1536,8 @@
 		D90D7DE528E2A579003B272A /* NUNES MARQUES Dont stop till you get enough michael jackson.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "NUNES MARQUES Dont stop till you get enough michael jackson.mp3"; sourceTree = "<group>"; };
 		D90D7DE728E2A70E003B272A /* Nunes Marques - Dont Stop till you get enough - Parece o Praga.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Nunes Marques - Dont Stop till you get enough - Parece o Praga.mp3"; sourceTree = "<group>"; };
 		D90E2E5628853CDC00F406B6 /* AuthorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorCell.swift; sourceTree = "<group>"; };
+		D90EDC5A2AAAC02500CA3567 /* Coeee Remix.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Coeee Remix.mp3"; sourceTree = "<group>"; };
+		D90EDC5B2AAAC02500CA3567 /* Conversa de bebado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Conversa de bebado.mp3"; sourceTree = "<group>"; };
 		D90EDDB92908505000ED87A8 /* FolderResearchHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderResearchHelper.swift; sourceTree = "<group>"; };
 		D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsSettingsView.swift; sourceTree = "<group>"; };
 		D911070A28627216000B6F8F /* NotificationsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSettingsView.swift; sourceTree = "<group>"; };
@@ -2868,6 +2872,8 @@
 		D9203614284FCABE009B8486 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D90EDC5A2AAAC02500CA3567 /* Coeee Remix.mp3 */,
+				D90EDC5B2AAAC02500CA3567 /* Conversa de bebado.mp3 */,
 				D9D53E3C2AA408AD00B46558 /* Cristiano - Advogados malucos.mp3 */,
 				D9347DD22AA1735E00648E0B /* Eu Fico Muito Triste - Summer Eletrohits.mp3 */,
 				D9347DD02AA16AD100648E0B /* Lula - E agora em setembro vai entrar o grosso.mp3 */,
@@ -5025,6 +5031,7 @@
 				D975FF4A2880B4F20035E6F2 /* ATILA IAMARINO - Que que isso quer dizer.mp3 in Resources */,
 				D975FF2E2880B4F20035E6F2 /* Moderador ah que nao sei o que cala a boca moleque muleque.mp3 in Resources */,
 				D94FBF462A2D84F800347016 /* Um pouco droga, um pouco salada.mp3 in Resources */,
+				D90EDC5D2AAAC02500CA3567 /* Conversa de bebado.mp3 in Resources */,
 				D975FE232880B4F20035E6F2 /* Choque de Cultura - Rogerinho - O a informacao ai.mp3 in Resources */,
 				D99151332873E4C100FFAA29 /* funk-da-perninha.mp3 in Resources */,
 				D9AF10CE290AD50D0054741F /* FLOW - BOLSONARO - E foda, e foda.mp3 in Resources */,
@@ -6007,6 +6014,7 @@
 				D975FF9E2880B4F20035E6F2 /* Bolsonaro - O cara o cara.mp3 in Resources */,
 				D975FECB2880B4F20035E6F2 /* Em cinquenta metros, tire o cu da reta.mp3 in Resources */,
 				D975FF8F2880B4F20035E6F2 /* ADY - oh nao mais um crime de responsabilidade.mp3 in Resources */,
+				D90EDC5C2AAAC02500CA3567 /* Coeee Remix.mp3 in Resources */,
 				D9DCF73C290D832800DB177C /* Valdemiro Santiago - Eu estou no limite, Brasil.mp3 in Resources */,
 				D9E7D0EA28AC6195001E909E /* Dose segura de crack, os tios e as tias do Zap.mp3 in Resources */,
 				D92B6CD729DDBA65003A2B73 /* Milton Cunha - Maravilhoso.mp3 in Resources */,
@@ -6439,7 +6447,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.40.1;
+				MARKETING_VERSION = 6.41;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -6479,7 +6487,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.40.1;
+				MARKETING_VERSION = 6.41;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
