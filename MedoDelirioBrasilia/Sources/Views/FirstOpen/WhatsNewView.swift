@@ -50,7 +50,7 @@ struct WhatsNewView: View {
                 .buttonStyle(.borderedProminent)
                 .buttonBorderShape(.roundedRectangle(radius: 15))
             }
-            .padding(.top, 20)
+            .padding(.top, 50)
             .padding(.bottom, 20)
             .padding(.horizontal, 20)
         }
