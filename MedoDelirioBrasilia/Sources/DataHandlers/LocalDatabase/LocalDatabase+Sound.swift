@@ -11,11 +11,11 @@ import SQLite
 extension LocalDatabase {
 
     func soundCount() throws -> Int {
-        try db.scalar(sound.count)
+        try db.scalar(soundTable.count)
     }
     
     func insert(sound newSound: Sound) throws {
-        let insert = try sound.insert(newSound)
+        let insert = try soundTable.insert(newSound)
         try db.run(insert)
     }
     
@@ -36,11 +36,11 @@ extension LocalDatabase {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
         dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
 
-        var query = sound.select(sound[*], author[name])
-            .join(author, on: sound[author_id] == author[id])
+        var query = soundTable.select(soundTable[*], author[name])
+            .join(author, on: soundTable[author_id] == author[id])
 
         if favoritesOnly {
-            query = query.join(favorite, on: sound[id] == favorite[contentId])
+            query = query.join(favorite, on: soundTable[id] == favorite[contentId])
         }
 
         if !allowSensitive {
@@ -75,7 +75,7 @@ extension LocalDatabase {
         let id = Expression<String>("id")
         let name = Expression<String>("name")
         
-        let query = sound.select(sound[*], author[name]).join(author, on: sound[author_id] == author[id]).filter(id == soundId)
+        let query = soundTable.select(soundTable[*], author[name]).join(author, on: soundTable[author_id] == author[id]).filter(id == soundId)
         for queriedSound in try db.prepare(query) {
             var soundData: Sound = try queriedSound.decode()
             if let dateString = try queriedSound.get(Expression<String?>("dateAdded")) {
@@ -100,10 +100,10 @@ extension LocalDatabase {
         let id = Expression<String>("id")
         let name = Expression<String>("name")
         
-        let query = sound
-            .select(sound[*], author[name])
-            .join(author, on: sound[author_id] == author[id])
-            .filter(soundIds.contains(sound[id]))
+        let query = soundTable
+            .select(soundTable[*], author[name])
+            .join(author, on: soundTable[author_id] == author[id])
+            .filter(soundIds.contains(soundTable[id]))
         
         for queriedSound in try db.prepare(query) {
             var soundData: Sound = try queriedSound.decode()
@@ -133,9 +133,9 @@ extension LocalDatabase {
         let name = Expression<String>("name")
         let is_offensive = Expression<Bool>("isOffensive")
 
-        var query = sound
-            .select(sound[*], author[name])
-            .join(author, on: sound[author_id] == author[id])
+        var query = soundTable
+            .select(soundTable[*], author[name])
+            .join(author, on: soundTable[author_id] == author[id])
             .filter(author_id == authorId)
 
         if !isSensitiveContentAllowed {
@@ -168,7 +168,7 @@ extension LocalDatabase {
     
     func update(sound updatedSound: Sound) throws {
         let id = Expression<String>("id")
-        let query = sound.filter(id == updatedSound.id)
+        let query = soundTable.filter(id == updatedSound.id)
         let updateQuery = query.update(
             Expression<String>("title") <- updatedSound.title,
             Expression<String>("authorId") <- updatedSound.authorId,
@@ -182,13 +182,13 @@ extension LocalDatabase {
     
     func delete(soundId: String) throws {
         let id = Expression<String>("id")
-        let deleteQuery = sound.filter(id == soundId).delete()
+        let deleteQuery = soundTable.filter(id == soundId).delete()
         try db.run(deleteQuery)
     }
     
     func setIsFromServer(to value: Bool, on soundId: String) throws {
         let id = Expression<String>("id")
-        let query = sound.filter(id == soundId)
+        let query = soundTable.filter(id == soundId)
         let updateQuery = query.update(
             Expression<Bool>("isFromServer") <- value
         )

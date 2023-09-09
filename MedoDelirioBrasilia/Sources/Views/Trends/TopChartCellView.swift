@@ -28,30 +28,30 @@ struct TopChartCellView: View {
     }
     
     var body: some View {
-        ZStack {
+        HStack(spacing: 15) {
+            NumberBadgeView(number: item.rankNumber, showBackgroundCircle: !UIDevice.isMac)
+
+            VStack(alignment: .leading, spacing: 2) {
+                Text(item.contentName)
+                    .bold()
+                Text(item.contentAuthorName)
+            }
+
+            Spacer()
+
+            Text("\(item.shareCount)")
+        }
+        .padding(.horizontal)
+        .padding(.vertical, 14)
+        .background(.background)
+        .overlay {
             if UIDevice.isMac {
                 RoundedRectangle(cornerRadius: 5, style: .continuous)
                     .fill(cellFill)
                     .opacity(0.2)
             }
-            
-            HStack(spacing: 15) {
-                NumberBadgeView(number: item.rankNumber, showBackgroundCircle: !UIDevice.isMac)
-                
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(item.contentName)
-                        .bold()
-                    Text(item.contentAuthorName)
-                }
-                
-                Spacer()
-                
-                Text("\(item.shareCount)")
-            }
-            .padding(.horizontal)
         }
     }
-
 }
 
 struct TopChartCellView_Previews: PreviewProvider {

@@ -25,7 +25,7 @@ extension LocalDatabase {
 
         for queriedAuthor in try db.prepare(author) {
             var author: Author = try queriedAuthor.decode()
-            let soundsCount = try db.scalar(sound.filter(author_id == author.id).count)
+            let soundsCount = try db.scalar(soundTable.filter(author_id == author.id).count)
             author.soundCount = soundsCount
             queriedAuthors.append(author)
         }

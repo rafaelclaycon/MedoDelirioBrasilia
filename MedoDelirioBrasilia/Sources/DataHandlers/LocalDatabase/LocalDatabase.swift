@@ -48,7 +48,7 @@ class LocalDatabase: LocalDatabaseProtocol {
     var networkCallLog = Table("networkCallLog")
     var userFolder = Table("userFolder")
     var userFolderContent = Table("userFolderContent")
-    var sound = Table("sound")
+    var soundTable = Table("sound")
     var author = Table("author")
     var updateEventTable = Table("updateEvent")
     var syncLogTable = Table("syncLog")
