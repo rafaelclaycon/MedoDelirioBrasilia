@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct WhatsNewView: View {
+
     @Binding var isBeingShown: Bool
 
     @Environment(\.dismiss) private var dismiss
@@ -15,37 +16,24 @@ struct WhatsNewView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .center, spacing: 40) {
-                Text("☺️")
-                    .font(.system(size: 110))
-                    .background(alignment: .bottomTrailing) {
-                        ZStack {
-                            Image("app-store-icon")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 40)
+                Image("IconePadrao")
+                   .resizable()
+                   .scaledToFit()
+                   .frame(width: 100)
+                   .cornerRadius(20)
+                   .shadow(radius: 2, y: 2)
+                   .overlay(alignment: .bottomLeading) {
+                       Text("💪")
+                           .font(.system(size: 70))
+                           .offset(x: -45, y: 10)
+                   }
 
-                            Text("💧")
-                                .font(.system(size: 26))
-                                .offset(x: 15, y: -10)
-                        }
-                        .offset(x: 25)
-                        .opacity(0.5)
-                    }
-                    .overlay(alignment: .bottomLeading) {
-                        Text("🎁")
-                            .font(.system(size: 60))
-                            .offset(x: -35, y: 20)
-                    }
-
-                Text("Atualizar pra Receber Novos Sons É Coisa do Passado")
+                Text("O App Evoluiu")
                     .font(.largeTitle)
                     .bold()
                     .multilineTextAlignment(.center)
 
-                Text("A moda agora é tudo aparecer baixado.")
-                    .multilineTextAlignment(.center)
-
-                Text("Você faz parte do Beta! Muito obrigado! Por favor, tire alguns minutos para responder ao questionário disponível em **Dar Feedback**.")
+                Text("A partir de agora os conteúdos serão sincronizados com o servidor.\n\nNovos sons e música aparecerão muito mais rápido e sem necessidade de abrir a App Store para atualizar.")
                     .multilineTextAlignment(.center)
 
                 Button {
