@@ -137,6 +137,13 @@ struct MainView: View {
         .onChange(of: viewModel.syncStatus) {
             syncValues.syncStatus = $0
         }
+        .onChange(of: syncValues.syncNow) {
+            if $0 {
+                Task { @MainActor in
+                    await viewModel.sync()
+                }
+            }
+        }
         .onAppear {
             Task { @MainActor in
                 await viewModel.sync()
@@ -146,6 +153,7 @@ struct MainView: View {
 }
 
 struct MainView_Previews: PreviewProvider {
+
     static var previews: some View {
         MainView(viewModel: MainViewViewModel(lastUpdateDate: "all",
                                               service: SyncService(connectionManager: ConnectionManager.shared,

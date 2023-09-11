@@ -79,6 +79,9 @@ struct SoundsView: View {
     // Sync
     @AppStorage("lastUpdateAttempt") private var lastUpdateAttempt = ""
     @AppStorage("lastUpdateDate") private var lastUpdateDate = "all"
+    @State private var needsRefresh: Bool = false
+    @EnvironmentObject private var syncValues: SyncValues
+    @State private var shouldDisplaySyncToast: Bool = false
 
     private var searchResults: [Sound] {
         if searchText.isEmpty {
@@ -164,7 +167,44 @@ struct SoundsView: View {
                             .frame(width: geometry.size.width)
                             .frame(minHeight: geometry.size.height)
                         } else {
-                            ScrollView {
+                            PullToRefreshScrollView(needsRefresh: $needsRefresh, onRefresh: {
+                                TapticFeedback.open()
+                                guard
+                                    let lastAttemptDate = lastUpdateAttempt.iso8601withFractionalSeconds,
+                                    lastAttemptDate.twoMinutesHavePassed
+                                else {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                                        needsRefresh = false
+                                        withAnimation {
+                                            shouldDisplaySyncToast = true
+                                        }
+                                        TapticFeedback.success()
+                                    }
+
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                        withAnimation {
+                                            shouldDisplaySyncToast = false
+                                        }
+                                    }
+
+                                    return
+                                }
+                                syncValues.syncNow = true
+
+                                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
+                                    needsRefresh = false
+                                    withAnimation {
+                                        shouldDisplaySyncToast = true
+                                    }
+                                    TapticFeedback.success()
+                                }
+
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                    withAnimation {
+                                        shouldDisplaySyncToast = false
+                                    }
+                                }
+                            }) {
                                 ScrollViewReader { proxy in
                                     if !networkMonitor.isConnected {
                                         YoureOfflineView()
@@ -511,6 +551,7 @@ struct SoundsView: View {
             .onChange(of: updateList) { updateList in
                 if updateList {
                     viewModel.reloadList(currentMode: currentViewMode)
+                    self.updateList = false
                 }
             }
             
@@ -539,6 +580,17 @@ struct SoundsView: View {
                     Spacer()
                     
                     ToastView(text: viewModel.shareBannerMessage)
+                        .padding(.horizontal)
+                        .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? toastViewBottomPaddingPhone : toastViewBottomPaddingPad)
+                }
+                .transition(.moveAndFade)
+            }
+
+            if shouldDisplaySyncToast {
+                VStack {
+                    Spacer()
+
+                    ToastView(text: "Sincronização concluída com sucesso.")
                         .padding(.horizontal)
                         .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? toastViewBottomPaddingPhone : toastViewBottomPaddingPad)
                 }

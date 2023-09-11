@@ -23,7 +23,7 @@ internal protocol LocalDatabaseProtocol {
     func update(song updatedSong: Song) throws
     func delete(songId: String) throws
     
-    // Music Genre
+    // MusicGenre
     func insert(genre newGenre: MusicGenre) throws
     func update(genre updatedGenre: MusicGenre) throws
     func delete(genreId: String) throws

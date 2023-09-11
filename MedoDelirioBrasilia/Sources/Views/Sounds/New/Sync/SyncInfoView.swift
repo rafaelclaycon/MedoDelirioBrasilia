@@ -120,6 +120,9 @@ extension SyncInfoView {
                             title: update.description,
                             timestamp: update.dateTime.asRelativeDateTime ?? ""
                         )
+                        .onTapGesture {
+                            dump(update)
+                        }
                     }
                 }
             }

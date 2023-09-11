@@ -23,21 +23,28 @@ class LocalDatabaseStub: LocalDatabaseProtocol {
     var didCallInsertSound = false
     var didCallUpdateSound = false
     var didCallDeleteSound = false
-    var didCallMarkAsSucceeded = false
-    var didCallInsertSyncLog = false
     var didCallSetIsFromServer = false
+
     var didCallInsertAuthor = false
     var didCallUpdateAuthor = false
+    var didCallDeleteAuthor = false
+
+    var didCallInsertSong = false
+    var didCallUpdateSong = false
+    var didCallDeleteSong = false
+
+    var didCallInsertGenre = false
+    var didCallUpdateGenre = false
+    var didCallDeleteGenre = false
+
     var didCallInsertUpdateEvent = false
+    var didCallMarkAsSucceeded = false
     var didCallUnsuccessfulUpdates = false
 
-    func contentExistsInsideUserFolder(withId folderId: String, contentId: String) throws -> Bool {
-        guard let content = contentInsideFolder else {
-            return false
-        }
-        return content.contains(contentId)
-    }
-    
+    var didCallInsertSyncLog = false
+
+    // Sound
+
     func insert(sound newSound: MedoDelirio.Sound) throws {
         didCallInsertSound = true
     }
@@ -50,17 +57,11 @@ class LocalDatabaseStub: LocalDatabaseProtocol {
         didCallDeleteSound = true
     }
 
-    func markAsSucceeded(updateEventId: UUID) throws {
-        didCallMarkAsSucceeded = true
-    }
-
-    func insert(syncLog newSyncLog: MedoDelirio.SyncLog) {
-        didCallInsertSyncLog = true
-    }
-
     func setIsFromServer(to value: Bool, on soundId: String) throws {
         didCallSetIsFromServer = true
     }
+
+    // Author
 
     func insert(author newAuthor: MedoDelirio.Author) throws {
         didCallInsertAuthor = true
@@ -70,11 +71,58 @@ class LocalDatabaseStub: LocalDatabaseProtocol {
         didCallUpdateAuthor = true
     }
 
+    func delete(authorId: String) throws {
+        didCallDeleteSound = true
+    }
+
+    // UserFolder
+
+    func contentExistsInsideUserFolder(withId folderId: String, contentId: String) throws -> Bool {
+        guard let content = contentInsideFolder else {
+            return false
+        }
+        return content.contains(contentId)
+    }
+
+    // Song
+
+    func insert(song newSong: Song) throws {
+        didCallInsertSong = true
+    }
+
+    func update(song updatedSong: Song) throws {
+        didCallUpdateSong = true
+    }
+
+    func delete(songId: String) throws {
+        didCallDeleteSong = true
+    }
+
+    // MusicGenre
+
+    func insert(genre newGenre: MedoDelirio.MusicGenre) throws {
+        didCallInsertGenre = true
+    }
+
+    func update(genre updatedGenre: MedoDelirio.MusicGenre) throws {
+        didCallUpdateGenre = true
+    }
+
+    func delete(genreId: String) throws {
+        didCallDeleteGenre = true
+    }
+
+    // UpdateEvent
+
     func insert(updateEvent newUpdateEvent: MedoDelirio.UpdateEvent) throws {
         didCallInsertUpdateEvent = true
         if let error = errorToThrowOnInsertUpdateEvent {
             throw error
         }
+    }
+
+    func markAsSucceeded(updateEventId: UUID) throws {
+        didCallMarkAsSucceeded = true
     }
 
     func unsuccessfulUpdates() throws -> [MedoDelirio.UpdateEvent] {
@@ -83,5 +131,11 @@ class LocalDatabaseStub: LocalDatabaseProtocol {
             return []
         }
         return updates
+    }
+
+    // SyncLog
+
+    func insert(syncLog newSyncLog: MedoDelirio.SyncLog) {
+        didCallInsertSyncLog = true
     }
 }
