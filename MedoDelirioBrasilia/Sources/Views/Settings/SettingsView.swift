@@ -114,7 +114,13 @@ struct SettingsView: View {
                             Button {
                                 OpenUtility.open(link: "https://burnthis.town/@rafael")
                             } label: {
-                                Label("Seguir no Mastodon", image: "mastodon")
+                                Label(title: {
+                                    Text("Seguir no Mastodon")
+                                }, icon: {
+                                    Image("mastodon")
+                                        .renderingMode(.template)
+                                        .foregroundColor(.primary)
+                                })
                             }
                         }
                         

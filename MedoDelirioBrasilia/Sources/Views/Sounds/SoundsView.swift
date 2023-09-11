@@ -323,7 +323,14 @@ struct SoundsView: View {
                     }
                 }
 
-                shouldDisplayRecurringDonationBanner = !AppPersistentMemory.getHasSeenRecurringDonationBanner()
+                if !AppPersistentMemory.getHasSeenRecurringDonationBanner() {
+                    Task {
+                        networkRabbit.displayAskForMoneyView {
+                            shouldDisplayRecurringDonationBanner = $0
+                        }
+                    }
+                }
+
                 shouldDisplayBetaBanner = !AppPersistentMemory.getHasSeenBetaBanner()
 
                 if moveDatabaseIssue.isEmpty == false {
