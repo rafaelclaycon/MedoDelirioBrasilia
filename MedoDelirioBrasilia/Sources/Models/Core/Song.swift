@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Song: Hashable, Codable, Identifiable {
+struct Song: Hashable, Codable, Identifiable, MedoContentProtocol {
 
     let id: String
     let title: String

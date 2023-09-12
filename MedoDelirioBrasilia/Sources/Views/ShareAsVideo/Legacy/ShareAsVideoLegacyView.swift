@@ -94,7 +94,7 @@ struct ShareAsVideoLegacyView: View {
                     .onChange(of: viewModel.shouldCloseView) { shouldCloseView in
                         if shouldCloseView {
                             result.videoFilepath = viewModel.pathToVideoFile
-                            result.contentId = viewModel.contentId
+                            result.contentId = viewModel.content.id
                             isBeingShown = false
                         }
                     }
@@ -208,9 +208,12 @@ struct ShareAsVideoLegacyView: View {
 }
 
 struct ShareAsVideoLegacyView_Previews: PreviewProvider {
-
     static var previews: some View {
-        ShareAsVideoLegacyView(viewModel: ShareAsVideoLegacyViewViewModel(contentId: "ABC", contentTitle: "Test", audioFilename: .empty), isBeingShown: .constant(true), result: .constant(ShareAsVideoResult()), useLongerGeneratingVideoMessage: false)
+        ShareAsVideoLegacyView(
+            viewModel: ShareAsVideoLegacyViewViewModel(content: Sound(title: "Test")),
+            isBeingShown: .constant(true),
+            result: .constant(ShareAsVideoResult()),
+            useLongerGeneratingVideoMessage: false
+        )
     }
-
 }

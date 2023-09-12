@@ -90,6 +90,7 @@ struct SongsView: View {
                                             
                                             Button {
                                                 viewModel.selectedSong = song
+                                                subviewToOpen = .shareAsVideoView
                                                 showingModalView.toggle()
                                             } label: {
                                                 Label(Shared.shareAsVideoButtonText, systemImage: "film")
@@ -192,9 +193,19 @@ struct SongsView: View {
 
                 case .shareAsVideoView:
                     if #available(iOS 16.0, *) {
-                        ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSong?.id ?? .empty, contentTitle: viewModel.selectedSong?.title ?? .empty, contentAuthor: viewModel.selectedSong?.genreName ?? .empty, audioFilename: viewModel.selectedSong?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: true)
+                        ShareAsVideoView(
+                            viewModel: ShareAsVideoViewViewModel(content: viewModel.selectedSong!, subtitle: viewModel.selectedSong?.genreName ?? .empty),
+                            isBeingShown: $showingModalView,
+                            result: $shareAsVideo_Result,
+                            useLongerGeneratingVideoMessage: true
+                        )
                     } else {
-                        ShareAsVideoLegacyView(viewModel: ShareAsVideoLegacyViewViewModel(contentId: viewModel.selectedSong?.id ?? .empty, contentTitle: viewModel.selectedSong?.title ?? .empty, audioFilename: viewModel.selectedSong?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: true)
+                        ShareAsVideoLegacyView(
+                            viewModel: ShareAsVideoLegacyViewViewModel(content: viewModel.selectedSong!),
+                            isBeingShown: $showingModalView,
+                            result: $shareAsVideo_Result,
+                            useLongerGeneratingVideoMessage: true
+                        )
                     }
                 }
             }
