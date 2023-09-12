@@ -167,44 +167,46 @@ struct SoundsView: View {
                             .frame(width: geometry.size.width)
                             .frame(minHeight: geometry.size.height)
                         } else {
-                            PullToRefreshScrollView(needsRefresh: $needsRefresh, onRefresh: {
-                                TapticFeedback.open()
-                                guard
-                                    let lastAttemptDate = lastUpdateAttempt.iso8601withFractionalSeconds,
-                                    lastAttemptDate.twoMinutesHavePassed
-                                else {
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-                                        needsRefresh = false
-                                        withAnimation {
-                                            shouldDisplaySyncToast = true
-                                        }
-                                        TapticFeedback.success()
-                                    }
-
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                                        withAnimation {
-                                            shouldDisplaySyncToast = false
-                                        }
-                                    }
-
-                                    return
-                                }
-                                syncValues.syncNow = true
-
-                                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
-                                    needsRefresh = false
-                                    withAnimation {
-                                        shouldDisplaySyncToast = true
-                                    }
-                                    TapticFeedback.success()
-                                }
-
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                                    withAnimation {
-                                        shouldDisplaySyncToast = false
-                                    }
-                                }
-                            }) {
+                            // TODO: - Figure out pull to refresh.
+//                            PullToRefreshScrollView(needsRefresh: $needsRefresh, onRefresh: {
+//                                TapticFeedback.open()
+//                                guard
+//                                    let lastAttemptDate = lastUpdateAttempt.iso8601withFractionalSeconds,
+//                                    lastAttemptDate.twoMinutesHavePassed
+//                                else {
+//                                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+//                                        needsRefresh = false
+//                                        withAnimation {
+//                                            shouldDisplaySyncToast = true
+//                                        }
+//                                        TapticFeedback.success()
+//                                    }
+//
+//                                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+//                                        withAnimation {
+//                                            shouldDisplaySyncToast = false
+//                                        }
+//                                    }
+//
+//                                    return
+//                                }
+//                                syncValues.syncNow = true
+//
+//                                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
+//                                    needsRefresh = false
+//                                    withAnimation {
+//                                        shouldDisplaySyncToast = true
+//                                    }
+//                                    TapticFeedback.success()
+//                                }
+//
+//                                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+//                                    withAnimation {
+//                                        shouldDisplaySyncToast = false
+//                                    }
+//                                }
+//                            }) {
+                            ScrollView {
                                 ScrollViewReader { proxy in
                                     if !networkMonitor.isConnected {
                                         YoureOfflineView()
