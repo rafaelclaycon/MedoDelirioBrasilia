@@ -46,15 +46,14 @@ struct SettingsView: View {
                 }
                 
                 Section {
-                    NavigationLink(destination: HelpView()) {
-                        Label {
-                            Text("Ajuda")
-                        } icon: {
-                            Image(systemName: "questionmark")
-                                .foregroundColor(.blue)
-                        }
-                        
+                    Button {
+                        OpenUtility.open(link: testFlightLink)
+                    } label: {
+                        Label("Participar do Beta", systemImage: "app.gift.fill")
                     }
+                    .foregroundColor(.blue)
+                } footer: {
+                    Text("Participe do Beta da versão 7.0 para ter acesso antecipado à função de *download* dos conteúdos.")
                 }
                 
                 Section {
@@ -115,7 +114,13 @@ struct SettingsView: View {
                             Button {
                                 OpenUtility.open(link: "https://burnthis.town/@rafael")
                             } label: {
-                                Label("Seguir no Mastodon", image: "mastodon")
+                                Label(title: {
+                                    Text("Seguir no Mastodon")
+                                }, icon: {
+                                    Image("mastodon")
+                                        .renderingMode(.template)
+                                        .foregroundColor(.primary)
+                                })
                             }
                         }
                         
@@ -151,6 +156,13 @@ struct SettingsView: View {
                 }
             }
             .navigationTitle("Configurações")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink(destination: HelpView()) {
+                        Image(systemName: "questionmark.circle")
+                    }
+                }
+            }
             .onAppear {
                 networkRabbit.displayAskForMoneyView { shouldDisplay in
                     showAskForMoneyView = shouldDisplay

@@ -15,11 +15,11 @@ internal protocol NetworkRabbitProtocol {
 class NetworkRabbit: NetworkRabbitProtocol {
 
     let serverPath: String
-    
+
     init(serverPath: String) {
         self.serverPath = serverPath
     }
-    
+
     // MARK: - GET
     
     func checkServerStatus(completionHandler: @escaping (Bool) -> Void) {

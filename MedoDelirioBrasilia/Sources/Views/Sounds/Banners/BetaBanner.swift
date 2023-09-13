@@ -32,7 +32,7 @@ struct BetaBanner: View {
                     .font(.callout)
 
                 Button {
-                    OpenUtility.open(link: "https://testflight.apple.com/join/rMQ3yVaX")
+                    OpenUtility.open(link: testFlightLink)
                 } label: {
                     Text("Baixar a versão Beta")
                 }

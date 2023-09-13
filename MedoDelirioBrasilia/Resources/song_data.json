@@ -663,7 +663,7 @@
         "id": "F8797B1D-4A5F-4D5D-AD2B-485E17478FE0",
         "title": "Eu vi papai Jesus na goiabeira",
         "description": "",
-        "genreId": "16B61F20-5D24-429F-8751-55F62DBB8DA8",
+        "genre": "67782803-3272-4AA4-90D1-BC89D597483A",
         "duration": 37.09,
         "filename": "Eu vi papai Jesus na goiabeira.mp3",
         "dateAdded": "2023-06-10T03:00:00Z",
@@ -708,5 +708,16 @@
         "filename": "Tecno Biu de Lira Resmungando.mp3",
         "dateAdded": "2023-07-20T00:00:00Z",
         "isOffensive": true
+    }
+    ,
+    {
+        "id": "2630CB47-EA3C-4C81-A7AF-610A435BE58A",
+        "title": "Hugo Ojuara - Preto demais",
+        "description": "",
+        "genre": "samba",
+        "duration": 60.13,
+        "filename": "Hugo Ojuara - Preto demais.mp3",
+        "dateAdded": "2023-09-08T00:00:00Z",
+        "isOffensive": false
     }
 ]
