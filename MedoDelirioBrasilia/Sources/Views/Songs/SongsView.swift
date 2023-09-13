@@ -189,9 +189,19 @@ struct SongsView: View {
             }
             .sheet(isPresented: $showingModalView) {
                 if #available(iOS 16.0, *) {
-                    ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSong?.id ?? .empty, contentTitle: viewModel.selectedSong?.title ?? .empty, contentAuthor: viewModel.selectedSong?.genre.name ?? .empty, audioFilename: viewModel.selectedSong?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: true)
+                    ShareAsVideoView(
+                        viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSong?.id ?? .empty, contentTitle: viewModel.selectedSong?.title ?? .empty, subtitle: "", audioFilename: viewModel.selectedSong?.filename ?? .empty),
+                        isBeingShown: $showingModalView,
+                        result: $shareAsVideo_Result,
+                        useLongerGeneratingVideoMessage: true
+                    )
                 } else {
-                    ShareAsVideoLegacyView(viewModel: ShareAsVideoLegacyViewViewModel(contentId: viewModel.selectedSong?.id ?? .empty, contentTitle: viewModel.selectedSong?.title ?? .empty, audioFilename: viewModel.selectedSong?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: true)
+                    ShareAsVideoLegacyView(
+                        viewModel: ShareAsVideoLegacyViewViewModel(contentId: viewModel.selectedSong?.id ?? .empty, contentTitle: viewModel.selectedSong?.title ?? .empty, audioFilename: viewModel.selectedSong?.filename ?? .empty),
+                        isBeingShown: $showingModalView,
+                        result: $shareAsVideo_Result,
+                        useLongerGeneratingVideoMessage: true
+                    )
                 }
             }
             .sheet(isPresented: $viewModel.showEmailAppPicker_songUnavailableConfirmationDialog) {

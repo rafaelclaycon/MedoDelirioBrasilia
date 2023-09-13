@@ -12,7 +12,7 @@ class ShareAsVideoViewViewModel: ObservableObject {
 
     var contentId: String
     var contentTitle: String
-    var contentAuthor: String
+    let subtitle: String
     private var audioFilename: String
     
     @Published var includeSoundWarning: Bool = true
@@ -28,10 +28,15 @@ class ShareAsVideoViewViewModel: ObservableObject {
     @Published var alertMessage: String = .empty
     @Published var showAlert: Bool = false
     
-    init(contentId: String, contentTitle: String, contentAuthor: String, audioFilename: String) {
+    init(
+        contentId: String,
+        contentTitle: String,
+        subtitle: String,
+        audioFilename: String
+    ) {
         self.contentId = contentId
         self.contentTitle = contentTitle
-        self.contentAuthor = contentAuthor
+        self.subtitle = subtitle
         self.audioFilename = audioFilename
     }
     

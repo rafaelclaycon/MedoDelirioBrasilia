@@ -21,16 +21,25 @@ struct ShareAsVideoView: View {
     @State private var tipText: String = .empty
     @State private var verticalOffset: CGFloat = 0.0
     @State private var isExpanded = false
+    @State private var titleSize = 28.0
     
     @ScaledMetric var vstackSpacing: CGFloat = 22
     @ScaledMetric var bottomPadding: CGFloat = 26
     
     private let textSocialNetworkTip = "Para responder a uma publicação na sua rede social favorita, escolha Salvar Vídeo e depois adicione o vídeo à resposta a partir do app da rede."
     private let instagramTip = "Para fazer um Story, escolha Salvar Vídeo e depois adicione o vídeo ao seu Story a partir do Instagram."
+
+    private var isSquare: Bool {
+        viewModel.selectedSocialNetwork == IntendedVideoDestination.twitter.rawValue
+    }
+
+    private var is9By16: Bool {
+        !isSquare
+    }
     
     var body: some View {
-        let squareImage = squareImageView(contentName: viewModel.contentTitle, contentAuthor: viewModel.contentAuthor)
-        let nineBySixteenImage = nineBySixteenImageView(contentName: viewModel.contentTitle, contentAuthor: viewModel.contentAuthor)
+        let squareImage = squareImageView(contentName: viewModel.contentTitle, contentAuthor: viewModel.subtitle)
+        let nineBySixteenImage = nineBySixteenImageView(contentName: viewModel.contentTitle, contentAuthor: viewModel.subtitle)
         
         ZStack {
             NavigationView {
@@ -51,8 +60,12 @@ struct ShareAsVideoView: View {
                         } else {
                             nineBySixteenImage
                         }
+
+                        if isSquare {
+                            Stepper("Tamanho do título: \(Int(titleSize))", value: $titleSize, in: 22...38, step: 1)
+                        }
                         
-                        if viewModel.selectedSocialNetwork == IntendedVideoDestination.instagramTikTok.rawValue {
+                        if is9By16 {
                             Toggle("Incluir aviso Ligue o Som", isOn: $viewModel.includeSoundWarning)
                                 .disabled(viewModel.isShowingProcessingView)
                         }
@@ -171,13 +184,15 @@ struct ShareAsVideoView: View {
             HStack {
                 VStack(alignment: .leading, spacing: 15) {
                     Text(contentName)
-                        .font(.title)
+                        .font(.system(size: titleSize))
                         .bold()
                         .foregroundColor(.black)
-                    
-                    Text(contentAuthor)
-                        .font(.title2)
-                        .foregroundColor(.black)
+
+                    if !contentAuthor.isEmpty {
+                        Text(contentAuthor)
+                            .font(.title2)
+                            .foregroundColor(.black)
+                    }
                 }
                 Spacer()
             }
@@ -202,10 +217,12 @@ struct ShareAsVideoView: View {
                         .font(Font.system(size: 14))
                         .bold()
                         .foregroundColor(.black)
-                    
-                    Text(contentAuthor)
-                        .font(Font.system(size: 12))
-                        .foregroundColor(.black)
+
+                    if !contentAuthor.isEmpty {
+                        Text(contentAuthor)
+                            .font(Font.system(size: 12))
+                            .foregroundColor(.black)
+                    }
                 }
                 Spacer()
             }
@@ -303,7 +320,12 @@ struct ShareAsVideoView: View {
 struct ShareAsVideoNewView_Previews: PreviewProvider {
     
     static var previews: some View {
-        ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: "ABC", contentTitle: "Você é maluco ou você é idiota, companheiro?", contentAuthor: "Lula (Cristiano Botafogo)", audioFilename: .empty), isBeingShown: .constant(true), result: .constant(ShareAsVideoResult()), useLongerGeneratingVideoMessage: false)
+        ShareAsVideoView(
+            viewModel: ShareAsVideoViewViewModel(contentId: "ABC", contentTitle: "Você é maluco ou você é idiota, companheiro?", subtitle: "Lula (Cristiano Botafogo)", audioFilename: .empty),
+            isBeingShown: .constant(true),
+            result: .constant(ShareAsVideoResult()),
+            useLongerGeneratingVideoMessage: false
+        )
     }
     
 }

@@ -392,9 +392,19 @@ struct SoundsView: View {
                     
                 case .shareAsVideoView:
                     if #available(iOS 16.0, *) {
-                        ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, contentAuthor: viewModel.selectedSound?.authorName ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: false)
+                        ShareAsVideoView(
+                            viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, subtitle: viewModel.selectedSound?.authorName ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty),
+                            isBeingShown: $showingModalView,
+                            result: $shareAsVideo_Result,
+                            useLongerGeneratingVideoMessage: false
+                        )
                     } else {
-                        ShareAsVideoLegacyView(viewModel: ShareAsVideoLegacyViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: false)
+                        ShareAsVideoLegacyView(
+                            viewModel: ShareAsVideoLegacyViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty),
+                            isBeingShown: $showingModalView,
+                            result: $shareAsVideo_Result,
+                            useLongerGeneratingVideoMessage: false
+                        )
                     }
                     
                 case .settingsView:
