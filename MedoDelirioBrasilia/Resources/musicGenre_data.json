@@ -118,5 +118,11 @@
         "symbol": "📺",
         "name": "Vinheta",
         "isHidden": false
+    },
+    {
+        "id": "67782803-3272-4AA4-90D1-BC89D597483A",
+        "symbol": "🥁",
+        "name": "Carimbó",
+        "isHidden": false
     }
 ]
