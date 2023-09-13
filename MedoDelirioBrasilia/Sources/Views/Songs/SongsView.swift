@@ -194,7 +194,7 @@ struct SongsView: View {
                 case .shareAsVideoView:
                     if #available(iOS 16.0, *) {
                         ShareAsVideoView(
-                            viewModel: ShareAsVideoViewViewModel(content: viewModel.selectedSong!, subtitle: viewModel.selectedSong?.genreName ?? .empty),
+                            viewModel: ShareAsVideoViewViewModel(content: viewModel.selectedSong!),
                             isBeingShown: $showingModalView,
                             result: $shareAsVideo_Result,
                             useLongerGeneratingVideoMessage: true

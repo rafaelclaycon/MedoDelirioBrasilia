@@ -28,7 +28,7 @@ class ShareAsVideoViewViewModel: ObservableObject {
     
     init(
         content: MedoContentProtocol,
-        subtitle: String
+        subtitle: String = ""
     ) {
         self.content = content
         self.subtitle = subtitle
