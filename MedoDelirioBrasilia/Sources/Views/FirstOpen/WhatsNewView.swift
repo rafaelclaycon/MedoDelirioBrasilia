@@ -33,7 +33,7 @@ struct WhatsNewView: View {
                     .bold()
                     .multilineTextAlignment(.center)
 
-                Text("A partir de agora os conteúdos serão sincronizados com o servidor.\n\nNovos sons e música chegarão mais cedo e sem necessidade de abrir a App Store para atualizar.")
+                Text("A partir de agora os conteúdos serão sincronizados com o servidor.\n\nNovos sons e músicas chegarão mais cedo e sem necessidade de abrir a App Store para atualizar.")
                     .multilineTextAlignment(.center)
 
                 Button {

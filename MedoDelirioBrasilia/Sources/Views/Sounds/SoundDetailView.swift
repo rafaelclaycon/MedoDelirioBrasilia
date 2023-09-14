@@ -95,7 +95,12 @@ struct SoundDetailView: View {
                 } message: {
                     Text(alertMessage)
                 }
-
+//                .sheet(isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog) {
+//                    EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog,
+//                                       didCopySupportAddress: .constant(false),
+//                                       subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.selectedSound?.title ?? ""),
+//                                       emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.selectedSound?.authorName ?? "", viewModel.selectedSound?.id ?? ""))
+//                }
             }
         }
     }
