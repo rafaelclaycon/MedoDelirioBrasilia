@@ -137,7 +137,7 @@ struct SoundDetailView: View {
     func showServerSoundNotAvailableAlert() {
         TapticFeedback.error()
         alertTitle = Shared.soundNotFoundAlertTitle
-        alertMessage = Shared.serverSoundNotAvailableMessage
+        alertMessage = Shared.serverContentNotAvailableMessage
         showAlert = true
     }
 }

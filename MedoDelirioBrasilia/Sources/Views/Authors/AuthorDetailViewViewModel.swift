@@ -358,7 +358,7 @@ class AuthorDetailViewViewModel: ObservableObject {
         TapticFeedback.error()
         alertType = .reportSoundIssue
         alertTitle = Shared.soundNotFoundAlertTitle
-        alertMessage = Shared.serverSoundNotAvailableMessage
+        alertMessage = Shared.serverContentNotAvailableMessage
         showAlert = true
     }
 

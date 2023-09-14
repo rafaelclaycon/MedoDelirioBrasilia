@@ -263,7 +263,7 @@ class SongsViewViewModel: ObservableObject {
         TapticFeedback.error()
         alertType = .twoOptions
         alertTitle = Shared.Songs.songNotFoundAlertTitle
-        alertMessage = "Provavelmente houve um problema com o download dessa música.\n\nBeta! 😊"
+        alertMessage = Shared.serverContentNotAvailableMessage
         showAlert = true
     }
 }

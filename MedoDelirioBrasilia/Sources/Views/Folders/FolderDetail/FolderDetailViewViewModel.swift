@@ -366,7 +366,7 @@ class FolderDetailViewViewModel: ObservableObject {
         TapticFeedback.error()
         alertType = .ok
         alertTitle = Shared.soundNotFoundAlertTitle
-        alertMessage = Shared.serverSoundNotAvailableMessage
+        alertMessage = Shared.serverContentNotAvailableMessage
         showAlert = true
     }
 

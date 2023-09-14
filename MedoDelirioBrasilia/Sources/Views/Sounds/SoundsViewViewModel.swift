@@ -452,7 +452,7 @@ class SoundsViewViewModel: ObservableObject {
         TapticFeedback.error()
         alertType = .twoOptions
         alertTitle = Shared.soundNotFoundAlertTitle
-        alertMessage = Shared.serverSoundNotAvailableMessage
+        alertMessage = Shared.serverContentNotAvailableMessage
         showAlert = true
     }
     

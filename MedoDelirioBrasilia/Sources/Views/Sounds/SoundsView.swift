@@ -31,9 +31,7 @@ struct SoundsView: View {
     @State private var showingModalView = false
     
     // Temporary banners
-    //@State private var shouldDisplayRecurringDonationBanner: Bool = false
-    //@State private var shouldDisplayBetaBanner: Bool = false
-    @State private var shouldDisplaySurveyBanner: Bool = false
+    @State private var shouldDisplayRecurringDonationBanner: Bool = false
     
     // Settings
     @EnvironmentObject var settingsHelper: SettingsHelper
@@ -213,15 +211,10 @@ struct SoundsView: View {
                                             //.padding(.horizontal, 10)
                                     }
 
-                                    if shouldDisplaySurveyBanner, searchText.isEmpty {
-                                        PleaseAnswerTheSurveyBanner(isBeingShown: $shouldDisplaySurveyBanner)
+                                    if shouldDisplayRecurringDonationBanner, searchText.isEmpty {
+                                        RecurringDonationBanner(isBeingShown: $shouldDisplayRecurringDonationBanner)
                                             .padding(.horizontal, 10)
                                     }
-
-//                                    if shouldDisplayRecurringDonationBanner, searchText.isEmpty {
-//                                        RecurringDonationBanner(isBeingShown: $shouldDisplayRecurringDonationBanner)
-//                                            .padding(.horizontal, 10)
-//                                    }
 
                                     LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
                                         if searchResults.isEmpty {
@@ -397,21 +390,16 @@ struct SoundsView: View {
                     }
                 }
 
-                // if !AppPersistentMemory.getHasSeenRecurringDonationBanner() {
-                //     networkRabbit.displayRecurringDonationBanner {
-                //         shouldDisplayRecurringDonationBanner = $0
-                //     }
-                // }
+                if !AppPersistentMemory.getHasSeenRecurringDonationBanner() {
+                    networkRabbit.displayRecurringDonationBanner {
+                        shouldDisplayRecurringDonationBanner = $0
+                    }
+                }
 
-                // shouldDisplayBetaBanner = !AppPersistentMemory.getHasSeenBetaBanner()
-
-                shouldDisplaySurveyBanner = !AppPersistentMemory.getHasSeenBetaSurveyBanner()
-
+                // TODO: Needs refactor. .onAppear is called before the AppDelegate, rendering this useless.
                 if moveDatabaseIssue.isEmpty == false {
                     viewModel.showMoveDatabaseIssueAlert()
                 }
-
-                //print("MARSHA: \(lastUpdateDate)")
             }
             .sheet(isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog) {
                 EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog,
@@ -424,15 +412,6 @@ struct SoundsView: View {
                                    didCopySupportAddress: .constant(false),
                                    subject: Shared.issueSuggestionEmailSubject,
                                    emailBody: Shared.issueSuggestionEmailBody)
-            }
-            .sheet(isPresented: $viewModel.showEmailAppPicker_sendFeedback) {
-                EmailAppPickerView(
-                    isBeingShown: $viewModel.showEmailAppPicker_sendFeedback,
-                    didCopySupportAddress: .constant(false),
-                    subject: "Feedback sobre o Medo e Delírio 7.0 Beta",
-                    emailBody: "Por favor, inclua prints e detalhes caso tenha encontrado um problema.",
-                    showQuizView: true
-                )
             }
             .alert(isPresented: $viewModel.showAlert) {
                 switch viewModel.alertType {
@@ -598,16 +577,16 @@ struct SoundsView: View {
                 .transition(.moveAndFade)
             }
 
-            if shouldDisplaySyncToast {
-                VStack {
-                    Spacer()
-
-                    ToastView(text: "Sincronização concluída com sucesso.")
-                        .padding(.horizontal)
-                        .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? toastViewBottomPaddingPhone : toastViewBottomPaddingPad)
-                }
-                .transition(.moveAndFade)
-            }
+//            if shouldDisplaySyncToast {
+//                VStack {
+//                    Spacer()
+//
+//                    ToastView(text: "Sincronização concluída com sucesso.")
+//                        .padding(.horizontal)
+//                        .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? toastViewBottomPaddingPhone : toastViewBottomPaddingPad)
+//                }
+//                .transition(.moveAndFade)
+//            }
         }
     }
     
@@ -648,19 +627,11 @@ struct SoundsView: View {
 //                Label("Compartilhar", systemImage: "square.and.arrow.up")
 //            }.disabled(viewModel.selectionKeeper.count == 0 || viewModel.selectionKeeper.count > 5)
         } else {
-            if UIDevice.current.userInterfaceIdiom == .phone {
-                HStack {
-                    Button {
-                        subviewToOpen = .settingsView
-                        showingModalView = true
-                    } label: {
-                        Image(systemName: "gearshape")
-                    }
-                    
-                    BetaTagView()
-                }
-            } else {
-                BetaTagView()
+            Button {
+                subviewToOpen = .settingsView
+                showingModalView = true
+            } label: {
+                Image(systemName: "gearshape")
             }
         }
     }
@@ -718,10 +689,6 @@ struct SoundsView: View {
                             Image(systemName: "folder.badge.plus")
                         }.disabled(viewModel.selectionKeeper.count == 0)
                     } else {
-                        Button("Dar Feedback") {
-                            viewModel.showEmailAppPicker_sendFeedback = true
-                        }
-
                         SyncStatusView()
                             .onTapGesture {
                                 subviewToOpen = .syncInfoView

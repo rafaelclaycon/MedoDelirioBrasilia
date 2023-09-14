@@ -44,18 +44,7 @@ struct SettingsView: View {
                 } footer: {
                     Text("Alguns conteúdos contam com muitos palavrões. Ao marcar essa opção, você concorda que tem mais de 18 anos e que deseja ver esses conteúdos.")
                 }
-                
-//                Section {
-//                    Button {
-//                        OpenUtility.open(link: testFlightLink)
-//                    } label: {
-//                        Label("Participar do Beta", systemImage: "app.gift.fill")
-//                    }
-//                    .foregroundColor(.blue)
-//                } footer: {
-//                    Text("Participe do Beta da versão 7.0 para ter acesso antecipado à função de *download* dos conteúdos.")
-//                }
-                
+
                 Section {
                     NavigationLink(destination: NotificationsSettingsView()) {
                         Label(title: {

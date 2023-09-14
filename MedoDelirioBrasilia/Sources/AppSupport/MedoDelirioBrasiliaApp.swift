@@ -11,7 +11,6 @@ import SwiftUI
 let networkRabbit = NetworkRabbit(serverPath: CommandLine.arguments.contains("-UNDER_DEVELOPMENT") ? "http://127.0.0.1:8080/api/" : "http://170.187.141.103:8080/api/")
 let baseURL: String = CommandLine.arguments.contains("-UNDER_DEVELOPMENT") ? "http://127.0.0.1:8080/" : "http://170.187.141.103:8080/"
 let podium = Podium(database: LocalDatabase.shared, networkRabbit: networkRabbit)
-let surveyLink = "https://forms.gle/xyRn6P9XcQtFjH8cA"
 
 var moveDatabaseIssue: String = .empty
 

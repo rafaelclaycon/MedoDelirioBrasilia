@@ -7,23 +7,10 @@ struct EmailAppPickerView: View {
 
     let subject: String
     let emailBody: String
-    var showQuizView: Bool = false
 
     var body: some View {
         NavigationView {
             Form {
-                if showQuizView {
-                    Section {
-                        Button("Responder questionário") {
-                            OpenUtility.open(link: surveyLink)
-                            self.isBeingShown = false
-                        }
-                        .foregroundColor(.blue)
-                    } footer: {
-                        Text("Leva no máximo 3 minutos e ajuda muito! ❤️")
-                    }
-                }
-
                 Section("Apps de e-mail") {
                     Button("App Padrão") {
                         let encodedSubject = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
