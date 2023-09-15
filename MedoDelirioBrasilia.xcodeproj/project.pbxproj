@@ -1340,6 +1340,7 @@
 		D9D798962A093A54002B2D77 /* O, perae hahahaha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D7988E2A093A54002B2D77 /* O, perae hahahaha.mp3 */; };
 		D9D856F5288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D856F3288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3 */; };
 		D9D856F6288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Se numero elevado de mortes policia e uma caracteristica, ta errado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D856F4288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Se numero elevado de mortes policia e uma caracteristica, ta errado.mp3 */; };
+		D9D962642AB4888200711536 /* ThankYouForParticipatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D962632AB4888200711536 /* ThankYouForParticipatingView.swift */; };
 		D9DACB0229199E9200D917BB /* E hora de rir um pouco dos militares.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DACB0029199E9200D917BB /* E hora de rir um pouco dos militares.mp3 */; };
 		D9DACB0329199E9200D917BB /* Musica da Vitoria - Lula Eleito.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DACB0129199E9200D917BB /* Musica da Vitoria - Lula Eleito.mp3 */; };
 		D9DB6F7F28CBDA8000E24BDE /* MostSharedByMeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DB6F7E28CBDA8000E24BDE /* MostSharedByMeView.swift */; };
@@ -2805,6 +2806,7 @@
 		D9D7988E2A093A54002B2D77 /* O, perae hahahaha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O, perae hahahaha.mp3"; sourceTree = "<group>"; };
 		D9D856F3288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "RADIO BANDNEWS FM - Eduardo Oinegue - Ta errado.mp3"; sourceTree = "<group>"; };
 		D9D856F4288517E300410E01 /* RADIO BANDNEWS FM - Eduardo Oinegue - Se numero elevado de mortes policia e uma caracteristica, ta errado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "RADIO BANDNEWS FM - Eduardo Oinegue - Se numero elevado de mortes policia e uma caracteristica, ta errado.mp3"; sourceTree = "<group>"; };
+		D9D962632AB4888200711536 /* ThankYouForParticipatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouForParticipatingView.swift; sourceTree = "<group>"; };
 		D9DACB0029199E9200D917BB /* E hora de rir um pouco dos militares.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "E hora de rir um pouco dos militares.mp3"; sourceTree = "<group>"; };
 		D9DACB0129199E9200D917BB /* Musica da Vitoria - Lula Eleito.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Musica da Vitoria - Lula Eleito.mp3"; sourceTree = "<group>"; };
 		D9DB6F7E28CBDA8000E24BDE /* MostSharedByMeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostSharedByMeView.swift; sourceTree = "<group>"; };
@@ -4490,6 +4492,7 @@
 		D9625EAB2824EADC00080852 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D9D962632AB4888200711536 /* ThankYouForParticipatingView.swift */,
 				D958B1A928394D400010F133 /* MainView.swift */,
 				D9D22D872A59FC1D00ABDCDC /* MainViewViewModel.swift */,
 				D95DB0F5288248A300D4FEDF /* SidebarView.swift */,
@@ -6459,6 +6462,7 @@
 				D9BB1E7728B3200700C5FFAA /* AppIcon.swift in Sources */,
 				D95BFEF529E8CD2600E42A23 /* DonorsView.swift in Sources */,
 				D9B24E2228C6A68800D76F7D /* NumberBadgeView.swift in Sources */,
+				D9D962642AB4888200711536 /* ThankYouForParticipatingView.swift in Sources */,
 				D998F28F284F177B0013E709 /* TrendsDisabledView.swift in Sources */,
 				D9D22D882A59FC1D00ABDCDC /* MainViewViewModel.swift in Sources */,
 				D933251E28835E41004EFACB /* ActivityViewController.swift in Sources */,
@@ -6684,7 +6688,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/Sources/AppSupport/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -6705,7 +6709,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 7.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.beta;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -6725,7 +6729,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/Sources/AppSupport/MedoDelirioBrasilia.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_ASSET_PATHS = "\"MedoDelirioBrasilia/Sources/AppSupport/Preview Content\"";
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -6746,7 +6750,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 7.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.beta;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

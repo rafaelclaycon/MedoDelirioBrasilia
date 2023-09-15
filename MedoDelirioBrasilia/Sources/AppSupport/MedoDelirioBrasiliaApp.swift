@@ -24,12 +24,7 @@ struct MedoDelirioBrasiliaApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MainView(viewModel: MainViewViewModel(lastUpdateDate: lastUpdateDate,
-                                                  service: SyncService(connectionManager: ConnectionManager.shared,
-                                                                       networkRabbit: networkRabbit,
-                                                                       localDatabase: LocalDatabase.shared),
-                                                  database: LocalDatabase.shared,
-                                                  logger: Logger.shared))
+            ThankYouForParticipatingView()
         }
     }
 
