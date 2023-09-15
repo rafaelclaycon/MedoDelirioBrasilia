@@ -79,7 +79,7 @@ struct FolderDetailView: View {
                                                         viewModel.nowPlayingKeeper.removeAll()
                                                         viewModel.doPlaylistCleanup()
                                                     } else {
-                                                        viewModel.playSound(fromPath: sound.filename, withId: sound.id)
+                                                        viewModel.play(sound)
                                                     }
                                                 } else {
                                                     if viewModel.selectionKeeper.contains(sound.id) {
@@ -93,7 +93,7 @@ struct FolderDetailView: View {
                                                 if currentSoundsListMode != .selection {
                                                     Section {
                                                         Button {
-                                                            viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
+                                                            viewModel.share(sound: sound)
                                                         } label: {
                                                             Label(Shared.shareSoundButtonText, systemImage: "square.and.arrow.up")
                                                         }
@@ -152,7 +152,11 @@ struct FolderDetailView: View {
             .navigationTitle(title)
             .toolbar { trailingToolbarControls() }
             .onAppear {
-                viewModel.reloadSoundList(withFolderContents: try? LocalDatabase.shared.getAllContentsInsideUserFolder(withId: folder.id), sortedBy: FolderSoundSortOption(rawValue: folder.userSortPreference ?? 0) ?? .titleAscending)
+                viewModel.reloadSoundList(
+                    withFolderContents: try? LocalDatabase.shared.getAllContentsInsideUserFolder(withId: folder.id),
+                    sortedBy: FolderSoundSortOption(rawValue: folder.userSortPreference ?? 0) ?? .titleAscending
+                )
+
                 columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
             }
             .onDisappear {
@@ -195,14 +199,14 @@ struct FolderDetailView: View {
             .sheet(isPresented: $showingModalView) {
                 if #available(iOS 16.0, *) {
                     ShareAsVideoView(
-                        viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, subtitle: viewModel.selectedSound?.authorName ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty),
+                        viewModel: ShareAsVideoViewViewModel(content: viewModel.selectedSound!, subtitle: viewModel.selectedSound?.authorName ?? .empty),
                         isBeingShown: $showingModalView,
                         result: $shareAsVideo_Result,
                         useLongerGeneratingVideoMessage: false
                     )
                 } else {
                     ShareAsVideoLegacyView(
-                        viewModel: ShareAsVideoLegacyViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty),
+                        viewModel: ShareAsVideoLegacyViewViewModel(content: viewModel.selectedSound!),
                         isBeingShown: $showingModalView,
                         result: $shareAsVideo_Result,
                         useLongerGeneratingVideoMessage: false

@@ -3,32 +3,27 @@ import AVFoundation
 
 class VideoMaker {
 
-    static func createVideo(from audioFilename: String,
-                            with sourceImage: UIImage,
-                            contentTitle: String,
-                            exportType: IntendedVideoDestination,
-                            completion: @escaping (String?, VideoMakerError?) -> Void) throws {
-        guard audioFilename.isEmpty == false else {
-            throw VideoMakerError.soundFilepathIsEmpty
-        }
-        
-        guard let path = Bundle.main.path(forResource: audioFilename, ofType: nil) else {
-            throw VideoMakerError.unableToFindSoundFile
-        }
-        
-        let url = URL(fileURLWithPath: path)
-        
+    static func createVideo(
+        from content: MedoContentProtocol,
+        with sourceImage: UIImage,
+        exportType: IntendedVideoDestination,
+        completion: @escaping (String?, VideoMakerError?) -> Void
+    ) throws {
+        let contentUrl = try content.fileURL()
+
         DispatchQueue.global(qos: .userInitiated).async {
-            guard let audioDuration = VideoMaker.getAudioFileDuration(fileURL: url) else {
+            guard let audioDuration = VideoMaker.getAudioFileDuration(fileURL: contentUrl) else {
                 return completion(nil, .couldNotObtainAudioDuration)
             }
             
             do {
-                try VideoMaker.createVideo(fromImage: sourceImage,
-                                           withDuration: audioDuration,
-                                           andName: contentTitle,
-                                           soundFilepath: audioFilename,
-                                           exportType: exportType) { videoPath, error in
+                try VideoMaker.createVideo(
+                    fromImage: sourceImage,
+                    withDuration: audioDuration,
+                    andName: content.title,
+                    contentUrl: contentUrl,
+                    exportType: exportType
+                ) { videoPath, error in
                     guard let videoPath = videoPath else {
                         return completion(nil, .unableToFindVideoFile)
                     }
@@ -179,20 +174,14 @@ class VideoMaker {
         }
     }
     
-    static func createVideo(fromImage image: UIImage,
-                            withDuration duration: CGFloat,
-                            andName videoName: String,
-                            soundFilepath: String,
-                            exportType: IntendedVideoDestination,
-                            completionHandler: @escaping (String?, VideoMakerError?) -> Void) throws {
-        guard soundFilepath.isEmpty == false else {
-            throw VideoMakerError.soundFilepathIsEmpty
-        }
-        
-        guard let soundPath = Bundle.main.path(forResource: soundFilepath, ofType: nil) else {
-            throw VideoMakerError.unableToFindSoundFile
-        }
-        
+    static func createVideo(
+        fromImage image: UIImage,
+        withDuration duration: CGFloat,
+        andName videoName: String,
+        contentUrl: URL,
+        exportType: IntendedVideoDestination,
+        completionHandler: @escaping (String?, VideoMakerError?) -> Void
+    ) throws {
         guard let staticImage = CIImage(image: image) else {
             throw VideoMakerError.invalidImage
         }
@@ -266,10 +255,8 @@ class VideoMaker {
         assetWriterInput.markAsFinished()
         assetwriter.finishWriting {
             pixelBuffer = nil
-            
-            let soundURL = URL(fileURLWithPath: soundPath)
-            
-            mergeVideoWithAudio(videoUrl: outputMovieURL, audioUrl: soundURL, videoName: videoName, exportType: exportType) { videoURL in
+
+            mergeVideoWithAudio(videoUrl: outputMovieURL, audioUrl: contentUrl, videoName: videoName, exportType: exportType) { videoURL in
                 completionHandler(videoURL.path, nil)
             } failure: { error in
                 if error != nil {
@@ -278,7 +265,6 @@ class VideoMaker {
             }
         }
     }
-
 }
 
 enum VideoMakerError: Error {
@@ -291,5 +277,4 @@ enum VideoMakerError: Error {
     case couldNotObtainAudioDuration
     case unableToFindVideoFile
     case unknownError
-
 }

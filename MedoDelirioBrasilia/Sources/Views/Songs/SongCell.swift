@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SongCell: View {
 
-    @State var song: Song
+    let song: Song
     
     @Binding var nowPlaying: Set<String>
     @Environment(\.sizeCategory) var sizeCategory
@@ -31,9 +31,9 @@ struct SongCell: View {
     
     private var durationForDisplay: String {
         if isPlaying {
-            return timeRemaining.asString()
+            return timeRemaining.minuteSecondFormatted
         } else {
-            return song.duration.asString()
+            return song.duration.minuteSecondFormatted
         }
     }
     
@@ -60,7 +60,7 @@ struct SongCell: View {
                             .lineLimit(2)
                         
                         HStack(spacing: 10) {
-                            Text("\(song.genre.name) · \(durationForDisplay)")
+                            Text("\(song.genreName ?? "") · \(durationForDisplay)")
                                 .foregroundColor(.white)
                                 .font(.callout)
                                 .multilineTextAlignment(.leading)
@@ -116,9 +116,17 @@ struct SongCell: View {
 struct SongCell_Previews: PreviewProvider {
 
     static var previews: some View {
-        SongCell(song: Song(id: "ABC", title: "Funk do Morto", genre: .funk, duration: 60), nowPlaying: .constant(Set<String>()))
-            .padding(.horizontal)
-            .previewLayout(.fixed(width: 414, height: 100))
+        SongCell(
+            song: Song(
+                id: "ABC",
+                title: "Funk do Morto",
+                genreId: "82BFAA10-C01A-4FE0-8366-1B1690D00A40",
+                genreName: "Funk",
+                duration: 60
+            ),
+            nowPlaying: .constant(Set<String>())
+        )
+        .padding(.horizontal)
+        .previewLayout(.fixed(width: 414, height: 100))
     }
-
 }

@@ -21,13 +21,15 @@ class Podium {
         }
         
         for i in 0...(dimItems.count - 1) {
-            filteredSounds = soundData.filter({ $0.id == dimItems[i].contentId })
+            // TODO: - Fix this
+            filteredSounds = [] // soundData.filter({ $0.id == dimItems[i].contentId })
             
             guard filteredSounds.count > 0 else {
                 continue
             }
             
-            filteredAuthors = authorData.filter({ $0.id == filteredSounds[0].authorId })
+            guard let allAuthors = try? database.allAuthors() else { return nil }
+            filteredAuthors = allAuthors.filter({ $0.id == filteredSounds[0].authorId })
             
             guard filteredAuthors.count > 0 else {
                 continue
@@ -46,36 +48,15 @@ class Podium {
     }
     
     func getTop10SoundsSharedByTheAudience(for timeInterval: TrendsTimeInterval) -> [TopChartItem]? {
-        var result = [TopChartItem]()
-        var filteredSounds: [Sound]
-        var filteredAuthors: [Author]
-        var itemInPreparation: TopChartItem
-        
-        guard let dimItems = try? database.getTop10SoundsSharedByTheAudience(for: timeInterval), dimItems.count > 0 else {
-            return nil
-        }
-        
-        for i in 0...(dimItems.count - 1) {
-            filteredSounds = soundData.filter({ $0.id == dimItems[i].contentId })
-            
-            guard filteredSounds.count > 0 else {
-                continue
+        do {
+            var items = try database.getTop10SoundsSharedByTheAudience(for: timeInterval)
+            for i in 0..<items.count {
+                items[i].id = UUID().uuidString
+                items[i].rankNumber = "\(i + 1)"
             }
-            
-            filteredAuthors = authorData.filter({ $0.id == filteredSounds[0].authorId })
-            
-            guard filteredAuthors.count > 0 else {
-                continue
-            }
-            
-            itemInPreparation = TopChartItem(id: UUID().uuidString, rankNumber: "\(i + 1)", contentId: dimItems[i].contentId, contentName: filteredSounds[0].title, contentAuthorId: filteredSounds[0].authorId, contentAuthorName: filteredAuthors[0].name, shareCount: dimItems[i].shareCount)
-            
-            result.append(itemInPreparation)
-        }
-        
-        if result.count > 0 {
-            return result
-        } else {
+            return items
+        } catch {
+            print(error)
             return nil
         }
     }
@@ -87,7 +68,7 @@ class Podium {
             }
             
             // Prepare local stats to be sent
-            guard let stats = Logger.getShareCountStatsForServer() else {
+            guard let stats = Logger.shared.getShareCountStatsForServer() else {
                 return completionHandler(.noStatsToSend, "No stats to be sent.")
             }
             
@@ -101,7 +82,7 @@ class Podium {
             }
             
             // Send bundles IDs as well
-            if let bundleIdLogs = Logger.getUniqueBundleIdsForServer() {
+            if let bundleIdLogs = Logger.shared.getUniqueBundleIdsForServer() {
                 bundleIdLogs.forEach { log in
                     self.networkRabbit.post(bundleIdLog: log) { wasSuccessful, _ in
                         guard wasSuccessful else {
@@ -146,7 +127,5 @@ class Podium {
     enum ShareCountStatServerExchangeResult {
         
         case successful, noStatsToSend, failed
-        
     }
-
 }

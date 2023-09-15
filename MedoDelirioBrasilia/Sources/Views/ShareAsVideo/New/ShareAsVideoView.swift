@@ -38,8 +38,8 @@ struct ShareAsVideoView: View {
     }
     
     var body: some View {
-        let squareImage = squareImageView(contentName: viewModel.contentTitle, contentAuthor: viewModel.subtitle)
-        let nineBySixteenImage = nineBySixteenImageView(contentName: viewModel.contentTitle, contentAuthor: viewModel.subtitle)
+        let squareImage = squareImageView(contentName: viewModel.content.title, contentAuthor: viewModel.subtitle)
+        let nineBySixteenImage = nineBySixteenImageView(contentName: viewModel.content.title, contentAuthor: viewModel.subtitle)
         
         ZStack {
             NavigationView {
@@ -133,7 +133,7 @@ struct ShareAsVideoView: View {
                     .onChange(of: viewModel.shouldCloseView) { shouldCloseView in
                         if shouldCloseView {
                             result.videoFilepath = viewModel.pathToVideoFile
-                            result.contentId = viewModel.contentId
+                            result.contentId = viewModel.content.id
                             isBeingShown = false
                         }
                     }
@@ -318,10 +318,9 @@ struct ShareAsVideoView: View {
 }
 
 struct ShareAsVideoNewView_Previews: PreviewProvider {
-    
     static var previews: some View {
         ShareAsVideoView(
-            viewModel: ShareAsVideoViewViewModel(contentId: "ABC", contentTitle: "Você é maluco ou você é idiota, companheiro?", subtitle: "Lula (Cristiano Botafogo)", audioFilename: .empty),
+            viewModel: ShareAsVideoViewViewModel(content: Sound(title: "Você é maluco ou você é idiota, companheiro?"), subtitle: "Lula (Cristiano Botafogo)"),
             isBeingShown: .constant(true),
             result: .constant(ShareAsVideoResult()),
             useLongerGeneratingVideoMessage: false

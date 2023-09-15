@@ -92,6 +92,14 @@ class AppPersistentMemory {
         return Bool(value as! Bool)
     }
 
+    static func getHasSeen70WhatsNewScreen() -> Bool {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "hasSeen70WhatsNewScreen") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
+
     static func getHasSeenRecurringDonationBanner() -> Bool {
         let userDefaults = UserDefaults.standard
         guard let value = userDefaults.object(forKey: "hasSeenRecurringDonationBanner") else {
@@ -107,7 +115,15 @@ class AppPersistentMemory {
         }
         return Bool(value as! Bool)
     }
-    
+
+    static func getHasSeenBetaSurveyBanner() -> Bool {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "hasSeenBetaSurveyBanner") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
+
     // MARK: - Setters
     
     static func setHasSentDeviceModelToServer(to newValue: Bool) {
@@ -165,6 +181,11 @@ class AppPersistentMemory {
         userDefaults.set(newValue, forKey: "hasSeen63WhatsNewScreen")
     }
 
+    static func setHasSeen70WhatsNewScreen(to newValue: Bool) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(newValue, forKey: "hasSeen70WhatsNewScreen")
+    }
+
     static func setHasSeenRecurringDonationBanner(to newValue: Bool) {
         let userDefaults = UserDefaults.standard
         userDefaults.set(newValue, forKey: "hasSeenRecurringDonationBanner")
@@ -173,5 +194,10 @@ class AppPersistentMemory {
     static func setHasSeenBetaBanner(to newValue: Bool) {
         let userDefaults = UserDefaults.standard
         userDefaults.set(newValue, forKey: "hasSeenBetaBanner")
+    }
+
+    static func setHasSeenBetaSurveyBanner(to newValue: Bool) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(newValue, forKey: "hasSeenBetaSurveyBanner")
     }
 }

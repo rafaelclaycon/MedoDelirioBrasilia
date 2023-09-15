@@ -4,9 +4,10 @@ struct EmailAppPickerView: View {
 
     @Binding var isBeingShown: Bool
     @Binding var didCopySupportAddress: Bool
-    @State var subject: String
-    @State var emailBody: String
-    
+
+    let subject: String
+    let emailBody: String
+
     var body: some View {
         NavigationView {
             Form {

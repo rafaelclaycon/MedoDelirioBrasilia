@@ -11,7 +11,9 @@ import Kingfisher
 struct AuthorDetailView: View {
 
     @StateObject var viewModel: AuthorDetailViewViewModel
-    @State var author: Author
+
+    let author: Author
+
     @State private var navBarTitle: String = .empty
     @Binding var currentSoundsListMode: SoundsListMode
     @State private var showSelectionControlsInToolbar = false
@@ -177,7 +179,7 @@ struct AuthorDetailView: View {
                                                     AudioPlayer.shared?.togglePlay()
                                                     viewModel.nowPlayingKeeper.removeAll()
                                                 } else {
-                                                    viewModel.playSound(fromPath: sound.filename, withId: sound.id)
+                                                    viewModel.play(sound)
                                                 }
                                             } else {
                                                 if viewModel.selectionKeeper.contains(sound.id) {
@@ -191,7 +193,7 @@ struct AuthorDetailView: View {
                                             if currentSoundsListMode != .selection {
                                                 Section {
                                                     Button {
-                                                        viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
+                                                        viewModel.share(sound: sound)
                                                     } label: {
                                                         Label(Shared.shareSoundButtonText, systemImage: "square.and.arrow.up")
                                                     }
@@ -279,9 +281,12 @@ struct AuthorDetailView: View {
                 }
             }
             .onAppear {
-                viewModel.reloadList(withSounds: soundData.filter({ $0.authorId == author.id }),
-                                     andFavorites: try? LocalDatabase.shared.getAllFavorites(),
-                                     allowSensitiveContent: UserSettings.getShowExplicitContent())
+                // TODO: Refactor this to be closer to SoundsView.
+                viewModel.reloadList(
+                    withSounds: try? LocalDatabase.shared.allSounds(forAuthor: author.id, isSensitiveContentAllowed: UserSettings.getShowExplicitContent()),
+                    andFavorites: try? LocalDatabase.shared.favorites()
+                )
+                
                 columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
             }
             .onDisappear {
@@ -336,14 +341,14 @@ struct AuthorDetailView: View {
             .sheet(isPresented: $showingModalView) {
                 if #available(iOS 16.0, *) {
                     ShareAsVideoView(
-                        viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, subtitle: viewModel.selectedSound?.authorName ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty),
+                        viewModel: ShareAsVideoViewViewModel(content: viewModel.selectedSound!, subtitle: viewModel.selectedSound?.authorName ?? .empty),
                         isBeingShown: $showingModalView,
                         result: $shareAsVideo_Result,
                         useLongerGeneratingVideoMessage: false
                     )
                 } else {
                     ShareAsVideoLegacyView(
-                        viewModel: ShareAsVideoLegacyViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty),
+                        viewModel: ShareAsVideoLegacyViewViewModel(content: viewModel.selectedSound!),
                         isBeingShown: $showingModalView,
                         result: $shareAsVideo_Result,
                         useLongerGeneratingVideoMessage: false
@@ -546,9 +551,10 @@ struct AuthorDetailView: View {
         if viewModel.allSelectedAreFavorites() {
             viewModel.removeSelectedFromFavorites()
             viewModel.stopSelecting()
-            viewModel.reloadList(withSounds: soundData.filter({ $0.authorId == author.id }),
-                                 andFavorites: try? LocalDatabase.shared.getAllFavorites(),
-                                 allowSensitiveContent: UserSettings.getShowExplicitContent())
+            viewModel.reloadList(
+                withSounds: try? LocalDatabase.shared.allSounds(forAuthor: author.id, isSensitiveContentAllowed: UserSettings.getShowExplicitContent()),
+                andFavorites: try? LocalDatabase.shared.favorites()
+            )
             viewModel.sendUsageMetricToServer(action: "didRemoveManySoundsFromFavorites(\(selectedCount))", authorName: author.name)
         } else {
             viewModel.addSelectedToFavorites()

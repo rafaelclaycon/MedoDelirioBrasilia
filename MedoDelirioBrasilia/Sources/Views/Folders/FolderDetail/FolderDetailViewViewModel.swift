@@ -41,16 +41,18 @@ class FolderDetailViewViewModel: ObservableObject {
         self.currentSoundsListMode = currentSoundsListMode
     }
     
-    func reloadSoundList(withFolderContents folderContents: [UserFolderContent]?, sortedBy sortOption: FolderSoundSortOption) {
+    func reloadSoundList(
+        withFolderContents folderContents: [UserFolderContent]?,
+        sortedBy sortOption: FolderSoundSortOption
+    ) {
         guard let folderContents = folderContents else {
             self.sounds = [Sound]()
             self.hasSoundsToDisplay = false
             return
         }
         
-        let sounds = soundData.filter { sound in
-            folderContents.contains { $0.contentId == sound.id }
-        }
+        let contentIds = folderContents.map { $0.contentId }
+        guard let sounds = try? LocalDatabase.shared.sounds(withIds: contentIds) else { return }
         
         guard sounds.count > 0 else {
             self.sounds = [Sound]()
@@ -61,7 +63,6 @@ class FolderDetailViewViewModel: ObservableObject {
         self.sounds = sounds
         
         for i in stride(from: 0, to: self.sounds.count, by: 1) {
-            self.sounds[i].authorName = authorData.first(where: { $0.id == self.sounds[i].authorId })?.name ?? Shared.unknownAuthor
             // DateAdded here is date added to folder not to the app as it means outside folders.
             self.sounds[i].dateAdded = folderContents.first(where: { $0.contentId == self.sounds[i].id })?.dateAdded
         }
@@ -102,38 +103,39 @@ class FolderDetailViewViewModel: ObservableObject {
         }
     }
     
-    func playSound(fromPath filepath: String, withId soundId: String) {
-        guard filepath.isEmpty == false else {
-            return
-        }
-        
-        guard let path = Bundle.main.path(forResource: filepath, ofType: nil) else {
-            return showUnableToGetSoundAlert()
-        }
-        let url = URL(fileURLWithPath: path)
-        
-        nowPlayingKeeper.removeAll()
-        nowPlayingKeeper.insert(soundId)
+    func play(_ sound: Sound) {
+        do {
+            let url = try sound.fileURL()
 
-        AudioPlayer.shared = AudioPlayer(url: url, update: { [weak self] state in
-            guard let self = self else { return }
-            if state?.activity == .stopped {
-                self.nowPlayingKeeper.removeAll()
-                
-                if self.isPlayingPlaylist {
-                    self.currentTrackIndex += 1
-                    
-                    if self.currentTrackIndex >= self.sounds.count {
-                        self.doPlaylistCleanup()
-                        return
+            nowPlayingKeeper.removeAll()
+            nowPlayingKeeper.insert(sound.id)
+
+            AudioPlayer.shared = AudioPlayer(url: url, update: { [weak self] state in
+                guard let self = self else { return }
+                if state?.activity == .stopped {
+                    self.nowPlayingKeeper.removeAll()
+
+                    if self.isPlayingPlaylist {
+                        self.currentTrackIndex += 1
+
+                        if self.currentTrackIndex >= self.sounds.count {
+                            self.doPlaylistCleanup()
+                            return
+                        }
+
+                        self.play(self.sounds[self.currentTrackIndex])
                     }
-                    
-                    self.playSound(fromPath: self.sounds[self.currentTrackIndex].filename, withId: self.sounds[self.currentTrackIndex].id)
                 }
+            })
+
+            AudioPlayer.shared?.togglePlay()
+        } catch {
+            if sound.isFromServer ?? false {
+                showServerSoundNotAvailableAlert()
+            } else {
+                showUnableToGetSoundAlert()
             }
-        })
-        
-        AudioPlayer.shared?.togglePlay()
+        }
     }
     
     func stopPlaying() {
@@ -144,10 +146,10 @@ class FolderDetailViewViewModel: ObservableObject {
         }
     }
     
-    func shareSound(withPath filepath: String, andContentId contentId: String) {
+    func share(sound: Sound) {
         if UIDevice.current.userInterfaceIdiom == .phone {
             do {
-                try Sharer.shareSound(withPath: filepath, andContentId: contentId) { didShareSuccessfully in
+                try SharingUtility.shareSound(from: sound.fileURL(), andContentId: sound.id) { didShareSuccessfully in
                     if didShareSuccessfully {
                         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
                             withAnimation {
@@ -156,7 +158,7 @@ class FolderDetailViewViewModel: ObservableObject {
                             }
                             TapticFeedback.success()
                         }
-                        
+
                         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                             withAnimation {
                                 self.displaySharedSuccessfullyToast = false
@@ -168,41 +170,38 @@ class FolderDetailViewViewModel: ObservableObject {
                 showUnableToGetSoundAlert()
             }
         } else {
-            guard filepath.isEmpty == false else {
-                return
-            }
-            
-            guard let path = Bundle.main.path(forResource: filepath, ofType: nil) else {
-                return showUnableToGetSoundAlert()
-            }
-            let url = URL(fileURLWithPath: path)
-            
-            iPadShareSheet = ActivityViewController(activityItems: [url]) { activity, completed, items, error in
-                if completed {
-                    guard let activity = activity else {
-                        return
-                    }
-                    let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
-                    Logger.logSharedSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
-                    
-                    AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-                        withAnimation {
-                            self.shareBannerMessage = Shared.soundSharedSuccessfullyMessage
-                            self.displaySharedSuccessfullyToast = true
+            do {
+                let url = try sound.fileURL()
+
+                iPadShareSheet = ActivityViewController(activityItems: [url]) { activity, completed, items, error in
+                    if completed {
+                        guard let activity = activity else {
+                            return
                         }
-                        TapticFeedback.success()
-                    }
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                        withAnimation {
-                            self.displaySharedSuccessfullyToast = false
+                        let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
+                        Logger.shared.logSharedSound(contentId: sound.id, destination: destination, destinationBundleId: activity.rawValue)
+
+                        AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
+
+                        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                            withAnimation {
+                                self.shareBannerMessage = Shared.soundSharedSuccessfullyMessage
+                                self.displaySharedSuccessfullyToast = true
+                            }
+                            TapticFeedback.success()
+                        }
+
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            withAnimation {
+                                self.displaySharedSuccessfullyToast = false
+                            }
                         }
                     }
                 }
+            } catch {
+                showUnableToGetSoundAlert()
             }
-            
+
             isShowingShareSheet = true
         }
     }
@@ -210,7 +209,7 @@ class FolderDetailViewViewModel: ObservableObject {
     func shareVideo(withPath filepath: String, andContentId contentId: String) {
         if UIDevice.current.userInterfaceIdiom == .phone {
             do {
-                try Sharer.shareVideoFromSound(withPath: filepath, andContentId: contentId, shareSheetDelayInSeconds: 0.6) { didShareSuccessfully in
+                try SharingUtility.shareVideoFromSound(withPath: filepath, andContentId: contentId, shareSheetDelayInSeconds: 0.6) { didShareSuccessfully in
                     if didShareSuccessfully {
                         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
                             withAnimation {
@@ -247,7 +246,7 @@ class FolderDetailViewViewModel: ObservableObject {
                         return
                     }
                     let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
-                    Logger.logSharedVideoFromSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
+                    Logger.shared.logSharedVideoFromSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
                     
                     AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
                     
@@ -337,7 +336,7 @@ class FolderDetailViewViewModel: ObservableObject {
     func playAllSoundsOneAfterTheOther() {
         guard let firstSound = sounds.first else { return }
         isPlayingPlaylist = true
-        playSound(fromPath: firstSound.filename, withId: firstSound.id)
+        play(firstSound)
     }
     
     func playFrom(sound: Sound) {
@@ -345,7 +344,7 @@ class FolderDetailViewViewModel: ObservableObject {
         let soundInArray = sounds[soundIndex]
         currentTrackIndex = soundIndex
         isPlayingPlaylist = true
-        playSound(fromPath: soundInArray.filename, withId: soundInArray.id)
+        play(soundInArray)
     }
     
     func doPlaylistCleanup() {
@@ -362,19 +361,26 @@ class FolderDetailViewViewModel: ObservableObject {
         alertType = .ok
         showAlert = true
     }
-    
+
+    func showServerSoundNotAvailableAlert() {
+        TapticFeedback.error()
+        alertType = .ok
+        alertTitle = Shared.soundNotFoundAlertTitle
+        alertMessage = Shared.serverContentNotAvailableMessage
+        showAlert = true
+    }
+
     func showSoundRemovalConfirmation(soundTitle: String) {
         alertTitle = "Remover \"\(soundTitle)\"?"
         alertMessage = "O som continuará disponível fora da pasta."
         alertType = .removeSingleSound
         showAlert = true
     }
-    
+
     func showRemoveMultipleSoundsConfirmation() {
         alertTitle = "Remover os sons selecionados?"
         alertMessage = "Os sons continuarão disponíveis fora da pasta."
         alertType = .removeMultipleSounds
         showAlert = true
     }
-
 }
