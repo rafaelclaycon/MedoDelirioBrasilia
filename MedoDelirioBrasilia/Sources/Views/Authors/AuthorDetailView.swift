@@ -281,14 +281,13 @@ struct AuthorDetailView: View {
                 }
             }
             .onAppear {
+                // TODO: Refactor this to be closer to SoundsView.
                 viewModel.reloadList(
                     withSounds: try? LocalDatabase.shared.allSounds(forAuthor: author.id, isSensitiveContentAllowed: UserSettings.getShowExplicitContent()),
                     andFavorites: try? LocalDatabase.shared.favorites()
                 )
                 
                 columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
-
-                dump(author)
             }
             .onDisappear {
                 if currentSoundsListMode == .selection {

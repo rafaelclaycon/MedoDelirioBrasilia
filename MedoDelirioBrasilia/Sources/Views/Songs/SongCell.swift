@@ -120,7 +120,7 @@ struct SongCell_Previews: PreviewProvider {
             song: Song(
                 id: "ABC",
                 title: "Funk do Morto",
-                genreId: "82BFAA10-C01A-4FE0-8366-1B1690D00A40", // MusicGenre(id: "82BFAA10-C01A-4FE0-8366-1B1690D00A40", name: "Funk", isHidden: false)
+                genreId: "82BFAA10-C01A-4FE0-8366-1B1690D00A40",
                 genreName: "Funk",
                 duration: 60
             ),

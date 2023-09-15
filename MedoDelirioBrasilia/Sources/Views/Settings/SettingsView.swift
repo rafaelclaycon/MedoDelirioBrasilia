@@ -84,18 +84,18 @@ struct SettingsView: View {
                     }
                 }
                 
-                // if showAskForMoneyView || CommandLine.arguments.contains("-FORCE_SHOW_HELP_THE_APP") {
-                //     Section {
-                //         HelpTheAppView(donors: $donors, imageIsSelected: $showLargeCreatorImage)
-                //             .padding(donors != nil ? .top : .vertical)
-
-                //         DonateButtons(showToastView: $showToastView)
-                //     } header: {
-                //         Text("Ajude o app")
-                //     } footer: {
-                //         Text(helpTheAppFooterText)
-                //     }
-                // }
+                if showAskForMoneyView || CommandLine.arguments.contains("-FORCE_SHOW_HELP_THE_APP") {
+                    Section {
+                        HelpTheAppView(donors: $donors, imageIsSelected: $showLargeCreatorImage)
+                            .padding(donors != nil ? .top : .vertical)
+                        
+                        DonateButtons(showToastView: $showToastView)
+                    } header: {
+                        Text("Ajude o app")
+                    } footer: {
+                        Text(helpTheAppFooterText)
+                    }
+                }
                 
                 Section("Sobre") {
                     Menu {

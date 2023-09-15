@@ -7,14 +7,6 @@
 
 import Foundation
 
-internal protocol MedoContentProtocol {
-
-    var id: String { get }
-    var title: String { get }
-
-    func fileURL() throws -> URL
-}
-
 struct Sound: Hashable, Codable, Identifiable, MedoContentProtocol {
 
     let id: String

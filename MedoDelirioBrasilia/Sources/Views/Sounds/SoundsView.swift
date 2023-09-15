@@ -391,8 +391,10 @@ struct SoundsView: View {
                 }
 
                 if !AppPersistentMemory.getHasSeenRecurringDonationBanner() {
-                    networkRabbit.displayRecurringDonationBanner {
-                        shouldDisplayRecurringDonationBanner = $0
+                    Task {
+                        networkRabbit.displayRecurringDonationBanner {
+                            shouldDisplayRecurringDonationBanner = $0
+                        }
                     }
                 }
 
@@ -401,12 +403,12 @@ struct SoundsView: View {
                     viewModel.showMoveDatabaseIssueAlert()
                 }
             }
-            .sheet(isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog) {
-                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog,
-                                   didCopySupportAddress: .constant(false),
-                                   subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.selectedSound?.title ?? ""),
-                                   emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.selectedSound?.authorName ?? "", viewModel.selectedSound?.id ?? ""))
-            }
+//            .sheet(isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog) {
+//                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog,
+//                                   didCopySupportAddress: .constant(false),
+//                                   subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.selectedSound?.title ?? ""),
+//                                   emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.selectedSound?.authorName ?? "", viewModel.selectedSound?.id ?? ""))
+//            }
             .sheet(isPresented: $viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog) {
                 EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog,
                                    didCopySupportAddress: .constant(false),

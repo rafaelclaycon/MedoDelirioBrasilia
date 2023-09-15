@@ -8,8 +8,8 @@
 import SwiftUI
 
 //let networkRabbit = NetworkRabbit(serverPath: "https://654e-2804-1b3-8640-96df-d0b4-dd5d-6922-bb1b.sa.ngrok.io/api/")
-let networkRabbit = NetworkRabbit(serverPath: CommandLine.arguments.contains("-UNDER_DEVELOPMENT") ? "http://127.0.0.1:8080/api/" : "http://170.187.141.103:8080/api/")
-let baseURL: String = CommandLine.arguments.contains("-UNDER_DEVELOPMENT") ? "http://127.0.0.1:8080/" : "http://170.187.141.103:8080/"
+let networkRabbit = NetworkRabbit(serverPath: CommandLine.arguments.contains("-UNDER_DEVELOPMENT") ? "http://127.0.0.1:8080/api/" : "http://medodelirioios.lat:8080/api/")
+let baseURL: String = CommandLine.arguments.contains("-UNDER_DEVELOPMENT") ? "http://127.0.0.1:8080/" : "http://medodelirioios.lat:8080/"
 let podium = Podium(database: LocalDatabase.shared, networkRabbit: networkRabbit)
 
 var moveDatabaseIssue: String = .empty
@@ -229,6 +229,7 @@ extension AppDelegate {
             }
         } catch {
             print("Error creating \(folderName) folder: \(error)")
+            Logger.shared.logSyncError(description: "Erro ao tentar criar a pasta \(folderName): \(error.localizedDescription)", updateEventId: "")
         }
     }
 }

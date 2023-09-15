@@ -1,5 +1,5 @@
 //
-//  NetworkRabbit+Files.swift
+//  NetworkRabbit+FileDownload.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 27/04/23.
