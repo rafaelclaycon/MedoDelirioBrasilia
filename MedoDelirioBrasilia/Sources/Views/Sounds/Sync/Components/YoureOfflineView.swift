@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct YoureOfflineView: View {
+
+    @Binding var isBeingShown: Bool
+
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
@@ -34,7 +37,7 @@ struct YoureOfflineView: View {
         }
         .overlay(alignment: .topTrailing) {
             Button {
-                print("Close")
+                isBeingShown = false
             } label: {
                 Image(systemName: "xmark")
                     .foregroundColor(.gray)
@@ -46,6 +49,6 @@ struct YoureOfflineView: View {
 
 struct YoureOfflineView_Previews: PreviewProvider {
     static var previews: some View {
-        YoureOfflineView()
+        YoureOfflineView(isBeingShown: .constant(true))
     }
 }

@@ -32,7 +32,8 @@ struct SoundsView: View {
     
     // Temporary banners
     @State private var shouldDisplayRecurringDonationBanner: Bool = false
-    
+    @State private var shouldDisplayYoureOfflineBanner: Bool = true
+
     // Settings
     @EnvironmentObject var settingsHelper: SettingsHelper
     
@@ -206,8 +207,8 @@ struct SoundsView: View {
 //                            }) {
                             ScrollView {
                                 ScrollViewReader { proxy in
-                                    if !networkMonitor.isConnected {
-                                        YoureOfflineView()
+                                    if !networkMonitor.isConnected, shouldDisplayYoureOfflineBanner {
+                                        YoureOfflineView(isBeingShown: $shouldDisplayYoureOfflineBanner)
                                             //.padding(.horizontal, 10)
                                     }
 

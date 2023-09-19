@@ -9,6 +9,7 @@ import SwiftUI
 import Reachability
 
 class NetworkMonitor: ObservableObject {
+
     private let reachability = try! Reachability()
 
     @Published var isConnected: Bool = true
