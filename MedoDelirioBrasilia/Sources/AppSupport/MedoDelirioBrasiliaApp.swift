@@ -9,10 +9,8 @@ import SwiftUI
 
 //let networkRabbit = NetworkRabbit(serverPath: "https://654e-2804-1b3-8640-96df-d0b4-dd5d-6922-bb1b.sa.ngrok.io/api/")
 let networkRabbit = NetworkRabbit(serverPath: CommandLine.arguments.contains("-UNDER_DEVELOPMENT") ? "http://127.0.0.1:8080/api/" : "http://medodelirioios.lat:8080/api/")
+let baseURL: String = CommandLine.arguments.contains("-UNDER_DEVELOPMENT") ? "http://127.0.0.1:8080/" : "http://medodelirioios.lat:8080/"
 let podium = Podium(database: LocalDatabase.shared, networkRabbit: networkRabbit)
-
-let soundsLastUpdateDate: String = "11/08/2023"
-let songsLastUpdateDate: String = "20/07/2023"
 
 var moveDatabaseIssue: String = .empty
 
@@ -20,17 +18,28 @@ var moveDatabaseIssue: String = .empty
 struct MedoDelirioBrasiliaApp: App {
 
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+
+    // Sync
+    @AppStorage("lastUpdateDate") private var lastUpdateDate = "all"
     
     var body: some Scene {
         WindowGroup {
-            MainView()
+            MainView(viewModel: MainViewViewModel(lastUpdateDate: lastUpdateDate,
+                                                  service: SyncService(connectionManager: ConnectionManager.shared,
+                                                                       networkRabbit: networkRabbit,
+                                                                       localDatabase: LocalDatabase.shared),
+                                                  database: LocalDatabase.shared,
+                                                  logger: Logger.shared))
         }
     }
 
 }
 
 class AppDelegate: NSObject, UIApplicationDelegate {
-
+    
+    @AppStorage("hasMigratedSoundsAuthors") private var hasMigratedSoundsAuthors = false
+    @AppStorage("hasMigratedSongsMusicGenres") private var hasMigratedSongsMusicGenres = false
+    
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
@@ -47,8 +56,19 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         
         //print(database)
         
+        if !hasMigratedSoundsAuthors {
+            moveSoundsAndAuthorsToDatabase()
+            hasMigratedSoundsAuthors = true
+        }
+
+        if !hasMigratedSongsMusicGenres {
+            moveSongsAndMusicGenresToDatabase()
+            hasMigratedSongsMusicGenres = true
+        }
+        
         prepareAudioPlayerOnMac()
         collectTelemetry()
+        createFoldersForDownloadedContent()
         
         return true
     }
@@ -181,5 +201,35 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             UserDefaults.standard.removeObject(forKey: "skipGetLinkInstructions")
         }
     }
+}
 
+extension AppDelegate {
+    
+    func createFoldersForDownloadedContent() {
+        createFolder(named: InternalFolderNames.downloadedSounds)
+        createFolder(named: InternalFolderNames.downloadedSongs)
+    }
+    
+    func createFolder(named folderName: String) {
+        let fileManager = FileManager.default
+        let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let downloadedSoundsURL = documentsURL.appendingPathComponent(folderName)
+        
+        do {
+            var isDirectory: ObjCBool = false
+            if !fileManager.fileExists(atPath: downloadedSoundsURL.path, isDirectory: &isDirectory) {
+                try fileManager.createDirectory(at: downloadedSoundsURL, withIntermediateDirectories: true, attributes: nil)
+                print(folderName + " folder created.")
+            } else {
+                if isDirectory.boolValue {
+                    print(folderName + " folder already exists.")
+                } else {
+                    print("A file with the name \(folderName) already exists.")
+                }
+            }
+        } catch {
+            print("Error creating \(folderName) folder: \(error)")
+            Logger.shared.logSyncError(description: "Erro ao tentar criar a pasta \(folderName): \(error.localizedDescription)", updateEventId: "")
+        }
+    }
 }

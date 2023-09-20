@@ -2,21 +2,41 @@ import UIKit
 
 // MARK: - Physical Characteristics
 extension UIDevice {
-
     static var is4InchDevice: Bool {
         guard UIDevice.current.userInterfaceIdiom == .phone else {
             return false
         }
         return UIScreen.main.bounds.width == 320
     }
-    
+}
+
+// MARK: Is specific device
+extension UIDevice {
     static var isiPadMini: Bool {
         let model = UIDevice.modelName
         return model.contains("iPad mini")
     }
-    
+
+    static var isiPhone: Bool {
+        self.current.userInterfaceIdiom == .phone
+    }
+
+    static var isiPad: Bool {
+        self.current.userInterfaceIdiom == .pad
+    }
+
     static var isMac: Bool {
         ProcessInfo.processInfo.isiOSAppOnMac
+    }
+
+    static var deviceGenericName: String {
+        if UIDevice.isiPhone {
+            return "iPhone"
+        } else if UIDevice.isiPad {
+            return "iPad"
+        } else {
+            return "Mac"
+        }
     }
 }
 

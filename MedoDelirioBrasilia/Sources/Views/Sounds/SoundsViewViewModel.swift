@@ -10,7 +10,7 @@ import SwiftUI
 
 class SoundsViewViewModel: ObservableObject {
 
-    @Published var sounds = [Sound]()
+    @Published var sounds: [Sound] = []
     
     @Published var soundSortOption: Int
     @Published var authorSortOption: Int
@@ -19,7 +19,6 @@ class SoundsViewViewModel: ObservableObject {
     @Published var highlightKeeper = Set<String>()
     @Published var nowPlayingKeeper = Set<String>()
     @Published var selectionKeeper = Set<String>()
-    @Published var showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = false
     @Published var showEmailAppPicker_soundUnavailableConfirmationDialog = false
     @Published var selectedSound: Sound? = nil
     @Published var selectedSounds: [Sound]? = nil
@@ -38,116 +37,108 @@ class SoundsViewViewModel: ObservableObject {
     @Published var alertMessage: String = ""
     @Published var showAlert: Bool = false
     @Published var alertType: AlertType = .singleOption
-    
+
     init(soundSortOption: Int, authorSortOption: Int, currentSoundsListMode: Binding<SoundsListMode>) {
         self.soundSortOption = soundSortOption
         self.authorSortOption = authorSortOption
         self.currentSoundsListMode = currentSoundsListMode
     }
-    
-    func reloadList(withSounds allSounds: [Sound],
-                    andFavorites favorites: [Favorite]?,
-                    allowSensitiveContent: Bool,
-                    favoritesOnly: Bool,
-                    sortedBy sortOption: SoundSortOption) {
-        var soundsCopy = allSounds
-        
-        if favoritesOnly, let favorites = favorites {
-            soundsCopy = soundsCopy.filter({ sound in
-                favorites.contains(where: { $0.contentId == sound.id })
-            })
-        }
-        
-        if allowSensitiveContent == false {
-            soundsCopy = soundsCopy.filter({ $0.isOffensive == false })
-        }
-        
-        self.sounds = soundsCopy
-        
-        // From here the sounds array is already set
-        if self.sounds.count > 0 {
-            // Needed because author names live in a different file.
-            for i in 0...(self.sounds.count - 1) {
-                self.sounds[i].authorName = authorData.first(where: { $0.id == self.sounds[i].authorId })?.name ?? Shared.unknownAuthor
-            }
-            
-            // Populate Favorites Keeper to display favorite cells accordingly
-            if let favorites = favorites, favorites.count > 0 {
+
+    func reloadList(currentMode: SoundsView.ViewMode) {
+        guard currentMode == .allSounds || currentMode == .favorites else { return }
+
+        do {
+            sounds = try LocalDatabase.shared.sounds(
+                allowSensitive: UserSettings.getShowExplicitContent(),
+                favoritesOnly: currentMode == .favorites
+            )
+
+            guard sounds.count > 0 else { return }
+
+            favoritesKeeper.removeAll()
+            let favorites = try LocalDatabase.shared.favorites()
+            if favorites.count > 0 {
                 for favorite in favorites {
                     favoritesKeeper.insert(favorite.contentId)
                 }
-            } else {
-                favoritesKeeper.removeAll()
             }
-            
-            switch sortOption {
-            case .titleAscending:
-                sortSoundsInPlaceByTitleAscending()
-            case .authorNameAscending:
-                sortSoundsInPlaceByAuthorNameAscending()
-            case .dateAddedDescending:
-                sortSoundsInPlaceByDateAddedDescending()
-            case .shortestFirst:
-                sortSoundsInPlaceByDurationAscending()
-            case .longestFirst:
-                sortSoundsInPlaceByDurationDescending()
-            case .longestTitleFirst:
-                sortSoundsInPlaceByTitleLengthDescending()
-            case .shortestTitleFirst:
-                sortSoundsInPlaceByTitleLengthAscending()
-            }
+
+            let sortOption: SoundSortOption = SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .dateAddedDescending
+            sortSounds(by: sortOption)
+        } catch {
+            print("Erro")
         }
     }
-    
+
+    func sortSounds(by sortOption: SoundSortOption) {
+        switch sortOption {
+        case .titleAscending:
+            sortSoundsInPlaceByTitleAscending()
+        case .authorNameAscending:
+            sortSoundsInPlaceByAuthorNameAscending()
+        case .dateAddedDescending:
+            sortSoundsInPlaceByDateAddedDescending()
+        case .shortestFirst:
+            sortSoundsInPlaceByDurationAscending()
+        case .longestFirst:
+            sortSoundsInPlaceByDurationDescending()
+        case .longestTitleFirst:
+            sortSoundsInPlaceByTitleLengthDescending()
+        case .shortestTitleFirst:
+            sortSoundsInPlaceByTitleLengthAscending()
+        }
+    }
+
     private func sortSoundsInPlaceByTitleAscending() {
-        self.sounds.sort(by: { $0.title.withoutDiacritics() < $1.title.withoutDiacritics() })
+        sounds.sort(by: { $0.title.withoutDiacritics() < $1.title.withoutDiacritics() })
     }
-    
+
     private func sortSoundsInPlaceByAuthorNameAscending() {
-        self.sounds.sort(by: { $0.authorName?.withoutDiacritics() ?? "" < $1.authorName?.withoutDiacritics() ?? "" })
+        sounds.sort(by: { $0.authorName?.withoutDiacritics() ?? "" < $1.authorName?.withoutDiacritics() ?? "" })
     }
-    
+
     private func sortSoundsInPlaceByDateAddedDescending() {
-        self.sounds.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
+        sounds.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
     }
-    
+
     private func sortSoundsInPlaceByDurationAscending() {
-        self.sounds.sort(by: { $0.duration < $1.duration })
+        sounds.sort(by: { $0.duration < $1.duration })
     }
-    
+
     private func sortSoundsInPlaceByDurationDescending() {
-        self.sounds.sort(by: { $0.duration > $1.duration })
+        sounds.sort(by: { $0.duration > $1.duration })
     }
-    
+
     private func sortSoundsInPlaceByTitleLengthAscending() {
-        self.sounds.sort(by: { $0.title.count < $1.title.count })
+        sounds.sort(by: { $0.title.count < $1.title.count })
     }
-    
+
     private func sortSoundsInPlaceByTitleLengthDescending() {
-        self.sounds.sort(by: { $0.title.count > $1.title.count })
+        sounds.sort(by: { $0.title.count > $1.title.count })
     }
-    
-    func playSound(fromPath filepath: String, withId soundId: String) {
-        guard filepath.isEmpty == false else {
-            return
-        }
-        
-        guard let path = Bundle.main.path(forResource: filepath, ofType: nil) else {
-            return showUnableToGetSoundAlert()
-        }
-        let url = URL(fileURLWithPath: path)
-        
-        nowPlayingKeeper.removeAll()
-        nowPlayingKeeper.insert(soundId)
-        
-        AudioPlayer.shared = AudioPlayer(url: url, update: { [weak self] state in
-            guard let self = self else { return }
-            if state?.activity == .stopped {
-                self.nowPlayingKeeper.removeAll()
+
+    func play(_ sound: Sound) {
+        do {
+            let url = try sound.fileURL()
+            
+            nowPlayingKeeper.removeAll()
+            nowPlayingKeeper.insert(sound.id)
+            
+            AudioPlayer.shared = AudioPlayer(url: url, update: { [weak self] state in
+                guard let self = self else { return }
+                if state?.activity == .stopped {
+                    self.nowPlayingKeeper.removeAll()
+                }
+            })
+            
+            AudioPlayer.shared?.togglePlay()
+        } catch {
+            if sound.isFromServer ?? false {
+                showServerSoundNotAvailableAlert()
+            } else {
+                showUnableToGetSoundAlert()
             }
-        })
-        
-        AudioPlayer.shared?.togglePlay()
+        }
     }
     
     func stopPlaying() {
@@ -157,10 +148,10 @@ class SoundsViewViewModel: ObservableObject {
         }
     }
     
-    func shareSound(withPath filepath: String, andContentId contentId: String) {
+    func share(sound: Sound) {
         if UIDevice.current.userInterfaceIdiom == .phone {
             do {
-                try Sharer.shareSound(withPath: filepath, andContentId: contentId) { didShareSuccessfully in
+                try SharingUtility.shareSound(from: sound.fileURL(), andContentId: sound.id) { didShareSuccessfully in
                     if didShareSuccessfully {
                         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
                             withAnimation {
@@ -181,43 +172,39 @@ class SoundsViewViewModel: ObservableObject {
                 showUnableToGetSoundAlert()
             }
         } else {
-            guard filepath.isEmpty == false else {
-                return
-            }
-            
-            guard let path = Bundle.main.path(forResource: filepath, ofType: nil) else {
-                return showUnableToGetSoundAlert()
-            }
-            let url = URL(fileURLWithPath: path)
-            
-            iPadShareSheet = ActivityViewController(activityItems: [url]) { activity, completed, items, error in
-                if completed {
-                    self.isShowingShareSheet = false
-                    
-                    guard let activity = activity else {
-                        return
-                    }
-                    let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
-                    Logger.logSharedSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
-                    
-                    AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-                        withAnimation {
-                            self.shareBannerMessage = Shared.soundSharedSuccessfullyMessage
-                            self.displaySharedSuccessfullyToast = true
+            do {
+                let url = try sound.fileURL()
+                iPadShareSheet = ActivityViewController(activityItems: [url]) { activity, completed, items, error in
+                    if completed {
+                        self.isShowingShareSheet = false
+
+                        guard let activity = activity else {
+                            return
                         }
-                        TapticFeedback.success()
-                    }
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                        withAnimation {
-                            self.displaySharedSuccessfullyToast = false
+                        let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
+                        Logger.shared.logSharedSound(contentId: sound.id, destination: destination, destinationBundleId: activity.rawValue)
+
+                        AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
+
+                        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                            withAnimation {
+                                self.shareBannerMessage = Shared.soundSharedSuccessfullyMessage
+                                self.displaySharedSuccessfullyToast = true
+                            }
+                            TapticFeedback.success()
+                        }
+
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            withAnimation {
+                                self.displaySharedSuccessfullyToast = false
+                            }
                         }
                     }
                 }
+            } catch {
+                showUnableToGetSoundAlert()
             }
-            
+
             isShowingShareSheet = true
         }
     }
@@ -225,7 +212,7 @@ class SoundsViewViewModel: ObservableObject {
     func shareVideo(withPath filepath: String, andContentId contentId: String) {
         if UIDevice.current.userInterfaceIdiom == .phone {
             do {
-                try Sharer.shareVideoFromSound(withPath: filepath, andContentId: contentId, shareSheetDelayInSeconds: 0.6) { didShareSuccessfully in
+                try SharingUtility.shareVideoFromSound(withPath: filepath, andContentId: contentId, shareSheetDelayInSeconds: 0.6) { didShareSuccessfully in
                     if didShareSuccessfully {
                         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
                             withAnimation {
@@ -262,7 +249,7 @@ class SoundsViewViewModel: ObservableObject {
                         return
                     }
                     let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
-                    Logger.logSharedVideoFromSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
+                    Logger.shared.logSharedVideoFromSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
                     
                     AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
                     
@@ -367,7 +354,7 @@ class SoundsViewViewModel: ObservableObject {
         guard selectionKeeper.count > 0 else { return }
         selectedSounds = [Sound]()
         selectionKeeper.forEach { selectedSoundId in
-            guard let sound = soundData.filter({ $0.id == selectedSoundId }).first else { return }
+            guard let sound = try? LocalDatabase.shared.sound(withId: selectedSoundId) else { return }
             selectedSounds?.append(sound)
         }
     }
@@ -376,12 +363,12 @@ class SoundsViewViewModel: ObservableObject {
         guard selectionKeeper.count > 0 else { return }
         selectedSounds = [Sound]()
         selectionKeeper.forEach { selectedSoundId in
-            guard let sound = soundData.filter({ $0.id == selectedSoundId }).first else { return }
+            guard let sound = try? LocalDatabase.shared.sound(withId: selectedSoundId) else { return }
             selectedSounds?.append(sound)
         }
         
         do {
-            try Sharer.share(sounds: selectedSounds ?? [Sound]()) { didShareSuccessfully in
+            try SharingUtility.share(sounds: selectedSounds ?? [Sound]()) { didShareSuccessfully in
                 if didShareSuccessfully {
                     DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
                         withAnimation {
@@ -459,6 +446,14 @@ class SoundsViewViewModel: ObservableObject {
         showAlert = true
     }
     
+    func showServerSoundNotAvailableAlert() {
+        TapticFeedback.error()
+        alertType = .twoOptions
+        alertTitle = Shared.soundNotFoundAlertTitle
+        alertMessage = Shared.serverContentNotAvailableMessage
+        showAlert = true
+    }
+    
     func showMoveDatabaseIssueAlert() {
         TapticFeedback.error()
         alertType = .singleOption
@@ -466,5 +461,4 @@ class SoundsViewViewModel: ObservableObject {
         alertMessage = "Houve um problema ao tentar mover o banco de dados do app. Por favor, envie um print desse erro para o desenvolvedor (e-mail nas Configurações):\n\n\(moveDatabaseIssue)"
         showAlert = true
     }
-
 }

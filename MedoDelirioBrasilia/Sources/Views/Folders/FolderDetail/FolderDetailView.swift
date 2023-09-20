@@ -79,7 +79,7 @@ struct FolderDetailView: View {
                                                         viewModel.nowPlayingKeeper.removeAll()
                                                         viewModel.doPlaylistCleanup()
                                                     } else {
-                                                        viewModel.playSound(fromPath: sound.filename, withId: sound.id)
+                                                        viewModel.play(sound)
                                                     }
                                                 } else {
                                                     if viewModel.selectionKeeper.contains(sound.id) {
@@ -93,11 +93,11 @@ struct FolderDetailView: View {
                                                 if currentSoundsListMode != .selection {
                                                     Section {
                                                         Button {
-                                                            viewModel.shareSound(withPath: sound.filename, andContentId: sound.id)
+                                                            viewModel.share(sound: sound)
                                                         } label: {
                                                             Label(Shared.shareSoundButtonText, systemImage: "square.and.arrow.up")
                                                         }
-                                                        
+
                                                         Button {
                                                             viewModel.selectedSound = sound
                                                             showingModalView = true
@@ -105,7 +105,7 @@ struct FolderDetailView: View {
                                                             Label(Shared.shareAsVideoButtonText, systemImage: "film")
                                                         }
                                                     }
-                                                    
+
                                                     Section {
                                                         Button {
                                                             viewModel.playFrom(sound: sound)
@@ -113,7 +113,7 @@ struct FolderDetailView: View {
                                                             Label("Reproduzir a Partir Desse", systemImage: "play")
                                                         }
                                                     }
-                                                    
+
                                                     Section {
                                                         Button {
                                                             viewModel.selectedSound = sound
@@ -150,100 +150,13 @@ struct FolderDetailView: View {
                 }
             }
             .navigationTitle(title)
-            .toolbar {
-                HStack(spacing: 16) {
-                    if currentSoundsListMode == .regular {
-                        Button {
-                            if viewModel.isPlayingPlaylist {
-                                viewModel.stopPlaying()
-                            } else {
-                                viewModel.playAllSoundsOneAfterTheOther()
-                            }
-                        } label: {
-                            Image(systemName: viewModel.isPlayingPlaylist ? "stop.fill" : "play.fill")
-                        }
-                    } else {
-                        selectionControls()
-                    }
-                    
-                    Menu {
-                        Section {
-                            Button {
-                                viewModel.startSelecting()
-                            } label: {
-                                Label(currentSoundsListMode == .selection ? "Cancelar Seleção" : "Selecionar", systemImage: currentSoundsListMode == .selection ? "xmark.circle" : "checkmark.circle")
-                            }
-                        }
-                        
-                        Section {
-                            
-                        }
-                        
-                        Section {
-                            Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
-                                Text("Título")
-                                    .tag(0)
-                                
-                                Text("Nome do(a) Autor(a)")
-                                    .tag(1)
-                                
-                                if showSortByDateAddedOption {
-                                    Text("Adição à Pasta (Mais Recentes no Topo)")
-                                        .tag(2)
-                                }
-                            }
-                            .disabled(viewModel.sounds.count == 0)
-                        }
-                        
-                        //                    Section {
-                        //                        Button {
-                        //                            showingFolderInfoEditingView = true
-                        //                        } label: {
-                        //                            Label("Exportar", systemImage: "square.and.arrow.up")
-                        //                        }
-                        //
-                        //                        Button {
-                        //                            showingFolderInfoEditingView = true
-                        //                        } label: {
-                        //                            Label("Importar", systemImage: "square.and.arrow.down")
-                        //                        }
-                        //                    }
-                        
-                        //                    Section {
-                        //                        Button {
-                        //                            showingFolderInfoEditingView = true
-                        //                        } label: {
-                        //                            Label("Editar Pasta", systemImage: "pencil")
-                        //                        }
-                        //
-                        //                        Button(role: .destructive, action: {
-                        //                            //viewModel.dummyCall()
-                        //                        }, label: {
-                        //                            HStack {
-                        //                                Text("Apagar Pasta")
-                        //                                Image(systemName: "trash")
-                        //                            }
-                        //                        })
-                        //                    }
-                    } label: {
-                        Image(systemName: "ellipsis.circle")
-                    }
-                    .disabled(viewModel.isPlayingPlaylist)
-                    .onChange(of: viewModel.soundSortOption, perform: { soundSortOption in
-                        switch soundSortOption {
-                        case 1:
-                            viewModel.sortSoundsInPlaceByAuthorNameAscending()
-                        case 2:
-                            viewModel.sortSoundsInPlaceByDateAddedDescending()
-                        default:
-                            viewModel.sortSoundsInPlaceByTitleAscending()
-                        }
-                        try? LocalDatabase.shared.update(userSortPreference: soundSortOption, forFolderId: folder.id)
-                    })
-                }
-            }
+            .toolbar { trailingToolbarControls() }
             .onAppear {
-                viewModel.reloadSoundList(withFolderContents: try? LocalDatabase.shared.getAllContentsInsideUserFolder(withId: folder.id), sortedBy: FolderSoundSortOption(rawValue: folder.userSortPreference ?? 0) ?? .titleAscending)
+                viewModel.reloadSoundList(
+                    withFolderContents: try? LocalDatabase.shared.getAllContentsInsideUserFolder(withId: folder.id),
+                    sortedBy: FolderSoundSortOption(rawValue: folder.userSortPreference ?? 0) ?? .titleAscending
+                )
+
                 columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
             }
             .onDisappear {
@@ -261,7 +174,7 @@ struct FolderDetailView: View {
                 switch viewModel.alertType {
                 case .ok:
                     return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
-                    
+
                 case .removeSingleSound:
                     return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .destructive(Text("Remover"), action: {
                         guard let sound = viewModel.selectedSound else {
@@ -269,7 +182,7 @@ struct FolderDetailView: View {
                         }
                         viewModel.removeSoundFromFolder(folderId: folder.id, soundId: sound.id)
                     }), secondaryButton: .cancel(Text("Cancelar")))
-                    
+
                 case .removeMultipleSounds:
                     return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .destructive(Text("Remover"), action: {
                         // Need to get count before clearing the Set.
@@ -285,9 +198,19 @@ struct FolderDetailView: View {
             }
             .sheet(isPresented: $showingModalView) {
                 if #available(iOS 16.0, *) {
-                    ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, contentAuthor: viewModel.selectedSound?.authorName ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: false)
+                    ShareAsVideoView(
+                        viewModel: ShareAsVideoViewViewModel(content: viewModel.selectedSound!, subtitle: viewModel.selectedSound?.authorName ?? .empty),
+                        isBeingShown: $showingModalView,
+                        result: $shareAsVideo_Result,
+                        useLongerGeneratingVideoMessage: false
+                    )
                 } else {
-                    ShareAsVideoLegacyView(viewModel: ShareAsVideoLegacyViewViewModel(contentId: viewModel.selectedSound?.id ?? .empty, contentTitle: viewModel.selectedSound?.title ?? .empty, audioFilename: viewModel.selectedSound?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: false)
+                    ShareAsVideoLegacyView(
+                        viewModel: ShareAsVideoLegacyViewViewModel(content: viewModel.selectedSound!),
+                        isBeingShown: $showingModalView,
+                        result: $shareAsVideo_Result,
+                        useLongerGeneratingVideoMessage: false
+                    )
                 }
             }
             .onChange(of: shareAsVideo_Result.videoFilepath) { videoResultPath in
@@ -309,6 +232,99 @@ struct FolderDetailView: View {
                 }
                 .transition(.moveAndFade)
             }
+        }
+    }
+
+    @ViewBuilder func trailingToolbarControls() -> some View {
+        HStack(spacing: 16) {
+            if currentSoundsListMode == .regular {
+                Button {
+                    if viewModel.isPlayingPlaylist {
+                        viewModel.stopPlaying()
+                    } else {
+                        viewModel.playAllSoundsOneAfterTheOther()
+                    }
+                } label: {
+                    Image(systemName: viewModel.isPlayingPlaylist ? "stop.fill" : "play.fill")
+                }
+            } else {
+                selectionControls()
+            }
+
+            Menu {
+                Section {
+                    Button {
+                        viewModel.startSelecting()
+                    } label: {
+                        Label(currentSoundsListMode == .selection ? "Cancelar Seleção" : "Selecionar", systemImage: currentSoundsListMode == .selection ? "xmark.circle" : "checkmark.circle")
+                    }
+                }
+
+                Section {
+
+                }
+
+                Section {
+                    Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
+                        Text("Título")
+                            .tag(0)
+
+                        Text("Nome do(a) Autor(a)")
+                            .tag(1)
+
+                        if showSortByDateAddedOption {
+                            Text("Adição à Pasta (Mais Recentes no Topo)")
+                                .tag(2)
+                        }
+                    }
+                    .disabled(viewModel.sounds.count == 0)
+                }
+
+                //                    Section {
+                //                        Button {
+                //                            showingFolderInfoEditingView = true
+                //                        } label: {
+                //                            Label("Exportar", systemImage: "square.and.arrow.up")
+                //                        }
+                //
+                //                        Button {
+                //                            showingFolderInfoEditingView = true
+                //                        } label: {
+                //                            Label("Importar", systemImage: "square.and.arrow.down")
+                //                        }
+                //                    }
+
+                //                    Section {
+                //                        Button {
+                //                            showingFolderInfoEditingView = true
+                //                        } label: {
+                //                            Label("Editar Pasta", systemImage: "pencil")
+                //                        }
+                //
+                //                        Button(role: .destructive, action: {
+                //                            //viewModel.dummyCall()
+                //                        }, label: {
+                //                            HStack {
+                //                                Text("Apagar Pasta")
+                //                                Image(systemName: "trash")
+                //                            }
+                //                        })
+                //                    }
+            } label: {
+                Image(systemName: "ellipsis.circle")
+            }
+            .disabled(viewModel.isPlayingPlaylist)
+            .onChange(of: viewModel.soundSortOption, perform: { soundSortOption in
+                switch soundSortOption {
+                case 1:
+                    viewModel.sortSoundsInPlaceByAuthorNameAscending()
+                case 2:
+                    viewModel.sortSoundsInPlaceByDateAddedDescending()
+                default:
+                    viewModel.sortSoundsInPlaceByTitleAscending()
+                }
+                try? LocalDatabase.shared.update(userSortPreference: soundSortOption, forFolderId: folder.id)
+            })
         }
     }
     
@@ -333,7 +349,6 @@ struct FolderDetailView: View {
             }
         }
     }
-
 }
 
 struct FolderDetailView_Previews: PreviewProvider {

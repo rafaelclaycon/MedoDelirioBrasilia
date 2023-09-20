@@ -15,14 +15,10 @@ class AuthorsViewViewModel: ObservableObject {
     @Published var currentActivity: NSUserActivity? = nil
     
     func reloadList(sortedBy sortOption: AuthorSortOption) {
-        self.authors = authorData
+        guard let allAuthors = try? LocalDatabase.shared.allAuthors() else { return }
+        self.authors = allAuthors
         
-        if self.authors.count > 0 {
-            self.authors.indices.forEach {
-                let authorId = self.authors[$0].id
-                self.authors[$0].soundCount = soundData.filter({ $0.authorId == authorId }).count
-            }
-            
+        if self.authors.count > 0 {            
             switch sortOption {
             case .nameAscending:
                 sortAuthorsInPlaceByNameAscending()

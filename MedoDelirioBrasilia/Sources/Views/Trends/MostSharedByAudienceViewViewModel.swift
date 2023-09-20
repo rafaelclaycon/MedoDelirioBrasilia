@@ -29,7 +29,7 @@ class MostSharedByAudienceViewViewModel: ObservableObject {
     
     func reloadAudienceLists() {
         // Check if enough time has passed for a retry
-        guard TimeKeeper.checkTwoMinutesHasPassed(lastCheckDate) else {
+        guard lastCheckDate.twoMinutesHavePassed else {
             return
         }
         lastCheckDate = .now

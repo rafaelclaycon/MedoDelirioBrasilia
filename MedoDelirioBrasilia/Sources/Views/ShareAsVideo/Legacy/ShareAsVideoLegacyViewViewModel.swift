@@ -10,9 +10,7 @@ import PhotosUI
 
 class ShareAsVideoLegacyViewViewModel: ObservableObject {
 
-    var contentId: String
-    private var contentTitle: String
-    private var audioFilename: String
+    let content: MedoContentProtocol
     
     @Published var image: UIImage
     @Published var includeSoundWarning: Bool = true
@@ -28,23 +26,25 @@ class ShareAsVideoLegacyViewViewModel: ObservableObject {
     @Published var alertMessage: String = .empty
     @Published var showAlert: Bool = false
     
-    init(contentId: String, contentTitle: String, audioFilename: String) {
-        self.contentId = contentId
-        self.contentTitle = contentTitle
-        self.audioFilename = audioFilename
+    init(content: MedoContentProtocol) {
+        self.content = content
         self.image = UIImage()
         reloadImage()
     }
     
     func reloadImage() {
         if selectedSocialNetwork == IntendedVideoDestination.twitter.rawValue {
-            image = VideoMaker.textToImage(drawText: contentTitle.uppercased(),
-                                           inImage: UIImage(named: "square_video_background")!,
-                                           atPoint: CGPoint(x: 80, y: 300))
+            image = VideoMaker.textToImage(
+                drawText: content.title.uppercased(),
+                inImage: UIImage(named: "square_video_background")!,
+                atPoint: CGPoint(x: 80, y: 300)
+            )
         } else {
-            image = VideoMaker.textToImage(drawText: contentTitle.uppercased(),
-                                           inImage: UIImage(named: includeSoundWarning ? "9_16_video_background_with_warning" : "9_16_video_background_no_warning")!,
-                                           atPoint: CGPoint(x: 80, y: 600))
+            image = VideoMaker.textToImage(
+                drawText: content.title.uppercased(),
+                inImage: UIImage(named: includeSoundWarning ? "9_16_video_background_with_warning" : "9_16_video_background_no_warning")!,
+                atPoint: CGPoint(x: 80, y: 600)
+            )
         }
     }
     
@@ -54,10 +54,10 @@ class ShareAsVideoLegacyViewViewModel: ObservableObject {
         }
         
         do {
-            try VideoMaker.createVideo(from: audioFilename,
-                                       with: image,
-                                       contentTitle: contentTitle.withoutDiacritics(),
-                                       exportType: IntendedVideoDestination(rawValue: selectedSocialNetwork)!
+            try VideoMaker.createVideo(
+                from: content,
+                with: image,
+                exportType: IntendedVideoDestination(rawValue: selectedSocialNetwork)!
             ) { videoPath, error in
                 guard error == nil else {
                     return completion(nil, error)

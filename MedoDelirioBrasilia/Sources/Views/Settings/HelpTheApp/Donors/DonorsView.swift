@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct DonorsView: View {
-    
+
     @Binding var donors: [Donor]?
-    
-    private var hasAnyRepeatDonor: Bool {
-        let filteredDonors = donors?.filter({ $0.hasDonatedBefore == true })
+
+    private var hasAnyRepeatOrRecurringDonor: Bool {
+        let filteredDonors = donors?.filter({ $0.isSpecial })
         return filteredDonors?.count ?? 0 > 0
     }
-    
+
     var body: some View {
         if donors == nil {
             EmptyView()
@@ -23,7 +23,7 @@ struct DonorsView: View {
             HStack(spacing: 15) {
                 ForEach(donors!, id: \.name) { donor in
                     DonorView(donor: donor)
-                        .padding(.bottom, hasAnyRepeatDonor ? 16 : 0)
+                        .padding(.bottom, hasAnyRepeatOrRecurringDonor ? 16 : 0)
                 }
             }
         }
@@ -34,7 +34,7 @@ struct ScrollingTagView_Previews: PreviewProvider {
     
     static var previews: some View {
         DonorsView(donors: .constant([Donor(name: "Bruno P. G. P."),
-                                      Donor(name: "Clarissa P. S.", isRecurringDonor: true),
+                                      Donor(name: "Clarissa P. S.", hasDonatedBefore: true),
                                       Donor(name: "Pedro Henrique B. P.")]))
     }
 }

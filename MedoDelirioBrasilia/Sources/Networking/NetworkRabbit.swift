@@ -1,23 +1,25 @@
 import Foundation
 
 internal protocol NetworkRabbitProtocol {
-
+    
+    var serverPath: String { get }
+    
     func checkServerStatus(completionHandler: @escaping (Bool) -> Void)
     func getSoundShareCountStats(timeInterval: TrendsTimeInterval, completionHandler: @escaping ([ServerShareCountStat]?, NetworkRabbitError?) -> Void)
     func post(shareCountStat: ServerShareCountStat, completionHandler: @escaping (Bool, String) -> Void)
     func post(clientDeviceInfo: ClientDeviceInfo, completionHandler: @escaping (Bool?, NetworkRabbitError?) -> Void)
     func post(bundleIdLog: ServerShareBundleIdLog, completionHandler: @escaping (Bool, String) -> Void)
-
+    func fetchUpdateEvents(from lastDate: String) async throws -> [UpdateEvent]
 }
 
 class NetworkRabbit: NetworkRabbitProtocol {
 
     let serverPath: String
-    
+
     init(serverPath: String) {
         self.serverPath = serverPath
     }
-    
+
     // MARK: - GET
     
     func checkServerStatus(completionHandler: @escaping (Bool) -> Void) {
@@ -41,15 +43,15 @@ class NetworkRabbit: NetworkRabbitProtocol {
         
         switch timeInterval {
         case .last24Hours:
-            let refDate: String = TimeKeeper.getDateAsString(addingDays: -1)
+            let refDate: String = Date.dateAsString(addingDays: -1)
             url = URL(string: serverPath + "v2/sound-share-count-stats-from/\(refDate)")!
             
         case .lastWeek:
-            let refDate: String = TimeKeeper.getDateAsString(addingDays: -7)
+            let refDate: String = Date.dateAsString(addingDays: -7)
             url = URL(string: serverPath + "v2/sound-share-count-stats-from/\(refDate)")!
         
         case .lastMonth:
-            let refDate: String = TimeKeeper.getDateAsString(addingDays: -30)
+            let refDate: String = Date.dateAsString(addingDays: -30)
             url = URL(string: serverPath + "v2/sound-share-count-stats-from/\(refDate)")!
         
         case .allTime:
@@ -67,7 +69,7 @@ class NetworkRabbit: NetworkRabbitProtocol {
             
             if let data = data {
                 if let stats = try? JSONDecoder().decode([ServerShareCountStat].self, from: data) {
-                    Logger.logNetworkCall(callType: NetworkCallType.getSoundShareCountStats.rawValue, requestUrl: url.absoluteString, requestBody: nil, response: String(data: data, encoding: .utf8)!, wasSuccessful: true)
+                    Logger.shared.logNetworkCall(callType: NetworkCallType.getSoundShareCountStats.rawValue, requestUrl: url.absoluteString, requestBody: nil, response: String(data: data, encoding: .utf8)!, wasSuccessful: true)
                     completionHandler(stats, nil)
                 } else {
                     completionHandler(nil, .invalidResponse)
@@ -98,6 +100,29 @@ class NetworkRabbit: NetworkRabbitProtocol {
             }
         }
         
+        task.resume()
+    }
+
+    func displayRecurringDonationBanner(completion: @escaping (Bool) -> Void) {
+        print("HERMIONE")
+
+        let url = URL(string: serverPath + "v3/display-recurring-donation-banner")!
+
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let httpResponse = response as? HTTPURLResponse else { return completion(false) }
+            guard httpResponse.statusCode == 200 else { return completion(false) }
+            if let data = data {
+                let shouldDisplay = String(data: data, encoding: .utf8)!
+                if shouldDisplay == "1" {
+                    completion(true)
+                } else {
+                    completion(false)
+                }
+            } else if error != nil {
+                completion(false)
+            }
+        }
+
         task.resume()
     }
     
@@ -213,5 +238,5 @@ enum NetworkRabbitError: Error {
     case responseWasNotAnHTTPURLResponse
     case invalidResponse
     case httpRequestFailed
-
+    case errorFetchingUpdateEvents(String)
 }

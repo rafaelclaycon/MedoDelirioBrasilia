@@ -44,30 +44,20 @@ class AuthorDetailViewViewModel: ObservableObject {
             sendUsageMetricToServer(originatingScreenName: originatingScreenName, authorName: authorName)
         }
     }
-    
-    func reloadList(withSounds allSounds: [Sound],
-                    andFavorites favorites: [Favorite]?,
-                    allowSensitiveContent: Bool) {
-        var soundsCopy = allSounds
-        
-        if allowSensitiveContent == false {
-            soundsCopy = soundsCopy.filter({ $0.isOffensive == false })
-        }
-        
-        self.sounds = soundsCopy
-        
+
+    func reloadList(
+        withSounds allSounds: [Sound]?,
+        andFavorites favorites: [Favorite]?
+    ) {
+        guard let allSounds else { return self.sounds = [Sound]() }
+
+        self.sounds = allSounds
+
         // From here the sounds array is already set
         if self.sounds.count > 0 {
-            // Needed because author names live in a different file.
-            for i in 0...(self.sounds.count - 1) {
-                self.sounds[i].authorName = authorData.first(where: { $0.id == self.sounds[i].authorId })?.name ?? Shared.unknownAuthor
-            }
-            
             // Populate Favorites Keeper to display favorite cells accordingly
-            if let favorites = favorites, favorites.count > 0 {
-                for favorite in favorites {
-                    favoritesKeeper.insert(favorite.contentId)
-                }
+            if let favorites, !favorites.isEmpty {
+                favoritesKeeper = Set(favorites.map { $0.contentId })
             } else {
                 favoritesKeeper.removeAll()
             }
@@ -84,27 +74,28 @@ class AuthorDetailViewViewModel: ObservableObject {
         self.sounds.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
     }
     
-    func playSound(fromPath filepath: String, withId soundId: String) {
-        guard filepath.isEmpty == false else {
-            return
-        }
-        
-        guard let path = Bundle.main.path(forResource: filepath, ofType: nil) else {
-            return showUnableToGetSoundAlert()
-        }
-        let url = URL(fileURLWithPath: path)
-        
-        nowPlayingKeeper.removeAll()
-        nowPlayingKeeper.insert(soundId)
+    func play(_ sound: Sound) {
+        do {
+            let url = try sound.fileURL()
 
-        AudioPlayer.shared = AudioPlayer(url: url, update: { [weak self] state in
-            guard let self = self else { return }
-            if state?.activity == .stopped {
-                self.nowPlayingKeeper.removeAll()
+            nowPlayingKeeper.removeAll()
+            nowPlayingKeeper.insert(sound.id)
+
+            AudioPlayer.shared = AudioPlayer(url: url, update: { [weak self] state in
+                guard let self = self else { return }
+                if state?.activity == .stopped {
+                    self.nowPlayingKeeper.removeAll()
+                }
+            })
+
+            AudioPlayer.shared?.togglePlay()
+        } catch {
+            if sound.isFromServer ?? false {
+                showServerSoundNotAvailableAlert()
+            } else {
+                showUnableToGetSoundAlert()
             }
-        })
-        
-        AudioPlayer.shared?.togglePlay()
+        }
     }
     
     func stopPlaying() {
@@ -114,10 +105,10 @@ class AuthorDetailViewViewModel: ObservableObject {
         }
     }
     
-    func shareSound(withPath filepath: String, andContentId contentId: String) {
+    func share(sound: Sound) {
         if UIDevice.current.userInterfaceIdiom == .phone {
             do {
-                try Sharer.shareSound(withPath: filepath, andContentId: contentId) { didShareSuccessfully in
+                try SharingUtility.shareSound(from: sound.fileURL(), andContentId: sound.id) { didShareSuccessfully in
                     if didShareSuccessfully {
                         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
                             withAnimation {
@@ -126,7 +117,7 @@ class AuthorDetailViewViewModel: ObservableObject {
                             }
                             TapticFeedback.success()
                         }
-                        
+
                         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                             withAnimation {
                                 self.displaySharedSuccessfullyToast = false
@@ -138,41 +129,38 @@ class AuthorDetailViewViewModel: ObservableObject {
                 showUnableToGetSoundAlert()
             }
         } else {
-            guard filepath.isEmpty == false else {
-                return
-            }
-            
-            guard let path = Bundle.main.path(forResource: filepath, ofType: nil) else {
-                return showUnableToGetSoundAlert()
-            }
-            let url = URL(fileURLWithPath: path)
-            
-            iPadShareSheet = ActivityViewController(activityItems: [url]) { activity, completed, items, error in
-                if completed {
-                    guard let activity = activity else {
-                        return
-                    }
-                    let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
-                    Logger.logSharedSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
-                    
-                    AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-                        withAnimation {
-                            self.shareBannerMessage = Shared.soundSharedSuccessfullyMessage
-                            self.displaySharedSuccessfullyToast = true
+            do {
+                let url = try sound.fileURL()
+
+                iPadShareSheet = ActivityViewController(activityItems: [url]) { activity, completed, items, error in
+                    if completed {
+                        guard let activity = activity else {
+                            return
                         }
-                        TapticFeedback.success()
-                    }
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                        withAnimation {
-                            self.displaySharedSuccessfullyToast = false
+                        let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
+                        Logger.shared.logSharedSound(contentId: sound.id, destination: destination, destinationBundleId: activity.rawValue)
+
+                        AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
+
+                        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                            withAnimation {
+                                self.shareBannerMessage = Shared.soundSharedSuccessfullyMessage
+                                self.displaySharedSuccessfullyToast = true
+                            }
+                            TapticFeedback.success()
+                        }
+
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            withAnimation {
+                                self.displaySharedSuccessfullyToast = false
+                            }
                         }
                     }
                 }
+            } catch {
+                showUnableToGetSoundAlert()
             }
-            
+
             isShowingShareSheet = true
         }
     }
@@ -180,7 +168,7 @@ class AuthorDetailViewViewModel: ObservableObject {
     func shareVideo(withPath filepath: String, andContentId contentId: String) {
         if UIDevice.current.userInterfaceIdiom == .phone {
             do {
-                try Sharer.shareVideoFromSound(withPath: filepath, andContentId: contentId, shareSheetDelayInSeconds: 0.6) { didShareSuccessfully in
+                try SharingUtility.shareVideoFromSound(withPath: filepath, andContentId: contentId, shareSheetDelayInSeconds: 0.6) { didShareSuccessfully in
                     if didShareSuccessfully {
                         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
                             withAnimation {
@@ -217,7 +205,7 @@ class AuthorDetailViewViewModel: ObservableObject {
                         return
                     }
                     let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
-                    Logger.logSharedVideoFromSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
+                    Logger.shared.logSharedVideoFromSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
                     
                     AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
                     
@@ -339,7 +327,7 @@ class AuthorDetailViewViewModel: ObservableObject {
         guard selectionKeeper.count > 0 else { return }
         selectedSounds = [Sound]()
         selectionKeeper.forEach { selectedSoundId in
-            guard let sound = soundData.filter({ $0.id == selectedSoundId }).first else { return }
+            guard let sound = try? LocalDatabase.shared.sound(withId: selectedSoundId) else { return }
             selectedSounds?.append(sound)
         }
     }
@@ -357,7 +345,7 @@ class AuthorDetailViewViewModel: ObservableObject {
     }
     
     // MARK: - Alerts
-    
+
     func showUnableToGetSoundAlert() {
         TapticFeedback.error()
         alertType = .reportSoundIssue
@@ -365,7 +353,15 @@ class AuthorDetailViewViewModel: ObservableObject {
         alertMessage = Shared.soundNotFoundAlertMessage
         showAlert = true
     }
-    
+
+    func showServerSoundNotAvailableAlert() {
+        TapticFeedback.error()
+        alertType = .reportSoundIssue
+        alertTitle = Shared.soundNotFoundAlertTitle
+        alertMessage = Shared.serverContentNotAvailableMessage
+        showAlert = true
+    }
+
     func showAskForNewSoundAlert() {
         TapticFeedback.warning()
         alertType = .askForNewSound
@@ -373,5 +369,4 @@ class AuthorDetailViewViewModel: ObservableObject {
         alertMessage = Shared.AuthorDetail.AskForNewSoundAlert.message
         showAlert = true
     }
-
 }

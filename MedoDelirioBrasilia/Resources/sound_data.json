@@ -2842,8 +2842,8 @@
     {
         "id": "166B52AF-1ED2-4E12-AB88-F7CD7A5919D3",
         "title": "Por que será?!",
-        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
-        "description": "por que sera",
+        "authorId": "DE4BF5DF-7051-462D-831A-18B67D38163D",
+        "description": "por que sera porque sera",
         "filename": "Por que sera short meme.mp3",
         "dateAdded": "2022-05-30T00:00:00Z",
         "duration": 1.15,
@@ -3242,7 +3242,7 @@
     {
         "id": "4690BCEE-FF58-41D7-AE5F-4A4BFF8950A7",
         "title": "Não dá pra continuar, tá passando mal",
-        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "authorId": "9AC945E8-5B9C-472A-804D-F3C0BB63F097",
         "description": "Não dá pra continuar tá passando mal Flavio Bolsonaro desmaio",
         "filename": "Osorio - Flavio Bolsonaro desmaio - Nao da pra continuar, ta passando mal short.mp3",
         "dateAdded": "2022-06-09T00:00:00Z",
@@ -4131,9 +4131,9 @@
     },
     {
         "id": "282F388B-74E2-4BBD-849E-F3BD67562013",
-        "title": "Grandes merda cê adevogado",
+        "title": "Grandes merda ser adevogado",
         "authorId": "B7CB79F9-4CAC-4832-BB47-2EA96A4AC576",
-        "description": "grandes merda cê adevogado grandes merda ser adevogado",
+        "description": "grandes merda ser adevogado grandes merda ce adevogado",
         "filename": "Trote Luiz Pareto - Trote da TELERJ (grandes merdas que o senhor e advogado).mp3",
         "dateAdded": "2022-06-24T00:00:00Z",
         "duration": 1.91,
@@ -11107,6 +11107,136 @@
         "filename": "Jair Bolsonaro - A cor do Cialis.mp3",
         "dateAdded": "2023-08-11T00:00:00Z",
         "duration": 1.99,
+        "isOffensive": true
+    },
+    {
+        "id": "2D031963-C141-408D-BBC9-354592D56351",
+        "title": "Foda-se",
+        "authorId": "E9ECF444-11F2-4B61-B3B4-84DD67E9D9C0",
+        "description": "cara eu não gosto de futebol feminino porque eu acho foda-se foda-se ninguém quer saber na verdade eu só tô falando isso porque eu acho que não tem muito como comparar a marta com o neymar a única coisa que eu queria dizer é que eu acho que o filme da barbie ele tem foda-se",
+        "filename": "Julio Paulucci - Foda-se.mp3",
+        "dateAdded": "2023-08-17T00:00:00Z",
+        "duration": 38.11,
+        "isOffensive": true
+    },
+    {
+        "id": "806B3B07-0C79-4BB1-AAF9-B0DB6DBF2439",
+        "title": "Demais",
+        "authorId": "0833F566-D20E-4207-B6AB-A8D63DA8D10C",
+        "description": "demais",
+        "filename": "Caio Salles - Demais.mp3",
+        "dateAdded": "2023-08-26T00:00:00Z",
+        "duration": 0.65,
+        "isOffensive": false
+    },
+    {
+        "id": "5D0BC959-88E2-4132-925D-E54DA9F79468",
+        "title": "Alegria",
+        "authorId": "CC73ED72-24A6-4191-B9BC-6E608F57E651",
+        "description": "alegria",
+        "filename": "Fabio Porchat - Alegria.mp3",
+        "dateAdded": "2023-08-26T00:00:00Z",
+        "duration": 1.02,
+        "isOffensive": false
+    },
+    {
+        "id": "73FF1009-DDC1-4C2A-BAD6-0C8453A5E69B",
+        "title": "Vamo botar um ponto final nisso?",
+        "authorId": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
+        "description": "Vamo botar um ponto final nisso",
+        "filename": "Jair Bolsonaro - Vamo botar um ponto final nisso.mp3",
+        "dateAdded": "2023-08-26T00:00:00Z",
+        "duration": 1.75,
+        "isOffensive": false
+    },
+    {
+        "id": "2E071033-1CA0-4089-A917-DD74D20EFD0B",
+        "title": "Peça desculpas, diga errei",
+        "authorId": "BC2818F5-4FA5-46FC-90C3-075691F3E979",
+        "description": "Peca desculpas diga errei errou",
+        "filename": "Reinaldo Azevedo - Peca desculpas, diga errei.mp3",
+        "dateAdded": "2023-08-26T00:00:00Z",
+        "duration": 2.30,
+        "isOffensive": false
+    },
+    {
+        "id": "FE246FE6-163B-46CF-A15A-60B5AC2C87F3",
+        "title": "É obrigação dele",
+        "authorId": "BC2818F5-4FA5-46FC-90C3-075691F3E979",
+        "description": "E obrigacao dele",
+        "filename": "Reinaldo Azevedo - E obrigacao dele.mp3",
+        "dateAdded": "2023-08-26T00:00:00Z",
+        "duration": 1.52,
+        "isOffensive": false
+    },
+    {
+        "id": "FD7B1EAC-77DA-4CBD-B461-35115A3CE5CF",
+        "title": "Esse raciocínio é porco",
+        "authorId": "BC2818F5-4FA5-46FC-90C3-075691F3E979",
+        "description": "Esse raciocinio e porco",
+        "filename": "Reinaldo Azevedo - Esse raciocinio e porco.mp3",
+        "dateAdded": "2023-08-26T00:00:00Z",
+        "duration": 1.15,
+        "isOffensive": true
+    },
+    {
+        "id": "521B5B3D-64F1-41ED-85AB-605BFCB26838",
+        "title": "E agora em setembro vai entrar o grosso",
+        "authorId": "495C92AE-56FA-4882-A962-188FCCEBCA01",
+        "description": "E agora em setembro vai entrar o grosso",
+        "filename": "Lula - E agora em setembro vai entrar o grosso.mp3",
+        "dateAdded": "2023-08-31T00:00:00Z",
+        "duration": 2.46,
+        "isOffensive": true
+    },
+    {
+        "id": "01C67BA8-8E38-4773-8310-B14A8DC3AF09",
+        "title": "Eu Fico Muito Triste Dance Mix",
+        "authorId": "F111A580-4CC8-40D5-B73F-C3FEB2C5E312",
+        "description": "eu fico muito triste com uma noticia dessas porra dance mix",
+        "filename": "Eu Fico Muito Triste - Summer Eletrohits.mp3",
+        "dateAdded": "2023-08-31T00:00:00Z",
+        "duration": 9.04,
+        "isOffensive": false
+    },
+    {
+        "id": "C5088B73-AC8B-458B-8908-BCB3373C5BB8",
+        "title": "Advogados malucos",
+        "authorId": "52541553-B287-465F-BD13-EEA5EAC40044",
+        "description": "advogados malucos hoje no Discovery Channel",
+        "filename": "Cristiano - Advogados malucos.mp3",
+        "dateAdded": "2023-09-02T00:00:00Z",
+        "duration": 7.44,
+        "isOffensive": true
+    },
+    {
+        "id": "1300D5D5-9C5D-42C8-83F4-662D848492C0",
+        "title": "Conversa de bêbado",
+        "authorId": "BD0D48EE-8AFA-4C7E-8F3C-6078D697AAD3",
+        "description": "Conversa de bêbado",
+        "filename": "Conversa de bebado.mp3",
+        "dateAdded": "2023-09-07T00:00:00Z",
+        "duration": 1.31,
+        "isOffensive": true
+    },
+    {
+        "id": "3A9F4C73-DE88-4342-B521-128B121BE389",
+        "title": "Coééé Ô Peraê Remix",
+        "authorId": "40947930-E7D9-45A7-991B-DB8F8CC0BA01",
+        "description": "Coééé hahaha Ô Peraê Remix ie ie rá o peraí que coisa maravilhosa que delicia fazer coco",
+        "filename": "Coeee Remix.mp3",
+        "dateAdded": "2023-09-07T00:00:00Z",
+        "duration": 16.04,
+        "isOffensive": true
+    },
+    {
+        "id": "B1B3E5EF-6D91-435A-B418-05BA9243F543",
+        "title": "Aleluia cantarabaia cantarachuia",
+        "authorId": "87138168-E9AC-4BF0-A486-2C5F098CD541",
+        "description": "Aleluia cantarabaia cantarachuia labaxuria decantas",
+        "filename": "Michele Bolsonaro - Labaxuria.mp3",
+        "dateAdded": "2023-09-13T00:00:00Z",
+        "duration": 7.37,
         "isOffensive": true
     }
 ]

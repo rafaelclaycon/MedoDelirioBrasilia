@@ -106,7 +106,7 @@ struct MostSharedByAudienceView: View {
                 
             case .displayingData:
                 VStack {
-                    LazyVGrid(columns: UIDevice.isMac ? columnsMac : columns, spacing: 20) {
+                    LazyVGrid(columns: UIDevice.isMac ? columnsMac : columns, spacing: .zero) {
                         ForEach(list) { item in
                             TopChartCellView(item: item)
                                 .onTapGesture {
@@ -121,7 +121,7 @@ struct MostSharedByAudienceView: View {
                                 }
                         }
                     }
-                    .padding(.bottom)
+                    .padding(.top, -10)
                     
                     Text(viewModel.lastUpdatedAtText)
                         .font(.subheadline)
@@ -131,7 +131,7 @@ struct MostSharedByAudienceView: View {
                         }
                         .padding(.bottom)
                 }
-                .padding(.bottom, 20)
+                .padding(.bottom, 10)
             }
         }
         .onAppear {

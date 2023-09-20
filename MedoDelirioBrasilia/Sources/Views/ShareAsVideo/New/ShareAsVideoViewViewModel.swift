@@ -10,10 +10,8 @@ import PhotosUI
 
 class ShareAsVideoViewViewModel: ObservableObject {
 
-    var contentId: String
-    var contentTitle: String
-    var contentAuthor: String
-    private var audioFilename: String
+    var content: MedoContentProtocol
+    var subtitle: String
     
     @Published var includeSoundWarning: Bool = true
     
@@ -28,11 +26,12 @@ class ShareAsVideoViewViewModel: ObservableObject {
     @Published var alertMessage: String = .empty
     @Published var showAlert: Bool = false
     
-    init(contentId: String, contentTitle: String, contentAuthor: String, audioFilename: String) {
-        self.contentId = contentId
-        self.contentTitle = contentTitle
-        self.contentAuthor = contentAuthor
-        self.audioFilename = audioFilename
+    init(
+        content: MedoContentProtocol,
+        subtitle: String = ""
+    ) {
+        self.content = content
+        self.subtitle = subtitle
     }
     
     func generateVideo(withImage image: UIImage, completion: @escaping (String?, VideoMakerError?) -> Void) {
@@ -41,10 +40,10 @@ class ShareAsVideoViewViewModel: ObservableObject {
         }
         
         do {
-            try VideoMaker.createVideo(from: audioFilename,
-                                       with: image,
-                                       contentTitle: contentTitle.withoutDiacritics(),
-                                       exportType: IntendedVideoDestination(rawValue: selectedSocialNetwork)!
+            try VideoMaker.createVideo(
+                from: content,
+                with: image,
+                exportType: IntendedVideoDestination(rawValue: selectedSocialNetwork)!
             ) { videoPath, error in
                 guard error == nil else {
                     return completion(nil, error)

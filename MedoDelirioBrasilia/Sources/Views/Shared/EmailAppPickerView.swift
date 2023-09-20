@@ -4,14 +4,15 @@ struct EmailAppPickerView: View {
 
     @Binding var isBeingShown: Bool
     @Binding var didCopySupportAddress: Bool
-    @State var subject: String
-    @State var emailBody: String
-    
+
+    let subject: String
+    let emailBody: String
+
     var body: some View {
         NavigationView {
             Form {
-                Section("Apps de e-mail instalados") {
-                    Button("Mail") {
+                Section("Apps de e-mail") {
+                    Button("App Padrão") {
                         let encodedSubject = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
                         let encodedBody = emailBody.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
                         let mailToString = "mailto:\(Mailman.supportEmail)?subject=\(encodedSubject)&body=\(encodedBody)"
