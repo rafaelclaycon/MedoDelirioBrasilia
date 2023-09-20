@@ -78,10 +78,13 @@ struct SettingsView: View {
                     }
                 }
                 
-                Section("📬  Problemas, sugestões e pedidos") {
-                    Button("Entrar em contato por e-mail") {
+                Section("Problemas, sugestões e pedidos") {
+                    Button {
                         showEmailClientConfirmationDialog = true
+                    } label: {
+                        Label("Entrar em contato por e-mail", systemImage: "envelope")
                     }
+                    .foregroundStyle(Color.blue)
                 }
                 
                 if showAskForMoneyView || CommandLine.arguments.contains("-FORCE_SHOW_HELP_THE_APP") {
@@ -128,8 +131,10 @@ struct SettingsView: View {
                 }
                 
                 Section("Contribua ou entenda como funciona") {
-                    Button("Ver código fonte no GitHub") {
+                    Button {
                         OpenUtility.open(link: "https://github.com/rafaelclaycon/MedoDelirioBrasilia")
+                    } label: {
+                        Label("Ver código fonte no GitHub", systemImage: "curlybraces")
                     }
                 }
                 
