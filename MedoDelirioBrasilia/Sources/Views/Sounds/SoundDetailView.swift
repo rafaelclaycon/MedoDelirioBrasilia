@@ -41,6 +41,14 @@ struct SoundDetailView: View {
 
                         Text(sound.authorName ?? "")
                             .foregroundColor(.gray)
+
+                        Button {
+                            print("Pressed")
+                        } label: {
+                            Label("Sugerir outro nome de autor", systemImage: "pencil.line")
+                        }
+                        .miniCapsule(colored: .orange)
+                        .padding(.top, 2)
                     }
 
 

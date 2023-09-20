@@ -209,7 +209,6 @@ struct SoundsView: View {
                                 ScrollViewReader { proxy in
                                     if !networkMonitor.isConnected, shouldDisplayYoureOfflineBanner {
                                         YoureOfflineView(isBeingShown: $shouldDisplayYoureOfflineBanner)
-                                            //.padding(.horizontal, 10)
                                     }
 
                                     if shouldDisplayRecurringDonationBanner, searchText.isEmpty {
