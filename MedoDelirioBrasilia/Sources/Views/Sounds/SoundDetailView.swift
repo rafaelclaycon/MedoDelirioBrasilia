@@ -14,11 +14,16 @@ struct SoundDetailView: View {
     let sound: Sound
 
     @State private var isPlaying: Bool = false
+    @State private var showSuggestOtherAuthorEmailAppPicker: Bool = false
+    @State private var didCopySupportAddressOnEmailPicker: Bool = false
+    @State private var showToastView: Bool = false
 
     // Alerts
     @State private var alertTitle: String = ""
     @State private var alertMessage: String = ""
     @State private var showAlert: Bool = false
+
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         NavigationView {
@@ -43,15 +48,13 @@ struct SoundDetailView: View {
                             .foregroundColor(.gray)
 
                         Button {
-                            print("Pressed")
+                            showSuggestOtherAuthorEmailAppPicker = true
                         } label: {
                             Label("Sugerir outro nome de autor", systemImage: "pencil.line")
                         }
-                        .miniCapsule(colored: .orange)
+                        .capsule(colored: colorScheme == .dark ? .primary : .gray)
                         .padding(.top, 2)
                     }
-
-
 
                     //                Button("Baixar som novamente") {
                     //                    //
@@ -64,29 +67,7 @@ struct SoundDetailView: View {
                         .font(.title3)
                         .bold()
 
-                    VStack {
-                        InfoLine(title: "Origem", information: (sound.isFromServer ?? false) ? "Servidor" : "Local")
-
-                        Divider()
-
-                        InfoLine(title: "Texto de pesquisa", information: sound.description)
-
-                        Divider()
-
-                        InfoLine(title: "Criado em", information: sound.dateAdded?.formatted() ?? "")
-
-                        Divider()
-
-                        InfoLine(title: "Duração", information: sound.duration < 1 ? "< 1 s" : "\(sound.duration.minuteSecondFormatted)")
-
-                        Divider()
-
-                        InfoLine(title: "Ofensivo", information: sound.isOffensive ? "Sim" : "Não")
-                        //
-                        //                    Divider()
-                        //
-                        //                    InfoLine(title: "Arquivo", information: "OK")
-                    }
+                    InfoBlock(sound: sound)
                 }
                 .padding()
                 .navigationTitle("Detalhes do Som")
@@ -103,12 +84,40 @@ struct SoundDetailView: View {
                 } message: {
                     Text(alertMessage)
                 }
-//                .sheet(isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog) {
-//                    EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog,
-//                                       didCopySupportAddress: .constant(false),
-//                                       subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.selectedSound?.title ?? ""),
-//                                       emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.selectedSound?.authorName ?? "", viewModel.selectedSound?.id ?? ""))
-//                }
+                .sheet(isPresented: $showSuggestOtherAuthorEmailAppPicker) {
+                    EmailAppPickerView(isBeingShown: $showSuggestOtherAuthorEmailAppPicker,
+                                       didCopySupportAddress: $didCopySupportAddressOnEmailPicker,
+                                       subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, sound.title),
+                                       emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, sound.authorName ?? "", sound.id))
+                }
+                .onChange(of: didCopySupportAddressOnEmailPicker) {
+                    if $0 {
+                        withAnimation {
+                            showToastView = true
+                        }
+                        TapticFeedback.success()
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            withAnimation {
+                                showToastView = false
+                            }
+                        }
+                        
+                        didCopySupportAddressOnEmailPicker = false
+                    }
+                }
+            }
+            .overlay {
+                if showToastView {
+                    VStack {
+                        Spacer()
+                        
+                        ToastView(text: "E-mail de suporte copiado com sucesso.")
+                            .padding(.horizontal)
+                            .padding(.bottom, 15)
+                    }
+                    .transition(.moveAndFade)
+                }
             }
         }
     }
@@ -171,6 +180,40 @@ extension SoundDetailView {
                         .multilineTextAlignment(.trailing)
                         .lineLimit(2)
                 }
+            }
+        }
+    }
+}
+
+extension SoundDetailView {
+    
+    struct InfoBlock: View {
+
+        let sound: Sound
+
+        var body: some View {
+            VStack(spacing: 10) {
+                InfoLine(title: "Origem", information: (sound.isFromServer ?? false) ? "Servidor" : "Local")
+
+                Divider()
+
+                InfoLine(title: "Texto de pesquisa", information: sound.description)
+
+                Divider()
+
+                InfoLine(title: "Criado em", information: sound.dateAdded?.formatted() ?? "")
+
+                Divider()
+
+                InfoLine(title: "Duração", information: sound.duration < 1 ? "< 1 s" : "\(sound.duration.minuteSecondFormatted)")
+
+                Divider()
+
+                InfoLine(title: "Ofensivo", information: sound.isOffensive ? "Sim" : "Não")
+
+//                Divider()
+//
+//                InfoLine(title: "Arquivo", information: "OK")
             }
         }
     }

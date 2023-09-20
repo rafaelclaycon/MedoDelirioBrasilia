@@ -86,13 +86,15 @@ struct EmailAppPickerView: View {
         }
         .frame(minWidth: 320, idealWidth: 400, maxWidth: nil, minHeight: 150, idealHeight: 300, maxHeight: nil, alignment: .top)
     }
-
 }
 
 struct EmailAppPickerView_Previews: PreviewProvider {
-
     static var previews: some View {
-        EmailAppPickerView(isBeingShown: .constant(true), didCopySupportAddress: .constant(false), subject: "", emailBody: "")
+        EmailAppPickerView(
+            isBeingShown: .constant(true),
+            didCopySupportAddress: .constant(false),
+            subject: "",
+            emailBody: ""
+        )
     }
-
 }

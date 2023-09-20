@@ -1354,7 +1354,7 @@
 		D9DCF738290C2C4B00DB177C /* Valdemiro Santiago - Voce vai semear essa semente.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DCF736290C2C4A00DB177C /* Valdemiro Santiago - Voce vai semear essa semente.mp3 */; };
 		D9DCF73B290D832800DB177C /* Desconhecido - Mi-mi-mi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DCF739290D832800DB177C /* Desconhecido - Mi-mi-mi.mp3 */; };
 		D9DCF73C290D832800DB177C /* Valdemiro Santiago - Eu estou no limite, Brasil.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DCF73A290D832800DB177C /* Valdemiro Santiago - Eu estou no limite, Brasil.mp3 */; };
-		D9DD1AB72AB954DA0010F700 /* MiniCapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DD1AB62AB954DA0010F700 /* MiniCapsuleButtonStyle.swift */; };
+		D9DD1AB72AB954DA0010F700 /* CapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DD1AB62AB954DA0010F700 /* CapsuleButtonStyle.swift */; };
 		D9DF2B4D29821E5F0083765A /* Lula - Todos voces sabem que eu sou o maior perdedor de eleicoes presidenciais.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DF2B4929821E5E0083765A /* Lula - Todos voces sabem que eu sou o maior perdedor de eleicoes presidenciais.mp3 */; };
 		D9DF2B4E29821E5F0083765A /* Cristiano Botafogo - Alo, Bolivia, o atlantico ta logo ai.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DF2B4A29821E5E0083765A /* Cristiano Botafogo - Alo, Bolivia, o atlantico ta logo ai.mp3 */; };
 		D9DF2B4F29821E5F0083765A /* Omar Aziz - Nos temos que punir seja quem for sem medo sem anistia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DF2B4B29821E5E0083765A /* Omar Aziz - Nos temos que punir seja quem for sem medo sem anistia.mp3 */; };
@@ -2820,7 +2820,7 @@
 		D9DCF736290C2C4A00DB177C /* Valdemiro Santiago - Voce vai semear essa semente.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Valdemiro Santiago - Voce vai semear essa semente.mp3"; sourceTree = "<group>"; };
 		D9DCF739290D832800DB177C /* Desconhecido - Mi-mi-mi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Desconhecido - Mi-mi-mi.mp3"; sourceTree = "<group>"; };
 		D9DCF73A290D832800DB177C /* Valdemiro Santiago - Eu estou no limite, Brasil.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Valdemiro Santiago - Eu estou no limite, Brasil.mp3"; sourceTree = "<group>"; };
-		D9DD1AB62AB954DA0010F700 /* MiniCapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniCapsuleButtonStyle.swift; sourceTree = "<group>"; };
+		D9DD1AB62AB954DA0010F700 /* CapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButtonStyle.swift; sourceTree = "<group>"; };
 		D9DF2B4929821E5E0083765A /* Lula - Todos voces sabem que eu sou o maior perdedor de eleicoes presidenciais.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - Todos voces sabem que eu sou o maior perdedor de eleicoes presidenciais.mp3"; sourceTree = "<group>"; };
 		D9DF2B4A29821E5E0083765A /* Cristiano Botafogo - Alo, Bolivia, o atlantico ta logo ai.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano Botafogo - Alo, Bolivia, o atlantico ta logo ai.mp3"; sourceTree = "<group>"; };
 		D9DF2B4B29821E5E0083765A /* Omar Aziz - Nos temos que punir seja quem for sem medo sem anistia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Omar Aziz - Nos temos que punir seja quem for sem medo sem anistia.mp3"; sourceTree = "<group>"; };
@@ -4911,7 +4911,7 @@
 				D9C67C122A3E3D6000E74E9D /* LargeCapsuleBorderedButtonStyle.swift */,
 				D9C67C0F2A3E3C2200E74E9D /* MiniButtonStyle.swift */,
 				D990705C2A90E6CB00A26F65 /* LargeRoundedRectangleBorderedButtonStyle.swift */,
-				D9DD1AB62AB954DA0010F700 /* MiniCapsuleButtonStyle.swift */,
+				D9DD1AB62AB954DA0010F700 /* CapsuleButtonStyle.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -6341,7 +6341,7 @@
 				D955DA302AA6B94C00AC4169 /* SoundDetailView.swift in Sources */,
 				D9DCC5D72875D7E5008DD4A3 /* NotificationSymbolPlusText.swift in Sources */,
 				D960AF292845C82E00ADF1F6 /* AppStoreReviewSteward.swift in Sources */,
-				D9DD1AB72AB954DA0010F700 /* MiniCapsuleButtonStyle.swift in Sources */,
+				D9DD1AB72AB954DA0010F700 /* CapsuleButtonStyle.swift in Sources */,
 				D95DB0F6288248A300D4FEDF /* SidebarView.swift in Sources */,
 				D9943F2C28643317002C6B97 /* FolderDetailViewViewModel.swift in Sources */,
 				D9C1372B29063D7D003E4ABF /* PrivacySettingsView.swift in Sources */,
