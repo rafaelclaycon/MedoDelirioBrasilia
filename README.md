@@ -16,7 +16,7 @@ GIF demos below (they may take a while to load due to size).
 
 ![The app running on a Mac.](MedoDelirioBrasilia/Resources/readme_demo_mac.gif)
 
-## Features
+## Top Features
 
 1. Play and share sounds and songs from the podcast.
 1. View a top 10 ranking of the audience's most shared sounds from multiple timeframes on the Trends tab.
@@ -27,7 +27,7 @@ GIF demos below (they may take a while to load due to size).
 1. Share content as video on your socials (reply to people with memes).
 1. Support for iPhone, iPad and Apple Silicon Macs.
 1. Dark Mode support.
-1. Receive push notifications about new content, features and trends.
+1. New content delivered by an entirely Swift sync system.
 
 
 ## How to run the project
