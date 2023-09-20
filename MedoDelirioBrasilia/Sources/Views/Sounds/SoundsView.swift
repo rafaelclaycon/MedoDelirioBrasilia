@@ -439,11 +439,7 @@ struct SoundsView: View {
             .sheet(isPresented: $viewModel.isShowingShareSheet) {
                 viewModel.iPadShareSheet
             }
-            .sheet(isPresented: $showingModalView, onDismiss: {
-                if subviewToOpen == .whatsNewView {
-                    AppPersistentMemory.setHasSeen70WhatsNewScreen(to: true)
-                }
-            }) {
+            .sheet(isPresented: $showingModalView) {
                 switch subviewToOpen {
                  case .onboardingView:
                     OnboardingView(isBeingShown: $showingModalView)
@@ -488,7 +484,10 @@ struct SoundsView: View {
                     )
 
                 case .soundDetailView:
-                    SoundDetailView(isBeingShown: $showingModalView, sound: viewModel.selectedSound ?? Sound(title: ""))
+                    SoundDetailView(
+                        isBeingShown: $showingModalView,
+                        sound: viewModel.selectedSound ?? Sound(title: "")
+                    )
                 }
             }
             .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in
@@ -629,11 +628,15 @@ struct SoundsView: View {
 //                Label("Compartilhar", systemImage: "square.and.arrow.up")
 //            }.disabled(viewModel.selectionKeeper.count == 0 || viewModel.selectionKeeper.count > 5)
         } else {
-            Button {
-                subviewToOpen = .settingsView
-                showingModalView = true
-            } label: {
-                Image(systemName: "gearshape")
+            if UIDevice.current.userInterfaceIdiom == .phone {
+                Button {
+                    subviewToOpen = .settingsView
+                    showingModalView = true
+                } label: {
+                    Image(systemName: "gearshape")
+                }
+            } else {
+                EmptyView()
             }
         }
     }
