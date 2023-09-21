@@ -104,8 +104,6 @@ class NetworkRabbit: NetworkRabbitProtocol {
     }
 
     func displayRecurringDonationBanner(completion: @escaping (Bool) -> Void) {
-        print("HERMIONE")
-
         let url = URL(string: serverPath + "v3/display-recurring-donation-banner")!
 
         let task = URLSession.shared.dataTask(with: url) { data, response, error in

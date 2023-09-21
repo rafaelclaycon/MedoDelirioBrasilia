@@ -227,8 +227,12 @@ struct FolderDetailView: View {
                 VStack {
                     Spacer()
                     
-                    ToastView(text: viewModel.shareBannerMessage)
-                        .padding()
+                    ToastView(
+                        icon: "checkmark",
+                        iconColor: .green,
+                        text: viewModel.shareBannerMessage
+                    )
+                    .padding()
                 }
                 .transition(.moveAndFade)
             }

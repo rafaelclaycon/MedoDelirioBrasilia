@@ -112,9 +112,13 @@ struct SoundDetailView: View {
                     VStack {
                         Spacer()
                         
-                        ToastView(text: "E-mail de suporte copiado com sucesso.")
-                            .padding(.horizontal)
-                            .padding(.bottom, 15)
+                        ToastView(
+                            icon: "checkmark",
+                            iconColor: .green,
+                            text: "E-mail de suporte copiado com sucesso."
+                        )
+                        .padding(.horizontal)
+                        .padding(.bottom, 15)
                     }
                     .transition(.moveAndFade)
                 }

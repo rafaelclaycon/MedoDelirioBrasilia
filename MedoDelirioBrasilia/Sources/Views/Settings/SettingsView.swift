@@ -198,9 +198,13 @@ struct SettingsView: View {
                 VStack {
                     Spacer()
                     
-                    ToastView(text: didCopySupportAddressOnEmailPicker ? "E-mail de suporte copiado com sucesso." : "Chave copiada com sucesso!")
-                        .padding(.horizontal)
-                        .padding(.bottom, 15)
+                    ToastView(
+                        icon: "checkmark",
+                        iconColor: .green,
+                        text: didCopySupportAddressOnEmailPicker ? "E-mail de suporte copiado com sucesso." : "Chave copiada com sucesso!"
+                    )
+                    .padding(.horizontal)
+                    .padding(.bottom, 15)
                 }
                 .transition(.moveAndFade)
             }

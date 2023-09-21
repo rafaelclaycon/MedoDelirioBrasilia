@@ -11,10 +11,10 @@ import SwiftUI
 class SoundsViewViewModel: ObservableObject {
 
     @Published var sounds: [Sound] = []
-    
+
     @Published var soundSortOption: Int
     @Published var authorSortOption: Int
-    
+
     @Published var favoritesKeeper = Set<String>()
     @Published var highlightKeeper = Set<String>()
     @Published var nowPlayingKeeper = Set<String>()
@@ -23,20 +23,25 @@ class SoundsViewViewModel: ObservableObject {
     @Published var selectedSound: Sound? = nil
     @Published var selectedSounds: [Sound]? = nil
     var currentSoundsListMode: Binding<SoundsListMode>
-    
+
     @Published var currentActivity: NSUserActivity? = nil
-    
+
     // Sharing
     @Published var iPadShareSheet = ActivityViewController(activityItems: [URL(string: "https://www.apple.com")!])
     @Published var isShowingShareSheet: Bool = false
     @Published var shareBannerMessage: String = .empty
-    @Published var displaySharedSuccessfullyToast: Bool = false
     
     // Alerts
     @Published var alertTitle: String = ""
     @Published var alertMessage: String = ""
     @Published var showAlert: Bool = false
     @Published var alertType: AlertType = .singleOption
+    
+    // Toast
+    @Published var showToastView: Bool = false
+    @Published var toastIcon: String = "checkmark"
+    @Published var toastIconColor: Color = .green
+    @Published var toastText: String = ""
 
     init(soundSortOption: Int, authorSortOption: Int, currentSoundsListMode: Binding<SoundsListMode>) {
         self.soundSortOption = soundSortOption
@@ -153,19 +158,7 @@ class SoundsViewViewModel: ObservableObject {
             do {
                 try SharingUtility.shareSound(from: sound.fileURL(), andContentId: sound.id) { didShareSuccessfully in
                     if didShareSuccessfully {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-                            withAnimation {
-                                self.shareBannerMessage = Shared.soundSharedSuccessfullyMessage
-                                self.displaySharedSuccessfullyToast = true
-                            }
-                            TapticFeedback.success()
-                        }
-                        
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                            withAnimation {
-                                self.displaySharedSuccessfullyToast = false
-                            }
-                        }
+                        self.displayToast(toastText: Shared.soundSharedSuccessfullyMessage)
                     }
                 }
             } catch {
@@ -186,19 +179,7 @@ class SoundsViewViewModel: ObservableObject {
 
                         AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
 
-                        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-                            withAnimation {
-                                self.shareBannerMessage = Shared.soundSharedSuccessfullyMessage
-                                self.displaySharedSuccessfullyToast = true
-                            }
-                            TapticFeedback.success()
-                        }
-
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                            withAnimation {
-                                self.displaySharedSuccessfullyToast = false
-                            }
-                        }
+                        self.displayToast(toastText: Shared.soundSharedSuccessfullyMessage)
                     }
                 }
             } catch {
@@ -214,19 +195,7 @@ class SoundsViewViewModel: ObservableObject {
             do {
                 try SharingUtility.shareVideoFromSound(withPath: filepath, andContentId: contentId, shareSheetDelayInSeconds: 0.6) { didShareSuccessfully in
                     if didShareSuccessfully {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-                            withAnimation {
-                                self.shareBannerMessage = Shared.videoSharedSuccessfullyMessage
-                                self.displaySharedSuccessfullyToast = true
-                            }
-                            TapticFeedback.success()
-                        }
-                        
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                            withAnimation {
-                                self.displaySharedSuccessfullyToast = false
-                            }
-                        }
+                        self.displayToast(toastText: Shared.videoSharedSuccessfullyMessage)
                     }
                     
                     WallE.deleteAllVideoFilesFromDocumentsDir()
@@ -253,19 +222,7 @@ class SoundsViewViewModel: ObservableObject {
                     
                     AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-                        withAnimation {
-                            self.shareBannerMessage = Shared.videoSharedSuccessfullyMessage
-                            self.displaySharedSuccessfullyToast = true
-                        }
-                        TapticFeedback.success()
-                    }
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                        withAnimation {
-                            self.displaySharedSuccessfullyToast = false
-                        }
-                    }
+                    self.displayToast(toastText: Shared.videoSharedSuccessfullyMessage)
                 }
                 
                 WallE.deleteAllVideoFilesFromDocumentsDir()
@@ -276,19 +233,7 @@ class SoundsViewViewModel: ObservableObject {
     }
     
     func showVideoSavedSuccessfullyToast() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-            withAnimation {
-                self.shareBannerMessage = ProcessInfo.processInfo.isiOSAppOnMac ? Shared.ShareAsVideo.videoSavedSucessfullyMac : Shared.ShareAsVideo.videoSavedSucessfully
-                self.displaySharedSuccessfullyToast = true
-            }
-            TapticFeedback.success()
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            withAnimation {
-                self.displaySharedSuccessfullyToast = false
-            }
-        }
+        self.displayToast(toastText: ProcessInfo.processInfo.isiOSAppOnMac ? Shared.ShareAsVideo.videoSavedSucessfullyMac : Shared.ShareAsVideo.videoSavedSucessfully)
     }
     
     func addToFavorites(soundId: String) {
@@ -370,19 +315,7 @@ class SoundsViewViewModel: ObservableObject {
         do {
             try SharingUtility.share(sounds: selectedSounds ?? [Sound]()) { didShareSuccessfully in
                 if didShareSuccessfully {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-                        withAnimation {
-                            self.shareBannerMessage = Shared.soundSharedSuccessfullyMessage
-                            self.displaySharedSuccessfullyToast = true
-                        }
-                        TapticFeedback.success()
-                    }
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                        withAnimation {
-                            self.displaySharedSuccessfullyToast = false
-                        }
-                    }
+                    self.displayToast(toastText: Shared.soundSharedSuccessfullyMessage)
                 }
             }
         } catch {
@@ -435,7 +368,25 @@ class SoundsViewViewModel: ObservableObject {
             }
         }
     }
-    
+
+    func fakeSync(lastAttempt: String) async {
+//        guard
+//            let lastAttemptDate = lastAttempt.iso8601withFractionalSeconds,
+//            lastAttemptDate.twoMinutesHavePassed
+//        else {
+//            return displayToast(
+//                "clock.fill",
+//                .orange,
+//                toastText: "Aguarde mais um pouco para atualizar novamente."
+//            )
+//        }
+
+        sleep(3)
+        print("Fake sync has been completed.")
+
+        displayToast(toastText: "Sincronização concluída com sucesso.")
+    }
+
     // MARK: - Alerts
     
     func showUnableToGetSoundAlert() {
@@ -453,12 +404,38 @@ class SoundsViewViewModel: ObservableObject {
         alertMessage = Shared.serverContentNotAvailableMessage
         showAlert = true
     }
-    
+
     func showMoveDatabaseIssueAlert() {
         TapticFeedback.error()
         alertType = .singleOption
         alertTitle = "Problema ao Mover o Banco de Dados"
         alertMessage = "Houve um problema ao tentar mover o banco de dados do app. Por favor, envie um print desse erro para o desenvolvedor (e-mail nas Configurações):\n\n\(moveDatabaseIssue)"
         showAlert = true
+    }
+
+    // MARK: - Toast
+
+    func displayToast(
+        _ toastIcon: String = "checkmark",
+        _ toastIconColor: Color = .green,
+        toastText: String,
+        completion: (() -> Void)? = nil
+    ) {
+        self.toastIcon = toastIcon
+        self.toastIconColor = toastIconColor
+        self.toastText = toastText
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+            withAnimation {
+                self.showToastView = true
+            }
+            TapticFeedback.success()
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            withAnimation {
+                self.showToastView = false
+            }
+        }
     }
 }

@@ -2,8 +2,10 @@ import SwiftUI
 
 struct ToastView: View {
 
-    @State var text: String
-    
+    let icon: String
+    let iconColor: Color
+    let text: String
+
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 50, style: .continuous)
@@ -12,16 +14,16 @@ struct ToastView: View {
                 .shadow(color: .gray, radius: 2, y: 2)
             
             HStack(spacing: 15) {
-                Image(systemName: "checkmark")
+                Image(systemName: icon)
                     .font(Font.system(size: 20, weight: .bold))
-                    .foregroundColor(.green)
+                    .foregroundColor(iconColor)
                 
                 Text(text)
                     .foregroundColor(.black)
                     .font(.callout)
                     .bold()
                 
-                Spacer()
+                Spacer(minLength: 0)
             }
             .padding(.leading, 20)
         }
@@ -30,13 +32,27 @@ struct ToastView: View {
 }
 
 struct ToastView_Previews: PreviewProvider {
-
     static var previews: some View {
         Group {
-            ToastView(text: "Som adicionado à pasta 🤑 Econoboys.")
-                .padding(.horizontal)
+            ToastView(
+                icon: "checkmark",
+                iconColor: .green,
+                text: "Sincronização concluída com sucesso."
+            )
+
+            ToastView(
+                icon: "clock.fill",
+                iconColor: .orange,
+                text: "Aguarde mais um pouco para atualizar novamente."
+            )
+
+            ToastView(
+                icon: "checkmark",
+                iconColor: .green,
+                text: "Som adicionado à pasta 🤑 Econoboys."
+            )
+            .padding(.horizontal)
         }
         .previewLayout(.fixed(width: 414, height: 100))
     }
-
 }

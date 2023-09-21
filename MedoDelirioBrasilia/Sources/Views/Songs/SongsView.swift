@@ -237,7 +237,7 @@ struct SongsView: View {
                 VStack {
                     Spacer()
                     
-                    ToastView(text: viewModel.shareBannerMessage)
+                    ToastView(icon: "checkmark", iconColor: .green, text: viewModel.shareBannerMessage)
                         .padding()
                 }
                 .transition(.moveAndFade)

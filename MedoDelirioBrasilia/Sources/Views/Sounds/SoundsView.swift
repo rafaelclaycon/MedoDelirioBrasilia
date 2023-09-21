@@ -41,7 +41,6 @@ struct SoundsView: View {
     @State private var hadSuccessAddingToFolder: Bool = false
     @State private var folderName: String? = nil
     @State private var pluralization: WordPluralization = .singular
-    @State private var shouldDisplayAddedToFolderToast: Bool = false
     
     // Share as Video
     @State private var shareAsVideo_Result = ShareAsVideoResult()
@@ -78,9 +77,7 @@ struct SoundsView: View {
     // Sync
     @AppStorage("lastUpdateAttempt") private var lastUpdateAttempt = ""
     @AppStorage("lastUpdateDate") private var lastUpdateDate = "all"
-    @State private var needsRefresh: Bool = false
     @EnvironmentObject private var syncValues: SyncValues
-    @State private var shouldDisplaySyncToast: Bool = false
 
     private var searchResults: [Sound] {
         if searchText.isEmpty {
@@ -166,45 +163,6 @@ struct SoundsView: View {
                             .frame(width: geometry.size.width)
                             .frame(minHeight: geometry.size.height)
                         } else {
-                            // TODO: - Figure out pull to refresh.
-//                            PullToRefreshScrollView(needsRefresh: $needsRefresh, onRefresh: {
-//                                TapticFeedback.open()
-//                                guard
-//                                    let lastAttemptDate = lastUpdateAttempt.iso8601withFractionalSeconds,
-//                                    lastAttemptDate.twoMinutesHavePassed
-//                                else {
-//                                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-//                                        needsRefresh = false
-//                                        withAnimation {
-//                                            shouldDisplaySyncToast = true
-//                                        }
-//                                        TapticFeedback.success()
-//                                    }
-//
-//                                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-//                                        withAnimation {
-//                                            shouldDisplaySyncToast = false
-//                                        }
-//                                    }
-//
-//                                    return
-//                                }
-//                                syncValues.syncNow = true
-//
-//                                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
-//                                    needsRefresh = false
-//                                    withAnimation {
-//                                        shouldDisplaySyncToast = true
-//                                    }
-//                                    TapticFeedback.success()
-//                                }
-//
-//                                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-//                                    withAnimation {
-//                                        shouldDisplaySyncToast = false
-//                                    }
-//                                }
-//                            }) {
                             ScrollView {
                                 ScrollViewReader { proxy in
                                     if !networkMonitor.isConnected, shouldDisplayYoureOfflineBanner {
@@ -231,7 +189,6 @@ struct SoundsView: View {
                                                 .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
                                                 .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                                                 .onTapGesture {
-                                                    //dump(sound)
                                                     if currentSoundsListMode == .regular {
                                                         if viewModel.nowPlayingKeeper.contains(sound.id) {
                                                             AudioPlayer.shared?.togglePlay()
@@ -298,13 +255,6 @@ struct SoundsView: View {
                                                                 Label("Ver Todos os Sons Desse Autor", systemImage: "person")
                                                             }
 
-//                                                            Button {
-//                                                                viewModel.selectedSound = sound
-//                                                                viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = true
-//                                                            } label: {
-//                                                                Label(SoundOptionsHelper.getSuggestOtherAuthorNameButtonTitle(authorId: sound.authorId), systemImage: "exclamationmark.bubble")
-//                                                            }
-
                                                             Button {
                                                                 viewModel.selectedSound = sound
                                                                 subviewToOpen = .soundDetailView
@@ -361,6 +311,9 @@ struct SoundsView: View {
                                         .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? soundCountPhoneBottomPadding : soundCountPadBottomPadding)
                                 }
                             }
+                            .refreshable {
+                                await viewModel.fakeSync(lastAttempt: lastUpdateAttempt)
+                            }
                         }
                     }
                 }
@@ -403,12 +356,6 @@ struct SoundsView: View {
                     viewModel.showMoveDatabaseIssueAlert()
                 }
             }
-//            .sheet(isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog) {
-//                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog,
-//                                   didCopySupportAddress: .constant(false),
-//                                   subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.selectedSound?.title ?? ""),
-//                                   emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.selectedSound?.authorName ?? "", viewModel.selectedSound?.id ?? ""))
-//            }
             .sheet(isPresented: $viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog) {
                 EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog,
                                    didCopySupportAddress: .constant(false),
@@ -515,26 +462,16 @@ struct SoundsView: View {
                 if (showingModalView == false) && hadSuccessAddingToFolder {
                     // Need to get count before clearing the Set.
                     let selectedCount: Int = viewModel.selectionKeeper.count
-                    
+
                     if currentSoundsListMode == .selection {
                         viewModel.stopSelecting()
                     }
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-                        withAnimation {
-                            shouldDisplayAddedToFolderToast = true
-                        }
-                        TapticFeedback.success()
+
+                    viewModel.displayToast(toastText: pluralization.getAddedToFolderToastText(folderName: folderName)) {
+                        folderName = nil
+                        hadSuccessAddingToFolder = false
                     }
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                        withAnimation {
-                            shouldDisplayAddedToFolderToast = false
-                            folderName = nil
-                            hadSuccessAddingToFolder = false
-                        }
-                    }
-                    
+
                     if pluralization == .plural {
                         viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFolder(\(selectedCount))")
                     }
@@ -556,38 +493,20 @@ struct SoundsView: View {
                 }
             }
             
-            if shouldDisplayAddedToFolderToast {
+            if viewModel.showToastView {
                 VStack {
                     Spacer()
                     
-                    ToastView(text: pluralization.getAddedToFolderToastText(folderName: folderName))
-                        .padding(.horizontal)
-                        .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? toastViewBottomPaddingPhone : toastViewBottomPaddingPad)
+                    ToastView(
+                        icon: viewModel.toastIcon,
+                        iconColor: viewModel.toastIconColor,
+                        text: viewModel.toastText
+                    )
+                    .padding(.horizontal)
+                    .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? toastViewBottomPaddingPhone : toastViewBottomPaddingPad)
                 }
                 .transition(.moveAndFade)
             }
-            
-            if viewModel.displaySharedSuccessfullyToast {
-                VStack {
-                    Spacer()
-                    
-                    ToastView(text: viewModel.shareBannerMessage)
-                        .padding(.horizontal)
-                        .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? toastViewBottomPaddingPhone : toastViewBottomPaddingPad)
-                }
-                .transition(.moveAndFade)
-            }
-
-//            if shouldDisplaySyncToast {
-//                VStack {
-//                    Spacer()
-//
-//                    ToastView(text: "Sincronização concluída com sucesso.")
-//                        .padding(.horizontal)
-//                        .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? toastViewBottomPaddingPhone : toastViewBottomPaddingPad)
-//                }
-//                .transition(.moveAndFade)
-//            }
         }
     }
     
