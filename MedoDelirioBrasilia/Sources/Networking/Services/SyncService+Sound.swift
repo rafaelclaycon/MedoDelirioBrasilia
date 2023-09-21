@@ -41,7 +41,7 @@ extension SyncService {
     func updateSoundFile(_ updateEvent: UpdateEvent) async {
         do {
             try await downloadFile(updateEvent.contentId)
-            try injectedDatabase.setIsFromServer(to: true, on: updateEvent.contentId)
+            try injectedDatabase.setIsFromServer(to: true, onSoundId: updateEvent.contentId)
             try injectedDatabase.markAsSucceeded(updateEventId: updateEvent.id)
             Logger.shared.logSyncSuccess(description: "Arquivo do Som \"\(updateEvent.contentId)\" atualizado.", updateEventId: updateEvent.id.uuidString)
         } catch {

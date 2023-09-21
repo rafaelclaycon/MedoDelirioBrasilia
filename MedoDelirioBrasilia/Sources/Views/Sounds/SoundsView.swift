@@ -311,9 +311,9 @@ struct SoundsView: View {
                                         .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? soundCountPhoneBottomPadding : soundCountPadBottomPadding)
                                 }
                             }
-                            .refreshable {
-                                await viewModel.fakeSync(lastAttempt: lastUpdateAttempt)
-                            }
+//                            .refreshable {
+//                                await viewModel.fakeSync(lastAttempt: lastUpdateAttempt)
+//                            }
                         }
                     }
                 }

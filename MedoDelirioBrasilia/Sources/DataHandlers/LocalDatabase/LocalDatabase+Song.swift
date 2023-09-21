@@ -99,4 +99,13 @@ extension LocalDatabase {
             throw LocalDatabaseError.songNotFound
         }
     }
+
+    func setIsFromServer(to value: Bool, onSongId songId: String) throws {
+        let id = Expression<String>("id")
+        let query = songTable.filter(id == songId)
+        let updateQuery = query.update(
+            Expression<Bool>("isFromServer") <- value
+        )
+        try db.run(updateQuery)
+    }
 }

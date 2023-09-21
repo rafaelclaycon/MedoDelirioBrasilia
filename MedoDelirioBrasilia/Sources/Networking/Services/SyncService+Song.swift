@@ -53,7 +53,7 @@ extension SyncService {
                 to: InternalFolderNames.downloadedSongs,
                 contentId: updateEvent.contentId
             )
-            try injectedDatabase.setIsFromServer(to: true, on: updateEvent.contentId)
+            try injectedDatabase.setIsFromServer(to: true, onSongId: updateEvent.contentId)
             try injectedDatabase.markAsSucceeded(updateEventId: updateEvent.id)
             Logger.shared.logSyncSuccess(description: "Arquivo da Música \"\(updateEvent.contentId)\" atualizado.", updateEventId: updateEvent.id.uuidString)
         } catch {
@@ -64,7 +64,7 @@ extension SyncService {
 
     func deleteSong(_ updateEvent: UpdateEvent) {
         do {
-            try injectedDatabase.delete(soundId: updateEvent.contentId)
+            try injectedDatabase.delete(songId: updateEvent.contentId)
             try removeContentFile(
                 named: updateEvent.contentId,
                 atFolder: InternalFolderNames.downloadedSongs

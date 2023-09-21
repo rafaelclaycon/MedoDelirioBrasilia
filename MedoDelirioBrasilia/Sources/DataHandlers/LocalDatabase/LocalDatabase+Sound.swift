@@ -185,8 +185,8 @@ extension LocalDatabase {
         let deleteQuery = soundTable.filter(id == soundId).delete()
         try db.run(deleteQuery)
     }
-    
-    func setIsFromServer(to value: Bool, on soundId: String) throws {
+
+    func setIsFromServer(to value: Bool, onSoundId soundId: String) throws {
         let id = Expression<String>("id")
         let query = soundTable.filter(id == soundId)
         let updateQuery = query.update(
