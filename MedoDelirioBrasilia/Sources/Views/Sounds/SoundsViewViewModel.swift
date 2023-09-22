@@ -426,10 +426,18 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
 
         await syncManager.sync()
 
-        displayToast(toastText: "Sincronização concluída com sucesso.")
+        if syncValues.syncStatus == .done {
+            displayToast(toastText: "Sincronização concluída com sucesso.")
+        } else {
+            displayToast(
+                "exclamationmark.triangle.fill",
+                .orange,
+                toastText: "Houve um problema com a sincronização."
+            )
+        }
     }
 
-    func syncManagerDidUpdate(status: SyncUIStatus) {
+    nonisolated func syncManagerDidUpdate(status: SyncUIStatus) {
         self.syncValues.syncStatus = status
         print(status)
     }
