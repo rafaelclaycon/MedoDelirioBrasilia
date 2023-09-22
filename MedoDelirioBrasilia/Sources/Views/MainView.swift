@@ -9,8 +9,6 @@ import SwiftUI
 
 struct MainView: View {
 
-    @StateObject var viewModel: MainViewViewModel
-
     @State var tabSelection: PhoneTab = .sounds
     @State var state: PadScreen? = PadScreen.allSounds
     @State var isShowingSettingsSheet: Bool = false
@@ -32,12 +30,16 @@ struct MainView: View {
             if UIDevice.current.userInterfaceIdiom == .phone {
                 TabView(selection: $tabSelection) {
                     NavigationView {
-                        SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
-                                                                  authorSortOption: AuthorSortOption.nameAscending.rawValue,
-                                                                  currentSoundsListMode: $currentSoundsListMode),
-                                   currentViewMode: .allSounds,
-                                   currentSoundsListMode: $currentSoundsListMode,
-                                   updateList: $viewModel.updateSoundList)
+                        SoundsView(
+                            viewModel: SoundsViewViewModel(
+                                soundSortOption: UserSettings.getSoundSortOption(),
+                                authorSortOption: AuthorSortOption.nameAscending.rawValue,
+                                currentSoundsListMode: $currentSoundsListMode,
+                                syncValues: syncValues
+                            ),
+                            currentViewMode: .allSounds,
+                            currentSoundsListMode: $currentSoundsListMode
+                        )
                         .environmentObject(trendsHelper)
                         .environmentObject(settingsHelper)
                         .environmentObject(networkMonitor)
@@ -100,66 +102,52 @@ struct MainView: View {
                     trendsHelper.timeIntervalToGoTo = .allTime
                 })
             } else {
-                NavigationView {
-                    SidebarView(state: $state,
-                                isShowingSettingsSheet: $isShowingSettingsSheet,
-                                isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet,
-                                updateFolderList: $updateFolderList,
-                                currentSoundsListMode: $currentSoundsListMode,
-                                updateSoundList: $viewModel.updateSoundList)
-                    .environmentObject(trendsHelper)
-                    .environmentObject(settingsHelper)
-                    .environmentObject(networkMonitor)
-                    
-                    SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
-                                                              authorSortOption: AuthorSortOption.nameAscending.rawValue,
-                                                              currentSoundsListMode: $currentSoundsListMode),
-                               currentViewMode: .allSounds,
-                               currentSoundsListMode: $currentSoundsListMode,
-                               updateList: $viewModel.updateSoundList)
-                    .environmentObject(trendsHelper)
-                    .environmentObject(settingsHelper)
-                    .environmentObject(networkMonitor)
-                }
-                .navigationViewStyle(DoubleColumnNavigationViewStyle())
-                .sheet(isPresented: $isShowingSettingsSheet) {
-                    SettingsCasingWithCloseView(isBeingShown: $isShowingSettingsSheet)
-                        .environmentObject(settingsHelper)
-                }
-                .sheet(isPresented: $isShowingFolderInfoEditingSheet, onDismiss: {
-                    updateFolderList = true
-                }) {
-                    FolderInfoEditingView(isBeingShown: $isShowingFolderInfoEditingSheet, selectedBackgroundColor: Shared.Folders.defaultFolderColor)
-                }
+//                NavigationView {
+//                    SidebarView(
+//                        state: $state,
+//                        isShowingSettingsSheet: $isShowingSettingsSheet,
+//                        isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet,
+//                        updateFolderList: $updateFolderList,
+//                        currentSoundsListMode: $currentSoundsListMode,
+//                        updateSoundList: .constant(false)
+//                    )
+//                    .environmentObject(trendsHelper)
+//                    .environmentObject(settingsHelper)
+//                    .environmentObject(networkMonitor)
+//                    .environmentObject(syncValues)
+//
+//                    SoundsView(
+//                        viewModel: SoundsViewViewModel(
+//                            soundSortOption: UserSettings.getSoundSortOption(),
+//                            authorSortOption: AuthorSortOption.nameAscending.rawValue,
+//                            currentSoundsListMode: $currentSoundsListMode,
+//                            syncValues: syncValues
+//                        ),
+//                        currentViewMode: .allSounds,
+//                        currentSoundsListMode: $currentSoundsListMode
+//                    )
+//                    .environmentObject(trendsHelper)
+//                    .environmentObject(settingsHelper)
+//                    .environmentObject(networkMonitor)
+//                }
+//                .navigationViewStyle(DoubleColumnNavigationViewStyle())
+//                .sheet(isPresented: $isShowingSettingsSheet) {
+//                    SettingsCasingWithCloseView(isBeingShown: $isShowingSettingsSheet)
+//                        .environmentObject(settingsHelper)
+//                }
+//                .sheet(isPresented: $isShowingFolderInfoEditingSheet, onDismiss: {
+//                    updateFolderList = true
+//                }) {
+//                    FolderInfoEditingView(isBeingShown: $isShowingFolderInfoEditingSheet, selectedBackgroundColor: Shared.Folders.defaultFolderColor)
+//                }
             }
         }
         .environmentObject(syncValues)
-        .onChange(of: viewModel.syncStatus) {
-            syncValues.syncStatus = $0
-        }
-        .onChange(of: syncValues.syncNow) {
-            if $0 {
-                Task { @MainActor in
-                    await viewModel.sync()
-                }
-            }
-        }
-        .onAppear {
-            Task { @MainActor in
-                await viewModel.sync()
-            }
-        }
     }
 }
 
 struct MainView_Previews: PreviewProvider {
-
     static var previews: some View {
-        MainView(viewModel: MainViewViewModel(lastUpdateDate: "all",
-                                              service: SyncService(connectionManager: ConnectionManager.shared,
-                                                                   networkRabbit: NetworkRabbit(serverPath: ""),
-                                                                   localDatabase: LocalDatabase()),
-                                              database: LocalDatabase(),
-                                              logger: Logger()))
+        MainView()
     }
 }

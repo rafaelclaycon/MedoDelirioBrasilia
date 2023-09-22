@@ -20,7 +20,7 @@ struct SoundsView: View {
     @StateObject var viewModel: SoundsViewViewModel
     @State var currentViewMode: ViewMode
     @Binding var currentSoundsListMode: SoundsListMode
-    @Binding var updateList: Bool
+    //@Binding var updateList: Bool
     @State private var searchText: String = .empty
     
     @State private var listWidth: CGFloat = 700
@@ -77,7 +77,6 @@ struct SoundsView: View {
     // Sync
     @AppStorage("lastUpdateAttempt") private var lastUpdateAttempt = ""
     @AppStorage("lastUpdateDate") private var lastUpdateDate = "all"
-    @EnvironmentObject private var syncValues: SyncValues
 
     private var searchResults: [Sound] {
         if searchText.isEmpty {
@@ -311,9 +310,9 @@ struct SoundsView: View {
                                         .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? soundCountPhoneBottomPadding : soundCountPadBottomPadding)
                                 }
                             }
-//                            .refreshable {
-//                                await viewModel.fakeSync(lastAttempt: lastUpdateAttempt)
-//                            }
+                            .refreshable {
+                                await viewModel.sync(lastAttempt: lastUpdateAttempt)
+                            }
                         }
                     }
                 }
@@ -477,13 +476,16 @@ struct SoundsView: View {
                     }
                 }
             }
-            .onChange(of: updateList) { updateList in
-                if updateList {
-                    viewModel.reloadList(currentMode: currentViewMode)
-                    self.updateList = false
-                }
+//            .onChange(of: updateList) { updateList in
+//                if updateList {
+//                    viewModel.reloadList(currentMode: currentViewMode)
+//                    self.updateList = false
+//                }
+//            }
+            .oneTimeTask {
+                await viewModel.sync(lastAttempt: lastUpdateAttempt)
             }
-            
+
             if displayFloatingSelectorView {
                 VStack {
                     Spacer()
@@ -689,14 +691,16 @@ struct SoundsView: View {
 }
 
 struct SoundsView_Previews: PreviewProvider {
-
     static var previews: some View {
-        SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue,
-                                                  authorSortOption: AuthorSortOption.nameAscending.rawValue,
-                                                  currentSoundsListMode: .constant(.regular)),
-                   currentViewMode: .allSounds,
-                   currentSoundsListMode: .constant(.regular),
-                   updateList: .constant(true))
+        SoundsView(
+            viewModel: SoundsViewViewModel(
+                soundSortOption: SoundSortOption.dateAddedDescending.rawValue,
+                authorSortOption: AuthorSortOption.nameAscending.rawValue,
+                currentSoundsListMode: .constant(.regular),
+                syncValues: SyncValues()
+            ),
+            currentViewMode: .allSounds,
+            currentSoundsListMode: .constant(.regular)
+        )
     }
-
 }

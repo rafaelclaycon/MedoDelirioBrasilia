@@ -1,7 +1,15 @@
+//
+//  AppPersistentMemory.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 17/08/22.
+//
+
 import Foundation
 
 /// Different from User Settings, App Memory are settings that help the app remember stuff to avoid asking again or doing a network job more than once per day.
 class AppPersistentMemory {
+
     // MARK: - Getters
     
     static func getHasSentDeviceModelToServer() -> Bool {
@@ -122,6 +130,14 @@ class AppPersistentMemory {
             return false
         }
         return Bool(value as! Bool)
+    }
+
+    static func getLastUpdateDate() -> String {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "lastUpdateDate") else {
+            return "all"
+        }
+        return String(value as! String)
     }
 
     // MARK: - Setters

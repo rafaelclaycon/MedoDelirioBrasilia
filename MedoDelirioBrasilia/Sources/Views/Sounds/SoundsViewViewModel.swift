@@ -8,7 +8,8 @@
 import Combine
 import SwiftUI
 
-class SoundsViewViewModel: ObservableObject {
+@MainActor
+class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
 
     @Published var sounds: [Sound] = []
 
@@ -43,10 +44,32 @@ class SoundsViewViewModel: ObservableObject {
     @Published var toastIconColor: Color = .green
     @Published var toastText: String = ""
 
-    init(soundSortOption: Int, authorSortOption: Int, currentSoundsListMode: Binding<SoundsListMode>) {
+    // Sync
+    private let syncManager: SyncManager
+    private let syncValues: SyncValues
+
+    init(
+        soundSortOption: Int,
+        authorSortOption: Int,
+        currentSoundsListMode: Binding<SoundsListMode>,
+        syncValues: SyncValues
+    ) {
         self.soundSortOption = soundSortOption
         self.authorSortOption = authorSortOption
         self.currentSoundsListMode = currentSoundsListMode
+
+        self.syncManager = SyncManager(
+            lastUpdateDate: AppPersistentMemory.getLastUpdateDate(),
+            service: SyncService(
+                connectionManager: ConnectionManager.shared,
+                networkRabbit: networkRabbit,
+                localDatabase: LocalDatabase.shared
+            ),
+            database: LocalDatabase.shared,
+            logger: Logger.shared
+        )
+        self.syncValues = syncValues
+        self.syncManager.delegate = self
     }
 
     func reloadList(currentMode: SoundsView.ViewMode) {
@@ -369,6 +392,8 @@ class SoundsViewViewModel: ObservableObject {
         }
     }
 
+    // MARK: - Sync
+
     func fakeSync(lastAttempt: String) async {
 //        guard
 //            let lastAttemptDate = lastAttempt.iso8601withFractionalSeconds,
@@ -385,6 +410,28 @@ class SoundsViewViewModel: ObservableObject {
         print("Fake sync has been completed.")
 
         displayToast(toastText: "Sincronização concluída com sucesso.")
+    }
+
+    func sync(lastAttempt: String) async {
+//        guard
+//            let lastAttemptDate = lastAttempt.iso8601withFractionalSeconds,
+//            lastAttemptDate.twoMinutesHavePassed
+//        else {
+//            return displayToast(
+//                "clock.fill",
+//                .orange,
+//                toastText: "Aguarde mais um pouco para atualizar novamente."
+//            )
+//        }
+
+        await syncManager.sync()
+
+        displayToast(toastText: "Sincronização concluída com sucesso.")
+    }
+
+    func syncManagerDidUpdate(status: SyncUIStatus) {
+        self.syncValues.syncStatus = status
+        print(status)
     }
 
     // MARK: - Alerts

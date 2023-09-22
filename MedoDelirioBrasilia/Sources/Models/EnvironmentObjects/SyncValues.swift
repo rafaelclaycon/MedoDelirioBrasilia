@@ -11,13 +11,10 @@ import Combine
 class SyncValues: ObservableObject {
 
     @Published var syncStatus: SyncUIStatus
-    @Published var syncNow: Bool
 
     init(
-        syncStatus: SyncUIStatus = .updating,
-        syncNow: Bool = false
+        syncStatus: SyncUIStatus = .updating
     ) {
         self.syncStatus = syncStatus
-        self.syncNow = syncNow
     }
 }

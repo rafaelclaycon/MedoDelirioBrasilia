@@ -19,20 +19,11 @@ struct MedoDelirioBrasiliaApp: App {
 
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
-    // Sync
-    @AppStorage("lastUpdateDate") private var lastUpdateDate = "all"
-    
     var body: some Scene {
         WindowGroup {
-            MainView(viewModel: MainViewViewModel(lastUpdateDate: lastUpdateDate,
-                                                  service: SyncService(connectionManager: ConnectionManager.shared,
-                                                                       networkRabbit: networkRabbit,
-                                                                       localDatabase: LocalDatabase.shared),
-                                                  database: LocalDatabase.shared,
-                                                  logger: Logger.shared))
+            MainView()
         }
     }
-
 }
 
 class AppDelegate: NSObject, UIApplicationDelegate {
