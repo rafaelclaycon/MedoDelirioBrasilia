@@ -438,7 +438,9 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
     }
 
     nonisolated func syncManagerDidUpdate(status: SyncUIStatus) {
-        self.syncValues.syncStatus = status
+        Task { @MainActor in
+            self.syncValues.syncStatus = status
+        }
         print(status)
     }
 
