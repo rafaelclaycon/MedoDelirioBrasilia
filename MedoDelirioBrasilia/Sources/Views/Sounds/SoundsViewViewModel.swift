@@ -421,12 +421,11 @@ class SoundsViewViewModel: ObservableObject {
         toastText: String,
         completion: (() -> Void)? = nil
     ) {
-        self.toastIcon = toastIcon
-        self.toastIconColor = toastIconColor
-        self.toastText = toastText
-
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
             withAnimation {
+                self.toastIcon = toastIcon
+                self.toastIconColor = toastIconColor
+                self.toastText = toastText
                 self.showToastView = true
             }
             TapticFeedback.success()
@@ -435,6 +434,7 @@ class SoundsViewViewModel: ObservableObject {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             withAnimation {
                 self.showToastView = false
+                completion?()
             }
         }
     }
