@@ -13,6 +13,7 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
 
     @Published var sounds: [Sound] = []
 
+    @Published var currentViewMode: SoundsViewMode
     @Published var soundSortOption: Int
     @Published var authorSortOption: Int
 
@@ -49,11 +50,13 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
     private let syncValues: SyncValues
 
     init(
+        currentViewMode: SoundsViewMode,
         soundSortOption: Int,
         authorSortOption: Int,
         currentSoundsListMode: Binding<SoundsListMode>,
         syncValues: SyncValues
     ) {
+        self.currentViewMode = currentViewMode
         self.soundSortOption = soundSortOption
         self.authorSortOption = authorSortOption
         self.currentSoundsListMode = currentSoundsListMode
@@ -72,7 +75,7 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
         self.syncManager.delegate = self
     }
 
-    func reloadList(currentMode: SoundsView.ViewMode) {
+    func reloadList(currentMode: SoundsViewMode) {
         guard currentMode == .allSounds || currentMode == .favorites else { return }
 
         do {
@@ -394,35 +397,20 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
 
     // MARK: - Sync
 
-    func fakeSync(lastAttempt: String) async {
-//        guard
-//            let lastAttemptDate = lastAttempt.iso8601withFractionalSeconds,
-//            lastAttemptDate.twoMinutesHavePassed
-//        else {
-//            return displayToast(
-//                "clock.fill",
-//                .orange,
-//                toastText: "Aguarde mais um pouco para atualizar novamente."
-//            )
-//        }
-
-        sleep(3)
-        print("Fake sync has been completed.")
-
-        displayToast(toastText: "Sincronização concluída com sucesso.")
-    }
-
     func sync(lastAttempt: String) async {
-//        guard
-//            let lastAttemptDate = lastAttempt.iso8601withFractionalSeconds,
-//            lastAttemptDate.twoMinutesHavePassed
-//        else {
-//            return displayToast(
-//                "clock.fill",
-//                .orange,
-//                toastText: "Aguarde mais um pouco para atualizar novamente."
-//            )
-//        }
+        guard
+            let lastAttemptDate = lastAttempt.iso8601withFractionalSeconds,
+            lastAttemptDate.twoMinutesHavePassed
+        else {
+            if syncValues.syncStatus == .updating {
+                syncValues.syncStatus = .done
+            }
+            return displayToast(
+                "clock.fill",
+                .orange,
+                toastText: "Aguarde mais um pouco para atualizar novamente."
+            )
+        }
 
         await syncManager.sync()
 
@@ -433,9 +421,16 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
         )
     }
 
-    nonisolated func syncManagerDidUpdate(status: SyncUIStatus) {
+    nonisolated func syncManagerDidUpdate(
+        status: SyncUIStatus,
+        updateSoundList: Bool
+    ) {
         Task { @MainActor in
             self.syncValues.syncStatus = status
+
+            if updateSoundList {
+                reloadList(currentMode: currentViewMode)
+            }
         }
         print(status)
     }

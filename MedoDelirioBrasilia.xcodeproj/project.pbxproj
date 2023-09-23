@@ -1155,6 +1155,7 @@
 		D99C8A942952C5AE002E0C00 /* Paulo Guedes - Uma festa danada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99C8A922952C5AE002E0C00 /* Paulo Guedes - Uma festa danada.mp3 */; };
 		D99C8A952952C5AE002E0C00 /* Gregorio Duvivier - Que tom e esse cara, baixa a bola pra caralho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99C8A932952C5AE002E0C00 /* Gregorio Duvivier - Que tom e esse cara, baixa a bola pra caralho.mp3 */; };
 		D99C8A972952C904002E0C00 /* NetworkRabbit+DonorNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99C8A962952C904002E0C00 /* NetworkRabbit+DonorNames.swift */; };
+		D99C987A2ABF2BE400AE11CE /* SoundsViewMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99C98792ABF2BE400AE11CE /* SoundsViewMode.swift */; };
 		D99CC7102A341B7700B21144 /* Senhor Pedindo Cafe - Eeee.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99CC70C2A341B7700B21144 /* Senhor Pedindo Cafe - Eeee.mp3 */; };
 		D99CC7112A341B7700B21144 /* Rogerio Correia - O senador não manja de nada (sobre Marcos do Val).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99CC70D2A341B7700B21144 /* Rogerio Correia - O senador não manja de nada (sobre Marcos do Val).mp3 */; };
 		D99CC7122A341B7700B21144 /* Senhor Pedindo Cafe - Quero cafe.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99CC70E2A341B7700B21144 /* Senhor Pedindo Cafe - Quero cafe.mp3 */; };
@@ -2622,6 +2623,7 @@
 		D99C8A922952C5AE002E0C00 /* Paulo Guedes - Uma festa danada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Paulo Guedes - Uma festa danada.mp3"; sourceTree = "<group>"; };
 		D99C8A932952C5AE002E0C00 /* Gregorio Duvivier - Que tom e esse cara, baixa a bola pra caralho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gregorio Duvivier - Que tom e esse cara, baixa a bola pra caralho.mp3"; sourceTree = "<group>"; };
 		D99C8A962952C904002E0C00 /* NetworkRabbit+DonorNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+DonorNames.swift"; sourceTree = "<group>"; };
+		D99C98792ABF2BE400AE11CE /* SoundsViewMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsViewMode.swift; sourceTree = "<group>"; };
 		D99CC70C2A341B7700B21144 /* Senhor Pedindo Cafe - Eeee.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Senhor Pedindo Cafe - Eeee.mp3"; sourceTree = "<group>"; };
 		D99CC70D2A341B7700B21144 /* Rogerio Correia - O senador não manja de nada (sobre Marcos do Val).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rogerio Correia - O senador não manja de nada (sobre Marcos do Val).mp3"; sourceTree = "<group>"; };
 		D99CC70E2A341B7700B21144 /* Senhor Pedindo Cafe - Quero cafe.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Senhor Pedindo Cafe - Quero cafe.mp3"; sourceTree = "<group>"; };
@@ -4659,6 +4661,7 @@
 				D90CDF0828F65C7200CC992D /* TrendsTimeInterval.swift */,
 				D9E18172298C82C700705DCA /* WordPluralization.swift */,
 				D95BFEF729E8D07B00E42A23 /* Donor.swift */,
+				D99C98792ABF2BE400AE11CE /* SoundsViewMode.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -6455,6 +6458,7 @@
 				D92C0CAA28405B2D009CF19A /* NoFavoritesView.swift in Sources */,
 				D957048328AFCC93008DEF8C /* ChangeAppIconView.swift in Sources */,
 				D9BF90BE2842EAED00BDDD7D /* TopChartCellView.swift in Sources */,
+				D99C987A2ABF2BE400AE11CE /* SoundsViewMode.swift in Sources */,
 				D9943F1E286419C2002C6B97 /* LocalDatabase+TopChart.swift in Sources */,
 				D9C67C152A3E3D7E00E74E9D /* LargeCapsuleBorderedProminentButtonStyle.swift in Sources */,
 				D9A8AB212853EB5500B5A94B /* InitialMigration.swift in Sources */,

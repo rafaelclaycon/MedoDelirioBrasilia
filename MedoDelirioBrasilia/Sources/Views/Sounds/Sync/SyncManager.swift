@@ -8,7 +8,7 @@
 import SwiftUI
 
 protocol SyncManagerDelegate: AnyObject {
-    func syncManagerDidUpdate(status: SyncUIStatus)
+    func syncManagerDidUpdate(status: SyncUIStatus, updateSoundList: Bool)
 }
 
 class SyncManager {
@@ -41,31 +41,30 @@ class SyncManager {
 
     func sync() async {
         guard service.hasConnectivity() else {
-            delegate?.syncManagerDidUpdate(status: .noInternet)
+            delegate?.syncManagerDidUpdate(status: .noInternet, updateSoundList: false)
             return
         }
 
         await MainActor.run {
-            delegate?.syncManagerDidUpdate(status: .updating)
+            delegate?.syncManagerDidUpdate(status: .updating, updateSoundList: false)
         }
 
         do {
             try await retryLocal()
             try await syncDataWithServer()
-            delegate?.syncManagerDidUpdate(status: .done)
-            // updateSoundList = true
+            delegate?.syncManagerDidUpdate(status: .done, updateSoundList: true)
         } catch SyncError.noInternet {
-            delegate?.syncManagerDidUpdate(status: .noInternet)
+            delegate?.syncManagerDidUpdate(status: .noInternet, updateSoundList: false)
         } catch NetworkRabbitError.errorFetchingUpdateEvents(let errorMessage) {
             print(errorMessage)
             logger.logSyncError(description: errorMessage, updateEventId: "")
-            delegate?.syncManagerDidUpdate(status: .updateError)
+            delegate?.syncManagerDidUpdate(status: .updateError, updateSoundList: false)
         } catch SyncError.errorInsertingUpdateEvent(let updateEventId) {
             logger.logSyncError(description: "Erro ao tentar inserir UpdateEvent no banco de dados.", updateEventId: updateEventId)
-            delegate?.syncManagerDidUpdate(status: .updateError)
+            delegate?.syncManagerDidUpdate(status: .updateError, updateSoundList: false)
         } catch {
             logger.logSyncError(description: error.localizedDescription, updateEventId: "")
-            delegate?.syncManagerDidUpdate(status: .updateError)
+            delegate?.syncManagerDidUpdate(status: .updateError, updateSoundList: false)
         }
 
         lastUpdateAttemptInUserDefaults = Date.now.iso8601withFractionalSeconds

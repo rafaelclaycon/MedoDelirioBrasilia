@@ -32,12 +32,12 @@ struct MainView: View {
                     NavigationView {
                         SoundsView(
                             viewModel: SoundsViewViewModel(
+                                currentViewMode: .allSounds,
                                 soundSortOption: UserSettings.getSoundSortOption(),
                                 authorSortOption: AuthorSortOption.nameAscending.rawValue,
                                 currentSoundsListMode: $currentSoundsListMode,
                                 syncValues: syncValues
                             ),
-                            currentViewMode: .allSounds,
                             currentSoundsListMode: $currentSoundsListMode
                         )
                         .environmentObject(trendsHelper)
