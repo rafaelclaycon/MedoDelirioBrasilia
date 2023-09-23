@@ -325,11 +325,7 @@ class AuthorDetailViewViewModel: ObservableObject {
     
     func prepareSelectedToAddToFolder() {
         guard selectionKeeper.count > 0 else { return }
-        selectedSounds = [Sound]()
-        selectionKeeper.forEach { selectedSoundId in
-            guard let sound = try? LocalDatabase.shared.sound(withId: selectedSoundId) else { return }
-            selectedSounds?.append(sound)
-        }
+        selectedSounds = sounds.filter({ selectionKeeper.contains($0.id) })
     }
     
     func sendUsageMetricToServer(action: String, authorName: String) {
