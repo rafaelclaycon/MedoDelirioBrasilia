@@ -102,44 +102,43 @@ struct MainView: View {
                     trendsHelper.timeIntervalToGoTo = .allTime
                 })
             } else {
-//                NavigationView {
-//                    SidebarView(
-//                        state: $state,
-//                        isShowingSettingsSheet: $isShowingSettingsSheet,
-//                        isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet,
-//                        updateFolderList: $updateFolderList,
-//                        currentSoundsListMode: $currentSoundsListMode,
-//                        updateSoundList: .constant(false)
-//                    )
-//                    .environmentObject(trendsHelper)
-//                    .environmentObject(settingsHelper)
-//                    .environmentObject(networkMonitor)
-//                    .environmentObject(syncValues)
-//
-//                    SoundsView(
-//                        viewModel: SoundsViewViewModel(
-//                            soundSortOption: UserSettings.getSoundSortOption(),
-//                            authorSortOption: AuthorSortOption.nameAscending.rawValue,
-//                            currentSoundsListMode: $currentSoundsListMode,
-//                            syncValues: syncValues
-//                        ),
-//                        currentViewMode: .allSounds,
-//                        currentSoundsListMode: $currentSoundsListMode
-//                    )
-//                    .environmentObject(trendsHelper)
-//                    .environmentObject(settingsHelper)
-//                    .environmentObject(networkMonitor)
-//                }
-//                .navigationViewStyle(DoubleColumnNavigationViewStyle())
-//                .sheet(isPresented: $isShowingSettingsSheet) {
-//                    SettingsCasingWithCloseView(isBeingShown: $isShowingSettingsSheet)
-//                        .environmentObject(settingsHelper)
-//                }
-//                .sheet(isPresented: $isShowingFolderInfoEditingSheet, onDismiss: {
-//                    updateFolderList = true
-//                }) {
-//                    FolderInfoEditingView(isBeingShown: $isShowingFolderInfoEditingSheet, selectedBackgroundColor: Shared.Folders.defaultFolderColor)
-//                }
+                NavigationView {
+                    SidebarView(
+                        state: $state,
+                        isShowingSettingsSheet: $isShowingSettingsSheet,
+                        isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet,
+                        updateFolderList: $updateFolderList,
+                        currentSoundsListMode: $currentSoundsListMode
+                    )
+                    .environmentObject(trendsHelper)
+                    .environmentObject(settingsHelper)
+                    .environmentObject(networkMonitor)
+                    .environmentObject(syncValues)
+
+                    SoundsView(
+                        viewModel: SoundsViewViewModel(
+                            currentViewMode: .allSounds,
+                            soundSortOption: UserSettings.getSoundSortOption(),
+                            authorSortOption: AuthorSortOption.nameAscending.rawValue,
+                            currentSoundsListMode: $currentSoundsListMode,
+                            syncValues: syncValues
+                        ),
+                        currentSoundsListMode: $currentSoundsListMode
+                    )
+                    .environmentObject(trendsHelper)
+                    .environmentObject(settingsHelper)
+                    .environmentObject(networkMonitor)
+                }
+                .navigationViewStyle(DoubleColumnNavigationViewStyle())
+                .sheet(isPresented: $isShowingSettingsSheet) {
+                    SettingsCasingWithCloseView(isBeingShown: $isShowingSettingsSheet)
+                        .environmentObject(settingsHelper)
+                }
+                .sheet(isPresented: $isShowingFolderInfoEditingSheet, onDismiss: {
+                    updateFolderList = true
+                }) {
+                    FolderInfoEditingView(isBeingShown: $isShowingFolderInfoEditingSheet, selectedBackgroundColor: Shared.Folders.defaultFolderColor)
+                }
             }
         }
         .environmentObject(syncValues)

@@ -15,7 +15,6 @@ struct SoundsView: View {
 
     @StateObject var viewModel: SoundsViewViewModel
     @Binding var currentSoundsListMode: SoundsListMode
-    //@Binding var updateList: Bool
     @State private var searchText: String = .empty
     
     @State private var listWidth: CGFloat = 700
@@ -474,7 +473,9 @@ struct SoundsView: View {
                 }
             }
             .oneTimeTask {
-                await viewModel.sync(lastAttempt: lastUpdateAttempt)
+                if viewModel.currentViewMode == .allSounds {
+                    await viewModel.sync(lastAttempt: lastUpdateAttempt)
+                }
             }
 
             if displayFloatingSelectorView {
