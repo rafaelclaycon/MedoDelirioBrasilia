@@ -1,3 +1,10 @@
+//
+//  DiagnosticsView.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 03/06/22.
+//
+
 import SwiftUI
 
 struct DiagnosticsView: View {
@@ -106,13 +113,10 @@ struct DiagnosticsView: View {
             return ""
         }
     }
-
 }
 
 struct DiagnosticsView_Previews: PreviewProvider {
-
     static var previews: some View {
         DiagnosticsView()
     }
-
 }
