@@ -144,6 +144,20 @@ enum SyncError: Error {
     case updateError
 }
 
-enum SyncUIStatus {
+enum SyncUIStatus: CustomStringConvertible {
+
     case updating, done, noInternet, updateError
+
+    var description: String {
+        switch self {
+        case .updating:
+            return "Atualizando..."
+        case .done:
+            return "Todos os dados atualizados."
+        case .noInternet:
+            return "Não foi possível atualizar pois o aparelho está offline."
+        case .updateError:
+            return "Houve um problema com a sincronização."
+        }
+    }
 }

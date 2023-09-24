@@ -1,20 +1,22 @@
 //
-//  MainViewViewModel.swift
+//  SyncManager.swift
 //  MedoDelirioBrasilia
 //
-//  Created by Rafael Schmitt on 08/07/23.
+//  Created by Rafael Schmitt on 22/09/23.
 //
 
-import Combine
 import SwiftUI
 
-@MainActor
-class MainViewViewModel: ObservableObject {
-    @Published var syncStatus: SyncUIStatus = .updating
+protocol SyncManagerDelegate: AnyObject {
+    func syncManagerDidUpdate(status: SyncUIStatus, updateSoundList: Bool)
+}
+
+class SyncManager {
+
+    weak var delegate: SyncManagerDelegate?
 
     private var localUnsuccessfulUpdates: [UpdateEvent]? = nil
     private var serverUpdates: [UpdateEvent]? = nil
-    @Published var updateSoundList: Bool = false
 
     private var lastUpdateDate: String
 
@@ -39,31 +41,30 @@ class MainViewViewModel: ObservableObject {
 
     func sync() async {
         guard service.hasConnectivity() else {
-            syncStatus = .noInternet
+            delegate?.syncManagerDidUpdate(status: .noInternet, updateSoundList: false)
             return
         }
 
         await MainActor.run {
-            syncStatus = .updating
+            delegate?.syncManagerDidUpdate(status: .updating, updateSoundList: false)
         }
 
         do {
             try await retryLocal()
             try await syncDataWithServer()
-            syncStatus = .done
-            updateSoundList = true
+            delegate?.syncManagerDidUpdate(status: .done, updateSoundList: true)
         } catch SyncError.noInternet {
-            syncStatus = .noInternet
+            delegate?.syncManagerDidUpdate(status: .noInternet, updateSoundList: false)
         } catch NetworkRabbitError.errorFetchingUpdateEvents(let errorMessage) {
             print(errorMessage)
             logger.logSyncError(description: errorMessage, updateEventId: "")
-            syncStatus = .updateError
+            delegate?.syncManagerDidUpdate(status: .updateError, updateSoundList: false)
         } catch SyncError.errorInsertingUpdateEvent(let updateEventId) {
             logger.logSyncError(description: "Erro ao tentar inserir UpdateEvent no banco de dados.", updateEventId: updateEventId)
-            syncStatus = .updateError
+            delegate?.syncManagerDidUpdate(status: .updateError, updateSoundList: false)
         } catch {
             logger.logSyncError(description: error.localizedDescription, updateEventId: "")
-            syncStatus = .updateError
+            delegate?.syncManagerDidUpdate(status: .updateError, updateSoundList: false)
         }
 
         lastUpdateAttemptInUserDefaults = Date.now.iso8601withFractionalSeconds
