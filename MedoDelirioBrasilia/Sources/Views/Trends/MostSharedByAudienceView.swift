@@ -13,7 +13,7 @@ struct MostSharedByAudienceView: View {
     @Binding var tabSelection: PhoneTab
     @Binding var activePadScreen: PadScreen?
     @EnvironmentObject var trendsHelper: TrendsHelper
-    
+
     private let columns = [
         GridItem(.flexible())
     ]
@@ -21,7 +21,7 @@ struct MostSharedByAudienceView: View {
         GridItem(.fixed(500))
     ]
     private let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
-    
+
     private var dropDownText: String {
         switch viewModel.timeIntervalOption {
         case .last24Hours:
@@ -34,7 +34,7 @@ struct MostSharedByAudienceView: View {
             return Shared.Trends.allTime
         }
     }
-    
+
     private var list: [TopChartItem] {
         switch viewModel.timeIntervalOption {
         case .last24Hours:
@@ -47,7 +47,7 @@ struct MostSharedByAudienceView: View {
             return viewModel.allTimeRanking!
         }
     }
-    
+
     var body: some View {
         VStack {
             HStack {
@@ -61,15 +61,6 @@ struct MostSharedByAudienceView: View {
                 timeIntervalSelector()
                 
                 Spacer()
-                
-                Button {
-                    viewModel.reloadAudienceLists()
-                } label: {
-                    HStack {
-                        Image(systemName: "arrow.triangle.2.circlepath")
-                        Text("Atualizar")
-                    }
-                }
             }
             .padding(.horizontal)
             .padding(.top, 1)
@@ -132,6 +123,11 @@ struct MostSharedByAudienceView: View {
                         .padding(.bottom)
                 }
                 .padding(.bottom, 10)
+            }
+        }
+        .refreshable {
+            Task {
+                viewModel.reloadAudienceLists()
             }
         }
         .onAppear {
@@ -222,14 +218,13 @@ struct MostSharedByAudienceView: View {
         }
         trendsHelper.soundIdToGoTo = soundId
     }
-
 }
 
 struct MostSharedByAudienceView_Previews: PreviewProvider {
-
     static var previews: some View {
-        MostSharedByAudienceView(tabSelection: .constant(.trends),
-                                 activePadScreen: .constant(.trends))
+        MostSharedByAudienceView(
+            tabSelection: .constant(.trends),
+            activePadScreen: .constant(.trends)
+        )
     }
-
 }
