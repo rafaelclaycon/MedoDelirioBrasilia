@@ -93,11 +93,13 @@ struct TrendsView: View {
         }
         .navigationTitle("Tendências")
         .navigationBarTitleDisplayMode(showTrends ? .large : .inline)
+        .refreshable {
+            trendsHelper.refreshMostSharedByAudienceList = true
+        }
     }
 }
 
 struct TrendsView_Previews: PreviewProvider {
-
     static var previews: some View {
         TrendsView(
             tabSelection: .constant(.trends),
