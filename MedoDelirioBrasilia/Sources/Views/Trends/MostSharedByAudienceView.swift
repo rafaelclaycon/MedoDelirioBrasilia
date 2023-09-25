@@ -125,17 +125,18 @@ struct MostSharedByAudienceView: View {
                 .padding(.bottom, 10)
             }
         }
-        .refreshable {
-            Task {
-                viewModel.reloadAudienceLists()
-            }
-        }
         .onAppear {
             viewModel.reloadAudienceLists()
             viewModel.donateActivity(forTimeInterval: viewModel.timeIntervalOption)
         }
         .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
+        }
+        .onChange(of: trendsHelper.refreshMostSharedByAudienceList) {
+            if $0 {
+                viewModel.reloadAudienceLists()
+                self.trendsHelper.refreshMostSharedByAudienceList = false
+            }
         }
     }
     
