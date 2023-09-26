@@ -316,6 +316,7 @@ struct SoundsView: View {
             .navigationTitle(Text(title))
             .navigationBarItems(leading: leadingToolbarControls(), trailing: trailingToolbarControls())
             .onAppear {
+                print("SOUNDS VIEW - ON APPEAR")
                 viewModel.reloadList(currentMode: viewModel.currentViewMode)
 
                 columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
@@ -473,6 +474,7 @@ struct SoundsView: View {
                 }
             }
             .oneTimeTask {
+                print("SOUNDS VIEW - ONE TIME TASK")
                 if viewModel.currentViewMode == .allSounds {
                     await viewModel.sync(lastAttempt: lastUpdateAttempt)
                 }

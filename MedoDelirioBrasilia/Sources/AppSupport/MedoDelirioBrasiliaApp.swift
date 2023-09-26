@@ -35,6 +35,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
     ) -> Bool {
+        print("APP - APP DELEGATE")
         // Fixes
         moveDatabaseFileIfNeeded()
         replaceUserSettingFlag()

@@ -389,13 +389,15 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
     // MARK: - Sync
 
     func sync(lastAttempt: String) async {
+        print("lastAttempt: \(lastAttempt)")
         guard
-            let lastAttemptDate = lastAttempt.iso8601withFractionalSeconds,
-            lastAttemptDate.twoMinutesHavePassed
+            lastAttempt == "" ||
+            (lastAttempt.iso8601withFractionalSeconds?.twoMinutesHavePassed ?? false)
         else {
             if syncValues.syncStatus == .updating {
                 syncValues.syncStatus = .done
             }
+            print("CAN'T SYNC WAIT 2 MINUTES")
             return displayToast(
                 "clock.fill",
                 .orange,
@@ -404,6 +406,8 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
         }
 
         await syncManager.sync()
+
+        print("SYNC EXECUTED")
 
         displayToast(
             syncValues.syncStatus == .done ? "checkmark" : "exclamationmark.triangle.fill",

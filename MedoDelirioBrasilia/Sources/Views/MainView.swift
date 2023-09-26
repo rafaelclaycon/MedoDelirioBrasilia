@@ -142,6 +142,9 @@ struct MainView: View {
             }
         }
         .environmentObject(syncValues)
+        .onAppear {
+            print("MAIN VIEW - ON APPEAR")
+        }
     }
 }
 
