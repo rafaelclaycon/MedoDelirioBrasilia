@@ -69,12 +69,12 @@ struct SoundDetailView: View {
 
                     InfoBlock(sound: sound)
 
-                    Button {
-                        showSuggestOtherAuthorEmailAppPicker = true
-                    } label: {
-                        Label("Baixar som novamente", systemImage: "arrow.down")
-                    }
-                    .capsule(colored: .green)
+//                    Button {
+//                        showSuggestOtherAuthorEmailAppPicker = true
+//                    } label: {
+//                        Label("Baixar som novamente", systemImage: "arrow.down")
+//                    }
+//                    .capsule(colored: .green)
                 }
                 .padding()
                 .navigationTitle("Detalhes do Som")
@@ -204,9 +204,9 @@ extension SoundDetailView {
 
         var body: some View {
             VStack(spacing: 10) {
-                InfoLine(title: "ID", information: sound.id)
-
-                Divider()
+//                InfoLine(title: "ID", information: sound.id)
+//
+//                Divider()
 
                 InfoLine(title: "Origem", information: (sound.isFromServer ?? false) ? "Servidor" : "Local")
 
@@ -226,9 +226,9 @@ extension SoundDetailView {
 
                 InfoLine(title: "Ofensivo", information: sound.isOffensive ? "Sim" : "Não")
 
-                Divider()
-
-                InfoLine(title: "Arquivo", information: "OK")
+//                Divider()
+//
+//                InfoLine(title: "Arquivo", information: "OK")
             }
         }
     }
