@@ -37,6 +37,18 @@ struct ToastView_Previews: PreviewProvider {
             ToastView(
                 icon: "checkmark",
                 iconColor: .green,
+                text: "Todos os dados atualizados."
+            )
+
+            ToastView(
+                icon: "checkmark",
+                iconColor: .green,
+                text: "Conteúdo baixado com sucesso. Tente tocá-lo novamente."
+            )
+
+            ToastView(
+                icon: "checkmark",
+                iconColor: .green,
                 text: "Sincronização concluída com sucesso."
             )
 
