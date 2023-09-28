@@ -218,7 +218,11 @@ struct FolderDetailView: View {
                     if shareAsVideo_Result.exportMethod == .saveAsVideo {
                         viewModel.showVideoSavedSuccessfullyToast()
                     } else {
-                        viewModel.shareVideo(withPath: videoResultPath, andContentId: shareAsVideo_Result.contentId)
+                        viewModel.shareVideo(
+                            withPath: videoResultPath,
+                            andContentId: shareAsVideo_Result.contentId,
+                            title: viewModel.selectedSound?.title ?? ""
+                        )
                     }
                 }
             }

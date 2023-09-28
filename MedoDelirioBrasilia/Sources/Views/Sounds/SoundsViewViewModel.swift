@@ -165,9 +165,9 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
             AudioPlayer.shared?.togglePlay()
         } catch {
             if sound.isFromServer ?? false {
-                showServerSoundNotAvailableAlert()
+                showServerSoundNotAvailableAlert(sound)
             } else {
-                showUnableToGetSoundAlert()
+                showUnableToGetSoundAlert(sound.title)
             }
         }
     }
@@ -188,7 +188,7 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
                     }
                 }
             } catch {
-                showUnableToGetSoundAlert()
+                showUnableToGetSoundAlert(sound.title)
             }
         } else {
             do {
@@ -209,14 +209,18 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
                     }
                 }
             } catch {
-                showUnableToGetSoundAlert()
+                showUnableToGetSoundAlert(sound.title)
             }
 
             isShowingShareSheet = true
         }
     }
     
-    func shareVideo(withPath filepath: String, andContentId contentId: String) {
+    func shareVideo(
+        withPath filepath: String,
+        andContentId contentId: String,
+        title soundTitle: String
+    ) {
         if UIDevice.current.userInterfaceIdiom == .phone {
             do {
                 try SharingUtility.shareVideoFromSound(withPath: filepath, andContentId: contentId, shareSheetDelayInSeconds: 0.6) { didShareSuccessfully in
@@ -227,7 +231,7 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
                     WallE.deleteAllVideoFilesFromDocumentsDir()
                 }
             } catch {
-                showUnableToGetSoundAlert()
+                showUnableToGetSoundAlert(soundTitle)
             }
         } else {
             guard filepath.isEmpty == false else {
@@ -336,7 +340,7 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
                 }
             }
         } catch {
-            showUnableToGetSoundAlert()
+            showUnableToGetSoundAlert("")
         }
     }
     
@@ -430,21 +434,41 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
         print(status)
     }
 
+    func redownloadServerContent(withId contentId: String) {
+        Task {
+            do {
+                try await SyncService.downloadFile(contentId)
+                displayToast(
+                    "checkmark",
+                    .green,
+                    toastText: "Conteúdo baixado com sucesso. Tente tocá-lo novamente."
+                )
+            } catch {
+                displayToast(
+                    "exclamationmark.triangle.fill",
+                    .orange,
+                    toastText: "Erro ao tentar baixar conteúdo novamente."
+                )
+            }
+        }
+    }
+
     // MARK: - Alerts
     
-    func showUnableToGetSoundAlert() {
+    func showUnableToGetSoundAlert(_ soundTitle: String) {
         TapticFeedback.error()
         alertType = .twoOptions
-        alertTitle = Shared.soundNotFoundAlertTitle
+        alertTitle = Shared.contentNotFoundAlertTitle(soundTitle)
         alertMessage = Shared.soundNotFoundAlertMessage
         showAlert = true
     }
     
-    func showServerSoundNotAvailableAlert() {
+    func showServerSoundNotAvailableAlert(_ sound: Sound) {
+        selectedSound = sound
         TapticFeedback.error()
-        alertType = .twoOptions
-        alertTitle = Shared.soundNotFoundAlertTitle
-        alertMessage = Shared.serverContentNotAvailableMessage
+        alertType = .twoOptionsOneRedownload
+        alertTitle = Shared.contentNotFoundAlertTitle(sound.title)
+        alertMessage = Shared.serverContentNotAvailableRedownloadMessage
         showAlert = true
     }
 

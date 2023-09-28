@@ -68,6 +68,13 @@ struct SoundDetailView: View {
                         .bold()
 
                     InfoBlock(sound: sound)
+
+                    Button {
+                        showSuggestOtherAuthorEmailAppPicker = true
+                    } label: {
+                        Label("Baixar som novamente", systemImage: "arrow.down")
+                    }
+                    .capsule(colored: .green)
                 }
                 .padding()
                 .navigationTitle("Detalhes do Som")
@@ -150,14 +157,14 @@ struct SoundDetailView: View {
 
     func showUnableToGetSoundAlert() {
         TapticFeedback.error()
-        alertTitle = Shared.soundNotFoundAlertTitle
+        alertTitle = Shared.contentNotFoundAlertTitle(sound.title)
         alertMessage = Shared.soundNotFoundAlertMessage
         showAlert = true
     }
 
     func showServerSoundNotAvailableAlert() {
         TapticFeedback.error()
-        alertTitle = Shared.soundNotFoundAlertTitle
+        alertTitle = Shared.contentNotFoundAlertTitle(sound.title)
         alertMessage = Shared.serverContentNotAvailableMessage
         showAlert = true
     }
@@ -197,6 +204,10 @@ extension SoundDetailView {
 
         var body: some View {
             VStack(spacing: 10) {
+                InfoLine(title: "ID", information: sound.id)
+
+                Divider()
+
                 InfoLine(title: "Origem", information: (sound.isFromServer ?? false) ? "Servidor" : "Local")
 
                 Divider()
@@ -215,9 +226,9 @@ extension SoundDetailView {
 
                 InfoLine(title: "Ofensivo", information: sound.isOffensive ? "Sim" : "Não")
 
-//                Divider()
-//
-//                InfoLine(title: "Arquivo", information: "OK")
+                Divider()
+
+                InfoLine(title: "Arquivo", information: "OK")
             }
         }
     }

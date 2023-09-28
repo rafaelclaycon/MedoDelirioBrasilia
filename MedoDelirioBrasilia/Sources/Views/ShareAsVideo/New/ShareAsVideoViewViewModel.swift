@@ -53,8 +53,10 @@ class ShareAsVideoViewViewModel: ObservableObject {
         } catch VideoMakerError.soundFilepathIsEmpty {
             DispatchQueue.main.async {
                 self.isShowingProcessingView = false
-                self.showOtherError(errorTitle: Shared.soundNotFoundAlertTitle,
-                                    errorBody: Shared.soundNotFoundAlertMessage)
+                self.showOtherError(
+                    errorTitle: Shared.contentNotFoundAlertTitle(""),
+                    errorBody: Shared.soundNotFoundAlertMessage
+                )
             }
         } catch {
             DispatchQueue.main.async {

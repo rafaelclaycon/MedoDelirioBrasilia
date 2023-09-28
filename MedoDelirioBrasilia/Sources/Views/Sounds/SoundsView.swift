@@ -377,6 +377,12 @@ struct SoundsView: View {
                         deleteFolderAide.updateFolderList = true
                         deleteFolderAide.showAlert = false
                     }), secondaryButton: .cancel(Text("Cancelar")))
+
+                case .twoOptionsOneRedownload:
+                    return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .default(Text("Baixar Conteúdo Novamente"), action: {
+                        guard let content = viewModel.selectedSound else { return }
+                        viewModel.redownloadServerContent(withId: content.id)
+                    }), secondaryButton: .cancel(Text("Fechar")))
                 }
             }
             .sheet(isPresented: $viewModel.isShowingShareSheet) {
@@ -444,7 +450,11 @@ struct SoundsView: View {
                     if shareAsVideo_Result.exportMethod == .saveAsVideo {
                         viewModel.showVideoSavedSuccessfullyToast()
                     } else {
-                        viewModel.shareVideo(withPath: videoResultPath, andContentId: shareAsVideo_Result.contentId)
+                        viewModel.shareVideo(
+                            withPath: videoResultPath,
+                            andContentId: shareAsVideo_Result.contentId,
+                            title: viewModel.selectedSound?.title ?? ""
+                        )
                     }
                 }
             }

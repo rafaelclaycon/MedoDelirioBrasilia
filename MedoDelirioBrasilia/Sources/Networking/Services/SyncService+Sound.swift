@@ -15,7 +15,7 @@ extension SyncService {
             let sound: Sound = try await NetworkRabbit.get(from: url)
             try injectedDatabase.insert(sound: sound)
             
-            try await downloadFile(updateEvent.contentId)
+            try await SyncService.downloadFile(updateEvent.contentId)
             
             try injectedDatabase.markAsSucceeded(updateEventId: updateEvent.id)
             Logger.shared.logSyncSuccess(description: "Som \"\(sound.title)\" criado com sucesso.", updateEventId: updateEvent.id.uuidString)
@@ -40,7 +40,7 @@ extension SyncService {
 
     func updateSoundFile(_ updateEvent: UpdateEvent) async {
         do {
-            try await downloadFile(updateEvent.contentId)
+            try await SyncService.downloadFile(updateEvent.contentId)
             try injectedDatabase.setIsFromServer(to: true, onSoundId: updateEvent.contentId)
             try injectedDatabase.markAsSucceeded(updateEventId: updateEvent.id)
             Logger.shared.logSyncSuccess(description: "Arquivo do Som \"\(updateEvent.contentId)\" atualizado.", updateEventId: updateEvent.id.uuidString)
@@ -53,7 +53,7 @@ extension SyncService {
     func deleteSound(_ updateEvent: UpdateEvent) {
         do {
             try injectedDatabase.delete(soundId: updateEvent.contentId)
-            try removeSoundFileIfExists(named: updateEvent.contentId)
+            try SyncService.removeSoundFileIfExists(named: updateEvent.contentId)
             try injectedDatabase.markAsSucceeded(updateEventId: updateEvent.id)
             Logger.shared.logSyncSuccess(description: "Som \"\(updateEvent.contentId)\" apagado com sucesso.", updateEventId: updateEvent.id.uuidString)
         } catch {
@@ -64,7 +64,7 @@ extension SyncService {
 
     // MARK: - Internal
 
-    private func removeSoundFileIfExists(named filename: String) throws {
+    static func removeSoundFileIfExists(named filename: String) throws {
         let documentsFolder = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let fileManager = FileManager.default
         let file = documentsFolder.appendingPathComponent("\(InternalFolderNames.downloadedSounds)\(filename).mp3")
@@ -74,7 +74,7 @@ extension SyncService {
         }
     }
 
-    private func downloadFile(_ contentId: String) async throws {
+    static func downloadFile(_ contentId: String) async throws {
         let fileUrl = URL(string: baseURL + "sounds/\(contentId).mp3")!
         
         try removeSoundFileIfExists(named: contentId)
