@@ -1,3 +1,10 @@
+//
+//  MainView.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 28/06/22.
+//
+
 import SwiftUI
 
 struct ToastView: View {
@@ -7,28 +14,26 @@ struct ToastView: View {
     let text: String
 
     var body: some View {
-        ZStack {
+        Label {
+            Text(text)
+                .foregroundColor(.black)
+                .font(.callout)
+                .bold()
+        } icon: {
+            Image(systemName: icon)
+                .font(Font.system(size: 20, weight: .bold))
+                .foregroundColor(iconColor)
+        }
+        .labelStyle(.centerAligned)
+        .padding()
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background {
             RoundedRectangle(cornerRadius: 50, style: .continuous)
                 .fill(Color.white)
-                .frame(height: 50)
                 .shadow(color: .gray, radius: 2, y: 2)
-            
-            HStack(spacing: 15) {
-                Image(systemName: icon)
-                    .font(Font.system(size: 20, weight: .bold))
-                    .foregroundColor(iconColor)
-                
-                Text(text)
-                    .foregroundColor(.black)
-                    .font(.callout)
-                    .bold()
-                
-                Spacer(minLength: 0)
-            }
-            .padding(.leading, 20)
         }
+        .dynamicTypeSize(.xSmall ... .accessibility1)
     }
-
 }
 
 struct ToastView_Previews: PreviewProvider {

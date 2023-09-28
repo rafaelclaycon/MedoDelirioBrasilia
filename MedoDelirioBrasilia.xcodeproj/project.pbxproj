@@ -383,6 +383,7 @@
 		D94EAB5329FC09A8004CD604 /* LocalDatabase+Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94EAB5229FC09A8004CD604 /* LocalDatabase+Sound.swift */; };
 		D94EAB5529FC141F004CD604 /* LocalDatabase+Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94EAB5429FC141F004CD604 /* LocalDatabase+Author.swift */; };
 		D94EAB5729FC375A004CD604 /* Bundle+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94EAB5629FC375A004CD604 /* Bundle+.swift */; };
+		D94EAEB42AC62958002EA512 /* CenterAlignedLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94EAEB32AC62958002EA512 /* CenterAlignedLabelStyle.swift */; };
 		D94F2FC52A1FDC7500214519 /* Marcus Majella e Paulo Gustavo - Vi-a-dooo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94F2FC32A1FDC7500214519 /* Marcus Majella e Paulo Gustavo - Vi-a-dooo.mp3 */; };
 		D94F2FC62A1FDC7500214519 /* Marcus Majella e Paulo Gustavo - Tadinha, que barra.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94F2FC42A1FDC7500214519 /* Marcus Majella e Paulo Gustavo - Tadinha, que barra.mp3 */; };
 		D94FBD342948F64F001FA3A8 /* Heraclito Sobral Pinto - Militares e Republica nao combinam.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94FBD332948F64E001FA3A8 /* Heraclito Sobral Pinto - Militares e Republica nao combinam.mp3 */; };
@@ -1848,6 +1849,7 @@
 		D94EAB5229FC09A8004CD604 /* LocalDatabase+Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+Sound.swift"; sourceTree = "<group>"; };
 		D94EAB5429FC141F004CD604 /* LocalDatabase+Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+Author.swift"; sourceTree = "<group>"; };
 		D94EAB5629FC375A004CD604 /* Bundle+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+.swift"; sourceTree = "<group>"; };
+		D94EAEB32AC62958002EA512 /* CenterAlignedLabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterAlignedLabelStyle.swift; sourceTree = "<group>"; };
 		D94F2FC32A1FDC7500214519 /* Marcus Majella e Paulo Gustavo - Vi-a-dooo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Marcus Majella e Paulo Gustavo - Vi-a-dooo.mp3"; sourceTree = "<group>"; };
 		D94F2FC42A1FDC7500214519 /* Marcus Majella e Paulo Gustavo - Tadinha, que barra.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Marcus Majella e Paulo Gustavo - Tadinha, que barra.mp3"; sourceTree = "<group>"; };
 		D94FBD332948F64E001FA3A8 /* Heraclito Sobral Pinto - Militares e Republica nao combinam.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Heraclito Sobral Pinto - Militares e Republica nao combinam.mp3"; sourceTree = "<group>"; };
@@ -4564,6 +4566,7 @@
 				D957047C28AEF733008DEF8C /* ProcessingView.swift */,
 				D9CC025C28BD9EBD0021C1E6 /* GridHelper.swift */,
 				D9B24E2128C6A68800D76F7D /* NumberBadgeView.swift */,
+				D94EAEB32AC62958002EA512 /* CenterAlignedLabelStyle.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -6344,6 +6347,7 @@
 				D955DA302AA6B94C00AC4169 /* SoundDetailView.swift in Sources */,
 				D9DCC5D72875D7E5008DD4A3 /* NotificationSymbolPlusText.swift in Sources */,
 				D960AF292845C82E00ADF1F6 /* AppStoreReviewSteward.swift in Sources */,
+				D94EAEB42AC62958002EA512 /* CenterAlignedLabelStyle.swift in Sources */,
 				D9DD1AB72AB954DA0010F700 /* CapsuleButtonStyle.swift in Sources */,
 				D95DB0F6288248A300D4FEDF /* SidebarView.swift in Sources */,
 				D9943F2C28643317002C6B97 /* FolderDetailViewViewModel.swift in Sources */,
