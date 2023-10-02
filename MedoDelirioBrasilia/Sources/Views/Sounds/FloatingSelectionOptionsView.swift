@@ -9,37 +9,61 @@ import SwiftUI
 
 struct FloatingSelectionOptionsView: View {
 
+    @Binding var areButtonsEnabled: Bool
+    @Binding var favoriteTitle: String
+    @Binding var favoriteSystemImage: String
+
+    let favoriteAction: () -> Void
+    let folderAction: () -> Void
+    let shareAction: () -> Void
+
     var body: some View {
-        HStack(spacing: 18) {
+        HStack(spacing: 14) {
             Button {
-                print("Favorite")
+                favoriteAction()
             } label: {
-                Label("Favoritar", systemImage: "star")
+                Label {
+                    Text(favoriteTitle).bold()
+                } icon: {
+                    Image(systemName: favoriteSystemImage)
+                }
             }
+            .disabled(!areButtonsEnabled)
 
             Divider()
 
             Button {
-                print("Folder")
+                folderAction()
             } label: {
-                Label("Pasta", systemImage: "folder.badge.plus")
+                Label {
+                    Text("Pasta").bold()
+                } icon: {
+                    Image(systemName: "folder.badge.plus")
+                }
             }
+            .disabled(!areButtonsEnabled)
 
             Divider()
 
             Button {
-                print("Share")
+                shareAction()
             } label: {
-                Label("Comp.", systemImage: "square.and.arrow.up")
+                Label {
+                    Text("Exportar").bold()
+                } icon: {
+                    Image(systemName: "square.and.arrow.up")
+                }
             }
+            .disabled(!areButtonsEnabled)
         }
         .padding(.horizontal, 20)
         .frame(maxHeight: 50)
         .background {
             RoundedRectangle(cornerRadius: 50, style: .continuous)
-                .fill(Color.systemBackground.opacity(0.75))
-                //.shadow(color: .gray, radius: 2, y: 2)
+                .fill(Color.systemBackground)
+                .shadow(color: .gray, radius: 2, y: 2)
         }
+        .padding(.bottom)
     }
 }
 
@@ -48,6 +72,13 @@ struct FloatingSelectionOptionsView: View {
         Rectangle()
             .fill(Color.brightGreen)
 
-        FloatingSelectionOptionsView()
+        FloatingSelectionOptionsView(
+            areButtonsEnabled: .constant(false),
+            favoriteTitle: .constant("Favoritar"),
+            favoriteSystemImage: .constant("star"),
+            favoriteAction: { },
+            folderAction: { },
+            shareAction: { }
+        )
     }
 }

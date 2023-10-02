@@ -1429,6 +1429,7 @@
 		D9FA63022924A5D000790F55 /* Lula - Por que o pobre nao ta na planilha da Faria Lima.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9FA62FB2924A5D000790F55 /* Lula - Por que o pobre nao ta na planilha da Faria Lima.mp3 */; };
 		D9FB489A2870FE7800FF90D0 /* TapticHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FB48992870FE7800FF90D0 /* TapticHelper.swift */; };
 		D9FB4D5629193CF600AAFA7A /* Fabio Porchat - Bala de borracha e gas lacrimogeneo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9FB4D5529193CF600AAFA7A /* Fabio Porchat - Bala de borracha e gas lacrimogeneo.mp3 */; };
+		D9FB70C92AC8DED4002FD8E1 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FB70C82AC8DED4002FD8E1 /* View+.swift */; };
 		D9FD0F0028B2B2EE0000616A /* polarizacao e meu pau em sua mao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9FD0EEF28B2B2ED0000616A /* polarizacao e meu pau em sua mao.mp3 */; };
 		D9FD0F0128B2B2EE0000616A /* Gemidao do Delirio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9FD0EF028B2B2ED0000616A /* Gemidao do Delirio.mp3 */; };
 		D9FD0F0228B2B2EE0000616A /* presta atencao senao como suas tripa.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9FD0EF128B2B2ED0000616A /* presta atencao senao como suas tripa.mp3 */; };
@@ -2898,6 +2899,7 @@
 		D9FA62FB2924A5D000790F55 /* Lula - Por que o pobre nao ta na planilha da Faria Lima.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - Por que o pobre nao ta na planilha da Faria Lima.mp3"; sourceTree = "<group>"; };
 		D9FB48992870FE7800FF90D0 /* TapticHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapticHelper.swift; sourceTree = "<group>"; };
 		D9FB4D5529193CF600AAFA7A /* Fabio Porchat - Bala de borracha e gas lacrimogeneo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fabio Porchat - Bala de borracha e gas lacrimogeneo.mp3"; sourceTree = "<group>"; };
+		D9FB70C82AC8DED4002FD8E1 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		D9FD0EEF28B2B2ED0000616A /* polarizacao e meu pau em sua mao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "polarizacao e meu pau em sua mao.mp3"; sourceTree = "<group>"; };
 		D9FD0EF028B2B2ED0000616A /* Gemidao do Delirio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gemidao do Delirio.mp3"; sourceTree = "<group>"; };
 		D9FD0EF128B2B2ED0000616A /* presta atencao senao como suas tripa.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "presta atencao senao como suas tripa.mp3"; sourceTree = "<group>"; };
@@ -4416,6 +4418,7 @@
 				D9917A102991530000FB6274 /* Double+Extensions.swift */,
 				D92F096429ED844300CC382F /* View+Marquee.swift */,
 				D94EAB5629FC375A004CD604 /* Bundle+.swift */,
+				D9FB70C82AC8DED4002FD8E1 /* View+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -6380,6 +6383,7 @@
 				D94D9F05298DB98D006F14A5 /* AddDateAndVersionToUserFolderTables.swift in Sources */,
 				D9C67C102A3E3C2200E74E9D /* MiniButtonStyle.swift in Sources */,
 				D92E7072283C5D990035826C /* SongsViewViewModel.swift in Sources */,
+				D9FB70C92AC8DED4002FD8E1 /* View+.swift in Sources */,
 				D92C0CAC28406EA5009CF19A /* UserShareLog.swift in Sources */,
 				D961D016283722AB00EFEDEB /* Color+.swift in Sources */,
 				D93A029A2906DEB100A85FE2 /* UserFolderContentLog.swift in Sources */,

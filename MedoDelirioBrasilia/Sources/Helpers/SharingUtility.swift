@@ -42,22 +42,21 @@ class SharingUtility {
         
         var urls = [URL]()
         
-        sounds.forEach { sound in
-            guard let path = Bundle.main.path(forResource: sound.filename, ofType: nil) else { return }
-            urls.append(URL(fileURLWithPath: path))
+        try sounds.forEach { sound in
+            urls.append(try sound.fileURL())
         }
         
-        let wppURL = URL(string: "whatsapp://app")!
-        
-        if UIApplication.shared.canOpenURL(wppURL) {
-            var filePaths = ""
-            for url in urls {
-                filePaths += "\(url.absoluteString),"
-            }
-            let urlEncodedFilePaths = filePaths.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-            let wppURLWithFilePaths = URL(string: "whatsapp://send?file=\(urlEncodedFilePaths)")!
-            UIApplication.shared.open(wppURLWithFilePaths)
-        } else {
+        // let wppURL = URL(string: "whatsapp://app")!
+
+//        if UIApplication.shared.canOpenURL(wppURL) {
+//            var filePaths = ""
+//            for url in urls {
+//                filePaths += "\(url.absoluteString),"
+//            }
+//            let urlEncodedFilePaths = filePaths.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+//            let wppURLWithFilePaths = URL(string: "whatsapp://send?file=\(urlEncodedFilePaths)")!
+//            UIApplication.shared.open(wppURLWithFilePaths)
+//        } else {
             let activityVC = UIActivityViewController(activityItems: urls, applicationActivities: nil)
             DispatchQueue.main.async {
                 UIApplication.shared.keyWindow?.rootViewController?.present(activityVC, animated: true, completion: nil)
@@ -77,7 +76,6 @@ class SharingUtility {
                     completionHandler(false)
                 }
             }
-        }
     }
     
     static func shareVideoFromSound(withPath filepath: String, andContentId contentId: String, shareSheetDelayInSeconds: Double, completionHandler: @escaping (Bool) -> Void) throws {

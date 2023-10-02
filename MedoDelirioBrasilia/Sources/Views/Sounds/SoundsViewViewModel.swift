@@ -305,7 +305,23 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
         currentSoundsListMode.wrappedValue = .regular
         selectionKeeper.removeAll()
     }
-    
+
+    func addRemoveManyFromFavorites() {
+        // Need to get count before clearing the Set.
+        let selectedCount: Int = selectionKeeper.count
+
+        if currentViewMode == .favorites || allSelectedAreFavorites() {
+            removeSelectedFromFavorites()
+            stopSelecting()
+            reloadList(currentMode: currentViewMode)
+            sendUsageMetricToServer(action: "didRemoveManySoundsFromFavorites(\(selectedCount))")
+        } else {
+            addSelectedToFavorites()
+            stopSelecting()
+            sendUsageMetricToServer(action: "didAddManySoundsToFavorites(\(selectedCount))")
+        }
+    }
+
     func addSelectedToFavorites() {
         guard selectionKeeper.count > 0 else { return }
         selectionKeeper.forEach { selectedSound in
@@ -339,8 +355,10 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
                     self.displayToast(toastText: Shared.soundSharedSuccessfullyMessage)
                 }
             }
+        } catch SoundError.fileNotFound(let soundTitle) {
+            showUnableToGetSoundAlert(soundTitle)
         } catch {
-            showUnableToGetSoundAlert("")
+            showShareManyIssueAlert(error.localizedDescription)
         }
     }
     
@@ -469,6 +487,14 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
         alertType = .twoOptionsOneRedownload
         alertTitle = Shared.contentNotFoundAlertTitle(sound.title)
         alertMessage = Shared.serverContentNotAvailableRedownloadMessage
+        showAlert = true
+    }
+
+    func showShareManyIssueAlert(_ localizedError: String) {
+        TapticFeedback.error()
+        alertType = .singleOption
+        alertTitle = "Problema ao Tentar Exportar Vários Sons"
+        alertMessage = "Houve um problema desconhecido ao tentar compartilhar vários sons. Por favor, envie um print desse erro para o desenvolvedor (e-mail nas Configurações):\n\n\(localizedError)"
         showAlert = true
     }
 

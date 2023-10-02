@@ -72,6 +72,11 @@ struct SoundsView: View {
     @AppStorage("lastUpdateAttempt") private var lastUpdateAttempt = ""
     @AppStorage("lastUpdateDate") private var lastUpdateDate = "all"
 
+    // Select Many
+    @State private var areManyActionButtonsEnabled = false
+    @State private var favoriteButtonTitle = "Favoritar"
+    @State private var favoriteButtonImage = "star"
+
     private var searchResults: [Sound] {
         if searchText.isEmpty {
             return viewModel.sounds
@@ -122,7 +127,11 @@ struct SoundsView: View {
     private var isLoadingSounds: Bool {
         searchResults.isEmpty && viewModel.sounds.isEmpty
     }
-    
+
+    private var isAllowedToRefresh: Bool {
+        viewModel.currentViewMode == .allSounds && currentSoundsListMode == .regular
+    }
+
     var body: some View {
         ZStack {
             VStack {
@@ -304,9 +313,11 @@ struct SoundsView: View {
                                         .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? soundCountPhoneBottomPadding : soundCountPadBottomPadding)
                                 }
                             }
-                            .refreshable {
-                                Task {
-                                    await viewModel.sync(lastAttempt: lastUpdateAttempt)
+                            .if(isAllowedToRefresh) {
+                                $0.refreshable {
+                                    Task {
+                                        await viewModel.sync(lastAttempt: lastUpdateAttempt)
+                                    }
                                 }
                             }
                         }
@@ -483,6 +494,17 @@ struct SoundsView: View {
                     }
                 }
             }
+            .onChange(of: viewModel.selectionKeeper.count) {
+                guard currentSoundsListMode == .selection else { return }
+                areManyActionButtonsEnabled = $0 > 0
+                if viewModel.currentViewMode == .favorites || viewModel.allSelectedAreFavorites() {
+                    favoriteButtonTitle = "Desfav."
+                    favoriteButtonImage = "star.slash"
+                } else {
+                    favoriteButtonTitle = "Favoritar"
+                    favoriteButtonImage = "star"
+                }
+            }
             .oneTimeTask {
                 print("SOUNDS VIEW - ONE TIME TASK")
                 if viewModel.currentViewMode == .allSounds {
@@ -498,7 +520,30 @@ struct SoundsView: View {
                         .padding()
                 }
             }
-            
+
+            if currentSoundsListMode == .selection {
+                VStack {
+                    Spacer()
+
+                    FloatingSelectionOptionsView(
+                        areButtonsEnabled: $areManyActionButtonsEnabled,
+                        favoriteTitle: $favoriteButtonTitle,
+                        favoriteSystemImage: $favoriteButtonImage,
+                        favoriteAction: {
+                            viewModel.addRemoveManyFromFavorites()
+                        },
+                        folderAction: {
+                            viewModel.prepareSelectedToAddToFolder()
+                            subviewToOpen = .addToFolderView
+                            showingModalView = true
+                        },
+                        shareAction: {
+                            viewModel.shareSelected()
+                        }
+                    )
+                }
+            }
+
             if viewModel.showToastView {
                 VStack {
                     Spacer()
@@ -546,12 +591,6 @@ struct SoundsView: View {
                 Text("Cancelar")
                     .bold()
             }
-            
-//            Button {
-//                viewModel.shareSelected()
-//            } label: {
-//                Label("Compartilhar", systemImage: "square.and.arrow.up")
-//            }.disabled(viewModel.selectionKeeper.count == 0 || viewModel.selectionKeeper.count > 5)
         } else {
             if UIDevice.current.userInterfaceIdiom == .phone {
                 Button {
@@ -592,33 +631,7 @@ struct SoundsView: View {
                         authorSortAction = AuthorSortOption(rawValue: authorSortOption) ?? .nameAscending
                     })
                 } else {
-                    if currentSoundsListMode == .selection {
-                        Button {
-                            // Need to get count before clearing the Set.
-                            let selectedCount: Int = viewModel.selectionKeeper.count
-                            
-                            if viewModel.currentViewMode == .favorites || viewModel.allSelectedAreFavorites() {
-                                viewModel.removeSelectedFromFavorites()
-                                viewModel.stopSelecting()
-                                viewModel.reloadList(currentMode: viewModel.currentViewMode)
-                                viewModel.sendUsageMetricToServer(action: "didRemoveManySoundsFromFavorites(\(selectedCount))")
-                            } else {
-                                viewModel.addSelectedToFavorites()
-                                viewModel.stopSelecting()
-                                viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFavorites(\(selectedCount))")
-                            }
-                        } label: {
-                            Image(systemName: viewModel.currentViewMode == .favorites || viewModel.allSelectedAreFavorites() ? "star.slash" : "star")
-                        }.disabled(viewModel.selectionKeeper.count == 0)
-                        
-                        Button {
-                            viewModel.prepareSelectedToAddToFolder()
-                            subviewToOpen = .addToFolderView
-                            showingModalView = true
-                        } label: {
-                            Image(systemName: "folder.badge.plus")
-                        }.disabled(viewModel.selectionKeeper.count == 0)
-                    } else {
+                    if currentSoundsListMode == .regular {
                         SyncStatusView()
                             .onTapGesture {
                                 subviewToOpen = .syncInfoView

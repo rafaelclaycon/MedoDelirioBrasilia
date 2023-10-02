@@ -48,12 +48,12 @@ struct Song: Hashable, Codable, Identifiable, MedoContentProtocol {
             let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
             let fileUrl = documentsUrl.appendingPathComponent("\(InternalFolderNames.downloadedSongs)\(id).mp3")
             guard FileManager().fileExists(atPath: fileUrl.path) else {
-                throw SoundError.fileNotFound
+                throw SongError.fileNotFound(title: self.title)
             }
             return fileUrl
         } else {
             guard let path = Bundle.main.path(forResource: self.filename, ofType: nil) else {
-                throw SongError.fileNotFound
+                throw SongError.fileNotFound(title: self.title)
             }
             return URL(fileURLWithPath: path)
         }
@@ -62,5 +62,5 @@ struct Song: Hashable, Codable, Identifiable, MedoContentProtocol {
 
 enum SongError: Error {
 
-    case fileNotFound
+    case fileNotFound(title: String)
 }
