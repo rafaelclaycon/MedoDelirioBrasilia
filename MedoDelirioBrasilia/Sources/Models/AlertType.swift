@@ -9,7 +9,7 @@ import Foundation
 
 enum AlertType {
 
-    case singleOption, twoOptions, twoOptionsOneDelete, twoOptionsOneRedownload
+    case singleOption, twoOptions, twoOptionsOneDelete, twoOptionsOneRedownload, twoOptionsOneContinue
 }
 
 enum AuthorDetailAlertType {

@@ -12,6 +12,7 @@ struct FloatingSelectionOptionsView: View {
     @Binding var areButtonsEnabled: Bool
     @Binding var favoriteTitle: String
     @Binding var favoriteSystemImage: String
+    @Binding var shareIsProcessing: Bool
 
     let favoriteAction: () -> Void
     let folderAction: () -> Void
@@ -48,14 +49,17 @@ struct FloatingSelectionOptionsView: View {
             Button {
                 shareAction()
             } label: {
-                Label {
-                    Text("Exportar").bold()
-                } icon: {
-                    Image(systemName: "square.and.arrow.up")
+                if shareIsProcessing {
+                    ProgressView()
+                } else {
+                    Label {
+                        Text("Exportar").bold()
+                    } icon: {
+                        Image(systemName: "square.and.arrow.up")
+                    }
                 }
             }
-            .disabled(true)
-            //.disabled(!areButtonsEnabled)
+            .disabled(!areButtonsEnabled)
         }
         .padding(.horizontal, 20)
         .frame(maxHeight: 50)
@@ -77,6 +81,7 @@ struct FloatingSelectionOptionsView: View {
             areButtonsEnabled: .constant(false),
             favoriteTitle: .constant("Favoritar"),
             favoriteSystemImage: .constant("star"),
+            shareIsProcessing: .constant(false),
             favoriteAction: { },
             folderAction: { },
             shareAction: { }

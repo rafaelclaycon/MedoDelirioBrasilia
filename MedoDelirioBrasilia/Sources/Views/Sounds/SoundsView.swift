@@ -76,6 +76,7 @@ struct SoundsView: View {
     @State private var areManyActionButtonsEnabled = false
     @State private var favoriteButtonTitle = "Favoritar"
     @State private var favoriteButtonImage = "star"
+    @State private var shareManyIsProcessing = false
 
     private var searchResults: [Sound] {
         if searchText.isEmpty {
@@ -394,6 +395,13 @@ struct SoundsView: View {
                         guard let content = viewModel.selectedSound else { return }
                         viewModel.redownloadServerContent(withId: content.id)
                     }), secondaryButton: .cancel(Text("Fechar")))
+
+                case .twoOptionsOneContinue:
+                    return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .default(Text("Continuar"), action: {
+                        shareManyIsProcessing = true
+                        viewModel.shareSelected()
+                        shareManyIsProcessing = false
+                    }), secondaryButton: .cancel(Text("Cancelar")))
                 }
             }
             .sheet(isPresented: $viewModel.isShowingShareSheet) {
@@ -530,6 +538,7 @@ struct SoundsView: View {
                         areButtonsEnabled: $areManyActionButtonsEnabled,
                         favoriteTitle: $favoriteButtonTitle,
                         favoriteSystemImage: $favoriteButtonImage,
+                        shareIsProcessing: $shareManyIsProcessing,
                         favoriteAction: {
                             viewModel.addRemoveManyFromFavorites()
                             if !searchText.isEmpty {
@@ -542,7 +551,7 @@ struct SoundsView: View {
                             showingModalView = true
                         },
                         shareAction: {
-                            viewModel.shareSelected()
+                            viewModel.showShareManyAlert()
                         }
                     )
                 }

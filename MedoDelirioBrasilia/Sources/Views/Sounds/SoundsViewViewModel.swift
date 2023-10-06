@@ -490,6 +490,14 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
         showAlert = true
     }
 
+    func showShareManyAlert() {
+        TapticFeedback.error()
+        alertType = .twoOptionsOneContinue
+        alertTitle = "Recurso Incompatível com o WhatsApp"
+        alertMessage = "Devido a um problema técnico, o WhatsApp recebe apenas o primeiro som selecionado. Use essa função para Salvar em Arquivos ou com o Telegram.\n\nEssa mensagem será mostrada mais 2 vezes."
+        showAlert = true
+    }
+
     func showShareManyIssueAlert(_ localizedError: String) {
         TapticFeedback.error()
         alertType = .singleOption
