@@ -54,7 +54,8 @@ struct FloatingSelectionOptionsView: View {
                     Image(systemName: "square.and.arrow.up")
                 }
             }
-            .disabled(!areButtonsEnabled)
+            .disabled(true)
+            //.disabled(!areButtonsEnabled)
         }
         .padding(.horizontal, 20)
         .frame(maxHeight: 50)

@@ -482,6 +482,7 @@ struct SoundsView: View {
 
                     if currentSoundsListMode == .selection {
                         viewModel.stopSelecting()
+                        searchText = ""
                     }
 
                     viewModel.displayToast(toastText: pluralization.getAddedToFolderToastText(folderName: folderName)) {
@@ -531,6 +532,9 @@ struct SoundsView: View {
                         favoriteSystemImage: $favoriteButtonImage,
                         favoriteAction: {
                             viewModel.addRemoveManyFromFavorites()
+                            if !searchText.isEmpty {
+                                searchText = ""
+                            }
                         },
                         folderAction: {
                             viewModel.prepareSelectedToAddToFolder()
