@@ -253,6 +253,11 @@ struct SongsView: View {
                 }
                 .transition(.moveAndFade)
             }
+
+            if viewModel.isShowingProcessingView {
+                ProcessingView(message: "Baixando música...")
+                    .padding(.bottom)
+            }
         }
     }
     

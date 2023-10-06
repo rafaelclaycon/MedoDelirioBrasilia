@@ -26,6 +26,9 @@ class SongsViewViewModel: ObservableObject {
     @Published var isShowingShareSheet: Bool = false
     @Published var shareBannerMessage: String = .empty
 
+    // Redownload Content
+    @Published var isShowingProcessingView: Bool = false
+
     // Alerts
     @Published var alertTitle: String = ""
     @Published var alertMessage: String = ""
@@ -198,17 +201,20 @@ class SongsViewViewModel: ObservableObject {
         Task {
             do {
                 guard let fileUrl = URL(string: baseURL + "songs/\(contentId).mp3") else { return }
+                isShowingProcessingView = true
                 try await SyncService.downloadFile(
                     at: fileUrl,
                     to: InternalFolderNames.downloadedSongs,
                     contentId: contentId
                 )
+                isShowingProcessingView = false
                 displayToast(
                     "checkmark",
                     .green,
                     toastText: "Conteúdo baixado com sucesso. Tente tocá-lo novamente."
                 )
             } catch {
+                isShowingProcessingView = false
                 displayToast(
                     "exclamationmark.triangle.fill",
                     .orange,
