@@ -140,6 +140,14 @@ class AppPersistentMemory {
         return String(value as! String)
     }
 
+    static func getShareManyMessageShowCount() -> Int {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "shareManyMessageShowCount") else {
+            return 0
+        }
+        return Int(value as! Int)
+    }
+
     // MARK: - Setters
     
     static func setHasSentDeviceModelToServer(to newValue: Bool) {
@@ -215,5 +223,11 @@ class AppPersistentMemory {
     static func setHasSeenBetaSurveyBanner(to newValue: Bool) {
         let userDefaults = UserDefaults.standard
         userDefaults.set(newValue, forKey: "hasSeenBetaSurveyBanner")
+    }
+
+    static func increaseShareManyMessageShowCountByOne() {
+        let currentCount = AppPersistentMemory.getShareManyMessageShowCount()
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(currentCount + 1, forKey: "shareManyMessageShowCount")
     }
 }

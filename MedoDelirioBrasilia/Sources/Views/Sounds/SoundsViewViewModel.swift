@@ -28,11 +28,17 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
 
     @Published var currentActivity: NSUserActivity? = nil
 
+    // Search
+    @Published var searchText: String = ""
+
     // Sharing
     @Published var iPadShareSheet = ActivityViewController(activityItems: [URL(string: "https://www.apple.com")!])
     @Published var isShowingShareSheet: Bool = false
     @Published var shareBannerMessage: String = .empty
-    
+
+    // Select Many
+    @Published var shareManyIsProcessing = false
+
     // Alerts
     @Published var alertTitle: String = ""
     @Published var alertMessage: String = ""
@@ -304,6 +310,8 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
     func stopSelecting() {
         currentSoundsListMode.wrappedValue = .regular
         selectionKeeper.removeAll()
+        selectedSounds = nil
+        searchText = ""
     }
 
     func addRemoveManyFromFavorites() {
@@ -348,16 +356,29 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
     
     func shareSelected() {
         guard selectionKeeper.count > 0 else { return }
+
+        shareManyIsProcessing = true
+
         selectedSounds = sounds.filter({ selectionKeeper.contains($0.id) })
+        guard selectedSounds?.count ?? 0 > 0 else { return }
+
+        let successfulMessage = selectedSounds!.count > 1 ? Shared.soundsExportedSuccessfullyMessage : Shared.soundExportedSuccessfullyMessage
+
         do {
-            try SharingUtility.share(sounds: selectedSounds ?? [Sound]()) { didShareSuccessfully in
+            try SharingUtility.share(sounds: selectedSounds!) { didShareSuccessfully in
+                self.shareManyIsProcessing = false
+                self.stopSelecting()
                 if didShareSuccessfully {
-                    self.displayToast(toastText: Shared.soundSharedSuccessfullyMessage)
+                    self.displayToast(toastText: successfulMessage)
                 }
             }
         } catch SoundError.fileNotFound(let soundTitle) {
+            shareManyIsProcessing = false
+            stopSelecting()
             showUnableToGetSoundAlert(soundTitle)
         } catch {
+            shareManyIsProcessing = false
+            stopSelecting()
             showShareManyIssueAlert(error.localizedDescription)
         }
     }
@@ -491,10 +512,21 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
     }
 
     func showShareManyAlert() {
-        TapticFeedback.error()
+        let messageDisplayCount = AppPersistentMemory.getShareManyMessageShowCount()
+
+        guard messageDisplayCount < 2 else { return shareSelected() }
+
+        var timesMessage = ""
+        if messageDisplayCount == 0 {
+            timesMessage = "2 vezes"
+        } else {
+            timesMessage = "1 vez"
+        }
+
+        TapticFeedback.warning()
         alertType = .twoOptionsOneContinue
-        alertTitle = "Recurso Incompatível com o WhatsApp"
-        alertMessage = "Devido a um problema técnico, o WhatsApp recebe apenas o primeiro som selecionado. Use essa função para Salvar em Arquivos ou com o Telegram.\n\nEssa mensagem será mostrada mais 2 vezes."
+        alertTitle = "Incompatível com o WhatsApp"
+        alertMessage = "Devido a um problema técnico, o WhatsApp recebe apenas o primeiro som selecionado. Use essa função para Salvar em Arquivos ou com o Telegram.\n\nEssa mensagem será mostrada mais \(timesMessage)."
         showAlert = true
     }
 

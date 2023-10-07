@@ -46,20 +46,21 @@ struct FloatingSelectionOptionsView: View {
 
             Divider()
 
-            Button {
-                shareAction()
-            } label: {
-                if shareIsProcessing {
-                    ProgressView()
-                } else {
+            if shareIsProcessing {
+                ProgressView()
+                    .frame(width: 80)
+            } else {
+                Button {
+                    shareAction()
+                } label: {
                     Label {
                         Text("Exportar").bold()
                     } icon: {
                         Image(systemName: "square.and.arrow.up")
                     }
                 }
+                .disabled(!areButtonsEnabled)
             }
-            .disabled(!areButtonsEnabled)
         }
         .padding(.horizontal, 20)
         .frame(maxHeight: 50)
@@ -81,7 +82,7 @@ struct FloatingSelectionOptionsView: View {
             areButtonsEnabled: .constant(false),
             favoriteTitle: .constant("Favoritar"),
             favoriteSystemImage: .constant("star"),
-            shareIsProcessing: .constant(false),
+            shareIsProcessing: .constant(true),
             favoriteAction: { },
             folderAction: { },
             shareAction: { }

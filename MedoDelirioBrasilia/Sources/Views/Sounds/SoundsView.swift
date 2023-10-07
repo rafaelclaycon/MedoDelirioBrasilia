@@ -15,7 +15,6 @@ struct SoundsView: View {
 
     @StateObject var viewModel: SoundsViewViewModel
     @Binding var currentSoundsListMode: SoundsListMode
-    @State private var searchText: String = .empty
     
     @State private var listWidth: CGFloat = 700
     @State private var columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
@@ -76,21 +75,20 @@ struct SoundsView: View {
     @State private var areManyActionButtonsEnabled = false
     @State private var favoriteButtonTitle = "Favoritar"
     @State private var favoriteButtonImage = "star"
-    @State private var shareManyIsProcessing = false
 
     private var searchResults: [Sound] {
-        if searchText.isEmpty {
+        if viewModel.searchText.isEmpty {
             return viewModel.sounds
         } else {
             return viewModel.sounds.filter { sound in
                 let searchString = "\(sound.description.lowercased().withoutDiacritics()) \(sound.authorName?.lowercased().withoutDiacritics() ?? "")"
-                return searchString.contains(searchText.lowercased().withoutDiacritics())
+                return searchString.contains(viewModel.searchText.lowercased().withoutDiacritics())
             }
         }
     }
     
     private var showNoFavoritesView: Bool {
-        searchResults.isEmpty && viewModel.currentViewMode == .favorites && searchText.isEmpty
+        searchResults.isEmpty && viewModel.currentViewMode == .favorites && viewModel.searchText.isEmpty
     }
     
     private var title: String {
@@ -121,7 +119,7 @@ struct SoundsView: View {
         if viewModel.currentViewMode == .byAuthor {
             return authorSearchText.isEmpty
         } else {
-            return searchText.isEmpty
+            return viewModel.searchText.isEmpty
         }
     }
 
@@ -172,14 +170,14 @@ struct SoundsView: View {
                                         YoureOfflineView(isBeingShown: $shouldDisplayYoureOfflineBanner)
                                     }
 
-                                    if shouldDisplayRecurringDonationBanner, searchText.isEmpty {
+                                    if shouldDisplayRecurringDonationBanner, viewModel.searchText.isEmpty {
                                         RecurringDonationBanner(isBeingShown: $shouldDisplayRecurringDonationBanner)
                                             .padding(.horizontal, 10)
                                     }
 
                                     LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
                                         if searchResults.isEmpty {
-                                            NoSearchResultsView(searchText: $searchText)
+                                            NoSearchResultsView(searchText: $viewModel.searchText)
                                                 .padding(.vertical, UIScreen.main.bounds.height / 4)
                                         } else {
                                             ForEach(searchResults) { sound in
@@ -271,7 +269,7 @@ struct SoundsView: View {
                                             }
                                         }
                                     }
-                                    .searchable(text: $searchText)
+                                    .searchable(text: $viewModel.searchText)
                                     .disableAutocorrection(true)
                                     .padding(.horizontal)
                                     .padding(.top, 7)
@@ -305,7 +303,7 @@ struct SoundsView: View {
                                         .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? explicitOffWarningPhoneBottomPadding : explicitOffWarningPadBottomPadding)
                                 }
 
-                                if searchText.isEmpty, viewModel.currentViewMode != .favorites {
+                                if viewModel.searchText.isEmpty, viewModel.currentViewMode != .favorites {
                                     Text("\(viewModel.sounds.count) SONS.")
                                         .font(.footnote)
                                         .foregroundColor(.gray)
@@ -398,9 +396,8 @@ struct SoundsView: View {
 
                 case .twoOptionsOneContinue:
                     return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .default(Text("Continuar"), action: {
-                        shareManyIsProcessing = true
+                        AppPersistentMemory.increaseShareManyMessageShowCountByOne()
                         viewModel.shareSelected()
-                        shareManyIsProcessing = false
                     }), secondaryButton: .cancel(Text("Cancelar")))
                 }
             }
@@ -490,7 +487,6 @@ struct SoundsView: View {
 
                     if currentSoundsListMode == .selection {
                         viewModel.stopSelecting()
-                        searchText = ""
                     }
 
                     viewModel.displayToast(toastText: pluralization.getAddedToFolderToastText(folderName: folderName)) {
@@ -538,12 +534,9 @@ struct SoundsView: View {
                         areButtonsEnabled: $areManyActionButtonsEnabled,
                         favoriteTitle: $favoriteButtonTitle,
                         favoriteSystemImage: $favoriteButtonImage,
-                        shareIsProcessing: $shareManyIsProcessing,
+                        shareIsProcessing: $viewModel.shareManyIsProcessing,
                         favoriteAction: {
                             viewModel.addRemoveManyFromFavorites()
-                            if !searchText.isEmpty {
-                                searchText = ""
-                            }
                         },
                         folderAction: {
                             viewModel.prepareSelectedToAddToFolder()
@@ -705,16 +698,16 @@ struct SoundsView: View {
         }
         viewModel.currentViewMode = .allSounds
 
-        if searchText.isEmpty == false {
-            searchText = .empty
+        if !viewModel.searchText.isEmpty {
+            viewModel.searchText = ""
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
-        
+
         viewModel.highlightKeeper.insert(soundId)
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
             viewModel.highlightKeeper.remove(soundId)
         }
-        
+
         self.trendsHelper.soundIdToGoTo = .empty
         return true // This tells the ScrollViewProxy "yes, go ahead and scroll, there was a soundId received". Unfortunately, passing the proxy as a parameter did not work and this code was made more complex because of this.
     }
