@@ -119,7 +119,7 @@ class Podium {
                 try? self.database.insert(audienceStat: audienceStat!)
             }
             
-            // Let the caller now
+            // Let the caller know
             completionHandler(.successful, .empty)
         }
     }

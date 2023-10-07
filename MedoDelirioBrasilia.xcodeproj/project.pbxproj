@@ -1277,7 +1277,7 @@
 		D9BE7703290A8E8300C8C0A6 /* Galvao Bueno - Virou passeio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BE7702290A8E8300C8C0A6 /* Galvao Bueno - Virou passeio.mp3 */; };
 		D9BF9091284257F500BDDD7D /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF9090284257F500BDDD7D /* Shared.swift */; };
 		D9BF90972842D3CB00BDDD7D /* NoSoundsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF90962842D3CB00BDDD7D /* NoSoundsView.swift */; };
-		D9BF90BE2842EAED00BDDD7D /* TopChartCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF90BD2842EAED00BDDD7D /* TopChartCellView.swift */; };
+		D9BF90BE2842EAED00BDDD7D /* TopChartRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BF90BD2842EAED00BDDD7D /* TopChartRow.swift */; };
 		D9BFD8CC29059B4800E1AF6F /* FoldersAreTagsBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BFD8CB29059B4800E1AF6F /* FoldersAreTagsBannerView.swift */; };
 		D9C1372729063A78003E4ABF /* FolderResearchSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C1372629063A78003E4ABF /* FolderResearchSettingsView.swift */; };
 		D9C1372B29063D7D003E4ABF /* PrivacySettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C1372A29063D7D003E4ABF /* PrivacySettingsView.swift */; };
@@ -2747,7 +2747,7 @@
 		D9BE7702290A8E8300C8C0A6 /* Galvao Bueno - Virou passeio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Galvao Bueno - Virou passeio.mp3"; sourceTree = "<group>"; };
 		D9BF9090284257F500BDDD7D /* Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shared.swift; sourceTree = "<group>"; };
 		D9BF90962842D3CB00BDDD7D /* NoSoundsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSoundsView.swift; sourceTree = "<group>"; };
-		D9BF90BD2842EAED00BDDD7D /* TopChartCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartCellView.swift; sourceTree = "<group>"; };
+		D9BF90BD2842EAED00BDDD7D /* TopChartRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartRow.swift; sourceTree = "<group>"; };
 		D9BFD8CB29059B4800E1AF6F /* FoldersAreTagsBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoldersAreTagsBannerView.swift; sourceTree = "<group>"; };
 		D9C1372629063A78003E4ABF /* FolderResearchSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderResearchSettingsView.swift; sourceTree = "<group>"; };
 		D9C1372A29063D7D003E4ABF /* PrivacySettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacySettingsView.swift; sourceTree = "<group>"; };
@@ -4837,7 +4837,7 @@
 			children = (
 				D958B1AF28394EA40010F133 /* TrendsView.swift */,
 				D957509528445EC30094AEA6 /* TrendsViewViewModel.swift */,
-				D9BF90BD2842EAED00BDDD7D /* TopChartCellView.swift */,
+				D9BF90BD2842EAED00BDDD7D /* TopChartRow.swift */,
 				D998F28E284F177B0013E709 /* TrendsDisabledView.swift */,
 				D9DB6F7E28CBDA8000E24BDE /* MostSharedByMeView.swift */,
 				D97B2DD528E3E85400C3B50B /* MostSharedByMeViewViewModel.swift */,
@@ -6469,7 +6469,7 @@
 				D90F6A6628446C250050FFFF /* TrendsSettingsView.swift in Sources */,
 				D92C0CAA28405B2D009CF19A /* NoFavoritesView.swift in Sources */,
 				D957048328AFCC93008DEF8C /* ChangeAppIconView.swift in Sources */,
-				D9BF90BE2842EAED00BDDD7D /* TopChartCellView.swift in Sources */,
+				D9BF90BE2842EAED00BDDD7D /* TopChartRow.swift in Sources */,
 				D99C987A2ABF2BE400AE11CE /* SoundsViewMode.swift in Sources */,
 				D9943F1E286419C2002C6B97 /* LocalDatabase+TopChart.swift in Sources */,
 				D9C67C152A3E3D7E00E74E9D /* LargeCapsuleBorderedProminentButtonStyle.swift in Sources */,

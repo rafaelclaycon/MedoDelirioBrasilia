@@ -108,7 +108,7 @@ struct MostSharedByAudienceView: View {
                 VStack {
                     LazyVGrid(columns: UIDevice.isMac ? columnsMac : columns, spacing: .zero) {
                         ForEach(list) { item in
-                            TopChartCellView(item: item)
+                            TopChartRow(item: item)
                                 .onTapGesture {
                                     navigateTo(sound: item.contentId)
                                 }

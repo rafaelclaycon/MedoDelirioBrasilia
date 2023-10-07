@@ -54,7 +54,7 @@ struct MostSharedByMeView: View {
                     
                     LazyVGrid(columns: columns, spacing: 14) {
                         ForEach(viewModel.personalTop5!) { item in
-                            TopChartCellView(item: item)
+                            TopChartRow(item: item)
                         }
                     }
                     .padding(.bottom)

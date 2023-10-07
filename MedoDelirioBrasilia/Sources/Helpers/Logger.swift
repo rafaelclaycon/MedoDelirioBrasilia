@@ -17,14 +17,20 @@ class Logger: LoggerProtocol {
 
     static let shared = Logger()
 
-    func logSharedSound(contentId: String, destination: ShareDestination, destinationBundleId: String) {
-        let shareLog = UserShareLog(installId: UIDevice.customInstallId,
-                                    contentId: contentId,
-                                    contentType: ContentType.sound.rawValue,
-                                    dateTime: Date(),
-                                    destination: destination.rawValue,
-                                    destinationBundleId: destinationBundleId,
-                                    sentToServer: false)
+    func logSharedSound(
+        contentId: String,
+        destination: ShareDestination,
+        destinationBundleId: String
+    ) {
+        let shareLog = UserShareLog(
+            installId: UIDevice.customInstallId,
+            contentId: contentId,
+            contentType: ContentType.sound.rawValue,
+            dateTime: .now,
+            destination: destination.rawValue,
+            destinationBundleId: destinationBundleId,
+            sentToServer: false
+        )
         try? LocalDatabase.shared.insert(userShareLog: shareLog)
     }
 
