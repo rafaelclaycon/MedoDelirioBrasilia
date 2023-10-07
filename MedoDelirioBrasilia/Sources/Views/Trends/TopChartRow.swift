@@ -9,8 +9,8 @@ import SwiftUI
 
 struct TopChartRow: View {
 
-    @State var item: TopChartItem
-    
+    let item: TopChartItem
+
     private var isEven: Bool {
         if let idAsInt = Int(item.rankNumber), idAsInt.isMultiple(of: 2) {
             return true
