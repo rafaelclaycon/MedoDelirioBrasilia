@@ -5,14 +5,18 @@
 //  Created by Rafael Claycon Schmitt on 11/10/22.
 //
 
+import Foundation
 import Combine
 
 class MostSharedByMeViewViewModel: ObservableObject {
 
-    @Published var personalTop5: [TopChartItem]? = nil
-    
-    func reloadPersonalList(withTopChartItems topChartItems: [TopChartItem]?) {
-        self.personalTop5 = topChartItems
-    }
+    @Published var personalTop10: [TopChartItem]? = nil
 
+    @Published var viewState: TrendsViewState = .noDataToDisplay
+
+    func reloadPersonalList() {
+        Task { @MainActor in
+            self.personalTop10 = podium.getTop10SoundsSharedByTheUser()
+        }
+    }
 }
