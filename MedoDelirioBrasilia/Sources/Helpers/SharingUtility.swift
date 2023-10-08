@@ -66,9 +66,12 @@ class SharingUtility {
                     guard let activity = activity else {
                         return
                     }
-                    _ = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
-    //                Logger.logSharedSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
-                    
+
+                    let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
+                    sounds.forEach {
+                        Logger.shared.logSharedSound(contentId: $0.id, destination: destination, destinationBundleId: activity.rawValue)
+                    }
+
                     AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
                     
                     completionHandler(true)
@@ -77,7 +80,7 @@ class SharingUtility {
                 }
             }
     }
-    
+
     static func shareVideoFromSound(withPath filepath: String, andContentId contentId: String, shareSheetDelayInSeconds: Double, completionHandler: @escaping (Bool) -> Void) throws {
         guard filepath.isEmpty == false else {
             return
