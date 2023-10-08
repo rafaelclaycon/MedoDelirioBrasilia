@@ -49,38 +49,40 @@ struct TrendsView: View {
                         Picker("Exibição", selection: $currentViewMode) {
                             Text("Da Audiência")
                                 .tag(ViewMode.audience)
-                            
+
                             Text("Minhas")
                                 .tag(ViewMode.me)
                         }
                         .pickerStyle(.segmented)
-                        .background(.regularMaterial)
                         .padding(.all)
-                        
-                        VStack(alignment: .leading, spacing: 10) {
-                            if showSoundsMostSharedByTheAudience {
-                                MostSharedByAudienceView(tabSelection: $tabSelection,
-                                                         activePadScreen: $activePadScreen)
-                                    .environmentObject(trendsHelper)
-                                    .padding(.top, 10)
+
+                        if currentViewMode == .audience {
+                            VStack(alignment: .leading, spacing: 10) {
+                                if showSoundsMostSharedByTheAudience {
+                                    MostSharedByAudienceView(tabSelection: $tabSelection,
+                                                             activePadScreen: $activePadScreen)
+                                        .environmentObject(trendsHelper)
+                                }
                             }
-                            
-                            //if showMostSharedSoundsByTheUser {
-                                MostSharedByMeView()
-                                    .padding(.top, 10)
-                            //}
-                            
-                            /*if showDayOfTheWeekTheUserSharesTheMost {
-                             Text("Dia da Semana No Qual Eu Mais Compartilho")
-                             .font(.title2)
-                             .padding(.horizontal)
-                             }*/
-                            
-                            /*if showAppsThroughWhichTheUserSharesTheMost {
-                             Text("Apps Pelos Quais Você Mais Compartilha")
-                             .font(.title2)
-                             .padding(.horizontal)
-                             }*/
+                        } else {
+                            VStack(alignment: .leading, spacing: 10) {
+                                //if showMostSharedSoundsByTheUser {
+                                    MostSharedByMeView()
+                                        .environmentObject(trendsHelper)
+                                //}
+
+                                /*if showDayOfTheWeekTheUserSharesTheMost {
+                                 Text("Dia da Semana No Qual Eu Mais Compartilho")
+                                 .font(.title2)
+                                 .padding(.horizontal)
+                                 }*/
+
+                                /*if showAppsThroughWhichTheUserSharesTheMost {
+                                 Text("Apps Pelos Quais Você Mais Compartilha")
+                                 .font(.title2)
+                                 .padding(.horizontal)
+                                 }*/
+                            }
                         }
                     }
                 } else {
