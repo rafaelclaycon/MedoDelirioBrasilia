@@ -17,10 +17,16 @@ struct TrendsView: View {
     @Binding var tabSelection: PhoneTab
     @Binding var activePadScreen: PadScreen?
     @State var currentViewMode: ViewMode = .audience
-    @State var showAlert = false
-    @State var alertTitle = ""
+
     @EnvironmentObject var trendsHelper: TrendsHelper
-    
+
+    // Sounds of the Year
+    @State private var showModalView = false
+
+    // Alert
+    @State private var showAlert = false
+    @State private var alertTitle = ""
+
     var showTrends: Bool {
         UserSettings.getEnableTrends()
     }
@@ -65,7 +71,11 @@ struct TrendsView: View {
                                 }
                             }
                         } else {
-                            VStack(alignment: .leading, spacing: 10) {
+                            VStack(alignment: .center, spacing: 10) {
+                                SoundsOfTheYearBanner(showScreen: $showModalView)
+                                    .padding(.horizontal, 10)
+                                    .padding(.bottom)
+
                                 //if showMostSharedSoundsByTheUser {
                                     MostSharedByMeView()
                                         .environmentObject(trendsHelper)
@@ -82,6 +92,9 @@ struct TrendsView: View {
                                  .font(.title2)
                                  .padding(.horizontal)
                                  }*/
+                            }
+                            .sheet(isPresented: $showModalView) {
+                                SoundsOfTheYearGeneratorView()
                             }
                         }
                     }
@@ -114,14 +127,14 @@ struct TrendsView: View {
         .navigationTitle("Tendências")
         .navigationBarTitleDisplayMode(showTrends ? .large : .inline)
     }
-
 }
 
 struct TrendsView_Previews: PreviewProvider {
 
     static var previews: some View {
-        TrendsView(tabSelection: .constant(.trends),
-                   activePadScreen: .constant(.trends))
+        TrendsView(
+            tabSelection: .constant(.trends),
+            activePadScreen: .constant(.trends)
+        )
     }
-
 }

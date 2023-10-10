@@ -10,11 +10,11 @@ import SwiftUI
 struct MostSharedByMeView: View {
 
     @StateObject private var viewModel = MostSharedByMeViewViewModel()
-    
+
     let columns = [
         GridItem(.flexible())
     ]
-    
+
     var body: some View {
         VStack {
             HStack {

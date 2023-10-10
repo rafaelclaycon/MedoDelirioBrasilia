@@ -1332,6 +1332,7 @@
 		D9D3D4912887495B00C42FDE /* FolderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3D4902887495B00C42FDE /* FolderList.swift */; };
 		D9D3D493288750C400C42FDE /* FolderListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3D492288750C400C42FDE /* FolderListViewModel.swift */; };
 		D9D53E3D2AA408AD00B46558 /* Cristiano - Advogados malucos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D53E3C2AA408AD00B46558 /* Cristiano - Advogados malucos.mp3 */; };
+		D9D734FB2AD38AF300A25916 /* SoundsOfTheYearGeneratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D734FA2AD38AF300A25916 /* SoundsOfTheYearGeneratorView.swift */; };
 		D9D798742A082955002B2D77 /* Diogo Defante - Ih, a porrada ta lambrando ainda.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D798732A082955002B2D77 /* Diogo Defante - Ih, a porrada ta lambrando ainda.mp3 */; };
 		D9D7988F2A093A54002B2D77 /* Caetano Veloso - Deus e um cara gozador, adora brincadeira.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D798872A093A54002B2D77 /* Caetano Veloso - Deus e um cara gozador, adora brincadeira.mp3 */; };
 		D9D798902A093A54002B2D77 /* Que viagem e essa, vei.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D798882A093A54002B2D77 /* Que viagem e essa, vei.mp3 */; };
@@ -1349,6 +1350,7 @@
 		D9DB6F8128CD6E2900E24BDE /* UOL - JOAO GORDO - Doidao de droga.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DB6F8028CD6E2900E24BDE /* UOL - JOAO GORDO - Doidao de droga.mp3 */; };
 		D9DB6F8328CD6F3600E24BDE /* Edu Santos - Totalmente embriagado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DB6F8228CD6F3500E24BDE /* Edu Santos - Totalmente embriagado.mp3 */; };
 		D9DB6F8528CD770900E24BDE /* Fernanda Torres - Totalmente drogada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DB6F8428CD770900E24BDE /* Fernanda Torres - Totalmente drogada.mp3 */; };
+		D9DC68902AD38648005D3F81 /* SoundsOfTheYearBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DC688F2AD38648005D3F81 /* SoundsOfTheYearBanner.swift */; };
 		D9DCC5D128751256008DD4A3 /* PushDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D028751256008DD4A3 /* PushDevice.swift */; };
 		D9DCC5D3287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D2287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift */; };
 		D9DCC5D52875CB59008DD4A3 /* AppPersistentMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D42875CB59008DD4A3 /* AppPersistentMemory.swift */; };
@@ -2802,6 +2804,7 @@
 		D9D3D4902887495B00C42FDE /* FolderList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderList.swift; sourceTree = "<group>"; };
 		D9D3D492288750C400C42FDE /* FolderListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListViewModel.swift; sourceTree = "<group>"; };
 		D9D53E3C2AA408AD00B46558 /* Cristiano - Advogados malucos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano - Advogados malucos.mp3"; sourceTree = "<group>"; };
+		D9D734FA2AD38AF300A25916 /* SoundsOfTheYearGeneratorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsOfTheYearGeneratorView.swift; sourceTree = "<group>"; };
 		D9D798732A082955002B2D77 /* Diogo Defante - Ih, a porrada ta lambrando ainda.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Diogo Defante - Ih, a porrada ta lambrando ainda.mp3"; sourceTree = "<group>"; };
 		D9D798872A093A54002B2D77 /* Caetano Veloso - Deus e um cara gozador, adora brincadeira.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Caetano Veloso - Deus e um cara gozador, adora brincadeira.mp3"; sourceTree = "<group>"; };
 		D9D798882A093A54002B2D77 /* Que viagem e essa, vei.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Que viagem e essa, vei.mp3"; sourceTree = "<group>"; };
@@ -2819,6 +2822,7 @@
 		D9DB6F8028CD6E2900E24BDE /* UOL - JOAO GORDO - Doidao de droga.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "UOL - JOAO GORDO - Doidao de droga.mp3"; sourceTree = "<group>"; };
 		D9DB6F8228CD6F3500E24BDE /* Edu Santos - Totalmente embriagado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Edu Santos - Totalmente embriagado.mp3"; sourceTree = "<group>"; };
 		D9DB6F8428CD770900E24BDE /* Fernanda Torres - Totalmente drogada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fernanda Torres - Totalmente drogada.mp3"; sourceTree = "<group>"; };
+		D9DC688F2AD38648005D3F81 /* SoundsOfTheYearBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsOfTheYearBanner.swift; sourceTree = "<group>"; };
 		D9DCC5D028751256008DD4A3 /* PushDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushDevice.swift; sourceTree = "<group>"; };
 		D9DCC5D2287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+PushDevice.swift"; sourceTree = "<group>"; };
 		D9DCC5D42875CB59008DD4A3 /* AppPersistentMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPersistentMemory.swift; sourceTree = "<group>"; };
@@ -4687,6 +4691,7 @@
 			isa = PBXGroup;
 			children = (
 				D992146E2A8F21C2004E82BC /* RecurringDonationBanner.swift */,
+				D9DC688F2AD38648005D3F81 /* SoundsOfTheYearBanner.swift */,
 			);
 			path = Banners;
 			sourceTree = "<group>";
@@ -4839,10 +4844,9 @@
 				D957509528445EC30094AEA6 /* TrendsViewViewModel.swift */,
 				D9BF90BD2842EAED00BDDD7D /* TopChartRow.swift */,
 				D998F28E284F177B0013E709 /* TrendsDisabledView.swift */,
-				D9DB6F7E28CBDA8000E24BDE /* MostSharedByMeView.swift */,
-				D97B2DD528E3E85400C3B50B /* MostSharedByMeViewViewModel.swift */,
 				D9CC893228EB7BB500576492 /* MostSharedByAudienceView.swift */,
 				D9CC893428EB7CF800576492 /* MostSharedByAudienceViewViewModel.swift */,
+				D9D734F92AD38AC900A25916 /* MyTrends */,
 			);
 			path = Trends;
 			sourceTree = "<group>";
@@ -4926,6 +4930,16 @@
 				D9DD1AB62AB954DA0010F700 /* CapsuleButtonStyle.swift */,
 			);
 			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		D9D734F92AD38AC900A25916 /* MyTrends */ = {
+			isa = PBXGroup;
+			children = (
+				D9DB6F7E28CBDA8000E24BDE /* MostSharedByMeView.swift */,
+				D97B2DD528E3E85400C3B50B /* MostSharedByMeViewViewModel.swift */,
+				D9D734FA2AD38AF300A25916 /* SoundsOfTheYearGeneratorView.swift */,
+			);
+			path = MyTrends;
 			sourceTree = "<group>";
 		};
 		D9DC8D482A643CA500467DBA /* SharedDoubles */ = {
@@ -6486,6 +6500,7 @@
 				D9FD9E8D2A89690C0071F4A9 /* YoureOfflineView.swift in Sources */,
 				D99BBE43294676B200BCA901 /* NetworkRabbit+UsageMetric.swift in Sources */,
 				D991E598284A94F70005705F /* Podium.swift in Sources */,
+				D9D734FB2AD38AF300A25916 /* SoundsOfTheYearGeneratorView.swift in Sources */,
 				D911070D2862BA4C000B6F8F /* StillAliveSignal.swift in Sources */,
 				D9BAA6F42982F4340060982A /* CreateFolderCell.swift in Sources */,
 				D95DB0F82882491A00D4FEDF /* ScreenAndTabs.swift in Sources */,
@@ -6495,6 +6510,7 @@
 				D9D3D4912887495B00C42FDE /* FolderList.swift in Sources */,
 				D97B2DD928E5EA0500C3B50B /* DeleteFolderViewAide.swift in Sources */,
 				D9592C442AA2F59B00157F5A /* AddSongAndMusicGenreTables.swift in Sources */,
+				D9DC68902AD38648005D3F81 /* SoundsOfTheYearBanner.swift in Sources */,
 				D9758C3A28617BA70094D388 /* AddUserFolderTables.swift in Sources */,
 				D99070592A90E20100A26F65 /* SyncInfoView+KnowMoreView.swift in Sources */,
 				D9265741285A1EE700947165 /* LocalDatabase+Log.swift in Sources */,
