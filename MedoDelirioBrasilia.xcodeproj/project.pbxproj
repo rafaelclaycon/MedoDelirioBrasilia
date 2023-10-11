@@ -405,6 +405,7 @@
 		D952DBA329B3CB03001F1E0E /* Igor Guimaraes - Se amar e crime eu sou traficante.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D952DB9A29B3CB03001F1E0E /* Igor Guimaraes - Se amar e crime eu sou traficante.mp3 */; };
 		D952DBA429B3CB03001F1E0E /* Rogerinho do Inga - Legal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D952DB9B29B3CB03001F1E0E /* Rogerinho do Inga - Legal.mp3 */; };
 		D95315A92A9AA783003DA40E /* MusicGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95315A82A9AA783003DA40E /* MusicGenre.swift */; };
+		D9543B462AD5D6C80075A7A1 /* SoundsOfTheYearViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9543B452AD5D6C80075A7A1 /* SoundsOfTheYearViewViewModel.swift */; };
 		D9545ED6299D579D00A130B1 /* Franciel Cruz - Lula e bicampeao mundial de conciliacao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9545ED5299D579D00A130B1 /* Franciel Cruz - Lula e bicampeao mundial de conciliacao.mp3 */; };
 		D9545EDA299D64DD00A130B1 /* Queima Quengaral - Taca o pau.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9545ED9299D64DC00A130B1 /* Queima Quengaral - Taca o pau.mp3 */; };
 		D9547D7D28FDD7190020A800 /* Franciel Cruz - Rapaz.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9547D7528FDD7180020A800 /* Franciel Cruz - Rapaz.mp3 */; };
@@ -1875,6 +1876,7 @@
 		D952DB9A29B3CB03001F1E0E /* Igor Guimaraes - Se amar e crime eu sou traficante.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Igor Guimaraes - Se amar e crime eu sou traficante.mp3"; sourceTree = "<group>"; };
 		D952DB9B29B3CB03001F1E0E /* Rogerinho do Inga - Legal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rogerinho do Inga - Legal.mp3"; sourceTree = "<group>"; };
 		D95315A82A9AA783003DA40E /* MusicGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicGenre.swift; sourceTree = "<group>"; };
+		D9543B452AD5D6C80075A7A1 /* SoundsOfTheYearViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsOfTheYearViewViewModel.swift; sourceTree = "<group>"; };
 		D9545ED5299D579D00A130B1 /* Franciel Cruz - Lula e bicampeao mundial de conciliacao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Franciel Cruz - Lula e bicampeao mundial de conciliacao.mp3"; sourceTree = "<group>"; };
 		D9545ED9299D64DC00A130B1 /* Queima Quengaral - Taca o pau.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Queima Quengaral - Taca o pau.mp3"; sourceTree = "<group>"; };
 		D9547D7528FDD7180020A800 /* Franciel Cruz - Rapaz.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Franciel Cruz - Rapaz.mp3"; sourceTree = "<group>"; };
@@ -4938,6 +4940,7 @@
 				D9DB6F7E28CBDA8000E24BDE /* MostSharedByMeView.swift */,
 				D97B2DD528E3E85400C3B50B /* MostSharedByMeViewViewModel.swift */,
 				D9D734FA2AD38AF300A25916 /* SoundsOfTheYearGeneratorView.swift */,
+				D9543B452AD5D6C80075A7A1 /* SoundsOfTheYearViewViewModel.swift */,
 			);
 			path = MyTrends;
 			sourceTree = "<group>";
@@ -6327,6 +6330,7 @@
 				D9AB63F02A5A063700390778 /* UIDevice+Extensions.swift in Sources */,
 				D9625E8028238F9A00080852 /* SoundsView.swift in Sources */,
 				D91107142863B5FD000B6F8F /* ContentCollection.swift in Sources */,
+				D9543B462AD5D6C80075A7A1 /* SoundsOfTheYearViewViewModel.swift in Sources */,
 				D9877D2928694F3200B541F9 /* LocalDatabase+UserFolderContent.swift in Sources */,
 				D99BBE4129466D9800BCA901 /* UsageMetric.swift in Sources */,
 				D9CC893328EB7BB500576492 /* MostSharedByAudienceView.swift in Sources */,

@@ -94,7 +94,10 @@ struct TrendsView: View {
                                  }*/
                             }
                             .sheet(isPresented: $showModalView) {
-                                SoundsOfTheYearGeneratorView()
+                                SoundsOfTheYearGeneratorView(
+                                    viewModel: .init(),
+                                    isBeingShown: $showModalView
+                                )
                             }
                         }
                     }

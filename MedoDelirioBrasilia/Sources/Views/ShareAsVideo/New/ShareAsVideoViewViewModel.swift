@@ -117,5 +117,4 @@ class ShareAsVideoViewViewModel: ObservableObject {
         alertMessage = errorBody
         showAlert = true
     }
-
 }
