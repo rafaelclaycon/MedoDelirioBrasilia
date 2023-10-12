@@ -114,7 +114,7 @@ struct SoundsOfTheYearGeneratorView: View {
                                 .font(.system(size: 24))
                                 .bold()
                                 .foregroundColor(.white)
-                                .opacity(0.5)
+                                .opacity(0.7)
 
                             Text(item.contentName)
                                 .font(.body)
