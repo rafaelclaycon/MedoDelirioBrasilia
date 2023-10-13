@@ -48,7 +48,6 @@ struct AuthorsView: View {
             LazyVGrid(columns: columns, spacing: 20) {
                 if searchResults.isEmpty {
                     NoSearchResultsView(searchText: $searchText)
-                        .padding(.vertical, UIScreen.main.bounds.height / 4)
                 } else {
                     ForEach(searchResults) { author in
                         NavigationLink(destination: AuthorDetailView(viewModel: AuthorDetailViewViewModel(originatingScreenName: searchText.isEmpty ? Shared.ScreenNames.authorsView : "\(Shared.ScreenNames.authorsView)(\(searchText))", authorName: author.name, currentSoundsListMode: $currentSoundsListMode), author: author, currentSoundsListMode: $currentSoundsListMode)) {

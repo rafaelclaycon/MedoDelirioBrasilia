@@ -178,7 +178,6 @@ struct SoundsView: View {
                                     LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
                                         if searchResults.isEmpty {
                                             NoSearchResultsView(searchText: $viewModel.searchText)
-                                                .padding(.vertical, UIScreen.main.bounds.height / 4)
                                         } else {
                                             ForEach(searchResults) { sound in
                                                 SoundCell(sound: sound,
