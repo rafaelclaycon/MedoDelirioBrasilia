@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WatchConnectivity
 
 //let networkRabbit = NetworkRabbit(serverPath: "https://654e-2804-1b3-8640-96df-d0b4-dd5d-6922-bb1b.sa.ngrok.io/api/")
 let networkRabbit = NetworkRabbit(serverPath: CommandLine.arguments.contains("-UNDER_DEVELOPMENT") ? "http://127.0.0.1:8080/api/" : "http://medodelirioios.lat:8080/api/")
@@ -27,7 +28,7 @@ struct MedoDelirioBrasiliaApp: App {
 }
 
 class AppDelegate: NSObject, UIApplicationDelegate {
-    
+
     @AppStorage("hasMigratedSoundsAuthors") private var hasMigratedSoundsAuthors = false
     @AppStorage("hasMigratedSongsMusicGenres") private var hasMigratedSongsMusicGenres = false
     
@@ -45,9 +46,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         } catch {
             fatalError("Failed to migrate database: \(error)")
         }
-        
+
         //print(database)
-        
+
         if !hasMigratedSoundsAuthors {
             moveSoundsAndAuthorsToDatabase()
             hasMigratedSoundsAuthors = true
@@ -57,11 +58,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             moveSongsAndMusicGenresToDatabase()
             hasMigratedSongsMusicGenres = true
         }
-        
+
         prepareAudioPlayerOnMac()
         collectTelemetry()
         createFoldersForDownloadedContent()
-        
+
         return true
     }
     
@@ -78,7 +79,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     
     private func collectTelemetry() {
         sendDeviceModelNameToServer()
-        sendStillAliveSignalToServer()
+        doChecksToSendStillAliveSignal()
     }
     
     private func sendDeviceModelNameToServer() {
@@ -93,30 +94,44 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             }
         }
     }
-    
-    private func sendStillAliveSignalToServer() {
+
+    private func doChecksToSendStillAliveSignal() {
         let lastDate = UserSettings.getLastSendDateOfStillAliveSignalToServer()
-        
+
         // Should only send 1 still alive signal per day
         guard lastDate == nil || lastDate!.onlyDate! < Date.now.onlyDate! else {
             return
         }
-        
-        let signal = StillAliveSignal(installId: UIDevice.customInstallId,
-                                      modelName: UIDevice.modelName,
-                                      systemName: UIDevice.current.systemName,
-                                      systemVersion: UIDevice.current.systemVersion,
-                                      isiOSAppOnMac: ProcessInfo.processInfo.isiOSAppOnMac,
-                                      appVersion: Versioneer.appVersion,
-                                      currentTimeZone: TimeZone.current.abbreviation() ?? .empty,
-                                      dateTime: Date.now.iso8601withFractionalSeconds)
+
+        guard UIDevice.isiPhone, WCSession.isSupported() else {
+            return sendStillAliveSignalToServer(hasAppleWatchPaired: false)
+        }
+
+        let session = WCSession.default
+        session.delegate = self
+        session.activate()
+    }
+
+    public func sendStillAliveSignalToServer(hasAppleWatchPaired: Bool) {
+        let signal = StillAliveSignal(
+            installId: UIDevice.customInstallId,
+            modelName: UIDevice.modelName,
+            systemName: UIDevice.current.systemName,
+            systemVersion: UIDevice.current.systemVersion,
+            isiOSAppOnMac: ProcessInfo.processInfo.isiOSAppOnMac,
+            appVersion: Versioneer.appVersion,
+            currentTimeZone: TimeZone.current.abbreviation() ?? .empty,
+            dateTime: Date.now.iso8601withFractionalSeconds,
+            appleWatchPaired: hasAppleWatchPaired
+        )
+
         networkRabbit.post(signal: signal) { success, error in
             if success != nil, success == true {
                 UserSettings.setLastSendDateOfStillAliveSignalToServer(to: Date.now)
             }
         }
     }
-    
+
     // MARK: - Push notifications
     
     func application(
@@ -223,5 +238,30 @@ extension AppDelegate {
             print("Error creating \(folderName) folder: \(error)")
             Logger.shared.logSyncError(description: "Erro ao tentar criar a pasta \(folderName): \(error.localizedDescription)", updateEventId: "")
         }
+    }
+}
+
+extension AppDelegate: WCSessionDelegate {
+
+    func session(
+        _ session: WCSession,
+        activationDidCompleteWith activationState: WCSessionActivationState,
+        error: Error?
+    ) {
+        print("WCSessionDelegate - session(_:, activationDidCompleteWith:, error:) - \(activationState)")
+        sendStillAliveSignalToServer(hasAppleWatchPaired: session.isPaired)
+        if session.isPaired {
+            print("Apple Watch is paired")
+        } else {
+            print("Apple Watch NOT paired")
+        }
+    }
+
+    func sessionDidBecomeInactive(_ session: WCSession) {
+        print("WCSessionDelegate - sessionDidBecomeInactive")
+    }
+
+    func sessionDidDeactivate(_ session: WCSession) {
+        print("WCSessionDelegate - sessionDidDeactivate")
     }
 }

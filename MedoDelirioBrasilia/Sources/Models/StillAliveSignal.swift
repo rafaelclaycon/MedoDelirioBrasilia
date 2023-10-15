@@ -1,14 +1,21 @@
+//
+//  StillAliveSignal.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 27/10/22.
+//
+
 import Foundation
 
 struct StillAliveSignal: Hashable, Codable {
 
-    var installId: String
-    var modelName: String
-    var systemName: String
-    var systemVersion: String
-    var isiOSAppOnMac: Bool
-    var appVersion: String
-    var currentTimeZone: String
-    var dateTime: String
-
+    let installId: String
+    let modelName: String
+    let systemName: String
+    let systemVersion: String
+    let isiOSAppOnMac: Bool
+    let appVersion: String
+    let currentTimeZone: String
+    let dateTime: String
+    let appleWatchPaired: Bool
 }
