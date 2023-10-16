@@ -20,20 +20,33 @@ class SoundsOfTheYearViewViewModel: ObservableObject {
 
     func retrieveTopFive() {
         do {
-            let sounds = try LocalDatabase.shared.sounds(
-                allowSensitive: true,
-                favoritesOnly: false
-            )
-            for i in 1...5 {
+            let sounds = try LocalDatabase.shared.getTopSoundsSharedByTheUser(5)
+            for i in sounds.indices {
                 topFive.append(
                     .init(
-                        rankNumber: "\(i)",
-                        contentName: sounds.randomElement()!.title
+                        rankNumber: "\(i+1)",
+                        contentName: sounds[i].contentName
                     )
                 )
             }
         } catch {
             print("Deu ruim")
         }
+//        do {
+//            let sounds = try LocalDatabase.shared.sounds(
+//                allowSensitive: true,
+//                favoritesOnly: false
+//            )
+//            for i in 1...5 {
+//                topFive.append(
+//                    .init(
+//                        rankNumber: "\(i)",
+//                        contentName: sounds.randomElement()!.title
+//                    )
+//                )
+//            }
+//        } catch {
+//            print("Deu ruim")
+//        }
     }
 }

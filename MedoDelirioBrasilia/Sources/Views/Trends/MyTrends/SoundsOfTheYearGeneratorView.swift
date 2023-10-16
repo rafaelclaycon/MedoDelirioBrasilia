@@ -17,7 +17,8 @@ struct SoundsOfTheYearGeneratorView: View {
     @ScaledMetric var bottomPadding: CGFloat = 26
 
     var body: some View {
-        let squareImage = squareImageView()
+        let rankingSquare = topFiveSquareImageView()
+        let countSquare = shareCountAndDaySquareImageView()
 //        let nineBySixteenImage = nineBySixteenImageView(contentName: viewModel.content.title, contentAuthor: viewModel.subtitle)
 
         ZStack {
@@ -32,7 +33,12 @@ struct SoundsOfTheYearGeneratorView: View {
                         .disabled(viewModel.isShowingProcessingView)
 
 //                        if viewModel.selectedSocialNetwork == 0 {
-                        squareImage
+                        TabView {
+                            rankingSquare
+                            countSquare
+                        }
+                        .frame(width: 350, height: 350)
+                        .tabViewStyle(.page)
 //                        } else {
 //                            nineBySixteenImage
 //                        }
@@ -40,8 +46,8 @@ struct SoundsOfTheYearGeneratorView: View {
                         if UIDevice.current.userInterfaceIdiom == .phone {
                             VStack(spacing: vstackSpacing) {
                                 if viewModel.selectedSocialNetwork == 0 {
-                                    shareButton(view: squareImage)
-                                    savePhotoButton(view: squareImage)
+                                    shareButton(view: rankingSquare)
+                                    savePhotoButton(view: rankingSquare)
 //                                } else {
 //                                    shareButton(view: nineBySixteenImage)
 //                                    saveVideoButton(view: nineBySixteenImage)
@@ -50,8 +56,8 @@ struct SoundsOfTheYearGeneratorView: View {
                         } else {
                             HStack(spacing: 20) {
                                 if viewModel.selectedSocialNetwork == 0 {
-                                    shareButton(view: squareImage)
-                                    savePhotoButton(view: squareImage)
+                                    shareButton(view: rankingSquare)
+                                    savePhotoButton(view: rankingSquare)
 //                                } else {
 //                                    shareButton(view: nineBySixteenImage)
 //                                    saveVideoButton(view: nineBySixteenImage)
@@ -100,7 +106,7 @@ struct SoundsOfTheYearGeneratorView: View {
         }
     }
 
-    private func squareImageView() -> some View {
+    private func topFiveSquareImageView() -> some View {
         ZStack {
             Image("sounds_of_the_year_background_square")
                 .resizable()
@@ -130,6 +136,41 @@ struct SoundsOfTheYearGeneratorView: View {
             .padding(.leading, 24)
             .padding(.trailing)
             //.padding(.bottom)
+        }
+        .frame(width: 350, height: 350)
+    }
+
+    private func shareCountAndDaySquareImageView() -> some View {
+        ZStack {
+            Image("sounds_of_the_year_background_square")
+                .resizable()
+                .frame(width: 350, height: 350)
+
+            VStack(spacing: 15) {
+                VStack(alignment: .center, spacing: -10) {
+                    Text("353")
+                        .font(.system(size: 80, weight: .heavy))
+                        .bold()
+                        .foregroundColor(.black)
+
+                    Text("compartilhamentos")
+                        .font(.title)
+                        .bold()
+                        .foregroundColor(.white)
+                }
+
+                VStack(alignment: .center, spacing: .zero) {
+                    Text("terça-feira")
+                        .font(.system(size: 50, weight: .bold))
+                        .bold()
+                        .foregroundColor(.black)
+
+                    Text("dia que mais compartilha")
+                        .font(.system(size: 25, weight: .bold))
+                        .bold()
+                        .foregroundColor(.white)
+                }
+            }
         }
         .frame(width: 350, height: 350)
     }

@@ -5,7 +5,7 @@ extension LocalDatabase {
 
     // MARK: - Personal Top Chart
 
-    func getTop10SoundsSharedByTheUser() throws -> [TopChartItem] {
+    func getTopSoundsSharedByTheUser(_ limit: Int) throws -> [TopChartItem] {
         var result = [TopChartItem]()
 
         let content_id = Expression<String>("contentId")
@@ -27,7 +27,7 @@ extension LocalDatabase {
                 .where(userShareLog[content_type] == 0)
                 .group(userShareLog[content_id])
                 .order(contentCount.desc)
-                .limit(10)
+                .limit(limit)
         ) {
             result.append(
                 TopChartItem(
