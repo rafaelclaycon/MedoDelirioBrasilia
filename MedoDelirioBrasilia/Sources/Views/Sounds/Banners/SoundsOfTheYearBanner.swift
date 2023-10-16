@@ -10,6 +10,7 @@ import SwiftUI
 struct SoundsOfTheYearBanner: View {
 
     @Binding var showScreen: Bool
+    @State private var soundCount: Int = 0
 
     @Environment(\.colorScheme) var colorScheme
 
@@ -26,7 +27,7 @@ struct SoundsOfTheYearBanner: View {
                     .foregroundColor(colorScheme == .dark ? .green : .darkerGreen)
                     .bold()
 
-                Text("O ano está acabando e nós compartilhamos x sons juntos para dar conta da loucura que é o Brasil. Exiba os sons que te ajudaram a aturar 2023 nas suas redes.")
+                Text("O ano está acabando e nós compartilhamos \(soundCount) sons juntos para dar conta da loucura que é o Brasil. Exiba os sons que te ajudaram a aturar 2023 nas suas redes.")
                     .foregroundColor(colorScheme == .dark ? .green : .darkerGreen)
                     .font(.callout)
 
@@ -47,6 +48,9 @@ struct SoundsOfTheYearBanner: View {
             RoundedRectangle(cornerRadius: 15)
                 .foregroundColor(.green)
                 .opacity(colorScheme == .dark ? 0.3 : 0.15)
+        }
+        .onAppear {
+            soundCount = LocalDatabase.shared.sharedSoundsCount()
         }
     }
 }

@@ -87,4 +87,24 @@ extension LocalDatabase {
         }
         return result
     }
+
+    func sharedSoundsCount() -> Int {
+        let content_id = Expression<String>("contentId")
+        let content_type = Expression<Int>("contentType")
+
+        let contentCount = content_id.distinct.count
+        let query = userShareLog
+            .select(contentCount)
+            .where(content_type == 0)
+
+        do {
+            var count = 0
+            for row in try db.prepare(query) {
+                count = row[contentCount]
+            }
+            return count
+        } catch {
+            return 0
+        }
+    }
 }
