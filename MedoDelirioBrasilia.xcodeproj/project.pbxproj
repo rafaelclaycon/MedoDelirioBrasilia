@@ -1148,6 +1148,7 @@
 		D998F28F284F177B0013E709 /* TrendsDisabledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998F28E284F177B0013E709 /* TrendsDisabledView.swift */; };
 		D99A961A299A6CC700BB5F0D /* SoundsListMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99A9619299A6CC700BB5F0D /* SoundsListMode.swift */; };
 		D99A961C299A733E00BB5F0D /* RoundCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99A961B299A733E00BB5F0D /* RoundCheckbox.swift */; };
+		D99ACE982ADDFC2500C290F0 /* SoundsOfTheYearViewViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99ACE972ADDFC2500C290F0 /* SoundsOfTheYearViewViewModelTests.swift */; };
 		D99B9DCA2848148600897930 /* ServerStatsAndLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99B9DC92848148600897930 /* ServerStatsAndLogs.swift */; };
 		D99BBE4129466D9800BCA901 /* UsageMetric.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99BBE4029466D9800BCA901 /* UsageMetric.swift */; };
 		D99BBE43294676B200BCA901 /* NetworkRabbit+UsageMetric.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99BBE42294676B200BCA901 /* NetworkRabbit+UsageMetric.swift */; };
@@ -2622,6 +2623,7 @@
 		D998F28E284F177B0013E709 /* TrendsDisabledView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsDisabledView.swift; sourceTree = "<group>"; };
 		D99A9619299A6CC700BB5F0D /* SoundsListMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsListMode.swift; sourceTree = "<group>"; };
 		D99A961B299A733E00BB5F0D /* RoundCheckbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCheckbox.swift; sourceTree = "<group>"; };
+		D99ACE972ADDFC2500C290F0 /* SoundsOfTheYearViewViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsOfTheYearViewViewModelTests.swift; sourceTree = "<group>"; };
 		D99B9DC92848148600897930 /* ServerStatsAndLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerStatsAndLogs.swift; sourceTree = "<group>"; };
 		D99BBE4029466D9800BCA901 /* UsageMetric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageMetric.swift; sourceTree = "<group>"; };
 		D99BBE42294676B200BCA901 /* NetworkRabbit+UsageMetric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+UsageMetric.swift"; sourceTree = "<group>"; };
@@ -4123,6 +4125,7 @@
 		D92C0CA328401220009CF19A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D99ACE952ADDFC0000C290F0 /* Trends */,
 				D9AB63F22A5A084200390778 /* MainView */,
 				D9A06415298B59B0006075D1 /* Folders */,
 			);
@@ -4729,6 +4732,22 @@
 				D9943F2728642200002C6B97 /* AddToFolderViewViewModel.swift */,
 			);
 			path = Folders;
+			sourceTree = "<group>";
+		};
+		D99ACE952ADDFC0000C290F0 /* Trends */ = {
+			isa = PBXGroup;
+			children = (
+				D99ACE962ADDFC0600C290F0 /* MyTrends */,
+			);
+			path = Trends;
+			sourceTree = "<group>";
+		};
+		D99ACE962ADDFC0600C290F0 /* MyTrends */ = {
+			isa = PBXGroup;
+			children = (
+				D99ACE972ADDFC2500C290F0 /* SoundsOfTheYearViewViewModelTests.swift */,
+			);
+			path = MyTrends;
 			sourceTree = "<group>";
 		};
 		D9A06415298B59B0006075D1 /* Folders */ = {
@@ -6569,6 +6588,7 @@
 				D95C3E0A2A02AB1800172C17 /* SyncServiceTests.swift in Sources */,
 				D9A32DC7285ACE880038A370 /* PodiumTests.swift in Sources */,
 				D900B9C52A6DF6D300C1BC3A /* LoggerStub.swift in Sources */,
+				D99ACE982ADDFC2500C290F0 /* SoundsOfTheYearViewViewModelTests.swift in Sources */,
 				D9523743285BF99800E6C838 /* LocalDatabaseSpy.swift in Sources */,
 				D9575092284427C70094AEA6 /* ShareLogsDummy.swift in Sources */,
 				D9D22D862A59FA1D00ABDCDC /* MainViewViewModelTests.swift in Sources */,

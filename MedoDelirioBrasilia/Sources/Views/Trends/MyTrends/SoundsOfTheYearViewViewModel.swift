@@ -5,6 +5,7 @@
 //  Created by Rafael Schmitt on 10/10/23.
 //
 
+import Foundation
 import Combine
 
 class SoundsOfTheYearViewViewModel: ObservableObject {
@@ -17,6 +18,13 @@ class SoundsOfTheYearViewViewModel: ObservableObject {
     @Published var alertTitle: String = .empty
     @Published var alertMessage: String = .empty
     @Published var showAlert: Bool = false
+
+    var dateFormatter: DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "pt-BR")
+        dateFormatter.dateFormat = "EEEE"
+        return dateFormatter
+    }
 
     func retrieveTopFive() {
         do {
@@ -48,5 +56,37 @@ class SoundsOfTheYearViewViewModel: ObservableObject {
 //        } catch {
 //            print("Deu ruim")
 //        }
+    }
+
+    func dayOfTheWeek(from date: Date) -> String {
+        return dateFormatter.string(from: date)
+    }
+
+    func mostCommonDay(from dates: [Date]) -> String? {
+        let dayOfTheWeekArray = dates.map { dayOfTheWeek(from: $0) }
+
+        var stringCounts = [String: Int]()
+
+        for str in dayOfTheWeekArray {
+            if let count = stringCounts[str] {
+                stringCounts[str] = count + 1
+            } else {
+                stringCounts[str] = 1
+            }
+        }
+
+        let stringCountTuples = stringCounts.map { (key: $0.key, value: $0.value) }
+
+        let sortedTuples = stringCountTuples.sorted { $0.value > $1.value }
+
+        for (string, count) in sortedTuples {
+            print("\(string): \(count) times")
+        }
+
+        if let firstTuple = sortedTuples.first {
+            return firstTuple.0
+        } else {
+            return nil
+        }
     }
 }
