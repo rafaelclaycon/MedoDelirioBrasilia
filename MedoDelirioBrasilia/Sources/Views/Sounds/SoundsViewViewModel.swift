@@ -440,11 +440,12 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
             if syncValues.syncStatus == .updating {
                 syncValues.syncStatus = .done
             }
-            print("CAN'T SYNC WAIT 2 MINUTES")
-            var message = "Aguarde mais um pouco para atualizar novamente."
+
+            var message = "Aguarde \(lastAttempt.minutesAndSecondsFromNow) para atualizar novamente."
             if UserSettings.getShowUpdateDateOnUI() {
                 message += " \(lastAttempt)"
             }
+
             return displayToast(
                 "clock.fill",
                 .orange,

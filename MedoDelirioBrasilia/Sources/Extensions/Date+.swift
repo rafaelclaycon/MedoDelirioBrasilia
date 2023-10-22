@@ -88,10 +88,9 @@ extension String {
 extension Date {
 
     var twoMinutesHavePassed: Bool {
-        let diffComponents = Calendar.current.dateComponents([.hour, .minute], from: self, to: .now)
-        let hours = diffComponents.hour!
+        let diffComponents = Calendar.current.dateComponents([.minute], from: self, to: .now)
         let minutes = diffComponents.minute!
-        return hours > 0 || minutes >= 2
+        return minutes >= 2
     }
 
     static func dateAsString(addingDays daysToAdd: Int, referenceDate: Date = Date.now) -> String {
