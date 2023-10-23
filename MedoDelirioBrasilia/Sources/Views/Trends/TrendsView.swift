@@ -85,6 +85,9 @@ struct TrendsView: View {
                                 }*/
                         }
                     }
+                    .refreshable {
+                        print("WINNIE THE POOH")
+                    }
                 }
             } else {
                 TrendsDisabledView()
@@ -93,9 +96,9 @@ struct TrendsView: View {
         }
         .navigationTitle("Tendências")
         .navigationBarTitleDisplayMode(showTrends ? .large : .inline)
-        .refreshable {
-            trendsHelper.refreshMostSharedByAudienceList = true
-        }
+//        .refreshable {
+//            trendsHelper.refreshMostSharedByAudienceList = true
+//        }
     }
 }
 

@@ -113,7 +113,10 @@ struct MostSharedByAudienceView: View {
                         }
                     }
                     .padding(.top, -10)
-                    
+//                    .refreshable {
+//                        print("DIETER BOHN")
+//                    }
+
                     Text(viewModel.lastUpdatedAtText)
                         .font(.subheadline)
                         .foregroundColor(.gray)
