@@ -309,7 +309,7 @@ struct SoundsView: View {
                             }
                             .if(isAllowedToRefresh) {
                                 $0.refreshable {
-                                    Task {
+                                    Task { // Keep this Task to avoid "cancelled" issue.
                                         await viewModel.sync(lastAttempt: AppPersistentMemory.getLastUpdateAttempt())
                                     }
                                 }

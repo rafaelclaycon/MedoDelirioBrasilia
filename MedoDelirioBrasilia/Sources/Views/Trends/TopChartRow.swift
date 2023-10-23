@@ -26,10 +26,14 @@ struct TopChartRow: View {
             return .clear
         }
     }
-    
+
+    private var showStripedList: Bool {
+        UIDevice.isMac
+    }
+
     var body: some View {
         HStack(spacing: 15) {
-            NumberBadgeView(number: item.rankNumber, showBackgroundCircle: !UIDevice.isMac)
+            NumberBadgeView(number: item.rankNumber, showBackgroundCircle: !showStripedList)
 
             VStack(alignment: .leading, spacing: 5) {
                 Text(item.contentName)
@@ -47,7 +51,7 @@ struct TopChartRow: View {
         .padding(.vertical, 14)
         .background(.background)
         .overlay {
-            if UIDevice.isMac {
+            if showStripedList {
                 RoundedRectangle(cornerRadius: 5, style: .continuous)
                     .fill(cellFill)
                     .opacity(0.2)
