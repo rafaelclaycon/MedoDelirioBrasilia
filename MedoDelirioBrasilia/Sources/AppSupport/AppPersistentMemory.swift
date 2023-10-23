@@ -148,6 +148,14 @@ class AppPersistentMemory {
         return Int(value as! Int)
     }
 
+    static func getLastUpdateAttempt() -> String {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "lastUpdateAttempt") else {
+            return ""
+        }
+        return String(value as! String)
+    }
+
     // MARK: - Setters
     
     static func setHasSentDeviceModelToServer(to newValue: Bool) {
@@ -229,5 +237,15 @@ class AppPersistentMemory {
         let currentCount = AppPersistentMemory.getShareManyMessageShowCount()
         let userDefaults = UserDefaults.standard
         userDefaults.set(currentCount + 1, forKey: "shareManyMessageShowCount")
+    }
+
+    static func setLastUpdateDate(to newValue: String) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(newValue, forKey: "lastUpdateDate")
+    }
+
+    static func setLastUpdateAttempt(to newValue: String) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(newValue, forKey: "lastUpdateAttempt")
     }
 }

@@ -53,7 +53,7 @@ struct DiagnosticsView: View {
             }
 
             Section {
-                Toggle("Exibir data hora referência atualização", isOn: $showUpdateDateOnUI)
+                Toggle("Exibir data hora última atualização na UI", isOn: $showUpdateDateOnUI)
                     .onChange(of: showUpdateDateOnUI) {
                         UserSettings.setShowUpdateDateOnUI(to: $0)
                     }

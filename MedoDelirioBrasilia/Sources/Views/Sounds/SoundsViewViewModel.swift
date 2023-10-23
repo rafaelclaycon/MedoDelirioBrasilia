@@ -68,7 +68,6 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
         self.currentSoundsListMode = currentSoundsListMode
 
         self.syncManager = SyncManager(
-            lastUpdateDate: AppPersistentMemory.getLastUpdateDate(),
             service: SyncService(
                 connectionManager: ConnectionManager.shared,
                 networkRabbit: networkRabbit,
@@ -443,7 +442,7 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
 
             var message = "Aguarde \(lastAttempt.minutesAndSecondsFromNow) para atualizar novamente."
             if UserSettings.getShowUpdateDateOnUI() {
-                message += " \(lastAttempt)"
+                message += " \(AppPersistentMemory.getLastUpdateDate())"
             }
 
             return displayToast(
@@ -460,7 +459,7 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
 
         var message = syncValues.syncStatus.description
         if UserSettings.getShowUpdateDateOnUI() {
-            message += " \(lastAttempt)"
+            message += " \(AppPersistentMemory.getLastUpdateDate())"
         }
 
         displayToast(

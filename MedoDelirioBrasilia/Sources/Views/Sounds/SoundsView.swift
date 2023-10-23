@@ -67,10 +67,6 @@ struct SoundsView: View {
     // Networking
     @EnvironmentObject var networkMonitor: NetworkMonitor
 
-    // Sync
-    @AppStorage("lastUpdateAttempt") private var lastUpdateAttempt = ""
-    @AppStorage("lastUpdateDate") private var lastUpdateDate = "all"
-
     // Select Many
     @State private var areManyActionButtonsEnabled = false
     @State private var favoriteButtonTitle = "Favoritar"
@@ -314,7 +310,7 @@ struct SoundsView: View {
                             .if(isAllowedToRefresh) {
                                 $0.refreshable {
                                     Task {
-                                        await viewModel.sync(lastAttempt: lastUpdateAttempt)
+                                        await viewModel.sync(lastAttempt: AppPersistentMemory.getLastUpdateAttempt())
                                     }
                                 }
                             }
@@ -443,8 +439,8 @@ struct SoundsView: View {
                 case .syncInfoView:
                     SyncInfoView(
                         isBeingShown: $showingModalView,
-                        lastUpdateAttempt: lastUpdateAttempt,
-                        lastUpdateDate: lastUpdateDate
+                        lastUpdateAttempt: AppPersistentMemory.getLastUpdateAttempt(),
+                        lastUpdateDate: AppPersistentMemory.getLastUpdateDate()
                     )
 
                 case .soundDetailView:
@@ -512,7 +508,7 @@ struct SoundsView: View {
             .oneTimeTask {
                 print("SOUNDS VIEW - ONE TIME TASK")
                 if viewModel.currentViewMode == .allSounds {
-                    await viewModel.sync(lastAttempt: lastUpdateAttempt)
+                    await viewModel.sync(lastAttempt: AppPersistentMemory.getLastUpdateAttempt())
                 }
             }
 
