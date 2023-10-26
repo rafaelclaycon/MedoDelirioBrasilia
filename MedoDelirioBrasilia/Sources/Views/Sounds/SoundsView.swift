@@ -48,7 +48,8 @@ struct SoundsView: View {
     
     // Trends
     @EnvironmentObject var trendsHelper: TrendsHelper
-    
+    @State private var soundIdToGoTo: String = ""
+
     // Folders
     @StateObject var deleteFolderAide = DeleteFolderViewAideiPhone()
     
@@ -279,8 +280,8 @@ struct SoundsView: View {
                                             columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
                                         }
                                     }
-                                    .onReceive(trendsHelper.$soundIdToGoTo) { soundIdToGoTo in
-                                        if shouldScrollToAndHighlight(soundId: soundIdToGoTo) {
+                                    .onChange(of: soundIdToGoTo) {
+                                        if !$0.isEmpty {
                                             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
                                                 withAnimation {
                                                     proxy.scrollTo(soundIdToGoTo, anchor: .center)
@@ -505,6 +506,11 @@ struct SoundsView: View {
                     favoriteButtonImage = "star"
                 }
             }
+            .onReceive(trendsHelper.$soundIdToGoTo) {
+                if shouldScrollToAndHighlight(soundId: $0) {
+                    soundIdToGoTo = $0
+                }
+            }
             .oneTimeTask {
                 print("SOUNDS VIEW - ONE TIME TASK")
                 if viewModel.currentViewMode == .allSounds {
@@ -688,9 +694,7 @@ struct SoundsView: View {
     }
     
     private func shouldScrollToAndHighlight(soundId: String) -> Bool {
-        guard soundId.isEmpty == false else {
-            return false
-        }
+        guard !soundId.isEmpty else { return false }
         viewModel.currentViewMode = .allSounds
 
         if !viewModel.searchText.isEmpty {
@@ -703,7 +707,7 @@ struct SoundsView: View {
             viewModel.highlightKeeper.remove(soundId)
         }
 
-        self.trendsHelper.soundIdToGoTo = .empty
+        self.trendsHelper.soundIdToGoTo = ""
         return true // This tells the ScrollViewProxy "yes, go ahead and scroll, there was a soundId received". Unfortunately, passing the proxy as a parameter did not work and this code was made more complex because of this.
     }
 }
