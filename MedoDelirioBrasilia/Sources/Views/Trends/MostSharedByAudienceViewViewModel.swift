@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 
+@MainActor
 class MostSharedByAudienceViewViewModel: ObservableObject {
 
     @Published var last24HoursRanking: [TopChartItem]? = nil
@@ -34,100 +35,88 @@ class MostSharedByAudienceViewViewModel: ObservableObject {
         }
         lastCheckDate = .now
         lastUpdatedAtText = "Última consulta: agora mesmo"
+
+        self.viewState = .loading
         
-        DispatchQueue.main.async {
-            self.viewState = .loading
-        }
-        
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            guard let self = self else {
+        Task {
+            // Send user stats and retrieve remote stats
+            let result = await podium.sendShareCountStatsToServer()
+
+            guard result == .successful || result == .noStatsToSend("") else {
+                await MainActor.run {
+                    self.viewState = self.allTimeRanking == nil ? .noDataToDisplay : .displayingData
+                    self.showServerUnavailableAlert()
+                }
                 return
             }
-            // Send user stats and retrieve remote stats
-            podium.sendShareCountStatsToServer { result, _ in
-                guard result == .successful || result == .noStatsToSend else {
-                    if self.allTimeRanking == nil {
-                        DispatchQueue.main.async {
-                            self.viewState = .noDataToDisplay
-                            self.showServerUnavailableAlert()
-                        }
-                    } else {
-                        DispatchQueue.main.async {
-                            self.viewState = .displayingData
-                            self.showServerUnavailableAlert()
-                        }
-                    }
+
+            podium.cleanAudienceSharingStatisticTableToReceiveUpdatedData()
+                
+            podium.getAudienceShareCountStatsFromServer(for: .last24Hours) { result, _ in
+                guard result == .successful else {
                     return
                 }
-                
-                podium.cleanAudienceSharingStatisticTableToReceiveUpdatedData()
-                
-                podium.getAudienceShareCountStatsFromServer(for: .last24Hours) { result, _ in
-                    guard result == .successful else {
-                        return
-                    }
-                    DispatchQueue.main.async {
-                        self.last24HoursRanking = podium.getTop10SoundsSharedByTheAudience(for: .last24Hours)
-                    }
+                DispatchQueue.main.async {
+                    self.last24HoursRanking = podium.getTop10SoundsSharedByTheAudience(for: .last24Hours)
                 }
-                
-                podium.getAudienceShareCountStatsFromServer(for: .lastWeek) { result, _ in
-                    guard result == .successful else {
-                        return
-                    }
-                    DispatchQueue.main.async {
-                        self.lastWeekRanking = podium.getTop10SoundsSharedByTheAudience(for: .lastWeek)
-                    }
+            }
+
+            podium.getAudienceShareCountStatsFromServer(for: .lastWeek) { result, _ in
+                guard result == .successful else {
+                    return
                 }
-                
-                podium.getAudienceShareCountStatsFromServer(for: .lastMonth) { result, _ in
-                    guard result == .successful else {
-                        return
-                    }
-                    DispatchQueue.main.async {
-                        self.lastMonthRanking = podium.getTop10SoundsSharedByTheAudience(for: .lastMonth)
-                    }
+                DispatchQueue.main.async {
+                    self.lastWeekRanking = podium.getTop10SoundsSharedByTheAudience(for: .lastWeek)
                 }
-                
-                podium.getAudienceShareCountStatsFromServer(for: .allTime) { result, _ in
-                    guard result == .successful else {
-                        return
-                    }
-                    DispatchQueue.main.async {
-                        self.allTimeRanking = podium.getTop10SoundsSharedByTheAudience(for: .allTime)
-                    }
+            }
+
+            podium.getAudienceShareCountStatsFromServer(for: .lastMonth) { result, _ in
+                guard result == .successful else {
+                    return
                 }
-                
-                // Delay needed so the lists actually have something in them.
-                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
-                    switch self.timeIntervalOption {
-                    case .last24Hours:
-                        if self.last24HoursRanking != nil, self.last24HoursRanking?.isEmpty == false {
-                            self.viewState = .displayingData
-                        } else {
-                            self.viewState = .noDataToDisplay
-                        }
-                        
-                    case .lastWeek:
-                        if self.lastWeekRanking != nil, self.lastWeekRanking?.isEmpty == false {
-                            self.viewState = .displayingData
-                        } else {
-                            self.viewState = .noDataToDisplay
-                        }
-                        
-                    case .lastMonth:
-                        if self.lastMonthRanking != nil, self.lastMonthRanking?.isEmpty == false {
-                            self.viewState = .displayingData
-                        } else {
-                            self.viewState = .noDataToDisplay
-                        }
-                        
-                    case .allTime:
-                        if self.allTimeRanking != nil, self.allTimeRanking?.isEmpty == false {
-                            self.viewState = .displayingData
-                        } else {
-                            self.viewState = .noDataToDisplay
-                        }
+                DispatchQueue.main.async {
+                    self.lastMonthRanking = podium.getTop10SoundsSharedByTheAudience(for: .lastMonth)
+                }
+            }
+
+            podium.getAudienceShareCountStatsFromServer(for: .allTime) { result, _ in
+                guard result == .successful else {
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.allTimeRanking = podium.getTop10SoundsSharedByTheAudience(for: .allTime)
+                }
+            }
+
+            // Delay needed so the lists actually have something in them.
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+                switch self.timeIntervalOption {
+                case .last24Hours:
+                    if self.last24HoursRanking != nil, self.last24HoursRanking?.isEmpty == false {
+                        self.viewState = .displayingData
+                    } else {
+                        self.viewState = .noDataToDisplay
+                    }
+
+                case .lastWeek:
+                    if self.lastWeekRanking != nil, self.lastWeekRanking?.isEmpty == false {
+                        self.viewState = .displayingData
+                    } else {
+                        self.viewState = .noDataToDisplay
+                    }
+
+                case .lastMonth:
+                    if self.lastMonthRanking != nil, self.lastMonthRanking?.isEmpty == false {
+                        self.viewState = .displayingData
+                    } else {
+                        self.viewState = .noDataToDisplay
+                    }
+
+                case .allTime:
+                    if self.allTimeRanking != nil, self.allTimeRanking?.isEmpty == false {
+                        self.viewState = .displayingData
+                    } else {
+                        self.viewState = .noDataToDisplay
                     }
                 }
             }
@@ -171,5 +160,4 @@ class MostSharedByAudienceViewViewModel: ObservableObject {
         self.currentActivity = UserActivityWaiter.getDonatableActivity(withType: activityType, andTitle: activityName)
         self.currentActivity?.becomeCurrent()
     }
-
 }

@@ -18,8 +18,6 @@ class SyncManager {
     private var localUnsuccessfulUpdates: [UpdateEvent]? = nil
     private var serverUpdates: [UpdateEvent]? = nil
 
-    //private var lastUpdateDate: String
-
     private var service: SyncServiceProtocol
     private var database: LocalDatabaseProtocol
     private var logger: LoggerProtocol

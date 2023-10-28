@@ -38,42 +38,38 @@ class Podium {
         }
     }
     
-    func sendShareCountStatsToServer(completionHandler: @escaping (ShareCountStatServerExchangeResult, String) -> Void) {
-        networkRabbit.checkServerStatus { serverIsAvailable in
-            guard serverIsAvailable else {
-                return completionHandler(.failed, "Servidor não disponível.")
-            }
-            
-            // Prepare local stats to be sent
-            guard let stats = Logger.shared.getShareCountStatsForServer() else {
-                return completionHandler(.noStatsToSend, "No stats to be sent.")
-            }
-            
-            // Send them
-            stats.forEach { stat in
-                self.networkRabbit.post(shareCountStat: stat) { wasSuccessful, errorString in
-                    if wasSuccessful == false {
-                        print("Sending of \(stat) failed: \(errorString)")
-                    }
-                }
-            }
-            
-            // Send bundles IDs as well
-            if let bundleIdLogs = Logger.shared.getUniqueBundleIdsForServer() {
-                bundleIdLogs.forEach { log in
-                    self.networkRabbit.post(bundleIdLog: log) { wasSuccessful, _ in
-                        guard wasSuccessful else {
-                            return completionHandler(.failed, "Sending of \(log) failed.")
-                        }
-                    }
-                }
-            }
-            
-            // Marking them as sent guarantees we won't send them again
-            try? self.database.markAllUserShareLogsAsSentToServer()
-            
-            completionHandler(.successful, "")
+    func sendShareCountStatsToServer() async -> ShareCountStatServerExchangeResult {
+        guard await networkRabbit.serverIsAvailable() else { return .failed("Servidor indisponível.") }
+
+        // Prepare local stats to be sent
+        guard let stats = Logger.shared.getShareCountStatsForServer() else {
+            return .noStatsToSend("No stats to be sent.")
         }
+
+        // Send them
+        stats.forEach { stat in
+            self.networkRabbit.post(shareCountStat: stat) { wasSuccessful, errorString in
+                if wasSuccessful == false {
+                    print("Sending of \(stat) failed: \(errorString)")
+                }
+            }
+        }
+
+        // Send bundles IDs as well
+        if let bundleIdLogs = Logger.shared.getUniqueBundleIdsForServer() {
+            bundleIdLogs.forEach { log in
+                self.networkRabbit.post(bundleIdLog: log) { wasSuccessful, _ in
+                    guard wasSuccessful else {
+                        return completionHandler(.failed, "Sending of \(log) failed.")
+                    }
+                }
+            }
+        }
+
+        // Marking them as sent guarantees we won't send them again
+        try? self.database.markAllUserShareLogsAsSentToServer()
+
+        return .successful
     }
     
     func cleanAudienceSharingStatisticTableToReceiveUpdatedData() {
@@ -100,9 +96,9 @@ class Podium {
             completionHandler(.successful, .empty)
         }
     }
-    
-    enum ShareCountStatServerExchangeResult {
-        
-        case successful, noStatsToSend, failed
+
+    enum ShareCountStatServerExchangeResult: Equatable {
+
+        case successful, noStatsToSend(String), failed(String)
     }
 }
