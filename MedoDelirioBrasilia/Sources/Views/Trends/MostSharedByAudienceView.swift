@@ -161,13 +161,7 @@ struct MostSharedByAudienceView: View {
                     Text(Shared.Trends.allTime).tag(TrendsTimeInterval.allTime)
                 }
             } label: {
-                HStack {
-                    Text(dropDownText)
-                    Image(systemName: "chevron.up.chevron.down")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 15)
-                }
+                Label(dropDownText, systemImage: "chevron.up.chevron.down")
             }
             .onChange(of: viewModel.timeIntervalOption) { timeIntervalOption in
                 DispatchQueue.main.async {
