@@ -21,6 +21,7 @@ struct TrendsView: View {
     @EnvironmentObject var trendsHelper: TrendsHelper
 
     // Sounds of the Year
+    @State private var isShowingBanner = false
     @State private var showModalView = false
 
     // Alert
@@ -72,9 +73,12 @@ struct TrendsView: View {
                             }
                         } else {
                             VStack(alignment: .center, spacing: 10) {
-                                SoundsOfTheYearBanner(showScreen: $showModalView)
-                                    .padding(.horizontal, 10)
-                                    .padding(.bottom)
+                                SoundsOfTheYearBanner(
+                                    isBeingShown: $isShowingBanner,
+                                    buttonAction: { showModalView = true }
+                                )
+                                .padding(.horizontal, 10)
+                                .padding(.bottom)
 
                                 //if showMostSharedSoundsByTheUser {
                                     MostSharedByMeView()

@@ -29,7 +29,7 @@ final class SoundsOfTheYearViewViewModelTests: XCTestCase {
     }
 
     func testDayOfTheWeekFromDate() throws {
-        XCTAssertEqual(sut.dayOfTheWeek(from: Date.now), "segunda-feira")
+        XCTAssertEqual(sut.dayOfTheWeek(from: date(from: "2023-10-16T23:36:27.074")), "segunda-feira")
     }
 
     func testMostCommonDay_whenNoDates_thenNilReturned() throws {
@@ -107,5 +107,12 @@ final class SoundsOfTheYearViewViewModelTests: XCTestCase {
         ]
 
         XCTAssertEqual(sut.mostCommonDay(from: dates), "sexta-feira")
+    }
+}
+
+extension SoundsOfTheYearViewViewModelTests {
+
+    func testShouldDisplayBanner_whenDeviceIsiOS15_shouldReturnFalse() throws {
+        
     }
 }

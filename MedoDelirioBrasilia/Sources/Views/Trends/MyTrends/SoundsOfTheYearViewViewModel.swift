@@ -26,6 +26,11 @@ class SoundsOfTheYearViewViewModel: ObservableObject {
         return dateFormatter
     }
 
+    static func shouldDisplayBanner() -> Bool {
+        guard #available(iOS 16.0, *) else { return false }
+        return true
+    }
+
     func retrieveTopFive() {
         do {
             let sounds = try LocalDatabase.shared.getTopSoundsSharedByTheUser(5)

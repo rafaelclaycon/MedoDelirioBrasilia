@@ -9,7 +9,9 @@ import SwiftUI
 
 struct SoundsOfTheYearBanner: View {
 
-    @Binding var showScreen: Bool
+    @Binding var isBeingShown: Bool
+    let buttonAction: () -> Void
+
     @State private var soundCount: Int = 0
 
     @Environment(\.colorScheme) var colorScheme
@@ -23,7 +25,7 @@ struct SoundsOfTheYearBanner: View {
                 .foregroundColor(colorScheme == .dark ? .green : .darkerGreen)
 
             VStack(alignment: .leading, spacing: 8) {
-                Text("Medo e Delírio Sons do Ano")
+                Text("Retrospectiva 2023")
                     .foregroundColor(colorScheme == .dark ? .green : .darkerGreen)
                     .bold()
 
@@ -32,9 +34,9 @@ struct SoundsOfTheYearBanner: View {
                     .font(.callout)
 
                 Button {
-                    showScreen.toggle()
+                    buttonAction()
                 } label: {
-                    Text("Ver meus sons")
+                    Text("Ver minha retrospectiva")
                 }
                 .tint(colorScheme == .dark ? .green : .darkerGreen)
                 .controlSize(.regular)
@@ -49,6 +51,16 @@ struct SoundsOfTheYearBanner: View {
                 .foregroundColor(.green)
                 .opacity(colorScheme == .dark ? 0.3 : 0.15)
         }
+        .overlay(alignment: .topTrailing) {
+            Button {
+                //AppPersistentMemory.setHasSeenRecurringDonationBanner(to: true)
+                isBeingShown = false
+            } label: {
+                Image(systemName: "xmark")
+                    .foregroundColor(.green)
+            }
+            .padding()
+        }
         .onAppear {
             soundCount = LocalDatabase.shared.sharedSoundsCount()
         }
@@ -56,6 +68,9 @@ struct SoundsOfTheYearBanner: View {
 }
 
 #Preview {
-    SoundsOfTheYearBanner(showScreen: .constant(true))
-        .padding()
+    SoundsOfTheYearBanner(
+        isBeingShown: .constant(true),
+        buttonAction: { }
+    )
+    .padding()
 }

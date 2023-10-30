@@ -10,7 +10,7 @@ import SwiftUI
 struct SoundsView: View {
 
     enum SubviewToOpen {
-        case onboardingView, addToFolderView, shareAsVideoView, settingsView, whatsNewView, syncInfoView, soundDetailView
+        case onboardingView, addToFolderView, shareAsVideoView, settingsView, whatsNewView, syncInfoView, soundDetailView, retrospective
     }
 
     @StateObject var viewModel: SoundsViewViewModel
@@ -25,7 +25,7 @@ struct SoundsView: View {
     
     // Temporary banners
     @State private var shouldDisplayRecurringDonationBanner: Bool = false
-    @State private var shouldDisplayYoureOfflineBanner: Bool = true
+    @State private var shouldDisplayRetrospectiveBanner: Bool = false
 
     // Settings
     @EnvironmentObject var settingsHelper: SettingsHelper
@@ -68,6 +68,7 @@ struct SoundsView: View {
     @EnvironmentObject var networkMonitor: NetworkMonitor
 
     // Sync
+    @State private var shouldDisplayYoureOfflineBanner: Bool = true
     @AppStorage("lastUpdateAttempt") private var lastUpdateAttempt = ""
     @AppStorage("lastUpdateDate") private var lastUpdateDate = "all"
 
@@ -173,6 +174,17 @@ struct SoundsView: View {
                                     if shouldDisplayRecurringDonationBanner, viewModel.searchText.isEmpty {
                                         RecurringDonationBanner(isBeingShown: $shouldDisplayRecurringDonationBanner)
                                             .padding(.horizontal, 10)
+                                    }
+
+                                    if SoundsOfTheYearViewViewModel.shouldDisplayBanner() {
+                                        SoundsOfTheYearBanner(
+                                            isBeingShown: $shouldDisplayRetrospectiveBanner,
+                                            buttonAction: {
+                                                subviewToOpen = .retrospective
+                                                showingModalView = true
+                                            }
+                                        )
+                                        .padding(.horizontal, 10)
                                     }
 
                                     LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
@@ -451,6 +463,12 @@ struct SoundsView: View {
                     SoundDetailView(
                         isBeingShown: $showingModalView,
                         sound: viewModel.selectedSound ?? Sound(title: "")
+                    )
+
+                case .retrospective:
+                    SoundsOfTheYearGeneratorView(
+                        viewModel: .init(),
+                        isBeingShown: $showingModalView
                     )
                 }
             }

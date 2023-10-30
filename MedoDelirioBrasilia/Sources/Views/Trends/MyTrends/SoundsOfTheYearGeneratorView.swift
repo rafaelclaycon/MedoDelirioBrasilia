@@ -35,9 +35,12 @@ struct SoundsOfTheYearGeneratorView: View {
 //                        if viewModel.selectedSocialNetwork == 0 {
                         TabView {
                             rankingSquare
+                                .padding(.bottom, 50)
+
                             countSquare
+                                .padding(.bottom, 50)
                         }
-                        .frame(width: 350, height: 350)
+                        .frame(width: 350, height: 400)
                         .tabViewStyle(.page)
 //                        } else {
 //                            nineBySixteenImage
@@ -65,7 +68,7 @@ struct SoundsOfTheYearGeneratorView: View {
                             }
                         }
                     }
-                    .navigationTitle("Gerar Imagem")
+                    .navigationTitle("Retrospectiva")
                     .navigationBarTitleDisplayMode(.inline)
                     .padding(.horizontal, 25)
                     .padding(.bottom, bottomPadding)
@@ -142,7 +145,7 @@ struct SoundsOfTheYearGeneratorView: View {
 
     private func shareCountAndDaySquareImageView() -> some View {
         ZStack {
-            Image("sounds_of_the_year_background_square")
+            Image("retro-square-2")
                 .resizable()
                 .frame(width: 350, height: 350)
 
@@ -151,7 +154,7 @@ struct SoundsOfTheYearGeneratorView: View {
                     Text("353")
                         .font(.system(size: 80, weight: .heavy))
                         .bold()
-                        .foregroundColor(.black)
+                        .foregroundColor(.darkerGreen)
 
                     Text("compartilhamentos")
                         .font(.title)
@@ -163,7 +166,7 @@ struct SoundsOfTheYearGeneratorView: View {
                     Text("terça-feira")
                         .font(.system(size: 50, weight: .bold))
                         .bold()
-                        .foregroundColor(.black)
+                        .foregroundColor(.darkerGreen)
 
                     Text("dia que mais compartilha")
                         .font(.system(size: 25, weight: .bold))
