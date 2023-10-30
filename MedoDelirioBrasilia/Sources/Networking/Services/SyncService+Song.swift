@@ -19,7 +19,7 @@ extension SyncService {
             let song: Song = try await NetworkRabbit.get(from: contentUrl)
             try injectedDatabase.insert(song: song)
 
-            try await downloadFile(
+            try await SyncService.downloadFile(
                 at: fileUrl,
                 to: InternalFolderNames.downloadedSongs,
                 contentId: updateEvent.contentId
@@ -48,7 +48,7 @@ extension SyncService {
     func updateSongFile(_ updateEvent: UpdateEvent) async {
         guard let fileUrl = URL(string: baseURL + "songs/\(updateEvent.contentId).mp3") else { return }
         do {
-            try await downloadFile(
+            try await SyncService.downloadFile(
                 at: fileUrl,
                 to: InternalFolderNames.downloadedSongs,
                 contentId: updateEvent.contentId
@@ -65,7 +65,7 @@ extension SyncService {
     func deleteSong(_ updateEvent: UpdateEvent) {
         do {
             try injectedDatabase.delete(songId: updateEvent.contentId)
-            try removeContentFile(
+            try SyncService.removeContentFile(
                 named: updateEvent.contentId,
                 atFolder: InternalFolderNames.downloadedSongs
             )

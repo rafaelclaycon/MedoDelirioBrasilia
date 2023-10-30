@@ -51,7 +51,7 @@ struct MostSharedByAudienceView: View {
     var body: some View {
         VStack {
             HStack {
-                Text("Sons Mais Compartilhados Pela Audiência (iOS)")
+                Text("Sons Mais Compartilhados Pela Audiência (iOS) 🏆")
                     .font(.title2)
                 Spacer()
             }
@@ -99,7 +99,7 @@ struct MostSharedByAudienceView: View {
                 VStack {
                     LazyVGrid(columns: UIDevice.isMac ? columnsMac : columns, spacing: .zero) {
                         ForEach(list) { item in
-                            TopChartCellView(item: item)
+                            TopChartRow(item: item)
                                 .onTapGesture {
                                     navigateTo(sound: item.contentId)
                                 }
@@ -113,7 +113,7 @@ struct MostSharedByAudienceView: View {
                         }
                     }
                     .padding(.top, -10)
-                    
+
                     Text(viewModel.lastUpdatedAtText)
                         .font(.subheadline)
                         .foregroundColor(.gray)
@@ -158,13 +158,7 @@ struct MostSharedByAudienceView: View {
                     Text(Shared.Trends.allTime).tag(TrendsTimeInterval.allTime)
                 }
             } label: {
-                HStack {
-                    Text(dropDownText)
-                    Image(systemName: "chevron.up.chevron.down")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 15)
-                }
+                Label(dropDownText, systemImage: "chevron.up.chevron.down")
             }
             .onChange(of: viewModel.timeIntervalOption) { timeIntervalOption in
                 DispatchQueue.main.async {

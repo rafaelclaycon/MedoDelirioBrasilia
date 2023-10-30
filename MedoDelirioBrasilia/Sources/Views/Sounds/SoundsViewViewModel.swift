@@ -28,11 +28,17 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
 
     @Published var currentActivity: NSUserActivity? = nil
 
+    // Search
+    @Published var searchText: String = ""
+
     // Sharing
     @Published var iPadShareSheet = ActivityViewController(activityItems: [URL(string: "https://www.apple.com")!])
     @Published var isShowingShareSheet: Bool = false
     @Published var shareBannerMessage: String = .empty
-    
+
+    // Select Many
+    @Published var shareManyIsProcessing = false
+
     // Alerts
     @Published var alertTitle: String = ""
     @Published var alertMessage: String = ""
@@ -62,7 +68,6 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
         self.currentSoundsListMode = currentSoundsListMode
 
         self.syncManager = SyncManager(
-            lastUpdateDate: AppPersistentMemory.getLastUpdateDate(),
             service: SyncService(
                 connectionManager: ConnectionManager.shared,
                 networkRabbit: networkRabbit,
@@ -165,9 +170,9 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
             AudioPlayer.shared?.togglePlay()
         } catch {
             if sound.isFromServer ?? false {
-                showServerSoundNotAvailableAlert()
+                showServerSoundNotAvailableAlert(sound)
             } else {
-                showUnableToGetSoundAlert()
+                showUnableToGetSoundAlert(sound.title)
             }
         }
     }
@@ -188,7 +193,7 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
                     }
                 }
             } catch {
-                showUnableToGetSoundAlert()
+                showUnableToGetSoundAlert(sound.title)
             }
         } else {
             do {
@@ -209,14 +214,18 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
                     }
                 }
             } catch {
-                showUnableToGetSoundAlert()
+                showUnableToGetSoundAlert(sound.title)
             }
 
             isShowingShareSheet = true
         }
     }
     
-    func shareVideo(withPath filepath: String, andContentId contentId: String) {
+    func shareVideo(
+        withPath filepath: String,
+        andContentId contentId: String,
+        title soundTitle: String
+    ) {
         if UIDevice.current.userInterfaceIdiom == .phone {
             do {
                 try SharingUtility.shareVideoFromSound(withPath: filepath, andContentId: contentId, shareSheetDelayInSeconds: 0.6) { didShareSuccessfully in
@@ -227,7 +236,7 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
                     WallE.deleteAllVideoFilesFromDocumentsDir()
                 }
             } catch {
-                showUnableToGetSoundAlert()
+                showUnableToGetSoundAlert(soundTitle)
             }
         } else {
             guard filepath.isEmpty == false else {
@@ -300,8 +309,26 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
     func stopSelecting() {
         currentSoundsListMode.wrappedValue = .regular
         selectionKeeper.removeAll()
+        selectedSounds = nil
+        searchText = ""
     }
-    
+
+    func addRemoveManyFromFavorites() {
+        // Need to get count before clearing the Set.
+        let selectedCount: Int = selectionKeeper.count
+
+        if currentViewMode == .favorites || allSelectedAreFavorites() {
+            removeSelectedFromFavorites()
+            stopSelecting()
+            reloadList(currentMode: currentViewMode)
+            sendUsageMetricToServer(action: "didRemoveManySoundsFromFavorites(\(selectedCount))")
+        } else {
+            addSelectedToFavorites()
+            stopSelecting()
+            sendUsageMetricToServer(action: "didAddManySoundsToFavorites(\(selectedCount))")
+        }
+    }
+
     func addSelectedToFavorites() {
         guard selectionKeeper.count > 0 else { return }
         selectionKeeper.forEach { selectedSound in
@@ -328,15 +355,30 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
     
     func shareSelected() {
         guard selectionKeeper.count > 0 else { return }
+
+        shareManyIsProcessing = true
+
         selectedSounds = sounds.filter({ selectionKeeper.contains($0.id) })
+        guard selectedSounds?.count ?? 0 > 0 else { return }
+
+        let successfulMessage = selectedSounds!.count > 1 ? Shared.soundsExportedSuccessfullyMessage : Shared.soundExportedSuccessfullyMessage
+
         do {
-            try SharingUtility.share(sounds: selectedSounds ?? [Sound]()) { didShareSuccessfully in
+            try SharingUtility.share(sounds: selectedSounds!) { didShareSuccessfully in
+                self.shareManyIsProcessing = false
+                self.stopSelecting()
                 if didShareSuccessfully {
-                    self.displayToast(toastText: Shared.soundSharedSuccessfullyMessage)
+                    self.displayToast(toastText: successfulMessage)
                 }
             }
+        } catch SoundError.fileNotFound(let soundTitle) {
+            shareManyIsProcessing = false
+            stopSelecting()
+            showUnableToGetSoundAlert(soundTitle)
         } catch {
-            showUnableToGetSoundAlert()
+            shareManyIsProcessing = false
+            stopSelecting()
+            showShareManyIssueAlert(error.localizedDescription)
         }
     }
     
@@ -389,26 +431,42 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
     // MARK: - Sync
 
     func sync(lastAttempt: String) async {
+        print("lastAttempt: \(lastAttempt)")
         guard
-            let lastAttemptDate = lastAttempt.iso8601withFractionalSeconds,
-            lastAttemptDate.twoMinutesHavePassed
+            lastAttempt == "" ||
+            (lastAttempt.iso8601withFractionalSeconds?.twoMinutesHavePassed ?? false)
         else {
             if syncValues.syncStatus == .updating {
                 syncValues.syncStatus = .done
             }
+
+            var message = "Aguarde \(lastAttempt.minutesAndSecondsFromNow) para atualizar novamente."
+            if UserSettings.getShowUpdateDateOnUI() {
+                message += " \(AppPersistentMemory.getLastUpdateDate())"
+            }
+
             return displayToast(
                 "clock.fill",
                 .orange,
-                toastText: "Aguarde mais um pouco para atualizar novamente."
+                toastText: message,
+                displayTime: .seconds(UserSettings.getShowUpdateDateOnUI() ? 10 : 3)
             )
         }
 
         await syncManager.sync()
 
+        print("SYNC EXECUTED")
+
+        var message = syncValues.syncStatus.description
+        if UserSettings.getShowUpdateDateOnUI() {
+            message += " \(AppPersistentMemory.getLastUpdateDate())"
+        }
+
         displayToast(
             syncValues.syncStatus == .done ? "checkmark" : "exclamationmark.triangle.fill",
             syncValues.syncStatus == .done ? .green : .orange,
-            toastText: syncValues.syncStatus.description
+            toastText: message,
+            displayTime: .seconds(UserSettings.getShowUpdateDateOnUI() ? 10 : 3)
         )
     }
 
@@ -426,21 +484,68 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
         print(status)
     }
 
+    func redownloadServerContent(withId contentId: String) {
+        Task {
+            do {
+                try await SyncService.downloadFile(contentId)
+                displayToast(
+                    "checkmark",
+                    .green,
+                    toastText: "Conteúdo baixado com sucesso. Tente tocá-lo novamente."
+                )
+            } catch {
+                displayToast(
+                    "exclamationmark.triangle.fill",
+                    .orange,
+                    toastText: "Erro ao tentar baixar conteúdo novamente."
+                )
+            }
+        }
+    }
+
     // MARK: - Alerts
     
-    func showUnableToGetSoundAlert() {
+    func showUnableToGetSoundAlert(_ soundTitle: String) {
         TapticFeedback.error()
         alertType = .twoOptions
-        alertTitle = Shared.soundNotFoundAlertTitle
+        alertTitle = Shared.contentNotFoundAlertTitle(soundTitle)
         alertMessage = Shared.soundNotFoundAlertMessage
         showAlert = true
     }
     
-    func showServerSoundNotAvailableAlert() {
+    func showServerSoundNotAvailableAlert(_ sound: Sound) {
+        selectedSound = sound
         TapticFeedback.error()
-        alertType = .twoOptions
-        alertTitle = Shared.soundNotFoundAlertTitle
-        alertMessage = Shared.serverContentNotAvailableMessage
+        alertType = .twoOptionsOneRedownload
+        alertTitle = Shared.contentNotFoundAlertTitle(sound.title)
+        alertMessage = Shared.serverContentNotAvailableRedownloadMessage
+        showAlert = true
+    }
+
+    func showShareManyAlert() {
+        let messageDisplayCount = AppPersistentMemory.getShareManyMessageShowCount()
+
+        guard messageDisplayCount < 2 else { return shareSelected() }
+
+        var timesMessage = ""
+        if messageDisplayCount == 0 {
+            timesMessage = "2 vezes"
+        } else {
+            timesMessage = "1 vez"
+        }
+
+        TapticFeedback.warning()
+        alertType = .twoOptionsOneContinue
+        alertTitle = "Incompatível com o WhatsApp"
+        alertMessage = "Devido a um problema técnico, o WhatsApp recebe apenas o primeiro som selecionado. Use essa função para Salvar em Arquivos ou com o Telegram.\n\nEssa mensagem será mostrada mais \(timesMessage)."
+        showAlert = true
+    }
+
+    func showShareManyIssueAlert(_ localizedError: String) {
+        TapticFeedback.error()
+        alertType = .singleOption
+        alertTitle = "Problema ao Tentar Exportar Vários Sons"
+        alertMessage = "Houve um problema desconhecido ao tentar compartilhar vários sons. Por favor, envie um print desse erro para o desenvolvedor (e-mail nas Configurações):\n\n\(localizedError)"
         showAlert = true
     }
 
@@ -458,6 +563,7 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
         _ toastIcon: String = "checkmark",
         _ toastIconColor: Color = .green,
         toastText: String,
+        displayTime: DispatchTimeInterval = .seconds(3),
         completion: (() -> Void)? = nil
     ) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
@@ -470,7 +576,7 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
             TapticFeedback.success()
         }
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + displayTime) {
             withAnimation {
                 self.showToastView = false
                 completion?()

@@ -23,5 +23,4 @@ class WallE {
             print("Error while enumerating files \(documentsURL.path): \(error.localizedDescription)")
         }
     }
-
 }

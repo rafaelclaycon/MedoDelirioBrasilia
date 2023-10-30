@@ -4,7 +4,7 @@ internal protocol NetworkRabbitProtocol {
     
     var serverPath: String { get }
     
-    func checkServerStatus(completionHandler: @escaping (Bool) -> Void)
+    func serverIsAvailable() async -> Bool
     func getSoundShareCountStats(timeInterval: TrendsTimeInterval, completionHandler: @escaping ([ServerShareCountStat]?, NetworkRabbitError?) -> Void)
     func post(shareCountStat: ServerShareCountStat, completionHandler: @escaping (Bool, String) -> Void)
     func post(clientDeviceInfo: ClientDeviceInfo, completionHandler: @escaping (Bool?, NetworkRabbitError?) -> Void)
@@ -22,20 +22,20 @@ class NetworkRabbit: NetworkRabbitProtocol {
 
     // MARK: - GET
     
-    func checkServerStatus(completionHandler: @escaping (Bool) -> Void) {
+    func serverIsAvailable() async -> Bool {
         let url = URL(string: serverPath + "v2/status-check")!
         
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+        do {
+            let (_, response) = try await URLSession.shared.data(from: url)
+
             guard let httpResponse = response as? HTTPURLResponse else {
-                return completionHandler(false)
+                return false
             }
-            guard httpResponse.statusCode == 200 else {
-                return completionHandler(false)
-            }
-            completionHandler(true)
+            return httpResponse.statusCode == 200
+        } catch {
+            print("Erro ao verificar conexão com o servidor: \(error)")
+            return false
         }
-        
-        task.resume()
     }
     
     func getSoundShareCountStats(timeInterval: TrendsTimeInterval, completionHandler: @escaping ([ServerShareCountStat]?, NetworkRabbitError?) -> Void) {

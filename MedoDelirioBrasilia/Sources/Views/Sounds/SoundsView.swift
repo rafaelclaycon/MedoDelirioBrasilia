@@ -15,7 +15,6 @@ struct SoundsView: View {
 
     @StateObject var viewModel: SoundsViewViewModel
     @Binding var currentSoundsListMode: SoundsListMode
-    @State private var searchText: String = .empty
     
     @State private var listWidth: CGFloat = 700
     @State private var columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
@@ -68,23 +67,24 @@ struct SoundsView: View {
     // Networking
     @EnvironmentObject var networkMonitor: NetworkMonitor
 
-    // Sync
-    @AppStorage("lastUpdateAttempt") private var lastUpdateAttempt = ""
-    @AppStorage("lastUpdateDate") private var lastUpdateDate = "all"
+    // Select Many
+    @State private var areManyActionButtonsEnabled = false
+    @State private var favoriteButtonTitle = "Favoritar"
+    @State private var favoriteButtonImage = "star"
 
     private var searchResults: [Sound] {
-        if searchText.isEmpty {
+        if viewModel.searchText.isEmpty {
             return viewModel.sounds
         } else {
             return viewModel.sounds.filter { sound in
                 let searchString = "\(sound.description.lowercased().withoutDiacritics()) \(sound.authorName?.lowercased().withoutDiacritics() ?? "")"
-                return searchString.contains(searchText.lowercased().withoutDiacritics())
+                return searchString.contains(viewModel.searchText.lowercased().withoutDiacritics())
             }
         }
     }
     
     private var showNoFavoritesView: Bool {
-        searchResults.isEmpty && viewModel.currentViewMode == .favorites && searchText.isEmpty
+        searchResults.isEmpty && viewModel.currentViewMode == .favorites && viewModel.searchText.isEmpty
     }
     
     private var title: String {
@@ -115,14 +115,18 @@ struct SoundsView: View {
         if viewModel.currentViewMode == .byAuthor {
             return authorSearchText.isEmpty
         } else {
-            return searchText.isEmpty
+            return viewModel.searchText.isEmpty
         }
     }
 
     private var isLoadingSounds: Bool {
         searchResults.isEmpty && viewModel.sounds.isEmpty
     }
-    
+
+    private var isAllowedToRefresh: Bool {
+        viewModel.currentViewMode == .allSounds && currentSoundsListMode == .regular
+    }
+
     var body: some View {
         ZStack {
             VStack {
@@ -162,15 +166,14 @@ struct SoundsView: View {
                                         YoureOfflineView(isBeingShown: $shouldDisplayYoureOfflineBanner)
                                     }
 
-                                    if shouldDisplayRecurringDonationBanner, searchText.isEmpty {
+                                    if shouldDisplayRecurringDonationBanner, viewModel.searchText.isEmpty {
                                         RecurringDonationBanner(isBeingShown: $shouldDisplayRecurringDonationBanner)
                                             .padding(.horizontal, 10)
                                     }
 
                                     LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
                                         if searchResults.isEmpty {
-                                            NoSearchResultsView(searchText: $searchText)
-                                                .padding(.vertical, UIScreen.main.bounds.height / 4)
+                                            NoSearchResultsView(searchText: $viewModel.searchText)
                                         } else {
                                             ForEach(searchResults) { sound in
                                                 SoundCell(sound: sound,
@@ -261,7 +264,7 @@ struct SoundsView: View {
                                             }
                                         }
                                     }
-                                    .searchable(text: $searchText)
+                                    .searchable(text: $viewModel.searchText)
                                     .disableAutocorrection(true)
                                     .padding(.horizontal)
                                     .padding(.top, 7)
@@ -295,7 +298,7 @@ struct SoundsView: View {
                                         .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? explicitOffWarningPhoneBottomPadding : explicitOffWarningPadBottomPadding)
                                 }
 
-                                if searchText.isEmpty, viewModel.currentViewMode != .favorites {
+                                if viewModel.searchText.isEmpty, viewModel.currentViewMode != .favorites {
                                     Text("\(viewModel.sounds.count) SONS.")
                                         .font(.footnote)
                                         .foregroundColor(.gray)
@@ -304,9 +307,11 @@ struct SoundsView: View {
                                         .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? soundCountPhoneBottomPadding : soundCountPadBottomPadding)
                                 }
                             }
-                            .refreshable {
-                                Task {
-                                    await viewModel.sync(lastAttempt: lastUpdateAttempt)
+                            .if(isAllowedToRefresh) {
+                                $0.refreshable {
+                                    Task { // Keep this Task to avoid "cancelled" issue.
+                                        await viewModel.sync(lastAttempt: AppPersistentMemory.getLastUpdateAttempt())
+                                    }
                                 }
                             }
                         }
@@ -316,6 +321,7 @@ struct SoundsView: View {
             .navigationTitle(Text(title))
             .navigationBarItems(leading: leadingToolbarControls(), trailing: trailingToolbarControls())
             .onAppear {
+                print("SOUNDS VIEW - ON APPEAR")
                 viewModel.reloadList(currentMode: viewModel.currentViewMode)
 
                 columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
@@ -376,6 +382,18 @@ struct SoundsView: View {
                         deleteFolderAide.updateFolderList = true
                         deleteFolderAide.showAlert = false
                     }), secondaryButton: .cancel(Text("Cancelar")))
+
+                case .twoOptionsOneRedownload:
+                    return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .default(Text("Baixar Conteúdo Novamente"), action: {
+                        guard let content = viewModel.selectedSound else { return }
+                        viewModel.redownloadServerContent(withId: content.id)
+                    }), secondaryButton: .cancel(Text("Fechar")))
+
+                case .twoOptionsOneContinue:
+                    return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .default(Text("Continuar"), action: {
+                        AppPersistentMemory.increaseShareManyMessageShowCountByOne()
+                        viewModel.shareSelected()
+                    }), secondaryButton: .cancel(Text("Cancelar")))
                 }
             }
             .sheet(isPresented: $viewModel.isShowingShareSheet) {
@@ -421,8 +439,8 @@ struct SoundsView: View {
                 case .syncInfoView:
                     SyncInfoView(
                         isBeingShown: $showingModalView,
-                        lastUpdateAttempt: lastUpdateAttempt,
-                        lastUpdateDate: lastUpdateDate
+                        lastUpdateAttempt: AppPersistentMemory.getLastUpdateAttempt(),
+                        lastUpdateDate: AppPersistentMemory.getLastUpdateDate()
                     )
 
                 case .soundDetailView:
@@ -443,7 +461,11 @@ struct SoundsView: View {
                     if shareAsVideo_Result.exportMethod == .saveAsVideo {
                         viewModel.showVideoSavedSuccessfullyToast()
                     } else {
-                        viewModel.shareVideo(withPath: videoResultPath, andContentId: shareAsVideo_Result.contentId)
+                        viewModel.shareVideo(
+                            withPath: videoResultPath,
+                            andContentId: shareAsVideo_Result.contentId,
+                            title: viewModel.selectedSound?.title ?? ""
+                        )
                     }
                 }
             }
@@ -472,9 +494,21 @@ struct SoundsView: View {
                     }
                 }
             }
+            .onChange(of: viewModel.selectionKeeper.count) {
+                guard currentSoundsListMode == .selection else { return }
+                areManyActionButtonsEnabled = $0 > 0
+                if viewModel.currentViewMode == .favorites || viewModel.allSelectedAreFavorites() {
+                    favoriteButtonTitle = "Desfav."
+                    favoriteButtonImage = "star.slash"
+                } else {
+                    favoriteButtonTitle = "Favoritar"
+                    favoriteButtonImage = "star"
+                }
+            }
             .oneTimeTask {
+                print("SOUNDS VIEW - ONE TIME TASK")
                 if viewModel.currentViewMode == .allSounds {
-                    await viewModel.sync(lastAttempt: lastUpdateAttempt)
+                    await viewModel.sync(lastAttempt: AppPersistentMemory.getLastUpdateAttempt())
                 }
             }
 
@@ -486,7 +520,31 @@ struct SoundsView: View {
                         .padding()
                 }
             }
-            
+
+            if currentSoundsListMode == .selection {
+                VStack {
+                    Spacer()
+
+                    FloatingSelectionOptionsView(
+                        areButtonsEnabled: $areManyActionButtonsEnabled,
+                        favoriteTitle: $favoriteButtonTitle,
+                        favoriteSystemImage: $favoriteButtonImage,
+                        shareIsProcessing: $viewModel.shareManyIsProcessing,
+                        favoriteAction: {
+                            viewModel.addRemoveManyFromFavorites()
+                        },
+                        folderAction: {
+                            viewModel.prepareSelectedToAddToFolder()
+                            subviewToOpen = .addToFolderView
+                            showingModalView = true
+                        },
+                        shareAction: {
+                            viewModel.showShareManyAlert()
+                        }
+                    )
+                }
+            }
+
             if viewModel.showToastView {
                 VStack {
                     Spacer()
@@ -534,12 +592,6 @@ struct SoundsView: View {
                 Text("Cancelar")
                     .bold()
             }
-            
-//            Button {
-//                viewModel.shareSelected()
-//            } label: {
-//                Label("Compartilhar", systemImage: "square.and.arrow.up")
-//            }.disabled(viewModel.selectionKeeper.count == 0 || viewModel.selectionKeeper.count > 5)
         } else {
             if UIDevice.current.userInterfaceIdiom == .phone {
                 Button {
@@ -580,33 +632,7 @@ struct SoundsView: View {
                         authorSortAction = AuthorSortOption(rawValue: authorSortOption) ?? .nameAscending
                     })
                 } else {
-                    if currentSoundsListMode == .selection {
-                        Button {
-                            // Need to get count before clearing the Set.
-                            let selectedCount: Int = viewModel.selectionKeeper.count
-                            
-                            if viewModel.currentViewMode == .favorites || viewModel.allSelectedAreFavorites() {
-                                viewModel.removeSelectedFromFavorites()
-                                viewModel.stopSelecting()
-                                viewModel.reloadList(currentMode: viewModel.currentViewMode)
-                                viewModel.sendUsageMetricToServer(action: "didRemoveManySoundsFromFavorites(\(selectedCount))")
-                            } else {
-                                viewModel.addSelectedToFavorites()
-                                viewModel.stopSelecting()
-                                viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFavorites(\(selectedCount))")
-                            }
-                        } label: {
-                            Image(systemName: viewModel.currentViewMode == .favorites || viewModel.allSelectedAreFavorites() ? "star.slash" : "star")
-                        }.disabled(viewModel.selectionKeeper.count == 0)
-                        
-                        Button {
-                            viewModel.prepareSelectedToAddToFolder()
-                            subviewToOpen = .addToFolderView
-                            showingModalView = true
-                        } label: {
-                            Image(systemName: "folder.badge.plus")
-                        }.disabled(viewModel.selectionKeeper.count == 0)
-                    } else {
+                    if currentSoundsListMode == .regular {
                         SyncStatusView()
                             .onTapGesture {
                                 subviewToOpen = .syncInfoView
@@ -667,16 +693,16 @@ struct SoundsView: View {
         }
         viewModel.currentViewMode = .allSounds
 
-        if searchText.isEmpty == false {
-            searchText = .empty
+        if !viewModel.searchText.isEmpty {
+            viewModel.searchText = ""
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
-        
+
         viewModel.highlightKeeper.insert(soundId)
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
             viewModel.highlightKeeper.remove(soundId)
         }
-        
+
         self.trendsHelper.soundIdToGoTo = .empty
         return true // This tells the ScrollViewProxy "yes, go ahead and scroll, there was a soundId received". Unfortunately, passing the proxy as a parameter did not work and this code was made more complex because of this.
     }

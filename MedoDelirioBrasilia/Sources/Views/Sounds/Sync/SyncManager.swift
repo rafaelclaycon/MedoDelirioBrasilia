@@ -18,22 +18,15 @@ class SyncManager {
     private var localUnsuccessfulUpdates: [UpdateEvent]? = nil
     private var serverUpdates: [UpdateEvent]? = nil
 
-    private var lastUpdateDate: String
-
-    @AppStorage("lastUpdateDate") private var lastUpdateDateInUserDefaults = "all"
-    @AppStorage("lastUpdateAttempt") private var lastUpdateAttemptInUserDefaults = ""
-
     private var service: SyncServiceProtocol
     private var database: LocalDatabaseProtocol
     private var logger: LoggerProtocol
 
     init(
-        lastUpdateDate: String,
         service: SyncServiceProtocol,
         database: LocalDatabaseProtocol,
         logger: LoggerProtocol
     ) {
-        self.lastUpdateDate = lastUpdateDate
         self.service = service
         self.database = database
         self.logger = logger
@@ -67,7 +60,7 @@ class SyncManager {
             delegate?.syncManagerDidUpdate(status: .updateError, updateSoundList: false)
         }
 
-        lastUpdateAttemptInUserDefaults = Date.now.iso8601withFractionalSeconds
+        AppPersistentMemory.setLastUpdateAttempt(to: Date.now.iso8601withFractionalSeconds)
     }
 
     func retryLocal() async throws {
@@ -90,6 +83,7 @@ class SyncManager {
 
     func retrieveServerUpdates() async throws -> Double {
         print("retrieveServerUpdates()")
+        let lastUpdateDate = AppPersistentMemory.getLastUpdateDate()
         print("lastUpdateDate: \(lastUpdateDate)")
         serverUpdates = try await service.getUpdates(from: lastUpdateDate)
         if var serverUpdates = serverUpdates {
@@ -126,7 +120,7 @@ class SyncManager {
             await service.process(updateEvent: update)
         }
 
-        lastUpdateDateInUserDefaults = Date.now.iso8601withFractionalSeconds
+        AppPersistentMemory.setLastUpdateDate(to: Date.now.iso8601withFractionalSeconds)
     }
 
     func syncUnsuccessful() async throws {

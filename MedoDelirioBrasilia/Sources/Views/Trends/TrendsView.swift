@@ -9,84 +9,85 @@ import SwiftUI
 
 struct TrendsView: View {
 
+    enum ViewMode: Int {
+        case audience, me
+    }
+
     @StateObject private var viewModel = TrendsViewViewModel()
     @Binding var tabSelection: PhoneTab
     @Binding var activePadScreen: PadScreen?
+    @State var currentViewMode: ViewMode = .audience
     @State var showAlert = false
     @State var alertTitle = ""
     @EnvironmentObject var trendsHelper: TrendsHelper
-    
+
     var showTrends: Bool {
         UserSettings.getEnableTrends()
     }
-    
+
     /*var showMostSharedSoundsByTheUser: Bool {
         UserSettings.getEnableMostSharedSoundsByTheUser()
     }*/
-    
+
     /*var showDayOfTheWeekTheUserSharesTheMost: Bool {
         UserSettings.getEnableDayOfTheWeekTheUserSharesTheMost()
     }*/
-    
+
     var showSoundsMostSharedByTheAudience: Bool {
         UserSettings.getEnableSoundsMostSharedByTheAudience()
     }
-    
+
     /*var showAppsThroughWhichTheUserSharesTheMost: Bool {
         UserSettings.getEnableAppsThroughWhichTheUserSharesTheMost()
     }*/
-    
+
     var body: some View {
         VStack {
             if showTrends {
-                if UIDevice.current.userInterfaceIdiom == .phone {
-                    ScrollView {
+                ScrollView {
+                    Picker("Exibição", selection: $currentViewMode) {
+                        Text("Da Audiência")
+                            .tag(ViewMode.audience)
+
+                        Text("Minhas")
+                            .tag(ViewMode.me)
+                    }
+                    .pickerStyle(.segmented)
+                    .padding(.all)
+
+                    if currentViewMode == .audience {
                         VStack(alignment: .leading, spacing: 10) {
-                            /*if showMostSharedSoundsByTheUser {
+                            if showSoundsMostSharedByTheAudience {
+                                MostSharedByAudienceView(
+                                    tabSelection: $tabSelection,
+                                    activePadScreen: $activePadScreen
+                                )
+                                .environmentObject(trendsHelper)
+                            }
+                        }
+                    } else {
+                        VStack(alignment: .leading, spacing: 10) {
+                            //if showMostSharedSoundsByTheUser {
                                 MostSharedByMeView()
-                                    .padding(.top, 10)
-                            }*/
-                            
-                            /*if showDayOfTheWeekTheUserSharesTheMost {
-                             Text("Dia da Semana No Qual Eu Mais Compartilho")
-                             .font(.title2)
-                             .padding(.horizontal)
-                             }*/
-                            
-                            if showSoundsMostSharedByTheAudience {
-                                MostSharedByAudienceView(tabSelection: $tabSelection,
-                                                         activePadScreen: $activePadScreen)
                                     .environmentObject(trendsHelper)
-                                    .padding(.top, 10)
-                            }
-                            
+                            //}
+
+                            /*if showDayOfTheWeekTheUserSharesTheMost {
+                                Text("Dia da Semana No Qual Eu Mais Compartilho")
+                                .font(.title2)
+                                .padding(.horizontal)
+                                }*/
+
                             /*if showAppsThroughWhichTheUserSharesTheMost {
-                             Text("Apps Pelos Quais Você Mais Compartilha")
-                             .font(.title2)
-                             .padding(.horizontal)
-                             }*/
+                                Text("Apps Pelos Quais Você Mais Compartilha")
+                                .font(.title2)
+                                .padding(.horizontal)
+                                }*/
                         }
                     }
-                } else {
-                    ScrollView {
-                        HStack {
-                            /*if showMostSharedSoundsByTheUser {
-                             VStack {
-                             MostSharedByMeView()
-                             Spacer()
-                             }
-                             }*/
-                            
-                            if showSoundsMostSharedByTheAudience {
-                                VStack {
-                                    MostSharedByAudienceView(tabSelection: $tabSelection,
-                                                             activePadScreen: $activePadScreen)
-                                    Spacer()
-                                }
-                                .padding(.top, 10)
-                            }
-                        }
-                    }
+                }
+                .refreshable {
+                    trendsHelper.refreshMostSharedByAudienceList = true
                 }
             } else {
                 TrendsDisabledView()

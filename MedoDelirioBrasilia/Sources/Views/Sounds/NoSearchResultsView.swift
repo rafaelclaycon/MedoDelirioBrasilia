@@ -13,32 +13,29 @@ struct NoSearchResultsView: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 16) {
-            Spacer()
-            
+            Spacer(minLength: 40)
+
             Image(systemName: "magnifyingglass")
-                .font(.system(size: 64))
+                .font(.system(size: 60))
                 .foregroundColor(.gray)
             
-            Text("Nenhum Resultado")
+            Text("Nenhum Resultado para \"\(searchText)\"")
                 .font(.title2)
                 .bold()
                 .multilineTextAlignment(.center)
             
-            Text("Nenhum resultado encontrado para \"\(searchText)\".")
+            Text("Verifique a ortografia ou tente uma nova busca.")
                 .foregroundColor(.gray)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
             
-            Spacer()
+            Spacer(minLength: 40)
         }
     }
-    
 }
 
 struct NoSearchResultsView_Previews: PreviewProvider {
-    
     static var previews: some View {
         NoSearchResultsView(searchText: .constant("Testeeee"))
     }
-    
 }

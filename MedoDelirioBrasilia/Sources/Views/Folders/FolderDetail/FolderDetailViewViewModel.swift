@@ -131,9 +131,9 @@ class FolderDetailViewViewModel: ObservableObject {
             AudioPlayer.shared?.togglePlay()
         } catch {
             if sound.isFromServer ?? false {
-                showServerSoundNotAvailableAlert()
+                showServerSoundNotAvailableAlert(sound.title)
             } else {
-                showUnableToGetSoundAlert()
+                showUnableToGetSoundAlert(sound.title)
             }
         }
     }
@@ -167,7 +167,7 @@ class FolderDetailViewViewModel: ObservableObject {
                     }
                 }
             } catch {
-                showUnableToGetSoundAlert()
+                showUnableToGetSoundAlert(sound.title)
             }
         } else {
             do {
@@ -199,14 +199,18 @@ class FolderDetailViewViewModel: ObservableObject {
                     }
                 }
             } catch {
-                showUnableToGetSoundAlert()
+                showUnableToGetSoundAlert(sound.title)
             }
 
             isShowingShareSheet = true
         }
     }
     
-    func shareVideo(withPath filepath: String, andContentId contentId: String) {
+    func shareVideo(
+        withPath filepath: String,
+        andContentId contentId: String,
+        title soundTitle: String
+    ) {
         if UIDevice.current.userInterfaceIdiom == .phone {
             do {
                 try SharingUtility.shareVideoFromSound(withPath: filepath, andContentId: contentId, shareSheetDelayInSeconds: 0.6) { didShareSuccessfully in
@@ -229,7 +233,7 @@ class FolderDetailViewViewModel: ObservableObject {
                     WallE.deleteAllVideoFilesFromDocumentsDir()
                 }
             } catch {
-                showUnableToGetSoundAlert()
+                showUnableToGetSoundAlert(soundTitle)
             }
         } else {
             guard filepath.isEmpty == false else {
@@ -354,18 +358,18 @@ class FolderDetailViewViewModel: ObservableObject {
     
     // MARK: - Alerts
     
-    func showUnableToGetSoundAlert() {
+    func showUnableToGetSoundAlert(_ soundTitle: String) {
         TapticFeedback.error()
-        alertTitle = Shared.soundNotFoundAlertTitle
+        alertTitle = Shared.contentNotFoundAlertTitle(soundTitle)
         alertMessage = Shared.soundNotFoundAlertMessage
         alertType = .ok
         showAlert = true
     }
 
-    func showServerSoundNotAvailableAlert() {
+    func showServerSoundNotAvailableAlert(_ soundTitle: String) {
         TapticFeedback.error()
         alertType = .ok
-        alertTitle = Shared.soundNotFoundAlertTitle
+        alertTitle = Shared.contentNotFoundAlertTitle(soundTitle)
         alertMessage = Shared.serverContentNotAvailableMessage
         showAlert = true
     }

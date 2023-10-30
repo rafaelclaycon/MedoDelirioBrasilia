@@ -111,7 +111,7 @@ class SyncService: SyncServiceProtocol {
 
 extension SyncService {
 
-    internal func removeContentFile(
+    static func removeContentFile(
         named filename: String,
         atFolder contentFolderName: String
     ) throws {
@@ -123,7 +123,7 @@ extension SyncService {
         }
     }
 
-    internal func downloadFile(
+    static func downloadFile(
         at fileUrl: URL,
         to localFolderName: String,
         contentId: String

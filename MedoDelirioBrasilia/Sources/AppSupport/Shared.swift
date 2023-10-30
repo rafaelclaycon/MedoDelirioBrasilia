@@ -32,10 +32,15 @@ struct Shared {
     static let contentFilterMessageForSongsiPhone = "Algumas músicas não estão sendo exibidas pois a opção Exibir Conteúdo Explícito está desabilitada.\n\nVocê pode mudar isso nas Configurações (ícone de engrenagem no topo da aba Sons)."
     static let contentFilterMessageForSongsiPadMac = "Algumas músicas não estão sendo exibidas pois a opção Exibir Conteúdo Explícito está desabilitada.\n\nVocê pode mudar isso na tela de Configurações (ícone de engrenagem no topo da barra lateral do app)."
     
-    static let soundNotFoundAlertTitle = "Som Indisponível"
+    static func contentNotFoundAlertTitle(_ contentName: String) -> String {
+        return "Conteúdo \"\(contentName)\" Indisponível"
+    }
     static let soundNotFoundAlertMessage = "Devido a um problema técnico, o som que você quer acessar não está disponível."
     static let serverContentNotAvailableMessage = "Provavelmente houve um problema com o download desse conteúdo.\n\nPor favor, reporte esse erro para mim através do e-mail nas Configurações."
+    static let serverContentNotAvailableRedownloadMessage = "Provavelmente houve um problema com o download desse conteúdo.\n\nTente baixá-lo novamente."
     static let soundSharedSuccessfullyMessage = "Som compartilhado com sucesso."
+    static let soundExportedSuccessfullyMessage = "Som exportado com sucesso."
+    static let soundsExportedSuccessfullyMessage = "Sons exportados com sucesso."
     static let songSharedSuccessfullyMessage = "Música compartilhada com sucesso."
     static let videoSharedSuccessfullyMessage = "Vídeo compartilhado com sucesso."
     

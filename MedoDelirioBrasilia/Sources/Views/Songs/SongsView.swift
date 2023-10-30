@@ -66,7 +66,6 @@ struct SongsView: View {
                     LazyVGrid(columns: columns, spacing: 14) {
                         if searchResults.isEmpty {
                             NoSearchResultsView(searchText: $searchText)
-                                .padding(.vertical, UIScreen.main.bounds.height / 4)
                         } else {
                             ForEach(searchResults) { song in
                                 SongCell(song: song, nowPlaying: $viewModel.nowPlayingKeeper)
@@ -219,7 +218,13 @@ struct SongsView: View {
                 switch viewModel.alertType {
                 case .singleOption:
                     return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
-                    
+
+                case .twoOptionsOneRedownload:
+                    return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .default(Text("Baixar Conteúdo Novamente"), action: {
+                        guard let content = viewModel.selectedSong else { return }
+                        viewModel.redownloadServerContent(withId: content.id)
+                    }), secondaryButton: .cancel(Text("Fechar")))
+
                 default:
                     return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .default(Text("Relatar Problema por E-mail"), action: {
                         viewModel.showEmailAppPicker_songUnavailableConfirmationDialog = true
@@ -233,14 +238,24 @@ struct SongsView: View {
                 }
             }
             
-            if viewModel.displaySharedSuccessfullyToast {
+            if viewModel.showToastView {
                 VStack {
                     Spacer()
                     
-                    ToastView(icon: "checkmark", iconColor: .green, text: viewModel.shareBannerMessage)
-                        .padding()
+                    ToastView(
+                        icon: viewModel.toastIcon,
+                        iconColor: viewModel.toastIconColor,
+                        text: viewModel.toastText
+                    )
+                    .padding(.horizontal)
+                    .padding(.bottom, 15)
                 }
                 .transition(.moveAndFade)
+            }
+
+            if viewModel.isShowingProcessingView {
+                ProcessingView(message: "Baixando música...")
+                    .padding(.bottom)
             }
         }
     }
