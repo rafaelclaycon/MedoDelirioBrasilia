@@ -11,6 +11,9 @@ import Combine
 class SoundsOfTheYearViewViewModel: ObservableObject {
 
     @Published var topFive: [TopChartItem] = []
+    @Published var shareCount: Int = 0
+    @Published var mostCommonShareDay: String = ""
+
     @Published var selectedSocialNetwork = IntendedVideoDestination.twitter.rawValue
     @Published var isShowingProcessingView = false
 
@@ -28,6 +31,7 @@ class SoundsOfTheYearViewViewModel: ObservableObject {
 
     static func shouldDisplayBanner() -> Bool {
         guard #available(iOS 16.0, *) else { return false }
+        guard LocalDatabase.shared.sharedSoundsCount() > 0 else { return false }
         return true
     }
 
@@ -61,6 +65,10 @@ class SoundsOfTheYearViewViewModel: ObservableObject {
 //        } catch {
 //            print("Deu ruim")
 //        }
+    }
+
+    func loadShareCount() {
+        shareCount = LocalDatabase.shared.sharedSoundsCount()
     }
 
     func dayOfTheWeek(from date: Date) -> String {

@@ -13,6 +13,8 @@ struct SoundsOfTheYearGeneratorView: View {
 
     @Binding var isBeingShown: Bool
 
+    @Environment(\.colorScheme) var colorScheme
+
     @ScaledMetric var vstackSpacing: CGFloat = 22
     @ScaledMetric var bottomPadding: CGFloat = 26
 
@@ -25,12 +27,12 @@ struct SoundsOfTheYearGeneratorView: View {
             NavigationView {
                 ScrollView {
                     VStack(spacing: vstackSpacing) {
-                        Picker(selection: $viewModel.selectedSocialNetwork, label: Text("Rede social")) {
-                            Text("Quadrado").tag(0)
-                            Text("9 : 16").tag(1)
-                        }
-                        .pickerStyle(SegmentedPickerStyle())
-                        .disabled(viewModel.isShowingProcessingView)
+//                        Picker(selection: $viewModel.selectedSocialNetwork, label: Text("Rede social")) {
+//                            Text("Quadrado").tag(0)
+//                            Text("9 : 16").tag(1)
+//                        }
+//                        .pickerStyle(SegmentedPickerStyle())
+//                        .disabled(viewModel.isShowingProcessingView)
 
 //                        if viewModel.selectedSocialNetwork == 0 {
                         TabView {
@@ -70,7 +72,7 @@ struct SoundsOfTheYearGeneratorView: View {
                     }
                     .navigationTitle("Retrospectiva")
                     .navigationBarTitleDisplayMode(.inline)
-                    .padding(.horizontal, 25)
+                    .padding([.horizontal, .top], 25)
                     .padding(.bottom, bottomPadding)
                     .navigationBarItems(leading:
                         Button("Cancelar") {
@@ -101,7 +103,10 @@ struct SoundsOfTheYearGeneratorView: View {
 //            }
         }
         .onAppear {
+            setUpAppearance()
+
             viewModel.retrieveTopFive()
+            viewModel.loadShareCount()
 
             // Cleaning this string is needed in case the user decides do re-export the same sound
 //            result.videoFilepath = .empty
@@ -151,10 +156,10 @@ struct SoundsOfTheYearGeneratorView: View {
 
             VStack(spacing: 15) {
                 VStack(alignment: .center, spacing: -10) {
-                    Text("353")
+                    Text("\(viewModel.shareCount)")
                         .font(.system(size: 80, weight: .heavy))
                         .bold()
-                        .foregroundColor(.darkerGreen)
+                        .foregroundColor(.darkestGreen)
 
                     Text("compartilhamentos")
                         .font(.title)
@@ -163,10 +168,10 @@ struct SoundsOfTheYearGeneratorView: View {
                 }
 
                 VStack(alignment: .center, spacing: .zero) {
-                    Text("terça-feira")
+                    Text(viewModel.mostCommonShareDay)
                         .font(.system(size: 50, weight: .bold))
                         .bold()
-                        .foregroundColor(.darkerGreen)
+                        .foregroundColor(.darkestGreen)
 
                     Text("dia que mais compartilha")
                         .font(.system(size: 25, weight: .bold))
@@ -214,7 +219,7 @@ struct SoundsOfTheYearGeneratorView: View {
                     .scaledToFit()
                     .frame(height: 25)
 
-                Text("Salvar Imagem")
+                Text("Salvar Imagens")
                     .font(.headline)
                     .foregroundColor(.white)
 
@@ -223,6 +228,13 @@ struct SoundsOfTheYearGeneratorView: View {
         }
         .borderedProminentButton(colored: .accentColor)
         //.disabled(viewModel.isShowingProcessingView)
+    }
+
+    func setUpAppearance() {
+        if colorScheme != .dark {
+            UIPageControl.appearance().currentPageIndicatorTintColor = .black
+            UIPageControl.appearance().pageIndicatorTintColor = UIColor.black.withAlphaComponent(0.2)
+        }
     }
 }
 
