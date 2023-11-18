@@ -12,7 +12,8 @@ class SoundsOfTheYearViewViewModel: ObservableObject {
 
     @Published var topFive: [TopChartItem] = []
     @Published var shareCount: Int = 0
-    @Published var mostCommonShareDay: String = ""
+    @Published var mostCommonShareDay: String = "-"
+    @Published var mostCommonShareDayPluralization: WordPluralization = .singular
 
     @Published var selectedSocialNetwork = IntendedVideoDestination.twitter.rawValue
     @Published var isShowingProcessingView = false
@@ -68,7 +69,7 @@ class SoundsOfTheYearViewViewModel: ObservableObject {
     }
 
     func loadShareCount() {
-        shareCount = LocalDatabase.shared.sharedSoundsCount()
+        shareCount = LocalDatabase.shared.totalShareCount()
     }
 
     func dayOfTheWeek(from date: Date) -> String {
@@ -97,7 +98,21 @@ class SoundsOfTheYearViewViewModel: ObservableObject {
         }
 
         if let firstTuple = sortedTuples.first {
-            return firstTuple.0
+            let topValue = firstTuple.1
+            let topItems = sortedTuples.filter { $0.value == topValue }
+
+            if topItems.count > 1 {
+                mostCommonShareDayPluralization = .plural
+            } else {
+                mostCommonShareDayPluralization = .singular
+            }
+
+            let result = topItems.map { key, value in
+                value == 1 ? key : "\(key)"
+            }.joined(separator: ", ")
+
+            print(result)
+            return result
         } else {
             return nil
         }

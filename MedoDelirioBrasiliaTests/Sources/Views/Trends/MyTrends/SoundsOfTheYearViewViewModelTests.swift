@@ -106,7 +106,7 @@ final class SoundsOfTheYearViewViewModelTests: XCTestCase {
             date(from: "2023-10-21T23:36:27.074")  // sab
         ]
 
-        XCTAssertEqual(sut.mostCommonDay(from: dates), "sexta-feira")
+        XCTAssertEqual(sut.mostCommonDay(from: dates), "sexta-feira, sábado, domingo")
     }
 }
 

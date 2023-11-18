@@ -49,6 +49,27 @@ extension LocalDatabase {
         return result
     }
 
+    func allDatesInWhichTheUserShared() throws -> [Date] {
+        guard let firstDay2023 = "2023-01-01T00:00:00.000Z".iso8601withFractionalSeconds else { return [] }
+
+        var result = [Date]()
+
+        // let content_id = Expression<String>("contentId")
+        let content_type = Expression<Int>("contentType")
+
+        let date_time = Expression<Date>("dateTime")
+
+        for row in try db.prepare(
+            userShareLog
+                .select(userShareLog[date_time])
+                .where(userShareLog[content_type] == 0)
+                .filter(date_time > firstDay2023)
+        ) {
+            result.append(row[date_time])
+        }
+        return result
+    }
+
     // MARK: - Audience Top Chart
 
     func getTop10SoundsSharedByTheAudience(for timeInterval: TrendsTimeInterval) throws -> [TopChartItem] {
@@ -101,6 +122,30 @@ extension LocalDatabase {
         let dateTime = Expression<Date>("dateTime")
 
         let contentCount = content_id.distinct.count
+        let query = userShareLog
+            .select(contentCount)
+            .where(content_type == 0)
+            .filter(dateTime > firstDay2023)
+
+        do {
+            var count = 0
+            for row in try db.prepare(query) {
+                count = row[contentCount]
+            }
+            return count
+        } catch {
+            return 0
+        }
+    }
+
+    func totalShareCount() -> Int {
+        guard let firstDay2023 = "2023-01-01T00:00:00.000Z".iso8601withFractionalSeconds else { return 0 }
+
+        let content_id = Expression<String>("contentId")
+        let content_type = Expression<Int>("contentType")
+        let dateTime = Expression<Date>("dateTime")
+
+        let contentCount = content_id.count
         let query = userShareLog
             .select(contentCount)
             .where(content_type == 0)

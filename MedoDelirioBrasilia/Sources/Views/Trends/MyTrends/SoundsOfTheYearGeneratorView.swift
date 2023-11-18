@@ -18,6 +18,20 @@ struct SoundsOfTheYearGeneratorView: View {
     @ScaledMetric var vstackSpacing: CGFloat = 22
     @ScaledMetric var bottomPadding: CGFloat = 26
 
+    var mostCommonDayFont: Font {
+        if viewModel.mostCommonShareDay.count <= 7 {
+            return .system(size: 50, weight: .bold)
+        } else if viewModel.mostCommonShareDay.count <= 13 {
+            return .system(size: 40, weight: .bold)
+        } else {
+            return .system(size: 30, weight: .bold)
+        }
+    }
+
+    var mostCommonDaySubtitle: String {
+        viewModel.mostCommonShareDayPluralization == .plural ? "dias que mais compartilha" : "dia que mais compartilha"
+    }
+
     var body: some View {
         let rankingSquare = topFiveSquareImageView()
         let countSquare = shareCountAndDaySquareImageView()
@@ -107,6 +121,11 @@ struct SoundsOfTheYearGeneratorView: View {
 
             viewModel.retrieveTopFive()
             viewModel.loadShareCount()
+            do {
+                viewModel.mostCommonShareDay = try viewModel.mostCommonDay(from: LocalDatabase.shared.allDatesInWhichTheUserShared()) ?? "-"
+            } catch {
+                print(error)
+            }
 
             // Cleaning this string is needed in case the user decides do re-export the same sound
 //            result.videoFilepath = .empty
@@ -161,7 +180,7 @@ struct SoundsOfTheYearGeneratorView: View {
                         .bold()
                         .foregroundColor(.darkestGreen)
 
-                    Text("compartilhamentos")
+                    Text(viewModel.shareCount > 1 ? "compartilhamentos" : "compartilhamento")
                         .font(.title)
                         .bold()
                         .foregroundColor(.white)
@@ -169,11 +188,12 @@ struct SoundsOfTheYearGeneratorView: View {
 
                 VStack(alignment: .center, spacing: .zero) {
                     Text(viewModel.mostCommonShareDay)
-                        .font(.system(size: 50, weight: .bold))
+                        .font(mostCommonDayFont)
                         .bold()
                         .foregroundColor(.darkestGreen)
+                        .multilineTextAlignment(.center)
 
-                    Text("dia que mais compartilha")
+                    Text(mostCommonDaySubtitle)
                         .font(.system(size: 25, weight: .bold))
                         .bold()
                         .foregroundColor(.white)
