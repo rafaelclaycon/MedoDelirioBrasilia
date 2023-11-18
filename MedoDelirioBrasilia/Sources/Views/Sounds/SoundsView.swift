@@ -59,8 +59,7 @@ struct SoundsView: View {
 
     // Dynamic Type
     @ScaledMetric private var explicitOffWarningTopPadding = 16
-    @ScaledMetric private var explicitOffWarningPhoneBottomPadding = 20
-    @ScaledMetric private var explicitOffWarningPadBottomPadding = 20
+    @ScaledMetric private var explicitOffWarningBottomPadding = 20
     @ScaledMetric private var soundCountTopPadding = 10
     @ScaledMetric private var soundCountPhoneBottomPadding = 68
     @ScaledMetric private var soundCountPadBottomPadding = 22
@@ -293,14 +292,15 @@ struct SoundsView: View {
                                 }
 
                                 if UserSettings.getShowExplicitContent() == false, viewModel.currentViewMode != .favorites {
-                                    Text(UIDevice.current.userInterfaceIdiom == .phone ? Shared.contentFilterMessageForSoundsiPhone : Shared.contentFilterMessageForSoundsiPadMac)
-                                        .multilineTextAlignment(.center)
-                                        .padding(.top, explicitOffWarningTopPadding)
-                                        .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? explicitOffWarningPhoneBottomPadding : explicitOffWarningPadBottomPadding)
+                                    ExplicitDisabledWarning(
+                                        text: UIDevice.isiPhone ? Shared.contentFilterMessageForSoundsiPhone : Shared.contentFilterMessageForSoundsiPadMac
+                                    )
+                                    .padding(.top, explicitOffWarningTopPadding)
+                                    .padding(.horizontal, explicitOffWarningBottomPadding)
                                 }
 
                                 if viewModel.searchText.isEmpty, viewModel.currentViewMode != .favorites {
-                                    Text("\(viewModel.sounds.count) SONS.")
+                                    Text("\(viewModel.sounds.count) SONS")
                                         .font(.footnote)
                                         .foregroundColor(.gray)
                                         .multilineTextAlignment(.center)
