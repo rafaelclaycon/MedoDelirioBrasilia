@@ -63,7 +63,6 @@ struct SettingsView: View {
                                 Image(systemName: "app")
                                     .foregroundColor(.orange)
                             }
-                            
                         }
                     }
                     
@@ -74,8 +73,19 @@ struct SettingsView: View {
                             Image(systemName: "hand.raised")
                                 .foregroundColor(.blue)
                         }
-                        
                     }
+
+                    NavigationLink {
+                        StorageUsageView()
+                    } label: {
+                        Label {
+                            Text("Uso do armazenamento")
+                        } icon: {
+                            Image(systemName: "folder")
+                                .foregroundColor(.green)
+                        }
+                    }
+
                 }
                 
                 Section("Problemas, sugestões e pedidos") {
