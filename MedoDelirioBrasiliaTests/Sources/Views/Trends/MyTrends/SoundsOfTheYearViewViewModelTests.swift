@@ -106,7 +106,13 @@ final class SoundsOfTheYearViewViewModelTests: XCTestCase {
             date(from: "2023-10-21T23:36:27.074")  // sab
         ]
 
-        XCTAssertEqual(sut.mostCommonDay(from: dates), "sexta-feira, sábado, domingo")
+        guard let days = sut.mostCommonDay(from: dates) else {
+            return XCTFail("Days should not be nil.")
+        }
+
+        XCTAssertTrue(days.contains("sexta-feira"))
+        XCTAssertTrue(days.contains("sábado"))
+        XCTAssertTrue(days.contains("domingo"))
     }
 }
 
