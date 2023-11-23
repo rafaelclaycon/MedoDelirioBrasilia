@@ -176,7 +176,7 @@ struct SoundsView: View {
                                             .padding(.horizontal, 10)
                                     }
 
-                                    if SoundsOfTheYearViewViewModel.shouldDisplayBanner() {
+                                    if shouldDisplayRetrospectiveBanner, viewModel.searchText.isEmpty {
                                         SoundsOfTheYearBanner(
                                             isBeingShown: $shouldDisplayRetrospectiveBanner,
                                             buttonAction: {
@@ -366,6 +366,10 @@ struct SoundsView: View {
                             shouldDisplayRecurringDonationBanner = $0
                         }
                     }
+                }
+
+                if SoundsOfTheYearViewViewModel.shouldDisplayBanner() {
+                    shouldDisplayRetrospectiveBanner = true
                 }
 
                 // TODO: Needs refactor. .onAppear is called before the AppDelegate, rendering this useless.
