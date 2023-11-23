@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct TrendsView: View {
-    
+
     enum ViewMode: Int {
         case audience, me
     }
-    
+
     @StateObject private var viewModel = TrendsViewViewModel()
     @Binding var tabSelection: PhoneTab
     @Binding var activePadScreen: PadScreen?
@@ -31,98 +31,78 @@ struct TrendsView: View {
     var showTrends: Bool {
         UserSettings.getEnableTrends()
     }
-    
+
     /*var showMostSharedSoundsByTheUser: Bool {
         UserSettings.getEnableMostSharedSoundsByTheUser()
     }*/
-    
+
     /*var showDayOfTheWeekTheUserSharesTheMost: Bool {
         UserSettings.getEnableDayOfTheWeekTheUserSharesTheMost()
     }*/
-    
+
     var showSoundsMostSharedByTheAudience: Bool {
         UserSettings.getEnableSoundsMostSharedByTheAudience()
     }
-    
+
     /*var showAppsThroughWhichTheUserSharesTheMost: Bool {
         UserSettings.getEnableAppsThroughWhichTheUserSharesTheMost()
     }*/
-    
+
     var body: some View {
         VStack {
             if showTrends {
-                if UIDevice.current.userInterfaceIdiom == .phone {
-                    ScrollView {
-                        Picker("Exibição", selection: $currentViewMode) {
-                            Text("Da Audiência")
-                                .tag(ViewMode.audience)
+                ScrollView {
+                    Picker("Exibição", selection: $currentViewMode) {
+                        Text("Da Audiência")
+                            .tag(ViewMode.audience)
 
-                            Text("Minhas")
-                                .tag(ViewMode.me)
-                        }
-                        .pickerStyle(.segmented)
-                        .padding(.all)
-
-                        if currentViewMode == .audience {
-                            VStack(alignment: .leading, spacing: 10) {
-                                if showSoundsMostSharedByTheAudience {
-                                    MostSharedByAudienceView(tabSelection: $tabSelection,
-                                                             activePadScreen: $activePadScreen)
-                                        .environmentObject(trendsHelper)
-                                }
-                            }
-                        } else {
-                            VStack(alignment: .center, spacing: 10) {
-                                SoundsOfTheYearBanner(
-                                    isBeingShown: $isShowingBanner,
-                                    buttonAction: { showModalView = true }
-                                )
-                                .padding(.horizontal, 10)
-                                .padding(.bottom)
-
-                                //if showMostSharedSoundsByTheUser {
-                                    MostSharedByMeView()
-                                        .environmentObject(trendsHelper)
-                                //}
-
-                                /*if showDayOfTheWeekTheUserSharesTheMost {
-                                 Text("Dia da Semana No Qual Eu Mais Compartilho")
-                                 .font(.title2)
-                                 .padding(.horizontal)
-                                 }*/
-
-                                /*if showAppsThroughWhichTheUserSharesTheMost {
-                                 Text("Apps Pelos Quais Você Mais Compartilha")
-                                 .font(.title2)
-                                 .padding(.horizontal)
-                                 }*/
-                            }
-                            .sheet(isPresented: $showModalView) {
-                                SoundsOfTheYearGeneratorView(
-                                    viewModel: .init(),
-                                    isBeingShown: $showModalView
-                                )
-                            }
-                        }
+                        Text("Minhas")
+                            .tag(ViewMode.me)
                     }
-                } else {
-                    ScrollView {
-                        HStack {
+                    .pickerStyle(.segmented)
+                    .padding(.all)
+
+                    if currentViewMode == .audience {
+                        VStack(alignment: .leading, spacing: 10) {
                             if showSoundsMostSharedByTheAudience {
-                                VStack {
-                                    MostSharedByAudienceView(tabSelection: $tabSelection,
-                                                             activePadScreen: $activePadScreen)
-                                    Spacer()
-                                }
-                                .padding(.top, 10)
+                                MostSharedByAudienceView(
+                                    tabSelection: $tabSelection,
+                                    activePadScreen: $activePadScreen
+                                )
+                                .environmentObject(trendsHelper)
                             }
-                            
+                        }
+                    } else {
+                        VStack(alignment: .leading, spacing: 10) {
+                            SoundsOfTheYearBanner(
+                                isBeingShown: $isShowingBanner,
+                                buttonAction: { showModalView = true }
+                            )
+                            .padding(.horizontal, 10)
+                            .padding(.bottom)
+
                             //if showMostSharedSoundsByTheUser {
-                                VStack {
-                                    MostSharedByMeView()
-                                    Spacer()
-                                }
+                                MostSharedByMeView()
+                                    .environmentObject(trendsHelper)
                             //}
+
+                            /*if showDayOfTheWeekTheUserSharesTheMost {
+                                Text("Dia da Semana No Qual Eu Mais Compartilho")
+                                .font(.title2)
+                                .padding(.horizontal)
+                                }*/
+
+                            /*if showAppsThroughWhichTheUserSharesTheMost {
+                                Text("Apps Pelos Quais Você Mais Compartilha")
+                                .font(.title2)
+                                .padding(.horizontal)
+                                }*/
+                        }
+                        .sheet(isPresented: $showModalView) {
+                            SoundsOfTheYearGeneratorView(
+                                viewModel: .init(),
+                                isBeingShown: $showModalView
+                            )
                         }
                     }
                 }

@@ -48,7 +48,8 @@ struct SoundsView: View {
     
     // Trends
     @EnvironmentObject var trendsHelper: TrendsHelper
-    
+    @State private var soundIdToGoTo: String = ""
+
     // Folders
     @StateObject var deleteFolderAide = DeleteFolderViewAideiPhone()
     
@@ -58,8 +59,7 @@ struct SoundsView: View {
 
     // Dynamic Type
     @ScaledMetric private var explicitOffWarningTopPadding = 16
-    @ScaledMetric private var explicitOffWarningPhoneBottomPadding = 20
-    @ScaledMetric private var explicitOffWarningPadBottomPadding = 20
+    @ScaledMetric private var explicitOffWarningBottomPadding = 20
     @ScaledMetric private var soundCountTopPadding = 10
     @ScaledMetric private var soundCountPhoneBottomPadding = 68
     @ScaledMetric private var soundCountPadBottomPadding = 22
@@ -69,8 +69,6 @@ struct SoundsView: View {
 
     // Sync
     @State private var shouldDisplayYoureOfflineBanner: Bool = true
-    @AppStorage("lastUpdateAttempt") private var lastUpdateAttempt = ""
-    @AppStorage("lastUpdateDate") private var lastUpdateDate = "all"
 
     // Select Many
     @State private var areManyActionButtonsEnabled = false
@@ -295,8 +293,8 @@ struct SoundsView: View {
                                             columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
                                         }
                                     }
-                                    .onReceive(trendsHelper.$soundIdToGoTo) { soundIdToGoTo in
-                                        if shouldScrollToAndHighlight(soundId: soundIdToGoTo) {
+                                    .onChange(of: soundIdToGoTo) {
+                                        if !$0.isEmpty {
                                             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
                                                 withAnimation {
                                                     proxy.scrollTo(soundIdToGoTo, anchor: .center)
@@ -308,14 +306,15 @@ struct SoundsView: View {
                                 }
 
                                 if UserSettings.getShowExplicitContent() == false, viewModel.currentViewMode != .favorites {
-                                    Text(UIDevice.current.userInterfaceIdiom == .phone ? Shared.contentFilterMessageForSoundsiPhone : Shared.contentFilterMessageForSoundsiPadMac)
-                                        .multilineTextAlignment(.center)
-                                        .padding(.top, explicitOffWarningTopPadding)
-                                        .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? explicitOffWarningPhoneBottomPadding : explicitOffWarningPadBottomPadding)
+                                    ExplicitDisabledWarning(
+                                        text: UIDevice.isiPhone ? Shared.contentFilterMessageForSoundsiPhone : Shared.contentFilterMessageForSoundsiPadMac
+                                    )
+                                    .padding(.top, explicitOffWarningTopPadding)
+                                    .padding(.horizontal, explicitOffWarningBottomPadding)
                                 }
 
                                 if viewModel.searchText.isEmpty, viewModel.currentViewMode != .favorites {
-                                    Text("\(viewModel.sounds.count) SONS.")
+                                    Text("\(viewModel.sounds.count) SONS")
                                         .font(.footnote)
                                         .foregroundColor(.gray)
                                         .multilineTextAlignment(.center)
@@ -325,8 +324,8 @@ struct SoundsView: View {
                             }
                             .if(isAllowedToRefresh) {
                                 $0.refreshable {
-                                    Task {
-                                        await viewModel.sync(lastAttempt: lastUpdateAttempt)
+                                    Task { // Keep this Task to avoid "cancelled" issue.
+                                        await viewModel.sync(lastAttempt: AppPersistentMemory.getLastUpdateAttempt())
                                     }
                                 }
                             }
@@ -459,8 +458,8 @@ struct SoundsView: View {
                 case .syncInfoView:
                     SyncInfoView(
                         isBeingShown: $showingModalView,
-                        lastUpdateAttempt: lastUpdateAttempt,
-                        lastUpdateDate: lastUpdateDate
+                        lastUpdateAttempt: AppPersistentMemory.getLastUpdateAttempt(),
+                        lastUpdateDate: AppPersistentMemory.getLastUpdateDate()
                     )
 
                 case .soundDetailView:
@@ -531,10 +530,15 @@ struct SoundsView: View {
                     favoriteButtonImage = "star"
                 }
             }
+            .onReceive(trendsHelper.$soundIdToGoTo) {
+                if shouldScrollToAndHighlight(soundId: $0) {
+                    soundIdToGoTo = $0
+                }
+            }
             .oneTimeTask {
                 print("SOUNDS VIEW - ONE TIME TASK")
                 if viewModel.currentViewMode == .allSounds {
-                    await viewModel.sync(lastAttempt: lastUpdateAttempt)
+                    await viewModel.sync(lastAttempt: AppPersistentMemory.getLastUpdateAttempt())
                 }
             }
 
@@ -714,9 +718,7 @@ struct SoundsView: View {
     }
     
     private func shouldScrollToAndHighlight(soundId: String) -> Bool {
-        guard soundId.isEmpty == false else {
-            return false
-        }
+        guard !soundId.isEmpty else { return false }
         viewModel.currentViewMode = .allSounds
 
         if !viewModel.searchText.isEmpty {
@@ -729,7 +731,7 @@ struct SoundsView: View {
             viewModel.highlightKeeper.remove(soundId)
         }
 
-        self.trendsHelper.soundIdToGoTo = .empty
+        self.trendsHelper.soundIdToGoTo = ""
         return true // This tells the ScrollViewProxy "yes, go ahead and scroll, there was a soundId received". Unfortunately, passing the proxy as a parameter did not work and this code was made more complex because of this.
     }
 }

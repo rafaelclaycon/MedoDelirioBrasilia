@@ -99,7 +99,15 @@ class UserSettings {
         }
         return Date(timeIntervalSince1970: value as! Double)
     }
-    
+
+    static func getShowUpdateDateOnUI() -> Bool {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "showUpdateDateOnUI") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
+
     // MARK: - Setters
     
     static func setShowExplicitContent(to newValue: Bool) {
@@ -162,4 +170,8 @@ class UserSettings {
         userDefaults.set(newValue.timeIntervalSince1970, forKey: "lastSendDateOfStillAliveSignalToServer")
     }
 
+    static func setShowUpdateDateOnUI(to newValue: Bool) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(newValue, forKey: "showUpdateDateOnUI")
+    }
 }

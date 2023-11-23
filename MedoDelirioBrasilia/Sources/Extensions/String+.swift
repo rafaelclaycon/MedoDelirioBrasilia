@@ -51,3 +51,21 @@ extension String {
         }
     }
 }
+
+extension String {
+
+    var minutesAndSecondsFromNow: String {
+        guard let date = self.iso8601withFractionalSeconds else { return "" }
+        let twoMinutesFromLastUpdate = Calendar.current.date(byAdding: .minute, value: 2, to: date)
+
+        guard let endDate = twoMinutesFromLastUpdate else { return "" }
+        let components = Calendar.current.dateComponents([.minute, .second], from: .now, to: endDate)
+
+        guard let minutes = components.minute, let seconds = components.second else { return "" }
+        if minutes > 0 {
+            return "\(minutes) minuto e \(seconds) segundos"
+        } else {
+            return seconds > 1 ? "\(seconds) segundos" : "1 segundo"
+        }
+    }
+}

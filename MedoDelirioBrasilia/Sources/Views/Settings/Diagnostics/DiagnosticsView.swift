@@ -16,7 +16,9 @@ struct DiagnosticsView: View {
     
     @State var installId = UIDevice.customInstallId
     @State var showInstallIdCopiedAlert = false
-    
+
+    @State private var showUpdateDateOnUI: Bool = UserSettings.getShowUpdateDateOnUI()
+
     @State var shareLogs: [UserShareLog]?
     //@State var networkLogs: [NetworkCallLog]?
     
@@ -49,7 +51,14 @@ struct DiagnosticsView: View {
             } footer: {
                 Text("Esse código identifica apenas a instalação do app e é renovado caso você o desinstale e instale novamente. Toque nele uma vez para copiar.")
             }
-            
+
+            Section {
+                Toggle("Exibir data hora última atualização na UI", isOn: $showUpdateDateOnUI)
+                    .onChange(of: showUpdateDateOnUI) {
+                        UserSettings.setShowUpdateDateOnUI(to: $0)
+                    }
+            }
+
             /*if CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
                 Section("Tendências [DEV ONLY]") {
                     Button("Setar dia de envio para ontem") {

@@ -68,7 +68,6 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
         self.currentSoundsListMode = currentSoundsListMode
 
         self.syncManager = SyncManager(
-            lastUpdateDate: AppPersistentMemory.getLastUpdateDate(),
             service: SyncService(
                 connectionManager: ConnectionManager.shared,
                 networkRabbit: networkRabbit,
@@ -440,11 +439,17 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
             if syncValues.syncStatus == .updating {
                 syncValues.syncStatus = .done
             }
-            print("CAN'T SYNC WAIT 2 MINUTES")
+
+            var message = "Aguarde \(lastAttempt.minutesAndSecondsFromNow) para atualizar novamente."
+            if UserSettings.getShowUpdateDateOnUI() {
+                message += " \(AppPersistentMemory.getLastUpdateDate())"
+            }
+
             return displayToast(
                 "clock.fill",
                 .orange,
-                toastText: "Aguarde mais um pouco para atualizar novamente."
+                toastText: message,
+                displayTime: .seconds(UserSettings.getShowUpdateDateOnUI() ? 10 : 3)
             )
         }
 
@@ -452,10 +457,16 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
 
         print("SYNC EXECUTED")
 
+        var message = syncValues.syncStatus.description
+        if UserSettings.getShowUpdateDateOnUI() {
+            message += " \(AppPersistentMemory.getLastUpdateDate())"
+        }
+
         displayToast(
             syncValues.syncStatus == .done ? "checkmark" : "exclamationmark.triangle.fill",
             syncValues.syncStatus == .done ? .green : .orange,
-            toastText: syncValues.syncStatus.description
+            toastText: message,
+            displayTime: .seconds(UserSettings.getShowUpdateDateOnUI() ? 10 : 3)
         )
     }
 
@@ -552,6 +563,7 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
         _ toastIcon: String = "checkmark",
         _ toastIconColor: Color = .green,
         toastText: String,
+        displayTime: DispatchTimeInterval = .seconds(3),
         completion: (() -> Void)? = nil
     ) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
@@ -564,7 +576,7 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
             TapticFeedback.success()
         }
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + displayTime) {
             withAnimation {
                 self.showToastView = false
                 completion?()
