@@ -135,7 +135,7 @@ struct SoundsOfTheYearGeneratorView: View {
 
     private func topFiveSquareImageView() -> some View {
         ZStack {
-            Image("sounds_of_the_year_background_square")
+            Image("retro_back_1")
                 .resizable()
                 .frame(width: 350, height: 350)
 
@@ -169,7 +169,7 @@ struct SoundsOfTheYearGeneratorView: View {
 
     private func shareCountAndDaySquareImageView() -> some View {
         ZStack {
-            Image("retro-square-2")
+            Image("retro_back_2")
                 .resizable()
                 .frame(width: 350, height: 350)
 
