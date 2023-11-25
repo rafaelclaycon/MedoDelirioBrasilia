@@ -99,7 +99,7 @@ struct TrendsView: View {
                                 }*/
                         }
                         .sheet(isPresented: $showModalView) {
-                            SoundsOfTheYearGeneratorView(
+                            RetroView(
                                 viewModel: .init(),
                                 isBeingShown: $showModalView
                             )

@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct SoundsOfTheYearGeneratorView: View {
+struct RetroView: View {
 
-    @StateObject var viewModel: SoundsOfTheYearViewViewModel
+    @StateObject var viewModel: ViewModel
 
     @Binding var isBeingShown: Bool
 
@@ -259,7 +259,7 @@ struct SoundsOfTheYearGeneratorView: View {
 }
 
 #Preview {
-    SoundsOfTheYearGeneratorView(
+    RetroView(
         viewModel: .init(),
         isBeingShown: .constant(true)
     )

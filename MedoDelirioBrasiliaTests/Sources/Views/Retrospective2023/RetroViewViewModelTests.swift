@@ -1,5 +1,5 @@
 //
-//  SoundsOfTheYearViewViewModelTests.swift
+//  RetroViewViewModelTests.swift
 //  MedoDelirioBrasiliaTests
 //
 //  Created by Rafael Schmitt on 16/10/23.
@@ -8,16 +8,18 @@
 @testable import MedoDelirio
 import XCTest
 
-final class SoundsOfTheYearViewViewModelTests: XCTestCase {
+final class RetroViewViewModelTests: XCTestCase {
 
-    private var sut: SoundsOfTheYearViewViewModel!
+    private var sut: RetroView.ViewModel!
 
     override func setUpWithError() throws {
-        sut = SoundsOfTheYearViewViewModel()
+        try super.setUpWithError()
+        sut = .init()
     }
 
     override func tearDownWithError() throws {
         sut = nil
+        try super.tearDownWithError()
     }
 
     private func date(from isoDate: String) -> Date {
@@ -116,9 +118,9 @@ final class SoundsOfTheYearViewViewModelTests: XCTestCase {
     }
 }
 
-extension SoundsOfTheYearViewViewModelTests {
+extension RetroViewViewModelTests {
 
-    func testShouldDisplayBanner_whenDeviceIsiOS15_shouldReturnFalse() throws {
-        
+    func testVersionIsAllowedToDisplayRetro_whenIsNotAllowed_shouldReturnFalse() throws {
+        // sut.
     }
 }

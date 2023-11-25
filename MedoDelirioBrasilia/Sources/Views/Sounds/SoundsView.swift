@@ -367,7 +367,7 @@ struct SoundsView: View {
                     }
                 }
 
-                if SoundsOfTheYearViewViewModel.shouldDisplayBanner() {
+                if RetroView.ViewModel.shouldDisplayBanner() {
                     shouldDisplayRetrospectiveBanner = true
                 }
 
@@ -469,7 +469,7 @@ struct SoundsView: View {
                     )
 
                 case .retrospective:
-                    SoundsOfTheYearGeneratorView(
+                    RetroView(
                         viewModel: .init(),
                         isBeingShown: $showingModalView
                     )

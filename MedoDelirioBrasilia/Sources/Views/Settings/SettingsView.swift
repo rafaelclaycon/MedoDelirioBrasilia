@@ -45,7 +45,7 @@ struct SettingsView: View {
                     Text("Alguns conteúdos contam com muitos palavrões. Ao marcar essa opção, você concorda que tem mais de 18 anos e que deseja ver esses conteúdos.")
                 }
 
-                if SoundsOfTheYearViewViewModel.shouldDisplayBanner() {
+                if RetroView.ViewModel.shouldDisplayBanner() {
                     Section {
                         Button {
                             print("Retro")
