@@ -17,6 +17,10 @@ struct RetroBanner: View {
 
     @Environment(\.colorScheme) var colorScheme
 
+    var soundText: String {
+        soundCount > 1 ? "\(soundCount) sons" : "1 som"
+    }
+
     var body: some View {
         HStack(spacing: 20) {
             Image(systemName: "airpodsmax")
@@ -30,7 +34,7 @@ struct RetroBanner: View {
                     .foregroundColor(colorScheme == .dark ? .green : .darkerGreen)
                     .bold()
 
-                Text("O ano está acabando e nós compartilhamos \(soundCount) sons juntos para dar conta da loucura que é o Brasil. Exiba os sons que te ajudaram a aturar 2023 nas suas redes.")
+                Text("O ano está acabando e nós compartilhamos \(soundText) juntos para dar conta da loucura que é o Brasil. Exiba os sons que te ajudaram a enfrentar 2023 nas suas redes.")
                     .foregroundColor(colorScheme == .dark ? .green : .darkerGreen)
                     .font(.callout)
 

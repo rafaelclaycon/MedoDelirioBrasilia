@@ -16,7 +16,7 @@ struct RetroView: View {
 
     @Environment(\.colorScheme) var colorScheme
 
-    @ScaledMetric var vstackSpacing: CGFloat = 22
+    @ScaledMetric var vstackSpacing: CGFloat = 24
     @ScaledMetric var bottomPadding: CGFloat = 26
 
     var mostCommonDayFont: Font {
@@ -50,6 +50,9 @@ struct RetroView: View {
                         }
                         .frame(width: 350, height: 400)
                         .tabViewStyle(.page)
+
+                        AddHashtagIncentive()
+                            .padding(.top, -15)
 
                         savePhotosButton(
                             firstView: rankingSquare,
@@ -222,6 +225,69 @@ struct RetroView: View {
         if colorScheme != .dark {
             UIPageControl.appearance().currentPageIndicatorTintColor = .black
             UIPageControl.appearance().pageIndicatorTintColor = UIColor.black.withAlphaComponent(0.2)
+        }
+    }
+}
+
+extension RetroView {
+
+    struct AddHashtagIncentive: View {
+
+        @State private var showCopiedMessage: Bool = false
+
+        @Environment(\.colorScheme) var colorScheme
+
+        var body: some View {
+            VStack(spacing: .zero) {
+                VStack(alignment: .leading, spacing: 8) {
+                    VStack {
+                        Text("Que tal compartilhar as imagens com a hashtag ")
+                            .font(.callout) +
+
+                        Text("#MedoEDelírioiOS")
+                            .font(.callout)
+                            .foregroundColor(.blue)
+                            .bold() +
+
+                        Text("?")
+                            .font(.callout)
+                    }
+                    .padding(.leading, 3)
+
+                    HStack {
+                        Spacer()
+
+                        Button {
+                            UIPasteboard.general.string = "#MedoEDelírioiOS"
+
+                            showCopiedMessage = true
+                            TapticFeedback.success()
+
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                showCopiedMessage = false
+                            }
+                        } label: {
+                            if showCopiedMessage {
+                                Label("Copiada!", systemImage: "checkmark")
+                            } else {
+                                Label("Copiar hashtag", systemImage: "doc.on.doc")
+                            }
+                        }
+                        .tint(.primary)
+                        .controlSize(.regular)
+                        .buttonStyle(.bordered)
+                        .buttonBorderShape(.roundedRectangle)
+                        .opacity(colorScheme == .dark ? 1.0 : 0.6)
+                    }
+                    .padding(.top, 5)
+                }
+                .padding()
+            }
+            .background {
+                RoundedRectangle(cornerRadius: 15)
+                    .foregroundColor(.gray)
+                    .opacity(colorScheme == .dark ? 0.3 : 0.15)
+            }
         }
     }
 }
