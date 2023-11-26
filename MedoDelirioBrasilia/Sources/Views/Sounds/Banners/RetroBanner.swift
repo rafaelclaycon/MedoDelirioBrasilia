@@ -1,5 +1,5 @@
 //
-//  SoundsOfTheYearBanner.swift
+//  RetroBanner.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 08/10/23.
@@ -7,10 +7,11 @@
 
 import SwiftUI
 
-struct SoundsOfTheYearBanner: View {
+struct RetroBanner: View {
 
     @Binding var isBeingShown: Bool
     let buttonAction: () -> Void
+    var showCloseButton: Bool = true
 
     @State private var soundCount: Int = 0
 
@@ -52,14 +53,16 @@ struct SoundsOfTheYearBanner: View {
                 .opacity(colorScheme == .dark ? 0.3 : 0.15)
         }
         .overlay(alignment: .topTrailing) {
-            Button {
-                //AppPersistentMemory.setHasSeenRecurringDonationBanner(to: true)
-                isBeingShown = false
-            } label: {
-                Image(systemName: "xmark")
-                    .foregroundColor(.green)
+            if showCloseButton {
+                Button {
+                    AppPersistentMemory.setHasSeenRetroBanner(to: true)
+                    isBeingShown = false
+                } label: {
+                    Image(systemName: "xmark")
+                        .foregroundColor(.green)
+                }
+                .padding()
             }
-            .padding()
         }
         .onAppear {
             soundCount = LocalDatabase.shared.sharedSoundsCount()
@@ -68,7 +71,7 @@ struct SoundsOfTheYearBanner: View {
 }
 
 #Preview {
-    SoundsOfTheYearBanner(
+    RetroBanner(
         isBeingShown: .constant(true),
         buttonAction: { }
     )

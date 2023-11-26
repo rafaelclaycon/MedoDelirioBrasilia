@@ -20,8 +20,8 @@ struct TrendsView: View {
 
     @EnvironmentObject var trendsHelper: TrendsHelper
 
-    // Sounds of the Year
-    @State private var isShowingBanner = false
+    // Retrospective 2023
+    @State private var shouldDisplayRetrospectiveBanner: Bool = false
     @State private var showModalView = false
 
     // Alert
@@ -74,12 +74,15 @@ struct TrendsView: View {
                         }
                     } else {
                         VStack(alignment: .leading, spacing: 10) {
-                            SoundsOfTheYearBanner(
-                                isBeingShown: $isShowingBanner,
-                                buttonAction: { showModalView = true }
-                            )
-                            .padding(.horizontal, 10)
-                            .padding(.bottom)
+                            if shouldDisplayRetrospectiveBanner {
+                                RetroBanner(
+                                    isBeingShown: .constant(true),
+                                    buttonAction: { showModalView = true },
+                                    showCloseButton: false
+                                )
+                                .padding(.horizontal, 10)
+                                .padding(.bottom)
+                            }
 
                             //if showMostSharedSoundsByTheUser {
                                 MostSharedByMeView()
@@ -113,6 +116,11 @@ struct TrendsView: View {
         }
         .navigationTitle("Tendências")
         .navigationBarTitleDisplayMode(showTrends ? .large : .inline)
+        .onAppear {
+            Task {
+                shouldDisplayRetrospectiveBanner = await RetroView.ViewModel.shouldDisplayBanner()
+            }
+        }
     }
 }
 

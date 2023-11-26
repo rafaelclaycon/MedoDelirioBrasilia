@@ -175,7 +175,7 @@ struct SoundsView: View {
                                     }
 
                                     if shouldDisplayRetrospectiveBanner, viewModel.searchText.isEmpty {
-                                        SoundsOfTheYearBanner(
+                                        RetroBanner(
                                             isBeingShown: $shouldDisplayRetrospectiveBanner,
                                             buttonAction: {
                                                 subviewToOpen = .retrospective
@@ -368,8 +368,10 @@ struct SoundsView: View {
                 }
 
                 Task {
-                    if await RetroView.ViewModel.shouldDisplayBanner() {
-                        shouldDisplayRetrospectiveBanner = true
+                    if AppPersistentMemory.getHasSeenRetroBanner() {
+                        shouldDisplayRetrospectiveBanner = false
+                    } else {
+                        shouldDisplayRetrospectiveBanner = await RetroView.ViewModel.shouldDisplayBanner()
                     }
                 }
 
