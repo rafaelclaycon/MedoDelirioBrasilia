@@ -90,6 +90,7 @@ struct RetroView: View {
                 analyticsString = viewModel.analyticsString()
                 isBeingShown.toggle()
             } else {
+                viewModel.isShowingProcessingView = false
                 viewModel.showExportError()
                 viewModel.exportErrors.removeAll()
             }
