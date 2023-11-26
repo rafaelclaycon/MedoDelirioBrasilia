@@ -1353,6 +1353,7 @@
 		D9DB6F8128CD6E2900E24BDE /* UOL - JOAO GORDO - Doidao de droga.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DB6F8028CD6E2900E24BDE /* UOL - JOAO GORDO - Doidao de droga.mp3 */; };
 		D9DB6F8328CD6F3600E24BDE /* Edu Santos - Totalmente embriagado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DB6F8228CD6F3500E24BDE /* Edu Santos - Totalmente embriagado.mp3 */; };
 		D9DB6F8528CD770900E24BDE /* Fernanda Torres - Totalmente drogada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DB6F8428CD770900E24BDE /* Fernanda Torres - Totalmente drogada.mp3 */; };
+		D9DBCEA42B12888D003B4A46 /* NetworkRabbit+Retro.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DBCEA32B12888D003B4A46 /* NetworkRabbit+Retro.swift */; };
 		D9DC68902AD38648005D3F81 /* SoundsOfTheYearBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DC688F2AD38648005D3F81 /* SoundsOfTheYearBanner.swift */; };
 		D9DCC5D128751256008DD4A3 /* PushDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D028751256008DD4A3 /* PushDevice.swift */; };
 		D9DCC5D3287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D2287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift */; };
@@ -2828,6 +2829,7 @@
 		D9DB6F8028CD6E2900E24BDE /* UOL - JOAO GORDO - Doidao de droga.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "UOL - JOAO GORDO - Doidao de droga.mp3"; sourceTree = "<group>"; };
 		D9DB6F8228CD6F3500E24BDE /* Edu Santos - Totalmente embriagado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Edu Santos - Totalmente embriagado.mp3"; sourceTree = "<group>"; };
 		D9DB6F8428CD770900E24BDE /* Fernanda Torres - Totalmente drogada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fernanda Torres - Totalmente drogada.mp3"; sourceTree = "<group>"; };
+		D9DBCEA32B12888D003B4A46 /* NetworkRabbit+Retro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+Retro.swift"; sourceTree = "<group>"; };
 		D9DC688F2AD38648005D3F81 /* SoundsOfTheYearBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsOfTheYearBanner.swift; sourceTree = "<group>"; };
 		D9DCC5D028751256008DD4A3 /* PushDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushDevice.swift; sourceTree = "<group>"; };
 		D9DCC5D2287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+PushDevice.swift"; sourceTree = "<group>"; };
@@ -4325,7 +4327,6 @@
 		D9523746285BF9EB00E6C838 /* Doubles */ = {
 			isa = PBXGroup;
 			children = (
-				D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */,
 				D9523742285BF99800E6C838 /* LocalDatabaseSpy.swift */,
 			);
 			path = Doubles;
@@ -4654,6 +4655,7 @@
 				D94EAB4E29FB1524004CD604 /* NetworkRabbit+FileDownload.swift */,
 				D95C3E0E2A02D7C400172C17 /* NetworkRabbit+Sync.swift */,
 				D9CA301D2A03EE2300F1F23D /* NetworkRabbit+Generic.swift */,
+				D9DBCEA32B12888D003B4A46 /* NetworkRabbit+Retro.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -4971,6 +4973,7 @@
 			isa = PBXGroup;
 			children = (
 				D9A06419298B6749006075D1 /* LocalDatabaseStub.swift */,
+				D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */,
 			);
 			path = SharedDoubles;
 			sourceTree = "<group>";
@@ -6488,6 +6491,7 @@
 				D98EC5DE282596C300340BE5 /* SoundCell.swift in Sources */,
 				D973076C28AC49B100FBB3B8 /* DiagnosticsViewViewModel.swift in Sources */,
 				D99C8A972952C904002E0C00 /* NetworkRabbit+DonorNames.swift in Sources */,
+				D9DBCEA42B12888D003B4A46 /* NetworkRabbit+Retro.swift in Sources */,
 				D9EB18A52857CDFF00A2F8A8 /* CollectionsView.swift in Sources */,
 				D98EC5E32825A45000340BE5 /* SoundsViewViewModel.swift in Sources */,
 				D9F78A9F2860DF9100B83567 /* CollectionCell.swift in Sources */,
@@ -6768,7 +6772,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.4.2;
+				MARKETING_VERSION = 7.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -6809,7 +6813,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 7.4.2;
+				MARKETING_VERSION = 7.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

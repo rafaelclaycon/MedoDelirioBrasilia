@@ -32,10 +32,19 @@ extension RetroView {
             return dateFormatter
         }
 
-        static func shouldDisplayBanner() -> Bool {
+        static func shouldDisplayBanner() async -> Bool {
             guard #available(iOS 16.0, *) else { return false }
+            guard await versionIsAllowedToDisplayRetro() else { return false }
             guard LocalDatabase.shared.sharedSoundsCount() > 0 else { return false }
             return true
+        }
+
+        static func versionIsAllowedToDisplayRetro(
+            currentVersion: String = Versioneer.appVersion,
+            network: NetworkRabbitProtocol = networkRabbit
+        ) async -> Bool {
+            guard let allowedVersion = await network.retroStartingVersion() else { return false }
+            return currentVersion >= allowedVersion
         }
 
         func retrieveTopFive() {

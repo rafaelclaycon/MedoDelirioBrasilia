@@ -367,8 +367,10 @@ struct SoundsView: View {
                     }
                 }
 
-                if RetroView.ViewModel.shouldDisplayBanner() {
-                    shouldDisplayRetrospectiveBanner = true
+                Task {
+                    if await RetroView.ViewModel.shouldDisplayBanner() {
+                        shouldDisplayRetrospectiveBanner = true
+                    }
                 }
 
                 // TODO: Needs refactor. .onAppear is called before the AppDelegate, rendering this useless.
