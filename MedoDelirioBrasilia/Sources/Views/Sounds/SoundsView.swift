@@ -523,7 +523,10 @@ struct SoundsView: View {
                     }
 
                     if pluralization == .plural {
-                        viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFolder(\(selectedCount))")
+                        Analytics.sendUsageMetricToServer(
+                            originatingScreen: "SoundsView",
+                            action: "didAddManySoundsToFolder(\(selectedCount))"
+                        )
                     }
                 } else if 
                     (showingModalView == false) &&
@@ -534,7 +537,10 @@ struct SoundsView: View {
                         toastText: "Imagens salvas com sucesso."
                     )
 
-                    viewModel.sendUsageMetricToServer(action: "didExportRetro2023Images(\(retroExportAnalytics))")
+                    Analytics.sendUsageMetricToServer(
+                        originatingScreen: "SoundsView",
+                        action: "didExportRetro2023Images(\(retroExportAnalytics))"
+                    )
 
                     retroExportAnalytics = ""
                 }

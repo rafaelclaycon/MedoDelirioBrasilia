@@ -321,11 +321,17 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
             removeSelectedFromFavorites()
             stopSelecting()
             reloadList(currentMode: currentViewMode)
-            sendUsageMetricToServer(action: "didRemoveManySoundsFromFavorites(\(selectedCount))")
+            Analytics.sendUsageMetricToServer(
+                originatingScreen: "SoundsView",
+                action: "didRemoveManySoundsFromFavorites(\(selectedCount))"
+            )
         } else {
             addSelectedToFavorites()
             stopSelecting()
-            sendUsageMetricToServer(action: "didAddManySoundsToFavorites(\(selectedCount))")
+            Analytics.sendUsageMetricToServer(
+                originatingScreen: "SoundsView",
+                action: "didAddManySoundsToFavorites(\(selectedCount))"
+            )
         }
     }
 
@@ -381,19 +387,7 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
             showShareManyIssueAlert(error.localizedDescription)
         }
     }
-    
-    func sendUsageMetricToServer(action: String) {
-        let usageMetric = UsageMetric(customInstallId: UIDevice.customInstallId,
-                                      originatingScreen: "SoundsView",
-                                      destinationScreen: action,
-                                      systemName: UIDevice.current.systemName,
-                                      isiOSAppOnMac: ProcessInfo.processInfo.isiOSAppOnMac,
-                                      appVersion: Versioneer.appVersion,
-                                      dateTime: Date.now.iso8601withFractionalSeconds,
-                                      currentTimeZone: TimeZone.current.abbreviation() ?? .empty)
-        networkRabbit.post(usageMetric: usageMetric)
-    }
-    
+
     // MARK: - Other
     
     func donateActivity() {

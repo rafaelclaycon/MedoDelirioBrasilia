@@ -1256,6 +1256,7 @@
 		D9BA1C452A9A920300996332 /* Caio Salles - Demais.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BA1C3F2A9A920300996332 /* Caio Salles - Demais.mp3 */; };
 		D9BA1C462A9A920300996332 /* Reinaldo Azevedo - Peca desculpas, diga errei.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BA1C402A9A920300996332 /* Reinaldo Azevedo - Peca desculpas, diga errei.mp3 */; };
 		D9BAA6F42982F4340060982A /* CreateFolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BAA6F32982F4340060982A /* CreateFolderCell.swift */; };
+		D9BACC012B13BF5400BBD0BE /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BACC002B13BF5400BBD0BE /* Analytics.swift */; };
 		D9BB1E7728B3200700C5FFAA /* AppIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BB1E7628B3200700C5FFAA /* AppIcon.swift */; };
 		D9BB3A2D28F4BAD500EF7E8D /* Jair Bolsonaro - Paz, tranquilidade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BB3A2C28F4BAD500EF7E8D /* Jair Bolsonaro - Paz, tranquilidade.mp3 */; };
 		D9BB8F7628EC6D9E00659D4A /* Amigo do Pedro Daltro - Risada caralho (curto).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BB8F7428EC6D9E00659D4A /* Amigo do Pedro Daltro - Risada caralho (curto).mp3 */; };
@@ -2732,6 +2733,7 @@
 		D9BA1C3F2A9A920300996332 /* Caio Salles - Demais.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Caio Salles - Demais.mp3"; sourceTree = "<group>"; };
 		D9BA1C402A9A920300996332 /* Reinaldo Azevedo - Peca desculpas, diga errei.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Reinaldo Azevedo - Peca desculpas, diga errei.mp3"; sourceTree = "<group>"; };
 		D9BAA6F32982F4340060982A /* CreateFolderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFolderCell.swift; sourceTree = "<group>"; };
+		D9BACC002B13BF5400BBD0BE /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		D9BB1E7628B3200700C5FFAA /* AppIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcon.swift; sourceTree = "<group>"; };
 		D9BB3A2C28F4BAD500EF7E8D /* Jair Bolsonaro - Paz, tranquilidade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Paz, tranquilidade.mp3"; sourceTree = "<group>"; };
 		D9BB8F7428EC6D9E00659D4A /* Amigo do Pedro Daltro - Risada caralho (curto).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Amigo do Pedro Daltro - Risada caralho (curto).mp3"; sourceTree = "<group>"; };
@@ -4656,6 +4658,7 @@
 				D95C3E0E2A02D7C400172C17 /* NetworkRabbit+Sync.swift */,
 				D9CA301D2A03EE2300F1F23D /* NetworkRabbit+Generic.swift */,
 				D9DBCEA32B12888D003B4A46 /* NetworkRabbit+Retro.swift */,
+				D9BACC002B13BF5400BBD0BE /* Analytics.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -6443,6 +6446,7 @@
 				D99DC19D28423AD7002B03B6 /* AuthorDetailViewViewModel.swift in Sources */,
 				D967E2BC2901C40700B21C11 /* CustomPhotoAlbum.swift in Sources */,
 				D907A39E2A8F9E6A006DE630 /* OpenUtility.swift in Sources */,
+				D9BACC012B13BF5400BBD0BE /* Analytics.swift in Sources */,
 				D98DBD35284919B1008544F8 /* NetworkRabbit.swift in Sources */,
 				D959B0482887E83D00A215AD /* SidebarViewViewModel.swift in Sources */,
 				D97B2DD628E3E85400C3B50B /* MostSharedByMeViewViewModel.swift in Sources */,

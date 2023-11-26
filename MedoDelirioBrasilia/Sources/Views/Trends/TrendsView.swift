@@ -57,7 +57,7 @@ struct TrendsView: View {
                         Text("Da Audiência")
                             .tag(ViewMode.audience)
 
-                        Text("Minhas")
+                        Text("Pessoais")
                             .tag(ViewMode.me)
                     }
                     .pickerStyle(.segmented)
@@ -124,15 +124,34 @@ struct TrendsView: View {
             }
         }
         .onChange(of: showModalView) { showModalView in
-//            if (showModalView == false) && !retroExportAnalytics.isEmpty {
-//                viewModel.displayToast(
-//                    toastText: "Imagens salvas com sucesso."
-//                )
-//
-//                viewModel.sendUsageMetricToServer(action: "didExportRetro2023Images(\(retroExportAnalytics))")
-//
-//                retroExportAnalytics = ""
-//            }
+            if (showModalView == false) && !retroExportAnalytics.isEmpty {
+                viewModel.displayToast(
+                    toastText: "Imagens salvas com sucesso."
+                )
+
+                Analytics.sendUsageMetricToServer(
+                    originatingScreen: "TrendsView",
+                    action: "didExportRetro2023Images(\(retroExportAnalytics))"
+                )
+
+                retroExportAnalytics = ""
+            }
+        }
+        .overlay {
+            if viewModel.showToastView {
+                VStack {
+                    Spacer()
+
+                    ToastView(
+                        icon: viewModel.toastIcon,
+                        iconColor: viewModel.toastIconColor,
+                        text: viewModel.toastText
+                    )
+                    .padding(.horizontal)
+                    .padding(.bottom, 15)
+                }
+                .transition(.moveAndFade)
+            }
         }
     }
 }
