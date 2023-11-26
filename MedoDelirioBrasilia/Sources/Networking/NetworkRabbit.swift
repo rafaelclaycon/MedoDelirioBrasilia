@@ -10,6 +10,8 @@ internal protocol NetworkRabbitProtocol {
     func post(clientDeviceInfo: ClientDeviceInfo, completionHandler: @escaping (Bool?, NetworkRabbitError?) -> Void)
     func post(bundleIdLog: ServerShareBundleIdLog, completionHandler: @escaping (Bool, String) -> Void)
     func fetchUpdateEvents(from lastDate: String) async throws -> [UpdateEvent]
+
+    func retroStartingVersion() async -> String?
 }
 
 class NetworkRabbit: NetworkRabbitProtocol {

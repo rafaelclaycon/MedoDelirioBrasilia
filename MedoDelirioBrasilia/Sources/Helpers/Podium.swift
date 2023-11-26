@@ -12,7 +12,7 @@ class Podium {
     
     func getTop10SoundsSharedByTheUser() -> [TopChartItem]? {
         do {
-            var items = try database.getTop10SoundsSharedByTheUser()
+            var items = try database.getTopSoundsSharedByTheUser(10)
             for i in 0..<items.count {
                 items[i].id = UUID().uuidString
                 items[i].rankNumber = "\(i + 1)"

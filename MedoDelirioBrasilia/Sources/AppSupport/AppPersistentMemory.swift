@@ -156,6 +156,14 @@ class AppPersistentMemory {
         return String(value as! String)
     }
 
+    static func getHasSeenRetroBanner() -> Bool {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "hasSeenRetroBanner") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
+
     // MARK: - Setters
     
     static func setHasSentDeviceModelToServer(to newValue: Bool) {
@@ -247,5 +255,10 @@ class AppPersistentMemory {
     static func setLastUpdateAttempt(to newValue: String) {
         let userDefaults = UserDefaults.standard
         userDefaults.set(newValue, forKey: "lastUpdateAttempt")
+    }
+
+    static func setHasSeenRetroBanner(to newValue: Bool) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(newValue, forKey: "hasSeenRetroBanner")
     }
 }
