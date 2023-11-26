@@ -521,6 +521,12 @@ struct SoundsView: View {
                     if pluralization == .plural {
                         viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFolder(\(selectedCount))")
                     }
+                } else if (showingModalView == false) && subviewToOpen == .retrospective {
+                    viewModel.displayToast(
+                        toastText: "Imagens exportadas com sucesso."
+                    )
+
+                    //viewModel.sendUsageMetricToServer(action: "didExportRetro2023Images(\(selectedCount))")
                 }
             }
             .onChange(of: viewModel.selectionKeeper.count) {

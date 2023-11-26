@@ -5,7 +5,7 @@
 //  Created by Rafael Schmitt on 10/10/23.
 //
 
-import Foundation
+import UIKit
 import Combine
 
 extension RetroView {
@@ -17,8 +17,10 @@ extension RetroView {
         @Published var mostCommonShareDay: String = "-"
         @Published var mostCommonShareDayPluralization: WordPluralization = .singular
 
-        @Published var selectedSocialNetwork = IntendedVideoDestination.twitter.rawValue
         @Published var isShowingProcessingView = false
+
+        @Published var exportErrors: [String] = []
+        @Published var shouldProcessPostExport: Bool = false
 
         // Alerts
         @Published var alertTitle: String = .empty
@@ -127,6 +129,24 @@ extension RetroView {
             } else {
                 return nil
             }
+        }
+
+        func save(image: UIImage) async throws {
+            DispatchQueue.main.async {
+                self.isShowingProcessingView = true
+            }
+
+            try await CustomPhotoAlbum.sharedInstance.save(image: image)
+
+            DispatchQueue.main.async {
+                self.isShowingProcessingView = false
+            }
+        }
+
+        func showExportError() {
+            alertTitle = "Houve Erros Ao Tentar Exportar as Imagens"
+            alertMessage = "\(exportErrors.joined(separator: "\n\n"))\n\nTente novamente. Se persistir, informe o desenvolvedor (e-mail nas Configurações)."
+            showAlert.toggle()
         }
     }
 }

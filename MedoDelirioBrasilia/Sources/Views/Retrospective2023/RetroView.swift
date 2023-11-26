@@ -35,20 +35,11 @@ struct RetroView: View {
     var body: some View {
         let rankingSquare = topFiveSquareImageView()
         let countSquare = shareCountAndDaySquareImageView()
-//        let nineBySixteenImage = nineBySixteenImageView(contentName: viewModel.content.title, contentAuthor: viewModel.subtitle)
 
         ZStack {
             NavigationView {
                 ScrollView {
                     VStack(spacing: vstackSpacing) {
-//                        Picker(selection: $viewModel.selectedSocialNetwork, label: Text("Rede social")) {
-//                            Text("Quadrado").tag(0)
-//                            Text("9 : 16").tag(1)
-//                        }
-//                        .pickerStyle(SegmentedPickerStyle())
-//                        .disabled(viewModel.isShowingProcessingView)
-
-//                        if viewModel.selectedSocialNetwork == 0 {
                         TabView {
                             rankingSquare
                                 .padding(.bottom, 50)
@@ -58,31 +49,11 @@ struct RetroView: View {
                         }
                         .frame(width: 350, height: 400)
                         .tabViewStyle(.page)
-//                        } else {
-//                            nineBySixteenImage
-//                        }
 
-                        if UIDevice.current.userInterfaceIdiom == .phone {
-                            VStack(spacing: vstackSpacing) {
-                                if viewModel.selectedSocialNetwork == 0 {
-                                    shareButton(view: rankingSquare)
-                                    savePhotoButton(view: rankingSquare)
-//                                } else {
-//                                    shareButton(view: nineBySixteenImage)
-//                                    saveVideoButton(view: nineBySixteenImage)
-                                }
-                            }
-                        } else {
-                            HStack(spacing: 20) {
-                                if viewModel.selectedSocialNetwork == 0 {
-                                    shareButton(view: rankingSquare)
-                                    savePhotoButton(view: rankingSquare)
-//                                } else {
-//                                    shareButton(view: nineBySixteenImage)
-//                                    saveVideoButton(view: nineBySixteenImage)
-                                }
-                            }
-                        }
+                        savePhotosButton(
+                            firstView: rankingSquare,
+                            secondView: countSquare
+                        )
                     }
                     .navigationTitle("Retrospectiva")
                     .navigationBarTitleDisplayMode(.inline)
@@ -93,28 +64,20 @@ struct RetroView: View {
                             self.isBeingShown = false
                         }
                     )
-//                    .alert(isPresented: $viewModel.showAlert) {
-//                        Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
-//                    }
-//                    .onChange(of: viewModel.shouldCloseView) { shouldCloseView in
-//                        if shouldCloseView {
-//                            result.videoFilepath = viewModel.pathToVideoFile
-//                            result.contentId = viewModel.content.id
-//                            isBeingShown = false
-//                        }
-//                    }
+                    .alert(isPresented: $viewModel.showAlert) {
+                        Alert(
+                            title: Text(viewModel.alertTitle),
+                            message: Text(viewModel.alertMessage),
+                            dismissButton: .default(Text("OK"))
+                        )
+                    }
                 }
             }
 
-//            if viewModel.isShowingProcessingView {
-//                if useLongerGeneratingVideoMessage {
-//                    ProcessingView(message: Shared.ShareAsVideo.generatingVideoLongMessage, progressViewYOffset: -27, progressViewWidth: 270, messageYOffset: 30)
-//                        .padding(.bottom)
-//                } else {
-//                    ProcessingView(message: Shared.ShareAsVideo.generatingVideoShortMessage)
-//                        .padding(.bottom)
-//                }
-//            }
+            if viewModel.isShowingProcessingView {
+                ProcessingView(message: "Gerando imagens...")
+                    .padding(.bottom)
+            }
         }
         .onAppear {
             setUpAppearance()
@@ -126,10 +89,15 @@ struct RetroView: View {
             } catch {
                 print(error)
             }
-
-            // Cleaning this string is needed in case the user decides do re-export the same sound
-//            result.videoFilepath = .empty
-//            result.contentId = .empty
+        }
+        .onChange(of: viewModel.shouldProcessPostExport) { shouldProcess in
+            guard shouldProcess else { return }
+            if viewModel.exportErrors.isEmpty {
+                isBeingShown.toggle()
+            } else {
+                viewModel.showExportError()
+                viewModel.exportErrors.removeAll()
+            }
         }
     }
 
@@ -147,7 +115,7 @@ struct RetroView: View {
                                 .font(.system(size: 24))
                                 .bold()
                                 .foregroundColor(.white)
-                                .opacity(0.7)
+                                //.opacity(0.7)
 
                             Text(item.contentName)
                                 .font(.body)
@@ -157,12 +125,10 @@ struct RetroView: View {
                         }
                     }
                 }
-                //Spacer()
             }
             .padding(.top, 24)
             .padding(.leading, 24)
             .padding(.trailing)
-            //.padding(.bottom)
         }
         .frame(width: 350, height: 350)
     }
@@ -204,32 +170,38 @@ struct RetroView: View {
     }
 
     @ViewBuilder
-    func shareButton(view: some View) -> some View {
+    func savePhotosButton(
+        firstView: some View,
+        secondView: some View
+    ) -> some View {
         Button {
-            // Code
-        } label: {
-            HStack(spacing: 15) {
-                Spacer()
+            if #available(iOS 16.0, *) {
+                Task {
+                    let firstRenderer = ImageRenderer(content: firstView)
+                    firstRenderer.scale = 3.0
+                    if let firstImage = firstRenderer.uiImage {
+                        do {
+                            try await viewModel.save(image: firstImage)
+                        } catch {
+                            viewModel.exportErrors.append("1ª imagem: \(error.localizedDescription)")
+                            dump(error)
+                        }
+                    }
 
-                Image(systemName: "square.and.arrow.up")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 25)
+                    let secondRenderer = ImageRenderer(content: secondView)
+                    secondRenderer.scale = 3.0
+                    if let secondImage = secondRenderer.uiImage {
+                        do {
+                            try await viewModel.save(image: secondImage)
+                        } catch {
+                            viewModel.exportErrors.append("2ª imagem: \(error.localizedDescription)")
+                            dump(error)
+                        }
+                    }
 
-                Text("Compartilhar")
-                    .font(.headline)
-
-                Spacer()
+                    viewModel.shouldProcessPostExport.toggle()
+                }
             }
-        }
-        .borderedButton(colored: .accentColor)
-        //.disabled(viewModel.isShowingProcessingView)
-    }
-
-    @ViewBuilder
-    func savePhotoButton(view: some View) -> some View {
-        Button {
-            // Code
         } label: {
             HStack(spacing: 15) {
                 Spacer()
@@ -247,7 +219,7 @@ struct RetroView: View {
             }
         }
         .borderedProminentButton(colored: .accentColor)
-        //.disabled(viewModel.isShowingProcessingView)
+        .disabled(viewModel.isShowingProcessingView)
     }
 
     func setUpAppearance() {
