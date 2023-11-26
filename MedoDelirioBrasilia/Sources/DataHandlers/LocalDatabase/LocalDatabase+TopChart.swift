@@ -28,7 +28,7 @@ extension LocalDatabase {
                 .join(soundTable, on: userShareLog[content_id] == soundTable[soundId])
                 .join(author, on: soundTable[authorIdOnSounds] == author[authorId])
                 .select(userShareLog[content_id], soundTable[soundTitle], soundTable[authorId], author[authorName], contentCount)
-                .where(userShareLog[content_type] == 0)
+                .where(userShareLog[content_type] == 0 || userShareLog[content_type] == 2)
                 .filter(dateTime > firstDay2023)
                 .group(userShareLog[content_id])
                 .order(contentCount.desc)
@@ -62,7 +62,7 @@ extension LocalDatabase {
         for row in try db.prepare(
             userShareLog
                 .select(userShareLog[date_time])
-                .where(userShareLog[content_type] == 0)
+                .where(userShareLog[content_type] == 0 || userShareLog[content_type] == 2)
                 .filter(date_time > firstDay2023)
         ) {
             result.append(row[date_time])
@@ -124,7 +124,7 @@ extension LocalDatabase {
         let contentCount = content_id.distinct.count
         let query = userShareLog
             .select(contentCount)
-            .where(content_type == 0)
+            .where(content_type == 0 || content_type == 2)
             .filter(dateTime > firstDay2023)
 
         do {
@@ -148,7 +148,7 @@ extension LocalDatabase {
         let contentCount = content_id.count
         let query = userShareLog
             .select(contentCount)
-            .where(content_type == 0)
+            .where(content_type == 0 || content_type == 2)
             .filter(dateTime > firstDay2023)
 
         do {
