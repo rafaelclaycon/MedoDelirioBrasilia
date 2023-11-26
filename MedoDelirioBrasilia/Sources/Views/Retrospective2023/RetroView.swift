@@ -12,6 +12,7 @@ struct RetroView: View {
     @StateObject var viewModel: ViewModel
 
     @Binding var isBeingShown: Bool
+    @Binding var analyticsString: String
 
     @Environment(\.colorScheme) var colorScheme
 
@@ -81,18 +82,12 @@ struct RetroView: View {
         }
         .onAppear {
             setUpAppearance()
-
-            viewModel.retrieveTopFive()
-            viewModel.loadShareCount()
-            do {
-                viewModel.mostCommonShareDay = try viewModel.mostCommonDay(from: LocalDatabase.shared.allDatesInWhichTheUserShared()) ?? "-"
-            } catch {
-                print(error)
-            }
+            viewModel.loadInformation()
         }
         .onChange(of: viewModel.shouldProcessPostExport) { shouldProcess in
             guard shouldProcess else { return }
             if viewModel.exportErrors.isEmpty {
+                analyticsString = viewModel.analyticsString()
                 isBeingShown.toggle()
             } else {
                 viewModel.showExportError()
@@ -233,6 +228,7 @@ struct RetroView: View {
 #Preview {
     RetroView(
         viewModel: .init(),
-        isBeingShown: .constant(true)
+        isBeingShown: .constant(true),
+        analyticsString: .constant("")
     )
 }

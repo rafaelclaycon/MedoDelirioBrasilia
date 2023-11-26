@@ -23,6 +23,7 @@ struct TrendsView: View {
     // Retrospective 2023
     @State private var shouldDisplayRetrospectiveBanner: Bool = false
     @State private var showModalView = false
+    @State private var retroExportAnalytics: String = ""
 
     // Alert
     @State private var showAlert = false
@@ -104,7 +105,8 @@ struct TrendsView: View {
                         .sheet(isPresented: $showModalView) {
                             RetroView(
                                 viewModel: .init(),
-                                isBeingShown: $showModalView
+                                isBeingShown: $showModalView,
+                                analyticsString: $retroExportAnalytics
                             )
                         }
                     }
@@ -120,6 +122,17 @@ struct TrendsView: View {
             Task {
                 shouldDisplayRetrospectiveBanner = await RetroView.ViewModel.shouldDisplayBanner()
             }
+        }
+        .onChange(of: showModalView) { showModalView in
+//            if (showModalView == false) && !retroExportAnalytics.isEmpty {
+//                viewModel.displayToast(
+//                    toastText: "Imagens salvas com sucesso."
+//                )
+//
+//                viewModel.sendUsageMetricToServer(action: "didExportRetro2023Images(\(retroExportAnalytics))")
+//
+//                retroExportAnalytics = ""
+//            }
         }
     }
 }

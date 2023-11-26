@@ -12,13 +12,17 @@ final class RetroViewViewModelTests: XCTestCase {
 
     private var sut: RetroView.ViewModel!
 
+    private var localDatabaseStub: LocalDatabaseStub!
+
     override func setUpWithError() throws {
         try super.setUpWithError()
-        sut = .init()
+        localDatabaseStub = .init()
+        sut = .init(database: localDatabaseStub)
     }
 
     override func tearDownWithError() throws {
         sut = nil
+        localDatabaseStub = nil
         try super.tearDownWithError()
     }
 
@@ -118,6 +122,7 @@ final class RetroViewViewModelTests: XCTestCase {
     }
 }
 
+// MARK: - Version Is Allowed To Display Retro
 extension RetroViewViewModelTests {
 
     func testVersionIsAllowedToDisplayRetro_whenVersionIsNotSet_shouldReturnFalse() async throws {
@@ -158,5 +163,30 @@ extension RetroViewViewModelTests {
             network: stub
         )
         XCTAssertFalse(result)
+    }
+}
+
+// MARK: - Version Is Allowed To Display Retro
+extension RetroViewViewModelTests {
+
+    func testAnalyticsString_whenInformationLoadsCorrectly_shouldReturnAllDataFormatted() async throws {
+        localDatabaseStub.topSharedSounds = [
+            .init(rankNumber: "1", contentName: "Conversa de bêbado"),
+            .init(rankNumber: "2", contentName: "Exatamenti"),
+            .init(rankNumber: "3", contentName: "Eu não aguento maaais"),
+            .init(rankNumber: "4", contentName: "Puta que pariu, Marquinho"),
+            .init(rankNumber: "5", contentName: "Vocês estão de sacanagem")
+        ]
+        localDatabaseStub.shareCount = 20
+        localDatabaseStub.shareDates = [
+            date(from: "2023-11-20T23:36:27.074")
+        ]
+
+        sut.loadInformation()
+
+        XCTAssertEqual(
+            sut.analyticsString(),
+            "1 Conversa de bêbado, 2 Exatamenti, 3 Eu não aguento maaais, 4 Puta que pariu, Marquinho, 5 Vocês estão de sacanagem; 20 compart; segunda-feira"
+        )
     }
 }

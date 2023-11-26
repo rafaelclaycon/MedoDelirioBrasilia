@@ -27,6 +27,8 @@ extension RetroView {
         @Published var alertMessage: String = .empty
         @Published var showAlert: Bool = false
 
+        let database: LocalDatabaseProtocol
+
         var dateFormatter: DateFormatter {
             let dateFormatter = DateFormatter()
             dateFormatter.locale = Locale(identifier: "pt-BR")
@@ -34,24 +36,23 @@ extension RetroView {
             return dateFormatter
         }
 
-        static func shouldDisplayBanner() async -> Bool {
-            guard #available(iOS 16.0, *) else { return false }
-            guard await versionIsAllowedToDisplayRetro() else { return false }
-            guard LocalDatabase.shared.sharedSoundsCount() > 0 else { return false }
-            return true
+        init(database: LocalDatabaseProtocol = LocalDatabase.shared) {
+            self.database = database
         }
 
-        static func versionIsAllowedToDisplayRetro(
-            currentVersion: String = Versioneer.appVersion,
-            network: NetworkRabbitProtocol = networkRabbit
-        ) async -> Bool {
-            guard let allowedVersion = await network.retroStartingVersion() else { return false }
-            return currentVersion >= allowedVersion
+        func loadInformation() {
+            retrieveTopFive()
+            loadShareCount()
+            do {
+                mostCommonShareDay = try mostCommonDay(from: database.allDatesInWhichTheUserShared()) ?? "-"
+            } catch {
+                print(error)
+            }
         }
 
         func retrieveTopFive() {
             do {
-                let sounds = try LocalDatabase.shared.getTopSoundsSharedByTheUser(5)
+                let sounds = try database.getTopSoundsSharedByTheUser(5)
                 for i in sounds.indices {
                     topFive.append(
                         .init(
@@ -63,26 +64,10 @@ extension RetroView {
             } catch {
                 print("Deu ruim")
             }
-            //        do {
-            //            let sounds = try LocalDatabase.shared.sounds(
-            //                allowSensitive: true,
-            //                favoritesOnly: false
-            //            )
-            //            for i in 1...5 {
-            //                topFive.append(
-            //                    .init(
-            //                        rankNumber: "\(i)",
-            //                        contentName: sounds.randomElement()!.title
-            //                    )
-            //                )
-            //            }
-            //        } catch {
-            //            print("Deu ruim")
-            //        }
         }
 
         func loadShareCount() {
-            shareCount = LocalDatabase.shared.totalShareCount()
+            shareCount = database.totalShareCount()
         }
 
         func dayOfTheWeek(from date: Date) -> String {
@@ -147,6 +132,28 @@ extension RetroView {
             alertTitle = "Houve Erros Ao Tentar Exportar as Imagens"
             alertMessage = "\(exportErrors.joined(separator: "\n\n"))\n\nTente novamente. Se persistir, informe o desenvolvedor (e-mail nas Configurações)."
             showAlert.toggle()
+        }
+
+        func analyticsString() -> String {
+            let ranking = topFive.map { "\($0.rankNumber) \($0.contentName)" }
+            return "\(ranking.joined(separator: ", ")); \(shareCount) compart; \(mostCommonShareDay)"
+        }
+
+        // MARK: - Static Methods
+
+        static func shouldDisplayBanner() async -> Bool {
+            guard #available(iOS 16.0, *) else { return false }
+            guard await versionIsAllowedToDisplayRetro() else { return false }
+            guard LocalDatabase.shared.sharedSoundsCount() > 0 else { return false }
+            return true
+        }
+
+        static func versionIsAllowedToDisplayRetro(
+            currentVersion: String = Versioneer.appVersion,
+            network: NetworkRabbitProtocol = networkRabbit
+        ) async -> Bool {
+            guard let allowedVersion = await network.retroStartingVersion() else { return false }
+            return currentVersion >= allowedVersion
         }
     }
 }

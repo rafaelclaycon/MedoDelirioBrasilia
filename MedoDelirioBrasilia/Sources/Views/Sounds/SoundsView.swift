@@ -75,6 +75,9 @@ struct SoundsView: View {
     @State private var favoriteButtonTitle = "Favoritar"
     @State private var favoriteButtonImage = "star"
 
+    // Retro 2023
+    @State private var retroExportAnalytics: String = ""
+
     private var searchResults: [Sound] {
         if viewModel.searchText.isEmpty {
             return viewModel.sounds
@@ -342,7 +345,7 @@ struct SoundsView: View {
                 columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
                 viewModel.donateActivity()
                 viewModel.sendUserPersonalTrendsToServerIfEnabled()
-                
+
                 if AppPersistentMemory.getHasShownNotificationsOnboarding() == false {
                     subviewToOpen = .onboardingView
                     showingModalView = true
@@ -475,7 +478,8 @@ struct SoundsView: View {
                 case .retrospective:
                     RetroView(
                         viewModel: .init(),
-                        isBeingShown: $showingModalView
+                        isBeingShown: $showingModalView,
+                        analyticsString: $retroExportAnalytics
                     )
                 }
             }
@@ -521,12 +525,18 @@ struct SoundsView: View {
                     if pluralization == .plural {
                         viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFolder(\(selectedCount))")
                     }
-                } else if (showingModalView == false) && subviewToOpen == .retrospective {
+                } else if 
+                    (showingModalView == false) &&
+                    subviewToOpen == .retrospective &&
+                    !retroExportAnalytics.isEmpty
+                {
                     viewModel.displayToast(
-                        toastText: "Imagens exportadas com sucesso."
+                        toastText: "Imagens salvas com sucesso."
                     )
 
-                    //viewModel.sendUsageMetricToServer(action: "didExportRetro2023Images(\(selectedCount))")
+                    viewModel.sendUsageMetricToServer(action: "didExportRetro2023Images(\(retroExportAnalytics))")
+
+                    retroExportAnalytics = ""
                 }
             }
             .onChange(of: viewModel.selectionKeeper.count) {
