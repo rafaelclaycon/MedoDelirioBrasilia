@@ -34,7 +34,7 @@ struct UpdateIncentiveBanner: View {
                         .frame(width: 30)
                 }
 
-                Text("Seu iPhone está rodando iOS 15, porém suporta \(maxSystemVersion). Considere atualizar para usar o Compartilhar como Vídeo mais moderno, que conta com o nome do autor e uma fonte melhor.")
+                Text("Seu \(UIDevice.isiPhone ? "iPhone" : "iPad") está rodando \(UIDevice.isiPhone ? "iOS" : "iPadOS") 15, porém suporta \(maxSystemVersion). Considere atualizar para usar o Compartilhar como Vídeo mais moderno, que conta com o nome do autor e uma fonte melhor.")
                     .foregroundColor(.red)
                     .opacity(0.8)
                     .font(.callout)
@@ -58,7 +58,7 @@ struct UpdateIncentiveBanner: View {
         }
         .overlay(alignment: .topTrailing) {
             Button {
-                AppPersistentMemory.setHasSeenRecurringDonationBanner(to: true)
+                AppPersistentMemory.setHasSeenFirstUpdateIncentiveBanner(to: true)
                 isBeingShown = false
             } label: {
                 Image(systemName: "xmark")
@@ -68,6 +68,14 @@ struct UpdateIncentiveBanner: View {
         }
         .onAppear {
             maxSystemVersion = UpdateIncentive.maxSupportedVersion(deviceModel: UIDevice.modelName) ?? ""
+
+            if !AppPersistentMemory.getHasSentFirstUpdateIncentiveMetric() {
+                Analytics.sendUsageMetricToServer(
+                    originatingScreen: "UpdateIncentiveBanner",
+                    action: "didShowUpdateIncentiveBanner(\(UIDevice.modelName), \(UIDevice.current.systemVersion))"
+                )
+                AppPersistentMemory.setHasSentFirstUpdateIncentiveMetric(to: true)
+            }
         }
     }
 }

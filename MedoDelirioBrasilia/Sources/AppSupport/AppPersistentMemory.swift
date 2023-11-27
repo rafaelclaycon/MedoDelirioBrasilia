@@ -164,6 +164,22 @@ class AppPersistentMemory {
         return Bool(value as! Bool)
     }
 
+    static func getHasSeenFirstUpdateIncentiveBanner() -> Bool {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "hasSeenFirstUpdateIncentiveBanner") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
+
+    static func getHasSentFirstUpdateIncentiveMetric() -> Bool {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "hasSentFirstUpdateIncentiveMetric") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
+
     // MARK: - Setters
     
     static func setHasSentDeviceModelToServer(to newValue: Bool) {
@@ -260,5 +276,15 @@ class AppPersistentMemory {
     static func setHasSeenRetroBanner(to newValue: Bool) {
         let userDefaults = UserDefaults.standard
         userDefaults.set(newValue, forKey: "hasSeenRetroBanner")
+    }
+
+    static func setHasSeenFirstUpdateIncentiveBanner(to newValue: Bool) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(newValue, forKey: "hasSeenFirstUpdateIncentiveBanner")
+    }
+
+    static func setHasSentFirstUpdateIncentiveMetric(to newValue: Bool) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(newValue, forKey: "hasSentFirstUpdateIncentiveMetric")
     }
 }

@@ -189,7 +189,7 @@ struct SoundsView: View {
                                         .padding(.horizontal, 10)
                                     }
 
-                                    if viewModel.searchText.isEmpty {
+                                    if shouldDisplayUpdateIncentiveBanner, viewModel.searchText.isEmpty {
                                         UpdateIncentiveBanner(
                                             isBeingShown: $shouldDisplayUpdateIncentiveBanner
                                         )
@@ -384,6 +384,13 @@ struct SoundsView: View {
                     } else {
                         shouldDisplayRetrospectiveBanner = await RetroView.ViewModel.shouldDisplayBanner()
                     }
+                }
+
+                if !AppPersistentMemory.getHasSeenFirstUpdateIncentiveBanner() {
+                    shouldDisplayUpdateIncentiveBanner = UpdateIncentive.shouldDisplayBanner(
+                        currentSystemVersion: UIDevice.current.systemVersion,
+                        deviceModel: UIDevice.modelName
+                    )
                 }
 
                 // TODO: Needs refactor. .onAppear is called before the AppDelegate, rendering this useless.

@@ -45,8 +45,8 @@ class UpdateIncentive {
     ) -> Bool {
         guard !isMac else { return false }
         guard currentSystemVersion.contains("15") else { return false }
-        guard !isiPad else { return !iPadsLimitedTo15.contains(deviceModel) }
-        return iPhonesThatSupportAbove15.contains(deviceModel)
+        guard !isiPad else { return !iPadsLimitedTo15.contains(deviceModel.replacingOccurrences(of: "Simulator ", with: "")) }
+        return iPhonesThatSupportAbove15.contains(deviceModel.replacingOccurrences(of: "Simulator ", with: ""))
     }
 
     static func maxSupportedVersion(
