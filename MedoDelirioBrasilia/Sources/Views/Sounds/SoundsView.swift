@@ -26,6 +26,7 @@ struct SoundsView: View {
     // Temporary banners
     @State private var shouldDisplayRecurringDonationBanner: Bool = false
     @State private var shouldDisplayRetrospectiveBanner: Bool = false
+    @State private var shouldDisplayUpdateIncentiveBanner: Bool = false
 
     // Settings
     @EnvironmentObject var settingsHelper: SettingsHelper
@@ -184,6 +185,13 @@ struct SoundsView: View {
                                                 subviewToOpen = .retrospective
                                                 showingModalView = true
                                             }
+                                        )
+                                        .padding(.horizontal, 10)
+                                    }
+
+                                    if viewModel.searchText.isEmpty {
+                                        UpdateIncentiveBanner(
+                                            isBeingShown: $shouldDisplayUpdateIncentiveBanner
                                         )
                                         .padding(.horizontal, 10)
                                     }
