@@ -8,13 +8,18 @@ internal protocol NetworkRabbitProtocol {
     func getSoundShareCountStats(timeInterval: TrendsTimeInterval, completionHandler: @escaping ([ServerShareCountStat]?, NetworkRabbitError?) -> Void)
     func post(shareCountStat: ServerShareCountStat, completionHandler: @escaping (Bool, String) -> Void)
     func post(clientDeviceInfo: ClientDeviceInfo, completionHandler: @escaping (Bool?, NetworkRabbitError?) -> Void)
-    func post(bundleIdLog: ServerShareBundleIdLog, completionHandler: @escaping (Bool, String) -> Void)
+    //func post(bundleIdLog: ServerShareBundleIdLog, completionHandler: @escaping (Bool, String) -> Void)
     func fetchUpdateEvents(from lastDate: String) async throws -> [UpdateEvent]
 }
 
 class NetworkRabbit: NetworkRabbitProtocol {
 
     let serverPath: String
+
+    // NetworkRabbit(serverPath: "https://654e-2804-1b3-8640-96df-d0b4-dd5d-6922-bb1b.sa.ngrok.io/api/")
+    static let shared = NetworkRabbit(
+        serverPath: CommandLine.arguments.contains("-UNDER_DEVELOPMENT") ? "http://127.0.0.1:8080/api/" : "http://medodelirioios.lat:8080/api/"
+    )
 
     init(serverPath: String) {
         self.serverPath = serverPath
@@ -194,40 +199,39 @@ class NetworkRabbit: NetworkRabbitProtocol {
         task.resume()
     }
     
-    func post(bundleIdLog: ServerShareBundleIdLog, completionHandler: @escaping (Bool, String) -> Void) {
-        let url = URL(string: serverPath + "v1/shared-to-bundle-id")!
-
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        let jsonEncoder = JSONEncoder()
-        let jsonData = try? jsonEncoder.encode(bundleIdLog)
-        request.httpBody = jsonData
-
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let httpResponse = response as? HTTPURLResponse else {
-                return
-            }
-             
-            guard httpResponse.statusCode == 200 else {
-                return completionHandler(false, "Failed")
-            }
-            
-            if let data = data {
-                if let log = try? JSONDecoder().decode(ServerShareBundleIdLog.self, from: data) {
-                    completionHandler(true, log.bundleId)
-                } else {
-                    completionHandler(false, "Failed: Invalid Response")
-                }
-            } else if let error = error {
-                completionHandler(false, "HTTP Request Failed \(error.localizedDescription)")
-            }
-        }
-
-        task.resume()
-    }
-
+//    func post(bundleIdLog: ServerShareBundleIdLog, completionHandler: @escaping (Bool, String) -> Void) {
+//        let url = URL(string: serverPath + "v1/shared-to-bundle-id")!
+//
+//        var request = URLRequest(url: url)
+//        request.httpMethod = "POST"
+//        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//        
+//        let jsonEncoder = JSONEncoder()
+//        let jsonData = try? jsonEncoder.encode(bundleIdLog)
+//        request.httpBody = jsonData
+//
+//        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+//            guard let httpResponse = response as? HTTPURLResponse else {
+//                return
+//            }
+//             
+//            guard httpResponse.statusCode == 200 else {
+//                return completionHandler(false, "Failed")
+//            }
+//            
+//            if let data = data {
+//                if let log = try? JSONDecoder().decode(ServerShareBundleIdLog.self, from: data) {
+//                    completionHandler(true, log.bundleId)
+//                } else {
+//                    completionHandler(false, "Failed: Invalid Response")
+//                }
+//            } else if let error = error {
+//                completionHandler(false, "HTTP Request Failed \(error.localizedDescription)")
+//            }
+//        }
+//
+//        task.resume()
+//    }
 }
 
 enum NetworkRabbitError: Error {

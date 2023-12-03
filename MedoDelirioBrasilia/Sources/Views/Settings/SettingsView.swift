@@ -158,10 +158,10 @@ struct SettingsView: View {
                 }
             }
             .onAppear {
-                networkRabbit.displayAskForMoneyView { shouldDisplay in
+                NetworkRabbit.shared.displayAskForMoneyView { shouldDisplay in
                     showAskForMoneyView = shouldDisplay
                 }
-                networkRabbit.getPixDonorNames { donors in
+                NetworkRabbit.shared.getPixDonorNames { donors in
                     self.donors = donors
                 }
             }

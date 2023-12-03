@@ -15,7 +15,6 @@ struct ServerShareCountStat: Hashable, Codable {
     var contentType: Int
     var shareCount: Int
     var dateTime: String
-
 }
 
 /// The client receives a ServerShareCountStat from the server and transforms it into this for local persistance.
@@ -25,7 +24,6 @@ struct AudienceShareCountStat: Hashable, Codable {
     var contentType: Int
     var shareCount: Int
     var rankingType: Int
-
 }
 
 /// Sent to the server. Goal: satisfy the developer's curiosity.
@@ -35,7 +33,6 @@ struct ServerShareDestinationStat: Hashable, Codable {
     var whatsAppCount: Int
     var telegramCount: Int
     var otherCount: Int
-
 }
 
 /// Sent to the server. Goal: understand usage trends.
@@ -43,5 +40,4 @@ struct ServerShareBundleIdLog: Hashable, Codable {
 
     var bundleId: String
     var count: Int
-
 }

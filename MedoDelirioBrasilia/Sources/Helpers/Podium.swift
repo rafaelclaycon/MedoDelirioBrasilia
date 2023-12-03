@@ -2,10 +2,15 @@ import Foundation
 
 class Podium {
 
-    private var database: LocalDatabase
-    private var networkRabbit: NetworkRabbitProtocol
-    
-    init(database injectedDatabase: LocalDatabase, networkRabbit injectedNetwork: NetworkRabbitProtocol) {
+    static let shared = Podium(database: LocalDatabase.shared, networkRabbit: NetworkRabbit.shared)
+
+    private let database: LocalDatabase
+    private let networkRabbit: any NetworkRabbitProtocol
+
+    init(
+        database injectedDatabase: LocalDatabase,
+        networkRabbit injectedNetwork: some NetworkRabbitProtocol
+    ) {
         self.database = injectedDatabase
         self.networkRabbit = injectedNetwork
     }
@@ -43,7 +48,7 @@ class Podium {
 
         // Prepare local stats to be sent
         guard let stats = Logger.shared.getShareCountStatsForServer() else {
-            return .noStatsToSend("No stats to be sent.")
+            return .noStatsToSend
         }
 
         // Send them
@@ -55,13 +60,15 @@ class Podium {
             }
         }
 
+        let bundleIdUrl = URL(string: networkRabbit.serverPath + "v1/shared-to-bundle-id")!
+
         // Send bundles IDs as well
         if let bundleIdLogs = Logger.shared.getUniqueBundleIdsForServer() {
-            bundleIdLogs.forEach { log in
-                self.networkRabbit.post(bundleIdLog: log) { wasSuccessful, _ in
-                    guard wasSuccessful else {
-                        return completionHandler(.failed, "Sending of \(log) failed.")
-                    }
+            for log in bundleIdLogs {
+                do {
+                    let _: ServerShareBundleIdLog = try await NetworkRabbit.post(to: bundleIdUrl, body: log)
+                } catch {
+                    return .failed("Sending of \(log) failed.")
                 }
             }
         }
@@ -79,7 +86,7 @@ class Podium {
     func getAudienceShareCountStatsFromServer(for timeInterval: TrendsTimeInterval, completionHandler: @escaping (ShareCountStatServerExchangeResult, String) -> Void) {
         self.networkRabbit.getSoundShareCountStats(timeInterval: timeInterval) { stats, error in
             guard error == nil else {
-                return completionHandler(.failed, "")
+                return completionHandler(.failed(""), "")
             }
             guard let stats = stats, stats.isEmpty == false else {
                 return
@@ -99,6 +106,6 @@ class Podium {
 
     enum ShareCountStatServerExchangeResult: Equatable {
 
-        case successful, noStatsToSend(String), failed(String)
+        case successful, noStatsToSend, failed(String)
     }
 }

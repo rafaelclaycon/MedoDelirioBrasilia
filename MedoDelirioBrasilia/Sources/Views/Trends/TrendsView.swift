@@ -96,9 +96,6 @@ struct TrendsView: View {
         }
         .navigationTitle("Tendências")
         .navigationBarTitleDisplayMode(showTrends ? .large : .inline)
-        .refreshable {
-            trendsHelper.refreshMostSharedByAudienceList = true
-        }
     }
 }
 

@@ -10,7 +10,7 @@ import Foundation
 extension SyncService {
 
     func createSound(from updateEvent: UpdateEvent) async {
-        let url = URL(string: networkRabbit.serverPath + "v3/sound/\(updateEvent.contentId)")!
+        let url = URL(string: NetworkRabbit.shared.serverPath + "v3/sound/\(updateEvent.contentId)")!
         do {
             let sound: Sound = try await NetworkRabbit.get(from: url)
             try injectedDatabase.insert(sound: sound)
@@ -26,7 +26,7 @@ extension SyncService {
     }
 
     func updateSoundMetadata(with updateEvent: UpdateEvent) async {
-        let url = URL(string: networkRabbit.serverPath + "v3/sound/\(updateEvent.contentId)")!
+        let url = URL(string: NetworkRabbit.shared.serverPath + "v3/sound/\(updateEvent.contentId)")!
         do {
             let sound: Sound = try await NetworkRabbit.get(from: url)
             try injectedDatabase.update(sound: sound)

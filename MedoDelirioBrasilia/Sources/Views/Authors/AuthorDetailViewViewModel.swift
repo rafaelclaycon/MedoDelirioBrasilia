@@ -288,7 +288,7 @@ class AuthorDetailViewViewModel: ObservableObject {
                                       appVersion: Versioneer.appVersion,
                                       dateTime: Date.now.iso8601withFractionalSeconds,
                                       currentTimeZone: TimeZone.current.abbreviation() ?? .empty)
-        networkRabbit.post(usageMetric: usageMetric)
+        NetworkRabbit.shared.post(usageMetric: usageMetric)
     }
     
     // MARK: - Multi-Select
@@ -341,7 +341,7 @@ class AuthorDetailViewViewModel: ObservableObject {
                                       appVersion: Versioneer.appVersion,
                                       dateTime: Date.now.iso8601withFractionalSeconds,
                                       currentTimeZone: TimeZone.current.abbreviation() ?? .empty)
-        networkRabbit.post(usageMetric: usageMetric)
+        NetworkRabbit.shared.post(usageMetric: usageMetric)
     }
     
     // MARK: - Alerts

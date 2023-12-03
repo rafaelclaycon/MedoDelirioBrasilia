@@ -326,8 +326,10 @@ struct SoundsView: View {
 
                 columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
                 viewModel.donateActivity()
-                viewModel.sendUserPersonalTrendsToServerIfEnabled()
-                
+                Task {
+                    await viewModel.sendUserPersonalTrendsToServerIfEnabled()
+                }
+
                 if AppPersistentMemory.getHasShownNotificationsOnboarding() == false {
                     subviewToOpen = .onboardingView
                     showingModalView = true
@@ -346,7 +348,7 @@ struct SoundsView: View {
 
                 if !AppPersistentMemory.getHasSeenRecurringDonationBanner() {
                     Task {
-                        networkRabbit.displayRecurringDonationBanner {
+                        NetworkRabbit.shared.displayRecurringDonationBanner {
                             shouldDisplayRecurringDonationBanner = $0
                         }
                     }

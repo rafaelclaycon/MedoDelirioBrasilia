@@ -40,9 +40,9 @@ class MostSharedByAudienceViewViewModel: ObservableObject {
         
         Task {
             // Send user stats and retrieve remote stats
-            let result = await podium.sendShareCountStatsToServer()
+            let result = await Podium.shared.sendShareCountStatsToServer()
 
-            guard result == .successful || result == .noStatsToSend("") else {
+            guard result == .successful || result == .noStatsToSend else {
                 await MainActor.run {
                     self.viewState = self.allTimeRanking == nil ? .noDataToDisplay : .displayingData
                     self.showServerUnavailableAlert()
@@ -50,41 +50,41 @@ class MostSharedByAudienceViewViewModel: ObservableObject {
                 return
             }
 
-            podium.cleanAudienceSharingStatisticTableToReceiveUpdatedData()
-                
-            podium.getAudienceShareCountStatsFromServer(for: .last24Hours) { result, _ in
+            Podium.shared.cleanAudienceSharingStatisticTableToReceiveUpdatedData()
+
+            Podium.shared.getAudienceShareCountStatsFromServer(for: .last24Hours) { result, _ in
                 guard result == .successful else {
                     return
                 }
                 DispatchQueue.main.async {
-                    self.last24HoursRanking = podium.getTop10SoundsSharedByTheAudience(for: .last24Hours)
+                    self.last24HoursRanking = Podium.shared.getTop10SoundsSharedByTheAudience(for: .last24Hours)
                 }
             }
 
-            podium.getAudienceShareCountStatsFromServer(for: .lastWeek) { result, _ in
+            Podium.shared.getAudienceShareCountStatsFromServer(for: .lastWeek) { result, _ in
                 guard result == .successful else {
                     return
                 }
                 DispatchQueue.main.async {
-                    self.lastWeekRanking = podium.getTop10SoundsSharedByTheAudience(for: .lastWeek)
+                    self.lastWeekRanking = Podium.shared.getTop10SoundsSharedByTheAudience(for: .lastWeek)
                 }
             }
 
-            podium.getAudienceShareCountStatsFromServer(for: .lastMonth) { result, _ in
+            Podium.shared.getAudienceShareCountStatsFromServer(for: .lastMonth) { result, _ in
                 guard result == .successful else {
                     return
                 }
                 DispatchQueue.main.async {
-                    self.lastMonthRanking = podium.getTop10SoundsSharedByTheAudience(for: .lastMonth)
+                    self.lastMonthRanking = Podium.shared.getTop10SoundsSharedByTheAudience(for: .lastMonth)
                 }
             }
 
-            podium.getAudienceShareCountStatsFromServer(for: .allTime) { result, _ in
+            Podium.shared.getAudienceShareCountStatsFromServer(for: .allTime) { result, _ in
                 guard result == .successful else {
                     return
                 }
                 DispatchQueue.main.async {
-                    self.allTimeRanking = podium.getTop10SoundsSharedByTheAudience(for: .allTime)
+                    self.allTimeRanking = Podium.shared.getTop10SoundsSharedByTheAudience(for: .allTime)
                 }
             }
 
