@@ -150,7 +150,7 @@ extension RetroView {
 
         static func versionIsAllowedToDisplayRetro(
             currentVersion: String = Versioneer.appVersion,
-            network: NetworkRabbitProtocol = networkRabbit
+            network: NetworkRabbitProtocol = NetworkRabbit.shared
         ) async -> Bool {
             guard let allowedVersion = await network.retroStartingVersion() else { return false }
             return currentVersion >= allowedVersion

@@ -23,6 +23,6 @@ class Analytics {
             dateTime: Date.now.iso8601withFractionalSeconds,
             currentTimeZone: TimeZone.current.abbreviation() ?? .empty
         )
-        networkRabbit.post(usageMetric: usageMetric)
+        NetworkRabbit.shared.post(usageMetric: usageMetric)
     }
 }
