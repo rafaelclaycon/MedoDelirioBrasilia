@@ -104,9 +104,27 @@ struct SongCell: View {
             }
         }
         .background {
-            RoundedRectangle(cornerRadius: 20, style: .continuous)
-                .fill(gradient)
-                .opacity(isPlaying ? 0.7 : 1.0)
+            ZStack {
+                RoundedRectangle(cornerRadius: 20, style: .continuous)
+                    .fill(gradient)
+                    .opacity(isPlaying ? 0.7 : 1.0)
+
+                if isPlaying {
+                    GeometryReader { geometry in
+                        HStack(spacing: 0) {
+                            Rectangle()
+                                .fill(.green)
+                                .animation(.linear(duration: 1), value: timeRemaining)
+
+                            Spacer()
+                                .frame(width: geometry.size.width * (timeRemaining / song.duration))
+                        }
+                        .mask {
+                            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                        }
+                    }
+                }
+            }
         }
     }
 }
