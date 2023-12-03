@@ -17,9 +17,17 @@ struct TrendsView: View {
     @Binding var tabSelection: PhoneTab
     @Binding var activePadScreen: PadScreen?
     @State var currentViewMode: ViewMode = .audience
-    @State var showAlert = false
-    @State var alertTitle = ""
+
     @EnvironmentObject var trendsHelper: TrendsHelper
+
+    // Retrospective 2023
+    @State private var shouldDisplayRetrospectiveBanner: Bool = false
+    @State private var showModalView = false
+    @State private var retroExportAnalytics: String = ""
+
+    // Alert
+    @State private var showAlert = false
+    @State private var alertTitle = ""
 
     var showTrends: Bool {
         UserSettings.getEnableTrends()
@@ -49,7 +57,7 @@ struct TrendsView: View {
                         Text("Da Audiência")
                             .tag(ViewMode.audience)
 
-                        Text("Minhas")
+                        Text("Pessoais")
                             .tag(ViewMode.me)
                     }
                     .pickerStyle(.segmented)
@@ -67,6 +75,16 @@ struct TrendsView: View {
                         }
                     } else {
                         VStack(alignment: .leading, spacing: 10) {
+                            if shouldDisplayRetrospectiveBanner {
+                                RetroBanner(
+                                    isBeingShown: .constant(true),
+                                    buttonAction: { showModalView = true },
+                                    showCloseButton: false
+                                )
+                                .padding(.horizontal, 10)
+                                .padding(.bottom)
+                            }
+
                             //if showMostSharedSoundsByTheUser {
                                 MostSharedByMeView()
                                     .environmentObject(trendsHelper)
@@ -84,6 +102,13 @@ struct TrendsView: View {
                                 .padding(.horizontal)
                                 }*/
                         }
+                        .sheet(isPresented: $showModalView) {
+                            RetroView(
+                                viewModel: .init(),
+                                isBeingShown: $showModalView,
+                                analyticsString: $retroExportAnalytics
+                            )
+                        }
                     }
                 }
                 .refreshable {
@@ -96,6 +121,41 @@ struct TrendsView: View {
         }
         .navigationTitle("Tendências")
         .navigationBarTitleDisplayMode(showTrends ? .large : .inline)
+        .onAppear {
+            Task {
+                shouldDisplayRetrospectiveBanner = await RetroView.ViewModel.shouldDisplayBanner()
+            }
+        }
+        .onChange(of: showModalView) { showModalView in
+            if (showModalView == false) && !retroExportAnalytics.isEmpty {
+                viewModel.displayToast(
+                    toastText: "Imagens salvas com sucesso."
+                )
+
+                Analytics.sendUsageMetricToServer(
+                    originatingScreen: "TrendsView",
+                    action: "didExportRetro2023Images(\(retroExportAnalytics))"
+                )
+
+                retroExportAnalytics = ""
+            }
+        }
+        .overlay {
+            if viewModel.showToastView {
+                VStack {
+                    Spacer()
+
+                    ToastView(
+                        icon: viewModel.toastIcon,
+                        iconColor: viewModel.toastIconColor,
+                        text: viewModel.toastText
+                    )
+                    .padding(.horizontal)
+                    .padding(.bottom, 15)
+                }
+                .transition(.moveAndFade)
+            }
+        }
     }
 }
 

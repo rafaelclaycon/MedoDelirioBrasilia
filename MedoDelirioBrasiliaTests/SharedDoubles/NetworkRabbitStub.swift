@@ -7,7 +7,8 @@ class NetworkRabbitStub: NetworkRabbitProtocol {
     
     var serverShouldBeUnavailable = false
     var fetchUpdateEventsResult: SyncResult = .nothingToUpdate
-    
+    var retroStartingVersion: String?
+
     init() {
         serverPath = ""
     }
@@ -37,5 +38,9 @@ class NetworkRabbitStub: NetworkRabbitProtocol {
         default:
             return []
         }
+    }
+
+    func retroStartingVersion() async -> String? {
+        return retroStartingVersion
     }
 }

@@ -45,6 +45,17 @@ struct SettingsView: View {
                     Text("Alguns conteúdos contam com muitos palavrões. Ao marcar essa opção, você concorda que tem mais de 18 anos e que deseja ver esses conteúdos.")
                 }
 
+//                if RetroView.ViewModel.shouldDisplayBanner() {
+//                    Section {
+//                        Button {
+//                            print("Retro")
+//                        } label: {
+//                            Label("Retrospectiva 2023", systemImage: "airpodsmax")
+//                        }
+//                        .foregroundStyle(Color.green)
+//                    }
+//                }
+
                 Section {
                     NavigationLink(destination: NotificationsSettingsView()) {
                         Label(title: {

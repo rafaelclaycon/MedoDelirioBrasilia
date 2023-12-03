@@ -44,6 +44,10 @@ class LocalDatabaseStub: LocalDatabaseProtocol {
 
     var didCallInsertSyncLog = false
 
+    var topSharedSounds: [TopChartItem] = []
+    var shareCount: Int = 0
+    var shareDates: [Date] = []
+
     // Sound
 
     func insert(sound newSound: MedoDelirio.Sound) throws {
@@ -142,5 +146,19 @@ class LocalDatabaseStub: LocalDatabaseProtocol {
 
     func insert(syncLog newSyncLog: MedoDelirio.SyncLog) {
         didCallInsertSyncLog = true
+    }
+
+    // Retro 2023
+
+    func getTopSoundsSharedByTheUser(_ limit: Int) throws -> [TopChartItem] {
+        return topSharedSounds
+    }
+
+    func totalShareCount() -> Int {
+        return shareCount
+    }
+
+    func allDatesInWhichTheUserShared() throws -> [Date] {
+        return shareDates
     }
 }

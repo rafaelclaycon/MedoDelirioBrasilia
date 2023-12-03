@@ -29,8 +29,7 @@ struct SongsView: View {
 
     // Dynamic Type
     @ScaledMetric private var explicitOffWarningTopPadding = 16
-    @ScaledMetric private var explicitOffWarningPhoneBottomPadding = 20
-    @ScaledMetric private var explicitOffWarningPadBottomPadding = 20
+    @ScaledMetric private var explicitOffWarningBottomPadding = 20
     @ScaledMetric private var songCountTopPadding = 10
     @ScaledMetric private var songCountBottomPadding = 22
     
@@ -114,14 +113,15 @@ struct SongsView: View {
                     .padding(.top, 7)
                     
                     if UserSettings.getShowExplicitContent() == false {
-                        Text(UIDevice.current.userInterfaceIdiom == .phone ? Shared.contentFilterMessageForSongsiPhone : Shared.contentFilterMessageForSongsiPadMac)
-                            .multilineTextAlignment(.center)
-                            .padding(.top, explicitOffWarningTopPadding)
-                            .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? explicitOffWarningPhoneBottomPadding : explicitOffWarningPadBottomPadding)
+                        ExplicitDisabledWarning(
+                            text: UIDevice.current.userInterfaceIdiom == .phone ? Shared.contentFilterMessageForSongsiPhone : Shared.contentFilterMessageForSongsiPadMac
+                        )
+                        .padding(.top, explicitOffWarningTopPadding)
+                        .padding(.horizontal, explicitOffWarningBottomPadding)
                     }
                     
                     if searchText.isEmpty, currentGenre == nil {
-                        Text("\(viewModel.songs.count) MÚSICAS.")
+                        Text("\(viewModel.songs.count) MÚSICAS")
                             .font(.footnote)
                             .foregroundColor(.gray)
                             .multilineTextAlignment(.center)

@@ -10,7 +10,7 @@ import SwiftUI
 struct SoundsView: View {
 
     enum SubviewToOpen {
-        case onboardingView, addToFolderView, shareAsVideoView, settingsView, whatsNewView, syncInfoView, soundDetailView
+        case onboardingView, addToFolderView, shareAsVideoView, settingsView, whatsNewView, syncInfoView, soundDetailView, retrospective
     }
 
     @StateObject var viewModel: SoundsViewViewModel
@@ -25,7 +25,8 @@ struct SoundsView: View {
     
     // Temporary banners
     @State private var shouldDisplayRecurringDonationBanner: Bool = false
-    @State private var shouldDisplayYoureOfflineBanner: Bool = true
+    @State private var shouldDisplayRetrospectiveBanner: Bool = false
+    @State private var shouldDisplayUpdateIncentiveBanner: Bool = false
 
     // Settings
     @EnvironmentObject var settingsHelper: SettingsHelper
@@ -48,7 +49,8 @@ struct SoundsView: View {
     
     // Trends
     @EnvironmentObject var trendsHelper: TrendsHelper
-    
+    @State private var soundIdToGoTo: String = ""
+
     // Folders
     @StateObject var deleteFolderAide = DeleteFolderViewAideiPhone()
     
@@ -58,8 +60,7 @@ struct SoundsView: View {
 
     // Dynamic Type
     @ScaledMetric private var explicitOffWarningTopPadding = 16
-    @ScaledMetric private var explicitOffWarningPhoneBottomPadding = 20
-    @ScaledMetric private var explicitOffWarningPadBottomPadding = 20
+    @ScaledMetric private var explicitOffWarningBottomPadding = 20
     @ScaledMetric private var soundCountTopPadding = 10
     @ScaledMetric private var soundCountPhoneBottomPadding = 68
     @ScaledMetric private var soundCountPadBottomPadding = 22
@@ -67,10 +68,16 @@ struct SoundsView: View {
     // Networking
     @EnvironmentObject var networkMonitor: NetworkMonitor
 
+    // Sync
+    @State private var shouldDisplayYoureOfflineBanner: Bool = true
+
     // Select Many
     @State private var areManyActionButtonsEnabled = false
     @State private var favoriteButtonTitle = "Favoritar"
     @State private var favoriteButtonImage = "star"
+
+    // Retro 2023
+    @State private var retroExportAnalytics: String = ""
 
     private var searchResults: [Sound] {
         if viewModel.searchText.isEmpty {
@@ -169,6 +176,24 @@ struct SoundsView: View {
                                     if shouldDisplayRecurringDonationBanner, viewModel.searchText.isEmpty {
                                         RecurringDonationBanner(isBeingShown: $shouldDisplayRecurringDonationBanner)
                                             .padding(.horizontal, 10)
+                                    }
+
+                                    if shouldDisplayRetrospectiveBanner, viewModel.searchText.isEmpty {
+                                        RetroBanner(
+                                            isBeingShown: $shouldDisplayRetrospectiveBanner,
+                                            buttonAction: {
+                                                subviewToOpen = .retrospective
+                                                showingModalView = true
+                                            }
+                                        )
+                                        .padding(.horizontal, 10)
+                                    }
+
+                                    if shouldDisplayUpdateIncentiveBanner, viewModel.searchText.isEmpty {
+                                        UpdateIncentiveBanner(
+                                            isBeingShown: $shouldDisplayUpdateIncentiveBanner
+                                        )
+                                        .padding(.horizontal, 10)
                                     }
 
                                     LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
@@ -279,8 +304,8 @@ struct SoundsView: View {
                                             columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
                                         }
                                     }
-                                    .onReceive(trendsHelper.$soundIdToGoTo) { soundIdToGoTo in
-                                        if shouldScrollToAndHighlight(soundId: soundIdToGoTo) {
+                                    .onChange(of: soundIdToGoTo) {
+                                        if !$0.isEmpty {
                                             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
                                                 withAnimation {
                                                     proxy.scrollTo(soundIdToGoTo, anchor: .center)
@@ -292,14 +317,15 @@ struct SoundsView: View {
                                 }
 
                                 if UserSettings.getShowExplicitContent() == false, viewModel.currentViewMode != .favorites {
-                                    Text(UIDevice.current.userInterfaceIdiom == .phone ? Shared.contentFilterMessageForSoundsiPhone : Shared.contentFilterMessageForSoundsiPadMac)
-                                        .multilineTextAlignment(.center)
-                                        .padding(.top, explicitOffWarningTopPadding)
-                                        .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? explicitOffWarningPhoneBottomPadding : explicitOffWarningPadBottomPadding)
+                                    ExplicitDisabledWarning(
+                                        text: UIDevice.isiPhone ? Shared.contentFilterMessageForSoundsiPhone : Shared.contentFilterMessageForSoundsiPadMac
+                                    )
+                                    .padding(.top, explicitOffWarningTopPadding)
+                                    .padding(.horizontal, explicitOffWarningBottomPadding)
                                 }
 
                                 if viewModel.searchText.isEmpty, viewModel.currentViewMode != .favorites {
-                                    Text("\(viewModel.sounds.count) SONS.")
+                                    Text("\(viewModel.sounds.count) SONS")
                                         .font(.footnote)
                                         .foregroundColor(.gray)
                                         .multilineTextAlignment(.center)
@@ -352,6 +378,21 @@ struct SoundsView: View {
                             shouldDisplayRecurringDonationBanner = $0
                         }
                     }
+                }
+
+                Task {
+                    if AppPersistentMemory.getHasSeenRetroBanner() {
+                        shouldDisplayRetrospectiveBanner = false
+                    } else {
+                        shouldDisplayRetrospectiveBanner = await RetroView.ViewModel.shouldDisplayBanner()
+                    }
+                }
+
+                if !AppPersistentMemory.getHasSeenFirstUpdateIncentiveBanner() {
+                    shouldDisplayUpdateIncentiveBanner = UpdateIncentive.shouldDisplayBanner(
+                        currentSystemVersion: UIDevice.current.systemVersion,
+                        deviceModel: UIDevice.modelName
+                    )
                 }
 
                 // TODO: Needs refactor. .onAppear is called before the AppDelegate, rendering this useless.
@@ -450,6 +491,13 @@ struct SoundsView: View {
                         isBeingShown: $showingModalView,
                         sound: viewModel.selectedSound ?? Sound(title: "")
                     )
+
+                case .retrospective:
+                    RetroView(
+                        viewModel: .init(),
+                        isBeingShown: $showingModalView,
+                        analyticsString: $retroExportAnalytics
+                    )
                 }
             }
             .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in
@@ -492,8 +540,26 @@ struct SoundsView: View {
                     }
 
                     if pluralization == .plural {
-                        viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFolder(\(selectedCount))")
+                        Analytics.sendUsageMetricToServer(
+                            originatingScreen: "SoundsView",
+                            action: "didAddManySoundsToFolder(\(selectedCount))"
+                        )
                     }
+                } else if 
+                    (showingModalView == false) &&
+                    subviewToOpen == .retrospective &&
+                    !retroExportAnalytics.isEmpty
+                {
+                    viewModel.displayToast(
+                        toastText: "Imagens salvas com sucesso."
+                    )
+
+                    Analytics.sendUsageMetricToServer(
+                        originatingScreen: "SoundsView",
+                        action: "didExportRetro2023Images(\(retroExportAnalytics))"
+                    )
+
+                    retroExportAnalytics = ""
                 }
             }
             .onChange(of: viewModel.selectionKeeper.count) {
@@ -505,6 +571,11 @@ struct SoundsView: View {
                 } else {
                     favoriteButtonTitle = "Favoritar"
                     favoriteButtonImage = "star"
+                }
+            }
+            .onReceive(trendsHelper.$soundIdToGoTo) {
+                if shouldScrollToAndHighlight(soundId: $0) {
+                    soundIdToGoTo = $0
                 }
             }
             .oneTimeTask {
@@ -690,9 +761,7 @@ struct SoundsView: View {
     }
     
     private func shouldScrollToAndHighlight(soundId: String) -> Bool {
-        guard soundId.isEmpty == false else {
-            return false
-        }
+        guard !soundId.isEmpty else { return false }
         viewModel.currentViewMode = .allSounds
 
         if !viewModel.searchText.isEmpty {
@@ -705,7 +774,7 @@ struct SoundsView: View {
             viewModel.highlightKeeper.remove(soundId)
         }
 
-        self.trendsHelper.soundIdToGoTo = .empty
+        self.trendsHelper.soundIdToGoTo = ""
         return true // This tells the ScrollViewProxy "yes, go ahead and scroll, there was a soundId received". Unfortunately, passing the proxy as a parameter did not work and this code was made more complex because of this.
     }
 }

@@ -321,11 +321,17 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
             removeSelectedFromFavorites()
             stopSelecting()
             reloadList(currentMode: currentViewMode)
-            sendUsageMetricToServer(action: "didRemoveManySoundsFromFavorites(\(selectedCount))")
+            Analytics.sendUsageMetricToServer(
+                originatingScreen: "SoundsView",
+                action: "didRemoveManySoundsFromFavorites(\(selectedCount))"
+            )
         } else {
             addSelectedToFavorites()
             stopSelecting()
-            sendUsageMetricToServer(action: "didAddManySoundsToFavorites(\(selectedCount))")
+            Analytics.sendUsageMetricToServer(
+                originatingScreen: "SoundsView",
+                action: "didAddManySoundsToFavorites(\(selectedCount))"
+            )
         }
     }
 

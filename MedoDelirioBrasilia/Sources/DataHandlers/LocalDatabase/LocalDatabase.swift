@@ -36,6 +36,11 @@ internal protocol LocalDatabaseProtocol {
 
     // SyncLog
     func insert(syncLog newSyncLog: SyncLog)
+
+    // Retro 2023
+    func getTopSoundsSharedByTheUser(_ limit: Int) throws -> [TopChartItem]
+    func totalShareCount() -> Int
+    func allDatesInWhichTheUserShared() throws -> [Date]
 }
 
 class LocalDatabase: LocalDatabaseProtocol {
