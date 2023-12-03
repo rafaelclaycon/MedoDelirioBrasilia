@@ -126,6 +126,22 @@ struct SongCell: View {
                 }
             }
         }
+        .gesture(DragGesture(minimumDistance: 3.0, coordinateSpace: .local)
+            .onChanged { value in
+                print(value.translation.width)
+            }
+//            .onEnded { value in
+//                print(value.translation)
+//                switch(value.translation.width, value.translation.height) {
+//                    case (...0, -30...30):  print("left swipe")
+//                    case (0..., -30...30):
+//                        print("right swipe")
+//                    case (-100...100, ...0):  print("up swipe")
+//                    case (-100...100, 0...):  print("down swipe")
+//                    default:  print("no clue")
+//                }
+//            }
+        )
     }
 }
 
