@@ -5,7 +5,7 @@ internal protocol NetworkRabbitProtocol {
     var serverPath: String { get }
     
     func serverIsAvailable() async -> Bool
-    func getSoundShareCountStats(timeInterval: TrendsTimeInterval, completionHandler: @escaping ([ServerShareCountStat]?, NetworkRabbitError?) -> Void)
+    //func getSoundShareCountStats(timeInterval: TrendsTimeInterval, completionHandler: @escaping ([ServerShareCountStat]?, NetworkRabbitError?) -> Void)
     func post(shareCountStat: ServerShareCountStat, completionHandler: @escaping (Bool, String) -> Void)
     func post(clientDeviceInfo: ClientDeviceInfo, completionHandler: @escaping (Bool?, NetworkRabbitError?) -> Void)
     //func post(bundleIdLog: ServerShareBundleIdLog, completionHandler: @escaping (Bool, String) -> Void)
@@ -45,48 +45,36 @@ class NetworkRabbit: NetworkRabbitProtocol {
         }
     }
     
-    func getSoundShareCountStats(timeInterval: TrendsTimeInterval, completionHandler: @escaping ([ServerShareCountStat]?, NetworkRabbitError?) -> Void) {
+    func getSoundShareCountStats(for timeInterval: TrendsTimeInterval) async throws -> [TopChartItem] {
         var url: URL
         
         switch timeInterval {
         case .last24Hours:
             let refDate: String = Date.dateAsString(addingDays: -1)
-            url = URL(string: serverPath + "v2/sound-share-count-stats-from/\(refDate)")!
-            
+            url = URL(string: serverPath + "v3/sound-share-count-stats-from/\(refDate)")!
+
         case .lastWeek:
             let refDate: String = Date.dateAsString(addingDays: -7)
-            url = URL(string: serverPath + "v2/sound-share-count-stats-from/\(refDate)")!
-        
+            url = URL(string: serverPath + "v3/sound-share-count-stats-from/\(refDate)")!
+
         case .lastMonth:
             let refDate: String = Date.dateAsString(addingDays: -30)
-            url = URL(string: serverPath + "v2/sound-share-count-stats-from/\(refDate)")!
-        
+            url = URL(string: serverPath + "v3/sound-share-count-stats-from/\(refDate)")!
+
+        case .year2024:
+            url = URL(string: serverPath + "v3/sound-share-count-stats-from-to/2024-01-01/2024-12-31")!
+
+        case .year2023:
+            url = URL(string: serverPath + "v3/sound-share-count-stats-from-to/2023-01-01/2023-12-31")!
+
+        case .year2022:
+            url = URL(string: serverPath + "v3/sound-share-count-stats-from-to/2022-01-01/2022-12-31")!
+
         case .allTime:
-            url = URL(string: serverPath + "v2/sound-share-count-stats-all-time")!
-        }
-        
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let httpResponse = response as? HTTPURLResponse else {
-                return completionHandler(nil, .responseWasNotAnHTTPURLResponse)
-            }
-             
-            guard httpResponse.statusCode == 200 else {
-                return completionHandler(nil, .unexpectedStatusCode)
-            }
-            
-            if let data = data {
-                if let stats = try? JSONDecoder().decode([ServerShareCountStat].self, from: data) {
-                    Logger.shared.logNetworkCall(callType: NetworkCallType.getSoundShareCountStats.rawValue, requestUrl: url.absoluteString, requestBody: nil, response: String(data: data, encoding: .utf8)!, wasSuccessful: true)
-                    completionHandler(stats, nil)
-                } else {
-                    completionHandler(nil, .invalidResponse)
-                }
-            } else if error != nil {
-                completionHandler(nil, .httpRequestFailed)
-            }
+            url = URL(string: serverPath + "v3/sound-share-count-stats-all-time")!
         }
 
-        task.resume()
+        return try await NetworkRabbit.get(from: url)
     }
     
     func displayAskForMoneyView(completion: @escaping (Bool) -> Void) {

@@ -15,7 +15,7 @@ class Podium {
         self.networkRabbit = injectedNetwork
     }
     
-    func getTop10SoundsSharedByTheUser() -> [TopChartItem]? {
+    func top10SoundsSharedByTheUser() -> [TopChartItem]? {
         do {
             var items = try database.getTopSoundsSharedByTheUser(10)
             for i in 0..<items.count {
@@ -29,7 +29,7 @@ class Podium {
         }
     }
     
-    func getTop10SoundsSharedByTheAudience(for timeInterval: TrendsTimeInterval) -> [TopChartItem]? {
+    func top10SoundsSharedByTheAudience(for timeInterval: TrendsTimeInterval) -> [TopChartItem]? {
         do {
             var items = try database.getTop10SoundsSharedByTheAudience(for: timeInterval)
             for i in 0..<items.count {
@@ -81,27 +81,6 @@ class Podium {
     
     func cleanAudienceSharingStatisticTableToReceiveUpdatedData() {
         try? self.database.clearAudienceSharingStatisticTable()
-    }
-    
-    func getAudienceShareCountStatsFromServer(for timeInterval: TrendsTimeInterval, completionHandler: @escaping (ShareCountStatServerExchangeResult, String) -> Void) {
-        self.networkRabbit.getSoundShareCountStats(timeInterval: timeInterval) { stats, error in
-            guard error == nil else {
-                return completionHandler(.failed(""), "")
-            }
-            guard let stats = stats, stats.isEmpty == false else {
-                return
-            }
-            
-            // Save them
-            var audienceStat: AudienceShareCountStat? = nil
-            stats.forEach { stat in
-                audienceStat = AudienceShareCountStat(contentId: stat.contentId, contentType: stat.contentType, shareCount: stat.shareCount, rankingType: timeInterval.rawValue)
-                try? self.database.insert(audienceStat: audienceStat!)
-            }
-            
-            // Let the caller know
-            completionHandler(.successful, .empty)
-        }
     }
 
     enum ShareCountStatServerExchangeResult: Equatable {

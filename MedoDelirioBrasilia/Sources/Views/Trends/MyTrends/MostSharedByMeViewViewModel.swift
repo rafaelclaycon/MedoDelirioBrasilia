@@ -16,7 +16,7 @@ class MostSharedByMeViewViewModel: ObservableObject {
 
     func reloadPersonalList() {
         Task { @MainActor in
-            self.personalTop10 = Podium.shared.getTop10SoundsSharedByTheUser()
+            self.personalTop10 = Podium.shared.top10SoundsSharedByTheUser()
         }
     }
 }

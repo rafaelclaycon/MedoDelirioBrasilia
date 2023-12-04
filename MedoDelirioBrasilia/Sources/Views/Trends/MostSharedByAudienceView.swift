@@ -30,6 +30,12 @@ struct MostSharedByAudienceView: View {
             return Shared.Trends.lastWeek
         case .lastMonth:
             return Shared.Trends.lastMonth
+        case .year2024:
+            return Shared.Trends.year2024
+        case .year2023:
+            return Shared.Trends.year2023
+        case .year2022:
+            return Shared.Trends.year2022
         case .allTime:
             return Shared.Trends.allTime
         }
@@ -43,6 +49,12 @@ struct MostSharedByAudienceView: View {
             return viewModel.lastWeekRanking!
         case .lastMonth:
             return viewModel.lastMonthRanking!
+        case .year2024:
+            return viewModel.year2024Ranking!
+        case .year2023:
+            return viewModel.year2023Ranking!
+        case .year2022:
+            return viewModel.year2022Ranking!
         case .allTime:
             return viewModel.allTimeRanking!
         }
@@ -183,7 +195,28 @@ struct MostSharedByAudienceView: View {
                         } else {
                             viewModel.viewState = .displayingData
                         }
-                        
+
+                    case .year2024:
+                        if viewModel.year2024Ranking == nil {
+                            viewModel.viewState = .noDataToDisplay
+                        } else {
+                            viewModel.viewState = .displayingData
+                        }
+
+                    case .year2023:
+                        if viewModel.year2023Ranking == nil {
+                            viewModel.viewState = .noDataToDisplay
+                        } else {
+                            viewModel.viewState = .displayingData
+                        }
+
+                    case .year2022:
+                        if viewModel.year2022Ranking == nil {
+                            viewModel.viewState = .noDataToDisplay
+                        } else {
+                            viewModel.viewState = .displayingData
+                        }
+
                     case .allTime:
                         if viewModel.allTimeRanking == nil {
                             viewModel.viewState = .noDataToDisplay
@@ -192,7 +225,7 @@ struct MostSharedByAudienceView: View {
                         }
                     }
                 }
-                
+
                 viewModel.donateActivity(forTimeInterval: timeIntervalOption)
             }
             .onReceive(trendsHelper.$timeIntervalToGoTo) { timeIntervalToGoTo in

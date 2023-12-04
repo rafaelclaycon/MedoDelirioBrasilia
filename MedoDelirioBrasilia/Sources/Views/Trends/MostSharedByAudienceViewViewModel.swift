@@ -14,6 +14,9 @@ class MostSharedByAudienceViewViewModel: ObservableObject {
     @Published var last24HoursRanking: [TopChartItem]? = nil
     @Published var lastWeekRanking: [TopChartItem]? = nil
     @Published var lastMonthRanking: [TopChartItem]? = nil
+    @Published var year2024Ranking: [TopChartItem]? = nil
+    @Published var year2023Ranking: [TopChartItem]? = nil
+    @Published var year2022Ranking: [TopChartItem]? = nil
     @Published var allTimeRanking: [TopChartItem]? = nil
     
     @Published var viewState: TrendsViewState = .noDataToDisplay
@@ -50,46 +53,10 @@ class MostSharedByAudienceViewViewModel: ObservableObject {
                 return
             }
 
-            Podium.shared.cleanAudienceSharingStatisticTableToReceiveUpdatedData()
+            do {
+                self.last24HoursRanking = try await NetworkRabbit.shared.getSoundShareCountStats(for: .last24Hours)
+                self.lastWeekRanking = try await NetworkRabbit.shared.getSoundShareCountStats(for: .lastWeek)
 
-            Podium.shared.getAudienceShareCountStatsFromServer(for: .last24Hours) { result, _ in
-                guard result == .successful else {
-                    return
-                }
-                DispatchQueue.main.async {
-                    self.last24HoursRanking = Podium.shared.getTop10SoundsSharedByTheAudience(for: .last24Hours)
-                }
-            }
-
-            Podium.shared.getAudienceShareCountStatsFromServer(for: .lastWeek) { result, _ in
-                guard result == .successful else {
-                    return
-                }
-                DispatchQueue.main.async {
-                    self.lastWeekRanking = Podium.shared.getTop10SoundsSharedByTheAudience(for: .lastWeek)
-                }
-            }
-
-            Podium.shared.getAudienceShareCountStatsFromServer(for: .lastMonth) { result, _ in
-                guard result == .successful else {
-                    return
-                }
-                DispatchQueue.main.async {
-                    self.lastMonthRanking = Podium.shared.getTop10SoundsSharedByTheAudience(for: .lastMonth)
-                }
-            }
-
-            Podium.shared.getAudienceShareCountStatsFromServer(for: .allTime) { result, _ in
-                guard result == .successful else {
-                    return
-                }
-                DispatchQueue.main.async {
-                    self.allTimeRanking = Podium.shared.getTop10SoundsSharedByTheAudience(for: .allTime)
-                }
-            }
-
-            // Delay needed so the lists actually have something in them.
-            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
                 switch self.timeIntervalOption {
                 case .last24Hours:
                     if self.last24HoursRanking != nil, self.last24HoursRanking?.isEmpty == false {
@@ -112,6 +79,27 @@ class MostSharedByAudienceViewViewModel: ObservableObject {
                         self.viewState = .noDataToDisplay
                     }
 
+                case .year2024:
+                    if self.year2024Ranking != nil, self.year2024Ranking?.isEmpty == false {
+                        self.viewState = .displayingData
+                    } else {
+                        self.viewState = .noDataToDisplay
+                    }
+
+                case .year2023:
+                    if self.year2023Ranking != nil, self.year2023Ranking?.isEmpty == false {
+                        self.viewState = .displayingData
+                    } else {
+                        self.viewState = .noDataToDisplay
+                    }
+
+                case .year2022:
+                    if self.year2022Ranking != nil, self.year2022Ranking?.isEmpty == false {
+                        self.viewState = .displayingData
+                    } else {
+                        self.viewState = .noDataToDisplay
+                    }
+
                 case .allTime:
                     if self.allTimeRanking != nil, self.allTimeRanking?.isEmpty == false {
                         self.viewState = .displayingData
@@ -119,6 +107,9 @@ class MostSharedByAudienceViewViewModel: ObservableObject {
                         self.viewState = .noDataToDisplay
                     }
                 }
+            } catch {
+                print(error)
+                showOtherServerErrorAlert(serverMessage: error.localizedDescription)
             }
         }
     }
@@ -137,7 +128,14 @@ class MostSharedByAudienceViewViewModel: ObservableObject {
         alertMessage = "Não foi possível obter o ranking mais recente. Tente novamente mais tarde."
         showAlert = true
     }
-    
+
+    private func showOtherServerErrorAlert(serverMessage: String) {
+        TapticFeedback.error()
+        alertTitle = "Não Foi Possível Obter os Dados Mais Recentes"
+        alertMessage = serverMessage
+        showAlert = true
+    }
+
     func donateActivity(forTimeInterval timeIntervalOption: TrendsTimeInterval) {
         var activityType = ""
         var activityName = ""
@@ -152,6 +150,15 @@ class MostSharedByAudienceViewViewModel: ObservableObject {
         case .lastMonth:
             activityType = Shared.ActivityTypes.viewLastMonthTopChart
             activityName = "Ver sons mais compartilhados no último mês"
+        case .year2024:
+            activityType = Shared.ActivityTypes.view2024TopChart
+            activityName = "Ver sons mais compartilhados de 2024"
+        case .year2023:
+            activityType = Shared.ActivityTypes.view2023TopChart
+            activityName = "Ver sons mais compartilhados de 2023"
+        case .year2022:
+            activityType = Shared.ActivityTypes.view2022TopChart
+            activityName = "Ver sons mais compartilhados de 2022"
         case .allTime:
             activityType = Shared.ActivityTypes.viewAllTimeTopChart
             activityName = "Ver sons mais compartilhados de todos os tempos"
