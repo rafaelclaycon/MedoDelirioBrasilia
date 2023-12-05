@@ -28,21 +28,7 @@ class Podium {
             return nil
         }
     }
-    
-    func top10SoundsSharedByTheAudience(for timeInterval: TrendsTimeInterval) -> [TopChartItem]? {
-        do {
-            var items = try database.getTop10SoundsSharedByTheAudience(for: timeInterval)
-            for i in 0..<items.count {
-                items[i].id = UUID().uuidString
-                items[i].rankNumber = "\(i + 1)"
-            }
-            return items
-        } catch {
-            print(error)
-            return nil
-        }
-    }
-    
+
     func sendShareCountStatsToServer() async -> ShareCountStatServerExchangeResult {
         guard await networkRabbit.serverIsAvailable() else { return .failed("Servidor indisponível.") }
 

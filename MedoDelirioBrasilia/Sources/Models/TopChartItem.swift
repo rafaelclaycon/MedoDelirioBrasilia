@@ -11,11 +11,11 @@ struct TopChartItem: Hashable, Codable, Identifiable {
 
     var id: String
     var rankNumber: String
-    var contentId: String
-    var contentName: String
-    var contentAuthorId: String
-    var contentAuthorName: String
-    var shareCount: Int
+    let contentId: String
+    let contentName: String
+    let contentAuthorId: String
+    let contentAuthorName: String
+    let shareCount: Int
 
     init(
         id: String,

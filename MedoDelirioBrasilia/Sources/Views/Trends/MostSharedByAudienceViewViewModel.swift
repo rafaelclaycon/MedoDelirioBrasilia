@@ -54,8 +54,12 @@ class MostSharedByAudienceViewViewModel: ObservableObject {
             }
 
             do {
-                self.last24HoursRanking = try await NetworkRabbit.shared.getSoundShareCountStats(for: .last24Hours)
-                self.lastWeekRanking = try await NetworkRabbit.shared.getSoundShareCountStats(for: .lastWeek)
+                self.last24HoursRanking = try await NetworkRabbit.shared.getSoundShareCountStats(for: .last24Hours).fillOutRankNumbers()
+                self.lastWeekRanking = try await NetworkRabbit.shared.getSoundShareCountStats(for: .lastWeek).fillOutRankNumbers()
+                self.lastMonthRanking = try await NetworkRabbit.shared.getSoundShareCountStats(for: .lastMonth).fillOutRankNumbers()
+                self.year2023Ranking = try await NetworkRabbit.shared.getSoundShareCountStats(for: .year2023).fillOutRankNumbers()
+                self.year2022Ranking = try await NetworkRabbit.shared.getSoundShareCountStats(for: .year2022).fillOutRankNumbers()
+                self.allTimeRanking = try await NetworkRabbit.shared.getSoundShareCountStats(for: .allTime).fillOutRankNumbers()
 
                 switch self.timeIntervalOption {
                 case .last24Hours:

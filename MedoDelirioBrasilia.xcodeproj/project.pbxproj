@@ -1354,6 +1354,7 @@
 		D9DB6F8328CD6F3600E24BDE /* Edu Santos - Totalmente embriagado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DB6F8228CD6F3500E24BDE /* Edu Santos - Totalmente embriagado.mp3 */; };
 		D9DB6F8528CD770900E24BDE /* Fernanda Torres - Totalmente drogada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DB6F8428CD770900E24BDE /* Fernanda Torres - Totalmente drogada.mp3 */; };
 		D9DBCEA42B12888D003B4A46 /* NetworkRabbit+Retro.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DBCEA32B12888D003B4A46 /* NetworkRabbit+Retro.swift */; };
+		D9DC4D7A2B1D8BC900627555 /* TopChartItem+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DC4D792B1D8BC900627555 /* TopChartItem+.swift */; };
 		D9DC68902AD38648005D3F81 /* RetroBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DC688F2AD38648005D3F81 /* RetroBanner.swift */; };
 		D9DCC5D128751256008DD4A3 /* PushDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D028751256008DD4A3 /* PushDevice.swift */; };
 		D9DCC5D3287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D2287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift */; };
@@ -2833,6 +2834,7 @@
 		D9DB6F8228CD6F3500E24BDE /* Edu Santos - Totalmente embriagado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Edu Santos - Totalmente embriagado.mp3"; sourceTree = "<group>"; };
 		D9DB6F8428CD770900E24BDE /* Fernanda Torres - Totalmente drogada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fernanda Torres - Totalmente drogada.mp3"; sourceTree = "<group>"; };
 		D9DBCEA32B12888D003B4A46 /* NetworkRabbit+Retro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+Retro.swift"; sourceTree = "<group>"; };
+		D9DC4D792B1D8BC900627555 /* TopChartItem+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TopChartItem+.swift"; sourceTree = "<group>"; };
 		D9DC688F2AD38648005D3F81 /* RetroBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetroBanner.swift; sourceTree = "<group>"; };
 		D9DCC5D028751256008DD4A3 /* PushDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushDevice.swift; sourceTree = "<group>"; };
 		D9DCC5D2287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+PushDevice.swift"; sourceTree = "<group>"; };
@@ -4448,6 +4450,7 @@
 				D92F096429ED844300CC382F /* View+Marquee.swift */,
 				D94EAB5629FC375A004CD604 /* Bundle+.swift */,
 				D9FB70C82AC8DED4002FD8E1 /* View+.swift */,
+				D9DC4D792B1D8BC900627555 /* TopChartItem+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -6431,6 +6434,7 @@
 				D9AF8B752ABD0D320051D028 /* OneTimeTask.swift in Sources */,
 				D96A64202955F32F00DC0F03 /* SettingsHelper.swift in Sources */,
 				D93CCB7B286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift in Sources */,
+				D9DC4D7A2B1D8BC900627555 /* TopChartItem+.swift in Sources */,
 				D9625E7E28238F9A00080852 /* MedoDelirioBrasiliaApp.swift in Sources */,
 				D9592C402AA2C01100157F5A /* GenrePickerView.swift in Sources */,
 				D958B1AC28394DCD0010F133 /* AuthorsView.swift in Sources */,

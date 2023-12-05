@@ -156,6 +156,8 @@ struct MostSharedByAudienceView: View {
         if UIDevice.isMac {
             Picker("Período", selection: $viewModel.timeIntervalOption) {
                 Text(Shared.Trends.allTime).tag(TrendsTimeInterval.allTime)
+                Text(Shared.Trends.year2022).tag(TrendsTimeInterval.year2022)
+                Text(Shared.Trends.year2023).tag(TrendsTimeInterval.year2023)
                 Text(Shared.Trends.lastMonth).tag(TrendsTimeInterval.lastMonth)
                 Text(Shared.Trends.lastWeek).tag(TrendsTimeInterval.lastWeek)
                 Text(Shared.Trends.last24Hours).tag(TrendsTimeInterval.last24Hours)
@@ -167,6 +169,8 @@ struct MostSharedByAudienceView: View {
                     Text(Shared.Trends.last24Hours).tag(TrendsTimeInterval.last24Hours)
                     Text(Shared.Trends.lastWeek).tag(TrendsTimeInterval.lastWeek)
                     Text(Shared.Trends.lastMonth).tag(TrendsTimeInterval.lastMonth)
+                    Text(Shared.Trends.year2023).tag(TrendsTimeInterval.year2023)
+                    Text(Shared.Trends.year2022).tag(TrendsTimeInterval.year2022)
                     Text(Shared.Trends.allTime).tag(TrendsTimeInterval.allTime)
                 }
             } label: {
