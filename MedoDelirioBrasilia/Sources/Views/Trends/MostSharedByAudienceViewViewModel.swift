@@ -54,12 +54,12 @@ class MostSharedByAudienceViewViewModel: ObservableObject {
             }
 
             do {
-                self.last24HoursRanking = try await NetworkRabbit.shared.getSoundShareCountStats(for: .last24Hours).fillOutRankNumbers()
-                self.lastWeekRanking = try await NetworkRabbit.shared.getSoundShareCountStats(for: .lastWeek).fillOutRankNumbers()
-                self.lastMonthRanking = try await NetworkRabbit.shared.getSoundShareCountStats(for: .lastMonth).fillOutRankNumbers()
-                self.year2023Ranking = try await NetworkRabbit.shared.getSoundShareCountStats(for: .year2023).fillOutRankNumbers()
-                self.year2022Ranking = try await NetworkRabbit.shared.getSoundShareCountStats(for: .year2022).fillOutRankNumbers()
-                self.allTimeRanking = try await NetworkRabbit.shared.getSoundShareCountStats(for: .allTime).fillOutRankNumbers()
+                self.last24HoursRanking = try await NetworkRabbit.shared.getSoundShareCountStats(for: .last24Hours).ranked
+                self.lastWeekRanking = try await NetworkRabbit.shared.getSoundShareCountStats(for: .lastWeek).ranked
+                self.lastMonthRanking = try await NetworkRabbit.shared.getSoundShareCountStats(for: .lastMonth).ranked
+                self.year2023Ranking = try await NetworkRabbit.shared.getSoundShareCountStats(for: .year2023).ranked
+                self.year2022Ranking = try await NetworkRabbit.shared.getSoundShareCountStats(for: .year2022).ranked
+                self.allTimeRanking = try await NetworkRabbit.shared.getSoundShareCountStats(for: .allTime).ranked
 
                 switch self.timeIntervalOption {
                 case .last24Hours:

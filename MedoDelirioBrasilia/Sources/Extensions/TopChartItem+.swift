@@ -9,7 +9,7 @@ import Foundation
 
 extension Array where Element == TopChartItem {
 
-    func fillOutRankNumbers() -> [TopChartItem] {
+    var ranked: [TopChartItem] {
         var newArray: [TopChartItem] = []
         for (index, element) in self.enumerated() {
             var newElement = element
