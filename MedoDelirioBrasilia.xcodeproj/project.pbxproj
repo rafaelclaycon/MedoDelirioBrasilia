@@ -1308,7 +1308,7 @@
 		D9CBBB86296F7FFD0089F74B /* Jair Bolsonaro - A papuda lhe espera boa estadia la valeu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CBBB85296F7FFD0089F74B /* Jair Bolsonaro - A papuda lhe espera boa estadia la valeu.mp3 */; };
 		D9CC025D28BD9EBD0021C1E6 /* GridHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CC025C28BD9EBD0021C1E6 /* GridHelper.swift */; };
 		D9CC893328EB7BB500576492 /* MostSharedByAudienceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CC893228EB7BB500576492 /* MostSharedByAudienceView.swift */; };
-		D9CC893528EB7CF800576492 /* MostSharedByAudienceViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CC893428EB7CF800576492 /* MostSharedByAudienceViewViewModel.swift */; };
+		D9CC893528EB7CF800576492 /* MostSharedByAudienceView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CC893428EB7CF800576492 /* MostSharedByAudienceView+ViewModel.swift */; };
 		D9CEB7522998009900DF8497 /* Lula (Cristiano Botafogo) - Voce e maluco ou voce e idiota me responde companheiro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CEB7512998009900DF8497 /* Lula (Cristiano Botafogo) - Voce e maluco ou voce e idiota me responde companheiro.mp3 */; };
 		D9CEB75A2998031D00DF8497 /* Jair Bolsonaro - O soldado que vai a guerra e tem medo de morrer e um covarde.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CEB7592998031D00DF8497 /* Jair Bolsonaro - O soldado que vai a guerra e tem medo de morrer e um covarde.mp3 */; };
 		D9CEB75E2998046F00DF8497 /* Ta todo mundo preso.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CEB75D2998046F00DF8497 /* Ta todo mundo preso.mp3 */; };
@@ -2788,7 +2788,7 @@
 		D9CBBB85296F7FFD0089F74B /* Jair Bolsonaro - A papuda lhe espera boa estadia la valeu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - A papuda lhe espera boa estadia la valeu.mp3"; sourceTree = "<group>"; };
 		D9CC025C28BD9EBD0021C1E6 /* GridHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridHelper.swift; sourceTree = "<group>"; };
 		D9CC893228EB7BB500576492 /* MostSharedByAudienceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostSharedByAudienceView.swift; sourceTree = "<group>"; };
-		D9CC893428EB7CF800576492 /* MostSharedByAudienceViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostSharedByAudienceViewViewModel.swift; sourceTree = "<group>"; };
+		D9CC893428EB7CF800576492 /* MostSharedByAudienceView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MostSharedByAudienceView+ViewModel.swift"; sourceTree = "<group>"; };
 		D9CEB7512998009900DF8497 /* Lula (Cristiano Botafogo) - Voce e maluco ou voce e idiota me responde companheiro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula (Cristiano Botafogo) - Voce e maluco ou voce e idiota me responde companheiro.mp3"; sourceTree = "<group>"; };
 		D9CEB7592998031D00DF8497 /* Jair Bolsonaro - O soldado que vai a guerra e tem medo de morrer e um covarde.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - O soldado que vai a guerra e tem medo de morrer e um covarde.mp3"; sourceTree = "<group>"; };
 		D9CEB75D2998046F00DF8497 /* Ta todo mundo preso.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ta todo mundo preso.mp3"; sourceTree = "<group>"; };
@@ -4885,7 +4885,7 @@
 				D9BF90BD2842EAED00BDDD7D /* TopChartRow.swift */,
 				D998F28E284F177B0013E709 /* TrendsDisabledView.swift */,
 				D9CC893228EB7BB500576492 /* MostSharedByAudienceView.swift */,
-				D9CC893428EB7CF800576492 /* MostSharedByAudienceViewViewModel.swift */,
+				D9CC893428EB7CF800576492 /* MostSharedByAudienceView+ViewModel.swift */,
 				D9D734F92AD38AC900A25916 /* MyTrends */,
 			);
 			path = Trends;
@@ -6510,7 +6510,7 @@
 				D9EB18A52857CDFF00A2F8A8 /* CollectionsView.swift in Sources */,
 				D98EC5E32825A45000340BE5 /* SoundsViewViewModel.swift in Sources */,
 				D9F78A9F2860DF9100B83567 /* CollectionCell.swift in Sources */,
-				D9CC893528EB7CF800576492 /* MostSharedByAudienceViewViewModel.swift in Sources */,
+				D9CC893528EB7CF800576492 /* MostSharedByAudienceView+ViewModel.swift in Sources */,
 				D9943F2A28642EC3002C6B97 /* UserFolderContent.swift in Sources */,
 				D9943F2828642200002C6B97 /* AddToFolderViewViewModel.swift in Sources */,
 				D98B291D28691C5C008A78AE /* ColorSelectionCell.swift in Sources */,

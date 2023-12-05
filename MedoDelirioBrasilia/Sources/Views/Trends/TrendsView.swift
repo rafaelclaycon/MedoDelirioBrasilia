@@ -14,6 +14,8 @@ struct TrendsView: View {
     }
 
     @StateObject private var viewModel = TrendsViewViewModel()
+    @StateObject private var audienceViewModel = MostSharedByAudienceView.ViewModel()
+
     @Binding var tabSelection: PhoneTab
     @Binding var activePadScreen: PadScreen?
     @State var currentViewMode: ViewMode = .audience
@@ -67,6 +69,7 @@ struct TrendsView: View {
                         VStack(alignment: .leading, spacing: 10) {
                             if showSoundsMostSharedByTheAudience {
                                 MostSharedByAudienceView(
+                                    viewModel: audienceViewModel,
                                     tabSelection: $tabSelection,
                                     activePadScreen: $activePadScreen
                                 )
@@ -112,7 +115,7 @@ struct TrendsView: View {
                     }
                 }
                 .refreshable {
-                    trendsHelper.refreshMostSharedByAudienceList = true
+                    audienceViewModel.reloadAudienceLists()
                 }
             } else {
                 TrendsDisabledView()

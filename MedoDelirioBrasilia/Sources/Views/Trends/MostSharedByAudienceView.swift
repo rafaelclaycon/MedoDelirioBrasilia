@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MostSharedByAudienceView: View {
 
-    @StateObject private var viewModel = MostSharedByAudienceViewViewModel()
+    @ObservedObject var viewModel: ViewModel
     @Binding var tabSelection: PhoneTab
     @Binding var activePadScreen: PadScreen?
     @EnvironmentObject var trendsHelper: TrendsHelper
@@ -144,12 +144,6 @@ struct MostSharedByAudienceView: View {
         .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
         }
-        .onChange(of: trendsHelper.refreshMostSharedByAudienceList) {
-            if $0 {
-                viewModel.reloadAudienceLists()
-                self.trendsHelper.refreshMostSharedByAudienceList = false
-            }
-        }
     }
     
     @ViewBuilder func timeIntervalSelector() -> some View {
@@ -255,6 +249,7 @@ struct MostSharedByAudienceView: View {
 struct MostSharedByAudienceView_Previews: PreviewProvider {
     static var previews: some View {
         MostSharedByAudienceView(
+            viewModel: .init(),
             tabSelection: .constant(.trends),
             activePadScreen: .constant(.trends)
         )
