@@ -144,7 +144,7 @@ enum SyncError: Error {
     case updateError
 }
 
-enum SyncUIStatus: CustomStringConvertible {
+enum SyncUIStatus: Codable, CustomStringConvertible {
 
     case updating, done, noInternet, updateError
 
