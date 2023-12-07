@@ -39,10 +39,11 @@ class AuthorDetailViewViewModel: ObservableObject {
     
     init(originatingScreenName: String, authorName: String, currentSoundsListMode: Binding<SoundsListMode>) {
         self.currentSoundsListMode = currentSoundsListMode
+        // Commented out to avoid growing the server db too large.
         // Sends metric only from iPhones because iPad and Mac are calling this methods twice instead of once upon each screen opening.
-        if UIDevice.current.userInterfaceIdiom == .phone {
+        /* if UIDevice.current.userInterfaceIdiom == .phone {
             sendUsageMetricToServer(originatingScreenName: originatingScreenName, authorName: authorName)
-        }
+        } */
     }
 
     func reloadList(
@@ -278,8 +279,8 @@ class AuthorDetailViewViewModel: ObservableObject {
             return "\(sounds.count) SONS"
         }
     }
-    
-    private func sendUsageMetricToServer(originatingScreenName: String, authorName: String) {
+
+    /* private func sendUsageMetricToServer(originatingScreenName: String, authorName: String) {
         let usageMetric = UsageMetric(customInstallId: UIDevice.customInstallId,
                                       originatingScreen: originatingScreenName,
                                       destinationScreen: "\(Shared.ScreenNames.authorDetailView)(\(authorName))",
@@ -289,8 +290,8 @@ class AuthorDetailViewViewModel: ObservableObject {
                                       dateTime: Date.now.iso8601withFractionalSeconds,
                                       currentTimeZone: TimeZone.current.abbreviation() ?? .empty)
         NetworkRabbit.shared.post(usageMetric: usageMetric)
-    }
-    
+    } */
+
     // MARK: - Multi-Select
     
     func startSelecting() {
@@ -331,19 +332,24 @@ class AuthorDetailViewViewModel: ObservableObject {
         guard selectionKeeper.count > 0 else { return }
         selectedSounds = sounds.filter({ selectionKeeper.contains($0.id) })
     }
-    
-    func sendUsageMetricToServer(action: String, authorName: String) {
-        let usageMetric = UsageMetric(customInstallId: UIDevice.customInstallId,
-                                      originatingScreen: "AuthorDetailView(\(authorName))",
-                                      destinationScreen: action,
-                                      systemName: UIDevice.current.systemName,
-                                      isiOSAppOnMac: ProcessInfo.processInfo.isiOSAppOnMac,
-                                      appVersion: Versioneer.appVersion,
-                                      dateTime: Date.now.iso8601withFractionalSeconds,
-                                      currentTimeZone: TimeZone.current.abbreviation() ?? .empty)
+
+    func sendUsageMetricToServer(
+        action: String,
+        authorName: String
+    ) {
+        let usageMetric = UsageMetric(
+            customInstallId: UIDevice.customInstallId,
+            originatingScreen: "AuthorDetailView(\(authorName))",
+            destinationScreen: action,
+            systemName: UIDevice.current.systemName,
+            isiOSAppOnMac: ProcessInfo.processInfo.isiOSAppOnMac,
+            appVersion: Versioneer.appVersion,
+            dateTime: Date.now.iso8601withFractionalSeconds,
+            currentTimeZone: TimeZone.current.abbreviation() ?? ""
+        )
         NetworkRabbit.shared.post(usageMetric: usageMetric)
     }
-    
+
     // MARK: - Alerts
 
     func showUnableToGetSoundAlert(_ soundTitle: String) {
