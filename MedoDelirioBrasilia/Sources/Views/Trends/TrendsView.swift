@@ -128,6 +128,14 @@ struct TrendsView: View {
             Task {
                 shouldDisplayRetrospectiveBanner = await RetroView.ViewModel.shouldDisplayBanner()
             }
+            audienceViewModel.displayToast = { message in
+                viewModel.displayToast(
+                    "clock.fill",
+                    .orange,
+                    toastText: message,
+                    displayTime: .seconds(3)
+                )
+            }
         }
         .onChange(of: showModalView) { showModalView in
             if (showModalView == false) && !retroExportAnalytics.isEmpty {

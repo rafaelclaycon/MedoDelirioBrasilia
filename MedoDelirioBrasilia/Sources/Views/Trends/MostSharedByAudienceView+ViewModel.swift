@@ -24,7 +24,7 @@ extension MostSharedByAudienceView {
         @Published var viewState: TrendsViewState = .noDataToDisplay
         @Published var lastCheckDate: Date = Date(timeIntervalSince1970: 0)
         @Published var timeIntervalOption: TrendsTimeInterval = .last24Hours
-        @Published var lastUpdatedAtText: String = .empty
+        @Published var lastUpdatedAtText: String = ""
 
         @Published var currentActivity: NSUserActivity? = nil
 
@@ -33,9 +33,12 @@ extension MostSharedByAudienceView {
         @Published var alertMessage: String = ""
         @Published var showAlert: Bool = false
 
+        var displayToast: ((String) -> Void) = { _ in }
+
         func reloadAudienceLists() {
             // Check if enough time has passed for a retry
             guard lastCheckDate.twoMinutesHavePassed else {
+                displayToast("Aguarde \(lastCheckDate.minutesAndSecondsFromNow) para atualizar novamente.")
                 return
             }
             lastCheckDate = .now
