@@ -5,7 +5,7 @@ extension LocalDatabase {
 
     // MARK: - User statistics to be sent to the server
     
-    func getUserShareStatsNotSentToServer() throws -> [ServerShareCountStat] {
+    func userShareStatsNotSentToServer() throws -> [ServerShareCountStat] {
         var result = [ServerShareCountStat]()
         
         let install_id = Expression<String>("installId")
@@ -14,14 +14,20 @@ extension LocalDatabase {
         let sent_to_server = Expression<Bool>("sentToServer")
         let date_time = Expression<Date>("dateTime")
         
-        for row in try db.prepare(userShareLog
-                                      .select(install_id,content_id,content_type,date_time)
-                                      .where(sent_to_server == false)) {
-            result.append(ServerShareCountStat(installId: row[install_id],
-                                               contentId: row[content_id],
-                                               contentType: row[content_type],
-                                               shareCount: 1,
-                                               dateTime: row[date_time].iso8601withFractionalSeconds))
+        for row in try db.prepare(
+            userShareLog
+                .select(install_id, content_id, content_type, date_time)
+                .where(sent_to_server == false)
+        ) {
+            result.append(
+                ServerShareCountStat(
+                    installId: row[install_id],
+                    contentId: row[content_id],
+                    contentType: row[content_type],
+                    shareCount: 1,
+                    dateTime: row[date_time].iso8601withFractionalSeconds
+                )
+            )
         }
         return result
     }
@@ -57,5 +63,4 @@ extension LocalDatabase {
     func clearAudienceSharingStatisticTable() throws {
         try db.run(audienceSharingStatistic.delete())
     }
-
 }

@@ -115,7 +115,10 @@ struct TrendsView: View {
                     }
                 }
                 .refreshable {
-                    audienceViewModel.reloadAudienceLists()
+                    audienceViewModel.loadList(
+                        for: audienceViewModel.timeIntervalOption,
+                        didPullDownToRefresh: true
+                    )
                 }
             } else {
                 TrendsDisabledView()

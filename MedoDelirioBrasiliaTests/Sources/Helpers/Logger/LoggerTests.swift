@@ -119,7 +119,7 @@ class LoggerTests: XCTestCase {
             try sut.insert(userShareLog: log)
         }
         
-        let stats = Logger.shared.getShareCountStatsForServer()
+        let stats = Logger.shared.shareCountStatsForServer()
         XCTAssertNotNil(stats)
         XCTAssertEqual(stats!.count, 324)
         

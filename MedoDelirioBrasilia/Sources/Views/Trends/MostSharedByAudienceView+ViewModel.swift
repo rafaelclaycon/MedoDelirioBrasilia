@@ -13,20 +13,15 @@ extension MostSharedByAudienceView {
     @MainActor
     final class ViewModel: ObservableObject {
 
-        @Published var last24HoursRanking: [TopChartItem]? = nil
-        @Published var lastWeekRanking: [TopChartItem]? = nil
-        @Published var lastMonthRanking: [TopChartItem]? = nil
-        @Published var year2024Ranking: [TopChartItem]? = nil
-        @Published var year2023Ranking: [TopChartItem]? = nil
-        @Published var year2022Ranking: [TopChartItem]? = nil
-        @Published var allTimeRanking: [TopChartItem]? = nil
-
         @Published var viewState: TrendsViewState = .noDataToDisplay
+        @Published var ranking: [TopChartItem] = []
         @Published var lastCheckDate: Date = Date(timeIntervalSince1970: 0)
         @Published var timeIntervalOption: TrendsTimeInterval = .last24Hours
         @Published var lastUpdatedAtText: String = ""
 
-        @Published var currentActivity: NSUserActivity? = nil
+        @Published var lastTimePulledDownToRefresh: Date = Date(timeIntervalSince1970: 0)
+
+        @Published var currentActivity: NSUserActivity?
 
         // Alerts
         @Published var alertTitle: String = ""
@@ -35,12 +30,22 @@ extension MostSharedByAudienceView {
 
         var displayToast: ((String) -> Void) = { _ in }
 
-        func reloadAudienceLists() {
+        func loadList(
+            for timeInterval: TrendsTimeInterval,
+            didPullDownToRefresh: Bool = false
+        ) {
             // Check if enough time has passed for a retry
-            guard lastCheckDate.twoMinutesHavePassed else {
-                displayToast("Aguarde \(lastCheckDate.minutesAndSecondsFromNow) para atualizar novamente.")
+            if didPullDownToRefresh, !lastTimePulledDownToRefresh.twoMinutesHavePassed {
+                displayToast(
+                    "Aguarde \(lastTimePulledDownToRefresh.minutesAndSecondsFromNow) para atualizar novamente."
+                )
                 return
             }
+
+            if didPullDownToRefresh {
+                lastTimePulledDownToRefresh = .now
+            }
+
             lastCheckDate = .now
             lastUpdatedAtText = "Última consulta: agora mesmo"
 
@@ -52,70 +57,15 @@ extension MostSharedByAudienceView {
 
                 guard result == .successful || result == .noStatsToSend else {
                     await MainActor.run {
-                        self.viewState = self.allTimeRanking == nil ? .noDataToDisplay : .displayingData
+                        self.viewState = self.ranking.isEmpty ? .noDataToDisplay : .displayingData
                         self.showServerUnavailableAlert()
                     }
                     return
                 }
 
                 do {
-                    self.last24HoursRanking = try await NetworkRabbit.shared.getSoundShareCountStats(for: .last24Hours).ranked
-                    self.lastWeekRanking = try await NetworkRabbit.shared.getSoundShareCountStats(for: .lastWeek).ranked
-                    self.lastMonthRanking = try await NetworkRabbit.shared.getSoundShareCountStats(for: .lastMonth).ranked
-                    self.year2023Ranking = try await NetworkRabbit.shared.getSoundShareCountStats(for: .year2023).ranked
-                    self.year2022Ranking = try await NetworkRabbit.shared.getSoundShareCountStats(for: .year2022).ranked
-                    self.allTimeRanking = try await NetworkRabbit.shared.getSoundShareCountStats(for: .allTime).ranked
-
-                    switch self.timeIntervalOption {
-                    case .last24Hours:
-                        if self.last24HoursRanking != nil, self.last24HoursRanking?.isEmpty == false {
-                            self.viewState = .displayingData
-                        } else {
-                            self.viewState = .noDataToDisplay
-                        }
-
-                    case .lastWeek:
-                        if self.lastWeekRanking != nil, self.lastWeekRanking?.isEmpty == false {
-                            self.viewState = .displayingData
-                        } else {
-                            self.viewState = .noDataToDisplay
-                        }
-
-                    case .lastMonth:
-                        if self.lastMonthRanking != nil, self.lastMonthRanking?.isEmpty == false {
-                            self.viewState = .displayingData
-                        } else {
-                            self.viewState = .noDataToDisplay
-                        }
-
-                    case .year2024:
-                        if self.year2024Ranking != nil, self.year2024Ranking?.isEmpty == false {
-                            self.viewState = .displayingData
-                        } else {
-                            self.viewState = .noDataToDisplay
-                        }
-
-                    case .year2023:
-                        if self.year2023Ranking != nil, self.year2023Ranking?.isEmpty == false {
-                            self.viewState = .displayingData
-                        } else {
-                            self.viewState = .noDataToDisplay
-                        }
-
-                    case .year2022:
-                        if self.year2022Ranking != nil, self.year2022Ranking?.isEmpty == false {
-                            self.viewState = .displayingData
-                        } else {
-                            self.viewState = .noDataToDisplay
-                        }
-
-                    case .allTime:
-                        if self.allTimeRanking != nil, self.allTimeRanking?.isEmpty == false {
-                            self.viewState = .displayingData
-                        } else {
-                            self.viewState = .noDataToDisplay
-                        }
-                    }
+                    self.ranking = try await NetworkRabbit.shared.getSoundShareCountStats(for: timeInterval).ranked
+                    self.viewState = self.ranking.isEmpty ? .noDataToDisplay : .displayingData
                 } catch {
                     print(error)
                     showOtherServerErrorAlert(serverMessage: error.localizedDescription)

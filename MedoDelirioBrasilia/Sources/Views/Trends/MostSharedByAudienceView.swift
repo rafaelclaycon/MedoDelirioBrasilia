@@ -41,25 +41,6 @@ struct MostSharedByAudienceView: View {
         }
     }
 
-    private var list: [TopChartItem] {
-        switch viewModel.timeIntervalOption {
-        case .last24Hours:
-            return viewModel.last24HoursRanking!
-        case .lastWeek:
-            return viewModel.lastWeekRanking!
-        case .lastMonth:
-            return viewModel.lastMonthRanking!
-        case .year2024:
-            return viewModel.year2024Ranking!
-        case .year2023:
-            return viewModel.year2023Ranking!
-        case .year2022:
-            return viewModel.year2022Ranking!
-        case .allTime:
-            return viewModel.allTimeRanking!
-        }
-    }
-
     var body: some View {
         VStack {
             HStack {
@@ -110,7 +91,7 @@ struct MostSharedByAudienceView: View {
             case .displayingData:
                 VStack {
                     LazyVGrid(columns: UIDevice.isMac ? columnsMac : columns, spacing: .zero) {
-                        ForEach(list) { item in
+                        ForEach(viewModel.ranking) { item in
                             TopChartRow(item: item)
                                 .onTapGesture {
                                     navigateTo(sound: item.contentId)
@@ -138,8 +119,10 @@ struct MostSharedByAudienceView: View {
             }
         }
         .onAppear {
-            viewModel.reloadAudienceLists()
-            viewModel.donateActivity(forTimeInterval: viewModel.timeIntervalOption)
+            if viewModel.ranking.isEmpty {
+                viewModel.loadList(for: viewModel.timeIntervalOption)
+                viewModel.donateActivity(forTimeInterval: viewModel.timeIntervalOption)
+            }
         }
         .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
@@ -170,61 +153,9 @@ struct MostSharedByAudienceView: View {
             } label: {
                 Label(dropDownText, systemImage: "chevron.up.chevron.down")
             }
-            .onChange(of: viewModel.timeIntervalOption) { timeIntervalOption in
-                DispatchQueue.main.async {
-                    switch viewModel.timeIntervalOption {
-                    case .last24Hours:
-                        if viewModel.last24HoursRanking == nil {
-                            viewModel.viewState = .noDataToDisplay
-                        } else {
-                            viewModel.viewState = .displayingData
-                        }
-                        
-                    case .lastWeek:
-                        if viewModel.lastWeekRanking == nil {
-                            viewModel.viewState = .noDataToDisplay
-                        } else {
-                            viewModel.viewState = .displayingData
-                        }
-                        
-                    case .lastMonth:
-                        if viewModel.lastMonthRanking == nil {
-                            viewModel.viewState = .noDataToDisplay
-                        } else {
-                            viewModel.viewState = .displayingData
-                        }
-
-                    case .year2024:
-                        if viewModel.year2024Ranking == nil {
-                            viewModel.viewState = .noDataToDisplay
-                        } else {
-                            viewModel.viewState = .displayingData
-                        }
-
-                    case .year2023:
-                        if viewModel.year2023Ranking == nil {
-                            viewModel.viewState = .noDataToDisplay
-                        } else {
-                            viewModel.viewState = .displayingData
-                        }
-
-                    case .year2022:
-                        if viewModel.year2022Ranking == nil {
-                            viewModel.viewState = .noDataToDisplay
-                        } else {
-                            viewModel.viewState = .displayingData
-                        }
-
-                    case .allTime:
-                        if viewModel.allTimeRanking == nil {
-                            viewModel.viewState = .noDataToDisplay
-                        } else {
-                            viewModel.viewState = .displayingData
-                        }
-                    }
-                }
-
-                viewModel.donateActivity(forTimeInterval: timeIntervalOption)
+            .onChange(of: viewModel.timeIntervalOption) {
+                viewModel.loadList(for: $0)
+                viewModel.donateActivity(forTimeInterval: $0)
             }
             .onReceive(trendsHelper.$timeIntervalToGoTo) { timeIntervalToGoTo in
                 if let option = timeIntervalToGoTo {

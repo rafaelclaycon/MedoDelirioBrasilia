@@ -33,7 +33,7 @@ class Podium {
         guard await networkRabbit.serverIsAvailable() else { return .failed("Servidor indisponível.") }
 
         // Prepare local stats to be sent
-        guard let stats = Logger.shared.getShareCountStatsForServer() else {
+        guard let stats = Logger.shared.shareCountStatsForServer() else {
             return .noStatsToSend
         }
 
@@ -49,7 +49,7 @@ class Podium {
         let bundleIdUrl = URL(string: networkRabbit.serverPath + "v1/shared-to-bundle-id")!
 
         // Send bundles IDs as well
-        if let bundleIdLogs = Logger.shared.getUniqueBundleIdsForServer() {
+        if let bundleIdLogs = Logger.shared.uniqueBundleIdsForServer() {
             for log in bundleIdLogs {
                 do {
                     let _: ServerShareBundleIdLog = try await NetworkRabbit.post(to: bundleIdUrl, body: log)
