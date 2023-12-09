@@ -1060,6 +1060,7 @@
 		D975FFFD2880B4F20035E6F2 /* COMUNISTA DO INFERNO meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FDC62880B4F00035E6F2 /* COMUNISTA DO INFERNO meme.mp3 */; };
 		D975FFFE2880B4F20035E6F2 /* jonathan frakes - It's a total fabrication.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FDC72880B4F00035E6F2 /* jonathan frakes - It's a total fabrication.mp3 */; };
 		D975FFFF2880B4F20035E6F2 /* Bolsonaro - Polemizar esse assunto.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FDC82880B4F00035E6F2 /* Bolsonaro - Polemizar esse assunto.mp3 */; };
+		D97685472B24F462005A03BA /* NewTrendsUpdateWayBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97685462B24F462005A03BA /* NewTrendsUpdateWayBannerView.swift */; };
 		D976FF3828674BAC00998E1B /* FoldersBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D976FF3728674BAC00998E1B /* FoldersBannerView.swift */; };
 		D977294A28E1F99D003B0CD3 /* Balde de cerveja gelada no final do arco-iris.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D977294928E1F99C003B0CD3 /* Balde de cerveja gelada no final do arco-iris.mp3 */; };
 		D97B2DD628E3E85400C3B50B /* MostSharedByMeViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97B2DD528E3E85400C3B50B /* MostSharedByMeViewViewModel.swift */; };
@@ -2541,6 +2542,7 @@
 		D975FE0C2880B4F20035E6F2 /* Falha de Cobertura - Cerginho da Pereira Nunes - Doidera.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Falha de Cobertura - Cerginho da Pereira Nunes - Doidera.mp3"; sourceTree = "<group>"; };
 		D975FE0D2880B4F20035E6F2 /* Amigo Pedro Daltro - Que delicia, cara.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Amigo Pedro Daltro - Que delicia, cara.mp3"; sourceTree = "<group>"; };
 		D975FE0E2880B4F20035E6F2 /* O CARA DA LUVA DE PEDREIRO - receba carai caralho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O CARA DA LUVA DE PEDREIRO - receba carai caralho.mp3"; sourceTree = "<group>"; };
+		D97685462B24F462005A03BA /* NewTrendsUpdateWayBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTrendsUpdateWayBannerView.swift; sourceTree = "<group>"; };
 		D976FF3728674BAC00998E1B /* FoldersBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersBannerView.swift; sourceTree = "<group>"; };
 		D977294928E1F99C003B0CD3 /* Balde de cerveja gelada no final do arco-iris.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Balde de cerveja gelada no final do arco-iris.mp3"; sourceTree = "<group>"; };
 		D97B2DD528E3E85400C3B50B /* MostSharedByMeViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostSharedByMeViewViewModel.swift; sourceTree = "<group>"; };
@@ -4301,6 +4303,7 @@
 				D976FF3728674BAC00998E1B /* FoldersBannerView.swift */,
 				D94BA9EC2879EC7F001BD09C /* JoinFolderResearchBannerView.swift */,
 				D93A029D2906E9F100A85FE2 /* JoinFolderResearchBannerViewViewModel.swift */,
+				D97685462B24F462005A03BA /* NewTrendsUpdateWayBannerView.swift */,
 			);
 			path = Banners;
 			sourceTree = "<group>";
@@ -6538,6 +6541,7 @@
 				D946117E28613D3200C4FB7E /* CollectionDetailView.swift in Sources */,
 				D93A029C2906E8E200A85FE2 /* NetworkRabbit+UserFolderLog.swift in Sources */,
 				D92CAA4128593B1700D6C1EA /* NetworkLogCell.swift in Sources */,
+				D97685472B24F462005A03BA /* NewTrendsUpdateWayBannerView.swift in Sources */,
 				D9BB1E7728B3200700C5FFAA /* AppIcon.swift in Sources */,
 				D95BFEF529E8CD2600E42A23 /* DonorsView.swift in Sources */,
 				D9B24E2228C6A68800D76F7D /* NumberBadgeView.swift in Sources */,

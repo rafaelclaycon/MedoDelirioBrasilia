@@ -12,6 +12,7 @@ struct MostSharedByAudienceView: View {
     @ObservedObject var viewModel: ViewModel
     @Binding var tabSelection: PhoneTab
     @Binding var activePadScreen: PadScreen?
+    @State private var shouldDisplayNewUpdateWayBanner: Bool = false
     @EnvironmentObject var trendsHelper: TrendsHelper
 
     private let columns = [
@@ -90,6 +91,13 @@ struct MostSharedByAudienceView: View {
                 
             case .displayingData:
                 VStack {
+                    if shouldDisplayNewUpdateWayBanner {
+                        NewTrendsUpdateWayBannerView(
+                            isBeingShown: $shouldDisplayNewUpdateWayBanner
+                        )
+                        .padding(.horizontal, 8)
+                    }
+
                     LazyVGrid(columns: UIDevice.isMac ? columnsMac : columns, spacing: .zero) {
                         ForEach(viewModel.ranking) { item in
                             TopChartRow(item: item)
@@ -123,6 +131,7 @@ struct MostSharedByAudienceView: View {
                 viewModel.loadList(for: viewModel.timeIntervalOption)
                 viewModel.donateActivity(forTimeInterval: viewModel.timeIntervalOption)
             }
+            shouldDisplayNewUpdateWayBanner = !AppPersistentMemory.hasSeenNewTrendsUpdateWayBanner()
         }
         .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
