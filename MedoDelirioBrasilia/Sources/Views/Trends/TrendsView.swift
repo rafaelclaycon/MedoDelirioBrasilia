@@ -114,11 +114,13 @@ struct TrendsView: View {
                         }
                     }
                 }
-                .refreshable {
-                    audienceViewModel.loadList(
-                        for: audienceViewModel.timeIntervalOption,
-                        didPullDownToRefresh: true
-                    )
+                .if(currentViewMode == .audience) {
+                    $0.refreshable {
+                        audienceViewModel.loadList(
+                            for: audienceViewModel.timeIntervalOption,
+                            didPullDownToRefresh: true
+                        )
+                    }
                 }
             } else {
                 TrendsDisabledView()
