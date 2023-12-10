@@ -13,7 +13,7 @@ struct TrendsView: View {
         case audience, me
     }
 
-    @StateObject private var viewModel = TrendsViewViewModel()
+    @StateObject private var viewModel = ViewModel()
     @StateObject private var audienceViewModel = MostSharedByAudienceView.ViewModel()
 
     @Binding var tabSelection: PhoneTab
@@ -175,11 +175,9 @@ struct TrendsView: View {
     }
 }
 
-struct TrendsView_Previews: PreviewProvider {
-    static var previews: some View {
-        TrendsView(
-            tabSelection: .constant(.trends),
-            activePadScreen: .constant(.trends)
-        )
-    }
+#Preview {
+    TrendsView(
+        tabSelection: .constant(.trends),
+        activePadScreen: .constant(.trends)
+    )
 }
