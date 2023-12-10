@@ -10,11 +10,10 @@ import Kingfisher
 
 struct AuthorCell: View {
 
-    @State var authorName: String
-    @State var authorImageURL: String
-    @State var soundCount: String
+    let author: Author
+
     @Environment(\.colorScheme) var colorScheme
-    
+
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20, style: .continuous)
@@ -23,8 +22,8 @@ struct AuthorCell: View {
                 .opacity(colorScheme == .dark ? 0.25 : 0.15)
             
             HStack {
-                if authorImageURL.isEmpty == false {
-                    KFImage(URL(string: authorImageURL))
+                if author.photo?.isEmpty == false {
+                    KFImage(URL(string: author.photo ?? ""))
                         .placeholder {
                             Image(systemName: "person.circle")
                                 .resizable()
@@ -38,19 +37,19 @@ struct AuthorCell: View {
                         .frame(width: 55)
                         .clipShape(Circle())
                 }
-                
+
                 VStack(alignment: .leading, spacing: 8) {
-                    Text(authorName)
+                    Text(author.name)
                         .foregroundColor(.primary)
                         .bold()
                         .multilineTextAlignment(.leading)
                         .lineLimit(2)
                 }
                 .padding(.leading, 5)
-                
+
                 Spacer()
 
-                NumberBadgeView(number: soundCount, showBackgroundCircle: true)
+                NumberBadgeView(number: "\(author.soundCount ?? 0)", showBackgroundCircle: true)
                     .foregroundColor(.primary)
                     .padding(.trailing, 10)
 
@@ -67,20 +66,34 @@ struct AuthorCell: View {
 
 }
 
-struct AuthorCell_Previews: PreviewProvider {
+#Preview {
+    Group {
+        // No image
+        AuthorCell(
+            author: .init(id: "", name: "Jair Bolsonaro", soundCount: 10)
+        )
 
-    static var previews: some View {
-        Group {
-            // No image
-            AuthorCell(authorName: "Jair Bolsonaro", authorImageURL: "", soundCount: "10")
-            
-            AuthorCell(authorName: "Samira Close", authorImageURL: "https://yt3.ggpht.com/ytc/AKedOLRjdzsZyL8rKC0c83BV7_muqPkBtd2TM1kYrV76iA=s900-c-k-c0x00ffffff-no-rj", soundCount: "1")
-            AuthorCell(authorName: "Casimiro", authorImageURL: "https://pbs.twimg.com/profile_images/1495509561377177601/WljXGF65_400x400.jpg", soundCount: "4")
-            
-            // URL unavailable
-            AuthorCell(authorName: "Samira Close", authorImageURL: "abc", soundCount: "1")
-        }
-        .previewLayout(.fixed(width: 220, height: 100))
+        AuthorCell(
+            author: .init(
+                id: "",
+                name: "Samira Close",
+                photo: "https://yt3.ggpht.com/ytc/AKedOLRjdzsZyL8rKC0c83BV7_muqPkBtd2TM1kYrV76iA=s900-c-k-c0x00ffffff-no-rj",
+                soundCount: 1
+            )
+        )
+        AuthorCell(
+            author: .init(
+                id: "",
+                name: "Casimiro",
+                photo: "https://pbs.twimg.com/profile_images/1495509561377177601/WljXGF65_400x400.jpg",
+                soundCount: 4
+            )
+        )
+
+        // URL unavailable
+        AuthorCell(
+            author: .init(id: "", name: "Samira Close", photo: "abc", soundCount: 1)
+        )
     }
-
+    .padding()
 }

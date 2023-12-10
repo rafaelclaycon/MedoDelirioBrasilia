@@ -594,12 +594,14 @@ struct ViewOffsetKey: PreferenceKey {
 
 }
 
-struct AuthorDetailView_Previews: PreviewProvider {
-
-    static var previews: some View {
-        AuthorDetailView(viewModel: AuthorDetailViewViewModel(originatingScreenName: "originalScreen", authorName: "João da Silva", currentSoundsListMode: .constant(.selection)),
-                         author: Author(id: "0D944922-7E50-4DED-A8FD-F44EFCAE82A2", name: "Abraham Weintraub", photo: "https://conteudo.imguol.com.br/c/noticias/fd/2020/06/22/11fev2020---o-entao-ministro-da-educacao-abraham-weintraub-falando-a-comissao-do-senado-sobre-problemas-na-correcao-das-provas-do-enem-1592860563916_v2_3x4.jpg"),
-                         currentSoundsListMode: .constant(.selection))
-    }
-
+#Preview {
+    AuthorDetailView(
+        viewModel: .init(authorName: "João da Silva", currentSoundsListMode: .constant(.selection)),
+        author: .init(
+            id: "0D944922-7E50-4DED-A8FD-F44EFCAE82A2",
+            name: "Abraham Weintraub",
+            photo: "https://conteudo.imguol.com.br/c/noticias/fd/2020/06/22/11fev2020---o-entao-ministro-da-educacao-abraham-weintraub-falando-a-comissao-do-senado-sobre-problemas-na-correcao-das-provas-do-enem-1592860563916_v2_3x4.jpg"
+        ),
+        currentSoundsListMode: .constant(.selection)
+    )
 }

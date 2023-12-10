@@ -50,8 +50,17 @@ struct AuthorsView: View {
                     NoSearchResultsView(searchText: $searchText)
                 } else {
                     ForEach(searchResults) { author in
-                        NavigationLink(destination: AuthorDetailView(viewModel: AuthorDetailViewViewModel(originatingScreenName: searchText.isEmpty ? Shared.ScreenNames.authorsView : "\(Shared.ScreenNames.authorsView)(\(searchText))", authorName: author.name, currentSoundsListMode: $currentSoundsListMode), author: author, currentSoundsListMode: $currentSoundsListMode)) {
-                            AuthorCell(authorName: author.name, authorImageURL: author.photo ?? "", soundCount: "\(author.soundCount ?? 0)")
+                        NavigationLink(
+                            destination: AuthorDetailView(
+                                viewModel: AuthorDetailViewViewModel(
+                                    authorName: author.name,
+                                    currentSoundsListMode: $currentSoundsListMode
+                                ),
+                                author: author,
+                                currentSoundsListMode: $currentSoundsListMode
+                            )
+                        ) {
+                            AuthorCell(author: author)
                                 .padding(.horizontal, 5)
                         }
                     }

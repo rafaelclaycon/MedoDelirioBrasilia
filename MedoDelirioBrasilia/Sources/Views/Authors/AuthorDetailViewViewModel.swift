@@ -37,7 +37,11 @@ class AuthorDetailViewViewModel: ObservableObject {
     @Published var showAlert: Bool = false
     @Published var alertType: AuthorDetailAlertType = .ok
     
-    init(originatingScreenName: String, authorName: String, currentSoundsListMode: Binding<SoundsListMode>) {
+    init(
+        // originatingScreenName: String,
+        authorName: String,
+        currentSoundsListMode: Binding<SoundsListMode>
+    ) {
         self.currentSoundsListMode = currentSoundsListMode
         // Commented out to avoid growing the server db too large.
         // Sends metric only from iPhones because iPad and Mac are calling this methods twice instead of once upon each screen opening.

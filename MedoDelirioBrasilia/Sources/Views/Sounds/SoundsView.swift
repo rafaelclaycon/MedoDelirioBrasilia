@@ -137,11 +137,14 @@ struct SoundsView: View {
     var body: some View {
         ZStack {
             VStack {
-                NavigationLink(destination: AuthorDetailView(viewModel: AuthorDetailViewViewModel(originatingScreenName: Shared.ScreenNames.soundsView,
-                                                                                                  authorName: authorToAutoOpen.name, currentSoundsListMode: $currentSoundsListMode),
-                                                             author: authorToAutoOpen,
-                                                             currentSoundsListMode: $currentSoundsListMode),
-                               isActive: $autoOpenAuthor) { EmptyView() }
+                NavigationLink(
+                    destination: AuthorDetailView(
+                        viewModel: .init(authorName: authorToAutoOpen.name, currentSoundsListMode: $currentSoundsListMode),
+                        author: authorToAutoOpen,
+                        currentSoundsListMode: $currentSoundsListMode
+                    ),
+                    isActive: $autoOpenAuthor
+                ) { EmptyView() }
 
                 if showNoFavoritesView {
                     NoFavoritesView()
