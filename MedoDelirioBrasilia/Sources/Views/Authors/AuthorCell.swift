@@ -2,7 +2,7 @@
 //  AuthorCell.swift
 //  MedoDelirioBrasilia
 //
-//  Created by Rafael Claycon Schmitt on 18/07/22.
+//  Created by Rafael Schmitt on 10/12/23.
 //
 
 import SwiftUI
@@ -18,14 +18,14 @@ struct AuthorCell: View {
         ZStack {
             RoundedRectangle(cornerRadius: 20, style: .continuous)
                 .fill(Color.gray)
-                .frame(height: UIDevice.is4InchDevice ? 120 : 96)
+                .frame(height: 96)
                 .opacity(colorScheme == .dark ? 0.25 : 0.15)
-            
+
             HStack {
                 if author.photo?.isEmpty == false {
                     KFImage(URL(string: author.photo ?? ""))
                         .placeholder {
-                            Image(systemName: "person.circle")
+                            Image(systemName: "person.fill")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(height: 50)
@@ -33,37 +33,35 @@ struct AuthorCell: View {
                                 .opacity(0.3)
                         }
                         .resizable()
-                        .scaledToFit()
-                        .frame(width: 55)
-                        .clipShape(Circle())
+                        .scaledToFill()
+                        .frame(width: 96, height: 96)
+                        .clipped()
                 }
 
-                VStack(alignment: .leading, spacing: 8) {
+                VStack(alignment: .leading) {
                     Text(author.name)
                         .foregroundColor(.primary)
                         .bold()
                         .multilineTextAlignment(.leading)
                         .lineLimit(2)
                 }
-                .padding(.leading, 5)
+                .padding(.leading, author.photo?.isEmpty == false ? 15 : 25)
 
                 Spacer()
 
-                NumberBadgeView(number: "\(author.soundCount ?? 0)", showBackgroundCircle: true)
-                    .foregroundColor(.primary)
-                    .padding(.trailing, 10)
-
-                Image(systemName: "chevron.right")
-                    .resizable()
-                    .scaledToFit()
-                    .foregroundColor(.gray)
-                    .frame(height: 16)
+                NumberBadgeView(
+                    number: "\(author.soundCount ?? 0)",
+                    showBackgroundCircle: true,
+                    lightModeOpacity: 0.2
+                )
+                .foregroundColor(.primary)
             }
-            .padding(.leading)
-            .padding(.trailing)
+            .padding(.trailing, 18)
+        }
+        .mask {
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
         }
     }
-
 }
 
 #Preview {
@@ -73,6 +71,7 @@ struct AuthorCell: View {
             author: .init(id: "", name: "Jair Bolsonaro", soundCount: 10)
         )
 
+        // Square image
         AuthorCell(
             author: .init(
                 id: "",
@@ -81,12 +80,24 @@ struct AuthorCell: View {
                 soundCount: 1
             )
         )
+
+        // Image is taller than wider
         AuthorCell(
             author: .init(
                 id: "",
-                name: "Casimiro",
-                photo: "https://pbs.twimg.com/profile_images/1495509561377177601/WljXGF65_400x400.jpg",
-                soundCount: 4
+                name: "Abraham Weintraub",
+                photo: "https://conteudo.imguol.com.br/c/noticias/fd/2020/06/22/11fev2020---o-entao-ministro-da-educacao-abraham-weintraub-falando-a-comissao-do-senado-sobre-problemas-na-correcao-das-provas-do-enem-1592860563916_v2_3x4.jpg",
+                soundCount: 5
+            )
+        )
+
+        // Image is wider than taller
+        AuthorCell(
+            author: .init(
+                id: "",
+                name: "Biquini",
+                photo: "https://conteudo.imguol.com.br/c/entretenimento/10/2019/05/30/integrantes-do-biquini-cavadao-1559247575758_v2_4x3.jpg",
+                soundCount: 5
             )
         )
 
