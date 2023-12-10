@@ -8,7 +8,9 @@
 import SwiftUI
 
 protocol SyncManagerDelegate: AnyObject {
-    func syncManagerDidUpdate(status: SyncUIStatus, updateSoundList: Bool)
+    func set(totalUpdateCount: Int)
+    func didProcessUpdate(number: Int)
+    func didFinishUpdating(status: SyncUIStatus, updateSoundList: Bool)
 }
 
 class SyncManager {
@@ -34,30 +36,30 @@ class SyncManager {
 
     func sync() async {
         guard service.hasConnectivity() else {
-            delegate?.syncManagerDidUpdate(status: .noInternet, updateSoundList: false)
+            delegate?.didFinishUpdating(status: .noInternet, updateSoundList: false)
             return
         }
 
         await MainActor.run {
-            delegate?.syncManagerDidUpdate(status: .updating, updateSoundList: false)
+            delegate?.didFinishUpdating(status: .updating, updateSoundList: false)
         }
 
         do {
             try await retryLocal()
             try await syncDataWithServer()
-            delegate?.syncManagerDidUpdate(status: .done, updateSoundList: true)
+            delegate?.didFinishUpdating(status: .done, updateSoundList: true)
         } catch SyncError.noInternet {
-            delegate?.syncManagerDidUpdate(status: .noInternet, updateSoundList: false)
+            delegate?.didFinishUpdating(status: .noInternet, updateSoundList: false)
         } catch NetworkRabbitError.errorFetchingUpdateEvents(let errorMessage) {
             print(errorMessage)
             logger.logSyncError(description: errorMessage, updateEventId: "")
-            delegate?.syncManagerDidUpdate(status: .updateError, updateSoundList: false)
+            delegate?.didFinishUpdating(status: .updateError, updateSoundList: false)
         } catch SyncError.errorInsertingUpdateEvent(let updateEventId) {
             logger.logSyncError(description: "Erro ao tentar inserir UpdateEvent no banco de dados.", updateEventId: updateEventId)
-            delegate?.syncManagerDidUpdate(status: .updateError, updateSoundList: false)
+            delegate?.didFinishUpdating(status: .updateError, updateSoundList: false)
         } catch {
             logger.logSyncError(description: error.localizedDescription, updateEventId: "")
-            delegate?.syncManagerDidUpdate(status: .updateError, updateSoundList: false)
+            delegate?.didFinishUpdating(status: .updateError, updateSoundList: false)
         }
 
         AppPersistentMemory.setLastUpdateAttempt(to: Date.now.iso8601withFractionalSeconds)
@@ -112,12 +114,18 @@ class SyncManager {
             return print("NO UPDATES")
         }
 
+        var updateNumber: Int = 0
+        delegate?.set(totalUpdateCount: serverUpdates.count)
+
         for update in serverUpdates {
             guard service.hasConnectivity() else {
                 throw SyncError.noInternet
             }
 
             await service.process(updateEvent: update)
+
+            updateNumber += 1
+            delegate?.didProcessUpdate(number: updateNumber)
         }
 
         AppPersistentMemory.setLastUpdateDate(to: Date.now.iso8601withFractionalSeconds)

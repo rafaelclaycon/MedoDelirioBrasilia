@@ -1061,7 +1061,6 @@
 		D975FFFE2880B4F20035E6F2 /* jonathan frakes - It's a total fabrication.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FDC72880B4F00035E6F2 /* jonathan frakes - It's a total fabrication.mp3 */; };
 		D975FFFF2880B4F20035E6F2 /* Bolsonaro - Polemizar esse assunto.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975FDC82880B4F00035E6F2 /* Bolsonaro - Polemizar esse assunto.mp3 */; };
 		D97685472B24F462005A03BA /* NewTrendsUpdateWayBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97685462B24F462005A03BA /* NewTrendsUpdateWayBannerView.swift */; };
-		D976FF3828674BAC00998E1B /* FoldersBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D976FF3728674BAC00998E1B /* FoldersBannerView.swift */; };
 		D977294A28E1F99D003B0CD3 /* Balde de cerveja gelada no final do arco-iris.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D977294928E1F99C003B0CD3 /* Balde de cerveja gelada no final do arco-iris.mp3 */; };
 		D97B2DD628E3E85400C3B50B /* MostSharedByMeViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97B2DD528E3E85400C3B50B /* MostSharedByMeViewViewModel.swift */; };
 		D97B2DD928E5EA0500C3B50B /* DeleteFolderViewAide.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97B2DD828E5EA0500C3B50B /* DeleteFolderViewAide.swift */; };
@@ -1083,6 +1082,7 @@
 		D98674122A6B4B6800CCB9D3 /* Monica Poli - Attenzione, borseggiatrici.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D986740F2A6B4B6800CCB9D3 /* Monica Poli - Attenzione, borseggiatrici.mp3 */; };
 		D98674132A6B4B6800CCB9D3 /* Monica Poli - Attenzione, pickpocket (completo).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98674102A6B4B6800CCB9D3 /* Monica Poli - Attenzione, pickpocket (completo).mp3 */; };
 		D98674142A6B4B6800CCB9D3 /* Monica Poli - Attenzione, pickpocket.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98674112A6B4B6800CCB9D3 /* Monica Poli - Attenzione, pickpocket.mp3 */; };
+		D986C2462B25848B00EF575A /* LongUpdateBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D986C2452B25848B00EF575A /* LongUpdateBanner.swift */; };
 		D9877D2928694F3200B541F9 /* LocalDatabase+UserFolderContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9877D2828694F3200B541F9 /* LocalDatabase+UserFolderContent.swift */; };
 		D9877D2B2869845400B541F9 /* SharingUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9877D2A2869845400B541F9 /* SharingUtility.swift */; };
 		D988C523283C33E100D64404 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D988C522283C33E100D64404 /* UserSettings.swift */; };
@@ -2543,7 +2543,6 @@
 		D975FE0D2880B4F20035E6F2 /* Amigo Pedro Daltro - Que delicia, cara.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Amigo Pedro Daltro - Que delicia, cara.mp3"; sourceTree = "<group>"; };
 		D975FE0E2880B4F20035E6F2 /* O CARA DA LUVA DE PEDREIRO - receba carai caralho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O CARA DA LUVA DE PEDREIRO - receba carai caralho.mp3"; sourceTree = "<group>"; };
 		D97685462B24F462005A03BA /* NewTrendsUpdateWayBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTrendsUpdateWayBannerView.swift; sourceTree = "<group>"; };
-		D976FF3728674BAC00998E1B /* FoldersBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersBannerView.swift; sourceTree = "<group>"; };
 		D977294928E1F99C003B0CD3 /* Balde de cerveja gelada no final do arco-iris.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Balde de cerveja gelada no final do arco-iris.mp3"; sourceTree = "<group>"; };
 		D97B2DD528E3E85400C3B50B /* MostSharedByMeViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostSharedByMeViewViewModel.swift; sourceTree = "<group>"; };
 		D97B2DD828E5EA0500C3B50B /* DeleteFolderViewAide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteFolderViewAide.swift; sourceTree = "<group>"; };
@@ -2565,6 +2564,7 @@
 		D986740F2A6B4B6800CCB9D3 /* Monica Poli - Attenzione, borseggiatrici.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Monica Poli - Attenzione, borseggiatrici.mp3"; sourceTree = "<group>"; };
 		D98674102A6B4B6800CCB9D3 /* Monica Poli - Attenzione, pickpocket (completo).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Monica Poli - Attenzione, pickpocket (completo).mp3"; sourceTree = "<group>"; };
 		D98674112A6B4B6800CCB9D3 /* Monica Poli - Attenzione, pickpocket.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Monica Poli - Attenzione, pickpocket.mp3"; sourceTree = "<group>"; };
+		D986C2452B25848B00EF575A /* LongUpdateBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongUpdateBanner.swift; sourceTree = "<group>"; };
 		D9877D2828694F3200B541F9 /* LocalDatabase+UserFolderContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+UserFolderContent.swift"; sourceTree = "<group>"; };
 		D9877D2A2869845400B541F9 /* SharingUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingUtility.swift; sourceTree = "<group>"; };
 		D988C522283C33E100D64404 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
@@ -4300,10 +4300,13 @@
 			isa = PBXGroup;
 			children = (
 				D9BFD8CB29059B4800E1AF6F /* FoldersAreTagsBannerView.swift */,
-				D976FF3728674BAC00998E1B /* FoldersBannerView.swift */,
 				D94BA9EC2879EC7F001BD09C /* JoinFolderResearchBannerView.swift */,
 				D93A029D2906E9F100A85FE2 /* JoinFolderResearchBannerViewViewModel.swift */,
 				D97685462B24F462005A03BA /* NewTrendsUpdateWayBannerView.swift */,
+				D992146E2A8F21C2004E82BC /* RecurringDonationBanner.swift */,
+				D9DC688F2AD38648005D3F81 /* RetroBanner.swift */,
+				D9FF3F962B142F78007AE773 /* UpdateIncentiveBanner.swift */,
+				D986C2452B25848B00EF575A /* LongUpdateBanner.swift */,
 			);
 			path = Banners;
 			sourceTree = "<group>";
@@ -4720,16 +4723,6 @@
 			path = EnvironmentObjects;
 			sourceTree = "<group>";
 		};
-		D992146D2A8F219F004E82BC /* Banners */ = {
-			isa = PBXGroup;
-			children = (
-				D992146E2A8F21C2004E82BC /* RecurringDonationBanner.swift */,
-				D9DC688F2AD38648005D3F81 /* RetroBanner.swift */,
-				D9FF3F962B142F78007AE773 /* UpdateIncentiveBanner.swift */,
-			);
-			path = Banners;
-			sourceTree = "<group>";
-		};
 		D9943F2128641A82002C6B97 /* LocalDatabase */ = {
 			isa = PBXGroup;
 			children = (
@@ -4843,7 +4836,6 @@
 				D99A961B299A733E00BB5F0D /* RoundCheckbox.swift */,
 				D9E747FA29A8ED1100009C8D /* NoSearchResultsView.swift */,
 				D955DA2F2AA6B94C00AC4169 /* SoundDetailView.swift */,
-				D992146D2A8F219F004E82BC /* Banners */,
 				D94EAB5C29FC4D51004CD604 /* Sync */,
 				D9AF8B742ABD0D320051D028 /* OneTimeTask.swift */,
 				D98BB6992AC68769001DE23D /* FloatingSelectionOptionsView.swift */,
@@ -6383,6 +6375,7 @@
 				D94BA9ED2879EC7F001BD09C /* JoinFolderResearchBannerView.swift in Sources */,
 				D93443292838230500ADCD38 /* String+.swift in Sources */,
 				D9943F2628641FEF002C6B97 /* AddToFolderView.swift in Sources */,
+				D986C2462B25848B00EF575A /* LongUpdateBanner.swift in Sources */,
 				D95BFEF829E8D07B00E42A23 /* Donor.swift in Sources */,
 				D9BF9091284257F500BDDD7D /* Shared.swift in Sources */,
 				D9758C3C28617C980094D388 /* LocalDatabase+UserFolder.swift in Sources */,
@@ -6404,7 +6397,6 @@
 				D95C3E122A02E6D300172C17 /* SyncEnums.swift in Sources */,
 				D938132F287E12B3009EE24F /* NotificationAide.swift in Sources */,
 				D9F9BB39294A167C0005BE56 /* TrendsHelper.swift in Sources */,
-				D976FF3828674BAC00998E1B /* FoldersBannerView.swift in Sources */,
 				D90EDDBA2908505000ED87A8 /* FolderResearchHelper.swift in Sources */,
 				D97D76FB2885B794005210D9 /* EmailAppPickerView.swift in Sources */,
 				D9A3AB6B28F03C970064CB7A /* ViewStates.swift in Sources */,

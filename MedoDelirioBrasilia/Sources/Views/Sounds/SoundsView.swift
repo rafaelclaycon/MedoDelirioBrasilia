@@ -134,6 +134,10 @@ struct SoundsView: View {
         viewModel.currentViewMode == .allSounds && currentSoundsListMode == .regular
     }
 
+    private var displayLongUpdateBanner: Bool {
+        viewModel.totalUpdateCount >= 10 && viewModel.processedUpdateNumber != viewModel.totalUpdateCount
+    }
+
     var body: some View {
         ZStack {
             VStack {
@@ -171,6 +175,14 @@ struct SoundsView: View {
                                 ScrollViewReader { proxy in
                                     if !networkMonitor.isConnected, shouldDisplayYoureOfflineBanner {
                                         YoureOfflineView(isBeingShown: $shouldDisplayYoureOfflineBanner)
+                                    }
+
+                                    if displayLongUpdateBanner {
+                                        LongUpdateBanner(
+                                            completedNumber: $viewModel.processedUpdateNumber,
+                                            totalUpdateCount: $viewModel.totalUpdateCount
+                                        )
+                                        .padding(.horizontal, 10)
                                     }
 
                                     if shouldDisplayRecurringDonationBanner, viewModel.searchText.isEmpty {

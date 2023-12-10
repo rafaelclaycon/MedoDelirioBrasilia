@@ -39,6 +39,10 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
     // Select Many
     @Published var shareManyIsProcessing = false
 
+    // Long Updates
+    @Published var processedUpdateNumber: Int = 0
+    @Published var totalUpdateCount: Int = 0
+
     // Alerts
     @Published var alertTitle: String = ""
     @Published var alertMessage: String = ""
@@ -476,7 +480,19 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
         )
     }
 
-    nonisolated func syncManagerDidUpdate(
+    nonisolated func set(totalUpdateCount: Int) {
+        Task { @MainActor in
+            self.totalUpdateCount = totalUpdateCount
+        }
+    }
+
+    nonisolated func didProcessUpdate(number: Int) {
+        Task { @MainActor in
+            processedUpdateNumber = number
+        }
+    }
+
+    nonisolated func didFinishUpdating(
         status: SyncUIStatus,
         updateSoundList: Bool
     ) {
