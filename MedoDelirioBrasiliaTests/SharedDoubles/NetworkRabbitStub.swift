@@ -13,8 +13,8 @@ class NetworkRabbitStub: NetworkRabbitProtocol {
         serverPath = ""
     }
     
-    func checkServerStatus(completionHandler: @escaping (Bool) -> Void) {
-        completionHandler(!serverShouldBeUnavailable)
+    func serverIsAvailable() async -> Bool {
+        return !serverShouldBeUnavailable
     }
     
     func getSoundShareCountStats(timeInterval: TrendsTimeInterval, completionHandler: @escaping ([ServerShareCountStat]?, NetworkRabbitError?) -> Void) {

@@ -10,6 +10,9 @@ struct Shared {
         static let viewLast24HoursTopChart = "com.rafaelschmitt.MedoDelirioBrasilia.ViewLast24HoursTopChart"
         static let viewLastWeekTopChart = "com.rafaelschmitt.MedoDelirioBrasilia.ViewLastWeekTopChart"
         static let viewLastMonthTopChart = "com.rafaelschmitt.MedoDelirioBrasilia.ViewLastMonthTopChart"
+        static let view2024TopChart = "com.rafaelschmitt.MedoDelirioBrasilia.View2024TopChart"
+        static let view2023TopChart = "com.rafaelschmitt.MedoDelirioBrasilia.View2023TopChart"
+        static let view2022TopChart = "com.rafaelschmitt.MedoDelirioBrasilia.View2022TopChart"
         static let viewAllTimeTopChart = "com.rafaelschmitt.MedoDelirioBrasilia.ViewAllTimeTopChart"
     }
     
@@ -90,6 +93,9 @@ struct Shared {
         static let last24Hours = "Últimas 24 horas"
         static let lastWeek = "Última semana"
         static let lastMonth = "Último mês"
+        static let year2024 = "2024"
+        static let year2023 = "2023"
+        static let year2022 = "2022 (desde 21/06)"
         static let allTime = "Todos os tempos"
     }
     

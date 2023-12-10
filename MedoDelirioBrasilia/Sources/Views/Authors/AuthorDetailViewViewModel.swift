@@ -279,7 +279,7 @@ class AuthorDetailViewViewModel: ObservableObject {
             return "\(sounds.count) SONS"
         }
     }
-    
+
     /* private func sendUsageMetricToServer(originatingScreenName: String, authorName: String) {
         let usageMetric = UsageMetric(customInstallId: UIDevice.customInstallId,
                                       originatingScreen: originatingScreenName,
@@ -289,9 +289,9 @@ class AuthorDetailViewViewModel: ObservableObject {
                                       appVersion: Versioneer.appVersion,
                                       dateTime: Date.now.iso8601withFractionalSeconds,
                                       currentTimeZone: TimeZone.current.abbreviation() ?? .empty)
-        networkRabbit.post(usageMetric: usageMetric)
+        NetworkRabbit.shared.post(usageMetric: usageMetric)
     } */
-    
+
     // MARK: - Multi-Select
     
     func startSelecting() {
@@ -332,7 +332,7 @@ class AuthorDetailViewViewModel: ObservableObject {
         guard selectionKeeper.count > 0 else { return }
         selectedSounds = sounds.filter({ selectionKeeper.contains($0.id) })
     }
-    
+
     func sendUsageMetricToServer(
         action: String,
         authorName: String
@@ -347,9 +347,9 @@ class AuthorDetailViewViewModel: ObservableObject {
             dateTime: Date.now.iso8601withFractionalSeconds,
             currentTimeZone: TimeZone.current.abbreviation() ?? ""
         )
-        networkRabbit.post(usageMetric: usageMetric)
+        NetworkRabbit.shared.post(usageMetric: usageMetric)
     }
-    
+
     // MARK: - Alerts
 
     func showUnableToGetSoundAlert(_ soundTitle: String) {

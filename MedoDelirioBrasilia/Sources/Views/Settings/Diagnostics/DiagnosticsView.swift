@@ -9,8 +9,6 @@ import SwiftUI
 
 struct DiagnosticsView: View {
 
-    @StateObject private var viewModel = DiagnosticsViewViewModel()
-    
     @State var showServerConnectionTestAlert = false
     @State var serverConnectionTestAlertTitle = ""
     
@@ -26,7 +24,8 @@ struct DiagnosticsView: View {
         Form {
             Section {
                 Button("Testar conexão com o servidor") {
-                    networkRabbit.checkServerStatus { serverIsAvailable in
+                    Task {
+                        let serverIsAvailable = await NetworkRabbit.shared.serverIsAvailable()
                         serverConnectionTestAlertTitle = serverIsAvailable ? "A conexão com o servidor está OK." : "Erro ao tentar contatar o servidor; é possível que ele esteja fora para manutenção temporária. Se o erro persistir, use o botão Entrar Em Contato Por E-mail na tela anterior."
                         showServerConnectionTestAlert = true
                     }
@@ -77,14 +76,6 @@ struct DiagnosticsView: View {
                 } else {
                     List(shareLogs!) { log in
                         SharingLogCell(destination: ShareDestination(rawValue: log.destination) ?? .other, contentType: ContentType(rawValue: log.contentType) ?? .sound, contentTitle: getContentName(contentId: log.contentId), dateTime: log.dateTime.toScreenString(), sentToServer: log.sentToServer)
-                    }
-                }
-            }
-            
-            if CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
-                Section {
-                    Button("Enviar ShareCountStats") { 
-                        viewModel.sendShareCountStats()
                     }
                 }
             }

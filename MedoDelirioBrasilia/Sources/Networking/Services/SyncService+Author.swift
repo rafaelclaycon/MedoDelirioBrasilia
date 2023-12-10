@@ -10,7 +10,7 @@ import Foundation
 extension SyncService {
 
     func createAuthor(from updateEvent: UpdateEvent) async {
-        let url = URL(string: networkRabbit.serverPath + "v3/author/\(updateEvent.contentId)")!
+        let url = URL(string: NetworkRabbit.shared.serverPath + "v3/author/\(updateEvent.contentId)")!
         do {
             let author: Author = try await NetworkRabbit.get(from: url)
             
@@ -25,7 +25,7 @@ extension SyncService {
     }
 
     func updateAuthorMetadata(with updateEvent: UpdateEvent) async {
-        let url = URL(string: networkRabbit.serverPath + "v3/author/\(updateEvent.contentId)")!
+        let url = URL(string: NetworkRabbit.shared.serverPath + "v3/author/\(updateEvent.contentId)")!
         do {
             let author: Author = try await NetworkRabbit.get(from: url)
             try injectedDatabase.update(author: author)

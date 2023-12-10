@@ -11,7 +11,7 @@ extension SyncService {
 
     func createSong(from updateEvent: UpdateEvent) async {
         guard
-            let contentUrl = URL(string: networkRabbit.serverPath + "v3/song/\(updateEvent.contentId)"),
+            let contentUrl = URL(string: NetworkRabbit.shared.serverPath + "v3/song/\(updateEvent.contentId)"),
             let fileUrl = URL(string: baseURL + "songs/\(updateEvent.contentId).mp3")
         else { return }
 
@@ -33,7 +33,7 @@ extension SyncService {
     }
 
     func updateSongMetadata(with updateEvent: UpdateEvent) async {
-        let url = URL(string: networkRabbit.serverPath + "v3/song/\(updateEvent.contentId)")!
+        let url = URL(string: NetworkRabbit.shared.serverPath + "v3/song/\(updateEvent.contentId)")!
         do {
             let song: Song = try await NetworkRabbit.get(from: url)
             try injectedDatabase.update(song: song)

@@ -10,7 +10,7 @@ import Foundation
 extension SyncService {
 
     func createMusicGenre(from updateEvent: UpdateEvent) async {
-        let url = URL(string: networkRabbit.serverPath + "v3/music-genre/\(updateEvent.contentId)")!
+        let url = URL(string: NetworkRabbit.shared.serverPath + "v3/music-genre/\(updateEvent.contentId)")!
         do {
             let genre: MusicGenre = try await NetworkRabbit.get(from: url)
             
@@ -24,7 +24,7 @@ extension SyncService {
     }
 
     func updateGenreMetadata(with updateEvent: UpdateEvent) async {
-        let url = URL(string: networkRabbit.serverPath + "v3/music-genre/\(updateEvent.contentId)")!
+        let url = URL(string: NetworkRabbit.shared.serverPath + "v3/music-genre/\(updateEvent.contentId)")!
         do {
             let genre: MusicGenre = try await NetworkRabbit.get(from: url)
             try injectedDatabase.update(genre: genre)

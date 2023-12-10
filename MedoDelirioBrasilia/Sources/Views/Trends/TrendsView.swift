@@ -13,7 +13,9 @@ struct TrendsView: View {
         case audience, me
     }
 
-    @StateObject private var viewModel = TrendsViewViewModel()
+    @StateObject private var viewModel = ViewModel()
+    @StateObject private var audienceViewModel = MostSharedByAudienceView.ViewModel()
+
     @Binding var tabSelection: PhoneTab
     @Binding var activePadScreen: PadScreen?
     @State var currentViewMode: ViewMode = .audience
@@ -67,6 +69,7 @@ struct TrendsView: View {
                         VStack(alignment: .leading, spacing: 10) {
                             if showSoundsMostSharedByTheAudience {
                                 MostSharedByAudienceView(
+                                    viewModel: audienceViewModel,
                                     tabSelection: $tabSelection,
                                     activePadScreen: $activePadScreen
                                 )
@@ -111,6 +114,14 @@ struct TrendsView: View {
                         }
                     }
                 }
+                .if(currentViewMode == .audience) {
+                    $0.refreshable {
+                        audienceViewModel.loadList(
+                            for: audienceViewModel.timeIntervalOption,
+                            didPullDownToRefresh: true
+                        )
+                    }
+                }
             } else {
                 TrendsDisabledView()
                     .padding(.horizontal, 25)
@@ -121,6 +132,14 @@ struct TrendsView: View {
         .onAppear {
             Task {
                 shouldDisplayRetrospectiveBanner = await RetroView.ViewModel.shouldDisplayBanner()
+            }
+            audienceViewModel.displayToast = { message in
+                viewModel.displayToast(
+                    "clock.fill",
+                    .orange,
+                    toastText: message,
+                    displayTime: .seconds(3)
+                )
             }
         }
         .onChange(of: showModalView) { showModalView in
@@ -156,12 +175,9 @@ struct TrendsView: View {
     }
 }
 
-struct TrendsView_Previews: PreviewProvider {
-
-    static var previews: some View {
-        TrendsView(
-            tabSelection: .constant(.trends),
-            activePadScreen: .constant(.trends)
-        )
-    }
+#Preview {
+    TrendsView(
+        tabSelection: .constant(.trends),
+        activePadScreen: .constant(.trends)
+    )
 }

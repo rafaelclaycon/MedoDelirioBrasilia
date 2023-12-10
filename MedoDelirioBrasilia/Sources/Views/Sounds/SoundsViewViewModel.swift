@@ -70,7 +70,7 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
         self.syncManager = SyncManager(
             service: SyncService(
                 connectionManager: ConnectionManager.shared,
-                networkRabbit: networkRabbit,
+                networkRabbit: NetworkRabbit.shared,
                 localDatabase: LocalDatabase.shared
             ),
             database: LocalDatabase.shared,
@@ -387,7 +387,19 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
             showShareManyIssueAlert(error.localizedDescription)
         }
     }
-
+    
+    func sendUsageMetricToServer(action: String) {
+        let usageMetric = UsageMetric(customInstallId: UIDevice.customInstallId,
+                                      originatingScreen: "SoundsView",
+                                      destinationScreen: action,
+                                      systemName: UIDevice.current.systemName,
+                                      isiOSAppOnMac: ProcessInfo.processInfo.isiOSAppOnMac,
+                                      appVersion: Versioneer.appVersion,
+                                      dateTime: Date.now.iso8601withFractionalSeconds,
+                                      currentTimeZone: TimeZone.current.abbreviation() ?? .empty)
+        NetworkRabbit.shared.post(usageMetric: usageMetric)
+    }
+    
     // MARK: - Other
     
     func donateActivity() {
@@ -395,7 +407,7 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
         self.currentActivity?.becomeCurrent()
     }
     
-    func sendUserPersonalTrendsToServerIfEnabled() {
+    func sendUserPersonalTrendsToServerIfEnabled() async {
         guard UserSettings.getEnableTrends() else {
             return
         }
@@ -405,20 +417,20 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
         
         if let lastDate = AppPersistentMemory.getLastSendDateOfUserPersonalTrendsToServer() {
             if lastDate.onlyDate! < Date.now.onlyDate! {
-                podium.sendShareCountStatsToServer { result, _ in
-                    guard result == .successful || result == .noStatsToSend else {
-                        return
-                    }
-                    AppPersistentMemory.setLastSendDateOfUserPersonalTrendsToServer(to: Date.now.onlyDate!)
-                }
-            }
-        } else {
-            podium.sendShareCountStatsToServer { result, _ in
+                let result = await Podium.shared.sendShareCountStatsToServer()
+
                 guard result == .successful || result == .noStatsToSend else {
                     return
                 }
                 AppPersistentMemory.setLastSendDateOfUserPersonalTrendsToServer(to: Date.now.onlyDate!)
             }
+        } else {
+            let result = await Podium.shared.sendShareCountStatsToServer()
+
+            guard result == .successful || result == .noStatsToSend else {
+                return
+            }
+            AppPersistentMemory.setLastSendDateOfUserPersonalTrendsToServer(to: Date.now.onlyDate!)
         }
     }
 

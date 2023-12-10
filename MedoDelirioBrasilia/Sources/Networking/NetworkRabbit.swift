@@ -4,11 +4,9 @@ internal protocol NetworkRabbitProtocol {
     
     var serverPath: String { get }
     
-    func checkServerStatus(completionHandler: @escaping (Bool) -> Void)
-    func getSoundShareCountStats(timeInterval: TrendsTimeInterval, completionHandler: @escaping ([ServerShareCountStat]?, NetworkRabbitError?) -> Void)
+    func serverIsAvailable() async -> Bool
     func post(shareCountStat: ServerShareCountStat, completionHandler: @escaping (Bool, String) -> Void)
     func post(clientDeviceInfo: ClientDeviceInfo, completionHandler: @escaping (Bool?, NetworkRabbitError?) -> Void)
-    func post(bundleIdLog: ServerShareBundleIdLog, completionHandler: @escaping (Bool, String) -> Void)
     func fetchUpdateEvents(from lastDate: String) async throws -> [UpdateEvent]
 
     func retroStartingVersion() async -> String?
@@ -18,70 +16,63 @@ class NetworkRabbit: NetworkRabbitProtocol {
 
     let serverPath: String
 
+    // NetworkRabbit(serverPath: "https://654e-2804-1b3-8640-96df-d0b4-dd5d-6922-bb1b.sa.ngrok.io/api/")
+    static let shared = NetworkRabbit(
+        serverPath: CommandLine.arguments.contains("-UNDER_DEVELOPMENT") ? "http://127.0.0.1:8080/api/" : "http://medodelirioios.lat:8080/api/"
+    )
+
     init(serverPath: String) {
         self.serverPath = serverPath
     }
 
     // MARK: - GET
     
-    func checkServerStatus(completionHandler: @escaping (Bool) -> Void) {
+    func serverIsAvailable() async -> Bool {
         let url = URL(string: serverPath + "v2/status-check")!
         
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+        do {
+            let (_, response) = try await URLSession.shared.data(from: url)
+
             guard let httpResponse = response as? HTTPURLResponse else {
-                return completionHandler(false)
+                return false
             }
-            guard httpResponse.statusCode == 200 else {
-                return completionHandler(false)
-            }
-            completionHandler(true)
+            return httpResponse.statusCode == 200
+        } catch {
+            print("Erro ao verificar conexão com o servidor: \(error)")
+            return false
         }
-        
-        task.resume()
     }
     
-    func getSoundShareCountStats(timeInterval: TrendsTimeInterval, completionHandler: @escaping ([ServerShareCountStat]?, NetworkRabbitError?) -> Void) {
+    func getSoundShareCountStats(for timeInterval: TrendsTimeInterval) async throws -> [TopChartItem] {
         var url: URL
         
         switch timeInterval {
         case .last24Hours:
             let refDate: String = Date.dateAsString(addingDays: -1)
-            url = URL(string: serverPath + "v2/sound-share-count-stats-from/\(refDate)")!
-            
+            url = URL(string: serverPath + "v3/sound-share-count-stats-from/\(refDate)")!
+
         case .lastWeek:
             let refDate: String = Date.dateAsString(addingDays: -7)
-            url = URL(string: serverPath + "v2/sound-share-count-stats-from/\(refDate)")!
-        
+            url = URL(string: serverPath + "v3/sound-share-count-stats-from/\(refDate)")!
+
         case .lastMonth:
             let refDate: String = Date.dateAsString(addingDays: -30)
-            url = URL(string: serverPath + "v2/sound-share-count-stats-from/\(refDate)")!
-        
+            url = URL(string: serverPath + "v3/sound-share-count-stats-from/\(refDate)")!
+
+        case .year2024:
+            url = URL(string: serverPath + "v3/sound-share-count-stats-from-to/2024-01-01/2024-12-31")!
+
+        case .year2023:
+            url = URL(string: serverPath + "v3/sound-share-count-stats-from-to/2023-01-01/2023-12-31")!
+
+        case .year2022:
+            url = URL(string: serverPath + "v3/sound-share-count-stats-from-to/2022-01-01/2022-12-31")!
+
         case .allTime:
-            url = URL(string: serverPath + "v2/sound-share-count-stats-all-time")!
-        }
-        
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let httpResponse = response as? HTTPURLResponse else {
-                return completionHandler(nil, .responseWasNotAnHTTPURLResponse)
-            }
-             
-            guard httpResponse.statusCode == 200 else {
-                return completionHandler(nil, .unexpectedStatusCode)
-            }
-            
-            if let data = data {
-                if let stats = try? JSONDecoder().decode([ServerShareCountStat].self, from: data) {
-                    Logger.shared.logNetworkCall(callType: NetworkCallType.getSoundShareCountStats.rawValue, requestUrl: url.absoluteString, requestBody: nil, response: String(data: data, encoding: .utf8)!, wasSuccessful: true)
-                    completionHandler(stats, nil)
-                } else {
-                    completionHandler(nil, .invalidResponse)
-                }
-            } else if error != nil {
-                completionHandler(nil, .httpRequestFailed)
-            }
+            url = URL(string: serverPath + "v3/sound-share-count-stats-all-time")!
         }
 
-        task.resume()
+        return try await NetworkRabbit.get(from: url)
     }
     
     func displayAskForMoneyView(completion: @escaping (Bool) -> Void) {
@@ -195,41 +186,6 @@ class NetworkRabbit: NetworkRabbitProtocol {
 
         task.resume()
     }
-    
-    func post(bundleIdLog: ServerShareBundleIdLog, completionHandler: @escaping (Bool, String) -> Void) {
-        let url = URL(string: serverPath + "v1/shared-to-bundle-id")!
-
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        let jsonEncoder = JSONEncoder()
-        let jsonData = try? jsonEncoder.encode(bundleIdLog)
-        request.httpBody = jsonData
-
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let httpResponse = response as? HTTPURLResponse else {
-                return
-            }
-             
-            guard httpResponse.statusCode == 200 else {
-                return completionHandler(false, "Failed")
-            }
-            
-            if let data = data {
-                if let log = try? JSONDecoder().decode(ServerShareBundleIdLog.self, from: data) {
-                    completionHandler(true, log.bundleId)
-                } else {
-                    completionHandler(false, "Failed: Invalid Response")
-                }
-            } else if let error = error {
-                completionHandler(false, "HTTP Request Failed \(error.localizedDescription)")
-            }
-        }
-
-        task.resume()
-    }
-
 }
 
 enum NetworkRabbitError: Error {
