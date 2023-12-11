@@ -6,6 +6,7 @@ struct NumberBadgeView: View {
     let showBackgroundCircle: Bool
     var lightModeOpacity: Double = 0.25
     var darkModeOpacity: Double = 0.5
+    var circleColor: Color = .gray
 
     @Environment(\.colorScheme) var colorScheme
 
@@ -22,7 +23,7 @@ struct NumberBadgeView: View {
     var body: some View {
         ZStack() {
             RoundedRectangle(cornerRadius: 30)
-                .fill(showBackgroundCircle ? .gray : .clear)
+                .fill(showBackgroundCircle ? circleColor : .clear)
                 .frame(width: circleWidth, height: circleHeight)
                 .opacity(colorScheme == .dark ? darkModeOpacity : lightModeOpacity)
 

@@ -14,12 +14,28 @@ struct AuthorCell: View {
 
     @Environment(\.colorScheme) var colorScheme
 
+    var hasBackgroundImage: Bool {
+        author.photo?.isEmpty == false
+    }
+
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20, style: .continuous)
                 .fill(Color.gray)
                 .frame(height: 96)
                 .opacity(colorScheme == .dark ? 0.25 : 0.15)
+
+            if hasBackgroundImage {
+                KFImage(URL(string: author.photo ?? ""))
+                    .placeholder {
+                        EmptyView()
+                    }
+                    .resizable()
+                    .scaledToFill()
+                    .frame(height: 96)
+                    .frame(minWidth: 0, maxWidth: .infinity)
+                    .blur(radius: 200, opaque: false)
+            }
 
             HStack {
                 if author.photo?.isEmpty == false {
@@ -52,7 +68,9 @@ struct AuthorCell: View {
                 NumberBadgeView(
                     number: "\(author.soundCount ?? 0)",
                     showBackgroundCircle: true,
-                    lightModeOpacity: 0.2
+                    lightModeOpacity: hasBackgroundImage ? 0.5 : 0.2,
+                    darkModeOpacity: hasBackgroundImage ? 0.25 : 0.5,
+                    circleColor: hasBackgroundImage ? .white : .gray
                 )
                 .foregroundColor(.primary)
             }
