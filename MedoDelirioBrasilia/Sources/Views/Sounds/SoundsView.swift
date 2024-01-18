@@ -134,10 +134,6 @@ struct SoundsView: View {
         viewModel.currentViewMode == .allSounds && currentSoundsListMode == .regular
     }
 
-    private var displayLongUpdateBanner: Bool {
-        viewModel.totalUpdateCount >= 10 && viewModel.processedUpdateNumber != viewModel.totalUpdateCount
-    }
-
     var body: some View {
         ZStack {
             VStack {

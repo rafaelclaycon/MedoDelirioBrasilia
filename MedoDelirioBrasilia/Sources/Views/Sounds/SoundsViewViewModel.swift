@@ -59,6 +59,14 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
     private let syncManager: SyncManager
     private let syncValues: SyncValues
 
+    // MARK: - Computed Properties
+
+    private var displayLongUpdateBanner: Bool {
+        totalUpdateCount >= 10 &&
+        processedUpdateNumber != totalUpdateCount
+
+    }
+
     init(
         currentViewMode: SoundsViewMode,
         soundSortOption: Int,
