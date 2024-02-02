@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct OnboardingView: View {
+struct FirstOnboardingView: View {
 
     @Binding var isBeingShown: Bool
     @State private var showWhatsNew: Bool = false
@@ -9,7 +9,10 @@ struct OnboardingView: View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .center) {
-                    NavigationLink(destination: WhatsNewView(isBeingShown: $isBeingShown), isActive: $showWhatsNew) { EmptyView() }
+                    NavigationLink(destination: ShowExplicitContentOnboardingView(isBeingShown: $isBeingShown), isActive: $showWhatsNew) { EmptyView() }
+
+                    Spacer()
+                        .frame(height: 50)
 
                     NotificationsSymbol()
 
@@ -24,7 +27,10 @@ struct OnboardingView: View {
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, 20)
                         .padding(.vertical)
-
+                }
+            }
+            .safeAreaInset(edge: .bottom) {
+                VStack(alignment: .center, spacing: 18) {
                     Button {
                         NotificationAide.registerForRemoteNotifications() { _ in
                             AppPersistentMemory.setHasShownNotificationsOnboarding(to: true)
@@ -40,7 +46,6 @@ struct OnboardingView: View {
                     .controlSize(.large)
                     .buttonStyle(.borderedProminent)
                     .buttonBorderShape(.capsule)
-                    .padding(.top)
 
                     Button {
                         AppPersistentMemory.setHasShownNotificationsOnboarding(to: true)
@@ -49,7 +54,6 @@ struct OnboardingView: View {
                         Text("Ah é, é? F***-se")
                     }
                     .foregroundColor(.blue)
-                    .padding(.vertical)
 
                     if UIDevice.current.userInterfaceIdiom != .phone {
                         Text("Caso a tela não feche automaticamente ao escolher uma das opções, toque fora dela (na área apagada).")
@@ -57,7 +61,6 @@ struct OnboardingView: View {
                             .padding(.horizontal)
                             .font(.callout)
                             .foregroundColor(.gray)
-                            .padding(.vertical)
                             .padding(.horizontal)
                     }
 
@@ -67,8 +70,8 @@ struct OnboardingView: View {
                         .font(.callout)
                         .foregroundColor(.gray)
                 }
-                .padding(.top, 100)
-                .padding(.bottom, 100)
+                .padding(.bottom, 10)
+                .background(Color.systemBackground)
             }
         }
     }
@@ -76,6 +79,6 @@ struct OnboardingView: View {
 
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingView(isBeingShown: .constant(true))
+        FirstOnboardingView(isBeingShown: .constant(true))
     }
 }

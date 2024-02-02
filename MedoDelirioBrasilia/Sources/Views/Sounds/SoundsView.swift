@@ -363,16 +363,6 @@ struct SoundsView: View {
                     subviewToOpen = .onboardingView
                     showingModalView = true
                     AppPersistentMemory.setHasSeen70WhatsNewScreen(to: true) // Prevent the What's New screen from appearing when switching tabs
-                } else if AppPersistentMemory.getHasSeen70WhatsNewScreen() == false {
-                    if UIDevice.current.userInterfaceIdiom == .phone {
-                        subviewToOpen = .whatsNewView
-                        showingModalView = true
-                    } else {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                            subviewToOpen = .whatsNewView
-                            showingModalView = true
-                        }
-                    }
                 }
 
                 if !AppPersistentMemory.getHasSeenRecurringDonationBanner() {
@@ -448,7 +438,7 @@ struct SoundsView: View {
             .sheet(isPresented: $showingModalView) {
                 switch subviewToOpen {
                  case .onboardingView:
-                    OnboardingView(isBeingShown: $showingModalView)
+                    FirstOnboardingView(isBeingShown: $showingModalView)
                         .interactiveDismissDisabled(UIDevice.current.userInterfaceIdiom == .phone ? true : false)
                     
                 case .addToFolderView:
@@ -475,12 +465,9 @@ struct SoundsView: View {
                         )
                     }
                     
-                case .settingsView:
+                case .settingsView, .whatsNewView:
                     SettingsCasingWithCloseView(isBeingShown: $showingModalView)
                         .environmentObject(settingsHelper)
-                    
-                case .whatsNewView:
-                    WhatsNewView(isBeingShown: $showingModalView)
 
                 case .syncInfoView:
                     SyncInfoView(
