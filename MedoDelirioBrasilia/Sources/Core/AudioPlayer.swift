@@ -49,12 +49,12 @@ class AudioPlayer: NSObject, AVAudioPlayerDelegate {
             notify()
         } else {
             audioPlayer.play()
-            if let t = timer {
-                t.invalidate()
+            if let timer {
+                timer.invalidate()
             }
             timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { [weak self] _ in
-                guard let s = self else { return }
-                s.notify()
+                guard let self else { return }
+                self.notify()
             }
         }
     }
@@ -89,7 +89,7 @@ class AudioPlayer: NSObject, AVAudioPlayerDelegate {
     var activity: Activity {
         audioPlayer.isPlaying ? .playing : isPaused ? .paused : .stopped
     }
-    
+
     var isPlaying: Bool {
         audioPlayer.isPlaying
     }
@@ -97,7 +97,7 @@ class AudioPlayer: NSObject, AVAudioPlayerDelegate {
     var isPaused: Bool {
         !audioPlayer.isPlaying && audioPlayer.currentTime > 0
     }
-    
+
     func stop() {
         audioPlayer.pause()
         timer?.invalidate()
@@ -109,7 +109,7 @@ class AudioPlayer: NSObject, AVAudioPlayerDelegate {
         audioPlayer.stop()
         timer?.invalidate()
     }
-    
+
     func prepareToPlay() {
         audioPlayer.prepareToPlay()
     }

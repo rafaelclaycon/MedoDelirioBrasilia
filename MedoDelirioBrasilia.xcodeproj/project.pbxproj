@@ -1181,7 +1181,7 @@
 		D9A0641A298B6749006075D1 /* LocalDatabaseStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A06419298B6749006075D1 /* LocalDatabaseStub.swift */; };
 		D9A096D8287CE72300773869 /* Mailman.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A096D7287CE72300773869 /* Mailman.swift */; };
 		D9A32DC7285ACE880038A370 /* PodiumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A32DC6285ACE880038A370 /* PodiumTests.swift */; };
-		D9A3984928FDEE0D00039B7B /* AddRankingTypeToAudienceSharingStatisticTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A3984828FDEE0D00039B7B /* AddRankingTypeToAudienceSharingStatisticTable.swift */; };
+		D9A3984928FDEE0D00039B7B /* AddRankingTypeToAudienceSharingStatTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A3984828FDEE0D00039B7B /* AddRankingTypeToAudienceSharingStatTable.swift */; };
 		D9A3984B28FF4AA300039B7B /* Samira Close - 22 so se for de pica.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9A3984A28FF4AA300039B7B /* Samira Close - 22 so se for de pica.mp3 */; };
 		D9A3AB6B28F03C970064CB7A /* ViewStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A3AB6A28F03C970064CB7A /* ViewStates.swift */; };
 		D9A3AB6F28F063FF0064CB7A /* DateExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A3AB6E28F063FF0064CB7A /* DateExtensionTests.swift */; };
@@ -2662,7 +2662,7 @@
 		D9A06419298B6749006075D1 /* LocalDatabaseStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDatabaseStub.swift; sourceTree = "<group>"; };
 		D9A096D7287CE72300773869 /* Mailman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mailman.swift; sourceTree = "<group>"; };
 		D9A32DC6285ACE880038A370 /* PodiumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodiumTests.swift; sourceTree = "<group>"; };
-		D9A3984828FDEE0D00039B7B /* AddRankingTypeToAudienceSharingStatisticTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRankingTypeToAudienceSharingStatisticTable.swift; sourceTree = "<group>"; };
+		D9A3984828FDEE0D00039B7B /* AddRankingTypeToAudienceSharingStatTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRankingTypeToAudienceSharingStatTable.swift; sourceTree = "<group>"; };
 		D9A3984A28FF4AA300039B7B /* Samira Close - 22 so se for de pica.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Samira Close - 22 so se for de pica.mp3"; sourceTree = "<group>"; };
 		D9A3AB6A28F03C970064CB7A /* ViewStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStates.swift; sourceTree = "<group>"; };
 		D9A3AB6E28F063FF0064CB7A /* DateExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensionTests.swift; sourceTree = "<group>"; };
@@ -4776,7 +4776,7 @@
 				D9758C3928617BA70094D388 /* AddUserFolderTables.swift */,
 				D9F87A9128F6EA51002EE8AA /* RemoveFavoriteLogTable.swift */,
 				D9E5055F28F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift */,
-				D9A3984828FDEE0D00039B7B /* AddRankingTypeToAudienceSharingStatisticTable.swift */,
+				D9A3984828FDEE0D00039B7B /* AddRankingTypeToAudienceSharingStatTable.swift */,
 				D94D9F04298DB98D006F14A5 /* AddDateAndVersionToUserFolderTables.swift */,
 				D9A7D85E29FB448500A964AC /* AddSyncTables.swift */,
 				D9592C432AA2F59B00157F5A /* AddSongAndMusicGenreTables.swift */,
@@ -5049,6 +5049,7 @@
 			buildConfigurationList = D9625E9E28238F9B00080852 /* Build configuration list for PBXNativeTarget "MedoDelirioBrasilia" */;
 			buildPhases = (
 				D9625E7628238F9A00080852 /* Sources */,
+				D9A6342E2B6C92E80097F861 /* Run Linter Script */,
 				D9625E7728238F9A00080852 /* Frameworks */,
 				D9625E7828238F9A00080852 /* Resources */,
 				4979104828BE844E00CDF01C /* Embed Foundation Extensions */,
@@ -6351,6 +6352,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		D9A6342E2B6C92E80097F861 /* Run Linter Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Linter Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D9625E7628238F9A00080852 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -6463,7 +6485,7 @@
 				D9D627122B266389000EB791 /* AuthorCell.swift in Sources */,
 				D95315A92A9AA783003DA40E /* MusicGenre.swift in Sources */,
 				D957047D28AEF733008DEF8C /* ProcessingView.swift in Sources */,
-				D9A3984928FDEE0D00039B7B /* AddRankingTypeToAudienceSharingStatisticTable.swift in Sources */,
+				D9A3984928FDEE0D00039B7B /* AddRankingTypeToAudienceSharingStatTable.swift in Sources */,
 				D916A3082A8C4BBF00CFB1E5 /* NetworkMonitor.swift in Sources */,
 				D967E2BA290196F900B21C11 /* WallE.swift in Sources */,
 				D93F643029A6A692003E7550 /* ShareAsVideoViewViewModel.swift in Sources */,

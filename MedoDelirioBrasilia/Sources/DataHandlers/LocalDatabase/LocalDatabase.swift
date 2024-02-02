@@ -103,7 +103,7 @@ extension LocalDatabase {
             AddUserFolderTables(),
             RemoveFavoriteLogTable(),
             AddAudienceSharingStatisticTable(),
-            AddRankingTypeToAudienceSharingStatisticTable(),
+            AddRankingTypeToAudienceSharingStatTable(),
             AddDateAndVersionToUserFolderTables(),
             AddSyncTables(),
             AddSongAndMusicGenreTables()

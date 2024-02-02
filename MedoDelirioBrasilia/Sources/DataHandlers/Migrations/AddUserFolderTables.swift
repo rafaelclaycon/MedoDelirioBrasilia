@@ -2,40 +2,41 @@ import Foundation
 import SQLiteMigrationManager
 import SQLite
 
+// swiftlint:disable identifier_name
 struct AddUserFolderTables: Migration {
 
     var version: Int64 = 2022_06_21_01_08_00
-    
+
     private var userFolder = Table("userFolder")
     private var userFolderContent = Table("userFolderContent")
-    
+
     func migrateDatabase(_ db: Connection) throws {
         try createUserFolderTable(db)
         try createUserFolderContentTable(db)
     }
-    
+
     private func createUserFolderTable(_ db: Connection) throws {
         let id = Expression<String>("id")
         let symbol = Expression<String>("symbol")
         let name = Expression<String>("name")
-        let background_color = Expression<String>("backgroundColor")
-        
-        try db.run(userFolder.create(ifNotExists: true) { t in
-            t.column(id, primaryKey: true)
-            t.column(symbol)
-            t.column(name)
-            t.column(background_color)
-        })
-    }
-    
-    private func createUserFolderContentTable(_ db: Connection) throws {
-        let user_folder_id = Expression<String>("userFolderId")
-        let content_id = Expression<String>("contentId")
-        
-        try db.run(userFolderContent.create(ifNotExists: true) { t in
-            t.column(user_folder_id)
-            t.column(content_id)
+        let backgroundColor = Expression<String>("backgroundColor")
+
+        try db.run(userFolder.create(ifNotExists: true) { table in
+            table.column(id, primaryKey: true)
+            table.column(symbol)
+            table.column(name)
+            table.column(backgroundColor)
         })
     }
 
+    private func createUserFolderContentTable(_ db: Connection) throws {
+        let userFolderId = Expression<String>("userFolderId")
+        let contentId = Expression<String>("contentId")
+
+        try db.run(userFolderContent.create(ifNotExists: true) { table in
+            table.column(userFolderId)
+            table.column(contentId)
+        })
+    }
 }
+// swiftlint:enable identifier_name

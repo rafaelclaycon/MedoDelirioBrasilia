@@ -9,6 +9,7 @@ import Foundation
 import SQLiteMigrationManager
 import SQLite
 
+// swiftlint:disable identifier_name
 struct AddSongAndMusicGenreTables: Migration {
 
     var version: Int64 = 2023_09_02_01_47_00
@@ -25,23 +26,23 @@ struct AddSongAndMusicGenreTables: Migration {
         let id = Expression<String>("id")
         let title = Expression<String>("title")
         let description = Expression<String>("description")
-        let genre_id = Expression<String>("genreId")
+        let genreId = Expression<String>("genreId")
         let duration = Expression<Double>("duration")
         let filename = Expression<String>("filename")
-        let date_added = Expression<Date?>("dateAdded")
-        let is_offensive = Expression<Bool>("isOffensive")
-        let is_from_server = Expression<Bool?>("isFromServer")
+        let dateAdded = Expression<Date?>("dateAdded")
+        let isOffensive = Expression<Bool>("isOffensive")
+        let isFromServer = Expression<Bool?>("isFromServer")
 
-        try db.run(songTable.create(ifNotExists: true) { t in
-            t.column(id, primaryKey: true)
-            t.column(title)
-            t.column(description)
-            t.column(genre_id)
-            t.column(duration)
-            t.column(filename)
-            t.column(date_added)
-            t.column(is_offensive)
-            t.column(is_from_server)
+        try db.run(songTable.create(ifNotExists: true) { table in
+            table.column(id, primaryKey: true)
+            table.column(title)
+            table.column(description)
+            table.column(genreId)
+            table.column(duration)
+            table.column(filename)
+            table.column(dateAdded)
+            table.column(isOffensive)
+            table.column(isFromServer)
         })
     }
 
@@ -49,13 +50,14 @@ struct AddSongAndMusicGenreTables: Migration {
         let id = Expression<String>("id")
         let symbol = Expression<String>("symbol")
         let name = Expression<String>("name")
-        let is_hidden = Expression<Bool>("isHidden")
+        let isHidden = Expression<Bool>("isHidden")
 
-        try db.run(musicGenreTable.create(ifNotExists: true) { t in
-            t.column(id, primaryKey: true)
-            t.column(symbol)
-            t.column(name)
-            t.column(is_hidden)
+        try db.run(musicGenreTable.create(ifNotExists: true) { table in
+            table.column(id, primaryKey: true)
+            table.column(symbol)
+            table.column(name)
+            table.column(isHidden)
         })
     }
 }
+// swiftlint:enable identifier_name

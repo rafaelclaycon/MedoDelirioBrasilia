@@ -82,6 +82,7 @@ struct AuthorCell: View {
     }
 }
 
+// swiftlint:disable line_length
 #Preview {
     Group {
         // No image
@@ -126,3 +127,4 @@ struct AuthorCell: View {
     }
     .padding()
 }
+// swiftlint:enable line_length

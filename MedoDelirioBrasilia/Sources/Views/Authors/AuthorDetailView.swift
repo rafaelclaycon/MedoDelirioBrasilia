@@ -18,27 +18,27 @@ struct AuthorDetailView: View {
     @Binding var currentSoundsListMode: SoundsListMode
     @State private var showSelectionControlsInToolbar = false
     @State private var showMenuOnToolbarForiOS16AndHigher = false
-    
+
     @State private var listWidth: CGFloat = 700
     @State private var columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
     @Environment(\.sizeCategory) var sizeCategory
-    
+
     @State private var showingModalView = false
-    
+
     // Add to Folder vars
     @State private var showingAddToFolderModal = false
     @State private var hadSuccessAddingToFolder: Bool = false
-    @State private var folderName: String? = nil
+    @State private var folderName: String?
     @State private var pluralization: WordPluralization = .singular
     @State private var shouldDisplayAddedToFolderToast: Bool = false
     
     // Share as Video
     @State private var shareAsVideo_Result = ShareAsVideoResult()
-    
+
     private var edgesToIgnore: SwiftUI.Edge.Set {
         return author.photo == nil ? [] : .top
     }
-    
+
     private var isiOS15: Bool {
         if #available(iOS 16, *) {
             return false
@@ -46,15 +46,15 @@ struct AuthorDetailView: View {
             return true
         }
     }
-    
+
     private var shouldDisplayMenuBesideAuthorName: Bool {
         !isiOS15
     }
-    
+
     private func getScrollOffset(_ geometry: GeometryProxy) -> CGFloat {
         geometry.frame(in: .global).minY
     }
-    
+
     private func getOffsetForHeaderImage(_ geometry: GeometryProxy) -> CGFloat {
         let offset = getScrollOffset(geometry)
         // Image was pulled down
@@ -63,7 +63,7 @@ struct AuthorDetailView: View {
         }
         return 0
     }
-    
+
     private func getHeightForHeaderImage(_ geometry: GeometryProxy) -> CGFloat {
         let offset = getScrollOffset(geometry)
         let imageHeight = geometry.size.height
@@ -72,11 +72,11 @@ struct AuthorDetailView: View {
         }
         return imageHeight
     }
-    
+
     private func getOffsetBeforeShowingTitle() -> CGFloat {
         author.photo == nil ? 50 : 250
     }
-    
+
     private func updateNavBarContent(_ offset: CGFloat) {
         if offset < getOffsetBeforeShowingTitle() {
             DispatchQueue.main.async {
@@ -92,7 +92,7 @@ struct AuthorDetailView: View {
             }
         }
     }
-    
+
     private var title: String {
         guard currentSoundsListMode == .regular else {
             if viewModel.selectionKeeper.count == 0 {
@@ -105,7 +105,7 @@ struct AuthorDetailView: View {
         }
         return author.name
     }
-    
+
     var body: some View {
         ZStack {
             VStack {
@@ -579,22 +579,22 @@ struct AuthorDetailView: View {
         viewModel.prepareSelectedToAddToFolder()
         showingAddToFolderModal = true
     }
-
 }
 
 struct ViewOffsetKey: PreferenceKey {
 
     typealias Value = CGFloat
-    
+
     static var defaultValue = CGFloat.zero
-    
+
     static func reduce(value: inout Value, nextValue: () -> Value) {
         value += nextValue()
     }
-
 }
 
+// swiftlint:disable line_length
 #Preview {
+
     AuthorDetailView(
         viewModel: .init(authorName: "João da Silva", currentSoundsListMode: .constant(.selection)),
         author: .init(
@@ -605,3 +605,4 @@ struct ViewOffsetKey: PreferenceKey {
         currentSoundsListMode: .constant(.selection)
     )
 }
+// swiftlint:enable line_length
