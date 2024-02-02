@@ -110,20 +110,6 @@ class SharingUtility {
             }
         }
     }
-    
-    static func shareFile(withPath filepath: String) throws {
-        guard filepath.isEmpty == false else {
-            return
-        }
-        
-        let url = URL(fileURLWithPath: filepath)
-        
-        let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
-        
-        DispatchQueue.main.async {
-            UIApplication.shared.keyWindow?.rootViewController?.present(activityVC, animated: true, completion: nil)
-        }
-    }
 }
 
 enum SharerError: Error {
