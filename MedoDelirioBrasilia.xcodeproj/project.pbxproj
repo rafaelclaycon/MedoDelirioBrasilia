@@ -4263,16 +4263,6 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		D93F642C29A6A545003E7550 /* New */ = {
-			isa = PBXGroup;
-			children = (
-				D93F642D29A6A5FF003E7550 /* ShareAsVideoView.swift */,
-				D93F642F29A6A692003E7550 /* ShareAsVideoViewViewModel.swift */,
-				D912A33728B3F2C000F7293D /* TipView.swift */,
-			);
-			path = New;
-			sourceTree = "<group>";
-		};
 		D94BA9EB2879E964001BD09C /* Banners */ = {
 			isa = PBXGroup;
 			children = (
@@ -4408,7 +4398,9 @@
 		D95F363828AD385100743026 /* ShareAsVideo */ = {
 			isa = PBXGroup;
 			children = (
-				D93F642C29A6A545003E7550 /* New */,
+				D93F642D29A6A5FF003E7550 /* ShareAsVideoView.swift */,
+				D93F642F29A6A692003E7550 /* ShareAsVideoViewViewModel.swift */,
+				D912A33728B3F2C000F7293D /* TipView.swift */,
 			);
 			path = ShareAsVideo;
 			sourceTree = "<group>";
