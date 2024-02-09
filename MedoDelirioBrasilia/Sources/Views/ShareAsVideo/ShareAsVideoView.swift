@@ -236,26 +236,24 @@ struct ShareAsVideoView: View {
     
     @ViewBuilder func shareButton(view: some View) -> some View {
         Button {
-            if #available(iOS 16.0, *) {
-                let renderer = ImageRenderer(content: view)
-                renderer.scale = viewModel.selectedSocialNetwork == 0 ? 3.0 : 4.0
-                if let image = renderer.uiImage {
-                    viewModel.generateVideo(withImage: image) { videoPath, error in
-                        if let error = error {
-                            DispatchQueue.main.async {
-                                viewModel.isShowingProcessingView = false
-                                viewModel.showOtherError(errorTitle: "Falha na Geração do Vídeo",
-                                                         errorBody: error.localizedDescription)
-                            }
-                            return
-                        }
-                        guard let videoPath = videoPath else { return }
+            let renderer = ImageRenderer(content: view)
+            renderer.scale = viewModel.selectedSocialNetwork == 0 ? 3.0 : 4.0
+            if let image = renderer.uiImage {
+                viewModel.generateVideo(withImage: image) { videoPath, error in
+                    if let error = error {
                         DispatchQueue.main.async {
                             viewModel.isShowingProcessingView = false
-                            viewModel.pathToVideoFile = videoPath
-                            result.exportMethod = .shareSheet
-                            viewModel.shouldCloseView = true
+                            viewModel.showOtherError(errorTitle: "Falha na Geração do Vídeo",
+                                                     errorBody: error.localizedDescription)
                         }
+                        return
+                    }
+                    guard let videoPath = videoPath else { return }
+                    DispatchQueue.main.async {
+                        viewModel.isShowingProcessingView = false
+                        viewModel.pathToVideoFile = videoPath
+                        result.exportMethod = .shareSheet
+                        viewModel.shouldCloseView = true
                     }
                 }
             }
@@ -280,17 +278,15 @@ struct ShareAsVideoView: View {
     
     @ViewBuilder func saveVideoButton(view: some View) -> some View {
         Button {
-            if #available(iOS 16.0, *) {
-                let renderer = ImageRenderer(content: view)
-                renderer.scale = viewModel.selectedSocialNetwork == 0 ? 3.0 : 4.0
-                if let image = renderer.uiImage {
-                    viewModel.saveVideoToPhotos(withImage: image) { success, videoPath in
-                        if success {
-                            DispatchQueue.main.async {
-                                viewModel.pathToVideoFile = videoPath ?? .empty
-                                result.exportMethod = .saveAsVideo
-                                viewModel.shouldCloseView = true
-                            }
+            let renderer = ImageRenderer(content: view)
+            renderer.scale = viewModel.selectedSocialNetwork == 0 ? 3.0 : 4.0
+            if let image = renderer.uiImage {
+                viewModel.saveVideoToPhotos(withImage: image) { success, videoPath in
+                    if success {
+                        DispatchQueue.main.async {
+                            viewModel.pathToVideoFile = videoPath ?? .empty
+                            result.exportMethod = .saveAsVideo
+                            viewModel.shouldCloseView = true
                         }
                     }
                 }

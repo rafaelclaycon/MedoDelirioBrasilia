@@ -127,7 +127,6 @@
 		D912A33A28B5321400F7293D /* ShareAsVideoResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D912A33928B5321400F7293D /* ShareAsVideoResult.swift */; };
 		D914CF3B2981C6D30013B3E2 /* Desconhecido - Primeiramente.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D914CF3A2981C6D30013B3E2 /* Desconhecido - Primeiramente.mp3 */; };
 		D916536428AD7FF7007F141D /* VideoMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D916536328AD7FF7007F141D /* VideoMaker.swift */; };
-		D916536628ADCD9B007F141D /* ShareAsVideoLegacyViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D916536528ADCD9B007F141D /* ShareAsVideoLegacyViewViewModel.swift */; };
 		D916627D2874F1F9000A1B23 /* FirstOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D916627C2874F1F9000A1B23 /* FirstOnboardingView.swift */; };
 		D916627F2874F838000A1B23 /* NotificationsSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D916627E2874F838000A1B23 /* NotificationsSymbol.swift */; };
 		D916A3082A8C4BBF00CFB1E5 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D916A3072A8C4BBF00CFB1E5 /* NetworkMonitor.swift */; };
@@ -462,7 +461,6 @@
 		D95DB0F6288248A300D4FEDF /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95DB0F5288248A300D4FEDF /* SidebarView.swift */; };
 		D95DB0F82882491A00D4FEDF /* ScreenAndTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95DB0F72882491A00D4FEDF /* ScreenAndTabs.swift */; };
 		D95E672C2A2F70ED004226E6 /* Rogerinho do Inga - E foi droga em.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95E672B2A2F70ED004226E6 /* Rogerinho do Inga - E foi droga em.mp3 */; };
-		D95F363A28AD386D00743026 /* ShareAsVideoLegacyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95F363928AD386D00743026 /* ShareAsVideoLegacyView.swift */; };
 		D960AF272845BFE700ADF1F6 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = D960AF262845BFE700ADF1F6 /* UserDefaultsKeys.swift */; };
 		D960AF292845C82E00ADF1F6 /* AppStoreReviewSteward.swift in Sources */ = {isa = PBXBuildFile; fileRef = D960AF282845C82E00ADF1F6 /* AppStoreReviewSteward.swift */; };
 		D961D01328371F1700EFEDEB /* sound_data.json in Resources */ = {isa = PBXBuildFile; fileRef = D961D01228371F1700EFEDEB /* sound_data.json */; };
@@ -1607,7 +1605,6 @@
 		D912A33928B5321400F7293D /* ShareAsVideoResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAsVideoResult.swift; sourceTree = "<group>"; };
 		D914CF3A2981C6D30013B3E2 /* Desconhecido - Primeiramente.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Desconhecido - Primeiramente.mp3"; sourceTree = "<group>"; };
 		D916536328AD7FF7007F141D /* VideoMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoMaker.swift; sourceTree = "<group>"; };
-		D916536528ADCD9B007F141D /* ShareAsVideoLegacyViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAsVideoLegacyViewViewModel.swift; sourceTree = "<group>"; };
 		D916627C2874F1F9000A1B23 /* FirstOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstOnboardingView.swift; sourceTree = "<group>"; };
 		D916627E2874F838000A1B23 /* NotificationsSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSymbol.swift; sourceTree = "<group>"; };
 		D916A3072A8C4BBF00CFB1E5 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
@@ -1940,7 +1937,6 @@
 		D95DB0F5288248A300D4FEDF /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		D95DB0F72882491A00D4FEDF /* ScreenAndTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenAndTabs.swift; sourceTree = "<group>"; };
 		D95E672B2A2F70ED004226E6 /* Rogerinho do Inga - E foi droga em.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rogerinho do Inga - E foi droga em.mp3"; sourceTree = "<group>"; };
-		D95F363928AD386D00743026 /* ShareAsVideoLegacyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAsVideoLegacyView.swift; sourceTree = "<group>"; };
 		D960AF262845BFE700ADF1F6 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		D960AF282845C82E00ADF1F6 /* AppStoreReviewSteward.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreReviewSteward.swift; sourceTree = "<group>"; };
 		D961D01228371F1700EFEDEB /* sound_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sound_data.json; sourceTree = "<group>"; };
@@ -4267,21 +4263,12 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		D93F642B29A6A532003E7550 /* Legacy */ = {
-			isa = PBXGroup;
-			children = (
-				D95F363928AD386D00743026 /* ShareAsVideoLegacyView.swift */,
-				D916536528ADCD9B007F141D /* ShareAsVideoLegacyViewViewModel.swift */,
-				D912A33728B3F2C000F7293D /* TipView.swift */,
-			);
-			path = Legacy;
-			sourceTree = "<group>";
-		};
 		D93F642C29A6A545003E7550 /* New */ = {
 			isa = PBXGroup;
 			children = (
 				D93F642D29A6A5FF003E7550 /* ShareAsVideoView.swift */,
 				D93F642F29A6A692003E7550 /* ShareAsVideoViewViewModel.swift */,
+				D912A33728B3F2C000F7293D /* TipView.swift */,
 			);
 			path = New;
 			sourceTree = "<group>";
@@ -4421,7 +4408,6 @@
 		D95F363828AD385100743026 /* ShareAsVideo */ = {
 			isa = PBXGroup;
 			children = (
-				D93F642B29A6A532003E7550 /* Legacy */,
 				D93F642C29A6A545003E7550 /* New */,
 			);
 			path = ShareAsVideo;
@@ -6494,7 +6480,6 @@
 				D9E9CFA3292C3DD1002BC918 /* NoFoldersView.swift in Sources */,
 				D916536428AD7FF7007F141D /* VideoMaker.swift in Sources */,
 				D99070552A905DA300A26F65 /* SyncInfoView.swift in Sources */,
-				D95F363A28AD386D00743026 /* ShareAsVideoLegacyView.swift in Sources */,
 				D9C1372729063A78003E4ABF /* FolderResearchSettingsView.swift in Sources */,
 				D98EC5DE282596C300340BE5 /* SoundCell.swift in Sources */,
 				D99C8A972952C904002E0C00 /* NetworkRabbit+DonorNames.swift in Sources */,
@@ -6573,7 +6558,6 @@
 				D928286F2AA4EEA2009E5D37 /* SyncService+MusicGenre.swift in Sources */,
 				D9E39DBB2A1E8B320053A527 /* LocalDatabase+SyncLog.swift in Sources */,
 				D9943F2328641C00002C6B97 /* LocalDatabase.swift in Sources */,
-				D916536628ADCD9B007F141D /* ShareAsVideoLegacyViewViewModel.swift in Sources */,
 				D99070612A92CE7C00A26F65 /* SyncValues.swift in Sources */,
 				D93D24E02849DAAB00300541 /* DiagnosticsView.swift in Sources */,
 				D9592C422AA2F32A00157F5A /* LocalDatabase+MusicGenre.swift in Sources */,

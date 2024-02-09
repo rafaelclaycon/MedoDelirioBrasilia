@@ -197,21 +197,12 @@ struct FolderDetailView: View {
                 viewModel.iPadShareSheet
             }
             .sheet(isPresented: $showingModalView) {
-                if #available(iOS 16.0, *) {
-                    ShareAsVideoView(
-                        viewModel: ShareAsVideoViewViewModel(content: viewModel.selectedSound!, subtitle: viewModel.selectedSound?.authorName ?? .empty),
-                        isBeingShown: $showingModalView,
-                        result: $shareAsVideo_Result,
-                        useLongerGeneratingVideoMessage: false
-                    )
-                } else {
-                    ShareAsVideoLegacyView(
-                        viewModel: ShareAsVideoLegacyViewViewModel(content: viewModel.selectedSound!),
-                        isBeingShown: $showingModalView,
-                        result: $shareAsVideo_Result,
-                        useLongerGeneratingVideoMessage: false
-                    )
-                }
+                ShareAsVideoView(
+                    viewModel: ShareAsVideoViewViewModel(content: viewModel.selectedSound!, subtitle: viewModel.selectedSound?.authorName ?? .empty),
+                    isBeingShown: $showingModalView,
+                    result: $shareAsVideo_Result,
+                    useLongerGeneratingVideoMessage: false
+                )
             }
             .onChange(of: shareAsVideo_Result.videoFilepath) { videoResultPath in
                 if videoResultPath.isEmpty == false {

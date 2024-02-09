@@ -191,21 +191,12 @@ struct SongsView: View {
                     GenrePickerView(selectedId: $currentGenre)
 
                 case .shareAsVideoView:
-                    if #available(iOS 16.0, *) {
-                        ShareAsVideoView(
-                            viewModel: ShareAsVideoViewViewModel(content: viewModel.selectedSong!),
-                            isBeingShown: $showingModalView,
-                            result: $shareAsVideo_Result,
-                            useLongerGeneratingVideoMessage: true
-                        )
-                    } else {
-                        ShareAsVideoLegacyView(
-                            viewModel: ShareAsVideoLegacyViewViewModel(content: viewModel.selectedSong!),
-                            isBeingShown: $showingModalView,
-                            result: $shareAsVideo_Result,
-                            useLongerGeneratingVideoMessage: true
-                        )
-                    }
+                    ShareAsVideoView(
+                        viewModel: ShareAsVideoViewViewModel(content: viewModel.selectedSong!),
+                        isBeingShown: $showingModalView,
+                        result: $shareAsVideo_Result,
+                        useLongerGeneratingVideoMessage: true
+                    )
                 }
             }
             .sheet(isPresented: $viewModel.showEmailAppPicker_songUnavailableConfirmationDialog) {

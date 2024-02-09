@@ -449,22 +449,13 @@ struct SoundsView: View {
                                     selectedSounds: viewModel.selectedSounds!)
                     
                 case .shareAsVideoView:
-                    if #available(iOS 16.0, *) {
-                        ShareAsVideoView(
-                            viewModel: ShareAsVideoViewViewModel(content: viewModel.selectedSound!, subtitle: viewModel.selectedSound?.authorName ?? .empty),
-                            isBeingShown: $showingModalView,
-                            result: $shareAsVideo_Result,
-                            useLongerGeneratingVideoMessage: false
-                        )
-                    } else {
-                        ShareAsVideoLegacyView(
-                            viewModel: ShareAsVideoLegacyViewViewModel(content: viewModel.selectedSound!),
-                            isBeingShown: $showingModalView,
-                            result: $shareAsVideo_Result,
-                            useLongerGeneratingVideoMessage: false
-                        )
-                    }
-                    
+                    ShareAsVideoView(
+                        viewModel: ShareAsVideoViewViewModel(content: viewModel.selectedSound!, subtitle: viewModel.selectedSound?.authorName ?? .empty),
+                        isBeingShown: $showingModalView,
+                        result: $shareAsVideo_Result,
+                        useLongerGeneratingVideoMessage: false
+                    )
+
                 case .settingsView, .whatsNewView:
                     SettingsCasingWithCloseView(isBeingShown: $showingModalView)
                         .environmentObject(settingsHelper)

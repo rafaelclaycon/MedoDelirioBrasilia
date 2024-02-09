@@ -142,7 +142,6 @@ extension RetroView {
         // MARK: - Static Methods
 
         static func shouldDisplayBanner() async -> Bool {
-            guard #available(iOS 16.0, *) else { return false }
             guard await versionIsAllowedToDisplayRetro() else { return false }
             guard LocalDatabase.shared.sharedSoundsCount() > 0 else { return false }
             return true
