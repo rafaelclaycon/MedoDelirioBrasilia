@@ -23,7 +23,7 @@ class LocalDatabaseStub: LocalDatabaseProtocol {
     var didCallInsertSound = false
     var didCallUpdateSound = false
     var didCallDeleteSound = false
-    var didCallSetIsFromServer = false
+    var didCallSetIsFromServerOnSoundId = false
 
     var didCallInsertAuthor = false
     var didCallUpdateAuthor = false
@@ -32,6 +32,7 @@ class LocalDatabaseStub: LocalDatabaseProtocol {
     var didCallInsertSong = false
     var didCallUpdateSong = false
     var didCallDeleteSong = false
+    var didCallSetIsFromServerOnSongId = false
 
     var didCallInsertGenre = false
     var didCallUpdateGenre = false
@@ -42,6 +43,10 @@ class LocalDatabaseStub: LocalDatabaseProtocol {
     var didCallUnsuccessfulUpdates = false
 
     var didCallInsertSyncLog = false
+
+    var topSharedSounds: [TopChartItem] = []
+    var shareCount: Int = 0
+    var shareDates: [Date] = []
 
     // Sound
 
@@ -57,8 +62,8 @@ class LocalDatabaseStub: LocalDatabaseProtocol {
         didCallDeleteSound = true
     }
 
-    func setIsFromServer(to value: Bool, on soundId: String) throws {
-        didCallSetIsFromServer = true
+    func setIsFromServer(to value: Bool, onSoundId soundId: String) throws {
+        didCallSetIsFromServerOnSoundId = true
     }
 
     // Author
@@ -96,6 +101,10 @@ class LocalDatabaseStub: LocalDatabaseProtocol {
 
     func delete(songId: String) throws {
         didCallDeleteSong = true
+    }
+
+    func setIsFromServer(to value: Bool, onSongId songId: String) throws {
+        didCallSetIsFromServerOnSongId = true
     }
 
     // MusicGenre
@@ -137,5 +146,19 @@ class LocalDatabaseStub: LocalDatabaseProtocol {
 
     func insert(syncLog newSyncLog: MedoDelirio.SyncLog) {
         didCallInsertSyncLog = true
+    }
+
+    // Retro 2023
+
+    func getTopSoundsSharedByTheUser(_ limit: Int) throws -> [TopChartItem] {
+        return topSharedSounds
+    }
+
+    func totalShareCount() -> Int {
+        return shareCount
+    }
+
+    func allDatesInWhichTheUserShared() throws -> [Date] {
+        return shareDates
     }
 }

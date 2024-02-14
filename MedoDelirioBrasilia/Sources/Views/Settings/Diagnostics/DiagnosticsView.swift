@@ -1,15 +1,22 @@
+//
+//  DiagnosticsView.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 03/06/22.
+//
+
 import SwiftUI
 
 struct DiagnosticsView: View {
 
-    @StateObject private var viewModel = DiagnosticsViewViewModel()
-    
     @State var showServerConnectionTestAlert = false
     @State var serverConnectionTestAlertTitle = ""
     
     @State var installId = UIDevice.customInstallId
     @State var showInstallIdCopiedAlert = false
-    
+
+    @State private var showUpdateDateOnUI: Bool = UserSettings.getShowUpdateDateOnUI()
+
     @State var shareLogs: [UserShareLog]?
     //@State var networkLogs: [NetworkCallLog]?
     
@@ -17,7 +24,8 @@ struct DiagnosticsView: View {
         Form {
             Section {
                 Button("Testar conexão com o servidor") {
-                    networkRabbit.checkServerStatus { serverIsAvailable in
+                    Task {
+                        let serverIsAvailable = await NetworkRabbit.shared.serverIsAvailable()
                         serverConnectionTestAlertTitle = serverIsAvailable ? "A conexão com o servidor está OK." : "Erro ao tentar contatar o servidor; é possível que ele esteja fora para manutenção temporária. Se o erro persistir, use o botão Entrar Em Contato Por E-mail na tela anterior."
                         showServerConnectionTestAlert = true
                     }
@@ -42,7 +50,22 @@ struct DiagnosticsView: View {
             } footer: {
                 Text("Esse código identifica apenas a instalação do app e é renovado caso você o desinstale e instale novamente. Toque nele uma vez para copiar.")
             }
-            
+
+            Section {
+                ShareLink(
+                    item: FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("medo_db.sqlite3")
+                ) {
+                    Text("Exportar base de dados")
+                }
+            }
+
+            Section {
+                Toggle("Exibir data e hora da última atualização na UI", isOn: $showUpdateDateOnUI)
+                    .onChange(of: showUpdateDateOnUI) {
+                        UserSettings.setShowUpdateDateOnUI(to: $0)
+                    }
+            }
+
             /*if CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
                 Section("Tendências [DEV ONLY]") {
                     Button("Setar dia de envio para ontem") {
@@ -61,14 +84,6 @@ struct DiagnosticsView: View {
                 } else {
                     List(shareLogs!) { log in
                         SharingLogCell(destination: ShareDestination(rawValue: log.destination) ?? .other, contentType: ContentType(rawValue: log.contentType) ?? .sound, contentTitle: getContentName(contentId: log.contentId), dateTime: log.dateTime.toScreenString(), sentToServer: log.sentToServer)
-                    }
-                }
-            }
-            
-            if CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
-                Section {
-                    Button("Enviar ShareCountStats") { 
-                        viewModel.sendShareCountStats()
                     }
                 }
             }
@@ -92,7 +107,7 @@ struct DiagnosticsView: View {
             networkLogs?.sort(by: { $0.dateTime > $1.dateTime })*/
         }
     }
-    
+
     func getContentName(contentId: String) -> String {
         do {
             if let sound: Sound = try LocalDatabase.shared.sound(withId: contentId) {
@@ -106,13 +121,10 @@ struct DiagnosticsView: View {
             return ""
         }
     }
-
 }
 
 struct DiagnosticsView_Previews: PreviewProvider {
-
     static var previews: some View {
         DiagnosticsView()
     }
-
 }

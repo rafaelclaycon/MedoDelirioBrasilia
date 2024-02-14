@@ -10,6 +10,8 @@ import SwiftUI
 
 class FolderDetailViewViewModel: ObservableObject {
 
+    // MARK: - Published Properties
+
     @Published var sounds = [Sound]()
     
     @Published var soundSortOption: Int = FolderSoundSortOption.titleAscending.rawValue
@@ -36,11 +38,15 @@ class FolderDetailViewViewModel: ObservableObject {
     @Published var alertMessage: String = ""
     @Published var showAlert: Bool = false
     @Published var alertType: FolderDetailAlertType = .ok
-    
+
+    // MARK: - Initializers
+
     init(currentSoundsListMode: Binding<SoundsListMode>) {
         self.currentSoundsListMode = currentSoundsListMode
     }
-    
+
+    // MARK: - Functions
+
     func reloadSoundList(
         withFolderContents folderContents: [UserFolderContent]?,
         sortedBy sortOption: FolderSoundSortOption
@@ -131,9 +137,9 @@ class FolderDetailViewViewModel: ObservableObject {
             AudioPlayer.shared?.togglePlay()
         } catch {
             if sound.isFromServer ?? false {
-                showServerSoundNotAvailableAlert()
+                showServerSoundNotAvailableAlert(sound.title)
             } else {
-                showUnableToGetSoundAlert()
+                showUnableToGetSoundAlert(sound.title)
             }
         }
     }
@@ -167,7 +173,7 @@ class FolderDetailViewViewModel: ObservableObject {
                     }
                 }
             } catch {
-                showUnableToGetSoundAlert()
+                showUnableToGetSoundAlert(sound.title)
             }
         } else {
             do {
@@ -199,14 +205,18 @@ class FolderDetailViewViewModel: ObservableObject {
                     }
                 }
             } catch {
-                showUnableToGetSoundAlert()
+                showUnableToGetSoundAlert(sound.title)
             }
 
             isShowingShareSheet = true
         }
     }
     
-    func shareVideo(withPath filepath: String, andContentId contentId: String) {
+    func shareVideo(
+        withPath filepath: String,
+        andContentId contentId: String,
+        title soundTitle: String
+    ) {
         if UIDevice.current.userInterfaceIdiom == .phone {
             do {
                 try SharingUtility.shareVideoFromSound(withPath: filepath, andContentId: contentId, shareSheetDelayInSeconds: 0.6) { didShareSuccessfully in
@@ -229,7 +239,7 @@ class FolderDetailViewViewModel: ObservableObject {
                     WallE.deleteAllVideoFilesFromDocumentsDir()
                 }
             } catch {
-                showUnableToGetSoundAlert()
+                showUnableToGetSoundAlert(soundTitle)
             }
         } else {
             guard filepath.isEmpty == false else {
@@ -320,15 +330,17 @@ class FolderDetailViewViewModel: ObservableObject {
     }
     
     func sendUsageMetricToServer(action: String, folderName: String) {
-        let usageMetric = UsageMetric(customInstallId: UIDevice.customInstallId,
-                                      originatingScreen: "FolderDetailView(\(folderName))",
-                                      destinationScreen: action,
-                                      systemName: UIDevice.current.systemName,
-                                      isiOSAppOnMac: ProcessInfo.processInfo.isiOSAppOnMac,
-                                      appVersion: Versioneer.appVersion,
-                                      dateTime: Date.now.iso8601withFractionalSeconds,
-                                      currentTimeZone: TimeZone.current.abbreviation() ?? .empty)
-        networkRabbit.post(usageMetric: usageMetric)
+        let usageMetric = UsageMetric(
+            customInstallId: UIDevice.customInstallId,
+            originatingScreen: "FolderDetailView(\(folderName))",
+            destinationScreen: action,
+            systemName: UIDevice.current.systemName,
+            isiOSAppOnMac: ProcessInfo.processInfo.isiOSAppOnMac,
+            appVersion: Versioneer.appVersion,
+            dateTime: Date.now.iso8601withFractionalSeconds,
+            currentTimeZone: TimeZone.current.abbreviation() ?? .empty
+        )
+        NetworkRabbit.shared.post(usageMetric: usageMetric)
     }
     
     // MARK: - Playlist
@@ -354,18 +366,18 @@ class FolderDetailViewViewModel: ObservableObject {
     
     // MARK: - Alerts
     
-    func showUnableToGetSoundAlert() {
+    func showUnableToGetSoundAlert(_ soundTitle: String) {
         TapticFeedback.error()
-        alertTitle = Shared.soundNotFoundAlertTitle
+        alertTitle = Shared.contentNotFoundAlertTitle(soundTitle)
         alertMessage = Shared.soundNotFoundAlertMessage
         alertType = .ok
         showAlert = true
     }
 
-    func showServerSoundNotAvailableAlert() {
+    func showServerSoundNotAvailableAlert(_ soundTitle: String) {
         TapticFeedback.error()
         alertType = .ok
-        alertTitle = Shared.soundNotFoundAlertTitle
+        alertTitle = Shared.contentNotFoundAlertTitle(soundTitle)
         alertMessage = Shared.serverContentNotAvailableMessage
         showAlert = true
     }

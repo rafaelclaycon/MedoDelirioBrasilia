@@ -7,10 +7,7 @@
 
 import SwiftUI
 
-//let networkRabbit = NetworkRabbit(serverPath: "https://654e-2804-1b3-8640-96df-d0b4-dd5d-6922-bb1b.sa.ngrok.io/api/")
-let networkRabbit = NetworkRabbit(serverPath: CommandLine.arguments.contains("-UNDER_DEVELOPMENT") ? "http://127.0.0.1:8080/api/" : "http://medodelirioios.lat:8080/api/")
-let baseURL: String = CommandLine.arguments.contains("-UNDER_DEVELOPMENT") ? "http://127.0.0.1:8080/" : "http://medodelirioios.lat:8080/"
-let podium = Podium(database: LocalDatabase.shared, networkRabbit: networkRabbit)
+let baseURL: String = CommandLine.arguments.contains("-UNDER_DEVELOPMENT") ? "http://127.0.0.1:8080/" : "http://medodelirioios.online:8080/"
 
 var moveDatabaseIssue: String = .empty
 
@@ -19,20 +16,11 @@ struct MedoDelirioBrasiliaApp: App {
 
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
-    // Sync
-    @AppStorage("lastUpdateDate") private var lastUpdateDate = "all"
-    
     var body: some Scene {
         WindowGroup {
-            MainView(viewModel: MainViewViewModel(lastUpdateDate: lastUpdateDate,
-                                                  service: SyncService(connectionManager: ConnectionManager.shared,
-                                                                       networkRabbit: networkRabbit,
-                                                                       localDatabase: LocalDatabase.shared),
-                                                  database: LocalDatabase.shared,
-                                                  logger: Logger.shared))
+            MainView()
         }
     }
-
 }
 
 class AppDelegate: NSObject, UIApplicationDelegate {
@@ -44,6 +32,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
     ) -> Bool {
+        print("APP - APP DELEGATE")
         // Fixes
         moveDatabaseFileIfNeeded()
         replaceUserSettingFlag()
@@ -95,7 +84,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         }
         
         let info = ClientDeviceInfo(installId: UIDevice.customInstallId, modelName: UIDevice.modelName)
-        networkRabbit.post(clientDeviceInfo: info) { success, error in
+        NetworkRabbit.shared.post(clientDeviceInfo: info) { success, error in
             if let success = success, success {
                 AppPersistentMemory.setHasSentDeviceModelToServer(to: true)
             }
@@ -118,7 +107,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                                       appVersion: Versioneer.appVersion,
                                       currentTimeZone: TimeZone.current.abbreviation() ?? .empty,
                                       dateTime: Date.now.iso8601withFractionalSeconds)
-        networkRabbit.post(signal: signal) { success, error in
+        NetworkRabbit.shared.post(signal: signal) { success, error in
             if success != nil, success == true {
                 UserSettings.setLastSendDateOfStillAliveSignalToServer(to: Date.now)
             }
@@ -137,7 +126,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             //print("Device Token: \(token)")
 
             let device = PushDevice(installId: UIDevice.customInstallId, pushToken: token)
-            networkRabbit.post(pushDevice: device) { success, error in
+            NetworkRabbit.shared.post(pushDevice: device) { success, error in
                 guard let success = success, success else {
                     AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: true)
                     return

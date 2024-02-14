@@ -49,12 +49,12 @@ struct Sound: Hashable, Codable, Identifiable, MedoContentProtocol {
             let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
             let fileUrl = documentsUrl.appendingPathComponent("\(InternalFolderNames.downloadedSounds)\(id).mp3")
             guard FileManager().fileExists(atPath: fileUrl.path) else {
-                throw SoundError.fileNotFound
+                throw SoundError.fileNotFound(title: self.title)
             }
             return fileUrl
         } else {
             guard let path = Bundle.main.path(forResource: self.filename, ofType: nil) else {
-                throw SoundError.fileNotFound
+                throw SoundError.fileNotFound(title: self.title)
             }
             return URL(fileURLWithPath: path)
         }
@@ -63,5 +63,5 @@ struct Sound: Hashable, Codable, Identifiable, MedoContentProtocol {
 
 enum SoundError: Error {
 
-    case fileNotFound
+    case fileNotFound(title: String)
 }

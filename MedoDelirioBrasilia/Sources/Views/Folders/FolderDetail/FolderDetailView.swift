@@ -197,28 +197,23 @@ struct FolderDetailView: View {
                 viewModel.iPadShareSheet
             }
             .sheet(isPresented: $showingModalView) {
-                if #available(iOS 16.0, *) {
-                    ShareAsVideoView(
-                        viewModel: ShareAsVideoViewViewModel(content: viewModel.selectedSound!, subtitle: viewModel.selectedSound?.authorName ?? .empty),
-                        isBeingShown: $showingModalView,
-                        result: $shareAsVideo_Result,
-                        useLongerGeneratingVideoMessage: false
-                    )
-                } else {
-                    ShareAsVideoLegacyView(
-                        viewModel: ShareAsVideoLegacyViewViewModel(content: viewModel.selectedSound!),
-                        isBeingShown: $showingModalView,
-                        result: $shareAsVideo_Result,
-                        useLongerGeneratingVideoMessage: false
-                    )
-                }
+                ShareAsVideoView(
+                    viewModel: ShareAsVideoViewViewModel(content: viewModel.selectedSound!, subtitle: viewModel.selectedSound?.authorName ?? .empty),
+                    isBeingShown: $showingModalView,
+                    result: $shareAsVideo_Result,
+                    useLongerGeneratingVideoMessage: false
+                )
             }
             .onChange(of: shareAsVideo_Result.videoFilepath) { videoResultPath in
                 if videoResultPath.isEmpty == false {
                     if shareAsVideo_Result.exportMethod == .saveAsVideo {
                         viewModel.showVideoSavedSuccessfullyToast()
                     } else {
-                        viewModel.shareVideo(withPath: videoResultPath, andContentId: shareAsVideo_Result.contentId)
+                        viewModel.shareVideo(
+                            withPath: videoResultPath,
+                            andContentId: shareAsVideo_Result.contentId,
+                            title: viewModel.selectedSound?.title ?? ""
+                        )
                     }
                 }
             }
@@ -227,8 +222,12 @@ struct FolderDetailView: View {
                 VStack {
                     Spacer()
                     
-                    ToastView(text: viewModel.shareBannerMessage)
-                        .padding()
+                    ToastView(
+                        icon: "checkmark",
+                        iconColor: .green,
+                        text: viewModel.shareBannerMessage
+                    )
+                    .padding()
                 }
                 .transition(.moveAndFade)
             }
@@ -247,6 +246,7 @@ struct FolderDetailView: View {
                 } label: {
                     Image(systemName: viewModel.isPlayingPlaylist ? "stop.fill" : "play.fill")
                 }
+                .disabled(viewModel.sounds.isEmpty)
             } else {
                 selectionControls()
             }
@@ -258,10 +258,6 @@ struct FolderDetailView: View {
                     } label: {
                         Label(currentSoundsListMode == .selection ? "Cancelar Seleção" : "Selecionar", systemImage: currentSoundsListMode == .selection ? "xmark.circle" : "checkmark.circle")
                     }
-                }
-
-                Section {
-
                 }
 
                 Section {
@@ -277,7 +273,7 @@ struct FolderDetailView: View {
                                 .tag(2)
                         }
                     }
-                    .disabled(viewModel.sounds.count == 0)
+                    .disabled(viewModel.sounds.isEmpty)
                 }
 
                 //                    Section {
@@ -313,7 +309,7 @@ struct FolderDetailView: View {
             } label: {
                 Image(systemName: "ellipsis.circle")
             }
-            .disabled(viewModel.isPlayingPlaylist)
+            .disabled(viewModel.isPlayingPlaylist || viewModel.sounds.isEmpty)
             .onChange(of: viewModel.soundSortOption, perform: { soundSortOption in
                 switch soundSortOption {
                 case 1:

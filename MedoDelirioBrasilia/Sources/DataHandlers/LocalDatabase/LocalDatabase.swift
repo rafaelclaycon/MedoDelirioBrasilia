@@ -8,7 +8,7 @@ internal protocol LocalDatabaseProtocol {
     func insert(sound newSound: Sound) throws
     func update(sound updatedSound: Sound) throws
     func delete(soundId: String) throws
-    func setIsFromServer(to value: Bool, on soundId: String) throws
+    func setIsFromServer(to value: Bool, onSoundId soundId: String) throws
 
     // Author
     func insert(author newAuthor: Author) throws
@@ -22,7 +22,8 @@ internal protocol LocalDatabaseProtocol {
     func insert(song newSong: Song) throws
     func update(song updatedSong: Song) throws
     func delete(songId: String) throws
-    
+    func setIsFromServer(to value: Bool, onSongId songId: String) throws
+
     // MusicGenre
     func insert(genre newGenre: MusicGenre) throws
     func update(genre updatedGenre: MusicGenre) throws
@@ -35,6 +36,11 @@ internal protocol LocalDatabaseProtocol {
 
     // SyncLog
     func insert(syncLog newSyncLog: SyncLog)
+
+    // Retro 2023
+    func getTopSoundsSharedByTheUser(_ limit: Int) throws -> [TopChartItem]
+    func totalShareCount() -> Int
+    func allDatesInWhichTheUserShared() throws -> [Date]
 }
 
 class LocalDatabase: LocalDatabaseProtocol {

@@ -37,12 +37,17 @@ class AuthorDetailViewViewModel: ObservableObject {
     @Published var showAlert: Bool = false
     @Published var alertType: AuthorDetailAlertType = .ok
     
-    init(originatingScreenName: String, authorName: String, currentSoundsListMode: Binding<SoundsListMode>) {
+    init(
+        // originatingScreenName: String,
+        authorName: String,
+        currentSoundsListMode: Binding<SoundsListMode>
+    ) {
         self.currentSoundsListMode = currentSoundsListMode
+        // Commented out to avoid growing the server db too large.
         // Sends metric only from iPhones because iPad and Mac are calling this methods twice instead of once upon each screen opening.
-        if UIDevice.current.userInterfaceIdiom == .phone {
+        /* if UIDevice.current.userInterfaceIdiom == .phone {
             sendUsageMetricToServer(originatingScreenName: originatingScreenName, authorName: authorName)
-        }
+        } */
     }
 
     func reloadList(
@@ -91,9 +96,9 @@ class AuthorDetailViewViewModel: ObservableObject {
             AudioPlayer.shared?.togglePlay()
         } catch {
             if sound.isFromServer ?? false {
-                showServerSoundNotAvailableAlert()
+                showServerSoundNotAvailableAlert(sound.title)
             } else {
-                showUnableToGetSoundAlert()
+                showUnableToGetSoundAlert(sound.title)
             }
         }
     }
@@ -126,7 +131,7 @@ class AuthorDetailViewViewModel: ObservableObject {
                     }
                 }
             } catch {
-                showUnableToGetSoundAlert()
+                showUnableToGetSoundAlert(sound.title)
             }
         } else {
             do {
@@ -158,14 +163,18 @@ class AuthorDetailViewViewModel: ObservableObject {
                     }
                 }
             } catch {
-                showUnableToGetSoundAlert()
+                showUnableToGetSoundAlert(sound.title)
             }
 
             isShowingShareSheet = true
         }
     }
     
-    func shareVideo(withPath filepath: String, andContentId contentId: String) {
+    func shareVideo(
+        withPath filepath: String,
+        andContentId contentId: String,
+        title soundTitle: String
+    ) {
         if UIDevice.current.userInterfaceIdiom == .phone {
             do {
                 try SharingUtility.shareVideoFromSound(withPath: filepath, andContentId: contentId, shareSheetDelayInSeconds: 0.6) { didShareSuccessfully in
@@ -188,7 +197,7 @@ class AuthorDetailViewViewModel: ObservableObject {
                     WallE.deleteAllVideoFilesFromDocumentsDir()
                 }
             } catch {
-                showUnableToGetSoundAlert()
+                showUnableToGetSoundAlert(soundTitle)
             }
         } else {
             guard filepath.isEmpty == false else {
@@ -274,8 +283,8 @@ class AuthorDetailViewViewModel: ObservableObject {
             return "\(sounds.count) SONS"
         }
     }
-    
-    private func sendUsageMetricToServer(originatingScreenName: String, authorName: String) {
+
+    /* private func sendUsageMetricToServer(originatingScreenName: String, authorName: String) {
         let usageMetric = UsageMetric(customInstallId: UIDevice.customInstallId,
                                       originatingScreen: originatingScreenName,
                                       destinationScreen: "\(Shared.ScreenNames.authorDetailView)(\(authorName))",
@@ -284,9 +293,9 @@ class AuthorDetailViewViewModel: ObservableObject {
                                       appVersion: Versioneer.appVersion,
                                       dateTime: Date.now.iso8601withFractionalSeconds,
                                       currentTimeZone: TimeZone.current.abbreviation() ?? .empty)
-        networkRabbit.post(usageMetric: usageMetric)
-    }
-    
+        NetworkRabbit.shared.post(usageMetric: usageMetric)
+    } */
+
     // MARK: - Multi-Select
     
     func startSelecting() {
@@ -325,39 +334,40 @@ class AuthorDetailViewViewModel: ObservableObject {
     
     func prepareSelectedToAddToFolder() {
         guard selectionKeeper.count > 0 else { return }
-        selectedSounds = [Sound]()
-        selectionKeeper.forEach { selectedSoundId in
-            guard let sound = try? LocalDatabase.shared.sound(withId: selectedSoundId) else { return }
-            selectedSounds?.append(sound)
-        }
+        selectedSounds = sounds.filter({ selectionKeeper.contains($0.id) })
     }
-    
-    func sendUsageMetricToServer(action: String, authorName: String) {
-        let usageMetric = UsageMetric(customInstallId: UIDevice.customInstallId,
-                                      originatingScreen: "AuthorDetailView(\(authorName))",
-                                      destinationScreen: action,
-                                      systemName: UIDevice.current.systemName,
-                                      isiOSAppOnMac: ProcessInfo.processInfo.isiOSAppOnMac,
-                                      appVersion: Versioneer.appVersion,
-                                      dateTime: Date.now.iso8601withFractionalSeconds,
-                                      currentTimeZone: TimeZone.current.abbreviation() ?? .empty)
-        networkRabbit.post(usageMetric: usageMetric)
+
+    func sendUsageMetricToServer(
+        action: String,
+        authorName: String
+    ) {
+        let usageMetric = UsageMetric(
+            customInstallId: UIDevice.customInstallId,
+            originatingScreen: "AuthorDetailView(\(authorName))",
+            destinationScreen: action,
+            systemName: UIDevice.current.systemName,
+            isiOSAppOnMac: ProcessInfo.processInfo.isiOSAppOnMac,
+            appVersion: Versioneer.appVersion,
+            dateTime: Date.now.iso8601withFractionalSeconds,
+            currentTimeZone: TimeZone.current.abbreviation() ?? ""
+        )
+        NetworkRabbit.shared.post(usageMetric: usageMetric)
     }
-    
+
     // MARK: - Alerts
 
-    func showUnableToGetSoundAlert() {
+    func showUnableToGetSoundAlert(_ soundTitle: String) {
         TapticFeedback.error()
         alertType = .reportSoundIssue
-        alertTitle = Shared.soundNotFoundAlertTitle
+        alertTitle = Shared.contentNotFoundAlertTitle(soundTitle)
         alertMessage = Shared.soundNotFoundAlertMessage
         showAlert = true
     }
 
-    func showServerSoundNotAvailableAlert() {
+    func showServerSoundNotAvailableAlert(_ soundTitle: String) {
         TapticFeedback.error()
         alertType = .reportSoundIssue
-        alertTitle = Shared.soundNotFoundAlertTitle
+        alertTitle = Shared.contentNotFoundAlertTitle(soundTitle)
         alertMessage = Shared.serverContentNotAvailableMessage
         showAlert = true
     }

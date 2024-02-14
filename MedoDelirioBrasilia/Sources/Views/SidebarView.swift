@@ -15,10 +15,10 @@ struct SidebarView: View {
     @Binding var isShowingFolderInfoEditingSheet: Bool
     @Binding var updateFolderList: Bool
     @Binding var currentSoundsListMode: SoundsListMode
-    @Binding var updateSoundList: Bool
     @EnvironmentObject var settingsHelper: SettingsHelper
     @EnvironmentObject var networkMonitor: NetworkMonitor
-    
+    @EnvironmentObject var syncValues: SyncValues
+
     // Trends
     @EnvironmentObject var trendsHelper: TrendsHelper
     
@@ -26,11 +26,16 @@ struct SidebarView: View {
         List {
             Section("Sons") {
                 NavigationLink(
-                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
-                                                                           authorSortOption: AuthorSortOption.nameAscending.rawValue,
-                                                                           currentSoundsListMode: $currentSoundsListMode),
-                                            currentViewMode: .allSounds,
-                                            currentSoundsListMode: $currentSoundsListMode, updateList: $updateSoundList).environmentObject(trendsHelper).environmentObject(settingsHelper).environmentObject(networkMonitor),
+                    destination: SoundsView(
+                        viewModel: SoundsViewViewModel(
+                            currentViewMode: .allSounds,
+                            soundSortOption: UserSettings.getSoundSortOption(),
+                            authorSortOption: AuthorSortOption.nameAscending.rawValue,
+                            currentSoundsListMode: $currentSoundsListMode,
+                            syncValues: syncValues
+                        ),
+                        currentSoundsListMode: $currentSoundsListMode
+                    ).environmentObject(trendsHelper).environmentObject(settingsHelper).environmentObject(networkMonitor),
                     tag: PadScreen.allSounds,
                     selection: $state,
                     label: {
@@ -38,7 +43,16 @@ struct SidebarView: View {
                     })
                 
                 NavigationLink(
-                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(), authorSortOption: AuthorSortOption.nameAscending.rawValue, currentSoundsListMode: $currentSoundsListMode), currentViewMode: .favorites, currentSoundsListMode: $currentSoundsListMode, updateList: $updateSoundList).environmentObject(trendsHelper).environmentObject(settingsHelper).environmentObject(networkMonitor),
+                    destination: SoundsView(
+                        viewModel: SoundsViewViewModel(
+                            currentViewMode: .favorites,
+                            soundSortOption: UserSettings.getSoundSortOption(),
+                            authorSortOption: AuthorSortOption.nameAscending.rawValue,
+                            currentSoundsListMode: $currentSoundsListMode,
+                            syncValues: syncValues
+                        ),
+                        currentSoundsListMode: $currentSoundsListMode
+                    ).environmentObject(trendsHelper).environmentObject(settingsHelper).environmentObject(networkMonitor),
                     tag: PadScreen.favorites,
                     selection: $state,
                     label: {
@@ -46,7 +60,16 @@ struct SidebarView: View {
                     })
                 
                 NavigationLink(
-                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue, currentSoundsListMode: $currentSoundsListMode), currentViewMode: .byAuthor, currentSoundsListMode: $currentSoundsListMode, updateList: $updateSoundList).environmentObject(trendsHelper).environmentObject(settingsHelper),
+                    destination: SoundsView(
+                        viewModel: SoundsViewViewModel(
+                            currentViewMode: .byAuthor,
+                            soundSortOption: SoundSortOption.dateAddedDescending.rawValue,
+                            authorSortOption: AuthorSortOption.nameAscending.rawValue,
+                            currentSoundsListMode: $currentSoundsListMode,
+                            syncValues: syncValues
+                        ),
+                        currentSoundsListMode: $currentSoundsListMode
+                        ).environmentObject(trendsHelper).environmentObject(settingsHelper),
                     tag: PadScreen.groupedByAuthor,
                     selection: $state,
                     label: {
@@ -129,18 +152,16 @@ struct SidebarView: View {
             }
         }
     }
-
 }
 
 struct SidebarView_Previews: PreviewProvider {
-
     static var previews: some View {
-        SidebarView(state: .constant(PadScreen.allSounds),
-                    isShowingSettingsSheet: .constant(false),
-                    isShowingFolderInfoEditingSheet: .constant(false),
-                    updateFolderList: .constant(false),
-                    currentSoundsListMode: .constant(.regular),
-                    updateSoundList: .constant(true))
+        SidebarView(
+            state: .constant(PadScreen.allSounds),
+            isShowingSettingsSheet: .constant(false),
+            isShowingFolderInfoEditingSheet: .constant(false),
+            updateFolderList: .constant(false),
+            currentSoundsListMode: .constant(.regular)
+        )
     }
-
 }

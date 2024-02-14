@@ -1,37 +1,32 @@
 //
-//  MainViewViewModel.swift
+//  SyncManager.swift
 //  MedoDelirioBrasilia
 //
-//  Created by Rafael Schmitt on 08/07/23.
+//  Created by Rafael Schmitt on 22/09/23.
 //
 
-import Combine
 import SwiftUI
 
-@MainActor
-class MainViewViewModel: ObservableObject {
-    @Published var syncStatus: SyncUIStatus = .updating
+protocol SyncManagerDelegate: AnyObject {
+    func syncManagerDidUpdate(status: SyncUIStatus, updateSoundList: Bool)
+}
+
+class SyncManager {
+
+    weak var delegate: SyncManagerDelegate?
 
     private var localUnsuccessfulUpdates: [UpdateEvent]? = nil
     private var serverUpdates: [UpdateEvent]? = nil
-    @Published var updateSoundList: Bool = false
-
-    private var lastUpdateDate: String
-
-    @AppStorage("lastUpdateDate") private var lastUpdateDateInUserDefaults = "all"
-    @AppStorage("lastUpdateAttempt") private var lastUpdateAttemptInUserDefaults = ""
 
     private var service: SyncServiceProtocol
     private var database: LocalDatabaseProtocol
     private var logger: LoggerProtocol
 
     init(
-        lastUpdateDate: String,
         service: SyncServiceProtocol,
         database: LocalDatabaseProtocol,
         logger: LoggerProtocol
     ) {
-        self.lastUpdateDate = lastUpdateDate
         self.service = service
         self.database = database
         self.logger = logger
@@ -39,34 +34,33 @@ class MainViewViewModel: ObservableObject {
 
     func sync() async {
         guard service.hasConnectivity() else {
-            syncStatus = .noInternet
+            delegate?.syncManagerDidUpdate(status: .noInternet, updateSoundList: false)
             return
         }
 
         await MainActor.run {
-            syncStatus = .updating
+            delegate?.syncManagerDidUpdate(status: .updating, updateSoundList: false)
         }
 
         do {
             try await retryLocal()
             try await syncDataWithServer()
-            syncStatus = .done
-            updateSoundList = true
+            delegate?.syncManagerDidUpdate(status: .done, updateSoundList: true)
         } catch SyncError.noInternet {
-            syncStatus = .noInternet
+            delegate?.syncManagerDidUpdate(status: .noInternet, updateSoundList: false)
         } catch NetworkRabbitError.errorFetchingUpdateEvents(let errorMessage) {
             print(errorMessage)
             logger.logSyncError(description: errorMessage, updateEventId: "")
-            syncStatus = .updateError
+            delegate?.syncManagerDidUpdate(status: .updateError, updateSoundList: false)
         } catch SyncError.errorInsertingUpdateEvent(let updateEventId) {
             logger.logSyncError(description: "Erro ao tentar inserir UpdateEvent no banco de dados.", updateEventId: updateEventId)
-            syncStatus = .updateError
+            delegate?.syncManagerDidUpdate(status: .updateError, updateSoundList: false)
         } catch {
             logger.logSyncError(description: error.localizedDescription, updateEventId: "")
-            syncStatus = .updateError
+            delegate?.syncManagerDidUpdate(status: .updateError, updateSoundList: false)
         }
 
-        lastUpdateAttemptInUserDefaults = Date.now.iso8601withFractionalSeconds
+        AppPersistentMemory.setLastUpdateAttempt(to: Date.now.iso8601withFractionalSeconds)
     }
 
     func retryLocal() async throws {
@@ -89,6 +83,7 @@ class MainViewViewModel: ObservableObject {
 
     func retrieveServerUpdates() async throws -> Double {
         print("retrieveServerUpdates()")
+        let lastUpdateDate = AppPersistentMemory.getLastUpdateDate()
         print("lastUpdateDate: \(lastUpdateDate)")
         serverUpdates = try await service.getUpdates(from: lastUpdateDate)
         if var serverUpdates = serverUpdates {
@@ -125,7 +120,7 @@ class MainViewViewModel: ObservableObject {
             await service.process(updateEvent: update)
         }
 
-        lastUpdateDateInUserDefaults = Date.now.iso8601withFractionalSeconds
+        AppPersistentMemory.setLastUpdateDate(to: Date.now.iso8601withFractionalSeconds)
     }
 
     func syncUnsuccessful() async throws {

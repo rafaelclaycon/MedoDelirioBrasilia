@@ -126,4 +126,9 @@ class CustomPhotoAlbum: NSObject {
         })*/
     }
 
+    func save(image: UIImage) async throws {
+        try await PHPhotoLibrary.shared().performChanges {
+            PHAssetChangeRequest.creationRequestForAsset(from: image)
+        }
+    }
 }

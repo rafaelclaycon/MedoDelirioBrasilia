@@ -11,5 +11,5 @@ class TrendsHelper: ObservableObject {
 
     @Published var soundIdToGoTo: String = .empty
     @Published var timeIntervalToGoTo: TrendsTimeInterval? = nil
-
+    @Published var refreshMostSharedByAudienceList: Bool = false
 }

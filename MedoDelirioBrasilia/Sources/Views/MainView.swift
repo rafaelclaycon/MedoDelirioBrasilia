@@ -9,8 +9,6 @@ import SwiftUI
 
 struct MainView: View {
 
-    @StateObject var viewModel: MainViewViewModel
-
     @State var tabSelection: PhoneTab = .sounds
     @State var state: PadScreen? = PadScreen.allSounds
     @State var isShowingSettingsSheet: Bool = false
@@ -32,12 +30,16 @@ struct MainView: View {
             if UIDevice.current.userInterfaceIdiom == .phone {
                 TabView(selection: $tabSelection) {
                     NavigationView {
-                        SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
-                                                                  authorSortOption: AuthorSortOption.nameAscending.rawValue,
-                                                                  currentSoundsListMode: $currentSoundsListMode),
-                                   currentViewMode: .allSounds,
-                                   currentSoundsListMode: $currentSoundsListMode,
-                                   updateList: $viewModel.updateSoundList)
+                        SoundsView(
+                            viewModel: SoundsViewViewModel(
+                                currentViewMode: .allSounds,
+                                soundSortOption: UserSettings.getSoundSortOption(),
+                                authorSortOption: AuthorSortOption.nameAscending.rawValue,
+                                currentSoundsListMode: $currentSoundsListMode,
+                                syncValues: syncValues
+                            ),
+                            currentSoundsListMode: $currentSoundsListMode
+                        )
                         .environmentObject(trendsHelper)
                         .environmentObject(settingsHelper)
                         .environmentObject(networkMonitor)
@@ -101,22 +103,28 @@ struct MainView: View {
                 })
             } else {
                 NavigationView {
-                    SidebarView(state: $state,
-                                isShowingSettingsSheet: $isShowingSettingsSheet,
-                                isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet,
-                                updateFolderList: $updateFolderList,
-                                currentSoundsListMode: $currentSoundsListMode,
-                                updateSoundList: $viewModel.updateSoundList)
+                    SidebarView(
+                        state: $state,
+                        isShowingSettingsSheet: $isShowingSettingsSheet,
+                        isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet,
+                        updateFolderList: $updateFolderList,
+                        currentSoundsListMode: $currentSoundsListMode
+                    )
                     .environmentObject(trendsHelper)
                     .environmentObject(settingsHelper)
                     .environmentObject(networkMonitor)
-                    
-                    SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
-                                                              authorSortOption: AuthorSortOption.nameAscending.rawValue,
-                                                              currentSoundsListMode: $currentSoundsListMode),
-                               currentViewMode: .allSounds,
-                               currentSoundsListMode: $currentSoundsListMode,
-                               updateList: $viewModel.updateSoundList)
+                    .environmentObject(syncValues)
+
+                    SoundsView(
+                        viewModel: SoundsViewViewModel(
+                            currentViewMode: .allSounds,
+                            soundSortOption: UserSettings.getSoundSortOption(),
+                            authorSortOption: AuthorSortOption.nameAscending.rawValue,
+                            currentSoundsListMode: $currentSoundsListMode,
+                            syncValues: syncValues
+                        ),
+                        currentSoundsListMode: $currentSoundsListMode
+                    )
                     .environmentObject(trendsHelper)
                     .environmentObject(settingsHelper)
                     .environmentObject(networkMonitor)
@@ -134,32 +142,14 @@ struct MainView: View {
             }
         }
         .environmentObject(syncValues)
-        .onChange(of: viewModel.syncStatus) {
-            syncValues.syncStatus = $0
-        }
-        .onChange(of: syncValues.syncNow) {
-            if $0 {
-                Task { @MainActor in
-                    await viewModel.sync()
-                }
-            }
-        }
         .onAppear {
-            Task { @MainActor in
-                await viewModel.sync()
-            }
+            print("MAIN VIEW - ON APPEAR")
         }
     }
 }
 
 struct MainView_Previews: PreviewProvider {
-
     static var previews: some View {
-        MainView(viewModel: MainViewViewModel(lastUpdateDate: "all",
-                                              service: SyncService(connectionManager: ConnectionManager.shared,
-                                                                   networkRabbit: NetworkRabbit(serverPath: ""),
-                                                                   localDatabase: LocalDatabase()),
-                                              database: LocalDatabase(),
-                                              logger: Logger()))
+        MainView()
     }
 }

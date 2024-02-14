@@ -8,8 +8,12 @@ struct Shared {
         static let viewCollections = "com.rafaelschmitt.MedoDelirioBrasilia.ViewCollections"
         static let playAndShareSongs = "com.rafaelschmitt.MedoDelirioBrasilia.PlayAndShareSongs"
         static let viewLast24HoursTopChart = "com.rafaelschmitt.MedoDelirioBrasilia.ViewLast24HoursTopChart"
+        static let viewLast3DaysTopChart = "com.rafaelschmitt.MedoDelirioBrasilia.ViewLast3DaysTopChart"
         static let viewLastWeekTopChart = "com.rafaelschmitt.MedoDelirioBrasilia.ViewLastWeekTopChart"
         static let viewLastMonthTopChart = "com.rafaelschmitt.MedoDelirioBrasilia.ViewLastMonthTopChart"
+        static let view2024TopChart = "com.rafaelschmitt.MedoDelirioBrasilia.View2024TopChart"
+        static let view2023TopChart = "com.rafaelschmitt.MedoDelirioBrasilia.View2023TopChart"
+        static let view2022TopChart = "com.rafaelschmitt.MedoDelirioBrasilia.View2022TopChart"
         static let viewAllTimeTopChart = "com.rafaelschmitt.MedoDelirioBrasilia.ViewAllTimeTopChart"
     }
     
@@ -26,16 +30,21 @@ struct Shared {
         static let soundSelectedSingular = "1 Selecionado"
         static let soundsSelectedPlural = "%d Selecionados"
     }
+
+    static let contentFilterMessageForSoundsiPhone = "Alguns sons não estão sendo exibidos pois a opção Exibir Conteúdo Explícito está desativada.\n\nVocê pode mudar isso nas Configurações (ícone de engrenagem no topo esquerdo da tela)."
+    static let contentFilterMessageForSoundsiPadMac = "Alguns sons não estão sendo exibidos pois a opção Exibir Conteúdo Explícito está desativada.\n\nVocê pode mudar isso na tela de Configurações (ícone de engrenagem no topo da barra lateral do app)."
+    static let contentFilterMessageForSongsiPhone = "Algumas músicas não estão sendo exibidas pois a opção Exibir Conteúdo Explícito está desativada.\n\nVocê pode mudar isso nas Configurações (ícone de engrenagem no topo da aba Sons)."
+    static let contentFilterMessageForSongsiPadMac = "Algumas músicas não estão sendo exibidas pois a opção Exibir Conteúdo Explícito está desativada.\n\nVocê pode mudar isso na tela de Configurações (ícone de engrenagem no topo da barra lateral do app)."
     
-    static let contentFilterMessageForSoundsiPhone = "Alguns sons não estão sendo exibidos pois a opção Exibir Conteúdo Explícito está desabilitada.\n\nVocê pode mudar isso nas Configurações (ícone de engrenagem aqui no topo esquerdo da tela)."
-    static let contentFilterMessageForSoundsiPadMac = "Alguns sons não estão sendo exibidos pois a opção Exibir Conteúdo Explícito está desabilitada.\n\nVocê pode mudar isso na tela de Configurações (ícone de engrenagem no topo da barra lateral do app)."
-    static let contentFilterMessageForSongsiPhone = "Algumas músicas não estão sendo exibidas pois a opção Exibir Conteúdo Explícito está desabilitada.\n\nVocê pode mudar isso nas Configurações (ícone de engrenagem no topo da aba Sons)."
-    static let contentFilterMessageForSongsiPadMac = "Algumas músicas não estão sendo exibidas pois a opção Exibir Conteúdo Explícito está desabilitada.\n\nVocê pode mudar isso na tela de Configurações (ícone de engrenagem no topo da barra lateral do app)."
-    
-    static let soundNotFoundAlertTitle = "Som Indisponível"
+    static func contentNotFoundAlertTitle(_ contentName: String) -> String {
+        return "Conteúdo \"\(contentName)\" Indisponível"
+    }
     static let soundNotFoundAlertMessage = "Devido a um problema técnico, o som que você quer acessar não está disponível."
     static let serverContentNotAvailableMessage = "Provavelmente houve um problema com o download desse conteúdo.\n\nPor favor, reporte esse erro para mim através do e-mail nas Configurações."
+    static let serverContentNotAvailableRedownloadMessage = "Provavelmente houve um problema com o download desse conteúdo.\n\nTente baixá-lo novamente."
     static let soundSharedSuccessfullyMessage = "Som compartilhado com sucesso."
+    static let soundExportedSuccessfullyMessage = "Som exportado com sucesso."
+    static let soundsExportedSuccessfullyMessage = "Sons exportados com sucesso."
     static let songSharedSuccessfullyMessage = "Música compartilhada com sucesso."
     static let videoSharedSuccessfullyMessage = "Vídeo compartilhado com sucesso."
     
@@ -83,8 +92,12 @@ struct Shared {
     struct Trends {
         
         static let last24Hours = "Últimas 24 horas"
+        static let last3Days = "Últimos 3 dias"
         static let lastWeek = "Última semana"
         static let lastMonth = "Último mês"
+        static let year2024 = "2024"
+        static let year2023 = "2023"
+        static let year2022 = "2022 (desde 21/06)"
         static let allTime = "Todos os tempos"
     }
     

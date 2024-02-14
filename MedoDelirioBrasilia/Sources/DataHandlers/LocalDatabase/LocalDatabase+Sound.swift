@@ -75,7 +75,10 @@ extension LocalDatabase {
         let id = Expression<String>("id")
         let name = Expression<String>("name")
         
-        let query = soundTable.select(soundTable[*], author[name]).join(author, on: soundTable[author_id] == author[id]).filter(id == soundId)
+        let query = soundTable.select(soundTable[*], author[name])
+            .join(author, on: soundTable[author_id] == author[id])
+            .filter(soundTable[id] == soundId)
+
         for queriedSound in try db.prepare(query) {
             var soundData: Sound = try queriedSound.decode()
             if let dateString = try queriedSound.get(Expression<String?>("dateAdded")) {
@@ -185,8 +188,8 @@ extension LocalDatabase {
         let deleteQuery = soundTable.filter(id == soundId).delete()
         try db.run(deleteQuery)
     }
-    
-    func setIsFromServer(to value: Bool, on soundId: String) throws {
+
+    func setIsFromServer(to value: Bool, onSoundId soundId: String) throws {
         let id = Expression<String>("id")
         let query = soundTable.filter(id == soundId)
         let updateQuery = query.update(

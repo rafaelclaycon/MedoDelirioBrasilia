@@ -23,15 +23,7 @@ struct SettingsView: View {
     @State private var didCopySupportAddressOnEmailPicker: Bool = false
     
     @State private var showLargeCreatorImage: Bool = false
-    
-    private var helpTheAppFooterText: String {
-        if #available(iOS 16.0, *) {
-            return "Doações recorrentes a partir de R$ 30 ganham um selo especial aqui."
-        } else {
-            return ""
-        }
-    }
-    
+
     var body: some View {
         ZStack {
             Form {
@@ -44,6 +36,17 @@ struct SettingsView: View {
                 } footer: {
                     Text("Alguns conteúdos contam com muitos palavrões. Ao marcar essa opção, você concorda que tem mais de 18 anos e que deseja ver esses conteúdos.")
                 }
+
+//                if RetroView.ViewModel.shouldDisplayBanner() {
+//                    Section {
+//                        Button {
+//                            print("Retro")
+//                        } label: {
+//                            Label("Retrospectiva 2023", systemImage: "airpodsmax")
+//                        }
+//                        .foregroundStyle(Color.green)
+//                    }
+//                }
 
                 Section {
                     NavigationLink(destination: NotificationsSettingsView()) {
@@ -78,10 +81,13 @@ struct SettingsView: View {
                     }
                 }
                 
-                Section("📬  Problemas, sugestões e pedidos") {
-                    Button("Entrar em contato por e-mail") {
+                Section("Problemas, sugestões e pedidos") {
+                    Button {
                         showEmailClientConfirmationDialog = true
+                    } label: {
+                        Label("Entrar em contato por e-mail", systemImage: "envelope")
                     }
+                    .foregroundStyle(Color.blue)
                 }
                 
                 if showAskForMoneyView || CommandLine.arguments.contains("-FORCE_SHOW_HELP_THE_APP") {
@@ -93,7 +99,7 @@ struct SettingsView: View {
                     } header: {
                         Text("Ajude o app")
                     } footer: {
-                        Text(helpTheAppFooterText)
+                        Text("Doações recorrentes a partir de R$ 30 ganham um selo especial aqui.")
                     }
                 }
                 
@@ -128,8 +134,10 @@ struct SettingsView: View {
                 }
                 
                 Section("Contribua ou entenda como funciona") {
-                    Button("Ver código fonte no GitHub") {
+                    Button {
                         OpenUtility.open(link: "https://github.com/rafaelclaycon/MedoDelirioBrasilia")
+                    } label: {
+                        Label("Ver código fonte no GitHub", systemImage: "curlybraces")
                     }
                 }
                 
@@ -153,10 +161,10 @@ struct SettingsView: View {
                 }
             }
             .onAppear {
-                networkRabbit.displayAskForMoneyView { shouldDisplay in
+                NetworkRabbit.shared.displayAskForMoneyView { shouldDisplay in
                     showAskForMoneyView = shouldDisplay
                 }
-                networkRabbit.getPixDonorNames { donors in
+                NetworkRabbit.shared.getPixDonorNames { donors in
                     self.donors = donors
                 }
             }
@@ -193,9 +201,13 @@ struct SettingsView: View {
                 VStack {
                     Spacer()
                     
-                    ToastView(text: didCopySupportAddressOnEmailPicker ? "E-mail de suporte copiado com sucesso." : "Chave copiada com sucesso!")
-                        .padding(.horizontal)
-                        .padding(.bottom, 15)
+                    ToastView(
+                        icon: "checkmark",
+                        iconColor: .green,
+                        text: didCopySupportAddressOnEmailPicker ? "E-mail de suporte copiado com sucesso." : "Chave copiada com sucesso!"
+                    )
+                    .padding(.horizontal)
+                    .padding(.bottom, 15)
                 }
                 .transition(.moveAndFade)
             }

@@ -9,11 +9,13 @@ import SwiftUI
 
 // MARK: - Custom colors
 public extension Color {
+
     static let mutedNavyBlue = Color(UIColor(red: 0.07, green: 0.20, blue: 0.37, alpha: 1.00))
     static let darkerGreen = Color(UIColor(red: 0.00, green: 0.64, blue: 0.02, alpha: 1.00))
+    static let darkestGreen = Color(UIColor(red: 0.01, green: 0.20, blue: 0.00, alpha: 1.00))
     static let hitsMedoDelirioSpotify = Color(UIColor(red: 0.02, green: 0.07, blue: 0.53, alpha: 1.00))
     static let systemBackground = Color(UIColor.systemBackground)
-    
+
     // From the logo
     static let brightGreen = Color(UIColor(red: 0.49, green: 0.84, blue: 0.39, alpha: 1.00))
     static let brightYellow = Color(UIColor(red: 1.00, green: 0.98, blue: 0.36, alpha: 1.00))
@@ -33,6 +35,7 @@ public extension Color {
 }
 
 extension Color {
+
     init(hex: String) {
         let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
         var int: UInt64 = 0

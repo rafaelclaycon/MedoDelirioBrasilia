@@ -9,19 +9,12 @@ import SwiftUI
 
 struct SoundsView: View {
 
-    enum ViewMode: Int {
-        case allSounds, favorites, folders, byAuthor
-    }
-
     enum SubviewToOpen {
-        case onboardingView, addToFolderView, shareAsVideoView, settingsView, whatsNewView, syncInfoView, soundDetailView
+        case onboardingView, addToFolderView, shareAsVideoView, settingsView, whatsNewView, syncInfoView, soundDetailView, retrospective
     }
 
     @StateObject var viewModel: SoundsViewViewModel
-    @State var currentViewMode: ViewMode
     @Binding var currentSoundsListMode: SoundsListMode
-    @Binding var updateList: Bool
-    @State private var searchText: String = .empty
     
     @State private var listWidth: CGFloat = 700
     @State private var columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
@@ -32,7 +25,8 @@ struct SoundsView: View {
     
     // Temporary banners
     @State private var shouldDisplayRecurringDonationBanner: Bool = false
-    @State private var shouldDisplayYoureOfflineBanner: Bool = true
+    @State private var shouldDisplayRetrospectiveBanner: Bool = false
+    @State private var shouldDisplayUpdateIncentiveBanner: Bool = false
 
     // Settings
     @EnvironmentObject var settingsHelper: SettingsHelper
@@ -41,7 +35,6 @@ struct SoundsView: View {
     @State private var hadSuccessAddingToFolder: Bool = false
     @State private var folderName: String? = nil
     @State private var pluralization: WordPluralization = .singular
-    @State private var shouldDisplayAddedToFolderToast: Bool = false
     
     // Share as Video
     @State private var shareAsVideo_Result = ShareAsVideoResult()
@@ -56,7 +49,8 @@ struct SoundsView: View {
     
     // Trends
     @EnvironmentObject var trendsHelper: TrendsHelper
-    
+    @State private var soundIdToGoTo: String = ""
+
     // Folders
     @StateObject var deleteFolderAide = DeleteFolderViewAideiPhone()
     
@@ -66,8 +60,7 @@ struct SoundsView: View {
 
     // Dynamic Type
     @ScaledMetric private var explicitOffWarningTopPadding = 16
-    @ScaledMetric private var explicitOffWarningPhoneBottomPadding = 20
-    @ScaledMetric private var explicitOffWarningPadBottomPadding = 20
+    @ScaledMetric private var explicitOffWarningBottomPadding = 20
     @ScaledMetric private var soundCountTopPadding = 10
     @ScaledMetric private var soundCountPhoneBottomPadding = 68
     @ScaledMetric private var soundCountPadBottomPadding = 22
@@ -76,25 +69,29 @@ struct SoundsView: View {
     @EnvironmentObject var networkMonitor: NetworkMonitor
 
     // Sync
-    @AppStorage("lastUpdateAttempt") private var lastUpdateAttempt = ""
-    @AppStorage("lastUpdateDate") private var lastUpdateDate = "all"
-    @State private var needsRefresh: Bool = false
-    @EnvironmentObject private var syncValues: SyncValues
-    @State private var shouldDisplaySyncToast: Bool = false
+    @State private var shouldDisplayYoureOfflineBanner: Bool = true
+
+    // Select Many
+    @State private var areManyActionButtonsEnabled = false
+    @State private var favoriteButtonTitle = "Favoritar"
+    @State private var favoriteButtonImage = "star"
+
+    // Retro 2023
+    @State private var retroExportAnalytics: String = ""
 
     private var searchResults: [Sound] {
-        if searchText.isEmpty {
+        if viewModel.searchText.isEmpty {
             return viewModel.sounds
         } else {
             return viewModel.sounds.filter { sound in
                 let searchString = "\(sound.description.lowercased().withoutDiacritics()) \(sound.authorName?.lowercased().withoutDiacritics() ?? "")"
-                return searchString.contains(searchText.lowercased().withoutDiacritics())
+                return searchString.contains(viewModel.searchText.lowercased().withoutDiacritics())
             }
         }
     }
     
     private var showNoFavoritesView: Bool {
-        searchResults.isEmpty && currentViewMode == .favorites && searchText.isEmpty
+        searchResults.isEmpty && viewModel.currentViewMode == .favorites && viewModel.searchText.isEmpty
     }
     
     private var title: String {
@@ -107,7 +104,7 @@ struct SoundsView: View {
                 return String(format: Shared.SoundSelection.soundsSelectedPlural, viewModel.selectionKeeper.count)
             }
         }
-        switch currentViewMode {
+        switch viewModel.currentViewMode {
         case .allSounds:
             return "Sons"
         case .favorites:
@@ -122,34 +119,41 @@ struct SoundsView: View {
     private var displayFloatingSelectorView: Bool {
         guard UIDevice.current.userInterfaceIdiom == .phone else { return false }
         guard currentSoundsListMode == .regular else { return false }
-        if currentViewMode == .byAuthor {
+        if viewModel.currentViewMode == .byAuthor {
             return authorSearchText.isEmpty
         } else {
-            return searchText.isEmpty
+            return viewModel.searchText.isEmpty
         }
     }
 
     private var isLoadingSounds: Bool {
         searchResults.isEmpty && viewModel.sounds.isEmpty
     }
-    
+
+    private var isAllowedToRefresh: Bool {
+        viewModel.currentViewMode == .allSounds && currentSoundsListMode == .regular
+    }
+
     var body: some View {
         ZStack {
             VStack {
-                NavigationLink(destination: AuthorDetailView(viewModel: AuthorDetailViewViewModel(originatingScreenName: Shared.ScreenNames.soundsView,
-                                                                                                  authorName: authorToAutoOpen.name, currentSoundsListMode: $currentSoundsListMode),
-                                                             author: authorToAutoOpen,
-                                                             currentSoundsListMode: $currentSoundsListMode),
-                               isActive: $autoOpenAuthor) { EmptyView() }
+                NavigationLink(
+                    destination: AuthorDetailView(
+                        viewModel: .init(authorName: authorToAutoOpen.name, currentSoundsListMode: $currentSoundsListMode),
+                        author: authorToAutoOpen,
+                        currentSoundsListMode: $currentSoundsListMode
+                    ),
+                    isActive: $autoOpenAuthor
+                ) { EmptyView() }
 
                 if showNoFavoritesView {
                     NoFavoritesView()
                         .padding(.horizontal, 25)
                         .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? 100 : 15)
-                } else if currentViewMode == .folders {
+                } else if viewModel.currentViewMode == .folders {
                     MyFoldersiPhoneView()
                         .environmentObject(deleteFolderAide)
-                } else if currentViewMode == .byAuthor {
+                } else if viewModel.currentViewMode == .byAuthor {
                     AuthorsView(sortOption: $viewModel.authorSortOption, sortAction: $authorSortAction, searchTextForControl: $authorSearchText)
                 } else {
                     GeometryReader { geometry in
@@ -166,60 +170,38 @@ struct SoundsView: View {
                             .frame(width: geometry.size.width)
                             .frame(minHeight: geometry.size.height)
                         } else {
-                            // TODO: - Figure out pull to refresh.
-//                            PullToRefreshScrollView(needsRefresh: $needsRefresh, onRefresh: {
-//                                TapticFeedback.open()
-//                                guard
-//                                    let lastAttemptDate = lastUpdateAttempt.iso8601withFractionalSeconds,
-//                                    lastAttemptDate.twoMinutesHavePassed
-//                                else {
-//                                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-//                                        needsRefresh = false
-//                                        withAnimation {
-//                                            shouldDisplaySyncToast = true
-//                                        }
-//                                        TapticFeedback.success()
-//                                    }
-//
-//                                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-//                                        withAnimation {
-//                                            shouldDisplaySyncToast = false
-//                                        }
-//                                    }
-//
-//                                    return
-//                                }
-//                                syncValues.syncNow = true
-//
-//                                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
-//                                    needsRefresh = false
-//                                    withAnimation {
-//                                        shouldDisplaySyncToast = true
-//                                    }
-//                                    TapticFeedback.success()
-//                                }
-//
-//                                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-//                                    withAnimation {
-//                                        shouldDisplaySyncToast = false
-//                                    }
-//                                }
-//                            }) {
                             ScrollView {
                                 ScrollViewReader { proxy in
                                     if !networkMonitor.isConnected, shouldDisplayYoureOfflineBanner {
                                         YoureOfflineView(isBeingShown: $shouldDisplayYoureOfflineBanner)
                                     }
 
-                                    if shouldDisplayRecurringDonationBanner, searchText.isEmpty {
+                                    if shouldDisplayRecurringDonationBanner, viewModel.searchText.isEmpty {
                                         RecurringDonationBanner(isBeingShown: $shouldDisplayRecurringDonationBanner)
                                             .padding(.horizontal, 10)
                                     }
 
+                                    if shouldDisplayRetrospectiveBanner, viewModel.searchText.isEmpty {
+                                        RetroBanner(
+                                            isBeingShown: $shouldDisplayRetrospectiveBanner,
+                                            buttonAction: {
+                                                subviewToOpen = .retrospective
+                                                showingModalView = true
+                                            }
+                                        )
+                                        .padding(.horizontal, 10)
+                                    }
+
+                                    if shouldDisplayUpdateIncentiveBanner, viewModel.searchText.isEmpty {
+                                        UpdateIncentiveBanner(
+                                            isBeingShown: $shouldDisplayUpdateIncentiveBanner
+                                        )
+                                        .padding(.horizontal, 10)
+                                    }
+
                                     LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
                                         if searchResults.isEmpty {
-                                            NoSearchResultsView(searchText: $searchText)
-                                                .padding(.vertical, UIScreen.main.bounds.height / 4)
+                                            NoSearchResultsView(searchText: $viewModel.searchText)
                                         } else {
                                             ForEach(searchResults) { sound in
                                                 SoundCell(sound: sound,
@@ -231,7 +213,6 @@ struct SoundsView: View {
                                                 .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
                                                 .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                                                 .onTapGesture {
-                                                    //dump(sound)
                                                     if currentSoundsListMode == .regular {
                                                         if viewModel.nowPlayingKeeper.contains(sound.id) {
                                                             AudioPlayer.shared?.togglePlay()
@@ -269,8 +250,8 @@ struct SoundsView: View {
                                                             Button {
                                                                 if viewModel.favoritesKeeper.contains(sound.id) {
                                                                     viewModel.removeFromFavorites(soundId: sound.id)
-                                                                    if currentViewMode == .favorites {
-                                                                        viewModel.reloadList(currentMode: currentViewMode)
+                                                                    if viewModel.currentViewMode == .favorites {
+                                                                        viewModel.reloadList(currentMode: viewModel.currentViewMode)
                                                                     }
                                                                 } else {
                                                                     viewModel.addToFavorites(soundId: sound.id)
@@ -298,13 +279,6 @@ struct SoundsView: View {
                                                                 Label("Ver Todos os Sons Desse Autor", systemImage: "person")
                                                             }
 
-//                                                            Button {
-//                                                                viewModel.selectedSound = sound
-//                                                                viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = true
-//                                                            } label: {
-//                                                                Label(SoundOptionsHelper.getSuggestOtherAuthorNameButtonTitle(authorId: sound.authorId), systemImage: "exclamationmark.bubble")
-//                                                            }
-
                                                             Button {
                                                                 viewModel.selectedSound = sound
                                                                 subviewToOpen = .soundDetailView
@@ -318,7 +292,7 @@ struct SoundsView: View {
                                             }
                                         }
                                     }
-                                    .searchable(text: $searchText)
+                                    .searchable(text: $viewModel.searchText)
                                     .disableAutocorrection(true)
                                     .padding(.horizontal)
                                     .padding(.top, 7)
@@ -333,8 +307,8 @@ struct SoundsView: View {
                                             columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
                                         }
                                     }
-                                    .onReceive(trendsHelper.$soundIdToGoTo) { soundIdToGoTo in
-                                        if shouldScrollToAndHighlight(soundId: soundIdToGoTo) {
+                                    .onChange(of: soundIdToGoTo) {
+                                        if !$0.isEmpty {
                                             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
                                                 withAnimation {
                                                     proxy.scrollTo(soundIdToGoTo, anchor: .center)
@@ -345,20 +319,28 @@ struct SoundsView: View {
                                     }
                                 }
 
-                                if UserSettings.getShowExplicitContent() == false, currentViewMode != .favorites {
-                                    Text(UIDevice.current.userInterfaceIdiom == .phone ? Shared.contentFilterMessageForSoundsiPhone : Shared.contentFilterMessageForSoundsiPadMac)
-                                        .multilineTextAlignment(.center)
-                                        .padding(.top, explicitOffWarningTopPadding)
-                                        .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? explicitOffWarningPhoneBottomPadding : explicitOffWarningPadBottomPadding)
+                                if UserSettings.getShowExplicitContent() == false, viewModel.currentViewMode != .favorites {
+                                    ExplicitDisabledWarning(
+                                        text: UIDevice.isiPhone ? Shared.contentFilterMessageForSoundsiPhone : Shared.contentFilterMessageForSoundsiPadMac
+                                    )
+                                    .padding(.top, explicitOffWarningTopPadding)
+                                    .padding(.horizontal, explicitOffWarningBottomPadding)
                                 }
 
-                                if searchText.isEmpty, currentViewMode != .favorites {
-                                    Text("\(viewModel.sounds.count) SONS.")
+                                if viewModel.searchText.isEmpty, viewModel.currentViewMode != .favorites {
+                                    Text("\(viewModel.sounds.count) SONS")
                                         .font(.footnote)
                                         .foregroundColor(.gray)
                                         .multilineTextAlignment(.center)
                                         .padding(.top, soundCountTopPadding)
                                         .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? soundCountPhoneBottomPadding : soundCountPadBottomPadding)
+                                }
+                            }
+                            .if(isAllowedToRefresh) {
+                                $0.refreshable {
+                                    Task { // Keep this Task to avoid "cancelled" issue.
+                                        await viewModel.sync(lastAttempt: AppPersistentMemory.getLastUpdateAttempt())
+                                    }
                                 }
                             }
                         }
@@ -368,34 +350,42 @@ struct SoundsView: View {
             .navigationTitle(Text(title))
             .navigationBarItems(leading: leadingToolbarControls(), trailing: trailingToolbarControls())
             .onAppear {
-                viewModel.reloadList(currentMode: currentViewMode)
+                print("SOUNDS VIEW - ON APPEAR")
+                viewModel.reloadList(currentMode: viewModel.currentViewMode)
 
                 columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
                 viewModel.donateActivity()
-                viewModel.sendUserPersonalTrendsToServerIfEnabled()
-                
+                Task {
+                    await viewModel.sendUserPersonalTrendsToServerIfEnabled()
+                }
+
                 if AppPersistentMemory.getHasShownNotificationsOnboarding() == false {
                     subviewToOpen = .onboardingView
                     showingModalView = true
                     AppPersistentMemory.setHasSeen70WhatsNewScreen(to: true) // Prevent the What's New screen from appearing when switching tabs
-                } else if AppPersistentMemory.getHasSeen70WhatsNewScreen() == false {
-                    if UIDevice.current.userInterfaceIdiom == .phone {
-                        subviewToOpen = .whatsNewView
-                        showingModalView = true
-                    } else {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                            subviewToOpen = .whatsNewView
-                            showingModalView = true
-                        }
-                    }
                 }
 
                 if !AppPersistentMemory.getHasSeenRecurringDonationBanner() {
                     Task {
-                        networkRabbit.displayRecurringDonationBanner {
+                        NetworkRabbit.shared.displayRecurringDonationBanner {
                             shouldDisplayRecurringDonationBanner = $0
                         }
                     }
+                }
+
+                Task {
+                    if AppPersistentMemory.getHasSeenRetroBanner() {
+                        shouldDisplayRetrospectiveBanner = false
+                    } else {
+                        shouldDisplayRetrospectiveBanner = await RetroView.ViewModel.shouldDisplayBanner()
+                    }
+                }
+
+                if !AppPersistentMemory.getHasSeenFirstUpdateIncentiveBanner() {
+                    shouldDisplayUpdateIncentiveBanner = UpdateIncentive.shouldDisplayBanner(
+                        currentSystemVersion: UIDevice.current.systemVersion,
+                        deviceModel: UIDevice.modelName
+                    )
                 }
 
                 // TODO: Needs refactor. .onAppear is called before the AppDelegate, rendering this useless.
@@ -403,12 +393,6 @@ struct SoundsView: View {
                     viewModel.showMoveDatabaseIssueAlert()
                 }
             }
-//            .sheet(isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog) {
-//                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog,
-//                                   didCopySupportAddress: .constant(false),
-//                                   subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.selectedSound?.title ?? ""),
-//                                   emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.selectedSound?.authorName ?? "", viewModel.selectedSound?.id ?? ""))
-//            }
             .sheet(isPresented: $viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog) {
                 EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog,
                                    didCopySupportAddress: .constant(false),
@@ -434,19 +418,27 @@ struct SoundsView: View {
                         deleteFolderAide.updateFolderList = true
                         deleteFolderAide.showAlert = false
                     }), secondaryButton: .cancel(Text("Cancelar")))
+
+                case .twoOptionsOneRedownload:
+                    return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .default(Text("Baixar Conteúdo Novamente"), action: {
+                        guard let content = viewModel.selectedSound else { return }
+                        viewModel.redownloadServerContent(withId: content.id)
+                    }), secondaryButton: .cancel(Text("Fechar")))
+
+                case .twoOptionsOneContinue:
+                    return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .default(Text("Continuar"), action: {
+                        AppPersistentMemory.increaseShareManyMessageShowCountByOne()
+                        viewModel.shareSelected()
+                    }), secondaryButton: .cancel(Text("Cancelar")))
                 }
             }
             .sheet(isPresented: $viewModel.isShowingShareSheet) {
                 viewModel.iPadShareSheet
             }
-            .sheet(isPresented: $showingModalView, onDismiss: {
-                if subviewToOpen == .whatsNewView {
-                    AppPersistentMemory.setHasSeen70WhatsNewScreen(to: true)
-                }
-            }) {
+            .sheet(isPresented: $showingModalView) {
                 switch subviewToOpen {
                  case .onboardingView:
-                    OnboardingView(isBeingShown: $showingModalView)
+                    FirstOnboardingView(isBeingShown: $showingModalView)
                         .interactiveDismissDisabled(UIDevice.current.userInterfaceIdiom == .phone ? true : false)
                     
                 case .addToFolderView:
@@ -457,43 +449,41 @@ struct SoundsView: View {
                                     selectedSounds: viewModel.selectedSounds!)
                     
                 case .shareAsVideoView:
-                    if #available(iOS 16.0, *) {
-                        ShareAsVideoView(
-                            viewModel: ShareAsVideoViewViewModel(content: viewModel.selectedSound!, subtitle: viewModel.selectedSound?.authorName ?? .empty),
-                            isBeingShown: $showingModalView,
-                            result: $shareAsVideo_Result,
-                            useLongerGeneratingVideoMessage: false
-                        )
-                    } else {
-                        ShareAsVideoLegacyView(
-                            viewModel: ShareAsVideoLegacyViewViewModel(content: viewModel.selectedSound!),
-                            isBeingShown: $showingModalView,
-                            result: $shareAsVideo_Result,
-                            useLongerGeneratingVideoMessage: false
-                        )
-                    }
-                    
-                case .settingsView:
+                    ShareAsVideoView(
+                        viewModel: ShareAsVideoViewViewModel(content: viewModel.selectedSound!, subtitle: viewModel.selectedSound?.authorName ?? .empty),
+                        isBeingShown: $showingModalView,
+                        result: $shareAsVideo_Result,
+                        useLongerGeneratingVideoMessage: false
+                    )
+
+                case .settingsView, .whatsNewView:
                     SettingsCasingWithCloseView(isBeingShown: $showingModalView)
                         .environmentObject(settingsHelper)
-                    
-                case .whatsNewView:
-                    WhatsNewView(isBeingShown: $showingModalView)
 
                 case .syncInfoView:
                     SyncInfoView(
                         isBeingShown: $showingModalView,
-                        lastUpdateAttempt: lastUpdateAttempt,
-                        lastUpdateDate: lastUpdateDate
+                        lastUpdateAttempt: AppPersistentMemory.getLastUpdateAttempt(),
+                        lastUpdateDate: AppPersistentMemory.getLastUpdateDate()
                     )
 
                 case .soundDetailView:
-                    SoundDetailView(isBeingShown: $showingModalView, sound: viewModel.selectedSound ?? Sound(title: ""))
+                    SoundDetailView(
+                        isBeingShown: $showingModalView,
+                        sound: viewModel.selectedSound ?? Sound(title: "")
+                    )
+
+                case .retrospective:
+                    RetroView(
+                        viewModel: .init(),
+                        isBeingShown: $showingModalView,
+                        analyticsString: $retroExportAnalytics
+                    )
                 }
             }
             .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in
                 if shouldUpdate {
-                    viewModel.reloadList(currentMode: currentViewMode)
+                    viewModel.reloadList(currentMode: viewModel.currentViewMode)
                     settingsHelper.updateSoundsList = false
                 }
             }
@@ -502,7 +492,11 @@ struct SoundsView: View {
                     if shareAsVideo_Result.exportMethod == .saveAsVideo {
                         viewModel.showVideoSavedSuccessfullyToast()
                     } else {
-                        viewModel.shareVideo(withPath: videoResultPath, andContentId: shareAsVideo_Result.contentId)
+                        viewModel.shareVideo(
+                            withPath: videoResultPath,
+                            andContentId: shareAsVideo_Result.contentId,
+                            title: viewModel.selectedSound?.title ?? ""
+                        )
                     }
                 }
             }
@@ -516,38 +510,62 @@ struct SoundsView: View {
                 if (showingModalView == false) && hadSuccessAddingToFolder {
                     // Need to get count before clearing the Set.
                     let selectedCount: Int = viewModel.selectionKeeper.count
-                    
+
                     if currentSoundsListMode == .selection {
                         viewModel.stopSelecting()
                     }
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-                        withAnimation {
-                            shouldDisplayAddedToFolderToast = true
-                        }
-                        TapticFeedback.success()
+
+                    viewModel.displayToast(toastText: pluralization.getAddedToFolderToastText(folderName: folderName)) {
+                        folderName = nil
+                        hadSuccessAddingToFolder = false
                     }
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                        withAnimation {
-                            shouldDisplayAddedToFolderToast = false
-                            folderName = nil
-                            hadSuccessAddingToFolder = false
-                        }
-                    }
-                    
+
                     if pluralization == .plural {
-                        viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFolder(\(selectedCount))")
+                        Analytics.sendUsageMetricToServer(
+                            originatingScreen: "SoundsView",
+                            action: "didAddManySoundsToFolder(\(selectedCount))"
+                        )
                     }
+                } else if 
+                    (showingModalView == false) &&
+                    subviewToOpen == .retrospective &&
+                    !retroExportAnalytics.isEmpty
+                {
+                    viewModel.displayToast(
+                        toastText: "Imagens salvas com sucesso."
+                    )
+
+                    Analytics.sendUsageMetricToServer(
+                        originatingScreen: "SoundsView",
+                        action: "didExportRetro2023Images(\(retroExportAnalytics))"
+                    )
+
+                    retroExportAnalytics = ""
                 }
             }
-            .onChange(of: updateList) { updateList in
-                if updateList {
-                    viewModel.reloadList(currentMode: currentViewMode)
-                    self.updateList = false
+            .onChange(of: viewModel.selectionKeeper.count) {
+                guard currentSoundsListMode == .selection else { return }
+                areManyActionButtonsEnabled = $0 > 0
+                if viewModel.currentViewMode == .favorites || viewModel.allSelectedAreFavorites() {
+                    favoriteButtonTitle = "Desfav."
+                    favoriteButtonImage = "star.slash"
+                } else {
+                    favoriteButtonTitle = "Favoritar"
+                    favoriteButtonImage = "star"
                 }
             }
-            
+            .onReceive(trendsHelper.$soundIdToGoTo) {
+                if shouldScrollToAndHighlight(soundId: $0) {
+                    soundIdToGoTo = $0
+                }
+            }
+            .oneTimeTask {
+                print("SOUNDS VIEW - ONE TIME TASK")
+                if viewModel.currentViewMode == .allSounds {
+                    await viewModel.sync(lastAttempt: AppPersistentMemory.getLastUpdateAttempt())
+                }
+            }
+
             if displayFloatingSelectorView {
                 VStack {
                     Spacer()
@@ -556,61 +574,67 @@ struct SoundsView: View {
                         .padding()
                 }
             }
-            
-            if shouldDisplayAddedToFolderToast {
+
+            if currentSoundsListMode == .selection {
                 VStack {
                     Spacer()
-                    
-                    ToastView(text: pluralization.getAddedToFolderToastText(folderName: folderName))
-                        .padding(.horizontal)
-                        .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? toastViewBottomPaddingPhone : toastViewBottomPaddingPad)
+
+                    FloatingSelectionOptionsView(
+                        areButtonsEnabled: $areManyActionButtonsEnabled,
+                        favoriteTitle: $favoriteButtonTitle,
+                        favoriteSystemImage: $favoriteButtonImage,
+                        shareIsProcessing: $viewModel.shareManyIsProcessing,
+                        favoriteAction: {
+                            viewModel.addRemoveManyFromFavorites()
+                        },
+                        folderAction: {
+                            viewModel.prepareSelectedToAddToFolder()
+                            subviewToOpen = .addToFolderView
+                            showingModalView = true
+                        },
+                        shareAction: {
+                            viewModel.showShareManyAlert()
+                        }
+                    )
                 }
-                .transition(.moveAndFade)
-            }
-            
-            if viewModel.displaySharedSuccessfullyToast {
-                VStack {
-                    Spacer()
-                    
-                    ToastView(text: viewModel.shareBannerMessage)
-                        .padding(.horizontal)
-                        .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? toastViewBottomPaddingPhone : toastViewBottomPaddingPad)
-                }
-                .transition(.moveAndFade)
             }
 
-//            if shouldDisplaySyncToast {
-//                VStack {
-//                    Spacer()
-//
-//                    ToastView(text: "Sincronização concluída com sucesso.")
-//                        .padding(.horizontal)
-//                        .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? toastViewBottomPaddingPhone : toastViewBottomPaddingPad)
-//                }
-//                .transition(.moveAndFade)
-//            }
+            if viewModel.showToastView {
+                VStack {
+                    Spacer()
+                    
+                    ToastView(
+                        icon: viewModel.toastIcon,
+                        iconColor: viewModel.toastIconColor,
+                        text: viewModel.toastText
+                    )
+                    .padding(.horizontal)
+                    .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? toastViewBottomPaddingPhone : toastViewBottomPaddingPad)
+                }
+                .transition(.moveAndFade)
+            }
         }
     }
     
     @ViewBuilder func floatingSelectorView() -> some View {
-        Picker("Exibição", selection: $currentViewMode) {
+        Picker("Exibição", selection: $viewModel.currentViewMode) {
             Text("Todos")
-                .tag(ViewMode.allSounds)
-            
+                .tag(SoundsViewMode.allSounds)
+
             Text("Favoritos")
-                .tag(ViewMode.favorites)
-            
+                .tag(SoundsViewMode.favorites)
+
             Text("Pastas")
-                .tag(ViewMode.folders)
-            
+                .tag(SoundsViewMode.folders)
+
             Text("Por Autor")
-                .tag(ViewMode.byAuthor)
+                .tag(SoundsViewMode.byAuthor)
         }
         .pickerStyle(.segmented)
         .background(.regularMaterial)
         .cornerRadius(8)
-        .onChange(of: currentViewMode) { viewModel.reloadList(currentMode: $0) }
-        .disabled(isLoadingSounds && currentViewMode == .allSounds)
+        .onChange(of: viewModel.currentViewMode) { viewModel.reloadList(currentMode: $0) }
+        .disabled(isLoadingSounds && viewModel.currentViewMode == .allSounds)
     }
     
     @ViewBuilder func leadingToolbarControls() -> some View {
@@ -622,28 +646,26 @@ struct SoundsView: View {
                 Text("Cancelar")
                     .bold()
             }
-            
-//            Button {
-//                viewModel.shareSelected()
-//            } label: {
-//                Label("Compartilhar", systemImage: "square.and.arrow.up")
-//            }.disabled(viewModel.selectionKeeper.count == 0 || viewModel.selectionKeeper.count > 5)
         } else {
-            Button {
-                subviewToOpen = .settingsView
-                showingModalView = true
-            } label: {
-                Image(systemName: "gearshape")
+            if UIDevice.current.userInterfaceIdiom == .phone {
+                Button {
+                    subviewToOpen = .settingsView
+                    showingModalView = true
+                } label: {
+                    Image(systemName: "gearshape")
+                }
+            } else {
+                EmptyView()
             }
         }
     }
     
     @ViewBuilder func trailingToolbarControls() -> some View {
-        if currentViewMode == .folders {
+        if viewModel.currentViewMode == .folders {
             EmptyView()
         } else {
             HStack(spacing: 15) {
-                if currentViewMode == .byAuthor {
+                if viewModel.currentViewMode == .byAuthor {
                     Menu {
                         Section {
                             Picker("Ordenação de Autores", selection: $viewModel.authorSortOption) {
@@ -664,33 +686,7 @@ struct SoundsView: View {
                         authorSortAction = AuthorSortOption(rawValue: authorSortOption) ?? .nameAscending
                     })
                 } else {
-                    if currentSoundsListMode == .selection {
-                        Button {
-                            // Need to get count before clearing the Set.
-                            let selectedCount: Int = viewModel.selectionKeeper.count
-                            
-                            if currentViewMode == .favorites || viewModel.allSelectedAreFavorites() {
-                                viewModel.removeSelectedFromFavorites()
-                                viewModel.stopSelecting()
-                                viewModel.reloadList(currentMode: currentViewMode)
-                                viewModel.sendUsageMetricToServer(action: "didRemoveManySoundsFromFavorites(\(selectedCount))")
-                            } else {
-                                viewModel.addSelectedToFavorites()
-                                viewModel.stopSelecting()
-                                viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFavorites(\(selectedCount))")
-                            }
-                        } label: {
-                            Image(systemName: currentViewMode == .favorites || viewModel.allSelectedAreFavorites() ? "star.slash" : "star")
-                        }.disabled(viewModel.selectionKeeper.count == 0)
-                        
-                        Button {
-                            viewModel.prepareSelectedToAddToFolder()
-                            subviewToOpen = .addToFolderView
-                            showingModalView = true
-                        } label: {
-                            Image(systemName: "folder.badge.plus")
-                        }.disabled(viewModel.selectionKeeper.count == 0)
-                    } else {
+                    if currentSoundsListMode == .regular {
                         SyncStatusView()
                             .onTapGesture {
                                 subviewToOpen = .syncInfoView
@@ -704,7 +700,7 @@ struct SoundsView: View {
                                 viewModel.startSelecting()
                             } label: {
                                 Label(currentSoundsListMode == .selection ? "Cancelar Seleção" : "Selecionar", systemImage: currentSoundsListMode == .selection ? "xmark.circle" : "checkmark.circle")
-                            }.disabled(currentViewMode == .favorites && viewModel.sounds.count == 0)
+                            }.disabled(viewModel.currentViewMode == .favorites && viewModel.sounds.count == 0)
                         }
                         
                         Section {
@@ -746,35 +742,35 @@ struct SoundsView: View {
     }
     
     private func shouldScrollToAndHighlight(soundId: String) -> Bool {
-        guard soundId.isEmpty == false else {
-            return false
-        }
-        currentViewMode = .allSounds
-        
-        if searchText.isEmpty == false {
-            searchText = .empty
+        guard !soundId.isEmpty else { return false }
+        viewModel.currentViewMode = .allSounds
+
+        if !viewModel.searchText.isEmpty {
+            viewModel.searchText = ""
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
-        
+
         viewModel.highlightKeeper.insert(soundId)
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
             viewModel.highlightKeeper.remove(soundId)
         }
-        
-        self.trendsHelper.soundIdToGoTo = .empty
+
+        self.trendsHelper.soundIdToGoTo = ""
         return true // This tells the ScrollViewProxy "yes, go ahead and scroll, there was a soundId received". Unfortunately, passing the proxy as a parameter did not work and this code was made more complex because of this.
     }
 }
 
 struct SoundsView_Previews: PreviewProvider {
-
     static var previews: some View {
-        SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue,
-                                                  authorSortOption: AuthorSortOption.nameAscending.rawValue,
-                                                  currentSoundsListMode: .constant(.regular)),
-                   currentViewMode: .allSounds,
-                   currentSoundsListMode: .constant(.regular),
-                   updateList: .constant(true))
+        SoundsView(
+            viewModel: SoundsViewViewModel(
+                currentViewMode: .allSounds,
+                soundSortOption: SoundSortOption.dateAddedDescending.rawValue,
+                authorSortOption: AuthorSortOption.nameAscending.rawValue,
+                currentSoundsListMode: .constant(.regular),
+                syncValues: SyncValues()
+            ),
+            currentSoundsListMode: .constant(.regular)
+        )
     }
-
 }

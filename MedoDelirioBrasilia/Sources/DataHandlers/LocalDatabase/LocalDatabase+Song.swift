@@ -64,7 +64,9 @@ extension LocalDatabase {
         let genre_id = Expression<String>("genreId")
         let id = Expression<String>("id")
 
-        let query = songTable.select(songTable[*], musicGenreTable[name]).join(musicGenreTable, on: songTable[genre_id] == musicGenreTable[id]).filter(id == songId)
+        let query = songTable.select(songTable[*], musicGenreTable[name])
+            .join(musicGenreTable, on: songTable[genre_id] == musicGenreTable[id])
+            .filter(songTable[id] == songId)
 
         for queriedSong in try db.prepare(query) {
             var song: Song = try queriedSong.decode()
@@ -98,5 +100,14 @@ extension LocalDatabase {
         } else {
             throw LocalDatabaseError.songNotFound
         }
+    }
+
+    func setIsFromServer(to value: Bool, onSongId songId: String) throws {
+        let id = Expression<String>("id")
+        let query = songTable.filter(id == songId)
+        let updateQuery = query.update(
+            Expression<Bool>("isFromServer") <- value
+        )
+        try db.run(updateQuery)
     }
 }

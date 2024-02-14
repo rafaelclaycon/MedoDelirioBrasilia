@@ -2,17 +2,19 @@
 import Foundation
 
 class NetworkRabbitStub: NetworkRabbitProtocol {
+
     var serverPath: String
     
     var serverShouldBeUnavailable = false
     var fetchUpdateEventsResult: SyncResult = .nothingToUpdate
-    
+    var retroStartingVersion: String?
+
     init() {
         serverPath = ""
     }
     
-    func checkServerStatus(completionHandler: @escaping (Bool) -> Void) {
-        completionHandler(!serverShouldBeUnavailable)
+    func serverIsAvailable() async -> Bool {
+        return !serverShouldBeUnavailable
     }
     
     func getSoundShareCountStats(timeInterval: TrendsTimeInterval, completionHandler: @escaping ([ServerShareCountStat]?, NetworkRabbitError?) -> Void) {
@@ -36,5 +38,9 @@ class NetworkRabbitStub: NetworkRabbitProtocol {
         default:
             return []
         }
+    }
+
+    func retroStartingVersion() async -> String? {
+        return retroStartingVersion
     }
 }
