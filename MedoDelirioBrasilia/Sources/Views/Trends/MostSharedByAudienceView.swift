@@ -27,19 +27,21 @@ struct MostSharedByAudienceView: View {
     private var dropDownText: String {
         switch viewModel.timeIntervalOption {
         case .last24Hours:
-            return Shared.Trends.last24Hours
+            Shared.Trends.last24Hours
+        case .last3Days:
+            Shared.Trends.last3Days
         case .lastWeek:
-            return Shared.Trends.lastWeek
+            Shared.Trends.lastWeek
         case .lastMonth:
-            return Shared.Trends.lastMonth
+            Shared.Trends.lastMonth
         case .year2024:
-            return Shared.Trends.year2024
+            Shared.Trends.year2024
         case .year2023:
-            return Shared.Trends.year2023
+            Shared.Trends.year2023
         case .year2022:
-            return Shared.Trends.year2022
+            Shared.Trends.year2022
         case .allTime:
-            return Shared.Trends.allTime
+            Shared.Trends.allTime
         }
     }
 
@@ -161,6 +163,7 @@ struct MostSharedByAudienceView: View {
             Menu {
                 Picker("Período", selection: $viewModel.timeIntervalOption) {
                     Text(Shared.Trends.last24Hours).tag(TrendsTimeInterval.last24Hours)
+                    Text(Shared.Trends.last3Days).tag(TrendsTimeInterval.last3Days)
                     Text(Shared.Trends.lastWeek).tag(TrendsTimeInterval.lastWeek)
                     Text(Shared.Trends.lastMonth).tag(TrendsTimeInterval.lastMonth)
                     Text(Shared.Trends.year2023).tag(TrendsTimeInterval.year2023)

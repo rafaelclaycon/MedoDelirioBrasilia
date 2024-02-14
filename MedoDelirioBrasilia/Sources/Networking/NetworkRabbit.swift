@@ -51,6 +51,10 @@ class NetworkRabbit: NetworkRabbitProtocol {
             let refDate: String = Date.dateAsString(addingDays: -1)
             url = URL(string: serverPath + "v3/sound-share-count-stats-from/\(refDate)")!
 
+        case .last3Days:
+            let refDate: String = Date.dateAsString(addingDays: -3)
+            url = URL(string: serverPath + "v3/sound-share-count-stats-from/\(refDate)")!
+
         case .lastWeek:
             let refDate: String = Date.dateAsString(addingDays: -7)
             url = URL(string: serverPath + "v3/sound-share-count-stats-from/\(refDate)")!
