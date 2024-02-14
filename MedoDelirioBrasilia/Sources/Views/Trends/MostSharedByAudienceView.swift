@@ -149,39 +149,27 @@ struct MostSharedByAudienceView: View {
     }
     
     @ViewBuilder func timeIntervalSelector() -> some View {
-        if UIDevice.isMac {
+        Menu {
             Picker("Período", selection: $viewModel.timeIntervalOption) {
-                Text(Shared.Trends.allTime).tag(TrendsTimeInterval.allTime)
-                Text(Shared.Trends.year2022).tag(TrendsTimeInterval.year2022)
-                Text(Shared.Trends.year2023).tag(TrendsTimeInterval.year2023)
-                Text(Shared.Trends.lastMonth).tag(TrendsTimeInterval.lastMonth)
-                Text(Shared.Trends.lastWeek).tag(TrendsTimeInterval.lastWeek)
                 Text(Shared.Trends.last24Hours).tag(TrendsTimeInterval.last24Hours)
+                Text(Shared.Trends.last3Days).tag(TrendsTimeInterval.last3Days)
+                Text(Shared.Trends.lastWeek).tag(TrendsTimeInterval.lastWeek)
+                Text(Shared.Trends.lastMonth).tag(TrendsTimeInterval.lastMonth)
+                Text(Shared.Trends.year2023).tag(TrendsTimeInterval.year2023)
+                Text(Shared.Trends.year2022).tag(TrendsTimeInterval.year2022)
+                Text(Shared.Trends.allTime).tag(TrendsTimeInterval.allTime)
             }
-            .pickerStyle(.segmented)
-        } else {
-            Menu {
-                Picker("Período", selection: $viewModel.timeIntervalOption) {
-                    Text(Shared.Trends.last24Hours).tag(TrendsTimeInterval.last24Hours)
-                    Text(Shared.Trends.last3Days).tag(TrendsTimeInterval.last3Days)
-                    Text(Shared.Trends.lastWeek).tag(TrendsTimeInterval.lastWeek)
-                    Text(Shared.Trends.lastMonth).tag(TrendsTimeInterval.lastMonth)
-                    Text(Shared.Trends.year2023).tag(TrendsTimeInterval.year2023)
-                    Text(Shared.Trends.year2022).tag(TrendsTimeInterval.year2022)
-                    Text(Shared.Trends.allTime).tag(TrendsTimeInterval.allTime)
-                }
-            } label: {
-                Label(dropDownText, systemImage: "chevron.up.chevron.down")
-            }
-            .onChange(of: viewModel.timeIntervalOption) {
-                viewModel.loadList(for: $0)
-                viewModel.donateActivity(forTimeInterval: $0)
-            }
-            .onReceive(trendsHelper.$timeIntervalToGoTo) { timeIntervalToGoTo in
-                if let option = timeIntervalToGoTo {
-                    DispatchQueue.main.async {
-                        viewModel.timeIntervalOption = option
-                    }
+        } label: {
+            Label(dropDownText, systemImage: "chevron.up.chevron.down")
+        }
+        .onChange(of: viewModel.timeIntervalOption) {
+            viewModel.loadList(for: $0)
+            viewModel.donateActivity(forTimeInterval: $0)
+        }
+        .onReceive(trendsHelper.$timeIntervalToGoTo) { timeIntervalToGoTo in
+            if let option = timeIntervalToGoTo {
+                DispatchQueue.main.async {
+                    viewModel.timeIntervalOption = option
                 }
             }
         }
