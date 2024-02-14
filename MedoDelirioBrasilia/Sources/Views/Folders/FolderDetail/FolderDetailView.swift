@@ -246,6 +246,7 @@ struct FolderDetailView: View {
                 } label: {
                     Image(systemName: viewModel.isPlayingPlaylist ? "stop.fill" : "play.fill")
                 }
+                .disabled(viewModel.sounds.isEmpty)
             } else {
                 selectionControls()
             }
@@ -257,10 +258,6 @@ struct FolderDetailView: View {
                     } label: {
                         Label(currentSoundsListMode == .selection ? "Cancelar Seleção" : "Selecionar", systemImage: currentSoundsListMode == .selection ? "xmark.circle" : "checkmark.circle")
                     }
-                }
-
-                Section {
-
                 }
 
                 Section {
@@ -276,7 +273,7 @@ struct FolderDetailView: View {
                                 .tag(2)
                         }
                     }
-                    .disabled(viewModel.sounds.count == 0)
+                    .disabled(viewModel.sounds.isEmpty)
                 }
 
                 //                    Section {
@@ -312,7 +309,7 @@ struct FolderDetailView: View {
             } label: {
                 Image(systemName: "ellipsis.circle")
             }
-            .disabled(viewModel.isPlayingPlaylist)
+            .disabled(viewModel.isPlayingPlaylist || viewModel.sounds.isEmpty)
             .onChange(of: viewModel.soundSortOption, perform: { soundSortOption in
                 switch soundSortOption {
                 case 1:

@@ -10,6 +10,8 @@ import SwiftUI
 
 class FolderDetailViewViewModel: ObservableObject {
 
+    // MARK: - Published Properties
+
     @Published var sounds = [Sound]()
     
     @Published var soundSortOption: Int = FolderSoundSortOption.titleAscending.rawValue
@@ -36,11 +38,15 @@ class FolderDetailViewViewModel: ObservableObject {
     @Published var alertMessage: String = ""
     @Published var showAlert: Bool = false
     @Published var alertType: FolderDetailAlertType = .ok
-    
+
+    // MARK: - Initializers
+
     init(currentSoundsListMode: Binding<SoundsListMode>) {
         self.currentSoundsListMode = currentSoundsListMode
     }
-    
+
+    // MARK: - Functions
+
     func reloadSoundList(
         withFolderContents folderContents: [UserFolderContent]?,
         sortedBy sortOption: FolderSoundSortOption
