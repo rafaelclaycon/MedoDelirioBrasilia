@@ -14,6 +14,7 @@ struct MostSharedByAudienceView: View {
     @Binding var activePadScreen: PadScreen?
     @State private var shouldDisplayNewUpdateWayBanner: Bool = false
     @EnvironmentObject var trendsHelper: TrendsHelper
+    @Environment(\.scenePhase) var scenePhase
 
     private let columns = [
         GridItem(.flexible())
@@ -130,11 +131,18 @@ struct MostSharedByAudienceView: View {
             if viewModel.ranking.isEmpty {
                 viewModel.loadList(for: viewModel.timeIntervalOption)
                 viewModel.donateActivity(forTimeInterval: viewModel.timeIntervalOption)
+            } else if viewModel.lastCheckDate.twoMinutesHavePassed {
+                viewModel.loadList(for: viewModel.timeIntervalOption)
             }
             shouldDisplayNewUpdateWayBanner = !AppPersistentMemory.hasSeenNewTrendsUpdateWayBanner()
         }
         .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
+        }
+        .onChange(of: scenePhase) { newPhase in
+            if newPhase == .active, viewModel.lastCheckDate.twoMinutesHavePassed {
+                viewModel.loadList(for: viewModel.timeIntervalOption)
+            }
         }
     }
     
