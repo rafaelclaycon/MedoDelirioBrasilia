@@ -33,6 +33,7 @@ internal protocol LocalDatabaseProtocol {
     func insert(updateEvent newUpdateEvent: UpdateEvent) throws
     func markAsSucceeded(updateEventId: UUID) throws
     func unsuccessfulUpdates() throws -> [UpdateEvent]
+    func exists(withId updateEventId: UUID) throws -> Bool
 
     // SyncLog
     func insert(syncLog newSyncLog: SyncLog)

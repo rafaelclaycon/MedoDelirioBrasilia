@@ -37,17 +37,26 @@ extension LocalDatabase {
         let did_succeed = Expression<Bool>("didSucceed")
         
         for row in try db.prepare(updateEventTable) {
-            let updateEvent = UpdateEvent(id: row[id],
-                                          contentId: row[content_id],
-                                          dateTime: row[date_time],
-                                          mediaType: MediaType(rawValue: row[media_type]) ?? .sound,
-                                          eventType: EventType(rawValue: row[event_type]) ?? .metadataUpdated,
-                                          didSucceed: row[did_succeed])
-            
+            let updateEvent = UpdateEvent(
+                id: row[id],
+                contentId: row[content_id],
+                dateTime: row[date_time],
+                mediaType: MediaType(rawValue: row[media_type]) ?? .sound,
+                eventType: EventType(rawValue: row[event_type]) ?? .metadataUpdated,
+                didSucceed: row[did_succeed]
+            )
+
             if !(updateEvent.didSucceed ?? false) {
                 queriedItems.append(updateEvent)
             }
         }
         return queriedItems
+    }
+
+    func exists(withId updateEventId: UUID) throws -> Bool {
+        let id = Expression<UUID>("id")
+        let query = updateEventTable.filter(id == updateEventId)
+        let count = try db.scalar(query.count)
+        return count > 0
     }
 }
