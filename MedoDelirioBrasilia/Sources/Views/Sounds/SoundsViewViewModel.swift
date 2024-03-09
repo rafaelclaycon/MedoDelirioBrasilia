@@ -448,7 +448,7 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
 
             var message = "Aguarde \(lastAttempt.minutesAndSecondsFromNow) para atualizar novamente."
             if UserSettings.getShowUpdateDateOnUI() {
-                message += " \(AppPersistentMemory.getLastUpdateDate())"
+                message += " \(LocalDatabase.shared.dateTimeOfLastUpdate())"
             }
 
             return displayToast(
@@ -465,7 +465,7 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
 
         var message = syncValues.syncStatus.description
         if UserSettings.getShowUpdateDateOnUI() {
-            message += " \(AppPersistentMemory.getLastUpdateDate())"
+            message += " \(LocalDatabase.shared.dateTimeOfLastUpdate())"
         }
 
         displayToast(
