@@ -30,6 +30,13 @@ final class SyncManagerTests: XCTestCase {
         try super.tearDownWithError()
     }
 
+
+}
+
+// MARK: - User Flows
+
+extension SyncManagerTests {
+
     func testSync_whenAlreadyHasSomeSuccessfulUpdatesAndLastUpdateDateIsAllForSomeReason_shouldSaveOnlyNewUpdates() async throws {
         syncService.updates = [
             .init(id: UUID(uuidString: "6AE46488-4872-4C71-84D7-E38A69F123DD")!, contentId: "1", mediaType: .sound, eventType: .created),

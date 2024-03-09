@@ -59,4 +59,19 @@ extension LocalDatabase {
         let count = try db.scalar(query.count)
         return count > 0
     }
+
+    func dateTimeOfLastUpdate() -> String {
+        let dateTimeColumn = Expression<String>("dateTime")
+        let query = updateEventTable.order(dateTimeColumn.desc).select(dateTimeColumn).limit(1)
+        do {
+            if let row = try db.prepare(query).compactMap({ $0 }).first {
+                return row[dateTimeColumn]
+            } else {
+                return "all"
+            }
+        } catch {
+            print("Error: \(error)")
+            return "all"
+        }
+    }
 }

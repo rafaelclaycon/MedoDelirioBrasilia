@@ -149,6 +149,17 @@ class LocalDatabaseStub: LocalDatabaseProtocol {
         preexistingUpdates.contains(where: { $0.id == updateEventId })
     }
 
+    func dateTimeOfLastUpdate() -> String {
+        let dateFormatter = ISO8601DateFormatter()
+        let dateArray = preexistingUpdates.compactMap { dateFormatter.date(from: $0.dateTime) }
+
+        if let latestDate = dateArray.max() {
+            return dateFormatter.string(from: latestDate)
+        } else {
+            return "all"
+        }
+    }
+
     // SyncLog
 
     func insert(syncLog newSyncLog: MedoDelirio.SyncLog) {

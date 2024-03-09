@@ -83,7 +83,7 @@ class SyncManager {
 
     func retrieveServerUpdates() async throws -> Double {
         print("retrieveServerUpdates()")
-        let lastUpdateDate = AppPersistentMemory.getLastUpdateDate()
+        let lastUpdateDate = database.dateTimeOfLastUpdate()
         print("lastUpdateDate: \(lastUpdateDate)")
         serverUpdates = try await service.getUpdates(from: lastUpdateDate)
         if var serverUpdates = serverUpdates {
@@ -121,8 +121,6 @@ class SyncManager {
 
             await service.process(updateEvent: update)
         }
-
-        AppPersistentMemory.setLastUpdateDate(to: Date.now.iso8601withFractionalSeconds)
     }
 
     func syncUnsuccessful() async throws {
