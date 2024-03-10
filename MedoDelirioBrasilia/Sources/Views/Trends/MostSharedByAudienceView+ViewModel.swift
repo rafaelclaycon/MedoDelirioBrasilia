@@ -103,6 +103,9 @@ extension MostSharedByAudienceView {
             case .last24Hours:
                 activityType = Shared.ActivityTypes.viewLast24HoursTopChart
                 activityName = "Ver sons mais compartilhados nas últimas 24 horas"
+            case .last3Days:
+                activityType = Shared.ActivityTypes.viewLast24HoursTopChart
+                activityName = "Ver sons mais compartilhados nos últimos 3 dias"
             case .lastWeek:
                 activityType = Shared.ActivityTypes.viewLastWeekTopChart
                 activityName = "Ver sons mais compartilhados na última semana"

@@ -40,7 +40,6 @@ enum SpeedBasis {
     }
 }
 
-@available(iOS 16.0, *)
 struct MarqueeModifier: ViewModifier {
     
     let spacing: CGFloat
@@ -106,7 +105,6 @@ struct MarqueeModifier: ViewModifier {
     }
 }
 
-@available(iOS 16.0, *)
 extension View {
     
     func marquee(
@@ -124,7 +122,6 @@ extension View {
     }
 }
 
-@available(iOS 16.0, *)
 struct MarqueeModifier_Previews: PreviewProvider {
 
     static var previews: some View {

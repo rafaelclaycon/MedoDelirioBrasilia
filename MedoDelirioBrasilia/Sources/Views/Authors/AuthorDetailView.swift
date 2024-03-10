@@ -38,19 +38,7 @@ struct AuthorDetailView: View {
     private var edgesToIgnore: SwiftUI.Edge.Set {
         return author.photo == nil ? [] : .top
     }
-    
-    private var isiOS15: Bool {
-        if #available(iOS 16, *) {
-            return false
-        } else {
-            return true
-        }
-    }
-    
-    private var shouldDisplayMenuBesideAuthorName: Bool {
-        !isiOS15
-    }
-    
+
     private func getScrollOffset(_ geometry: GeometryProxy) -> CGFloat {
         geometry.frame(in: .global).minY
     }
@@ -141,10 +129,8 @@ struct AuthorDetailView: View {
                                         .bold()
                                     
                                     Spacer()
-                                    
-                                    if shouldDisplayMenuBesideAuthorName {
-                                        moreOptionsMenu(isOnToolbar: false)
-                                    }
+
+                                    moreOptionsMenu(isOnToolbar: false)
                                 }
                                 
                                 if currentSoundsListMode == .selection {
@@ -259,23 +245,15 @@ struct AuthorDetailView: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                if isiOS15 {
-                    // On regular mode, just show the ... menu
-                    if currentSoundsListMode == .regular {
-                        moreOptionsMenu(isOnToolbar: true)
-                    } else {
-                        // On scroll, show Select controls if not at the top
-                        if showSelectionControlsInToolbar {
-                            toolbarSelectionControls()
-                        } else {
-                            // Otherwise, show just the ... menu
-                            moreOptionsMenu(isOnToolbar: true)
-                        }
-                    }
+                // On regular mode, just show the ... menu
+                if currentSoundsListMode == .regular {
+                    moreOptionsMenu(isOnToolbar: true)
                 } else {
+                    // On scroll, show Select controls if not at the top
                     if showSelectionControlsInToolbar {
                         toolbarSelectionControls()
-                    } else if showMenuOnToolbarForiOS16AndHigher {
+                    } else {
+                        // Otherwise, show just the ... menu
                         moreOptionsMenu(isOnToolbar: true)
                     }
                 }
@@ -339,21 +317,12 @@ struct AuthorDetailView: View {
                 viewModel.iPadShareSheet
             }
             .sheet(isPresented: $showingModalView) {
-                if #available(iOS 16.0, *) {
-                    ShareAsVideoView(
-                        viewModel: ShareAsVideoViewViewModel(content: viewModel.selectedSound!, subtitle: viewModel.selectedSound?.authorName ?? .empty),
-                        isBeingShown: $showingModalView,
-                        result: $shareAsVideo_Result,
-                        useLongerGeneratingVideoMessage: false
-                    )
-                } else {
-                    ShareAsVideoLegacyView(
-                        viewModel: ShareAsVideoLegacyViewViewModel(content: viewModel.selectedSound!),
-                        isBeingShown: $showingModalView,
-                        result: $shareAsVideo_Result,
-                        useLongerGeneratingVideoMessage: false
-                    )
-                }
+                ShareAsVideoView(
+                    viewModel: ShareAsVideoViewViewModel(content: viewModel.selectedSound!, subtitle: viewModel.selectedSound?.authorName ?? .empty),
+                    isBeingShown: $showingModalView,
+                    result: $shareAsVideo_Result,
+                    useLongerGeneratingVideoMessage: false
+                )
             }
             .onChange(of: shareAsVideo_Result.videoFilepath) { videoResultPath in
                 if videoResultPath.isEmpty == false {
@@ -594,12 +563,14 @@ struct ViewOffsetKey: PreferenceKey {
 
 }
 
-struct AuthorDetailView_Previews: PreviewProvider {
-
-    static var previews: some View {
-        AuthorDetailView(viewModel: AuthorDetailViewViewModel(originatingScreenName: "originalScreen", authorName: "João da Silva", currentSoundsListMode: .constant(.selection)),
-                         author: Author(id: "0D944922-7E50-4DED-A8FD-F44EFCAE82A2", name: "Abraham Weintraub", photo: "https://conteudo.imguol.com.br/c/noticias/fd/2020/06/22/11fev2020---o-entao-ministro-da-educacao-abraham-weintraub-falando-a-comissao-do-senado-sobre-problemas-na-correcao-das-provas-do-enem-1592860563916_v2_3x4.jpg"),
-                         currentSoundsListMode: .constant(.selection))
-    }
-
+#Preview {
+    AuthorDetailView(
+        viewModel: .init(authorName: "João da Silva", currentSoundsListMode: .constant(.selection)),
+        author: .init(
+            id: "0D944922-7E50-4DED-A8FD-F44EFCAE82A2",
+            name: "Abraham Weintraub",
+            photo: "https://conteudo.imguol.com.br/c/noticias/fd/2020/06/22/11fev2020---o-entao-ministro-da-educacao-abraham-weintraub-falando-a-comissao-do-senado-sobre-problemas-na-correcao-das-provas-do-enem-1592860563916_v2_3x4.jpg"
+        ),
+        currentSoundsListMode: .constant(.selection)
+    )
 }

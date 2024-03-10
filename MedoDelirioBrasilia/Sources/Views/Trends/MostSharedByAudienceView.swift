@@ -14,6 +14,7 @@ struct MostSharedByAudienceView: View {
     @Binding var activePadScreen: PadScreen?
     @State private var shouldDisplayNewUpdateWayBanner: Bool = false
     @EnvironmentObject var trendsHelper: TrendsHelper
+    @Environment(\.scenePhase) var scenePhase
 
     private let columns = [
         GridItem(.flexible())
@@ -26,19 +27,21 @@ struct MostSharedByAudienceView: View {
     private var dropDownText: String {
         switch viewModel.timeIntervalOption {
         case .last24Hours:
-            return Shared.Trends.last24Hours
+            Shared.Trends.last24Hours
+        case .last3Days:
+            Shared.Trends.last3Days
         case .lastWeek:
-            return Shared.Trends.lastWeek
+            Shared.Trends.lastWeek
         case .lastMonth:
-            return Shared.Trends.lastMonth
+            Shared.Trends.lastMonth
         case .year2024:
-            return Shared.Trends.year2024
+            Shared.Trends.year2024
         case .year2023:
-            return Shared.Trends.year2023
+            Shared.Trends.year2023
         case .year2022:
-            return Shared.Trends.year2022
+            Shared.Trends.year2022
         case .allTime:
-            return Shared.Trends.allTime
+            Shared.Trends.allTime
         }
     }
 
@@ -130,47 +133,43 @@ struct MostSharedByAudienceView: View {
             if viewModel.ranking.isEmpty {
                 viewModel.loadList(for: viewModel.timeIntervalOption)
                 viewModel.donateActivity(forTimeInterval: viewModel.timeIntervalOption)
+            } else if viewModel.lastCheckDate.twoMinutesHavePassed {
+                viewModel.loadList(for: viewModel.timeIntervalOption)
             }
             shouldDisplayNewUpdateWayBanner = !AppPersistentMemory.hasSeenNewTrendsUpdateWayBanner()
         }
         .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
         }
+        .onChange(of: scenePhase) { newPhase in
+            if newPhase == .active, viewModel.lastCheckDate.twoMinutesHavePassed {
+                viewModel.loadList(for: viewModel.timeIntervalOption)
+            }
+        }
     }
     
     @ViewBuilder func timeIntervalSelector() -> some View {
-        if UIDevice.isMac {
+        Menu {
             Picker("Período", selection: $viewModel.timeIntervalOption) {
-                Text(Shared.Trends.allTime).tag(TrendsTimeInterval.allTime)
-                Text(Shared.Trends.year2022).tag(TrendsTimeInterval.year2022)
-                Text(Shared.Trends.year2023).tag(TrendsTimeInterval.year2023)
-                Text(Shared.Trends.lastMonth).tag(TrendsTimeInterval.lastMonth)
-                Text(Shared.Trends.lastWeek).tag(TrendsTimeInterval.lastWeek)
                 Text(Shared.Trends.last24Hours).tag(TrendsTimeInterval.last24Hours)
+                Text(Shared.Trends.last3Days).tag(TrendsTimeInterval.last3Days)
+                Text(Shared.Trends.lastWeek).tag(TrendsTimeInterval.lastWeek)
+                Text(Shared.Trends.lastMonth).tag(TrendsTimeInterval.lastMonth)
+                Text(Shared.Trends.year2023).tag(TrendsTimeInterval.year2023)
+                Text(Shared.Trends.year2022).tag(TrendsTimeInterval.year2022)
+                Text(Shared.Trends.allTime).tag(TrendsTimeInterval.allTime)
             }
-            .pickerStyle(.segmented)
-        } else {
-            Menu {
-                Picker("Período", selection: $viewModel.timeIntervalOption) {
-                    Text(Shared.Trends.last24Hours).tag(TrendsTimeInterval.last24Hours)
-                    Text(Shared.Trends.lastWeek).tag(TrendsTimeInterval.lastWeek)
-                    Text(Shared.Trends.lastMonth).tag(TrendsTimeInterval.lastMonth)
-                    Text(Shared.Trends.year2023).tag(TrendsTimeInterval.year2023)
-                    Text(Shared.Trends.year2022).tag(TrendsTimeInterval.year2022)
-                    Text(Shared.Trends.allTime).tag(TrendsTimeInterval.allTime)
-                }
-            } label: {
-                Label(dropDownText, systemImage: "chevron.up.chevron.down")
-            }
-            .onChange(of: viewModel.timeIntervalOption) {
-                viewModel.loadList(for: $0)
-                viewModel.donateActivity(forTimeInterval: $0)
-            }
-            .onReceive(trendsHelper.$timeIntervalToGoTo) { timeIntervalToGoTo in
-                if let option = timeIntervalToGoTo {
-                    DispatchQueue.main.async {
-                        viewModel.timeIntervalOption = option
-                    }
+        } label: {
+            Label(dropDownText, systemImage: "chevron.up.chevron.down")
+        }
+        .onChange(of: viewModel.timeIntervalOption) {
+            viewModel.loadList(for: $0)
+            viewModel.donateActivity(forTimeInterval: $0)
+        }
+        .onReceive(trendsHelper.$timeIntervalToGoTo) { timeIntervalToGoTo in
+            if let option = timeIntervalToGoTo {
+                DispatchQueue.main.async {
+                    viewModel.timeIntervalOption = option
                 }
             }
         }

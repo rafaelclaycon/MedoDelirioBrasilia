@@ -174,32 +174,30 @@ struct RetroView: View {
         secondView: some View
     ) -> some View {
         Button {
-            if #available(iOS 16.0, *) {
-                Task {
-                    let firstRenderer = ImageRenderer(content: firstView)
-                    firstRenderer.scale = 3.0
-                    if let firstImage = firstRenderer.uiImage {
-                        do {
-                            try await viewModel.save(image: firstImage)
-                        } catch {
-                            viewModel.exportErrors.append("1ª imagem: \(error.localizedDescription)")
-                            dump(error)
-                        }
+            Task {
+                let firstRenderer = ImageRenderer(content: firstView)
+                firstRenderer.scale = 3.0
+                if let firstImage = firstRenderer.uiImage {
+                    do {
+                        try await viewModel.save(image: firstImage)
+                    } catch {
+                        viewModel.exportErrors.append("1ª imagem: \(error.localizedDescription)")
+                        dump(error)
                     }
-
-                    let secondRenderer = ImageRenderer(content: secondView)
-                    secondRenderer.scale = 3.0
-                    if let secondImage = secondRenderer.uiImage {
-                        do {
-                            try await viewModel.save(image: secondImage)
-                        } catch {
-                            viewModel.exportErrors.append("2ª imagem: \(error.localizedDescription)")
-                            dump(error)
-                        }
-                    }
-
-                    viewModel.shouldProcessPostExport.toggle()
                 }
+
+                let secondRenderer = ImageRenderer(content: secondView)
+                secondRenderer.scale = 3.0
+                if let secondImage = secondRenderer.uiImage {
+                    do {
+                        try await viewModel.save(image: secondImage)
+                    } catch {
+                        viewModel.exportErrors.append("2ª imagem: \(error.localizedDescription)")
+                        dump(error)
+                    }
+                }
+
+                viewModel.shouldProcessPostExport.toggle()
             }
         } label: {
             HStack(spacing: 15) {

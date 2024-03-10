@@ -2,7 +2,7 @@
 
 ![Medo e Delírio em Brasília written over a bright yellow and green background calling back to the Brazilian flag.](MedoDelirioBrasilia/Resources/readme_logo.png)
 
-iOS, iPadOS, and macOS app with sound snippets/memes from [Medo e Delírio em Brasília](https://medoedelirioembrasilia.com.br), a Brazilian podcast by Pedro Daltro and Cristiano Botafogo chronicling the tumultuous and chaotic political landscape in Brasil since 2018.
+iOS, iPadOS, and macOS app with sound snippets/memes from [Medo e Delírio em Brasília](https://podcasts.apple.com/br/podcast/medo-e-del%C3%ADrio-em-bras%C3%ADlia/id1502134265), a Brazilian podcast by Pedro Daltro and Cristiano Botafogo chronicling the tumultuous and chaotic political landscape in Brasil since 2018.
 
 🌟 Star this repo! ↗️
 
@@ -25,7 +25,7 @@ GIF demos below (they may take a while to load due to size).
 1. Select multiple sounds at once to add to Favorites or to a folder.
 1. Group sounds into Folders for easy access (just like tagging).
 1. Share content as video on your socials (reply to people with memes).
-1. Support for iPhone, iPad and Apple Silicon Macs.
+1. Support for iPhone, iPad, Apple Silicon Macs, and Apple Vision Pro.
 1. Dark Mode support.
 1. New content delivered by an entirely Swift sync system.
 
@@ -34,9 +34,9 @@ GIF demos below (they may take a while to load due to size).
 
 To build and run this project, you'll need:
 
-- A Mac running macOS 13 Ventura;
-- Xcode 14.3.1;
-- iOS 15.0+ simulators installed (Xcode 14.3.1 comes with iOS 16.4, so you'll be fine).
+- A Mac running macOS 13.5 Ventura or later;
+- Xcode 15.2 or later;
+- iOS 16.0+ simulators installed (Xcode 15.2 comes with iOS 17.2, so you'll be fine).
 
 To test and fiddle with the Trends tab, you'll need:
 

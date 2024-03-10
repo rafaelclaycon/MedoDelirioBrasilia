@@ -47,6 +47,8 @@ class LocalDatabaseStub: LocalDatabaseProtocol {
     var topSharedSounds: [TopChartItem] = []
     var shareCount: Int = 0
     var shareDates: [Date] = []
+    var numberOfTimesInsertUpdateEventWasCalled = 0
+    var preexistingUpdates: [UpdateEvent] = []
 
     // Sound
 
@@ -125,6 +127,7 @@ class LocalDatabaseStub: LocalDatabaseProtocol {
 
     func insert(updateEvent newUpdateEvent: MedoDelirio.UpdateEvent) throws {
         didCallInsertUpdateEvent = true
+        numberOfTimesInsertUpdateEventWasCalled += 1
         if let error = errorToThrowOnInsertUpdateEvent {
             throw error
         }
@@ -140,6 +143,21 @@ class LocalDatabaseStub: LocalDatabaseProtocol {
             return []
         }
         return updates
+    }
+
+    func exists(withId updateEventId: UUID) -> Bool {
+        preexistingUpdates.contains(where: { $0.id == updateEventId })
+    }
+
+    func dateTimeOfLastUpdate() -> String {
+        let dateFormatter = ISO8601DateFormatter()
+        let dateArray = preexistingUpdates.compactMap { dateFormatter.date(from: $0.dateTime) }
+
+        if let latestDate = dateArray.max() {
+            return dateFormatter.string(from: latestDate)
+        } else {
+            return "all"
+        }
     }
 
     // SyncLog

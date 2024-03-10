@@ -137,11 +137,14 @@ struct SoundsView: View {
     var body: some View {
         ZStack {
             VStack {
-                NavigationLink(destination: AuthorDetailView(viewModel: AuthorDetailViewViewModel(originatingScreenName: Shared.ScreenNames.soundsView,
-                                                                                                  authorName: authorToAutoOpen.name, currentSoundsListMode: $currentSoundsListMode),
-                                                             author: authorToAutoOpen,
-                                                             currentSoundsListMode: $currentSoundsListMode),
-                               isActive: $autoOpenAuthor) { EmptyView() }
+                NavigationLink(
+                    destination: AuthorDetailView(
+                        viewModel: .init(authorName: authorToAutoOpen.name, currentSoundsListMode: $currentSoundsListMode),
+                        author: authorToAutoOpen,
+                        currentSoundsListMode: $currentSoundsListMode
+                    ),
+                    isActive: $autoOpenAuthor
+                ) { EmptyView() }
 
                 if showNoFavoritesView {
                     NoFavoritesView()
@@ -368,16 +371,6 @@ struct SoundsView: View {
                     subviewToOpen = .onboardingView
                     showingModalView = true
                     AppPersistentMemory.setHasSeen70WhatsNewScreen(to: true) // Prevent the What's New screen from appearing when switching tabs
-                } else if AppPersistentMemory.getHasSeen70WhatsNewScreen() == false {
-                    if UIDevice.current.userInterfaceIdiom == .phone {
-                        subviewToOpen = .whatsNewView
-                        showingModalView = true
-                    } else {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                            subviewToOpen = .whatsNewView
-                            showingModalView = true
-                        }
-                    }
                 }
 
                 if !AppPersistentMemory.getHasSeenRecurringDonationBanner() {
@@ -453,7 +446,7 @@ struct SoundsView: View {
             .sheet(isPresented: $showingModalView) {
                 switch subviewToOpen {
                  case .onboardingView:
-                    OnboardingView(isBeingShown: $showingModalView)
+                    FirstOnboardingView(isBeingShown: $showingModalView)
                         .interactiveDismissDisabled(UIDevice.current.userInterfaceIdiom == .phone ? true : false)
                     
                 case .addToFolderView:
@@ -464,34 +457,22 @@ struct SoundsView: View {
                                     selectedSounds: viewModel.selectedSounds!)
                     
                 case .shareAsVideoView:
-                    if #available(iOS 16.0, *) {
-                        ShareAsVideoView(
-                            viewModel: ShareAsVideoViewViewModel(content: viewModel.selectedSound!, subtitle: viewModel.selectedSound?.authorName ?? .empty),
-                            isBeingShown: $showingModalView,
-                            result: $shareAsVideo_Result,
-                            useLongerGeneratingVideoMessage: false
-                        )
-                    } else {
-                        ShareAsVideoLegacyView(
-                            viewModel: ShareAsVideoLegacyViewViewModel(content: viewModel.selectedSound!),
-                            isBeingShown: $showingModalView,
-                            result: $shareAsVideo_Result,
-                            useLongerGeneratingVideoMessage: false
-                        )
-                    }
-                    
-                case .settingsView:
+                    ShareAsVideoView(
+                        viewModel: ShareAsVideoViewViewModel(content: viewModel.selectedSound!, subtitle: viewModel.selectedSound?.authorName ?? .empty),
+                        isBeingShown: $showingModalView,
+                        result: $shareAsVideo_Result,
+                        useLongerGeneratingVideoMessage: false
+                    )
+
+                case .settingsView, .whatsNewView:
                     SettingsCasingWithCloseView(isBeingShown: $showingModalView)
                         .environmentObject(settingsHelper)
-                    
-                case .whatsNewView:
-                    WhatsNewView(isBeingShown: $showingModalView)
 
                 case .syncInfoView:
                     SyncInfoView(
                         isBeingShown: $showingModalView,
                         lastUpdateAttempt: AppPersistentMemory.getLastUpdateAttempt(),
-                        lastUpdateDate: AppPersistentMemory.getLastUpdateDate()
+                        lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
                     )
 
                 case .soundDetailView:

@@ -85,14 +85,16 @@ class SyncManager {
 
     func retrieveServerUpdates() async throws -> Double {
         print("retrieveServerUpdates()")
-        let lastUpdateDate = AppPersistentMemory.getLastUpdateDate()
+        let lastUpdateDate = database.dateTimeOfLastUpdate()
         print("lastUpdateDate: \(lastUpdateDate)")
         serverUpdates = try await service.getUpdates(from: lastUpdateDate)
         if var serverUpdates = serverUpdates {
             for i in serverUpdates.indices {
-                serverUpdates[i].didSucceed = false
                 do {
-                    try database.insert(updateEvent: serverUpdates[i])
+                    if try !database.exists(withId: serverUpdates[i].id) {
+                        serverUpdates[i].didSucceed = false
+                        try database.insert(updateEvent: serverUpdates[i])
+                    }
                 } catch {
                     throw SyncError.errorInsertingUpdateEvent(updateEventId: serverUpdates[i].id.uuidString)
                 }
@@ -127,8 +129,6 @@ class SyncManager {
             updateNumber += 1
             delegate?.didProcessUpdate(number: updateNumber)
         }
-
-        AppPersistentMemory.setLastUpdateDate(to: Date.now.iso8601withFractionalSeconds)
     }
 
     func syncUnsuccessful() async throws {

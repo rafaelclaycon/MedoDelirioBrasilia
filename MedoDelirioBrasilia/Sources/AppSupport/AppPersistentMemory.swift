@@ -132,14 +132,6 @@ class AppPersistentMemory {
         return Bool(value as! Bool)
     }
 
-    static func getLastUpdateDate() -> String {
-        let userDefaults = UserDefaults.standard
-        guard let value = userDefaults.object(forKey: "lastUpdateDate") else {
-            return "all"
-        }
-        return String(value as! String)
-    }
-
     static func getShareManyMessageShowCount() -> Int {
         let userDefaults = UserDefaults.standard
         guard let value = userDefaults.object(forKey: "shareManyMessageShowCount") else {
@@ -269,11 +261,6 @@ class AppPersistentMemory {
         let currentCount = AppPersistentMemory.getShareManyMessageShowCount()
         let userDefaults = UserDefaults.standard
         userDefaults.set(currentCount + 1, forKey: "shareManyMessageShowCount")
-    }
-
-    static func setLastUpdateDate(to newValue: String) {
-        let userDefaults = UserDefaults.standard
-        userDefaults.set(newValue, forKey: "lastUpdateDate")
     }
 
     static func setLastUpdateAttempt(to newValue: String) {

@@ -52,7 +52,15 @@ struct DiagnosticsView: View {
             }
 
             Section {
-                Toggle("Exibir data hora última atualização na UI", isOn: $showUpdateDateOnUI)
+                ShareLink(
+                    item: FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("medo_db.sqlite3")
+                ) {
+                    Text("Exportar base de dados")
+                }
+            }
+
+            Section {
+                Toggle("Exibir data e hora da última atualização na UI", isOn: $showUpdateDateOnUI)
                     .onChange(of: showUpdateDateOnUI) {
                         UserSettings.setShowUpdateDateOnUI(to: $0)
                     }
@@ -99,7 +107,7 @@ struct DiagnosticsView: View {
             networkLogs?.sort(by: { $0.dateTime > $1.dateTime })*/
         }
     }
-    
+
     func getContentName(contentId: String) -> String {
         do {
             if let sound: Sound = try LocalDatabase.shared.sound(withId: contentId) {

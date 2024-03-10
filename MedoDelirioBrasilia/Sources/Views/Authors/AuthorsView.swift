@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AuthorsView: View {
 
-    @StateObject private var viewModel = AuthorsViewViewModel()
+    @StateObject private var viewModel = ViewModel()
     @State private var searchText = ""
     @Binding var sortOption: Int
     @Binding var sortAction: AuthorSortOption
@@ -20,7 +20,7 @@ struct AuthorsView: View {
     @ScaledMetric private var authorCountTopPadding = 10
     @ScaledMetric private var authorCountPhoneBottomPadding = 68
     @ScaledMetric private var authorCountPadBottomPadding = 22
-    
+
     var searchResults: [Author] {
         if searchText.isEmpty {
             return viewModel.authors
@@ -50,8 +50,17 @@ struct AuthorsView: View {
                     NoSearchResultsView(searchText: $searchText)
                 } else {
                     ForEach(searchResults) { author in
-                        NavigationLink(destination: AuthorDetailView(viewModel: AuthorDetailViewViewModel(originatingScreenName: searchText.isEmpty ? Shared.ScreenNames.authorsView : "\(Shared.ScreenNames.authorsView)(\(searchText))", authorName: author.name, currentSoundsListMode: $currentSoundsListMode), author: author, currentSoundsListMode: $currentSoundsListMode)) {
-                            AuthorCell(authorName: author.name, authorImageURL: author.photo ?? "", soundCount: "\(author.soundCount ?? 0)")
+                        NavigationLink(
+                            destination: AuthorDetailView(
+                                viewModel: .init(
+                                    authorName: author.name,
+                                    currentSoundsListMode: $currentSoundsListMode
+                                ),
+                                author: author,
+                                currentSoundsListMode: $currentSoundsListMode
+                            )
+                        ) {
+                            AuthorCell(author: author)
                                 .padding(.horizontal, 5)
                         }
                     }
@@ -92,13 +101,12 @@ struct AuthorsView: View {
             }
         }
     }
-
 }
 
-struct AuthorsView_Previews: PreviewProvider {
-
-    static var previews: some View {
-        AuthorsView(sortOption: .constant(AuthorSortOption.nameAscending.rawValue), sortAction: .constant(.nameAscending), searchTextForControl: .constant(.empty))
-    }
-
+#Preview {
+    AuthorsView(
+        sortOption: .constant(AuthorSortOption.nameAscending.rawValue),
+        sortAction: .constant(.nameAscending),
+        searchTextForControl: .constant(.empty)
+    )
 }

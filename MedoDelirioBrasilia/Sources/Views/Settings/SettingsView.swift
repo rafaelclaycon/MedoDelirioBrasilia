@@ -23,15 +23,7 @@ struct SettingsView: View {
     @State private var didCopySupportAddressOnEmailPicker: Bool = false
     
     @State private var showLargeCreatorImage: Bool = false
-    
-    private var helpTheAppFooterText: String {
-        if #available(iOS 16.0, *) {
-            return "Doações recorrentes a partir de R$ 30 ganham um selo especial aqui."
-        } else {
-            return ""
-        }
-    }
-    
+
     var body: some View {
         ZStack {
             Form {
@@ -107,7 +99,7 @@ struct SettingsView: View {
                     } header: {
                         Text("Ajude o app")
                     } footer: {
-                        Text(helpTheAppFooterText)
+                        Text("Doações recorrentes a partir de R$ 30 ganham um selo especial aqui.")
                     }
                 }
                 
