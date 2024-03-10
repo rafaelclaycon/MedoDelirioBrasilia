@@ -464,7 +464,7 @@ struct SoundsView: View {
                     SyncInfoView(
                         isBeingShown: $showingModalView,
                         lastUpdateAttempt: AppPersistentMemory.getLastUpdateAttempt(),
-                        lastUpdateDate: AppPersistentMemory.getLastUpdateDate()
+                        lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
                     )
 
                 case .soundDetailView:
