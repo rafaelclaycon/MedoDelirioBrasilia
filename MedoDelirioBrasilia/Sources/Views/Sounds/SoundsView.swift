@@ -79,6 +79,9 @@ struct SoundsView: View {
     // Retro 2023
     @State private var retroExportAnalytics: String = ""
 
+    // Long Update Banner
+    @State private var displayLongUpdateBanner: Bool = false
+
     private var searchResults: [Sound] {
         if viewModel.searchText.isEmpty {
             return viewModel.sounds
@@ -560,6 +563,11 @@ struct SoundsView: View {
                 } else {
                     favoriteButtonTitle = "Favoritar"
                     favoriteButtonImage = "star"
+                }
+            }
+            .onChange(of: viewModel.processedUpdateNumber) { _ in
+                withAnimation {
+                    displayLongUpdateBanner = viewModel.totalUpdateCount >= 10 && viewModel.processedUpdateNumber != viewModel.totalUpdateCount
                 }
             }
             .onReceive(trendsHelper.$soundIdToGoTo) {

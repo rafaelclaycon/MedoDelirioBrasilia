@@ -16,18 +16,18 @@ struct LongUpdateBanner: View {
 
     var body: some View {
         HStack(spacing: 15) {
-            Image(systemName: "arrow.clockwise.circle")
+            Image(systemName: "arrow.clockwise.icloud.fill")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 36)
-                .foregroundColor(.blue)
+                .frame(width: 42)
+                .foregroundColor(.green)
 
             VStack(alignment: .leading, spacing: 8) {
                 Text("Atualização Longa Em Andamento")
                     .bold()
                     .multilineTextAlignment(.leading)
 
-                Text("Novos sons estão sendo baixados. Por favor, deixe o **app aberto** até a atualização ser concluída.")
+                Text("Novidades estão sendo baixadas. Por favor, deixe o **app aberto** até a atualização ser concluída.")
                     .opacity(0.8)
                     .font(.callout)
 
@@ -36,7 +36,6 @@ struct LongUpdateBanner: View {
                     value: Double(completedNumber),
                     total: Double(totalUpdateCount)
                 )
-                .tint(.blue)
                 .padding(.top, 8)
                 .padding(.bottom, 10)
             }
