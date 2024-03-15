@@ -443,6 +443,7 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
     func sync(lastAttempt: String) async {
         print("lastAttempt: \(lastAttempt)")
         guard
+            CommandLine.arguments.contains("-IGNORE_2_MINUTE_SYNC_INTERVAL") ||
             lastAttempt == "" ||
             (lastAttempt.iso8601withFractionalSeconds?.twoMinutesHavePassed ?? false)
         else {

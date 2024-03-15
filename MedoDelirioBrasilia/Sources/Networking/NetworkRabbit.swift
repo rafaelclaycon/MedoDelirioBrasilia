@@ -18,7 +18,7 @@ class NetworkRabbit: NetworkRabbitProtocol {
 
     // NetworkRabbit(serverPath: "https://654e-2804-1b3-8640-96df-d0b4-dd5d-6922-bb1b.sa.ngrok.io/api/")
     static let shared = NetworkRabbit(
-        serverPath: CommandLine.arguments.contains("-UNDER_DEVELOPMENT") ? "http://127.0.0.1:8080/api/" : "http://170.187.141.103:8080/api/"
+        serverPath: CommandLine.arguments.contains("-UNDER_DEVELOPMENT") ? "http://127.0.0.1:8080/api/" : "http://medodelirioios.online:8080/api/"
     )
 
     init(serverPath: String) {
