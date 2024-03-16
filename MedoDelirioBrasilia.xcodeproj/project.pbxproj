@@ -1680,6 +1680,7 @@
 		D923127228AB0A6100436336 /* Novo e diferente, e top, e moderno (completo).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Novo e diferente, e top, e moderno (completo).mp3"; sourceTree = "<group>"; };
 		D9235E232969BF31001F8167 /* Roberto Jefferson - Um sujeito lombrosiano.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Roberto Jefferson - Um sujeito lombrosiano.mp3"; sourceTree = "<group>"; };
 		D9235E252969C08E001F8167 /* Rotina dos acampamentos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rotina dos acampamentos.mp3"; sourceTree = "<group>"; };
+		D92508E02BA5BBA90057268B /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		D9265740285A1EE700947165 /* LocalDatabase+Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+Log.swift"; sourceTree = "<group>"; };
 		D9267EE528D1271300C0DC6C /* Mc Douglinhas - Ui, que brega.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mc Douglinhas - Ui, que brega.mp3"; sourceTree = "<group>"; };
 		D9267EE628D1271400C0DC6C /* Milton Leite - Chato pra caralho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Milton Leite - Chato pra caralho.mp3"; sourceTree = "<group>"; };
@@ -4608,6 +4609,7 @@
 				D960AF262845BFE700ADF1F6 /* UserDefaultsKeys.swift */,
 				D9653D9C2882749C00C745F4 /* MedoDelirioBrasilia.entitlements */,
 				D98DBD3228491909008544F8 /* Info.plist */,
+				D92508E02BA5BBA90057268B /* PrivacyInfo.xcprivacy */,
 				D9625E8328238F9B00080852 /* Preview Content */,
 				D992E8252A185C8A00137469 /* InternalFolderNames.swift */,
 			);
