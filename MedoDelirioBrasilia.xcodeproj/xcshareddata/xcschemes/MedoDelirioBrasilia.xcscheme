@@ -70,6 +70,10 @@
             argument = "-FORCE_SHOW_HELP_THE_APP"
             isEnabled = "YES">
          </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-IGNORE_2_MINUTE_SYNC_INTERVAL"
+            isEnabled = "YES">
+         </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
