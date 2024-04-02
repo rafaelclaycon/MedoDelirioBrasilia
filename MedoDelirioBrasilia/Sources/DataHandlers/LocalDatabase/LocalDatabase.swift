@@ -108,7 +108,8 @@ extension LocalDatabase {
             AddRankingTypeToAudienceSharingStatisticTable(),
             AddDateAndVersionToUserFolderTables(),
             AddSyncTables(),
-            AddSongAndMusicGenreTables()
+            AddSongAndMusicGenreTables(),
+            AddExternalLinksFieldToAuthorTable()
         ]
     }
 

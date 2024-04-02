@@ -80,7 +80,9 @@ struct AuthorDetailView: View {
             }
         }
     }
-    
+
+    // MARK: - Computed Properties
+
     private var title: String {
         guard currentSoundsListMode == .regular else {
             if viewModel.selectionKeeper.count == 0 {
@@ -93,7 +95,26 @@ struct AuthorDetailView: View {
         }
         return author.name
     }
-    
+
+    private var externalLinks: [ExternalLink] {
+        guard let links = author.externalLinks else {
+            return []
+        }
+        guard let jsonData = links.data(using: .utf8) else {
+            return []
+        }
+        let decoder = JSONDecoder()
+        do {
+            let decodedLinks = try decoder.decode([ExternalLink].self, from: jsonData)
+            return decodedLinks
+        } catch {
+            print("Error decoding JSON: \(error)")
+            return []
+        }
+    }
+
+    // MARK: - View Body
+
     var body: some View {
         ZStack {
             VStack {
@@ -139,7 +160,23 @@ struct AuthorDetailView: View {
                                     if author.description != nil {
                                         Text(author.description ?? "")
                                     }
-                                    
+
+                                    if !externalLinks.isEmpty {
+                                        ViewThatFits(in: .horizontal) {
+                                            HStack(spacing: 10) {
+                                                ForEach(externalLinks, id: \.title) {
+                                                    ExternalLinkButton(title: $0.title, color: .red, symbol: $0.symbol, link: $0.link)
+                                                }
+                                            }
+                                            VStack(alignment: .leading) {
+                                                ForEach(externalLinks, id: \.title) {
+                                                    ExternalLinkButton(title: $0.title, color: .red, symbol: $0.symbol, link: $0.link)
+                                                }
+                                            }
+                                        }
+                                        .padding(.vertical, 4)
+                                    }
+
                                     Text(viewModel.getSoundCount())
                                         .font(.subheadline)
                                         .foregroundColor(.gray)
@@ -569,8 +606,9 @@ struct ViewOffsetKey: PreferenceKey {
         author: .init(
             id: "0D944922-7E50-4DED-A8FD-F44EFCAE82A2",
             name: "Abraham Weintraub",
-            photo: "https://conteudo.imguol.com.br/c/noticias/fd/2020/06/22/11fev2020---o-entao-ministro-da-educacao-abraham-weintraub-falando-a-comissao-do-senado-sobre-problemas-na-correcao-das-provas-do-enem-1592860563916_v2_3x4.jpg"
+            photo: "https://conteudo.imguol.com.br/c/noticias/fd/2020/06/22/11fev2020---o-entao-ministro-da-educacao-abraham-weintraub-falando-a-comissao-do-senado-sobre-problemas-na-correcao-das-provas-do-enem-1592860563916_v2_3x4.jpg",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
         ),
-        currentSoundsListMode: .constant(.selection)
+        currentSoundsListMode: .constant(.regular)
     )
 }
