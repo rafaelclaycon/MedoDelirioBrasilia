@@ -376,13 +376,13 @@ struct SoundsView: View {
                     AppPersistentMemory.setHasSeen70WhatsNewScreen(to: true) // Prevent the What's New screen from appearing when switching tabs
                 }
 
-                if !AppPersistentMemory.getHasSeenRecurringDonationBanner() {
-                    Task {
-                        NetworkRabbit.shared.displayRecurringDonationBanner {
-                            shouldDisplayRecurringDonationBanner = $0
-                        }
-                    }
-                }
+//                if !AppPersistentMemory.getHasSeenRecurringDonationBanner() {
+//                    Task {
+//                        NetworkRabbit.shared.displayRecurringDonationBanner {
+//                            shouldDisplayRecurringDonationBanner = $0
+//                        }
+//                    }
+//                }
 
                 Task {
                     if AppPersistentMemory.getHasSeenRetroBanner() {

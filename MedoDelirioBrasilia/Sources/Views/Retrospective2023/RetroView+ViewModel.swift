@@ -142,17 +142,17 @@ extension RetroView {
         // MARK: - Static Methods
 
         static func shouldDisplayBanner() async -> Bool {
-            guard await versionIsAllowedToDisplayRetro() else { return false }
-            guard LocalDatabase.shared.sharedSoundsCount() > 0 else { return false }
-            return true
+            // guard await versionIsAllowedToDisplayRetro() else { return false }
+            // guard LocalDatabase.shared.sharedSoundsCount() > 0 else { return false }
+            return false
         }
 
-        static func versionIsAllowedToDisplayRetro(
-            currentVersion: String = Versioneer.appVersion,
-            network: NetworkRabbitProtocol = NetworkRabbit.shared
-        ) async -> Bool {
-            guard let allowedVersion = await network.retroStartingVersion() else { return false }
-            return currentVersion >= allowedVersion
-        }
+//        static func versionIsAllowedToDisplayRetro(
+//            currentVersion: String = Versioneer.appVersion,
+//            network: NetworkRabbitProtocol = NetworkRabbit.shared
+//        ) async -> Bool {
+//            guard let allowedVersion = await network.retroStartingVersion() else { return false }
+//            return currentVersion >= allowedVersion
+//        }
     }
 }

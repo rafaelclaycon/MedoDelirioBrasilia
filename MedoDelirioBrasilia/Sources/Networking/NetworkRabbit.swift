@@ -9,7 +9,7 @@ internal protocol NetworkRabbitProtocol {
     func post(clientDeviceInfo: ClientDeviceInfo, completionHandler: @escaping (Bool?, NetworkRabbitError?) -> Void)
     func fetchUpdateEvents(from lastDate: String) async throws -> [UpdateEvent]
 
-    func retroStartingVersion() async -> String?
+    //func retroStartingVersion() async -> String?
 }
 
 class NetworkRabbit: NetworkRabbitProtocol {
@@ -100,26 +100,26 @@ class NetworkRabbit: NetworkRabbitProtocol {
         task.resume()
     }
 
-    func displayRecurringDonationBanner(completion: @escaping (Bool) -> Void) {
-        let url = URL(string: serverPath + "v3/display-recurring-donation-banner")!
-
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let httpResponse = response as? HTTPURLResponse else { return completion(false) }
-            guard httpResponse.statusCode == 200 else { return completion(false) }
-            if let data = data {
-                let shouldDisplay = String(data: data, encoding: .utf8)!
-                if shouldDisplay == "1" {
-                    completion(true)
-                } else {
-                    completion(false)
-                }
-            } else if error != nil {
-                completion(false)
-            }
-        }
-
-        task.resume()
-    }
+//    func displayRecurringDonationBanner(completion: @escaping (Bool) -> Void) {
+//        let url = URL(string: serverPath + "v3/display-recurring-donation-banner")!
+//
+//        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+//            guard let httpResponse = response as? HTTPURLResponse else { return completion(false) }
+//            guard httpResponse.statusCode == 200 else { return completion(false) }
+//            if let data = data {
+//                let shouldDisplay = String(data: data, encoding: .utf8)!
+//                if shouldDisplay == "1" {
+//                    completion(true)
+//                } else {
+//                    completion(false)
+//                }
+//            } else if error != nil {
+//                completion(false)
+//            }
+//        }
+//
+//        task.resume()
+//    }
     
     // MARK: - POST
     
