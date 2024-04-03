@@ -27,7 +27,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     
     @AppStorage("hasMigratedSoundsAuthors") private var hasMigratedSoundsAuthors = false
     @AppStorage("hasMigratedSongsMusicGenres") private var hasMigratedSongsMusicGenres = false
-    
+    @AppStorage("hasUpdatedExternalLinksOnFirstRun") private var hasUpdatedExternalLinksOnFirstRun = false
+
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
@@ -58,7 +59,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         prepareAudioPlayerOnMac()
         collectTelemetry()
         createFoldersForDownloadedContent()
-        
+        updateExternalLinks()
+
         return true
     }
     
@@ -219,6 +221,30 @@ extension AppDelegate {
         } catch {
             print("Error creating \(folderName) folder: \(error)")
             Logger.shared.logSyncError(description: "Erro ao tentar criar a pasta \(folderName): \(error.localizedDescription)", updateEventId: "")
+        }
+    }
+}
+
+extension AppDelegate {
+
+    func updateExternalLinks() {
+        // External Links was release on version 7.10. Because of the server architecture, author updates will arrive to older versions
+        // that know nothing about ELs. This func makes sure 7.10 onwards starts with the ELs in place that were ignored before.
+        // This should run only once.
+
+        if !hasUpdatedExternalLinksOnFirstRun {
+            Task {
+                let url = URL(string: NetworkRabbit.shared.serverPath + "v4/author-links-first-open")!
+                do {
+                    let authorsWithLinks: [Author] = try await NetworkRabbit.get(from: url)
+                    try authorsWithLinks.forEach { author in
+                        try LocalDatabase.shared.update(author: author)
+                    }
+                    hasUpdatedExternalLinksOnFirstRun = true
+                } catch {
+                    print(error)
+                }
+            }
         }
     }
 }
