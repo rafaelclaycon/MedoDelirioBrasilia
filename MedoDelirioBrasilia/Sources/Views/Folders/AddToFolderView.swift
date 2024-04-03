@@ -119,7 +119,7 @@ struct AddToFolderView: View {
                                         viewModel.showSomeSoundsAlreadyInFolderAlert(soundCountAlreadyInFolder: soundsAlreadyInFolder, folderName: folder.name)
                                     }
                                 } label: {
-                                    FolderCell(symbol: folder.symbol, name: folder.name, backgroundColor: folder.backgroundColor.toColor())
+                                    FolderCell(symbol: folder.symbol, name: folder.name, backgroundColor: folder.backgroundColor.toPastelColor())
                                 }
                                 .foregroundColor(.primary)
                             }

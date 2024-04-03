@@ -48,7 +48,8 @@ extension LocalDatabase {
         let updateQuery = query.update(
             Expression<String>("name") <- updatedAuthor.name,
             Expression<String?>("photo") <- updatedAuthor.photo,
-            Expression<String?>("description") <- updatedAuthor.description
+            Expression<String?>("description") <- updatedAuthor.description,
+            Expression<String?>("externalLinks") <- updatedAuthor.externalLinks
         )
         try db.run(updateQuery)
     }
