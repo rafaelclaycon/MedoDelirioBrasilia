@@ -240,6 +240,7 @@ extension AppDelegate {
                     try authorsWithLinks.forEach { author in
                         try LocalDatabase.shared.update(author: author)
                     }
+                    print("UPDATED \(authorsWithLinks.count) AUTHORS WITH LINKS")
                     hasUpdatedExternalLinksOnFirstRun = true
                 } catch {
                     print(error)
