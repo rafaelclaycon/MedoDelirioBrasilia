@@ -10,18 +10,15 @@ import Kingfisher
 
 struct ExternalLinkButton: View {
 
-    let title: String
-    let color: Color
-    let symbol: String
-    let link: String
+    let externalLink: ExternalLink
 
     var imageUrl: URL {
-        URL(string: "\(baseURL)images/\(symbol)")!
+        URL(string: "\(baseURL)images/\(externalLink.symbol)")!
     }
 
     var body: some View {
         Button {
-            OpenUtility.open(link: link)
+            OpenUtility.open(link: externalLink.link)
         } label: {
             HStack(spacing: 10) {
                 KFImage(imageUrl)
@@ -29,20 +26,22 @@ struct ExternalLinkButton: View {
                     .scaledToFit()
                     .frame(width: 22)
 
-                Text(title)
+                Text(externalLink.title)
             }
             .padding(.vertical, 2)
             .padding(.horizontal, 6)
         }
-        .capsule(colored: color)
+        .capsule(colored: externalLink.color.toColor())
     }
 }
 
 #Preview {
     ExternalLinkButton(
-        title: "YouTube",
-        color: .red,
-        symbol: "youtube-full-color.png",
-        link: "https://www.youtube.com/@CasimiroMiguel"
+        externalLink: .init(
+            symbol: "youtube-full-color.png",
+            title: "YouTube",
+            color: "red",
+            link: "https://www.youtube.com/@CasimiroMiguel"
+        )
     )
 }

@@ -63,7 +63,7 @@ struct FolderList: View {
                         NavigationLink {
                             FolderDetailView(viewModel: FolderDetailViewViewModel(currentSoundsListMode: $currentSoundsListMode), folder: folder, currentSoundsListMode: $currentSoundsListMode)
                         } label: {
-                            FolderCell(symbol: folder.symbol, name: folder.name, backgroundColor: folder.backgroundColor.toColor())
+                            FolderCell(symbol: folder.symbol, name: folder.name, backgroundColor: folder.backgroundColor.toPastelColor())
                                 .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                         }
                         .foregroundColor(.primary)

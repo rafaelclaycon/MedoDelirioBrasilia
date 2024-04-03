@@ -120,7 +120,7 @@ struct SidebarView: View {
                         selection: $state,
                         label: {
                             HStack(spacing: 15) {
-                                SidebarFolderIcon(symbol: folder.symbol, backgroundColor: folder.backgroundColor.toColor())
+                                SidebarFolderIcon(symbol: folder.symbol, backgroundColor: folder.backgroundColor.toPastelColor())
                                 Text(folder.name)
                             }
                         })

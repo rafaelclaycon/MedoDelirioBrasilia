@@ -165,12 +165,12 @@ struct AuthorDetailView: View {
                                         ViewThatFits(in: .horizontal) {
                                             HStack(spacing: 10) {
                                                 ForEach(externalLinks, id: \.title) {
-                                                    ExternalLinkButton(title: $0.title, color: .red, symbol: $0.symbol, link: $0.link)
+                                                    ExternalLinkButton(externalLink: $0)
                                                 }
                                             }
-                                            VStack(alignment: .leading) {
+                                            VStack(alignment: .leading, spacing: 15) {
                                                 ForEach(externalLinks, id: \.title) {
-                                                    ExternalLinkButton(title: $0.title, color: .red, symbol: $0.symbol, link: $0.link)
+                                                    ExternalLinkButton(externalLink: $0)
                                                 }
                                             }
                                         }
