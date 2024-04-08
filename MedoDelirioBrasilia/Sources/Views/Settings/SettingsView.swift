@@ -9,19 +9,24 @@ import SwiftUI
 
 struct SettingsView: View {
 
+    enum ToastType {
+        case email, pix
+    }
+
     @EnvironmentObject var helper: SettingsHelper
-    
+
     @State private var showExplicitSounds: Bool = UserSettings.getShowExplicitContent()
-    
+
     @State private var showChangeAppIcon: Bool = ProcessInfo.processInfo.isMacCatalystApp == false
-    
+
     @State private var showAskForMoneyView: Bool = false
     @State private var showToastView: Bool = false
+    @State private var toastType: ToastType = .pix
     @State private var donors: [Donor]? = nil
-    
+
     @State private var showEmailClientConfirmationDialog: Bool = false
     @State private var didCopySupportAddressOnEmailPicker: Bool = false
-    
+
     @State private var showLargeCreatorImage: Bool = false
 
     var body: some View {
@@ -95,7 +100,10 @@ struct SettingsView: View {
                         HelpTheAppView(donors: $donors, imageIsSelected: $showLargeCreatorImage)
                             .padding(donors != nil ? .top : .vertical)
                         
-                        DonateButtons(showToastView: $showToastView)
+                        DonateButtons(
+                            showToastView: $showToastView,
+                            toastType: $toastType
+                        )
                     } header: {
                         Text("Ajude o app")
                     } footer: {
@@ -169,14 +177,17 @@ struct SettingsView: View {
                 }
             }
             .popover(isPresented: $showEmailClientConfirmationDialog) {
-                EmailAppPickerView(isBeingShown: $showEmailClientConfirmationDialog,
-                                   didCopySupportAddress: $didCopySupportAddressOnEmailPicker,
-                                   subject: Shared.issueSuggestionEmailSubject,
-                                   emailBody: Shared.issueSuggestionEmailBody)
+                EmailAppPickerView(
+                    isBeingShown: $showEmailClientConfirmationDialog,
+                    didCopySupportAddress: $didCopySupportAddressOnEmailPicker,
+                    subject: Shared.issueSuggestionEmailSubject,
+                    emailBody: Shared.issueSuggestionEmailBody
+                )
             }
             .onChange(of: showEmailClientConfirmationDialog) { showEmailClientConfirmationDialog in
                 if showEmailClientConfirmationDialog == false {
                     if didCopySupportAddressOnEmailPicker {
+                        toastType = .email
                         withAnimation {
                             showToastView = true
                         }
@@ -202,9 +213,9 @@ struct SettingsView: View {
                     Spacer()
                     
                     ToastView(
-                        icon: "checkmark",
-                        iconColor: .green,
-                        text: didCopySupportAddressOnEmailPicker ? "E-mail de suporte copiado com sucesso." : "Chave copiada com sucesso!"
+                        icon: toastType == .email ? "checkmark" : "heart",
+                        iconColor: toastType == .email ? .green : .red,
+                        text: toastType == .email ? "E-mail copiado com sucesso." : randomThankYouString()
                     )
                     .padding(.horizontal)
                     .padding(.bottom, 15)
@@ -213,6 +224,22 @@ struct SettingsView: View {
             }
         }
     }
+
+    private func randomThankYouString() -> String {
+        let ending = [
+            "Obrigado!",
+            "Tem que manter isso, viu?",
+            "Alegria!",
+            "Éééé!",
+            "Vamos apoiar o circo!",
+            "Olha-Que-Legal!",
+            "Ai, que delícia!",
+            "Maravilhoso!",
+            "Vamo, comunistada!",
+            "Bora!"
+        ].randomElement() ?? ""
+        return "Chave copiada. \(ending)"
+    }
 }
 
 extension SettingsView {
@@ -220,6 +247,7 @@ extension SettingsView {
     struct DonateButtons: View {
 
         @Binding var showToastView: Bool
+        @Binding var toastType: ToastType
 
         private var copyPixKeyButtonHorizontalPadding: CGFloat {
             UIScreen.main.bounds.width > 400 ? 20 : 10
@@ -269,6 +297,7 @@ extension SettingsView {
                     Spacer()
 
                     Button {
+                        toastType = .pix
                         UIPasteboard.general.string = pixKey
                         withAnimation {
                             showToastView = true
