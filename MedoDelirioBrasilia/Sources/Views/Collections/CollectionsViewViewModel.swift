@@ -9,7 +9,7 @@ import Combine
 
 class CollectionsViewViewModel: ObservableObject {
 
-    @Published var collections = [ContentCollection]()
+    @Published var collections = [Reaction]()
     
     // Alerts
 //    @Published var alertTitle: String = ""
@@ -17,7 +17,7 @@ class CollectionsViewViewModel: ObservableObject {
 //    @Published var showAlert: Bool = false
 //    @Published var folderIdForDeletion: String = ""
     
-    func reloadCollectionList(withCollections outsideCollections: [ContentCollection]?) {
+    func reloadCollectionList(withCollections outsideCollections: [Reaction]?) {
         guard let actualCollections = outsideCollections, actualCollections.count > 0 else {
             return
         }

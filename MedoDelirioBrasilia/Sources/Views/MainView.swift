@@ -48,15 +48,15 @@ struct MainView: View {
                         Label("Sons", systemImage: "speaker.wave.3.fill")
                     }
                     .tag(PhoneTab.sounds)
-                    
-                    //                NavigationView {
-                    //                    CollectionsView()
-                    //                }
-                    //                .tabItem {
-                    //                    Label("Coleções", systemImage: "rectangle.grid.2x2.fill")
-                    //                }
-                    //                .tag(PhoneTab.collections)
-                    
+
+                    NavigationView {
+                        ReactionsView()
+                    }
+                    .tabItem {
+                        Label("Reações", systemImage: "rectangle.grid.2x2.fill")
+                    }
+                    .tag(PhoneTab.reactions)
+
                     NavigationView {
                         SongsView()
                             .environmentObject(settingsHelper)
