@@ -62,6 +62,13 @@ struct Sound: Hashable, Codable, Identifiable, MedoContentProtocol {
 }
 
 enum SoundError: Error {
-
     case fileNotFound(title: String)
+}
+
+extension Sound {
+    static let sampleSounds = [
+        Sound(title: "Alegria"),
+        Sound(title: "Maravilhoso!"),
+        Sound(title: "Cadê os machos?")
+    ]
 }

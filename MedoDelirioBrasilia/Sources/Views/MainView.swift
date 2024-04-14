@@ -30,13 +30,26 @@ struct MainView: View {
             if UIDevice.current.userInterfaceIdiom == .phone {
                 TabView(selection: $tabSelection) {
                     NavigationView {
-                        SoundsView(
-                            viewModel: SoundsViewViewModel(
+//                        SoundsView(
+//                            viewModel: SoundsViewViewModel(
+//                                currentViewMode: .allSounds,
+//                                soundSortOption: UserSettings.getSoundSortOption(),
+//                                authorSortOption: AuthorSortOption.nameAscending.rawValue,
+//                                currentSoundsListMode: $currentSoundsListMode,
+//                                syncValues: syncValues
+//                            ),
+//                            currentSoundsListMode: $currentSoundsListMode
+//                        )
+//                        .environmentObject(trendsHelper)
+//                        .environmentObject(settingsHelper)
+//                        .environmentObject(networkMonitor)
+
+                        PhoneSoundsContainer(
+                            viewModel: .init(
                                 currentViewMode: .allSounds,
                                 soundSortOption: UserSettings.getSoundSortOption(),
                                 authorSortOption: AuthorSortOption.nameAscending.rawValue,
-                                currentSoundsListMode: $currentSoundsListMode,
-                                syncValues: syncValues
+                                currentSoundsListMode: $currentSoundsListMode
                             ),
                             currentSoundsListMode: $currentSoundsListMode
                         )
@@ -48,7 +61,7 @@ struct MainView: View {
                         Label("Sons", systemImage: "speaker.wave.3.fill")
                     }
                     .tag(PhoneTab.sounds)
-                    
+
                     //                NavigationView {
                     //                    CollectionsView()
                     //                }
@@ -56,7 +69,7 @@ struct MainView: View {
                     //                    Label("Coleções", systemImage: "rectangle.grid.2x2.fill")
                     //                }
                     //                .tag(PhoneTab.collections)
-                    
+
                     NavigationView {
                         SongsView()
                             .environmentObject(settingsHelper)
