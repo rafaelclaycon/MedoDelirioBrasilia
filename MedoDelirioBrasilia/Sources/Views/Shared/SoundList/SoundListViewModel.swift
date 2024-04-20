@@ -8,11 +8,10 @@
 import Combine
 import SwiftUI
 
-@MainActor
-class SoundListViewModel<T>: ObservableObject {
+class SoundListViewModel<T>: ObservableObject, SoundListDisplaying {
 
     @Published var state: LoadingState<Sound> = .loading
-    @Published var options: [ContextMenuOption]
+    @Published var sections: [ContextMenuSection]
 
     @Published var favoritesKeeper = Set<String>()
     @Published var highlightKeeper = Set<String>()
@@ -48,15 +47,62 @@ class SoundListViewModel<T>: ObservableObject {
 
     private var cancellables = Set<AnyCancellable>()
 
+    // MARK: - Initializer
+
     init(
         provider: SoundDataProvider,
-        options: [ContextMenuOption]
+        sections: [ContextMenuSection]
     ) {
-        self.options = options
+        self.sections = sections
 
         provider.soundsPublisher
             .map { LoadingState.loaded($0) }
             .receive(on: DispatchQueue.main)
             .assign(to: &$state)
+    }
+
+    // MARK: - Functions
+
+    func displayToast(
+        _ toastIcon: String,
+        _ toastIconColor: Color,
+        toastText: String,
+        displayTime: DispatchTimeInterval,
+        completion: (() -> Void)?
+    ) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+            withAnimation {
+                self.toastIcon = toastIcon
+                self.toastIconColor = toastIconColor
+                self.toastText = toastText
+                self.showToastView = true
+            }
+            TapticFeedback.success()
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + displayTime) {
+            withAnimation {
+                self.showToastView = false
+                completion?()
+            }
+        }
+    }
+
+    func displayToast(toastText: String) {
+        displayToast(
+            "checkmark",
+            .green,
+            toastText: toastText,
+            displayTime: .seconds(3),
+            completion: nil
+        )
+    }
+
+    func showUnableToGetSoundAlert(_ soundTitle: String) {
+        TapticFeedback.error()
+        alertType = .twoOptions
+        alertTitle = Shared.contentNotFoundAlertTitle(soundTitle)
+        alertMessage = Shared.soundNotFoundAlertMessage
+        showAlert = true
     }
 }

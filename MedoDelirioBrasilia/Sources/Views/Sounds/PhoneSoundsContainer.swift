@@ -62,18 +62,18 @@ struct PhoneSoundsContainer: View {
             VStack {
                 switch viewModel.currentViewMode {
                 case .allSounds:
-                    SoundListView(
+                    SoundList(
                         viewModel: .init(
                             provider: viewModel,
-                            options: [.shareSound]
+                            sections: [.sharingOptions(), .organizingOptions(), .detailsOptions()]
                         ),
                         currentSoundsListMode: $currentSoundsListMode
                     )
                 case .favorites:
-                    SoundListView(
+                    SoundList(
                         viewModel: .init(
                             provider: viewModel,
-                            options: [.shareSound]
+                            sections: [.sharingOptions(), .organizingOptions(), .detailsOptions()]
                         ),
                         currentSoundsListMode: $currentSoundsListMode
                     )

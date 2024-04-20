@@ -10,6 +10,7 @@ import Combine
 
 class PhoneSoundsContainerViewModel: ObservableObject, SoundDataProvider {
 
+    // MARK: - Published Vars
     @Published var sounds: [Sound] = []
 
     @Published var currentViewMode: SoundsViewMode
@@ -18,7 +19,11 @@ class PhoneSoundsContainerViewModel: ObservableObject, SoundDataProvider {
 
     @Published var favoritesKeeper = Set<String>()
 
+    // MARK: - Stored Properties
+
     var currentSoundsListMode: Binding<SoundsListMode>
+
+    // MARK: - Computed Properties
 
     var soundsPublisher: AnyPublisher<[Sound], Never> {
         $sounds.eraseToAnyPublisher()

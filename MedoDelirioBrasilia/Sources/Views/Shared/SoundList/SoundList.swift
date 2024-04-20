@@ -1,5 +1,5 @@
 //
-//  SoundListView.swift
+//  SoundList.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 13/04/24.
@@ -7,10 +7,14 @@
 
 import SwiftUI
 
-struct SoundListView: View {
+struct SoundList: View {
+
+    // MARK: - Dependencies
 
     @StateObject var viewModel: SoundListViewModel<Sound>
     @Binding var currentSoundsListMode: SoundsListMode
+
+    // MARK: - Stored Properties
 
     @State private var columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
 
@@ -49,6 +53,7 @@ struct SoundListView: View {
                 }
                 .frame(width: geometry.size.width)
                 .frame(minHeight: geometry.size.height)
+
             case .loaded(let sounds):
                 if sounds.isEmpty {
                     VStack {
@@ -99,11 +104,21 @@ struct SoundListView: View {
                                                 }
                                             }
                                         }
-//                                        .contextMenu {
-//                                            if currentSoundsListMode != .selection {
-//
-//                                            }
-//                                        }
+                                        .contextMenu {
+                                            if currentSoundsListMode != .selection {
+                                                ForEach(viewModel.sections, id: \.title) { section in
+                                                    Section {
+                                                        ForEach(section.options(sound), id: \.title) { option in
+                                                            Button {
+                                                                option.action(sound, viewModel)
+                                                            } label: {
+                                                                Label(option.title, systemImage: option.symbol)
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -159,6 +174,7 @@ struct SoundListView: View {
 //                        }
 //                    }
                 }
+
             case .error:
                 VStack {
                     HStack(spacing: 10) {
