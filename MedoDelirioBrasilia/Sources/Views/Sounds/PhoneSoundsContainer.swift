@@ -58,45 +58,50 @@ struct PhoneSoundsContainer: View {
     // MARK: - Body
 
     var body: some View {
-        ZStack {
+        VStack {
+            switch viewModel.currentViewMode {
+            case .allSounds:
+                SoundList(
+                    viewModel: .init(
+                        provider: viewModel,
+                        sections: [.sharingOptions(), .organizingOptions(), .detailsOptions()]
+                    ),
+                    currentSoundsListMode: $currentSoundsListMode
+                )
+            case .favorites:
+                SoundList(
+                    viewModel: .init(
+                        provider: viewModel,
+                        sections: [.sharingOptions(), .organizingOptions(), .detailsOptions()]
+                    ),
+                    currentSoundsListMode: $currentSoundsListMode
+                )
+            case .folders:
+                MyFoldersiPhoneView()
+                    .environmentObject(deleteFolderAide)
+            case .byAuthor:
+                AuthorsView(
+                    sortOption: .constant(0),
+                    sortAction: .constant(.nameAscending),
+                    searchTextForControl: .constant("")
+                )
+            }
+        }
+        .navigationTitle(Text(title))
+        .navigationBarItems(
+            leading: leadingToolbarControls(),
+            trailing: trailingToolbarControls()
+        )
+        .overlay {
             VStack {
-                switch viewModel.currentViewMode {
-                case .allSounds:
-                    SoundList(
-                        viewModel: .init(
-                            provider: viewModel,
-                            sections: [.sharingOptions(), .organizingOptions(), .detailsOptions()]
-                        ),
-                        currentSoundsListMode: $currentSoundsListMode
-                    )
-                case .favorites:
-                    SoundList(
-                        viewModel: .init(
-                            provider: viewModel,
-                            sections: [.sharingOptions(), .organizingOptions(), .detailsOptions()]
-                        ),
-                        currentSoundsListMode: $currentSoundsListMode
-                    )
-                case .folders:
-                    MyFoldersiPhoneView()
-                        .environmentObject(deleteFolderAide)
-                case .byAuthor:
-                    AuthorsView(
-                        sortOption: .constant(0),
-                        sortAction: .constant(.nameAscending),
-                        searchTextForControl: .constant("")
-                    )
-                }
+                Spacer()
+                floatingSelectorView()
+                    .padding()
             }
-            .navigationTitle(Text(title))
-            .navigationBarItems(
-                leading: leadingToolbarControls(),
-                trailing: trailingToolbarControls()
-            )
-            .onAppear {
-                print("PHONE SOUNDS CONTAINER - ON APPEAR")
-                viewModel.reloadList(currentMode: viewModel.currentViewMode)
-            }
+        }
+        .onAppear {
+            print("PHONE SOUNDS CONTAINER - ON APPEAR")
+            viewModel.reloadList(currentMode: viewModel.currentViewMode)
         }
     }
 
@@ -202,6 +207,27 @@ struct PhoneSoundsContainer: View {
                 }
             }
         }
+    }
+
+    @ViewBuilder func floatingSelectorView() -> some View {
+        Picker("Exibição", selection: $viewModel.currentViewMode) {
+            Text("Todos")
+                .tag(SoundsViewMode.allSounds)
+
+            Text("Favoritos")
+                .tag(SoundsViewMode.favorites)
+
+            Text("Pastas")
+                .tag(SoundsViewMode.folders)
+
+            Text("Por Autor")
+                .tag(SoundsViewMode.byAuthor)
+        }
+        .pickerStyle(.segmented)
+        .background(.regularMaterial)
+        .cornerRadius(8)
+        .onChange(of: viewModel.currentViewMode) { viewModel.reloadList(currentMode: $0) }
+        //.disabled(isLoadingSounds && viewModel.currentViewMode == .allSounds)
     }
 }
 
