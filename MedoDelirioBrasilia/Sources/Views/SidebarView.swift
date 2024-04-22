@@ -26,13 +26,12 @@ struct SidebarView: View {
         List {
             Section("Sons") {
                 NavigationLink(
-                    destination: SoundsView(
-                        viewModel: SoundsViewViewModel(
+                    destination: PhoneSoundsContainer(
+                        viewModel: .init(
                             currentViewMode: .allSounds,
                             soundSortOption: UserSettings.getSoundSortOption(),
                             authorSortOption: AuthorSortOption.nameAscending.rawValue,
-                            currentSoundsListMode: $currentSoundsListMode,
-                            syncValues: syncValues
+                            currentSoundsListMode: $currentSoundsListMode
                         ),
                         currentSoundsListMode: $currentSoundsListMode
                     ).environmentObject(trendsHelper).environmentObject(settingsHelper).environmentObject(networkMonitor),
@@ -43,13 +42,12 @@ struct SidebarView: View {
                     })
                 
                 NavigationLink(
-                    destination: SoundsView(
-                        viewModel: SoundsViewViewModel(
+                    destination: PhoneSoundsContainer(
+                        viewModel: .init(
                             currentViewMode: .favorites,
                             soundSortOption: UserSettings.getSoundSortOption(),
                             authorSortOption: AuthorSortOption.nameAscending.rawValue,
-                            currentSoundsListMode: $currentSoundsListMode,
-                            syncValues: syncValues
+                            currentSoundsListMode: $currentSoundsListMode
                         ),
                         currentSoundsListMode: $currentSoundsListMode
                     ).environmentObject(trendsHelper).environmentObject(settingsHelper).environmentObject(networkMonitor),
@@ -134,7 +132,7 @@ struct SidebarView: View {
                 }
             }
         }
-        .listStyle(SidebarListStyle())
+        .listStyle(.sidebar)
         .navigationTitle(LocalizableStrings.MainView.title)
         .toolbar {
             Button {

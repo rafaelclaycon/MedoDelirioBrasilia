@@ -128,13 +128,12 @@ struct MainView: View {
                     .environmentObject(networkMonitor)
                     .environmentObject(syncValues)
 
-                    SoundsView(
-                        viewModel: SoundsViewViewModel(
+                    PhoneSoundsContainer(
+                        viewModel: .init(
                             currentViewMode: .allSounds,
                             soundSortOption: UserSettings.getSoundSortOption(),
                             authorSortOption: AuthorSortOption.nameAscending.rawValue,
-                            currentSoundsListMode: $currentSoundsListMode,
-                            syncValues: syncValues
+                            currentSoundsListMode: $currentSoundsListMode
                         ),
                         currentSoundsListMode: $currentSoundsListMode
                     )
