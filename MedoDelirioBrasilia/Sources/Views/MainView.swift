@@ -27,7 +27,7 @@ struct MainView: View {
 
     var body: some View {
         ZStack {
-            if UIDevice.current.userInterfaceIdiom == .phone {
+            if UIDevice.isiPhone {
                 TabView(selection: $tabSelection) {
                     NavigationView {
 //                        SoundsView(
@@ -44,7 +44,7 @@ struct MainView: View {
 //                        .environmentObject(settingsHelper)
 //                        .environmentObject(networkMonitor)
 
-                        PhoneSoundsContainer(
+                        MainSoundContainer(
                             viewModel: .init(
                                 currentViewMode: .allSounds,
                                 soundSortOption: UserSettings.getSoundSortOption(),
@@ -128,7 +128,7 @@ struct MainView: View {
                     .environmentObject(networkMonitor)
                     .environmentObject(syncValues)
 
-                    PhoneSoundsContainer(
+                    MainSoundContainer(
                         viewModel: .init(
                             currentViewMode: .allSounds,
                             soundSortOption: UserSettings.getSoundSortOption(),

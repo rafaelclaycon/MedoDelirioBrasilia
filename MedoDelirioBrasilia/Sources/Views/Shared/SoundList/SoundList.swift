@@ -13,6 +13,7 @@ struct SoundList: View {
 
     @StateObject var viewModel: SoundListViewModel<Sound>
     @Binding var currentSoundsListMode: SoundsListMode
+    let emptyStateView: AnyView
 
     // MARK: - Stored Properties
 
@@ -57,13 +58,7 @@ struct SoundList: View {
             case .loaded(let sounds):
                 if sounds.isEmpty {
                     VStack {
-                        HStack(spacing: 10) {
-                            ProgressView()
-
-                            Text("Nenhum som a ser exibido.")
-                                .foregroundColor(.gray)
-                        }
-                        .frame(maxWidth: .infinity)
+                        emptyStateView
                     }
                     .frame(width: geometry.size.width)
                     .frame(minHeight: geometry.size.height)
@@ -106,7 +101,7 @@ struct SoundList: View {
                                         }
                                         .contextMenu {
                                             if currentSoundsListMode != .selection {
-                                                ForEach(viewModel.sections, id: \.title) { section in
+                                                ForEach(viewModel.menuOptions, id: \.title) { section in
                                                     Section {
                                                         ForEach(section.options(sound), id: \.title) { option in
                                                             Button {
@@ -126,6 +121,32 @@ struct SoundList: View {
                             .disableAutocorrection(true)
                             .padding(.horizontal)
                             .padding(.top, 7)
+                            .sheet(isPresented: $viewModel.showingModalView) {
+                                switch viewModel.subviewToOpen {
+                                case .shareAsVideo:
+                                    ShareAsVideoView(
+                                        viewModel: .init(content: viewModel.selectedSound!, subtitle: viewModel.selectedSound?.authorName ?? .empty),
+                                        isBeingShown: $viewModel.showingModalView,
+                                        result: $viewModel.shareAsVideoResult,
+                                        useLongerGeneratingVideoMessage: false
+                                    )
+
+                                case .addToFolder:
+                                    AddToFolderView(
+                                        isBeingShown: $viewModel.showingModalView,
+                                        hadSuccess: $viewModel.hadSuccessAddingToFolder,
+                                        folderName: $viewModel.folderName,
+                                        pluralization: $viewModel.pluralization,
+                                        selectedSounds: viewModel.selectedSounds!
+                                    )
+
+                                case .soundDetail:
+                                    SoundDetailView(
+                                        isBeingShown: $viewModel.showingModalView,
+                                        sound: viewModel.selectedSound ?? Sound(title: "")
+                                    )
+                                }
+                            }
 //                            .onChange(of: geometry.size.width) { newWidth in
 //                                self.listWidth = newWidth
 //                                columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)

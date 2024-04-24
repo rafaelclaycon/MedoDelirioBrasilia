@@ -20,8 +20,8 @@ struct ContextMenuSection {
 
 extension ContextMenuOption {
 
-    static func share(sound: Sound) -> ContextMenuOption {
-        return ContextMenuOption(symbol: "square.and.arrow.up", title: Shared.shareSoundButtonText) { sound, delegate in
+    static var shareSound: ContextMenuOption {
+        ContextMenuOption(symbol: "square.and.arrow.up", title: Shared.shareSoundButtonText) { sound, delegate in
             if UIDevice.isiPhone {
                 do {
                     try SharingUtility.shareSound(from: sound.fileURL(), andContentId: sound.id) { didShare in
@@ -60,16 +60,14 @@ extension ContextMenuOption {
     }
 
     static var shareAsVideo: ContextMenuOption {
-        ContextMenuOption(symbol: "film", title: Shared.shareAsVideoButtonText) { _,_ in
-            // Implement the action to share as video
-            print("Sharing as Video")
+        ContextMenuOption(symbol: "film", title: Shared.shareAsVideoButtonText) { sound, delegate in
+            delegate.openShareAsVideoModal(for: sound)
         }
     }
 
     static var addToFavorites: ContextMenuOption {
-        ContextMenuOption(symbol: "star", title: Shared.addToFavorites) { _,_ in
-            // Implement the action to add to favorites
-            print("Added to Favorites")
+        ContextMenuOption(symbol: "star", title: Shared.addToFavorites) { sound, delegate in
+            delegate.toggleFavorite(sound.id)
         }
     }
 
@@ -102,7 +100,7 @@ extension ContextMenuSection {
             title: "Sharing",
             options: { sound in
                 [
-                    .share(sound: sound),
+                    .shareSound,
                     .shareAsVideo
                 ]
             }

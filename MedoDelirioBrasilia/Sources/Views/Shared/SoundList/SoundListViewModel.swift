@@ -8,15 +8,30 @@
 import Combine
 import SwiftUI
 
-class SoundListViewModel<T>: ObservableObject, SoundListDisplaying {
+class SoundListViewModel<T>: ObservableObject {
 
     @Published var state: LoadingState<Sound> = .loading
-    @Published var sections: [ContextMenuSection]
+    @Published var menuOptions: [ContextMenuSection]
+    @Published var needsRefreshAfterChange: Bool
+    var reloadAction: (() -> Void)?
 
     @Published var favoritesKeeper = Set<String>()
     @Published var highlightKeeper = Set<String>()
     @Published var nowPlayingKeeper = Set<String>()
     @Published var selectionKeeper = Set<String>()
+
+    @Published var selectedSound: Sound? = nil
+    @Published var selectedSounds: [Sound]? = nil
+    @Published var subviewToOpen: SoundListModalToOpen = .shareAsVideo
+    @Published var showingModalView = false
+
+    // Share as Video
+    @Published var shareAsVideoResult = ShareAsVideoResult()
+
+    // Add to Folder vars
+    @Published var hadSuccessAddingToFolder: Bool = false
+    @Published var folderName: String? = nil
+    @Published var pluralization: WordPluralization = .singular
 
     // Search
     @Published var searchText: String = ""
@@ -50,18 +65,50 @@ class SoundListViewModel<T>: ObservableObject, SoundListDisplaying {
     // MARK: - Initializer
 
     init(
-        provider: SoundDataProvider,
-        sections: [ContextMenuSection]
+        data: AnyPublisher<[Sound], Never>,
+        menuOptions: [ContextMenuSection],
+        needsRefreshAfterChange: Bool,
+        reloadAction: (() -> Void)? = nil
     ) {
-        self.sections = sections
+        self.menuOptions = menuOptions
+        self.needsRefreshAfterChange = needsRefreshAfterChange
+        self.reloadAction = reloadAction
 
-        provider.soundsPublisher
+        data
             .map { LoadingState.loaded($0) }
             .receive(on: DispatchQueue.main)
             .assign(to: &$state)
     }
 
     // MARK: - Functions
+
+    func addToFavorites(soundId: String) {
+        let newFavorite = Favorite(contentId: soundId, dateAdded: Date())
+
+        do {
+            let favorteAlreadyExists = try LocalDatabase.shared.exists(contentId: soundId)
+            guard favorteAlreadyExists == false else { return }
+
+            try LocalDatabase.shared.insert(favorite: newFavorite)
+            favoritesKeeper.insert(newFavorite.contentId)
+        } catch {
+            print("Problem saving favorite \(newFavorite.contentId): \(error.localizedDescription)")
+        }
+    }
+
+    func removeFromFavorites(soundId: String) {
+        do {
+            try LocalDatabase.shared.deleteFavorite(withId: soundId)
+            favoritesKeeper.remove(soundId)
+        } catch {
+            print("Problem removing favorite \(soundId)")
+        }
+    }
+}
+
+// MARK: - Sound List Displaying Protocol Conformance
+
+extension SoundListViewModel: SoundListDisplaying {
 
     func displayToast(
         _ toastIcon: String,
@@ -104,5 +151,22 @@ class SoundListViewModel<T>: ObservableObject, SoundListDisplaying {
         alertTitle = Shared.contentNotFoundAlertTitle(soundTitle)
         alertMessage = Shared.soundNotFoundAlertMessage
         showAlert = true
+    }
+
+    func openShareAsVideoModal(for sound: Sound) {
+        selectedSound = sound
+        subviewToOpen = .shareAsVideo
+        showingModalView = true
+    }
+
+    func toggleFavorite(_ soundId: String) {
+        if favoritesKeeper.contains(soundId) {
+            removeFromFavorites(soundId: soundId)
+            if needsRefreshAfterChange {
+                reloadAction!()
+            }
+        } else {
+            addToFavorites(soundId: soundId)
+        }
     }
 }

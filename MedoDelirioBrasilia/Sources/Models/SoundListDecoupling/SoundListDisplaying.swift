@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+/// This protocol exists to enable the communication between ContextMenuOption and SoundList.
+
 protocol SoundListDisplaying {
 
     func displayToast(
@@ -20,4 +22,8 @@ protocol SoundListDisplaying {
     func displayToast(toastText: String)
 
     func showUnableToGetSoundAlert(_ soundTitle: String)
+
+    func openShareAsVideoModal(for sound: Sound)
+
+    func toggleFavorite(_ soundId: String)
 }

@@ -7,11 +7,11 @@
 
 import Combine
 
-class MockSoundListViewModel: ObservableObject, SoundDataProvider {
+class MockSoundListViewModel: ObservableObject {
 
     @Published var sounds: [Sound] = Sound.sampleSounds
 
-    var soundsPublisher: AnyPublisher<[Sound], Never> {
+    var allSoundsPublisher: AnyPublisher<[Sound], Never> {
         $sounds.eraseToAnyPublisher()
     }
 }

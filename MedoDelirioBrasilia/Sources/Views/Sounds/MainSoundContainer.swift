@@ -1,5 +1,5 @@
 //
-//  PhoneSoundsContainer.swift
+//  MainSoundContainer.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 13/04/24.
@@ -7,21 +7,12 @@
 
 import SwiftUI
 
-struct PhoneSoundsContainer: View {
+struct MainSoundContainer: View {
 
-    enum SubviewToOpen {
-        case onboardingView, addToFolderView, shareAsVideoView, settingsView, whatsNewView, syncInfoView, soundDetailView, retrospective
-    }
-
-    @StateObject var viewModel: PhoneSoundsContainerViewModel
+    @StateObject var viewModel: MainSoundContainerViewModel
     @Binding var currentSoundsListMode: SoundsListMode
 
-    @State private var favoritesKeeper = Set<String>()
-    @State private var highlightKeeper = Set<String>()
-    @State private var nowPlayingKeeper = Set<String>()
-    @State private var selectionKeeper = Set<String>()
-
-    @State private var subviewToOpen: SubviewToOpen = .onboardingView
+    @State private var subviewToOpen: MainSoundContainerModalToOpen = .syncInfo
     @State private var showingModalView = false
 
     // Folders
@@ -35,13 +26,14 @@ struct PhoneSoundsContainer: View {
 
     private var title: String {
         guard currentSoundsListMode == .regular else {
-            if selectionKeeper.count == 0 {
-                return Shared.SoundSelection.selectSounds
-            } else if selectionKeeper.count == 1 {
-                return Shared.SoundSelection.soundSelectedSingular
-            } else {
-                return String(format: Shared.SoundSelection.soundsSelectedPlural, selectionKeeper.count)
-            }
+//            if selectionKeeper.count == 0 {
+//                return Shared.SoundSelection.selectSounds
+//            } else if selectionKeeper.count == 1 {
+//                return Shared.SoundSelection.soundSelectedSingular
+//            } else {
+//                return String(format: Shared.SoundSelection.soundsSelectedPlural, selectionKeeper.count)
+//            }
+            return ""
         }
         switch viewModel.currentViewMode {
         case .allSounds:
@@ -63,22 +55,42 @@ struct PhoneSoundsContainer: View {
             case .allSounds:
                 SoundList(
                     viewModel: .init(
-                        provider: viewModel,
-                        sections: [.sharingOptions(), .organizingOptions(), .detailsOptions()]
+                        data: viewModel.allSoundsPublisher,
+                        menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
+                        needsRefreshAfterChange: false
                     ),
-                    currentSoundsListMode: $currentSoundsListMode
+                    currentSoundsListMode: $currentSoundsListMode,
+                    emptyStateView: AnyView(
+                        HStack(spacing: 10) {
+                            ProgressView()
+
+                            Text("Nenhum som a ser exibido.")
+                                .foregroundColor(.gray)
+                        }
+                        .frame(maxWidth: .infinity)
+                    )
                 )
+
             case .favorites:
                 SoundList(
                     viewModel: .init(
-                        provider: viewModel,
-                        sections: [.sharingOptions(), .organizingOptions(), .detailsOptions()]
+                        data: viewModel.favoritesPublisher,
+                        menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
+                        needsRefreshAfterChange: true,
+                        reloadAction: { viewModel.reloadFavorites() }
                     ),
-                    currentSoundsListMode: $currentSoundsListMode
+                    currentSoundsListMode: $currentSoundsListMode,
+                    emptyStateView: AnyView(
+                        NoFavoritesView()
+                            .padding(.horizontal, 25)
+                            .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? 100 : 15)
+                    )
                 )
+
             case .folders:
                 MyFoldersiPhoneView()
                     .environmentObject(deleteFolderAide)
+                
             case .byAuthor:
                 AuthorsView(
                     sortOption: .constant(0),
@@ -101,7 +113,8 @@ struct PhoneSoundsContainer: View {
         }
         .onAppear {
             print("PHONE SOUNDS CONTAINER - ON APPEAR")
-            viewModel.reloadList(currentMode: viewModel.currentViewMode)
+            viewModel.reloadAllSounds()
+            viewModel.reloadFavorites()
         }
     }
 
@@ -109,7 +122,7 @@ struct PhoneSoundsContainer: View {
         if currentSoundsListMode == .selection {
             Button {
                 currentSoundsListMode = .regular
-                selectionKeeper.removeAll()
+                // selectionKeeper.removeAll()
             } label: {
                 Text("Cancelar")
                     .bold()
@@ -117,7 +130,7 @@ struct PhoneSoundsContainer: View {
         } else {
             if UIDevice.isiPhone {
                 Button {
-                    subviewToOpen = .settingsView
+                    subviewToOpen = .settings
                     showingModalView = true
                 } label: {
                     Image(systemName: "gearshape")
@@ -157,7 +170,7 @@ struct PhoneSoundsContainer: View {
                     if currentSoundsListMode == .regular {
                         SyncStatusView()
                             .onTapGesture {
-                                subviewToOpen = .syncInfoView
+                                subviewToOpen = .syncInfo
                                 showingModalView = true
                             }
                     }
@@ -226,13 +239,17 @@ struct PhoneSoundsContainer: View {
         .pickerStyle(.segmented)
         .background(.regularMaterial)
         .cornerRadius(8)
-        .onChange(of: viewModel.currentViewMode) { viewModel.reloadList(currentMode: $0) }
+        .onChange(of: viewModel.currentViewMode) {
+            if $0 == .favorites {
+                viewModel.reloadFavorites()
+            }
+        }
         //.disabled(isLoadingSounds && viewModel.currentViewMode == .allSounds)
     }
 }
 
 #Preview {
-    PhoneSoundsContainer(
+    MainSoundContainer(
         viewModel: .init(
             currentViewMode: .allSounds,
             soundSortOption: SoundSortOption.dateAddedDescending.rawValue,
