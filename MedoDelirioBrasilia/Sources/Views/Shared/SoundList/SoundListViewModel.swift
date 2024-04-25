@@ -141,6 +141,38 @@ class SoundListViewModel<T>: ObservableObject {
             print("Problem removing favorite \(soundId)")
         }
     }
+
+    func redownloadServerContent(withId contentId: String) {
+        Task {
+            do {
+                try await SyncService.downloadFile(contentId)
+                displayToast(
+                    "checkmark",
+                    .green,
+                    toastText: "Conteúdo baixado com sucesso. Tente tocá-lo novamente.",
+                    displayTime: .seconds(3),
+                    completion: nil
+                )
+            } catch {
+                displayToast(
+                    "exclamationmark.triangle.fill",
+                    .orange,
+                    toastText: "Erro ao tentar baixar conteúdo novamente.",
+                    displayTime: .seconds(3),
+                    completion: nil
+                )
+            }
+        }
+    }
+
+    func showServerSoundNotAvailableAlert(_ sound: Sound) {
+        selectedSound = sound
+        TapticFeedback.error()
+        alertType = .twoOptionsOneRedownload
+        alertTitle = Shared.contentNotFoundAlertTitle(sound.title)
+        alertMessage = Shared.serverContentNotAvailableRedownloadMessage
+        showAlert = true
+    }
 }
 
 // MARK: - Sound List Displaying Protocol Conformance
@@ -190,15 +222,6 @@ extension SoundListViewModel: SoundListDisplaying {
         showAlert = true
     }
 
-    func showServerSoundNotAvailableAlert(_ sound: Sound) {
-        selectedSound = sound
-        TapticFeedback.error()
-        alertType = .twoOptionsOneRedownload
-        alertTitle = Shared.contentNotFoundAlertTitle(sound.title)
-        alertMessage = Shared.serverContentNotAvailableRedownloadMessage
-        showAlert = true
-    }
-
     func openShareAsVideoModal(for sound: Sound) {
         selectedSound = sound
         subviewToOpen = .shareAsVideo
@@ -216,26 +239,10 @@ extension SoundListViewModel: SoundListDisplaying {
         }
     }
 
-    func redownloadServerContent(withId contentId: String) {
-        Task {
-            do {
-                try await SyncService.downloadFile(contentId)
-                displayToast(
-                    "checkmark",
-                    .green,
-                    toastText: "Conteúdo baixado com sucesso. Tente tocá-lo novamente.",
-                    displayTime: .seconds(3),
-                    completion: nil
-                )
-            } catch {
-                displayToast(
-                    "exclamationmark.triangle.fill",
-                    .orange,
-                    toastText: "Erro ao tentar baixar conteúdo novamente.",
-                    displayTime: .seconds(3),
-                    completion: nil
-                )
-            }
-        }
+    func addToFolder(_ sound: Sound) {
+        selectedSounds = [Sound]()
+        selectedSounds?.append(sound)
+        subviewToOpen = .addToFolder
+        showingModalView = true
     }
 }

@@ -89,9 +89,8 @@ extension ContextMenuOption {
         ContextMenuOption(
             symbol: { _ in "folder.badge.plus" },
             title: { _ in Shared.addToFolderButtonText }
-        ) { _,_ in
-            // Implement the action to add to folder
-            print("Added to Folder")
+        ) { sound, delegate in
+            delegate.addToFolder(sound)
         }
     }
 
