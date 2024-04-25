@@ -56,18 +56,13 @@ struct MainSoundContainer: View {
                 SoundList(
                     viewModel: .init(
                         data: viewModel.allSoundsPublisher,
-                        menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
-                        needsRefreshAfterChange: false
+                        menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()]
                     ),
                     currentSoundsListMode: $currentSoundsListMode,
                     emptyStateView: AnyView(
-                        HStack(spacing: 10) {
-                            ProgressView()
-
-                            Text("Nenhum som a ser exibido.")
-                                .foregroundColor(.gray)
-                        }
-                        .frame(maxWidth: .infinity)
+                        Text("Nenhum som a ser exibido. Isso é esquisito.")
+                            .foregroundColor(.gray)
+                            .padding(.horizontal, 20)
                     )
                 )
 
@@ -77,7 +72,7 @@ struct MainSoundContainer: View {
                         data: viewModel.favoritesPublisher,
                         menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
                         needsRefreshAfterChange: true,
-                        reloadAction: { viewModel.reloadFavorites() }
+                        refreshAction: { viewModel.reloadFavorites() }
                     ),
                     currentSoundsListMode: $currentSoundsListMode,
                     emptyStateView: AnyView(
@@ -113,7 +108,7 @@ struct MainSoundContainer: View {
         }
         .onAppear {
             print("PHONE SOUNDS CONTAINER - ON APPEAR")
-            viewModel.reloadAllSounds()
+            //viewModel.reloadAllSounds()
             viewModel.reloadFavorites()
         }
     }

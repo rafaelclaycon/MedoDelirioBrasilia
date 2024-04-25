@@ -13,7 +13,7 @@ class SoundListViewModel<T>: ObservableObject {
     @Published var state: LoadingState<Sound> = .loading
     @Published var menuOptions: [ContextMenuSection]
     @Published var needsRefreshAfterChange: Bool
-    var reloadAction: (() -> Void)?
+    var refreshAction: (() -> Void)?
 
     @Published var favoritesKeeper = Set<String>()
     @Published var highlightKeeper = Set<String>()
@@ -67,12 +67,12 @@ class SoundListViewModel<T>: ObservableObject {
     init(
         data: AnyPublisher<[Sound], Never>,
         menuOptions: [ContextMenuSection],
-        needsRefreshAfterChange: Bool,
-        reloadAction: (() -> Void)? = nil
+        needsRefreshAfterChange: Bool = false,
+        refreshAction: (() -> Void)? = nil
     ) {
         self.menuOptions = menuOptions
         self.needsRefreshAfterChange = needsRefreshAfterChange
-        self.reloadAction = reloadAction
+        self.refreshAction = refreshAction
 
         data
             .map { LoadingState.loaded($0) }
@@ -176,7 +176,7 @@ extension SoundListViewModel: SoundListDisplaying {
         if favoritesKeeper.contains(soundId) {
             removeFromFavorites(soundId: soundId)
             if needsRefreshAfterChange {
-                reloadAction!()
+                refreshAction!()
             }
         } else {
             addToFavorites(soundId: soundId)
