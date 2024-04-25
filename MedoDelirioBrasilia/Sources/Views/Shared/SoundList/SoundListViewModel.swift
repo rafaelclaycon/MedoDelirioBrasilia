@@ -78,9 +78,22 @@ class SoundListViewModel<T>: ObservableObject {
             .map { LoadingState.loaded($0) }
             .receive(on: DispatchQueue.main)
             .assign(to: &$state)
+
+        loadFavorites()
     }
 
     // MARK: - Functions
+
+    func loadFavorites() {
+        do {
+            let favorites = try LocalDatabase.shared.favorites()
+            favorites.forEach { favorite in
+                self.favoritesKeeper.insert(favorite.contentId)
+            }
+        } catch {
+            print("Falha ao carregar favoritos: \(error.localizedDescription)")
+        }
+    }
 
     func addToFavorites(soundId: String) {
         let newFavorite = Favorite(contentId: soundId, dateAdded: Date())

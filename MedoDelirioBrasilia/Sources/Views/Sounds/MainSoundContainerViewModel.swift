@@ -18,8 +18,6 @@ class MainSoundContainerViewModel: ObservableObject {
     @Published var soundSortOption: Int
     @Published var authorSortOption: Int
 
-    @Published var favoritesKeeper = Set<String>()
-
     // MARK: - Stored Properties
 
     var currentSoundsListMode: Binding<SoundsListMode>
@@ -71,15 +69,6 @@ class MainSoundContainerViewModel: ObservableObject {
             )
 
             guard allSounds.count > 0 else { return }
-
-            favoritesKeeper.removeAll()
-            let favorites = try LocalDatabase.shared.favorites()
-            if favorites.count > 0 {
-                for favorite in favorites {
-                    favoritesKeeper.insert(favorite.contentId)
-                }
-            }
-
             let sortOption: SoundSortOption = SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .dateAddedDescending
             sort(&allSounds, by: sortOption)
         } catch {
@@ -95,15 +84,6 @@ class MainSoundContainerViewModel: ObservableObject {
             )
 
             guard favorites.count > 0 else { return }
-
-            favoritesKeeper.removeAll()
-            let favoritesForKeeper = try LocalDatabase.shared.favorites()
-            if favoritesForKeeper.count > 0 {
-                for favorite in favoritesForKeeper {
-                    favoritesKeeper.insert(favorite.contentId)
-                }
-            }
-
             let sortOption: SoundSortOption = SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .dateAddedDescending
             sort(&favorites, by: sortOption)
         } catch {
