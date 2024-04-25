@@ -7,9 +7,10 @@
 
 import UIKit
 
-struct ContextMenuOption {
-    let symbol: String
-    let title: String
+struct ContextMenuOption: Identifiable {
+    let id: UUID = UUID()
+    let symbol: (Bool) -> String
+    let title: (Bool) -> String
     let action: (Sound, SoundListDisplaying) -> Void
 }
 
@@ -21,7 +22,10 @@ struct ContextMenuSection {
 extension ContextMenuOption {
 
     static var shareSound: ContextMenuOption {
-        ContextMenuOption(symbol: "square.and.arrow.up", title: Shared.shareSoundButtonText) { sound, delegate in
+        ContextMenuOption(
+            symbol: { _ in "square.and.arrow.up" },
+            title: { _ in Shared.shareSoundButtonText }
+        ) { sound, delegate in
             if UIDevice.isiPhone {
                 do {
                     try SharingUtility.shareSound(from: sound.fileURL(), andContentId: sound.id) { didShare in
@@ -60,33 +64,52 @@ extension ContextMenuOption {
     }
 
     static var shareAsVideo: ContextMenuOption {
-        ContextMenuOption(symbol: "film", title: Shared.shareAsVideoButtonText) { sound, delegate in
+        ContextMenuOption(
+            symbol: { _ in "film"},
+            title: { _ in Shared.shareAsVideoButtonText }
+        ) { sound, delegate in
             delegate.openShareAsVideoModal(for: sound)
         }
     }
 
     static var addToFavorites: ContextMenuOption {
-        ContextMenuOption(symbol: "star", title: Shared.addToFavorites) { sound, delegate in
+        return ContextMenuOption(
+            symbol: { isFavorite in
+                isFavorite ? "star.slash" : "star"
+            },
+            title: { isFavorite in
+                isFavorite ? Shared.removeFromFavorites : Shared.addToFavorites
+            }
+        ) { sound, delegate in
             delegate.toggleFavorite(sound.id)
         }
     }
 
     static var addToFolder: ContextMenuOption {
-        ContextMenuOption(symbol: "folder.badge.plus", title: Shared.addToFolderButtonText) { _,_ in
+        ContextMenuOption(
+            symbol: { _ in "folder.badge.plus" },
+            title: { _ in Shared.addToFolderButtonText }
+        ) { _,_ in
             // Implement the action to add to folder
             print("Added to Folder")
         }
     }
 
     static var viewAllFromThisAuthor: ContextMenuOption {
-        ContextMenuOption(symbol: "person", title: "Ver Todos os Sons Desse Autor") { _,_ in
+        ContextMenuOption(
+            symbol: { _ in "person" },
+            title: { _ in "Ver Todos os Sons Desse Autor" }
+        ) { _,_ in
             // Implement the action to view all sounds from this author
             print("Viewing All from Author")
         }
     }
 
     static var viewDetails: ContextMenuOption {
-        ContextMenuOption(symbol: "info.circle", title: "Ver Detalhes") { _,_ in
+        ContextMenuOption(
+            symbol: { _ in "info.circle" },
+            title: { _ in "Ver Detalhes" }
+        ) { _,_ in
             // Implement the action to view details
             print("Viewing Details")
         }

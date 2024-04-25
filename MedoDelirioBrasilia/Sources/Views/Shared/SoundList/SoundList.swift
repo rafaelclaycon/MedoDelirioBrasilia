@@ -103,11 +103,14 @@ struct SoundList: View {
                                             if currentSoundsListMode != .selection {
                                                 ForEach(viewModel.menuOptions, id: \.title) { section in
                                                     Section {
-                                                        ForEach(section.options(sound), id: \.title) { option in
+                                                        ForEach(section.options(sound)) { option in
                                                             Button {
                                                                 option.action(sound, viewModel)
                                                             } label: {
-                                                                Label(option.title, systemImage: option.symbol)
+                                                                Label(
+                                                                    option.title(viewModel.favoritesKeeper.contains(sound.id)),
+                                                                    systemImage: option.symbol(viewModel.favoritesKeeper.contains(sound.id))
+                                                                )
                                                             }
                                                         }
                                                     }
