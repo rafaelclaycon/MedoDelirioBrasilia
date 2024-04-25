@@ -84,6 +84,30 @@ class SoundListViewModel<T>: ObservableObject {
 
     // MARK: - Functions
 
+    func play(_ sound: Sound) {
+        do {
+            let url = try sound.fileURL()
+
+            nowPlayingKeeper.removeAll()
+            nowPlayingKeeper.insert(sound.id)
+
+            AudioPlayer.shared = AudioPlayer(url: url, update: { [weak self] state in
+                guard let self = self else { return }
+                if state?.activity == .stopped {
+                    self.nowPlayingKeeper.removeAll()
+                }
+            })
+
+            AudioPlayer.shared?.togglePlay()
+        } catch {
+            if sound.isFromServer ?? false {
+                showServerSoundNotAvailableAlert(sound)
+            } else {
+                showUnableToGetSoundAlert(sound.title)
+            }
+        }
+    }
+
     func loadFavorites() {
         do {
             let favorites = try LocalDatabase.shared.favorites()
@@ -166,6 +190,15 @@ extension SoundListViewModel: SoundListDisplaying {
         showAlert = true
     }
 
+    func showServerSoundNotAvailableAlert(_ sound: Sound) {
+        selectedSound = sound
+        TapticFeedback.error()
+        alertType = .twoOptionsOneRedownload
+        alertTitle = Shared.contentNotFoundAlertTitle(sound.title)
+        alertMessage = Shared.serverContentNotAvailableRedownloadMessage
+        showAlert = true
+    }
+
     func openShareAsVideoModal(for sound: Sound) {
         selectedSound = sound
         subviewToOpen = .shareAsVideo
@@ -180,6 +213,29 @@ extension SoundListViewModel: SoundListDisplaying {
             }
         } else {
             addToFavorites(soundId: soundId)
+        }
+    }
+
+    func redownloadServerContent(withId contentId: String) {
+        Task {
+            do {
+                try await SyncService.downloadFile(contentId)
+                displayToast(
+                    "checkmark",
+                    .green,
+                    toastText: "Conteúdo baixado com sucesso. Tente tocá-lo novamente.",
+                    displayTime: .seconds(3),
+                    completion: nil
+                )
+            } catch {
+                displayToast(
+                    "exclamationmark.triangle.fill",
+                    .orange,
+                    toastText: "Erro ao tentar baixar conteúdo novamente.",
+                    displayTime: .seconds(3),
+                    completion: nil
+                )
+            }
         }
     }
 }

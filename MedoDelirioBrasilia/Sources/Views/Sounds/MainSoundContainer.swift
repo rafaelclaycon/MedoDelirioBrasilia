@@ -107,8 +107,8 @@ struct MainSoundContainer: View {
             }
         }
         .onAppear {
-            print("PHONE SOUNDS CONTAINER - ON APPEAR")
-            //viewModel.reloadAllSounds()
+            print("MAIN SOUND CONTAINER - ON APPEAR")
+            viewModel.reloadAllSounds()
             viewModel.reloadFavorites()
         }
     }

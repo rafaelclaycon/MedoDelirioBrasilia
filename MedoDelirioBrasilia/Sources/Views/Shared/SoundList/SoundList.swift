@@ -89,7 +89,7 @@ struct SoundList: View {
                                                     AudioPlayer.shared?.togglePlay()
                                                     viewModel.nowPlayingKeeper.removeAll()
                                                 } else {
-                                                    //viewModel.play(sound)
+                                                    viewModel.play(sound)
                                                 }
                                             } else {
                                                 if viewModel.selectionKeeper.contains(sound.id) {
@@ -147,6 +147,55 @@ struct SoundList: View {
                                     SoundDetailView(
                                         isBeingShown: $viewModel.showingModalView,
                                         sound: viewModel.selectedSound ?? Sound(title: "")
+                                    )
+                                }
+                            }
+                            .alert(isPresented: $viewModel.showAlert) {
+                                switch viewModel.alertType {
+                                case .singleOption, .twoOptionsOneDelete:
+                                    return Alert(
+                                        title: Text(viewModel.alertTitle),
+                                        message: Text(viewModel.alertMessage),
+                                        dismissButton: .default(Text("OK"))
+                                    )
+
+                                case .twoOptions:
+                                    return Alert(
+                                        title: Text(viewModel.alertTitle),
+                                        message: Text(viewModel.alertMessage),
+                                        primaryButton: .default(
+                                            Text("Relatar Problema por E-mail"),
+                                            action: {
+                                                // viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog = true
+                                            }
+                                        ),
+                                        secondaryButton: .cancel(Text("Fechar"))
+                                    )
+
+                                case .twoOptionsOneRedownload:
+                                    return Alert(
+                                        title: Text(viewModel.alertTitle),
+                                        message: Text(viewModel.alertMessage),
+                                        primaryButton: .default(
+                                            Text("Baixar Conteúdo Novamente"),
+                                            action: {
+                                                guard let content = viewModel.selectedSound else { return }
+                                                viewModel.redownloadServerContent(withId: content.id)
+                                            }), 
+                                        secondaryButton: .cancel(Text("Fechar"))
+                                    )
+
+                                case .twoOptionsOneContinue:
+                                    return Alert(
+                                        title: Text(viewModel.alertTitle),
+                                        message: Text(viewModel.alertMessage),
+                                        primaryButton: .default(
+                                            Text("Continuar"),
+                                            action: {
+                                                AppPersistentMemory.increaseShareManyMessageShowCountByOne()
+                                                // viewModel.shareSelected()
+                                            }),
+                                        secondaryButton: .cancel(Text("Cancelar"))
                                     )
                                 }
                             }
