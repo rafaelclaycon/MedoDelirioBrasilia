@@ -115,6 +115,29 @@ extension ContextMenuOption {
     }
 }
 
+// MARK: - Folder Options
+
+extension ContextMenuOption {
+
+    static var playFromThisSound: ContextMenuOption {
+        ContextMenuOption(
+            symbol: { _ in "play"},
+            title: { _ in "Reproduzir a Partir Desse"}
+        ) { sound, delegate in
+            delegate.playFrom(sound: sound)
+        }
+    }
+
+    static var removeSoundFromFolder: ContextMenuOption {
+        ContextMenuOption(
+            symbol: { _ in "folder.badge.minus"},
+            title: { _ in "Remover da Pasta"}
+        ) { sound, delegate in
+            delegate.removeFromFolder(sound)
+        }
+    }
+}
+
 extension ContextMenuSection {
 
     static func sharingOptions() -> ContextMenuSection {
@@ -148,6 +171,28 @@ extension ContextMenuSection {
                 [
                     ContextMenuOption.viewAllFromThisAuthor,
                     ContextMenuOption.viewDetails
+                ]
+            }
+        )
+    }
+
+    static func playFromThisSound() -> ContextMenuSection {
+        return ContextMenuSection(
+            title: "PlayFromThis",
+            options: { _ in
+                [
+                    ContextMenuOption.playFromThisSound
+                ]
+            }
+        )
+    }
+
+    static func removeFromFolder() -> ContextMenuSection {
+        return ContextMenuSection(
+            title: "RemoveFromFolder",
+            options: { _ in
+                [
+                    ContextMenuOption.removeSoundFromFolder
                 ]
             }
         )

@@ -245,4 +245,17 @@ extension SoundListViewModel: SoundListDisplaying {
         subviewToOpen = .addToFolder
         showingModalView = true
     }
+
+    func playFrom(sound: Sound) {
+//        guard let soundIndex = sounds.firstIndex(where: { $0.id == sound.id }) else { return }
+//        let soundInArray = sounds[soundIndex]
+//        currentTrackIndex = soundIndex
+//        isPlayingPlaylist = true
+//        play(soundInArray)
+    }
+
+    func removeFromFolder(_ sound: Sound) {
+        selectedSound = sound
+        // showSoundRemovalConfirmation(soundTitle: sound.title)
+    }
 }

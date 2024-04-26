@@ -11,6 +11,7 @@ import Combine
 class MainSoundContainerViewModel: ObservableObject {
 
     // MARK: - Published Vars
+
     @Published var allSounds: [Sound] = []
     @Published var favorites: [Sound] = []
 

@@ -28,4 +28,8 @@ protocol SoundListDisplaying {
     func toggleFavorite(_ soundId: String)
 
     func addToFolder(_ sound: Sound)
+
+    func playFrom(sound: Sound)
+
+    func removeFromFolder(_ sound: Sound)
 }
