@@ -156,7 +156,7 @@ struct MainSoundContainer: View {
                             }
                         }
                     } label: {
-                        Image(systemName: "arrow.up.arrow.down")
+                        Image(systemName: "arrow.up.arrow.down.circle")
                     }
 //                    .onChange(of: authorSortOption, perform: { authorSortOption in
 //                        authorSortAction = AuthorSortOption(rawValue: authorSortOption) ?? .nameAscending

@@ -138,6 +138,20 @@ extension ContextMenuOption {
     }
 }
 
+// MARK: - Author Options
+
+extension ContextMenuOption {
+
+    static var suggestOtherAuthorName: ContextMenuOption {
+        ContextMenuOption(
+            symbol: { _ in "exclamationmark.bubble"},
+            title: { _ in "Sugerir Outro Nome de Autor"}
+        ) { sound, delegate in
+//            delegate.
+        }
+    }
+}
+
 extension ContextMenuSection {
 
     static func sharingOptions() -> ContextMenuSection {
@@ -193,6 +207,18 @@ extension ContextMenuSection {
             options: { _ in
                 [
                     ContextMenuOption.removeSoundFromFolder
+                ]
+            }
+        )
+    }
+
+    static func authorOptions() -> ContextMenuSection {
+        return ContextMenuSection(
+            title: "AuthorOptions",
+            options: { _ in
+                [
+                    ContextMenuOption.suggestOtherAuthorName,
+                    ContextMenuOption.viewDetails
                 ]
             }
         )

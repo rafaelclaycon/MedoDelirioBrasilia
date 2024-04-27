@@ -36,7 +36,15 @@ class AuthorDetailViewViewModel: ObservableObject {
     @Published var alertMessage: String = ""
     @Published var showAlert: Bool = false
     @Published var alertType: AuthorDetailAlertType = .ok
-    
+
+    // MARK: - Computed Properties
+
+    var soundsPublisher: AnyPublisher<[Sound], Never> {
+        $sounds.eraseToAnyPublisher()
+    }
+
+    // MARK: - Initializer
+
     init(
         // originatingScreenName: String,
         authorName: String,
