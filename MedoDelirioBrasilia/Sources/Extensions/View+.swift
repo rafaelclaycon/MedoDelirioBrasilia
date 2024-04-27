@@ -21,9 +21,3 @@ extension View {
         }
     }
 }
-
-extension View {
-    static var empty: AnyView {
-        AnyView(EmptyView())
-    }
-}

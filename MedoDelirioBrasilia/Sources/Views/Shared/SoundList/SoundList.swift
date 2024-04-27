@@ -14,7 +14,7 @@ struct SoundList: View {
     @StateObject var viewModel: SoundListViewModel<Sound>
     @Binding var currentSoundsListMode: SoundsListMode
     let emptyStateView: AnyView
-    var headerView: AnyView? = .empty
+    var headerView: AnyView? = nil
 
     // MARK: - Stored Properties
 
@@ -124,8 +124,11 @@ struct SoundList: View {
                                     }
                                 }
                             }
-                            .searchable(text: $viewModel.searchText)
-                            .disableAutocorrection(true)
+                            .if(headerView == nil) {
+                                $0
+                                  .searchable(text: $viewModel.searchText)
+                                  .disableAutocorrection(true)
+                            }
                             .padding(.horizontal)
                             .padding(.top, 7)
                             .sheet(isPresented: $viewModel.showingModalView) {
