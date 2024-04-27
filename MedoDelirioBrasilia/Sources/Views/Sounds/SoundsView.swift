@@ -776,17 +776,15 @@ struct SoundsView: View {
     }
 }
 
-struct SoundsView_Previews: PreviewProvider {
-    static var previews: some View {
-        SoundsView(
-            viewModel: SoundsViewViewModel(
-                currentViewMode: .allSounds,
-                soundSortOption: SoundSortOption.dateAddedDescending.rawValue,
-                authorSortOption: AuthorSortOption.nameAscending.rawValue,
-                currentSoundsListMode: .constant(.regular),
-                syncValues: SyncValues()
-            ),
-            currentSoundsListMode: .constant(.regular)
-        )
-    }
+#Preview {
+    SoundsView(
+        viewModel: .init(
+            currentViewMode: .allSounds,
+            soundSortOption: SoundSortOption.dateAddedDescending.rawValue,
+            authorSortOption: AuthorSortOption.nameAscending.rawValue,
+            currentSoundsListMode: .constant(.regular),
+            syncValues: SyncValues()
+        ),
+        currentSoundsListMode: .constant(.regular)
+    )
 }

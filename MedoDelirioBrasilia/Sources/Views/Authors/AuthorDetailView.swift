@@ -129,9 +129,9 @@ struct AuthorDetailView: View {
                 ),
                 headerView: AnyView(
                     VStack{
-                        if author.photo != nil {
+                        if let photo = author.photo {
                             GeometryReader { headerPhotoGeometry in
-                                KFImage(URL(string: author.photo ?? .empty))
+                                KFImage(URL(string: photo))
                                     .placeholder {
                                         Image(systemName: "photo.on.rectangle")
                                             .resizable()
@@ -194,22 +194,16 @@ struct AuthorDetailView: View {
                 )
             )
         }
-        .navigationTitle(navBarTitle)
+        //.navigationTitle(navBarTitle)
         .onPreferenceChange(ViewOffsetKey.self) { offset in
             updateNavBarContent(offset)
         }
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            // On regular mode, just show the ... menu
-            if currentSoundsListMode == .regular {
-                moreOptionsMenu(isOnToolbar: true)
-            } else {
+            if currentSoundsListMode != .regular {
                 // On scroll, show Select controls if not at the top
                 if showSelectionControlsInToolbar {
                     toolbarSelectionControls()
-                } else {
-                    // Otherwise, show just the ... menu
-                    moreOptionsMenu(isOnToolbar: true)
                 }
             }
         }
@@ -272,6 +266,7 @@ struct AuthorDetailView: View {
                 }
             }
         }
+        .edgesIgnoringSafeArea(edgesToIgnore)
     }
     
     @ViewBuilder func moreOptionsMenu(isOnToolbar: Bool) -> some View {
