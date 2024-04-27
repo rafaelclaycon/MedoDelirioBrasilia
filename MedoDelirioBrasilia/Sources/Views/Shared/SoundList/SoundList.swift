@@ -14,6 +14,7 @@ struct SoundList: View {
     @StateObject var viewModel: SoundListViewModel<Sound>
     @Binding var currentSoundsListMode: SoundsListMode
     let emptyStateView: AnyView
+    var headerView: AnyView? = .empty
 
     // MARK: - Stored Properties
 
@@ -66,6 +67,9 @@ struct SoundList: View {
                     ScrollView {
                         ScrollViewReader { proxy in
                             // TODO: Insert banners here.
+                            if let headerView {
+                                headerView
+                            }
 
                             LazyVGrid(columns: columns, spacing: UIDevice.isiPhone ? 14 : 20) {
                                 if searchResults.isEmpty {

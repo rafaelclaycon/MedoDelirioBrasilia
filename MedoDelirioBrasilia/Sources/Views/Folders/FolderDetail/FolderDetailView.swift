@@ -42,37 +42,32 @@ struct FolderDetailView: View {
     }
     
     var body: some View {
-        GeometryReader { geometry in
-            ScrollView {
-                ScrollViewReader { proxy in
-                    VStack {
-                        VStack(alignment: .leading) {
-                            HStack {
-                                Text(viewModel.getSoundCount())
-                                    .font(.callout)
-                                    .foregroundColor(.gray)
-                                    .bold()
-                                
-                                Spacer()
-                            }
+        VStack {
+            SoundList(
+                viewModel: .init(
+                    data: viewModel.soundsPublisher,
+                    menuOptions: [.sharingOptions(), .playFromThisSound(), .removeFromFolder()]
+                ),
+                currentSoundsListMode: .constant(.regular),
+                emptyStateView: AnyView(
+                    EmptyFolderView()
+                        .padding(.horizontal, 30)
+                ),
+                headerView: AnyView(
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Text(viewModel.getSoundCount())
+                                .font(.callout)
+                                .foregroundColor(.gray)
+                                .bold()
+
+                            Spacer()
                         }
-                        .padding(.horizontal, 20)
-                        .padding(.vertical)
-                        
-                        SoundList(
-                            viewModel: .init(
-                                data: viewModel.soundsPublisher,
-                                menuOptions: [.sharingOptions(), .playFromThisSound(), .removeFromFolder()]
-                            ),
-                            currentSoundsListMode: .constant(.regular),
-                            emptyStateView: AnyView(
-                                EmptyFolderView()
-                                    .padding(.horizontal, 30)
-                            )
-                        )
                     }
-                }
-            }
+                    .padding(.horizontal, 20)
+                    .padding(.vertical)
+                )
+            )
         }
         .navigationTitle(title)
         .toolbar { trailingToolbarControls() }
