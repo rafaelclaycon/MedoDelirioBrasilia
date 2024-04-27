@@ -13,12 +13,17 @@ struct SoundList: View {
 
     @StateObject var viewModel: SoundListViewModel<Sound>
     @Binding var currentSoundsListMode: SoundsListMode
+    @Binding var suggestStopShowingFloatingSelector: Bool
     let emptyStateView: AnyView
     var headerView: AnyView? = nil
 
     // MARK: - Stored Properties
 
     @State private var columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
+
+    // Toast views
+    private let toastViewBottomPaddingPhone: CGFloat = 60
+    private let toastViewBottomPaddingPad: CGFloat = 15
 
     // MARK: - Computed Properties
 
@@ -76,7 +81,6 @@ struct SoundList: View {
                                     NoSearchResultsView(searchText: $viewModel.searchText)
                                 } else {
                                     ForEach(searchResults) { sound in
-                                        // Text(sound.title)
                                         SoundCell(
                                             sound: sound,
                                             favorites: $viewModel.favoritesKeeper,
@@ -206,6 +210,9 @@ struct SoundList: View {
                                     )
                                 }
                             }
+                            .onChange(of: viewModel.searchText) { text in
+                                suggestStopShowingFloatingSelector = !text.isEmpty
+                            }
 //                            .onChange(of: geometry.size.width) { newWidth in
 //                                self.listWidth = newWidth
 //                                columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
@@ -267,6 +274,22 @@ struct SoundList: View {
                 }
                 .frame(width: geometry.size.width)
                 .frame(minHeight: geometry.size.height)
+            }
+        }
+        .overlay {
+            if viewModel.showToastView {
+                VStack {
+                    Spacer()
+
+                    ToastView(
+                        icon: viewModel.toastIcon,
+                        iconColor: viewModel.toastIconColor,
+                        text: viewModel.toastText
+                    )
+                    .padding(.horizontal)
+                    .padding(.bottom, UIDevice.isiPhone ? toastViewBottomPaddingPhone : toastViewBottomPaddingPad)
+                }
+                .transition(.moveAndFade)
             }
         }
     }

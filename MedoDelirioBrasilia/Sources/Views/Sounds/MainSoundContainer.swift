@@ -14,6 +14,7 @@ struct MainSoundContainer: View {
 
     @State private var subviewToOpen: MainSoundContainerModalToOpen = .syncInfo
     @State private var showingModalView = false
+    @State private var stopShowingFloatingSelector: Bool = false
 
     // Folders
     @StateObject var deleteFolderAide = DeleteFolderViewAideiPhone()
@@ -21,6 +22,10 @@ struct MainSoundContainer: View {
     // May be dropped
     @State private var authorSortOption: Int = 0
     @State private var soundSortOption: Int = 0
+
+    // Authors
+    @State var authorSortAction: AuthorSortOption = .nameAscending
+    @State var authorSearchText: String = .empty
 
     // MARK: - Computed Properties
 
@@ -47,6 +52,16 @@ struct MainSoundContainer: View {
         }
     }
 
+    private var displayFloatingSelectorView: Bool {
+        guard UIDevice.current.userInterfaceIdiom == .phone else { return false }
+        guard currentSoundsListMode == .regular else { return false }
+        if viewModel.currentViewMode == .byAuthor {
+            return authorSearchText.isEmpty
+        } else {
+            return !stopShowingFloatingSelector
+        }
+    }
+
     // MARK: - Body
 
     var body: some View {
@@ -59,6 +74,7 @@ struct MainSoundContainer: View {
                         menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()]
                     ),
                     currentSoundsListMode: $currentSoundsListMode,
+                    suggestStopShowingFloatingSelector: $stopShowingFloatingSelector,
                     emptyStateView: AnyView(
                         Text("Nenhum som a ser exibido. Isso é esquisito.")
                             .foregroundColor(.gray)
@@ -75,6 +91,7 @@ struct MainSoundContainer: View {
                         refreshAction: { viewModel.reloadFavorites() }
                     ),
                     currentSoundsListMode: $currentSoundsListMode,
+                    suggestStopShowingFloatingSelector: $stopShowingFloatingSelector,
                     emptyStateView: AnyView(
                         NoFavoritesView()
                             .padding(.horizontal, 25)
@@ -88,9 +105,9 @@ struct MainSoundContainer: View {
                 
             case .byAuthor:
                 AuthorsView(
-                    sortOption: .constant(0),
-                    sortAction: .constant(.nameAscending),
-                    searchTextForControl: .constant("")
+                    sortOption: $authorSortOption,
+                    sortAction: $authorSortAction,
+                    searchTextForControl: $authorSearchText
                 )
             }
         }
@@ -100,10 +117,12 @@ struct MainSoundContainer: View {
             trailing: trailingToolbarControls()
         )
         .overlay {
-            VStack {
-                Spacer()
-                floatingSelectorView()
-                    .padding()
+            if displayFloatingSelectorView {
+                VStack {
+                    Spacer()
+                    floatingSelectorView()
+                        .padding()
+                }
             }
         }
         .onAppear {
