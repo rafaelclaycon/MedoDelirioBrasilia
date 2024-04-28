@@ -89,6 +89,12 @@ struct MainSoundContainer: View {
                     currentSoundsListMode: $currentSoundsListMode,
                     stopShowingFloatingSelector: $stopShowingFloatingSelector,
                     allowSearch: true,
+                    allowRefresh: true,
+                    syncAction: {
+                        Task { // Keep this Task to avoid "cancelled" issue.
+                            await viewModel.sync(lastAttempt: AppPersistentMemory.getLastUpdateAttempt())
+                        }
+                    },
                     emptyStateView: AnyView(
                         Text("Nenhum som a ser exibido. Isso é esquisito.")
                             .foregroundColor(.gray)

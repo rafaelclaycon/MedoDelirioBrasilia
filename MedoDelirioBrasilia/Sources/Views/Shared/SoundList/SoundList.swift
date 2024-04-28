@@ -15,6 +15,8 @@ struct SoundList: View {
     @Binding var currentSoundsListMode: SoundsListMode
     @Binding var stopShowingFloatingSelector: Bool
     var allowSearch: Bool = false
+    var allowRefresh: Bool = false
+    var syncAction: (() -> Void)? = nil
     let emptyStateView: AnyView
     var headerView: AnyView? = nil
 
@@ -265,13 +267,11 @@ struct SoundList: View {
 //                                .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? soundCountPhoneBottomPadding : soundCountPadBottomPadding)
 //                        }
                     }
-//                    .if(isAllowedToRefresh) {
-//                        $0.refreshable {
-//                            Task { // Keep this Task to avoid "cancelled" issue.
-//                                await viewModel.sync(lastAttempt: AppPersistentMemory.getLastUpdateAttempt())
-//                            }
-//                        }
-//                    }
+                    .if(allowRefresh) {
+                        $0.refreshable {
+                            syncAction!()
+                        }
+                    }
                 }
 
             case .error:
