@@ -21,7 +21,7 @@ struct SidebarView: View {
 
     // Trends
     @EnvironmentObject var trendsHelper: TrendsHelper
-    
+
     var body: some View {
         List {
             Section("Sons") {
@@ -33,7 +33,8 @@ struct SidebarView: View {
                             authorSortOption: AuthorSortOption.nameAscending.rawValue,
                             currentSoundsListMode: $currentSoundsListMode
                         ),
-                        currentSoundsListMode: $currentSoundsListMode
+                        currentSoundsListMode: $currentSoundsListMode,
+                        showSettings: .constant(false)
                     ).environmentObject(trendsHelper).environmentObject(settingsHelper).environmentObject(networkMonitor),
                     tag: PadScreen.allSounds,
                     selection: $state,
@@ -49,7 +50,8 @@ struct SidebarView: View {
                             authorSortOption: AuthorSortOption.nameAscending.rawValue,
                             currentSoundsListMode: $currentSoundsListMode
                         ),
-                        currentSoundsListMode: $currentSoundsListMode
+                        currentSoundsListMode: $currentSoundsListMode,
+                        showSettings: .constant(false)
                     ).environmentObject(trendsHelper).environmentObject(settingsHelper).environmentObject(networkMonitor),
                     tag: PadScreen.favorites,
                     selection: $state,

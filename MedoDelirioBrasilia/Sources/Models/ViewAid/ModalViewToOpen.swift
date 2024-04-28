@@ -17,7 +17,6 @@ enum MainViewModalToOpen {
 
 enum MainSoundContainerModalToOpen {
 
-    case settings
     case syncInfo
 }
 

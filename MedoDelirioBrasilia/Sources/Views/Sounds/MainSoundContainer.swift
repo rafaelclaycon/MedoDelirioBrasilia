@@ -11,6 +11,7 @@ struct MainSoundContainer: View {
 
     @StateObject var viewModel: MainSoundContainerViewModel
     @Binding var currentSoundsListMode: SoundsListMode
+    @Binding var showSettings: Bool
 
     @State private var subviewToOpen: MainSoundContainerModalToOpen = .syncInfo
     @State private var showingModalView = false
@@ -144,8 +145,7 @@ struct MainSoundContainer: View {
         } else {
             if UIDevice.isiPhone {
                 Button {
-                    subviewToOpen = .settings
-                    showingModalView = true
+                    showSettings = true
                 } label: {
                     Image(systemName: "gearshape")
                 }
@@ -270,6 +270,7 @@ struct MainSoundContainer: View {
             authorSortOption: AuthorSortOption.nameAscending.rawValue,
             currentSoundsListMode: .constant(.regular)
         ),
-        currentSoundsListMode: .constant(.regular)
+        currentSoundsListMode: .constant(.regular),
+        showSettings: .constant(false)
     )
 }
