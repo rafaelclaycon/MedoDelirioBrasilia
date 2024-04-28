@@ -212,6 +212,19 @@ struct SoundList: View {
                             .onChange(of: viewModel.searchText) { text in
                                 stopShowingFloatingSelector = !text.isEmpty
                             }
+                            .onChange(of: viewModel.shareAsVideoResult.videoFilepath) { videoResultPath in
+                                if videoResultPath.isEmpty == false {
+                                    if viewModel.shareAsVideoResult.exportMethod == .saveAsVideo {
+                                        viewModel.showVideoSavedSuccessfullyToast()
+                                    } else {
+                                        viewModel.shareVideo(
+                                            withPath: videoResultPath,
+                                            andContentId: viewModel.shareAsVideoResult.contentId,
+                                            title: viewModel.selectedSound?.title ?? ""
+                                        )
+                                    }
+                                }
+                            }
 //                            .onChange(of: geometry.size.width) { newWidth in
 //                                self.listWidth = newWidth
 //                                columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)

@@ -172,6 +172,58 @@ class SoundListViewModel<T>: ObservableObject {
         alertMessage = Shared.serverContentNotAvailableRedownloadMessage
         showAlert = true
     }
+
+    func showVideoSavedSuccessfullyToast() {
+        self.displayToast(
+            toastText: UIDevice.isMac ? Shared.ShareAsVideo.videoSavedSucessfullyMac : Shared.ShareAsVideo.videoSavedSucessfully
+        )
+    }
+
+    func shareVideo(
+        withPath filepath: String,
+        andContentId contentId: String,
+        title soundTitle: String
+    ) {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            do {
+                try SharingUtility.shareVideoFromSound(withPath: filepath, andContentId: contentId, shareSheetDelayInSeconds: 0.6) { didShareSuccessfully in
+                    if didShareSuccessfully {
+                        self.displayToast(toastText: Shared.videoSharedSuccessfullyMessage)
+                    }
+
+                    WallE.deleteAllVideoFilesFromDocumentsDir()
+                }
+            } catch {
+                showUnableToGetSoundAlert(soundTitle)
+            }
+        } else {
+//            guard filepath.isEmpty == false else {
+//                return
+//            }
+//
+//            let url = URL(fileURLWithPath: filepath)
+//
+//            iPadShareSheet = ActivityViewController(activityItems: [url]) { activity, completed, items, error in
+//                if completed {
+//                    self.isShowingShareSheet = false
+//
+//                    guard let activity = activity else {
+//                        return
+//                    }
+//                    let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
+//                    Logger.shared.logSharedVideoFromSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
+//
+//                    AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
+//
+//                    self.displayToast(toastText: Shared.videoSharedSuccessfullyMessage)
+//                }
+//
+//                WallE.deleteAllVideoFilesFromDocumentsDir()
+//            }
+//
+//            isShowingShareSheet = true
+        }
+    }
 }
 
 // MARK: - Sound List Displaying Protocol Conformance
