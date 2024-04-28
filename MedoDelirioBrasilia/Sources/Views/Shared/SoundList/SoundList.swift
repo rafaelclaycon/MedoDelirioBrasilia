@@ -13,17 +13,14 @@ struct SoundList: View {
 
     @StateObject var viewModel: SoundListViewModel<Sound>
     @Binding var currentSoundsListMode: SoundsListMode
-    @Binding var suggestStopShowingFloatingSelector: Bool
+    @Binding var stopShowingFloatingSelector: Bool
+    var allowSearch: Bool = false
     let emptyStateView: AnyView
     var headerView: AnyView? = nil
 
     // MARK: - Stored Properties
 
     @State private var columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
-
-    // Toast views
-    private let toastViewBottomPaddingPhone: CGFloat = 60
-    private let toastViewBottomPaddingPad: CGFloat = 15
 
     // MARK: - Computed Properties
 
@@ -128,13 +125,56 @@ struct SoundList: View {
                                     }
                                 }
                             }
-                            .if(headerView == nil) {
+                            .if(allowSearch) {
                                 $0
                                   .searchable(text: $viewModel.searchText)
                                   .disableAutocorrection(true)
                             }
                             .padding(.horizontal)
                             .padding(.top, 7)
+                            .alert(isPresented: $viewModel.showAlert) {
+                                switch viewModel.alertType {
+                                case .soundFileNotFound:
+                                    return Alert(
+                                        title: Text(viewModel.alertTitle),
+                                        message: Text(viewModel.alertMessage),
+                                        primaryButton: .default(Text("Baixar Conteúdo Novamente"), action: {
+                                            guard let content = viewModel.selectedSound else { return }
+                                            viewModel.redownloadServerContent(withId: content.id)
+                                        }),
+                                        secondaryButton: .cancel(Text("Fechar"))
+                                    )
+
+                                case .issueSharingSound:
+                                    return Alert(
+                                        title: Text(viewModel.alertTitle),
+                                        message: Text(viewModel.alertMessage),
+                                        primaryButton: .default(Text("Relatar Problema por E-mail"), action: {
+                                            viewModel.subviewToOpen = .soundIssueEmailPicker
+                                            viewModel.showingModalView = true
+                                        }),
+                                        secondaryButton: .cancel(Text("Fechar"))
+                                    )
+
+                                case .optionIncompatibleWithWhatsApp:
+                                    return Alert(
+                                        title: Text(viewModel.alertTitle),
+                                        message: Text(viewModel.alertMessage),
+                                        primaryButton: .default(Text("Continuar"), action: {
+                                            AppPersistentMemory.increaseShareManyMessageShowCountByOne()
+                                            // viewModel.shareSelected()
+                                        }),
+                                        secondaryButton: .cancel(Text("Cancelar"))
+                                    )
+
+                                case .issueExportingManySounds:
+                                    return Alert(
+                                        title: Text(viewModel.alertTitle),
+                                        message: Text(viewModel.alertMessage),
+                                        dismissButton: .default(Text("OK"))
+                                    )
+                                }
+                            }
                             .sheet(isPresented: $viewModel.showingModalView) {
                                 switch viewModel.subviewToOpen {
                                 case .shareAsVideo:
@@ -159,59 +199,18 @@ struct SoundList: View {
                                         isBeingShown: $viewModel.showingModalView,
                                         sound: viewModel.selectedSound ?? Sound(title: "")
                                     )
-                                }
-                            }
-                            .alert(isPresented: $viewModel.showAlert) {
-                                switch viewModel.alertType {
-                                case .singleOption, .twoOptionsOneDelete:
-                                    return Alert(
-                                        title: Text(viewModel.alertTitle),
-                                        message: Text(viewModel.alertMessage),
-                                        dismissButton: .default(Text("OK"))
-                                    )
 
-                                case .twoOptions:
-                                    return Alert(
-                                        title: Text(viewModel.alertTitle),
-                                        message: Text(viewModel.alertMessage),
-                                        primaryButton: .default(
-                                            Text("Relatar Problema por E-mail"),
-                                            action: {
-                                                // viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog = true
-                                            }
-                                        ),
-                                        secondaryButton: .cancel(Text("Fechar"))
-                                    )
-
-                                case .twoOptionsOneRedownload:
-                                    return Alert(
-                                        title: Text(viewModel.alertTitle),
-                                        message: Text(viewModel.alertMessage),
-                                        primaryButton: .default(
-                                            Text("Baixar Conteúdo Novamente"),
-                                            action: {
-                                                guard let content = viewModel.selectedSound else { return }
-                                                viewModel.redownloadServerContent(withId: content.id)
-                                            }), 
-                                        secondaryButton: .cancel(Text("Fechar"))
-                                    )
-
-                                case .twoOptionsOneContinue:
-                                    return Alert(
-                                        title: Text(viewModel.alertTitle),
-                                        message: Text(viewModel.alertMessage),
-                                        primaryButton: .default(
-                                            Text("Continuar"),
-                                            action: {
-                                                AppPersistentMemory.increaseShareManyMessageShowCountByOne()
-                                                // viewModel.shareSelected()
-                                            }),
-                                        secondaryButton: .cancel(Text("Cancelar"))
+                                case .soundIssueEmailPicker:
+                                    EmailAppPickerView(
+                                        isBeingShown: $viewModel.showingModalView,
+                                        didCopySupportAddress: .constant(false),
+                                        subject: Shared.issueSuggestionEmailSubject,
+                                        emailBody: Shared.issueSuggestionEmailBody
                                     )
                                 }
                             }
                             .onChange(of: viewModel.searchText) { text in
-                                suggestStopShowingFloatingSelector = !text.isEmpty
+                                stopShowingFloatingSelector = !text.isEmpty
                             }
 //                            .onChange(of: geometry.size.width) { newWidth in
 //                                self.listWidth = newWidth
@@ -287,7 +286,10 @@ struct SoundList: View {
                         text: viewModel.toastText
                     )
                     .padding(.horizontal)
-                    .padding(.bottom, UIDevice.isiPhone ? toastViewBottomPaddingPhone : toastViewBottomPaddingPad)
+                    .padding(
+                        .bottom,
+                        UIDevice.isiPhone ? Shared.Constants.toastViewBottomPaddingPhone : Shared.Constants.toastViewBottomPaddingPad
+                    )
                 }
                 .transition(.moveAndFade)
             }

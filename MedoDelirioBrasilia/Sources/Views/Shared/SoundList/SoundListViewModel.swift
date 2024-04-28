@@ -52,7 +52,7 @@ class SoundListViewModel<T>: ObservableObject {
     @Published var alertTitle: String = ""
     @Published var alertMessage: String = ""
     @Published var showAlert: Bool = false
-    @Published var alertType: AlertType = .singleOption
+    @Published var alertType: SoundListAlertType = .soundFileNotFound
 
     // Toast
     @Published var showToastView: Bool = false
@@ -102,8 +102,7 @@ class SoundListViewModel<T>: ObservableObject {
         } catch {
             if sound.isFromServer ?? false {
                 showServerSoundNotAvailableAlert(sound)
-            } else {
-                showUnableToGetSoundAlert(sound.title)
+                // Disregarding the case of the sound not being in the Bundle as this is highly unlikely since the launch of the sync system.
             }
         }
     }
@@ -168,7 +167,7 @@ class SoundListViewModel<T>: ObservableObject {
     func showServerSoundNotAvailableAlert(_ sound: Sound) {
         selectedSound = sound
         TapticFeedback.error()
-        alertType = .twoOptionsOneRedownload
+        alertType = .soundFileNotFound
         alertTitle = Shared.contentNotFoundAlertTitle(sound.title)
         alertMessage = Shared.serverContentNotAvailableRedownloadMessage
         showAlert = true
@@ -216,7 +215,7 @@ extension SoundListViewModel: SoundListDisplaying {
 
     func showUnableToGetSoundAlert(_ soundTitle: String) {
         TapticFeedback.error()
-        alertType = .twoOptions
+        alertType = .issueSharingSound
         alertTitle = Shared.contentNotFoundAlertTitle(soundTitle)
         alertMessage = Shared.soundNotFoundAlertMessage
         showAlert = true

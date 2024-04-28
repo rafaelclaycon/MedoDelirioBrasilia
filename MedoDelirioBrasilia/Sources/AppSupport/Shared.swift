@@ -2,6 +2,11 @@ import UIKit
 
 struct Shared {
 
+    struct Constants {
+        static let toastViewBottomPaddingPhone: CGFloat = 60
+        static let toastViewBottomPaddingPad: CGFloat = 15
+    }
+
     struct ActivityTypes {
         
         static let playAndShareSounds = "com.rafaelschmitt.MedoDelirioBrasilia.PlayAndShareSounds"

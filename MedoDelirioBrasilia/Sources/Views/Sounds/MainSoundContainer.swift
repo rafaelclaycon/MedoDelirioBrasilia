@@ -28,6 +28,16 @@ struct MainSoundContainer: View {
     @State var authorSortAction: AuthorSortOption = .nameAscending
     @State var authorSearchText: String = .empty
 
+    // Networking
+    @EnvironmentObject var networkMonitor: NetworkMonitor
+
+    // Sync
+    @State private var shouldDisplayYoureOfflineBanner: Bool = true
+    @State private var displayLongUpdateBanner: Bool = false
+
+    // Temporary banners
+    @State private var shouldDisplayRecurringDonationBanner: Bool = false
+
     // MARK: - Computed Properties
 
     private var title: String {
@@ -75,11 +85,32 @@ struct MainSoundContainer: View {
                         menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()]
                     ),
                     currentSoundsListMode: $currentSoundsListMode,
-                    suggestStopShowingFloatingSelector: $stopShowingFloatingSelector,
+                    stopShowingFloatingSelector: $stopShowingFloatingSelector,
+                    allowSearch: true,
                     emptyStateView: AnyView(
                         Text("Nenhum som a ser exibido. Isso é esquisito.")
                             .foregroundColor(.gray)
                             .padding(.horizontal, 20)
+                    ),
+                    headerView: AnyView(
+                        VStack {
+                            if !networkMonitor.isConnected, shouldDisplayYoureOfflineBanner {
+                                YoureOfflineView(isBeingShown: $shouldDisplayYoureOfflineBanner)
+                            }
+
+                            if displayLongUpdateBanner {
+                                LongUpdateBanner(
+                                    completedNumber: $viewModel.processedUpdateNumber,
+                                    totalUpdateCount: $viewModel.totalUpdateCount
+                                )
+                                .padding(.horizontal, 10)
+                            }
+
+//                            if shouldDisplayRecurringDonationBanner, viewModel.searchText.isEmpty {
+//                                RecurringDonationBanner(isBeingShown: $shouldDisplayRecurringDonationBanner)
+//                                    .padding(.horizontal, 10)
+//                            }
+                        }
                     )
                 )
 
@@ -92,7 +123,8 @@ struct MainSoundContainer: View {
                         refreshAction: { viewModel.reloadFavorites() }
                     ),
                     currentSoundsListMode: $currentSoundsListMode,
-                    suggestStopShowingFloatingSelector: $stopShowingFloatingSelector,
+                    stopShowingFloatingSelector: $stopShowingFloatingSelector,
+                    allowSearch: true,
                     emptyStateView: AnyView(
                         NoFavoritesView()
                             .padding(.horizontal, 25)
@@ -117,12 +149,37 @@ struct MainSoundContainer: View {
             leading: leadingToolbarControls(),
             trailing: trailingToolbarControls()
         )
+        .onChange(of: viewModel.processedUpdateNumber) { _ in
+            withAnimation {
+                displayLongUpdateBanner = viewModel.totalUpdateCount >= 10 && viewModel.processedUpdateNumber != viewModel.totalUpdateCount
+            }
+        }
         .overlay {
-            if displayFloatingSelectorView {
-                VStack {
-                    Spacer()
-                    floatingSelectorView()
-                        .padding()
+            ZStack {
+                if displayFloatingSelectorView {
+                    VStack {
+                        Spacer()
+                        floatingSelectorView()
+                            .padding()
+                    }
+                }
+
+                if viewModel.showToastView {
+                    VStack {
+                        Spacer()
+
+                        ToastView(
+                            icon: viewModel.toastIcon,
+                            iconColor: viewModel.toastIconColor,
+                            text: viewModel.toastText
+                        )
+                        .padding(.horizontal)
+                        .padding(
+                            .bottom,
+                            UIDevice.isiPhone ? Shared.Constants.toastViewBottomPaddingPhone : Shared.Constants.toastViewBottomPaddingPad
+                        )
+                    }
+                    .transition(.moveAndFade)
                 }
             }
         }
@@ -130,6 +187,12 @@ struct MainSoundContainer: View {
             print("MAIN SOUND CONTAINER - ON APPEAR")
             viewModel.reloadAllSounds()
             viewModel.reloadFavorites()
+        }
+        .oneTimeTask {
+            print("MAIN SOUND CONTAINER - ONE TIME TASK")
+            if viewModel.currentViewMode == .allSounds {
+                await viewModel.sync(lastAttempt: AppPersistentMemory.getLastUpdateAttempt())
+            }
         }
     }
 
@@ -268,7 +331,8 @@ struct MainSoundContainer: View {
             currentViewMode: .allSounds,
             soundSortOption: SoundSortOption.dateAddedDescending.rawValue,
             authorSortOption: AuthorSortOption.nameAscending.rawValue,
-            currentSoundsListMode: .constant(.regular)
+            currentSoundsListMode: .constant(.regular),
+            syncValues: SyncValues()
         ),
         currentSoundsListMode: .constant(.regular),
         showSettings: .constant(false)

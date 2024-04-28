@@ -36,26 +36,13 @@ struct MainView: View {
             if UIDevice.isiPhone {
                 TabView(selection: $tabSelection) {
                     NavigationView {
-//                        SoundsView(
-//                            viewModel: SoundsViewViewModel(
-//                                currentViewMode: .allSounds,
-//                                soundSortOption: UserSettings.getSoundSortOption(),
-//                                authorSortOption: AuthorSortOption.nameAscending.rawValue,
-//                                currentSoundsListMode: $currentSoundsListMode,
-//                                syncValues: syncValues
-//                            ),
-//                            currentSoundsListMode: $currentSoundsListMode
-//                        )
-//                        .environmentObject(trendsHelper)
-//                        .environmentObject(settingsHelper)
-//                        .environmentObject(networkMonitor)
-
                         MainSoundContainer(
                             viewModel: .init(
                                 currentViewMode: .allSounds,
                                 soundSortOption: UserSettings.getSoundSortOption(),
                                 authorSortOption: AuthorSortOption.nameAscending.rawValue,
-                                currentSoundsListMode: $currentSoundsListMode
+                                currentSoundsListMode: $currentSoundsListMode,
+                                syncValues: syncValues
                             ),
                             currentSoundsListMode: $currentSoundsListMode,
                             showSettings: $triggerSettings
@@ -140,7 +127,8 @@ struct MainView: View {
                             currentViewMode: .allSounds,
                             soundSortOption: UserSettings.getSoundSortOption(),
                             authorSortOption: AuthorSortOption.nameAscending.rawValue,
-                            currentSoundsListMode: $currentSoundsListMode
+                            currentSoundsListMode: $currentSoundsListMode,
+                            syncValues: syncValues
                         ),
                         currentSoundsListMode: $currentSoundsListMode,
                         showSettings: .constant(false)

@@ -25,4 +25,5 @@ enum SoundListModalToOpen {
     case shareAsVideo
     case addToFolder
     case soundDetail
+    case soundIssueEmailPicker
 }
