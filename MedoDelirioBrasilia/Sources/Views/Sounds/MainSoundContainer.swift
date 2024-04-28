@@ -28,15 +28,17 @@ struct MainSoundContainer: View {
     @State var authorSortAction: AuthorSortOption = .nameAscending
     @State var authorSearchText: String = .empty
 
-    // Networking
-    @EnvironmentObject var networkMonitor: NetworkMonitor
-
     // Sync
     @State private var shouldDisplayYoureOfflineBanner: Bool = true
     @State private var displayLongUpdateBanner: Bool = false
 
     // Temporary banners
     @State private var shouldDisplayRecurringDonationBanner: Bool = false
+
+    // Env Objects
+    @EnvironmentObject var trendsHelper: TrendsHelper
+    @EnvironmentObject var settingsHelper: SettingsHelper
+    @EnvironmentObject var networkMonitor: NetworkMonitor
 
     // MARK: - Computed Properties
 
@@ -152,6 +154,12 @@ struct MainSoundContainer: View {
         .onChange(of: viewModel.processedUpdateNumber) { _ in
             withAnimation {
                 displayLongUpdateBanner = viewModel.totalUpdateCount >= 10 && viewModel.processedUpdateNumber != viewModel.totalUpdateCount
+            }
+        }
+        .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in // iPad - Settings explicit toggle.
+            if shouldUpdate {
+                viewModel.reloadAllSounds()
+                settingsHelper.updateSoundsList = false
             }
         }
         .overlay {
