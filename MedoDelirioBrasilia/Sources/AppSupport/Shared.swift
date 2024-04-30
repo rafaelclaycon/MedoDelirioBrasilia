@@ -117,8 +117,8 @@ struct Shared {
         
         struct AskForNewSoundAlert {
             
-            static let title = "Nos Ajude a Te Ajudar"
-            static let message = "Somos uma equipe minúscula e pouquíssimos sons do podcast já estão pré-cortados e separados.\n\nPara aumentar as chances do seu som ser incluído, coloque no e-mail o máximo de informações possível, como link para vídeo, nome do episódio e minuto no qual o som que você quer apareceu, etc."
+            static let title = "Me Ajude a Te Ajudar"
+            static let message = "Sou uma equipe de um homem só e poucos sons do podcast estão pré-cortados e separados.\n\nPara aumentar as chances do seu som ser incluído, coloque no e-mail o máximo de informações possível, como link para vídeo, nome do episódio e minuto no qual o som que você quer apareceu."
         }
     }
 }
