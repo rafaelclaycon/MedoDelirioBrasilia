@@ -120,9 +120,9 @@ struct AuthorDetailView: View {
             SoundList(
                 viewModel: .init(
                     data: viewModel.soundsPublisher,
-                    menuOptions: [.sharingOptions(), .organizingOptions(), .authorOptions()]
+                    menuOptions: [.sharingOptions(), .organizingOptions(), .authorOptions()],
+                    currentSoundsListMode: .constant(.regular)
                 ),
-                currentSoundsListMode: .constant(.regular),
                 stopShowingFloatingSelector: .constant(false),
                 emptyStateView: AnyView(
                     NoSoundsView()

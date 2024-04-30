@@ -84,9 +84,9 @@ struct MainSoundContainer: View {
                 SoundList(
                     viewModel: .init(
                         data: viewModel.allSoundsPublisher,
-                        menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()]
+                        menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
+                        currentSoundsListMode: $currentSoundsListMode
                     ),
-                    currentSoundsListMode: $currentSoundsListMode,
                     stopShowingFloatingSelector: $stopShowingFloatingSelector,
                     allowSearch: true,
                     allowRefresh: true,
@@ -127,10 +127,10 @@ struct MainSoundContainer: View {
                     viewModel: .init(
                         data: viewModel.favoritesPublisher,
                         menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
+                        currentSoundsListMode: $currentSoundsListMode,
                         needsRefreshAfterChange: true,
                         refreshAction: { viewModel.reloadFavorites() }
                     ),
-                    currentSoundsListMode: $currentSoundsListMode,
                     stopShowingFloatingSelector: $stopShowingFloatingSelector,
                     allowSearch: true,
                     emptyStateView: AnyView(

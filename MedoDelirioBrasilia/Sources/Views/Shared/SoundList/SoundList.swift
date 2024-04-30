@@ -12,7 +12,6 @@ struct SoundList: View {
     // MARK: - Dependencies
 
     @StateObject var viewModel: SoundListViewModel<Sound>
-    @Binding var currentSoundsListMode: SoundsListMode
     @Binding var stopShowingFloatingSelector: Bool
     var allowSearch: Bool = false
     var allowRefresh: Bool = false
@@ -86,12 +85,12 @@ struct SoundList: View {
                                             highlighted: $viewModel.highlightKeeper,
                                             nowPlaying: $viewModel.nowPlayingKeeper,
                                             selectedItems: $viewModel.selectionKeeper,
-                                            currentSoundsListMode: $currentSoundsListMode
+                                            currentSoundsListMode: viewModel.currentSoundsListMode
                                         )
                                         .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
                                         .padding(.horizontal, UIDevice.isiPhone ? 0 : 5)
                                         .onTapGesture {
-                                            if currentSoundsListMode == .regular {
+                                            if viewModel.currentSoundsListMode.wrappedValue == .regular {
                                                 if viewModel.nowPlayingKeeper.contains(sound.id) {
                                                     AudioPlayer.shared?.togglePlay()
                                                     viewModel.nowPlayingKeeper.removeAll()
@@ -107,7 +106,7 @@ struct SoundList: View {
                                             }
                                         }
                                         .contextMenu {
-                                            if currentSoundsListMode != .selection {
+                                            if viewModel.currentSoundsListMode.wrappedValue != .selection {
                                                 ForEach(viewModel.menuOptions, id: \.title) { section in
                                                     Section {
                                                         ForEach(section.options(sound)) { option in
@@ -223,6 +222,28 @@ struct SoundList: View {
                                             withPath: videoResultPath,
                                             andContentId: viewModel.shareAsVideoResult.contentId,
                                             title: viewModel.selectedSound?.title ?? ""
+                                        )
+                                    }
+                                }
+                            }
+                            .onChange(of: viewModel.showingModalView) { showingModalView in
+                                if (viewModel.showingModalView == false) && viewModel.hadSuccessAddingToFolder {
+                                    // Need to get count before clearing the Set.
+                                    let selectedCount: Int = viewModel.selectionKeeper.count
+
+                                    if viewModel.currentSoundsListMode.wrappedValue == .selection {
+                                        viewModel.stopSelecting()
+                                    }
+
+                                    viewModel.displayToast(toastText: viewModel.pluralization.getAddedToFolderToastText(folderName: viewModel.folderName)) {
+                                        viewModel.folderName = nil
+                                        viewModel.hadSuccessAddingToFolder = false
+                                    }
+
+                                    if viewModel.pluralization == .plural {
+                                        Analytics.sendUsageMetricToServer(
+                                            originatingScreen: "SoundsView",
+                                            action: "didAddManySoundsToFolder(\(selectedCount))"
                                         )
                                     }
                                 }

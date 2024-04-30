@@ -60,6 +60,10 @@ class SoundListViewModel<T>: ObservableObject {
     @Published var toastIconColor: Color = .green
     @Published var toastText: String = ""
 
+    // MARK: - Stored Properties
+
+    var currentSoundsListMode: Binding<SoundsListMode>
+
     private var cancellables = Set<AnyCancellable>()
 
     // MARK: - Initializer
@@ -67,10 +71,12 @@ class SoundListViewModel<T>: ObservableObject {
     init(
         data: AnyPublisher<[Sound], Never>,
         menuOptions: [ContextMenuSection],
+        currentSoundsListMode: Binding<SoundsListMode>,
         needsRefreshAfterChange: Bool = false,
         refreshAction: (() -> Void)? = nil
     ) {
         self.menuOptions = menuOptions
+        self.currentSoundsListMode = currentSoundsListMode
         self.needsRefreshAfterChange = needsRefreshAfterChange
         self.refreshAction = refreshAction
 
@@ -224,6 +230,13 @@ class SoundListViewModel<T>: ObservableObject {
 //            isShowingShareSheet = true
         }
     }
+
+    func stopSelecting() {
+        currentSoundsListMode.wrappedValue = .regular
+        selectionKeeper.removeAll()
+        selectedSounds = nil
+        searchText = ""
+    }
 }
 
 // MARK: - Sound List Displaying Protocol Conformance
@@ -262,6 +275,19 @@ extension SoundListViewModel: SoundListDisplaying {
             toastText: toastText,
             displayTime: .seconds(3),
             completion: nil
+        )
+    }
+
+    func displayToast(
+        toastText: String,
+        completion: (() -> Void)?
+    ) {
+        displayToast(
+            "checkmark",
+            .green,
+            toastText: toastText,
+            displayTime: .seconds(3),
+            completion: completion
         )
     }
 
