@@ -19,7 +19,7 @@ struct ReactionDetailView: View {
                     menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
                     currentSoundsListMode: .constant(.regular)
                 ),
-                stopShowingFloatingSelector: .constant(false),
+                stopShowingFloatingSelector: .constant(nil),
                 emptyStateView: AnyView(
                     Text("Nenhum som a ser exibido. Isso é esquisito.")
                         .foregroundColor(.gray)
