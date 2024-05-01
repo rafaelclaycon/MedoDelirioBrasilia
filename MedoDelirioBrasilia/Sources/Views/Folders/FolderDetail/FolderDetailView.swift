@@ -49,7 +49,7 @@ struct FolderDetailView: View {
                     menuOptions: [.sharingOptions(), .playFromThisSound(), .removeFromFolder()],
                     currentSoundsListMode: .constant(.regular)
                 ),
-                stopShowingFloatingSelector: .constant(false),
+                stopShowingFloatingSelector: .constant(nil),
                 emptyStateView: AnyView(
                     EmptyFolderView()
                         .padding(.horizontal, 30)
