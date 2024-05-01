@@ -21,20 +21,21 @@ struct SidebarView: View {
 
     // Trends
     @EnvironmentObject var trendsHelper: TrendsHelper
-    
+
     var body: some View {
         List {
             Section("Sons") {
                 NavigationLink(
-                    destination: SoundsView(
-                        viewModel: SoundsViewViewModel(
+                    destination: MainSoundContainer(
+                        viewModel: .init(
                             currentViewMode: .allSounds,
                             soundSortOption: UserSettings.getSoundSortOption(),
                             authorSortOption: AuthorSortOption.nameAscending.rawValue,
                             currentSoundsListMode: $currentSoundsListMode,
                             syncValues: syncValues
                         ),
-                        currentSoundsListMode: $currentSoundsListMode
+                        currentSoundsListMode: $currentSoundsListMode,
+                        showSettings: .constant(false)
                     ).environmentObject(trendsHelper).environmentObject(settingsHelper).environmentObject(networkMonitor),
                     tag: PadScreen.allSounds,
                     selection: $state,
@@ -43,15 +44,16 @@ struct SidebarView: View {
                     })
                 
                 NavigationLink(
-                    destination: SoundsView(
-                        viewModel: SoundsViewViewModel(
+                    destination: MainSoundContainer(
+                        viewModel: .init(
                             currentViewMode: .favorites,
                             soundSortOption: UserSettings.getSoundSortOption(),
                             authorSortOption: AuthorSortOption.nameAscending.rawValue,
                             currentSoundsListMode: $currentSoundsListMode,
                             syncValues: syncValues
                         ),
-                        currentSoundsListMode: $currentSoundsListMode
+                        currentSoundsListMode: $currentSoundsListMode,
+                        showSettings: .constant(false)
                     ).environmentObject(trendsHelper).environmentObject(settingsHelper).environmentObject(networkMonitor),
                     tag: PadScreen.favorites,
                     selection: $state,
@@ -134,7 +136,7 @@ struct SidebarView: View {
                 }
             }
         }
-        .listStyle(SidebarListStyle())
+        .listStyle(.sidebar)
         .navigationTitle(LocalizableStrings.MainView.title)
         .toolbar {
             Button {

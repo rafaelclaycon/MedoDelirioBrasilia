@@ -39,6 +39,12 @@ class FolderDetailViewViewModel: ObservableObject {
     @Published var showAlert: Bool = false
     @Published var alertType: FolderDetailAlertType = .ok
 
+    // MARK: - Computed Properties
+
+    var soundsPublisher: AnyPublisher<[Sound], Never> {
+        $sounds.eraseToAnyPublisher()
+    }
+
     // MARK: - Initializers
 
     init(currentSoundsListMode: Binding<SoundsListMode>) {

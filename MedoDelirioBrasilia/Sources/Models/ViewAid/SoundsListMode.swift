@@ -8,6 +8,5 @@
 import Foundation
 
 enum SoundsListMode: Int {
-    
     case regular, selection
 }
