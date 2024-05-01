@@ -12,7 +12,7 @@ struct SoundList: View {
     // MARK: - Dependencies
 
     @StateObject var viewModel: SoundListViewModel<Sound>
-    @Binding var stopShowingFloatingSelector: Bool
+    @Binding var stopShowingFloatingSelector: Bool?
     var allowSearch: Bool = false
     var allowRefresh: Bool = false
     var syncAction: (() -> Void)? = nil
@@ -322,7 +322,7 @@ struct SoundList: View {
                     .padding(.horizontal)
                     .padding(
                         .bottom,
-                        UIDevice.isiPhone ? Shared.Constants.toastViewBottomPaddingPhone : Shared.Constants.toastViewBottomPaddingPad
+                        UIDevice.isiPhone && (stopShowingFloatingSelector != nil) ? Shared.Constants.toastViewBottomPaddingPhone : Shared.Constants.toastViewBottomPaddingPad
                     )
                 }
                 .transition(.moveAndFade)

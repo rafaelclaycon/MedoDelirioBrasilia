@@ -15,7 +15,7 @@ struct MainSoundContainer: View {
 
     @State private var subviewToOpen: MainSoundContainerModalToOpen = .syncInfo
     @State private var showingModalView = false
-    @State private var stopShowingFloatingSelector: Bool = false
+    @State private var stopShowingFloatingSelector: Bool? = false
 
     // Folders
     @StateObject var deleteFolderAide = DeleteFolderViewAideiPhone()
@@ -71,7 +71,7 @@ struct MainSoundContainer: View {
         if viewModel.currentViewMode == .byAuthor {
             return authorSearchText.isEmpty
         } else {
-            return !stopShowingFloatingSelector
+            return !(stopShowingFloatingSelector ?? false)
         }
     }
 

@@ -123,7 +123,7 @@ struct AuthorDetailView: View {
                     menuOptions: [.sharingOptions(), .organizingOptions(), .authorOptions()],
                     currentSoundsListMode: .constant(.regular)
                 ),
-                stopShowingFloatingSelector: .constant(false),
+                stopShowingFloatingSelector: .constant(nil),
                 emptyStateView: AnyView(
                     NoSoundsView()
                         .padding(.horizontal, 25)
