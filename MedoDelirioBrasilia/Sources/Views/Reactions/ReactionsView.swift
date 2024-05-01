@@ -41,11 +41,13 @@ struct ReactionsView: View {
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         LazyHGrid(rows: rows, spacing: 14) {
-                            ForEach(viewModel.collections) { collection in
+                            ForEach(viewModel.collections) { reaction in
                                 NavigationLink {
-                                    CollectionDetailView()
+                                    ReactionDetailView(
+                                        viewModel: .init(reactionTitle: reaction.title)
+                                    )
                                 } label: {
-                                    ReactionCell(title: collection.title, imageURL: collection.imageURL)
+                                    ReactionCell(title: reaction.title, imageURL: reaction.imageURL)
                                 }
                             }
                         }
