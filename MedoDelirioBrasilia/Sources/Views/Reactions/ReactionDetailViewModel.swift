@@ -15,7 +15,7 @@ class ReactionDetailViewModel: ObservableObject {
     @Published var sounds: [Sound] = []
     @Published var soundSortOption: Int = ReactionSoundSortOption.default.rawValue
 
-    let reactionTitle: String
+    let reaction: Reaction
 
     // MARK: - Computed Properties
 
@@ -23,12 +23,22 @@ class ReactionDetailViewModel: ObservableObject {
         $sounds.eraseToAnyPublisher()
     }
 
+    var subtitle: String {
+        if sounds.count == 0 {
+            return "Nenhum som. Atualizada agora mesmo."
+        } else if sounds.count == 1 {
+            return "1 som. Atualizada agora mesmo."
+        } else {
+            return "\(sounds.count) sons. Atualizada agora mesmo."
+        }
+    }
+
     // MARK: - Initializer
 
     init(
-        reactionTitle: String
+        reaction: Reaction
     ) {
-        self.reactionTitle = reactionTitle
+        self.reaction = reaction
     }
 
     // MARK: - Functions

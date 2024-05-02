@@ -24,16 +24,26 @@ struct ReactionDetailView: View {
                     Text("Nenhum som a ser exibido. Isso é esquisito.")
                         .foregroundColor(.gray)
                         .padding(.horizontal, 20)
+                ),
+                headerView: AnyView(
+                    ReactionDetailHeader(
+                        title: viewModel.reaction.title,
+                        subtitle: viewModel.subtitle,
+                        imageUrl: viewModel.reaction.imageURL
+                    )
+                    .frame(height: 250)
+                    .padding(.bottom, 6)
                 )
             )
         }
-        .navigationTitle(Text(viewModel.reactionTitle))
         .toolbar {
             toolbarControls()
+                .foregroundStyle(.white)
         }
         .onAppear {
             viewModel.loadSounds()
         }
+        .edgesIgnoringSafeArea(.top)
     }
 
     @ViewBuilder func toolbarControls() -> some View {
@@ -79,7 +89,5 @@ struct ReactionDetailView: View {
 }
 
 #Preview {
-    ReactionDetailView(viewModel: .init(reactionTitle: "entusiasmo"))
+    ReactionDetailView(viewModel: .init(reaction: .init(title: "entusiasmo", imageURL: "")))
 }
-
-// https://images.unsplash.com/photo-1489710437720-ebb67ec84dd2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D

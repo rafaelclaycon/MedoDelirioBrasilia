@@ -1,0 +1,42 @@
+{
+  "originHash" : "62a92ab4e1786cddf8153a64d033b49a6061f7b59247a075d596a4d23ea0a345",
+  "pins" : [
+    {
+      "identity" : "kingfisher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/onevcat/Kingfisher",
+      "state" : {
+        "revision" : "5b92f029fab2cce44386d28588098b5be0824ef5",
+        "version" : "7.11.0"
+      }
+    },
+    {
+      "identity" : "reachability.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ashleymills/Reachability.swift",
+      "state" : {
+        "branch" : "master",
+        "revision" : "57da4b1270cab7c2228919eabc0e4e1bf93e48ea"
+      }
+    },
+    {
+      "identity" : "sqlite.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/stephencelis/SQLite.swift",
+      "state" : {
+        "revision" : "a95fc6df17d108bd99210db5e8a9bac90fe984b8",
+        "version" : "0.15.3"
+      }
+    },
+    {
+      "identity" : "sqlitemigrationmanager.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/garriguv/SQLiteMigrationManager.swift",
+      "state" : {
+        "revision" : "1ae71f0b0badb1538fad655d4b8894ad2a01846a",
+        "version" : "0.8.1"
+      }
+    }
+  ],
+  "version" : 3
+}
