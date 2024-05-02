@@ -1074,6 +1074,7 @@
 		D980455C28380EFE003B2E83 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D980455E28380EFE003B2E83 /* Localizable.strings */; };
 		D980456228380F66003B2E83 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D980456128380F66003B2E83 /* LocalizableStrings.swift */; };
 		D9832C43294DFA21000F08B6 /* Biu de Lira - Resmungos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9832C42294DFA21000F08B6 /* Biu de Lira - Resmungos.mp3 */; };
+		D9855DBE2BE4123E00965E9D /* ReactionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9855DBD2BE4123E00965E9D /* ReactionMock.swift */; };
 		D985DCD928B6D7150085B8E5 /* Thii Gouveia - Tchutchuca do Centrao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D985DCD828B6D7150085B8E5 /* Thii Gouveia - Tchutchuca do Centrao.mp3 */; };
 		D985DCDB28B6D9460085B8E5 /* Furacao 2000 - Tchutchuca Treme o Bumbum.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D985DCDA28B6D9460085B8E5 /* Furacao 2000 - Tchutchuca Treme o Bumbum.mp3 */; };
 		D98622E0283FC57100E9F630 /* AuthorDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98622DF283FC57100E9F630 /* AuthorDetailView.swift */; };
@@ -2569,6 +2570,7 @@
 		D980455F28380F05003B2E83 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D980456128380F66003B2E83 /* LocalizableStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
 		D9832C42294DFA21000F08B6 /* Biu de Lira - Resmungos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Biu de Lira - Resmungos.mp3"; sourceTree = "<group>"; };
+		D9855DBD2BE4123E00965E9D /* ReactionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionMock.swift; sourceTree = "<group>"; };
 		D985DCD828B6D7150085B8E5 /* Thii Gouveia - Tchutchuca do Centrao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Thii Gouveia - Tchutchuca do Centrao.mp3"; sourceTree = "<group>"; };
 		D985DCDA28B6D9460085B8E5 /* Furacao 2000 - Tchutchuca Treme o Bumbum.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Furacao 2000 - Tchutchuca Treme o Bumbum.mp3"; sourceTree = "<group>"; };
 		D98622DF283FC57100E9F630 /* AuthorDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorDetailView.swift; sourceTree = "<group>"; };
@@ -4516,6 +4518,7 @@
 				D98DBD3328491995008544F8 /* Networking */,
 				D961D0142837229100EFEDEB /* Extensions */,
 				D9351C5E28441DF200D4317E /* Core */,
+				D9855DBC2BE4122500965E9D /* Mocks */,
 				D980456028380F45003B2E83 /* AppSupport */,
 			);
 			path = Sources;
@@ -4645,6 +4648,14 @@
 				D992E8252A185C8A00137469 /* InternalFolderNames.swift */,
 			);
 			path = AppSupport;
+			sourceTree = "<group>";
+		};
+		D9855DBC2BE4122500965E9D /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				D9855DBD2BE4123E00965E9D /* ReactionMock.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		D98622DE283FC53B00E9F630 /* Authors */ = {
@@ -6417,6 +6428,7 @@
 				D9625E8028238F9A00080852 /* SoundsView.swift in Sources */,
 				D91107142863B5FD000B6F8F /* Reaction.swift in Sources */,
 				D9543B462AD5D6C80075A7A1 /* RetroView+ViewModel.swift in Sources */,
+				D9855DBE2BE4123E00965E9D /* ReactionMock.swift in Sources */,
 				D9877D2928694F3200B541F9 /* LocalDatabase+UserFolderContent.swift in Sources */,
 				D99BBE4129466D9800BCA901 /* UsageMetric.swift in Sources */,
 				D9CC893328EB7BB500576492 /* MostSharedByAudienceView.swift in Sources */,

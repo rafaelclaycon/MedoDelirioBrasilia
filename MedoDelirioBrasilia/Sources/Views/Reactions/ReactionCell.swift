@@ -10,61 +10,59 @@ import Kingfisher
 
 struct ReactionCell: View {
 
-    @State var title: String
-    @State var imageURL: String
-    
-    let regularGradient = LinearGradient(gradient: Gradient(colors: [.green, .green, .brightYellow]), startPoint: .topLeading, endPoint: .bottomTrailing)
-    
+    let reaction: Reaction
+
+    private let cellHeight: CGFloat = 100
+
     var body: some View {
-        ZStack {
-            KFImage(URL(string: imageURL))
-                .placeholder {
-                    Image(systemName: "photo")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 35)
-                        .foregroundColor(.gray)
-                }
-                .resizable()
-                .scaledToFill()
-                .frame(width: 180)
-                .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-            
-//            RoundedRectangle(cornerRadius: 20, style: .continuous)
-//                .fill(regularGradient)
-//                .frame(width: 180)
-//                .opacity(0.5)
-            
+        HStack {
+            Spacer()
+
+            Text(reaction.title)
+                .foregroundColor(.white)
+                .font(.title)
+                .bold()
+                .multilineTextAlignment(.center)
+                .shadow(color: .black, radius: 4, y: 4)
+
+            Spacer()
+        }
+        .frame(height: cellHeight)
+        .background {
             HStack {
-                VStack(alignment: .leading, spacing: 8) {
-                    Spacer()
-                    
-                    Text(title)
-                        .foregroundColor(.white)
-                        .font(.title2)
-                        .bold()
-                        .padding(.bottom, 4)
-                        .shadow(color: .black, radius: 20, y: 1)
-                }
-                
-                Spacer()
+                KFImage(URL(string: reaction.image))
+                    .placeholder {
+                        Image(systemName: "photo")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 45)
+                            .foregroundColor(.gray)
+                    }
+                    .resizable()
+                    .scaledToFill()
             }
-            .padding(.leading, 15)
+            .frame(height: cellHeight)
+            .overlay(Color.black.opacity(0.4))
+            .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
         }
     }
-
 }
 
-struct CollectionCell_Previews: PreviewProvider {
+struct ReactionCell_Previews: PreviewProvider {
+
+    static let columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
 
     static var previews: some View {
-        Group {
-            ReactionCell(title: "LGBT", imageURL: "http://blog.saude.mg.gov.br/wp-content/uploads/2021/06/28-06-lgbt.jpg")
-            ReactionCell(title: "Clássicos", imageURL: "https://www.avina.net/wp-content/uploads/2019/06/Confiamos-no-Brasil-e-nos-brasileiros-e-brasileiras.jpg")
-            ReactionCell(title: "Sérios", imageURL: "https://images.trustinnews.pt/uploads/sites/5/2019/10/tres-tabus-que-o-homem-atual-ja-ultrapassou-2.jpeg")
-            ReactionCell(title: "Invasão Foro", imageURL: "https://i.scdn.co/image/0a32a3b9a4f798833f1c10aac18197f7b119e758")
+        NavigationView {
+            ScrollView {
+                LazyVGrid(columns: columns, alignment: .listRowSeparatorLeading, spacing: 14) {
+                    ForEach(Reaction.allMocks) {
+                        ReactionCell(reaction: $0)
+                    }
+                }
+                .padding()
+                .navigationTitle("Reações")
+            }
         }
-        .previewLayout(.fixed(width: 200, height: 120))
     }
-
 }

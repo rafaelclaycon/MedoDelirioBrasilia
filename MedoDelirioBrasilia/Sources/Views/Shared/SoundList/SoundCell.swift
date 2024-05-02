@@ -279,5 +279,4 @@ struct SoundCell_Previews: PreviewProvider {
         }
         .previewLayout(.fixed(width: 170, height: 100))
     }
-
 }

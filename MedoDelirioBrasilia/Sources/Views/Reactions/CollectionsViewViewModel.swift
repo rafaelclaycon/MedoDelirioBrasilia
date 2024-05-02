@@ -9,7 +9,7 @@ import Combine
 
 class CollectionsViewViewModel: ObservableObject {
 
-    @Published var collections = [Reaction]()
+    @Published var reactions = [Reaction]()
     
     // Alerts
 //    @Published var alertTitle: String = ""
@@ -21,7 +21,7 @@ class CollectionsViewViewModel: ObservableObject {
         guard let actualCollections = outsideCollections, actualCollections.count > 0 else {
             return
         }
-        self.collections = actualCollections
+        self.reactions = actualCollections
     }
     
     // MARK: - Alerts

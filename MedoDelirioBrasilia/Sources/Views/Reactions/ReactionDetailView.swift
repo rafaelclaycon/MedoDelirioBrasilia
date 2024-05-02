@@ -29,7 +29,7 @@ struct ReactionDetailView: View {
                     ReactionDetailHeader(
                         title: viewModel.reaction.title,
                         subtitle: viewModel.subtitle,
-                        imageUrl: viewModel.reaction.imageURL
+                        imageUrl: viewModel.reaction.image
                     )
                     .frame(height: 250)
                     .padding(.bottom, 6)
@@ -89,5 +89,5 @@ struct ReactionDetailView: View {
 }
 
 #Preview {
-    ReactionDetailView(viewModel: .init(reaction: .init(title: "entusiasmo", imageURL: "")))
+    ReactionDetailView(viewModel: .init(reaction: .acidMock))
 }
