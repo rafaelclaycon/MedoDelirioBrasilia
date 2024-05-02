@@ -33,12 +33,20 @@ struct AllFoldersiPadView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
-                Button {
-                    isShowingFolderInfoEditingSheet = true
-                } label: {
-                    HStack {
-                        Image(systemName: "plus")
-                        Text("Nova Pasta")
+                HStack(spacing: 20) {
+                    if CommandLine.arguments.contains("-SHOW_EXPORT_FOLDERS_OPTION") {
+                        Button("Exportar Pastas") {
+                            print("")
+                        }
+                    }
+
+                    Button {
+                        isShowingFolderInfoEditingSheet = true
+                    } label: {
+                        HStack {
+                            Image(systemName: "plus")
+                            Text("Nova Pasta")
+                        }
                     }
                 }
             }

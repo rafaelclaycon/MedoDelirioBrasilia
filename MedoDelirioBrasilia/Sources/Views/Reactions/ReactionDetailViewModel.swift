@@ -13,6 +13,7 @@ class ReactionDetailViewModel: ObservableObject {
     // MARK: - Published Vars
 
     @Published var sounds: [Sound] = []
+    @Published var soundSortOption: Int = ReactionSoundSortOption.default.rawValue
 
     let reactionTitle: String
 

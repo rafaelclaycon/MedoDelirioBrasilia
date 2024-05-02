@@ -28,8 +28,52 @@ struct ReactionDetailView: View {
             )
         }
         .navigationTitle(Text(viewModel.reactionTitle))
+        .toolbar {
+            toolbarControls()
+        }
         .onAppear {
             viewModel.loadSounds()
+        }
+    }
+
+    @ViewBuilder func toolbarControls() -> some View {
+
+        HStack(spacing: 15) {
+            Button {
+//                if viewModel.isPlayingPlaylist {
+//                    viewModel.stopPlaying()
+//                } else {
+//                    viewModel.playAllSoundsOneAfterTheOther()
+//                }
+            } label: {
+                Image(systemName: "play.fill")
+            }
+            .disabled(viewModel.sounds.isEmpty)
+
+            Menu {
+                Section {
+                    Button {
+                        // viewModel.startSelecting()
+                    } label: {
+                        // Label(currentSoundsListMode == .selection ? "Cancelar Seleção" : "Selecionar", systemImage: currentSoundsListMode == .selection ? "xmark.circle" : "checkmark.circle")
+                        Label("Selecionar", systemImage: "checkmark.circle")
+                    }
+                }
+
+                Section {
+                    Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
+                        ForEach(ReactionSoundSortOption.allCases, id: \.self) { option in
+                            Text(option.description).tag(option)
+                        }
+                    }
+                }
+            } label: {
+                Image(systemName: "ellipsis.circle")
+            }
+//            .onChange(of: viewModel.soundSortOption) {
+//                viewModel.sortSounds(by: SoundSortOption(rawValue: $0) ?? .dateAddedDescending)
+//                UserSettings.setSoundSortOption(to: $0)
+//            }
         }
     }
 }
