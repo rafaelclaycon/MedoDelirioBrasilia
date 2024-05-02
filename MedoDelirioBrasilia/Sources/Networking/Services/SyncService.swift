@@ -153,7 +153,7 @@ enum SyncUIStatus: CustomStringConvertible {
         case .updating:
             return "Atualizando..."
         case .done:
-            return "Todos os dados atualizados."
+            return "Você tem as últimas novidades."
         case .noInternet:
             return "Não foi possível atualizar pois o aparelho está offline."
         case .updateError:

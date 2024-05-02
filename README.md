@@ -56,3 +56,10 @@ For support needs, please send an e-mail to [our support address](mailto:medodel
 Rafael C. Schmitt – [@mitt_rafael@toot.wales](https://toot.wales/@mitt_rafael)
 
 Distributed under the MIT license. See ``LICENSE`` for more information.
+
+### GitHub's `About` section numbers breakdown:
+- Star review numbers come from App Store Connect, filtering by All Countries and Regions.
+- Total number of downloads and monthly active users are anonymously and independently collected by the app, with no third-party involvement.
+- The total download count includes redownloads.
+- A monthly active user is a user who opens the app at least once in a given month.
+- The number of MAU shown is an average of the last 3 full months.

@@ -1,6 +1,7 @@
 import SwiftUI
 
 extension String {
+
     static var empty: String {
         return ""
     }
@@ -9,7 +10,7 @@ extension String {
         return self.folding(options: .diacriticInsensitive, locale: .current)
     }
     
-    func toColor() -> Color {
+    func toPastelColor() -> Color {
         switch self {
         case "pastelPurple":
             return .pastelPurple
@@ -40,6 +41,7 @@ extension String {
 }
 
 extension String {
+
     var formattedDate: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
@@ -66,6 +68,44 @@ extension String {
             return "\(minutes) minuto e \(seconds) segundos"
         } else {
             return seconds > 1 ? "\(seconds) segundos" : "1 segundo"
+        }
+    }
+}
+
+extension String {
+
+    func toColor() -> Color {
+        switch self {
+        case "red":
+            return .red
+        case "orange":
+            return .orange
+        case "yellow":
+            return .yellow
+        case "black":
+            return .black
+        case "blue":
+            return .blue
+        case "brown":
+            return .brown
+        case "gray":
+            return .gray
+        case "green":
+            return .green
+        case "purple":
+            return .purple
+        case "pink":
+            return .pink
+        case "mint":
+            return .mint
+        case "teal":
+            return .teal
+        case "cyan":
+            return .cyan
+        case "indigo":
+            return .indigo
+        default:
+            return .white
         }
     }
 }

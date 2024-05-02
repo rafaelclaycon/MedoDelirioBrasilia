@@ -34,7 +34,7 @@ struct FolderInfoEditingView: View {
                 
                 ZStack {
                     RoundedRectangle(cornerRadius: 20, style: .continuous)
-                        .fill(selectedBackgroundColor.toColor())
+                        .fill(selectedBackgroundColor.toPastelColor())
                         .frame(width: 180, height: 100)
                     
                     HStack {
