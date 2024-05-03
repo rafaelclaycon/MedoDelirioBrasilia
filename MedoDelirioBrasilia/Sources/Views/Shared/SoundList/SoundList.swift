@@ -15,6 +15,7 @@ struct SoundList: View {
     @Binding var stopShowingFloatingSelector: Bool?
     var allowSearch: Bool = false
     var allowRefresh: Bool = false
+    var showSoundCountAtTheBottom: Bool = false
     var syncAction: (() -> Void)? = nil
     let emptyStateView: AnyView
     var headerView: AnyView? = nil
@@ -279,14 +280,14 @@ struct SoundList: View {
 //                            .padding(.horizontal, explicitOffWarningBottomPadding)
 //                        }
 //
-//                        if viewModel.searchText.isEmpty, viewModel.currentViewMode != .favorites {
-//                            Text("\(viewModel.sounds.count) SONS")
-//                                .font(.footnote)
-//                                .foregroundColor(.gray)
-//                                .multilineTextAlignment(.center)
-//                                .padding(.top, soundCountTopPadding)
-//                                .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? soundCountPhoneBottomPadding : soundCountPadBottomPadding)
-//                        }
+                        if showSoundCountAtTheBottom, viewModel.searchText.isEmpty {
+                            Text("\(sounds.count) SONS")
+                                .font(.footnote)
+                                .foregroundColor(.gray)
+                                .multilineTextAlignment(.center)
+                                .padding(.top, 10)
+                                .padding(.bottom, UIDevice.isiPhone ? Shared.Constants.soundCountPhoneBottomPadding : Shared.Constants.soundCountPadBottomPadding)
+                        }
                     }
                     .if(allowRefresh) {
                         $0.refreshable {

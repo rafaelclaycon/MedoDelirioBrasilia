@@ -90,6 +90,7 @@ struct MainSoundContainer: View {
                     stopShowingFloatingSelector: $stopShowingFloatingSelector,
                     allowSearch: true,
                     allowRefresh: true,
+                    showSoundCountAtTheBottom: true,
                     syncAction: {
                         Task { // Keep this Task to avoid "cancelled" issue.
                             await viewModel.sync(lastAttempt: AppPersistentMemory.getLastUpdateAttempt())
