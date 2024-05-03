@@ -288,6 +288,9 @@ struct SoundList: View {
                                 .padding(.top, 10)
                                 .padding(.bottom, UIDevice.isiPhone ? Shared.Constants.soundCountPhoneBottomPadding : Shared.Constants.soundCountPadBottomPadding)
                         }
+
+                        Spacer()
+                            .frame(height: 18)
                     }
                     .if(allowRefresh) {
                         $0.refreshable {
