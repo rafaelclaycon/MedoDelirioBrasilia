@@ -5,6 +5,8 @@ struct Shared {
     struct Constants {
         static let toastViewBottomPaddingPhone: CGFloat = 60
         static let toastViewBottomPaddingPad: CGFloat = 15
+        static let soundCountPhoneBottomPadding: CGFloat = 68
+        static let soundCountPadBottomPadding: CGFloat = 22
     }
 
     struct ActivityTypes {
