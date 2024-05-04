@@ -9,56 +9,57 @@ import SwiftUI
 
 struct ReactionsView: View {
 
-    @StateObject private var viewModel = CollectionsViewViewModel()
-    
+    @StateObject private var viewModel = ReactionsViewViewModel()
+
     @State private var columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
 
     var body: some View {
-        ScrollView {
-            LazyVGrid(columns: columns, spacing: 14) {
-                ForEach(viewModel.reactions) { reaction in
-                    NavigationLink {
-                        ReactionDetailView(
-                            viewModel: .init(reaction: reaction)
-                        )
-                    } label: {
-                        ReactionCell(reaction: reaction)
-                    }
+        GeometryReader { geometry in
+            switch viewModel.state {
+            case .loading:
+                VStack(spacing: 50) {
+                    ProgressView()
+                        .scaleEffect(2.0)
+
+                    Text("Carregando Reações...")
+                        .foregroundColor(.gray)
                 }
-            }
-            .padding()
-            .navigationTitle("Reações")
-            .onAppear {
-                viewModel.reloadCollectionList(withCollections: localMock())
+                .frame(width: geometry.size.width)
+                .frame(minHeight: geometry.size.height)
+
+            case .loaded(let reactions):
+                ScrollView {
+                    LazyVGrid(columns: columns, spacing: 14) {
+                        ForEach(reactions) { reaction in
+                            NavigationLink {
+                                ReactionDetailView(
+                                    viewModel: .init(reaction: reaction)
+                                )
+                            } label: {
+                                ReactionCell(reaction: reaction)
+                            }
+                        }
+                    }
+                    .padding()
+                    .navigationTitle("Reações")
+                }
+
+            case .error(let errorString):
+                VStack {
+                    Text("Erro ao carregar as Reações. :(\n\n\(errorString)")
+                        .font(.headline)
+                        .multilineTextAlignment(.center)
+                        .foregroundStyle(.gray)
+                }
+                .frame(width: geometry.size.width)
+                .frame(minHeight: geometry.size.height)
             }
         }
+        .oneTimeTask {
+            await viewModel.loadList()
+            //viewModel.state = .loaded(Reaction.allMocks)
+        }
     }
-    
-    private func localMock() -> [Reaction] {
-        var array = [Reaction]()
-        array.append(contentsOf: [
-            .greetingsMock,
-            .classicsMock,
-            .choqueMock,
-            .viralMock,
-            .seriousMock,
-            .enthusiasmMock,
-            .acidMock,
-            .sarcasticMock,
-            .provokingMock,
-            .slogansMock,
-            .frustrationMock,
-            .hopeMock,
-            .surpriseMock,
-            .ironyMock,
-            .covid19Mock,
-            .foreignMock,
-            .lgbtMock,
-            .jinglesMock
-        ])
-        return array
-    }
-
 }
 
 #Preview {

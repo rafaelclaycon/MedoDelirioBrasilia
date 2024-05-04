@@ -47,7 +47,9 @@ struct ReactionDetailHeader: View {
                 }
                 .resizable()
                 .scaledToFill()
-                .overlay(Color.black.opacity(0.5))
+                .overlay(Color.black.opacity(0.3))
+                .blur(radius: 1)
+                .scaleEffect(1.05)
                 .frame(height: 250)
                 //.frame(width: headerPhotoGeometry.size.width, height: self.getHeightForHeaderImage(headerPhotoGeometry))
                 .clipped()

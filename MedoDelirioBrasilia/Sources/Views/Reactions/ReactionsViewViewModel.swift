@@ -5,23 +5,31 @@
 //  Created by Rafael Claycon Schmitt on 28/06/22.
 //
 
+import Foundation
 import Combine
 
-class CollectionsViewViewModel: ObservableObject {
+class ReactionsViewViewModel: ObservableObject {
 
-    @Published var reactions = [Reaction]()
-    
+    @Published var state: LoadingState<Reaction> = .loading
+
     // Alerts
 //    @Published var alertTitle: String = ""
 //    @Published var alertMessage: String = ""
 //    @Published var showAlert: Bool = false
 //    @Published var folderIdForDeletion: String = ""
     
-    func reloadCollectionList(withCollections outsideCollections: [Reaction]?) {
-        guard let actualCollections = outsideCollections, actualCollections.count > 0 else {
-            return
+    // MARK: - Functions
+
+    func loadList() async {
+        state = .loading
+
+        do {
+            let url = URL(string: NetworkRabbit.shared.serverPath + "v4/reactions")!
+            let reactions: [Reaction] = try await NetworkRabbit.get(from: url)
+            state = .loaded(reactions)
+        } catch {
+            state = .error(error.localizedDescription)
         }
-        self.reactions = actualCollections
     }
     
     // MARK: - Alerts

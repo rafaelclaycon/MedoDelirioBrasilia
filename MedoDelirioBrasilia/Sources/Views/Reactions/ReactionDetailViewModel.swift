@@ -12,6 +12,7 @@ class ReactionDetailViewModel: ObservableObject {
 
     // MARK: - Published Vars
 
+    @Published var state: LoadingState<Sound> = .loading
     @Published var sounds: [Sound] = []
     @Published var soundSortOption: Int = ReactionSoundSortOption.default.rawValue
 
@@ -43,15 +44,20 @@ class ReactionDetailViewModel: ObservableObject {
 
     // MARK: - Functions
 
-    func loadSounds() {
-        do {
-            sounds = try LocalDatabase.shared.randomSounds()
+    func loadSounds() async {
+        state = .loading
 
-            guard sounds.count > 0 else { return }
-            // let sortOption: SoundSortOption = SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .dateAddedDescending
-            // sort(&allSounds, by: sortOption)
+        do {
+            let url = URL(string: NetworkRabbit.shared.serverPath + "v4/reaction/\(reaction.id)")!
+            let reactionSounds: [ReactionSound] = try await NetworkRabbit.get(from: url)
+            let soundIds: [String] = reactionSounds.map { $0.soundId }
+            let selectedSounds = try LocalDatabase.shared.sounds(withIds: soundIds)
+            self.sounds = selectedSounds
+            DispatchQueue.main.async {
+                self.state = .loaded(self.sounds)
+            }
         } catch {
-            print("Erro carregando sons: \(error.localizedDescription)")
+            state = .error(error.localizedDescription)
         }
     }
 }
