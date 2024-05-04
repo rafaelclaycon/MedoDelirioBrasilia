@@ -16,13 +16,17 @@ struct ReactionCell: View {
         UIDevice.isiPhone ? 100 : 120
     }
 
+    private var reduceTextSize: Bool {
+        UIDevice.isSmallDevice && reaction.title.count > 8
+    }
+
     var body: some View {
         HStack {
             Spacer()
 
             Text(reaction.title)
                 .foregroundColor(.white)
-                .font(.title)
+                .font(reduceTextSize ? .title2 : .title)
                 .bold()
                 .multilineTextAlignment(.center)
                 .shadow(color: .black, radius: 4, y: 4)
