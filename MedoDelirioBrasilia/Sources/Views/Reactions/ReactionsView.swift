@@ -11,7 +11,10 @@ struct ReactionsView: View {
 
     @StateObject private var viewModel = ReactionsViewViewModel()
 
-    @State private var columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
+    // iPad Grid Layout
+    //@State private var listWidth: CGFloat = 700
+    @State private var columns: [GridItem] = []
+    @Environment(\.sizeCategory) var sizeCategory
 
     var body: some View {
         GeometryReader { geometry in
@@ -29,7 +32,7 @@ struct ReactionsView: View {
 
             case .loaded(let reactions):
                 ScrollView {
-                    LazyVGrid(columns: columns, spacing: 14) {
+                    LazyVGrid(columns: columns, spacing: UIDevice.isiPhone ? 12 : 20) {
                         ForEach(reactions) { reaction in
                             NavigationLink {
                                 ReactionDetailView(
@@ -42,6 +45,23 @@ struct ReactionsView: View {
                     }
                     .padding()
                     .navigationTitle("Reações")
+                    .onAppear {
+                        print("THIAGO ON APPEAR: \(geometry.size.width)")
+                        columns = GridHelper.adaptableColumns(
+                            listWidth: geometry.size.width,
+                            sizeCategory: sizeCategory,
+                            spacing: UIDevice.isiPhone ? 12 : 20
+                        )
+                    }
+                    .onChange(of: geometry.size.width) { newWidth in
+                        //self.listWidth = newWidth
+                        print("THIAGO ON CHANGE: \(geometry.size.width)")
+                        columns = GridHelper.adaptableColumns(
+                            listWidth: newWidth,
+                            sizeCategory: sizeCategory,
+                            spacing: UIDevice.isiPhone ? 12 : 20
+                        )
+                    }
                 }
 
             case .error(let errorString):
@@ -62,12 +82,12 @@ struct ReactionsView: View {
                 Image(systemName: "plus")
             }
         }
+        .sheet(isPresented: $viewModel.isShowingSheet) {
+            AddReactionView(isBeingShown: $viewModel.isShowingSheet)
+        }
         .oneTimeTask {
             await viewModel.loadList()
             //viewModel.state = .loaded(Reaction.allMocks)
-        }
-        .sheet(isPresented: $viewModel.isShowingSheet) {
-            AddReactionView(isBeingShown: $viewModel.isShowingSheet)
         }
     }
 }

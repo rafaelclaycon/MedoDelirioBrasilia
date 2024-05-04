@@ -12,7 +12,9 @@ struct ReactionCell: View {
 
     let reaction: Reaction
 
-    private let cellHeight: CGFloat = 100
+    private var cellHeight: CGFloat {
+        UIDevice.isiPhone ? 100 : 120
+    }
 
     var body: some View {
         HStack {
