@@ -11,6 +11,8 @@ import Combine
 class ReactionsViewViewModel: ObservableObject {
 
     @Published var state: LoadingState<Reaction> = .loading
+    
+    @Published var isShowingSheet: Bool = false
 
     // Alerts
 //    @Published var alertTitle: String = ""

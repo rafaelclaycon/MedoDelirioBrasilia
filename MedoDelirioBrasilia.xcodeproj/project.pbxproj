@@ -1257,6 +1257,7 @@
 		D9B88BDA298AFAF30077D9A0 /* Leandro Ramos - Complicado isso tudo ai.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B88BD6298AFAF30077D9A0 /* Leandro Ramos - Complicado isso tudo ai.mp3 */; };
 		D9B88BDB298AFAF30077D9A0 /* Galvao - E o gol da alemanha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B88BD7298AFAF30077D9A0 /* Galvao - E o gol da alemanha.mp3 */; };
 		D9B8DE7F2BE5CEFD000C9035 /* ReactionSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B8DE7E2BE5CEFD000C9035 /* ReactionSound.swift */; };
+		D9B8DE842BE695B1000C9035 /* AddReactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B8DE832BE695B1000C9035 /* AddReactionView.swift */; };
 		D9B9ED92295651FE00C25181 /* Eliane Cantanhede - Uau.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B9ED90295651FE00C25181 /* Eliane Cantanhede - Uau.mp3 */; };
 		D9B9ED93295651FE00C25181 /* Tema do Arquivo X.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9B9ED91295651FE00C25181 /* Tema do Arquivo X.mp3 */; };
 		D9BA1C412A9A920300996332 /* Reinaldo Azevedo - Esse raciocinio e porco.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BA1C3B2A9A920300996332 /* Reinaldo Azevedo - Esse raciocinio e porco.mp3 */; };
@@ -2753,6 +2754,7 @@
 		D9B88BD6298AFAF30077D9A0 /* Leandro Ramos - Complicado isso tudo ai.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Leandro Ramos - Complicado isso tudo ai.mp3"; sourceTree = "<group>"; };
 		D9B88BD7298AFAF30077D9A0 /* Galvao - E o gol da alemanha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Galvao - E o gol da alemanha.mp3"; sourceTree = "<group>"; };
 		D9B8DE7E2BE5CEFD000C9035 /* ReactionSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionSound.swift; sourceTree = "<group>"; };
+		D9B8DE832BE695B1000C9035 /* AddReactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReactionView.swift; sourceTree = "<group>"; };
 		D9B9ED90295651FE00C25181 /* Eliane Cantanhede - Uau.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eliane Cantanhede - Uau.mp3"; sourceTree = "<group>"; };
 		D9B9ED91295651FE00C25181 /* Tema do Arquivo X.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tema do Arquivo X.mp3"; sourceTree = "<group>"; };
 		D9BA1C3B2A9A920300996332 /* Reinaldo Azevedo - Esse raciocinio e porco.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Reinaldo Azevedo - Esse raciocinio e porco.mp3"; sourceTree = "<group>"; };
@@ -4839,6 +4841,16 @@
 			path = Reactions;
 			sourceTree = "<group>";
 		};
+		D9B8DE802BE69567000C9035 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				D946117D28613D3200C4FB7E /* ReactionDetailView.swift */,
+				D9B611462BE1C08C00FD65A6 /* ReactionDetailViewModel.swift */,
+				D98E1B032BE35AE2007D057E /* ReactionDetailHeader.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
 		D9B9025C2837485000551239 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
@@ -5095,9 +5107,8 @@
 				D9EB18A42857CDFF00A2F8A8 /* ReactionsView.swift */,
 				D91107102863B481000B6F8F /* ReactionsViewViewModel.swift */,
 				D9F78A9E2860DF9100B83567 /* ReactionCell.swift */,
-				D946117D28613D3200C4FB7E /* ReactionDetailView.swift */,
-				D9B611462BE1C08C00FD65A6 /* ReactionDetailViewModel.swift */,
-				D98E1B032BE35AE2007D057E /* ReactionDetailHeader.swift */,
+				D9B8DE802BE69567000C9035 /* Detail */,
+				D9B8DE832BE695B1000C9035 /* AddReactionView.swift */,
 			);
 			path = Reactions;
 			sourceTree = "<group>";
@@ -6512,6 +6523,7 @@
 				D96A64202955F32F00DC0F03 /* SettingsHelper.swift in Sources */,
 				D93CCB7B286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift in Sources */,
 				D9DC4D7A2B1D8BC900627555 /* TopChartItem+.swift in Sources */,
+				D9B8DE842BE695B1000C9035 /* AddReactionView.swift in Sources */,
 				D9625E7E28238F9A00080852 /* MedoDelirioBrasiliaApp.swift in Sources */,
 				D9592C402AA2C01100157F5A /* GenrePickerView.swift in Sources */,
 				D958B1AC28394DCD0010F133 /* AuthorsView.swift in Sources */,

@@ -55,9 +55,19 @@ struct ReactionsView: View {
                 .frame(minHeight: geometry.size.height)
             }
         }
+        .toolbar {
+            Button {
+                viewModel.isShowingSheet.toggle()
+            } label: {
+                Image(systemName: "plus")
+            }
+        }
         .oneTimeTask {
             await viewModel.loadList()
             //viewModel.state = .loaded(Reaction.allMocks)
+        }
+        .sheet(isPresented: $viewModel.isShowingSheet) {
+            AddReactionView(isBeingShown: $viewModel.isShowingSheet)
         }
     }
 }
