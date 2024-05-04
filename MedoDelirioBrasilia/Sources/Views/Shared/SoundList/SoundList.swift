@@ -22,7 +22,9 @@ struct SoundList: View {
 
     // MARK: - Stored Properties
 
-    @State private var columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
+    @State private var columns: [GridItem] = []
+    private let phoneItemSpacing: CGFloat = 9
+    private let padItemSpacing: CGFloat = 14
 
     // MARK: - Computed Properties
 
@@ -41,6 +43,10 @@ struct SoundList: View {
             return []
         }
     }
+
+    // MARK: - Environment Variables
+
+    @Environment(\.sizeCategory) var sizeCategory
 
     // MARK: - Body
 
@@ -75,7 +81,7 @@ struct SoundList: View {
                                 headerView
                             }
 
-                            LazyVGrid(columns: columns, spacing: UIDevice.isiPhone ? 14 : 20) {
+                            LazyVGrid(columns: columns, spacing: UIDevice.isiPhone ? phoneItemSpacing : padItemSpacing) {
                                 if searchResults.isEmpty {
                                     NoSearchResultsView(searchText: $viewModel.searchText)
                                 } else {
@@ -249,17 +255,19 @@ struct SoundList: View {
                                     }
                                 }
                             }
-//                            .onChange(of: geometry.size.width) { newWidth in
-//                                self.listWidth = newWidth
-//                                columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
-//                            }
-//                            .onChange(of: searchResults) { searchResults in
-//                                if searchResults.isEmpty {
-//                                    columns = [GridItem(.flexible())]
-//                                } else {
-//                                    columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
-//                                }
-//                            }
+                            .onAppear {
+                                updateGridLayout(with: geometry.size.width)
+                            }
+                            .onChange(of: geometry.size.width) { newWidth in
+                                updateGridLayout(with: newWidth)
+                            }
+                            .onChange(of: searchResults) { searchResults in
+                                if searchResults.isEmpty {
+                                    columns = [GridItem(.flexible())]
+                                } else {
+                                    updateGridLayout(with: geometry.size.width)
+                                }
+                            }
 //                            .onChange(of: soundIdToGoTo) {
 //                                if !$0.isEmpty {
 //                                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
@@ -297,6 +305,7 @@ struct SoundList: View {
                             syncAction!()
                         }
                     }
+                    //.border(.red, width: 1)
                 }
 
             case .error:
@@ -332,6 +341,14 @@ struct SoundList: View {
                 .transition(.moveAndFade)
             }
         }
+    }
+
+    private func updateGridLayout(with newWidth: CGFloat) {
+        columns = GridHelper.adaptableColumns(
+            listWidth: newWidth,
+            sizeCategory: sizeCategory,
+            spacing: UIDevice.isiPhone ? phoneItemSpacing : padItemSpacing
+        )
     }
 }
 

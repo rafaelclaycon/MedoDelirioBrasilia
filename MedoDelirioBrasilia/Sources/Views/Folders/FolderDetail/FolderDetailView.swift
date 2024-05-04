@@ -66,7 +66,7 @@ struct FolderDetailView: View {
                         }
                     }
                     .padding(.horizontal, 20)
-                    .padding(.vertical)
+                    .padding(.top)
                 )
             )
         }
