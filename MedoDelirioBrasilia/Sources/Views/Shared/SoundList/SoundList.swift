@@ -26,11 +26,8 @@ struct SoundList: View {
     private let phoneItemSpacing: CGFloat = 9
     private let padItemSpacing: CGFloat = 14
     @State private var showMultiSelectButtons: Bool = false
-
-    // Select Many
-    @State private var areManyActionButtonsEnabled = false
-    @State private var favoriteButtonTitle = "Favoritar"
-    @State private var favoriteButtonImage = "star"
+    @State private var multiSelectButtonsEnabled: Bool = false
+    @State private var allSelectedAreFavorites: Bool = false
 
     // MARK: - Computed Properties
 
@@ -299,14 +296,8 @@ struct SoundList: View {
                             .onChange(of: viewModel.selectionKeeper.count) {
                                 showMultiSelectButtons = viewModel.currentSoundsListMode.wrappedValue == .selection
                                 guard viewModel.currentSoundsListMode.wrappedValue == .selection else { return }
-                                areManyActionButtonsEnabled = $0 > 0
-                                if /*viewModel.currentViewMode == .favorites ||*/ viewModel.allSelectedAreFavorites() {
-                                    favoriteButtonTitle = "Desfav."
-                                    favoriteButtonImage = "star.slash"
-                                } else {
-                                    favoriteButtonTitle = "Favoritar"
-                                    favoriteButtonImage = "star"
-                                }
+                                multiSelectButtonsEnabled = $0 > 0
+                                allSelectedAreFavorites = viewModel.allSelectedAreFavorites()
                             }
 //                            .onChange(of: soundIdToGoTo) {
 //                                if !$0.isEmpty {
@@ -385,10 +376,9 @@ struct SoundList: View {
                     Spacer()
 
                     FloatingSelectionOptionsView(
-                        areButtonsEnabled: $areManyActionButtonsEnabled,
-                        favoriteTitle: $favoriteButtonTitle,
-                        favoriteSystemImage: $favoriteButtonImage,
-                        shareIsProcessing: $viewModel.shareManyIsProcessing,
+                        areButtonsEnabled: multiSelectButtonsEnabled,
+                        allSelectedAreFavorites: allSelectedAreFavorites,
+                        shareIsProcessing: viewModel.shareManyIsProcessing,
                         favoriteAction: { viewModel.addRemoveManyFromFavorites() },
                         folderAction: { viewModel.addManyToFolder() },
                         shareAction: { viewModel.shareSelected() }

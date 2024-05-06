@@ -47,7 +47,7 @@ struct FolderDetailView: View {
                 viewModel: SoundListViewModel<Sound>(
                     data: viewModel.soundsPublisher,
                     menuOptions: [.sharingOptions(), .playFromThisSound(), .removeFromFolder()],
-                    currentSoundsListMode: .constant(.regular)
+                    currentSoundsListMode: $currentSoundsListMode
                 ),
                 stopShowingFloatingSelector: .constant(nil),
                 emptyStateView: AnyView(

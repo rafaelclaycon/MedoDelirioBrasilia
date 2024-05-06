@@ -9,14 +9,25 @@ import SwiftUI
 
 struct FloatingSelectionOptionsView: View {
 
-    @Binding var areButtonsEnabled: Bool
-    @Binding var favoriteTitle: String
-    @Binding var favoriteSystemImage: String
-    @Binding var shareIsProcessing: Bool
+    let areButtonsEnabled: Bool
+    let allSelectedAreFavorites: Bool
+    let shareIsProcessing: Bool
 
     let favoriteAction: () -> Void
     let folderAction: () -> Void
     let shareAction: () -> Void
+
+    private var favoriteSymbol: String {
+        allSelectedAreFavorites ? "star.slash" : "star"
+    }
+
+    private var favoriteTitle: String {
+        if allSelectedAreFavorites {
+            return UIDevice.isiPhone ? "Desfav." : "Desfavoritar"
+        } else {
+            return "Favoritar"
+        }
+    }
 
     var body: some View {
         HStack(spacing: 14) {
@@ -26,7 +37,7 @@ struct FloatingSelectionOptionsView: View {
                 Label {
                     Text(favoriteTitle).bold()
                 } icon: {
-                    Image(systemName: favoriteSystemImage)
+                    Image(systemName: favoriteSymbol)
                 }
             }
             .disabled(!areButtonsEnabled)
@@ -37,7 +48,8 @@ struct FloatingSelectionOptionsView: View {
                 folderAction()
             } label: {
                 Label {
-                    Text("Pasta").bold()
+                    Text(UIDevice.isiPhone ? "Pasta" : "Adicionar a Pasta")
+                        .bold()
                 } icon: {
                     Image(systemName: "folder.badge.plus")
                 }
@@ -54,12 +66,14 @@ struct FloatingSelectionOptionsView: View {
                     shareAction()
                 } label: {
                     Label {
-                        Text("Compart.").bold()
+                        Text(UIDevice.isiPhone ? "Comp." : "Compartilhar")
+                            .bold()
                     } icon: {
                         Image(systemName: "square.and.arrow.up")
                     }
                 }
                 .disabled(!areButtonsEnabled)
+                .disabled(!UIDevice.isiPhone)
             }
         }
         .padding(.horizontal, 20)
@@ -70,22 +84,23 @@ struct FloatingSelectionOptionsView: View {
                 .shadow(color: .gray, radius: 2, y: 2)
         }
         .padding(.bottom)
+        .disabled(shareIsProcessing)
     }
 }
 
-#Preview {
-    ZStack {
-        Rectangle()
-            .fill(Color.brightGreen)
-
-        FloatingSelectionOptionsView(
-            areButtonsEnabled: .constant(false),
-            favoriteTitle: .constant("Favoritar"),
-            favoriteSystemImage: .constant("star"),
-            shareIsProcessing: .constant(true),
-            favoriteAction: { },
-            folderAction: { },
-            shareAction: { }
-        )
-    }
-}
+//#Preview {
+//    ZStack {
+//        Rectangle()
+//            .fill(Color.brightGreen)
+//
+//        FloatingSelectionOptionsView(
+//            areButtonsEnabled: .constant(false),
+//            favoriteTitle: .constant("Favoritar"),
+//            favoriteSystemImage: .constant("star"),
+//            shareIsProcessing: .constant(true),
+//            favoriteAction: { },
+//            folderAction: { },
+//            shareAction: { }
+//        )
+//    }
+//}
