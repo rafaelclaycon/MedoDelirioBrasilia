@@ -9,9 +9,11 @@ import SwiftUI
 
 struct MainSoundContainer: View {
 
-    @StateObject var viewModel: MainSoundContainerViewModel
-    @Binding var currentSoundsListMode: SoundsListMode
-    @Binding var showSettings: Bool
+    @StateObject private var viewModel: MainSoundContainerViewModel
+    @StateObject private var allSoundsViewModel: SoundListViewModel<Sound>
+    @StateObject private var favoritesViewModel: SoundListViewModel<Sound>
+    private var currentSoundsListMode: Binding<SoundsListMode>
+    private var showSettings: Binding<Bool>
 
     @State private var subviewToOpen: MainSoundContainerModalToOpen = .syncInfo
     @State private var showingModalView = false
@@ -43,15 +45,10 @@ struct MainSoundContainer: View {
     // MARK: - Computed Properties
 
     private var title: String {
-        guard currentSoundsListMode == .regular else {
-//            if selectionKeeper.count == 0 {
-//                return Shared.SoundSelection.selectSounds
-//            } else if selectionKeeper.count == 1 {
-//                return Shared.SoundSelection.soundSelectedSingular
-//            } else {
-//                return String(format: Shared.SoundSelection.soundsSelectedPlural, selectionKeeper.count)
-//            }
-            return ""
+        guard currentSoundsListMode.wrappedValue == .regular else {
+            return selectionNavBarTitle(
+                for: viewModel.currentViewMode == .allSounds ? allSoundsViewModel : favoritesViewModel
+            )
         }
         switch viewModel.currentViewMode {
         case .allSounds:
@@ -67,12 +64,36 @@ struct MainSoundContainer: View {
 
     private var displayFloatingSelectorView: Bool {
         guard UIDevice.current.userInterfaceIdiom == .phone else { return false }
-        guard currentSoundsListMode == .regular else { return false }
+        guard currentSoundsListMode.wrappedValue == .regular else { return false }
         if viewModel.currentViewMode == .byAuthor {
             return authorSearchText.isEmpty
         } else {
             return !(stopShowingFloatingSelector ?? false)
         }
+    }
+
+    // MARK: - Initializer
+
+    init(
+        viewModel: MainSoundContainerViewModel,
+        currentSoundsListMode: Binding<SoundsListMode>,
+        showSettings: Binding<Bool>
+    ) {
+        self._viewModel = StateObject(wrappedValue: viewModel)
+        self._allSoundsViewModel = StateObject(wrappedValue: SoundListViewModel<Sound>(
+            data: viewModel.allSoundsPublisher,
+            menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
+            currentSoundsListMode: currentSoundsListMode
+        ))
+        self._favoritesViewModel = StateObject(wrappedValue: SoundListViewModel<Sound>(
+            data: viewModel.favoritesPublisher,
+            menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
+            currentSoundsListMode: currentSoundsListMode,
+            needsRefreshAfterChange: true,
+            refreshAction: { viewModel.reloadFavorites() }
+        ))
+        self.currentSoundsListMode = currentSoundsListMode
+        self.showSettings = showSettings
     }
 
     // MARK: - Body
@@ -82,11 +103,7 @@ struct MainSoundContainer: View {
             switch viewModel.currentViewMode {
             case .allSounds:
                 SoundList(
-                    viewModel: .init(
-                        data: viewModel.allSoundsPublisher,
-                        menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
-                        currentSoundsListMode: $currentSoundsListMode
-                    ),
+                    viewModel: allSoundsViewModel,
                     stopShowingFloatingSelector: $stopShowingFloatingSelector,
                     allowSearch: true,
                     allowRefresh: true,
@@ -125,13 +142,7 @@ struct MainSoundContainer: View {
 
             case .favorites:
                 SoundList(
-                    viewModel: .init(
-                        data: viewModel.favoritesPublisher,
-                        menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
-                        currentSoundsListMode: $currentSoundsListMode,
-                        needsRefreshAfterChange: true,
-                        refreshAction: { viewModel.reloadFavorites() }
-                    ),
+                    viewModel: favoritesViewModel,
                     stopShowingFloatingSelector: $stopShowingFloatingSelector,
                     allowSearch: true,
                     emptyStateView: AnyView(
@@ -211,11 +222,16 @@ struct MainSoundContainer: View {
         }
     }
 
+    // MARK: - Auxiliary Views
+
     @ViewBuilder func leadingToolbarControls() -> some View {
-        if currentSoundsListMode == .selection {
+        if currentSoundsListMode.wrappedValue == .selection {
             Button {
-                currentSoundsListMode = .regular
-                // selectionKeeper.removeAll()
+                if viewModel.currentViewMode == .allSounds {
+                    allSoundsViewModel.stopSelecting()
+                } else {
+                    favoritesViewModel.stopSelecting()
+                }
             } label: {
                 Text("Cancelar")
                     .bold()
@@ -223,7 +239,7 @@ struct MainSoundContainer: View {
         } else {
             if UIDevice.isiPhone {
                 Button {
-                    showSettings = true
+                    showSettings.wrappedValue = true
                 } label: {
                     Image(systemName: "gearshape")
                 }
@@ -259,7 +275,7 @@ struct MainSoundContainer: View {
 //                        authorSortAction = AuthorSortOption(rawValue: authorSortOption) ?? .nameAscending
 //                    })
                 } else {
-                    if currentSoundsListMode == .regular {
+                    if currentSoundsListMode.wrappedValue == .regular {
                         SyncStatusView()
                             .onTapGesture {
                                 subviewToOpen = .syncInfo
@@ -270,9 +286,16 @@ struct MainSoundContainer: View {
                     Menu {
                         Section {
                             Button {
-                                // viewModel.startSelecting()
+                                if viewModel.currentViewMode == .allSounds {
+                                    allSoundsViewModel.startSelecting()
+                                } else {
+                                    favoritesViewModel.startSelecting()
+                                }
                             } label: {
-                                Label(currentSoundsListMode == .selection ? "Cancelar Seleção" : "Selecionar", systemImage: currentSoundsListMode == .selection ? "xmark.circle" : "checkmark.circle")
+                                Label(
+                                    currentSoundsListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",
+                                    systemImage: currentSoundsListMode.wrappedValue == .selection ? "xmark.circle" : "checkmark.circle"
+                                )
                             }//.disabled(viewModel.currentViewMode == .favorites && viewModel.sounds.count == 0)
                         }
 
@@ -337,6 +360,18 @@ struct MainSoundContainer: View {
             }
         }
         //.disabled(isLoadingSounds && viewModel.currentViewMode == .allSounds)
+    }
+
+    // MARK: - Functions
+
+    private func selectionNavBarTitle(for viewModel: SoundListViewModel<Sound>) -> String {
+        if viewModel.selectionKeeper.count == 0 {
+            return Shared.SoundSelection.selectSounds
+        }
+        if viewModel.selectionKeeper.count == 1 {
+            return Shared.SoundSelection.soundSelectedSingular
+        }
+        return String(format: Shared.SoundSelection.soundsSelectedPlural, viewModel.selectionKeeper.count)
     }
 }
 

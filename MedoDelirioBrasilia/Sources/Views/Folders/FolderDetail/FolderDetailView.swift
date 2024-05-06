@@ -44,7 +44,7 @@ struct FolderDetailView: View {
     var body: some View {
         VStack {
             SoundList(
-                viewModel: .init(
+                viewModel: SoundListViewModel<Sound>(
                     data: viewModel.soundsPublisher,
                     menuOptions: [.sharingOptions(), .playFromThisSound(), .removeFromFolder()],
                     currentSoundsListMode: .constant(.regular)
