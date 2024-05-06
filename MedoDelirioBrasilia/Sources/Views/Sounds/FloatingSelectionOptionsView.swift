@@ -54,7 +54,7 @@ struct FloatingSelectionOptionsView: View {
                     shareAction()
                 } label: {
                     Label {
-                        Text("Exportar").bold()
+                        Text("Compart.").bold()
                     } icon: {
                         Image(systemName: "square.and.arrow.up")
                     }

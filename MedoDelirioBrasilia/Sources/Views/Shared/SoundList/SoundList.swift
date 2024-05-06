@@ -198,7 +198,7 @@ struct SoundList: View {
                                         message: Text(viewModel.alertMessage),
                                         primaryButton: .default(Text("Continuar"), action: {
                                             AppPersistentMemory.increaseShareManyMessageShowCountByOne()
-                                            // viewModel.shareSelected()
+                                            viewModel.shareSelected()
                                         }),
                                         secondaryButton: .cancel(Text("Cancelar"))
                                     )
@@ -391,7 +391,7 @@ struct SoundList: View {
                         shareIsProcessing: $viewModel.shareManyIsProcessing,
                         favoriteAction: { viewModel.addRemoveManyFromFavorites() },
                         folderAction: { viewModel.addManyToFolder() },
-                        shareAction: { viewModel.showShareManyAlert() }
+                        shareAction: { viewModel.shareSelected() }
                     )
                 }
             }

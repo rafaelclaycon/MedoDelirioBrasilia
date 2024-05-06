@@ -452,24 +452,25 @@ extension SoundListViewModel {
         showAlert = true
     }
 
-    func showShareManyAlert() {
-        let messageDisplayCount = AppPersistentMemory.getShareManyMessageShowCount()
-
-        guard messageDisplayCount < 2 else { return shareSelected() }
-
-        var timesMessage = ""
-        if messageDisplayCount == 0 {
-            timesMessage = "2 vezes"
-        } else {
-            timesMessage = "1 vez"
-        }
-
-        TapticFeedback.warning()
-        alertType = .optionIncompatibleWithWhatsApp
-        alertTitle = "Incompatível com o WhatsApp"
-        alertMessage = "Devido a um problema técnico, o WhatsApp recebe apenas o primeiro som selecionado. Use essa função para Salvar em Arquivos ou com o Telegram.\n\nEssa mensagem será mostrada mais \(timesMessage)."
-        showAlert = true
-    }
+    // From the before times when WhatApp didn't really support receiving many sounds through the system Share Sheet.
+//    func showShareManyAlert() {
+//        let messageDisplayCount = AppPersistentMemory.getShareManyMessageShowCount()
+//
+//        guard messageDisplayCount < 2 else { return shareSelected() }
+//
+//        var timesMessage = ""
+//        if messageDisplayCount == 0 {
+//            timesMessage = "2 vezes"
+//        } else {
+//            timesMessage = "1 vez"
+//        }
+//
+//        TapticFeedback.warning()
+//        alertType = .optionIncompatibleWithWhatsApp
+//        alertTitle = "Incompatível com o WhatsApp"
+//        alertMessage = "Devido a um problema técnico, o WhatsApp recebe apenas o primeiro som selecionado. Use essa função para Salvar em Arquivos ou com o Telegram.\n\nEssa mensagem será mostrada mais \(timesMessage)."
+//        showAlert = true
+//    }
 
     func showShareManyIssueAlert(_ localizedError: String) {
         TapticFeedback.error()
