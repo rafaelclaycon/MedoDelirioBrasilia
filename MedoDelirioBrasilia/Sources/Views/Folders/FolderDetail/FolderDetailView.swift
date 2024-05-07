@@ -9,20 +9,17 @@ import SwiftUI
 
 struct FolderDetailView: View {
 
-    @StateObject var viewModel: FolderDetailViewViewModel
-    @State var folder: UserFolder
+    @StateObject private var viewModel: FolderDetailViewViewModel
+    @StateObject private var soundListViewModel: SoundListViewModel<Sound>
+
+    let folder: UserFolder
+
+    @State private var currentSoundsListMode: SoundsListMode
     @State private var showingFolderInfoEditingView = false
-    @Binding var currentSoundsListMode: SoundsListMode
-    
-    @State private var listWidth: CGFloat = 700
-    @State private var columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
-    @Environment(\.sizeCategory) var sizeCategory
-    
     @State private var showingModalView = false
-    
-    // Share as Video
-    @State private var shareAsVideo_Result = ShareAsVideoResult()
-    
+
+    // MARK: - Computed Properties
+
     private var showSortByDateAddedOption: Bool {
         guard let folderVersion = folder.version else { return false }
         return folderVersion == "2"
@@ -40,16 +37,36 @@ struct FolderDetailView: View {
         }
         return "\(folder.symbol)  \(folder.name)"
     }
-    
+
+    // MARK: - Initializer
+
+    init(
+        folder: UserFolder
+    ) {
+        self.folder = folder
+        let viewModel = FolderDetailViewViewModel(folder: folder)
+
+        self._viewModel = StateObject(wrappedValue: viewModel)
+        self._currentSoundsListMode = State(initialValue: .regular)
+
+        let soundListViewModel = SoundListViewModel<Sound>(
+            data: viewModel.soundsPublisher,
+            menuOptions: [.sharingOptions(), .playFromThisSound(), .removeFromFolder()],
+            currentSoundsListMode: .constant(.regular), // $currentSoundsListMode
+            refreshAction: { viewModel.reloadSounds() },
+            insideFolder: folder
+        )
+
+        self._soundListViewModel = StateObject(wrappedValue: soundListViewModel)
+    }
+
+    // MARK: - View Body
+
     var body: some View {
         VStack {
             SoundList(
-                viewModel: .init(
-                    data: viewModel.soundsPublisher,
-                    menuOptions: [.sharingOptions(), .playFromThisSound(), .removeFromFolder()],
-                    currentSoundsListMode: .constant(.regular)
-                ),
-                stopShowingFloatingSelector: .constant(nil),
+                viewModel: soundListViewModel,
+                multiSelectFolderOperation: .remove,
                 emptyStateView: AnyView(
                     EmptyFolderView()
                         .padding(.horizontal, 30)
@@ -66,26 +83,18 @@ struct FolderDetailView: View {
                         }
                     }
                     .padding(.horizontal, 20)
-                    .padding(.vertical)
+                    .padding(.top)
                 )
             )
         }
         .navigationTitle(title)
         .toolbar { trailingToolbarControls() }
         .onAppear {
-            viewModel.reloadSoundList(
-                withFolderContents: try? LocalDatabase.shared.getAllContentsInsideUserFolder(withId: folder.id),
-                sortedBy: FolderSoundSortOption(rawValue: folder.userSortPreference ?? 0) ?? .titleAscending
-            )
-
-            columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
+            viewModel.reloadSounds()
         }
         .onDisappear {
-            if currentSoundsListMode == .selection {
-                viewModel.stopSelecting()
-            }
             if viewModel.isPlayingPlaylist {
-                viewModel.stopPlaying()
+                soundListViewModel.stopPlaying()
             }
         }
         .sheet(isPresented: $showingFolderInfoEditingView) {
@@ -93,12 +102,14 @@ struct FolderDetailView: View {
         }
     }
 
+    // MARK: - Auxiliary Views
+
     @ViewBuilder func trailingToolbarControls() -> some View {
         HStack(spacing: 16) {
             if currentSoundsListMode == .regular {
                 Button {
                     if viewModel.isPlayingPlaylist {
-                        viewModel.stopPlaying()
+                        soundListViewModel.stopPlaying()
                     } else {
                         viewModel.playAllSoundsOneAfterTheOther()
                     }
@@ -113,7 +124,7 @@ struct FolderDetailView: View {
             Menu {
                 Section {
                     Button {
-                        viewModel.startSelecting()
+                        soundListViewModel.startSelecting()
                     } label: {
                         Label(currentSoundsListMode == .selection ? "Cancelar Seleção" : "Selecionar", systemImage: currentSoundsListMode == .selection ? "xmark.circle" : "checkmark.circle")
                     }
@@ -169,17 +180,17 @@ struct FolderDetailView: View {
                 Image(systemName: "ellipsis.circle")
             }
             .disabled(viewModel.isPlayingPlaylist || viewModel.sounds.isEmpty)
-            .onChange(of: viewModel.soundSortOption, perform: { soundSortOption in
-                switch soundSortOption {
-                case 1:
-                    viewModel.sortSoundsInPlaceByAuthorNameAscending()
-                case 2:
-                    viewModel.sortSoundsInPlaceByDateAddedDescending()
-                default:
-                    viewModel.sortSoundsInPlaceByTitleAscending()
-                }
-                try? LocalDatabase.shared.update(userSortPreference: soundSortOption, forFolderId: folder.id)
-            })
+//            .onChange(of: viewModel.soundSortOption, perform: { soundSortOption in
+//                switch soundSortOption {
+//                case 1:
+//                    viewModel.sortSoundsInPlaceByAuthorNameAscending()
+//                case 2:
+//                    viewModel.sortSoundsInPlaceByDateAddedDescending()
+//                default:
+//                    viewModel.sortSoundsInPlaceByTitleAscending()
+//                }
+//                try? LocalDatabase.shared.update(userSortPreference: soundSortOption, forFolderId: folder.id)
+//            })
         }
     }
     
@@ -195,12 +206,6 @@ struct FolderDetailView: View {
                     Text("Cancelar")
                         .bold()
                 }
-                
-                Button {
-                    viewModel.showRemoveMultipleSoundsConfirmation()
-                } label: {
-                    Label("Remover da Pasta", systemImage: "folder.badge.minus")
-                }.disabled(viewModel.selectionKeeper.count == 0)
             }
         }
     }
@@ -208,8 +213,10 @@ struct FolderDetailView: View {
 
 #Preview {
     FolderDetailView(
-        viewModel: .init(currentSoundsListMode: .constant(.regular)),
-        folder: .init(symbol: "🤑", name: "Grupo da Economia", backgroundColor: "pastelBabyBlue"),
-        currentSoundsListMode: .constant(.regular)
+        folder: .init(
+            symbol: "🤑",
+            name: "Grupo da Economia",
+            backgroundColor: "pastelBabyBlue"
+        )
     )
 }

@@ -13,7 +13,11 @@ enum AlertType {
 }
 
 enum SoundListAlertType {
-    case soundFileNotFound, issueSharingSound, optionIncompatibleWithWhatsApp, issueExportingManySounds
+    case soundFileNotFound
+    case issueSharingSound
+    case optionIncompatibleWithWhatsApp
+    case issueExportingManySounds
+    case removeMultipleSounds
 }
 
 enum AuthorDetailAlertType {

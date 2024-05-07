@@ -190,7 +190,8 @@ struct AuthorDetailView: View {
                             }
                         }
                         .padding(.horizontal, 20)
-                        .padding(.vertical)
+                        .padding(.top, 10)
+                        .padding(.bottom, 5)
                     }
                 )
             )

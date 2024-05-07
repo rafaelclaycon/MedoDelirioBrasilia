@@ -11,18 +11,28 @@ struct SoundList: View {
 
     // MARK: - Dependencies
 
-    @StateObject var viewModel: SoundListViewModel<Sound>
-    @Binding var stopShowingFloatingSelector: Bool?
-    var allowSearch: Bool = false
-    var allowRefresh: Bool = false
-    var showSoundCountAtTheBottom: Bool = false
-    var syncAction: (() -> Void)? = nil
-    let emptyStateView: AnyView
-    var headerView: AnyView? = nil
+    @StateObject private var viewModel: SoundListViewModel<Sound>
+    private var stopShowingFloatingSelector: Binding<Bool?>
+    private var allowSearch: Bool
+    private var allowRefresh: Bool
+    private var showSoundCountAtTheBottom: Bool
+    private var showExplicitDisabledWarning: Bool
+    private var multiSelectFolderOperation: FolderOperation = .add
+    private var syncAction: (() -> Void)?
+    private let emptyStateView: AnyView
+    private var headerView: AnyView?
 
     // MARK: - Stored Properties
 
-    @State private var columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
+    @State private var columns: [GridItem] = []
+    private let phoneItemSpacing: CGFloat = 9
+    private let padItemSpacing: CGFloat = 14
+    @State private var showMultiSelectButtons: Bool = false
+    @State private var multiSelectButtonsEnabled: Bool = false
+    @State private var allSelectedAreFavorites: Bool = false
+
+    @ScaledMetric private var explicitOffWarningTopPadding = 16
+    @ScaledMetric private var explicitOffWarningBottomPadding = 20
 
     // MARK: - Computed Properties
 
@@ -40,6 +50,36 @@ struct SoundList: View {
         case .loading, .error:
             return []
         }
+    }
+
+    // MARK: - Environment Variables
+
+    @Environment(\.sizeCategory) var sizeCategory
+
+    // MARK: - Initializer
+
+    init(
+        viewModel: SoundListViewModel<Sound>,
+        stopShowingFloatingSelector: Binding<Bool?> = .constant(nil),
+        allowSearch: Bool = false,
+        allowRefresh: Bool = false,
+        showSoundCountAtTheBottom: Bool = false,
+        showExplicitDisabledWarning: Bool = false,
+        syncAction: (() -> Void)? = nil,
+        multiSelectFolderOperation: FolderOperation = .add,
+        emptyStateView: AnyView,
+        headerView: AnyView? = nil
+    ) {
+        self._viewModel = StateObject(wrappedValue: viewModel)
+        self.stopShowingFloatingSelector = stopShowingFloatingSelector
+        self.allowSearch = allowSearch
+        self.allowRefresh = allowRefresh
+        self.showSoundCountAtTheBottom = showSoundCountAtTheBottom
+        self.showExplicitDisabledWarning = showExplicitDisabledWarning
+        self.syncAction = syncAction
+        self.multiSelectFolderOperation = multiSelectFolderOperation
+        self.emptyStateView = emptyStateView
+        self.headerView = headerView
     }
 
     // MARK: - Body
@@ -70,12 +110,11 @@ struct SoundList: View {
                 } else {
                     ScrollView {
                         ScrollViewReader { proxy in
-                            // TODO: Insert banners here.
                             if let headerView {
                                 headerView
                             }
 
-                            LazyVGrid(columns: columns, spacing: UIDevice.isiPhone ? 14 : 20) {
+                            LazyVGrid(columns: columns, spacing: UIDevice.isiPhone ? phoneItemSpacing : padItemSpacing) {
                                 if searchResults.isEmpty {
                                     NoSearchResultsView(searchText: $viewModel.searchText)
                                 } else {
@@ -164,7 +203,7 @@ struct SoundList: View {
                                         message: Text(viewModel.alertMessage),
                                         primaryButton: .default(Text("Continuar"), action: {
                                             AppPersistentMemory.increaseShareManyMessageShowCountByOne()
-                                            // viewModel.shareSelected()
+                                            viewModel.shareSelected()
                                         }),
                                         secondaryButton: .cancel(Text("Cancelar"))
                                     )
@@ -174,6 +213,16 @@ struct SoundList: View {
                                         title: Text(viewModel.alertTitle),
                                         message: Text(viewModel.alertMessage),
                                         dismissButton: .default(Text("OK"))
+                                    )
+
+                                case .removeMultipleSounds:
+                                    return Alert(
+                                        title: Text(viewModel.alertTitle),
+                                        message: Text(viewModel.alertMessage),
+                                        primaryButton: .destructive(Text("Remover"), action: {
+                                            viewModel.removeManyFromFolder()
+                                        }),
+                                        secondaryButton: .cancel(Text("Cancelar"))
                                     )
                                 }
                             }
@@ -212,7 +261,7 @@ struct SoundList: View {
                                 }
                             }
                             .onChange(of: viewModel.searchText) { text in
-                                stopShowingFloatingSelector = !text.isEmpty
+                                stopShowingFloatingSelector.wrappedValue = !text.isEmpty
                             }
                             .onChange(of: viewModel.shareAsVideoResult.videoFilepath) { videoResultPath in
                                 if videoResultPath.isEmpty == false {
@@ -249,17 +298,25 @@ struct SoundList: View {
                                     }
                                 }
                             }
-//                            .onChange(of: geometry.size.width) { newWidth in
-//                                self.listWidth = newWidth
-//                                columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
-//                            }
-//                            .onChange(of: searchResults) { searchResults in
-//                                if searchResults.isEmpty {
-//                                    columns = [GridItem(.flexible())]
-//                                } else {
-//                                    columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
-//                                }
-//                            }
+                            .onAppear {
+                                updateGridLayout(with: geometry.size.width)
+                            }
+                            .onChange(of: geometry.size.width) { newWidth in
+                                updateGridLayout(with: newWidth)
+                            }
+                            .onChange(of: searchResults) { searchResults in
+                                if searchResults.isEmpty {
+                                    columns = [GridItem(.flexible())]
+                                } else {
+                                    updateGridLayout(with: geometry.size.width)
+                                }
+                            }
+                            .onChange(of: viewModel.selectionKeeper.count) {
+                                showMultiSelectButtons = viewModel.currentSoundsListMode.wrappedValue == .selection
+                                guard viewModel.currentSoundsListMode.wrappedValue == .selection else { return }
+                                multiSelectButtonsEnabled = $0 > 0
+                                allSelectedAreFavorites = viewModel.allSelectedAreFavorites()
+                            }
 //                            .onChange(of: soundIdToGoTo) {
 //                                if !$0.isEmpty {
 //                                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
@@ -272,14 +329,14 @@ struct SoundList: View {
 //                            }
                         }
 
-//                        if UserSettings.getShowExplicitContent() == false, viewModel.currentViewMode != .favorites {
-//                            ExplicitDisabledWarning(
-//                                text: UIDevice.isiPhone ? Shared.contentFilterMessageForSoundsiPhone : Shared.contentFilterMessageForSoundsiPadMac
-//                            )
-//                            .padding(.top, explicitOffWarningTopPadding)
-//                            .padding(.horizontal, explicitOffWarningBottomPadding)
-//                        }
-//
+                        if showExplicitDisabledWarning, UserSettings.getShowExplicitContent() == false {
+                            ExplicitDisabledWarning(
+                                text: UIDevice.isiPhone ? Shared.contentFilterMessageForSoundsiPhone : Shared.contentFilterMessageForSoundsiPadMac
+                            )
+                            .padding(.top, explicitOffWarningTopPadding)
+                            .padding(.horizontal, explicitOffWarningBottomPadding)
+                        }
+
                         if showSoundCountAtTheBottom, viewModel.searchText.isEmpty {
                             Text("\(sounds.count) SONS")
                                 .font(.footnote)
@@ -297,6 +354,7 @@ struct SoundList: View {
                             syncAction!()
                         }
                     }
+                    //.border(.red, width: 1)
                 }
 
             case .error:
@@ -326,12 +384,43 @@ struct SoundList: View {
                     .padding(.horizontal)
                     .padding(
                         .bottom,
-                        UIDevice.isiPhone && (stopShowingFloatingSelector != nil) ? Shared.Constants.toastViewBottomPaddingPhone : Shared.Constants.toastViewBottomPaddingPad
+                        UIDevice.isiPhone && (stopShowingFloatingSelector.wrappedValue != nil) ? Shared.Constants.toastViewBottomPaddingPhone : Shared.Constants.toastViewBottomPaddingPad
                     )
                 }
                 .transition(.moveAndFade)
             }
+            if showMultiSelectButtons {
+                VStack {
+                    Spacer()
+
+                    FloatingSelectionOptionsView(
+                        areButtonsEnabled: multiSelectButtonsEnabled,
+                        allSelectedAreFavorites: allSelectedAreFavorites,
+                        folderOperation: multiSelectFolderOperation,
+                        shareIsProcessing: viewModel.shareManyIsProcessing,
+                        favoriteAction: { viewModel.addRemoveManyFromFavorites() },
+                        folderAction: {
+                            if multiSelectFolderOperation == .add {
+                                viewModel.addManyToFolder()
+                            } else {
+                                viewModel.showRemoveMultipleSoundsConfirmation()
+                            }
+                        },
+                        shareAction: { viewModel.shareSelected() }
+                    )
+                }
+            }
         }
+    }
+
+    // MARK: - Functions
+
+    private func updateGridLayout(with newWidth: CGFloat) {
+        columns = GridHelper.adaptableColumns(
+            listWidth: newWidth,
+            sizeCategory: sizeCategory,
+            spacing: UIDevice.isiPhone ? phoneItemSpacing : padItemSpacing
+        )
     }
 }
 

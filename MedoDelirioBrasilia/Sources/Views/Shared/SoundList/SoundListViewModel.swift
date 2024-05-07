@@ -14,6 +14,7 @@ class SoundListViewModel<T>: ObservableObject {
     @Published var menuOptions: [ContextMenuSection]
     @Published var needsRefreshAfterChange: Bool
     var refreshAction: (() -> Void)?
+    var folder: UserFolder?
 
     @Published var favoritesKeeper = Set<String>()
     @Published var highlightKeeper = Set<String>()
@@ -73,12 +74,14 @@ class SoundListViewModel<T>: ObservableObject {
         menuOptions: [ContextMenuSection],
         currentSoundsListMode: Binding<SoundsListMode>,
         needsRefreshAfterChange: Bool = false,
-        refreshAction: (() -> Void)? = nil
+        refreshAction: (() -> Void)? = nil,
+        insideFolder: UserFolder? = nil
     ) {
         self.menuOptions = menuOptions
         self.currentSoundsListMode = currentSoundsListMode
         self.needsRefreshAfterChange = needsRefreshAfterChange
         self.refreshAction = refreshAction
+        self.folder = insideFolder
 
         data
             .map { LoadingState.loaded($0) }
@@ -110,6 +113,13 @@ class SoundListViewModel<T>: ObservableObject {
                 showServerSoundNotAvailableAlert(sound)
                 // Disregarding the case of the sound not being in the Bundle as this is highly unlikely since the launch of the sync system.
             }
+        }
+    }
+
+    func stopPlaying() {
+        if nowPlayingKeeper.count > 0 {
+            AudioPlayer.shared?.togglePlay()
+            nowPlayingKeeper.removeAll()
         }
     }
 
@@ -170,15 +180,6 @@ class SoundListViewModel<T>: ObservableObject {
         }
     }
 
-    func showServerSoundNotAvailableAlert(_ sound: Sound) {
-        selectedSound = sound
-        TapticFeedback.error()
-        alertType = .soundFileNotFound
-        alertTitle = Shared.contentNotFoundAlertTitle(sound.title)
-        alertMessage = Shared.serverContentNotAvailableRedownloadMessage
-        showAlert = true
-    }
-
     func showVideoSavedSuccessfullyToast() {
         self.displayToast(
             toastText: UIDevice.isMac ? Shared.ShareAsVideo.videoSavedSucessfullyMac : Shared.ShareAsVideo.videoSavedSucessfully
@@ -229,13 +230,6 @@ class SoundListViewModel<T>: ObservableObject {
 //
 //            isShowingShareSheet = true
         }
-    }
-
-    func stopSelecting() {
-        currentSoundsListMode.wrappedValue = .regular
-        selectionKeeper.removeAll()
-        selectedSounds = nil
-        searchText = ""
     }
 }
 
@@ -291,14 +285,6 @@ extension SoundListViewModel: SoundListDisplaying {
         )
     }
 
-    func showUnableToGetSoundAlert(_ soundTitle: String) {
-        TapticFeedback.error()
-        alertType = .issueSharingSound
-        alertTitle = Shared.contentNotFoundAlertTitle(soundTitle)
-        alertMessage = Shared.soundNotFoundAlertMessage
-        showAlert = true
-    }
-
     func openShareAsVideoModal(for sound: Sound) {
         selectedSound = sound
         subviewToOpen = .shareAsVideo
@@ -334,5 +320,194 @@ extension SoundListViewModel: SoundListDisplaying {
     func removeFromFolder(_ sound: Sound) {
         selectedSound = sound
         // showSoundRemovalConfirmation(soundTitle: sound.title)
+    }
+}
+
+// MARK: - Multi-Selection
+
+extension SoundListViewModel {
+
+    func startSelecting() {
+        stopPlaying()
+        if currentSoundsListMode.wrappedValue == .regular {
+            currentSoundsListMode.wrappedValue = .selection
+        } else {
+            currentSoundsListMode.wrappedValue = .regular
+            selectionKeeper.removeAll()
+        }
+    }
+
+    func stopSelecting() {
+        currentSoundsListMode.wrappedValue = .regular
+        selectionKeeper.removeAll()
+        selectedSounds = nil
+        searchText = ""
+    }
+
+    private func extractSounds() -> [Sound]? {
+        switch state {
+        case .loaded(let sounds):
+            return sounds
+        default:
+            return nil
+        }
+    }
+
+    func allSelectedAreFavorites() -> Bool {
+        guard selectionKeeper.count > 0 else { return false }
+        return selectionKeeper.isSubset(of: favoritesKeeper)
+    }
+
+    func addRemoveManyFromFavorites() {
+        // Need to get count before clearing the Set.
+        let selectedCount: Int = selectionKeeper.count
+
+        if /*currentViewMode == .favorites ||*/ allSelectedAreFavorites() {
+            removeSelectedFromFavorites()
+            stopSelecting()
+            guard let refreshAction else { return }
+            refreshAction()
+            Analytics.sendUsageMetricToServer(
+                originatingScreen: "SoundsView",
+                action: "didRemoveManySoundsFromFavorites(\(selectedCount))"
+            )
+        } else {
+            addSelectedToFavorites()
+            stopSelecting()
+            Analytics.sendUsageMetricToServer(
+                originatingScreen: "SoundsView",
+                action: "didAddManySoundsToFavorites(\(selectedCount))"
+            )
+        }
+    }
+
+    func addSelectedToFavorites() {
+        guard selectionKeeper.count > 0 else { return }
+        selectionKeeper.forEach { selectedSound in
+            addToFavorites(soundId: selectedSound)
+        }
+    }
+
+    func removeSelectedFromFavorites() {
+        guard selectionKeeper.count > 0 else { return }
+        selectionKeeper.forEach { selectedSound in
+            removeFromFavorites(soundId: selectedSound)
+        }
+    }
+
+    func addManyToFolder() {
+        guard selectionKeeper.count > 0 else { return }
+        guard let sounds = extractSounds() else { return }
+        selectedSounds = sounds.filter({ selectionKeeper.contains($0.id) })
+        subviewToOpen = .addToFolder
+        showingModalView = true
+    }
+
+    func removeManyFromFolder() {
+        guard let folder else { return }
+        guard let refreshAction else { return }
+        guard selectionKeeper.count > 0 else { return }
+
+        // Need to get count before clearing the Set.
+        let selectedCount: Int = selectionKeeper.count // For Analytics
+
+        selectionKeeper.forEach { selectedSoundId in
+            try? LocalDatabase.shared.deleteUserContentFromFolder(withId: folder.id, contentId: selectedSoundId)
+        }
+        selectionKeeper.removeAll()
+        refreshAction()
+
+        stopSelecting()
+        Analytics.sendUsageMetricToServer(
+            folderName: "\(folder.symbol) \(folder.name)",
+            action: "didRemoveManySoundsFromFolder(\(selectedCount))"
+        )
+    }
+
+    func shareSelected() {
+        guard selectionKeeper.count > 0 else { return }
+
+        shareManyIsProcessing = true
+
+        guard let sounds = extractSounds() else { return }
+        selectedSounds = sounds.filter({ selectionKeeper.contains($0.id) })
+        guard selectedSounds?.count ?? 0 > 0 else { return }
+
+        let successfulMessage = selectedSounds!.count > 1 ? Shared.soundsExportedSuccessfullyMessage : Shared.soundExportedSuccessfullyMessage
+
+        do {
+            try SharingUtility.share(sounds: selectedSounds!) { didShareSuccessfully in
+                self.shareManyIsProcessing = false
+                self.stopSelecting()
+                if didShareSuccessfully {
+                    self.displayToast(toastText: successfulMessage)
+                }
+            }
+        } catch SoundError.fileNotFound(let soundTitle) {
+            shareManyIsProcessing = false
+            stopSelecting()
+            showUnableToGetSoundAlert(soundTitle)
+        } catch {
+            shareManyIsProcessing = false
+            stopSelecting()
+            showShareManyIssueAlert(error.localizedDescription)
+        }
+    }
+}
+
+// MARK: - Alerts
+
+extension SoundListViewModel {
+
+    func showUnableToGetSoundAlert(_ soundTitle: String) {
+        TapticFeedback.error()
+        alertType = .issueSharingSound
+        alertTitle = Shared.contentNotFoundAlertTitle(soundTitle)
+        alertMessage = Shared.soundNotFoundAlertMessage
+        showAlert = true
+    }
+
+    func showServerSoundNotAvailableAlert(_ sound: Sound) {
+        selectedSound = sound
+        TapticFeedback.error()
+        alertType = .soundFileNotFound
+        alertTitle = Shared.contentNotFoundAlertTitle(sound.title)
+        alertMessage = Shared.serverContentNotAvailableRedownloadMessage
+        showAlert = true
+    }
+
+    // From the before times when WhatApp didn't really support receiving many sounds through the system Share Sheet.
+//    func showShareManyAlert() {
+//        let messageDisplayCount = AppPersistentMemory.getShareManyMessageShowCount()
+//
+//        guard messageDisplayCount < 2 else { return shareSelected() }
+//
+//        var timesMessage = ""
+//        if messageDisplayCount == 0 {
+//            timesMessage = "2 vezes"
+//        } else {
+//            timesMessage = "1 vez"
+//        }
+//
+//        TapticFeedback.warning()
+//        alertType = .optionIncompatibleWithWhatsApp
+//        alertTitle = "Incompatível com o WhatsApp"
+//        alertMessage = "Devido a um problema técnico, o WhatsApp recebe apenas o primeiro som selecionado. Use essa função para Salvar em Arquivos ou com o Telegram.\n\nEssa mensagem será mostrada mais \(timesMessage)."
+//        showAlert = true
+//    }
+
+    func showShareManyIssueAlert(_ localizedError: String) {
+        TapticFeedback.error()
+        alertType = .issueExportingManySounds
+        alertTitle = "Problema ao Tentar Exportar Vários Sons"
+        alertMessage = "Houve um problema desconhecido ao tentar compartilhar vários sons. Por favor, envie um print desse erro para o desenvolvedor (e-mail nas Configurações):\n\n\(localizedError)"
+        showAlert = true
+    }
+
+    func showRemoveMultipleSoundsConfirmation() {
+        alertTitle = "Remover os sons selecionados?"
+        alertMessage = "Os sons continuarão disponíveis fora da pasta."
+        alertType = .removeMultipleSounds
+        showAlert = true
     }
 }

@@ -591,29 +591,29 @@ struct SoundsView: View {
                 }
             }
 
-            if currentSoundsListMode == .selection {
-                VStack {
-                    Spacer()
-
-                    FloatingSelectionOptionsView(
-                        areButtonsEnabled: $areManyActionButtonsEnabled,
-                        favoriteTitle: $favoriteButtonTitle,
-                        favoriteSystemImage: $favoriteButtonImage,
-                        shareIsProcessing: $viewModel.shareManyIsProcessing,
-                        favoriteAction: {
-                            viewModel.addRemoveManyFromFavorites()
-                        },
-                        folderAction: {
-                            viewModel.prepareSelectedToAddToFolder()
-                            subviewToOpen = .addToFolderView
-                            showingModalView = true
-                        },
-                        shareAction: {
-                            viewModel.showShareManyAlert()
-                        }
-                    )
-                }
-            }
+//            if currentSoundsListMode == .selection {
+//                VStack {
+//                    Spacer()
+//
+//                    FloatingSelectionOptionsView(
+//                        areButtonsEnabled: $areManyActionButtonsEnabled,
+//                        favoriteTitle: $favoriteButtonTitle,
+//                        favoriteSystemImage: $favoriteButtonImage,
+//                        shareIsProcessing: $viewModel.shareManyIsProcessing,
+//                        favoriteAction: {
+//                            viewModel.addRemoveManyFromFavorites()
+//                        },
+//                        folderAction: {
+//                            viewModel.prepareSelectedToAddToFolder()
+//                            subviewToOpen = .addToFolderView
+//                            showingModalView = true
+//                        },
+//                        shareAction: {
+//                            viewModel.showShareManyAlert()
+//                        }
+//                    )
+//                }
+//            }
 
             if viewModel.showToastView {
                 VStack {
