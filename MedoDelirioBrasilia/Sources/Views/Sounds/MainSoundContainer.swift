@@ -108,6 +108,7 @@ struct MainSoundContainer: View {
                     allowSearch: true,
                     allowRefresh: true,
                     showSoundCountAtTheBottom: true,
+                    showExplicitDisabledWarning: true,
                     syncAction: {
                         Task { // Keep this Task to avoid "cancelled" issue.
                             await viewModel.sync(lastAttempt: AppPersistentMemory.getLastUpdateAttempt())
@@ -271,9 +272,9 @@ struct MainSoundContainer: View {
                     } label: {
                         Image(systemName: "arrow.up.arrow.down")
                     }
-//                    .onChange(of: authorSortOption, perform: { authorSortOption in
-//                        authorSortAction = AuthorSortOption(rawValue: authorSortOption) ?? .nameAscending
-//                    })
+                    .onChange(of: authorSortOption, perform: { authorSortOption in
+                        authorSortAction = AuthorSortOption(rawValue: authorSortOption) ?? .nameAscending
+                    })
                 } else {
                     if currentSoundsListMode.wrappedValue == .regular {
                         SyncStatusView()

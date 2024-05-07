@@ -16,6 +16,7 @@ struct SoundList: View {
     private var allowSearch: Bool
     private var allowRefresh: Bool
     private var showSoundCountAtTheBottom: Bool
+    private var showExplicitDisabledWarning: Bool
     private var multiSelectFolderOperation: FolderOperation = .add
     private var syncAction: (() -> Void)?
     private let emptyStateView: AnyView
@@ -29,6 +30,9 @@ struct SoundList: View {
     @State private var showMultiSelectButtons: Bool = false
     @State private var multiSelectButtonsEnabled: Bool = false
     @State private var allSelectedAreFavorites: Bool = false
+
+    @ScaledMetric private var explicitOffWarningTopPadding = 16
+    @ScaledMetric private var explicitOffWarningBottomPadding = 20
 
     // MARK: - Computed Properties
 
@@ -60,6 +64,7 @@ struct SoundList: View {
         allowSearch: Bool = false,
         allowRefresh: Bool = false,
         showSoundCountAtTheBottom: Bool = false,
+        showExplicitDisabledWarning: Bool = false,
         syncAction: (() -> Void)? = nil,
         multiSelectFolderOperation: FolderOperation = .add,
         emptyStateView: AnyView,
@@ -70,6 +75,7 @@ struct SoundList: View {
         self.allowSearch = allowSearch
         self.allowRefresh = allowRefresh
         self.showSoundCountAtTheBottom = showSoundCountAtTheBottom
+        self.showExplicitDisabledWarning = showExplicitDisabledWarning
         self.syncAction = syncAction
         self.multiSelectFolderOperation = multiSelectFolderOperation
         self.emptyStateView = emptyStateView
@@ -104,7 +110,6 @@ struct SoundList: View {
                 } else {
                     ScrollView {
                         ScrollViewReader { proxy in
-                            // TODO: Insert banners here.
                             if let headerView {
                                 headerView
                             }
@@ -324,14 +329,14 @@ struct SoundList: View {
 //                            }
                         }
 
-//                        if UserSettings.getShowExplicitContent() == false, viewModel.currentViewMode != .favorites {
-//                            ExplicitDisabledWarning(
-//                                text: UIDevice.isiPhone ? Shared.contentFilterMessageForSoundsiPhone : Shared.contentFilterMessageForSoundsiPadMac
-//                            )
-//                            .padding(.top, explicitOffWarningTopPadding)
-//                            .padding(.horizontal, explicitOffWarningBottomPadding)
-//                        }
-//
+                        if showExplicitDisabledWarning, UserSettings.getShowExplicitContent() == false {
+                            ExplicitDisabledWarning(
+                                text: UIDevice.isiPhone ? Shared.contentFilterMessageForSoundsiPhone : Shared.contentFilterMessageForSoundsiPadMac
+                            )
+                            .padding(.top, explicitOffWarningTopPadding)
+                            .padding(.horizontal, explicitOffWarningBottomPadding)
+                        }
+
                         if showSoundCountAtTheBottom, viewModel.searchText.isEmpty {
                             Text("\(sounds.count) SONS")
                                 .font(.footnote)
