@@ -9,13 +9,18 @@ import SwiftUI
 
 struct FloatingSelectionOptionsView: View {
 
+    // MARK: - Dependencies
+
     let areButtonsEnabled: Bool
     let allSelectedAreFavorites: Bool
+    let folderOperation: FolderOperation
     let shareIsProcessing: Bool
 
     let favoriteAction: () -> Void
     let folderAction: () -> Void
     let shareAction: () -> Void
+
+    // MARK: - Computed Properties
 
     private var favoriteSymbol: String {
         allSelectedAreFavorites ? "star.slash" : "star"
@@ -28,6 +33,20 @@ struct FloatingSelectionOptionsView: View {
             return "Favoritar"
         }
     }
+
+    private var folderSymbol: String {
+        folderOperation == .add ? "folder.badge.plus" : "folder.badge.minus"
+    }
+
+    private var folderTitle: String {
+        if UIDevice.isiPhone {
+            return "Pasta"
+        } else {
+            return folderOperation == .add ? "Adicionar a Pasta" : "Remover da Pasta"
+        }
+    }
+
+    // MARK: - Body
 
     var body: some View {
         HStack(spacing: 14) {
@@ -48,10 +67,10 @@ struct FloatingSelectionOptionsView: View {
                 folderAction()
             } label: {
                 Label {
-                    Text(UIDevice.isiPhone ? "Pasta" : "Adicionar a Pasta")
+                    Text(folderTitle)
                         .bold()
                 } icon: {
-                    Image(systemName: "folder.badge.plus")
+                    Image(systemName: folderSymbol)
                 }
             }
             .disabled(!areButtonsEnabled)

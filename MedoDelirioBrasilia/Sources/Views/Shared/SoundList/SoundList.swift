@@ -16,6 +16,7 @@ struct SoundList: View {
     private var allowSearch: Bool
     private var allowRefresh: Bool
     private var showSoundCountAtTheBottom: Bool
+    private var multiSelectFolderOperation: FolderOperation = .add
     private var syncAction: (() -> Void)?
     private let emptyStateView: AnyView
     private var headerView: AnyView?
@@ -60,6 +61,7 @@ struct SoundList: View {
         allowRefresh: Bool = false,
         showSoundCountAtTheBottom: Bool = false,
         syncAction: (() -> Void)? = nil,
+        multiSelectFolderOperation: FolderOperation = .add,
         emptyStateView: AnyView,
         headerView: AnyView? = nil
     ) {
@@ -69,6 +71,7 @@ struct SoundList: View {
         self.allowRefresh = allowRefresh
         self.showSoundCountAtTheBottom = showSoundCountAtTheBottom
         self.syncAction = syncAction
+        self.multiSelectFolderOperation = multiSelectFolderOperation
         self.emptyStateView = emptyStateView
         self.headerView = headerView
     }
@@ -205,6 +208,16 @@ struct SoundList: View {
                                         title: Text(viewModel.alertTitle),
                                         message: Text(viewModel.alertMessage),
                                         dismissButton: .default(Text("OK"))
+                                    )
+
+                                case .removeMultipleSounds:
+                                    return Alert(
+                                        title: Text(viewModel.alertTitle),
+                                        message: Text(viewModel.alertMessage),
+                                        primaryButton: .destructive(Text("Remover"), action: {
+                                            viewModel.removeManyFromFolder()
+                                        }),
+                                        secondaryButton: .cancel(Text("Cancelar"))
                                     )
                                 }
                             }
@@ -378,9 +391,16 @@ struct SoundList: View {
                     FloatingSelectionOptionsView(
                         areButtonsEnabled: multiSelectButtonsEnabled,
                         allSelectedAreFavorites: allSelectedAreFavorites,
+                        folderOperation: multiSelectFolderOperation,
                         shareIsProcessing: viewModel.shareManyIsProcessing,
                         favoriteAction: { viewModel.addRemoveManyFromFavorites() },
-                        folderAction: { viewModel.addManyToFolder() },
+                        folderAction: {
+                            if multiSelectFolderOperation == .add {
+                                viewModel.addManyToFolder()
+                            } else {
+                                viewModel.showRemoveMultipleSoundsConfirmation()
+                            }
+                        },
                         shareAction: { viewModel.shareSelected() }
                     )
                 }

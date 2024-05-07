@@ -14,6 +14,7 @@ class SoundListViewModel<T>: ObservableObject {
     @Published var menuOptions: [ContextMenuSection]
     @Published var needsRefreshAfterChange: Bool
     var refreshAction: (() -> Void)?
+    var folder: UserFolder?
 
     @Published var favoritesKeeper = Set<String>()
     @Published var highlightKeeper = Set<String>()
@@ -73,12 +74,14 @@ class SoundListViewModel<T>: ObservableObject {
         menuOptions: [ContextMenuSection],
         currentSoundsListMode: Binding<SoundsListMode>,
         needsRefreshAfterChange: Bool = false,
-        refreshAction: (() -> Void)? = nil
+        refreshAction: (() -> Void)? = nil,
+        insideFolder: UserFolder? = nil
     ) {
         self.menuOptions = menuOptions
         self.currentSoundsListMode = currentSoundsListMode
         self.needsRefreshAfterChange = needsRefreshAfterChange
         self.refreshAction = refreshAction
+        self.folder = insideFolder
 
         data
             .map { LoadingState.loaded($0) }
@@ -400,6 +403,27 @@ extension SoundListViewModel {
         showingModalView = true
     }
 
+    func removeManyFromFolder() {
+        guard let folder else { return }
+        guard let refreshAction else { return }
+        guard selectionKeeper.count > 0 else { return }
+
+        // Need to get count before clearing the Set.
+        let selectedCount: Int = selectionKeeper.count // For Analytics
+
+        selectionKeeper.forEach { selectedSoundId in
+            try? LocalDatabase.shared.deleteUserContentFromFolder(withId: folder.id, contentId: selectedSoundId)
+        }
+        selectionKeeper.removeAll()
+        refreshAction()
+
+        stopSelecting()
+        Analytics.sendUsageMetricToServer(
+            folderName: "\(folder.symbol) \(folder.name)",
+            action: "didRemoveManySoundsFromFolder(\(selectedCount))"
+        )
+    }
+
     func shareSelected() {
         guard selectionKeeper.count > 0 else { return }
 
@@ -477,6 +501,13 @@ extension SoundListViewModel {
         alertType = .issueExportingManySounds
         alertTitle = "Problema ao Tentar Exportar Vários Sons"
         alertMessage = "Houve um problema desconhecido ao tentar compartilhar vários sons. Por favor, envie um print desse erro para o desenvolvedor (e-mail nas Configurações):\n\n\(localizedError)"
+        showAlert = true
+    }
+
+    func showRemoveMultipleSoundsConfirmation() {
+        alertTitle = "Remover os sons selecionados?"
+        alertMessage = "Os sons continuarão disponíveis fora da pasta."
+        alertType = .removeMultipleSounds
         showAlert = true
     }
 }
