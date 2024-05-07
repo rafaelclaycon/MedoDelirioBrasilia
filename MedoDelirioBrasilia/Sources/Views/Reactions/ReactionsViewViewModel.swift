@@ -11,7 +11,7 @@ import Combine
 class ReactionsViewViewModel: ObservableObject {
 
     @Published var state: LoadingState<Reaction> = .loading
-    
+
     @Published var isShowingSheet: Bool = false
 
     // Alerts
@@ -27,20 +27,11 @@ class ReactionsViewViewModel: ObservableObject {
 
         do {
             let url = URL(string: NetworkRabbit.shared.serverPath + "v4/reactions")!
-            let reactions: [Reaction] = try await NetworkRabbit.get(from: url)
+            var reactions: [Reaction] = try await NetworkRabbit.get(from: url)
+            reactions.sort(by: { $0.position < $1.position })
             state = .loaded(reactions)
         } catch {
             state = .error(error.localizedDescription)
         }
     }
-    
-    // MARK: - Alerts
-    
-//    func showFolderDeletionConfirmation(folderName: String, folderId: String) {
-//        alertTitle = "Apagar a Pasta \"\(folderName)\"?"
-//        alertMessage = "Os sons continuarão disponíveis no app, fora da pasta.\n\nEssa ação não pode ser desfeita."
-//        folderIdForDeletion = folderId
-//        showAlert = true
-//    }
-
 }

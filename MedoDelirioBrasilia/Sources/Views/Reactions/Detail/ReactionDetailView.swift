@@ -17,7 +17,16 @@ struct ReactionDetailView: View {
         GeometryReader { geometry in
             switch viewModel.state {
             case .loading:
-                VStack {
+                VStack(spacing: 40) {
+                    ReactionDetailHeader(
+                        title: viewModel.reaction.title,
+                        subtitle: viewModel.subtitle,
+                        imageUrl: viewModel.reaction.image
+                    )
+                    .frame(height: 250)
+
+                    Spacer()
+
                     HStack(spacing: 10) {
                         ProgressView()
 
@@ -25,9 +34,9 @@ struct ReactionDetailView: View {
                             .foregroundColor(.gray)
                     }
                     .frame(maxWidth: .infinity)
+
+                    Spacer()
                 }
-                .frame(width: geometry.size.width)
-                .frame(minHeight: geometry.size.height)
 
             case .loaded(_):
                 SoundList(
@@ -38,9 +47,31 @@ struct ReactionDetailView: View {
                     ),
                     stopShowingFloatingSelector: .constant(nil),
                     emptyStateView: AnyView(
-                        Text("Nenhum som a ser exibido. Isso é esquisito.")
-                            .foregroundColor(.gray)
-                            .padding(.horizontal, 20)
+                        VStack(spacing: 40) {
+                            Spacer()
+
+                            Image(systemName: "questionmark.square.dashed")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 60)
+                                .foregroundStyle(.gray)
+
+                            Text("Essa Reação está vazia. Parece que você chegou muito cedo.")
+                                .foregroundStyle(.gray)
+                                .multilineTextAlignment(.center)
+
+                            Button {
+                                Task {
+                                    await viewModel.loadSounds()
+                                }
+                            } label: {
+                                Label("Recarregar", systemImage: "arrow.clockwise")
+                            }
+                            .padding(.bottom)
+
+                            Spacer()
+                        }
+                        .padding(.horizontal, 30)
                     ),
                     headerView: AnyView(
                         ReactionDetailHeader(
@@ -54,14 +85,42 @@ struct ReactionDetailView: View {
                 )
 
             case .error(let errorString):
-                VStack {
-                    Text("Erro ao carregar os sons dessa Reação. :(\n\n\(errorString)")
-                        .font(.headline)
-                        .multilineTextAlignment(.center)
-                        .foregroundStyle(.gray)
+                VStack(spacing: 40) {
+                    ReactionDetailHeader(
+                        title: viewModel.reaction.title,
+                        subtitle: viewModel.subtitle,
+                        imageUrl: viewModel.reaction.image
+                    )
+                    .frame(height: 250)
+
+                    Spacer()
+                        .frame(height: 20)
+
+                    Text("☹️")
+                        .font(.system(size: 86))
+
+                    VStack(spacing: 40) {
+                        Text("Erro ao Carregar os Sons Dessa Reação")
+                            .font(.title2)
+                            .bold()
+                            .multilineTextAlignment(.center)
+
+                        Text(errorString)
+                            .multilineTextAlignment(.center)
+                            .foregroundStyle(.gray)
+
+                        Button {
+                            Task {
+                                await viewModel.loadSounds()
+                            }
+                        } label: {
+                            Label("Tentar Novamente", systemImage: "arrow.clockwise")
+                        }
+                    }
+                    .padding(.horizontal, 30)
+
+                    Spacer()
                 }
-                .frame(width: geometry.size.width)
-                .frame(minHeight: geometry.size.height)
             }
         }
         .toolbar {

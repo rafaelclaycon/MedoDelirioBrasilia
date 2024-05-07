@@ -51,7 +51,8 @@ class ReactionDetailViewModel: ObservableObject {
 
         do {
             let url = URL(string: NetworkRabbit.shared.serverPath + "v4/reaction/\(reaction.id)")!
-            let reactionSounds: [ReactionSound] = try await NetworkRabbit.get(from: url)
+            var reactionSounds: [ReactionSound] = try await NetworkRabbit.get(from: url)
+            reactionSounds.sort(by: { $0.position < $1.position })
             let soundIds: [String] = reactionSounds.map { $0.soundId }
             let selectedSounds = try LocalDatabase.shared.sounds(withIds: soundIds)
             self.sounds = selectedSounds

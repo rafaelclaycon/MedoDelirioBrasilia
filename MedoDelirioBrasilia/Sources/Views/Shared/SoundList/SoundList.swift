@@ -103,6 +103,9 @@ struct SoundList: View {
             case .loaded(let sounds):
                 if sounds.isEmpty {
                     VStack {
+                        if let headerView {
+                            headerView
+                        }
                         emptyStateView
                     }
                     .frame(width: geometry.size.width)
