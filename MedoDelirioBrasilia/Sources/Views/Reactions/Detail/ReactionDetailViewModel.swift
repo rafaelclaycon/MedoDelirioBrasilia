@@ -25,13 +25,15 @@ class ReactionDetailViewModel: ObservableObject {
     }
 
     var subtitle: String {
+        let lastUpdateDate: String = reaction.lastUpdate.asRelativeDateTime ?? ""
         if sounds.count == 0 {
-            return "Nenhum som. Atualizada agora mesmo."
+            return "Nenhum som. Atualizada \(lastUpdateDate)."
         } else if sounds.count == 1 {
-            return "1 som. Atualizada agora mesmo."
+            return "1 som. Atualizada \(lastUpdateDate)."
         } else {
-            return "\(sounds.count) sons. Atualizada agora mesmo."
+            return "\(sounds.count) sons. Atualizada \(lastUpdateDate)."
         }
+
     }
 
     // MARK: - Initializer

@@ -192,11 +192,26 @@ class NetworkRabbit: NetworkRabbitProtocol {
     }
 }
 
-enum NetworkRabbitError: Error {
+enum NetworkRabbitError: Error, LocalizedError {
 
     case unexpectedStatusCode
     case responseWasNotAnHTTPURLResponse
     case invalidResponse
     case httpRequestFailed
     case errorFetchingUpdateEvents(String)
+
+    var errorDescription: String? {
+        switch self {
+        case .unexpectedStatusCode:
+            return "O servidor respondeu com um código de status inesperado."
+        case .responseWasNotAnHTTPURLResponse:
+            return "A resposta da rede não foi uma resposta HTTP URL."
+        case .invalidResponse:
+            return "A resposta do servidor é inválida ou está corrompida."
+        case .httpRequestFailed:
+            return "A requisição HTTP falhou devido a um erro de rede ou servidor."
+        case .errorFetchingUpdateEvents(let errorMessage):
+            return "Erro ao obter UpdateEvents: \(errorMessage)"
+        }
+    }
 }

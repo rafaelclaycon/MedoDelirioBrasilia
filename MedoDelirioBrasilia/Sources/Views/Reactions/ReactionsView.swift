@@ -12,7 +12,6 @@ struct ReactionsView: View {
     @StateObject private var viewModel = ReactionsViewViewModel()
 
     // iPad Grid Layout
-    //@State private var listWidth: CGFloat = 700
     @State private var columns: [GridItem] = []
     @Environment(\.sizeCategory) var sizeCategory
 
@@ -25,6 +24,8 @@ struct ReactionsView: View {
                         .scaleEffect(2.0)
 
                     Text("Carregando Reações...")
+                        .font(.title3)
+                        .bold()
                         .foregroundColor(.gray)
                 }
                 .frame(width: geometry.size.width)
@@ -46,7 +47,6 @@ struct ReactionsView: View {
                     .padding()
                     .navigationTitle("Reações")
                     .onAppear {
-                        print("THIAGO ON APPEAR: \(geometry.size.width)")
                         columns = GridHelper.adaptableColumns(
                             listWidth: geometry.size.width,
                             sizeCategory: sizeCategory,
@@ -54,8 +54,6 @@ struct ReactionsView: View {
                         )
                     }
                     .onChange(of: geometry.size.width) { newWidth in
-                        //self.listWidth = newWidth
-                        print("THIAGO ON CHANGE: \(geometry.size.width)")
                         columns = GridHelper.adaptableColumns(
                             listWidth: newWidth,
                             sizeCategory: sizeCategory,
@@ -65,21 +63,39 @@ struct ReactionsView: View {
                 }
 
             case .error(let errorString):
-                VStack {
-                    Text("Erro ao carregar as Reações. :(\n\n\(errorString)")
-                        .font(.headline)
+                VStack(spacing: 30) {
+                    Text("☹️")
+                        .font(.system(size: 86))
+
+                    Text("Erro ao Carregar as Reações")
+                        .font(.title2)
+                        .bold()
+                        .multilineTextAlignment(.center)
+
+                    Text(errorString)
                         .multilineTextAlignment(.center)
                         .foregroundStyle(.gray)
+
+                    Button {
+                        Task {
+                            await viewModel.loadList()
+                        }
+                    } label: {
+                        Label("Tentar Novamente", systemImage: "arrow.clockwise")
+                    }
                 }
+                .padding(.horizontal, 20)
                 .frame(width: geometry.size.width)
                 .frame(minHeight: geometry.size.height)
             }
         }
         .toolbar {
-            Button {
-                viewModel.isShowingSheet.toggle()
-            } label: {
-                Image(systemName: "plus")
+            if case .loaded = viewModel.state {
+                Button {
+                    viewModel.isShowingSheet.toggle()
+                } label: {
+                    Image(systemName: "plus")
+                }
             }
         }
         .sheet(isPresented: $viewModel.isShowingSheet) {
