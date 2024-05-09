@@ -187,8 +187,13 @@ struct SoundsView: View {
                                         .padding(.horizontal, 10)
                                     }
 
-                                    if shouldDisplayRecurringDonationBanner, viewModel.searchText.isEmpty {
-                                        RecurringDonationBanner(isBeingShown: $shouldDisplayRecurringDonationBanner)
+//                                    if shouldDisplayRecurringDonationBanner, viewModel.searchText.isEmpty {
+//                                        RecurringDonationBanner(isBeingShown: $shouldDisplayRecurringDonationBanner)
+//                                            .padding(.horizontal, 10)
+//                                    }
+
+                                    if viewModel.searchText.isEmpty {
+                                        DonateToFloodVictimsBanner(isBeingShown: .constant(true))
                                             .padding(.horizontal, 10)
                                     }
 
