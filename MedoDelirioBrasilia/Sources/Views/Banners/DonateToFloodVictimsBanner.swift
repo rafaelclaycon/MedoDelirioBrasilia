@@ -9,51 +9,71 @@ import SwiftUI
 
 struct DonateToFloodVictimsBanner: View {
 
-    @Binding var isBeingShown: Bool
+    let bannerData: DynamicBanner
+    let textCopyFeedback: (String) -> Void
+
+    @State private var isExpanded: Bool = false
+
+    private var markedDownText: AttributedString {
+        do {
+            return try .init(markdown: bannerData.text)
+        } catch {
+            return .init()
+        }
+    }
 
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
-        DisclosureGroup {
+        DisclosureGroup(isExpanded: $isExpanded) {
             VStack(alignment: .leading, spacing: 8) {
-                Text("Muitas instituições e pessoas estão pedindo Pix e eu sei que isso satura, então serei direto: estou organizando doações para pessoas que tiveram a casa invadida pela água e perderam seus pertences, móveis, eletrodomésticos. **Todas as doações feitas para o e-mail do app em maio serão revertidas para pessoas nessas condições.**\n\nO destino das doações será o mais transparente possível, divulgado no fio linkado abaixo.")
+                Text(markedDownText)
                     .foregroundColor(.red)
                     .opacity(0.8)
                     .font(.callout)
 
                 VStack(alignment: .leading, spacing: 15) {
-                    Button {
-                        OpenUtility.open(link: "https://apoia.se/app-medo-delirio-ios")
-                    } label: {
-                        Text("Copiar chave Pix")
-                    }
-                    .tint(.red)
-                    .controlSize(.regular)
-                    .buttonStyle(.bordered)
-                    .buttonBorderShape(.roundedRectangle)
+                    ForEach(bannerData.buttons, id: \.title) { button in
+                        Button {
+                            switch button.type {
+                            case .copyText:
+                                UIPasteboard.general.string = button.data
+                                textCopyFeedback(button.additionalData ?? "")
+                                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                                    withAnimation {
+                                        isExpanded = false
+                                    }
+                                }
 
-                    Button {
-                        OpenUtility.open(link: "https://apoia.se/app-medo-delirio-ios")
-                    } label: {
-                        Text("Ver fio transparência")
+                            case .openLink:
+                                OpenUtility.open(link: button.data)
+                                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                                    withAnimation {
+                                        isExpanded = false
+                                    }
+                                }
+                            }
+                        } label: {
+                            Text(button.title)
+                        }
+                        .tint(.red)
+                        .controlSize(.regular)
+                        .buttonStyle(.bordered)
+                        .buttonBorderShape(.roundedRectangle)
                     }
-                    .tint(.red)
-                    .controlSize(.regular)
-                    .buttonStyle(.bordered)
-                    .buttonBorderShape(.roundedRectangle)
                 }
                 .padding(.top, 5)
             }
             .padding(.top)
         } label: {
             HStack(spacing: 15) {
-                Image(systemName: "house")
+                Image(systemName: bannerData.symbol)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 36)
                     .foregroundColor(.red)
 
-                Text("Ajude vítimas das enchentes no RS")
+                Text(bannerData.title)
                     .foregroundColor(.red)
                     .bold()
                     .multilineTextAlignment(.leading)
@@ -70,5 +90,8 @@ struct DonateToFloodVictimsBanner: View {
 }
 
 #Preview {
-    DonateToFloodVictimsBanner(isBeingShown: .constant(true))
+    DonateToFloodVictimsBanner(
+        bannerData: .init(symbol: "house", title: "Ajude", text: "Text", buttons: []),
+        textCopyFeedback: { _ in }
+    )
 }

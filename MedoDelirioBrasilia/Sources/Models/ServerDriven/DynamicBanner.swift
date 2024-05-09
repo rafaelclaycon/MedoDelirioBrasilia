@@ -7,22 +7,42 @@
 
 import Foundation
 
-struct DynamicBanner {
+struct DynamicBanner: Codable {
 
     let symbol: String
     let title: String
     let text: String
     let buttons: [DynamicBannerButton]
+
+    init(
+        symbol: String,
+        title: String,
+        text: String,
+        buttons: [DynamicBannerButton]
+    ) {
+        self.symbol = symbol
+        self.title = title
+        self.text = text
+        self.buttons = buttons
+    }
+
+    init() {
+        self.symbol = ""
+        self.title = ""
+        self.text = ""
+        self.buttons = []
+    }
 }
 
-struct DynamicBannerButton {
+struct DynamicBannerButton: Codable {
 
     let title: String
     let type: DynamicBannerButtonType
     let data: String
+    let additionalData: String?
 }
 
-enum DynamicBannerButtonType: String {
+enum DynamicBannerButtonType: String, Codable {
 
     case copyText, openLink
 }
