@@ -14,22 +14,8 @@ struct DonateToFloodVictimsBanner: View {
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
-        HStack(spacing: 15) {
-            VStack {
-                Image(systemName: "house")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 36)
-                    .foregroundColor(.red)
-
-                Spacer()
-            }
-
+        DisclosureGroup {
             VStack(alignment: .leading, spacing: 8) {
-                Text("Ajude vítimas das enchentes no RS")
-                    .foregroundColor(.red)
-                    .bold()
-
                 Text("Muitas instituições e pessoas estão pedindo Pix e eu sei que isso satura, então serei direto: estou organizando doações para pessoas que tiveram a casa invadida pela água e perderam seus pertences, móveis, eletrodomésticos. **Todas as doações feitas para o e-mail do app em maio serão revertidas para pessoas nessas condições.**\n\nO destino das doações será o mais transparente possível, divulgado no fio linkado abaixo.")
                     .foregroundColor(.red)
                     .opacity(0.8)
@@ -58,8 +44,23 @@ struct DonateToFloodVictimsBanner: View {
                 }
                 .padding(.top, 5)
             }
+            .padding(.top)
+        } label: {
+            HStack(spacing: 15) {
+                Image(systemName: "house")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 36)
+                    .foregroundColor(.red)
+
+                Text("Ajude vítimas das enchentes no RS")
+                    .foregroundColor(.red)
+                    .bold()
+                    .multilineTextAlignment(.leading)
+            }
         }
-        .padding()
+        .padding(.all, 20)
+        .foregroundStyle(.red)
         .background {
             RoundedRectangle(cornerRadius: 15)
                 .foregroundColor(.red)
