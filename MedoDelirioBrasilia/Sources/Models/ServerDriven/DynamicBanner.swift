@@ -11,13 +11,13 @@ struct DynamicBanner: Codable {
 
     let symbol: String
     let title: String
-    let text: String
+    let text: [String]
     let buttons: [DynamicBannerButton]
 
     init(
         symbol: String,
         title: String,
-        text: String,
+        text: [String],
         buttons: [DynamicBannerButton]
     ) {
         self.symbol = symbol
@@ -29,7 +29,7 @@ struct DynamicBanner: Codable {
     init() {
         self.symbol = ""
         self.title = ""
-        self.text = ""
+        self.text = []
         self.buttons = []
     }
 }

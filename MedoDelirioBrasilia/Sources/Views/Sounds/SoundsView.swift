@@ -799,6 +799,7 @@ struct SoundsView: View {
             let dataUrl = URL(string: NetworkRabbit.shared.serverPath + "v4/flood-banner")!
             donateBannerData = try await NetworkRabbit.get(from: dataUrl)
         } catch {
+            displayFloodBanner = false
             print("Unable to check or populate the Flood Banner: \(error.localizedDescription)")
         }
     }

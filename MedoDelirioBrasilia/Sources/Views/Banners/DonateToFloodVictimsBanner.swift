@@ -14,9 +14,9 @@ struct DonateToFloodVictimsBanner: View {
 
     @State private var isExpanded: Bool = false
 
-    private var markedDownText: AttributedString {
+    private func markedDownText(_ text: String) -> AttributedString {
         do {
-            return try .init(markdown: bannerData.text)
+            return try .init(markdown: text)
         } catch {
             return .init()
         }
@@ -27,10 +27,12 @@ struct DonateToFloodVictimsBanner: View {
     var body: some View {
         DisclosureGroup(isExpanded: $isExpanded) {
             VStack(alignment: .leading, spacing: 8) {
-                Text(markedDownText)
-                    .foregroundColor(.red)
-                    .opacity(0.8)
-                    .font(.callout)
+                ForEach(bannerData.text, id: \.self) {
+                    Text(markedDownText($0))
+                        .foregroundColor(.red)
+                        .opacity(0.8)
+                        .font(.callout)
+                }
 
                 VStack(alignment: .leading, spacing: 15) {
                     ForEach(bannerData.buttons, id: \.title) { button in
@@ -91,7 +93,7 @@ struct DonateToFloodVictimsBanner: View {
 
 #Preview {
     DonateToFloodVictimsBanner(
-        bannerData: .init(symbol: "house", title: "Ajude", text: "Text", buttons: []),
+        bannerData: .init(symbol: "house", title: "Ajude", text: ["Text"], buttons: []),
         textCopyFeedback: { _ in }
     )
 }
