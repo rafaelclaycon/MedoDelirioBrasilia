@@ -82,6 +82,10 @@ struct SoundsView: View {
     // Long Update Banner
     @State private var displayLongUpdateBanner: Bool = false
 
+    // Donate Banner
+    @State private var donateBannerData: DynamicBanner = .init()
+    @State private var displayFloodBanner: Bool = false
+
     private var searchResults: [Sound] {
         if viewModel.searchText.isEmpty {
             return viewModel.sounds
@@ -187,9 +191,19 @@ struct SoundsView: View {
                                         .padding(.horizontal, 10)
                                     }
 
-                                    if shouldDisplayRecurringDonationBanner, viewModel.searchText.isEmpty {
-                                        RecurringDonationBanner(isBeingShown: $shouldDisplayRecurringDonationBanner)
-                                            .padding(.horizontal, 10)
+//                                    if shouldDisplayRecurringDonationBanner, viewModel.searchText.isEmpty {
+//                                        RecurringDonationBanner(isBeingShown: $shouldDisplayRecurringDonationBanner)
+//                                            .padding(.horizontal, 10)
+//                                    }
+
+                                    if viewModel.currentViewMode == .allSounds, displayFloodBanner, viewModel.searchText.isEmpty {
+                                        DonateToFloodVictimsBanner(
+                                            bannerData: donateBannerData,
+                                            textCopyFeedback: {
+                                                viewModel.displayToast(toastText: $0)
+                                            }
+                                        )
+                                        .padding(.horizontal, 10)
                                     }
 
                                     if shouldDisplayRetrospectiveBanner, viewModel.searchText.isEmpty {
@@ -385,24 +399,23 @@ struct SoundsView: View {
 //                }
 
                 Task {
-                    if AppPersistentMemory.getHasSeenRetroBanner() {
-                        shouldDisplayRetrospectiveBanner = false
-                    } else {
-                        shouldDisplayRetrospectiveBanner = await RetroView.ViewModel.shouldDisplayBanner()
-                    }
+                    await checkAndPopulateFloodBanner()
                 }
 
-                if !AppPersistentMemory.getHasSeenFirstUpdateIncentiveBanner() {
-                    shouldDisplayUpdateIncentiveBanner = UpdateIncentive.shouldDisplayBanner(
-                        currentSystemVersion: UIDevice.current.systemVersion,
-                        deviceModel: UIDevice.modelName
-                    )
-                }
+//                Task {
+//                    if AppPersistentMemory.getHasSeenRetroBanner() {
+//                        shouldDisplayRetrospectiveBanner = false
+//                    } else {
+//                        shouldDisplayRetrospectiveBanner = await RetroView.ViewModel.shouldDisplayBanner()
+//                    }
+//                }
 
-                // TODO: Needs refactor. .onAppear is called before the AppDelegate, rendering this useless.
-                if moveDatabaseIssue.isEmpty == false {
-                    viewModel.showMoveDatabaseIssueAlert()
-                }
+//                if !AppPersistentMemory.getHasSeenFirstUpdateIncentiveBanner() {
+//                    shouldDisplayUpdateIncentiveBanner = UpdateIncentive.shouldDisplayBanner(
+//                        currentSystemVersion: UIDevice.current.systemVersion,
+//                        deviceModel: UIDevice.modelName
+//                    )
+//                }
             }
             .sheet(isPresented: $viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog) {
                 EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog,
@@ -773,6 +786,22 @@ struct SoundsView: View {
 
         self.trendsHelper.soundIdToGoTo = ""
         return true // This tells the ScrollViewProxy "yes, go ahead and scroll, there was a soundId received". Unfortunately, passing the proxy as a parameter did not work and this code was made more complex because of this.
+    }
+
+    private func checkAndPopulateFloodBanner() async {
+        do {
+            let url = URL(string: NetworkRabbit.shared.serverPath + "v4/flood-banner-starting-version")!
+            let startDisplayingVersion: String = try await NetworkRabbit.get(from: url)
+
+            displayFloodBanner = startDisplayingVersion == Versioneer.appVersion
+            guard displayFloodBanner else { return }
+
+            let dataUrl = URL(string: NetworkRabbit.shared.serverPath + "v4/flood-banner")!
+            donateBannerData = try await NetworkRabbit.get(from: dataUrl)
+        } catch {
+            displayFloodBanner = false
+            print("Unable to check or populate the Flood Banner: \(error.localizedDescription)")
+        }
     }
 }
 
