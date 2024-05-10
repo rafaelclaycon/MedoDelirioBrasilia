@@ -233,7 +233,7 @@ class SoundListViewModel<T>: ObservableObject {
     }
 }
 
-// MARK: - Sound List Displaying Protocol Conformance
+// MARK: - ContextMenuOption Communication
 
 extension SoundListViewModel: SoundListDisplaying {
 
@@ -451,6 +451,23 @@ extension SoundListViewModel {
             shareManyIsProcessing = false
             stopSelecting()
             showShareManyIssueAlert(error.localizedDescription)
+        }
+    }
+}
+
+// MARK: - Scroll To Id
+
+extension SoundListViewModel {
+
+    func cancelSearchAndHighlight(id soundId: String) {
+        if !searchText.isEmpty {
+            searchText = ""
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        }
+
+        highlightKeeper.insert(soundId)
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
+            self.highlightKeeper.remove(soundId)
         }
     }
 }

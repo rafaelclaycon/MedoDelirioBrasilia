@@ -37,7 +37,8 @@ struct MainSoundContainer: View {
     // Temporary banners
     @State private var shouldDisplayRecurringDonationBanner: Bool = false
 
-    // Env Objects
+    // MARK: - Environment Objects
+
     @EnvironmentObject var trendsHelper: TrendsHelper
     @EnvironmentObject var settingsHelper: SettingsHelper
     @EnvironmentObject var networkMonitor: NetworkMonitor
@@ -180,6 +181,9 @@ struct MainSoundContainer: View {
                 viewModel.reloadAllSounds()
                 settingsHelper.updateSoundsList = false
             }
+        }
+        .onReceive(trendsHelper.$soundIdToGoTo) {
+            highlight(soundId: $0)
         }
         .overlay {
             ZStack {
@@ -373,6 +377,14 @@ struct MainSoundContainer: View {
             return Shared.SoundSelection.soundSelectedSingular
         }
         return String(format: Shared.SoundSelection.soundsSelectedPlural, viewModel.selectionKeeper.count)
+    }
+
+    private func highlight(soundId: String) {
+        guard !soundId.isEmpty else { return }
+        viewModel.currentViewMode = .allSounds
+        allSoundsViewModel.cancelSearchAndHighlight(id: soundId)
+        trendsHelper.soundIdToGoTo = ""
+        trendsHelper.youCanScrollNow = soundId
     }
 }
 
