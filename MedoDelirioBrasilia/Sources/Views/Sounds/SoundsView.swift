@@ -206,23 +206,23 @@ struct SoundsView: View {
                                         .padding(.horizontal, 10)
                                     }
 
-                                    if shouldDisplayRetrospectiveBanner, viewModel.searchText.isEmpty {
-                                        RetroBanner(
-                                            isBeingShown: $shouldDisplayRetrospectiveBanner,
-                                            buttonAction: {
-                                                subviewToOpen = .retrospective
-                                                showingModalView = true
-                                            }
-                                        )
-                                        .padding(.horizontal, 10)
-                                    }
-
-                                    if shouldDisplayUpdateIncentiveBanner, viewModel.searchText.isEmpty {
-                                        UpdateIncentiveBanner(
-                                            isBeingShown: $shouldDisplayUpdateIncentiveBanner
-                                        )
-                                        .padding(.horizontal, 10)
-                                    }
+//                                    if shouldDisplayRetrospectiveBanner, viewModel.searchText.isEmpty {
+//                                        RetroBanner(
+//                                            isBeingShown: $shouldDisplayRetrospectiveBanner,
+//                                            buttonAction: {
+//                                                subviewToOpen = .retrospective
+//                                                showingModalView = true
+//                                            }
+//                                        )
+//                                        .padding(.horizontal, 10)
+//                                    }
+//
+//                                    if shouldDisplayUpdateIncentiveBanner, viewModel.searchText.isEmpty {
+//                                        UpdateIncentiveBanner(
+//                                            isBeingShown: $shouldDisplayUpdateIncentiveBanner
+//                                        )
+//                                        .padding(.horizontal, 10)
+//                                    }
 
                                     LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
                                         if searchResults.isEmpty {
@@ -793,7 +793,7 @@ struct SoundsView: View {
             let url = URL(string: NetworkRabbit.shared.serverPath + "v4/flood-banner-starting-version")!
             let startDisplayingVersion: String = try await NetworkRabbit.get(from: url)
 
-            displayFloodBanner = startDisplayingVersion == Versioneer.appVersion
+            displayFloodBanner = startDisplayingVersion != Versioneer.appVersion
             guard displayFloodBanner else { return }
 
             let dataUrl = URL(string: NetworkRabbit.shared.serverPath + "v4/flood-banner")!
