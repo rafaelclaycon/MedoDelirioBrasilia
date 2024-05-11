@@ -39,8 +39,8 @@ struct MainView: View {
                         MainSoundContainer(
                             viewModel: .init(
                                 currentViewMode: .allSounds,
-                                soundSortOption: UserSettings.getSoundSortOption(),
-                                authorSortOption: AuthorSortOption.nameAscending.rawValue,
+                                soundSortOption: UserSettings.mainSoundListSoundSortOption(),
+                                authorSortOption: UserSettings.authorSortOption(),
                                 currentSoundsListMode: $currentSoundsListMode,
                                 syncValues: syncValues
                             ),
@@ -125,7 +125,7 @@ struct MainView: View {
                     MainSoundContainer(
                         viewModel: .init(
                             currentViewMode: .allSounds,
-                            soundSortOption: UserSettings.getSoundSortOption(),
+                            soundSortOption: UserSettings.mainSoundListSoundSortOption(),
                             authorSortOption: AuthorSortOption.nameAscending.rawValue,
                             currentSoundsListMode: $currentSoundsListMode,
                             syncValues: syncValues

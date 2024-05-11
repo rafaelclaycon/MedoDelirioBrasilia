@@ -12,7 +12,7 @@ class UserSettings {
         return Bool(value as! Bool)
     }
     
-    static func getSoundSortOption() -> Int {
+    static func mainSoundListSoundSortOption() -> Int {
         let userDefaults = UserDefaults.standard
         guard let value = userDefaults.object(forKey: "soundSortOption") else {
             return 2
@@ -108,6 +108,14 @@ class UserSettings {
         return Bool(value as! Bool)
     }
 
+    static func authorSortOption() -> Int {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "authorSortOption") else {
+            return 0
+        }
+        return Int(value as! Int)
+    }
+
     // MARK: - Setters
     
     static func setShowExplicitContent(to newValue: Bool) {
@@ -115,7 +123,7 @@ class UserSettings {
         userDefaults.set(newValue, forKey: "showExplicitContent")
     }
     
-    static func setSoundSortOption(to newValue: Int) {
+    static func saveMainSoundListSoundSortOption(_ newValue: Int) {
         let userDefaults = UserDefaults.standard
         userDefaults.set(newValue, forKey: "soundSortOption")
     }
@@ -173,5 +181,10 @@ class UserSettings {
     static func setShowUpdateDateOnUI(to newValue: Bool) {
         let userDefaults = UserDefaults.standard
         userDefaults.set(newValue, forKey: "showUpdateDateOnUI")
+    }
+
+    static func saveAuthorSortOption(_ newValue: Int) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(newValue, forKey: "authorSortOption")
     }
 }

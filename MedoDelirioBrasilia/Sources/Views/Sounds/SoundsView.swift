@@ -763,7 +763,7 @@ struct SoundsView: View {
                     }
                     .onChange(of: viewModel.soundSortOption) {
                         viewModel.sortSounds(by: SoundSortOption(rawValue: $0) ?? .dateAddedDescending)
-                        UserSettings.setSoundSortOption(to: $0)
+                        UserSettings.saveMainSoundListSoundSortOption($0)
                     }
                 }
             }

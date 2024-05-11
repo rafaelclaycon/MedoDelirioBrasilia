@@ -22,10 +22,6 @@ struct MainSoundContainer: View {
     // Folders
     @StateObject var deleteFolderAide = DeleteFolderViewAideiPhone()
 
-    // May be dropped
-    @State private var authorSortOption: Int = 0
-    @State private var soundSortOption: Int = 0
-
     // Authors
     @State var authorSortAction: AuthorSortOption = .nameAscending
     @State var authorSearchText: String = .empty
@@ -160,7 +156,7 @@ struct MainSoundContainer: View {
                 
             case .byAuthor:
                 AuthorsView(
-                    sortOption: $authorSortOption,
+                    sortOption: $viewModel.authorSortOption,
                     sortAction: $authorSortAction,
                     searchTextForControl: $authorSearchText
                 )
@@ -262,7 +258,7 @@ struct MainSoundContainer: View {
                 if viewModel.currentViewMode == .byAuthor {
                     Menu {
                         Section {
-                            Picker("Ordenação de Autores", selection: $authorSortOption) {
+                            Picker("Ordenação de Autores", selection: $viewModel.authorSortOption) {
                                 Text("Nome")
                                     .tag(0)
 
@@ -276,9 +272,10 @@ struct MainSoundContainer: View {
                     } label: {
                         Image(systemName: "arrow.up.arrow.down")
                     }
-                    .onChange(of: authorSortOption, perform: { authorSortOption in
+                    .onChange(of: viewModel.authorSortOption) { authorSortOption in
                         authorSortAction = AuthorSortOption(rawValue: authorSortOption) ?? .nameAscending
-                    })
+                        UserSettings.saveAuthorSortOption(authorSortOption)
+                    }
                 } else {
                     if currentSoundsListMode.wrappedValue == .regular {
                         SyncStatusView()
@@ -301,11 +298,11 @@ struct MainSoundContainer: View {
                                     currentSoundsListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",
                                     systemImage: currentSoundsListMode.wrappedValue == .selection ? "xmark.circle" : "checkmark.circle"
                                 )
-                            }//.disabled(viewModel.currentViewMode == .favorites && viewModel.sounds.count == 0)
+                            }
                         }
 
                         Section {
-                            Picker("Ordenação de Sons", selection: $soundSortOption) {
+                            Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
                                 Text("Título")
                                     .tag(0)
 
@@ -333,10 +330,12 @@ struct MainSoundContainer: View {
                     } label: {
                         Image(systemName: "ellipsis.circle")
                     }
-//                    .onChange(of: viewModel.soundSortOption) {
-//                        viewModel.sortSounds(by: SoundSortOption(rawValue: $0) ?? .dateAddedDescending)
-//                        UserSettings.setSoundSortOption(to: $0)
-//                    }
+                    .onChange(of: viewModel.soundSortOption) { sortOption in
+                        viewModel.sortSounds(by: sortOption)
+                    }
+                    .disabled(
+                        viewModel.currentViewMode == .favorites && viewModel.favorites.count == 0
+                    )
                 }
             }
         }
