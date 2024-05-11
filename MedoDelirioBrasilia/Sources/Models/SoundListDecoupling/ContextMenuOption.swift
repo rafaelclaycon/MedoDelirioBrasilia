@@ -26,40 +26,7 @@ extension ContextMenuOption {
             symbol: { _ in "square.and.arrow.up" },
             title: { _ in Shared.shareSoundButtonText }
         ) { sound, delegate in
-            if UIDevice.isiPhone {
-                do {
-                    try SharingUtility.shareSound(from: sound.fileURL(), andContentId: sound.id) { didShare in
-                        if didShare {
-                            delegate.displayToast(toastText: Shared.soundSharedSuccessfullyMessage)
-                        }
-                    }
-                } catch {
-                    delegate.showUnableToGetSoundAlert(sound.title)
-                }
-            } else {
-//                do {
-//                    let url = try sound.fileURL()
-//                    iPadShareSheet = ActivityViewController(activityItems: [url]) { activity, completed, items, error in
-//                        if completed {
-//                            self.isShowingShareSheet = false
-//
-//                            guard let activity = activity else {
-//                                return
-//                            }
-//                            let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
-//                            Logger.shared.logSharedSound(contentId: sound.id, destination: destination, destinationBundleId: activity.rawValue)
-//
-//                            AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
-//
-//                            self.displayToast(toastText: Shared.soundSharedSuccessfullyMessage)
-//                        }
-//                    }
-//                } catch {
-//                    showUnableToGetSoundAlert(sound.title)
-//                }
-//
-//                isShowingShareSheet = true
-            }
+            delegate.share(sound: sound)
         }
     }
 

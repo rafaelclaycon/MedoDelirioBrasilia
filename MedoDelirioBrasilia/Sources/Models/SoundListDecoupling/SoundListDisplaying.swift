@@ -11,17 +11,7 @@ import SwiftUI
 
 protocol SoundListDisplaying {
 
-    func displayToast(
-        _ toastIcon: String,
-        _ toastIconColor: Color,
-        toastText: String,
-        displayTime: DispatchTimeInterval,
-        completion: (() -> Void)?
-    )
-
-    func displayToast(toastText: String)
-
-    func showUnableToGetSoundAlert(_ soundTitle: String)
+    func share(sound: Sound)
 
     func openShareAsVideoModal(for sound: Sound)
 

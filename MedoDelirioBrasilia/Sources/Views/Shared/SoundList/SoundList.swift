@@ -261,6 +261,9 @@ struct SoundList: View {
                                     )
                                 }
                             }
+                            .sheet(isPresented: $viewModel.isShowingShareSheet) {
+                                viewModel.iPadShareSheet
+                            }
                             .onChange(of: viewModel.searchText) { text in
                                 stopShowingFloatingSelector.wrappedValue = !text.isEmpty
                             }
