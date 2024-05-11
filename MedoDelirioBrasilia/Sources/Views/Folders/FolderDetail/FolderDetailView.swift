@@ -86,6 +86,7 @@ struct FolderDetailView: View {
                     .padding(.top)
                 )
             )
+            .environmentObject(TrendsHelper())
         }
         .navigationTitle(title)
         .toolbar { trailingToolbarControls() }

@@ -88,6 +88,18 @@ struct DonateToFloodVictimsBanner: View {
                 .foregroundColor(.red)
                 .opacity(colorScheme == .dark ? 0.3 : 0.15)
         }
+        .overlay {
+            if bannerData.title.isEmpty {
+                HStack {
+                    Spacer()
+
+                    ProgressView()
+                        .foregroundStyle(.red)
+
+                    Spacer()
+                }
+            }
+        }
     }
 }
 

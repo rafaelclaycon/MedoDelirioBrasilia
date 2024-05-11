@@ -52,9 +52,10 @@ struct SoundList: View {
         }
     }
 
-    // MARK: - Environment Variables
+    // MARK: - Environment
 
     @Environment(\.sizeCategory) var sizeCategory
+    @EnvironmentObject var trendsHelper: TrendsHelper
 
     // MARK: - Initializer
 
@@ -263,6 +264,9 @@ struct SoundList: View {
                                     )
                                 }
                             }
+                            .sheet(isPresented: $viewModel.isShowingShareSheet) {
+                                viewModel.iPadShareSheet
+                            }
                             .onChange(of: viewModel.searchText) { text in
                                 stopShowingFloatingSelector.wrappedValue = !text.isEmpty
                             }
@@ -301,9 +305,6 @@ struct SoundList: View {
                                     }
                                 }
                             }
-                            .onAppear {
-                                updateGridLayout(with: geometry.size.width)
-                            }
                             .onChange(of: geometry.size.width) { newWidth in
                                 updateGridLayout(with: newWidth)
                             }
@@ -320,16 +321,19 @@ struct SoundList: View {
                                 multiSelectButtonsEnabled = $0 > 0
                                 allSelectedAreFavorites = viewModel.allSelectedAreFavorites()
                             }
-//                            .onChange(of: soundIdToGoTo) {
-//                                if !$0.isEmpty {
-//                                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-//                                        withAnimation {
-//                                            proxy.scrollTo(soundIdToGoTo, anchor: .center)
-//                                        }
-//                                        TapticFeedback.warning()
-//                                    }
-//                                }
-//                            }
+                            .onReceive(trendsHelper.$youCanScrollNow) { soundId in
+                                if !soundId.isEmpty {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                                        withAnimation {
+                                            proxy.scrollTo(soundId, anchor: .center)
+                                        }
+                                        TapticFeedback.warning()
+                                    }
+                                }
+                            }
+                            .onAppear {
+                                updateGridLayout(with: geometry.size.width)
+                            }
                         }
 
                         if showExplicitDisabledWarning, UserSettings.getShowExplicitContent() == false {

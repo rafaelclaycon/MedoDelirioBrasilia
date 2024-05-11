@@ -195,6 +195,7 @@ struct AuthorDetailView: View {
                     }
                 )
             )
+            .environmentObject(TrendsHelper())
         }
         //.navigationTitle(navBarTitle)
         .onPreferenceChange(ViewOffsetKey.self) { offset in

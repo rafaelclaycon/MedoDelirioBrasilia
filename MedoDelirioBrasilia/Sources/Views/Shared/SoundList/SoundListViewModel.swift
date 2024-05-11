@@ -204,38 +204,117 @@ class SoundListViewModel<T>: ObservableObject {
                 showUnableToGetSoundAlert(soundTitle)
             }
         } else {
-//            guard filepath.isEmpty == false else {
-//                return
-//            }
-//
-//            let url = URL(fileURLWithPath: filepath)
-//
-//            iPadShareSheet = ActivityViewController(activityItems: [url]) { activity, completed, items, error in
-//                if completed {
-//                    self.isShowingShareSheet = false
-//
-//                    guard let activity = activity else {
-//                        return
-//                    }
-//                    let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
-//                    Logger.shared.logSharedVideoFromSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
-//
-//                    AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
-//
-//                    self.displayToast(toastText: Shared.videoSharedSuccessfullyMessage)
-//                }
-//
-//                WallE.deleteAllVideoFilesFromDocumentsDir()
-//            }
-//
-//            isShowingShareSheet = true
+            guard filepath.isEmpty == false else {
+                return
+            }
+
+            let url = URL(fileURLWithPath: filepath)
+
+            iPadShareSheet = ActivityViewController(activityItems: [url]) { activity, completed, items, error in
+                if completed {
+                    self.isShowingShareSheet = false
+
+                    guard let activity = activity else {
+                        return
+                    }
+                    let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
+                    Logger.shared.logSharedVideoFromSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
+
+                    AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
+
+                    self.displayToast(toastText: Shared.videoSharedSuccessfullyMessage)
+                }
+
+                WallE.deleteAllVideoFilesFromDocumentsDir()
+            }
+
+            isShowingShareSheet = true
         }
     }
 }
 
-// MARK: - Sound List Displaying Protocol Conformance
+// MARK: - ContextMenuOption Communication
 
 extension SoundListViewModel: SoundListDisplaying {
+
+    func share(sound: Sound) {
+        if UIDevice.isiPhone {
+            do {
+                try SharingUtility.shareSound(from: sound.fileURL(), andContentId: sound.id) { didShare in
+                    if didShare {
+                        self.displayToast(toastText: Shared.soundSharedSuccessfullyMessage)
+                    }
+                }
+            } catch {
+                showUnableToGetSoundAlert(sound.title)
+            }
+        } else {
+            do {
+                let url = try sound.fileURL()
+                iPadShareSheet = ActivityViewController(activityItems: [url]) { activity, completed, items, error in
+                    if completed {
+                        self.isShowingShareSheet = false
+
+                        guard let activity = activity else {
+                            return
+                        }
+                        let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
+                        Logger.shared.logSharedSound(contentId: sound.id, destination: destination, destinationBundleId: activity.rawValue)
+
+                        AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
+
+                        self.displayToast(toastText: Shared.soundSharedSuccessfullyMessage)
+                    }
+                }
+            } catch {
+                showUnableToGetSoundAlert(sound.title)
+            }
+
+            isShowingShareSheet = true
+        }
+    }
+
+    func openShareAsVideoModal(for sound: Sound) {
+        selectedSound = sound
+        subviewToOpen = .shareAsVideo
+        showingModalView = true
+    }
+
+    func toggleFavorite(_ soundId: String) {
+        if favoritesKeeper.contains(soundId) {
+            removeFromFavorites(soundId: soundId)
+            if needsRefreshAfterChange {
+                refreshAction!()
+            }
+        } else {
+            addToFavorites(soundId: soundId)
+        }
+    }
+
+    func addToFolder(_ sound: Sound) {
+        selectedSounds = [Sound]()
+        selectedSounds?.append(sound)
+        subviewToOpen = .addToFolder
+        showingModalView = true
+    }
+
+    func playFrom(sound: Sound) {
+//        guard let soundIndex = sounds.firstIndex(where: { $0.id == sound.id }) else { return }
+//        let soundInArray = sounds[soundIndex]
+//        currentTrackIndex = soundIndex
+//        isPlayingPlaylist = true
+//        play(soundInArray)
+    }
+
+    func removeFromFolder(_ sound: Sound) {
+        selectedSound = sound
+        // showSoundRemovalConfirmation(soundTitle: sound.title)
+    }
+}
+
+// MARK: - Toast
+
+extension SoundListViewModel {
 
     func displayToast(
         _ toastIcon: String,
@@ -283,43 +362,6 @@ extension SoundListViewModel: SoundListDisplaying {
             displayTime: .seconds(3),
             completion: completion
         )
-    }
-
-    func openShareAsVideoModal(for sound: Sound) {
-        selectedSound = sound
-        subviewToOpen = .shareAsVideo
-        showingModalView = true
-    }
-
-    func toggleFavorite(_ soundId: String) {
-        if favoritesKeeper.contains(soundId) {
-            removeFromFavorites(soundId: soundId)
-            if needsRefreshAfterChange {
-                refreshAction!()
-            }
-        } else {
-            addToFavorites(soundId: soundId)
-        }
-    }
-
-    func addToFolder(_ sound: Sound) {
-        selectedSounds = [Sound]()
-        selectedSounds?.append(sound)
-        subviewToOpen = .addToFolder
-        showingModalView = true
-    }
-
-    func playFrom(sound: Sound) {
-//        guard let soundIndex = sounds.firstIndex(where: { $0.id == sound.id }) else { return }
-//        let soundInArray = sounds[soundIndex]
-//        currentTrackIndex = soundIndex
-//        isPlayingPlaylist = true
-//        play(soundInArray)
-    }
-
-    func removeFromFolder(_ sound: Sound) {
-        selectedSound = sound
-        // showSoundRemovalConfirmation(soundTitle: sound.title)
     }
 }
 
@@ -451,6 +493,23 @@ extension SoundListViewModel {
             shareManyIsProcessing = false
             stopSelecting()
             showShareManyIssueAlert(error.localizedDescription)
+        }
+    }
+}
+
+// MARK: - Scroll To Id
+
+extension SoundListViewModel {
+
+    func cancelSearchAndHighlight(id soundId: String) {
+        if !searchText.isEmpty {
+            searchText = ""
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        }
+
+        highlightKeeper.insert(soundId)
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
+            self.highlightKeeper.remove(soundId)
         }
     }
 }
