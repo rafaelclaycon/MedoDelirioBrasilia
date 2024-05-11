@@ -19,9 +19,10 @@ class MainSoundContainerViewModel: ObservableObject {
     @Published var soundSortOption: Int
     @Published var authorSortOption: Int
 
-    // Sync - Long Updates
+    // Sync
     @Published var processedUpdateNumber: Int = 0
     @Published var totalUpdateCount: Int = 0
+    @Published var firstRunSyncHappened: Bool = false
 
     // Toast
     @Published var showToastView: Bool = false
@@ -196,7 +197,7 @@ extension MainSoundContainerViewModel: SyncManagerDelegate {
 
         await syncManager.sync()
 
-        print("SYNC EXECUTED")
+        firstRunSyncHappened = true
 
         var message = syncValues.syncStatus.description
         if UserSettings.getShowUpdateDateOnUI() {
