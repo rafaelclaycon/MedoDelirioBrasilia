@@ -83,6 +83,7 @@ struct ReactionDetailView: View {
                         .padding(.bottom, 6)
                     )
                 )
+                .environmentObject(TrendsHelper())
 
             case .error(let errorString):
                 VStack(spacing: 40) {
