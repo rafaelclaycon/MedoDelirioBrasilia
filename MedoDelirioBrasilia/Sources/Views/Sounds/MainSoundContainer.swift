@@ -212,14 +212,17 @@ struct MainSoundContainer: View {
         }
         .onAppear {
             print("MAIN SOUND CONTAINER - ON APPEAR")
+
+            if !viewModel.firstRunSyncHappened {
+                Task {
+                    print("WILL START SYNCING")
+                    await viewModel.sync(lastAttempt: AppPersistentMemory.getLastUpdateAttempt())
+                    print("DID FINISH SYNCING")
+                }
+            }
+
             viewModel.reloadAllSounds()
             viewModel.reloadFavorites()
-        }
-        .oneTimeTask {
-            print("MAIN SOUND CONTAINER - ONE TIME TASK")
-            if viewModel.currentViewMode == .allSounds {
-                await viewModel.sync(lastAttempt: AppPersistentMemory.getLastUpdateAttempt())
-            }
         }
     }
 
