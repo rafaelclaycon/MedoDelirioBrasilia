@@ -29,7 +29,7 @@ struct SidebarView: View {
                     destination: MainSoundContainer(
                         viewModel: .init(
                             currentViewMode: .allSounds,
-                            soundSortOption: UserSettings.getSoundSortOption(),
+                            soundSortOption: UserSettings.mainSoundListSoundSortOption(),
                             authorSortOption: AuthorSortOption.nameAscending.rawValue,
                             currentSoundsListMode: $currentSoundsListMode,
                             syncValues: syncValues
@@ -47,7 +47,7 @@ struct SidebarView: View {
                     destination: MainSoundContainer(
                         viewModel: .init(
                             currentViewMode: .favorites,
-                            soundSortOption: UserSettings.getSoundSortOption(),
+                            soundSortOption: UserSettings.mainSoundListSoundSortOption(),
                             authorSortOption: AuthorSortOption.nameAscending.rawValue,
                             currentSoundsListMode: $currentSoundsListMode,
                             syncValues: syncValues

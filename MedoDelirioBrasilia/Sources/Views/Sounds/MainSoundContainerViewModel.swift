@@ -84,7 +84,7 @@ class MainSoundContainerViewModel: ObservableObject {
             )
 
             guard allSounds.count > 0 else { return }
-            let sortOption: SoundSortOption = SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .dateAddedDescending
+            let sortOption: SoundSortOption = SoundSortOption(rawValue: soundSortOption) ?? .dateAddedDescending
             sort(&allSounds, by: sortOption)
         } catch {
             print("Erro carregando sons: \(error.localizedDescription)")
@@ -99,7 +99,7 @@ class MainSoundContainerViewModel: ObservableObject {
             )
 
             guard favorites.count > 0 else { return }
-            let sortOption: SoundSortOption = SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .dateAddedDescending
+            let sortOption: SoundSortOption = SoundSortOption(rawValue: soundSortOption) ?? .dateAddedDescending
             sort(&favorites, by: sortOption)
         } catch {
             print("Erro carregando sons: \(error.localizedDescription)")
@@ -108,7 +108,17 @@ class MainSoundContainerViewModel: ObservableObject {
 
     // MARK: - List Sorting
 
-    func sort(_ sounds: inout [Sound], by sortOption: SoundSortOption) {
+    func sortSounds(by rawSortOption: Int) {
+        let sortOption = SoundSortOption(rawValue: rawSortOption) ?? .dateAddedDescending
+        if currentViewMode == .allSounds {
+            sort(&allSounds, by: sortOption)
+        } else {
+            sort(&favorites, by: sortOption)
+        }
+        UserSettings.saveMainSoundListSoundSortOption(rawSortOption)
+    }
+
+    private func sort(_ sounds: inout [Sound], by sortOption: SoundSortOption) {
         switch sortOption {
         case .titleAscending:
             sortByTitleAscending(&sounds)
