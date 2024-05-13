@@ -169,13 +169,7 @@ class SoundListViewModel<T>: ObservableObject {
                     completion: nil
                 )
             } catch {
-                displayToast(
-                    "exclamationmark.triangle.fill",
-                    .orange,
-                    toastText: "Erro ao tentar baixar conteúdo novamente.",
-                    displayTime: .seconds(3),
-                    completion: nil
-                )
+                showUnableToRedownloadSoundAlert()
             }
         }
     }
@@ -567,6 +561,13 @@ extension SoundListViewModel {
         alertTitle = "Remover os sons selecionados?"
         alertMessage = "Os sons continuarão disponíveis fora da pasta."
         alertType = .removeMultipleSounds
+        showAlert = true
+    }
+
+    func showUnableToRedownloadSoundAlert() {
+        alertTitle = "Não Foi Possível Baixar o Conteúdo"
+        alertMessage = "Tente novamente mais tarde."
+        alertType = .unableToRedownloadSound
         showAlert = true
     }
 }
