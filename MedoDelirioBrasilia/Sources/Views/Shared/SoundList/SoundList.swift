@@ -212,7 +212,7 @@ struct SoundList: View {
                                         secondaryButton: .cancel(Text("Cancelar"))
                                     )
 
-                                case .issueExportingManySounds:
+                                case .issueExportingManySounds, .unableToRedownloadSound:
                                     return Alert(
                                         title: Text(viewModel.alertTitle),
                                         message: Text(viewModel.alertMessage),
