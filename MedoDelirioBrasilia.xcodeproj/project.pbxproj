@@ -4842,6 +4842,7 @@
 		D9B8DE7D2BE5CEA0000C9035 /* Reactions */ = {
 			isa = PBXGroup;
 			children = (
+				D91107132863B5FD000B6F8F /* Reaction.swift */,
 				D9B8DE7E2BE5CEFD000C9035 /* ReactionSound.swift */,
 			);
 			path = Reactions;
@@ -4893,7 +4894,6 @@
 				D9344322283812AD00ADCD38 /* Author.swift */,
 				D9E69593283D2F2F00C341B2 /* Favorite.swift */,
 				D9461181286159BC00C4FB7E /* UserFolder.swift */,
-				D91107132863B5FD000B6F8F /* Reaction.swift */,
 				D9943F2928642EC3002C6B97 /* UserFolderContent.swift */,
 				D95315A82A9AA783003DA40E /* MusicGenre.swift */,
 				D90622C72AB4030600704B70 /* MedoContentProtocol.swift */,

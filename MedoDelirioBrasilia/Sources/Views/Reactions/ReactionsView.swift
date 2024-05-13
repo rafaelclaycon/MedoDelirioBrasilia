@@ -32,33 +32,53 @@ struct ReactionsView: View {
                 .frame(minHeight: geometry.size.height)
 
             case .loaded(let reactions):
-                ScrollView {
-                    LazyVGrid(columns: columns, spacing: UIDevice.isiPhone ? 12 : 20) {
-                        ForEach(reactions) { reaction in
-                            NavigationLink {
-                                ReactionDetailView(
-                                    viewModel: .init(reaction: reaction)
-                                )
-                            } label: {
-                                ReactionCell(reaction: reaction)
+                if reactions.isEmpty {
+                    VStack(spacing: 30) {
+                        Text("😮")
+                            .font(.system(size: 86))
+
+                        Text("Nenhuma Reação")
+                            .font(.title2)
+                            .bold()
+                            .multilineTextAlignment(.center)
+
+                        Text("Parece que você chegou muito cedo. Volte daqui a pouco.")
+                            .multilineTextAlignment(.center)
+                            .foregroundStyle(.gray)
+                    }
+                    .padding(.horizontal, 20)
+                    .frame(width: geometry.size.width)
+                    .frame(minHeight: geometry.size.height)
+                    .navigationTitle("Reações")
+                } else {
+                    ScrollView {
+                        LazyVGrid(columns: columns, spacing: UIDevice.isiPhone ? 12 : 20) {
+                            ForEach(reactions) { reaction in
+                                NavigationLink {
+                                    ReactionDetailView(
+                                        viewModel: .init(reaction: reaction)
+                                    )
+                                } label: {
+                                    ReactionCell(reaction: reaction)
+                                }
                             }
                         }
-                    }
-                    .padding()
-                    .navigationTitle("Reações")
-                    .onAppear {
-                        columns = GridHelper.adaptableColumns(
-                            listWidth: geometry.size.width,
-                            sizeCategory: sizeCategory,
-                            spacing: UIDevice.isiPhone ? 12 : 20
-                        )
-                    }
-                    .onChange(of: geometry.size.width) { newWidth in
-                        columns = GridHelper.adaptableColumns(
-                            listWidth: newWidth,
-                            sizeCategory: sizeCategory,
-                            spacing: UIDevice.isiPhone ? 12 : 20
-                        )
+                        .padding()
+                        .navigationTitle("Reações")
+                        .onAppear {
+                            columns = GridHelper.adaptableColumns(
+                                listWidth: geometry.size.width,
+                                sizeCategory: sizeCategory,
+                                spacing: UIDevice.isiPhone ? 12 : 20
+                            )
+                        }
+                        .onChange(of: geometry.size.width) { newWidth in
+                            columns = GridHelper.adaptableColumns(
+                                listWidth: newWidth,
+                                sizeCategory: sizeCategory,
+                                spacing: UIDevice.isiPhone ? 12 : 20
+                            )
+                        }
                     }
                 }
 
@@ -103,7 +123,6 @@ struct ReactionsView: View {
         }
         .oneTimeTask {
             await viewModel.loadList()
-            //viewModel.state = .loaded(Reaction.allMocks)
         }
     }
 }

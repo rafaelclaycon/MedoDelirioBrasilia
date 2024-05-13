@@ -86,41 +86,40 @@ struct ReactionDetailView: View {
                 .environmentObject(TrendsHelper())
 
             case .error(let errorString):
-                VStack(spacing: 40) {
-                    ReactionDetailHeader(
-                        title: viewModel.reaction.title,
-                        subtitle: viewModel.subtitle,
-                        imageUrl: viewModel.reaction.image
-                    )
-                    .frame(height: 250)
-
-                    Spacer()
-                        .frame(height: 20)
-
-                    Text("☹️")
-                        .font(.system(size: 86))
-
+                ScrollView {
                     VStack(spacing: 40) {
-                        Text("Erro ao Carregar os Sons Dessa Reação")
-                            .font(.title2)
-                            .bold()
-                            .multilineTextAlignment(.center)
+                        ReactionDetailHeader(
+                            title: viewModel.reaction.title,
+                            subtitle: viewModel.subtitle,
+                            imageUrl: viewModel.reaction.image
+                        )
+                        .frame(height: 250)
 
-                        Text(errorString)
-                            .multilineTextAlignment(.center)
-                            .foregroundStyle(.gray)
+                        Text("☹️")
+                            .font(.system(size: 86))
 
-                        Button {
-                            Task {
-                                await viewModel.loadSounds()
+                        VStack(spacing: 40) {
+                            Text("Erro ao Carregar os Sons Dessa Reação")
+                                .font(.title2)
+                                .bold()
+                                .multilineTextAlignment(.center)
+
+                            Text(errorString)
+                                .multilineTextAlignment(.center)
+                                .foregroundStyle(.gray)
+
+                            Button {
+                                Task {
+                                    await viewModel.loadSounds()
+                                }
+                            } label: {
+                                Label("Tentar Novamente", systemImage: "arrow.clockwise")
                             }
-                        } label: {
-                            Label("Tentar Novamente", systemImage: "arrow.clockwise")
                         }
-                    }
-                    .padding(.horizontal, 30)
+                        .padding(.horizontal, 30)
 
-                    Spacer()
+                        Spacer()
+                    }
                 }
             }
         }
