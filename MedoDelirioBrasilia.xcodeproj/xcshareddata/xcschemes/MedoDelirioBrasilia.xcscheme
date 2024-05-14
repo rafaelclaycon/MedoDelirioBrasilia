@@ -64,7 +64,7 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "-UNDER_DEVELOPMENT"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-FORCE_SHOW_HELP_THE_APP"

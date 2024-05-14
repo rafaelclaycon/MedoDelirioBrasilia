@@ -172,6 +172,13 @@ struct MainSoundContainer: View {
                 displayLongUpdateBanner = viewModel.totalUpdateCount >= 10 && viewModel.processedUpdateNumber != viewModel.totalUpdateCount
             }
         }
+        .sheet(isPresented: $showingModalView) {
+            SyncInfoView(
+                isBeingShown: $showingModalView,
+                lastUpdateAttempt: AppPersistentMemory.getLastUpdateAttempt(),
+                lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
+            )
+        }
         .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in // iPad - Settings explicit toggle.
             if shouldUpdate {
                 viewModel.reloadAllSounds()
