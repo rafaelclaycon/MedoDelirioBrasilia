@@ -145,6 +145,9 @@ struct FolderDetailView: View {
                                 .tag(2)
                         }
                     }
+                    .onChange(of: viewModel.soundSortOption) { sortOption in
+                        viewModel.sortSounds(by: sortOption)
+                    }
                     .disabled(viewModel.sounds.isEmpty)
                 }
 
@@ -182,17 +185,6 @@ struct FolderDetailView: View {
                 Image(systemName: "ellipsis.circle")
             }
             .disabled(viewModel.isPlayingPlaylist || viewModel.sounds.isEmpty)
-//            .onChange(of: viewModel.soundSortOption, perform: { soundSortOption in
-//                switch soundSortOption {
-//                case 1:
-//                    viewModel.sortSoundsInPlaceByAuthorNameAscending()
-//                case 2:
-//                    viewModel.sortSoundsInPlaceByDateAddedDescending()
-//                default:
-//                    viewModel.sortSoundsInPlaceByTitleAscending()
-//                }
-//                try? LocalDatabase.shared.update(userSortPreference: soundSortOption, forFolderId: folder.id)
-//            })
         }
     }
     

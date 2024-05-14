@@ -78,7 +78,17 @@ class FolderDetailViewViewModel: ObservableObject {
 
     // MARK: - List Sorting
 
-    func sort(_ sounds: inout [Sound], by sortOption: FolderSoundSortOption) {
+    func sortSounds(by rawSortOption: Int) {
+        let sortOption = FolderSoundSortOption(rawValue: rawSortOption) ?? .titleAscending
+        sort(&sounds, by: sortOption)
+        do {
+            try LocalDatabase.shared.update(userSortPreference: soundSortOption, forFolderId: folder.id)
+        } catch {
+            print("Erro ao salvar preferência de ordenação da pasta \(folder.name): \(error.localizedDescription)")
+        }
+    }
+
+    private func sort(_ sounds: inout [Sound], by sortOption: FolderSoundSortOption) {
         switch sortOption {
         case .titleAscending:
             sortByTitleAscending(&sounds)
@@ -92,11 +102,11 @@ class FolderDetailViewViewModel: ObservableObject {
     private func sortByTitleAscending(_ sounds: inout [Sound]) {
         sounds.sort(by: { $0.title.withoutDiacritics() < $1.title.withoutDiacritics() })
     }
-    
+
     private func sortByAuthorNameAscending(_ sounds: inout [Sound]) {
         sounds.sort(by: { $0.authorName?.withoutDiacritics() ?? "" < $1.authorName?.withoutDiacritics() ?? "" })
     }
-    
+
     private func sortByDateAddedDescending(_ sounds: inout [Sound]) {
         sounds.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
     }
