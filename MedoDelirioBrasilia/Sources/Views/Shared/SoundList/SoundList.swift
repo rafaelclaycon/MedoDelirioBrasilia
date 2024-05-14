@@ -19,6 +19,7 @@ struct SoundList: View {
     private var showExplicitDisabledWarning: Bool
     private var multiSelectFolderOperation: FolderOperation = .add
     private var syncAction: (() -> Void)?
+    private var isFolder: Bool
     private let emptyStateView: AnyView
     private var headerView: AnyView?
 
@@ -68,6 +69,7 @@ struct SoundList: View {
         showExplicitDisabledWarning: Bool = false,
         syncAction: (() -> Void)? = nil,
         multiSelectFolderOperation: FolderOperation = .add,
+        isFolder: Bool = false,
         emptyStateView: AnyView,
         headerView: AnyView? = nil
     ) {
@@ -79,6 +81,7 @@ struct SoundList: View {
         self.showExplicitDisabledWarning = showExplicitDisabledWarning
         self.syncAction = syncAction
         self.multiSelectFolderOperation = multiSelectFolderOperation
+        self.isFolder = isFolder
         self.emptyStateView = emptyStateView
         self.headerView = headerView
     }
@@ -122,6 +125,7 @@ struct SoundList: View {
                                     ForEach(searchResults) { sound in
                                         SoundCell(
                                             sound: sound,
+                                            isInsideFolder: isFolder,
                                             favorites: $viewModel.favoritesKeeper,
                                             highlighted: $viewModel.highlightKeeper,
                                             nowPlaying: $viewModel.nowPlayingKeeper,

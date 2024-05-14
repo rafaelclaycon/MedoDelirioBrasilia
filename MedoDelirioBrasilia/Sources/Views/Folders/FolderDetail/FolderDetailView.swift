@@ -67,6 +67,7 @@ struct FolderDetailView: View {
             SoundList(
                 viewModel: soundListViewModel,
                 multiSelectFolderOperation: .remove,
+                isFolder: true,
                 emptyStateView: AnyView(
                     EmptyFolderView()
                         .padding(.horizontal, 30)
