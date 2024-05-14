@@ -368,9 +368,13 @@ struct MainSoundContainer: View {
         .pickerStyle(.segmented)
         .background(.regularMaterial)
         .cornerRadius(8)
-        .onChange(of: viewModel.currentViewMode) {
-            if $0 == .favorites {
-                viewModel.reloadFavorites()
+        .onChange(of: viewModel.currentViewMode) { newMode in
+            if newMode == .allSounds {
+                allSoundsViewModel.loadFavorites()
+            } else if newMode == .favorites {
+                // Similar names, different functions.
+                viewModel.reloadFavorites() // This changes SoundList's data source, effectively changing what tiles are shown.
+                favoritesViewModel.loadFavorites() // This changes favoritesKeeper, the thing responsible for painting each tile differently.
             }
         }
         //.disabled(isLoadingSounds && viewModel.currentViewMode == .allSounds)
