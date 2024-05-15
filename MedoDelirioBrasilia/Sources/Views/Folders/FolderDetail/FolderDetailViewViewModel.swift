@@ -13,23 +13,11 @@ class FolderDetailViewViewModel: ObservableObject {
     // MARK: - Published Properties
 
     @Published var sounds = [Sound]()
-
     @Published var soundSortOption: Int = FolderSoundSortOption.titleAscending.rawValue
-
-    @Published var selectedSound: Sound? = nil
-    @Published var selectedSounds: [Sound]? = nil
-    @Published var nowPlayingKeeper = Set<String>()
-    @Published var selectionKeeper = Set<String>()
     
     // Playlist
     @Published var isPlayingPlaylist: Bool = false
     private var currentTrackIndex: Int = 0
-    
-    // Sharing
-    @Published var iPadShareSheet = ActivityViewController(activityItems: [URL(string: "https://www.apple.com")!])
-    @Published var isShowingShareSheet: Bool = false
-    @Published var shareBannerMessage: String = .empty
-    @Published var displaySharedSuccessfullyToast: Bool = false
     
     // Alerts
     @Published var alertTitle: String = ""
@@ -45,6 +33,10 @@ class FolderDetailViewViewModel: ObservableObject {
 
     var soundsPublisher: AnyPublisher<[Sound], Never> {
         $sounds.eraseToAnyPublisher()
+    }
+
+    var soundCount: String {
+        sounds.count == 1 ? "1 SOM" : "\(sounds.count) SONS"
     }
 
     // MARK: - Initializers
@@ -110,16 +102,6 @@ class FolderDetailViewViewModel: ObservableObject {
     private func sortByDateAddedDescending(_ sounds: inout [Sound]) {
         sounds.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
     }
-
-    // MARK: - Rest
-
-    func getSoundCount() -> String {
-        if sounds.count == 1 {
-            return "1 SOM"
-        } else {
-            return "\(sounds.count) SONS"
-        }
-    }
 }
 
 // MARK: - Playlist
@@ -149,22 +131,6 @@ extension FolderDetailViewViewModel {
 // MARK: - Alerts
 
 extension FolderDetailViewViewModel {
-
-    func showUnableToGetSoundAlert(_ soundTitle: String) {
-        TapticFeedback.error()
-        alertTitle = Shared.contentNotFoundAlertTitle(soundTitle)
-        alertMessage = Shared.soundNotFoundAlertMessage
-        alertType = .ok
-        showAlert = true
-    }
-
-    func showServerSoundNotAvailableAlert(_ soundTitle: String) {
-        TapticFeedback.error()
-        alertType = .ok
-        alertTitle = Shared.contentNotFoundAlertTitle(soundTitle)
-        alertMessage = Shared.serverContentNotAvailableMessage
-        showAlert = true
-    }
 
     func showSoundRemovalConfirmation(soundTitle: String) {
         alertTitle = "Remover \"\(soundTitle)\"?"

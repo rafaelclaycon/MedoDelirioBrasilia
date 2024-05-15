@@ -76,7 +76,7 @@ struct FolderDetailView: View {
                 headerView: AnyView(
                     VStack(alignment: .leading) {
                         HStack {
-                            Text(viewModel.getSoundCount())
+                            Text(viewModel.soundCount)
                                 .font(.callout)
                                 .foregroundColor(.gray)
                                 .bold()
