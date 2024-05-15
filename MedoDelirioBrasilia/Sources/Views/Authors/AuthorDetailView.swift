@@ -34,7 +34,9 @@ struct AuthorDetailView: View {
     
     // Share as Video
     @State private var shareAsVideo_Result = ShareAsVideoResult()
-    
+
+    // MARK: - Sticky Header Vars
+
     private var edgesToIgnore: SwiftUI.Edge.Set {
         return author.photo == nil ? [] : .top
     }
@@ -160,34 +162,30 @@ struct AuthorDetailView: View {
                                 moreOptionsMenu(isOnToolbar: false)
                             }
 
-                            if currentSoundsListMode == .selection {
-                                inlineSelectionControls()
-                            } else {
-                                if author.description != nil {
-                                    Text(author.description ?? "")
-                                }
+                            if author.description != nil {
+                                Text(author.description ?? "")
+                            }
 
-                                if !externalLinks.isEmpty {
-                                    ViewThatFits(in: .horizontal) {
-                                        HStack(spacing: 10) {
-                                            ForEach(externalLinks, id: \.title) {
-                                                ExternalLinkButton(externalLink: $0)
-                                            }
-                                        }
-                                        VStack(alignment: .leading, spacing: 15) {
-                                            ForEach(externalLinks, id: \.title) {
-                                                ExternalLinkButton(externalLink: $0)
-                                            }
+                            if !externalLinks.isEmpty {
+                                ViewThatFits(in: .horizontal) {
+                                    HStack(spacing: 10) {
+                                        ForEach(externalLinks, id: \.title) {
+                                            ExternalLinkButton(externalLink: $0)
                                         }
                                     }
-                                    .padding(.vertical, 4)
+                                    VStack(alignment: .leading, spacing: 15) {
+                                        ForEach(externalLinks, id: \.title) {
+                                            ExternalLinkButton(externalLink: $0)
+                                        }
+                                    }
                                 }
-
-                                Text(viewModel.getSoundCount())
-                                    .font(.subheadline)
-                                    .foregroundColor(.gray)
-                                    .bold()
+                                .padding(.vertical, 4)
                             }
+
+                            Text(viewModel.soundCount)
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                                .bold()
                         }
                         .padding(.horizontal, 20)
                         .padding(.top, 10)
@@ -197,19 +195,10 @@ struct AuthorDetailView: View {
             )
             .environmentObject(TrendsHelper())
         }
-        //.navigationTitle(navBarTitle)
         .onPreferenceChange(ViewOffsetKey.self) { offset in
             updateNavBarContent(offset)
         }
         .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            if currentSoundsListMode != .regular {
-                // On scroll, show Select controls if not at the top
-                if showSelectionControlsInToolbar {
-                    toolbarSelectionControls()
-                }
-            }
-        }
         .onAppear {
             // TODO: Refactor this to be closer to SoundsView.
             viewModel.reloadList(
@@ -271,7 +260,7 @@ struct AuthorDetailView: View {
         }
         .edgesIgnoringSafeArea(edgesToIgnore)
     }
-    
+
     @ViewBuilder func moreOptionsMenu(isOnToolbar: Bool) -> some View {
         Menu {
             if viewModel.sounds.count > 1 {
@@ -317,12 +306,8 @@ struct AuthorDetailView: View {
                         Text("Mais Recentes no Topo")
                             .tag(1)
                     }
-                    .onChange(of: viewModel.soundSortOption, perform: { soundSortOption in
-                        if soundSortOption == 0 {
-                            viewModel.sortSoundsInPlaceByTitleAscending()
-                        } else {
-                            viewModel.sortSoundsInPlaceByDateAddedDescending()
-                        }
+                    .onChange(of: viewModel.soundSortOption, perform: { sortOption in
+                        viewModel.sortSounds(by: sortOption)
                     })
                 }
             }
@@ -338,61 +323,12 @@ struct AuthorDetailView: View {
         }
         .disabled(viewModel.sounds.count == 0)
     }
-    
-    @ViewBuilder func inlineSelectionControls() -> some View {
-        HStack(spacing: 25) {
-            Button {
-                cancelSelectionAction()
-            } label: {
-                Text("Cancelar")
-                    .bold()
-            }
-            
-            Button {
-                favoriteAction()
-            } label: {
-                Label("Favoritos", systemImage: viewModel.allSelectedAreFavorites() ? "star.slash" : "star")
-            }.disabled(viewModel.selectionKeeper.count == 0)
-            
-            Button {
-                addToFolderAction()
-            } label: {
-                Label("Pasta", systemImage: "folder.badge.plus")
-            }.disabled(viewModel.selectionKeeper.count == 0)
-        }
-        .padding(.vertical, 10)
-    }
-    
-    @ViewBuilder func toolbarSelectionControls() -> some View {
-        HStack(spacing: 15) {
-            Button {
-                cancelSelectionAction()
-            } label: {
-                Text("Cancelar")
-                    .bold()
-            }
-            
-            Button {
-                favoriteAction()
-            } label: {
-                Image(systemName: viewModel.allSelectedAreFavorites() ? "star.slash" : "star")
-            }.disabled(viewModel.selectionKeeper.count == 0)
-            
-            Button {
-                addToFolderAction()
-            } label: {
-                Image(systemName: "folder.badge.plus")
-            }.disabled(viewModel.selectionKeeper.count == 0)
-            
-            moreOptionsMenu(isOnToolbar: true)
-        }
-    }
-    
+
     private func cancelSelectionAction() {
         currentSoundsListMode = .regular
         viewModel.selectionKeeper.removeAll()
     }
-    
+
     private func favoriteAction() {
         // Need to get count before clearing the Set.
         let selectedCount: Int = viewModel.selectionKeeper.count
@@ -411,24 +347,22 @@ struct AuthorDetailView: View {
             viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFavorites(\(selectedCount))", authorName: author.name)
         }
     }
-    
+
     private func addToFolderAction() {
         viewModel.prepareSelectedToAddToFolder()
         showingAddToFolderModal = true
     }
-
 }
 
 struct ViewOffsetKey: PreferenceKey {
 
     typealias Value = CGFloat
-    
+
     static var defaultValue = CGFloat.zero
-    
+
     static func reduce(value: inout Value, nextValue: () -> Value) {
         value += nextValue()
     }
-
 }
 
 #Preview {
