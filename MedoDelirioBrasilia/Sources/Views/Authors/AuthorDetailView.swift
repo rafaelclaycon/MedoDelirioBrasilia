@@ -119,11 +119,12 @@ struct AuthorDetailView: View {
     // MARK: - Initializer
 
     init(
-        author: Author
+        author: Author,
+        currentSoundsListMode: Binding<SoundsListMode>
     ) {
         self.author = author
         let viewModel = AuthorDetailViewViewModel(
-            authorName: author.name, currentSoundsListMode: .constant(.regular)
+            authorName: author.name, currentSoundsListMode: currentSoundsListMode
         )
 
         self._viewModel = StateObject(wrappedValue: viewModel)
@@ -132,7 +133,7 @@ struct AuthorDetailView: View {
         let soundListViewModel = SoundListViewModel<Sound>(
             data: viewModel.soundsPublisher,
             menuOptions: [.sharingOptions(), .organizingOptions(), .authorOptions()],
-            currentSoundsListMode: .constant(.regular)
+            currentSoundsListMode: currentSoundsListMode
         )
         self._soundListViewModel = StateObject(wrappedValue: soundListViewModel)
     }
@@ -390,6 +391,7 @@ struct ViewOffsetKey: PreferenceKey {
             name: "Abraham Weintraub",
             photo: "https://conteudo.imguol.com.br/c/noticias/fd/2020/06/22/11fev2020---o-entao-ministro-da-educacao-abraham-weintraub-falando-a-comissao-do-senado-sobre-problemas-na-correcao-das-provas-do-enem-1592860563916_v2_3x4.jpg",
             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
-        )
+        ),
+        currentSoundsListMode: .constant(.regular)
     )
 }
