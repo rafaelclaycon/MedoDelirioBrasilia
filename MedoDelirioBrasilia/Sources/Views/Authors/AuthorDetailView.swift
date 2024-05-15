@@ -10,12 +10,13 @@ import Kingfisher
 
 struct AuthorDetailView: View {
 
-    @StateObject var viewModel: AuthorDetailViewViewModel
+    @StateObject private var viewModel: AuthorDetailViewViewModel
+    @StateObject private var soundListViewModel: SoundListViewModel<Sound>
 
     let author: Author
 
     @State private var navBarTitle: String = .empty
-    @Binding var currentSoundsListMode: SoundsListMode
+    @State private var currentSoundsListMode: SoundsListMode
     @State private var showSelectionControlsInToolbar = false
     @State private var showMenuOnToolbarForiOS16AndHigher = false
     
@@ -115,16 +116,33 @@ struct AuthorDetailView: View {
         }
     }
 
+    // MARK: - Initializer
+
+    init(
+        author: Author
+    ) {
+        self.author = author
+        let viewModel = AuthorDetailViewViewModel(
+            authorName: author.name, currentSoundsListMode: .constant(.regular)
+        )
+
+        self._viewModel = StateObject(wrappedValue: viewModel)
+        self._currentSoundsListMode = State(initialValue: .regular)
+
+        let soundListViewModel = SoundListViewModel<Sound>(
+            data: viewModel.soundsPublisher,
+            menuOptions: [.sharingOptions(), .organizingOptions(), .authorOptions()],
+            currentSoundsListMode: .constant(.regular)
+        )
+        self._soundListViewModel = StateObject(wrappedValue: soundListViewModel)
+    }
+
     // MARK: - View Body
 
     var body: some View {
         VStack {
             SoundList(
-                viewModel: .init(
-                    data: viewModel.soundsPublisher,
-                    menuOptions: [.sharingOptions(), .organizingOptions(), .authorOptions()],
-                    currentSoundsListMode: .constant(.regular)
-                ),
+                viewModel: soundListViewModel,
                 stopShowingFloatingSelector: .constant(nil),
                 emptyStateView: AnyView(
                     NoSoundsView()
@@ -208,11 +226,11 @@ struct AuthorDetailView: View {
 
             columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
         }
-        .onDisappear {
-            if currentSoundsListMode == .selection {
-                viewModel.stopSelecting()
-            }
-        }
+//        .onDisappear {
+//            if currentSoundsListMode == .selection {
+//                viewModel.stopSelecting()
+//            }
+//        }
         .alert(isPresented: $viewModel.showAlert) {
             switch viewModel.alertType {
             case .ok:
@@ -266,7 +284,7 @@ struct AuthorDetailView: View {
             if viewModel.sounds.count > 1 {
                 Section {
                     Button {
-                        viewModel.startSelecting()
+                        soundListViewModel.startSelecting()
                     } label: {
                         Label(currentSoundsListMode == .selection ? "Cancelar Seleção" : "Selecionar", systemImage: currentSoundsListMode == .selection ? "xmark.circle" : "checkmark.circle")
                     }
@@ -275,23 +293,23 @@ struct AuthorDetailView: View {
             
             Section {
                 Button {
-                    viewModel.stopSelecting()
-                    viewModel.selectedSounds = viewModel.sounds
-                    showingAddToFolderModal = true
+//                    soundListViewModel.stopSelecting()
+//                    viewModel.selectedSounds = viewModel.sounds
+//                    showingAddToFolderModal = true
                 } label: {
                     Label("Adicionar Todos a Pasta", systemImage: "folder.badge.plus")
                 }
                 
                 Button {
-                    viewModel.stopSelecting()
-                    viewModel.showAskForNewSoundAlert()
+//                    viewModel.stopSelecting()
+//                    viewModel.showAskForNewSoundAlert()
                 } label: {
                     Label("Pedir Som Desse Autor", systemImage: "plus.circle")
                 }
                 
                 Button {
-                    viewModel.stopSelecting()
-                    viewModel.showEmailAppPicker_reportAuthorDetailIssue = true
+//                    viewModel.stopSelecting()
+//                    viewModel.showEmailAppPicker_reportAuthorDetailIssue = true
                 } label: {
                     Label("Relatar Problema com os Detalhes Desse Autor", systemImage: "person.crop.circle.badge.exclamationmark")
                 }
@@ -329,29 +347,29 @@ struct AuthorDetailView: View {
         viewModel.selectionKeeper.removeAll()
     }
 
-    private func favoriteAction() {
-        // Need to get count before clearing the Set.
-        let selectedCount: Int = viewModel.selectionKeeper.count
-        
-        if viewModel.allSelectedAreFavorites() {
-            viewModel.removeSelectedFromFavorites()
-            viewModel.stopSelecting()
-            viewModel.reloadList(
-                withSounds: try? LocalDatabase.shared.allSounds(forAuthor: author.id, isSensitiveContentAllowed: UserSettings.getShowExplicitContent()),
-                andFavorites: try? LocalDatabase.shared.favorites()
-            )
-            viewModel.sendUsageMetricToServer(action: "didRemoveManySoundsFromFavorites(\(selectedCount))", authorName: author.name)
-        } else {
-            viewModel.addSelectedToFavorites()
-            viewModel.stopSelecting()
-            viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFavorites(\(selectedCount))", authorName: author.name)
-        }
-    }
-
-    private func addToFolderAction() {
-        viewModel.prepareSelectedToAddToFolder()
-        showingAddToFolderModal = true
-    }
+//    private func favoriteAction() {
+//        // Need to get count before clearing the Set.
+//        let selectedCount: Int = viewModel.selectionKeeper.count
+//        
+//        if viewModel.allSelectedAreFavorites() {
+//            viewModel.removeSelectedFromFavorites()
+//            viewModel.stopSelecting()
+//            viewModel.reloadList(
+//                withSounds: try? LocalDatabase.shared.allSounds(forAuthor: author.id, isSensitiveContentAllowed: UserSettings.getShowExplicitContent()),
+//                andFavorites: try? LocalDatabase.shared.favorites()
+//            )
+//            viewModel.sendUsageMetricToServer(action: "didRemoveManySoundsFromFavorites(\(selectedCount))", authorName: author.name)
+//        } else {
+//            viewModel.addSelectedToFavorites()
+//            viewModel.stopSelecting()
+//            viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFavorites(\(selectedCount))", authorName: author.name)
+//        }
+//    }
+//
+//    private func addToFolderAction() {
+//        viewModel.prepareSelectedToAddToFolder()
+//        showingAddToFolderModal = true
+//    }
 }
 
 struct ViewOffsetKey: PreferenceKey {
@@ -367,13 +385,11 @@ struct ViewOffsetKey: PreferenceKey {
 
 #Preview {
     AuthorDetailView(
-        viewModel: .init(authorName: "João da Silva", currentSoundsListMode: .constant(.selection)),
         author: .init(
             id: "0D944922-7E50-4DED-A8FD-F44EFCAE82A2",
             name: "Abraham Weintraub",
             photo: "https://conteudo.imguol.com.br/c/noticias/fd/2020/06/22/11fev2020---o-entao-ministro-da-educacao-abraham-weintraub-falando-a-comissao-do-senado-sobre-problemas-na-correcao-das-provas-do-enem-1592860563916_v2_3x4.jpg",
             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
-        ),
-        currentSoundsListMode: .constant(.regular)
+        )
     )
 }

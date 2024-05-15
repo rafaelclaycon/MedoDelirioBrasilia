@@ -51,14 +51,7 @@ struct AuthorsView: View {
                 } else {
                     ForEach(searchResults) { author in
                         NavigationLink(
-                            destination: AuthorDetailView(
-                                viewModel: .init(
-                                    authorName: author.name,
-                                    currentSoundsListMode: $currentSoundsListMode
-                                ),
-                                author: author,
-                                currentSoundsListMode: $currentSoundsListMode
-                            )
+                            destination: AuthorDetailView(author: author)
                         ) {
                             AuthorCell(author: author)
                                 .padding(.horizontal, 5)
