@@ -16,7 +16,7 @@ struct AuthorDetailView: View {
     let author: Author
 
     @State private var navBarTitle: String = .empty
-    @State private var currentSoundsListMode: SoundsListMode
+    private var currentSoundsListMode: Binding<SoundsListMode>
     @State private var showSelectionControlsInToolbar = false
     @State private var showMenuOnToolbarForiOS16AndHigher = false
     
@@ -72,8 +72,8 @@ struct AuthorDetailView: View {
         if offset < getOffsetBeforeShowingTitle() {
             DispatchQueue.main.async {
                 navBarTitle = title
-                showSelectionControlsInToolbar = currentSoundsListMode == .selection
-                showMenuOnToolbarForiOS16AndHigher = currentSoundsListMode == .regular
+                showSelectionControlsInToolbar = currentSoundsListMode.wrappedValue == .selection
+                showMenuOnToolbarForiOS16AndHigher = currentSoundsListMode.wrappedValue == .regular
             }
         } else {
             DispatchQueue.main.async {
@@ -87,13 +87,16 @@ struct AuthorDetailView: View {
     // MARK: - Computed Properties
 
     private var title: String {
-        guard currentSoundsListMode == .regular else {
-            if viewModel.selectionKeeper.count == 0 {
+        guard currentSoundsListMode.wrappedValue == .regular else {
+            if soundListViewModel.selectionKeeper.count == 0 {
                 return Shared.SoundSelection.selectSounds
-            } else if viewModel.selectionKeeper.count == 1 {
+            } else if soundListViewModel.selectionKeeper.count == 1 {
                 return Shared.SoundSelection.soundSelectedSingular
             } else {
-                return String(format: Shared.SoundSelection.soundsSelectedPlural, viewModel.selectionKeeper.count)
+                return String(
+                    format: Shared.SoundSelection.soundsSelectedPlural,
+                    soundListViewModel.selectionKeeper.count
+                )
             }
         }
         return author.name
@@ -128,7 +131,7 @@ struct AuthorDetailView: View {
         )
 
         self._viewModel = StateObject(wrappedValue: viewModel)
-        self._currentSoundsListMode = State(initialValue: .regular)
+        self.currentSoundsListMode = currentSoundsListMode
 
         let soundListViewModel = SoundListViewModel<Sound>(
             data: viewModel.soundsPublisher,
@@ -220,18 +223,15 @@ struct AuthorDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             // TODO: Refactor this to be closer to SoundsView.
-            viewModel.reloadList(
-                withSounds: try? LocalDatabase.shared.allSounds(forAuthor: author.id, isSensitiveContentAllowed: UserSettings.getShowExplicitContent()),
-                andFavorites: try? LocalDatabase.shared.favorites()
-            )
+            viewModel.loadSounds(for: author.id)
 
             columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
         }
-//        .onDisappear {
-//            if currentSoundsListMode == .selection {
-//                viewModel.stopSelecting()
-//            }
-//        }
+        .onDisappear {
+            if currentSoundsListMode.wrappedValue == .selection {
+                soundListViewModel.stopSelecting()
+            }
+        }
         .alert(isPresented: $viewModel.showAlert) {
             switch viewModel.alertType {
             case .ok:
@@ -252,12 +252,6 @@ struct AuthorDetailView: View {
                                subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.selectedSound?.title ?? ""),
                                emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.selectedSound?.authorName ?? "", viewModel.selectedSound?.id ?? ""))
         }
-        .sheet(isPresented: $viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog) {
-            EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog,
-                               didCopySupportAddress: .constant(false),
-                               subject: Shared.issueSuggestionEmailSubject,
-                               emailBody: Shared.issueSuggestionEmailBody)
-        }
         .sheet(isPresented: $viewModel.showEmailAppPicker_askForNewSound) {
             EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_askForNewSound,
                                didCopySupportAddress: .constant(false),
@@ -270,7 +264,7 @@ struct AuthorDetailView: View {
                                subject: String(format: Shared.Email.AuthorDetailIssue.subject, self.author.name),
                                emailBody: Shared.Email.AuthorDetailIssue.body)
         }
-        .onChange(of: viewModel.selectionKeeper.count) { selectionKeeperCount in
+        .onChange(of: soundListViewModel.selectionKeeper.count) { selectionKeeperCount in
             if navBarTitle.isEmpty == false {
                 DispatchQueue.main.async {
                     navBarTitle = title
@@ -287,7 +281,10 @@ struct AuthorDetailView: View {
                     Button {
                         soundListViewModel.startSelecting()
                     } label: {
-                        Label(currentSoundsListMode == .selection ? "Cancelar Seleção" : "Selecionar", systemImage: currentSoundsListMode == .selection ? "xmark.circle" : "checkmark.circle")
+                        Label(
+                            currentSoundsListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",
+                            systemImage: currentSoundsListMode.wrappedValue == .selection ? "xmark.circle" : "checkmark.circle"
+                        )
                     }
                 }
             }
@@ -343,10 +340,10 @@ struct AuthorDetailView: View {
         .disabled(viewModel.sounds.count == 0)
     }
 
-    private func cancelSelectionAction() {
-        currentSoundsListMode = .regular
-        viewModel.selectionKeeper.removeAll()
-    }
+//    private func cancelSelectionAction() {
+//        currentSoundsListMode = .regular
+//        viewModel.selectionKeeper.removeAll()
+//    }
 
 //    private func favoriteAction() {
 //        // Need to get count before clearing the Set.
