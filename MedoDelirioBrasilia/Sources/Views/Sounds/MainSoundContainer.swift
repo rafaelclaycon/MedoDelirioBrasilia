@@ -172,6 +172,13 @@ struct MainSoundContainer: View {
                 displayLongUpdateBanner = viewModel.totalUpdateCount >= 10 && viewModel.processedUpdateNumber != viewModel.totalUpdateCount
             }
         }
+        .sheet(isPresented: $showingModalView) {
+            SyncInfoView(
+                isBeingShown: $showingModalView,
+                lastUpdateAttempt: AppPersistentMemory.getLastUpdateAttempt(),
+                lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
+            )
+        }
         .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in // iPad - Settings explicit toggle.
             if shouldUpdate {
                 viewModel.reloadAllSounds()
@@ -361,9 +368,13 @@ struct MainSoundContainer: View {
         .pickerStyle(.segmented)
         .background(.regularMaterial)
         .cornerRadius(8)
-        .onChange(of: viewModel.currentViewMode) {
-            if $0 == .favorites {
-                viewModel.reloadFavorites()
+        .onChange(of: viewModel.currentViewMode) { newMode in
+            if newMode == .allSounds {
+                allSoundsViewModel.loadFavorites()
+            } else if newMode == .favorites {
+                // Similar names, different functions.
+                viewModel.reloadFavorites() // This changes SoundList's data source, effectively changing what tiles are shown.
+                favoritesViewModel.loadFavorites() // This changes favoritesKeeper, the thing responsible for painting each tile differently.
             }
         }
         //.disabled(isLoadingSounds && viewModel.currentViewMode == .allSounds)

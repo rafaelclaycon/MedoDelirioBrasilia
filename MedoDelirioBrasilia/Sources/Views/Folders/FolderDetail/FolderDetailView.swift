@@ -14,7 +14,7 @@ struct FolderDetailView: View {
 
     let folder: UserFolder
 
-    @State private var currentSoundsListMode: SoundsListMode
+    private var currentSoundsListMode: Binding<SoundsListMode>
     @State private var showingFolderInfoEditingView = false
     @State private var showingModalView = false
 
@@ -26,13 +26,13 @@ struct FolderDetailView: View {
     }
     
     private var title: String {
-        guard currentSoundsListMode == .regular else {
-            if viewModel.selectionKeeper.count == 0 {
+        guard currentSoundsListMode.wrappedValue == SoundsListMode.regular else {
+            if soundListViewModel.selectionKeeper.count == 0 {
                 return Shared.SoundSelection.selectSounds
-            } else if viewModel.selectionKeeper.count == 1 {
+            } else if soundListViewModel.selectionKeeper.count == 1 {
                 return Shared.SoundSelection.soundSelectedSingular
             } else {
-                return String(format: Shared.SoundSelection.soundsSelectedPlural, viewModel.selectionKeeper.count)
+                return String(format: Shared.SoundSelection.soundsSelectedPlural, soundListViewModel.selectionKeeper.count)
             }
         }
         return "\(folder.symbol)  \(folder.name)"
@@ -41,18 +41,19 @@ struct FolderDetailView: View {
     // MARK: - Initializer
 
     init(
-        folder: UserFolder
+        folder: UserFolder,
+        currentSoundsListMode: Binding<SoundsListMode>
     ) {
         self.folder = folder
         let viewModel = FolderDetailViewViewModel(folder: folder)
 
         self._viewModel = StateObject(wrappedValue: viewModel)
-        self._currentSoundsListMode = State(initialValue: .regular)
+        self.currentSoundsListMode = currentSoundsListMode
 
         let soundListViewModel = SoundListViewModel<Sound>(
             data: viewModel.soundsPublisher,
             menuOptions: [.sharingOptions(), .playFromThisSound(), .removeFromFolder()],
-            currentSoundsListMode: .constant(.regular), // $currentSoundsListMode
+            currentSoundsListMode: currentSoundsListMode,
             refreshAction: { viewModel.reloadSounds() },
             insideFolder: folder
         )
@@ -67,6 +68,7 @@ struct FolderDetailView: View {
             SoundList(
                 viewModel: soundListViewModel,
                 multiSelectFolderOperation: .remove,
+                isFolder: true,
                 emptyStateView: AnyView(
                     EmptyFolderView()
                         .padding(.horizontal, 30)
@@ -74,7 +76,7 @@ struct FolderDetailView: View {
                 headerView: AnyView(
                     VStack(alignment: .leading) {
                         HStack {
-                            Text(viewModel.getSoundCount())
+                            Text(viewModel.soundCount)
                                 .font(.callout)
                                 .foregroundColor(.gray)
                                 .bold()
@@ -107,7 +109,7 @@ struct FolderDetailView: View {
 
     @ViewBuilder func trailingToolbarControls() -> some View {
         HStack(spacing: 16) {
-            if currentSoundsListMode == .regular {
+            if currentSoundsListMode.wrappedValue == .regular {
                 Button {
                     if viewModel.isPlayingPlaylist {
                         soundListViewModel.stopPlaying()
@@ -127,7 +129,10 @@ struct FolderDetailView: View {
                     Button {
                         soundListViewModel.startSelecting()
                     } label: {
-                        Label(currentSoundsListMode == .selection ? "Cancelar Seleção" : "Selecionar", systemImage: currentSoundsListMode == .selection ? "xmark.circle" : "checkmark.circle")
+                        Label(
+                            currentSoundsListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",
+                            systemImage: currentSoundsListMode.wrappedValue == .selection ? "xmark.circle" : "checkmark.circle"
+                        )
                     }
                 }
 
@@ -143,6 +148,9 @@ struct FolderDetailView: View {
                             Text("Adição à Pasta (Mais Recentes no Topo)")
                                 .tag(2)
                         }
+                    }
+                    .onChange(of: viewModel.soundSortOption) { sortOption in
+                        viewModel.sortSounds(by: sortOption)
                     }
                     .disabled(viewModel.sounds.isEmpty)
                 }
@@ -181,28 +189,17 @@ struct FolderDetailView: View {
                 Image(systemName: "ellipsis.circle")
             }
             .disabled(viewModel.isPlayingPlaylist || viewModel.sounds.isEmpty)
-//            .onChange(of: viewModel.soundSortOption, perform: { soundSortOption in
-//                switch soundSortOption {
-//                case 1:
-//                    viewModel.sortSoundsInPlaceByAuthorNameAscending()
-//                case 2:
-//                    viewModel.sortSoundsInPlaceByDateAddedDescending()
-//                default:
-//                    viewModel.sortSoundsInPlaceByTitleAscending()
-//                }
-//                try? LocalDatabase.shared.update(userSortPreference: soundSortOption, forFolderId: folder.id)
-//            })
         }
     }
     
     @ViewBuilder func selectionControls() -> some View {
-        if currentSoundsListMode == .regular {
+        if currentSoundsListMode.wrappedValue == .regular {
             EmptyView()
         } else {
             HStack(spacing: 16) {
                 Button {
-                    currentSoundsListMode = .regular
-                    viewModel.selectionKeeper.removeAll()
+                    currentSoundsListMode.wrappedValue = .regular
+                    soundListViewModel.selectionKeeper.removeAll()
                 } label: {
                     Text("Cancelar")
                         .bold()
@@ -218,6 +215,7 @@ struct FolderDetailView: View {
             symbol: "🤑",
             name: "Grupo da Economia",
             backgroundColor: "pastelBabyBlue"
-        )
+        ),
+        currentSoundsListMode: .constant(.regular)
     )
 }

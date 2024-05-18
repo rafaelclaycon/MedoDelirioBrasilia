@@ -63,7 +63,10 @@ struct FolderList: View {
                 LazyVGrid(columns: columns, spacing: 14) {
                     ForEach(viewModel.folders, id: \.editingIdentifyingId) { folder in
                         NavigationLink {
-                            FolderDetailView(folder: folder)
+                            FolderDetailView(
+                                folder: folder,
+                                currentSoundsListMode: $currentSoundsListMode
+                            )
                         } label: {
                             FolderCell(symbol: folder.symbol, name: folder.name, backgroundColor: folder.backgroundColor.toPastelColor())
                                 .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)

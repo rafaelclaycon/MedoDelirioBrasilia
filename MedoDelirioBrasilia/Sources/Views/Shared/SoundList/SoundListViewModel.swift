@@ -126,6 +126,7 @@ class SoundListViewModel<T>: ObservableObject {
     func loadFavorites() {
         do {
             let favorites = try LocalDatabase.shared.favorites()
+            favoritesKeeper.removeAll()
             favorites.forEach { favorite in
                 self.favoritesKeeper.insert(favorite.contentId)
             }

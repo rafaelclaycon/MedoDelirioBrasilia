@@ -144,14 +144,10 @@ struct SoundsView: View {
     var body: some View {
         ZStack {
             VStack {
-                NavigationLink(
-                    destination: AuthorDetailView(
-                        viewModel: .init(authorName: authorToAutoOpen.name, currentSoundsListMode: $currentSoundsListMode),
-                        author: authorToAutoOpen,
-                        currentSoundsListMode: $currentSoundsListMode
-                    ),
-                    isActive: $autoOpenAuthor
-                ) { EmptyView() }
+//                NavigationLink(
+//                    destination: AuthorDetailView(author: authorToAutoOpen),
+//                    isActive: $autoOpenAuthor
+//                ) { EmptyView() }
 
                 if showNoFavoritesView {
                     NoFavoritesView()
