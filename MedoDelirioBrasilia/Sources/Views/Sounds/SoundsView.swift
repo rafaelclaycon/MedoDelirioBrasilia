@@ -144,14 +144,10 @@ struct SoundsView: View {
     var body: some View {
         ZStack {
             VStack {
-                NavigationLink(
-                    destination: AuthorDetailView(
-                        viewModel: .init(authorName: authorToAutoOpen.name, currentSoundsListMode: $currentSoundsListMode),
-                        author: authorToAutoOpen,
-                        currentSoundsListMode: $currentSoundsListMode
-                    ),
-                    isActive: $autoOpenAuthor
-                ) { EmptyView() }
+//                NavigationLink(
+//                    destination: AuthorDetailView(author: authorToAutoOpen),
+//                    isActive: $autoOpenAuthor
+//                ) { EmptyView() }
 
                 if showNoFavoritesView {
                     NoFavoritesView()
@@ -384,10 +380,9 @@ struct SoundsView: View {
                     await viewModel.sendUserPersonalTrendsToServerIfEnabled()
                 }
 
-                if AppPersistentMemory.getHasShownNotificationsOnboarding() == false {
+                if AppPersistentMemory.hasShownNotificationsOnboarding() == false {
                     subviewToOpen = .onboardingView
                     showingModalView = true
-                    AppPersistentMemory.setHasSeen70WhatsNewScreen(to: true) // Prevent the What's New screen from appearing when switching tabs
                 }
 
 //                if !AppPersistentMemory.getHasSeenRecurringDonationBanner() {
