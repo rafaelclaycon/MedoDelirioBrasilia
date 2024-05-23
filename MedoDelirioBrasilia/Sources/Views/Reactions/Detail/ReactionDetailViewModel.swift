@@ -13,7 +13,7 @@ class ReactionDetailViewModel: ObservableObject {
     // MARK: - Published Vars
 
     @Published var state: LoadingState<Sound> = .loading
-    @Published var sounds: [Sound] = []
+    @Published var sounds: [Sound]?
     @Published var soundSortOption: Int = ReactionSoundSortOption.default.rawValue
 
     let reaction: Reaction
@@ -21,10 +21,13 @@ class ReactionDetailViewModel: ObservableObject {
     // MARK: - Computed Properties
 
     var soundsPublisher: AnyPublisher<[Sound], Never> {
-        $sounds.eraseToAnyPublisher()
+        $sounds
+            .compactMap { $0 }
+            .eraseToAnyPublisher()
     }
 
     var subtitle: String {
+        guard let sounds else { return "Carregando..." }
         let lastUpdateDate: String = reaction.lastUpdate.asRelativeDateTime ?? ""
         if sounds.count == 0 {
             return "Nenhum som. Atualizada \(lastUpdateDate)."
@@ -47,7 +50,9 @@ class ReactionDetailViewModel: ObservableObject {
     // MARK: - Functions
 
     func loadSounds() async {
-        state = .loading
+        DispatchQueue.main.async {
+            self.state = .loading
+        }
 
         do {
             let url = URL(string: NetworkRabbit.shared.serverPath + "v4/reaction/\(reaction.id)")!
@@ -55,12 +60,14 @@ class ReactionDetailViewModel: ObservableObject {
             reactionSounds.sort(by: { $0.position < $1.position })
             let soundIds: [String] = reactionSounds.map { $0.soundId }
             let selectedSounds = try LocalDatabase.shared.sounds(withIds: soundIds)
-            self.sounds = selectedSounds
             DispatchQueue.main.async {
-                self.state = .loaded(self.sounds)
+                self.sounds = selectedSounds
+                self.state = .loaded(selectedSounds)
             }
         } catch {
-            state = .error(error.localizedDescription)
+            DispatchQueue.main.async {
+                self.state = .error(error.localizedDescription)
+            }
         }
     }
 }

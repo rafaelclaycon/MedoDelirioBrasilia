@@ -83,14 +83,10 @@ class SoundListViewModel<T>: ObservableObject {
         self.refreshAction = refreshAction
         self.folder = insideFolder
 
-        print("WILL SET DATA")
-
         data
             .map { LoadingState.loaded($0) }
             .receive(on: DispatchQueue.main)
             .assign(to: &$state)
-
-        print("CURRENT STATE AFTER RECEIVE IS: \(state)")
 
         loadFavorites()
     }

@@ -13,6 +13,20 @@ struct ReactionDetailView: View {
     
     @State private var columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
 
+    // MARK: - Computed Properties
+
+    private var toolbarControlsOpacity: CGFloat {
+        guard let sounds = viewModel.sounds else { return 1.0 }
+        return sounds.isEmpty ? 0.5 : 1.0
+    }
+
+    private var soundArrayIsEmpty: Bool {
+        guard let sounds = viewModel.sounds else { return true }
+        return sounds.isEmpty
+    }
+
+    // MARK: - View Body
+
     var body: some View {
         GeometryReader { geometry in
             SoundList(
@@ -107,8 +121,8 @@ struct ReactionDetailView: View {
         .toolbar {
             toolbarControls()
                 .foregroundStyle(.white)
-                .opacity(viewModel.sounds.isEmpty ? 0.5 : 1.0)
-                .disabled(viewModel.sounds.isEmpty)
+                .opacity(toolbarControlsOpacity)
+                .disabled(soundArrayIsEmpty)
         }
         .oneTimeTask {
             await viewModel.loadSounds()
@@ -127,7 +141,7 @@ struct ReactionDetailView: View {
             } label: {
                 Image(systemName: "play.fill")
             }
-            .disabled(viewModel.sounds.isEmpty)
+            .disabled(soundArrayIsEmpty)
 
             Menu {
                 Section {
