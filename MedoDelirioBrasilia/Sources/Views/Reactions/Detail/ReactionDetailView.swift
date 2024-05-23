@@ -13,88 +13,82 @@ struct ReactionDetailView: View {
     
     @State private var columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
 
+    // MARK: - Computed Properties
+
+    private var toolbarControlsOpacity: CGFloat {
+        guard let sounds = viewModel.sounds else { return 1.0 }
+        return sounds.isEmpty ? 0.5 : 1.0
+    }
+
+    private var soundArrayIsEmpty: Bool {
+        guard let sounds = viewModel.sounds else { return true }
+        return sounds.isEmpty
+    }
+
+    // MARK: - View Body
+
     var body: some View {
         GeometryReader { geometry in
-            switch viewModel.state {
-            case .loading:
-                VStack(spacing: 40) {
+            SoundList(
+                viewModel: .init(
+                    data: viewModel.soundsPublisher,
+                    menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
+                    currentSoundsListMode: .constant(.regular)
+                ),
+                stopShowingFloatingSelector: .constant(nil),
+                headerView: AnyView(
                     ReactionDetailHeader(
                         title: viewModel.reaction.title,
                         subtitle: viewModel.subtitle,
                         imageUrl: viewModel.reaction.image
                     )
                     .frame(height: 250)
-
-                    Spacer()
-
-                    HStack(spacing: 10) {
-                        ProgressView()
-
-                        Text("Carregando sons...")
-                            .foregroundColor(.gray)
-                    }
-                    .frame(maxWidth: .infinity)
-
-                    Spacer()
-                }
-
-            case .loaded(_):
-                SoundList(
-                    viewModel: .init(
-                        data: viewModel.soundsPublisher,
-                        menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
-                        currentSoundsListMode: .constant(.regular)
-                    ),
-                    stopShowingFloatingSelector: .constant(nil),
-                    emptyStateView: AnyView(
-                        VStack(spacing: 40) {
-                            Spacer()
-
-                            Image(systemName: "questionmark.square.dashed")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(height: 60)
-                                .foregroundStyle(.gray)
-
-                            Text("Essa Reação está vazia. Parece que você chegou muito cedo.")
-                                .foregroundStyle(.gray)
-                                .multilineTextAlignment(.center)
-
-                            Button {
-                                Task {
-                                    await viewModel.loadSounds()
-                                }
-                            } label: {
-                                Label("Recarregar", systemImage: "arrow.clockwise")
-                            }
-                            .padding(.bottom)
-
-                            Spacer()
-                        }
-                        .padding(.horizontal, 30)
-                    ),
-                    headerView: AnyView(
-                        ReactionDetailHeader(
-                            title: viewModel.reaction.title,
-                            subtitle: viewModel.subtitle,
-                            imageUrl: viewModel.reaction.image
-                        )
-                        .frame(height: 250)
-                        .padding(.bottom, 6)
-                    )
-                )
-                .environmentObject(TrendsHelper())
-
-            case .error(let errorString):
-                ScrollView {
+                    .padding(.bottom, 6)
+                ),
+                loadingView: AnyView(
                     VStack(spacing: 40) {
-                        ReactionDetailHeader(
-                            title: viewModel.reaction.title,
-                            subtitle: viewModel.subtitle,
-                            imageUrl: viewModel.reaction.image
-                        )
-                        .frame(height: 250)
+                        Spacer()
 
+                        HStack(spacing: 10) {
+                            ProgressView()
+
+                            Text("Carregando sons...")
+                                .foregroundColor(.gray)
+                        }
+                        .frame(maxWidth: .infinity)
+
+                        Spacer()
+                    }
+                ),
+                emptyStateView: AnyView(
+                    VStack(spacing: 40) {
+                        Spacer()
+
+                        Image(systemName: "questionmark.square.dashed")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 60)
+                            .foregroundStyle(.gray)
+
+                        Text("Essa Reação está vazia. Parece que você chegou muito cedo.")
+                            .foregroundStyle(.gray)
+                            .multilineTextAlignment(.center)
+
+                        Button {
+                            Task {
+                                await viewModel.loadSounds()
+                            }
+                        } label: {
+                            Label("Recarregar", systemImage: "arrow.clockwise")
+                        }
+                        .padding(.bottom)
+
+                        Spacer()
+                    }
+                    .padding(.horizontal, 30)
+                ),
+                errorView: AnyView(
+                    VStack(spacing: 40) {
                         Text("☹️")
                             .font(.system(size: 86))
 
@@ -104,7 +98,7 @@ struct ReactionDetailView: View {
                                 .bold()
                                 .multilineTextAlignment(.center)
 
-                            Text(errorString)
+                            Text("<Error message here>") // errorString
                                 .multilineTextAlignment(.center)
                                 .foregroundStyle(.gray)
 
@@ -120,14 +114,15 @@ struct ReactionDetailView: View {
 
                         Spacer()
                     }
-                }
-            }
+                )
+            )
+            .environmentObject(TrendsHelper())
         }
         .toolbar {
             toolbarControls()
                 .foregroundStyle(.white)
-                .opacity(viewModel.sounds.isEmpty ? 0.5 : 1.0)
-                .disabled(viewModel.sounds.isEmpty)
+                .opacity(toolbarControlsOpacity)
+                .disabled(soundArrayIsEmpty)
         }
         .oneTimeTask {
             await viewModel.loadSounds()
@@ -146,7 +141,7 @@ struct ReactionDetailView: View {
             } label: {
                 Image(systemName: "play.fill")
             }
-            .disabled(viewModel.sounds.isEmpty)
+            .disabled(soundArrayIsEmpty)
 
             Menu {
                 Section {

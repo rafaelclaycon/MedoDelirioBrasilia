@@ -111,11 +111,6 @@ struct MainSoundContainer: View {
                             await viewModel.sync(lastAttempt: AppPersistentMemory.getLastUpdateAttempt())
                         }
                     },
-                    emptyStateView: AnyView(
-                        Text("Nenhum som a ser exibido. Isso é esquisito.")
-                            .foregroundColor(.gray)
-                            .padding(.horizontal, 20)
-                    ),
                     headerView: AnyView(
                         VStack {
                             if !networkMonitor.isConnected, shouldDisplayYoureOfflineBanner {
@@ -135,6 +130,33 @@ struct MainSoundContainer: View {
 //                                    .padding(.horizontal, 10)
 //                            }
                         }
+                    ),
+                    loadingView: AnyView(
+                        VStack {
+                            HStack(spacing: 10) {
+                                ProgressView()
+
+                                Text("Carregando sons...")
+                                    .foregroundColor(.gray)
+                            }
+                            .frame(maxWidth: .infinity)
+                        }
+                    ),
+                    emptyStateView: AnyView(
+                        Text("Nenhum som a ser exibido. Isso é esquisito.")
+                            .foregroundColor(.gray)
+                            .padding(.horizontal, 20)
+                    ),
+                    errorView: AnyView(
+                        VStack {
+                            HStack(spacing: 10) {
+                                ProgressView()
+
+                                Text("Erro ao carregar sons.")
+                                    .foregroundColor(.gray)
+                            }
+                            .frame(maxWidth: .infinity)
+                        }
                     )
                 )
 
@@ -143,10 +165,32 @@ struct MainSoundContainer: View {
                     viewModel: favoritesViewModel,
                     stopShowingFloatingSelector: $stopShowingFloatingSelector,
                     allowSearch: true,
+                    loadingView: AnyView(
+                        VStack {
+                            HStack(spacing: 10) {
+                                ProgressView()
+
+                                Text("Carregando sons...")
+                                    .foregroundColor(.gray)
+                            }
+                            .frame(maxWidth: .infinity)
+                        }
+                    ),
                     emptyStateView: AnyView(
                         NoFavoritesView()
                             .padding(.horizontal, 25)
                             .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? 100 : 15)
+                    ),
+                    errorView: AnyView(
+                        VStack {
+                            HStack(spacing: 10) {
+                                ProgressView()
+
+                                Text("Erro ao carregar sons.")
+                                    .foregroundColor(.gray)
+                            }
+                            .frame(maxWidth: .infinity)
+                        }
                     )
                 )
 

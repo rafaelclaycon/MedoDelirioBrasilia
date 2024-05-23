@@ -20,8 +20,11 @@ struct SoundList: View {
     private var multiSelectFolderOperation: FolderOperation = .add
     private var syncAction: (() -> Void)?
     private var isFolder: Bool
-    private let emptyStateView: AnyView
+
     private var headerView: AnyView?
+    private let loadingView: AnyView
+    private let emptyStateView: AnyView
+    private let errorView: AnyView
 
     // MARK: - Stored Properties
 
@@ -70,8 +73,10 @@ struct SoundList: View {
         syncAction: (() -> Void)? = nil,
         multiSelectFolderOperation: FolderOperation = .add,
         isFolder: Bool = false,
+        headerView: AnyView? = nil,
+        loadingView: AnyView,
         emptyStateView: AnyView,
-        headerView: AnyView? = nil
+        errorView: AnyView
     ) {
         self._viewModel = StateObject(wrappedValue: viewModel)
         self.stopShowingFloatingSelector = stopShowingFloatingSelector
@@ -82,8 +87,10 @@ struct SoundList: View {
         self.syncAction = syncAction
         self.multiSelectFolderOperation = multiSelectFolderOperation
         self.isFolder = isFolder
-        self.emptyStateView = emptyStateView
         self.headerView = headerView
+        self.loadingView = loadingView
+        self.emptyStateView = emptyStateView
+        self.errorView = errorView
     }
 
     // MARK: - Body
@@ -93,13 +100,10 @@ struct SoundList: View {
             switch viewModel.state {
             case .loading:
                 VStack {
-                    HStack(spacing: 10) {
-                        ProgressView()
-
-                        Text("Carregando sons...")
-                            .foregroundColor(.gray)
+                    if let headerView {
+                        headerView
                     }
-                    .frame(maxWidth: .infinity)
+                    loadingView
                 }
                 .frame(width: geometry.size.width)
                 .frame(minHeight: geometry.size.height)
@@ -368,15 +372,12 @@ struct SoundList: View {
                     //.border(.red, width: 1)
                 }
 
-            case .error:
+            case .error(let errorMessage):
                 VStack {
-                    HStack(spacing: 10) {
-                        ProgressView()
-
-                        Text("Erro ao carregar sons.")
-                            .foregroundColor(.gray)
+                    if let headerView {
+                        headerView
                     }
-                    .frame(maxWidth: .infinity)
+                    errorView
                 }
                 .frame(width: geometry.size.width)
                 .frame(minHeight: geometry.size.height)

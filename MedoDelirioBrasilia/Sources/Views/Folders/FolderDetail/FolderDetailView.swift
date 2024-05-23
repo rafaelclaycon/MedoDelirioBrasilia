@@ -69,10 +69,6 @@ struct FolderDetailView: View {
                 viewModel: soundListViewModel,
                 multiSelectFolderOperation: .remove,
                 isFolder: true,
-                emptyStateView: AnyView(
-                    EmptyFolderView()
-                        .padding(.horizontal, 30)
-                ),
                 headerView: AnyView(
                     VStack(alignment: .leading) {
                         HStack {
@@ -86,6 +82,32 @@ struct FolderDetailView: View {
                     }
                     .padding(.horizontal, 20)
                     .padding(.top)
+                ),
+                loadingView: AnyView(
+                    VStack {
+                        HStack(spacing: 10) {
+                            ProgressView()
+
+                            Text("Carregando sons...")
+                                .foregroundColor(.gray)
+                        }
+                        .frame(maxWidth: .infinity)
+                    }
+                ),
+                emptyStateView: AnyView(
+                    EmptyFolderView()
+                        .padding(.horizontal, 30)
+                ),
+                errorView: AnyView(
+                    VStack {
+                        HStack(spacing: 10) {
+                            ProgressView()
+
+                            Text("Erro ao carregar sons.")
+                                .foregroundColor(.gray)
+                        }
+                        .frame(maxWidth: .infinity)
+                    }
                 )
             )
             .environmentObject(TrendsHelper())
