@@ -93,7 +93,7 @@ struct MainSoundContainer: View {
         self.showSettings = showSettings
     }
 
-    // MARK: - Body
+    // MARK: - View Body
 
     var body: some View {
         VStack {
@@ -388,7 +388,7 @@ struct MainSoundContainer: View {
                         viewModel.sortSounds(by: sortOption)
                     }
                     .disabled(
-                        viewModel.currentViewMode == .favorites && viewModel.favorites.count == 0
+                        viewModel.currentViewMode == .favorites && viewModel.favorites?.count == 0
                     )
                 }
             }
