@@ -49,6 +49,10 @@ class SoundListViewModel<T>: ObservableObject {
     @Published var processedUpdateNumber: Int = 0
     @Published var totalUpdateCount: Int = 0
 
+    // Playlist
+    @Published var isPlayingPlaylist: Bool = false
+    private var currentTrackIndex: Int = 0
+
     // Alerts
     @Published var alertTitle: String = ""
     @Published var alertMessage: String = ""
@@ -92,36 +96,6 @@ class SoundListViewModel<T>: ObservableObject {
     }
 
     // MARK: - Functions
-
-    func play(_ sound: Sound) {
-        do {
-            let url = try sound.fileURL()
-
-            nowPlayingKeeper.removeAll()
-            nowPlayingKeeper.insert(sound.id)
-
-            AudioPlayer.shared = AudioPlayer(url: url, update: { [weak self] state in
-                guard let self = self else { return }
-                if state?.activity == .stopped {
-                    self.nowPlayingKeeper.removeAll()
-                }
-            })
-
-            AudioPlayer.shared?.togglePlay()
-        } catch {
-            if sound.isFromServer ?? false {
-                showServerSoundNotAvailableAlert(sound)
-                // Disregarding the case of the sound not being in the Bundle as this is highly unlikely since the launch of the sync system.
-            }
-        }
-    }
-
-    func stopPlaying() {
-        if nowPlayingKeeper.count > 0 {
-            AudioPlayer.shared?.togglePlay()
-            nowPlayingKeeper.removeAll()
-        }
-    }
 
     func loadFavorites() {
         do {
@@ -225,6 +199,75 @@ class SoundListViewModel<T>: ObservableObject {
 
             isShowingShareSheet = true
         }
+    }
+}
+
+// MARK: - Sound Playback
+
+extension SoundListViewModel {
+
+    func playStopPlaylist() {
+        if isPlayingPlaylist {
+            stopPlaying()
+        } else {
+            playAllSoundsOneAfterTheOther()
+        }
+    }
+
+    func play(_ sound: Sound) {
+        do {
+            let url = try sound.fileURL()
+
+            nowPlayingKeeper.removeAll()
+            nowPlayingKeeper.insert(sound.id)
+
+            AudioPlayer.shared = AudioPlayer(url: url, update: { [weak self] state in
+                guard let self else { return }
+                if state?.activity == .stopped {
+                    self.nowPlayingKeeper.removeAll()
+
+                    guard case .loaded(let sounds) = self.state else { return }
+
+                    if self.isPlayingPlaylist {
+                        self.currentTrackIndex += 1
+
+                        if self.currentTrackIndex >= sounds.count {
+                            self.doPlaylistCleanup()
+                            return
+                        }
+
+                        self.play(sounds[self.currentTrackIndex])
+                    }
+                }
+            })
+
+            AudioPlayer.shared?.togglePlay()
+        } catch {
+            if sound.isFromServer ?? false {
+                showServerSoundNotAvailableAlert(sound)
+                // Disregarding the case of the sound not being in the Bundle as this is highly unlikely since the launch of the sync system.
+            }
+        }
+    }
+
+    func stopPlaying() {
+        if nowPlayingKeeper.count > 0 {
+            AudioPlayer.shared?.togglePlay()
+            nowPlayingKeeper.removeAll()
+            doPlaylistCleanup()
+        }
+    }
+
+    private func playAllSoundsOneAfterTheOther() {
+        guard case .loaded(let sounds) = state else { return }
+        guard let firstSound = sounds.first else { return }
+        isPlayingPlaylist = true
+        play(firstSound)
+    }
+
+    private func doPlaylistCleanup() {
+        currentTrackIndex = 0
+        isPlayingPlaylist = false
     }
 }
 

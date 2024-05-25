@@ -14,11 +14,7 @@ class FolderDetailViewViewModel: ObservableObject {
 
     @Published var sounds = [Sound]()
     @Published var soundSortOption: Int = FolderSoundSortOption.titleAscending.rawValue
-    
-    // Playlist
-    @Published var isPlayingPlaylist: Bool = false
-    private var currentTrackIndex: Int = 0
-    
+
     // Alerts
     @Published var alertTitle: String = ""
     @Published var alertMessage: String = ""
@@ -101,30 +97,6 @@ class FolderDetailViewViewModel: ObservableObject {
 
     private func sortByDateAddedDescending(_ sounds: inout [Sound]) {
         sounds.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
-    }
-}
-
-// MARK: - Playlist
-
-extension FolderDetailViewViewModel {
-
-    func playAllSoundsOneAfterTheOther() {
-        guard let firstSound = sounds.first else { return }
-        isPlayingPlaylist = true
-        // play(firstSound)
-    }
-
-    func playFrom(sound: Sound) {
-        guard let soundIndex = sounds.firstIndex(where: { $0.id == sound.id }) else { return }
-        let soundInArray = sounds[soundIndex]
-        currentTrackIndex = soundIndex
-        isPlayingPlaylist = true
-        // play(soundInArray)
-    }
-
-    func doPlaylistCleanup() {
-        currentTrackIndex = 0
-        isPlayingPlaylist = false
     }
 }
 

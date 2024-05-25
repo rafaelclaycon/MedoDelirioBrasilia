@@ -118,7 +118,7 @@ struct FolderDetailView: View {
             viewModel.reloadSounds()
         }
         .onDisappear {
-            if viewModel.isPlayingPlaylist {
+            if soundListViewModel.isPlayingPlaylist {
                 soundListViewModel.stopPlaying()
             }
         }
@@ -133,13 +133,9 @@ struct FolderDetailView: View {
         HStack(spacing: 16) {
             if currentSoundsListMode.wrappedValue == .regular {
                 Button {
-                    if viewModel.isPlayingPlaylist {
-                        soundListViewModel.stopPlaying()
-                    } else {
-                        viewModel.playAllSoundsOneAfterTheOther()
-                    }
+                    soundListViewModel.playStopPlaylist()
                 } label: {
-                    Image(systemName: viewModel.isPlayingPlaylist ? "stop.fill" : "play.fill")
+                    Image(systemName: soundListViewModel.isPlayingPlaylist ? "stop.fill" : "play.fill")
                 }
                 .disabled(viewModel.sounds.isEmpty)
             } else {
@@ -210,7 +206,7 @@ struct FolderDetailView: View {
             } label: {
                 Image(systemName: "ellipsis.circle")
             }
-            .disabled(viewModel.isPlayingPlaylist || viewModel.sounds.isEmpty)
+            .disabled(soundListViewModel.isPlayingPlaylist || viewModel.sounds.isEmpty)
         }
     }
     
