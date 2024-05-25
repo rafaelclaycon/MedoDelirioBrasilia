@@ -11,6 +11,8 @@ struct ReactionsView: View {
 
     @StateObject private var viewModel = ReactionsViewViewModel()
 
+    @State private var currentSoundsListMode: SoundsListMode = .regular
+
     // iPad Grid Layout
     @State private var columns: [GridItem] = []
     @Environment(\.sizeCategory) var sizeCategory
@@ -56,7 +58,8 @@ struct ReactionsView: View {
                             ForEach(reactions) { reaction in
                                 NavigationLink {
                                     ReactionDetailView(
-                                        viewModel: .init(reaction: reaction)
+                                        reaction: reaction,
+                                        currentSoundsListMode: $currentSoundsListMode
                                     )
                                 } label: {
                                     ReactionCell(reaction: reaction)
