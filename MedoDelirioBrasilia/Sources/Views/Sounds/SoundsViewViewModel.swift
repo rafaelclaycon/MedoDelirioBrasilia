@@ -103,7 +103,7 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
                 }
             }
 
-            let sortOption: SoundSortOption = SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .dateAddedDescending
+            let sortOption: SoundSortOption = SoundSortOption(rawValue: UserSettings.mainSoundListSoundSortOption()) ?? .dateAddedDescending
             sortSounds(by: sortOption)
         } catch {
             print("Erro")

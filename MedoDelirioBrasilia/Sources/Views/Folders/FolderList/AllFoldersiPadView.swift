@@ -19,10 +19,11 @@ struct AllFoldersiPadView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .center) {
-                FolderList(updateFolderList: $updateFolderList,
-                           deleteFolderAide: $deleteFolderAide,
-                           folderIdForEditing: $folderIdForEditing)
-                    .environmentObject(deleteFolderAideiPhone)
+                FolderList(
+                    updateFolderList: $updateFolderList,
+                    folderIdForEditing: $folderIdForEditing
+                )
+                .environmentObject(deleteFolderAideiPhone)
             }
             .padding(.horizontal)
             .padding(.top, 7)
@@ -61,10 +62,9 @@ struct AllFoldersiPadView: View {
 
 }
 
-struct AllFoldersiPadView_Previews: PreviewProvider {
-
-    static var previews: some View {
-        AllFoldersiPadView(isShowingFolderInfoEditingSheet: .constant(false), updateFolderList: .constant(false))
-    }
-
+#Preview {
+    AllFoldersiPadView(
+        isShowingFolderInfoEditingSheet: .constant(false),
+        updateFolderList: .constant(false)
+    )
 }
