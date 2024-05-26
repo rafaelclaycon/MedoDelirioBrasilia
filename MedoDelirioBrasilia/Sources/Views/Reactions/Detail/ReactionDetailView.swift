@@ -10,7 +10,8 @@ import SwiftUI
 struct ReactionDetailView: View {
 
     @StateObject var viewModel: ReactionDetailViewModel
-    
+    @StateObject private var soundListViewModel: SoundListViewModel<Sound>
+
     @State private var columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
 
     // MARK: - Computed Properties
@@ -25,16 +26,31 @@ struct ReactionDetailView: View {
         return sounds.isEmpty
     }
 
+    // MARK: - Initializer
+
+    init(
+        reaction: Reaction,
+        currentSoundsListMode: Binding<SoundsListMode>
+    ) {
+        let viewModel = ReactionDetailViewModel(reaction: reaction)
+
+        self._viewModel = StateObject(wrappedValue: viewModel)
+
+        let soundListViewModel = SoundListViewModel<Sound>(
+            data: viewModel.soundsPublisher,
+            menuOptions: [.sharingOptions(), .playFromThisSound(), .removeFromFolder()],
+            currentSoundsListMode: currentSoundsListMode
+        )
+
+        self._soundListViewModel = StateObject(wrappedValue: soundListViewModel)
+    }
+
     // MARK: - View Body
 
     var body: some View {
         GeometryReader { geometry in
             SoundList(
-                viewModel: .init(
-                    data: viewModel.soundsPublisher,
-                    menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
-                    currentSoundsListMode: .constant(.regular)
-                ),
+                viewModel: soundListViewModel,
                 stopShowingFloatingSelector: .constant(nil),
                 headerView: AnyView(
                     ReactionDetailHeader(
@@ -133,23 +149,21 @@ struct ReactionDetailView: View {
     @ViewBuilder func toolbarControls() -> some View {
         HStack(spacing: 15) {
             Button {
-//                if viewModel.isPlayingPlaylist {
-//                    viewModel.stopPlaying()
-//                } else {
-//                    viewModel.playAllSoundsOneAfterTheOther()
-//                }
+                soundListViewModel.playStopPlaylist()
             } label: {
-                Image(systemName: "play.fill")
+                Image(systemName: soundListViewModel.isPlayingPlaylist ? "stop.fill" : "play.fill")
             }
             .disabled(soundArrayIsEmpty)
 
             Menu {
                 Section {
                     Button {
-                        // viewModel.startSelecting()
+                        soundListViewModel.startSelecting()
                     } label: {
-                        // Label(currentSoundsListMode == .selection ? "Cancelar Seleção" : "Selecionar", systemImage: currentSoundsListMode == .selection ? "xmark.circle" : "checkmark.circle")
-                        Label("Selecionar", systemImage: "checkmark.circle")
+                        Label(
+                            soundListViewModel.currentSoundsListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",
+                            systemImage: soundListViewModel.currentSoundsListMode.wrappedValue == .selection ? "xmark.circle" : "checkmark.circle"
+                        )
                     }
                 }
 
@@ -172,5 +186,8 @@ struct ReactionDetailView: View {
 }
 
 #Preview {
-    ReactionDetailView(viewModel: .init(reaction: .acidMock))
+    ReactionDetailView(
+        reaction: .acidMock,
+        currentSoundsListMode: .constant(.regular)
+    )
 }
