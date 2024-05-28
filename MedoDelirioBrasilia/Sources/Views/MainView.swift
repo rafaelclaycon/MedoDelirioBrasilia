@@ -56,13 +56,13 @@ struct MainView: View {
                     }
                     .tag(PhoneTab.sounds)
 
-                    //                NavigationView {
-                    //                    CollectionsView()
-                    //                }
-                    //                .tabItem {
-                    //                    Label("Coleções", systemImage: "rectangle.grid.2x2.fill")
-                    //                }
-                    //                .tag(PhoneTab.collections)
+                    NavigationView {
+                        ReactionsView()
+                    }
+                    .tabItem {
+                        Label("Reações", systemImage: "rectangle.grid.2x2.fill")
+                    }
+                    .tag(PhoneTab.reactions)
 
                     NavigationView {
                         SongsView()
@@ -173,7 +173,8 @@ struct MainView: View {
                     .interactiveDismissDisabled(UIDevice.current.userInterfaceIdiom == .phone ? true : false)
 
             case .whatsNew:
-                EmptyView()
+                IntroducingReactionsView(isBeingShown: $showingModalView)
+                    .interactiveDismissDisabled()
 
             case .retrospective:
                 EmptyView()
@@ -213,8 +214,11 @@ struct MainView: View {
     }
 
     private func displayOnboardingIfNeeded() {
-        if AppPersistentMemory.getHasShownNotificationsOnboarding() == false {
+        if !AppPersistentMemory.hasShownNotificationsOnboarding() {
             subviewToOpen = .onboarding
+            showingModalView = true
+        } else if !AppPersistentMemory.hasSeenReactionsWhatsNewScreen() {
+            subviewToOpen = .whatsNew
             showingModalView = true
         }
     }

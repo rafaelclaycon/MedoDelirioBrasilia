@@ -380,10 +380,9 @@ struct SoundsView: View {
                     await viewModel.sendUserPersonalTrendsToServerIfEnabled()
                 }
 
-                if AppPersistentMemory.getHasShownNotificationsOnboarding() == false {
+                if AppPersistentMemory.hasShownNotificationsOnboarding() == false {
                     subviewToOpen = .onboardingView
                     showingModalView = true
-                    AppPersistentMemory.setHasSeen70WhatsNewScreen(to: true) // Prevent the What's New screen from appearing when switching tabs
                 }
 
 //                if !AppPersistentMemory.getHasSeenRecurringDonationBanner() {

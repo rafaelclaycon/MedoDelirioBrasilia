@@ -60,7 +60,16 @@ struct SidebarView: View {
                     label: {
                         Label("Favoritos", systemImage: "star")
                     })
-                
+
+                NavigationLink(
+                    destination: ReactionsView(),
+                    tag: PadScreen.reactions,
+                    selection: $state,
+                    label: {
+                        Label("Reações", systemImage: "rectangle.grid.2x2")
+                    }
+                )
+
                 NavigationLink(
                     destination: SoundsView(
                         viewModel: SoundsViewViewModel(

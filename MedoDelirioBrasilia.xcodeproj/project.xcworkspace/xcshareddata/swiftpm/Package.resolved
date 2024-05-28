@@ -16,7 +16,7 @@
       "location" : "https://github.com/ashleymills/Reachability.swift",
       "state" : {
         "branch" : "master",
-        "revision" : "7b7018a69c84ea94ac2a38dff626e16ea81d1db9"
+        "revision" : "57da4b1270cab7c2228919eabc0e4e1bf93e48ea"
       }
     },
     {
@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stephencelis/SQLite.swift",
       "state" : {
-        "revision" : "e78ae0220e17525a15ac68c697a155eb7a672a8e",
-        "version" : "0.15.0"
+        "revision" : "a95fc6df17d108bd99210db5e8a9bac90fe984b8",
+        "version" : "0.15.3"
       }
     },
     {

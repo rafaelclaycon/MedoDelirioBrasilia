@@ -148,10 +148,6 @@ struct AuthorDetailView: View {
             SoundList(
                 viewModel: soundListViewModel,
                 stopShowingFloatingSelector: .constant(nil),
-                emptyStateView: AnyView(
-                    NoSoundsView()
-                        .padding(.horizontal, 25)
-                ),
                 headerView: AnyView(
                     VStack{
                         if let photo = author.photo {
@@ -212,6 +208,32 @@ struct AuthorDetailView: View {
                         .padding(.horizontal, 20)
                         .padding(.top, 10)
                         .padding(.bottom, 5)
+                    }
+                ),
+                loadingView: AnyView(
+                    VStack {
+                        HStack(spacing: 10) {
+                            ProgressView()
+
+                            Text("Carregando sons...")
+                                .foregroundColor(.gray)
+                        }
+                        .frame(maxWidth: .infinity)
+                    }
+                ),
+                emptyStateView: AnyView(
+                    NoSoundsView()
+                        .padding(.horizontal, 25)
+                ),
+                errorView: AnyView(
+                    VStack {
+                        HStack(spacing: 10) {
+                            ProgressView()
+
+                            Text("Erro ao carregar sons.")
+                                .foregroundColor(.gray)
+                        }
+                        .frame(maxWidth: .infinity)
                     }
                 )
             )

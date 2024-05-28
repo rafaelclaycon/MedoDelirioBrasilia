@@ -18,7 +18,7 @@ class NetworkRabbit: NetworkRabbitProtocol {
 
     // NetworkRabbit(serverPath: "https://654e-2804-1b3-8640-96df-d0b4-dd5d-6922-bb1b.sa.ngrok.io/api/")
     static let shared = NetworkRabbit(
-        serverPath: CommandLine.arguments.contains("-UNDER_DEVELOPMENT") ? "http://127.0.0.1:8080/api/" : "http://medodelirioios.online:8080/api/"
+        serverPath: CommandLine.arguments.contains("-UNDER_DEVELOPMENT") ? "http://127.0.0.1:8080/api/" : "http://medodelirioios.xyz:8080/api/"
     )
 
     init(serverPath: String) {
@@ -192,11 +192,26 @@ class NetworkRabbit: NetworkRabbitProtocol {
     }
 }
 
-enum NetworkRabbitError: Error {
+enum NetworkRabbitError: Error, LocalizedError {
 
     case unexpectedStatusCode
     case responseWasNotAnHTTPURLResponse
     case invalidResponse
     case httpRequestFailed
     case errorFetchingUpdateEvents(String)
+
+    var errorDescription: String? {
+        switch self {
+        case .unexpectedStatusCode:
+            return "O servidor respondeu com um código de status inesperado."
+        case .responseWasNotAnHTTPURLResponse:
+            return "A resposta da rede não foi uma resposta HTTP URL."
+        case .invalidResponse:
+            return "A resposta do servidor é inválida ou está corrompida."
+        case .httpRequestFailed:
+            return "A requisição HTTP falhou devido a um erro de rede ou servidor."
+        case .errorFetchingUpdateEvents(let errorMessage):
+            return "Erro ao obter UpdateEvents: \(errorMessage)"
+        }
+    }
 }
