@@ -8,6 +8,8 @@
 import Foundation
 import SQLite
 
+private typealias Expression = SQLite.Expression
+
 extension LocalDatabase {
 
     func insert(genre newGenre: MusicGenre) throws {
