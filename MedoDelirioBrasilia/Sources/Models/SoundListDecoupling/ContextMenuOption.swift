@@ -75,9 +75,8 @@ extension ContextMenuOption {
         ContextMenuOption(
             symbol: { _ in "info.circle" },
             title: { _ in "Ver Detalhes" }
-        ) { _,_ in
-            // Implement the action to view details
-            print("Viewing Details")
+        ) { sound, delegate in
+            delegate.showDetails(for: sound)
         }
     }
 }
