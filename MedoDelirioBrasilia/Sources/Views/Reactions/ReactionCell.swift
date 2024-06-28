@@ -12,6 +12,10 @@ struct ReactionCell: View {
 
     let reaction: Reaction
 
+    @State private var isLoading: Bool = true
+
+    // MARK: - Computed Properties
+
     private var cellHeight: CGFloat {
         UIDevice.isiPhone ? 100 : 120
     }
@@ -19,6 +23,8 @@ struct ReactionCell: View {
     private var reduceTextSize: Bool {
         UIDevice.isSmallDevice && reaction.title.count > 8
     }
+
+    // MARK: - View Body
 
     var body: some View {
         HStack {
@@ -38,12 +44,19 @@ struct ReactionCell: View {
             HStack {
                 KFImage(URL(string: reaction.image))
                     .placeholder {
-                        Image(systemName: "photo")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 45)
-                            .foregroundColor(.gray)
+                        if isLoading {
+                            ProgressView()
+                                .scaleEffect(2)
+                        } else {
+                            Image(systemName: "photo")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 45)
+                                .foregroundColor(.gray)
+                        }
                     }
+                    .onSuccess { _ in isLoading = false }
+                    .onFailure { _ in isLoading = false }
                     .resizable()
                     .scaledToFill()
             }
