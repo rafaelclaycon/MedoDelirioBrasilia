@@ -6,20 +6,24 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct DiagnosticsView: View {
 
-    @State var showServerConnectionTestAlert = false
-    @State var serverConnectionTestAlertTitle = ""
-    
-    @State var installId = UIDevice.customInstallId
-    @State var showInstallIdCopiedAlert = false
+    @State private var showServerConnectionTestAlert = false
+    @State private var serverConnectionTestAlertTitle = ""
+
+    @State private var installId = UIDevice.customInstallId
+    @State private var showInstallIdCopiedAlert = false
+
+    @State private var diskImageCacheText: String = ""
+    @State private var cleanImageCacheAlert: Bool = false
 
     @State private var showUpdateDateOnUI: Bool = UserSettings.getShowUpdateDateOnUI()
 
-    @State var shareLogs: [UserShareLog]?
+    @State private var shareLogs: [UserShareLog]?
     //@State var networkLogs: [NetworkCallLog]?
-    
+
     var body: some View {
         Form {
             Section {
@@ -49,6 +53,23 @@ struct DiagnosticsView: View {
                 Text("ID da instalação")
             } footer: {
                 Text("Esse código identifica apenas a instalação do app e é renovado caso você o desinstale e instale novamente. Toque nele uma vez para copiar.")
+            }
+
+            Section("Cache de imagens") {
+                Text(diskImageCacheText)
+
+                Button("Limpar cache") {
+                    Task {
+                        ImageCache.default.clearMemoryCache()
+                        ImageCache.default.clearDiskCache {
+                            updateImageCacheSizeText()
+                            cleanImageCacheAlert = true
+                        }
+                    }
+                }
+                .alert(isPresented: $cleanImageCacheAlert) {
+                    Alert(title: Text("Cache de imagens limpado com sucesso"), dismissButton: .default(Text("OK")))
+                }
             }
 
             Section {
@@ -101,6 +122,8 @@ struct DiagnosticsView: View {
         .navigationTitle("Diagnóstico")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
+            updateImageCacheSizeText()
+
             shareLogs = try? LocalDatabase.shared.getAllUserShareLogs()
             shareLogs?.sort(by: { $0.dateTime > $1.dateTime })
             /*networkLogs = try? database.getAllNetworkCallLogs()
@@ -108,7 +131,21 @@ struct DiagnosticsView: View {
         }
     }
 
-    func getContentName(contentId: String) -> String {
+    // MARK: - Functions
+
+    private func updateImageCacheSizeText() {
+        ImageCache.default.calculateDiskStorageSize { result in
+            switch result {
+            case .success(let size):
+                let imageCacheSize = Double(size) / 1024 / 1024
+                diskImageCacheText = "Tamanho: \(imageCacheSize.formatted(.number.precision(.fractionLength(1)))) MB"
+            case .failure(let error):
+                diskImageCacheText = error.localizedDescription
+            }
+        }
+    }
+
+    private func getContentName(contentId: String) -> String {
         do {
             if let sound: Sound = try LocalDatabase.shared.sound(withId: contentId) {
                 return sound.title
