@@ -22,4 +22,6 @@ protocol SoundListDisplaying {
     func playFrom(sound: Sound)
 
     func removeFromFolder(_ sound: Sound)
+
+    func showDetails(for sound: Sound)
 }

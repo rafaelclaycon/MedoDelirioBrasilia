@@ -348,6 +348,12 @@ extension SoundListViewModel: SoundListDisplaying {
         selectedSound = sound
         // showSoundRemovalConfirmation(soundTitle: sound.title)
     }
+
+    func showDetails(for sound: Sound) {
+        selectedSound = sound
+        subviewToOpen = .soundDetail
+        showingModalView = true
+    }
 }
 
 // MARK: - Toast
