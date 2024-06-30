@@ -68,20 +68,22 @@ struct DonateToFloodVictimsBanner: View {
             }
             .padding(.top)
         } label: {
-            HStack(spacing: 15) {
+            HStack(spacing: 12) {
                 Image(systemName: bannerData.symbol)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 36)
+                    .frame(width: 30)
                     .foregroundColor(.red)
 
                 Text(bannerData.title)
+                    .font(.callout)
                     .foregroundColor(.red)
                     .bold()
                     .multilineTextAlignment(.leading)
             }
         }
-        .padding(.all, 20)
+        .padding(.vertical, 12)
+        .padding(.horizontal, 16)
         .foregroundStyle(.red)
         .background {
             RoundedRectangle(cornerRadius: 15)
