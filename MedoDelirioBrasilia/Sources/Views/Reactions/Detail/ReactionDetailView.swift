@@ -80,7 +80,8 @@ struct ReactionDetailView: View {
                     VStack(spacing: 40) {
                         Spacer()
 
-                        Image(systemName: "questionmark.square.dashed")
+                        Image(systemName: "pc")
+                            .symbolRenderingMode(.multicolor)
                             .resizable()
                             .scaledToFit()
                             .frame(height: 60)
