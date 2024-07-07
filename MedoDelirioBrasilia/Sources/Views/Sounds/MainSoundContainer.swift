@@ -32,6 +32,8 @@ struct MainSoundContainer: View {
 
     // Temporary banners
     @State private var shouldDisplayRecurringDonationBanner: Bool = false
+    @State private var donateBannerData: DynamicBanner = .init()
+    @State private var displayFloodBanner: Bool = false
 
     // MARK: - Environment Objects
 
@@ -129,6 +131,21 @@ struct MainSoundContainer: View {
 //                                RecurringDonationBanner(isBeingShown: $shouldDisplayRecurringDonationBanner)
 //                                    .padding(.horizontal, 10)
 //                            }
+
+                            if displayFloodBanner {
+                                DonateToFloodVictimsBanner(
+                                    bannerData: donateBannerData,
+                                    textCopyFeedback: {
+                                        viewModel.displayToast(
+                                            "checkmark",
+                                            .green,
+                                            toastText: $0,
+                                            displayTime: .seconds(3)
+                                        )
+                                    }
+                                )
+                                .padding(.horizontal, 10)
+                            }
                         }
                     ),
                     loadingView: AnyView(
@@ -274,10 +291,17 @@ struct MainSoundContainer: View {
 
             viewModel.reloadAllSounds()
             viewModel.reloadFavorites()
+
+            Task {
+                await checkAndPopulateFloodBanner()
+            }
         }
     }
+}
 
-    // MARK: - Auxiliary Views
+// MARK: - Auxiliary Views
+
+extension MainSoundContainer {
 
     @ViewBuilder func leadingToolbarControls() -> some View {
         if currentSoundsListMode.wrappedValue == .selection {
@@ -423,8 +447,11 @@ struct MainSoundContainer: View {
         }
         //.disabled(isLoadingSounds && viewModel.currentViewMode == .allSounds)
     }
+}
 
-    // MARK: - Functions
+// MARK: - Functions
+
+extension MainSoundContainer {
 
     private func selectionNavBarTitle(for viewModel: SoundListViewModel<Sound>) -> String {
         if viewModel.selectionKeeper.count == 0 {
@@ -442,6 +469,22 @@ struct MainSoundContainer: View {
         allSoundsViewModel.cancelSearchAndHighlight(id: soundId)
         trendsHelper.soundIdToGoTo = ""
         trendsHelper.youCanScrollNow = soundId
+    }
+
+    private func checkAndPopulateFloodBanner() async {
+        do {
+            let url = URL(string: NetworkRabbit.shared.serverPath + "v4/flood-banner-starting-version")!
+            let startDisplayingVersion: String = try await NetworkRabbit.get(from: url)
+
+            displayFloodBanner = startDisplayingVersion != Versioneer.appVersion
+            guard displayFloodBanner else { return }
+
+            let dataUrl = URL(string: NetworkRabbit.shared.serverPath + "v4/flood-banner")!
+            donateBannerData = try await NetworkRabbit.get(from: dataUrl)
+        } catch {
+            displayFloodBanner = false
+            print("Unable to check or populate the Flood Banner: \(error.localizedDescription)")
+        }
     }
 }
 
