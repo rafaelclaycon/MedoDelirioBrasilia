@@ -147,7 +147,7 @@ struct AuthorDetailView: View {
         VStack {
             SoundList(
                 viewModel: soundListViewModel,
-                stopShowingFloatingSelector: .constant(nil),
+                soundSearchTextIsEmpty: .constant(nil),
                 headerView: AnyView(
                     VStack{
                         if let photo = author.photo {

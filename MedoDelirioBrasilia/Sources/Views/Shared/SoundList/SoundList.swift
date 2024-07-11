@@ -12,7 +12,7 @@ struct SoundList: View {
     // MARK: - Dependencies
 
     @StateObject private var viewModel: SoundListViewModel<Sound>
-    private var stopShowingFloatingSelector: Binding<Bool?>
+    private var soundSearchTextIsEmpty: Binding<Bool?>
     private var allowSearch: Bool
     private var allowRefresh: Bool
     private var showSoundCountAtTheBottom: Bool
@@ -65,7 +65,7 @@ struct SoundList: View {
 
     init(
         viewModel: SoundListViewModel<Sound>,
-        stopShowingFloatingSelector: Binding<Bool?> = .constant(nil),
+        soundSearchTextIsEmpty: Binding<Bool?> = .constant(nil),
         allowSearch: Bool = false,
         allowRefresh: Bool = false,
         showSoundCountAtTheBottom: Bool = false,
@@ -79,7 +79,7 @@ struct SoundList: View {
         errorView: AnyView
     ) {
         self._viewModel = StateObject(wrappedValue: viewModel)
-        self.stopShowingFloatingSelector = stopShowingFloatingSelector
+        self.soundSearchTextIsEmpty = soundSearchTextIsEmpty
         self.allowSearch = allowSearch
         self.allowRefresh = allowRefresh
         self.showSoundCountAtTheBottom = showSoundCountAtTheBottom
@@ -276,7 +276,7 @@ struct SoundList: View {
                                 viewModel.iPadShareSheet
                             }
                             .onChange(of: viewModel.searchText) { text in
-                                stopShowingFloatingSelector.wrappedValue = !text.isEmpty
+                                soundSearchTextIsEmpty.wrappedValue = text.isEmpty
                             }
                             .onChange(of: viewModel.shareAsVideoResult.videoFilepath) { videoResultPath in
                                 if videoResultPath.isEmpty == false {
@@ -396,7 +396,7 @@ struct SoundList: View {
                     .padding(.horizontal)
                     .padding(
                         .bottom,
-                        UIDevice.isiPhone && (stopShowingFloatingSelector.wrappedValue != nil) ? Shared.Constants.toastViewBottomPaddingPhone : Shared.Constants.toastViewBottomPaddingPad
+                        UIDevice.isiPhone && (soundSearchTextIsEmpty.wrappedValue != nil) ? Shared.Constants.toastViewBottomPaddingPhone : Shared.Constants.toastViewBottomPaddingPad
                     )
                 }
                 .transition(.moveAndFade)

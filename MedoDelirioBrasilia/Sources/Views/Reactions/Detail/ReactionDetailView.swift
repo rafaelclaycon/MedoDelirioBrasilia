@@ -51,7 +51,7 @@ struct ReactionDetailView: View {
         GeometryReader { geometry in
             SoundList(
                 viewModel: soundListViewModel,
-                stopShowingFloatingSelector: .constant(nil),
+                soundSearchTextIsEmpty: .constant(nil),
                 headerView: AnyView(
                     ReactionDetailHeader(
                         title: viewModel.reaction.title,

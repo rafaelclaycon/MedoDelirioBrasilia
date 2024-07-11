@@ -17,7 +17,7 @@ struct MainSoundContainer: View {
 
     @State private var subviewToOpen: MainSoundContainerModalToOpen = .syncInfo
     @State private var showingModalView = false
-    @State private var stopShowingFloatingSelector: Bool? = false
+    @State private var soundSearchTextIsEmpty: Bool? = true
 
     // Folders
     @StateObject var deleteFolderAide = DeleteFolderViewAideiPhone()
@@ -67,7 +67,7 @@ struct MainSoundContainer: View {
         if viewModel.currentViewMode == .byAuthor {
             return authorSearchText.isEmpty
         } else {
-            return !(stopShowingFloatingSelector ?? false)
+            return soundSearchTextIsEmpty ?? false
         }
     }
 
@@ -103,7 +103,7 @@ struct MainSoundContainer: View {
             case .allSounds:
                 SoundList(
                     viewModel: allSoundsViewModel,
-                    stopShowingFloatingSelector: $stopShowingFloatingSelector,
+                    soundSearchTextIsEmpty: $soundSearchTextIsEmpty,
                     allowSearch: true,
                     allowRefresh: true,
                     showSoundCountAtTheBottom: true,
@@ -132,7 +132,7 @@ struct MainSoundContainer: View {
 //                                    .padding(.horizontal, 10)
 //                            }
 
-                            if displayFloodBanner {
+                            if displayFloodBanner, soundSearchTextIsEmpty ?? false {
                                 DonateToFloodVictimsBanner(
                                     bannerData: donateBannerData,
                                     textCopyFeedback: {
@@ -180,7 +180,7 @@ struct MainSoundContainer: View {
             case .favorites:
                 SoundList(
                     viewModel: favoritesViewModel,
-                    stopShowingFloatingSelector: $stopShowingFloatingSelector,
+                    soundSearchTextIsEmpty: $soundSearchTextIsEmpty,
                     allowSearch: true,
                     loadingView: AnyView(
                         VStack {
