@@ -144,6 +144,12 @@ struct ReactionDetailView: View {
         .oneTimeTask {
             await viewModel.loadSounds()
         }
+        .onAppear {
+            Analytics.send(
+                originatingScreen: "ReactionDetailView",
+                action: "didViewReaction(\(viewModel.reaction.title))"
+            )
+        }
         .edgesIgnoringSafeArea(.top)
     }
 

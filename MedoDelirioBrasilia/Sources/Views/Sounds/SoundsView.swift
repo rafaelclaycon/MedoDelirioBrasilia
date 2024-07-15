@@ -540,7 +540,7 @@ struct SoundsView: View {
                     }
 
                     if pluralization == .plural {
-                        Analytics.sendUsageMetricToServer(
+                        Analytics.send(
                             originatingScreen: "SoundsView",
                             action: "didAddManySoundsToFolder(\(selectedCount))"
                         )
@@ -554,7 +554,7 @@ struct SoundsView: View {
                         toastText: "Imagens salvas com sucesso."
                     )
 
-                    Analytics.sendUsageMetricToServer(
+                    Analytics.send(
                         originatingScreen: "SoundsView",
                         action: "didExportRetro2023Images(\(retroExportAnalytics))"
                     )

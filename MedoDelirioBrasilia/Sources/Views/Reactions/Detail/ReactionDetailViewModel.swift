@@ -68,6 +68,10 @@ class ReactionDetailViewModel: ObservableObject {
             DispatchQueue.main.async {
                 self.state = .error(error.localizedDescription)
             }
+            Analytics.send(
+                originatingScreen: "ReactionDetailView",
+                action: "hadIssueWithReaction(\(self.reaction.title) - \(error.localizedDescription))"
+            )
         }
     }
 }

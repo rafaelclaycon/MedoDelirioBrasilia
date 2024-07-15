@@ -306,7 +306,7 @@ struct SoundList: View {
                                     }
 
                                     if viewModel.pluralization == .plural {
-                                        Analytics.sendUsageMetricToServer(
+                                        Analytics.send(
                                             originatingScreen: "SoundsView",
                                             action: "didAddManySoundsToFolder(\(selectedCount))"
                                         )

@@ -453,14 +453,14 @@ extension SoundListViewModel {
             stopSelecting()
             guard let refreshAction else { return }
             refreshAction()
-            Analytics.sendUsageMetricToServer(
+            Analytics.send(
                 originatingScreen: "SoundsView",
                 action: "didRemoveManySoundsFromFavorites(\(selectedCount))"
             )
         } else {
             addSelectedToFavorites()
             stopSelecting()
-            Analytics.sendUsageMetricToServer(
+            Analytics.send(
                 originatingScreen: "SoundsView",
                 action: "didAddManySoundsToFavorites(\(selectedCount))"
             )

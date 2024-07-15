@@ -5,7 +5,7 @@
 //  Created by Rafael Claycon Schmitt on 28/06/22.
 //
 
-import Foundation
+import SwiftUI
 import Combine
 
 class ReactionsViewViewModel: ObservableObject {
@@ -29,9 +29,19 @@ class ReactionsViewViewModel: ObservableObject {
             let url = URL(string: NetworkRabbit.shared.serverPath + "v4/reactions")!
             var reactions: [Reaction] = try await NetworkRabbit.get(from: url)
             reactions.sort(by: { $0.position < $1.position })
-            state = .loaded(reactions)
+
+            DispatchQueue.main.async {
+                self.state = .loaded(reactions)
+            }
+
+            Analytics.send(
+                originatingScreen: "ReactionsView",
+                action: "didViewReactionsTab"
+            )
         } catch {
-            state = .error(error.localizedDescription)
+            DispatchQueue.main.async {
+                self.state = .error(error.localizedDescription)
+            }
         }
     }
 }
