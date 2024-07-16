@@ -173,7 +173,8 @@ struct SettingsView: View {
                     showAskForMoneyView = shouldDisplay
                 }
                 NetworkRabbit.shared.getPixDonorNames { donors in
-                    self.donors = donors
+                    let copy = donors?.shuffled()
+                    self.donors = copy
                 }
             }
             .popover(isPresented: $showEmailClientConfirmationDialog) {

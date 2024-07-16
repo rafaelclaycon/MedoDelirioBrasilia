@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "creator-80.png",
+      "filename" : "wanda-80.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "creator-160.png",
+      "filename" : "wanda-160.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "creator-240.png",
+      "filename" : "wanda-240.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
