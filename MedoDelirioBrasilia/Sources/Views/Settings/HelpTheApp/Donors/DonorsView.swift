@@ -16,14 +16,35 @@ struct DonorsView: View {
         return filteredDonors?.count ?? 0 > 0
     }
 
+    private var firstPart: [Donor] {
+        guard let donors else { return [] }
+        let middleIndex = donors.count / 2
+        return Array(donors[..<middleIndex])
+    }
+
+    private var secondPart: [Donor] {
+        guard let donors else { return [] }
+        let middleIndex = donors.count / 2
+        return Array(donors[middleIndex...])
+    }
+
     var body: some View {
         if donors == nil {
             EmptyView()
         } else {
-            HStack(spacing: 15) {
-                ForEach(donors!, id: \.name) { donor in
-                    DonorView(donor: donor)
-                        .padding(.bottom, hasAnyRepeatOrRecurringDonor ? 16 : 0)
+            VStack(alignment: .leading, spacing: 10) {
+                HStack(spacing: 15) {
+                    ForEach(firstPart, id: \.name) { donor in
+                        DonorView(donor: donor)
+                            .padding(.bottom, hasAnyRepeatOrRecurringDonor ? 16 : 0)
+                    }
+                }
+
+                HStack(spacing: 15) {
+                    ForEach(secondPart, id: \.name) { donor in
+                        DonorView(donor: donor)
+                            .padding(.bottom, hasAnyRepeatOrRecurringDonor ? 16 : 0)
+                    }
                 }
             }
         }
