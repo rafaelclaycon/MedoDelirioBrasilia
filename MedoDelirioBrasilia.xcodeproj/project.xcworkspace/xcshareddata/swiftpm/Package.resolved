@@ -33,8 +33,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/garriguv/SQLiteMigrationManager.swift",
       "state" : {
-        "revision" : "1ae71f0b0badb1538fad655d4b8894ad2a01846a",
-        "version" : "0.8.1"
+        "revision" : "42281bf1111a4bba144c5ba138724514383ff3ab",
+        "version" : "0.8.3"
       }
     }
   ],
