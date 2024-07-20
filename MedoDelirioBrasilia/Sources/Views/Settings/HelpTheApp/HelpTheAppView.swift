@@ -36,7 +36,7 @@ struct HelpTheAppView: View {
                     .fixedSize(horizontal: false, vertical: true)
                 
                 if donors != nil {
-                    Text("ÚLTIMAS CONTRIBUIÇÕES:")
+                    Text("ÚLTIMAS DOAÇÕES:")
                         .font(.footnote)
                         .bold()
                     
