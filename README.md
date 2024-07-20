@@ -57,7 +57,10 @@ Rafael C. Schmitt – [@mitt_rafael@toot.wales](https://toot.wales/@mitt_rafael)
 
 Distributed under the MIT license. See ``LICENSE`` for more information.
 
-### GitHub's `About` section numbers breakdown:
+### GitHub's `About` section numbers breakdown
+
+Aka the little text description of this repo on the top right (web).
+
 - Star review numbers come from App Store Connect, filtering by All Countries and Regions.
 - Total number of downloads and monthly active users are anonymously and independently collected by the app, with no third-party involvement.
 - The total download count includes redownloads.
