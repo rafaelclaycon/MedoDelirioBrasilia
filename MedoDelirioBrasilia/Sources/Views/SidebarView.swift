@@ -21,6 +21,7 @@ struct SidebarView: View {
 
     // Trends
     @EnvironmentObject var trendsHelper: TrendsHelper
+    @Environment(\.push) var push
 
     var body: some View {
         List {
@@ -61,14 +62,15 @@ struct SidebarView: View {
                         Label("Favoritos", systemImage: "star")
                     })
 
-                NavigationLink(
-                    destination: ReactionsView(),
-                    tag: PadScreen.reactions,
-                    selection: $state,
-                    label: {
-                        Label("Reações", systemImage: "rectangle.grid.2x2")
-                    }
-                )
+                // FIXME: Bring Reactions to iPad in the future.
+//                NavigationLink(
+//                    destination: ReactionsView(),
+//                    tag: PadScreen.reactions,
+//                    selection: $state,
+//                    label: {
+//                        Label("Reações", systemImage: "rectangle.grid.2x2")
+//                    }
+//                )
 
                 NavigationLink(
                     destination: SoundsView(
@@ -95,14 +97,6 @@ struct SidebarView: View {
                     label: {
                         Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
                     })
-                
-//                NavigationLink(
-//                    destination: CollectionsView(),
-//                    tag: PadScreen.collections,
-//                    selection: $state,
-//                    label: {
-//                        Label("Coleções", systemImage: "rectangle.grid.2x2")
-//                    })
             }
             
             Section("Mais") {
@@ -168,14 +162,12 @@ struct SidebarView: View {
     }
 }
 
-struct SidebarView_Previews: PreviewProvider {
-    static var previews: some View {
-        SidebarView(
-            state: .constant(PadScreen.allSounds),
-            isShowingSettingsSheet: .constant(false),
-            isShowingFolderInfoEditingSheet: .constant(false),
-            updateFolderList: .constant(false),
-            currentSoundsListMode: .constant(.regular)
-        )
-    }
+#Preview {
+    SidebarView(
+        state: .constant(PadScreen.allSounds),
+        isShowingSettingsSheet: .constant(false),
+        isShowingFolderInfoEditingSheet: .constant(false),
+        updateFolderList: .constant(false),
+        currentSoundsListMode: .constant(.regular)
+    )
 }

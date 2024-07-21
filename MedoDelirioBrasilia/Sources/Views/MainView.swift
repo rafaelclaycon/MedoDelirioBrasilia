@@ -120,7 +120,7 @@ struct MainView: View {
                     trendsHelper.timeIntervalToGoTo = .allTime
                 })
             } else {
-                NavigationView {
+                NavigationSplitView {
                     SidebarView(
                         state: $state,
                         isShowingSettingsSheet: $isShowingSettingsSheet,
@@ -132,23 +132,28 @@ struct MainView: View {
                     .environmentObject(settingsHelper)
                     .environmentObject(networkMonitor)
                     .environmentObject(syncValues)
-
-                    MainSoundContainer(
-                        viewModel: .init(
-                            currentViewMode: .allSounds,
-                            soundSortOption: UserSettings.mainSoundListSoundSortOption(),
-                            authorSortOption: AuthorSortOption.nameAscending.rawValue,
+                } detail: {
+                    NavigationStack(path: $soundsPath) {
+                        MainSoundContainer(
+                            viewModel: .init(
+                                currentViewMode: .allSounds,
+                                soundSortOption: UserSettings.mainSoundListSoundSortOption(),
+                                authorSortOption: AuthorSortOption.nameAscending.rawValue,
+                                currentSoundsListMode: $currentSoundsListMode,
+                                syncValues: syncValues
+                            ),
                             currentSoundsListMode: $currentSoundsListMode,
-                            syncValues: syncValues
-                        ),
-                        currentSoundsListMode: $currentSoundsListMode,
-                        showSettings: .constant(false)
-                    )
-                    .environmentObject(trendsHelper)
-                    .environmentObject(settingsHelper)
-                    .environmentObject(networkMonitor)
+                            showSettings: .constant(false)
+                        )
+                        .environmentObject(trendsHelper)
+                        .environmentObject(settingsHelper)
+                        .environmentObject(networkMonitor)
+                        .navigationDestination(for: GeneralNavigationDestination.self) { screen in
+                            GeneralRouter(destination: screen)
+                        }
+                    }
                 }
-                .navigationViewStyle(DoubleColumnNavigationViewStyle())
+                .environment(\.push, PushAction { soundsPath.append($0) })
                 .sheet(isPresented: $isShowingSettingsSheet) {
                     SettingsCasingWithCloseView(isBeingShown: $isShowingSettingsSheet)
                         .environmentObject(settingsHelper)
