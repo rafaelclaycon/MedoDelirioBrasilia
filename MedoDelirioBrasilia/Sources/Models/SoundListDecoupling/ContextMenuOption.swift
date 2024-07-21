@@ -112,7 +112,7 @@ extension ContextMenuOption {
             symbol: { _ in "exclamationmark.bubble"},
             title: { _ in "Sugerir Outro Nome de Autor"}
         ) { sound, delegate in
-//            delegate.
+            delegate.suggestOtherAuthorName(for: sound)
         }
     }
 }

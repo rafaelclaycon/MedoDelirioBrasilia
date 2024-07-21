@@ -364,6 +364,11 @@ extension SoundListViewModel: SoundListDisplaying {
         }
         authorToOpen = author
     }
+
+    func suggestOtherAuthorName(for sound: Sound) {
+        subviewToOpen = .authorIssueEmailPicker(sound)
+        showingModalView = true
+    }
 }
 
 // MARK: - Toast

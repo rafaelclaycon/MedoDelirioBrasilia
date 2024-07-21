@@ -26,4 +26,5 @@ enum SoundListModalToOpen {
     case addToFolder
     case soundDetail
     case soundIssueEmailPicker
+    case authorIssueEmailPicker(Sound)
 }

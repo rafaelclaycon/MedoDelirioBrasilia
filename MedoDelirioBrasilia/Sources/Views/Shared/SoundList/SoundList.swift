@@ -271,6 +271,14 @@ struct SoundList: View {
                                         subject: Shared.issueSuggestionEmailSubject,
                                         emailBody: Shared.issueSuggestionEmailBody
                                     )
+
+                                case .authorIssueEmailPicker(let sound):
+                                    EmailAppPickerView(
+                                        isBeingShown: $viewModel.showingModalView,
+                                        didCopySupportAddress: .constant(false),
+                                        subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, sound.title),
+                                        emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, sound.authorName ?? "", sound.id)
+                                    )
                                 }
                             }
                             .sheet(isPresented: $viewModel.isShowingShareSheet) {

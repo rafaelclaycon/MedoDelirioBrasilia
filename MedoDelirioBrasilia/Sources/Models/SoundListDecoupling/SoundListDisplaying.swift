@@ -26,4 +26,6 @@ protocol SoundListDisplaying {
     func showDetails(for sound: Sound)
 
     func showAuthor(withId authorId: String)
+
+    func suggestOtherAuthorName(for sound: Sound)
 }
