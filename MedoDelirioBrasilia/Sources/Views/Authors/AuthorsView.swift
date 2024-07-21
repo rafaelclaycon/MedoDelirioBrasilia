@@ -42,7 +42,9 @@ struct AuthorsView: View {
             ]
         }
     }
-    
+
+    @Environment(\.push) var push
+
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 20) {
@@ -50,15 +52,11 @@ struct AuthorsView: View {
                     NoSearchResultsView(searchText: $searchText)
                 } else {
                     ForEach(searchResults) { author in
-                        NavigationLink(
-                            destination: AuthorDetailView(
-                                author: author,
-                                currentSoundsListMode: $currentSoundsListMode
-                            )
-                        ) {
-                            AuthorCell(author: author)
-                                .padding(.horizontal, 5)
-                        }
+                        AuthorCell(author: author)
+                            .padding(.horizontal, 5)
+                            .onTapGesture {
+                                push(GeneralNavigationDestination.authorDetail(author))
+                            }
                     }
                 }
             }

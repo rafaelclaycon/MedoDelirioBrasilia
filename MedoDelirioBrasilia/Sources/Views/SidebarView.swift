@@ -72,22 +72,23 @@ struct SidebarView: View {
 //                    }
 //                )
 
-                NavigationLink(
-                    destination: SoundsView(
-                        viewModel: SoundsViewViewModel(
-                            currentViewMode: .byAuthor,
-                            soundSortOption: SoundSortOption.dateAddedDescending.rawValue,
-                            authorSortOption: AuthorSortOption.nameAscending.rawValue,
-                            currentSoundsListMode: $currentSoundsListMode,
-                            syncValues: syncValues
-                        ),
-                        currentSoundsListMode: $currentSoundsListMode
-                        ).environmentObject(trendsHelper).environmentObject(settingsHelper),
-                    tag: PadScreen.groupedByAuthor,
-                    selection: $state,
-                    label: {
-                        Label("Por Autor", systemImage: "person")
-                    })
+                // FIXME: Bring Authors back to iPad in the future.
+//                NavigationLink(
+//                    destination: SoundsView(
+//                        viewModel: SoundsViewViewModel(
+//                            currentViewMode: .byAuthor,
+//                            soundSortOption: SoundSortOption.dateAddedDescending.rawValue,
+//                            authorSortOption: AuthorSortOption.nameAscending.rawValue,
+//                            currentSoundsListMode: $currentSoundsListMode,
+//                            syncValues: syncValues
+//                        ),
+//                        currentSoundsListMode: $currentSoundsListMode
+//                        ).environmentObject(trendsHelper).environmentObject(settingsHelper),
+//                    tag: PadScreen.groupedByAuthor,
+//                    selection: $state,
+//                    label: {
+//                        Label("Por Autor", systemImage: "person")
+//                    })
                 
                 NavigationLink(
                     destination: TrendsView(tabSelection: .constant(.trends),
