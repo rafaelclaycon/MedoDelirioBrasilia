@@ -24,4 +24,6 @@ protocol SoundListDisplaying {
     func removeFromFolder(_ sound: Sound)
 
     func showDetails(for sound: Sound)
+
+    func showAuthor(withId authorId: String)
 }

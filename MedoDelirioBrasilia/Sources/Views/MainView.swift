@@ -11,6 +11,8 @@ struct MainView: View {
 
     @State var tabSelection: PhoneTab = .sounds
     @State var state: PadScreen? = PadScreen.allSounds
+    @State private var path = NavigationPath()
+
     @State var isShowingSettingsSheet: Bool = false
     @StateObject var settingsHelper = SettingsHelper()
     @State var isShowingFolderInfoEditingSheet: Bool = false
@@ -35,7 +37,7 @@ struct MainView: View {
         ZStack {
             if UIDevice.isiPhone {
                 TabView(selection: $tabSelection) {
-                    NavigationView {
+                    NavigationStack(path: $path) {
                         MainSoundContainer(
                             viewModel: .init(
                                 currentViewMode: .allSounds,
@@ -50,11 +52,15 @@ struct MainView: View {
                         .environmentObject(trendsHelper)
                         .environmentObject(settingsHelper)
                         .environmentObject(networkMonitor)
+                        .navigationDestination(for: SoundListNavigationDestination.self) { screen in
+                            SoundListRouter(destination: screen)
+                        }
                     }
                     .tabItem {
                         Label("Sons", systemImage: "speaker.wave.3.fill")
                     }
                     .tag(PhoneTab.sounds)
+                    .environment(\.push, PushAction { path.append($0) })
 
                     NavigationView {
                         ReactionsView()

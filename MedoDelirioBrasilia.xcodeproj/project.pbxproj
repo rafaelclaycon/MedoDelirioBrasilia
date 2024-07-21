@@ -155,6 +155,9 @@
 		D91B7F8F2943C97B00B9A43F /* Gil do Vigor - Brasil.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91B7F8E2943C97B00B9A43F /* Gil do Vigor - Brasil.mp3 */; };
 		D91C4D15291AD1A3000E13E8 /* Barbara Saccomori - Vamo comunistada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91C4D13291AD1A3000E13E8 /* Barbara Saccomori - Vamo comunistada.mp3 */; };
 		D91C4D16291AD1A3000E13E8 /* Desconhecido - Nao existe segunda-feira no comunismo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91C4D14291AD1A3000E13E8 /* Desconhecido - Nao existe segunda-feira no comunismo.mp3 */; };
+		D91E37582C4C8EFA003A1107 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91E37572C4C8EFA003A1107 /* Action.swift */; };
+		D91E375A2C4C8F33003A1107 /* PushAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91E37592C4C8F33003A1107 /* PushAction.swift */; };
+		D91E375C2C4C908F003A1107 /* SoundListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91E375B2C4C908F003A1107 /* SoundListRouter.swift */; };
 		D91FB0E82BB6169000C5370E /* AddExternalLinksFieldToAuthorTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91FB0E72BB6169000C5370E /* AddExternalLinksFieldToAuthorTable.swift */; };
 		D921F879288B0177003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F865288B0176003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 */; };
 		D921F87B288B0177003979CC /* Ciumes de homem e foda.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F867288B0177003979CC /* Ciumes de homem e foda.mp3 */; };
@@ -1654,6 +1657,9 @@
 		D91B7F8E2943C97B00B9A43F /* Gil do Vigor - Brasil.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gil do Vigor - Brasil.mp3"; sourceTree = "<group>"; };
 		D91C4D13291AD1A3000E13E8 /* Barbara Saccomori - Vamo comunistada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Barbara Saccomori - Vamo comunistada.mp3"; sourceTree = "<group>"; };
 		D91C4D14291AD1A3000E13E8 /* Desconhecido - Nao existe segunda-feira no comunismo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Desconhecido - Nao existe segunda-feira no comunismo.mp3"; sourceTree = "<group>"; };
+		D91E37572C4C8EFA003A1107 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		D91E37592C4C8F33003A1107 /* PushAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushAction.swift; sourceTree = "<group>"; };
+		D91E375B2C4C908F003A1107 /* SoundListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundListRouter.swift; sourceTree = "<group>"; };
 		D91FB0E72BB6169000C5370E /* AddExternalLinksFieldToAuthorTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExternalLinksFieldToAuthorTable.swift; sourceTree = "<group>"; };
 		D921F865288B0176003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fala baixo quem fala alto aqui sou eu.mp3"; sourceTree = "<group>"; };
 		D921F867288B0177003979CC /* Ciumes de homem e foda.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ciumes de homem e foda.mp3"; sourceTree = "<group>"; };
@@ -3013,6 +3019,16 @@
 				D924F9202BF841E6002FC815 /* IntroducingReactionsView.swift */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		D91E37562C4C8EEE003A1107 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				D91E37572C4C8EFA003A1107 /* Action.swift */,
+				D91E37592C4C8F33003A1107 /* PushAction.swift */,
+				D91E375B2C4C908F003A1107 /* SoundListRouter.swift */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 		D9203614284FCABE009B8486 /* Sounds */ = {
@@ -4615,6 +4631,7 @@
 		D9759ACA2872B1D1005F9871 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				D91E37562C4C8EEE003A1107 /* Navigation */,
 				D9DBEA9F2BCC10F200220679 /* SoundList */,
 				D93CCB78286A8A220002CF81 /* ToastView.swift */,
 				D99A961B299A733E00BB5F0D /* RoundCheckbox.swift */,
@@ -6588,6 +6605,7 @@
 				D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */,
 				D9B681E32A942C2E00AB7417 /* SyncInfoCard.swift in Sources */,
 				D93A02982906DE8C00A85FE2 /* UserFolderLog.swift in Sources */,
+				D91E37582C4C8EFA003A1107 /* Action.swift in Sources */,
 				D992146F2A8F21C2004E82BC /* RecurringDonationBanner.swift in Sources */,
 				D992EF5A2BCB24FB0080C892 /* SoundList.swift in Sources */,
 				D9E9CFA5292C40BF002BC918 /* NoFoldersSymbol.swift in Sources */,
@@ -6679,10 +6697,12 @@
 				D961D025283731AA00EFEDEB /* HelpView.swift in Sources */,
 				D90CDF0928F65C7200CC992D /* TrendsTimeInterval.swift in Sources */,
 				D927230628924FC1001D5E47 /* HitsMedoDelirioBannerView.swift in Sources */,
+				D91E375C2C4C908F003A1107 /* SoundListRouter.swift in Sources */,
 				D96E115D28459D8800306859 /* UserActivityWaiter.swift in Sources */,
 				D97D76F92885B1BD005210D9 /* SidebarFolderIcon.swift in Sources */,
 				D9351C5C2844094E00D4317E /* TopChartItem.swift in Sources */,
 				D9943F172863DAE1002C6B97 /* FolderDetailView.swift in Sources */,
+				D91E375A2C4C8F33003A1107 /* PushAction.swift in Sources */,
 				D949181228860ABC0079F545 /* AllFoldersiPadView.swift in Sources */,
 				D9B8DE7F2BE5CEFD000C9035 /* ReactionSound.swift in Sources */,
 				D9F45DD72BED30C400D49340 /* DonateToFloodVictimsBanner.swift in Sources */,

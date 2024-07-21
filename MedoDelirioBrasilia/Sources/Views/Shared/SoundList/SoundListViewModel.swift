@@ -26,6 +26,8 @@ class SoundListViewModel<T>: ObservableObject {
     @Published var subviewToOpen: SoundListModalToOpen = .shareAsVideo
     @Published var showingModalView = false
 
+    @Published var authorToOpen: Author? = nil
+
     // Share as Video
     @Published var shareAsVideoResult = ShareAsVideoResult()
 
@@ -354,6 +356,14 @@ extension SoundListViewModel: SoundListDisplaying {
         subviewToOpen = .soundDetail
         showingModalView = true
     }
+
+    func showAuthor(withId authorId: String) {
+        guard let author = try? LocalDatabase.shared.author(withId: authorId) else {
+            print("SoundList error: unable to find author with id \(authorId)")
+            return
+        }
+        authorToOpen = author
+    }
 }
 
 // MARK: - Toast
@@ -579,7 +589,7 @@ extension SoundListViewModel {
         showAlert = true
     }
 
-    // From the before times when WhatApp didn't really support receiving many sounds through the system Share Sheet.
+    // From the before times when WhatsApp didn't really support receiving many sounds through the system Share Sheet.
 //    func showShareManyAlert() {
 //        let messageDisplayCount = AppPersistentMemory.getShareManyMessageShowCount()
 //

@@ -65,9 +65,8 @@ extension ContextMenuOption {
         ContextMenuOption(
             symbol: { _ in "person" },
             title: { _ in "Ver Todos os Sons Desse Autor" }
-        ) { _,_ in
-            // Implement the action to view all sounds from this author
-            print("Viewing All from Author")
+        ) { sound, delegate in
+            delegate.showAuthor(withId: sound.authorId)
         }
     }
 

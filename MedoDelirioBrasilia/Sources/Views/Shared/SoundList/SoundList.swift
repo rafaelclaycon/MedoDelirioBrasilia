@@ -60,6 +60,7 @@ struct SoundList: View {
 
     @Environment(\.sizeCategory) var sizeCategory
     @EnvironmentObject var trendsHelper: TrendsHelper
+    @Environment(\.push) private var push
 
     // MARK: - Initializer
 
@@ -338,6 +339,11 @@ struct SoundList: View {
                                         TapticFeedback.warning()
                                     }
                                 }
+                            }
+                            .onChange(of: viewModel.authorToOpen) { author in
+                                guard let author else { return }
+                                push(SoundListNavigationDestination.authorDetail(author))
+                                viewModel.authorToOpen = nil
                             }
                             .onAppear {
                                 updateGridLayout(with: geometry.size.width)
