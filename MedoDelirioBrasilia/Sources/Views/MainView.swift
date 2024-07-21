@@ -11,7 +11,8 @@ struct MainView: View {
 
     @State var tabSelection: PhoneTab = .sounds
     @State var state: PadScreen? = PadScreen.allSounds
-    @State private var path = NavigationPath()
+    @State private var soundsPath = NavigationPath()
+    @State private var reactionsPath = NavigationPath()
 
     @State var isShowingSettingsSheet: Bool = false
     @StateObject var settingsHelper = SettingsHelper()
@@ -37,7 +38,7 @@ struct MainView: View {
         ZStack {
             if UIDevice.isiPhone {
                 TabView(selection: $tabSelection) {
-                    NavigationStack(path: $path) {
+                    NavigationStack(path: $soundsPath) {
                         MainSoundContainer(
                             viewModel: .init(
                                 currentViewMode: .allSounds,
@@ -52,23 +53,27 @@ struct MainView: View {
                         .environmentObject(trendsHelper)
                         .environmentObject(settingsHelper)
                         .environmentObject(networkMonitor)
-                        .navigationDestination(for: SoundListNavigationDestination.self) { screen in
-                            SoundListRouter(destination: screen)
+                        .navigationDestination(for: GeneralNavigationDestination.self) { screen in
+                            GeneralRouter(destination: screen)
                         }
                     }
                     .tabItem {
                         Label("Sons", systemImage: "speaker.wave.3.fill")
                     }
                     .tag(PhoneTab.sounds)
-                    .environment(\.push, PushAction { path.append($0) })
+                    .environment(\.push, PushAction { soundsPath.append($0) })
 
-                    NavigationView {
+                    NavigationStack(path: $reactionsPath) {
                         ReactionsView()
+                            .navigationDestination(for: GeneralNavigationDestination.self) { screen in
+                                GeneralRouter(destination: screen)
+                            }
                     }
                     .tabItem {
                         Label("Reações", systemImage: "rectangle.grid.2x2.fill")
                     }
                     .tag(PhoneTab.reactions)
+                    .environment(\.push, PushAction { reactionsPath.append($0) })
 
                     NavigationView {
                         SongsView()

@@ -342,7 +342,7 @@ struct SoundList: View {
                             }
                             .onChange(of: viewModel.authorToOpen) { author in
                                 guard let author else { return }
-                                push(SoundListNavigationDestination.authorDetail(author))
+                                push(GeneralNavigationDestination.authorDetail(author))
                                 viewModel.authorToOpen = nil
                             }
                             .onAppear {

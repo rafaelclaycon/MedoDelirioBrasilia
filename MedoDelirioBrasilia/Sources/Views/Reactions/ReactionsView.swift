@@ -16,6 +16,7 @@ struct ReactionsView: View {
     // iPad Grid Layout
     @State private var columns: [GridItem] = []
     @Environment(\.sizeCategory) var sizeCategory
+    @Environment(\.push) var push
 
     var body: some View {
         GeometryReader { geometry in
@@ -56,14 +57,10 @@ struct ReactionsView: View {
                     ScrollView {
                         LazyVGrid(columns: columns, spacing: UIDevice.isiPhone ? 12 : 20) {
                             ForEach(reactions) { reaction in
-                                NavigationLink {
-                                    ReactionDetailView(
-                                        reaction: reaction,
-                                        currentSoundsListMode: $currentSoundsListMode
-                                    )
-                                } label: {
-                                    ReactionCell(reaction: reaction)
-                                }
+                                ReactionCell(reaction: reaction)
+                                    .onTapGesture {
+                                        push(GeneralNavigationDestination.reactionDetail(reaction))
+                                    }
                             }
                         }
                         .padding()

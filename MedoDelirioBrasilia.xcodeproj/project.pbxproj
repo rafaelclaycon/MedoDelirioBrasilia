@@ -157,7 +157,7 @@
 		D91C4D16291AD1A3000E13E8 /* Desconhecido - Nao existe segunda-feira no comunismo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D91C4D14291AD1A3000E13E8 /* Desconhecido - Nao existe segunda-feira no comunismo.mp3 */; };
 		D91E37582C4C8EFA003A1107 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91E37572C4C8EFA003A1107 /* Action.swift */; };
 		D91E375A2C4C8F33003A1107 /* PushAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91E37592C4C8F33003A1107 /* PushAction.swift */; };
-		D91E375C2C4C908F003A1107 /* SoundListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91E375B2C4C908F003A1107 /* SoundListRouter.swift */; };
+		D91E375C2C4C908F003A1107 /* GeneralRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91E375B2C4C908F003A1107 /* GeneralRouter.swift */; };
 		D91FB0E82BB6169000C5370E /* AddExternalLinksFieldToAuthorTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91FB0E72BB6169000C5370E /* AddExternalLinksFieldToAuthorTable.swift */; };
 		D921F879288B0177003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F865288B0176003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 */; };
 		D921F87B288B0177003979CC /* Ciumes de homem e foda.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F867288B0177003979CC /* Ciumes de homem e foda.mp3 */; };
@@ -1659,7 +1659,7 @@
 		D91C4D14291AD1A3000E13E8 /* Desconhecido - Nao existe segunda-feira no comunismo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Desconhecido - Nao existe segunda-feira no comunismo.mp3"; sourceTree = "<group>"; };
 		D91E37572C4C8EFA003A1107 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		D91E37592C4C8F33003A1107 /* PushAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushAction.swift; sourceTree = "<group>"; };
-		D91E375B2C4C908F003A1107 /* SoundListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundListRouter.swift; sourceTree = "<group>"; };
+		D91E375B2C4C908F003A1107 /* GeneralRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralRouter.swift; sourceTree = "<group>"; };
 		D91FB0E72BB6169000C5370E /* AddExternalLinksFieldToAuthorTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExternalLinksFieldToAuthorTable.swift; sourceTree = "<group>"; };
 		D921F865288B0176003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fala baixo quem fala alto aqui sou eu.mp3"; sourceTree = "<group>"; };
 		D921F867288B0177003979CC /* Ciumes de homem e foda.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ciumes de homem e foda.mp3"; sourceTree = "<group>"; };
@@ -3026,7 +3026,7 @@
 			children = (
 				D91E37572C4C8EFA003A1107 /* Action.swift */,
 				D91E37592C4C8F33003A1107 /* PushAction.swift */,
-				D91E375B2C4C908F003A1107 /* SoundListRouter.swift */,
+				D91E375B2C4C908F003A1107 /* GeneralRouter.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -6697,7 +6697,7 @@
 				D961D025283731AA00EFEDEB /* HelpView.swift in Sources */,
 				D90CDF0928F65C7200CC992D /* TrendsTimeInterval.swift in Sources */,
 				D927230628924FC1001D5E47 /* HitsMedoDelirioBannerView.swift in Sources */,
-				D91E375C2C4C908F003A1107 /* SoundListRouter.swift in Sources */,
+				D91E375C2C4C908F003A1107 /* GeneralRouter.swift in Sources */,
 				D96E115D28459D8800306859 /* UserActivityWaiter.swift in Sources */,
 				D97D76F92885B1BD005210D9 /* SidebarFolderIcon.swift in Sources */,
 				D9351C5C2844094E00D4317E /* TopChartItem.swift in Sources */,
