@@ -69,11 +69,6 @@ public extension UIDevice {
         func mapToDevice(identifier: String) -> String { // swiftlint:disable:this cyclomatic_complexity
             #if os(iOS)
             switch identifier {
-            case "iPod9,1":                                        return "iPod touch (7th generation)"
-            case "iPhone8,1":                                      return "iPhone 6s"
-            case "iPhone8,2":                                      return "iPhone 6s Plus"
-            case "iPhone9,1", "iPhone9,3":                         return "iPhone 7"
-            case "iPhone9,2", "iPhone9,4":                         return "iPhone 7 Plus"
             case "iPhone10,1", "iPhone10,4":                       return "iPhone 8"
             case "iPhone10,2", "iPhone10,5":                       return "iPhone 8 Plus"
             case "iPhone10,3", "iPhone10,6":                       return "iPhone X"
@@ -91,7 +86,6 @@ public extension UIDevice {
             case "iPhone14,5":                                     return "iPhone 13"
             case "iPhone14,2":                                     return "iPhone 13 Pro"
             case "iPhone14,3":                                     return "iPhone 13 Pro Max"
-            case "iPhone8,4":                                      return "iPhone SE"
             case "iPhone12,8":                                     return "iPhone SE (2nd generation)"
             case "iPhone14,6":                                     return "iPhone SE (3rd generation)"
             case "iPhone14,7":                                     return "iPhone 14"
@@ -108,11 +102,11 @@ public extension UIDevice {
             case "iPad11,6", "iPad11,7":                           return "iPad (8th generation)"
             case "iPad12,1", "iPad12,2":                           return "iPad (9th generation)"
             case "iPad13,18", "iPad13,19":                         return "iPad (10th generation)"
-            case "iPad5,3", "iPad5,4":                             return "iPad Air 2"
             case "iPad11,3", "iPad11,4":                           return "iPad Air (3rd generation)"
             case "iPad13,1", "iPad13,2":                           return "iPad Air (4th generation)"
             case "iPad13,16", "iPad13,17":                         return "iPad Air (5th generation)"
-            case "iPad5,1", "iPad5,2":                             return "iPad mini 4"
+            case "iPad14,8":                                       return "iPad Air 11-inch (M2)"
+            case "iPad14,10":                                      return "iPad Air 13-inch (M2)"
             case "iPad11,1", "iPad11,2":                           return "iPad mini (5th generation)"
             case "iPad14,1", "iPad14,2":                           return "iPad mini (6th generation)"
             case "iPad6,3", "iPad6,4":                             return "iPad Pro (9.7-inch)"
@@ -127,6 +121,8 @@ public extension UIDevice {
             case "iPad8,11", "iPad8,12":                           return "iPad Pro (12.9-inch) (4th generation)"
             case "iPad13,8", "iPad13,9", "iPad13,10", "iPad13,11": return "iPad Pro (12.9-inch) (5th generation)"
             case "iPad14,5", "iPad14,6":                           return "iPad Pro (12.9-inch) (6th generation)"
+            case "iPad16,4":                                       return "iPad Pro 11-inch (M4)"
+            case "iPad16,6":                                       return "iPad Pro 13-inch (M4)"
             case "RealityDevice14,1":                              return "Apple Vision Pro"
             case "i386", "x86_64", "arm64":                        return "Simulator \(mapToDevice(identifier: ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] ?? "iOS"))"
             default:                                              return identifier
