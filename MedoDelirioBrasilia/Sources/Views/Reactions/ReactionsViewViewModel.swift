@@ -34,6 +34,9 @@ class ReactionsViewViewModel: ObservableObject {
                 self.state = .loaded(reactions)
             }
 
+            print("\(reactions.count) reações")
+            print(reactions.map { "\($0.id) - \($0.title)" })
+
             Analytics.send(
                 originatingScreen: "ReactionsView",
                 action: "didViewReactionsTab"

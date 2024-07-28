@@ -177,17 +177,16 @@ struct ReactionDetailView: View {
                 Section {
                     Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
                         ForEach(ReactionSoundSortOption.allCases, id: \.self) { option in
-                            Text(option.description).tag(option)
+                            Text(option.description).tag(option.rawValue)
                         }
                     }
                 }
             } label: {
                 Image(systemName: "ellipsis.circle")
             }
-//            .onChange(of: viewModel.soundSortOption) {
-//                viewModel.sortSounds(by: SoundSortOption(rawValue: $0) ?? .dateAddedDescending)
-//                UserSettings.setSoundSortOption(to: $0)
-//            }
+            .onChange(of: viewModel.soundSortOption) {
+                viewModel.sortSounds(by: $0)
+            }
         }
     }
 }

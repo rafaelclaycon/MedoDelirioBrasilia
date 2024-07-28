@@ -18,6 +18,8 @@ struct ReactionsView: View {
     @Environment(\.sizeCategory) var sizeCategory
     @Environment(\.push) var push
 
+    let colors: [Color] = [.red, .purple, .pink, .orange, .green, .brown, .blue, .cyan, .gray, .mint]
+
     var body: some View {
         GeometryReader { geometry in
             switch viewModel.state {
@@ -58,7 +60,9 @@ struct ReactionsView: View {
                         LazyVGrid(columns: columns, spacing: UIDevice.isiPhone ? 12 : 20) {
                             ForEach(reactions) { reaction in
                                 ReactionCell(reaction: reaction)
+                                    //.border(colors.randomElement() ?? .red, width: 1)
                                     .onTapGesture {
+                                        print("YE OLDE \(reaction.title)")
                                         push(GeneralNavigationDestination.reactionDetail(reaction))
                                     }
                             }
