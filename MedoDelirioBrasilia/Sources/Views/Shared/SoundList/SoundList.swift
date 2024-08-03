@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Combine
 
 struct SoundList: View {
 
@@ -467,7 +466,7 @@ struct SoundList: View {
 #Preview {
     SoundList(
         viewModel: .init(
-            data: Just([Sound(title: "Example Sound 1"), Sound(title: "Example Sound 2")]).eraseToAnyPublisher(),
+            data: MockSoundListViewModel().allSoundsPublisher,
             menuOptions: [.sharingOptions()],
             currentSoundsListMode: .constant(.regular)
         ),
