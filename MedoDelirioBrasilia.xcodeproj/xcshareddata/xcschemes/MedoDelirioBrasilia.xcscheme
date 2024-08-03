@@ -64,6 +64,10 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "-UNDER_DEVELOPMENT"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-ENABLE_REACTIONS"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
