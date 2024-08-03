@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct SoundList: View {
 
@@ -463,12 +464,15 @@ struct SoundList: View {
     }
 }
 
-//#Preview {
-//    SoundListView(
-//        viewModel: .init(
-//            soundsPublisher: .
-//            options: [ContextMenuOption.shareSound]
-//        ),
-//        currentSoundsListMode: .constant(.regular)
-//    )
-//}
+#Preview {
+    SoundList(
+        viewModel: .init(
+            data: Just([Sound(title: "Example Sound 1"), Sound(title: "Example Sound 2")]).eraseToAnyPublisher(),
+            menuOptions: [.sharingOptions()],
+            currentSoundsListMode: .constant(.regular)
+        ),
+        loadingView: AnyView(ProgressView()),
+        emptyStateView: AnyView(Text("No Sounds to Display")),
+        errorView: AnyView(Text("Error"))
+    )
+}
