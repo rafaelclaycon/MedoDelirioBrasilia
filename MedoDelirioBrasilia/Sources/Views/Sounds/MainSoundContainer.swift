@@ -20,7 +20,7 @@ struct MainSoundContainer: View {
     @State private var soundSearchTextIsEmpty: Bool? = true
 
     // Folders
-    @StateObject var deleteFolderAide = DeleteFolderViewAideiPhone()
+    @StateObject var deleteFolderAide = DeleteFolderViewAide()
 
     // Authors
     @State var authorSortAction: AuthorSortOption = .nameAscending

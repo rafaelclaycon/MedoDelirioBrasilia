@@ -12,9 +12,8 @@ struct AllFoldersiPadView: View {
 
     @Binding var isShowingFolderInfoEditingSheet: Bool
     @Binding var updateFolderList: Bool
-    @State var deleteFolderAide = DeleteFolderViewAide()
     @State var folderIdForEditing: String = .empty
-    @StateObject var deleteFolderAideiPhone = DeleteFolderViewAideiPhone() // Not used, here just so FolderList does not crash on iPad
+    @StateObject var deleteFolderAide = DeleteFolderViewAide()
 
     // iPad Reactions Stuff
     @State private var exportDataString: String = ""
@@ -37,7 +36,7 @@ struct AllFoldersiPadView: View {
                     updateFolderList: $updateFolderList,
                     folderIdForEditing: $folderIdForEditing
                 )
-                .environmentObject(deleteFolderAideiPhone)
+                .environmentObject(deleteFolderAide)
             }
             .padding(.horizontal)
             .padding(.top, 7)
@@ -66,13 +65,21 @@ struct AllFoldersiPadView: View {
             }
         }
         .alert(isPresented: $deleteFolderAide.showAlert) {
-            Alert(title: Text(deleteFolderAide.alertTitle), message: Text(deleteFolderAide.alertMessage), primaryButton: .destructive(Text("Apagar"), action: {
-                guard deleteFolderAide.folderIdForDeletion.isEmpty == false else {
-                    return
-                }
-                try? LocalDatabase.shared.deleteUserFolder(withId: deleteFolderAide.folderIdForDeletion)
-                updateFolderList = true
-            }), secondaryButton: .cancel(Text("Cancelar")))
+            Alert(
+                title: Text(deleteFolderAide.alertTitle),
+                message: Text(deleteFolderAide.alertMessage),
+                primaryButton: .destructive(
+                    Text("Apagar"),
+                    action: {
+                        guard deleteFolderAide.folderIdForDeletion.isEmpty == false else {
+                            return
+                        }
+                        try? LocalDatabase.shared.deleteUserFolder(withId: deleteFolderAide.folderIdForDeletion)
+                        updateFolderList = true
+                    }
+                ),
+                secondaryButton: .cancel(Text("Cancelar"))
+            )
         }
         .onChange(of: folderIdForEditing) { folderIdForEditing in
             if folderIdForEditing.isEmpty == false {
@@ -86,7 +93,7 @@ struct AllFoldersiPadView: View {
 
     private func exportFolders() {
         do {
-            var rawFolders = try LocalDatabase.shared.getAllUserFolders()
+            let rawFolders = try LocalDatabase.shared.getAllUserFolders()
             var folders = rawFolders.map { UserFolderDTO(userFolder: $0) }
 
             for i in folders.indices {

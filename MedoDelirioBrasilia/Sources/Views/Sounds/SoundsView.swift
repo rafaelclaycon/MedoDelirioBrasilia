@@ -52,7 +52,7 @@ struct SoundsView: View {
     @State private var soundIdToGoTo: String = ""
 
     // Folders
-    @StateObject var deleteFolderAide = DeleteFolderViewAideiPhone()
+    @StateObject var deleteFolderAide = DeleteFolderViewAide()
     
     // Toast views
     private let toastViewBottomPaddingPhone: CGFloat = 60

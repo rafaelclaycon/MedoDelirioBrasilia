@@ -15,7 +15,7 @@ struct MyFoldersiPhoneView: View {
     @State private var folderIdForEditing: String = .empty
     @State private var currentSoundsListMode: SoundsListMode = .regular
 
-    @EnvironmentObject var deleteFolderAide: DeleteFolderViewAideiPhone
+    @EnvironmentObject var deleteFolderAide: DeleteFolderViewAide
 
     var body: some View {
         ScrollView {
