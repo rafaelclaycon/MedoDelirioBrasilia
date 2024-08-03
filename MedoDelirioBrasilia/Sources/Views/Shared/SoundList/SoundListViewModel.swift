@@ -348,7 +348,7 @@ extension SoundListViewModel: SoundListDisplaying {
 
     func removeFromFolder(_ sound: Sound) {
         selectedSound = sound
-        // showSoundRemovalConfirmation(soundTitle: sound.title)
+        showSoundRemovalConfirmation(soundTitle: sound.title)
     }
 
     func showDetails(for sound: Sound) {
@@ -556,6 +556,21 @@ extension SoundListViewModel {
     }
 }
 
+// MARK: - Folder
+
+extension SoundListViewModel {
+
+    func removeSingleSoundFromFolder() {
+        guard let folder else { return }
+        guard let refreshAction else { return }
+        guard let sound = selectedSound else { return }
+
+        try? LocalDatabase.shared.deleteUserContentFromFolder(withId: folder.id, contentId: sound.id)
+
+        refreshAction()
+    }
+}
+
 // MARK: - Scroll To Id
 
 extension SoundListViewModel {
@@ -619,6 +634,13 @@ extension SoundListViewModel {
         alertType = .issueExportingManySounds
         alertTitle = "Problema ao Tentar Exportar Vários Sons"
         alertMessage = "Houve um problema desconhecido ao tentar compartilhar vários sons. Por favor, envie um print desse erro para o desenvolvedor (e-mail nas Configurações):\n\n\(localizedError)"
+        showAlert = true
+    }
+
+    func showSoundRemovalConfirmation(soundTitle: String) {
+        alertTitle = "Remover \"\(soundTitle)\"?"
+        alertMessage = "O som continuará disponível fora da pasta."
+        alertType = .removeSingleSound
         showAlert = true
     }
 

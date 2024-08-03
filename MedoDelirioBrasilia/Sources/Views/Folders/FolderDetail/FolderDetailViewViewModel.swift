@@ -99,22 +99,3 @@ class FolderDetailViewViewModel: ObservableObject {
         sounds.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
     }
 }
-
-// MARK: - Alerts
-
-extension FolderDetailViewViewModel {
-
-    func showSoundRemovalConfirmation(soundTitle: String) {
-        alertTitle = "Remover \"\(soundTitle)\"?"
-        alertMessage = "O som continuará disponível fora da pasta."
-        alertType = .removeSingleSound
-        showAlert = true
-    }
-
-    func showRemoveMultipleSoundsConfirmation() {
-        alertTitle = "Remover os sons selecionados?"
-        alertMessage = "Os sons continuarão disponíveis fora da pasta."
-        alertType = .removeMultipleSounds
-        showAlert = true
-    }
-}

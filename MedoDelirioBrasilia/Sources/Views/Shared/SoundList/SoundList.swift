@@ -228,6 +228,17 @@ struct SoundList: View {
                                         dismissButton: .default(Text("OK"))
                                     )
 
+                                case .removeSingleSound:
+                                    return Alert(
+                                        title: Text(viewModel.alertTitle),
+                                        message: Text(viewModel.alertMessage),
+                                        primaryButton: .destructive(
+                                            Text("Remover"),
+                                            action: { viewModel.removeSingleSoundFromFolder() }
+                                        ),
+                                        secondaryButton: .cancel(Text("Cancelar"))
+                                    )
+
                                 case .removeMultipleSounds:
                                     return Alert(
                                         title: Text(viewModel.alertTitle),
