@@ -313,23 +313,23 @@ struct AuthorDetailView: View {
             
             Section {
                 Button {
-//                    soundListViewModel.stopSelecting()
-//                    viewModel.selectedSounds = viewModel.sounds
-//                    showingAddToFolderModal = true
+                    soundListViewModel.stopSelecting()
+                    viewModel.selectedSounds = viewModel.sounds
+                    showingAddToFolderModal = true
                 } label: {
                     Label("Adicionar Todos a Pasta", systemImage: "folder.badge.plus")
                 }
                 
                 Button {
-//                    viewModel.stopSelecting()
+                    soundListViewModel.stopSelecting()
 //                    viewModel.showAskForNewSoundAlert()
                 } label: {
                     Label("Pedir Som Desse Autor", systemImage: "plus.circle")
                 }
                 
                 Button {
-//                    viewModel.stopSelecting()
-//                    viewModel.showEmailAppPicker_reportAuthorDetailIssue = true
+                    soundListViewModel.stopSelecting()
+                    viewModel.showEmailAppPicker_reportAuthorDetailIssue = true
                 } label: {
                     Label("Relatar Problema com os Detalhes Desse Autor", systemImage: "person.crop.circle.badge.exclamationmark")
                 }
@@ -362,30 +362,6 @@ struct AuthorDetailView: View {
         .disabled(viewModel.sounds.count == 0)
     }
 
-//    private func cancelSelectionAction() {
-//        currentSoundsListMode = .regular
-//        viewModel.selectionKeeper.removeAll()
-//    }
-
-//    private func favoriteAction() {
-//        // Need to get count before clearing the Set.
-//        let selectedCount: Int = viewModel.selectionKeeper.count
-//        
-//        if viewModel.allSelectedAreFavorites() {
-//            viewModel.removeSelectedFromFavorites()
-//            viewModel.stopSelecting()
-//            viewModel.reloadList(
-//                withSounds: try? LocalDatabase.shared.allSounds(forAuthor: author.id, isSensitiveContentAllowed: UserSettings.getShowExplicitContent()),
-//                andFavorites: try? LocalDatabase.shared.favorites()
-//            )
-//            viewModel.sendUsageMetricToServer(action: "didRemoveManySoundsFromFavorites(\(selectedCount))", authorName: author.name)
-//        } else {
-//            viewModel.addSelectedToFavorites()
-//            viewModel.stopSelecting()
-//            viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFavorites(\(selectedCount))", authorName: author.name)
-//        }
-//    }
-//
 //    private func addToFolderAction() {
 //        viewModel.prepareSelectedToAddToFolder()
 //        showingAddToFolderModal = true
