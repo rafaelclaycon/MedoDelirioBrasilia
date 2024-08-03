@@ -2,11 +2,19 @@ import UIKit
 
 // MARK: - Physical Characteristics
 extension UIDevice {
+
     static var is4InchDevice: Bool {
         guard UIDevice.current.userInterfaceIdiom == .phone else {
             return false
         }
         return UIScreen.main.bounds.width == 320
+    }
+
+    static var isSmallDevice: Bool {
+        guard UIDevice.current.userInterfaceIdiom == .phone else {
+            return false
+        }
+        return UIScreen.main.bounds.width < 380
     }
 }
 

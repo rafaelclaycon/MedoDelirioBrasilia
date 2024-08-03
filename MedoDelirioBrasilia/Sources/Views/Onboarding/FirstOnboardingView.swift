@@ -33,7 +33,7 @@ struct FirstOnboardingView: View {
                 VStack(alignment: .center, spacing: 18) {
                     Button {
                         NotificationAide.registerForRemoteNotifications() { _ in
-                            AppPersistentMemory.setHasShownNotificationsOnboarding(to: true)
+                            AppPersistentMemory.hasShownNotificationsOnboarding(true)
                         }
                         showWhatsNew = true
                     } label: {
@@ -48,7 +48,7 @@ struct FirstOnboardingView: View {
                     .buttonBorderShape(.capsule)
 
                     Button {
-                        AppPersistentMemory.setHasShownNotificationsOnboarding(to: true)
+                        AppPersistentMemory.hasShownNotificationsOnboarding(true)
                         showWhatsNew = true
                     } label: {
                         Text("Ah é, é? F***-se")

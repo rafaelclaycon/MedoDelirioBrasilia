@@ -102,10 +102,10 @@ struct SoundCell: View {
     }
     
     private var cellHeight: CGFloat {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            return UIDevice.is4InchDevice ? 120 : 96
+        if UIDevice.isiPhone {
+            return 100
         } else {
-            return UIDevice.isiPadMini ? 116 : 96
+            return UIDevice.isiPadMini ? 116 : 100
         }
     }
     
@@ -279,5 +279,4 @@ struct SoundCell_Previews: PreviewProvider {
         }
         .previewLayout(.fixed(width: 170, height: 100))
     }
-
 }

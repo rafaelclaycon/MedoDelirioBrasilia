@@ -21,20 +21,22 @@ struct SidebarView: View {
 
     // Trends
     @EnvironmentObject var trendsHelper: TrendsHelper
-    
+    @Environment(\.push) var push
+
     var body: some View {
         List {
             Section("Sons") {
                 NavigationLink(
-                    destination: SoundsView(
-                        viewModel: SoundsViewViewModel(
+                    destination: MainSoundContainer(
+                        viewModel: .init(
                             currentViewMode: .allSounds,
-                            soundSortOption: UserSettings.getSoundSortOption(),
+                            soundSortOption: UserSettings.mainSoundListSoundSortOption(),
                             authorSortOption: AuthorSortOption.nameAscending.rawValue,
                             currentSoundsListMode: $currentSoundsListMode,
                             syncValues: syncValues
                         ),
-                        currentSoundsListMode: $currentSoundsListMode
+                        currentSoundsListMode: $currentSoundsListMode,
+                        showSettings: .constant(false)
                     ).environmentObject(trendsHelper).environmentObject(settingsHelper).environmentObject(networkMonitor),
                     tag: PadScreen.allSounds,
                     selection: $state,
@@ -43,38 +45,50 @@ struct SidebarView: View {
                     })
                 
                 NavigationLink(
-                    destination: SoundsView(
-                        viewModel: SoundsViewViewModel(
+                    destination: MainSoundContainer(
+                        viewModel: .init(
                             currentViewMode: .favorites,
-                            soundSortOption: UserSettings.getSoundSortOption(),
+                            soundSortOption: UserSettings.mainSoundListSoundSortOption(),
                             authorSortOption: AuthorSortOption.nameAscending.rawValue,
                             currentSoundsListMode: $currentSoundsListMode,
                             syncValues: syncValues
                         ),
-                        currentSoundsListMode: $currentSoundsListMode
+                        currentSoundsListMode: $currentSoundsListMode,
+                        showSettings: .constant(false)
                     ).environmentObject(trendsHelper).environmentObject(settingsHelper).environmentObject(networkMonitor),
                     tag: PadScreen.favorites,
                     selection: $state,
                     label: {
                         Label("Favoritos", systemImage: "star")
                     })
-                
-                NavigationLink(
-                    destination: SoundsView(
-                        viewModel: SoundsViewViewModel(
-                            currentViewMode: .byAuthor,
-                            soundSortOption: SoundSortOption.dateAddedDescending.rawValue,
-                            authorSortOption: AuthorSortOption.nameAscending.rawValue,
-                            currentSoundsListMode: $currentSoundsListMode,
-                            syncValues: syncValues
-                        ),
-                        currentSoundsListMode: $currentSoundsListMode
-                        ).environmentObject(trendsHelper).environmentObject(settingsHelper),
-                    tag: PadScreen.groupedByAuthor,
-                    selection: $state,
-                    label: {
-                        Label("Por Autor", systemImage: "person")
-                    })
+
+                // FIXME: Bring Reactions to iPad in the future.
+//                NavigationLink(
+//                    destination: ReactionsView(),
+//                    tag: PadScreen.reactions,
+//                    selection: $state,
+//                    label: {
+//                        Label("Reações", systemImage: "rectangle.grid.2x2")
+//                    }
+//                )
+
+                // FIXME: Bring Authors back to iPad in the future.
+//                NavigationLink(
+//                    destination: SoundsView(
+//                        viewModel: SoundsViewViewModel(
+//                            currentViewMode: .byAuthor,
+//                            soundSortOption: SoundSortOption.dateAddedDescending.rawValue,
+//                            authorSortOption: AuthorSortOption.nameAscending.rawValue,
+//                            currentSoundsListMode: $currentSoundsListMode,
+//                            syncValues: syncValues
+//                        ),
+//                        currentSoundsListMode: $currentSoundsListMode
+//                        ).environmentObject(trendsHelper).environmentObject(settingsHelper),
+//                    tag: PadScreen.groupedByAuthor,
+//                    selection: $state,
+//                    label: {
+//                        Label("Por Autor", systemImage: "person")
+//                    })
                 
                 NavigationLink(
                     destination: TrendsView(tabSelection: .constant(.trends),
@@ -84,14 +98,6 @@ struct SidebarView: View {
                     label: {
                         Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
                     })
-                
-//                NavigationLink(
-//                    destination: CollectionsView(),
-//                    tag: PadScreen.collections,
-//                    selection: $state,
-//                    label: {
-//                        Label("Coleções", systemImage: "rectangle.grid.2x2")
-//                    })
             }
             
             Section("Mais") {
@@ -115,7 +121,10 @@ struct SidebarView: View {
                 
                 ForEach(viewModel.folders) { folder in
                     NavigationLink(
-                        destination: FolderDetailView(viewModel: FolderDetailViewViewModel(currentSoundsListMode: $currentSoundsListMode), folder: folder, currentSoundsListMode: $currentSoundsListMode),
+                        destination: FolderDetailView(
+                            folder: folder,
+                            currentSoundsListMode: $currentSoundsListMode
+                        ),
                         tag: .specificFolder,
                         selection: $state,
                         label: {
@@ -134,7 +143,7 @@ struct SidebarView: View {
                 }
             }
         }
-        .listStyle(SidebarListStyle())
+        .listStyle(.sidebar)
         .navigationTitle(LocalizableStrings.MainView.title)
         .toolbar {
             Button {
@@ -154,14 +163,12 @@ struct SidebarView: View {
     }
 }
 
-struct SidebarView_Previews: PreviewProvider {
-    static var previews: some View {
-        SidebarView(
-            state: .constant(PadScreen.allSounds),
-            isShowingSettingsSheet: .constant(false),
-            isShowingFolderInfoEditingSheet: .constant(false),
-            updateFolderList: .constant(false),
-            currentSoundsListMode: .constant(.regular)
-        )
-    }
+#Preview {
+    SidebarView(
+        state: .constant(PadScreen.allSounds),
+        isShowingSettingsSheet: .constant(false),
+        isShowingFolderInfoEditingSheet: .constant(false),
+        updateFolderList: .constant(false),
+        currentSoundsListMode: .constant(.regular)
+    )
 }
