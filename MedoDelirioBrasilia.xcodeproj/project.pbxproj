@@ -1429,8 +1429,8 @@
 		D9F185D028D6729A00BE2F69 /* Lula - E como se fosse um sorvete, chupou, acabou, fica com o palito na mao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F185CE28D6729A00BE2F69 /* Lula - E como se fosse um sorvete, chupou, acabou, fica com o palito na mao.mp3 */; };
 		D9F3FC1229F015E40090FFAF /* Sergio Moro - Descont... Des... Contextualizadas.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F3FC1129F015E40090FFAF /* Sergio Moro - Descont... Des... Contextualizadas.mp3 */; };
 		D9F3FC1629F019BB0090FFAF /* Pipino de novo de novo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F3FC1529F019BB0090FFAF /* Pipino de novo de novo.mp3 */; };
-		D9F45DD72BED30C400D49340 /* DonateToFloodVictimsBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F45DD62BED30C400D49340 /* DonateToFloodVictimsBanner.swift */; };
-		D9F45DDA2BED39F800D49340 /* DynamicBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F45DD92BED39F800D49340 /* DynamicBanner.swift */; };
+		D9F45DD72BED30C400D49340 /* DynamicBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F45DD62BED30C400D49340 /* DynamicBanner.swift */; };
+		D9F45DDA2BED39F800D49340 /* DynamicBannerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F45DD92BED39F800D49340 /* DynamicBannerData.swift */; };
 		D9F487EA29761F8C00DCFE07 /* Cidinha R e Eliana Brasil - E quem ta preso, Cidinha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F487E829761F8C00DCFE07 /* Cidinha R e Eliana Brasil - E quem ta preso, Cidinha.mp3 */; };
 		D9F487EB29761F8C00DCFE07 /* Eliana Brasil - Cidinha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F487E929761F8C00DCFE07 /* Eliana Brasil - Cidinha.mp3 */; };
 		D9F487EE29761F9500DCFE07 /* Pisero da Cidinha.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F487EC29761F9500DCFE07 /* Pisero da Cidinha.mp3 */; };
@@ -2931,8 +2931,8 @@
 		D9F185CE28D6729A00BE2F69 /* Lula - E como se fosse um sorvete, chupou, acabou, fica com o palito na mao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - E como se fosse um sorvete, chupou, acabou, fica com o palito na mao.mp3"; sourceTree = "<group>"; };
 		D9F3FC1129F015E40090FFAF /* Sergio Moro - Descont... Des... Contextualizadas.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Sergio Moro - Descont... Des... Contextualizadas.mp3"; sourceTree = "<group>"; };
 		D9F3FC1529F019BB0090FFAF /* Pipino de novo de novo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pipino de novo de novo.mp3"; sourceTree = "<group>"; };
-		D9F45DD62BED30C400D49340 /* DonateToFloodVictimsBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonateToFloodVictimsBanner.swift; sourceTree = "<group>"; };
-		D9F45DD92BED39F800D49340 /* DynamicBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicBanner.swift; sourceTree = "<group>"; };
+		D9F45DD62BED30C400D49340 /* DynamicBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicBanner.swift; sourceTree = "<group>"; };
+		D9F45DD92BED39F800D49340 /* DynamicBannerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicBannerData.swift; sourceTree = "<group>"; };
 		D9F487E829761F8C00DCFE07 /* Cidinha R e Eliana Brasil - E quem ta preso, Cidinha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cidinha R e Eliana Brasil - E quem ta preso, Cidinha.mp3"; sourceTree = "<group>"; };
 		D9F487E929761F8C00DCFE07 /* Eliana Brasil - Cidinha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eliana Brasil - Cidinha.mp3"; sourceTree = "<group>"; };
 		D9F487EC29761F9500DCFE07 /* Pisero da Cidinha.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Pisero da Cidinha.mp3"; sourceTree = "<group>"; };
@@ -4335,7 +4335,7 @@
 				D9DC688F2AD38648005D3F81 /* RetroBanner.swift */,
 				D9FF3F962B142F78007AE773 /* UpdateIncentiveBanner.swift */,
 				D986C2452B25848B00EF575A /* LongUpdateBanner.swift */,
-				D9F45DD62BED30C400D49340 /* DonateToFloodVictimsBanner.swift */,
+				D9F45DD62BED30C400D49340 /* DynamicBanner.swift */,
 			);
 			path = Banners;
 			sourceTree = "<group>";
@@ -5152,7 +5152,7 @@
 		D9F45DD82BED39E100D49340 /* ServerDriven */ = {
 			isa = PBXGroup;
 			children = (
-				D9F45DD92BED39F800D49340 /* DynamicBanner.swift */,
+				D9F45DD92BED39F800D49340 /* DynamicBannerData.swift */,
 			);
 			path = ServerDriven;
 			sourceTree = "<group>";
@@ -6491,7 +6491,7 @@
 				D912A33A28B5321400F7293D /* ShareAsVideoResult.swift in Sources */,
 				D924F9212BF841E6002FC815 /* IntroducingReactionsView.swift in Sources */,
 				D9FF3F972B142F78007AE773 /* UpdateIncentiveBanner.swift in Sources */,
-				D9F45DDA2BED39F800D49340 /* DynamicBanner.swift in Sources */,
+				D9F45DDA2BED39F800D49340 /* DynamicBannerData.swift in Sources */,
 				D958B1AA28394D400010F133 /* MainView.swift in Sources */,
 				D94EAB5529FC141F004CD604 /* LocalDatabase+Author.swift in Sources */,
 				D9A7D85F29FB448500A964AC /* AddSyncTables.swift in Sources */,
@@ -6705,7 +6705,7 @@
 				D91E375A2C4C8F33003A1107 /* PushAction.swift in Sources */,
 				D949181228860ABC0079F545 /* AllFoldersiPadView.swift in Sources */,
 				D9B8DE7F2BE5CEFD000C9035 /* ReactionSound.swift in Sources */,
-				D9F45DD72BED30C400D49340 /* DonateToFloodVictimsBanner.swift in Sources */,
+				D9F45DD72BED30C400D49340 /* DynamicBanner.swift in Sources */,
 				D9E747FB29A8ED1100009C8D /* NoSearchResultsView.swift in Sources */,
 				D98EC5E12825A05900340BE5 /* Sound.swift in Sources */,
 				D9DCC5D128751256008DD4A3 /* PushDevice.swift in Sources */,
