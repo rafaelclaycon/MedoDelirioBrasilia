@@ -82,10 +82,6 @@ struct SoundsView: View {
     // Long Update Banner
     @State private var displayLongUpdateBanner: Bool = false
 
-    // Donate Banner
-    @State private var donateBannerData: DynamicBanner = .init()
-    @State private var displayFloodBanner: Bool = false
-
     private var searchResults: [Sound] {
         if viewModel.searchText.isEmpty {
             return viewModel.sounds
@@ -191,16 +187,6 @@ struct SoundsView: View {
 //                                        RecurringDonationBanner(isBeingShown: $shouldDisplayRecurringDonationBanner)
 //                                            .padding(.horizontal, 10)
 //                                    }
-
-                                    if viewModel.currentViewMode == .allSounds, displayFloodBanner, viewModel.searchText.isEmpty {
-                                        DonateToFloodVictimsBanner(
-                                            bannerData: donateBannerData,
-                                            textCopyFeedback: {
-                                                viewModel.displayToast(toastText: $0)
-                                            }
-                                        )
-                                        .padding(.horizontal, 10)
-                                    }
 
 //                                    if shouldDisplayRetrospectiveBanner, viewModel.searchText.isEmpty {
 //                                        RetroBanner(
@@ -393,10 +379,6 @@ struct SoundsView: View {
 //                        }
 //                    }
 //                }
-
-                Task {
-                    await checkAndPopulateFloodBanner()
-                }
 
 //                Task {
 //                    if AppPersistentMemory.getHasSeenRetroBanner() {
@@ -782,22 +764,6 @@ struct SoundsView: View {
 
         self.trendsHelper.soundIdToGoTo = ""
         return true // This tells the ScrollViewProxy "yes, go ahead and scroll, there was a soundId received". Unfortunately, passing the proxy as a parameter did not work and this code was made more complex because of this.
-    }
-
-    private func checkAndPopulateFloodBanner() async {
-        do {
-            let url = URL(string: NetworkRabbit.shared.serverPath + "v4/flood-banner-starting-version")!
-            let startDisplayingVersion: String = try await NetworkRabbit.get(from: url)
-
-            displayFloodBanner = startDisplayingVersion != Versioneer.appVersion
-            guard displayFloodBanner else { return }
-
-            let dataUrl = URL(string: NetworkRabbit.shared.serverPath + "v4/flood-banner")!
-            donateBannerData = try await NetworkRabbit.get(from: dataUrl)
-        } catch {
-            displayFloodBanner = false
-            print("Unable to check or populate the Flood Banner: \(error.localizedDescription)")
-        }
     }
 }
 
