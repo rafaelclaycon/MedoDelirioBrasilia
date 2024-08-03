@@ -140,14 +140,10 @@ struct SoundsView: View {
     var body: some View {
         ZStack {
             VStack {
-                NavigationLink(
-                    destination: AuthorDetailView(
-                        viewModel: .init(authorName: authorToAutoOpen.name, currentSoundsListMode: $currentSoundsListMode),
-                        author: authorToAutoOpen,
-                        currentSoundsListMode: $currentSoundsListMode
-                    ),
-                    isActive: $autoOpenAuthor
-                ) { EmptyView() }
+//                NavigationLink(
+//                    destination: AuthorDetailView(author: authorToAutoOpen),
+//                    isActive: $autoOpenAuthor
+//                ) { EmptyView() }
 
                 if showNoFavoritesView {
                     NoFavoritesView()
@@ -586,29 +582,29 @@ struct SoundsView: View {
                 }
             }
 
-            if currentSoundsListMode == .selection {
-                VStack {
-                    Spacer()
-
-                    FloatingSelectionOptionsView(
-                        areButtonsEnabled: $areManyActionButtonsEnabled,
-                        favoriteTitle: $favoriteButtonTitle,
-                        favoriteSystemImage: $favoriteButtonImage,
-                        shareIsProcessing: $viewModel.shareManyIsProcessing,
-                        favoriteAction: {
-                            viewModel.addRemoveManyFromFavorites()
-                        },
-                        folderAction: {
-                            viewModel.prepareSelectedToAddToFolder()
-                            subviewToOpen = .addToFolderView
-                            showingModalView = true
-                        },
-                        shareAction: {
-                            viewModel.showShareManyAlert()
-                        }
-                    )
-                }
-            }
+//            if currentSoundsListMode == .selection {
+//                VStack {
+//                    Spacer()
+//
+//                    FloatingSelectionOptionsView(
+//                        areButtonsEnabled: $areManyActionButtonsEnabled,
+//                        favoriteTitle: $favoriteButtonTitle,
+//                        favoriteSystemImage: $favoriteButtonImage,
+//                        shareIsProcessing: $viewModel.shareManyIsProcessing,
+//                        favoriteAction: {
+//                            viewModel.addRemoveManyFromFavorites()
+//                        },
+//                        folderAction: {
+//                            viewModel.prepareSelectedToAddToFolder()
+//                            subviewToOpen = .addToFolderView
+//                            showingModalView = true
+//                        },
+//                        shareAction: {
+//                            viewModel.showShareManyAlert()
+//                        }
+//                    )
+//                }
+//            }
 
             if viewModel.showToastView {
                 VStack {
@@ -745,7 +741,7 @@ struct SoundsView: View {
                     }
                     .onChange(of: viewModel.soundSortOption) {
                         viewModel.sortSounds(by: SoundSortOption(rawValue: $0) ?? .dateAddedDescending)
-                        UserSettings.setSoundSortOption(to: $0)
+                        UserSettings.saveMainSoundListSoundSortOption($0)
                     }
                 }
             }
@@ -771,17 +767,15 @@ struct SoundsView: View {
     }
 }
 
-struct SoundsView_Previews: PreviewProvider {
-    static var previews: some View {
-        SoundsView(
-            viewModel: SoundsViewViewModel(
-                currentViewMode: .allSounds,
-                soundSortOption: SoundSortOption.dateAddedDescending.rawValue,
-                authorSortOption: AuthorSortOption.nameAscending.rawValue,
-                currentSoundsListMode: .constant(.regular),
-                syncValues: SyncValues()
-            ),
-            currentSoundsListMode: .constant(.regular)
-        )
-    }
+#Preview {
+    SoundsView(
+        viewModel: .init(
+            currentViewMode: .allSounds,
+            soundSortOption: SoundSortOption.dateAddedDescending.rawValue,
+            authorSortOption: AuthorSortOption.nameAscending.rawValue,
+            currentSoundsListMode: .constant(.regular),
+            syncValues: SyncValues()
+        ),
+        currentSoundsListMode: .constant(.regular)
+    )
 }
