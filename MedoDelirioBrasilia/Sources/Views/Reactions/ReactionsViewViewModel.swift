@@ -30,6 +30,10 @@ class ReactionsViewViewModel: ObservableObject {
             var reactions: [Reaction] = try await NetworkRabbit.get(from: url)
             reactions.sort(by: { $0.position < $1.position })
 
+            for i in 0..<reactions.count {
+                reactions[i].thumbnailImage = "http://127.0.0.1:8080/images/reactions/virais.png"
+            }
+
             DispatchQueue.main.async {
                 self.state = .loaded(reactions)
             }

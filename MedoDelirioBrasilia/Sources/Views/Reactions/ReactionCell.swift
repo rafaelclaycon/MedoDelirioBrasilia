@@ -27,22 +27,11 @@ struct ReactionCell: View {
     // MARK: - View Body
 
     var body: some View {
-        HStack {
-            Spacer()
-
-            Text(reaction.title)
-                .foregroundColor(.white)
-                .font(reduceTextSize ? .title2 : .title)
-                .bold()
-                .multilineTextAlignment(.center)
-                .shadow(color: .black, radius: 4, y: 4)
-
-            Spacer()
-        }
-        .frame(height: cellHeight)
-        .background {
-            HStack {
-                KFImage(URL(string: reaction.image))
+        RoundedRectangle(cornerRadius: 20)
+            .fill(Color.black.opacity(0.4))
+            .frame(height: cellHeight)
+            .background {
+                KFImage(URL(string: reaction.thumbnailImage ?? ""))
                     .placeholder {
                         if isLoading {
                             ProgressView()
@@ -59,11 +48,17 @@ struct ReactionCell: View {
                     .onFailure { _ in isLoading = false }
                     .resizable()
                     .scaledToFill()
+                    .frame(height: cellHeight)
+                    //.clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
             }
-            .frame(height: cellHeight)
-            .overlay(Color.black.opacity(0.4))
-            .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-        }
+            .overlay {
+                Text(reaction.title)
+                    .foregroundColor(.white)
+                    .font(reduceTextSize ? .title2 : .title)
+                    .bold()
+                    .multilineTextAlignment(.center)
+                    .shadow(color: .black, radius: 4, y: 4)
+            }
     }
 }
 
