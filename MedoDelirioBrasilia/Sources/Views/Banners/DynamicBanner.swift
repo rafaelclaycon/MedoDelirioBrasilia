@@ -1,5 +1,5 @@
 //
-//  DonateToFloodVictimsBanner.swift
+//  DynamicBanner.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 09/05/24.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct DonateToFloodVictimsBanner: View {
+struct DynamicBanner: View {
 
-    let bannerData: DynamicBanner
+    let bannerData: DynamicBannerData
     let textCopyFeedback: (String) -> Void
 
     @State private var isExpanded: Bool = false
@@ -106,7 +106,7 @@ struct DonateToFloodVictimsBanner: View {
 }
 
 #Preview {
-    DonateToFloodVictimsBanner(
+    DynamicBanner(
         bannerData: .init(symbol: "house", title: "Ajude", text: ["Text"], buttons: []),
         textCopyFeedback: { _ in }
     )
