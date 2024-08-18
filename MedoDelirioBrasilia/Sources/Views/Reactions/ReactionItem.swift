@@ -1,5 +1,5 @@
 //
-//  ReactionCell.swift
+//  ReactionItem.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Claycon Schmitt on 28/06/22.
@@ -8,7 +8,7 @@
 import SwiftUI
 import Kingfisher
 
-struct ReactionCell: View {
+struct ReactionItem: View {
 
     let reaction: Reaction
 
@@ -31,7 +31,7 @@ struct ReactionCell: View {
             .fill(Color.black.opacity(0.4))
             .frame(height: cellHeight)
             .background {
-                KFImage(URL(string: reaction.thumbnailImage ?? ""))
+                KFImage(URL(string: reaction.image))
                     .placeholder {
                         if isLoading {
                             ProgressView()
@@ -49,7 +49,7 @@ struct ReactionCell: View {
                     .resizable()
                     .scaledToFill()
                     .frame(height: cellHeight)
-                    //.clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                    .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
             }
             .overlay {
                 Text(reaction.title)
@@ -59,6 +59,7 @@ struct ReactionCell: View {
                     .multilineTextAlignment(.center)
                     .shadow(color: .black, radius: 4, y: 4)
             }
+            .contentShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
     }
 }
 
@@ -71,7 +72,7 @@ struct ReactionCell_Previews: PreviewProvider {
             ScrollView {
                 LazyVGrid(columns: columns, alignment: .listRowSeparatorLeading, spacing: 14) {
                     ForEach(Reaction.allMocks) {
-                        ReactionCell(reaction: $0)
+                        ReactionItem(reaction: $0)
                     }
                 }
                 .padding()

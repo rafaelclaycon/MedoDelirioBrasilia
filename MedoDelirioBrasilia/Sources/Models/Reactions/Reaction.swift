@@ -13,7 +13,6 @@ struct Reaction: Hashable, Codable, Identifiable {
     let title: String
     let position: Int
     let image: String
-    var thumbnailImage: String?
     let lastUpdate: String
 
     init(
@@ -21,14 +20,12 @@ struct Reaction: Hashable, Codable, Identifiable {
         title: String,
         position: Int,
         image: String,
-        thumbnailImage: String?,
         lastUpdate: String
     ) {
         self.id = id
         self.title = title
         self.position = position
         self.image = image
-        self.thumbnailImage = thumbnailImage
         self.lastUpdate = lastUpdate
     }
 
@@ -42,7 +39,6 @@ struct Reaction: Hashable, Codable, Identifiable {
         self.title = title
         self.position = position
         self.image = image
-        self.thumbnailImage = image
         self.lastUpdate = ""
     }
 }

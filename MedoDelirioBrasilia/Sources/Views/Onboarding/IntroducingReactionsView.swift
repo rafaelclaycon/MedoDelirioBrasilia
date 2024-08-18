@@ -17,7 +17,7 @@ struct IntroducingReactionsView: View {
                 VStack(alignment: .center, spacing: 40) {
                     HStack {
                         ForEach(Reaction.allMocks) { mock in
-                            ReactionCell(reaction: mock)
+                            ReactionItem(reaction: mock)
                                 .frame(width: 180)
                                 //.shadow(radius: 20, y: -2)
                         }

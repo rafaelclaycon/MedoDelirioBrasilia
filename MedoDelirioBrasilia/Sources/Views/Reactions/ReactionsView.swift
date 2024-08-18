@@ -59,10 +59,8 @@ struct ReactionsView: View {
                     ScrollView {
                         LazyVGrid(columns: columns, spacing: UIDevice.isiPhone ? 12 : 20) {
                             ForEach(reactions) { reaction in
-                                ReactionCell(reaction: reaction)
-                                    //.border(colors.randomElement() ?? .red, width: 1)
+                                ReactionItem(reaction: reaction)
                                     .onTapGesture {
-                                        print("YE OLDE \(reaction.title)")
                                         push(GeneralNavigationDestination.reactionDetail(reaction))
                                     }
                             }
