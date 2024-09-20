@@ -9,8 +9,6 @@ import SwiftUI
 
 struct SoundDetailView: View {
 
-    @Binding var isBeingShown: Bool
-
     let sound: Sound
 
     @State private var isPlaying: Bool = false
@@ -23,8 +21,11 @@ struct SoundDetailView: View {
     @State private var alertMessage: String = ""
     @State private var showAlert: Bool = false
 
+    // MARK: - Environment Properties
     @Environment(\.colorScheme) var colorScheme
+    @Environment(\.dismiss) var dismiss
 
+    // MARK: - Body
     var body: some View {
         NavigationView {
             ScrollView {
@@ -75,6 +76,10 @@ struct SoundDetailView: View {
 //                        Label("Baixar som novamente", systemImage: "arrow.down")
 //                    }
 //                    .capsule(colored: .green)
+
+                    PodiumPair.LoadingErrorView(retryAction: {})
+
+                    Spacer()
                 }
                 .padding()
                 .navigationTitle("Detalhes do Som")
@@ -82,7 +87,7 @@ struct SoundDetailView: View {
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
                         Button("Fechar") {
-                            isBeingShown = false
+                            dismiss()
                         }
                     }
                 }
@@ -194,10 +199,7 @@ extension SoundDetailView {
             }
         }
     }
-}
 
-extension SoundDetailView {
-    
     struct InfoBlock: View {
 
         let sound: Sound
@@ -232,17 +234,87 @@ extension SoundDetailView {
             }
         }
     }
+
+    struct PodiumItem: View {
+
+        let value: Int
+        let text: String
+
+        var body: some View {
+            VStack(spacing: 10) {
+                Text("\(value)")
+                    .font(.title)
+                    .bold()
+
+                Text(text)
+                    .foregroundStyle(.gray)
+                    .multilineTextAlignment(.center)
+            }
+        }
+    }
+
+    struct PodiumPair {
+
+        struct LoadingView: View {
+            var body: some View {
+                VStack(spacing: 15) {
+                    ProgressView()
+
+                    Text("Carregando estatísticas de compartilhamento...")
+                        .foregroundStyle(.gray)
+                        .font(.footnote)
+                        .multilineTextAlignment(.center)
+                }
+                .frame(height: 100)
+                .frame(maxWidth: .infinity)
+            }
+        }
+
+        struct LoadedView: View {
+
+            var body: some View {
+                HStack(spacing: 10) {
+                    PodiumItem(value: 100, text: "total de compartilhamentos")
+                        .frame(minWidth: 0, maxWidth: .infinity)
+
+                    Divider()
+
+                    PodiumItem(value: 2, text: "compart. na última semana")
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                }
+            }
+        }
+
+        struct LoadingErrorView: View {
+
+            let retryAction: () -> Void
+
+            var body: some View {
+                VStack(spacing: 15) {
+                    Text("Não foi possível carregar as estatísticas de compartilhamento.")
+                        .multilineTextAlignment(.center)
+
+                    Button {
+                        retryAction()
+                    } label: {
+                        Label("TENTAR NOVAMENTE", systemImage: "arrow.clockwise")
+                            .font(.footnote)
+                    }
+                    .borderedButton(colored: .blue)
+                }
+                .frame(minHeight: 100)
+                .frame(maxWidth: .infinity)
+            }
+        }
+    }
 }
 
-struct SoundDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        SoundDetailView(
-            isBeingShown: .constant(true),
-            sound: Sound(
-                title: "A gente vai cansando",
-                authorName: "Soraya Thronicke",
-                description: "meu deus a gente vai cansando sabe"
-            )
+#Preview {
+    SoundDetailView(
+        sound: Sound(
+            title: "A gente vai cansando",
+            authorName: "Soraya Thronicke",
+            description: "meu deus a gente vai cansando sabe"
         )
-    }
+    )
 }
