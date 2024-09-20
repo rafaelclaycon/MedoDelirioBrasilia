@@ -9,6 +9,8 @@ import Foundation
 import SQLiteMigrationManager
 import SQLite
 
+private typealias Expression = SQLite.Expression
+
 struct AddExternalLinksFieldToAuthorTable: Migration {
 
     var version: Int64 = 2024_03_28_18_21_00

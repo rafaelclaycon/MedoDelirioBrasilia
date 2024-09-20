@@ -9,22 +9,24 @@ import SwiftUI
 
 struct SoundDetailView: View {
 
-    @Binding var isBeingShown: Bool
-
     let sound: Sound
 
     @State private var isPlaying: Bool = false
     @State private var showSuggestOtherAuthorEmailAppPicker: Bool = false
     @State private var didCopySupportAddressOnEmailPicker: Bool = false
     @State private var showToastView: Bool = false
+    @State private var soundStatistics: LoadingState<ContentShareCountStats> = .loading
 
     // Alerts
     @State private var alertTitle: String = ""
     @State private var alertMessage: String = ""
     @State private var showAlert: Bool = false
 
+    // MARK: - Environment Properties
     @Environment(\.colorScheme) var colorScheme
+    @Environment(\.dismiss) var dismiss
 
+    // MARK: - Body
     var body: some View {
         NavigationView {
             ScrollView {
@@ -75,6 +77,21 @@ struct SoundDetailView: View {
 //                        Label("Baixar som novamente", systemImage: "arrow.down")
 //                    }
 //                    .capsule(colored: .green)
+
+                    switch soundStatistics {
+                    case .loading:
+                        PodiumPair.LoadingView()
+                    case .loaded(let stats):
+                        PodiumPair.LoadedView(stats: stats)
+                    case .error(_):
+                        PodiumPair.LoadingErrorView(retryAction: {
+                            Task {
+                                await loadStatistics()
+                            }
+                        })
+                    }
+
+                    Spacer()
                 }
                 .padding()
                 .navigationTitle("Detalhes do Som")
@@ -82,7 +99,7 @@ struct SoundDetailView: View {
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
                         Button("Fechar") {
-                            isBeingShown = false
+                            dismiss()
                         }
                     }
                 }
@@ -130,10 +147,13 @@ struct SoundDetailView: View {
                     .transition(.moveAndFade)
                 }
             }
+            .task {
+                await loadStatistics()
+            }
         }
     }
 
-    func play(_ sound: Sound) {
+    private func play(_ sound: Sound) {
         do {
             let url = try sound.fileURL()
 
@@ -155,14 +175,25 @@ struct SoundDetailView: View {
         }
     }
 
-    func showUnableToGetSoundAlert() {
+    private func loadStatistics() async {
+        soundStatistics = .loading
+        let url = URL(string: NetworkRabbit.shared.serverPath + "v3/sound-share-count-stats-for/\(sound.id)")!
+        do {
+            let stats: ContentShareCountStats = try await NetworkRabbit.get(from: url)
+            soundStatistics = .loaded(stats)
+        } catch {
+            soundStatistics = .error(error.localizedDescription)
+        }
+    }
+
+    private func showUnableToGetSoundAlert() {
         TapticFeedback.error()
         alertTitle = Shared.contentNotFoundAlertTitle(sound.title)
         alertMessage = Shared.soundNotFoundAlertMessage
         showAlert = true
     }
 
-    func showServerSoundNotAvailableAlert() {
+    private func showServerSoundNotAvailableAlert() {
         TapticFeedback.error()
         alertTitle = Shared.contentNotFoundAlertTitle(sound.title)
         alertMessage = Shared.serverContentNotAvailableMessage
@@ -194,10 +225,7 @@ extension SoundDetailView {
             }
         }
     }
-}
 
-extension SoundDetailView {
-    
     struct InfoBlock: View {
 
         let sound: Sound
@@ -232,17 +260,122 @@ extension SoundDetailView {
             }
         }
     }
+
+    struct PodiumItem: View {
+
+        let highlight: String
+        let description: String
+
+        var body: some View {
+            VStack(spacing: 5) {
+                Text(highlight)
+                    .font(.title)
+                    .bold()
+
+                Text(description)
+                    .foregroundStyle(.gray)
+                    .multilineTextAlignment(.center)
+            }
+        }
+    }
+
+    struct PodiumPair {
+
+        struct LoadingView: View {
+            var body: some View {
+                VStack(spacing: 15) {
+                    ProgressView()
+
+                    Text("Carregando estatísticas de compartilhamento...")
+                        .foregroundStyle(.gray)
+                        .font(.footnote)
+                        .multilineTextAlignment(.center)
+                }
+                .frame(height: 100)
+                .frame(maxWidth: .infinity)
+            }
+        }
+
+        struct LoadedView: View {
+
+            let stats: ContentShareCountStats
+
+            var body: some View {
+                VStack(spacing: 30) {
+                    HStack(spacing: 10) {
+                        PodiumItem(
+                            highlight: String.localizedStringWithFormat("%.0f", Double(stats.totalShareCount)),
+                            description: "total de compartilhamentos"
+                        )
+                        .frame(minWidth: 0, maxWidth: .infinity)
+
+                        Divider()
+
+                        PodiumItem(
+                            highlight: "\(stats.lastWeekShareCount)",
+                            description: "compart. na última semana"
+                        )
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                    }
+
+                    if !stats.topMonth.isEmpty && !stats.topYear.isEmpty {
+                        PodiumItem(
+                            highlight: "\(monthDescription(stats.topMonth))/\(stats.topYear)",
+                            description: "mês com mais compartilhamentos"
+                        )
+                    }
+                }
+            }
+
+            private func monthDescription(_ input: String) -> String {
+                switch input {
+                case "01": return "jan"
+                case "02": return "fev"
+                case "03": return "mar"
+                case "04": return "abr"
+                case "05": return "mai"
+                case "06": return "jun"
+                case "07": return "jul"
+                case "08": return "ago"
+                case "09": return "set"
+                case "10": return "out"
+                case "11": return "nov"
+                case "12": return "dez"
+                default: return "-"
+                }
+            }
+        }
+
+        struct LoadingErrorView: View {
+
+            let retryAction: () -> Void
+
+            var body: some View {
+                VStack(spacing: 15) {
+                    Text("Não foi possível carregar as estatísticas de compartilhamento.")
+                        .multilineTextAlignment(.center)
+
+                    Button {
+                        retryAction()
+                    } label: {
+                        Label("TENTAR NOVAMENTE", systemImage: "arrow.clockwise")
+                            .font(.footnote)
+                    }
+                    .borderedButton(colored: .blue)
+                }
+                .frame(minHeight: 100)
+                .frame(maxWidth: .infinity)
+            }
+        }
+    }
 }
 
-struct SoundDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        SoundDetailView(
-            isBeingShown: .constant(true),
-            sound: Sound(
-                title: "A gente vai cansando",
-                authorName: "Soraya Thronicke",
-                description: "meu deus a gente vai cansando sabe"
-            )
+#Preview {
+    SoundDetailView(
+        sound: Sound(
+            title: "A gente vai cansando",
+            authorName: "Soraya Thronicke",
+            description: "meu deus a gente vai cansando sabe"
         )
-    }
+    )
 }
