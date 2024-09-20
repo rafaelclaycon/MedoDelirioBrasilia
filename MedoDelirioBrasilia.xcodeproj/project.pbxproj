@@ -1140,6 +1140,8 @@
 		D9943F2828642200002C6B97 /* AddToFolderViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F2728642200002C6B97 /* AddToFolderViewViewModel.swift */; };
 		D9943F2A28642EC3002C6B97 /* UserFolderContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F2928642EC3002C6B97 /* UserFolderContent.swift */; };
 		D9943F2C28643317002C6B97 /* FolderDetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F2B28643317002C6B97 /* FolderDetailViewViewModel.swift */; };
+		D994AD622C9DFE89004FAE25 /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994AD612C9DFE84004FAE25 /* LoadingState.swift */; };
+		D994AD642C9E006B004FAE25 /* ContentShareCountStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994AD632C9E006B004FAE25 /* ContentShareCountStats.swift */; };
 		D998815629C4A588007A8C7B /* Trote Luiz Pareto - Quem fala aqui e um advogado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D998815529C4A588007A8C7B /* Trote Luiz Pareto - Quem fala aqui e um advogado.mp3 */; };
 		D998816629C4AA93007A8C7B /* O ASSUNTO - Suspeito.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D998816129C4AA93007A8C7B /* O ASSUNTO - Suspeito.mp3 */; };
 		D998816729C4AA93007A8C7B /* GLOBONEWS - Octavio Guedes - E dai, eu nao sou psicologo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D998816229C4AA93007A8C7B /* GLOBONEWS - Octavio Guedes - E dai, eu nao sou psicologo.mp3 */; };
@@ -2627,6 +2629,8 @@
 		D9943F2728642200002C6B97 /* AddToFolderViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToFolderViewViewModel.swift; sourceTree = "<group>"; };
 		D9943F2928642EC3002C6B97 /* UserFolderContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFolderContent.swift; sourceTree = "<group>"; };
 		D9943F2B28643317002C6B97 /* FolderDetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetailViewViewModel.swift; sourceTree = "<group>"; };
+		D994AD612C9DFE84004FAE25 /* LoadingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingState.swift; sourceTree = "<group>"; };
+		D994AD632C9E006B004FAE25 /* ContentShareCountStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentShareCountStats.swift; sourceTree = "<group>"; };
 		D998815529C4A588007A8C7B /* Trote Luiz Pareto - Quem fala aqui e um advogado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Trote Luiz Pareto - Quem fala aqui e um advogado.mp3"; sourceTree = "<group>"; };
 		D998816129C4AA93007A8C7B /* O ASSUNTO - Suspeito.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O ASSUNTO - Suspeito.mp3"; sourceTree = "<group>"; };
 		D998816229C4AA93007A8C7B /* GLOBONEWS - Octavio Guedes - E dai, eu nao sou psicologo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "GLOBONEWS - Octavio Guedes - E dai, eu nao sou psicologo.mp3"; sourceTree = "<group>"; };
@@ -4675,6 +4679,8 @@
 		D98EC5DF2825A04000340BE5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D994AD632C9E006B004FAE25 /* ContentShareCountStats.swift */,
+				D994AD612C9DFE84004FAE25 /* LoadingState.swift */,
 				D9F45DD82BED39E100D49340 /* ServerDriven */,
 				D99070622A92CEB900A26F65 /* EnvironmentObjects */,
 				D95C3E102A02E6BB00172C17 /* Sync */,
@@ -6464,11 +6470,13 @@
 				D9E5056028F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift in Sources */,
 				D9CC025D28BD9EBD0021C1E6 /* GridHelper.swift in Sources */,
 				D9E18173298C82C700705DCA /* WordPluralization.swift in Sources */,
+				D994AD642C9E006B004FAE25 /* ContentShareCountStats.swift in Sources */,
 				D916627D2874F1F9000A1B23 /* FirstOnboardingView.swift in Sources */,
 				D94B5F662A1C9CF600B3A688 /* SyncService+Author.swift in Sources */,
 				D99DC19D28423AD7002B03B6 /* AuthorDetailViewViewModel.swift in Sources */,
 				D967E2BC2901C40700B21C11 /* CustomPhotoAlbum.swift in Sources */,
 				D907A39E2A8F9E6A006DE630 /* OpenUtility.swift in Sources */,
+				D994AD622C9DFE89004FAE25 /* LoadingState.swift in Sources */,
 				D9BACC012B13BF5400BBD0BE /* Analytics.swift in Sources */,
 				D98DBD35284919B1008544F8 /* NetworkRabbit.swift in Sources */,
 				D959B0482887E83D00A215AD /* SidebarViewViewModel.swift in Sources */,

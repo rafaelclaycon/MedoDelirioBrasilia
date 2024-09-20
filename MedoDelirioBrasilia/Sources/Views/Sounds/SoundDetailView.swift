@@ -15,6 +15,7 @@ struct SoundDetailView: View {
     @State private var showSuggestOtherAuthorEmailAppPicker: Bool = false
     @State private var didCopySupportAddressOnEmailPicker: Bool = false
     @State private var showToastView: Bool = false
+    @State private var soundStatistics: LoadingState<ContentShareCountStats> = .loading
 
     // Alerts
     @State private var alertTitle: String = ""
@@ -77,7 +78,18 @@ struct SoundDetailView: View {
 //                    }
 //                    .capsule(colored: .green)
 
-                    PodiumPair.LoadingErrorView(retryAction: {})
+                    switch soundStatistics {
+                    case .loading:
+                        PodiumPair.LoadingView()
+                    case .loaded(let stats):
+                        PodiumPair.LoadedView(stats: stats)
+                    case .error(_):
+                        PodiumPair.LoadingErrorView(retryAction: {
+                            Task {
+                                await loadStatistics()
+                            }
+                        })
+                    }
 
                     Spacer()
                 }
@@ -135,10 +147,13 @@ struct SoundDetailView: View {
                     .transition(.moveAndFade)
                 }
             }
+            .task {
+                await loadStatistics()
+            }
         }
     }
 
-    func play(_ sound: Sound) {
+    private func play(_ sound: Sound) {
         do {
             let url = try sound.fileURL()
 
@@ -160,14 +175,25 @@ struct SoundDetailView: View {
         }
     }
 
-    func showUnableToGetSoundAlert() {
+    private func loadStatistics() async {
+        soundStatistics = .loading
+        let url = URL(string: NetworkRabbit.shared.serverPath + "v3/sound-share-count-stats-for/\(sound.id)")!
+        do {
+            let stats: ContentShareCountStats = try await NetworkRabbit.get(from: url)
+            soundStatistics = .loaded(stats)
+        } catch {
+            soundStatistics = .error(error.localizedDescription)
+        }
+    }
+
+    private func showUnableToGetSoundAlert() {
         TapticFeedback.error()
         alertTitle = Shared.contentNotFoundAlertTitle(sound.title)
         alertMessage = Shared.soundNotFoundAlertMessage
         showAlert = true
     }
 
-    func showServerSoundNotAvailableAlert() {
+    private func showServerSoundNotAvailableAlert() {
         TapticFeedback.error()
         alertTitle = Shared.contentNotFoundAlertTitle(sound.title)
         alertMessage = Shared.serverContentNotAvailableMessage
@@ -237,16 +263,16 @@ extension SoundDetailView {
 
     struct PodiumItem: View {
 
-        let value: Int
-        let text: String
+        let highlight: String
+        let description: String
 
         var body: some View {
-            VStack(spacing: 10) {
-                Text("\(value)")
+            VStack(spacing: 5) {
+                Text(highlight)
                     .font(.title)
                     .bold()
 
-                Text(text)
+                Text(description)
                     .foregroundStyle(.gray)
                     .multilineTextAlignment(.center)
             }
@@ -272,15 +298,50 @@ extension SoundDetailView {
 
         struct LoadedView: View {
 
+            let stats: ContentShareCountStats
+
             var body: some View {
-                HStack(spacing: 10) {
-                    PodiumItem(value: 100, text: "total de compartilhamentos")
+                VStack(spacing: 30) {
+                    HStack(spacing: 10) {
+                        PodiumItem(
+                            highlight: String.localizedStringWithFormat("%.0f", Double(stats.totalShareCount)),
+                            description: "total de compartilhamentos"
+                        )
                         .frame(minWidth: 0, maxWidth: .infinity)
 
-                    Divider()
+                        Divider()
 
-                    PodiumItem(value: 2, text: "compart. na última semana")
+                        PodiumItem(
+                            highlight: "\(stats.lastWeekShareCount)",
+                            description: "compart. na última semana"
+                        )
                         .frame(minWidth: 0, maxWidth: .infinity)
+                    }
+
+                    if !stats.topMonth.isEmpty && !stats.topYear.isEmpty {
+                        PodiumItem(
+                            highlight: "\(monthDescription(stats.topMonth))/\(stats.topYear)",
+                            description: "mês com mais compartilhamentos"
+                        )
+                    }
+                }
+            }
+
+            private func monthDescription(_ input: String) -> String {
+                switch input {
+                case "01": return "jan"
+                case "02": return "fev"
+                case "03": return "mar"
+                case "04": return "abr"
+                case "05": return "mai"
+                case "06": return "jun"
+                case "07": return "jul"
+                case "08": return "ago"
+                case "09": return "set"
+                case "10": return "out"
+                case "11": return "nov"
+                case "12": return "dez"
+                default: return "-"
                 }
             }
         }
