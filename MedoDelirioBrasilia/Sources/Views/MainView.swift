@@ -239,9 +239,10 @@ struct MainView: View {
         if !AppPersistentMemory.hasShownNotificationsOnboarding() {
             subviewToOpen = .onboarding
             showingModalView = true
-        } else if !AppPersistentMemory.hasSeenReactionsWhatsNewScreen() {
-            subviewToOpen = .whatsNew
-            showingModalView = true
+            // TODO: Bring back once Reactions is ready!
+//        } else if !AppPersistentMemory.hasSeenReactionsWhatsNewScreen() {
+//            subviewToOpen = .whatsNew
+//            showingModalView = true
         }
     }
 }
