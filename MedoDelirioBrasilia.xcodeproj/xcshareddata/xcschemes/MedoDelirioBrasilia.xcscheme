@@ -86,7 +86,7 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "api_environment"
-            value = "dev"
+            value = "local"
             isEnabled = "NO">
          </EnvironmentVariable>
       </EnvironmentVariables>

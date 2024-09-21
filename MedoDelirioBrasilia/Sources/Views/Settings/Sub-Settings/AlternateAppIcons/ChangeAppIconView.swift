@@ -29,6 +29,7 @@ struct ChangeAppIconView: View {
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             selectedIcon = UIApplication.shared.alternateIconName ?? Icon.primary.id
+            Analytics.send(originatingScreen: "ChangeAppIconView", action: "didViewAlternateIconsView")
         }
     }
 

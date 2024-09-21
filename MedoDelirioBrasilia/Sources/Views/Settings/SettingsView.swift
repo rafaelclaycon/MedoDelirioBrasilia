@@ -88,7 +88,6 @@ struct SettingsView: View {
                             Image(systemName: "hand.raised")
                                 .foregroundColor(.blue)
                         }
-                        
                     }
                 }
                 
@@ -123,6 +122,7 @@ struct SettingsView: View {
                             ForEach(authorSocials) { social in
                                 Button {
                                     OpenUtility.open(link: social.link)
+                                    SettingsView.sendAnalytics(for: "didTapSocialLink(\(social.name))")
                                 } label: {
                                     Label(title: {
                                         Text(social.name)
@@ -138,6 +138,7 @@ struct SettingsView: View {
                         Section {
                             Button {
                                 OpenUtility.open(link: "https://jovemnerd.com.br/noticias/ciencia-e-tecnologia/mastodon-como-criar-conta")
+                                SettingsView.sendAnalytics(for: "didTapHowToCreateMastodonAccountOption")
                             } label: {
                                 Label("Como abrir uma conta no Mastodon?", systemImage: "arrow.up.right.square")
                             }
@@ -152,6 +153,7 @@ struct SettingsView: View {
                 Section("Contribua ou entenda como funciona") {
                     Button {
                         OpenUtility.open(link: "https://github.com/rafaelclaycon/MedoDelirioBrasilia")
+                        SettingsView.sendAnalytics(for: "didTapGitHubButton")
                     } label: {
                         Label("Ver código fonte no GitHub", systemImage: "curlybraces")
                     }
@@ -249,6 +251,13 @@ struct SettingsView: View {
         ].randomElement() ?? ""
         return "Chave copiada. \(ending)"
     }
+
+    private static func sendAnalytics(for action: String) {
+        Analytics.send(
+            originatingScreen: "SettingsView",
+            action: action
+        )
+    }
 }
 
 extension SettingsView {
@@ -275,6 +284,7 @@ extension SettingsView {
 
                     Button {
                         OpenUtility.open(link: "https://apoia.se/app-medo-delirio-ios")
+                        sendAnalytics(for: "didTapApoiaseButton")
                     } label: {
                         HStack(spacing: 15) {
                             Image(systemName: "dollarsign.circle")
@@ -318,6 +328,8 @@ extension SettingsView {
                                 showToastView = false
                             }
                         }
+
+                        sendAnalytics(for: "didCopyPixKey")
                     } label: {
                         HStack(spacing: 15) {
                             Image(systemName: "doc.on.doc")
@@ -346,8 +358,6 @@ extension SettingsView {
     }
 }
 
-struct AboutView_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingsView()
-    }
+#Preview {
+    SettingsView()
 }

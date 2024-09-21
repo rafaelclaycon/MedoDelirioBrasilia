@@ -20,6 +20,7 @@ struct EmailAppPickerView: View {
                             return
                         }
                         UIApplication.shared.open(mailToUrl)
+                        sendAnalytics(for: "default app")
                         self.isBeingShown = false
                     }
                     
@@ -30,6 +31,7 @@ struct EmailAppPickerView: View {
                                 return
                             }
                             UIApplication.shared.open(mailToUrl)
+                            sendAnalytics(for: "Gmail")
                             self.isBeingShown = false
                         }
                     }
@@ -41,6 +43,7 @@ struct EmailAppPickerView: View {
                                 return
                             }
                             UIApplication.shared.open(mailToUrl)
+                            sendAnalytics(for: "Outlook")
                             self.isBeingShown = false
                         }
                     }
@@ -52,6 +55,7 @@ struct EmailAppPickerView: View {
                                 return
                             }
                             UIApplication.shared.open(mailToUrl)
+                            sendAnalytics(for: "Yahoo Mail")
                             self.isBeingShown = false
                         }
                     }
@@ -63,6 +67,7 @@ struct EmailAppPickerView: View {
                                 return
                             }
                             UIApplication.shared.open(mailToUrl)
+                            sendAnalytics(for: "Spark")
                             self.isBeingShown = false
                         }
                     }
@@ -72,6 +77,7 @@ struct EmailAppPickerView: View {
                     Button("Copiar endereço de e-mail") {
                         UIPasteboard.general.string = Mailman.supportEmail
                         self.didCopySupportAddress = true
+                        sendAnalytics(for: "copy address")
                         self.isBeingShown = false
                     }
                 }
@@ -84,17 +90,30 @@ struct EmailAppPickerView: View {
                 }
             )
         }
-        .frame(minWidth: 320, idealWidth: 400, maxWidth: nil, minHeight: 150, idealHeight: 300, maxHeight: nil, alignment: .top)
+        .frame(
+            minWidth: 320,
+            idealWidth: 400,
+            maxWidth: nil,
+            minHeight: 150,
+            idealHeight: 300,
+            maxHeight: nil,
+            alignment: .top
+        )
+    }
+
+    private func sendAnalytics(for option: String) {
+        Analytics.send(
+            originatingScreen: "EmailAppPickerView",
+            action: "didPickEmailOption(\(option))"
+        )
     }
 }
 
-struct EmailAppPickerView_Previews: PreviewProvider {
-    static var previews: some View {
-        EmailAppPickerView(
-            isBeingShown: .constant(true),
-            didCopySupportAddress: .constant(false),
-            subject: "",
-            emailBody: ""
-        )
-    }
+#Preview {
+    EmailAppPickerView(
+        isBeingShown: .constant(true),
+        didCopySupportAddress: .constant(false),
+        subject: "",
+        emailBody: ""
+    )
 }
