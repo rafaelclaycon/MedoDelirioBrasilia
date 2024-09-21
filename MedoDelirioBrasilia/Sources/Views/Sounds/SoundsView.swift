@@ -52,7 +52,7 @@ struct SoundsView: View {
     @State private var soundIdToGoTo: String = ""
 
     // Folders
-    @StateObject var deleteFolderAide = DeleteFolderViewAideiPhone()
+    @StateObject var deleteFolderAide = DeleteFolderViewAide()
     
     // Toast views
     private let toastViewBottomPaddingPhone: CGFloat = 60
@@ -366,10 +366,9 @@ struct SoundsView: View {
                     await viewModel.sendUserPersonalTrendsToServerIfEnabled()
                 }
 
-                if AppPersistentMemory.getHasShownNotificationsOnboarding() == false {
+                if AppPersistentMemory.hasShownNotificationsOnboarding() == false {
                     subviewToOpen = .onboardingView
                     showingModalView = true
-                    AppPersistentMemory.setHasSeen70WhatsNewScreen(to: true) // Prevent the What's New screen from appearing when switching tabs
                 }
 
 //                if !AppPersistentMemory.getHasSeenRecurringDonationBanner() {
@@ -522,7 +521,7 @@ struct SoundsView: View {
                     }
 
                     if pluralization == .plural {
-                        Analytics.sendUsageMetricToServer(
+                        Analytics.send(
                             originatingScreen: "SoundsView",
                             action: "didAddManySoundsToFolder(\(selectedCount))"
                         )
@@ -536,7 +535,7 @@ struct SoundsView: View {
                         toastText: "Imagens salvas com sucesso."
                     )
 
-                    Analytics.sendUsageMetricToServer(
+                    Analytics.send(
                         originatingScreen: "SoundsView",
                         action: "didExportRetro2023Images(\(retroExportAnalytics))"
                     )

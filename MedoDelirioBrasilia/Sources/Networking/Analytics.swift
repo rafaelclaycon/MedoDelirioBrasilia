@@ -9,8 +9,8 @@ import UIKit
 
 class Analytics {
 
-    static func sendUsageMetricToServer(
-        originatingScreen: String,
+    static func send(
+        originatingScreen: String = "",
         action: String
     ) {
         let usageMetric = UsageMetric(

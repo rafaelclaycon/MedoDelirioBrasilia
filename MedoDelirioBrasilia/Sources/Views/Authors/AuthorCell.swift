@@ -79,6 +79,7 @@ struct AuthorCell: View {
         .mask {
             RoundedRectangle(cornerRadius: 20, style: .continuous)
         }
+        .contentShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
     }
 }
 

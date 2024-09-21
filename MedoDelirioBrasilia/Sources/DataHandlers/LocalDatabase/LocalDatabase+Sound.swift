@@ -99,8 +99,8 @@ extension LocalDatabase {
     }
     
     func sounds(withIds soundIds: [String]) throws -> [Sound] {
-        var queriedSounds = [Sound]()
-        
+        var queriedSounds = [String: Sound]()
+
         let author_id = Expression<String>("authorId")
         let id = Expression<String>("id")
         let name = Expression<String>("name")
@@ -122,9 +122,19 @@ extension LocalDatabase {
             }
             let authorName = try queriedSound.get(author[name])
             soundData.authorName = authorName
-            queriedSounds.append(soundData)
+            
+            let soundId = try queriedSound.get(id)
+            queriedSounds[soundId] = soundData
         }
-        return queriedSounds
+
+        var orderedSounds = [Sound]()
+        for soundId in soundIds {
+            if let sound = queriedSounds[soundId] {
+                orderedSounds.append(sound)
+            }
+        }
+
+        return orderedSounds
     }
 
     func allSounds(
@@ -198,5 +208,37 @@ extension LocalDatabase {
             Expression<Bool>("isFromServer") <- value
         )
         try db.run(updateQuery)
+    }
+
+    func randomSounds() throws -> [Sound] {
+        var randomSounds = [Sound]()
+
+        let author_id = Expression<String>("authorId")
+        let id = Expression<String>("id")
+        let name = Expression<String>("name")
+
+        // Construct the query to fetch 12 random sounds and join with the author table
+        let query = soundTable
+            .select(soundTable[*], author[name])
+            .join(author, on: soundTable[author_id] == author[id])
+            .order(Expression<Void>(literal: "RANDOM()")) // SQLite's RANDOM() function to order the sounds randomly
+            .limit(12) // Limit the results to 12
+
+        // Iterate over the results and decode them into Sound objects
+        for queriedSound in try db.prepare(query) {
+            var soundData: Sound = try queriedSound.decode()
+            if let dateString = try queriedSound.get(Expression<String?>("dateAdded")) {
+                if let date = dateFormatter.date(from: dateString) {
+                    soundData.dateAdded = date
+                }
+            }
+            if let isFromServer = try queriedSound.get(Expression<Bool?>("isFromServer")) {
+                soundData.isFromServer = isFromServer
+            }
+            let authorName = try queriedSound.get(author[name])
+            soundData.authorName = authorName
+            randomSounds.append(soundData)
+        }
+        return randomSounds
     }
 }

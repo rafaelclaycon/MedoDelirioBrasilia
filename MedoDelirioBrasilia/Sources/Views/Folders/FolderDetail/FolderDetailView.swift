@@ -52,7 +52,7 @@ struct FolderDetailView: View {
 
         let soundListViewModel = SoundListViewModel<[Sound]>(
             data: viewModel.soundsPublisher,
-            menuOptions: [.sharingOptions(), .playFromThisSound(), .removeFromFolder()],
+            menuOptions: [.sharingOptions(), /*.playFromThisSound(),*/ .removeFromFolder()],
             currentSoundsListMode: currentSoundsListMode,
             refreshAction: { viewModel.reloadSounds() },
             insideFolder: folder
@@ -69,10 +69,6 @@ struct FolderDetailView: View {
                 viewModel: soundListViewModel,
                 multiSelectFolderOperation: .remove,
                 isFolder: true,
-                emptyStateView: AnyView(
-                    EmptyFolderView()
-                        .padding(.horizontal, 30)
-                ),
                 headerView: AnyView(
                     VStack(alignment: .leading) {
                         HStack {
@@ -86,6 +82,32 @@ struct FolderDetailView: View {
                     }
                     .padding(.horizontal, 20)
                     .padding(.top)
+                ),
+                loadingView: AnyView(
+                    VStack {
+                        HStack(spacing: 10) {
+                            ProgressView()
+
+                            Text("Carregando sons...")
+                                .foregroundColor(.gray)
+                        }
+                        .frame(maxWidth: .infinity)
+                    }
+                ),
+                emptyStateView: AnyView(
+                    EmptyFolderView()
+                        .padding(.horizontal, 30)
+                ),
+                errorView: AnyView(
+                    VStack {
+                        HStack(spacing: 10) {
+                            ProgressView()
+
+                            Text("Erro ao carregar sons.")
+                                .foregroundColor(.gray)
+                        }
+                        .frame(maxWidth: .infinity)
+                    }
                 )
             )
             .environmentObject(TrendsHelper())
@@ -96,7 +118,7 @@ struct FolderDetailView: View {
             viewModel.reloadSounds()
         }
         .onDisappear {
-            if viewModel.isPlayingPlaylist {
+            if soundListViewModel.isPlayingPlaylist {
                 soundListViewModel.stopPlaying()
             }
         }
@@ -111,13 +133,9 @@ struct FolderDetailView: View {
         HStack(spacing: 16) {
             if currentSoundsListMode.wrappedValue == .regular {
                 Button {
-                    if viewModel.isPlayingPlaylist {
-                        soundListViewModel.stopPlaying()
-                    } else {
-                        viewModel.playAllSoundsOneAfterTheOther()
-                    }
+                    soundListViewModel.playStopPlaylist()
                 } label: {
-                    Image(systemName: viewModel.isPlayingPlaylist ? "stop.fill" : "play.fill")
+                    Image(systemName: soundListViewModel.isPlayingPlaylist ? "stop.fill" : "play.fill")
                 }
                 .disabled(viewModel.sounds.isEmpty)
             } else {
@@ -188,7 +206,7 @@ struct FolderDetailView: View {
             } label: {
                 Image(systemName: "ellipsis.circle")
             }
-            .disabled(viewModel.isPlayingPlaylist || viewModel.sounds.isEmpty)
+            .disabled(soundListViewModel.isPlayingPlaylist || viewModel.sounds.isEmpty)
         }
     }
     

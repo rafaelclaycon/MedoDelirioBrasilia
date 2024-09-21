@@ -11,6 +11,9 @@ struct MainView: View {
 
     @State var tabSelection: PhoneTab = .sounds
     @State var state: PadScreen? = PadScreen.allSounds
+    @State private var soundsPath = NavigationPath()
+    @State private var reactionsPath = NavigationPath()
+
     @State var isShowingSettingsSheet: Bool = false
     @StateObject var settingsHelper = SettingsHelper()
     @State var isShowingFolderInfoEditingSheet: Bool = false
@@ -29,13 +32,17 @@ struct MainView: View {
     let networkMonitor = NetworkMonitor()
     @StateObject private var syncValues = SyncValues()
 
+    private var enableReactions: Bool {
+        CommandLine.arguments.contains("-ENABLE_REACTIONS")
+    }
+
     // MARK: - View Body
 
     var body: some View {
         ZStack {
             if UIDevice.isiPhone {
                 TabView(selection: $tabSelection) {
-                    NavigationView {
+                    NavigationStack(path: $soundsPath) {
                         MainSoundContainer(
                             viewModel: .init(
                                 currentViewMode: .allSounds,
@@ -50,19 +57,29 @@ struct MainView: View {
                         .environmentObject(trendsHelper)
                         .environmentObject(settingsHelper)
                         .environmentObject(networkMonitor)
+                        .navigationDestination(for: GeneralNavigationDestination.self) { screen in
+                            GeneralRouter(destination: screen)
+                        }
                     }
                     .tabItem {
                         Label("Sons", systemImage: "speaker.wave.3.fill")
                     }
                     .tag(PhoneTab.sounds)
+                    .environment(\.push, PushAction { soundsPath.append($0) })
 
-                    //                NavigationView {
-                    //                    CollectionsView()
-                    //                }
-                    //                .tabItem {
-                    //                    Label("Coleções", systemImage: "rectangle.grid.2x2.fill")
-                    //                }
-                    //                .tag(PhoneTab.collections)
+                    if enableReactions {
+                        NavigationStack(path: $reactionsPath) {
+                            ReactionsView()
+                                .navigationDestination(for: GeneralNavigationDestination.self) { screen in
+                                    GeneralRouter(destination: screen)
+                                }
+                        }
+                        .tabItem {
+                            Label("Reações", systemImage: "rectangle.grid.2x2.fill")
+                        }
+                        .tag(PhoneTab.reactions)
+                        .environment(\.push, PushAction { reactionsPath.append($0) })
+                    }
 
                     NavigationView {
                         SongsView()
@@ -109,7 +126,7 @@ struct MainView: View {
                     trendsHelper.timeIntervalToGoTo = .allTime
                 })
             } else {
-                NavigationView {
+                NavigationSplitView {
                     SidebarView(
                         state: $state,
                         isShowingSettingsSheet: $isShowingSettingsSheet,
@@ -121,23 +138,28 @@ struct MainView: View {
                     .environmentObject(settingsHelper)
                     .environmentObject(networkMonitor)
                     .environmentObject(syncValues)
-
-                    MainSoundContainer(
-                        viewModel: .init(
-                            currentViewMode: .allSounds,
-                            soundSortOption: UserSettings.mainSoundListSoundSortOption(),
-                            authorSortOption: AuthorSortOption.nameAscending.rawValue,
+                } detail: {
+                    NavigationStack(path: $soundsPath) {
+                        MainSoundContainer(
+                            viewModel: .init(
+                                currentViewMode: .allSounds,
+                                soundSortOption: UserSettings.mainSoundListSoundSortOption(),
+                                authorSortOption: AuthorSortOption.nameAscending.rawValue,
+                                currentSoundsListMode: $currentSoundsListMode,
+                                syncValues: syncValues
+                            ),
                             currentSoundsListMode: $currentSoundsListMode,
-                            syncValues: syncValues
-                        ),
-                        currentSoundsListMode: $currentSoundsListMode,
-                        showSettings: .constant(false)
-                    )
-                    .environmentObject(trendsHelper)
-                    .environmentObject(settingsHelper)
-                    .environmentObject(networkMonitor)
+                            showSettings: .constant(false)
+                        )
+                        .environmentObject(trendsHelper)
+                        .environmentObject(settingsHelper)
+                        .environmentObject(networkMonitor)
+                        .navigationDestination(for: GeneralNavigationDestination.self) { screen in
+                            GeneralRouter(destination: screen)
+                        }
+                    }
                 }
-                .navigationViewStyle(DoubleColumnNavigationViewStyle())
+                .environment(\.push, PushAction { soundsPath.append($0) })
                 .sheet(isPresented: $isShowingSettingsSheet) {
                     SettingsCasingWithCloseView(isBeingShown: $isShowingSettingsSheet)
                         .environmentObject(settingsHelper)
@@ -173,7 +195,8 @@ struct MainView: View {
                     .interactiveDismissDisabled(UIDevice.current.userInterfaceIdiom == .phone ? true : false)
 
             case .whatsNew:
-                EmptyView()
+                IntroducingReactionsView(isBeingShown: $showingModalView)
+                    .interactiveDismissDisabled()
 
             case .retrospective:
                 EmptyView()
@@ -213,8 +236,11 @@ struct MainView: View {
     }
 
     private func displayOnboardingIfNeeded() {
-        if AppPersistentMemory.getHasShownNotificationsOnboarding() == false {
+        if !AppPersistentMemory.hasShownNotificationsOnboarding() {
             subviewToOpen = .onboarding
+            showingModalView = true
+        } else if !AppPersistentMemory.hasSeenReactionsWhatsNewScreen() {
+            subviewToOpen = .whatsNew
             showingModalView = true
         }
     }

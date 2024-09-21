@@ -65,9 +65,8 @@ extension ContextMenuOption {
         ContextMenuOption(
             symbol: { _ in "person" },
             title: { _ in "Ver Todos os Sons Desse Autor" }
-        ) { _,_ in
-            // Implement the action to view all sounds from this author
-            print("Viewing All from Author")
+        ) { sound, delegate in
+            delegate.showAuthor(withId: sound.authorId)
         }
     }
 
@@ -75,9 +74,8 @@ extension ContextMenuOption {
         ContextMenuOption(
             symbol: { _ in "info.circle" },
             title: { _ in "Ver Detalhes" }
-        ) { _,_ in
-            // Implement the action to view details
-            print("Viewing Details")
+        ) { sound, delegate in
+            delegate.showDetails(for: sound)
         }
     }
 }
@@ -114,7 +112,7 @@ extension ContextMenuOption {
             symbol: { _ in "exclamationmark.bubble"},
             title: { _ in "Sugerir Outro Nome de Autor"}
         ) { sound, delegate in
-//            delegate.
+            delegate.suggestOtherAuthorName(for: sound)
         }
     }
 }

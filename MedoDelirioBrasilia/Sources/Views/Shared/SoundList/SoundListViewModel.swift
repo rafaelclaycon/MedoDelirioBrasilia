@@ -26,6 +26,8 @@ class SoundListViewModel<T>: ObservableObject {
     @Published var subviewToOpen: SoundListModalToOpen = .shareAsVideo
     @Published var showingModalView = false
 
+    @Published var authorToOpen: Author? = nil
+
     // Share as Video
     @Published var shareAsVideoResult = ShareAsVideoResult()
 
@@ -48,6 +50,10 @@ class SoundListViewModel<T>: ObservableObject {
     // Long Updates
     @Published var processedUpdateNumber: Int = 0
     @Published var totalUpdateCount: Int = 0
+
+    // Playlist
+    @Published var isPlayingPlaylist: Bool = false
+    private var currentTrackIndex: Int = 0
 
     // Alerts
     @Published var alertTitle: String = ""
@@ -92,36 +98,6 @@ class SoundListViewModel<T>: ObservableObject {
     }
 
     // MARK: - Functions
-
-    func play(_ sound: Sound) {
-        do {
-            let url = try sound.fileURL()
-
-            nowPlayingKeeper.removeAll()
-            nowPlayingKeeper.insert(sound.id)
-
-            AudioPlayer.shared = AudioPlayer(url: url, update: { [weak self] state in
-                guard let self = self else { return }
-                if state?.activity == .stopped {
-                    self.nowPlayingKeeper.removeAll()
-                }
-            })
-
-            AudioPlayer.shared?.togglePlay()
-        } catch {
-            if sound.isFromServer ?? false {
-                showServerSoundNotAvailableAlert(sound)
-                // Disregarding the case of the sound not being in the Bundle as this is highly unlikely since the launch of the sync system.
-            }
-        }
-    }
-
-    func stopPlaying() {
-        if nowPlayingKeeper.count > 0 {
-            AudioPlayer.shared?.togglePlay()
-            nowPlayingKeeper.removeAll()
-        }
-    }
 
     func loadFavorites() {
         do {
@@ -228,6 +204,75 @@ class SoundListViewModel<T>: ObservableObject {
     }
 }
 
+// MARK: - Sound Playback
+
+extension SoundListViewModel {
+
+    func playStopPlaylist() {
+        if isPlayingPlaylist {
+            stopPlaying()
+        } else {
+            playAllSoundsOneAfterTheOther()
+        }
+    }
+
+    func play(_ sound: Sound) {
+        do {
+            let url = try sound.fileURL()
+
+            nowPlayingKeeper.removeAll()
+            nowPlayingKeeper.insert(sound.id)
+
+            AudioPlayer.shared = AudioPlayer(url: url, update: { [weak self] state in
+                guard let self else { return }
+                if state?.activity == .stopped {
+                    self.nowPlayingKeeper.removeAll()
+
+                    guard case .loaded(let sounds) = self.state else { return }
+
+                    if self.isPlayingPlaylist {
+                        self.currentTrackIndex += 1
+
+                        if self.currentTrackIndex >= sounds.count {
+                            self.doPlaylistCleanup()
+                            return
+                        }
+
+                        self.play(sounds[self.currentTrackIndex])
+                    }
+                }
+            })
+
+            AudioPlayer.shared?.togglePlay()
+        } catch {
+            if sound.isFromServer ?? false {
+                showServerSoundNotAvailableAlert(sound)
+                // Disregarding the case of the sound not being in the Bundle as this is highly unlikely since the launch of the sync system.
+            }
+        }
+    }
+
+    func stopPlaying() {
+        if nowPlayingKeeper.count > 0 {
+            AudioPlayer.shared?.togglePlay()
+            nowPlayingKeeper.removeAll()
+            doPlaylistCleanup()
+        }
+    }
+
+    private func playAllSoundsOneAfterTheOther() {
+        guard case .loaded(let sounds) = state else { return }
+        guard let firstSound = sounds.first else { return }
+        isPlayingPlaylist = true
+        play(firstSound)
+    }
+
+    private func doPlaylistCleanup() {
+        currentTrackIndex = 0
+        isPlayingPlaylist = false
+    }
+}
+
 // MARK: - ContextMenuOption Communication
 
 extension SoundListViewModel: SoundListDisplaying {
@@ -303,7 +348,26 @@ extension SoundListViewModel: SoundListDisplaying {
 
     func removeFromFolder(_ sound: Sound) {
         selectedSound = sound
-        // showSoundRemovalConfirmation(soundTitle: sound.title)
+        showSoundRemovalConfirmation(soundTitle: sound.title)
+    }
+
+    func showDetails(for sound: Sound) {
+        selectedSound = sound
+        subviewToOpen = .soundDetail
+        showingModalView = true
+    }
+
+    func showAuthor(withId authorId: String) {
+        guard let author = try? LocalDatabase.shared.author(withId: authorId) else {
+            print("SoundList error: unable to find author with id \(authorId)")
+            return
+        }
+        authorToOpen = author
+    }
+
+    func suggestOtherAuthorName(for sound: Sound) {
+        subviewToOpen = .authorIssueEmailPicker(sound)
+        showingModalView = true
     }
 }
 
@@ -404,14 +468,14 @@ extension SoundListViewModel {
             stopSelecting()
             guard let refreshAction else { return }
             refreshAction()
-            Analytics.sendUsageMetricToServer(
+            Analytics.send(
                 originatingScreen: "SoundsView",
                 action: "didRemoveManySoundsFromFavorites(\(selectedCount))"
             )
         } else {
             addSelectedToFavorites()
             stopSelecting()
-            Analytics.sendUsageMetricToServer(
+            Analytics.send(
                 originatingScreen: "SoundsView",
                 action: "didAddManySoundsToFavorites(\(selectedCount))"
             )
@@ -492,6 +556,21 @@ extension SoundListViewModel {
     }
 }
 
+// MARK: - Folder
+
+extension SoundListViewModel {
+
+    func removeSingleSoundFromFolder() {
+        guard let folder else { return }
+        guard let refreshAction else { return }
+        guard let sound = selectedSound else { return }
+
+        try? LocalDatabase.shared.deleteUserContentFromFolder(withId: folder.id, contentId: sound.id)
+
+        refreshAction()
+    }
+}
+
 // MARK: - Scroll To Id
 
 extension SoundListViewModel {
@@ -530,7 +609,7 @@ extension SoundListViewModel {
         showAlert = true
     }
 
-    // From the before times when WhatApp didn't really support receiving many sounds through the system Share Sheet.
+    // From the before times when WhatsApp didn't really support receiving many sounds through the system Share Sheet.
 //    func showShareManyAlert() {
 //        let messageDisplayCount = AppPersistentMemory.getShareManyMessageShowCount()
 //
@@ -555,6 +634,13 @@ extension SoundListViewModel {
         alertType = .issueExportingManySounds
         alertTitle = "Problema ao Tentar Exportar Vários Sons"
         alertMessage = "Houve um problema desconhecido ao tentar compartilhar vários sons. Por favor, envie um print desse erro para o desenvolvedor (e-mail nas Configurações):\n\n\(localizedError)"
+        showAlert = true
+    }
+
+    func showSoundRemovalConfirmation(soundTitle: String) {
+        alertTitle = "Remover \"\(soundTitle)\"?"
+        alertMessage = "O som continuará disponível fora da pasta."
+        alertType = .removeSingleSound
         showAlert = true
     }
 

@@ -17,10 +17,10 @@ struct MainSoundContainer: View {
 
     @State private var subviewToOpen: MainSoundContainerModalToOpen = .syncInfo
     @State private var showingModalView = false
-    @State private var stopShowingFloatingSelector: Bool? = false
+    @State private var soundSearchTextIsEmpty: Bool? = true
 
     // Folders
-    @StateObject var deleteFolderAide = DeleteFolderViewAideiPhone()
+    @StateObject var deleteFolderAide = DeleteFolderViewAide()
 
     // Authors
     @State var authorSortAction: AuthorSortOption = .nameAscending
@@ -65,7 +65,7 @@ struct MainSoundContainer: View {
         if viewModel.currentViewMode == .byAuthor {
             return authorSearchText.isEmpty
         } else {
-            return !(stopShowingFloatingSelector ?? false)
+            return soundSearchTextIsEmpty ?? false
         }
     }
 
@@ -93,7 +93,7 @@ struct MainSoundContainer: View {
         self.showSettings = showSettings
     }
 
-    // MARK: - Body
+    // MARK: - View Body
 
     var body: some View {
         VStack {
@@ -101,7 +101,7 @@ struct MainSoundContainer: View {
             case .allSounds:
                 SoundList(
                     viewModel: allSoundsViewModel,
-                    stopShowingFloatingSelector: $stopShowingFloatingSelector,
+                    soundSearchTextIsEmpty: $soundSearchTextIsEmpty,
                     allowSearch: true,
                     allowRefresh: true,
                     showSoundCountAtTheBottom: true,
@@ -111,11 +111,6 @@ struct MainSoundContainer: View {
                             await viewModel.sync(lastAttempt: AppPersistentMemory.getLastUpdateAttempt())
                         }
                     },
-                    emptyStateView: AnyView(
-                        Text("Nenhum som a ser exibido. Isso é esquisito.")
-                            .foregroundColor(.gray)
-                            .padding(.horizontal, 20)
-                    ),
                     headerView: AnyView(
                         VStack {
                             if !networkMonitor.isConnected, shouldDisplayYoureOfflineBanner {
@@ -135,18 +130,67 @@ struct MainSoundContainer: View {
 //                                    .padding(.horizontal, 10)
 //                            }
                         }
+                    ),
+                    loadingView: AnyView(
+                        VStack {
+                            HStack(spacing: 10) {
+                                ProgressView()
+
+                                Text("Carregando sons...")
+                                    .foregroundColor(.gray)
+                            }
+                            .frame(maxWidth: .infinity)
+                        }
+                    ),
+                    emptyStateView: AnyView(
+                        Text("Nenhum som a ser exibido. Isso é esquisito.")
+                            .foregroundColor(.gray)
+                            .padding(.horizontal, 20)
+                    ),
+                    errorView: AnyView(
+                        VStack {
+                            HStack(spacing: 10) {
+                                ProgressView()
+
+                                Text("Erro ao carregar sons.")
+                                    .foregroundColor(.gray)
+                            }
+                            .frame(maxWidth: .infinity)
+                        }
                     )
                 )
 
             case .favorites:
                 SoundList(
                     viewModel: favoritesViewModel,
-                    stopShowingFloatingSelector: $stopShowingFloatingSelector,
+                    soundSearchTextIsEmpty: $soundSearchTextIsEmpty,
                     allowSearch: true,
+                    loadingView: AnyView(
+                        VStack {
+                            HStack(spacing: 10) {
+                                ProgressView()
+
+                                Text("Carregando sons...")
+                                    .foregroundColor(.gray)
+                            }
+                            .frame(maxWidth: .infinity)
+                        }
+                    ),
                     emptyStateView: AnyView(
                         NoFavoritesView()
                             .padding(.horizontal, 25)
                             .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? 100 : 15)
+                    ),
+                    errorView: AnyView(
+                        VStack {
+                            HStack(spacing: 10) {
+                                ProgressView()
+
+                                Text("Erro ao carregar sons.")
+                                    .foregroundColor(.gray)
+                            }
+                            .frame(maxWidth: .infinity)
+                        }
                     )
                 )
 
@@ -232,8 +276,11 @@ struct MainSoundContainer: View {
             viewModel.reloadFavorites()
         }
     }
+}
 
-    // MARK: - Auxiliary Views
+// MARK: - Auxiliary Views
+
+extension MainSoundContainer {
 
     @ViewBuilder func leadingToolbarControls() -> some View {
         if currentSoundsListMode.wrappedValue == .selection {
@@ -344,7 +391,7 @@ struct MainSoundContainer: View {
                         viewModel.sortSounds(by: sortOption)
                     }
                     .disabled(
-                        viewModel.currentViewMode == .favorites && viewModel.favorites.count == 0
+                        viewModel.currentViewMode == .favorites && viewModel.favorites?.count == 0
                     )
                 }
             }
@@ -379,8 +426,11 @@ struct MainSoundContainer: View {
         }
         //.disabled(isLoadingSounds && viewModel.currentViewMode == .allSounds)
     }
+}
 
-    // MARK: - Functions
+// MARK: - Functions
+
+extension MainSoundContainer {
 
     private func selectionNavBarTitle(for viewModel: SoundListViewModel<[Sound]>) -> String {
         if viewModel.selectionKeeper.count == 0 {

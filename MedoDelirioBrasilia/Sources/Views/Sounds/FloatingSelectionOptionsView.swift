@@ -107,19 +107,19 @@ struct FloatingSelectionOptionsView: View {
     }
 }
 
-//#Preview {
-//    ZStack {
-//        Rectangle()
-//            .fill(Color.brightGreen)
-//
-//        FloatingSelectionOptionsView(
-//            areButtonsEnabled: .constant(false),
-//            favoriteTitle: .constant("Favoritar"),
-//            favoriteSystemImage: .constant("star"),
-//            shareIsProcessing: .constant(true),
-//            favoriteAction: { },
-//            folderAction: { },
-//            shareAction: { }
-//        )
-//    }
-//}
+#Preview {
+    ZStack {
+        Rectangle()
+            .fill(Color.brightGreen)
+
+        FloatingSelectionOptionsView(
+            areButtonsEnabled: true,
+            allSelectedAreFavorites: false,
+            folderOperation: .add,
+            shareIsProcessing: false,
+            favoriteAction: { },
+            folderAction: { },
+            shareAction: { }
+        )
+    }
+}

@@ -86,6 +86,11 @@ struct Shared {
             static let subject = "Problema com %@ no app v\(Versioneer.appVersion) (\(UIDevice.current.systemName) \(UIDevice.current.systemVersion))"
             static let body = "Por favor, descreva o problema."
         }
+
+        struct Reactions {
+            static let suggestChangesSubject = "Sugerir Mudanças nas Reações v\(Versioneer.appVersion) (\(UIDevice.current.systemName) \(UIDevice.current.systemVersion))"
+            static let suggestChangesBody = "O que você gostaria de adicionar, remover ou mudar?"
+        }
     }
     
     struct ShareAsVideo {
