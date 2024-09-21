@@ -126,9 +126,7 @@ struct AuthorDetailView: View {
         currentSoundsListMode: Binding<SoundsListMode>
     ) {
         self.author = author
-        let viewModel = AuthorDetailViewViewModel(
-            authorName: author.name, currentSoundsListMode: currentSoundsListMode
-        )
+        let viewModel = AuthorDetailViewViewModel(currentSoundsListMode: currentSoundsListMode)
 
         self._viewModel = StateObject(wrappedValue: viewModel)
         self.currentSoundsListMode = currentSoundsListMode
@@ -386,7 +384,7 @@ struct AuthorDetailView: View {
                 
                 Button {
                     soundListViewModel.stopSelecting()
-//                    viewModel.showAskForNewSoundAlert()
+                    viewModel.showAskForNewSoundAlert()
                 } label: {
                     Label("Pedir Som Desse Autor", systemImage: "plus.circle")
                 }

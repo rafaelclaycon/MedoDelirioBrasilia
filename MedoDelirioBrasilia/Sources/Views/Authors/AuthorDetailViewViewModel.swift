@@ -41,16 +41,9 @@ class AuthorDetailViewViewModel: ObservableObject {
     // MARK: - Initializer
 
     init(
-        // originatingScreenName: String,
-        authorName: String,
         currentSoundsListMode: Binding<SoundsListMode>
     ) {
         self.currentSoundsListMode = currentSoundsListMode
-        // Commented out to avoid growing the server db too large.
-        // Sends metric only from iPhones because iPad and Mac are calling this methods twice instead of once upon each screen opening.
-        /* if UIDevice.current.userInterfaceIdiom == .phone {
-            sendUsageMetricToServer(originatingScreenName: originatingScreenName, authorName: authorName)
-        } */
     }
 
     func loadSounds(for authorId: String) {
