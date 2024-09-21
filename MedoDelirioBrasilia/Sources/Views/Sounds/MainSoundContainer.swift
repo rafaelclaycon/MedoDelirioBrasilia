@@ -10,8 +10,8 @@ import SwiftUI
 struct MainSoundContainer: View {
 
     @StateObject private var viewModel: MainSoundContainerViewModel
-    @StateObject private var allSoundsViewModel: SoundListViewModel<Sound>
-    @StateObject private var favoritesViewModel: SoundListViewModel<Sound>
+    @StateObject private var allSoundsViewModel: SoundListViewModel<[Sound]>
+    @StateObject private var favoritesViewModel: SoundListViewModel<[Sound]>
     private var currentSoundsListMode: Binding<SoundsListMode>
     private var showSettings: Binding<Bool>
 
@@ -77,12 +77,12 @@ struct MainSoundContainer: View {
         showSettings: Binding<Bool>
     ) {
         self._viewModel = StateObject(wrappedValue: viewModel)
-        self._allSoundsViewModel = StateObject(wrappedValue: SoundListViewModel<Sound>(
+        self._allSoundsViewModel = StateObject(wrappedValue: SoundListViewModel<[Sound]>(
             data: viewModel.allSoundsPublisher,
             menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
             currentSoundsListMode: currentSoundsListMode
         ))
-        self._favoritesViewModel = StateObject(wrappedValue: SoundListViewModel<Sound>(
+        self._favoritesViewModel = StateObject(wrappedValue: SoundListViewModel<[Sound]>(
             data: viewModel.favoritesPublisher,
             menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
             currentSoundsListMode: currentSoundsListMode,
@@ -382,7 +382,7 @@ struct MainSoundContainer: View {
 
     // MARK: - Functions
 
-    private func selectionNavBarTitle(for viewModel: SoundListViewModel<Sound>) -> String {
+    private func selectionNavBarTitle(for viewModel: SoundListViewModel<[Sound]>) -> String {
         if viewModel.selectionKeeper.count == 0 {
             return Shared.SoundSelection.selectSounds
         }

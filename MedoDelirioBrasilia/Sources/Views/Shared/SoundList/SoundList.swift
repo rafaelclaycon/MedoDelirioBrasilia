@@ -11,7 +11,7 @@ struct SoundList: View {
 
     // MARK: - Dependencies
 
-    @StateObject private var viewModel: SoundListViewModel<Sound>
+    @StateObject private var viewModel: SoundListViewModel<[Sound]>
     private var stopShowingFloatingSelector: Binding<Bool?>
     private var allowSearch: Bool
     private var allowRefresh: Bool
@@ -61,7 +61,7 @@ struct SoundList: View {
     // MARK: - Initializer
 
     init(
-        viewModel: SoundListViewModel<Sound>,
+        viewModel: SoundListViewModel<[Sound]>,
         stopShowingFloatingSelector: Binding<Bool?> = .constant(nil),
         allowSearch: Bool = false,
         allowRefresh: Bool = false,
@@ -112,256 +112,256 @@ struct SoundList: View {
                     .frame(width: geometry.size.width)
                     .frame(minHeight: geometry.size.height)
                 } else {
-                    ScrollView {
-                        ScrollViewReader { proxy in
-                            if let headerView {
-                                headerView
-                            }
-
-                            LazyVGrid(columns: columns, spacing: UIDevice.isiPhone ? phoneItemSpacing : padItemSpacing) {
-                                if searchResults.isEmpty {
-                                    NoSearchResultsView(searchText: $viewModel.searchText)
-                                } else {
-                                    ForEach(searchResults) { sound in
-                                        SoundCell(
-                                            sound: sound,
-                                            isInsideFolder: isFolder,
-                                            favorites: $viewModel.favoritesKeeper,
-                                            highlighted: $viewModel.highlightKeeper,
-                                            nowPlaying: $viewModel.nowPlayingKeeper,
-                                            selectedItems: $viewModel.selectionKeeper,
-                                            currentSoundsListMode: viewModel.currentSoundsListMode
-                                        )
-                                        .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
-                                        .padding(.horizontal, UIDevice.isiPhone ? 0 : 5)
-                                        .onTapGesture {
-                                            if viewModel.currentSoundsListMode.wrappedValue == .regular {
-                                                if viewModel.nowPlayingKeeper.contains(sound.id) {
-                                                    AudioPlayer.shared?.togglePlay()
-                                                    viewModel.nowPlayingKeeper.removeAll()
-                                                } else {
-                                                    viewModel.play(sound)
-                                                }
-                                            } else {
-                                                if viewModel.selectionKeeper.contains(sound.id) {
-                                                    viewModel.selectionKeeper.remove(sound.id)
-                                                } else {
-                                                    viewModel.selectionKeeper.insert(sound.id)
-                                                }
-                                            }
-                                        }
-                                        .contextMenu {
-                                            if viewModel.currentSoundsListMode.wrappedValue != .selection {
-                                                ForEach(viewModel.menuOptions, id: \.title) { section in
-                                                    Section {
-                                                        ForEach(section.options(sound)) { option in
-                                                            Button {
-                                                                option.action(sound, viewModel)
-                                                            } label: {
-                                                                Label(
-                                                                    option.title(viewModel.favoritesKeeper.contains(sound.id)),
-                                                                    systemImage: option.symbol(viewModel.favoritesKeeper.contains(sound.id))
-                                                                )
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                            .if(allowSearch) {
-                                $0
-                                  .searchable(text: $viewModel.searchText)
-                                  .disableAutocorrection(true)
-                            }
-                            .padding(.horizontal)
-                            .padding(.top, 7)
-                            .alert(isPresented: $viewModel.showAlert) {
-                                switch viewModel.alertType {
-                                case .soundFileNotFound:
-                                    return Alert(
-                                        title: Text(viewModel.alertTitle),
-                                        message: Text(viewModel.alertMessage),
-                                        primaryButton: .default(Text("Baixar Conteúdo Novamente"), action: {
-                                            guard let content = viewModel.selectedSound else { return }
-                                            viewModel.redownloadServerContent(withId: content.id)
-                                        }),
-                                        secondaryButton: .cancel(Text("Fechar"))
-                                    )
-
-                                case .issueSharingSound:
-                                    return Alert(
-                                        title: Text(viewModel.alertTitle),
-                                        message: Text(viewModel.alertMessage),
-                                        primaryButton: .default(Text("Relatar Problema por E-mail"), action: {
-                                            viewModel.subviewToOpen = .soundIssueEmailPicker
-                                            viewModel.showingModalView = true
-                                        }),
-                                        secondaryButton: .cancel(Text("Fechar"))
-                                    )
-
-                                case .optionIncompatibleWithWhatsApp:
-                                    return Alert(
-                                        title: Text(viewModel.alertTitle),
-                                        message: Text(viewModel.alertMessage),
-                                        primaryButton: .default(Text("Continuar"), action: {
-                                            AppPersistentMemory.increaseShareManyMessageShowCountByOne()
-                                            viewModel.shareSelected()
-                                        }),
-                                        secondaryButton: .cancel(Text("Cancelar"))
-                                    )
-
-                                case .issueExportingManySounds, .unableToRedownloadSound:
-                                    return Alert(
-                                        title: Text(viewModel.alertTitle),
-                                        message: Text(viewModel.alertMessage),
-                                        dismissButton: .default(Text("OK"))
-                                    )
-
-                                case .removeMultipleSounds:
-                                    return Alert(
-                                        title: Text(viewModel.alertTitle),
-                                        message: Text(viewModel.alertMessage),
-                                        primaryButton: .destructive(Text("Remover"), action: {
-                                            viewModel.removeManyFromFolder()
-                                        }),
-                                        secondaryButton: .cancel(Text("Cancelar"))
-                                    )
-                                }
-                            }
-                            .sheet(isPresented: $viewModel.showingModalView) {
-                                switch viewModel.subviewToOpen {
-                                case .shareAsVideo:
-                                    ShareAsVideoView(
-                                        viewModel: .init(content: viewModel.selectedSound!, subtitle: viewModel.selectedSound?.authorName ?? .empty),
-                                        isBeingShown: $viewModel.showingModalView,
-                                        result: $viewModel.shareAsVideoResult,
-                                        useLongerGeneratingVideoMessage: false
-                                    )
-
-                                case .addToFolder:
-                                    AddToFolderView(
-                                        isBeingShown: $viewModel.showingModalView,
-                                        hadSuccess: $viewModel.hadSuccessAddingToFolder,
-                                        folderName: $viewModel.folderName,
-                                        pluralization: $viewModel.pluralization,
-                                        selectedSounds: viewModel.selectedSounds!
-                                    )
-
-                                case .soundDetail:
-                                    SoundDetailView(
-                                        isBeingShown: $viewModel.showingModalView,
-                                        sound: viewModel.selectedSound ?? Sound(title: "")
-                                    )
-
-                                case .soundIssueEmailPicker:
-                                    EmailAppPickerView(
-                                        isBeingShown: $viewModel.showingModalView,
-                                        didCopySupportAddress: .constant(false),
-                                        subject: Shared.issueSuggestionEmailSubject,
-                                        emailBody: Shared.issueSuggestionEmailBody
-                                    )
-                                }
-                            }
-                            .sheet(isPresented: $viewModel.isShowingShareSheet) {
-                                viewModel.iPadShareSheet
-                            }
-                            .onChange(of: viewModel.searchText) { text in
-                                stopShowingFloatingSelector.wrappedValue = !text.isEmpty
-                            }
-                            .onChange(of: viewModel.shareAsVideoResult.videoFilepath) { videoResultPath in
-                                if videoResultPath.isEmpty == false {
-                                    if viewModel.shareAsVideoResult.exportMethod == .saveAsVideo {
-                                        viewModel.showVideoSavedSuccessfullyToast()
-                                    } else {
-                                        viewModel.shareVideo(
-                                            withPath: videoResultPath,
-                                            andContentId: viewModel.shareAsVideoResult.contentId,
-                                            title: viewModel.selectedSound?.title ?? ""
-                                        )
-                                    }
-                                }
-                            }
-                            .onChange(of: viewModel.showingModalView) { showingModalView in
-                                if (viewModel.showingModalView == false) && viewModel.hadSuccessAddingToFolder {
-                                    // Need to get count before clearing the Set.
-                                    let selectedCount: Int = viewModel.selectionKeeper.count
-
-                                    if viewModel.currentSoundsListMode.wrappedValue == .selection {
-                                        viewModel.stopSelecting()
-                                    }
-
-                                    viewModel.displayToast(toastText: viewModel.pluralization.getAddedToFolderToastText(folderName: viewModel.folderName)) {
-                                        viewModel.folderName = nil
-                                        viewModel.hadSuccessAddingToFolder = false
-                                    }
-
-                                    if viewModel.pluralization == .plural {
-                                        Analytics.sendUsageMetricToServer(
-                                            originatingScreen: "SoundsView",
-                                            action: "didAddManySoundsToFolder(\(selectedCount))"
-                                        )
-                                    }
-                                }
-                            }
-                            .onChange(of: geometry.size.width) { newWidth in
-                                updateGridLayout(with: newWidth)
-                            }
-                            .onChange(of: searchResults) { searchResults in
-                                if searchResults.isEmpty {
-                                    columns = [GridItem(.flexible())]
-                                } else {
-                                    updateGridLayout(with: geometry.size.width)
-                                }
-                            }
-                            .onChange(of: viewModel.selectionKeeper.count) {
-                                showMultiSelectButtons = viewModel.currentSoundsListMode.wrappedValue == .selection
-                                guard viewModel.currentSoundsListMode.wrappedValue == .selection else { return }
-                                multiSelectButtonsEnabled = $0 > 0
-                                allSelectedAreFavorites = viewModel.allSelectedAreFavorites()
-                            }
-                            .onReceive(trendsHelper.$youCanScrollNow) { soundId in
-                                if !soundId.isEmpty {
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-                                        withAnimation {
-                                            proxy.scrollTo(soundId, anchor: .center)
-                                        }
-                                        TapticFeedback.warning()
-                                    }
-                                }
-                            }
-                            .onAppear {
-                                updateGridLayout(with: geometry.size.width)
-                            }
-                        }
-
-                        if showExplicitDisabledWarning, UserSettings.getShowExplicitContent() == false {
-                            ExplicitDisabledWarning(
-                                text: UIDevice.isiPhone ? Shared.contentFilterMessageForSoundsiPhone : Shared.contentFilterMessageForSoundsiPadMac
-                            )
-                            .padding(.top, explicitOffWarningTopPadding)
-                            .padding(.horizontal, explicitOffWarningBottomPadding)
-                        }
-
-                        if showSoundCountAtTheBottom, viewModel.searchText.isEmpty {
-                            Text("\(sounds.count) SONS")
-                                .font(.footnote)
-                                .foregroundColor(.gray)
-                                .multilineTextAlignment(.center)
-                                .padding(.top, 10)
-                                .padding(.bottom, UIDevice.isiPhone ? Shared.Constants.soundCountPhoneBottomPadding : Shared.Constants.soundCountPadBottomPadding)
-                        }
-
-                        Spacer()
-                            .frame(height: 18)
-                    }
-                    .if(allowRefresh) {
-                        $0.refreshable {
-                            syncAction!()
-                        }
-                    }
+//                    ScrollView {
+//                        ScrollViewReader { proxy in
+//                            if let headerView {
+//                                headerView
+//                            }
+//
+//                            LazyVGrid(columns: columns, spacing: UIDevice.isiPhone ? phoneItemSpacing : padItemSpacing) {
+//                                if searchResults.isEmpty {
+//                                    NoSearchResultsView(searchText: $viewModel.searchText)
+//                                } else {
+//                                    ForEach(searchResults) { sound in
+//                                        SoundCell(
+//                                            sound: sound,
+//                                            isInsideFolder: isFolder,
+//                                            favorites: $viewModel.favoritesKeeper,
+//                                            highlighted: $viewModel.highlightKeeper,
+//                                            nowPlaying: $viewModel.nowPlayingKeeper,
+//                                            selectedItems: $viewModel.selectionKeeper,
+//                                            currentSoundsListMode: viewModel.currentSoundsListMode
+//                                        )
+//                                        .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
+//                                        .padding(.horizontal, UIDevice.isiPhone ? 0 : 5)
+//                                        .onTapGesture {
+//                                            if viewModel.currentSoundsListMode.wrappedValue == .regular {
+//                                                if viewModel.nowPlayingKeeper.contains(sound.id) {
+//                                                    AudioPlayer.shared?.togglePlay()
+//                                                    viewModel.nowPlayingKeeper.removeAll()
+//                                                } else {
+//                                                    viewModel.play(sound)
+//                                                }
+//                                            } else {
+//                                                if viewModel.selectionKeeper.contains(sound.id) {
+//                                                    viewModel.selectionKeeper.remove(sound.id)
+//                                                } else {
+//                                                    viewModel.selectionKeeper.insert(sound.id)
+//                                                }
+//                                            }
+//                                        }
+//                                        .contextMenu {
+//                                            if viewModel.currentSoundsListMode.wrappedValue != .selection {
+//                                                ForEach(viewModel.menuOptions, id: \.title) { section in
+//                                                    Section {
+//                                                        ForEach(section.options(sound)) { option in
+//                                                            Button {
+//                                                                option.action(sound, viewModel)
+//                                                            } label: {
+//                                                                Label(
+//                                                                    option.title(viewModel.favoritesKeeper.contains(sound.id)),
+//                                                                    systemImage: option.symbol(viewModel.favoritesKeeper.contains(sound.id))
+//                                                                )
+//                                                            }
+//                                                        }
+//                                                    }
+//                                                }
+//                                            }
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                            .if(allowSearch) {
+//                                $0
+//                                  .searchable(text: $viewModel.searchText)
+//                                  .disableAutocorrection(true)
+//                            }
+//                            .padding(.horizontal)
+//                            .padding(.top, 7)
+//                            .alert(isPresented: $viewModel.showAlert) {
+//                                switch viewModel.alertType {
+//                                case .soundFileNotFound:
+//                                    return Alert(
+//                                        title: Text(viewModel.alertTitle),
+//                                        message: Text(viewModel.alertMessage),
+//                                        primaryButton: .default(Text("Baixar Conteúdo Novamente"), action: {
+//                                            guard let content = viewModel.selectedSound else { return }
+//                                            viewModel.redownloadServerContent(withId: content.id)
+//                                        }),
+//                                        secondaryButton: .cancel(Text("Fechar"))
+//                                    )
+//
+//                                case .issueSharingSound:
+//                                    return Alert(
+//                                        title: Text(viewModel.alertTitle),
+//                                        message: Text(viewModel.alertMessage),
+//                                        primaryButton: .default(Text("Relatar Problema por E-mail"), action: {
+//                                            viewModel.subviewToOpen = .soundIssueEmailPicker
+//                                            viewModel.showingModalView = true
+//                                        }),
+//                                        secondaryButton: .cancel(Text("Fechar"))
+//                                    )
+//
+//                                case .optionIncompatibleWithWhatsApp:
+//                                    return Alert(
+//                                        title: Text(viewModel.alertTitle),
+//                                        message: Text(viewModel.alertMessage),
+//                                        primaryButton: .default(Text("Continuar"), action: {
+//                                            AppPersistentMemory.increaseShareManyMessageShowCountByOne()
+//                                            viewModel.shareSelected()
+//                                        }),
+//                                        secondaryButton: .cancel(Text("Cancelar"))
+//                                    )
+//
+//                                case .issueExportingManySounds, .unableToRedownloadSound:
+//                                    return Alert(
+//                                        title: Text(viewModel.alertTitle),
+//                                        message: Text(viewModel.alertMessage),
+//                                        dismissButton: .default(Text("OK"))
+//                                    )
+//
+//                                case .removeMultipleSounds:
+//                                    return Alert(
+//                                        title: Text(viewModel.alertTitle),
+//                                        message: Text(viewModel.alertMessage),
+//                                        primaryButton: .destructive(Text("Remover"), action: {
+//                                            viewModel.removeManyFromFolder()
+//                                        }),
+//                                        secondaryButton: .cancel(Text("Cancelar"))
+//                                    )
+//                                }
+//                            }
+//                            .sheet(isPresented: $viewModel.showingModalView) {
+//                                switch viewModel.subviewToOpen {
+//                                case .shareAsVideo:
+//                                    ShareAsVideoView(
+//                                        viewModel: .init(content: viewModel.selectedSound!, subtitle: viewModel.selectedSound?.authorName ?? .empty),
+//                                        isBeingShown: $viewModel.showingModalView,
+//                                        result: $viewModel.shareAsVideoResult,
+//                                        useLongerGeneratingVideoMessage: false
+//                                    )
+//
+//                                case .addToFolder:
+//                                    AddToFolderView(
+//                                        isBeingShown: $viewModel.showingModalView,
+//                                        hadSuccess: $viewModel.hadSuccessAddingToFolder,
+//                                        folderName: $viewModel.folderName,
+//                                        pluralization: $viewModel.pluralization,
+//                                        selectedSounds: viewModel.selectedSounds!
+//                                    )
+//
+//                                case .soundDetail:
+//                                    SoundDetailView(
+//                                        isBeingShown: $viewModel.showingModalView,
+//                                        sound: viewModel.selectedSound ?? Sound(title: "")
+//                                    )
+//
+//                                case .soundIssueEmailPicker:
+//                                    EmailAppPickerView(
+//                                        isBeingShown: $viewModel.showingModalView,
+//                                        didCopySupportAddress: .constant(false),
+//                                        subject: Shared.issueSuggestionEmailSubject,
+//                                        emailBody: Shared.issueSuggestionEmailBody
+//                                    )
+//                                }
+//                            }
+//                            .sheet(isPresented: $viewModel.isShowingShareSheet) {
+//                                viewModel.iPadShareSheet
+//                            }
+//                            .onChange(of: viewModel.searchText) { text in
+//                                stopShowingFloatingSelector.wrappedValue = !text.isEmpty
+//                            }
+//                            .onChange(of: viewModel.shareAsVideoResult.videoFilepath) { videoResultPath in
+//                                if videoResultPath.isEmpty == false {
+//                                    if viewModel.shareAsVideoResult.exportMethod == .saveAsVideo {
+//                                        viewModel.showVideoSavedSuccessfullyToast()
+//                                    } else {
+//                                        viewModel.shareVideo(
+//                                            withPath: videoResultPath,
+//                                            andContentId: viewModel.shareAsVideoResult.contentId,
+//                                            title: viewModel.selectedSound?.title ?? ""
+//                                        )
+//                                    }
+//                                }
+//                            }
+//                            .onChange(of: viewModel.showingModalView) { showingModalView in
+//                                if (viewModel.showingModalView == false) && viewModel.hadSuccessAddingToFolder {
+//                                    // Need to get count before clearing the Set.
+//                                    let selectedCount: Int = viewModel.selectionKeeper.count
+//
+//                                    if viewModel.currentSoundsListMode.wrappedValue == .selection {
+//                                        viewModel.stopSelecting()
+//                                    }
+//
+//                                    viewModel.displayToast(toastText: viewModel.pluralization.getAddedToFolderToastText(folderName: viewModel.folderName)) {
+//                                        viewModel.folderName = nil
+//                                        viewModel.hadSuccessAddingToFolder = false
+//                                    }
+//
+//                                    if viewModel.pluralization == .plural {
+//                                        Analytics.sendUsageMetricToServer(
+//                                            originatingScreen: "SoundsView",
+//                                            action: "didAddManySoundsToFolder(\(selectedCount))"
+//                                        )
+//                                    }
+//                                }
+//                            }
+//                            .onChange(of: geometry.size.width) { newWidth in
+//                                updateGridLayout(with: newWidth)
+//                            }
+//                            .onChange(of: searchResults) { searchResults in
+//                                if searchResults.isEmpty {
+//                                    columns = [GridItem(.flexible())]
+//                                } else {
+//                                    updateGridLayout(with: geometry.size.width)
+//                                }
+//                            }
+//                            .onChange(of: viewModel.selectionKeeper.count) {
+//                                showMultiSelectButtons = viewModel.currentSoundsListMode.wrappedValue == .selection
+//                                guard viewModel.currentSoundsListMode.wrappedValue == .selection else { return }
+//                                multiSelectButtonsEnabled = $0 > 0
+//                                allSelectedAreFavorites = viewModel.allSelectedAreFavorites()
+//                            }
+//                            .onReceive(trendsHelper.$youCanScrollNow) { soundId in
+//                                if !soundId.isEmpty {
+//                                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+//                                        withAnimation {
+//                                            proxy.scrollTo(soundId, anchor: .center)
+//                                        }
+//                                        TapticFeedback.warning()
+//                                    }
+//                                }
+//                            }
+//                            .onAppear {
+//                                updateGridLayout(with: geometry.size.width)
+//                            }
+//                        }
+//
+//                        if showExplicitDisabledWarning, UserSettings.getShowExplicitContent() == false {
+//                            ExplicitDisabledWarning(
+//                                text: UIDevice.isiPhone ? Shared.contentFilterMessageForSoundsiPhone : Shared.contentFilterMessageForSoundsiPadMac
+//                            )
+//                            .padding(.top, explicitOffWarningTopPadding)
+//                            .padding(.horizontal, explicitOffWarningBottomPadding)
+//                        }
+//
+//                        if showSoundCountAtTheBottom, viewModel.searchText.isEmpty {
+//                            Text("\(sounds.count) SONS")
+//                                .font(.footnote)
+//                                .foregroundColor(.gray)
+//                                .multilineTextAlignment(.center)
+//                                .padding(.top, 10)
+//                                .padding(.bottom, UIDevice.isiPhone ? Shared.Constants.soundCountPhoneBottomPadding : Shared.Constants.soundCountPadBottomPadding)
+//                        }
+//
+//                        Spacer()
+//                            .frame(height: 18)
+//                    }
+//                    .if(allowRefresh) {
+//                        $0.refreshable {
+//                            syncAction!()
+//                        }
+//                    }
                     //.border(.red, width: 1)
                 }
 
