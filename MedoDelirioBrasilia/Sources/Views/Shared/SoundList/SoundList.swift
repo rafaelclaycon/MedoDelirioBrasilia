@@ -273,7 +273,6 @@ struct SoundList: View {
 
                                 case .soundDetail:
                                     SoundDetailView(
-                                        isBeingShown: $viewModel.showingModalView,
                                         sound: viewModel.selectedSound ?? Sound(title: "")
                                     )
 
@@ -399,7 +398,7 @@ struct SoundList: View {
                     //.border(.red, width: 1)
                 }
 
-            case .error(let errorMessage):
+            case .error(_):
                 VStack {
                     if let headerView {
                         headerView

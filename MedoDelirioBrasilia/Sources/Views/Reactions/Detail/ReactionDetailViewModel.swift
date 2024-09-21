@@ -12,7 +12,7 @@ class ReactionDetailViewModel: ObservableObject {
 
     // MARK: - Published Vars
 
-    @Published var state: LoadingState<Sound> = .loading
+    @Published var state: LoadingState<[Sound]> = .loading
     @Published var sounds: [Sound]?
     @Published var soundSortOption: Int
 
