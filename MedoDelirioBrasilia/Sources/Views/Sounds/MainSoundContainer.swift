@@ -375,7 +375,7 @@ extension MainSoundContainer {
                                 Text("Mais Longos no Topo")
                                     .tag(4)
 
-                                if CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
+                                if CommandLine.arguments.contains("-SHOW_MORE_DEV_OPTIONS") {
                                     Text("Título Mais Longo no Topo")
                                         .tag(5)
 

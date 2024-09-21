@@ -13,7 +13,7 @@ struct ExternalLinkButton: View {
     let externalLink: ExternalLink
 
     var imageUrl: URL {
-        URL(string: "\(baseURL)images/\(externalLink.symbol)")!
+        URL(string: "\(APIConfig.baseServerURL)images/\(externalLink.symbol)")!
     }
 
     var body: some View {

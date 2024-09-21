@@ -87,7 +87,7 @@ struct DiagnosticsView: View {
                     }
             }
 
-            /*if CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
+            /*if CommandLine.arguments.contains("-SHOW_MORE_DEV_OPTIONS") {
                 Section("Tendências [DEV ONLY]") {
                     Button("Setar dia de envio para ontem") {
                         var dayComponent = DateComponents()

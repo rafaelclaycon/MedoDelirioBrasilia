@@ -60,7 +60,7 @@ struct NotificationsSettingsView: View {
                 }
             }
             
-            if CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
+            if CommandLine.arguments.contains("-SHOW_MORE_DEV_OPTIONS") {
                 Section {
                     Button("Habilitar re-tentativa de envio do token de notificação para o servidor") {
                         AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: true)

@@ -200,7 +200,7 @@ class SongsViewViewModel: ObservableObject {
     func redownloadServerContent(withId contentId: String) {
         Task {
             do {
-                guard let fileUrl = URL(string: baseURL + "songs/\(contentId).mp3") else { return }
+                guard let fileUrl = URL(string: APIConfig.baseServerURL + "songs/\(contentId).mp3") else { return }
                 isShowingProcessingView = true
                 try await SyncService.downloadFile(
                     at: fileUrl,

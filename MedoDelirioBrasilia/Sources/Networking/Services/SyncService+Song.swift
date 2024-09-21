@@ -12,7 +12,7 @@ extension SyncService {
     func createSong(from updateEvent: UpdateEvent) async {
         guard
             let contentUrl = URL(string: NetworkRabbit.shared.serverPath + "v3/song/\(updateEvent.contentId)"),
-            let fileUrl = URL(string: baseURL + "songs/\(updateEvent.contentId).mp3")
+            let fileUrl = URL(string: APIConfig.baseServerURL + "songs/\(updateEvent.contentId).mp3")
         else { return }
 
         do {
@@ -46,7 +46,7 @@ extension SyncService {
     }
 
     func updateSongFile(_ updateEvent: UpdateEvent) async {
-        guard let fileUrl = URL(string: baseURL + "songs/\(updateEvent.contentId).mp3") else { return }
+        guard let fileUrl = URL(string: APIConfig.baseServerURL + "songs/\(updateEvent.contentId).mp3") else { return }
         do {
             try await SyncService.downloadFile(
                 at: fileUrl,

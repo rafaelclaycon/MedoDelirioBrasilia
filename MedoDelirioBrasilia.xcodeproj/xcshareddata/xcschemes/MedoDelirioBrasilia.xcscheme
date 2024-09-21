@@ -63,10 +63,6 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-UNDER_DEVELOPMENT"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
             argument = "-ENABLE_REACTIONS"
             isEnabled = "NO">
          </CommandLineArgument>
@@ -80,9 +76,20 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-IGNORE_2_MINUTE_SYNC_INTERVAL"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-SHOW_MORE_DEV_OPTIONS"
             isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "api_environment"
+            value = "dev"
+            isEnabled = "NO">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

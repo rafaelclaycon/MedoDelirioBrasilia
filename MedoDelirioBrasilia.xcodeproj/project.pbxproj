@@ -476,6 +476,7 @@
 		D96558C42AB2713600E113B1 /* Michele Bolsonaro - Labaxuria.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D96558C32AB2713600E113B1 /* Michele Bolsonaro - Labaxuria.mp3 */; };
 		D967E2BA290196F900B21C11 /* WallE.swift in Sources */ = {isa = PBXBuildFile; fileRef = D967E2B9290196F900B21C11 /* WallE.swift */; };
 		D967E2BC2901C40700B21C11 /* CustomPhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D967E2BB2901C40700B21C11 /* CustomPhotoAlbum.swift */; };
+		D96892DC2C9F13C00084F646 /* APIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96892DB2C9F13BB0084F646 /* APIConfig.swift */; };
 		D969DCF52A4960F1003F4EB2 /* Lula - O o passarinho cantando.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D969DCF42A4960F1003F4EB2 /* Lula - O o passarinho cantando.mp3 */; };
 		D969DCF82A4B0F69003F4EB2 /* Monark - ACORDA.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D969DCF62A4B0F69003F4EB2 /* Monark - ACORDA.mp3 */; };
 		D969DCF92A4B0F69003F4EB2 /* Monark - Acorda, cara.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D969DCF72A4B0F69003F4EB2 /* Monark - Acorda, cara.mp3 */; };
@@ -1982,6 +1983,7 @@
 		D96558C32AB2713600E113B1 /* Michele Bolsonaro - Labaxuria.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Michele Bolsonaro - Labaxuria.mp3"; sourceTree = "<group>"; };
 		D967E2B9290196F900B21C11 /* WallE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallE.swift; sourceTree = "<group>"; };
 		D967E2BB2901C40700B21C11 /* CustomPhotoAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPhotoAlbum.swift; sourceTree = "<group>"; };
+		D96892DB2C9F13BB0084F646 /* APIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfig.swift; sourceTree = "<group>"; };
 		D969DCF42A4960F1003F4EB2 /* Lula - O o passarinho cantando.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - O o passarinho cantando.mp3"; sourceTree = "<group>"; };
 		D969DCF62A4B0F69003F4EB2 /* Monark - ACORDA.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Monark - ACORDA.mp3"; sourceTree = "<group>"; };
 		D969DCF72A4B0F69003F4EB2 /* Monark - Acorda, cara.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Monark - Acorda, cara.mp3"; sourceTree = "<group>"; };
@@ -4737,6 +4739,7 @@
 		D98EC5DF2825A04000340BE5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D96892DB2C9F13BB0084F646 /* APIConfig.swift */,
 				D994AD632C9E006B004FAE25 /* ContentShareCountStats.swift */,
 				D994AD612C9DFE84004FAE25 /* LoadingState.swift */,
 				D9F45DD82BED39E100D49340 /* ServerDriven */,
@@ -6576,6 +6579,7 @@
 				D9DC4D7A2B1D8BC900627555 /* TopChartItem+.swift in Sources */,
 				D9B8DE842BE695B1000C9035 /* AddReactionView.swift in Sources */,
 				D9625E7E28238F9A00080852 /* MedoDelirioBrasiliaApp.swift in Sources */,
+				D96892DC2C9F13C00084F646 /* APIConfig.swift in Sources */,
 				D9592C402AA2C01100157F5A /* GenrePickerView.swift in Sources */,
 				D958B1AC28394DCD0010F133 /* AuthorsView.swift in Sources */,
 				D94D9F05298DB98D006F14A5 /* AddDateAndVersionToUserFolderTables.swift in Sources */,
