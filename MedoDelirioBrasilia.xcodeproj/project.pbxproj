@@ -111,7 +111,6 @@
 		D90C4B09291B4F2B0079E75A /* Menino Pulando na Cama - Que bosta.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90C4B08291B4F2B0079E75A /* Menino Pulando na Cama - Que bosta.mp3 */; };
 		D90CDF0628F620F100CC992D /* Darcy Ribeiro - Uma classe dominante ruim, ranzinza, azeda, mediocre, cobicosa que nao deixa o pais ir pra frente.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90CDF0428F620F100CC992D /* Darcy Ribeiro - Uma classe dominante ruim, ranzinza, azeda, mediocre, cobicosa que nao deixa o pais ir pra frente.mp3 */; };
 		D90CDF0728F620F100CC992D /* Darcy Ribeiro - Uma classe dominante ruim (fala completa).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90CDF0528F620F100CC992D /* Darcy Ribeiro - Uma classe dominante ruim (fala completa).mp3 */; };
-		D90CDF0928F65C7200CC992D /* TrendsTimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90CDF0828F65C7200CC992D /* TrendsTimeInterval.swift */; };
 		D90D7DE428E2A4B1003B272A /* Eduardo Pazuello - Medo, medo, medo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90D7DE328E2A4B1003B272A /* Eduardo Pazuello - Medo, medo, medo.mp3 */; };
 		D90D7DE628E2A57A003B272A /* NUNES MARQUES Dont stop till you get enough michael jackson.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90D7DE528E2A579003B272A /* NUNES MARQUES Dont stop till you get enough michael jackson.mp3 */; };
 		D90D7DE828E2A70E003B272A /* Nunes Marques - Dont Stop till you get enough - Parece o Praga.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90D7DE728E2A70E003B272A /* Nunes Marques - Dont Stop till you get enough - Parece o Praga.mp3 */; };
@@ -120,12 +119,9 @@
 		D90EDDBA2908505000ED87A8 /* FolderResearchHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90EDDB92908505000ED87A8 /* FolderResearchHelper.swift */; };
 		D90F6A6628446C250050FFFF /* TrendsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */; };
 		D911070B28627216000B6F8F /* NotificationsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D911070A28627216000B6F8F /* NotificationsSettingsView.swift */; };
-		D911070D2862BA4C000B6F8F /* StillAliveSignal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D911070C2862BA4C000B6F8F /* StillAliveSignal.swift */; };
 		D91107112863B481000B6F8F /* CollectionsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91107102863B481000B6F8F /* CollectionsViewViewModel.swift */; };
 		D91107142863B5FD000B6F8F /* ContentCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91107132863B5FD000B6F8F /* ContentCollection.swift */; };
-		D912A33628B3E8F000F7293D /* VideoExportType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D912A33528B3E8F000F7293D /* VideoExportType.swift */; };
 		D912A33828B3F2C000F7293D /* TipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D912A33728B3F2C000F7293D /* TipView.swift */; };
-		D912A33A28B5321400F7293D /* ShareAsVideoResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D912A33928B5321400F7293D /* ShareAsVideoResult.swift */; };
 		D914CF3B2981C6D30013B3E2 /* Desconhecido - Primeiramente.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D914CF3A2981C6D30013B3E2 /* Desconhecido - Primeiramente.mp3 */; };
 		D916536428AD7FF7007F141D /* VideoMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D916536328AD7FF7007F141D /* VideoMaker.swift */; };
 		D916627D2874F1F9000A1B23 /* FirstOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D916627C2874F1F9000A1B23 /* FirstOnboardingView.swift */; };
@@ -243,7 +239,6 @@
 		D92B6CF629DDC2D9003A2B73 /* Antonio Tabet - Ai e Medo e Delirio de verdade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92B6CEF29DDC2D9003A2B73 /* Antonio Tabet - Ai e Medo e Delirio de verdade.mp3 */; };
 		D92B6CF729DDC2D9003A2B73 /* Voce e antirracista.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92B6CF029DDC2D9003A2B73 /* Voce e antirracista.mp3 */; };
 		D92B6CFB29DDDA65003A2B73 /* Patriota no QG - A guerra, a guerrrrrraaaa.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92B6CFA29DDDA65003A2B73 /* Patriota no QG - A guerra, a guerrrrrraaaa.mp3 */; };
-		D92C0CA82840162F009CF19A /* ContentSortOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92C0CA72840162F009CF19A /* ContentSortOption.swift */; };
 		D92C0CAA28405B2D009CF19A /* NoFavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92C0CA928405B2D009CF19A /* NoFavoritesView.swift */; };
 		D92C0CAC28406EA5009CF19A /* UserShareLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92C0CAB28406EA5009CF19A /* UserShareLog.swift */; };
 		D92C0CAE284076CD009CF19A /* UIApplication+KeyWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92C0CAD284076CD009CF19A /* UIApplication+KeyWindow.swift */; };
@@ -263,17 +258,14 @@
 		D92F095D29EC8AC200CC382F /* Milton Leite - Que fase.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92F095C29EC8AC100CC382F /* Milton Leite - Que fase.mp3 */; };
 		D92F095F29EC8AD100CC382F /* Funk de Vacinacao do Craque Neto.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92F095E29EC8AD100CC382F /* Funk de Vacinacao do Craque Neto.mp3 */; };
 		D92F096529ED844300CC382F /* View+Marquee.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92F096429ED844300CC382F /* View+Marquee.swift */; };
-		D92F8BAD286A6D2100EB9470 /* AlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92F8BAC286A6D2100EB9470 /* AlertType.swift */; };
 		D9310C262A0BDA90006A3058 /* Jaiminho - E que quero evitar a fadiga.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9310C252A0BDA90006A3058 /* Jaiminho - E que quero evitar a fadiga.mp3 */; };
 		D933251E28835E41004EFACB /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D933251D28835E41004EFACB /* ActivityViewController.swift */; };
 		D9344323283812AD00ADCD38 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9344322283812AD00ADCD38 /* Author.swift */; };
-		D93443252838177000ADCD38 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93443242838177000ADCD38 /* UserInfo.swift */; };
 		D934432728381DEF00ADCD38 /* author_data.json in Resources */ = {isa = PBXBuildFile; fileRef = D934432628381DEF00ADCD38 /* author_data.json */; };
 		D93443292838230500ADCD38 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93443282838230500ADCD38 /* String+.swift */; };
 		D9345E7628C697F900BADC1B /* Ele Queria Ter 2 Mesa Funk.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9345E7528C697F900BADC1B /* Ele Queria Ter 2 Mesa Funk.mp3 */; };
 		D9347DD12AA16AD100648E0B /* Lula - E agora em setembro vai entrar o grosso.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9347DD02AA16AD100648E0B /* Lula - E agora em setembro vai entrar o grosso.mp3 */; };
 		D9347DD32AA1735E00648E0B /* Eu Fico Muito Triste - Summer Eletrohits.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9347DD22AA1735E00648E0B /* Eu Fico Muito Triste - Summer Eletrohits.mp3 */; };
-		D9351C5C2844094E00D4317E /* TopChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9351C5B2844094E00D4317E /* TopChartItem.swift */; };
 		D9351C6128441FA400D4317E /* LoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9351C6028441FA400D4317E /* LoggerTests.swift */; };
 		D93752122902C94200E2F27B /* Joaquim Barbosa - Bolsonaro e um ser abjeto, Lula no primeiro turno.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D93752102902C94200E2F27B /* Joaquim Barbosa - Bolsonaro e um ser abjeto, Lula no primeiro turno.mp3 */; };
 		D93752132902C94200E2F27B /* Lula - Consideracoes finais debate Band 2o turno.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D93752112902C94200E2F27B /* Lula - Consideracoes finais debate Band 2o turno.mp3 */; };
@@ -305,7 +297,6 @@
 		D93A029E2906E9F100A85FE2 /* JoinFolderResearchBannerViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93A029D2906E9F100A85FE2 /* JoinFolderResearchBannerViewViewModel.swift */; };
 		D93AC08B28414EEE00E38A63 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AC08A28414EEE00E38A63 /* Logger.swift */; };
 		D93B31BB2A1E921F00A7EB68 /* SyncLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93B31BA2A1E921F00A7EB68 /* SyncLog.swift */; };
-		D93B6A632BBBDA62004F801F /* ExternalLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93B6A622BBBDA62004F801F /* ExternalLink.swift */; };
 		D93CCB77286A802D0002CF81 /* EmptyFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93CCB76286A802D0002CF81 /* EmptyFolderView.swift */; };
 		D93CCB79286A8A220002CF81 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93CCB78286A8A220002CF81 /* ToastView.swift */; };
 		D93CCB7B286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93CCB7A286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift */; };
@@ -455,7 +446,6 @@
 		D95BFEF129E8866700E42A23 /* LargeCreatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95BFEF029E8866700E42A23 /* LargeCreatorView.swift */; };
 		D95BFEF329E88C9800E42A23 /* DonorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95BFEF229E88C9800E42A23 /* DonorView.swift */; };
 		D95BFEF529E8CD2600E42A23 /* DonorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95BFEF429E8CD2600E42A23 /* DonorsView.swift */; };
-		D95BFEF829E8D07B00E42A23 /* Donor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95BFEF729E8D07B00E42A23 /* Donor.swift */; };
 		D95C3E0A2A02AB1800172C17 /* SyncServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95C3E092A02AB1800172C17 /* SyncServiceTests.swift */; };
 		D95C3E0D2A02ABE500172C17 /* ConnectionManagerStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95C3E0C2A02ABE500172C17 /* ConnectionManagerStub.swift */; };
 		D95C3E0F2A02D7C400172C17 /* NetworkRabbit+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95C3E0E2A02D7C400172C17 /* NetworkRabbit+Sync.swift */; };
@@ -565,7 +555,6 @@
 		D97500532880B5190035E6F2 /* MULTISHOW - Jao - Nao adianta gritar aqui no vestival e nao votar, vai votar porra.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975004B2880B5190035E6F2 /* MULTISHOW - Jao - Nao adianta gritar aqui no vestival e nao votar, vai votar porra.mp3 */; };
 		D97500542880B5190035E6F2 /* MULTISHOW - PABLLO VITTAR - Fora Bolsonaro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975004C2880B5190035E6F2 /* MULTISHOW - PABLLO VITTAR - Fora Bolsonaro.mp3 */; };
 		D97500552880B5190035E6F2 /* MULTISHOW - Lulu Santos - Censura nunca mais.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D975004D2880B5190035E6F2 /* MULTISHOW - Lulu Santos - Censura nunca mais.mp3 */; };
-		D9758C3828616E650094D388 /* FolderColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9758C3728616E650094D388 /* FolderColor.swift */; };
 		D9758C3A28617BA70094D388 /* AddUserFolderTables.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9758C3928617BA70094D388 /* AddUserFolderTables.swift */; };
 		D9758C3C28617C980094D388 /* LocalDatabase+UserFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9758C3B28617C980094D388 /* LocalDatabase+UserFolder.swift */; };
 		D9758C3E28617DAC0094D388 /* Color+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9758C3D28617DAC0094D388 /* Color+Name.swift */; };
@@ -1082,6 +1071,7 @@
 		D98674132A6B4B6800CCB9D3 /* Monica Poli - Attenzione, pickpocket (completo).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98674102A6B4B6800CCB9D3 /* Monica Poli - Attenzione, pickpocket (completo).mp3 */; };
 		D98674142A6B4B6800CCB9D3 /* Monica Poli - Attenzione, pickpocket.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98674112A6B4B6800CCB9D3 /* Monica Poli - Attenzione, pickpocket.mp3 */; };
 		D986C2462B25848B00EF575A /* LongUpdateBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D986C2452B25848B00EF575A /* LongUpdateBanner.swift */; };
+		D986D1FE2BCE23FD00214DAB /* SoundListDisplaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = D986D1FD2BCE23FD00214DAB /* SoundListDisplaying.swift */; };
 		D9877D2928694F3200B541F9 /* LocalDatabase+UserFolderContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9877D2828694F3200B541F9 /* LocalDatabase+UserFolderContent.swift */; };
 		D9877D2B2869845400B541F9 /* SharingUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9877D2A2869845400B541F9 /* SharingUtility.swift */; };
 		D988C523283C33E100D64404 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D988C522283C33E100D64404 /* UserSettings.swift */; };
@@ -1129,6 +1119,10 @@
 		D992146F2A8F21C2004E82BC /* RecurringDonationBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D992146E2A8F21C2004E82BC /* RecurringDonationBanner.swift */; };
 		D992E8262A185C8A00137469 /* InternalFolderNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = D992E8252A185C8A00137469 /* InternalFolderNames.swift */; };
 		D992E8282A1BFF3100137469 /* SyncService+Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = D992E8272A1BFF3100137469 /* SyncService+Sound.swift */; };
+		D992EF562BCB222B0080C892 /* ContextMenuOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = D992EF552BCB222B0080C892 /* ContextMenuOption.swift */; };
+		D992EF582BCB24310080C892 /* MainSoundContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D992EF572BCB24310080C892 /* MainSoundContainer.swift */; };
+		D992EF5A2BCB24FB0080C892 /* SoundList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D992EF592BCB24FB0080C892 /* SoundList.swift */; };
+		D992EF5C2BCB25820080C892 /* SoundListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D992EF5B2BCB25820080C892 /* SoundListViewModel.swift */; };
 		D9943F152863CC4D002C6B97 /* A impiedosa justica de Deus.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9943F142863CC4D002C6B97 /* A impiedosa justica de Deus.mp3 */; };
 		D9943F172863DAE1002C6B97 /* FolderDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F162863DAE1002C6B97 /* FolderDetailView.swift */; };
 		D9943F1A286406AF002C6B97 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D9943F19286406AF002C6B97 /* Kingfisher */; };
@@ -1152,7 +1146,6 @@
 		D99A961A299A6CC700BB5F0D /* SoundsListMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99A9619299A6CC700BB5F0D /* SoundsListMode.swift */; };
 		D99A961C299A733E00BB5F0D /* RoundCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99A961B299A733E00BB5F0D /* RoundCheckbox.swift */; };
 		D99ACE982ADDFC2500C290F0 /* RetroViewViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99ACE972ADDFC2500C290F0 /* RetroViewViewModelTests.swift */; };
-		D99B9DCA2848148600897930 /* ServerStatsAndLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99B9DC92848148600897930 /* ServerStatsAndLogs.swift */; };
 		D99BBE4129466D9800BCA901 /* UsageMetric.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99BBE4029466D9800BCA901 /* UsageMetric.swift */; };
 		D99BBE43294676B200BCA901 /* NetworkRabbit+UsageMetric.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99BBE42294676B200BCA901 /* NetworkRabbit+UsageMetric.swift */; };
 		D99BBE45294700B200BCA901 /* Jair Bolsonaro - Imitando pessoa com falta de ar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99BBE44294700B200BCA901 /* Jair Bolsonaro - Imitando pessoa com falta de ar.mp3 */; };
@@ -1162,7 +1155,6 @@
 		D99C8A942952C5AE002E0C00 /* Paulo Guedes - Uma festa danada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99C8A922952C5AE002E0C00 /* Paulo Guedes - Uma festa danada.mp3 */; };
 		D99C8A952952C5AE002E0C00 /* Gregorio Duvivier - Que tom e esse cara, baixa a bola pra caralho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99C8A932952C5AE002E0C00 /* Gregorio Duvivier - Que tom e esse cara, baixa a bola pra caralho.mp3 */; };
 		D99C8A972952C904002E0C00 /* NetworkRabbit+DonorNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99C8A962952C904002E0C00 /* NetworkRabbit+DonorNames.swift */; };
-		D99C987A2ABF2BE400AE11CE /* SoundsViewMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99C98792ABF2BE400AE11CE /* SoundsViewMode.swift */; };
 		D99CC7102A341B7700B21144 /* Senhor Pedindo Cafe - Eeee.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99CC70C2A341B7700B21144 /* Senhor Pedindo Cafe - Eeee.mp3 */; };
 		D99CC7112A341B7700B21144 /* Rogerio Correia - O senador não manja de nada (sobre Marcos do Val).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99CC70D2A341B7700B21144 /* Rogerio Correia - O senador não manja de nada (sobre Marcos do Val).mp3 */; };
 		D99CC7122A341B7700B21144 /* Senhor Pedindo Cafe - Quero cafe.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99CC70E2A341B7700B21144 /* Senhor Pedindo Cafe - Quero cafe.mp3 */; };
@@ -1181,6 +1173,7 @@
 		D99D0DC528CAB5F000EB6F27 /* TV BRASIL - GUEDES - Auxilio emergencial de 200 reais.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99D0DC428CAB5EF00EB6F27 /* TV BRASIL - GUEDES - Auxilio emergencial de 200 reais.mp3 */; };
 		D99D6CE528D6766300B36301 /* Jair Bolsonaro - Ministro Fachin, marxista, leninista.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99D6CE428D6766300B36301 /* Jair Bolsonaro - Ministro Fachin, marxista, leninista.mp3 */; };
 		D99DC19D28423AD7002B03B6 /* AuthorDetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99DC19C28423AD7002B03B6 /* AuthorDetailViewViewModel.swift */; };
+		D9A039182BD69EF100AB74F7 /* ModalViewToOpen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A039172BD69EF100AB74F7 /* ModalViewToOpen.swift */; };
 		D9A06417298B59D5006075D1 /* AddToFolderViewViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A06416298B59D5006075D1 /* AddToFolderViewViewModelTests.swift */; };
 		D9A0641A298B6749006075D1 /* LocalDatabaseStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A06419298B6749006075D1 /* LocalDatabaseStub.swift */; };
 		D9A096D8287CE72300773869 /* Mailman.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A096D7287CE72300773869 /* Mailman.swift */; };
@@ -1259,7 +1252,6 @@
 		D9BA1C462A9A920300996332 /* Reinaldo Azevedo - Peca desculpas, diga errei.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BA1C402A9A920300996332 /* Reinaldo Azevedo - Peca desculpas, diga errei.mp3 */; };
 		D9BAA6F42982F4340060982A /* CreateFolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BAA6F32982F4340060982A /* CreateFolderCell.swift */; };
 		D9BACC012B13BF5400BBD0BE /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BACC002B13BF5400BBD0BE /* Analytics.swift */; };
-		D9BB1E7728B3200700C5FFAA /* AppIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BB1E7628B3200700C5FFAA /* AppIcon.swift */; };
 		D9BB3A2D28F4BAD500EF7E8D /* Jair Bolsonaro - Paz, tranquilidade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BB3A2C28F4BAD500EF7E8D /* Jair Bolsonaro - Paz, tranquilidade.mp3 */; };
 		D9BB8F7628EC6D9E00659D4A /* Amigo do Pedro Daltro - Risada caralho (curto).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BB8F7428EC6D9E00659D4A /* Amigo do Pedro Daltro - Risada caralho (curto).mp3 */; };
 		D9BB8F7728EC6D9E00659D4A /* Amigo do Pedro Daltro - Risada caralho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9BB8F7528EC6D9E00659D4A /* Amigo do Pedro Daltro - Risada caralho.mp3 */; };
@@ -1358,9 +1350,10 @@
 		D9DB6F8328CD6F3600E24BDE /* Edu Santos - Totalmente embriagado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DB6F8228CD6F3500E24BDE /* Edu Santos - Totalmente embriagado.mp3 */; };
 		D9DB6F8528CD770900E24BDE /* Fernanda Torres - Totalmente drogada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DB6F8428CD770900E24BDE /* Fernanda Torres - Totalmente drogada.mp3 */; };
 		D9DBCEA42B12888D003B4A46 /* NetworkRabbit+Retro.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DBCEA32B12888D003B4A46 /* NetworkRabbit+Retro.swift */; };
+		D9DBEA9A2BCBFB8600220679 /* MainSoundContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DBEA992BCBFB8600220679 /* MainSoundContainerViewModel.swift */; };
+		D9DBEAA12BCC110A00220679 /* MockSoundListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DBEAA02BCC110A00220679 /* MockSoundListViewModel.swift */; };
 		D9DC4D7A2B1D8BC900627555 /* TopChartItem+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DC4D792B1D8BC900627555 /* TopChartItem+.swift */; };
 		D9DC68902AD38648005D3F81 /* RetroBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DC688F2AD38648005D3F81 /* RetroBanner.swift */; };
-		D9DCC5D128751256008DD4A3 /* PushDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D028751256008DD4A3 /* PushDevice.swift */; };
 		D9DCC5D3287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D2287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift */; };
 		D9DCC5D52875CB59008DD4A3 /* AppPersistentMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D42875CB59008DD4A3 /* AppPersistentMemory.swift */; };
 		D9DCC5D72875D7E5008DD4A3 /* NotificationSymbolPlusText.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DCC5D62875D7E5008DD4A3 /* NotificationSymbolPlusText.swift */; };
@@ -1375,7 +1368,6 @@
 		D9DF2B4F29821E5F0083765A /* Omar Aziz - Nos temos que punir seja quem for sem medo sem anistia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DF2B4B29821E5E0083765A /* Omar Aziz - Nos temos que punir seja quem for sem medo sem anistia.mp3 */; };
 		D9DF2B5029821E5F0083765A /* Franciel Cruz - Sabe o que e anistia.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DF2B4C29821E5E0083765A /* Franciel Cruz - Sabe o que e anistia.mp3 */; };
 		D9E142C4293BF17400B7FF04 /* Isa Penna - Eu nao permito, nao sou obrigada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E142C3293BF17400B7FF04 /* Isa Penna - Eu nao permito, nao sou obrigada.mp3 */; };
-		D9E18173298C82C700705DCA /* WordPluralization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E18172298C82C700705DCA /* WordPluralization.swift */; };
 		D9E1A8D02914CB3A00694A74 /* Monica de Bolle - Pronto, falei.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E1A8CF2914CB3900694A74 /* Monica de Bolle - Pronto, falei.mp3 */; };
 		D9E1A8D22914CD8200694A74 /* MyFoldersiPhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E1A8D12914CD8200694A74 /* MyFoldersiPhoneView.swift */; };
 		D9E2C707295E13B200B5814C /* Vinheta Dedo no cu e gritaria.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E2C705295E13B200B5814C /* Vinheta Dedo no cu e gritaria.mp3 */; };
@@ -1392,6 +1384,23 @@
 		D9E69592283D2E2C00C341B2 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = D9E69591283D2E2C00C341B2 /* SQLite */; };
 		D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E69593283D2F2F00C341B2 /* Favorite.swift */; };
 		D9E747FB29A8ED1100009C8D /* NoSearchResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E747FA29A8ED1100009C8D /* NoSearchResultsView.swift */; };
+		D9E7BE902C9E1D9D0094AD28 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E7BE8D2C9E1D9D0094AD28 /* UserInfo.swift */; };
+		D9E7BE912C9E1D9D0094AD28 /* VideoExportType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E7BE8E2C9E1D9D0094AD28 /* VideoExportType.swift */; };
+		D9E7BE922C9E1D9D0094AD28 /* TopChartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E7BE8B2C9E1D9D0094AD28 /* TopChartItem.swift */; };
+		D9E7BE932C9E1D9D0094AD28 /* WordPluralization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E7BE8F2C9E1D9D0094AD28 /* WordPluralization.swift */; };
+		D9E7BE942C9E1D9D0094AD28 /* FolderColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E7BE852C9E1D9D0094AD28 /* FolderColor.swift */; };
+		D9E7BE952C9E1D9D0094AD28 /* StillAliveSignal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E7BE8A2C9E1D9D0094AD28 /* StillAliveSignal.swift */; };
+		D9E7BE962C9E1D9D0094AD28 /* Donor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E7BE832C9E1D9D0094AD28 /* Donor.swift */; };
+		D9E7BE972C9E1D9D0094AD28 /* AppIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E7BE802C9E1D9D0094AD28 /* AppIcon.swift */; };
+		D9E7BE982C9E1D9D0094AD28 /* ContentSortOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E7BE822C9E1D9D0094AD28 /* ContentSortOption.swift */; };
+		D9E7BE992C9E1D9D0094AD28 /* ServerStatsAndLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E7BE872C9E1D9D0094AD28 /* ServerStatsAndLogs.swift */; };
+		D9E7BE9A2C9E1D9D0094AD28 /* ExternalLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E7BE842C9E1D9D0094AD28 /* ExternalLink.swift */; };
+		D9E7BE9B2C9E1D9D0094AD28 /* PushDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E7BE862C9E1D9D0094AD28 /* PushDevice.swift */; };
+		D9E7BE9C2C9E1D9D0094AD28 /* TrendsTimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E7BE8C2C9E1D9D0094AD28 /* TrendsTimeInterval.swift */; };
+		D9E7BE9D2C9E1D9D0094AD28 /* SoundsViewMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E7BE892C9E1D9D0094AD28 /* SoundsViewMode.swift */; };
+		D9E7BE9E2C9E1D9D0094AD28 /* ClientDeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E7BE812C9E1D9D0094AD28 /* ClientDeviceInfo.swift */; };
+		D9E7BE9F2C9E1D9D0094AD28 /* ShareAsVideoResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E7BE882C9E1D9D0094AD28 /* ShareAsVideoResult.swift */; };
+		D9E7BEA02C9E1D9D0094AD28 /* AlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E7BE7F2C9E1D9D0094AD28 /* AlertType.swift */; };
 		D9E7D0EA28AC6195001E909E /* Dose segura de crack, os tios e as tias do Zap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E7D0E928AC6195001E909E /* Dose segura de crack, os tios e as tias do Zap.mp3 */; };
 		D9E7D0EC28AC6349001E909E /* REDE GLOBO - GIL DO VIGOR - Eu estou to indignado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E7D0EB28AC6348001E909E /* REDE GLOBO - GIL DO VIGOR - Eu estou to indignado.mp3 */; };
 		D9E7D0EE28AC64F4001E909E /* Rogerinho - Ta certa a indignacao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E7D0ED28AC64F4001E909E /* Rogerinho - Ta certa a indignacao.mp3 */; };
@@ -1432,7 +1441,6 @@
 		D9F8E9A428E8D7470098A454 /* Soraya Thronicke - Candidato padre.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F8E9A328E8D7470098A454 /* Soraya Thronicke - Candidato padre.mp3 */; };
 		D9F9BB37294A0FF90005BE56 /* Rafael Infante - Errou feio, errou rude.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F9BB36294A0FF90005BE56 /* Rafael Infante - Errou feio, errou rude.mp3 */; };
 		D9F9BB39294A167C0005BE56 /* TrendsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F9BB38294A167C0005BE56 /* TrendsHelper.swift */; };
-		D9FA0CD92850864C000F6ADE /* ClientDeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FA0CD82850864C000F6ADE /* ClientDeviceInfo.swift */; };
 		D9FA62F42924252100790F55 /* Luis Roberto Barroso - Perdeu, mane, nao amola.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9FA62F32924252100790F55 /* Luis Roberto Barroso - Perdeu, mane, nao amola.mp3 */; };
 		D9FA62FC2924A5D000790F55 /* Desconhecido - A responsabilidade fiscal nao sera abandonada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9FA62F52924A5D000790F55 /* Desconhecido - A responsabilidade fiscal nao sera abandonada.mp3 */; };
 		D9FA62FD2924A5D000790F55 /* Elis Regina - A importancia da consciencia de classe.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9FA62F62924A5D000790F55 /* Elis Regina - A importancia da consciencia de classe.mp3 */; };
@@ -1598,7 +1606,6 @@
 		D90C4B08291B4F2B0079E75A /* Menino Pulando na Cama - Que bosta.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Menino Pulando na Cama - Que bosta.mp3"; sourceTree = "<group>"; };
 		D90CDF0428F620F100CC992D /* Darcy Ribeiro - Uma classe dominante ruim, ranzinza, azeda, mediocre, cobicosa que nao deixa o pais ir pra frente.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Darcy Ribeiro - Uma classe dominante ruim, ranzinza, azeda, mediocre, cobicosa que nao deixa o pais ir pra frente.mp3"; sourceTree = "<group>"; };
 		D90CDF0528F620F100CC992D /* Darcy Ribeiro - Uma classe dominante ruim (fala completa).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Darcy Ribeiro - Uma classe dominante ruim (fala completa).mp3"; sourceTree = "<group>"; };
-		D90CDF0828F65C7200CC992D /* TrendsTimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsTimeInterval.swift; sourceTree = "<group>"; };
 		D90D7DE328E2A4B1003B272A /* Eduardo Pazuello - Medo, medo, medo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eduardo Pazuello - Medo, medo, medo.mp3"; sourceTree = "<group>"; };
 		D90D7DE528E2A579003B272A /* NUNES MARQUES Dont stop till you get enough michael jackson.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "NUNES MARQUES Dont stop till you get enough michael jackson.mp3"; sourceTree = "<group>"; };
 		D90D7DE728E2A70E003B272A /* Nunes Marques - Dont Stop till you get enough - Parece o Praga.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Nunes Marques - Dont Stop till you get enough - Parece o Praga.mp3"; sourceTree = "<group>"; };
@@ -1607,12 +1614,9 @@
 		D90EDDB92908505000ED87A8 /* FolderResearchHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderResearchHelper.swift; sourceTree = "<group>"; };
 		D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsSettingsView.swift; sourceTree = "<group>"; };
 		D911070A28627216000B6F8F /* NotificationsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSettingsView.swift; sourceTree = "<group>"; };
-		D911070C2862BA4C000B6F8F /* StillAliveSignal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StillAliveSignal.swift; sourceTree = "<group>"; };
 		D91107102863B481000B6F8F /* CollectionsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsViewViewModel.swift; sourceTree = "<group>"; };
 		D91107132863B5FD000B6F8F /* ContentCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCollection.swift; sourceTree = "<group>"; };
-		D912A33528B3E8F000F7293D /* VideoExportType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoExportType.swift; sourceTree = "<group>"; };
 		D912A33728B3F2C000F7293D /* TipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipView.swift; sourceTree = "<group>"; };
-		D912A33928B5321400F7293D /* ShareAsVideoResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAsVideoResult.swift; sourceTree = "<group>"; };
 		D914CF3A2981C6D30013B3E2 /* Desconhecido - Primeiramente.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Desconhecido - Primeiramente.mp3"; sourceTree = "<group>"; };
 		D916536328AD7FF7007F141D /* VideoMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoMaker.swift; sourceTree = "<group>"; };
 		D916627C2874F1F9000A1B23 /* FirstOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstOnboardingView.swift; sourceTree = "<group>"; };
@@ -1730,7 +1734,6 @@
 		D92B6CEF29DDC2D9003A2B73 /* Antonio Tabet - Ai e Medo e Delirio de verdade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Antonio Tabet - Ai e Medo e Delirio de verdade.mp3"; sourceTree = "<group>"; };
 		D92B6CF029DDC2D9003A2B73 /* Voce e antirracista.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Voce e antirracista.mp3"; sourceTree = "<group>"; };
 		D92B6CFA29DDDA65003A2B73 /* Patriota no QG - A guerra, a guerrrrrraaaa.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Patriota no QG - A guerra, a guerrrrrraaaa.mp3"; sourceTree = "<group>"; };
-		D92C0CA72840162F009CF19A /* ContentSortOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSortOption.swift; sourceTree = "<group>"; };
 		D92C0CA928405B2D009CF19A /* NoFavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFavoritesView.swift; sourceTree = "<group>"; };
 		D92C0CAB28406EA5009CF19A /* UserShareLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserShareLog.swift; sourceTree = "<group>"; };
 		D92C0CAD284076CD009CF19A /* UIApplication+KeyWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+KeyWindow.swift"; sourceTree = "<group>"; };
@@ -1750,17 +1753,14 @@
 		D92F095C29EC8AC100CC382F /* Milton Leite - Que fase.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Milton Leite - Que fase.mp3"; sourceTree = "<group>"; };
 		D92F095E29EC8AD100CC382F /* Funk de Vacinacao do Craque Neto.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Funk de Vacinacao do Craque Neto.mp3"; sourceTree = "<group>"; };
 		D92F096429ED844300CC382F /* View+Marquee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Marquee.swift"; sourceTree = "<group>"; };
-		D92F8BAC286A6D2100EB9470 /* AlertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertType.swift; sourceTree = "<group>"; };
 		D9310C252A0BDA90006A3058 /* Jaiminho - E que quero evitar a fadiga.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jaiminho - E que quero evitar a fadiga.mp3"; sourceTree = "<group>"; };
 		D933251D28835E41004EFACB /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		D9344322283812AD00ADCD38 /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
-		D93443242838177000ADCD38 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		D934432628381DEF00ADCD38 /* author_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = author_data.json; sourceTree = "<group>"; };
 		D93443282838230500ADCD38 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		D9345E7528C697F900BADC1B /* Ele Queria Ter 2 Mesa Funk.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ele Queria Ter 2 Mesa Funk.mp3"; sourceTree = "<group>"; };
 		D9347DD02AA16AD100648E0B /* Lula - E agora em setembro vai entrar o grosso.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - E agora em setembro vai entrar o grosso.mp3"; sourceTree = "<group>"; };
 		D9347DD22AA1735E00648E0B /* Eu Fico Muito Triste - Summer Eletrohits.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu Fico Muito Triste - Summer Eletrohits.mp3"; sourceTree = "<group>"; };
-		D9351C5B2844094E00D4317E /* TopChartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartItem.swift; sourceTree = "<group>"; };
 		D9351C6028441FA400D4317E /* LoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerTests.swift; sourceTree = "<group>"; };
 		D93752102902C94200E2F27B /* Joaquim Barbosa - Bolsonaro e um ser abjeto, Lula no primeiro turno.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Joaquim Barbosa - Bolsonaro e um ser abjeto, Lula no primeiro turno.mp3"; sourceTree = "<group>"; };
 		D93752112902C94200E2F27B /* Lula - Consideracoes finais debate Band 2o turno.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - Consideracoes finais debate Band 2o turno.mp3"; sourceTree = "<group>"; };
@@ -1792,7 +1792,6 @@
 		D93A029D2906E9F100A85FE2 /* JoinFolderResearchBannerViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinFolderResearchBannerViewViewModel.swift; sourceTree = "<group>"; };
 		D93AC08A28414EEE00E38A63 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		D93B31BA2A1E921F00A7EB68 /* SyncLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncLog.swift; sourceTree = "<group>"; };
-		D93B6A622BBBDA62004F801F /* ExternalLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalLink.swift; sourceTree = "<group>"; };
 		D93CCB76286A802D0002CF81 /* EmptyFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyFolderView.swift; sourceTree = "<group>"; };
 		D93CCB78286A8A220002CF81 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		D93CCB7A286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyTransition+MoveAndFade.swift"; sourceTree = "<group>"; };
@@ -1941,7 +1940,6 @@
 		D95BFEF029E8866700E42A23 /* LargeCreatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeCreatorView.swift; sourceTree = "<group>"; };
 		D95BFEF229E88C9800E42A23 /* DonorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonorView.swift; sourceTree = "<group>"; };
 		D95BFEF429E8CD2600E42A23 /* DonorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonorsView.swift; sourceTree = "<group>"; };
-		D95BFEF729E8D07B00E42A23 /* Donor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Donor.swift; sourceTree = "<group>"; };
 		D95C3E092A02AB1800172C17 /* SyncServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncServiceTests.swift; sourceTree = "<group>"; };
 		D95C3E0C2A02ABE500172C17 /* ConnectionManagerStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionManagerStub.swift; sourceTree = "<group>"; };
 		D95C3E0E2A02D7C400172C17 /* NetworkRabbit+Sync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+Sync.swift"; sourceTree = "<group>"; };
@@ -1985,7 +1983,6 @@
 		D975004B2880B5190035E6F2 /* MULTISHOW - Jao - Nao adianta gritar aqui no vestival e nao votar, vai votar porra.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "MULTISHOW - Jao - Nao adianta gritar aqui no vestival e nao votar, vai votar porra.mp3"; sourceTree = "<group>"; };
 		D975004C2880B5190035E6F2 /* MULTISHOW - PABLLO VITTAR - Fora Bolsonaro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "MULTISHOW - PABLLO VITTAR - Fora Bolsonaro.mp3"; sourceTree = "<group>"; };
 		D975004D2880B5190035E6F2 /* MULTISHOW - Lulu Santos - Censura nunca mais.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "MULTISHOW - Lulu Santos - Censura nunca mais.mp3"; sourceTree = "<group>"; };
-		D9758C3728616E650094D388 /* FolderColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderColor.swift; sourceTree = "<group>"; };
 		D9758C3928617BA70094D388 /* AddUserFolderTables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserFolderTables.swift; sourceTree = "<group>"; };
 		D9758C3B28617C980094D388 /* LocalDatabase+UserFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+UserFolder.swift"; sourceTree = "<group>"; };
 		D9758C3D28617DAC0094D388 /* Color+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Name.swift"; sourceTree = "<group>"; };
@@ -2571,6 +2568,7 @@
 		D98674102A6B4B6800CCB9D3 /* Monica Poli - Attenzione, pickpocket (completo).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Monica Poli - Attenzione, pickpocket (completo).mp3"; sourceTree = "<group>"; };
 		D98674112A6B4B6800CCB9D3 /* Monica Poli - Attenzione, pickpocket.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Monica Poli - Attenzione, pickpocket.mp3"; sourceTree = "<group>"; };
 		D986C2452B25848B00EF575A /* LongUpdateBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongUpdateBanner.swift; sourceTree = "<group>"; };
+		D986D1FD2BCE23FD00214DAB /* SoundListDisplaying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundListDisplaying.swift; sourceTree = "<group>"; };
 		D9877D2828694F3200B541F9 /* LocalDatabase+UserFolderContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+UserFolderContent.swift"; sourceTree = "<group>"; };
 		D9877D2A2869845400B541F9 /* SharingUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingUtility.swift; sourceTree = "<group>"; };
 		D988C522283C33E100D64404 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
@@ -2619,6 +2617,10 @@
 		D992146E2A8F21C2004E82BC /* RecurringDonationBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecurringDonationBanner.swift; sourceTree = "<group>"; };
 		D992E8252A185C8A00137469 /* InternalFolderNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalFolderNames.swift; sourceTree = "<group>"; };
 		D992E8272A1BFF3100137469 /* SyncService+Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SyncService+Sound.swift"; sourceTree = "<group>"; };
+		D992EF552BCB222B0080C892 /* ContextMenuOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuOption.swift; sourceTree = "<group>"; };
+		D992EF572BCB24310080C892 /* MainSoundContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSoundContainer.swift; sourceTree = "<group>"; };
+		D992EF592BCB24FB0080C892 /* SoundList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundList.swift; sourceTree = "<group>"; };
+		D992EF5B2BCB25820080C892 /* SoundListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundListViewModel.swift; sourceTree = "<group>"; };
 		D9943F142863CC4D002C6B97 /* A impiedosa justica de Deus.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "A impiedosa justica de Deus.mp3"; sourceTree = "<group>"; };
 		D9943F162863DAE1002C6B97 /* FolderDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetailView.swift; sourceTree = "<group>"; };
 		D9943F1B28641917002C6B97 /* LocalDatabase+Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+Favorite.swift"; sourceTree = "<group>"; };
@@ -2641,7 +2643,6 @@
 		D99A9619299A6CC700BB5F0D /* SoundsListMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsListMode.swift; sourceTree = "<group>"; };
 		D99A961B299A733E00BB5F0D /* RoundCheckbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCheckbox.swift; sourceTree = "<group>"; };
 		D99ACE972ADDFC2500C290F0 /* RetroViewViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetroViewViewModelTests.swift; sourceTree = "<group>"; };
-		D99B9DC92848148600897930 /* ServerStatsAndLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerStatsAndLogs.swift; sourceTree = "<group>"; };
 		D99BBE4029466D9800BCA901 /* UsageMetric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageMetric.swift; sourceTree = "<group>"; };
 		D99BBE42294676B200BCA901 /* NetworkRabbit+UsageMetric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+UsageMetric.swift"; sourceTree = "<group>"; };
 		D99BBE44294700B200BCA901 /* Jair Bolsonaro - Imitando pessoa com falta de ar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Imitando pessoa com falta de ar.mp3"; sourceTree = "<group>"; };
@@ -2651,7 +2652,6 @@
 		D99C8A922952C5AE002E0C00 /* Paulo Guedes - Uma festa danada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Paulo Guedes - Uma festa danada.mp3"; sourceTree = "<group>"; };
 		D99C8A932952C5AE002E0C00 /* Gregorio Duvivier - Que tom e esse cara, baixa a bola pra caralho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Gregorio Duvivier - Que tom e esse cara, baixa a bola pra caralho.mp3"; sourceTree = "<group>"; };
 		D99C8A962952C904002E0C00 /* NetworkRabbit+DonorNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+DonorNames.swift"; sourceTree = "<group>"; };
-		D99C98792ABF2BE400AE11CE /* SoundsViewMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsViewMode.swift; sourceTree = "<group>"; };
 		D99CC70C2A341B7700B21144 /* Senhor Pedindo Cafe - Eeee.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Senhor Pedindo Cafe - Eeee.mp3"; sourceTree = "<group>"; };
 		D99CC70D2A341B7700B21144 /* Rogerio Correia - O senador não manja de nada (sobre Marcos do Val).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rogerio Correia - O senador não manja de nada (sobre Marcos do Val).mp3"; sourceTree = "<group>"; };
 		D99CC70E2A341B7700B21144 /* Senhor Pedindo Cafe - Quero cafe.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Senhor Pedindo Cafe - Quero cafe.mp3"; sourceTree = "<group>"; };
@@ -2670,6 +2670,7 @@
 		D99D0DC428CAB5EF00EB6F27 /* TV BRASIL - GUEDES - Auxilio emergencial de 200 reais.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "TV BRASIL - GUEDES - Auxilio emergencial de 200 reais.mp3"; sourceTree = "<group>"; };
 		D99D6CE428D6766300B36301 /* Jair Bolsonaro - Ministro Fachin, marxista, leninista.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Ministro Fachin, marxista, leninista.mp3"; sourceTree = "<group>"; };
 		D99DC19C28423AD7002B03B6 /* AuthorDetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorDetailViewViewModel.swift; sourceTree = "<group>"; };
+		D9A039172BD69EF100AB74F7 /* ModalViewToOpen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewToOpen.swift; sourceTree = "<group>"; };
 		D9A06416298B59D5006075D1 /* AddToFolderViewViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToFolderViewViewModelTests.swift; sourceTree = "<group>"; };
 		D9A06419298B6749006075D1 /* LocalDatabaseStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDatabaseStub.swift; sourceTree = "<group>"; };
 		D9A096D7287CE72300773869 /* Mailman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mailman.swift; sourceTree = "<group>"; };
@@ -2747,7 +2748,6 @@
 		D9BA1C402A9A920300996332 /* Reinaldo Azevedo - Peca desculpas, diga errei.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Reinaldo Azevedo - Peca desculpas, diga errei.mp3"; sourceTree = "<group>"; };
 		D9BAA6F32982F4340060982A /* CreateFolderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFolderCell.swift; sourceTree = "<group>"; };
 		D9BACC002B13BF5400BBD0BE /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
-		D9BB1E7628B3200700C5FFAA /* AppIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcon.swift; sourceTree = "<group>"; };
 		D9BB3A2C28F4BAD500EF7E8D /* Jair Bolsonaro - Paz, tranquilidade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Paz, tranquilidade.mp3"; sourceTree = "<group>"; };
 		D9BB8F7428EC6D9E00659D4A /* Amigo do Pedro Daltro - Risada caralho (curto).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Amigo do Pedro Daltro - Risada caralho (curto).mp3"; sourceTree = "<group>"; };
 		D9BB8F7528EC6D9E00659D4A /* Amigo do Pedro Daltro - Risada caralho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Amigo do Pedro Daltro - Risada caralho.mp3"; sourceTree = "<group>"; };
@@ -2846,9 +2846,10 @@
 		D9DB6F8228CD6F3500E24BDE /* Edu Santos - Totalmente embriagado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Edu Santos - Totalmente embriagado.mp3"; sourceTree = "<group>"; };
 		D9DB6F8428CD770900E24BDE /* Fernanda Torres - Totalmente drogada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fernanda Torres - Totalmente drogada.mp3"; sourceTree = "<group>"; };
 		D9DBCEA32B12888D003B4A46 /* NetworkRabbit+Retro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+Retro.swift"; sourceTree = "<group>"; };
+		D9DBEA992BCBFB8600220679 /* MainSoundContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSoundContainerViewModel.swift; sourceTree = "<group>"; };
+		D9DBEAA02BCC110A00220679 /* MockSoundListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSoundListViewModel.swift; sourceTree = "<group>"; };
 		D9DC4D792B1D8BC900627555 /* TopChartItem+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TopChartItem+.swift"; sourceTree = "<group>"; };
 		D9DC688F2AD38648005D3F81 /* RetroBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetroBanner.swift; sourceTree = "<group>"; };
-		D9DCC5D028751256008DD4A3 /* PushDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushDevice.swift; sourceTree = "<group>"; };
 		D9DCC5D2287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+PushDevice.swift"; sourceTree = "<group>"; };
 		D9DCC5D42875CB59008DD4A3 /* AppPersistentMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPersistentMemory.swift; sourceTree = "<group>"; };
 		D9DCC5D62875D7E5008DD4A3 /* NotificationSymbolPlusText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSymbolPlusText.swift; sourceTree = "<group>"; };
@@ -2863,7 +2864,6 @@
 		D9DF2B4B29821E5E0083765A /* Omar Aziz - Nos temos que punir seja quem for sem medo sem anistia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Omar Aziz - Nos temos que punir seja quem for sem medo sem anistia.mp3"; sourceTree = "<group>"; };
 		D9DF2B4C29821E5E0083765A /* Franciel Cruz - Sabe o que e anistia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Franciel Cruz - Sabe o que e anistia.mp3"; sourceTree = "<group>"; };
 		D9E142C3293BF17400B7FF04 /* Isa Penna - Eu nao permito, nao sou obrigada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Isa Penna - Eu nao permito, nao sou obrigada.mp3"; sourceTree = "<group>"; };
-		D9E18172298C82C700705DCA /* WordPluralization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordPluralization.swift; sourceTree = "<group>"; };
 		D9E1A8CF2914CB3900694A74 /* Monica de Bolle - Pronto, falei.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Monica de Bolle - Pronto, falei.mp3"; sourceTree = "<group>"; };
 		D9E1A8D12914CD8200694A74 /* MyFoldersiPhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFoldersiPhoneView.swift; sourceTree = "<group>"; };
 		D9E2C705295E13B200B5814C /* Vinheta Dedo no cu e gritaria.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Vinheta Dedo no cu e gritaria.mp3"; sourceTree = "<group>"; };
@@ -2879,6 +2879,23 @@
 		D9E53FA529A696A800BF9D31 /* Natuza Nery - Olha so (triste).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Natuza Nery - Olha so (triste).mp3"; sourceTree = "<group>"; };
 		D9E69593283D2F2F00C341B2 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		D9E747FA29A8ED1100009C8D /* NoSearchResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSearchResultsView.swift; sourceTree = "<group>"; };
+		D9E7BE7F2C9E1D9D0094AD28 /* AlertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertType.swift; sourceTree = "<group>"; };
+		D9E7BE802C9E1D9D0094AD28 /* AppIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcon.swift; sourceTree = "<group>"; };
+		D9E7BE812C9E1D9D0094AD28 /* ClientDeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientDeviceInfo.swift; sourceTree = "<group>"; };
+		D9E7BE822C9E1D9D0094AD28 /* ContentSortOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSortOption.swift; sourceTree = "<group>"; };
+		D9E7BE832C9E1D9D0094AD28 /* Donor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Donor.swift; sourceTree = "<group>"; };
+		D9E7BE842C9E1D9D0094AD28 /* ExternalLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalLink.swift; sourceTree = "<group>"; };
+		D9E7BE852C9E1D9D0094AD28 /* FolderColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderColor.swift; sourceTree = "<group>"; };
+		D9E7BE862C9E1D9D0094AD28 /* PushDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushDevice.swift; sourceTree = "<group>"; };
+		D9E7BE872C9E1D9D0094AD28 /* ServerStatsAndLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerStatsAndLogs.swift; sourceTree = "<group>"; };
+		D9E7BE882C9E1D9D0094AD28 /* ShareAsVideoResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAsVideoResult.swift; sourceTree = "<group>"; };
+		D9E7BE892C9E1D9D0094AD28 /* SoundsViewMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsViewMode.swift; sourceTree = "<group>"; };
+		D9E7BE8A2C9E1D9D0094AD28 /* StillAliveSignal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StillAliveSignal.swift; sourceTree = "<group>"; };
+		D9E7BE8B2C9E1D9D0094AD28 /* TopChartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopChartItem.swift; sourceTree = "<group>"; };
+		D9E7BE8C2C9E1D9D0094AD28 /* TrendsTimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsTimeInterval.swift; sourceTree = "<group>"; };
+		D9E7BE8D2C9E1D9D0094AD28 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		D9E7BE8E2C9E1D9D0094AD28 /* VideoExportType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoExportType.swift; sourceTree = "<group>"; };
+		D9E7BE8F2C9E1D9D0094AD28 /* WordPluralization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordPluralization.swift; sourceTree = "<group>"; };
 		D9E7D0E928AC6195001E909E /* Dose segura de crack, os tios e as tias do Zap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Dose segura de crack, os tios e as tias do Zap.mp3"; sourceTree = "<group>"; };
 		D9E7D0EB28AC6348001E909E /* REDE GLOBO - GIL DO VIGOR - Eu estou to indignado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "REDE GLOBO - GIL DO VIGOR - Eu estou to indignado.mp3"; sourceTree = "<group>"; };
 		D9E7D0ED28AC64F4001E909E /* Rogerinho - Ta certa a indignacao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rogerinho - Ta certa a indignacao.mp3"; sourceTree = "<group>"; };
@@ -2920,7 +2937,6 @@
 		D9F9BB36294A0FF90005BE56 /* Rafael Infante - Errou feio, errou rude.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rafael Infante - Errou feio, errou rude.mp3"; sourceTree = "<group>"; };
 		D9F9BB38294A167C0005BE56 /* TrendsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsHelper.swift; sourceTree = "<group>"; };
 		D9FA0CD628508590000F6ADE /* UIDevice+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extensions.swift"; sourceTree = "<group>"; };
-		D9FA0CD82850864C000F6ADE /* ClientDeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientDeviceInfo.swift; sourceTree = "<group>"; };
 		D9FA62F32924252100790F55 /* Luis Roberto Barroso - Perdeu, mane, nao amola.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Luis Roberto Barroso - Perdeu, mane, nao amola.mp3"; sourceTree = "<group>"; };
 		D9FA62F52924A5D000790F55 /* Desconhecido - A responsabilidade fiscal nao sera abandonada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Desconhecido - A responsabilidade fiscal nao sera abandonada.mp3"; sourceTree = "<group>"; };
 		D9FA62F62924A5D000790F55 /* Elis Regina - A importancia da consciencia de classe.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Elis Regina - A importancia da consciencia de classe.mp3"; sourceTree = "<group>"; };
@@ -4589,7 +4605,9 @@
 		D9759ACA2872B1D1005F9871 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				D9DBEA9F2BCC10F200220679 /* SoundList */,
 				D93CCB78286A8A220002CF81 /* ToastView.swift */,
+				D99A961B299A733E00BB5F0D /* RoundCheckbox.swift */,
 				D933251D28835E41004EFACB /* ActivityViewController.swift */,
 				D97D76FA2885B794005210D9 /* EmailAppPickerView.swift */,
 				D9C35D22288713990065F3E7 /* HotWeatherAdBannerView.swift */,
@@ -4610,6 +4628,7 @@
 				D9A3AB6A28F03C970064CB7A /* ViewStates.swift */,
 				D9F9BB38294A167C0005BE56 /* TrendsHelper.swift */,
 				D99A9619299A6CC700BB5F0D /* SoundsListMode.swift */,
+				D9A039172BD69EF100AB74F7 /* ModalViewToOpen.swift */,
 			);
 			path = ViewAid;
 			sourceTree = "<group>";
@@ -4682,28 +4701,13 @@
 				D994AD632C9E006B004FAE25 /* ContentShareCountStats.swift */,
 				D994AD612C9DFE84004FAE25 /* LoadingState.swift */,
 				D9F45DD82BED39E100D49340 /* ServerDriven */,
-				D99070622A92CEB900A26F65 /* EnvironmentObjects */,
-				D95C3E102A02E6BB00172C17 /* Sync */,
-				D97B2DD728E5E9E400C3B50B /* ViewAid */,
 				D9BB1E7928B3212000C5FFAA /* Core */,
+				D95C3E102A02E6BB00172C17 /* Sync */,
+				D9DBEA9D2BCC0CB900220679 /* SoundListDecoupling */,
+				D99070622A92CEB900A26F65 /* EnvironmentObjects */,
+				D97B2DD728E5E9E400C3B50B /* ViewAid */,
 				D9BB1E7828B3210D00C5FFAA /* Logs */,
-				D93443242838177000ADCD38 /* UserInfo.swift */,
-				D92C0CA72840162F009CF19A /* ContentSortOption.swift */,
-				D9351C5B2844094E00D4317E /* TopChartItem.swift */,
-				D99B9DC92848148600897930 /* ServerStatsAndLogs.swift */,
-				D9FA0CD82850864C000F6ADE /* ClientDeviceInfo.swift */,
-				D911070C2862BA4C000B6F8F /* StillAliveSignal.swift */,
-				D9758C3728616E650094D388 /* FolderColor.swift */,
-				D92F8BAC286A6D2100EB9470 /* AlertType.swift */,
-				D9DCC5D028751256008DD4A3 /* PushDevice.swift */,
-				D9BB1E7628B3200700C5FFAA /* AppIcon.swift */,
-				D912A33528B3E8F000F7293D /* VideoExportType.swift */,
-				D912A33928B5321400F7293D /* ShareAsVideoResult.swift */,
-				D90CDF0828F65C7200CC992D /* TrendsTimeInterval.swift */,
-				D9E18172298C82C700705DCA /* WordPluralization.swift */,
-				D95BFEF729E8D07B00E42A23 /* Donor.swift */,
-				D99C98792ABF2BE400AE11CE /* SoundsViewMode.swift */,
-				D93B6A622BBBDA62004F801F /* ExternalLink.swift */,
+				D9DBEA9E2BCC0CF400220679 /* Other */,
 				D98CFB592C95C9710038C26C /* SocialMediaLink.swift */,
 			);
 			path = Models;
@@ -4825,15 +4829,13 @@
 		D9B9025C2837485000551239 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				D992EF572BCB24310080C892 /* MainSoundContainer.swift */,
+				D9DBEA992BCBFB8600220679 /* MainSoundContainerViewModel.swift */,
 				D9625E7F28238F9A00080852 /* SoundsView.swift */,
 				D98EC5E22825A45000340BE5 /* SoundsViewViewModel.swift */,
-				D98EC5DD282596C300340BE5 /* SoundCell.swift */,
 				D92C0CA928405B2D009CF19A /* NoFavoritesView.swift */,
-				D99A961B299A733E00BB5F0D /* RoundCheckbox.swift */,
 				D9E747FA29A8ED1100009C8D /* NoSearchResultsView.swift */,
-				D955DA2F2AA6B94C00AC4169 /* SoundDetailView.swift */,
 				D94EAB5C29FC4D51004CD604 /* Sync */,
-				D9AF8B742ABD0D320051D028 /* OneTimeTask.swift */,
 				D98BB6992AC68769001DE23D /* FloatingSelectionOptionsView.swift */,
 				D96370042B085845002E8838 /* ExplicitDisabledWarning.swift */,
 			);
@@ -4954,6 +4956,7 @@
 		D9C67C112A3E3C3200E74E9D /* Modifiers */ = {
 			isa = PBXGroup;
 			children = (
+				D9AF8B742ABD0D320051D028 /* OneTimeTask.swift */,
 				D9C67C142A3E3D7E00E74E9D /* LargeCapsuleBorderedProminentButtonStyle.swift */,
 				D9C67C122A3E3D6000E74E9D /* LargeCapsuleBorderedButtonStyle.swift */,
 				D9C67C0F2A3E3C2200E74E9D /* MiniButtonStyle.swift */,
@@ -4970,6 +4973,51 @@
 				D97B2DD528E3E85400C3B50B /* MostSharedByMeViewViewModel.swift */,
 			);
 			path = MyTrends;
+			sourceTree = "<group>";
+		};
+		D9DBEA9D2BCC0CB900220679 /* SoundListDecoupling */ = {
+			isa = PBXGroup;
+			children = (
+				D992EF552BCB222B0080C892 /* ContextMenuOption.swift */,
+				D986D1FD2BCE23FD00214DAB /* SoundListDisplaying.swift */,
+			);
+			path = SoundListDecoupling;
+			sourceTree = "<group>";
+		};
+		D9DBEA9E2BCC0CF400220679 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				D9E7BE7F2C9E1D9D0094AD28 /* AlertType.swift */,
+				D9E7BE802C9E1D9D0094AD28 /* AppIcon.swift */,
+				D9E7BE812C9E1D9D0094AD28 /* ClientDeviceInfo.swift */,
+				D9E7BE822C9E1D9D0094AD28 /* ContentSortOption.swift */,
+				D9E7BE832C9E1D9D0094AD28 /* Donor.swift */,
+				D9E7BE842C9E1D9D0094AD28 /* ExternalLink.swift */,
+				D9E7BE852C9E1D9D0094AD28 /* FolderColor.swift */,
+				D9E7BE862C9E1D9D0094AD28 /* PushDevice.swift */,
+				D9E7BE872C9E1D9D0094AD28 /* ServerStatsAndLogs.swift */,
+				D9E7BE882C9E1D9D0094AD28 /* ShareAsVideoResult.swift */,
+				D9E7BE892C9E1D9D0094AD28 /* SoundsViewMode.swift */,
+				D9E7BE8A2C9E1D9D0094AD28 /* StillAliveSignal.swift */,
+				D9E7BE8B2C9E1D9D0094AD28 /* TopChartItem.swift */,
+				D9E7BE8C2C9E1D9D0094AD28 /* TrendsTimeInterval.swift */,
+				D9E7BE8D2C9E1D9D0094AD28 /* UserInfo.swift */,
+				D9E7BE8E2C9E1D9D0094AD28 /* VideoExportType.swift */,
+				D9E7BE8F2C9E1D9D0094AD28 /* WordPluralization.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		D9DBEA9F2BCC10F200220679 /* SoundList */ = {
+			isa = PBXGroup;
+			children = (
+				D992EF592BCB24FB0080C892 /* SoundList.swift */,
+				D992EF5B2BCB25820080C892 /* SoundListViewModel.swift */,
+				D98EC5DD282596C300340BE5 /* SoundCell.swift */,
+				D955DA2F2AA6B94C00AC4169 /* SoundDetailView.swift */,
+				D9DBEAA02BCC110A00220679 /* MockSoundListViewModel.swift */,
+			);
+			path = SoundList;
 			sourceTree = "<group>";
 		};
 		D9DC8D482A643CA500467DBA /* SharedDoubles */ = {
@@ -6386,18 +6434,32 @@
 				D9877D2928694F3200B541F9 /* LocalDatabase+UserFolderContent.swift in Sources */,
 				D99BBE4129466D9800BCA901 /* UsageMetric.swift in Sources */,
 				D9CC893328EB7BB500576492 /* MostSharedByAudienceView.swift in Sources */,
-				D912A33A28B5321400F7293D /* ShareAsVideoResult.swift in Sources */,
 				D9FF3F972B142F78007AE773 /* UpdateIncentiveBanner.swift in Sources */,
 				D9F45DDA2BED39F800D49340 /* DynamicBannerData.swift in Sources */,
+				D9E7BE902C9E1D9D0094AD28 /* UserInfo.swift in Sources */,
+				D9E7BE912C9E1D9D0094AD28 /* VideoExportType.swift in Sources */,
+				D9E7BE922C9E1D9D0094AD28 /* TopChartItem.swift in Sources */,
+				D9E7BE932C9E1D9D0094AD28 /* WordPluralization.swift in Sources */,
+				D9E7BE942C9E1D9D0094AD28 /* FolderColor.swift in Sources */,
+				D9E7BE952C9E1D9D0094AD28 /* StillAliveSignal.swift in Sources */,
+				D9E7BE962C9E1D9D0094AD28 /* Donor.swift in Sources */,
+				D9E7BE972C9E1D9D0094AD28 /* AppIcon.swift in Sources */,
+				D9E7BE982C9E1D9D0094AD28 /* ContentSortOption.swift in Sources */,
+				D9E7BE992C9E1D9D0094AD28 /* ServerStatsAndLogs.swift in Sources */,
+				D9E7BE9A2C9E1D9D0094AD28 /* ExternalLink.swift in Sources */,
+				D9E7BE9B2C9E1D9D0094AD28 /* PushDevice.swift in Sources */,
+				D9E7BE9C2C9E1D9D0094AD28 /* TrendsTimeInterval.swift in Sources */,
+				D9E7BE9D2C9E1D9D0094AD28 /* SoundsViewMode.swift in Sources */,
+				D9E7BE9E2C9E1D9D0094AD28 /* ClientDeviceInfo.swift in Sources */,
+				D9E7BE9F2C9E1D9D0094AD28 /* ShareAsVideoResult.swift in Sources */,
+				D9E7BEA02C9E1D9D0094AD28 /* AlertType.swift in Sources */,
 				D958B1AA28394D400010F133 /* MainView.swift in Sources */,
 				D94EAB5529FC141F004CD604 /* LocalDatabase+Author.swift in Sources */,
 				D9A7D85F29FB448500A964AC /* AddSyncTables.swift in Sources */,
-				D92F8BAD286A6D2100EB9470 /* AlertType.swift in Sources */,
 				D94BA9ED2879EC7F001BD09C /* JoinFolderResearchBannerView.swift in Sources */,
 				D93443292838230500ADCD38 /* String+.swift in Sources */,
 				D9943F2628641FEF002C6B97 /* AddToFolderView.swift in Sources */,
 				D986C2462B25848B00EF575A /* LongUpdateBanner.swift in Sources */,
-				D95BFEF829E8D07B00E42A23 /* Donor.swift in Sources */,
 				D9BF9091284257F500BDDD7D /* Shared.swift in Sources */,
 				D9758C3C28617C980094D388 /* LocalDatabase+UserFolder.swift in Sources */,
 				D9DB6F7F28CBDA8000E24BDE /* MostSharedByMeView.swift in Sources */,
@@ -6415,15 +6477,14 @@
 				D90622C82AB4030600704B70 /* MedoContentProtocol.swift in Sources */,
 				D9F87A9228F6EA51002EE8AA /* RemoveFavoriteLogTable.swift in Sources */,
 				D9DCC5D52875CB59008DD4A3 /* AppPersistentMemory.swift in Sources */,
+				D9DBEA9A2BCBFB8600220679 /* MainSoundContainerViewModel.swift in Sources */,
 				D95C3E122A02E6D300172C17 /* SyncEnums.swift in Sources */,
 				D938132F287E12B3009EE24F /* NotificationAide.swift in Sources */,
 				D9F9BB39294A167C0005BE56 /* TrendsHelper.swift in Sources */,
 				D90EDDBA2908505000ED87A8 /* FolderResearchHelper.swift in Sources */,
 				D97D76FB2885B794005210D9 /* EmailAppPickerView.swift in Sources */,
+				D986D1FE2BCE23FD00214DAB /* SoundListDisplaying.swift in Sources */,
 				D9A3AB6B28F03C970064CB7A /* ViewStates.swift in Sources */,
-				D99B9DCA2848148600897930 /* ServerStatsAndLogs.swift in Sources */,
-				D93B6A632BBBDA62004F801F /* ExternalLink.swift in Sources */,
-				D9758C3828616E650094D388 /* FolderColor.swift in Sources */,
 				D93F642E29A6A5FF003E7550 /* ShareAsVideoView.swift in Sources */,
 				D955DA302AA6B94C00AC4169 /* SoundDetailView.swift in Sources */,
 				D9DCC5D72875D7E5008DD4A3 /* NotificationSymbolPlusText.swift in Sources */,
@@ -6432,8 +6493,8 @@
 				D9DD1AB72AB954DA0010F700 /* CapsuleButtonStyle.swift in Sources */,
 				D95DB0F6288248A300D4FEDF /* SidebarView.swift in Sources */,
 				D9943F2C28643317002C6B97 /* FolderDetailViewViewModel.swift in Sources */,
+				D9DBEAA12BCC110A00220679 /* MockSoundListViewModel.swift in Sources */,
 				D9C1372B29063D7D003E4ABF /* PrivacySettingsView.swift in Sources */,
-				D92C0CA82840162F009CF19A /* ContentSortOption.swift in Sources */,
 				D94B5F682A1C9D0900B3A688 /* SyncService+Song.swift in Sources */,
 				D93A029E2906E9F100A85FE2 /* JoinFolderResearchBannerViewViewModel.swift in Sources */,
 				D94EAB4F29FB1524004CD604 /* NetworkRabbit+FileDownload.swift in Sources */,
@@ -6469,10 +6530,10 @@
 				D958BC732868FE8C000B2EDA /* EmojiIdentification.swift in Sources */,
 				D9E5056028F742CA008DAA1E /* AddAudienceSharingStatisticTable.swift in Sources */,
 				D9CC025D28BD9EBD0021C1E6 /* GridHelper.swift in Sources */,
-				D9E18173298C82C700705DCA /* WordPluralization.swift in Sources */,
 				D994AD642C9E006B004FAE25 /* ContentShareCountStats.swift in Sources */,
 				D916627D2874F1F9000A1B23 /* FirstOnboardingView.swift in Sources */,
 				D94B5F662A1C9CF600B3A688 /* SyncService+Author.swift in Sources */,
+				D992EF5C2BCB25820080C892 /* SoundListViewModel.swift in Sources */,
 				D99DC19D28423AD7002B03B6 /* AuthorDetailViewViewModel.swift in Sources */,
 				D967E2BC2901C40700B21C11 /* CustomPhotoAlbum.swift in Sources */,
 				D907A39E2A8F9E6A006DE630 /* OpenUtility.swift in Sources */,
@@ -6483,7 +6544,6 @@
 				D97B2DD628E3E85400C3B50B /* MostSharedByMeViewViewModel.swift in Sources */,
 				D916627F2874F838000A1B23 /* NotificationsSymbol.swift in Sources */,
 				D9BB9265285DAA8E005CD6DD /* HelpTheAppView.swift in Sources */,
-				D912A33628B3E8F000F7293D /* VideoExportType.swift in Sources */,
 				D9FB489A2870FE7800FF90D0 /* TapticHelper.swift in Sources */,
 				D95C3E142A02E70D00172C17 /* UpdateEvent.swift in Sources */,
 				D990705D2A90E6CB00A26F65 /* LargeRoundedRectangleBorderedButtonStyle.swift in Sources */,
@@ -6498,12 +6558,12 @@
 				D9B681E32A942C2E00AB7417 /* SyncInfoCard.swift in Sources */,
 				D93A02982906DE8C00A85FE2 /* UserFolderLog.swift in Sources */,
 				D992146F2A8F21C2004E82BC /* RecurringDonationBanner.swift in Sources */,
+				D992EF5A2BCB24FB0080C892 /* SoundList.swift in Sources */,
 				D9E9CFA5292C40BF002BC918 /* NoFoldersSymbol.swift in Sources */,
 				D93CCB77286A802D0002CF81 /* EmptyFolderView.swift in Sources */,
 				D9BFD8CC29059B4800E1AF6F /* FoldersAreTagsBannerView.swift in Sources */,
 				D94611802861480A00C4FB7E /* FolderInfoEditingView.swift in Sources */,
 				D9943F20286419CE002C6B97 /* LocalDatabase+Statistic.swift in Sources */,
-				D93443252838177000ADCD38 /* UserInfo.swift in Sources */,
 				D905B4C52857FF3D0096D466 /* AddNetworkCallLogTable.swift in Sources */,
 				D946116E28611F1000C4FB7E /* FolderCell.swift in Sources */,
 				D9592C482AA38C3000157F5A /* LocalDatabase+Song.swift in Sources */,
@@ -6517,6 +6577,7 @@
 				D98CFB5A2C95C9760038C26C /* SocialMediaLink.swift in Sources */,
 				D9A8AB2528543F8E00B5A94B /* SharingLogCell.swift in Sources */,
 				D90277822AAA242D0061A960 /* AlbumCoverPlayView.swift in Sources */,
+				D9A039182BD69EF100AB74F7 /* ModalViewToOpen.swift in Sources */,
 				D99A961A299A6CC700BB5F0D /* SoundsListMode.swift in Sources */,
 				D961D01828372B1800EFEDEB /* AudioPlayer.swift in Sources */,
 				D9E9CFA3292C3DD1002BC918 /* NoFoldersView.swift in Sources */,
@@ -6525,6 +6586,7 @@
 				D9C1372729063A78003E4ABF /* FolderResearchSettingsView.swift in Sources */,
 				D98EC5DE282596C300340BE5 /* SoundCell.swift in Sources */,
 				D99C8A972952C904002E0C00 /* NetworkRabbit+DonorNames.swift in Sources */,
+				D992EF562BCB222B0080C892 /* ContextMenuOption.swift in Sources */,
 				D9DBCEA42B12888D003B4A46 /* NetworkRabbit+Retro.swift in Sources */,
 				D9EB18A52857CDFF00A2F8A8 /* CollectionsView.swift in Sources */,
 				D98EC5E32825A45000340BE5 /* SoundsViewViewModel.swift in Sources */,
@@ -6549,7 +6611,6 @@
 				D92C0CAA28405B2D009CF19A /* NoFavoritesView.swift in Sources */,
 				D957048328AFCC93008DEF8C /* ChangeAppIconView.swift in Sources */,
 				D9BF90BE2842EAED00BDDD7D /* TopChartRow.swift in Sources */,
-				D99C987A2ABF2BE400AE11CE /* SoundsViewMode.swift in Sources */,
 				D9943F1E286419C2002C6B97 /* LocalDatabase+TopChart.swift in Sources */,
 				D9C67C152A3E3D7E00E74E9D /* LargeCapsuleBorderedProminentButtonStyle.swift in Sources */,
 				D9A8AB212853EB5500B5A94B /* InitialMigration.swift in Sources */,
@@ -6558,7 +6619,6 @@
 				D93A029C2906E8E200A85FE2 /* NetworkRabbit+UserFolderLog.swift in Sources */,
 				D92CAA4128593B1700D6C1EA /* NetworkLogCell.swift in Sources */,
 				D97685472B24F462005A03BA /* NewTrendsUpdateWayBannerView.swift in Sources */,
-				D9BB1E7728B3200700C5FFAA /* AppIcon.swift in Sources */,
 				D95BFEF529E8CD2600E42A23 /* DonorsView.swift in Sources */,
 				D9B24E2228C6A68800D76F7D /* NumberBadgeView.swift in Sources */,
 				D91FB0E82BB6169000C5370E /* AddExternalLinksFieldToAuthorTable.swift in Sources */,
@@ -6568,10 +6628,8 @@
 				D99BBE43294676B200BCA901 /* NetworkRabbit+UsageMetric.swift in Sources */,
 				D991E598284A94F70005705F /* Podium.swift in Sources */,
 				D9D734FB2AD38AF300A25916 /* RetroView.swift in Sources */,
-				D911070D2862BA4C000B6F8F /* StillAliveSignal.swift in Sources */,
 				D9BAA6F42982F4340060982A /* CreateFolderCell.swift in Sources */,
 				D95DB0F82882491A00D4FEDF /* ScreenAndTabs.swift in Sources */,
-				D9FA0CD92850864C000F6ADE /* ClientDeviceInfo.swift in Sources */,
 				D91B4DF4299BB4DE00E92824 /* ShowExplicitContentOnboardingView.swift in Sources */,
 				D9CA301E2A03EE2300F1F23D /* NetworkRabbit+Generic.swift in Sources */,
 				D9D3D4912887495B00C42FDE /* FolderList.swift in Sources */,
@@ -6584,17 +6642,14 @@
 				D9265741285A1EE700947165 /* LocalDatabase+Log.swift in Sources */,
 				D980456228380F66003B2E83 /* LocalizableStrings.swift in Sources */,
 				D961D025283731AA00EFEDEB /* HelpView.swift in Sources */,
-				D90CDF0928F65C7200CC992D /* TrendsTimeInterval.swift in Sources */,
 				D927230628924FC1001D5E47 /* HitsMedoDelirioBannerView.swift in Sources */,
 				D96E115D28459D8800306859 /* UserActivityWaiter.swift in Sources */,
 				D97D76F92885B1BD005210D9 /* SidebarFolderIcon.swift in Sources */,
-				D9351C5C2844094E00D4317E /* TopChartItem.swift in Sources */,
 				D9943F172863DAE1002C6B97 /* FolderDetailView.swift in Sources */,
 				D949181228860ABC0079F545 /* AllFoldersiPadView.swift in Sources */,
 				D9F45DD72BED30C400D49340 /* DynamicBanner.swift in Sources */,
 				D9E747FB29A8ED1100009C8D /* NoSearchResultsView.swift in Sources */,
 				D98EC5E12825A05900340BE5 /* Sound.swift in Sources */,
-				D9DCC5D128751256008DD4A3 /* PushDevice.swift in Sources */,
 				D9D192772909D4F200713804 /* NetworkCallLog.swift in Sources */,
 				D95BFEF329E88C9800E42A23 /* DonorView.swift in Sources */,
 				D94EAB5329FC09A8004CD604 /* LocalDatabase+Sound.swift in Sources */,
@@ -6613,6 +6668,7 @@
 				D9C35D23288713990065F3E7 /* HotWeatherAdBannerView.swift in Sources */,
 				D9BF90972842D3CB00BDDD7D /* NoSoundsView.swift in Sources */,
 				D927C424285245CE0041970A /* SoundOptionsHelper.swift in Sources */,
+				D992EF582BCB24310080C892 /* MainSoundContainer.swift in Sources */,
 				D9A8AB282854436500B5A94B /* Date+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

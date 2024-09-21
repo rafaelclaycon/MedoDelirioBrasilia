@@ -17,6 +17,10 @@ struct MainView: View {
     @State var updateFolderList: Bool = false
     @State var currentSoundsListMode: SoundsListMode = .regular
 
+    @State private var subviewToOpen: MainViewModalToOpen = .onboarding
+    @State private var showingModalView: Bool = false
+    @State private var triggerSettings: Bool = false
+
     // Trends
     @State var soundIdToGoToFromTrends: String = .empty
     @StateObject var trendsHelper = TrendsHelper()
@@ -25,20 +29,23 @@ struct MainView: View {
     let networkMonitor = NetworkMonitor()
     @StateObject private var syncValues = SyncValues()
 
+    // MARK: - View Body
+
     var body: some View {
         ZStack {
-            if UIDevice.current.userInterfaceIdiom == .phone {
+            if UIDevice.isiPhone {
                 TabView(selection: $tabSelection) {
                     NavigationView {
-                        SoundsView(
-                            viewModel: SoundsViewViewModel(
+                        MainSoundContainer(
+                            viewModel: .init(
                                 currentViewMode: .allSounds,
-                                soundSortOption: UserSettings.getSoundSortOption(),
-                                authorSortOption: AuthorSortOption.nameAscending.rawValue,
+                                soundSortOption: UserSettings.mainSoundListSoundSortOption(),
+                                authorSortOption: UserSettings.authorSortOption(),
                                 currentSoundsListMode: $currentSoundsListMode,
                                 syncValues: syncValues
                             ),
-                            currentSoundsListMode: $currentSoundsListMode
+                            currentSoundsListMode: $currentSoundsListMode,
+                            showSettings: $triggerSettings
                         )
                         .environmentObject(trendsHelper)
                         .environmentObject(settingsHelper)
@@ -48,7 +55,7 @@ struct MainView: View {
                         Label("Sons", systemImage: "speaker.wave.3.fill")
                     }
                     .tag(PhoneTab.sounds)
-                    
+
                     //                NavigationView {
                     //                    CollectionsView()
                     //                }
@@ -56,7 +63,7 @@ struct MainView: View {
                     //                    Label("Coleções", systemImage: "rectangle.grid.2x2.fill")
                     //                }
                     //                .tag(PhoneTab.collections)
-                    
+
                     NavigationView {
                         SongsView()
                             .environmentObject(settingsHelper)
@@ -115,15 +122,16 @@ struct MainView: View {
                     .environmentObject(networkMonitor)
                     .environmentObject(syncValues)
 
-                    SoundsView(
-                        viewModel: SoundsViewViewModel(
+                    MainSoundContainer(
+                        viewModel: .init(
                             currentViewMode: .allSounds,
-                            soundSortOption: UserSettings.getSoundSortOption(),
+                            soundSortOption: UserSettings.mainSoundListSoundSortOption(),
                             authorSortOption: AuthorSortOption.nameAscending.rawValue,
                             currentSoundsListMode: $currentSoundsListMode,
                             syncValues: syncValues
                         ),
-                        currentSoundsListMode: $currentSoundsListMode
+                        currentSoundsListMode: $currentSoundsListMode,
+                        showSettings: .constant(false)
                     )
                     .environmentObject(trendsHelper)
                     .environmentObject(settingsHelper)
@@ -144,12 +152,74 @@ struct MainView: View {
         .environmentObject(syncValues)
         .onAppear {
             print("MAIN VIEW - ON APPEAR")
+            sendUserPersonalTrendsToServerIfEnabled()
+            displayOnboardingIfNeeded()
+        }
+        .onChange(of: triggerSettings) { show in
+            if show {
+                subviewToOpen = .settings
+                showingModalView = true
+                triggerSettings = false
+            }
+        }
+        .sheet(isPresented: $showingModalView) {
+            switch subviewToOpen {
+            case .settings:
+                SettingsCasingWithCloseView(isBeingShown: $showingModalView)
+                    .environmentObject(settingsHelper)
+
+            case .onboarding:
+                FirstOnboardingView(isBeingShown: $showingModalView)
+                    .interactiveDismissDisabled(UIDevice.current.userInterfaceIdiom == .phone ? true : false)
+
+            case .whatsNew:
+                EmptyView()
+
+            case .retrospective:
+                EmptyView()
+            }
+        }
+    }
+
+    // MARK: - Functions
+
+    private func sendUserPersonalTrendsToServerIfEnabled() {
+        Task {
+            guard UserSettings.getEnableTrends() else {
+                return
+            }
+            guard UserSettings.getEnableShareUserPersonalTrends() else {
+                return
+            }
+
+            if let lastDate = AppPersistentMemory.getLastSendDateOfUserPersonalTrendsToServer() {
+                if lastDate.onlyDate! < Date.now.onlyDate! {
+                    let result = await Podium.shared.sendShareCountStatsToServer()
+
+                    guard result == .successful || result == .noStatsToSend else {
+                        return
+                    }
+                    AppPersistentMemory.setLastSendDateOfUserPersonalTrendsToServer(to: Date.now.onlyDate!)
+                }
+            } else {
+                let result = await Podium.shared.sendShareCountStatsToServer()
+
+                guard result == .successful || result == .noStatsToSend else {
+                    return
+                }
+                AppPersistentMemory.setLastSendDateOfUserPersonalTrendsToServer(to: Date.now.onlyDate!)
+            }
+        }
+    }
+
+    private func displayOnboardingIfNeeded() {
+        if AppPersistentMemory.getHasShownNotificationsOnboarding() == false {
+            subviewToOpen = .onboarding
+            showingModalView = true
         }
     }
 }
 
-struct MainView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainView()
-    }
+#Preview {
+    MainView()
 }

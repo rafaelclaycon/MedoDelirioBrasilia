@@ -10,12 +10,13 @@ import Kingfisher
 
 struct AuthorDetailView: View {
 
-    @StateObject var viewModel: AuthorDetailViewViewModel
+    @StateObject private var viewModel: AuthorDetailViewViewModel
+    @StateObject private var soundListViewModel: SoundListViewModel<[Sound]>
 
     let author: Author
 
     @State private var navBarTitle: String = .empty
-    @Binding var currentSoundsListMode: SoundsListMode
+    private var currentSoundsListMode: Binding<SoundsListMode>
     @State private var showSelectionControlsInToolbar = false
     @State private var showMenuOnToolbarForiOS16AndHigher = false
     
@@ -34,7 +35,9 @@ struct AuthorDetailView: View {
     
     // Share as Video
     @State private var shareAsVideo_Result = ShareAsVideoResult()
-    
+
+    // MARK: - Sticky Header Vars
+
     private var edgesToIgnore: SwiftUI.Edge.Set {
         return author.photo == nil ? [] : .top
     }
@@ -69,8 +72,8 @@ struct AuthorDetailView: View {
         if offset < getOffsetBeforeShowingTitle() {
             DispatchQueue.main.async {
                 navBarTitle = title
-                showSelectionControlsInToolbar = currentSoundsListMode == .selection
-                showMenuOnToolbarForiOS16AndHigher = currentSoundsListMode == .regular
+                showSelectionControlsInToolbar = currentSoundsListMode.wrappedValue == .selection
+                showMenuOnToolbarForiOS16AndHigher = currentSoundsListMode.wrappedValue == .regular
             }
         } else {
             DispatchQueue.main.async {
@@ -84,13 +87,16 @@ struct AuthorDetailView: View {
     // MARK: - Computed Properties
 
     private var title: String {
-        guard currentSoundsListMode == .regular else {
-            if viewModel.selectionKeeper.count == 0 {
+        guard currentSoundsListMode.wrappedValue == .regular else {
+            if soundListViewModel.selectionKeeper.count == 0 {
                 return Shared.SoundSelection.selectSounds
-            } else if viewModel.selectionKeeper.count == 1 {
+            } else if soundListViewModel.selectionKeeper.count == 1 {
                 return Shared.SoundSelection.soundSelectedSingular
             } else {
-                return String(format: Shared.SoundSelection.soundsSelectedPlural, viewModel.selectionKeeper.count)
+                return String(
+                    format: Shared.SoundSelection.soundsSelectedPlural,
+                    soundListViewModel.selectionKeeper.count
+                )
             }
         }
         return author.name
@@ -113,365 +119,195 @@ struct AuthorDetailView: View {
         }
     }
 
+    // MARK: - Initializer
+
+    init(
+        author: Author,
+        currentSoundsListMode: Binding<SoundsListMode>
+    ) {
+        self.author = author
+        let viewModel = AuthorDetailViewViewModel(
+            authorName: author.name, currentSoundsListMode: currentSoundsListMode
+        )
+
+        self._viewModel = StateObject(wrappedValue: viewModel)
+        self.currentSoundsListMode = currentSoundsListMode
+
+        let soundListViewModel = SoundListViewModel<[Sound]>(
+            data: viewModel.soundsPublisher,
+            menuOptions: [.sharingOptions(), .organizingOptions(), .authorOptions()],
+            currentSoundsListMode: currentSoundsListMode
+        )
+        self._soundListViewModel = StateObject(wrappedValue: soundListViewModel)
+    }
+
     // MARK: - View Body
 
     var body: some View {
-        ZStack {
-            VStack {
-                if viewModel.sounds.count == 0 {
+        VStack {
+            SoundList(
+                viewModel: soundListViewModel,
+                stopShowingFloatingSelector: .constant(nil),
+                emptyStateView: AnyView(
                     NoSoundsView()
                         .padding(.horizontal, 25)
-                } else {
-                    GeometryReader { scrollViewGeometry in
-                        ScrollView {
-                            if author.photo != nil {
-                                GeometryReader { headerPhotoGeometry in
-                                    KFImage(URL(string: author.photo ?? .empty))
-                                        .placeholder {
-                                            Image(systemName: "photo.on.rectangle")
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(height: 100)
-                                                .foregroundColor(.gray)
-                                                .opacity(0.3)
-                                        }
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(width: headerPhotoGeometry.size.width, height: self.getHeightForHeaderImage(headerPhotoGeometry))
-                                        .clipped()
-                                        .offset(x: 0, y: self.getOffsetForHeaderImage(headerPhotoGeometry))
-                                }.frame(height: 250)
-                            }
-                            
-                            VStack(alignment: .leading, spacing: 15) {
-                                HStack {
-                                    Text(title)
-                                        .font(.title)
-                                        .bold()
-                                    
-                                    Spacer()
-
-                                    moreOptionsMenu(isOnToolbar: false)
-                                }
-                                
-                                if currentSoundsListMode == .selection {
-                                    inlineSelectionControls()
-                                } else {
-                                    if author.description != nil {
-                                        Text(author.description ?? "")
+                ),
+                headerView: AnyView(
+                    VStack{
+                        if let photo = author.photo {
+                            GeometryReader { headerPhotoGeometry in
+                                KFImage(URL(string: photo))
+                                    .placeholder {
+                                        Image(systemName: "photo.on.rectangle")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(height: 100)
+                                            .foregroundColor(.gray)
+                                            .opacity(0.3)
                                     }
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: headerPhotoGeometry.size.width, height: self.getHeightForHeaderImage(headerPhotoGeometry))
+                                    .clipped()
+                                    .offset(x: 0, y: self.getOffsetForHeaderImage(headerPhotoGeometry))
+                            }.frame(height: 250)
+                        }
 
-                                    if !externalLinks.isEmpty {
-                                        ViewThatFits(in: .horizontal) {
-                                            HStack(spacing: 10) {
-                                                ForEach(externalLinks, id: \.title) {
-                                                    ExternalLinkButton(externalLink: $0)
-                                                }
-                                            }
-                                            VStack(alignment: .leading, spacing: 15) {
-                                                ForEach(externalLinks, id: \.title) {
-                                                    ExternalLinkButton(externalLink: $0)
-                                                }
-                                            }
+                        VStack(alignment: .leading, spacing: 15) {
+                            HStack {
+                                Text(title)
+                                    .font(.title)
+                                    .bold()
+
+                                Spacer()
+
+                                moreOptionsMenu(isOnToolbar: false)
+                            }
+
+                            if author.description != nil {
+                                Text(author.description ?? "")
+                            }
+
+                            if !externalLinks.isEmpty {
+                                ViewThatFits(in: .horizontal) {
+                                    HStack(spacing: 10) {
+                                        ForEach(externalLinks, id: \.title) {
+                                            ExternalLinkButton(externalLink: $0)
                                         }
-                                        .padding(.vertical, 4)
                                     }
+                                    VStack(alignment: .leading, spacing: 15) {
+                                        ForEach(externalLinks, id: \.title) {
+                                            ExternalLinkButton(externalLink: $0)
+                                        }
+                                    }
+                                }
+                                .padding(.vertical, 4)
+                            }
 
-                                    Text(viewModel.getSoundCount())
-                                        .font(.subheadline)
-                                        .foregroundColor(.gray)
-                                        .bold()
-                                }
-                            }
-                            .padding(.horizontal, 20)
-                            .padding(.vertical)
-                            
-                            LazyVGrid(columns: columns, spacing: UIDevice.current.userInterfaceIdiom == .phone ? 14 : 20) {
-                                ForEach(viewModel.sounds) { sound in
-                                    SoundCell(sound: sound,
-                                              favorites: $viewModel.favoritesKeeper,
-                                              highlighted: .constant(Set<String>()),
-                                              nowPlaying: $viewModel.nowPlayingKeeper,
-                                              selectedItems: $viewModel.selectionKeeper,
-                                              currentSoundsListMode: $currentSoundsListMode)
-                                        .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
-                                        .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
-                                        .onTapGesture {
-                                            if currentSoundsListMode == .regular {
-                                                if viewModel.nowPlayingKeeper.contains(sound.id) {
-                                                    AudioPlayer.shared?.togglePlay()
-                                                    viewModel.nowPlayingKeeper.removeAll()
-                                                } else {
-                                                    viewModel.play(sound)
-                                                }
-                                            } else {
-                                                if viewModel.selectionKeeper.contains(sound.id) {
-                                                    viewModel.selectionKeeper.remove(sound.id)
-                                                } else {
-                                                    viewModel.selectionKeeper.insert(sound.id)
-                                                }
-                                            }
-                                        }
-                                        .contextMenu {
-                                            if currentSoundsListMode != .selection {
-                                                Section {
-                                                    Button {
-                                                        viewModel.share(sound: sound)
-                                                    } label: {
-                                                        Label(Shared.shareSoundButtonText, systemImage: "square.and.arrow.up")
-                                                    }
-                                                    
-                                                    Button {
-                                                        viewModel.selectedSound = sound
-                                                        showingModalView = true
-                                                    } label: {
-                                                        Label(Shared.shareAsVideoButtonText, systemImage: "film")
-                                                    }
-                                                }
-                                                
-                                                Section {
-                                                    Button {
-                                                        if viewModel.favoritesKeeper.contains(sound.id) {
-                                                            viewModel.removeFromFavorites(soundId: sound.id)
-                                                        } else {
-                                                            viewModel.addToFavorites(soundId: sound.id)
-                                                        }
-                                                    } label: {
-                                                        Label(viewModel.favoritesKeeper.contains(sound.id) ? "Remover dos Favoritos" : "Adicionar aos Favoritos", systemImage: viewModel.favoritesKeeper.contains(sound.id) ? "star.slash" : "star")
-                                                    }
-                                                    
-                                                    Button {
-                                                        viewModel.selectedSounds = [Sound]()
-                                                        viewModel.selectedSounds?.append(sound)
-                                                        showingAddToFolderModal = true
-                                                    } label: {
-                                                        Label(Shared.addToFolderButtonText, systemImage: "folder.badge.plus")
-                                                    }
-                                                }
-                                                
-                                                Section {
-                                                    Button {
-                                                        viewModel.selectedSound = sound
-                                                        viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = true
-                                                    } label: {
-                                                        Label(SoundOptionsHelper.getSuggestOtherAuthorNameButtonTitle(authorId: sound.authorId), systemImage: "exclamationmark.bubble")
-                                                    }
-                                                }
-                                            }
-                                        }
-                                }
-                            }
-                            .padding(.horizontal)
-                            .padding(.bottom, 18)
-                            .onChange(of: scrollViewGeometry.size.width) { newWidth in
-                                self.listWidth = newWidth
-                                columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
-                            }
-                            .background(GeometryReader {
-                                Color.clear.preference(key: ViewOffsetKey.self, value: $0.frame(in: .named("scroll")).minY)
-                            })
+                            Text(viewModel.soundCount)
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                                .bold()
                         }
-                        .coordinateSpace(name: "scroll")
+                        .padding(.horizontal, 20)
+                        .padding(.top, 10)
+                        .padding(.bottom, 5)
                     }
-                    .edgesIgnoringSafeArea(edgesToIgnore)
-                }
-            }
-            .navigationTitle(navBarTitle)
-            .onPreferenceChange(ViewOffsetKey.self) { offset in
-                updateNavBarContent(offset)
-            }
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                // On regular mode, just show the ... menu
-                if currentSoundsListMode == .regular {
-                    moreOptionsMenu(isOnToolbar: true)
-                } else {
-                    // On scroll, show Select controls if not at the top
-                    if showSelectionControlsInToolbar {
-                        toolbarSelectionControls()
-                    } else {
-                        // Otherwise, show just the ... menu
-                        moreOptionsMenu(isOnToolbar: true)
-                    }
-                }
-            }
-            .onAppear {
-                // TODO: Refactor this to be closer to SoundsView.
-                viewModel.reloadList(
-                    withSounds: try? LocalDatabase.shared.allSounds(forAuthor: author.id, isSensitiveContentAllowed: UserSettings.getShowExplicitContent()),
-                    andFavorites: try? LocalDatabase.shared.favorites()
                 )
-                
-                columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
-            }
-            .onDisappear {
-                if currentSoundsListMode == .selection {
-                    viewModel.stopSelecting()
-                }
-            }
-            .alert(isPresented: $viewModel.showAlert) {
-                switch viewModel.alertType {
-                case .ok:
-                    return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
-                case .reportSoundIssue:
-                    return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .default(Text("Relatar Problema por E-mail"), action: {
-                        viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog = true
-                    }), secondaryButton: .cancel(Text("Fechar")))
-                case .askForNewSound:
-                    return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .default(Text("Li e Entendi"), action: {
-                        viewModel.showEmailAppPicker_askForNewSound = true
-                    }), secondaryButton: .cancel(Text("Cancelar")))
-                }
-            }
-            .sheet(isPresented: $showingAddToFolderModal) {
-                AddToFolderView(isBeingShown: $showingAddToFolderModal, hadSuccess: $hadSuccessAddingToFolder, folderName: $folderName, pluralization: $pluralization, selectedSounds: viewModel.selectedSounds ?? [Sound]())
-            }
-            .sheet(isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog) {
-                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog,
-                                   didCopySupportAddress: .constant(false),
-                                   subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.selectedSound?.title ?? ""),
-                                   emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.selectedSound?.authorName ?? "", viewModel.selectedSound?.id ?? ""))
-            }
-            .sheet(isPresented: $viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog) {
-                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog,
-                                   didCopySupportAddress: .constant(false),
-                                   subject: Shared.issueSuggestionEmailSubject,
-                                   emailBody: Shared.issueSuggestionEmailBody)
-            }
-            .sheet(isPresented: $viewModel.showEmailAppPicker_askForNewSound) {
-                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_askForNewSound,
-                                   didCopySupportAddress: .constant(false),
-                                   subject: String(format: Shared.Email.AskForNewSound.subject, self.author.name),
-                                   emailBody: Shared.Email.AskForNewSound.body)
-            }
-            .sheet(isPresented: $viewModel.showEmailAppPicker_reportAuthorDetailIssue) {
-                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_reportAuthorDetailIssue,
-                                   didCopySupportAddress: .constant(false),
-                                   subject: String(format: Shared.Email.AuthorDetailIssue.subject, self.author.name),
-                                   emailBody: Shared.Email.AuthorDetailIssue.body)
-            }
-            .sheet(isPresented: $viewModel.isShowingShareSheet) {
-                viewModel.iPadShareSheet
-            }
-            .sheet(isPresented: $showingModalView) {
-                ShareAsVideoView(
-                    viewModel: ShareAsVideoViewViewModel(content: viewModel.selectedSound!, subtitle: viewModel.selectedSound?.authorName ?? .empty),
-                    isBeingShown: $showingModalView,
-                    result: $shareAsVideo_Result,
-                    useLongerGeneratingVideoMessage: false
-                )
-            }
-            .onChange(of: shareAsVideo_Result.videoFilepath) { videoResultPath in
-                if videoResultPath.isEmpty == false {
-                    if shareAsVideo_Result.exportMethod == .saveAsVideo {
-                        viewModel.showVideoSavedSuccessfullyToast()
-                    } else {
-                        viewModel.shareVideo(
-                            withPath: videoResultPath,
-                            andContentId: shareAsVideo_Result.contentId,
-                            title: viewModel.selectedSound?.title ?? ""
-                        )
-                    }
-                }
-            }
-            .onChange(of: showingAddToFolderModal) { showingAddToFolderModal in
-                if (showingAddToFolderModal == false) && hadSuccessAddingToFolder {
-                    // Need to get count before clearing the Set.
-                    let selectedCount: Int = viewModel.selectionKeeper.count
-                    
-                    if currentSoundsListMode == .selection {
-                        viewModel.stopSelecting()
-                    }
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-                        withAnimation {
-                            shouldDisplayAddedToFolderToast = true
-                        }
-                        TapticFeedback.success()
-                    }
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                        withAnimation {
-                            shouldDisplayAddedToFolderToast = false
-                            folderName = nil
-                            hadSuccessAddingToFolder = false
-                        }
-                    }
-                    
-                    if pluralization == .plural {
-                        viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFolder(\(selectedCount))", authorName: author.name)
-                    }
-                }
-            }
-            .onChange(of: viewModel.selectionKeeper.count) { selectionKeeperCount in
-                if navBarTitle.isEmpty == false {
-                    DispatchQueue.main.async {
-                        navBarTitle = title
-                    }
-                }
-            }
-            
-            if shouldDisplayAddedToFolderToast {
-                VStack {
-                    Spacer()
-                    
-                    ToastView(
-                        icon: "checkmark",
-                        iconColor: .green,
-                        text: pluralization.getAddedToFolderToastText(folderName: folderName)
-                    )
-                    .padding()
-                }
-                .transition(.moveAndFade)
-            }
-            
-            if viewModel.displaySharedSuccessfullyToast {
-                VStack {
-                    Spacer()
-                    
-                    ToastView(
-                        icon: "checkmark",
-                        iconColor: .green,
-                        text: viewModel.shareBannerMessage
-                    )
-                    .padding()
-                }
-                .transition(.moveAndFade)
+            )
+            .environmentObject(TrendsHelper())
+        }
+        .onPreferenceChange(ViewOffsetKey.self) { offset in
+            updateNavBarContent(offset)
+        }
+        .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            // TODO: Refactor this to be closer to SoundsView.
+            viewModel.loadSounds(for: author.id)
+
+            columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
+        }
+        .onDisappear {
+            if currentSoundsListMode.wrappedValue == .selection {
+                soundListViewModel.stopSelecting()
             }
         }
+        .alert(isPresented: $viewModel.showAlert) {
+            switch viewModel.alertType {
+            case .ok:
+                return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
+            case .reportSoundIssue:
+                return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .default(Text("Relatar Problema por E-mail"), action: {
+                    viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog = true
+                }), secondaryButton: .cancel(Text("Fechar")))
+            case .askForNewSound:
+                return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .default(Text("Li e Entendi"), action: {
+                    viewModel.showEmailAppPicker_askForNewSound = true
+                }), secondaryButton: .cancel(Text("Cancelar")))
+            }
+        }
+        .sheet(isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog) {
+            EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog,
+                               didCopySupportAddress: .constant(false),
+                               subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.selectedSound?.title ?? ""),
+                               emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.selectedSound?.authorName ?? "", viewModel.selectedSound?.id ?? ""))
+        }
+        .sheet(isPresented: $viewModel.showEmailAppPicker_askForNewSound) {
+            EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_askForNewSound,
+                               didCopySupportAddress: .constant(false),
+                               subject: String(format: Shared.Email.AskForNewSound.subject, self.author.name),
+                               emailBody: Shared.Email.AskForNewSound.body)
+        }
+        .sheet(isPresented: $viewModel.showEmailAppPicker_reportAuthorDetailIssue) {
+            EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_reportAuthorDetailIssue,
+                               didCopySupportAddress: .constant(false),
+                               subject: String(format: Shared.Email.AuthorDetailIssue.subject, self.author.name),
+                               emailBody: Shared.Email.AuthorDetailIssue.body)
+        }
+        .onChange(of: soundListViewModel.selectionKeeper.count) { selectionKeeperCount in
+            if navBarTitle.isEmpty == false {
+                DispatchQueue.main.async {
+                    navBarTitle = title
+                }
+            }
+        }
+        .edgesIgnoringSafeArea(edgesToIgnore)
     }
-    
+
     @ViewBuilder func moreOptionsMenu(isOnToolbar: Bool) -> some View {
         Menu {
             if viewModel.sounds.count > 1 {
                 Section {
                     Button {
-                        viewModel.startSelecting()
+                        soundListViewModel.startSelecting()
                     } label: {
-                        Label(currentSoundsListMode == .selection ? "Cancelar Seleção" : "Selecionar", systemImage: currentSoundsListMode == .selection ? "xmark.circle" : "checkmark.circle")
+                        Label(
+                            currentSoundsListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",
+                            systemImage: currentSoundsListMode.wrappedValue == .selection ? "xmark.circle" : "checkmark.circle"
+                        )
                     }
                 }
             }
             
             Section {
                 Button {
-                    viewModel.stopSelecting()
-                    viewModel.selectedSounds = viewModel.sounds
-                    showingAddToFolderModal = true
+//                    soundListViewModel.stopSelecting()
+//                    viewModel.selectedSounds = viewModel.sounds
+//                    showingAddToFolderModal = true
                 } label: {
                     Label("Adicionar Todos a Pasta", systemImage: "folder.badge.plus")
                 }
                 
                 Button {
-                    viewModel.stopSelecting()
-                    viewModel.showAskForNewSoundAlert()
+//                    viewModel.stopSelecting()
+//                    viewModel.showAskForNewSoundAlert()
                 } label: {
                     Label("Pedir Som Desse Autor", systemImage: "plus.circle")
                 }
                 
                 Button {
-                    viewModel.stopSelecting()
-                    viewModel.showEmailAppPicker_reportAuthorDetailIssue = true
+//                    viewModel.stopSelecting()
+//                    viewModel.showEmailAppPicker_reportAuthorDetailIssue = true
                 } label: {
                     Label("Relatar Problema com os Detalhes Desse Autor", systemImage: "person.crop.circle.badge.exclamationmark")
                 }
@@ -486,12 +322,8 @@ struct AuthorDetailView: View {
                         Text("Mais Recentes no Topo")
                             .tag(1)
                     }
-                    .onChange(of: viewModel.soundSortOption, perform: { soundSortOption in
-                        if soundSortOption == 0 {
-                            viewModel.sortSoundsInPlaceByTitleAscending()
-                        } else {
-                            viewModel.sortSoundsInPlaceByDateAddedDescending()
-                        }
+                    .onChange(of: viewModel.soundSortOption, perform: { sortOption in
+                        viewModel.sortSounds(by: sortOption)
                     })
                 }
             }
@@ -507,102 +339,50 @@ struct AuthorDetailView: View {
         }
         .disabled(viewModel.sounds.count == 0)
     }
-    
-    @ViewBuilder func inlineSelectionControls() -> some View {
-        HStack(spacing: 25) {
-            Button {
-                cancelSelectionAction()
-            } label: {
-                Text("Cancelar")
-                    .bold()
-            }
-            
-            Button {
-                favoriteAction()
-            } label: {
-                Label("Favoritos", systemImage: viewModel.allSelectedAreFavorites() ? "star.slash" : "star")
-            }.disabled(viewModel.selectionKeeper.count == 0)
-            
-            Button {
-                addToFolderAction()
-            } label: {
-                Label("Pasta", systemImage: "folder.badge.plus")
-            }.disabled(viewModel.selectionKeeper.count == 0)
-        }
-        .padding(.vertical, 10)
-    }
-    
-    @ViewBuilder func toolbarSelectionControls() -> some View {
-        HStack(spacing: 15) {
-            Button {
-                cancelSelectionAction()
-            } label: {
-                Text("Cancelar")
-                    .bold()
-            }
-            
-            Button {
-                favoriteAction()
-            } label: {
-                Image(systemName: viewModel.allSelectedAreFavorites() ? "star.slash" : "star")
-            }.disabled(viewModel.selectionKeeper.count == 0)
-            
-            Button {
-                addToFolderAction()
-            } label: {
-                Image(systemName: "folder.badge.plus")
-            }.disabled(viewModel.selectionKeeper.count == 0)
-            
-            moreOptionsMenu(isOnToolbar: true)
-        }
-    }
-    
-    private func cancelSelectionAction() {
-        currentSoundsListMode = .regular
-        viewModel.selectionKeeper.removeAll()
-    }
-    
-    private func favoriteAction() {
-        // Need to get count before clearing the Set.
-        let selectedCount: Int = viewModel.selectionKeeper.count
-        
-        if viewModel.allSelectedAreFavorites() {
-            viewModel.removeSelectedFromFavorites()
-            viewModel.stopSelecting()
-            viewModel.reloadList(
-                withSounds: try? LocalDatabase.shared.allSounds(forAuthor: author.id, isSensitiveContentAllowed: UserSettings.getShowExplicitContent()),
-                andFavorites: try? LocalDatabase.shared.favorites()
-            )
-            viewModel.sendUsageMetricToServer(action: "didRemoveManySoundsFromFavorites(\(selectedCount))", authorName: author.name)
-        } else {
-            viewModel.addSelectedToFavorites()
-            viewModel.stopSelecting()
-            viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFavorites(\(selectedCount))", authorName: author.name)
-        }
-    }
-    
-    private func addToFolderAction() {
-        viewModel.prepareSelectedToAddToFolder()
-        showingAddToFolderModal = true
-    }
 
+//    private func cancelSelectionAction() {
+//        currentSoundsListMode = .regular
+//        viewModel.selectionKeeper.removeAll()
+//    }
+
+//    private func favoriteAction() {
+//        // Need to get count before clearing the Set.
+//        let selectedCount: Int = viewModel.selectionKeeper.count
+//        
+//        if viewModel.allSelectedAreFavorites() {
+//            viewModel.removeSelectedFromFavorites()
+//            viewModel.stopSelecting()
+//            viewModel.reloadList(
+//                withSounds: try? LocalDatabase.shared.allSounds(forAuthor: author.id, isSensitiveContentAllowed: UserSettings.getShowExplicitContent()),
+//                andFavorites: try? LocalDatabase.shared.favorites()
+//            )
+//            viewModel.sendUsageMetricToServer(action: "didRemoveManySoundsFromFavorites(\(selectedCount))", authorName: author.name)
+//        } else {
+//            viewModel.addSelectedToFavorites()
+//            viewModel.stopSelecting()
+//            viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFavorites(\(selectedCount))", authorName: author.name)
+//        }
+//    }
+//
+//    private func addToFolderAction() {
+//        viewModel.prepareSelectedToAddToFolder()
+//        showingAddToFolderModal = true
+//    }
 }
 
 struct ViewOffsetKey: PreferenceKey {
 
     typealias Value = CGFloat
-    
+
     static var defaultValue = CGFloat.zero
-    
+
     static func reduce(value: inout Value, nextValue: () -> Value) {
         value += nextValue()
     }
-
 }
 
 #Preview {
     AuthorDetailView(
-        viewModel: .init(authorName: "João da Silva", currentSoundsListMode: .constant(.selection)),
         author: .init(
             id: "0D944922-7E50-4DED-A8FD-F44EFCAE82A2",
             name: "Abraham Weintraub",

@@ -2,6 +2,13 @@ import UIKit
 
 struct Shared {
 
+    struct Constants {
+        static let toastViewBottomPaddingPhone: CGFloat = 60
+        static let toastViewBottomPaddingPad: CGFloat = 15
+        static let soundCountPhoneBottomPadding: CGFloat = 50
+        static let soundCountPadBottomPadding: CGFloat = 4
+    }
+
     struct ActivityTypes {
         
         static let playAndShareSounds = "com.rafaelschmitt.MedoDelirioBrasilia.PlayAndShareSounds"
@@ -41,7 +48,7 @@ struct Shared {
     }
     static let soundNotFoundAlertMessage = "Devido a um problema técnico, o som que você quer acessar não está disponível."
     static let serverContentNotAvailableMessage = "Provavelmente houve um problema com o download desse conteúdo.\n\nPor favor, reporte esse erro para mim através do e-mail nas Configurações."
-    static let serverContentNotAvailableRedownloadMessage = "Provavelmente houve um problema com o download desse conteúdo.\n\nTente baixá-lo novamente."
+    static let serverContentNotAvailableRedownloadMessage = "Houve um problema com o download desse conteúdo durante a sincronização.\n\nVocê pode tentar baixá-lo novamente."
     static let soundSharedSuccessfullyMessage = "Som compartilhado com sucesso."
     static let soundExportedSuccessfullyMessage = "Som exportado com sucesso."
     static let soundsExportedSuccessfullyMessage = "Sons exportados com sucesso."

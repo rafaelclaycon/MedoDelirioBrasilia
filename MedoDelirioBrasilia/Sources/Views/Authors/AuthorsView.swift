@@ -52,10 +52,6 @@ struct AuthorsView: View {
                     ForEach(searchResults) { author in
                         NavigationLink(
                             destination: AuthorDetailView(
-                                viewModel: .init(
-                                    authorName: author.name,
-                                    currentSoundsListMode: $currentSoundsListMode
-                                ),
                                 author: author,
                                 currentSoundsListMode: $currentSoundsListMode
                             )

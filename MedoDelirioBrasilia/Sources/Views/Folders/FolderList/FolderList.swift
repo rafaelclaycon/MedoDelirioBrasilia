@@ -10,14 +10,16 @@ import SwiftUI
 /// Sub-view loaded inside the Sounds tab on iPhone and the All Folders tab on iPad and Mac.
 struct FolderList: View {
 
-    @StateObject private var viewModel = FolderListViewModel()
-    @State var displayJoinFolderResearchBanner: Bool = false
     @Binding var updateFolderList: Bool
-    @Binding var deleteFolderAide: DeleteFolderViewAide
     @Binding var folderIdForEditing: String
+
+    @StateObject private var viewModel = FolderListViewModel()
+
+    @State private var displayJoinFolderResearchBanner: Bool = false
+    @State private var currentSoundsListMode: SoundsListMode = .regular
+
     @EnvironmentObject var deleteFolderAideiPhone: DeleteFolderViewAideiPhone
-    @State var currentSoundsListMode: SoundsListMode = .regular
-    
+
     private var columns: [GridItem] {
         if UIDevice.current.userInterfaceIdiom == .phone {
             return [
@@ -61,7 +63,10 @@ struct FolderList: View {
                 LazyVGrid(columns: columns, spacing: 14) {
                     ForEach(viewModel.folders, id: \.editingIdentifyingId) { folder in
                         NavigationLink {
-                            FolderDetailView(viewModel: FolderDetailViewViewModel(currentSoundsListMode: $currentSoundsListMode), folder: folder, currentSoundsListMode: $currentSoundsListMode)
+                            FolderDetailView(
+                                folder: folder,
+                                currentSoundsListMode: $currentSoundsListMode
+                            )
                         } label: {
                             FolderCell(symbol: folder.symbol, name: folder.name, backgroundColor: folder.backgroundColor.toPastelColor())
                                 .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
@@ -80,18 +85,18 @@ struct FolderList: View {
                             
                             Section {
                                 Button(role: .destructive, action: {
-                                    if UIDevice.current.userInterfaceIdiom == .phone {
+                                    if UIDevice.isiPhone {
                                         let folderName = "\(folder.symbol) \(folder.name)"
                                         deleteFolderAideiPhone.alertTitle = "Apagar \"\(folderName)\""
                                         deleteFolderAideiPhone.alertMessage = "Tem certeza de que deseja apagar a pasta \"\(folderName)\"? Os sons não serão apagados."
                                         deleteFolderAideiPhone.folderIdForDeletion = folder.id
                                         deleteFolderAideiPhone.showAlert = true
-                                    } else {
-                                        let folderName = "\(folder.symbol) \(folder.name)"
-                                        deleteFolderAide.alertTitle = "Apagar \"\(folderName)\""
-                                        deleteFolderAide.alertMessage = "Tem certeza de que deseja apagar a pasta \"\(folderName)\"? Os sons não serão apagados."
-                                        deleteFolderAide.folderIdForDeletion = folder.id
-                                        deleteFolderAide.showAlert = true
+//                                    } else {
+//                                        let folderName = "\(folder.symbol) \(folder.name)"
+//                                        deleteFolderAide.alertTitle = "Apagar \"\(folderName)\""
+//                                        deleteFolderAide.alertMessage = "Tem certeza de que deseja apagar a pasta \"\(folderName)\"? Os sons não serão apagados."
+//                                        deleteFolderAide.folderIdForDeletion = folder.id
+//                                        deleteFolderAide.showAlert = true
                                     }
                                 }, label: {
                                     HStack {
@@ -148,12 +153,9 @@ struct FolderList: View {
 
 }
 
-struct FolderList_Previews: PreviewProvider {
-
-    static var previews: some View {
-        FolderList(updateFolderList: .constant(false),
-                   deleteFolderAide: .constant(DeleteFolderViewAide()),
-                   folderIdForEditing: .constant(.empty))
-    }
-
+#Preview {
+    FolderList(
+        updateFolderList: .constant(false),
+        folderIdForEditing: .constant(.empty)
+    )
 }
