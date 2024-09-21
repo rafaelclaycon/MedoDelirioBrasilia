@@ -9,6 +9,8 @@ import Foundation
 import SQLiteMigrationManager
 import SQLite
 
+private typealias Expression = SQLite.Expression
+
 struct AddSyncTables: Migration {
     
     var version: Int64 = 2023_04_27_21_02_00

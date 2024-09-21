@@ -8,6 +8,9 @@
 import Foundation
 
 enum SoundsListMode: Int {
-    
     case regular, selection
+}
+
+enum FolderOperation {
+    case add, remove
 }

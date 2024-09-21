@@ -1,6 +1,8 @@
 import Foundation
 import SQLite
 
+private typealias Expression = SQLite.Expression
+
 extension LocalDatabase {
 
     // MARK: - User statistics to be sent to the server

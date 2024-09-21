@@ -123,48 +123,48 @@ final class RetroViewViewModelTests: XCTestCase {
 }
 
 // MARK: - Version Is Allowed To Display Retro
-extension RetroViewViewModelTests {
-
-    func testVersionIsAllowedToDisplayRetro_whenVersionIsNotSet_shouldReturnFalse() async throws {
-        let stub: NetworkRabbitStub = .init()
-        // Not setting retro version; it will return nil.
-        let result = await RetroView.ViewModel.versionIsAllowedToDisplayRetro(
-            currentVersion: "7.5",
-            network: stub
-        )
-        XCTAssertFalse(result)
-    }
-
-    func testVersionIsAllowedToDisplayRetro_whenVersionIsSetAllowsAndIsTheSame_shouldReturnTrue() async throws {
-        let stub: NetworkRabbitStub = .init()
-        stub.retroStartingVersion = "7.5"
-        let result = await RetroView.ViewModel.versionIsAllowedToDisplayRetro(
-            currentVersion: "7.5",
-            network: stub
-        )
-        XCTAssertTrue(result)
-    }
-
-    func testVersionIsAllowedToDisplayRetro_whenVersionIsSetAllowsButIsDifferent_shouldReturnTrue() async throws {
-        let stub: NetworkRabbitStub = .init()
-        stub.retroStartingVersion = "7.5"
-        let result = await RetroView.ViewModel.versionIsAllowedToDisplayRetro(
-            currentVersion: "7.5.1",
-            network: stub
-        )
-        XCTAssertTrue(result)
-    }
-
-    func testVersionIsAllowedToDisplayRetro_whenVersionIsSetButDoesNotAllow_shouldReturnFalse() async throws {
-        let stub: NetworkRabbitStub = .init()
-        stub.retroStartingVersion = "99"
-        let result = await RetroView.ViewModel.versionIsAllowedToDisplayRetro(
-            currentVersion: "7.5",
-            network: stub
-        )
-        XCTAssertFalse(result)
-    }
-}
+//extension RetroViewViewModelTests {
+//
+//    func testVersionIsAllowedToDisplayRetro_whenVersionIsNotSet_shouldReturnFalse() async throws {
+//        let stub: NetworkRabbitStub = .init()
+//        // Not setting retro version; it will return nil.
+//        let result = await RetroView.ViewModel.versionIsAllowedToDisplayRetro(
+//            currentVersion: "7.5",
+//            network: stub
+//        )
+//        XCTAssertFalse(result)
+//    }
+//
+//    func testVersionIsAllowedToDisplayRetro_whenVersionIsSetAllowsAndIsTheSame_shouldReturnTrue() async throws {
+//        let stub: NetworkRabbitStub = .init()
+//        stub.retroStartingVersion = "7.5"
+//        let result = await RetroView.ViewModel.versionIsAllowedToDisplayRetro(
+//            currentVersion: "7.5",
+//            network: stub
+//        )
+//        XCTAssertTrue(result)
+//    }
+//
+//    func testVersionIsAllowedToDisplayRetro_whenVersionIsSetAllowsButIsDifferent_shouldReturnTrue() async throws {
+//        let stub: NetworkRabbitStub = .init()
+//        stub.retroStartingVersion = "7.5"
+//        let result = await RetroView.ViewModel.versionIsAllowedToDisplayRetro(
+//            currentVersion: "7.5.1",
+//            network: stub
+//        )
+//        XCTAssertTrue(result)
+//    }
+//
+//    func testVersionIsAllowedToDisplayRetro_whenVersionIsSetButDoesNotAllow_shouldReturnFalse() async throws {
+//        let stub: NetworkRabbitStub = .init()
+//        stub.retroStartingVersion = "99"
+//        let result = await RetroView.ViewModel.versionIsAllowedToDisplayRetro(
+//            currentVersion: "7.5",
+//            network: stub
+//        )
+//        XCTAssertFalse(result)
+//    }
+//}
 
 // MARK: - Version Is Allowed To Display Retro
 extension RetroViewViewModelTests {

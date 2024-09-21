@@ -2,6 +2,8 @@ import Foundation
 import SQLiteMigrationManager
 import SQLite
 
+private typealias Expression = SQLite.Expression
+
 struct AddNetworkCallLogTable: Migration {
 
     var version: Int64 = 2022_06_13_20_13_00

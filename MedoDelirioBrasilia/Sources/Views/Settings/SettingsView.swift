@@ -29,6 +29,12 @@ struct SettingsView: View {
 
     @State private var showLargeCreatorImage: Bool = false
 
+    private let authorSocials: [SocialMediaLink] = [
+        .init(name: "Threads", imageName: "threads", link: "https://www.threads.net/@rafaelclaycon"),
+        .init(name: "Bluesky", imageName: "bluesky", link: "https://bsky.app/profile/rafaelschmitt.bsky.social"),
+        .init(name: "Mastodon", imageName: "mastodon", link: "https://burnthis.town/@rafael")
+    ]
+
     var body: some View {
         ZStack {
             Form {
@@ -113,23 +119,25 @@ struct SettingsView: View {
                 
                 Section("Sobre") {
                     Menu {
-                        Section {
-                            Button {
-                                OpenUtility.open(link: "https://burnthis.town/@rafael")
-                            } label: {
-                                Label(title: {
-                                    Text("Seguir no Mastodon")
-                                }, icon: {
-                                    Image("mastodon")
-                                        .renderingMode(.template)
-                                        .foregroundColor(.primary)
-                                })
+                        Section("Seguir no") {
+                            ForEach(authorSocials) { social in
+                                Button {
+                                    OpenUtility.open(link: social.link)
+                                } label: {
+                                    Label(title: {
+                                        Text(social.name)
+                                    }, icon: {
+                                        Image(social.imageName)
+                                            .renderingMode(.template)
+                                            .foregroundColor(.primary)
+                                    })
+                                }
                             }
                         }
                         
                         Section {
                             Button {
-                                OpenUtility.open(link: "https://jovemnerd.com.br/nerdbunker/mastodon-como-criar-conta/")
+                                OpenUtility.open(link: "https://jovemnerd.com.br/noticias/ciencia-e-tecnologia/mastodon-como-criar-conta")
                             } label: {
                                 Label("Como abrir uma conta no Mastodon?", systemImage: "arrow.up.right.square")
                             }

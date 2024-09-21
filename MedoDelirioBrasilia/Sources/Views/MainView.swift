@@ -11,11 +11,18 @@ struct MainView: View {
 
     @State var tabSelection: PhoneTab = .sounds
     @State var state: PadScreen? = PadScreen.allSounds
+    @State private var soundsPath = NavigationPath()
+    @State private var reactionsPath = NavigationPath()
+
     @State var isShowingSettingsSheet: Bool = false
     @StateObject var settingsHelper = SettingsHelper()
     @State var isShowingFolderInfoEditingSheet: Bool = false
     @State var updateFolderList: Bool = false
     @State var currentSoundsListMode: SoundsListMode = .regular
+
+    @State private var subviewToOpen: MainViewModalToOpen = .onboarding
+    @State private var showingModalView: Bool = false
+    @State private var triggerSettings: Bool = false
 
     // Trends
     @State var soundIdToGoToFromTrends: String = .empty
@@ -25,38 +32,55 @@ struct MainView: View {
     let networkMonitor = NetworkMonitor()
     @StateObject private var syncValues = SyncValues()
 
+    private var enableReactions: Bool {
+        CommandLine.arguments.contains("-ENABLE_REACTIONS")
+    }
+
+    // MARK: - View Body
+
     var body: some View {
         ZStack {
-            if UIDevice.current.userInterfaceIdiom == .phone {
+            if UIDevice.isiPhone {
                 TabView(selection: $tabSelection) {
-                    NavigationView {
-                        SoundsView(
-                            viewModel: SoundsViewViewModel(
+                    NavigationStack(path: $soundsPath) {
+                        MainSoundContainer(
+                            viewModel: .init(
                                 currentViewMode: .allSounds,
-                                soundSortOption: UserSettings.getSoundSortOption(),
-                                authorSortOption: AuthorSortOption.nameAscending.rawValue,
+                                soundSortOption: UserSettings.mainSoundListSoundSortOption(),
+                                authorSortOption: UserSettings.authorSortOption(),
                                 currentSoundsListMode: $currentSoundsListMode,
                                 syncValues: syncValues
                             ),
-                            currentSoundsListMode: $currentSoundsListMode
+                            currentSoundsListMode: $currentSoundsListMode,
+                            showSettings: $triggerSettings
                         )
                         .environmentObject(trendsHelper)
                         .environmentObject(settingsHelper)
                         .environmentObject(networkMonitor)
+                        .navigationDestination(for: GeneralNavigationDestination.self) { screen in
+                            GeneralRouter(destination: screen)
+                        }
                     }
                     .tabItem {
                         Label("Sons", systemImage: "speaker.wave.3.fill")
                     }
                     .tag(PhoneTab.sounds)
-                    
-                    //                NavigationView {
-                    //                    CollectionsView()
-                    //                }
-                    //                .tabItem {
-                    //                    Label("Coleções", systemImage: "rectangle.grid.2x2.fill")
-                    //                }
-                    //                .tag(PhoneTab.collections)
-                    
+                    .environment(\.push, PushAction { soundsPath.append($0) })
+
+                    if enableReactions {
+                        NavigationStack(path: $reactionsPath) {
+                            ReactionsView()
+                                .navigationDestination(for: GeneralNavigationDestination.self) { screen in
+                                    GeneralRouter(destination: screen)
+                                }
+                        }
+                        .tabItem {
+                            Label("Reações", systemImage: "rectangle.grid.2x2.fill")
+                        }
+                        .tag(PhoneTab.reactions)
+                        .environment(\.push, PushAction { reactionsPath.append($0) })
+                    }
+
                     NavigationView {
                         SongsView()
                             .environmentObject(settingsHelper)
@@ -102,7 +126,7 @@ struct MainView: View {
                     trendsHelper.timeIntervalToGoTo = .allTime
                 })
             } else {
-                NavigationView {
+                NavigationSplitView {
                     SidebarView(
                         state: $state,
                         isShowingSettingsSheet: $isShowingSettingsSheet,
@@ -114,22 +138,28 @@ struct MainView: View {
                     .environmentObject(settingsHelper)
                     .environmentObject(networkMonitor)
                     .environmentObject(syncValues)
-
-                    SoundsView(
-                        viewModel: SoundsViewViewModel(
-                            currentViewMode: .allSounds,
-                            soundSortOption: UserSettings.getSoundSortOption(),
-                            authorSortOption: AuthorSortOption.nameAscending.rawValue,
+                } detail: {
+                    NavigationStack(path: $soundsPath) {
+                        MainSoundContainer(
+                            viewModel: .init(
+                                currentViewMode: .allSounds,
+                                soundSortOption: UserSettings.mainSoundListSoundSortOption(),
+                                authorSortOption: AuthorSortOption.nameAscending.rawValue,
+                                currentSoundsListMode: $currentSoundsListMode,
+                                syncValues: syncValues
+                            ),
                             currentSoundsListMode: $currentSoundsListMode,
-                            syncValues: syncValues
-                        ),
-                        currentSoundsListMode: $currentSoundsListMode
-                    )
-                    .environmentObject(trendsHelper)
-                    .environmentObject(settingsHelper)
-                    .environmentObject(networkMonitor)
+                            showSettings: .constant(false)
+                        )
+                        .environmentObject(trendsHelper)
+                        .environmentObject(settingsHelper)
+                        .environmentObject(networkMonitor)
+                        .navigationDestination(for: GeneralNavigationDestination.self) { screen in
+                            GeneralRouter(destination: screen)
+                        }
+                    }
                 }
-                .navigationViewStyle(DoubleColumnNavigationViewStyle())
+                .environment(\.push, PushAction { soundsPath.append($0) })
                 .sheet(isPresented: $isShowingSettingsSheet) {
                     SettingsCasingWithCloseView(isBeingShown: $isShowingSettingsSheet)
                         .environmentObject(settingsHelper)
@@ -144,12 +174,79 @@ struct MainView: View {
         .environmentObject(syncValues)
         .onAppear {
             print("MAIN VIEW - ON APPEAR")
+            sendUserPersonalTrendsToServerIfEnabled()
+            displayOnboardingIfNeeded()
+        }
+        .onChange(of: triggerSettings) { show in
+            if show {
+                subviewToOpen = .settings
+                showingModalView = true
+                triggerSettings = false
+            }
+        }
+        .sheet(isPresented: $showingModalView) {
+            switch subviewToOpen {
+            case .settings:
+                SettingsCasingWithCloseView(isBeingShown: $showingModalView)
+                    .environmentObject(settingsHelper)
+
+            case .onboarding:
+                FirstOnboardingView(isBeingShown: $showingModalView)
+                    .interactiveDismissDisabled(UIDevice.current.userInterfaceIdiom == .phone ? true : false)
+
+            case .whatsNew:
+                IntroducingReactionsView(isBeingShown: $showingModalView)
+                    .interactiveDismissDisabled()
+
+            case .retrospective:
+                EmptyView()
+            }
+        }
+    }
+
+    // MARK: - Functions
+
+    private func sendUserPersonalTrendsToServerIfEnabled() {
+        Task {
+            guard UserSettings.getEnableTrends() else {
+                return
+            }
+            guard UserSettings.getEnableShareUserPersonalTrends() else {
+                return
+            }
+
+            if let lastDate = AppPersistentMemory.getLastSendDateOfUserPersonalTrendsToServer() {
+                if lastDate.onlyDate! < Date.now.onlyDate! {
+                    let result = await Podium.shared.sendShareCountStatsToServer()
+
+                    guard result == .successful || result == .noStatsToSend else {
+                        return
+                    }
+                    AppPersistentMemory.setLastSendDateOfUserPersonalTrendsToServer(to: Date.now.onlyDate!)
+                }
+            } else {
+                let result = await Podium.shared.sendShareCountStatsToServer()
+
+                guard result == .successful || result == .noStatsToSend else {
+                    return
+                }
+                AppPersistentMemory.setLastSendDateOfUserPersonalTrendsToServer(to: Date.now.onlyDate!)
+            }
+        }
+    }
+
+    private func displayOnboardingIfNeeded() {
+        if !AppPersistentMemory.hasShownNotificationsOnboarding() {
+            subviewToOpen = .onboarding
+            showingModalView = true
+            // TODO: Bring back once Reactions is ready!
+//        } else if !AppPersistentMemory.hasSeenReactionsWhatsNewScreen() {
+//            subviewToOpen = .whatsNew
+//            showingModalView = true
         }
     }
 }
 
-struct MainView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainView()
-    }
+#Preview {
+    MainView()
 }

@@ -12,17 +12,31 @@ struct AllFoldersiPadView: View {
 
     @Binding var isShowingFolderInfoEditingSheet: Bool
     @Binding var updateFolderList: Bool
-    @State var deleteFolderAide = DeleteFolderViewAide()
     @State var folderIdForEditing: String = .empty
-    @StateObject var deleteFolderAideiPhone = DeleteFolderViewAideiPhone() // Not used, here just so FolderList does not crash on iPad
-    
+    @StateObject var deleteFolderAide = DeleteFolderViewAide()
+
+    // iPad Reactions Stuff
+    @State private var exportDataString: String = ""
+    @State private var isDataReadyToShow: Bool = false
+
+    // MARK: - View Body
+
     var body: some View {
         ScrollView {
             VStack(alignment: .center) {
-                FolderList(updateFolderList: $updateFolderList,
-                           deleteFolderAide: $deleteFolderAide,
-                           folderIdForEditing: $folderIdForEditing)
-                    .environmentObject(deleteFolderAideiPhone)
+                if isDataReadyToShow {
+                    TextEditor(text: $exportDataString)
+                        .frame(minHeight: 300)  // Set a minimum height for the TextEditor
+                        .padding()
+                        .border(Color.gray, width: 1)  // Optionally add a border
+                        //.disabled(true)  // Make it non-editable
+                }
+
+                FolderList(
+                    updateFolderList: $updateFolderList,
+                    folderIdForEditing: $folderIdForEditing
+                )
+                .environmentObject(deleteFolderAide)
             }
             .padding(.horizontal)
             .padding(.top, 7)
@@ -32,24 +46,40 @@ struct AllFoldersiPadView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
-                Button {
-                    isShowingFolderInfoEditingSheet = true
-                } label: {
-                    HStack {
-                        Image(systemName: "plus")
-                        Text("Nova Pasta")
+                HStack(spacing: 20) {
+                    if CommandLine.arguments.contains("-SHOW_EXPORT_FOLDERS_OPTION") {
+                        Button("Exportar Pastas") {
+                            exportFolders()
+                        }
+                    }
+
+                    Button {
+                        isShowingFolderInfoEditingSheet = true
+                    } label: {
+                        HStack {
+                            Image(systemName: "plus")
+                            Text("Nova Pasta")
+                        }
                     }
                 }
             }
         }
         .alert(isPresented: $deleteFolderAide.showAlert) {
-            Alert(title: Text(deleteFolderAide.alertTitle), message: Text(deleteFolderAide.alertMessage), primaryButton: .destructive(Text("Apagar"), action: {
-                guard deleteFolderAide.folderIdForDeletion.isEmpty == false else {
-                    return
-                }
-                try? LocalDatabase.shared.deleteUserFolder(withId: deleteFolderAide.folderIdForDeletion)
-                updateFolderList = true
-            }), secondaryButton: .cancel(Text("Cancelar")))
+            Alert(
+                title: Text(deleteFolderAide.alertTitle),
+                message: Text(deleteFolderAide.alertMessage),
+                primaryButton: .destructive(
+                    Text("Apagar"),
+                    action: {
+                        guard deleteFolderAide.folderIdForDeletion.isEmpty == false else {
+                            return
+                        }
+                        try? LocalDatabase.shared.deleteUserFolder(withId: deleteFolderAide.folderIdForDeletion)
+                        updateFolderList = true
+                    }
+                ),
+                secondaryButton: .cancel(Text("Cancelar"))
+            )
         }
         .onChange(of: folderIdForEditing) { folderIdForEditing in
             if folderIdForEditing.isEmpty == false {
@@ -59,12 +89,56 @@ struct AllFoldersiPadView: View {
         }
     }
 
-}
+    // MARK: - Functions
 
-struct AllFoldersiPadView_Previews: PreviewProvider {
+    private func exportFolders() {
+        do {
+            let rawFolders = try LocalDatabase.shared.getAllUserFolders()
+            var folders = rawFolders.map { UserFolderDTO(userFolder: $0) }
 
-    static var previews: some View {
-        AllFoldersiPadView(isShowingFolderInfoEditingSheet: .constant(false), updateFolderList: .constant(false))
+            for i in folders.indices {
+                let folderContents = try LocalDatabase.shared.getAllContentsInsideUserFolder(withId: folders[i].id)
+                let contentIds = folderContents.map { $0.contentId }
+                let sounds = try LocalDatabase.shared.sounds(withIds: contentIds)
+                folders[i].sounds = sounds.map { $0.id }
+            }
+
+            if let jsonData = try? JSONEncoder().encode(folders), let jsonString = String(data: jsonData, encoding: .utf8) {
+                DispatchQueue.main.async {
+                    self.exportDataString = jsonString
+                    UIPasteboard.general.string = jsonString
+                    self.isDataReadyToShow = true
+                }
+            }
+        } catch {
+            print("Erro ao tentar exportar as pastas para arquivo: \(error.localizedDescription)")
+        }
     }
 
+    private func verifyFile(at url: URL) -> Bool {
+        let fileManager = FileManager.default
+        if fileManager.fileExists(atPath: url.path) {
+            do {
+                let attributes = try fileManager.attributesOfItem(atPath: url.path)
+                if let fileSize = attributes[.size] as? NSNumber, fileSize.intValue > 0 {
+                    return true
+                }
+            } catch {
+                print("Error reading file attributes: \(error.localizedDescription)")
+            }
+        }
+        return false
+    }
+
+    private func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+}
+
+#Preview {
+    AllFoldersiPadView(
+        isShowingFolderInfoEditingSheet: .constant(false),
+        updateFolderList: .constant(false)
+    )
 }

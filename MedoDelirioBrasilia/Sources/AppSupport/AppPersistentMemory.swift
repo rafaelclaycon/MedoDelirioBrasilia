@@ -44,7 +44,7 @@ class AppPersistentMemory {
         return Bool(value as! Bool)
     }
     
-    static func getHasShownNotificationsOnboarding() -> Bool {
+    static func hasShownNotificationsOnboarding() -> Bool {
         let userDefaults = UserDefaults.standard
         guard let value = userDefaults.object(forKey: "hasShownNotificationsOnboarding") else {
             return false
@@ -91,18 +91,10 @@ class AppPersistentMemory {
         }
         return Bool(value as! Bool)
     }
-    
-    static func getHasSeen63WhatsNewScreen() -> Bool {
-        let userDefaults = UserDefaults.standard
-        guard let value = userDefaults.object(forKey: "hasSeen63WhatsNewScreen") else {
-            return false
-        }
-        return Bool(value as! Bool)
-    }
 
-    static func getHasSeen70WhatsNewScreen() -> Bool {
+    static func hasSeenReactionsWhatsNewScreen() -> Bool {
         let userDefaults = UserDefaults.standard
-        guard let value = userDefaults.object(forKey: "hasSeen70WhatsNewScreen") else {
+        guard let value = userDefaults.object(forKey: "hasSeenReactionsWhatsNewScreen") else {
             return false
         }
         return Bool(value as! Bool)
@@ -202,7 +194,7 @@ class AppPersistentMemory {
         userDefaults.set(newValue, forKey: "shouldRetrySendingDevicePushToken")
     }
     
-    static func setHasShownNotificationsOnboarding(to newValue: Bool) {
+    static func hasShownNotificationsOnboarding(_ newValue: Bool) {
         let userDefaults = UserDefaults.standard
         userDefaults.set(newValue, forKey: "hasShownNotificationsOnboarding")
     }
@@ -231,15 +223,10 @@ class AppPersistentMemory {
         let userDefaults = UserDefaults.standard
         userDefaults.set(newValue, forKey: "hasSentFolderResearchInfo")
     }
-    
-    static func setHasSeen63WhatsNewScreen(to newValue: Bool) {
-        let userDefaults = UserDefaults.standard
-        userDefaults.set(newValue, forKey: "hasSeen63WhatsNewScreen")
-    }
 
-    static func setHasSeen70WhatsNewScreen(to newValue: Bool) {
+    static func hasSeenReactionsWhatsNewScreen(_ newValue: Bool) {
         let userDefaults = UserDefaults.standard
-        userDefaults.set(newValue, forKey: "hasSeen70WhatsNewScreen")
+        userDefaults.set(newValue, forKey: "hasSeenReactionsWhatsNewScreen")
     }
 
     static func setHasSeenRecurringDonationBanner(to newValue: Bool) {

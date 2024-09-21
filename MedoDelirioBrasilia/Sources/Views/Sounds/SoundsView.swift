@@ -52,7 +52,7 @@ struct SoundsView: View {
     @State private var soundIdToGoTo: String = ""
 
     // Folders
-    @StateObject var deleteFolderAide = DeleteFolderViewAideiPhone()
+    @StateObject var deleteFolderAide = DeleteFolderViewAide()
     
     // Toast views
     private let toastViewBottomPaddingPhone: CGFloat = 60
@@ -81,10 +81,6 @@ struct SoundsView: View {
 
     // Long Update Banner
     @State private var displayLongUpdateBanner: Bool = false
-
-    // Donate Banner
-    @State private var donateBannerData: DynamicBanner = .init()
-    @State private var displayFloodBanner: Bool = false
 
     private var searchResults: [Sound] {
         if viewModel.searchText.isEmpty {
@@ -144,14 +140,10 @@ struct SoundsView: View {
     var body: some View {
         ZStack {
             VStack {
-                NavigationLink(
-                    destination: AuthorDetailView(
-                        viewModel: .init(authorName: authorToAutoOpen.name, currentSoundsListMode: $currentSoundsListMode),
-                        author: authorToAutoOpen,
-                        currentSoundsListMode: $currentSoundsListMode
-                    ),
-                    isActive: $autoOpenAuthor
-                ) { EmptyView() }
+//                NavigationLink(
+//                    destination: AuthorDetailView(author: authorToAutoOpen),
+//                    isActive: $autoOpenAuthor
+//                ) { EmptyView() }
 
                 if showNoFavoritesView {
                     NoFavoritesView()
@@ -195,16 +187,6 @@ struct SoundsView: View {
 //                                        RecurringDonationBanner(isBeingShown: $shouldDisplayRecurringDonationBanner)
 //                                            .padding(.horizontal, 10)
 //                                    }
-
-                                    if viewModel.currentViewMode == .allSounds, displayFloodBanner, viewModel.searchText.isEmpty {
-                                        DonateToFloodVictimsBanner(
-                                            bannerData: donateBannerData,
-                                            textCopyFeedback: {
-                                                viewModel.displayToast(toastText: $0)
-                                            }
-                                        )
-                                        .padding(.horizontal, 10)
-                                    }
 
 //                                    if shouldDisplayRetrospectiveBanner, viewModel.searchText.isEmpty {
 //                                        RetroBanner(
@@ -384,10 +366,9 @@ struct SoundsView: View {
                     await viewModel.sendUserPersonalTrendsToServerIfEnabled()
                 }
 
-                if AppPersistentMemory.getHasShownNotificationsOnboarding() == false {
+                if AppPersistentMemory.hasShownNotificationsOnboarding() == false {
                     subviewToOpen = .onboardingView
                     showingModalView = true
-                    AppPersistentMemory.setHasSeen70WhatsNewScreen(to: true) // Prevent the What's New screen from appearing when switching tabs
                 }
 
 //                if !AppPersistentMemory.getHasSeenRecurringDonationBanner() {
@@ -397,10 +378,6 @@ struct SoundsView: View {
 //                        }
 //                    }
 //                }
-
-                Task {
-                    await checkAndPopulateFloodBanner()
-                }
 
 //                Task {
 //                    if AppPersistentMemory.getHasSeenRetroBanner() {
@@ -493,7 +470,6 @@ struct SoundsView: View {
 
                 case .soundDetailView:
                     SoundDetailView(
-                        isBeingShown: $showingModalView,
                         sound: viewModel.selectedSound ?? Sound(title: "")
                     )
 
@@ -545,7 +521,7 @@ struct SoundsView: View {
                     }
 
                     if pluralization == .plural {
-                        Analytics.sendUsageMetricToServer(
+                        Analytics.send(
                             originatingScreen: "SoundsView",
                             action: "didAddManySoundsToFolder(\(selectedCount))"
                         )
@@ -559,7 +535,7 @@ struct SoundsView: View {
                         toastText: "Imagens salvas com sucesso."
                     )
 
-                    Analytics.sendUsageMetricToServer(
+                    Analytics.send(
                         originatingScreen: "SoundsView",
                         action: "didExportRetro2023Images(\(retroExportAnalytics))"
                     )
@@ -604,29 +580,29 @@ struct SoundsView: View {
                 }
             }
 
-            if currentSoundsListMode == .selection {
-                VStack {
-                    Spacer()
-
-                    FloatingSelectionOptionsView(
-                        areButtonsEnabled: $areManyActionButtonsEnabled,
-                        favoriteTitle: $favoriteButtonTitle,
-                        favoriteSystemImage: $favoriteButtonImage,
-                        shareIsProcessing: $viewModel.shareManyIsProcessing,
-                        favoriteAction: {
-                            viewModel.addRemoveManyFromFavorites()
-                        },
-                        folderAction: {
-                            viewModel.prepareSelectedToAddToFolder()
-                            subviewToOpen = .addToFolderView
-                            showingModalView = true
-                        },
-                        shareAction: {
-                            viewModel.showShareManyAlert()
-                        }
-                    )
-                }
-            }
+//            if currentSoundsListMode == .selection {
+//                VStack {
+//                    Spacer()
+//
+//                    FloatingSelectionOptionsView(
+//                        areButtonsEnabled: $areManyActionButtonsEnabled,
+//                        favoriteTitle: $favoriteButtonTitle,
+//                        favoriteSystemImage: $favoriteButtonImage,
+//                        shareIsProcessing: $viewModel.shareManyIsProcessing,
+//                        favoriteAction: {
+//                            viewModel.addRemoveManyFromFavorites()
+//                        },
+//                        folderAction: {
+//                            viewModel.prepareSelectedToAddToFolder()
+//                            subviewToOpen = .addToFolderView
+//                            showingModalView = true
+//                        },
+//                        shareAction: {
+//                            viewModel.showShareManyAlert()
+//                        }
+//                    )
+//                }
+//            }
 
             if viewModel.showToastView {
                 VStack {
@@ -763,7 +739,7 @@ struct SoundsView: View {
                     }
                     .onChange(of: viewModel.soundSortOption) {
                         viewModel.sortSounds(by: SoundSortOption(rawValue: $0) ?? .dateAddedDescending)
-                        UserSettings.setSoundSortOption(to: $0)
+                        UserSettings.saveMainSoundListSoundSortOption($0)
                     }
                 }
             }
@@ -787,35 +763,17 @@ struct SoundsView: View {
         self.trendsHelper.soundIdToGoTo = ""
         return true // This tells the ScrollViewProxy "yes, go ahead and scroll, there was a soundId received". Unfortunately, passing the proxy as a parameter did not work and this code was made more complex because of this.
     }
-
-    private func checkAndPopulateFloodBanner() async {
-        do {
-            let url = URL(string: NetworkRabbit.shared.serverPath + "v4/flood-banner-starting-version")!
-            let startDisplayingVersion: String = try await NetworkRabbit.get(from: url)
-
-            displayFloodBanner = startDisplayingVersion != Versioneer.appVersion
-            guard displayFloodBanner else { return }
-
-            let dataUrl = URL(string: NetworkRabbit.shared.serverPath + "v4/flood-banner")!
-            donateBannerData = try await NetworkRabbit.get(from: dataUrl)
-        } catch {
-            displayFloodBanner = false
-            print("Unable to check or populate the Flood Banner: \(error.localizedDescription)")
-        }
-    }
 }
 
-struct SoundsView_Previews: PreviewProvider {
-    static var previews: some View {
-        SoundsView(
-            viewModel: SoundsViewViewModel(
-                currentViewMode: .allSounds,
-                soundSortOption: SoundSortOption.dateAddedDescending.rawValue,
-                authorSortOption: AuthorSortOption.nameAscending.rawValue,
-                currentSoundsListMode: .constant(.regular),
-                syncValues: SyncValues()
-            ),
-            currentSoundsListMode: .constant(.regular)
-        )
-    }
+#Preview {
+    SoundsView(
+        viewModel: .init(
+            currentViewMode: .allSounds,
+            soundSortOption: SoundSortOption.dateAddedDescending.rawValue,
+            authorSortOption: AuthorSortOption.nameAscending.rawValue,
+            currentSoundsListMode: .constant(.regular),
+            syncValues: SyncValues()
+        ),
+        currentSoundsListMode: .constant(.regular)
+    )
 }

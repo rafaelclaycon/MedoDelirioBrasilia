@@ -103,7 +103,7 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
                 }
             }
 
-            let sortOption: SoundSortOption = SoundSortOption(rawValue: UserSettings.getSoundSortOption()) ?? .dateAddedDescending
+            let sortOption: SoundSortOption = SoundSortOption(rawValue: UserSettings.mainSoundListSoundSortOption()) ?? .dateAddedDescending
             sortSounds(by: sortOption)
         } catch {
             print("Erro")
@@ -325,14 +325,14 @@ class SoundsViewViewModel: ObservableObject, SyncManagerDelegate {
             removeSelectedFromFavorites()
             stopSelecting()
             reloadList(currentMode: currentViewMode)
-            Analytics.sendUsageMetricToServer(
+            Analytics.send(
                 originatingScreen: "SoundsView",
                 action: "didRemoveManySoundsFromFavorites(\(selectedCount))"
             )
         } else {
             addSelectedToFavorites()
             stopSelecting()
-            Analytics.sendUsageMetricToServer(
+            Analytics.send(
                 originatingScreen: "SoundsView",
                 action: "didAddManySoundsToFavorites(\(selectedCount))"
             )

@@ -67,12 +67,20 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
+            argument = "-ENABLE_REACTIONS"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-SHOW_EXPORT_FOLDERS_OPTION"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "-FORCE_SHOW_HELP_THE_APP"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-IGNORE_2_MINUTE_SYNC_INTERVAL"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>

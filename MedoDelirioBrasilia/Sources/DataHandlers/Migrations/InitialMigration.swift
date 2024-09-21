@@ -2,6 +2,8 @@ import Foundation
 import SQLiteMigrationManager
 import SQLite
 
+private typealias Expression = SQLite.Expression
+
 struct InitialMigration: Migration {
 
     var version: Int64 = 2022_06_10_17_05_00

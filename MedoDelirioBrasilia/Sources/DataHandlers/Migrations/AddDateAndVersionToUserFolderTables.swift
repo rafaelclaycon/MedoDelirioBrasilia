@@ -9,6 +9,8 @@ import Foundation
 import SQLiteMigrationManager
 import SQLite
 
+private typealias Expression = SQLite.Expression
+
 struct AddDateAndVersionToUserFolderTables: Migration {
 
     var version: Int64 = 2023_02_03_18_53_00
