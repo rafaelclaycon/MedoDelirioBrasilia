@@ -9,6 +9,8 @@ import Foundation
 import SQLiteMigrationManager
 import SQLite
 
+private typealias Expression = SQLite.Expression
+
 struct AddSongAndMusicGenreTables: Migration {
 
     var version: Int64 = 2023_09_02_01_47_00

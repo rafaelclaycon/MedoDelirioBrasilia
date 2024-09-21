@@ -10,7 +10,7 @@ import Foundation
 enum LoadingState<T: Equatable>: Equatable {
 
     case loading
-    case loaded([T])
+    case loaded(T)
     case error(String)
 
     static func == (lhs: LoadingState<T>, rhs: LoadingState<T>) -> Bool {

@@ -470,7 +470,6 @@ struct SoundsView: View {
 
                 case .soundDetailView:
                     SoundDetailView(
-                        isBeingShown: $showingModalView,
                         sound: viewModel.selectedSound ?? Sound(title: "")
                     )
 

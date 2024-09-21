@@ -10,7 +10,7 @@ import SwiftUI
 
 class SoundListViewModel<T>: ObservableObject {
 
-    @Published var state: LoadingState<Sound> = .loading
+    @Published var state: LoadingState<[Sound]> = .loading
     @Published var menuOptions: [ContextMenuSection]
     @Published var needsRefreshAfterChange: Bool
     var refreshAction: (() -> Void)?

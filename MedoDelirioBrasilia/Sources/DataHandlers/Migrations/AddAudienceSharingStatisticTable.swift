@@ -2,6 +2,8 @@ import Foundation
 import SQLiteMigrationManager
 import SQLite
 
+private typealias Expression = SQLite.Expression
+
 struct AddAudienceSharingStatisticTable: Migration {
 
     var version: Int64 = 2022_10_12_15_45_00

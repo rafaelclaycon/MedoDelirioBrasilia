@@ -11,7 +11,7 @@ struct SoundList: View {
 
     // MARK: - Dependencies
 
-    @StateObject private var viewModel: SoundListViewModel<Sound>
+    @StateObject private var viewModel: SoundListViewModel<[Sound]>
     private var soundSearchTextIsEmpty: Binding<Bool?>
     private var allowSearch: Bool
     private var allowRefresh: Bool
@@ -65,7 +65,7 @@ struct SoundList: View {
     // MARK: - Initializer
 
     init(
-        viewModel: SoundListViewModel<Sound>,
+        viewModel: SoundListViewModel<[Sound]>,
         soundSearchTextIsEmpty: Binding<Bool?> = .constant(nil),
         allowSearch: Bool = false,
         allowRefresh: Bool = false,
