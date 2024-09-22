@@ -104,8 +104,10 @@ class VideoMaker {
 
                     let videoDuration = aVideoAsset.duration
 
+                    // Video is longer than audio
                     if CMTimeCompare(videoDuration, aAudioAsset.duration) == -1 {
                         try mutableCompositionAudioTrack.first?.insertTimeRange(CMTimeRangeMake(start: CMTime.zero, duration: aVideoAssetTrack.timeRange.duration), of: aAudioAssetTrack, at: CMTime.zero)
+                    // Audio is longer than video
                     } else if CMTimeCompare(videoDuration, aAudioAsset.duration) == 1 {
                         var currentTime = CMTime.zero
                         while true {
@@ -121,7 +123,8 @@ class VideoMaker {
                                 break
                             }
                         }
-                    } else {  // Handle the case when the durations are equal
+                    // Both are the same length
+                    } else {
                         try mutableCompositionAudioTrack.first?.insertTimeRange(
                             CMTimeRangeMake(start: CMTime.zero, duration: aVideoAssetTrack.timeRange.duration),
                             of: aAudioAssetTrack,
