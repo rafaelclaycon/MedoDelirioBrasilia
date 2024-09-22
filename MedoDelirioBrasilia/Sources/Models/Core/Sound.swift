@@ -61,8 +61,16 @@ struct Sound: Hashable, Codable, Identifiable, MedoContentProtocol {
     }
 }
 
-enum SoundError: Error {
+enum SoundError: Error, LocalizedError {
+
     case fileNotFound(title: String)
+
+    var errorDescription: String? {
+        switch self {
+        case .fileNotFound(let soundTitle):
+            return "O arquivo do som \"\(soundTitle)\" não foi encontrado."
+        }
+    }
 }
 
 extension Sound {
