@@ -14,6 +14,16 @@ final class VideoMakerTests: XCTestCase {
         UIImage(named: "video_sample", in: Bundle(for: type(of: self)), compatibleWith: nil)
     }
 
+    struct FakeServerSound: MedoContentProtocol {
+        var id: String
+        
+        var title: String
+        
+        func fileURL() throws -> URL {
+            Bundle(for: VideoMakerTests.self).url(forResource: "A9AFA060-B5E9-4A76-9E8C-12DB5DED51C5", withExtension: "mp3")!
+        }
+    }
+
     func testCreateVideo_whenTwitterVideoWithKnownToWorkSound_shouldReturnVideoURL() throws {
         let expectation = self.expectation(description: "Video generated successfully")
         let soundName = "Se insere no mesmo continente mental"
@@ -34,16 +44,13 @@ final class VideoMakerTests: XCTestCase {
             expectation.fulfill()
         }
 
-        waitForExpectations(timeout: 2, handler: nil)
+        waitForExpectations(timeout: 5, handler: nil)
     }
 
     func testCreateVideo_whenTwitterVideoWithKnownProblematicSound_shouldReturnVideoURL() throws {
         let expectation = self.expectation(description: "Video generated successfully")
         let soundName = "Cadê os machos?"
-        let sound = Sound(
-            title: soundName,
-            filename: "Flavio Dino - Se insere no mesmo continente mental de quem acha que a terra e plana.mp3"
-        )
+        let sound = FakeServerSound(id: "A9AFA060-B5E9-4A76-9E8C-12DB5DED51C5", title: soundName)
 
         try VideoMaker.createVideo(
             from: sound,

@@ -202,6 +202,7 @@
 		D923127428AB0A6100436336 /* Novo e diferente, e top, e moderno (completo).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D923127228AB0A6100436336 /* Novo e diferente, e top, e moderno (completo).mp3 */; };
 		D9235E242969BF31001F8167 /* Roberto Jefferson - Um sujeito lombrosiano.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9235E232969BF31001F8167 /* Roberto Jefferson - Um sujeito lombrosiano.mp3 */; };
 		D9235E262969C08E001F8167 /* Rotina dos acampamentos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9235E252969C08E001F8167 /* Rotina dos acampamentos.mp3 */; };
+		D924A0892C9FA8EB00931890 /* A9AFA060-B5E9-4A76-9E8C-12DB5DED51C5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D924A0882C9FA8EB00931890 /* A9AFA060-B5E9-4A76-9E8C-12DB5DED51C5.mp3 */; };
 		D924F9212BF841E6002FC815 /* IntroducingReactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D924F9202BF841E6002FC815 /* IntroducingReactionsView.swift */; };
 		D9265741285A1EE700947165 /* LocalDatabase+Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9265740285A1EE700947165 /* LocalDatabase+Log.swift */; };
 		D9267EE728D1271400C0DC6C /* Mc Douglinhas - Ui, que brega.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9267EE528D1271300C0DC6C /* Mc Douglinhas - Ui, que brega.mp3 */; };
@@ -1709,6 +1710,7 @@
 		D923127228AB0A6100436336 /* Novo e diferente, e top, e moderno (completo).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Novo e diferente, e top, e moderno (completo).mp3"; sourceTree = "<group>"; };
 		D9235E232969BF31001F8167 /* Roberto Jefferson - Um sujeito lombrosiano.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Roberto Jefferson - Um sujeito lombrosiano.mp3"; sourceTree = "<group>"; };
 		D9235E252969C08E001F8167 /* Rotina dos acampamentos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Rotina dos acampamentos.mp3"; sourceTree = "<group>"; };
+		D924A0882C9FA8EB00931890 /* A9AFA060-B5E9-4A76-9E8C-12DB5DED51C5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "A9AFA060-B5E9-4A76-9E8C-12DB5DED51C5.mp3"; sourceTree = "<group>"; };
 		D924F9202BF841E6002FC815 /* IntroducingReactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroducingReactionsView.swift; sourceTree = "<group>"; };
 		D92508E02BA5BBA90057268B /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		D9265740285A1EE700947165 /* LocalDatabase+Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+Log.swift"; sourceTree = "<group>"; };
@@ -4606,6 +4608,7 @@
 			isa = PBXGroup;
 			children = (
 				D96892E02C9F83E00084F646 /* Images.xcassets */,
+				D924A0882C9FA8EB00931890 /* A9AFA060-B5E9-4A76-9E8C-12DB5DED51C5.mp3 */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -6494,6 +6497,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D96892E12C9F83E00084F646 /* Images.xcassets in Resources */,
+				D924A0892C9FA8EB00931890 /* A9AFA060-B5E9-4A76-9E8C-12DB5DED51C5.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

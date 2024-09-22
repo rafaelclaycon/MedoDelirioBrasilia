@@ -267,7 +267,7 @@ class VideoMaker {
     }
 }
 
-enum VideoMakerError: Error {
+enum VideoMakerError: Error, LocalizedError {
 
     case invalidImage
     case invalidURL
@@ -277,4 +277,26 @@ enum VideoMakerError: Error {
     case couldNotObtainAudioDuration
     case unableToFindVideoFile
     case unknownError
+
+    var errorDescription: String? {
+        switch self {
+        case .invalidImage:
+            return "A imagem passada para a criação do vídeo é inválida."
+        case .invalidURL:
+            return "A URL criada para localizar o vídeo gerado é inválida."
+        case .soundFilepathIsEmpty:
+            return "O caminho do arquivo de som está vazio."
+        case .unableToFindSoundFile:
+            return "Não foi possível encontrar o arquivo do som."
+        case .failedToMergeSoundAndVideo:
+            return "Falha ao tentar unir o som ao vídeo."
+        case .couldNotObtainAudioDuration:
+            return "Não foi possível obter a duração do som."
+        case .unableToFindVideoFile:
+            return "Não foi possível localizar o arquivo do vídeo gerado."
+        case .unknownError:
+            return "Erro desconhecido."
+        }
+    }
+
 }
