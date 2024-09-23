@@ -10,6 +10,8 @@
 		<string>ymail</string>
 		<string>whatsapp</string>
 	</array>
+	<key>LSMinimumSystemVersion</key>
+	<string>14.0</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
