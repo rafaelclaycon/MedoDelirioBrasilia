@@ -279,7 +279,9 @@ extension SoundListViewModel {
         guard case .loaded(let sounds) = state else { return }
         guard let sound = sounds.first(where: { $0.id == soundId }) else { return }
         scrollAndPlay = sound.id
-        play(sound)
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(400)) {
+            self.play(sound)
+        }
     }
 }
 
