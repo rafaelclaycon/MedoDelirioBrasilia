@@ -1,5 +1,5 @@
 //
-//  MedoDelirioWidgetControl.swift
+//  PlayRandomSoundControl.swift
 //  MedoDelirioWidget
 //
 //  Created by Rafael Schmitt on 22/09/24.
@@ -9,7 +9,7 @@ import AppIntents
 import SwiftUI
 import WidgetKit
 
-struct MedoDelirioWidgetControl: ControlWidget {
+struct PlayRandomSoundControl: ControlWidget {
 
     var body: some ControlWidgetConfiguration {
         StaticControlConfiguration(
@@ -19,7 +19,7 @@ struct MedoDelirioWidgetControl: ControlWidget {
                 "Tocar Som Aleatório",
                 action: PlayRandomSoundIntent()
             ) { isActive in
-                Image(systemName: "shuffle")
+                Image(systemName: "play.fill")
                 if isActive {
                     Text("Executando...")
                 }

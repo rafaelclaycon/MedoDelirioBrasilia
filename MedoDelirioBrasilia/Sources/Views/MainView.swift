@@ -9,8 +9,8 @@ import SwiftUI
 
 struct MainView: View {
 
-    @State var tabSelection: PhoneTab = .sounds
-    @State var state: PadScreen? = PadScreen.allSounds
+    @Binding var tabSelection: PhoneTab
+    @Binding var state: PadScreen?
     @State private var soundsPath = NavigationPath()
     @State private var reactionsPath = NavigationPath()
 
@@ -248,5 +248,5 @@ struct MainView: View {
 }
 
 #Preview {
-    MainView()
+    MainView(tabSelection: .constant(.sounds), state: .constant(.allSounds))
 }

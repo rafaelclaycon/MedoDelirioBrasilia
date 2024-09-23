@@ -12,6 +12,6 @@ import SwiftUI
 struct MedoDelirioWidgetBundle: WidgetBundle {
 
     var body: some Widget {
-        MedoDelirioWidgetControl()
+        PlayRandomSoundControl()
     }
 }
