@@ -195,8 +195,10 @@ struct MainView: View {
                     .interactiveDismissDisabled(UIDevice.current.userInterfaceIdiom == .phone ? true : false)
 
             case .whatsNew:
-                IntroducingReactionsView(isBeingShown: $showingModalView)
+                IntroducingPlayRandomSoundControlView()
                     .interactiveDismissDisabled()
+//                IntroducingReactionsView(isBeingShown: $showingModalView)
+//                    .interactiveDismissDisabled()
 
             case .retrospective:
                 EmptyView()
@@ -238,6 +240,9 @@ struct MainView: View {
     private func displayOnboardingIfNeeded() {
         if !AppPersistentMemory.hasShownNotificationsOnboarding() {
             subviewToOpen = .onboarding
+            showingModalView = true
+        } else if !AppPersistentMemory.hasSeenControlWhatsNewScreen() {
+            subviewToOpen = .whatsNew
             showingModalView = true
             // TODO: Bring back once Reactions is ready!
 //        } else if !AppPersistentMemory.hasSeenReactionsWhatsNewScreen() {

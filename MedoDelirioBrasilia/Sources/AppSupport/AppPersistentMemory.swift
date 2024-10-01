@@ -100,6 +100,14 @@ class AppPersistentMemory {
         return Bool(value as! Bool)
     }
 
+    static func hasSeenControlWhatsNewScreen() -> Bool {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "hasSeenControlWhatsNewScreen") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
+
     static func getHasSeenRecurringDonationBanner() -> Bool {
         let userDefaults = UserDefaults.standard
         guard let value = userDefaults.object(forKey: "hasSeenRecurringDonationBanner") else {
@@ -227,6 +235,11 @@ class AppPersistentMemory {
     static func hasSeenReactionsWhatsNewScreen(_ newValue: Bool) {
         let userDefaults = UserDefaults.standard
         userDefaults.set(newValue, forKey: "hasSeenReactionsWhatsNewScreen")
+    }
+
+    static func hasSeenControlWhatsNewScreen(_ newValue: Bool) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(newValue, forKey: "hasSeenControlWhatsNewScreen")
     }
 
     static func setHasSeenRecurringDonationBanner(to newValue: Bool) {

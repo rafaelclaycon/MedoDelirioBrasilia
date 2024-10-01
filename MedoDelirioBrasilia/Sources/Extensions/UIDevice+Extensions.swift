@@ -16,6 +16,11 @@ extension UIDevice {
         }
         return UIScreen.main.bounds.width < 380
     }
+
+    static var hasNotch: Bool {
+        guard !isiPad else { return true }
+        return !(modelName.contains("8") || modelName.contains("8 Plus") || modelName.contains("SE"))
+    }
 }
 
 // MARK: Is specific device

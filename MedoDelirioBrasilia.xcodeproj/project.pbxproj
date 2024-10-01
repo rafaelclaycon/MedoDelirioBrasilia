@@ -1068,6 +1068,7 @@
 		D97B2DE728E60B8600C3B50B /* Michael The Office - No god please no.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D97B2DE028E60B8600C3B50B /* Michael The Office - No god please no.mp3 */; };
 		D97D76F92885B1BD005210D9 /* SidebarFolderIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97D76F82885B1BD005210D9 /* SidebarFolderIcon.swift */; };
 		D97D76FB2885B794005210D9 /* EmailAppPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97D76FA2885B794005210D9 /* EmailAppPickerView.swift */; };
+		D97FFA662CA1EF1000899285 /* IntroducingPlayRandomSoundControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97FFA652CA1EF1000899285 /* IntroducingPlayRandomSoundControlView.swift */; };
 		D980455C28380EFE003B2E83 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D980455E28380EFE003B2E83 /* Localizable.strings */; };
 		D980456228380F66003B2E83 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D980456128380F66003B2E83 /* LocalizableStrings.swift */; };
 		D9832C43294DFA21000F08B6 /* Biu de Lira - Resmungos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9832C42294DFA21000F08B6 /* Biu de Lira - Resmungos.mp3 */; };
@@ -2590,6 +2591,7 @@
 		D97B2DE028E60B8600C3B50B /* Michael The Office - No god please no.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Michael The Office - No god please no.mp3"; sourceTree = "<group>"; };
 		D97D76F82885B1BD005210D9 /* SidebarFolderIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarFolderIcon.swift; sourceTree = "<group>"; };
 		D97D76FA2885B794005210D9 /* EmailAppPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAppPickerView.swift; sourceTree = "<group>"; };
+		D97FFA652CA1EF1000899285 /* IntroducingPlayRandomSoundControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroducingPlayRandomSoundControlView.swift; sourceTree = "<group>"; };
 		D980455F28380F05003B2E83 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D980456128380F66003B2E83 /* LocalizableStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
 		D9832C42294DFA21000F08B6 /* Biu de Lira - Resmungos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Biu de Lira - Resmungos.mp3"; sourceTree = "<group>"; };
@@ -3074,7 +3076,7 @@
 				D916627C2874F1F9000A1B23 /* FirstOnboardingView.swift */,
 				D916627E2874F838000A1B23 /* NotificationsSymbol.swift */,
 				D91B4DF3299BB4DE00E92824 /* ShowExplicitContentOnboardingView.swift */,
-				D924F9202BF841E6002FC815 /* IntroducingReactionsView.swift */,
+				D97FFA642CA1EEFD00899285 /* WhatsNew */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -4731,6 +4733,15 @@
 				D9A039172BD69EF100AB74F7 /* ModalViewToOpen.swift */,
 			);
 			path = ViewAid;
+			sourceTree = "<group>";
+		};
+		D97FFA642CA1EEFD00899285 /* WhatsNew */ = {
+			isa = PBXGroup;
+			children = (
+				D97FFA652CA1EF1000899285 /* IntroducingPlayRandomSoundControlView.swift */,
+				D924F9202BF841E6002FC815 /* IntroducingReactionsView.swift */,
+			);
+			path = WhatsNew;
 			sourceTree = "<group>";
 		};
 		D980456028380F45003B2E83 /* AppSupport */ = {
@@ -6645,6 +6656,7 @@
 				D94AD34928811ADC00D3E4F0 /* Versioneer.swift in Sources */,
 				D9FF3F992B1431C8007AE773 /* UpdateIncentive.swift in Sources */,
 				D92E7067283C51D20035826C /* Song.swift in Sources */,
+				D97FFA662CA1EF1000899285 /* IntroducingPlayRandomSoundControlView.swift in Sources */,
 				D94EAB5729FC375A004CD604 /* Bundle+.swift in Sources */,
 				D93CCB79286A8A220002CF81 /* ToastView.swift in Sources */,
 				D9917A112991530000FB6274 /* Double+Extensions.swift in Sources */,
