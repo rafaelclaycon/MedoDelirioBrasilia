@@ -141,5 +141,4 @@ struct SongCell: View {
         nowPlaying: .constant(Set<String>())
     )
     .padding(.horizontal)
-    .previewLayout(.fixed(width: 414, height: 100))
 }
