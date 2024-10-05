@@ -3029,6 +3029,7 @@
 		D9E6B3852CA1A6B1002FCB91 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				IntentProviders.swift,
 				PlayRandomSoundIntent.swift,
 			);
 			target = D9625E7928238F9A00080852 /* MedoDelirioBrasilia */;
