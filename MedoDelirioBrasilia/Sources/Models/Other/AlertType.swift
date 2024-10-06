@@ -30,3 +30,7 @@ enum AuthorDetailAlertType {
 enum FolderDetailAlertType {
     case ok, removeSingleSound, removeMultipleSounds
 }
+
+enum SongsViewAlert {
+    case ok, songUnavailable, redownloadSong
+}

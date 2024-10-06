@@ -33,7 +33,7 @@ class SongsViewViewModel: ObservableObject {
     @Published var alertTitle: String = ""
     @Published var alertMessage: String = ""
     @Published var showAlert: Bool = false
-    @Published var alertType: AlertType = .singleOption
+    @Published var alertType: SongsViewAlert = .ok
 
     // Toast
     @Published var showToastView: Bool = false
@@ -101,7 +101,7 @@ class SongsViewViewModel: ObservableObject {
             AudioPlayer.shared?.togglePlay()
         } catch {
             if song.isFromServer ?? false {
-                showServerSoundNotAvailableAlert(song)
+                showServerSongNotAvailableAlert(song)
             } else {
                 showSongUnavailableAlert()
             }
@@ -228,16 +228,16 @@ class SongsViewViewModel: ObservableObject {
 
     func showSongUnavailableAlert() {
         TapticFeedback.error()
-        alertType = .twoOptions
+        alertType = .songUnavailable
         alertTitle = Shared.Songs.songNotFoundAlertTitle
         alertMessage = Shared.Songs.songNotFoundAlertMessage
         showAlert = true
     }
 
-    func showServerSoundNotAvailableAlert(_ song: Song) {
+    func showServerSongNotAvailableAlert(_ song: Song) {
         selectedSong = song
         TapticFeedback.error()
-        alertType = .twoOptionsOneRedownload
+        alertType = .redownloadSong
         alertTitle = Shared.contentNotFoundAlertTitle(song.title)
         alertMessage = Shared.serverContentNotAvailableRedownloadMessage
         showAlert = true
