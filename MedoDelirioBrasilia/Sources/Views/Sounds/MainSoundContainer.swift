@@ -38,6 +38,7 @@ struct MainSoundContainer: View {
     @EnvironmentObject var trendsHelper: TrendsHelper
     @EnvironmentObject var settingsHelper: SettingsHelper
     @EnvironmentObject var networkMonitor: NetworkMonitor
+    @EnvironmentObject var playRandomSoundHelper: PlayRandomSoundHelper
 
     // MARK: - Computed Properties
 
@@ -214,6 +215,13 @@ struct MainSoundContainer: View {
         .onChange(of: viewModel.processedUpdateNumber) { _ in
             withAnimation {
                 displayLongUpdateBanner = viewModel.totalUpdateCount >= 10 && viewModel.processedUpdateNumber != viewModel.totalUpdateCount
+            }
+        }
+        .onChange(of: playRandomSoundHelper.soundIdToPlay) { soundId in
+            if !soundId.isEmpty {
+                viewModel.currentViewMode = .allSounds
+                allSoundsViewModel.scrollAndPlaySound(withId: soundId)
+                playRandomSoundHelper.soundIdToPlay = ""
             }
         }
         .sheet(isPresented: $showingModalView) {

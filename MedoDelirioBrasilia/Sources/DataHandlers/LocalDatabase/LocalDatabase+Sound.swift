@@ -210,23 +210,22 @@ extension LocalDatabase {
         try db.run(updateQuery)
     }
 
-    func randomSounds() throws -> [Sound] {
-        var randomSounds = [Sound]()
-
+    func randomSound() throws -> Sound? {
         let author_id = Expression<String>("authorId")
         let id = Expression<String>("id")
         let name = Expression<String>("name")
 
-        // Construct the query to fetch 12 random sounds and join with the author table
         let query = soundTable
             .select(soundTable[*], author[name])
             .join(author, on: soundTable[author_id] == author[id])
             .order(Expression<Void>(literal: "RANDOM()")) // SQLite's RANDOM() function to order the sounds randomly
-            .limit(12) // Limit the results to 12
+            .limit(1)
 
-        // Iterate over the results and decode them into Sound objects
-        for queriedSound in try db.prepare(query) {
+        // Fetch and decode a single result into a Sound object
+        if let queriedSound = try db.pluck(query) {
             var soundData: Sound = try queriedSound.decode()
+
+            // Optional fields: dateAdded and isFromServer
             if let dateString = try queriedSound.get(Expression<String?>("dateAdded")) {
                 if let date = dateFormatter.date(from: dateString) {
                     soundData.dateAdded = date
@@ -235,10 +234,13 @@ extension LocalDatabase {
             if let isFromServer = try queriedSound.get(Expression<Bool?>("isFromServer")) {
                 soundData.isFromServer = isFromServer
             }
+
+            // Set author name
             let authorName = try queriedSound.get(author[name])
             soundData.authorName = authorName
-            randomSounds.append(soundData)
+
+            return soundData
         }
-        return randomSounds
+        return nil // Return nil if no sound is found
     }
 }

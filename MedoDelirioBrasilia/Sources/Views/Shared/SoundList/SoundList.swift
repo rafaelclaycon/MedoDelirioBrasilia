@@ -360,6 +360,13 @@ struct SoundList: View {
                                     }
                                 }
                             }
+                            .onChange(of: viewModel.scrollAndPlay) { soundId in
+                                if !soundId.isEmpty {
+                                    withAnimation {
+                                        proxy.scrollTo(soundId, anchor: .center)
+                                    }
+                                }
+                            }
                             .onChange(of: viewModel.authorToOpen) { author in
                                 guard let author else { return }
                                 push(GeneralNavigationDestination.authorDetail(author))
