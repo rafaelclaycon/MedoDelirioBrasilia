@@ -41,5 +41,4 @@ struct NumberBadgeView: View {
         NumberBadgeView(number: "99", showBackgroundCircle: false)
         NumberBadgeView(number: "100", showBackgroundCircle: true)
     }
-    .previewLayout(.fixed(width: 70, height: 60))
 }

@@ -9,8 +9,8 @@ import SwiftUI
 
 struct MainView: View {
 
-    @State var tabSelection: PhoneTab = .sounds
-    @State var state: PadScreen? = PadScreen.allSounds
+    @Binding var tabSelection: PhoneTab
+    @Binding var state: PadScreen?
     @State private var soundsPath = NavigationPath()
     @State private var reactionsPath = NavigationPath()
 
@@ -195,8 +195,10 @@ struct MainView: View {
                     .interactiveDismissDisabled(UIDevice.current.userInterfaceIdiom == .phone ? true : false)
 
             case .whatsNew:
-                IntroducingReactionsView(isBeingShown: $showingModalView)
+                IntroducingiOS18ControlAndSiriIntentView()
                     .interactiveDismissDisabled()
+//                IntroducingReactionsView(isBeingShown: $showingModalView)
+//                    .interactiveDismissDisabled()
 
             case .retrospective:
                 EmptyView()
@@ -239,6 +241,9 @@ struct MainView: View {
         if !AppPersistentMemory.hasShownNotificationsOnboarding() {
             subviewToOpen = .onboarding
             showingModalView = true
+        } else if !AppPersistentMemory.hasSeenControlWhatsNewScreen(), UIDevice.supportsiOSiPadOS18() {
+            subviewToOpen = .whatsNew
+            showingModalView = true
             // TODO: Bring back once Reactions is ready!
 //        } else if !AppPersistentMemory.hasSeenReactionsWhatsNewScreen() {
 //            subviewToOpen = .whatsNew
@@ -248,5 +253,5 @@ struct MainView: View {
 }
 
 #Preview {
-    MainView()
+    MainView(tabSelection: .constant(.sounds), state: .constant(.allSounds))
 }
