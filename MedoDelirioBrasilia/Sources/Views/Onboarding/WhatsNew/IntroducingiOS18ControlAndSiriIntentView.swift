@@ -50,7 +50,7 @@ struct IntroducingiOS18ControlAndSiriIntentView: View {
                                 .foregroundStyle(.blue)
                         }
 
-                        DisclosureGroup {
+                        DisclosureGroup(isExpanded: .constant(true)) {
                             SiriInstructions()
                                 .padding(.top)
                         } label: {
@@ -116,7 +116,7 @@ extension IntroducingiOS18ControlAndSiriIntentView {
             VStack(alignment: .center, spacing: 40) {
                 Text("Siga esses passos para inserir o controle Tocar Som Aleatório à sua Central de Controle e divirta-se com um som aleatório a cada toque.")
 
-                VStack(alignment: .leading, spacing: 15) {
+                VStack(alignment: .leading, spacing: 25) {
                     ForEach(steps) { step in
                         HStack(spacing: 15) {
                             NumberBadgeView(number: step.number, showBackgroundCircle: true)
@@ -146,9 +146,9 @@ extension IntroducingiOS18ControlAndSiriIntentView {
 
         var body: some View {
             VStack(alignment: .center, spacing: 40) {
-                Text("Agora você também pode pedir para a Siri tocar um som aleatório do Medo e Delírio sem usar as mãos. Depois de dizer \"E aí, Siri\", use uma dessas frases:")
+                Text("Agora você também pode pedir para a Siri tocar um som aleatório do Medo e Delírio sem usar as mãos. É só usar uma dessas frases:")
 
-                VStack(alignment: .leading, spacing: 15) {
+                VStack(alignment: .leading, spacing: 22) {
                     ForEach(phrase, id: \.self) {
                         FancySiriQuote(quote: $0)
                     }
@@ -164,20 +164,35 @@ extension IntroducingiOS18ControlAndSiriIntentView {
 
         let quote: String
 
+        @Environment(\.colorScheme) var colorScheme
+
+        private var quotationMarkOpacity: CGFloat {
+            colorScheme == .dark ? 0.3 : 0.24
+        }
+
         var body: some View {
-            HStack {
+            HStack(spacing: 15) {
                 Image(systemName: "microphone.fill")
                     .foregroundStyle(.pink)
+                    .font(.title)
 
                 Text("E aí, Siri, \(quote)")
                     .bold()
                     .multilineTextAlignment(.leading)
-            }
-            .background(alignment: .topLeading) {
-                Text("“")
-                    .foregroundStyle(.gray)
-                    .font(.largeTitle)
-                    //.opacity(0.3)
+                    .background(alignment: .topLeading) {
+                        Image(systemName: "quote.opening")
+                            .foregroundStyle(.gray)
+                            .font(.title)
+                            .opacity(quotationMarkOpacity)
+                            .offset(x: -10, y: 10)
+                    }
+                    .background(alignment: .bottomTrailing) {
+                        Image(systemName: "quote.closing")
+                            .foregroundStyle(.gray)
+                            .font(.title)
+                            .opacity(quotationMarkOpacity)
+                            .offset(y: -15)
+                    }
             }
         }
     }
