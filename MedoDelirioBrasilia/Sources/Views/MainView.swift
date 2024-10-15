@@ -195,7 +195,7 @@ struct MainView: View {
                     .interactiveDismissDisabled(UIDevice.current.userInterfaceIdiom == .phone ? true : false)
 
             case .whatsNew:
-                IntroducingPlayRandomSoundControlView()
+                IntroducingiOS18ControlAndSiriIntentView()
                     .interactiveDismissDisabled()
 //                IntroducingReactionsView(isBeingShown: $showingModalView)
 //                    .interactiveDismissDisabled()
@@ -241,7 +241,7 @@ struct MainView: View {
         if !AppPersistentMemory.hasShownNotificationsOnboarding() {
             subviewToOpen = .onboarding
             showingModalView = true
-        } else if !AppPersistentMemory.hasSeenControlWhatsNewScreen() {
+        } else if !AppPersistentMemory.hasSeenControlWhatsNewScreen(), UIDevice.supportsiOSiPadOS18() {
             subviewToOpen = .whatsNew
             showingModalView = true
             // TODO: Bring back once Reactions is ready!

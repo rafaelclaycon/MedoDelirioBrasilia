@@ -1,6 +1,7 @@
 import UIKit
 
 // MARK: - Physical Characteristics
+
 extension UIDevice {
 
     static var is4InchDevice: Bool {
@@ -23,7 +24,32 @@ extension UIDevice {
     }
 }
 
-// MARK: Is specific device
+// MARK: - Software support
+
+extension UIDevice {
+
+    static func supportsiOSiPadOS18(
+        isMac: Bool = UIDevice.isMac,
+        isiPad: Bool = UIDevice.isiPad,
+        _ modelName: String = UIDevice.modelName
+    ) -> Bool {
+        guard !isMac else { return false }
+        guard !isiPad else {
+            return ![
+                "iPad (5th generation)",
+                "iPad (6th generation)",
+                "iPad Pro (9.7-inch)",
+                "iPad Pro (10.5-inch)",
+                "iPad Pro (12.9-inch) (1st generation)",
+                "iPad Pro (12.9-inch) (2nd generation)"
+            ].contains(modelName)
+        }
+        return !["iPhone 8","iPhone 8 Plus","iPhone X"].contains(modelName)
+    }
+}
+
+// MARK: - Is specific device
+
 extension UIDevice {
     static var isiPadMini: Bool {
         let model = UIDevice.modelName
