@@ -33,9 +33,13 @@ struct MedoDelirioBrasiliaApp: App {
             tabSelection = .sounds
             state = .allSounds
 
+            let includeOffensive = UserSettings.getShowExplicitContent()
+
             do {
-                guard let id = try LocalDatabase.shared.randomSound()?.id else { return }
-                helper.soundIdToPlay = id
+                guard
+                    let randomSound = try LocalDatabase.shared.randomSound(includeOffensive: includeOffensive)
+                else { return }
+                helper.soundIdToPlay = randomSound.id
             } catch {
                 print("Erro obtendo som aleatório: \(error.localizedDescription)")
             }

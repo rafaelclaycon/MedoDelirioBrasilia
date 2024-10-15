@@ -210,14 +210,18 @@ extension LocalDatabase {
         try db.run(updateQuery)
     }
 
-    func randomSound() throws -> Sound? {
+    func randomSound(
+        includeOffensive: Bool
+    ) throws -> Sound? {
         let author_id = Expression<String>("authorId")
         let id = Expression<String>("id")
         let name = Expression<String>("name")
+        let is_offensive = Expression<Bool>("isOffensive")
 
         let query = soundTable
             .select(soundTable[*], author[name])
             .join(author, on: soundTable[author_id] == author[id])
+            .where(soundTable[is_offensive] == includeOffensive)
             .order(Expression<Void>(literal: "RANDOM()")) // SQLite's RANDOM() function to order the sounds randomly
             .limit(1)
 
