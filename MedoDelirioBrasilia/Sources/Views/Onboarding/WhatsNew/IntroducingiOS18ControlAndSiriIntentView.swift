@@ -50,11 +50,11 @@ struct IntroducingiOS18ControlAndSiriIntentView: View {
                                 .foregroundStyle(.blue)
                         }
 
-                        DisclosureGroup(isExpanded: .constant(true)) {
+                        DisclosureGroup {
                             SiriInstructions()
                                 .padding(.top)
                         } label: {
-                            Label("Como usar a Siri para tocar um som aleatório", systemImage: "waveform.badge.microphone")
+                            Label("Como usar a Siri para tocar um som aleatório", systemImage: "waveform")
                                 .foregroundStyle(.blue)
                         }
 
@@ -148,13 +148,14 @@ extension IntroducingiOS18ControlAndSiriIntentView {
             VStack(alignment: .center, spacing: 40) {
                 Text("Agora você também pode pedir para a Siri tocar um som aleatório do Medo e Delírio sem usar as mãos. É só usar uma dessas frases:")
 
-                VStack(alignment: .leading, spacing: 22) {
+                VStack(alignment: .leading, spacing: 36) {
                     ForEach(phrase, id: \.self) {
                         FancySiriQuote(quote: $0)
                     }
                 }
+                .padding(.horizontal)
 
-                Text("Toque em Permitir caso a Siri questione se deseja autorizá-la a usar o Atalho.")
+                Text("Toque em **Permitir** caso a Siri questione se deseja autorizá-la a usar o Atalho.")
                     .multilineTextAlignment(.center)
             }
         }
@@ -170,13 +171,17 @@ extension IntroducingiOS18ControlAndSiriIntentView {
             colorScheme == .dark ? 0.3 : 0.24
         }
 
-        var body: some View {
-            HStack(spacing: 15) {
-                Image(systemName: "microphone.fill")
-                    .foregroundStyle(.pink)
-                    .font(.title)
+        private let colors: [Color] = [.pink, .orange]
 
-                Text("E aí, Siri, \(quote)")
+        var body: some View {
+            HStack(spacing: 25) {
+                if #available(iOS 18, *) {
+                    Image(systemName: "microphone.fill")
+                        .foregroundStyle(colors.randomElement() ?? .black)
+                        .font(.title)
+                }
+
+                Text(" E aí, Siri, \(quote)")
                     .bold()
                     .multilineTextAlignment(.leading)
                     .background(alignment: .topLeading) {
@@ -184,14 +189,14 @@ extension IntroducingiOS18ControlAndSiriIntentView {
                             .foregroundStyle(.gray)
                             .font(.title)
                             .opacity(quotationMarkOpacity)
-                            .offset(x: -10, y: 10)
+                            .offset(x: -20, y: -17)
                     }
                     .background(alignment: .bottomTrailing) {
                         Image(systemName: "quote.closing")
                             .foregroundStyle(.gray)
                             .font(.title)
                             .opacity(quotationMarkOpacity)
-                            .offset(y: -15)
+                            .offset(x: 20, y: 17)
                     }
             }
         }
@@ -200,5 +205,5 @@ extension IntroducingiOS18ControlAndSiriIntentView {
 
 #Preview {
 
-    IntroducingiOS18ControlAndSiriIntentView.FancySiriQuote(quote: "toque uma vírgula do Medo e Delírio")
+    IntroducingiOS18ControlAndSiriIntentView.SiriInstructions()
 }
