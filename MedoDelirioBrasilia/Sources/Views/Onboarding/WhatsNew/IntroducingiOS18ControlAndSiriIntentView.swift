@@ -15,6 +15,14 @@ struct IntroducingiOS18ControlAndSiriIntentView: View {
         UIDevice.isiPad ? "iPadOS 18" : "iOS 18"
     }
 
+    private var firstPart: String {
+        if #available(iOS 18, *) {
+            return "Como você já atualizou para o \(systemName), pode aproveitar"
+        } else {
+            return "Atualize o seu \(UIDevice.isiPad ? "iPad" : "iPhone") para o \(systemName) e aproveite"
+        }
+    }
+
     var body: some View {
         NavigationView {
             ScrollView {
@@ -31,15 +39,23 @@ struct IntroducingiOS18ControlAndSiriIntentView: View {
                             .bold()
                             .multilineTextAlignment(.center)
 
-                        Text("Se você já atualizou para o \(systemName), pode aproveitar duas novidades: o Controle Tocar Som Aleatório e o Atalho da Siri para fazer o mesmo.")
+                        Text("\(firstPart) duas novidades: o Controle Tocar Som Aleatório e o Atalho da Siri para fazer o mesmo.")
                             .multilineTextAlignment(.center)
 
-                        DisclosureGroup("Como adicionar o Controle") {
+                        DisclosureGroup {
                             ControlInstructions()
+                                .padding(.top)
+                        } label: {
+                            Label("Como adicionar o Controle", systemImage: "switch.2")
+                                .foregroundStyle(.blue)
                         }
 
-                        DisclosureGroup("Como usar a Siri para tocar um som aleatório") {
-                            Text("Abc")
+                        DisclosureGroup {
+                            SiriInstructions()
+                                .padding(.top)
+                        } label: {
+                            Label("Como usar a Siri para tocar um som aleatório", systemImage: "waveform.badge.microphone")
+                                .foregroundStyle(.blue)
                         }
 
                         Spacer()
@@ -98,7 +114,7 @@ extension IntroducingiOS18ControlAndSiriIntentView {
 
         var body: some View {
             VStack(alignment: .center, spacing: 40) {
-                Text("Siga os passos abaixo para inserir o controle Tocar Som Aleatório à sua Central de Controle e divirta-se com um som aleatório a cada toque.")
+                Text("Siga esses passos para inserir o controle Tocar Som Aleatório à sua Central de Controle e divirta-se com um som aleatório a cada toque.")
 
                 VStack(alignment: .leading, spacing: 15) {
                     ForEach(steps) { step in
@@ -111,15 +127,63 @@ extension IntroducingiOS18ControlAndSiriIntentView {
                     }
                 }
 
-                Text("Você também pode adicionar esse controle à sua Tela de Bloqueio.")
-                    .multilineTextAlignment(.center)
+                if UIDevice.hasNotch {
+                    Text("Você também pode adicionar esse controle à sua Tela de Bloqueio.")
+                        .multilineTextAlignment(.center)
+                }
             }
         }
     }
 
     struct SiriInstructions: View {
+
+        private let phrase: [String] = [
+            "toque uma vírgula do Medo e Delírio",
+            "toque um som do Medo e Delírio",
+            "toque um som aleatório do Medo e Delírio",
+            "Medo e Delírio",
+        ]
+
         var body: some View {
-            /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Hello, world!@*/Text("Hello, world!")/*@END_MENU_TOKEN@*/
+            VStack(alignment: .center, spacing: 40) {
+                Text("Agora você também pode pedir para a Siri tocar um som aleatório do Medo e Delírio sem usar as mãos. Depois de dizer \"E aí, Siri\", use uma dessas frases:")
+
+                VStack(alignment: .leading, spacing: 15) {
+                    ForEach(phrase, id: \.self) {
+                        FancySiriQuote(quote: $0)
+                    }
+                }
+
+                Text("Toque em Permitir caso a Siri questione se deseja autorizá-la a usar o Atalho.")
+                    .multilineTextAlignment(.center)
+            }
         }
     }
+
+    struct FancySiriQuote: View {
+
+        let quote: String
+
+        var body: some View {
+            HStack {
+                Image(systemName: "microphone.fill")
+                    .foregroundStyle(.pink)
+
+                Text("E aí, Siri, \(quote)")
+                    .bold()
+                    .multilineTextAlignment(.leading)
+            }
+            .background(alignment: .topLeading) {
+                Text("“")
+                    .foregroundStyle(.gray)
+                    .font(.largeTitle)
+                    //.opacity(0.3)
+            }
+        }
+    }
+}
+
+#Preview {
+
+    IntroducingiOS18ControlAndSiriIntentView.FancySiriQuote(quote: "toque uma vírgula do Medo e Delírio")
 }
