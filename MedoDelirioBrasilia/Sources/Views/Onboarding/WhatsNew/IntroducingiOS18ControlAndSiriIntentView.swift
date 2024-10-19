@@ -15,8 +15,16 @@ struct IntroducingiOS18ControlAndSiriIntentView: View {
         UIDevice.isiPad ? "iPadOS 18" : "iOS 18"
     }
 
-    private var firstPart: String {
+    private var isiOS18: Bool {
         if #available(iOS 18, *) {
+             return true
+        } else {
+            return false
+        }
+    }
+
+    private var firstPart: String {
+        if isiOS18 {
             return "Como você já atualizou para o \(systemName), pode aproveitar"
         } else {
             return "Atualize o seu \(UIDevice.isiPad ? "iPad" : "iPhone") para o \(systemName) e aproveite"
@@ -43,7 +51,7 @@ struct IntroducingiOS18ControlAndSiriIntentView: View {
                             .multilineTextAlignment(.center)
 
                         DisclosureGroup {
-                            ControlInstructions()
+                            ControlInstructions(isiOS18: isiOS18, systemName: systemName)
                                 .padding(.top)
                         } label: {
                             Label("Como adicionar o Controle", systemImage: "switch.2")
@@ -51,7 +59,7 @@ struct IntroducingiOS18ControlAndSiriIntentView: View {
                         }
 
                         DisclosureGroup {
-                            SiriInstructions()
+                            SiriInstructions(isiOS18: isiOS18, systemName: systemName)
                                 .padding(.top)
                         } label: {
                             Label("Como usar a Siri para tocar um som aleatório", systemImage: "waveform")
@@ -96,11 +104,22 @@ extension IntroducingiOS18ControlAndSiriIntentView {
 
     struct ControlInstructions: View {
 
+        let isiOS18: Bool
+        let systemName: String
+
         struct Step: Identifiable {
             let number: String
             let instruction: String
             var id: String {
                 self.number
+            }
+        }
+
+        private var firstPart: String {
+            if isiOS18 {
+                return "Siga"
+            } else {
+                return "Depois de atualizar, siga"
             }
         }
 
@@ -114,7 +133,7 @@ extension IntroducingiOS18ControlAndSiriIntentView {
 
         var body: some View {
             VStack(alignment: .center, spacing: 40) {
-                Text("Siga esses passos para inserir o controle Tocar Som Aleatório à sua Central de Controle e divirta-se com um som aleatório a cada toque.")
+                Text("\(firstPart) esses passos para inserir o controle Tocar Som Aleatório à sua Central de Controle e divirta-se com um som aleatório a cada toque.")
 
                 VStack(alignment: .leading, spacing: 25) {
                     ForEach(steps) { step in
@@ -137,6 +156,9 @@ extension IntroducingiOS18ControlAndSiriIntentView {
 
     struct SiriInstructions: View {
 
+        let isiOS18: Bool
+        let systemName: String
+
         private let phrase: [String] = [
             "toque uma vírgula do Medo e Delírio",
             "toque um som do Medo e Delírio",
@@ -144,16 +166,27 @@ extension IntroducingiOS18ControlAndSiriIntentView {
             "Medo e Delírio",
         ]
 
+        private var firstPart: String {
+            if isiOS18 {
+                return "Agora você também pode pedir para a Siri tocar um som aleatório do Medo e Delírio sem usar as mãos."
+            } else {
+                return "No \(systemName) você também poderá pedir para a Siri tocar um som aleatório do Medo e Delírio sem usar as mãos.*"
+            }
+        }
+
         var body: some View {
             VStack(alignment: .center, spacing: 40) {
-                Text("Agora você também pode pedir para a Siri tocar um som aleatório do Medo e Delírio sem usar as mãos. É só usar uma dessas frases:")
+                Text("\(firstPart) É só falar uma dessas frases:")
 
                 VStack(alignment: .leading, spacing: 36) {
                     ForEach(phrase, id: \.self) {
                         FancySiriQuote(quote: $0)
                     }
                 }
-                .padding(.horizontal)
+                .padding(.horizontal, 3)
+
+                Text("* É necessário ter Falar com a Siri habilitado nos Ajustes e o idioma configurado para Português (Brasil).")
+                    .multilineTextAlignment(.center)
 
                 Text("Toque em **Permitir** caso a Siri questione se deseja autorizá-la a usar o Atalho.")
                     .multilineTextAlignment(.center)
@@ -205,5 +238,5 @@ extension IntroducingiOS18ControlAndSiriIntentView {
 
 #Preview {
 
-    IntroducingiOS18ControlAndSiriIntentView.SiriInstructions()
+    IntroducingiOS18ControlAndSiriIntentView.SiriInstructions(isiOS18: true, systemName: "iOS 18")
 }
