@@ -1,0 +1,27 @@
+//
+//  IntentProviders.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Schmitt on 04/10/24.
+//
+
+import Foundation
+import AppIntents
+
+@available(iOS 18.0, *)
+struct PlayRandomSoundIntentProvider: AppShortcutsProvider {
+
+    static var appShortcuts: [AppShortcut] {
+        AppShortcut(
+            intent: PlayRandomSoundIntent(),
+            phrases: [
+                "Toque uma vírgula do \(.applicationName)",
+                "Toque um som do \(.applicationName)",
+                "Toque um som aleatório do \(.applicationName)",
+                "Medo e Delírio",
+            ],
+            shortTitle: "Tocar som aleatório",
+            systemImageName: "play.fill"
+        )
+    }
+}

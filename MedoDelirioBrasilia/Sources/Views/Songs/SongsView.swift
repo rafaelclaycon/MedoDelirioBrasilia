@@ -207,19 +207,33 @@ struct SongsView: View {
             }
             .alert(isPresented: $viewModel.showAlert) {
                 switch viewModel.alertType {
-                case .singleOption:
-                    return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
+                case .ok:
+                    return Alert(
+                        title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK"))
+                    )
 
-                case .twoOptionsOneRedownload:
-                    return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .default(Text("Baixar Conteúdo Novamente"), action: {
+                case .redownloadSong:
+                    return Alert(
+                        title: Text(viewModel.alertTitle),
+                        message: Text(viewModel.alertMessage),
+                        primaryButton: .default(Text("Baixar Conteúdo Novamente"), action: {
                         guard let content = viewModel.selectedSong else { return }
                         viewModel.redownloadServerContent(withId: content.id)
-                    }), secondaryButton: .cancel(Text("Fechar")))
+                    }), secondaryButton: .cancel(Text("Fechar"))
+                    )
 
-                default:
-                    return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .default(Text("Relatar Problema por E-mail"), action: {
-                        viewModel.showEmailAppPicker_songUnavailableConfirmationDialog = true
-                    }), secondaryButton: .cancel(Text("Fechar")))
+                case .songUnavailable:
+                    return Alert(
+                        title: Text(viewModel.alertTitle),
+                        message: Text(viewModel.alertMessage),
+                        primaryButton: .default(
+                            Text("Relatar Problema por E-mail"),
+                            action: {
+                                viewModel.showEmailAppPicker_songUnavailableConfirmationDialog = true
+                            }
+                        ),
+                        secondaryButton: .cancel(Text("Fechar"))
+                    )
                 }
             }
             .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in

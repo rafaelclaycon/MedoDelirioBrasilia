@@ -14,9 +14,35 @@ struct MedoDelirioBrasiliaApp: App {
 
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
+    @State private var tabSelection: PhoneTab = .sounds
+    @State private var state: PadScreen? = PadScreen.allSounds
+
+    @StateObject private var helper = PlayRandomSoundHelper()
+
     var body: some Scene {
         WindowGroup {
-            MainView()
+            MainView(tabSelection: $tabSelection, state: $state)
+                .onOpenURL(perform: handleURL)
+                .environmentObject(helper)
+        }
+    }
+
+    private func handleURL(_ url: URL) {
+        guard url.scheme == "medodelirio" else { return }
+        if url.host == "playrandomsound" {
+            tabSelection = .sounds
+            state = .allSounds
+
+            let includeOffensive = UserSettings.getShowExplicitContent()
+
+            do {
+                guard
+                    let randomSound = try LocalDatabase.shared.randomSound(includeOffensive: includeOffensive)
+                else { return }
+                helper.soundIdToPlay = randomSound.id
+            } catch {
+                print("Erro obtendo som aleatório: \(error.localizedDescription)")
+            }
         }
     }
 }
@@ -61,7 +87,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
         return true
     }
-    
+
     // This fixes the issue in which a sound would take 10 seconds to play on the Mac
     private func prepareAudioPlayerOnMac() {
         guard ProcessInfo.processInfo.isiOSAppOnMac else { return }

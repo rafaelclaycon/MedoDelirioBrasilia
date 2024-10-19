@@ -67,6 +67,9 @@ class SoundListViewModel<T>: ObservableObject {
     @Published var toastIconColor: Color = .green
     @Published var toastText: String = ""
 
+    // Play Random Sound
+    @Published var scrollAndPlay: String = ""
+
     // MARK: - Stored Properties
 
     var currentSoundsListMode: Binding<SoundsListMode>
@@ -270,6 +273,15 @@ extension SoundListViewModel {
     private func doPlaylistCleanup() {
         currentTrackIndex = 0
         isPlayingPlaylist = false
+    }
+
+    func scrollAndPlaySound(withId soundId: String) {
+        guard case .loaded(let sounds) = state else { return }
+        guard let sound = sounds.first(where: { $0.id == soundId }) else { return }
+        scrollAndPlay = sound.id
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(400)) {
+            self.play(sound)
+        }
     }
 }
 
