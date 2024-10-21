@@ -4,15 +4,15 @@ class UserSettings {
 
     // MARK: - Getters
     
-    static func getShowOffensiveSounds() -> Bool {
+    static func getShowExplicitContent() -> Bool {
         let userDefaults = UserDefaults.standard
-        guard let value = userDefaults.object(forKey: "skipGetLinkInstructions") else {
+        guard let value = userDefaults.object(forKey: "showExplicitContent") else {
             return false
         }
         return Bool(value as! Bool)
     }
     
-    static func getSoundSortOption() -> Int {
+    static func mainSoundListSoundSortOption() -> Int {
         let userDefaults = UserDefaults.standard
         guard let value = userDefaults.object(forKey: "soundSortOption") else {
             return 2
@@ -99,15 +99,31 @@ class UserSettings {
         }
         return Date(timeIntervalSince1970: value as! Double)
     }
-    
+
+    static func getShowUpdateDateOnUI() -> Bool {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "showUpdateDateOnUI") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
+
+    static func authorSortOption() -> Int {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "authorSortOption") else {
+            return 0
+        }
+        return Int(value as! Int)
+    }
+
     // MARK: - Setters
     
-    static func setShowOffensiveSounds(to newValue: Bool) {
+    static func setShowExplicitContent(to newValue: Bool) {
         let userDefaults = UserDefaults.standard
-        userDefaults.set(newValue, forKey: "skipGetLinkInstructions")
+        userDefaults.set(newValue, forKey: "showExplicitContent")
     }
     
-    static func setSoundSortOption(to newValue: Int) {
+    static func saveMainSoundListSoundSortOption(_ newValue: Int) {
         let userDefaults = UserDefaults.standard
         userDefaults.set(newValue, forKey: "soundSortOption")
     }
@@ -162,4 +178,13 @@ class UserSettings {
         userDefaults.set(newValue.timeIntervalSince1970, forKey: "lastSendDateOfStillAliveSignalToServer")
     }
 
+    static func setShowUpdateDateOnUI(to newValue: Bool) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(newValue, forKey: "showUpdateDateOnUI")
+    }
+
+    static func saveAuthorSortOption(_ newValue: Int) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(newValue, forKey: "authorSortOption")
+    }
 }

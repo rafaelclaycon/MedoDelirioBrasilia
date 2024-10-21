@@ -10,7 +10,7 @@ import UIKit
 class FolderResearchHelper {
 
     static func sendLogs(completion: @escaping (Bool) -> Void) {
-        guard let folders = try? database.getAllUserFolders(), !folders.isEmpty else {
+        guard let folders = try? LocalDatabase.shared.getAllUserFolders(), !folders.isEmpty else {
             return completion(false)
         }
         
@@ -26,7 +26,7 @@ class FolderResearchHelper {
                                             logDateTime: Date.now.iso8601withFractionalSeconds))
         }
         
-        networkRabbit.post(folderLogs: folderLogs) { success, error in
+        NetworkRabbit.shared.post(folderLogs: folderLogs) { success, error in
             guard let success = success, success else {
                 // TODO: Mark for resend
                 //hadErrorsSending = true
@@ -34,7 +34,7 @@ class FolderResearchHelper {
             }
             
             folderLogs.forEach { folderLog in
-                if let contentIds = try? database.getAllSoundIdsInsideUserFolder(withId: folderLog.folderId) {
+                if let contentIds = try? LocalDatabase.shared.getAllSoundIdsInsideUserFolder(withId: folderLog.folderId) {
                     guard !contentIds.isEmpty else {
                         return
                     }
@@ -45,7 +45,7 @@ class FolderResearchHelper {
                 }
             }
             
-            networkRabbit.post(folderContentLogs: folderContentLogs) { success, error in
+            NetworkRabbit.shared.post(folderContentLogs: folderContentLogs) { success, error in
                 guard let success = success, success else {
                     // TODO: Mark for resend
                     //hadErrorsSending = true

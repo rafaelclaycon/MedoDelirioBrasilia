@@ -3,17 +3,19 @@ import SwiftUI
 struct SettingsCasingWithCloseView: View {
 
     @Binding var isBeingShown: Bool
+    @EnvironmentObject var helper: SettingsHelper
     
     var body: some View {
         NavigationView {
             SettingsView()
-                .navigationTitle("Ajustes")
+                .navigationTitle("Configurações")
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarItems(leading:
                     Button("Fechar") {
                         self.isBeingShown = false
                     }
                 )
+                .environmentObject(helper)
         }
     }
 

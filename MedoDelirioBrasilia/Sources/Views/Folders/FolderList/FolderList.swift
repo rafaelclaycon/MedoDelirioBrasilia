@@ -10,13 +10,16 @@ import SwiftUI
 /// Sub-view loaded inside the Sounds tab on iPhone and the All Folders tab on iPad and Mac.
 struct FolderList: View {
 
-    @StateObject private var viewModel = FolderListViewModel()
-    @State var displayJoinFolderResearchBanner: Bool = false
     @Binding var updateFolderList: Bool
-    @Binding var deleteFolderAide: DeleteFolderViewAide
     @Binding var folderIdForEditing: String
-    @EnvironmentObject var deleteFolderAideiPhone: DeleteFolderViewAideiPhone
-    
+
+    @StateObject private var viewModel = FolderListViewModel()
+
+    @State private var displayJoinFolderResearchBanner: Bool = false
+    @State private var currentSoundsListMode: SoundsListMode = .regular
+
+    @EnvironmentObject var deleteFolderAide: DeleteFolderViewAide
+
     private var columns: [GridItem] {
         if UIDevice.current.userInterfaceIdiom == .phone {
             return [
@@ -60,9 +63,12 @@ struct FolderList: View {
                 LazyVGrid(columns: columns, spacing: 14) {
                     ForEach(viewModel.folders, id: \.editingIdentifyingId) { folder in
                         NavigationLink {
-                            FolderDetailView(folder: folder)
+                            FolderDetailView(
+                                folder: folder,
+                                currentSoundsListMode: $currentSoundsListMode
+                            )
                         } label: {
-                            FolderCell(symbol: folder.symbol, name: folder.name, backgroundColor: folder.backgroundColor.toColor())
+                            FolderCell(symbol: folder.symbol, name: folder.name, backgroundColor: folder.backgroundColor.toPastelColor())
                                 .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                         }
                         .foregroundColor(.primary)
@@ -79,19 +85,11 @@ struct FolderList: View {
                             
                             Section {
                                 Button(role: .destructive, action: {
-                                    if UIDevice.current.userInterfaceIdiom == .phone {
-                                        let folderName = "\(folder.symbol) \(folder.name)"
-                                        deleteFolderAideiPhone.alertTitle = "Apagar \"\(folderName)\""
-                                        deleteFolderAideiPhone.alertMessage = "Tem certeza de que deseja apagar a pasta \"\(folderName)\"? Os sons não serão apagados."
-                                        deleteFolderAideiPhone.folderIdForDeletion = folder.id
-                                        deleteFolderAideiPhone.showAlert = true
-                                    } else {
-                                        let folderName = "\(folder.symbol) \(folder.name)"
-                                        deleteFolderAide.alertTitle = "Apagar \"\(folderName)\""
-                                        deleteFolderAide.alertMessage = "Tem certeza de que deseja apagar a pasta \"\(folderName)\"? Os sons não serão apagados."
-                                        deleteFolderAide.folderIdForDeletion = folder.id
-                                        deleteFolderAide.showAlert = true
-                                    }
+                                    let folderName = "\(folder.symbol) \(folder.name)"
+                                    deleteFolderAide.alertTitle = "Apagar \"\(folderName)\""
+                                    deleteFolderAide.alertMessage = "Tem certeza de que deseja apagar a pasta \"\(folderName)\"? Os sons não serão apagados."
+                                    deleteFolderAide.folderIdForDeletion = folder.id
+                                    deleteFolderAide.showAlert = true
                                 }, label: {
                                     HStack {
                                         Text("Apagar Pasta")
@@ -108,7 +106,7 @@ struct FolderList: View {
             }
         }
         .onAppear {
-            viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
+            viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.getAllUserFolders())
             
             if AppPersistentMemory.getHasJoinedFolderResearch() {
                 displayJoinFolderResearchBanner = false
@@ -132,27 +130,24 @@ struct FolderList: View {
         .onChange(of: updateFolderList) { shouldUpdate in
             refreshFolderList(shouldUpdate)
         }
-        .onChange(of: deleteFolderAideiPhone.updateFolderList) { shouldUpdate in
+        .onChange(of: deleteFolderAide.updateFolderList) { shouldUpdate in
             refreshFolderList(shouldUpdate)
         }
     }
     
     private func refreshFolderList(_ shouldUpdate: Bool) {
         if shouldUpdate {
-            viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
+            viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.getAllUserFolders())
             updateFolderList = false
-            deleteFolderAideiPhone.updateFolderList = false
+            deleteFolderAide.updateFolderList = false
         }
     }
 
 }
 
-struct FolderList_Previews: PreviewProvider {
-
-    static var previews: some View {
-        FolderList(updateFolderList: .constant(false),
-                   deleteFolderAide: .constant(DeleteFolderViewAide()),
-                   folderIdForEditing: .constant(.empty))
-    }
-
+#Preview {
+    FolderList(
+        updateFolderList: .constant(false),
+        folderIdForEditing: .constant(.empty)
+    )
 }

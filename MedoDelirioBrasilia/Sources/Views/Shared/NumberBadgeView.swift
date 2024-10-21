@@ -2,11 +2,16 @@ import SwiftUI
 
 struct NumberBadgeView: View {
 
-    @State var number: String
+    let number: String
+    let showBackgroundCircle: Bool
+    var lightModeOpacity: Double = 0.25
+    var darkModeOpacity: Double = 0.5
+    var circleColor: Color = .gray
+
     @Environment(\.colorScheme) var colorScheme
-    
+
     private let circleHeight: CGFloat = 30
-    
+
     private var circleWidth: CGFloat {
         if number.count > 2 {
             return 40
@@ -14,32 +19,26 @@ struct NumberBadgeView: View {
             return 30
         }
     }
-    
+
     var body: some View {
         ZStack() {
             RoundedRectangle(cornerRadius: 30)
-                .fill(.gray)
+                .fill(showBackgroundCircle ? circleColor : .clear)
                 .frame(width: circleWidth, height: circleHeight)
-                .opacity(colorScheme == .dark ? 0.5 : 0.25)
-            
+                .opacity(colorScheme == .dark ? darkModeOpacity : lightModeOpacity)
+
             Text(number)
                 .bold()
         }
     }
-
 }
 
-struct NumberBadgeView_Previews: PreviewProvider {
-
-    static var previews: some View {
-        Group {
-            NumberBadgeView(number: "1")
-            NumberBadgeView(number: "10")
-            NumberBadgeView(number: "55")
-            NumberBadgeView(number: "99")
-            NumberBadgeView(number: "100")
-        }
-        .previewLayout(.fixed(width: 70, height: 60))
+#Preview {
+    Group {
+        NumberBadgeView(number: "1", showBackgroundCircle: true)
+        NumberBadgeView(number: "10", showBackgroundCircle: false)
+        NumberBadgeView(number: "55", showBackgroundCircle: true)
+        NumberBadgeView(number: "99", showBackgroundCircle: false)
+        NumberBadgeView(number: "100", showBackgroundCircle: true)
     }
-
 }

@@ -1,3 +1,10 @@
+//
+//  AppPersistentMemory.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 17/08/22.
+//
+
 import Foundation
 
 /// Different from User Settings, App Memory are settings that help the app remember stuff to avoid asking again or doing a network job more than once per day.
@@ -37,7 +44,7 @@ class AppPersistentMemory {
         return Bool(value as! Bool)
     }
     
-    static func getHasShownNotificationsOnboarding() -> Bool {
+    static func hasShownNotificationsOnboarding() -> Bool {
         let userDefaults = UserDefaults.standard
         guard let value = userDefaults.object(forKey: "hasShownNotificationsOnboarding") else {
             return false
@@ -45,7 +52,7 @@ class AppPersistentMemory {
         return Bool(value as! Bool)
     }
     
-    static func getHasHiddenShareAsVideoTwitterTip() -> Bool {
+    static func getHasHiddenShareAsVideoTextSocialNetworkTip() -> Bool {
         let userDefaults = UserDefaults.standard
         guard let value = userDefaults.object(forKey: "hasHiddenShareAsVideoTwitterTip") else {
             return false
@@ -84,7 +91,95 @@ class AppPersistentMemory {
         }
         return Bool(value as! Bool)
     }
-    
+
+    static func hasSeenReactionsWhatsNewScreen() -> Bool {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "hasSeenReactionsWhatsNewScreen") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
+
+    static func hasSeenControlWhatsNewScreen() -> Bool {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "hasSeenControlWhatsNewScreen") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
+
+    static func getHasSeenRecurringDonationBanner() -> Bool {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "hasSeenRecurringDonationBanner") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
+
+    static func getHasSeenBetaBanner() -> Bool {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "hasSeenBetaBanner") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
+
+    static func getHasSeenBetaSurveyBanner() -> Bool {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "hasSeenBetaSurveyBanner") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
+
+    static func getShareManyMessageShowCount() -> Int {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "shareManyMessageShowCount") else {
+            return 0
+        }
+        return Int(value as! Int)
+    }
+
+    static func getLastUpdateAttempt() -> String {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "lastUpdateAttempt") else {
+            return ""
+        }
+        return String(value as! String)
+    }
+
+    static func getHasSeenRetroBanner() -> Bool {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "hasSeenRetroBanner") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
+
+    static func getHasSeenFirstUpdateIncentiveBanner() -> Bool {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "hasSeenFirstUpdateIncentiveBanner") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
+
+    static func getHasSentFirstUpdateIncentiveMetric() -> Bool {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "hasSentFirstUpdateIncentiveMetric") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
+
+    static func hasSeenNewTrendsUpdateWayBanner() -> Bool {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "hasSeenNewTrendsUpdateWayBanner") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
+
     // MARK: - Setters
     
     static func setHasSentDeviceModelToServer(to newValue: Bool) {
@@ -107,12 +202,12 @@ class AppPersistentMemory {
         userDefaults.set(newValue, forKey: "shouldRetrySendingDevicePushToken")
     }
     
-    static func setHasShownNotificationsOnboarding(to newValue: Bool) {
+    static func hasShownNotificationsOnboarding(_ newValue: Bool) {
         let userDefaults = UserDefaults.standard
         userDefaults.set(newValue, forKey: "hasShownNotificationsOnboarding")
     }
     
-    static func setHasHiddenShareAsVideoTwitterTip(to newValue: Bool) {
+    static func setHasHiddenShareAsVideoTextSocialNetworkTip(to newValue: Bool) {
         let userDefaults = UserDefaults.standard
         userDefaults.set(newValue, forKey: "hasHiddenShareAsVideoTwitterTip")
     }
@@ -137,4 +232,59 @@ class AppPersistentMemory {
         userDefaults.set(newValue, forKey: "hasSentFolderResearchInfo")
     }
 
+    static func hasSeenReactionsWhatsNewScreen(_ newValue: Bool) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(newValue, forKey: "hasSeenReactionsWhatsNewScreen")
+    }
+
+    static func hasSeenControlWhatsNewScreen(_ newValue: Bool) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(newValue, forKey: "hasSeenControlWhatsNewScreen")
+    }
+
+    static func setHasSeenRecurringDonationBanner(to newValue: Bool) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(newValue, forKey: "hasSeenRecurringDonationBanner")
+    }
+
+    static func setHasSeenBetaBanner(to newValue: Bool) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(newValue, forKey: "hasSeenBetaBanner")
+    }
+
+    static func setHasSeenBetaSurveyBanner(to newValue: Bool) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(newValue, forKey: "hasSeenBetaSurveyBanner")
+    }
+
+    static func increaseShareManyMessageShowCountByOne() {
+        let currentCount = AppPersistentMemory.getShareManyMessageShowCount()
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(currentCount + 1, forKey: "shareManyMessageShowCount")
+    }
+
+    static func setLastUpdateAttempt(to newValue: String) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(newValue, forKey: "lastUpdateAttempt")
+    }
+
+    static func setHasSeenRetroBanner(to newValue: Bool) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(newValue, forKey: "hasSeenRetroBanner")
+    }
+
+    static func setHasSeenFirstUpdateIncentiveBanner(to newValue: Bool) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(newValue, forKey: "hasSeenFirstUpdateIncentiveBanner")
+    }
+
+    static func setHasSentFirstUpdateIncentiveMetric(to newValue: Bool) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(newValue, forKey: "hasSentFirstUpdateIncentiveMetric")
+    }
+
+    static func setHasSeenNewTrendsUpdateWayBanner(to newValue: Bool) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(newValue, forKey: "hasSeenNewTrendsUpdateWayBanner")
+    }
 }

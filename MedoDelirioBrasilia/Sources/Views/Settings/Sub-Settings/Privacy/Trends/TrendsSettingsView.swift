@@ -3,9 +3,9 @@ import SwiftUI
 struct TrendsSettingsView: View {
 
     @State var trendsEnabled = false
-    //@State var mostSharedSoundsByTheUserEnabled = false
-    //@State var dayOfTheWeekTheUserSharesTheMostEnabled = false
     @State var soundsMostSharedByTheAudienceEnabled = false
+    @State var mostSharedSoundsByTheUserEnabled = false
+    @State var dayOfTheWeekTheUserSharesTheMostEnabled = false
     //@State var appsThroughWhichTheUserSharesTheMostEnabled = false
     @State var shareUserPersonalTrendsEnabled = false
     
@@ -23,6 +23,10 @@ struct TrendsSettingsView: View {
             }
             
             Section {
+                Toggle("Sons Mais Compartilhados Pela Audiência (iOS)", isOn: $soundsMostSharedByTheAudienceEnabled)
+                    .onChange(of: soundsMostSharedByTheAudienceEnabled) { newValue in
+                        UserSettings.setEnableSoundsMostSharedByTheAudience(to: newValue)
+                    }
 //                Toggle("Sons Mais Compartilhados Por Mim", isOn: $mostSharedSoundsByTheUserEnabled)
 //                    .onChange(of: mostSharedSoundsByTheUserEnabled) { newValue in
 //                        UserSettings.setEnableMostSharedSoundsByTheUser(to: newValue)
@@ -31,10 +35,6 @@ struct TrendsSettingsView: View {
 //                    .onChange(of: dayOfTheWeekTheUserSharesTheMostEnabled) { newValue in
 //                        UserSettings.setEnableDayOfTheWeekTheUserSharesTheMost(to: newValue)
 //                    }
-                Toggle("Sons Mais Compartilhados Pela Audiência (iOS)", isOn: $soundsMostSharedByTheAudienceEnabled)
-                    .onChange(of: soundsMostSharedByTheAudienceEnabled) { newValue in
-                        UserSettings.setEnableSoundsMostSharedByTheAudience(to: newValue)
-                    }
 //                Toggle("Apps Pelos Quais Você Mais Compartilha", isOn: $appsThroughWhichTheUserSharesTheMostEnabled)
 //                    .onChange(of: appsThroughWhichTheUserSharesTheMostEnabled) { newValue in
 //                        UserSettings.setEnableAppsThroughWhichTheUserSharesTheMost(to: newValue)
@@ -58,7 +58,7 @@ struct TrendsSettingsView: View {
                     Alert(title: Text("Apagar Todos os Registros Locais de Compartilhamento?"),
                           message: Text("Ter dados salvos localmente não significa que eles serão enviados para o servidor; você pode desativar o envio na opção acima. A ação de apagar não pode ser desfeita."),
                           primaryButton: .destructive(Text("Apagar")) {
-                              try? database.deleteAllUserShareLogs()
+                              try? LocalDatabase.shared.deleteAllUserShareLogs()
                           },
                           secondaryButton: .cancel(Text("Cancelar")))
                 }

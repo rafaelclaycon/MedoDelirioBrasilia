@@ -1,9 +1,11 @@
 import Foundation
 import SQLite
 
+private typealias Expression = SQLite.Expression
+
 extension LocalDatabase {
 
-    func getFavoriteCount() throws -> Int {
+    func favoriteCount() throws -> Int {
         try db.scalar(favorite.count)
     }
     
@@ -12,7 +14,7 @@ extension LocalDatabase {
         try db.run(insert)
     }
     
-    func getAllFavorites() throws -> [Favorite] {
+    func favorites() throws -> [Favorite] {
         var queriedFavorites = [Favorite]()
 
         for queriedFavorite in try db.prepare(favorite) {
@@ -44,5 +46,4 @@ extension LocalDatabase {
         }
         return queriedFavorites.count > 0
     }
-
 }

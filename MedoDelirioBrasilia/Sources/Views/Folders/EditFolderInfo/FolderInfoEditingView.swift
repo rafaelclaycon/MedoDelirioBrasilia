@@ -34,7 +34,7 @@ struct FolderInfoEditingView: View {
                 
                 ZStack {
                     RoundedRectangle(cornerRadius: 20, style: .continuous)
-                        .fill(selectedBackgroundColor.toColor())
+                        .fill(selectedBackgroundColor.toPastelColor())
                         .frame(width: 180, height: 100)
                     
                     HStack {
@@ -112,10 +112,10 @@ struct FolderInfoEditingView: View {
                             guard folderIdWhenEditing.isEmpty == false else {
                                 return
                             }
-                            try? database.update(userFolder: folderIdWhenEditing, withNewSymbol: symbol, newName: folderName.trimmingCharacters(in: .whitespacesAndNewlines), andNewBackgroundColor: selectedBackgroundColor)
+                            try? LocalDatabase.shared.update(userFolder: folderIdWhenEditing, withNewSymbol: symbol, newName: folderName.trimmingCharacters(in: .whitespacesAndNewlines), andNewBackgroundColor: selectedBackgroundColor)
                             self.isBeingShown = false
                         } else {
-                            try? database.insert(userFolder: UserFolder(symbol: symbol, name: folderName.trimmingCharacters(in: .whitespacesAndNewlines), backgroundColor: selectedBackgroundColor))
+                            try? LocalDatabase.shared.insert(userFolder: UserFolder(symbol: symbol, name: folderName.trimmingCharacters(in: .whitespacesAndNewlines), backgroundColor: selectedBackgroundColor, creationDate: .now, version: "2"))
                             self.isBeingShown = false
                         }
                     }

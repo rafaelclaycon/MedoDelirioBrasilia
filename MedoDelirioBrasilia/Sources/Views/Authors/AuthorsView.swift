@@ -9,11 +9,18 @@ import SwiftUI
 
 struct AuthorsView: View {
 
-    @StateObject private var viewModel = AuthorsViewViewModel()
+    @StateObject private var viewModel = ViewModel()
     @State private var searchText = ""
     @Binding var sortOption: Int
     @Binding var sortAction: AuthorSortOption
-    
+    @Binding var searchTextForControl: String
+    @State var currentSoundsListMode: SoundsListMode = .regular
+
+    // Dynamic Type
+    @ScaledMetric private var authorCountTopPadding = 10
+    @ScaledMetric private var authorCountPhoneBottomPadding = 68
+    @ScaledMetric private var authorCountPadBottomPadding = 22
+
     var searchResults: [Author] {
         if searchText.isEmpty {
             return viewModel.authors
@@ -35,14 +42,21 @@ struct AuthorsView: View {
             ]
         }
     }
-    
+
+    @Environment(\.push) var push
+
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 20) {
-                ForEach(searchResults) { author in
-                    NavigationLink(destination: AuthorDetailView(viewModel: AuthorDetailViewViewModel(originatingScreenName: searchText.isEmpty ? Shared.ScreenNames.authorsView : "\(Shared.ScreenNames.authorsView)(\(searchText))", authorName: author.name), author: author)) {
-                        AuthorCell(authorName: author.name, authorImageURL: author.photo ?? "", soundCount: "\(author.soundCount ?? 0)")
+                if searchResults.isEmpty {
+                    NoSearchResultsView(searchText: $searchText)
+                } else {
+                    ForEach(searchResults) { author in
+                        AuthorCell(author: author)
                             .padding(.horizontal, 5)
+                            .onTapGesture {
+                                push(GeneralNavigationDestination.authorDetail(author))
+                            }
                     }
                 }
             }
@@ -50,7 +64,6 @@ struct AuthorsView: View {
             .disableAutocorrection(true)
             .padding(.horizontal)
             .padding(.top, 7)
-            .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? 75 : 18)
             .onAppear {
                 if viewModel.authors.isEmpty {
                     viewModel.reloadList(sortedBy: AuthorSortOption(rawValue: sortOption) ?? .nameAscending)
@@ -68,15 +81,26 @@ struct AuthorsView: View {
                     viewModel.sortAuthorsInPlaceBySoundCountAscending()
                 }
             }
+            .onChange(of: searchText) { searchText in
+                searchTextForControl = searchText
+            }
+
+            if searchText.isEmpty {
+                Text("\(viewModel.authors.count) AUTORES.")
+                    .font(.footnote)
+                    .foregroundColor(.gray)
+                    .multilineTextAlignment(.center)
+                    .padding(.top, authorCountTopPadding)
+                    .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? authorCountPhoneBottomPadding : authorCountPadBottomPadding)
+            }
         }
     }
-
 }
 
-struct FavoritesView_Previews: PreviewProvider {
-
-    static var previews: some View {
-        AuthorsView(sortOption: .constant(AuthorSortOption.nameAscending.rawValue), sortAction: .constant(.nameAscending))
-    }
-
+#Preview {
+    AuthorsView(
+        sortOption: .constant(AuthorSortOption.nameAscending.rawValue),
+        sortAction: .constant(.nameAscending),
+        searchTextForControl: .constant(.empty)
+    )
 }

@@ -1,14 +1,11 @@
+//
+//  MedoDelirioBrasiliaApp.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 05/05/22.
+//
+
 import SwiftUI
-
-var player: AudioPlayer?
-var database = LocalDatabase()
-
-//let networkRabbit = NetworkRabbit(serverPath: "https://654e-2804-1b3-8640-96df-d0b4-dd5d-6922-bb1b.sa.ngrok.io/api/")
-let networkRabbit = NetworkRabbit(serverPath: CommandLine.arguments.contains("-UNDER_DEVELOPMENT") ? "http://127.0.0.1:8080/api/" : "http://170.187.145.233:8080/api/")
-let podium = Podium(database: database, networkRabbit: networkRabbit)
-
-let soundsLastUpdateDate: String = "18/12/2022"
-let songsLastUpdateDate: String = "08/12/2022"
 
 var moveDatabaseIssue: String = .empty
 
@@ -16,35 +13,88 @@ var moveDatabaseIssue: String = .empty
 struct MedoDelirioBrasiliaApp: App {
 
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    
+
+    @State private var tabSelection: PhoneTab = .sounds
+    @State private var state: PadScreen? = PadScreen.allSounds
+
+    @StateObject private var helper = PlayRandomSoundHelper()
+
     var body: some Scene {
         WindowGroup {
-            MainView()
+            MainView(tabSelection: $tabSelection, state: $state)
+                .onOpenURL(perform: handleURL)
+                .environmentObject(helper)
         }
     }
 
+    private func handleURL(_ url: URL) {
+        guard url.scheme == "medodelirio" else { return }
+        if url.host == "playrandomsound" {
+            tabSelection = .sounds
+            state = .allSounds
+
+            let includeOffensive = UserSettings.getShowExplicitContent()
+
+            do {
+                guard
+                    let randomSound = try LocalDatabase.shared.randomSound(includeOffensive: includeOffensive)
+                else { return }
+                helper.soundIdToPlay = randomSound.id
+            } catch {
+                print("Erro obtendo som aleatório: \(error.localizedDescription)")
+            }
+        }
+    }
 }
 
 class AppDelegate: NSObject, UIApplicationDelegate {
+    
+    @AppStorage("hasMigratedSoundsAuthors") private var hasMigratedSoundsAuthors = false
+    @AppStorage("hasMigratedSongsMusicGenres") private var hasMigratedSongsMusicGenres = false
+    @AppStorage("hasUpdatedExternalLinksOnFirstRun") private var hasUpdatedExternalLinksOnFirstRun = false
 
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
     ) -> Bool {
-        // Fix missing Favorites bug
+        print("APP - APP DELEGATE")
+        // Fixes
         moveDatabaseFileIfNeeded()
+        replaceUserSettingFlag()
         
         do {
-            try database.migrateIfNeeded()
+            try LocalDatabase.shared.migrateIfNeeded()
         } catch {
             fatalError("Failed to migrate database: \(error)")
         }
         
         //print(database)
         
-        collectTelemetry()
+        if !hasMigratedSoundsAuthors {
+            moveSoundsAndAuthorsToDatabase()
+            hasMigratedSoundsAuthors = true
+        }
+
+        if !hasMigratedSongsMusicGenres {
+            moveSongsAndMusicGenresToDatabase()
+            hasMigratedSongsMusicGenres = true
+        }
         
+        prepareAudioPlayerOnMac()
+        collectTelemetry()
+        createFoldersForDownloadedContent()
+        updateExternalLinks()
+
         return true
+    }
+
+    // This fixes the issue in which a sound would take 10 seconds to play on the Mac
+    private func prepareAudioPlayerOnMac() {
+        guard ProcessInfo.processInfo.isiOSAppOnMac else { return }
+        guard let path = Bundle.main.path(forResource: "Lula - Eu posso tomar cafe.mp3", ofType: nil) else { return }
+        let url = URL(fileURLWithPath: path)
+        AudioPlayer.shared = AudioPlayer(url: url, update: { _ in })
+        AudioPlayer.shared?.prepareToPlay()
     }
     
     // MARK: - Telemetry
@@ -60,7 +110,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         }
         
         let info = ClientDeviceInfo(installId: UIDevice.customInstallId, modelName: UIDevice.modelName)
-        networkRabbit.post(clientDeviceInfo: info) { success, error in
+        NetworkRabbit.shared.post(clientDeviceInfo: info) { success, error in
             if let success = success, success {
                 AppPersistentMemory.setHasSentDeviceModelToServer(to: true)
             }
@@ -83,7 +133,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                                       appVersion: Versioneer.appVersion,
                                       currentTimeZone: TimeZone.current.abbreviation() ?? .empty,
                                       dateTime: Date.now.iso8601withFractionalSeconds)
-        networkRabbit.post(signal: signal) { success, error in
+        NetworkRabbit.shared.post(signal: signal) { success, error in
             if success != nil, success == true {
                 UserSettings.setLastSendDateOfStillAliveSignalToServer(to: Date.now)
             }
@@ -102,7 +152,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             //print("Device Token: \(token)")
 
             let device = PushDevice(installId: UIDevice.customInstallId, pushToken: token)
-            networkRabbit.post(pushDevice: device) { success, error in
+            NetworkRabbit.shared.post(pushDevice: device) { success, error in
                 guard let success = success, success else {
                     AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: true)
                     return
@@ -149,5 +199,77 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             return false
         }
     }
+    
+    // MARK: - Fix UserSetting flag name
+    
+    private func hasSkipGetLinkInstructionsSet() -> Bool {
+        let userDefaults = UserDefaults.standard
+        guard let value = userDefaults.object(forKey: "skipGetLinkInstructions") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
+    
+    private func replaceUserSettingFlag() {
+        if hasSkipGetLinkInstructionsSet() {
+            UserSettings.setShowExplicitContent(to: true)
+            UserDefaults.standard.removeObject(forKey: "skipGetLinkInstructions")
+        }
+    }
+}
 
+extension AppDelegate {
+    
+    func createFoldersForDownloadedContent() {
+        createFolder(named: InternalFolderNames.downloadedSounds)
+        createFolder(named: InternalFolderNames.downloadedSongs)
+    }
+    
+    func createFolder(named folderName: String) {
+        let fileManager = FileManager.default
+        let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let downloadedSoundsURL = documentsURL.appendingPathComponent(folderName)
+        
+        do {
+            var isDirectory: ObjCBool = false
+            if !fileManager.fileExists(atPath: downloadedSoundsURL.path, isDirectory: &isDirectory) {
+                try fileManager.createDirectory(at: downloadedSoundsURL, withIntermediateDirectories: true, attributes: nil)
+                print(folderName + " folder created.")
+            } else {
+                if isDirectory.boolValue {
+                    print(folderName + " folder already exists.")
+                } else {
+                    print("A file with the name \(folderName) already exists.")
+                }
+            }
+        } catch {
+            print("Error creating \(folderName) folder: \(error)")
+            Logger.shared.logSyncError(description: "Erro ao tentar criar a pasta \(folderName): \(error.localizedDescription)")
+        }
+    }
+}
+
+extension AppDelegate {
+
+    func updateExternalLinks() {
+        // External Links was release on version 7.10. Because of the server architecture, author updates will arrive to older versions
+        // that know nothing about ELs. This func makes sure 7.10 onwards starts with the ELs in place that were ignored before.
+        // This should run only once.
+
+        if !hasUpdatedExternalLinksOnFirstRun {
+            Task {
+                let url = URL(string: NetworkRabbit.shared.serverPath + "v4/author-links-first-open")!
+                do {
+                    let authorsWithLinks: [Author] = try await NetworkRabbit.get(from: url)
+                    try authorsWithLinks.forEach { author in
+                        try LocalDatabase.shared.update(author: author)
+                    }
+                    print("UPDATED \(authorsWithLinks.count) AUTHORS WITH LINKS")
+                    hasUpdatedExternalLinksOnFirstRun = true
+                } catch {
+                    print(error)
+                }
+            }
+        }
+    }
 }

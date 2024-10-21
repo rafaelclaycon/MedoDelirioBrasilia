@@ -9,14 +9,6 @@ import SwiftUI
 
 struct EmptyFolderView: View {
 
-    private var subtitle: String {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            return "Nós também não. Volte para a aba Sons, segure em um som e escolha Adicionar a Pasta para adicionar ele aqui."
-        } else {
-            return "Nós também não. Volte para os sons, segure em um deles e escolha Adicionar a Pasta."
-        }
-    }
-    
     var body: some View {
         VStack(alignment: .center, spacing: 20) {
             Image(systemName: "speaker.zzz")
@@ -31,7 +23,7 @@ struct EmptyFolderView: View {
                 .multilineTextAlignment(.center)
                 .foregroundColor(.gray)
             
-            Text(subtitle)
+            Text("Nós também não. Volte para os sons, segure em um deles e escolha Adicionar a Pasta para adicioná-lo aqui.")
                 .multilineTextAlignment(.center)
                 .foregroundColor(.gray)
                 .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 15 : 40)

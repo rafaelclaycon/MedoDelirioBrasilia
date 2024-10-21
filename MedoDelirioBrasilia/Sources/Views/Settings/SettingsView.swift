@@ -9,183 +9,355 @@ import SwiftUI
 
 struct SettingsView: View {
 
-    @State private var showExplicitSounds: Bool = UserSettings.getShowOffensiveSounds()
-    
+    enum ToastType {
+        case email, pix
+    }
+
+    @EnvironmentObject var helper: SettingsHelper
+
+    @State private var showExplicitSounds: Bool = UserSettings.getShowExplicitContent()
+
     @State private var showChangeAppIcon: Bool = ProcessInfo.processInfo.isMacCatalystApp == false
-    
+
     @State private var showAskForMoneyView: Bool = false
-    @State private var showPixKeyCopiedAlert: Bool = false
-    
+    @State private var showToastView: Bool = false
+    @State private var toastType: ToastType = .pix
+    @State private var donors: [Donor]? = nil
+
     @State private var showEmailClientConfirmationDialog: Bool = false
-    
-    private let pixKey: String = "medodeliriosuporte@gmail.com"
-    
+    @State private var didCopySupportAddressOnEmailPicker: Bool = false
+
+    @State private var showLargeCreatorImage: Bool = false
+
+    private let authorSocials: [SocialMediaLink] = [
+        .init(name: "Threads", imageName: "threads", link: "https://www.threads.net/@rafaelclaycon"),
+        .init(name: "Bluesky", imageName: "bluesky", link: "https://bsky.app/profile/rafaelschmitt.bsky.social"),
+        .init(name: "Mastodon", imageName: "mastodon", link: "https://burnthis.town/@rafael")
+    ]
+
     var body: some View {
-        Form {
-            Section {
-                Toggle("Exibir conteúdo explícito", isOn: $showExplicitSounds)
-                    .onChange(of: showExplicitSounds) { newValue in
-                        UserSettings.setShowOffensiveSounds(to: newValue)
-                    }
-            } footer: {
-                Text("Alguns conteúdos contam com muitos palavrões. Ao marcar essa opção, você concorda que tem mais de 18 anos e que deseja ver esses conteúdos.")
-            }
-            
-            Section {
-                NavigationLink(destination: HelpView()) {
-                    Label {
-                        Text("Ajuda")
-                    } icon: {
-                        Image(systemName: "questionmark")
-                            .foregroundColor(.blue)
-                    }
-
-                }
-            }
-            
-            Section {
-                NavigationLink(destination: NotificationsSettingsView()) {
-                    Label(title: {
-                        Text("Notificações")
-                    }, icon: {
-                        Image(systemName: "bell.badge")
-                            .foregroundColor(.red)
-                    })
-                }
-                
-                if showChangeAppIcon {
-                    NavigationLink(destination: ChangeAppIconView()) {
-                        Label {
-                            Text("Ícone do app")
-                        } icon: {
-                            Image(systemName: "app")
-                                .foregroundColor(.orange)
+        ZStack {
+            Form {
+                Section {
+                    Toggle("Exibir conteúdo explícito", isOn: $showExplicitSounds)
+                        .onChange(of: showExplicitSounds) { showExplicitSounds in
+                            UserSettings.setShowExplicitContent(to: showExplicitSounds)
+                            helper.updateSoundsList = true
                         }
+                } footer: {
+                    Text("Alguns conteúdos contam com muitos palavrões. Ao marcar essa opção, você concorda que tem mais de 18 anos e que deseja ver esses conteúdos.")
+                }
 
+//                if RetroView.ViewModel.shouldDisplayBanner() {
+//                    Section {
+//                        Button {
+//                            print("Retro")
+//                        } label: {
+//                            Label("Retrospectiva 2023", systemImage: "airpodsmax")
+//                        }
+//                        .foregroundStyle(Color.green)
+//                    }
+//                }
+
+                Section {
+                    NavigationLink(destination: NotificationsSettingsView()) {
+                        Label(title: {
+                            Text("Notificações")
+                        }, icon: {
+                            Image(systemName: "bell.badge")
+                                .foregroundColor(.red)
+                        })
+                    }
+                    
+                    if showChangeAppIcon {
+                        NavigationLink(destination: ChangeAppIconView()) {
+                            Label {
+                                Text("Ícone do app")
+                            } icon: {
+                                Image(systemName: "app")
+                                    .foregroundColor(.orange)
+                            }
+                            
+                        }
+                    }
+                    
+                    NavigationLink(destination: PrivacySettingsView()) {
+                        Label {
+                            Text("Privacidade")
+                        } icon: {
+                            Image(systemName: "hand.raised")
+                                .foregroundColor(.blue)
+                        }
                     }
                 }
                 
-                NavigationLink(destination: PrivacySettingsView()) {
-                    Label {
-                        Text("Privacidade")
-                    } icon: {
-                        Image(systemName: "hand.raised")
-                            .foregroundColor(.blue)
+                Section("Problemas, sugestões e pedidos") {
+                    Button {
+                        showEmailClientConfirmationDialog = true
+                    } label: {
+                        Label("Entrar em contato por e-mail", systemImage: "envelope")
                     }
-
+                    .foregroundStyle(Color.blue)
                 }
-            }
-            
-            Section("📬  Problemas, sugestões e pedidos") {
-                Button("Entrar em contato por e-mail") {
-                    showEmailClientConfirmationDialog = true
+                
+                if showAskForMoneyView || CommandLine.arguments.contains("-FORCE_SHOW_HELP_THE_APP") {
+                    Section {
+                        HelpTheAppView(donors: $donors, imageIsSelected: $showLargeCreatorImage)
+                            .padding(donors != nil ? .top : .vertical)
+                        
+                        DonateButtons(
+                            showToastView: $showToastView,
+                            toastType: $toastType
+                        )
+                    } header: {
+                        Text("Ajude o app")
+                    } footer: {
+                        Text("Doações recorrentes a partir de R$ 30 ganham um selo especial aqui.")
+                    }
                 }
-            }
-            
-            if showAskForMoneyView || CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
-                /*Section {
-                    PodcastAuthorsView()
-                        .padding(.vertical, 8)
-                }*/
+                
+                Section("Sobre") {
+                    Menu {
+                        Section("Seguir no") {
+                            ForEach(authorSocials) { social in
+                                Button {
+                                    OpenUtility.open(link: social.link)
+                                    SettingsView.sendAnalytics(for: "didTapSocialLink(\(social.name))")
+                                } label: {
+                                    Label(title: {
+                                        Text(social.name)
+                                    }, icon: {
+                                        Image(social.imageName)
+                                            .renderingMode(.template)
+                                            .foregroundColor(.primary)
+                                    })
+                                }
+                            }
+                        }
+                        
+                        Section {
+                            Button {
+                                OpenUtility.open(link: "https://jovemnerd.com.br/noticias/ciencia-e-tecnologia/mastodon-como-criar-conta")
+                                SettingsView.sendAnalytics(for: "didTapHowToCreateMastodonAccountOption")
+                            } label: {
+                                Label("Como abrir uma conta no Mastodon?", systemImage: "arrow.up.right.square")
+                            }
+                        }
+                    } label: {
+                        Text("Criado por Rafael Claycon Schmitt")
+                    }
+                    
+                    Text("Versão \(Versioneer.appVersion) Build \(Versioneer.buildVersionNumber)")
+                }
+                
+                Section("Contribua ou entenda como funciona") {
+                    Button {
+                        OpenUtility.open(link: "https://github.com/rafaelclaycon/MedoDelirioBrasilia")
+                        SettingsView.sendAnalytics(for: "didTapGitHubButton")
+                    } label: {
+                        Label("Ver código fonte no GitHub", systemImage: "curlybraces")
+                    }
+                }
                 
                 Section {
-                    BegForMoneyView()
-                        .padding(.vertical)
-                    
-                    Button("Copiar chave Pix (e-mail)") {
-                        UIPasteboard.general.string = pixKey
-                        showPixKeyCopiedAlert = true
-                    }
-                    .alert(isPresented: $showPixKeyCopiedAlert) {
-                        Alert(title: Text("Chave copiada com sucesso!"), dismissButton: .default(Text("OK")))
-                    }
-                } header: {
-                    Text("Ajude o app")
-                } footer: {
-                    Text("Selecione E-mail como tipo de chave no app do seu banco. Evite qualquer opção que mencione QR Code.")
-                }
-            }
-            
-            Section("Sobre") {
-                VStack(alignment: .leading) {
-                    Text("Criado por Rafael Claycon Schmitt")
-                    
-                    HStack(spacing: 25) {
-                        Spacer()
-                        
-                        Button {
-                            open(link: "https://twitter.com/claycon_")
-                        } label: {
-                            Image("twitter")
-                                .renderingMode(.template)
-                                .foregroundColor(.blue)
-                                .padding(.horizontal)
+                    NavigationLink(destination: DiagnosticsView()) {
+                        Label {
+                            Text("Diagnóstico")
+                        } icon: {
+                            Image(systemName: "stethoscope")
+                                .foregroundColor(.gray)
                         }
-                        .tint(.blue)
-                        .controlSize(.regular)
-                        .buttonStyle(.bordered)
-                        .buttonBorderShape(.roundedRectangle)
-                        
-                        Button {
-                            open(link: "https://toot.wales/@mitt_rafael")
-                        } label: {
-                            Image("mastodon")
-                                .renderingMode(.template)
-                                .foregroundColor(.purple)
-                                .padding(.horizontal)
+                    }
+                }
+            }
+            .navigationTitle("Configurações")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink(destination: HelpView()) {
+                        Image(systemName: "questionmark.circle")
+                    }
+                }
+            }
+            .onAppear {
+                NetworkRabbit.shared.displayAskForMoneyView { shouldDisplay in
+                    showAskForMoneyView = shouldDisplay
+                }
+                NetworkRabbit.shared.getPixDonorNames { donors in
+                    let copy = donors?.shuffled()
+                    self.donors = copy
+                }
+            }
+            .popover(isPresented: $showEmailClientConfirmationDialog) {
+                EmailAppPickerView(
+                    isBeingShown: $showEmailClientConfirmationDialog,
+                    didCopySupportAddress: $didCopySupportAddressOnEmailPicker,
+                    subject: Shared.issueSuggestionEmailSubject,
+                    emailBody: Shared.issueSuggestionEmailBody
+                )
+            }
+            .onChange(of: showEmailClientConfirmationDialog) { showEmailClientConfirmationDialog in
+                if showEmailClientConfirmationDialog == false {
+                    if didCopySupportAddressOnEmailPicker {
+                        toastType = .email
+                        withAnimation {
+                            showToastView = true
                         }
-                        .tint(.purple)
-                        .controlSize(.regular)
-                        .buttonStyle(.bordered)
-                        .buttonBorderShape(.roundedRectangle)
+                        TapticFeedback.success()
                         
-                        Spacer()
-                    }
-                    .padding(.bottom, 3)
-                }
-                
-                Text("Versão \(Versioneer.appVersion) Build \(Versioneer.buildVersionNumber)")
-            }
-            
-            Section("Contribua ou entenda como funciona") {
-                Button("Ver código fonte no GitHub") {
-                    open(link: "https://github.com/rafaelclaycon/MedoDelirioBrasilia")
-                }
-            }
-            
-            Section {
-                NavigationLink(destination: DiagnosticsView()) {
-                    Label {
-                        Text("Diagnóstico")
-                    } icon: {
-                        Image(systemName: "stethoscope")
-                            .foregroundColor(.gray)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            withAnimation {
+                                showToastView = false
+                            }
+                        }
+                        
+                        didCopySupportAddressOnEmailPicker = false
                     }
                 }
             }
-        }
-        .navigationTitle("Ajustes")
-        .onAppear {
-            networkRabbit.displayAskForMoneyView { shouldDisplay in
-                showAskForMoneyView = shouldDisplay
+            
+            if showLargeCreatorImage {
+                LargeCreatorView(showLargeCreatorImage: $showLargeCreatorImage)
+            }
+            
+            if showToastView {
+                VStack {
+                    Spacer()
+                    
+                    ToastView(
+                        icon: toastType == .email ? "checkmark" : "heart",
+                        iconColor: toastType == .email ? .green : .red,
+                        text: toastType == .email ? "E-mail copiado com sucesso." : randomThankYouString()
+                    )
+                    .padding(.horizontal)
+                    .padding(.bottom, 15)
+                }
+                .transition(.moveAndFade)
             }
         }
-        .popover(isPresented: $showEmailClientConfirmationDialog) {
-            EmailAppPickerView(isBeingShown: $showEmailClientConfirmationDialog, subject: Shared.issueSuggestionEmailSubject, emailBody: Shared.issueSuggestionEmailBody)
-        }
-    }
-    
-    private func open(link: String) {
-        guard let url = URL(string: link) else { return }
-        UIApplication.shared.open(url)
     }
 
+    private func randomThankYouString() -> String {
+        let ending = [
+            "Obrigado!",
+            "Tem que manter isso, viu?",
+            "Alegria!",
+            "Éééé!",
+            "Vamos apoiar o circo!",
+            "Olha-Que-Legal!",
+            "Ai, que delícia!",
+            "Maravilhoso!",
+            "Vamo, comunistada!",
+            "Bora!"
+        ].randomElement() ?? ""
+        return "Chave copiada. \(ending)"
+    }
+
+    private static func sendAnalytics(for action: String) {
+        Analytics.send(
+            originatingScreen: "SettingsView",
+            action: action
+        )
+    }
 }
 
-struct AboutView_Previews: PreviewProvider {
+extension SettingsView {
 
-    static var previews: some View {
-        SettingsView()
+    struct DonateButtons: View {
+
+        @Binding var showToastView: Bool
+        @Binding var toastType: ToastType
+
+        private var copyPixKeyButtonHorizontalPadding: CGFloat {
+            UIScreen.main.bounds.width > 400 ? 20 : 10
+        }
+
+        private let pixKey: String = "medodeliriosuporte@gmail.com"
+
+        var body: some View {
+            VStack(alignment: .leading, spacing: 20) {
+                Text("DOAÇÃO RECORRENTE:")
+                    .font(.footnote)
+                    .bold()
+
+                HStack {
+                    Spacer()
+
+                    Button {
+                        OpenUtility.open(link: "https://apoia.se/app-medo-delirio-ios")
+                        sendAnalytics(for: "didTapApoiaseButton")
+                    } label: {
+                        HStack(spacing: 15) {
+                            Image(systemName: "dollarsign.circle")
+                                .renderingMode(.template)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 22)
+
+                            Text("Ver campanha no Apoia.se")
+                                .bold()
+                                .foregroundColor(.red)
+                        }
+                        .padding(.horizontal, copyPixKeyButtonHorizontalPadding)
+                        .padding(.vertical, 8)
+                    }
+                    .tint(.red)
+                    .controlSize(.regular)
+                    .buttonStyle(.bordered)
+                    .buttonBorderShape(.roundedRectangle)
+
+                    Spacer()
+                }
+                
+                Text("DOAÇÃO ÚNICA:")
+                    .font(.footnote)
+                    .bold()
+
+                HStack {
+                    Spacer()
+
+                    Button {
+                        toastType = .pix
+                        UIPasteboard.general.string = pixKey
+                        withAnimation {
+                            showToastView = true
+                        }
+                        TapticFeedback.success()
+
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            withAnimation {
+                                showToastView = false
+                            }
+                        }
+
+                        sendAnalytics(for: "didCopyPixKey")
+                    } label: {
+                        HStack(spacing: 15) {
+                            Image(systemName: "doc.on.doc")
+                                .renderingMode(.template)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 17)
+
+                            Text("Copiar chave Pix (e-mail)")
+                                .bold()
+                                .foregroundColor(.green)
+                        }
+                        .padding(.horizontal, copyPixKeyButtonHorizontalPadding)
+                        .padding(.vertical, 8)
+                    }
+                    .tint(.green)
+                    .controlSize(.regular)
+                    .buttonStyle(.bordered)
+                    .buttonBorderShape(.roundedRectangle)
+
+                    Spacer()
+                }
+            }
+            .padding(.vertical, 10)
+        }
     }
+}
 
+#Preview {
+    SettingsView()
 }

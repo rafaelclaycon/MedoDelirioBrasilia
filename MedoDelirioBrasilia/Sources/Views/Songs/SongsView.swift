@@ -8,17 +8,30 @@
 import SwiftUI
 
 struct SongsView: View {
+
+    enum SubviewToOpen {
+        case genrePicker, shareAsVideoView
+    }
     
     @StateObject private var viewModel = SongsViewViewModel()
     
     @State private var searchText = ""
     @State private var searchBar: UISearchBar?
-    @State var currentGenre: MusicGenre = .all
-    
+    @State private var currentGenre: String? = nil
+
+    @State private var subviewToOpen: SubviewToOpen = .genrePicker
     @State private var showingModalView = false
     
     // Share as Video
     @State private var shareAsVideo_Result = ShareAsVideoResult()
+    
+    @EnvironmentObject var settingsHelper: SettingsHelper
+
+    // Dynamic Type
+    @ScaledMetric private var explicitOffWarningTopPadding = 16
+    @ScaledMetric private var explicitOffWarningBottomPadding = 20
+    @ScaledMetric private var songCountTopPadding = 10
+    @ScaledMetric private var songCountBottomPadding = 22
     
     private var columns: [GridItem] {
         if UIDevice.current.userInterfaceIdiom == .phone {
@@ -35,14 +48,11 @@ struct SongsView: View {
     
     var searchResults: [Song] {
         if searchText.isEmpty {
-            if currentGenre == .all {
-                return viewModel.songs
-            } else {
-                return viewModel.songs.filter({ $0.genre == currentGenre })
-            }
+            guard let currentGenre else { return viewModel.songs }
+            return viewModel.songs.filter({ $0.genreId == currentGenre })
         } else {
-            return viewModel.songs.filter { sound in
-                let searchString = sound.title.lowercased().withoutDiacritics()
+            return viewModel.songs.filter { song in
+                let searchString = song.title.lowercased().withoutDiacritics()
                 return searchString.contains(searchText.lowercased().withoutDiacritics())
             }
         }
@@ -53,45 +63,48 @@ struct SongsView: View {
             VStack {
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 14) {
-                        ForEach(searchResults) { song in
-                            SongCell(songId: song.id, title: song.title, genre: song.genre, duration: song.duration, isNew: song.isNew ?? false, nowPlaying: $viewModel.nowPlayingKeeper)
-                                .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
-                                .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
-                                .onTapGesture {
-                                    if viewModel.nowPlayingKeeper.contains(song.id) {
-                                        player?.togglePlay()
-                                        viewModel.nowPlayingKeeper.removeAll()
-                                    } else {
-                                        viewModel.playSong(fromPath: song.filename)
-                                        viewModel.nowPlayingKeeper.removeAll()
-                                        viewModel.nowPlayingKeeper.insert(song.id)
+                        if searchResults.isEmpty {
+                            NoSearchResultsView(searchText: $searchText)
+                        } else {
+                            ForEach(searchResults) { song in
+                                SongCell(song: song, nowPlaying: $viewModel.nowPlayingKeeper)
+                                    .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
+                                    .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
+                                    .onTapGesture {
+                                        if viewModel.nowPlayingKeeper.contains(song.id) {
+                                            AudioPlayer.shared?.togglePlay()
+                                            viewModel.nowPlayingKeeper.removeAll()
+                                        } else {
+                                            viewModel.play(song: song)
+                                        }
                                     }
-                                }
-                                .contextMenu(menuItems: {
-                                    Section {
-                                        Button {
-                                            viewModel.shareSong(withPath: song.filename, andContentId: song.id)
-                                        } label: {
-                                            Label(Shared.shareSongButtonText, systemImage: "square.and.arrow.up")
+                                    .contextMenu(menuItems: {
+                                        Section {
+                                            Button {
+                                                viewModel.share(song: song)
+                                            } label: {
+                                                Label(Shared.shareSongButtonText, systemImage: "square.and.arrow.up")
+                                            }
+                                            
+                                            Button {
+                                                viewModel.selectedSong = song
+                                                subviewToOpen = .shareAsVideoView
+                                                showingModalView.toggle()
+                                            } label: {
+                                                Label(Shared.shareAsVideoButtonText, systemImage: "film")
+                                            }
                                         }
                                         
-                                        Button {
-                                            viewModel.selectedSong = song
-                                            showingModalView = true
-                                        } label: {
-                                            Label(Shared.shareAsVideoButtonText, systemImage: "film")
+                                        Section {
+                                            Button {
+                                                viewModel.selectedSong = song
+                                                viewModel.showEmailAppPicker_suggestChangeConfirmationDialog = true
+                                            } label: {
+                                                Label("Sugerir Alteração", systemImage: "exclamationmark.bubble")
+                                            }
                                         }
-                                    }
-                                    
-                                    Section {
-                                        Button {
-                                            viewModel.selectedSong = song
-                                            viewModel.showEmailAppPicker_suggestChangeConfirmationDialog = true
-                                        } label: {
-                                            Label("Sugerir Alteração", systemImage: "exclamationmark.bubble")
-                                        }
-                                    }
-                                })
+                                    })
+                            }
                         }
                     }
                     .searchable(text: $searchText)
@@ -99,21 +112,21 @@ struct SongsView: View {
                     .padding(.horizontal)
                     .padding(.top, 7)
                     
-                    if UserSettings.getShowOffensiveSounds() == false {
-                        Text(UIDevice.current.userInterfaceIdiom == .phone ? Shared.contentFilterMessageForSongsiPhone : Shared.contentFilterMessageForSongsiPadMac)
+                    if UserSettings.getShowExplicitContent() == false {
+                        ExplicitDisabledWarning(
+                            text: UIDevice.current.userInterfaceIdiom == .phone ? Shared.contentFilterMessageForSongsiPhone : Shared.contentFilterMessageForSongsiPadMac
+                        )
+                        .padding(.top, explicitOffWarningTopPadding)
+                        .padding(.horizontal, explicitOffWarningBottomPadding)
+                    }
+                    
+                    if searchText.isEmpty, currentGenre == nil {
+                        Text("\(viewModel.songs.count) MÚSICAS")
                             .font(.footnote)
                             .foregroundColor(.gray)
                             .multilineTextAlignment(.center)
-                            .padding(.top, 15)
-                            .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 20 : 40)
-                    }
-                    
-                    if searchText.isEmpty, currentGenre == .all {
-                        Text("\(viewModel.songs.count) músicas. Atualizado em \(songsLastUpdateDate).")
-                            .font(.subheadline)
-                            .bold()
-                            .padding(.top, 10)
-                            .padding(.bottom, 18)
+                            .padding(.top, songCountTopPadding)
+                            .padding(.bottom, songCountBottomPadding)
                     }
                 }
             }
@@ -125,40 +138,26 @@ struct SongsView: View {
                 Menu {
                     Section {
                         Picker("Ordenação", selection: $viewModel.sortOption) {
-                            HStack {
-                                Text("Ordenar por Título")
-                                Image(systemName: "a.circle")
-                            }
-                            .tag(0)
+                            Text("Título")
+                                .tag(0)
                             
-                            HStack {
-                                Text("Mais Recentes no Topo")
-                                Image(systemName: "calendar")
-                            }
-                            .tag(1)
+                            Text("Mais Recentes no Topo")
+                                .tag(1)
                             
-                            HStack {
-                                Text("Maior Duração no Topo")
-                                Image(systemName: "chevron.down.square")
-                            }
-                            .tag(2)
+                            Text("Mais Longas no Topo")
+                                .tag(2)
                             
-                            HStack {
-                                Text("Menor Duração no Topo")
-                                Image(systemName: "chevron.up.square")
-                            }
-                            .tag(3)
+                            Text("Mais Curtas no Topo")
+                                .tag(3)
                         }
                     }
                 } label: {
                     Image(systemName: "arrow.up.arrow.down")
                 }
-                .onChange(of: viewModel.sortOption, perform: { newSortOption in
-                    viewModel.reloadList(withSongs: songData,
-                                         allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
-                                         sortedBy: SongSortOption(rawValue: newSortOption) ?? .titleAscending)
-                    UserSettings.setSongSortOption(to: newSortOption)
-                })
+                .onChange(of: viewModel.sortOption) {
+                    viewModel.sortSongs(by: SongSortOption(rawValue: $0) ?? .dateAddedDescending)
+                    UserSettings.setSongSortOption(to: $0)
+                }
                 .onChange(of: shareAsVideo_Result.videoFilepath) { videoResultPath in
                     if videoResultPath.isEmpty == false {
                         if shareAsVideo_Result.exportMethod == .saveAsVideo {
@@ -170,13 +169,11 @@ struct SongsView: View {
                 }
             }
             .onAppear {
-                viewModel.reloadList(withSongs: songData,
-                                     allowSensitiveContent: UserSettings.getShowOffensiveSounds(),
-                                     sortedBy: SongSortOption(rawValue: UserSettings.getSongSortOption()) ?? .titleAscending)
+                viewModel.reloadList()
                 viewModel.donateActivity()
             }
             .onDisappear {
-                player?.cancel()
+                AudioPlayer.shared?.cancel()
                 viewModel.nowPlayingKeeper.removeAll()
             }
             .sheet(isPresented: $viewModel.isShowingShareSheet) {
@@ -184,38 +181,98 @@ struct SongsView: View {
             }
             .sheet(isPresented: $viewModel.showEmailAppPicker_suggestChangeConfirmationDialog) {
                 EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_suggestChangeConfirmationDialog,
+                                   didCopySupportAddress: .constant(false),
                                    subject: String(format: Shared.Email.suggestSongChangeSubject, viewModel.selectedSong?.title ?? ""),
                                    emailBody: String(format: Shared.Email.suggestSongChangeBody, viewModel.selectedSong?.id ?? ""))
             }
             .sheet(isPresented: $showingModalView) {
-                ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: viewModel.selectedSong?.id ?? .empty, contentTitle: viewModel.selectedSong?.title ?? .empty, audioFilename: viewModel.selectedSong?.filename ?? .empty), isBeingShown: $showingModalView, result: $shareAsVideo_Result, useLongerGeneratingVideoMessage: true)
+                switch subviewToOpen {
+                case .genrePicker:
+                    GenrePickerView(selectedId: $currentGenre)
+
+                case .shareAsVideoView:
+                    ShareAsVideoView(
+                        viewModel: ShareAsVideoViewViewModel(content: viewModel.selectedSong!),
+                        isBeingShown: $showingModalView,
+                        result: $shareAsVideo_Result,
+                        useLongerGeneratingVideoMessage: true
+                    )
+                }
+            }
+            .sheet(isPresented: $viewModel.showEmailAppPicker_songUnavailableConfirmationDialog) {
+                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_songUnavailableConfirmationDialog,
+                                   didCopySupportAddress: .constant(false),
+                                   subject: Shared.issueSuggestionEmailSubject,
+                                   emailBody: Shared.issueSuggestionEmailBody)
+            }
+            .alert(isPresented: $viewModel.showAlert) {
+                switch viewModel.alertType {
+                case .ok:
+                    return Alert(
+                        title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK"))
+                    )
+
+                case .redownloadSong:
+                    return Alert(
+                        title: Text(viewModel.alertTitle),
+                        message: Text(viewModel.alertMessage),
+                        primaryButton: .default(Text("Baixar Conteúdo Novamente"), action: {
+                        guard let content = viewModel.selectedSong else { return }
+                        viewModel.redownloadServerContent(withId: content.id)
+                    }), secondaryButton: .cancel(Text("Fechar"))
+                    )
+
+                case .songUnavailable:
+                    return Alert(
+                        title: Text(viewModel.alertTitle),
+                        message: Text(viewModel.alertMessage),
+                        primaryButton: .default(
+                            Text("Relatar Problema por E-mail"),
+                            action: {
+                                viewModel.showEmailAppPicker_songUnavailableConfirmationDialog = true
+                            }
+                        ),
+                        secondaryButton: .cancel(Text("Fechar"))
+                    )
+                }
+            }
+            .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in
+                if shouldUpdate {
+                    viewModel.reloadList()
+                    settingsHelper.updateSoundsList = false
+                }
             }
             
-            if viewModel.displaySharedSuccessfullyToast {
+            if viewModel.showToastView {
                 VStack {
                     Spacer()
                     
-                    ToastView(text: viewModel.shareBannerMessage)
-                        .padding()
+                    ToastView(
+                        icon: viewModel.toastIcon,
+                        iconColor: viewModel.toastIconColor,
+                        text: viewModel.toastText
+                    )
+                    .padding(.horizontal)
+                    .padding(.bottom, 15)
                 }
                 .transition(.moveAndFade)
+            }
+
+            if viewModel.isShowingProcessingView {
+                ProcessingView(message: "Baixando música...")
+                    .padding(.bottom)
             }
         }
     }
     
     @ViewBuilder func getLeadingToolbarControl() -> some View {
-        Menu {
-            Picker("Gênero", selection: $currentGenre) {
-                ForEach(MusicGenre.allCases) { genre in
-                    Text(genre.name)
-                        .tag(genre)
-                }
-            }
+        Button {
+            subviewToOpen = .genrePicker
+            showingModalView.toggle()
         } label: {
-            Image(systemName: currentGenre == .all ? "line.3.horizontal.decrease.circle" : "line.3.horizontal.decrease.circle.fill")
+            Image(systemName: currentGenre == nil ? "line.3.horizontal.decrease.circle" : "line.3.horizontal.decrease.circle.fill")
         }
     }
-
 }
 
 struct SongsView_Previews: PreviewProvider {
