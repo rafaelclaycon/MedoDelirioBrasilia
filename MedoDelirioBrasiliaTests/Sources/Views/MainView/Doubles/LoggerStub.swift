@@ -17,7 +17,15 @@ class LoggerStub: LoggerProtocol {
         errorHistory[description] = updateEventId
     }
 
+    func logSyncError(description: String) {
+        errorHistory[description] = ""
+    }
+
     func logSyncSuccess(description: String, updateEventId: String) {
         successHistory[description] = updateEventId
+    }
+
+    func logSyncSuccess(description: String) {
+        successHistory[description] = ""
     }
 }
