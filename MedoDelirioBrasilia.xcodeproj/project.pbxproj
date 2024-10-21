@@ -341,6 +341,7 @@
 		D94B040E2993383F00EB03CA /* Susto caralho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94B040A2993383F00EB03CA /* Susto caralho.mp3 */; };
 		D94B040F2993383F00EB03CA /* Medo e Delirio - Atencao la vem besteira.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94B040B2993383F00EB03CA /* Medo e Delirio - Atencao la vem besteira.mp3 */; };
 		D94B04112993388900EB03CA /* Mc Presuntinho - Cortina de fumaca trecho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94B04102993388900EB03CA /* Mc Presuntinho - Cortina de fumaca trecho.mp3 */; };
+		D94B514D2CC625120005FABE /* SyncManagerDelegateSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94B514C2CC625120005FABE /* SyncManagerDelegateSpy.swift */; };
 		D94B5F662A1C9CF600B3A688 /* SyncService+Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94B5F652A1C9CF600B3A688 /* SyncService+Author.swift */; };
 		D94B5F682A1C9D0900B3A688 /* SyncService+Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94B5F672A1C9D0900B3A688 /* SyncService+Song.swift */; };
 		D94BA9ED2879EC7F001BD09C /* JoinFolderResearchBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94BA9EC2879EC7F001BD09C /* JoinFolderResearchBannerView.swift */; };
@@ -1857,6 +1858,7 @@
 		D94B040A2993383F00EB03CA /* Susto caralho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Susto caralho.mp3"; sourceTree = "<group>"; };
 		D94B040B2993383F00EB03CA /* Medo e Delirio - Atencao la vem besteira.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Medo e Delirio - Atencao la vem besteira.mp3"; sourceTree = "<group>"; };
 		D94B04102993388900EB03CA /* Mc Presuntinho - Cortina de fumaca trecho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mc Presuntinho - Cortina de fumaca trecho.mp3"; sourceTree = "<group>"; };
+		D94B514C2CC625120005FABE /* SyncManagerDelegateSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncManagerDelegateSpy.swift; sourceTree = "<group>"; };
 		D94B5F652A1C9CF600B3A688 /* SyncService+Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SyncService+Author.swift"; sourceTree = "<group>"; };
 		D94B5F672A1C9D0900B3A688 /* SyncService+Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SyncService+Song.swift"; sourceTree = "<group>"; };
 		D94BA9EC2879EC7F001BD09C /* JoinFolderResearchBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinFolderResearchBannerView.swift; sourceTree = "<group>"; };
@@ -4367,6 +4369,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		D94B514B2CC624F30005FABE /* Doubles */ = {
+			isa = PBXGroup;
+			children = (
+				D94B514C2CC625120005FABE /* SyncManagerDelegateSpy.swift */,
+			);
+			path = Doubles;
+			sourceTree = "<group>";
+		};
 		D94BA9EB2879E964001BD09C /* Banners */ = {
 			isa = PBXGroup;
 			children = (
@@ -5150,6 +5160,7 @@
 		D9DE920E2B9B98DF00268626 /* Sync */ = {
 			isa = PBXGroup;
 			children = (
+				D94B514B2CC624F30005FABE /* Doubles */,
 				D9DE920F2B9B98F800268626 /* SyncManagerTests.swift */,
 			);
 			path = Sync;
@@ -6853,6 +6864,7 @@
 				D900B9C52A6DF6D300C1BC3A /* LoggerStub.swift in Sources */,
 				D99ACE982ADDFC2500C290F0 /* RetroViewViewModelTests.swift in Sources */,
 				D96892DE2C9F7DC50084F646 /* VideoMakerTests.swift in Sources */,
+				D94B514D2CC625120005FABE /* SyncManagerDelegateSpy.swift in Sources */,
 				D9523743285BF99800E6C838 /* LocalDatabaseSpy.swift in Sources */,
 				D9575092284427C70094AEA6 /* ShareLogsDummy.swift in Sources */,
 				D9D22D862A59FA1D00ABDCDC /* MainViewViewModelTests.swift in Sources */,

@@ -15,6 +15,7 @@ final class SyncManagerTests: XCTestCase {
     private var syncService: SyncServiceStub!
     private var localDatabase: LocalDatabaseStub!
     private var logger: LoggerStub!
+    private var delegateSpy: SyncManagerDelegateSpy!
 
     private let mockUpdates: [UpdateEvent] = [
         .init(id: UUID(uuidString: "6AE46488-4872-4C71-84D7-E38A69F123DD")!, contentId: "1", mediaType: .sound, eventType: .created),
@@ -29,12 +30,14 @@ final class SyncManagerTests: XCTestCase {
         syncService = SyncServiceStub()
         localDatabase = LocalDatabaseStub()
         logger = LoggerStub()
+        delegateSpy = SyncManagerDelegateSpy()
     }
 
     override func tearDownWithError() throws {
-        syncService = nil
-        localDatabase = nil
+        delegateSpy = nil
         logger = nil
+        localDatabase = nil
+        syncService = nil
         try super.tearDownWithError()
     }
 }
@@ -47,36 +50,57 @@ extension SyncManagerTests {
         syncService.errorToThrowOnUpdate = .errorFetchingUpdateEvents("")
 
         sut = SyncManager(service: syncService, database: localDatabase, logger: logger)
+        sut.delegate = delegateSpy
 
         await sut.sync()
 
         XCTAssertEqual(localDatabase.numberOfTimesInsertUpdateEventWasCalled, 0)
         XCTAssertEqual(logger.errorHistory.count, 1)
         XCTAssertEqual(logger.successHistory.count, 0)
+        XCTAssertEqual(delegateSpy.totalUpdateCountUpdates.count, 0)
+        XCTAssertEqual(delegateSpy.didProcessUpdateUpdates.count, 0)
+        XCTAssertEqual(delegateSpy.didFinishUpdatingUpdates.count, 2)
+        XCTAssertEqual(delegateSpy.didFinishUpdatingUpdates[1].0, SyncUIStatus.updateError)
+        dump(delegateSpy.didFinishUpdatingUpdates)
+        XCTAssertEqual(delegateSpy.didFinishUpdatingUpdates[1].1, false)
     }
 
     func testSync_whenNoChanges_shouldReturnNothingToUpdate() async throws {
         syncService.updates = []
 
         sut = SyncManager(service: syncService, database: localDatabase, logger: logger)
+        sut.delegate = delegateSpy
 
         await sut.sync()
 
         XCTAssertEqual(localDatabase.numberOfTimesInsertUpdateEventWasCalled, 0)
         XCTAssertEqual(logger.errorHistory.count, 0)
         XCTAssertEqual(logger.successHistory.count, 1)
+        XCTAssertEqual(delegateSpy.totalUpdateCountUpdates.count, 0)
+        XCTAssertEqual(delegateSpy.didProcessUpdateUpdates.count, 0)
+        XCTAssertEqual(delegateSpy.didFinishUpdatingUpdates.count, 2)
+        XCTAssertEqual(delegateSpy.didFinishUpdatingUpdates[1].0, SyncUIStatus.done)
+        dump(delegateSpy.didFinishUpdatingUpdates)
+        XCTAssertEqual(delegateSpy.didFinishUpdatingUpdates[1].1, false)
     }
 
     func testSync_whenSomeUpdates_shouldSuccessfullyExecuteExactNumberOfUpdates() async throws {
         syncService.updates = mockUpdates
 
         sut = SyncManager(service: syncService, database: localDatabase, logger: logger)
+        sut.delegate = delegateSpy
 
         await sut.sync()
 
         XCTAssertEqual(localDatabase.numberOfTimesInsertUpdateEventWasCalled, 5)
         XCTAssertEqual(logger.errorHistory.count, 0)
         XCTAssertEqual(logger.successHistory.count, 0) // Why is this zero?
+        XCTAssertEqual(delegateSpy.totalUpdateCountUpdates.count, 1)
+        XCTAssertEqual(delegateSpy.didProcessUpdateUpdates.count, 5)
+        XCTAssertEqual(delegateSpy.didFinishUpdatingUpdates.count, 2)
+        XCTAssertEqual(delegateSpy.didFinishUpdatingUpdates[1].0, SyncUIStatus.done)
+        dump(delegateSpy.didFinishUpdatingUpdates)
+        XCTAssertEqual(delegateSpy.didFinishUpdatingUpdates[1].1, true)
     }
 
     func testSync_whenAlreadyHasSomeSuccessfulUpdatesAndLastUpdateDateIsAllForSomeReason_shouldSaveOnlyNewUpdates() async throws {
@@ -89,6 +113,7 @@ extension SyncManagerTests {
         ]
 
         sut = SyncManager(service: syncService, database: localDatabase, logger: logger)
+        sut.delegate = delegateSpy
 
         await sut.sync()
 
