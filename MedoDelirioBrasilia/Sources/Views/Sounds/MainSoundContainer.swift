@@ -33,6 +33,9 @@ struct MainSoundContainer: View {
     // Temporary banners
     @State private var shouldDisplayRecurringDonationBanner: Bool = false
 
+    // Retro 2024
+    @State private var showingRetroModalView = false
+
     // MARK: - Environment Objects
 
     @EnvironmentObject var trendsHelper: TrendsHelper
@@ -125,6 +128,10 @@ struct MainSoundContainer: View {
                                 )
                                 .padding(.horizontal, 10)
                             }
+
+                            Retro2024Banner(
+                                openStoriesAction: { showingRetroModalView = true }
+                            )
 
 //                            if shouldDisplayRecurringDonationBanner, viewModel.searchText.isEmpty {
 //                                RecurringDonationBanner(isBeingShown: $shouldDisplayRecurringDonationBanner)
@@ -230,6 +237,9 @@ struct MainSoundContainer: View {
                 lastUpdateAttempt: AppPersistentMemory.getLastUpdateAttempt(),
                 lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
             )
+        }
+        .fullScreenCover(isPresented: $showingRetroModalView) {
+            StoriesView()
         }
         .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in // iPad - Settings explicit toggle.
             if shouldUpdate {
