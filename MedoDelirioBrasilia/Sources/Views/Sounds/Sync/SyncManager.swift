@@ -40,9 +40,12 @@ class SyncManager {
         }
 
         do {
-            try await retryLocal()
-            try await syncDataWithServer()
-            delegate?.didFinishUpdating(status: .done, updateSoundList: true)
+            let didHaveAnyLocalUpdates = try await retryLocal()
+            let didHaveAnyRemoteUpdates = try await syncDataWithServer()
+            delegate?.didFinishUpdating(
+                status: .done,
+                updateSoundList: didHaveAnyLocalUpdates || didHaveAnyRemoteUpdates
+            )
         } catch NetworkRabbitError.errorFetchingUpdateEvents(let errorMessage) {
             print(errorMessage)
             logger.logSyncError(description: errorMessage, updateEventId: "")
@@ -58,15 +61,16 @@ class SyncManager {
         AppPersistentMemory.setLastUpdateAttempt(to: Date.now.iso8601withFractionalSeconds)
     }
 
-    func retryLocal() async throws {
+    func retryLocal() async throws -> Bool {
         let localResult = try await retrieveUnsuccessfulLocalUpdates()
         print("Resultado do fetchLocalUnsuccessfulUpdates: \(localResult)")
         if localResult > 0 {
             try await syncUnsuccessful()
         }
+        return localResult > 0
     }
 
-    func syncDataWithServer() async throws {
+    func syncDataWithServer() async throws -> Bool {
         let result = try await retrieveServerUpdates()
         print("Resultado do retrieveServerUpdates: \(result)")
         if result > 0 {
@@ -74,6 +78,7 @@ class SyncManager {
         } else {
             logger.logSyncSuccess(description: "Sincronização realizada com sucesso, porém não existem novas atualizações.", updateEventId: "")
         }
+        return result > 0
     }
 
     func retrieveServerUpdates() async throws -> Double {
