@@ -111,5 +111,11 @@ extension SyncManagerTests {
         XCTAssertEqual(localDatabase.numberOfTimesInsertUpdateEventWasCalled, 2)
         XCTAssertEqual(logger.errorHistory.count, 0)
         XCTAssertEqual(logger.successHistory.count, 0) // Maybe this should be 1?
+        XCTAssertEqual(delegateSpy.totalUpdateCountUpdates.count, 1)
+        XCTAssertEqual(delegateSpy.didProcessUpdateUpdates.count, 5)
+        XCTAssertEqual(delegateSpy.didFinishUpdatingUpdates.count, 2)
+        XCTAssertEqual(delegateSpy.didFinishUpdatingUpdates[1].0, SyncUIStatus.done)
+        dump(delegateSpy.didFinishUpdatingUpdates)
+        XCTAssertEqual(delegateSpy.didFinishUpdatingUpdates[1].1, true)
     }
 }
