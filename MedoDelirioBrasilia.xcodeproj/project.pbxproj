@@ -467,7 +467,6 @@
 		D961D01828372B1800EFEDEB /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D961D01728372B1800EFEDEB /* AudioPlayer.swift */; };
 		D961D025283731AA00EFEDEB /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D961D024283731AA00EFEDEB /* HelpView.swift */; };
 		D9625E7E28238F9A00080852 /* MedoDelirioBrasiliaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9625E7D28238F9A00080852 /* MedoDelirioBrasiliaApp.swift */; };
-		D9625E8028238F9A00080852 /* SoundsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9625E7F28238F9A00080852 /* SoundsView.swift */; };
 		D9625E8228238F9B00080852 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9625E8128238F9B00080852 /* Assets.xcassets */; };
 		D9625E8528238F9B00080852 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9625E8428238F9B00080852 /* Preview Assets.xcassets */; };
 		D9625E8F28238F9B00080852 /* LocalDatabaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9625E8E28238F9B00080852 /* LocalDatabaseTests.swift */; };
@@ -1104,7 +1103,6 @@
 		D98E1B042BE35AE2007D057E /* ReactionDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98E1B032BE35AE2007D057E /* ReactionDetailHeader.swift */; };
 		D98EC5DE282596C300340BE5 /* SoundCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5DD282596C300340BE5 /* SoundCell.swift */; };
 		D98EC5E12825A05900340BE5 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5E02825A05900340BE5 /* Sound.swift */; };
-		D98EC5E32825A45000340BE5 /* SoundsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5E22825A45000340BE5 /* SoundsViewViewModel.swift */; };
 		D99070552A905DA300A26F65 /* SyncInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99070542A905DA300A26F65 /* SyncInfoView.swift */; };
 		D99070592A90E20100A26F65 /* SyncInfoView+KnowMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99070582A90E20100A26F65 /* SyncInfoView+KnowMoreView.swift */; };
 		D990705D2A90E6CB00A26F65 /* LargeRoundedRectangleBorderedButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D990705C2A90E6CB00A26F65 /* LargeRoundedRectangleBorderedButtonStyle.swift */; };
@@ -1989,7 +1987,6 @@
 		D961D024283731AA00EFEDEB /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		D9625E7A28238F9A00080852 /* MedoDelirio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MedoDelirio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9625E7D28238F9A00080852 /* MedoDelirioBrasiliaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedoDelirioBrasiliaApp.swift; sourceTree = "<group>"; };
-		D9625E7F28238F9A00080852 /* SoundsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsView.swift; sourceTree = "<group>"; };
 		D9625E8128238F9B00080852 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D9625E8428238F9B00080852 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D9625E8A28238F9B00080852 /* MedoDelirioBrasiliaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MedoDelirioBrasiliaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2629,7 +2626,6 @@
 		D98E1B032BE35AE2007D057E /* ReactionDetailHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionDetailHeader.swift; sourceTree = "<group>"; };
 		D98EC5DD282596C300340BE5 /* SoundCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundCell.swift; sourceTree = "<group>"; };
 		D98EC5E02825A05900340BE5 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
-		D98EC5E22825A45000340BE5 /* SoundsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsViewViewModel.swift; sourceTree = "<group>"; };
 		D99070542A905DA300A26F65 /* SyncInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncInfoView.swift; sourceTree = "<group>"; };
 		D99070582A90E20100A26F65 /* SyncInfoView+KnowMoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SyncInfoView+KnowMoreView.swift"; sourceTree = "<group>"; };
 		D990705C2A90E6CB00A26F65 /* LargeRoundedRectangleBorderedButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeRoundedRectangleBorderedButtonStyle.swift; sourceTree = "<group>"; };
@@ -4975,8 +4971,6 @@
 			children = (
 				D992EF572BCB24310080C892 /* MainSoundContainer.swift */,
 				D9DBEA992BCBFB8600220679 /* MainSoundContainerViewModel.swift */,
-				D9625E7F28238F9A00080852 /* SoundsView.swift */,
-				D98EC5E22825A45000340BE5 /* SoundsViewViewModel.swift */,
 				D92C0CA928405B2D009CF19A /* NoFavoritesView.swift */,
 				D9E747FA29A8ED1100009C8D /* NoSearchResultsView.swift */,
 				D94EAB5C29FC4D51004CD604 /* Sync */,
@@ -6617,7 +6611,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9AB63F02A5A063700390778 /* UIDevice+.swift in Sources */,
-				D9625E8028238F9A00080852 /* SoundsView.swift in Sources */,
 				D91107142863B5FD000B6F8F /* Reaction.swift in Sources */,
 				D9543B462AD5D6C80075A7A1 /* RetroView+ViewModel.swift in Sources */,
 				D9855DBE2BE4123E00965E9D /* ReactionMock.swift in Sources */,
@@ -6785,7 +6778,6 @@
 				D992EF562BCB222B0080C892 /* ContextMenuOption.swift in Sources */,
 				D9DBCEA42B12888D003B4A46 /* NetworkRabbit+Retro.swift in Sources */,
 				D9EB18A52857CDFF00A2F8A8 /* ReactionsView.swift in Sources */,
-				D98EC5E32825A45000340BE5 /* SoundsViewViewModel.swift in Sources */,
 				D9F78A9F2860DF9100B83567 /* ReactionItem.swift in Sources */,
 				D9CC893528EB7CF800576492 /* MostSharedByAudienceView+ViewModel.swift in Sources */,
 				D9943F2A28642EC3002C6B97 /* UserFolderContent.swift in Sources */,
