@@ -244,7 +244,7 @@ extension AppDelegate {
             }
         } catch {
             print("Error creating \(folderName) folder: \(error)")
-            Logger.shared.logSyncError(description: "Erro ao tentar criar a pasta \(folderName): \(error.localizedDescription)", updateEventId: "")
+            Logger.shared.logSyncError(description: "Erro ao tentar criar a pasta \(folderName): \(error.localizedDescription)")
         }
     }
 }

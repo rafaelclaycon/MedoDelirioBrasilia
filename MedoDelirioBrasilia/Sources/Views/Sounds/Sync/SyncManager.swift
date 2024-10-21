@@ -35,52 +35,55 @@ class SyncManager {
     }
 
     func sync() async {
-        guard service.hasConnectivity() else {
-            delegate?.didFinishUpdating(status: .noInternet, updateSoundList: false)
-            return
-        }
-
         await MainActor.run {
             delegate?.didFinishUpdating(status: .updating, updateSoundList: false)
         }
 
         do {
-            try await retryLocal()
-            try await syncDataWithServer()
-            delegate?.didFinishUpdating(status: .done, updateSoundList: true)
-        } catch SyncError.noInternet {
-            delegate?.didFinishUpdating(status: .noInternet, updateSoundList: false)
+            let didHaveAnyLocalUpdates = try await retryLocal()
+            let didHaveAnyRemoteUpdates = try await syncDataWithServer()
+
+            if didHaveAnyLocalUpdates || didHaveAnyRemoteUpdates {
+                logger.logSyncSuccess(description: "Sincronização realizada com sucesso.")
+            } else {
+                logger.logSyncSuccess(description: "Sincronização realizada com sucesso, porém não existem novas atualizações.")
+            }
+
+            delegate?.didFinishUpdating(
+                status: .done,
+                updateSoundList: didHaveAnyLocalUpdates || didHaveAnyRemoteUpdates
+            )
         } catch NetworkRabbitError.errorFetchingUpdateEvents(let errorMessage) {
             print(errorMessage)
-            logger.logSyncError(description: errorMessage, updateEventId: "")
+            logger.logSyncError(description: errorMessage)
             delegate?.didFinishUpdating(status: .updateError, updateSoundList: false)
         } catch SyncError.errorInsertingUpdateEvent(let updateEventId) {
             logger.logSyncError(description: "Erro ao tentar inserir UpdateEvent no banco de dados.", updateEventId: updateEventId)
             delegate?.didFinishUpdating(status: .updateError, updateSoundList: false)
         } catch {
-            logger.logSyncError(description: error.localizedDescription, updateEventId: "")
+            logger.logSyncError(description: error.localizedDescription)
             delegate?.didFinishUpdating(status: .updateError, updateSoundList: false)
         }
 
         AppPersistentMemory.setLastUpdateAttempt(to: Date.now.iso8601withFractionalSeconds)
     }
 
-    func retryLocal() async throws {
+    func retryLocal() async throws -> Bool {
         let localResult = try await retrieveUnsuccessfulLocalUpdates()
         print("Resultado do fetchLocalUnsuccessfulUpdates: \(localResult)")
         if localResult > 0 {
             try await syncUnsuccessful()
         }
+        return localResult > 0
     }
 
-    func syncDataWithServer() async throws {
+    func syncDataWithServer() async throws -> Bool {
         let result = try await retrieveServerUpdates()
         print("Resultado do retrieveServerUpdates: \(result)")
         if result > 0 {
             try await serverSync()
-        } else {
-            logger.logSyncSuccess(description: "Sincronização realizada com sucesso, porém não existem novas atualizações.", updateEventId: "")
         }
+        return result > 0
     }
 
     func retrieveServerUpdates() async throws -> Double {
@@ -120,10 +123,6 @@ class SyncManager {
         delegate?.set(totalUpdateCount: serverUpdates.count)
 
         for update in serverUpdates {
-            guard service.hasConnectivity() else {
-                throw SyncError.noInternet
-            }
-
             await service.process(updateEvent: update)
 
             updateNumber += 1
@@ -136,9 +135,6 @@ class SyncManager {
         guard let localUnsuccessfulUpdates = localUnsuccessfulUpdates else { return }
         guard localUnsuccessfulUpdates.isEmpty == false else {
             return print("NO LOCAL UNSUCCESSFUL UPDATES")
-        }
-        guard service.hasConnectivity() else {
-            throw SyncError.noInternet
         }
 
         for update in localUnsuccessfulUpdates {

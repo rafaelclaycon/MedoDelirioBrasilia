@@ -28,12 +28,12 @@ class SyncServiceStub: SyncServiceProtocol {
         }
     }
 
-    func hasConnectivity() -> Bool {
-        if let loseConectivityCount = loseConectivityAfterUpdate, timesProcessWasCalled >= loseConectivityCount {
-            return false
-        }
-        return hasConnectivityResult
-    }
+//    func hasConnectivity() -> Bool {
+//        if let loseConectivityCount = loseConectivityAfterUpdate, timesProcessWasCalled >= loseConectivityCount {
+//            return false
+//        }
+//        return hasConnectivityResult
+//    }
 
     func process(updateEvent: MedoDelirio.UpdateEvent) async {
         timesProcessWasCalled += 1

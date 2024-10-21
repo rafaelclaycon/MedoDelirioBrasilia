@@ -16,7 +16,6 @@ struct SidebarView: View {
     @Binding var updateFolderList: Bool
     @Binding var currentSoundsListMode: SoundsListMode
     @EnvironmentObject var settingsHelper: SettingsHelper
-    @EnvironmentObject var networkMonitor: NetworkMonitor
     @EnvironmentObject var syncValues: SyncValues
 
     // Trends
@@ -37,7 +36,7 @@ struct SidebarView: View {
                         ),
                         currentSoundsListMode: $currentSoundsListMode,
                         showSettings: .constant(false)
-                    ).environmentObject(trendsHelper).environmentObject(settingsHelper).environmentObject(networkMonitor),
+                    ).environmentObject(trendsHelper).environmentObject(settingsHelper),
                     tag: PadScreen.allSounds,
                     selection: $state,
                     label: {
@@ -55,7 +54,7 @@ struct SidebarView: View {
                         ),
                         currentSoundsListMode: $currentSoundsListMode,
                         showSettings: .constant(false)
-                    ).environmentObject(trendsHelper).environmentObject(settingsHelper).environmentObject(networkMonitor),
+                    ).environmentObject(trendsHelper).environmentObject(settingsHelper),
                     tag: PadScreen.favorites,
                     selection: $state,
                     label: {

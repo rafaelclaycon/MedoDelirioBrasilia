@@ -27,7 +27,6 @@ struct MainSoundContainer: View {
     @State var authorSearchText: String = .empty
 
     // Sync
-    @State private var shouldDisplayYoureOfflineBanner: Bool = true
     @State private var displayLongUpdateBanner: Bool = false
 
     // Temporary banners
@@ -37,7 +36,6 @@ struct MainSoundContainer: View {
 
     @EnvironmentObject var trendsHelper: TrendsHelper
     @EnvironmentObject var settingsHelper: SettingsHelper
-    @EnvironmentObject var networkMonitor: NetworkMonitor
     @EnvironmentObject var playRandomSoundHelper: PlayRandomSoundHelper
 
     // MARK: - Computed Properties
@@ -114,10 +112,6 @@ struct MainSoundContainer: View {
                     },
                     headerView: {
                         VStack {
-                            if !networkMonitor.isConnected, shouldDisplayYoureOfflineBanner {
-                                YoureOfflineView(isBeingShown: $shouldDisplayYoureOfflineBanner)
-                            }
-
                             if displayLongUpdateBanner {
                                 LongUpdateBanner(
                                     completedNumber: $viewModel.processedUpdateNumber,
@@ -226,7 +220,6 @@ struct MainSoundContainer: View {
         }
         .sheet(isPresented: $showingModalView) {
             SyncInfoView(
-                isBeingShown: $showingModalView,
                 lastUpdateAttempt: AppPersistentMemory.getLastUpdateAttempt(),
                 lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
             )
