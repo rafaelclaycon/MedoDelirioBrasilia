@@ -42,6 +42,13 @@ class SyncManager {
         do {
             let didHaveAnyLocalUpdates = try await retryLocal()
             let didHaveAnyRemoteUpdates = try await syncDataWithServer()
+
+            if didHaveAnyLocalUpdates || didHaveAnyRemoteUpdates {
+                logger.logSyncSuccess(description: "Sincronização realizada com sucesso.", updateEventId: "")
+            } else {
+                logger.logSyncSuccess(description: "Sincronização realizada com sucesso, porém não existem novas atualizações.", updateEventId: "")
+            }
+
             delegate?.didFinishUpdating(
                 status: .done,
                 updateSoundList: didHaveAnyLocalUpdates || didHaveAnyRemoteUpdates
@@ -75,8 +82,6 @@ class SyncManager {
         print("Resultado do retrieveServerUpdates: \(result)")
         if result > 0 {
             try await serverSync()
-        } else {
-            logger.logSyncSuccess(description: "Sincronização realizada com sucesso, porém não existem novas atualizações.", updateEventId: "")
         }
         return result > 0
     }

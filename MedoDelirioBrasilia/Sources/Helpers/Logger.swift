@@ -101,7 +101,10 @@ class Logger: LoggerProtocol {
         try? LocalDatabase.shared.insert(networkCallLog: log)
     }
 
-    func logSyncError(description: String, updateEventId: String) {
+    func logSyncError(
+        description: String,
+        updateEventId: String
+    ) {
         let syncLog = SyncLog(
             logType: .error,
             description: description,
@@ -110,7 +113,10 @@ class Logger: LoggerProtocol {
         LocalDatabase.shared.insert(syncLog: syncLog)
     }
 
-    func logSyncSuccess(description: String, updateEventId: String) {
+    func logSyncSuccess(
+        description: String,
+        updateEventId: String
+    ) {
         let syncLog = SyncLog(
             logType: .success,
             description: description,
