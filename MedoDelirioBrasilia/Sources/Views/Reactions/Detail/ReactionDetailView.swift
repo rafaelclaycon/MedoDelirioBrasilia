@@ -52,7 +52,7 @@ struct ReactionDetailView: View {
             SoundList(
                 viewModel: soundListViewModel,
                 soundSearchTextIsEmpty: .constant(nil),
-                headerView: AnyView(
+                headerView: {
                     ReactionDetailHeader(
                         title: viewModel.reaction.title,
                         subtitle: viewModel.subtitle,
@@ -60,8 +60,8 @@ struct ReactionDetailView: View {
                     )
                     .frame(height: 250)
                     .padding(.bottom, 6)
-                ),
-                loadingView: AnyView(
+                },
+                loadingView:
                     VStack(spacing: 40) {
                         Spacer()
 
@@ -75,8 +75,8 @@ struct ReactionDetailView: View {
 
                         Spacer()
                     }
-                ),
-                emptyStateView: AnyView(
+                ,
+                emptyStateView:
                     VStack(spacing: 40) {
                         Spacer()
 
@@ -103,8 +103,8 @@ struct ReactionDetailView: View {
                         Spacer()
                     }
                     .padding(.horizontal, 30)
-                ),
-                errorView: AnyView(
+                ,
+                errorView:
                     VStack(spacing: 40) {
                         Text("☹️")
                             .font(.system(size: 86))
@@ -131,7 +131,6 @@ struct ReactionDetailView: View {
 
                         Spacer()
                     }
-                )
             )
             .environmentObject(TrendsHelper())
         }
