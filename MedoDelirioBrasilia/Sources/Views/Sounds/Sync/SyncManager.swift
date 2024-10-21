@@ -44,9 +44,9 @@ class SyncManager {
             let didHaveAnyRemoteUpdates = try await syncDataWithServer()
 
             if didHaveAnyLocalUpdates || didHaveAnyRemoteUpdates {
-                logger.logSyncSuccess(description: "Sincronização realizada com sucesso.", updateEventId: "")
+                logger.logSyncSuccess(description: "Sincronização realizada com sucesso.")
             } else {
-                logger.logSyncSuccess(description: "Sincronização realizada com sucesso, porém não existem novas atualizações.", updateEventId: "")
+                logger.logSyncSuccess(description: "Sincronização realizada com sucesso, porém não existem novas atualizações.")
             }
 
             delegate?.didFinishUpdating(
@@ -55,13 +55,13 @@ class SyncManager {
             )
         } catch NetworkRabbitError.errorFetchingUpdateEvents(let errorMessage) {
             print(errorMessage)
-            logger.logSyncError(description: errorMessage, updateEventId: "")
+            logger.logSyncError(description: errorMessage)
             delegate?.didFinishUpdating(status: .updateError, updateSoundList: false)
         } catch SyncError.errorInsertingUpdateEvent(let updateEventId) {
             logger.logSyncError(description: "Erro ao tentar inserir UpdateEvent no banco de dados.", updateEventId: updateEventId)
             delegate?.didFinishUpdating(status: .updateError, updateSoundList: false)
         } catch {
-            logger.logSyncError(description: error.localizedDescription, updateEventId: "")
+            logger.logSyncError(description: error.localizedDescription)
             delegate?.didFinishUpdating(status: .updateError, updateSoundList: false)
         }
 

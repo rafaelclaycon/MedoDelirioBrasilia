@@ -10,7 +10,10 @@ import UIKit
 internal protocol LoggerProtocol {
 
     func logSyncError(description: String, updateEventId: String)
+    func logSyncError(description: String)
+
     func logSyncSuccess(description: String, updateEventId: String)
+    func logSyncSuccess(description: String)
 }
 
 class Logger: LoggerProtocol {
@@ -113,6 +116,17 @@ class Logger: LoggerProtocol {
         LocalDatabase.shared.insert(syncLog: syncLog)
     }
 
+    func logSyncError(
+        description: String
+    ) {
+        let syncLog = SyncLog(
+            logType: .error,
+            description: description,
+            updateEventId: ""
+        )
+        LocalDatabase.shared.insert(syncLog: syncLog)
+    }
+
     func logSyncSuccess(
         description: String,
         updateEventId: String
@@ -121,6 +135,17 @@ class Logger: LoggerProtocol {
             logType: .success,
             description: description,
             updateEventId: updateEventId
+        )
+        LocalDatabase.shared.insert(syncLog: syncLog)
+    }
+
+    func logSyncSuccess(
+        description: String
+    ) {
+        let syncLog = SyncLog(
+            logType: .success,
+            description: description,
+            updateEventId: ""
         )
         LocalDatabase.shared.insert(syncLog: syncLog)
     }
