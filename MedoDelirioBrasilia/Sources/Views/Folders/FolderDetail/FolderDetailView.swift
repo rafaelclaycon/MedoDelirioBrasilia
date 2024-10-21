@@ -69,7 +69,7 @@ struct FolderDetailView: View {
                 viewModel: soundListViewModel,
                 multiSelectFolderOperation: .remove,
                 isFolder: true,
-                headerView: AnyView(
+                headerView: {
                     VStack(alignment: .leading) {
                         HStack {
                             Text(viewModel.soundCount)
@@ -82,8 +82,8 @@ struct FolderDetailView: View {
                     }
                     .padding(.horizontal, 20)
                     .padding(.top)
-                ),
-                loadingView: AnyView(
+                },
+                loadingView:
                     VStack {
                         HStack(spacing: 10) {
                             ProgressView()
@@ -93,12 +93,12 @@ struct FolderDetailView: View {
                         }
                         .frame(maxWidth: .infinity)
                     }
-                ),
-                emptyStateView: AnyView(
+                ,
+                emptyStateView:
                     EmptyFolderView()
                         .padding(.horizontal, 30)
-                ),
-                errorView: AnyView(
+                ,
+                errorView:
                     VStack {
                         HStack(spacing: 10) {
                             ProgressView()
@@ -108,7 +108,6 @@ struct FolderDetailView: View {
                         }
                         .frame(maxWidth: .infinity)
                     }
-                )
             )
             .environmentObject(TrendsHelper())
         }

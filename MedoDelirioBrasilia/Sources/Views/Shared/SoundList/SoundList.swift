@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SoundList: View {
+struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, ErrorView: View>: View {
 
     // MARK: - Dependencies
 
@@ -21,10 +21,10 @@ struct SoundList: View {
     private var syncAction: (() -> Void)?
     private var isFolder: Bool
 
-    private var headerView: AnyView?
-    private let loadingView: AnyView
-    private let emptyStateView: AnyView
-    private let errorView: AnyView
+    @ViewBuilder private let headerView: HeaderView?
+    @ViewBuilder private let loadingView: LoadingView
+    @ViewBuilder private let emptyStateView: EmptyStateView
+    @ViewBuilder private let errorView: ErrorView
 
     // MARK: - Stored Properties
 
@@ -74,10 +74,10 @@ struct SoundList: View {
         syncAction: (() -> Void)? = nil,
         multiSelectFolderOperation: FolderOperation = .add,
         isFolder: Bool = false,
-        headerView: AnyView? = nil,
-        loadingView: AnyView,
-        emptyStateView: AnyView,
-        errorView: AnyView
+        headerView: (() -> HeaderView)? = nil,
+        loadingView: LoadingView,
+        emptyStateView: EmptyStateView,
+        errorView: ErrorView
     ) {
         self._viewModel = StateObject(wrappedValue: viewModel)
         self.soundSearchTextIsEmpty = soundSearchTextIsEmpty
@@ -88,7 +88,7 @@ struct SoundList: View {
         self.syncAction = syncAction
         self.multiSelectFolderOperation = multiSelectFolderOperation
         self.isFolder = isFolder
-        self.headerView = headerView
+        self.headerView = headerView?()
         self.loadingView = loadingView
         self.emptyStateView = emptyStateView
         self.errorView = errorView
@@ -470,14 +470,14 @@ struct SoundList: View {
 }
 
 #Preview {
-    SoundList(
+    SoundList<EmptyView, ProgressView, Text, Text>(
         viewModel: .init(
             data: MockSoundListViewModel().allSoundsPublisher,
             menuOptions: [.sharingOptions()],
             currentSoundsListMode: .constant(.regular)
         ),
-        loadingView: AnyView(ProgressView()),
-        emptyStateView: AnyView(Text("No Sounds to Display")),
-        errorView: AnyView(Text("Error"))
+        loadingView: ProgressView(),
+        emptyStateView: Text("No Sounds to Display"),
+        errorView: Text("Error")
     )
 }
