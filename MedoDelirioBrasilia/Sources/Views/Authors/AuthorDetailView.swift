@@ -146,7 +146,7 @@ struct AuthorDetailView: View {
             SoundList(
                 viewModel: soundListViewModel,
                 soundSearchTextIsEmpty: .constant(nil),
-                headerView: AnyView(
+                headerView: {
                     VStack{
                         if let photo = author.photo {
                             GeometryReader { headerPhotoGeometry in
@@ -207,8 +207,8 @@ struct AuthorDetailView: View {
                         .padding(.top, 10)
                         .padding(.bottom, 5)
                     }
-                ),
-                loadingView: AnyView(
+                },
+                loadingView:
                     VStack {
                         HStack(spacing: 10) {
                             ProgressView()
@@ -218,12 +218,12 @@ struct AuthorDetailView: View {
                         }
                         .frame(maxWidth: .infinity)
                     }
-                ),
-                emptyStateView: AnyView(
+                ,
+                emptyStateView:
                     NoSoundsView()
                         .padding(.horizontal, 25)
-                ),
-                errorView: AnyView(
+                ,
+                errorView:
                     VStack {
                         HStack(spacing: 10) {
                             ProgressView()
@@ -233,7 +233,6 @@ struct AuthorDetailView: View {
                         }
                         .frame(maxWidth: .infinity)
                     }
-                )
             )
             .environmentObject(TrendsHelper())
         }

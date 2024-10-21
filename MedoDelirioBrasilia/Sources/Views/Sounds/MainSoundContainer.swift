@@ -112,7 +112,7 @@ struct MainSoundContainer: View {
                             await viewModel.sync(lastAttempt: AppPersistentMemory.getLastUpdateAttempt())
                         }
                     },
-                    headerView: AnyView(
+                    headerView: {
                         VStack {
                             if !networkMonitor.isConnected, shouldDisplayYoureOfflineBanner {
                                 YoureOfflineView(isBeingShown: $shouldDisplayYoureOfflineBanner)
@@ -126,13 +126,13 @@ struct MainSoundContainer: View {
                                 .padding(.horizontal, 10)
                             }
 
-//                            if shouldDisplayRecurringDonationBanner, viewModel.searchText.isEmpty {
-//                                RecurringDonationBanner(isBeingShown: $shouldDisplayRecurringDonationBanner)
-//                                    .padding(.horizontal, 10)
-//                            }
+                            //                            if shouldDisplayRecurringDonationBanner, viewModel.searchText.isEmpty {
+                            //                                RecurringDonationBanner(isBeingShown: $shouldDisplayRecurringDonationBanner)
+                            //                                    .padding(.horizontal, 10)
+                            //                            }
                         }
-                    ),
-                    loadingView: AnyView(
+                    },
+                    loadingView:
                         VStack {
                             HStack(spacing: 10) {
                                 ProgressView()
@@ -142,13 +142,13 @@ struct MainSoundContainer: View {
                             }
                             .frame(maxWidth: .infinity)
                         }
-                    ),
-                    emptyStateView: AnyView(
+                    ,
+                    emptyStateView:
                         Text("Nenhum som a ser exibido. Isso é esquisito.")
                             .foregroundColor(.gray)
                             .padding(.horizontal, 20)
-                    ),
-                    errorView: AnyView(
+                    ,
+                    errorView:
                         VStack {
                             HStack(spacing: 10) {
                                 ProgressView()
@@ -158,15 +158,14 @@ struct MainSoundContainer: View {
                             }
                             .frame(maxWidth: .infinity)
                         }
-                    )
                 )
 
             case .favorites:
-                SoundList(
+                SoundList<EmptyView, VStack, VStack, VStack>(
                     viewModel: favoritesViewModel,
                     soundSearchTextIsEmpty: $soundSearchTextIsEmpty,
                     allowSearch: true,
-                    loadingView: AnyView(
+                    loadingView:
                         VStack {
                             HStack(spacing: 10) {
                                 ProgressView()
@@ -176,13 +175,15 @@ struct MainSoundContainer: View {
                             }
                             .frame(maxWidth: .infinity)
                         }
-                    ),
-                    emptyStateView: AnyView(
-                        NoFavoritesView()
-                            .padding(.horizontal, 25)
-                            .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? 100 : 15)
-                    ),
-                    errorView: AnyView(
+                    ,
+                    emptyStateView:
+                        VStack {
+                            NoFavoritesView()
+                                .padding(.horizontal, 25)
+                                .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? 100 : 15)
+                        }
+                    ,
+                    errorView:
                         VStack {
                             HStack(spacing: 10) {
                                 ProgressView()
@@ -192,7 +193,6 @@ struct MainSoundContainer: View {
                             }
                             .frame(maxWidth: .infinity)
                         }
-                    )
                 )
 
             case .folders:
