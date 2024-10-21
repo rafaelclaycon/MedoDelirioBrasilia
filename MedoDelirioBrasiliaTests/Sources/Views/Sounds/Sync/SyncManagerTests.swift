@@ -31,9 +31,12 @@ final class SyncManagerTests: XCTestCase {
         localDatabase = LocalDatabaseStub()
         logger = LoggerStub()
         delegateSpy = SyncManagerDelegateSpy()
+        sut = SyncManager(service: syncService, database: localDatabase, logger: logger)
+        sut.delegate = delegateSpy
     }
 
     override func tearDownWithError() throws {
+        sut = nil
         delegateSpy = nil
         logger = nil
         localDatabase = nil
@@ -48,9 +51,6 @@ extension SyncManagerTests {
 
     func testSync_whenNoInternetConnection_shouldReturnSyncError() async throws {
         syncService.errorToThrowOnUpdate = .errorFetchingUpdateEvents("")
-
-        sut = SyncManager(service: syncService, database: localDatabase, logger: logger)
-        sut.delegate = delegateSpy
 
         await sut.sync()
 
@@ -68,9 +68,6 @@ extension SyncManagerTests {
     func testSync_whenNoChanges_shouldReturnNothingToUpdate() async throws {
         syncService.updates = []
 
-        sut = SyncManager(service: syncService, database: localDatabase, logger: logger)
-        sut.delegate = delegateSpy
-
         await sut.sync()
 
         XCTAssertEqual(localDatabase.numberOfTimesInsertUpdateEventWasCalled, 0)
@@ -86,9 +83,6 @@ extension SyncManagerTests {
 
     func testSync_whenSomeUpdates_shouldSuccessfullyExecuteExactNumberOfUpdates() async throws {
         syncService.updates = mockUpdates
-
-        sut = SyncManager(service: syncService, database: localDatabase, logger: logger)
-        sut.delegate = delegateSpy
 
         await sut.sync()
 
@@ -111,9 +105,6 @@ extension SyncManagerTests {
             .init(id: UUID(uuidString: "EB73727F-E228-4025-9109-886A9C33CAC5")!, contentId: "1", mediaType: .sound, eventType: .created),
             .init(id: UUID(uuidString: "DC15BD2A-88BE-4C4D-9AE5-790856FAC919")!, contentId: "1", mediaType: .sound, eventType: .created)
         ]
-
-        sut = SyncManager(service: syncService, database: localDatabase, logger: logger)
-        sut.delegate = delegateSpy
 
         await sut.sync()
 
