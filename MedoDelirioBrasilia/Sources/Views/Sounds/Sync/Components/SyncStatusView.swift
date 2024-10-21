@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SyncStatusView: View {
+
     @EnvironmentObject private var syncValues: SyncValues
 
     var body: some View {
@@ -18,9 +19,6 @@ struct SyncStatusView: View {
         case .done:
             Image(systemName: "checkmark.circle.fill")
                 .foregroundColor(.accentColor)
-        case .noInternet:
-            Image(systemName: "exclamationmark.octagon")
-                .foregroundColor(.gray)
         case .updateError:
             Image(systemName: "exclamationmark.triangle.fill") // "xmark.octagon"
                 .foregroundColor(.orange)
@@ -29,9 +27,9 @@ struct SyncStatusView: View {
 }
 
 struct SyncStatusView_Previews: PreviewProvider {
+
     static let syncValuesUpdating: SyncValues = SyncValues()
     static let syncValuesDone: SyncValues = SyncValues(syncStatus: .done)
-    static let syncValuesNoInternet: SyncValues = SyncValues(syncStatus: .noInternet)
     static let syncValuesUpdateError: SyncValues = SyncValues(syncStatus: .updateError)
 
     static var previews: some View {
@@ -41,9 +39,6 @@ struct SyncStatusView_Previews: PreviewProvider {
 
             SyncStatusView()
                 .environmentObject(syncValuesDone)
-
-            SyncStatusView()
-                .environmentObject(syncValuesNoInternet)
 
             SyncStatusView()
                 .environmentObject(syncValuesUpdateError)

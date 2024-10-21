@@ -35,11 +35,6 @@ class SyncManager {
     }
 
     func sync() async {
-        guard service.hasConnectivity() else {
-            delegate?.didFinishUpdating(status: .noInternet, updateSoundList: false)
-            return
-        }
-
         await MainActor.run {
             delegate?.didFinishUpdating(status: .updating, updateSoundList: false)
         }
@@ -48,8 +43,6 @@ class SyncManager {
             try await retryLocal()
             try await syncDataWithServer()
             delegate?.didFinishUpdating(status: .done, updateSoundList: true)
-        } catch SyncError.noInternet {
-            delegate?.didFinishUpdating(status: .noInternet, updateSoundList: false)
         } catch NetworkRabbitError.errorFetchingUpdateEvents(let errorMessage) {
             print(errorMessage)
             logger.logSyncError(description: errorMessage, updateEventId: "")
@@ -120,10 +113,6 @@ class SyncManager {
         delegate?.set(totalUpdateCount: serverUpdates.count)
 
         for update in serverUpdates {
-            guard service.hasConnectivity() else {
-                throw SyncError.noInternet
-            }
-
             await service.process(updateEvent: update)
 
             updateNumber += 1
@@ -136,9 +125,6 @@ class SyncManager {
         guard let localUnsuccessfulUpdates = localUnsuccessfulUpdates else { return }
         guard localUnsuccessfulUpdates.isEmpty == false else {
             return print("NO LOCAL UNSUCCESSFUL UPDATES")
-        }
-        guard service.hasConnectivity() else {
-            throw SyncError.noInternet
         }
 
         for update in localUnsuccessfulUpdates {

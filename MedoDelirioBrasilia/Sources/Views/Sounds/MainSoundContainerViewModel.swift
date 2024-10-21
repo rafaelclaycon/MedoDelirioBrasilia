@@ -68,7 +68,6 @@ class MainSoundContainerViewModel: ObservableObject {
 
         self.syncManager = SyncManager(
             service: SyncService(
-                connectionManager: ConnectionManager.shared,
                 networkRabbit: NetworkRabbit.shared,
                 localDatabase: LocalDatabase.shared
             ),

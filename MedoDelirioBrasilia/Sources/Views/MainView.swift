@@ -29,7 +29,6 @@ struct MainView: View {
     @StateObject var trendsHelper = TrendsHelper()
 
     // Sync
-    let networkMonitor = NetworkMonitor()
     @StateObject private var syncValues = SyncValues()
 
     private var enableReactions: Bool {
@@ -56,7 +55,6 @@ struct MainView: View {
                         )
                         .environmentObject(trendsHelper)
                         .environmentObject(settingsHelper)
-                        .environmentObject(networkMonitor)
                         .navigationDestination(for: GeneralNavigationDestination.self) { screen in
                             GeneralRouter(destination: screen)
                         }
@@ -136,7 +134,6 @@ struct MainView: View {
                     )
                     .environmentObject(trendsHelper)
                     .environmentObject(settingsHelper)
-                    .environmentObject(networkMonitor)
                     .environmentObject(syncValues)
                 } detail: {
                     NavigationStack(path: $soundsPath) {
@@ -153,7 +150,6 @@ struct MainView: View {
                         )
                         .environmentObject(trendsHelper)
                         .environmentObject(settingsHelper)
-                        .environmentObject(networkMonitor)
                         .navigationDestination(for: GeneralNavigationDestination.self) { screen in
                             GeneralRouter(destination: screen)
                         }
