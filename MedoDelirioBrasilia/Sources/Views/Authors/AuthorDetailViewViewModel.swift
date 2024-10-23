@@ -11,7 +11,9 @@ import SwiftUI
 class AuthorDetailViewViewModel: ObservableObject {
 
     @Published var sounds = [Sound]()
-    
+
+    @Published var dataLoadingDidFail: Bool = false
+
     @Published var soundSortOption: Int = 1
     @Published var selectedSound: Sound? = nil
     @Published var selectedSounds: [Sound]? = nil
@@ -56,6 +58,7 @@ class AuthorDetailViewViewModel: ObservableObject {
             sortSounds(by: soundSortOption)
         } catch {
             print("Erro carregando sons: \(error.localizedDescription)")
+            dataLoadingDidFail = true
         }
     }
 

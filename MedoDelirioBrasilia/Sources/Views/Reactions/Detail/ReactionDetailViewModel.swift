@@ -28,6 +28,7 @@ class ReactionDetailViewModel: ObservableObject {
     }
 
     var subtitle: String {
+        guard !dataLoadingDidFail else { return "" }
         guard let sounds else { return "Carregando..." }
         let lastUpdateDate: String = reaction.lastUpdate.asRelativeDateTime ?? ""
         if sounds.count == 0 {
@@ -37,6 +38,16 @@ class ReactionDetailViewModel: ObservableObject {
         } else {
             return "\(sounds.count) sons. Atualizada \(lastUpdateDate)."
         }
+    }
+
+    var dataLoadingDidFail: Bool {
+        guard case .error(_) = state else { return false }
+        return true
+    }
+
+    var errorMessage: String {
+        guard case .error(let errorString) = state else { return "" }
+        return errorString
     }
 
     // MARK: - Initializer

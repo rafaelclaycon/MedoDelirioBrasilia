@@ -19,6 +19,8 @@ class MainSoundContainerViewModel: ObservableObject {
     @Published var soundSortOption: Int
     @Published var authorSortOption: Int
 
+    @Published var dataLoadingDidFail: Bool = false
+
     // Sync
     @Published var processedUpdateNumber: Int = 0
     @Published var totalUpdateCount: Int = 0
@@ -95,6 +97,7 @@ class MainSoundContainerViewModel: ObservableObject {
             sortAllSounds(by: sortOption)
         } catch {
             print("Erro carregando sons: \(error.localizedDescription)")
+            dataLoadingDidFail = true
         }
     }
 
@@ -113,6 +116,7 @@ class MainSoundContainerViewModel: ObservableObject {
             sortFavorites(by: sortOption)
         } catch {
             print("Erro carregando sons: \(error.localizedDescription)")
+            dataLoadingDidFail = true
         }
     }
 

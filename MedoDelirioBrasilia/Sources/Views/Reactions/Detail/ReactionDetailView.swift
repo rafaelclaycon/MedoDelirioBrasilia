@@ -52,6 +52,7 @@ struct ReactionDetailView: View {
             SoundList(
                 viewModel: soundListViewModel,
                 soundSearchTextIsEmpty: .constant(nil),
+                dataLoadingDidFail: viewModel.dataLoadingDidFail,
                 headerView: {
                     ReactionDetailHeader(
                         title: viewModel.reaction.title,
@@ -115,7 +116,7 @@ struct ReactionDetailView: View {
                                 .bold()
                                 .multilineTextAlignment(.center)
 
-                            Text("<Error message here>") // errorString
+                            Text(viewModel.errorMessage)
                                 .multilineTextAlignment(.center)
                                 .foregroundStyle(.gray)
 

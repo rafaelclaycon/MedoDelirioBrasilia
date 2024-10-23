@@ -110,6 +110,7 @@ struct MainSoundContainer: View {
                             await viewModel.sync(lastAttempt: AppPersistentMemory.getLastUpdateAttempt())
                         }
                     },
+                    dataLoadingDidFail: viewModel.dataLoadingDidFail,
                     headerView: {
                         VStack {
                             if displayLongUpdateBanner {
@@ -159,6 +160,7 @@ struct MainSoundContainer: View {
                     viewModel: favoritesViewModel,
                     soundSearchTextIsEmpty: $soundSearchTextIsEmpty,
                     allowSearch: true,
+                    dataLoadingDidFail: viewModel.dataLoadingDidFail,
                     loadingView:
                         VStack {
                             HStack(spacing: 10) {
