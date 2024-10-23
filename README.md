@@ -34,9 +34,9 @@ GIF demos below (they may take a while to load due to size).
 
 To build and run this project, you'll need:
 
-- A Mac running macOS 13.5 Ventura or later;
-- Xcode 15.2 or later;
-- iOS 16.0+ simulators installed (Xcode 15.2 comes with iOS 17.2, so you'll be fine).
+- A Mac running macOS 14.5 Sonoma or later;
+- Xcode 16.0 or later;
+- iOS 16.5+ simulators installed (Xcode 16.0 comes with iOS 18.0, so you'll be fine).
 
 To test and fiddle with the Trends tab, you'll need:
 
