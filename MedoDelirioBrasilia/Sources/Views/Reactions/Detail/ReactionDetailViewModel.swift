@@ -98,7 +98,7 @@ extension ReactionDetailViewModel {
 
     private func soundsFromServer() async throws -> [ReactionSound] {
         let url = URL(string: NetworkRabbit.shared.serverPath + "v4/reaction/\(reaction.id)")!
-        var reactionSounds: [ReactionSound] = try await NetworkRabbit.get(from: url)
+        var reactionSounds: [ReactionSound] = try await NetworkRabbit.shared.get(from: url)
         return reactionSounds.sorted(by: { $0.position < $1.position })
     }
 }

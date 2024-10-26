@@ -260,7 +260,7 @@ extension AppDelegate {
             Task {
                 let url = URL(string: NetworkRabbit.shared.serverPath + "v4/author-links-first-open")!
                 do {
-                    let authorsWithLinks: [Author] = try await NetworkRabbit.get(from: url)
+                    let authorsWithLinks: [Author] = try await NetworkRabbit.shared.get(from: url)
                     try authorsWithLinks.forEach { author in
                         try LocalDatabase.shared.update(author: author)
                     }

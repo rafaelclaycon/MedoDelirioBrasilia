@@ -9,7 +9,7 @@ import Foundation
 
 extension NetworkRabbit {
     
-    static func `get`<T: Codable>(from url: URL) async throws -> T {
+    func `get`<T: Codable>(from url: URL) async throws -> T {
         let (data, response) = try await URLSession.shared.data(from: url)
         
         guard let response = response as? HTTPURLResponse else {
@@ -27,7 +27,7 @@ extension NetworkRabbit {
         return try decoder.decode(T.self, from: data)
     }
 
-    static func post<T: Codable, U: Encodable>(to url: URL, body: U) async throws -> T {
+    func post<T: Codable, U: Encodable>(to url: URL, body: U) async throws -> T {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")

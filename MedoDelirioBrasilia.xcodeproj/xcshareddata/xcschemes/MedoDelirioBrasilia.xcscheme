@@ -64,7 +64,7 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "-ENABLE_REACTIONS"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-SHOW_EXPORT_FOLDERS_OPTION"
@@ -87,7 +87,7 @@
          <EnvironmentVariable
             key = "api_environment"
             value = "local"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
    </LaunchAction>

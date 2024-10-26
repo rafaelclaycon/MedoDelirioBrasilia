@@ -76,7 +76,7 @@ class NetworkRabbit: NetworkRabbitProtocol {
             url = URL(string: serverPath + "v3/sound-share-count-stats-all-time")!
         }
 
-        return try await NetworkRabbit.get(from: url)
+        return try await NetworkRabbit.shared.get(from: url)
     }
     
     func displayAskForMoneyView(completion: @escaping (Bool) -> Void) {

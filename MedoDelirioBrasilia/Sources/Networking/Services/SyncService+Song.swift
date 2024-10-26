@@ -16,7 +16,7 @@ extension SyncService {
         else { return }
 
         do {
-            let song: Song = try await NetworkRabbit.get(from: contentUrl)
+            let song: Song = try await NetworkRabbit.shared.get(from: contentUrl)
             try injectedDatabase.insert(song: song)
 
             try await SyncService.downloadFile(
@@ -35,7 +35,7 @@ extension SyncService {
     func updateSongMetadata(with updateEvent: UpdateEvent) async {
         let url = URL(string: NetworkRabbit.shared.serverPath + "v3/song/\(updateEvent.contentId)")!
         do {
-            let song: Song = try await NetworkRabbit.get(from: url)
+            let song: Song = try await NetworkRabbit.shared.get(from: url)
             try injectedDatabase.update(song: song)
             try injectedDatabase.markAsSucceeded(updateEventId: updateEvent.id)
             Logger.shared.logSyncSuccess(description: "Metadados da Música \"\(song.title)\" atualizados com sucesso.", updateEventId: updateEvent.id.uuidString)

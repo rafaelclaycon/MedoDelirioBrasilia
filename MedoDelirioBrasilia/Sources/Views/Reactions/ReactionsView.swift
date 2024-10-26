@@ -9,16 +9,15 @@ import SwiftUI
 
 struct ReactionsView: View {
 
-    @StateObject private var viewModel = ReactionsViewViewModel()
-
-    @State private var currentSoundsListMode: SoundsListMode = .regular
+    @StateObject private var viewModel = ViewModel(reactionRepository: ReactionRepository())
 
     // iPad Grid Layout
     @State private var columns: [GridItem] = []
     @Environment(\.sizeCategory) var sizeCategory
+
     @Environment(\.push) var push
 
-    let colors: [Color] = [.red, .purple, .pink, .orange, .green, .brown, .blue, .cyan, .gray, .mint]
+    // MARK: - View Body
 
     var body: some View {
         GeometryReader { geometry in
@@ -82,6 +81,11 @@ struct ReactionsView: View {
                             )
                         }
                     }
+                    .refreshable {
+                        Task {
+                            await viewModel.onPullToRefresh()
+                        }
+                    }
                 }
 
             case .error(let errorString):
@@ -100,7 +104,7 @@ struct ReactionsView: View {
 
                     Button {
                         Task {
-                            await viewModel.loadList()
+                            await viewModel.onTryAgainSelected()
                         }
                     } label: {
                         Label("Tentar Novamente", systemImage: "arrow.clockwise")
@@ -121,13 +125,15 @@ struct ReactionsView: View {
             }
         }
         .sheet(isPresented: $viewModel.isShowingSheet) {
-            AddReactionView(isBeingShown: $viewModel.isShowingSheet)
+            AddReactionView()
         }
         .oneTimeTask {
-            await viewModel.loadList()
+            await viewModel.onViewLoad()
         }
     }
 }
+
+// MARK: - Preview
 
 #Preview {
     ReactionsView()

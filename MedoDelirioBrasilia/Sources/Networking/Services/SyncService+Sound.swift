@@ -12,7 +12,7 @@ extension SyncService {
     func createSound(from updateEvent: UpdateEvent) async {
         let url = URL(string: NetworkRabbit.shared.serverPath + "v3/sound/\(updateEvent.contentId)")!
         do {
-            let sound: Sound = try await NetworkRabbit.get(from: url)
+            let sound: Sound = try await NetworkRabbit.shared.get(from: url)
             try injectedDatabase.insert(sound: sound)
             
             try await SyncService.downloadFile(updateEvent.contentId)
@@ -28,7 +28,7 @@ extension SyncService {
     func updateSoundMetadata(with updateEvent: UpdateEvent) async {
         let url = URL(string: NetworkRabbit.shared.serverPath + "v3/sound/\(updateEvent.contentId)")!
         do {
-            let sound: Sound = try await NetworkRabbit.get(from: url)
+            let sound: Sound = try await NetworkRabbit.shared.get(from: url)
             try injectedDatabase.update(sound: sound)
             try injectedDatabase.markAsSucceeded(updateEventId: updateEvent.id)
             Logger.shared.logSyncSuccess(description: "Metadados do Som \"\(sound.title)\" atualizados com sucesso.", updateEventId: updateEvent.id.uuidString)
