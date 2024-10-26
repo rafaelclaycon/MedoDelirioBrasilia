@@ -8,6 +8,7 @@
 import SwiftUI
 import Combine
 
+@MainActor
 class ReactionDetailViewModel: ObservableObject {
 
     // MARK: - Published Vars
@@ -16,8 +17,9 @@ class ReactionDetailViewModel: ObservableObject {
     @Published var sounds: [Sound]?
     @Published var soundSortOption: Int
 
-    let reaction: Reaction
-    var reactionSounds: [ReactionSound]?
+    public let reaction: Reaction
+    private var reactionSounds: [ReactionSound]? // Needed for ordering by position.
+    private let reactionRepository: ReactionRepositoryProtocol
 
     // MARK: - Computed Properties
 
@@ -53,10 +55,12 @@ class ReactionDetailViewModel: ObservableObject {
     // MARK: - Initializer
 
     init(
-        reaction: Reaction
+        reaction: Reaction,
+        reactionRepository: ReactionRepositoryProtocol = ReactionRepository()
     ) {
         self.reaction = reaction
         self.soundSortOption = 0
+        self.reactionRepository = reactionRepository
     }
 }
 
@@ -70,7 +74,7 @@ extension ReactionDetailViewModel {
         }
 
         do {
-            self.reactionSounds = try await soundsFromServer()
+            self.reactionSounds = try await reactionRepository.reactionSounds(reactionId: reaction.id)
             guard let reactionSounds else { return }
             let soundIds: [String] = reactionSounds.map { $0.soundId }
             var selectedSounds = try LocalDatabase.shared.sounds(withIds: soundIds)
@@ -81,25 +85,15 @@ extension ReactionDetailViewModel {
                 }
             }
 
-            DispatchQueue.main.async {
-                self.sounds = selectedSounds
-                self.state = .loaded(selectedSounds)
-            }
+            sounds = selectedSounds
+            state = .loaded(selectedSounds)
         } catch {
-            DispatchQueue.main.async {
-                self.state = .error(error.localizedDescription)
-            }
+            state = .error(error.localizedDescription)
             Analytics.send(
                 originatingScreen: "ReactionDetailView",
                 action: "hadIssueWithReaction(\(self.reaction.title) - \(error.localizedDescription))"
             )
         }
-    }
-
-    private func soundsFromServer() async throws -> [ReactionSound] {
-        let url = URL(string: NetworkRabbit.shared.serverPath + "v4/reaction/\(reaction.id)")!
-        var reactionSounds: [ReactionSound] = try await NetworkRabbit.shared.get(from: url)
-        return reactionSounds.sorted(by: { $0.position < $1.position })
     }
 }
 
@@ -130,20 +124,14 @@ extension ReactionDetailViewModel {
             return index1 < index2
         }
 
-        DispatchQueue.main.async {
-            self.sounds = sortedSounds
-        }
+        self.sounds = sortedSounds
     }
 
     private func sortSoundsByDateAddedDescending() {
-        DispatchQueue.main.async {
-            self.sounds?.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
-        }
+        sounds?.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
     }
 
     private func sortSoundsByDateAddedAscending() {
-        DispatchQueue.main.async {
-            self.sounds?.sort(by: { $0.dateAdded ?? Date() < $1.dateAdded ?? Date() })
-        }
+        sounds?.sort(by: { $0.dateAdded ?? Date() < $1.dateAdded ?? Date() })
     }
 }
