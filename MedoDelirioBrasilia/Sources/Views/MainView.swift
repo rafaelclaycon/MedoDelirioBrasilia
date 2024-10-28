@@ -193,7 +193,7 @@ struct MainView: View {
             case .whatsNew:
                 IntroducingiOS18ControlAndSiriIntentView()
                     .interactiveDismissDisabled()
-//                IntroducingReactionsView(isBeingShown: $showingModalView)
+//                IntroducingReactionsView()
 //                    .interactiveDismissDisabled()
 
             case .retrospective:
@@ -238,12 +238,10 @@ struct MainView: View {
             subviewToOpen = .onboarding
             showingModalView = true
         } else if !AppPersistentMemory.hasSeenControlWhatsNewScreen(), UIDevice.supportsiOSiPadOS18() {
+        // Mac and iPad release at a later date.
+        // else if !AppPersistentMemory.hasSeenReactionsWhatsNewScreen(), UIDevice.isiPhone {
             subviewToOpen = .whatsNew
             showingModalView = true
-            // TODO: Bring back once Reactions is ready!
-//        } else if !AppPersistentMemory.hasSeenReactionsWhatsNewScreen() {
-//            subviewToOpen = .whatsNew
-//            showingModalView = true
         }
     }
 }
