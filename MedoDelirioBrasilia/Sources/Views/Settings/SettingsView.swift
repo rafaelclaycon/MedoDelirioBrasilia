@@ -187,7 +187,7 @@ struct SettingsView: View {
                     self.donors = copy
                 }
             }
-            .popover(isPresented: $showEmailClientConfirmationDialog) {
+            .sheet(isPresented: $showEmailClientConfirmationDialog) {
                 EmailAppPickerView(
                     isBeingShown: $showEmailClientConfirmationDialog,
                     didCopySupportAddress: $didCopySupportAddressOnEmailPicker,
