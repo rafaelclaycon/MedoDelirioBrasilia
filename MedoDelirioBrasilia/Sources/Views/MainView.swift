@@ -191,10 +191,13 @@ struct MainView: View {
                     .interactiveDismissDisabled(UIDevice.current.userInterfaceIdiom == .phone ? true : false)
 
             case .whatsNew:
-                IntroducingiOS18ControlAndSiriIntentView()
-                    .interactiveDismissDisabled()
-//                IntroducingReactionsView()
-//                    .interactiveDismissDisabled()
+                if enableReactions {
+                    IntroducingReactionsView()
+                        .interactiveDismissDisabled()
+                } else {
+                    IntroducingiOS18ControlAndSiriIntentView()
+                        .interactiveDismissDisabled()
+                }
 
             case .retrospective:
                 EmptyView()
@@ -237,14 +240,20 @@ struct MainView: View {
         if !AppPersistentMemory.hasShownNotificationsOnboarding() {
             subviewToOpen = .onboarding
             showingModalView = true
+        } else if enableReactions { // Remove this once Reactions releases.
+            // Mac and iPad release at a later date.
+            if !AppPersistentMemory.hasSeenReactionsWhatsNewScreen(), UIDevice.isiPhone {
+                subviewToOpen = .whatsNew
+                showingModalView = true
+            }
         } else if !AppPersistentMemory.hasSeenControlWhatsNewScreen(), UIDevice.supportsiOSiPadOS18() {
-        // Mac and iPad release at a later date.
-        // else if !AppPersistentMemory.hasSeenReactionsWhatsNewScreen(), UIDevice.isiPhone {
             subviewToOpen = .whatsNew
             showingModalView = true
         }
     }
 }
+
+// MARK: - Preview
 
 #Preview {
     MainView(tabSelection: .constant(.sounds), state: .constant(.allSounds))
