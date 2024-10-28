@@ -370,6 +370,7 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
                                                 proxy.scrollTo(soundId, anchor: .center)
                                             }
                                             TapticFeedback.warning()
+                                            trendsHelper.youCanScrollNow = ""
                                         }
                                     }
                                 }
