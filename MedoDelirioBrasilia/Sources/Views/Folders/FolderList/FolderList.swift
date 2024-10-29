@@ -55,9 +55,11 @@ struct FolderList: View {
         VStack {
             if viewModel.hasFoldersToDisplay {
                 if displayJoinFolderResearchBanner {
-                    JoinFolderResearchBannerView(viewModel: JoinFolderResearchBannerViewViewModel(state: .displayingRequestToJoin),
-                                                 displayMe: $displayJoinFolderResearchBanner)
-                        .padding(.bottom)
+                    JoinFolderResearchBannerView(
+                        viewModel: JoinFolderResearchBannerView.ViewModel(state: .displayingRequestToJoin),
+                        displayMe: $displayJoinFolderResearchBanner
+                    )
+                    .padding(.bottom)
                 }
                 
                 LazyVGrid(columns: columns, spacing: 14) {
@@ -68,12 +70,16 @@ struct FolderList: View {
                                 currentSoundsListMode: $currentSoundsListMode
                             )
                         } label: {
-                            FolderCell(symbol: folder.symbol, name: folder.name, backgroundColor: folder.backgroundColor.toPastelColor())
-                                .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
+                            FolderCell(
+                                symbol: folder.symbol,
+                                name: folder.name,
+                                backgroundColor: folder.backgroundColor.toPastelColor()
+                            )
+                            .padding(.horizontal, UIDevice.isiPhone ? 0 : 5)
                         }
                         .foregroundColor(.primary)
                         .contextMenu {
-                            if UIDevice.current.userInterfaceIdiom == .phone {
+                            if UIDevice.isiPhone {
                                 Section {
                                     Button {
                                         folderIdForEditing = folder.id
@@ -144,6 +150,8 @@ struct FolderList: View {
     }
 
 }
+
+// MARK: - Preview
 
 #Preview {
     FolderList(

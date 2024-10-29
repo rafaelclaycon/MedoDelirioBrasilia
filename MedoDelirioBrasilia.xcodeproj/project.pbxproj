@@ -298,7 +298,7 @@
 		D93A02982906DE8C00A85FE2 /* UserFolderLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93A02972906DE8C00A85FE2 /* UserFolderLog.swift */; };
 		D93A029A2906DEB100A85FE2 /* UserFolderContentLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93A02992906DEB100A85FE2 /* UserFolderContentLog.swift */; };
 		D93A029C2906E8E200A85FE2 /* NetworkRabbit+UserFolderLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93A029B2906E8E200A85FE2 /* NetworkRabbit+UserFolderLog.swift */; };
-		D93A029E2906E9F100A85FE2 /* JoinFolderResearchBannerViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93A029D2906E9F100A85FE2 /* JoinFolderResearchBannerViewViewModel.swift */; };
+		D93A029E2906E9F100A85FE2 /* JoinFolderResearchBannerView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93A029D2906E9F100A85FE2 /* JoinFolderResearchBannerView+ViewModel.swift */; };
 		D93AC08B28414EEE00E38A63 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AC08A28414EEE00E38A63 /* Logger.swift */; };
 		D93B31BB2A1E921F00A7EB68 /* SyncLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93B31BA2A1E921F00A7EB68 /* SyncLog.swift */; };
 		D93CCB77286A802D0002CF81 /* EmptyFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93CCB76286A802D0002CF81 /* EmptyFolderView.swift */; };
@@ -1817,7 +1817,7 @@
 		D93A02972906DE8C00A85FE2 /* UserFolderLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFolderLog.swift; sourceTree = "<group>"; };
 		D93A02992906DEB100A85FE2 /* UserFolderContentLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFolderContentLog.swift; sourceTree = "<group>"; };
 		D93A029B2906E8E200A85FE2 /* NetworkRabbit+UserFolderLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+UserFolderLog.swift"; sourceTree = "<group>"; };
-		D93A029D2906E9F100A85FE2 /* JoinFolderResearchBannerViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinFolderResearchBannerViewViewModel.swift; sourceTree = "<group>"; };
+		D93A029D2906E9F100A85FE2 /* JoinFolderResearchBannerView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JoinFolderResearchBannerView+ViewModel.swift"; sourceTree = "<group>"; };
 		D93AC08A28414EEE00E38A63 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		D93B31BA2A1E921F00A7EB68 /* SyncLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncLog.swift; sourceTree = "<group>"; };
 		D93CCB76286A802D0002CF81 /* EmptyFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyFolderView.swift; sourceTree = "<group>"; };
@@ -4384,7 +4384,7 @@
 			children = (
 				D9BFD8CB29059B4800E1AF6F /* FoldersAreTagsBannerView.swift */,
 				D94BA9EC2879EC7F001BD09C /* JoinFolderResearchBannerView.swift */,
-				D93A029D2906E9F100A85FE2 /* JoinFolderResearchBannerViewViewModel.swift */,
+				D93A029D2906E9F100A85FE2 /* JoinFolderResearchBannerView+ViewModel.swift */,
 				D97685462B24F462005A03BA /* NewTrendsUpdateWayBannerView.swift */,
 				D992146E2A8F21C2004E82BC /* RecurringDonationBanner.swift */,
 				D9DC688F2AD38648005D3F81 /* RetroBanner.swift */,
@@ -6666,7 +6666,7 @@
 				D9DBEAA12BCC110A00220679 /* MockSoundListViewModel.swift in Sources */,
 				D9C1372B29063D7D003E4ABF /* PrivacySettingsView.swift in Sources */,
 				D94B5F682A1C9D0900B3A688 /* SyncService+Song.swift in Sources */,
-				D93A029E2906E9F100A85FE2 /* JoinFolderResearchBannerViewViewModel.swift in Sources */,
+				D93A029E2906E9F100A85FE2 /* JoinFolderResearchBannerView+ViewModel.swift in Sources */,
 				D94EAB4F29FB1524004CD604 /* NetworkRabbit+FileDownload.swift in Sources */,
 				D992E8282A1BFF3100137469 /* SyncService+Sound.swift in Sources */,
 				D958B1B028394EA40010F133 /* TrendsView.swift in Sources */,
