@@ -88,7 +88,7 @@ extension JoinFolderResearchBannerView {
                     Spacer()
                 }
 
-                VStack(alignment: .leading, spacing: 7) {
+                VStack(alignment: .leading, spacing: 12) {
                     Text("Participe da Pesquisa")
                         .font(.headline)
                         .foregroundColor(.mutedNavyBlue)
@@ -135,13 +135,18 @@ extension JoinFolderResearchBannerView {
     struct SendingInfoView: View {
 
         var body: some View {
-            VStack(spacing: 35) {
+            VStack(spacing: 28) {
                 ProgressView()
-                    .scaleEffect(2, anchor: .center)
+                    .scaleEffect(1.4, anchor: .center)
 
-                Text("Enviando informações...")
+                Text("ENVIANDO INFORMAÇÕES...")
+                    .font(.callout)
+                    .bold()
                     .multilineTextAlignment(.center)
+                    .foregroundStyle(.gray)
             }
+            .padding(.vertical, 28)
+            .frame(maxWidth: .infinity)
         }
     }
 
@@ -151,41 +156,38 @@ extension JoinFolderResearchBannerView {
         let onCloseSelected: () -> Void
 
         var body: some View {
-            ZStack {
-                VStack {
-                    HStack {
-                        Spacer()
-                        Button {
-                            onCloseSelected()
-                        } label: {
-                            Image(systemName: "xmark")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 15)
-                                .foregroundColor(isDark ? .primary : .gray)
-                        }
-                        .padding(.top)
-                        .padding(.trailing)
-                    }
-                    Spacer()
-                }
+            VStack(spacing: 18) {
+                Image(systemName: "checkmark.circle")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 40)
+                    .foregroundColor(.green)
 
-                VStack(spacing: 15) {
-                    Image(systemName: "checkmark.circle")
+                Text("Você faz parte da pesquisa.")
+                    .multilineTextAlignment(.center)
+                    .font(.title3)
+                    .bold()
+
+                Text("PARA DESCADASTRAR, VÁ EM CONFIGURAÇÕES > PRIVACIDADE > PESQUISA SOBRE AS PASTAS.")
+                    .font(.caption)
+                    .bold()
+                    .multilineTextAlignment(.center)
+                    .foregroundStyle(.gray)
+                    .padding(.horizontal)
+            }
+            .padding(.vertical, 10)
+            .frame(maxWidth: .infinity)
+            .overlay(alignment: .topTrailing) {
+                Button {
+                    onCloseSelected()
+                } label: {
+                    Image(systemName: "xmark")
                         .resizable()
                         .scaledToFit()
-                        .frame(height: 40)
-                        .foregroundColor(.green)
-
-                    Text("Enviado com sucesso!")
-                        .multilineTextAlignment(.center)
-                        .font(.title3)
-
-                    Text("Você faz parte da pesquisa. Para descadastrar, vá em Configurações > Privacidade > Pesquisa Sobre as Pastas.")
-                        .multilineTextAlignment(.center)
-                        .font(.footnote)
-                        .padding(.horizontal)
+                        .frame(width: 15)
+                        .foregroundColor(isDark ? .primary : .gray)
                 }
+                .padding(.trailing, 10)
             }
         }
     }
@@ -197,62 +199,80 @@ extension JoinFolderResearchBannerView {
         let onTryAgainSelected: () -> Void
 
         var body: some View {
-            ZStack {
-                VStack {
-                    HStack {
-                        Spacer()
-                        Button {
-                            onCloseSelected()
-                        } label: {
-                            Image(systemName: "xmark")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 15)
-                                .foregroundColor(isDark ? .primary : .gray)
-                        }
-                        .padding(.top)
-                        .padding(.trailing)
-                    }
-                    Spacer()
-                }
+            VStack(spacing: 18) {
+                Image(systemName: "network.slash")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 40)
 
-                VStack(spacing: 12) {
-                    Image(systemName: "wifi.exclamationmark")
+                Text("Erro ao tentar enviar.")
+                    .multilineTextAlignment(.center)
+                    .font(.title3)
+
+                Text("Você pode tente novamente agora ou mais tarde em Configurações > Privacidade > Pesquisa Sobre as Pastas.")
+                    .multilineTextAlignment(.center)
+                    .font(.footnote)
+                    .padding(.horizontal)
+
+                Button {
+                    onTryAgainSelected()
+                } label: {
+                    Text("Tentar Novamente")
+                        .padding(.horizontal, 10)
+                }
+                .font(.body)
+                .tint(isDark ? .primary : .blue)
+                .controlSize(.regular)
+                .buttonStyle(.bordered)
+                .buttonBorderShape(.roundedRectangle)
+            }
+            .padding(.vertical, 10)
+            .frame(maxWidth: .infinity)
+            .overlay(alignment: .topTrailing) {
+                Button {
+                    onCloseSelected()
+                } label: {
+                    Image(systemName: "xmark")
                         .resizable()
                         .scaledToFit()
-                        .frame(height: 40)
-
-                    Text("Erro ao tentar enviar.")
-                        .multilineTextAlignment(.center)
-                        .font(.title3)
-
-                    Text("Tente novamente mais tarde. Para cadastrar nas Configurações, vá em Privacidade > Pesquisa Sobre as Pastas.")
-                        .multilineTextAlignment(.center)
-                        .font(.footnote)
-                        .padding(.horizontal)
-
-                    Button {
-                        onTryAgainSelected()
-                    } label: {
-                        Text("Tentar Novamente")
-                            .padding(.horizontal, 10)
-                    }
-                    .font(.body)
-                    .tint(isDark ? .primary : .blue)
-                    .controlSize(.regular)
-                    .buttonStyle(.bordered)
-                    .buttonBorderShape(.roundedRectangle)
+                        .frame(width: 15)
+                        .foregroundColor(isDark ? .primary : .gray)
                 }
+                .padding(.trailing, 10)
             }
         }
     }
 }
 
-// MARK: - Preview
+// MARK: - Previews
 
-#Preview {
+#Preview("Request to Join") {
     JoinFolderResearchBannerView(
         viewModel: JoinFolderResearchBannerView.ViewModel(state: .displayingRequestToJoin),
+        displayMe: .constant(true)
+    )
+    .padding(.horizontal)
+}
+
+#Preview("Sending Info") {
+    JoinFolderResearchBannerView(
+        viewModel: JoinFolderResearchBannerView.ViewModel(state: .sendingInfo),
+        displayMe: .constant(true)
+    )
+    .padding(.horizontal)
+}
+
+#Preview("Done Sending") {
+    JoinFolderResearchBannerView(
+        viewModel: JoinFolderResearchBannerView.ViewModel(state: .doneSending),
+        displayMe: .constant(true)
+    )
+    .padding(.horizontal)
+}
+
+#Preview("Error") {
+    JoinFolderResearchBannerView(
+        viewModel: JoinFolderResearchBannerView.ViewModel(state: .errorSending),
         displayMe: .constant(true)
     )
     .padding(.horizontal)
