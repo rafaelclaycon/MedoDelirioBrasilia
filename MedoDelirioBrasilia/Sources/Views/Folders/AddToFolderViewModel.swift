@@ -1,5 +1,5 @@
 //
-//  AddToFolderViewViewModel.swift
+//  AddToFolderViewModel.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Claycon Schmitt on 28/06/22.
@@ -7,7 +7,7 @@
 
 import Combine
 
-class AddToFolderViewViewModel: ObservableObject {
+class AddToFolderViewModel: ObservableObject {
 
     private var database: LocalDatabaseProtocol
     

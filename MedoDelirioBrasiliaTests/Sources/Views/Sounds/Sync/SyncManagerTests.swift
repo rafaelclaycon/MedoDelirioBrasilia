@@ -13,7 +13,7 @@ final class SyncManagerTests: XCTestCase {
     private var sut: SyncManager!
 
     private var syncService: SyncServiceStub!
-    private var localDatabase: LocalDatabaseStub!
+    private var localDatabase: MockLocalDatabase!
     private var logger: LoggerStub!
     private var delegateSpy: SyncManagerDelegateSpy!
 
@@ -28,7 +28,7 @@ final class SyncManagerTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         syncService = SyncServiceStub()
-        localDatabase = LocalDatabaseStub()
+        localDatabase = MockLocalDatabase()
         logger = LoggerStub()
         delegateSpy = SyncManagerDelegateSpy()
         sut = SyncManager(service: syncService, database: localDatabase, logger: logger)
@@ -117,5 +117,22 @@ extension SyncManagerTests {
         XCTAssertEqual(delegateSpy.didFinishUpdatingUpdates[1].0, SyncUIStatus.done)
         dump(delegateSpy.didFinishUpdatingUpdates)
         XCTAssertEqual(delegateSpy.didFinishUpdatingUpdates[1].1, true)
+    }
+
+    func testSync_whenHasFolderChangesToSyncUp_shouldSendCorrectFolderChanges() async throws {
+        syncService.updates = []
+        //localDatabase.
+
+        await sut.sync()
+
+        XCTAssertEqual(localDatabase.numberOfTimesInsertUpdateEventWasCalled, 0)
+        XCTAssertEqual(logger.errorHistory.count, 0)
+        XCTAssertEqual(logger.successHistory.count, 1)
+        XCTAssertEqual(delegateSpy.totalUpdateCountUpdates.count, 0)
+        XCTAssertEqual(delegateSpy.didProcessUpdateUpdates.count, 0)
+        XCTAssertEqual(delegateSpy.didFinishUpdatingUpdates.count, 2)
+        XCTAssertEqual(delegateSpy.didFinishUpdatingUpdates[1].0, SyncUIStatus.done)
+        dump(delegateSpy.didFinishUpdatingUpdates)
+        XCTAssertEqual(delegateSpy.didFinishUpdatingUpdates[1].1, false)
     }
 }

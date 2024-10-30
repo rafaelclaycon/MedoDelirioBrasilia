@@ -10,18 +10,19 @@ import XCTest
 
 final class AddToFolderViewViewModelTests: XCTestCase {
 
-    private var localDatabaseStub: LocalDatabaseStub!
-    private var sut: AddToFolderViewViewModel!
+    private var sut: AddToFolderViewModel!
+
+    private var localDatabase: MockLocalDatabase!
     
     override func tearDown() {
-        localDatabaseStub = nil
+        localDatabase = nil
         sut = nil
     }
     
     func test_canBeAddedToFolder_whenSingleSoundAndNotInFolder_shouldReturnArrayWithSameSound() throws {
-        localDatabaseStub = LocalDatabaseStub()
+        localDatabase = MockLocalDatabase()
         
-        sut = AddToFolderViewViewModel(database: localDatabaseStub)
+        sut = AddToFolderViewModel(database: localDatabase)
         
         var mockSounds = [Sound]()
         mockSounds.append(Sound(id: "123", title: "Deu errado"))
@@ -33,11 +34,11 @@ final class AddToFolderViewViewModelTests: XCTestCase {
     }
     
     func test_canBeAddedToFolder_whenSingleSoundAndIsInFolder_shouldReturnEmptyArray() throws {
-        localDatabaseStub = LocalDatabaseStub()
-        localDatabaseStub.contentInsideFolder = [String]()
-        localDatabaseStub.contentInsideFolder?.append("123")
+        localDatabase = MockLocalDatabase()
+        localDatabase.contentInsideFolder = [String]()
+        localDatabase.contentInsideFolder?.append("123")
         
-        sut = AddToFolderViewViewModel(database: localDatabaseStub)
+        sut = AddToFolderViewModel(database: localDatabase)
         
         var mockSounds = [Sound]()
         mockSounds.append(Sound(id: "123", title: "Deu errado"))
@@ -48,9 +49,9 @@ final class AddToFolderViewViewModelTests: XCTestCase {
     }
     
     func test_canBeAddedToFolder_whenMultipleSoundsAndNoneAreInFolder_shouldReturnAllSoundsOnArray() throws {
-        localDatabaseStub = LocalDatabaseStub()
+        localDatabase = MockLocalDatabase()
         
-        sut = AddToFolderViewViewModel(database: localDatabaseStub)
+        sut = AddToFolderViewModel(database: localDatabase)
         
         var mockSounds = [Sound]()
         mockSounds.append(Sound(id: "123", title: "Deu errado"))
@@ -68,14 +69,14 @@ final class AddToFolderViewViewModelTests: XCTestCase {
     }
     
     func test_canBeAddedToFolder_whenMultipleSoundsAndAllAreInFolder_shouldReturnEmptyArray() throws {
-        localDatabaseStub = LocalDatabaseStub()
-        localDatabaseStub.contentInsideFolder = [String]()
-        localDatabaseStub.contentInsideFolder?.append("123")
-        localDatabaseStub.contentInsideFolder?.append("456")
-        localDatabaseStub.contentInsideFolder?.append("789")
-        localDatabaseStub.contentInsideFolder?.append("101112")
+        localDatabase = MockLocalDatabase()
+        localDatabase.contentInsideFolder = [String]()
+        localDatabase.contentInsideFolder?.append("123")
+        localDatabase.contentInsideFolder?.append("456")
+        localDatabase.contentInsideFolder?.append("789")
+        localDatabase.contentInsideFolder?.append("101112")
         
-        sut = AddToFolderViewViewModel(database: localDatabaseStub)
+        sut = AddToFolderViewModel(database: localDatabase)
         
         var mockSounds = [Sound]()
         mockSounds.append(Sound(id: "123", title: "Deu errado"))
@@ -89,12 +90,12 @@ final class AddToFolderViewViewModelTests: XCTestCase {
     }
     
     func test_canBeAddedToFolder_whenMultipleSoundsAndSomeAreInFolder_shouldReturnArrayWithTheOnesThatAreNotOnTheFolder() throws {
-        localDatabaseStub = LocalDatabaseStub()
-        localDatabaseStub.contentInsideFolder = [String]()
-        localDatabaseStub.contentInsideFolder?.append("123")
-        localDatabaseStub.contentInsideFolder?.append("789")
+        localDatabase = MockLocalDatabase()
+        localDatabase.contentInsideFolder = [String]()
+        localDatabase.contentInsideFolder?.append("123")
+        localDatabase.contentInsideFolder?.append("789")
         
-        sut = AddToFolderViewViewModel(database: localDatabaseStub)
+        sut = AddToFolderViewModel(database: localDatabase)
         
         var mockSounds = [Sound]()
         mockSounds.append(Sound(id: "123", title: "Deu errado"))
@@ -108,5 +109,4 @@ final class AddToFolderViewViewModelTests: XCTestCase {
         XCTAssertEqual(result.first!.id, "456")
         XCTAssertEqual(result.last!.id, "101112")
     }
-
 }

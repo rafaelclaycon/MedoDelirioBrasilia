@@ -1,5 +1,5 @@
 //
-//  LocalDatabaseStub.swift
+//  MockLocalDatabase.swift
 //  MedoDelirioBrasiliaTests
 //
 //  Created by Rafael Claycon Schmitt on 02/02/23.
@@ -14,7 +14,7 @@ enum CustomSQLiteError: Error {
     case queryError(message: String)
 }
 
-class LocalDatabaseStub: LocalDatabaseProtocol {
+class MockLocalDatabase: LocalDatabaseProtocol {
 
     var contentInsideFolder: [String]? = nil
     var unsuccessfulUpdatesToReturn: [MedoDelirio.UpdateEvent]? = nil
