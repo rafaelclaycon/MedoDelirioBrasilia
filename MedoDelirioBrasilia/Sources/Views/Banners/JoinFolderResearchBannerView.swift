@@ -24,7 +24,7 @@ struct JoinFolderResearchBannerView: View {
                     isDark: colorScheme == .dark,
                     onJoinResearchSelected: {
                         Task {
-                            await viewModel.sendLogs()
+                            await viewModel.onJoinResearchSelected()
                         }
                     },
                     onDontJoinSelected: {
@@ -51,7 +51,7 @@ struct JoinFolderResearchBannerView: View {
                     },
                     onTryAgainSelected: {
                         Task {
-                            await viewModel.sendLogs()
+                            await viewModel.onTryAgainSelected()
                         }
                     }
                 )

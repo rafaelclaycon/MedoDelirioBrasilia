@@ -297,7 +297,6 @@
 		D9388F9F288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Eduardo Bolsonaro, aquele bonsai de pica.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9388F9D288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Eduardo Bolsonaro, aquele bonsai de pica.mp3 */; };
 		D93A02982906DE8C00A85FE2 /* UserFolderLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93A02972906DE8C00A85FE2 /* UserFolderLog.swift */; };
 		D93A029A2906DEB100A85FE2 /* UserFolderContentLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93A02992906DEB100A85FE2 /* UserFolderContentLog.swift */; };
-		D93A029C2906E8E200A85FE2 /* NetworkRabbit+UserFolderLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93A029B2906E8E200A85FE2 /* NetworkRabbit+UserFolderLog.swift */; };
 		D93A029E2906E9F100A85FE2 /* JoinFolderResearchBannerView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93A029D2906E9F100A85FE2 /* JoinFolderResearchBannerView+ViewModel.swift */; };
 		D93AC08B28414EEE00E38A63 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93AC08A28414EEE00E38A63 /* Logger.swift */; };
 		D93B31BB2A1E921F00A7EB68 /* SyncLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93B31BA2A1E921F00A7EB68 /* SyncLog.swift */; };
@@ -1816,7 +1815,6 @@
 		D9388F9D288F01F00020E252 /* Cristiano Botafogo imitando o Frota - Eduardo Bolsonaro, aquele bonsai de pica.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano Botafogo imitando o Frota - Eduardo Bolsonaro, aquele bonsai de pica.mp3"; sourceTree = "<group>"; };
 		D93A02972906DE8C00A85FE2 /* UserFolderLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFolderLog.swift; sourceTree = "<group>"; };
 		D93A02992906DEB100A85FE2 /* UserFolderContentLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFolderContentLog.swift; sourceTree = "<group>"; };
-		D93A029B2906E8E200A85FE2 /* NetworkRabbit+UserFolderLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+UserFolderLog.swift"; sourceTree = "<group>"; };
 		D93A029D2906E9F100A85FE2 /* JoinFolderResearchBannerView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JoinFolderResearchBannerView+ViewModel.swift"; sourceTree = "<group>"; };
 		D93AC08A28414EEE00E38A63 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		D93B31BA2A1E921F00A7EB68 /* SyncLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncLog.swift; sourceTree = "<group>"; };
@@ -4777,7 +4775,6 @@
 				D92694042A02999B007872D9 /* Services */,
 				D98DBD34284919B1008544F8 /* NetworkRabbit.swift */,
 				D9DCC5D2287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift */,
-				D93A029B2906E8E200A85FE2 /* NetworkRabbit+UserFolderLog.swift */,
 				D9A4D00F290A18ED00EB57B3 /* NetworkRabbit+StillAliveSignal.swift */,
 				D99BBE42294676B200BCA901 /* NetworkRabbit+UsageMetric.swift */,
 				D99C8A962952C904002E0C00 /* NetworkRabbit+DonorNames.swift */,
@@ -6788,7 +6785,6 @@
 				D9A8AB212853EB5500B5A94B /* InitialMigration.swift in Sources */,
 				D9AF8B772ABDA85E0051D028 /* SyncManager.swift in Sources */,
 				D946117E28613D3200C4FB7E /* ReactionDetailView.swift in Sources */,
-				D93A029C2906E8E200A85FE2 /* NetworkRabbit+UserFolderLog.swift in Sources */,
 				D92CAA4128593B1700D6C1EA /* NetworkLogCell.swift in Sources */,
 				D97685472B24F462005A03BA /* NewTrendsUpdateWayBannerView.swift in Sources */,
 				D95BFEF529E8CD2600E42A23 /* DonorsView.swift in Sources */,

@@ -7,53 +7,56 @@
 
 import UIKit
 
-class FolderResearchHelper {
+protocol FolderResearchRepositoryProtocol {
 
-    static func sendLogs(completion: @escaping (Bool) -> Void) {
-        guard let folders = try? LocalDatabase.shared.getAllUserFolders(), !folders.isEmpty else {
-            return completion(false)
-        }
-        
-        var folderLogs = [UserFolderLog]()
-        var folderContentLogs = [UserFolderContentLog]()
-        
-        folders.forEach { folder in
-            folderLogs.append(UserFolderLog(installId: UIDevice.customInstallId,
-                                            folderId: folder.id,
-                                            folderSymbol: folder.symbol,
-                                            folderName: folder.name,
-                                            backgroundColor: folder.backgroundColor,
-                                            logDateTime: Date.now.iso8601withFractionalSeconds))
-        }
-        
-        NetworkRabbit.shared.post(folderLogs: folderLogs) { success, error in
-            guard let success = success, success else {
-                // TODO: Mark for resend
-                //hadErrorsSending = true
-                return completion(false)
-            }
-            
-            folderLogs.forEach { folderLog in
-                if let contentIds = try? LocalDatabase.shared.getAllSoundIdsInsideUserFolder(withId: folderLog.folderId) {
-                    guard !contentIds.isEmpty else {
-                        return
-                    }
-                    contentIds.forEach { folderContentId in
-                        let contentLog = UserFolderContentLog(userFolderLogId: folderLog.id, contentId: folderContentId)
-                        folderContentLogs.append(contentLog)
-                    }
-                }
-            }
-            
-            NetworkRabbit.shared.post(folderContentLogs: folderContentLogs) { success, error in
-                guard let success = success, success else {
-                    // TODO: Mark for resend
-                    //hadErrorsSending = true
-                    return completion(false)
-                }
-                completion(true)
-            }
-        }
+    func add(
+        folders: [UserFolder],
+        content: [UserFolderContent],
+        installId: String
+    ) async throws
+}
+
+class FolderResearchRepository: FolderResearchRepositoryProtocol {
+
+    private let apiClient: NetworkRabbit
+
+    // MARK: - Initializer
+
+    init(
+        apiClient: NetworkRabbit = NetworkRabbit(serverPath: APIConfig.apiURL)
+    ) {
+        self.apiClient = apiClient
     }
 
+    func add(
+        folders: [UserFolder],
+        content: [UserFolderContent],
+        installId: String
+    ) async throws {
+        var folderLogs = [UserFolderLog]()
+        folders.forEach { folder in
+            folderLogs.append(
+                UserFolderLog(
+                    installId: installId,
+                    folderId: folder.id,
+                    folderSymbol: folder.symbol,
+                    folderName: folder.name,
+                    backgroundColor: folder.backgroundColor,
+                    logDateTime: Date.now.iso8601withFractionalSeconds
+                )
+            )
+        }
+
+        var contentLogs = [UserFolderContentLog]()
+        content.forEach { sound in
+            guard let folderLog = folderLogs.first(where: { $0.folderId == sound.userFolderId }) else { return }
+            contentLogs.append(.init(userFolderLogId: folderLog.id, contentId: sound.contentId))
+        }
+
+        let foldersUrl = URL(string: apiClient.serverPath + "v1/user-folder-logs")!
+        try await apiClient.post(to: foldersUrl, body: folderLogs)
+
+        let soundsUrl = URL(string: apiClient.serverPath + "v1/user-folder-content-logs")!
+        try await apiClient.post(to: soundsUrl, body: contentLogs)
+    }
 }

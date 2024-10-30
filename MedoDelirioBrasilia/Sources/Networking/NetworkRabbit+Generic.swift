@@ -51,4 +51,23 @@ extension NetworkRabbit {
 
         return try decoder.decode(T.self, from: data)
     }
+
+    func post<T: Encodable>(to url: URL, body: T) async throws {
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        let encoder = JSONEncoder()
+        request.httpBody = try encoder.encode(body)
+
+        let (data, response) = try await URLSession.shared.data(for: request)
+
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw NetworkRabbitError.responseWasNotAnHTTPURLResponse
+        }
+
+        guard httpResponse.statusCode == 200 else {
+            throw NetworkRabbitError.unexpectedStatusCode
+        }
+    }
 }

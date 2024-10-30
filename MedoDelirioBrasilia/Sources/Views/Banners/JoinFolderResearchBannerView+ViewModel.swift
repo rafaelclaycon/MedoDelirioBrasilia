@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Combine
+import UIKit
 
 extension JoinFolderResearchBannerView {
 
@@ -15,29 +15,69 @@ extension JoinFolderResearchBannerView {
 
         @Published var state: JoinFolderResearchBannerViewState
 
-        init(state: JoinFolderResearchBannerViewState) {
+        private let folderResearchRepository: FolderResearchRepositoryProtocol
+
+        init(
+            state: JoinFolderResearchBannerViewState,
+            folderResearchRepository: FolderResearchRepositoryProtocol = FolderResearchRepository()
+        ) {
             self.state = state
+            self.folderResearchRepository = folderResearchRepository
         }
+    }
+}
 
-        func sendLogs() async {
-            state = .sendingInfo
+// MARK: - User Actions
 
-            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-                guard let self = self else { return }
+extension JoinFolderResearchBannerView.ViewModel {
 
-                FolderResearchHelper.sendLogs { success in
-                    DispatchQueue.main.async {
-                        if success {
-                            AppPersistentMemory.setHasJoinedFolderResearch(to: true)
-                            AppPersistentMemory.setHasSentFolderResearchInfo(to: true)
-                            self.state = .doneSending
-                        } else {
-                            self.state = .errorSending
-                        }
-                    }
+    func onJoinResearchSelected() async {
+        await sendLogs()
+    }
+
+    func onTryAgainSelected() async {
+        await sendLogs()
+    }
+}
+
+// MARK: - Internal Functions
+
+extension JoinFolderResearchBannerView.ViewModel {
+
+    private func sendLogs() async {
+        state = .sendingInfo
+
+        do {
+            let folders = try LocalDatabase.shared.getAllUserFolders()
+            guard !folders.isEmpty else {
+                return
+            }
+
+            try await folderResearchRepository.add(
+                folders: folders,
+                content: folderContent(for: folders),
+                installId: UIDevice.customInstallId
+            )
+
+            AppPersistentMemory.setHasJoinedFolderResearch(to: true)
+            AppPersistentMemory.setHasSentFolderResearchInfo(to: true)
+            state = .doneSending
+        } catch {
+            state = .errorSending
+        }
+    }
+
+    private func folderContent(for folders: [UserFolder]) -> [UserFolderContent] {
+        var contentLogs = [UserFolderContent]()
+        folders.forEach { folder in
+            if let contentIds = try? LocalDatabase.shared.getAllSoundIdsInsideUserFolder(withId: folder.id) {
+                guard !contentIds.isEmpty else { return }
+                contentIds.forEach { contentId in
+                    let contentLog = UserFolderContent(userFolderId: folder.id, contentId: contentId)
+                    contentLogs.append(contentLog)
                 }
             }
         }
-
+        return contentLogs
     }
 }
