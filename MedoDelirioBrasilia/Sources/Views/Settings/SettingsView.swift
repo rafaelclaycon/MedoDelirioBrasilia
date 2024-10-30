@@ -15,7 +15,7 @@ struct SettingsView: View {
 
     @EnvironmentObject var helper: SettingsHelper
 
-    @State private var showExplicitSounds: Bool = UserSettings.getShowExplicitContent()
+    @State private var showExplicitSounds: Bool = UserSettings().getShowExplicitContent()
 
     @State private var showChangeAppIcon: Bool = ProcessInfo.processInfo.isMacCatalystApp == false
 
@@ -41,7 +41,7 @@ struct SettingsView: View {
                 Section {
                     Toggle("Exibir conteúdo explícito", isOn: $showExplicitSounds)
                         .onChange(of: showExplicitSounds) { showExplicitSounds in
-                            UserSettings.setShowExplicitContent(to: showExplicitSounds)
+                            UserSettings().setShowExplicitContent(to: showExplicitSounds)
                             helper.updateSoundsList = true
                         }
                 } footer: {

@@ -33,7 +33,7 @@ struct MedoDelirioBrasiliaApp: App {
             tabSelection = .sounds
             state = .allSounds
 
-            let includeOffensive = UserSettings.getShowExplicitContent()
+            let includeOffensive = UserSettings().getShowExplicitContent()
 
             do {
                 guard
@@ -107,20 +107,20 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
     
     private func sendDeviceModelNameToServer() {
-        guard AppPersistentMemory.getHasSentDeviceModelToServer() == false else {
+        guard AppPersistentMemory().getHasSentDeviceModelToServer() == false else {
             return
         }
         
         let info = ClientDeviceInfo(installId: UIDevice.customInstallId, modelName: UIDevice.modelName)
         NetworkRabbit.shared.post(clientDeviceInfo: info) { success, error in
             if let success = success, success {
-                AppPersistentMemory.setHasSentDeviceModelToServer(to: true)
+                AppPersistentMemory().setHasSentDeviceModelToServer(to: true)
             }
         }
     }
     
     private func sendStillAliveSignalToServer() {
-        let lastDate = UserSettings.getLastSendDateOfStillAliveSignalToServer()
+        let lastDate = UserSettings().getLastSendDateOfStillAliveSignalToServer()
         
         // Should only send 1 still alive signal per day
         guard lastDate == nil || lastDate!.onlyDate! < Date.now.onlyDate! else {
@@ -137,7 +137,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                                       dateTime: Date.now.iso8601withFractionalSeconds)
         NetworkRabbit.shared.post(signal: signal) { success, error in
             if success != nil, success == true {
-                UserSettings.setLastSendDateOfStillAliveSignalToServer(to: Date.now)
+                UserSettings().setLastSendDateOfStillAliveSignalToServer(to: Date.now)
             }
         }
     }
@@ -148,7 +148,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         _ application: UIApplication,
         didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
     ) {
-        if AppPersistentMemory.getShouldRetrySendingDevicePushToken() {
+        if AppPersistentMemory().getShouldRetrySendingDevicePushToken() {
             let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
             let token = tokenParts.joined()
             //print("Device Token: \(token)")
@@ -156,10 +156,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             let device = PushDevice(installId: UIDevice.customInstallId, pushToken: token)
             NetworkRabbit.shared.post(pushDevice: device) { success, error in
                 guard let success = success, success else {
-                    AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: true)
+                    AppPersistentMemory().setShouldRetrySendingDevicePushToken(to: true)
                     return
                 }
-                AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: false)
+                AppPersistentMemory().setShouldRetrySendingDevicePushToken(to: false)
             }
         }
     }
@@ -214,7 +214,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     
     private func replaceUserSettingFlag() {
         if hasSkipGetLinkInstructionsSet() {
-            UserSettings.setShowExplicitContent(to: true)
+            UserSettings().setShowExplicitContent(to: true)
             UserDefaults.standard.removeObject(forKey: "skipGetLinkInstructions")
         }
     }

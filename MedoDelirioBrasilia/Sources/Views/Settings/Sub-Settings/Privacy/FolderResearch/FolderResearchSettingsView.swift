@@ -16,7 +16,7 @@ struct FolderResearchSettingsView: View {
             Section {
                 Toggle("Participar da Pesquisa", isOn: $hasJoinedFolderResearch)
                     .onChange(of: hasJoinedFolderResearch) { hasJoinedFolderResearch in
-                        AppPersistentMemory.setHasJoinedFolderResearch(to: hasJoinedFolderResearch)
+                        UserSettings().setHasJoinedFolderResearch(to: hasJoinedFolderResearch)
                     }
             } footer: {
                 Text("Nenhum dado coletado identifica você.\n\nAo enviar informações das suas pastas anonimamente, você me ajuda a entender o uso dessa funcionalidade para que eu possa melhorá-la no futuro.\n\nA pesquisa consiste em enviar os seguintes dados para o servidor do Medo e Delírio iOS:\n · ID de instalação do app (não contém nenhum nome; é renovado ao desintalar e reinstalar o app);\n · símbolo, cor e nome das pastas;\n · IDs dos sons inseridos nas pastas.\n\nNenhum som será enviado, portanto o consumo de dados será baixíssimo.")
@@ -31,7 +31,7 @@ struct FolderResearchSettingsView: View {
         .navigationTitle("Pesquisa Sobre as Pastas")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-            hasJoinedFolderResearch = AppPersistentMemory.getHasJoinedFolderResearch()
+            hasJoinedFolderResearch = UserSettings().getHasJoinedFolderResearch()
         }
     }
 

@@ -623,7 +623,7 @@ extension SoundListViewModel {
 
     // From the before times when WhatsApp didn't really support receiving many sounds through the system Share Sheet.
 //    func showShareManyAlert() {
-//        let messageDisplayCount = AppPersistentMemory.getShareManyMessageShowCount()
+//        let messageDisplayCount = AppPersistentMemory().getShareManyMessageShowCount()
 //
 //        guard messageDisplayCount < 2 else { return shareSelected() }
 //

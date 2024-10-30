@@ -98,7 +98,7 @@ struct HotWeatherAdBannerView: View {
                         .foregroundColor(.primary)
                         .opacity(0.8)
                         .onTapGesture {
-                            UserSettings.setHotWeatherBannerWasDismissed(to: true)
+                            UserSettings().setHotWeatherBannerWasDismissed(to: true)
                             displayMe = false
                         }
                 }

@@ -65,7 +65,7 @@ class SyncManager {
             delegate?.didFinishUpdating(status: .updateError, updateSoundList: false)
         }
 
-        AppPersistentMemory.setLastUpdateAttempt(to: Date.now.iso8601withFractionalSeconds)
+        AppPersistentMemory().setLastUpdateAttempt(to: Date.now.iso8601withFractionalSeconds)
     }
 
     func retryLocal() async throws -> Bool {

@@ -32,23 +32,23 @@ struct TrendsView: View {
     @State private var alertTitle = ""
 
     var showTrends: Bool {
-        UserSettings.getEnableTrends()
+        UserSettings().getEnableTrends()
     }
 
     /*var showMostSharedSoundsByTheUser: Bool {
-        UserSettings.getEnableMostSharedSoundsByTheUser()
+        UserSettings().getEnableMostSharedSoundsByTheUser()
     }*/
 
     /*var showDayOfTheWeekTheUserSharesTheMost: Bool {
-        UserSettings.getEnableDayOfTheWeekTheUserSharesTheMost()
+        UserSettings().getEnableDayOfTheWeekTheUserSharesTheMost()
     }*/
 
     var showSoundsMostSharedByTheAudience: Bool {
-        UserSettings.getEnableSoundsMostSharedByTheAudience()
+        UserSettings().getEnableSoundsMostSharedByTheAudience()
     }
 
     /*var showAppsThroughWhichTheUserSharesTheMost: Bool {
-        UserSettings.getEnableAppsThroughWhichTheUserSharesTheMost()
+        UserSettings().getEnableAppsThroughWhichTheUserSharesTheMost()
     }*/
 
     var body: some View {

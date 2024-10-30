@@ -19,7 +19,7 @@ struct DiagnosticsView: View {
     @State private var diskImageCacheText: String = ""
     @State private var cleanImageCacheAlert: Bool = false
 
-    @State private var showUpdateDateOnUI: Bool = UserSettings.getShowUpdateDateOnUI()
+    @State private var showUpdateDateOnUI: Bool = UserSettings().getShowUpdateDateOnUI()
 
     @State private var shareLogs: [UserShareLog]?
     //@State var networkLogs: [NetworkCallLog]?
@@ -83,7 +83,7 @@ struct DiagnosticsView: View {
             Section {
                 Toggle("Exibir data e hora da última atualização na UI", isOn: $showUpdateDateOnUI)
                     .onChange(of: showUpdateDateOnUI) {
-                        UserSettings.setShowUpdateDateOnUI(to: $0)
+                        UserSettings().setShowUpdateDateOnUI(to: $0)
                     }
             }
 
@@ -94,7 +94,7 @@ struct DiagnosticsView: View {
                         dayComponent.day = -1
                         let calendar = Calendar.current
                         let newDate = calendar.date(byAdding: dayComponent, to: Date())
-                        AppPersistentMemory.setLastSendDateOfUserPersonalTrendsToServer(to: newDate!.onlyDate!)
+                        AppPersistentMemory().setLastSendDateOfUserPersonalTrendsToServer(to: newDate!.onlyDate!)
                     }
                 }
             }*/

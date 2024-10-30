@@ -52,7 +52,7 @@ class AuthorDetailViewViewModel: ObservableObject {
         do {
             sounds = try LocalDatabase.shared.allSounds(
                 forAuthor: authorId,
-                isSensitiveContentAllowed: UserSettings.getShowExplicitContent()
+                isSensitiveContentAllowed: UserSettings().getShowExplicitContent()
             )
             guard sounds.count > 0 else { return }
             sortSounds(by: soundSortOption)

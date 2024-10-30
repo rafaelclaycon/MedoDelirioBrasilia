@@ -2,61 +2,36 @@
 //  FolderResearchHelper.swift
 //  MedoDelirioBrasilia
 //
-//  Created by Rafael Claycon Schmitt on 25/10/22.
+//  Created by Rafael Schmitt on 30/10/24.
 //
 
-import UIKit
+import Foundation
+import CryptoKit
 
-protocol FolderResearchRepositoryProtocol {
+final class FolderResearchHelper {
 
-    func add(
-        folders: [UserFolder],
-        content: [UserFolderContent],
-        installId: String
-    ) async throws
-}
-
-class FolderResearchRepository: FolderResearchRepositoryProtocol {
-
-    private let apiClient: NetworkRabbit
-
-    // MARK: - Initializer
+    private let userSettings: UserSettingsProtocol
+    private let appMemory: AppPersistentMemory
+    private let localDatabase: LocalDatabaseProtocol
 
     init(
-        apiClient: NetworkRabbit = NetworkRabbit(serverPath: APIConfig.apiURL)
+        userSettings: UserSettingsProtocol,
+        appMemory: AppPersistentMemory,
+        localDatabase: LocalDatabaseProtocol
     ) {
-        self.apiClient = apiClient
+        self.userSettings = userSettings
+        self.appMemory = appMemory
+        self.localDatabase = localDatabase
     }
 
-    func add(
-        folders: [UserFolder],
-        content: [UserFolderContent],
-        installId: String
-    ) async throws {
-        var folderLogs = [UserFolderLog]()
-        folders.forEach { folder in
-            folderLogs.append(
-                UserFolderLog(
-                    installId: installId,
-                    folderId: folder.id,
-                    folderSymbol: folder.symbol,
-                    folderName: folder.name,
-                    backgroundColor: folder.backgroundColor,
-                    logDateTime: Date.now.iso8601withFractionalSeconds
-                )
-            )
-        }
+    func hash(_ string: String) -> String {
+        let inputData = Data(string.utf8)
+        let hashed = SHA256.hash(data: inputData)
+        return hashed.compactMap { String(format: "%02x", $0) }.joined()
+    }
 
-        var contentLogs = [UserFolderContentLog]()
-        content.forEach { sound in
-            guard let folderLog = folderLogs.first(where: { $0.folderId == sound.userFolderId }) else { return }
-            contentLogs.append(.init(userFolderLogId: folderLog.id, contentId: sound.contentId))
-        }
-
-        let foldersUrl = URL(string: apiClient.serverPath + "v1/user-folder-logs")!
-        try await apiClient.post(to: foldersUrl, body: folderLogs)
-
-        let soundsUrl = URL(string: apiClient.serverPath + "v1/user-folder-content-logs")!
-        try await apiClient.post(to: soundsUrl, body: contentLogs)
+    func changes() -> (UserFolder, UserFolderContent)? {
+        guard userSettings.getHasJoinedFolderResearch() else { return nil }
+        return (.init(symbol: "", name: "", backgroundColor: ""), .init(userFolderId: "", contentId: ""))
     }
 }

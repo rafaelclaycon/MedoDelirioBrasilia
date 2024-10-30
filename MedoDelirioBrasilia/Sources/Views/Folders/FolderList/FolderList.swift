@@ -114,13 +114,13 @@ struct FolderList: View {
         .onAppear {
             viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.getAllUserFolders())
             
-            if AppPersistentMemory.getHasJoinedFolderResearch() {
+            if UserSettings().getHasJoinedFolderResearch() {
                 displayJoinFolderResearchBanner = false
-            } else if let hasDismissed = AppPersistentMemory.getHasDismissedJoinFolderResearchBanner() {
+            } else if let hasDismissed = AppPersistentMemory().getHasDismissedJoinFolderResearchBanner() {
                 if hasDismissed {
                     displayJoinFolderResearchBanner = false
                 } else {
-                    if AppPersistentMemory.getHasSentFolderResearchInfo() {
+                    if AppPersistentMemory().getHasSentFolderResearchInfo() {
                         displayJoinFolderResearchBanner = false
                     } else {
                         displayJoinFolderResearchBanner = true

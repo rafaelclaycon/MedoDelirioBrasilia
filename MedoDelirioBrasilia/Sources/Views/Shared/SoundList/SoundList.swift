@@ -230,7 +230,7 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
                                             title: Text(viewModel.alertTitle),
                                             message: Text(viewModel.alertMessage),
                                             primaryButton: .default(Text("Continuar"), action: {
-                                                AppPersistentMemory.increaseShareManyMessageShowCountByOne()
+                                                AppPersistentMemory().increaseShareManyMessageShowCountByOne()
                                                 viewModel.shareSelected()
                                             }),
                                             secondaryButton: .cancel(Text("Cancelar"))
@@ -391,7 +391,7 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
                                 }
                             }
 
-                            if showExplicitDisabledWarning, UserSettings.getShowExplicitContent() == false {
+                            if showExplicitDisabledWarning, UserSettings().getShowExplicitContent() == false {
                                 ExplicitDisabledWarning(
                                     text: UIDevice.isiPhone ? Shared.contentFilterMessageForSoundsiPhone : Shared.contentFilterMessageForSoundsiPadMac
                                 )

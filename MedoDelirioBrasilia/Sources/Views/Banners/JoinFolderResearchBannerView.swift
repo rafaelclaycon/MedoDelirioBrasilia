@@ -28,7 +28,7 @@ struct JoinFolderResearchBannerView: View {
                         }
                     },
                     onDontJoinSelected: {
-                        AppPersistentMemory.setHasDismissedJoinFolderResearchBanner(to: true)
+                        AppPersistentMemory().setHasDismissedJoinFolderResearchBanner(to: true)
                         displayMe = false
                     }
                 )
@@ -38,7 +38,7 @@ struct JoinFolderResearchBannerView: View {
                 DoneSendingView(
                     isDark: colorScheme == .dark,
                     onCloseSelected: {
-                        AppPersistentMemory.setHasDismissedJoinFolderResearchBanner(to: true)
+                        AppPersistentMemory().setHasDismissedJoinFolderResearchBanner(to: true)
                         displayMe = false
                     }
                 )
@@ -46,7 +46,7 @@ struct JoinFolderResearchBannerView: View {
                 ErrorView(
                     isDark: colorScheme == .dark,
                     onCloseSelected: {
-                        AppPersistentMemory.setHasDismissedJoinFolderResearchBanner(to: true)
+                        AppPersistentMemory().setHasDismissedJoinFolderResearchBanner(to: true)
                         displayMe = false
                     },
                     onTryAgainSelected: {

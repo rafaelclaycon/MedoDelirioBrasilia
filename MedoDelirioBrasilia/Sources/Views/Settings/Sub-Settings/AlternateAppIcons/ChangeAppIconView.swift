@@ -6,7 +6,7 @@ struct ChangeAppIconView: View {
     @State private var selectedIcon: String = .empty
     
     private var icons: [Icon] {
-        if UserSettings.getShowExplicitContent() {
+        if UserSettings().getShowExplicitContent() {
             return Icon.allCases
         } else {
             return Icon.allCases.filter({ $0.isOffensive == false })

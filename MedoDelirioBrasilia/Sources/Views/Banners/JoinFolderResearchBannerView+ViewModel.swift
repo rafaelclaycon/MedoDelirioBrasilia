@@ -59,8 +59,8 @@ extension JoinFolderResearchBannerView.ViewModel {
                 installId: UIDevice.customInstallId
             )
 
-            AppPersistentMemory.setHasJoinedFolderResearch(to: true)
-            AppPersistentMemory.setHasSentFolderResearchInfo(to: true)
+            UserSettings().setHasJoinedFolderResearch(to: true)
+            AppPersistentMemory().setHasSentFolderResearchInfo(to: true)
             state = .doneSending
         } catch {
             state = .errorSending

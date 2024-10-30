@@ -85,7 +85,7 @@ class MainSoundContainerViewModel: ObservableObject {
     func reloadAllSounds() {
         do {
             let sounds = try LocalDatabase.shared.sounds(
-                allowSensitive: UserSettings.getShowExplicitContent(),
+                allowSensitive: UserSettings().getShowExplicitContent(),
                 favoritesOnly: false
             )
             DispatchQueue.main.async {
@@ -104,7 +104,7 @@ class MainSoundContainerViewModel: ObservableObject {
     func reloadFavorites() {
         do {
             let sounds = try LocalDatabase.shared.sounds(
-                allowSensitive: UserSettings.getShowExplicitContent(),
+                allowSensitive: UserSettings().getShowExplicitContent(),
                 favoritesOnly: true
             )
             DispatchQueue.main.async {
@@ -124,7 +124,7 @@ class MainSoundContainerViewModel: ObservableObject {
         let sortOption = SoundSortOption(rawValue: rawSortOption) ?? .dateAddedDescending
         sortAllSounds(by: sortOption)
         sortFavorites(by: sortOption)
-        UserSettings.saveMainSoundListSoundSortOption(rawSortOption)
+        UserSettings().saveMainSoundListSoundSortOption(rawSortOption)
     }
 }
 
@@ -276,7 +276,7 @@ extension MainSoundContainerViewModel: SyncManagerDelegate {
             }
 
             var message = "Aguarde \(lastAttempt.minutesAndSecondsFromNow) para atualizar novamente."
-            if UserSettings.getShowUpdateDateOnUI() {
+            if UserSettings().getShowUpdateDateOnUI() {
                 message += " \(LocalDatabase.shared.dateTimeOfLastUpdate())"
             }
 
@@ -284,7 +284,7 @@ extension MainSoundContainerViewModel: SyncManagerDelegate {
                 "clock.fill",
                 .orange,
                 toastText: message,
-                displayTime: .seconds(UserSettings.getShowUpdateDateOnUI() ? 10 : 3)
+                displayTime: .seconds(UserSettings().getShowUpdateDateOnUI() ? 10 : 3)
             )
         }
 
@@ -295,7 +295,7 @@ extension MainSoundContainerViewModel: SyncManagerDelegate {
         }
 
         var message = syncValues.syncStatus.description
-        if UserSettings.getShowUpdateDateOnUI() {
+        if UserSettings().getShowUpdateDateOnUI() {
             message += " \(LocalDatabase.shared.dateTimeOfLastUpdate())"
         }
 
@@ -303,7 +303,7 @@ extension MainSoundContainerViewModel: SyncManagerDelegate {
             syncValues.syncStatus == .done ? "checkmark" : "exclamationmark.triangle.fill",
             syncValues.syncStatus == .done ? .green : .orange,
             toastText: message,
-            displayTime: .seconds(UserSettings.getShowUpdateDateOnUI() ? 10 : 3)
+            displayTime: .seconds(UserSettings().getShowUpdateDateOnUI() ? 10 : 3)
         )
     }
 
