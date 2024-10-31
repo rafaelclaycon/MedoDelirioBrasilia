@@ -10,7 +10,7 @@ import XCTest
 
 final class FolderResearchHelperTests: XCTestCase {
 
-    private var sut: FolderResearchHelper!
+    private var sut: FolderResearchProvider!
 
     private var userSettings: MockUserSettings!
     private var appMemory: MockAppPersistentMemory!
@@ -20,7 +20,7 @@ final class FolderResearchHelperTests: XCTestCase {
         userSettings = MockUserSettings()
         appMemory = MockAppPersistentMemory()
         localDatabase = MockLocalDatabase()
-        sut = FolderResearchHelper(
+        sut = FolderResearchProvider(
             userSettings: userSettings,
             appMemory: appMemory,
             localDatabase: localDatabase

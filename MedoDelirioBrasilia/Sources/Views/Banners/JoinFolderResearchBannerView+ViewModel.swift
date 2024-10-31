@@ -48,7 +48,7 @@ extension JoinFolderResearchBannerView.ViewModel {
         state = .sendingInfo
 
         do {
-            let folders = try LocalDatabase.shared.getAllUserFolders()
+            let folders = try LocalDatabase.shared.allFolders()
             guard !folders.isEmpty else {
                 return
             }

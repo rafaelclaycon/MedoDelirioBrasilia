@@ -1,5 +1,5 @@
 //
-//  FolderResearchHelper.swift
+//  FolderResearchProvider.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 30/10/24.
@@ -8,7 +8,7 @@
 import Foundation
 import CryptoKit
 
-final class FolderResearchHelper {
+final class FolderResearchProvider {
 
     private let userSettings: UserSettingsProtocol
     private let appMemory: AppPersistentMemoryProtocol
@@ -33,10 +33,10 @@ final class FolderResearchHelper {
     func changes() throws -> (UserFolder, UserFolderContent)? {
         guard userSettings.getHasJoinedFolderResearch() else { return nil }
         guard appMemory.getHasSentFolderResearchInfo() else {
-            let folders = try localDatabase.getAllUserFolders()
+            let folders = try localDatabase.allFolders()
             
             //let folders.map { $0.id }.joined()
-            return
+            return nil
         }
         return (.init(symbol: "", name: "", backgroundColor: ""), .init(userFolderId: "", contentId: ""))
     }

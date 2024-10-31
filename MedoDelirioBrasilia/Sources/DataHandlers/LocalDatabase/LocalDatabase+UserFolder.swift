@@ -41,18 +41,15 @@ extension LocalDatabase {
         try db.run(update)
     }
     
-    func getAllUserFolders() throws -> [UserFolder] {
-        var queriedFolders = [UserFolder]()
+    func allFolders() throws -> [UserFolder] {
+        let creationDate = Expression<String>("creationDate")
+        let sortedQuery = try db.prepare(userFolder.order(creationDate.asc))
 
-        for queriedFolder in try db.prepare(userFolder) {
-            queriedFolders.append(try queriedFolder.decode())
+        return try sortedQuery.map { queriedFolder in
+            var folder = try queriedFolder.decode() as UserFolder
+            folder.editingIdentifyingId = UUID().uuidString
+            return folder
         }
-        
-        for i in 0..<queriedFolders.count {
-            queriedFolders[i].editingIdentifyingId = UUID().uuidString
-        }
-        
-        return queriedFolders
     }
     
     func insert(contentId: String, intoUserFolder userFolderId: String) throws {

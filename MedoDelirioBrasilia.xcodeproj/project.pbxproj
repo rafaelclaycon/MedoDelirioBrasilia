@@ -156,7 +156,7 @@
 		D91E375A2C4C8F33003A1107 /* PushAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91E37592C4C8F33003A1107 /* PushAction.swift */; };
 		D91E375C2C4C908F003A1107 /* GeneralRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91E375B2C4C908F003A1107 /* GeneralRouter.swift */; };
 		D91FB0E82BB6169000C5370E /* AddExternalLinksFieldToAuthorTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91FB0E72BB6169000C5370E /* AddExternalLinksFieldToAuthorTable.swift */; };
-		D920BF622CD1E52200C6BD72 /* FolderResearchHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D920BF612CD1E52200C6BD72 /* FolderResearchHelper.swift */; };
+		D920BF622CD1E52200C6BD72 /* FolderResearchProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D920BF612CD1E52200C6BD72 /* FolderResearchProvider.swift */; };
 		D920BF642CD1E5A800C6BD72 /* FolderResearchHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D920BF632CD1E5A800C6BD72 /* FolderResearchHelperTests.swift */; };
 		D920BF662CD1F52500C6BD72 /* MockUserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D920BF652CD1F52500C6BD72 /* MockUserSettings.swift */; };
 		D920BF682CD1F58000C6BD72 /* MockAppPersistentMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D920BF672CD1F58000C6BD72 /* MockAppPersistentMemory.swift */; };
@@ -1677,7 +1677,7 @@
 		D91E37592C4C8F33003A1107 /* PushAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushAction.swift; sourceTree = "<group>"; };
 		D91E375B2C4C908F003A1107 /* GeneralRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralRouter.swift; sourceTree = "<group>"; };
 		D91FB0E72BB6169000C5370E /* AddExternalLinksFieldToAuthorTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExternalLinksFieldToAuthorTable.swift; sourceTree = "<group>"; };
-		D920BF612CD1E52200C6BD72 /* FolderResearchHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderResearchHelper.swift; sourceTree = "<group>"; };
+		D920BF612CD1E52200C6BD72 /* FolderResearchProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderResearchProvider.swift; sourceTree = "<group>"; };
 		D920BF632CD1E5A800C6BD72 /* FolderResearchHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderResearchHelperTests.swift; sourceTree = "<group>"; };
 		D920BF652CD1F52500C6BD72 /* MockUserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserSettings.swift; sourceTree = "<group>"; };
 		D920BF672CD1F58000C6BD72 /* MockAppPersistentMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAppPersistentMemory.swift; sourceTree = "<group>"; };
@@ -4353,7 +4353,7 @@
 				D967E2B9290196F900B21C11 /* WallE.swift */,
 				D907A39D2A8F9E6A006DE630 /* OpenUtility.swift */,
 				D9FF3F982B1431C8007AE773 /* UpdateIncentive.swift */,
-				D920BF612CD1E52200C6BD72 /* FolderResearchHelper.swift */,
+				D920BF612CD1E52200C6BD72 /* FolderResearchProvider.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -6666,7 +6666,7 @@
 				D9A3AB6B28F03C970064CB7A /* ViewStates.swift in Sources */,
 				D93F642E29A6A5FF003E7550 /* ShareAsVideoView.swift in Sources */,
 				D955DA302AA6B94C00AC4169 /* SoundDetailView.swift in Sources */,
-				D920BF622CD1E52200C6BD72 /* FolderResearchHelper.swift in Sources */,
+				D920BF622CD1E52200C6BD72 /* FolderResearchProvider.swift in Sources */,
 				D9DCC5D72875D7E5008DD4A3 /* NotificationSymbolPlusText.swift in Sources */,
 				D960AF292845C82E00ADF1F6 /* AppStoreReviewSteward.swift in Sources */,
 				D94EAEB42AC62958002EA512 /* CenterAlignedLabelStyle.swift in Sources */,

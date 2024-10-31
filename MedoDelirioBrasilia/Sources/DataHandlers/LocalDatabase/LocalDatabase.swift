@@ -17,7 +17,7 @@ internal protocol LocalDatabaseProtocol {
 
     // UserFolder
 
-    func getAllUserFolders() throws -> [UserFolder]
+    func allFolders() throws -> [UserFolder]
     func getAllContentsInsideUserFolder(withId userFolderId: String) throws -> [UserFolderContent]
     func contentExistsInsideUserFolder(withId folderId: String, contentId: String) throws -> Bool
     

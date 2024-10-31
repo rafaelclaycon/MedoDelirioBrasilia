@@ -136,7 +136,7 @@ struct AddToFolderView: View {
                 }
             )
             .onAppear {
-                viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.getAllUserFolders())
+                viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.allFolders())
             }
             .alert(isPresented: $viewModel.showAlert) {
                 switch viewModel.alertType {
@@ -163,7 +163,7 @@ struct AddToFolderView: View {
             }
             .onChange(of: isShowingCreateNewFolderScreen) { isShowingCreateNewFolderScreen in
                 if isShowingCreateNewFolderScreen == false {
-                    viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.getAllUserFolders())
+                    viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.allFolders())
                 }
             }
         }

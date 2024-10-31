@@ -93,7 +93,7 @@ struct AllFoldersiPadView: View {
 
     private func exportFolders() {
         do {
-            let rawFolders = try LocalDatabase.shared.getAllUserFolders()
+            let rawFolders = try LocalDatabase.shared.allFolders()
             var folders = rawFolders.map { UserFolderDTO(userFolder: $0) }
 
             for i in folders.indices {

@@ -112,7 +112,7 @@ struct FolderList: View {
             }
         }
         .onAppear {
-            viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.getAllUserFolders())
+            viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.allFolders())
             
             if UserSettings().getHasJoinedFolderResearch() {
                 displayJoinFolderResearchBanner = false
@@ -143,7 +143,7 @@ struct FolderList: View {
     
     private func refreshFolderList(_ shouldUpdate: Bool) {
         if shouldUpdate {
-            viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.getAllUserFolders())
+            viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.allFolders())
             updateFolderList = false
             deleteFolderAide.updateFolderList = false
         }

@@ -152,11 +152,11 @@ struct SidebarView: View {
             }
         }
         .onAppear {
-            viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.getAllUserFolders())
+            viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.allFolders())
         }
         .onChange(of: updateFolderList) { shouldUpdate in
             if shouldUpdate {
-                viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.getAllUserFolders())
+                viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.allFolders())
             }
         }
     }
