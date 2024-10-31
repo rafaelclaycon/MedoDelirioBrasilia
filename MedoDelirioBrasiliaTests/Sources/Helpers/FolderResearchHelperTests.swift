@@ -12,12 +12,26 @@ final class FolderResearchHelperTests: XCTestCase {
 
     private var sut: FolderResearchHelper!
 
+    private var userSettings: MockUserSettings!
+    private var appMemory: MockAppPersistentMemory!
+    private var localDatabase: MockLocalDatabase!
+
     override func setUpWithError() throws {
-        sut = FolderResearchHelper()
+        userSettings = MockUserSettings()
+        appMemory = MockAppPersistentMemory()
+        localDatabase = MockLocalDatabase()
+        sut = FolderResearchHelper(
+            userSettings: userSettings,
+            appMemory: appMemory,
+            localDatabase: localDatabase
+        )
     }
 
     override func tearDownWithError() throws {
         sut = nil
+        localDatabase = nil
+        appMemory = nil
+        userSettings = nil
     }
 
     func testHash_whenKnownString_shouldReturnSameHash() throws {
@@ -30,10 +44,14 @@ final class FolderResearchHelperTests: XCTestCase {
     /// Return only what's changed
 
     func testChanges_whenUserIsNotEnrolled_shouldReturnNil() async throws {
+        userSettings.hasJoinedFolderResearch = false
+
         XCTAssertNil(sut.changes())
     }
 
     func testChanges_whenUserIsEnrolledButNoChanges_shouldReturnNil() async throws {
+        userSettings.hasJoinedFolderResearch = true
+
         XCTAssertNil(sut.changes())
     }
 

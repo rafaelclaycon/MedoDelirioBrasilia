@@ -16,6 +16,9 @@ internal protocol LocalDatabaseProtocol {
     func delete(authorId: String) throws
 
     // UserFolder
+
+    func getAllUserFolders() throws -> [UserFolder]
+    func getAllContentsInsideUserFolder(withId userFolderId: String) throws -> [UserFolderContent]
     func contentExistsInsideUserFolder(withId folderId: String, contentId: String) throws -> Bool
     
     // Song

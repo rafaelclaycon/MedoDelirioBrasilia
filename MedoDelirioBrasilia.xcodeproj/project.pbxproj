@@ -158,6 +158,8 @@
 		D91FB0E82BB6169000C5370E /* AddExternalLinksFieldToAuthorTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91FB0E72BB6169000C5370E /* AddExternalLinksFieldToAuthorTable.swift */; };
 		D920BF622CD1E52200C6BD72 /* FolderResearchHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D920BF612CD1E52200C6BD72 /* FolderResearchHelper.swift */; };
 		D920BF642CD1E5A800C6BD72 /* FolderResearchHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D920BF632CD1E5A800C6BD72 /* FolderResearchHelperTests.swift */; };
+		D920BF662CD1F52500C6BD72 /* MockUserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D920BF652CD1F52500C6BD72 /* MockUserSettings.swift */; };
+		D920BF682CD1F58000C6BD72 /* MockAppPersistentMemory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D920BF672CD1F58000C6BD72 /* MockAppPersistentMemory.swift */; };
 		D921F879288B0177003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F865288B0176003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 */; };
 		D921F87B288B0177003979CC /* Ciumes de homem e foda.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F867288B0177003979CC /* Ciumes de homem e foda.mp3 */; };
 		D921F87C288B0177003979CC /* Jornalista de alta performance - Oswaldo Eustaquio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D921F868288B0177003979CC /* Jornalista de alta performance - Oswaldo Eustaquio.mp3 */; };
@@ -1677,6 +1679,8 @@
 		D91FB0E72BB6169000C5370E /* AddExternalLinksFieldToAuthorTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExternalLinksFieldToAuthorTable.swift; sourceTree = "<group>"; };
 		D920BF612CD1E52200C6BD72 /* FolderResearchHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderResearchHelper.swift; sourceTree = "<group>"; };
 		D920BF632CD1E5A800C6BD72 /* FolderResearchHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderResearchHelperTests.swift; sourceTree = "<group>"; };
+		D920BF652CD1F52500C6BD72 /* MockUserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserSettings.swift; sourceTree = "<group>"; };
+		D920BF672CD1F58000C6BD72 /* MockAppPersistentMemory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAppPersistentMemory.swift; sourceTree = "<group>"; };
 		D921F865288B0176003979CC /* Fala baixo quem fala alto aqui sou eu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fala baixo quem fala alto aqui sou eu.mp3"; sourceTree = "<group>"; };
 		D921F867288B0177003979CC /* Ciumes de homem e foda.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ciumes de homem e foda.mp3"; sourceTree = "<group>"; };
 		D921F868288B0177003979CC /* Jornalista de alta performance - Oswaldo Eustaquio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jornalista de alta performance - Oswaldo Eustaquio.mp3"; sourceTree = "<group>"; };
@@ -5151,6 +5155,8 @@
 			children = (
 				D9A06419298B6749006075D1 /* MockLocalDatabase.swift */,
 				D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */,
+				D920BF652CD1F52500C6BD72 /* MockUserSettings.swift */,
+				D920BF672CD1F58000C6BD72 /* MockAppPersistentMemory.swift */,
 			);
 			path = SharedDoubles;
 			sourceTree = "<group>";
@@ -6862,6 +6868,7 @@
 				D920BF642CD1E5A800C6BD72 /* FolderResearchHelperTests.swift in Sources */,
 				D9A3AB6F28F063FF0064CB7A /* DateExtensionTests.swift in Sources */,
 				D9FF3F9B2B14325A007AE773 /* UpdateIncentiveTests.swift in Sources */,
+				D920BF682CD1F58000C6BD72 /* MockAppPersistentMemory.swift in Sources */,
 				D9625E8F28238F9B00080852 /* LocalDatabaseTests.swift in Sources */,
 				D9351C6128441FA400D4317E /* LoggerTests.swift in Sources */,
 				D9A0641A298B6749006075D1 /* MockLocalDatabase.swift in Sources */,
@@ -6876,6 +6883,7 @@
 				D9523743285BF99800E6C838 /* LocalDatabaseSpy.swift in Sources */,
 				D9575092284427C70094AEA6 /* ShareLogsDummy.swift in Sources */,
 				D9D22D862A59FA1D00ABDCDC /* MainViewViewModelTests.swift in Sources */,
+				D920BF662CD1F52500C6BD72 /* MockUserSettings.swift in Sources */,
 				D98DBD38284921B5008544F8 /* NetworkRabbitTests.swift in Sources */,
 				D90EA65D2CB2E81E001F4DA2 /* UIDeviceExtensionsTests.swift in Sources */,
 				D9AB63F42A5A085800390778 /* SyncServiceStub.swift in Sources */,

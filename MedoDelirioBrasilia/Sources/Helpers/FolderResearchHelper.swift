@@ -11,12 +11,12 @@ import CryptoKit
 final class FolderResearchHelper {
 
     private let userSettings: UserSettingsProtocol
-    private let appMemory: AppPersistentMemory
+    private let appMemory: AppPersistentMemoryProtocol
     private let localDatabase: LocalDatabaseProtocol
 
     init(
         userSettings: UserSettingsProtocol,
-        appMemory: AppPersistentMemory,
+        appMemory: AppPersistentMemoryProtocol,
         localDatabase: LocalDatabaseProtocol
     ) {
         self.userSettings = userSettings
@@ -30,8 +30,14 @@ final class FolderResearchHelper {
         return hashed.compactMap { String(format: "%02x", $0) }.joined()
     }
 
-    func changes() -> (UserFolder, UserFolderContent)? {
+    func changes() throws -> (UserFolder, UserFolderContent)? {
         guard userSettings.getHasJoinedFolderResearch() else { return nil }
+        guard appMemory.getHasSentFolderResearchInfo() else {
+            let folders = try localDatabase.getAllUserFolders()
+            
+            //let folders.map { $0.id }.joined()
+            return
+        }
         return (.init(symbol: "", name: "", backgroundColor: ""), .init(userFolderId: "", contentId: ""))
     }
 }
