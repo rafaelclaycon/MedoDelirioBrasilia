@@ -53,7 +53,7 @@ class FolderDetailViewViewModel: ObservableObject {
 
     func reloadSounds() {
         do {
-            let folderContents = try LocalDatabase.shared.getAllContentsInsideUserFolder(withId: folder.id)
+            let folderContents = try LocalDatabase.shared.contentsInside(userFolder: folder.id)
             let contentIds = folderContents.map { $0.contentId }
             self.sounds = try LocalDatabase.shared.sounds(withIds: contentIds)
 

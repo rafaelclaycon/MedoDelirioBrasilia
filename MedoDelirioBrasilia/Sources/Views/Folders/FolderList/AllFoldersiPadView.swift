@@ -97,7 +97,7 @@ struct AllFoldersiPadView: View {
             var folders = rawFolders.map { UserFolderDTO(userFolder: $0) }
 
             for i in folders.indices {
-                let folderContents = try LocalDatabase.shared.getAllContentsInsideUserFolder(withId: folders[i].id)
+                let folderContents = try LocalDatabase.shared.contentsInside(userFolder: folders[i].id)
                 let contentIds = folderContents.map { $0.contentId }
                 let sounds = try LocalDatabase.shared.sounds(withIds: contentIds)
                 folders[i].sounds = sounds.map { $0.id }

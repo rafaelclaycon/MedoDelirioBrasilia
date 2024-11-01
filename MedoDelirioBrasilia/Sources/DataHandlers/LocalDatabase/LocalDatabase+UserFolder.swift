@@ -58,20 +58,22 @@ extension LocalDatabase {
         try db.run(insert)
     }
     
-    func getAllSoundIdsInsideUserFolder(withId userFolderId: String) throws -> [String] {
+    func soundIdsInside(userFolder userFolderId: String) throws -> [String] {
         var queriedIds = [String]()
         let user_folder_id = Expression<String>("userFolderId")
         let content_id = Expression<String>("contentId")
 
-        for row in try db.prepare(userFolderContent
-                                      .select(content_id)
-                                      .where(user_folder_id == userFolderId)) {
+        for row in try db.prepare(
+            userFolderContent
+                .select(content_id)
+                .where(user_folder_id == userFolderId)
+        ) {
             queriedIds.append(row[content_id])
         }
         return queriedIds
     }
     
-    func getAllContentsInsideUserFolder(withId userFolderId: String) throws -> [UserFolderContent] {
+    func contentsInside(userFolder userFolderId: String) throws -> [UserFolderContent] {
         var queriedContents = [UserFolderContent]()
         let user_folder_id = Expression<String>("userFolderId")
         

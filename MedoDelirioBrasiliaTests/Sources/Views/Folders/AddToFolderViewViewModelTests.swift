@@ -35,9 +35,8 @@ final class AddToFolderViewViewModelTests: XCTestCase {
     
     func test_canBeAddedToFolder_whenSingleSoundAndIsInFolder_shouldReturnEmptyArray() throws {
         localDatabase = MockLocalDatabase()
-        localDatabase.contentInsideFolder = [String]()
-        localDatabase.contentInsideFolder?.append("123")
-        
+        localDatabase.contentInsideFolder.append(.init(userFolderId: "", contentId: "123"))
+
         sut = AddToFolderViewModel(database: localDatabase)
         
         var mockSounds = [Sound]()
@@ -70,11 +69,10 @@ final class AddToFolderViewViewModelTests: XCTestCase {
     
     func test_canBeAddedToFolder_whenMultipleSoundsAndAllAreInFolder_shouldReturnEmptyArray() throws {
         localDatabase = MockLocalDatabase()
-        localDatabase.contentInsideFolder = [String]()
-        localDatabase.contentInsideFolder?.append("123")
-        localDatabase.contentInsideFolder?.append("456")
-        localDatabase.contentInsideFolder?.append("789")
-        localDatabase.contentInsideFolder?.append("101112")
+        localDatabase.contentInsideFolder.append(.init(userFolderId: "", contentId: "123"))
+        localDatabase.contentInsideFolder.append(.init(userFolderId: "", contentId: "456"))
+        localDatabase.contentInsideFolder.append(.init(userFolderId: "", contentId: "789"))
+        localDatabase.contentInsideFolder.append(.init(userFolderId: "", contentId: "101112"))
         
         sut = AddToFolderViewModel(database: localDatabase)
         
@@ -91,10 +89,9 @@ final class AddToFolderViewViewModelTests: XCTestCase {
     
     func test_canBeAddedToFolder_whenMultipleSoundsAndSomeAreInFolder_shouldReturnArrayWithTheOnesThatAreNotOnTheFolder() throws {
         localDatabase = MockLocalDatabase()
-        localDatabase.contentInsideFolder = [String]()
-        localDatabase.contentInsideFolder?.append("123")
-        localDatabase.contentInsideFolder?.append("789")
-        
+        localDatabase.contentInsideFolder.append(.init(userFolderId: "", contentId: "123"))
+        localDatabase.contentInsideFolder.append(.init(userFolderId: "", contentId: "789"))
+
         sut = AddToFolderViewModel(database: localDatabase)
         
         var mockSounds = [Sound]()

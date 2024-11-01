@@ -18,9 +18,10 @@ internal protocol LocalDatabaseProtocol {
     // UserFolder
 
     func allFolders() throws -> [UserFolder]
-    func getAllContentsInsideUserFolder(withId userFolderId: String) throws -> [UserFolderContent]
+    func contentsInside(userFolder userFolderId: String) throws -> [UserFolderContent]
     func contentExistsInsideUserFolder(withId folderId: String, contentId: String) throws -> Bool
-    
+    func soundIdsInside(userFolder userFolderId: String) throws -> [String]
+
     // Song
     func insert(song newSong: Song) throws
     func update(song updatedSong: Song) throws

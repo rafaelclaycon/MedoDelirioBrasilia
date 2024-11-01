@@ -16,8 +16,9 @@ enum CustomSQLiteError: Error {
 
 class MockLocalDatabase: LocalDatabaseProtocol {
 
-    var contentInsideFolder: [String]? = nil
-    var unsuccessfulUpdatesToReturn: [MedoDelirio.UpdateEvent]? = nil
+    var folders = [UserFolder]()
+    var contentInsideFolder = [UserFolderContent]()
+    var unsuccessfulUpdatesToReturn: [UpdateEvent]? = nil
     var errorToThrowOnInsertUpdateEvent: CustomSQLiteError? = nil
 
     var didCallInsertSound = false
@@ -84,11 +85,23 @@ class MockLocalDatabase: LocalDatabaseProtocol {
 
     // UserFolder
 
+    func allFolders() throws -> [UserFolder] {
+        folders
+    }
+
+    func contentsInside(userFolder userFolderId: String) throws -> [UserFolderContent] {
+        contentInsideFolder.filter { $0.userFolderId == userFolderId }
+    }
+
     func contentExistsInsideUserFolder(withId folderId: String, contentId: String) throws -> Bool {
-        guard let content = contentInsideFolder else {
-            return false
+        contentInsideFolder.contains(where: { $0.contentId == contentId })
+    }
+
+    func soundIdsInside(userFolder userFolderId: String) throws -> [String] {
+        contentInsideFolder.compactMap {
+            guard $0.userFolderId == userFolderId else { return nil }
+            return $0.contentId
         }
-        return content.contains(contentId)
     }
 
     // Song

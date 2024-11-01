@@ -48,14 +48,22 @@ extension JoinFolderResearchBannerView.ViewModel {
         state = .sendingInfo
 
         do {
-            let folders = try LocalDatabase.shared.allFolders()
-            guard !folders.isEmpty else {
+            let provider = FolderResearchProvider(
+                userSettings: UserSettings(),
+                appMemory: AppPersistentMemory(),
+                localDatabase: LocalDatabase()
+            )
+            guard
+                let info = try provider.all(),
+                !info.folders.isEmpty
+            else {
+                state = .doneSending
                 return
             }
 
             try await folderResearchRepository.add(
-                folders: folders,
-                content: folderContent(for: folders),
+                folders: info.folders,
+                content: info.content,
                 installId: UIDevice.customInstallId
             )
 
@@ -65,19 +73,5 @@ extension JoinFolderResearchBannerView.ViewModel {
         } catch {
             state = .errorSending
         }
-    }
-
-    private func folderContent(for folders: [UserFolder]) -> [UserFolderContent] {
-        var contentLogs = [UserFolderContent]()
-        folders.forEach { folder in
-            if let contentIds = try? LocalDatabase.shared.getAllSoundIdsInsideUserFolder(withId: folder.id) {
-                guard !contentIds.isEmpty else { return }
-                contentIds.forEach { contentId in
-                    let contentLog = UserFolderContent(userFolderId: folder.id, contentId: contentId)
-                    contentLogs.append(contentLog)
-                }
-            }
-        }
-        return contentLogs
     }
 }
