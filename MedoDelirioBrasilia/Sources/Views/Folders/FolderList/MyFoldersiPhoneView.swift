@@ -49,9 +49,17 @@ struct MyFoldersiPhoneView: View {
         }
         .sheet(isPresented: $isShowingFolderInfoEditingSheet) {
             if let folder = folderForEditingOnSheet {
-                FolderInfoEditingView(isBeingShown: $isShowingFolderInfoEditingSheet, symbol: folder.symbol, folderName: folder.name, selectedBackgroundColor: folder.backgroundColor, isEditing: true, folderIdWhenEditing: folder.id)
+                FolderInfoEditingView(
+                    symbol: folder.symbol,
+                    folderName: folder.name,
+                    selectedBackgroundColor: folder.backgroundColor,
+                    isEditing: true,
+                    folderIdWhenEditing: folder.id
+                )
             } else {
-                FolderInfoEditingView(isBeingShown: $isShowingFolderInfoEditingSheet, selectedBackgroundColor: Shared.Folders.defaultFolderColor)
+                FolderInfoEditingView(
+                    selectedBackgroundColor: Shared.Folders.defaultFolderColor
+                )
             }
         }
         .alert(isPresented: $deleteFolderAide.showAlert) {

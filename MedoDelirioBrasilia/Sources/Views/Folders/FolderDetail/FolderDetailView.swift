@@ -123,7 +123,13 @@ struct FolderDetailView: View {
             }
         }
         .sheet(isPresented: $showingFolderInfoEditingView) {
-            FolderInfoEditingView(isBeingShown: $showingFolderInfoEditingView, symbol: folder.symbol, folderName: folder.name, selectedBackgroundColor: folder.backgroundColor, isEditing: true, folderIdWhenEditing: folder.id)
+            FolderInfoEditingView(
+                symbol: folder.symbol,
+                folderName: folder.name,
+                selectedBackgroundColor: folder.backgroundColor,
+                isEditing: true,
+                folderIdWhenEditing: folder.id
+            )
         }
     }
 

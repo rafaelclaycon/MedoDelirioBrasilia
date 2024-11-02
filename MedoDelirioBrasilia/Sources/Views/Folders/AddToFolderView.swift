@@ -159,7 +159,9 @@ struct AddToFolderView: View {
                 }
             }
             .sheet(isPresented: $isShowingCreateNewFolderScreen) {
-                FolderInfoEditingView(isBeingShown: $isShowingCreateNewFolderScreen, selectedBackgroundColor: Shared.Folders.defaultFolderColor)
+                FolderInfoEditingView(
+                    selectedBackgroundColor: Shared.Folders.defaultFolderColor
+                )
             }
             .onChange(of: isShowingCreateNewFolderScreen) { isShowingCreateNewFolderScreen in
                 if isShowingCreateNewFolderScreen == false {
@@ -171,11 +173,14 @@ struct AddToFolderView: View {
 
 }
 
-struct AddToFolderView_Previews: PreviewProvider {
+// MARK: - Preview
 
-    static var previews: some View {
-        AddToFolderView(isBeingShown: .constant(true), hadSuccess: .constant(false), folderName: .constant(nil), pluralization: .constant(.singular), selectedSounds: [Sound(title: "ABCD", description: "")])
-            .previewDevice(PreviewDevice(rawValue: "iPhone 11"))
-    }
-
+#Preview {
+    AddToFolderView(
+        isBeingShown: .constant(true),
+        hadSuccess: .constant(false),
+        folderName: .constant(nil),
+        pluralization: .constant(.singular),
+        selectedSounds: [Sound(title: "ABCD", description: "")]
+    )
 }

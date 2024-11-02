@@ -15,7 +15,7 @@ struct FolderInfoEditingView: View {
     }
     
     @StateObject var viewModel = FolderInfoEditingViewViewModel()
-    @Binding var isBeingShown: Bool
+
     @State var symbol: String = ""
     @State var folderName: String = ""
     @State var selectedBackgroundColor: String
@@ -26,7 +26,9 @@ struct FolderInfoEditingView: View {
     private let rows = [
         GridItem(.flexible())
     ]
-    
+
+    @Environment(\.dismiss) var dismiss
+
     var body: some View {
         NavigationView {
             VStack {
@@ -101,29 +103,53 @@ struct FolderInfoEditingView: View {
             }
             .navigationTitle(isEditing ? "Editar Pasta" : "Nova Pasta")
             .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(leading:
-                Button("Cancelar") {
-                    self.isBeingShown = false
-                }
-            , trailing:
-                Button {
-                    if viewModel.checkIfMeetsAllRequirements(symbol: symbol, folderName: folderName, isEditing: isEditing) {
+            .navigationBarItems(
+                leading:
+                    Button("Cancelar") {
+                        dismiss()
+                    }
+                ,
+                trailing:
+                    Button {
+                        guard
+                            viewModel.checkIfMeetsAllRequirements(
+                                symbol: symbol,
+                                folderName: folderName,
+                                isEditing: isEditing
+                            )
+                        else { return }
+                        
                         if isEditing {
                             guard folderIdWhenEditing.isEmpty == false else {
                                 return
                             }
-                            try? LocalDatabase.shared.update(userFolder: folderIdWhenEditing, withNewSymbol: symbol, newName: folderName.trimmingCharacters(in: .whitespacesAndNewlines), andNewBackgroundColor: selectedBackgroundColor)
-                            self.isBeingShown = false
+                            try? LocalDatabase.shared.update(
+                                userFolder: folderIdWhenEditing,
+                                withNewSymbol: symbol,
+                                newName: folderName.trimmingCharacters(
+                                    in: .whitespacesAndNewlines
+                                ),
+                                andNewBackgroundColor: selectedBackgroundColor
+                            )
                         } else {
-                            try? LocalDatabase.shared.insert(userFolder: UserFolder(symbol: symbol, name: folderName.trimmingCharacters(in: .whitespacesAndNewlines), backgroundColor: selectedBackgroundColor, creationDate: .now, version: "2"))
-                            self.isBeingShown = false
+                            try? LocalDatabase.shared.insert(
+                                userFolder: UserFolder(
+                                    symbol: symbol,
+                                    name: folderName.trimmingCharacters(
+                                        in: .whitespacesAndNewlines
+                                    ),
+                                    backgroundColor: selectedBackgroundColor,
+                                    creationDate: .now,
+                                    version: "2"
+                                )
+                            )
                         }
+                        dismiss()
+                    } label: {
+                        Text(isEditing ? "Salvar" : "Criar")
+                            .bold()
                     }
-                } label: {
-                    Text(isEditing ? "Salvar" : "Criar")
-                        .bold()
-                }
-                .disabled(symbol.isEmpty || folderName.isEmpty)
+                    .disabled(symbol.isEmpty || folderName.isEmpty)
             )
             .alert(isPresented: $viewModel.showAlert) { 
                 Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
@@ -151,13 +177,12 @@ struct FolderInfoEditingView: View {
             folderName = String(folderName.prefix(upper))
         }
     }
-
 }
 
-struct FolderInfoEditingView_Previews: PreviewProvider {
+// MARK: - Preview
 
-    static var previews: some View {
-        FolderInfoEditingView(isBeingShown: .constant(true), selectedBackgroundColor: "pastelBabyBlue")
-    }
-
+#Preview {
+    FolderInfoEditingView(
+        selectedBackgroundColor: "pastelBabyBlue"
+    )
 }
