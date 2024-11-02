@@ -62,6 +62,7 @@ extension UserFolder {
             name: "",
             backgroundColor: Shared.Folders.defaultFolderColor,
             changeHash: "", // Has to be set to an actual hash before saving!
+            creationDate: .now,
             version: "2" // Supports content sorting
         )
     }
