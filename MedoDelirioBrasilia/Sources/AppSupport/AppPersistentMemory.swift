@@ -9,9 +9,10 @@ import Foundation
 
 protocol AppPersistentMemoryProtocol {
 
-    func folderResearchHash() -> String?
-    func folderResearchHash(_ hash: String)
+    func folderResearchHashes() -> [String: String]?
+    func folderResearchHashes(_ foldersHashes: [String: String])
 
+    /// This was used to mark sending before the more elaborate change syncing.
     func getHasSentFolderResearchInfo() -> Bool
     func setHasSentFolderResearchInfo(to newValue: Bool)
 }
@@ -38,21 +39,21 @@ extension AppPersistentMemory {
         }
         return Bool(value as! Bool)
     }
-    
+
     func getLastSendDateOfUserPersonalTrendsToServer() -> Date? {
         guard let value = userDefaults.object(forKey: "lastSendDateOfUserPersonalTrendsToServer") else {
             return nil
         }
         return Date(timeIntervalSince1970: value as! Double)
     }
-    
+
     func getFolderBannerWasDismissed() -> Bool {
         guard let value = userDefaults.object(forKey: "folderBannerWasDismissed") else {
             return false
         }
         return Bool(value as! Bool)
     }
-    
+
     func getShouldRetrySendingDevicePushToken() -> Bool {
         let userDefaults = UserDefaults.standard
         guard let value = userDefaults.object(forKey: "shouldRetrySendingDevicePushToken") else {
@@ -60,35 +61,35 @@ extension AppPersistentMemory {
         }
         return Bool(value as! Bool)
     }
-    
+
     func hasShownNotificationsOnboarding() -> Bool {
         guard let value = userDefaults.object(forKey: "hasShownNotificationsOnboarding") else {
             return false
         }
         return Bool(value as! Bool)
     }
-    
+
     func getHasHiddenShareAsVideoTextSocialNetworkTip() -> Bool {
         guard let value = userDefaults.object(forKey: "hasHiddenShareAsVideoTwitterTip") else {
             return false
         }
         return Bool(value as! Bool)
     }
-    
+
     func getHasHiddenShareAsVideoInstagramTip() -> Bool {
         guard let value = userDefaults.object(forKey: "hasHiddenShareAsVideoInstagramTip") else {
             return false
         }
         return Bool(value as! Bool)
     }
-    
+
     func getHasDismissedJoinFolderResearchBanner() -> Bool? {
         guard let value = userDefaults.object(forKey: "hasDismissedJoinFolderResearchBanner") else {
             return nil
         }
         return Bool(value as! Bool)
     }
-    
+
     func getHasSentFolderResearchInfo() -> Bool {
         guard let value = userDefaults.object(forKey: "hasSentFolderResearchInfo") else {
             return false
@@ -173,15 +174,18 @@ extension AppPersistentMemory {
         return Bool(value as! Bool)
     }
 
-    func folderResearchHash() -> String? {
+    func folderResearchHashes() -> [String: String]? {
         guard let value = userDefaults.object(forKey: "folderResearchHash") else {
             return nil
         }
-        return String(value as! String)
+        return value as? [String: String]
     }
+}
 
-    // MARK: - Setters
-    
+// MARK: - Setters
+
+extension AppPersistentMemory {
+
     func setHasSentDeviceModelToServer(to newValue: Bool) {
         userDefaults.set(newValue, forKey: "hasSentDeviceModelToServer")
     }
@@ -263,7 +267,7 @@ extension AppPersistentMemory {
         userDefaults.set(newValue, forKey: "hasSeenNewTrendsUpdateWayBanner")
     }
 
-    func folderResearchHash(_ hash: String) {
-        userDefaults.set(hash, forKey: "folderResearchHash")
+    func folderResearchHashes(_ foldersHashes: [String: String]) {
+        userDefaults.set(foldersHashes, forKey: "folderResearchHash")
     }
 }

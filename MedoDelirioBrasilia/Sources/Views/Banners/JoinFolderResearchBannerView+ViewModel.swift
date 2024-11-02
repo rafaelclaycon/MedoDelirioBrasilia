@@ -71,6 +71,10 @@ extension JoinFolderResearchBannerView.ViewModel {
             AppPersistentMemory().setHasSentFolderResearchInfo(to: true)
             state = .doneSending
         } catch {
+            Analytics().send(
+                originatingScreen: "JoinFolderResearchBannerView",
+                action: "issueFetchingAll(\(error.localizedDescription))"
+            )
             state = .errorSending
         }
     }

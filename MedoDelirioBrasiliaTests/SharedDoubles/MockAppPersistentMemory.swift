@@ -10,15 +10,15 @@ import Foundation
 
 final class MockAppPersistentMemory: AppPersistentMemoryProtocol {
 
-    var folderResearchHashValue: String? = nil
+    var folderResearchHashValue: [String: String]? = nil
     var hasSentFolderResearchInfo = false
 
-    func folderResearchHash() -> String? {
+    func folderResearchHashes() -> [String: String]? {
         return folderResearchHashValue
     }
     
-    func folderResearchHash(_ hash: String) {
-        folderResearchHashValue = hash
+    func folderResearchHashes(_ hashes: [String: String]) {
+        folderResearchHashValue = hashes
     }
     
     func getHasSentFolderResearchInfo() -> Bool {

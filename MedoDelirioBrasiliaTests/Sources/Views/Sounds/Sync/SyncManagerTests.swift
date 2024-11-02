@@ -13,7 +13,7 @@ final class SyncManagerTests: XCTestCase {
     private var sut: SyncManager!
 
     private var syncService: SyncServiceStub!
-    private var localDatabase: MockLocalDatabase!
+    private var localDatabase: FakeLocalDatabase!
     private var logger: LoggerStub!
     private var delegateSpy: SyncManagerDelegateSpy!
 
@@ -28,7 +28,7 @@ final class SyncManagerTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         syncService = SyncServiceStub()
-        localDatabase = MockLocalDatabase()
+        localDatabase = FakeLocalDatabase()
         logger = LoggerStub()
         delegateSpy = SyncManagerDelegateSpy()
         sut = SyncManager(service: syncService, database: localDatabase, logger: logger)

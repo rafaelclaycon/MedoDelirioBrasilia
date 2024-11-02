@@ -12,7 +12,7 @@ final class RetroViewModelTests: XCTestCase {
 
     private var sut: RetroView.ViewModel!
 
-    private var localDatabase: MockLocalDatabase!
+    private var localDatabase: FakeLocalDatabase!
 
     override func setUpWithError() throws {
         try super.setUpWithError()

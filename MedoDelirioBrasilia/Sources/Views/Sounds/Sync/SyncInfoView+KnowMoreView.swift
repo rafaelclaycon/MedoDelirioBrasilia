@@ -62,7 +62,7 @@ extension SyncInfoView {
             }
             .navigationTitle("Sobre o sistema de sincronização")
             .onAppear {
-                Analytics.send(action: "didViewSyncSystemAboutScreen")
+                Analytics().send(action: "didViewSyncSystemAboutScreen")
             }
         }
     }

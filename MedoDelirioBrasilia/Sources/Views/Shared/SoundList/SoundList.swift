@@ -340,7 +340,7 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
                                         }
 
                                         if viewModel.pluralization == .plural {
-                                            Analytics.send(
+                                            Analytics().send(
                                                 originatingScreen: "SoundsView",
                                                 action: "didAddManySoundsToFolder(\(selectedCount))"
                                             )

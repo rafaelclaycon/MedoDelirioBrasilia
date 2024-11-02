@@ -12,7 +12,7 @@ final class AddToFolderViewViewModelTests: XCTestCase {
 
     private var sut: AddToFolderViewModel!
 
-    private var localDatabase: MockLocalDatabase!
+    private var localDatabase: FakeLocalDatabase!
     
     override func tearDown() {
         localDatabase = nil
@@ -20,7 +20,7 @@ final class AddToFolderViewViewModelTests: XCTestCase {
     }
     
     func test_canBeAddedToFolder_whenSingleSoundAndNotInFolder_shouldReturnArrayWithSameSound() throws {
-        localDatabase = MockLocalDatabase()
+        localDatabase = FakeLocalDatabase()
         
         sut = AddToFolderViewModel(database: localDatabase)
         
@@ -34,7 +34,7 @@ final class AddToFolderViewViewModelTests: XCTestCase {
     }
     
     func test_canBeAddedToFolder_whenSingleSoundAndIsInFolder_shouldReturnEmptyArray() throws {
-        localDatabase = MockLocalDatabase()
+        localDatabase = FakeLocalDatabase()
         localDatabase.contentInsideFolder.append(.init(userFolderId: "", contentId: "123"))
 
         sut = AddToFolderViewModel(database: localDatabase)
@@ -48,7 +48,7 @@ final class AddToFolderViewViewModelTests: XCTestCase {
     }
     
     func test_canBeAddedToFolder_whenMultipleSoundsAndNoneAreInFolder_shouldReturnAllSoundsOnArray() throws {
-        localDatabase = MockLocalDatabase()
+        localDatabase = FakeLocalDatabase()
         
         sut = AddToFolderViewModel(database: localDatabase)
         
@@ -68,7 +68,7 @@ final class AddToFolderViewViewModelTests: XCTestCase {
     }
     
     func test_canBeAddedToFolder_whenMultipleSoundsAndAllAreInFolder_shouldReturnEmptyArray() throws {
-        localDatabase = MockLocalDatabase()
+        localDatabase = FakeLocalDatabase()
         localDatabase.contentInsideFolder.append(.init(userFolderId: "", contentId: "123"))
         localDatabase.contentInsideFolder.append(.init(userFolderId: "", contentId: "456"))
         localDatabase.contentInsideFolder.append(.init(userFolderId: "", contentId: "789"))
@@ -88,7 +88,7 @@ final class AddToFolderViewViewModelTests: XCTestCase {
     }
     
     func test_canBeAddedToFolder_whenMultipleSoundsAndSomeAreInFolder_shouldReturnArrayWithTheOnesThatAreNotOnTheFolder() throws {
-        localDatabase = MockLocalDatabase()
+        localDatabase = FakeLocalDatabase()
         localDatabase.contentInsideFolder.append(.init(userFolderId: "", contentId: "123"))
         localDatabase.contentInsideFolder.append(.init(userFolderId: "", contentId: "789"))
 

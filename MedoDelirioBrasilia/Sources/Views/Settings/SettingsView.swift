@@ -253,7 +253,7 @@ struct SettingsView: View {
     }
 
     private static func sendAnalytics(for action: String) {
-        Analytics.send(
+        Analytics().send(
             originatingScreen: "SettingsView",
             action: action
         )

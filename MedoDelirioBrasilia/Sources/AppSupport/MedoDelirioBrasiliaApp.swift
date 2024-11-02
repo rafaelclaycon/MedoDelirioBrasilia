@@ -40,10 +40,10 @@ struct MedoDelirioBrasiliaApp: App {
                     let randomSound = try LocalDatabase.shared.randomSound(includeOffensive: includeOffensive)
                 else { return }
                 helper.soundIdToPlay = randomSound.id
-                Analytics.send(action: "didPlayRandomSound(\(randomSound.title))")
+                Analytics().send(action: "didPlayRandomSound(\(randomSound.title))")
             } catch {
                 print("Erro obtendo som aleatório: \(error.localizedDescription)")
-                Analytics.send(action: "hadErrorPlayingRandomSound(\(error.localizedDescription))")
+                Analytics().send(action: "hadErrorPlayingRandomSound(\(error.localizedDescription))")
             }
         }
     }

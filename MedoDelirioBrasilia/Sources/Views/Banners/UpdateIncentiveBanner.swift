@@ -70,7 +70,7 @@ struct UpdateIncentiveBanner: View {
             maxSystemVersion = UpdateIncentive.maxSupportedVersion(deviceModel: UIDevice.modelName) ?? ""
 
             if !AppPersistentMemory().getHasSentFirstUpdateIncentiveMetric() {
-                Analytics.send(
+                Analytics().send(
                     originatingScreen: "UpdateIncentiveBanner",
                     action: "didShowUpdateIncentiveBanner(\(UIDevice.modelName), \(UIDevice.current.systemVersion))"
                 )

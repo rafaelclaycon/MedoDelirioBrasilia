@@ -21,6 +21,8 @@ internal protocol LocalDatabaseProtocol {
     func contentsInside(userFolder userFolderId: String) throws -> [UserFolderContent]
     func contentExistsInsideUserFolder(withId folderId: String, contentId: String) throws -> Bool
     func soundIdsInside(userFolder userFolderId: String) throws -> [String]
+    func folderHashes() throws -> [String: String]
+    func folders(withIds folderIds: [String]) throws -> [UserFolder]
 
     // Song
     func insert(song newSong: Song) throws

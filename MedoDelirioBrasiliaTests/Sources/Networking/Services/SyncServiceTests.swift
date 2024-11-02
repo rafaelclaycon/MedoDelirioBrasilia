@@ -13,11 +13,11 @@ final class SyncServiceTests: XCTestCase {
     private var sut: SyncService!
 
     private var networkRabbit: NetworkRabbitStub!
-    private var localDatabase: MockLocalDatabase!
+    private var localDatabase: FakeLocalDatabase!
 
     override func setUp() {
         networkRabbit = NetworkRabbitStub()
-        localDatabase = MockLocalDatabase()
+        localDatabase = FakeLocalDatabase()
         sut = SyncService(networkRabbit: networkRabbit, localDatabase: localDatabase)
     }
 

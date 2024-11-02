@@ -111,4 +111,25 @@ extension LocalDatabase {
         let update = folder.update(user_sort_preference <- userSortPreference)
         try db.run(update)
     }
+
+    func folderHashes() throws -> [String: String] {
+        var folderHashes = [String: String]()
+        let id = Expression<String>("id")
+        let changeHash = Expression<String>("changeHash")
+        for row in try db.prepare(userFolder.select(id, changeHash)) {
+            folderHashes[row[id]] = row[changeHash]
+        }
+        return folderHashes
+    }
+
+    func folders(withIds folderIds: [String]) throws -> [UserFolder] {
+        var folders = [UserFolder]()
+        let id = Expression<String>("id")
+        let query = userFolder.filter(folderIds.contains(id))
+
+        for row in try db.prepare(query) {
+            folders.append(try row.decode())
+        }
+        return folders
+    }
 }

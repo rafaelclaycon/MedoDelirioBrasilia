@@ -52,9 +52,17 @@ final class FolderResearchProvider {
             return try all()
         }
 
-        // Here only stuff that has changed
-        //let folders.map { $0.id }.joined()
-        return (folders: [.init(symbol: "", name: "", backgroundColor: "", changeHash: "")], content: nil)
+        guard let changedFolderIds = try changedFolderIds() else {
+            return nil
+        }
+        let folders = try localDatabase.folders(withIds: changedFolderIds)
+        var contents = [UserFolderContent]()
+        try folders.forEach { folder in
+            let folderContents = try localDatabase.contentsInside(userFolder: folder.id)
+            contents.append(contentsOf: folderContents)
+        }
+
+        return (folders: folders, content: contents)
     }
 }
 
@@ -77,7 +85,25 @@ extension FolderResearchProvider {
         return contentLogs
     }
 
-    private func hashOfCurrentContents() {
-        
+    private func hashOfCurrentContents() throws -> [String: String] {
+        return try localDatabase.folderHashes()
+    }
+
+    private func changedFolderIds() throws -> [String]? {
+        let latestHashes = try hashOfCurrentContents()
+        guard
+            let storedHashes = appMemory.folderResearchHashes()
+        else {
+            return latestHashes.keys.map { $0 }
+        }
+
+        var changedFolders = [String]()
+        for (id, latestHash) in latestHashes {
+            if storedHashes[id] != latestHash {
+                // If there's a mismatch or the hash doesn't exist in UserDefaults, mark as changed
+                changedFolders.append(id)
+            }
+        }
+        return changedFolders.isEmpty ? nil : changedFolders
     }
 }

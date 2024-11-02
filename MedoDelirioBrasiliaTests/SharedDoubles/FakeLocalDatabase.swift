@@ -1,5 +1,5 @@
 //
-//  MockLocalDatabase.swift
+//  FakeLocalDatabase.swift
 //  MedoDelirioBrasiliaTests
 //
 //  Created by Rafael Claycon Schmitt on 02/02/23.
@@ -14,7 +14,7 @@ enum CustomSQLiteError: Error {
     case queryError(message: String)
 }
 
-class MockLocalDatabase: LocalDatabaseProtocol {
+class FakeLocalDatabase: LocalDatabaseProtocol {
 
     var folders = [UserFolder]()
     var contentInsideFolder = [UserFolderContent]()
@@ -102,6 +102,14 @@ class MockLocalDatabase: LocalDatabaseProtocol {
             guard $0.userFolderId == userFolderId else { return nil }
             return $0.contentId
         }
+    }
+
+    func folderHashes() throws -> [String: String] {
+        Dictionary(uniqueKeysWithValues: folders.map { ($0.id, $0.changeHash ?? "") })
+    }
+
+    func folders(withIds folderIds: [String]) throws -> [UserFolder] {
+        folders.filter { folderIds.contains($0.id) }
     }
 
     // Song

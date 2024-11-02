@@ -148,7 +148,7 @@ struct TrendsView: View {
                     toastText: "Imagens salvas com sucesso."
                 )
 
-                Analytics.send(
+                Analytics().send(
                     originatingScreen: "TrendsView",
                     action: "didExportRetro2023Images(\(retroExportAnalytics))"
                 )

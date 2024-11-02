@@ -89,7 +89,7 @@ extension ReactionDetailViewModel {
             state = .loaded(selectedSounds)
         } catch {
             state = .error(error.localizedDescription)
-            Analytics.send(
+            Analytics().send(
                 originatingScreen: "ReactionDetailView",
                 action: "hadIssueWithReaction(\(self.reaction.title) - \(error.localizedDescription))"
             )
