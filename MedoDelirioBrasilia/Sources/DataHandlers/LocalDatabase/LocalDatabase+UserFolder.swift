@@ -5,11 +5,8 @@ private typealias Expression = SQLite.Expression
 
 extension LocalDatabase {
 
-    func insert(userFolder newFolder: UserFolder) throws {
-        var folder = newFolder
-        folder.editingIdentifyingId = nil
-        let insert = try userFolder.insert(folder)
-        try db.run(insert)
+    func insert(_ newFolder: UserFolder) throws {
+        try db.run(userFolder.insert(newFolder))
     }
     
     func getFolder(withId folderId: String) throws -> UserFolder {
@@ -30,15 +27,23 @@ extension LocalDatabase {
         }
     }
     
-    func update(userFolder userFolderId: String, withNewSymbol newSymbol: String, newName: String, andNewBackgroundColor newBackgroundColor: String) throws {
+    func update(_ folder: UserFolder) throws {
         let id = Expression<String>("id")
         let symbol = Expression<String>("symbol")
         let name = Expression<String>("name")
         let background_color = Expression<String>("backgroundColor")
-        
-        let folder = userFolder.filter(id == userFolderId)
-        let update = folder.update(symbol <- newSymbol, name <- newName, background_color <- newBackgroundColor)
-        try db.run(update)
+        let change_hash = Expression<String>("changeHash")
+
+        try db.run(
+            userFolder
+                .filter(id == folder.id)
+                .update(
+                    symbol <- folder.symbol,
+                    name <- folder.name,
+                    background_color <- folder.backgroundColor,
+                    change_hash <- folder.changeHash
+                )
+        )
     }
     
     func allFolders() throws -> [UserFolder] {
@@ -46,9 +51,7 @@ extension LocalDatabase {
         let sortedQuery = try db.prepare(userFolder.order(creationDate.asc))
 
         return try sortedQuery.map { queriedFolder in
-            var folder = try queriedFolder.decode() as UserFolder
-            folder.editingIdentifyingId = UUID().uuidString
-            return folder
+            try queriedFolder.decode() as UserFolder
         }
     }
     
@@ -108,5 +111,4 @@ extension LocalDatabase {
         let update = folder.update(user_sort_preference <- userSortPreference)
         try db.run(update)
     }
-
 }

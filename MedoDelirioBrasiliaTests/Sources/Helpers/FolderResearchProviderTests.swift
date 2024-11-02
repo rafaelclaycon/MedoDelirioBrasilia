@@ -40,7 +40,7 @@ final class FolderResearchProviderTests: XCTestCase {
 extension FolderResearchProviderTests {
 
     func testHash_whenKnownString_shouldReturnSameHash() throws {
-        let hash = sut.hash("Medo e Delírio em Brasília")
+        let hash = FolderResearchProvider.hash("Medo e Delírio em Brasília")
         XCTAssertEqual(hash, "548bf3409b5bf16f4effd1a85d3bea0652b5bd3b0b6c33a435306525c4171f5d")
     }
 }

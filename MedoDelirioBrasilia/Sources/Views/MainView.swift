@@ -11,22 +11,23 @@ struct MainView: View {
 
     @Binding var tabSelection: PhoneTab
     @Binding var state: PadScreen?
+
     @State private var soundsPath = NavigationPath()
     @State private var reactionsPath = NavigationPath()
 
-    @State var isShowingSettingsSheet: Bool = false
-    @StateObject var settingsHelper = SettingsHelper()
-    @State var isShowingFolderInfoEditingSheet: Bool = false
-    @State var updateFolderList: Bool = false
-    @State var currentSoundsListMode: SoundsListMode = .regular
+    @State private var isShowingSettingsSheet: Bool = false
+    @StateObject private var settingsHelper = SettingsHelper()
+    @State private var folderForEditing: UserFolder?
+    @State private var updateFolderList: Bool = false
+    @State private var currentSoundsListMode: SoundsListMode = .regular
 
     @State private var subviewToOpen: MainViewModalToOpen = .onboarding
     @State private var showingModalView: Bool = false
     @State private var triggerSettings: Bool = false
 
     // Trends
-    @State var soundIdToGoToFromTrends: String = .empty
-    @StateObject var trendsHelper = TrendsHelper()
+    @State private var soundIdToGoToFromTrends: String = .empty
+    @StateObject private var trendsHelper = TrendsHelper()
 
     // Sync
     @StateObject private var syncValues = SyncValues()
@@ -128,7 +129,7 @@ struct MainView: View {
                     SidebarView(
                         state: $state,
                         isShowingSettingsSheet: $isShowingSettingsSheet,
-                        isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet,
+                        folderForEditing: $folderForEditing,
                         updateFolderList: $updateFolderList,
                         currentSoundsListMode: $currentSoundsListMode
                     )
@@ -160,10 +161,15 @@ struct MainView: View {
                     SettingsCasingWithCloseView(isBeingShown: $isShowingSettingsSheet)
                         .environmentObject(settingsHelper)
                 }
-                .sheet(isPresented: $isShowingFolderInfoEditingSheet, onDismiss: {
-                    updateFolderList = true
-                }) {
-                    FolderInfoEditingView(selectedBackgroundColor: Shared.Folders.defaultFolderColor)
+                .sheet(item: $folderForEditing) { folder in
+                    FolderInfoEditingView(
+                        folder: folder,
+                        folderRepository: UserFolderRepository(),
+                        dismissSheet: {
+                            folderForEditing = nil
+                            updateFolderList = true
+                        }
+                    )
                 }
             }
         }

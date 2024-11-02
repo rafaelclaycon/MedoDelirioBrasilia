@@ -433,7 +433,7 @@
 		D958B1B028394EA40010F133 /* TrendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958B1AF28394EA40010F133 /* TrendsView.swift */; };
 		D958B1B22839534D0010F133 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958B1B12839534D0010F133 /* SettingsView.swift */; };
 		D958BC732868FE8C000B2EDA /* EmojiIdentification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958BC722868FE8C000B2EDA /* EmojiIdentification.swift */; };
-		D958BC752869000A000B2EDA /* FolderInfoEditingViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958BC742869000A000B2EDA /* FolderInfoEditingViewViewModel.swift */; };
+		D958BC752869000A000B2EDA /* FolderInfoEditingView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D958BC742869000A000B2EDA /* FolderInfoEditingView+ViewModel.swift */; };
 		D9592C402AA2C01100157F5A /* GenrePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9592C3F2AA2C01100157F5A /* GenrePickerView.swift */; };
 		D9592C422AA2F32A00157F5A /* LocalDatabase+MusicGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9592C412AA2F32A00157F5A /* LocalDatabase+MusicGenre.swift */; };
 		D9592C442AA2F59B00157F5A /* AddSongAndMusicGenreTables.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9592C432AA2F59B00157F5A /* AddSongAndMusicGenreTables.swift */; };
@@ -1099,6 +1099,7 @@
 		D98B9AD828CEBD2D00B82EDE /* Tropa de Elite - Que satisfacao, aspira.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98B9AD528CEBD2D00B82EDE /* Tropa de Elite - Que satisfacao, aspira.mp3 */; };
 		D98BB69A2AC68769001DE23D /* FloatingSelectionOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98BB6992AC68769001DE23D /* FloatingSelectionOptionsView.swift */; };
 		D98CFB5A2C95C9760038C26C /* SocialMediaLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98CFB592C95C9710038C26C /* SocialMediaLink.swift */; };
+		D98D13802CD5B880001CF5BB /* UserFolderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98D137F2CD5B876001CF5BB /* UserFolderRepository.swift */; };
 		D98DBD35284919B1008544F8 /* NetworkRabbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98DBD34284919B1008544F8 /* NetworkRabbit.swift */; };
 		D98DBD38284921B5008544F8 /* NetworkRabbitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98DBD37284921B5008544F8 /* NetworkRabbitTests.swift */; };
 		D98E1B042BE35AE2007D057E /* ReactionDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98E1B032BE35AE2007D057E /* ReactionDetailHeader.swift */; };
@@ -1954,7 +1955,7 @@
 		D958B1AF28394EA40010F133 /* TrendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsView.swift; sourceTree = "<group>"; };
 		D958B1B12839534D0010F133 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		D958BC722868FE8C000B2EDA /* EmojiIdentification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiIdentification.swift; sourceTree = "<group>"; };
-		D958BC742869000A000B2EDA /* FolderInfoEditingViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderInfoEditingViewViewModel.swift; sourceTree = "<group>"; };
+		D958BC742869000A000B2EDA /* FolderInfoEditingView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FolderInfoEditingView+ViewModel.swift"; sourceTree = "<group>"; };
 		D9592C3F2AA2C01100157F5A /* GenrePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenrePickerView.swift; sourceTree = "<group>"; };
 		D9592C412AA2F32A00157F5A /* LocalDatabase+MusicGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+MusicGenre.swift"; sourceTree = "<group>"; };
 		D9592C432AA2F59B00157F5A /* AddSongAndMusicGenreTables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSongAndMusicGenreTables.swift; sourceTree = "<group>"; };
@@ -2623,6 +2624,7 @@
 		D98B9AD528CEBD2D00B82EDE /* Tropa de Elite - Que satisfacao, aspira.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tropa de Elite - Que satisfacao, aspira.mp3"; sourceTree = "<group>"; };
 		D98BB6992AC68769001DE23D /* FloatingSelectionOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingSelectionOptionsView.swift; sourceTree = "<group>"; };
 		D98CFB592C95C9710038C26C /* SocialMediaLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaLink.swift; sourceTree = "<group>"; };
+		D98D137F2CD5B876001CF5BB /* UserFolderRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFolderRepository.swift; sourceTree = "<group>"; };
 		D98DBD3228491909008544F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D98DBD34284919B1008544F8 /* NetworkRabbit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRabbit.swift; sourceTree = "<group>"; };
 		D98DBD37284921B5008544F8 /* NetworkRabbitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRabbitTests.swift; sourceTree = "<group>"; };
@@ -4601,6 +4603,7 @@
 				D9625EAB2824EADC00080852 /* Views */,
 				D9E69595283D54EA00C341B2 /* DataHandlers */,
 				D9351C5D28441DDE00D4317E /* Helpers */,
+				D98D137E2CD5B85B001CF5BB /* Repositories */,
 				D98DBD3328491995008544F8 /* Networking */,
 				D961D0142837229100EFEDEB /* Extensions */,
 				D9351C5E28441DF200D4317E /* Core */,
@@ -4778,10 +4781,19 @@
 			path = Authors;
 			sourceTree = "<group>";
 		};
+		D98D137E2CD5B85B001CF5BB /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				D98D137F2CD5B876001CF5BB /* UserFolderRepository.swift */,
+				D90E21742CCD793E00FC979C /* ReactionRepository.swift */,
+				D90EDDB92908505000ED87A8 /* FolderResearchRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
 		D98DBD3328491995008544F8 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				D90EDDB92908505000ED87A8 /* FolderResearchRepository.swift */,
 				D92694042A02999B007872D9 /* Services */,
 				D98DBD34284919B1008544F8 /* NetworkRabbit.swift */,
 				D9DCC5D2287536EC008DD4A3 /* NetworkRabbit+PushDevice.swift */,
@@ -4793,7 +4805,6 @@
 				D9CA301D2A03EE2300F1F23D /* NetworkRabbit+Generic.swift */,
 				D9DBCEA32B12888D003B4A46 /* NetworkRabbit+Retro.swift */,
 				D9BACC002B13BF5400BBD0BE /* Analytics.swift */,
-				D90E21742CCD793E00FC979C /* ReactionRepository.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -5070,7 +5081,7 @@
 			children = (
 				D98B291C28691C5C008A78AE /* ColorSelectionCell.swift */,
 				D946117F2861480A00C4FB7E /* FolderInfoEditingView.swift */,
-				D958BC742869000A000B2EDA /* FolderInfoEditingViewViewModel.swift */,
+				D958BC742869000A000B2EDA /* FolderInfoEditingView+ViewModel.swift */,
 			);
 			path = EditFolderInfo;
 			sourceTree = "<group>";
@@ -6652,7 +6663,7 @@
 				D93CCB79286A8A220002CF81 /* ToastView.swift in Sources */,
 				D9917A112991530000FB6274 /* Double+Extensions.swift in Sources */,
 				D92F096529ED844300CC382F /* View+Marquee.swift in Sources */,
-				D958BC752869000A000B2EDA /* FolderInfoEditingViewViewModel.swift in Sources */,
+				D958BC752869000A000B2EDA /* FolderInfoEditingView+ViewModel.swift in Sources */,
 				D90622C82AB4030600704B70 /* MedoContentProtocol.swift in Sources */,
 				D9F87A9228F6EA51002EE8AA /* RemoveFavoriteLogTable.swift in Sources */,
 				D9DCC5D52875CB59008DD4A3 /* AppPersistentMemory.swift in Sources */,
@@ -6708,6 +6719,7 @@
 				D98E1B042BE35AE2007D057E /* ReactionDetailHeader.swift in Sources */,
 				D957509628445EC30094AEA6 /* TrendsViewViewModel.swift in Sources */,
 				D9B763282845B5E600CD05DA /* SKStoreReviewController+requestReviewInCurrentScene.swift in Sources */,
+				D98D13802CD5B880001CF5BB /* UserFolderRepository.swift in Sources */,
 				D9A4D010290A18ED00EB57B3 /* NetworkRabbit+StillAliveSignal.swift in Sources */,
 				D90E21752CCD793E00FC979C /* ReactionRepository.swift in Sources */,
 				D958BC732868FE8C000B2EDA /* EmojiIdentification.swift in Sources */,

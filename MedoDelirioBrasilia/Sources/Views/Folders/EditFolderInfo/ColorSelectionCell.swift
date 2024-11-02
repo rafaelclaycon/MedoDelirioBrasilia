@@ -9,12 +9,9 @@ import SwiftUI
 
 struct ColorSelectionCell: View {
 
-    @State var color: Color
-    @Binding var selectedColor: String
-    
-    var isSelected: Bool {
-        return selectedColor == color.name ?? ""
-    }
+    let color: Color
+    let isSelected: Bool
+    let colorSelectionAction: (String) -> Void
     
     private let borderCircle: CGFloat = 44
     private let innerCircle: CGFloat = 37
@@ -34,20 +31,25 @@ struct ColorSelectionCell: View {
         }
         .frame(width: borderCircle, height: borderCircle)
         .onTapGesture {
-            selectedColor = color.name ?? "pastelBabyBlue"
+            colorSelectionAction(color.name ?? "pastelBabyBlue")
         }
     }
-
 }
 
-struct ColorSelectionCell_Previews: PreviewProvider {
+// MARK: - Previews
 
-    static var previews: some View {
-        Group {
-            ColorSelectionCell(color: .pastelBabyBlue, selectedColor: .constant("pastelBabyBlue"))
-            ColorSelectionCell(color: .pastelBabyBlue, selectedColor: .constant("pastelBrightGreen"))
-        }
-        .previewLayout(.fixed(width: 100, height: 100))
-    }
+#Preview("Not Selected") {
+    ColorSelectionCell(
+        color: .pastelBabyBlue,
+        isSelected: false,
+        colorSelectionAction: { _ in }
+    )
+}
 
+#Preview("Selected") {
+    ColorSelectionCell(
+        color: .pastelBabyBlue,
+        isSelected: true,
+        colorSelectionAction: { _ in }
+    )
 }

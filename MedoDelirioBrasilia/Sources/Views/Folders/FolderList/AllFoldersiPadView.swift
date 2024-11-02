@@ -10,7 +10,7 @@ import SwiftUI
 /// iPad and Mac only.
 struct AllFoldersiPadView: View {
 
-    @Binding var isShowingFolderInfoEditingSheet: Bool
+    @Binding var folderForEditing: UserFolder?
     @Binding var updateFolderList: Bool
     @State var folderIdForEditing: String = .empty
     @StateObject var deleteFolderAide = DeleteFolderViewAide()
@@ -34,7 +34,7 @@ struct AllFoldersiPadView: View {
 
                 FolderList(
                     updateFolderList: $updateFolderList,
-                    folderIdForEditing: $folderIdForEditing
+                    folderForEditing: $folderForEditing
                 )
                 .environmentObject(deleteFolderAide)
             }
@@ -54,7 +54,7 @@ struct AllFoldersiPadView: View {
                     }
 
                     Button {
-                        isShowingFolderInfoEditingSheet = true
+                        folderForEditing = UserFolder.newFolder()
                     } label: {
                         HStack {
                             Image(systemName: "plus")
@@ -80,12 +80,6 @@ struct AllFoldersiPadView: View {
                 ),
                 secondaryButton: .cancel(Text("Cancelar"))
             )
-        }
-        .onChange(of: folderIdForEditing) { folderIdForEditing in
-            if folderIdForEditing.isEmpty == false {
-                isShowingFolderInfoEditingSheet = true
-                self.folderIdForEditing = .empty
-            }
         }
     }
 
@@ -138,7 +132,7 @@ struct AllFoldersiPadView: View {
 
 #Preview {
     AllFoldersiPadView(
-        isShowingFolderInfoEditingSheet: .constant(false),
+        folderForEditing: .constant(nil),
         updateFolderList: .constant(false)
     )
 }

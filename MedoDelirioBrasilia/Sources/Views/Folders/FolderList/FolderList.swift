@@ -11,7 +11,7 @@ import SwiftUI
 struct FolderList: View {
 
     @Binding var updateFolderList: Bool
-    @Binding var folderIdForEditing: String
+    @Binding var folderForEditing: UserFolder?
 
     @StateObject private var viewModel = FolderListViewModel()
 
@@ -63,7 +63,7 @@ struct FolderList: View {
                 }
                 
                 LazyVGrid(columns: columns, spacing: 14) {
-                    ForEach(viewModel.folders, id: \.editingIdentifyingId) { folder in
+                    ForEach(viewModel.folders, id: \.changeHash) { folder in
                         NavigationLink {
                             FolderDetailView(
                                 folder: folder,
@@ -82,13 +82,13 @@ struct FolderList: View {
                             if UIDevice.isiPhone {
                                 Section {
                                     Button {
-                                        folderIdForEditing = folder.id
+                                        folderForEditing = folder
                                     } label: {
                                         Label("Editar Pasta", systemImage: "pencil")
                                     }
                                 }
                             }
-                            
+
                             Section {
                                 Button(role: .destructive, action: {
                                     let folderName = "\(folder.symbol) \(folder.name)"
@@ -156,6 +156,6 @@ struct FolderList: View {
 #Preview {
     FolderList(
         updateFolderList: .constant(false),
-        folderIdForEditing: .constant(.empty)
+        folderForEditing: .constant(nil)
     )
 }

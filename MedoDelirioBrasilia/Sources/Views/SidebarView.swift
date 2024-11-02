@@ -12,7 +12,7 @@ struct SidebarView: View {
     @StateObject private var viewModel = SidebarViewViewModel()
     @Binding var state: PadScreen?
     @Binding var isShowingSettingsSheet: Bool
-    @Binding var isShowingFolderInfoEditingSheet: Bool
+    @Binding var folderForEditing: UserFolder?
     @Binding var updateFolderList: Bool
     @Binding var currentSoundsListMode: SoundsListMode
     @EnvironmentObject var settingsHelper: SettingsHelper
@@ -111,7 +111,10 @@ struct SidebarView: View {
             
             Section("Minhas Pastas") {
                 NavigationLink(
-                    destination: AllFoldersiPadView(isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet, updateFolderList: $updateFolderList),
+                    destination: AllFoldersiPadView(
+                        folderForEditing: $folderForEditing,
+                        updateFolderList: $updateFolderList
+                    ),
                     tag: PadScreen.allFolders,
                     selection: $state,
                     label: {
@@ -135,7 +138,7 @@ struct SidebarView: View {
                 }
                 
                 Button {
-                    isShowingFolderInfoEditingSheet = true
+                    folderForEditing = UserFolder.newFolder()
                 } label: {
                     Label("Nova Pasta", systemImage: "plus")
                         .foregroundColor(.accentColor)
@@ -166,7 +169,7 @@ struct SidebarView: View {
     SidebarView(
         state: .constant(PadScreen.allSounds),
         isShowingSettingsSheet: .constant(false),
-        isShowingFolderInfoEditingSheet: .constant(false),
+        folderForEditing: .constant(nil),
         updateFolderList: .constant(false),
         currentSoundsListMode: .constant(.regular)
     )

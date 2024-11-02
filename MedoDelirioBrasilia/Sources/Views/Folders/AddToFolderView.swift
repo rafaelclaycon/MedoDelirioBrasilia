@@ -10,13 +10,15 @@ import SwiftUI
 struct AddToFolderView: View {
 
     @StateObject private var viewModel = AddToFolderViewModel(database: LocalDatabase.shared)
+
     @Binding var isBeingShown: Bool
     @Binding var hadSuccess: Bool
     @Binding var folderName: String?
     @Binding var pluralization: WordPluralization
+
     @State var selectedSounds: [Sound]
-    @State private var isShowingCreateNewFolderScreen: Bool = false
-    
+    @State private var newFolder: UserFolder?
+
     @State private var soundsThatCanBeAdded: [Sound]? = nil
     @State private var folderForSomeSoundsAlreadyInFolder: UserFolder? = nil
     
@@ -40,7 +42,9 @@ struct AddToFolderView: View {
             return "\(selectedSounds.count) sons selecionados"
         }
     }
-    
+
+    // MARK: - View Body
+
     var body: some View {
         NavigationView {
             VStack(alignment: .center, spacing: 20) {
@@ -67,7 +71,7 @@ struct AddToFolderView: View {
                 ScrollView {
                     HStack {
                         Button {
-                            isShowingCreateNewFolderScreen = true
+                            newFolder = UserFolder.newFolder()
                         } label: {
                             CreateFolderCell()
                         }
@@ -119,7 +123,11 @@ struct AddToFolderView: View {
                                         viewModel.showSomeSoundsAlreadyInFolderAlert(soundCountAlreadyInFolder: soundsAlreadyInFolder, folderName: folder.name)
                                     }
                                 } label: {
-                                    FolderCell(symbol: folder.symbol, name: folder.name, backgroundColor: folder.backgroundColor.toPastelColor())
+                                    FolderCell(
+                                        symbol: folder.symbol,
+                                        name: folder.name,
+                                        backgroundColor: folder.backgroundColor.toPastelColor()
+                                    )
                                 }
                                 .foregroundColor(.primary)
                             }
@@ -158,15 +166,15 @@ struct AddToFolderView: View {
                     return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
                 }
             }
-            .sheet(isPresented: $isShowingCreateNewFolderScreen) {
+            .sheet(item: $newFolder) { folder in
                 FolderInfoEditingView(
-                    selectedBackgroundColor: Shared.Folders.defaultFolderColor
+                    folder: folder,
+                    folderRepository: UserFolderRepository(),
+                    dismissSheet: {
+                        newFolder = nil
+                        viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.allFolders())
+                    }
                 )
-            }
-            .onChange(of: isShowingCreateNewFolderScreen) { isShowingCreateNewFolderScreen in
-                if isShowingCreateNewFolderScreen == false {
-                    viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.allFolders())
-                }
             }
         }
     }

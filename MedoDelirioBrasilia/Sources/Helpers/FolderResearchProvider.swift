@@ -24,6 +24,12 @@ final class FolderResearchProvider {
         self.localDatabase = localDatabase
     }
 
+    static func hash(_ string: String) -> String {
+        let inputData = Data(string.utf8)
+        let hashed = SHA256.hash(data: inputData)
+        return hashed.compactMap { String(format: "%02x", $0) }.joined()
+    }
+
     /// Returns all User Folders and Contents for use both inside the Provider and outside.
     /// Doesn't do any enrollment checks because outside the enrollment could be set later on.
     func all() throws -> (
@@ -48,19 +54,13 @@ final class FolderResearchProvider {
 
         // Here only stuff that has changed
         //let folders.map { $0.id }.joined()
-        return (folders: [.init(symbol: "", name: "", backgroundColor: "")], content: nil)
+        return (folders: [.init(symbol: "", name: "", backgroundColor: "", changeHash: "")], content: nil)
     }
 }
 
 // MARK: - Internal Functions
 
 extension FolderResearchProvider {
-
-    func hash(_ string: String) -> String {
-        let inputData = Data(string.utf8)
-        let hashed = SHA256.hash(data: inputData)
-        return hashed.compactMap { String(format: "%02x", $0) }.joined()
-    }
 
     private func folderContent(for folders: [UserFolder]) -> [UserFolderContent]? {
         guard !folders.isEmpty else { return nil }
