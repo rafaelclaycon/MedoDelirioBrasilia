@@ -113,7 +113,8 @@ extension LocalDatabase {
             AddDateAndVersionToUserFolderTables(),
             AddSyncTables(),
             AddSongAndMusicGenreTables(),
-            AddExternalLinksFieldToAuthorTable()
+            AddExternalLinksFieldToAuthorTable(),
+            AddChangeHashFieldToUserFolderTable()
         ]
     }
 

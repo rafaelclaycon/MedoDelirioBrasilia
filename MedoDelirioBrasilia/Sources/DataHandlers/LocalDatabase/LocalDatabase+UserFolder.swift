@@ -32,7 +32,7 @@ extension LocalDatabase {
         let symbol = Expression<String>("symbol")
         let name = Expression<String>("name")
         let background_color = Expression<String>("backgroundColor")
-        let change_hash = Expression<String>("changeHash")
+        let change_hash = Expression<String?>("changeHash")
 
         try db.run(
             userFolder

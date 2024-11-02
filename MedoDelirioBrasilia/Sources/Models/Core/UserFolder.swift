@@ -24,11 +24,11 @@ import Foundation
 ///   - userSortPreference: The user-defined sorting preference for folder content.
 struct UserFolder: Hashable, Codable, Identifiable {
 
-    var id: String
+    let id: String
     var symbol: String
     var name: String
     var backgroundColor: String
-    var changeHash: String
+    var changeHash: String?
     var creationDate: Date?
     var version: String?
     var userSortPreference: Int?

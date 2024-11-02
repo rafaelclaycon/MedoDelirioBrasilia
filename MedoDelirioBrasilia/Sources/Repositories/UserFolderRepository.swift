@@ -12,6 +12,9 @@ protocol UserFolderRepositoryProtocol {
     func add(_ userFolder: UserFolder) throws
 
     func update(_ userFolder: UserFolder) throws
+
+    /// Should only be used once.
+    func addHashToExistingFolders() throws
 }
 
 final class UserFolderRepository: UserFolderRepositoryProtocol {
@@ -27,10 +30,20 @@ final class UserFolderRepository: UserFolderRepositoryProtocol {
     }
 
     func add(_ userFolder: UserFolder) throws {
-        try database.insert(userFolder)
+        var newFolder = userFolder
+        newFolder.changeHash = FolderResearchProvider.hash(userFolder.folderHash([]))
+        try database.insert(newFolder)
     }
 
     func update(_ userFolder: UserFolder) throws {
-        try database.update(userFolder)
+        var folder = userFolder
+        let contents = try database.contentsInside(userFolder: folder.id)
+        folder.changeHash = folder.folderHash(contents.map { $0.contentId })
+        try database.update(folder)
+    }
+
+    func addHashToExistingFolders() throws {
+        let folders = try database.allFolders()
+        try folders.forEach { try update($0) }
     }
 }

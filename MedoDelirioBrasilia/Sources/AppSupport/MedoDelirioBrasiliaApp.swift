@@ -54,6 +54,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     @AppStorage("hasMigratedSoundsAuthors") private var hasMigratedSoundsAuthors = false
     @AppStorage("hasMigratedSongsMusicGenres") private var hasMigratedSongsMusicGenres = false
     @AppStorage("hasUpdatedExternalLinksOnFirstRun") private var hasUpdatedExternalLinksOnFirstRun = false
+    @AppStorage("hasUpdatedFolderHashesOnFirstRun") private var hasUpdatedFolderHashesOnFirstRun = false
 
     func application(
         _ application: UIApplication,
@@ -86,6 +87,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         collectTelemetry()
         createFoldersForDownloadedContent()
         updateExternalLinks()
+        updateFolderChangeHashes()
 
         return true
     }
@@ -211,7 +213,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         }
         return Bool(value as! Bool)
     }
-    
+
+    /// `skipGetLinkInstructions` is a remnant of when the app started and I copied a bunch of code from my other app, The Library Is Open.
     private func replaceUserSettingFlag() {
         if hasSkipGetLinkInstructionsSet() {
             UserSettings().setShowExplicitContent(to: true)
@@ -253,11 +256,10 @@ extension AppDelegate {
 
 extension AppDelegate {
 
+    /// External Links were added on version 7.10. Because of the server architecture, EL author updates will arrive to older versions
+    /// that know nothing about ELs. This func makes sure 7.10 onwards starts with the ELs in place that were ignored before.
+    /// This should run only once.
     func updateExternalLinks() {
-        // External Links was release on version 7.10. Because of the server architecture, author updates will arrive to older versions
-        // that know nothing about ELs. This func makes sure 7.10 onwards starts with the ELs in place that were ignored before.
-        // This should run only once.
-
         if !hasUpdatedExternalLinksOnFirstRun {
             Task {
                 let url = URL(string: NetworkRabbit.shared.serverPath + "v4/author-links-first-open")!
@@ -271,6 +273,20 @@ extension AppDelegate {
                 } catch {
                     print(error)
                 }
+            }
+        }
+    }
+
+    /// UserFolder change hashes were added on version 7.14.
+    /// This sets initial hashes for all existing folders so the app can keep track of future changes done to them.
+    /// This should run only once.
+    func updateFolderChangeHashes() {
+        if !hasUpdatedFolderHashesOnFirstRun {
+            do {
+                try UserFolderRepository().addHashToExistingFolders()
+                hasUpdatedFolderHashesOnFirstRun = true
+            } catch {
+                print(error)
             }
         }
     }
