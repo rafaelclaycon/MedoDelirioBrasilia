@@ -66,6 +66,8 @@ class SyncManager {
         }
 
         AppPersistentMemory().setLastUpdateAttempt(to: Date.now.iso8601withFractionalSeconds)
+
+        await syncFolderResearchChangesUp()
     }
 
     func retryLocal() async throws -> Bool {
@@ -140,5 +142,42 @@ class SyncManager {
         for update in localUnsuccessfulUpdates {
             await service.process(updateEvent: update)
         }
+    }
+
+    private func syncFolderResearchChangesUp() async {
+        do {
+            let provider = FolderResearchProvider(
+                userSettings: UserSettings(),
+                appMemory: AppPersistentMemory(),
+                localDatabase: LocalDatabase()
+            )
+            guard
+                let changes = try provider.changes(),
+                !changes.folders.isEmpty
+            else { return }
+
+            try await FolderResearchRepository().add(
+                folders: changes.folders,
+                content: changes.content,
+                installId: UIDevice.customInstallId
+            )
+
+            try saveCurrentHashesToAppMemory()
+
+            if !AppPersistentMemory().getHasSentFolderResearchInfo() {
+                AppPersistentMemory().setHasSentFolderResearchInfo(to: true)
+            }
+        } catch {
+            Analytics().send(
+                originatingScreen: "SyncManager",
+                action: "issueSyncingFolderResearchChanges(\(error.localizedDescription))"
+            )
+        }
+    }
+
+    private func saveCurrentHashesToAppMemory() throws {
+        let folders = try LocalDatabase().allFolders()
+        let hashes: [String: String] = Dictionary(uniqueKeysWithValues: folders.map { ($0.id, $0.changeHash ?? "") })
+        AppPersistentMemory().folderResearchHashes(hashes)
     }
 }
