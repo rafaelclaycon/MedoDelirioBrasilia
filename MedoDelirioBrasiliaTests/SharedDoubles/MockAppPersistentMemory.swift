@@ -12,6 +12,9 @@ final class MockAppPersistentMemory: AppPersistentMemoryProtocol {
 
     var folderResearchHashValue: [String: String]? = nil
     var hasSentFolderResearchInfo = false
+    var lastFolderResearchSyncDateTimeValue: Date? = nil
+
+    var customInstallId: String = ""
 
     func folderResearchHashes() -> [String: String]? {
         return folderResearchHashValue
@@ -27,5 +30,13 @@ final class MockAppPersistentMemory: AppPersistentMemoryProtocol {
     
     func setHasSentFolderResearchInfo(to newValue: Bool) {
         hasSentFolderResearchInfo = newValue
+    }
+
+    func lastFolderResearchSyncDateTime() -> Date? {
+        lastFolderResearchSyncDateTimeValue
+    }
+
+    func lastFolderResearchSyncDateTime(_ dateTime: Date) {
+        lastFolderResearchSyncDateTimeValue = dateTime
     }
 }

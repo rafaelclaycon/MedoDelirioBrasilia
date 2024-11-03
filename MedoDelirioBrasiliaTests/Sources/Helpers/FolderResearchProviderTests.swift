@@ -15,20 +15,24 @@ final class FolderResearchProviderTests: XCTestCase {
     private var userSettings: MockUserSettings!
     private var appMemory: MockAppPersistentMemory!
     private var localDatabase: FakeLocalDatabase!
+    private var repository: FakeFolderResearchRepository!
 
     override func setUpWithError() throws {
         userSettings = MockUserSettings()
         appMemory = MockAppPersistentMemory()
         localDatabase = FakeLocalDatabase()
+        repository = FakeFolderResearchRepository()
         sut = FolderResearchProvider(
             userSettings: userSettings,
             appMemory: appMemory,
-            localDatabase: localDatabase
+            localDatabase: localDatabase,
+            repository: repository
         )
     }
 
     override func tearDownWithError() throws {
         sut = nil
+        repository = nil
         localDatabase = nil
         appMemory = nil
         userSettings = nil

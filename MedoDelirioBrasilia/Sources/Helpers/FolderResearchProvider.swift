@@ -13,13 +13,13 @@ final class FolderResearchProvider {
     private let userSettings: UserSettingsProtocol
     private let appMemory: AppPersistentMemoryProtocol
     private let localDatabase: LocalDatabaseProtocol
-    private let repository: FolderResearchRepository
+    private let repository: FolderResearchRepositoryProtocol
 
     init(
         userSettings: UserSettingsProtocol,
         appMemory: AppPersistentMemoryProtocol,
         localDatabase: LocalDatabaseProtocol,
-        repository: FolderResearchRepository
+        repository: FolderResearchRepositoryProtocol
     ) {
         self.userSettings = userSettings
         self.appMemory = appMemory

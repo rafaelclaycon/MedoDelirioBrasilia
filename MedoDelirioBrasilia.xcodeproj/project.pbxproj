@@ -1400,6 +1400,7 @@
 		D9E53FA129A695C600BF9D31 /* Donald Trump - China all the time.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E53F9F29A695C600BF9D31 /* Donald Trump - China all the time.mp3 */; };
 		D9E53FA229A695C600BF9D31 /* Donald Trump - China china china.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E53FA029A695C600BF9D31 /* Donald Trump - China china china.mp3 */; };
 		D9E53FA629A696A800BF9D31 /* Natuza Nery - Olha so (triste).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E53FA529A696A800BF9D31 /* Natuza Nery - Olha so (triste).mp3 */; };
+		D9E5F5162CD7114600C2FF64 /* FakeFolderResearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E5F5152CD7114600C2FF64 /* FakeFolderResearchRepository.swift */; };
 		D9E69592283D2E2C00C341B2 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = D9E69591283D2E2C00C341B2 /* SQLite */; };
 		D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E69593283D2F2F00C341B2 /* Favorite.swift */; };
 		D9E6B33D2CA0EA4A002FCB91 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9E6B33C2CA0EA4A002FCB91 /* WidgetKit.framework */; };
@@ -2927,6 +2928,7 @@
 		D9E53F9F29A695C600BF9D31 /* Donald Trump - China all the time.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Donald Trump - China all the time.mp3"; sourceTree = "<group>"; };
 		D9E53FA029A695C600BF9D31 /* Donald Trump - China china china.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Donald Trump - China china china.mp3"; sourceTree = "<group>"; };
 		D9E53FA529A696A800BF9D31 /* Natuza Nery - Olha so (triste).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Natuza Nery - Olha so (triste).mp3"; sourceTree = "<group>"; };
+		D9E5F5152CD7114600C2FF64 /* FakeFolderResearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeFolderResearchRepository.swift; sourceTree = "<group>"; };
 		D9E69593283D2F2F00C341B2 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		D9E6B33A2CA0EA49002FCB91 /* MedoDelirioWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MedoDelirioWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9E6B33C2CA0EA4A002FCB91 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -5185,6 +5187,7 @@
 				D9523740285BF98A00E6C838 /* NetworkRabbitStub.swift */,
 				D920BF652CD1F52500C6BD72 /* MockUserSettings.swift */,
 				D920BF672CD1F58000C6BD72 /* MockAppPersistentMemory.swift */,
+				D9E5F5152CD7114600C2FF64 /* FakeFolderResearchRepository.swift */,
 			);
 			path = SharedDoubles;
 			sourceTree = "<group>";
@@ -6907,6 +6910,7 @@
 				D9A06417298B59D5006075D1 /* AddToFolderViewViewModelTests.swift in Sources */,
 				D9F570882A62F27F00596C32 /* XCTestCase+Extensions.swift in Sources */,
 				D95C3E0A2A02AB1800172C17 /* SyncServiceTests.swift in Sources */,
+				D9E5F5162CD7114600C2FF64 /* FakeFolderResearchRepository.swift in Sources */,
 				D9A32DC7285ACE880038A370 /* PodiumTests.swift in Sources */,
 				D900B9C52A6DF6D300C1BC3A /* LoggerStub.swift in Sources */,
 				D99ACE982ADDFC2500C290F0 /* RetroViewModelTests.swift in Sources */,
