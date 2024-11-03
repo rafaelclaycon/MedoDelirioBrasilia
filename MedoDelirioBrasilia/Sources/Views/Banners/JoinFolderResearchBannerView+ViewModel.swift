@@ -32,6 +32,7 @@ extension JoinFolderResearchBannerView {
 extension JoinFolderResearchBannerView.ViewModel {
 
     func onJoinResearchSelected() async {
+        UserSettings().setHasJoinedFolderResearch(to: true)
         await sendLogs()
     }
 

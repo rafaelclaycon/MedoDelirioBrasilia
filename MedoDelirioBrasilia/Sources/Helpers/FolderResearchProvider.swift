@@ -69,6 +69,8 @@ final class FolderResearchProvider {
     }
 
     func sendChanges() async throws {
+        guard userSettings.getHasJoinedFolderResearch() else { return }
+
         guard
             let changes = try changes(),
             !changes.folders.isEmpty

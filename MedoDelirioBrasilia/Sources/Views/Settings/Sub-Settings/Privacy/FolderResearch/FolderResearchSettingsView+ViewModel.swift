@@ -43,7 +43,6 @@ extension FolderResearchSettingsView.ViewModel {
     func onEnrollOptionChanged(_ enroll: Bool) async {
         guard didFinishLoadingInitialState else { return }
         if enroll {
-            print("DID CALL SEND LOGS")
             UserSettings().setHasJoinedFolderResearch(to: true)
             await sendLogs()
             updateLastSyncDate()
@@ -68,7 +67,7 @@ extension FolderResearchSettingsView.ViewModel {
                 localDatabase: LocalDatabase(),
                 repository: FolderResearchRepository()
             )
-            
+
             try await provider.sendChanges()
 
             state = .enrolled
