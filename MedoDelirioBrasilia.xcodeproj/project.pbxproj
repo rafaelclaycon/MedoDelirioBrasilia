@@ -275,6 +275,7 @@
 		D9347DD12AA16AD100648E0B /* Lula - E agora em setembro vai entrar o grosso.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9347DD02AA16AD100648E0B /* Lula - E agora em setembro vai entrar o grosso.mp3 */; };
 		D9347DD32AA1735E00648E0B /* Eu Fico Muito Triste - Summer Eletrohits.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9347DD22AA1735E00648E0B /* Eu Fico Muito Triste - Summer Eletrohits.mp3 */; };
 		D9351C6128441FA400D4317E /* LoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9351C6028441FA400D4317E /* LoggerTests.swift */; };
+		D93578772CD6DA2100223072 /* FolderResearchSettingsView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93578762CD6DA2100223072 /* FolderResearchSettingsView+ViewModel.swift */; };
 		D93752122902C94200E2F27B /* Joaquim Barbosa - Bolsonaro e um ser abjeto, Lula no primeiro turno.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D93752102902C94200E2F27B /* Joaquim Barbosa - Bolsonaro e um ser abjeto, Lula no primeiro turno.mp3 */; };
 		D93752132902C94200E2F27B /* Lula - Consideracoes finais debate Band 2o turno.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D93752112902C94200E2F27B /* Lula - Consideracoes finais debate Band 2o turno.mp3 */; };
 		D93752162902C94A00E2F27B /* Funk da Picanha e da Cerveja.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D93752142902C94A00E2F27B /* Funk da Picanha e da Cerveja.mp3 */; };
@@ -1800,6 +1801,7 @@
 		D9347DD02AA16AD100648E0B /* Lula - E agora em setembro vai entrar o grosso.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - E agora em setembro vai entrar o grosso.mp3"; sourceTree = "<group>"; };
 		D9347DD22AA1735E00648E0B /* Eu Fico Muito Triste - Summer Eletrohits.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu Fico Muito Triste - Summer Eletrohits.mp3"; sourceTree = "<group>"; };
 		D9351C6028441FA400D4317E /* LoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerTests.swift; sourceTree = "<group>"; };
+		D93578762CD6DA2100223072 /* FolderResearchSettingsView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FolderResearchSettingsView+ViewModel.swift"; sourceTree = "<group>"; };
 		D93752102902C94200E2F27B /* Joaquim Barbosa - Bolsonaro e um ser abjeto, Lula no primeiro turno.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Joaquim Barbosa - Bolsonaro e um ser abjeto, Lula no primeiro turno.mp3"; sourceTree = "<group>"; };
 		D93752112902C94200E2F27B /* Lula - Consideracoes finais debate Band 2o turno.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - Consideracoes finais debate Band 2o turno.mp3"; sourceTree = "<group>"; };
 		D93752142902C94A00E2F27B /* Funk da Picanha e da Cerveja.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Funk da Picanha e da Cerveja.mp3"; sourceTree = "<group>"; };
@@ -5051,6 +5053,7 @@
 			isa = PBXGroup;
 			children = (
 				D9C1372629063A78003E4ABF /* FolderResearchSettingsView.swift */,
+				D93578762CD6DA2100223072 /* FolderResearchSettingsView+ViewModel.swift */,
 			);
 			path = FolderResearch;
 			sourceTree = "<group>";
@@ -6818,6 +6821,7 @@
 				D99A961C299A733E00BB5F0D /* RoundCheckbox.swift in Sources */,
 				D90F6A6628446C250050FFFF /* TrendsSettingsView.swift in Sources */,
 				D92C0CAA28405B2D009CF19A /* NoFavoritesView.swift in Sources */,
+				D93578772CD6DA2100223072 /* FolderResearchSettingsView+ViewModel.swift in Sources */,
 				D957048328AFCC93008DEF8C /* ChangeAppIconView.swift in Sources */,
 				D9BF90BE2842EAED00BDDD7D /* TopChartRow.swift in Sources */,
 				D9943F1E286419C2002C6B97 /* LocalDatabase+TopChart.swift in Sources */,

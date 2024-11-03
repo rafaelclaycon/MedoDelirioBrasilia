@@ -104,7 +104,13 @@ struct DiagnosticsView: View {
                     Text("Sem Dados")
                 } else {
                     List(shareLogs!) { log in
-                        SharingLogCell(destination: ShareDestination(rawValue: log.destination) ?? .other, contentType: ContentType(rawValue: log.contentType) ?? .sound, contentTitle: getContentName(contentId: log.contentId), dateTime: log.dateTime.toScreenString(), sentToServer: log.sentToServer)
+                        SharingLogCell(
+                            destination: ShareDestination(rawValue: log.destination) ?? .other,
+                            contentType: ContentType(rawValue: log.contentType) ?? .sound,
+                            contentTitle: getContentName(contentId: log.contentId),
+                            dateTime: log.dateTime.formattedDayMonthYearHoursMinutesSeconds(),
+                            sentToServer: log.sentToServer
+                        )
                     }
                 }
             }

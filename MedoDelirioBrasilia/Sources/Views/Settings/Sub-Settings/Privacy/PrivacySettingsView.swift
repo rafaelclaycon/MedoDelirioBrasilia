@@ -16,7 +16,9 @@ struct PrivacySettingsView: View {
                     Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
                 }
                 
-                NavigationLink(destination: FolderResearchSettingsView()) {
+                NavigationLink(
+                    destination: FolderResearchSettingsView()
+                ) {
                     Label {
                         Text("Pesquisa Sobre as Pastas")
                     } icon: {

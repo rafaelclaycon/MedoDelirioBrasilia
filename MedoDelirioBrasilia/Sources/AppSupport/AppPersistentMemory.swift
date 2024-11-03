@@ -15,6 +15,9 @@ protocol AppPersistentMemoryProtocol {
     /// This was used to mark sending before the more elaborate change syncing.
     func getHasSentFolderResearchInfo() -> Bool
     func setHasSentFolderResearchInfo(to newValue: Bool)
+
+    func lastFolderResearchSyncDateTime() -> Date?
+    func lastFolderResearchSyncDateTime(_ dateTime: Date)
 }
 
 /// Different from User Settings, App Memory are settings that help the app remember stuff to avoid asking again or doing a network job more than once per day.
@@ -180,6 +183,13 @@ extension AppPersistentMemory {
         }
         return value as? [String: String]
     }
+
+    func lastFolderResearchSyncDateTime() -> Date? {
+        guard let value = userDefaults.object(forKey: "lastFolderResearchSyncDateTime") else {
+            return nil
+        }
+        return Date(timeIntervalSince1970: value as! Double)
+    }
 }
 
 // MARK: - Setters
@@ -269,5 +279,9 @@ extension AppPersistentMemory {
 
     func folderResearchHashes(_ foldersHashes: [String: String]) {
         userDefaults.set(foldersHashes, forKey: "folderResearchHash")
+    }
+
+    func lastFolderResearchSyncDateTime(_ dateTime: Date) {
+        userDefaults.set(dateTime.timeIntervalSince1970, forKey: "lastFolderResearchSyncDateTime")
     }
 }

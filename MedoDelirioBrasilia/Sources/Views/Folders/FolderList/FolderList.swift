@@ -148,7 +148,6 @@ struct FolderList: View {
             deleteFolderAide.updateFolderList = false
         }
     }
-
 }
 
 // MARK: - Preview
