@@ -87,7 +87,7 @@ class AuthorDetailViewViewModel: ObservableObject {
         authorName: String
     ) {
         let usageMetric = UsageMetric(
-            customInstallId: UIDevice.customInstallId,
+            customInstallId: AppPersistentMemory().customInstallId,
             originatingScreen: "AuthorDetailView(\(authorName))",
             destinationScreen: action,
             systemName: UIDevice.current.systemName,

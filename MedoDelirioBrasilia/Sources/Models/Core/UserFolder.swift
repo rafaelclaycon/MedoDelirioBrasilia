@@ -69,10 +69,7 @@ extension UserFolder {
 
     func folderHash(_ folderContents: [String]) -> String {
         let string = self.symbol + self.name + folderContents.joined()
-        print("FOLDER STRING FOR HASHING: \(string)")
-        let result = FolderResearchProvider.hash(string)
-        print("FOLDER HASH: \(result)")
-        return result
+        return FolderResearchProvider.hash(string)
     }
 }
 

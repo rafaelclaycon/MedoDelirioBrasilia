@@ -65,26 +65,12 @@ extension FolderResearchSettingsView.ViewModel {
             let provider = FolderResearchProvider(
                 userSettings: UserSettings(),
                 appMemory: AppPersistentMemory(),
-                localDatabase: LocalDatabase()
+                localDatabase: LocalDatabase(),
+                repository: FolderResearchRepository()
             )
-            guard
-                let info = try provider.changes(),
-                !info.folders.isEmpty
-            else {
-                AppPersistentMemory().setHasSentFolderResearchInfo(to: true)
-                AppPersistentMemory().lastFolderResearchSyncDateTime(.now)
-                state = .enrolled
-                return
-            }
+            
+            try await provider.sendChanges()
 
-            try await folderResearchRepository.add(
-                folders: info.folders,
-                content: info.content,
-                installId: UIDevice.customInstallId
-            )
-
-            AppPersistentMemory().setHasSentFolderResearchInfo(to: true)
-            AppPersistentMemory().lastFolderResearchSyncDateTime(.now)
             state = .enrolled
         } catch {
             Analytics().send(

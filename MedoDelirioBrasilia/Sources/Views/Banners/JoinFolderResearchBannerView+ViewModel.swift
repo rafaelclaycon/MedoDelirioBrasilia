@@ -51,24 +51,12 @@ extension JoinFolderResearchBannerView.ViewModel {
             let provider = FolderResearchProvider(
                 userSettings: UserSettings(),
                 appMemory: AppPersistentMemory(),
-                localDatabase: LocalDatabase()
-            )
-            guard
-                let info = try provider.all(),
-                !info.folders.isEmpty
-            else {
-                state = .doneSending
-                return
-            }
-
-            try await folderResearchRepository.add(
-                folders: info.folders,
-                content: info.content,
-                installId: UIDevice.customInstallId
+                localDatabase: LocalDatabase(),
+                repository: FolderResearchRepository()
             )
 
-            UserSettings().setHasJoinedFolderResearch(to: true)
-            AppPersistentMemory().setHasSentFolderResearchInfo(to: true)
+            try await provider.sendChanges()
+
             state = .doneSending
         } catch {
             Analytics().send(

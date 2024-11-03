@@ -149,35 +149,15 @@ class SyncManager {
             let provider = FolderResearchProvider(
                 userSettings: UserSettings(),
                 appMemory: AppPersistentMemory(),
-                localDatabase: LocalDatabase()
+                localDatabase: LocalDatabase(),
+                repository: FolderResearchRepository()
             )
-            guard
-                let changes = try provider.changes(),
-                !changes.folders.isEmpty
-            else { return }
-
-            try await FolderResearchRepository().add(
-                folders: changes.folders,
-                content: changes.content,
-                installId: UIDevice.customInstallId
-            )
-
-            try saveCurrentHashesToAppMemory()
-
-            if !AppPersistentMemory().getHasSentFolderResearchInfo() {
-                AppPersistentMemory().setHasSentFolderResearchInfo(to: true)
-            }
+            try await provider.sendChanges()
         } catch {
             Analytics().send(
                 originatingScreen: "SyncManager",
                 action: "issueSyncingFolderResearchChanges(\(error.localizedDescription))"
             )
         }
-    }
-
-    private func saveCurrentHashesToAppMemory() throws {
-        let folders = try LocalDatabase().allFolders()
-        let hashes: [String: String] = Dictionary(uniqueKeysWithValues: folders.map { ($0.id, $0.changeHash ?? "") })
-        AppPersistentMemory().folderResearchHashes(hashes)
     }
 }

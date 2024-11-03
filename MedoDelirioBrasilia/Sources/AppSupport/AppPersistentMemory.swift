@@ -18,6 +18,8 @@ protocol AppPersistentMemoryProtocol {
 
     func lastFolderResearchSyncDateTime() -> Date?
     func lastFolderResearchSyncDateTime(_ dateTime: Date)
+
+    var customInstallId: String { get }
 }
 
 /// Different from User Settings, App Memory are settings that help the app remember stuff to avoid asking again or doing a network job more than once per day.
@@ -35,6 +37,15 @@ final class AppPersistentMemory: AppPersistentMemoryProtocol {
 // MARK: - Getters
 
 extension AppPersistentMemory {
+
+    var customInstallId: String {
+        guard let existingCustomDeviceID = userDefaults.object(forKey: "customInstallId") else {
+            let newlyCreatedDeviceID = UUID().uuidString
+            userDefaults.set(newlyCreatedDeviceID, forKey: "customInstallId")
+            return newlyCreatedDeviceID
+        }
+        return String(existingCustomDeviceID as! String)
+    }
 
     func getHasSentDeviceModelToServer() -> Bool {
         guard let value = userDefaults.object(forKey: "hasSentDeviceModelToServer") else {

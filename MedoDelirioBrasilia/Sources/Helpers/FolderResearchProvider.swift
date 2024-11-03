@@ -13,15 +13,18 @@ final class FolderResearchProvider {
     private let userSettings: UserSettingsProtocol
     private let appMemory: AppPersistentMemoryProtocol
     private let localDatabase: LocalDatabaseProtocol
+    private let repository: FolderResearchRepository
 
     init(
         userSettings: UserSettingsProtocol,
         appMemory: AppPersistentMemoryProtocol,
-        localDatabase: LocalDatabaseProtocol
+        localDatabase: LocalDatabaseProtocol,
+        repository: FolderResearchRepository
     ) {
         self.userSettings = userSettings
         self.appMemory = appMemory
         self.localDatabase = localDatabase
+        self.repository = repository
     }
 
     static func hash(_ string: String) -> String {
@@ -64,6 +67,28 @@ final class FolderResearchProvider {
 
         return (folders: folders, content: contents)
     }
+
+    func sendChanges() async throws {
+        guard
+            let changes = try changes(),
+            !changes.folders.isEmpty
+        else {
+            appMemory.setHasSentFolderResearchInfo(to: true)
+            appMemory.lastFolderResearchSyncDateTime(.now)
+            return
+        }
+
+        try await repository.add(
+            folders: changes.folders,
+            content: changes.content,
+            installId: appMemory.customInstallId
+        )
+
+        try saveCurrentHashesToAppMemory()
+
+        appMemory.setHasSentFolderResearchInfo(to: true)
+        appMemory.lastFolderResearchSyncDateTime(.now)
+    }
 }
 
 // MARK: - Internal Functions
@@ -105,5 +130,11 @@ extension FolderResearchProvider {
             }
         }
         return changedFolders.isEmpty ? nil : changedFolders
+    }
+
+    private func saveCurrentHashesToAppMemory() throws {
+        let folders = try localDatabase.allFolders()
+        let hashes: [String: String] = Dictionary(uniqueKeysWithValues: folders.map { ($0.id, $0.changeHash ?? "") })
+        appMemory.folderResearchHashes(hashes)
     }
 }

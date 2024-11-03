@@ -13,7 +13,7 @@ struct DiagnosticsView: View {
     @State private var showServerConnectionTestAlert = false
     @State private var serverConnectionTestAlertTitle = ""
 
-    @State private var installId = UIDevice.customInstallId
+    @State private var installId = AppPersistentMemory().customInstallId
     @State private var showInstallIdCopiedAlert = false
 
     @State private var diskImageCacheText: String = ""

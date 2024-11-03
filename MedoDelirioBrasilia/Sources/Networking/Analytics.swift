@@ -29,7 +29,7 @@ final class Analytics: AnalyticsProtocol {
         action: String
     ) {
         let usageMetric = UsageMetric(
-            customInstallId: UIDevice.customInstallId,
+            customInstallId: AppPersistentMemory().customInstallId,
             originatingScreen: originatingScreen,
             destinationScreen: action,
             systemName: UIDevice.current.systemName,
@@ -46,7 +46,7 @@ final class Analytics: AnalyticsProtocol {
         action: String
     ) {
         let usageMetric = UsageMetric(
-            customInstallId: UIDevice.customInstallId,
+            customInstallId: AppPersistentMemory().customInstallId,
             originatingScreen: "FolderDetailView(\(folderName))",
             destinationScreen: action,
             systemName: UIDevice.current.systemName,
