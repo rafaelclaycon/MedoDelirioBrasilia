@@ -277,7 +277,7 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
 
                                     case .addToFolder:
                                         AddToFolderView(
-                                            isBeingShown: $viewModel.showingModalView,
+
                                             hadSuccess: $viewModel.hadSuccessAddingToFolder,
                                             folderName: $viewModel.folderName,
                                             pluralization: $viewModel.pluralization,

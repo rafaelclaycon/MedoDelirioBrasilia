@@ -9,19 +9,16 @@ import SwiftUI
 
 struct AddToFolderView: View {
 
-    @StateObject private var viewModel = AddToFolderViewModel(database: LocalDatabase.shared)
+    @StateObject private var viewModel: ViewModel
 
-    @Binding var isBeingShown: Bool
-    @Binding var hadSuccess: Bool
     @Binding var folderName: String?
-    @Binding var pluralization: WordPluralization
 
-    @State var selectedSounds: [Sound]
+    @State public var selectedSounds: [Sound]
     @State private var newFolder: UserFolder?
 
     @State private var soundsThatCanBeAdded: [Sound]? = nil
     @State private var folderForSomeSoundsAlreadyInFolder: UserFolder? = nil
-    
+
     private var createNewFolderCellWidth: CGFloat {
         if UIDevice.current.userInterfaceIdiom == .phone {
             return (UIScreen.main.bounds.size.width / 2) - 20
@@ -29,18 +26,27 @@ struct AddToFolderView: View {
             return 250
         }
     }
-    
+
     private let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
-    
-    private func getSoundText() -> String {
-        if selectedSounds.count == 1 {
-            return "Som:  \(selectedSounds.first!.title)"
-        } else {
-            return "\(selectedSounds.count) sons selecionados"
-        }
+
+    private let dismissSheet: () -> Void
+
+    // MARK: - Initializer
+
+    init(
+        selectedSounds: [Sound],
+        repository: UserFolderRepositoryProtocol,
+        onSuccessAction: (String, WordPluralization) -> Void,
+        dismissSheet: () -> Void
+    ) {
+        self._viewModel = ViewModel(
+            repository: repository,
+            selectedSounds: selectedSounds
+        )
+        self.dismissSheet = dismissSheet
     }
 
     // MARK: - View Body
@@ -48,26 +54,14 @@ struct AddToFolderView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .center, spacing: 20) {
-                HStack(spacing: 16) {
-                    Image(systemName: "speaker.wave.3.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 24)
-                        .padding(.leading, 7)
-                    
-                    Text(getSoundText())
-                        .bold()
-                        .multilineTextAlignment(.leading)
-                    
-                    Spacer()
-                }
-                .padding(.horizontal)
-                .padding(.top, 2)
-                
+                HeaderView(
+                    soundText: viewModel.soundText
+                )
+
 //                FoldersAreTagsBannerView()
 //                    .padding(.horizontal)
 //                    .padding(.bottom, -10)
-                
+
                 ScrollView {
                     HStack {
                         Button {
@@ -101,27 +95,7 @@ struct AddToFolderView: View {
                         LazyVGrid(columns: columns, spacing: 14) {
                             ForEach(viewModel.folders) { folder in
                                 Button {
-                                    soundsThatCanBeAdded = viewModel.canBeAddedToFolder(sounds: selectedSounds, folderId: folder.id)
-                                    
-                                    let soundsAlreadyInFolder = selectedSounds.count - (soundsThatCanBeAdded?.count ?? 0)
-                                    
-                                    if selectedSounds.count == soundsThatCanBeAdded?.count {
-                                        selectedSounds.forEach { sound in
-                                            try? LocalDatabase.shared.insert(contentId: sound.id, intoUserFolder: folder.id)
-                                        }
-                                        
-                                        folderName = "\(folder.symbol) \(folder.name)"
-                                        pluralization = selectedSounds.count > 1 ? .plural : .singular
-                                        hadSuccess = true
-                                        isBeingShown = false
-                                    } else if soundsAlreadyInFolder == 1, selectedSounds.count == 1 {
-                                        viewModel.showSingleSoundAlredyInFolderAlert(folderName: folder.name)
-                                    } else if soundsAlreadyInFolder == selectedSounds.count {
-                                        viewModel.showAllSoundsAlredyInFolderAlert(folderName: folder.name)
-                                    } else {
-                                        folderForSomeSoundsAlreadyInFolder = folder
-                                        viewModel.showSomeSoundsAlreadyInFolderAlert(soundCountAlreadyInFolder: soundsAlreadyInFolder, folderName: folder.name)
-                                    }
+                                    viewModel.onFolderSelected()
                                 } label: {
                                     FolderCell(
                                         symbol: folder.symbol,
@@ -140,30 +114,28 @@ struct AddToFolderView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(leading:
                 Button("Cancelar") {
-                    self.isBeingShown = false
+                    dismissSheet()
                 }
             )
             .onAppear {
-                viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.allFolders())
+                viewModel.onViewLoaded()
             }
             .alert(isPresented: $viewModel.showAlert) {
                 switch viewModel.alertType {
                 case .twoOptions:
-                    return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .default(Text("Adicionar"), action: {
-                        soundsThatCanBeAdded?.forEach { sound in
-                            try? LocalDatabase.shared.insert(contentId: sound.id, intoUserFolder: folderForSomeSoundsAlreadyInFolder?.id ?? .empty)
-                        }
-                        
-                        if let folder = folderForSomeSoundsAlreadyInFolder {
-                            folderName = "\(folder.symbol) \(folder.name)"
-                        }
-                        pluralization = soundsThatCanBeAdded?.count ?? 0 > 1 ? .plural : .singular
-                        hadSuccess = true
-                        isBeingShown = false
-                    }), secondaryButton: .cancel(Text("Cancelar")))
+                    return Alert(
+                        title: Text(viewModel.alertTitle),
+                        message: Text(viewModel.alertMessage),
+                        primaryButton: .default(Text("Adicionar"), action: { viewModel.onAddRemainingSelected() }),
+                        secondaryButton: .cancel(Text("Cancelar"))
+                    )
 
                 default:
-                    return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
+                    return Alert(
+                        title: Text(viewModel.alertTitle),
+                        message: Text(viewModel.alertMessage),
+                        dismissButton: .default(Text("OK"))
+                    )
                 }
             }
             .sheet(item: $newFolder) { folder in
@@ -178,17 +150,43 @@ struct AddToFolderView: View {
             }
         }
     }
+}
 
+// MARK: - Subviews
+
+extension AddToFolderView {
+
+    struct HeaderView: View {
+
+        let soundText: String
+
+        var body: some View {
+            HStack(spacing: 16) {
+                Image(systemName: "speaker.wave.3.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 24)
+                    .padding(.leading, 7)
+
+                Text(soundText)
+                    .bold()
+                    .multilineTextAlignment(.leading)
+
+                Spacer()
+            }
+            .padding(.horizontal)
+            .padding(.top, 2)
+        }
+    }
 }
 
 // MARK: - Preview
 
 #Preview {
     AddToFolderView(
-        isBeingShown: .constant(true),
-        hadSuccess: .constant(false),
-        folderName: .constant(nil),
-        pluralization: .constant(.singular),
-        selectedSounds: [Sound(title: "ABCD", description: "")]
+        selectedSounds: [Sound(title: "ABCD", description: "")],
+        repository: UserFolderRepository(),
+        onSuccessAction: { _,_ in },
+        dismissSheet: {}
     )
 }

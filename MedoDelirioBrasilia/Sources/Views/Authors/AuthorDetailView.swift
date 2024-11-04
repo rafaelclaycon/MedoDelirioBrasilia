@@ -26,13 +26,6 @@ struct AuthorDetailView: View {
     
     @State private var showingModalView = false
     
-    // Add to Folder vars
-    @State private var showingAddToFolderModal = false
-    @State private var hadSuccessAddingToFolder: Bool = false
-    @State private var folderName: String? = nil
-    @State private var pluralization: WordPluralization = .singular
-    @State private var shouldDisplayAddedToFolderToast: Bool = false
-    
     // Share as Video
     @State private var shareAsVideo_Result = ShareAsVideoResult()
 
@@ -253,14 +246,14 @@ struct AuthorDetailView: View {
             }
         }
         .overlay {
-            if shouldDisplayAddedToFolderToast {
+            if viewModel.shouldDisplayAddedToFolderToast {
                 VStack {
                     Spacer()
 
                     ToastView(
                         icon: "checkmark",
                         iconColor: .green,
-                        text: pluralization.getAddedToFolderToastText(folderName: folderName)
+                        text: viewModel.pluralization.getAddedToFolderToastText(folderName: viewModel.folderName)
                     )
                     .padding()
                 }
@@ -291,61 +284,49 @@ struct AuthorDetailView: View {
                 )
             }
         }
-        .sheet(isPresented: $showingAddToFolderModal) {
+        .sheet(item: $viewModel.selectedSounds) { selected in
             AddToFolderView(
-                isBeingShown: $showingAddToFolderModal,
-                hadSuccess: $hadSuccessAddingToFolder,
-                folderName: $folderName,
-                pluralization: $pluralization,
-                selectedSounds: viewModel.selectedSounds ?? [Sound]()
+                selectedSounds: selected.sounds,
+                repository: UserFolderRepository(),
+                onSuccessAction: { folderName, pluralization in
+                    if currentSoundsListMode.wrappedValue == .selection {
+                        soundListViewModel.stopSelecting()
+                    }
+                    viewModel.onSuccessfullyAddedSoundsToFolder(
+                        folderName: folderName,
+                        pluralization: pluralization,
+                        selectedCount: soundListViewModel.selectionKeeper.count, // Used for analytics.
+                        authorName: author.name
+                    )
+                },
+                dismissSheet: {
+                    viewModel.selectedSounds = nil
+                }
             )
         }
         .sheet(isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog) {
-            EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog,
-                               didCopySupportAddress: .constant(false),
-                               subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.selectedSound?.title ?? ""),
-                               emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.selectedSound?.authorName ?? "", viewModel.selectedSound?.id ?? ""))
+            EmailAppPickerView(
+                isBeingShown: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog,
+                didCopySupportAddress: .constant(false),
+                subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.selectedSound?.title ?? ""),
+                emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.selectedSound?.authorName ?? "", viewModel.selectedSound?.id ?? "")
+            )
         }
         .sheet(isPresented: $viewModel.showEmailAppPicker_askForNewSound) {
-            EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_askForNewSound,
-                               didCopySupportAddress: .constant(false),
-                               subject: String(format: Shared.Email.AskForNewSound.subject, self.author.name),
-                               emailBody: Shared.Email.AskForNewSound.body)
+            EmailAppPickerView(
+                isBeingShown: $viewModel.showEmailAppPicker_askForNewSound,
+                didCopySupportAddress: .constant(false),
+                subject: String(format: Shared.Email.AskForNewSound.subject, self.author.name),
+                emailBody: Shared.Email.AskForNewSound.body
+            )
         }
         .sheet(isPresented: $viewModel.showEmailAppPicker_reportAuthorDetailIssue) {
-            EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_reportAuthorDetailIssue,
-                               didCopySupportAddress: .constant(false),
-                               subject: String(format: Shared.Email.AuthorDetailIssue.subject, self.author.name),
-                               emailBody: Shared.Email.AuthorDetailIssue.body)
-        }
-        .onChange(of: showingAddToFolderModal) { showingAddToFolderModal in
-            if (showingAddToFolderModal == false) && hadSuccessAddingToFolder {
-                // Need to get count before clearing the Set.
-                let selectedCount: Int = soundListViewModel.selectionKeeper.count
-
-                if currentSoundsListMode.wrappedValue == .selection {
-                    soundListViewModel.stopSelecting()
-                }
-
-                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-                    withAnimation {
-                        shouldDisplayAddedToFolderToast = true
-                    }
-                    TapticFeedback.success()
-                }
-
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    withAnimation {
-                        shouldDisplayAddedToFolderToast = false
-                        folderName = nil
-                        hadSuccessAddingToFolder = false
-                    }
-                }
-
-                if pluralization == .plural {
-                    viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFolder(\(selectedCount))", authorName: author.name)
-                }
-            }
+            EmailAppPickerView(
+                isBeingShown: $viewModel.showEmailAppPicker_reportAuthorDetailIssue,
+                didCopySupportAddress: .constant(false),
+                subject: String(format: Shared.Email.AuthorDetailIssue.subject, self.author.name),
+                emailBody: Shared.Email.AuthorDetailIssue.body
+            )
         }
         .onChange(of: soundListViewModel.selectionKeeper.count) { selectionKeeperCount in
             if navBarTitle.isEmpty == false {
@@ -376,8 +357,8 @@ struct AuthorDetailView: View {
             Section {
                 Button {
                     soundListViewModel.stopSelecting()
-                    viewModel.selectedSounds = viewModel.sounds
-                    showingAddToFolderModal = true
+                    viewModel.selectedSounds = .init(sounds: viewModel.sounds)
+                    viewModel.showingAddToFolderModal = true
                 } label: {
                     Label("Adicionar Todos a Pasta", systemImage: "folder.badge.plus")
                 }

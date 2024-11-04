@@ -1,5 +1,5 @@
 //
-//  AuthorsDetailViewViewModel.swift
+//  AuthorsDetailView+ViewModel.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Claycon Schmitt on 19/05/22.
@@ -15,15 +15,24 @@ class AuthorDetailViewViewModel: ObservableObject {
     @Published var dataLoadingDidFail: Bool = false
 
     @Published var soundSortOption: Int = 1
-    @Published var selectedSound: Sound? = nil
-    @Published var selectedSounds: [Sound]? = nil
-    
+
+    @Published var selectedSound: Sound?
+    @Published var selectedSounds: SelectedItems?
+
     @Published var showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog = false
     @Published var showEmailAppPicker_soundUnavailableConfirmationDialog = false
     @Published var showEmailAppPicker_askForNewSound = false
     @Published var showEmailAppPicker_reportAuthorDetailIssue = false
     var currentSoundsListMode: Binding<SoundsListMode>
-    
+
+
+    // Add to Folder vars
+    @Published var showingAddToFolderModal = false
+    @Published var hadSuccessAddingToFolder: Bool = false
+    @Published var folderName: String? = nil
+    @Published var pluralization: WordPluralization = .singular
+    @Published var shouldDisplayAddedToFolderToast: Bool = false
+
     // Alerts
     @Published var alertTitle: String = ""
     @Published var alertMessage: String = ""
@@ -110,5 +119,36 @@ extension AuthorDetailViewViewModel {
         alertTitle = Shared.AuthorDetail.AskForNewSoundAlert.title
         alertMessage = Shared.AuthorDetail.AskForNewSoundAlert.message
         showAlert = true
+    }
+}
+
+// MARK: - User Actions
+
+extension AuthorDetailViewViewModel {
+
+    func onSuccessfullyAddedSoundsToFolder(
+        folderName: String,
+        pluralization: WordPluralization,
+        selectedCount: Int,
+        authorName: String
+    ) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+            withAnimation {
+                self.shouldDisplayAddedToFolderToast = true
+            }
+            TapticFeedback.success()
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            withAnimation {
+                self.shouldDisplayAddedToFolderToast = false
+                self.folderName = nil
+                self.hadSuccessAddingToFolder = false
+            }
+        }
+
+        if pluralization == .plural {
+            sendUsageMetricToServer(action: "didAddManySoundsToFolder(\(selectedCount))", authorName: authorName)
+        }
     }
 }
