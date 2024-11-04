@@ -79,4 +79,10 @@ class AddToFolderViewModel: ObservableObject {
         showAlert = true
     }
 
+    func showIssueSavingAlert(_ message: String) {
+        alertTitle = "Erro Adicionando Sons à Pasta"
+        alertMessage = message
+        alertType = .singleOption
+        showAlert = true
+    }
 }

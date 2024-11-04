@@ -101,26 +101,31 @@ struct AddToFolderView: View {
                         LazyVGrid(columns: columns, spacing: 14) {
                             ForEach(viewModel.folders) { folder in
                                 Button {
-                                    soundsThatCanBeAdded = viewModel.canBeAddedToFolder(sounds: selectedSounds, folderId: folder.id)
-                                    
-                                    let soundsAlreadyInFolder = selectedSounds.count - (soundsThatCanBeAdded?.count ?? 0)
-                                    
-                                    if selectedSounds.count == soundsThatCanBeAdded?.count {
-                                        selectedSounds.forEach { sound in
-                                            try? LocalDatabase.shared.insert(contentId: sound.id, intoUserFolder: folder.id)
+                                    do {
+                                        soundsThatCanBeAdded = viewModel.canBeAddedToFolder(sounds: selectedSounds, folderId: folder.id)
+
+                                        let soundsAlreadyInFolder = selectedSounds.count - (soundsThatCanBeAdded?.count ?? 0)
+
+                                        if selectedSounds.count == soundsThatCanBeAdded?.count {
+                                            try selectedSounds.forEach { sound in
+                                                try LocalDatabase.shared.insert(contentId: sound.id, intoUserFolder: folder.id)
+                                            }
+                                            try UserFolderRepository().update(folder)
+
+                                            folderName = "\(folder.symbol) \(folder.name)"
+                                            pluralization = selectedSounds.count > 1 ? .plural : .singular
+                                            hadSuccess = true
+                                            isBeingShown = false
+                                        } else if soundsAlreadyInFolder == 1, selectedSounds.count == 1 {
+                                            viewModel.showSingleSoundAlredyInFolderAlert(folderName: folder.name)
+                                        } else if soundsAlreadyInFolder == selectedSounds.count {
+                                            viewModel.showAllSoundsAlredyInFolderAlert(folderName: folder.name)
+                                        } else {
+                                            folderForSomeSoundsAlreadyInFolder = folder
+                                            viewModel.showSomeSoundsAlreadyInFolderAlert(soundCountAlreadyInFolder: soundsAlreadyInFolder, folderName: folder.name)
                                         }
-                                        
-                                        folderName = "\(folder.symbol) \(folder.name)"
-                                        pluralization = selectedSounds.count > 1 ? .plural : .singular
-                                        hadSuccess = true
-                                        isBeingShown = false
-                                    } else if soundsAlreadyInFolder == 1, selectedSounds.count == 1 {
-                                        viewModel.showSingleSoundAlredyInFolderAlert(folderName: folder.name)
-                                    } else if soundsAlreadyInFolder == selectedSounds.count {
-                                        viewModel.showAllSoundsAlredyInFolderAlert(folderName: folder.name)
-                                    } else {
-                                        folderForSomeSoundsAlreadyInFolder = folder
-                                        viewModel.showSomeSoundsAlreadyInFolderAlert(soundCountAlreadyInFolder: soundsAlreadyInFolder, folderName: folder.name)
+                                    } catch {
+                                        viewModel.showIssueSavingAlert(error.localizedDescription)
                                     }
                                 } label: {
                                     FolderCell(
@@ -149,21 +154,35 @@ struct AddToFolderView: View {
             .alert(isPresented: $viewModel.showAlert) {
                 switch viewModel.alertType {
                 case .twoOptions:
-                    return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), primaryButton: .default(Text("Adicionar"), action: {
-                        soundsThatCanBeAdded?.forEach { sound in
-                            try? LocalDatabase.shared.insert(contentId: sound.id, intoUserFolder: folderForSomeSoundsAlreadyInFolder?.id ?? .empty)
-                        }
-                        
-                        if let folder = folderForSomeSoundsAlreadyInFolder {
-                            folderName = "\(folder.symbol) \(folder.name)"
-                        }
-                        pluralization = soundsThatCanBeAdded?.count ?? 0 > 1 ? .plural : .singular
-                        hadSuccess = true
-                        isBeingShown = false
-                    }), secondaryButton: .cancel(Text("Cancelar")))
+                    return Alert(
+                        title: Text(viewModel.alertTitle),
+                        message: Text(viewModel.alertMessage),
+                        primaryButton: .default(Text("Adicionar"), action: {
+                            do {
+                                try soundsThatCanBeAdded?.forEach { sound in
+                                    try LocalDatabase.shared.insert(contentId: sound.id, intoUserFolder: folderForSomeSoundsAlreadyInFolder?.id ?? .empty)
+                                }
+
+                                if let folder = folderForSomeSoundsAlreadyInFolder {
+                                    try UserFolderRepository().update(folder)
+                                    folderName = "\(folder.symbol) \(folder.name)"
+                                }
+                                pluralization = soundsThatCanBeAdded?.count ?? 0 > 1 ? .plural : .singular
+                                hadSuccess = true
+                                isBeingShown = false
+                            } catch {
+                                viewModel.showIssueSavingAlert(error.localizedDescription)
+                            }
+                        }),
+                        secondaryButton: .cancel(Text("Cancelar"))
+                    )
 
                 default:
-                    return Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
+                    return Alert(
+                        title: Text(viewModel.alertTitle),
+                        message: Text(viewModel.alertMessage),
+                        dismissButton: .default(Text("OK"))
+                    )
                 }
             }
             .sheet(item: $newFolder) { folder in

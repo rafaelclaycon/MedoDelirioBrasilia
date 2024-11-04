@@ -91,6 +91,12 @@ final class FolderResearchProvider {
         appMemory.setHasSentFolderResearchInfo(to: true)
         appMemory.lastFolderResearchSyncDateTime(.now)
     }
+
+    func saveCurrentHashesToAppMemory() throws {
+        let folders = try localDatabase.allFolders()
+        let hashes: [String: String] = Dictionary(uniqueKeysWithValues: folders.map { ($0.id, $0.changeHash ?? "") })
+        appMemory.folderResearchHashes(hashes)
+    }
 }
 
 // MARK: - Internal Functions
@@ -132,11 +138,5 @@ extension FolderResearchProvider {
             }
         }
         return changedFolders.isEmpty ? nil : changedFolders
-    }
-
-    private func saveCurrentHashesToAppMemory() throws {
-        let folders = try localDatabase.allFolders()
-        let hashes: [String: String] = Dictionary(uniqueKeysWithValues: folders.map { ($0.id, $0.changeHash ?? "") })
-        appMemory.folderResearchHashes(hashes)
     }
 }

@@ -12,7 +12,10 @@ struct AllFoldersiPadView: View {
 
     @Binding var folderForEditing: UserFolder?
     @Binding var updateFolderList: Bool
-    @State var folderIdForEditing: String = .empty
+    
+    @State private var folderIdForEditing: String = ""
+    @State private var showErrorDeletingAlert: Bool = false
+
     @StateObject var deleteFolderAide = DeleteFolderViewAide()
 
     // iPad Reactions Stuff
@@ -71,15 +74,38 @@ struct AllFoldersiPadView: View {
                 primaryButton: .destructive(
                     Text("Apagar"),
                     action: {
-                        guard deleteFolderAide.folderIdForDeletion.isEmpty == false else {
+                        guard !deleteFolderAide.folderIdForDeletion.isEmpty else {
                             return
                         }
-                        try? LocalDatabase.shared.deleteUserFolder(withId: deleteFolderAide.folderIdForDeletion)
-                        updateFolderList = true
+
+                        do {
+                            try LocalDatabase.shared.deleteUserFolder(withId: deleteFolderAide.folderIdForDeletion)
+
+                            let provider = FolderResearchProvider(
+                                userSettings: UserSettings(),
+                                appMemory: AppPersistentMemory(),
+                                localDatabase: LocalDatabase(),
+                                repository: FolderResearchRepository()
+                            )
+                            try provider.saveCurrentHashesToAppMemory()
+
+                            updateFolderList = true
+                        } catch {
+                            showErrorDeletingAlert = true
+                        }
+
                     }
                 ),
                 secondaryButton: .cancel(Text("Cancelar"))
             )
+        }
+        .alert(
+            "Erro Ao Tentar Apagar a Pasta",
+            isPresented: $showErrorDeletingAlert
+        ) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text("Tente novamente mais tarde. Se o erro persisir, por favor, envie um e-mail para o desenvolvedor.")
         }
     }
 
