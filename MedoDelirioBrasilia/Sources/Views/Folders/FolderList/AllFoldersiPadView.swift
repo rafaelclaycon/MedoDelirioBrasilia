@@ -81,6 +81,7 @@ struct AllFoldersiPadView: View {
                         do {
                             try LocalDatabase.shared.deleteUserFolder(withId: deleteFolderAide.folderIdForDeletion)
 
+                            // Need to update folder hashes so SyncManager knows about the change on next sync.
                             let provider = FolderResearchProvider(
                                 userSettings: UserSettings(),
                                 appMemory: AppPersistentMemory(),

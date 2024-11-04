@@ -236,7 +236,7 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
                                             secondaryButton: .cancel(Text("Cancelar"))
                                         )
 
-                                    case .issueExportingManySounds, .unableToRedownloadSound:
+                                    case .issueExportingManySounds, .unableToRedownloadSound, .issueRemovingSoundFromFolder:
                                         return Alert(
                                             title: Text(viewModel.alertTitle),
                                             message: Text(viewModel.alertMessage),

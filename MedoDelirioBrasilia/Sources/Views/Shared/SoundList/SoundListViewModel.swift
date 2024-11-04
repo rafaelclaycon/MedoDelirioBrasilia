@@ -524,17 +524,31 @@ extension SoundListViewModel {
         // Need to get count before clearing the Set.
         let selectedCount: Int = selectionKeeper.count // For Analytics
 
-        selectionKeeper.forEach { selectedSoundId in
-            try? LocalDatabase.shared.deleteUserContentFromFolder(withId: folder.id, contentId: selectedSoundId)
-        }
-        selectionKeeper.removeAll()
-        refreshAction()
+        do {
+            try selectionKeeper.forEach { selectedSoundId in
+                try LocalDatabase.shared.deleteUserContentFromFolder(withId: folder.id, contentId: selectedSoundId)
+            }
 
-        stopSelecting()
-        Analytics().sendUsageMetricToServer(
-            folderName: "\(folder.symbol) \(folder.name)",
-            action: "didRemoveManySoundsFromFolder(\(selectedCount))"
-        )
+            // Need to update folder hashes so SyncManager knows about the change on next sync.
+            let provider = FolderResearchProvider(
+                userSettings: UserSettings(),
+                appMemory: AppPersistentMemory(),
+                localDatabase: LocalDatabase(),
+                repository: FolderResearchRepository()
+            )
+            try provider.saveCurrentHashesToAppMemory()
+
+            selectionKeeper.removeAll()
+            refreshAction()
+
+            stopSelecting()
+            Analytics().sendUsageMetricToServer(
+                folderName: "\(folder.symbol) \(folder.name)",
+                action: "didRemoveManySoundsFromFolder(\(selectedCount))"
+            )
+        } catch {
+            showIssueRemovingSoundFromFolderAlert(plural: true)
+        }
     }
 
     func shareSelected() {
@@ -577,9 +591,22 @@ extension SoundListViewModel {
         guard let refreshAction else { return }
         guard let sound = selectedSound else { return }
 
-        try? LocalDatabase.shared.deleteUserContentFromFolder(withId: folder.id, contentId: sound.id)
+        do {
+            try LocalDatabase.shared.deleteUserContentFromFolder(withId: folder.id, contentId: sound.id)
 
-        refreshAction()
+            // Need to update folder hashes so SyncManager knows about the change on next sync.
+            let provider = FolderResearchProvider(
+                userSettings: UserSettings(),
+                appMemory: AppPersistentMemory(),
+                localDatabase: LocalDatabase(),
+                repository: FolderResearchRepository()
+            )
+            try provider.saveCurrentHashesToAppMemory()
+
+            refreshAction()
+        } catch {
+            showIssueRemovingSoundFromFolderAlert()
+        }
     }
 }
 
@@ -667,6 +694,13 @@ extension SoundListViewModel {
         alertTitle = "Não Foi Possível Baixar o Conteúdo"
         alertMessage = "Tente novamente mais tarde."
         alertType = .unableToRedownloadSound
+        showAlert = true
+    }
+
+    func showIssueRemovingSoundFromFolderAlert(plural: Bool = false) {
+        alertTitle = "Não Foi Possível Remover \(plural ? "os Sons" : "o Som") da Pasta"
+        alertMessage = "Tente novamente mais tarde."
+        alertType = .issueRemovingSoundFromFolder
         showAlert = true
     }
 }
