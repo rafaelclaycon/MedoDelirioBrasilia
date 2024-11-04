@@ -1079,6 +1079,7 @@
 		D985DCDB28B6D9460085B8E5 /* Furacao 2000 - Tchutchuca Treme o Bumbum.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D985DCDA28B6D9460085B8E5 /* Furacao 2000 - Tchutchuca Treme o Bumbum.mp3 */; };
 		D98622E0283FC57100E9F630 /* AuthorDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98622DF283FC57100E9F630 /* AuthorDetailView.swift */; };
 		D98622E2283FCEDC00E9F630 /* AuthorsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98622E1283FCEDC00E9F630 /* AuthorsViewViewModel.swift */; };
+		D986650A2CD8431F0090A2AE /* SelectedItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98665092CD8431F0090A2AE /* SelectedItems.swift */; };
 		D98674122A6B4B6800CCB9D3 /* Monica Poli - Attenzione, borseggiatrici.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D986740F2A6B4B6800CCB9D3 /* Monica Poli - Attenzione, borseggiatrici.mp3 */; };
 		D98674132A6B4B6800CCB9D3 /* Monica Poli - Attenzione, pickpocket (completo).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98674102A6B4B6800CCB9D3 /* Monica Poli - Attenzione, pickpocket (completo).mp3 */; };
 		D98674142A6B4B6800CCB9D3 /* Monica Poli - Attenzione, pickpocket.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D98674112A6B4B6800CCB9D3 /* Monica Poli - Attenzione, pickpocket.mp3 */; };
@@ -1146,7 +1147,7 @@
 		D9943F20286419CE002C6B97 /* LocalDatabase+Statistic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F1F286419CE002C6B97 /* LocalDatabase+Statistic.swift */; };
 		D9943F2328641C00002C6B97 /* LocalDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F2228641C00002C6B97 /* LocalDatabase.swift */; };
 		D9943F2628641FEF002C6B97 /* AddToFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F2528641FEF002C6B97 /* AddToFolderView.swift */; };
-		D9943F2828642200002C6B97 /* AddToFolderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F2728642200002C6B97 /* AddToFolderViewModel.swift */; };
+		D9943F2828642200002C6B97 /* AddToFolderView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F2728642200002C6B97 /* AddToFolderView+ViewModel.swift */; };
 		D9943F2A28642EC3002C6B97 /* UserFolderContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F2928642EC3002C6B97 /* UserFolderContent.swift */; };
 		D9943F2C28643317002C6B97 /* FolderDetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F2B28643317002C6B97 /* FolderDetailViewViewModel.swift */; };
 		D994AD622C9DFE89004FAE25 /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994AD612C9DFE84004FAE25 /* LoadingState.swift */; };
@@ -1187,7 +1188,7 @@
 		D99D0DC328CAB52700EB6F27 /* TV CAMARA - Alessandro Molon - E obvio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99D0DC228CAB52700EB6F27 /* TV CAMARA - Alessandro Molon - E obvio.mp3 */; };
 		D99D0DC528CAB5F000EB6F27 /* TV BRASIL - GUEDES - Auxilio emergencial de 200 reais.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99D0DC428CAB5EF00EB6F27 /* TV BRASIL - GUEDES - Auxilio emergencial de 200 reais.mp3 */; };
 		D99D6CE528D6766300B36301 /* Jair Bolsonaro - Ministro Fachin, marxista, leninista.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99D6CE428D6766300B36301 /* Jair Bolsonaro - Ministro Fachin, marxista, leninista.mp3 */; };
-		D99DC19D28423AD7002B03B6 /* AuthorDetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99DC19C28423AD7002B03B6 /* AuthorDetailViewViewModel.swift */; };
+		D99DC19D28423AD7002B03B6 /* AuthorDetailView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99DC19C28423AD7002B03B6 /* AuthorDetailView+ViewModel.swift */; };
 		D9A039182BD69EF100AB74F7 /* ModalViewToOpen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A039172BD69EF100AB74F7 /* ModalViewToOpen.swift */; };
 		D9A06417298B59D5006075D1 /* AddToFolderViewViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A06416298B59D5006075D1 /* AddToFolderViewViewModelTests.swift */; };
 		D9A0641A298B6749006075D1 /* FakeLocalDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A06419298B6749006075D1 /* FakeLocalDatabase.swift */; };
@@ -2608,6 +2609,7 @@
 		D985DCDA28B6D9460085B8E5 /* Furacao 2000 - Tchutchuca Treme o Bumbum.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Furacao 2000 - Tchutchuca Treme o Bumbum.mp3"; sourceTree = "<group>"; };
 		D98622DF283FC57100E9F630 /* AuthorDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorDetailView.swift; sourceTree = "<group>"; };
 		D98622E1283FCEDC00E9F630 /* AuthorsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorsViewViewModel.swift; sourceTree = "<group>"; };
+		D98665092CD8431F0090A2AE /* SelectedItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedItems.swift; sourceTree = "<group>"; };
 		D986740F2A6B4B6800CCB9D3 /* Monica Poli - Attenzione, borseggiatrici.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Monica Poli - Attenzione, borseggiatrici.mp3"; sourceTree = "<group>"; };
 		D98674102A6B4B6800CCB9D3 /* Monica Poli - Attenzione, pickpocket (completo).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Monica Poli - Attenzione, pickpocket (completo).mp3"; sourceTree = "<group>"; };
 		D98674112A6B4B6800CCB9D3 /* Monica Poli - Attenzione, pickpocket.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Monica Poli - Attenzione, pickpocket.mp3"; sourceTree = "<group>"; };
@@ -2675,7 +2677,7 @@
 		D9943F1F286419CE002C6B97 /* LocalDatabase+Statistic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+Statistic.swift"; sourceTree = "<group>"; };
 		D9943F2228641C00002C6B97 /* LocalDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalDatabase.swift; sourceTree = "<group>"; };
 		D9943F2528641FEF002C6B97 /* AddToFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToFolderView.swift; sourceTree = "<group>"; };
-		D9943F2728642200002C6B97 /* AddToFolderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToFolderViewModel.swift; sourceTree = "<group>"; };
+		D9943F2728642200002C6B97 /* AddToFolderView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddToFolderView+ViewModel.swift"; sourceTree = "<group>"; };
 		D9943F2928642EC3002C6B97 /* UserFolderContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFolderContent.swift; sourceTree = "<group>"; };
 		D9943F2B28643317002C6B97 /* FolderDetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetailViewViewModel.swift; sourceTree = "<group>"; };
 		D994AD612C9DFE84004FAE25 /* LoadingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingState.swift; sourceTree = "<group>"; };
@@ -2716,7 +2718,7 @@
 		D99D0DC228CAB52700EB6F27 /* TV CAMARA - Alessandro Molon - E obvio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "TV CAMARA - Alessandro Molon - E obvio.mp3"; sourceTree = "<group>"; };
 		D99D0DC428CAB5EF00EB6F27 /* TV BRASIL - GUEDES - Auxilio emergencial de 200 reais.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "TV BRASIL - GUEDES - Auxilio emergencial de 200 reais.mp3"; sourceTree = "<group>"; };
 		D99D6CE428D6766300B36301 /* Jair Bolsonaro - Ministro Fachin, marxista, leninista.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Ministro Fachin, marxista, leninista.mp3"; sourceTree = "<group>"; };
-		D99DC19C28423AD7002B03B6 /* AuthorDetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorDetailViewViewModel.swift; sourceTree = "<group>"; };
+		D99DC19C28423AD7002B03B6 /* AuthorDetailView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthorDetailView+ViewModel.swift"; sourceTree = "<group>"; };
 		D9A039172BD69EF100AB74F7 /* ModalViewToOpen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewToOpen.swift; sourceTree = "<group>"; };
 		D9A06416298B59D5006075D1 /* AddToFolderViewViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToFolderViewViewModelTests.swift; sourceTree = "<group>"; };
 		D9A06419298B6749006075D1 /* FakeLocalDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeLocalDatabase.swift; sourceTree = "<group>"; };
@@ -4735,6 +4737,7 @@
 				D9F9BB38294A167C0005BE56 /* TrendsHelper.swift */,
 				D99A9619299A6CC700BB5F0D /* SoundsListMode.swift */,
 				D9A039172BD69EF100AB74F7 /* ModalViewToOpen.swift */,
+				D98665092CD8431F0090A2AE /* SelectedItems.swift */,
 			);
 			path = ViewAid;
 			sourceTree = "<group>";
@@ -4781,7 +4784,7 @@
 				D958B1AB28394DCD0010F133 /* AuthorsView.swift */,
 				D98622E1283FCEDC00E9F630 /* AuthorsViewViewModel.swift */,
 				D98622DF283FC57100E9F630 /* AuthorDetailView.swift */,
-				D99DC19C28423AD7002B03B6 /* AuthorDetailViewViewModel.swift */,
+				D99DC19C28423AD7002B03B6 /* AuthorDetailView+ViewModel.swift */,
 				D9BF90962842D3CB00BDDD7D /* NoSoundsView.swift */,
 				D9D627112B266389000EB791 /* AuthorCell.swift */,
 				D90449592BB283C20023088B /* ExternalLinkButton.swift */,
@@ -4892,7 +4895,7 @@
 				D9C1372F2906448C003E4ABF /* EditFolderInfo */,
 				D9C13730290644B9003E4ABF /* iPad */,
 				D9943F2528641FEF002C6B97 /* AddToFolderView.swift */,
-				D9943F2728642200002C6B97 /* AddToFolderViewModel.swift */,
+				D9943F2728642200002C6B97 /* AddToFolderView+ViewModel.swift */,
 			);
 			path = Folders;
 			sourceTree = "<group>";
@@ -6723,6 +6726,7 @@
 				D96A64202955F32F00DC0F03 /* SettingsHelper.swift in Sources */,
 				D93CCB7B286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift in Sources */,
 				D9DC4D7A2B1D8BC900627555 /* TopChartItem+.swift in Sources */,
+				D986650A2CD8431F0090A2AE /* SelectedItems.swift in Sources */,
 				D9B8DE842BE695B1000C9035 /* AddReactionView.swift in Sources */,
 				D9625E7E28238F9A00080852 /* MedoDelirioBrasiliaApp.swift in Sources */,
 				D96892DC2C9F13C00084F646 /* APIConfig.swift in Sources */,
@@ -6749,7 +6753,7 @@
 				D916627D2874F1F9000A1B23 /* FirstOnboardingView.swift in Sources */,
 				D94B5F662A1C9CF600B3A688 /* SyncService+Author.swift in Sources */,
 				D992EF5C2BCB25820080C892 /* SoundListViewModel.swift in Sources */,
-				D99DC19D28423AD7002B03B6 /* AuthorDetailViewViewModel.swift in Sources */,
+				D99DC19D28423AD7002B03B6 /* AuthorDetailView+ViewModel.swift in Sources */,
 				D967E2BC2901C40700B21C11 /* CustomPhotoAlbum.swift in Sources */,
 				D907A39E2A8F9E6A006DE630 /* OpenUtility.swift in Sources */,
 				D994AD622C9DFE89004FAE25 /* LoadingState.swift in Sources */,
@@ -6808,7 +6812,7 @@
 				D9F78A9F2860DF9100B83567 /* ReactionItem.swift in Sources */,
 				D9CC893528EB7CF800576492 /* MostSharedByAudienceView+ViewModel.swift in Sources */,
 				D9943F2A28642EC3002C6B97 /* UserFolderContent.swift in Sources */,
-				D9943F2828642200002C6B97 /* AddToFolderViewModel.swift in Sources */,
+				D9943F2828642200002C6B97 /* AddToFolderView+ViewModel.swift in Sources */,
 				D98B291D28691C5C008A78AE /* ColorSelectionCell.swift in Sources */,
 				D992E8262A185C8A00137469 /* InternalFolderNames.swift in Sources */,
 				D9344323283812AD00ADCD38 /* Author.swift in Sources */,
