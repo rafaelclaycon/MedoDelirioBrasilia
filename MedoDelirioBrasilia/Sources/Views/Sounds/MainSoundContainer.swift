@@ -107,7 +107,7 @@ struct MainSoundContainer: View {
                     showExplicitDisabledWarning: true,
                     syncAction: {
                         Task { // Keep this Task to avoid "cancelled" issue.
-                            await viewModel.sync(lastAttempt: AppPersistentMemory.getLastUpdateAttempt())
+                            await viewModel.sync(lastAttempt: AppPersistentMemory().getLastUpdateAttempt())
                         }
                     },
                     dataLoadingDidFail: viewModel.dataLoadingDidFail,
@@ -222,7 +222,7 @@ struct MainSoundContainer: View {
         }
         .sheet(isPresented: $showingModalView) {
             SyncInfoView(
-                lastUpdateAttempt: AppPersistentMemory.getLastUpdateAttempt(),
+                lastUpdateAttempt: AppPersistentMemory().getLastUpdateAttempt(),
                 lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
             )
         }
@@ -270,7 +270,7 @@ struct MainSoundContainer: View {
             if !viewModel.firstRunSyncHappened {
                 Task {
                     print("WILL START SYNCING")
-                    await viewModel.sync(lastAttempt: AppPersistentMemory.getLastUpdateAttempt())
+                    await viewModel.sync(lastAttempt: AppPersistentMemory().getLastUpdateAttempt())
                     print("DID FINISH SYNCING")
                 }
             }
@@ -334,7 +334,7 @@ extension MainSoundContainer {
                     }
                     .onChange(of: viewModel.authorSortOption) { authorSortOption in
                         authorSortAction = AuthorSortOption(rawValue: authorSortOption) ?? .nameAscending
-                        UserSettings.saveAuthorSortOption(authorSortOption)
+                        UserSettings().saveAuthorSortOption(authorSortOption)
                     }
                 } else {
                     if currentSoundsListMode.wrappedValue == .regular {

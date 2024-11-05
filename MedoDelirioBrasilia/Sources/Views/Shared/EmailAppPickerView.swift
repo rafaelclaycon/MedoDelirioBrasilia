@@ -102,7 +102,7 @@ struct EmailAppPickerView: View {
     }
 
     private func sendAnalytics(for option: String) {
-        Analytics.send(
+        Analytics().send(
             originatingScreen: "EmailAppPickerView",
             action: "didPickEmailOption(\(option))"
         )

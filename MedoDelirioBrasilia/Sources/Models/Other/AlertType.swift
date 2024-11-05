@@ -21,6 +21,7 @@ enum SoundListAlertType {
     case removeSingleSound
     case removeMultipleSounds
     case unableToRedownloadSound
+    case issueRemovingSoundFromFolder
 }
 
 enum AuthorDetailAlertType {

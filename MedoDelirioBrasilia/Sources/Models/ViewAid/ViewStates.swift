@@ -10,11 +10,14 @@ import Foundation
 enum TrendsViewState {
 
     case loading, noDataToDisplay, displayingData
-
 }
 
 enum JoinFolderResearchBannerViewState {
 
     case displayingRequestToJoin, sendingInfo, doneSending, errorSending
+}
 
+enum FolderResearchSettingsViewState {
+
+    case enrolled, notEnrolled, sendingInfo, errorSending
 }

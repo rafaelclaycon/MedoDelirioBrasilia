@@ -65,7 +65,9 @@ class SyncManager {
             delegate?.didFinishUpdating(status: .updateError, updateSoundList: false)
         }
 
-        AppPersistentMemory.setLastUpdateAttempt(to: Date.now.iso8601withFractionalSeconds)
+        AppPersistentMemory().setLastUpdateAttempt(to: Date.now.iso8601withFractionalSeconds)
+
+        await syncFolderResearchChangesUp()
     }
 
     func retryLocal() async throws -> Bool {
@@ -139,6 +141,23 @@ class SyncManager {
 
         for update in localUnsuccessfulUpdates {
             await service.process(updateEvent: update)
+        }
+    }
+
+    private func syncFolderResearchChangesUp() async {
+        do {
+            let provider = FolderResearchProvider(
+                userSettings: UserSettings(),
+                appMemory: AppPersistentMemory(),
+                localDatabase: LocalDatabase(),
+                repository: FolderResearchRepository()
+            )
+            try await provider.sendChanges()
+        } catch {
+            Analytics().send(
+                originatingScreen: "SyncManager",
+                action: "issueSyncingFolderResearchChanges(\(error.localizedDescription))"
+            )
         }
     }
 }

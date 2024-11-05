@@ -145,7 +145,7 @@ struct ReactionDetailView: View {
             await viewModel.loadSounds()
         }
         .onAppear {
-            Analytics.send(
+            Analytics().send(
                 originatingScreen: "ReactionDetailView",
                 action: "didViewReaction(\(viewModel.reaction.title))"
             )

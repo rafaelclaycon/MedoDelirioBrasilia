@@ -11,7 +11,7 @@ import SwiftUI
 struct FolderList: View {
 
     @Binding var updateFolderList: Bool
-    @Binding var folderIdForEditing: String
+    @Binding var folderForEditing: UserFolder?
 
     @StateObject private var viewModel = FolderListViewModel()
 
@@ -55,34 +55,40 @@ struct FolderList: View {
         VStack {
             if viewModel.hasFoldersToDisplay {
                 if displayJoinFolderResearchBanner {
-                    JoinFolderResearchBannerView(viewModel: JoinFolderResearchBannerViewViewModel(state: .displayingRequestToJoin),
-                                                 displayMe: $displayJoinFolderResearchBanner)
-                        .padding(.bottom)
+                    JoinFolderResearchBannerView(
+                        viewModel: JoinFolderResearchBannerView.ViewModel(state: .displayingRequestToJoin),
+                        displayMe: $displayJoinFolderResearchBanner
+                    )
+                    .padding(.bottom)
                 }
                 
                 LazyVGrid(columns: columns, spacing: 14) {
-                    ForEach(viewModel.folders, id: \.editingIdentifyingId) { folder in
+                    ForEach(viewModel.folders, id: \.changeHash) { folder in
                         NavigationLink {
                             FolderDetailView(
                                 folder: folder,
                                 currentSoundsListMode: $currentSoundsListMode
                             )
                         } label: {
-                            FolderCell(symbol: folder.symbol, name: folder.name, backgroundColor: folder.backgroundColor.toPastelColor())
-                                .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
+                            FolderCell(
+                                symbol: folder.symbol,
+                                name: folder.name,
+                                backgroundColor: folder.backgroundColor.toPastelColor()
+                            )
+                            .padding(.horizontal, UIDevice.isiPhone ? 0 : 5)
                         }
                         .foregroundColor(.primary)
                         .contextMenu {
-                            if UIDevice.current.userInterfaceIdiom == .phone {
+                            if UIDevice.isiPhone {
                                 Section {
                                     Button {
-                                        folderIdForEditing = folder.id
+                                        folderForEditing = folder
                                     } label: {
                                         Label("Editar Pasta", systemImage: "pencil")
                                     }
                                 }
                             }
-                            
+
                             Section {
                                 Button(role: .destructive, action: {
                                     let folderName = "\(folder.symbol) \(folder.name)"
@@ -106,15 +112,15 @@ struct FolderList: View {
             }
         }
         .onAppear {
-            viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.getAllUserFolders())
+            viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.allFolders())
             
-            if AppPersistentMemory.getHasJoinedFolderResearch() {
+            if UserSettings().getHasJoinedFolderResearch() {
                 displayJoinFolderResearchBanner = false
-            } else if let hasDismissed = AppPersistentMemory.getHasDismissedJoinFolderResearchBanner() {
+            } else if let hasDismissed = AppPersistentMemory().getHasDismissedJoinFolderResearchBanner() {
                 if hasDismissed {
                     displayJoinFolderResearchBanner = false
                 } else {
-                    if AppPersistentMemory.getHasSentFolderResearchInfo() {
+                    if AppPersistentMemory().getHasSentFolderResearchInfo() {
                         displayJoinFolderResearchBanner = false
                     } else {
                         displayJoinFolderResearchBanner = true
@@ -137,17 +143,18 @@ struct FolderList: View {
     
     private func refreshFolderList(_ shouldUpdate: Bool) {
         if shouldUpdate {
-            viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.getAllUserFolders())
+            viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.allFolders())
             updateFolderList = false
             deleteFolderAide.updateFolderList = false
         }
     }
-
 }
+
+// MARK: - Preview
 
 #Preview {
     FolderList(
         updateFolderList: .constant(false),
-        folderIdForEditing: .constant(.empty)
+        folderForEditing: .constant(nil)
     )
 }

@@ -1,5 +1,5 @@
 //
-//  RetroViewViewModelTests.swift
+//  RetroViewModelTests.swift
 //  MedoDelirioBrasiliaTests
 //
 //  Created by Rafael Schmitt on 16/10/23.
@@ -8,21 +8,21 @@
 @testable import MedoDelirio
 import XCTest
 
-final class RetroViewViewModelTests: XCTestCase {
+final class RetroViewModelTests: XCTestCase {
 
     private var sut: RetroView.ViewModel!
 
-    private var localDatabaseStub: LocalDatabaseStub!
+    private var localDatabase: FakeLocalDatabase!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        localDatabaseStub = .init()
-        sut = .init(database: localDatabaseStub)
+        localDatabase = .init()
+        sut = .init(database: localDatabase)
     }
 
     override func tearDownWithError() throws {
         sut = nil
-        localDatabaseStub = nil
+        localDatabase = nil
         try super.tearDownWithError()
     }
 
@@ -123,7 +123,7 @@ final class RetroViewViewModelTests: XCTestCase {
 }
 
 // MARK: - Version Is Allowed To Display Retro
-//extension RetroViewViewModelTests {
+//extension RetroViewModelTests {
 //
 //    func testVersionIsAllowedToDisplayRetro_whenVersionIsNotSet_shouldReturnFalse() async throws {
 //        let stub: NetworkRabbitStub = .init()
@@ -167,18 +167,18 @@ final class RetroViewViewModelTests: XCTestCase {
 //}
 
 // MARK: - Version Is Allowed To Display Retro
-extension RetroViewViewModelTests {
+extension RetroViewModelTests {
 
     func testAnalyticsString_whenInformationLoadsCorrectly_shouldReturnAllDataFormatted() async throws {
-        localDatabaseStub.topSharedSounds = [
+        localDatabase.topSharedSounds = [
             .init(rankNumber: "1", contentName: "Conversa de bêbado"),
             .init(rankNumber: "2", contentName: "Exatamenti"),
             .init(rankNumber: "3", contentName: "Eu não aguento maaais"),
             .init(rankNumber: "4", contentName: "Puta que pariu, Marquinho"),
             .init(rankNumber: "5", contentName: "Vocês estão de sacanagem")
         ]
-        localDatabaseStub.shareCount = 20
-        localDatabaseStub.shareDates = [
+        localDatabase.shareCount = 20
+        localDatabase.shareDates = [
             date(from: "2023-11-20T23:36:27.074")
         ]
 

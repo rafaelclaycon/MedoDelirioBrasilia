@@ -33,17 +33,17 @@ struct MedoDelirioBrasiliaApp: App {
             tabSelection = .sounds
             state = .allSounds
 
-            let includeOffensive = UserSettings.getShowExplicitContent()
+            let includeOffensive = UserSettings().getShowExplicitContent()
 
             do {
                 guard
                     let randomSound = try LocalDatabase.shared.randomSound(includeOffensive: includeOffensive)
                 else { return }
                 helper.soundIdToPlay = randomSound.id
-                Analytics.send(action: "didPlayRandomSound(\(randomSound.title))")
+                Analytics().send(action: "didPlayRandomSound(\(randomSound.title))")
             } catch {
                 print("Erro obtendo som aleatório: \(error.localizedDescription)")
-                Analytics.send(action: "hadErrorPlayingRandomSound(\(error.localizedDescription))")
+                Analytics().send(action: "hadErrorPlayingRandomSound(\(error.localizedDescription))")
             }
         }
     }
@@ -54,6 +54,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     @AppStorage("hasMigratedSoundsAuthors") private var hasMigratedSoundsAuthors = false
     @AppStorage("hasMigratedSongsMusicGenres") private var hasMigratedSongsMusicGenres = false
     @AppStorage("hasUpdatedExternalLinksOnFirstRun") private var hasUpdatedExternalLinksOnFirstRun = false
+    @AppStorage("hasUpdatedFolderHashesOnFirstRun") private var hasUpdatedFolderHashesOnFirstRun = false
 
     func application(
         _ application: UIApplication,
@@ -86,6 +87,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         collectTelemetry()
         createFoldersForDownloadedContent()
         updateExternalLinks()
+        updateFolderChangeHashes()
 
         return true
     }
@@ -107,27 +109,27 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
     
     private func sendDeviceModelNameToServer() {
-        guard AppPersistentMemory.getHasSentDeviceModelToServer() == false else {
+        guard AppPersistentMemory().getHasSentDeviceModelToServer() == false else {
             return
         }
         
-        let info = ClientDeviceInfo(installId: UIDevice.customInstallId, modelName: UIDevice.modelName)
+        let info = ClientDeviceInfo(installId: AppPersistentMemory().customInstallId, modelName: UIDevice.modelName)
         NetworkRabbit.shared.post(clientDeviceInfo: info) { success, error in
             if let success = success, success {
-                AppPersistentMemory.setHasSentDeviceModelToServer(to: true)
+                AppPersistentMemory().setHasSentDeviceModelToServer(to: true)
             }
         }
     }
     
     private func sendStillAliveSignalToServer() {
-        let lastDate = UserSettings.getLastSendDateOfStillAliveSignalToServer()
+        let lastDate = UserSettings().getLastSendDateOfStillAliveSignalToServer()
         
         // Should only send 1 still alive signal per day
         guard lastDate == nil || lastDate!.onlyDate! < Date.now.onlyDate! else {
             return
         }
         
-        let signal = StillAliveSignal(installId: UIDevice.customInstallId,
+        let signal = StillAliveSignal(installId: AppPersistentMemory().customInstallId,
                                       modelName: UIDevice.modelName,
                                       systemName: UIDevice.current.systemName,
                                       systemVersion: UIDevice.current.systemVersion,
@@ -137,7 +139,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                                       dateTime: Date.now.iso8601withFractionalSeconds)
         NetworkRabbit.shared.post(signal: signal) { success, error in
             if success != nil, success == true {
-                UserSettings.setLastSendDateOfStillAliveSignalToServer(to: Date.now)
+                UserSettings().setLastSendDateOfStillAliveSignalToServer(to: Date.now)
             }
         }
     }
@@ -148,18 +150,18 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         _ application: UIApplication,
         didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
     ) {
-        if AppPersistentMemory.getShouldRetrySendingDevicePushToken() {
+        if AppPersistentMemory().getShouldRetrySendingDevicePushToken() {
             let tokenParts = deviceToken.map { data in String(format: "%02.2hhx", data) }
             let token = tokenParts.joined()
             //print("Device Token: \(token)")
 
-            let device = PushDevice(installId: UIDevice.customInstallId, pushToken: token)
+            let device = PushDevice(installId: AppPersistentMemory().customInstallId, pushToken: token)
             NetworkRabbit.shared.post(pushDevice: device) { success, error in
                 guard let success = success, success else {
-                    AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: true)
+                    AppPersistentMemory().setShouldRetrySendingDevicePushToken(to: true)
                     return
                 }
-                AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: false)
+                AppPersistentMemory().setShouldRetrySendingDevicePushToken(to: false)
             }
         }
     }
@@ -211,10 +213,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         }
         return Bool(value as! Bool)
     }
-    
+
+    /// `skipGetLinkInstructions` is a remnant of when the app started and I copied a bunch of code from my other app, The Library Is Open.
     private func replaceUserSettingFlag() {
         if hasSkipGetLinkInstructionsSet() {
-            UserSettings.setShowExplicitContent(to: true)
+            UserSettings().setShowExplicitContent(to: true)
             UserDefaults.standard.removeObject(forKey: "skipGetLinkInstructions")
         }
     }
@@ -253,11 +256,10 @@ extension AppDelegate {
 
 extension AppDelegate {
 
+    /// External Links were added on version 7.10. Because of the server architecture, EL author updates will arrive to older versions
+    /// that know nothing about ELs. This func makes sure 7.10 onwards starts with the ELs in place that were ignored before.
+    /// This should run only once.
     func updateExternalLinks() {
-        // External Links was release on version 7.10. Because of the server architecture, author updates will arrive to older versions
-        // that know nothing about ELs. This func makes sure 7.10 onwards starts with the ELs in place that were ignored before.
-        // This should run only once.
-
         if !hasUpdatedExternalLinksOnFirstRun {
             Task {
                 let url = URL(string: NetworkRabbit.shared.serverPath + "v4/author-links-first-open")!
@@ -271,6 +273,20 @@ extension AppDelegate {
                 } catch {
                     print(error)
                 }
+            }
+        }
+    }
+
+    /// UserFolder change hashes were added on version 7.14.
+    /// This sets initial hashes for all existing folders so the app can keep track of future changes done to them.
+    /// This should run only once.
+    func updateFolderChangeHashes() {
+        if !hasUpdatedFolderHashesOnFirstRun {
+            do {
+                try UserFolderRepository().addHashToExistingFolders()
+                hasUpdatedFolderHashesOnFirstRun = true
+            } catch {
+                print(error)
             }
         }
     }

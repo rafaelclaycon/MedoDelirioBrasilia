@@ -11,22 +11,23 @@ struct MainView: View {
 
     @Binding var tabSelection: PhoneTab
     @Binding var state: PadScreen?
+
     @State private var soundsPath = NavigationPath()
     @State private var reactionsPath = NavigationPath()
 
-    @State var isShowingSettingsSheet: Bool = false
-    @StateObject var settingsHelper = SettingsHelper()
-    @State var isShowingFolderInfoEditingSheet: Bool = false
-    @State var updateFolderList: Bool = false
-    @State var currentSoundsListMode: SoundsListMode = .regular
+    @State private var isShowingSettingsSheet: Bool = false
+    @StateObject private var settingsHelper = SettingsHelper()
+    @State private var folderForEditing: UserFolder?
+    @State private var updateFolderList: Bool = false
+    @State private var currentSoundsListMode: SoundsListMode = .regular
 
     @State private var subviewToOpen: MainViewModalToOpen = .onboarding
     @State private var showingModalView: Bool = false
     @State private var triggerSettings: Bool = false
 
     // Trends
-    @State var soundIdToGoToFromTrends: String = .empty
-    @StateObject var trendsHelper = TrendsHelper()
+    @State private var soundIdToGoToFromTrends: String = .empty
+    @StateObject private var trendsHelper = TrendsHelper()
 
     // Sync
     @StateObject private var syncValues = SyncValues()
@@ -45,8 +46,8 @@ struct MainView: View {
                         MainSoundContainer(
                             viewModel: .init(
                                 currentViewMode: .allSounds,
-                                soundSortOption: UserSettings.mainSoundListSoundSortOption(),
-                                authorSortOption: UserSettings.authorSortOption(),
+                                soundSortOption: UserSettings().mainSoundListSoundSortOption(),
+                                authorSortOption: UserSettings().authorSortOption(),
                                 currentSoundsListMode: $currentSoundsListMode,
                                 syncValues: syncValues
                             ),
@@ -128,7 +129,7 @@ struct MainView: View {
                     SidebarView(
                         state: $state,
                         isShowingSettingsSheet: $isShowingSettingsSheet,
-                        isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet,
+                        folderForEditing: $folderForEditing,
                         updateFolderList: $updateFolderList,
                         currentSoundsListMode: $currentSoundsListMode
                     )
@@ -140,7 +141,7 @@ struct MainView: View {
                         MainSoundContainer(
                             viewModel: .init(
                                 currentViewMode: .allSounds,
-                                soundSortOption: UserSettings.mainSoundListSoundSortOption(),
+                                soundSortOption: UserSettings().mainSoundListSoundSortOption(),
                                 authorSortOption: AuthorSortOption.nameAscending.rawValue,
                                 currentSoundsListMode: $currentSoundsListMode,
                                 syncValues: syncValues
@@ -160,10 +161,15 @@ struct MainView: View {
                     SettingsCasingWithCloseView(isBeingShown: $isShowingSettingsSheet)
                         .environmentObject(settingsHelper)
                 }
-                .sheet(isPresented: $isShowingFolderInfoEditingSheet, onDismiss: {
-                    updateFolderList = true
-                }) {
-                    FolderInfoEditingView(isBeingShown: $isShowingFolderInfoEditingSheet, selectedBackgroundColor: Shared.Folders.defaultFolderColor)
+                .sheet(item: $folderForEditing) { folder in
+                    FolderInfoEditingView(
+                        folder: folder,
+                        folderRepository: UserFolderRepository(),
+                        dismissSheet: {
+                            folderForEditing = nil
+                            updateFolderList = true
+                        }
+                    )
                 }
             }
         }
@@ -209,21 +215,21 @@ struct MainView: View {
 
     private func sendUserPersonalTrendsToServerIfEnabled() {
         Task {
-            guard UserSettings.getEnableTrends() else {
+            guard UserSettings().getEnableTrends() else {
                 return
             }
-            guard UserSettings.getEnableShareUserPersonalTrends() else {
+            guard UserSettings().getEnableShareUserPersonalTrends() else {
                 return
             }
 
-            if let lastDate = AppPersistentMemory.getLastSendDateOfUserPersonalTrendsToServer() {
+            if let lastDate = AppPersistentMemory().getLastSendDateOfUserPersonalTrendsToServer() {
                 if lastDate.onlyDate! < Date.now.onlyDate! {
                     let result = await Podium.shared.sendShareCountStatsToServer()
 
                     guard result == .successful || result == .noStatsToSend else {
                         return
                     }
-                    AppPersistentMemory.setLastSendDateOfUserPersonalTrendsToServer(to: Date.now.onlyDate!)
+                    AppPersistentMemory().setLastSendDateOfUserPersonalTrendsToServer(to: Date.now.onlyDate!)
                 }
             } else {
                 let result = await Podium.shared.sendShareCountStatsToServer()
@@ -231,22 +237,22 @@ struct MainView: View {
                 guard result == .successful || result == .noStatsToSend else {
                     return
                 }
-                AppPersistentMemory.setLastSendDateOfUserPersonalTrendsToServer(to: Date.now.onlyDate!)
+                AppPersistentMemory().setLastSendDateOfUserPersonalTrendsToServer(to: Date.now.onlyDate!)
             }
         }
     }
 
     private func displayOnboardingIfNeeded() {
-        if !AppPersistentMemory.hasShownNotificationsOnboarding() {
+        if !AppPersistentMemory().hasShownNotificationsOnboarding() {
             subviewToOpen = .onboarding
             showingModalView = true
         } else if enableReactions { // Remove this once Reactions releases.
             // Mac and iPad release at a later date.
-            if !AppPersistentMemory.hasSeenReactionsWhatsNewScreen(), UIDevice.isiPhone {
+            if !AppPersistentMemory().hasSeenReactionsWhatsNewScreen(), UIDevice.isiPhone {
                 subviewToOpen = .whatsNew
                 showingModalView = true
             }
-        } else if !AppPersistentMemory.hasSeenControlWhatsNewScreen(), UIDevice.supportsiOSiPadOS18() {
+        } else if !AppPersistentMemory().hasSeenControlWhatsNewScreen(), UIDevice.supportsiOSiPadOS18() {
             subviewToOpen = .whatsNew
             showingModalView = true
         }

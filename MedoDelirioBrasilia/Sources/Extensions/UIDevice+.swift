@@ -51,6 +51,7 @@ extension UIDevice {
 // MARK: - Is specific device
 
 extension UIDevice {
+    
     static var isiPadMini: Bool {
         let model = UIDevice.modelName
         return model.contains("iPad mini")
@@ -82,16 +83,6 @@ extension UIDevice {
 // MARK: - Device Info
 public extension UIDevice {
 
-    static let customInstallId: String = {
-        let userDefaults = UserDefaults.standard
-        guard let existingCustomDeviceID = userDefaults.object(forKey: "customInstallId") else {
-            let newlyCreatedDeviceID = UUID().uuidString
-            userDefaults.set(newlyCreatedDeviceID, forKey: "customInstallId")
-            return newlyCreatedDeviceID
-        }
-        return String(existingCustomDeviceID as! String)
-    }()
-    
     static let modelName: String = {
         if ProcessInfo.processInfo.isiOSAppOnMac || ProcessInfo.processInfo.isMacCatalystApp {
             return "Mac"

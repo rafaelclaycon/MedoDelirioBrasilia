@@ -63,7 +63,7 @@ struct ShowExplicitContentOnboardingView: View {
         .safeAreaInset(edge: .bottom) {
             VStack(alignment: .center, spacing: 22) {
                 Button {
-                    UserSettings.setShowExplicitContent(to: true)
+                    UserSettings().setShowExplicitContent(to: true)
                     isBeingShown.toggle()
                 } label: {
                     Text("Mostrar Sons Explícitos")

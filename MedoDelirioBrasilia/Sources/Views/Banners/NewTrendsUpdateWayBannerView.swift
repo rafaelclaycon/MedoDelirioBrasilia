@@ -40,7 +40,7 @@ struct NewTrendsUpdateWayBannerView: View {
         }
         .overlay(alignment: .topTrailing) {
             Button {
-                AppPersistentMemory.setHasSeenNewTrendsUpdateWayBanner(to: true)
+                AppPersistentMemory().setHasSeenNewTrendsUpdateWayBanner(to: true)
                 isBeingShown = false
             } label: {
                 Image(systemName: "xmark")

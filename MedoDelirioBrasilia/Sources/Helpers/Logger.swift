@@ -26,7 +26,7 @@ class Logger: LoggerProtocol {
         destinationBundleId: String
     ) {
         let shareLog = UserShareLog(
-            installId: UIDevice.customInstallId,
+            installId: AppPersistentMemory().customInstallId,
             contentId: contentId,
             contentType: ContentType.sound.rawValue,
             dateTime: .now,
@@ -43,7 +43,7 @@ class Logger: LoggerProtocol {
         destinationBundleId: String
     ) {
         let shareLog = UserShareLog(
-            installId: UIDevice.customInstallId,
+            installId: AppPersistentMemory().customInstallId,
             contentId: contentId,
             contentType: ContentType.song.rawValue,
             dateTime: Date(),
@@ -60,7 +60,7 @@ class Logger: LoggerProtocol {
         destinationBundleId: String
     ) {
         let shareLog = UserShareLog(
-            installId: UIDevice.customInstallId,
+            installId: AppPersistentMemory().customInstallId,
             contentId: contentId,
             contentType: ContentType.videoFromSound.rawValue,
             dateTime: Date(),

@@ -230,13 +230,13 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
                                             title: Text(viewModel.alertTitle),
                                             message: Text(viewModel.alertMessage),
                                             primaryButton: .default(Text("Continuar"), action: {
-                                                AppPersistentMemory.increaseShareManyMessageShowCountByOne()
+                                                AppPersistentMemory().increaseShareManyMessageShowCountByOne()
                                                 viewModel.shareSelected()
                                             }),
                                             secondaryButton: .cancel(Text("Cancelar"))
                                         )
 
-                                    case .issueExportingManySounds, .unableToRedownloadSound:
+                                    case .issueExportingManySounds, .unableToRedownloadSound, .issueRemovingSoundFromFolder:
                                         return Alert(
                                             title: Text(viewModel.alertTitle),
                                             message: Text(viewModel.alertMessage),
@@ -340,7 +340,7 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
                                         }
 
                                         if viewModel.pluralization == .plural {
-                                            Analytics.send(
+                                            Analytics().send(
                                                 originatingScreen: "SoundsView",
                                                 action: "didAddManySoundsToFolder(\(selectedCount))"
                                             )
@@ -391,7 +391,7 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
                                 }
                             }
 
-                            if showExplicitDisabledWarning, UserSettings.getShowExplicitContent() == false {
+                            if showExplicitDisabledWarning, UserSettings().getShowExplicitContent() == false {
                                 ExplicitDisabledWarning(
                                     text: UIDevice.isiPhone ? Shared.contentFilterMessageForSoundsiPhone : Shared.contentFilterMessageForSoundsiPadMac
                                 )

@@ -27,14 +27,23 @@ extension String {
 }
 
 extension Date {
-    internal func toScreenString() -> String {
+
+    internal func formattedDayMonthYearHoursMinutesSeconds() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "pt-BR")
         dateFormatter.dateFormat = "dd/MM/yyyy hh:mm:ss"
         dateFormatter.calendar = Calendar(identifier: .gregorian)
         return dateFormatter.string(from: self)
     }
-    
+
+    internal func formattedDayMonthYearHoursMinutes() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "pt-BR")
+        dateFormatter.dateFormat = "dd/MM/yyyy hh:mm"
+        dateFormatter.calendar = Calendar(identifier: .gregorian)
+        return dateFormatter.string(from: self)
+    }
+
     var asRelativeDateTime: String {
         let formatter = RelativeDateTimeFormatter()
         formatter.unitsStyle = .full

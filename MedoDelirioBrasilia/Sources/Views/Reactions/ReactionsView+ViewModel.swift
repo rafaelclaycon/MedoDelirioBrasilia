@@ -56,7 +56,7 @@ extension ReactionsView.ViewModel {
             let reactions = try await reactionRepository.allReactions()
             state = .loaded(reactions)
 
-            Analytics.send(
+            Analytics().send(
                 originatingScreen: "ReactionsView",
                 action: "didViewReactionsTab"
             )

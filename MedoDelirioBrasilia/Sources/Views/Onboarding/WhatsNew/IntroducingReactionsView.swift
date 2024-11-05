@@ -53,7 +53,7 @@ struct IntroducingReactionsView: View {
             .safeAreaInset(edge: .bottom) {
                 VStack(alignment: .center) {
                     Button {
-                        AppPersistentMemory.hasSeenReactionsWhatsNewScreen(true)
+                        AppPersistentMemory().hasSeenReactionsWhatsNewScreen(true)
                         dismiss()
                     } label: {
                         HStack {
