@@ -56,13 +56,20 @@ final class FolderResearchProvider {
         }
 
         guard let changedFolderIds = try changedFolderIds() else {
+            if let deleted = try deletedFolders() {
+                return (folders: deleted, content: nil)
+            }
             return nil
         }
-        let folders = try localDatabase.folders(withIds: changedFolderIds)
+        var folders = try localDatabase.folders(withIds: changedFolderIds)
         var contents = [UserFolderContent]()
         try folders.forEach { folder in
             let folderContents = try localDatabase.contentsInside(userFolder: folder.id)
             contents.append(contentsOf: folderContents)
+        }
+
+        if let deleted = try deletedFolders() {
+            folders.append(contentsOf: deleted)
         }
 
         return (folders: folders, content: contents)
@@ -90,12 +97,6 @@ final class FolderResearchProvider {
 
         appMemory.setHasSentFolderResearchInfo(to: true)
         appMemory.lastFolderResearchSyncDateTime(.now)
-    }
-
-    func saveCurrentHashesToAppMemory() throws {
-        let folders = try localDatabase.allFolders()
-        let hashes: [String: String] = Dictionary(uniqueKeysWithValues: folders.map { ($0.id, $0.changeHash ?? "") })
-        appMemory.folderResearchHashes(hashes)
     }
 }
 
@@ -138,5 +139,32 @@ extension FolderResearchProvider {
             }
         }
         return changedFolders.isEmpty ? nil : changedFolders
+    }
+
+    private func deletedFolders() throws -> [UserFolder]? {
+        let latestHashes = try hashOfCurrentContents()
+        guard
+            let storedHashes = appMemory.folderResearchHashes()
+        else {
+            return nil
+        }
+
+        var deletedFolders = [String]()
+        storedHashes.keys.forEach { id in
+            if !latestHashes.contains(where: { $0.key == id }) {
+                deletedFolders.append(id)
+            }
+        }
+
+        guard !deletedFolders.isEmpty else { return nil }
+        return deletedFolders.map {
+            UserFolder(id: $0, symbol: "", name: "[Deleted]", backgroundColor: "")
+        }
+    }
+
+    private func saveCurrentHashesToAppMemory() throws {
+        let folders = try localDatabase.allFolders()
+        let hashes: [String: String] = Dictionary(uniqueKeysWithValues: folders.map { ($0.id, $0.changeHash ?? "") })
+        appMemory.folderResearchHashes(hashes)
     }
 }

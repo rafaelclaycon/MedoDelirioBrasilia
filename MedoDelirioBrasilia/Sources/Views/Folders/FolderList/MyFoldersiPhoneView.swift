@@ -63,16 +63,6 @@ struct MyFoldersiPhoneView: View {
 
                     do {
                         try LocalDatabase.shared.deleteUserFolder(withId: deleteFolderAide.folderIdForDeletion)
-
-                        // Need to update folder hashes so SyncManager knows about the change on next sync.
-                        let provider = FolderResearchProvider(
-                            userSettings: UserSettings(),
-                            appMemory: AppPersistentMemory(),
-                            localDatabase: LocalDatabase(),
-                            repository: FolderResearchRepository()
-                        )
-                        try provider.saveCurrentHashesToAppMemory()
-
                         updateFolderList = true
                     } catch {
                         showErrorDeletingAlert = true

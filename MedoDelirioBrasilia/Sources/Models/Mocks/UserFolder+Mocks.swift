@@ -26,4 +26,13 @@ extension UserFolder {
             backgroundColor: "pastelPurple"
         )
     }
+
+    static var mockC: UserFolder {
+        .init(
+            id: "409440AF-A2CA-4126-9AF2-68FD98184547",
+            symbol: "🫏",
+            name: "Bozo",
+            backgroundColor: "pastelPurple"
+        )
+    }
 }

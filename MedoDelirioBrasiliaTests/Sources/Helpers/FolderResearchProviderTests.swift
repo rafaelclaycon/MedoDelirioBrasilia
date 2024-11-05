@@ -197,6 +197,70 @@ extension FolderResearchProviderTests {
         XCTAssertEqual(changes?.folders.first?.name, "Só rindo!")
         XCTAssertEqual(changes?.content?.count, 1)
     }
+
+    func testChanges_whenUserIsEnrolledAndDeletedOneFolder_shouldReturnFolderIdWithRemoved() async throws {
+        var firstMock = UserFolder.mockA
+        firstMock.changeHash = firstMock.folderHash([mockContent1, mockContent2, mockContent3])
+        localDatabase.folders = [firstMock]
+        localDatabase.contentInsideFolder = [
+            .init(userFolderId: UserFolder.mockA.id, contentId: mockContent1),
+            .init(userFolderId: UserFolder.mockA.id, contentId: mockContent2),
+            .init(userFolderId: UserFolder.mockA.id, contentId: mockContent3),
+
+        ]
+        appMemory.folderResearchHashValue = [
+            UserFolder.mockA.id: "a44752bd841401e84f1ce68a8396238c1d95bdf777035a93773332caea8ac420",
+            UserFolder.mockB.id: "38596ee9cd1ce031a339497eeaf326f28927ca1e5db10907d01e22d619a98a47",
+        ]
+
+        userSettings.hasJoinedFolderResearch = true
+        appMemory.hasSentFolderResearchInfo = true
+
+        let changes = try sut.changes()
+        XCTAssertEqual(changes?.folders.count, 1)
+        XCTAssertEqual(changes?.folders.first?.id, UserFolder.mockB.id)
+        XCTAssertEqual(changes?.folders.first?.name, "[Deleted]")
+        XCTAssertNil(changes?.content)
+    }
+
+    func testChanges_whenUserIsEnrolledDeletedOneFolderAddedSoundsToAnother_shouldReturnChangesIncludingRemoval() async throws {
+        var firstMock = UserFolder.mockA
+        firstMock.changeHash = firstMock.folderHash([mockContent3, mockContent6, mockContent4])
+        var thirdMock = UserFolder.mockC
+        thirdMock.changeHash = thirdMock.folderHash(
+            [
+                mockContent6, mockContent7, mockContent5,
+                mockContent1, mockContent4
+            ]
+        )
+
+        localDatabase.folders = [firstMock, thirdMock]
+        localDatabase.contentInsideFolder = [
+            .init(userFolderId: UserFolder.mockA.id, contentId: mockContent3),
+            .init(userFolderId: UserFolder.mockA.id, contentId: mockContent6),
+            .init(userFolderId: UserFolder.mockA.id, contentId: mockContent4),
+            .init(userFolderId: UserFolder.mockC.id, contentId: mockContent6),
+            .init(userFolderId: UserFolder.mockC.id, contentId: mockContent7),
+            .init(userFolderId: UserFolder.mockC.id, contentId: mockContent5),
+            .init(userFolderId: UserFolder.mockC.id, contentId: mockContent1),
+            .init(userFolderId: UserFolder.mockC.id, contentId: mockContent4)
+        ]
+        appMemory.folderResearchHashValue = [
+            UserFolder.mockA.id: "19a1a8aa764955ea49827c36fb00e0d0d030b0b8f05ea4ff19dde0441c356a25",
+            UserFolder.mockB.id: "38596ee9cd1ce031a339497eeaf326f28927ca1e5db10907d01e22d619a98a47",
+            UserFolder.mockC.id: "5b07aa9efd4911f0438fe6d3be4e33436278bd508b968634ac0f0879fe66e834"
+        ]
+
+        userSettings.hasJoinedFolderResearch = true
+        appMemory.hasSentFolderResearchInfo = true
+
+        let changes = try sut.changes()
+        XCTAssertEqual(changes?.folders.count, 2)
+        XCTAssertEqual(changes?.folders[0].name, UserFolder.mockC.name)
+        XCTAssertEqual(changes?.folders[1].id, UserFolder.mockB.id)
+        XCTAssertEqual(changes?.folders[1].name, "[Deleted]")
+        XCTAssertEqual(changes?.content?.count, 5)
+    }
 }
 
 extension FolderResearchProviderTests {
@@ -211,5 +275,25 @@ extension FolderResearchProviderTests {
 
     private var mockContent3: String {
         "3BA404C1-41B8-48E5-9994-11F70E096402"
+    }
+
+    private var mockContent4: String {
+        "9E4CBC09-7098-40CE-8F92-8C712D6126CE"
+    }
+
+    private var mockContent5: String {
+        "0D7DC11C-FEEF-4146-8049-5911128B68D9"
+    }
+
+    private var mockContent6: String {
+        "DB9E1647-14CF-407B-A341-DCEF432CF550"
+    }
+
+    private var mockContent7: String {
+        "2F0718E2-3700-4ED4-976A-BE455F25FF68"
+    }
+
+    private var mockContent8: String {
+        "20C6974A-D916-4719-AA79-772F2B8C2E9A"
     }
 }

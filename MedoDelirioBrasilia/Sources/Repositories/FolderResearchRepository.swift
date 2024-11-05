@@ -51,7 +51,11 @@ final class FolderResearchRepository: FolderResearchRepositoryProtocol {
 
         let contentLogs: [UserFolderContentLog] = content.compactMap { sound in
             guard let folderLog = folderLogs.first(where: { $0.folderId == sound.userFolderId }) else { return nil }
-            return UserFolderContentLog(userFolderLogId: folderLog.id, contentId: sound.contentId)
+            return UserFolderContentLog(
+                userFolderLogId: folderLog.id,
+                contentId: sound.contentId,
+                logDateTime: Date.now.iso8601withFractionalSeconds
+            )
         }
 
         let soundsUrl = URL(string: apiClient.serverPath + "v1/user-folder-content-logs")!
