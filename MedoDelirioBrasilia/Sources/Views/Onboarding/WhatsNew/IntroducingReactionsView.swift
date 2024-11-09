@@ -15,7 +15,7 @@ struct IntroducingReactionsView: View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .center, spacing: 40) {
-                    //HeaderView(state: )
+                    HeaderView()
 
                     VStack(alignment: .center, spacing: 30) {
                         VStack(spacing: 0) {
@@ -81,16 +81,27 @@ extension IntroducingReactionsView {
 
     struct HeaderView: View {
 
-        let state: LoadingState<[Reaction]>
+        @State private var state: LoadingState<[Reaction]> = .loading
 
         var body: some View {
             switch state {
             case .loading:
                 VStack {
-                    Text("Carregando...")
-                        .foregroundStyle(.gray)
+                    HStack(spacing: 12) {
+                        ProgressView()
+
+                        Text("CARREGANDO...")
+                            .font(.footnote)
+                            .bold()
+                            .foregroundStyle(.gray)
+                    }
                 }
                 .frame(height: 100)
+                .onAppear {
+                    Task {
+                        await loadPreviews()
+                    }
+                }
 
             case .loaded(let reactions):
                 HStack {
@@ -107,10 +118,24 @@ extension IntroducingReactionsView {
             case .error(_):
                 VStack {
                     Text("Não foi possível carregar a pré-visualização das Reações.")
+                        .font(.callout)
+                        .bold()
                         .foregroundStyle(.gray)
                         .multilineTextAlignment(.center)
+                        .padding(.horizontal, 30)
                 }
                 .frame(height: 100)
+            }
+        }
+
+        private func loadPreviews() async {
+            state = .loading
+
+            do {
+                let previews = try await ReactionRepository().allReactions()
+                state = .loaded(previews)
+            } catch {
+                state = .error(error.localizedDescription)
             }
         }
     }
