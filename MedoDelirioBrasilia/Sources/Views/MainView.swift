@@ -32,10 +32,6 @@ struct MainView: View {
     // Sync
     @StateObject private var syncValues = SyncValues()
 
-    private var enableReactions: Bool {
-        CommandLine.arguments.contains("-ENABLE_REACTIONS")
-    }
-
     // MARK: - View Body
 
     var body: some View {
@@ -66,19 +62,17 @@ struct MainView: View {
                     .tag(PhoneTab.sounds)
                     .environment(\.push, PushAction { soundsPath.append($0) })
 
-                    if enableReactions {
-                        NavigationStack(path: $reactionsPath) {
-                            ReactionsView()
-                                .navigationDestination(for: GeneralNavigationDestination.self) { screen in
-                                    GeneralRouter(destination: screen)
-                                }
-                        }
-                        .tabItem {
-                            Label("Reações", systemImage: "rectangle.grid.2x2.fill")
-                        }
-                        .tag(PhoneTab.reactions)
-                        .environment(\.push, PushAction { reactionsPath.append($0) })
+                    NavigationStack(path: $reactionsPath) {
+                        ReactionsView()
+                            .navigationDestination(for: GeneralNavigationDestination.self) { screen in
+                                GeneralRouter(destination: screen)
+                            }
                     }
+                    .tabItem {
+                        Label("Reações", systemImage: "rectangle.grid.2x2.fill")
+                    }
+                    .tag(PhoneTab.reactions)
+                    .environment(\.push, PushAction { reactionsPath.append($0) })
 
                     NavigationView {
                         SongsView()
@@ -197,13 +191,8 @@ struct MainView: View {
                     .interactiveDismissDisabled(UIDevice.current.userInterfaceIdiom == .phone ? true : false)
 
             case .whatsNew:
-                if enableReactions {
-                    IntroducingReactionsView()
-                        .interactiveDismissDisabled()
-                } else {
-                    IntroducingiOS18ControlAndSiriIntentView()
-                        .interactiveDismissDisabled()
-                }
+                IntroducingReactionsView()
+                    .interactiveDismissDisabled()
 
             case .retrospective:
                 EmptyView()
@@ -246,13 +235,7 @@ struct MainView: View {
         if !AppPersistentMemory().hasShownNotificationsOnboarding() {
             subviewToOpen = .onboarding
             showingModalView = true
-        } else if enableReactions { // Remove this once Reactions releases.
-            // Mac and iPad release at a later date.
-            if !AppPersistentMemory().hasSeenReactionsWhatsNewScreen(), UIDevice.isiPhone {
-                subviewToOpen = .whatsNew
-                showingModalView = true
-            }
-        } else if !AppPersistentMemory().hasSeenControlWhatsNewScreen(), UIDevice.supportsiOSiPadOS18() {
+        } else if !AppPersistentMemory().hasSeenReactionsWhatsNewScreen(), UIDevice.isiPhone {
             subviewToOpen = .whatsNew
             showingModalView = true
         }
