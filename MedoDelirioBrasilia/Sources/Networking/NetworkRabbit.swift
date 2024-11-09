@@ -199,6 +199,7 @@ enum NetworkRabbitError: Error, LocalizedError {
     case invalidResponse
     case httpRequestFailed
     case errorFetchingUpdateEvents(String)
+    case resourceNotFound
 
     var errorDescription: String? {
         switch self {
@@ -212,6 +213,8 @@ enum NetworkRabbitError: Error, LocalizedError {
             return "A requisição HTTP falhou devido a um erro de rede ou servidor."
         case .errorFetchingUpdateEvents(let errorMessage):
             return "Erro ao obter UpdateEvents: \(errorMessage)"
+        case .resourceNotFound:
+            return "Recurso não encontrado."
         }
     }
 }

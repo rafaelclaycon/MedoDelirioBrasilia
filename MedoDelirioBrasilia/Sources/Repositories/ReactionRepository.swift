@@ -10,6 +10,7 @@ import Foundation
 protocol ReactionRepositoryProtocol {
 
     func allReactions() async throws -> [Reaction]
+    func reaction(_ reactionId: String) async throws -> Reaction
     func reactionSounds(reactionId: String) async throws -> [ReactionSound]
 }
 
@@ -31,8 +32,13 @@ final class ReactionRepository: ReactionRepositoryProtocol {
         return reactions.sorted(by: { $0.position < $1.position })
     }
 
-    func reactionSounds(reactionId: String) async throws -> [ReactionSound] {
+    func reaction(_ reactionId: String) async throws -> Reaction {
         let url = URL(string: apiClient.serverPath + "v4/reaction/\(reactionId)")!
+        return try await apiClient.get(from: url)
+    }
+
+    func reactionSounds(reactionId: String) async throws -> [ReactionSound] {
+        let url = URL(string: apiClient.serverPath + "v4/reaction-sounds/\(reactionId)")!
         let reactionSounds: [ReactionSound] = try await apiClient.get(from: url)
         return reactionSounds.sorted(by: { $0.position < $1.position })
     }

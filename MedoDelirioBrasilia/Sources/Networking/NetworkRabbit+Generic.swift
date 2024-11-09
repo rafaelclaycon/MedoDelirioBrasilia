@@ -15,6 +15,9 @@ extension NetworkRabbit {
         guard let response = response as? HTTPURLResponse else {
             throw NetworkRabbitError.responseWasNotAnHTTPURLResponse
         }
+        if response.statusCode == 404 {
+            throw NetworkRabbitError.resourceNotFound
+        }
         guard response.statusCode == 200 else {
             print(response.statusCode)
             throw NetworkRabbitError.unexpectedStatusCode

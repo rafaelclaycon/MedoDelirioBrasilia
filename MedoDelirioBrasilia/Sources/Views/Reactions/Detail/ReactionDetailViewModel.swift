@@ -13,11 +13,11 @@ class ReactionDetailViewModel: ObservableObject {
 
     // MARK: - Published Vars
 
-    @Published var state: LoadingState<[Sound]> = .loading
+    @Published var state: ReactionDetailState<[Sound]> = .loading
     @Published var sounds: [Sound]?
     @Published var soundSortOption: Int
 
-    public let reaction: Reaction
+    public var reaction: Reaction
     private var reactionSounds: [ReactionSound]? // Needed for ordering by position.
     private let reactionRepository: ReactionRepositoryProtocol
 
@@ -43,12 +43,14 @@ class ReactionDetailViewModel: ObservableObject {
     }
 
     var dataLoadingDidFail: Bool {
-        guard case .error(_) = state else { return false }
-        return true
+        if case .soundLoadingError = state { return true }
+        if case .reactionNoLongerExists = state { return true }
+        return false
     }
 
     var errorMessage: String {
-        guard case .error(let errorString) = state else { return "" }
+        // The reactionNoLongerExists case is dealt with in the view itself.
+        guard case .soundLoadingError(let errorString) = state else { return "" }
         return errorString
     }
 
@@ -72,6 +74,21 @@ extension ReactionDetailViewModel {
         state = .loading
 
         do {
+            let reaction = try await reactionRepository.reaction(reaction.id)
+            self.reaction.lastUpdate = reaction.lastUpdate
+        } catch NetworkRabbitError.resourceNotFound {
+            state = .reactionNoLongerExists
+            return
+        } catch {
+            state = .soundLoadingError(error.localizedDescription)
+            Analytics().send(
+                originatingScreen: "ReactionDetailView",
+                action: "hadIssueWithReaction(\(self.reaction.title) - \(error.localizedDescription))"
+            )
+            return
+        }
+
+        do {
             self.reactionSounds = try await reactionRepository.reactionSounds(reactionId: reaction.id)
             guard let reactionSounds else { return }
             let soundIds: [String] = reactionSounds.map { $0.soundId }
@@ -86,7 +103,7 @@ extension ReactionDetailViewModel {
             sounds = selectedSounds
             state = .loaded(selectedSounds)
         } catch {
-            state = .error(error.localizedDescription)
+            state = .soundLoadingError(error.localizedDescription)
             Analytics().send(
                 originatingScreen: "ReactionDetailView",
                 action: "hadIssueWithReaction(\(self.reaction.title) - \(error.localizedDescription))"
