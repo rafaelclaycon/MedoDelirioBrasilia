@@ -69,9 +69,7 @@ class ReactionDetailViewModel: ObservableObject {
 extension ReactionDetailViewModel {
 
     func loadSounds() async {
-        DispatchQueue.main.async {
-            self.state = .loading
-        }
+        state = .loading
 
         do {
             self.reactionSounds = try await reactionRepository.reactionSounds(reactionId: reaction.id)

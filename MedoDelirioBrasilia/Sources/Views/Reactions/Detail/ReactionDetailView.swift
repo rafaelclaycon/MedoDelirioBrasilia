@@ -191,6 +191,8 @@ struct ReactionDetailView: View {
     }
 }
 
+// MARK: - Preview
+
 #Preview {
     ReactionDetailView(
         reaction: .acidMock,
