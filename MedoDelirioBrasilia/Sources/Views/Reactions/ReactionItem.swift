@@ -27,37 +27,37 @@ struct ReactionItem: View {
     // MARK: - View Body
 
     var body: some View {
-        RoundedRectangle(cornerRadius: 20)
-            .fill(Color.black.opacity(0.4))
-            .frame(height: cellHeight)
-            .background {
-                KFImage(URL(string: reaction.image))
-                    .placeholder {
-                        if isLoading {
-                            ProgressView()
-                                .scaleEffect(2)
-                        } else {
-                            Image(systemName: "photo")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(height: 45)
-                                .foregroundColor(.gray)
-                        }
-                    }
-                    .onSuccess { _ in isLoading = false }
-                    .onFailure { _ in isLoading = false }
-                    .resizable()
-                    .scaledToFill()
-                    .frame(height: cellHeight)
-                    .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+        KFImage(URL(string: reaction.image))
+            .placeholder {
+                if isLoading {
+                    ProgressView()
+                        .scaleEffect(2)
+                } else {
+                    Image(systemName: "photo")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 45)
+                        .foregroundColor(.gray)
+                }
             }
+            .onSuccess { _ in isLoading = false }
+            .onFailure { _ in isLoading = false }
+            .resizable()
+            .scaledToFill()
+            .frame(height: cellHeight)
+            .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
             .overlay {
-                Text(reaction.title)
-                    .foregroundColor(.white)
-                    .font(reduceTextSize ? .title2 : .title)
-                    .bold()
-                    .multilineTextAlignment(.center)
-                    .shadow(color: .black, radius: 4, y: 4)
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(Color.black.opacity(0.4))
+                    .frame(height: cellHeight)
+                    .overlay {
+                        Text(reaction.title)
+                            .foregroundColor(.white)
+                            .font(reduceTextSize ? .title2 : .title)
+                            .bold()
+                            .multilineTextAlignment(.center)
+                            .shadow(color: .black, radius: 4, y: 4)
+                    }
             }
             .contentShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
     }
