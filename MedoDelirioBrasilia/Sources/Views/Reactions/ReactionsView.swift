@@ -117,14 +117,25 @@ struct ReactionsView: View {
         }
         .toolbar {
             if case .loaded = viewModel.state {
-                Button {
-                    viewModel.isShowingSheet.toggle()
-                } label: {
-                    Image(systemName: "plus")
+                HStack(spacing: 15) {
+                    Button {
+                        viewModel.showHowReactionsWorkSheet.toggle()
+                    } label: {
+                        Image(systemName: "questionmark")
+                    }
+
+                    Button {
+                        viewModel.showAddStuffSheet.toggle()
+                    } label: {
+                        Image(systemName: "plus")
+                    }
                 }
             }
         }
-        .sheet(isPresented: $viewModel.isShowingSheet) {
+        .sheet(isPresented: $viewModel.showHowReactionsWorkSheet) {
+            HowReactionsWorkView()
+        }
+        .sheet(isPresented: $viewModel.showAddStuffSheet) {
             AddReactionView()
         }
         .oneTimeTask {

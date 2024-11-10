@@ -14,7 +14,8 @@ extension ReactionsView {
     final class ViewModel: ObservableObject {
 
         @Published var state: LoadingState<[Reaction]> = .loading
-        @Published var isShowingSheet: Bool = false
+        @Published var showHowReactionsWorkSheet: Bool = false
+        @Published var showAddStuffSheet: Bool = false
 
         private let reactionRepository: ReactionRepositoryProtocol
 

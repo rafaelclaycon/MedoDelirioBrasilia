@@ -1161,6 +1161,7 @@
 		D99A961A299A6CC700BB5F0D /* SoundsListMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99A9619299A6CC700BB5F0D /* SoundsListMode.swift */; };
 		D99A961C299A733E00BB5F0D /* RoundCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99A961B299A733E00BB5F0D /* RoundCheckbox.swift */; };
 		D99ACE982ADDFC2500C290F0 /* RetroViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99ACE972ADDFC2500C290F0 /* RetroViewModelTests.swift */; };
+		D99BAF732CE05B1500250900 /* HowReactionsWorkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99BAF722CE05B1500250900 /* HowReactionsWorkView.swift */; };
 		D99BBE4129466D9800BCA901 /* UsageMetric.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99BBE4029466D9800BCA901 /* UsageMetric.swift */; };
 		D99BBE43294676B200BCA901 /* NetworkRabbit+UsageMetric.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99BBE42294676B200BCA901 /* NetworkRabbit+UsageMetric.swift */; };
 		D99BBE45294700B200BCA901 /* Jair Bolsonaro - Imitando pessoa com falta de ar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99BBE44294700B200BCA901 /* Jair Bolsonaro - Imitando pessoa com falta de ar.mp3 */; };
@@ -2690,6 +2691,7 @@
 		D99A9619299A6CC700BB5F0D /* SoundsListMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundsListMode.swift; sourceTree = "<group>"; };
 		D99A961B299A733E00BB5F0D /* RoundCheckbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCheckbox.swift; sourceTree = "<group>"; };
 		D99ACE972ADDFC2500C290F0 /* RetroViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetroViewModelTests.swift; sourceTree = "<group>"; };
+		D99BAF722CE05B1500250900 /* HowReactionsWorkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowReactionsWorkView.swift; sourceTree = "<group>"; };
 		D99BBE4029466D9800BCA901 /* UsageMetric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageMetric.swift; sourceTree = "<group>"; };
 		D99BBE42294676B200BCA901 /* NetworkRabbit+UsageMetric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+UsageMetric.swift"; sourceTree = "<group>"; };
 		D99BBE44294700B200BCA901 /* Jair Bolsonaro - Imitando pessoa com falta de ar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Imitando pessoa com falta de ar.mp3"; sourceTree = "<group>"; };
@@ -5256,6 +5258,7 @@
 				D9F78A9E2860DF9100B83567 /* ReactionItem.swift */,
 				D9B8DE802BE69567000C9035 /* Detail */,
 				D9B8DE832BE695B1000C9035 /* AddReactionView.swift */,
+				D99BAF722CE05B1500250900 /* HowReactionsWorkView.swift */,
 			);
 			path = Reactions;
 			sourceTree = "<group>";
@@ -6697,6 +6700,7 @@
 				D9A3AB6B28F03C970064CB7A /* ViewStates.swift in Sources */,
 				D93F642E29A6A5FF003E7550 /* ShareAsVideoView.swift in Sources */,
 				D955DA302AA6B94C00AC4169 /* SoundDetailView.swift in Sources */,
+				D99BAF732CE05B1500250900 /* HowReactionsWorkView.swift in Sources */,
 				D920BF622CD1E52200C6BD72 /* FolderResearchProvider.swift in Sources */,
 				D9DCC5D72875D7E5008DD4A3 /* NotificationSymbolPlusText.swift in Sources */,
 				D960AF292845C82E00ADF1F6 /* AppStoreReviewSteward.swift in Sources */,
