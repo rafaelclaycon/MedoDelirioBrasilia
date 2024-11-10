@@ -12,6 +12,7 @@ protocol ReactionRepositoryProtocol {
     func allReactions() async throws -> [Reaction]
     func reaction(_ reactionId: String) async throws -> Reaction
     func reactionSounds(reactionId: String) async throws -> [ReactionSound]
+    func pinnedReactions() async throws -> [String]
 }
 
 final class ReactionRepository: ReactionRepositoryProtocol {

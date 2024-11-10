@@ -34,13 +34,16 @@ struct ReactionsView: View {
                     )
                 } else {
                     LoadedView(
-                        reactions: reactions,
+                        pinnedReactions: nil,
+                        otherReactions: reactions,
                         columns: columns,
                         pullToRefreshAction: {
                             Task {
                                 await viewModel.onPullToRefresh()
                             }
-                        }
+                        },
+                        pinAction: {},
+                        unpinAction: {}
                     )
                     .onAppear {
                         columns = GridHelper.adaptableColumns(
@@ -94,36 +97,6 @@ struct ReactionsView: View {
 // MARK: - Subviews
 
 extension ReactionsView {
-
-    struct LoadedView: View {
-
-        let reactions: [Reaction]
-        let columns: [GridItem]
-        let pullToRefreshAction: () -> Void
-
-        @Environment(\.push) var push
-
-        var body: some View {
-            ScrollView {
-                LazyVGrid(
-                    columns: columns,
-                    spacing: UIDevice.isiPhone ? 12 : 20
-                ) {
-                    ForEach(reactions) { reaction in
-                        ReactionItem(reaction: reaction)
-                            .onTapGesture {
-                                push(GeneralNavigationDestination.reactionDetail(reaction))
-                            }
-                    }
-                }
-                .padding()
-                .navigationTitle("Reações")
-            }
-            .refreshable {
-                pullToRefreshAction()
-            }
-        }
-    }
 
     struct ToolbarControls: View {
 
