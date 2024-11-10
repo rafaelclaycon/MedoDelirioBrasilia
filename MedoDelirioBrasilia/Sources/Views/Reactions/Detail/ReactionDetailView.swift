@@ -52,6 +52,7 @@ struct ReactionDetailView: View {
             SoundList(
                 viewModel: soundListViewModel,
                 soundSearchTextIsEmpty: .constant(nil),
+                showNewTag: false,
                 dataLoadingDidFail: viewModel.dataLoadingDidFail,
                 headerView: {
                     ReactionDetailHeader(

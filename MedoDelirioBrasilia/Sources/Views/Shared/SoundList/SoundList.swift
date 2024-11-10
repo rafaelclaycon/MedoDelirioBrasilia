@@ -19,7 +19,7 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
     private var showExplicitDisabledWarning: Bool
     private var multiSelectFolderOperation: FolderOperation = .add
     private var syncAction: (() -> Void)?
-    private var isFolder: Bool
+    private var showNewTag: Bool
     private var dataLoadingDidFail: Bool
 
     @ViewBuilder private let headerView: HeaderView?
@@ -74,7 +74,7 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
         showExplicitDisabledWarning: Bool = false,
         syncAction: (() -> Void)? = nil,
         multiSelectFolderOperation: FolderOperation = .add,
-        isFolder: Bool = false,
+        showNewTag: Bool = true,
         dataLoadingDidFail: Bool,
         headerView: (() -> HeaderView)? = nil,
         loadingView: LoadingView,
@@ -89,7 +89,7 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
         self.showExplicitDisabledWarning = showExplicitDisabledWarning
         self.syncAction = syncAction
         self.multiSelectFolderOperation = multiSelectFolderOperation
-        self.isFolder = isFolder
+        self.showNewTag = showNewTag
         self.dataLoadingDidFail = dataLoadingDidFail
         self.headerView = headerView?()
         self.loadingView = loadingView
@@ -148,7 +148,7 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
                                         ForEach(searchResults) { sound in
                                             SoundCell(
                                                 sound: sound,
-                                                isInsideFolder: isFolder,
+                                                showNewTag: showNewTag,
                                                 favorites: $viewModel.favoritesKeeper,
                                                 highlighted: $viewModel.highlightKeeper,
                                                 nowPlaying: $viewModel.nowPlayingKeeper,

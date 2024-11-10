@@ -10,8 +10,8 @@ import SwiftUI
 struct SoundCell: View {
 
     let sound: Sound
-    var isInsideFolder: Bool = false
-    
+    var showNewTag: Bool = true
+
     @Binding var favorites: Set<String>
     @Binding var highlighted: Set<String>
     @Binding var nowPlaying: Set<String>
@@ -121,7 +121,7 @@ struct SoundCell: View {
     }
     
     private var isNew: Bool {
-        guard !isInsideFolder else { return false }
+        guard showNewTag else { return false }
         return Date.isDateWithinLast7Days(sound.dateAdded)
     }
     
@@ -257,8 +257,15 @@ struct SoundCell_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             // Playing
-            SoundCell(sound: Sound(id: "ABC", title: "A gente vai cansando", authorName: "Soraya Thronicke", duration: 2), favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()), nowPlaying: .constant(Set<String>(arrayLiteral: "ABC")), selectedItems: .constant(Set<String>()), currentSoundsListMode: .constant(.regular))
-            
+            SoundCell(
+                sound: Sound(id: "ABC",title: "A gente vai cansando", authorName: "Soraya Thronicke", duration: 2),
+                favorites: .constant(Set<String>()),
+                highlighted: .constant(Set<String>()),
+                nowPlaying: .constant(Set<String>(arrayLiteral: "ABC")),
+                selectedItems: .constant(Set<String>()),
+                currentSoundsListMode: .constant(.regular)
+            )
+
             // Regular
             SoundCell(sound: Sound(id: "ABC", title: "A gente vai cansando", authorName: "Soraya Thronicke", duration: 2), favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()), nowPlaying: .constant(Set<String>()), selectedItems: .constant(Set<String>()), currentSoundsListMode: .constant(.regular))
             //SoundCell(soundId: "ABC", title: "Funk do Xandão", author: "Roberto Jeferson", favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()))

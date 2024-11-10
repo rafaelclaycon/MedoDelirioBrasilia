@@ -68,7 +68,7 @@ struct FolderDetailView: View {
             SoundList(
                 viewModel: soundListViewModel,
                 multiSelectFolderOperation: .remove,
-                isFolder: true,
+                showNewTag: false,
                 dataLoadingDidFail: viewModel.dataLoadingDidFail,
                 headerView: {
                     VStack(alignment: .leading) {
