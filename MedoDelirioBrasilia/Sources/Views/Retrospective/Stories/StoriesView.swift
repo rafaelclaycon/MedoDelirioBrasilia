@@ -16,6 +16,8 @@ struct StoriesView: View {
             Text("Dashes")
                 .foregroundStyle(.white)
 
+            FirstStory()
+
             Spacer()
         }
         .frame(maxWidth: .infinity)
@@ -26,6 +28,25 @@ struct StoriesView: View {
             } label: {
                 Image(systemName: "xmark")
                     .foregroundStyle(.white)
+            }
+        }
+    }
+}
+
+extension StoriesView {
+
+    struct FirstStory: View {
+        var body: some View {
+            VStack {
+                Spacer()
+
+                Text("Juntos doamos")
+
+                Text("R$ 1.600")
+
+                Text("para pessoas desabrigadas no Rio Grande do Sul.")
+
+                Spacer()
             }
         }
     }
