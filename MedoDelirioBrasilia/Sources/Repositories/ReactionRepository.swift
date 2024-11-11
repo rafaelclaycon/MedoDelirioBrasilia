@@ -43,4 +43,8 @@ final class ReactionRepository: ReactionRepositoryProtocol {
         let reactionSounds: [ReactionSound] = try await apiClient.get(from: url)
         return reactionSounds.sorted(by: { $0.position < $1.position })
     }
+
+    func pinnedReactions() async throws -> [String] {
+        []
+    }
 }
