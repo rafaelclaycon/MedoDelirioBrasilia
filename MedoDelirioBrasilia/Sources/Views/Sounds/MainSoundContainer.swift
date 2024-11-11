@@ -33,7 +33,8 @@ struct MainSoundContainer: View {
     @State private var shouldDisplayRecurringDonationBanner: Bool = false
 
     // Retro 2024
-    @State private var showingRetroModalView = false
+    @State private var showRetroBanner: Bool = true
+    @State private var showRetroModalView = false
 
     // MARK: - Environment Objects
 
@@ -124,10 +125,19 @@ struct MainSoundContainer: View {
                                 .padding(.horizontal, 10)
                             }
 
-                            //                            if shouldDisplayRecurringDonationBanner, viewModel.searchText.isEmpty {
-                            //                                RecurringDonationBanner(isBeingShown: $shouldDisplayRecurringDonationBanner)
-                            //                                    .padding(.horizontal, 10)
-                            //                            }
+                            if showRetroBanner {
+                                Retro2024Banner(
+                                    openStoriesAction: { showRetroModalView.toggle() }
+                                )
+                                .padding(.horizontal, 10)
+                            }
+
+//                            if shouldDisplayRecurringDonationBanner, viewModel.searchText.isEmpty {
+//                                RecurringDonationBanner(
+//                                    isBeingShown: $shouldDisplayRecurringDonationBanner
+//                                )
+//                                .padding(.horizontal, 10)
+//                            }
                         }
                     },
                     loadingView:
@@ -229,7 +239,7 @@ struct MainSoundContainer: View {
                 lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
             )
         }
-        .fullScreenCover(isPresented: $showingRetroModalView) {
+        .fullScreenCover(isPresented: $showRetroModalView) {
             StoriesView()
         }
         .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in // iPad - Settings explicit toggle.
