@@ -17,7 +17,7 @@ struct Retro2024Banner: View {
                 .foregroundColor(.white)
                 .bold()
 
-            Text("Lorem ipsum dolor sit amet consectur.")
+            Text("Bora ver o que nós aprontamos juntos esse ano?")
                 //.foregroundColor(colorScheme == .dark ? .green : .darkerGreen)
                 .font(.callout)
 
