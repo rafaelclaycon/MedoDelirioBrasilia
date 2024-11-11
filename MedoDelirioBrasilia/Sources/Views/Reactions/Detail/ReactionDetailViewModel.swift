@@ -8,16 +8,18 @@
 import SwiftUI
 import Combine
 
+@MainActor
 class ReactionDetailViewModel: ObservableObject {
 
     // MARK: - Published Vars
 
-    @Published var state: LoadingState<[Sound]> = .loading
+    @Published var state: ReactionDetailState<[Sound]> = .loading
     @Published var sounds: [Sound]?
     @Published var soundSortOption: Int
 
-    let reaction: Reaction
-    var reactionSounds: [ReactionSound]?
+    public var reaction: Reaction
+    private var reactionSounds: [ReactionSound]? // Needed for ordering by position.
+    private let reactionRepository: ReactionRepositoryProtocol
 
     // MARK: - Computed Properties
 
@@ -28,6 +30,7 @@ class ReactionDetailViewModel: ObservableObject {
     }
 
     var subtitle: String {
+        guard !dataLoadingDidFail else { return "" }
         guard let sounds else { return "Carregando..." }
         let lastUpdateDate: String = reaction.lastUpdate.asRelativeDateTime ?? ""
         if sounds.count == 0 {
@@ -39,13 +42,27 @@ class ReactionDetailViewModel: ObservableObject {
         }
     }
 
+    var dataLoadingDidFail: Bool {
+        if case .soundLoadingError = state { return true }
+        if case .reactionNoLongerExists = state { return true }
+        return false
+    }
+
+    var errorMessage: String {
+        // The reactionNoLongerExists case is dealt with in the view itself.
+        guard case .soundLoadingError(let errorString) = state else { return "" }
+        return errorString
+    }
+
     // MARK: - Initializer
 
     init(
-        reaction: Reaction
+        reaction: Reaction,
+        reactionRepository: ReactionRepositoryProtocol = ReactionRepository()
     ) {
         self.reaction = reaction
         self.soundSortOption = 0
+        self.reactionRepository = reactionRepository
     }
 }
 
@@ -54,12 +71,25 @@ class ReactionDetailViewModel: ObservableObject {
 extension ReactionDetailViewModel {
 
     func loadSounds() async {
-        DispatchQueue.main.async {
-            self.state = .loading
+        state = .loading
+
+        do {
+            let reaction = try await reactionRepository.reaction(reaction.id)
+            self.reaction.lastUpdate = reaction.lastUpdate
+        } catch NetworkRabbitError.resourceNotFound {
+            state = .reactionNoLongerExists
+            return
+        } catch {
+            state = .soundLoadingError(error.localizedDescription)
+            Analytics().send(
+                originatingScreen: "ReactionDetailView",
+                action: "hadIssueWithReaction(\(self.reaction.title) - \(error.localizedDescription))"
+            )
+            return
         }
 
         do {
-            self.reactionSounds = try await soundsFromServer()
+            self.reactionSounds = try await reactionRepository.reactionSounds(reactionId: reaction.id)
             guard let reactionSounds else { return }
             let soundIds: [String] = reactionSounds.map { $0.soundId }
             var selectedSounds = try LocalDatabase.shared.sounds(withIds: soundIds)
@@ -70,25 +100,15 @@ extension ReactionDetailViewModel {
                 }
             }
 
-            DispatchQueue.main.async {
-                self.sounds = selectedSounds
-                self.state = .loaded(selectedSounds)
-            }
+            sounds = selectedSounds
+            state = .loaded(selectedSounds)
         } catch {
-            DispatchQueue.main.async {
-                self.state = .error(error.localizedDescription)
-            }
-            Analytics.send(
+            state = .soundLoadingError(error.localizedDescription)
+            Analytics().send(
                 originatingScreen: "ReactionDetailView",
                 action: "hadIssueWithReaction(\(self.reaction.title) - \(error.localizedDescription))"
             )
         }
-    }
-
-    private func soundsFromServer() async throws -> [ReactionSound] {
-        let url = URL(string: NetworkRabbit.shared.serverPath + "v4/reaction/\(reaction.id)")!
-        var reactionSounds: [ReactionSound] = try await NetworkRabbit.get(from: url)
-        return reactionSounds.sorted(by: { $0.position < $1.position })
     }
 }
 
@@ -119,20 +139,14 @@ extension ReactionDetailViewModel {
             return index1 < index2
         }
 
-        DispatchQueue.main.async {
-            self.sounds = sortedSounds
-        }
+        self.sounds = sortedSounds
     }
 
     private func sortSoundsByDateAddedDescending() {
-        DispatchQueue.main.async {
-            self.sounds?.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
-        }
+        sounds?.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
     }
 
     private func sortSoundsByDateAddedAscending() {
-        DispatchQueue.main.async {
-            self.sounds?.sort(by: { $0.dateAdded ?? Date() < $1.dateAdded ?? Date() })
-        }
+        sounds?.sort(by: { $0.dateAdded ?? Date() < $1.dateAdded ?? Date() })
     }
 }

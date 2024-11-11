@@ -5,11 +5,8 @@ private typealias Expression = SQLite.Expression
 
 extension LocalDatabase {
 
-    func insert(userFolder newFolder: UserFolder) throws {
-        var folder = newFolder
-        folder.editingIdentifyingId = nil
-        let insert = try userFolder.insert(folder)
-        try db.run(insert)
+    func insert(_ newFolder: UserFolder) throws {
+        try db.run(userFolder.insert(newFolder))
     }
     
     func getFolder(withId folderId: String) throws -> UserFolder {
@@ -30,29 +27,32 @@ extension LocalDatabase {
         }
     }
     
-    func update(userFolder userFolderId: String, withNewSymbol newSymbol: String, newName: String, andNewBackgroundColor newBackgroundColor: String) throws {
+    func update(_ folder: UserFolder) throws {
         let id = Expression<String>("id")
         let symbol = Expression<String>("symbol")
         let name = Expression<String>("name")
         let background_color = Expression<String>("backgroundColor")
-        
-        let folder = userFolder.filter(id == userFolderId)
-        let update = folder.update(symbol <- newSymbol, name <- newName, background_color <- newBackgroundColor)
-        try db.run(update)
+        let change_hash = Expression<String?>("changeHash")
+
+        try db.run(
+            userFolder
+                .filter(id == folder.id)
+                .update(
+                    symbol <- folder.symbol,
+                    name <- folder.name,
+                    background_color <- folder.backgroundColor,
+                    change_hash <- folder.changeHash
+                )
+        )
     }
     
-    func getAllUserFolders() throws -> [UserFolder] {
-        var queriedFolders = [UserFolder]()
+    func allFolders() throws -> [UserFolder] {
+        let creationDate = Expression<String>("creationDate")
+        let sortedQuery = try db.prepare(userFolder.order(creationDate.asc))
 
-        for queriedFolder in try db.prepare(userFolder) {
-            queriedFolders.append(try queriedFolder.decode())
+        return try sortedQuery.map { queriedFolder in
+            try queriedFolder.decode() as UserFolder
         }
-        
-        for i in 0..<queriedFolders.count {
-            queriedFolders[i].editingIdentifyingId = UUID().uuidString
-        }
-        
-        return queriedFolders
     }
     
     func insert(contentId: String, intoUserFolder userFolderId: String) throws {
@@ -61,20 +61,22 @@ extension LocalDatabase {
         try db.run(insert)
     }
     
-    func getAllSoundIdsInsideUserFolder(withId userFolderId: String) throws -> [String] {
+    func soundIdsInside(userFolder userFolderId: String) throws -> [String] {
         var queriedIds = [String]()
         let user_folder_id = Expression<String>("userFolderId")
         let content_id = Expression<String>("contentId")
 
-        for row in try db.prepare(userFolderContent
-                                      .select(content_id)
-                                      .where(user_folder_id == userFolderId)) {
+        for row in try db.prepare(
+            userFolderContent
+                .select(content_id)
+                .where(user_folder_id == userFolderId)
+        ) {
             queriedIds.append(row[content_id])
         }
         return queriedIds
     }
     
-    func getAllContentsInsideUserFolder(withId userFolderId: String) throws -> [UserFolderContent] {
+    func contentsInside(userFolder userFolderId: String) throws -> [UserFolderContent] {
         var queriedContents = [UserFolderContent]()
         let user_folder_id = Expression<String>("userFolderId")
         
@@ -110,4 +112,24 @@ extension LocalDatabase {
         try db.run(update)
     }
 
+    func folderHashes() throws -> [String: String] {
+        var folderHashes = [String: String]()
+        let id = Expression<String>("id")
+        let changeHash = Expression<String>("changeHash")
+        for row in try db.prepare(userFolder.select(id, changeHash)) {
+            folderHashes[row[id]] = row[changeHash]
+        }
+        return folderHashes
+    }
+
+    func folders(withIds folderIds: [String]) throws -> [UserFolder] {
+        var folders = [UserFolder]()
+        let id = Expression<String>("id")
+        let query = userFolder.filter(folderIds.contains(id))
+
+        for row in try db.prepare(query) {
+            folders.append(try row.decode())
+        }
+        return folders
+    }
 }

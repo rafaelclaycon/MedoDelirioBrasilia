@@ -44,12 +44,12 @@ class SongsViewViewModel: ObservableObject {
     func reloadList() {
         do {
             songs = try LocalDatabase.shared.songs(
-                allowSensitive: UserSettings.getShowExplicitContent()
+                allowSensitive: UserSettings().getShowExplicitContent()
             )
 
             guard songs.count > 0 else { return }
 
-            let sortOption: SongSortOption = SongSortOption(rawValue: UserSettings.getSongSortOption()) ?? .dateAddedDescending
+            let sortOption: SongSortOption = SongSortOption(rawValue: UserSettings().getSongSortOption()) ?? .dateAddedDescending
             sortSongs(by: sortOption)
         } catch {
             print("Erro")

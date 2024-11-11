@@ -27,7 +27,6 @@ struct MainSoundContainer: View {
     @State var authorSearchText: String = .empty
 
     // Sync
-    @State private var shouldDisplayYoureOfflineBanner: Bool = true
     @State private var displayLongUpdateBanner: Bool = false
 
     // Temporary banners
@@ -40,7 +39,6 @@ struct MainSoundContainer: View {
 
     @EnvironmentObject var trendsHelper: TrendsHelper
     @EnvironmentObject var settingsHelper: SettingsHelper
-    @EnvironmentObject var networkMonitor: NetworkMonitor
     @EnvironmentObject var playRandomSoundHelper: PlayRandomSoundHelper
 
     // MARK: - Computed Properties
@@ -112,15 +110,12 @@ struct MainSoundContainer: View {
                     showExplicitDisabledWarning: true,
                     syncAction: {
                         Task { // Keep this Task to avoid "cancelled" issue.
-                            await viewModel.sync(lastAttempt: AppPersistentMemory.getLastUpdateAttempt())
+                            await viewModel.sync(lastAttempt: AppPersistentMemory().getLastUpdateAttempt())
                         }
                     },
+                    dataLoadingDidFail: viewModel.dataLoadingDidFail,
                     headerView: {
                         VStack {
-                            if !networkMonitor.isConnected, shouldDisplayYoureOfflineBanner {
-                                YoureOfflineView(isBeingShown: $shouldDisplayYoureOfflineBanner)
-                            }
-
                             if displayLongUpdateBanner {
                                 LongUpdateBanner(
                                     completedNumber: $viewModel.processedUpdateNumber,
@@ -168,6 +163,7 @@ struct MainSoundContainer: View {
                     viewModel: favoritesViewModel,
                     soundSearchTextIsEmpty: $soundSearchTextIsEmpty,
                     allowSearch: true,
+                    dataLoadingDidFail: viewModel.dataLoadingDidFail,
                     loadingView:
                         VStack {
                             HStack(spacing: 10) {
@@ -229,8 +225,7 @@ struct MainSoundContainer: View {
         }
         .sheet(isPresented: $showingModalView) {
             SyncInfoView(
-                isBeingShown: $showingModalView,
-                lastUpdateAttempt: AppPersistentMemory.getLastUpdateAttempt(),
+                lastUpdateAttempt: AppPersistentMemory().getLastUpdateAttempt(),
                 lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
             )
         }
@@ -281,7 +276,7 @@ struct MainSoundContainer: View {
             if !viewModel.firstRunSyncHappened {
                 Task {
                     print("WILL START SYNCING")
-                    await viewModel.sync(lastAttempt: AppPersistentMemory.getLastUpdateAttempt())
+                    await viewModel.sync(lastAttempt: AppPersistentMemory().getLastUpdateAttempt())
                     print("DID FINISH SYNCING")
                 }
             }
@@ -345,7 +340,7 @@ extension MainSoundContainer {
                     }
                     .onChange(of: viewModel.authorSortOption) { authorSortOption in
                         authorSortAction = AuthorSortOption(rawValue: authorSortOption) ?? .nameAscending
-                        UserSettings.saveAuthorSortOption(authorSortOption)
+                        UserSettings().saveAuthorSortOption(authorSortOption)
                     }
                 } else {
                     if currentSoundsListMode.wrappedValue == .regular {

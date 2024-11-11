@@ -52,6 +52,8 @@ struct ReactionDetailView: View {
             SoundList(
                 viewModel: soundListViewModel,
                 soundSearchTextIsEmpty: .constant(nil),
+                showNewTag: false,
+                dataLoadingDidFail: viewModel.dataLoadingDidFail,
                 headerView: {
                     ReactionDetailHeader(
                         title: viewModel.reaction.title,
@@ -61,134 +63,211 @@ struct ReactionDetailView: View {
                     .frame(height: 250)
                     .padding(.bottom, 6)
                 },
-                loadingView:
-                    VStack(spacing: 40) {
-                        Spacer()
-
-                        HStack(spacing: 10) {
-                            ProgressView()
-
-                            Text("Carregando sons...")
-                                .foregroundColor(.gray)
+                loadingView: LoadingView(),
+                emptyStateView: EmptyStateView(
+                    reloadAction: {
+                        Task {
+                            await viewModel.loadSounds()
                         }
-                        .frame(maxWidth: .infinity)
-
-                        Spacer()
                     }
-                ,
-                emptyStateView:
-                    VStack(spacing: 40) {
-                        Spacer()
-
-                        Image(systemName: "pc")
-                            .symbolRenderingMode(.multicolor)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 60)
-                            .foregroundStyle(.gray)
-
-                        Text("Essa Reação está vazia. Parece que você chegou muito cedo.")
-                            .foregroundStyle(.gray)
-                            .multilineTextAlignment(.center)
-
-                        Button {
-                            Task {
-                                await viewModel.loadSounds()
-                            }
-                        } label: {
-                            Label("Recarregar", systemImage: "arrow.clockwise")
+                ),
+                errorView: ErrorView(
+                    reactionNoLongerExists: viewModel.state == .reactionNoLongerExists,
+                    errorMessage: viewModel.errorMessage,
+                    tryAgainAction: {
+                        Task {
+                            await viewModel.loadSounds()
                         }
-                        .padding(.bottom)
-
-                        Spacer()
                     }
-                    .padding(.horizontal, 30)
-                ,
-                errorView:
-                    VStack(spacing: 40) {
-                        Text("☹️")
-                            .font(.system(size: 86))
-
-                        VStack(spacing: 40) {
-                            Text("Erro ao Carregar os Sons Dessa Reação")
-                                .font(.title2)
-                                .bold()
-                                .multilineTextAlignment(.center)
-
-                            Text("<Error message here>") // errorString
-                                .multilineTextAlignment(.center)
-                                .foregroundStyle(.gray)
-
-                            Button {
-                                Task {
-                                    await viewModel.loadSounds()
-                                }
-                            } label: {
-                                Label("Tentar Novamente", systemImage: "arrow.clockwise")
-                            }
-                        }
-                        .padding(.horizontal, 30)
-
-                        Spacer()
-                    }
+                )
             )
             .environmentObject(TrendsHelper())
         }
         .toolbar {
-            toolbarControls()
-                .foregroundStyle(.white)
-                .opacity(toolbarControlsOpacity)
-                .disabled(soundArrayIsEmpty)
+            ToolbarControls(
+                soundSortOption: $viewModel.soundSortOption,
+                playStopAction: { soundListViewModel.playStopPlaylist() },
+                startSelectingAction: { soundListViewModel.startSelecting() },
+                isPlayingPlaylist: soundListViewModel.isPlayingPlaylist,
+                soundArrayIsEmpty: soundArrayIsEmpty,
+                isSelecting: soundListViewModel.currentSoundsListMode.wrappedValue == .selection
+            )
+            .foregroundStyle(.white)
+            .opacity(toolbarControlsOpacity)
+            .disabled(soundArrayIsEmpty)
+            .onChange(of: viewModel.soundSortOption) {
+                viewModel.sortSounds(by: $0)
+            }
         }
         .oneTimeTask {
             await viewModel.loadSounds()
         }
         .onAppear {
-            Analytics.send(
+            Analytics().send(
                 originatingScreen: "ReactionDetailView",
                 action: "didViewReaction(\(viewModel.reaction.title))"
             )
         }
         .edgesIgnoringSafeArea(.top)
     }
+}
 
-    @ViewBuilder func toolbarControls() -> some View {
-        HStack(spacing: 15) {
-            Button {
-                soundListViewModel.playStopPlaylist()
-            } label: {
-                Image(systemName: soundListViewModel.isPlayingPlaylist ? "stop.fill" : "play.fill")
-            }
-            .disabled(soundArrayIsEmpty)
+// MARK: - Subviews
 
-            Menu {
-                Section {
-                    Button {
-                        soundListViewModel.startSelecting()
-                    } label: {
-                        Label(
-                            soundListViewModel.currentSoundsListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",
-                            systemImage: soundListViewModel.currentSoundsListMode.wrappedValue == .selection ? "xmark.circle" : "checkmark.circle"
-                        )
-                    }
+extension ReactionDetailView {
+
+    struct ToolbarControls: View {
+
+        @Binding var soundSortOption: Int
+        let playStopAction: () -> Void
+        let startSelectingAction: () -> Void
+        let isPlayingPlaylist: Bool
+        let soundArrayIsEmpty: Bool
+        let isSelecting: Bool
+
+        var body: some View {
+            HStack(spacing: 15) {
+                Button {
+                    playStopAction()
+                } label: {
+                    Image(systemName: isPlayingPlaylist ? "stop.fill" : "play.fill")
                 }
+                .disabled(soundArrayIsEmpty)
 
-                Section {
-                    Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
-                        ForEach(ReactionSoundSortOption.allCases, id: \.self) { option in
-                            Text(option.description).tag(option.rawValue)
+                Menu {
+                    Section {
+                        Button {
+                            startSelectingAction()
+                        } label: {
+                            Label(
+                                isSelecting ? "Cancelar Seleção" : "Selecionar",
+                                systemImage: isSelecting ? "xmark.circle" : "checkmark.circle"
+                            )
                         }
                     }
+
+                    Section {
+                        Picker("Ordenação de Sons", selection: $soundSortOption) {
+                            ForEach(ReactionSoundSortOption.allCases, id: \.self) { option in
+                                Text(option.description).tag(option.rawValue)
+                            }
+                        }
+                    }
+                } label: {
+                    Image(systemName: "ellipsis.circle")
                 }
-            } label: {
-                Image(systemName: "ellipsis.circle")
             }
-            .onChange(of: viewModel.soundSortOption) {
-                viewModel.sortSounds(by: $0)
+        }
+    }
+
+    struct LoadingView: View {
+
+        var body: some View {
+            VStack(spacing: 40) {
+                Spacer()
+
+                HStack(spacing: 10) {
+                    ProgressView()
+
+                    Text("Carregando sons...")
+                        .foregroundColor(.gray)
+                }
+                .frame(maxWidth: .infinity)
+
+                Spacer()
+            }
+        }
+    }
+
+    struct EmptyStateView: View {
+
+        let reloadAction: () -> Void
+
+        var body: some View {
+            VStack(spacing: 40) {
+                Spacer()
+
+                Image(systemName: "pc")
+                    .symbolRenderingMode(.multicolor)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 60)
+                    .foregroundStyle(.gray)
+
+                Text("Essa Reação está vazia. Parece que você chegou muito cedo.")
+                    .foregroundStyle(.gray)
+                    .multilineTextAlignment(.center)
+
+                Button {
+                    reloadAction()
+                } label: {
+                    Label("Recarregar", systemImage: "arrow.clockwise")
+                }
+                .padding(.bottom)
+
+                Spacer()
+            }
+            .padding(.horizontal, 30)
+        }
+    }
+
+    struct ErrorView: View {
+
+        let reactionNoLongerExists: Bool
+        let errorMessage: String
+        let tryAgainAction: () -> Void
+
+        var body: some View {
+            if reactionNoLongerExists {
+                VStack(spacing: 40) {
+                    Text("🗑️")
+                        .font(.system(size: 68))
+
+                    VStack(spacing: 36) {
+                        Text("Reação Removida do Servidor")
+                            .font(.title2)
+                            .bold()
+                            .multilineTextAlignment(.center)
+
+                        Text("Essa Reação não existe mais no servidor. Por favor, volte para a lista de Reações e puxe a partir do topo para atualizá-la.")
+                            .multilineTextAlignment(.center)
+                            .foregroundStyle(.gray)
+                    }
+                    .padding(.horizontal, 30)
+
+                    Spacer()
+                }
+            } else {
+                VStack(spacing: 40) {
+                    Text("☹️")
+                        .font(.system(size: 86))
+                    
+                    VStack(spacing: 40) {
+                        Text("Erro ao Carregar os Sons Dessa Reação")
+                            .font(.title2)
+                            .bold()
+                            .multilineTextAlignment(.center)
+                        
+                        Text(errorMessage)
+                            .multilineTextAlignment(.center)
+                            .foregroundStyle(.gray)
+                        
+                        Button {
+                            tryAgainAction()
+                        } label: {
+                            Label("Tentar Novamente", systemImage: "arrow.clockwise")
+                        }
+                    }
+                    .padding(.horizontal, 30)
+                    
+                    Spacer()
+                }
             }
         }
     }
 }
+
+// MARK: - Preview
 
 #Preview {
     ReactionDetailView(

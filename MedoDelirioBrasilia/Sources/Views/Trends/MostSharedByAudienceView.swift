@@ -136,7 +136,7 @@ struct MostSharedByAudienceView: View {
             } else if viewModel.lastCheckDate.twoMinutesHavePassed {
                 viewModel.loadList(for: viewModel.timeIntervalOption)
             }
-            shouldDisplayNewUpdateWayBanner = !AppPersistentMemory.hasSeenNewTrendsUpdateWayBanner()
+            shouldDisplayNewUpdateWayBanner = !AppPersistentMemory().hasSeenNewTrendsUpdateWayBanner()
         }
         .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))

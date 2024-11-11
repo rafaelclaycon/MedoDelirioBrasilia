@@ -76,7 +76,7 @@ struct IntroducingiOS18ControlAndSiriIntentView: View {
             .safeAreaInset(edge: .bottom) {
                 VStack(alignment: .center) {
                     Button {
-                        AppPersistentMemory.hasSeenControlWhatsNewScreen(true)
+                        AppPersistentMemory().hasSeenControlWhatsNewScreen(true)
                         dismiss()
                     } label: {
                         HStack {
@@ -162,8 +162,7 @@ extension IntroducingiOS18ControlAndSiriIntentView {
         private let phrase: [String] = [
             "toque uma vírgula do Medo e Delírio",
             "toque um som do Medo e Delírio",
-            "toque um som aleatório do Medo e Delírio",
-            "Medo e Delírio",
+            "toque um som aleatório do Medo e Delírio"
         ]
 
         private var firstPart: String {

@@ -15,7 +15,7 @@ struct SettingsView: View {
 
     @EnvironmentObject var helper: SettingsHelper
 
-    @State private var showExplicitSounds: Bool = UserSettings.getShowExplicitContent()
+    @State private var showExplicitSounds: Bool = UserSettings().getShowExplicitContent()
 
     @State private var showChangeAppIcon: Bool = ProcessInfo.processInfo.isMacCatalystApp == false
 
@@ -41,7 +41,7 @@ struct SettingsView: View {
                 Section {
                     Toggle("Exibir conteúdo explícito", isOn: $showExplicitSounds)
                         .onChange(of: showExplicitSounds) { showExplicitSounds in
-                            UserSettings.setShowExplicitContent(to: showExplicitSounds)
+                            UserSettings().setShowExplicitContent(to: showExplicitSounds)
                             helper.updateSoundsList = true
                         }
                 } footer: {
@@ -187,7 +187,7 @@ struct SettingsView: View {
                     self.donors = copy
                 }
             }
-            .popover(isPresented: $showEmailClientConfirmationDialog) {
+            .sheet(isPresented: $showEmailClientConfirmationDialog) {
                 EmailAppPickerView(
                     isBeingShown: $showEmailClientConfirmationDialog,
                     didCopySupportAddress: $didCopySupportAddressOnEmailPicker,
@@ -253,7 +253,7 @@ struct SettingsView: View {
     }
 
     private static func sendAnalytics(for action: String) {
-        Analytics.send(
+        Analytics().send(
             originatingScreen: "SettingsView",
             action: action
         )

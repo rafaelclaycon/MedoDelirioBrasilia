@@ -11,36 +11,25 @@ import SwiftUI
 internal protocol SyncServiceProtocol {
 
     func getUpdates(from updateDateToConsider: String) async throws -> [UpdateEvent]
-    func hasConnectivity() -> Bool
     func process(updateEvent: UpdateEvent) async
 }
 
 class SyncService: SyncServiceProtocol {
 
-    private let connectionManager: ConnectionManagerProtocol
     private let networkRabbit: NetworkRabbitProtocol
     let injectedDatabase: LocalDatabaseProtocol
     
     init(
-        connectionManager: ConnectionManagerProtocol,
         networkRabbit: NetworkRabbitProtocol,
         localDatabase: LocalDatabaseProtocol
     ) {
-        self.connectionManager = connectionManager
         self.networkRabbit = networkRabbit
         self.injectedDatabase = localDatabase
     }
     
     func getUpdates(from updateDateToConsider: String) async throws -> [UpdateEvent] {
-        guard connectionManager.hasConnectivity() else {
-            throw SyncError.noInternet
-        }
         print(updateDateToConsider)
         return try await networkRabbit.fetchUpdateEvents(from: updateDateToConsider)
-    }
-    
-    func hasConnectivity() -> Bool {
-        return connectionManager.hasConnectivity()
     }
     
     func process(updateEvent: UpdateEvent) async {
@@ -139,14 +128,14 @@ enum SyncResult {
 }
 
 enum SyncError: Error {
-    case noInternet
+
     case errorInsertingUpdateEvent(updateEventId: String)
     case updateError
 }
 
 enum SyncUIStatus: CustomStringConvertible {
 
-    case updating, done, noInternet, updateError
+    case updating, done, updateError
 
     var description: String {
         switch self {
@@ -154,10 +143,8 @@ enum SyncUIStatus: CustomStringConvertible {
             return "Atualizando..."
         case .done:
             return "Você tem as últimas novidades."
-        case .noInternet:
-            return "Não foi possível atualizar pois o aparelho está offline."
         case .updateError:
-            return "Houve um problema com a sincronização."
+            return "Não foi possível obter as últimas novidades do servidor."
         }
     }
 }

@@ -58,7 +58,7 @@ struct UpdateIncentiveBanner: View {
         }
         .overlay(alignment: .topTrailing) {
             Button {
-                AppPersistentMemory.setHasSeenFirstUpdateIncentiveBanner(to: true)
+                AppPersistentMemory().setHasSeenFirstUpdateIncentiveBanner(to: true)
                 isBeingShown = false
             } label: {
                 Image(systemName: "xmark")
@@ -69,12 +69,12 @@ struct UpdateIncentiveBanner: View {
         .onAppear {
             maxSystemVersion = UpdateIncentive.maxSupportedVersion(deviceModel: UIDevice.modelName) ?? ""
 
-            if !AppPersistentMemory.getHasSentFirstUpdateIncentiveMetric() {
-                Analytics.send(
+            if !AppPersistentMemory().getHasSentFirstUpdateIncentiveMetric() {
+                Analytics().send(
                     originatingScreen: "UpdateIncentiveBanner",
                     action: "didShowUpdateIncentiveBanner(\(UIDevice.modelName), \(UIDevice.current.systemVersion))"
                 )
-                AppPersistentMemory.setHasSentFirstUpdateIncentiveMetric(to: true)
+                AppPersistentMemory().setHasSentFirstUpdateIncentiveMetric(to: true)
             }
         }
     }

@@ -68,7 +68,8 @@ struct FolderDetailView: View {
             SoundList(
                 viewModel: soundListViewModel,
                 multiSelectFolderOperation: .remove,
-                isFolder: true,
+                showNewTag: false,
+                dataLoadingDidFail: viewModel.dataLoadingDidFail,
                 headerView: {
                     VStack(alignment: .leading) {
                         HStack {
@@ -122,7 +123,13 @@ struct FolderDetailView: View {
             }
         }
         .sheet(isPresented: $showingFolderInfoEditingView) {
-            FolderInfoEditingView(isBeingShown: $showingFolderInfoEditingView, symbol: folder.symbol, folderName: folder.name, selectedBackgroundColor: folder.backgroundColor, isEditing: true, folderIdWhenEditing: folder.id)
+            FolderInfoEditingView(
+                folder: folder,
+                folderRepository: UserFolderRepository(),
+                dismissSheet: {
+                    showingFolderInfoEditingView = false
+                }
+            )
         }
     }
 
@@ -231,7 +238,8 @@ struct FolderDetailView: View {
         folder: .init(
             symbol: "🤑",
             name: "Grupo da Economia",
-            backgroundColor: "pastelBabyBlue"
+            backgroundColor: "pastelBabyBlue",
+            changeHash: "abcdefg"
         ),
         currentSoundsListMode: .constant(.regular)
     )

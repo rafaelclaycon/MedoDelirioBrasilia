@@ -52,7 +52,7 @@ class Podium {
         if let bundleIdLogs = Logger.shared.uniqueBundleIdsForServer() {
             for log in bundleIdLogs {
                 do {
-                    let _: ServerShareBundleIdLog = try await NetworkRabbit.post(to: bundleIdUrl, body: log)
+                    let _: ServerShareBundleIdLog = try await NetworkRabbit.shared.post(to: bundleIdUrl, body: log)
                 } catch {
                     return .failed("Sending of \(log) failed.")
                 }

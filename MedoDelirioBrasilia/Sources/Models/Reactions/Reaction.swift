@@ -13,7 +13,7 @@ struct Reaction: Hashable, Codable, Identifiable {
     let title: String
     let position: Int
     let image: String
-    let lastUpdate: String
+    var lastUpdate: String
 
     init(
         id: String,

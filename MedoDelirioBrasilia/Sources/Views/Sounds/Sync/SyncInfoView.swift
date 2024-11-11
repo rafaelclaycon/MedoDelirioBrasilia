@@ -9,12 +9,12 @@ import SwiftUI
 
 struct SyncInfoView: View {
 
-    @Binding var isBeingShown: Bool
-
     let lastUpdateAttempt: String
     let lastUpdateDate: String
 
     @EnvironmentObject private var syncValues: SyncValues
+
+    @Environment(\.dismiss) var dismiss
 
     var body: some View {
         NavigationView {
@@ -24,8 +24,6 @@ struct SyncInfoView: View {
                     UpdatingView()
                 case .done:
                     AllOkView(lastUpdateAttempt: lastUpdateAttempt)
-                case .noInternet:
-                    NoInternetView(lastUpdateDate: lastUpdateDate)
                 case .updateError:
                     UpdateErrorView(lastUpdateDate: lastUpdateDate)
                 }
@@ -34,7 +32,7 @@ struct SyncInfoView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(leading:
                 Button("Fechar") {
-                    self.isBeingShown = false
+                    dismiss()
                 }
             )
         }
@@ -43,7 +41,7 @@ struct SyncInfoView: View {
 
 extension SyncInfoView {
 
-    struct UpdatingView: View {
+    private struct UpdatingView: View {
 
         var body: some View {
             VStack(spacing: 30) {
@@ -65,7 +63,7 @@ extension SyncInfoView {
         }
     }
 
-    struct AllOkView: View {
+    private struct AllOkView: View {
 
         let lastUpdateAttempt: String
 
@@ -73,7 +71,7 @@ extension SyncInfoView {
 
         private var lastUpdateText: String {
             if lastUpdateAttempt == "" {
-                return "A última tentativa de sincronização não retornou resultados.\n\nRelaxa, isso só significa que ainda não existem novos conteúdos no servidor. Você não precisa fazer nada."
+                return "A última tentativa de sincronização não retornou resultados."
             } else {
                 return "Última sincronização \(lastUpdateAttempt.asRelativeDateTime ?? "")."
             }
@@ -134,50 +132,7 @@ extension SyncInfoView {
         }
     }
 
-    struct NoInternetView: View {
-
-        let lastUpdateDate: String
-
-        private var lastUpdateText: String {
-            if lastUpdateDate == "all" {
-                return "A última tentativa de sincronização não retornou resultados.\n\nRelaxa, isso só significa que ainda não existem novos conteúdos no servidor. Você não precisa fazer nada."
-            } else {
-                return "Última sincronização em \(lastUpdateDate.formattedDate)."
-            }
-        }
-
-        var body: some View {
-            VStack(spacing: 30) {
-                Image(systemName: "wifi.slash")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 60)
-
-                VStack(spacing: 15) {
-                    Text("Você está offline.")
-                        .font(.title2)
-                        .bold()
-                        .multilineTextAlignment(.center)
-
-                    Text("Novos conteúdos serão baixados quando você estiver online novamente.")
-                        .multilineTextAlignment(.center)
-
-                    NavigationLink {
-                        SyncInfoView.KnowMoreView()
-                    } label: {
-                        Label("Saiba mais", systemImage: "info.circle")
-                    }
-                }
-
-                Text(lastUpdateText)
-                    .foregroundColor(.gray)
-                    .multilineTextAlignment(.center)
-            }
-            .padding(.horizontal)
-        }
-    }
-
-    struct UpdateErrorView: View {
+    private struct UpdateErrorView: View {
 
         let lastUpdateDate: String
 
@@ -185,9 +140,9 @@ extension SyncInfoView {
 
         private var lastUpdateText: String {
             if lastUpdateDate == "all" {
-                return "A última tentativa de sincronização não retornou resultados.\n\nRelaxa, isso só significa que ainda não existem novos conteúdos no servidor. Você não precisa fazer nada."
+                return "A última tentativa de sincronização não retornou resultados."
             } else {
-                return "Última sincronização com sucesso \(lastUpdateDate.asRelativeDateTime ?? "")."
+                return "Última sincronização com sucesso \(lastUpdateDate.asRelativeDateTime ?? "").\n\nGaranta que o seu dispositivo está conectado à Internet. Caso o problema persista, entre em contato com o desenvolvedor."
             }
         }
 
@@ -241,21 +196,17 @@ struct SyncInfoView_Previews: PreviewProvider {
 
     static let syncValuesUpdating: SyncValues = SyncValues()
     static let syncValuesDone: SyncValues = SyncValues(syncStatus: .done)
-    static let syncValuesNoInternet: SyncValues = SyncValues(syncStatus: .noInternet)
     static let syncValuesUpdateError: SyncValues = SyncValues(syncStatus: .updateError)
 
     static var previews: some View {
         Group {
-            SyncInfoView(isBeingShown: .constant(true), lastUpdateAttempt: "", lastUpdateDate: "all")
+            SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "all")
                 .environmentObject(syncValuesUpdating)
 
-            SyncInfoView(isBeingShown: .constant(true), lastUpdateAttempt: "", lastUpdateDate: "2023-08-11T20:29:46.562Z")
+            SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "2023-08-11T20:29:46.562Z")
                 .environmentObject(syncValuesDone)
 
-            SyncInfoView(isBeingShown: .constant(true), lastUpdateAttempt: "", lastUpdateDate: "2023-08-11T20:29:46.562Z")
-                .environmentObject(syncValuesNoInternet)
-
-            SyncInfoView(isBeingShown: .constant(true), lastUpdateAttempt: "", lastUpdateDate: "2023-08-11T20:29:46.562Z")
+            SyncInfoView(lastUpdateAttempt: "", lastUpdateDate: "2023-08-11T20:29:46.562Z")
                 .environmentObject(syncValuesUpdateError)
         }
     }

@@ -11,10 +11,10 @@ class NotificationAide {
                 DispatchQueue.main.async {
                     UIApplication.shared.registerForRemoteNotifications()
                 }
-                UserSettings.setUserAllowedNotifications(to: granted)
+                UserSettings().setUserAllowedNotifications(to: granted)
                 completionHandler(granted)
             } else {
-                UserSettings.setUserAllowedNotifications(to: false)
+                UserSettings().setUserAllowedNotifications(to: false)
                 completionHandler(false)
             }
         }

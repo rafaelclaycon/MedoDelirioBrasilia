@@ -1,5 +1,5 @@
 {
-  "originHash" : "62a92ab4e1786cddf8153a64d033b49a6061f7b59247a075d596a4d23ea0a345",
+  "originHash" : "0f03c33dd11561884c59533810dbd8d99984e985f55ab551517ca483a499b5d8",
   "pins" : [
     {
       "identity" : "kingfisher",
@@ -8,15 +8,6 @@
       "state" : {
         "revision" : "2ef543ee21d63734e1c004ad6c870255e8716c50",
         "version" : "7.12.0"
-      }
-    },
-    {
-      "identity" : "reachability.swift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/ashleymills/Reachability.swift",
-      "state" : {
-        "branch" : "master",
-        "revision" : "7cbd73f46a7dfaeca079e18df7324c6de6d1834a"
       }
     },
     {

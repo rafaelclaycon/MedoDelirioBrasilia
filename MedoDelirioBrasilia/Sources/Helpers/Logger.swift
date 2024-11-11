@@ -10,7 +10,10 @@ import UIKit
 internal protocol LoggerProtocol {
 
     func logSyncError(description: String, updateEventId: String)
+    func logSyncError(description: String)
+
     func logSyncSuccess(description: String, updateEventId: String)
+    func logSyncSuccess(description: String)
 }
 
 class Logger: LoggerProtocol {
@@ -23,7 +26,7 @@ class Logger: LoggerProtocol {
         destinationBundleId: String
     ) {
         let shareLog = UserShareLog(
-            installId: UIDevice.customInstallId,
+            installId: AppPersistentMemory().customInstallId,
             contentId: contentId,
             contentType: ContentType.sound.rawValue,
             dateTime: .now,
@@ -40,7 +43,7 @@ class Logger: LoggerProtocol {
         destinationBundleId: String
     ) {
         let shareLog = UserShareLog(
-            installId: UIDevice.customInstallId,
+            installId: AppPersistentMemory().customInstallId,
             contentId: contentId,
             contentType: ContentType.song.rawValue,
             dateTime: Date(),
@@ -57,7 +60,7 @@ class Logger: LoggerProtocol {
         destinationBundleId: String
     ) {
         let shareLog = UserShareLog(
-            installId: UIDevice.customInstallId,
+            installId: AppPersistentMemory().customInstallId,
             contentId: contentId,
             contentType: ContentType.videoFromSound.rawValue,
             dateTime: Date(),
@@ -101,7 +104,10 @@ class Logger: LoggerProtocol {
         try? LocalDatabase.shared.insert(networkCallLog: log)
     }
 
-    func logSyncError(description: String, updateEventId: String) {
+    func logSyncError(
+        description: String,
+        updateEventId: String
+    ) {
         let syncLog = SyncLog(
             logType: .error,
             description: description,
@@ -110,11 +116,36 @@ class Logger: LoggerProtocol {
         LocalDatabase.shared.insert(syncLog: syncLog)
     }
 
-    func logSyncSuccess(description: String, updateEventId: String) {
+    func logSyncError(
+        description: String
+    ) {
+        let syncLog = SyncLog(
+            logType: .error,
+            description: description,
+            updateEventId: ""
+        )
+        LocalDatabase.shared.insert(syncLog: syncLog)
+    }
+
+    func logSyncSuccess(
+        description: String,
+        updateEventId: String
+    ) {
         let syncLog = SyncLog(
             logType: .success,
             description: description,
             updateEventId: updateEventId
+        )
+        LocalDatabase.shared.insert(syncLog: syncLog)
+    }
+
+    func logSyncSuccess(
+        description: String
+    ) {
+        let syncLog = SyncLog(
+            logType: .success,
+            description: description,
+            updateEventId: ""
         )
         LocalDatabase.shared.insert(syncLog: syncLog)
     }

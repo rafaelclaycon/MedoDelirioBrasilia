@@ -9,9 +9,10 @@ import SwiftUI
 
 struct AddReactionView: View {
 
-    @Binding var isBeingShown: Bool
     @State private var showPopover: Bool = false
     @State private var didCopySupportAddressOnEmailPicker: Bool = false
+
+    @Environment(\.dismiss) var dismiss
 
     var body: some View {
         NavigationView {
@@ -47,7 +48,7 @@ struct AddReactionView: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancelar") {
-                        isBeingShown.toggle()
+                        dismiss()
                     }
                 }
             }
@@ -82,6 +83,8 @@ struct AddReactionView: View {
     }
 }
 
+// MARK: - Preview
+
 #Preview {
-    AddReactionView(isBeingShown: .constant(true))
+    AddReactionView()
 }

@@ -16,8 +16,14 @@ internal protocol LocalDatabaseProtocol {
     func delete(authorId: String) throws
 
     // UserFolder
+
+    func allFolders() throws -> [UserFolder]
+    func contentsInside(userFolder userFolderId: String) throws -> [UserFolderContent]
     func contentExistsInsideUserFolder(withId folderId: String, contentId: String) throws -> Bool
-    
+    func soundIdsInside(userFolder userFolderId: String) throws -> [String]
+    func folderHashes() throws -> [String: String]
+    func folders(withIds folderIds: [String]) throws -> [UserFolder]
+
     // Song
     func insert(song newSong: Song) throws
     func update(song updatedSong: Song) throws
@@ -109,7 +115,8 @@ extension LocalDatabase {
             AddDateAndVersionToUserFolderTables(),
             AddSyncTables(),
             AddSongAndMusicGenreTables(),
-            AddExternalLinksFieldToAuthorTable()
+            AddExternalLinksFieldToAuthorTable(),
+            AddChangeHashFieldToUserFolderTable()
         ]
     }
 

@@ -179,7 +179,7 @@ struct SoundDetailView: View {
         soundStatistics = .loading
         let url = URL(string: NetworkRabbit.shared.serverPath + "v3/sound-share-count-stats-for/\(sound.id)")!
         do {
-            let stats: ContentShareCountStats = try await NetworkRabbit.get(from: url)
+            let stats: ContentShareCountStats = try await NetworkRabbit.shared.get(from: url)
             soundStatistics = .loaded(stats)
         } catch {
             soundStatistics = .error(error.localizedDescription)
