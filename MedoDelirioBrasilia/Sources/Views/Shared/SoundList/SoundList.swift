@@ -286,7 +286,11 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
 
                                     case .soundDetail:
                                         SoundDetailView(
-                                            sound: viewModel.selectedSound ?? Sound(title: "")
+                                            sound: viewModel.selectedSound ?? Sound(title: ""),
+                                            openAuthorDetailsAction: { author in
+                                                viewModel.showingModalView.toggle()
+                                                push(GeneralNavigationDestination.authorDetail(author))
+                                            }
                                         )
 
                                     case .soundIssueEmailPicker:

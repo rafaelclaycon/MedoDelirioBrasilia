@@ -10,6 +10,7 @@ import SwiftUI
 struct SoundDetailView: View {
 
     let sound: Sound
+    let openAuthorDetailsAction: (Author) -> Void
 
     @State private var isPlaying: Bool = false
     @State private var showSuggestOtherAuthorEmailAppPicker: Bool = false
@@ -22,8 +23,6 @@ struct SoundDetailView: View {
     @State private var alertMessage: String = ""
     @State private var showAlert: Bool = false
 
-    // MARK: - Environment Properties
-    @Environment(\.colorScheme) var colorScheme
     @Environment(\.dismiss) var dismiss
 
     // MARK: - Body
@@ -42,45 +41,24 @@ struct SoundDetailView: View {
                         Spacer()
                     }
 
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text(sound.title)
-                            .font(.title2)
-
-                        Text(sound.authorName ?? "")
-                            .foregroundColor(.gray)
-                            .padding(.vertical)
-
-                        Button {
+                    TitleAndAuthorSection(
+                        soundTitle: sound.title,
+                        authorName: sound.authorName ?? "",
+                        authorSelectedAction: {
+                            guard let author = try? LocalDatabase.shared.author(withId: sound.authorId) else { return }
+                            openAuthorDetailsAction(author)
+                        },
+                        editAuthorSelectedAction: {
                             showSuggestOtherAuthorEmailAppPicker = true
-                        } label: {
-                            Label("Sugerir outro nome de autor", systemImage: "pencil.line")
                         }
-                        .capsule(colored: colorScheme == .dark ? .primary : .gray)
-                        .padding(.top, 2)
-                    }
+                    )
 
-                    Text("Estatísticas")
-                        .font(.title3)
-                        .bold()
+                    StatsSection(
+                        stats: soundStatistics,
+                        retryAction: { Task { await loadStatistics() } }
+                    )
 
-                    switch soundStatistics {
-                    case .loading:
-                        PodiumPair.LoadingView()
-                    case .loaded(let stats):
-                        PodiumPair.LoadedView(stats: stats)
-                    case .error(_):
-                        PodiumPair.LoadingErrorView(
-                            retryAction: {
-                                Task { await loadStatistics() }
-                            }
-                        )
-                    }
-
-                    Text("Informações")
-                        .font(.title3)
-                        .bold()
-
-                    InfoBlock(sound: sound)
+                    InfoSection(sound: sound)
 
                     Spacer()
                 }
@@ -148,6 +126,83 @@ struct SoundDetailView: View {
 // MARK: - Subviews
 
 extension SoundDetailView {
+
+    struct TitleAndAuthorSection: View {
+
+        let soundTitle: String
+        let authorName: String
+        let authorSelectedAction: () -> Void
+        let editAuthorSelectedAction: () -> Void
+
+        @Environment(\.colorScheme) var colorScheme
+
+        var body: some View {
+            VStack(alignment: .leading, spacing: 8) {
+                Text(soundTitle)
+                    .font(.title2)
+
+                Button {
+                    authorSelectedAction()
+                } label: {
+                    HStack(spacing: 8) {
+                        Text(authorName)
+                        Image(systemName: "chevron.right")
+                    }
+                    .foregroundColor(.gray)
+                }
+                .padding(.top, 5)
+                .padding(.bottom)
+
+                Button {
+                    editAuthorSelectedAction()
+                } label: {
+                    Label("Sugerir outro nome de autor", systemImage: "pencil.line")
+                }
+                .capsule(colored: colorScheme == .dark ? .primary : .gray)
+                .padding(.top, 2)
+            }
+        }
+    }
+
+    struct StatsSection: View {
+
+        let stats: LoadingState<ContentShareCountStats>
+        let retryAction: () -> Void
+
+        var body: some View {
+            VStack(alignment: .leading, spacing: 20) {
+                Text("Estatísticas")
+                    .font(.title3)
+                    .bold()
+
+                switch stats {
+                case .loading:
+                    PodiumPair.LoadingView()
+                case .loaded(let stats):
+                    PodiumPair.LoadedView(stats: stats)
+                case .error(_):
+                    PodiumPair.LoadingErrorView(
+                        retryAction: retryAction
+                    )
+                }
+            }
+        }
+    }
+
+    struct InfoSection: View {
+
+        let sound: Sound
+
+        var body: some View {
+            VStack(alignment: .leading, spacing: 20) {
+                Text("Informações")
+                    .font(.title3)
+                    .bold()
+
+                InfoBlock(sound: sound)
+            }
+        }
+    }
 
     struct InfoLine: View {
 
@@ -376,6 +431,7 @@ extension SoundDetailView {
             title: "A gente vai cansando",
             authorName: "Soraya Thronicke",
             description: "meu deus a gente vai cansando sabe"
-        )
+        ),
+        openAuthorDetailsAction: { _ in }
     )
 }
