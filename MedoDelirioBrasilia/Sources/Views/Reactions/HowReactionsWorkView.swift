@@ -48,7 +48,7 @@ struct HowReactionsWorkView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancelar") {
+                    Button("Fechar") {
                         dismiss()
                     }
                 }
