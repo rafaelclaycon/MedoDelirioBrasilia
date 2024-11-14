@@ -7,6 +7,17 @@
 
 import SwiftUI
 
+/// A generic view that displays a list of sounds with customizable states for loading, empty, and error conditions.
+///
+/// `SoundList` supports various customization options, including search functionality, multi-selection, and conditional UI elements like
+/// sound counts, explicit content warnings, and more. It relies on `SoundListViewModel` to manage its data and state.
+///
+/// - Parameters:
+///   - authorId: The author's ID when `SoundList` is inside `AuthorDetailView`. This is used to avoid reopening the same author more than once when a user taps the author's name in `SoundDetailView`.
+///   - HeaderView: A view displayed at the top of the list, such as a custom header or title.
+///   - LoadingView: A view shown when data is loading.
+///   - EmptyStateView: A view displayed when there are no sounds to show.
+///   - ErrorView: A view displayed when data loading fails.
 struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, ErrorView: View>: View {
 
     // MARK: - Dependencies
@@ -21,6 +32,7 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
     private var syncAction: (() -> Void)?
     private var showNewTag: Bool
     private var dataLoadingDidFail: Bool
+    private var authorId: String?
 
     @ViewBuilder private let headerView: HeaderView?
     @ViewBuilder private let loadingView: LoadingView
@@ -76,6 +88,7 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
         multiSelectFolderOperation: FolderOperation = .add,
         showNewTag: Bool = true,
         dataLoadingDidFail: Bool,
+        authorId: String? = nil,
         headerView: (() -> HeaderView)? = nil,
         loadingView: LoadingView,
         emptyStateView: EmptyStateView,
@@ -91,6 +104,7 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
         self.multiSelectFolderOperation = multiSelectFolderOperation
         self.showNewTag = showNewTag
         self.dataLoadingDidFail = dataLoadingDidFail
+        self.authorId = authorId
         self.headerView = headerView?()
         self.loadingView = loadingView
         self.emptyStateView = emptyStateView
@@ -288,9 +302,11 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
                                         SoundDetailView(
                                             sound: viewModel.selectedSound ?? Sound(title: ""),
                                             openAuthorDetailsAction: { author in
+                                                guard author.id != self.authorId else { return }
                                                 viewModel.showingModalView.toggle()
                                                 push(GeneralNavigationDestination.authorDetail(author))
-                                            }
+                                            },
+                                            authorId: authorId
                                         )
 
                                     case .soundIssueEmailPicker:

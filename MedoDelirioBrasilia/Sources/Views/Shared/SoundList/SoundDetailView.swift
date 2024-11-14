@@ -7,10 +7,20 @@
 
 import SwiftUI
 
+/// A view that displays the details of a specific sound, including its title, author, statistics, and additional information.
+///
+/// `SoundDetailView` provides options to play the sound, view author details, and display sound-related statistics.
+/// It also supports sending suggestions to update the author name via an email picker.
+///
+/// - Parameters:
+///   - sound: The sound item to be displayed with its details.
+///   - openAuthorDetailsAction: A closure triggered to open the author's detail view.
+///   - authorId: An optional author ID for deciding if the author's name button should navigate to author details or not. When already opening from author details it should NOT.
 struct SoundDetailView: View {
 
     let sound: Sound
     let openAuthorDetailsAction: (Author) -> Void
+    let authorId: String?
 
     @State private var isPlaying: Bool = false
     @State private var showSuggestOtherAuthorEmailAppPicker: Bool = false
@@ -44,6 +54,7 @@ struct SoundDetailView: View {
                     TitleAndAuthorSection(
                         soundTitle: sound.title,
                         authorName: sound.authorName ?? "",
+                        authorCanNavigate: sound.authorId != authorId,
                         authorSelectedAction: {
                             guard let author = try? LocalDatabase.shared.author(withId: sound.authorId) else { return }
                             openAuthorDetailsAction(author)
@@ -131,6 +142,7 @@ extension SoundDetailView {
 
         let soundTitle: String
         let authorName: String
+        let authorCanNavigate: Bool
         let authorSelectedAction: () -> Void
         let editAuthorSelectedAction: () -> Void
 
@@ -146,12 +158,15 @@ extension SoundDetailView {
                 } label: {
                     HStack(spacing: 8) {
                         Text(authorName)
-                        Image(systemName: "chevron.right")
+                        if authorCanNavigate {
+                            Image(systemName: "chevron.right")
+                        }
                     }
                     .foregroundColor(.gray)
                 }
                 .padding(.top, 5)
                 .padding(.bottom)
+                .disabled(!authorCanNavigate)
 
                 Button {
                     editAuthorSelectedAction()
@@ -450,6 +465,7 @@ extension SoundDetailView {
             authorName: "Soraya Thronicke",
             description: "meu deus a gente vai cansando sabe"
         ),
-        openAuthorDetailsAction: { _ in }
+        openAuthorDetailsAction: { _ in },
+        authorId: nil
     )
 }
