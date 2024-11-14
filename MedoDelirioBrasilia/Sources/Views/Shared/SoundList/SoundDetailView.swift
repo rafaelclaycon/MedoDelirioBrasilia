@@ -367,7 +367,7 @@ extension SoundDetailView {
             let retryAction: () -> Void
 
             var body: some View {
-                VStack(spacing: 15) {
+                VStack(spacing: 24) {
                     Text("Não foi possível carregar as estatísticas de compartilhamento.")
                         .multilineTextAlignment(.center)
 
@@ -379,7 +379,7 @@ extension SoundDetailView {
                     }
                     .borderedButton(colored: .blue)
                 }
-                .frame(minHeight: 100)
+                .padding(.vertical, 18)
                 .frame(maxWidth: .infinity)
             }
         }
