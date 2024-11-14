@@ -311,6 +311,7 @@
 		D93D24E02849DAAB00300541 /* DiagnosticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D24DF2849DAAB00300541 /* DiagnosticsView.swift */; };
 		D93F642E29A6A5FF003E7550 /* ShareAsVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F642D29A6A5FF003E7550 /* ShareAsVideoView.swift */; };
 		D93F643029A6A692003E7550 /* ShareAsVideoViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F642F29A6A692003E7550 /* ShareAsVideoViewViewModel.swift */; };
+		D944D5D92CE1A23600621981 /* CrumbProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D944D5D82CE1A23600621981 /* CrumbProgressView.swift */; };
 		D945512C2A4EF5E7000A22B1 /* Eu nao sei o que e o codigo-fonte.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94551242A4EF5E6000A22B1 /* Eu nao sei o que e o codigo-fonte.mp3 */; };
 		D945512D2A4EF5E7000A22B1 /* Interessante hein, cara.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94551252A4EF5E7000A22B1 /* Interessante hein, cara.mp3 */; };
 		D945512E2A4EF5E7000A22B1 /* Eu nao aguento mais.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D94551262A4EF5E7000A22B1 /* Eu nao aguento mais.mp3 */; };
@@ -1841,6 +1842,7 @@
 		D93D24DF2849DAAB00300541 /* DiagnosticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticsView.swift; sourceTree = "<group>"; };
 		D93F642D29A6A5FF003E7550 /* ShareAsVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAsVideoView.swift; sourceTree = "<group>"; };
 		D93F642F29A6A692003E7550 /* ShareAsVideoViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAsVideoViewViewModel.swift; sourceTree = "<group>"; };
+		D944D5D82CE1A23600621981 /* CrumbProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrumbProgressView.swift; sourceTree = "<group>"; };
 		D94551242A4EF5E6000A22B1 /* Eu nao sei o que e o codigo-fonte.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu nao sei o que e o codigo-fonte.mp3"; sourceTree = "<group>"; };
 		D94551252A4EF5E7000A22B1 /* Interessante hein, cara.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Interessante hein, cara.mp3"; sourceTree = "<group>"; };
 		D94551262A4EF5E7000A22B1 /* Eu nao aguento mais.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu nao aguento mais.mp3"; sourceTree = "<group>"; };
@@ -4779,6 +4781,7 @@
 			children = (
 				D9838A0D2CC5830400E58C2E /* StoriesView.swift */,
 				D9838A112CC59ABF00E58C2E /* Retro2024Banner.swift */,
+				D944D5D82CE1A23600621981 /* CrumbProgressView.swift */,
 			);
 			path = Stories;
 			sourceTree = "<group>";
@@ -6671,6 +6674,7 @@
 				D9E7BE962C9E1D9D0094AD28 /* Donor.swift in Sources */,
 				D9E7BE972C9E1D9D0094AD28 /* AppIcon.swift in Sources */,
 				D9E7BE982C9E1D9D0094AD28 /* ContentSortOption.swift in Sources */,
+				D944D5D92CE1A23600621981 /* CrumbProgressView.swift in Sources */,
 				D9E7BE992C9E1D9D0094AD28 /* ServerStatsAndLogs.swift in Sources */,
 				D9E7BE9A2C9E1D9D0094AD28 /* ExternalLink.swift in Sources */,
 				D9E7BE9B2C9E1D9D0094AD28 /* PushDevice.swift in Sources */,
@@ -6827,7 +6831,7 @@
 				D9F78A9F2860DF9100B83567 /* ReactionItem.swift in Sources */,
 				D9CC893528EB7CF800576492 /* MostSharedByAudienceView+ViewModel.swift in Sources */,
 				D9943F2A28642EC3002C6B97 /* UserFolderContent.swift in Sources */,
-				D9943F2828642200002C6B97 /* AddToFolderViewViewModel.swift in Sources */,
+				D9943F2828642200002C6B97 /* AddToFolderViewModel.swift in Sources */,
 				D9838A0E2CC5830400E58C2E /* StoriesView.swift in Sources */,
 				D98B291D28691C5C008A78AE /* ColorSelectionCell.swift in Sources */,
 				D992E8262A185C8A00137469 /* InternalFolderNames.swift in Sources */,

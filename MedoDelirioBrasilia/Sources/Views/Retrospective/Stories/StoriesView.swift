@@ -36,17 +36,36 @@ struct StoriesView: View {
 extension StoriesView {
 
     struct FirstStory: View {
+
+        @State private var isLarge = false
+
         var body: some View {
             VStack {
-                Spacer()
+                VStack(spacing: 15) {
+                    Spacer()
 
-                Text("Juntos doamos")
+                    Text("Juntos doamos")
+                        .font(.largeTitle)
 
-                Text("R$ 1.600")
+                    Text("R$ 1.600")
+                        .font(isLarge ? .system(size: 60) : .body)
+                        .bold()
+                        .animation(.easeInOut(duration: 0.75), value: isLarge)
 
-                Text("para pessoas desabrigadas no Rio Grande do Sul.")
+                    Text("para **9 famílias** desabrigadas no Rio Grande do Sul.")
+                        .font(.title)
 
-                Spacer()
+                    Spacer()
+                }
+                .multilineTextAlignment(.center)
+                .foregroundStyle(.white)
+                .padding(.horizontal, 30)
+            }
+            .background {
+                Color.green
+            }
+            .onAppear {
+                isLarge.toggle()
             }
         }
     }
@@ -55,3 +74,26 @@ extension StoriesView {
 #Preview {
     StoriesView()
 }
+
+//#Preview("Show Sheet") {
+//
+//    struct BackgroundTestView: View {
+//
+//        @State private var isSheetPresented: Bool = false
+//
+//        var body: some View {
+//            VStack(spacing: 30) {
+//                Text("Background View")
+//
+//                Button("ShowSheet") {
+//                    isSheetPresented = true
+//                }
+//            }
+//            .fullScreenCover(isPresented: $isSheetPresented) {
+//                StoriesView()
+//            }
+//        }
+//    }
+//
+//    return BackgroundTestView()
+//}
