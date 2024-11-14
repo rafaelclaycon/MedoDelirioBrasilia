@@ -16,7 +16,7 @@ struct SoundDetailView: View {
     @State private var showSuggestOtherAuthorEmailAppPicker: Bool = false
     @State private var didCopySupportAddressOnEmailPicker: Bool = false
     @State private var showToastView: Bool = false
-    @State private var soundStatistics: LoadingState<ContentShareCountStats> = .loading
+    @State private var soundStatistics: ContentStatisticsState<ContentShareCountStats> = .loading
 
     // Alerts
     @State private var alertTitle: String = ""
@@ -166,7 +166,7 @@ extension SoundDetailView {
 
     struct StatsSection: View {
 
-        let stats: LoadingState<ContentShareCountStats>
+        let stats: ContentStatisticsState<ContentShareCountStats>
         let retryAction: () -> Void
 
         var body: some View {
@@ -180,6 +180,8 @@ extension SoundDetailView {
                     PodiumPair.LoadingView()
                 case .loaded(let stats):
                     PodiumPair.LoadedView(stats: stats)
+                case .noDataYet:
+                    PodiumPair.NoDataView()
                 case .error(_):
                     PodiumPair.LoadingErrorView(
                         retryAction: retryAction
@@ -347,6 +349,18 @@ extension SoundDetailView {
             }
         }
 
+        struct NoDataView: View {
+
+            var body: some View {
+                VStack(spacing: 15) {
+                    Text("Ainda não existem estatísticas de compartilhamento para esse som. Volte mais tarde.")
+                        .multilineTextAlignment(.center)
+                }
+                .frame(minHeight: 150)
+                .frame(maxWidth: .infinity)
+            }
+        }
+
         struct LoadingErrorView: View {
 
             let retryAction: () -> Void
@@ -403,7 +417,10 @@ extension SoundDetailView {
         do {
             let stats: ContentShareCountStats = try await NetworkRabbit.shared.get(from: url)
             soundStatistics = .loaded(stats)
+        } catch NetworkRabbitError.resourceNotFound {
+            soundStatistics = .noDataYet
         } catch {
+            debugPrint(error.localizedDescription)
             soundStatistics = .error(error.localizedDescription)
         }
     }
