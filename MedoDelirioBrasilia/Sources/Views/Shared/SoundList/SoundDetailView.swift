@@ -353,10 +353,11 @@ extension SoundDetailView {
 
             var body: some View {
                 VStack(spacing: 15) {
-                    Text("Ainda não existem estatísticas de compartilhamento para esse som. Volte mais tarde.")
+                    Text("Ainda não existem estatísticas de compartilhamento para esse som.")
                         .multilineTextAlignment(.center)
+                        .foregroundStyle(.gray)
+                        .padding(.all, 20)
                 }
-                .frame(minHeight: 150)
                 .frame(maxWidth: .infinity)
             }
         }
