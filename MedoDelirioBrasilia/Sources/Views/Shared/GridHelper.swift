@@ -45,10 +45,11 @@ class GridHelper {
     static func adaptableColumns(
         listWidth: CGFloat,
         sizeCategory: ContentSizeCategory,
-        spacing: CGFloat
+        spacing: CGFloat,
+        forceSingleColumnOnPhone: Bool = false
     ) -> [GridItem] {
         if UIDevice.current.userInterfaceIdiom == .phone {
-            if sizeCategory > ContentSizeCategory.large {
+            if forceSingleColumnOnPhone || sizeCategory > ContentSizeCategory.large {
                 return [
                     GridItem(.flexible(), spacing: spacing, alignment: .center)
                 ]

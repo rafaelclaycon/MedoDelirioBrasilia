@@ -108,10 +108,12 @@ struct MostSharedByAudienceView: View {
                                     navigateTo(sound: item.contentId)
                                 }
                                 .contextMenu {
-                                    Button {
-                                        navigateTo(sound: item.contentId)
-                                    } label: {
-                                        Label("Ir para Som", systemImage: "arrow.uturn.backward")
+                                    if UIDevice.isiPhone {
+                                        Button {
+                                            navigateTo(sound: item.contentId)
+                                        } label: {
+                                            Label("Ir para Som", systemImage: "arrow.uturn.backward")
+                                        }
                                     }
                                 }
                         }
