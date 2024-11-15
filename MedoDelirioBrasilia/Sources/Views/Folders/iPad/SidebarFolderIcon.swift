@@ -9,26 +9,25 @@ import SwiftUI
 
 struct SidebarFolderIcon: View {
 
-    @State var symbol: String
-    @State var backgroundColor: Color
-    @State var size: CGFloat = 40
-    
-    var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 7, style: .continuous)
-                .fill(backgroundColor)
-                .frame(width: size, height: size)
-            
-            Text(symbol)
-        }
-    }
+    let symbol: String
+    let backgroundColor: Color
+    var size: CGFloat = 40
 
+    var body: some View {
+        RoundedRectangle(cornerRadius: 7, style: .continuous)
+            .fill(backgroundColor)
+            .frame(width: size, height: size)
+            .overlay {
+                Text(symbol)
+            }
+    }
 }
 
-struct SidebarFolderIcon_Previews: PreviewProvider {
+// MARK: - Preview
 
-    static var previews: some View {
-        SidebarFolderIcon(symbol: "😎", backgroundColor: .pastelBabyBlue)
-    }
-
+#Preview {
+    SidebarFolderIcon(
+        symbol: "😎",
+        backgroundColor: .pastelBabyBlue
+    )
 }

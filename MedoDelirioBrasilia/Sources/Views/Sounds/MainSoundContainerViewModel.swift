@@ -8,6 +8,7 @@
 import SwiftUI
 import Combine
 
+@MainActor
 class MainSoundContainerViewModel: ObservableObject {
 
     // MARK: - Published Vars
@@ -88,9 +89,8 @@ class MainSoundContainerViewModel: ObservableObject {
                 allowSensitive: UserSettings().getShowExplicitContent(),
                 favoritesOnly: false
             )
-            DispatchQueue.main.async {
-                self.allSounds = sounds
-            }
+
+            allSounds = sounds
 
             guard sounds.count > 0 else { return }
             let sortOption: SoundSortOption = SoundSortOption(rawValue: soundSortOption) ?? .dateAddedDescending
@@ -107,9 +107,8 @@ class MainSoundContainerViewModel: ObservableObject {
                 allowSensitive: UserSettings().getShowExplicitContent(),
                 favoritesOnly: true
             )
-            DispatchQueue.main.async {
-                self.favorites = sounds
-            }
+
+            favorites = sounds
 
             guard sounds.count > 0 else { return }
             let sortOption: SoundSortOption = SoundSortOption(rawValue: soundSortOption) ?? .dateAddedDescending

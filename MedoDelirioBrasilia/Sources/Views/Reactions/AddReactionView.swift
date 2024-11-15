@@ -52,7 +52,7 @@ struct AddReactionView: View {
                     }
                 }
             }
-            .popover(isPresented: $showPopover) {
+            .sheet(isPresented: $showPopover) {
                 EmailAppPickerView(
                     isBeingShown: $showPopover,
                     didCopySupportAddress: $didCopySupportAddressOnEmailPicker,
