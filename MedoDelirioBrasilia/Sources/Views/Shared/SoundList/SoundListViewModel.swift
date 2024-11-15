@@ -77,6 +77,10 @@ class SoundListViewModel<T>: ObservableObject {
 
     private var cancellables = Set<AnyCancellable>()
 
+    private let fileLocator = FileLocatorHandler()
+    private let filenameSanitizer = FilenameSanitizerHandler()
+    private let shareSheet = ShareSheetHandler()
+
     // MARK: - Initializer
 
     init(
@@ -93,6 +97,8 @@ class SoundListViewModel<T>: ObservableObject {
         self.refreshAction = refreshAction
         self.folder = insideFolder
 
+        setUpShareChainOfResponsability()
+
         data
             .map { LoadingState.loaded($0) }
             .receive(on: DispatchQueue.main)
@@ -102,6 +108,11 @@ class SoundListViewModel<T>: ObservableObject {
     }
 
     // MARK: - Functions
+
+    private func setUpShareChainOfResponsability() {
+        fileLocator.nextHandler = filenameSanitizer
+        filenameSanitizer.nextHandler = shareSheet
+    }
 
     func loadFavorites() {
         do {
@@ -294,39 +305,14 @@ extension SoundListViewModel {
 extension SoundListViewModel: SoundListDisplaying {
 
     func share(sound: Sound) {
-        if UIDevice.isiPhone {
+        Task {
+            var context = ShareContext()
+            
             do {
-                try SharingUtility.shareSound(from: sound.fileURL(), andContentId: sound.id) { didShare in
-                    if didShare {
-                        self.displayToast(toastText: Shared.soundSharedSuccessfullyMessage)
-                    }
-                }
+                try await fileLocator.handle(sound: sound, context: &context)
             } catch {
                 showUnableToGetSoundAlert(sound.title)
             }
-        } else {
-            do {
-                let url = try sound.fileURL()
-                iPadShareSheet = ActivityViewController(activityItems: [url]) { activity, completed, items, error in
-                    if completed {
-                        self.isShowingShareSheet = false
-
-                        guard let activity = activity else {
-                            return
-                        }
-                        let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
-                        Logger.shared.logSharedSound(contentId: sound.id, destination: destination, destinationBundleId: activity.rawValue)
-
-                        AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
-
-                        self.displayToast(toastText: Shared.soundSharedSuccessfullyMessage)
-                    }
-                }
-            } catch {
-                showUnableToGetSoundAlert(sound.title)
-            }
-
-            isShowingShareSheet = true
         }
     }
 
