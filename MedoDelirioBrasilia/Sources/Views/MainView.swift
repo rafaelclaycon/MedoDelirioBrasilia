@@ -137,7 +137,7 @@ struct MainView: View {
                                     viewModel: .init(
                                         currentViewMode: .allSounds,
                                         soundSortOption: UserSettings().mainSoundListSoundSortOption(),
-                                        authorSortOption: AuthorSortOption.nameAscending.rawValue,
+                                        authorSortOption: UserSettings().authorSortOption(),
                                         currentSoundsListMode: $currentSoundsListMode,
                                         syncValues: syncValues
                                     ),
@@ -159,7 +159,7 @@ struct MainView: View {
                                     viewModel: .init(
                                         currentViewMode: .favorites,
                                         soundSortOption: UserSettings().mainSoundListSoundSortOption(),
-                                        authorSortOption: AuthorSortOption.nameAscending.rawValue,
+                                        authorSortOption: UserSettings().authorSortOption(),
                                         currentSoundsListMode: $currentSoundsListMode,
                                         syncValues: syncValues
                                     ),
@@ -251,8 +251,7 @@ struct MainView: View {
                     .tabViewSidebarFooter {
                         HStack {
                             Button {
-                                subviewToOpen = .settings
-                                showingModalView = true
+                                isShowingSettingsSheet.toggle()
                             } label: {
                                 Label("Configurações", systemImage: "gearshape")
                             }
@@ -340,6 +339,11 @@ struct MainView: View {
                     updateFolderList = true
                 }
             )
+        }
+        // Could be removed in the future, but for now using `showingModalView` bugs out on iPad. Shows Onboarding most of the time.
+        .sheet(isPresented: $isShowingSettingsSheet) {
+            SettingsCasingWithCloseView(isBeingShown: $isShowingSettingsSheet)
+                .environmentObject(settingsHelper)
         }
     }
 
