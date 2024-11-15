@@ -168,6 +168,9 @@ struct MainView: View {
                                 )
                                 .environmentObject(trendsHelper)
                                 .environmentObject(settingsHelper)
+                                .navigationDestination(for: GeneralNavigationDestination.self) { screen in
+                                    GeneralRouter(destination: screen)
+                                }
                             }
                             .environment(\.push, PushAction { favoritesPath.append($0) })
                         }
@@ -189,6 +192,9 @@ struct MainView: View {
                                     sortAction: $authorSortAction,
                                     searchTextForControl: .constant("")
                                 )
+                                .navigationDestination(for: GeneralNavigationDestination.self) { screen in
+                                    GeneralRouter(destination: screen)
+                                }
                             }
                             .environment(\.push, PushAction { authorsPath.append($0) })
                         }
@@ -217,6 +223,9 @@ struct MainView: View {
                                         folderForEditing: $folderForEditing,
                                         updateFolderList: $updateFolderList
                                     )
+                                    .navigationDestination(for: GeneralNavigationDestination.self) { screen in
+                                        GeneralRouter(destination: screen)
+                                    }
                                 }
                                 .environment(\.push, PushAction { foldersPath.append($0) })
                             }
