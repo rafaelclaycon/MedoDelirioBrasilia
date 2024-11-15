@@ -230,13 +230,19 @@ struct MainView: View {
                                 .environment(\.push, PushAction { foldersPath.append($0) })
                             }
 
-//                            ForEach(viewModel.folders) { folder in
-//                                Tab(folder.name, )
-//                               FolderDetailView(
-//                                        folder: folder,
-//                                        currentSoundsListMode: $currentSoundsListMode
-//                                    )
-//                            }
+                            ForEach(viewModel.folders) { folder in
+                                Tab {
+                                    NavigationStack {
+                                        FolderDetailView(
+                                            folder: folder,
+                                            currentSoundsListMode: $currentSoundsListMode
+                                        )
+                                    }
+                                } label: {
+                                    Text("\(folder.symbol)   \(folder.name)")
+                                        .padding()
+                                }
+                            }
                         }
                         .sectionActions {
                             Button {
