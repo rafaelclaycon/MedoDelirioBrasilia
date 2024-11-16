@@ -1,5 +1,5 @@
 //
-//  RetroView+ViewModel.swift
+//  ClassicRetroView+ViewModel.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 10/10/23.
@@ -8,8 +8,9 @@
 import UIKit
 import Combine
 
-extension Retro2023View {
+extension ClassicRetroView {
 
+    @MainActor
     class ViewModel: ObservableObject {
 
         @Published var topFive: [TopChartItem] = []
@@ -117,15 +118,11 @@ extension Retro2023View {
         }
 
         func save(image: UIImage) async throws {
-            DispatchQueue.main.async {
-                self.isShowingProcessingView = true
-            }
+            isShowingProcessingView = true
 
             try await CustomPhotoAlbum.sharedInstance.save(image: image)
 
-            DispatchQueue.main.async {
-                self.isShowingProcessingView = false
-            }
+            isShowingProcessingView = false
         }
 
         func showExportError() {

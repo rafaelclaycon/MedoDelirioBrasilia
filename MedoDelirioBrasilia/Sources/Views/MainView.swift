@@ -342,7 +342,7 @@ struct MainView: View {
                     .interactiveDismissDisabled()
 
             case .retrospective:
-                EmptyView()
+                ClassicRetroView(imageSaveSucceededAction: {})
             }
         }
         .sheet(item: $folderForEditing) { folder in

@@ -1,5 +1,5 @@
 //
-//  Retro2023View.swift
+//  ClassicRetroView.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 08/10/23.
@@ -7,17 +7,13 @@
 
 import SwiftUI
 
-struct Retro2023View: View {
+struct ClassicRetroView: View {
 
-    @StateObject var viewModel: ViewModel
+    @StateObject private var viewModel = ViewModel()
 
-    @Binding var isBeingShown: Bool
-    @Binding var analyticsString: String
+    private let imageSaveSucceededAction: () -> Void
 
-    @Environment(\.colorScheme) var colorScheme
-
-    @ScaledMetric var vstackSpacing: CGFloat = 24
-    @ScaledMetric var bottomPadding: CGFloat = 26
+    // MARK: - Computed Properties
 
     var mostCommonDayFont: Font {
         if viewModel.mostCommonShareDay.count <= 7 {
@@ -32,6 +28,24 @@ struct Retro2023View: View {
     var mostCommonDaySubtitle: String {
         viewModel.mostCommonShareDayPluralization == .plural ? "dias que mais compartilha" : "dia que mais compartilha"
     }
+
+    @ScaledMetric var vstackSpacing: CGFloat = 24
+    @ScaledMetric var bottomPadding: CGFloat = 26
+
+    // MARK: - Environment Variables
+
+    @Environment(\.colorScheme) var colorScheme
+    @Environment(\.dismiss) var dismiss
+
+    // MARK: - Initializer
+
+    init(
+        imageSaveSucceededAction: @escaping () -> Void
+    ) {
+        self.imageSaveSucceededAction = imageSaveSucceededAction
+    }
+
+    // MARK: - View Body
 
     var body: some View {
         let rankingSquare = topFiveSquareImageView()
@@ -65,7 +79,7 @@ struct Retro2023View: View {
                     .padding(.bottom, bottomPadding)
                     .navigationBarItems(leading:
                         Button("Cancelar") {
-                            self.isBeingShown = false
+                            dismiss()
                         }
                     )
                     .alert(isPresented: $viewModel.showAlert) {
@@ -90,8 +104,7 @@ struct Retro2023View: View {
         .onChange(of: viewModel.shouldProcessPostExport) { shouldProcess in
             guard shouldProcess else { return }
             if viewModel.exportErrors.isEmpty {
-                analyticsString = viewModel.analyticsString()
-                isBeingShown.toggle()
+                imageSaveSucceededAction()
             } else {
                 viewModel.isShowingProcessingView = false
                 viewModel.showExportError()
@@ -227,7 +240,7 @@ struct Retro2023View: View {
     }
 }
 
-extension Retro2023View {
+extension ClassicRetroView {
 
     struct AddHashtagIncentive: View {
 
@@ -290,10 +303,10 @@ extension Retro2023View {
     }
 }
 
+// MARK: - Preview
+
 #Preview {
-    Retro2023View(
-        viewModel: .init(),
-        isBeingShown: .constant(true),
-        analyticsString: .constant("")
+    ClassicRetroView(
+        imageSaveSucceededAction: {}
     )
 }

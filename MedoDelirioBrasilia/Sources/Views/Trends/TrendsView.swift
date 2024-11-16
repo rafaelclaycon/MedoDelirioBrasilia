@@ -106,10 +106,8 @@ struct TrendsView: View {
                                 }*/
                         }
                         .sheet(isPresented: $showModalView) {
-                            Retro2023View(
-                                viewModel: .init(),
-                                isBeingShown: $showModalView,
-                                analyticsString: $retroExportAnalytics
+                            ClassicRetroView(
+                                imageSaveSucceededAction: {}
                             )
                         }
                     }
@@ -131,7 +129,7 @@ struct TrendsView: View {
         .navigationBarTitleDisplayMode(showTrends ? .large : .inline)
         .onAppear {
             Task {
-                shouldDisplayRetrospectiveBanner = await Retro2023View.ViewModel.shouldDisplayBanner()
+                shouldDisplayRetrospectiveBanner = await ClassicRetroView.ViewModel.shouldDisplayBanner()
             }
             audienceViewModel.displayToast = { message in
                 viewModel.displayToast(
@@ -174,6 +172,8 @@ struct TrendsView: View {
         }
     }
 }
+
+// MARK: - Preview
 
 #Preview {
     TrendsView(
