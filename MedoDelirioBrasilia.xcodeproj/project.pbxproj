@@ -1354,7 +1354,7 @@
 		D9D3D493288750C400C42FDE /* FolderListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D3D492288750C400C42FDE /* FolderListViewModel.swift */; };
 		D9D53E3D2AA408AD00B46558 /* Cristiano - Advogados malucos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D53E3C2AA408AD00B46558 /* Cristiano - Advogados malucos.mp3 */; };
 		D9D627122B266389000EB791 /* AuthorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D627112B266389000EB791 /* AuthorCell.swift */; };
-		D9D734FB2AD38AF300A25916 /* RetroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D734FA2AD38AF300A25916 /* RetroView.swift */; };
+		D9D734FB2AD38AF300A25916 /* Retro2023View.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D734FA2AD38AF300A25916 /* Retro2023View.swift */; };
 		D9D798742A082955002B2D77 /* Diogo Defante - Ih, a porrada ta lambrando ainda.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D798732A082955002B2D77 /* Diogo Defante - Ih, a porrada ta lambrando ainda.mp3 */; };
 		D9D7988F2A093A54002B2D77 /* Caetano Veloso - Deus e um cara gozador, adora brincadeira.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D798872A093A54002B2D77 /* Caetano Veloso - Deus e um cara gozador, adora brincadeira.mp3 */; };
 		D9D798902A093A54002B2D77 /* Que viagem e essa, vei.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D798882A093A54002B2D77 /* Que viagem e essa, vei.mp3 */; };
@@ -2886,7 +2886,7 @@
 		D9D3D492288750C400C42FDE /* FolderListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListViewModel.swift; sourceTree = "<group>"; };
 		D9D53E3C2AA408AD00B46558 /* Cristiano - Advogados malucos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano - Advogados malucos.mp3"; sourceTree = "<group>"; };
 		D9D627112B266389000EB791 /* AuthorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorCell.swift; sourceTree = "<group>"; };
-		D9D734FA2AD38AF300A25916 /* RetroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetroView.swift; sourceTree = "<group>"; };
+		D9D734FA2AD38AF300A25916 /* Retro2023View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Retro2023View.swift; sourceTree = "<group>"; };
 		D9D798732A082955002B2D77 /* Diogo Defante - Ih, a porrada ta lambrando ainda.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Diogo Defante - Ih, a porrada ta lambrando ainda.mp3"; sourceTree = "<group>"; };
 		D9D798872A093A54002B2D77 /* Caetano Veloso - Deus e um cara gozador, adora brincadeira.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Caetano Veloso - Deus e um cara gozador, adora brincadeira.mp3"; sourceTree = "<group>"; };
 		D9D798882A093A54002B2D77 /* Que viagem e essa, vei.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Que viagem e essa, vei.mp3"; sourceTree = "<group>"; };
@@ -4469,7 +4469,7 @@
 			isa = PBXGroup;
 			children = (
 				D9838A0C2CC582ED00E58C2E /* Stories */,
-				D9D734FA2AD38AF300A25916 /* RetroView.swift */,
+				D9D734FA2AD38AF300A25916 /* Retro2023View.swift */,
 				D9543B452AD5D6C80075A7A1 /* RetroView+ViewModel.swift */,
 			);
 			path = Retrospective;
@@ -6866,7 +6866,7 @@
 				D9FD9E8D2A89690C0071F4A9 /* YoureOfflineView.swift in Sources */,
 				D99BBE43294676B200BCA901 /* NetworkRabbit+UsageMetric.swift in Sources */,
 				D991E598284A94F70005705F /* Podium.swift in Sources */,
-				D9D734FB2AD38AF300A25916 /* RetroView.swift in Sources */,
+				D9D734FB2AD38AF300A25916 /* Retro2023View.swift in Sources */,
 				D9BAA6F42982F4340060982A /* CreateFolderCell.swift in Sources */,
 				D95DB0F82882491A00D4FEDF /* ScreenAndTabs.swift in Sources */,
 				D91B4DF4299BB4DE00E92824 /* ShowExplicitContentOnboardingView.swift in Sources */,

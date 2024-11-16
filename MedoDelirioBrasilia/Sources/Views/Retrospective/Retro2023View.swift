@@ -1,5 +1,5 @@
 //
-//  SoundsOfTheYearGeneratorView.swift
+//  Retro2023View.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 08/10/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RetroView: View {
+struct Retro2023View: View {
 
     @StateObject var viewModel: ViewModel
 
@@ -227,7 +227,7 @@ struct RetroView: View {
     }
 }
 
-extension RetroView {
+extension Retro2023View {
 
     struct AddHashtagIncentive: View {
 
@@ -291,7 +291,7 @@ extension RetroView {
 }
 
 #Preview {
-    RetroView(
+    Retro2023View(
         viewModel: .init(),
         isBeingShown: .constant(true),
         analyticsString: .constant("")

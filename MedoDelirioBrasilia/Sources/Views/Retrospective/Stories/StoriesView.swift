@@ -33,6 +33,8 @@ struct StoriesView: View {
     }
 }
 
+// MARK: - Subviews
+
 extension StoriesView {
 
     struct FirstStory: View {
@@ -66,6 +68,31 @@ extension StoriesView {
             }
             .onAppear {
                 isLarge.toggle()
+            }
+        }
+    }
+
+    struct SecondStory: View {
+
+        var body: some View {
+            VStack {
+                VStack(spacing: 15) {
+                    Spacer()
+
+                    Text("Juntos doamos")
+                        .font(.largeTitle)
+
+                    Text("para **9 famílias** desabrigadas no Rio Grande do Sul.")
+                        .font(.title)
+
+                    Spacer()
+                }
+                .multilineTextAlignment(.center)
+                .foregroundStyle(.white)
+                .padding(.horizontal, 30)
+            }
+            .background {
+                Color.green
             }
         }
     }

@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-extension RetroView {
+extension Retro2023View {
 
     class ViewModel: ObservableObject {
 
