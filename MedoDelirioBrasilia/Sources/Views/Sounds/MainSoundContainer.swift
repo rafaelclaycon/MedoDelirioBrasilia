@@ -277,6 +277,7 @@ struct MainSoundContainer: View {
 
             viewModel.reloadAllSounds()
             viewModel.reloadFavorites()
+            favoritesViewModel.loadFavorites()
         }
     }
 }
@@ -337,7 +338,13 @@ extension MainSoundContainer {
                         UserSettings().saveAuthorSortOption(authorSortOption)
                     }
                 } else {
-                    if currentSoundsListMode.wrappedValue == .regular {
+                    if UIDevice.isiPhone && currentSoundsListMode.wrappedValue == .regular {
+                        SyncStatusView()
+                            .onTapGesture {
+                                subviewToOpen = .syncInfo
+                                showingModalView = true
+                            }
+                    } else if !UIDevice.isiPhone && viewModel.currentViewMode != .favorites {
                         SyncStatusView()
                             .onTapGesture {
                                 subviewToOpen = .syncInfo

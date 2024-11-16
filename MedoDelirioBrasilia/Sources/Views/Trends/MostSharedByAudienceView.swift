@@ -108,10 +108,12 @@ struct MostSharedByAudienceView: View {
                                     navigateTo(sound: item.contentId)
                                 }
                                 .contextMenu {
-                                    Button {
-                                        navigateTo(sound: item.contentId)
-                                    } label: {
-                                        Label("Ir para Som", systemImage: "arrow.uturn.backward")
+                                    if UIDevice.isiPhone {
+                                        Button {
+                                            navigateTo(sound: item.contentId)
+                                        } label: {
+                                            Label("Ir para Som", systemImage: "arrow.uturn.backward")
+                                        }
                                     }
                                 }
                         }
@@ -155,6 +157,7 @@ struct MostSharedByAudienceView: View {
                 Text(Shared.Trends.last3Days).tag(TrendsTimeInterval.last3Days)
                 Text(Shared.Trends.lastWeek).tag(TrendsTimeInterval.lastWeek)
                 Text(Shared.Trends.lastMonth).tag(TrendsTimeInterval.lastMonth)
+                Text(Shared.Trends.year2024).tag(TrendsTimeInterval.year2024)
                 Text(Shared.Trends.year2023).tag(TrendsTimeInterval.year2023)
                 Text(Shared.Trends.year2022).tag(TrendsTimeInterval.year2022)
                 Text(Shared.Trends.allTime).tag(TrendsTimeInterval.allTime)

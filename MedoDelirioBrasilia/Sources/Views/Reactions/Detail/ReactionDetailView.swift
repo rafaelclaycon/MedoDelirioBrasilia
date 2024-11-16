@@ -90,7 +90,7 @@ struct ReactionDetailView: View {
                 startSelectingAction: { soundListViewModel.startSelecting() },
                 isPlayingPlaylist: soundListViewModel.isPlayingPlaylist,
                 soundArrayIsEmpty: soundArrayIsEmpty,
-                isSelecting: soundListViewModel.currentSoundsListMode.wrappedValue == .selection
+                isSelecting: soundListViewModel.isSelectingSounds
             )
             .foregroundStyle(.white)
             .opacity(toolbarControlsOpacity)

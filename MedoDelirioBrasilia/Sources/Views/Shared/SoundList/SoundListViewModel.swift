@@ -45,6 +45,7 @@ class SoundListViewModel<T>: ObservableObject {
     @Published var shareBannerMessage: String = .empty
 
     // Select Many
+    @Published var isSelectingSounds: Bool = false
     @Published var shareManyIsProcessing = false
 
     // Long Updates
@@ -212,6 +213,9 @@ class SoundListViewModel<T>: ObservableObject {
 extension SoundListViewModel {
 
     func playStopPlaylist() {
+        if isSelectingSounds {
+            stopSelecting()
+        }
         if isPlayingPlaylist {
             stopPlaying()
         } else {
@@ -444,9 +448,11 @@ extension SoundListViewModel {
         stopPlaying()
         if currentSoundsListMode.wrappedValue == .regular {
             currentSoundsListMode.wrappedValue = .selection
+            isSelectingSounds = true
         } else {
             currentSoundsListMode.wrappedValue = .regular
             selectionKeeper.removeAll()
+            isSelectingSounds = false
         }
     }
 
@@ -455,6 +461,7 @@ extension SoundListViewModel {
         selectionKeeper.removeAll()
         selectedSounds = nil
         searchText = ""
+        isSelectingSounds = false
     }
 
     private func extractSounds() -> [Sound]? {
@@ -533,6 +540,7 @@ extension SoundListViewModel {
             try UserFolderRepository().update(folder)
 
             selectionKeeper.removeAll()
+            isSelectingSounds = false
             refreshAction()
 
             stopSelecting()

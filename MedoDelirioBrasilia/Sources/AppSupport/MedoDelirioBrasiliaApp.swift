@@ -21,7 +21,7 @@ struct MedoDelirioBrasiliaApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MainView(tabSelection: $tabSelection, state: $state)
+            MainView(tabSelection: $tabSelection, padSelection: $state)
                 .onOpenURL(perform: handleURL)
                 .environmentObject(helper)
         }

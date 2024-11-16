@@ -7,23 +7,32 @@
 
 import SwiftUI
 
+/// A view that displays the details of a specific sound, including its title, author, statistics, and additional information.
+///
+/// `SoundDetailView` provides options to play the sound, view author details, and display sound-related statistics.
+/// It also supports sending suggestions to update the author name via an email picker.
+///
+/// - Parameters:
+///   - sound: The sound item to be displayed with its details.
+///   - openAuthorDetailsAction: A closure triggered to open the author's detail view.
+///   - authorId: An optional author ID for deciding if the author's name button should navigate to author details or not. When already opening from author details it should NOT.
 struct SoundDetailView: View {
 
     let sound: Sound
+    let openAuthorDetailsAction: (Author) -> Void
+    let authorId: String?
 
     @State private var isPlaying: Bool = false
     @State private var showSuggestOtherAuthorEmailAppPicker: Bool = false
     @State private var didCopySupportAddressOnEmailPicker: Bool = false
     @State private var showToastView: Bool = false
-    @State private var soundStatistics: LoadingState<ContentShareCountStats> = .loading
+    @State private var soundStatistics: ContentStatisticsState<ContentShareCountStats> = .loading
 
     // Alerts
     @State private var alertTitle: String = ""
     @State private var alertMessage: String = ""
     @State private var showAlert: Bool = false
 
-    // MARK: - Environment Properties
-    @Environment(\.colorScheme) var colorScheme
     @Environment(\.dismiss) var dismiss
 
     // MARK: - Body
@@ -42,54 +51,25 @@ struct SoundDetailView: View {
                         Spacer()
                     }
 
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text(sound.title)
-                            .font(.title2)
-
-                        Text(sound.authorName ?? "")
-                            .foregroundColor(.gray)
-
-                        Button {
+                    TitleAndAuthorSection(
+                        soundTitle: sound.title,
+                        authorName: sound.authorName ?? "",
+                        authorCanNavigate: sound.authorId != authorId,
+                        authorSelectedAction: {
+                            guard let author = try? LocalDatabase.shared.author(withId: sound.authorId) else { return }
+                            openAuthorDetailsAction(author)
+                        },
+                        editAuthorSelectedAction: {
                             showSuggestOtherAuthorEmailAppPicker = true
-                        } label: {
-                            Label("Sugerir outro nome de autor", systemImage: "pencil.line")
                         }
-                        .capsule(colored: colorScheme == .dark ? .primary : .gray)
-                        .padding(.top, 2)
-                    }
+                    )
 
-                    //                Button("Baixar som novamente") {
-                    //                    //
-                    //                }
-                    //                .miniButton(colored: .green)
+                    StatsSection(
+                        stats: soundStatistics,
+                        retryAction: { Task { await loadStatistics() } }
+                    )
 
-                    Divider()
-
-                    Text("Informações")
-                        .font(.title3)
-                        .bold()
-
-                    InfoBlock(sound: sound)
-
-//                    Button {
-//                        showSuggestOtherAuthorEmailAppPicker = true
-//                    } label: {
-//                        Label("Baixar som novamente", systemImage: "arrow.down")
-//                    }
-//                    .capsule(colored: .green)
-
-                    switch soundStatistics {
-                    case .loading:
-                        PodiumPair.LoadingView()
-                    case .loaded(let stats):
-                        PodiumPair.LoadedView(stats: stats)
-                    case .error(_):
-                        PodiumPair.LoadingErrorView(retryAction: {
-                            Task {
-                                await loadStatistics()
-                            }
-                        })
-                    }
+                    InfoSection(sound: sound)
 
                     Spacer()
                 }
@@ -152,56 +132,94 @@ struct SoundDetailView: View {
             }
         }
     }
+}
 
-    private func play(_ sound: Sound) {
-        do {
-            let url = try sound.fileURL()
+// MARK: - Subviews
 
-            isPlaying = true
+extension SoundDetailView {
 
-            AudioPlayer.shared = AudioPlayer(url: url, update: { state in
-                if state?.activity == .stopped {
-                    self.isPlaying = false
+    struct TitleAndAuthorSection: View {
+
+        let soundTitle: String
+        let authorName: String
+        let authorCanNavigate: Bool
+        let authorSelectedAction: () -> Void
+        let editAuthorSelectedAction: () -> Void
+
+        @Environment(\.colorScheme) var colorScheme
+
+        var body: some View {
+            VStack(alignment: .leading, spacing: 8) {
+                Text(soundTitle)
+                    .font(.title2)
+
+                Button {
+                    authorSelectedAction()
+                } label: {
+                    HStack(spacing: 8) {
+                        Text(authorName)
+                        if authorCanNavigate {
+                            Image(systemName: "chevron.right")
+                        }
+                    }
+                    .foregroundColor(.gray)
                 }
-            })
+                .padding(.top, 5)
+                .padding(.bottom)
+                .disabled(!authorCanNavigate)
 
-            AudioPlayer.shared?.togglePlay()
-        } catch {
-            if sound.isFromServer ?? false {
-                showServerSoundNotAvailableAlert()
-            } else {
-                showUnableToGetSoundAlert()
+                Button {
+                    editAuthorSelectedAction()
+                } label: {
+                    Label("Sugerir outro nome de autor", systemImage: "pencil.line")
+                }
+                .capsule(colored: colorScheme == .dark ? .primary : .gray)
+                .padding(.top, 2)
             }
         }
     }
 
-    private func loadStatistics() async {
-        soundStatistics = .loading
-        let url = URL(string: NetworkRabbit.shared.serverPath + "v3/sound-share-count-stats-for/\(sound.id)")!
-        do {
-            let stats: ContentShareCountStats = try await NetworkRabbit.shared.get(from: url)
-            soundStatistics = .loaded(stats)
-        } catch {
-            soundStatistics = .error(error.localizedDescription)
+    struct StatsSection: View {
+
+        let stats: ContentStatisticsState<ContentShareCountStats>
+        let retryAction: () -> Void
+
+        var body: some View {
+            VStack(alignment: .leading, spacing: 20) {
+                Text("Estatísticas")
+                    .font(.title3)
+                    .bold()
+
+                switch stats {
+                case .loading:
+                    PodiumPair.LoadingView()
+                case .loaded(let stats):
+                    PodiumPair.LoadedView(stats: stats)
+                case .noDataYet:
+                    PodiumPair.NoDataView()
+                case .error(_):
+                    PodiumPair.LoadingErrorView(
+                        retryAction: retryAction
+                    )
+                }
+            }
         }
     }
 
-    private func showUnableToGetSoundAlert() {
-        TapticFeedback.error()
-        alertTitle = Shared.contentNotFoundAlertTitle(sound.title)
-        alertMessage = Shared.soundNotFoundAlertMessage
-        showAlert = true
-    }
+    struct InfoSection: View {
 
-    private func showServerSoundNotAvailableAlert() {
-        TapticFeedback.error()
-        alertTitle = Shared.contentNotFoundAlertTitle(sound.title)
-        alertMessage = Shared.serverContentNotAvailableMessage
-        showAlert = true
-    }
-}
+        let sound: Sound
 
-extension SoundDetailView {
+        var body: some View {
+            VStack(alignment: .leading, spacing: 20) {
+                Text("Informações")
+                    .font(.title3)
+                    .bold()
+
+                InfoBlock(sound: sound)
+            }
+        }
+    }
 
     struct InfoLine: View {
 
@@ -346,12 +364,25 @@ extension SoundDetailView {
             }
         }
 
+        struct NoDataView: View {
+
+            var body: some View {
+                VStack(spacing: 15) {
+                    Text("Ainda não existem estatísticas de compartilhamento para esse som.")
+                        .multilineTextAlignment(.center)
+                        .foregroundStyle(.gray)
+                        .padding(.all, 20)
+                }
+                .frame(maxWidth: .infinity)
+            }
+        }
+
         struct LoadingErrorView: View {
 
             let retryAction: () -> Void
 
             var body: some View {
-                VStack(spacing: 15) {
+                VStack(spacing: 24) {
                     Text("Não foi possível carregar as estatísticas de compartilhamento.")
                         .multilineTextAlignment(.center)
 
@@ -363,12 +394,69 @@ extension SoundDetailView {
                     }
                     .borderedButton(colored: .blue)
                 }
-                .frame(minHeight: 100)
+                .padding(.vertical, 18)
                 .frame(maxWidth: .infinity)
             }
         }
     }
 }
+
+// MARK: - Functions
+
+extension SoundDetailView {
+
+    private func play(_ sound: Sound) {
+        do {
+            let url = try sound.fileURL()
+
+            isPlaying = true
+
+            AudioPlayer.shared = AudioPlayer(url: url, update: { state in
+                if state?.activity == .stopped {
+                    self.isPlaying = false
+                }
+            })
+
+            AudioPlayer.shared?.togglePlay()
+        } catch {
+            if sound.isFromServer ?? false {
+                showServerSoundNotAvailableAlert()
+            } else {
+                showUnableToGetSoundAlert()
+            }
+        }
+    }
+
+    private func loadStatistics() async {
+        soundStatistics = .loading
+        let url = URL(string: NetworkRabbit.shared.serverPath + "v3/sound-share-count-stats-for/\(sound.id)")!
+        do {
+            let stats: ContentShareCountStats = try await NetworkRabbit.shared.get(from: url)
+            soundStatistics = .loaded(stats)
+        } catch NetworkRabbitError.resourceNotFound {
+            soundStatistics = .noDataYet
+        } catch {
+            debugPrint(error.localizedDescription)
+            soundStatistics = .error(error.localizedDescription)
+        }
+    }
+
+    private func showUnableToGetSoundAlert() {
+        TapticFeedback.error()
+        alertTitle = Shared.contentNotFoundAlertTitle(sound.title)
+        alertMessage = Shared.soundNotFoundAlertMessage
+        showAlert = true
+    }
+
+    private func showServerSoundNotAvailableAlert() {
+        TapticFeedback.error()
+        alertTitle = Shared.contentNotFoundAlertTitle(sound.title)
+        alertMessage = Shared.serverContentNotAvailableMessage
+        showAlert = true
+    }
+}
+
+// MARK: - Preview
 
 #Preview {
     SoundDetailView(
@@ -376,6 +464,8 @@ extension SoundDetailView {
             title: "A gente vai cansando",
             authorName: "Soraya Thronicke",
             description: "meu deus a gente vai cansando sabe"
-        )
+        ),
+        openAuthorDetailsAction: { _ in },
+        authorId: nil
     )
 }
