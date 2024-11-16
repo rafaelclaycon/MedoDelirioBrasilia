@@ -200,11 +200,13 @@ struct MainView: View {
                         }
 
                         Tab("Tendências", systemImage: "chart.line.uptrend.xyaxis") {
-                            TrendsView(
-                                tabSelection: $tabSelection,
-                                activePadScreen: .constant(.trends)
-                            )
-                            .environmentObject(trendsHelper)
+                            NavigationStack {
+                                TrendsView(
+                                    tabSelection: $tabSelection,
+                                    activePadScreen: .constant(.trends)
+                                )
+                                .environmentObject(trendsHelper)
+                            }
                         }
 
                         TabSection("Mais") {
