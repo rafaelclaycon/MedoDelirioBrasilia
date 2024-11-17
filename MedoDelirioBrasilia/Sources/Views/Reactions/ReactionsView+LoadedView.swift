@@ -29,6 +29,7 @@ extension ReactionsView {
                             ForEach(pinnedReactions) { reaction in
                                 InteractibleReactionItem(
                                     reaction: reaction,
+                                    isPinned: true,
                                     button:
                                         Button {
                                             unpinAction()
@@ -47,6 +48,7 @@ extension ReactionsView {
                         ForEach(otherReactions) { reaction in
                             InteractibleReactionItem(
                                 reaction: reaction,
+                                isPinned: false,
                                 button:
                                     Button {
                                         pinAction()
@@ -66,30 +68,71 @@ extension ReactionsView {
         }
     }
 
+    struct Pin: View {
+
+        @ScaledMetric private var padding: CGFloat = 5
+
+        var body: some View {
+            Image(systemName: "pin.fill")
+                .rotationEffect(.degrees(45))
+                .foregroundStyle(.white)
+                .padding(.all, padding)
+                .background {
+                    Circle()
+                        .fill(.yellow)
+                        .shadow(radius: 2, x: 1, y: 1)
+                }
+        }
+    }
+
     struct InteractibleReactionItem<Button: View>: View {
 
         let reaction: Reaction
+        let isPinned: Bool
         let button: Button
+
+        @ScaledMetric private var pinOffset: CGFloat = -7
 
         @Environment(\.push) var push
 
         var body: some View {
             ReactionItem(reaction: reaction)
+                .overlay(alignment: .topLeading) {
+                    Pin()
+                        .offset(x: pinOffset, y: pinOffset)
+                }
                 .onTapGesture {
                     push(GeneralNavigationDestination.reactionDetail(reaction))
                 }
                 .contextMenu {
                     button
                 }
-                .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
+                .contentShape(
+                    .contextMenuPreview,
+                    RoundedRectangle(cornerRadius: 20, style: .continuous)
+                )
+                .dynamicTypeSize(...DynamicTypeSize.accessibility2)
         }
     }
 }
 
 // MARK: - Preview
 
-//#Preview {
-//    ReactionsView.LoadedView(
-//
-//    )
-//}
+#Preview("Pin") {
+    ReactionsView.Pin()
+        .padding()
+}
+
+#Preview("Pinned Reaction") {
+    ReactionsView.InteractibleReactionItem(
+        reaction: Reaction.enthusiasmMock,
+        isPinned: true,
+        button:
+            Button {
+                print("Tapped")
+            } label: {
+                Label("Desafixar", systemImage: "pin.slash")
+            }
+    )
+    .padding()
+}
