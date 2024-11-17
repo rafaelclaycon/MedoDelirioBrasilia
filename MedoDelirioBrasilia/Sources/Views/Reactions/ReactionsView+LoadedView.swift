@@ -64,7 +64,7 @@ extension ReactionsView {
                                     Button {
                                         pinAction(reaction)
                                     } label: {
-                                        Label("Fixar", systemImage: "pin")
+                                        Label("Fixar no Topo", systemImage: "pin")
                                     },
                                 reactionRemovedAction: { _ in }
                             )
