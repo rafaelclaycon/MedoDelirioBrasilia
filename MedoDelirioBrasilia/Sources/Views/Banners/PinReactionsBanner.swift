@@ -1,13 +1,13 @@
 //
-//  NewTrendsUpdateWayBannerView.swift
+//  PinReactionsBanner.swift
 //  MedoDelirioBrasilia
 //
-//  Created by Rafael Schmitt on 09/12/23.
+//  Created by Rafael Schmitt on 17/11/24.
 //
 
 import SwiftUI
 
-struct NewTrendsUpdateWayBannerView: View {
+struct PinReactionsBanner: View {
 
     @Binding var isBeingShown: Bool
 
@@ -16,16 +16,15 @@ struct NewTrendsUpdateWayBannerView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
-                Text("A Maneira de Atualizar a Lista Mudou")
+                Text("Fixar no Topo")
                     .foregroundColor(.blue)
                     .bold()
                     .multilineTextAlignment(.leading)
 
                 Spacer()
-                    .frame(width: 30)
             }
 
-            Text("Da mesma forma que na lista principal de sons, puxe de cima para baixo na lista para atualizar.")
+            Text("Segure as suas Reações preferidas e escolha Fixar no Topo para facilitar o acesso.")
                 .foregroundColor(.blue)
                 .opacity(0.8)
                 .font(.callout)
@@ -38,7 +37,7 @@ struct NewTrendsUpdateWayBannerView: View {
         }
         .overlay(alignment: .topTrailing) {
             Button {
-                AppPersistentMemory().setHasSeenNewTrendsUpdateWayBanner(to: true)
+                AppPersistentMemory().setHasSeenPinReactionsBanner(to: true)
                 isBeingShown = false
             } label: {
                 Image(systemName: "xmark")
@@ -50,6 +49,5 @@ struct NewTrendsUpdateWayBannerView: View {
 }
 
 #Preview {
-    NewTrendsUpdateWayBannerView(isBeingShown: .constant(true))
-        .padding()
+    PinReactionsBanner(isBeingShown: .constant(true))
 }

@@ -20,10 +20,19 @@ extension ReactionsView {
 
         @State private var removedReaction: Reaction?
         @State private var showReactionRemovedAlert = false
+        @State private var shouldDisplayPinBanner: Bool = false
 
         var body: some View {
             ScrollView {
                 VStack {
+                    if shouldDisplayPinBanner {
+                        PinReactionsBanner(
+                            isBeingShown: $shouldDisplayPinBanner
+                        )
+                        .layoutPriority(1)
+                        .padding(.bottom)
+                    }
+
                     if let pinnedReactions, pinnedReactions.count > 0 {
                         LazyVGrid(
                             columns: columns,
@@ -76,6 +85,9 @@ extension ReactionsView {
             }
             .refreshable {
                 pullToRefreshAction()
+            }
+            .onAppear {
+                shouldDisplayPinBanner = !AppPersistentMemory().hasSeenPinReactionsBanner()
             }
             .alert(
                 "A Reação \"\(removedReaction?.title ?? "")\" Foi Removida",

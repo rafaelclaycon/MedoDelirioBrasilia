@@ -1110,6 +1110,7 @@
 		D98D13852CD5CD19001CF5BB /* UserFolder+Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98D13842CD5CD19001CF5BB /* UserFolder+Mocks.swift */; };
 		D98DBD35284919B1008544F8 /* NetworkRabbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98DBD34284919B1008544F8 /* NetworkRabbit.swift */; };
 		D98DBD38284921B5008544F8 /* NetworkRabbitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98DBD37284921B5008544F8 /* NetworkRabbitTests.swift */; };
+		D98DFB4B2CEA9A82009C880F /* PinReactionsBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98DFB4A2CEA9A82009C880F /* PinReactionsBanner.swift */; };
 		D98E1B042BE35AE2007D057E /* ReactionDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98E1B032BE35AE2007D057E /* ReactionDetailHeader.swift */; };
 		D98EC5DE282596C300340BE5 /* SoundCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5DD282596C300340BE5 /* SoundCell.swift */; };
 		D98EC5E12825A05900340BE5 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5E02825A05900340BE5 /* Sound.swift */; };
@@ -2647,6 +2648,7 @@
 		D98DBD3228491909008544F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D98DBD34284919B1008544F8 /* NetworkRabbit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRabbit.swift; sourceTree = "<group>"; };
 		D98DBD37284921B5008544F8 /* NetworkRabbitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRabbitTests.swift; sourceTree = "<group>"; };
+		D98DFB4A2CEA9A82009C880F /* PinReactionsBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinReactionsBanner.swift; sourceTree = "<group>"; };
 		D98E1B032BE35AE2007D057E /* ReactionDetailHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionDetailHeader.swift; sourceTree = "<group>"; };
 		D98EC5DD282596C300340BE5 /* SoundCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundCell.swift; sourceTree = "<group>"; };
 		D98EC5E02825A05900340BE5 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
@@ -4440,6 +4442,7 @@
 				D9FF3F962B142F78007AE773 /* UpdateIncentiveBanner.swift */,
 				D986C2452B25848B00EF575A /* LongUpdateBanner.swift */,
 				D9F45DD62BED30C400D49340 /* DynamicBanner.swift */,
+				D98DFB4A2CEA9A82009C880F /* PinReactionsBanner.swift */,
 			);
 			path = Banners;
 			sourceTree = "<group>";
@@ -6782,6 +6785,7 @@
 				D9FB70C92AC8DED4002FD8E1 /* View+.swift in Sources */,
 				D92C0CAC28406EA5009CF19A /* UserShareLog.swift in Sources */,
 				D961D016283722AB00EFEDEB /* Color+.swift in Sources */,
+				D98DFB4B2CEA9A82009C880F /* PinReactionsBanner.swift in Sources */,
 				D93A029A2906DEB100A85FE2 /* UserFolderContentLog.swift in Sources */,
 				D93AC08B28414EEE00E38A63 /* Logger.swift in Sources */,
 				D98E1B042BE35AE2007D057E /* ReactionDetailHeader.swift in Sources */,
