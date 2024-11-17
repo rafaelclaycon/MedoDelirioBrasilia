@@ -24,13 +24,13 @@ struct AddPinnedReactionTable: Migration {
     private func createPinnedReactionTable(_ db: Connection) throws {
         let id = Expression<String>("id")
         let reactionId = Expression<String>("reactionId")
-        let reactionName = Expression<String>("reactionName")
+        let reactionTitle = Expression<String>("reactionTitle")
         let addedAt = Expression<Date>("addedAt")
 
         try db.run(pinnedReaction.create(ifNotExists: true) { t in
             t.column(id, primaryKey: true)
             t.column(reactionId)
-            t.column(reactionName)
+            t.column(reactionTitle)
             t.column(addedAt)
         })
     }

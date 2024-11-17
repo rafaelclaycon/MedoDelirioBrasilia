@@ -17,13 +17,13 @@ extension LocalDatabase {
     func insert(_ pinnedReaction: Reaction) throws {
         let id = Expression<String>("id")
         let reactionId = Expression<String>("reactionId")
-        let reactionName = Expression<String>("reactionName")
+        let reactionTitle = Expression<String>("reactionTitle")
         let addedAt = Expression<Date>("addedAt")
 
         try db.run(pinnedReactionTable.insert(
             id <- UUID().uuidString,
             reactionId <- pinnedReaction.id,
-            reactionName <- pinnedReaction.title,
+            reactionTitle <- pinnedReaction.title,
             addedAt <- Date.now
         ))
     }
@@ -35,13 +35,13 @@ extension LocalDatabase {
         let sortedQuery = try db.prepare(pinnedReactionTable.order(addedAt.asc))
 
         let reactionId = Expression<String>("reactionId")
-        let reactionName = Expression<String>("reactionName")
+        let reactionTitle = Expression<String>("reactionTitle")
         var count: Int = 0
         return sortedQuery.map { row in
             count += 1
             return Reaction(
                 id: row[reactionId],
-                title: row[reactionName],
+                title: row[reactionTitle],
                 position: count,
                 image: ""
             )
