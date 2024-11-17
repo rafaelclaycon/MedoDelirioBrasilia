@@ -26,7 +26,7 @@ struct MainView: View {
 
     @State private var subviewToOpen: MainViewModalToOpen = .onboarding
     @State private var showingModalView: Bool = false
-    @State private var triggerSettings: Bool = false
+    @State private var showClassicRetroView: Bool = false
 
     // iPad
     @StateObject private var viewModel = SidebarViewViewModel()
@@ -56,7 +56,13 @@ struct MainView: View {
                                 syncValues: syncValues
                             ),
                             currentSoundsListMode: $currentSoundsListMode,
-                            showSettings: $triggerSettings
+                            openSettingsAction: {
+                                subviewToOpen = .settings
+                                showingModalView = true
+                            },
+                            showRetrospectiveAction: {
+                                showClassicRetroView = true
+                            }
                         )
                         .environmentObject(trendsHelper)
                         .environmentObject(settingsHelper)
@@ -142,7 +148,10 @@ struct MainView: View {
                                         syncValues: syncValues
                                     ),
                                     currentSoundsListMode: $currentSoundsListMode,
-                                    showSettings: .constant(false)
+                                    openSettingsAction: {},
+                                    showRetrospectiveAction: {
+                                        showClassicRetroView = true
+                                    }
                                 )
                                 .environmentObject(trendsHelper)
                                 .environmentObject(settingsHelper)
@@ -164,7 +173,8 @@ struct MainView: View {
                                         syncValues: syncValues
                                     ),
                                     currentSoundsListMode: $currentSoundsListMode,
-                                    showSettings: .constant(false)
+                                    openSettingsAction: {},
+                                    showRetrospectiveAction: {}
                                 )
                                 .environmentObject(trendsHelper)
                                 .environmentObject(settingsHelper)
@@ -303,7 +313,10 @@ struct MainView: View {
                                     syncValues: syncValues
                                 ),
                                 currentSoundsListMode: $currentSoundsListMode,
-                                showSettings: .constant(false)
+                                openSettingsAction: {},
+                                showRetrospectiveAction: {
+                                    showClassicRetroView = true
+                                }
                             )
                             .environmentObject(trendsHelper)
                             .environmentObject(settingsHelper)
@@ -322,13 +335,6 @@ struct MainView: View {
             sendUserPersonalTrendsToServerIfEnabled()
             displayOnboardingIfNeeded()
         }
-        .onChange(of: triggerSettings) { show in
-            if show {
-                subviewToOpen = .settings
-                showingModalView = true
-                triggerSettings = false
-            }
-        }
         .sheet(isPresented: $showingModalView) {
             switch subviewToOpen {
             case .settings:
@@ -344,7 +350,7 @@ struct MainView: View {
                     .interactiveDismissDisabled()
 
             case .retrospective:
-                ClassicRetroView(imageSaveSucceededAction: {})
+                EmptyView()
             }
         }
         .sheet(item: $folderForEditing) { folder in
@@ -361,6 +367,9 @@ struct MainView: View {
         .sheet(isPresented: $isShowingSettingsSheet) {
             SettingsCasingWithCloseView(isBeingShown: $isShowingSettingsSheet)
                 .environmentObject(settingsHelper)
+        }
+        .sheet(isPresented: $showClassicRetroView) {
+            ClassicRetroView(imageSaveSucceededAction: {})
         }
     }
 

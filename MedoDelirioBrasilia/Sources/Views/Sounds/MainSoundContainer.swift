@@ -13,7 +13,8 @@ struct MainSoundContainer: View {
     @StateObject private var allSoundsViewModel: SoundListViewModel<[Sound]>
     @StateObject private var favoritesViewModel: SoundListViewModel<[Sound]>
     private var currentSoundsListMode: Binding<SoundsListMode>
-    private var showSettings: Binding<Bool>
+    private let openSettingsAction: () -> Void
+    private let showRetrospectiveAction: () -> Void
 
     @State private var subviewToOpen: MainSoundContainerModalToOpen = .syncInfo
     @State private var showingModalView = false
@@ -77,7 +78,8 @@ struct MainSoundContainer: View {
     init(
         viewModel: MainSoundContainerViewModel,
         currentSoundsListMode: Binding<SoundsListMode>,
-        showSettings: Binding<Bool>
+        openSettingsAction: @escaping () -> Void,
+        showRetrospectiveAction: @escaping () -> Void
     ) {
         self._viewModel = StateObject(wrappedValue: viewModel)
         self._allSoundsViewModel = StateObject(wrappedValue: SoundListViewModel<[Sound]>(
@@ -93,7 +95,8 @@ struct MainSoundContainer: View {
             refreshAction: { viewModel.reloadFavorites() }
         ))
         self.currentSoundsListMode = currentSoundsListMode
-        self.showSettings = showSettings
+        self.openSettingsAction = openSettingsAction
+        self.showRetrospectiveAction = showRetrospectiveAction
     }
 
     // MARK: - View Body
@@ -127,7 +130,7 @@ struct MainSoundContainer: View {
 
                             if showRetroBanner {
                                 Retro2024Banner(
-                                    openStoriesAction: { showRetroModalView.toggle() }
+                                    openStoriesAction: { showRetrospectiveAction() }
                                 )
                                 .padding(.horizontal, 10)
                             }
@@ -218,7 +221,17 @@ struct MainSoundContainer: View {
         }
         .navigationTitle(Text(title))
         .navigationBarItems(
-            leading: leadingToolbarControls(),
+            leading: LeadingToolbarControls(
+                isSelecting: currentSoundsListMode.wrappedValue == .selection,
+                cancelAction: {
+                    if viewModel.currentViewMode == .allSounds {
+                        allSoundsViewModel.stopSelecting()
+                    } else {
+                        favoritesViewModel.stopSelecting()
+                    }
+                },
+                openSettingsAction: openSettingsAction
+            ),
             trailing: trailingToolbarControls()
         )
         .onChange(of: viewModel.processedUpdateNumber) { _ in
@@ -298,31 +311,34 @@ struct MainSoundContainer: View {
     }
 }
 
-// MARK: - Auxiliary Views
+// MARK: - Subviews
 
 extension MainSoundContainer {
 
-    @ViewBuilder func leadingToolbarControls() -> some View {
-        if currentSoundsListMode.wrappedValue == .selection {
-            Button {
-                if viewModel.currentViewMode == .allSounds {
-                    allSoundsViewModel.stopSelecting()
-                } else {
-                    favoritesViewModel.stopSelecting()
-                }
-            } label: {
-                Text("Cancelar")
-                    .bold()
-            }
-        } else {
-            if UIDevice.isiPhone {
+    struct LeadingToolbarControls: View {
+
+        let isSelecting: Bool
+        let cancelAction: () -> Void
+        let openSettingsAction: () -> Void
+
+        var body: some View {
+            if isSelecting {
                 Button {
-                    showSettings.wrappedValue = true
+                    cancelAction()
                 } label: {
-                    Image(systemName: "gearshape")
+                    Text("Cancelar")
+                        .bold()
                 }
             } else {
-                EmptyView()
+                if UIDevice.isiPhone {
+                    Button {
+                        openSettingsAction()
+                    } label: {
+                        Image(systemName: "gearshape")
+                    }
+                } else {
+                    EmptyView()
+                }
             }
         }
     }
@@ -487,6 +503,7 @@ extension MainSoundContainer {
             syncValues: SyncValues()
         ),
         currentSoundsListMode: .constant(.regular),
-        showSettings: .constant(false)
+        openSettingsAction: {},
+        showRetrospectiveAction: {}
     )
 }

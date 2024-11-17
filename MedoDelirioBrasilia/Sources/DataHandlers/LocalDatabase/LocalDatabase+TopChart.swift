@@ -8,7 +8,7 @@ extension LocalDatabase {
     // MARK: - Personal Top Chart
 
     func getTopSoundsSharedByTheUser(_ limit: Int) throws -> [TopChartItem] {
-        guard let firstDay2023 = "2023-01-01T00:00:00.000Z".iso8601withFractionalSeconds else { return [] }
+        guard let firstDay2023 = "2024-01-01T00:00:00.000Z".iso8601withFractionalSeconds else { return [] }
 
         var result = [TopChartItem]()
 
@@ -52,7 +52,7 @@ extension LocalDatabase {
     }
 
     func allDatesInWhichTheUserShared() throws -> [Date] {
-        guard let firstDay2023 = "2023-01-01T00:00:00.000Z".iso8601withFractionalSeconds else { return [] }
+        guard let firstDay2023 = "2024-01-01T00:00:00.000Z".iso8601withFractionalSeconds else { return [] }
 
         var result = [Date]()
 
@@ -117,7 +117,7 @@ extension LocalDatabase {
     }
 
     func sharedSoundsCount() -> Int {
-        guard let firstDay2023 = "2023-01-01T00:00:00.000Z".iso8601withFractionalSeconds else { return 0 }
+        guard let firstDay2023 = "2024-01-01T00:00:00.000Z".iso8601withFractionalSeconds else { return 0 }
 
         let content_id = Expression<String>("contentId")
         let content_type = Expression<Int>("contentType")
@@ -141,7 +141,7 @@ extension LocalDatabase {
     }
 
     func totalShareCount() -> Int {
-        guard let firstDay2023 = "2023-01-01T00:00:00.000Z".iso8601withFractionalSeconds else { return 0 }
+        guard let firstDay2023 = "2024-01-01T00:00:00.000Z".iso8601withFractionalSeconds else { return 0 }
 
         let content_id = Expression<String>("contentId")
         let content_type = Expression<Int>("contentType")

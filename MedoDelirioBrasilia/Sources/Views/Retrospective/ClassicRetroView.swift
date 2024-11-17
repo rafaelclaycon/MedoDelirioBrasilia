@@ -123,10 +123,10 @@ struct ClassicRetroView: View {
                 VStack(alignment: .leading, spacing: 15) {
                     ForEach(viewModel.topFive) { item in
                         HStack {
-                            Text("#\(item.rankNumber)")
+                            Text("\(item.rankNumber)")
                                 .font(.system(size: 24))
                                 .bold()
-                                .foregroundColor(.white)
+                                .foregroundColor(.black)
                                 //.opacity(0.7)
 
                             Text(item.contentName)
@@ -239,6 +239,8 @@ struct ClassicRetroView: View {
         }
     }
 }
+
+// MARK: - Subviews
 
 extension ClassicRetroView {
 
