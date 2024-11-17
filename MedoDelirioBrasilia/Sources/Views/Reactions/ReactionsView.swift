@@ -26,19 +26,26 @@ struct ReactionsView: View {
                     height: geometry.size.height
                 )
 
-            case .loaded(let reactions):
-                if reactions.isEmpty {
+            case .loaded(let reactionGroup):
+                if reactionGroup.regular.isEmpty {
                     EmptyView(
                         width: geometry.size.width,
                         height: geometry.size.height
                     )
                 } else {
                     LoadedView(
-                        reactions: reactions,
+                        pinnedReactions: reactionGroup.pinned,
+                        otherReactions: reactionGroup.regular,
                         columns: columns,
                         pullToRefreshAction: {
                             Task {
                                 await viewModel.onPullToRefresh()
+                            }
+                        },
+                        pinAction: { viewModel.onPinReactionSelected(reaction: $0) },
+                        unpinAction: { reactionId in
+                            Task {
+                                await viewModel.onUnpinReactionSelected(reactionId: reactionId)
                             }
                         }
                     )
@@ -86,44 +93,26 @@ struct ReactionsView: View {
             AddReactionView()
         }
         .oneTimeTask {
-            await viewModel.onViewLoad()
+            await viewModel.onViewLoaded()
         }
+        .alert(
+            "Não Foi Possível Fixar a Reação Selecionada",
+            isPresented: $viewModel.showIssueSavingPinAlert,
+            actions: { Button("OK", role: .cancel, action: {}) },
+            message: { Text("Tente novamente mais tarde.") }
+        )
+        .alert(
+            "Não Foi Possível Desafixar a Reação Selecionada",
+            isPresented: $viewModel.showIssueRemovingPinAlert,
+            actions: { Button("OK", role: .cancel, action: {}) },
+            message: { Text("Tente novamente mais tarde.") }
+        )
     }
 }
 
 // MARK: - Subviews
 
 extension ReactionsView {
-
-    struct LoadedView: View {
-
-        let reactions: [Reaction]
-        let columns: [GridItem]
-        let pullToRefreshAction: () -> Void
-
-        @Environment(\.push) var push
-
-        var body: some View {
-            ScrollView {
-                LazyVGrid(
-                    columns: columns,
-                    spacing: UIDevice.isiPhone ? 12 : 20
-                ) {
-                    ForEach(reactions) { reaction in
-                        ReactionItem(reaction: reaction)
-                            .onTapGesture {
-                                push(GeneralNavigationDestination.reactionDetail(reaction))
-                            }
-                    }
-                }
-                .padding()
-                .navigationTitle("Reações")
-            }
-            .refreshable {
-                pullToRefreshAction()
-            }
-        }
-    }
 
     struct ToolbarControls: View {
 
