@@ -26,16 +26,16 @@ struct ReactionsView: View {
                     height: geometry.size.height
                 )
 
-            case .loaded(let reactions):
-                if reactions.isEmpty {
+            case .loaded(let reactionGroup):
+                if reactionGroup.regular.isEmpty {
                     EmptyView(
                         width: geometry.size.width,
                         height: geometry.size.height
                     )
                 } else {
                     LoadedView(
-                        pinnedReactions: nil,
-                        otherReactions: reactions,
+                        pinnedReactions: reactionGroup.pinned,
+                        otherReactions: reactionGroup.regular,
                         columns: columns,
                         pullToRefreshAction: {
                             Task {

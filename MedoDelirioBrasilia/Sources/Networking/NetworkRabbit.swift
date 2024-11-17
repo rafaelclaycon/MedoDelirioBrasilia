@@ -3,7 +3,9 @@ import Foundation
 internal protocol NetworkRabbitProtocol {
     
     var serverPath: String { get }
-    
+
+    func `get`<T: Codable>(from url: URL) async throws -> T
+
     func serverIsAvailable() async -> Bool
     func post(shareCountStat: ServerShareCountStat, completionHandler: @escaping (Bool, String) -> Void)
     func post(clientDeviceInfo: ClientDeviceInfo, completionHandler: @escaping (Bool?, NetworkRabbitError?) -> Void)

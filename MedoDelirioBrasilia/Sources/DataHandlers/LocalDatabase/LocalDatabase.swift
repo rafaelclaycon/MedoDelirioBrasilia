@@ -49,6 +49,11 @@ internal protocol LocalDatabaseProtocol {
     func getTopSoundsSharedByTheUser(_ limit: Int) throws -> [TopChartItem]
     func totalShareCount() -> Int
     func allDatesInWhichTheUserShared() throws -> [Date]
+
+    // Pinned Reactions
+    func insert(_ pinnedReaction: Reaction) throws
+    func pinnedReactions() throws -> [Reaction]
+    func delete(_ reactionId: String) throws
 }
 
 class LocalDatabase: LocalDatabaseProtocol {
@@ -68,6 +73,7 @@ class LocalDatabase: LocalDatabaseProtocol {
     var syncLogTable = Table("syncLog")
     let songTable = Table("song")
     var musicGenreTable = Table("musicGenre")
+    var pinnedReactionTable = Table("pinnedReaction")
 
     static let shared = LocalDatabase()
     
@@ -116,7 +122,8 @@ extension LocalDatabase {
             AddSyncTables(),
             AddSongAndMusicGenreTables(),
             AddExternalLinksFieldToAuthorTable(),
-            AddChangeHashFieldToUserFolderTable()
+            AddChangeHashFieldToUserFolderTable(),
+            AddPinnedReactionTable()
         ]
     }
 
@@ -150,6 +157,7 @@ enum LocalDatabaseError: Error {
     case authorNotFound
     case songNotFound
     case musicGenreNotFound
+    case pinnedReactionNotFound
 }
 
 extension LocalDatabaseError: LocalizedError {
@@ -170,6 +178,8 @@ extension LocalDatabaseError: LocalizedError {
             return NSLocalizedString("A Música solicitada não foi encontrada no bando de dados.", comment: "")
         case .musicGenreNotFound:
             return NSLocalizedString("O Gênero Musical solicitado não foi encontrado no banco de dados.", comment: "")
+        case .pinnedReactionNotFound:
+            return NSLocalizedString("A Reação Fixada solicitada não foi encontrada no banco de dados.", comment: "")
         }
     }
 }

@@ -13,7 +13,7 @@ extension ReactionsView {
     @MainActor
     final class ViewModel: ObservableObject {
 
-        @Published var state: LoadingState<[Reaction]> = .loading
+        @Published var state: LoadingState<ReactionGroup> = .loading
         @Published var showHowReactionsWorkSheet: Bool = false
         @Published var showAddStuffSheet: Bool = false
 
@@ -54,8 +54,15 @@ extension ReactionsView.ViewModel {
         state = .loading
 
         do {
-            let reactions = try await reactionRepository.allReactions()
-            state = .loaded(reactions)
+            let serverReactions = try await reactionRepository.allReactions()
+            let pinned = try await reactionRepository.pinnedReactions(serverReactions)
+
+            let regular: [Reaction] = serverReactions.compactMap { serverReaction in
+                guard !pinned.contains(where: { $0.id == serverReaction.id }) else { return nil }
+                return serverReaction
+            }
+
+            state = .loaded(.init(pinned: pinned, regular: regular))
 
             Analytics().send(
                 originatingScreen: "ReactionsView",
