@@ -42,8 +42,12 @@ struct ReactionsView: View {
                                 await viewModel.onPullToRefresh()
                             }
                         },
-                        pinAction: {},
-                        unpinAction: {}
+                        pinAction: { viewModel.onPinReactionSelected(reaction: $0) },
+                        unpinAction: { reactionId in
+                            Task {
+                                await viewModel.onUnpinReactionSelected(reactionId: reactionId)
+                            }
+                        }
                     )
                     .onAppear {
                         columns = GridHelper.adaptableColumns(
@@ -91,6 +95,18 @@ struct ReactionsView: View {
         .oneTimeTask {
             await viewModel.onViewLoad()
         }
+        .alert(
+            "Não Foi Possível Fixar a Reação Selecionada",
+            isPresented: $viewModel.showIssueSavingPinAlert,
+            actions: { Button("OK", role: .cancel, action: {}) },
+            message: { Text("Tente novamente mais tarde.") }
+        )
+        .alert(
+            "Não Foi Possível Desafixar a Reação Selecionada",
+            isPresented: $viewModel.showIssueRemovingPinAlert,
+            actions: { Button("OK", role: .cancel, action: {}) },
+            message: { Text("Tente novamente mais tarde.") }
+        )
     }
 }
 

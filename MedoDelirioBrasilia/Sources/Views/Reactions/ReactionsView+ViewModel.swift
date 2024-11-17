@@ -17,6 +17,9 @@ extension ReactionsView {
         @Published var showHowReactionsWorkSheet: Bool = false
         @Published var showAddStuffSheet: Bool = false
 
+        @Published var showIssueSavingPinAlert: Bool = false
+        @Published var showIssueRemovingPinAlert: Bool = false
+
         private let reactionRepository: ReactionRepositoryProtocol
 
         // MARK: - Initializer
@@ -44,6 +47,25 @@ extension ReactionsView.ViewModel {
     public func onPullToRefresh() async {
         await loadReactions()
     }
+
+    public func onPinReactionSelected(reaction: Reaction) {
+        do {
+            try reactionRepository.savePin(reaction: reaction)
+            addToPinned(reaction: reaction)
+        } catch {
+            showIssueSavingPinAlert = true
+        }
+    }
+
+    public func onUnpinReactionSelected(reactionId: String) async {
+        do {
+            try reactionRepository.removePin(reactionId: reactionId)
+            // I decided to reload the entire view because dealing with `position` proved convoluted.
+            await loadReactions()
+        } catch {
+            showIssueRemovingPinAlert = true
+        }
+    }
 }
 
 // MARK: - Internal Functions
@@ -70,6 +92,17 @@ extension ReactionsView.ViewModel {
             )
         } catch {
             state = .error(error.localizedDescription)
+        }
+    }
+
+    private func addToPinned(reaction: Reaction) {
+        if case .loaded(let group) = state {
+            var updatedGroup = group
+            var updatedReaction = reaction
+            updatedReaction.type = .pinnedExisting
+            updatedGroup.pinned.append(updatedReaction)
+            updatedGroup.regular.removeAll(where: { $0.id == reaction.id })
+            state = .loaded(updatedGroup)
         }
     }
 }

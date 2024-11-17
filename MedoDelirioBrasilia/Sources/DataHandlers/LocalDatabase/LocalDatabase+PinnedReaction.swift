@@ -15,7 +15,17 @@ extension LocalDatabase {
     // Create
 
     func insert(_ pinnedReaction: Reaction) throws {
-        try db.run(pinnedReactionTable.insert(pinnedReaction))
+        let id = Expression<String>("id")
+        let reactionId = Expression<String>("reactionId")
+        let reactionName = Expression<String>("reactionName")
+        let addedAt = Expression<Date>("addedAt")
+
+        try db.run(pinnedReactionTable.insert(
+            id <- UUID().uuidString,
+            reactionId <- pinnedReaction.id,
+            reactionName <- pinnedReaction.title,
+            addedAt <- Date.now
+        ))
     }
 
     // Read
@@ -40,7 +50,7 @@ extension LocalDatabase {
 
     // Delete
 
-    func delete(_ reactionId: String) throws {
+    func delete(reactionId: String) throws {
         let id = Expression<String>("reactionId")
 
         let pinnedReaction = pinnedReactionTable.filter(id == reactionId)

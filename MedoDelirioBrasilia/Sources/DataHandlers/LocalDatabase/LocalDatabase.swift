@@ -53,7 +53,7 @@ internal protocol LocalDatabaseProtocol {
     // Pinned Reactions
     func insert(_ pinnedReaction: Reaction) throws
     func pinnedReactions() throws -> [Reaction]
-    func delete(_ reactionId: String) throws
+    func delete(reactionId: String) throws
 }
 
 class LocalDatabase: LocalDatabaseProtocol {

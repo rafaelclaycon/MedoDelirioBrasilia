@@ -120,7 +120,6 @@
 		D90E80C42CEA1F570014A886 /* ReactionsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90E80C32CEA1F570014A886 /* ReactionsViewModelTests.swift */; };
 		D90E80C72CEA20820014A886 /* FakeReactionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90E80C62CEA20820014A886 /* FakeReactionRepository.swift */; };
 		D90E80C92CEA229C0014A886 /* ReactionGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90E80C82CEA229C0014A886 /* ReactionGroup.swift */; };
-		D90E80CB2CEA27130014A886 /* GhostReactionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90E80CA2CEA27130014A886 /* GhostReactionItem.swift */; };
 		D90EA65D2CB2E81E001F4DA2 /* UIDeviceExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90EA65C2CB2E81D001F4DA2 /* UIDeviceExtensionsTests.swift */; };
 		D90EDC5C2AAAC02500CA3567 /* Coeee Remix.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90EDC5A2AAAC02500CA3567 /* Coeee Remix.mp3 */; };
 		D90EDC5D2AAAC02500CA3567 /* Conversa de bebado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90EDC5B2AAAC02500CA3567 /* Conversa de bebado.mp3 */; };
@@ -1654,7 +1653,6 @@
 		D90E80C32CEA1F570014A886 /* ReactionsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsViewModelTests.swift; sourceTree = "<group>"; };
 		D90E80C62CEA20820014A886 /* FakeReactionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeReactionRepository.swift; sourceTree = "<group>"; };
 		D90E80C82CEA229C0014A886 /* ReactionGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionGroup.swift; sourceTree = "<group>"; };
-		D90E80CA2CEA27130014A886 /* GhostReactionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostReactionItem.swift; sourceTree = "<group>"; };
 		D90EA65C2CB2E81D001F4DA2 /* UIDeviceExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceExtensionsTests.swift; sourceTree = "<group>"; };
 		D90EDC5A2AAAC02500CA3567 /* Coeee Remix.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Coeee Remix.mp3"; sourceTree = "<group>"; };
 		D90EDC5B2AAAC02500CA3567 /* Conversa de bebado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Conversa de bebado.mp3"; sourceTree = "<group>"; };
@@ -5303,7 +5301,6 @@
 				D9F78A9E2860DF9100B83567 /* ReactionItem.swift */,
 				D9B8DE802BE69567000C9035 /* Detail */,
 				D99BAF742CE1681000250900 /* Sheets */,
-				D90E80CA2CEA27130014A886 /* GhostReactionItem.swift */,
 			);
 			path = Reactions;
 			sourceTree = "<group>";
@@ -6852,7 +6849,6 @@
 				D9E9CFA3292C3DD1002BC918 /* NoFoldersView.swift in Sources */,
 				D916536428AD7FF7007F141D /* VideoMaker.swift in Sources */,
 				D99070552A905DA300A26F65 /* SyncInfoView.swift in Sources */,
-				D90E80CB2CEA27130014A886 /* GhostReactionItem.swift in Sources */,
 				D9C1372729063A78003E4ABF /* FolderResearchSettingsView.swift in Sources */,
 				D98EC5DE282596C300340BE5 /* SoundCell.swift in Sources */,
 				D99C8A972952C904002E0C00 /* NetworkRabbit+DonorNames.swift in Sources */,

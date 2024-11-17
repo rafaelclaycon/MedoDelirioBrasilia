@@ -9,8 +9,8 @@ import Foundation
 
 struct ReactionGroup: Identifiable, Equatable {
 
-    let pinned: [Reaction]
-    let regular: [Reaction]
+    var pinned: [Reaction]
+    var regular: [Reaction]
 
     var id: String {
         let pinnedIds = pinned.map { $0.id }.joined(separator: "-")

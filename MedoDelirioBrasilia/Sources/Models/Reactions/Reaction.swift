@@ -14,7 +14,7 @@ struct Reaction: Hashable, Codable, Identifiable {
     let position: Int
     let image: String
     var lastUpdate: String
-    let type: ReactionType
+    var type: ReactionType
 
     init(
         id: String,

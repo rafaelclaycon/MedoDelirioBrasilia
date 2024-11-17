@@ -13,6 +13,8 @@ protocol ReactionRepositoryProtocol {
     func reaction(_ reactionId: String) async throws -> Reaction
     func reactionSounds(reactionId: String) async throws -> [ReactionSound]
     func pinnedReactions(_ serverReactions: [Reaction]) async throws -> [Reaction]
+    func savePin(reaction: Reaction) throws
+    func removePin(reactionId: String) throws
 }
 
 final class ReactionRepository: ReactionRepositoryProtocol {
@@ -74,5 +76,13 @@ final class ReactionRepository: ReactionRepositoryProtocol {
                 )
             }
         }
+    }
+
+    func savePin(reaction: Reaction) throws {
+        try database.insert(reaction)
+    }
+
+    func removePin(reactionId: String) throws {
+        try database.delete(reactionId: reactionId)
     }
 }

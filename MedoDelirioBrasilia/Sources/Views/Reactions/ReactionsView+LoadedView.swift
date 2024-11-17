@@ -15,8 +15,11 @@ extension ReactionsView {
         let otherReactions: [Reaction]
         let columns: [GridItem]
         let pullToRefreshAction: () -> Void
-        let pinAction: () -> Void
-        let unpinAction: () -> Void
+        let pinAction: (Reaction) -> Void
+        let unpinAction: (String) -> Void
+
+        @State private var removedReaction: Reaction?
+        @State private var showReactionRemovedAlert = false
 
         var body: some View {
             ScrollView {
@@ -32,13 +35,21 @@ extension ReactionsView {
                                     isPinned: true,
                                     button:
                                         Button {
-                                            unpinAction()
+                                            unpinAction(reaction.id)
                                         } label: {
                                             Label("Desafixar", systemImage: "pin.slash")
-                                        }
+                                        },
+                                    reactionRemovedAction: {
+                                        print("Reaction removed: \($0.title)")
+                                        removedReaction = $0
+                                        showReactionRemovedAlert = true
+                                    }
                                 )
                             }
                         }
+
+                        Divider()
+                            .padding(.vertical, 10)
                     }
 
                     LazyVGrid(
@@ -51,10 +62,11 @@ extension ReactionsView {
                                 isPinned: false,
                                 button:
                                     Button {
-                                        pinAction()
+                                        pinAction(reaction)
                                     } label: {
                                         Label("Fixar", systemImage: "pin")
-                                    }
+                                    },
+                                reactionRemovedAction: { _ in }
                             )
                         }
                     }
@@ -65,23 +77,17 @@ extension ReactionsView {
             .refreshable {
                 pullToRefreshAction()
             }
-        }
-    }
-
-    struct Pin: View {
-
-        @ScaledMetric private var padding: CGFloat = 5
-
-        var body: some View {
-            Image(systemName: "pin.fill")
-                .rotationEffect(.degrees(45))
-                .foregroundStyle(.white)
-                .padding(.all, padding)
-                .background {
-                    Circle()
-                        .fill(.yellow)
-                        .shadow(radius: 2, x: 1, y: 1)
-                }
+            .alert(
+                "A Reação \"\(removedReaction?.title ?? "")\" Foi Removida",
+                isPresented: $showReactionRemovedAlert,
+                actions: {
+                    Button("Remover Fixação", action: {
+                        guard let reaction = removedReaction else { return }
+                        unpinAction(reaction.id)
+                    })
+                },
+                message: { Text("Essa reação foi removida do servidor durante uma revisão. Pedimos desculpas pelo inconveniente.") }
+            )
         }
     }
 
@@ -90,19 +96,18 @@ extension ReactionsView {
         let reaction: Reaction
         let isPinned: Bool
         let button: Button
-
-        @ScaledMetric private var pinOffset: CGFloat = -7
+        let reactionRemovedAction: (Reaction) -> Void
 
         @Environment(\.push) var push
 
         var body: some View {
             ReactionItem(reaction: reaction)
-                .overlay(alignment: .topLeading) {
-                    Pin()
-                        .offset(x: pinOffset, y: pinOffset)
-                }
                 .onTapGesture {
-                    push(GeneralNavigationDestination.reactionDetail(reaction))
+                    if reaction.type == .pinnedRemoved {
+                        reactionRemovedAction(reaction)
+                    } else {
+                        push(GeneralNavigationDestination.reactionDetail(reaction))
+                    }
                 }
                 .contextMenu {
                     button
@@ -118,11 +123,6 @@ extension ReactionsView {
 
 // MARK: - Preview
 
-#Preview("Pin") {
-    ReactionsView.Pin()
-        .padding()
-}
-
 #Preview("Pinned Reaction") {
     ReactionsView.InteractibleReactionItem(
         reaction: Reaction.enthusiasmMock,
@@ -132,7 +132,8 @@ extension ReactionsView {
                 print("Tapped")
             } label: {
                 Label("Desafixar", systemImage: "pin.slash")
-            }
+            },
+        reactionRemovedAction: { _ in }
     )
     .padding()
 }
