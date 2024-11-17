@@ -14,6 +14,8 @@ final class FakeReactionRepository: ReactionRepositoryProtocol {
     var didCallReaction = false
     var didCallReactionSounds = false
     var didCallPinnedReactions = false
+    var didCallSavePin = false
+    var didCallRemovePin = false
 
     func allReactions() async throws -> [Reaction] {
         didCallAllReactions = true
@@ -30,8 +32,16 @@ final class FakeReactionRepository: ReactionRepositoryProtocol {
         return []
     }
 
-    func pinnedReactions() async throws -> [String] {
+    func pinnedReactions(_ serverReactions: [Reaction]) async throws -> [Reaction] {
         didCallPinnedReactions = true
         return []
+    }
+
+    func savePin(reaction: Reaction) throws {
+        didCallSavePin = true
+    }
+
+    func removePin(reactionId: String) throws {
+        didCallRemovePin = true
     }
 }

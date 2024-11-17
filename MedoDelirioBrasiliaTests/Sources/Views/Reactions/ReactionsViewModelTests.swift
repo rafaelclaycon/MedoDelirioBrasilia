@@ -14,18 +14,22 @@ final class ReactionsViewModelTests: XCTestCase {
 
     private var reactionRepository: FakeReactionRepository!
 
-    @MainActor
-    override func setUpWithError() throws {
-        reactionRepository = FakeReactionRepository()
-        sut = .init(reactionRepository: reactionRepository)
-    }
-
     override func tearDownWithError() throws {
         sut = nil
         reactionRepository = nil
     }
 
-    func test_whenNoPinnedReactions_shouldDisplayNothing() throws {
-        
+    @MainActor
+    func test_whenNoPinnedReactions_shouldDisplayNothing() async throws {
+        reactionRepository = FakeReactionRepository()
+        sut = .init(reactionRepository: reactionRepository)
+
+        await sut.onViewLoaded()
+
+        if case .loaded(let reactionGroup) = sut.state {
+            XCTAssertTrue(reactionGroup.pinned.isEmpty, "Pinned reactions should be empty.")
+        } else {
+            XCTFail("state should be .loaded.")
+        }
     }
 }

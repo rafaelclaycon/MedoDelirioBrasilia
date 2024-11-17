@@ -93,7 +93,7 @@ struct ReactionsView: View {
             AddReactionView()
         }
         .oneTimeTask {
-            await viewModel.onViewLoad()
+            await viewModel.onViewLoaded()
         }
         .alert(
             "Não Foi Possível Fixar a Reação Selecionada",

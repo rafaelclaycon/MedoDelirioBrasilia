@@ -36,7 +36,7 @@ extension ReactionsView {
 
 extension ReactionsView.ViewModel {
 
-    public func onViewLoad() async {
+    public func onViewLoaded() async {
         await loadReactions()
     }
 
