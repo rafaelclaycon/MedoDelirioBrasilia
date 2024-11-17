@@ -24,7 +24,7 @@ extension ReactionsView {
         var body: some View {
             ScrollView {
                 VStack {
-                    if let pinnedReactions {
+                    if let pinnedReactions, pinnedReactions.count > 0 {
                         LazyVGrid(
                             columns: columns,
                             spacing: UIDevice.isiPhone ? 12 : 20
