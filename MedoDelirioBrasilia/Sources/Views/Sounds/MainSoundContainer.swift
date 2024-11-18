@@ -68,6 +68,10 @@ struct MainSoundContainer: View {
         }
     }
 
+    // MARK: - Shared Environment
+
+    @Environment(\.scenePhase) var scenePhase
+
     // MARK: - Initializer
 
     init(
@@ -278,6 +282,18 @@ struct MainSoundContainer: View {
             viewModel.reloadAllSounds()
             viewModel.reloadFavorites()
             favoritesViewModel.loadFavorites()
+        }
+        .onChange(of: scenePhase) { newPhase in
+            if newPhase == .active {
+                let lastUpdateAttempt = AppPersistentMemory().getLastUpdateAttempt()
+                guard
+                    let date = lastUpdateAttempt.iso8601withFractionalSeconds,
+                    date.minutesPassed(60)
+                else { return }
+                Task {
+                    await viewModel.sync(lastAttempt: lastUpdateAttempt)
+                }
+            }
         }
     }
 }

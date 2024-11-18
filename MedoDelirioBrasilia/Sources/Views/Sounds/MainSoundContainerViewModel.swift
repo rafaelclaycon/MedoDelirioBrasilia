@@ -289,9 +289,7 @@ extension MainSoundContainerViewModel: SyncManagerDelegate {
 
         await syncManager.sync()
 
-        await MainActor.run {
-            firstRunSyncHappened = true
-        }
+        firstRunSyncHappened = true
 
         var message = syncValues.syncStatus.description
         if UserSettings().getShowUpdateDateOnUI() {

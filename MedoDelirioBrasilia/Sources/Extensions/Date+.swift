@@ -102,6 +102,12 @@ extension Date {
         return minutes >= 2
     }
 
+    func minutesPassed(_ minutes: Int) -> Bool {
+        let diffComponents = Calendar.current.dateComponents([.minute], from: self, to: .now)
+        let minutes = diffComponents.minute!
+        return minutes >= minutes
+    }
+
     static func dateAsString(addingDays daysToAdd: Int, referenceDate: Date = Date.now) -> String {
         var dayComponent = DateComponents()
         dayComponent.day = daysToAdd
