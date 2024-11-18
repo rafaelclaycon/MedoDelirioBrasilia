@@ -135,7 +135,7 @@ struct SoundItem: View {
                 .fill(cellFill)
                 .frame(height: itemHeight)
                 .opacity(backgroundOpacity)
-            
+
             HStack {
                 VStack(alignment: .leading, spacing: 8) {
                     Text(sound.title)
@@ -223,14 +223,19 @@ struct SoundItem: View {
         }
         .overlay(alignment: .bottomTrailing) {
             if background == .favorite, currentMode == .regular {
-                Image(systemName: "star.fill")
-                .resizable()
-                .scaledToFit()
-                .frame(height: 24)
-                .foregroundColor(.yellow)
-                .padding(.trailing, 10)
-                .padding(.bottom)
-                .shadow(color: .red, radius: 8)
+                //Image(systemName: "star.fill")
+                Image("hammerSickle")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 24)
+                    .foregroundColor(.yellow)
+                    .padding(.trailing, 10)
+                    .padding(.bottom)
+                    .background {
+                        Circle()
+                            .fill(.red)
+                    }
+                    //.shadow(color: .red, radius: 8)
             }
         }
         .onAppear {
