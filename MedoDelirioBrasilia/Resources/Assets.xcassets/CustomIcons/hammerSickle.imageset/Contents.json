@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "Hammer_and_sickle.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
