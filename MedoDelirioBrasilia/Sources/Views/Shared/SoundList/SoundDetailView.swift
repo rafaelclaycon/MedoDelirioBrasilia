@@ -27,6 +27,7 @@ struct SoundDetailView: View {
     @State private var didCopySupportAddressOnEmailPicker: Bool = false
     @State private var showToastView: Bool = false
     @State private var soundStatistics: ContentStatisticsState<ContentShareCountStats> = .loading
+    @State private var reactionsState: LoadingState<[Reaction]> = .loading
 
     // Alerts
     @State private var alertTitle: String = ""
@@ -67,6 +68,10 @@ struct SoundDetailView: View {
                     StatsSection(
                         stats: soundStatistics,
                         retryAction: { Task { await loadStatistics() } }
+                    )
+
+                    ReactionsThisSoundIsInSection(
+                        state: reactionsState
                     )
 
                     InfoSection(sound: sound)
@@ -175,6 +180,37 @@ extension SoundDetailView {
                 }
                 .capsule(colored: colorScheme == .dark ? .primary : .gray)
                 .padding(.top, 2)
+            }
+        }
+    }
+
+    struct ReactionsThisSoundIsInSection: View {
+
+        let state: LoadingState<[Reaction]>
+
+        var body: some View {
+            VStack(alignment: .leading, spacing: 20) {
+                Text("Reações Em Que Aparece")
+                    .font(.title3)
+                    .bold()
+
+                switch state {
+                case .loading:
+                    PodiumPair.LoadingView()
+
+                case .loaded(let reactions):
+                    HStack {
+                        ForEach(reactions) {
+                            ReactionItem(reaction: $0)
+                                .frame(width: 150)
+                        }
+                    }
+
+                case .error(_):
+                    PodiumPair.LoadingErrorView(
+                        retryAction: {}
+                    )
+                }
             }
         }
     }
