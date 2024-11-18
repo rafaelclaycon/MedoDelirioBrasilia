@@ -141,6 +141,11 @@ struct TrendsView: View {
                     displayTime: .seconds(3)
                 )
             }
+
+            Analytics().send(
+                originatingScreen: "TrendsView",
+                action: "didViewTrendsTab"
+            )
         }
         .onChange(of: showModalView) { showModalView in
             if (showModalView == false) && !retroExportAnalytics.isEmpty {

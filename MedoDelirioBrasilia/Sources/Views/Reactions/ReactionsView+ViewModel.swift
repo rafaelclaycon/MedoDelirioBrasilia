@@ -52,16 +52,26 @@ extension ReactionsView.ViewModel {
         do {
             try reactionRepository.savePin(reaction: reaction)
             addToPinned(reaction: reaction)
+
+            Analytics().send(
+                originatingScreen: "ReactionsView",
+                action: "pinnedReaction(\(reaction.title))"
+            )
         } catch {
             showIssueSavingPinAlert = true
         }
     }
 
-    public func onUnpinReactionSelected(reactionId: String) async {
+    public func onUnpinReactionSelected(reaction: Reaction) async {
         do {
-            try reactionRepository.removePin(reactionId: reactionId)
+            try reactionRepository.removePin(reactionId: reaction.id)
             // I decided to reload the entire view because dealing with `position` proved convoluted.
             await loadReactions()
+
+            Analytics().send(
+                originatingScreen: "ReactionsView",
+                action: "unpinnedReaction(\(reaction.title))"
+            )
         } catch {
             showIssueRemovingPinAlert = true
         }
@@ -85,13 +95,13 @@ extension ReactionsView.ViewModel {
             }
 
             state = .loaded(.init(pinned: pinned, regular: regular))
+        } catch {
+            state = .error(error.localizedDescription)
 
             Analytics().send(
                 originatingScreen: "ReactionsView",
-                action: "didViewReactionsTab"
+                action: "hadIssueLoadingReactions(\(error.localizedDescription))"
             )
-        } catch {
-            state = .error(error.localizedDescription)
         }
     }
 
