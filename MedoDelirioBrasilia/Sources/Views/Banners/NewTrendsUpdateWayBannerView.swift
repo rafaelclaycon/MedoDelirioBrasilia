@@ -11,8 +11,6 @@ struct NewTrendsUpdateWayBannerView: View {
 
     @Binding var isBeingShown: Bool
 
-    @State private var maxSystemVersion: String = ""
-
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
@@ -40,7 +38,7 @@ struct NewTrendsUpdateWayBannerView: View {
         }
         .overlay(alignment: .topTrailing) {
             Button {
-                AppPersistentMemory.setHasSeenNewTrendsUpdateWayBanner(to: true)
+                AppPersistentMemory().setHasSeenNewTrendsUpdateWayBanner(to: true)
                 isBeingShown = false
             } label: {
                 Image(systemName: "xmark")

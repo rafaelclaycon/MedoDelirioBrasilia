@@ -30,7 +30,7 @@ struct SyncLog: Hashable, Codable, Identifiable {
         self.logType = logType
         self.description = description
         self.dateTime = Date.now.iso8601withFractionalSeconds
-        self.installId = UIDevice.customInstallId
+        self.installId = AppPersistentMemory().customInstallId
         self.systemName = UIDevice.current.systemName
         self.systemVersion = UIDevice.current.systemVersion
         self.isiOSAppOnMac = ProcessInfo.processInfo.isiOSAppOnMac
@@ -50,7 +50,7 @@ struct SyncLog: Hashable, Codable, Identifiable {
         self.logType = logType
         self.description = description
         self.dateTime = dateTime
-        self.installId = UIDevice.customInstallId
+        self.installId = AppPersistentMemory().customInstallId
         self.systemName = UIDevice.current.systemName
         self.systemVersion = ""
         self.isiOSAppOnMac = ProcessInfo.processInfo.isiOSAppOnMac

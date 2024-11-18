@@ -68,6 +68,10 @@ struct MainSoundContainer: View {
         }
     }
 
+    // MARK: - Shared Environment
+
+    @Environment(\.scenePhase) var scenePhase
+
     // MARK: - Initializer
 
     init(
@@ -107,9 +111,10 @@ struct MainSoundContainer: View {
                     showExplicitDisabledWarning: true,
                     syncAction: {
                         Task { // Keep this Task to avoid "cancelled" issue.
-                            await viewModel.sync(lastAttempt: AppPersistentMemory.getLastUpdateAttempt())
+                            await viewModel.sync(lastAttempt: AppPersistentMemory().getLastUpdateAttempt())
                         }
                     },
+                    dataLoadingDidFail: viewModel.dataLoadingDidFail,
                     headerView: {
                         VStack {
                             if displayLongUpdateBanner {
@@ -159,6 +164,7 @@ struct MainSoundContainer: View {
                     viewModel: favoritesViewModel,
                     soundSearchTextIsEmpty: $soundSearchTextIsEmpty,
                     allowSearch: true,
+                    dataLoadingDidFail: viewModel.dataLoadingDidFail,
                     loadingView:
                         VStack {
                             HStack(spacing: 10) {
@@ -220,7 +226,7 @@ struct MainSoundContainer: View {
         }
         .sheet(isPresented: $showingModalView) {
             SyncInfoView(
-                lastUpdateAttempt: AppPersistentMemory.getLastUpdateAttempt(),
+                lastUpdateAttempt: AppPersistentMemory().getLastUpdateAttempt(),
                 lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
             )
         }
@@ -268,13 +274,26 @@ struct MainSoundContainer: View {
             if !viewModel.firstRunSyncHappened {
                 Task {
                     print("WILL START SYNCING")
-                    await viewModel.sync(lastAttempt: AppPersistentMemory.getLastUpdateAttempt())
+                    await viewModel.sync(lastAttempt: AppPersistentMemory().getLastUpdateAttempt())
                     print("DID FINISH SYNCING")
                 }
             }
 
             viewModel.reloadAllSounds()
             viewModel.reloadFavorites()
+            favoritesViewModel.loadFavorites()
+        }
+        .onChange(of: scenePhase) { newPhase in
+            if newPhase == .active {
+                let lastUpdateAttempt = AppPersistentMemory().getLastUpdateAttempt()
+                guard
+                    let date = lastUpdateAttempt.iso8601withFractionalSeconds,
+                    date.minutesPassed(60)
+                else { return }
+                Task {
+                    await viewModel.sync(lastAttempt: lastUpdateAttempt)
+                }
+            }
         }
     }
 }
@@ -332,10 +351,16 @@ extension MainSoundContainer {
                     }
                     .onChange(of: viewModel.authorSortOption) { authorSortOption in
                         authorSortAction = AuthorSortOption(rawValue: authorSortOption) ?? .nameAscending
-                        UserSettings.saveAuthorSortOption(authorSortOption)
+                        UserSettings().saveAuthorSortOption(authorSortOption)
                     }
                 } else {
-                    if currentSoundsListMode.wrappedValue == .regular {
+                    if UIDevice.isiPhone && currentSoundsListMode.wrappedValue == .regular {
+                        SyncStatusView()
+                            .onTapGesture {
+                                subviewToOpen = .syncInfo
+                                showingModalView = true
+                            }
+                    } else if !UIDevice.isiPhone && viewModel.currentViewMode != .favorites {
                         SyncStatusView()
                             .onTapGesture {
                                 subviewToOpen = .syncInfo

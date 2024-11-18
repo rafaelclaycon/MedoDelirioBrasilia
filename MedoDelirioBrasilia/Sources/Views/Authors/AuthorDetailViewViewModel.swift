@@ -11,7 +11,9 @@ import SwiftUI
 class AuthorDetailViewViewModel: ObservableObject {
 
     @Published var sounds = [Sound]()
-    
+
+    @Published var dataLoadingDidFail: Bool = false
+
     @Published var soundSortOption: Int = 1
     @Published var selectedSound: Sound? = nil
     @Published var selectedSounds: [Sound]? = nil
@@ -50,12 +52,13 @@ class AuthorDetailViewViewModel: ObservableObject {
         do {
             sounds = try LocalDatabase.shared.allSounds(
                 forAuthor: authorId,
-                isSensitiveContentAllowed: UserSettings.getShowExplicitContent()
+                isSensitiveContentAllowed: UserSettings().getShowExplicitContent()
             )
             guard sounds.count > 0 else { return }
             sortSounds(by: soundSortOption)
         } catch {
             print("Erro carregando sons: \(error.localizedDescription)")
+            dataLoadingDidFail = true
         }
     }
 
@@ -84,7 +87,7 @@ class AuthorDetailViewViewModel: ObservableObject {
         authorName: String
     ) {
         let usageMetric = UsageMetric(
-            customInstallId: UIDevice.customInstallId,
+            customInstallId: AppPersistentMemory().customInstallId,
             originatingScreen: "AuthorDetailView(\(authorName))",
             destinationScreen: action,
             systemName: UIDevice.current.systemName,

@@ -10,9 +10,12 @@ import SwiftUI
 /// iPad and Mac only.
 struct AllFoldersiPadView: View {
 
-    @Binding var isShowingFolderInfoEditingSheet: Bool
+    @Binding var folderForEditing: UserFolder?
     @Binding var updateFolderList: Bool
-    @State var folderIdForEditing: String = .empty
+    
+    @State private var folderIdForEditing: String = ""
+    @State private var showErrorDeletingAlert: Bool = false
+
     @StateObject var deleteFolderAide = DeleteFolderViewAide()
 
     // iPad Reactions Stuff
@@ -34,7 +37,7 @@ struct AllFoldersiPadView: View {
 
                 FolderList(
                     updateFolderList: $updateFolderList,
-                    folderIdForEditing: $folderIdForEditing
+                    folderForEditing: $folderForEditing
                 )
                 .environmentObject(deleteFolderAide)
             }
@@ -54,7 +57,7 @@ struct AllFoldersiPadView: View {
                     }
 
                     Button {
-                        isShowingFolderInfoEditingSheet = true
+                        folderForEditing = UserFolder.newFolder()
                     } label: {
                         HStack {
                             Image(systemName: "plus")
@@ -71,21 +74,29 @@ struct AllFoldersiPadView: View {
                 primaryButton: .destructive(
                     Text("Apagar"),
                     action: {
-                        guard deleteFolderAide.folderIdForDeletion.isEmpty == false else {
+                        guard !deleteFolderAide.folderIdForDeletion.isEmpty else {
                             return
                         }
-                        try? LocalDatabase.shared.deleteUserFolder(withId: deleteFolderAide.folderIdForDeletion)
-                        updateFolderList = true
+
+                        do {
+                            try LocalDatabase.shared.deleteUserFolder(withId: deleteFolderAide.folderIdForDeletion)
+                            updateFolderList = true
+                        } catch {
+                            showErrorDeletingAlert = true
+                        }
+
                     }
                 ),
                 secondaryButton: .cancel(Text("Cancelar"))
             )
         }
-        .onChange(of: folderIdForEditing) { folderIdForEditing in
-            if folderIdForEditing.isEmpty == false {
-                isShowingFolderInfoEditingSheet = true
-                self.folderIdForEditing = .empty
-            }
+        .alert(
+            "Erro Ao Tentar Apagar a Pasta",
+            isPresented: $showErrorDeletingAlert
+        ) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text("Tente novamente mais tarde. Se o erro persisir, por favor, envie um e-mail para o desenvolvedor.")
         }
     }
 
@@ -93,11 +104,11 @@ struct AllFoldersiPadView: View {
 
     private func exportFolders() {
         do {
-            let rawFolders = try LocalDatabase.shared.getAllUserFolders()
+            let rawFolders = try LocalDatabase.shared.allFolders()
             var folders = rawFolders.map { UserFolderDTO(userFolder: $0) }
 
             for i in folders.indices {
-                let folderContents = try LocalDatabase.shared.getAllContentsInsideUserFolder(withId: folders[i].id)
+                let folderContents = try LocalDatabase.shared.contentsInside(userFolder: folders[i].id)
                 let contentIds = folderContents.map { $0.contentId }
                 let sounds = try LocalDatabase.shared.sounds(withIds: contentIds)
                 folders[i].sounds = sounds.map { $0.id }
@@ -138,7 +149,7 @@ struct AllFoldersiPadView: View {
 
 #Preview {
     AllFoldersiPadView(
-        isShowingFolderInfoEditingSheet: .constant(false),
+        folderForEditing: .constant(nil),
         updateFolderList: .constant(false)
     )
 }

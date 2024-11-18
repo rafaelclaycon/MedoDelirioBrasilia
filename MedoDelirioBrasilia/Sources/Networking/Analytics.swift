@@ -7,14 +7,29 @@
 
 import UIKit
 
-class Analytics {
+protocol AnalyticsProtocol {
 
-    static func send(
+    func send(originatingScreen: String, action: String)
+}
+
+final class Analytics: AnalyticsProtocol {
+
+    private let apiClient: NetworkRabbit
+
+    // MARK: - Initializer
+
+    init(
+        apiClient: NetworkRabbit = NetworkRabbit(serverPath: APIConfig.apiURL)
+    ) {
+        self.apiClient = apiClient
+    }
+
+    func send(
         originatingScreen: String = "",
         action: String
     ) {
         let usageMetric = UsageMetric(
-            customInstallId: UIDevice.customInstallId,
+            customInstallId: AppPersistentMemory().customInstallId,
             originatingScreen: originatingScreen,
             destinationScreen: action,
             systemName: UIDevice.current.systemName,
@@ -23,15 +38,15 @@ class Analytics {
             dateTime: Date.now.iso8601withFractionalSeconds,
             currentTimeZone: TimeZone.current.abbreviation() ?? .empty
         )
-        NetworkRabbit.shared.post(usageMetric: usageMetric)
+        apiClient.post(usageMetric: usageMetric)
     }
 
-    static func sendUsageMetricToServer(
+    func sendUsageMetricToServer(
         folderName: String,
         action: String
     ) {
         let usageMetric = UsageMetric(
-            customInstallId: UIDevice.customInstallId,
+            customInstallId: AppPersistentMemory().customInstallId,
             originatingScreen: "FolderDetailView(\(folderName))",
             destinationScreen: action,
             systemName: UIDevice.current.systemName,
@@ -40,6 +55,6 @@ class Analytics {
             dateTime: Date.now.iso8601withFractionalSeconds,
             currentTimeZone: TimeZone.current.abbreviation() ?? .empty
         )
-        NetworkRabbit.shared.post(usageMetric: usageMetric)
+        apiClient.post(usageMetric: usageMetric)
     }
 }

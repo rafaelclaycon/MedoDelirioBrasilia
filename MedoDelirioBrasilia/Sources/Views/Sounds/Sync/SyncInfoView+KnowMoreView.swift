@@ -22,11 +22,13 @@ extension SyncInfoView {
                         .font(.title2)
                         .bold()
 
-                    Text("Inicialmente, os sons eram colocados dentro do pacote do app, tornado obrigatórias atualizações para que novos conteúdos chegassem para os usuários.\n\nA partir de setembro de 2023, com a introdução do sistema de sincronização, novos sons aparecem automaticamente na lista quando o seu \(UIDevice.deviceGenericName) estiver conectado à Internet.\n\nVocê não precisa mais que atualizar o app na App Store para receber novos sons.")
+                    Text("Quando o app foi lançado em maio de 2022, os sons eram colocados dentro do pacote do app, tornando obrigatório que o app fosse atualizado para que novos conteúdos chegassem até vocês.\n\nA partir de setembro de 2023, com a introdução do sistema de sincronização na versão 7, novos sons aparecem automaticamente na lista quando o seu \(UIDevice.deviceGenericName) está conectado à Internet.\n\nChega de ter que atualizar o app na App Store para receber novos sons.")
 
-                    Text("O que torna esse sistema único?")
+                    Text("Tá mas e daí?")
                         .font(.title2)
                         .bold()
+
+                    Text("E daí que isso deu uma trabalheira do cão kkkk Mas falando sério: O sistema de sincronização de dados do app, do servidor ao app até o sistema de subir arquivos para o servidor, foi desenvolvido por mim usando a linguagem **Swift**.")
 
                     HStack {
                         Spacer()
@@ -39,16 +41,16 @@ extension SyncInfoView {
 
                         Spacer()
                     }
-                    .padding(.vertical, 6)
+                    .padding(.bottom, 3)
 
-                    Text("O sistema de sincronização de dados do Medo e Delírio iOS, do servidor ao app até o sistema de subir arquivos para o servidor, foi desenvolvido por mim usando **Swift**.\n\nIsso é inovador por Swift ser majoritariamente uma linguagem de *front-end*. O desafio de fazer isso acontecer foi o Projeto Final da minha graduação em Análise e Desenvolvimento de Sistemas.\n\nObrigado a todos que participaram da fase Beta e responderam ao questionário. A participação de vocês foi crítica para o sucesso do projeto! ❤️")
+                    Text("Verificar se isso era possível foi tema do meu Projeto Final do curso de Análise e Desenvolvimento de Sistemas e é inovador por Swift ser majoritariamente uma linguagem de *front-end* (usada para fazer telas).\n\nObrigado a todos que participaram da fase Beta e responderam ao questionário! A participação de vocês foi crítica para o sucesso do projeto. ❤️")
 
-                    Button("O que é Swift?") {
+                    Button("Saber mais sobre Swift") {
                         OpenUtility.open(link: "https://tinyurl.com/yujyu5a3")
                     }
                     .largeRoundedRectangleBordered(colored: Color(hex: "#de5d43"))
 
-                    Text("Os códigos do app, do servidor e do app auxiliar são abertos. \(tapOrClickText) abaixo para vê-los no meu GitHub.")
+                    Text("Todos os códigos relacionados ao app são abertos e estão disponíveis para estudo e colaboração. \(tapOrClickText) abaixo para vê-los no meu GitHub.")
 
                     Button("Abrir GitHub") {
                         OpenUtility.open(link: "https://github.com/rafaelclaycon")
@@ -59,12 +61,15 @@ extension SyncInfoView {
                 .padding(.horizontal, 30)
             }
             .navigationTitle("Sobre o sistema de sincronização")
+            .onAppear {
+                Analytics().send(action: "didViewSyncSystemAboutScreen")
+            }
         }
     }
 }
 
-struct KnowMoreView_Previews: PreviewProvider {
-    static var previews: some View {
-        SyncInfoView.KnowMoreView()
-    }
+// MARK: - Preview
+
+#Preview {
+    SyncInfoView.KnowMoreView()
 }

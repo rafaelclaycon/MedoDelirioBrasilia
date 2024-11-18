@@ -2,24 +2,12 @@ import SwiftUI
 
 struct JoinFolderResearchBannerView: View {
 
-    @StateObject var viewModel: JoinFolderResearchBannerViewViewModel
+    @StateObject var viewModel: ViewModel
+
     @Binding var displayMe: Bool
+
     @Environment(\.colorScheme) var colorScheme
-    
-    var backgroundHeight: CGFloat {
-        guard UIDevice.current.userInterfaceIdiom == .phone else {
-            return 140
-        }
-        switch UIScreen.main.bounds.width {
-        case 320:
-            return 240
-        case 428, 430:
-            return 180
-        default:
-            return 200
-        }
-    }
-    
+
     var backgroundOpacity: Double {
         if viewModel.state == .displayingRequestToJoin {
             return colorScheme == .dark ? 1.0 : 0.35
@@ -27,209 +15,265 @@ struct JoinFolderResearchBannerView: View {
             return colorScheme == .dark ? 0.5 : 0.15
         }
     }
-    
-    var buttonInternalPadding: CGFloat {
-        guard UIDevice.current.userInterfaceIdiom == .phone else {
-            return 20
-        }
-        switch UIScreen.main.bounds.width {
-        case 320:
-            return 0
-        case 375:
-            return 10
-        default:
-            return 20
-        }
-    }
-    
+
     var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 20, style: .continuous)
-                .fill(viewModel.state == .displayingRequestToJoin ? Color.pastelBabyBlue : Color.gray)
-                .opacity(backgroundOpacity)
-                .frame(height: backgroundHeight)
-            
+        VStack {
             switch viewModel.state {
             case .displayingRequestToJoin:
-                getRequestToJoinView()
+                RequestToJoinView(
+                    isDark: colorScheme == .dark,
+                    onJoinResearchSelected: {
+                        Task {
+                            await viewModel.onJoinResearchSelected()
+                        }
+                    },
+                    onDontJoinSelected: {
+                        AppPersistentMemory().setHasDismissedJoinFolderResearchBanner(to: true)
+                        displayMe = false
+                    }
+                )
             case .sendingInfo:
-                getSendingInfoView()
+                SendingInfoView()
             case .doneSending:
-                getDoneSendingView()
+                DoneSendingView(
+                    isDark: colorScheme == .dark,
+                    onCloseSelected: {
+                        AppPersistentMemory().setHasDismissedJoinFolderResearchBanner(to: true)
+                        displayMe = false
+                    }
+                )
             case .errorSending:
-                getErrorSendingView()
-            }
-        }
-    }
-    
-    @ViewBuilder func getRequestToJoinView() -> some View {
-        HStack(spacing: 20) {
-            VStack {
-                Image(systemName: "sparkle.magnifyingglass")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 30)
-                    .foregroundColor(.blue)
-                    .padding(.top)
-                
-                Spacer()
-            }
-            .frame(height: backgroundHeight)
-            
-            VStack(alignment: .leading, spacing: 7) {
-                Text("Participe da Pesquisa")
-                    .font(.headline)
-                    .foregroundColor(.mutedNavyBlue)
-                
-                Text("Ao enviar informações das suas pastas anonimamente, você me ajuda a entender o uso dessa funcionalidade para que eu possa melhorá-la no futuro.")
-                    .font(.callout)
-                    .foregroundColor(.mutedNavyBlue)
-                    .opacity(colorScheme == .dark ? 1.0 : 0.75)
-                
-                HStack(spacing: 15) {
-                    Button {
-                        viewModel.sendLogs()
-                    } label: {
-                        Text("Participar")
-                            .padding(.horizontal, buttonInternalPadding)
-                    }
-                    .font(.body)
-                    .tint(colorScheme == .dark ? .mutedNavyBlue : .blue)
-                    .controlSize(.regular)
-                    .buttonStyle(.bordered)
-                    .buttonBorderShape(.roundedRectangle)
-                    
-                    Button {
-                        AppPersistentMemory.setHasDismissedJoinFolderResearchBanner(to: true)
+                ErrorView(
+                    isDark: colorScheme == .dark,
+                    onCloseSelected: {
+                        AppPersistentMemory().setHasDismissedJoinFolderResearchBanner(to: true)
                         displayMe = false
-                    } label: {
-                        Text("Não")
-                            .padding(.horizontal, buttonInternalPadding)
+                    },
+                    onTryAgainSelected: {
+                        Task {
+                            await viewModel.onTryAgainSelected()
+                        }
                     }
-                    .font(.body)
-                    .tint(colorScheme == .dark ? .mutedNavyBlue : .blue)
-                    .controlSize(.regular)
-                    .buttonStyle(.bordered)
-                    .buttonBorderShape(.roundedRectangle)
-                }
-                .padding(.top, 2)
+                )
             }
-            
-            Spacer()
         }
-        .padding(.leading, 20)
-    }
-    
-    @ViewBuilder func getSendingInfoView() -> some View {
-        VStack(spacing: 35) {
-            ProgressView()
-                .scaleEffect(2, anchor: .center)
-            
-            Text("Enviando informações...")
-                .multilineTextAlignment(.center)
+        .padding(.vertical, 12)
+        .padding(.horizontal, 4)
+        .background {
+            RoundedRectangle(cornerRadius: 15)
+                .fill(viewModel.state == .displayingRequestToJoin ? Color.pastelBabyBlue : Color.gray)
+                .opacity(backgroundOpacity)
         }
     }
-    
-    @ViewBuilder func getDoneSendingView() -> some View {
-        ZStack {
-            VStack {
-                HStack {
+}
+
+extension JoinFolderResearchBannerView {
+
+    struct RequestToJoinView: View {
+
+        let isDark: Bool
+        let onJoinResearchSelected: () -> Void
+        let onDontJoinSelected: () -> Void
+
+        var body: some View {
+            HStack(spacing: 20) {
+                VStack {
+                    Image(systemName: "sparkle.magnifyingglass")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 30)
+                        .foregroundColor(.blue)
+                        .padding(.top)
+
                     Spacer()
-                    Button {
-                        AppPersistentMemory.setHasDismissedJoinFolderResearchBanner(to: true)
-                        displayMe = false
-                    } label: {
-                        Image(systemName: "xmark")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 15)
-                            .foregroundColor(colorScheme == .dark ? .primary : .gray)
-                    }
-                    .padding(.top)
-                    .padding(.trailing)
                 }
+
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Participe da Pesquisa")
+                        .font(.headline)
+                        .foregroundColor(.mutedNavyBlue)
+
+                    Text("Ao enviar informações das suas pastas anonimamente, você me ajuda a entender o uso dessa funcionalidade para que eu possa melhorá-la no futuro.")
+                        .font(.callout)
+                        .foregroundColor(.mutedNavyBlue)
+                        .opacity(isDark ? 1.0 : 0.75)
+
+                    HStack(spacing: 15) {
+                        Button {
+                            onJoinResearchSelected()
+                        } label: {
+                            Text("Participar")
+                                .padding(.horizontal)
+                        }
+                        .font(.body)
+                        .tint(isDark ? .mutedNavyBlue : .blue)
+                        .controlSize(.regular)
+                        .buttonStyle(.bordered)
+                        .buttonBorderShape(.roundedRectangle)
+
+                        Button {
+                            onDontJoinSelected()
+                        } label: {
+                            Text("Não")
+                                .padding(.horizontal)
+                        }
+                        .font(.body)
+                        .tint(isDark ? .mutedNavyBlue : .blue)
+                        .controlSize(.regular)
+                        .buttonStyle(.bordered)
+                        .buttonBorderShape(.roundedRectangle)
+                    }
+                    .padding(.top, 2)
+                }
+
                 Spacer()
             }
-            .frame(height: backgroundHeight)
-            
-            VStack(spacing: 15) {
+            .padding(.leading, 20)
+        }
+    }
+
+    struct SendingInfoView: View {
+
+        var body: some View {
+            VStack(spacing: 28) {
+                ProgressView()
+                    .scaleEffect(1.4, anchor: .center)
+
+                Text("ENVIANDO INFORMAÇÕES...")
+                    .font(.callout)
+                    .bold()
+                    .multilineTextAlignment(.center)
+                    .foregroundStyle(.gray)
+            }
+            .padding(.vertical, 28)
+            .frame(maxWidth: .infinity)
+        }
+    }
+
+    struct DoneSendingView: View {
+
+        let isDark: Bool
+        let onCloseSelected: () -> Void
+
+        var body: some View {
+            VStack(spacing: 18) {
                 Image(systemName: "checkmark.circle")
                     .resizable()
                     .scaledToFit()
                     .frame(height: 40)
                     .foregroundColor(.green)
-                
-                Text("Enviado com sucesso!")
+
+                Text("Você faz parte da pesquisa.")
                     .multilineTextAlignment(.center)
                     .font(.title3)
-                
-                Text("Você faz parte da pesquisa. Para descadastrar, vá em Configurações > Privacidade > Pesquisa Sobre as Pastas.")
+                    .bold()
+
+                Text("PARA DESCADASTRAR, VÁ EM CONFIGURAÇÕES > PRIVACIDADE > PESQUISA SOBRE AS PASTAS.")
+                    .font(.caption)
+                    .bold()
                     .multilineTextAlignment(.center)
-                    .font(.footnote)
+                    .foregroundStyle(.gray)
                     .padding(.horizontal)
+            }
+            .padding(.vertical, 10)
+            .frame(maxWidth: .infinity)
+            .overlay(alignment: .topTrailing) {
+                Button {
+                    onCloseSelected()
+                } label: {
+                    Image(systemName: "xmark")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 15)
+                        .foregroundColor(isDark ? .primary : .gray)
+                }
+                .padding(.trailing, 10)
             }
         }
     }
-    
-    @ViewBuilder func getErrorSendingView() -> some View {
-        ZStack {
-            VStack {
-                HStack {
-                    Spacer()
-                    Button {
-                        AppPersistentMemory.setHasDismissedJoinFolderResearchBanner(to: true)
-                        displayMe = false
-                    } label: {
-                        Image(systemName: "xmark")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 15)
-                            .foregroundColor(colorScheme == .dark ? .primary : .gray)
-                    }
-                    .padding(.top)
-                    .padding(.trailing)
-                }
-                Spacer()
-            }
-            .frame(height: backgroundHeight)
-            
-            VStack(spacing: 12) {
-                Image(systemName: "wifi.exclamationmark")
+
+    struct ErrorView: View {
+
+        let isDark: Bool
+        let onCloseSelected: () -> Void
+        let onTryAgainSelected: () -> Void
+
+        var body: some View {
+            VStack(spacing: 18) {
+                Image(systemName: "network.slash")
                     .resizable()
                     .scaledToFit()
                     .frame(height: 40)
-                
+
                 Text("Erro ao tentar enviar.")
                     .multilineTextAlignment(.center)
                     .font(.title3)
-                
-                Text("Tente novamente mais tarde. Para cadastrar nas Configurações, vá em Privacidade > Pesquisa Sobre as Pastas.")
+
+                Text("Você pode tente novamente agora ou mais tarde em Configurações > Privacidade > Pesquisa Sobre as Pastas.")
                     .multilineTextAlignment(.center)
                     .font(.footnote)
                     .padding(.horizontal)
-                
+
                 Button {
-                    viewModel.sendLogs()
+                    onTryAgainSelected()
                 } label: {
                     Text("Tentar Novamente")
                         .padding(.horizontal, 10)
                 }
                 .font(.body)
-                .tint(colorScheme == .dark ? .primary : .blue)
+                .tint(isDark ? .primary : .blue)
                 .controlSize(.regular)
                 .buttonStyle(.bordered)
                 .buttonBorderShape(.roundedRectangle)
             }
+            .padding(.vertical, 10)
+            .frame(maxWidth: .infinity)
+            .overlay(alignment: .topTrailing) {
+                Button {
+                    onCloseSelected()
+                } label: {
+                    Image(systemName: "xmark")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 15)
+                        .foregroundColor(isDark ? .primary : .gray)
+                }
+                .padding(.trailing, 10)
+            }
         }
     }
-
 }
 
-struct JoinFolderResearchBannerView_Previews: PreviewProvider {
+// MARK: - Previews
 
-    static var previews: some View {
-        JoinFolderResearchBannerView(viewModel: JoinFolderResearchBannerViewViewModel(state: .displayingRequestToJoin), displayMe: .constant(true))
-            .padding(.horizontal)
-    }
+#Preview("Request to Join") {
+    JoinFolderResearchBannerView(
+        viewModel: JoinFolderResearchBannerView.ViewModel(state: .displayingRequestToJoin),
+        displayMe: .constant(true)
+    )
+    .padding(.horizontal)
+}
 
+#Preview("Sending Info") {
+    JoinFolderResearchBannerView(
+        viewModel: JoinFolderResearchBannerView.ViewModel(state: .sendingInfo),
+        displayMe: .constant(true)
+    )
+    .padding(.horizontal)
+}
+
+#Preview("Done Sending") {
+    JoinFolderResearchBannerView(
+        viewModel: JoinFolderResearchBannerView.ViewModel(state: .doneSending),
+        displayMe: .constant(true)
+    )
+    .padding(.horizontal)
+}
+
+#Preview("Error") {
+    JoinFolderResearchBannerView(
+        viewModel: JoinFolderResearchBannerView.ViewModel(state: .errorSending),
+        displayMe: .constant(true)
+    )
+    .padding(.horizontal)
 }

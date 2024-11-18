@@ -108,10 +108,12 @@ struct MostSharedByAudienceView: View {
                                     navigateTo(sound: item.contentId)
                                 }
                                 .contextMenu {
-                                    Button {
-                                        navigateTo(sound: item.contentId)
-                                    } label: {
-                                        Label("Ir para Som", systemImage: "arrow.uturn.backward")
+                                    if UIDevice.isiPhone {
+                                        Button {
+                                            navigateTo(sound: item.contentId)
+                                        } label: {
+                                            Label("Ir para Som", systemImage: "arrow.uturn.backward")
+                                        }
                                     }
                                 }
                         }
@@ -136,13 +138,13 @@ struct MostSharedByAudienceView: View {
             } else if viewModel.lastCheckDate.twoMinutesHavePassed {
                 viewModel.loadList(for: viewModel.timeIntervalOption)
             }
-            shouldDisplayNewUpdateWayBanner = !AppPersistentMemory.hasSeenNewTrendsUpdateWayBanner()
+            shouldDisplayNewUpdateWayBanner = !AppPersistentMemory().hasSeenNewTrendsUpdateWayBanner()
         }
         .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
         }
         .onChange(of: scenePhase) { newPhase in
-            if newPhase == .active, viewModel.lastCheckDate.twoMinutesHavePassed {
+            if newPhase == .active, viewModel.lastCheckDate.minutesPassed(60) {
                 viewModel.loadList(for: viewModel.timeIntervalOption)
             }
         }
@@ -155,6 +157,7 @@ struct MostSharedByAudienceView: View {
                 Text(Shared.Trends.last3Days).tag(TrendsTimeInterval.last3Days)
                 Text(Shared.Trends.lastWeek).tag(TrendsTimeInterval.lastWeek)
                 Text(Shared.Trends.lastMonth).tag(TrendsTimeInterval.lastMonth)
+                Text(Shared.Trends.year2024).tag(TrendsTimeInterval.year2024)
                 Text(Shared.Trends.year2023).tag(TrendsTimeInterval.year2023)
                 Text(Shared.Trends.year2022).tag(TrendsTimeInterval.year2022)
                 Text(Shared.Trends.allTime).tag(TrendsTimeInterval.allTime)

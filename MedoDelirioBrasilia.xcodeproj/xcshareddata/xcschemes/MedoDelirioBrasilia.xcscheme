@@ -63,10 +63,6 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-ENABLE_REACTIONS"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
             argument = "-SHOW_EXPORT_FOLDERS_OPTION"
             isEnabled = "NO">
          </CommandLineArgument>

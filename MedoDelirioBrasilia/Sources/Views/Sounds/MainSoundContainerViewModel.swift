@@ -8,6 +8,7 @@
 import SwiftUI
 import Combine
 
+@MainActor
 class MainSoundContainerViewModel: ObservableObject {
 
     // MARK: - Published Vars
@@ -18,6 +19,8 @@ class MainSoundContainerViewModel: ObservableObject {
     @Published var currentViewMode: SoundsViewMode
     @Published var soundSortOption: Int
     @Published var authorSortOption: Int
+
+    @Published var dataLoadingDidFail: Bool = false
 
     // Sync
     @Published var processedUpdateNumber: Int = 0
@@ -83,36 +86,36 @@ class MainSoundContainerViewModel: ObservableObject {
     func reloadAllSounds() {
         do {
             let sounds = try LocalDatabase.shared.sounds(
-                allowSensitive: UserSettings.getShowExplicitContent(),
+                allowSensitive: UserSettings().getShowExplicitContent(),
                 favoritesOnly: false
             )
-            DispatchQueue.main.async {
-                self.allSounds = sounds
-            }
+
+            allSounds = sounds
 
             guard sounds.count > 0 else { return }
             let sortOption: SoundSortOption = SoundSortOption(rawValue: soundSortOption) ?? .dateAddedDescending
             sortAllSounds(by: sortOption)
         } catch {
             print("Erro carregando sons: \(error.localizedDescription)")
+            dataLoadingDidFail = true
         }
     }
 
     func reloadFavorites() {
         do {
             let sounds = try LocalDatabase.shared.sounds(
-                allowSensitive: UserSettings.getShowExplicitContent(),
+                allowSensitive: UserSettings().getShowExplicitContent(),
                 favoritesOnly: true
             )
-            DispatchQueue.main.async {
-                self.favorites = sounds
-            }
+
+            favorites = sounds
 
             guard sounds.count > 0 else { return }
             let sortOption: SoundSortOption = SoundSortOption(rawValue: soundSortOption) ?? .dateAddedDescending
             sortFavorites(by: sortOption)
         } catch {
             print("Erro carregando sons: \(error.localizedDescription)")
+            dataLoadingDidFail = true
         }
     }
 
@@ -120,7 +123,7 @@ class MainSoundContainerViewModel: ObservableObject {
         let sortOption = SoundSortOption(rawValue: rawSortOption) ?? .dateAddedDescending
         sortAllSounds(by: sortOption)
         sortFavorites(by: sortOption)
-        UserSettings.saveMainSoundListSoundSortOption(rawSortOption)
+        UserSettings().saveMainSoundListSoundSortOption(rawSortOption)
     }
 }
 
@@ -272,7 +275,7 @@ extension MainSoundContainerViewModel: SyncManagerDelegate {
             }
 
             var message = "Aguarde \(lastAttempt.minutesAndSecondsFromNow) para atualizar novamente."
-            if UserSettings.getShowUpdateDateOnUI() {
+            if UserSettings().getShowUpdateDateOnUI() {
                 message += " \(LocalDatabase.shared.dateTimeOfLastUpdate())"
             }
 
@@ -280,18 +283,16 @@ extension MainSoundContainerViewModel: SyncManagerDelegate {
                 "clock.fill",
                 .orange,
                 toastText: message,
-                displayTime: .seconds(UserSettings.getShowUpdateDateOnUI() ? 10 : 3)
+                displayTime: .seconds(UserSettings().getShowUpdateDateOnUI() ? 10 : 3)
             )
         }
 
         await syncManager.sync()
 
-        await MainActor.run {
-            firstRunSyncHappened = true
-        }
+        firstRunSyncHappened = true
 
         var message = syncValues.syncStatus.description
-        if UserSettings.getShowUpdateDateOnUI() {
+        if UserSettings().getShowUpdateDateOnUI() {
             message += " \(LocalDatabase.shared.dateTimeOfLastUpdate())"
         }
 
@@ -299,7 +300,7 @@ extension MainSoundContainerViewModel: SyncManagerDelegate {
             syncValues.syncStatus == .done ? "checkmark" : "exclamationmark.triangle.fill",
             syncValues.syncStatus == .done ? .green : .orange,
             toastText: message,
-            displayTime: .seconds(UserSettings.getShowUpdateDateOnUI() ? 10 : 3)
+            displayTime: .seconds(UserSettings().getShowUpdateDateOnUI() ? 10 : 3)
         )
     }
 

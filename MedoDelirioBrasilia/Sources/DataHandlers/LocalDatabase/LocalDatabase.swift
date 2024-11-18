@@ -16,8 +16,14 @@ internal protocol LocalDatabaseProtocol {
     func delete(authorId: String) throws
 
     // UserFolder
+
+    func allFolders() throws -> [UserFolder]
+    func contentsInside(userFolder userFolderId: String) throws -> [UserFolderContent]
     func contentExistsInsideUserFolder(withId folderId: String, contentId: String) throws -> Bool
-    
+    func soundIdsInside(userFolder userFolderId: String) throws -> [String]
+    func folderHashes() throws -> [String: String]
+    func folders(withIds folderIds: [String]) throws -> [UserFolder]
+
     // Song
     func insert(song newSong: Song) throws
     func update(song updatedSong: Song) throws
@@ -43,6 +49,11 @@ internal protocol LocalDatabaseProtocol {
     func getTopSoundsSharedByTheUser(_ limit: Int) throws -> [TopChartItem]
     func totalShareCount() -> Int
     func allDatesInWhichTheUserShared() throws -> [Date]
+
+    // Pinned Reactions
+    func insert(_ pinnedReaction: Reaction) throws
+    func pinnedReactions() throws -> [Reaction]
+    func delete(reactionId: String) throws
 }
 
 class LocalDatabase: LocalDatabaseProtocol {
@@ -62,6 +73,7 @@ class LocalDatabase: LocalDatabaseProtocol {
     var syncLogTable = Table("syncLog")
     let songTable = Table("song")
     var musicGenreTable = Table("musicGenre")
+    var pinnedReactionTable = Table("pinnedReaction")
 
     static let shared = LocalDatabase()
     
@@ -109,7 +121,9 @@ extension LocalDatabase {
             AddDateAndVersionToUserFolderTables(),
             AddSyncTables(),
             AddSongAndMusicGenreTables(),
-            AddExternalLinksFieldToAuthorTable()
+            AddExternalLinksFieldToAuthorTable(),
+            AddChangeHashFieldToUserFolderTable(),
+            AddPinnedReactionTable()
         ]
     }
 
@@ -143,6 +157,7 @@ enum LocalDatabaseError: Error {
     case authorNotFound
     case songNotFound
     case musicGenreNotFound
+    case pinnedReactionNotFound
 }
 
 extension LocalDatabaseError: LocalizedError {
@@ -163,6 +178,8 @@ extension LocalDatabaseError: LocalizedError {
             return NSLocalizedString("A Música solicitada não foi encontrada no bando de dados.", comment: "")
         case .musicGenreNotFound:
             return NSLocalizedString("O Gênero Musical solicitado não foi encontrado no banco de dados.", comment: "")
+        case .pinnedReactionNotFound:
+            return NSLocalizedString("A Reação Fixada solicitada não foi encontrada no banco de dados.", comment: "")
         }
     }
 }

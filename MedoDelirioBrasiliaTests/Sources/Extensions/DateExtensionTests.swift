@@ -76,4 +76,31 @@ final class DateExtensionTests: XCTestCase {
         
         XCTAssertEqual(Date.dateAsString(addingDays: -30, referenceDate: date), "2022-09-12")
     }
+
+    func testMinutesPassed_whenOriginalDateIsFiveMinutesAgo_shouldReturnFalse() throws {
+        var dayComponent = DateComponents()
+        dayComponent.minute = -5
+
+        let originalDate = Calendar.current.date(byAdding: dayComponent, to: .now)!
+
+        XCTAssertTrue(originalDate.minutesPassed(60))
+    }
+
+    func testMinutesPassed_whenOriginalDateIsOneWeekAgo_shouldReturnTrue() throws {
+        var dayComponent = DateComponents()
+        dayComponent.day = -7
+        let calendar = Calendar.current
+        let originalDate = calendar.date(byAdding: dayComponent, to: .now)!
+
+        XCTAssertTrue(originalDate.minutesPassed(60))
+    }
+
+    func testMinutesPassed_whenOriginalDateIsExactlyOneHourAgo_shouldReturnTrue() throws {
+        var dayComponent = DateComponents()
+        dayComponent.hour = -1
+        let calendar = Calendar.current
+        let originalDate = calendar.date(byAdding: dayComponent, to: .now)!
+
+        XCTAssertTrue(originalDate.minutesPassed(60))
+    }
 }

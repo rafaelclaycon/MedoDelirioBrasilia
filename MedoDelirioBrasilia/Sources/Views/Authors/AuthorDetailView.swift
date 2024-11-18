@@ -146,6 +146,8 @@ struct AuthorDetailView: View {
             SoundList(
                 viewModel: soundListViewModel,
                 soundSearchTextIsEmpty: .constant(nil),
+                dataLoadingDidFail: viewModel.dataLoadingDidFail,
+                authorId: author.id,
                 headerView: {
                     VStack{
                         if let photo = author.photo {

@@ -112,7 +112,7 @@ struct SongsView: View {
                     .padding(.horizontal)
                     .padding(.top, 7)
                     
-                    if UserSettings.getShowExplicitContent() == false {
+                    if UserSettings().getShowExplicitContent() == false {
                         ExplicitDisabledWarning(
                             text: UIDevice.current.userInterfaceIdiom == .phone ? Shared.contentFilterMessageForSongsiPhone : Shared.contentFilterMessageForSongsiPadMac
                         )
@@ -156,7 +156,7 @@ struct SongsView: View {
                 }
                 .onChange(of: viewModel.sortOption) {
                     viewModel.sortSongs(by: SongSortOption(rawValue: $0) ?? .dateAddedDescending)
-                    UserSettings.setSongSortOption(to: $0)
+                    UserSettings().setSongSortOption(to: $0)
                 }
                 .onChange(of: shareAsVideo_Result.videoFilepath) { videoResultPath in
                     if videoResultPath.isEmpty == false {
@@ -171,6 +171,11 @@ struct SongsView: View {
             .onAppear {
                 viewModel.reloadList()
                 viewModel.donateActivity()
+
+                Analytics().send(
+                    originatingScreen: "SongsView",
+                    action: "didViewSongsTab"
+                )
             }
             .onDisappear {
                 AudioPlayer.shared?.cancel()

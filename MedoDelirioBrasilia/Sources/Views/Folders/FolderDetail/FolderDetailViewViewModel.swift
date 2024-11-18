@@ -14,7 +14,9 @@ class FolderDetailViewViewModel: ObservableObject {
 
     @Published var sounds = [Sound]()
     @Published var soundSortOption: Int = FolderSoundSortOption.titleAscending.rawValue
-    
+
+    @Published var dataLoadingDidFail: Bool = false
+
     // Playlist
     @Published var isPlayingPlaylist: Bool = false
     private var currentTrackIndex: Int = 0
@@ -51,7 +53,7 @@ class FolderDetailViewViewModel: ObservableObject {
 
     func reloadSounds() {
         do {
-            let folderContents = try LocalDatabase.shared.getAllContentsInsideUserFolder(withId: folder.id)
+            let folderContents = try LocalDatabase.shared.contentsInside(userFolder: folder.id)
             let contentIds = folderContents.map { $0.contentId }
             self.sounds = try LocalDatabase.shared.sounds(withIds: contentIds)
 

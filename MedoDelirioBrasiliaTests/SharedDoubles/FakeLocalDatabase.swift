@@ -1,5 +1,5 @@
 //
-//  LocalDatabaseStub.swift
+//  FakeLocalDatabase.swift
 //  MedoDelirioBrasiliaTests
 //
 //  Created by Rafael Claycon Schmitt on 02/02/23.
@@ -14,10 +14,11 @@ enum CustomSQLiteError: Error {
     case queryError(message: String)
 }
 
-class LocalDatabaseStub: LocalDatabaseProtocol {
+class FakeLocalDatabase: LocalDatabaseProtocol {
 
-    var contentInsideFolder: [String]? = nil
-    var unsuccessfulUpdatesToReturn: [MedoDelirio.UpdateEvent]? = nil
+    var folders = [UserFolder]()
+    var contentInsideFolder = [UserFolderContent]()
+    var unsuccessfulUpdatesToReturn: [UpdateEvent]? = nil
     var errorToThrowOnInsertUpdateEvent: CustomSQLiteError? = nil
 
     var didCallInsertSound = false
@@ -49,6 +50,8 @@ class LocalDatabaseStub: LocalDatabaseProtocol {
     var shareDates: [Date] = []
     var numberOfTimesInsertUpdateEventWasCalled = 0
     var preexistingUpdates: [UpdateEvent] = []
+
+    var didCallDeletePinnedReaction = false
 
     // Sound
 
@@ -84,11 +87,31 @@ class LocalDatabaseStub: LocalDatabaseProtocol {
 
     // UserFolder
 
+    func allFolders() throws -> [UserFolder] {
+        folders
+    }
+
+    func contentsInside(userFolder userFolderId: String) throws -> [UserFolderContent] {
+        contentInsideFolder.filter { $0.userFolderId == userFolderId }
+    }
+
     func contentExistsInsideUserFolder(withId folderId: String, contentId: String) throws -> Bool {
-        guard let content = contentInsideFolder else {
-            return false
+        contentInsideFolder.contains(where: { $0.contentId == contentId })
+    }
+
+    func soundIdsInside(userFolder userFolderId: String) throws -> [String] {
+        contentInsideFolder.compactMap {
+            guard $0.userFolderId == userFolderId else { return nil }
+            return $0.contentId
         }
-        return content.contains(contentId)
+    }
+
+    func folderHashes() throws -> [String: String] {
+        Dictionary(uniqueKeysWithValues: folders.map { ($0.id, $0.changeHash ?? "") })
+    }
+
+    func folders(withIds folderIds: [String]) throws -> [UserFolder] {
+        folders.filter { folderIds.contains($0.id) }
     }
 
     // Song
@@ -178,5 +201,15 @@ class LocalDatabaseStub: LocalDatabaseProtocol {
 
     func allDatesInWhichTheUserShared() throws -> [Date] {
         return shareDates
+    }
+
+    func delete(reactionId: String) throws {
+        didCallDeletePinnedReaction = true
+    }
+
+    func insert(_ pinnedReaction: Reaction) throws {}
+
+    func pinnedReactions() throws -> [Reaction] {
+        []
     }
 }
