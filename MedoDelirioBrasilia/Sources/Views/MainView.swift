@@ -95,7 +95,7 @@ struct MainView: View {
                         EpisodeView()
                     }
                     .tabItem {
-                        Label("Episódios", systemImage: "rectangle.stack.badge.play.fill")
+                        Label("Episódios", systemImage: "rectangle.stack.fill")
                     }
                     //.tag(PhoneTab.songs)
                     

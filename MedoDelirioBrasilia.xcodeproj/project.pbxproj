@@ -287,10 +287,7 @@
 		D93752172902C94A00E2F27B /* O senhor gozou.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D93752152902C94A00E2F27B /* O senhor gozou.mp3 */; };
 		D93752192902CD1A00E2F27B /* Genocida, miliciano, canibal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D93752182902CD1A00E2F27B /* Genocida, miliciano, canibal.mp3 */; };
 		D937E0F12908AA0C004137ED /* EpisodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D937E0F02908AA0C004137ED /* EpisodeView.swift */; };
-		D937E0F62908AD29004137ED /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D937E0F52908AD29004137ED /* Episode.swift */; };
-		D937E0F82909600E004137ED /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D937E0F72909600E004137ED /* EpisodeCell.swift */; };
 		D937E0FA29096049004137ED /* EpisodeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D937E0F929096049004137ED /* EpisodeCellViewModel.swift */; };
-		D937E0FC2909608D004137ED /* Double+ToDisplayString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D937E0FB2909608D004137ED /* Double+ToDisplayString.swift */; };
 		D937E0FE2909629A004137ED /* DateTime+AsShortString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D937E0FD2909629A004137ED /* DateTime+AsShortString.swift */; };
 		D937E10229097A0F004137ED /* Eduardo Leite e Onyx Lorenzoni - Qual e a sua alternativa, candidato (completo).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D937E10129097A0F004137ED /* Eduardo Leite e Onyx Lorenzoni - Qual e a sua alternativa, candidato (completo).mp3 */; };
 		D937E11029097D58004137ED /* Renan Calheiros - Onyx Lorenzeti parece nome de chuveiro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D937E10329097D58004137ED /* Renan Calheiros - Onyx Lorenzeti parece nome de chuveiro.mp3 */; };
@@ -432,7 +429,6 @@
 		D95575632910A462002EFC50 /* Jair Bolsonaro - O que os caras querem e a nossa hemorroida.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95575612910A462002EFC50 /* Jair Bolsonaro - O que os caras querem e a nossa hemorroida.mp3 */; };
 		D955756829131037002EFC50 /* Omar Aziz - Como dizem os peruanos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D955756729131037002EFC50 /* Omar Aziz - Como dizem os peruanos.mp3 */; };
 		D955756A2913419A002EFC50 /* Jair Bolsonaro - Precisa ter provas.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95575692913419A002EFC50 /* Jair Bolsonaro - Precisa ter provas.mp3 */; };
-		D955DC972950A955009230FD /* Opener.swift in Sources */ = {isa = PBXBuildFile; fileRef = D955DC962950A955009230FD /* Opener.swift */; };
 		D955DA302AA6B94C00AC4169 /* SoundDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D955DA2F2AA6B94C00AC4169 /* SoundDetailView.swift */; };
 		D957047D28AEF733008DEF8C /* ProcessingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957047C28AEF733008DEF8C /* ProcessingView.swift */; };
 		D957048328AFCC93008DEF8C /* ChangeAppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957048228AFCC93008DEF8C /* ChangeAppIconView.swift */; };
@@ -1200,6 +1196,10 @@
 		D99D0DC128CAB3E800EB6F27 /* TV CAMARA - Lula - A esperanca finalmente venceu o medo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99D0DC028CAB3E800EB6F27 /* TV CAMARA - Lula - A esperanca finalmente venceu o medo.mp3 */; };
 		D99D0DC328CAB52700EB6F27 /* TV CAMARA - Alessandro Molon - E obvio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99D0DC228CAB52700EB6F27 /* TV CAMARA - Alessandro Molon - E obvio.mp3 */; };
 		D99D0DC528CAB5F000EB6F27 /* TV BRASIL - GUEDES - Auxilio emergencial de 200 reais.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99D0DC428CAB5EF00EB6F27 /* TV BRASIL - GUEDES - Auxilio emergencial de 200 reais.mp3 */; };
+		D99D254E2CEC0619003E8ED0 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99D254D2CEC0619003E8ED0 /* Episode.swift */; };
+		D99D254F2CEC06AA003E8ED0 /* DeleteFolderViewAide.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97B2DD828E5EA0500C3B50B /* DeleteFolderViewAide.swift */; };
+		D99D25502CEC06D6003E8ED0 /* Double+ToDisplayString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D937E0FB2909608D004137ED /* Double+ToDisplayString.swift */; };
+		D99D25512CEC06EE003E8ED0 /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D937E0F72909600E004137ED /* EpisodeCell.swift */; };
 		D99D6CE528D6766300B36301 /* Jair Bolsonaro - Ministro Fachin, marxista, leninista.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99D6CE428D6766300B36301 /* Jair Bolsonaro - Ministro Fachin, marxista, leninista.mp3 */; };
 		D99DC19D28423AD7002B03B6 /* AuthorDetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99DC19C28423AD7002B03B6 /* AuthorDetailViewViewModel.swift */; };
 		D9A039182BD69EF100AB74F7 /* ModalViewToOpen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A039172BD69EF100AB74F7 /* ModalViewToOpen.swift */; };
@@ -1972,7 +1972,6 @@
 		D95575612910A462002EFC50 /* Jair Bolsonaro - O que os caras querem e a nossa hemorroida.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - O que os caras querem e a nossa hemorroida.mp3"; sourceTree = "<group>"; };
 		D955756729131037002EFC50 /* Omar Aziz - Como dizem os peruanos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Omar Aziz - Como dizem os peruanos.mp3"; sourceTree = "<group>"; };
 		D95575692913419A002EFC50 /* Jair Bolsonaro - Precisa ter provas.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Precisa ter provas.mp3"; sourceTree = "<group>"; };
-		D955DC962950A955009230FD /* Opener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Opener.swift; sourceTree = "<group>"; };
 		D955DA2F2AA6B94C00AC4169 /* SoundDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundDetailView.swift; sourceTree = "<group>"; };
 		D957047C28AEF733008DEF8C /* ProcessingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingView.swift; sourceTree = "<group>"; };
 		D957048228AFCC93008DEF8C /* ChangeAppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAppIconView.swift; sourceTree = "<group>"; };
@@ -2744,6 +2743,7 @@
 		D99D0DC028CAB3E800EB6F27 /* TV CAMARA - Lula - A esperanca finalmente venceu o medo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "TV CAMARA - Lula - A esperanca finalmente venceu o medo.mp3"; sourceTree = "<group>"; };
 		D99D0DC228CAB52700EB6F27 /* TV CAMARA - Alessandro Molon - E obvio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "TV CAMARA - Alessandro Molon - E obvio.mp3"; sourceTree = "<group>"; };
 		D99D0DC428CAB5EF00EB6F27 /* TV BRASIL - GUEDES - Auxilio emergencial de 200 reais.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "TV BRASIL - GUEDES - Auxilio emergencial de 200 reais.mp3"; sourceTree = "<group>"; };
+		D99D254D2CEC0619003E8ED0 /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
 		D99D6CE428D6766300B36301 /* Jair Bolsonaro - Ministro Fachin, marxista, leninista.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Ministro Fachin, marxista, leninista.mp3"; sourceTree = "<group>"; };
 		D99DC19C28423AD7002B03B6 /* AuthorDetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorDetailViewViewModel.swift; sourceTree = "<group>"; };
 		D9A039172BD69EF100AB74F7 /* ModalViewToOpen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewToOpen.swift; sourceTree = "<group>"; };
@@ -4445,14 +4445,6 @@
 			path = Episodes;
 			sourceTree = "<group>";
 		};
-		D937E0F22908AD0C004137ED /* Episodes */ = {
-			isa = PBXGroup;
-			children = (
-				D937E0F52908AD29004137ED /* Episode.swift */,
-			);
-			path = Episodes;
-			sourceTree = "<group>";
-		};
 		D94B514B2CC624F30005FABE /* Doubles */ = {
 			isa = PBXGroup;
 			children = (
@@ -4612,7 +4604,6 @@
 				D9758C3D28617DAC0094D388 /* Color+Name.swift */,
 				D958BC722868FE8C000B2EDA /* EmojiIdentification.swift */,
 				D93CCB7A286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift */,
-				D9D8C4A7287CD1B600812EE5 /* UIDevice+DevicePhysicalCharacteristics.swift */,
 				D937E0FB2909608D004137ED /* Double+ToDisplayString.swift */,
 				D937E0FD2909629A004137ED /* DateTime+AsShortString.swift */,
 				D9917A102991530000FB6274 /* Double+Extensions.swift */,
@@ -4632,6 +4623,7 @@
 				D9E6B3402CA0EA4A002FCB91 /* MedoDelirioWidget */,
 				D9E6B33B2CA0EA49002FCB91 /* Frameworks */,
 				D9625E7B28238F9A00080852 /* Products */,
+				D99D253D2CEC0562003E8ED0 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -4907,6 +4899,7 @@
 		D98EC5DF2825A04000340BE5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D99D254C2CEC0608003E8ED0 /* Episodes */,
 				D98D13832CD5CD09001CF5BB /* Mocks */,
 				D96892DB2C9F13BB0084F646 /* APIConfig.swift */,
 				D994AD632C9E006B004FAE25 /* ContentShareCountStats.swift */,
@@ -4983,6 +4976,22 @@
 				D99BAF722CE05B1500250900 /* HowReactionsWorkView.swift */,
 			);
 			path = Sheets;
+			sourceTree = "<group>";
+		};
+		D99D253D2CEC0562003E8ED0 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				D937E0F52908AD29004137ED /* Episode.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		D99D254C2CEC0608003E8ED0 /* Episodes */ = {
+			isa = PBXGroup;
+			children = (
+				D99D254D2CEC0619003E8ED0 /* Episode.swift */,
+			);
+			path = Episodes;
 			sourceTree = "<group>";
 		};
 		D9A06415298B59B0006075D1 /* Folders */ = {
@@ -6727,6 +6736,7 @@
 				D9CC893328EB7BB500576492 /* MostSharedByAudienceView.swift in Sources */,
 				D924F9212BF841E6002FC815 /* IntroducingReactionsView.swift in Sources */,
 				D9FF3F972B142F78007AE773 /* UpdateIncentiveBanner.swift in Sources */,
+				D99D254E2CEC0619003E8ED0 /* Episode.swift in Sources */,
 				D9F45DDA2BED39F800D49340 /* DynamicBannerData.swift in Sources */,
 				D9E7BE902C9E1D9D0094AD28 /* UserInfo.swift in Sources */,
 				D9E7BE912C9E1D9D0094AD28 /* VideoExportType.swift in Sources */,
@@ -6755,6 +6765,7 @@
 				D9BF9091284257F500BDDD7D /* Shared.swift in Sources */,
 				D9758C3C28617C980094D388 /* LocalDatabase+UserFolder.swift in Sources */,
 				D9DB6F7F28CBDA8000E24BDE /* MostSharedByMeView.swift in Sources */,
+				D99D254F2CEC06AA003E8ED0 /* DeleteFolderViewAide.swift in Sources */,
 				D98BB69A2AC68769001DE23D /* FloatingSelectionOptionsView.swift in Sources */,
 				D91107112863B481000B6F8F /* ReactionsView+ViewModel.swift in Sources */,
 				D98622E0283FC57100E9F630 /* AuthorDetailView.swift in Sources */,
@@ -6788,6 +6799,7 @@
 				D94EAEB42AC62958002EA512 /* CenterAlignedLabelStyle.swift in Sources */,
 				D9DD1AB72AB954DA0010F700 /* CapsuleButtonStyle.swift in Sources */,
 				D95DB0F6288248A300D4FEDF /* SidebarView.swift in Sources */,
+				D99D25502CEC06D6003E8ED0 /* Double+ToDisplayString.swift in Sources */,
 				D9943F2C28643317002C6B97 /* FolderDetailViewViewModel.swift in Sources */,
 				D9DBEAA12BCC110A00220679 /* MockSoundListViewModel.swift in Sources */,
 				D9C1372B29063D7D003E4ABF /* PrivacySettingsView.swift in Sources */,
@@ -6838,6 +6850,7 @@
 				D992EF5C2BCB25820080C892 /* SoundListViewModel.swift in Sources */,
 				D99DC19D28423AD7002B03B6 /* AuthorDetailViewViewModel.swift in Sources */,
 				D937E0FA29096049004137ED /* EpisodeCellViewModel.swift in Sources */,
+				D99D25512CEC06EE003E8ED0 /* EpisodeCell.swift in Sources */,
 				D967E2BC2901C40700B21C11 /* CustomPhotoAlbum.swift in Sources */,
 				D99BAF762CE1683700250900 /* ReactionsView+LoadedView.swift in Sources */,
 				D90E80C12CEA1CB00014A886 /* LocalDatabase+PinnedReaction.swift in Sources */,
@@ -6879,7 +6892,6 @@
 				D9877D2B2869845400B541F9 /* SharingUtility.swift in Sources */,
 				D94EAB5129FC0907004CD604 /* AppDelegate+MoveFixedDataToDatabase.swift in Sources */,
 				D988C523283C33E100D64404 /* UserSettings.swift in Sources */,
-				D937E0F62908AD29004137ED /* Episode.swift in Sources */,
 				D92E7075283C5F620035826C /* SongCell.swift in Sources */,
 				D9943F1C28641917002C6B97 /* LocalDatabase+Favorite.swift in Sources */,
 				D98CFB5A2C95C9760038C26C /* SocialMediaLink.swift in Sources */,
@@ -6941,7 +6953,6 @@
 				D9CA301E2A03EE2300F1F23D /* NetworkRabbit+Generic.swift in Sources */,
 				D9D3D4912887495B00C42FDE /* FolderList.swift in Sources */,
 				D937E0F12908AA0C004137ED /* EpisodeView.swift in Sources */,
-				D97B2DD928E5EA0500C3B50B /* DeleteFolderViewAide.swift in Sources */,
 				D9ABEEDB2CA1B51800CA024F /* PlayRandomSoundHelper.swift in Sources */,
 				D9592C442AA2F59B00157F5A /* AddSongAndMusicGenreTables.swift in Sources */,
 				D904495A2BB283C20023088B /* ExternalLinkButton.swift in Sources */,

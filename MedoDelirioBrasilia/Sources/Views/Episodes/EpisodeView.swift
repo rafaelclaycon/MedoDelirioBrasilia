@@ -10,17 +10,17 @@ import SwiftUI
 struct EpisodeView: View {
 
     var body: some View {
-        List(getLocalEpisodes()) { episode in
-            EpisodeCell(viewModel: EpisodeCellViewModel(episode: episode))
+        ScrollView {
+            VStack(spacing: 20) {
+                NotAPlayerBanner()
+
+                ForEach(getLocalEpisodes()) { episode in
+                    EpisodeCell(viewModel: EpisodeCellViewModel(episode: episode))
+                }
+            }
+            .navigationTitle("Episódios")
+            .padding()
         }
-        .navigationTitle("Episódios")
-        
-//        ScrollView {
-//            VStack {
-//                
-//            }
-//            .navigationTitle("Episódios")
-//        }
     }
     
     private func getLocalEpisodes() -> [Episode] {
@@ -63,13 +63,40 @@ struct EpisodeView: View {
                              creationDate: .empty))
         return array
     }
-
 }
 
-struct EpisodeView_Previews: PreviewProvider {
+// MARK: - Subviews
 
-    static var previews: some View {
-        EpisodeView()
+extension EpisodeView {
+
+    struct NotAPlayerBanner: View {
+
+        @Environment(\.colorScheme) var colorScheme
+
+        var body: some View {
+            VStack(alignment: .center, spacing: 8) {
+                Text("Medo e Delírio não é um tocador de podcasts")
+                    .bold()
+                    .multilineTextAlignment(.center)
+
+                Text("Acesse o episódio no seu tocador favorito. Marque episódios favoritos para mais tarde. Confira quais sons aparecem em quais episódio. Recebe uma notificação quando um novo episódio sair.")
+                    //.foregroundColor(.blue)
+                    .opacity(0.8)
+                    .font(.callout)
+                    .multilineTextAlignment(.center)
+            }
+            .padding(.all, 20)
+            .background {
+                RoundedRectangle(cornerRadius: 15)
+                    .foregroundColor(.gray)
+                    .opacity(colorScheme == .dark ? 0.3 : 0.15)
+            }
+        }
     }
+}
 
+// MARK: - Preview
+
+#Preview {
+    EpisodeView()
 }

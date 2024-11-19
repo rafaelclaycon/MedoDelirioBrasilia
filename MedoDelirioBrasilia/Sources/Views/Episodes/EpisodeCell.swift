@@ -34,7 +34,7 @@ struct EpisodeCell: View {
             
             HStack(spacing: 20) {
                 Button {
-                    Opener.open(link: viewModel.spotifyLink)
+                    //Opener.open(link: viewModel.spotifyLink)
                 } label: {
                     Image("spotify")
                         .renderingMode(.template)
@@ -47,7 +47,7 @@ struct EpisodeCell: View {
                 .buttonBorderShape(.roundedRectangle)
                 
                 Button {
-                    Opener.open(link: viewModel.applePodcastsLink)
+                    //Opener.open(link: viewModel.applePodcastsLink)
                 } label: {
                     Image("apple_podcasts")
                         .resizable()
@@ -63,7 +63,7 @@ struct EpisodeCell: View {
                 .buttonBorderShape(.roundedRectangle)
                 
                 Button {
-                    Opener.open(link: viewModel.pocketCastsLink)
+                    //Opener.open(link: viewModel.pocketCastsLink)
                 } label: {
                     Image("pocket_casts")
                         .resizable()
