@@ -1,7 +1,20 @@
+//
+//  AudioPlayer.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Schmitt on 19/05/22.
+//
+
 import AVFoundation
 import Foundation
 
-class AudioPlayer: NSObject, AVAudioPlayerDelegate {
+/// A class that manages audio playback using `AVAudioPlayer` with additional state management and updates.
+///
+/// This class supports toggling playback, tracking playback progress, and notifying about state changes.
+/// It is designed to be used as a singleton with the `shared` property.
+///
+/// - Note: This class requires an active audio session with the `AVAudioSession.Category.playback` category.
+final class AudioPlayer: NSObject, AVAudioPlayerDelegate {
 
     enum Activity {
         case stopped
@@ -21,7 +34,10 @@ class AudioPlayer: NSObject, AVAudioPlayerDelegate {
 
     static var shared: AudioPlayer?
 
-    init?(url: URL, update: @escaping (State?) -> Void) {
+    init?(
+        url: URL,
+        update: @escaping (State?) -> Void
+    ) {
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
             try AVAudioSession.sharedInstance().setActive(true)

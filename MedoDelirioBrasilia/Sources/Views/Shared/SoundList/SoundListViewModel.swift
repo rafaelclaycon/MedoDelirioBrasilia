@@ -230,25 +230,12 @@ extension SoundListViewModel {
             nowPlayingKeeper.removeAll()
             nowPlayingKeeper.insert(sound.id)
 
-            AudioPlayer.shared = AudioPlayer(url: url, update: { [weak self] state in
-                guard let self else { return }
-                if state?.activity == .stopped {
-                    self.nowPlayingKeeper.removeAll()
-
-                    guard case .loaded(let sounds) = self.state else { return }
-
-                    if self.isPlayingPlaylist {
-                        self.currentTrackIndex += 1
-
-                        if self.currentTrackIndex >= sounds.count {
-                            self.doPlaylistCleanup()
-                            return
-                        }
-
-                        self.play(sounds[self.currentTrackIndex])
-                    }
+            AudioPlayer.shared = AudioPlayer(
+                url: url,
+                update: { [weak self] state in
+                    self?.onAudioPlayerUpdate(playerState: state)
                 }
-            })
+            )
 
             AudioPlayer.shared?.togglePlay()
         } catch {
@@ -257,6 +244,23 @@ extension SoundListViewModel {
                 // Disregarding the case of the sound not being in the Bundle as this is highly unlikely since the launch of the sync system.
             }
         }
+    }
+
+    private func onAudioPlayerUpdate(playerState: AudioPlayer.State?) {
+        guard playerState?.activity == .stopped else { return }
+
+        nowPlayingKeeper.removeAll()
+
+        guard case .loaded(let sounds) = state else { return }
+        guard isPlayingPlaylist else { return }
+
+        currentTrackIndex += 1
+        if currentTrackIndex >= sounds.count {
+            doPlaylistCleanup()
+            return
+        }
+
+        play(sounds[currentTrackIndex])
     }
 
     func stopPlaying() {
