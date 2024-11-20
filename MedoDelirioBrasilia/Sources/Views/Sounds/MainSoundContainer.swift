@@ -285,13 +285,9 @@ struct MainSoundContainer: View {
         }
         .onChange(of: scenePhase) { newPhase in
             if newPhase == .active {
-                let lastUpdateAttempt = AppPersistentMemory().getLastUpdateAttempt()
-                guard
-                    let date = lastUpdateAttempt.iso8601withFractionalSeconds,
-                    date.minutesPassed(60)
-                else { return }
                 Task {
-                    await viewModel.sync(lastAttempt: lastUpdateAttempt)
+                    await viewModel.warmOpenSync()
+                    print("DID FINISH WARM OPEN SYNC")
                 }
             }
         }

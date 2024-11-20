@@ -274,16 +274,13 @@ extension MainSoundContainerViewModel: SyncManagerDelegate {
                 syncValues.syncStatus = .done
             }
 
-            var message = "Aguarde \(lastAttempt.minutesAndSecondsFromNow) para atualizar novamente."
-            if UserSettings().getShowUpdateDateOnUI() {
-                message += " \(LocalDatabase.shared.dateTimeOfLastUpdate())"
-            }
+            let message = "Aguarde \(lastAttempt.minutesAndSecondsFromNow) para atualizar novamente."
 
             return displayToast(
                 "clock.fill",
                 .orange,
                 toastText: message,
-                displayTime: .seconds(UserSettings().getShowUpdateDateOnUI() ? 10 : 3)
+                displayTime: .seconds(3)
             )
         }
 
@@ -291,17 +288,27 @@ extension MainSoundContainerViewModel: SyncManagerDelegate {
 
         firstRunSyncHappened = true
 
-        var message = syncValues.syncStatus.description
-        if UserSettings().getShowUpdateDateOnUI() {
-            message += " \(LocalDatabase.shared.dateTimeOfLastUpdate())"
-        }
+        let message = syncValues.syncStatus.description
 
         displayToast(
             syncValues.syncStatus == .done ? "checkmark" : "exclamationmark.triangle.fill",
             syncValues.syncStatus == .done ? .green : .orange,
             toastText: message,
-            displayTime: .seconds(UserSettings().getShowUpdateDateOnUI() ? 10 : 3)
+            displayTime: .seconds(3)
         )
+    }
+
+    // Warm open means the app was reopened before it left memory.
+    func warmOpenSync() async {
+        let lastUpdateAttempt = AppPersistentMemory().getLastUpdateAttempt()
+        guard
+            syncValues.syncStatus != .updating,
+            let date = lastUpdateAttempt.iso8601withFractionalSeconds,
+            date.minutesPassed(60)
+        else { return }
+
+        print("WILL WARM OPEN SYNC")
+        await sync(lastAttempt: lastUpdateAttempt)
     }
 
     nonisolated func set(totalUpdateCount: Int) {
