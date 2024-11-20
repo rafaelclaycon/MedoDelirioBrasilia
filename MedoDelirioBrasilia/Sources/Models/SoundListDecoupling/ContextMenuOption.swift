@@ -39,6 +39,15 @@ extension ContextMenuOption {
         }
     }
 
+    static var addToMix: ContextMenuOption {
+        ContextMenuOption(
+            symbol: { _ in "plus.square.on.square"},
+            title: { _ in "Adicionar ao Mix" }
+        ) { sound, delegate in
+            delegate.addToMix(sound)
+        }
+    }
+
     static var addToFavorites: ContextMenuOption {
         return ContextMenuOption(
             symbol: { isFavorite in
@@ -125,7 +134,8 @@ extension ContextMenuSection {
             options: { sound in
                 [
                     .shareSound,
-                    .shareAsVideo
+                    .shareAsVideo,
+                    .addToMix
                 ]
             }
         )

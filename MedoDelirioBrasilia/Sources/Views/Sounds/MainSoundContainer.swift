@@ -32,6 +32,9 @@ struct MainSoundContainer: View {
     // Temporary banners
     @State private var shouldDisplayRecurringDonationBanner: Bool = false
 
+    // Mix
+    @State private var showMixModalView = false
+
     // MARK: - Environment Objects
 
     @EnvironmentObject var trendsHelper: TrendsHelper
@@ -230,6 +233,9 @@ struct MainSoundContainer: View {
                 lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
             )
         }
+        .sheet(isPresented: $showMixModalView) {
+            MixSoundsView(sounds: allSoundsViewModel.mixSounds)
+        }
         .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in // iPad - Settings explicit toggle.
             if shouldUpdate {
                 viewModel.reloadAllSounds()
@@ -355,6 +361,12 @@ extension MainSoundContainer {
                     }
                 } else {
                     if UIDevice.isiPhone && currentSoundsListMode.wrappedValue == .regular {
+                        Button {
+                            showMixModalView = true
+                        } label: {
+                            Image(systemName: "sparkles.square.filled.on.square")
+                        }
+
                         SyncStatusView()
                             .onTapGesture {
                                 subviewToOpen = .syncInfo

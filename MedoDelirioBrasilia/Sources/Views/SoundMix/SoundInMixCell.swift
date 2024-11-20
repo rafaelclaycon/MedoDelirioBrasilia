@@ -18,7 +18,7 @@ struct SoundInMixCell: View {
                 .frame(height: UIDevice.is4InchDevice ? 120 : 84)
             
             HStack {
-                NumberBadgeView(number: "\(soundInMix.positionOnList)")
+                NumberBadgeView(number: "\(soundInMix.positionOnList)", showBackgroundCircle: false)
                     .foregroundColor(.primary)
                     .padding(.trailing, 10)
                 

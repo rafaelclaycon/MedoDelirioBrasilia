@@ -15,6 +15,8 @@ protocol SoundListDisplaying {
 
     func openShareAsVideoModal(for sound: Sound)
 
+    func addToMix(_ sound: Sound)
+
     func toggleFavorite(_ soundId: String)
 
     func addToFolder(_ sound: Sound)

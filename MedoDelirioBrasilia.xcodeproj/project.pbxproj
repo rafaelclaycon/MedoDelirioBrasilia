@@ -1108,6 +1108,10 @@
 		D98D13802CD5B880001CF5BB /* UserFolderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98D137F2CD5B876001CF5BB /* UserFolderRepository.swift */; };
 		D98D13822CD5C4B1001CF5BB /* AddChangeHashFieldToUserFolderTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98D13812CD5C4B1001CF5BB /* AddChangeHashFieldToUserFolderTable.swift */; };
 		D98D13852CD5CD19001CF5BB /* UserFolder+Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98D13842CD5CD19001CF5BB /* UserFolder+Mocks.swift */; };
+		D98DAA312CED8471004D4467 /* MixSoundsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98DAA2D2CED8471004D4467 /* MixSoundsView.swift */; };
+		D98DAA322CED8471004D4467 /* WaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98DAA302CED8471004D4467 /* WaveformView.swift */; };
+		D98DAA332CED8471004D4467 /* SoundInMix.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98DAA2E2CED8471004D4467 /* SoundInMix.swift */; };
+		D98DAA342CED8471004D4467 /* SoundInMixCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98DAA2F2CED8471004D4467 /* SoundInMixCell.swift */; };
 		D98DBD35284919B1008544F8 /* NetworkRabbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98DBD34284919B1008544F8 /* NetworkRabbit.swift */; };
 		D98DBD38284921B5008544F8 /* NetworkRabbitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98DBD37284921B5008544F8 /* NetworkRabbitTests.swift */; };
 		D98DFB4B2CEA9A82009C880F /* PinReactionsBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98DFB4A2CEA9A82009C880F /* PinReactionsBanner.swift */; };
@@ -2645,6 +2649,10 @@
 		D98D137F2CD5B876001CF5BB /* UserFolderRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFolderRepository.swift; sourceTree = "<group>"; };
 		D98D13812CD5C4B1001CF5BB /* AddChangeHashFieldToUserFolderTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChangeHashFieldToUserFolderTable.swift; sourceTree = "<group>"; };
 		D98D13842CD5CD19001CF5BB /* UserFolder+Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserFolder+Mocks.swift"; sourceTree = "<group>"; };
+		D98DAA2D2CED8471004D4467 /* MixSoundsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixSoundsView.swift; sourceTree = "<group>"; };
+		D98DAA2E2CED8471004D4467 /* SoundInMix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundInMix.swift; sourceTree = "<group>"; };
+		D98DAA2F2CED8471004D4467 /* SoundInMixCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundInMixCell.swift; sourceTree = "<group>"; };
+		D98DAA302CED8471004D4467 /* WaveformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveformView.swift; sourceTree = "<group>"; };
 		D98DBD3228491909008544F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D98DBD34284919B1008544F8 /* NetworkRabbit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRabbit.swift; sourceTree = "<group>"; };
 		D98DBD37284921B5008544F8 /* NetworkRabbitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRabbitTests.swift; sourceTree = "<group>"; };
@@ -4674,6 +4682,7 @@
 		D9625EAB2824EADC00080852 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D98DAA2C2CED8458004D4467 /* SoundMix */,
 				D958B1A928394D400010F133 /* MainView.swift */,
 				D95DB0F5288248A300D4FEDF /* SidebarView.swift */,
 				D959B0472887E83D00A215AD /* SidebarViewViewModel.swift */,
@@ -4840,6 +4849,17 @@
 				D98D13842CD5CD19001CF5BB /* UserFolder+Mocks.swift */,
 			);
 			path = Mocks;
+			sourceTree = "<group>";
+		};
+		D98DAA2C2CED8458004D4467 /* SoundMix */ = {
+			isa = PBXGroup;
+			children = (
+				D98DAA2D2CED8471004D4467 /* MixSoundsView.swift */,
+				D98DAA2E2CED8471004D4467 /* SoundInMix.swift */,
+				D98DAA2F2CED8471004D4467 /* SoundInMixCell.swift */,
+				D98DAA302CED8471004D4467 /* WaveformView.swift */,
+			);
+			path = SoundMix;
 			sourceTree = "<group>";
 		};
 		D98DBD3328491995008544F8 /* Networking */ = {
@@ -6688,7 +6708,6 @@
 				D9543B462AD5D6C80075A7A1 /* RetroView+ViewModel.swift in Sources */,
 				D9855DBE2BE4123E00965E9D /* Reaction+Mocks.swift in Sources */,
 				D9877D2928694F3200B541F9 /* LocalDatabase+UserFolderContent.swift in Sources */,
-				D9E60F69298F2CC000E723C6 /* MixSoundsView.swift in Sources */,
 				D99BBE4129466D9800BCA901 /* UsageMetric.swift in Sources */,
 				D9CC893328EB7BB500576492 /* MostSharedByAudienceView.swift in Sources */,
 				D924F9212BF841E6002FC815 /* IntroducingReactionsView.swift in Sources */,
@@ -6819,9 +6838,12 @@
 				D990705D2A90E6CB00A26F65 /* LargeRoundedRectangleBorderedButtonStyle.swift in Sources */,
 				D9D627122B266389000EB791 /* AuthorCell.swift in Sources */,
 				D95315A92A9AA783003DA40E /* MusicGenre.swift in Sources */,
+				D98DAA312CED8471004D4467 /* MixSoundsView.swift in Sources */,
+				D98DAA322CED8471004D4467 /* WaveformView.swift in Sources */,
+				D98DAA332CED8471004D4467 /* SoundInMix.swift in Sources */,
+				D98DAA342CED8471004D4467 /* SoundInMixCell.swift in Sources */,
 				D957047D28AEF733008DEF8C /* ProcessingView.swift in Sources */,
 				D9A3984928FDEE0D00039B7B /* AddRankingTypeToAudienceSharingStatisticTable.swift in Sources */,
-				D9E60F6B298F2F8000E723C6 /* WaveformView.swift in Sources */,
 				D967E2BA290196F900B21C11 /* WallE.swift in Sources */,
 				D93F643029A6A692003E7550 /* ShareAsVideoViewViewModel.swift in Sources */,
 				D9E69594283D2F2F00C341B2 /* Favorite.swift in Sources */,

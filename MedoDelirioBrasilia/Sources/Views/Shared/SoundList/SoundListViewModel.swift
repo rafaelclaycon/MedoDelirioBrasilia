@@ -56,6 +56,9 @@ class SoundListViewModel<T>: ObservableObject {
     @Published var isPlayingPlaylist: Bool = false
     private var currentTrackIndex: Int = 0
 
+    // Mix
+    @Published var mixSounds: [Sound] = []
+
     // Alerts
     @Published var alertTitle: String = ""
     @Published var alertMessage: String = ""
@@ -334,6 +337,10 @@ extension SoundListViewModel: SoundListDisplaying {
         selectedSound = sound
         subviewToOpen = .shareAsVideo
         showingModalView = true
+    }
+
+    func addToMix(_ sound: Sound) {
+        mixSounds.append(sound)
     }
 
     func toggleFavorite(_ soundId: String) {

@@ -9,14 +9,15 @@ import SwiftUI
 
 struct MixSoundsView: View {
 
-    @Binding var isBeingShown: Bool
-    @EnvironmentObject var helper: SoundMixHelper
-    
+    let sounds: [Sound]
+
     private func getRandomColor() -> Color {
         let colors: [Color] = [.pastelPurple, .pastelBabyBlue, .pastelBrightGreen, .pastelYellow, .pastelOrange, .pastelPink, .pastelGray, .pastelRoyalBlue, .pastelMutedGreen, .pastelRed, .pastelBeige]
         return colors.randomElement()!
     }
-    
+
+    @Environment(\.dismiss) var dismiss
+
     var body: some View {
         ZStack {
             NavigationView {
@@ -24,8 +25,8 @@ struct MixSoundsView: View {
                     VStack(spacing: 80) {
                         //if helper.sounds.count > 0 {
                             LazyVStack {
-                                ForEach(helper.sounds.indices, id: \.self) { i in
-                                    SoundInMixCell(soundInMix: SoundInMix(sound: helper.sounds[i], positionOnList: i + 1, color: getRandomColor()))
+                                ForEach(sounds.indices, id: \.self) { i in
+                                    SoundInMixCell(soundInMix: SoundInMix(sound: sounds[i], positionOnList: i + 1, color: getRandomColor()))
                                 }
                             }
                             .padding(.all)
@@ -64,7 +65,7 @@ struct MixSoundsView: View {
                     .navigationBarTitleDisplayMode(.inline)
                     .navigationBarItems(leading:
                         Button("Fechar") {
-                            self.isBeingShown = false
+                            dismiss()
                         }
                     )
                 }
@@ -74,10 +75,6 @@ struct MixSoundsView: View {
 
 }
 
-struct MixSoundsView_Previews: PreviewProvider {
-
-    static var previews: some View {
-        MixSoundsView(isBeingShown: .constant(true))
-    }
-
+#Preview {
+    MixSoundsView(sounds: [])
 }
