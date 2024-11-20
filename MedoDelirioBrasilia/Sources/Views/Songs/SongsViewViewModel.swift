@@ -5,9 +5,9 @@
 //  Created by Rafael Claycon Schmitt on 19/05/22.
 //
 
+import Foundation
 import Combine
 import SwiftUI
-import UIKit
 
 class SongsViewViewModel: ObservableObject {
 
@@ -25,27 +25,38 @@ class SongsViewViewModel: ObservableObject {
     @Published var iPadShareSheet = ActivityViewController(activityItems: [URL(string: "https://www.apple.com")!])
     @Published var isShowingShareSheet: Bool = false
     @Published var shareBannerMessage: String = .empty
-    @Published var displaySharedSuccessfullyToast: Bool = false
-    
+
+    // Redownload Content
+    @Published var isShowingProcessingView: Bool = false
+
     // Alerts
     @Published var alertTitle: String = ""
     @Published var alertMessage: String = ""
     @Published var showAlert: Bool = false
-    @Published var alertType: AlertType = .singleOption
-    
-    func reloadList(withSongs allSongs: [Song],
-                    allowSensitiveContent: Bool,
-                    sortedBy sortOption: SongSortOption) {
-        var songsCopy = allSongs
-        
-        if allowSensitiveContent == false {
-            songsCopy = songsCopy.filter({ $0.isOffensive == false })
+    @Published var alertType: SongsViewAlert = .ok
+
+    // Toast
+    @Published var showToastView: Bool = false
+    @Published var toastIcon: String = "checkmark"
+    @Published var toastIconColor: Color = .green
+    @Published var toastText: String = ""
+
+    func reloadList() {
+        do {
+            songs = try LocalDatabase.shared.songs(
+                allowSensitive: UserSettings().getShowExplicitContent()
+            )
+
+            guard songs.count > 0 else { return }
+
+            let sortOption: SongSortOption = SongSortOption(rawValue: UserSettings().getSongSortOption()) ?? .dateAddedDescending
+            sortSongs(by: sortOption)
+        } catch {
+            print("Erro")
         }
-        
-        self.songs = songsCopy
-        
-        self.sortOption = sortOption.rawValue
-        
+    }
+
+    func sortSongs(by sortOption: SongSortOption) {
         switch sortOption {
         case .titleAscending:
             sortSongsInPlaceByTitleAscending()
@@ -74,90 +85,63 @@ class SongsViewViewModel: ObservableObject {
         self.songs.sort(by: { $0.duration < $1.duration })
     }
     
-    func playSong(fromPath filepath: String, withId songId: String) {
-        guard filepath.isEmpty == false else {
-            return
-        }
-        
-        guard let path = Bundle.main.path(forResource: filepath, ofType: nil) else {
-            return showSongUnavailableAlert()
-        }
-        let url = URL(fileURLWithPath: path)
-        
-        nowPlayingKeeper.removeAll()
-        nowPlayingKeeper.insert(songId)
-        
-        player = AudioPlayer(url: url, update: { [weak self] state in
-            //print(state?.activity as Any)
-            if state?.activity == .stopped {
-                self?.nowPlayingKeeper.removeAll()
+    func play(song: Song) {
+        do {
+            let url = try song.fileURL()
+
+            nowPlayingKeeper.removeAll()
+            nowPlayingKeeper.insert(song.id)
+
+            AudioPlayer.shared = AudioPlayer(url: url, update: { [weak self] state in
+                if state?.activity == .stopped {
+                    self?.nowPlayingKeeper.removeAll()
+                }
+            })
+
+            AudioPlayer.shared?.togglePlay()
+        } catch {
+            if song.isFromServer ?? false {
+                showServerSongNotAvailableAlert(song)
+            } else {
+                showSongUnavailableAlert()
             }
-        })
-        
-        player?.togglePlay()
+        }
     }
 
-    func shareSong(withPath filepath: String, andContentId contentId: String) {
+    func share(song: Song) {
         if UIDevice.current.userInterfaceIdiom == .phone {
             do {
-                try Sharer.shareSound(withPath: filepath, andContentId: contentId) { didShareSuccessfully in
+                try SharingUtility.shareSound(from: song.fileURL(), andContentId: song.id) { didShareSuccessfully in
                     if didShareSuccessfully {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-                            withAnimation {
-                                self.shareBannerMessage = Shared.songSharedSuccessfullyMessage
-                                self.displaySharedSuccessfullyToast = true
-                            }
-                            TapticFeedback.success()
-                        }
-                        
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                            withAnimation {
-                                self.displaySharedSuccessfullyToast = false
-                            }
-                        }
+                        self.displayToast(toastText: Shared.songSharedSuccessfullyMessage)
                     }
                 }
             } catch {
-                print("Unable to get song.")
+                showSongUnavailableAlert()
             }
         } else {
-            guard filepath.isEmpty == false else {
-                return
-            }
-            
-            guard let path = Bundle.main.path(forResource: filepath, ofType: nil) else {
-                return print("Unable to get song.")
-            }
-            let url = URL(fileURLWithPath: path)
-            
-            iPadShareSheet = ActivityViewController(activityItems: [url]) { activity, completed, items, error in
-                if completed {
-                    self.isShowingShareSheet = false
-                    
-                    guard let activity = activity else {
-                        return
-                    }
-                    let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
-                    Logger.logSharedSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
-                    
-                    AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-                        withAnimation {
-                            self.shareBannerMessage = Shared.songSharedSuccessfullyMessage
-                            self.displaySharedSuccessfullyToast = true
+            do {
+                let url = try song.fileURL()
+
+                iPadShareSheet = ActivityViewController(activityItems: [url]) { activity, completed, items, error in
+                    if completed {
+                        self.isShowingShareSheet = false
+
+                        guard let activity = activity else {
+                            return
                         }
-                        TapticFeedback.success()
-                    }
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                        withAnimation {
-                            self.displaySharedSuccessfullyToast = false
-                        }
+                        let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
+                        Logger.shared.logSharedSound(contentId: song.id, destination: destination, destinationBundleId: activity.rawValue)
+
+                        AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
+
+                        self.displayToast(toastText: Shared.songSharedSuccessfullyMessage)
                     }
                 }
+            } catch {
+                showSongUnavailableAlert()
             }
-            
+
             isShowingShareSheet = true
         }
     }
@@ -165,21 +149,9 @@ class SongsViewViewModel: ObservableObject {
     func shareVideo(withPath filepath: String, andContentId contentId: String) {
         if UIDevice.current.userInterfaceIdiom == .phone {
             do {
-                try Sharer.shareVideoFromSound(withPath: filepath, andContentId: contentId, shareSheetDelayInSeconds: 0.6) { didShareSuccessfully in
+                try SharingUtility.shareVideoFromSound(withPath: filepath, andContentId: contentId, shareSheetDelayInSeconds: 0.6) { didShareSuccessfully in
                     if didShareSuccessfully {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-                            withAnimation {
-                                self.shareBannerMessage = Shared.videoSharedSuccessfullyMessage
-                                self.displaySharedSuccessfullyToast = true
-                            }
-                            TapticFeedback.success()
-                        }
-                        
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                            withAnimation {
-                                self.displaySharedSuccessfullyToast = false
-                            }
-                        }
+                        self.displayToast(toastText: Shared.videoSharedSuccessfullyMessage)
                     }
                     
                     WallE.deleteAllVideoFilesFromDocumentsDir()
@@ -202,23 +174,11 @@ class SongsViewViewModel: ObservableObject {
                         return
                     }
                     let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
-                    Logger.logSharedVideoFromSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
+                    Logger.shared.logSharedVideoFromSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
                     
                     AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-                        withAnimation {
-                            self.shareBannerMessage = Shared.videoSharedSuccessfullyMessage
-                            self.displaySharedSuccessfullyToast = true
-                        }
-                        TapticFeedback.success()
-                    }
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                        withAnimation {
-                            self.displaySharedSuccessfullyToast = false
-                        }
-                    }
+                    self.displayToast(toastText: Shared.videoSharedSuccessfullyMessage)
                 }
                 
                 WallE.deleteAllVideoFilesFromDocumentsDir()
@@ -229,34 +189,83 @@ class SongsViewViewModel: ObservableObject {
     }
     
     func showVideoSavedSuccessfullyToast() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-            withAnimation {
-                self.shareBannerMessage = ProcessInfo.processInfo.isiOSAppOnMac ? Shared.ShareAsVideo.videoSavedSucessfullyMac : Shared.ShareAsVideo.videoSavedSucessfully
-                self.displaySharedSuccessfullyToast = true
-            }
-            TapticFeedback.success()
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            withAnimation {
-                self.displaySharedSuccessfullyToast = false
-            }
-        }
+        self.displayToast(toastText: ProcessInfo.processInfo.isiOSAppOnMac ? Shared.ShareAsVideo.videoSavedSucessfullyMac : Shared.ShareAsVideo.videoSavedSucessfully)
     }
     
     func donateActivity() {
         self.currentActivity = UserActivityWaiter.getDonatableActivity(withType: Shared.ActivityTypes.playAndShareSongs, andTitle: "Ouvir e compartilhar músicas")
         self.currentActivity?.becomeCurrent()
     }
-    
+
+    func redownloadServerContent(withId contentId: String) {
+        Task {
+            do {
+                guard let fileUrl = URL(string: APIConfig.baseServerURL + "songs/\(contentId).mp3") else { return }
+                isShowingProcessingView = true
+                try await SyncService.downloadFile(
+                    at: fileUrl,
+                    to: InternalFolderNames.downloadedSongs,
+                    contentId: contentId
+                )
+                isShowingProcessingView = false
+                displayToast(
+                    "checkmark",
+                    .green,
+                    toastText: "Conteúdo baixado com sucesso. Tente tocá-lo novamente."
+                )
+            } catch {
+                isShowingProcessingView = false
+                displayToast(
+                    "exclamationmark.triangle.fill",
+                    .orange,
+                    toastText: "Erro ao tentar baixar conteúdo novamente."
+                )
+            }
+        }
+    }
+
     // MARK: - Alerts
-    
+
     func showSongUnavailableAlert() {
         TapticFeedback.error()
-        alertType = .twoOptions
+        alertType = .songUnavailable
         alertTitle = Shared.Songs.songNotFoundAlertTitle
         alertMessage = Shared.Songs.songNotFoundAlertMessage
         showAlert = true
     }
 
+    func showServerSongNotAvailableAlert(_ song: Song) {
+        selectedSong = song
+        TapticFeedback.error()
+        alertType = .redownloadSong
+        alertTitle = Shared.contentNotFoundAlertTitle(song.title)
+        alertMessage = Shared.serverContentNotAvailableRedownloadMessage
+        showAlert = true
+    }
+
+    // MARK: - Toast
+
+    func displayToast(
+        _ toastIcon: String = "checkmark",
+        _ toastIconColor: Color = .green,
+        toastText: String,
+        completion: (() -> Void)? = nil
+    ) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+            withAnimation {
+                self.toastIcon = toastIcon
+                self.toastIconColor = toastIconColor
+                self.toastText = toastText
+                self.showToastView = true
+            }
+            TapticFeedback.success()
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            withAnimation {
+                self.showToastView = false
+                completion?()
+            }
+        }
+    }
 }

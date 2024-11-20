@@ -14,13 +14,21 @@ struct Author: Hashable, Codable, Identifiable {
     let photo: String?
     let description: String?
     var soundCount: Int?
-    
-    init(id: String, name: String, photo: String? = nil, description: String? = nil, soundCount: Int? = nil) {
+    var externalLinks: String?
+
+    init(
+        id: String,
+        name: String,
+        photo: String? = nil,
+        description: String? = nil,
+        soundCount: Int? = nil,
+        externalLinks: String? = nil
+    ) {
         self.id = id
         self.name = name
         self.photo = photo
         self.description = description
         self.soundCount = soundCount
+        self.externalLinks = externalLinks
     }
-
 }

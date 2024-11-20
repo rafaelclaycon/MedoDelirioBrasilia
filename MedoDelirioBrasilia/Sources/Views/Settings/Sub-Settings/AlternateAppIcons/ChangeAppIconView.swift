@@ -6,7 +6,7 @@ struct ChangeAppIconView: View {
     @State private var selectedIcon: String = .empty
     
     private var icons: [Icon] {
-        if UserSettings.getShowOffensiveSounds() {
+        if UserSettings().getShowExplicitContent() {
             return Icon.allCases
         } else {
             return Icon.allCases.filter({ $0.isOffensive == false })
@@ -29,6 +29,7 @@ struct ChangeAppIconView: View {
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             selectedIcon = UIApplication.shared.alternateIconName ?? Icon.primary.id
+            Analytics().send(originatingScreen: "ChangeAppIconView", action: "didViewAlternateIconsView")
         }
     }
 

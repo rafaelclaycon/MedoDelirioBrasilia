@@ -11,12 +11,13 @@
     },
     {
         "id": "959D8DD0-0EFB-4CC2-98C2-C61182BCFEC3",
-        "name": "Igor Guimarães"
+        "name": "Igor Guimarães",
+        "description": "Comediante de stand-up."
     },
     {
         "id": "045F8453-244C-4B94-8F89-395FE8986139",
         "name": "Kleber Bambam",
-        "photo": "https://upload.wikimedia.org/wikipedia/commons/6/65/KleberBambam.jpg",
+        "photo": "https://static1.purebreak.com.br/articles/5/97/78/5/@/387153-kleber-bambam-foi-o-vencedor-do-bbb1-700x700-2.jpg",
         "description": "Fisiculturista brasileiro. Campeão do BBB 1."
     },
     {
@@ -28,12 +29,14 @@
     {
         "id": "2267C284-7BA1-42DB-8AE8-E329E28CF43C",
         "name": "Alceu Valença",
-        "photo": "https://dicionariompb.com.br/wp-content/uploads/2021/04/channels4_profile.jpg"
+        "photo": "https://dicionariompb.com.br/wp-content/uploads/2021/04/channels4_profile.jpg",
+        "description": "Cantor, compositor, instrumentista e advogado brasileiro."
     },
     {
         "id": "17860F3D-A18C-4684-86D0-931306A6937A",
         "name": "Gil Brother (Away de Petrópolis)",
-        "photo": "https://pm1.narvii.com/6755/9f46f1336fd3f526f21dc8b64dfc952a5c3e7ddbv2_hq.jpg"
+        "photo": "https://pm1.narvii.com/6755/9f46f1336fd3f526f21dc8b64dfc952a5c3e7ddbv2_hq.jpg",
+        "description": "Ator, comediante, youtuber e ex-dançarino brasileiro. Conhecido por ter participado do grupo humorístico Hermes e Renato na MTV Brasil."
     },
     {
         "id": "FE8E9DCD-4E02-4FFC-9990-0A11721F24AE",
@@ -48,7 +51,9 @@
     },
     {
         "id": "51706210-3329-4A43-A823-2F91EBC4B546",
-        "name": "Ciro Gomes"
+        "name": "Ciro Gomes",
+        "photo": "https://conteudo.imguol.com.br/c/noticias/12/2022/09/24/ciro-gomes-pdt-durante-debate-entre-presidenciaveis-1664063738021_v2_1x1.jpg",
+        "description": "Advogado, professor universitário e político brasileiro. Foi candidato à presidência da República em 2018 e 2022."
     },
     {
         "id": "BDC113E6-423F-4E2E-9BDA-EDEDB225A592",
@@ -58,20 +63,26 @@
     {
         "id": "3FE2F541-6B10-47A8-A1FB-640AB6E55FA9",
         "name": "Dilma Rousseff",
-        "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Dilma_Rousseff_-_foto_oficial_2011-01-09.jpg/640px-Dilma_Rousseff_-_foto_oficial_2011-01-09.jpg"
+        "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Dilma_Rousseff_-_foto_oficial_2011-01-09.jpg/640px-Dilma_Rousseff_-_foto_oficial_2011-01-09.jpg",
+        "description": "Economista e política brasileira. 36ª Presidente do Brasil, tendo exercido o cargo de 2011 até seu afastamento por um processo de impeachment em 2016."
     },
     {
         "id": "691D4F55-79F7-407A-B0AA-71CD09059E60",
         "name": "Diogo Defante",
-        "photo": "https://criadoresid.com/wp-content/uploads/2020/08/diegodefante.jpg"
+        "photo": "https://criadoresid.com/wp-content/uploads/2020/08/diegodefante.jpg",
+        "description": "Humorista e youtuber brasileiro."
     },
     {
         "id": "4FC19D8E-7DE3-443F-B19E-90C9272F53E4",
-        "name": "Emicida"
+        "name": "Emicida",
+        "photo": "https://upload.wikimedia.org/wikipedia/commons/1/16/Emicida_Festival_Sensacional_2020_%28cropped%29.jpg",
+        "description": "Rapper, cantor, compositor e apresentador brasileiro."
     },
     {
         "id": "DD2E1B0E-21D0-4DE6-B2C5-C0FAE39BDFE4",
-        "name": "Feiticeira"
+        "name": "Feiticeira",
+        "photo": "https://upload.wikimedia.org/wikipedia/commons/2/23/Joana_Prado.jpg",
+        "description": "Personagem de dança da empresária Joana Prado Belfort."
     },
     {
         "id": "69EFC7D8-8922-4FC4-A0F8-881136B69564",
@@ -81,7 +92,9 @@
     },
     {
         "id": "6C973E63-4682-49A8-BDA3-EA20113A827A",
-        "name": "Lulu Santos"
+        "name": "Lulu Santos",
+        "photo": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Lulu_Santos_Tom_Brasil_%2845615278041%29.jpg",
+        "description": "Cantor, compositor, produtor musical e guitarrista brasileiro."
     },
     {
         "id": "7BB7B9E2-5115-4CC2-89DB-20FDA7D2287E",
@@ -181,7 +194,8 @@
     },
     {
         "id": "F0A2EC08-8C98-42E8-8C23-C4EBD9314E14",
-        "name": "Boldo"
+        "name": "Usuário do Boldo Bom",
+        "description": "Que boldo bom, Marquinhos. Muito bom, muito bom."
     },
     {
         "id": "9598A083-571E-4E75-B610-B0C1DE01542B",
@@ -253,7 +267,9 @@
     },
     {
         "id": "C066E971-8702-4261-955D-00CF642A465A",
-        "name": "Silas Malafaia"
+        "name": "Silas Malafaia",
+        "photo": "https://upload.wikimedia.org/wikipedia/commons/6/69/Silas_Malafaia_em_abril_de_2019_%28cropped%29.jpg",
+        "description": "Pastor protestante neopentecostal brasileiro, líder da Assembleia de Deus Vitória em Cristo."
     },
     {
         "id": "BC2818F5-4FA5-46FC-90C3-075691F3E979",
@@ -458,7 +474,7 @@
     },
     {
         "id": "5328EB33-A71C-4A07-94CE-B374AC937319",
-        "name": "Gaúcho Puto"
+        "name": "Aluno da UFRGS (gaúcho puto)"
     },
     {
         "id": "B20853C2-0CA7-49B7-B3F7-F023A8E07E81",
@@ -537,7 +553,9 @@
     },
     {
         "id": "4AE135DD-B688-45D7-B20B-88DCFE8CDD8A",
-        "name": "Omar Aziz"
+        "name": "Omar Aziz",
+        "photo": "https://conteudo.imguol.com.br/c/noticias/a2/2019/09/18/06jul2019---o-senador-omar-aziz-apos-reuniao-na-residencia-oficial-da-presidencia-da-camara-com-rodrigo-maia-1568847478325_v2_1x1.jpg",
+        "description": "Senador pelo Amazonas desde 2015."
     },
     {
         "id": "7E6746E4-02DF-4C86-B446-69A46EE8968B",
@@ -545,7 +563,8 @@
     },
     {
         "id": "9430814C-F738-41A5-A595-3D06C6C27CC1",
-        "name": "Jair Renan"
+        "name": "Jair Renan Bolsonaro",
+        "description": "Autointitulado filho \"04\" de Bolsonaro."
     },
     {
         "id": "57E6841C-A62E-4CE5-BBED-C967C1A38625",
@@ -569,7 +588,8 @@
     },
     {
         "id": "745CE871-B6F7-4278-B7D5-CA065D5DD946",
-        "name": "Fabrício Queiroz"
+        "name": "Fabrício Queiroz",
+        "description": "Ex-assessor parlamentar de Flávio Bolsonaro envolvido no esquema de desvio de salários do gabinete do então deputado."
     },
     {
         "id": "24F2C199-3AD3-4F2B-A68A-FF4A6873DC33",
@@ -588,19 +608,17 @@
     },
     {
         "id": "AA4313EE-E9E1-4EDB-9D40-3A9C5C286DA6",
-        "name": "Sergio Moro"
+        "name": "Sergio Moro",
+        "description": "Notório por comendar a Operação Lava Jato. Atual senador pelo Paraná desde 2023."
     },
     {
         "id": "44EBAE6B-89FF-4766-9C90-60CC84B87991",
         "name": "SBT"
     },
     {
-        "id": "63126808-C5C0-4492-9B21-AF800C5E0AFB",
-        "name": "Galãs Feios"
-    },
-    {
         "id": "7093D0D1-97C6-479F-968F-A9BF89E4C9C1",
-        "name": "Eduardo Cunha"
+        "name": "Eduardo Cunha",
+        "description": "Presidente da Câmara dos Deputados de 2015 a 2016. Instaurou e conduziu o impeachment da presidente Dilma. Preso em 2016 por corrupção passiva e lavagem de dinheiro na Operação Lava Jato."
     },
     {
         "id": "042C48ED-4CC9-4260-9FAD-EFA1DC5930F3",
@@ -645,7 +663,8 @@
     },
     {
         "id": "E3688B09-6DAC-4763-A004-5186E636DC5B",
-        "name": "Mauro Reginato"
+        "name": "Mauro Reginato",
+        "description": "Professor de Física"
     },
     {
         "id": "6BCF1C16-A416-4612-B2DE-A7E8D3705601",
@@ -675,11 +694,13 @@
     {
         "id": "AE8E527E-23D5-41FF-9A8D-140A2A28A275",
         "name": "Alanzoka",
-        "photo": "https://i1.sndcdn.com/artworks-000465890313-x6cae8-t500x500.jpg"
+        "photo": "https://i1.sndcdn.com/artworks-000465890313-x6cae8-t500x500.jpg",
+        "description": "Streamer brasileiro."
     },
     {
         "id": "54AD2984-8D05-44CD-B4A7-72325B59E947",
-        "name": "Jorge Kajuru"
+        "name": "Jorge Kajuru",
+        "description": "Jornalista esportivo, apresentador de televisão e político brasileiro."
     },
     {
         "id": "0D45331A-889B-4A19-8B5F-1936F5F5534D",
@@ -707,11 +728,13 @@
     },
     {
         "id": "32DECC5A-FEE3-42B7-BBCC-B34126C317DE",
-        "name": "Rodrigo Constantino"
+        "name": "Rodrigo Constantino",
+        "description": "Economista, comentarista, colunista e escritor brasileiro ideólogo de extrema-direita e teórico da conspiração."
     },
     {
         "id": "9F5424EA-2C65-41F6-B925-F9CC6CC70787",
-        "name": "André Starqueza"
+        "name": "André Starqueza",
+        "description": "Persona de André Luis Borges Santos, também conhecido como Felina do Povão."
     },
     {
         "id": "248A6A3B-3EEF-45D6-9A2F-A81768B7B370",
@@ -778,7 +801,8 @@
     },
     {
         "id": "57017B39-5D5B-477A-BAF5-4F103DD84CB1",
-        "name": "Victor Camejo"
+        "name": "Victor Camejo",
+        "description": "Comediante e roteirista."
     },
     {
         "id": "0278633F-0BA6-48DB-94CA-7ADACDBBA39D",
@@ -1032,7 +1056,8 @@
     },
     {
         "id": "07F09910-4B4C-4C19-BFCF-4D261CE5E1BA",
-        "name": "Eduardo Bolsonaro"
+        "name": "Eduardo Bolsonaro",
+        "description": "Deputado federal por São Paulo desde 2015. Autointitulado filho \"03\" de Bolsonaro."
     },
     {
         "id": "A7D44066-DAFE-435D-8987-5A1C17EB2A69",
@@ -1041,7 +1066,8 @@
     },
     {
         "id": "15A5B647-F367-47C3-A344-D2F57F3351F7",
-        "name": "Donald Trump"
+        "name": "Donald Trump",
+        "description": "Presidente dos Estados Unidos de 2017 a 2020."
     },
     {
         "id": "46663734-58F2-4CC3-85E1-22E641518F3E",
@@ -1072,7 +1098,7 @@
     {
         "id": "2DC1E766-27D5-4469-954C-1B9DF729ADFE",
         "name": "João Carvalho (@assimdisseojoao)",
-        "photo": "https://pbs.twimg.com/profile_images/1502681039621267457/gxocWXCV_400x400.jpg"
+        "photo": "https://pbs.twimg.com/profile_images/1638132641542053888/GIaFlmqM_400x400.jpg"
     },
     {
         "id": "B8EB0642-1907-439C-A118-46F21AD24A92",
@@ -1147,12 +1173,14 @@
     {
         "id": "97F98648-0862-423D-B938-E80C6B5A52B9",
         "name": "Ciro Nogueira",
-        "photo": "https://i.em.com.br/Z6CDTbWP9ZTngft_os96aGaAPzc=/1200x1200/smart/imgsapp.em.com.br/app/noticia_127983242361/2022/09/26/1398378/jair-bolsonaro-e-ciro-nogueira-em-evento-no-palacio-do-planalto-_1_72364.jpg"
+        "photo": "https://i.em.com.br/Z6CDTbWP9ZTngft_os96aGaAPzc=/1200x1200/smart/imgsapp.em.com.br/app/noticia_127983242361/2022/09/26/1398378/jair-bolsonaro-e-ciro-nogueira-em-evento-no-palacio-do-planalto-_1_72364.jpg",
+        "description": "Senador pelo Piauí, filiado ao PP. Foi o ministro-chefe da Casa Civil entre agosto de 2021 e dezembro de 2022."
     },
     {
         "id": "BB05B606-9553-48B9-BC59-3BA58B3F0181",
         "name": "Flávio Bolsonaro",
-        "photo": "https://p2.trrsf.com/image/fget/cf/1200/1200/middle/images.terra.com/2019/12/19/2019-12-19T232813Z_1_LYNXMPEFBI2A6_RTROPTP_4_POLITICA-OPERACAO-FLAVIO-BOLSONARO-QUEIROZ-MP.JPG"
+        "photo": "https://p2.trrsf.com/image/fget/cf/1200/1200/middle/images.terra.com/2019/12/19/2019-12-19T232813Z_1_LYNXMPEFBI2A6_RTROPTP_4_POLITICA-OPERACAO-FLAVIO-BOLSONARO-QUEIROZ-MP.JPG",
+        "description": "Senador pelo Rio de Janeiro desde 2019. Autointitulado filho \"01\" de Bolsonaro."
     },
     {
         "id": "B8ABD61F-9C7F-449E-AFE0-092C4BBA4BDF",
@@ -1191,7 +1219,8 @@
     },
     {
         "id": "BBD5570D-18FF-4099-81C8-AD6CFCA64B26",
-        "name": "Gen. Augusto Heleno"
+        "name": "General Augusto Heleno",
+        "description": "General da reserva. Foi chefe do Gabinete de Segurança Institucional da Presidência da República no governo Bolsonaro. Pertenceu à linha dura da Ditadura, contra a democratização."
     },
     {
         "id": "DDEBD7C4-9CC5-4DD6-B207-58A27C37A8E0",
@@ -1217,7 +1246,7 @@
     },
     {
         "id": "CA83F4BE-1466-4AD2-9BDF-D96B515B4681",
-        "name": "Igor Guimaraes e Luiz Felipe D'Avila"
+        "name": "Igor Guimarães e Luiz Felipe D'Avila"
     },
     {
         "id": "AF4BE658-13CF-4468-8AB2-C03B73A2EE34",
@@ -1405,7 +1434,8 @@
     },
     {
         "id": "1162C5CF-E12D-44E5-91D2-55BCC316F672",
-        "name": "Pastor Márcio Valadão"
+        "name": "Pastor Márcio Valadão",
+        "description": "Líder religioso e fundador da Igreja Batista da Lagoinha, localizada em Belo Horizonte, MG, uma das maiores igrejas evangélicas do Brasil."
     },
     {
         "id": "C515748D-92E1-4732-A130-8D3BDCA187BD",
@@ -1414,7 +1444,8 @@
     },
     {
         "id": "EAA8F85D-5D5A-4EB4-842D-9F4712F2D1FE",
-        "name": "Eliane Cantanhêde"
+        "name": "Eliane Cantanhêde",
+        "description": "Jornalista brasileira."
     },
     {
         "id": "0E61B7AA-BD4B-450D-9370-3CB1A1F6934C",
@@ -1446,11 +1477,13 @@
     {
         "id": "88B74E10-49CD-43DE-B708-25DCAAABF460",
         "name": "Julio César Strassera",
+        "photo": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Strassera.jpg",
         "description": "Promotor responsável pela condenação dos líderes da ditadura militar argentina."
     },
     {
         "id": "5F25AF82-A015-4B12-A146-3ADEE371A6CD",
-        "name": "Coronel Adriano Testoni"
+        "name": "Coronel Adriano Testoni",
+        "description": "Coronel da reserva que participou dos atos golpistas de 8 de janeiro de 2023."
     },
     {
         "id": "E48F93C0-E59E-4913-9E84-711CC06EA83C",
@@ -1463,18 +1496,268 @@
     {
         "id": "EBD45548-26E5-42BA-BFDB-1F7B383DF302",
         "name": "Ana Priscila Azevedo",
-        "description": "Golpista."
+        "description": "Golpista de extrema-direita. Uma das organizadoras dos atos terroristas em Brasília em 8 de janeiro de 2023."
     },
     {
         "id": "8BEC79BB-B52B-4719-A190-70A682A13119",
         "name": "Thiago Asmar",
-        "photo": "https://media.licdn.com/dms/image/C4E03AQESAAOgZULw8A/profile-displayphoto-shrink_400_400/0/1549675236872?e=1680739200&v=beta&t=HK2jdKbRFdMUCq5rnCNXSY0X-LUeb6sT3FKkK_iW8zA",
         "description": "Apresentador do canal Pilhado no YouTube."
     },
     {
         "id": "952A6D42-3C63-4795-8A20-73C008B406F0",
-        "name": "Lenadro Ramos",
+        "name": "Leandro Ramos",
         "photo": "https://i.pinimg.com/originals/bc/0c/df/bc0cdf07ae08db5dc7b706b70ac8d444.jpg",
         "description": "Roteirista, diretor e ator. Interpreta o personagem Julinho da Van no Choque de Cultura."
+    },
+    {
+        "id": "5A5F01C2-BB89-4DDB-82DB-33FF0EF6F1BB",
+        "name": "Medo e Delírio"
+    },
+    {
+        "id": "9D4FB651-5360-467E-8C5A-DF859980879D",
+        "name": "MC Presuntinho"
+    },
+    {
+        "id": "26BD3CA0-B65D-4946-BFA6-88A4B614D361",
+        "name": "Lula (Cristiano Botafogo)"
+    },
+    {
+        "id": "E50B9302-E5FB-413F-9432-53424E12831A",
+        "name": "Bruno Aleixo",
+        "description": "Personagem de animação digital português. Criado por João Moreira, Pedro Santo e João Pombeiro."
+    },
+    {
+        "id": "D4D53537-EAA1-4845-805F-29A34E45B541",
+        "name": "Kaelzinho Ferraz",
+        "description": "Cantor."
+    },
+    {
+        "id": "18B27A36-2422-4C50-A7A4-86A412AB40C2",
+        "name": "Juliane Furno",
+        "description": "Colunista, militante e youtuber."
+    },
+    {
+        "id": "E80E3A19-9784-4935-A672-107715E0C87B",
+        "name": "Jair Rodrigues",
+        "description": "Cantor. Considerado o primeiro rapper brasileiro."
+    },
+    {
+        "id": "B32B3681-DD67-4298-8036-75A4DF77DD6C",
+        "name": "Queima Quengaral"
+    },
+    {
+        "id": "E76C0AAF-0B3B-4391-B866-961F611B5714",
+        "name": "Edilson Farias",
+        "description": "Cantor."
+    },
+    {
+        "id": "11D847C6-1612-4B07-B40A-C8B4E4DAD3D7",
+        "name": "Natuza Nery",
+        "description": "Jornalista. Comentarista de política no canal GloboNews."
+    },
+    {
+        "id": "44C84219-8199-4E4D-96B7-AE47173755DA",
+        "name": "Lourdes Melo",
+        "photo": "https://www.rbsdirect.com.br/filestore/0/6/2/9/0/7/3_522f8e5afe4e4c4/3709260_640f3591da0b78e.jpg?w=1024&h=1024&a=c",
+        "description": "Política brasileira, filiada ao Partido da Causa Operária (PCO). Ficou conhecida nos debates para governador das eleições estaduais no Piauí em 2022."
+    },
+    {
+        "id": "F2DCD7C0-1848-4888-8E75-A2DCEEA2B1B8",
+        "name": "Manoel Gomes",
+        "photo": "https://static.wixstatic.com/media/368834_fe09ceaea3ac4992b8d81bfed572de23~mv2.png/v1/fill/w_730,h_730,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/368834_fe09ceaea3ac4992b8d81bfed572de23~mv2.png",
+        "description": "Cantor e compositor brasileiro de brega."
+    },
+    {
+        "id": "90ABC9D9-506E-4DEC-81FA-A659D240194A",
+        "name": "Cebolinha"
+    },
+    {
+        "id": "BFF38211-6918-4A4E-A491-DECB5952AB88",
+        "name": "Sandra Annenberg"
+    },
+    {
+        "id": "0D442A43-9C9F-4EB1-A4A5-8DACB5439791",
+        "name": "Alguém no podcast O Assunto"
+    },
+    {
+        "id": "9358F27E-61FF-4812-9322-0C8FBE7448B9",
+        "name": "Advocacia Geral da União"
+    },
+    {
+        "id": "34BF350C-B993-4918-8927-9E415EC93C63",
+        "name": "Igor Coelho (Igor 3k)",
+        "description": "Apresentador do podcast Flow."
+    },
+    {
+        "id": "E895845F-2B88-484F-A12C-310238A628B8",
+        "name": "Elias Khalil Jabbour",
+        "description": "Professor da UERJ. Autor do livro \"China: O socialismo do século XXI\"."
+    },
+    {
+        "id": "DE745F28-5E6C-42DF-B0BD-6F80E907EECB",
+        "name": "Octavio Guedes",
+        "description": "Escritor, jornalista e comentarista da GloboNews."
+    },
+    {
+        "id": "946B5305-0FD4-4C9A-A335-3EB5EA68BD05",
+        "name": "Leonardo Attuch",
+        "description": "Editor-responsável do Brasil 247"
+    },
+    {
+        "id": "8B7B79DF-3452-4C63-A389-929EFEE396D1",
+        "name": "Stu (Se Beber, Não Case!)"
+    },
+    {
+        "id": "7C517EA6-0067-4652-8E7F-18BA3EA877B9",
+        "name": "André Janones",
+        "photo": "https://conteudo.imguol.com.br/c/noticias/dd/2022/08/16/andre-janones-foi-o-terceiro-deputado-federal-mais-votado-de-minas-gerais-em-2018-e-apoia-lula-na-atual-eleicao-1660674089676_v2_1x1.jpg",
+        "description": "Deputado federal por Minas Gerais."
+    },
+    {
+        "id": "8D066077-11F5-4D87-8E3F-7BA3DEC13A21",
+        "name": "Patriota no QG"
+    },
+    {
+        "id": "59BDC0EF-8377-4172-8E71-D0FAC0E35A93",
+        "name": "Alysson Mascaro",
+        "photo": "https://direito.usp.br/pca/arquivos/047a5a21a396_alysson-leandro-barbate-mascaro.jpg",
+        "description": "Jurista e filósofo do direito marxista brasileiro."
+    },
+    {
+        "id": "F4242ED6-C220-44D4-AA15-1B85F2EED91F",
+        "name": "Doidão do Napster"
+    },
+    {
+        "id": "CE7972FD-4887-4F03-AF4A-47A0863186F2",
+        "name": "Elisa Lucinda",
+        "photo": "https://pbs.twimg.com/profile_images/1526293214893850625/UnN0Dscw_400x400.jpg",
+        "description": "Atriz, poetisa, escritora e cantora brasileira."
+    },
+    {
+        "id": "1FEA6415-0830-4CDE-9490-CF67EC0F8AFF",
+        "name": "Sempre a Subir (Televisão Pública de Angola)"
+    },
+    {
+        "id": "CCD4F465-3F6D-4BAD-A4BB-6577FAB9791D",
+        "name": "Duda Salabert",
+        "photo": "https://revistatrip.uol.com.br/upload/2021/03/605b91c1bbe93/duda-salabert-vereadoras-trans-tpm-mq3.jpg",
+        "description": "Professora de literatura, ambientalista, e ativista filiada ao PDT. Em 2022, foi eleita uma das primeiras deputadas federais trans da história, junto com Erika Hilton."
+    },
+    {
+        "id": "225E06F7-2CC2-4429-9DA8-380DC8F92218",
+        "name": "10ocupados",
+        "description": "Coletivo baiano fundado em 2013 por amigos que buscavam produzir conteúdo autêntico e fora das mídias tradicionais."
+    },
+    {
+        "id": "3D69562A-59D1-4A59-8EB2-3BA592CB0881",
+        "name": "Jaiminho, o Carteiro",
+        "description": "Jaiminho é um carteiro idoso, que já trabalhou muito na vida (e hoje em dia trabalha com mais preguiça do que na juventude)."
+    },
+    {
+        "id": "B9A151DF-3E31-497F-A66A-76FBCA984B60",
+        "name": "Guru Estressado"
+    },
+    {
+        "id": "E89F3DE4-7134-41BC-B833-CD734EA53D70",
+        "name": "Marcus Majella e Paulo Gustavo"
+    },
+    {
+        "id": "35058669-052C-4749-9691-794F2C462C18",
+        "name": "Joãozinho do Exú",
+        "description": "Cantor, instrumentista e compositor brasileiro."
+    },
+    {
+        "id": "8E8F8308-7AD0-48C1-B44F-505939B429F4",
+        "name": "Rogério Correia",
+        "description": "Deputado federal por Minas Gerais. Filiado ao PT."
+    },
+    {
+        "id": "3388CB84-A7A9-4BDE-B141-51AA218DA961",
+        "name": "Senhor Pedindo Café"
+    },
+    {
+        "id": "5317A042-BE64-4624-B488-F17897F3591A",
+        "name": "Monark"
+    },
+    {
+        "id": "6D74C432-AC62-451A-A1C3-EB6B1ECA3FAA",
+        "name": "Saldo Extra"
+    },
+    {
+        "id": "C0160F87-5596-4BFC-81F1-F651303913C6",
+        "name": "Choque de Cultura"
+    },
+    {
+        "id": "4AEC2419-3C67-4DAF-90AE-611FF7AD80C2",
+        "name": "Cine Trash",
+        "description": "Programa exibido na Band entre 1996 e 1997. Apresentado por Zé do Caixão, trazia filmes de baixo orçamento (por isso o nome)."
+    },
+    {
+        "id": "0AF9E32C-B61E-4194-82E4-2E59EAA61E6B",
+        "name": "Alexandre Nascimento",
+        "description": "Criador carioca. @ale_nda9 no Instagram."
+    },
+    {
+        "id": "93B06012-F9D6-4D82-AA3E-8D9E5AD82386",
+        "name": "Cândido Dortas",
+        "description": "Advogado sergipano e ouvinte do Medo e Delírio em Brasília."
+    },
+    {
+        "id": "FFEE09D2-0994-42D1-BBB2-C0A9E0D53370",
+        "name": "Chico Vigilante e Alan Diego dos Santos",
+        "description": "Chico Vigilante é deputado distrital do DF. Alan Diego dos Santos é um bolsonarista extremista envolvido na tentativa de explosão de bomba nos arredores do aeroporto de Brasília em dezembro de 2022."
+    },
+    {
+        "id": "E87C2D7D-64FF-4E69-AD36-1FAC5BC76361",
+        "name": "Xuxa, Fernanda Paes Leme e Giovanna Ewbank"
+    },
+    {
+        "id": "AFBCDE78-65B6-4716-B2E7-1404DD1E3C70",
+        "name": "Rita Lee"
+    },
+    {
+        "id": "4E796A05-874C-4D8A-811E-98BA48394D1E",
+        "name": "Sérgio Mallandro"
+    },
+    {
+        "id": "96B59EDB-76CA-437A-B89E-016D228898C5",
+        "name": "Marcos do Val",
+        "description": "Militar e político brasileiro. Eleito senador pelo estado do Espírito Santo."
+    },
+    {
+        "id": "33AE6708-124E-4DB7-90E9-384E684D3260",
+        "name": "Monica Poli",
+        "description": "Vereadora italiana de extrema-direita que viralizou no TikTok com a conta @cittadininondistratti2."
+    },
+    {
+        "id": "DA5FDEF1-AF28-4D3D-96D0-BE645B50F7B0",
+        "name": "Augusto Aras",
+        "description": "Jurista brasileiro, professor e atual procurador-geral da República."
+    },
+    {
+        "id": "9AC945E8-5B9C-472A-804D-F3C0BB63F097",
+        "name": "Carlos Osorio",
+        "photo": "https://bolavip.com/__export/1646691574592/sites/bolavip/img/2022/03/07/carlos_roberto_osxrio_crop1646690946027.jpeg_1159711837.jpeg",
+        "description": "Empresário, político e dirigente esportivo brasileiro."
+    },
+    {
+        "id": "E9ECF444-11F2-4B61-B3B4-84DD67E9D9C0",
+        "name": "Júlio Paulucci",
+        "description": "Comediante e ator brasileiro. @talvezsejaojulio no Instagram."
+    },
+    {
+        "id": "DE4BF5DF-7051-462D-831A-18B67D38163D",
+        "name": "Don & Juan",
+        "description": "Dupla sertaneja mineira."
+    },
+    {
+        "id": "0833F566-D20E-4207-B6AB-A8D63DA8D10C",
+        "name": "Caio Salles",
+        "description": "Jornalista, produtor e diretor de conteúdo audiovisual. Idealizou e coordena o Projeto Verde Mar, com ações de coletas de resíduos do fundo do mar para sensibilização, educação e pesquisa científica, além da produção de conteúdo para divulgação científica e de assuntos relacionados a temas socioambientais."
+    },
+    {
+        "id": "BD0D48EE-8AFA-4C7E-8F3C-6078D697AAD3",
+        "name": "Josias de Souza",
+        "description": "Colunista do UOL."
     }
 ]

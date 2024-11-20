@@ -7,34 +7,76 @@
 
 import Foundation
 
-struct Sound: Hashable, Codable, Identifiable {
+struct Sound: Hashable, Codable, Identifiable, MedoContentProtocol {
 
-    var id: String
-    var title: String
-    var authorId: String
+    let id: String
+    let title: String
+    let authorId: String
     var authorName: String?
-    var description: String
-    var filename: String
+    let description: String
+    let filename: String
     var dateAdded: Date?
+    let duration: Double
     let isOffensive: Bool
-    let isNew: Bool?
+    var isFromServer: Bool?
     
-    init(id: String = UUID().uuidString,
-         title: String,
-         authorId: String = UUID().uuidString,
-         description: String = "",
-         filename: String = "",
-         dateAdded: Date? = Date(),
-         isOffensive: Bool = false,
-         isNew: Bool? = nil) {
+    init(
+        id: String = UUID().uuidString,
+        title: String,
+        authorId: String = UUID().uuidString,
+        authorName: String? = nil,
+        description: String = "",
+        filename: String = "",
+        dateAdded: Date? = Date(),
+        duration: Double = 0,
+        isOffensive: Bool = false,
+        isFromServer: Bool? = false
+    ) {
         self.id = id
         self.title = title
         self.authorId = authorId
+        self.authorName = authorName
         self.description = description
         self.filename = filename
         self.dateAdded = dateAdded
+        self.duration = duration
         self.isOffensive = isOffensive
-        self.isNew = isNew
+        self.isFromServer = isFromServer
     }
+    
+    func fileURL() throws -> URL {
+        if isFromServer ?? false {
+            let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            let fileUrl = documentsUrl.appendingPathComponent("\(InternalFolderNames.downloadedSounds)\(id).mp3")
+            guard FileManager().fileExists(atPath: fileUrl.path) else {
+                throw SoundError.fileNotFound(title: self.title)
+            }
+            return fileUrl
+        } else {
+            guard let path = Bundle.main.path(forResource: self.filename, ofType: nil) else {
+                throw SoundError.fileNotFound(title: self.title)
+            }
+            return URL(fileURLWithPath: path)
+        }
+    }
+}
 
+enum SoundError: Error, LocalizedError {
+
+    case fileNotFound(title: String)
+
+    var errorDescription: String? {
+        switch self {
+        case .fileNotFound(let soundTitle):
+            return "O arquivo do som \"\(soundTitle)\" não foi encontrado."
+        }
+    }
+}
+
+extension Sound {
+    static let sampleSounds = [
+        Sound(title: "Alegria"),
+        Sound(title: "Maravilhoso!"),
+        Sound(title: "Cadê os machos?")
+    ]
 }

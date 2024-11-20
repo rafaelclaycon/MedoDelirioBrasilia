@@ -9,121 +9,55 @@ import SwiftUI
 
 struct MostSharedByAudienceView: View {
 
-    @StateObject private var viewModel = MostSharedByAudienceViewViewModel()
+    @ObservedObject var viewModel: ViewModel
     @Binding var tabSelection: PhoneTab
     @Binding var activePadScreen: PadScreen?
+    @State private var shouldDisplayNewUpdateWayBanner: Bool = false
     @EnvironmentObject var trendsHelper: TrendsHelper
-    
+    @Environment(\.scenePhase) var scenePhase
+
     private let columns = [
         GridItem(.flexible())
     ]
+    private let columnsMac = [
+        GridItem(.fixed(500))
+    ]
     private let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
-    
+
     private var dropDownText: String {
         switch viewModel.timeIntervalOption {
         case .last24Hours:
-            return Shared.Trends.last24Hours
+            Shared.Trends.last24Hours
+        case .last3Days:
+            Shared.Trends.last3Days
         case .lastWeek:
-            return Shared.Trends.lastWeek
+            Shared.Trends.lastWeek
         case .lastMonth:
-            return Shared.Trends.lastMonth
+            Shared.Trends.lastMonth
+        case .year2024:
+            Shared.Trends.year2024
+        case .year2023:
+            Shared.Trends.year2023
+        case .year2022:
+            Shared.Trends.year2022
         case .allTime:
-            return Shared.Trends.allTime
+            Shared.Trends.allTime
         }
     }
-    
-    private var list: [TopChartItem] {
-        switch viewModel.timeIntervalOption {
-        case .last24Hours:
-            return viewModel.last24HoursRanking!
-        case .lastWeek:
-            return viewModel.lastWeekRanking!
-        case .lastMonth:
-            return viewModel.lastMonthRanking!
-        case .allTime:
-            return viewModel.allTimeRanking!
-        }
-    }
-    
+
     var body: some View {
         VStack {
             HStack {
-                Text("Sons Mais Compartilhados Pela Audiência (iOS)")
+                Text("Sons Mais Compartilhados Pela Audiência (iOS) 🏆")
                     .font(.title2)
                 Spacer()
             }
             .padding(.horizontal)
             
-            HStack {
-                Menu {
-                    Picker("Período", selection: $viewModel.timeIntervalOption) {
-                        Text(Shared.Trends.last24Hours).tag(TrendsTimeInterval.last24Hours)
-                        Text(Shared.Trends.lastWeek).tag(TrendsTimeInterval.lastWeek)
-                        Text(Shared.Trends.lastMonth).tag(TrendsTimeInterval.lastMonth)
-                        Text(Shared.Trends.allTime).tag(TrendsTimeInterval.allTime)
-                    }
-                } label: {
-                    HStack {
-                        Text(dropDownText)
-                        Image(systemName: "chevron.up.chevron.down")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 15)
-                    }
-                }
-                .onChange(of: viewModel.timeIntervalOption) { timeIntervalOption in
-                    DispatchQueue.main.async {
-                        switch viewModel.timeIntervalOption {
-                        case .last24Hours:
-                            if viewModel.last24HoursRanking == nil {
-                                viewModel.viewState = .noDataToDisplay
-                            } else {
-                                viewModel.viewState = .displayingData
-                            }
-                            
-                        case .lastWeek:
-                            if viewModel.lastWeekRanking == nil {
-                                viewModel.viewState = .noDataToDisplay
-                            } else {
-                                viewModel.viewState = .displayingData
-                            }
-                            
-                        case .lastMonth:
-                            if viewModel.lastMonthRanking == nil {
-                                viewModel.viewState = .noDataToDisplay
-                            } else {
-                                viewModel.viewState = .displayingData
-                            }
-                            
-                        case .allTime:
-                            if viewModel.allTimeRanking == nil {
-                                viewModel.viewState = .noDataToDisplay
-                            } else {
-                                viewModel.viewState = .displayingData
-                            }
-                        }
-                    }
-                    
-                    viewModel.donateActivity(forTimeInterval: timeIntervalOption)
-                }
-                .onReceive(trendsHelper.$timeIntervalToGoTo) { timeIntervalToGoTo in
-                    if let option = timeIntervalToGoTo {
-                        DispatchQueue.main.async {
-                            viewModel.timeIntervalOption = option
-                        }
-                    }
-                }
+            HStack(spacing: 20) {
+                timeIntervalSelector()
                 
                 Spacer()
-                
-                Button {
-                    viewModel.reloadAudienceLists()
-                } label: {
-                    HStack {
-                        Image(systemName: "arrow.triangle.2.circlepath")
-                        Text("Atualizar")
-                    }
-                }
             }
             .padding(.horizontal)
             .padding(.top, 1)
@@ -160,23 +94,32 @@ struct MostSharedByAudienceView: View {
                 
             case .displayingData:
                 VStack {
-                    LazyVGrid(columns: columns, spacing: 20) {
-                        ForEach(list) { item in
-                            TopChartCellView(item: item)
+                    if shouldDisplayNewUpdateWayBanner {
+                        NewTrendsUpdateWayBannerView(
+                            isBeingShown: $shouldDisplayNewUpdateWayBanner
+                        )
+                        .padding(.horizontal, 8)
+                    }
+
+                    LazyVGrid(columns: UIDevice.isMac ? columnsMac : columns, spacing: .zero) {
+                        ForEach(viewModel.ranking) { item in
+                            TopChartRow(item: item)
                                 .onTapGesture {
                                     navigateTo(sound: item.contentId)
                                 }
                                 .contextMenu {
-                                    Button {
-                                        navigateTo(sound: item.contentId)
-                                    } label: {
-                                        Label("Ir para Som", systemImage: "arrow.uturn.backward")
+                                    if UIDevice.isiPhone {
+                                        Button {
+                                            navigateTo(sound: item.contentId)
+                                        } label: {
+                                            Label("Ir para Som", systemImage: "arrow.uturn.backward")
+                                        }
                                     }
                                 }
                         }
                     }
-                    .padding(.bottom)
-                    
+                    .padding(.top, -10)
+
                     Text(viewModel.lastUpdatedAtText)
                         .font(.subheadline)
                         .foregroundColor(.gray)
@@ -185,15 +128,53 @@ struct MostSharedByAudienceView: View {
                         }
                         .padding(.bottom)
                 }
-                .padding(.bottom, 20)
+                .padding(.bottom, 10)
             }
         }
         .onAppear {
-            viewModel.reloadAudienceLists()
-            viewModel.donateActivity(forTimeInterval: viewModel.timeIntervalOption)
+            if viewModel.ranking.isEmpty {
+                viewModel.loadList(for: viewModel.timeIntervalOption)
+                viewModel.donateActivity(forTimeInterval: viewModel.timeIntervalOption)
+            } else if viewModel.lastCheckDate.twoMinutesHavePassed {
+                viewModel.loadList(for: viewModel.timeIntervalOption)
+            }
+            shouldDisplayNewUpdateWayBanner = !AppPersistentMemory().hasSeenNewTrendsUpdateWayBanner()
         }
         .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
+        }
+        .onChange(of: scenePhase) { newPhase in
+            if newPhase == .active, viewModel.lastCheckDate.minutesPassed(60) {
+                viewModel.loadList(for: viewModel.timeIntervalOption)
+            }
+        }
+    }
+    
+    @ViewBuilder func timeIntervalSelector() -> some View {
+        Menu {
+            Picker("Período", selection: $viewModel.timeIntervalOption) {
+                Text(Shared.Trends.last24Hours).tag(TrendsTimeInterval.last24Hours)
+                Text(Shared.Trends.last3Days).tag(TrendsTimeInterval.last3Days)
+                Text(Shared.Trends.lastWeek).tag(TrendsTimeInterval.lastWeek)
+                Text(Shared.Trends.lastMonth).tag(TrendsTimeInterval.lastMonth)
+                Text(Shared.Trends.year2024).tag(TrendsTimeInterval.year2024)
+                Text(Shared.Trends.year2023).tag(TrendsTimeInterval.year2023)
+                Text(Shared.Trends.year2022).tag(TrendsTimeInterval.year2022)
+                Text(Shared.Trends.allTime).tag(TrendsTimeInterval.allTime)
+            }
+        } label: {
+            Label(dropDownText, systemImage: "chevron.up.chevron.down")
+        }
+        .onChange(of: viewModel.timeIntervalOption) {
+            viewModel.loadList(for: $0)
+            viewModel.donateActivity(forTimeInterval: $0)
+        }
+        .onReceive(trendsHelper.$timeIntervalToGoTo) { timeIntervalToGoTo in
+            if let option = timeIntervalToGoTo {
+                DispatchQueue.main.async {
+                    viewModel.timeIntervalOption = option
+                }
+            }
         }
     }
     
@@ -205,14 +186,14 @@ struct MostSharedByAudienceView: View {
         }
         trendsHelper.soundIdToGoTo = soundId
     }
-
 }
 
 struct MostSharedByAudienceView_Previews: PreviewProvider {
-
     static var previews: some View {
-        MostSharedByAudienceView(tabSelection: .constant(.trends),
-                                 activePadScreen: .constant(.trends))
+        MostSharedByAudienceView(
+            viewModel: .init(),
+            tabSelection: .constant(.trends),
+            activePadScreen: .constant(.trends)
+        )
     }
-
 }

@@ -1,165 +1,199 @@
+//
+//  UserSettings.swift
+//  MedoDelirioBrasilia
+//
+//  Created by Rafael Claycon Schmitt on 23/05/22.
+//
+
 import Foundation
 
-class UserSettings {
+protocol UserSettingsProtocol {
 
-    // MARK: - Getters
-    
-    static func getShowOffensiveSounds() -> Bool {
-        let userDefaults = UserDefaults.standard
-        guard let value = userDefaults.object(forKey: "skipGetLinkInstructions") else {
+    func getHasJoinedFolderResearch() -> Bool
+}
+
+final class UserSettings: UserSettingsProtocol {
+
+    private let userDefaults: UserDefaults
+
+    init(
+        userDefaults: UserDefaults = UserDefaults.standard
+    ) {
+        self.userDefaults = userDefaults
+    }
+}
+
+// MARK: - Getters
+
+extension UserSettings {
+
+    func getShowExplicitContent() -> Bool {
+        guard let value = userDefaults.object(forKey: "showExplicitContent") else {
             return false
         }
         return Bool(value as! Bool)
     }
-    
-    static func getSoundSortOption() -> Int {
-        let userDefaults = UserDefaults.standard
+
+    func mainSoundListSoundSortOption() -> Int {
         guard let value = userDefaults.object(forKey: "soundSortOption") else {
             return 2
         }
         return Int(value as! Int)
     }
-    
-    static func getSongSortOption() -> Int {
-        let userDefaults = UserDefaults.standard
+
+    func getSongSortOption() -> Int {
         guard let value = userDefaults.object(forKey: "songSortOption") else {
             return 1
         }
         return Int(value as! Int)
     }
-    
-    static func getEnableTrends() -> Bool {
-        let userDefaults = UserDefaults.standard
+
+    func getEnableTrends() -> Bool {
         guard let value = userDefaults.object(forKey: "enableTrends") else {
             return true
         }
         return Bool(value as! Bool)
     }
-    
-    static func getEnableMostSharedSoundsByTheUser() -> Bool {
-        let userDefaults = UserDefaults.standard
+
+    func getEnableMostSharedSoundsByTheUser() -> Bool {
         guard let value = userDefaults.object(forKey: "enableMostSharedSoundsByTheUser") else {
             return true
         }
         return Bool(value as! Bool)
     }
-    
-    static func getEnableDayOfTheWeekTheUserSharesTheMost() -> Bool {
-        let userDefaults = UserDefaults.standard
+
+    func getEnableDayOfTheWeekTheUserSharesTheMost() -> Bool {
         guard let value = userDefaults.object(forKey: "enableDayOfTheWeekTheUserSharesTheMost") else {
             return true
         }
         return Bool(value as! Bool)
     }
-    
-    static func getEnableSoundsMostSharedByTheAudience() -> Bool {
-        let userDefaults = UserDefaults.standard
+
+    func getEnableSoundsMostSharedByTheAudience() -> Bool {
         guard let value = userDefaults.object(forKey: "enableSoundsMostSharedByTheAudience") else {
             return true
         }
         return Bool(value as! Bool)
     }
-    
-    static func getEnableAppsThroughWhichTheUserSharesTheMost() -> Bool {
-        let userDefaults = UserDefaults.standard
+
+    func getEnableAppsThroughWhichTheUserSharesTheMost() -> Bool {
         guard let value = userDefaults.object(forKey: "enableAppsThroughWhichTheUserSharesTheMost") else {
             return true
         }
         return Bool(value as! Bool)
     }
-    
-    static func getEnableShareUserPersonalTrends() -> Bool {
-        let userDefaults = UserDefaults.standard
+
+    func getEnableShareUserPersonalTrends() -> Bool {
         guard let value = userDefaults.object(forKey: "enableShareUserPersonalTrends") else {
             return true
         }
         return Bool(value as! Bool)
     }
-    
-    static func getUserAllowedNotifications() -> Bool {
-        let userDefaults = UserDefaults.standard
+
+    func getUserAllowedNotifications() -> Bool {
         guard let value = userDefaults.object(forKey: "userAllowedNotifications") else {
             return false
         }
         return Bool(value as! Bool)
     }
-    
-    static func getHotWeatherBannerWasDismissed() -> Bool {
-        let userDefaults = UserDefaults.standard
+
+    func getHotWeatherBannerWasDismissed() -> Bool {
         guard let value = userDefaults.object(forKey: "hotWeatherBannerWasDismissed") else {
             return false
         }
         return Bool(value as! Bool)
     }
-    
-    static func getLastSendDateOfStillAliveSignalToServer() -> Date? {
-        let userDefaults = UserDefaults.standard
+
+    func getLastSendDateOfStillAliveSignalToServer() -> Date? {
         guard let value = userDefaults.object(forKey: "lastSendDateOfStillAliveSignalToServer") else {
             return nil
         }
         return Date(timeIntervalSince1970: value as! Double)
     }
-    
-    // MARK: - Setters
-    
-    static func setShowOffensiveSounds(to newValue: Bool) {
-        let userDefaults = UserDefaults.standard
-        userDefaults.set(newValue, forKey: "skipGetLinkInstructions")
+
+    func getShowUpdateDateOnUI() -> Bool {
+        guard let value = userDefaults.object(forKey: "showUpdateDateOnUI") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
+
+    func authorSortOption() -> Int {
+        guard let value = userDefaults.object(forKey: "authorSortOption") else {
+            return 0
+        }
+        return Int(value as! Int)
+    }
+
+    func getHasJoinedFolderResearch() -> Bool {
+        guard let value = userDefaults.object(forKey: "hasJoinedFolderResearch") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
+}
+
+// MARK: - Setters
+
+extension UserSettings {
+
+    func setShowExplicitContent(to newValue: Bool) {
+        userDefaults.set(newValue, forKey: "showExplicitContent")
     }
     
-    static func setSoundSortOption(to newValue: Int) {
-        let userDefaults = UserDefaults.standard
+    func saveMainSoundListSoundSortOption(_ newValue: Int) {
         userDefaults.set(newValue, forKey: "soundSortOption")
     }
     
-    static func setSongSortOption(to newValue: Int) {
-        let userDefaults = UserDefaults.standard
+    func setSongSortOption(to newValue: Int) {
         userDefaults.set(newValue, forKey: "songSortOption")
     }
     
-    static func setEnableTrends(to newValue: Bool) {
-        let userDefaults = UserDefaults.standard
+    func setEnableTrends(to newValue: Bool) {
         userDefaults.set(newValue, forKey: "enableTrends")
     }
     
-    static func setEnableMostSharedSoundsByTheUser(to newValue: Bool) {
-        let userDefaults = UserDefaults.standard
+    func setEnableMostSharedSoundsByTheUser(to newValue: Bool) {
         userDefaults.set(newValue, forKey: "enableMostSharedSoundsByTheUser")
     }
     
-    static func setEnableDayOfTheWeekTheUserSharesTheMost(to newValue: Bool) {
-        let userDefaults = UserDefaults.standard
+    func setEnableDayOfTheWeekTheUserSharesTheMost(to newValue: Bool) {
         userDefaults.set(newValue, forKey: "enableDayOfTheWeekTheUserSharesTheMost")
     }
     
-    static func setEnableSoundsMostSharedByTheAudience(to newValue: Bool) {
-        let userDefaults = UserDefaults.standard
+    func setEnableSoundsMostSharedByTheAudience(to newValue: Bool) {
         userDefaults.set(newValue, forKey: "enableSoundsMostSharedByTheAudience")
     }
     
-    static func setEnableAppsThroughWhichTheUserSharesTheMost(to newValue: Bool) {
-        let userDefaults = UserDefaults.standard
+    func setEnableAppsThroughWhichTheUserSharesTheMost(to newValue: Bool) {
         userDefaults.set(newValue, forKey: "enableAppsThroughWhichTheUserSharesTheMost")
     }
     
-    static func setEnableShareUserPersonalTrends(to newValue: Bool) {
-        let userDefaults = UserDefaults.standard
+    func setEnableShareUserPersonalTrends(to newValue: Bool) {
         userDefaults.set(newValue, forKey: "enableShareUserPersonalTrends")
     }
     
-    static func setUserAllowedNotifications(to newValue: Bool) {
-        let userDefaults = UserDefaults.standard
+    func setUserAllowedNotifications(to newValue: Bool) {
         userDefaults.set(newValue, forKey: "userAllowedNotifications")
     }
     
-    static func setHotWeatherBannerWasDismissed(to newValue: Bool) {
-        let userDefaults = UserDefaults.standard
+    func setHotWeatherBannerWasDismissed(to newValue: Bool) {
         userDefaults.set(newValue, forKey: "hotWeatherBannerWasDismissed")
     }
     
-    static func setLastSendDateOfStillAliveSignalToServer(to newValue: Date) {
-        let userDefaults = UserDefaults.standard
+    func setLastSendDateOfStillAliveSignalToServer(to newValue: Date) {
         userDefaults.set(newValue.timeIntervalSince1970, forKey: "lastSendDateOfStillAliveSignalToServer")
     }
 
+    func setShowUpdateDateOnUI(to newValue: Bool) {
+        userDefaults.set(newValue, forKey: "showUpdateDateOnUI")
+    }
+
+    func saveAuthorSortOption(_ newValue: Int) {
+        userDefaults.set(newValue, forKey: "authorSortOption")
+    }
+
+    func setHasJoinedFolderResearch(to newValue: Bool) {
+        userDefaults.set(newValue, forKey: "hasJoinedFolderResearch")
+    }
 }

@@ -12,20 +12,31 @@ struct SidebarView: View {
     @StateObject private var viewModel = SidebarViewViewModel()
     @Binding var state: PadScreen?
     @Binding var isShowingSettingsSheet: Bool
-    @Binding var isShowingFolderInfoEditingSheet: Bool
+    @Binding var folderForEditing: UserFolder?
     @Binding var updateFolderList: Bool
+    @Binding var currentSoundsListMode: SoundsListMode
     @EnvironmentObject var settingsHelper: SettingsHelper
-    
+    @EnvironmentObject var syncValues: SyncValues
+
     // Trends
     @EnvironmentObject var trendsHelper: TrendsHelper
-    
+    @Environment(\.push) var push
+
     var body: some View {
         List {
             Section("Sons") {
                 NavigationLink(
-                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
-                                                                           authorSortOption: AuthorSortOption.nameAscending.rawValue),
-                                            currentMode: .allSounds).environmentObject(trendsHelper).environmentObject(settingsHelper),
+                    destination: MainSoundContainer(
+                        viewModel: .init(
+                            currentViewMode: .allSounds,
+                            soundSortOption: UserSettings().mainSoundListSoundSortOption(),
+                            authorSortOption: AuthorSortOption.nameAscending.rawValue,
+                            currentSoundsListMode: $currentSoundsListMode,
+                            syncValues: syncValues
+                        ),
+                        currentSoundsListMode: $currentSoundsListMode,
+                        showSettings: .constant(false)
+                    ).environmentObject(trendsHelper).environmentObject(settingsHelper),
                     tag: PadScreen.allSounds,
                     selection: $state,
                     label: {
@@ -33,20 +44,50 @@ struct SidebarView: View {
                     })
                 
                 NavigationLink(
-                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(), authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .favorites).environmentObject(trendsHelper).environmentObject(settingsHelper),
+                    destination: MainSoundContainer(
+                        viewModel: .init(
+                            currentViewMode: .favorites,
+                            soundSortOption: UserSettings().mainSoundListSoundSortOption(),
+                            authorSortOption: AuthorSortOption.nameAscending.rawValue,
+                            currentSoundsListMode: $currentSoundsListMode,
+                            syncValues: syncValues
+                        ),
+                        currentSoundsListMode: $currentSoundsListMode,
+                        showSettings: .constant(false)
+                    ).environmentObject(trendsHelper).environmentObject(settingsHelper),
                     tag: PadScreen.favorites,
                     selection: $state,
                     label: {
                         Label("Favoritos", systemImage: "star")
                     })
-                
-                NavigationLink(
-                    destination: SoundsView(viewModel: SoundsViewViewModel(soundSortOption: SoundSortOption.dateAddedDescending.rawValue, authorSortOption: AuthorSortOption.nameAscending.rawValue), currentMode: .byAuthor).environmentObject(trendsHelper).environmentObject(settingsHelper),
-                    tag: PadScreen.groupedByAuthor,
-                    selection: $state,
-                    label: {
-                        Label("Por Autor", systemImage: "person")
-                    })
+
+                // FIXME: Bring Reactions to iPad in the future.
+//                NavigationLink(
+//                    destination: ReactionsView(),
+//                    tag: PadScreen.reactions,
+//                    selection: $state,
+//                    label: {
+//                        Label("Reações", systemImage: "rectangle.grid.2x2")
+//                    }
+//                )
+
+                // FIXME: Bring Authors back to iPad in the future.
+//                NavigationLink(
+//                    destination: SoundsView(
+//                        viewModel: SoundsViewViewModel(
+//                            currentViewMode: .byAuthor,
+//                            soundSortOption: SoundSortOption.dateAddedDescending.rawValue,
+//                            authorSortOption: AuthorSortOption.nameAscending.rawValue,
+//                            currentSoundsListMode: $currentSoundsListMode,
+//                            syncValues: syncValues
+//                        ),
+//                        currentSoundsListMode: $currentSoundsListMode
+//                        ).environmentObject(trendsHelper).environmentObject(settingsHelper),
+//                    tag: PadScreen.groupedByAuthor,
+//                    selection: $state,
+//                    label: {
+//                        Label("Por Autor", systemImage: "person")
+//                    })
                 
                 NavigationLink(
                     destination: TrendsView(tabSelection: .constant(.trends),
@@ -56,14 +97,6 @@ struct SidebarView: View {
                     label: {
                         Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
                     })
-                
-//                NavigationLink(
-//                    destination: CollectionsView(),
-//                    tag: PadScreen.collections,
-//                    selection: $state,
-//                    label: {
-//                        Label("Coleções", systemImage: "rectangle.grid.2x2")
-//                    })
             }
             
             Section("Mais") {
@@ -78,7 +111,10 @@ struct SidebarView: View {
             
             Section("Minhas Pastas") {
                 NavigationLink(
-                    destination: AllFoldersiPadView(isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet, updateFolderList: $updateFolderList),
+                    destination: AllFoldersiPadView(
+                        folderForEditing: $folderForEditing,
+                        updateFolderList: $updateFolderList
+                    ),
                     tag: PadScreen.allFolders,
                     selection: $state,
                     label: {
@@ -87,26 +123,29 @@ struct SidebarView: View {
                 
                 ForEach(viewModel.folders) { folder in
                     NavigationLink(
-                        destination: FolderDetailView(folder: folder),
+                        destination: FolderDetailView(
+                            folder: folder,
+                            currentSoundsListMode: $currentSoundsListMode
+                        ),
                         tag: .specificFolder,
                         selection: $state,
                         label: {
                             HStack(spacing: 15) {
-                                SidebarFolderIcon(symbol: folder.symbol, backgroundColor: folder.backgroundColor.toColor())
+                                SidebarFolderIcon(symbol: folder.symbol, backgroundColor: folder.backgroundColor.toPastelColor())
                                 Text(folder.name)
                             }
                         })
                 }
                 
                 Button {
-                    isShowingFolderInfoEditingSheet = true
+                    folderForEditing = UserFolder.newFolder()
                 } label: {
                     Label("Nova Pasta", systemImage: "plus")
                         .foregroundColor(.accentColor)
                 }
             }
         }
-        .listStyle(SidebarListStyle())
+        .listStyle(.sidebar)
         .navigationTitle(LocalizableStrings.MainView.title)
         .toolbar {
             Button {
@@ -116,24 +155,22 @@ struct SidebarView: View {
             }
         }
         .onAppear {
-            viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
+            viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.allFolders())
         }
         .onChange(of: updateFolderList) { shouldUpdate in
             if shouldUpdate {
-                viewModel.reloadFolderList(withFolders: try? database.getAllUserFolders())
+                viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.allFolders())
             }
         }
     }
-
 }
 
-struct SidebarView_Previews: PreviewProvider {
-
-    static var previews: some View {
-        SidebarView(state: .constant(PadScreen.allSounds),
-                    isShowingSettingsSheet: .constant(false),
-                    isShowingFolderInfoEditingSheet: .constant(false),
-                    updateFolderList: .constant(false))
-    }
-
+#Preview {
+    SidebarView(
+        state: .constant(PadScreen.allSounds),
+        isShowingSettingsSheet: .constant(false),
+        folderForEditing: .constant(nil),
+        updateFolderList: .constant(false),
+        currentSoundsListMode: .constant(.regular)
+    )
 }

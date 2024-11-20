@@ -3,9 +3,9 @@ import SwiftUI
 struct TrendsSettingsView: View {
 
     @State var trendsEnabled = false
-    //@State var mostSharedSoundsByTheUserEnabled = false
-    //@State var dayOfTheWeekTheUserSharesTheMostEnabled = false
     @State var soundsMostSharedByTheAudienceEnabled = false
+    @State var mostSharedSoundsByTheUserEnabled = false
+    @State var dayOfTheWeekTheUserSharesTheMostEnabled = false
     //@State var appsThroughWhichTheUserSharesTheMostEnabled = false
     @State var shareUserPersonalTrendsEnabled = false
     
@@ -16,32 +16,32 @@ struct TrendsSettingsView: View {
             Section {
                 Toggle("Habilitar Tendências", isOn: $trendsEnabled)
                     .onChange(of: trendsEnabled) { newValue in
-                        UserSettings.setEnableTrends(to: newValue)
+                        UserSettings().setEnableTrends(to: newValue)
                     }
             } footer: {
                 Text("Nenhum dado coletado identifica você. O propósito dessa funcionalidade é apenas matar a sua curiosidade (e a dos demais usuários) sobre a popularidade dos sons.")
             }
             
             Section {
+                Toggle("Sons Mais Compartilhados Pela Audiência (iOS)", isOn: $soundsMostSharedByTheAudienceEnabled)
+                    .onChange(of: soundsMostSharedByTheAudienceEnabled) { newValue in
+                        UserSettings().setEnableSoundsMostSharedByTheAudience(to: newValue)
+                    }
 //                Toggle("Sons Mais Compartilhados Por Mim", isOn: $mostSharedSoundsByTheUserEnabled)
 //                    .onChange(of: mostSharedSoundsByTheUserEnabled) { newValue in
-//                        UserSettings.setEnableMostSharedSoundsByTheUser(to: newValue)
+//                        UserSettings().setEnableMostSharedSoundsByTheUser(to: newValue)
 //                    }
 //                Toggle("Dia da semana no qual você mais compartilha", isOn: $dayOfTheWeekTheUserSharesTheMostEnabled)
 //                    .onChange(of: dayOfTheWeekTheUserSharesTheMostEnabled) { newValue in
-//                        UserSettings.setEnableDayOfTheWeekTheUserSharesTheMost(to: newValue)
+//                        UserSettings().setEnableDayOfTheWeekTheUserSharesTheMost(to: newValue)
 //                    }
-                Toggle("Sons Mais Compartilhados Pela Audiência (iOS)", isOn: $soundsMostSharedByTheAudienceEnabled)
-                    .onChange(of: soundsMostSharedByTheAudienceEnabled) { newValue in
-                        UserSettings.setEnableSoundsMostSharedByTheAudience(to: newValue)
-                    }
 //                Toggle("Apps Pelos Quais Você Mais Compartilha", isOn: $appsThroughWhichTheUserSharesTheMostEnabled)
 //                    .onChange(of: appsThroughWhichTheUserSharesTheMostEnabled) { newValue in
-//                        UserSettings.setEnableAppsThroughWhichTheUserSharesTheMost(to: newValue)
+//                        UserSettings().setEnableAppsThroughWhichTheUserSharesTheMost(to: newValue)
 //                    }
                 Toggle("Compartilhar minhas tendências", isOn: $shareUserPersonalTrendsEnabled)
                     .onChange(of: shareUserPersonalTrendsEnabled) { newValue in
-                        UserSettings.setEnableShareUserPersonalTrends(to: newValue)
+                        UserSettings().setEnableShareUserPersonalTrends(to: newValue)
                     }
             } header: {
                 Text("Escolha o que deseja usar")
@@ -58,7 +58,7 @@ struct TrendsSettingsView: View {
                     Alert(title: Text("Apagar Todos os Registros Locais de Compartilhamento?"),
                           message: Text("Ter dados salvos localmente não significa que eles serão enviados para o servidor; você pode desativar o envio na opção acima. A ação de apagar não pode ser desfeita."),
                           primaryButton: .destructive(Text("Apagar")) {
-                              try? database.deleteAllUserShareLogs()
+                              try? LocalDatabase.shared.deleteAllUserShareLogs()
                           },
                           secondaryButton: .cancel(Text("Cancelar")))
                 }
@@ -67,10 +67,10 @@ struct TrendsSettingsView: View {
         .navigationTitle("Tendências")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-            trendsEnabled = UserSettings.getEnableTrends()
-            //mostSharedSoundsByTheUserEnabled = UserSettings.getEnableMostSharedSoundsByTheUser()
-            soundsMostSharedByTheAudienceEnabled = UserSettings.getEnableSoundsMostSharedByTheAudience()
-            shareUserPersonalTrendsEnabled = UserSettings.getEnableShareUserPersonalTrends()
+            trendsEnabled = UserSettings().getEnableTrends()
+            //mostSharedSoundsByTheUserEnabled = UserSettings().getEnableMostSharedSoundsByTheUser()
+            soundsMostSharedByTheAudienceEnabled = UserSettings().getEnableSoundsMostSharedByTheAudience()
+            shareUserPersonalTrendsEnabled = UserSettings().getEnableShareUserPersonalTrends()
         }
     }
 

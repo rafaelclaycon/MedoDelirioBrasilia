@@ -9,117 +9,408 @@ import SwiftUI
 
 struct MainView: View {
 
-    @State var tabSelection: PhoneTab = .sounds
-    @State var state: PadScreen? = PadScreen.allSounds
-    @State var isShowingSettingsSheet: Bool = false
-    @StateObject var settingsHelper = SettingsHelper()
-    @State var isShowingFolderInfoEditingSheet: Bool = false
-    @State var updateFolderList: Bool = false
-    
+    @Binding var tabSelection: PhoneTab
+    @Binding var padSelection: PadScreen?
+
+    @State private var soundsPath = NavigationPath()
+    @State private var favoritesPath = NavigationPath()
+    @State private var reactionsPath = NavigationPath()
+    @State private var authorsPath = NavigationPath()
+    @State private var foldersPath = NavigationPath()
+
+    @State private var isShowingSettingsSheet: Bool = false
+    @StateObject private var settingsHelper = SettingsHelper()
+    @State private var folderForEditing: UserFolder?
+    @State private var updateFolderList: Bool = false
+    @State private var currentSoundsListMode: SoundsListMode = .regular
+
+    @State private var subviewToOpen: MainViewModalToOpen = .onboarding
+    @State private var showingModalView: Bool = false
+    @State private var triggerSettings: Bool = false
+
+    // iPad
+    @StateObject private var viewModel = SidebarViewViewModel()
+    @State private var authorSortOption: Int = 0
+    @State private var authorSortAction: AuthorSortOption = .nameAscending
+
     // Trends
-    @State var soundIdToGoToFromTrends: String = .empty
-    @StateObject var trendsHelper = TrendsHelper()
-    
+    @State private var soundIdToGoToFromTrends: String = .empty
+    @StateObject private var trendsHelper = TrendsHelper()
+
+    // Sync
+    @StateObject private var syncValues = SyncValues()
+
+    // MARK: - View Body
+
     var body: some View {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            TabView(selection: $tabSelection) {
-                NavigationView {
-                    SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
-                                                              authorSortOption: AuthorSortOption.nameAscending.rawValue),
-                               currentMode: .allSounds)
+        ZStack {
+            if UIDevice.isiPhone {
+                TabView(selection: $tabSelection) {
+                    NavigationStack(path: $soundsPath) {
+                        MainSoundContainer(
+                            viewModel: .init(
+                                currentViewMode: .allSounds,
+                                soundSortOption: UserSettings().mainSoundListSoundSortOption(),
+                                authorSortOption: UserSettings().authorSortOption(),
+                                currentSoundsListMode: $currentSoundsListMode,
+                                syncValues: syncValues
+                            ),
+                            currentSoundsListMode: $currentSoundsListMode,
+                            showSettings: $triggerSettings
+                        )
                         .environmentObject(trendsHelper)
                         .environmentObject(settingsHelper)
-                }
-                .tabItem {
-                    Label("Sons", systemImage: "speaker.wave.3.fill")
-                }
-                .tag(PhoneTab.sounds)
-                
-//                NavigationView {
-//                    CollectionsView()
-//                }
-//                .tabItem {
-//                    Label("Coleções", systemImage: "rectangle.grid.2x2.fill")
-//                }
-//                .tag(PhoneTab.collections)
-                
-                NavigationView {
-                    TrendsView(tabSelection: $tabSelection,
-                               activePadScreen: .constant(.trends))
+                        .navigationDestination(for: GeneralNavigationDestination.self) { screen in
+                            GeneralRouter(destination: screen)
+                        }
+                    }
+                    .tabItem {
+                        Label("Sons", systemImage: "speaker.wave.3.fill")
+                    }
+                    .tag(PhoneTab.sounds)
+                    .environment(\.push, PushAction { soundsPath.append($0) })
+
+                    NavigationStack(path: $reactionsPath) {
+                        ReactionsView()
+                            .navigationDestination(for: GeneralNavigationDestination.self) { screen in
+                                GeneralRouter(destination: screen)
+                            }
+                    }
+                    .tabItem {
+                        Label("Reações", systemImage: "rectangle.grid.2x2.fill")
+                    }
+                    .tag(PhoneTab.reactions)
+                    .environment(\.push, PushAction { reactionsPath.append($0) })
+
+                    NavigationView {
+                        SongsView()
+                            .environmentObject(settingsHelper)
+                    }
+                    .tabItem {
+                        Label("Músicas", systemImage: "music.quarternote.3")
+                    }
+                    .tag(PhoneTab.songs)
+                    
+                    NavigationView {
+                        TrendsView(
+                            tabSelection: $tabSelection,
+                            activePadScreen: .constant(.trends)
+                        )
                         .environmentObject(trendsHelper)
+                    }
+                    .tabItem {
+                        Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
+                    }
+                    .tag(PhoneTab.trends)
                 }
-                .tabItem {
-                    Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
-                }
-                .tag(PhoneTab.trends)
-                
-                NavigationView {
-                    SongsView()
-                        .environmentObject(settingsHelper)
-                }
-                .tabItem {
-                    Label("Músicas", systemImage: "music.quarternote.3")
-                }
-                .tag(PhoneTab.songs)
-            }
-            .onContinueUserActivity(Shared.ActivityTypes.playAndShareSounds, perform: { _ in
-                tabSelection = .sounds
-            })
-//            .onContinueUserActivity(Shared.ActivityTypes.viewCollections, perform: { _ in
-//                tabSelection = .collections
-//            })
-            .onContinueUserActivity(Shared.ActivityTypes.playAndShareSongs, perform: { _ in
-                tabSelection = .songs
-            })
-            .onContinueUserActivity(Shared.ActivityTypes.viewLast24HoursTopChart, perform: { _ in
-                tabSelection = .trends
-                trendsHelper.timeIntervalToGoTo = .last24Hours
-            })
-            .onContinueUserActivity(Shared.ActivityTypes.viewLastWeekTopChart, perform: { _ in
-                tabSelection = .trends
-                trendsHelper.timeIntervalToGoTo = .lastWeek
-            })
-            .onContinueUserActivity(Shared.ActivityTypes.viewLastMonthTopChart, perform: { _ in
-                tabSelection = .trends
-                trendsHelper.timeIntervalToGoTo = .lastMonth
-            })
-            .onContinueUserActivity(Shared.ActivityTypes.viewAllTimeTopChart, perform: { _ in
-                tabSelection = .trends
-                trendsHelper.timeIntervalToGoTo = .allTime
-            })
-        } else {
-            NavigationView {
-                SidebarView(state: $state,
+                .onContinueUserActivity(Shared.ActivityTypes.playAndShareSounds, perform: { _ in
+                    tabSelection = .sounds
+                })
+                //            .onContinueUserActivity(Shared.ActivityTypes.viewCollections, perform: { _ in
+                //                tabSelection = .collections
+                //            })
+                .onContinueUserActivity(Shared.ActivityTypes.playAndShareSongs, perform: { _ in
+                    tabSelection = .songs
+                })
+                .onContinueUserActivity(Shared.ActivityTypes.viewLast24HoursTopChart, perform: { _ in
+                    tabSelection = .trends
+                    trendsHelper.timeIntervalToGoTo = .last24Hours
+                })
+                .onContinueUserActivity(Shared.ActivityTypes.viewLastWeekTopChart, perform: { _ in
+                    tabSelection = .trends
+                    trendsHelper.timeIntervalToGoTo = .lastWeek
+                })
+                .onContinueUserActivity(Shared.ActivityTypes.viewLastMonthTopChart, perform: { _ in
+                    tabSelection = .trends
+                    trendsHelper.timeIntervalToGoTo = .lastMonth
+                })
+                .onContinueUserActivity(Shared.ActivityTypes.viewAllTimeTopChart, perform: { _ in
+                    tabSelection = .trends
+                    trendsHelper.timeIntervalToGoTo = .allTime
+                })
+            } else {
+                if #available(iOS 18, *) {
+                    TabView {
+                        Tab("Sons", systemImage: "speaker.wave.2") {
+                            NavigationStack(path: $soundsPath) {
+                                MainSoundContainer(
+                                    viewModel: .init(
+                                        currentViewMode: .allSounds,
+                                        soundSortOption: UserSettings().mainSoundListSoundSortOption(),
+                                        authorSortOption: UserSettings().authorSortOption(),
+                                        currentSoundsListMode: $currentSoundsListMode,
+                                        syncValues: syncValues
+                                    ),
+                                    currentSoundsListMode: $currentSoundsListMode,
+                                    showSettings: .constant(false)
+                                )
+                                .environmentObject(trendsHelper)
+                                .environmentObject(settingsHelper)
+                                .navigationDestination(for: GeneralNavigationDestination.self) { screen in
+                                    GeneralRouter(destination: screen)
+                                }
+                            }
+                            .environment(\.push, PushAction { soundsPath.append($0) })
+                        }
+
+                        Tab("Favoritos", systemImage: "star") {
+                            NavigationStack(path: $favoritesPath) {
+                                MainSoundContainer(
+                                    viewModel: .init(
+                                        currentViewMode: .favorites,
+                                        soundSortOption: UserSettings().mainSoundListSoundSortOption(),
+                                        authorSortOption: UserSettings().authorSortOption(),
+                                        currentSoundsListMode: $currentSoundsListMode,
+                                        syncValues: syncValues
+                                    ),
+                                    currentSoundsListMode: $currentSoundsListMode,
+                                    showSettings: .constant(false)
+                                )
+                                .environmentObject(trendsHelper)
+                                .environmentObject(settingsHelper)
+                                .navigationDestination(for: GeneralNavigationDestination.self) { screen in
+                                    GeneralRouter(destination: screen)
+                                }
+                            }
+                            .environment(\.push, PushAction { favoritesPath.append($0) })
+                        }
+
+                        Tab("Reações", systemImage: "rectangle.grid.2x2") {
+                            NavigationStack(path: $reactionsPath) {
+                                ReactionsView()
+                                    .navigationDestination(for: GeneralNavigationDestination.self) { screen in
+                                        GeneralRouter(destination: screen)
+                                    }
+                            }
+                            .environment(\.push, PushAction { reactionsPath.append($0) })
+                        }
+
+                        Tab("Autores", systemImage: "person") {
+                            NavigationStack(path: $authorsPath) {
+                                AuthorsView(
+                                    sortOption: $authorSortOption,
+                                    sortAction: $authorSortAction,
+                                    searchTextForControl: .constant("")
+                                )
+                                .navigationDestination(for: GeneralNavigationDestination.self) { screen in
+                                    GeneralRouter(destination: screen)
+                                }
+                            }
+                            .environment(\.push, PushAction { authorsPath.append($0) })
+                        }
+
+                        Tab("Tendências", systemImage: "chart.line.uptrend.xyaxis") {
+                            NavigationStack {
+                                TrendsView(
+                                    tabSelection: $tabSelection,
+                                    activePadScreen: .constant(.trends)
+                                )
+                                .environmentObject(trendsHelper)
+                            }
+                        }
+
+                        TabSection("Mais") {
+                            Tab("Músicas", systemImage: "music.quarternote.3") {
+                                NavigationStack {
+                                    SongsView()
+                                        .environmentObject(settingsHelper)
+                                }
+                            }
+                        }
+
+                        TabSection("Minhas Pastas") {
+                            Tab("Todas as Pastas", systemImage: "folder") {
+                                NavigationStack(path: $foldersPath) {
+                                    AllFoldersiPadView(
+                                        folderForEditing: $folderForEditing,
+                                        updateFolderList: $updateFolderList
+                                    )
+                                    .navigationDestination(for: GeneralNavigationDestination.self) { screen in
+                                        GeneralRouter(destination: screen)
+                                    }
+                                }
+                                .environment(\.push, PushAction { foldersPath.append($0) })
+                            }
+
+                            ForEach(viewModel.folders) { folder in
+                                Tab {
+                                    NavigationStack {
+                                        FolderDetailView(
+                                            folder: folder,
+                                            currentSoundsListMode: $currentSoundsListMode
+                                        )
+                                    }
+                                } label: {
+                                    Text("\(folder.symbol)   \(folder.name)")
+                                        .padding()
+                                }
+                            }
+                        }
+                        .sectionActions {
+                            Button {
+                                folderForEditing = UserFolder.newFolder()
+                            } label: {
+                                Label("Nova Pasta", systemImage: "plus")
+                                    .foregroundColor(.accentColor)
+                            }
+                        }
+                    }
+                    .tabViewStyle(.sidebarAdaptable)
+                    .tabViewSidebarHeader {
+                        HStack {
+                            Text("Medo e Delírio")
+                                .font(.title)
+                                .bold()
+
+                            Spacer()
+                        }
+                    }
+                    .tabViewSidebarFooter {
+                        HStack {
+                            Button {
+                                isShowingSettingsSheet.toggle()
+                            } label: {
+                                Label("Configurações", systemImage: "gearshape")
+                            }
+
+                            Spacer()
+                        }
+                        .padding(.top, 30)
+                    }
+                    .onAppear {
+                        viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.allFolders())
+                    }
+                } else {
+                    NavigationSplitView {
+                        SidebarView(
+                            state: $padSelection,
                             isShowingSettingsSheet: $isShowingSettingsSheet,
-                            isShowingFolderInfoEditingSheet: $isShowingFolderInfoEditingSheet,
-                            updateFolderList: $updateFolderList)
-                    .environmentObject(trendsHelper)
-                    .environmentObject(settingsHelper)
-                SoundsView(viewModel: SoundsViewViewModel(soundSortOption: UserSettings.getSoundSortOption(),
-                                                          authorSortOption: AuthorSortOption.nameAscending.rawValue),
-                           currentMode: .allSounds)
-                    .environmentObject(trendsHelper)
-                    .environmentObject(settingsHelper)
+                            folderForEditing: $folderForEditing,
+                            updateFolderList: $updateFolderList,
+                            currentSoundsListMode: $currentSoundsListMode
+                        )
+                        .environmentObject(trendsHelper)
+                        .environmentObject(settingsHelper)
+                        .environmentObject(syncValues)
+                    } detail: {
+                        NavigationStack(path: $soundsPath) {
+                            MainSoundContainer(
+                                viewModel: .init(
+                                    currentViewMode: .allSounds,
+                                    soundSortOption: UserSettings().mainSoundListSoundSortOption(),
+                                    authorSortOption: AuthorSortOption.nameAscending.rawValue,
+                                    currentSoundsListMode: $currentSoundsListMode,
+                                    syncValues: syncValues
+                                ),
+                                currentSoundsListMode: $currentSoundsListMode,
+                                showSettings: .constant(false)
+                            )
+                            .environmentObject(trendsHelper)
+                            .environmentObject(settingsHelper)
+                            .navigationDestination(for: GeneralNavigationDestination.self) { screen in
+                                GeneralRouter(destination: screen)
+                            }
+                            .environment(\.push, PushAction { soundsPath.append($0) })
+                        }
+                    }
+                }
             }
-            .navigationViewStyle(DoubleColumnNavigationViewStyle())
-            .sheet(isPresented: $isShowingSettingsSheet) {
-                SettingsCasingWithCloseView(isBeingShown: $isShowingSettingsSheet)
-                    .environmentObject(settingsHelper)
+        }
+        .environmentObject(syncValues)
+        .onAppear {
+            print("MAIN VIEW - ON APPEAR")
+            sendUserPersonalTrendsToServerIfEnabled()
+            displayOnboardingIfNeeded()
+        }
+        .onChange(of: triggerSettings) { show in
+            if show {
+                subviewToOpen = .settings
+                showingModalView = true
+                triggerSettings = false
             }
-            .sheet(isPresented: $isShowingFolderInfoEditingSheet, onDismiss: {
-                updateFolderList = true
-            }) {
-                FolderInfoEditingView(isBeingShown: $isShowingFolderInfoEditingSheet, selectedBackgroundColor: Shared.Folders.defaultFolderColor)
+        }
+        .sheet(isPresented: $showingModalView) {
+            switch subviewToOpen {
+            case .settings:
+                SettingsCasingWithCloseView(isBeingShown: $showingModalView)
+                    .environmentObject(settingsHelper)
+
+            case .onboarding:
+                FirstOnboardingView(isBeingShown: $showingModalView)
+                    .interactiveDismissDisabled(UIDevice.current.userInterfaceIdiom == .phone ? true : false)
+
+            case .whatsNew:
+                IntroducingReactionsView()
+                    .interactiveDismissDisabled()
+
+            case .retrospective:
+                EmptyView()
+            }
+        }
+        .sheet(item: $folderForEditing) { folder in
+            FolderInfoEditingView(
+                folder: folder,
+                folderRepository: UserFolderRepository(),
+                dismissSheet: {
+                    folderForEditing = nil
+                    updateFolderList = true
+                }
+            )
+        }
+        // Could be removed in the future, but for now using `showingModalView` bugs out on iPad. Shows Onboarding most of the time.
+        .sheet(isPresented: $isShowingSettingsSheet) {
+            SettingsCasingWithCloseView(isBeingShown: $isShowingSettingsSheet)
+                .environmentObject(settingsHelper)
+        }
+    }
+
+    // MARK: - Functions
+
+    private func sendUserPersonalTrendsToServerIfEnabled() {
+        Task {
+            guard UserSettings().getEnableTrends() else {
+                return
+            }
+            guard UserSettings().getEnableShareUserPersonalTrends() else {
+                return
+            }
+
+            if let lastDate = AppPersistentMemory().getLastSendDateOfUserPersonalTrendsToServer() {
+                if lastDate.onlyDate! < Date.now.onlyDate! {
+                    let result = await Podium.shared.sendShareCountStatsToServer()
+
+                    guard result == .successful || result == .noStatsToSend else {
+                        return
+                    }
+                    AppPersistentMemory().setLastSendDateOfUserPersonalTrendsToServer(to: Date.now.onlyDate!)
+                }
+            } else {
+                let result = await Podium.shared.sendShareCountStatsToServer()
+
+                guard result == .successful || result == .noStatsToSend else {
+                    return
+                }
+                AppPersistentMemory().setLastSendDateOfUserPersonalTrendsToServer(to: Date.now.onlyDate!)
             }
         }
     }
 
+    private func displayOnboardingIfNeeded() {
+        if !AppPersistentMemory().hasShownNotificationsOnboarding() {
+            subviewToOpen = .onboarding
+            showingModalView = true
+        } else if !AppPersistentMemory().hasSeenReactionsWhatsNewScreen(), UIDevice.isiPhone {
+            subviewToOpen = .whatsNew
+            showingModalView = true
+        }
+    }
 }
 
-struct MainView_Previews: PreviewProvider {
+// MARK: - Preview
 
-    static var previews: some View {
-        MainView()
-    }
-
+#Preview {
+    MainView(
+        tabSelection: .constant(.sounds),
+        padSelection: .constant(.allSounds)
+    )
 }

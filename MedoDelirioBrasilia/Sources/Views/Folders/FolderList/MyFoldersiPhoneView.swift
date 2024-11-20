@@ -9,18 +9,22 @@ import SwiftUI
 
 struct MyFoldersiPhoneView: View {
 
-    @State private var isShowingFolderInfoEditingSheet: Bool = false
-    @State private var folderForEditingOnSheet: UserFolder? = nil
-    @State var updateFolderList: Bool = false // Does nothing, just here to satisfy FolderList :)
-    @State var deleteFolderAide = DeleteFolderViewAide() // Same as above
-    @State var folderIdForEditing: String = .empty
-    
+    @State private var folderForEditing: UserFolder?
+    @State private var updateFolderList: Bool = false // Does nothing, just here to satisfy FolderList :)
+    @State private var currentSoundsListMode: SoundsListMode = .regular
+    @State private var showErrorDeletingAlert: Bool = false
+
+    @EnvironmentObject var deleteFolderAide: DeleteFolderViewAide
+
+    // MARK: - View Body
+
     var body: some View {
         ScrollView {
             VStack(alignment: .center) {
-                FolderList(updateFolderList: $updateFolderList,
-                           deleteFolderAide: $deleteFolderAide,
-                           folderIdForEditing: $folderIdForEditing)
+                FolderList(
+                    updateFolderList: $updateFolderList,
+                    folderForEditing: $folderForEditing
+                )
             }
             .padding(.horizontal)
             .padding(.top, 7)
@@ -30,43 +34,56 @@ struct MyFoldersiPhoneView: View {
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Button {
-                    isShowingFolderInfoEditingSheet = true
+                    folderForEditing = UserFolder.newFolder()
                 } label: {
                     HStack {
                         Image(systemName: "plus")
                     }
                 }
-                .onChange(of: isShowingFolderInfoEditingSheet) { isShowing in
-                    if isShowing == false {
-                        updateFolderList = true
-                        folderForEditingOnSheet = nil
-                    }
+            }
+        }
+        .sheet(item: $folderForEditing) { folder in
+            FolderInfoEditingView(
+                folder: folder,
+                folderRepository: UserFolderRepository(),
+                dismissSheet: {
+                    folderForEditing = nil
+                    updateFolderList = true
                 }
-            }
+            )
         }
-        .sheet(isPresented: $isShowingFolderInfoEditingSheet) {
-            if let folder = folderForEditingOnSheet {
-                FolderInfoEditingView(isBeingShown: $isShowingFolderInfoEditingSheet, symbol: folder.symbol, folderName: folder.name, selectedBackgroundColor: folder.backgroundColor, isEditing: true, folderIdWhenEditing: folder.id)
-            } else {
-                FolderInfoEditingView(isBeingShown: $isShowingFolderInfoEditingSheet, selectedBackgroundColor: Shared.Folders.defaultFolderColor)
-            }
+        .alert(isPresented: $deleteFolderAide.showAlert) {
+            Alert(
+                title: Text(deleteFolderAide.alertTitle),
+                message: Text(deleteFolderAide.alertMessage),
+                primaryButton: .destructive(Text("Apagar"), action: {
+                    guard !deleteFolderAide.folderIdForDeletion.isEmpty else {
+                        return
+                    }
+
+                    do {
+                        try LocalDatabase.shared.deleteUserFolder(withId: deleteFolderAide.folderIdForDeletion)
+                        updateFolderList = true
+                    } catch {
+                        showErrorDeletingAlert = true
+                    }
+                }),
+                secondaryButton: .cancel(Text("Cancelar"))
+            )
         }
-        .onChange(of: folderIdForEditing) { folderIdForEditing in
-            if folderIdForEditing.isEmpty == false {
-                folderForEditingOnSheet = try? database.getFolder(withId: folderIdForEditing)
-                guard folderForEditingOnSheet != nil else { return }
-                isShowingFolderInfoEditingSheet = true
-                self.folderIdForEditing = .empty
-            }
+        .alert(
+            "Erro Ao Tentar Apagar a Pasta",
+            isPresented: $showErrorDeletingAlert
+        ) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text("Tente novamente mais tarde. Se o erro persisir, por favor, envie um e-mail para o desenvolvedor.")
         }
     }
-
 }
 
-struct MyFoldersiPhoneView_Previews: PreviewProvider {
+// MARK: - Preview
 
-    static var previews: some View {
-        MyFoldersiPhoneView()
-    }
-
+#Preview {
+    MyFoldersiPhoneView()
 }

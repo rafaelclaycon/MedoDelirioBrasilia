@@ -2,7 +2,7 @@
 //  AuthorCell.swift
 //  MedoDelirioBrasilia
 //
-//  Created by Rafael Claycon Schmitt on 18/07/22.
+//  Created by Rafael Schmitt on 10/12/23.
 //
 
 import SwiftUI
@@ -10,23 +10,38 @@ import Kingfisher
 
 struct AuthorCell: View {
 
-    @State var authorName: String
-    @State var authorImageURL: String
-    @State var soundCount: String
+    let author: Author
+
     @Environment(\.colorScheme) var colorScheme
-    
+
+    var hasBackgroundImage: Bool {
+        author.photo?.isEmpty == false
+    }
+
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20, style: .continuous)
                 .fill(Color.gray)
-                .frame(height: UIDevice.is4InchDevice ? 120 : 96)
+                .frame(height: 96)
                 .opacity(colorScheme == .dark ? 0.25 : 0.15)
-            
+
+            if hasBackgroundImage {
+                KFImage(URL(string: author.photo ?? ""))
+                    .placeholder {
+                        EmptyView()
+                    }
+                    .resizable()
+                    .scaledToFill()
+                    .frame(height: 96)
+                    .frame(minWidth: 0, maxWidth: .infinity)
+                    .blur(radius: 200, opaque: false)
+            }
+
             HStack {
-                if authorImageURL.isEmpty == false {
-                    KFImage(URL(string: authorImageURL))
+                if author.photo?.isEmpty == false {
+                    KFImage(URL(string: author.photo ?? ""))
                         .placeholder {
-                            Image(systemName: "person.circle")
+                            Image(systemName: "person.fill")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(height: 50)
@@ -34,53 +49,81 @@ struct AuthorCell: View {
                                 .opacity(0.3)
                         }
                         .resizable()
-                        .scaledToFit()
-                        .frame(width: 55)
-                        .clipShape(Circle())
+                        .scaledToFill()
+                        .frame(width: 96, height: 96)
+                        .clipped()
                 }
-                
-                VStack(alignment: .leading, spacing: 8) {
-                    Text(authorName)
+
+                VStack(alignment: .leading) {
+                    Text(author.name)
                         .foregroundColor(.primary)
                         .bold()
                         .multilineTextAlignment(.leading)
                         .lineLimit(2)
                 }
-                .padding(.leading, 5)
-                
-                Spacer()
-                
-                NumberBadgeView(number: soundCount)
-                    .foregroundColor(.primary)
-                    .padding(.trailing, 10)
-                
-                Image(systemName: "chevron.right")
-                    .resizable()
-                    .scaledToFit()
-                    .foregroundColor(.gray)
-                    .frame(height: 16)
-            }
-            .padding(.leading)
-            .padding(.trailing)
-        }
-    }
+                .padding(.leading, author.photo?.isEmpty == false ? 15 : 25)
 
+                Spacer()
+
+                NumberBadgeView(
+                    number: "\(author.soundCount ?? 0)",
+                    showBackgroundCircle: true,
+                    lightModeOpacity: hasBackgroundImage ? 0.5 : 0.2,
+                    darkModeOpacity: hasBackgroundImage ? 0.25 : 0.5,
+                    circleColor: hasBackgroundImage ? .white : .gray
+                )
+                .foregroundColor(.primary)
+            }
+            .padding(.trailing, 18)
+        }
+        .mask {
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+        }
+        .contentShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+    }
 }
 
-struct AuthorCell_Previews: PreviewProvider {
+#Preview {
+    Group {
+        // No image
+        AuthorCell(
+            author: .init(id: "", name: "Jair Bolsonaro", soundCount: 10)
+        )
 
-    static var previews: some View {
-        Group {
-            // No image
-            AuthorCell(authorName: "Jair Bolsonaro", authorImageURL: "", soundCount: "10")
-            
-            AuthorCell(authorName: "Samira Close", authorImageURL: "https://yt3.ggpht.com/ytc/AKedOLRjdzsZyL8rKC0c83BV7_muqPkBtd2TM1kYrV76iA=s900-c-k-c0x00ffffff-no-rj", soundCount: "1")
-            AuthorCell(authorName: "Casimiro", authorImageURL: "https://pbs.twimg.com/profile_images/1495509561377177601/WljXGF65_400x400.jpg", soundCount: "4")
-            
-            // URL unavailable
-            AuthorCell(authorName: "Samira Close", authorImageURL: "abc", soundCount: "1")
-        }
-        .previewLayout(.fixed(width: 220, height: 100))
+        // Square image
+        AuthorCell(
+            author: .init(
+                id: "",
+                name: "Samira Close",
+                photo: "https://yt3.ggpht.com/ytc/AKedOLRjdzsZyL8rKC0c83BV7_muqPkBtd2TM1kYrV76iA=s900-c-k-c0x00ffffff-no-rj",
+                soundCount: 1
+            )
+        )
+
+        // Image is taller than wider
+        AuthorCell(
+            author: .init(
+                id: "",
+                name: "Abraham Weintraub",
+                photo: "https://conteudo.imguol.com.br/c/noticias/fd/2020/06/22/11fev2020---o-entao-ministro-da-educacao-abraham-weintraub-falando-a-comissao-do-senado-sobre-problemas-na-correcao-das-provas-do-enem-1592860563916_v2_3x4.jpg",
+                soundCount: 5
+            )
+        )
+
+        // Image is wider than taller
+        AuthorCell(
+            author: .init(
+                id: "",
+                name: "Biquini",
+                photo: "https://conteudo.imguol.com.br/c/entretenimento/10/2019/05/30/integrantes-do-biquini-cavadao-1559247575758_v2_4x3.jpg",
+                soundCount: 5
+            )
+        )
+
+        // URL unavailable
+        AuthorCell(
+            author: .init(id: "", name: "Samira Close", photo: "abc", soundCount: 1)
+        )
     }
-
+    .padding()
 }

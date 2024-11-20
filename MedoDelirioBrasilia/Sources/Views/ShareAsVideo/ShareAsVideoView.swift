@@ -2,87 +2,126 @@
 //  ShareAsVideoView.swift
 //  MedoDelirioBrasilia
 //
-//  Created by Rafael Claycon Schmitt on 21/08/22.
+//  Created by Rafael Schmitt on 22/02/23.
 //
 
 import SwiftUI
 
 struct ShareAsVideoView: View {
-
+    
     @StateObject var viewModel: ShareAsVideoViewViewModel
+    
     @Binding var isBeingShown: Bool
     @Binding var result: ShareAsVideoResult
+    
     @State var useLongerGeneratingVideoMessage: Bool
     @State var didCloseTip: Bool = false
-    @State var showTwitterTip: Bool = true
+    @State var showTextSocialNetworkTip: Bool = true
     @State var showInstagramTip: Bool = true
-    
     @State private var tipText: String = .empty
+    @State private var verticalOffset: CGFloat = 0.0
+    @State private var isExpanded = false
+    @State private var titleSize = 28.0
     
-    private let twitterTip = "Para responder a um tuíte, escolha Salvar Vídeo e depois adicione o vídeo ao seu tuíte a partir do app do Twitter."
+    @ScaledMetric var vstackSpacing: CGFloat = 22
+    @ScaledMetric var bottomPadding: CGFloat = 26
+    
+    private let textSocialNetworkTip = "Para responder a uma publicação na sua rede social favorita, escolha Salvar Vídeo e depois adicione o vídeo à resposta a partir do app da rede."
     private let instagramTip = "Para fazer um Story, escolha Salvar Vídeo e depois adicione o vídeo ao seu Story a partir do Instagram."
+
+    private var isSquare: Bool {
+        viewModel.selectedSocialNetwork == IntendedVideoDestination.twitter.rawValue
+    }
+
+    private var is9By16: Bool {
+        !isSquare
+    }
     
     var body: some View {
+        let squareImage = squareImageView(contentName: viewModel.content.title, contentAuthor: viewModel.subtitle)
+        let nineBySixteenImage = nineBySixteenImageView(contentName: viewModel.content.title, contentAuthor: viewModel.subtitle)
+        
         ZStack {
             NavigationView {
                 ScrollView {
-                    VStack {
+                    VStack(spacing: vstackSpacing) {
                         Picker(selection: $viewModel.selectedSocialNetwork, label: Text("Rede social")) {
-                            Text("Twitter / WhatsApp").tag(0)
-                            Text("Instagram / TikTok").tag(1)
+                            Text("Quadrado").tag(0)
+                            Text("9 : 16").tag(1)
                         }
                         .pickerStyle(SegmentedPickerStyle())
-                        .padding(.horizontal, 25)
-                        .padding(.bottom, 10)
                         .disabled(viewModel.isShowingProcessingView)
                         .onChange(of: viewModel.selectedSocialNetwork) { newValue in
-                            tipText = newValue == IntendedVideoDestination.twitter.rawValue ? twitterTip : instagramTip
-                            viewModel.reloadImage()
+                            tipText = newValue == IntendedVideoDestination.twitter.rawValue ? textSocialNetworkTip : instagramTip
                         }
                         
-                        Image(uiImage: viewModel.image)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 350)
+                        if viewModel.selectedSocialNetwork == 0 {
+                            squareImage
+                        } else {
+                            nineBySixteenImage
+                        }
+
+                        if isSquare {
+                            Stepper("Tamanho do título: \(Int(titleSize))", value: $titleSize, in: 22...38, step: 1)
+                        }
                         
-                        if viewModel.selectedSocialNetwork == IntendedVideoDestination.instagramTikTok.rawValue {
+                        if is9By16 {
                             Toggle("Incluir aviso Ligue o Som", isOn: $viewModel.includeSoundWarning)
-                                .onChange(of: viewModel.includeSoundWarning) { _ in
-                                    viewModel.reloadImage()
-                                }
-                                .padding(.horizontal, 25)
-                                .padding(.top)
                                 .disabled(viewModel.isShowingProcessingView)
                         }
                         
-                        if viewModel.selectedSocialNetwork == IntendedVideoDestination.twitter.rawValue && showTwitterTip {
+                        DisclosureGroup {
+                            Slider(value: $verticalOffset, in: -30...30, step: 1)
+                            .padding(.top, 5)
+                            
+                            HStack {
+                                Spacer()
+                                
+                                Button("REDEFINIR") {
+                                    verticalOffset = 0
+                                }
+                                .miniButton(colored: .gray)
+                            }
+                        } label: {
+                            Label("Ajustar posição vertical do texto", systemImage: "arrow.up.and.down")
+                                .foregroundColor(.primary)
+                        }
+                        .disabled(viewModel.isShowingProcessingView)
+                        
+                        if viewModel.selectedSocialNetwork == IntendedVideoDestination.twitter.rawValue && showTextSocialNetworkTip {
                             TipView(text: $tipText, didTapClose: $didCloseTip)
-                                .padding(.horizontal)
-                                .padding(.top)
                                 .disabled(viewModel.isShowingProcessingView)
                         } else if viewModel.selectedSocialNetwork == IntendedVideoDestination.instagramTikTok.rawValue && showInstagramTip {
                             TipView(text: $tipText, didTapClose: $didCloseTip)
-                                .padding(.horizontal)
-                                .padding(.top)
                                 .disabled(viewModel.isShowingProcessingView)
                         }
                         
                         if UIDevice.current.userInterfaceIdiom == .phone {
-                            HStack(spacing: 10) {
-                                getShareButton()
-                                getShareAsVideoButton()
+                            VStack(spacing: vstackSpacing) {
+                                if viewModel.selectedSocialNetwork == 0 {
+                                    shareButton(view: squareImage)
+                                    saveVideoButton(view: squareImage)
+                                } else {
+                                    shareButton(view: nineBySixteenImage)
+                                    saveVideoButton(view: nineBySixteenImage)
+                                }
                             }
-                            .padding(.vertical)
                         } else {
                             HStack(spacing: 20) {
-                                getShareButton(withWidth: 40)
-                                getShareAsVideoButton(withWidth: 40)
+                                if viewModel.selectedSocialNetwork == 0 {
+                                    shareButton(view: squareImage)
+                                    saveVideoButton(view: squareImage)
+                                } else {
+                                    shareButton(view: nineBySixteenImage)
+                                    saveVideoButton(view: nineBySixteenImage)
+                                }
                             }
-                            .padding(.vertical, 20)
                         }
                     }
                     .navigationTitle("Gerar Vídeo")
                     .navigationBarTitleDisplayMode(.inline)
+                    .padding(.horizontal, 25)
+                    .padding(.bottom, bottomPadding)
                     .navigationBarItems(leading:
                         Button("Cancelar") {
                             self.isBeingShown = false
@@ -94,18 +133,20 @@ struct ShareAsVideoView: View {
                     .onChange(of: viewModel.shouldCloseView) { shouldCloseView in
                         if shouldCloseView {
                             result.videoFilepath = viewModel.pathToVideoFile
-                            result.contentId = viewModel.contentId
+                            result.contentId = viewModel.content.id
                             isBeingShown = false
                         }
                     }
                     .onChange(of: didCloseTip) { didCloseTip in
                         if didCloseTip {
                             if viewModel.selectedSocialNetwork == IntendedVideoDestination.twitter.rawValue {
-                                showTwitterTip = false
-                                AppPersistentMemory.setHasHiddenShareAsVideoTwitterTip(to: true)
+                                showTextSocialNetworkTip = false
+                                AppPersistentMemory().setHasHiddenShareAsVideoTextSocialNetworkTip(to: true)
+                                self.didCloseTip = false
                             } else if viewModel.selectedSocialNetwork == IntendedVideoDestination.instagramTikTok.rawValue {
                                 showInstagramTip = false
-                                AppPersistentMemory.setHasHiddenShareAsVideoInstagramTip(to: true)
+                                AppPersistentMemory().setHasHiddenShareAsVideoInstagramTip(to: true)
+                                self.didCloseTip = false
                             }
                         }
                     }
@@ -123,38 +164,103 @@ struct ShareAsVideoView: View {
             }
         }
         .onAppear {
-            tipText = twitterTip
+            tipText = textSocialNetworkTip
             
             // Cleaning this string is needed in case the user decides do re-export the same sound
             result.videoFilepath = .empty
             result.contentId = .empty
             
-            showTwitterTip = AppPersistentMemory.getHasHiddenShareAsVideoTwitterTip() == false
-            showInstagramTip = AppPersistentMemory.getHasHiddenShareAsVideoInstagramTip() == false
+            showTextSocialNetworkTip = AppPersistentMemory().getHasHiddenShareAsVideoTextSocialNetworkTip() == false
+            showInstagramTip = AppPersistentMemory().getHasHiddenShareAsVideoInstagramTip() == false
         }
     }
     
-    @ViewBuilder func getShareButton(withWidth buttonInternalPadding: CGFloat = 0) -> some View {
+    private func squareImageView(contentName: String, contentAuthor: String) -> some View {
+        ZStack {
+            Image("square_video_background")
+                .resizable()
+                .frame(width: 350, height: 350)
+            
+            HStack {
+                VStack(alignment: .leading, spacing: 15) {
+                    Text(contentName)
+                        .font(.system(size: titleSize))
+                        .bold()
+                        .foregroundColor(.black)
+
+                    if !contentAuthor.isEmpty {
+                        Text(contentAuthor)
+                            .font(.title2)
+                            .foregroundColor(.black)
+                    }
+                }
+                Spacer()
+            }
+            .padding(.leading, 25)
+            .padding(.trailing)
+            .padding(.bottom)
+            .offset(y: verticalOffset)
+        }
+        .frame(width: 350, height: 350)
+    }
+    
+    private func nineBySixteenImageView(contentName: String, contentAuthor: String) -> some View {
+        ZStack {
+            Image(viewModel.includeSoundWarning ? "9_16_video_background_with_warning" : "9_16_video_background_no_warning")
+                .resizable()
+                .scaledToFit()
+                .frame(height: 350)
+            
+            HStack {
+                VStack(alignment: .leading, spacing: 7) {
+                    Text(contentName)
+                        .font(Font.system(size: 14))
+                        .bold()
+                        .foregroundColor(.black)
+
+                    if !contentAuthor.isEmpty {
+                        Text(contentAuthor)
+                            .font(Font.system(size: 12))
+                            .foregroundColor(.black)
+                    }
+                }
+                Spacer()
+            }
+            .padding(.leading, 12)
+            .padding(.trailing)
+            .padding(.bottom)
+            .offset(y: verticalOffset)
+        }
+        .frame(width: 196, height: 350)
+    }
+    
+    @ViewBuilder func shareButton(view: some View) -> some View {
         Button {
-            viewModel.generateVideo { videoPath, error in
-                if let error = error {
+            let renderer = ImageRenderer(content: view)
+            renderer.scale = viewModel.selectedSocialNetwork == 0 ? 3.0 : 4.0
+            if let image = renderer.uiImage {
+                viewModel.generateVideo(withImage: image) { videoPath, error in
+                    if let error = error {
+                        DispatchQueue.main.async {
+                            viewModel.isShowingProcessingView = false
+                            viewModel.showOtherError(errorTitle: "Falha na Geração do Vídeo",
+                                                     errorBody: error.localizedDescription)
+                        }
+                        return
+                    }
+                    guard let videoPath = videoPath else { return }
                     DispatchQueue.main.async {
                         viewModel.isShowingProcessingView = false
-                        viewModel.showOtherError(errorTitle: "Falha na Geração do Vídeo",
-                                                 errorBody: error.localizedDescription)
+                        viewModel.pathToVideoFile = videoPath
+                        result.exportMethod = .shareSheet
+                        viewModel.shouldCloseView = true
                     }
-                    return
-                }
-                guard let videoPath = videoPath else { return }
-                DispatchQueue.main.async {
-                    viewModel.isShowingProcessingView = false
-                    viewModel.pathToVideoFile = videoPath
-                    result.exportMethod = .shareSheet
-                    viewModel.shouldCloseView = true
                 }
             }
         } label: {
             HStack(spacing: 15) {
+                Spacer()
+                
                 Image(systemName: "square.and.arrow.up")
                     .resizable()
                     .scaledToFit()
@@ -162,29 +268,33 @@ struct ShareAsVideoView: View {
                 
                 Text("Compartilhar")
                     .font(.headline)
+                
+                Spacer()
             }
-            .padding(.horizontal, buttonInternalPadding)
         }
-        .tint(.accentColor)
-        .controlSize(.large)
-        .buttonStyle(.bordered)
-        .buttonBorderShape(.capsule)
+        .borderedButton(colored: .accentColor)
         .disabled(viewModel.isShowingProcessingView)
     }
     
-    @ViewBuilder func getShareAsVideoButton(withWidth buttonInternalPadding: CGFloat = 0) -> some View {
+    @ViewBuilder func saveVideoButton(view: some View) -> some View {
         Button {
-            viewModel.saveVideoToPhotos() { success, videoPath in
-                if success {
-                    DispatchQueue.main.async {
-                        viewModel.pathToVideoFile = videoPath ?? .empty
-                        result.exportMethod = .saveAsVideo
-                        viewModel.shouldCloseView = true
+            let renderer = ImageRenderer(content: view)
+            renderer.scale = viewModel.selectedSocialNetwork == 0 ? 3.0 : 4.0
+            if let image = renderer.uiImage {
+                viewModel.saveVideoToPhotos(withImage: image) { success, videoPath in
+                    if success {
+                        DispatchQueue.main.async {
+                            viewModel.pathToVideoFile = videoPath ?? .empty
+                            result.exportMethod = .saveAsVideo
+                            viewModel.shouldCloseView = true
+                        }
                     }
                 }
             }
         } label: {
             HStack(spacing: 15) {
+                Spacer()
+                
                 Image(systemName: "square.and.arrow.down")
                     .resizable()
                     .scaledToFit()
@@ -193,22 +303,24 @@ struct ShareAsVideoView: View {
                 Text("Salvar Vídeo")
                     .font(.headline)
                     .foregroundColor(.white)
+                
+                Spacer()
             }
-            .padding(.horizontal, buttonInternalPadding)
         }
-        .tint(.accentColor)
-        .controlSize(.large)
-        .buttonStyle(.borderedProminent)
-        .buttonBorderShape(.capsule)
+        .borderedProminentButton(colored: .accentColor)
         .disabled(viewModel.isShowingProcessingView)
     }
-
+    
 }
 
-struct ShareAsVideoView_Previews: PreviewProvider {
-
+struct ShareAsVideoNewView_Previews: PreviewProvider {
     static var previews: some View {
-        ShareAsVideoView(viewModel: ShareAsVideoViewViewModel(contentId: "ABC", contentTitle: "Test", audioFilename: .empty), isBeingShown: .constant(true), result: .constant(ShareAsVideoResult()), useLongerGeneratingVideoMessage: false)
+        ShareAsVideoView(
+            viewModel: ShareAsVideoViewViewModel(content: Sound(title: "Você é maluco ou você é idiota, companheiro?"), subtitle: "Lula (Cristiano Botafogo)"),
+            isBeingShown: .constant(true),
+            result: .constant(ShareAsVideoResult()),
+            useLongerGeneratingVideoMessage: false
+        )
     }
-
+    
 }

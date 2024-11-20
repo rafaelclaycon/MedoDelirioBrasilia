@@ -16,15 +16,16 @@ struct UserFolderLog: Hashable, Codable, Identifiable {
     var folderName: String
     var backgroundColor: String
     var logDateTime: String
-    
-    init(id: String = UUID().uuidString,
-         installId: String,
-         folderId: String,
-         folderSymbol: String,
-         folderName: String,
-         backgroundColor: String,
-         logDateTime: String) {
-        self.id = id
+
+    init(
+        installId: String,
+        folderId: String,
+        folderSymbol: String,
+        folderName: String,
+        backgroundColor: String,
+        logDateTime: String
+    ) {
+        self.id = UUID().uuidString
         self.installId = installId
         self.folderId = folderId
         self.folderSymbol = folderSymbol
@@ -32,5 +33,4 @@ struct UserFolderLog: Hashable, Codable, Identifiable {
         self.backgroundColor = backgroundColor
         self.logDateTime = logDateTime
     }
-
 }

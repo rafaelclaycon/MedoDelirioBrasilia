@@ -9,22 +9,22 @@ struct NotificationsSettingsView: View {
 //            Section {
 //                Toggle("Novos sons", isOn: $newSounds)
 //                    .onChange(of: newSounds) { newValue in
-//                        //UserSettings.setEnableTrends(to: newValue)
+//                        //UserSettings().setEnableTrends(to: newValue)
 //                    }
 //
 //                Toggle("Novas músicas", isOn: $newSounds)
 //                    .onChange(of: newSounds) { newValue in
-//                        //UserSettings.setEnableTrends(to: newValue)
+//                        //UserSettings().setEnableTrends(to: newValue)
 //                    }
 //
 //                Toggle("Anúncios de novas funcionalidades", isOn: $newSounds)
 //                    .onChange(of: newSounds) { newValue in
-//                        //UserSettings.setEnableTrends(to: newValue)
+//                        //UserSettings().setEnableTrends(to: newValue)
 //                    }
 //
 //                Toggle("Brincadeiras", isOn: $newSounds)
 //                    .onChange(of: newSounds) { newValue in
-//                        //UserSettings.setEnableTrends(to: newValue)
+//                        //UserSettings().setEnableTrends(to: newValue)
 //                    }
 //            } header: {
 //                Text("Escolha quais notificações deseja receber")
@@ -40,10 +40,10 @@ struct NotificationsSettingsView: View {
                     .onChange(of: enableNotifications) { newValue in
                         if newValue == true {
                             NotificationAide.registerForRemoteNotifications() { _ in
-                                enableNotifications = UserSettings.getUserAllowedNotifications()
+                                enableNotifications = UserSettings().getUserAllowedNotifications()
                             }
                         } else {
-                            UserSettings.setUserAllowedNotifications(to: newValue)
+                            UserSettings().setUserAllowedNotifications(to: newValue)
                         }
                     }
             } header: {
@@ -60,10 +60,10 @@ struct NotificationsSettingsView: View {
                 }
             }
             
-            if CommandLine.arguments.contains("-UNDER_DEVELOPMENT") {
+            if CommandLine.arguments.contains("-SHOW_MORE_DEV_OPTIONS") {
                 Section {
                     Button("Habilitar re-tentativa de envio do token de notificação para o servidor") {
-                        AppPersistentMemory.setShouldRetrySendingDevicePushToken(to: true)
+                        AppPersistentMemory().setShouldRetrySendingDevicePushToken(to: true)
                     }
                 } header: {
                     Text("Apenas para testes")
@@ -75,7 +75,7 @@ struct NotificationsSettingsView: View {
         .navigationTitle("Notificações")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-            enableNotifications = UserSettings.getUserAllowedNotifications()
+            enableNotifications = UserSettings().getUserAllowedNotifications()
         }
     }
 
