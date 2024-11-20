@@ -42,7 +42,7 @@ extension ContextMenuOption {
     static var addToMix: ContextMenuOption {
         ContextMenuOption(
             symbol: { _ in "plus.square.on.square"},
-            title: { _ in "Adicionar ao Mix" }
+            title: { _ in "Adicionar à Mistura" }
         ) { sound, delegate in
             delegate.addToMix(sound)
         }
@@ -129,20 +129,19 @@ extension ContextMenuOption {
 extension ContextMenuSection {
 
     static func sharingOptions() -> ContextMenuSection {
-        return ContextMenuSection(
+        ContextMenuSection(
             title: "Sharing",
             options: { sound in
                 [
                     .shareSound,
-                    .shareAsVideo,
-                    .addToMix
+                    .shareAsVideo
                 ]
             }
         )
     }
 
     static func organizingOptions() -> ContextMenuSection {
-        return ContextMenuSection(
+        ContextMenuSection(
             title: "Organizing",
             options: { _ in
                 [
@@ -154,7 +153,7 @@ extension ContextMenuSection {
     }
 
     static func detailsOptions() -> ContextMenuSection {
-        return ContextMenuSection(
+        ContextMenuSection(
             title: "Details",
             options: { _ in
                 [
@@ -166,7 +165,7 @@ extension ContextMenuSection {
     }
 
     static func playFromThisSound() -> ContextMenuSection {
-        return ContextMenuSection(
+        ContextMenuSection(
             title: "PlayFromThis",
             options: { _ in
                 [
@@ -177,7 +176,7 @@ extension ContextMenuSection {
     }
 
     static func removeFromFolder() -> ContextMenuSection {
-        return ContextMenuSection(
+        ContextMenuSection(
             title: "RemoveFromFolder",
             options: { _ in
                 [
@@ -187,8 +186,19 @@ extension ContextMenuSection {
         )
     }
 
+    static func soundMix() -> ContextMenuSection {
+        ContextMenuSection(
+            title: "SoundMix",
+            options: { _ in
+                [
+                    .addToMix
+                ]
+            }
+        )
+    }
+
     static func authorOptions() -> ContextMenuSection {
-        return ContextMenuSection(
+        ContextMenuSection(
             title: "AuthorOptions",
             options: { _ in
                 [

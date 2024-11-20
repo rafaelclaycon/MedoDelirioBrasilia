@@ -1110,8 +1110,8 @@
 		D98D13852CD5CD19001CF5BB /* UserFolder+Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98D13842CD5CD19001CF5BB /* UserFolder+Mocks.swift */; };
 		D98DAA312CED8471004D4467 /* MixSoundsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98DAA2D2CED8471004D4467 /* MixSoundsView.swift */; };
 		D98DAA322CED8471004D4467 /* WaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98DAA302CED8471004D4467 /* WaveformView.swift */; };
-		D98DAA332CED8471004D4467 /* SoundInMix.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98DAA2E2CED8471004D4467 /* SoundInMix.swift */; };
-		D98DAA342CED8471004D4467 /* SoundInMixCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98DAA2F2CED8471004D4467 /* SoundInMixCell.swift */; };
+		D98DAA332CED8471004D4467 /* MixSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98DAA2E2CED8471004D4467 /* MixSound.swift */; };
+		D98DAA342CED8471004D4467 /* MixSoundItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98DAA2F2CED8471004D4467 /* MixSoundItem.swift */; };
 		D98DBD35284919B1008544F8 /* NetworkRabbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98DBD34284919B1008544F8 /* NetworkRabbit.swift */; };
 		D98DBD38284921B5008544F8 /* NetworkRabbitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98DBD37284921B5008544F8 /* NetworkRabbitTests.swift */; };
 		D98DFB4B2CEA9A82009C880F /* PinReactionsBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98DFB4A2CEA9A82009C880F /* PinReactionsBanner.swift */; };
@@ -2650,8 +2650,8 @@
 		D98D13812CD5C4B1001CF5BB /* AddChangeHashFieldToUserFolderTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChangeHashFieldToUserFolderTable.swift; sourceTree = "<group>"; };
 		D98D13842CD5CD19001CF5BB /* UserFolder+Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserFolder+Mocks.swift"; sourceTree = "<group>"; };
 		D98DAA2D2CED8471004D4467 /* MixSoundsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixSoundsView.swift; sourceTree = "<group>"; };
-		D98DAA2E2CED8471004D4467 /* SoundInMix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundInMix.swift; sourceTree = "<group>"; };
-		D98DAA2F2CED8471004D4467 /* SoundInMixCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundInMixCell.swift; sourceTree = "<group>"; };
+		D98DAA2E2CED8471004D4467 /* MixSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixSound.swift; sourceTree = "<group>"; };
+		D98DAA2F2CED8471004D4467 /* MixSoundItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixSoundItem.swift; sourceTree = "<group>"; };
 		D98DAA302CED8471004D4467 /* WaveformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveformView.swift; sourceTree = "<group>"; };
 		D98DBD3228491909008544F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D98DBD34284919B1008544F8 /* NetworkRabbit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRabbit.swift; sourceTree = "<group>"; };
@@ -4855,8 +4855,8 @@
 			isa = PBXGroup;
 			children = (
 				D98DAA2D2CED8471004D4467 /* MixSoundsView.swift */,
-				D98DAA2E2CED8471004D4467 /* SoundInMix.swift */,
-				D98DAA2F2CED8471004D4467 /* SoundInMixCell.swift */,
+				D98DAA2E2CED8471004D4467 /* MixSound.swift */,
+				D98DAA2F2CED8471004D4467 /* MixSoundItem.swift */,
 				D98DAA302CED8471004D4467 /* WaveformView.swift */,
 			);
 			path = SoundMix;
@@ -6840,8 +6840,8 @@
 				D95315A92A9AA783003DA40E /* MusicGenre.swift in Sources */,
 				D98DAA312CED8471004D4467 /* MixSoundsView.swift in Sources */,
 				D98DAA322CED8471004D4467 /* WaveformView.swift in Sources */,
-				D98DAA332CED8471004D4467 /* SoundInMix.swift in Sources */,
-				D98DAA342CED8471004D4467 /* SoundInMixCell.swift in Sources */,
+				D98DAA332CED8471004D4467 /* MixSound.swift in Sources */,
+				D98DAA342CED8471004D4467 /* MixSoundItem.swift in Sources */,
 				D957047D28AEF733008DEF8C /* ProcessingView.swift in Sources */,
 				D9A3984928FDEE0D00039B7B /* AddRankingTypeToAudienceSharingStatisticTable.swift in Sources */,
 				D967E2BA290196F900B21C11 /* WallE.swift in Sources */,

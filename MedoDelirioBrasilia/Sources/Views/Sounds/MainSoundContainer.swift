@@ -85,7 +85,7 @@ struct MainSoundContainer: View {
         self._viewModel = StateObject(wrappedValue: viewModel)
         self._allSoundsViewModel = StateObject(wrappedValue: SoundListViewModel<[Sound]>(
             data: viewModel.allSoundsPublisher,
-            menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
+            menuOptions: [.sharingOptions(), .organizingOptions(), .soundMix(), .detailsOptions()],
             currentSoundsListMode: currentSoundsListMode
         ))
         self._favoritesViewModel = StateObject(wrappedValue: SoundListViewModel<[Sound]>(

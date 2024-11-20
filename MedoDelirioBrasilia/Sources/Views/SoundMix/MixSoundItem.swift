@@ -1,5 +1,5 @@
 //
-//  SoundInMixCell.swift
+//  MixSoundItem.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Claycon Schmitt on 05/02/23.
@@ -7,22 +7,22 @@
 
 import SwiftUI
 
-struct SoundInMixCell: View {
+struct MixSoundItem: View {
 
-    @State var soundInMix: SoundInMix
-    
+    let mixSound: MixSound
+
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20, style: .continuous)
-                .fill(soundInMix.color)
-                .frame(height: UIDevice.is4InchDevice ? 120 : 84)
+                .fill(.gray)
+                .frame(height: 84)
             
             HStack {
-                NumberBadgeView(number: "\(soundInMix.positionOnList)", showBackgroundCircle: false)
+                NumberBadgeView(number: "\(mixSound.position)", showBackgroundCircle: false)
                     .foregroundColor(.primary)
                     .padding(.trailing, 10)
                 
-                Text(soundInMix.sound.title)
+                Text(mixSound.sound.title)
                     .foregroundColor(.primary)
                     .bold()
                     .multilineTextAlignment(.leading)
@@ -46,10 +46,11 @@ struct SoundInMixCell: View {
 
 }
 
-struct SoundInMixCell_Previews: PreviewProvider {
-
-    static var previews: some View {
-        SoundInMixCell(soundInMix: SoundInMix(sound: Sound(title: "Bem-vindo ao devido processo legal?"), positionOnList: 1, color: .pastelYellow))
-    }
-
+#Preview {
+    MixSoundItem(
+        mixSound: MixSound(
+            position: 1,
+            sound: Sound(title: "Bem-vindo ao devido processo legal?")
+        )
+    )
 }
