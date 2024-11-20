@@ -394,7 +394,7 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
                                         }
                                     }
                                 }
-                                .onChange(of: viewModel.scrollAndPlay) { soundId in
+                                .onChange(of: viewModel.scrollTo) { soundId in
                                     if !soundId.isEmpty {
                                         withAnimation {
                                             proxy.scrollTo(soundId, anchor: .center)

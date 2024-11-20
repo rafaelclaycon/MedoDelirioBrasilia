@@ -87,7 +87,7 @@ extension ContextMenuOption {
     static var playFromThisSound: ContextMenuOption {
         ContextMenuOption(
             symbol: { _ in "play"},
-            title: { _ in "Reproduzir a Partir Desse"}
+            title: { _ in "Tocar a Partir Desse"}
         ) { sound, delegate in
             delegate.playFrom(sound: sound)
         }

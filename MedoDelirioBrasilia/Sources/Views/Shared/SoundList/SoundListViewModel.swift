@@ -69,7 +69,7 @@ class SoundListViewModel<T>: ObservableObject {
     @Published var toastText: String = ""
 
     // Play Random Sound
-    @Published var scrollAndPlay: String = ""
+    @Published var scrollTo: String = ""
 
     // MARK: - Stored Properties
 
@@ -223,17 +223,27 @@ extension SoundListViewModel {
         }
     }
 
-    func play(_ sound: Sound) {
+    func play(
+        _ sound: Sound,
+        scrollToPlaying: Bool = false
+    ) {
         do {
             let url = try sound.fileURL()
 
             nowPlayingKeeper.removeAll()
             nowPlayingKeeper.insert(sound.id)
 
+            if scrollToPlaying {
+                scrollTo = sound.id
+            }
+
             AudioPlayer.shared = AudioPlayer(
                 url: url,
                 update: { [weak self] state in
-                    self?.onAudioPlayerUpdate(playerState: state)
+                    self?.onAudioPlayerUpdate(
+                        playerState: state,
+                        scrollToPlaying: scrollToPlaying
+                    )
                 }
             )
 
@@ -246,7 +256,10 @@ extension SoundListViewModel {
         }
     }
 
-    private func onAudioPlayerUpdate(playerState: AudioPlayer.State?) {
+    private func onAudioPlayerUpdate(
+        playerState: AudioPlayer.State?,
+        scrollToPlaying: Bool
+    ) {
         guard playerState?.activity == .stopped else { return }
 
         nowPlayingKeeper.removeAll()
@@ -260,7 +273,7 @@ extension SoundListViewModel {
             return
         }
 
-        play(sounds[currentTrackIndex])
+        play(sounds[currentTrackIndex], scrollToPlaying: scrollToPlaying)
     }
 
     func stopPlaying() {
@@ -275,7 +288,7 @@ extension SoundListViewModel {
         guard case .loaded(let sounds) = state else { return }
         guard let firstSound = sounds.first else { return }
         isPlayingPlaylist = true
-        play(firstSound)
+        play(firstSound, scrollToPlaying: true)
     }
 
     private func doPlaylistCleanup() {
@@ -286,7 +299,7 @@ extension SoundListViewModel {
     func scrollAndPlaySound(withId soundId: String) {
         guard case .loaded(let sounds) = state else { return }
         guard let sound = sounds.first(where: { $0.id == soundId }) else { return }
-        scrollAndPlay = sound.id
+        scrollTo = sound.id
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(400)) {
             self.play(sound)
         }
@@ -364,7 +377,7 @@ extension SoundListViewModel: SoundListDisplaying {
         let soundInArray = sounds[soundIndex]
         currentTrackIndex = soundIndex
         isPlayingPlaylist = true
-        play(soundInArray)
+        play(soundInArray, scrollToPlaying: true)
     }
 
     func removeFromFolder(_ sound: Sound) {
