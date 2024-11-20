@@ -40,6 +40,7 @@ class MainSoundContainerViewModel: ObservableObject {
     // Sync
     private let syncManager: SyncManager
     private let syncValues: SyncValues
+    private let isAllowedToSync: Bool
 
     // MARK: - Computed Properties
 
@@ -62,7 +63,8 @@ class MainSoundContainerViewModel: ObservableObject {
         soundSortOption: Int,
         authorSortOption: Int,
         currentSoundsListMode: Binding<SoundsListMode>,
-        syncValues: SyncValues
+        syncValues: SyncValues,
+        isAllowedToSync: Bool = true
     ) {
         self.currentViewMode = currentViewMode
         self.soundSortOption = soundSortOption
@@ -78,6 +80,7 @@ class MainSoundContainerViewModel: ObservableObject {
             logger: Logger.shared
         )
         self.syncValues = syncValues
+        self.isAllowedToSync = isAllowedToSync
         self.syncManager.delegate = self
     }
 
@@ -265,6 +268,9 @@ extension MainSoundContainerViewModel: SyncManagerDelegate {
 
     func sync(lastAttempt: String) async {
         print("lastAttempt: \(lastAttempt)")
+
+        guard isAllowedToSync else { return }
+
         guard
             CommandLine.arguments.contains("-IGNORE_2_MINUTE_SYNC_INTERVAL") ||
             lastAttempt == "" ||
@@ -300,6 +306,8 @@ extension MainSoundContainerViewModel: SyncManagerDelegate {
 
     // Warm open means the app was reopened before it left memory.
     func warmOpenSync() async {
+        guard isAllowedToSync else { return }
+
         let lastUpdateAttempt = AppPersistentMemory().getLastUpdateAttempt()
         guard
             syncValues.syncStatus != .updating,

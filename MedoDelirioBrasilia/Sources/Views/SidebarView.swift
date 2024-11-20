@@ -50,7 +50,8 @@ struct SidebarView: View {
                             soundSortOption: UserSettings().mainSoundListSoundSortOption(),
                             authorSortOption: AuthorSortOption.nameAscending.rawValue,
                             currentSoundsListMode: $currentSoundsListMode,
-                            syncValues: syncValues
+                            syncValues: syncValues,
+                            isAllowedToSync: false
                         ),
                         currentSoundsListMode: $currentSoundsListMode,
                         showSettings: .constant(false)
