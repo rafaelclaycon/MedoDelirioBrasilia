@@ -359,11 +359,12 @@ extension SoundListViewModel: SoundListDisplaying {
     }
 
     func playFrom(sound: Sound) {
-//        guard let soundIndex = sounds.firstIndex(where: { $0.id == sound.id }) else { return }
-//        let soundInArray = sounds[soundIndex]
-//        currentTrackIndex = soundIndex
-//        isPlayingPlaylist = true
-//        play(soundInArray)
+        guard case .loaded(let sounds) = state else { return }
+        guard let soundIndex = sounds.firstIndex(where: { $0.id == sound.id }) else { return }
+        let soundInArray = sounds[soundIndex]
+        currentTrackIndex = soundIndex
+        isPlayingPlaylist = true
+        play(soundInArray)
     }
 
     func removeFromFolder(_ sound: Sound) {
