@@ -309,6 +309,7 @@ extension MainSoundContainerViewModel: SyncManagerDelegate {
         guard isAllowedToSync else { return }
 
         let lastUpdateAttempt = AppPersistentMemory().getLastUpdateAttempt()
+        print("lastUpdateAttempt: \(lastUpdateAttempt)")
         guard
             syncValues.syncStatus != .updating,
             let date = lastUpdateAttempt.iso8601withFractionalSeconds,
