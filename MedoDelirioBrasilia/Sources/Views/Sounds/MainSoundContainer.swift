@@ -34,7 +34,7 @@ struct MainSoundContainer: View {
     @State private var shouldDisplayRecurringDonationBanner: Bool = false
 
     // Retro 2024
-    @State private var showRetroBanner: Bool = true
+    @State private var showRetroBanner: Bool = false
     @State private var showRetroModalView = false
 
     // MARK: - Environment Objects
@@ -132,11 +132,18 @@ struct MainSoundContainer: View {
                                 .padding(.horizontal, 10)
                             }
 
-                            if showRetroBanner {
+                            if
+                                showRetroBanner,
+                                (soundSearchTextIsEmpty ?? false),
+                                !AppPersistentMemory().hasDismissedRetro2024Banner()
+                            {
                                 Retro2024Banner(
-                                    openStoriesAction: { showRetrospectiveAction() }
+                                    isBeingShown: $showRetroBanner,
+                                    openStoriesAction: { showRetrospectiveAction() },
+                                    showCloseButton: true
                                 )
-                                .padding(.horizontal, 10)
+                                .padding(.horizontal, 15)
+                                .padding(.bottom, 10)
                             }
 
 //                            if shouldDisplayRecurringDonationBanner, viewModel.searchText.isEmpty {
@@ -311,6 +318,10 @@ struct MainSoundContainer: View {
             viewModel.reloadAllSounds()
             viewModel.reloadFavorites()
             favoritesViewModel.loadFavorites()
+
+            Task {
+                showRetroBanner = await ClassicRetroView.ViewModel.shouldDisplayBanner()
+            }
         }
         .onChange(of: scenePhase) { newPhase in
             if newPhase == .active {

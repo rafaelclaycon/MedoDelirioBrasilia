@@ -23,7 +23,7 @@ struct TrendsView: View {
     @EnvironmentObject var trendsHelper: TrendsHelper
 
     // Retrospective 2023
-    @State private var shouldDisplayRetrospectiveBanner: Bool = false
+    @State private var showRetroBanner: Bool = false
     @State private var showModalView = false
     @State private var retroExportAnalytics: String = ""
 
@@ -78,14 +78,14 @@ struct TrendsView: View {
                         }
                     } else {
                         VStack(alignment: .leading, spacing: 10) {
-                            if shouldDisplayRetrospectiveBanner {
-                                RetroBanner(
-                                    isBeingShown: .constant(true),
-                                    buttonAction: { showModalView = true },
+                            if showRetroBanner {
+                                Retro2024Banner(
+                                    isBeingShown: $showRetroBanner,
+                                    openStoriesAction: { showModalView = true },
                                     showCloseButton: false
                                 )
-                                .padding(.horizontal, 10)
-                                .padding(.bottom)
+                                .padding(.horizontal, 15)
+                                .padding(.bottom, 10)
                             }
 
                             //if showMostSharedSoundsByTheUser {
@@ -129,7 +129,7 @@ struct TrendsView: View {
         .navigationBarTitleDisplayMode(showTrends ? .large : .inline)
         .onAppear {
             Task {
-                shouldDisplayRetrospectiveBanner = await ClassicRetroView.ViewModel.shouldDisplayBanner()
+                showRetroBanner = await ClassicRetroView.ViewModel.shouldDisplayBanner()
             }
             audienceViewModel.displayToast = { message in
                 viewModel.displayToast(

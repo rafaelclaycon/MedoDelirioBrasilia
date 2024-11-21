@@ -135,21 +135,24 @@ extension ClassicRetroView {
             let ranking = topFive.map { "\($0.rankNumber) \($0.contentName)" }
             return "\(ranking.joined(separator: ", ")); \(shareCount) compart; \(mostCommonShareDay)"
         }
+    }
+}
 
-        // MARK: - Static Methods
+// MARK: - Static Methods
 
-        static func shouldDisplayBanner() async -> Bool {
-            // guard await versionIsAllowedToDisplayRetro() else { return false }
-            // guard LocalDatabase.shared.sharedSoundsCount() > 0 else { return false }
-            return false
-        }
+extension ClassicRetroView.ViewModel {
 
-//        static func versionIsAllowedToDisplayRetro(
-//            currentVersion: String = Versioneer.appVersion,
-//            network: NetworkRabbitProtocol = NetworkRabbit.shared
-//        ) async -> Bool {
-//            guard let allowedVersion = await network.retroStartingVersion() else { return false }
-//            return currentVersion >= allowedVersion
-//        }
+    static func shouldDisplayBanner() async -> Bool {
+        guard await versionIsAllowedToDisplayRetro() else { return false }
+        guard LocalDatabase.shared.sharedSoundsCount() > 0 else { return false }
+        return true
+    }
+
+    static func versionIsAllowedToDisplayRetro(
+        currentVersion: String = Versioneer.appVersion,
+        network: NetworkRabbitProtocol = NetworkRabbit.shared
+    ) async -> Bool {
+        guard let allowedVersion = await network.retroStartingVersion() else { return false }
+        return currentVersion >= allowedVersion
     }
 }

@@ -78,7 +78,7 @@ struct ClassicRetroView: View {
                     .padding([.horizontal, .top], 25)
                     .padding(.bottom, bottomPadding)
                     .navigationBarItems(leading:
-                        Button("Cancelar") {
+                        Button("Fechar") {
                             dismiss()
                         }
                     )
@@ -122,12 +122,18 @@ struct ClassicRetroView: View {
             HStack {
                 VStack(alignment: .leading, spacing: 15) {
                     ForEach(viewModel.topFive) { item in
-                        HStack {
+                        HStack(spacing: 20) {
                             Text("\(item.rankNumber)")
                                 .font(.system(size: 24))
                                 .bold()
                                 .foregroundColor(.black)
-                                //.opacity(0.7)
+                                .background {
+                                    Text("\(item.rankNumber)")
+                                        .font(.system(size: 24))
+                                        .bold()
+                                        .foregroundColor(.white)
+                                        .offset(x: 2, y: 2)
+                                }
 
                             Text(item.contentName)
                                 .font(.body)

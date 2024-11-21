@@ -9,72 +9,76 @@ import SwiftUI
 
 struct Retro2024Banner: View {
 
+    @Binding var isBeingShown: Bool
     let openStoriesAction: () -> Void
+    let showCloseButton: Bool
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("Retrospectiva 2024")
-                .foregroundColor(.white)
-                .bold()
+        HStack {
+            VStack(alignment: .leading, spacing: 10) {
+                Text("Retrospectiva 2024")
+                    .font(.title3)
+                    .foregroundColor(.white)
+                    .bold()
 
-            Text("Bora ver o que nós aprontamos juntos esse ano?")
-                //.foregroundColor(colorScheme == .dark ? .green : .darkerGreen)
-                .font(.callout)
-
-            Button {
-                openStoriesAction()
-            } label: {
-                Text("Ver minha retrospectiva")
+                Text("Bora ver o que nós aprontamos juntos esse ano?")
+                    .font(.callout)
                     .foregroundStyle(.white)
+
+                Button {
+                    openStoriesAction()
+                } label: {
+                    Text("Ver minha retrospectiva")
+                        .font(.callout)
+                        .foregroundStyle(.black)
+                        .bold()
+                        .padding(.horizontal, 20)
+                        .padding(.vertical, 10)
+                        .background {
+                            RoundedRectangle(cornerRadius: 20)
+                                .fill(.white)
+                        }
+                }
+                .padding(.top, 5)
             }
-            //.tint(colorScheme == .dark ? .green : .darkerGreen)
-            .controlSize(.regular)
-            .buttonStyle(.bordered)
-            .buttonBorderShape(.roundedRectangle)
-            .padding(.top, 5)
+
+            Spacer()
         }
         .frame(maxWidth: .infinity)
-        .padding()
+        .padding(.vertical, 20)
+        .padding(.horizontal, 24)
         .background {
-            if #available(iOS 18, *) {
-                RoundedRectangle(cornerRadius: 15)
-                    .fill(
-                        MeshGradient(
-                            width: 3,
-                            height: 3,
-                            points: [
-                                .init(0, 0), .init(0.5, 0), .init(1, 0),
-                                .init(0, 0.5), .init(0.2, 0.7), .init(1, 0.5),
-                                .init(0, 1), .init(0.5, 1), .init(1, 1)
-                            ],
-                            colors: [
-                                .pink, .yellow, .blue,
-                                .pink, .yellow, .blue,
-                                .pink, .yellow, .blue
-                            ]
-                        )
+            RoundedRectangle(cornerRadius: 15)
+                .fill(
+                    LinearGradient(
+                        gradient: Gradient(colors: [.darkestGreen, .green, .yellow]),
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
                     )
-
-            } else {
-                RoundedRectangle(cornerRadius: 15)
-                    .foregroundColor(.green)
+                )
+        }
+        .overlay(alignment: .topTrailing) {
+            if showCloseButton {
+                Button {
+                    AppPersistentMemory().dismissedRetro2024Banner(true)
+                    isBeingShown = false
+                } label: {
+                    Image(systemName: "xmark")
+                        .foregroundColor(.white)
+                }
+                .padding()
             }
         }
-//        .overlay(alignment: .topTrailing) {
-//            if showCloseButton {
-//                Button {
-//                    AppPersistentMemory.setHasSeenRetroBanner(to: true)
-//                    isBeingShown = false
-//                } label: {
-//                    Image(systemName: "xmark")
-//                        .foregroundColor(.green)
-//                }
-//                .padding()
-//            }
-//        }
     }
 }
 
+// MARK: - Preview
+
 #Preview {
-    Retro2024Banner(openStoriesAction: {})
+    Retro2024Banner(
+        isBeingShown: .constant(true),
+        openStoriesAction: {},
+        showCloseButton: true
+    )
+    .padding()
 }
