@@ -13,9 +13,12 @@ extension ReactionsView {
     @MainActor
     final class ViewModel: ObservableObject {
 
-        @Published var state: LoadingState<[Reaction]> = .loading
+        @Published var state: LoadingState<ReactionGroup> = .loading
         @Published var showHowReactionsWorkSheet: Bool = false
         @Published var showAddStuffSheet: Bool = false
+
+        @Published var showIssueSavingPinAlert: Bool = false
+        @Published var showIssueRemovingPinAlert: Bool = false
 
         private let reactionRepository: ReactionRepositoryProtocol
 
@@ -33,7 +36,7 @@ extension ReactionsView {
 
 extension ReactionsView.ViewModel {
 
-    public func onViewLoad() async {
+    public func onViewLoaded() async {
         await loadReactions()
     }
 
@@ -43,6 +46,35 @@ extension ReactionsView.ViewModel {
 
     public func onPullToRefresh() async {
         await loadReactions()
+    }
+
+    public func onPinReactionSelected(reaction: Reaction) {
+        do {
+            try reactionRepository.savePin(reaction: reaction)
+            addToPinned(reaction: reaction)
+
+            Analytics().send(
+                originatingScreen: "ReactionsView",
+                action: "pinnedReaction(\(reaction.title))"
+            )
+        } catch {
+            showIssueSavingPinAlert = true
+        }
+    }
+
+    public func onUnpinReactionSelected(reaction: Reaction) async {
+        do {
+            try reactionRepository.removePin(reactionId: reaction.id)
+            // I decided to reload the entire view because dealing with `position` proved convoluted.
+            await loadReactions()
+
+            Analytics().send(
+                originatingScreen: "ReactionsView",
+                action: "unpinnedReaction(\(reaction.title))"
+            )
+        } catch {
+            showIssueRemovingPinAlert = true
+        }
     }
 }
 
@@ -54,15 +86,33 @@ extension ReactionsView.ViewModel {
         state = .loading
 
         do {
-            let reactions = try await reactionRepository.allReactions()
-            state = .loaded(reactions)
+            let serverReactions = try await reactionRepository.allReactions()
+            let pinned = try await reactionRepository.pinnedReactions(serverReactions)
+
+            let regular: [Reaction] = serverReactions.compactMap { serverReaction in
+                guard !pinned.contains(where: { $0.id == serverReaction.id }) else { return nil }
+                return serverReaction
+            }
+
+            state = .loaded(.init(pinned: pinned, regular: regular))
+        } catch {
+            state = .error(error.localizedDescription)
 
             Analytics().send(
                 originatingScreen: "ReactionsView",
-                action: "didViewReactionsTab"
+                action: "hadIssueLoadingReactions(\(error.localizedDescription))"
             )
-        } catch {
-            state = .error(error.localizedDescription)
+        }
+    }
+
+    private func addToPinned(reaction: Reaction) {
+        if case .loaded(let group) = state {
+            var updatedGroup = group
+            var updatedReaction = reaction
+            updatedReaction.type = .pinnedExisting
+            updatedGroup.pinned.append(updatedReaction)
+            updatedGroup.regular.removeAll(where: { $0.id == reaction.id })
+            state = .loaded(updatedGroup)
         }
     }
 }

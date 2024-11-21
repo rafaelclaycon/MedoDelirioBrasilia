@@ -170,7 +170,8 @@ struct MainView: View {
                                         soundSortOption: UserSettings().mainSoundListSoundSortOption(),
                                         authorSortOption: UserSettings().authorSortOption(),
                                         currentSoundsListMode: $currentSoundsListMode,
-                                        syncValues: syncValues
+                                        syncValues: syncValues,
+                                        isAllowedToSync: false
                                     ),
                                     currentSoundsListMode: $currentSoundsListMode,
                                     openSettingsAction: {},

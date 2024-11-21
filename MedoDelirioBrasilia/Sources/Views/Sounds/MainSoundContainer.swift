@@ -73,6 +73,10 @@ struct MainSoundContainer: View {
         }
     }
 
+    // MARK: - Shared Environment
+
+    @Environment(\.scenePhase) var scenePhase
+
     // MARK: - Initializer
 
     init(
@@ -307,6 +311,14 @@ struct MainSoundContainer: View {
             viewModel.reloadAllSounds()
             viewModel.reloadFavorites()
             favoritesViewModel.loadFavorites()
+        }
+        .onChange(of: scenePhase) { newPhase in
+            if newPhase == .active {
+                Task {
+                    await viewModel.warmOpenSync()
+                    print("DID FINISH WARM OPEN SYNC")
+                }
+            }
         }
     }
 }

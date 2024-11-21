@@ -12,7 +12,11 @@ class NetworkRabbitStub: NetworkRabbitProtocol {
     init() {
         serverPath = ""
     }
-    
+
+    func get<T>(from url: URL) async throws -> T where T : Decodable, T : Encodable {
+        return T.self as! T
+    }
+
     func serverIsAvailable() async -> Bool {
         return !serverShouldBeUnavailable
     }

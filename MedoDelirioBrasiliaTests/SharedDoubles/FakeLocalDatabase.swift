@@ -51,6 +51,8 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
     var numberOfTimesInsertUpdateEventWasCalled = 0
     var preexistingUpdates: [UpdateEvent] = []
 
+    var didCallDeletePinnedReaction = false
+
     // Sound
 
     func insert(sound newSound: MedoDelirio.Sound) throws {
@@ -199,5 +201,15 @@ class FakeLocalDatabase: LocalDatabaseProtocol {
 
     func allDatesInWhichTheUserShared() throws -> [Date] {
         return shareDates
+    }
+
+    func delete(reactionId: String) throws {
+        didCallDeletePinnedReaction = true
+    }
+
+    func insert(_ pinnedReaction: Reaction) throws {}
+
+    func pinnedReactions() throws -> [Reaction] {
+        []
     }
 }

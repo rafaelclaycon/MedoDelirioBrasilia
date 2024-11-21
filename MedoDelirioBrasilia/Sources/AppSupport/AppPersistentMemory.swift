@@ -201,6 +201,13 @@ extension AppPersistentMemory {
         }
         return Date(timeIntervalSince1970: value as! Double)
     }
+
+    func hasSeenPinReactionsBanner() -> Bool {
+        guard let value = userDefaults.object(forKey: "hasSeenPinReactionsBanner") else {
+            return false
+        }
+        return Bool(value as! Bool)
+    }
 }
 
 // MARK: - Setters
@@ -294,5 +301,9 @@ extension AppPersistentMemory {
 
     func lastFolderResearchSyncDateTime(_ dateTime: Date) {
         userDefaults.set(dateTime.timeIntervalSince1970, forKey: "lastFolderResearchSyncDateTime")
+    }
+
+    func setHasSeenPinReactionsBanner(to newValue: Bool) {
+        userDefaults.set(newValue, forKey: "hasSeenPinReactionsBanner")
     }
 }

@@ -39,5 +39,4 @@ struct AddUserFolderTables: Migration {
             t.column(content_id)
         })
     }
-
 }

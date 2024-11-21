@@ -1,5 +1,5 @@
 //
-//  SoundCell.swift
+//  SoundItem.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Claycon Schmitt on 19/05/22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SoundCell: View {
+struct SoundItem: View {
 
     let sound: Sound
     var showNewTag: Bool = true
@@ -101,7 +101,7 @@ struct SoundCell: View {
         }
     }
     
-    private var cellHeight: CGFloat {
+    private var itemHeight: CGFloat {
         if UIDevice.isiPhone {
             return 100
         } else {
@@ -133,25 +133,8 @@ struct SoundCell: View {
         ZStack {
             RoundedRectangle(cornerRadius: 20, style: .continuous)
                 .fill(cellFill)
-                .frame(height: cellHeight)
+                .frame(height: itemHeight)
                 .opacity(backgroundOpacity)
-            
-            if background == .favorite, currentMode == .regular {
-                VStack {
-                    Spacer()
-                    HStack {
-                        Spacer()
-                        Image(systemName: "star.fill")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 24)
-                            .foregroundColor(.yellow)
-                            .padding(.trailing, 10)
-                            .padding(.bottom)
-                    }
-                }
-                .frame(height: cellHeight)
-            }
             
             HStack {
                 VStack(alignment: .leading, spacing: 8) {
@@ -175,7 +158,7 @@ struct SoundCell: View {
                 Spacer()
             }
             .padding(.leading, UIDevice.is4InchDevice ? 10 : 20)
-            
+
             if isNew, background == .regular, currentMode == .regular {
                 VStack {
                     Spacer()
@@ -196,7 +179,7 @@ struct SoundCell: View {
                         .padding(.bottom, 10)
                     }
                 }
-                .frame(height: cellHeight)
+                .frame(height: itemHeight)
             }
             
             if currentMode == .playing {
@@ -211,7 +194,7 @@ struct SoundCell: View {
                             .padding(.bottom, 10)
                     }
                 }
-                .frame(height: cellHeight)
+                .frame(height: itemHeight)
             }
             
             if currentMode == .upForSelection {
@@ -224,7 +207,7 @@ struct SoundCell: View {
                             .padding(.bottom, 10)
                     }
                 }
-                .frame(height: cellHeight)
+                .frame(height: itemHeight)
             } else if currentMode == .selected {
                 VStack {
                     Spacer()
@@ -235,7 +218,19 @@ struct SoundCell: View {
                             .padding(.bottom, 10)
                     }
                 }
-                .frame(height: cellHeight)
+                .frame(height: itemHeight)
+            }
+        }
+        .overlay(alignment: .bottomTrailing) {
+            if background == .favorite, currentMode == .regular {
+                Image(systemName: "star.fill")
+                .resizable()
+                .scaledToFit()
+                .frame(height: 24)
+                .foregroundColor(.yellow)
+                .padding(.trailing, 10)
+                .padding(.bottom)
+                .shadow(color: .red, radius: 8)
             }
         }
         .onAppear {
@@ -252,38 +247,166 @@ struct SoundCell: View {
 
 }
 
-struct SoundCell_Previews: PreviewProvider {
+// MARK: - Previews
 
-    static var previews: some View {
-        Group {
-            // Playing
-            SoundCell(
-                sound: Sound(id: "ABC",title: "A gente vai cansando", authorName: "Soraya Thronicke", duration: 2),
+#Preview("Regular") {
+    VStack(spacing: 15) {
+        HStack(spacing: 15) {
+            SoundItem(
+                sound: Sound(
+                    id: "ABC",
+                    title: "A gente vai cansando",
+                    authorName: "Filósofo da CEAGESP",
+                    dateAdded: .now - 1_000_000, // 11.6 days
+                    duration: 2
+                ),
                 favorites: .constant(Set<String>()),
+                highlighted: .constant(Set<String>()),
+                nowPlaying: .constant(Set<String>()),
+                selectedItems: .constant(Set<String>()),
+                currentSoundsListMode: .constant(.regular)
+            )
+
+            SoundItem(
+                sound: Sound(
+                    id: "DEF",
+                    title: "Às vezes o ódio é a única emoção possível",
+                    authorName: "Soraya Thronicke",
+                    dateAdded: .now - 1_000_000, // 11.6 days
+                    duration: 2
+                ),
+                favorites: .constant(Set<String>()),
+                highlighted: .constant(Set<String>()),
+                nowPlaying: .constant(Set<String>()),
+                selectedItems: .constant(Set<String>()),
+                currentSoundsListMode: .constant(.regular)
+            )
+        }
+
+        SoundItem(
+            sound: Sound(
+                id: "DEF",
+                title: "É simples assim, um manda e o outro obedece",
+                authorName: "Soraya Thronicke",
+                dateAdded: .now - 1_000_000, // 11.6 days
+                duration: 2
+            ),
+            favorites: .constant(Set<String>()),
+            highlighted: .constant(Set<String>()),
+            nowPlaying: .constant(Set<String>()),
+            selectedItems: .constant(Set<String>()),
+            currentSoundsListMode: .constant(.regular)
+        )
+    }
+    .padding()
+}
+
+#Preview("Favorite") {
+    VStack(spacing: 15) {
+        HStack(spacing: 15) {
+            SoundItem(
+                sound: Sound(
+                    id: "ABC",
+                    title: "A gente vai cansando",
+                    authorName: "Filósofo da CEAGESP",
+                    duration: 2
+                ),
+                favorites: .constant(Set<String>(arrayLiteral: "ABC")),
+                highlighted: .constant(Set<String>()),
+                nowPlaying: .constant(Set<String>()),
+                selectedItems: .constant(Set<String>()),
+                currentSoundsListMode: .constant(.regular)
+            )
+
+            SoundItem(
+                sound: Sound(
+                    id: "DEF",
+                    title: "A gente vai cansando",
+                    authorName: "Soraya Thronicke",
+                    duration: 2
+                ),
+                favorites: .constant(Set<String>(arrayLiteral: "DEF")),
+                highlighted: .constant(Set<String>()),
+                nowPlaying: .constant(Set<String>()),
+                selectedItems: .constant(Set<String>()),
+                currentSoundsListMode: .constant(.regular)
+            )
+        }
+
+        SoundItem(
+            sound: Sound(
+                id: "DEF",
+                title: "A gente vai cansando",
+                authorName: "Soraya Thronicke",
+                duration: 2
+            ),
+            favorites: .constant(Set<String>(arrayLiteral: "DEF")),
+            highlighted: .constant(Set<String>()),
+            nowPlaying: .constant(Set<String>()),
+            selectedItems: .constant(Set<String>()),
+            currentSoundsListMode: .constant(.regular)
+        )
+    }
+    .padding()
+}
+
+#Preview("Playing") {
+    VStack(spacing: 15) {
+        HStack(spacing: 15) {
+            SoundItem(
+                sound: Sound(
+                    id: "ABC",
+                    title: "A gente vai cansando",
+                    authorName: "Filósofo da CEAGESP",
+                    duration: 2
+                ),
+                favorites: .constant(Set<String>(arrayLiteral: "ABC")),
                 highlighted: .constant(Set<String>()),
                 nowPlaying: .constant(Set<String>(arrayLiteral: "ABC")),
                 selectedItems: .constant(Set<String>()),
                 currentSoundsListMode: .constant(.regular)
             )
 
-            // Regular
-            SoundCell(sound: Sound(id: "ABC", title: "A gente vai cansando", authorName: "Soraya Thronicke", duration: 2), favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()), nowPlaying: .constant(Set<String>()), selectedItems: .constant(Set<String>()), currentSoundsListMode: .constant(.regular))
-            //SoundCell(soundId: "ABC", title: "Funk do Xandão", author: "Roberto Jeferson", favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()))
-            SoundCell(sound: Sound(id: "ABC", title: "Às vezes o ódio é a única emoção possível", authorName: "Soraya Thronicke", duration: 2), favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()), nowPlaying: .constant(Set<String>()), selectedItems: .constant(Set<String>()), currentSoundsListMode: .constant(.regular))
-            SoundCell(sound: Sound(id: "ABC", title: "É simples assim, um manda e o outro obedece", authorName: "Soraya Thronicke", duration: 2), favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()), nowPlaying: .constant(Set<String>()), selectedItems: .constant(Set<String>()), currentSoundsListMode: .constant(.regular))
-            SoundCell(sound: Sound(id: "ABC", title: "Você tá falando isso porque você é a putinha do Bozo", authorName: "Soraya Thronicke", duration: 2), favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()), nowPlaying: .constant(Set<String>()), selectedItems: .constant(Set<String>()), currentSoundsListMode: .constant(.regular))
-            SoundCell(sound: Sound(id: "ABC", title: "A decisão não cabe a gente, cabe ao TSE", authorName: "Paulo Sérgio Nogueira", duration: 2), favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()), nowPlaying: .constant(Set<String>()), selectedItems: .constant(Set<String>()), currentSoundsListMode: .constant(.regular))
-            
-            // With New tag
-            SoundCell(sound: Sound(id: "ABC", title: "A decisão não cabe a gente, cabe ao TSE", authorName: "Paulo Sérgio Nogueira", duration: 2), favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()), nowPlaying: .constant(Set<String>()), selectedItems: .constant(Set<String>()), currentSoundsListMode: .constant(.regular))
-            
-            // Favorite
-            SoundCell(sound: Sound(id: "DEF", title: "A gente vai cansando", authorName: "Soraya Thronicke", duration: 2), favorites: .constant(Set<String>(arrayLiteral: "DEF")), highlighted: .constant(Set<String>()), nowPlaying: .constant(Set<String>()), selectedItems: .constant(Set<String>()), currentSoundsListMode: .constant(.regular))
-            SoundCell(sound: Sound(id: "GHI", title: "Funk do Xandão", authorName: "Roberto Jeferson", duration: 2), favorites: .constant(Set<String>(arrayLiteral: "GHI")), highlighted: .constant(Set<String>()), nowPlaying: .constant(Set<String>()), selectedItems: .constant(Set<String>()), currentSoundsListMode: .constant(.regular))
-            
-            // Highlighted
-            SoundCell(sound: Sound(id: "JKL", title: "Bom dia", authorName: "Hamilton Mourão", duration: 2), favorites: .constant(Set<String>()), highlighted: .constant(Set<String>(arrayLiteral: "JKL")), nowPlaying: .constant(Set<String>()), selectedItems: .constant(Set<String>()), currentSoundsListMode: .constant(.regular))
+            SoundItem(
+                sound: Sound(
+                    id: "DEF",
+                    title: "A gente vai cansando",
+                    authorName: "Soraya Thronicke",
+                    duration: 2
+                ),
+                favorites: .constant(Set<String>()),
+                highlighted: .constant(Set<String>()),
+                nowPlaying: .constant(Set<String>(arrayLiteral: "DEF")),
+                selectedItems: .constant(Set<String>()),
+                currentSoundsListMode: .constant(.regular)
+            )
         }
-        .previewLayout(.fixed(width: 170, height: 100))
+
+        SoundItem(
+            sound: Sound(
+                id: "DEF",
+                title: "A gente vai cansando",
+                authorName: "Soraya Thronicke",
+                duration: 2
+            ),
+            favorites: .constant(Set<String>()),
+            highlighted: .constant(Set<String>()),
+            nowPlaying: .constant(Set<String>(arrayLiteral: "DEF")),
+            selectedItems: .constant(Set<String>()),
+            currentSoundsListMode: .constant(.regular)
+        )
     }
+    .padding()
+}
+
+#Preview("New Tag") {
+    SoundItem(sound: Sound(id: "ABC", title: "A decisão não cabe a gente, cabe ao TSE", authorName: "Paulo Sérgio Nogueira", duration: 2), favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()), nowPlaying: .constant(Set<String>()), selectedItems: .constant(Set<String>()), currentSoundsListMode: .constant(.regular)
+    )
+    .padding()
+}
+
+#Preview("Highlighted") {
+    SoundItem(sound: Sound(id: "JKL", title: "Bom dia", authorName: "Hamilton Mourão", duration: 2), favorites: .constant(Set<String>()), highlighted: .constant(Set<String>(arrayLiteral: "JKL")), nowPlaying: .constant(Set<String>()), selectedItems: .constant(Set<String>()), currentSoundsListMode: .constant(.regular)
+    )
+    .padding()
 }

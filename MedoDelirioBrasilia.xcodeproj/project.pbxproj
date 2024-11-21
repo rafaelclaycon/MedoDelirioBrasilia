@@ -115,6 +115,11 @@
 		D90D7DE628E2A57A003B272A /* NUNES MARQUES Dont stop till you get enough michael jackson.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90D7DE528E2A579003B272A /* NUNES MARQUES Dont stop till you get enough michael jackson.mp3 */; };
 		D90D7DE828E2A70E003B272A /* Nunes Marques - Dont Stop till you get enough - Parece o Praga.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90D7DE728E2A70E003B272A /* Nunes Marques - Dont Stop till you get enough - Parece o Praga.mp3 */; };
 		D90E21752CCD793E00FC979C /* ReactionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90E21742CCD793E00FC979C /* ReactionRepository.swift */; };
+		D90E80BF2CEA1A780014A886 /* AddPinnedReactionTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90E80BE2CEA1A780014A886 /* AddPinnedReactionTable.swift */; };
+		D90E80C12CEA1CB00014A886 /* LocalDatabase+PinnedReaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90E80C02CEA1CB00014A886 /* LocalDatabase+PinnedReaction.swift */; };
+		D90E80C42CEA1F570014A886 /* ReactionsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90E80C32CEA1F570014A886 /* ReactionsViewModelTests.swift */; };
+		D90E80C72CEA20820014A886 /* FakeReactionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90E80C62CEA20820014A886 /* FakeReactionRepository.swift */; };
+		D90E80C92CEA229C0014A886 /* ReactionGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90E80C82CEA229C0014A886 /* ReactionGroup.swift */; };
 		D90EA65D2CB2E81E001F4DA2 /* UIDeviceExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90EA65C2CB2E81D001F4DA2 /* UIDeviceExtensionsTests.swift */; };
 		D90EDC5C2AAAC02500CA3567 /* Coeee Remix.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90EDC5A2AAAC02500CA3567 /* Coeee Remix.mp3 */; };
 		D90EDC5D2AAAC02500CA3567 /* Conversa de bebado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90EDC5B2AAAC02500CA3567 /* Conversa de bebado.mp3 */; };
@@ -1078,6 +1083,7 @@
 		D9838A0E2CC5830400E58C2E /* StoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9838A0D2CC5830400E58C2E /* StoriesView.swift */; };
 		D9838A122CC59ABF00E58C2E /* Retro2024Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9838A112CC59ABF00E58C2E /* Retro2024Banner.swift */; };
 		D9855DBE2BE4123E00965E9D /* ReactionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9855DBD2BE4123E00965E9D /* ReactionMock.swift */; };
+		D9855DBE2BE4123E00965E9D /* Reaction+Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9855DBD2BE4123E00965E9D /* Reaction+Mocks.swift */; };
 		D985DCD928B6D7150085B8E5 /* Thii Gouveia - Tchutchuca do Centrao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D985DCD828B6D7150085B8E5 /* Thii Gouveia - Tchutchuca do Centrao.mp3 */; };
 		D985DCDB28B6D9460085B8E5 /* Furacao 2000 - Tchutchuca Treme o Bumbum.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D985DCDA28B6D9460085B8E5 /* Furacao 2000 - Tchutchuca Treme o Bumbum.mp3 */; };
 		D98622E0283FC57100E9F630 /* AuthorDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98622DF283FC57100E9F630 /* AuthorDetailView.swift */; };
@@ -1108,8 +1114,9 @@
 		D98D13852CD5CD19001CF5BB /* UserFolder+Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98D13842CD5CD19001CF5BB /* UserFolder+Mocks.swift */; };
 		D98DBD35284919B1008544F8 /* NetworkRabbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98DBD34284919B1008544F8 /* NetworkRabbit.swift */; };
 		D98DBD38284921B5008544F8 /* NetworkRabbitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98DBD37284921B5008544F8 /* NetworkRabbitTests.swift */; };
+		D98DFB4B2CEA9A82009C880F /* PinReactionsBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98DFB4A2CEA9A82009C880F /* PinReactionsBanner.swift */; };
 		D98E1B042BE35AE2007D057E /* ReactionDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98E1B032BE35AE2007D057E /* ReactionDetailHeader.swift */; };
-		D98EC5DE282596C300340BE5 /* SoundCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5DD282596C300340BE5 /* SoundCell.swift */; };
+		D98EC5DE282596C300340BE5 /* SoundItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5DD282596C300340BE5 /* SoundItem.swift */; };
 		D98EC5E12825A05900340BE5 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5E02825A05900340BE5 /* Sound.swift */; };
 		D99070552A905DA300A26F65 /* SyncInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99070542A905DA300A26F65 /* SyncInfoView.swift */; };
 		D99070592A90E20100A26F65 /* SyncInfoView+KnowMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99070582A90E20100A26F65 /* SyncInfoView+KnowMoreView.swift */; };
@@ -1165,6 +1172,7 @@
 		D99A961C299A733E00BB5F0D /* RoundCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99A961B299A733E00BB5F0D /* RoundCheckbox.swift */; };
 		D99ACE982ADDFC2500C290F0 /* RetroViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99ACE972ADDFC2500C290F0 /* RetroViewModelTests.swift */; };
 		D99BAF732CE05B1500250900 /* HowReactionsWorkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99BAF722CE05B1500250900 /* HowReactionsWorkView.swift */; };
+		D99BAF762CE1683700250900 /* ReactionsView+LoadedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99BAF752CE1683700250900 /* ReactionsView+LoadedView.swift */; };
 		D99BBE4129466D9800BCA901 /* UsageMetric.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99BBE4029466D9800BCA901 /* UsageMetric.swift */; };
 		D99BBE43294676B200BCA901 /* NetworkRabbit+UsageMetric.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99BBE42294676B200BCA901 /* NetworkRabbit+UsageMetric.swift */; };
 		D99BBE45294700B200BCA901 /* Jair Bolsonaro - Imitando pessoa com falta de ar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99BBE44294700B200BCA901 /* Jair Bolsonaro - Imitando pessoa com falta de ar.mp3 */; };
@@ -1645,6 +1653,11 @@
 		D90D7DE528E2A579003B272A /* NUNES MARQUES Dont stop till you get enough michael jackson.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "NUNES MARQUES Dont stop till you get enough michael jackson.mp3"; sourceTree = "<group>"; };
 		D90D7DE728E2A70E003B272A /* Nunes Marques - Dont Stop till you get enough - Parece o Praga.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Nunes Marques - Dont Stop till you get enough - Parece o Praga.mp3"; sourceTree = "<group>"; };
 		D90E21742CCD793E00FC979C /* ReactionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionRepository.swift; sourceTree = "<group>"; };
+		D90E80BE2CEA1A780014A886 /* AddPinnedReactionTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPinnedReactionTable.swift; sourceTree = "<group>"; };
+		D90E80C02CEA1CB00014A886 /* LocalDatabase+PinnedReaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+PinnedReaction.swift"; sourceTree = "<group>"; };
+		D90E80C32CEA1F570014A886 /* ReactionsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsViewModelTests.swift; sourceTree = "<group>"; };
+		D90E80C62CEA20820014A886 /* FakeReactionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeReactionRepository.swift; sourceTree = "<group>"; };
+		D90E80C82CEA229C0014A886 /* ReactionGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionGroup.swift; sourceTree = "<group>"; };
 		D90EA65C2CB2E81D001F4DA2 /* UIDeviceExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceExtensionsTests.swift; sourceTree = "<group>"; };
 		D90EDC5A2AAAC02500CA3567 /* Coeee Remix.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Coeee Remix.mp3"; sourceTree = "<group>"; };
 		D90EDC5B2AAAC02500CA3567 /* Conversa de bebado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Conversa de bebado.mp3"; sourceTree = "<group>"; };
@@ -2611,6 +2624,7 @@
 		D9838A0D2CC5830400E58C2E /* StoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesView.swift; sourceTree = "<group>"; };
 		D9838A112CC59ABF00E58C2E /* Retro2024Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Retro2024Banner.swift; sourceTree = "<group>"; };
 		D9855DBD2BE4123E00965E9D /* ReactionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionMock.swift; sourceTree = "<group>"; };
+		D9855DBD2BE4123E00965E9D /* Reaction+Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reaction+Mocks.swift"; sourceTree = "<group>"; };
 		D985DCD828B6D7150085B8E5 /* Thii Gouveia - Tchutchuca do Centrao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Thii Gouveia - Tchutchuca do Centrao.mp3"; sourceTree = "<group>"; };
 		D985DCDA28B6D9460085B8E5 /* Furacao 2000 - Tchutchuca Treme o Bumbum.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Furacao 2000 - Tchutchuca Treme o Bumbum.mp3"; sourceTree = "<group>"; };
 		D98622DF283FC57100E9F630 /* AuthorDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorDetailView.swift; sourceTree = "<group>"; };
@@ -2642,8 +2656,9 @@
 		D98DBD3228491909008544F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D98DBD34284919B1008544F8 /* NetworkRabbit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRabbit.swift; sourceTree = "<group>"; };
 		D98DBD37284921B5008544F8 /* NetworkRabbitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRabbitTests.swift; sourceTree = "<group>"; };
+		D98DFB4A2CEA9A82009C880F /* PinReactionsBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinReactionsBanner.swift; sourceTree = "<group>"; };
 		D98E1B032BE35AE2007D057E /* ReactionDetailHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionDetailHeader.swift; sourceTree = "<group>"; };
-		D98EC5DD282596C300340BE5 /* SoundCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundCell.swift; sourceTree = "<group>"; };
+		D98EC5DD282596C300340BE5 /* SoundItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundItem.swift; sourceTree = "<group>"; };
 		D98EC5E02825A05900340BE5 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		D99070542A905DA300A26F65 /* SyncInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncInfoView.swift; sourceTree = "<group>"; };
 		D99070582A90E20100A26F65 /* SyncInfoView+KnowMoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SyncInfoView+KnowMoreView.swift"; sourceTree = "<group>"; };
@@ -2698,6 +2713,7 @@
 		D99A961B299A733E00BB5F0D /* RoundCheckbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCheckbox.swift; sourceTree = "<group>"; };
 		D99ACE972ADDFC2500C290F0 /* RetroViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetroViewModelTests.swift; sourceTree = "<group>"; };
 		D99BAF722CE05B1500250900 /* HowReactionsWorkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowReactionsWorkView.swift; sourceTree = "<group>"; };
+		D99BAF752CE1683700250900 /* ReactionsView+LoadedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReactionsView+LoadedView.swift"; sourceTree = "<group>"; };
 		D99BBE4029466D9800BCA901 /* UsageMetric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageMetric.swift; sourceTree = "<group>"; };
 		D99BBE42294676B200BCA901 /* NetworkRabbit+UsageMetric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+UsageMetric.swift"; sourceTree = "<group>"; };
 		D99BBE44294700B200BCA901 /* Jair Bolsonaro - Imitando pessoa com falta de ar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Imitando pessoa com falta de ar.mp3"; sourceTree = "<group>"; };
@@ -3089,6 +3105,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D90E80C22CEA1F3B0014A886 /* Reactions */ = {
+			isa = PBXGroup;
+			children = (
+				D90E80C52CEA20750014A886 /* Doubles */,
+				D90E80C32CEA1F570014A886 /* ReactionsViewModelTests.swift */,
+			);
+			path = Reactions;
+			sourceTree = "<group>";
+		};
+		D90E80C52CEA20750014A886 /* Doubles */ = {
+			isa = PBXGroup;
+			children = (
+				D90E80C62CEA20820014A886 /* FakeReactionRepository.swift */,
+			);
+			path = Doubles;
+			sourceTree = "<group>";
+		};
 		D916627B2874F1E2000A1B23 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -4256,6 +4289,7 @@
 		D92C0CA328401220009CF19A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D90E80C22CEA1F3B0014A886 /* Reactions */,
 				D9DE920D2B9B98D700268626 /* Sounds */,
 				D9AB63F22A5A084200390778 /* MainView */,
 				D9A06415298B59B0006075D1 /* Folders */,
@@ -4416,6 +4450,7 @@
 				D9FF3F962B142F78007AE773 /* UpdateIncentiveBanner.swift */,
 				D986C2452B25848B00EF575A /* LongUpdateBanner.swift */,
 				D9F45DD62BED30C400D49340 /* DynamicBanner.swift */,
+				D98DFB4A2CEA9A82009C880F /* PinReactionsBanner.swift */,
 			);
 			path = Banners;
 			sourceTree = "<group>";
@@ -4789,7 +4824,7 @@
 		D9855DBC2BE4122500965E9D /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				D9855DBD2BE4123E00965E9D /* ReactionMock.swift */,
+				D9855DBD2BE4123E00965E9D /* Reaction+Mocks.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -4899,6 +4934,7 @@
 				D9E39DBA2A1E8B320053A527 /* LocalDatabase+SyncLog.swift */,
 				D9592C472AA38C3000157F5A /* LocalDatabase+Song.swift */,
 				D9592C412AA2F32A00157F5A /* LocalDatabase+MusicGenre.swift */,
+				D90E80C02CEA1CB00014A886 /* LocalDatabase+PinnedReaction.swift */,
 			);
 			path = LocalDatabase;
 			sourceTree = "<group>";
@@ -4924,6 +4960,15 @@
 			path = Retrospective2023;
 			sourceTree = "<group>";
 		};
+		D99BAF742CE1681000250900 /* Sheets */ = {
+			isa = PBXGroup;
+			children = (
+				D9B8DE832BE695B1000C9035 /* AddReactionView.swift */,
+				D99BAF722CE05B1500250900 /* HowReactionsWorkView.swift */,
+			);
+			path = Sheets;
+			sourceTree = "<group>";
+		};
 		D9A06415298B59B0006075D1 /* Folders */ = {
 			isa = PBXGroup;
 			children = (
@@ -4946,6 +4991,7 @@
 				D9592C432AA2F59B00157F5A /* AddSongAndMusicGenreTables.swift */,
 				D91FB0E72BB6169000C5370E /* AddExternalLinksFieldToAuthorTable.swift */,
 				D98D13812CD5C4B1001CF5BB /* AddChangeHashFieldToUserFolderTable.swift */,
+				D90E80BE2CEA1A780014A886 /* AddPinnedReactionTable.swift */,
 			);
 			path = Migrations;
 			sourceTree = "<group>";
@@ -4993,6 +5039,7 @@
 			children = (
 				D91107132863B5FD000B6F8F /* Reaction.swift */,
 				D9B8DE7E2BE5CEFD000C9035 /* ReactionSound.swift */,
+				D90E80C82CEA229C0014A886 /* ReactionGroup.swift */,
 			);
 			path = Reactions;
 			sourceTree = "<group>";
@@ -5192,7 +5239,7 @@
 			children = (
 				D992EF592BCB24FB0080C892 /* SoundList.swift */,
 				D992EF5B2BCB25820080C892 /* SoundListViewModel.swift */,
-				D98EC5DD282596C300340BE5 /* SoundCell.swift */,
+				D98EC5DD282596C300340BE5 /* SoundItem.swift */,
 				D955DA2F2AA6B94C00AC4169 /* SoundDetailView.swift */,
 				D9DBEAA02BCC110A00220679 /* MockSoundListViewModel.swift */,
 			);
@@ -5272,10 +5319,10 @@
 			children = (
 				D9EB18A42857CDFF00A2F8A8 /* ReactionsView.swift */,
 				D91107102863B481000B6F8F /* ReactionsView+ViewModel.swift */,
+				D99BAF752CE1683700250900 /* ReactionsView+LoadedView.swift */,
 				D9F78A9E2860DF9100B83567 /* ReactionItem.swift */,
 				D9B8DE802BE69567000C9035 /* Detail */,
-				D9B8DE832BE695B1000C9035 /* AddReactionView.swift */,
-				D99BAF722CE05B1500250900 /* HowReactionsWorkView.swift */,
+				D99BAF742CE1681000250900 /* Sheets */,
 			);
 			path = Reactions;
 			sourceTree = "<group>";
@@ -6659,6 +6706,8 @@
 				D91107142863B5FD000B6F8F /* Reaction.swift in Sources */,
 				D9543B462AD5D6C80075A7A1 /* ClassicRetroView+ViewModel.swift in Sources */,
 				D9855DBE2BE4123E00965E9D /* ReactionMock.swift in Sources */,
+				D9543B462AD5D6C80075A7A1 /* RetroView+ViewModel.swift in Sources */,
+				D9855DBE2BE4123E00965E9D /* Reaction+Mocks.swift in Sources */,
 				D9877D2928694F3200B541F9 /* LocalDatabase+UserFolderContent.swift in Sources */,
 				D99BBE4129466D9800BCA901 /* UsageMetric.swift in Sources */,
 				D9CC893328EB7BB500576492 /* MostSharedByAudienceView.swift in Sources */,
@@ -6697,6 +6746,7 @@
 				D91107112863B481000B6F8F /* ReactionsView+ViewModel.swift in Sources */,
 				D98622E0283FC57100E9F630 /* AuthorDetailView.swift in Sources */,
 				D94AD34928811ADC00D3E4F0 /* Versioneer.swift in Sources */,
+				D90E80C92CEA229C0014A886 /* ReactionGroup.swift in Sources */,
 				D9FF3F992B1431C8007AE773 /* UpdateIncentive.swift in Sources */,
 				D92E7067283C51D20035826C /* Song.swift in Sources */,
 				D97FFA662CA1EF1000899285 /* IntroducingiOS18ControlAndSiriIntentView.swift in Sources */,
@@ -6744,6 +6794,7 @@
 				D9AF8B752ABD0D320051D028 /* OneTimeTask.swift in Sources */,
 				D96A64202955F32F00DC0F03 /* SettingsHelper.swift in Sources */,
 				D93CCB7B286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift in Sources */,
+				D90E80BF2CEA1A780014A886 /* AddPinnedReactionTable.swift in Sources */,
 				D9DC4D7A2B1D8BC900627555 /* TopChartItem+.swift in Sources */,
 				D9B8DE842BE695B1000C9035 /* AddReactionView.swift in Sources */,
 				D9625E7E28238F9A00080852 /* MedoDelirioBrasiliaApp.swift in Sources */,
@@ -6756,6 +6807,7 @@
 				D9FB70C92AC8DED4002FD8E1 /* View+.swift in Sources */,
 				D92C0CAC28406EA5009CF19A /* UserShareLog.swift in Sources */,
 				D961D016283722AB00EFEDEB /* Color+.swift in Sources */,
+				D98DFB4B2CEA9A82009C880F /* PinReactionsBanner.swift in Sources */,
 				D93A029A2906DEB100A85FE2 /* UserFolderContentLog.swift in Sources */,
 				D93AC08B28414EEE00E38A63 /* Logger.swift in Sources */,
 				D98E1B042BE35AE2007D057E /* ReactionDetailHeader.swift in Sources */,
@@ -6773,6 +6825,8 @@
 				D992EF5C2BCB25820080C892 /* SoundListViewModel.swift in Sources */,
 				D99DC19D28423AD7002B03B6 /* AuthorDetailViewViewModel.swift in Sources */,
 				D967E2BC2901C40700B21C11 /* CustomPhotoAlbum.swift in Sources */,
+				D99BAF762CE1683700250900 /* ReactionsView+LoadedView.swift in Sources */,
+				D90E80C12CEA1CB00014A886 /* LocalDatabase+PinnedReaction.swift in Sources */,
 				D907A39E2A8F9E6A006DE630 /* OpenUtility.swift in Sources */,
 				D994AD622C9DFE89004FAE25 /* LoadingState.swift in Sources */,
 				D9BACC012B13BF5400BBD0BE /* Analytics.swift in Sources */,
@@ -6823,7 +6877,7 @@
 				D916536428AD7FF7007F141D /* VideoMaker.swift in Sources */,
 				D99070552A905DA300A26F65 /* SyncInfoView.swift in Sources */,
 				D9C1372729063A78003E4ABF /* FolderResearchSettingsView.swift in Sources */,
-				D98EC5DE282596C300340BE5 /* SoundCell.swift in Sources */,
+				D98EC5DE282596C300340BE5 /* SoundItem.swift in Sources */,
 				D99C8A972952C904002E0C00 /* NetworkRabbit+DonorNames.swift in Sources */,
 				D992EF562BCB222B0080C892 /* ContextMenuOption.swift in Sources */,
 				D9DBCEA42B12888D003B4A46 /* NetworkRabbit+Retro.swift in Sources */,
@@ -6933,12 +6987,14 @@
 				D9A0641A298B6749006075D1 /* FakeLocalDatabase.swift in Sources */,
 				D9A06417298B59D5006075D1 /* AddToFolderViewViewModelTests.swift in Sources */,
 				D9F570882A62F27F00596C32 /* XCTestCase+Extensions.swift in Sources */,
+				D90E80C72CEA20820014A886 /* FakeReactionRepository.swift in Sources */,
 				D95C3E0A2A02AB1800172C17 /* SyncServiceTests.swift in Sources */,
 				D9E5F5162CD7114600C2FF64 /* FakeFolderResearchRepository.swift in Sources */,
 				D9A32DC7285ACE880038A370 /* PodiumTests.swift in Sources */,
 				D900B9C52A6DF6D300C1BC3A /* LoggerStub.swift in Sources */,
 				D99ACE982ADDFC2500C290F0 /* RetroViewModelTests.swift in Sources */,
 				D96892DE2C9F7DC50084F646 /* VideoMakerTests.swift in Sources */,
+				D90E80C42CEA1F570014A886 /* ReactionsViewModelTests.swift in Sources */,
 				D94B514D2CC625120005FABE /* SyncManagerDelegateSpy.swift in Sources */,
 				D9523743285BF99800E6C838 /* LocalDatabaseSpy.swift in Sources */,
 				D9575092284427C70094AEA6 /* ShareLogsDummy.swift in Sources */,
@@ -6988,8 +7044,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				APP_BUILD = 1;
-				APP_VERSION = 8.2;
+				APP_BUILD = 2;
+				APP_VERSION = 8.4.1;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -7051,8 +7107,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				APP_BUILD = 1;
-				APP_VERSION = 8.2;
+				APP_BUILD = 2;
+				APP_VERSION = 8.4.1;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
