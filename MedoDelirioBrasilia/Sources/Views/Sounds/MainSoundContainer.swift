@@ -14,7 +14,6 @@ struct MainSoundContainer: View {
     @StateObject private var favoritesViewModel: SoundListViewModel<[Sound]>
     private var currentSoundsListMode: Binding<SoundsListMode>
     private let openSettingsAction: () -> Void
-    private let showRetrospectiveAction: () -> Void
 
     @State private var subviewToOpen: MainSoundContainerModalToOpen = .syncInfo
     @State private var showingModalView = false
@@ -35,7 +34,7 @@ struct MainSoundContainer: View {
 
     // Retro 2024
     @State private var showRetroBanner: Bool = false
-    @State private var showRetroModalView = false
+    @State private var showClassicRetroView: Bool = false
 
     // MARK: - Environment Objects
 
@@ -82,8 +81,7 @@ struct MainSoundContainer: View {
     init(
         viewModel: MainSoundContainerViewModel,
         currentSoundsListMode: Binding<SoundsListMode>,
-        openSettingsAction: @escaping () -> Void,
-        showRetrospectiveAction: @escaping () -> Void
+        openSettingsAction: @escaping () -> Void
     ) {
         self._viewModel = StateObject(wrappedValue: viewModel)
         self._allSoundsViewModel = StateObject(wrappedValue: SoundListViewModel<[Sound]>(
@@ -100,7 +98,6 @@ struct MainSoundContainer: View {
         ))
         self.currentSoundsListMode = currentSoundsListMode
         self.openSettingsAction = openSettingsAction
-        self.showRetrospectiveAction = showRetrospectiveAction
     }
 
     // MARK: - View Body
@@ -139,7 +136,7 @@ struct MainSoundContainer: View {
                             {
                                 Retro2024Banner(
                                     isBeingShown: $showRetroBanner,
-                                    openStoriesAction: { showRetrospectiveAction() },
+                                    openStoriesAction: { showClassicRetroView = true },
                                     showCloseButton: true
                                 )
                                 .padding(.horizontal, 15)
@@ -263,9 +260,24 @@ struct MainSoundContainer: View {
                 lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
             )
         }
-        .fullScreenCover(isPresented: $showRetroModalView) {
-            StoriesView()
+        .sheet(isPresented: $showClassicRetroView) {
+            ClassicRetroView(
+                imageSaveSucceededAction: { exportAnalytics in
+                    allSoundsViewModel.displayToast(
+                        toastText: Shared.Retro.successMessage,
+                        displayTime: .seconds(5)
+                    )
+
+                    Analytics().send(
+                        originatingScreen: "MainSoundContainer",
+                        action: "didExportRetro2024Images(\(exportAnalytics))"
+                    )
+                }
+            )
         }
+//        .fullScreenCover(isPresented: $showRetroModalView) {
+//            StoriesView()
+//        }
         .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in // iPad - Settings explicit toggle.
             if shouldUpdate {
                 viewModel.reloadAllSounds()
@@ -526,7 +538,6 @@ extension MainSoundContainer {
             syncValues: SyncValues()
         ),
         currentSoundsListMode: .constant(.regular),
-        openSettingsAction: {},
-        showRetrospectiveAction: {}
+        openSettingsAction: {}
     )
 }

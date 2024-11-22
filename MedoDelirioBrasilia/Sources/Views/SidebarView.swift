@@ -35,12 +35,7 @@ struct SidebarView: View {
                             syncValues: syncValues
                         ),
                         currentSoundsListMode: $currentSoundsListMode,
-                        openSettingsAction: {},
-                        showRetrospectiveAction: {
-                            // TODO: Make work for iPadOS 17 users?
-//                            subviewToOpen = .retrospective
-//                            showingModalView = true
-                        }
+                        openSettingsAction: {}
                     ).environmentObject(trendsHelper).environmentObject(settingsHelper),
                     tag: PadScreen.allSounds,
                     selection: $state,
@@ -59,8 +54,7 @@ struct SidebarView: View {
                             isAllowedToSync: false
                         ),
                         currentSoundsListMode: $currentSoundsListMode,
-                        openSettingsAction: {},
-                        showRetrospectiveAction: {}
+                        openSettingsAction: {}
                     ).environmentObject(trendsHelper).environmentObject(settingsHelper),
                     tag: PadScreen.favorites,
                     selection: $state,

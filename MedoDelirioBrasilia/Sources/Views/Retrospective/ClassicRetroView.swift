@@ -11,7 +11,7 @@ struct ClassicRetroView: View {
 
     @StateObject private var viewModel = ViewModel()
 
-    private let imageSaveSucceededAction: () -> Void
+    private let imageSaveSucceededAction: (String) -> Void
 
     // MARK: - Computed Properties
 
@@ -40,7 +40,7 @@ struct ClassicRetroView: View {
     // MARK: - Initializer
 
     init(
-        imageSaveSucceededAction: @escaping () -> Void
+        imageSaveSucceededAction: @escaping (String) -> Void
     ) {
         self.imageSaveSucceededAction = imageSaveSucceededAction
     }
@@ -104,7 +104,8 @@ struct ClassicRetroView: View {
         .onChange(of: viewModel.shouldProcessPostExport) { shouldProcess in
             guard shouldProcess else { return }
             if viewModel.exportErrors.isEmpty {
-                imageSaveSucceededAction()
+                imageSaveSucceededAction(viewModel.analyticsString())
+                dismiss()
             } else {
                 viewModel.isShowingProcessingView = false
                 viewModel.showExportError()
@@ -315,6 +316,6 @@ extension ClassicRetroView {
 
 #Preview {
     ClassicRetroView(
-        imageSaveSucceededAction: {}
+        imageSaveSucceededAction: { _ in }
     )
 }

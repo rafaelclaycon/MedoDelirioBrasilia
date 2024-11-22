@@ -22,10 +22,9 @@ struct TrendsView: View {
 
     @EnvironmentObject var trendsHelper: TrendsHelper
 
-    // Retrospective 2023
+    // Retrospective 2024
     @State private var showRetroBanner: Bool = false
     @State private var showModalView = false
-    @State private var retroExportAnalytics: String = ""
 
     // Alert
     @State private var showAlert = false
@@ -107,7 +106,17 @@ struct TrendsView: View {
                         }
                         .sheet(isPresented: $showModalView) {
                             ClassicRetroView(
-                                imageSaveSucceededAction: {}
+                                imageSaveSucceededAction: { exportAnalytics in
+                                    viewModel.displayToast(
+                                        toastText: Shared.Retro.successMessage,
+                                        displayTime: .seconds(5)
+                                    )
+
+                                    Analytics().send(
+                                        originatingScreen: "TrendsView",
+                                        action: "didExportRetro2024Images(\(exportAnalytics))"
+                                    )
+                                }
                             )
                         }
                     }
@@ -144,20 +153,6 @@ struct TrendsView: View {
                 originatingScreen: "TrendsView",
                 action: "didViewTrendsTab"
             )
-        }
-        .onChange(of: showModalView) { showModalView in
-            if (showModalView == false) && !retroExportAnalytics.isEmpty {
-                viewModel.displayToast(
-                    toastText: "Imagens salvas com sucesso."
-                )
-
-                Analytics().send(
-                    originatingScreen: "TrendsView",
-                    action: "didExportRetro2023Images(\(retroExportAnalytics))"
-                )
-
-                retroExportAnalytics = ""
-            }
         }
         .overlay {
             if viewModel.showToastView {
