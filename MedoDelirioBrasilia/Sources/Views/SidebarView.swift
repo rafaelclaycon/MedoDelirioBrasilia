@@ -35,7 +35,7 @@ struct SidebarView: View {
                             syncValues: syncValues
                         ),
                         currentSoundsListMode: $currentSoundsListMode,
-                        showSettings: .constant(false)
+                        openSettingsAction: {}
                     ).environmentObject(trendsHelper).environmentObject(settingsHelper),
                     tag: PadScreen.allSounds,
                     selection: $state,
@@ -54,7 +54,7 @@ struct SidebarView: View {
                             isAllowedToSync: false
                         ),
                         currentSoundsListMode: $currentSoundsListMode,
-                        showSettings: .constant(false)
+                        openSettingsAction: {}
                     ).environmentObject(trendsHelper).environmentObject(settingsHelper),
                     tag: PadScreen.favorites,
                     selection: $state,
@@ -165,6 +165,8 @@ struct SidebarView: View {
         }
     }
 }
+
+// MARK: - Preview
 
 #Preview {
     SidebarView(

@@ -1,5 +1,5 @@
 //
-//  SoundsOfTheYearGeneratorView.swift
+//  ClassicRetroView.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 08/10/23.
@@ -7,17 +7,13 @@
 
 import SwiftUI
 
-struct RetroView: View {
+struct ClassicRetroView: View {
 
-    @StateObject var viewModel: ViewModel
+    @StateObject private var viewModel = ViewModel()
 
-    @Binding var isBeingShown: Bool
-    @Binding var analyticsString: String
+    private let imageSaveSucceededAction: (String) -> Void
 
-    @Environment(\.colorScheme) var colorScheme
-
-    @ScaledMetric var vstackSpacing: CGFloat = 24
-    @ScaledMetric var bottomPadding: CGFloat = 26
+    // MARK: - Computed Properties
 
     var mostCommonDayFont: Font {
         if viewModel.mostCommonShareDay.count <= 7 {
@@ -32,6 +28,24 @@ struct RetroView: View {
     var mostCommonDaySubtitle: String {
         viewModel.mostCommonShareDayPluralization == .plural ? "dias que mais compartilha" : "dia que mais compartilha"
     }
+
+    @ScaledMetric var vstackSpacing: CGFloat = 24
+    @ScaledMetric var bottomPadding: CGFloat = 26
+
+    // MARK: - Environment Variables
+
+    @Environment(\.colorScheme) var colorScheme
+    @Environment(\.dismiss) var dismiss
+
+    // MARK: - Initializer
+
+    init(
+        imageSaveSucceededAction: @escaping (String) -> Void
+    ) {
+        self.imageSaveSucceededAction = imageSaveSucceededAction
+    }
+
+    // MARK: - View Body
 
     var body: some View {
         let rankingSquare = topFiveSquareImageView()
@@ -64,8 +78,8 @@ struct RetroView: View {
                     .padding([.horizontal, .top], 25)
                     .padding(.bottom, bottomPadding)
                     .navigationBarItems(leading:
-                        Button("Cancelar") {
-                            self.isBeingShown = false
+                        Button("Fechar") {
+                            dismiss()
                         }
                     )
                     .alert(isPresented: $viewModel.showAlert) {
@@ -90,8 +104,8 @@ struct RetroView: View {
         .onChange(of: viewModel.shouldProcessPostExport) { shouldProcess in
             guard shouldProcess else { return }
             if viewModel.exportErrors.isEmpty {
-                analyticsString = viewModel.analyticsString()
-                isBeingShown.toggle()
+                imageSaveSucceededAction(viewModel.analyticsString())
+                dismiss()
             } else {
                 viewModel.isShowingProcessingView = false
                 viewModel.showExportError()
@@ -109,12 +123,18 @@ struct RetroView: View {
             HStack {
                 VStack(alignment: .leading, spacing: 15) {
                     ForEach(viewModel.topFive) { item in
-                        HStack {
-                            Text("#\(item.rankNumber)")
+                        HStack(spacing: 20) {
+                            Text("\(item.rankNumber)")
                                 .font(.system(size: 24))
                                 .bold()
-                                .foregroundColor(.white)
-                                //.opacity(0.7)
+                                .foregroundColor(.black)
+                                .background {
+                                    Text("\(item.rankNumber)")
+                                        .font(.system(size: 24))
+                                        .bold()
+                                        .foregroundColor(.white)
+                                        .offset(x: 2, y: 2)
+                                }
 
                             Text(item.contentName)
                                 .font(.body)
@@ -227,7 +247,9 @@ struct RetroView: View {
     }
 }
 
-extension RetroView {
+// MARK: - Subviews
+
+extension ClassicRetroView {
 
     struct AddHashtagIncentive: View {
 
@@ -290,10 +312,10 @@ extension RetroView {
     }
 }
 
+// MARK: - Preview
+
 #Preview {
-    RetroView(
-        viewModel: .init(),
-        isBeingShown: .constant(true),
-        analyticsString: .constant("")
+    ClassicRetroView(
+        imageSaveSucceededAction: { _ in }
     )
 }
