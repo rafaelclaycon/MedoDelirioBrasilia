@@ -56,8 +56,7 @@ struct MainView: View {
                             ),
                             currentSoundsListMode: $currentSoundsListMode,
                             openSettingsAction: {
-                                subviewToOpen = .settings
-                                showingModalView = true
+                                isShowingSettingsSheet.toggle()
                             }
                         )
                         .environmentObject(trendsHelper)
