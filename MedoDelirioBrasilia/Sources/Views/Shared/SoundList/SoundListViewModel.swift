@@ -8,7 +8,8 @@
 import Combine
 import SwiftUI
 
-class SoundListViewModel<T>: ObservableObject {
+@MainActor
+final class SoundListViewModel<T>: ObservableObject {
 
     @Published var state: LoadingState<[Sound]> = .loading
     @Published var menuOptions: [ContextMenuSection]
@@ -100,8 +101,35 @@ class SoundListViewModel<T>: ObservableObject {
 
         loadFavorites()
     }
+}
 
-    // MARK: - Functions
+// MARK: - User Actions
+
+extension SoundListViewModel {
+
+    func onSoundSelected(sound: Sound) {
+        if currentSoundsListMode.wrappedValue == .regular {
+            if nowPlayingKeeper.contains(sound.id) {
+                AudioPlayer.shared?.togglePlay()
+                nowPlayingKeeper.removeAll()
+                doPlaylistCleanup() // Needed because user tap a playing sound to stop playing a playlist.
+            } else {
+                doPlaylistCleanup() // Needed because user can be playing a playlist and decide to tap another sound.
+                play(sound)
+            }
+        } else {
+            if selectionKeeper.contains(sound.id) {
+                selectionKeeper.remove(sound.id)
+            } else {
+                selectionKeeper.insert(sound.id)
+            }
+        }
+    }
+}
+
+// MARK: - Internal Functions
+
+extension SoundListViewModel {
 
     func loadFavorites() {
         do {

@@ -172,20 +172,7 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
                                             .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
                                             .padding(.horizontal, UIDevice.isiPhone ? 0 : 5)
                                             .onTapGesture {
-                                                if viewModel.currentSoundsListMode.wrappedValue == .regular {
-                                                    if viewModel.nowPlayingKeeper.contains(sound.id) {
-                                                        AudioPlayer.shared?.togglePlay()
-                                                        viewModel.nowPlayingKeeper.removeAll()
-                                                    } else {
-                                                        viewModel.play(sound)
-                                                    }
-                                                } else {
-                                                    if viewModel.selectionKeeper.contains(sound.id) {
-                                                        viewModel.selectionKeeper.remove(sound.id)
-                                                    } else {
-                                                        viewModel.selectionKeeper.insert(sound.id)
-                                                    }
-                                                }
+                                                viewModel.onSoundSelected(sound: sound)
                                             }
                                             .contextMenu {
                                                 if viewModel.currentSoundsListMode.wrappedValue != .selection {
