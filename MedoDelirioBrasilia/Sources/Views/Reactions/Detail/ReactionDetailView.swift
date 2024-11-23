@@ -38,7 +38,7 @@ struct ReactionDetailView: View {
 
         let soundListViewModel = SoundListViewModel<[Sound]>(
             data: viewModel.soundsPublisher,
-            menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
+            menuOptions: [.sharingOptions(), .organizingOptions(), .playFromThisSound(), .detailsOptions()],
             currentSoundsListMode: currentSoundsListMode
         )
 

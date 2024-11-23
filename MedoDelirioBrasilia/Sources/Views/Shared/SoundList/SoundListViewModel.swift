@@ -8,7 +8,8 @@
 import Combine
 import SwiftUI
 
-class SoundListViewModel<T>: ObservableObject {
+@MainActor
+final class SoundListViewModel<T>: ObservableObject {
 
     @Published var state: LoadingState<[Sound]> = .loading
     @Published var menuOptions: [ContextMenuSection]
@@ -69,7 +70,7 @@ class SoundListViewModel<T>: ObservableObject {
     @Published var toastText: String = ""
 
     // Play Random Sound
-    @Published var scrollAndPlay: String = ""
+    @Published var scrollTo: String = ""
 
     // MARK: - Stored Properties
 
@@ -100,8 +101,35 @@ class SoundListViewModel<T>: ObservableObject {
 
         loadFavorites()
     }
+}
 
-    // MARK: - Functions
+// MARK: - User Actions
+
+extension SoundListViewModel {
+
+    func onSoundSelected(sound: Sound) {
+        if currentSoundsListMode.wrappedValue == .regular {
+            if nowPlayingKeeper.contains(sound.id) {
+                AudioPlayer.shared?.togglePlay()
+                nowPlayingKeeper.removeAll()
+                doPlaylistCleanup() // Needed because user tap a playing sound to stop playing a playlist.
+            } else {
+                doPlaylistCleanup() // Needed because user can be playing a playlist and decide to tap another sound.
+                play(sound)
+            }
+        } else {
+            if selectionKeeper.contains(sound.id) {
+                selectionKeeper.remove(sound.id)
+            } else {
+                selectionKeeper.insert(sound.id)
+            }
+        }
+    }
+}
+
+// MARK: - Internal Functions
+
+extension SoundListViewModel {
 
     func loadFavorites() {
         do {
@@ -223,32 +251,29 @@ extension SoundListViewModel {
         }
     }
 
-    func play(_ sound: Sound) {
+    func play(
+        _ sound: Sound,
+        scrollToPlaying: Bool = false
+    ) {
         do {
             let url = try sound.fileURL()
 
             nowPlayingKeeper.removeAll()
             nowPlayingKeeper.insert(sound.id)
 
-            AudioPlayer.shared = AudioPlayer(url: url, update: { [weak self] state in
-                guard let self else { return }
-                if state?.activity == .stopped {
-                    self.nowPlayingKeeper.removeAll()
+            if scrollToPlaying {
+                scrollTo = sound.id
+            }
 
-                    guard case .loaded(let sounds) = self.state else { return }
-
-                    if self.isPlayingPlaylist {
-                        self.currentTrackIndex += 1
-
-                        if self.currentTrackIndex >= sounds.count {
-                            self.doPlaylistCleanup()
-                            return
-                        }
-
-                        self.play(sounds[self.currentTrackIndex])
-                    }
+            AudioPlayer.shared = AudioPlayer(
+                url: url,
+                update: { [weak self] state in
+                    self?.onAudioPlayerUpdate(
+                        playerState: state,
+                        scrollToPlaying: scrollToPlaying
+                    )
                 }
-            })
+            )
 
             AudioPlayer.shared?.togglePlay()
         } catch {
@@ -257,6 +282,26 @@ extension SoundListViewModel {
                 // Disregarding the case of the sound not being in the Bundle as this is highly unlikely since the launch of the sync system.
             }
         }
+    }
+
+    private func onAudioPlayerUpdate(
+        playerState: AudioPlayer.State?,
+        scrollToPlaying: Bool
+    ) {
+        guard playerState?.activity == .stopped else { return }
+
+        nowPlayingKeeper.removeAll()
+
+        guard case .loaded(let sounds) = state else { return }
+        guard isPlayingPlaylist else { return }
+
+        currentTrackIndex += 1
+        if currentTrackIndex >= sounds.count {
+            doPlaylistCleanup()
+            return
+        }
+
+        play(sounds[currentTrackIndex], scrollToPlaying: scrollToPlaying)
     }
 
     func stopPlaying() {
@@ -271,7 +316,7 @@ extension SoundListViewModel {
         guard case .loaded(let sounds) = state else { return }
         guard let firstSound = sounds.first else { return }
         isPlayingPlaylist = true
-        play(firstSound)
+        play(firstSound, scrollToPlaying: true)
     }
 
     private func doPlaylistCleanup() {
@@ -282,7 +327,7 @@ extension SoundListViewModel {
     func scrollAndPlaySound(withId soundId: String) {
         guard case .loaded(let sounds) = state else { return }
         guard let sound = sounds.first(where: { $0.id == soundId }) else { return }
-        scrollAndPlay = sound.id
+        scrollTo = sound.id
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(400)) {
             self.play(sound)
         }
@@ -355,11 +400,12 @@ extension SoundListViewModel: SoundListDisplaying {
     }
 
     func playFrom(sound: Sound) {
-//        guard let soundIndex = sounds.firstIndex(where: { $0.id == sound.id }) else { return }
-//        let soundInArray = sounds[soundIndex]
-//        currentTrackIndex = soundIndex
-//        isPlayingPlaylist = true
-//        play(soundInArray)
+        guard case .loaded(let sounds) = state else { return }
+        guard let soundIndex = sounds.firstIndex(where: { $0.id == sound.id }) else { return }
+        let soundInArray = sounds[soundIndex]
+        currentTrackIndex = soundIndex
+        isPlayingPlaylist = true
+        play(soundInArray, scrollToPlaying: true)
     }
 
     func removeFromFolder(_ sound: Sound) {
