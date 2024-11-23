@@ -133,4 +133,9 @@ struct Shared {
             static let message = "Sou uma equipe de um homem só e poucos sons do podcast estão pré-cortados e separados.\n\nPara aumentar as chances do seu som ser incluído, coloque no e-mail o máximo de informações possível, como link para vídeo, nome do episódio e minuto no qual o som que você quer apareceu."
         }
     }
+
+    struct Retro {
+
+        static let successMessage = "Imagens salvas com sucesso. Compartilhe nas suas redes! ☺️"
+    }
 }

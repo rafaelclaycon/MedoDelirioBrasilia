@@ -434,7 +434,10 @@ extension SoundListViewModel {
         }
     }
 
-    func displayToast(toastText: String) {
+    func displayToast(
+        toastText: String,
+        displayTime: DispatchTimeInterval = .seconds(3)
+    ) {
         displayToast(
             "checkmark",
             .green,
