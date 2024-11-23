@@ -133,7 +133,7 @@ struct AuthorDetailView: View {
 
         let soundListViewModel = SoundListViewModel<[Sound]>(
             data: viewModel.soundsPublisher,
-            menuOptions: [.sharingOptions(), .organizingOptions(), .authorOptions()],
+            menuOptions: [.sharingOptions(), .organizingOptions(), .playFromThisSound(), .authorOptions()],
             currentSoundsListMode: currentSoundsListMode
         )
         self._soundListViewModel = StateObject(wrappedValue: soundListViewModel)
