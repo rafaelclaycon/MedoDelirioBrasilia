@@ -293,7 +293,11 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
                                                 viewModel.showingModalView.toggle()
                                                 push(GeneralNavigationDestination.authorDetail(author))
                                             },
-                                            authorId: authorId
+                                            authorId: authorId,
+                                            openReactionAction: { reaction in
+                                                viewModel.showingModalView.toggle()
+                                                push(GeneralNavigationDestination.reactionDetail(reaction))
+                                            }
                                         )
 
                                     case .soundIssueEmailPicker:
