@@ -74,6 +74,14 @@ extension SoundDetailView.ViewModel {
     func onReactionSelected(reaction: Reaction) {
         openReactionAction(reaction)
     }
+
+    func onSuggestAddToReactionSelected() {
+        showSuggestOtherAuthorEmailAppPicker = true
+    }
+
+    func onRetryLoadReactionsSelected() async {
+        await loadReactions()
+    }
 }
 
 // MARK: - Internal Functions

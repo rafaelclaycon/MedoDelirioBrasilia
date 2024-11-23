@@ -75,7 +75,11 @@ struct SoundDetailView: View {
 
                     ReactionsSection(
                         state: viewModel.reactionsState,
-                        openReactionAction: { viewModel.onReactionSelected(reaction: $0) }
+                        openReactionAction: { viewModel.onReactionSelected(reaction: $0) },
+                        suggestAction: { viewModel.onSuggestAddToReactionSelected() },
+                        reloadAction: {
+                            Task { await viewModel.onRetryLoadReactionsSelected() }
+                        }
                     )
 
                     InfoSection(sound: viewModel.sound)
