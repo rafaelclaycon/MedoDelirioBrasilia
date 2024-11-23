@@ -144,7 +144,7 @@ struct MostSharedByAudienceView: View {
             Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
         }
         .onChange(of: scenePhase) { newPhase in
-            if newPhase == .active, viewModel.lastCheckDate.twoMinutesHavePassed {
+            if newPhase == .active, viewModel.lastCheckDate.minutesPassed(60) {
                 viewModel.loadList(for: viewModel.timeIntervalOption)
             }
         }

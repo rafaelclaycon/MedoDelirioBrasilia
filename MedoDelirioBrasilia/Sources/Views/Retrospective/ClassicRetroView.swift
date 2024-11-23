@@ -1,5 +1,5 @@
 //
-//  SoundsOfTheYearGeneratorView.swift
+//  ClassicRetroView.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 08/10/23.
@@ -7,17 +7,13 @@
 
 import SwiftUI
 
-struct RetroView: View {
+struct ClassicRetroView: View {
 
-    @StateObject var viewModel: ViewModel
+    @StateObject private var viewModel = ViewModel()
 
-    @Binding var isBeingShown: Bool
-    @Binding var analyticsString: String
+    private let imageSaveSucceededAction: (String) -> Void
 
-    @Environment(\.colorScheme) var colorScheme
-
-    @ScaledMetric var vstackSpacing: CGFloat = 24
-    @ScaledMetric var bottomPadding: CGFloat = 26
+    // MARK: - Computed Properties
 
     var mostCommonDayFont: Font {
         if viewModel.mostCommonShareDay.count <= 7 {
@@ -33,6 +29,24 @@ struct RetroView: View {
         viewModel.mostCommonShareDayPluralization == .plural ? "dias que mais compartilha" : "dia que mais compartilha"
     }
 
+    @ScaledMetric var vstackSpacing: CGFloat = 24
+    @ScaledMetric var bottomPadding: CGFloat = 26
+
+    // MARK: - Environment Variables
+
+    @Environment(\.colorScheme) var colorScheme
+    @Environment(\.dismiss) var dismiss
+
+    // MARK: - Initializer
+
+    init(
+        imageSaveSucceededAction: @escaping (String) -> Void
+    ) {
+        self.imageSaveSucceededAction = imageSaveSucceededAction
+    }
+
+    // MARK: - View Body
+
     var body: some View {
         let rankingSquare = topFiveSquareImageView()
         let countSquare = shareCountAndDaySquareImageView()
@@ -40,42 +54,46 @@ struct RetroView: View {
         ZStack {
             NavigationView {
                 ScrollView {
-                    VStack(spacing: vstackSpacing) {
-                        TabView {
-                            rankingSquare
-                                .padding(.bottom, 50)
+                    if viewModel.isLoading {
+                        LoadingView()
+                    } else {
+                        VStack(spacing: vstackSpacing) {
+                            TabView {
+                                rankingSquare
+                                    .padding(.bottom, 50)
 
-                            countSquare
-                                .padding(.bottom, 50)
+                                countSquare
+                                    .padding(.bottom, 50)
+                            }
+                            .frame(width: 350, height: 400)
+                            .tabViewStyle(.page)
+
+                            AddHashtagIncentive()
+                                .padding(.top, -15)
+
+                            savePhotosButton(
+                                firstView: rankingSquare,
+                                secondView: countSquare
+                            )
                         }
-                        .frame(width: 350, height: 400)
-                        .tabViewStyle(.page)
-
-                        AddHashtagIncentive()
-                            .padding(.top, -15)
-
-                        savePhotosButton(
-                            firstView: rankingSquare,
-                            secondView: countSquare
-                        )
-                    }
-                    .navigationTitle("Retrospectiva")
-                    .navigationBarTitleDisplayMode(.inline)
-                    .padding([.horizontal, .top], 25)
-                    .padding(.bottom, bottomPadding)
-                    .navigationBarItems(leading:
-                        Button("Cancelar") {
-                            self.isBeingShown = false
+                        .padding([.horizontal, .top], 25)
+                        .padding(.bottom, bottomPadding)
+                        .alert(isPresented: $viewModel.showAlert) {
+                            Alert(
+                                title: Text(viewModel.alertTitle),
+                                message: Text(viewModel.alertMessage),
+                                dismissButton: .default(Text("OK"))
+                            )
                         }
-                    )
-                    .alert(isPresented: $viewModel.showAlert) {
-                        Alert(
-                            title: Text(viewModel.alertTitle),
-                            message: Text(viewModel.alertMessage),
-                            dismissButton: .default(Text("OK"))
-                        )
                     }
                 }
+                .navigationTitle("Retrospectiva")
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationBarItems(leading:
+                    Button("Fechar") {
+                        dismiss()
+                    }
+                )
             }
 
             if viewModel.isShowingProcessingView {
@@ -85,13 +103,15 @@ struct RetroView: View {
         }
         .onAppear {
             setUpAppearance()
-            viewModel.loadInformation()
+            Task {
+                await viewModel.onViewLoaded()
+            }
         }
         .onChange(of: viewModel.shouldProcessPostExport) { shouldProcess in
             guard shouldProcess else { return }
             if viewModel.exportErrors.isEmpty {
-                analyticsString = viewModel.analyticsString()
-                isBeingShown.toggle()
+                imageSaveSucceededAction(viewModel.analyticsString())
+                dismiss()
             } else {
                 viewModel.isShowingProcessingView = false
                 viewModel.showExportError()
@@ -109,12 +129,18 @@ struct RetroView: View {
             HStack {
                 VStack(alignment: .leading, spacing: 15) {
                     ForEach(viewModel.topFive) { item in
-                        HStack {
-                            Text("#\(item.rankNumber)")
+                        HStack(spacing: 20) {
+                            Text("\(item.rankNumber)")
                                 .font(.system(size: 24))
                                 .bold()
-                                .foregroundColor(.white)
-                                //.opacity(0.7)
+                                .foregroundColor(.black)
+                                .background {
+                                    Text("\(item.rankNumber)")
+                                        .font(.system(size: 24))
+                                        .bold()
+                                        .foregroundColor(.white)
+                                        .offset(x: 2, y: 2)
+                                }
 
                             Text(item.contentName)
                                 .font(.body)
@@ -227,7 +253,28 @@ struct RetroView: View {
     }
 }
 
-extension RetroView {
+// MARK: - Subviews
+
+extension ClassicRetroView {
+
+    struct LoadingView: View {
+
+        var body: some View {
+            VStack(spacing: 40) {
+                Spacer()
+
+                HStack(spacing: 10) {
+                    ProgressView()
+
+                    Text("Carregando dados...")
+                        .foregroundColor(.gray)
+                }
+                .frame(maxWidth: .infinity)
+
+                Spacer()
+            }
+        }
+    }
 
     struct AddHashtagIncentive: View {
 
@@ -290,10 +337,14 @@ extension RetroView {
     }
 }
 
-#Preview {
-    RetroView(
-        viewModel: .init(),
-        isBeingShown: .constant(true),
-        analyticsString: .constant("")
+// MARK: - Previews
+
+#Preview("Loading") {
+    ClassicRetroView.LoadingView()
+}
+
+#Preview("Entire View") {
+    ClassicRetroView(
+        imageSaveSucceededAction: { _ in }
     )
 }

@@ -16,7 +16,7 @@ extension ReactionsView {
         let columns: [GridItem]
         let pullToRefreshAction: () -> Void
         let pinAction: (Reaction) -> Void
-        let unpinAction: (String) -> Void
+        let unpinAction: (Reaction) -> Void
 
         @State private var removedReaction: Reaction?
         @State private var showReactionRemovedAlert = false
@@ -44,7 +44,7 @@ extension ReactionsView {
                                     isPinned: true,
                                     button:
                                         Button {
-                                            unpinAction(reaction.id)
+                                            unpinAction(reaction)
                                         } label: {
                                             Label("Desafixar", systemImage: "pin.slash")
                                         },
@@ -95,7 +95,7 @@ extension ReactionsView {
                 actions: {
                     Button("Remover Fixação", action: {
                         guard let reaction = removedReaction else { return }
-                        unpinAction(reaction.id)
+                        unpinAction(reaction)
                     })
                 },
                 message: { Text("Essa reação foi removida do servidor durante uma revisão. Pedimos desculpas pelo inconveniente.") }

@@ -22,10 +22,9 @@ struct TrendsView: View {
 
     @EnvironmentObject var trendsHelper: TrendsHelper
 
-    // Retrospective 2023
-    @State private var shouldDisplayRetrospectiveBanner: Bool = false
+    // Retrospective 2024
+    @State private var showRetroBanner: Bool = false
     @State private var showModalView = false
-    @State private var retroExportAnalytics: String = ""
 
     // Alert
     @State private var showAlert = false
@@ -78,14 +77,14 @@ struct TrendsView: View {
                         }
                     } else {
                         VStack(alignment: .leading, spacing: 10) {
-                            if shouldDisplayRetrospectiveBanner {
-                                RetroBanner(
-                                    isBeingShown: .constant(true),
-                                    buttonAction: { showModalView = true },
+                            if showRetroBanner {
+                                Retro2024Banner(
+                                    isBeingShown: $showRetroBanner,
+                                    openStoriesAction: { showModalView = true },
                                     showCloseButton: false
                                 )
-                                .padding(.horizontal, 10)
-                                .padding(.bottom)
+                                .padding(.horizontal, 15)
+                                .padding(.bottom, 10)
                             }
 
                             //if showMostSharedSoundsByTheUser {
@@ -106,10 +105,18 @@ struct TrendsView: View {
                                 }*/
                         }
                         .sheet(isPresented: $showModalView) {
-                            RetroView(
-                                viewModel: .init(),
-                                isBeingShown: $showModalView,
-                                analyticsString: $retroExportAnalytics
+                            ClassicRetroView(
+                                imageSaveSucceededAction: { exportAnalytics in
+                                    viewModel.displayToast(
+                                        toastText: Shared.Retro.successMessage,
+                                        displayTime: .seconds(5)
+                                    )
+
+                                    Analytics().send(
+                                        originatingScreen: "TrendsView",
+                                        action: "didExportRetro2024Images(\(exportAnalytics))"
+                                    )
+                                }
                             )
                         }
                     }
@@ -131,7 +138,7 @@ struct TrendsView: View {
         .navigationBarTitleDisplayMode(showTrends ? .large : .inline)
         .onAppear {
             Task {
-                shouldDisplayRetrospectiveBanner = await RetroView.ViewModel.shouldDisplayBanner()
+                showRetroBanner = await ClassicRetroView.ViewModel.shouldDisplayBanner()
             }
             audienceViewModel.displayToast = { message in
                 viewModel.displayToast(
@@ -141,20 +148,11 @@ struct TrendsView: View {
                     displayTime: .seconds(3)
                 )
             }
-        }
-        .onChange(of: showModalView) { showModalView in
-            if (showModalView == false) && !retroExportAnalytics.isEmpty {
-                viewModel.displayToast(
-                    toastText: "Imagens salvas com sucesso."
-                )
 
-                Analytics().send(
-                    originatingScreen: "TrendsView",
-                    action: "didExportRetro2023Images(\(retroExportAnalytics))"
-                )
-
-                retroExportAnalytics = ""
-            }
+            Analytics().send(
+                originatingScreen: "TrendsView",
+                action: "didViewTrendsTab"
+            )
         }
         .overlay {
             if viewModel.showToastView {
@@ -174,6 +172,8 @@ struct TrendsView: View {
         }
     }
 }
+
+// MARK: - Preview
 
 #Preview {
     TrendsView(

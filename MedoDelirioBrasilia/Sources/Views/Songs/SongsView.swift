@@ -171,6 +171,11 @@ struct SongsView: View {
             .onAppear {
                 viewModel.reloadList()
                 viewModel.donateActivity()
+
+                Analytics().send(
+                    originatingScreen: "SongsView",
+                    action: "didViewSongsTab"
+                )
             }
             .onDisappear {
                 AudioPlayer.shared?.cancel()

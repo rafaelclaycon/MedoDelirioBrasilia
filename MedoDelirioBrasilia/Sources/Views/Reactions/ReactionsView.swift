@@ -43,9 +43,9 @@ struct ReactionsView: View {
                             }
                         },
                         pinAction: { viewModel.onPinReactionSelected(reaction: $0) },
-                        unpinAction: { reactionId in
+                        unpinAction: { reaction in
                             Task {
-                                await viewModel.onUnpinReactionSelected(reactionId: reactionId)
+                                await viewModel.onUnpinReactionSelected(reaction: reaction)
                             }
                         }
                     )
@@ -54,6 +54,11 @@ struct ReactionsView: View {
                             listWidth: geometry.size.width,
                             sizeCategory: sizeCategory,
                             spacing: UIDevice.isiPhone ? 12 : 20
+                        )
+
+                        Analytics().send(
+                            originatingScreen: "ReactionsView",
+                            action: "didViewReactionsTab"
                         )
                     }
                     .onChange(of: geometry.size.width) { newWidth in
