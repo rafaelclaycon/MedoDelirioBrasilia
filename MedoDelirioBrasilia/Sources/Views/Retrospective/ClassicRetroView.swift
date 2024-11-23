@@ -54,42 +54,46 @@ struct ClassicRetroView: View {
         ZStack {
             NavigationView {
                 ScrollView {
-                    VStack(spacing: vstackSpacing) {
-                        TabView {
-                            rankingSquare
-                                .padding(.bottom, 50)
+                    if viewModel.isLoading {
+                        LoadingView()
+                    } else {
+                        VStack(spacing: vstackSpacing) {
+                            TabView {
+                                rankingSquare
+                                    .padding(.bottom, 50)
 
-                            countSquare
-                                .padding(.bottom, 50)
+                                countSquare
+                                    .padding(.bottom, 50)
+                            }
+                            .frame(width: 350, height: 400)
+                            .tabViewStyle(.page)
+
+                            AddHashtagIncentive()
+                                .padding(.top, -15)
+
+                            savePhotosButton(
+                                firstView: rankingSquare,
+                                secondView: countSquare
+                            )
                         }
-                        .frame(width: 350, height: 400)
-                        .tabViewStyle(.page)
-
-                        AddHashtagIncentive()
-                            .padding(.top, -15)
-
-                        savePhotosButton(
-                            firstView: rankingSquare,
-                            secondView: countSquare
-                        )
-                    }
-                    .navigationTitle("Retrospectiva")
-                    .navigationBarTitleDisplayMode(.inline)
-                    .padding([.horizontal, .top], 25)
-                    .padding(.bottom, bottomPadding)
-                    .navigationBarItems(leading:
-                        Button("Fechar") {
-                            dismiss()
+                        .padding([.horizontal, .top], 25)
+                        .padding(.bottom, bottomPadding)
+                        .alert(isPresented: $viewModel.showAlert) {
+                            Alert(
+                                title: Text(viewModel.alertTitle),
+                                message: Text(viewModel.alertMessage),
+                                dismissButton: .default(Text("OK"))
+                            )
                         }
-                    )
-                    .alert(isPresented: $viewModel.showAlert) {
-                        Alert(
-                            title: Text(viewModel.alertTitle),
-                            message: Text(viewModel.alertMessage),
-                            dismissButton: .default(Text("OK"))
-                        )
                     }
                 }
+                .navigationTitle("Retrospectiva")
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationBarItems(leading:
+                    Button("Fechar") {
+                        dismiss()
+                    }
+                )
             }
 
             if viewModel.isShowingProcessingView {
@@ -99,7 +103,9 @@ struct ClassicRetroView: View {
         }
         .onAppear {
             setUpAppearance()
-            viewModel.loadInformation()
+            Task {
+                await viewModel.onViewLoaded()
+            }
         }
         .onChange(of: viewModel.shouldProcessPostExport) { shouldProcess in
             guard shouldProcess else { return }
@@ -251,6 +257,25 @@ struct ClassicRetroView: View {
 
 extension ClassicRetroView {
 
+    struct LoadingView: View {
+
+        var body: some View {
+            VStack(spacing: 40) {
+                Spacer()
+
+                HStack(spacing: 10) {
+                    ProgressView()
+
+                    Text("Carregando dados...")
+                        .foregroundColor(.gray)
+                }
+                .frame(maxWidth: .infinity)
+
+                Spacer()
+            }
+        }
+    }
+
     struct AddHashtagIncentive: View {
 
         @State private var showCopiedMessage: Bool = false
@@ -312,9 +337,13 @@ extension ClassicRetroView {
     }
 }
 
-// MARK: - Preview
+// MARK: - Previews
 
-#Preview {
+#Preview("Loading") {
+    ClassicRetroView.LoadingView()
+}
+
+#Preview("Entire View") {
     ClassicRetroView(
         imageSaveSucceededAction: { _ in }
     )

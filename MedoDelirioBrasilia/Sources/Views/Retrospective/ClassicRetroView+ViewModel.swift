@@ -13,6 +13,7 @@ extension ClassicRetroView {
     @MainActor
     class ViewModel: ObservableObject {
 
+        @Published var isLoading: Bool = true
         @Published var topFive: [TopChartItem] = []
         @Published var shareCount: Int = 0
         @Published var mostCommonShareDay: String = "-"
@@ -28,7 +29,9 @@ extension ClassicRetroView {
         @Published var alertMessage: String = .empty
         @Published var showAlert: Bool = false
 
-        let database: LocalDatabaseProtocol
+        private let database: LocalDatabaseProtocol
+
+        // MARK: - Computed Properties
 
         var dateFormatter: DateFormatter {
             let dateFormatter = DateFormatter()
@@ -37,104 +40,122 @@ extension ClassicRetroView {
             return dateFormatter
         }
 
-        init(database: LocalDatabaseProtocol = LocalDatabase.shared) {
+        // MARK: - Initializer
+
+        init(
+            database: LocalDatabaseProtocol = LocalDatabase.shared
+        ) {
             self.database = database
         }
+    }
+}
 
-        func loadInformation() {
-            retrieveTopFive()
-            loadShareCount()
-            do {
-                mostCommonShareDay = try mostCommonDay(from: database.allDatesInWhichTheUserShared()) ?? "-"
-            } catch {
-                print(error)
-            }
+// MARK: - User Actions
+
+extension ClassicRetroView.ViewModel {
+
+    func onViewLoaded() async {
+        isLoading = true
+
+        retrieveTopFive()
+        loadShareCount()
+        do {
+            mostCommonShareDay = try mostCommonDay(from: database.allDatesInWhichTheUserShared()) ?? "-"
+        } catch {
+            print(error)
         }
 
-        func retrieveTopFive() {
-            do {
-                let sounds = try database.getTopSoundsSharedByTheUser(5)
-                for i in sounds.indices {
-                    topFive.append(
-                        .init(
-                            rankNumber: "\(i+1)",
-                            contentName: sounds[i].contentName
-                        )
+        isLoading = false
+    }
+}
+
+// MARK: - Functions
+
+extension ClassicRetroView.ViewModel {
+
+    func retrieveTopFive() {
+        do {
+            let sounds = try database.getTopSoundsSharedByTheUser(5)
+            for i in sounds.indices {
+                topFive.append(
+                    .init(
+                        rankNumber: "\(i+1)",
+                        contentName: sounds[i].contentName
                     )
-                }
-            } catch {
-                print("Deu ruim")
+                )
             }
+        } catch {
+            print("Deu ruim")
         }
+    }
 
-        func loadShareCount() {
-            shareCount = database.totalShareCount()
-        }
+    func loadShareCount() {
+        shareCount = database.totalShareCount()
+    }
 
-        func dayOfTheWeek(from date: Date) -> String {
-            return dateFormatter.string(from: date)
-        }
+    func dayOfTheWeek(from date: Date) -> String {
+        return dateFormatter.string(from: date)
+    }
 
-        func mostCommonDay(from dates: [Date]) -> String? {
-            let dayOfTheWeekArray = dates.map { dayOfTheWeek(from: $0) }
+    func mostCommonDay(from dates: [Date]) -> String? {
+        let dayOfTheWeekArray = dates.map { dayOfTheWeek(from: $0) }
 
-            var stringCounts = [String: Int]()
+        var stringCounts = [String: Int]()
 
-            for str in dayOfTheWeekArray {
-                if let count = stringCounts[str] {
-                    stringCounts[str] = count + 1
-                } else {
-                    stringCounts[str] = 1
-                }
-            }
-
-            let stringCountTuples = stringCounts.map { (key: $0.key, value: $0.value) }
-
-            let sortedTuples = stringCountTuples.sorted { $0.value > $1.value }
-
-            for (string, count) in sortedTuples {
-                print("\(string): \(count) times")
-            }
-
-            if let firstTuple = sortedTuples.first {
-                let topValue = firstTuple.1
-                let topItems = sortedTuples.filter { $0.value == topValue }
-
-                if topItems.count > 1 {
-                    mostCommonShareDayPluralization = .plural
-                } else {
-                    mostCommonShareDayPluralization = .singular
-                }
-
-                let result = topItems.map { key, value in
-                    value == 1 ? key : "\(key)"
-                }.joined(separator: ", ")
-
-                print(result)
-                return result
+        for str in dayOfTheWeekArray {
+            if let count = stringCounts[str] {
+                stringCounts[str] = count + 1
             } else {
-                return nil
+                stringCounts[str] = 1
             }
         }
 
-        func save(image: UIImage) async throws {
-            isShowingProcessingView = true
+        let stringCountTuples = stringCounts.map { (key: $0.key, value: $0.value) }
 
-            try await CustomPhotoAlbum.sharedInstance.save(image: image)
+        let sortedTuples = stringCountTuples.sorted { $0.value > $1.value }
 
-            isShowingProcessingView = false
+        for (string, count) in sortedTuples {
+            print("\(string): \(count) times")
         }
 
-        func showExportError() {
-            alertTitle = "Houve Erros Ao Tentar Exportar as Imagens"
-            alertMessage = "\(exportErrors.joined(separator: "\n\n"))\n\nTente novamente. Se persistir, informe o desenvolvedor (e-mail nas Configurações)."
-            showAlert.toggle()
-        }
+        if let firstTuple = sortedTuples.first {
+            let topValue = firstTuple.1
+            let topItems = sortedTuples.filter { $0.value == topValue }
 
-        func analyticsString() -> String {
-            let ranking = topFive.map { "\($0.rankNumber) \($0.contentName)" }
-            return "\(ranking.joined(separator: ", ")); \(shareCount) compart; \(mostCommonShareDay)"
+            if topItems.count > 1 {
+                mostCommonShareDayPluralization = .plural
+            } else {
+                mostCommonShareDayPluralization = .singular
+            }
+
+            let result = topItems.map { key, value in
+                value == 1 ? key : "\(key)"
+            }.joined(separator: ", ")
+
+            print(result)
+            return result
+        } else {
+            return nil
         }
+    }
+
+    func save(image: UIImage) async throws {
+        isShowingProcessingView = true
+
+        try await CustomPhotoAlbum.sharedInstance.save(image: image)
+
+        isShowingProcessingView = false
+    }
+
+    func showExportError() {
+        alertTitle = "Houve Erros Ao Tentar Exportar as Imagens"
+        alertMessage = "\(exportErrors.joined(separator: "\n\n"))\n\nTente novamente. Se persistir, informe o desenvolvedor (e-mail nas Configurações)."
+        showAlert.toggle()
+    }
+
+    func analyticsString() -> String {
+        let ranking = topFive.map { "\($0.rankNumber) \($0.contentName)" }
+        return "\(ranking.joined(separator: ", ")); \(shareCount) compart; \(mostCommonShareDay)"
     }
 }
 
