@@ -76,7 +76,7 @@ extension SoundDetailView {
             let stats: ContentShareCountStats
 
             var body: some View {
-                VStack(spacing: 30) {
+                VStack(spacing: .spacing(.xLarge)) {
                     HStack(spacing: 10) {
                         PodiumItem(
                             highlight: String.localizedStringWithFormat("%.0f", Double(stats.totalShareCount)),
