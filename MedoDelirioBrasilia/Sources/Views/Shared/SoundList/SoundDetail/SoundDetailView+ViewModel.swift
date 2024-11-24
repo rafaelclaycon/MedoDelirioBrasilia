@@ -5,7 +5,7 @@
 //  Created by Rafael Schmitt on 23/11/24.
 //
 
-import Foundation
+import SwiftUI
 
 extension SoundDetailView {
 
@@ -18,12 +18,13 @@ extension SoundDetailView {
         private let openReactionAction: (Reaction) -> Void
 
         @Published var isPlaying: Bool = false
+        @Published var soundStatistics: ContentStatisticsState<ContentShareCountStats> = .loading
+        @Published var reactionsState: LoadingState<[Reaction]> = .loading
         @Published var showAuthorSuggestionEmailAppPicker: Bool = false
         @Published var showReactionSuggestionEmailAppPicker: Bool = false
         @Published var didCopySupportAddressOnEmailPicker: Bool = false
-        @Published var showToastView: Bool = false
-        @Published var soundStatistics: ContentStatisticsState<ContentShareCountStats> = .loading
-        @Published var reactionsState: LoadingState<[Reaction]> = .loading
+
+        @Published var toast: Toast?
 
         // Alerts
         @Published var alertTitle: String = ""
@@ -82,6 +83,18 @@ extension SoundDetailView.ViewModel {
 
     func onRetryLoadReactionsSelected() async {
         await loadReactions()
+    }
+
+    func onSoundIdSelected() {
+        UIPasteboard.general.string = sound.id
+        toast = Toast(
+            message: "ID do som copiado com sucesso!",
+            type: .success
+        )
+    }
+
+    func onSupportEmailAddressCopiedSuccessfully() {
+        toast = Toast(message: Shared.Email.copyAddressSuccessMessage)
     }
 }
 

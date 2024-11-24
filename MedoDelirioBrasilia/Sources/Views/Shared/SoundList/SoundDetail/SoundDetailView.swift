@@ -82,8 +82,11 @@ struct SoundDetailView: View {
                         }
                     )
 
-                    InfoSection(sound: viewModel.sound)
-                        .padding(.horizontal, .spacing(.medium))
+                    InfoSection(
+                        sound: viewModel.sound,
+                        idSelectedAction: { viewModel.onSoundIdSelected() }
+                    )
+                    .padding(.horizontal, .spacing(.medium))
 
                     Spacer()
                 }
@@ -105,52 +108,25 @@ struct SoundDetailView: View {
                 .sheet(isPresented: $viewModel.showAuthorSuggestionEmailAppPicker) {
                     EmailAppPickerView(
                         isBeingShown: $viewModel.showAuthorSuggestionEmailAppPicker,
-                        didCopySupportAddress: $viewModel.didCopySupportAddressOnEmailPicker,
                         subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.sound.title),
-                        emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.sound.authorName ?? "", viewModel.sound.id)
+                        emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.sound.authorName ?? "", viewModel.sound.id),
+                        afterCopyAddressAction: {
+                            viewModel.onSupportEmailAddressCopiedSuccessfully()
+                        }
                     )
                 }
                 .sheet(isPresented: $viewModel.showReactionSuggestionEmailAppPicker) {
                     EmailAppPickerView(
                         isBeingShown: $viewModel.showReactionSuggestionEmailAppPicker,
-                        didCopySupportAddress: $viewModel.didCopySupportAddressOnEmailPicker,
                         subject: String(format: "Sugestão Para Adicionar '%@' a Uma Reação", viewModel.sound.title),
-                        emailBody: String(format: "As Reações expressam emoções, acontecimentos ou personalidades. Qual o nome da Reação nova ou existente na qual você acha que esse som se encaixa?")
+                        emailBody: String(format: "As Reações expressam emoções, acontecimentos ou personalidades. Qual o nome da Reação nova ou existente na qual você acha que esse som se encaixa?"),
+                        afterCopyAddressAction: {
+                            viewModel.onSupportEmailAddressCopiedSuccessfully()
+                        }
                     )
                 }
-                .onChange(of: viewModel.didCopySupportAddressOnEmailPicker) {
-                    if $0 {
-                        withAnimation {
-                            viewModel.showToastView = true
-                        }
-                        TapticFeedback.success()
-                        
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                            withAnimation {
-                                viewModel.showToastView = false
-                            }
-                        }
-                        
-                        viewModel.didCopySupportAddressOnEmailPicker = false
-                    }
-                }
             }
-            .overlay {
-                if viewModel.showToastView {
-                    VStack {
-                        Spacer()
-                        
-                        ToastView(
-                            icon: "checkmark",
-                            iconColor: .green,
-                            text: "E-mail de suporte copiado com sucesso."
-                        )
-                        .padding(.horizontal)
-                        .padding(.bottom, 15)
-                    }
-                    .transition(.moveAndFade)
-                }
-            }
+            .toast($viewModel.toast)
             .task {
                 await viewModel.onViewLoaded()
             }

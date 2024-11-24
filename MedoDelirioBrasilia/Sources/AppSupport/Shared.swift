@@ -74,7 +74,8 @@ struct Shared {
         
         static let suggestSongChangeSubject = "Sugestão de Alteração Para a Música '%@'"
         static let suggestSongChangeBody = "\n\n\nID do conteúdo: %@ (para uso interno)"
-        
+        static let copyAddressSuccessMessage = "E-mail copiado com sucesso."
+
         struct AskForNewSound {
             
             static let subject = "Pedido de som de %@"

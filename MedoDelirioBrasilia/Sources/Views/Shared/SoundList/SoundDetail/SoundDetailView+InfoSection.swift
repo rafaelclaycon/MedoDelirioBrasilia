@@ -12,6 +12,7 @@ extension SoundDetailView {
     struct InfoSection: View {
 
         let sound: Sound
+        let idSelectedAction: () -> Void
 
         var body: some View {
             VStack(alignment: .leading, spacing: 20) {
@@ -19,7 +20,10 @@ extension SoundDetailView {
                     .font(.title3)
                     .bold()
 
-                InfoBlock(sound: sound)
+                InfoBlock(
+                    sound: sound,
+                    idSelectedAction: idSelectedAction
+                )
             }
         }
     }
@@ -50,10 +54,14 @@ extension SoundDetailView {
     struct InfoBlock: View {
 
         let sound: Sound
+        let idSelectedAction: () -> Void
 
         var body: some View {
             VStack(spacing: 10) {
                 InfoLine(title: "ID", information: sound.id)
+                    .onTapGesture {
+                        idSelectedAction()
+                    }
 
                 Divider()
 

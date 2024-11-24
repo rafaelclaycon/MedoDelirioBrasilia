@@ -3,10 +3,10 @@ import SwiftUI
 struct EmailAppPickerView: View {
 
     @Binding var isBeingShown: Bool
-    @Binding var didCopySupportAddress: Bool
 
     let subject: String
     let emailBody: String
+    let afterCopyAddressAction: () -> Void
 
     var body: some View {
         NavigationView {
@@ -76,8 +76,8 @@ struct EmailAppPickerView: View {
                 Section("Outras opções") {
                     Button("Copiar endereço de e-mail") {
                         UIPasteboard.general.string = Mailman.supportEmail
-                        self.didCopySupportAddress = true
                         sendAnalytics(for: "copy address")
+                        afterCopyAddressAction()
                         self.isBeingShown = false
                     }
                 }
@@ -90,15 +90,6 @@ struct EmailAppPickerView: View {
                 }
             )
         }
-        .frame(
-            minWidth: 320,
-            idealWidth: 400,
-            maxWidth: nil,
-            minHeight: 150,
-            idealHeight: 300,
-            maxHeight: nil,
-            alignment: .top
-        )
     }
 
     private func sendAnalytics(for option: String) {
@@ -112,8 +103,8 @@ struct EmailAppPickerView: View {
 #Preview {
     EmailAppPickerView(
         isBeingShown: .constant(true),
-        didCopySupportAddress: .constant(false),
         subject: "",
-        emailBody: ""
+        emailBody: "",
+        afterCopyAddressAction: {}
     )
 }

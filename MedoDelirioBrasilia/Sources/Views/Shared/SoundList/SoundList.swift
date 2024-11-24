@@ -303,17 +303,17 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
                                     case .soundIssueEmailPicker:
                                         EmailAppPickerView(
                                             isBeingShown: $viewModel.showingModalView,
-                                            didCopySupportAddress: .constant(false),
                                             subject: Shared.issueSuggestionEmailSubject,
-                                            emailBody: Shared.issueSuggestionEmailBody
+                                            emailBody: Shared.issueSuggestionEmailBody,
+                                            afterCopyAddressAction: {}
                                         )
 
                                     case .authorIssueEmailPicker(let sound):
                                         EmailAppPickerView(
                                             isBeingShown: $viewModel.showingModalView,
-                                            didCopySupportAddress: .constant(false),
                                             subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, sound.title),
-                                            emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, sound.authorName ?? "", sound.id)
+                                            emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, sound.authorName ?? "", sound.id),
+                                            afterCopyAddressAction: {}
                                         )
                                     }
                                 }
