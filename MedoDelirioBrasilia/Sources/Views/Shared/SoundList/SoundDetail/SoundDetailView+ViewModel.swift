@@ -16,6 +16,8 @@ extension SoundDetailView {
         private let openAuthorDetailsAction: (Author) -> Void
         internal let authorId: String?
         private let openReactionAction: (Reaction) -> Void
+        private let reactionId: String?
+        private let dismissAction: () -> Void
 
         @Published var isPlaying: Bool = false
         @Published var soundStatistics: ContentStatisticsState<ContentShareCountStats> = .loading
@@ -37,12 +39,16 @@ extension SoundDetailView {
             sound: Sound,
             openAuthorDetailsAction: @escaping (Author) -> Void,
             authorId: String?,
-            openReactionAction: @escaping (Reaction) -> Void
+            openReactionAction: @escaping (Reaction) -> Void,
+            reactionId: String?,
+            dismissAction: @escaping () -> Void
         ) {
             self.sound = sound
             self.openAuthorDetailsAction = openAuthorDetailsAction
             self.authorId = authorId
             self.openReactionAction = openReactionAction
+            self.reactionId = reactionId
+            self.dismissAction = dismissAction
         }
     }
 }
@@ -74,7 +80,11 @@ extension SoundDetailView.ViewModel {
     }
 
     func onReactionSelected(reaction: Reaction) {
-        openReactionAction(reaction)
+        if reaction.id == reactionId {
+            dismissAction()
+        } else {
+            openReactionAction(reaction)
+        }
     }
 
     func onSuggestAddToReactionSelected() {

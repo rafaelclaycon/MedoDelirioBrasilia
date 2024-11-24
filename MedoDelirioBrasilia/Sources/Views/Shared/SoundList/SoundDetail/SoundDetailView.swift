@@ -28,14 +28,18 @@ struct SoundDetailView: View {
         sound: Sound,
         openAuthorDetailsAction: @escaping (Author) -> Void,
         authorId: String?,
-        openReactionAction: @escaping (Reaction) -> Void
+        openReactionAction: @escaping (Reaction) -> Void,
+        reactionId: String?,
+        dismissAction: @escaping () -> Void
     ) {
         self._viewModel = StateObject(
             wrappedValue: ViewModel(
                 sound: sound,
                 openAuthorDetailsAction: openAuthorDetailsAction,
                 authorId: authorId,
-                openReactionAction: openReactionAction
+                openReactionAction: openReactionAction,
+                reactionId: reactionId,
+                dismissAction: dismissAction
             )
         )
     }
@@ -191,6 +195,8 @@ extension SoundDetailView {
         ),
         openAuthorDetailsAction: { _ in },
         authorId: nil,
-        openReactionAction: { _ in }
+        openReactionAction: { _ in },
+        reactionId: nil,
+        dismissAction: {}
     )
 }

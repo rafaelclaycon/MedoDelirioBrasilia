@@ -32,7 +32,8 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
     private var syncAction: (() -> Void)?
     private var showNewTag: Bool
     private var dataLoadingDidFail: Bool
-    private var authorId: String?
+    private let authorId: String?
+    private let reactionId: String?
 
     @ViewBuilder private let headerView: HeaderView?
     @ViewBuilder private let loadingView: LoadingView
@@ -89,6 +90,7 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
         showNewTag: Bool = true,
         dataLoadingDidFail: Bool,
         authorId: String? = nil,
+        reactionId: String? = nil,
         headerView: (() -> HeaderView)? = nil,
         loadingView: LoadingView,
         emptyStateView: EmptyStateView,
@@ -105,6 +107,7 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
         self.showNewTag = showNewTag
         self.dataLoadingDidFail = dataLoadingDidFail
         self.authorId = authorId
+        self.reactionId = reactionId
         self.headerView = headerView?()
         self.loadingView = loadingView
         self.emptyStateView = emptyStateView
@@ -297,7 +300,9 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
                                             openReactionAction: { reaction in
                                                 viewModel.showingModalView.toggle()
                                                 push(GeneralNavigationDestination.reactionDetail(reaction))
-                                            }
+                                            },
+                                            reactionId: reactionId,
+                                            dismissAction: { viewModel.showingModalView = false }
                                         )
 
                                     case .soundIssueEmailPicker:
