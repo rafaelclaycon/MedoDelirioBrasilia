@@ -18,7 +18,8 @@ extension SoundDetailView {
         private let openReactionAction: (Reaction) -> Void
 
         @Published var isPlaying: Bool = false
-        @Published var showSuggestOtherAuthorEmailAppPicker: Bool = false
+        @Published var showAuthorSuggestionEmailAppPicker: Bool = false
+        @Published var showReactionSuggestionEmailAppPicker: Bool = false
         @Published var didCopySupportAddressOnEmailPicker: Bool = false
         @Published var showToastView: Bool = false
         @Published var soundStatistics: ContentStatisticsState<ContentShareCountStats> = .loading
@@ -64,7 +65,7 @@ extension SoundDetailView.ViewModel {
     }
 
     func onEditAuthorSelected() {
-        showSuggestOtherAuthorEmailAppPicker = true
+        showAuthorSuggestionEmailAppPicker = true
     }
 
     func onRetryLoadStatisticsSelected() async {
@@ -76,7 +77,7 @@ extension SoundDetailView.ViewModel {
     }
 
     func onSuggestAddToReactionSelected() {
-        showSuggestOtherAuthorEmailAppPicker = true
+        showReactionSuggestionEmailAppPicker = true
     }
 
     func onRetryLoadReactionsSelected() async {
