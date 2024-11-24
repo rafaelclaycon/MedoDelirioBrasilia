@@ -56,7 +56,7 @@ extension SoundDetailView {
                             HStack(spacing: 15) {
                                 ForEach(reactions) { reaction in
                                     ReactionItem(reaction: reaction)
-                                        .frame(width: 180)
+                                        .frame(width: UIDevice.isiPhone ? 180 : 200)
                                         .onTapGesture {
                                             openReactionAction(reaction)
                                         }
