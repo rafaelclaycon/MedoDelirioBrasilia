@@ -32,7 +32,8 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
     private var syncAction: (() -> Void)?
     private var showNewTag: Bool
     private var dataLoadingDidFail: Bool
-    private var authorId: String?
+    private let authorId: String?
+    private let reactionId: String?
 
     @ViewBuilder private let headerView: HeaderView?
     @ViewBuilder private let loadingView: LoadingView
@@ -89,6 +90,7 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
         showNewTag: Bool = true,
         dataLoadingDidFail: Bool,
         authorId: String? = nil,
+        reactionId: String? = nil,
         headerView: (() -> HeaderView)? = nil,
         loadingView: LoadingView,
         emptyStateView: EmptyStateView,
@@ -105,6 +107,7 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
         self.showNewTag = showNewTag
         self.dataLoadingDidFail = dataLoadingDidFail
         self.authorId = authorId
+        self.reactionId = reactionId
         self.headerView = headerView?()
         self.loadingView = loadingView
         self.emptyStateView = emptyStateView
@@ -293,23 +296,29 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
                                                 viewModel.showingModalView.toggle()
                                                 push(GeneralNavigationDestination.authorDetail(author))
                                             },
-                                            authorId: authorId
+                                            authorId: authorId,
+                                            openReactionAction: { reaction in
+                                                viewModel.showingModalView.toggle()
+                                                push(GeneralNavigationDestination.reactionDetail(reaction))
+                                            },
+                                            reactionId: reactionId,
+                                            dismissAction: { viewModel.showingModalView = false }
                                         )
 
                                     case .soundIssueEmailPicker:
                                         EmailAppPickerView(
                                             isBeingShown: $viewModel.showingModalView,
-                                            didCopySupportAddress: .constant(false),
                                             subject: Shared.issueSuggestionEmailSubject,
-                                            emailBody: Shared.issueSuggestionEmailBody
+                                            emailBody: Shared.issueSuggestionEmailBody,
+                                            afterCopyAddressAction: {}
                                         )
 
                                     case .authorIssueEmailPicker(let sound):
                                         EmailAppPickerView(
                                             isBeingShown: $viewModel.showingModalView,
-                                            didCopySupportAddress: .constant(false),
                                             subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, sound.title),
-                                            emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, sound.authorName ?? "", sound.id)
+                                            emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, sound.authorName ?? "", sound.id),
+                                            afterCopyAddressAction: {}
                                         )
                                     }
                                 }

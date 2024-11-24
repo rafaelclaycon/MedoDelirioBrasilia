@@ -54,6 +54,7 @@ struct ReactionDetailView: View {
                 soundSearchTextIsEmpty: .constant(nil),
                 showNewTag: false,
                 dataLoadingDidFail: viewModel.dataLoadingDidFail,
+                reactionId: viewModel.reaction.id,
                 headerView: {
                     ReactionDetailHeader(
                         title: viewModel.reaction.title,

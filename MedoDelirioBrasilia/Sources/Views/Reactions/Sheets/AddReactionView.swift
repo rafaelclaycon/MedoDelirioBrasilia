@@ -9,8 +9,8 @@ import SwiftUI
 
 struct AddReactionView: View {
 
-    @State private var showPopover: Bool = false
-    @State private var didCopySupportAddressOnEmailPicker: Bool = false
+    @State private var showEmailAppPicker: Bool = false
+    @State private var toast: Toast?
 
     @Environment(\.dismiss) var dismiss
 
@@ -32,7 +32,7 @@ struct AddReactionView: View {
                         .multilineTextAlignment(.center)
 
                     Button {
-                        showPopover.toggle()
+                        showEmailAppPicker.toggle()
                     } label: {
                         HStack {
                             Spacer()
@@ -52,33 +52,17 @@ struct AddReactionView: View {
                     }
                 }
             }
-            .sheet(isPresented: $showPopover) {
+            .toast($toast)
+            .sheet(isPresented: $showEmailAppPicker) {
                 EmailAppPickerView(
-                    isBeingShown: $showPopover,
-                    didCopySupportAddress: $didCopySupportAddressOnEmailPicker,
+                    isBeingShown: $showEmailAppPicker,
                     subject: Shared.Email.Reactions.suggestChangesSubject,
-                    emailBody: Shared.Email.Reactions.suggestChangesBody
+                    emailBody: Shared.Email.Reactions.suggestChangesBody,
+                    afterCopyAddressAction: {
+                        toast = Toast(message: Shared.Email.copyAddressSuccessMessage)
+                    }
                 )
             }
-//            .onChange(of: showPopover) { showPopover in
-//                if showPopover == false {
-//                    if didCopySupportAddressOnEmailPicker {
-//                        toastType = .email
-//                        withAnimation {
-//                            showToastView = true
-//                        }
-//                        TapticFeedback.success()
-//
-//                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-//                            withAnimation {
-//                                showToastView = false
-//                            }
-//                        }
-//
-//                        didCopySupportAddressOnEmailPicker = false
-//                    }
-//                }
-//            }
         }
     }
 }

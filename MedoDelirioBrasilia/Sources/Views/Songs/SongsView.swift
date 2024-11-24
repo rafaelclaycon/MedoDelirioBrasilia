@@ -185,10 +185,12 @@ struct SongsView: View {
                 viewModel.iPadShareSheet
             }
             .sheet(isPresented: $viewModel.showEmailAppPicker_suggestChangeConfirmationDialog) {
-                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_suggestChangeConfirmationDialog,
-                                   didCopySupportAddress: .constant(false),
-                                   subject: String(format: Shared.Email.suggestSongChangeSubject, viewModel.selectedSong?.title ?? ""),
-                                   emailBody: String(format: Shared.Email.suggestSongChangeBody, viewModel.selectedSong?.id ?? ""))
+                EmailAppPickerView(
+                    isBeingShown: $viewModel.showEmailAppPicker_suggestChangeConfirmationDialog,
+                    subject: String(format: Shared.Email.suggestSongChangeSubject, viewModel.selectedSong?.title ?? ""),
+                    emailBody: String(format: Shared.Email.suggestSongChangeBody, viewModel.selectedSong?.id ?? ""),
+                    afterCopyAddressAction: {}
+                )
             }
             .sheet(isPresented: $showingModalView) {
                 switch subviewToOpen {
@@ -205,10 +207,12 @@ struct SongsView: View {
                 }
             }
             .sheet(isPresented: $viewModel.showEmailAppPicker_songUnavailableConfirmationDialog) {
-                EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_songUnavailableConfirmationDialog,
-                                   didCopySupportAddress: .constant(false),
-                                   subject: Shared.issueSuggestionEmailSubject,
-                                   emailBody: Shared.issueSuggestionEmailBody)
+                EmailAppPickerView(
+                    isBeingShown: $viewModel.showEmailAppPicker_songUnavailableConfirmationDialog,
+                    subject: Shared.issueSuggestionEmailSubject,
+                    emailBody: Shared.issueSuggestionEmailBody,
+                    afterCopyAddressAction: {}
+                )
             }
             .alert(isPresented: $viewModel.showAlert) {
                 switch viewModel.alertType {
