@@ -1,5 +1,5 @@
 //
-//  EpisodeView.swift
+//  EpisodesView.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Claycon Schmitt on 25/10/22.
@@ -7,15 +7,20 @@
 
 import SwiftUI
 
-struct EpisodeView: View {
+struct EpisodesView: View {
+
+    @Environment(\.push) var push
 
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                NotAPlayerBanner()
+                //NotAPlayerBanner()
 
                 ForEach(getLocalEpisodes()) { episode in
-                    EpisodeCell(viewModel: EpisodeCellViewModel(episode: episode))
+                    EpisodeItem(episode: episode)
+                        .onTapGesture {
+                            push(GeneralNavigationDestination.episodeDetail(episode))
+                        }
                 }
             }
             .navigationTitle("Episódios")
@@ -67,7 +72,7 @@ struct EpisodeView: View {
 
 // MARK: - Subviews
 
-extension EpisodeView {
+extension EpisodesView {
 
     struct NotAPlayerBanner: View {
 
@@ -98,5 +103,5 @@ extension EpisodeView {
 // MARK: - Preview
 
 #Preview {
-    EpisodeView()
+    EpisodesView()
 }

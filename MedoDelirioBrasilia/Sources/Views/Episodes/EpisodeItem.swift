@@ -1,5 +1,5 @@
 //
-//  EpisodeCell.swift
+//  EpisodeItem.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Claycon Schmitt on 26/10/22.
@@ -7,23 +7,27 @@
 
 import SwiftUI
 
-struct EpisodeCell: View {
+struct EpisodeItem: View {
 
-    @StateObject var viewModel: EpisodeCellViewModel
-    
+    let episode: Episode
+
+    private var dateAndDuration: String {
+        (episode.pubDate.iso8601withFractionalSeconds?.asShortString() ?? .empty)  + " · " + episode.duration.toDisplayString()
+    }
+
     var body: some View {
         VStack {
             HStack {
                 VStack(alignment: .leading, spacing: 10) {
-                    Text(viewModel.title)
+                    Text(episode.title)
                         .font(.headline)
                     
-                    Text(viewModel.description)
+                    Text(episode.description)
                         .foregroundColor(.gray)
                         .font(.subheadline)
                         .lineLimit(2)
                     
-                    Text(viewModel.subtitle)
+                    Text(dateAndDuration)
                         .bold()
                         .font(.footnote)
                 }
@@ -34,7 +38,7 @@ struct EpisodeCell: View {
             
             HStack(spacing: 20) {
                 Button {
-                    //Opener.open(link: viewModel.spotifyLink)
+                    //Opener.open(link: episode.spotifyLink)
                 } label: {
                     Image("spotify")
                         .renderingMode(.template)
@@ -47,7 +51,7 @@ struct EpisodeCell: View {
                 .buttonBorderShape(.roundedRectangle)
                 
                 Button {
-                    //Opener.open(link: viewModel.applePodcastsLink)
+                    //Opener.open(link: episode.applePodcastsLink)
                 } label: {
                     Image("apple_podcasts")
                         .resizable()
@@ -63,7 +67,7 @@ struct EpisodeCell: View {
                 .buttonBorderShape(.roundedRectangle)
                 
                 Button {
-                    //Opener.open(link: viewModel.pocketCastsLink)
+                    //Opener.open(link: episode.pocketCastsLink)
                 } label: {
                     Image("pocket_casts")
                         .resizable()
@@ -84,28 +88,19 @@ struct EpisodeCell: View {
             .padding(.top, 2)
         }
     }
-
 }
 
-struct EpisodeCell_Previews: PreviewProvider {
+// MARK: Preview
 
-    static var previews: some View {
-        Group {
-            EpisodeCell(viewModel: EpisodeCellViewModel(episode: Episode(episodeId: "123",
-                                                                         title: "Dias 1.390, 1.391 e 1.392 | Bob e Jeff em Comendador Levy Gasparian | Dias 21, 22 e 23/10/22",
-                                                                         description: "Bob Jeff in the sky with grenades.",
-                                                                         pubDate: "2022-12-15T05:47:52.000Z",
-                                                                         duration: 300,
-                                                                         creationDate: .empty)))
-            
-            EpisodeCell(viewModel: EpisodeCellViewModel(episode: Episode(episodeId: "456",
-                                                                         title: "Dias 1.386 a 1.389 | A indiscrição que comove | 17 a 20/10/22",
-                                                                         description: "Conrado Hubner Mendes e o Curriculum Vitae de Bolsonaro, um dossiê; Dê de presente nosso futuro livro em www.averdadevoslibertara.com.br; Militares e eleições; Bolsonaro, mais ministros no STF; Guedes e o salário mínimo.",
-                                                                         pubDate: "2022-12-15T05:47:52.000Z",
-                                                                         duration: 3600,
-                                                                         creationDate: .empty)))
-        }
-        .previewLayout(.fixed(width: 350, height: 100))
-    }
-
+#Preview {
+    EpisodeItem(
+        episode: Episode(
+            episodeId: "123",
+            title: "Dias 1.390, 1.391 e 1.392 | Bob e Jeff em Comendador Levy Gasparian | Dias 21, 22 e 23/10/22",
+            description: "Bob Jeff in the sky with grenades.",
+            pubDate: "2022-12-15T05:47:52.000Z",
+            duration: 300,
+            creationDate: .empty
+        )
+    )
 }

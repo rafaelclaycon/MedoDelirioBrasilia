@@ -17,6 +17,7 @@ struct MainView: View {
     @State private var reactionsPath = NavigationPath()
     @State private var authorsPath = NavigationPath()
     @State private var foldersPath = NavigationPath()
+    @State private var episodesPath = NavigationPath()
 
     @State private var isShowingSettingsSheet: Bool = false
     @StateObject private var settingsHelper = SettingsHelper()
@@ -92,14 +93,18 @@ struct MainView: View {
                     }
                     .tag(PhoneTab.songs)
 
-                    NavigationView {
-                        EpisodeView()
+                    NavigationStack(path: $episodesPath) {
+                        EpisodesView()
+                            .navigationDestination(for: GeneralNavigationDestination.self) { screen in
+                                GeneralRouter(destination: screen)
+                            }
                     }
                     .tabItem {
                         Label("Episódios", systemImage: "rectangle.stack.fill")
                     }
                     //.tag(PhoneTab.songs)
-                    
+                    .environment(\.push, PushAction { episodesPath.append($0) })
+
                     NavigationView {
                         TrendsView(
                             tabSelection: $tabSelection,
