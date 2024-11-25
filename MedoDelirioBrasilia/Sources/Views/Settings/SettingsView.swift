@@ -25,7 +25,6 @@ struct SettingsView: View {
     @State private var donors: [Donor]? = nil
 
     @State private var showEmailClientConfirmationDialog: Bool = false
-    @State private var didCopySupportAddressOnEmailPicker: Bool = false
 
     @State private var showLargeCreatorImage: Bool = false
 
@@ -190,35 +189,28 @@ struct SettingsView: View {
             .sheet(isPresented: $showEmailClientConfirmationDialog) {
                 EmailAppPickerView(
                     isBeingShown: $showEmailClientConfirmationDialog,
-                    didCopySupportAddress: $didCopySupportAddressOnEmailPicker,
                     subject: Shared.issueSuggestionEmailSubject,
-                    emailBody: Shared.issueSuggestionEmailBody
-                )
-            }
-            .onChange(of: showEmailClientConfirmationDialog) { showEmailClientConfirmationDialog in
-                if showEmailClientConfirmationDialog == false {
-                    if didCopySupportAddressOnEmailPicker {
+                    emailBody: Shared.issueSuggestionEmailBody,
+                    afterCopyAddressAction: {
                         toastType = .email
                         withAnimation {
                             showToastView = true
                         }
                         TapticFeedback.success()
-                        
+
                         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                             withAnimation {
                                 showToastView = false
                             }
                         }
-                        
-                        didCopySupportAddressOnEmailPicker = false
                     }
-                }
+                )
             }
-            
+
             if showLargeCreatorImage {
                 LargeCreatorView(showLargeCreatorImage: $showLargeCreatorImage)
             }
-            
+
             if showToastView {
                 VStack {
                     Spacer()

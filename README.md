@@ -18,17 +18,16 @@ GIF demos below (they may take a while to load due to size).
 
 ## Top Features
 
-1. Play and share sounds and songs from the podcast.
-1. View a top 10 ranking of the audience's most shared sounds from multiple timeframes on the Trends tab.
-1. Favorite sounds.
-1. View sounds grouped by author.
-1. Select multiple sounds at once to add to Favorites or to a folder.
-1. Group sounds into Folders for easy access (just like tagging).
-1. Share content as video on your socials (reply to people with memes).
-1. Support for iPhone, iPad, Apple Silicon Macs, and Apple Vision Pro.
-1. Dark Mode support.
-1. New content delivered by an entirely Swift sync system.
-
+1. **Play and Share Sounds:** Access and share sounds and songs from the podcast effortlessly.
+1. **Discover Trends:** Explore the audience's top 10 most-shared sounds across various timeframes in the **Trends** tab.
+1. **React with Ease:** Find perfect responses for group chats in the **Reactions** tab, featuring sounds categorized by emotions, famous characters, and current events.
+1. **Favorites Made Easy:** Save and access your favorite sounds quickly.
+1. **Organized by Author:** Browse sounds conveniently grouped by their creators.
+1. **Multi-Sound Actions:** Select multiple sounds at once to add them to Favorites or organize into Folders.
+1. **Folders for Organization:** Group sounds into folders for easy access—just like tagging!
+1. **Social Media Sharing:** Create and share videos for your socials, perfect for meme-worthy replies.
+1. **Cross-Device Support:** Fully optimized for iPhone, iPad, and Apple Silicon Macs.
+1. **Fast, Private Sync:** Enjoy fast updates and total privacy with our custom-built sync system designed entirely in Swift.
 
 ## How to run the project
 

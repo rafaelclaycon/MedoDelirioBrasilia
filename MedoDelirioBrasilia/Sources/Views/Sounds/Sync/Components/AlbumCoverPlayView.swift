@@ -11,12 +11,16 @@ struct AlbumCoverPlayView: View {
 
     @Binding var isPlaying: Bool
 
-    private let regularGradient = LinearGradient(gradient: Gradient(colors: [.green, .green, .brightYellow]), startPoint: .topTrailing, endPoint: .bottomLeading)
+    private let regularGradient = LinearGradient(
+        gradient: Gradient(colors: [.green, .green, .brightYellow]),
+        startPoint: .topTrailing,
+        endPoint: .bottomLeading
+    )
 
     var body: some View {
         RoundedRectangle(cornerRadius: 15)
             .fill(regularGradient)
-            .frame(width: 200, height: 200)
+            .frame(width: 180, height: 180)
             .blur(radius: 2)
             .overlay {
                 Image(systemName: isPlaying ? "pause.circle.fill" : "play.circle.fill")
@@ -28,8 +32,8 @@ struct AlbumCoverPlayView: View {
     }
 }
 
-struct AlbumCoverPlayView_Previews: PreviewProvider {
-    static var previews: some View {
-        AlbumCoverPlayView(isPlaying: .constant(false))
-    }
+// MARK: - Preview
+
+#Preview {
+    AlbumCoverPlayView(isPlaying: .constant(false))
 }

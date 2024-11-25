@@ -40,6 +40,7 @@ class MainSoundContainerViewModel: ObservableObject {
     // Sync
     private let syncManager: SyncManager
     private let syncValues: SyncValues
+    private let isAllowedToSync: Bool
 
     // MARK: - Computed Properties
 
@@ -62,7 +63,8 @@ class MainSoundContainerViewModel: ObservableObject {
         soundSortOption: Int,
         authorSortOption: Int,
         currentSoundsListMode: Binding<SoundsListMode>,
-        syncValues: SyncValues
+        syncValues: SyncValues,
+        isAllowedToSync: Bool = true
     ) {
         self.currentViewMode = currentViewMode
         self.soundSortOption = soundSortOption
@@ -78,6 +80,7 @@ class MainSoundContainerViewModel: ObservableObject {
             logger: Logger.shared
         )
         self.syncValues = syncValues
+        self.isAllowedToSync = isAllowedToSync
         self.syncManager.delegate = self
     }
 
@@ -265,6 +268,9 @@ extension MainSoundContainerViewModel: SyncManagerDelegate {
 
     func sync(lastAttempt: String) async {
         print("lastAttempt: \(lastAttempt)")
+
+        guard isAllowedToSync else { return }
+
         guard
             CommandLine.arguments.contains("-IGNORE_2_MINUTE_SYNC_INTERVAL") ||
             lastAttempt == "" ||
@@ -274,16 +280,13 @@ extension MainSoundContainerViewModel: SyncManagerDelegate {
                 syncValues.syncStatus = .done
             }
 
-            var message = "Aguarde \(lastAttempt.minutesAndSecondsFromNow) para atualizar novamente."
-            if UserSettings().getShowUpdateDateOnUI() {
-                message += " \(LocalDatabase.shared.dateTimeOfLastUpdate())"
-            }
+            let message = "Aguarde \(lastAttempt.minutesAndSecondsFromNow) para atualizar novamente."
 
             return displayToast(
                 "clock.fill",
                 .orange,
                 toastText: message,
-                displayTime: .seconds(UserSettings().getShowUpdateDateOnUI() ? 10 : 3)
+                displayTime: .seconds(3)
             )
         }
 
@@ -291,17 +294,30 @@ extension MainSoundContainerViewModel: SyncManagerDelegate {
 
         firstRunSyncHappened = true
 
-        var message = syncValues.syncStatus.description
-        if UserSettings().getShowUpdateDateOnUI() {
-            message += " \(LocalDatabase.shared.dateTimeOfLastUpdate())"
-        }
+        let message = syncValues.syncStatus.description
 
         displayToast(
             syncValues.syncStatus == .done ? "checkmark" : "exclamationmark.triangle.fill",
             syncValues.syncStatus == .done ? .green : .orange,
             toastText: message,
-            displayTime: .seconds(UserSettings().getShowUpdateDateOnUI() ? 10 : 3)
+            displayTime: .seconds(3)
         )
+    }
+
+    // Warm open means the app was reopened before it left memory.
+    func warmOpenSync() async {
+        guard isAllowedToSync else { return }
+
+        let lastUpdateAttempt = AppPersistentMemory().getLastUpdateAttempt()
+        print("lastUpdateAttempt: \(lastUpdateAttempt)")
+        guard
+            syncValues.syncStatus != .updating,
+            let date = lastUpdateAttempt.iso8601withFractionalSeconds,
+            date.minutesPassed(60)
+        else { return }
+
+        print("WILL WARM OPEN SYNC")
+        await sync(lastAttempt: lastUpdateAttempt)
     }
 
     nonisolated func set(totalUpdateCount: Int) {

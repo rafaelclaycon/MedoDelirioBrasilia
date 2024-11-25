@@ -133,7 +133,7 @@ struct AuthorDetailView: View {
 
         let soundListViewModel = SoundListViewModel<[Sound]>(
             data: viewModel.soundsPublisher,
-            menuOptions: [.sharingOptions(), .organizingOptions(), .authorOptions()],
+            menuOptions: [.sharingOptions(), .organizingOptions(), .playFromThisSound(), .authorOptions()],
             currentSoundsListMode: currentSoundsListMode
         )
         self._soundListViewModel = StateObject(wrappedValue: soundListViewModel)
@@ -302,22 +302,28 @@ struct AuthorDetailView: View {
             )
         }
         .sheet(isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog) {
-            EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog,
-                               didCopySupportAddress: .constant(false),
-                               subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.selectedSound?.title ?? ""),
-                               emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.selectedSound?.authorName ?? "", viewModel.selectedSound?.id ?? ""))
+            EmailAppPickerView(
+                isBeingShown: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog,
+                subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.selectedSound?.title ?? ""),
+                emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.selectedSound?.authorName ?? "", viewModel.selectedSound?.id ?? ""),
+                afterCopyAddressAction: {}
+            )
         }
         .sheet(isPresented: $viewModel.showEmailAppPicker_askForNewSound) {
-            EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_askForNewSound,
-                               didCopySupportAddress: .constant(false),
-                               subject: String(format: Shared.Email.AskForNewSound.subject, self.author.name),
-                               emailBody: Shared.Email.AskForNewSound.body)
+            EmailAppPickerView(
+                isBeingShown: $viewModel.showEmailAppPicker_askForNewSound,
+                subject: String(format: Shared.Email.AskForNewSound.subject, self.author.name),
+                emailBody: Shared.Email.AskForNewSound.body,
+                afterCopyAddressAction: {}
+            )
         }
         .sheet(isPresented: $viewModel.showEmailAppPicker_reportAuthorDetailIssue) {
-            EmailAppPickerView(isBeingShown: $viewModel.showEmailAppPicker_reportAuthorDetailIssue,
-                               didCopySupportAddress: .constant(false),
-                               subject: String(format: Shared.Email.AuthorDetailIssue.subject, self.author.name),
-                               emailBody: Shared.Email.AuthorDetailIssue.body)
+            EmailAppPickerView(
+                isBeingShown: $viewModel.showEmailAppPicker_reportAuthorDetailIssue,
+                subject: String(format: Shared.Email.AuthorDetailIssue.subject, self.author.name),
+                emailBody: Shared.Email.AuthorDetailIssue.body,
+                afterCopyAddressAction: {}
+            )
         }
         .onChange(of: showingAddToFolderModal) { showingAddToFolderModal in
             if (showingAddToFolderModal == false) && hadSuccessAddingToFolder {

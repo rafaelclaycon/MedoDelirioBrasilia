@@ -52,7 +52,7 @@ struct FolderDetailView: View {
 
         let soundListViewModel = SoundListViewModel<[Sound]>(
             data: viewModel.soundsPublisher,
-            menuOptions: [.sharingOptions(), /*.playFromThisSound(),*/ .removeFromFolder()],
+            menuOptions: [.sharingOptions(), .playFromThisSound(), .removeFromFolder()],
             currentSoundsListMode: currentSoundsListMode,
             refreshAction: { viewModel.reloadSounds() },
             insideFolder: folder

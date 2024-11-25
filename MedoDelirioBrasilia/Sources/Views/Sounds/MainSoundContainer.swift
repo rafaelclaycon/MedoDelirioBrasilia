@@ -13,7 +13,7 @@ struct MainSoundContainer: View {
     @StateObject private var allSoundsViewModel: SoundListViewModel<[Sound]>
     @StateObject private var favoritesViewModel: SoundListViewModel<[Sound]>
     private var currentSoundsListMode: Binding<SoundsListMode>
-    private var showSettings: Binding<Bool>
+    private let openSettingsAction: () -> Void
 
     @State private var subviewToOpen: MainSoundContainerModalToOpen = .syncInfo
     @State private var showingModalView = false
@@ -31,6 +31,10 @@ struct MainSoundContainer: View {
 
     // Temporary banners
     @State private var shouldDisplayRecurringDonationBanner: Bool = false
+
+    // Retro 2024
+    @State private var showRetroBanner: Bool = false
+    @State private var showClassicRetroView: Bool = false
 
     // MARK: - Environment Objects
 
@@ -77,7 +81,7 @@ struct MainSoundContainer: View {
     init(
         viewModel: MainSoundContainerViewModel,
         currentSoundsListMode: Binding<SoundsListMode>,
-        showSettings: Binding<Bool>
+        openSettingsAction: @escaping () -> Void
     ) {
         self._viewModel = StateObject(wrappedValue: viewModel)
         self._allSoundsViewModel = StateObject(wrappedValue: SoundListViewModel<[Sound]>(
@@ -93,7 +97,7 @@ struct MainSoundContainer: View {
             refreshAction: { viewModel.reloadFavorites() }
         ))
         self.currentSoundsListMode = currentSoundsListMode
-        self.showSettings = showSettings
+        self.openSettingsAction = openSettingsAction
     }
 
     // MARK: - View Body
@@ -125,10 +129,26 @@ struct MainSoundContainer: View {
                                 .padding(.horizontal, 10)
                             }
 
-                            //                            if shouldDisplayRecurringDonationBanner, viewModel.searchText.isEmpty {
-                            //                                RecurringDonationBanner(isBeingShown: $shouldDisplayRecurringDonationBanner)
-                            //                                    .padding(.horizontal, 10)
-                            //                            }
+                            if
+                                showRetroBanner,
+                                (soundSearchTextIsEmpty ?? false),
+                                !AppPersistentMemory().hasDismissedRetro2024Banner()
+                            {
+                                Retro2024Banner(
+                                    isBeingShown: $showRetroBanner,
+                                    openStoriesAction: { showClassicRetroView = true },
+                                    showCloseButton: true
+                                )
+                                .padding(.horizontal, 15)
+                                .padding(.bottom, 10)
+                            }
+
+//                            if shouldDisplayRecurringDonationBanner, viewModel.searchText.isEmpty {
+//                                RecurringDonationBanner(
+//                                    isBeingShown: $shouldDisplayRecurringDonationBanner
+//                                )
+//                                .padding(.horizontal, 10)
+//                            }
                         }
                     },
                     loadingView:
@@ -209,7 +229,17 @@ struct MainSoundContainer: View {
         }
         .navigationTitle(Text(title))
         .navigationBarItems(
-            leading: leadingToolbarControls(),
+            leading: LeadingToolbarControls(
+                isSelecting: currentSoundsListMode.wrappedValue == .selection,
+                cancelAction: {
+                    if viewModel.currentViewMode == .allSounds {
+                        allSoundsViewModel.stopSelecting()
+                    } else {
+                        favoritesViewModel.stopSelecting()
+                    }
+                },
+                openSettingsAction: openSettingsAction
+            ),
             trailing: trailingToolbarControls()
         )
         .onChange(of: viewModel.processedUpdateNumber) { _ in
@@ -230,6 +260,24 @@ struct MainSoundContainer: View {
                 lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
             )
         }
+        .sheet(isPresented: $showClassicRetroView) {
+            ClassicRetroView(
+                imageSaveSucceededAction: { exportAnalytics in
+                    allSoundsViewModel.displayToast(
+                        toastText: Shared.Retro.successMessage,
+                        displayTime: .seconds(5)
+                    )
+
+                    Analytics().send(
+                        originatingScreen: "MainSoundContainer",
+                        action: "didExportRetro2024Images(\(exportAnalytics))"
+                    )
+                }
+            )
+        }
+//        .fullScreenCover(isPresented: $showRetroModalView) {
+//            StoriesView()
+//        }
         .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in // iPad - Settings explicit toggle.
             if shouldUpdate {
                 viewModel.reloadAllSounds()
@@ -282,47 +330,50 @@ struct MainSoundContainer: View {
             viewModel.reloadAllSounds()
             viewModel.reloadFavorites()
             favoritesViewModel.loadFavorites()
+
+            Task {
+                showRetroBanner = await ClassicRetroView.ViewModel.shouldDisplayBanner()
+            }
         }
         .onChange(of: scenePhase) { newPhase in
             if newPhase == .active {
-                let lastUpdateAttempt = AppPersistentMemory().getLastUpdateAttempt()
-                guard
-                    let date = lastUpdateAttempt.iso8601withFractionalSeconds,
-                    date.minutesPassed(60)
-                else { return }
                 Task {
-                    await viewModel.sync(lastAttempt: lastUpdateAttempt)
+                    await viewModel.warmOpenSync()
+                    print("DID FINISH WARM OPEN SYNC")
                 }
             }
         }
     }
 }
 
-// MARK: - Auxiliary Views
+// MARK: - Subviews
 
 extension MainSoundContainer {
 
-    @ViewBuilder func leadingToolbarControls() -> some View {
-        if currentSoundsListMode.wrappedValue == .selection {
-            Button {
-                if viewModel.currentViewMode == .allSounds {
-                    allSoundsViewModel.stopSelecting()
-                } else {
-                    favoritesViewModel.stopSelecting()
-                }
-            } label: {
-                Text("Cancelar")
-                    .bold()
-            }
-        } else {
-            if UIDevice.isiPhone {
+    struct LeadingToolbarControls: View {
+
+        let isSelecting: Bool
+        let cancelAction: () -> Void
+        let openSettingsAction: () -> Void
+
+        var body: some View {
+            if isSelecting {
                 Button {
-                    showSettings.wrappedValue = true
+                    cancelAction()
                 } label: {
-                    Image(systemName: "gearshape")
+                    Text("Cancelar")
+                        .bold()
                 }
             } else {
-                EmptyView()
+                if UIDevice.isiPhone {
+                    Button {
+                        openSettingsAction()
+                    } label: {
+                        Image(systemName: "gearshape")
+                    }
+                } else {
+                    EmptyView()
+                }
             }
         }
     }
@@ -487,6 +538,6 @@ extension MainSoundContainer {
             syncValues: SyncValues()
         ),
         currentSoundsListMode: .constant(.regular),
-        showSettings: .constant(false)
+        openSettingsAction: {}
     )
 }

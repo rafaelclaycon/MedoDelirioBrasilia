@@ -10,7 +10,7 @@ import XCTest
 
 final class RetroViewModelTests: XCTestCase {
 
-    private var sut: RetroView.ViewModel!
+    private var sut: ClassicRetroView.ViewModel!
 
     private var localDatabase: FakeLocalDatabase!
 

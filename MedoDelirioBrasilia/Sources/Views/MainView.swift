@@ -26,7 +26,6 @@ struct MainView: View {
 
     @State private var subviewToOpen: MainViewModalToOpen = .onboarding
     @State private var showingModalView: Bool = false
-    @State private var triggerSettings: Bool = false
 
     // iPad
     @StateObject private var viewModel = SidebarViewViewModel()
@@ -56,7 +55,9 @@ struct MainView: View {
                                 syncValues: syncValues
                             ),
                             currentSoundsListMode: $currentSoundsListMode,
-                            showSettings: $triggerSettings
+                            openSettingsAction: {
+                                isShowingSettingsSheet.toggle()
+                            }
                         )
                         .environmentObject(trendsHelper)
                         .environmentObject(settingsHelper)
@@ -150,7 +151,7 @@ struct MainView: View {
                                         syncValues: syncValues
                                     ),
                                     currentSoundsListMode: $currentSoundsListMode,
-                                    showSettings: .constant(false)
+                                    openSettingsAction: {}
                                 )
                                 .environmentObject(trendsHelper)
                                 .environmentObject(settingsHelper)
@@ -169,10 +170,11 @@ struct MainView: View {
                                         soundSortOption: UserSettings().mainSoundListSoundSortOption(),
                                         authorSortOption: UserSettings().authorSortOption(),
                                         currentSoundsListMode: $currentSoundsListMode,
-                                        syncValues: syncValues
+                                        syncValues: syncValues,
+                                        isAllowedToSync: false
                                     ),
                                     currentSoundsListMode: $currentSoundsListMode,
-                                    showSettings: .constant(false)
+                                    openSettingsAction: {}
                                 )
                                 .environmentObject(trendsHelper)
                                 .environmentObject(settingsHelper)
@@ -311,7 +313,7 @@ struct MainView: View {
                                     syncValues: syncValues
                                 ),
                                 currentSoundsListMode: $currentSoundsListMode,
-                                showSettings: .constant(false)
+                                openSettingsAction: {}
                             )
                             .environmentObject(trendsHelper)
                             .environmentObject(settingsHelper)
@@ -329,13 +331,6 @@ struct MainView: View {
             print("MAIN VIEW - ON APPEAR")
             sendUserPersonalTrendsToServerIfEnabled()
             displayOnboardingIfNeeded()
-        }
-        .onChange(of: triggerSettings) { show in
-            if show {
-                subviewToOpen = .settings
-                showingModalView = true
-                triggerSettings = false
-            }
         }
         .sheet(isPresented: $showingModalView) {
             switch subviewToOpen {
