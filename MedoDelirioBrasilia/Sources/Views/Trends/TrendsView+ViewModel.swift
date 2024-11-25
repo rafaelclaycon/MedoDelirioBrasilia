@@ -10,6 +10,7 @@ import SwiftUI
 
 extension TrendsView {
 
+    @MainActor
     final class ViewModel: ObservableObject {
 
         // Toast
