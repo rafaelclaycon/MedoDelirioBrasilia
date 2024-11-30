@@ -13,7 +13,7 @@ final class APIConfig {
         switch ProcessInfo.processInfo.environment["api_environment"] {
         case "local":
             return "http://127.0.0.1:8080/"
-        case "dev", "reactions":
+        case "dev":
             return "http://medodelirioios.xyz:8080/"
         default:
             return "http://medodelirioios.online:8080/"
