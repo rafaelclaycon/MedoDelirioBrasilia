@@ -15,6 +15,8 @@ struct Reaction: Hashable, Codable, Identifiable {
     let image: String
     var lastUpdate: String
     var type: ReactionType
+    var attributionText: String?
+    var attributionURL: URL?
 
     init(
         id: String,
@@ -22,7 +24,9 @@ struct Reaction: Hashable, Codable, Identifiable {
         position: Int,
         image: String,
         lastUpdate: String,
-        type: ReactionType
+        type: ReactionType,
+        attributionText: String?,
+        attributionURL: URL?
     ) {
         self.id = id
         self.title = title
@@ -30,6 +34,8 @@ struct Reaction: Hashable, Codable, Identifiable {
         self.image = image
         self.lastUpdate = lastUpdate
         self.type = type
+        self.attributionText = attributionText
+        self.attributionURL = attributionURL
     }
 
     init(
@@ -45,6 +51,8 @@ struct Reaction: Hashable, Codable, Identifiable {
         self.image = image
         self.lastUpdate = ""
         self.type = type
+        self.attributionText = nil
+        self.attributionURL = nil
     }
 
     init(
@@ -57,6 +65,12 @@ struct Reaction: Hashable, Codable, Identifiable {
         self.image = dto.image
         self.lastUpdate = dto.lastUpdate
         self.type = type
+        self.attributionText = dto.attributionText
+        if let url = dto.attributionURL {
+            self.attributionURL = URL(string: url)
+        } else {
+            self.attributionURL = nil
+        }
     }
 }
 
@@ -72,4 +86,6 @@ struct ReactionDTO: Hashable, Codable, Identifiable {
     let position: Int
     let image: String
     let lastUpdate: String
+    let attributionText: String?
+    let attributionURL: String?
 }

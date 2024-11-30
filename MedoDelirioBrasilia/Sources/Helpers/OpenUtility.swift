@@ -8,8 +8,13 @@
 import UIKit
 
 class OpenUtility {
+
     static func open(link: String) {
         guard let url = URL(string: link) else { return }
+        UIApplication.shared.open(url)
+    }
+
+    static func open(_ url: URL) {
         UIApplication.shared.open(url)
     }
 }
