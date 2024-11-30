@@ -64,7 +64,9 @@ final class ReactionRepository: ReactionRepositoryProtocol {
                     position: pinnedReaction.position,
                     image: serverReaction.image,
                     lastUpdate: serverReaction.lastUpdate,
-                    type: .pinnedExisting
+                    type: .pinnedExisting,
+                    attributionText: serverReaction.attributionText,
+                    attributionURL: serverReaction.attributionURL
                 )
             } else {
                 return Reaction(

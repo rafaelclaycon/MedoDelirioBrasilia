@@ -76,6 +76,8 @@ extension ReactionDetailViewModel {
         do {
             let reaction = try await reactionRepository.reaction(reaction.id)
             self.reaction.lastUpdate = reaction.lastUpdate
+            self.reaction.attributionText = reaction.attributionText
+            self.reaction.attributionURL = reaction.attributionURL
         } catch NetworkRabbitError.resourceNotFound {
             state = .reactionNoLongerExists
             return

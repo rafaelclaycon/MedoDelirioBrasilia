@@ -59,9 +59,11 @@ struct ReactionDetailView: View {
                     ReactionDetailHeader(
                         title: viewModel.reaction.title,
                         subtitle: viewModel.subtitle,
-                        imageUrl: viewModel.reaction.image
+                        imageUrl: viewModel.reaction.image,
+                        attributionText: viewModel.reaction.attributionText,
+                        attributionURL: viewModel.reaction.attributionURL
                     )
-                    .frame(height: 250)
+                    .frame(height: 260)
                     .padding(.bottom, 6)
                 },
                 loadingView: LoadingView(),
