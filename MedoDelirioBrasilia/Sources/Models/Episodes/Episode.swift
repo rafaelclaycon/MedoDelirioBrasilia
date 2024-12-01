@@ -9,27 +9,29 @@ import Foundation
 
 struct Episode: Hashable, Codable, Identifiable {
 
-    var id: String
+    let id: String
     var episodeId: String
     var title: String
-    var description: String
-    var pubDate: String
+    var description: String?
+    var pubDate: Date?
     var duration: Double
-    var creationDate: String
+    var creationDate: Date
     var spotifyLink: String
     var applePodcastsLink: String
     var pocketCastsLink: String
     
-    init(id: String = UUID().uuidString,
-         episodeId: String,
-         title: String,
-         description: String,
-         pubDate: String,
-         duration: Double,
-         creationDate: String,
-         spotifyLink: String = .empty,
-         applePodcastsLink: String = .empty,
-         pocketCastsLink: String = .empty) {
+    init(
+        id: String = UUID().uuidString,
+        episodeId: String,
+        title: String,
+        description: String?,
+        pubDate: Date?,
+        duration: Double,
+        creationDate: Date,
+        spotifyLink: String = .empty,
+        applePodcastsLink: String = .empty,
+        pocketCastsLink: String = .empty
+    ) {
         self.id = id
         self.episodeId = episodeId
         self.title = title
@@ -41,12 +43,10 @@ struct Episode: Hashable, Codable, Identifiable {
         self.applePodcastsLink = applePodcastsLink
         self.pocketCastsLink = pocketCastsLink
     }
-
 }
 
 enum SortOption {
 
     case fromNewToOld, fromOldToNew
-
 }
 

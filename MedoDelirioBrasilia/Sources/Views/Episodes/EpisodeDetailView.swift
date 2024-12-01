@@ -16,7 +16,7 @@ struct EpisodeDetailView: View {
             VStack {
                 HeaderView(title: episode.title)
 
-                Description(description: episode.description)
+                Description(description: episode.description ?? "")
             }
             .padding()
         }

@@ -12,7 +12,7 @@ struct EpisodeItem: View {
     let episode: Episode
 
     private var dateAndDuration: String {
-        (episode.pubDate.iso8601withFractionalSeconds?.asShortString() ?? .empty)  + " · " + episode.duration.toDisplayString()
+        (episode.pubDate?.asShortString() ?? .empty)  + " · " + episode.duration.toDisplayString()
     }
 
     var body: some View {
@@ -22,7 +22,7 @@ struct EpisodeItem: View {
                     Text(episode.title)
                         .font(.headline)
                     
-                    Text(episode.description)
+                    Text(episode.description ?? "")
                         .foregroundColor(.gray)
                         .font(.subheadline)
                         .lineLimit(2)
@@ -73,9 +73,9 @@ struct EpisodeItem: View {
             episodeId: "123",
             title: "Dias 1.390, 1.391 e 1.392 | Bob e Jeff em Comendador Levy Gasparian | Dias 21, 22 e 23/10/22",
             description: "Bob Jeff in the sky with grenades.",
-            pubDate: "2022-12-15T05:47:52.000Z",
+            pubDate: .now,
             duration: 300,
-            creationDate: .empty
+            creationDate: .now
         )
     )
 }

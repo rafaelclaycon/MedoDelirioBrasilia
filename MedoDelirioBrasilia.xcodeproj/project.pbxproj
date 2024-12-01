@@ -1405,6 +1405,9 @@
 		D9DCF73B290D832800DB177C /* Desconhecido - Mi-mi-mi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DCF739290D832800DB177C /* Desconhecido - Mi-mi-mi.mp3 */; };
 		D9DCF73C290D832800DB177C /* Valdemiro Santiago - Eu estou no limite, Brasil.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DCF73A290D832800DB177C /* Valdemiro Santiago - Eu estou no limite, Brasil.mp3 */; };
 		D9DD1AB72AB954DA0010F700 /* CapsuleButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DD1AB62AB954DA0010F700 /* CapsuleButtonStyle.swift */; };
+		D9DD902E2CFCD1B400EE62CD /* EpisodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DD902D2CFCD1B400EE62CD /* EpisodeRepository.swift */; };
+		D9DD90312CFCD32800EE62CD /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = D9DD90302CFCD32800EE62CD /* FeedKit */; };
+		D9DD90332CFCD67B00EE62CD /* EpisodesView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DD90322CFCD67B00EE62CD /* EpisodesView+ViewModel.swift */; };
 		D9DE92102B9B98F800268626 /* SyncManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DE920F2B9B98F800268626 /* SyncManagerTests.swift */; };
 		D9DF2B4D29821E5F0083765A /* Lula - Todos voces sabem que eu sou o maior perdedor de eleicoes presidenciais.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DF2B4929821E5E0083765A /* Lula - Todos voces sabem que eu sou o maior perdedor de eleicoes presidenciais.mp3 */; };
 		D9DF2B4E29821E5F0083765A /* Cristiano Botafogo - Alo, Bolivia, o atlantico ta logo ai.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DF2B4A29821E5E0083765A /* Cristiano Botafogo - Alo, Bolivia, o atlantico ta logo ai.mp3 */; };
@@ -2958,6 +2961,8 @@
 		D9DCF739290D832800DB177C /* Desconhecido - Mi-mi-mi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Desconhecido - Mi-mi-mi.mp3"; sourceTree = "<group>"; };
 		D9DCF73A290D832800DB177C /* Valdemiro Santiago - Eu estou no limite, Brasil.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Valdemiro Santiago - Eu estou no limite, Brasil.mp3"; sourceTree = "<group>"; };
 		D9DD1AB62AB954DA0010F700 /* CapsuleButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleButtonStyle.swift; sourceTree = "<group>"; };
+		D9DD902D2CFCD1B400EE62CD /* EpisodeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeRepository.swift; sourceTree = "<group>"; };
+		D9DD90322CFCD67B00EE62CD /* EpisodesView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EpisodesView+ViewModel.swift"; sourceTree = "<group>"; };
 		D9DE920F2B9B98F800268626 /* SyncManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncManagerTests.swift; sourceTree = "<group>"; };
 		D9DF2B4929821E5E0083765A /* Lula - Todos voces sabem que eu sou o maior perdedor de eleicoes presidenciais.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula - Todos voces sabem que eu sou o maior perdedor de eleicoes presidenciais.mp3"; sourceTree = "<group>"; };
 		D9DF2B4A29821E5E0083765A /* Cristiano Botafogo - Alo, Bolivia, o atlantico ta logo ai.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Cristiano Botafogo - Alo, Bolivia, o atlantico ta logo ai.mp3"; sourceTree = "<group>"; };
@@ -3108,6 +3113,7 @@
 				D9943F1A286406AF002C6B97 /* Kingfisher in Frameworks */,
 				D9E69592283D2E2C00C341B2 /* SQLite in Frameworks */,
 				D94656D928450535008B4785 /* SQLiteMigrationManager in Frameworks */,
+				D9DD90312CFCD32800EE62CD /* FeedKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4459,6 +4465,7 @@
 			isa = PBXGroup;
 			children = (
 				D937E0F02908AA0C004137ED /* EpisodesView.swift */,
+				D9DD90322CFCD67B00EE62CD /* EpisodesView+ViewModel.swift */,
 				D937E0F72909600E004137ED /* EpisodeItem.swift */,
 				D91FA6F42CF415E600B4B761 /* EpisodeDetailView.swift */,
 			);
@@ -4903,6 +4910,7 @@
 				D98D137F2CD5B876001CF5BB /* UserFolderRepository.swift */,
 				D90E21742CCD793E00FC979C /* ReactionRepository.swift */,
 				D90EDDB92908505000ED87A8 /* FolderResearchRepository.swift */,
+				D9DD902D2CFCD1B400EE62CD /* EpisodeRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -5446,6 +5454,7 @@
 				D9E69591283D2E2C00C341B2 /* SQLite */,
 				D94656D828450535008B4785 /* SQLiteMigrationManager */,
 				D9943F19286406AF002C6B97 /* Kingfisher */,
+				D9DD90302CFCD32800EE62CD /* FeedKit */,
 			);
 			productName = MedoDelirioBrasilia;
 			productReference = D9625E7A28238F9A00080852 /* MedoDelirio.app */;
@@ -5527,6 +5536,7 @@
 				D9E69590283D2E2C00C341B2 /* XCRemoteSwiftPackageReference "SQLite" */,
 				D94656D728450535008B4785 /* XCRemoteSwiftPackageReference "SQLiteMigrationManager" */,
 				D9943F18286406AF002C6B97 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				D9DD902F2CFCD32800EE62CD /* XCRemoteSwiftPackageReference "FeedKit" */,
 			);
 			productRefGroup = D9625E7B28238F9A00080852 /* Products */;
 			projectDirPath = "";
@@ -6816,6 +6826,7 @@
 				D9BF9091284257F500BDDD7D /* Shared.swift in Sources */,
 				D9758C3C28617C980094D388 /* LocalDatabase+UserFolder.swift in Sources */,
 				D9DB6F7F28CBDA8000E24BDE /* MostSharedByMeView.swift in Sources */,
+				D9DD902E2CFCD1B400EE62CD /* EpisodeRepository.swift in Sources */,
 				D99D254F2CEC06AA003E8ED0 /* DeleteFolderViewAide.swift in Sources */,
 				D98BB69A2AC68769001DE23D /* FloatingSelectionOptionsView.swift in Sources */,
 				D91107112863B481000B6F8F /* ReactionsView+ViewModel.swift in Sources */,
@@ -6853,6 +6864,7 @@
 				D99D25502CEC06D6003E8ED0 /* Double+ToDisplayString.swift in Sources */,
 				D9943F2C28643317002C6B97 /* FolderDetailViewViewModel.swift in Sources */,
 				D9DBEAA12BCC110A00220679 /* MockSoundListViewModel.swift in Sources */,
+				D9DD90332CFCD67B00EE62CD /* EpisodesView+ViewModel.swift in Sources */,
 				D9C1372B29063D7D003E4ABF /* PrivacySettingsView.swift in Sources */,
 				D94B5F682A1C9D0900B3A688 /* SyncService+Song.swift in Sources */,
 				D984D5612CF21D2D00680C7D /* SoundDetailView+ReactionsSection.swift in Sources */,
@@ -7493,6 +7505,14 @@
 				minimumVersion = 7.3.2;
 			};
 		};
+		D9DD902F2CFCD32800EE62CD /* XCRemoteSwiftPackageReference "FeedKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nmdias/FeedKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.1.2;
+			};
+		};
 		D9E69590283D2E2C00C341B2 /* XCRemoteSwiftPackageReference "SQLite" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/stephencelis/SQLite.swift";
@@ -7513,6 +7533,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D9943F18286406AF002C6B97 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		D9DD90302CFCD32800EE62CD /* FeedKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D9DD902F2CFCD32800EE62CD /* XCRemoteSwiftPackageReference "FeedKit" */;
+			productName = FeedKit;
 		};
 		D9E69591283D2E2C00C341B2 /* SQLite */ = {
 			isa = XCSwiftPackageProductDependency;
