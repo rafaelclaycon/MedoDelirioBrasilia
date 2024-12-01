@@ -11,25 +11,20 @@ struct EpisodeItem: View {
 
     let episode: Episode
 
-    private var dateAndDuration: String {
-        (episode.pubDate?.asShortString() ?? .empty)  + " · " + episode.duration.toDisplayString()
-    }
-
     var body: some View {
         VStack {
             HStack {
                 VStack(alignment: .leading, spacing: 10) {
-                    Text(episode.title)
-                        .font(.headline)
-                    
-                    Text(episode.description ?? "")
-                        .foregroundColor(.gray)
-                        .font(.subheadline)
-                        .lineLimit(2)
-                    
-                    Text(dateAndDuration)
-                        .bold()
+                    Text(episode.pubDate?.asLongString().uppercased() ?? "")
                         .font(.footnote)
+                        .foregroundStyle(.gray)
+
+                    Text(episode.title)
+                        .bold()
+
+                    Text(episode.duration.toDisplayString())
+                        .font(.footnote)
+                        .foregroundStyle(.gray)
                 }
                 .padding(.leading, 10)
                 
@@ -45,7 +40,7 @@ struct EpisodeItem: View {
                     Image(systemName: "list.triangle")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 30)
+                        .frame(width: 24)
                 }
                 .foregroundStyle(.primary)
 
@@ -59,8 +54,6 @@ struct EpisodeItem: View {
                 }
                 .foregroundStyle(.primary)
             }
-            .padding(.horizontal)
-            .padding(.top, 2)
         }
     }
 }
