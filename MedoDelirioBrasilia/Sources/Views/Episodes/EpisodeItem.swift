@@ -36,53 +36,28 @@ struct EpisodeItem: View {
                 Spacer()
             }
             
-            HStack(spacing: 20) {
-                Button {
-                    //Opener.open(link: episode.spotifyLink)
-                } label: {
-                    Image("spotify")
-                        .renderingMode(.template)
-                        .foregroundColor(.green)
-                        .padding(.horizontal)
-                }
-                .tint(.green)
-                .controlSize(.regular)
-                .buttonStyle(.bordered)
-                .buttonBorderShape(.roundedRectangle)
-                
+            HStack(spacing: 30) {
+                Spacer()
+
                 Button {
                     //Opener.open(link: episode.applePodcastsLink)
                 } label: {
-                    Image("apple_podcasts")
+                    Image(systemName: "list.triangle")
                         .resizable()
-                        .renderingMode(.template)
-                        .foregroundColor(.purple)
-                        .frame(width: 24, height: 24)
-                        .padding(.horizontal)
-                        .padding(.vertical, 4)
+                        .scaledToFit()
+                        .frame(width: 30)
                 }
-                .tint(.purple)
-                .controlSize(.regular)
-                .buttonStyle(.bordered)
-                .buttonBorderShape(.roundedRectangle)
-                
+                .foregroundStyle(.primary)
+
                 Button {
-                    //Opener.open(link: episode.pocketCastsLink)
+                    //Opener.open(link: episode.applePodcastsLink)
                 } label: {
-                    Image("pocket_casts")
+                    Image(systemName: "play.circle.fill")
                         .resizable()
-                        .renderingMode(.template)
-                        .foregroundColor(.red)
-                        .frame(width: 24, height: 24)
-                        .padding(.horizontal)
-                        .padding(.vertical, 4)
+                        .scaledToFit()
+                        .frame(width: 36)
                 }
-                .tint(.red)
-                .controlSize(.regular)
-                .buttonStyle(.bordered)
-                .buttonBorderShape(.roundedRectangle)
-                
-                Spacer()
+                .foregroundStyle(.primary)
             }
             .padding(.horizontal)
             .padding(.top, 2)
