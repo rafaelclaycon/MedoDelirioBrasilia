@@ -54,7 +54,7 @@ final class EpisodeRepository: EpisodeRepositoryProtocol {
 
             //podcast.lastCheckDate = Date()
 
-            return items.prefix(6).map { item in
+            return items.prefix(10).map { item in
                 Episode(
                     episodeId: item.guid?.value ?? UUID().uuidString,
                     title: item.title ?? "SEM TÍTULO",
