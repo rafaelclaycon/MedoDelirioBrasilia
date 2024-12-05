@@ -76,7 +76,7 @@ class SyncManager {
 
     func startActivity() {
         let atttributes = SyncActivityAttributes(title: "Sync")
-        let initialState = SyncActivityAttributes.ContentState(emoji: "😇")
+        let initialState = SyncActivityAttributes.ContentState(status: "updating", current: 3, total: 10)
 
         do {
             let activity = try Activity<SyncActivityAttributes>.request(
