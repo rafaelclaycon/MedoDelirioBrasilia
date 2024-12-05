@@ -272,15 +272,15 @@ extension MainSoundContainerViewModel: SyncManagerDelegate {
         guard isAllowedToSync else { return }
 
         guard
-            CommandLine.arguments.contains("-IGNORE_2_MINUTE_SYNC_INTERVAL") ||
+            CommandLine.arguments.contains("-IGNORE_SYNC_WAIT") ||
             lastAttempt == "" ||
-            (lastAttempt.iso8601withFractionalSeconds?.twoMinutesHavePassed ?? false)
+            (lastAttempt.iso8601withFractionalSeconds?.minutesPassed(1) ?? false)
         else {
             if syncValues.syncStatus == .updating {
                 syncValues.syncStatus = .done
             }
 
-            let message = "Aguarde \(lastAttempt.minutesAndSecondsFromNow) para atualizar novamente."
+            let message = String(format: Shared.Sync.waitMessage, lastAttempt.timeUntil(addingMinutes: 1))
 
             return displayToast(
                 "clock.fill",

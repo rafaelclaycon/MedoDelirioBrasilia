@@ -71,8 +71,8 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-IGNORE_2_MINUTE_SYNC_INTERVAL"
-            isEnabled = "YES">
+            argument = "-IGNORE_SYNC_WAIT"
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-SHOW_MORE_DEV_OPTIONS"

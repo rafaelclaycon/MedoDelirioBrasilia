@@ -56,9 +56,9 @@ extension String {
 
 extension String {
 
-    var minutesAndSecondsFromNow: String {
+    func timeUntil(addingMinutes minutes: Int) -> String {
         guard let date = self.iso8601withFractionalSeconds else { return "" }
-        let twoMinutesFromLastUpdate = Calendar.current.date(byAdding: .minute, value: 2, to: date)
+        let twoMinutesFromLastUpdate = Calendar.current.date(byAdding: .minute, value: minutes, to: date)
 
         guard let endDate = twoMinutesFromLastUpdate else { return "" }
         let components = Calendar.current.dateComponents([.minute, .second], from: .now, to: endDate)

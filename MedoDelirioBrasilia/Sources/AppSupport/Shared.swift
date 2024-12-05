@@ -139,4 +139,9 @@ struct Shared {
 
         static let successMessage = "Imagens salvas com sucesso. Compartilhe nas suas redes! ☺️"
     }
+
+    struct Sync {
+
+        static let waitMessage = "Atualizado recentemente. Aguarde %@."
+    }
 }

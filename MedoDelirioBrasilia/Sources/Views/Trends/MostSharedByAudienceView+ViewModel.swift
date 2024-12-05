@@ -35,9 +35,9 @@ extension MostSharedByAudienceView {
             didPullDownToRefresh: Bool = false
         ) {
             // Check if enough time has passed for a retry
-            if didPullDownToRefresh, !lastTimePulledDownToRefresh.twoMinutesHavePassed {
+            if didPullDownToRefresh, !lastTimePulledDownToRefresh.minutesPassed(1) {
                 displayToast(
-                    "Aguarde \(lastTimePulledDownToRefresh.minutesAndSecondsFromNow) para atualizar novamente."
+                    String(format: Shared.Sync.waitMessage, lastTimePulledDownToRefresh.minutesAndSecondsFromNow)
                 )
                 return
             }
