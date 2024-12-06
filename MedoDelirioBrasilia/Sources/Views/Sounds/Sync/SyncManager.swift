@@ -9,8 +9,8 @@ import SwiftUI
 
 protocol SyncManagerDelegate: AnyObject {
     func set(totalUpdateCount: Int)
-    func didProcessUpdate(number: Int)
-    func didFinishUpdating(status: SyncUIStatus, updateSoundList: Bool)
+    func didProcessUpdate(number: Int) async
+    func didFinishUpdating(status: SyncUIStatus, updateSoundList: Bool) async
 }
 
 class SyncManager {
@@ -24,6 +24,8 @@ class SyncManager {
     private var database: LocalDatabaseProtocol
     private var logger: LoggerProtocol
 
+    private var isCancelled = false
+
     init(
         service: SyncServiceProtocol,
         database: LocalDatabaseProtocol,
@@ -35,9 +37,7 @@ class SyncManager {
     }
 
     func sync() async {
-        await MainActor.run {
-            delegate?.didFinishUpdating(status: .updating, updateSoundList: false)
-        }
+        await delegate?.didFinishUpdating(status: .updating, updateSoundList: false)
 
         do {
             let didHaveAnyLocalUpdates = try await retryLocal()
@@ -49,25 +49,29 @@ class SyncManager {
                 logger.logSyncSuccess(description: "Sincronização realizada com sucesso, porém não existem novas atualizações.")
             }
 
-            delegate?.didFinishUpdating(
+            await delegate?.didFinishUpdating(
                 status: .done,
                 updateSoundList: didHaveAnyLocalUpdates || didHaveAnyRemoteUpdates
             )
         } catch NetworkRabbitError.errorFetchingUpdateEvents(let errorMessage) {
             print(errorMessage)
             logger.logSyncError(description: errorMessage)
-            delegate?.didFinishUpdating(status: .updateError, updateSoundList: false)
+            await delegate?.didFinishUpdating(status: .updateError, updateSoundList: false)
         } catch SyncError.errorInsertingUpdateEvent(let updateEventId) {
             logger.logSyncError(description: "Erro ao tentar inserir UpdateEvent no banco de dados.", updateEventId: updateEventId)
-            delegate?.didFinishUpdating(status: .updateError, updateSoundList: false)
+            await delegate?.didFinishUpdating(status: .updateError, updateSoundList: false)
         } catch {
             logger.logSyncError(description: error.localizedDescription)
-            delegate?.didFinishUpdating(status: .updateError, updateSoundList: false)
+            await delegate?.didFinishUpdating(status: .updateError, updateSoundList: false)
         }
 
         AppPersistentMemory().setLastUpdateAttempt(to: Date.now.iso8601withFractionalSeconds)
 
         await syncFolderResearchChangesUp()
+    }
+
+    func cancelSync() {
+        isCancelled = true
     }
 
     func retryLocal() async throws -> Bool {
@@ -125,10 +129,12 @@ class SyncManager {
         delegate?.set(totalUpdateCount: serverUpdates.count)
 
         for update in serverUpdates {
+            guard !isCancelled else { return }
+
             await service.process(updateEvent: update)
 
             updateNumber += 1
-            delegate?.didProcessUpdate(number: updateNumber)
+            await delegate?.didProcessUpdate(number: updateNumber)
         }
     }
 

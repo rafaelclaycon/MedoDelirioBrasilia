@@ -12,13 +12,9 @@ import MedoDelirioSyncWidgetExtension
 
 extension AppDelegate {
 
-    func taskId() -> String {
-        "com.rafaelschmitt.MedoDelirioBrasilia.syncTask"
-    }
-
     func registerBackgroundTasks() {
         BGTaskScheduler.shared.register(
-            forTaskWithIdentifier: taskId(),
+            forTaskWithIdentifier: backgroundTaskId,
             using: nil
         ) { task in
             Task {
@@ -28,48 +24,34 @@ extension AppDelegate {
     }
 
     func scheduleBackgroundSync() {
-        let request = BGAppRefreshTaskRequest(identifier: taskId())
+        let request = BGAppRefreshTaskRequest(identifier: backgroundTaskId)
         request.earliestBeginDate = .now
 
         do {
             try BGTaskScheduler.shared.submit(request)
+            print("Background sync task scheduled")
         } catch {
             print("Failed to schedule background sync: \(error)")
         }
     }
 
     func handleSyncTask(task: BGAppRefreshTask) async {
+        currentTask = task
+
         scheduleBackgroundSync() // Schedule the next task
 
         task.expirationHandler = {
+            self.syncManager?.cancelSync()
             print("Background task expired")
         }
 
-        do {
-            // Perform your sync logic asynchronously
-            try await performSyncLogic()
-            task.setTaskCompleted(success: true)
-        } catch NetworkRabbitError.errorFetchingUpdateEvents(let errorMessage) {
-            print("Error performing sync logic - fetch error: \(errorMessage)")
-            print(errorMessage)
-            Logger.shared.logSyncError(description: errorMessage)
-            //delegate?.didFinishUpdating(status: .updateError, updateSoundList: false)
-        } catch SyncError.errorInsertingUpdateEvent(let updateEventId) {
-            print("Error performing sync logic - insert update error: \(updateEventId)")
-            Logger.shared.logSyncError(description: "Erro ao tentar inserir UpdateEvent no banco de dados.", updateEventId: updateEventId)
-            //delegate?.didFinishUpdating(status: .updateError, updateSoundList: false)
-        } catch {
-            print("Error performing sync logic: \(error)")
-            Logger.shared.logSyncError(description: error.localizedDescription)
-            //delegate?.didFinishUpdating(status: .updateError, updateSoundList: false)
-            task.setTaskCompleted(success: false)
-        }
+        await performSyncLogic()
     }
 
-    func performSyncLogic() async throws {
+    func performSyncLogic() async {
         print("Performing background sync logic")
 
-        let syncManager = SyncManager(
+        self.syncManager = SyncManager(
             service: SyncService(
                 networkRabbit: NetworkRabbit.shared,
                 localDatabase: LocalDatabase.shared
@@ -78,27 +60,78 @@ extension AppDelegate {
             logger: Logger.shared
         )
 
+        syncManager?.delegate = self
 
-
-        try await syncManager.sync()
+        await syncManager?.sync()
     }
 }
 
 // MARK: - Live Activity
 
-extension AppDelegate {
+extension AppDelegate: SyncManagerDelegate {
 
-    func startActivity() {
-        let atttributes = SyncActivityAttributes(title: "Sync")
-        let initialState = SyncActivityAttributes.ContentState(status: "updating", current: 3, total: 10)
+    func set(totalUpdateCount: Int) {
+        print("LIVE ACTIVITY: Set total updates")
+        self.totalUpdateCount = totalUpdateCount
+        startActivity(current: 0, total: totalUpdateCount)
+    }
+    
+    func didProcessUpdate(number: Int) async {
+        print("LIVE ACTIVITY: Did process, #\(number)")
+
+        guard let activity else {
+            return
+        }
+
+        let contentState = SyncActivityAttributes.ContentState(
+            status: "updating", current: number, total: self.totalUpdateCount
+        )
+
+        await activity.update(
+            ActivityContent<SyncActivityAttributes.ContentState>(
+                state: contentState,
+                staleDate: Date.now + 15,
+                relevanceScore: 50
+            )
+        )
+    }
+    
+    func didFinishUpdating(status: SyncUIStatus, updateSoundList: Bool) async {
+        guard status != .updating else { return }
+        guard let activity else { return }
+
+        var finalContent: SyncActivityAttributes.ContentState
+        if status == .done {
+            finalContent = SyncActivityAttributes.ContentState(
+                status: "done", current: self.totalUpdateCount, total: self.totalUpdateCount
+            )
+        } else {
+            finalContent = SyncActivityAttributes.ContentState(
+                status: "updateError", current: 0, total: 0
+            )
+        }
+
+        await activity.end(
+            ActivityContent(state: finalContent, staleDate: nil)
+        )
+
+        currentTask?.setTaskCompleted(success: true)
+        currentTask = nil
+    }
+
+    func startActivity(current: Int, total: Int) {
+        let attributes = SyncActivityAttributes(title: "Sync")
+        let initialState = SyncActivityAttributes.ContentState(status: "updating", current: current, total: total)
+
+        let oneHourAhead = Calendar.current.date(byAdding: .hour, value: 1, to: .now)
 
         do {
-            let activity = try Activity<SyncActivityAttributes>.request(
-                attributes: atttributes,
-                content: .init(state: initialState, staleDate: nil),
+            self.activity = try Activity<SyncActivityAttributes>.request(
+                attributes: attributes,
+                content: .init(state: initialState, staleDate: oneHourAhead),
                 pushType: .token
             )
-            print("Activity started: \(activity.id)")
+            print("Activity started: \(self.activity?.id ?? "")")
         } catch {
             print("Failed to start activity: \(error)")
         }
