@@ -1169,6 +1169,7 @@
 		D9943F2C28643317002C6B97 /* FolderDetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F2B28643317002C6B97 /* FolderDetailViewViewModel.swift */; };
 		D994AD622C9DFE89004FAE25 /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994AD612C9DFE84004FAE25 /* LoadingState.swift */; };
 		D994AD642C9E006B004FAE25 /* ContentShareCountStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994AD632C9E006B004FAE25 /* ContentShareCountStats.swift */; };
+		D998733C2D021A5900CCC04F /* AppDelegate+BackgroundTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998733B2D021A5900CCC04F /* AppDelegate+BackgroundTasks.swift */; };
 		D998815629C4A588007A8C7B /* Trote Luiz Pareto - Quem fala aqui e um advogado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D998815529C4A588007A8C7B /* Trote Luiz Pareto - Quem fala aqui e um advogado.mp3 */; };
 		D998816629C4AA93007A8C7B /* O ASSUNTO - Suspeito.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D998816129C4AA93007A8C7B /* O ASSUNTO - Suspeito.mp3 */; };
 		D998816729C4AA93007A8C7B /* GLOBONEWS - Octavio Guedes - E dai, eu nao sou psicologo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D998816229C4AA93007A8C7B /* GLOBONEWS - Octavio Guedes - E dai, eu nao sou psicologo.mp3 */; };
@@ -2724,6 +2725,7 @@
 		D9943F2B28643317002C6B97 /* FolderDetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetailViewViewModel.swift; sourceTree = "<group>"; };
 		D994AD612C9DFE84004FAE25 /* LoadingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingState.swift; sourceTree = "<group>"; };
 		D994AD632C9E006B004FAE25 /* ContentShareCountStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentShareCountStats.swift; sourceTree = "<group>"; };
+		D998733B2D021A5900CCC04F /* AppDelegate+BackgroundTasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+BackgroundTasks.swift"; sourceTree = "<group>"; };
 		D998815529C4A588007A8C7B /* Trote Luiz Pareto - Quem fala aqui e um advogado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Trote Luiz Pareto - Quem fala aqui e um advogado.mp3"; sourceTree = "<group>"; };
 		D998816129C4AA93007A8C7B /* O ASSUNTO - Suspeito.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O ASSUNTO - Suspeito.mp3"; sourceTree = "<group>"; };
 		D998816229C4AA93007A8C7B /* GLOBONEWS - Octavio Guedes - E dai, eu nao sou psicologo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "GLOBONEWS - Octavio Guedes - E dai, eu nao sou psicologo.mp3"; sourceTree = "<group>"; };
@@ -4848,6 +4850,7 @@
 			children = (
 				D9625E7D28238F9A00080852 /* MedoDelirioBrasiliaApp.swift */,
 				D94EAB5029FC0907004CD604 /* AppDelegate+MoveFixedDataToDatabase.swift */,
+				D998733B2D021A5900CCC04F /* AppDelegate+BackgroundTasks.swift */,
 				D980456128380F66003B2E83 /* LocalizableStrings.swift */,
 				D988C522283C33E100D64404 /* UserSettings.swift */,
 				D9DCC5D42875CB59008DD4A3 /* AppPersistentMemory.swift */,
@@ -6820,6 +6823,7 @@
 				D9E7BE952C9E1D9D0094AD28 /* StillAliveSignal.swift in Sources */,
 				D9E7BE962C9E1D9D0094AD28 /* Donor.swift in Sources */,
 				D9E7BE972C9E1D9D0094AD28 /* AppIcon.swift in Sources */,
+				D998733C2D021A5900CCC04F /* AppDelegate+BackgroundTasks.swift in Sources */,
 				D9E7BE982C9E1D9D0094AD28 /* ContentSortOption.swift in Sources */,
 				D944D5D92CE1A23600621981 /* CrumbProgressView.swift in Sources */,
 				D9E7BE992C9E1D9D0094AD28 /* ServerStatsAndLogs.swift in Sources */,

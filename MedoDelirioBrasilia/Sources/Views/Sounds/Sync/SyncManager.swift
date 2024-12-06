@@ -6,8 +6,6 @@
 //
 
 import SwiftUI
-import ActivityKit
-import MedoDelirioSyncWidgetExtension
 
 protocol SyncManagerDelegate: AnyObject {
     func set(totalUpdateCount: Int)
@@ -42,8 +40,6 @@ class SyncManager {
         }
 
         do {
-            startActivity()
-
             let didHaveAnyLocalUpdates = try await retryLocal()
             let didHaveAnyRemoteUpdates = try await syncDataWithServer()
 
@@ -72,22 +68,6 @@ class SyncManager {
         AppPersistentMemory().setLastUpdateAttempt(to: Date.now.iso8601withFractionalSeconds)
 
         await syncFolderResearchChangesUp()
-    }
-
-    func startActivity() {
-        let atttributes = SyncActivityAttributes(title: "Sync")
-        let initialState = SyncActivityAttributes.ContentState(status: "updating", current: 3, total: 10)
-
-        do {
-            let activity = try Activity<SyncActivityAttributes>.request(
-                attributes: atttributes,
-                content: .init(state: initialState, staleDate: nil),
-                pushType: .token
-            )
-            print("Activity started: \(activity.id)")
-        } catch {
-            print("Failed to start activity: \(error)")
-        }
     }
 
     func retryLocal() async throws -> Bool {

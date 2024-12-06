@@ -11,7 +11,7 @@ import SwiftUI
 @main
 struct MedoDelirioSyncWidgetBundle: WidgetBundle {
     var body: some Widget {
-        MedoDelirioSyncWidget()
+        // MedoDelirioSyncWidget()
         MedoDelirioSyncWidgetLiveActivity()
     }
 }
