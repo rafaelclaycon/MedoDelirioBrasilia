@@ -10,49 +10,49 @@ import XCTest
 
 final class DateExtensionTests: XCTestCase {
 
-    func test_checkTwoMinutesHasPassed_whenOriginalDateIsOneDayBefore_shouldReturnTrue() throws {
+    func test_checkOneMinuteHasPassed_whenOriginalDateIsOneDayBefore_shouldReturnTrue() throws {
         var dayComponent = DateComponents()
         dayComponent.day = -1
         let calendar = Calendar.current
         let originalDate = calendar.date(byAdding: dayComponent, to: .now)!
         
-        XCTAssertTrue(originalDate.twoMinutesHavePassed)
+        XCTAssertTrue(originalDate.minutesPassed(1))
     }
 
-    func test_checkTwoMinutesHasPassed_whenOriginalDateIsAWeekBefore_shouldReturnTrue() throws {
+    func test_checkOneMinuteHasPassed_whenOriginalDateIsAWeekBefore_shouldReturnTrue() throws {
         var dayComponent = DateComponents()
         dayComponent.day = -7
         let calendar = Calendar.current
         let originalDate = calendar.date(byAdding: dayComponent, to: .now)!
         
-        XCTAssertTrue(originalDate.twoMinutesHavePassed)
+        XCTAssertTrue(originalDate.minutesPassed(1))
     }
 
-    func test_checkTwoMinutesHasPassed_whenOriginalDateIsFiveMinutesAgo_shouldReturnTrue() throws {
+    func test_checkOneMinuteHasPassed_whenOriginalDateIsFiveMinutesAgo_shouldReturnTrue() throws {
         var dayComponent = DateComponents()
         dayComponent.minute = -5
         
         let originalDate = Calendar.current.date(byAdding: dayComponent, to: .now)!
         
-        XCTAssertTrue(originalDate.twoMinutesHavePassed)
+        XCTAssertTrue(originalDate.minutesPassed(1))
     }
 
-    func test_checkTwoMinutesHasPassed_whenOriginalDateIsOneMinutesAgo_shouldReturnFalse() throws {
+    func test_checkOneMinuteHasPassed_whenOriginalDateIsHalfAMinuteAgo_shouldReturnFalse() throws {
+        var dayComponent = DateComponents()
+        dayComponent.second = -30
+
+        let originalDate = Calendar.current.date(byAdding: dayComponent, to: .now)!
+        
+        XCTAssertFalse(originalDate.minutesPassed(1))
+    }
+
+    func test_checkOneMinuteHasPassed_whenOriginalDateIsExactlyOneMinuteAgo_shouldReturnTrue() throws {
         var dayComponent = DateComponents()
         dayComponent.minute = -1
-        
-        let originalDate = Calendar.current.date(byAdding: dayComponent, to: .now)!
-        
-        XCTAssertFalse(originalDate.twoMinutesHavePassed)
-    }
 
-    func test_checkTwoMinutesHasPassed_whenOriginalDateIsExactlyTwoMinutesAgo_shouldReturnTrue() throws {
-        var dayComponent = DateComponents()
-        dayComponent.minute = -2
-        
         let originalDate = Calendar.current.date(byAdding: dayComponent, to: .now)!
         
-        XCTAssertTrue(originalDate.twoMinutesHavePassed)
+        XCTAssertTrue(originalDate.minutesPassed(1))
     }
 
     func test_getDateAsStringAddingDays_whenDaysIsMinusSeven_shouldReturnCorrectDate() throws {
@@ -83,7 +83,7 @@ final class DateExtensionTests: XCTestCase {
 
         let originalDate = Calendar.current.date(byAdding: dayComponent, to: .now)!
 
-        XCTAssertTrue(originalDate.minutesPassed(60))
+        XCTAssertFalse(originalDate.minutesPassed(60))
     }
 
     func testMinutesPassed_whenOriginalDateIsOneWeekAgo_shouldReturnTrue() throws {

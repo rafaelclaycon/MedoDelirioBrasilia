@@ -1153,9 +1153,6 @@
 		D992EF582BCB24310080C892 /* MainSoundContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D992EF572BCB24310080C892 /* MainSoundContainer.swift */; };
 		D992EF5A2BCB24FB0080C892 /* SoundList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D992EF592BCB24FB0080C892 /* SoundList.swift */; };
 		D992EF5C2BCB25820080C892 /* SoundListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D992EF5B2BCB25820080C892 /* SoundListViewModel.swift */; };
-		D993A5BE2CFE381300EA8B09 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9E6B33C2CA0EA4A002FCB91 /* WidgetKit.framework */; };
-		D993A5BF2CFE381300EA8B09 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9E6B33E2CA0EA4A002FCB91 /* SwiftUI.framework */; };
-		D993A5CC2CFE381500EA8B09 /* MedoDelirioSyncWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D993A5BD2CFE381200EA8B09 /* MedoDelirioSyncWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D9943F152863CC4D002C6B97 /* A impiedosa justica de Deus.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9943F142863CC4D002C6B97 /* A impiedosa justica de Deus.mp3 */; };
 		D9943F172863DAE1002C6B97 /* FolderDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F162863DAE1002C6B97 /* FolderDetailView.swift */; };
 		D9943F1A286406AF002C6B97 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D9943F19286406AF002C6B97 /* Kingfisher */; };
@@ -1169,7 +1166,6 @@
 		D9943F2C28643317002C6B97 /* FolderDetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F2B28643317002C6B97 /* FolderDetailViewViewModel.swift */; };
 		D994AD622C9DFE89004FAE25 /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994AD612C9DFE84004FAE25 /* LoadingState.swift */; };
 		D994AD642C9E006B004FAE25 /* ContentShareCountStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = D994AD632C9E006B004FAE25 /* ContentShareCountStats.swift */; };
-		D998733C2D021A5900CCC04F /* AppDelegate+BackgroundTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998733B2D021A5900CCC04F /* AppDelegate+BackgroundTasks.swift */; };
 		D998815629C4A588007A8C7B /* Trote Luiz Pareto - Quem fala aqui e um advogado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D998815529C4A588007A8C7B /* Trote Luiz Pareto - Quem fala aqui e um advogado.mp3 */; };
 		D998816629C4AA93007A8C7B /* O ASSUNTO - Suspeito.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D998816129C4AA93007A8C7B /* O ASSUNTO - Suspeito.mp3 */; };
 		D998816729C4AA93007A8C7B /* GLOBONEWS - Octavio Guedes - E dai, eu nao sou psicologo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D998816229C4AA93007A8C7B /* GLOBONEWS - Octavio Guedes - E dai, eu nao sou psicologo.mp3 */; };
@@ -1530,13 +1526,6 @@
 			remoteGlobalIDString = D9625E7928238F9A00080852;
 			remoteInfo = MedoDelirioBrasilia;
 		};
-		D993A5CA2CFE381500EA8B09 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D9625E7228238F9A00080852 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D993A5BC2CFE381200EA8B09;
-			remoteInfo = MedoDelirioSyncWidgetExtension;
-		};
 		D9E6B34A2CA0EA4B002FCB91 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D9625E7228238F9A00080852 /* Project object */;
@@ -1554,7 +1543,6 @@
 			dstSubfolderSpec = 13;
 			files = (
 				D9E6B34C2CA0EA4B002FCB91 /* MedoDelirioWidgetExtension.appex in Embed Foundation Extensions */,
-				D993A5CC2CFE381500EA8B09 /* MedoDelirioSyncWidgetExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2712,7 +2700,6 @@
 		D992EF572BCB24310080C892 /* MainSoundContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSoundContainer.swift; sourceTree = "<group>"; };
 		D992EF592BCB24FB0080C892 /* SoundList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundList.swift; sourceTree = "<group>"; };
 		D992EF5B2BCB25820080C892 /* SoundListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundListViewModel.swift; sourceTree = "<group>"; };
-		D993A5BD2CFE381200EA8B09 /* MedoDelirioSyncWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MedoDelirioSyncWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9943F142863CC4D002C6B97 /* A impiedosa justica de Deus.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "A impiedosa justica de Deus.mp3"; sourceTree = "<group>"; };
 		D9943F162863DAE1002C6B97 /* FolderDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetailView.swift; sourceTree = "<group>"; };
 		D9943F1B28641917002C6B97 /* LocalDatabase+Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+Favorite.swift"; sourceTree = "<group>"; };
@@ -2725,7 +2712,6 @@
 		D9943F2B28643317002C6B97 /* FolderDetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetailViewViewModel.swift; sourceTree = "<group>"; };
 		D994AD612C9DFE84004FAE25 /* LoadingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingState.swift; sourceTree = "<group>"; };
 		D994AD632C9E006B004FAE25 /* ContentShareCountStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentShareCountStats.swift; sourceTree = "<group>"; };
-		D998733B2D021A5900CCC04F /* AppDelegate+BackgroundTasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+BackgroundTasks.swift"; sourceTree = "<group>"; };
 		D998815529C4A588007A8C7B /* Trote Luiz Pareto - Quem fala aqui e um advogado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Trote Luiz Pareto - Quem fala aqui e um advogado.mp3"; sourceTree = "<group>"; };
 		D998816129C4AA93007A8C7B /* O ASSUNTO - Suspeito.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "O ASSUNTO - Suspeito.mp3"; sourceTree = "<group>"; };
 		D998816229C4AA93007A8C7B /* GLOBONEWS - Octavio Guedes - E dai, eu nao sou psicologo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "GLOBONEWS - Octavio Guedes - E dai, eu nao sou psicologo.mp3"; sourceTree = "<group>"; };
@@ -3078,21 +3064,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		D96FA1412CFE46150019F27A /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				GaugeProgressStyle.swift,
-				MedoDelirioSyncWidgetLiveActivity.swift,
-			);
-			target = D9625E7928238F9A00080852 /* MedoDelirioBrasilia */;
-		};
-		D993A5D02CFE381500EA8B09 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = D993A5BC2CFE381200EA8B09 /* MedoDelirioSyncWidgetExtension */;
-		};
 		D9E6B34F2CA0EA4B002FCB91 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -3111,7 +3082,6 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		D993A5C02CFE381300EA8B09 /* MedoDelirioSyncWidget */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (D96FA1412CFE46150019F27A /* PBXFileSystemSynchronizedBuildFileExceptionSet */, D993A5D02CFE381500EA8B09 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = MedoDelirioSyncWidget; sourceTree = "<group>"; };
 		D9E6B3402CA0EA4A002FCB91 /* MedoDelirioWidget */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (D9E6B3852CA1A6B1002FCB91 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, D9E6B34F2CA0EA4B002FCB91 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = MedoDelirioWidget; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
@@ -3130,15 +3100,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D993A5BA2CFE381200EA8B09 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D993A5BF2CFE381300EA8B09 /* SwiftUI.framework in Frameworks */,
-				D993A5BE2CFE381300EA8B09 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4655,7 +4616,6 @@
 				D9625E7C28238F9A00080852 /* MedoDelirioBrasilia */,
 				D9625E8D28238F9B00080852 /* MedoDelirioBrasiliaTests */,
 				D9E6B3402CA0EA4A002FCB91 /* MedoDelirioWidget */,
-				D993A5C02CFE381300EA8B09 /* MedoDelirioSyncWidget */,
 				D9E6B33B2CA0EA49002FCB91 /* Frameworks */,
 				D9625E7B28238F9A00080852 /* Products */,
 			);
@@ -4667,7 +4627,6 @@
 				D9625E7A28238F9A00080852 /* MedoDelirio.app */,
 				D9625E8A28238F9B00080852 /* MedoDelirioBrasiliaTests.xctest */,
 				D9E6B33A2CA0EA49002FCB91 /* MedoDelirioWidgetExtension.appex */,
-				D993A5BD2CFE381200EA8B09 /* MedoDelirioSyncWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -4850,7 +4809,6 @@
 			children = (
 				D9625E7D28238F9A00080852 /* MedoDelirioBrasiliaApp.swift */,
 				D94EAB5029FC0907004CD604 /* AppDelegate+MoveFixedDataToDatabase.swift */,
-				D998733B2D021A5900CCC04F /* AppDelegate+BackgroundTasks.swift */,
 				D980456128380F66003B2E83 /* LocalizableStrings.swift */,
 				D988C522283C33E100D64404 /* UserSettings.swift */,
 				D9DCC5D42875CB59008DD4A3 /* AppPersistentMemory.swift */,
@@ -5435,7 +5393,6 @@
 			);
 			dependencies = (
 				D9E6B34B2CA0EA4B002FCB91 /* PBXTargetDependency */,
-				D993A5CB2CFE381500EA8B09 /* PBXTargetDependency */,
 			);
 			name = MedoDelirioBrasilia;
 			packageProductDependencies = (
@@ -5464,28 +5421,6 @@
 			productName = MedoDelirioBrasiliaTests;
 			productReference = D9625E8A28238F9B00080852 /* MedoDelirioBrasiliaTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		D993A5BC2CFE381200EA8B09 /* MedoDelirioSyncWidgetExtension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D993A5CF2CFE381500EA8B09 /* Build configuration list for PBXNativeTarget "MedoDelirioSyncWidgetExtension" */;
-			buildPhases = (
-				D993A5B92CFE381200EA8B09 /* Sources */,
-				D993A5BA2CFE381200EA8B09 /* Frameworks */,
-				D993A5BB2CFE381200EA8B09 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				D993A5C02CFE381300EA8B09 /* MedoDelirioSyncWidget */,
-			);
-			name = MedoDelirioSyncWidgetExtension;
-			packageProductDependencies = (
-			);
-			productName = MedoDelirioSyncWidgetExtension;
-			productReference = D993A5BD2CFE381200EA8B09 /* MedoDelirioSyncWidgetExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
 		};
 		D9E6B3392CA0EA49002FCB91 /* MedoDelirioWidgetExtension */ = {
 			isa = PBXNativeTarget;
@@ -5516,7 +5451,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1610;
+				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					D9625E7928238F9A00080852 = {
@@ -5525,9 +5460,6 @@
 					D9625E8928238F9B00080852 = {
 						CreatedOnToolsVersion = 13.3.1;
 						TestTargetID = D9625E7928238F9A00080852;
-					};
-					D993A5BC2CFE381200EA8B09 = {
-						CreatedOnToolsVersion = 16.1;
 					};
 					D9E6B3392CA0EA49002FCB91 = {
 						CreatedOnToolsVersion = 16.0;
@@ -5556,7 +5488,6 @@
 				D9625E7928238F9A00080852 /* MedoDelirioBrasilia */,
 				D9625E8928238F9B00080852 /* MedoDelirioBrasiliaTests */,
 				D9E6B3392CA0EA49002FCB91 /* MedoDelirioWidgetExtension */,
-				D993A5BC2CFE381200EA8B09 /* MedoDelirioSyncWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -6781,13 +6712,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D993A5BB2CFE381200EA8B09 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D9E6B3382CA0EA49002FCB91 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -6823,7 +6747,6 @@
 				D9E7BE952C9E1D9D0094AD28 /* StillAliveSignal.swift in Sources */,
 				D9E7BE962C9E1D9D0094AD28 /* Donor.swift in Sources */,
 				D9E7BE972C9E1D9D0094AD28 /* AppIcon.swift in Sources */,
-				D998733C2D021A5900CCC04F /* AppDelegate+BackgroundTasks.swift in Sources */,
 				D9E7BE982C9E1D9D0094AD28 /* ContentSortOption.swift in Sources */,
 				D944D5D92CE1A23600621981 /* CrumbProgressView.swift in Sources */,
 				D9E7BE992C9E1D9D0094AD28 /* ServerStatsAndLogs.swift in Sources */,
@@ -7113,13 +7036,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D993A5B92CFE381200EA8B09 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D9E6B3362CA0EA49002FCB91 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -7134,11 +7050,6 @@
 			isa = PBXTargetDependency;
 			target = D9625E7928238F9A00080852 /* MedoDelirioBrasilia */;
 			targetProxy = D9625E8B28238F9B00080852 /* PBXContainerItemProxy */;
-		};
-		D993A5CB2CFE381500EA8B09 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D993A5BC2CFE381200EA8B09 /* MedoDelirioSyncWidgetExtension */;
-			targetProxy = D993A5CA2CFE381500EA8B09 /* PBXContainerItemProxy */;
 		};
 		D9E6B34B2CA0EA4B002FCB91 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -7159,7 +7070,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		D9625E9C28238F9B00080852 /* Debug */ = {
+		D9625E9C28238F9B00080852 /* Dev */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -7220,9 +7131,9 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
-			name = Debug;
+			name = Dev;
 		};
-		D9625E9D28238F9B00080852 /* Release */ = {
+		D9625E9D28238F9B00080852 /* Prod */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -7277,12 +7188,12 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
-			name = Release;
+			name = Prod;
 		};
-		D9625E9F28238F9B00080852 /* Debug */ = {
+		D9625E9F28238F9B00080852 /* Dev */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Dev";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/Sources/AppSupport/MedoDelirioBrasilia.entitlements;
@@ -7297,20 +7208,18 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "Medo e Delírio";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Medo e Delírio requer acesso a sua biblioteca de fotos para salvar imagens e vídeos.";
-				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
-				INFOPLIST_KEY_NSSupportsLiveActivitiesFrequentUpdates = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = "$(APP_VERSION)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.beta;
 				PRODUCT_NAME = MedoDelirio;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -7319,12 +7228,12 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Debug;
+			name = Dev;
 		};
-		D9625EA028238F9B00080852 /* Release */ = {
+		D9625EA028238F9B00080852 /* Prod */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Prod";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = MedoDelirioBrasilia/Sources/AppSupport/MedoDelirioBrasilia.entitlements;
@@ -7339,14 +7248,12 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "Medo e Delírio";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Medo e Delírio requer acesso a sua biblioteca de fotos para salvar imagens e vídeos.";
-				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
-				INFOPLIST_KEY_NSSupportsLiveActivitiesFrequentUpdates = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -7361,9 +7268,9 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Release;
+			name = Prod;
 		};
-		D9625EA228238F9B00080852 /* Debug */ = {
+		D9625EA228238F9B00080852 /* Dev */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -7371,7 +7278,7 @@
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasiliaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -7383,9 +7290,9 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MedoDelirio.app/MedoDelirio";
 			};
-			name = Debug;
+			name = Dev;
 		};
-		D9625EA328238F9B00080852 /* Release */ = {
+		D9625EA328238F9B00080852 /* Prod */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -7393,7 +7300,7 @@
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = L8X3H5XA82;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasiliaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -7405,76 +7312,9 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MedoDelirio.app/MedoDelirio";
 			};
-			name = Release;
+			name = Prod;
 		};
-		D993A5CD2CFE381500EA8B09 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = L8X3H5XA82;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MedoDelirioSyncWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = MedoDelirioSyncWidget;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoDelirioSyncWidget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		D993A5CE2CFE381500EA8B09 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = L8X3H5XA82;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MedoDelirioSyncWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = MedoDelirioSyncWidget;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoDelirioSyncWidget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		D9E6B34D2CA0EA4B002FCB91 /* Debug */ = {
+		D9E6B34D2CA0EA4B002FCB91 /* Dev */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -7498,7 +7338,7 @@
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = "$(APP_VERSION)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.MedoDelirioWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rafaelschmitt.MedoDelirioBrasilia.beta.MedoDelirioWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
@@ -7506,9 +7346,9 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Debug;
+			name = Dev;
 		};
-		D9E6B34E2CA0EA4B002FCB91 /* Release */ = {
+		D9E6B34E2CA0EA4B002FCB91 /* Prod */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -7539,7 +7379,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Release;
+			name = Prod;
 		};
 /* End XCBuildConfiguration section */
 
@@ -7547,47 +7387,38 @@
 		D9625E7528238F9A00080852 /* Build configuration list for PBXProject "MedoDelirioBrasilia" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D9625E9C28238F9B00080852 /* Debug */,
-				D9625E9D28238F9B00080852 /* Release */,
+				D9625E9C28238F9B00080852 /* Dev */,
+				D9625E9D28238F9B00080852 /* Prod */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Prod;
 		};
 		D9625E9E28238F9B00080852 /* Build configuration list for PBXNativeTarget "MedoDelirioBrasilia" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D9625E9F28238F9B00080852 /* Debug */,
-				D9625EA028238F9B00080852 /* Release */,
+				D9625E9F28238F9B00080852 /* Dev */,
+				D9625EA028238F9B00080852 /* Prod */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Prod;
 		};
 		D9625EA128238F9B00080852 /* Build configuration list for PBXNativeTarget "MedoDelirioBrasiliaTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D9625EA228238F9B00080852 /* Debug */,
-				D9625EA328238F9B00080852 /* Release */,
+				D9625EA228238F9B00080852 /* Dev */,
+				D9625EA328238F9B00080852 /* Prod */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D993A5CF2CFE381500EA8B09 /* Build configuration list for PBXNativeTarget "MedoDelirioSyncWidgetExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D993A5CD2CFE381500EA8B09 /* Debug */,
-				D993A5CE2CFE381500EA8B09 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Prod;
 		};
 		D9E6B3502CA0EA4B002FCB91 /* Build configuration list for PBXNativeTarget "MedoDelirioWidgetExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D9E6B34D2CA0EA4B002FCB91 /* Debug */,
-				D9E6B34E2CA0EA4B002FCB91 /* Release */,
+				D9E6B34D2CA0EA4B002FCB91 /* Dev */,
+				D9E6B34E2CA0EA4B002FCB91 /* Prod */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Prod;
 		};
 /* End XCConfigurationList section */
 
