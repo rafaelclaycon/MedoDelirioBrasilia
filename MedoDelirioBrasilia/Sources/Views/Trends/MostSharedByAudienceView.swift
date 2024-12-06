@@ -135,7 +135,7 @@ struct MostSharedByAudienceView: View {
             if viewModel.ranking.isEmpty {
                 viewModel.loadList(for: viewModel.timeIntervalOption)
                 viewModel.donateActivity(forTimeInterval: viewModel.timeIntervalOption)
-            } else if viewModel.lastCheckDate.twoMinutesHavePassed {
+            } else if viewModel.lastCheckDate.minutesPassed(1) {
                 viewModel.loadList(for: viewModel.timeIntervalOption)
             }
             shouldDisplayNewUpdateWayBanner = !AppPersistentMemory().hasSeenNewTrendsUpdateWayBanner()

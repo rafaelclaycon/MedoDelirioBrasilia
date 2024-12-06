@@ -14,6 +14,7 @@ final class RetroViewModelTests: XCTestCase {
 
     private var localDatabase: FakeLocalDatabase!
 
+    @MainActor
     override func setUpWithError() throws {
         try super.setUpWithError()
         localDatabase = .init()
@@ -34,23 +35,27 @@ final class RetroViewModelTests: XCTestCase {
         return dateFormatter.date(from: isoDate)!
     }
 
-    func testDayOfTheWeekFromDate() throws {
+    @MainActor
+    func testDayOfTheWeekFromDate() async throws {
         XCTAssertEqual(sut.dayOfTheWeek(from: date(from: "2023-10-16T23:36:27.074")), "segunda-feira")
     }
 
-    func testMostCommonDay_whenNoDates_thenNilReturned() throws {
+    @MainActor
+    func testMostCommonDay_whenNoDates_thenNilReturned() async throws {
         let dates: [Date] = []
         XCTAssertNil(sut.mostCommonDay(from: dates))
     }
 
-    func testMostCommonDay_whenOnlySingleDaySaturday_thenSaturdayIsReturned() throws {
+    @MainActor
+    func testMostCommonDay_whenOnlySingleDaySaturday_thenSaturdayIsReturned() async throws {
         let dates: [Date] = [
             date(from: "2023-01-07T23:36:27.074") // sab
         ]
         XCTAssertEqual(sut.mostCommonDay(from: dates), "sábado")
     }
 
-    func testMostCommonDay_whenSundayIsTheTopOne_thenSundayIsReturned() throws {
+    @MainActor
+    func testMostCommonDay_whenSundayIsTheTopOne_thenSundayIsReturned() async throws {
         let dates: [Date] = [
             date(from: "2023-01-07T23:36:27.074"), // sab
             date(from: "2023-01-08T23:36:27.074"), // dom
@@ -83,7 +88,7 @@ final class RetroViewModelTests: XCTestCase {
         XCTAssertEqual(sut.mostCommonDay(from: dates), "domingo")
     }
 
-    func testMostCommonDay_whenSundayFridayAndSaturdayAreTied_thenFridayIsReturned() throws {
+    func testMostCommonDay_whenSundayFridayAndSaturdayAreTied_thenFridayIsReturned() async throws {
         let dates: [Date] = [
             date(from: "2023-01-07T23:36:27.074"), // sab
             date(from: "2023-01-08T23:36:27.074"), // dom
@@ -112,7 +117,7 @@ final class RetroViewModelTests: XCTestCase {
             date(from: "2023-10-21T23:36:27.074")  // sab
         ]
 
-        guard let days = sut.mostCommonDay(from: dates) else {
+        guard let days = await sut.mostCommonDay(from: dates) else {
             return XCTFail("Days should not be nil.")
         }
 
@@ -169,6 +174,7 @@ final class RetroViewModelTests: XCTestCase {
 // MARK: - Version Is Allowed To Display Retro
 extension RetroViewModelTests {
 
+    @MainActor
     func testAnalyticsString_whenInformationLoadsCorrectly_shouldReturnAllDataFormatted() async throws {
         localDatabase.topSharedSounds = [
             .init(rankNumber: "1", contentName: "Conversa de bêbado"),
@@ -182,7 +188,7 @@ extension RetroViewModelTests {
             date(from: "2023-11-20T23:36:27.074")
         ]
 
-        sut.loadInformation()
+        await sut.onViewLoaded()
 
         XCTAssertEqual(
             sut.analyticsString(),
