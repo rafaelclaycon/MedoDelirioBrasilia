@@ -125,6 +125,7 @@
 		D90EDC5D2AAAC02500CA3567 /* Conversa de bebado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90EDC5B2AAAC02500CA3567 /* Conversa de bebado.mp3 */; };
 		D90EDDBA2908505000ED87A8 /* FolderResearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90EDDB92908505000ED87A8 /* FolderResearchRepository.swift */; };
 		D90F6A6628446C250050FFFF /* TrendsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */; };
+		D910918C2D03C74A00D72249 /* NowPlayingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D910918B2D03C74A00D72249 /* NowPlayingBar.swift */; };
 		D911070B28627216000B6F8F /* NotificationsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D911070A28627216000B6F8F /* NotificationsSettingsView.swift */; };
 		D91107112863B481000B6F8F /* ReactionsView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91107102863B481000B6F8F /* ReactionsView+ViewModel.swift */; };
 		D91107142863B5FD000B6F8F /* Reaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91107132863B5FD000B6F8F /* Reaction.swift */; };
@@ -1678,6 +1679,7 @@
 		D90EDC5B2AAAC02500CA3567 /* Conversa de bebado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Conversa de bebado.mp3"; sourceTree = "<group>"; };
 		D90EDDB92908505000ED87A8 /* FolderResearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderResearchRepository.swift; sourceTree = "<group>"; };
 		D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsSettingsView.swift; sourceTree = "<group>"; };
+		D910918B2D03C74A00D72249 /* NowPlayingBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingBar.swift; sourceTree = "<group>"; };
 		D911070A28627216000B6F8F /* NotificationsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSettingsView.swift; sourceTree = "<group>"; };
 		D91107102863B481000B6F8F /* ReactionsView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReactionsView+ViewModel.swift"; sourceTree = "<group>"; };
 		D91107132863B5FD000B6F8F /* Reaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reaction.swift; sourceTree = "<group>"; };
@@ -3153,6 +3155,14 @@
 			path = Doubles;
 			sourceTree = "<group>";
 		};
+		D910918A2D03C73E00D72249 /* NowPlaying */ = {
+			isa = PBXGroup;
+			children = (
+				D910918B2D03C74A00D72249 /* NowPlayingBar.swift */,
+			);
+			path = NowPlaying;
+			sourceTree = "<group>";
+		};
 		D916627B2874F1E2000A1B23 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -4464,6 +4474,7 @@
 		D937E0EF2908A9E1004137ED /* Episodes */ = {
 			isa = PBXGroup;
 			children = (
+				D910918A2D03C73E00D72249 /* NowPlaying */,
 				D937E0F02908AA0C004137ED /* EpisodesView.swift */,
 				D9DD90322CFCD67B00EE62CD /* EpisodesView+ViewModel.swift */,
 				D937E0F72909600E004137ED /* EpisodeItem.swift */,
@@ -6924,6 +6935,7 @@
 				D994AD622C9DFE89004FAE25 /* LoadingState.swift in Sources */,
 				D9BACC012B13BF5400BBD0BE /* Analytics.swift in Sources */,
 				D98DBD35284919B1008544F8 /* NetworkRabbit.swift in Sources */,
+				D910918C2D03C74A00D72249 /* NowPlayingBar.swift in Sources */,
 				D959B0482887E83D00A215AD /* SidebarViewViewModel.swift in Sources */,
 				D97B2DD628E3E85400C3B50B /* MostSharedByMeViewViewModel.swift in Sources */,
 				D9838A122CC59ABF00E58C2E /* Retro2024Banner.swift in Sources */,

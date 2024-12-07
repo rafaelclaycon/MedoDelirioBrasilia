@@ -94,10 +94,12 @@ struct MainView: View {
                     .tag(PhoneTab.songs)
 
                     NavigationStack(path: $episodesPath) {
-                        EpisodesView()
-                            .navigationDestination(for: GeneralNavigationDestination.self) { screen in
-                                GeneralRouter(destination: screen)
-                            }
+                        NowPlayingBar(
+                            content: EpisodesView()
+                        )
+                        .navigationDestination(for: GeneralNavigationDestination.self) { screen in
+                            GeneralRouter(destination: screen)
+                        }
                     }
                     .tabItem {
                         Label("Episódios", systemImage: "rectangle.stack.fill")
