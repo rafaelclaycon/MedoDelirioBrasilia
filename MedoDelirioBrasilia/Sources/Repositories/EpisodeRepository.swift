@@ -11,6 +11,7 @@ import FeedKit
 protocol EpisodeRepositoryProtocol {
 
     func latestEpisodes() async throws -> [Episode]
+    func download(episode: Episode) async throws -> URL
 }
 
 final class EpisodeRepository: EpisodeRepositoryProtocol {
@@ -61,13 +62,38 @@ final class EpisodeRepository: EpisodeRepositoryProtocol {
                     description: item.iTunes?.iTunesSubtitle,
                     pubDate: item.pubDate,
                     duration: item.iTunes?.iTunesDuration ?? 0,
-                    creationDate: .now
+                    creationDate: .now,
+                    remoteUrl: URL(string: item.enclosure?.attributes?.url ?? "")
                 )
             }
 
         case .failure(_):
             throw EpisodeRepositoryError.unableToAccessRSSFeed
         }
+    }
+
+    func download(episode: Episode) async throws -> URL {
+        guard let remoteUrl = episode.remoteUrl else { throw EpisodeRepositoryError.episodeRemoteUrlNotSet }
+
+        let fileManager = FileManager.default
+        let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let folderUrl = documentsUrl.appendingPathComponent(InternalFolderNames.downloadedEpisodes)
+
+        var isDirectory: ObjCBool = false
+        guard fileManager.fileExists(atPath: folderUrl.path, isDirectory: &isDirectory) else {
+            throw EpisodeRepositoryError.downloadedEpisodesFolderNotFound
+        }
+
+        let (tempFile, response) = try await URLSession.shared.download(from: remoteUrl)
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            throw EpisodeRepositoryError.invalidServerResponse
+        }
+
+        let destinationUrl = documentsUrl.appendingPathComponent(InternalFolderNames.downloadedEpisodes + "\(episode.id).mp3")
+
+        try fileManager.moveItem(at: tempFile, to: destinationUrl)
+
+        return destinationUrl
     }
 }
 
@@ -76,4 +102,7 @@ enum EpisodeRepositoryError: Error {
     case notAnRSSFeed
     case emptyFeed
     case unableToAccessRSSFeed
+    case episodeRemoteUrlNotSet
+    case downloadedEpisodesFolderNotFound
+    case invalidServerResponse
 }

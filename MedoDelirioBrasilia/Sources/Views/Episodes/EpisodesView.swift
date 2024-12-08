@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EpisodesView: View {
 
-    @StateObject private var viewModel = ViewModel(episodeRepository: EpisodeRepository())
+    let viewModel: ViewModel
 
     @Environment(\.push) var push
 
@@ -26,19 +26,26 @@ struct EpisodesView: View {
                 ScrollView {
                     VStack(spacing: 20) {
                         ForEach(episodes) { episode in
-                            EpisodeItem(episode: episode)
-                                .onTapGesture {
-                                    push(GeneralNavigationDestination.episodeDetail(episode))
+                            EpisodeItem(
+                                episode: episode,
+                                playAction: { episode in
+                                    Task {
+                                        await viewModel.onPlayEpisodeSelected(episode: episode)
+                                    }
                                 }
+                            )
+                            .onTapGesture {
+                                push(GeneralNavigationDestination.episodeDetail(episode))
+                            }
                         }
                     }
                     .navigationTitle("Episódios")
                     .padding()
                 }
 
-            case .error(let string):
+            case .error(let errorMessage):
                 VStack {
-                    Text("Erro")
+                    Text("Erro: \(errorMessage)")
                 }
             }
         }
@@ -100,6 +107,6 @@ extension EpisodesView {
 
 // MARK: - Preview
 
-#Preview {
-    EpisodesView()
-}
+//#Preview {
+//    EpisodesView()
+//}

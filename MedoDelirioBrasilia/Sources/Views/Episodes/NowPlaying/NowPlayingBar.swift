@@ -10,8 +10,9 @@ import SwiftUI
 struct NowPlayingBar<Content: View>: View {
 
     var content: Content
+    let currentState: PlayerState<Episode>
+    let playButtonAction: () -> Void
 
-    //@State var showBar: Bool = player != nil ? ((player!.state.activity == .playing) || (player!.state.activity == .paused)) : false
     let showBar: Bool = true
     @State private var showNowPlayingScreen: Bool = false
 
@@ -20,45 +21,69 @@ struct NowPlayingBar<Content: View>: View {
             content
 
             if showBar {
-                HStack {
-                    Button(action: {}) {
-                        Image("Cover")
-                            .resizable()
-                            .frame(width: 48, height: 48)
-                            .shadow(radius: 1, x: 0, y: 2)
-                            .padding(.leading)
+                VStack {
+                    switch currentState {
+                    case .stopped:
+                        HStack {
+                            Spacer()
+
+                            Button(action: {}) {
+                                Image(systemName: "play.circle.fill")
+                                    .font(.largeTitle)
+                            }
+
+                            Spacer()
+                        }
+
+                    case .downloading:
+                        HStack {
+                            Spacer()
+
+                            ProgressView()
+
+                            Text("Baixando episódio...")
+                                .foregroundStyle(.gray)
+
+                            Spacer()
+                        }
+
+                    case .playing(let episode):
+                        HStack {
+                            Spacer()
+
+                            Button(action: {}) {
+                                Image(systemName: "pause.circle.fill")
+                                    .font(.largeTitle)
+                            }
+
+                            Spacer()
+                        }
+
+                    case .paused:
+                        HStack {
+                            Spacer()
+
+                            Button(action: {}) {
+                                Image(systemName: "play.circle.fill")
+                                    .font(.largeTitle)
+                            }
+
+                            Spacer()
+                        }
+
+                    case .error(let errorMessage):
+                        HStack {
+                            Spacer()
+
+                            Image(systemName: "exclamationmark.circle.fill")
+                                .foregroundStyle(.red)
+
+                            Text("Erro reproduzindo o episódio: \(errorMessage)")
+                                .foregroundStyle(.gray)
+
+                            Spacer()
+                        }
                     }
-                    .buttonStyle(PlainButtonStyle())
-
-                    Spacer()
-
-                    Button(action: {}) {
-                        Image(systemName: "gobackward")
-                            .font(.headline)
-                    }
-                    .buttonStyle(PlainButtonStyle())
-
-                    Button(action: {}) {
-                        Image(systemName: "play.circle.fill")
-                            .font(.largeTitle)
-                    }
-                    .buttonStyle(PlainButtonStyle())
-                    .padding(.horizontal)
-
-                    Button(action: {}) {
-                        Image(systemName: "goforward")
-                            .font(.headline)
-                    }
-                    .buttonStyle(PlainButtonStyle())
-
-                    Spacer()
-
-                    Button(action: {}) {
-                        Image(systemName: "list.triangle")
-                            .font(.headline)
-                    }
-                    .buttonStyle(PlainButtonStyle())
-                    .padding(.trailing, 20)
                 }
                 .frame(height: 65)
                 .background {
@@ -67,7 +92,7 @@ struct NowPlayingBar<Content: View>: View {
                         .shadow(radius: 3, x: 0, y: -0.5)
                 }
                 .onTapGesture {
-                    self.showNowPlayingScreen.toggle()
+                    playButtonAction()
                 }
                 //.fullScreenCover(isPresented: $showNowPlayingScreen, content: NowPlayingView.init)
             }

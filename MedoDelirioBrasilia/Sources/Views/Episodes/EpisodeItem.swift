@@ -10,6 +10,7 @@ import SwiftUI
 struct EpisodeItem: View {
 
     let episode: Episode
+    let playAction: (Episode) -> Void
 
     var body: some View {
         VStack {
@@ -45,7 +46,7 @@ struct EpisodeItem: View {
                 .foregroundStyle(.primary)
 
                 Button {
-                    //Opener.open(link: episode.applePodcastsLink)
+                    playAction(episode)
                 } label: {
                     Image(systemName: "play.circle.fill")
                         .resizable()
@@ -69,6 +70,7 @@ struct EpisodeItem: View {
             pubDate: .now,
             duration: 300,
             creationDate: .now
-        )
+        ),
+        playAction: { _ in }
     )
 }

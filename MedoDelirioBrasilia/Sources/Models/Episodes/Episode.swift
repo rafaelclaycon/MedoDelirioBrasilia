@@ -16,9 +16,11 @@ struct Episode: Hashable, Codable, Identifiable {
     var pubDate: Date?
     var duration: Double
     var creationDate: Date
-    var spotifyLink: String
-    var applePodcastsLink: String
-    var pocketCastsLink: String
+    var remoteUrl: URL?
+    var localUrl: URL?
+//    var spotifyLink: String
+//    var applePodcastsLink: String
+//    var pocketCastsLink: String
     
     init(
         id: String = UUID().uuidString,
@@ -28,9 +30,11 @@ struct Episode: Hashable, Codable, Identifiable {
         pubDate: Date?,
         duration: Double,
         creationDate: Date,
-        spotifyLink: String = .empty,
-        applePodcastsLink: String = .empty,
-        pocketCastsLink: String = .empty
+        remoteUrl: URL? = nil,
+        localUrl: URL? = nil
+//        spotifyLink: String = .empty,
+//        applePodcastsLink: String = .empty,
+//        pocketCastsLink: String = .empty
     ) {
         self.id = id
         self.episodeId = episodeId
@@ -39,9 +43,11 @@ struct Episode: Hashable, Codable, Identifiable {
         self.pubDate = pubDate
         self.duration = duration
         self.creationDate = creationDate
-        self.spotifyLink = spotifyLink
-        self.applePodcastsLink = applePodcastsLink
-        self.pocketCastsLink = pocketCastsLink
+        self.remoteUrl = remoteUrl
+        self.localUrl = localUrl
+//        self.spotifyLink = spotifyLink
+//        self.applePodcastsLink = applePodcastsLink
+//        self.pocketCastsLink = pocketCastsLink
     }
 }
 

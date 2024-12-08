@@ -40,6 +40,9 @@ struct MainView: View {
     // Sync
     @StateObject private var syncValues = SyncValues()
 
+    // Podcast Episodes
+    @StateObject private var episodesViewModel = EpisodesView.ViewModel(episodeRepository: EpisodeRepository())
+
     // MARK: - View Body
 
     var body: some View {
@@ -95,7 +98,9 @@ struct MainView: View {
 
                     NavigationStack(path: $episodesPath) {
                         NowPlayingBar(
-                            content: EpisodesView()
+                            content: EpisodesView(viewModel: episodesViewModel),
+                            currentState: episodesViewModel.playerState,
+                            playButtonAction: { episodesViewModel.onPlayPauseButtonSelected() }
                         )
                         .navigationDestination(for: GeneralNavigationDestination.self) { screen in
                             GeneralRouter(destination: screen)
