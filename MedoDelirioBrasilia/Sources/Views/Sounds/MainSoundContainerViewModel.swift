@@ -290,7 +290,7 @@ extension MainSoundContainerViewModel: SyncManagerDelegate {
             )
         }
 
-        await syncManager.sync()
+        // await syncManager.sync()
 
         firstRunSyncHappened = true
 
