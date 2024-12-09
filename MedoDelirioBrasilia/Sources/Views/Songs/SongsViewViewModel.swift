@@ -98,7 +98,7 @@ class SongsViewViewModel: ObservableObject {
                 }
             })
 
-            AudioPlayer.shared?.togglePlay()
+            AudioPlayer.shared?.togglePlay(contentTitle: song.title)
         } catch {
             if song.isFromServer ?? false {
                 showServerSongNotAvailableAlert(song)

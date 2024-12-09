@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import MediaPlayer
 
 extension EpisodesView {
 
@@ -14,6 +15,8 @@ extension EpisodesView {
 
         @Published var state: LoadingState<[Episode]> = .loading
         @Published var playerState: PlayerState<Episode> = .stopped
+
+        var assetPlayer: AssetPlayer!
 
         private let episodeRepository: EpisodeRepositoryProtocol
 
@@ -39,7 +42,7 @@ extension EpisodesView.ViewModel {
         var episodeCopy = episode
         do {
             playerState = .downloading
-            episodeCopy.localUrl = try await episodeRepository.download(episode: episode)
+            episodeCopy.localUrl = try await episodeRepository.localUrl(for: episode)
             play(episode: episodeCopy)
         } catch {
             print(error)
@@ -71,14 +74,34 @@ extension EpisodesView.ViewModel {
 
         playerState = .playing(episode)
 
-        AudioPlayer.shared = AudioPlayer(
-            url: url,
-            update: { [weak self] state in
-                self?.onAudioPlayerUpdate(playerState: state)
-            }
+        let metadata = NowPlayableStaticMetadata(
+            assetURL: url,
+            mediaType: .audio,
+            isLiveStream: false,
+            title: episode.title,
+            artist: "Pedro e Cristiano",
+            artwork: nil,
+            albumArtist: "Pedro e Cristiano",
+            albumTitle: "Medo e Delírio em Brasília"
         )
 
-        AudioPlayer.shared?.togglePlay()
+        do {
+            assetPlayer = try AssetPlayer()
+            assetPlayer.playerItems = [AVPlayerItem(asset: AVURLAsset(url: url))]
+            assetPlayer.staticMetadatas = [metadata]
+            assetPlayer.play()
+        } catch {
+            print(error)
+        }
+
+//        AudioPlayer.shared = AudioPlayer(
+//            url: url,
+//            update: { [weak self] state in
+//                self?.onAudioPlayerUpdate(playerState: state)
+//            }
+//        )
+//
+//        AudioPlayer.shared?.togglePlay(contentTitle: episode.title)
     }
 
     private func onAudioPlayerUpdate(

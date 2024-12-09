@@ -126,6 +126,13 @@
 		D90EDDBA2908505000ED87A8 /* FolderResearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90EDDB92908505000ED87A8 /* FolderResearchRepository.swift */; };
 		D90F6A6628446C250050FFFF /* TrendsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */; };
 		D910918C2D03C74A00D72249 /* NowPlayingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D910918B2D03C74A00D72249 /* NowPlayingBar.swift */; };
+		D910918E2D06468D00D72249 /* AssetPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D910918D2D06468D00D72249 /* AssetPlayer.swift */; };
+		D91091942D06470C00D72249 /* NowPlayableMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91091932D06470C00D72249 /* NowPlayableMetadata.swift */; };
+		D91091952D06470C00D72249 /* NowPlayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91091902D06470C00D72249 /* NowPlayable.swift */; };
+		D91091962D06470C00D72249 /* NowPlayableError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91091922D06470C00D72249 /* NowPlayableError.swift */; };
+		D91091972D06470C00D72249 /* NowPlayableCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91091912D06470C00D72249 /* NowPlayableCommand.swift */; };
+		D91091992D064BFF00D72249 /* IOSNowPlayableBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91091982D064BFF00D72249 /* IOSNowPlayableBehavior.swift */; };
+		D910919B2D064E4900D72249 /* ConfigCommandCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D910919A2D064E4900D72249 /* ConfigCommandCollection.swift */; };
 		D911070B28627216000B6F8F /* NotificationsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D911070A28627216000B6F8F /* NotificationsSettingsView.swift */; };
 		D91107112863B481000B6F8F /* ReactionsView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91107102863B481000B6F8F /* ReactionsView+ViewModel.swift */; };
 		D91107142863B5FD000B6F8F /* Reaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91107132863B5FD000B6F8F /* Reaction.swift */; };
@@ -1680,6 +1687,13 @@
 		D90EDDB92908505000ED87A8 /* FolderResearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderResearchRepository.swift; sourceTree = "<group>"; };
 		D90F6A6528446C250050FFFF /* TrendsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsSettingsView.swift; sourceTree = "<group>"; };
 		D910918B2D03C74A00D72249 /* NowPlayingBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingBar.swift; sourceTree = "<group>"; };
+		D910918D2D06468D00D72249 /* AssetPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetPlayer.swift; sourceTree = "<group>"; };
+		D91091902D06470C00D72249 /* NowPlayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayable.swift; sourceTree = "<group>"; };
+		D91091912D06470C00D72249 /* NowPlayableCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayableCommand.swift; sourceTree = "<group>"; };
+		D91091922D06470C00D72249 /* NowPlayableError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayableError.swift; sourceTree = "<group>"; };
+		D91091932D06470C00D72249 /* NowPlayableMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayableMetadata.swift; sourceTree = "<group>"; };
+		D91091982D064BFF00D72249 /* IOSNowPlayableBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSNowPlayableBehavior.swift; sourceTree = "<group>"; };
+		D910919A2D064E4900D72249 /* ConfigCommandCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigCommandCollection.swift; sourceTree = "<group>"; };
 		D911070A28627216000B6F8F /* NotificationsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSettingsView.swift; sourceTree = "<group>"; };
 		D91107102863B481000B6F8F /* ReactionsView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReactionsView+ViewModel.swift"; sourceTree = "<group>"; };
 		D91107132863B5FD000B6F8F /* Reaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reaction.swift; sourceTree = "<group>"; };
@@ -3163,6 +3177,19 @@
 			path = NowPlaying;
 			sourceTree = "<group>";
 		};
+		D910918F2D0646E300D72249 /* AssetPlayerData */ = {
+			isa = PBXGroup;
+			children = (
+				D91091902D06470C00D72249 /* NowPlayable.swift */,
+				D91091912D06470C00D72249 /* NowPlayableCommand.swift */,
+				D91091922D06470C00D72249 /* NowPlayableError.swift */,
+				D91091932D06470C00D72249 /* NowPlayableMetadata.swift */,
+				D91091982D064BFF00D72249 /* IOSNowPlayableBehavior.swift */,
+				D910919A2D064E4900D72249 /* ConfigCommandCollection.swift */,
+			);
+			path = AssetPlayerData;
+			sourceTree = "<group>";
+		};
 		D916627B2874F1E2000A1B23 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -4454,7 +4481,9 @@
 		D9351C5E28441DF200D4317E /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				D910918F2D0646E300D72249 /* AssetPlayerData */,
 				D961D01728372B1800EFEDEB /* AudioPlayer.swift */,
+				D910918D2D06468D00D72249 /* AssetPlayer.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -6925,6 +6954,7 @@
 				D916627D2874F1F9000A1B23 /* FirstOnboardingView.swift in Sources */,
 				D94B5F662A1C9CF600B3A688 /* SyncService+Author.swift in Sources */,
 				D992EF5C2BCB25820080C892 /* SoundListViewModel.swift in Sources */,
+				D91091992D064BFF00D72249 /* IOSNowPlayableBehavior.swift in Sources */,
 				D99DC19D28423AD7002B03B6 /* AuthorDetailViewViewModel.swift in Sources */,
 				D99D25512CEC06EE003E8ED0 /* EpisodeItem.swift in Sources */,
 				D967E2BC2901C40700B21C11 /* CustomPhotoAlbum.swift in Sources */,
@@ -7003,6 +7033,7 @@
 				D9491810288606E00079F545 /* SettingsCasingWithCloseView.swift in Sources */,
 				D9E1A8D22914CD8200694A74 /* MyFoldersiPhoneView.swift in Sources */,
 				D9E39DB92A1E891D0053A527 /* LocalDatabase+UpdateEvent.swift in Sources */,
+				D910918E2D06468D00D72249 /* AssetPlayer.swift in Sources */,
 				D98622E2283FCEDC00E9F630 /* AuthorsViewViewModel.swift in Sources */,
 				D958B1B22839534D0010F133 /* SettingsView.swift in Sources */,
 				D95BFEF129E8866700E42A23 /* LargeCreatorView.swift in Sources */,
@@ -7023,6 +7054,10 @@
 				D95BFEF529E8CD2600E42A23 /* DonorsView.swift in Sources */,
 				D9B24E2228C6A68800D76F7D /* NumberBadgeView.swift in Sources */,
 				D91FB0E82BB6169000C5370E /* AddExternalLinksFieldToAuthorTable.swift in Sources */,
+				D91091942D06470C00D72249 /* NowPlayableMetadata.swift in Sources */,
+				D91091952D06470C00D72249 /* NowPlayable.swift in Sources */,
+				D91091962D06470C00D72249 /* NowPlayableError.swift in Sources */,
+				D91091972D06470C00D72249 /* NowPlayableCommand.swift in Sources */,
 				D998F28F284F177B0013E709 /* TrendsDisabledView.swift in Sources */,
 				D933251E28835E41004EFACB /* ActivityViewController.swift in Sources */,
 				D9FD9E8D2A89690C0071F4A9 /* YoureOfflineView.swift in Sources */,
@@ -7047,6 +7082,7 @@
 				D927230628924FC1001D5E47 /* HitsMedoDelirioBannerView.swift in Sources */,
 				D91E375C2C4C908F003A1107 /* GeneralRouter.swift in Sources */,
 				D96E115D28459D8800306859 /* UserActivityWaiter.swift in Sources */,
+				D910919B2D064E4900D72249 /* ConfigCommandCollection.swift in Sources */,
 				D97D76F92885B1BD005210D9 /* SidebarFolderIcon.swift in Sources */,
 				D98D13822CD5C4B1001CF5BB /* AddChangeHashFieldToUserFolderTable.swift in Sources */,
 				D9943F172863DAE1002C6B97 /* FolderDetailView.swift in Sources */,

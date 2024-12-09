@@ -11,7 +11,7 @@ import FeedKit
 protocol EpisodeRepositoryProtocol {
 
     func latestEpisodes() async throws -> [Episode]
-    func download(episode: Episode) async throws -> URL
+    func localUrl(for episode: Episode) async throws -> URL
 }
 
 final class EpisodeRepository: EpisodeRepositoryProtocol {
@@ -72,12 +72,17 @@ final class EpisodeRepository: EpisodeRepositoryProtocol {
         }
     }
 
-    func download(episode: Episode) async throws -> URL {
+    func localUrl(for episode: Episode) async throws -> URL {
         guard let remoteUrl = episode.remoteUrl else { throw EpisodeRepositoryError.episodeRemoteUrlNotSet }
 
         let fileManager = FileManager.default
         let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
         let folderUrl = documentsUrl.appendingPathComponent(InternalFolderNames.downloadedEpisodes)
+
+        let preexistingLocal = folderUrl.appendingPathComponent("\(episode.id).mp3")
+        if fileManager.fileExists(atPath: preexistingLocal.path) {
+            return preexistingLocal
+        }
 
         var isDirectory: ObjCBool = false
         guard fileManager.fileExists(atPath: folderUrl.path, isDirectory: &isDirectory) else {
