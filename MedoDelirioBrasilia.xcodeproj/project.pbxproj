@@ -313,6 +313,7 @@
 		D93CCB77286A802D0002CF81 /* EmptyFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93CCB76286A802D0002CF81 /* EmptyFolderView.swift */; };
 		D93CCB79286A8A220002CF81 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93CCB78286A8A220002CF81 /* ToastView.swift */; };
 		D93CCB7B286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93CCB7A286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift */; };
+		D93CE5402D070D49007A4B3D /* MainSoundContainerViewModel+LiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93CE53F2D070D49007A4B3D /* MainSoundContainerViewModel+LiveActivity.swift */; };
 		D93D24E02849DAAB00300541 /* DiagnosticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93D24DF2849DAAB00300541 /* DiagnosticsView.swift */; };
 		D93F642E29A6A5FF003E7550 /* ShareAsVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F642D29A6A5FF003E7550 /* ShareAsVideoView.swift */; };
 		D93F643029A6A692003E7550 /* ShareAsVideoViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F642F29A6A692003E7550 /* ShareAsVideoViewViewModel.swift */; };
@@ -1869,6 +1870,7 @@
 		D93CCB76286A802D0002CF81 /* EmptyFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyFolderView.swift; sourceTree = "<group>"; };
 		D93CCB78286A8A220002CF81 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		D93CCB7A286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyTransition+MoveAndFade.swift"; sourceTree = "<group>"; };
+		D93CE53F2D070D49007A4B3D /* MainSoundContainerViewModel+LiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainSoundContainerViewModel+LiveActivity.swift"; sourceTree = "<group>"; };
 		D93D24DF2849DAAB00300541 /* DiagnosticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticsView.swift; sourceTree = "<group>"; };
 		D93F642D29A6A5FF003E7550 /* ShareAsVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAsVideoView.swift; sourceTree = "<group>"; };
 		D93F642F29A6A692003E7550 /* ShareAsVideoViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareAsVideoViewViewModel.swift; sourceTree = "<group>"; };
@@ -5130,6 +5132,7 @@
 				D94EAB5C29FC4D51004CD604 /* Sync */,
 				D98BB6992AC68769001DE23D /* FloatingSelectionOptionsView.swift */,
 				D96370042B085845002E8838 /* ExplicitDisabledWarning.swift */,
+				D93CE53F2D070D49007A4B3D /* MainSoundContainerViewModel+LiveActivity.swift */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -6813,6 +6816,7 @@
 				D91107142863B5FD000B6F8F /* Reaction.swift in Sources */,
 				D9543B462AD5D6C80075A7A1 /* ClassicRetroView+ViewModel.swift in Sources */,
 				D9855DBE2BE4123E00965E9D /* Reaction+Mocks.swift in Sources */,
+				D93CE5402D070D49007A4B3D /* MainSoundContainerViewModel+LiveActivity.swift in Sources */,
 				D984D55C2CF2157100680C7D /* CGFloat+.swift in Sources */,
 				D9543B462AD5D6C80075A7A1 /* ClassicRetroView+ViewModel.swift in Sources */,
 				D9855DBE2BE4123E00965E9D /* Reaction+Mocks.swift in Sources */,
@@ -7458,6 +7462,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "Medo e Delírio";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Medo e Delírio requer acesso a sua biblioteca de fotos para salvar imagens e vídeos.";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -7498,6 +7503,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "Medo e Delírio";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Medo e Delírio requer acesso a sua biblioteca de fotos para salvar imagens e vídeos.";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

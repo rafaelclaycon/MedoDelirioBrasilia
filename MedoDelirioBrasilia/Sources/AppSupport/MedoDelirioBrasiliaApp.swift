@@ -97,8 +97,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         updateExternalLinks()
         updateFolderChangeHashes()
 
-        registerBackgroundTasks()
-        scheduleBackgroundSync()
+//        registerBackgroundTasks()
+//        scheduleBackgroundSync()
 
         return true
     }
