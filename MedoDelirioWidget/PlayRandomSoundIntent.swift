@@ -7,6 +7,7 @@
 
 import AppIntents
 import SwiftUI
+#if canImport(WidgetKit)
 import WidgetKit
 
 enum URLCreationError: Error {
@@ -28,3 +29,4 @@ struct PlayRandomSoundIntent: AppIntent {
         return .result(opensIntent: OpenURLIntent(url))
     }
 }
+#endif

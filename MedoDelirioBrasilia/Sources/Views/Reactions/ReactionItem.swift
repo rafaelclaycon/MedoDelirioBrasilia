@@ -180,6 +180,7 @@ extension ReactionItem {
     .padding()
 }
 
+#if os(iOS)
 #Preview("Reactions List") {
 
     let columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
@@ -196,3 +197,4 @@ extension ReactionItem {
         }
     }
 }
+#endif

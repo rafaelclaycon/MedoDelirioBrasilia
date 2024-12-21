@@ -27,6 +27,7 @@ struct AllFoldersiPadView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .center) {
+                #if os(iOS)
                 if isDataReadyToShow {
                     TextEditor(text: $exportDataString)
                         .frame(minHeight: 300)  // Set a minimum height for the TextEditor
@@ -34,6 +35,7 @@ struct AllFoldersiPadView: View {
                         .border(Color.gray, width: 1)  // Optionally add a border
                         //.disabled(true)  // Make it non-editable
                 }
+                #endif
 
                 FolderList(
                     updateFolderList: $updateFolderList,
@@ -46,7 +48,9 @@ struct AllFoldersiPadView: View {
             .padding(.bottom, 18)
         }
         .navigationTitle("Pastas")
+        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 HStack(spacing: 20) {
@@ -103,6 +107,7 @@ struct AllFoldersiPadView: View {
     // MARK: - Functions
 
     private func exportFolders() {
+        #if os(iOS)
         do {
             let rawFolders = try LocalDatabase.shared.allFolders()
             var folders = rawFolders.map { UserFolderDTO(userFolder: $0) }
@@ -124,6 +129,7 @@ struct AllFoldersiPadView: View {
         } catch {
             print("Erro ao tentar exportar as pastas para arquivo: \(error.localizedDescription)")
         }
+        #endif
     }
 
     private func verifyFile(at url: URL) -> Bool {

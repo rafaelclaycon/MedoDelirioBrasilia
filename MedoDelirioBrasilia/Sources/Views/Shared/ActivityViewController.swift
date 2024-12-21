@@ -1,6 +1,7 @@
 import UIKit
 import SwiftUI
 
+#if os(iOS)
 struct ActivityViewController: UIViewControllerRepresentable {
 
     var activityItems: [Any]
@@ -14,5 +15,5 @@ struct ActivityViewController: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: UIViewControllerRepresentableContext<ActivityViewController>) {}
-
 }
+#endif
