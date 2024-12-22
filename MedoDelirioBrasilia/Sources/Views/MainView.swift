@@ -66,7 +66,7 @@ struct MainView: View {
                         }
                     }
                     .tabItem {
-                        Label("Sons", systemImage: "speaker.wave.3.fill")
+                        Label("Vírgulas", systemImage: "bubble.left.and.text.bubble.right.fill")
                     }
                     .tag(PhoneTab.sounds)
                     .environment(\.push, PushAction { soundsPath.append($0) })

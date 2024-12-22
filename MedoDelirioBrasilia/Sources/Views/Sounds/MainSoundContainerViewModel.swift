@@ -17,6 +17,7 @@ class MainSoundContainerViewModel: ObservableObject {
     @Published var favorites: [Sound]?
 
     @Published var currentViewMode: SoundsViewMode
+    @Published var soundsOrVideosOption: Int = 0
     @Published var soundSortOption: Int
     @Published var authorSortOption: Int
 

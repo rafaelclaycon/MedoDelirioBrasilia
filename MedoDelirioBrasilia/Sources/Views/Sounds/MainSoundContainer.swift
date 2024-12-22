@@ -434,6 +434,16 @@ extension MainSoundContainer {
                                 )
                             }
                         }
+                        
+                        Section {
+                            Picker("Exibição", selection: $viewModel.soundsOrVideosOption) {
+                                Text("Mostrar sons")
+                                    .tag(0)
+
+                                Text("Mostrar vídeos")
+                                    .tag(1)
+                            }
+                        }
 
                         Section {
                             Picker("Ordenação de Sons", selection: $viewModel.soundSortOption) {
