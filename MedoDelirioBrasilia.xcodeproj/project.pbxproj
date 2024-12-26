@@ -1316,6 +1316,8 @@
 		D9C1372729063A78003E4ABF /* FolderResearchSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C1372629063A78003E4ABF /* FolderResearchSettingsView.swift */; };
 		D9C1372B29063D7D003E4ABF /* PrivacySettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C1372A29063D7D003E4ABF /* PrivacySettingsView.swift */; };
 		D9C35D23288713990065F3E7 /* HotWeatherAdBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C35D22288713990065F3E7 /* HotWeatherAdBannerView.swift */; };
+		D9C4E9E32D1CD4CD0007D1F0 /* ThemePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C4E9E22D1CD4CD0007D1F0 /* ThemePickerView.swift */; };
+		D9C4E9E52D1CD76D0007D1F0 /* UITheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C4E9E42D1CD76D0007D1F0 /* UITheme.swift */; };
 		D9C5EC3128C7DEEA0099EA86 /* Jair Bolsonaro - O que nos queremos paz tranquilidade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C5EC3028C7DEE90099EA86 /* Jair Bolsonaro - O que nos queremos paz tranquilidade.mp3 */; };
 		D9C5EC3328C7F3150099EA86 /* Fora Genocida.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C5EC3228C7F3150099EA86 /* Fora Genocida.mp3 */; };
 		D9C5EC3628C7F7F70099EA86 /* Jair Bolsonaro - Ato falho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C5EC3428C7F7F70099EA86 /* Jair Bolsonaro - Ato falho.mp3 */; };
@@ -2861,6 +2863,8 @@
 		D9C1372629063A78003E4ABF /* FolderResearchSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderResearchSettingsView.swift; sourceTree = "<group>"; };
 		D9C1372A29063D7D003E4ABF /* PrivacySettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacySettingsView.swift; sourceTree = "<group>"; };
 		D9C35D22288713990065F3E7 /* HotWeatherAdBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotWeatherAdBannerView.swift; sourceTree = "<group>"; };
+		D9C4E9E22D1CD4CD0007D1F0 /* ThemePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePickerView.swift; sourceTree = "<group>"; };
+		D9C4E9E42D1CD76D0007D1F0 /* UITheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITheme.swift; sourceTree = "<group>"; };
 		D9C5EC3028C7DEE90099EA86 /* Jair Bolsonaro - O que nos queremos paz tranquilidade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - O que nos queremos paz tranquilidade.mp3"; sourceTree = "<group>"; };
 		D9C5EC3228C7F3150099EA86 /* Fora Genocida.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fora Genocida.mp3"; sourceTree = "<group>"; };
 		D9C5EC3428C7F7F70099EA86 /* Jair Bolsonaro - Ato falho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Ato falho.mp3"; sourceTree = "<group>"; };
@@ -4726,6 +4730,7 @@
 		D970162D28CE797B0003AA00 /* Sub-Settings */ = {
 			isa = PBXGroup;
 			children = (
+				D9C4E9E12D1CD4BB0007D1F0 /* Themes */,
 				D9ABDDB1287411D9007B25EA /* Help */,
 				D970163128CE7A6E0003AA00 /* Notifications */,
 				D9ECD81328B3C45D003C033A /* AlternateAppIcons */,
@@ -4929,6 +4934,7 @@
 				D9BB1E7828B3210D00C5FFAA /* Logs */,
 				D9DBEA9E2BCC0CF400220679 /* Other */,
 				D98CFB592C95C9710038C26C /* SocialMediaLink.swift */,
+				D9C4E9E42D1CD76D0007D1F0 /* UITheme.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -5201,6 +5207,14 @@
 				D97D76F82885B1BD005210D9 /* SidebarFolderIcon.swift */,
 			);
 			path = iPad;
+			sourceTree = "<group>";
+		};
+		D9C4E9E12D1CD4BB0007D1F0 /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+				D9C4E9E22D1CD4CD0007D1F0 /* ThemePickerView.swift */,
+			);
+			path = Themes;
 			sourceTree = "<group>";
 		};
 		D9C67C112A3E3C3200E74E9D /* Modifiers */ = {
@@ -6830,10 +6844,12 @@
 				D9592C402AA2C01100157F5A /* GenrePickerView.swift in Sources */,
 				D958B1AC28394DCD0010F133 /* AuthorsView.swift in Sources */,
 				D94D9F05298DB98D006F14A5 /* AddDateAndVersionToUserFolderTables.swift in Sources */,
+				D9C4E9E52D1CD76D0007D1F0 /* UITheme.swift in Sources */,
 				D9C67C102A3E3C2200E74E9D /* MiniButtonStyle.swift in Sources */,
 				D92E7072283C5D990035826C /* SongsViewViewModel.swift in Sources */,
 				D9FB70C92AC8DED4002FD8E1 /* View+.swift in Sources */,
 				D92C0CAC28406EA5009CF19A /* UserShareLog.swift in Sources */,
+				D9C4E9E32D1CD4CD0007D1F0 /* ThemePickerView.swift in Sources */,
 				D961D016283722AB00EFEDEB /* Color+.swift in Sources */,
 				D98DFB4B2CEA9A82009C880F /* PinReactionsBanner.swift in Sources */,
 				D93A029A2906DEB100A85FE2 /* UserFolderContentLog.swift in Sources */,

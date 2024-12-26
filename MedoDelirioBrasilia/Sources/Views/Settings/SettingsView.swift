@@ -57,6 +57,17 @@ struct SettingsView: View {
 //                        .foregroundStyle(Color.green)
 //                    }
 //                }
+                
+                Section {
+                    NavigationLink(destination: ThemePickerView()) {
+                        Label(title: {
+                            Text("Tema")
+                        }, icon: {
+                            Image(systemName: "paintbrush")
+                                .foregroundColor(.purple)
+                        })
+                    }
+                }
 
                 Section {
                     NavigationLink(destination: NotificationsSettingsView()) {
