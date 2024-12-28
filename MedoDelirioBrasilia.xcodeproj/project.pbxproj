@@ -1318,6 +1318,8 @@
 		D9C35D23288713990065F3E7 /* HotWeatherAdBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C35D22288713990065F3E7 /* HotWeatherAdBannerView.swift */; };
 		D9C4E9E32D1CD4CD0007D1F0 /* ThemePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C4E9E22D1CD4CD0007D1F0 /* ThemePickerView.swift */; };
 		D9C4E9E52D1CD76D0007D1F0 /* UITheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C4E9E42D1CD76D0007D1F0 /* UITheme.swift */; };
+		D9C4E9E72D1CDAFF0007D1F0 /* WPStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C4E9E62D1CDAFF0007D1F0 /* WPStartView.swift */; };
+		D9C4E9EA2D1CDB390007D1F0 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C4E9E92D1CDB390007D1F0 /* Tile.swift */; };
 		D9C5EC3128C7DEEA0099EA86 /* Jair Bolsonaro - O que nos queremos paz tranquilidade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C5EC3028C7DEE90099EA86 /* Jair Bolsonaro - O que nos queremos paz tranquilidade.mp3 */; };
 		D9C5EC3328C7F3150099EA86 /* Fora Genocida.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C5EC3228C7F3150099EA86 /* Fora Genocida.mp3 */; };
 		D9C5EC3628C7F7F70099EA86 /* Jair Bolsonaro - Ato falho.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9C5EC3428C7F7F70099EA86 /* Jair Bolsonaro - Ato falho.mp3 */; };
@@ -2865,6 +2867,8 @@
 		D9C35D22288713990065F3E7 /* HotWeatherAdBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotWeatherAdBannerView.swift; sourceTree = "<group>"; };
 		D9C4E9E22D1CD4CD0007D1F0 /* ThemePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePickerView.swift; sourceTree = "<group>"; };
 		D9C4E9E42D1CD76D0007D1F0 /* UITheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITheme.swift; sourceTree = "<group>"; };
+		D9C4E9E62D1CDAFF0007D1F0 /* WPStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WPStartView.swift; sourceTree = "<group>"; };
+		D9C4E9E92D1CDB390007D1F0 /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		D9C5EC3028C7DEE90099EA86 /* Jair Bolsonaro - O que nos queremos paz tranquilidade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - O que nos queremos paz tranquilidade.mp3"; sourceTree = "<group>"; };
 		D9C5EC3228C7F3150099EA86 /* Fora Genocida.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fora Genocida.mp3"; sourceTree = "<group>"; };
 		D9C5EC3428C7F7F70099EA86 /* Jair Bolsonaro - Ato falho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Ato falho.mp3"; sourceTree = "<group>"; };
@@ -4698,6 +4702,7 @@
 		D9625EAB2824EADC00080852 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D9C4E9E82D1CDB2A0007D1F0 /* WindowsPhoneTheme */,
 				D958B1A928394D400010F133 /* MainView.swift */,
 				D95DB0F5288248A300D4FEDF /* SidebarView.swift */,
 				D959B0472887E83D00A215AD /* SidebarViewViewModel.swift */,
@@ -5215,6 +5220,15 @@
 				D9C4E9E22D1CD4CD0007D1F0 /* ThemePickerView.swift */,
 			);
 			path = Themes;
+			sourceTree = "<group>";
+		};
+		D9C4E9E82D1CDB2A0007D1F0 /* WindowsPhoneTheme */ = {
+			isa = PBXGroup;
+			children = (
+				D9C4E9E62D1CDAFF0007D1F0 /* WPStartView.swift */,
+				D9C4E9E92D1CDB390007D1F0 /* Tile.swift */,
+			);
+			path = WindowsPhoneTheme;
 			sourceTree = "<group>";
 		};
 		D9C67C112A3E3C3200E74E9D /* Modifiers */ = {
@@ -6755,6 +6769,7 @@
 				D9F45DDA2BED39F800D49340 /* DynamicBannerData.swift in Sources */,
 				D9E7BE902C9E1D9D0094AD28 /* UserInfo.swift in Sources */,
 				D9E7BE912C9E1D9D0094AD28 /* VideoExportType.swift in Sources */,
+				D9C4E9EA2D1CDB390007D1F0 /* Tile.swift in Sources */,
 				D9E7BE922C9E1D9D0094AD28 /* TopChartItem.swift in Sources */,
 				D9E7BE932C9E1D9D0094AD28 /* WordPluralization.swift in Sources */,
 				D9E7BE942C9E1D9D0094AD28 /* FolderColor.swift in Sources */,
@@ -6986,6 +7001,7 @@
 				D91E375C2C4C908F003A1107 /* GeneralRouter.swift in Sources */,
 				D96E115D28459D8800306859 /* UserActivityWaiter.swift in Sources */,
 				D97D76F92885B1BD005210D9 /* SidebarFolderIcon.swift in Sources */,
+				D9C4E9E72D1CDAFF0007D1F0 /* WPStartView.swift in Sources */,
 				D98D13822CD5C4B1001CF5BB /* AddChangeHashFieldToUserFolderTable.swift in Sources */,
 				D9943F172863DAE1002C6B97 /* FolderDetailView.swift in Sources */,
 				D91E375A2C4C8F33003A1107 /* PushAction.swift in Sources */,

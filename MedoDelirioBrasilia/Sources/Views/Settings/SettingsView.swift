@@ -57,15 +57,17 @@ struct SettingsView: View {
 //                        .foregroundStyle(Color.green)
 //                    }
 //                }
-                
-                Section {
-                    NavigationLink(destination: ThemePickerView()) {
-                        Label(title: {
-                            Text("Tema")
-                        }, icon: {
-                            Image(systemName: "paintbrush")
-                                .foregroundColor(.purple)
-                        })
+
+                if UIDevice.isiPhone {
+                    Section {
+                        NavigationLink(destination: ThemePickerView()) {
+                            Label(title: {
+                                Text("Tema")
+                            }, icon: {
+                                Image(systemName: "paintbrush")
+                                    .foregroundColor(.purple)
+                            })
+                        }
                     }
                 }
 

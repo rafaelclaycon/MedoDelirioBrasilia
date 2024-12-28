@@ -44,91 +44,95 @@ struct MainView: View {
     var body: some View {
         ZStack {
             if UIDevice.isiPhone {
-                TabView(selection: $tabSelection) {
-                    NavigationStack(path: $soundsPath) {
-                        MainSoundContainer(
-                            viewModel: .init(
-                                currentViewMode: .allSounds,
-                                soundSortOption: UserSettings().mainSoundListSoundSortOption(),
-                                authorSortOption: UserSettings().authorSortOption(),
+                if UserSettings().theme() == .default {
+                    TabView(selection: $tabSelection) {
+                        NavigationStack(path: $soundsPath) {
+                            MainSoundContainer(
+                                viewModel: .init(
+                                    currentViewMode: .allSounds,
+                                    soundSortOption: UserSettings().mainSoundListSoundSortOption(),
+                                    authorSortOption: UserSettings().authorSortOption(),
+                                    currentSoundsListMode: $currentSoundsListMode,
+                                    syncValues: syncValues
+                                ),
                                 currentSoundsListMode: $currentSoundsListMode,
-                                syncValues: syncValues
-                            ),
-                            currentSoundsListMode: $currentSoundsListMode,
-                            openSettingsAction: {
-                                isShowingSettingsSheet.toggle()
-                            }
-                        )
-                        .environmentObject(trendsHelper)
-                        .environmentObject(settingsHelper)
-                        .navigationDestination(for: GeneralNavigationDestination.self) { screen in
-                            GeneralRouter(destination: screen)
-                        }
-                    }
-                    .tabItem {
-                        Label("Sons", systemImage: "speaker.wave.3.fill")
-                    }
-                    .tag(PhoneTab.sounds)
-                    .environment(\.push, PushAction { soundsPath.append($0) })
-
-                    NavigationStack(path: $reactionsPath) {
-                        ReactionsView()
+                                openSettingsAction: {
+                                    isShowingSettingsSheet.toggle()
+                                }
+                            )
+                            .environmentObject(trendsHelper)
+                            .environmentObject(settingsHelper)
                             .navigationDestination(for: GeneralNavigationDestination.self) { screen in
                                 GeneralRouter(destination: screen)
                             }
-                    }
-                    .tabItem {
-                        Label("Reações", systemImage: "rectangle.grid.2x2.fill")
-                    }
-                    .tag(PhoneTab.reactions)
-                    .environment(\.push, PushAction { reactionsPath.append($0) })
+                        }
+                        .tabItem {
+                            Label("Sons", systemImage: "speaker.wave.3.fill")
+                        }
+                        .tag(PhoneTab.sounds)
+                        .environment(\.push, PushAction { soundsPath.append($0) })
 
-                    NavigationView {
-                        SongsView()
-                            .environmentObject(settingsHelper)
+                        NavigationStack(path: $reactionsPath) {
+                            ReactionsView()
+                                .navigationDestination(for: GeneralNavigationDestination.self) { screen in
+                                    GeneralRouter(destination: screen)
+                                }
+                        }
+                        .tabItem {
+                            Label("Reações", systemImage: "rectangle.grid.2x2.fill")
+                        }
+                        .tag(PhoneTab.reactions)
+                        .environment(\.push, PushAction { reactionsPath.append($0) })
+
+                        NavigationView {
+                            SongsView()
+                                .environmentObject(settingsHelper)
+                        }
+                        .tabItem {
+                            Label("Músicas", systemImage: "music.quarternote.3")
+                        }
+                        .tag(PhoneTab.songs)
+
+                        NavigationView {
+                            TrendsView(
+                                tabSelection: $tabSelection,
+                                activePadScreen: .constant(.trends)
+                            )
+                            .environmentObject(trendsHelper)
+                        }
+                        .tabItem {
+                            Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
+                        }
+                        .tag(PhoneTab.trends)
                     }
-                    .tabItem {
-                        Label("Músicas", systemImage: "music.quarternote.3")
-                    }
-                    .tag(PhoneTab.songs)
-                    
-                    NavigationView {
-                        TrendsView(
-                            tabSelection: $tabSelection,
-                            activePadScreen: .constant(.trends)
-                        )
-                        .environmentObject(trendsHelper)
-                    }
-                    .tabItem {
-                        Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
-                    }
-                    .tag(PhoneTab.trends)
+                    .onContinueUserActivity(Shared.ActivityTypes.playAndShareSounds, perform: { _ in
+                        tabSelection = .sounds
+                    })
+                    //            .onContinueUserActivity(Shared.ActivityTypes.viewCollections, perform: { _ in
+                    //                tabSelection = .collections
+                    //            })
+                    .onContinueUserActivity(Shared.ActivityTypes.playAndShareSongs, perform: { _ in
+                        tabSelection = .songs
+                    })
+                    .onContinueUserActivity(Shared.ActivityTypes.viewLast24HoursTopChart, perform: { _ in
+                        tabSelection = .trends
+                        trendsHelper.timeIntervalToGoTo = .last24Hours
+                    })
+                    .onContinueUserActivity(Shared.ActivityTypes.viewLastWeekTopChart, perform: { _ in
+                        tabSelection = .trends
+                        trendsHelper.timeIntervalToGoTo = .lastWeek
+                    })
+                    .onContinueUserActivity(Shared.ActivityTypes.viewLastMonthTopChart, perform: { _ in
+                        tabSelection = .trends
+                        trendsHelper.timeIntervalToGoTo = .lastMonth
+                    })
+                    .onContinueUserActivity(Shared.ActivityTypes.viewAllTimeTopChart, perform: { _ in
+                        tabSelection = .trends
+                        trendsHelper.timeIntervalToGoTo = .allTime
+                    })
+                } else {
+                    WPStartView()
                 }
-                .onContinueUserActivity(Shared.ActivityTypes.playAndShareSounds, perform: { _ in
-                    tabSelection = .sounds
-                })
-                //            .onContinueUserActivity(Shared.ActivityTypes.viewCollections, perform: { _ in
-                //                tabSelection = .collections
-                //            })
-                .onContinueUserActivity(Shared.ActivityTypes.playAndShareSongs, perform: { _ in
-                    tabSelection = .songs
-                })
-                .onContinueUserActivity(Shared.ActivityTypes.viewLast24HoursTopChart, perform: { _ in
-                    tabSelection = .trends
-                    trendsHelper.timeIntervalToGoTo = .last24Hours
-                })
-                .onContinueUserActivity(Shared.ActivityTypes.viewLastWeekTopChart, perform: { _ in
-                    tabSelection = .trends
-                    trendsHelper.timeIntervalToGoTo = .lastWeek
-                })
-                .onContinueUserActivity(Shared.ActivityTypes.viewLastMonthTopChart, perform: { _ in
-                    tabSelection = .trends
-                    trendsHelper.timeIntervalToGoTo = .lastMonth
-                })
-                .onContinueUserActivity(Shared.ActivityTypes.viewAllTimeTopChart, perform: { _ in
-                    tabSelection = .trends
-                    trendsHelper.timeIntervalToGoTo = .allTime
-                })
             } else {
                 if #available(iOS 18, *) {
                     TabView {
