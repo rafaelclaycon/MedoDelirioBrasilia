@@ -1232,6 +1232,8 @@
 		D9AB63F42A5A085800390778 /* SyncServiceStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AB63F32A5A085800390778 /* SyncServiceStub.swift */; };
 		D9ABDDB0287411C9007B25EA /* SongHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9ABDDAF287411C9007B25EA /* SongHelpView.swift */; };
 		D9ABEEDB2CA1B51800CA024F /* PlayRandomSoundHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9ABEEDA2CA1B50F00CA024F /* PlayRandomSoundHelper.swift */; };
+		D9ACF6D52D2034870050AD30 /* WPSoundsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9ACF6D42D2034870050AD30 /* WPSoundsView.swift */; };
+		D9ACF6D72D2037A10050AD30 /* WPSoundItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9ACF6D62D2037A10050AD30 /* WPSoundItem.swift */; };
 		D9ADEB6329861A79001CB004 /* Ai eu acho exagero.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9ADEB6229861A79001CB004 /* Ai eu acho exagero.mp3 */; };
 		D9ADEB6729861BD3001CB004 /* Bem-vindos ao devido processo legal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9ADEB6429861BD2001CB004 /* Bem-vindos ao devido processo legal.mp3 */; };
 		D9ADEB6829861BD3001CB004 /* Ana Priscila Azevedo (golpista) - Senhores, selva.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9ADEB6529861BD2001CB004 /* Ana Priscila Azevedo (golpista) - Senhores, selva.mp3 */; };
@@ -2781,6 +2783,8 @@
 		D9AB63F32A5A085800390778 /* SyncServiceStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncServiceStub.swift; sourceTree = "<group>"; };
 		D9ABDDAF287411C9007B25EA /* SongHelpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongHelpView.swift; sourceTree = "<group>"; };
 		D9ABEEDA2CA1B50F00CA024F /* PlayRandomSoundHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayRandomSoundHelper.swift; sourceTree = "<group>"; };
+		D9ACF6D42D2034870050AD30 /* WPSoundsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WPSoundsView.swift; sourceTree = "<group>"; };
+		D9ACF6D62D2037A10050AD30 /* WPSoundItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WPSoundItem.swift; sourceTree = "<group>"; };
 		D9ADEB6229861A79001CB004 /* Ai eu acho exagero.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ai eu acho exagero.mp3"; sourceTree = "<group>"; };
 		D9ADEB6429861BD2001CB004 /* Bem-vindos ao devido processo legal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bem-vindos ao devido processo legal.mp3"; sourceTree = "<group>"; };
 		D9ADEB6529861BD2001CB004 /* Ana Priscila Azevedo (golpista) - Senhores, selva.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ana Priscila Azevedo (golpista) - Senhores, selva.mp3"; sourceTree = "<group>"; };
@@ -5227,6 +5231,8 @@
 			children = (
 				D9C4E9E62D1CDAFF0007D1F0 /* WPStartView.swift */,
 				D9C4E9E92D1CDB390007D1F0 /* Tile.swift */,
+				D9ACF6D42D2034870050AD30 /* WPSoundsView.swift */,
+				D9ACF6D62D2037A10050AD30 /* WPSoundItem.swift */,
 			);
 			path = WindowsPhoneTheme;
 			sourceTree = "<group>";
@@ -6993,6 +6999,7 @@
 				D904495A2BB283C20023088B /* ExternalLinkButton.swift in Sources */,
 				D9DC68902AD38648005D3F81 /* RetroBanner.swift in Sources */,
 				D9758C3A28617BA70094D388 /* AddUserFolderTables.swift in Sources */,
+				D9ACF6D72D2037A10050AD30 /* WPSoundItem.swift in Sources */,
 				D99070592A90E20100A26F65 /* SyncInfoView+KnowMoreView.swift in Sources */,
 				D9265741285A1EE700947165 /* LocalDatabase+Log.swift in Sources */,
 				D980456228380F66003B2E83 /* LocalizableStrings.swift in Sources */,
@@ -7003,6 +7010,7 @@
 				D97D76F92885B1BD005210D9 /* SidebarFolderIcon.swift in Sources */,
 				D9C4E9E72D1CDAFF0007D1F0 /* WPStartView.swift in Sources */,
 				D98D13822CD5C4B1001CF5BB /* AddChangeHashFieldToUserFolderTable.swift in Sources */,
+				D9ACF6D52D2034870050AD30 /* WPSoundsView.swift in Sources */,
 				D9943F172863DAE1002C6B97 /* FolderDetailView.swift in Sources */,
 				D91E375A2C4C8F33003A1107 /* PushAction.swift in Sources */,
 				D949181228860ABC0079F545 /* AllFoldersiPadView.swift in Sources */,

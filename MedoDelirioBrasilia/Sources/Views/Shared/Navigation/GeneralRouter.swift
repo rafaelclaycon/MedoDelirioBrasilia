@@ -33,3 +33,27 @@ struct GeneralRouter: View {
         }
     }
 }
+
+enum WPNavigationDestination: Hashable {
+    case sounds
+}
+
+struct WPRouter: View {
+
+    let destination: WPNavigationDestination
+
+    var body: some View {
+        switch destination {
+        case .sounds:
+            WPSoundsView(
+                viewModel: .init(
+                    currentViewMode: .allSounds,
+                    soundSortOption: UserSettings().mainSoundListSoundSortOption(),
+                    authorSortOption: UserSettings().authorSortOption(),
+                    currentSoundsListMode: .constant(.regular),
+                    syncValues: SyncValues()
+                )
+            )
+        }
+    }
+}
