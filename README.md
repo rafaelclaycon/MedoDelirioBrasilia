@@ -42,7 +42,7 @@ Curious about the story behind the app and how some of its features came to life
 To build and run this project, you'll need:
 
 - A Mac running macOS 14.5 Sonoma or later;
-- Xcode 16.0 or later;
+- [Xcode 16.0 or later](https://www.xcodes.app/);
 - iOS 16.5+ simulators installed (Xcode 16.0 comes with iOS 18.0, so you'll be fine).
 
 If you've got a Mac with the software above, clone the repo, open Xcode, and you're ready to go. Xcode will handle all dependencies. Here's how:
