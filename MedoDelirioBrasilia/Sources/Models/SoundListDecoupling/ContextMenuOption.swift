@@ -61,10 +61,10 @@ extension ContextMenuOption {
         }
     }
 
-    static var viewAllFromThisAuthor: ContextMenuOption {
+    static var viewAuthor: ContextMenuOption {
         ContextMenuOption(
             symbol: { _ in "person" },
-            title: { _ in "Ver Todos os Sons Desse Autor" }
+            title: { _ in "Ver Autor" }
         ) { sound, delegate in
             delegate.showAuthor(withId: sound.authorId)
         }
@@ -148,7 +148,7 @@ extension ContextMenuSection {
             title: "Details",
             options: { _ in
                 [
-                    ContextMenuOption.viewAllFromThisAuthor,
+                    ContextMenuOption.viewAuthor,
                     ContextMenuOption.viewDetails
                 ]
             }
