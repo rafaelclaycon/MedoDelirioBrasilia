@@ -273,6 +273,7 @@
 		D92F096529ED844300CC382F /* View+Marquee.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92F096429ED844300CC382F /* View+Marquee.swift */; };
 		D9310C262A0BDA90006A3058 /* Jaiminho - E que quero evitar a fadiga.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9310C252A0BDA90006A3058 /* Jaiminho - E que quero evitar a fadiga.mp3 */; };
 		D933251E28835E41004EFACB /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D933251D28835E41004EFACB /* ActivityViewController.swift */; };
+		D93391F62D3307B100DC2297 /* MainSoundContainerViewModel+SpotlightIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93391F52D3307B000DC2297 /* MainSoundContainerViewModel+SpotlightIndex.swift */; };
 		D9344323283812AD00ADCD38 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9344322283812AD00ADCD38 /* Author.swift */; };
 		D934432728381DEF00ADCD38 /* author_data.json in Resources */ = {isa = PBXBuildFile; fileRef = D934432628381DEF00ADCD38 /* author_data.json */; };
 		D93443292838230500ADCD38 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93443282838230500ADCD38 /* String+.swift */; };
@@ -1817,6 +1818,7 @@
 		D92F096429ED844300CC382F /* View+Marquee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Marquee.swift"; sourceTree = "<group>"; };
 		D9310C252A0BDA90006A3058 /* Jaiminho - E que quero evitar a fadiga.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jaiminho - E que quero evitar a fadiga.mp3"; sourceTree = "<group>"; };
 		D933251D28835E41004EFACB /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		D93391F52D3307B000DC2297 /* MainSoundContainerViewModel+SpotlightIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainSoundContainerViewModel+SpotlightIndex.swift"; sourceTree = "<group>"; };
 		D9344322283812AD00ADCD38 /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		D934432628381DEF00ADCD38 /* author_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = author_data.json; sourceTree = "<group>"; };
 		D93443282838230500ADCD38 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
@@ -5088,6 +5090,7 @@
 				D94EAB5C29FC4D51004CD604 /* Sync */,
 				D98BB6992AC68769001DE23D /* FloatingSelectionOptionsView.swift */,
 				D96370042B085845002E8838 /* ExplicitDisabledWarning.swift */,
+				D93391F52D3307B000DC2297 /* MainSoundContainerViewModel+SpotlightIndex.swift */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -6973,6 +6976,7 @@
 				D98D13822CD5C4B1001CF5BB /* AddChangeHashFieldToUserFolderTable.swift in Sources */,
 				D9943F172863DAE1002C6B97 /* FolderDetailView.swift in Sources */,
 				D91E375A2C4C8F33003A1107 /* PushAction.swift in Sources */,
+				D93391F62D3307B100DC2297 /* MainSoundContainerViewModel+SpotlightIndex.swift in Sources */,
 				D949181228860ABC0079F545 /* AllFoldersiPadView.swift in Sources */,
 				D9B8DE7F2BE5CEFD000C9035 /* ReactionSound.swift in Sources */,
 				D9F45DD72BED30C400D49340 /* DynamicBanner.swift in Sources */,
