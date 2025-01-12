@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreSpotlight
 
 var moveDatabaseIssue: String = .empty
 
@@ -17,12 +18,13 @@ struct MedoDelirioBrasiliaApp: App {
     @State private var tabSelection: PhoneTab = .sounds
     @State private var state: PadScreen? = PadScreen.allSounds
 
-    @StateObject private var helper = PlayRandomSoundHelper()
+    @StateObject private var helper = ExternalActivityHelper()
 
     var body: some Scene {
         WindowGroup {
             MainView(tabSelection: $tabSelection, padSelection: $state)
                 .onOpenURL(perform: handleURL)
+                .onContinueUserActivity(CSSearchableItemActionType, perform: handleUserActivity)
                 .environmentObject(helper)
         }
     }
@@ -45,6 +47,15 @@ struct MedoDelirioBrasiliaApp: App {
                 print("Erro obtendo som aleatório: \(error.localizedDescription)")
                 Analytics().send(action: "hadErrorPlayingRandomSound(\(error.localizedDescription))")
             }
+        }
+    }
+
+    private func handleUserActivity(_ userActivity: NSUserActivity) {
+        if let uniqueIdentifier = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String {
+            tabSelection = .sounds
+            state = .allSounds
+            helper.soundIdToHighlight = uniqueIdentifier
+            Analytics().send(action: "didUseSpotlightSearch(\(uniqueIdentifier))")
         }
     }
 }
