@@ -17,6 +17,33 @@ extension MainSoundContainerViewModel {
         }
     }
 
+    public func addReactionsToSpotlight() async {
+        let serverReactions = try? await ReactionRepository().allReactions()
+        serverReactions?.forEach { reaction in
+            addReactionToIndex(reaction)
+        }
+    }
+
+    private func addReactionToIndex(_ reaction: Reaction) {
+        let attributeSet = CSSearchableItemAttributeSet(contentType: UTType.audio)
+        attributeSet.title = "Reação \"\(reaction.title)\""
+        //attributeSet.thumbnailData = reaction.image
+
+        let item = CSSearchableItem(
+            uniqueIdentifier: reaction.id,
+            domainIdentifier: "\(Bundle.main.bundleIdentifier ?? "").reaction",
+            attributeSet: attributeSet
+        )
+
+        let defaultIndex = CSSearchableIndex.default()
+        defaultIndex.indexSearchableItems([item]) { error in
+            if let error {
+                return print(error.localizedDescription)
+            }
+            print("\(reaction.title) indexed.")
+        }
+    }
+
     private func addContentToIndex(_ sound: Sound) {
         let attributeSet = CSSearchableItemAttributeSet(contentType: UTType.audio)
         attributeSet.title = sound.title
@@ -24,7 +51,11 @@ extension MainSoundContainerViewModel {
         attributeSet.duration = NSNumber(value: sound.duration)
         attributeSet.thumbnailData = cover()
 
-        let item = CSSearchableItem(uniqueIdentifier: sound.id, domainIdentifier: nil, attributeSet: attributeSet)
+        let item = CSSearchableItem(
+            uniqueIdentifier: sound.id,
+            domainIdentifier: "\(Bundle.main.bundleIdentifier ?? "").sound",
+            attributeSet: attributeSet
+        )
 
         let defaultIndex = CSSearchableIndex.default()
         defaultIndex.indexSearchableItems([item]) { error in
