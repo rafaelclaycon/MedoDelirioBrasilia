@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreSpotlight
+import UIKit
 
 extension MainSoundContainerViewModel {
 
@@ -21,6 +22,7 @@ extension MainSoundContainerViewModel {
         attributeSet.title = sound.title
         attributeSet.artist = sound.authorName
         attributeSet.duration = NSNumber(value: sound.duration)
+        attributeSet.thumbnailData = cover()
 
         let item = CSSearchableItem(uniqueIdentifier: sound.id, domainIdentifier: nil, attributeSet: attributeSet)
 
@@ -31,5 +33,12 @@ extension MainSoundContainerViewModel {
             }
             print("\(sound.title) indexed.")
         }
+    }
+
+    private func cover() -> Data? {
+        guard let image = UIImage(named: "spotlightIndexSoundImage") else {
+            return nil
+        }
+        return image.pngData()
     }
 }
