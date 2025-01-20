@@ -37,7 +37,7 @@ struct SettingsView: View {
         ZStack {
             Form {
                 Section {
-                    Toggle("Exibir conteúdo explícito", isOn: $showExplicitSounds)
+                    Toggle("Exibir conteúdo sensível", isOn: $showExplicitSounds)
                         .onChange(of: showExplicitSounds) { showExplicitSounds in
                             UserSettings().setShowExplicitContent(to: showExplicitSounds)
                             helper.updateSoundsList = true
