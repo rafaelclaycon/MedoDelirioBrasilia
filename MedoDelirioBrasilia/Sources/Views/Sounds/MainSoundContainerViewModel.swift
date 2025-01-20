@@ -99,7 +99,7 @@ class MainSoundContainerViewModel: ObservableObject {
             let sortOption: SoundSortOption = SoundSortOption(rawValue: soundSortOption) ?? .dateAddedDescending
             sortAllSounds(by: sortOption)
 
-            //index(sounds: sounds)
+            index(sounds: sounds)
         } catch {
             print("Erro carregando sons: \(error.localizedDescription)")
             dataLoadingDidFail = true

@@ -30,8 +30,8 @@ extension MainSoundContainerViewModel {
         //attributeSet.thumbnailData = reaction.image
 
         let item = CSSearchableItem(
-            uniqueIdentifier: reaction.id,
-            domainIdentifier: "\(Bundle.main.bundleIdentifier ?? "").reaction",
+            uniqueIdentifier: "reaction-\(reaction.id)",
+            domainIdentifier: "\(Bundle.main.bundleIdentifier ?? "").reactions",
             attributeSet: attributeSet
         )
 
@@ -52,8 +52,8 @@ extension MainSoundContainerViewModel {
         attributeSet.thumbnailData = cover()
 
         let item = CSSearchableItem(
-            uniqueIdentifier: sound.id,
-            domainIdentifier: "\(Bundle.main.bundleIdentifier ?? "").sound",
+            uniqueIdentifier: "sound-\(sound.id)",
+            domainIdentifier: "\(Bundle.main.bundleIdentifier ?? "").sounds",
             attributeSet: attributeSet
         )
 
