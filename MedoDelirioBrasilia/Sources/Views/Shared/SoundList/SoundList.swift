@@ -200,7 +200,13 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
                                 }
                                 .if(allowSearch) {
                                     $0
-                                        .searchable(text: $viewModel.searchText)
+                                        .searchable(text: $viewModel.searchText) {
+                                            if viewModel.searchText.isEmpty {
+                                                Text("Sugestões")
+                                            } else {
+                                                SearchResultsView(results: viewModel.searchResults)
+                                            }
+                                        }
                                         .disableAutocorrection(true)
                                 }
                                 .padding(.horizontal)
@@ -327,6 +333,7 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
                                 }
                                 .onChange(of: viewModel.searchText) { text in
                                     soundSearchTextIsEmpty.wrappedValue = text.isEmpty
+                                    viewModel.onSearchStringChanged(newString: text)
                                 }
                                 .onChange(of: viewModel.shareAsVideoResult.videoFilepath) { videoResultPath in
                                     if videoResultPath.isEmpty == false {

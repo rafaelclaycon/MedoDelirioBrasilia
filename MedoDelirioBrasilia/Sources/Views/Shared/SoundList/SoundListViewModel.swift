@@ -39,6 +39,7 @@ final class SoundListViewModel<T>: ObservableObject {
 
     // Search
     @Published var searchText: String = ""
+    @Published var searchResults = SearchResults()
 
     // Sharing
     @Published var iPadShareSheet = ActivityViewController(activityItems: [URL(string: "https://www.apple.com")!])
@@ -78,6 +79,8 @@ final class SoundListViewModel<T>: ObservableObject {
 
     private var cancellables = Set<AnyCancellable>()
 
+    private var searcher: Searcher
+
     // MARK: - Initializer
 
     init(
@@ -93,6 +96,7 @@ final class SoundListViewModel<T>: ObservableObject {
         self.needsRefreshAfterChange = needsRefreshAfterChange
         self.refreshAction = refreshAction
         self.folder = insideFolder
+        self.searcher = Searcher(localDatabase: LocalDatabase())
 
         data
             .map { LoadingState.loaded($0) }
@@ -124,6 +128,14 @@ extension SoundListViewModel {
                 selectionKeeper.insert(sound.id)
             }
         }
+    }
+
+    public func onSearchStringChanged(newString: String) {
+        guard !newString.isEmpty else {
+            searchResults.clearAll()
+            return
+        }
+        searchResults = searcher.searchFor(newString)
     }
 }
 
