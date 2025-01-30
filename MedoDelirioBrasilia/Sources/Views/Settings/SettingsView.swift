@@ -57,6 +57,19 @@ struct SettingsView: View {
 //                    }
 //                }
 
+                if UIDevice.isiPhone {
+                    Section {
+                        NavigationLink(destination: ThemePickerView()) {
+                            Label(title: {
+                                Text("Tema")
+                            }, icon: {
+                                Image(systemName: "paintbrush")
+                                    .foregroundColor(.purple)
+                            })
+                        }
+                    }
+                }
+
                 Section {
                     NavigationLink(destination: NotificationsSettingsView()) {
                         Label(title: {

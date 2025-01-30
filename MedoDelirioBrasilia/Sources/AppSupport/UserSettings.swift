@@ -131,6 +131,13 @@ extension UserSettings {
         }
         return Bool(value as! Bool)
     }
+
+    func theme() -> UITheme {
+        guard let value = userDefaults.object(forKey: "uiTheme") else {
+            return .default
+        }
+        return UITheme(rawValue: value as! String) ?? .default
+    }
 }
 
 // MARK: - Setters
@@ -195,5 +202,9 @@ extension UserSettings {
 
     func setHasJoinedFolderResearch(to newValue: Bool) {
         userDefaults.set(newValue, forKey: "hasJoinedFolderResearch")
+    }
+
+    func theme(_ theme: UITheme) {
+        userDefaults.set(theme.rawValue, forKey: "uiTheme")
     }
 }
