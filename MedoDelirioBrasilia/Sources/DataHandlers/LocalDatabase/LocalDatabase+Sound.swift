@@ -263,7 +263,7 @@ extension LocalDatabase {
 
         let query = soundTable.select(soundTable[*], author[name])
             .join(author, on: soundTable[author_id] == author[id])
-            .filter(description.like("%\(searchText)%"))
+            .filter(soundTable[description].like("%\(searchText)%"))
 
         for queriedSound in try db.prepare(query) {
             var soundData: Sound = try queriedSound.decode()

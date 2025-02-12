@@ -135,6 +135,7 @@ extension SoundListViewModel {
             searchResults.clearAll()
             return
         }
+        print("RAFA - new search string: \(newString)")
         searchResults = searcher.searchFor(newString)
     }
 }

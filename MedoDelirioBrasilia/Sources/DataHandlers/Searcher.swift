@@ -18,8 +18,10 @@ final class Searcher {
     }
 
     public func searchFor(_ searchString: String) -> SearchResults {
+        let sounds = try? localDatabase.sounds(matchingDescription: searchString)
+        print("RAFA - sounds found: \(sounds?.count)")
         return SearchResults(
-            sounds: try? localDatabase.sounds(matchingDescription: searchString),
+            sounds: sounds,
             authors: [],
             folders: [],
             songs: [],
