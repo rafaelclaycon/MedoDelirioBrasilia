@@ -177,7 +177,16 @@ struct AuthorDetailView: View {
 
                                 Spacer()
 
-                                moreOptionsMenu(isOnToolbar: false)
+                                Button {
+                                    print("Tapped")
+                                } label: {
+                                    Image(systemName: "square.and.pencil")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(height: 26)
+                                }
+
+                                moreOptionsMenu()
                             }
 
                             if author.description != nil {
@@ -365,7 +374,7 @@ struct AuthorDetailView: View {
     }
 
     @ViewBuilder
-    private func moreOptionsMenu(isOnToolbar: Bool) -> some View {
+    private func moreOptionsMenu() -> some View {
         Menu {
             if viewModel.sounds.count > 1 {
                 Section {
@@ -419,14 +428,10 @@ struct AuthorDetailView: View {
                 }
             }
         } label: {
-            if isOnToolbar {
-                Image(systemName: "ellipsis.circle")
-            } else {
-                Image(systemName: "ellipsis.circle")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 26)
-            }
+            Image(systemName: "ellipsis.circle")
+                .resizable()
+                .scaledToFit()
+                .frame(height: 26)
         }
         .disabled(viewModel.sounds.count == 0)
     }
