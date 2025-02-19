@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import ActivityKit
 
 @MainActor
 class MainSoundContainerViewModel: ObservableObject {
@@ -36,6 +37,8 @@ class MainSoundContainerViewModel: ObservableObject {
     // MARK: - Stored Properties
 
     var currentSoundsListMode: Binding<SoundsListMode>
+
+    internal var activity: Activity<SyncActivityAttributes>?
 
     // Sync
     private let syncManager: SyncManager
@@ -323,12 +326,14 @@ extension MainSoundContainerViewModel: SyncManagerDelegate {
     nonisolated func set(totalUpdateCount: Int) {
         Task { @MainActor in
             self.totalUpdateCount = totalUpdateCount
+            self.startLiveActivity(current: 0, total: totalUpdateCount)
         }
     }
 
     nonisolated func didProcessUpdate(number: Int) {
         Task { @MainActor in
             processedUpdateNumber = number
+            await self.updateLiveActivity(current: number)
         }
     }
 
@@ -338,6 +343,8 @@ extension MainSoundContainerViewModel: SyncManagerDelegate {
     ) {
         Task { @MainActor in
             self.syncValues.syncStatus = status
+
+            await self.endLiveActivity(status: status)
 
             if updateSoundList {
                 reloadAllSounds()
