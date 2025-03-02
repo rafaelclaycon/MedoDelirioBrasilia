@@ -5058,6 +5058,15 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		D9B6E3532D6DFAD6005BD779 /* Audience */ = {
+			isa = PBXGroup;
+			children = (
+				D9CC893228EB7BB500576492 /* MostSharedByAudienceView.swift */,
+				D9CC893428EB7CF800576492 /* MostSharedByAudienceView+ViewModel.swift */,
+			);
+			path = Audience;
+			sourceTree = "<group>";
+		};
 		D9B8DE7D2BE5CEA0000C9035 /* Reactions */ = {
 			isa = PBXGroup;
 			children = (
@@ -5126,9 +5135,8 @@
 				D957509528445EC30094AEA6 /* TrendsViewViewModel.swift */,
 				D9BF90BD2842EAED00BDDD7D /* TopChartRow.swift */,
 				D998F28E284F177B0013E709 /* TrendsDisabledView.swift */,
-				D9CC893228EB7BB500576492 /* MostSharedByAudienceView.swift */,
-				D9CC893428EB7CF800576492 /* MostSharedByAudienceView+ViewModel.swift */,
-				D9D734F92AD38AC900A25916 /* MyTrends */,
+				D9B6E3532D6DFAD6005BD779 /* Audience */,
+				D9D734F92AD38AC900A25916 /* Personal */,
 			);
 			path = Trends;
 			sourceTree = "<group>";
@@ -5216,13 +5224,13 @@
 			path = Modifiers;
 			sourceTree = "<group>";
 		};
-		D9D734F92AD38AC900A25916 /* MyTrends */ = {
+		D9D734F92AD38AC900A25916 /* Personal */ = {
 			isa = PBXGroup;
 			children = (
 				D9DB6F7E28CBDA8000E24BDE /* MostSharedByMeView.swift */,
 				D97B2DD528E3E85400C3B50B /* MostSharedByMeViewViewModel.swift */,
 			);
-			path = MyTrends;
+			path = Personal;
 			sourceTree = "<group>";
 		};
 		D9DBEA9D2BCC0CB900220679 /* SoundListDecoupling */ = {

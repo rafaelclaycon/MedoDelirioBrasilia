@@ -14,9 +14,13 @@ extension MostSharedByAudienceView {
     final class ViewModel: ObservableObject {
 
         @Published var viewState: TrendsViewState = .noDataToDisplay
-        @Published var ranking: [TopChartItem] = []
+
+        @Published var sounds: [TopChartItem] = []
+        @Published var songs: [TopChartItem] = []
+
         @Published var lastCheckDate: Date = Date(timeIntervalSince1970: 0)
-        @Published var timeIntervalOption: TrendsTimeInterval = .last24Hours
+        @Published var soundsTimeInterval: TrendsTimeInterval = .last24Hours
+        @Published var songsTimeInterval: TrendsTimeInterval = .last24Hours
         @Published var lastUpdatedAtText: String = ""
 
         @Published var lastTimePulledDownToRefresh: Date = Date(timeIntervalSince1970: 0)
@@ -57,15 +61,15 @@ extension MostSharedByAudienceView {
 
                 guard result == .successful || result == .noStatsToSend else {
                     await MainActor.run {
-                        self.viewState = self.ranking.isEmpty ? .noDataToDisplay : .displayingData
+                        self.viewState = self.sounds.isEmpty ? .noDataToDisplay : .displayingData
                         self.showServerUnavailableAlert()
                     }
                     return
                 }
 
                 do {
-                    self.ranking = try await NetworkRabbit.shared.getSoundShareCountStats(for: timeInterval).ranked
-                    self.viewState = self.ranking.isEmpty ? .noDataToDisplay : .displayingData
+                    self.sounds = try await NetworkRabbit.shared.getSoundShareCountStats(for: timeInterval).ranked
+                    self.viewState = self.sounds.isEmpty ? .noDataToDisplay : .displayingData
                 } catch {
                     print(error)
                     showOtherServerErrorAlert(serverMessage: error.localizedDescription)
@@ -95,7 +99,7 @@ extension MostSharedByAudienceView {
             showAlert = true
         }
 
-        func donateActivity(forTimeInterval timeIntervalOption: TrendsTimeInterval) {
+        private func donateActivity(forTimeInterval timeIntervalOption: TrendsTimeInterval) {
             var activityType = ""
             var activityName = ""
 
@@ -129,5 +133,30 @@ extension MostSharedByAudienceView {
             self.currentActivity = UserActivityWaiter.getDonatableActivity(withType: activityType, andTitle: activityName)
             self.currentActivity?.becomeCurrent()
         }
+    }
+}
+
+// MARK: - User Actions
+
+extension MostSharedByAudienceView.ViewModel {
+
+    public func onViewAppeared() {
+        if sounds.isEmpty {
+            loadList(for: soundsTimeInterval)
+            donateActivity(forTimeInterval: soundsTimeInterval)
+        } else if lastCheckDate.minutesPassed(1) {
+            loadList(for: soundsTimeInterval)
+        }
+    }
+
+    public func onScenePhaseChanged(isNewPhaseActive: Bool) {
+        if isNewPhaseActive, lastCheckDate.minutesPassed(60) {
+            loadList(for: soundsTimeInterval)
+        }
+    }
+
+    public func onSoundsTimeIntervalChanged(newTimeInterval: TrendsTimeInterval) {
+        loadList(for: newTimeInterval)
+        donateActivity(forTimeInterval: newTimeInterval)
     }
 }

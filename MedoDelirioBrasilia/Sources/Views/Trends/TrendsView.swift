@@ -22,10 +22,6 @@ struct TrendsView: View {
 
     @EnvironmentObject var trendsHelper: TrendsHelper
 
-    // Retrospective 2024
-    @State private var showRetroBanner: Bool = false
-    @State private var showModalView = false
-
     // Alert
     @State private var showAlert = false
     @State private var alertTitle = ""
@@ -77,54 +73,29 @@ struct TrendsView: View {
                         }
                     } else {
                         VStack(alignment: .leading, spacing: 10) {
-                            if showRetroBanner {
-                                Retro2024Banner(
-                                    isBeingShown: $showRetroBanner,
-                                    openStoriesAction: { showModalView = true },
-                                    showCloseButton: false
-                                )
-                                .padding(.horizontal, 15)
-                                .padding(.bottom, 10)
-                            }
-
                             //if showMostSharedSoundsByTheUser {
-                                MostSharedByMeView()
-                                    .environmentObject(trendsHelper)
+                            MostSharedByMeView()
+                                .environmentObject(trendsHelper)
                             //}
-
+                            
                             /*if showDayOfTheWeekTheUserSharesTheMost {
-                                Text("Dia da Semana No Qual Eu Mais Compartilho")
-                                .font(.title2)
-                                .padding(.horizontal)
-                                }*/
-
+                             Text("Dia da Semana No Qual Eu Mais Compartilho")
+                             .font(.title2)
+                             .padding(.horizontal)
+                             }*/
+                            
                             /*if showAppsThroughWhichTheUserSharesTheMost {
-                                Text("Apps Pelos Quais Você Mais Compartilha")
-                                .font(.title2)
-                                .padding(.horizontal)
-                                }*/
-                        }
-                        .sheet(isPresented: $showModalView) {
-                            ClassicRetroView(
-                                imageSaveSucceededAction: { exportAnalytics in
-                                    viewModel.displayToast(
-                                        toastText: Shared.Retro.successMessage,
-                                        displayTime: .seconds(5)
-                                    )
-
-                                    Analytics().send(
-                                        originatingScreen: "TrendsView",
-                                        action: "didExportRetro2024Images(\(exportAnalytics))"
-                                    )
-                                }
-                            )
+                             Text("Apps Pelos Quais Você Mais Compartilha")
+                             .font(.title2)
+                             .padding(.horizontal)
+                             }*/
                         }
                     }
                 }
                 .if(currentViewMode == .audience) {
                     $0.refreshable {
                         audienceViewModel.loadList(
-                            for: audienceViewModel.timeIntervalOption,
+                            for: audienceViewModel.soundsTimeInterval,
                             didPullDownToRefresh: true
                         )
                     }
@@ -137,9 +108,6 @@ struct TrendsView: View {
         .navigationTitle("Tendências")
         .navigationBarTitleDisplayMode(showTrends ? .large : .inline)
         .onAppear {
-            Task {
-                showRetroBanner = await ClassicRetroView.ViewModel.shouldDisplayBanner()
-            }
             audienceViewModel.displayToast = { message in
                 viewModel.displayToast(
                     "clock.fill",
