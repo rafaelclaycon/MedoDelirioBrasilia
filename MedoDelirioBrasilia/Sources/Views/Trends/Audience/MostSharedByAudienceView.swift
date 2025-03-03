@@ -50,29 +50,41 @@ struct MostSharedByAudienceView: View {
                 
             case .displayingData:
                 VStack(spacing: 30) {
-                    LoadedRankingView(
-                        title: "🔊 Sons Mais Compartilhados Pela Audiência",
-                        items: viewModel.sounds,
-                        timeIntervalOption: $viewModel.soundsTimeInterval,
-                        navigateToAction: { soundId in
-                            navigateTo(sound: soundId)
+                    if viewModel.soundsState == .loading {
+                        LoadingView()
+                    } else {
+                        LoadedRankingView(
+                            title: "🔊 Sons Mais Compartilhados Pela Audiência",
+                            items: viewModel.sounds,
+                            timeIntervalOption: $viewModel.soundsTimeInterval,
+                            navigateToAction: { soundId in
+                                navigateTo(sound: soundId)
+                            }
+                        )
+                        .onChange(of: viewModel.soundsTimeInterval) { newInterval in
+                            Task {
+                                await viewModel.onSoundsSelectedTimeIntervalChanged(newTimeInterval: newInterval)
+                            }
                         }
-                    )
-                    .onChange(of: viewModel.soundsTimeInterval) {
-                        viewModel.onSoundsTimeIntervalChanged(newTimeInterval: $0)
                     }
 
-                    LoadedRankingView(
-                        title: "🎶 Músicas Mais Compartilhadas Pela Audiência",
-                        items: viewModel.songs,
-                        timeIntervalOption: $viewModel.songsTimeInterval,
-                        navigateToAction: { _ in
-                            //navigateTo(sound: soundId)
+                    if viewModel.songsState == .loading {
+                        LoadingView()
+                    } else {
+                        LoadedRankingView(
+                            title: "🎶 Músicas Mais Compartilhadas Pela Audiência",
+                            items: viewModel.songs,
+                            timeIntervalOption: $viewModel.songsTimeInterval,
+                            navigateToAction: { _ in
+                                //navigateTo(sound: soundId)
+                            }
+                        )
+                        .onChange(of: viewModel.songsTimeInterval) { newInterval in
+                            Task {
+                                await viewModel.onSongsSelectedTimeIntervalChanged(newTimeInterval: newInterval)
+                            }
                         }
-                    )
-//                    .onChange(of: viewModel.songsTimeInterval) {
-//                        viewModel.onSoundsTimeIntervalChanged(newTimeInterval: $0)
-//                    }
+                    }
 
                     Text("Os dados se referem apenas à audiência do app iOS.")
                         .font(.subheadline)
@@ -235,6 +247,21 @@ extension MostSharedByAudienceView {
 
                 Spacer()
             }
+        }
+    }
+
+    struct LoadingView: View {
+
+        var body: some View {
+            VStack(spacing: 20) {
+                ProgressView()
+                    .scaleEffect(1.3, anchor: .center)
+
+                Text("CONTANDO CANALHICES")
+                    .foregroundColor(.gray)
+                    .font(.callout)
+            }
+            .padding(.vertical, 100)
         }
     }
 }

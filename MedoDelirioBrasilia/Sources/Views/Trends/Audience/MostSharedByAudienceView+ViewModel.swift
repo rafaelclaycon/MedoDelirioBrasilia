@@ -14,6 +14,8 @@ extension MostSharedByAudienceView {
     final class ViewModel: ObservableObject {
 
         @Published var viewState: TrendsWholeViewState = .loading
+        @Published var soundsState: TrendsWholeViewState = .loading
+        @Published var songsState: TrendsWholeViewState = .loading
 
         @Published var sounds: [TopChartItem] = []
         @Published var songs: [TopChartItem] = []
@@ -79,10 +81,42 @@ extension MostSharedByAudienceView {
                     let noData = self.sounds.isEmpty && self.songs.isEmpty
 
                     self.viewState = noData ? .noDataToDisplay : .displayingData
+                    self.soundsState = .displayingData
+                    self.songsState = .displayingData
                 } catch {
                     print(error)
                     showOtherServerErrorAlert(serverMessage: error.localizedDescription)
                 }
+            }
+        }
+
+        private func reloadSoundsList() async {
+            soundsState = .loading
+            do {
+                self.sounds = try await NetworkRabbit.shared.getShareCountStats(
+                    for: .sounds,
+                    in: soundsTimeInterval
+                ).ranked
+
+                soundsState = .displayingData
+            } catch {
+                print(error)
+                showOtherServerErrorAlert(serverMessage: error.localizedDescription)
+            }
+        }
+
+        private func reloadSongsList() async {
+            songsState = .loading
+            do {
+                self.songs = try await NetworkRabbit.shared.getShareCountStats(
+                    for: .songs,
+                    in: songsTimeInterval
+                ).ranked
+
+                songsState = .displayingData
+            } catch {
+                print(error)
+                showOtherServerErrorAlert(serverMessage: error.localizedDescription)
             }
         }
 
@@ -164,9 +198,14 @@ extension MostSharedByAudienceView.ViewModel {
         }
     }
 
-    public func onSoundsTimeIntervalChanged(newTimeInterval: TrendsTimeInterval) {
-        loadLists() // TODO: Change to only sounds list?
+    public func onSoundsSelectedTimeIntervalChanged(newTimeInterval: TrendsTimeInterval) async {
+        await reloadSoundsList()
         donateActivity(forTimeInterval: newTimeInterval)
+    }
+
+    public func onSongsSelectedTimeIntervalChanged(newTimeInterval: TrendsTimeInterval) async {
+        await reloadSongsList()
+        //donateActivity(forTimeInterval: newTimeInterval) // TODO: Adapt for Songs.
     }
 
     public func onPullToRefreshLists() {
