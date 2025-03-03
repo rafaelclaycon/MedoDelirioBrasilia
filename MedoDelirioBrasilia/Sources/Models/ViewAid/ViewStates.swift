@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum TrendsViewState {
+enum TrendsWholeViewState {
 
     case loading, noDataToDisplay, displayingData
 }

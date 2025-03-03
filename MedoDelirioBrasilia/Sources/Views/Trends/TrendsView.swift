@@ -51,10 +51,10 @@ struct TrendsView: View {
             if showTrends {
                 ScrollView {
                     Picker("Exibição", selection: $currentViewMode) {
-                        Text("Da Audiência")
+                        Text("🏆  Da Audiência")
                             .tag(ViewMode.audience)
 
-                        Text("Pessoais")
+                        Text("🧑  Pessoais")
                             .tag(ViewMode.me)
                     }
                     .pickerStyle(.segmented)
@@ -94,10 +94,7 @@ struct TrendsView: View {
                 }
                 .if(currentViewMode == .audience) {
                     $0.refreshable {
-                        audienceViewModel.loadList(
-                            for: audienceViewModel.soundsTimeInterval,
-                            didPullDownToRefresh: true
-                        )
+                        audienceViewModel.onPullToRefreshLists()
                     }
                 }
             } else {

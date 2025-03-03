@@ -11,3 +11,8 @@ enum TrendsTimeInterval: Int {
 
     case last24Hours, last3Days, lastWeek, lastMonth, year2024, year2023, year2022, allTime
 }
+
+enum TrendsContentType {
+
+    case sounds, songs
+}

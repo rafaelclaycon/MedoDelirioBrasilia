@@ -1241,6 +1241,7 @@
 		D9AE4442299BF1D2009E8597 /* Kaelzinho Ferraz - Ja ta claro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AE443E299BF1D2009E8597 /* Kaelzinho Ferraz - Ja ta claro.mp3 */; };
 		D9AE4443299BF1D2009E8597 /* Juliane Furno - Foda-se.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AE443F299BF1D2009E8597 /* Juliane Furno - Foda-se.mp3 */; };
 		D9AE4447299BF78C009E8597 /* Odio e Nojo (Versao Militar).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AE4446299BF78C009E8597 /* Odio e Nojo (Versao Militar).mp3 */; };
+		D9AE70442D74AA6800117009 /* NetworkRabbit+ShareStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AE70432D74AA6800117009 /* NetworkRabbit+ShareStats.swift */; };
 		D9AF10AF290ACD540054741F /* Luiz Henrique Mandetta - Ele tinha um assessoramento paralelo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AF10AE290ACD540054741F /* Luiz Henrique Mandetta - Ele tinha um assessoramento paralelo.mp3 */; };
 		D9AF10C2290AD50D0054741F /* Crianca - Bora.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AF10B0290AD50D0054741F /* Crianca - Bora.mp3 */; };
 		D9AF10C3290AD50D0054741F /* CARA A TAPA - General Pazuello - Fala serio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9AF10B1290AD50D0054741F /* CARA A TAPA - General Pazuello - Fala serio.mp3 */; };
@@ -2786,6 +2787,7 @@
 		D9AE443E299BF1D2009E8597 /* Kaelzinho Ferraz - Ja ta claro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Kaelzinho Ferraz - Ja ta claro.mp3"; sourceTree = "<group>"; };
 		D9AE443F299BF1D2009E8597 /* Juliane Furno - Foda-se.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Juliane Furno - Foda-se.mp3"; sourceTree = "<group>"; };
 		D9AE4446299BF78C009E8597 /* Odio e Nojo (Versao Militar).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Odio e Nojo (Versao Militar).mp3"; sourceTree = "<group>"; };
+		D9AE70432D74AA6800117009 /* NetworkRabbit+ShareStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+ShareStats.swift"; sourceTree = "<group>"; };
 		D9AF10AE290ACD540054741F /* Luiz Henrique Mandetta - Ele tinha um assessoramento paralelo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Luiz Henrique Mandetta - Ele tinha um assessoramento paralelo.mp3"; sourceTree = "<group>"; };
 		D9AF10B0290AD50D0054741F /* Crianca - Bora.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Crianca - Bora.mp3"; sourceTree = "<group>"; };
 		D9AF10B1290AD50D0054741F /* CARA A TAPA - General Pazuello - Fala serio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "CARA A TAPA - General Pazuello - Fala serio.mp3"; sourceTree = "<group>"; };
@@ -4899,6 +4901,7 @@
 				D9CA301D2A03EE2300F1F23D /* NetworkRabbit+Generic.swift */,
 				D9DBCEA32B12888D003B4A46 /* NetworkRabbit+Retro.swift */,
 				D9BACC002B13BF5400BBD0BE /* Analytics.swift */,
+				D9AE70432D74AA6800117009 /* NetworkRabbit+ShareStats.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -6794,6 +6797,7 @@
 				D9DBEA9A2BCBFB8600220679 /* MainSoundContainerViewModel.swift in Sources */,
 				D95C3E122A02E6D300172C17 /* SyncEnums.swift in Sources */,
 				D938132F287E12B3009EE24F /* NotificationAide.swift in Sources */,
+				D9AE70442D74AA6800117009 /* NetworkRabbit+ShareStats.swift in Sources */,
 				D9F9BB39294A167C0005BE56 /* TrendsHelper.swift in Sources */,
 				D90EDDBA2908505000ED87A8 /* FolderResearchRepository.swift in Sources */,
 				D97D76FB2885B794005210D9 /* EmailAppPickerView.swift in Sources */,

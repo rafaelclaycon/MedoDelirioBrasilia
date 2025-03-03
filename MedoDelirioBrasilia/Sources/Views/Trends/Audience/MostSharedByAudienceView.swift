@@ -49,7 +49,7 @@ struct MostSharedByAudienceView: View {
                 }
                 
             case .displayingData:
-                VStack {
+                VStack(spacing: 30) {
                     LoadedRankingView(
                         title: "🔊 Sons Mais Compartilhados Pela Audiência",
                         items: viewModel.sounds,
@@ -73,6 +73,10 @@ struct MostSharedByAudienceView: View {
 //                    .onChange(of: viewModel.songsTimeInterval) {
 //                        viewModel.onSoundsTimeIntervalChanged(newTimeInterval: $0)
 //                    }
+
+                    Text("Os dados se referem apenas à audiência do app iOS.")
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
 
                     Text(viewModel.lastUpdatedAtText)
                         .font(.subheadline)
@@ -165,24 +169,28 @@ extension MostSharedByAudienceView {
                 .padding(.top, 1)
                 .padding(.bottom)
 
-                LazyVGrid(columns: UIDevice.isMac ? columnsMac : columns, spacing: .zero) {
-                    ForEach(items) { item in
-                        TopChartRow(item: item)
-                            .onTapGesture {
-                                navigateToAction(item.contentId)
-                            }
-                            .contextMenu {
-                                if UIDevice.isiPhone {
-                                    Button {
-                                        navigateToAction(item.contentId)
-                                    } label: {
-                                        Label("Ir para Som", systemImage: "arrow.uturn.backward")
+                if items.isEmpty {
+                    NoDataToDisplayView()
+                } else {
+                    LazyVGrid(columns: UIDevice.isMac ? columnsMac : columns, spacing: .zero) {
+                        ForEach(items) { item in
+                            TopChartRow(item: item)
+                                .onTapGesture {
+                                    navigateToAction(item.contentId)
+                                }
+                                .contextMenu {
+                                    if UIDevice.isiPhone {
+                                        Button {
+                                            navigateToAction(item.contentId)
+                                        } label: {
+                                            Label("Ir para Som", systemImage: "arrow.uturn.backward")
+                                        }
                                     }
                                 }
-                            }
+                        }
                     }
+                    .padding(.top, -10)
                 }
-                .padding(.top, -10)
             }
         }
 
@@ -210,6 +218,23 @@ extension MostSharedByAudienceView {
 //                    }
 //                }
 //            }
+        }
+    }
+
+    struct NoDataToDisplayView: View {
+
+        var body: some View {
+            HStack {
+                Spacer()
+
+                VStack(spacing: 10) {
+                    Text("Sem Dados para o Período Selecionado")
+                        .font(.headline)
+                        .padding(.vertical, 40)
+                }
+
+                Spacer()
+            }
         }
     }
 }

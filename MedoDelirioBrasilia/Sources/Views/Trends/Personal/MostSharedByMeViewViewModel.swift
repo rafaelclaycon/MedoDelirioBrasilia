@@ -12,7 +12,7 @@ class MostSharedByMeViewViewModel: ObservableObject {
 
     @Published var personalTop10: [TopChartItem]? = nil
 
-    @Published var viewState: TrendsViewState = .noDataToDisplay
+    @Published var viewState: TrendsWholeViewState = .noDataToDisplay
 
     func reloadPersonalList() {
         Task { @MainActor in

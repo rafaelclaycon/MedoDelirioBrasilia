@@ -13,7 +13,7 @@ extension MostSharedByAudienceView {
     @MainActor
     final class ViewModel: ObservableObject {
 
-        @Published var viewState: TrendsViewState = .noDataToDisplay
+        @Published var viewState: TrendsWholeViewState = .loading
 
         @Published var sounds: [TopChartItem] = []
         @Published var songs: [TopChartItem] = []
@@ -34,8 +34,7 @@ extension MostSharedByAudienceView {
 
         var displayToast: ((String) -> Void) = { _ in }
 
-        func loadList(
-            for timeInterval: TrendsTimeInterval,
+        private func loadLists(
             didPullDownToRefresh: Bool = false
         ) {
             // Check if enough time has passed for a retry
@@ -68,8 +67,18 @@ extension MostSharedByAudienceView {
                 }
 
                 do {
-                    self.sounds = try await NetworkRabbit.shared.getSoundShareCountStats(for: timeInterval).ranked
-                    self.viewState = self.sounds.isEmpty ? .noDataToDisplay : .displayingData
+                    self.sounds = try await NetworkRabbit.shared.getShareCountStats(
+                        for: .sounds,
+                        in: soundsTimeInterval
+                    ).ranked
+                    self.songs = try await NetworkRabbit.shared.getShareCountStats(
+                        for: .songs,
+                        in: songsTimeInterval
+                    ).ranked
+
+                    let noData = self.sounds.isEmpty && self.songs.isEmpty
+
+                    self.viewState = noData ? .noDataToDisplay : .displayingData
                 } catch {
                     print(error)
                     showOtherServerErrorAlert(serverMessage: error.localizedDescription)
@@ -142,21 +151,25 @@ extension MostSharedByAudienceView.ViewModel {
 
     public func onViewAppeared() {
         if sounds.isEmpty {
-            loadList(for: soundsTimeInterval)
+            loadLists()
             donateActivity(forTimeInterval: soundsTimeInterval)
         } else if lastCheckDate.minutesPassed(1) {
-            loadList(for: soundsTimeInterval)
+            loadLists()
         }
     }
 
     public func onScenePhaseChanged(isNewPhaseActive: Bool) {
         if isNewPhaseActive, lastCheckDate.minutesPassed(60) {
-            loadList(for: soundsTimeInterval)
+            loadLists()
         }
     }
 
     public func onSoundsTimeIntervalChanged(newTimeInterval: TrendsTimeInterval) {
-        loadList(for: newTimeInterval)
+        loadLists() // TODO: Change to only sounds list?
         donateActivity(forTimeInterval: newTimeInterval)
+    }
+
+    public func onPullToRefreshLists() {
+        loadLists(didPullDownToRefresh: true)
     }
 }
