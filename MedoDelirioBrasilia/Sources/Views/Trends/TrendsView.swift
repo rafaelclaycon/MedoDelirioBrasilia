@@ -94,7 +94,7 @@ struct TrendsView: View {
                 }
                 .if(currentViewMode == .audience) {
                     $0.refreshable {
-                        audienceViewModel.onPullToRefreshLists()
+                        await audienceViewModel.onPullToRefreshLists()
                     }
                 }
             } else {

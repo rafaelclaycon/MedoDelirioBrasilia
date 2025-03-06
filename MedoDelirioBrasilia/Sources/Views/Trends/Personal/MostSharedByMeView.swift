@@ -23,8 +23,9 @@ struct MostSharedByMeView: View {
                 Spacer()
             }
             .padding(.horizontal)
-            
-            if viewModel.personalTop10 == nil {
+
+            switch viewModel.viewState {
+            case .loading:
                 HStack {
                     Spacer()
 
@@ -33,45 +34,51 @@ struct MostSharedByMeView: View {
 
                     Spacer()
                 }
-            } else if viewModel.personalTop10?.count == 0 {
-                VStack(spacing: 20) {
-                    Spacer()
 
-                    Text("☹️")
-                        .font(.system(size: 64))
+            case .loaded(let items):
+                if items.isEmpty {
+                    VStack(spacing: 20) {
+                        Spacer()
 
-                    Text("Nenhum Dado")
-                        .font(.title2)
-                        .bold()
-                        .multilineTextAlignment(.center)
+                        Text("☹️")
+                            .font(.system(size: 64))
 
-                    Text("Compartilhe sons na aba Sons para ver o seu ranking pessoal.")
-                        .foregroundColor(.gray)
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal)
+                        Text("Nenhum Dado")
+                            .font(.title2)
+                            .bold()
+                            .multilineTextAlignment(.center)
 
-                    Spacer()
-                }
-            } else {
-                VStack {
-                    LazyVGrid(columns: columns, spacing: .zero) {
-                        ForEach(viewModel.personalTop10!) { item in
-                            TopChartRow(item: item)
+                        Text("Compartilhe sons na aba Sons para ver o seu ranking pessoal.")
+                            .foregroundColor(.gray)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal)
+
+                        Spacer()
+                    }
+                } else {
+                    VStack {
+                        LazyVGrid(columns: columns, spacing: .zero) {
+                            ForEach(items) { item in
+                                TopChartRow(item: item)
+                            }
                         }
                     }
+                    .padding(.bottom, 20)
                 }
-                .padding(.bottom, 20)
+            case .error(let errorMessage):
+                Text(errorMessage)
             }
         }
         .onAppear {
-            viewModel.reloadPersonalList()
+            Task {
+                await viewModel.loadPersonalList()
+            }
         }
     }
 }
 
-struct MostSharedByMeView_Previews: PreviewProvider {
+// MARK: - Preview
 
-    static var previews: some View {
-        MostSharedByMeView()
-    }
+#Preview {
+    MostSharedByMeView()
 }

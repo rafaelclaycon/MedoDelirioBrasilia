@@ -10,13 +10,10 @@ import Combine
 
 class MostSharedByMeViewViewModel: ObservableObject {
 
-    @Published var personalTop10: [TopChartItem]? = nil
+    @Published var viewState: LoadingState<[TopChartItem]> = .loading
 
-    @Published var viewState: TrendsWholeViewState = .noDataToDisplay
-
-    func reloadPersonalList() {
-        Task { @MainActor in
-            self.personalTop10 = Podium.shared.top10SoundsSharedByTheUser()
-        }
+    func loadPersonalList() async {
+        guard let ranking = Podium.shared.top10SoundsSharedByTheUser() else { return }
+        viewState = .loaded(ranking)
     }
 }

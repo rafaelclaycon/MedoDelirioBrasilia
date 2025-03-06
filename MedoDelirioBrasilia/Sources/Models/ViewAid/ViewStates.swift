@@ -7,11 +7,6 @@
 
 import Foundation
 
-enum TrendsWholeViewState {
-
-    case loading, noDataToDisplay, displayingData
-}
-
 enum JoinFolderResearchBannerViewState {
 
     case displayingRequestToJoin, sendingInfo, doneSending, errorSending
