@@ -23,7 +23,7 @@ struct MostSharedByAudienceView: View {
                 title: "Sons Mais Compartilhados Pela Audiência",
                 state: viewModel.soundsState,
                 timeIntervalOption: $viewModel.soundsTimeInterval,
-                lastUpdatedDate: .now, // Change
+                lastUpdatedText: viewModel.soundsLastCheckString,
                 navigateToAction: { soundId in
                     navigateTo(sound: soundId)
                 }
@@ -38,7 +38,7 @@ struct MostSharedByAudienceView: View {
                 title: "Músicas Mais Compartilhadas Pela Audiência",
                 state: viewModel.songsState,
                 timeIntervalOption: $viewModel.songsTimeInterval,
-                lastUpdatedDate: .now,
+                lastUpdatedText: viewModel.songsLastCheckString,
                 navigateToAction: { _ in
                     //navigateTo(sound: soundId)
                 }
@@ -52,7 +52,7 @@ struct MostSharedByAudienceView: View {
             ReactionsRankingView(
                 title: "Reações Mais Populares",
                 state: viewModel.reactionsState,
-                lastUpdatedDate: viewModel.reactionsLastCheckDate,
+                lastUpdatedText: viewModel.reactionsLastCheckString,
                 navigateToAction: { reactionId in
                     navigateTo(reaction: reactionId)
                 },
@@ -69,10 +69,11 @@ struct MostSharedByAudienceView: View {
                 .foregroundColor(.gray)
                 .padding(.horizontal, 30)
                 .padding(.bottom, 30)
+                .padding(.top, -15)
         }
         .padding(.bottom, 10)
         .onReceive(timer) { input in
-            viewModel.updateLastUpdatedAtText()
+            viewModel.onLastCheckStringUpdatingTimerFired()
         }
         .onAppear {
             Task {
@@ -119,19 +120,10 @@ extension MostSharedByAudienceView {
         let title: String
         let state: LoadingState<[TopChartItem]>
         @Binding var timeIntervalOption: TrendsTimeInterval
-        let lastUpdatedDate: Date
+        let lastUpdatedText: String
         let navigateToAction: (String) -> Void
 
-        // MARK: - Private Properties
-
-        private var lastUpdatedAtText: String {
-            if lastUpdatedDate == Date(timeIntervalSince1970: 0) {
-                return "Última consulta: indisponível"
-            } else {
-                return "Última consulta: \(lastUpdatedDate.asRelativeDateTime)"
-            }
-            //return "Última consulta: agora mesmo"
-        }
+        // MARK: - Private Properti
 
         private let columns = [GridItem(.flexible())]
         private let columnsMac = [GridItem(.fixed(500))]
@@ -182,29 +174,31 @@ extension MostSharedByAudienceView {
                     LoadingView()
 
                 case .loaded(let items):
-                    if items.isEmpty {
-                        NoDataToDisplayView()
-                    } else {
-                        LazyVGrid(columns: UIDevice.isMac ? columnsMac : columns, spacing: .zero) {
-                            ForEach(items) { item in
-                                TopChartRow(item: item)
-                                    .onTapGesture {
-                                        navigateToAction(item.contentId)
-                                    }
-                                    .contextMenu {
-                                        if UIDevice.isiPhone {
-                                            Button {
-                                                navigateToAction(item.contentId)
-                                            } label: {
-                                                Label("Ir para Som", systemImage: "arrow.uturn.backward")
+                    VStack {
+                        if items.isEmpty {
+                            NoDataToDisplayView()
+                        } else {
+                            LazyVGrid(columns: UIDevice.isMac ? columnsMac : columns, spacing: .zero) {
+                                ForEach(items) { item in
+                                    TopChartRow(item: item)
+                                        .onTapGesture {
+                                            navigateToAction(item.contentId)
+                                        }
+                                        .contextMenu {
+                                            if UIDevice.isiPhone {
+                                                Button {
+                                                    navigateToAction(item.contentId)
+                                                } label: {
+                                                    Label("Ir para Som", systemImage: "arrow.uturn.backward")
+                                                }
                                             }
                                         }
-                                    }
+                                }
                             }
+                            .padding(.top, -10)
                         }
-                        .padding(.top, -10)
 
-                        Text(lastUpdatedAtText)
+                        Text(lastUpdatedText)
                             .font(.subheadline)
                             .foregroundColor(.gray)
                             .padding(.bottom)
@@ -247,7 +241,7 @@ extension MostSharedByAudienceView {
 
         let title: String
         let state: LoadingState<[TopChartReaction]>
-        let lastUpdatedDate: Date
+        let lastUpdatedText: String
         let navigateToAction: (String) -> Void
         let reloadAction: () -> Void
 
@@ -268,20 +262,27 @@ extension MostSharedByAudienceView {
                     LoadingView()
 
                 case .loaded(let items):
-                    LazyVGrid(
-                        columns: columns,
-                        spacing: UIDevice.isiPhone ? 12 : 20
-                    ) {
-                        ForEach(items) { item in
-                            RankedReactionItem(
-                                item: item
-                            )
-                            .onTapGesture {
-                                navigateToAction(item.reaction.id)
+                    VStack(spacing: 15) {
+                        LazyVGrid(
+                            columns: columns,
+                            spacing: UIDevice.isiPhone ? 12 : 20
+                        ) {
+                            ForEach(items) { item in
+                                RankedReactionItem(
+                                    item: item
+                                )
+                                .onTapGesture {
+                                    navigateToAction(item.reaction.id)
+                                }
                             }
                         }
+                        .padding([.top, .leading, .trailing])
+
+                        Text(lastUpdatedText)
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                            .padding(.bottom)
                     }
-                    .padding()
 
                 case .error(let errorMessage):
                     ErrorView(
@@ -289,8 +290,6 @@ extension MostSharedByAudienceView {
                         retryAction: reloadAction
                     )
                 }
-
-
             }
         }
     }

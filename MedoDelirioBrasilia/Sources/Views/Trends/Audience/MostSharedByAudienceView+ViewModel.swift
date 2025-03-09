@@ -16,13 +16,16 @@ extension MostSharedByAudienceView {
         @Published var soundsState: LoadingState<[TopChartItem]> = .loading
         @Published var soundsTimeInterval: TrendsTimeInterval = .last24Hours
         @Published var soundsLastCheckDate: Date = Date(timeIntervalSince1970: 0)
-        
+        @Published var soundsLastCheckString: String = ""
+
         @Published var songsState: LoadingState<[TopChartItem]> = .loading
         @Published var songsTimeInterval: TrendsTimeInterval = .allTime
         @Published var songsLastCheckDate: Date = Date(timeIntervalSince1970: 0)
+        @Published var songsLastCheckString: String = ""
 
         @Published var reactionsState: LoadingState<[TopChartReaction]> = .loading
         @Published var reactionsLastCheckDate: Date = Date(timeIntervalSince1970: 0)
+        @Published var reactionsLastCheckString: String = ""
 
         @Published var lastTimePulledDownToRefresh: Date = Date(timeIntervalSince1970: 0)
         
@@ -34,6 +37,10 @@ extension MostSharedByAudienceView {
         @Published var showAlert: Bool = false
         
         var displayToast: ((String) -> Void) = { _ in }
+
+        private let lastCheckText: String = "Última consulta: "
+        private let unavailableText: String = "indisponível"
+        private let justNowText: String = "agora mesmo"
     }
 }
 
@@ -68,14 +75,9 @@ extension MostSharedByAudienceView.ViewModel {
             return
         }
 
-        do {
-            await loadSoundsList()
-            await loadSongsList()
-            await loadReactionsGrid()
-        } catch {
-            print(error)
-            //showOtherServerErrorAlert(serverMessage: error.localizedDescription)
-        }
+        await loadSoundsList()
+        await loadSongsList()
+        await loadReactionsGrid()
     }
 
     private func loadSoundsList() async {
@@ -87,6 +89,9 @@ extension MostSharedByAudienceView.ViewModel {
             ).ranked
 
             soundsState = .loaded(soundRanking)
+
+            soundsLastCheckDate = .now
+            updateSoundsLastUpdatedAtString()
         } catch {
             print(error)
             soundsState = .error(error.localizedDescription)
@@ -102,6 +107,9 @@ extension MostSharedByAudienceView.ViewModel {
             ).ranked
 
             songsState = .loaded(songRanking)
+
+            songsLastCheckDate = .now
+            updateSongsLastUpdatedAtString()
         } catch {
             print(error)
             songsState = .error(error.localizedDescription)
@@ -113,14 +121,43 @@ extension MostSharedByAudienceView.ViewModel {
         do {
             let ranking = try await NetworkRabbit.shared.getReactionsStats()
             reactionsState = .loaded(ranking)
+
+            reactionsLastCheckDate = .now
+            updateReactionsLastUpdatedAtString()
         } catch {
             print(error)
             reactionsState = .error(error.localizedDescription)
         }
     }
 
-    func updateLastUpdatedAtText() {
+    private func updateSoundsLastUpdatedAtString() {
+        if soundsLastCheckDate == Date(timeIntervalSince1970: 0) {
+            soundsLastCheckString = lastCheckText + unavailableText
+        } else if soundsLastCheckDate.minutesPassed(1) {
+            soundsLastCheckString = lastCheckText + soundsLastCheckDate.asRelativeDateTime
+        } else {
+            soundsLastCheckString = lastCheckText + justNowText
+        }
+    }
 
+    private func updateSongsLastUpdatedAtString() {
+        if songsLastCheckDate == Date(timeIntervalSince1970: 0) {
+            songsLastCheckString = lastCheckText + unavailableText
+        } else if songsLastCheckDate.minutesPassed(1) {
+            songsLastCheckString = lastCheckText + songsLastCheckDate.asRelativeDateTime
+        } else {
+            songsLastCheckString = lastCheckText + justNowText
+        }
+    }
+
+    private func updateReactionsLastUpdatedAtString() {
+        if reactionsLastCheckDate == Date(timeIntervalSince1970: 0) {
+            reactionsLastCheckString = lastCheckText + unavailableText
+        } else if reactionsLastCheckDate.minutesPassed(1) {
+            reactionsLastCheckString = lastCheckText + reactionsLastCheckDate.asRelativeDateTime
+        } else {
+            reactionsLastCheckString = lastCheckText + justNowText
+        }
     }
 
     private func showServerUnavailableAlert() {
@@ -174,7 +211,7 @@ extension MostSharedByAudienceView.ViewModel {
         if soundsState == .loading {
             await loadAll()
             donateActivity(forTimeInterval: soundsTimeInterval)
-        } else if soundsLastCheckDate.minutesPassed(1) {
+        } else if soundsLastCheckDate.minutesPassed(60) {
             await loadAll()
         }
     }
@@ -201,5 +238,11 @@ extension MostSharedByAudienceView.ViewModel {
 
     public func onReloadPopularReactionsSelected() async {
         await loadReactionsGrid()
+    }
+
+    public func onLastCheckStringUpdatingTimerFired() {
+        updateSoundsLastUpdatedAtString()
+        updateSongsLastUpdatedAtString()
+        updateReactionsLastUpdatedAtString()
     }
 }
