@@ -20,7 +20,10 @@ extension MostSharedByAudienceView {
         @Published var songsState: LoadingState<[TopChartItem]> = .loading
         @Published var songsTimeInterval: TrendsTimeInterval = .allTime
         @Published var songsLastCheckDate: Date = Date(timeIntervalSince1970: 0)
-        
+
+        @Published var reactionsState: LoadingState<[TopChartReaction]> = .loading
+        @Published var reactionsLastCheckDate: Date = Date(timeIntervalSince1970: 0)
+
         @Published var lastTimePulledDownToRefresh: Date = Date(timeIntervalSince1970: 0)
         
         @Published var currentActivity: NSUserActivity?
@@ -68,9 +71,10 @@ extension MostSharedByAudienceView.ViewModel {
         do {
             await loadSoundsList()
             await loadSongsList()
+            await loadReactionsGrid()
         } catch {
             print(error)
-            showOtherServerErrorAlert(serverMessage: error.localizedDescription)
+            //showOtherServerErrorAlert(serverMessage: error.localizedDescription)
         }
     }
 
@@ -85,7 +89,7 @@ extension MostSharedByAudienceView.ViewModel {
             soundsState = .loaded(soundRanking)
         } catch {
             print(error)
-            showOtherServerErrorAlert(serverMessage: error.localizedDescription)
+            soundsState = .error(error.localizedDescription)
         }
     }
 
@@ -100,7 +104,18 @@ extension MostSharedByAudienceView.ViewModel {
             songsState = .loaded(songRanking)
         } catch {
             print(error)
-            showOtherServerErrorAlert(serverMessage: error.localizedDescription)
+            songsState = .error(error.localizedDescription)
+        }
+    }
+
+    private func loadReactionsGrid() async {
+        reactionsState = .loading
+        do {
+            let ranking = try await NetworkRabbit.shared.getReactionsStats()
+            reactionsState = .loaded(ranking)
+        } catch {
+            print(error)
+            reactionsState = .error(error.localizedDescription)
         }
     }
 
@@ -112,13 +127,6 @@ extension MostSharedByAudienceView.ViewModel {
         TapticFeedback.error()
         alertTitle = "Servidor Indisponível"
         alertMessage = "Não foi possível obter o ranking mais recente. Tente novamente mais tarde."
-        showAlert = true
-    }
-
-    private func showOtherServerErrorAlert(serverMessage: String) {
-        TapticFeedback.error()
-        alertTitle = "Não Foi Possível Obter os Dados Mais Recentes"
-        alertMessage = serverMessage
         showAlert = true
     }
 
@@ -189,5 +197,9 @@ extension MostSharedByAudienceView.ViewModel {
 
     public func onPullToRefreshLists() async {
         await loadAll(didPullDownToRefresh: true)
+    }
+
+    public func onReloadPopularReactionsSelected() async {
+        await loadReactionsGrid()
     }
 }

@@ -49,11 +49,26 @@ struct MostSharedByAudienceView: View {
                 }
             }
 
-            Text("Os dados se referem apenas à audiência do app iOS.")
+            ReactionsRankingView(
+                title: "Reações Mais Populares",
+                state: viewModel.reactionsState,
+                lastUpdatedDate: viewModel.reactionsLastCheckDate,
+                navigateToAction: { reactionId in
+                    navigateTo(reaction: reactionId)
+                },
+                reloadAction: {
+                    Task {
+                        await viewModel.onReloadPopularReactionsSelected()
+                    }
+                }
+            )
+
+            Text("Os dados se referem apenas à audiência dos apps iOS/iPadOS/Mac.")
                 .font(.subheadline)
                 .multilineTextAlignment(.center)
                 .foregroundColor(.gray)
-                .padding(.horizontal, 50)
+                .padding(.horizontal, 30)
+                .padding(.bottom, 30)
         }
         .padding(.bottom, 10)
         .onReceive(timer) { input in
@@ -81,6 +96,15 @@ struct MostSharedByAudienceView: View {
             activePadScreen = .allSounds
         }
         trendsHelper.soundIdToGoTo = soundId
+    }
+
+    private func navigateTo(reaction reactionId: String) {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            tabSelection = .reactions
+        } else {
+            activePadScreen = .reactions
+        }
+        //trendsHelper.soundIdToGoTo = soundId
     }
 }
 
@@ -156,6 +180,7 @@ extension MostSharedByAudienceView {
                 switch state {
                 case .loading:
                     LoadingView()
+
                 case .loaded(let items):
                     if items.isEmpty {
                         NoDataToDisplayView()
@@ -184,6 +209,7 @@ extension MostSharedByAudienceView {
                             .foregroundColor(.gray)
                             .padding(.bottom)
                     }
+
                 case .error(let errorMessage):
                     Text(errorMessage)
                 }
@@ -217,6 +243,74 @@ extension MostSharedByAudienceView {
         }
     }
 
+    struct ReactionsRankingView: View {
+
+        let title: String
+        let state: LoadingState<[TopChartReaction]>
+        let lastUpdatedDate: Date
+        let navigateToAction: (String) -> Void
+        let reloadAction: () -> Void
+
+        @State private var columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
+        //@Environment(\.sizeCategory) var sizeCategory
+
+        var body: some View {
+            VStack {
+                HStack {
+                    Text(title)
+                        .font(.title2)
+                    Spacer()
+                }
+                .padding(.horizontal)
+
+                switch state {
+                case .loading:
+                    LoadingView()
+
+                case .loaded(let items):
+                    LazyVGrid(
+                        columns: columns,
+                        spacing: UIDevice.isiPhone ? 12 : 20
+                    ) {
+                        ForEach(items) { item in
+                            RankedReactionItem(
+                                item: item
+                            )
+                            .onTapGesture {
+                                navigateToAction(item.reaction.id)
+                            }
+                        }
+                    }
+                    .padding()
+
+                case .error(let errorMessage):
+                    ErrorView(
+                        message: errorMessage,
+                        retryAction: reloadAction
+                    )
+                }
+
+
+            }
+        }
+    }
+
+    struct RankedReactionItem: View {
+
+        let item: TopChartReaction
+
+        var body: some View {
+            VStack(spacing: 15) {
+                ReactionItem(reaction: item.reaction.reaction)
+                    .dynamicTypeSize(...DynamicTypeSize.accessibility2)
+
+                Text(item.description)
+                    .bold()
+                    .multilineTextAlignment(.center)
+            }
+        }
+    }
+
     struct NoDataToDisplayView: View {
 
         var body: some View {
@@ -246,6 +340,38 @@ extension MostSharedByAudienceView {
                     .font(.callout)
             }
             .padding(.vertical, 100)
+        }
+    }
+
+    struct ErrorView: View {
+
+        let message: String
+        let retryAction: () -> Void
+
+        var body: some View {
+            HStack {
+                Spacer()
+
+                VStack(spacing: 30) {
+                    Text("Não Foi Possível Obter os Dados Mais Recentes")
+                        .font(.headline)
+                        .multilineTextAlignment(.center)
+
+                    Text(message)
+                        .multilineTextAlignment(.center)
+                        .foregroundStyle(.gray)
+
+                    Button {
+                        retryAction()
+                    } label: {
+                        Label("Tentar Novamente", systemImage: "arrow.clockwise")
+                    }
+                    .borderedButton(colored: .accentColor)
+                }
+
+                Spacer()
+            }
+            .padding(.vertical, 30)
         }
     }
 }

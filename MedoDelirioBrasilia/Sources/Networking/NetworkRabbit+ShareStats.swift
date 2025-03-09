@@ -49,4 +49,8 @@ extension NetworkRabbit {
 
         return try await NetworkRabbit.shared.get(from: url)
     }
+
+    func getReactionsStats() async throws -> [TopChartReaction] {
+        try await NetworkRabbit.shared.get(from: URL(string: serverPath + "v3/reaction-popularity-stats")!)
+    }
 }

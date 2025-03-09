@@ -89,3 +89,10 @@ struct ReactionDTO: Hashable, Codable, Identifiable {
     let attributionText: String?
     let attributionURL: String?
 }
+
+extension ReactionDTO {
+
+    var reaction: Reaction {
+        Reaction(dto: self, type: .regular)
+    }
+}
