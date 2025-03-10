@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import ActivityKit
+import BackgroundTasks
 
 var moveDatabaseIssue: String = .empty
 
@@ -56,6 +58,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     @AppStorage("hasUpdatedExternalLinksOnFirstRun") private var hasUpdatedExternalLinksOnFirstRun = false
     @AppStorage("hasUpdatedFolderHashesOnFirstRun") private var hasUpdatedFolderHashesOnFirstRun = false
 
+    let backgroundTaskId = "com.rafaelschmitt.MedoDelirioBrasilia.syncTask"
+    var currentTask: BGAppRefreshTask?
+    var syncManager: SyncManager?
+    var activity: Activity<SyncActivityAttributes>?
+    var totalUpdateCount: Int = 0
+
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
@@ -88,6 +96,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         createFoldersForDownloadedContent()
         updateExternalLinks()
         updateFolderChangeHashes()
+
+//        registerBackgroundTasks()
+//        scheduleBackgroundSync()
 
         return true
     }
