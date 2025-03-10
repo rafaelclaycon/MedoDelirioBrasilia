@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreSpotlight
 
 var moveDatabaseIssue: String = .empty
 
@@ -17,12 +18,13 @@ struct MedoDelirioBrasiliaApp: App {
     @State private var tabSelection: PhoneTab = .sounds
     @State private var state: PadScreen? = PadScreen.allSounds
 
-    @StateObject private var helper = PlayRandomSoundHelper()
+    @StateObject private var helper = ExternalActivityHelper()
 
     var body: some Scene {
         WindowGroup {
             MainView(tabSelection: $tabSelection, padSelection: $state)
                 .onOpenURL(perform: handleURL)
+                .onContinueUserActivity(CSSearchableItemActionType, perform: handleUserActivity)
                 .environmentObject(helper)
         }
     }
@@ -44,6 +46,38 @@ struct MedoDelirioBrasiliaApp: App {
             } catch {
                 print("Erro obtendo som aleatório: \(error.localizedDescription)")
                 Analytics().send(action: "hadErrorPlayingRandomSound(\(error.localizedDescription))")
+            }
+        }
+    }
+
+    private func handleUserActivity(_ userActivity: NSUserActivity) {
+        if let uniqueIdentifier = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String {
+            let components = uniqueIdentifier.split(separator: "-", maxSplits: 1)
+            guard
+                components.count == 2,
+                let type = components.first,
+                let id = components.last
+            else {
+                print("Invalid identifier format")
+                return
+            }
+
+            switch type {
+            case "sound":
+                tabSelection = .sounds
+                state = .allSounds
+                helper.soundIdToHighlight = String(id)
+                Analytics().send(action: "didUseSpotlightSearch(sound - \(uniqueIdentifier))")
+            case "song":
+                print("Navigate to Song")
+            case "folder":
+                print("Navigate to Folder")
+            case "reaction":
+                tabSelection = .reactions
+                //helper.soundIdToHighlight = String(id)
+                //Analytics().send(action: "didUseSpotlightSearch(\(uniqueIdentifier))")
+            default:
+                print("Unknown type")
             }
         }
     }

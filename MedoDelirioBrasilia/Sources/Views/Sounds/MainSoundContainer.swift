@@ -40,7 +40,7 @@ struct MainSoundContainer: View {
 
     @EnvironmentObject var trendsHelper: TrendsHelper
     @EnvironmentObject var settingsHelper: SettingsHelper
-    @EnvironmentObject var playRandomSoundHelper: PlayRandomSoundHelper
+    @EnvironmentObject var activityHelper: ExternalActivityHelper
 
     // MARK: - Computed Properties
 
@@ -247,12 +247,15 @@ struct MainSoundContainer: View {
                 displayLongUpdateBanner = viewModel.totalUpdateCount >= 10 && viewModel.processedUpdateNumber != viewModel.totalUpdateCount
             }
         }
-        .onChange(of: playRandomSoundHelper.soundIdToPlay) { soundId in
+        .onChange(of: activityHelper.soundIdToPlay) { soundId in
             if !soundId.isEmpty {
                 viewModel.currentViewMode = .allSounds
                 allSoundsViewModel.scrollAndPlaySound(withId: soundId)
-                playRandomSoundHelper.soundIdToPlay = ""
+                activityHelper.soundIdToPlay = ""
             }
+        }
+        .onChange(of: activityHelper.soundIdToHighlight) { soundId in
+            highlight(soundId: soundId)
         }
         .sheet(isPresented: $showingModalView) {
             SyncInfoView(
@@ -333,6 +336,10 @@ struct MainSoundContainer: View {
 
             Task {
                 showRetroBanner = await ClassicRetroView.ViewModel.shouldDisplayBanner()
+            }
+
+            Task {
+                await viewModel.addReactionsToSpotlight()
             }
         }
         .onChange(of: scenePhase) { newPhase in
