@@ -17,6 +17,8 @@ struct MostSharedByAudienceView: View {
 
     private let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
 
+    // MARK: - View Body
+
     var body: some View {
         VStack(spacing: 30) {
             TitledRankingView(
@@ -90,6 +92,8 @@ struct MostSharedByAudienceView: View {
         }
     }
 
+    // MARK: - Functions
+
     private func navigateTo(sound soundId: String) {
         if UIDevice.current.userInterfaceIdiom == .phone {
             tabSelection = .sounds
@@ -97,6 +101,15 @@ struct MostSharedByAudienceView: View {
             activePadScreen = .allSounds
         }
         trendsHelper.soundIdToGoTo = soundId
+    }
+
+    private func navigateTo(song songId: String) {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            tabSelection = .songs
+        } else {
+            activePadScreen = .songs
+        }
+        //trendsHelper.soundIdToGoTo = soundId
     }
 
     private func navigateTo(reaction reactionId: String) {
