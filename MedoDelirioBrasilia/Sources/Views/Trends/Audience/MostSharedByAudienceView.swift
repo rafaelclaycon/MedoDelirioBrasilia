@@ -26,6 +26,7 @@ struct MostSharedByAudienceView: View {
                 state: viewModel.soundsState,
                 timeIntervalOption: $viewModel.soundsTimeInterval,
                 lastUpdatedText: viewModel.soundsLastCheckString,
+                navigateToText: "Ir para Som",
                 navigateToAction: { soundId in
                     navigateTo(sound: soundId)
                 }
@@ -41,8 +42,9 @@ struct MostSharedByAudienceView: View {
                 state: viewModel.songsState,
                 timeIntervalOption: $viewModel.songsTimeInterval,
                 lastUpdatedText: viewModel.songsLastCheckString,
-                navigateToAction: { _ in
-                    //navigateTo(sound: soundId)
+                navigateToText: "Ir para Música",
+                navigateToAction: { songId in
+                    navigateTo(song: songId)
                 }
             )
             .onChange(of: viewModel.songsTimeInterval) { newInterval in
@@ -134,6 +136,7 @@ extension MostSharedByAudienceView {
         let state: LoadingState<[TopChartItem]>
         @Binding var timeIntervalOption: TrendsTimeInterval
         let lastUpdatedText: String
+        let navigateToText: String
         let navigateToAction: (String) -> Void
 
         // MARK: - Private Properti
@@ -202,7 +205,10 @@ extension MostSharedByAudienceView {
                                                 Button {
                                                     navigateToAction(item.contentId)
                                                 } label: {
-                                                    Label("Ir para Som", systemImage: "arrow.uturn.backward")
+                                                    Label(
+                                                        navigateToText,
+                                                        systemImage: "arrow.uturn.backward"
+                                                    )
                                                 }
                                             }
                                         }
