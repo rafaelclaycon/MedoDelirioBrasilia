@@ -1,60 +1,106 @@
 @testable import MedoDelirio
-import XCTest
+import Testing
+import Foundation
 
-class NetworkRabbitTests: XCTestCase {
+@Suite("NetworkRabbit tests") struct NetworkRabbitTests {
 
-    private var sut: NetworkRabbit!
-    
-    override func setUp() {
-        super.setUp()
-        sut = NetworkRabbit(serverPath: "http://localhost:8080/api/")
+    @Test func threeDifferentReactions() {
+        let today = TopChartReactionDTO(
+            position: "1",
+            reaction: Reaction.provokingMock.dto,
+            description: "hoje"
+        )
+        let lastWeek = TopChartReactionDTO(
+            position: "2",
+            reaction: Reaction.classicsMock.dto,
+            description: "última semana"
+        )
+        let allTime = TopChartReactionDTO(
+            position: "3",
+            reaction: Reaction.greetingsMock.dto,
+            description: "todos os tempos"
+        )
+
+        let result = NetworkRabbit.groupedStats(from: [today, lastWeek, allTime])
+
+        #expect(result.count == 3)
+        #expect(result.first?.description == "hoje")
+        #expect(result[1].description == "última semana")
+        #expect(result[2].description == "todos os tempos")
     }
-    
-    override func tearDown() {
-        sut = nil
-        super.tearDown()
-    }
-    
-//    func test_checkServerStatus_whenCallIsOkAndServerIsRunning_shouldReturnCorrectString() throws {
-//        let e = expectation(description: "Server call")
-//        var testResult = false
-//        
-//        sut.checkServerStatus { serverIsAvailable in
-//            guard serverIsAvailable else {
-//                fatalError()
-//            }
-//            testResult = serverIsAvailable
-//            e.fulfill()
-//        }
-//        
-//        waitForExpectations(timeout: 5.0) { error in
-//            if let error = error {
-//                XCTFail("timeout errored: \(error)")
-//            }
-//            XCTAssertTrue(testResult)
-//        }
-//    }
-    
-//    func test_postShareCountStats_whenCallIsOkAndServerIsRunning_shouldReturnCorrectData() throws {
-//        let e = expectation(description: "Server call")
-//        var testResult = ""
-//
-//        let mockStat = ServerShareCountStat(installId: ShareLogsDummy.installId, contentId: ShareLogsDummy.bomDiaContentId, contentType: 0, shareCount: 10)
-//
-//        sut.post(shareCountStat: mockStat) { result in
-//            guard result.contains("Failed") == false else {
-//                fatalError(result)
-//            }
-//            testResult = result
-//            e.fulfill()
-//        }
-//
-//        waitForExpectations(timeout: 5.0) { error in
-//            if let error = error {
-//                XCTFail("timeout errored: \(error)")
-//            }
-//            XCTAssertEqual(testResult, ShareLogsDummy.bomDiaContentId)
-//        }
-//    }
 
+    @Test func twoEqualOneDifferentReaction() {
+        let today = TopChartReactionDTO(
+            position: "1",
+            reaction: Reaction.provokingMock.dto,
+            description: "hoje"
+        )
+        let lastWeek = TopChartReactionDTO(
+            position: "2",
+            reaction: Reaction.provokingMock.dto,
+            description: "última semana"
+        )
+        let allTime = TopChartReactionDTO(
+            position: "3",
+            reaction: Reaction.greetingsMock.dto,
+            description: "todos os tempos"
+        )
+
+        let result = NetworkRabbit.groupedStats(from: [today, lastWeek, allTime])
+
+        #expect(result.count == 2)
+        #expect(result.first?.description == "hoje & última semana")
+        #expect(result[1].description == "todos os tempos")
+    }
+
+    @Test func allEqualReactions() {
+        let today = TopChartReactionDTO(
+            position: "1",
+            reaction: Reaction.provokingMock.dto,
+            description: "hoje"
+        )
+        let lastWeek = TopChartReactionDTO(
+            position: "2",
+            reaction: Reaction.provokingMock.dto,
+            description: "última semana"
+        )
+        let allTime = TopChartReactionDTO(
+            position: "3",
+            reaction: Reaction.provokingMock.dto,
+            description: "todos os tempos"
+        )
+
+        let result = NetworkRabbit.groupedStats(from: [today, lastWeek, allTime])
+
+        #expect(result.count == 1)
+        #expect(result.first?.description == "hoje, última semana & todos os tempos")
+    }
+
+    @Test func eventualAdditionalOne() {
+        let today = TopChartReactionDTO(
+            position: "1",
+            reaction: Reaction.provokingMock.dto,
+            description: "hoje"
+        )
+        let lastWeek = TopChartReactionDTO(
+            position: "2",
+            reaction: Reaction.provokingMock.dto,
+            description: "última semana"
+        )
+        let lastMonth = TopChartReactionDTO(
+            position: "3",
+            reaction: Reaction.provokingMock.dto,
+            description: "último mês"
+        )
+        let allTime = TopChartReactionDTO(
+            position: "4",
+            reaction: Reaction.provokingMock.dto,
+            description: "todos os tempos"
+        )
+
+        let result = NetworkRabbit.groupedStats(from: [today, lastWeek, lastMonth, allTime])
+
+        #expect(result.count == 1)
+        #expect(result.first?.description == "hoje, última semana, último mês & todos os tempos")
+    }
 }

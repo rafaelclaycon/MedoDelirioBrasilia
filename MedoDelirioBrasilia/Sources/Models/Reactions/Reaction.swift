@@ -90,6 +90,21 @@ struct ReactionDTO: Hashable, Codable, Identifiable {
     let attributionURL: String?
 }
 
+extension Reaction {
+
+    var dto: ReactionDTO {
+        ReactionDTO(
+            id: self.id,
+            title: self.title,
+            position: self.position,
+            image: self.image,
+            lastUpdate: self.lastUpdate,
+            attributionText: self.attributionText,
+            attributionURL: self.attributionURL?.absoluteString
+        )
+    }
+}
+
 extension ReactionDTO {
 
     var reaction: Reaction {

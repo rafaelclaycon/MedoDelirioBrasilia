@@ -49,9 +49,17 @@ struct TopChartItem: Hashable, Codable, Identifiable {
     }
 }
 
+struct TopChartReactionDTO: Hashable, Codable {
+
+    let position: String
+    let reaction: ReactionDTO
+    let description: String
+}
+
 struct TopChartReaction: Hashable, Codable, Identifiable {
 
     let id: String
-    let reaction: ReactionDTO
+    let position: String
+    let reaction: Reaction
     let description: String
 }

@@ -322,12 +322,14 @@ extension MostSharedByAudienceView {
 
         var body: some View {
             VStack(spacing: 10) {
-                ReactionItem(reaction: item.reaction.reaction)
+                ReactionItem(reaction: item.reaction)
                     .dynamicTypeSize(...DynamicTypeSize.accessibility2)
 
                 Text(item.description)
                     .bold()
                     .multilineTextAlignment(.center)
+
+                Spacer()
             }
         }
     }
