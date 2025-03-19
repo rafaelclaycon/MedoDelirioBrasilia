@@ -86,6 +86,7 @@ struct MainView: View {
                     NavigationView {
                         SongsView()
                             .environmentObject(settingsHelper)
+                            .environment(trendsHelper)
                     }
                     .tabItem {
                         Label("Músicas", systemImage: "music.quarternote.3")
@@ -216,6 +217,7 @@ struct MainView: View {
                                 NavigationStack {
                                     SongsView()
                                         .environmentObject(settingsHelper)
+                                        .environment(trendsHelper)
                                 }
                             }
                         }

@@ -379,14 +379,14 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
                                     multiSelectButtonsEnabled = $0 > 0
                                     allSelectedAreFavorites = viewModel.allSelectedAreFavorites()
                                 }
-                                .onChange(of: trendsHelper.youCanScrollNow) {
-                                    if !trendsHelper.youCanScrollNow.isEmpty {
+                                .onChange(of: trendsHelper.soundIdToGoTo) {
+                                    if !trendsHelper.soundIdToGoTo.isEmpty {
                                         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
                                             withAnimation {
-                                                proxy.scrollTo(trendsHelper.youCanScrollNow, anchor: .center)
+                                                proxy.scrollTo(trendsHelper.soundIdToGoTo, anchor: .center)
                                             }
                                             TapticFeedback.warning()
-                                            trendsHelper.youCanScrollNow = ""
+                                            trendsHelper.soundIdToGoTo = ""
                                         }
                                     }
                                 }

@@ -104,7 +104,7 @@ struct SidebarView: View {
             
             Section("Mais") {
                 NavigationLink(
-                    destination: SongsView().environmentObject(settingsHelper),
+                    destination: SongsView().environmentObject(settingsHelper).environment(trendsHelper),
                     tag: PadScreen.songs,
                     selection: $state,
                     label: {

@@ -24,7 +24,8 @@ struct SongsView: View {
     
     // Share as Video
     @State private var shareAsVideo_Result = ShareAsVideoResult()
-    
+
+    @Environment(TrendsHelper.self) private var trendsHelper
     @EnvironmentObject var settingsHelper: SettingsHelper
 
     // Dynamic Type
@@ -62,71 +63,84 @@ struct SongsView: View {
         ZStack {
             VStack {
                 ScrollView {
-                    LazyVGrid(columns: columns, spacing: 14) {
-                        if searchResults.isEmpty {
-                            NoSearchResultsView(searchText: $searchText)
-                        } else {
-                            ForEach(searchResults) { song in
-                                SongCell(song: song, nowPlaying: $viewModel.nowPlayingKeeper)
-                                    .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
-                                    .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
-                                    .onTapGesture {
-                                        if viewModel.nowPlayingKeeper.contains(song.id) {
-                                            AudioPlayer.shared?.togglePlay()
-                                            viewModel.nowPlayingKeeper.removeAll()
-                                        } else {
-                                            viewModel.play(song: song)
-                                        }
-                                    }
-                                    .contextMenu(menuItems: {
-                                        Section {
-                                            Button {
-                                                viewModel.share(song: song)
-                                            } label: {
-                                                Label(Shared.shareSongButtonText, systemImage: "square.and.arrow.up")
-                                            }
-                                            
-                                            Button {
-                                                viewModel.selectedSong = song
-                                                subviewToOpen = .shareAsVideoView
-                                                showingModalView.toggle()
-                                            } label: {
-                                                Label(Shared.shareAsVideoButtonText, systemImage: "film")
+                    ScrollViewReader { proxy in
+                        LazyVGrid(columns: columns, spacing: 14) {
+                            if searchResults.isEmpty {
+                                NoSearchResultsView(searchText: $searchText)
+                            } else {
+                                ForEach(searchResults) { song in
+                                    SongCell(song: song, nowPlaying: $viewModel.nowPlayingKeeper)
+                                        .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
+                                        .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
+                                        .onTapGesture {
+                                            if viewModel.nowPlayingKeeper.contains(song.id) {
+                                                AudioPlayer.shared?.togglePlay()
+                                                viewModel.nowPlayingKeeper.removeAll()
+                                            } else {
+                                                viewModel.play(song: song)
                                             }
                                         }
-                                        
-                                        Section {
-                                            Button {
-                                                viewModel.selectedSong = song
-                                                viewModel.showEmailAppPicker_suggestChangeConfirmationDialog = true
-                                            } label: {
-                                                Label("Sugerir Alteração", systemImage: "exclamationmark.bubble")
+                                        .contextMenu(menuItems: {
+                                            Section {
+                                                Button {
+                                                    viewModel.share(song: song)
+                                                } label: {
+                                                    Label(Shared.shareSongButtonText, systemImage: "square.and.arrow.up")
+                                                }
+
+                                                Button {
+                                                    viewModel.selectedSong = song
+                                                    subviewToOpen = .shareAsVideoView
+                                                    showingModalView.toggle()
+                                                } label: {
+                                                    Label(Shared.shareAsVideoButtonText, systemImage: "film")
+                                                }
                                             }
-                                        }
-                                    })
+
+                                            Section {
+                                                Button {
+                                                    viewModel.selectedSong = song
+                                                    viewModel.showEmailAppPicker_suggestChangeConfirmationDialog = true
+                                                } label: {
+                                                    Label("Sugerir Alteração", systemImage: "exclamationmark.bubble")
+                                                }
+                                            }
+                                        })
+                                }
                             }
                         }
-                    }
-                    .searchable(text: $searchText)
-                    .disableAutocorrection(true)
-                    .padding(.horizontal)
-                    .padding(.top, 7)
-                    
-                    if UserSettings().getShowExplicitContent() == false {
-                        ExplicitDisabledWarning(
-                            text: UIDevice.current.userInterfaceIdiom == .phone ? Shared.contentFilterMessageForSongsiPhone : Shared.contentFilterMessageForSongsiPadMac
-                        )
-                        .padding(.top, explicitOffWarningTopPadding)
-                        .padding(.horizontal, explicitOffWarningBottomPadding)
-                    }
-                    
-                    if searchText.isEmpty, currentGenre == nil {
-                        Text("\(viewModel.songs.count) MÚSICAS")
-                            .font(.footnote)
-                            .foregroundColor(.gray)
-                            .multilineTextAlignment(.center)
-                            .padding(.top, songCountTopPadding)
-                            .padding(.bottom, songCountBottomPadding)
+                        .searchable(text: $searchText)
+                        .disableAutocorrection(true)
+                        .padding(.horizontal)
+                        .padding(.top, 7)
+                        .onChange(of: trendsHelper.songIdToGoTo) {
+                            if !trendsHelper.songIdToGoTo.isEmpty {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                                    withAnimation {
+                                        proxy.scrollTo(trendsHelper.songIdToGoTo, anchor: .center)
+                                    }
+                                    TapticFeedback.warning()
+                                    trendsHelper.songIdToGoTo = ""
+                                }
+                            }
+                        }
+
+                        if UserSettings().getShowExplicitContent() == false {
+                            ExplicitDisabledWarning(
+                                text: UIDevice.current.userInterfaceIdiom == .phone ? Shared.contentFilterMessageForSongsiPhone : Shared.contentFilterMessageForSongsiPadMac
+                            )
+                            .padding(.top, explicitOffWarningTopPadding)
+                            .padding(.horizontal, explicitOffWarningBottomPadding)
+                        }
+
+                        if searchText.isEmpty, currentGenre == nil {
+                            Text("\(viewModel.songs.count) MÚSICAS")
+                                .font(.footnote)
+                                .foregroundColor(.gray)
+                                .multilineTextAlignment(.center)
+                                .padding(.top, songCountTopPadding)
+                                .padding(.bottom, songCountBottomPadding)
+                        }
                     }
                 }
             }
@@ -251,7 +265,7 @@ struct SongsView: View {
                     settingsHelper.updateSoundsList = false
                 }
             }
-            
+
             if viewModel.showToastView {
                 VStack {
                     Spacer()
@@ -284,10 +298,8 @@ struct SongsView: View {
     }
 }
 
-struct SongsView_Previews: PreviewProvider {
+// MARK: - Preview
 
-    static var previews: some View {
-        SongsView()
-    }
-
+#Preview {
+    SongsView()
 }

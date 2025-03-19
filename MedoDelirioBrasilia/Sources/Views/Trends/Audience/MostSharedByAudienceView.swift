@@ -22,7 +22,7 @@ struct MostSharedByAudienceView: View {
     var body: some View {
         VStack(spacing: 30) {
             TitledRankingView(
-                title: "Sons Mais Compartilhados Pela Audiência",
+                title: "Sons Mais Compartilhados",
                 state: viewModel.soundsState,
                 timeIntervalOption: $viewModel.soundsTimeInterval,
                 lastUpdatedText: viewModel.soundsLastCheckString,
@@ -38,7 +38,7 @@ struct MostSharedByAudienceView: View {
             }
 
             TitledRankingView(
-                title: "Músicas Mais Compartilhadas Pela Audiência",
+                title: "Músicas Mais Compartilhadas",
                 state: viewModel.songsState,
                 timeIntervalOption: $viewModel.songsTimeInterval,
                 lastUpdatedText: viewModel.songsLastCheckString,
@@ -102,7 +102,7 @@ struct MostSharedByAudienceView: View {
         } else {
             activePadScreen = .allSounds
         }
-        trendsHelper.soundIdToGoTo = soundId
+        trendsHelper.notifyMainSoundContainer = soundId
     }
 
     private func navigateTo(song songId: String) {
@@ -111,7 +111,7 @@ struct MostSharedByAudienceView: View {
         } else {
             activePadScreen = .songs
         }
-        //trendsHelper.soundIdToGoTo = soundId
+        trendsHelper.songIdToGoTo = songId
     }
 
     private func navigateTo(reaction reactionId: String) {
