@@ -84,7 +84,7 @@ struct ReactionDetailView: View {
                     }
                 )
             )
-            .environmentObject(TrendsHelper())
+            .environment(TrendsHelper())
         }
         .toolbar {
             ToolbarControls(
@@ -99,7 +99,7 @@ struct ReactionDetailView: View {
             .opacity(toolbarControlsOpacity)
             .disabled(soundArrayIsEmpty)
             .onChange(of: viewModel.soundSortOption) {
-                viewModel.sortSounds(by: $0)
+                viewModel.sortSounds(by: viewModel.soundSortOption)
             }
         }
         .oneTimeTask {

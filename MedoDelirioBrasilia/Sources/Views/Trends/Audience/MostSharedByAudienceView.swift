@@ -12,7 +12,7 @@ struct MostSharedByAudienceView: View {
     @Bindable var viewModel: ViewModel
     @Binding var tabSelection: PhoneTab
     @Binding var activePadScreen: PadScreen?
-    @EnvironmentObject var trendsHelper: TrendsHelper
+    @Environment(TrendsHelper.self) private var trendsHelper
     @Environment(\.scenePhase) var scenePhase
 
     private let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()

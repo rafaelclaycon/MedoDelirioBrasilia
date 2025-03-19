@@ -34,7 +34,7 @@ struct MainView: View {
 
     // Trends
     @State private var soundIdToGoToFromTrends: String = .empty
-    @StateObject private var trendsHelper = TrendsHelper()
+    @State private var trendsHelper = TrendsHelper()
 
     // Sync
     @StateObject private var syncValues = SyncValues()
@@ -59,7 +59,7 @@ struct MainView: View {
                                 isShowingSettingsSheet.toggle()
                             }
                         )
-                        .environmentObject(trendsHelper)
+                        .environment(trendsHelper)
                         .environmentObject(settingsHelper)
                         .navigationDestination(for: GeneralNavigationDestination.self) { screen in
                             GeneralRouter(destination: screen)
@@ -97,7 +97,7 @@ struct MainView: View {
                             tabSelection: $tabSelection,
                             activePadScreen: .constant(.trends)
                         )
-                        .environmentObject(trendsHelper)
+                        .environment(trendsHelper)
                     }
                     .tabItem {
                         Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
@@ -145,7 +145,7 @@ struct MainView: View {
                                     currentSoundsListMode: $currentSoundsListMode,
                                     openSettingsAction: {}
                                 )
-                                .environmentObject(trendsHelper)
+                                .environment(trendsHelper)
                                 .environmentObject(settingsHelper)
                                 .navigationDestination(for: GeneralNavigationDestination.self) { screen in
                                     GeneralRouter(destination: screen)
@@ -168,7 +168,7 @@ struct MainView: View {
                                     currentSoundsListMode: $currentSoundsListMode,
                                     openSettingsAction: {}
                                 )
-                                .environmentObject(trendsHelper)
+                                .environment(trendsHelper)
                                 .environmentObject(settingsHelper)
                                 .navigationDestination(for: GeneralNavigationDestination.self) { screen in
                                     GeneralRouter(destination: screen)
@@ -207,7 +207,7 @@ struct MainView: View {
                                     tabSelection: $tabSelection,
                                     activePadScreen: .constant(.trends)
                                 )
-                                .environmentObject(trendsHelper)
+                                .environment(trendsHelper)
                             }
                         }
 
@@ -291,7 +291,7 @@ struct MainView: View {
                             updateFolderList: $updateFolderList,
                             currentSoundsListMode: $currentSoundsListMode
                         )
-                        .environmentObject(trendsHelper)
+                        .environment(trendsHelper)
                         .environmentObject(settingsHelper)
                         .environmentObject(syncValues)
                     } detail: {
@@ -307,7 +307,7 @@ struct MainView: View {
                                 currentSoundsListMode: $currentSoundsListMode,
                                 openSettingsAction: {}
                             )
-                            .environmentObject(trendsHelper)
+                            .environment(trendsHelper)
                             .environmentObject(settingsHelper)
                             .navigationDestination(for: GeneralNavigationDestination.self) { screen in
                                 GeneralRouter(destination: screen)

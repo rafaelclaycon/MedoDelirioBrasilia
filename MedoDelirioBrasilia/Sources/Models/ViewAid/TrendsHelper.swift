@@ -5,17 +5,17 @@
 //  Created by Rafael Claycon Schmitt on 14/12/22.
 //
 
-import Foundation
+import SwiftUI
 
 /// Class that allows the communication between `TrendsView` and `MainSoundContainer`.
 ///
 /// - Parameters:
 ///    - soundIdToGoTo: Tells `MainSoundContainer` what soundId to scroll to.
 ///    - youCanScrollNow: After making sure it is in the `.allSounds` mode, scrolls to the correct sound.
-class TrendsHelper: ObservableObject {
+@Observable class TrendsHelper {
 
-    @Published var soundIdToGoTo: String = ""
-    @Published var timeIntervalToGoTo: TrendsTimeInterval? = nil
-    @Published var refreshMostSharedByAudienceList: Bool = false
-    @Published var youCanScrollNow: String = ""
+    var soundIdToGoTo: String = ""
+    var timeIntervalToGoTo: TrendsTimeInterval? = nil
+    var refreshMostSharedByAudienceList: Bool = false
+    var youCanScrollNow: String = ""
 }

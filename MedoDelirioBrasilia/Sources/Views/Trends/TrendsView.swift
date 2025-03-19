@@ -20,7 +20,7 @@ struct TrendsView: View {
     @Binding var activePadScreen: PadScreen?
     @State var currentViewMode: ViewMode = .audience
 
-    @EnvironmentObject var trendsHelper: TrendsHelper
+    @Environment(TrendsHelper.self) private var trendsHelper
 
     // Alert
     @State private var showAlert = false
@@ -68,14 +68,14 @@ struct TrendsView: View {
                                     tabSelection: $tabSelection,
                                     activePadScreen: $activePadScreen
                                 )
-                                .environmentObject(trendsHelper)
+                                .environment(trendsHelper)
                             }
                         }
                     } else {
                         VStack(alignment: .leading, spacing: 10) {
                             //if showMostSharedSoundsByTheUser {
                             MostSharedByMeView()
-                                .environmentObject(trendsHelper)
+                                .environment(trendsHelper)
                             //}
                             
                             /*if showDayOfTheWeekTheUserSharesTheMost {

@@ -19,7 +19,7 @@ struct SidebarView: View {
     @EnvironmentObject var syncValues: SyncValues
 
     // Trends
-    @EnvironmentObject var trendsHelper: TrendsHelper
+    @Environment(TrendsHelper.self) private var trendsHelper
     @Environment(\.push) var push
 
     var body: some View {
@@ -36,7 +36,7 @@ struct SidebarView: View {
                         ),
                         currentSoundsListMode: $currentSoundsListMode,
                         openSettingsAction: {}
-                    ).environmentObject(trendsHelper).environmentObject(settingsHelper),
+                    ).environment(trendsHelper).environmentObject(settingsHelper),
                     tag: PadScreen.allSounds,
                     selection: $state,
                     label: {
@@ -55,7 +55,7 @@ struct SidebarView: View {
                         ),
                         currentSoundsListMode: $currentSoundsListMode,
                         openSettingsAction: {}
-                    ).environmentObject(trendsHelper).environmentObject(settingsHelper),
+                    ).environment(trendsHelper).environmentObject(settingsHelper),
                     tag: PadScreen.favorites,
                     selection: $state,
                     label: {
@@ -91,8 +91,10 @@ struct SidebarView: View {
 //                    })
                 
                 NavigationLink(
-                    destination: TrendsView(tabSelection: .constant(.trends),
-                                            activePadScreen: $state).environmentObject(trendsHelper),
+                    destination: TrendsView(
+                        tabSelection: .constant(.trends),
+                        activePadScreen: $state
+                    ).environment(trendsHelper),
                     tag: PadScreen.trends,
                     selection: $state,
                     label: {
