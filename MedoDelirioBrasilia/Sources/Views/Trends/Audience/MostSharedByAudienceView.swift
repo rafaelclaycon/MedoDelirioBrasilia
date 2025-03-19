@@ -154,6 +154,8 @@ extension MostSharedByAudienceView {
                 Shared.Trends.lastWeek
             case .lastMonth:
                 Shared.Trends.lastMonth
+            case .year2025:
+                Shared.Trends.year2025
             case .year2024:
                 Shared.Trends.year2024
             case .year2023:
@@ -238,6 +240,7 @@ extension MostSharedByAudienceView {
                     Text(Shared.Trends.last3Days).tag(TrendsTimeInterval.last3Days)
                     Text(Shared.Trends.lastWeek).tag(TrendsTimeInterval.lastWeek)
                     Text(Shared.Trends.lastMonth).tag(TrendsTimeInterval.lastMonth)
+                    Text(Shared.Trends.year2025).tag(TrendsTimeInterval.year2025)
                     Text(Shared.Trends.year2024).tag(TrendsTimeInterval.year2024)
                     Text(Shared.Trends.year2023).tag(TrendsTimeInterval.year2023)
                     Text(Shared.Trends.year2022).tag(TrendsTimeInterval.year2022)

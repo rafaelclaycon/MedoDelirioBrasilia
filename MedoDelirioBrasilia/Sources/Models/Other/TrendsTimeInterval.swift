@@ -9,7 +9,15 @@ import Foundation
 
 enum TrendsTimeInterval: Int {
 
-    case last24Hours, last3Days, lastWeek, lastMonth, year2024, year2023, year2022, allTime
+    case last24Hours
+    case last3Days
+    case lastWeek
+    case lastMonth
+    case year2025
+    case year2024
+    case year2023
+    case year2022
+    case allTime
 }
 
 enum TrendsContentType {
