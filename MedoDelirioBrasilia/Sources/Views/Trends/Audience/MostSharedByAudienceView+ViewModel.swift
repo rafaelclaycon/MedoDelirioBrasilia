@@ -6,36 +6,35 @@
 //
 
 import Foundation
-import Combine
+import SwiftUI
 
 extension MostSharedByAudienceView {
 
-    @MainActor
-    final class ViewModel: ObservableObject {
-        
-        @Published var soundsState: LoadingState<[TopChartItem]> = .loading
-        @Published var soundsTimeInterval: TrendsTimeInterval = .last24Hours
-        @Published var soundsLastCheckDate: Date = Date(timeIntervalSince1970: 0)
-        @Published var soundsLastCheckString: String = ""
+    @Observable class ViewModel {
 
-        @Published var songsState: LoadingState<[TopChartItem]> = .loading
-        @Published var songsTimeInterval: TrendsTimeInterval = .allTime
-        @Published var songsLastCheckDate: Date = Date(timeIntervalSince1970: 0)
-        @Published var songsLastCheckString: String = ""
+        var soundsState: LoadingState<[TopChartItem]> = .loading
+        var soundsTimeInterval: TrendsTimeInterval = .last24Hours
+        var soundsLastCheckDate: Date = Date(timeIntervalSince1970: 0)
+        var soundsLastCheckString: String = ""
 
-        @Published var reactionsState: LoadingState<[TopChartReaction]> = .loading
-        @Published var reactionsLastCheckDate: Date = Date(timeIntervalSince1970: 0)
-        @Published var reactionsLastCheckString: String = ""
+        var songsState: LoadingState<[TopChartItem]> = .loading
+        var songsTimeInterval: TrendsTimeInterval = .allTime
+        var songsLastCheckDate: Date = Date(timeIntervalSince1970: 0)
+        var songsLastCheckString: String = ""
 
-        @Published var lastTimePulledDownToRefresh: Date = Date(timeIntervalSince1970: 0)
-        
-        @Published var currentActivity: NSUserActivity?
-        
+        var reactionsState: LoadingState<[TopChartReaction]> = .loading
+        var reactionsLastCheckDate: Date = Date(timeIntervalSince1970: 0)
+        var reactionsLastCheckString: String = ""
+
+        var lastTimePulledDownToRefresh: Date = Date(timeIntervalSince1970: 0)
+
+        var currentActivity: NSUserActivity?
+
         // Alerts
-        @Published var alertTitle: String = ""
-        @Published var alertMessage: String = ""
-        @Published var showAlert: Bool = false
-        
+        var alertTitle: String = ""
+        var alertMessage: String = ""
+        var showAlert: Bool = false
+
         var displayToast: ((String) -> Void) = { _ in }
 
         private let lastCheckText: String = "Última consulta: "

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MostSharedByAudienceView: View {
 
-    @ObservedObject var viewModel: ViewModel
+    @Bindable var viewModel: ViewModel
     @Binding var tabSelection: PhoneTab
     @Binding var activePadScreen: PadScreen?
     @EnvironmentObject var trendsHelper: TrendsHelper
@@ -31,9 +31,9 @@ struct MostSharedByAudienceView: View {
                     navigateTo(sound: soundId)
                 }
             )
-            .onChange(of: viewModel.soundsTimeInterval) { newInterval in
+            .onChange(of: viewModel.soundsTimeInterval) {
                 Task {
-                    await viewModel.onSoundsSelectedTimeIntervalChanged(newTimeInterval: newInterval)
+                    await viewModel.onSoundsSelectedTimeIntervalChanged(newTimeInterval: viewModel.soundsTimeInterval)
                 }
             }
 
@@ -47,9 +47,9 @@ struct MostSharedByAudienceView: View {
                     navigateTo(song: songId)
                 }
             )
-            .onChange(of: viewModel.songsTimeInterval) { newInterval in
+            .onChange(of: viewModel.songsTimeInterval) {
                 Task {
-                    await viewModel.onSongsSelectedTimeIntervalChanged(newTimeInterval: newInterval)
+                    await viewModel.onSongsSelectedTimeIntervalChanged(newTimeInterval: viewModel.songsTimeInterval)
                 }
             }
 
@@ -87,9 +87,9 @@ struct MostSharedByAudienceView: View {
         .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text(viewModel.alertTitle), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
         }
-        .onChange(of: scenePhase) { newPhase in
+        .onChange(of: scenePhase) {
             Task {
-                await viewModel.onScenePhaseChanged(isNewPhaseActive: newPhase == .active)
+                await viewModel.onScenePhaseChanged(isNewPhaseActive: scenePhase == .active)
             }
         }
     }
@@ -281,7 +281,7 @@ extension MostSharedByAudienceView {
                     LoadingView()
 
                 case .loaded(let items):
-                    VStack(spacing: 15) {
+                    VStack(spacing: 20) {
                         LazyVGrid(
                             columns: columns,
                             spacing: UIDevice.isiPhone ? 12 : 20
@@ -318,7 +318,7 @@ extension MostSharedByAudienceView {
         let item: TopChartReaction
 
         var body: some View {
-            VStack(spacing: 15) {
+            VStack(spacing: 10) {
                 ReactionItem(reaction: item.reaction.reaction)
                     .dynamicTypeSize(...DynamicTypeSize.accessibility2)
 

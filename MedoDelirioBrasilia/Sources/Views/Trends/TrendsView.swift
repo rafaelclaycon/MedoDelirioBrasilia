@@ -14,7 +14,7 @@ struct TrendsView: View {
     }
 
     @StateObject private var viewModel = ViewModel()
-    @StateObject private var audienceViewModel = MostSharedByAudienceView.ViewModel()
+    @State private var audienceViewModel = MostSharedByAudienceView.ViewModel()
 
     @Binding var tabSelection: PhoneTab
     @Binding var activePadScreen: PadScreen?
