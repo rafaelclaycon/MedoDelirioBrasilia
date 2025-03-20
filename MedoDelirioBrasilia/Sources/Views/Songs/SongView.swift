@@ -1,5 +1,5 @@
 //
-//  SongCell.swift
+//  SongView.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Claycon Schmitt on 24/05/22.
@@ -7,16 +7,20 @@
 
 import SwiftUI
 
-struct SongCell: View {
+struct SongView: View {
 
     let song: Song
-    
+
     @Binding var nowPlaying: Set<String>
+    @Binding var highlighted: Set<String>
+
     @Environment(\.sizeCategory) var sizeCategory
     @State private var timeRemaining: Double = 0
     
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    
+
+    // MARK: - Computed Properties
+
     var isPlaying: Bool {
         nowPlaying.contains(song.id)
     }
@@ -40,9 +44,30 @@ struct SongCell: View {
     private var isNew: Bool {
         return Date.isDateWithinLast7Days(song.dateAdded)
     }
-    
-    let gradient = LinearGradient(gradient: Gradient(colors: [.green, .green, .green, .brightYellow]), startPoint: .topLeading, endPoint: .bottomTrailing)
-    
+
+    private var background: LinearGradient {
+        if highlighted.contains(song.id) {
+            return highlightGradient
+        } else {
+            return regularGradient
+        }
+    }
+
+    // MARK: - Constants
+
+    private let regularGradient = LinearGradient(
+        gradient: Gradient(colors: [.green, .green, .green, .brightYellow]),
+        startPoint: .topLeading,
+        endPoint: .bottomTrailing
+    )
+    private let highlightGradient = LinearGradient(
+        gradient: Gradient(colors: [.yellow]),
+        startPoint: .topLeading,
+        endPoint: .bottomTrailing
+    )
+
+    // MARK: - View Body
+
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack(spacing: 10) {
@@ -98,7 +123,7 @@ struct SongCell: View {
                 timeRemaining = song.duration
             }
         }
-        .onChange(of: isPlaying) { isPlaying in
+        .onChange(of: isPlaying) {
             if !isPlaying {
                 timeRemaining = song.duration
             }
@@ -106,7 +131,7 @@ struct SongCell: View {
         .background {
             ZStack {
                 RoundedRectangle(cornerRadius: 20, style: .continuous)
-                    .fill(gradient)
+                    .fill(background)
                     .opacity(isPlaying ? 0.7 : 1.0)
 
                 if isPlaying {
@@ -129,8 +154,10 @@ struct SongCell: View {
     }
 }
 
+// MARK: - Preview
+
 #Preview {
-    SongCell(
+    SongView(
         song: Song(
             id: "ABC",
             title: "Funk do Morto",
@@ -138,7 +165,8 @@ struct SongCell: View {
             genreName: "Funk",
             duration: 60
         ),
-        nowPlaying: .constant(Set<String>())
+        nowPlaying: .constant(Set<String>()),
+        highlighted: .constant(Set<String>())
     )
     .padding(.horizontal)
 }

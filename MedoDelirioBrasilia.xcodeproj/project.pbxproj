@@ -265,7 +265,7 @@
 		D92E706E283C5C2C0035826C /* Eu volto pro ostracismo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92E706B283C5C2C0035826C /* Eu volto pro ostracismo.mp3 */; };
 		D92E7070283C5CF40035826C /* song_data.json in Resources */ = {isa = PBXBuildFile; fileRef = D92E706F283C5CF40035826C /* song_data.json */; };
 		D92E7072283C5D990035826C /* SongsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92E7071283C5D990035826C /* SongsViewViewModel.swift */; };
-		D92E7075283C5F620035826C /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92E7074283C5F620035826C /* SongCell.swift */; };
+		D92E7075283C5F620035826C /* SongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92E7074283C5F620035826C /* SongView.swift */; };
 		D92EF4BF291CA5B9009E3E0A /* Jair Bolsonaro - Pode botar, CODIB-19.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92EF4BD291CA5B9009E3E0A /* Jair Bolsonaro - Pode botar, CODIB-19.mp3 */; };
 		D92EF4C0291CA5B9009E3E0A /* Jair Bolsonaro - CODIB-19.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92EF4BE291CA5B9009E3E0A /* Jair Bolsonaro - CODIB-19.mp3 */; };
 		D92F095D29EC8AC200CC382F /* Milton Leite - Que fase.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D92F095C29EC8AC100CC382F /* Milton Leite - Que fase.mp3 */; };
@@ -1810,7 +1810,7 @@
 		D92E706B283C5C2C0035826C /* Eu volto pro ostracismo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Eu volto pro ostracismo.mp3"; sourceTree = "<group>"; };
 		D92E706F283C5CF40035826C /* song_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = song_data.json; sourceTree = "<group>"; };
 		D92E7071283C5D990035826C /* SongsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsViewViewModel.swift; sourceTree = "<group>"; };
-		D92E7074283C5F620035826C /* SongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
+		D92E7074283C5F620035826C /* SongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongView.swift; sourceTree = "<group>"; };
 		D92EF4BD291CA5B9009E3E0A /* Jair Bolsonaro - Pode botar, CODIB-19.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Pode botar, CODIB-19.mp3"; sourceTree = "<group>"; };
 		D92EF4BE291CA5B9009E3E0A /* Jair Bolsonaro - CODIB-19.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - CODIB-19.mp3"; sourceTree = "<group>"; };
 		D92F095C29EC8AC100CC382F /* Milton Leite - Que fase.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Milton Leite - Que fase.mp3"; sourceTree = "<group>"; };
@@ -4395,7 +4395,7 @@
 			children = (
 				D958B1AD28394E420010F133 /* SongsView.swift */,
 				D92E7071283C5D990035826C /* SongsViewViewModel.swift */,
-				D92E7074283C5F620035826C /* SongCell.swift */,
+				D92E7074283C5F620035826C /* SongView.swift */,
 				D9592C3F2AA2C01100157F5A /* GenrePickerView.swift */,
 			);
 			path = Songs;
@@ -6908,7 +6908,7 @@
 				D9877D2B2869845400B541F9 /* SharingUtility.swift in Sources */,
 				D94EAB5129FC0907004CD604 /* AppDelegate+MoveFixedDataToDatabase.swift in Sources */,
 				D988C523283C33E100D64404 /* UserSettings.swift in Sources */,
-				D92E7075283C5F620035826C /* SongCell.swift in Sources */,
+				D92E7075283C5F620035826C /* SongView.swift in Sources */,
 				D9943F1C28641917002C6B97 /* LocalDatabase+Favorite.swift in Sources */,
 				D98CFB5A2C95C9760038C26C /* SocialMediaLink.swift in Sources */,
 				D9A8AB2528543F8E00B5A94B /* SharingLogCell.swift in Sources */,

@@ -14,9 +14,7 @@ struct SongsView: View {
     }
     
     @StateObject private var viewModel = SongsViewViewModel()
-    
-    @State private var searchText = ""
-    @State private var searchBar: UISearchBar?
+
     @State private var currentGenre: String? = nil
 
     @State private var subviewToOpen: SubviewToOpen = .genrePicker
@@ -48,13 +46,13 @@ struct SongsView: View {
     }
     
     var searchResults: [Song] {
-        if searchText.isEmpty {
+        if viewModel.searchText.isEmpty {
             guard let currentGenre else { return viewModel.songs }
             return viewModel.songs.filter({ $0.genreId == currentGenre })
         } else {
             return viewModel.songs.filter { song in
                 let searchString = song.title.lowercased().withoutDiacritics()
-                return searchString.contains(searchText.lowercased().withoutDiacritics())
+                return searchString.contains(viewModel.searchText.lowercased().withoutDiacritics())
             }
         }
     }
@@ -66,55 +64,60 @@ struct SongsView: View {
                     ScrollViewReader { proxy in
                         LazyVGrid(columns: columns, spacing: 14) {
                             if searchResults.isEmpty {
-                                NoSearchResultsView(searchText: $searchText)
+                                NoSearchResultsView(searchText: $viewModel.searchText)
                             } else {
                                 ForEach(searchResults) { song in
-                                    SongCell(song: song, nowPlaying: $viewModel.nowPlayingKeeper)
-                                        .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
-                                        .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
-                                        .onTapGesture {
-                                            if viewModel.nowPlayingKeeper.contains(song.id) {
-                                                AudioPlayer.shared?.togglePlay()
-                                                viewModel.nowPlayingKeeper.removeAll()
-                                            } else {
-                                                viewModel.play(song: song)
+                                    SongView(
+                                        song: song,
+                                        nowPlaying: $viewModel.nowPlayingKeeper,
+                                        highlighted: $viewModel.highlightKeeper
+                                    )
+                                    .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
+                                    .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
+                                    .onTapGesture {
+                                        if viewModel.nowPlayingKeeper.contains(song.id) {
+                                            AudioPlayer.shared?.togglePlay()
+                                            viewModel.nowPlayingKeeper.removeAll()
+                                        } else {
+                                            viewModel.play(song: song)
+                                        }
+                                    }
+                                    .contextMenu(menuItems: {
+                                        Section {
+                                            Button {
+                                                viewModel.share(song: song)
+                                            } label: {
+                                                Label(Shared.shareSongButtonText, systemImage: "square.and.arrow.up")
+                                            }
+
+                                            Button {
+                                                viewModel.selectedSong = song
+                                                subviewToOpen = .shareAsVideoView
+                                                showingModalView.toggle()
+                                            } label: {
+                                                Label(Shared.shareAsVideoButtonText, systemImage: "film")
                                             }
                                         }
-                                        .contextMenu(menuItems: {
-                                            Section {
-                                                Button {
-                                                    viewModel.share(song: song)
-                                                } label: {
-                                                    Label(Shared.shareSongButtonText, systemImage: "square.and.arrow.up")
-                                                }
 
-                                                Button {
-                                                    viewModel.selectedSong = song
-                                                    subviewToOpen = .shareAsVideoView
-                                                    showingModalView.toggle()
-                                                } label: {
-                                                    Label(Shared.shareAsVideoButtonText, systemImage: "film")
-                                                }
+                                        Section {
+                                            Button {
+                                                viewModel.selectedSong = song
+                                                viewModel.showEmailAppPicker_suggestChangeConfirmationDialog = true
+                                            } label: {
+                                                Label("Sugerir Alteração", systemImage: "exclamationmark.bubble")
                                             }
-
-                                            Section {
-                                                Button {
-                                                    viewModel.selectedSong = song
-                                                    viewModel.showEmailAppPicker_suggestChangeConfirmationDialog = true
-                                                } label: {
-                                                    Label("Sugerir Alteração", systemImage: "exclamationmark.bubble")
-                                                }
-                                            }
-                                        })
+                                        }
+                                    })
                                 }
                             }
                         }
-                        .searchable(text: $searchText)
+                        .searchable(text: $viewModel.searchText)
                         .disableAutocorrection(true)
                         .padding(.horizontal)
                         .padding(.top, 7)
                         .onChange(of: trendsHelper.songIdToGoTo) {
                             if !trendsHelper.songIdToGoTo.isEmpty {
+                                viewModel.cancelSearchAndHighlight(id: trendsHelper.songIdToGoTo)
                                 DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
                                     withAnimation {
                                         proxy.scrollTo(trendsHelper.songIdToGoTo, anchor: .center)
@@ -133,7 +136,7 @@ struct SongsView: View {
                             .padding(.horizontal, explicitOffWarningBottomPadding)
                         }
 
-                        if searchText.isEmpty, currentGenre == nil {
+                        if viewModel.searchText.isEmpty, currentGenre == nil {
                             Text("\(viewModel.songs.count) MÚSICAS")
                                 .font(.footnote)
                                 .foregroundColor(.gray)
