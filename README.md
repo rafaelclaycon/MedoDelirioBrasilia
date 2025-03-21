@@ -8,6 +8,8 @@ A fun and interactive iOS, iPadOS, and macOS app with sound snippets/memes from 
 
 👉 [**Download it on the App Store**](https://apps.apple.com/br/app/medo-e-del%C3%ADrio/id1625199878) 📲
 
+Like what you see? 🐙 [Sponsor me](https://github.com/sponsors/rafaelclaycon) so I can keep making cool stuff! Prefer to do it in Reais? [Here you go](https://apoia.se/app-medo-delirio-ios).
+
 ## Preview
 
 Here's how the app looks on each platform:
