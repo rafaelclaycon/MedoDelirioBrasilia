@@ -1,0 +1,50 @@
+{
+  "configurations" : [
+    {
+      "id" : "133DEF1D-F18C-4D97-8772-053B2437FE0A",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "commandLineArgumentEntries" : [
+      {
+        "argument" : "-SHOW_EXPORT_FOLDERS_OPTION",
+        "enabled" : false
+      },
+      {
+        "argument" : "-FORCE_SHOW_HELP_THE_APP"
+      },
+      {
+        "argument" : "-IGNORE_SYNC_WAIT"
+      },
+      {
+        "argument" : "-SHOW_MORE_DEV_OPTIONS",
+        "enabled" : false
+      }
+    ],
+    "environmentVariableEntries" : [
+      {
+        "key" : "api_environment",
+        "value" : "local"
+      }
+    ],
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:MedoDelirioBrasilia.xcodeproj",
+      "identifier" : "D9625E7928238F9A00080852",
+      "name" : "MedoDelirioBrasilia"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:MedoDelirioBrasilia.xcodeproj",
+        "identifier" : "D9625E8928238F9B00080852",
+        "name" : "MedoDelirioBrasiliaTests"
+      }
+    }
+  ],
+  "version" : 1
+}

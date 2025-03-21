@@ -14,11 +14,16 @@ class SongsViewViewModel: ObservableObject {
     @Published var songs = [Song]()
     
     @Published var sortOption: Int = 0
+
     @Published var nowPlayingKeeper = Set<String>()
+    @Published var highlightKeeper = Set<String>()
+
     @Published var showEmailAppPicker_suggestChangeConfirmationDialog = false
     @Published var showEmailAppPicker_songUnavailableConfirmationDialog = false
     @Published var selectedSong: Song? = nil
-    
+
+    @Published var searchText = ""
+
     @Published var currentActivity: NSUserActivity? = nil
     
     // Sharing
@@ -221,6 +226,18 @@ class SongsViewViewModel: ObservableObject {
                     toastText: "Erro ao tentar baixar conteúdo novamente."
                 )
             }
+        }
+    }
+
+    func cancelSearchAndHighlight(id songId: String) {
+        if !searchText.isEmpty {
+            searchText = ""
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        }
+
+        highlightKeeper.insert(songId)
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
+            self.highlightKeeper.remove(songId)
         }
     }
 

@@ -14,9 +14,7 @@ struct SongsView: View {
     }
     
     @StateObject private var viewModel = SongsViewViewModel()
-    
-    @State private var searchText = ""
-    @State private var searchBar: UISearchBar?
+
     @State private var currentGenre: String? = nil
 
     @State private var subviewToOpen: SubviewToOpen = .genrePicker
@@ -24,7 +22,8 @@ struct SongsView: View {
     
     // Share as Video
     @State private var shareAsVideo_Result = ShareAsVideoResult()
-    
+
+    @Environment(TrendsHelper.self) private var trendsHelper
     @EnvironmentObject var settingsHelper: SettingsHelper
 
     // Dynamic Type
@@ -47,13 +46,13 @@ struct SongsView: View {
     }
     
     var searchResults: [Song] {
-        if searchText.isEmpty {
+        if viewModel.searchText.isEmpty {
             guard let currentGenre else { return viewModel.songs }
             return viewModel.songs.filter({ $0.genreId == currentGenre })
         } else {
             return viewModel.songs.filter { song in
                 let searchString = song.title.lowercased().withoutDiacritics()
-                return searchString.contains(searchText.lowercased().withoutDiacritics())
+                return searchString.contains(viewModel.searchText.lowercased().withoutDiacritics())
             }
         }
     }
@@ -62,12 +61,17 @@ struct SongsView: View {
         ZStack {
             VStack {
                 ScrollView {
-                    LazyVGrid(columns: columns, spacing: 14) {
-                        if searchResults.isEmpty {
-                            NoSearchResultsView(searchText: $searchText)
-                        } else {
-                            ForEach(searchResults) { song in
-                                SongCell(song: song, nowPlaying: $viewModel.nowPlayingKeeper)
+                    ScrollViewReader { proxy in
+                        LazyVGrid(columns: columns, spacing: 14) {
+                            if searchResults.isEmpty {
+                                NoSearchResultsView(searchText: $viewModel.searchText)
+                            } else {
+                                ForEach(searchResults) { song in
+                                    SongView(
+                                        song: song,
+                                        nowPlaying: $viewModel.nowPlayingKeeper,
+                                        highlighted: $viewModel.highlightKeeper
+                                    )
                                     .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
                                     .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 0 : 5)
                                     .onTapGesture {
@@ -85,7 +89,7 @@ struct SongsView: View {
                                             } label: {
                                                 Label(Shared.shareSongButtonText, systemImage: "square.and.arrow.up")
                                             }
-                                            
+
                                             Button {
                                                 viewModel.selectedSong = song
                                                 subviewToOpen = .shareAsVideoView
@@ -94,7 +98,7 @@ struct SongsView: View {
                                                 Label(Shared.shareAsVideoButtonText, systemImage: "film")
                                             }
                                         }
-                                        
+
                                         Section {
                                             Button {
                                                 viewModel.selectedSong = song
@@ -104,29 +108,42 @@ struct SongsView: View {
                                             }
                                         }
                                     })
+                                }
                             }
                         }
-                    }
-                    .searchable(text: $searchText)
-                    .disableAutocorrection(true)
-                    .padding(.horizontal)
-                    .padding(.top, 7)
-                    
-                    if UserSettings().getShowExplicitContent() == false {
-                        ExplicitDisabledWarning(
-                            text: UIDevice.current.userInterfaceIdiom == .phone ? Shared.contentFilterMessageForSongsiPhone : Shared.contentFilterMessageForSongsiPadMac
-                        )
-                        .padding(.top, explicitOffWarningTopPadding)
-                        .padding(.horizontal, explicitOffWarningBottomPadding)
-                    }
-                    
-                    if searchText.isEmpty, currentGenre == nil {
-                        Text("\(viewModel.songs.count) MÚSICAS")
-                            .font(.footnote)
-                            .foregroundColor(.gray)
-                            .multilineTextAlignment(.center)
-                            .padding(.top, songCountTopPadding)
-                            .padding(.bottom, songCountBottomPadding)
+                        .searchable(text: $viewModel.searchText)
+                        .disableAutocorrection(true)
+                        .padding(.horizontal)
+                        .padding(.top, 7)
+                        .onChange(of: trendsHelper.songIdToGoTo) {
+                            if !trendsHelper.songIdToGoTo.isEmpty {
+                                viewModel.cancelSearchAndHighlight(id: trendsHelper.songIdToGoTo)
+                                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                                    withAnimation {
+                                        proxy.scrollTo(trendsHelper.songIdToGoTo, anchor: .center)
+                                    }
+                                    TapticFeedback.warning()
+                                    trendsHelper.songIdToGoTo = ""
+                                }
+                            }
+                        }
+
+                        if UserSettings().getShowExplicitContent() == false {
+                            ExplicitDisabledWarning(
+                                text: UIDevice.current.userInterfaceIdiom == .phone ? Shared.contentFilterMessageForSongsiPhone : Shared.contentFilterMessageForSongsiPadMac
+                            )
+                            .padding(.top, explicitOffWarningTopPadding)
+                            .padding(.horizontal, explicitOffWarningBottomPadding)
+                        }
+
+                        if viewModel.searchText.isEmpty, currentGenre == nil {
+                            Text("\(viewModel.songs.count) MÚSICAS")
+                                .font(.footnote)
+                                .foregroundColor(.gray)
+                                .multilineTextAlignment(.center)
+                                .padding(.top, songCountTopPadding)
+                                .padding(.bottom, songCountBottomPadding)
+                        }
                     }
                 }
             }
@@ -251,7 +268,7 @@ struct SongsView: View {
                     settingsHelper.updateSoundsList = false
                 }
             }
-            
+
             if viewModel.showToastView {
                 VStack {
                     Spacer()
@@ -284,10 +301,8 @@ struct SongsView: View {
     }
 }
 
-struct SongsView_Previews: PreviewProvider {
+// MARK: - Preview
 
-    static var previews: some View {
-        SongsView()
-    }
-
+#Preview {
+    SongsView()
 }
