@@ -21,6 +21,9 @@ import SwiftUI
     // To Songs tab
     var songIdToGoTo: String = ""
 
+    // To Reactions tab
+    var reactionIdToGoTo: String = ""
+
     // From Siri Suggestions
     var timeIntervalToGoTo: TrendsTimeInterval? = nil
     var refreshMostSharedByAudienceList: Bool = false

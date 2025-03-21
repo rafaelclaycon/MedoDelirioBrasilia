@@ -120,7 +120,7 @@ struct MostSharedByAudienceView: View {
         } else {
             activePadScreen = .reactions
         }
-        //trendsHelper.soundIdToGoTo = soundId
+        trendsHelper.reactionIdToGoTo = reactionId
     }
 }
 
@@ -284,7 +284,7 @@ extension MostSharedByAudienceView {
                     LoadingView()
 
                 case .loaded(let items):
-                    VStack(spacing: 20) {
+                    VStack(spacing: 10) {
                         LazyVGrid(
                             columns: columns,
                             spacing: UIDevice.isiPhone ? 12 : 20

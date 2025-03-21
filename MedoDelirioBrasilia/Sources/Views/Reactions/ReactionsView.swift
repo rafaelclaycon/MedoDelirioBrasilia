@@ -9,11 +9,14 @@ import SwiftUI
 
 struct ReactionsView: View {
 
-    @StateObject private var viewModel = ViewModel(reactionRepository: ReactionRepository())
+    @State private var viewModel = ViewModel(reactionRepository: ReactionRepository())
 
     // iPad Grid Layout
     @State private var columns: [GridItem] = []
     @Environment(\.sizeCategory) var sizeCategory
+
+    @Environment(TrendsHelper.self) private var trendsHelper
+    @Environment(\.push) private var push
 
     // MARK: - View Body
 
@@ -61,9 +64,9 @@ struct ReactionsView: View {
                             action: "didViewReactionsTab"
                         )
                     }
-                    .onChange(of: geometry.size.width) { newWidth in
+                    .onChange(of: geometry.size.width) {
                         columns = GridHelper.adaptableColumns(
-                            listWidth: newWidth,
+                            listWidth: geometry.size.width,
                             sizeCategory: sizeCategory,
                             spacing: UIDevice.isiPhone ? 12 : 20
                         )
@@ -112,6 +115,25 @@ struct ReactionsView: View {
             actions: { Button("OK", role: .cancel, action: {}) },
             message: { Text("Tente novamente mais tarde.") }
         )
+        .alert(
+            "Não Foi Possível Abrir a Reação Selecionada",
+            isPresented: $viewModel.showIssueOpeningReaction,
+            actions: { Button("OK", role: .cancel, action: {}) },
+            message: { Text("Ela pode ter sido removida.") }
+        )
+        .onChange(of: trendsHelper.reactionIdToGoTo) {
+            if !trendsHelper.reactionIdToGoTo.isEmpty {
+                viewModel.onUserTappedReactionInTrendsTab(trendsHelper.reactionIdToGoTo) { reaction in
+                    push(GeneralNavigationDestination.reactionDetail(reaction))
+                }
+                trendsHelper.reactionIdToGoTo = ""
+            }
+        }
+        .onChange(of: viewModel.reactionToOpen) {
+            guard let reaction = viewModel.reactionToOpen else { return }
+            push(GeneralNavigationDestination.reactionDetail(reaction))
+            viewModel.reactionToOpen = nil
+        }
     }
 }
 

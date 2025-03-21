@@ -73,6 +73,7 @@ struct MainView: View {
 
                     NavigationStack(path: $reactionsPath) {
                         ReactionsView()
+                            .environment(trendsHelper)
                             .navigationDestination(for: GeneralNavigationDestination.self) { screen in
                                 GeneralRouter(destination: screen)
                             }
@@ -181,6 +182,7 @@ struct MainView: View {
                         Tab("Reações", systemImage: "rectangle.grid.2x2") {
                             NavigationStack(path: $reactionsPath) {
                                 ReactionsView()
+                                    .environment(trendsHelper)
                                     .navigationDestination(for: GeneralNavigationDestination.self) { screen in
                                         GeneralRouter(destination: screen)
                                     }

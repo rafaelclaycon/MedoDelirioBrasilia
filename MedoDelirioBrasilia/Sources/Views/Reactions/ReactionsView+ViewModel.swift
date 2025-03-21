@@ -10,15 +10,19 @@ import Combine
 
 extension ReactionsView {
 
-    @MainActor
-    final class ViewModel: ObservableObject {
+    @Observable class ViewModel {
 
-        @Published var state: LoadingState<ReactionGroup> = .loading
-        @Published var showHowReactionsWorkSheet: Bool = false
-        @Published var showAddStuffSheet: Bool = false
+        var state: LoadingState<ReactionGroup> = .loading
+        var showHowReactionsWorkSheet: Bool = false
+        var showAddStuffSheet: Bool = false
 
-        @Published var showIssueSavingPinAlert: Bool = false
-        @Published var showIssueRemovingPinAlert: Bool = false
+        var showIssueSavingPinAlert: Bool = false
+        var showIssueRemovingPinAlert: Bool = false
+        var showIssueOpeningReaction: Bool = false
+
+        /// For navigating from Trends
+        var reactionIdToOpenAfterLoading = ""
+        var reactionToOpen: Reaction? = nil
 
         private let reactionRepository: ReactionRepositoryProtocol
 
@@ -76,6 +80,21 @@ extension ReactionsView.ViewModel {
             showIssueRemovingPinAlert = true
         }
     }
+
+    public func onUserTappedReactionInTrendsTab(
+        _ reactionId: String,
+        _ openAction: (Reaction) -> Void
+    ) {
+        guard case .loaded(let reactionGroup) = state else {
+            reactionIdToOpenAfterLoading = reactionId
+            return
+        }
+        guard let reaction = reactionGroup.regular.first(where: { $0.id == reactionId }) else {
+            showIssueOpeningReaction = true
+            return
+        }
+        openAction(reaction)
+    }
 }
 
 // MARK: - Internal Functions
@@ -95,6 +114,8 @@ extension ReactionsView.ViewModel {
             }
 
             state = .loaded(.init(pinned: pinned, regular: regular))
+
+            checkIfNeedsToOpenReaction()
         } catch {
             state = .error(error.localizedDescription)
 
@@ -113,6 +134,20 @@ extension ReactionsView.ViewModel {
             updatedGroup.pinned.append(updatedReaction)
             updatedGroup.regular.removeAll(where: { $0.id == reaction.id })
             state = .loaded(updatedGroup)
+        }
+    }
+
+    private func checkIfNeedsToOpenReaction() {
+        if !reactionIdToOpenAfterLoading.isEmpty {
+            if case .loaded(let group) = state {
+                guard let reaction = group.regular.first(where: { $0.id == reactionIdToOpenAfterLoading }) else {
+                    showIssueOpeningReaction = true
+                    reactionIdToOpenAfterLoading = ""
+                    return
+                }
+                reactionToOpen = reaction
+            }
+            reactionIdToOpenAfterLoading = ""
         }
     }
 }
