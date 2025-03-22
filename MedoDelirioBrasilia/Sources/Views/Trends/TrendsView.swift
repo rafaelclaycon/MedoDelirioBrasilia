@@ -13,12 +13,13 @@ struct TrendsView: View {
         case audience, me
     }
 
-    @StateObject private var viewModel = ViewModel()
+    @State private var viewModel = ViewModel()
     @State private var audienceViewModel = MostSharedByAudienceView.ViewModel()
 
     @Binding var tabSelection: PhoneTab
     @Binding var activePadScreen: PadScreen?
     @State var currentViewMode: ViewMode = .audience
+    @State private var showReorderSheet: Bool = false
 
     @Environment(TrendsHelper.self) private var trendsHelper
 
@@ -104,6 +105,17 @@ struct TrendsView: View {
         }
         .navigationTitle("Tendências")
         .navigationBarTitleDisplayMode(showTrends ? .large : .inline)
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Button {
+                    showReorderSheet.toggle()
+                } label: {
+                    HStack {
+                        Image(systemName: "list.bullet.indent")
+                    }
+                }
+            }
+        }
         .onAppear {
             audienceViewModel.displayToast = { message in
                 viewModel.displayToast(
@@ -134,6 +146,9 @@ struct TrendsView: View {
                 }
                 .transition(.moveAndFade)
             }
+        }
+        .sheet(isPresented: $showReorderSheet) {
+            CustomizeTrendsOrderView()
         }
     }
 }

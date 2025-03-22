@@ -10,17 +10,17 @@ import SwiftUI
 
 extension TrendsView {
 
-    final class ViewModel: ObservableObject {
+    @Observable class ViewModel {
 
         // Toast
-        @Published var showToastView: Bool = false
-        @Published var toastIcon: String = "checkmark"
-        @Published var toastIconColor: Color = .green
-        @Published var toastText: String = ""
+        var showToastView: Bool = false
+        var toastIcon: String = "checkmark"
+        var toastIconColor: Color = .green
+        var toastText: String = ""
 
         // MARK: - Toast
 
-        func displayToast(
+        public func displayToast(
             _ toastIcon: String = "checkmark",
             _ toastIconColor: Color = .green,
             toastText: String,
