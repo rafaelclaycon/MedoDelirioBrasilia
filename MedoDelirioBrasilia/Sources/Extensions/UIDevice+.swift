@@ -4,14 +4,16 @@ import UIKit
 
 extension UIDevice {
 
-    /// The iPhones SE in Zoom Mode have the same width.
-    static var is4InchDevice: Bool {
+    /// Same width in points as 4-inch iPhones used to have.
+    /// Now applies to Display Zoom == Larger Text for 16 Pro and down.
+    static var isNarrowestWidth: Bool {
         guard UIDevice.current.userInterfaceIdiom == .phone else {
             return false
         }
         return UIScreen.main.bounds.width == 320
     }
 
+    /// In default non-Display Zoom mode, this applies to SE 2, SE 3, XS, 11 Pro, 12 mini, 13 mini.
     static var isSmallDevice: Bool {
         guard UIDevice.current.userInterfaceIdiom == .phone else {
             return false

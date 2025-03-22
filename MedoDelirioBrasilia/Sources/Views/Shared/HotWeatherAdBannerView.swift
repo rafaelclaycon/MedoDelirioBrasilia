@@ -52,7 +52,7 @@ struct HotWeatherAdBannerView: View {
                     Image("tempo_quente_capa")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: UIDevice.is4InchDevice ? 50 : 100)
+                        .frame(width: UIDevice.isNarrowestWidth ? 50 : 100)
                         .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
                         .shadow(radius: 5)
                         .padding(.top, UIDevice.current.userInterfaceIdiom == .phone ? 15 : 0)
@@ -116,7 +116,7 @@ struct HotWeatherAdBannerView: View {
             UIApplication.shared.open(url)
         } label: {
             Text("Ver no Spotify")
-                .padding(.horizontal, UIDevice.is4InchDevice ? 4 : 6)
+                .padding(.horizontal, UIDevice.isNarrowestWidth ? 4 : 6)
         }
         .tint(colorScheme == .dark ? .green : .darkerGreen)
         .controlSize(.regular)
@@ -128,7 +128,7 @@ struct HotWeatherAdBannerView: View {
             UIApplication.shared.open(url)
         } label: {
             Text("Ver no Apple Podcasts")
-                .padding(.horizontal, UIDevice.is4InchDevice ? 6 : 6)
+                .padding(.horizontal, UIDevice.isNarrowestWidth ? 6 : 6)
         }
         .tint(.purple)
         .controlSize(.regular)
@@ -140,7 +140,7 @@ struct HotWeatherAdBannerView: View {
             UIApplication.shared.open(url)
         } label: {
             Text("Ver no Pocket Casts")
-                .padding(.horizontal, UIDevice.is4InchDevice ? 6 : 6)
+                .padding(.horizontal, UIDevice.isNarrowestWidth ? 6 : 6)
         }
         .tint(.red)
         .controlSize(.regular)
