@@ -110,7 +110,7 @@ struct FolderDetailView: View {
                         .frame(maxWidth: .infinity)
                     }
             )
-            .environmentObject(TrendsHelper())
+            .environment(TrendsHelper())
         }
         .navigationTitle(title)
         .toolbar { trailingToolbarControls() }

@@ -48,3 +48,18 @@ struct TopChartItem: Hashable, Codable, Identifiable {
         self.shareCount = 0
     }
 }
+
+struct TopChartReactionDTO: Hashable, Codable {
+
+    let position: String
+    let reaction: ReactionDTO
+    let description: String
+}
+
+struct TopChartReaction: Hashable, Codable, Identifiable {
+
+    let id: String
+    let position: String
+    let reaction: Reaction
+    let description: String
+}

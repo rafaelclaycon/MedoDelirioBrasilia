@@ -8,6 +8,8 @@ A fun and interactive iOS, iPadOS, and macOS app with sound snippets/memes from 
 
 👉 [**Download it on the App Store**](https://apps.apple.com/br/app/medo-e-del%C3%ADrio/id1625199878) 📲
 
+Like what you see? 🐙 [Sponsor me](https://github.com/sponsors/rafaelclaycon) so I can keep making cool stuff! Prefer to do it in Reais? [Here you go](https://apoia.se/app-medo-delirio-ios).
+
 ## Preview
 
 Here's how the app looks on each platform:
@@ -21,7 +23,7 @@ Here's how the app looks on each platform:
 ## Top Features
 
 1. **Play and Share Sounds:** Enjoy snippets from the podcast and share them instantly with friends.
-1. **Discover Trends:** Explore the audience's top 10 most-shared sounds across various timeframes in the **Trends** tab.
+1. **Discover Trends:** Explore the audience's top 10 most-shared sounds and songs across various timeframes in the **Trends** tab.
 1. **React with Ease:** Find perfect responses for group chats in the **Reactions** tab, featuring sounds categorized by emotions, famous characters, and current events.
 1. **Favorites Made Easy:** Save and access your favorite sounds quickly.
 1. **Organized by Author:** Browse sounds conveniently grouped by their creators.
@@ -29,7 +31,7 @@ Here's how the app looks on each platform:
 1. **Folders for Organization:** Group sounds into folders for easy access—just like tagging!
 1. **Social Media Sharing:** Create and share videos for your socials, perfect for meme-worthy replies.
 1. **Cross-Device Support:** Fully optimized for iPhone, iPad, and Apple Silicon Macs.
-1. **Fast, Private Sync:** Enjoy fast updates and total privacy with our custom-built sync system designed entirely in Swift.
+1. **Fast, Private Content Delivery:** Enjoy fast updates and total privacy with our custom-built content delivery system designed entirely in Swift.
 
 ## History
 
@@ -43,7 +45,7 @@ To build and run this project, you'll need:
 
 - A Mac running macOS 14.5 Sonoma or later;
 - [Xcode 16.0 or later](https://www.xcodes.app/);
-- iOS 16.5+ simulators installed (Xcode 16.0 comes with iOS 18.0, so you'll be fine).
+- iOS 17.6+ simulators installed (Xcode 16.0 comes with iOS 18.0, so you'll be fine).
 
 If you've got a Mac with the software above, clone the repo, open Xcode, and you're ready to go. Xcode will handle all dependencies. Here's how:
 

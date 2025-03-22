@@ -14,17 +14,13 @@ struct TrendsView: View {
     }
 
     @StateObject private var viewModel = ViewModel()
-    @StateObject private var audienceViewModel = MostSharedByAudienceView.ViewModel()
+    @State private var audienceViewModel = MostSharedByAudienceView.ViewModel()
 
     @Binding var tabSelection: PhoneTab
     @Binding var activePadScreen: PadScreen?
     @State var currentViewMode: ViewMode = .audience
 
-    @EnvironmentObject var trendsHelper: TrendsHelper
-
-    // Retrospective 2024
-    @State private var showRetroBanner: Bool = false
-    @State private var showModalView = false
+    @Environment(TrendsHelper.self) private var trendsHelper
 
     // Alert
     @State private var showAlert = false
@@ -55,10 +51,10 @@ struct TrendsView: View {
             if showTrends {
                 ScrollView {
                     Picker("Exibição", selection: $currentViewMode) {
-                        Text("Da Audiência")
+                        Text("🏆  Da Audiência")
                             .tag(ViewMode.audience)
 
-                        Text("Pessoais")
+                        Text("🧑  Pessoais")
                             .tag(ViewMode.me)
                     }
                     .pickerStyle(.segmented)
@@ -72,61 +68,33 @@ struct TrendsView: View {
                                     tabSelection: $tabSelection,
                                     activePadScreen: $activePadScreen
                                 )
-                                .environmentObject(trendsHelper)
+                                .environment(trendsHelper)
                             }
                         }
                     } else {
                         VStack(alignment: .leading, spacing: 10) {
-                            if showRetroBanner {
-                                Retro2024Banner(
-                                    isBeingShown: $showRetroBanner,
-                                    openStoriesAction: { showModalView = true },
-                                    showCloseButton: false
-                                )
-                                .padding(.horizontal, 15)
-                                .padding(.bottom, 10)
-                            }
-
                             //if showMostSharedSoundsByTheUser {
-                                MostSharedByMeView()
-                                    .environmentObject(trendsHelper)
+                            MostSharedByMeView()
+                                .environment(trendsHelper)
                             //}
-
+                            
                             /*if showDayOfTheWeekTheUserSharesTheMost {
-                                Text("Dia da Semana No Qual Eu Mais Compartilho")
-                                .font(.title2)
-                                .padding(.horizontal)
-                                }*/
-
+                             Text("Dia da Semana No Qual Eu Mais Compartilho")
+                             .font(.title2)
+                             .padding(.horizontal)
+                             }*/
+                            
                             /*if showAppsThroughWhichTheUserSharesTheMost {
-                                Text("Apps Pelos Quais Você Mais Compartilha")
-                                .font(.title2)
-                                .padding(.horizontal)
-                                }*/
-                        }
-                        .sheet(isPresented: $showModalView) {
-                            ClassicRetroView(
-                                imageSaveSucceededAction: { exportAnalytics in
-                                    viewModel.displayToast(
-                                        toastText: Shared.Retro.successMessage,
-                                        displayTime: .seconds(5)
-                                    )
-
-                                    Analytics().send(
-                                        originatingScreen: "TrendsView",
-                                        action: "didExportRetro2024Images(\(exportAnalytics))"
-                                    )
-                                }
-                            )
+                             Text("Apps Pelos Quais Você Mais Compartilha")
+                             .font(.title2)
+                             .padding(.horizontal)
+                             }*/
                         }
                     }
                 }
                 .if(currentViewMode == .audience) {
                     $0.refreshable {
-                        audienceViewModel.loadList(
-                            for: audienceViewModel.timeIntervalOption,
-                            didPullDownToRefresh: true
-                        )
+                        await audienceViewModel.onPullToRefreshLists()
                     }
                 }
             } else {
@@ -137,9 +105,6 @@ struct TrendsView: View {
         .navigationTitle("Tendências")
         .navigationBarTitleDisplayMode(showTrends ? .large : .inline)
         .onAppear {
-            Task {
-                showRetroBanner = await ClassicRetroView.ViewModel.shouldDisplayBanner()
-            }
             audienceViewModel.displayToast = { message in
                 viewModel.displayToast(
                     "clock.fill",

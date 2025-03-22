@@ -74,7 +74,7 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
 
     @Environment(\.sizeCategory) private var sizeCategory
     @Environment(\.push) private var push
-    @EnvironmentObject private var trendsHelper: TrendsHelper
+    @Environment(TrendsHelper.self) private var trendsHelper
 
     // MARK: - Initializer
 
@@ -386,14 +386,14 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
                                     multiSelectButtonsEnabled = $0 > 0
                                     allSelectedAreFavorites = viewModel.allSelectedAreFavorites()
                                 }
-                                .onReceive(trendsHelper.$youCanScrollNow) { soundId in
-                                    if !soundId.isEmpty {
+                                .onChange(of: trendsHelper.soundIdToGoTo) {
+                                    if !trendsHelper.soundIdToGoTo.isEmpty {
                                         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
                                             withAnimation {
-                                                proxy.scrollTo(soundId, anchor: .center)
+                                                proxy.scrollTo(trendsHelper.soundIdToGoTo, anchor: .center)
                                             }
                                             TapticFeedback.warning()
-                                            trendsHelper.youCanScrollNow = ""
+                                            trendsHelper.soundIdToGoTo = ""
                                         }
                                     }
                                 }

@@ -32,7 +32,7 @@ struct HitsMedoDelirioBannerView: View {
                     Image("hits_medo_delirio_artwork")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: UIDevice.is4InchDevice ? 50 : 100)
+                        .frame(width: UIDevice.isNarrowestWidth ? 50 : 100)
                         .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
                         .padding(.top, UIDevice.current.userInterfaceIdiom == .phone ? 15 : 0)
                     
@@ -55,7 +55,7 @@ struct HitsMedoDelirioBannerView: View {
                         UIApplication.shared.open(url)
                     } label: {
                         Text("Ouvir no Spotify")
-                            .padding(.horizontal, UIDevice.is4InchDevice ? 4 : 6)
+                            .padding(.horizontal, UIDevice.isNarrowestWidth ? 4 : 6)
                     }
                     .tint(.white)
                     .controlSize(.regular)
