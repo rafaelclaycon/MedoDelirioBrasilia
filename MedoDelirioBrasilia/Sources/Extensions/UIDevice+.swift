@@ -21,7 +21,7 @@ extension UIDevice {
         return UIScreen.main.bounds.width < 380
     }
 
-    static var hasNotch: Bool {
+    static var isControlCenterAcessibleFromTheTop: Bool {
         guard !isiPad else { return true }
         return !modelName.contains("SE")
     }
@@ -41,7 +41,6 @@ extension UIDevice {
             return ![
                 "iPad (6th generation)",
                 "iPad Pro (10.5-inch)",
-                "iPad Pro (12.9-inch) (1st generation)",
                 "iPad Pro (12.9-inch) (2nd generation)"
             ].contains(modelName)
         }
@@ -154,6 +153,7 @@ public extension UIDevice {
             case "iPad8,9", "iPad8,10":                            return "iPad Pro (11-inch) (2nd generation)" // 2020 - A12Z
             case "iPad13,4", "iPad13,5", "iPad13,6", "iPad13,7":   return "iPad Pro (11-inch) (3rd generation)" // 2021 - M1
             case "iPad14,3", "iPad14,4":                           return "iPad Pro (11-inch) (4th generation)" // 2022 - M2
+            case "iPad7,1", "iPad7,2":                             return "iPad Pro (12.9-inch) (2nd generation)" // 2017 - A10X
             case "iPad8,5", "iPad8,6", "iPad8,7", "iPad8,8":       return "iPad Pro (12.9-inch) (3rd generation)" // 2018 - A12X
             case "iPad8,11", "iPad8,12":                           return "iPad Pro (12.9-inch) (4th generation)" // 2020 - A12Z
             case "iPad13,8", "iPad13,9", "iPad13,10", "iPad13,11": return "iPad Pro (12.9-inch) (5th generation)" // 2021 - M1
