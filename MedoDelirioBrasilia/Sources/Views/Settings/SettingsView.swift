@@ -29,7 +29,6 @@ struct SettingsView: View {
     @State private var showLargeCreatorImage: Bool = false
 
     private let authorSocials: [SocialMediaLink] = [
-        .init(name: "Threads", imageName: "threads", link: "https://www.threads.net/@rafaelclaycon"),
         .init(name: "Bluesky", imageName: "bluesky", link: "https://bsky.app/profile/rafaelschmitt.bsky.social"),
         .init(name: "Mastodon", imageName: "mastodon", link: "https://burnthis.town/@rafael")
     ]
@@ -38,7 +37,7 @@ struct SettingsView: View {
         ZStack {
             Form {
                 Section {
-                    Toggle("Exibir conteúdo explícito", isOn: $showExplicitSounds)
+                    Toggle("Exibir conteúdo sensível", isOn: $showExplicitSounds)
                         .onChange(of: showExplicitSounds) { showExplicitSounds in
                             UserSettings().setShowExplicitContent(to: showExplicitSounds)
                             helper.updateSoundsList = true
@@ -117,6 +116,15 @@ struct SettingsView: View {
                 
                 Section("Sobre") {
                     Menu {
+                        Section("Blogue") {
+                            Button {
+                                OpenUtility.open(link: "https://from-rafael-with-code.ghost.io/")
+                                SettingsView.sendAnalytics(for: "didTapBlogLink")
+                            } label: {
+                                Label("From Rafael with Code", systemImage: "book")
+                            }
+                        }
+
                         Section("Seguir no") {
                             ForEach(authorSocials) { social in
                                 Button {
@@ -133,17 +141,17 @@ struct SettingsView: View {
                                 }
                             }
                         }
-                        
+
                         Section {
                             Button {
                                 OpenUtility.open(link: "https://jovemnerd.com.br/noticias/ciencia-e-tecnologia/mastodon-como-criar-conta")
                                 SettingsView.sendAnalytics(for: "didTapHowToCreateMastodonAccountOption")
                             } label: {
-                                Label("Como abrir uma conta no Mastodon?", systemImage: "arrow.up.right.square")
+                                Label("O que é e como criar uma conta no Mastodon", systemImage: "arrow.up.right.square")
                             }
                         }
                     } label: {
-                        Text("Criado por Rafael Claycon Schmitt")
+                        Text("Criado por Rafael Schmitt")
                     }
                     
                     Text("Versão \(Versioneer.appVersion) Build \(Versioneer.buildVersionNumber)")

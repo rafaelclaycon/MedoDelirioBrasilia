@@ -18,6 +18,7 @@ struct Shared {
         static let viewLast3DaysTopChart = "com.rafaelschmitt.MedoDelirioBrasilia.ViewLast3DaysTopChart"
         static let viewLastWeekTopChart = "com.rafaelschmitt.MedoDelirioBrasilia.ViewLastWeekTopChart"
         static let viewLastMonthTopChart = "com.rafaelschmitt.MedoDelirioBrasilia.ViewLastMonthTopChart"
+        static let view2025TopChart = "com.rafaelschmitt.MedoDelirioBrasilia.View2025TopChart"
         static let view2024TopChart = "com.rafaelschmitt.MedoDelirioBrasilia.View2024TopChart"
         static let view2023TopChart = "com.rafaelschmitt.MedoDelirioBrasilia.View2023TopChart"
         static let view2022TopChart = "com.rafaelschmitt.MedoDelirioBrasilia.View2022TopChart"
@@ -38,10 +39,10 @@ struct Shared {
         static let soundsSelectedPlural = "%d Selecionados"
     }
 
-    static let contentFilterMessageForSoundsiPhone = "Alguns sons não estão sendo exibidos pois a opção Exibir Conteúdo Explícito está desativada.\n\nVocê pode mudar isso nas Configurações (ícone de engrenagem no topo esquerdo da tela)."
-    static let contentFilterMessageForSoundsiPadMac = "Alguns sons não estão sendo exibidos pois a opção Exibir Conteúdo Explícito está desativada.\n\nVocê pode mudar isso na tela de Configurações (ícone de engrenagem no topo da barra lateral do app)."
-    static let contentFilterMessageForSongsiPhone = "Algumas músicas não estão sendo exibidas pois a opção Exibir Conteúdo Explícito está desativada.\n\nVocê pode mudar isso nas Configurações (ícone de engrenagem no topo da aba Sons)."
-    static let contentFilterMessageForSongsiPadMac = "Algumas músicas não estão sendo exibidas pois a opção Exibir Conteúdo Explícito está desativada.\n\nVocê pode mudar isso na tela de Configurações (ícone de engrenagem no topo da barra lateral do app)."
+    static let contentFilterMessageForSoundsiPhone = "Alguns sons não estão sendo exibidos pois a opção Exibir Conteúdo Sensível está desativada.\n\nVocê pode mudar isso nas Configurações (ícone de engrenagem no topo esquerdo da tela)."
+    static let contentFilterMessageForSoundsiPadMac = "Alguns sons não estão sendo exibidos pois a opção Exibir Conteúdo Sensível está desativada.\n\nVocê pode mudar isso na tela de Configurações (ícone de engrenagem no topo da barra lateral do app)."
+    static let contentFilterMessageForSongsiPhone = "Algumas músicas não estão sendo exibidas pois a opção Exibir Conteúdo Sensível está desativada.\n\nVocê pode mudar isso nas Configurações (ícone de engrenagem no topo da aba Sons)."
+    static let contentFilterMessageForSongsiPadMac = "Algumas músicas não estão sendo exibidas pois a opção Exibir Conteúdo Sensível está desativada.\n\nVocê pode mudar isso na tela de Configurações (ícone de engrenagem no topo da barra lateral do app)."
     
     static func contentNotFoundAlertTitle(_ contentName: String) -> String {
         return "Conteúdo \"\(contentName)\" Indisponível"
@@ -108,6 +109,7 @@ struct Shared {
         static let last3Days = "Últimos 3 dias"
         static let lastWeek = "Última semana"
         static let lastMonth = "Último mês"
+        static let year2025 = "2025"
         static let year2024 = "2024"
         static let year2023 = "2023"
         static let year2022 = "2022 (desde 21/06)"

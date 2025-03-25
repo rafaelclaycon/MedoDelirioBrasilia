@@ -23,7 +23,7 @@ struct NoSoundsView: View {
                 .bold()
                 .multilineTextAlignment(.center)
             
-            Text("Visite as Configurações aqui no app e habilite a opção **Exibir Conteúdo Explícito** para ver os sons desse autor.")
+            Text("Visite as Configurações aqui no app e habilite a opção **Exibir Conteúdo Sensível** para ver os sons desse autor.")
                 .foregroundColor(.gray)
                 .multilineTextAlignment(.center)
         }

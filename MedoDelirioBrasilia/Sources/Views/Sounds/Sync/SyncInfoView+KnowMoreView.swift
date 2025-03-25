@@ -43,12 +43,12 @@ extension SyncInfoView {
                     }
                     .padding(.bottom, 3)
 
-                    Text("Verificar se isso era possível foi tema do meu Projeto Final do curso de Análise e Desenvolvimento de Sistemas e é inovador por Swift ser majoritariamente uma linguagem de *front-end* (usada para fazer telas).\n\nObrigado a todos que participaram da fase Beta e responderam ao questionário! A participação de vocês foi crítica para o sucesso do projeto. ❤️")
+                    Text("Verificar se isso era possível foi tema do meu Projeto Final do curso de Análise e Desenvolvimento de Sistemas e é inovador por Swift ser majoritariamente uma linguagem de *front-end* (usada para fazer as telas com as quais você está interagindo) e não *back-end* (a parte dos servidores que armazenam e entregam os dados pro app).\n\nObrigado a todos que participaram da fase Beta e responderam ao questionário! A participação de vocês foi crítica para o sucesso do projeto. ❤️")
 
-                    Button("Saber mais sobre Swift") {
-                        OpenUtility.open(link: "https://tinyurl.com/yujyu5a3")
+                    Button("Leia mais sobre o projeto no blogue") {
+                        OpenUtility.open(link: "https://from-rafael-with-code.ghost.io/thank-you-bolsonaro-part-1/")
                     }
-                    .largeRoundedRectangleBordered(colored: Color(hex: "#de5d43"))
+                    .largeRoundedRectangleBordered(colored: .blue)
 
                     Text("Todos os códigos relacionados ao app são abertos e estão disponíveis para estudo e colaboração. \(tapOrClickText) abaixo para vê-los no meu GitHub.")
 

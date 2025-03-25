@@ -38,7 +38,7 @@ struct MainSoundContainer: View {
 
     // MARK: - Environment Objects
 
-    @EnvironmentObject var trendsHelper: TrendsHelper
+    @Environment(TrendsHelper.self) private var trendsHelper
     @EnvironmentObject var settingsHelper: SettingsHelper
     @EnvironmentObject var playRandomSoundHelper: PlayRandomSoundHelper
 
@@ -284,8 +284,8 @@ struct MainSoundContainer: View {
                 settingsHelper.updateSoundsList = false
             }
         }
-        .onReceive(trendsHelper.$soundIdToGoTo) {
-            highlight(soundId: $0)
+        .onChange(of: trendsHelper.notifyMainSoundContainer) {
+            highlight(soundId: trendsHelper.notifyMainSoundContainer)
         }
         .overlay {
             ZStack {
@@ -523,8 +523,8 @@ extension MainSoundContainer {
         guard !soundId.isEmpty else { return }
         viewModel.currentViewMode = .allSounds
         allSoundsViewModel.cancelSearchAndHighlight(id: soundId)
-        trendsHelper.soundIdToGoTo = ""
-        trendsHelper.youCanScrollNow = soundId
+        trendsHelper.notifyMainSoundContainer = ""
+        trendsHelper.soundIdToGoTo = soundId
     }
 }
 

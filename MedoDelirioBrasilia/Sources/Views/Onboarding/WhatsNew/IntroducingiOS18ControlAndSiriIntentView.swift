@@ -124,7 +124,7 @@ extension IntroducingiOS18ControlAndSiriIntentView {
         }
 
         private let steps: [Step] = [
-            .init(number: "1", instruction: "Abra a Central de Controle (\(UIDevice.hasNotch ? "deslize do topo direito para baixo" : "puxe da borda de baixo da tela para cima"))."),
+            .init(number: "1", instruction: "Abra a Central de Controle (\(UIDevice.isControlCenterAcessibleFromTheTop ? "deslize do topo direito para baixo" : "puxe da borda de baixo da tela para cima"))."),
             .init(number: "2", instruction: "Toque no + no canto superior esquerdo."),
             .init(number: "3", instruction: "Toque em Adicionar um Controle na parte de baixo da tela."),
             .init(number: "4", instruction: "Procure por \"Medo\" na barra de pesquisa e selecione o controle Tocar Som."),
@@ -146,7 +146,7 @@ extension IntroducingiOS18ControlAndSiriIntentView {
                     }
                 }
 
-                if UIDevice.hasNotch {
+                if UIDevice.isiPhone && UIDevice.isControlCenterAcessibleFromTheTop {
                     Text("Você também pode adicionar esse controle à sua Tela de Bloqueio.")
                         .multilineTextAlignment(.center)
                 }

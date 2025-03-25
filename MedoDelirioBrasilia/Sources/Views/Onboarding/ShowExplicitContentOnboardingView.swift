@@ -66,7 +66,7 @@ struct ShowExplicitContentOnboardingView: View {
                     UserSettings().setShowExplicitContent(to: true)
                     isBeingShown.toggle()
                 } label: {
-                    Text("Mostrar Sons Explícitos")
+                    Text("Exibir Conteúdo Sensível")
                         .bold()
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
@@ -79,7 +79,7 @@ struct ShowExplicitContentOnboardingView: View {
                 Button {
                     isBeingShown.toggle()
                 } label: {
-                    Text("Não Mostrar Sons Explícitos")
+                    Text("Não Exibir Conteúdo Sensível")
                 }
                 .foregroundColor(.blue)
 

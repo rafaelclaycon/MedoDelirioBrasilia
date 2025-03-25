@@ -144,7 +144,7 @@ struct SoundItem: View {
                         .bold()
                     
                     Text(subtitle)
-                        .font(UIDevice.is4InchDevice ? .footnote : authorFont)
+                        .font(UIDevice.isNarrowestWidth ? .footnote : authorFont)
                         .foregroundColor(.white)
                         .lineLimit(authorNameLineLimit)
                         .onReceive(timer) { time in
@@ -157,7 +157,7 @@ struct SoundItem: View {
                 
                 Spacer()
             }
-            .padding(.leading, UIDevice.is4InchDevice ? 10 : 20)
+            .padding(.leading, UIDevice.isNarrowestWidth ? 10 : 20)
 
             if isNew, background == .regular, currentMode == .regular {
                 VStack {

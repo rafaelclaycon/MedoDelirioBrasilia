@@ -34,7 +34,7 @@ struct MainView: View {
 
     // Trends
     @State private var soundIdToGoToFromTrends: String = .empty
-    @StateObject private var trendsHelper = TrendsHelper()
+    @State private var trendsHelper = TrendsHelper()
 
     // Sync
     @StateObject private var syncValues = SyncValues()
@@ -59,7 +59,7 @@ struct MainView: View {
                                 isShowingSettingsSheet.toggle()
                             }
                         )
-                        .environmentObject(trendsHelper)
+                        .environment(trendsHelper)
                         .environmentObject(settingsHelper)
                         .navigationDestination(for: GeneralNavigationDestination.self) { screen in
                             GeneralRouter(destination: screen)
@@ -73,6 +73,7 @@ struct MainView: View {
 
                     NavigationStack(path: $reactionsPath) {
                         ReactionsView()
+                            .environment(trendsHelper)
                             .navigationDestination(for: GeneralNavigationDestination.self) { screen in
                                 GeneralRouter(destination: screen)
                             }
@@ -86,6 +87,7 @@ struct MainView: View {
                     NavigationView {
                         SongsView()
                             .environmentObject(settingsHelper)
+                            .environment(trendsHelper)
                     }
                     .tabItem {
                         Label("Músicas", systemImage: "music.quarternote.3")
@@ -97,7 +99,7 @@ struct MainView: View {
                             tabSelection: $tabSelection,
                             activePadScreen: .constant(.trends)
                         )
-                        .environmentObject(trendsHelper)
+                        .environment(trendsHelper)
                     }
                     .tabItem {
                         Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
@@ -145,7 +147,7 @@ struct MainView: View {
                                     currentSoundsListMode: $currentSoundsListMode,
                                     openSettingsAction: {}
                                 )
-                                .environmentObject(trendsHelper)
+                                .environment(trendsHelper)
                                 .environmentObject(settingsHelper)
                                 .navigationDestination(for: GeneralNavigationDestination.self) { screen in
                                     GeneralRouter(destination: screen)
@@ -168,7 +170,7 @@ struct MainView: View {
                                     currentSoundsListMode: $currentSoundsListMode,
                                     openSettingsAction: {}
                                 )
-                                .environmentObject(trendsHelper)
+                                .environment(trendsHelper)
                                 .environmentObject(settingsHelper)
                                 .navigationDestination(for: GeneralNavigationDestination.self) { screen in
                                     GeneralRouter(destination: screen)
@@ -180,6 +182,7 @@ struct MainView: View {
                         Tab("Reações", systemImage: "rectangle.grid.2x2") {
                             NavigationStack(path: $reactionsPath) {
                                 ReactionsView()
+                                    .environment(trendsHelper)
                                     .navigationDestination(for: GeneralNavigationDestination.self) { screen in
                                         GeneralRouter(destination: screen)
                                     }
@@ -207,7 +210,7 @@ struct MainView: View {
                                     tabSelection: $tabSelection,
                                     activePadScreen: .constant(.trends)
                                 )
-                                .environmentObject(trendsHelper)
+                                .environment(trendsHelper)
                             }
                         }
 
@@ -216,6 +219,7 @@ struct MainView: View {
                                 NavigationStack {
                                     SongsView()
                                         .environmentObject(settingsHelper)
+                                        .environment(trendsHelper)
                                 }
                             }
                         }
@@ -291,7 +295,7 @@ struct MainView: View {
                             updateFolderList: $updateFolderList,
                             currentSoundsListMode: $currentSoundsListMode
                         )
-                        .environmentObject(trendsHelper)
+                        .environment(trendsHelper)
                         .environmentObject(settingsHelper)
                         .environmentObject(syncValues)
                     } detail: {
@@ -307,7 +311,7 @@ struct MainView: View {
                                 currentSoundsListMode: $currentSoundsListMode,
                                 openSettingsAction: {}
                             )
-                            .environmentObject(trendsHelper)
+                            .environment(trendsHelper)
                             .environmentObject(settingsHelper)
                             .navigationDestination(for: GeneralNavigationDestination.self) { screen in
                                 GeneralRouter(destination: screen)
