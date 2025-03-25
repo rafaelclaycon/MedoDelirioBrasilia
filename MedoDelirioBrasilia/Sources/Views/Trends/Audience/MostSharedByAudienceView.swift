@@ -170,7 +170,7 @@ extension MostSharedByAudienceView {
         // MARK: - View Body
 
         var body: some View {
-            VStack {
+            VStack(spacing: 10) {
                 HStack {
                     Text(title)
                         .font(.title2)
@@ -196,7 +196,7 @@ extension MostSharedByAudienceView {
                         if items.isEmpty {
                             NoDataToDisplayView()
                         } else {
-                            LazyVGrid(columns: UIDevice.isMac ? columnsMac : columns, spacing: .zero) {
+                            LazyVGrid(columns: UIDevice.isMac ? columnsMac : columns, spacing: 10) {
                                 ForEach(items) { item in
                                     TopChartRow(item: item)
                                         .onTapGesture {
@@ -216,7 +216,7 @@ extension MostSharedByAudienceView {
                                         }
                                 }
                             }
-                            .padding(.top, -10)
+                            .padding(.horizontal, 14)
                         }
 
                         Text(lastUpdatedText)
