@@ -57,11 +57,12 @@ struct MostSharedByMeView: View {
                     }
                 } else {
                     VStack {
-                        LazyVGrid(columns: columns, spacing: .zero) {
+                        LazyVGrid(columns: columns, spacing: 10) {
                             ForEach(items) { item in
                                 TopChartRow(item: item)
                             }
                         }
+                        .padding(.horizontal, 14)
                     }
                     .padding(.bottom, 20)
                 }
