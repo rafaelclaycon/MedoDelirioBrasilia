@@ -68,6 +68,7 @@ extension SyncInfoView {
         let lastUpdateAttempt: String
 
         @State private var updates: [SyncLog] = []
+        @State private var hiddenUpdates: Int = 0
 
         private var lastUpdateText: String {
             if lastUpdateAttempt == "" {
@@ -102,32 +103,16 @@ extension SyncInfoView {
                     .foregroundColor(.gray)
                     .multilineTextAlignment(.center)
 
-                HStack {
-                    Text("Histórico:")
-                        .bold()
-
-                    Spacer()
-                }
-                .padding(.horizontal, 10)
-
-                VStack(spacing: 15) {
-                    ForEach(updates) { update in
-                        SyncInfoCard(
-                            imageName: update.logType == .success ? "checkmark.circle.fill" : "exclamationmark.triangle.fill",
-                            imageColor: update.logType == .success ? .green : .orange,
-                            title: update.description,
-                            timestamp: update.dateTime.asRelativeDateTime ?? ""
-                        )
-                        .onTapGesture {
-                            dump(update)
-                        }
-                    }
-                }
+                HistoryView(
+                    updates: updates,
+                    hiddenUpdatesCount: hiddenUpdates
+                )
             }
             .padding(.horizontal)
             .padding(.bottom, 30)
             .onAppear {
-                updates = LocalDatabase.shared.lastFewLogs()
+                updates = LocalDatabase.shared.lastFewSyncLogs()
+                hiddenUpdates = LocalDatabase.shared.totalSyncLogCount()
             }
         }
     }
@@ -137,6 +122,7 @@ extension SyncInfoView {
         let lastUpdateDate: String
 
         @State private var updates: [SyncLog] = []
+        @State private var hiddenUpdates: Int = 0
 
         private var lastUpdateText: String {
             if lastUpdateDate == "all" {
@@ -163,6 +149,27 @@ extension SyncInfoView {
                     .foregroundColor(.gray)
                     .multilineTextAlignment(.center)
 
+                HistoryView(
+                    updates: updates,
+                    hiddenUpdatesCount: hiddenUpdates
+                )
+            }
+            .padding(.horizontal)
+            .padding(.bottom)
+            .onAppear {
+                updates = LocalDatabase.shared.lastFewSyncLogs()
+                hiddenUpdates = LocalDatabase.shared.totalSyncLogCount()
+            }
+        }
+    }
+
+    private struct HistoryView: View {
+
+        let updates: [SyncLog]
+        let hiddenUpdatesCount: Int
+
+        var body: some View {
+            VStack(spacing: 20) {
                 HStack {
                     Text("Histórico:")
                         .bold()
@@ -171,22 +178,26 @@ extension SyncInfoView {
                 }
                 .padding(.horizontal, 10)
 
-                LazyVStack {
+                LazyVStack(spacing: 15) {
                     ForEach(updates) { update in
                         SyncInfoCard(
-                            imageName: update.logType == .error ? "exclamationmark.triangle.fill" : "checkmark.circle.fill",
+                            imageName: update.logType == .error ? "exclamationmark.triangle" : "checkmark.circle",
                             imageColor: update.logType == .error ? .orange : .green,
                             title: update.description,
                             timestamp: update.dateTime.asRelativeDateTime ?? ""
                         )
-                        .padding(.vertical, 5)
+                        .onTapGesture {
+                            dump(update)
+                        }
                     }
                 }
-            }
-            .padding(.horizontal)
-            .padding(.bottom)
-            .onAppear {
-                updates = LocalDatabase.shared.lastFewLogs()
+
+                if hiddenUpdatesCount > 0 {
+                    Text("E outras \(hiddenUpdatesCount) atualizações registradas.")
+                        .font(.footnote)
+                        .foregroundColor(.gray)
+                        .multilineTextAlignment(.center)
+                }
             }
         }
     }
