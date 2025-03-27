@@ -54,7 +54,7 @@ struct ToastView_Previews: PreviewProvider {
             ToastView(
                 icon: "checkmark",
                 iconColor: .green,
-                text: "Sincronização concluída com sucesso."
+                text: "Atualização concluída com sucesso."
             )
 
             ToastView(

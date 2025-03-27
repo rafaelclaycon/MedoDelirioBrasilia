@@ -22,13 +22,19 @@ extension SyncInfoView {
                         .font(.title2)
                         .bold()
 
-                    Text("Quando o app foi lançado em maio de 2022, os sons eram colocados dentro do pacote do app, tornando obrigatório que o app fosse atualizado para que novos conteúdos chegassem até vocês.\n\nA partir de setembro de 2023, com a introdução do sistema de sincronização na versão 7, novos sons aparecem automaticamente na lista quando o seu \(UIDevice.deviceGenericName) está conectado à Internet.\n\nChega de ter que atualizar o app na App Store para receber novos sons.")
+                    Text("O sistema de atualização de conteúdos do app Medo e Delírio baixa e atualiza os dados do app automaticamente quando o seu \(UIDevice.deviceGenericName) está conectado à Internet. O consumo de dados é baixíssimo (na casa dos poucos MBs) e é oferecido sem custo para os usuários.")
 
-                    Text("Tá mas e daí?")
+                    Text("Histórico")
                         .font(.title2)
                         .bold()
 
-                    Text("E daí que isso deu uma trabalheira do cão kkkk Mas falando sério: O sistema de sincronização de dados do app, do servidor ao app até o sistema de subir arquivos para o servidor, foi desenvolvido por mim usando a linguagem **Swift**.")
+                    Text("Quando o app foi lançado em maio de 2022, os sons eram colocados dentro do pacote do app, tornando obrigatório que o app fosse atualizado para que novos conteúdos chegassem ao público.\n\nA partir de setembro de 2023, com a introdução do sistema de atualização na versão 7, novos sons aparecem automaticamente na lista ao abrir o app.\n\nAcabava assim a obrigação de atualizar o app na App Store para receber novos conteúdos.")
+
+                    Text("Importância")
+                        .font(.title2)
+                        .bold()
+
+                    Text("O sistema de atualização de dados do app, do servidor ao app até o sistema de subir arquivos para o servidor, foi desenvolvido por mim usando a linguagem **Swift**.")
 
                     HStack {
                         Spacer()
@@ -60,7 +66,7 @@ extension SyncInfoView {
                 .padding(.vertical)
                 .padding(.horizontal, 30)
             }
-            .navigationTitle("Sobre o sistema de sincronização")
+            .navigationTitle("Sobre a atualização de conteúdos")
             .onAppear {
                 Analytics().send(action: "didViewSyncSystemAboutScreen")
             }

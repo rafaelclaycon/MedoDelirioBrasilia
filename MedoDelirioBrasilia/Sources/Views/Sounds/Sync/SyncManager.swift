@@ -44,9 +44,9 @@ class SyncManager {
             let didHaveAnyRemoteUpdates = try await syncDataWithServer()
 
             if didHaveAnyLocalUpdates || didHaveAnyRemoteUpdates {
-                logger.logSyncSuccess(description: "Sincronização realizada com sucesso.")
+                logger.logSyncSuccess(description: "Atualização concluída com sucesso.")
             } else {
-                logger.logSyncSuccess(description: "Sincronização realizada com sucesso, porém não existem novas atualizações.")
+                logger.logSyncSuccess(description: "Atualização concluída com sucesso, porém não existem novidades.")
             }
 
             delegate?.didFinishUpdating(

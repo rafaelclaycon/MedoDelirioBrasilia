@@ -50,12 +50,12 @@ extension SyncInfoView {
                     .scaleEffect(2)
                     .padding()
 
-                Text("Sincronização em andamento...")
+                Text("Atualização de conteúdos em andamento...")
                     .font(.title2)
                     .bold()
                     .multilineTextAlignment(.center)
 
-                Text("Por favor, aguarde a sincronização ser concluída.")
+                Text("Por favor, aguarde a atualização ser concluída.")
                     .foregroundColor(.gray)
                     .multilineTextAlignment(.center)
             }
@@ -71,9 +71,9 @@ extension SyncInfoView {
 
         private var lastUpdateText: String {
             if lastUpdateAttempt == "" {
-                return "A última tentativa de sincronização não retornou resultados."
+                return "A última tentativa de atualização não retornou resultados."
             } else {
-                return "Última sincronização \(lastUpdateAttempt.asRelativeDateTime ?? "")."
+                return "Última atualização \(lastUpdateAttempt.asRelativeDateTime ?? "")."
             }
         }
 
@@ -86,7 +86,7 @@ extension SyncInfoView {
                     .foregroundColor(.green)
 
                 VStack(spacing: 15) {
-                    Text("Sincronização de Conteúdos Habilitada")
+                    Text("Atualização Automática de Conteúdos Habilitada")
                         .font(.title2)
                         .bold()
                         .multilineTextAlignment(.center)
@@ -140,9 +140,9 @@ extension SyncInfoView {
 
         private var lastUpdateText: String {
             if lastUpdateDate == "all" {
-                return "A última tentativa de sincronização não retornou resultados."
+                return "A última tentativa de atualização não retornou resultados."
             } else {
-                return "Última sincronização com sucesso \(lastUpdateDate.asRelativeDateTime ?? "").\n\nGaranta que o seu dispositivo está conectado à Internet. Caso o problema persista, entre em contato com o desenvolvedor."
+                return "Última atualização com sucesso \(lastUpdateDate.asRelativeDateTime ?? "").\n\nGaranta que o seu dispositivo está conectado à Internet. Caso o problema persista, entre em contato com o desenvolvedor."
             }
         }
 
@@ -154,7 +154,7 @@ extension SyncInfoView {
                     .frame(width: 70)
                     .foregroundColor(.orange)
 
-                Text("Houve um problema na última tentativa de sincronização.")
+                Text("Houve um problema na última tentativa de atualização.")
                     .font(.title2)
                     .bold()
                     .multilineTextAlignment(.center)
