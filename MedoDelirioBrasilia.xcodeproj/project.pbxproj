@@ -1121,7 +1121,7 @@
 		D98DBD38284921B5008544F8 /* NetworkRabbitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98DBD37284921B5008544F8 /* NetworkRabbitTests.swift */; };
 		D98DFB4B2CEA9A82009C880F /* PinReactionsBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98DFB4A2CEA9A82009C880F /* PinReactionsBanner.swift */; };
 		D98E1B042BE35AE2007D057E /* ReactionDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98E1B032BE35AE2007D057E /* ReactionDetailHeader.swift */; };
-		D98EC5DE282596C300340BE5 /* SoundItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5DD282596C300340BE5 /* SoundItem.swift */; };
+		D98EC5DE282596C300340BE5 /* PlayableContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5DD282596C300340BE5 /* PlayableContentView.swift */; };
 		D98EC5E12825A05900340BE5 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98EC5E02825A05900340BE5 /* Sound.swift */; };
 		D99070552A905DA300A26F65 /* SyncInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99070542A905DA300A26F65 /* SyncInfoView.swift */; };
 		D99070592A90E20100A26F65 /* SyncInfoView+KnowMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99070582A90E20100A26F65 /* SyncInfoView+KnowMoreView.swift */; };
@@ -2670,7 +2670,7 @@
 		D98DBD37284921B5008544F8 /* NetworkRabbitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRabbitTests.swift; sourceTree = "<group>"; };
 		D98DFB4A2CEA9A82009C880F /* PinReactionsBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinReactionsBanner.swift; sourceTree = "<group>"; };
 		D98E1B032BE35AE2007D057E /* ReactionDetailHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionDetailHeader.swift; sourceTree = "<group>"; };
-		D98EC5DD282596C300340BE5 /* SoundItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundItem.swift; sourceTree = "<group>"; };
+		D98EC5DD282596C300340BE5 /* PlayableContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayableContentView.swift; sourceTree = "<group>"; };
 		D98EC5E02825A05900340BE5 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		D99070542A905DA300A26F65 /* SyncInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncInfoView.swift; sourceTree = "<group>"; };
 		D99070582A90E20100A26F65 /* SyncInfoView+KnowMoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SyncInfoView+KnowMoreView.swift"; sourceTree = "<group>"; };
@@ -5276,7 +5276,7 @@
 			children = (
 				D992EF592BCB24FB0080C892 /* SoundList.swift */,
 				D992EF5B2BCB25820080C892 /* SoundListViewModel.swift */,
-				D98EC5DD282596C300340BE5 /* SoundItem.swift */,
+				D98EC5DD282596C300340BE5 /* PlayableContentView.swift */,
 				D9DBEAA02BCC110A00220679 /* MockSoundListViewModel.swift */,
 				D984D55D2CF218E100680C7D /* SoundDetail */,
 			);
@@ -6921,7 +6921,7 @@
 				D99070552A905DA300A26F65 /* SyncInfoView.swift in Sources */,
 				D984D5632CF21D6700680C7D /* SoundDetailView+StatsSection.swift in Sources */,
 				D9C1372729063A78003E4ABF /* FolderResearchSettingsView.swift in Sources */,
-				D98EC5DE282596C300340BE5 /* SoundItem.swift in Sources */,
+				D98EC5DE282596C300340BE5 /* PlayableContentView.swift in Sources */,
 				D99C8A972952C904002E0C00 /* NetworkRabbit+DonorNames.swift in Sources */,
 				D992EF562BCB222B0080C892 /* ContextMenuOption.swift in Sources */,
 				D9DBCEA42B12888D003B4A46 /* NetworkRabbit+Retro.swift in Sources */,

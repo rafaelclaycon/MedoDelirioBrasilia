@@ -163,8 +163,8 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
                                         NoSearchResultsView(searchText: $viewModel.searchText)
                                     } else {
                                         ForEach(searchResults) { sound in
-                                            SoundItem(
-                                                sound: sound,
+                                            PlayableContentView(
+                                                content: sound,
                                                 showNewTag: showNewTag,
                                                 favorites: $viewModel.favoritesKeeper,
                                                 highlighted: $viewModel.highlightKeeper,
