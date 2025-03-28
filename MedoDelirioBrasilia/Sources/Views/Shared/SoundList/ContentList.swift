@@ -1,5 +1,5 @@
 //
-//  SoundList.swift
+//  ContentList.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 13/04/24.
@@ -9,20 +9,20 @@ import SwiftUI
 
 /// A generic view that displays a list of sounds with customizable states for loading, empty, and error conditions.
 ///
-/// `SoundList` supports various customization options, including search functionality, multi-selection, and conditional UI elements like
-/// sound counts, explicit content warnings, and more. It relies on `SoundListViewModel` to manage its data and state.
+/// `ContentList` supports various customization options, including search functionality, multi-selection, and conditional UI elements like
+/// sound counts, explicit content warnings, and more. It relies on `ContentListViewModel` to manage its data and state.
 ///
 /// - Parameters:
-///   - authorId: The author's ID when `SoundList` is inside `AuthorDetailView`. This is used to avoid reopening the same author more than once when a user taps the author's name in `SoundDetailView`.
+///   - authorId: The author's ID when `ContentList` is inside `AuthorDetailView`. This is used to avoid reopening the same author more than once when a user taps the author's name in `SoundDetailView`.
 ///   - HeaderView: A view displayed at the top of the list, such as a custom header or title.
 ///   - LoadingView: A view shown when data is loading.
 ///   - EmptyStateView: A view displayed when there are no sounds to show.
 ///   - ErrorView: A view displayed when data loading fails.
-struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, ErrorView: View>: View {
+struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, ErrorView: View>: View {
 
     // MARK: - Dependencies
 
-    @StateObject private var viewModel: SoundListViewModel<[Sound]>
+    @StateObject private var viewModel: ContentListViewModel<[Sound]>
     private var soundSearchTextIsEmpty: Binding<Bool?>
     private var allowSearch: Bool
     private var allowRefresh: Bool
@@ -79,7 +79,7 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
     // MARK: - Initializer
 
     init(
-        viewModel: SoundListViewModel<[Sound]>,
+        viewModel: ContentListViewModel<[Sound]>,
         soundSearchTextIsEmpty: Binding<Bool?> = .constant(nil),
         allowSearch: Bool = false,
         allowRefresh: Bool = false,
@@ -503,7 +503,7 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
 // MARK: - Preview
 
 #Preview {
-    SoundList<EmptyView, ProgressView, Text, Text>(
+    ContentList<EmptyView, ProgressView, Text, Text>(
         viewModel: .init(
             data: MockSoundListViewModel().allSoundsPublisher,
             menuOptions: [.sharingOptions()],

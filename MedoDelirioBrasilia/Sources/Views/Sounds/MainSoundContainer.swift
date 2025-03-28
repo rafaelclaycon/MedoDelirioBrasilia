@@ -10,8 +10,8 @@ import SwiftUI
 struct MainSoundContainer: View {
 
     @StateObject private var viewModel: MainSoundContainerViewModel
-    @StateObject private var allSoundsViewModel: SoundListViewModel<[Sound]>
-    @StateObject private var favoritesViewModel: SoundListViewModel<[Sound]>
+    @StateObject private var allSoundsViewModel: ContentListViewModel<[Sound]>
+    @StateObject private var favoritesViewModel: ContentListViewModel<[Sound]>
     private var currentSoundsListMode: Binding<SoundsListMode>
     private let openSettingsAction: () -> Void
 
@@ -84,12 +84,12 @@ struct MainSoundContainer: View {
         openSettingsAction: @escaping () -> Void
     ) {
         self._viewModel = StateObject(wrappedValue: viewModel)
-        self._allSoundsViewModel = StateObject(wrappedValue: SoundListViewModel<[Sound]>(
+        self._allSoundsViewModel = StateObject(wrappedValue: ContentListViewModel<[Sound]>(
             data: viewModel.allSoundsPublisher,
             menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
             currentSoundsListMode: currentSoundsListMode
         ))
-        self._favoritesViewModel = StateObject(wrappedValue: SoundListViewModel<[Sound]>(
+        self._favoritesViewModel = StateObject(wrappedValue: ContentListViewModel<[Sound]>(
             data: viewModel.favoritesPublisher,
             menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
             currentSoundsListMode: currentSoundsListMode,
@@ -106,7 +106,7 @@ struct MainSoundContainer: View {
         VStack {
             switch viewModel.currentViewMode {
             case .allSounds:
-                SoundList(
+                ContentList(
                     viewModel: allSoundsViewModel,
                     soundSearchTextIsEmpty: $soundSearchTextIsEmpty,
                     allowSearch: true,
@@ -180,7 +180,7 @@ struct MainSoundContainer: View {
                 )
 
             case .favorites:
-                SoundList<EmptyView, VStack, VStack, VStack>(
+                ContentList<EmptyView, VStack, VStack, VStack>(
                     viewModel: favoritesViewModel,
                     soundSearchTextIsEmpty: $soundSearchTextIsEmpty,
                     allowSearch: true,
@@ -509,7 +509,7 @@ extension MainSoundContainer {
 
 extension MainSoundContainer {
 
-    private func selectionNavBarTitle(for viewModel: SoundListViewModel<[Sound]>) -> String {
+    private func selectionNavBarTitle(for viewModel: ContentListViewModel<[Sound]>) -> String {
         if viewModel.selectionKeeper.count == 0 {
             return Shared.SoundSelection.selectSounds
         }

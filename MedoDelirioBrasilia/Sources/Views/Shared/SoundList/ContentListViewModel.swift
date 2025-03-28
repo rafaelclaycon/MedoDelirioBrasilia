@@ -1,5 +1,5 @@
 //
-//  SoundListViewModel.swift
+//  ContentListViewModel.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 13/04/24.
@@ -9,7 +9,7 @@ import Combine
 import SwiftUI
 
 @MainActor
-final class SoundListViewModel<T>: ObservableObject {
+final class ContentListViewModel<T>: ObservableObject {
 
     @Published var state: LoadingState<[Sound]> = .loading
     @Published var menuOptions: [ContextMenuSection]
@@ -105,7 +105,7 @@ final class SoundListViewModel<T>: ObservableObject {
 
 // MARK: - User Actions
 
-extension SoundListViewModel {
+extension ContentListViewModel {
 
     func onSoundSelected(sound: Sound) {
         if currentSoundsListMode.wrappedValue == .regular {
@@ -129,7 +129,7 @@ extension SoundListViewModel {
 
 // MARK: - Internal Functions
 
-extension SoundListViewModel {
+extension ContentListViewModel {
 
     func loadFavorites() {
         do {
@@ -238,7 +238,7 @@ extension SoundListViewModel {
 
 // MARK: - Sound Playback
 
-extension SoundListViewModel {
+extension ContentListViewModel {
 
     func playStopPlaylist() {
         if isSelectingSounds {
@@ -336,7 +336,7 @@ extension SoundListViewModel {
 
 // MARK: - ContextMenuOption Communication
 
-extension SoundListViewModel: SoundListDisplaying {
+extension ContentListViewModel: SoundListDisplaying {
 
     func share(sound: Sound) {
         if UIDevice.isiPhone {
@@ -421,7 +421,7 @@ extension SoundListViewModel: SoundListDisplaying {
 
     func showAuthor(withId authorId: String) {
         guard let author = try? LocalDatabase.shared.author(withId: authorId) else {
-            print("SoundList error: unable to find author with id \(authorId)")
+            print("ContentList error: unable to find author with id \(authorId)")
             return
         }
         authorToOpen = author
@@ -435,7 +435,7 @@ extension SoundListViewModel: SoundListDisplaying {
 
 // MARK: - Toast
 
-extension SoundListViewModel {
+extension ContentListViewModel {
 
     func displayToast(
         _ toastIcon: String,
@@ -491,7 +491,7 @@ extension SoundListViewModel {
 
 // MARK: - Multi-Selection
 
-extension SoundListViewModel {
+extension ContentListViewModel {
 
     func startSelecting() {
         stopPlaying()
@@ -635,7 +635,7 @@ extension SoundListViewModel {
 
 // MARK: - Folder
 
-extension SoundListViewModel {
+extension ContentListViewModel {
 
     func removeSingleSoundFromFolder() {
         guard let folder else { return }
@@ -657,7 +657,7 @@ extension SoundListViewModel {
 
 // MARK: - Scroll To Id
 
-extension SoundListViewModel {
+extension ContentListViewModel {
 
     func cancelSearchAndHighlight(id soundId: String) {
         if !searchText.isEmpty {
@@ -674,7 +674,7 @@ extension SoundListViewModel {
 
 // MARK: - Alerts
 
-extension SoundListViewModel {
+extension ContentListViewModel {
 
     func showUnableToGetSoundAlert(_ soundTitle: String) {
         TapticFeedback.error()
