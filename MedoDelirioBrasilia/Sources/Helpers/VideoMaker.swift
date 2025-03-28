@@ -4,7 +4,7 @@ import AVFoundation
 class VideoMaker {
 
     static func createVideo(
-        from content: MedoContentProtocol,
+        from content: any MedoContentProtocol,
         with sourceImage: UIImage,
         exportType: IntendedVideoDestination,
         completion: @escaping (String?, VideoMakerError?) -> Void

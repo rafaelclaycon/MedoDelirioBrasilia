@@ -11,7 +11,7 @@ import SwiftUI
 @MainActor
 final class ContentListViewModel<T>: ObservableObject {
 
-    @Published var state: LoadingState<[Sound]> = .loading
+    @Published var state: LoadingState<[AnyEquatableMedoContent]> = .loading
     @Published var menuOptions: [ContextMenuSection]
     @Published var needsRefreshAfterChange: Bool
     var refreshAction: (() -> Void)?
@@ -22,7 +22,7 @@ final class ContentListViewModel<T>: ObservableObject {
     @Published var nowPlayingKeeper = Set<String>()
     @Published var selectionKeeper = Set<String>()
 
-    @Published var selectedSound: Sound? = nil
+    @Published var selectedContent: (any MedoContentProtocol)? = nil
     @Published var selectedSounds: [Sound]? = nil
     @Published var subviewToOpen: SoundListModalToOpen = .shareAsVideo
     @Published var showingModalView = false
@@ -95,7 +95,10 @@ final class ContentListViewModel<T>: ObservableObject {
         self.folder = insideFolder
 
         data
-            .map { LoadingState.loaded($0) }
+            .map { content in
+                let wrapped = content.map { AnyEquatableMedoContent($0) }
+                return LoadingState.loaded(wrapped)
+            }
             .receive(on: DispatchQueue.main)
             .assign(to: &$state)
 
@@ -252,17 +255,17 @@ extension ContentListViewModel {
     }
 
     func play(
-        _ sound: Sound,
+        _ content: any MedoContentProtocol,
         scrollToPlaying: Bool = false
     ) {
         do {
-            let url = try sound.fileURL()
+            let url = try content.fileURL()
 
             nowPlayingKeeper.removeAll()
-            nowPlayingKeeper.insert(sound.id)
+            nowPlayingKeeper.insert(content.id)
 
             if scrollToPlaying {
-                scrollTo = sound.id
+                scrollTo = content.id
             }
 
             AudioPlayer.shared = AudioPlayer(
@@ -277,8 +280,8 @@ extension ContentListViewModel {
 
             AudioPlayer.shared?.togglePlay()
         } catch {
-            if sound.isFromServer ?? false {
-                showServerSoundNotAvailableAlert(sound)
+            if content.isFromServer ?? false {
+                showServerSoundNotAvailableAlert(content)
                 // Disregarding the case of the sound not being in the Bundle as this is highly unlikely since the launch of the sync system.
             }
         }
@@ -376,7 +379,7 @@ extension ContentListViewModel: SoundListDisplaying {
     }
 
     func openShareAsVideoModal(for sound: Sound) {
-        selectedSound = sound
+        selectedContent = sound
         subviewToOpen = .shareAsVideo
         showingModalView = true
     }
@@ -409,12 +412,12 @@ extension ContentListViewModel: SoundListDisplaying {
     }
 
     func removeFromFolder(_ sound: Sound) {
-        selectedSound = sound
+        selectedContent = sound
         showSoundRemovalConfirmation(soundTitle: sound.title)
     }
 
     func showDetails(for sound: Sound) {
-        selectedSound = sound
+        selectedContent = sound
         subviewToOpen = .soundDetail
         showingModalView = true
     }
@@ -640,7 +643,7 @@ extension ContentListViewModel {
     func removeSingleSoundFromFolder() {
         guard let folder else { return }
         guard let refreshAction else { return }
-        guard let sound = selectedSound else { return }
+        guard let sound = selectedContent else { return }
 
         do {
             try LocalDatabase.shared.deleteUserContentFromFolder(withId: folder.id, contentId: sound.id)
@@ -684,11 +687,11 @@ extension ContentListViewModel {
         showAlert = true
     }
 
-    func showServerSoundNotAvailableAlert(_ sound: Sound) {
-        selectedSound = sound
+    func showServerSoundNotAvailableAlert(_ content: any MedoContentProtocol) {
+        selectedContent = content
         TapticFeedback.error()
         alertType = .soundFileNotFound
-        alertTitle = Shared.contentNotFoundAlertTitle(sound.title)
+        alertTitle = Shared.contentNotFoundAlertTitle(content.title)
         alertMessage = Shared.serverContentNotAvailableRedownloadMessage
         showAlert = true
     }

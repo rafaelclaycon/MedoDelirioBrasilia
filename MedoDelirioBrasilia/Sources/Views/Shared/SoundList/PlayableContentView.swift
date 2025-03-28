@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PlayableContentView: View {
 
-    let content: MedoContentProtocol
+    let content: any MedoContentProtocol
     var showNewTag: Bool = true
 
     @Binding var favorites: Set<String>

@@ -10,7 +10,7 @@ import PhotosUI
 
 class ShareAsVideoViewViewModel: ObservableObject {
 
-    var content: MedoContentProtocol
+    var content: any MedoContentProtocol
     var subtitle: String
     
     @Published var includeSoundWarning: Bool = true
@@ -27,7 +27,7 @@ class ShareAsVideoViewViewModel: ObservableObject {
     @Published var showAlert: Bool = false
     
     init(
-        content: MedoContentProtocol,
+        content: any MedoContentProtocol,
         subtitle: String = ""
     ) {
         self.content = content

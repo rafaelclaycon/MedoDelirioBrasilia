@@ -1339,6 +1339,7 @@
 		D9CB84F528B2E31D00E815C2 /* Alvaro Borba - A Verdadeira Polarizacao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CB84F428B2E31D00E815C2 /* Alvaro Borba - A Verdadeira Polarizacao.mp3 */; };
 		D9CBBB86296F7FFD0089F74B /* Jair Bolsonaro - A papuda lhe espera boa estadia la valeu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CBBB85296F7FFD0089F74B /* Jair Bolsonaro - A papuda lhe espera boa estadia la valeu.mp3 */; };
 		D9CC025D28BD9EBD0021C1E6 /* GridHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CC025C28BD9EBD0021C1E6 /* GridHelper.swift */; };
+		D9CC02EA2D96C3220005EBCB /* AnyEquatableMedoContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CC02E92D96C3220005EBCB /* AnyEquatableMedoContent.swift */; };
 		D9CC893328EB7BB500576492 /* MostSharedByAudienceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CC893228EB7BB500576492 /* MostSharedByAudienceView.swift */; };
 		D9CC893528EB7CF800576492 /* MostSharedByAudienceView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CC893428EB7CF800576492 /* MostSharedByAudienceView+ViewModel.swift */; };
 		D9CEB7522998009900DF8497 /* Lula (Cristiano Botafogo) - Voce e maluco ou voce e idiota me responde companheiro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9CEB7512998009900DF8497 /* Lula (Cristiano Botafogo) - Voce e maluco ou voce e idiota me responde companheiro.mp3 */; };
@@ -2886,6 +2887,7 @@
 		D9CB84F428B2E31D00E815C2 /* Alvaro Borba - A Verdadeira Polarizacao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Alvaro Borba - A Verdadeira Polarizacao.mp3"; sourceTree = "<group>"; };
 		D9CBBB85296F7FFD0089F74B /* Jair Bolsonaro - A papuda lhe espera boa estadia la valeu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - A papuda lhe espera boa estadia la valeu.mp3"; sourceTree = "<group>"; };
 		D9CC025C28BD9EBD0021C1E6 /* GridHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridHelper.swift; sourceTree = "<group>"; };
+		D9CC02E92D96C3220005EBCB /* AnyEquatableMedoContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyEquatableMedoContent.swift; sourceTree = "<group>"; };
 		D9CC893228EB7BB500576492 /* MostSharedByAudienceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostSharedByAudienceView.swift; sourceTree = "<group>"; };
 		D9CC893428EB7CF800576492 /* MostSharedByAudienceView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MostSharedByAudienceView+ViewModel.swift"; sourceTree = "<group>"; };
 		D9CEB7512998009900DF8497 /* Lula (Cristiano Botafogo) - Voce e maluco ou voce e idiota me responde companheiro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Lula (Cristiano Botafogo) - Voce e maluco ou voce e idiota me responde companheiro.mp3"; sourceTree = "<group>"; };
@@ -5129,6 +5131,7 @@
 				D9943F2928642EC3002C6B97 /* UserFolderContent.swift */,
 				D95315A82A9AA783003DA40E /* MusicGenre.swift */,
 				D90622C72AB4030600704B70 /* MedoContentProtocol.swift */,
+				D9CC02E92D96C3220005EBCB /* AnyEquatableMedoContent.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -6945,6 +6948,7 @@
 				D9ECD81528B3C470003C033A /* IconImage.swift in Sources */,
 				D99A961C299A733E00BB5F0D /* RoundCheckbox.swift in Sources */,
 				D90F6A6628446C250050FFFF /* TrendsSettingsView.swift in Sources */,
+				D9CC02EA2D96C3220005EBCB /* AnyEquatableMedoContent.swift in Sources */,
 				D92C0CAA28405B2D009CF19A /* NoFavoritesView.swift in Sources */,
 				D93578772CD6DA2100223072 /* FolderResearchSettingsView+ViewModel.swift in Sources */,
 				D957048328AFCC93008DEF8C /* ChangeAppIconView.swift in Sources */,
