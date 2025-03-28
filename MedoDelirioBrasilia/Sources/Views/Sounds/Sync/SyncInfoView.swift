@@ -65,16 +65,25 @@ extension SyncInfoView {
 
     private struct AllOkView: View {
 
-        let lastUpdateAttempt: String
+        @State var lastUpdateAttempt: String
 
         @State private var updates: [SyncLog] = []
         @State private var hiddenUpdates: Int = 0
+        @State private var lastUpdateText: String = ""
 
-        private var lastUpdateText: String {
+        private let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
+
+        private func updateLastUpdateText() {
             if lastUpdateAttempt == "" {
-                return "A última tentativa de atualização não retornou resultados."
+                lastUpdateText = "A última tentativa de atualização não retornou resultados."
             } else {
-                return "Última atualização \(lastUpdateAttempt.asRelativeDateTime ?? "")."
+                guard let date = lastUpdateAttempt.iso8601withFractionalSeconds else {
+                    return lastUpdateText = ""
+                }
+                guard date.minutesPassed(1) else {
+                    return lastUpdateText = "Atualizado agora há pouco."
+                }
+                lastUpdateText = "Última atualização \(lastUpdateAttempt.asRelativeDateTime ?? "")."
             }
         }
 
@@ -111,8 +120,12 @@ extension SyncInfoView {
             .padding(.horizontal)
             .padding(.bottom, 30)
             .onAppear {
+                updateLastUpdateText()
                 updates = LocalDatabase.shared.lastFewSyncLogs()
                 hiddenUpdates = LocalDatabase.shared.totalSyncLogCount()
+            }
+            .onReceive(timer) { time in
+                updateLastUpdateText()
             }
         }
     }
