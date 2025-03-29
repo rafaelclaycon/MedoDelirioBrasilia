@@ -48,6 +48,10 @@ struct AnyEquatableMedoContent: MedoContentProtocol, Equatable, Identifiable {
         base.isFromServer
     }
 
+    var type: MediaType {
+        base.type
+    }
+
     func fileURL() throws -> URL {
         try base.fileURL()
     }

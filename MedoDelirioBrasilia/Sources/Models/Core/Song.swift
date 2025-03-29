@@ -47,6 +47,10 @@ struct Song: Hashable, Codable, Identifiable, MedoContentProtocol {
         genreName ?? ""
     }
 
+    var type: MediaType {
+        .song
+    }
+
     func fileURL() throws -> URL {
         if isFromServer ?? false {
             let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!

@@ -18,10 +18,7 @@ struct PlayableContentView: View {
     @Binding var selectedItems: Set<String>
     @Binding var currentSoundsListMode: SoundsListMode
     @State private var timeRemaining: Double = 0
-    
-    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    private let unselectedForegroundColor: Color = .gray
-    
+
     enum Background {
         case regular, favorite, highlighted
     }
@@ -29,7 +26,9 @@ struct PlayableContentView: View {
     enum Mode {
         case regular, playing, upForSelection, selected
     }
-    
+
+    // MARK: - Computed Properties
+
     private var currentMode: Mode {
         if currentSoundsListMode == .selection {
             return selectedItems.contains(content.id) ? .selected : .upForSelection
@@ -124,10 +123,16 @@ struct PlayableContentView: View {
         guard showNewTag else { return false }
         return Date.isDateWithinLast7Days(content.dateAdded)
     }
-    
+
+    // MARK: - Static Properties
+
+    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    private let unselectedForegroundColor: Color = .gray
     private let regularGradient = LinearGradient(gradient: Gradient(colors: [.green, .green, .brightYellow]), startPoint: .topLeading, endPoint: .bottomTrailing)
     private let favoriteGradient = LinearGradient(gradient: Gradient(colors: [.red]), startPoint: .topLeading, endPoint: .bottomTrailing)
     private let highlightGradient = LinearGradient(gradient: Gradient(colors: [.yellow]), startPoint: .topLeading, endPoint: .bottomTrailing)
+
+    // MARK: - View Body
 
     var body: some View {
         ZStack {
@@ -142,17 +147,24 @@ struct PlayableContentView: View {
                         .foregroundColor(.black)
                         .font(titleFont)
                         .bold()
-                    
-                    Text(subtitle)
-                        .font(UIDevice.isNarrowestWidth ? .footnote : authorFont)
-                        .foregroundColor(.white)
-                        .lineLimit(authorNameLineLimit)
-                        .onReceive(timer) { time in
-                            guard currentMode == .playing else { return }
-                            if timeRemaining > 0 {
-                                timeRemaining -= 1
-                            }
+
+                    HStack(spacing: 10) {
+                        if content.type == .song {
+                            Image(systemName: "music.quarternote.3")
+                                .foregroundStyle(.white)
                         }
+
+                        Text(subtitle)
+                            .font(UIDevice.isNarrowestWidth ? .footnote : authorFont)
+                            .foregroundColor(.white)
+                            .lineLimit(authorNameLineLimit)
+                            .onReceive(timer) { time in
+                                guard currentMode == .playing else { return }
+                                if timeRemaining > 0 {
+                                    timeRemaining -= 1
+                                }
+                            }
+                    }
                 }
                 
                 Spacer()
@@ -238,7 +250,7 @@ struct PlayableContentView: View {
                 timeRemaining = content.duration
             }
         }
-        .onChange(of: currentMode) { currentMode in
+        .onChange(of: currentMode) {
             if currentMode != .playing {
                 timeRemaining = content.duration
             }

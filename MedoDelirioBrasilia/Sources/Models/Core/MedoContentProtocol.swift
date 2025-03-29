@@ -16,6 +16,7 @@ internal protocol MedoContentProtocol: Equatable {
     var duration: Double { get }
     var dateAdded: Date? { get }
     var isFromServer: Bool? { get }
+    var type: MediaType { get }
 
     func fileURL() throws -> URL
 }

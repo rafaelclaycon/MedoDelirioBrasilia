@@ -48,6 +48,10 @@ struct Sound: Hashable, Codable, Identifiable, MedoContentProtocol {
         authorName ?? ""
     }
 
+    var type: MediaType {
+        .sound
+    }
+
     func fileURL() throws -> URL {
         if isFromServer ?? false {
             let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
