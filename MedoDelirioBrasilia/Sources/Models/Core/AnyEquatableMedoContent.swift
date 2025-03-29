@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AnyEquatableMedoContent: MedoContentProtocol, Equatable {
+struct AnyEquatableMedoContent: MedoContentProtocol, Equatable, Identifiable {
 
     private let base: any MedoContentProtocol
     private let isEqualFunc: (any MedoContentProtocol) -> Bool
@@ -30,6 +30,10 @@ struct AnyEquatableMedoContent: MedoContentProtocol, Equatable {
 
     var subtitle: String {
         base.subtitle
+    }
+
+    var description: String {
+        base.description
     }
 
     var duration: Double {

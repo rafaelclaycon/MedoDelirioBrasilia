@@ -9,9 +9,9 @@ import Combine
 
 class MockSoundListViewModel: ObservableObject {
 
-    @Published var sounds: [Sound] = Sound.sampleSounds
+    @Published var sounds: [AnyEquatableMedoContent] = Sound.sampleSounds.map { AnyEquatableMedoContent($0) }
 
-    var allSoundsPublisher: AnyPublisher<[Sound], Never> {
+    var allSoundsPublisher: AnyPublisher<[AnyEquatableMedoContent], Never> {
         $sounds.eraseToAnyPublisher()
     }
 }

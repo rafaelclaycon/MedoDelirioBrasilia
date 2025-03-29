@@ -10,8 +10,8 @@ import SwiftUI
 struct MainSoundContainer: View {
 
     @StateObject private var viewModel: MainSoundContainerViewModel
-    @StateObject private var allSoundsViewModel: ContentListViewModel<[Sound]>
-    @StateObject private var favoritesViewModel: ContentListViewModel<[Sound]>
+    @StateObject private var allSoundsViewModel: ContentListViewModel<[AnyEquatableMedoContent]>
+    @StateObject private var favoritesViewModel: ContentListViewModel<[AnyEquatableMedoContent]>
     private var currentSoundsListMode: Binding<SoundsListMode>
     private let openSettingsAction: () -> Void
 
@@ -84,12 +84,12 @@ struct MainSoundContainer: View {
         openSettingsAction: @escaping () -> Void
     ) {
         self._viewModel = StateObject(wrappedValue: viewModel)
-        self._allSoundsViewModel = StateObject(wrappedValue: ContentListViewModel<[Sound]>(
-            data: viewModel.allSoundsPublisher,
+        self._allSoundsViewModel = StateObject(wrappedValue: ContentListViewModel<[AnyEquatableMedoContent]>(
+            data: viewModel.allContentPublisher,
             menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
             currentSoundsListMode: currentSoundsListMode
         ))
-        self._favoritesViewModel = StateObject(wrappedValue: ContentListViewModel<[Sound]>(
+        self._favoritesViewModel = StateObject(wrappedValue: ContentListViewModel<[AnyEquatableMedoContent]>(
             data: viewModel.favoritesPublisher,
             menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
             currentSoundsListMode: currentSoundsListMode,
@@ -280,7 +280,7 @@ struct MainSoundContainer: View {
 //        }
         .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in // iPad - Settings explicit toggle.
             if shouldUpdate {
-                viewModel.reloadAllSounds()
+                viewModel.loadContent()
                 settingsHelper.updateSoundsList = false
             }
         }
@@ -327,16 +327,12 @@ struct MainSoundContainer: View {
                 }
             }
 
-            viewModel.reloadAllSounds()
+            viewModel.loadContent()
             viewModel.reloadFavorites()
             favoritesViewModel.loadFavorites()
-
-            Task {
-                showRetroBanner = await ClassicRetroView.ViewModel.shouldDisplayBanner()
-            }
         }
-        .onChange(of: scenePhase) { newPhase in
-            if newPhase == .active {
+        .onChange(of: scenePhase) {
+            if scenePhase == .active {
                 Task {
                     await viewModel.warmOpenSync()
                     print("DID FINISH WARM OPEN SYNC")
@@ -509,7 +505,7 @@ extension MainSoundContainer {
 
 extension MainSoundContainer {
 
-    private func selectionNavBarTitle(for viewModel: ContentListViewModel<[Sound]>) -> String {
+    private func selectionNavBarTitle(for viewModel: ContentListViewModel<[AnyEquatableMedoContent]>) -> String {
         if viewModel.selectionKeeper.count == 0 {
             return Shared.SoundSelection.selectSounds
         }

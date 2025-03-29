@@ -11,7 +11,7 @@ import Kingfisher
 struct AuthorDetailView: View {
 
     @StateObject private var viewModel: AuthorDetailViewViewModel
-    @StateObject private var soundListViewModel: ContentListViewModel<[Sound]>
+    @StateObject private var soundListViewModel: ContentListViewModel<[AnyEquatableMedoContent]>
 
     let author: Author
 
@@ -131,7 +131,7 @@ struct AuthorDetailView: View {
         self._viewModel = StateObject(wrappedValue: viewModel)
         self.currentSoundsListMode = currentSoundsListMode
 
-        let soundListViewModel = ContentListViewModel<[Sound]>(
+        let soundListViewModel = ContentListViewModel<[AnyEquatableMedoContent]>(
             data: viewModel.soundsPublisher,
             menuOptions: [.sharingOptions(), .organizingOptions(), .playFromThisSound(), .authorOptions()],
             currentSoundsListMode: currentSoundsListMode

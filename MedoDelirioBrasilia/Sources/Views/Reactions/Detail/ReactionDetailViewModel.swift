@@ -23,9 +23,9 @@ class ReactionDetailViewModel: ObservableObject {
 
     // MARK: - Computed Properties
 
-    var soundsPublisher: AnyPublisher<[Sound], Never> {
+    var soundsPublisher: AnyPublisher<[AnyEquatableMedoContent], Never> {
         $sounds
-            .compactMap { $0 }
+            .compactMap { $0?.map { AnyEquatableMedoContent($0) } }
             .eraseToAnyPublisher()
     }
 

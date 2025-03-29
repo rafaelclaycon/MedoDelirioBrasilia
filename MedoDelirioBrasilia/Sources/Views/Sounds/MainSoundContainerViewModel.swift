@@ -13,7 +13,7 @@ class MainSoundContainerViewModel: ObservableObject {
 
     // MARK: - Published Vars
 
-    @Published var allSounds: [Sound]?
+    @Published var allContent: [AnyEquatableMedoContent]?
     @Published var favorites: [Sound]?
 
     @Published var currentViewMode: SoundsViewMode
@@ -44,15 +44,16 @@ class MainSoundContainerViewModel: ObservableObject {
 
     // MARK: - Computed Properties
 
-    var allSoundsPublisher: AnyPublisher<[Sound], Never> {
-        $allSounds
+    var allContentPublisher: AnyPublisher<[AnyEquatableMedoContent], Never> {
+        $allContent
             .compactMap { $0 }
             .eraseToAnyPublisher()
     }
 
-    var favoritesPublisher: AnyPublisher<[Sound], Never> {
+    var favoritesPublisher: AnyPublisher<[AnyEquatableMedoContent], Never> {
         $favorites
-            .compactMap { $0 }
+            .compactMap { $0 } // unwrap optional array
+            .map { $0.map { AnyEquatableMedoContent($0) } } // then transform each Sound
             .eraseToAnyPublisher()
     }
 
@@ -86,14 +87,17 @@ class MainSoundContainerViewModel: ObservableObject {
 
     // MARK: - Functions
 
-    func reloadAllSounds() {
+    func loadContent() {
         do {
-            let sounds = try LocalDatabase.shared.sounds(
+            let sounds: [AnyEquatableMedoContent] = try LocalDatabase.shared.sounds(
                 allowSensitive: UserSettings().getShowExplicitContent(),
                 favoritesOnly: false
-            )
+            ).map { AnyEquatableMedoContent($0) }
+            let songs: [AnyEquatableMedoContent] = try LocalDatabase.shared.songs(
+                allowSensitive: UserSettings().getShowExplicitContent()
+            ).map { AnyEquatableMedoContent($0) }
 
-            allSounds = sounds
+            allContent = sounds + songs
 
             guard sounds.count > 0 else { return }
             let sortOption: SoundSortOption = SoundSortOption(rawValue: soundSortOption) ?? .dateAddedDescending
@@ -155,43 +159,43 @@ extension MainSoundContainerViewModel {
 
     private func sortAllSoundsByTitleAscending() {
         DispatchQueue.main.async {
-            self.allSounds?.sort(by: { $0.title.withoutDiacritics() < $1.title.withoutDiacritics() })
+            self.allContent?.sort(by: { $0.title.withoutDiacritics() < $1.title.withoutDiacritics() })
         }
     }
 
     private func sortAllSoundsByAuthorNameAscending() {
         DispatchQueue.main.async {
-            self.allSounds?.sort(by: { $0.authorName?.withoutDiacritics() ?? "" < $1.authorName?.withoutDiacritics() ?? "" })
+            self.allContent?.sort(by: { $0.subtitle.withoutDiacritics() < $1.subtitle.withoutDiacritics() })
         }
     }
 
     private func sortAllSoundsByDateAddedDescending() {
         DispatchQueue.main.async {
-            self.allSounds?.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
+            self.allContent?.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
         }
     }
 
     private func sortAllSoundsByDurationAscending() {
         DispatchQueue.main.async {
-            self.allSounds?.sort(by: { $0.duration < $1.duration })
+            self.allContent?.sort(by: { $0.duration < $1.duration })
         }
     }
 
     private func sortAllSoundsByDurationDescending() {
         DispatchQueue.main.async {
-            self.allSounds?.sort(by: { $0.duration > $1.duration })
+            self.allContent?.sort(by: { $0.duration > $1.duration })
         }
     }
 
     private func sortAllSoundsByTitleLengthAscending() {
         DispatchQueue.main.async {
-            self.allSounds?.sort(by: { $0.title.count < $1.title.count })
+            self.allContent?.sort(by: { $0.title.count < $1.title.count })
         }
     }
 
     private func sortAllSoundsByTitleLengthDescending() {
         DispatchQueue.main.async {
-            self.allSounds?.sort(by: { $0.title.count > $1.title.count })
+            self.allContent?.sort(by: { $0.title.count > $1.title.count })
         }
     }
 }
@@ -340,7 +344,7 @@ extension MainSoundContainerViewModel: SyncManagerDelegate {
             self.syncValues.syncStatus = status
 
             if updateSoundList {
-                reloadAllSounds()
+                loadContent()
             }
         }
         print(status)

@@ -81,7 +81,7 @@ final class ContentListViewModel<T>: ObservableObject {
     // MARK: - Initializer
 
     init(
-        data: AnyPublisher<[Sound], Never>,
+        data: AnyPublisher<[AnyEquatableMedoContent], Never>,
         menuOptions: [ContextMenuSection],
         currentSoundsListMode: Binding<SoundsListMode>,
         needsRefreshAfterChange: Bool = false,
@@ -110,21 +110,21 @@ final class ContentListViewModel<T>: ObservableObject {
 
 extension ContentListViewModel {
 
-    func onSoundSelected(sound: Sound) {
+    func onContentSelected(_ content: AnyEquatableMedoContent) {
         if currentSoundsListMode.wrappedValue == .regular {
-            if nowPlayingKeeper.contains(sound.id) {
+            if nowPlayingKeeper.contains(content.id) {
                 AudioPlayer.shared?.togglePlay()
                 nowPlayingKeeper.removeAll()
                 doPlaylistCleanup() // Needed because user tap a playing sound to stop playing a playlist.
             } else {
                 doPlaylistCleanup() // Needed because user can be playing a playlist and decide to tap another sound.
-                play(sound)
+                play(content)
             }
         } else {
-            if selectionKeeper.contains(sound.id) {
-                selectionKeeper.remove(sound.id)
+            if selectionKeeper.contains(content.id) {
+                selectionKeeper.remove(content.id)
             } else {
-                selectionKeeper.insert(sound.id)
+                selectionKeeper.insert(content.id)
             }
         }
     }
@@ -517,12 +517,13 @@ extension ContentListViewModel {
     }
 
     private func extractSounds() -> [Sound]? {
-        switch state {
-        case .loaded(let sounds):
-            return sounds
-        default:
-            return nil
-        }
+        return nil // TODO: Fix this
+//        switch state {
+//        case .loaded(let sounds):
+//            return sounds
+//        default:
+//            return nil
+//        }
     }
 
     func allSelectedAreFavorites() -> Bool {
