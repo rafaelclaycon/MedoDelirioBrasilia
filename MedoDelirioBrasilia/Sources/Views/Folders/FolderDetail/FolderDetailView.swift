@@ -10,7 +10,7 @@ import SwiftUI
 struct FolderDetailView: View {
 
     @StateObject private var viewModel: FolderDetailViewViewModel
-    @StateObject private var soundListViewModel: SoundListViewModel<[Sound]>
+    @StateObject private var soundListViewModel: ContentListViewModel<[Sound]>
 
     let folder: UserFolder
 
@@ -50,7 +50,7 @@ struct FolderDetailView: View {
         self._viewModel = StateObject(wrappedValue: viewModel)
         self.currentSoundsListMode = currentSoundsListMode
 
-        let soundListViewModel = SoundListViewModel<[Sound]>(
+        let soundListViewModel = ContentListViewModel<[Sound]>(
             data: viewModel.soundsPublisher,
             menuOptions: [.sharingOptions(), .playFromThisSound(), .removeFromFolder()],
             currentSoundsListMode: currentSoundsListMode,
@@ -65,7 +65,7 @@ struct FolderDetailView: View {
 
     var body: some View {
         VStack {
-            SoundList(
+            ContentList(
                 viewModel: soundListViewModel,
                 multiSelectFolderOperation: .remove,
                 showNewTag: false,

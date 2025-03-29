@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-/// This protocol exists to enable the communication between ContextMenuOption and SoundList.
+/// This protocol exists to enable the communication between ContextMenuOption and ContentList.
 
 protocol SoundListDisplaying {
 

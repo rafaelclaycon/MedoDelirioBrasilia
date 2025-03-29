@@ -1,5 +1,5 @@
 //
-//  SoundListViewModel.swift
+//  ContentListViewModel.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 13/04/24.
@@ -9,9 +9,9 @@ import Combine
 import SwiftUI
 
 @MainActor
-final class SoundListViewModel<T>: ObservableObject {
+final class ContentListViewModel<T>: ObservableObject {
 
-    @Published var state: LoadingState<[Sound]> = .loading
+    @Published var state: LoadingState<[AnyEquatableMedoContent]> = .loading
     @Published var menuOptions: [ContextMenuSection]
     @Published var needsRefreshAfterChange: Bool
     var refreshAction: (() -> Void)?
@@ -22,7 +22,7 @@ final class SoundListViewModel<T>: ObservableObject {
     @Published var nowPlayingKeeper = Set<String>()
     @Published var selectionKeeper = Set<String>()
 
-    @Published var selectedSound: Sound? = nil
+    @Published var selectedContent: (any MedoContentProtocol)? = nil
     @Published var selectedSounds: [Sound]? = nil
     @Published var subviewToOpen: SoundListModalToOpen = .shareAsVideo
     @Published var showingModalView = false
@@ -95,7 +95,10 @@ final class SoundListViewModel<T>: ObservableObject {
         self.folder = insideFolder
 
         data
-            .map { LoadingState.loaded($0) }
+            .map { content in
+                let wrapped = content.map { AnyEquatableMedoContent($0) }
+                return LoadingState.loaded(wrapped)
+            }
             .receive(on: DispatchQueue.main)
             .assign(to: &$state)
 
@@ -105,7 +108,7 @@ final class SoundListViewModel<T>: ObservableObject {
 
 // MARK: - User Actions
 
-extension SoundListViewModel {
+extension ContentListViewModel {
 
     func onSoundSelected(sound: Sound) {
         if currentSoundsListMode.wrappedValue == .regular {
@@ -129,7 +132,7 @@ extension SoundListViewModel {
 
 // MARK: - Internal Functions
 
-extension SoundListViewModel {
+extension ContentListViewModel {
 
     func loadFavorites() {
         do {
@@ -238,7 +241,7 @@ extension SoundListViewModel {
 
 // MARK: - Sound Playback
 
-extension SoundListViewModel {
+extension ContentListViewModel {
 
     func playStopPlaylist() {
         if isSelectingSounds {
@@ -252,17 +255,17 @@ extension SoundListViewModel {
     }
 
     func play(
-        _ sound: Sound,
+        _ content: any MedoContentProtocol,
         scrollToPlaying: Bool = false
     ) {
         do {
-            let url = try sound.fileURL()
+            let url = try content.fileURL()
 
             nowPlayingKeeper.removeAll()
-            nowPlayingKeeper.insert(sound.id)
+            nowPlayingKeeper.insert(content.id)
 
             if scrollToPlaying {
-                scrollTo = sound.id
+                scrollTo = content.id
             }
 
             AudioPlayer.shared = AudioPlayer(
@@ -277,8 +280,8 @@ extension SoundListViewModel {
 
             AudioPlayer.shared?.togglePlay()
         } catch {
-            if sound.isFromServer ?? false {
-                showServerSoundNotAvailableAlert(sound)
+            if content.isFromServer ?? false {
+                showServerSoundNotAvailableAlert(content)
                 // Disregarding the case of the sound not being in the Bundle as this is highly unlikely since the launch of the sync system.
             }
         }
@@ -336,7 +339,7 @@ extension SoundListViewModel {
 
 // MARK: - ContextMenuOption Communication
 
-extension SoundListViewModel: SoundListDisplaying {
+extension ContentListViewModel: SoundListDisplaying {
 
     func share(sound: Sound) {
         if UIDevice.isiPhone {
@@ -376,7 +379,7 @@ extension SoundListViewModel: SoundListDisplaying {
     }
 
     func openShareAsVideoModal(for sound: Sound) {
-        selectedSound = sound
+        selectedContent = sound
         subviewToOpen = .shareAsVideo
         showingModalView = true
     }
@@ -409,19 +412,19 @@ extension SoundListViewModel: SoundListDisplaying {
     }
 
     func removeFromFolder(_ sound: Sound) {
-        selectedSound = sound
+        selectedContent = sound
         showSoundRemovalConfirmation(soundTitle: sound.title)
     }
 
     func showDetails(for sound: Sound) {
-        selectedSound = sound
+        selectedContent = sound
         subviewToOpen = .soundDetail
         showingModalView = true
     }
 
     func showAuthor(withId authorId: String) {
         guard let author = try? LocalDatabase.shared.author(withId: authorId) else {
-            print("SoundList error: unable to find author with id \(authorId)")
+            print("ContentList error: unable to find author with id \(authorId)")
             return
         }
         authorToOpen = author
@@ -435,7 +438,7 @@ extension SoundListViewModel: SoundListDisplaying {
 
 // MARK: - Toast
 
-extension SoundListViewModel {
+extension ContentListViewModel {
 
     func displayToast(
         _ toastIcon: String,
@@ -491,7 +494,7 @@ extension SoundListViewModel {
 
 // MARK: - Multi-Selection
 
-extension SoundListViewModel {
+extension ContentListViewModel {
 
     func startSelecting() {
         stopPlaying()
@@ -635,12 +638,12 @@ extension SoundListViewModel {
 
 // MARK: - Folder
 
-extension SoundListViewModel {
+extension ContentListViewModel {
 
     func removeSingleSoundFromFolder() {
         guard let folder else { return }
         guard let refreshAction else { return }
-        guard let sound = selectedSound else { return }
+        guard let sound = selectedContent else { return }
 
         do {
             try LocalDatabase.shared.deleteUserContentFromFolder(withId: folder.id, contentId: sound.id)
@@ -657,7 +660,7 @@ extension SoundListViewModel {
 
 // MARK: - Scroll To Id
 
-extension SoundListViewModel {
+extension ContentListViewModel {
 
     func cancelSearchAndHighlight(id soundId: String) {
         if !searchText.isEmpty {
@@ -674,7 +677,7 @@ extension SoundListViewModel {
 
 // MARK: - Alerts
 
-extension SoundListViewModel {
+extension ContentListViewModel {
 
     func showUnableToGetSoundAlert(_ soundTitle: String) {
         TapticFeedback.error()
@@ -684,11 +687,11 @@ extension SoundListViewModel {
         showAlert = true
     }
 
-    func showServerSoundNotAvailableAlert(_ sound: Sound) {
-        selectedSound = sound
+    func showServerSoundNotAvailableAlert(_ content: any MedoContentProtocol) {
+        selectedContent = content
         TapticFeedback.error()
         alertType = .soundFileNotFound
-        alertTitle = Shared.contentNotFoundAlertTitle(sound.title)
+        alertTitle = Shared.contentNotFoundAlertTitle(content.title)
         alertMessage = Shared.serverContentNotAvailableRedownloadMessage
         showAlert = true
     }
