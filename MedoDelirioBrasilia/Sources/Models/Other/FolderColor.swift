@@ -16,7 +16,6 @@ struct FolderColor: Identifiable {
         self.id = id
         self.color = color
     }
-
 }
 
 class FolderColorFactory {
@@ -36,5 +35,4 @@ class FolderColorFactory {
         colors.append(FolderColor(id: "pastelBeige", color: .pastelBeige))
         return colors
     }
-
 }

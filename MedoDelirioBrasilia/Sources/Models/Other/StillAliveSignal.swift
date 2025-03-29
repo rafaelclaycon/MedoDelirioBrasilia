@@ -10,5 +10,4 @@ struct StillAliveSignal: Hashable, Codable {
     var appVersion: String
     var currentTimeZone: String
     var dateTime: String
-
 }

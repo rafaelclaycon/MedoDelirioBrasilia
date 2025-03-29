@@ -8,7 +8,6 @@
 import SwiftUI
 
 /// This protocol exists to enable the communication between ContextMenuOption and SoundList.
-
 protocol SoundListDisplaying {
 
     func share(sound: Sound)

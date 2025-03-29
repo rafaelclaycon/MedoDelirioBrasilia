@@ -10,5 +10,4 @@ import Foundation
 class SettingsHelper: ObservableObject {
 
     @Published var updateSoundsList: Bool = false
-
 }
