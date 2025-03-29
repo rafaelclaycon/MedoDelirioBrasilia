@@ -52,7 +52,7 @@ struct MainSoundContainer: View {
         }
         switch viewModel.currentViewMode {
         case .allSounds:
-            return "Sons"
+            return "Vírgulas & Músicas"
         case .favorites:
             return "Favoritos"
         case .folders:
@@ -289,13 +289,13 @@ struct MainSoundContainer: View {
         }
         .overlay {
             ZStack {
-                if displayFloatingSelectorView {
-                    VStack {
-                        Spacer()
-                        floatingSelectorView()
-                            .padding()
-                    }
-                }
+//                if displayFloatingSelectorView {
+//                    VStack {
+//                        Spacer()
+//                        floatingSelectorView()
+//                            .padding()
+//                    }
+//                }
 
                 if viewModel.showToastView {
                     VStack {

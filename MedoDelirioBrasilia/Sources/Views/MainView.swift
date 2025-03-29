@@ -66,7 +66,7 @@ struct MainView: View {
                         }
                     }
                     .tabItem {
-                        Label("Sons", systemImage: "speaker.wave.3.fill")
+                        Label("Conteúdos", systemImage: "quote.bubble.fill")
                     }
                     .tag(PhoneTab.sounds)
                     .environment(\.push, PushAction { soundsPath.append($0) })
@@ -84,15 +84,15 @@ struct MainView: View {
                     .tag(PhoneTab.reactions)
                     .environment(\.push, PushAction { reactionsPath.append($0) })
 
-                    NavigationView {
-                        SongsView()
-                            .environmentObject(settingsHelper)
-                            .environment(trendsHelper)
-                    }
-                    .tabItem {
-                        Label("Músicas", systemImage: "music.quarternote.3")
-                    }
-                    .tag(PhoneTab.songs)
+//                    NavigationView {
+//                        SongsView()
+//                            .environmentObject(settingsHelper)
+//                            .environment(trendsHelper)
+//                    }
+//                    .tabItem {
+//                        Label("Músicas", systemImage: "music.quarternote.3")
+//                    }
+//                    .tag(PhoneTab.songs)
                     
                     NavigationView {
                         TrendsView(
