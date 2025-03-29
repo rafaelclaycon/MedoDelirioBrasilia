@@ -8,5 +8,6 @@
 import Foundation
 
 enum SoundsViewMode: Int {
+
     case allSounds, favorites, folders, byAuthor
 }

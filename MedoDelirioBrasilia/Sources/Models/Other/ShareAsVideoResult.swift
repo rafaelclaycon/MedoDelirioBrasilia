@@ -18,5 +18,4 @@ struct ShareAsVideoResult {
         self.contentId = .empty
         self.exportMethod = .shareSheet
     }
-
 }

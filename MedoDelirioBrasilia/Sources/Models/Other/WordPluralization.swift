@@ -10,7 +10,6 @@ import Foundation
 enum WordPluralization {
 
     case singular, plural
-
 }
 
 extension WordPluralization {
@@ -23,5 +22,4 @@ extension WordPluralization {
             return "Sons adicionados à pasta \(folderName ?? "")."
         }
     }
-    
 }
