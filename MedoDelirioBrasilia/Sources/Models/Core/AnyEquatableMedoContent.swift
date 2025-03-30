@@ -61,6 +61,10 @@ struct AnyEquatableMedoContent: MedoContentProtocol, Equatable, Identifiable {
         }
     }
 
+    var authorId: String {
+        base.authorId
+    }
+
     func fileURL() throws -> URL {
         try base.fileURL()
     }

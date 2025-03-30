@@ -8,15 +8,17 @@
 import UIKit
 
 struct ContextMenuOption: Identifiable {
+
     let id: UUID = UUID()
     let symbol: (Bool) -> String
     let title: (Bool) -> String
-    let action: (Sound, SoundListDisplaying) -> Void
+    let action: (AnyEquatableMedoContent, ContentListDisplaying) -> Void
 }
 
 struct ContextMenuSection {
+
     let title: String
-    let options: (Sound) -> [ContextMenuOption]
+    let options: (AnyEquatableMedoContent) -> [ContextMenuOption]
 }
 
 extension ContextMenuOption {
@@ -25,8 +27,8 @@ extension ContextMenuOption {
         ContextMenuOption(
             symbol: { _ in "square.and.arrow.up" },
             title: { _ in Shared.shareSoundButtonText }
-        ) { sound, delegate in
-            delegate.share(sound: sound)
+        ) { content, delegate in
+            delegate.share(content: content)
         }
     }
 
@@ -34,8 +36,8 @@ extension ContextMenuOption {
         ContextMenuOption(
             symbol: { _ in "film"},
             title: { _ in Shared.shareAsVideoButtonText }
-        ) { sound, delegate in
-            delegate.openShareAsVideoModal(for: sound)
+        ) { content, delegate in
+            delegate.openShareAsVideoModal(for: content)
         }
     }
 
@@ -47,8 +49,8 @@ extension ContextMenuOption {
             title: { isFavorite in
                 isFavorite ? Shared.removeFromFavorites : Shared.addToFavorites
             }
-        ) { sound, delegate in
-            delegate.toggleFavorite(sound.id)
+        ) { content, delegate in
+            delegate.toggleFavorite(content.id)
         }
     }
 
@@ -56,8 +58,8 @@ extension ContextMenuOption {
         ContextMenuOption(
             symbol: { _ in "folder.badge.plus" },
             title: { _ in Shared.addToFolderButtonText }
-        ) { sound, delegate in
-            delegate.addToFolder(sound)
+        ) { content, delegate in
+            delegate.addToFolder(content)
         }
     }
 
@@ -65,8 +67,9 @@ extension ContextMenuOption {
         ContextMenuOption(
             symbol: { _ in "person" },
             title: { _ in "Ver Autor" }
-        ) { sound, delegate in
-            delegate.showAuthor(withId: sound.authorId)
+        ) { content, delegate in
+            guard !content.authorId.isEmpty else { return }
+            delegate.showAuthor(withId: content.authorId)
         }
     }
 
@@ -74,8 +77,8 @@ extension ContextMenuOption {
         ContextMenuOption(
             symbol: { _ in "info.circle" },
             title: { _ in "Ver Detalhes" }
-        ) { sound, delegate in
-            delegate.showDetails(for: sound)
+        ) { content, delegate in
+            delegate.showDetails(for: content)
         }
     }
 }
@@ -88,8 +91,8 @@ extension ContextMenuOption {
         ContextMenuOption(
             symbol: { _ in "play"},
             title: { _ in "Tocar a Partir Desse"}
-        ) { sound, delegate in
-            delegate.playFrom(sound: sound)
+        ) { content, delegate in
+            delegate.playFrom(content: content)
         }
     }
 
@@ -97,8 +100,8 @@ extension ContextMenuOption {
         ContextMenuOption(
             symbol: { _ in "folder.badge.minus"},
             title: { _ in "Remover da Pasta"}
-        ) { sound, delegate in
-            delegate.removeFromFolder(sound)
+        ) { content, delegate in
+            delegate.removeFromFolder(content)
         }
     }
 }
@@ -111,8 +114,8 @@ extension ContextMenuOption {
         ContextMenuOption(
             symbol: { _ in "exclamationmark.bubble"},
             title: { _ in "Sugerir Outro Nome de Autor"}
-        ) { sound, delegate in
-            delegate.suggestOtherAuthorName(for: sound)
+        ) { content, delegate in
+            delegate.suggestOtherAuthorName(for: content)
         }
     }
 }
@@ -122,7 +125,7 @@ extension ContextMenuSection {
     static func sharingOptions() -> ContextMenuSection {
         return ContextMenuSection(
             title: "Sharing",
-            options: { sound in
+            options: { _ in
                 [
                     .shareSound,
                     .shareAsVideo

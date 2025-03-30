@@ -176,32 +176,32 @@ struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, Er
                                             .onTapGesture {
                                                 viewModel.onContentSelected(content)
                                             }
-//                                            .contextMenu {
-//                                                if viewModel.currentSoundsListMode.wrappedValue != .selection {
-//                                                    ForEach(viewModel.menuOptions, id: \.title) { section in
-//                                                        Section {
-//                                                            ForEach(section.options(sound)) { option in
-//                                                                Button {
-//                                                                    option.action(sound, viewModel)
-//                                                                } label: {
-//                                                                    Label(
-//                                                                        option.title(viewModel.favoritesKeeper.contains(sound.id)),
-//                                                                        systemImage: option.symbol(viewModel.favoritesKeeper.contains(sound.id))
-//                                                                    )
-//                                                                }
-//                                                            }
-//                                                        }
-//                                                    }
-//                                                }
-//                                            }
+                                            .contextMenu {
+                                                if viewModel.currentSoundsListMode.wrappedValue != .selection {
+                                                    ForEach(viewModel.menuOptions, id: \.title) { section in
+                                                        Section {
+                                                            ForEach(section.options(content)) { option in
+                                                                Button {
+                                                                    option.action(content, viewModel)
+                                                                } label: {
+                                                                    Label(
+                                                                        option.title(false), // option.title(content.isFavorite),
+                                                                        systemImage: option.symbol(false) // option.symbol(content.isFavorite)
+                                                                    )
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                 }
-//                                .if(allowSearch) {
-//                                    $0
-//                                        .searchable(text: $viewModel.searchText)
-//                                        .disableAutocorrection(true)
-//                                }
+                                .if(allowSearch) {
+                                    $0
+                                        .searchable(text: $viewModel.searchText)
+                                        .disableAutocorrection(true)
+                                }
                                 .padding(.horizontal)
                                 .padding(.top, 7)
 //                                .alert(isPresented: $viewModel.showAlert) {
@@ -321,12 +321,12 @@ struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, Er
 //                                        )
 //                                    }
 //                                }
-//                                .sheet(isPresented: $viewModel.isShowingShareSheet) {
-//                                    viewModel.iPadShareSheet
-//                                }
-//                                .onChange(of: viewModel.searchText) { text in
-//                                    soundSearchTextIsEmpty.wrappedValue = text.isEmpty
-//                                }
+                                .sheet(isPresented: $viewModel.isShowingShareSheet) {
+                                    viewModel.iPadShareSheet
+                                }
+                                .onChange(of: viewModel.searchText) {
+                                    soundSearchTextIsEmpty.wrappedValue = viewModel.searchText.isEmpty
+                                }
 //                                .onChange(of: viewModel.shareAsVideoResult.videoFilepath) { videoResultPath in
 //                                    if videoResultPath.isEmpty == false {
 //                                        if viewModel.shareAsVideoResult.exportMethod == .saveAsVideo {
