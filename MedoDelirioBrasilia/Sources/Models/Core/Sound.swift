@@ -19,7 +19,8 @@ struct Sound: Hashable, Codable, Identifiable, MedoContentProtocol {
     let duration: Double
     let isOffensive: Bool
     var isFromServer: Bool?
-    
+    var isFavorite: Bool?
+
     init(
         id: String = UUID().uuidString,
         title: String,
@@ -30,7 +31,8 @@ struct Sound: Hashable, Codable, Identifiable, MedoContentProtocol {
         dateAdded: Date? = Date(),
         duration: Double = 0,
         isOffensive: Bool = false,
-        isFromServer: Bool? = false
+        isFromServer: Bool? = false,
+        isFavorite: Bool? = false
     ) {
         self.id = id
         self.title = title
@@ -42,6 +44,7 @@ struct Sound: Hashable, Codable, Identifiable, MedoContentProtocol {
         self.duration = duration
         self.isOffensive = isOffensive
         self.isFromServer = isFromServer
+        self.isFavorite = isFavorite
     }
 
     var subtitle: String {

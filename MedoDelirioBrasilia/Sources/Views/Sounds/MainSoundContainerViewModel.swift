@@ -14,7 +14,6 @@ class MainSoundContainerViewModel: ObservableObject {
     // MARK: - Published Vars
 
     @Published var allContent: [AnyEquatableMedoContent]?
-    @Published var favorites: [Sound]?
 
     @Published var currentViewMode: TopSelectorOption
     @Published var soundSortOption: Int
@@ -47,13 +46,6 @@ class MainSoundContainerViewModel: ObservableObject {
     var allContentPublisher: AnyPublisher<[AnyEquatableMedoContent], Never> {
         $allContent
             .compactMap { $0 }
-            .eraseToAnyPublisher()
-    }
-
-    var favoritesPublisher: AnyPublisher<[AnyEquatableMedoContent], Never> {
-        $favorites
-            .compactMap { $0 } // unwrap optional array
-            .map { $0.map { AnyEquatableMedoContent($0) } } // then transform each Sound
             .eraseToAnyPublisher()
     }
 
@@ -90,9 +82,7 @@ class MainSoundContainerViewModel: ObservableObject {
 
 extension MainSoundContainerViewModel {
 
-    public func onViewDidAppear(
-        favoritesVMAction: () -> Void
-    ) {
+    public func onViewDidAppear() {
         print("MAIN SOUND CONTAINER - ON APPEAR")
 
         if !firstRunSyncHappened {
@@ -104,24 +94,17 @@ extension MainSoundContainerViewModel {
         }
 
         loadContent()
-        loadFavorites()
-        favoritesVMAction()
-    }
-
-    public func onPullToRefreshFavorites() {
-        loadFavorites()
+        //loadFavorites()
     }
 
     public func onSelectedViewModeChanged(
-        allSoundsVMAction: () -> Void,
-        favoritesVMAction: () -> Void
+        allSoundsVMAction: () -> Void
     ) {
         if currentViewMode == .all {
             allSoundsVMAction()
         } else if currentViewMode == .favorites {
             // Similar names, different functions.
-            loadFavorites() // This changes SoundList's data source, effectively changing what tiles are shown.
-            favoritesVMAction() // This changes favoritesKeeper, the thing responsible for painting each tile differently.
+            //loadFavorites() // This changes SoundList's data source, effectively changing what tiles are shown.
         }
     }
 
@@ -152,8 +135,7 @@ extension MainSoundContainerViewModel {
     private func loadContent() {
         do {
             let sounds: [AnyEquatableMedoContent] = try LocalDatabase.shared.sounds(
-                allowSensitive: UserSettings().getShowExplicitContent(),
-                favoritesOnly: false
+                allowSensitive: UserSettings().getShowExplicitContent()
             ).map { AnyEquatableMedoContent($0) }
             let songs: [AnyEquatableMedoContent] = try LocalDatabase.shared.songs(
                 allowSensitive: UserSettings().getShowExplicitContent()
@@ -170,28 +152,9 @@ extension MainSoundContainerViewModel {
         }
     }
 
-    private func loadFavorites() {
-        do {
-            let sounds = try LocalDatabase.shared.sounds(
-                allowSensitive: UserSettings().getShowExplicitContent(),
-                favoritesOnly: true
-            )
-
-            favorites = sounds
-
-            guard sounds.count > 0 else { return }
-            let sortOption: SoundSortOption = SoundSortOption(rawValue: soundSortOption) ?? .dateAddedDescending
-            sortFavorites(by: sortOption)
-        } catch {
-            print("Erro carregando sons: \(error.localizedDescription)")
-            dataLoadingDidFail = true
-        }
-    }
-
     private func sortSounds(by rawSortOption: Int) {
         let sortOption = SoundSortOption(rawValue: rawSortOption) ?? .dateAddedDescending
         sortAllSounds(by: sortOption)
-        sortFavorites(by: sortOption)
         UserSettings().saveMainSoundListSoundSortOption(rawSortOption)
     }
 
@@ -221,7 +184,7 @@ extension MainSoundContainerViewModel {
     }
 }
 
-// MARK: - All Sounds Sorting
+// MARK: - Sorting
 
 extension MainSoundContainerViewModel {
 
@@ -283,72 +246,6 @@ extension MainSoundContainerViewModel {
     private func sortAllSoundsByTitleLengthDescending() {
         DispatchQueue.main.async {
             self.allContent?.sort(by: { $0.title.count > $1.title.count })
-        }
-    }
-}
-
-// MARK: - Favorites Sorting
-
-extension MainSoundContainerViewModel {
-
-    private func sortFavorites(by sortOption: SoundSortOption) {
-        switch sortOption {
-        case .titleAscending:
-            sortFavoritesByTitleAscending()
-        case .authorNameAscending:
-            sortFavoritesByAuthorNameAscending()
-        case .dateAddedDescending:
-            sortFavoritesByDateAddedDescending()
-        case .shortestFirst:
-            sortFavoritesByDurationAscending()
-        case .longestFirst:
-            sortFavoritesByDurationDescending()
-        case .longestTitleFirst:
-            sortFavoritesByTitleLengthDescending()
-        case .shortestTitleFirst:
-            sortFavoritesByTitleLengthAscending()
-        }
-    }
-
-    private func sortFavoritesByTitleAscending() {
-        DispatchQueue.main.async {
-            self.favorites?.sort(by: { $0.title.withoutDiacritics() < $1.title.withoutDiacritics() })
-        }
-    }
-
-    private func sortFavoritesByAuthorNameAscending() {
-        DispatchQueue.main.async {
-            self.favorites?.sort(by: { $0.authorName?.withoutDiacritics() ?? "" < $1.authorName?.withoutDiacritics() ?? "" })
-        }
-    }
-
-    private func sortFavoritesByDateAddedDescending() {
-        DispatchQueue.main.async {
-            self.favorites?.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
-        }
-    }
-
-    private func sortFavoritesByDurationAscending() {
-        DispatchQueue.main.async {
-            self.favorites?.sort(by: { $0.duration < $1.duration })
-        }
-    }
-
-    private func sortFavoritesByDurationDescending() {
-        DispatchQueue.main.async {
-            self.favorites?.sort(by: { $0.duration > $1.duration })
-        }
-    }
-
-    private func sortFavoritesByTitleLengthAscending() {
-        DispatchQueue.main.async {
-            self.favorites?.sort(by: { $0.title.count < $1.title.count })
-        }
-    }
-
-    private func sortFavoritesByTitleLengthDescending() {
-        DispatchQueue.main.async {
-            self.favorites?.sort(by: { $0.title.count > $1.title.count })
         }
     }
 }

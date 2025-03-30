@@ -22,8 +22,7 @@ extension LocalDatabase {
     }
     
     func sounds(
-        allowSensitive: Bool,
-        favoritesOnly: Bool
+        allowSensitive: Bool
     ) throws -> [Sound] {
         var queriedSounds = [Sound]()
 
@@ -40,10 +39,7 @@ extension LocalDatabase {
 
         var query = soundTable.select(soundTable[*], author[name])
             .join(author, on: soundTable[author_id] == author[id])
-
-        if favoritesOnly {
-            query = query.join(favorite, on: soundTable[id] == favorite[contentId])
-        }
+            .join(.leftOuter, favorite, on: soundTable[id] == favorite[contentId])
 
         if !allowSensitive {
             query = query.filter(isOffensive == false)

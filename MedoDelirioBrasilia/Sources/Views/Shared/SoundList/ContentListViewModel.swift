@@ -17,7 +17,6 @@ final class ContentListViewModel<T>: ObservableObject {
     var refreshAction: (() -> Void)?
     var folder: UserFolder?
 
-    @Published var favoritesKeeper = Set<String>()
     @Published var highlightKeeper = Set<String>()
     @Published var nowPlayingKeeper = Set<String>()
     @Published var selectionKeeper = Set<String>()
@@ -137,10 +136,10 @@ extension ContentListViewModel {
     func loadFavorites() {
         do {
             let favorites = try LocalDatabase.shared.favorites()
-            favoritesKeeper.removeAll()
-            favorites.forEach { favorite in
-                self.favoritesKeeper.insert(favorite.contentId)
-            }
+//            favoritesKeeper.removeAll()
+//            favorites.forEach { favorite in
+//                self.favoritesKeeper.insert(favorite.contentId)
+//            }
         } catch {
             print("Falha ao carregar favoritos: \(error.localizedDescription)")
         }
@@ -154,7 +153,7 @@ extension ContentListViewModel {
             guard favorteAlreadyExists == false else { return }
 
             try LocalDatabase.shared.insert(favorite: newFavorite)
-            favoritesKeeper.insert(newFavorite.contentId)
+//            favoritesKeeper.insert(newFavorite.contentId)
         } catch {
             print("Problem saving favorite \(newFavorite.contentId): \(error.localizedDescription)")
         }
@@ -163,7 +162,7 @@ extension ContentListViewModel {
     func removeFromFavorites(soundId: String) {
         do {
             try LocalDatabase.shared.deleteFavorite(withId: soundId)
-            favoritesKeeper.remove(soundId)
+//            favoritesKeeper.remove(soundId)
         } catch {
             print("Problem removing favorite \(soundId)")
         }
@@ -385,14 +384,15 @@ extension ContentListViewModel: SoundListDisplaying {
     }
 
     func toggleFavorite(_ soundId: String) {
-        if favoritesKeeper.contains(soundId) {
-            removeFromFavorites(soundId: soundId)
-            if needsRefreshAfterChange {
-                refreshAction!()
-            }
-        } else {
-            addToFavorites(soundId: soundId)
-        }
+        // TODO: Redo this
+//        if favoritesKeeper.contains(soundId) {
+//            removeFromFavorites(soundId: soundId)
+//            if needsRefreshAfterChange {
+//                refreshAction!()
+//            }
+//        } else {
+//            addToFavorites(soundId: soundId)
+//        }
     }
 
     func addToFolder(_ sound: Sound) {
@@ -528,7 +528,7 @@ extension ContentListViewModel {
 
     func allSelectedAreFavorites() -> Bool {
         guard selectionKeeper.count > 0 else { return false }
-        return selectionKeeper.isSubset(of: favoritesKeeper)
+        return false //selectionKeeper.isSubset(of: favoritesKeeper)
     }
 
     func addRemoveManyFromFavorites() {

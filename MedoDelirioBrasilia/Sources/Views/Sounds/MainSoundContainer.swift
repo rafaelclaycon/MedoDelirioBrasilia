@@ -11,7 +11,6 @@ struct MainSoundContainer: View {
 
     @StateObject private var viewModel: MainSoundContainerViewModel
     @StateObject private var allSoundsViewModel: ContentListViewModel<[AnyEquatableMedoContent]>
-    @StateObject private var favoritesViewModel: ContentListViewModel<[AnyEquatableMedoContent]>
     private var currentSoundsListMode: Binding<SoundsListMode>
     private let openSettingsAction: () -> Void
 
@@ -46,9 +45,7 @@ struct MainSoundContainer: View {
 
     private var title: String {
         guard currentSoundsListMode.wrappedValue == .regular else {
-            return selectionNavBarTitle(
-                for: viewModel.currentViewMode == .all ? allSoundsViewModel : favoritesViewModel
-            )
+            return selectionNavBarTitle(for: allSoundsViewModel)
         }
         return "Sons"
     }
@@ -80,13 +77,6 @@ struct MainSoundContainer: View {
             menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
             currentSoundsListMode: currentSoundsListMode
         ))
-        self._favoritesViewModel = StateObject(wrappedValue: ContentListViewModel<[AnyEquatableMedoContent]>(
-            data: viewModel.favoritesPublisher,
-            menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
-            currentSoundsListMode: currentSoundsListMode,
-            needsRefreshAfterChange: true,
-            refreshAction: { viewModel.onPullToRefreshFavorites() }
-        ))
         self.currentSoundsListMode = currentSoundsListMode
         self.openSettingsAction = openSettingsAction
     }
@@ -96,14 +86,14 @@ struct MainSoundContainer: View {
     var body: some View {
         VStack {
             switch viewModel.currentViewMode {
-            case .all, .songs:
-                ContentList(
+            case .all, .favorites, .songs:
+                ContentList<VStack, VStack, VStack, VStack>(
                     viewModel: allSoundsViewModel,
                     soundSearchTextIsEmpty: $soundSearchTextIsEmpty,
                     allowSearch: true,
                     allowRefresh: true,
-                    showSoundCountAtTheBottom: true,
-                    showExplicitDisabledWarning: true,
+                    showSoundCountAtTheBottom: viewModel.currentViewMode == .all,
+                    showExplicitDisabledWarning: viewModel.currentViewMode == .all,
                     syncAction: {
                         Task { // Keep this Task to avoid "cancelled" issue.
                             await viewModel.onSyncRequested()
@@ -142,49 +132,16 @@ struct MainSoundContainer: View {
                         }
                     ,
                     emptyStateView:
-                        Text("Nenhum som a ser exibido. Isso é esquisito.")
-                            .foregroundColor(.gray)
-                            .padding(.horizontal, 20)
-                    ,
-                    errorView:
                         VStack {
-                            HStack(spacing: 10) {
-                                ProgressView()
-
-                                Text("Erro ao carregar sons.")
+                            if viewModel.currentViewMode == .favorites {
+                                NoFavoritesView()
+                                    .padding(.horizontal, 25)
+                                    .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? 100 : 15)
+                            } else {
+                                Text("Nenhum som a ser exibido. Isso é esquisito.")
                                     .foregroundColor(.gray)
+                                    .padding(.horizontal, 20)
                             }
-                            .frame(maxWidth: .infinity)
-                        }
-                )
-
-            case .favorites:
-                ContentList<VStack, VStack, VStack, VStack>(
-                    viewModel: favoritesViewModel,
-                    soundSearchTextIsEmpty: $soundSearchTextIsEmpty,
-                    allowSearch: true,
-                    dataLoadingDidFail: viewModel.dataLoadingDidFail,
-                    headerView: {
-                        VStack {
-                            topSelectorView()
-                        }
-                    },
-                    loadingView:
-                        VStack {
-                            HStack(spacing: 10) {
-                                ProgressView()
-
-                                Text("Carregando sons...")
-                                    .foregroundColor(.gray)
-                            }
-                            .frame(maxWidth: .infinity)
-                        }
-                    ,
-                    emptyStateView:
-                        VStack {
-                            NoFavoritesView()
-                                .padding(.horizontal, 25)
-                                .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? 100 : 15)
                         }
                     ,
                     errorView:
@@ -210,7 +167,7 @@ struct MainSoundContainer: View {
             case .byAuthor:
                 VStack {
                     topSelectorView()
-                    
+
                     AuthorsView(
                         sortOption: $viewModel.authorSortOption,
                         sortAction: $authorSortAction,
@@ -223,13 +180,7 @@ struct MainSoundContainer: View {
         .navigationBarItems(
             leading: LeadingToolbarControls(
                 isSelecting: currentSoundsListMode.wrappedValue == .selection,
-                cancelAction: {
-                    if viewModel.currentViewMode == .all {
-                        allSoundsViewModel.stopSelecting()
-                    } else {
-                        favoritesViewModel.stopSelecting()
-                    }
-                },
+                cancelAction: { allSoundsViewModel.stopSelecting() },
                 openSettingsAction: openSettingsAction
             ),
             trailing: trailingToolbarControls()
@@ -293,7 +244,7 @@ struct MainSoundContainer: View {
             }
         }
         .onAppear {
-            viewModel.onViewDidAppear(favoritesVMAction: { favoritesViewModel.loadFavorites() })
+            viewModel.onViewDidAppear()
         }
         .onChange(of: scenePhase) {
             Task {
@@ -380,11 +331,7 @@ extension MainSoundContainer {
                     Menu {
                         Section {
                             Button {
-                                if viewModel.currentViewMode == .all {
-                                    allSoundsViewModel.startSelecting()
-                                } else {
-                                    favoritesViewModel.startSelecting()
-                                }
+                                allSoundsViewModel.startSelecting()
                             } label: {
                                 Label(
                                     currentSoundsListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",
@@ -426,7 +373,7 @@ extension MainSoundContainer {
                         viewModel.onSoundSortOptionChanged()
                     }
                     .disabled(
-                        viewModel.currentViewMode == .favorites && viewModel.favorites?.count == 0
+                        viewModel.currentViewMode == .favorites //&& viewModel.favorites?.count == 0 // TODO: Do we need to adapt this?
                     )
                 }
             }
@@ -438,8 +385,7 @@ extension MainSoundContainer {
         TopSelector(selected: $viewModel.currentViewMode)
             .onChange(of: viewModel.currentViewMode) {
                 viewModel.onSelectedViewModeChanged(
-                    allSoundsVMAction: { allSoundsViewModel.loadFavorites() },
-                    favoritesVMAction: { favoritesViewModel.loadFavorites() }
+                    allSoundsVMAction: { allSoundsViewModel.loadFavorites() }
                 )
             }
     }

@@ -19,6 +19,7 @@ struct Song: Hashable, Codable, Identifiable, MedoContentProtocol {
     var dateAdded: Date?
     let isOffensive: Bool
     var isFromServer: Bool?
+    var isFavorite: Bool?
 
     init(id: String = UUID().uuidString,
          title: String,

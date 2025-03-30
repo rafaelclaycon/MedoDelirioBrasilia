@@ -166,7 +166,6 @@ struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, Er
                                             PlayableContentView(
                                                 content: content,
                                                 showNewTag: showNewTag,
-                                                favorites: $viewModel.favoritesKeeper,
                                                 highlighted: $viewModel.highlightKeeper,
                                                 nowPlaying: $viewModel.nowPlayingKeeper,
                                                 selectedItems: $viewModel.selectionKeeper,

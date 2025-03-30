@@ -9,7 +9,7 @@ import Foundation
 
 struct AnyEquatableMedoContent: MedoContentProtocol, Equatable, Identifiable {
 
-    private let base: any MedoContentProtocol
+    private var base: any MedoContentProtocol
     private let isEqualFunc: (any MedoContentProtocol) -> Bool
 
     init<T: MedoContentProtocol & Equatable>(_ base: T) {
@@ -50,6 +50,15 @@ struct AnyEquatableMedoContent: MedoContentProtocol, Equatable, Identifiable {
 
     var type: MediaType {
         base.type
+    }
+
+    var isFavorite: Bool? {
+        get {
+            base.isFavorite
+        }
+        set {
+            base.isFavorite = newValue
+        }
     }
 
     func fileURL() throws -> URL {
