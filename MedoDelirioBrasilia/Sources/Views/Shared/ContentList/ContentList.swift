@@ -271,16 +271,15 @@ struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, Er
                                 .sheet(isPresented: $viewModel.showingModalView) {
                                     switch viewModel.subviewToOpen {
                                     case .shareAsVideo:
-//                                        ShareAsVideoView(
-//                                            viewModel: .init(
-//                                                content: viewModel.selectedContentSingle!,
-//                                                subtitle: viewModel.selectedContentSingle?.authorName ?? .empty
-//                                            ),
-//                                            isBeingShown: $viewModel.showingModalView,
-//                                            result: $viewModel.shareAsVideoResult,
-//                                            useLongerGeneratingVideoMessage: false
-//                                        )
-                                        EmptyView()
+                                        ShareAsVideoView(
+                                            viewModel: ShareAsVideoViewViewModel(
+                                                content: viewModel.selectedContentSingle!,
+                                                subtitle: viewModel.selectedContentSingle!.subtitle
+                                            ),
+                                            isBeingShown: $viewModel.showingModalView,
+                                            result: $viewModel.shareAsVideoResult,
+                                            useLongerGeneratingVideoMessage: viewModel.selectedContentSingle!.type == .song
+                                        )
 
                                     case .addToFolder:
 //                                        AddToFolderView(

@@ -216,7 +216,9 @@ struct SongsView: View {
 
                 case .shareAsVideoView:
                     ShareAsVideoView(
-                        viewModel: ShareAsVideoViewViewModel(content: viewModel.selectedSong!),
+                        viewModel: ShareAsVideoViewViewModel(
+                            content: AnyEquatableMedoContent(viewModel.selectedSong!)
+                        ),
                         isBeingShown: $showingModalView,
                         result: $shareAsVideo_Result,
                         useLongerGeneratingVideoMessage: true
