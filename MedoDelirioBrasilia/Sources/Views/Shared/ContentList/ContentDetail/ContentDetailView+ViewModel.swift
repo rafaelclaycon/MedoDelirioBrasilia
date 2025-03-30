@@ -1,5 +1,5 @@
 //
-//  SoundDetailView+ViewModel.swift
+//  ContentDetailView+ViewModel.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 23/11/24.
@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-extension SoundDetailView {
+extension ContentDetailView {
 
     @MainActor
     final class ViewModel: ObservableObject {
 
-        internal let sound: Sound
+        internal let content: AnyEquatableMedoContent
         private let openAuthorDetailsAction: (Author) -> Void
         internal let authorId: String?
         private let openReactionAction: (Reaction) -> Void
@@ -36,14 +36,14 @@ extension SoundDetailView {
         // MARK: - Initializer
 
         init(
-            sound: Sound,
+            content: AnyEquatableMedoContent,
             openAuthorDetailsAction: @escaping (Author) -> Void,
             authorId: String?,
             openReactionAction: @escaping (Reaction) -> Void,
             reactionId: String?,
             dismissAction: @escaping () -> Void
         ) {
-            self.sound = sound
+            self.content = content
             self.openAuthorDetailsAction = openAuthorDetailsAction
             self.authorId = authorId
             self.openReactionAction = openReactionAction
@@ -55,7 +55,7 @@ extension SoundDetailView {
 
 // MARK: - User Actions
 
-extension SoundDetailView.ViewModel {
+extension ContentDetailView.ViewModel {
 
     func onViewLoaded() async {
         await loadStatistics()
@@ -63,11 +63,14 @@ extension SoundDetailView.ViewModel {
     }
 
     func onPlaySoundSelected() {
-        play(sound)
+        play(content)
     }
 
     func onAuthorSelected() {
-        guard let author = try? LocalDatabase.shared.author(withId: sound.authorId) else { return }
+        guard
+            !content.authorId.isEmpty,
+            let author = try? LocalDatabase.shared.author(withId: content.authorId)
+        else { return }
         openAuthorDetailsAction(author)
     }
 
@@ -96,7 +99,7 @@ extension SoundDetailView.ViewModel {
     }
 
     func onSoundIdSelected() {
-        UIPasteboard.general.string = sound.id
+        UIPasteboard.general.string = content.id
         toast = Toast(
             message: "ID do som copiado com sucesso!",
             type: .success
@@ -110,11 +113,11 @@ extension SoundDetailView.ViewModel {
 
 // MARK: - Internal Functions
 
-extension SoundDetailView.ViewModel {
+extension ContentDetailView.ViewModel {
 
-    private func play(_ sound: Sound) {
+    private func play(_ content: AnyEquatableMedoContent) {
         do {
-            let url = try sound.fileURL()
+            let url = try content.fileURL()
 
             isPlaying = true
 
@@ -126,7 +129,7 @@ extension SoundDetailView.ViewModel {
 
             AudioPlayer.shared?.togglePlay()
         } catch {
-            if sound.isFromServer ?? false {
+            if content.isFromServer ?? false {
                 showServerSoundNotAvailableAlert()
             } else {
                 showUnableToGetSoundAlert()
@@ -136,7 +139,7 @@ extension SoundDetailView.ViewModel {
 
     private func loadStatistics() async {
         soundStatistics = .loading
-        let url = URL(string: NetworkRabbit.shared.serverPath + "v3/sound-share-count-stats-for/\(sound.id)")!
+        let url = URL(string: NetworkRabbit.shared.serverPath + "v3/sound-share-count-stats-for/\(content.id)")!
         do {
             let stats: ContentShareCountStats = try await NetworkRabbit.shared.get(from: url)
             soundStatistics = .loaded(stats)
@@ -150,7 +153,7 @@ extension SoundDetailView.ViewModel {
 
     private func loadReactions() async {
         reactionsState = .loading
-        let url = URL(string: NetworkRabbit.shared.serverPath + "v4/reactions-for-sound/\(sound.id)")!
+        let url = URL(string: NetworkRabbit.shared.serverPath + "v4/reactions-for-sound/\(content.id)")!
         do {
             var reactions: [ReactionDTO] = try await NetworkRabbit.shared.get(from: url)
             reactions.sort(by: { $0.position < $1.position })
@@ -163,14 +166,14 @@ extension SoundDetailView.ViewModel {
 
     private func showUnableToGetSoundAlert() {
         TapticFeedback.error()
-        alertTitle = Shared.contentNotFoundAlertTitle(sound.title)
+        alertTitle = Shared.contentNotFoundAlertTitle(content.title)
         alertMessage = Shared.soundNotFoundAlertMessage
         showAlert = true
     }
 
     private func showServerSoundNotAvailableAlert() {
         TapticFeedback.error()
-        alertTitle = Shared.contentNotFoundAlertTitle(sound.title)
+        alertTitle = Shared.contentNotFoundAlertTitle(content.title)
         alertMessage = Shared.serverContentNotAvailableMessage
         showAlert = true
     }

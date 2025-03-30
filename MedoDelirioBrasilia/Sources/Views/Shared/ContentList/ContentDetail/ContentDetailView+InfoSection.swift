@@ -1,5 +1,5 @@
 //
-//  SoundDetailView+InfoSection.swift
+//  ContentDetailView+InfoSection.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 23/11/24.
@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-extension SoundDetailView {
+extension ContentDetailView {
 
     struct InfoSection: View {
 
-        let sound: Sound
+        let content: AnyEquatableMedoContent
         let idSelectedAction: () -> Void
 
         var body: some View {
@@ -21,7 +21,7 @@ extension SoundDetailView {
                     .bold()
 
                 InfoBlock(
-                    sound: sound,
+                    content: content,
                     idSelectedAction: idSelectedAction
                 )
             }
@@ -53,35 +53,39 @@ extension SoundDetailView {
 
     struct InfoBlock: View {
 
-        let sound: Sound
+        let content: AnyEquatableMedoContent
         let idSelectedAction: () -> Void
 
         var body: some View {
             VStack(spacing: 10) {
-                InfoLine(title: "ID", information: sound.id)
+                InfoLine(title: "ID", information: content.id)
                     .onTapGesture {
                         idSelectedAction()
                     }
 
                 Divider()
 
-                InfoLine(title: "Origem", information: (sound.isFromServer ?? false) ? "Servidor" : "Local")
+                InfoLine(title: "Tipo", information: content.type == .sound ? "Som" : "Música")
 
                 Divider()
 
-                InfoLine(title: "Texto de pesquisa", information: sound.description)
+                InfoLine(title: "Origem", information: (content.isFromServer ?? false) ? "Servidor" : "Local")
 
                 Divider()
 
-                InfoLine(title: "Criado em", information: sound.dateAdded?.formatted() ?? "")
+                InfoLine(title: "Texto de pesquisa", information: content.description)
 
                 Divider()
 
-                InfoLine(title: "Duração", information: sound.duration < 1 ? "< 1 s" : "\(sound.duration.minuteSecondFormatted)")
+                InfoLine(title: "Criado em", information: content.dateAdded?.formatted() ?? "")
 
                 Divider()
 
-                InfoLine(title: "Ofensivo", information: sound.isOffensive ? "Sim" : "Não")
+                InfoLine(title: "Duração", information: content.duration < 1 ? "< 1 s" : "\(content.duration.minuteSecondFormatted)")
+
+                Divider()
+
+                InfoLine(title: "Ofensivo", information: content.isOffensive ? "Sim" : "Não")
 
 //                Divider()
 //

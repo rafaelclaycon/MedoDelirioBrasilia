@@ -13,7 +13,7 @@ import SwiftUI
 /// sound counts, explicit content warnings, and more. It relies on `ContentListViewModel` to manage its data and state.
 ///
 /// - Parameters:
-///   - authorId: The author's ID when `ContentList` is inside `AuthorDetailView`. This is used to avoid reopening the same author more than once when a user taps the author's name in `SoundDetailView`.
+///   - authorId: The author's ID when `ContentList` is inside `AuthorDetailView`. This is used to avoid reopening the same author more than once when a user taps the author's name in `ContentDetailView`.
 ///   - HeaderView: A view displayed at the top of the list, such as a custom header or title.
 ///   - LoadingView: A view shown when data is loading.
 ///   - EmptyStateView: A view displayed when there are no sounds to show.
@@ -268,59 +268,66 @@ struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, Er
 //                                        )
 //                                    }
 //                                }
-//                                .sheet(isPresented: $viewModel.showingModalView) {
-//                                    switch viewModel.subviewToOpen {
-//                                    case .shareAsVideo:
+                                .sheet(isPresented: $viewModel.showingModalView) {
+                                    switch viewModel.subviewToOpen {
+                                    case .shareAsVideo:
 //                                        ShareAsVideoView(
-//                                            viewModel: .init(content: viewModel.selectedSound!, subtitle: viewModel.selectedSound?.authorName ?? .empty),
+//                                            viewModel: .init(
+//                                                content: viewModel.selectedContentSingle!,
+//                                                subtitle: viewModel.selectedContentSingle?.authorName ?? .empty
+//                                            ),
 //                                            isBeingShown: $viewModel.showingModalView,
 //                                            result: $viewModel.shareAsVideoResult,
 //                                            useLongerGeneratingVideoMessage: false
 //                                        )
-//
-//                                    case .addToFolder:
+                                        EmptyView()
+
+                                    case .addToFolder:
 //                                        AddToFolderView(
 //                                            isBeingShown: $viewModel.showingModalView,
 //                                            hadSuccess: $viewModel.hadSuccessAddingToFolder,
 //                                            folderName: $viewModel.folderName,
 //                                            pluralization: $viewModel.pluralization,
-//                                            selectedSounds: viewModel.selectedSounds!
+//                                            selectedSounds: viewModel.selectedContentMultiple!
 //                                        )
-//
-//                                    case .soundDetail:
-//                                        SoundDetailView(
-//                                            sound: viewModel.selectedSound ?? Sound(title: ""),
-//                                            openAuthorDetailsAction: { author in
-//                                                guard author.id != self.authorId else { return }
-//                                                viewModel.showingModalView.toggle()
-//                                                push(GeneralNavigationDestination.authorDetail(author))
-//                                            },
-//                                            authorId: authorId,
-//                                            openReactionAction: { reaction in
-//                                                viewModel.showingModalView.toggle()
-//                                                push(GeneralNavigationDestination.reactionDetail(reaction))
-//                                            },
-//                                            reactionId: reactionId,
-//                                            dismissAction: { viewModel.showingModalView = false }
-//                                        )
-//
-//                                    case .soundIssueEmailPicker:
+                                        EmptyView()
+
+                                    case .contentDetail:
+                                        ContentDetailView(
+                                            content: viewModel.selectedContentSingle ?? AnyEquatableMedoContent(Sound(title: "")),
+                                            openAuthorDetailsAction: { author in
+                                                guard author.id != self.authorId else { return }
+                                                viewModel.showingModalView.toggle()
+                                                push(GeneralNavigationDestination.authorDetail(author))
+                                            },
+                                            authorId: authorId,
+                                            openReactionAction: { reaction in
+                                                viewModel.showingModalView.toggle()
+                                                push(GeneralNavigationDestination.reactionDetail(reaction))
+                                            },
+                                            reactionId: reactionId,
+                                            dismissAction: { viewModel.showingModalView = false }
+                                        )
+
+                                    case .soundIssueEmailPicker:
 //                                        EmailAppPickerView(
 //                                            isBeingShown: $viewModel.showingModalView,
 //                                            subject: Shared.issueSuggestionEmailSubject,
 //                                            emailBody: Shared.issueSuggestionEmailBody,
 //                                            afterCopyAddressAction: {}
 //                                        )
-//
-//                                    case .authorIssueEmailPicker(let sound):
+                                        EmptyView()
+
+                                    case .authorIssueEmailPicker(let content):
 //                                        EmailAppPickerView(
 //                                            isBeingShown: $viewModel.showingModalView,
-//                                            subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, sound.title),
-//                                            emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, sound.authorName ?? "", sound.id),
+//                                            subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, content.title),
+//                                            emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, content.subtitle, content.id),
 //                                            afterCopyAddressAction: {}
 //                                        )
-//                                    }
-//                                }
+                                        EmptyView()
+                                    }
+                                }
                                 .sheet(isPresented: $viewModel.isShowingShareSheet) {
                                     viewModel.iPadShareSheet
                                 }
@@ -503,7 +510,7 @@ struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, Er
 #Preview {
     ContentList<EmptyView, ProgressView, Text, Text>(
         viewModel: .init(
-            data: MockSoundListViewModel().allSoundsPublisher,
+            data: MockContentListViewModel().allSoundsPublisher,
             menuOptions: [.sharingOptions()],
             currentSoundsListMode: .constant(.regular)
         ),

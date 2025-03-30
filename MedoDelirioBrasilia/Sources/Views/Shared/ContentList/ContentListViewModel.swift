@@ -23,7 +23,7 @@ final class ContentListViewModel<T>: ObservableObject {
 
     @Published var selectedContentSingle: AnyEquatableMedoContent? = nil
     @Published var selectedContentMultiple: [AnyEquatableMedoContent]? = nil
-    @Published var subviewToOpen: SoundListModalToOpen = .shareAsVideo
+    @Published var subviewToOpen: ContentListModalToOpen = .shareAsVideo
     @Published var showingModalView = false
 
     @Published var authorToOpen: Author? = nil
@@ -419,7 +419,7 @@ extension ContentListViewModel: ContentListDisplaying {
 
     func showDetails(for content: AnyEquatableMedoContent) {
         selectedContentSingle = content
-        subviewToOpen = .soundDetail
+        subviewToOpen = .contentDetail
         showingModalView = true
     }
 

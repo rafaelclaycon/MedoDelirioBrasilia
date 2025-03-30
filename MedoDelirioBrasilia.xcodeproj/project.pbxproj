@@ -427,7 +427,7 @@
 		D95575632910A462002EFC50 /* Jair Bolsonaro - O que os caras querem e a nossa hemorroida.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95575612910A462002EFC50 /* Jair Bolsonaro - O que os caras querem e a nossa hemorroida.mp3 */; };
 		D955756829131037002EFC50 /* Omar Aziz - Como dizem os peruanos.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D955756729131037002EFC50 /* Omar Aziz - Como dizem os peruanos.mp3 */; };
 		D955756A2913419A002EFC50 /* Jair Bolsonaro - Precisa ter provas.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D95575692913419A002EFC50 /* Jair Bolsonaro - Precisa ter provas.mp3 */; };
-		D955DA302AA6B94C00AC4169 /* SoundDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D955DA2F2AA6B94C00AC4169 /* SoundDetailView.swift */; };
+		D955DA302AA6B94C00AC4169 /* ContentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D955DA2F2AA6B94C00AC4169 /* ContentDetailView.swift */; };
 		D957047D28AEF733008DEF8C /* ProcessingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957047C28AEF733008DEF8C /* ProcessingView.swift */; };
 		D957048328AFCC93008DEF8C /* ChangeAppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D957048228AFCC93008DEF8C /* ChangeAppIconView.swift */; };
 		D9575092284427C70094AEA6 /* ShareLogsDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9575091284427C70094AEA6 /* ShareLogsDummy.swift */; };
@@ -1084,10 +1084,10 @@
 		D9838A0E2CC5830400E58C2E /* StoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9838A0D2CC5830400E58C2E /* StoriesView.swift */; };
 		D9838A122CC59ABF00E58C2E /* Retro2024Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9838A112CC59ABF00E58C2E /* Retro2024Banner.swift */; };
 		D984D55C2CF2157100680C7D /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D984D55B2CF2157100680C7D /* CGFloat+.swift */; };
-		D984D55F2CF2190B00680C7D /* SoundDetailView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D984D55E2CF2190B00680C7D /* SoundDetailView+ViewModel.swift */; };
-		D984D5612CF21D2D00680C7D /* SoundDetailView+ReactionsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D984D5602CF21D2D00680C7D /* SoundDetailView+ReactionsSection.swift */; };
-		D984D5632CF21D6700680C7D /* SoundDetailView+StatsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D984D5622CF21D6700680C7D /* SoundDetailView+StatsSection.swift */; };
-		D984D5652CF21DA700680C7D /* SoundDetailView+InfoSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D984D5642CF21DA700680C7D /* SoundDetailView+InfoSection.swift */; };
+		D984D55F2CF2190B00680C7D /* ContentDetailView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D984D55E2CF2190B00680C7D /* ContentDetailView+ViewModel.swift */; };
+		D984D5612CF21D2D00680C7D /* ContentDetailView+ReactionsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D984D5602CF21D2D00680C7D /* ContentDetailView+ReactionsSection.swift */; };
+		D984D5632CF21D6700680C7D /* ContentDetailView+StatsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D984D5622CF21D6700680C7D /* ContentDetailView+StatsSection.swift */; };
+		D984D5652CF21DA700680C7D /* ContentDetailView+InfoSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D984D5642CF21DA700680C7D /* ContentDetailView+InfoSection.swift */; };
 		D9855DBE2BE4123E00965E9D /* Reaction+Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9855DBD2BE4123E00965E9D /* Reaction+Mocks.swift */; };
 		D985DCD928B6D7150085B8E5 /* Thii Gouveia - Tchutchuca do Centrao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D985DCD828B6D7150085B8E5 /* Thii Gouveia - Tchutchuca do Centrao.mp3 */; };
 		D985DCDB28B6D9460085B8E5 /* Furacao 2000 - Tchutchuca Treme o Bumbum.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D985DCDA28B6D9460085B8E5 /* Furacao 2000 - Tchutchuca Treme o Bumbum.mp3 */; };
@@ -1975,7 +1975,7 @@
 		D95575612910A462002EFC50 /* Jair Bolsonaro - O que os caras querem e a nossa hemorroida.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - O que os caras querem e a nossa hemorroida.mp3"; sourceTree = "<group>"; };
 		D955756729131037002EFC50 /* Omar Aziz - Como dizem os peruanos.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Omar Aziz - Como dizem os peruanos.mp3"; sourceTree = "<group>"; };
 		D95575692913419A002EFC50 /* Jair Bolsonaro - Precisa ter provas.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro - Precisa ter provas.mp3"; sourceTree = "<group>"; };
-		D955DA2F2AA6B94C00AC4169 /* SoundDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundDetailView.swift; sourceTree = "<group>"; };
+		D955DA2F2AA6B94C00AC4169 /* ContentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDetailView.swift; sourceTree = "<group>"; };
 		D957047C28AEF733008DEF8C /* ProcessingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingView.swift; sourceTree = "<group>"; };
 		D957048228AFCC93008DEF8C /* ChangeAppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAppIconView.swift; sourceTree = "<group>"; };
 		D9575091284427C70094AEA6 /* ShareLogsDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareLogsDummy.swift; sourceTree = "<group>"; };
@@ -2635,10 +2635,10 @@
 		D9838A0D2CC5830400E58C2E /* StoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesView.swift; sourceTree = "<group>"; };
 		D9838A112CC59ABF00E58C2E /* Retro2024Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Retro2024Banner.swift; sourceTree = "<group>"; };
 		D984D55B2CF2157100680C7D /* CGFloat+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = "<group>"; };
-		D984D55E2CF2190B00680C7D /* SoundDetailView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SoundDetailView+ViewModel.swift"; sourceTree = "<group>"; };
-		D984D5602CF21D2D00680C7D /* SoundDetailView+ReactionsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SoundDetailView+ReactionsSection.swift"; sourceTree = "<group>"; };
-		D984D5622CF21D6700680C7D /* SoundDetailView+StatsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SoundDetailView+StatsSection.swift"; sourceTree = "<group>"; };
-		D984D5642CF21DA700680C7D /* SoundDetailView+InfoSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SoundDetailView+InfoSection.swift"; sourceTree = "<group>"; };
+		D984D55E2CF2190B00680C7D /* ContentDetailView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentDetailView+ViewModel.swift"; sourceTree = "<group>"; };
+		D984D5602CF21D2D00680C7D /* ContentDetailView+ReactionsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentDetailView+ReactionsSection.swift"; sourceTree = "<group>"; };
+		D984D5622CF21D6700680C7D /* ContentDetailView+StatsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentDetailView+StatsSection.swift"; sourceTree = "<group>"; };
+		D984D5642CF21DA700680C7D /* ContentDetailView+InfoSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentDetailView+InfoSection.swift"; sourceTree = "<group>"; };
 		D9855DBD2BE4123E00965E9D /* Reaction+Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reaction+Mocks.swift"; sourceTree = "<group>"; };
 		D985DCD828B6D7150085B8E5 /* Thii Gouveia - Tchutchuca do Centrao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Thii Gouveia - Tchutchuca do Centrao.mp3"; sourceTree = "<group>"; };
 		D985DCDA28B6D9460085B8E5 /* Furacao 2000 - Tchutchuca Treme o Bumbum.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Furacao 2000 - Tchutchuca Treme o Bumbum.mp3"; sourceTree = "<group>"; };
@@ -4775,7 +4775,7 @@
 			isa = PBXGroup;
 			children = (
 				D91E37562C4C8EEE003A1107 /* Navigation */,
-				D9DBEA9F2BCC10F200220679 /* SoundList */,
+				D9DBEA9F2BCC10F200220679 /* ContentList */,
 				D93CCB78286A8A220002CF81 /* ToastView.swift */,
 				D9715F022CF2D61800DD24BB /* NewToastView.swift */,
 				D99A961B299A733E00BB5F0D /* RoundCheckbox.swift */,
@@ -4843,16 +4843,16 @@
 			path = Stories;
 			sourceTree = "<group>";
 		};
-		D984D55D2CF218E100680C7D /* SoundDetail */ = {
+		D984D55D2CF218E100680C7D /* ContentDetail */ = {
 			isa = PBXGroup;
 			children = (
-				D955DA2F2AA6B94C00AC4169 /* SoundDetailView.swift */,
-				D984D55E2CF2190B00680C7D /* SoundDetailView+ViewModel.swift */,
-				D984D5622CF21D6700680C7D /* SoundDetailView+StatsSection.swift */,
-				D984D5602CF21D2D00680C7D /* SoundDetailView+ReactionsSection.swift */,
-				D984D5642CF21DA700680C7D /* SoundDetailView+InfoSection.swift */,
+				D955DA2F2AA6B94C00AC4169 /* ContentDetailView.swift */,
+				D984D55E2CF2190B00680C7D /* ContentDetailView+ViewModel.swift */,
+				D984D5622CF21D6700680C7D /* ContentDetailView+StatsSection.swift */,
+				D984D5602CF21D2D00680C7D /* ContentDetailView+ReactionsSection.swift */,
+				D984D5642CF21DA700680C7D /* ContentDetailView+InfoSection.swift */,
 			);
-			path = SoundDetail;
+			path = ContentDetail;
 			sourceTree = "<group>";
 		};
 		D9855DBC2BE4122500965E9D /* Mocks */ = {
@@ -5280,16 +5280,16 @@
 			path = Other;
 			sourceTree = "<group>";
 		};
-		D9DBEA9F2BCC10F200220679 /* SoundList */ = {
+		D9DBEA9F2BCC10F200220679 /* ContentList */ = {
 			isa = PBXGroup;
 			children = (
 				D992EF592BCB24FB0080C892 /* ContentList.swift */,
 				D992EF5B2BCB25820080C892 /* ContentListViewModel.swift */,
 				D98EC5DD282596C300340BE5 /* PlayableContentView.swift */,
 				D9DBEAA02BCC110A00220679 /* MockSoundListViewModel.swift */,
-				D984D55D2CF218E100680C7D /* SoundDetail */,
+				D984D55D2CF218E100680C7D /* ContentDetail */,
 			);
-			path = SoundList;
+			path = ContentList;
 			sourceTree = "<group>";
 		};
 		D9DC8D482A643CA500467DBA /* SharedDoubles */ = {
@@ -6816,7 +6816,7 @@
 				D986D1FE2BCE23FD00214DAB /* ContentListDisplaying.swift in Sources */,
 				D9A3AB6B28F03C970064CB7A /* ViewStates.swift in Sources */,
 				D93F642E29A6A5FF003E7550 /* ShareAsVideoView.swift in Sources */,
-				D955DA302AA6B94C00AC4169 /* SoundDetailView.swift in Sources */,
+				D955DA302AA6B94C00AC4169 /* ContentDetailView.swift in Sources */,
 				D99BAF732CE05B1500250900 /* HowReactionsWorkView.swift in Sources */,
 				D920BF622CD1E52200C6BD72 /* FolderResearchProvider.swift in Sources */,
 				D9DCC5D72875D7E5008DD4A3 /* NotificationSymbolPlusText.swift in Sources */,
@@ -6828,7 +6828,7 @@
 				D9DBEAA12BCC110A00220679 /* MockSoundListViewModel.swift in Sources */,
 				D9C1372B29063D7D003E4ABF /* PrivacySettingsView.swift in Sources */,
 				D94B5F682A1C9D0900B3A688 /* SyncService+Song.swift in Sources */,
-				D984D5612CF21D2D00680C7D /* SoundDetailView+ReactionsSection.swift in Sources */,
+				D984D5612CF21D2D00680C7D /* ContentDetailView+ReactionsSection.swift in Sources */,
 				D93A029E2906E9F100A85FE2 /* JoinFolderResearchBannerView+ViewModel.swift in Sources */,
 				D94EAB4F29FB1524004CD604 /* NetworkRabbit+FileDownload.swift in Sources */,
 				D992E8282A1BFF3100137469 /* SyncService+Sound.swift in Sources */,
@@ -6850,7 +6850,7 @@
 				D9DC4D7A2B1D8BC900627555 /* TopChartItem+.swift in Sources */,
 				D9B8DE842BE695B1000C9035 /* AddReactionView.swift in Sources */,
 				D9625E7E28238F9A00080852 /* MedoDelirioBrasiliaApp.swift in Sources */,
-				D984D55F2CF2190B00680C7D /* SoundDetailView+ViewModel.swift in Sources */,
+				D984D55F2CF2190B00680C7D /* ContentDetailView+ViewModel.swift in Sources */,
 				D96892DC2C9F13C00084F646 /* APIConfig.swift in Sources */,
 				D9592C402AA2C01100157F5A /* GenrePickerView.swift in Sources */,
 				D958B1AC28394DCD0010F133 /* AuthorsView.swift in Sources */,
@@ -6881,7 +6881,7 @@
 				D99BAF762CE1683700250900 /* ReactionsView+LoadedView.swift in Sources */,
 				D90E80C12CEA1CB00014A886 /* LocalDatabase+PinnedReaction.swift in Sources */,
 				D907A39E2A8F9E6A006DE630 /* OpenUtility.swift in Sources */,
-				D984D5652CF21DA700680C7D /* SoundDetailView+InfoSection.swift in Sources */,
+				D984D5652CF21DA700680C7D /* ContentDetailView+InfoSection.swift in Sources */,
 				D994AD622C9DFE89004FAE25 /* LoadingState.swift in Sources */,
 				D9BACC012B13BF5400BBD0BE /* Analytics.swift in Sources */,
 				D98DBD35284919B1008544F8 /* NetworkRabbit.swift in Sources */,
@@ -6930,7 +6930,7 @@
 				D9E9CFA3292C3DD1002BC918 /* NoFoldersView.swift in Sources */,
 				D916536428AD7FF7007F141D /* VideoMaker.swift in Sources */,
 				D99070552A905DA300A26F65 /* SyncInfoView.swift in Sources */,
-				D984D5632CF21D6700680C7D /* SoundDetailView+StatsSection.swift in Sources */,
+				D984D5632CF21D6700680C7D /* ContentDetailView+StatsSection.swift in Sources */,
 				D9C1372729063A78003E4ABF /* FolderResearchSettingsView.swift in Sources */,
 				D98EC5DE282596C300340BE5 /* PlayableContentView.swift in Sources */,
 				D99C8A972952C904002E0C00 /* NetworkRabbit+DonorNames.swift in Sources */,

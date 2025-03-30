@@ -19,6 +19,7 @@ internal protocol MedoContentProtocol: Equatable {
     var type: MediaType { get }
     var isFavorite: Bool? { get set }
     var authorId: String { get }
+    var isOffensive: Bool { get }
 
     func fileURL() throws -> URL
 }

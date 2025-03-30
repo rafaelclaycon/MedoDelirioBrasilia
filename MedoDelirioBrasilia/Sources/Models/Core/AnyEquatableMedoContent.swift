@@ -65,6 +65,10 @@ struct AnyEquatableMedoContent: MedoContentProtocol, Equatable, Identifiable {
         base.authorId
     }
 
+    var isOffensive: Bool {
+        base.isOffensive
+    }
+
     func fileURL() throws -> URL {
         try base.fileURL()
     }
