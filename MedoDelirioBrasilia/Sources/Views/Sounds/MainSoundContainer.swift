@@ -85,7 +85,7 @@ struct MainSoundContainer: View {
             menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
             currentSoundsListMode: currentSoundsListMode,
             needsRefreshAfterChange: true,
-            refreshAction: { viewModel.reloadFavorites() }
+            refreshAction: { viewModel.onPullToRefreshFavorites() }
         ))
         self.currentSoundsListMode = currentSoundsListMode
         self.openSettingsAction = openSettingsAction
@@ -106,7 +106,7 @@ struct MainSoundContainer: View {
                     showExplicitDisabledWarning: true,
                     syncAction: {
                         Task { // Keep this Task to avoid "cancelled" issue.
-                            await viewModel.sync(lastAttempt: AppPersistentMemory().getLastUpdateAttempt())
+                            await viewModel.onSyncRequested()
                         }
                     },
                     dataLoadingDidFail: viewModel.dataLoadingDidFail,
@@ -226,15 +226,15 @@ struct MainSoundContainer: View {
             ),
             trailing: trailingToolbarControls()
         )
-        .onChange(of: viewModel.processedUpdateNumber) { _ in
+        .onChange(of: viewModel.processedUpdateNumber) {
             withAnimation {
                 displayLongUpdateBanner = viewModel.totalUpdateCount >= 10 && viewModel.processedUpdateNumber != viewModel.totalUpdateCount
             }
         }
-        .onChange(of: playRandomSoundHelper.soundIdToPlay) { soundId in
-            if !soundId.isEmpty {
+        .onChange(of: playRandomSoundHelper.soundIdToPlay) {
+            if !playRandomSoundHelper.soundIdToPlay.isEmpty {
                 viewModel.currentViewMode = .all
-                allSoundsViewModel.scrollAndPlaySound(withId: soundId)
+                allSoundsViewModel.scrollAndPlaySound(withId: playRandomSoundHelper.soundIdToPlay)
                 playRandomSoundHelper.soundIdToPlay = ""
             }
         }
@@ -244,27 +244,24 @@ struct MainSoundContainer: View {
                 lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
             )
         }
-        .sheet(isPresented: $showClassicRetroView) {
-            ClassicRetroView(
-                imageSaveSucceededAction: { exportAnalytics in
-                    allSoundsViewModel.displayToast(
-                        toastText: Shared.Retro.successMessage,
-                        displayTime: .seconds(5)
-                    )
-
-                    Analytics().send(
-                        originatingScreen: "MainSoundContainer",
-                        action: "didExportRetro2024Images(\(exportAnalytics))"
-                    )
-                }
-            )
-        }
-//        .fullScreenCover(isPresented: $showRetroModalView) {
-//            StoriesView()
+//        .sheet(isPresented: $showClassicRetroView) {
+//            ClassicRetroView(
+//                imageSaveSucceededAction: { exportAnalytics in
+//                    allSoundsViewModel.displayToast(
+//                        toastText: Shared.Retro.successMessage,
+//                        displayTime: .seconds(5)
+//                    )
+//
+//                    Analytics().send(
+//                        originatingScreen: "MainSoundContainer",
+//                        action: "didExportRetro2024Images(\(exportAnalytics))"
+//                    )
+//                }
+//            )
 //        }
         .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in // iPad - Settings explicit toggle.
             if shouldUpdate {
-                viewModel.loadContent()
+                viewModel.onExplicitContentSettingChanged()
                 settingsHelper.updateSoundsList = false
             }
         }
@@ -272,55 +269,27 @@ struct MainSoundContainer: View {
             highlight(soundId: trendsHelper.notifyMainSoundContainer)
         }
         .overlay {
-            ZStack {
-//                if displayFloatingSelectorView {
-//                    VStack {
-//                        Spacer()
-//                        floatingSelectorView()
-//                            .padding()
-//                    }
-//                }
+            if viewModel.showToastView {
+                VStack {
+                    Spacer()
 
-                if viewModel.showToastView {
-                    VStack {
-                        Spacer()
-
-                        ToastView(
-                            icon: viewModel.toastIcon,
-                            iconColor: viewModel.toastIconColor,
-                            text: viewModel.toastText
-                        )
-                        .padding(.horizontal)
-                        .padding(
-                            .bottom,
-                            UIDevice.isiPhone ? Shared.Constants.toastViewBottomPaddingPhone : Shared.Constants.toastViewBottomPaddingPad
-                        )
-                    }
-                    .transition(.moveAndFade)
+                    ToastView(
+                        icon: viewModel.toastIcon,
+                        iconColor: viewModel.toastIconColor,
+                        text: viewModel.toastText
+                    )
+                    .padding(.horizontal)
+                    .padding(.bottom, Shared.Constants.toastViewBottomPaddingPad)
                 }
+                .transition(.moveAndFade)
             }
         }
         .onAppear {
-            print("MAIN SOUND CONTAINER - ON APPEAR")
-
-            if !viewModel.firstRunSyncHappened {
-                Task {
-                    print("WILL START SYNCING")
-                    await viewModel.sync(lastAttempt: AppPersistentMemory().getLastUpdateAttempt())
-                    print("DID FINISH SYNCING")
-                }
-            }
-
-            viewModel.loadContent()
-            viewModel.reloadFavorites()
-            favoritesViewModel.loadFavorites()
+            viewModel.onViewDidAppear(favoritesVMAction: { favoritesViewModel.loadFavorites() })
         }
         .onChange(of: scenePhase) {
-            if scenePhase == .active {
-                Task {
-                    await viewModel.warmOpenSync()
-                    print("DID FINISH WARM OPEN SYNC")
-                }
+            Task {
+                await viewModel.onScenePhaseChanged(newPhase: scenePhase)
             }
         }
     }
@@ -358,7 +327,8 @@ extension MainSoundContainer {
         }
     }
 
-    @ViewBuilder func trailingToolbarControls() -> some View {
+    @ViewBuilder
+    func trailingToolbarControls() -> some View {
         if viewModel.currentViewMode == .folders {
             EmptyView()
         } else {
@@ -380,9 +350,9 @@ extension MainSoundContainer {
                     } label: {
                         Image(systemName: "arrow.up.arrow.down")
                     }
-                    .onChange(of: viewModel.authorSortOption) { authorSortOption in
-                        authorSortAction = AuthorSortOption(rawValue: authorSortOption) ?? .nameAscending
-                        UserSettings().saveAuthorSortOption(authorSortOption)
+                    .onChange(of: viewModel.authorSortOption) {
+                        authorSortAction = AuthorSortOption(rawValue: viewModel.authorSortOption) ?? .nameAscending
+                        UserSettings().saveAuthorSortOption(viewModel.authorSortOption)
                     }
                 } else {
                     if UIDevice.isiPhone && currentSoundsListMode.wrappedValue == .regular {
@@ -444,8 +414,8 @@ extension MainSoundContainer {
                     } label: {
                         Image(systemName: "ellipsis.circle")
                     }
-                    .onChange(of: viewModel.soundSortOption) { sortOption in
-                        viewModel.sortSounds(by: sortOption)
+                    .onChange(of: viewModel.soundSortOption) {
+                        viewModel.onSoundSortOptionChanged()
                     }
                     .disabled(
                         viewModel.currentViewMode == .favorites && viewModel.favorites?.count == 0
@@ -459,15 +429,11 @@ extension MainSoundContainer {
     func topSelectorView() -> some View {
         TopSelector(selected: $viewModel.currentViewMode)
             .onChange(of: viewModel.currentViewMode) {
-                if viewModel.currentViewMode == .all {
-                    allSoundsViewModel.loadFavorites()
-                } else if viewModel.currentViewMode == .favorites {
-                    // Similar names, different functions.
-                    viewModel.reloadFavorites() // This changes SoundList's data source, effectively changing what tiles are shown.
-                    favoritesViewModel.loadFavorites() // This changes favoritesKeeper, the thing responsible for painting each tile differently.
-                }
+                viewModel.onSelectedViewModeChanged(
+                    allSoundsVMAction: { allSoundsViewModel.loadFavorites() },
+                    favoritesVMAction: { favoritesViewModel.loadFavorites() }
+                )
             }
-        //.disabled(isLoadingSounds && viewModel.currentViewMode == .allSounds)
     }
 }
 
@@ -493,6 +459,8 @@ extension MainSoundContainer {
         trendsHelper.soundIdToGoTo = soundId
     }
 }
+
+// MARK: - Preview
 
 #Preview {
     MainSoundContainer(

@@ -84,10 +84,72 @@ class MainSoundContainerViewModel: ObservableObject {
         self.isAllowedToSync = isAllowedToSync
         self.syncManager.delegate = self
     }
+}
 
-    // MARK: - Functions
+// MARK: - User Actions
 
-    func loadContent() {
+extension MainSoundContainerViewModel {
+
+    public func onViewDidAppear(
+        favoritesVMAction: () -> Void
+    ) {
+        print("MAIN SOUND CONTAINER - ON APPEAR")
+
+        if !firstRunSyncHappened {
+            Task {
+                print("WILL START SYNCING")
+                await sync(lastAttempt: AppPersistentMemory().getLastUpdateAttempt())
+                print("DID FINISH SYNCING")
+            }
+        }
+
+        loadContent()
+        loadFavorites()
+        favoritesVMAction()
+    }
+
+    public func onPullToRefreshFavorites() {
+        loadFavorites()
+    }
+
+    public func onSelectedViewModeChanged(
+        allSoundsVMAction: () -> Void,
+        favoritesVMAction: () -> Void
+    ) {
+        if currentViewMode == .all {
+            allSoundsVMAction()
+        } else if currentViewMode == .favorites {
+            // Similar names, different functions.
+            loadFavorites() // This changes SoundList's data source, effectively changing what tiles are shown.
+            favoritesVMAction() // This changes favoritesKeeper, the thing responsible for painting each tile differently.
+        }
+    }
+
+    public func onSoundSortOptionChanged() {
+        sortSounds(by: soundSortOption)
+    }
+
+    public func onExplicitContentSettingChanged() {
+        loadContent()
+    }
+
+    public func onSyncRequested() async {
+        await sync(lastAttempt: AppPersistentMemory().getLastUpdateAttempt())
+    }
+
+    public func onScenePhaseChanged(newPhase: ScenePhase) async {
+        if newPhase == .active {
+            await warmOpenSync()
+            print("DID FINISH WARM OPEN SYNC")
+        }
+    }
+}
+
+// MARK: - Internal Functions
+
+extension MainSoundContainerViewModel {
+
+    private func loadContent() {
         do {
             let sounds: [AnyEquatableMedoContent] = try LocalDatabase.shared.sounds(
                 allowSensitive: UserSettings().getShowExplicitContent(),
@@ -108,7 +170,7 @@ class MainSoundContainerViewModel: ObservableObject {
         }
     }
 
-    func reloadFavorites() {
+    private func loadFavorites() {
         do {
             let sounds = try LocalDatabase.shared.sounds(
                 allowSensitive: UserSettings().getShowExplicitContent(),
@@ -126,11 +188,36 @@ class MainSoundContainerViewModel: ObservableObject {
         }
     }
 
-    func sortSounds(by rawSortOption: Int) {
+    private func sortSounds(by rawSortOption: Int) {
         let sortOption = SoundSortOption(rawValue: rawSortOption) ?? .dateAddedDescending
         sortAllSounds(by: sortOption)
         sortFavorites(by: sortOption)
         UserSettings().saveMainSoundListSoundSortOption(rawSortOption)
+    }
+
+    private func displayToast(
+        _ toastIcon: String,
+        _ toastIconColor: Color,
+        toastText: String,
+        displayTime: DispatchTimeInterval,
+        completion: (() -> Void)? = nil
+    ) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+            withAnimation {
+                self.toastIcon = toastIcon
+                self.toastIconColor = toastIconColor
+                self.toastText = toastText
+                self.showToastView = true
+            }
+            TapticFeedback.success()
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + displayTime) {
+            withAnimation {
+                self.showToastView = false
+                completion?()
+            }
+        }
     }
 }
 
@@ -270,7 +357,7 @@ extension MainSoundContainerViewModel {
 
 extension MainSoundContainerViewModel: SyncManagerDelegate {
 
-    func sync(lastAttempt: String) async {
+    private func sync(lastAttempt: String) async {
         print("lastAttempt: \(lastAttempt)")
 
         guard isAllowedToSync else { return }
@@ -309,7 +396,7 @@ extension MainSoundContainerViewModel: SyncManagerDelegate {
     }
 
     // Warm open means the app was reopened before it left memory.
-    func warmOpenSync() async {
+    private func warmOpenSync() async {
         guard isAllowedToSync else { return }
 
         let lastUpdateAttempt = AppPersistentMemory().getLastUpdateAttempt()
@@ -348,35 +435,5 @@ extension MainSoundContainerViewModel: SyncManagerDelegate {
             }
         }
         print(status)
-    }
-}
-
-// MARK: - Toast
-
-extension MainSoundContainerViewModel {
-
-    func displayToast(
-        _ toastIcon: String,
-        _ toastIconColor: Color,
-        toastText: String,
-        displayTime: DispatchTimeInterval,
-        completion: (() -> Void)? = nil
-    ) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-            withAnimation {
-                self.toastIcon = toastIcon
-                self.toastIconColor = toastIconColor
-                self.toastText = toastText
-                self.showToastView = true
-            }
-            TapticFeedback.success()
-        }
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + displayTime) {
-            withAnimation {
-                self.showToastView = false
-                completion?()
-            }
-        }
     }
 }
