@@ -200,15 +200,23 @@ struct MainSoundContainer: View {
                 )
 
             case .folders:
-                MyFoldersiPhoneView()
-                    .environmentObject(deleteFolderAide)
-                
+                VStack {
+                    topSelectorView()
+
+                    MyFoldersiPhoneView()
+                        .environmentObject(deleteFolderAide)
+                }
+
             case .byAuthor:
-                AuthorsView(
-                    sortOption: $viewModel.authorSortOption,
-                    sortAction: $authorSortAction,
-                    searchTextForControl: $authorSearchText
-                )
+                VStack {
+                    topSelectorView()
+                    
+                    AuthorsView(
+                        sortOption: $viewModel.authorSortOption,
+                        sortAction: $authorSortAction,
+                        searchTextForControl: $authorSearchText
+                    )
+                }
             }
         }
         .navigationTitle(Text(title))
