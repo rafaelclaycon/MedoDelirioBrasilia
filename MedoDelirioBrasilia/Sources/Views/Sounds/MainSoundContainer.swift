@@ -47,19 +47,10 @@ struct MainSoundContainer: View {
     private var title: String {
         guard currentSoundsListMode.wrappedValue == .regular else {
             return selectionNavBarTitle(
-                for: viewModel.currentViewMode == .allSounds ? allSoundsViewModel : favoritesViewModel
+                for: viewModel.currentViewMode == .all ? allSoundsViewModel : favoritesViewModel
             )
         }
-        switch viewModel.currentViewMode {
-        case .allSounds:
-            return "Vírgulas & Músicas"
-        case .favorites:
-            return "Favoritos"
-        case .folders:
-            return "Minhas Pastas"
-        case .byAuthor:
-            return "Autores"
-        }
+        return "Sons"
     }
 
     private var displayFloatingSelectorView: Bool {
@@ -105,7 +96,7 @@ struct MainSoundContainer: View {
     var body: some View {
         VStack {
             switch viewModel.currentViewMode {
-            case .allSounds:
+            case .all, .songs:
                 ContentList(
                     viewModel: allSoundsViewModel,
                     soundSearchTextIsEmpty: $soundSearchTextIsEmpty,
@@ -121,26 +112,14 @@ struct MainSoundContainer: View {
                     dataLoadingDidFail: viewModel.dataLoadingDidFail,
                     headerView: {
                         VStack {
+                            topSelectorView()
+
                             if displayLongUpdateBanner {
                                 LongUpdateBanner(
                                     completedNumber: $viewModel.processedUpdateNumber,
                                     totalUpdateCount: $viewModel.totalUpdateCount
                                 )
                                 .padding(.horizontal, 10)
-                            }
-
-                            if
-                                showRetroBanner,
-                                (soundSearchTextIsEmpty ?? false),
-                                !AppPersistentMemory().hasDismissedRetro2024Banner()
-                            {
-                                Retro2024Banner(
-                                    isBeingShown: $showRetroBanner,
-                                    openStoriesAction: { showClassicRetroView = true },
-                                    showCloseButton: true
-                                )
-                                .padding(.horizontal, 15)
-                                .padding(.bottom, 10)
                             }
 
 //                            if shouldDisplayRecurringDonationBanner, viewModel.searchText.isEmpty {
@@ -180,11 +159,16 @@ struct MainSoundContainer: View {
                 )
 
             case .favorites:
-                ContentList<EmptyView, VStack, VStack, VStack>(
+                ContentList<VStack, VStack, VStack, VStack>(
                     viewModel: favoritesViewModel,
                     soundSearchTextIsEmpty: $soundSearchTextIsEmpty,
                     allowSearch: true,
                     dataLoadingDidFail: viewModel.dataLoadingDidFail,
+                    headerView: {
+                        VStack {
+                            topSelectorView()
+                        }
+                    },
                     loadingView:
                         VStack {
                             HStack(spacing: 10) {
@@ -232,7 +216,7 @@ struct MainSoundContainer: View {
             leading: LeadingToolbarControls(
                 isSelecting: currentSoundsListMode.wrappedValue == .selection,
                 cancelAction: {
-                    if viewModel.currentViewMode == .allSounds {
+                    if viewModel.currentViewMode == .all {
                         allSoundsViewModel.stopSelecting()
                     } else {
                         favoritesViewModel.stopSelecting()
@@ -249,7 +233,7 @@ struct MainSoundContainer: View {
         }
         .onChange(of: playRandomSoundHelper.soundIdToPlay) { soundId in
             if !soundId.isEmpty {
-                viewModel.currentViewMode = .allSounds
+                viewModel.currentViewMode = .all
                 allSoundsViewModel.scrollAndPlaySound(withId: soundId)
                 playRandomSoundHelper.soundIdToPlay = ""
             }
@@ -418,7 +402,7 @@ extension MainSoundContainer {
                     Menu {
                         Section {
                             Button {
-                                if viewModel.currentViewMode == .allSounds {
+                                if viewModel.currentViewMode == .all {
                                     allSoundsViewModel.startSelecting()
                                 } else {
                                     favoritesViewModel.startSelecting()
@@ -471,32 +455,18 @@ extension MainSoundContainer {
         }
     }
 
-    @ViewBuilder func floatingSelectorView() -> some View {
-        Picker("Exibição", selection: $viewModel.currentViewMode) {
-            Text("Todos")
-                .tag(SoundsViewMode.allSounds)
-
-            Text("Favoritos")
-                .tag(SoundsViewMode.favorites)
-
-            Text("Pastas")
-                .tag(SoundsViewMode.folders)
-
-            Text("Por Autor")
-                .tag(SoundsViewMode.byAuthor)
-        }
-        .pickerStyle(.segmented)
-        .background(.regularMaterial)
-        .cornerRadius(8)
-        .onChange(of: viewModel.currentViewMode) { newMode in
-            if newMode == .allSounds {
-                allSoundsViewModel.loadFavorites()
-            } else if newMode == .favorites {
-                // Similar names, different functions.
-                viewModel.reloadFavorites() // This changes SoundList's data source, effectively changing what tiles are shown.
-                favoritesViewModel.loadFavorites() // This changes favoritesKeeper, the thing responsible for painting each tile differently.
+    @ViewBuilder
+    func topSelectorView() -> some View {
+        TopSelector(selected: $viewModel.currentViewMode)
+            .onChange(of: viewModel.currentViewMode) {
+                if viewModel.currentViewMode == .all {
+                    allSoundsViewModel.loadFavorites()
+                } else if viewModel.currentViewMode == .favorites {
+                    // Similar names, different functions.
+                    viewModel.reloadFavorites() // This changes SoundList's data source, effectively changing what tiles are shown.
+                    favoritesViewModel.loadFavorites() // This changes favoritesKeeper, the thing responsible for painting each tile differently.
+                }
             }
-        }
         //.disabled(isLoadingSounds && viewModel.currentViewMode == .allSounds)
     }
 }
@@ -517,7 +487,7 @@ extension MainSoundContainer {
 
     private func highlight(soundId: String) {
         guard !soundId.isEmpty else { return }
-        viewModel.currentViewMode = .allSounds
+        viewModel.currentViewMode = .all
         allSoundsViewModel.cancelSearchAndHighlight(id: soundId)
         trendsHelper.notifyMainSoundContainer = ""
         trendsHelper.soundIdToGoTo = soundId
@@ -527,7 +497,7 @@ extension MainSoundContainer {
 #Preview {
     MainSoundContainer(
         viewModel: .init(
-            currentViewMode: .allSounds,
+            currentViewMode: .all,
             soundSortOption: SoundSortOption.dateAddedDescending.rawValue,
             authorSortOption: AuthorSortOption.nameAscending.rawValue,
             currentSoundsListMode: .constant(.regular),

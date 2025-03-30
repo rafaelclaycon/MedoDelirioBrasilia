@@ -16,7 +16,7 @@ class MainSoundContainerViewModel: ObservableObject {
     @Published var allContent: [AnyEquatableMedoContent]?
     @Published var favorites: [Sound]?
 
-    @Published var currentViewMode: SoundsViewMode
+    @Published var currentViewMode: TopSelectorOption
     @Published var soundSortOption: Int
     @Published var authorSortOption: Int
 
@@ -60,7 +60,7 @@ class MainSoundContainerViewModel: ObservableObject {
     // MARK: - Initializer
 
     init(
-        currentViewMode: SoundsViewMode,
+        currentViewMode: TopSelectorOption,
         soundSortOption: Int,
         authorSortOption: Int,
         currentSoundsListMode: Binding<SoundsListMode>,

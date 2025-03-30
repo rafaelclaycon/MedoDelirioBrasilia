@@ -48,7 +48,7 @@ struct MainView: View {
                     NavigationStack(path: $soundsPath) {
                         MainSoundContainer(
                             viewModel: .init(
-                                currentViewMode: .allSounds,
+                                currentViewMode: .all,
                                 soundSortOption: UserSettings().mainSoundListSoundSortOption(),
                                 authorSortOption: UserSettings().authorSortOption(),
                                 currentSoundsListMode: $currentSoundsListMode,
@@ -138,7 +138,7 @@ struct MainView: View {
                             NavigationStack(path: $soundsPath) {
                                 MainSoundContainer(
                                     viewModel: .init(
-                                        currentViewMode: .allSounds,
+                                        currentViewMode: .all,
                                         soundSortOption: UserSettings().mainSoundListSoundSortOption(),
                                         authorSortOption: UserSettings().authorSortOption(),
                                         currentSoundsListMode: $currentSoundsListMode,
@@ -302,7 +302,7 @@ struct MainView: View {
                         NavigationStack(path: $soundsPath) {
                             MainSoundContainer(
                                 viewModel: .init(
-                                    currentViewMode: .allSounds,
+                                    currentViewMode: .all,
                                     soundSortOption: UserSettings().mainSoundListSoundSortOption(),
                                     authorSortOption: AuthorSortOption.nameAscending.rawValue,
                                     currentSoundsListMode: $currentSoundsListMode,

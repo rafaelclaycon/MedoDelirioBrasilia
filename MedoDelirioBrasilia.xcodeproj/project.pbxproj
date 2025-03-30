@@ -1477,6 +1477,8 @@
 		D9F6420928D122C500003A0E /* Moderador, tira o moleque desse grupo agora.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F6420828D122C500003A0E /* Moderador, tira o moleque desse grupo agora.mp3 */; };
 		D9F696BD28BBFDD700C984E6 /* Jair Bolsonaro e Conrado Hubner - Os escandalos do Jair, enumerados.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F696BC28BBFDD700C984E6 /* Jair Bolsonaro e Conrado Hubner - Os escandalos do Jair, enumerados.mp3 */; };
 		D9F78A9F2860DF9100B83567 /* ReactionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F78A9E2860DF9100B83567 /* ReactionItem.swift */; };
+		D9F82F6F2D98503600DE3AF2 /* TopSelectorOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F82F6E2D98503600DE3AF2 /* TopSelectorOption.swift */; };
+		D9F82F712D98712600DE3AF2 /* TopSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F82F702D98712600DE3AF2 /* TopSelector.swift */; };
 		D9F87A9228F6EA51002EE8AA /* RemoveFavoriteLogTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F87A9128F6EA51002EE8AA /* RemoveFavoriteLogTable.swift */; };
 		D9F8E9A028E6A08D0098A454 /* Soraya Thronicke - O senhor nao tem medo de ir pro inferno nao.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F8E99F28E6A08D0098A454 /* Soraya Thronicke - O senhor nao tem medo de ir pro inferno nao.mp3 */; };
 		D9F8E9A228E8D6D40098A454 /* Soraya Thronicke - Padre Kelson.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F8E9A128E8D6D40098A454 /* Soraya Thronicke - Padre Kelson.mp3 */; };
@@ -3024,6 +3026,8 @@
 		D9F6420828D122C500003A0E /* Moderador, tira o moleque desse grupo agora.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Moderador, tira o moleque desse grupo agora.mp3"; sourceTree = "<group>"; };
 		D9F696BC28BBFDD700C984E6 /* Jair Bolsonaro e Conrado Hubner - Os escandalos do Jair, enumerados.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jair Bolsonaro e Conrado Hubner - Os escandalos do Jair, enumerados.mp3"; sourceTree = "<group>"; };
 		D9F78A9E2860DF9100B83567 /* ReactionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionItem.swift; sourceTree = "<group>"; };
+		D9F82F6E2D98503600DE3AF2 /* TopSelectorOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopSelectorOption.swift; sourceTree = "<group>"; };
+		D9F82F702D98712600DE3AF2 /* TopSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopSelector.swift; sourceTree = "<group>"; };
 		D9F87A9128F6EA51002EE8AA /* RemoveFavoriteLogTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveFavoriteLogTable.swift; sourceTree = "<group>"; };
 		D9F8E99F28E6A08D0098A454 /* Soraya Thronicke - O senhor nao tem medo de ir pro inferno nao.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Soraya Thronicke - O senhor nao tem medo de ir pro inferno nao.mp3"; sourceTree = "<group>"; };
 		D9F8E9A128E8D6D40098A454 /* Soraya Thronicke - Padre Kelson.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Soraya Thronicke - Padre Kelson.mp3"; sourceTree = "<group>"; };
@@ -5104,6 +5108,7 @@
 				D94EAB5C29FC4D51004CD604 /* Sync */,
 				D98BB6992AC68769001DE23D /* FloatingSelectionOptionsView.swift */,
 				D96370042B085845002E8838 /* ExplicitDisabledWarning.swift */,
+				D9F82F702D98712600DE3AF2 /* TopSelector.swift */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -5270,6 +5275,7 @@
 				D9E7BE8D2C9E1D9D0094AD28 /* UserInfo.swift */,
 				D9E7BE8E2C9E1D9D0094AD28 /* VideoExportType.swift */,
 				D9E7BE8F2C9E1D9D0094AD28 /* WordPluralization.swift */,
+				D9F82F6E2D98503600DE3AF2 /* TopSelectorOption.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -6750,6 +6756,7 @@
 				D9543B462AD5D6C80075A7A1 /* ClassicRetroView+ViewModel.swift in Sources */,
 				D9855DBE2BE4123E00965E9D /* Reaction+Mocks.swift in Sources */,
 				D9877D2928694F3200B541F9 /* LocalDatabase+UserFolderContent.swift in Sources */,
+				D9F82F712D98712600DE3AF2 /* TopSelector.swift in Sources */,
 				D99BBE4129466D9800BCA901 /* UsageMetric.swift in Sources */,
 				D9CC893328EB7BB500576492 /* MostSharedByAudienceView.swift in Sources */,
 				D924F9212BF841E6002FC815 /* IntroducingReactionsView.swift in Sources */,
@@ -6839,6 +6846,7 @@
 				D96A64202955F32F00DC0F03 /* SettingsHelper.swift in Sources */,
 				D93CCB7B286BA9FB0002CF81 /* AnyTransition+MoveAndFade.swift in Sources */,
 				D90E80BF2CEA1A780014A886 /* AddPinnedReactionTable.swift in Sources */,
+				D9F82F6F2D98503600DE3AF2 /* TopSelectorOption.swift in Sources */,
 				D9DC4D7A2B1D8BC900627555 /* TopChartItem+.swift in Sources */,
 				D9B8DE842BE695B1000C9035 /* AddReactionView.swift in Sources */,
 				D9625E7E28238F9A00080852 /* MedoDelirioBrasiliaApp.swift in Sources */,
