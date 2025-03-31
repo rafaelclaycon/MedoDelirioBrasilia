@@ -273,6 +273,7 @@
 		D92F096529ED844300CC382F /* View+Marquee.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92F096429ED844300CC382F /* View+Marquee.swift */; };
 		D9310C262A0BDA90006A3058 /* Jaiminho - E que quero evitar a fadiga.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9310C252A0BDA90006A3058 /* Jaiminho - E que quero evitar a fadiga.mp3 */; };
 		D933251E28835E41004EFACB /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D933251D28835E41004EFACB /* ActivityViewController.swift */; };
+		D93391F62D3307B100DC2297 /* MainSoundContainerViewModel+SpotlightIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93391F52D3307B000DC2297 /* MainSoundContainerViewModel+SpotlightIndex.swift */; };
 		D9344323283812AD00ADCD38 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9344322283812AD00ADCD38 /* Author.swift */; };
 		D934432728381DEF00ADCD38 /* author_data.json in Resources */ = {isa = PBXBuildFile; fileRef = D934432628381DEF00ADCD38 /* author_data.json */; };
 		D93443292838230500ADCD38 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93443282838230500ADCD38 /* String+.swift */; };
@@ -1231,7 +1232,7 @@
 		D9AB63F02A5A063700390778 /* UIDevice+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FA0CD628508590000F6ADE /* UIDevice+.swift */; };
 		D9AB63F42A5A085800390778 /* SyncServiceStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9AB63F32A5A085800390778 /* SyncServiceStub.swift */; };
 		D9ABDDB0287411C9007B25EA /* SongHelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9ABDDAF287411C9007B25EA /* SongHelpView.swift */; };
-		D9ABEEDB2CA1B51800CA024F /* PlayRandomSoundHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9ABEEDA2CA1B50F00CA024F /* PlayRandomSoundHelper.swift */; };
+		D9ABEEDB2CA1B51800CA024F /* ExternalActivityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9ABEEDA2CA1B50F00CA024F /* ExternalActivityHelper.swift */; };
 		D9ADEB6329861A79001CB004 /* Ai eu acho exagero.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9ADEB6229861A79001CB004 /* Ai eu acho exagero.mp3 */; };
 		D9ADEB6729861BD3001CB004 /* Bem-vindos ao devido processo legal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9ADEB6429861BD2001CB004 /* Bem-vindos ao devido processo legal.mp3 */; };
 		D9ADEB6829861BD3001CB004 /* Ana Priscila Azevedo (golpista) - Senhores, selva.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9ADEB6529861BD2001CB004 /* Ana Priscila Azevedo (golpista) - Senhores, selva.mp3 */; };
@@ -1818,6 +1819,7 @@
 		D92F096429ED844300CC382F /* View+Marquee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Marquee.swift"; sourceTree = "<group>"; };
 		D9310C252A0BDA90006A3058 /* Jaiminho - E que quero evitar a fadiga.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jaiminho - E que quero evitar a fadiga.mp3"; sourceTree = "<group>"; };
 		D933251D28835E41004EFACB /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		D93391F52D3307B000DC2297 /* MainSoundContainerViewModel+SpotlightIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainSoundContainerViewModel+SpotlightIndex.swift"; sourceTree = "<group>"; };
 		D9344322283812AD00ADCD38 /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		D934432628381DEF00ADCD38 /* author_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = author_data.json; sourceTree = "<group>"; };
 		D93443282838230500ADCD38 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
@@ -2778,7 +2780,7 @@
 		D9A9375929CDDC0900758A5A /* Michelle Bolsonaro - Senhor, meu leitinho ainda ta ralo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Michelle Bolsonaro - Senhor, meu leitinho ainda ta ralo.mp3"; sourceTree = "<group>"; };
 		D9AB63F32A5A085800390778 /* SyncServiceStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncServiceStub.swift; sourceTree = "<group>"; };
 		D9ABDDAF287411C9007B25EA /* SongHelpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongHelpView.swift; sourceTree = "<group>"; };
-		D9ABEEDA2CA1B50F00CA024F /* PlayRandomSoundHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayRandomSoundHelper.swift; sourceTree = "<group>"; };
+		D9ABEEDA2CA1B50F00CA024F /* ExternalActivityHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalActivityHelper.swift; sourceTree = "<group>"; };
 		D9ADEB6229861A79001CB004 /* Ai eu acho exagero.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ai eu acho exagero.mp3"; sourceTree = "<group>"; };
 		D9ADEB6429861BD2001CB004 /* Bem-vindos ao devido processo legal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bem-vindos ao devido processo legal.mp3"; sourceTree = "<group>"; };
 		D9ADEB6529861BD2001CB004 /* Ana Priscila Azevedo (golpista) - Senhores, selva.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ana Priscila Azevedo (golpista) - Senhores, selva.mp3"; sourceTree = "<group>"; };
@@ -4788,7 +4790,7 @@
 		D97B2DD728E5E9E400C3B50B /* ViewAid */ = {
 			isa = PBXGroup;
 			children = (
-				D9ABEEDA2CA1B50F00CA024F /* PlayRandomSoundHelper.swift */,
+				D9ABEEDA2CA1B50F00CA024F /* ExternalActivityHelper.swift */,
 				D95DB0F72882491A00D4FEDF /* ScreenAndTabs.swift */,
 				D97B2DD828E5EA0500C3B50B /* DeleteFolderViewAide.swift */,
 				D9A3AB6A28F03C970064CB7A /* ViewStates.swift */,
@@ -5102,6 +5104,7 @@
 				D94EAB5C29FC4D51004CD604 /* Sync */,
 				D98BB6992AC68769001DE23D /* FloatingSelectionOptionsView.swift */,
 				D96370042B085845002E8838 /* ExplicitDisabledWarning.swift */,
+				D93391F52D3307B000DC2297 /* MainSoundContainerViewModel+SpotlightIndex.swift */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -6971,7 +6974,7 @@
 				D9CA301E2A03EE2300F1F23D /* NetworkRabbit+Generic.swift in Sources */,
 				D9D3D4912887495B00C42FDE /* FolderList.swift in Sources */,
 				D97B2DD928E5EA0500C3B50B /* DeleteFolderViewAide.swift in Sources */,
-				D9ABEEDB2CA1B51800CA024F /* PlayRandomSoundHelper.swift in Sources */,
+				D9ABEEDB2CA1B51800CA024F /* ExternalActivityHelper.swift in Sources */,
 				D9592C442AA2F59B00157F5A /* AddSongAndMusicGenreTables.swift in Sources */,
 				D904495A2BB283C20023088B /* ExternalLinkButton.swift in Sources */,
 				D9DC68902AD38648005D3F81 /* RetroBanner.swift in Sources */,
@@ -6987,6 +6990,7 @@
 				D98D13822CD5C4B1001CF5BB /* AddChangeHashFieldToUserFolderTable.swift in Sources */,
 				D9943F172863DAE1002C6B97 /* FolderDetailView.swift in Sources */,
 				D91E375A2C4C8F33003A1107 /* PushAction.swift in Sources */,
+				D93391F62D3307B100DC2297 /* MainSoundContainerViewModel+SpotlightIndex.swift in Sources */,
 				D949181228860ABC0079F545 /* AllFoldersiPadView.swift in Sources */,
 				D9B8DE7F2BE5CEFD000C9035 /* ReactionSound.swift in Sources */,
 				D9F45DD72BED30C400D49340 /* DynamicBanner.swift in Sources */,
