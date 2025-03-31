@@ -91,6 +91,11 @@
             value = "local"
             isEnabled = "NO">
          </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "BGTaskSchedulerLogLevel"
+            value = "debug"
+            isEnabled = "YES">
+         </EnvironmentVariable>
       </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
