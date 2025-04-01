@@ -16,9 +16,9 @@ struct MostSharedByMeView: View {
     ]
 
     var body: some View {
-        VStack {
+        VStack(spacing: 20) {
             HStack {
-                Text("Sons Mais Compartilhados Por Mim 🙎")
+                Text("Sons Mais Compartilhados")
                     .font(.title2)
                 Spacer()
             }

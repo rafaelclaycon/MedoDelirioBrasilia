@@ -217,6 +217,7 @@ extension MostSharedByAudienceView {
                                 }
                             }
                             .padding(.horizontal, 14)
+                            .padding(.top, -8)
                         }
 
                         Text(lastUpdatedText)
