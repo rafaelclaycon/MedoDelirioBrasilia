@@ -282,14 +282,13 @@ struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, Er
                                         )
 
                                     case .addToFolder:
-//                                        AddToFolderView(
-//                                            isBeingShown: $viewModel.showingModalView,
-//                                            hadSuccess: $viewModel.hadSuccessAddingToFolder,
-//                                            folderName: $viewModel.folderName,
-//                                            pluralization: $viewModel.pluralization,
-//                                            selectedSounds: viewModel.selectedContentMultiple!
-//                                        )
-                                        EmptyView()
+                                        AddToFolderView(
+                                            isBeingShown: $viewModel.showingModalView,
+                                            hadSuccess: $viewModel.hadSuccessAddingToFolder,
+                                            folderName: $viewModel.folderName,
+                                            pluralization: $viewModel.pluralization,
+                                            selectedContent: viewModel.selectedContentMultiple!
+                                        )
 
                                     case .contentDetail:
                                         ContentDetailView(

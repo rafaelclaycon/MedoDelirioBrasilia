@@ -16,12 +16,15 @@ struct AddToFolderView: View {
     @Binding var folderName: String?
     @Binding var pluralization: WordPluralization
 
-    @State var selectedSounds: [Sound]
+    @State var selectedContent: [AnyEquatableMedoContent]
     @State private var newFolder: UserFolder?
 
-    @State private var soundsThatCanBeAdded: [Sound]? = nil
     @State private var folderForSomeSoundsAlreadyInFolder: UserFolder? = nil
-    
+
+    private let columns = [GridItem(.flexible()), GridItem(.flexible())]
+
+    // MARK: - Computed Properties
+
     private var createNewFolderCellWidth: CGFloat {
         if UIDevice.current.userInterfaceIdiom == .phone {
             return (UIScreen.main.bounds.size.width / 2) - 20
@@ -29,17 +32,12 @@ struct AddToFolderView: View {
             return 250
         }
     }
-    
-    private let columns = [
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
-    
+
     private func getSoundText() -> String {
-        if selectedSounds.count == 1 {
-            return "Som:  \(selectedSounds.first!.title)"
+        if selectedContent.count == 1 {
+            return "Som:  \(selectedContent.first!.title)"
         } else {
-            return "\(selectedSounds.count) sons selecionados"
+            return "\(selectedContent.count) itens selecionados"
         }
     }
 
@@ -101,32 +99,7 @@ struct AddToFolderView: View {
                         LazyVGrid(columns: columns, spacing: 14) {
                             ForEach(viewModel.folders) { folder in
                                 Button {
-                                    do {
-                                        soundsThatCanBeAdded = viewModel.canBeAddedToFolder(sounds: selectedSounds, folderId: folder.id)
-
-                                        let soundsAlreadyInFolder = selectedSounds.count - (soundsThatCanBeAdded?.count ?? 0)
-
-                                        if selectedSounds.count == soundsThatCanBeAdded?.count {
-                                            try selectedSounds.forEach { sound in
-                                                try LocalDatabase.shared.insert(contentId: sound.id, intoUserFolder: folder.id)
-                                            }
-                                            try UserFolderRepository().update(folder)
-
-                                            folderName = "\(folder.symbol) \(folder.name)"
-                                            pluralization = selectedSounds.count > 1 ? .plural : .singular
-                                            hadSuccess = true
-                                            isBeingShown = false
-                                        } else if soundsAlreadyInFolder == 1, selectedSounds.count == 1 {
-                                            viewModel.showSingleSoundAlredyInFolderAlert(folderName: folder.name)
-                                        } else if soundsAlreadyInFolder == selectedSounds.count {
-                                            viewModel.showAllSoundsAlredyInFolderAlert(folderName: folder.name)
-                                        } else {
-                                            folderForSomeSoundsAlreadyInFolder = folder
-                                            viewModel.showSomeSoundsAlreadyInFolderAlert(soundCountAlreadyInFolder: soundsAlreadyInFolder, folderName: folder.name)
-                                        }
-                                    } catch {
-                                        viewModel.showIssueSavingAlert(error.localizedDescription)
-                                    }
+                                    viewModel.onExistingFolderSelected(folder: folder)
                                 } label: {
                                     FolderCell(
                                         symbol: folder.symbol,
