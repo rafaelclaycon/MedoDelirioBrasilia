@@ -18,7 +18,7 @@ struct PlayRandomSoundIntentProvider: AppShortcutsProvider {
                 "Toque uma vírgula do \(.applicationName)",
                 "Toque um som do \(.applicationName)",
                 "Toque um som aleatório do \(.applicationName)",
-                "Medo e Delírio",
+                "\(.applicationName)",
             ],
             shortTitle: "Tocar som aleatório",
             systemImageName: "play.fill"
