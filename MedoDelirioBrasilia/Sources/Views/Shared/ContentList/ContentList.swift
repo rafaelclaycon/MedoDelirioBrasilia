@@ -309,22 +309,20 @@ struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, Er
                                         )
 
                                     case .soundIssueEmailPicker:
-//                                        EmailAppPickerView(
-//                                            isBeingShown: $viewModel.showingModalView,
-//                                            subject: Shared.issueSuggestionEmailSubject,
-//                                            emailBody: Shared.issueSuggestionEmailBody,
-//                                            afterCopyAddressAction: {}
-//                                        )
-                                        EmptyView()
+                                        EmailAppPickerView(
+                                            isBeingShown: $viewModel.showingModalView,
+                                            subject: Shared.issueSuggestionEmailSubject,
+                                            emailBody: Shared.issueSuggestionEmailBody,
+                                            afterCopyAddressAction: {}
+                                        )
 
                                     case .authorIssueEmailPicker(let content):
-//                                        EmailAppPickerView(
-//                                            isBeingShown: $viewModel.showingModalView,
-//                                            subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, content.title),
-//                                            emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, content.subtitle, content.id),
-//                                            afterCopyAddressAction: {}
-//                                        )
-                                        EmptyView()
+                                        EmailAppPickerView(
+                                            isBeingShown: $viewModel.showingModalView,
+                                            subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, content.title),
+                                            emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, content.subtitle, content.id),
+                                            afterCopyAddressAction: {}
+                                        )
                                     }
                                 }
                                 .sheet(isPresented: $viewModel.isShowingShareSheet) {
@@ -355,16 +353,16 @@ struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, Er
                                         addToFolderHelper = AddToFolderDetails()
                                     }
                                 }
-//                                .onChange(of: geometry.size.width) { newWidth in
-//                                    updateGridLayout(with: newWidth)
-//                                }
-//                                .onChange(of: searchResults) { searchResults in
-//                                    if searchResults.isEmpty {
-//                                        columns = [GridItem(.flexible())]
-//                                    } else {
-//                                        updateGridLayout(with: geometry.size.width)
-//                                    }
-//                                }
+                                .onChange(of: geometry.size.width) {
+                                    updateGridLayout(with: geometry.size.width)
+                                }
+                                .onChange(of: searchResults) {
+                                    if searchResults.isEmpty {
+                                        columns = [GridItem(.flexible())]
+                                    } else {
+                                        updateGridLayout(with: geometry.size.width)
+                                    }
+                                }
 //                                .onChange(of: viewModel.selectionKeeper.count) {
 //                                    showMultiSelectButtons = viewModel.currentSoundsListMode.wrappedValue == .selection
 //                                    guard viewModel.currentSoundsListMode.wrappedValue == .selection else { return }
