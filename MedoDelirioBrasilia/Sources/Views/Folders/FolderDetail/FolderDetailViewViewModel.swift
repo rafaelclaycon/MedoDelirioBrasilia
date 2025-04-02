@@ -12,7 +12,7 @@ class FolderDetailViewViewModel: ObservableObject {
 
     // MARK: - Published Properties
 
-    @Published var sounds = [Sound]()
+    @Published var content = [AnyEquatableMedoContent]()
     @Published var soundSortOption: Int = FolderSoundSortOption.titleAscending.rawValue
 
     @Published var dataLoadingDidFail: Bool = false
@@ -30,43 +30,69 @@ class FolderDetailViewViewModel: ObservableObject {
     // MARK: - Stored Properties
 
     private let folder: UserFolder
+    private let database: LocalDatabaseProtocol
 
     // MARK: - Computed Properties
 
     var soundsPublisher: AnyPublisher<[AnyEquatableMedoContent], Never> {
-        $sounds
+        $content
             .map { $0.map { AnyEquatableMedoContent($0) } }
             .eraseToAnyPublisher()
     }
 
     var soundCount: String {
-        sounds.count == 1 ? "1 SOM" : "\(sounds.count) SONS"
+        guard !content.isEmpty else { return "" }
+        return content.count == 1 ? "1 ITEM" : "\(content.count) ITENS"
     }
 
     // MARK: - Initializers
 
     init(
-        folder: UserFolder
+        folder: UserFolder,
+        database injectedDatabase: LocalDatabaseProtocol
     ) {
         self.folder = folder
+        self.database = injectedDatabase
+    }
+}
+
+// MARK: - User Actions
+
+extension FolderDetailViewViewModel {
+
+    public func onViewAppeared() {
+        loadContent()
     }
 
-    // MARK: - Functions
+    public func onPulledToRefresh() {
+        loadContent()
+    }
 
-    func reloadSounds() {
+    public func onContentSortOptionChanged() {
+        sortSounds(by: soundSortOption)
+    }
+}
+
+// MARK: - Internal Functions
+
+extension FolderDetailViewViewModel {
+
+    private func loadContent() {
         do {
-            let folderContents = try LocalDatabase.shared.contentsInside(userFolder: folder.id)
+            let folderContents = try database.contentsInside(userFolder: folder.id)
             let contentIds = folderContents.map { $0.contentId }
-            self.sounds = try LocalDatabase.shared.sounds(withIds: contentIds)
+            let sounds = try database.sounds(withIds: contentIds).map { AnyEquatableMedoContent($0) }
+            let songs = try database.songs(withIds: contentIds).map { AnyEquatableMedoContent($0) }
+            content = sounds + songs
 
-            for i in stride(from: 0, to: self.sounds.count, by: 1) {
+            for i in stride(from: 0, to: self.content.count, by: 1) {
                 // DateAdded here is date added to folder not to the app as it means outside folders.
-                self.sounds[i].dateAdded = folderContents.first(where: { $0.contentId == self.sounds[i].id })?.dateAdded
+                self.content[i].dateAdded = folderContents.first(where: { $0.contentId == self.content[i].id })?.dateAdded
             }
 
-            guard sounds.count > 0 else { return }
+            guard content.count > 0 else { return }
             let sortOption = FolderSoundSortOption(rawValue: folder.userSortPreference ?? 0) ?? .titleAscending
-            sort(&sounds, by: sortOption)
+            sort(&content, by: sortOption)
         } catch {
             print("Erro carregando sons: \(error.localizedDescription)")
         }
@@ -74,36 +100,36 @@ class FolderDetailViewViewModel: ObservableObject {
 
     // MARK: - List Sorting
 
-    func sortSounds(by rawSortOption: Int) {
+    private func sortSounds(by rawSortOption: Int) {
         let sortOption = FolderSoundSortOption(rawValue: rawSortOption) ?? .titleAscending
-        sort(&sounds, by: sortOption)
+        sort(&content, by: sortOption)
         do {
-            try LocalDatabase.shared.update(userSortPreference: soundSortOption, forFolderId: folder.id)
+            try database.update(userSortPreference: soundSortOption, forFolderId: folder.id)
         } catch {
             print("Erro ao salvar preferência de ordenação da pasta \(folder.name): \(error.localizedDescription)")
         }
     }
 
-    private func sort(_ sounds: inout [Sound], by sortOption: FolderSoundSortOption) {
+    private func sort(_ content: inout [AnyEquatableMedoContent], by sortOption: FolderSoundSortOption) {
         switch sortOption {
         case .titleAscending:
-            sortByTitleAscending(&sounds)
+            sortByTitleAscending(&content)
         case .authorNameAscending:
-            sortByAuthorNameAscending(&sounds)
+            sortByAuthorNameAscending(&content)
         case .dateAddedDescending:
-            sortByDateAddedDescending(&sounds)
+            sortByDateAddedDescending(&content)
         }
     }
 
-    private func sortByTitleAscending(_ sounds: inout [Sound]) {
-        sounds.sort(by: { $0.title.withoutDiacritics() < $1.title.withoutDiacritics() })
+    private func sortByTitleAscending(_ content: inout [AnyEquatableMedoContent]) {
+        content.sort(by: { $0.title.withoutDiacritics() < $1.title.withoutDiacritics() })
     }
 
-    private func sortByAuthorNameAscending(_ sounds: inout [Sound]) {
-        sounds.sort(by: { $0.authorName?.withoutDiacritics() ?? "" < $1.authorName?.withoutDiacritics() ?? "" })
+    private func sortByAuthorNameAscending(_ content: inout [AnyEquatableMedoContent]) {
+        content.sort(by: { $0.subtitle.withoutDiacritics() < $1.subtitle.withoutDiacritics() })
     }
 
-    private func sortByDateAddedDescending(_ sounds: inout [Sound]) {
-        sounds.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
+    private func sortByDateAddedDescending(_ content: inout [AnyEquatableMedoContent]) {
+        content.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
     }
 }

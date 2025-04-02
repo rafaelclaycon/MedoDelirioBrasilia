@@ -10,7 +10,7 @@ import SwiftUI
 struct FolderDetailView: View {
 
     @StateObject private var viewModel: FolderDetailViewViewModel
-    @StateObject private var soundListViewModel: ContentListViewModel<[AnyEquatableMedoContent]>
+    @StateObject private var contentListViewModel: ContentListViewModel<[AnyEquatableMedoContent]>
 
     let folder: UserFolder
 
@@ -27,12 +27,12 @@ struct FolderDetailView: View {
     
     private var title: String {
         guard currentSoundsListMode.wrappedValue == SoundsListMode.regular else {
-            if soundListViewModel.selectionKeeper.count == 0 {
+            if contentListViewModel.selectionKeeper.count == 0 {
                 return Shared.SoundSelection.selectSounds
-            } else if soundListViewModel.selectionKeeper.count == 1 {
+            } else if contentListViewModel.selectionKeeper.count == 1 {
                 return Shared.SoundSelection.soundSelectedSingular
             } else {
-                return String(format: Shared.SoundSelection.soundsSelectedPlural, soundListViewModel.selectionKeeper.count)
+                return String(format: Shared.SoundSelection.soundsSelectedPlural, contentListViewModel.selectionKeeper.count)
             }
         }
         return "\(folder.symbol)  \(folder.name)"
@@ -45,7 +45,10 @@ struct FolderDetailView: View {
         currentSoundsListMode: Binding<SoundsListMode>
     ) {
         self.folder = folder
-        let viewModel = FolderDetailViewViewModel(folder: folder)
+        let viewModel = FolderDetailViewViewModel(
+            folder: folder,
+            database: LocalDatabase.shared
+        )
 
         self._viewModel = StateObject(wrappedValue: viewModel)
         self.currentSoundsListMode = currentSoundsListMode
@@ -54,11 +57,11 @@ struct FolderDetailView: View {
             data: viewModel.soundsPublisher,
             menuOptions: [.sharingOptions(), .playFromThisSound(), .removeFromFolder()],
             currentSoundsListMode: currentSoundsListMode,
-            refreshAction: { viewModel.reloadSounds() },
+            refreshAction: { viewModel.onPulledToRefresh() },
             insideFolder: folder
         )
 
-        self._soundListViewModel = StateObject(wrappedValue: soundListViewModel)
+        self._contentListViewModel = StateObject(wrappedValue: soundListViewModel)
     }
 
     // MARK: - View Body
@@ -66,7 +69,7 @@ struct FolderDetailView: View {
     var body: some View {
         VStack {
             ContentList(
-                viewModel: soundListViewModel,
+                viewModel: contentListViewModel,
                 multiSelectFolderOperation: .remove,
                 showNewTag: false,
                 dataLoadingDidFail: viewModel.dataLoadingDidFail,
@@ -115,11 +118,11 @@ struct FolderDetailView: View {
         .navigationTitle(title)
         .toolbar { trailingToolbarControls() }
         .onAppear {
-            viewModel.reloadSounds()
+            viewModel.onViewAppeared()
         }
         .onDisappear {
-            if soundListViewModel.isPlayingPlaylist {
-                soundListViewModel.stopPlaying()
+            if contentListViewModel.isPlayingPlaylist {
+                contentListViewModel.stopPlaying()
             }
         }
         .sheet(isPresented: $showingFolderInfoEditingView) {
@@ -133,17 +136,17 @@ struct FolderDetailView: View {
         }
     }
 
-    // MARK: - Auxiliary Views
+    // MARK: - Subviews
 
     @ViewBuilder func trailingToolbarControls() -> some View {
         HStack(spacing: 16) {
             if currentSoundsListMode.wrappedValue == .regular {
                 Button {
-                    soundListViewModel.playStopPlaylist()
+                    contentListViewModel.playStopPlaylist()
                 } label: {
-                    Image(systemName: soundListViewModel.isPlayingPlaylist ? "stop.fill" : "play.fill")
+                    Image(systemName: contentListViewModel.isPlayingPlaylist ? "stop.fill" : "play.fill")
                 }
-                .disabled(viewModel.sounds.isEmpty)
+                .disabled(viewModel.content.isEmpty)
             } else {
                 selectionControls()
             }
@@ -151,7 +154,7 @@ struct FolderDetailView: View {
             Menu {
                 Section {
                     Button {
-                        soundListViewModel.startSelecting()
+                        contentListViewModel.startSelecting()
                     } label: {
                         Label(
                             currentSoundsListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",
@@ -173,10 +176,10 @@ struct FolderDetailView: View {
                                 .tag(2)
                         }
                     }
-                    .onChange(of: viewModel.soundSortOption) { sortOption in
-                        viewModel.sortSounds(by: sortOption)
+                    .onChange(of: viewModel.soundSortOption) {
+                        viewModel.onContentSortOptionChanged()
                     }
-                    .disabled(viewModel.sounds.isEmpty)
+                    .disabled(viewModel.content.isEmpty)
                 }
 
                 //                    Section {
@@ -212,7 +215,7 @@ struct FolderDetailView: View {
             } label: {
                 Image(systemName: "ellipsis.circle")
             }
-            .disabled(soundListViewModel.isPlayingPlaylist || viewModel.sounds.isEmpty)
+            .disabled(contentListViewModel.isPlayingPlaylist || viewModel.content.isEmpty)
         }
     }
     
@@ -223,7 +226,7 @@ struct FolderDetailView: View {
             HStack(spacing: 16) {
                 Button {
                     currentSoundsListMode.wrappedValue = .regular
-                    soundListViewModel.selectionKeeper.removeAll()
+                    contentListViewModel.selectionKeeper.removeAll()
                 } label: {
                     Text("Cancelar")
                         .bold()
@@ -232,6 +235,8 @@ struct FolderDetailView: View {
         }
     }
 }
+
+// MARK: - Preview
 
 #Preview {
     FolderDetailView(

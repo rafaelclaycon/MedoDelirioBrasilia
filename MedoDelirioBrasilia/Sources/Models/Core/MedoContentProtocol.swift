@@ -14,7 +14,7 @@ internal protocol MedoContentProtocol: Equatable {
     var subtitle: String { get }
     var description: String { get }
     var duration: Double { get }
-    var dateAdded: Date? { get }
+    var dateAdded: Date? { get set }
     var isFromServer: Bool? { get }
     var type: MediaType { get }
     var isFavorite: Bool? { get set }

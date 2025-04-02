@@ -41,7 +41,12 @@ struct AnyEquatableMedoContent: MedoContentProtocol, Equatable, Identifiable {
     }
 
     var dateAdded: Date? {
-        base.dateAdded
+        get {
+            base.dateAdded
+        }
+        set {
+            base.dateAdded = newValue
+        }
     }
 
     var isFromServer: Bool? {
