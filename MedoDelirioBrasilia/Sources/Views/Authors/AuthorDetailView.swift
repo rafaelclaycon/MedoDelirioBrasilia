@@ -20,21 +20,7 @@ struct AuthorDetailView: View {
     @State private var showSelectionControlsInToolbar = false
     @State private var showMenuOnToolbarForiOS16AndHigher = false
     
-    @State private var listWidth: CGFloat = 700
-    @State private var columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
-    @Environment(\.sizeCategory) var sizeCategory
-    
     @State private var showingModalView = false
-    
-    // Add to Folder vars
-    @State private var showingAddToFolderModal = false
-    @State private var hadSuccessAddingToFolder: Bool = false
-    @State private var folderName: String? = nil
-    @State private var pluralization: WordPluralization = .singular
-    @State private var shouldDisplayAddedToFolderToast: Bool = false
-    
-    // Share as Video
-    @State private var shareAsVideo_Result = ShareAsVideoResult()
 
     // MARK: - Sticky Header Vars
 
@@ -245,27 +231,10 @@ struct AuthorDetailView: View {
         .onAppear {
             // TODO: Refactor this to be closer to SoundsView.
             viewModel.loadSounds(for: author.id)
-
-            columns = GridHelper.soundColumns(listWidth: listWidth, sizeCategory: sizeCategory)
         }
         .onDisappear {
             if currentSoundsListMode.wrappedValue == .selection {
                 soundListViewModel.stopSelecting()
-            }
-        }
-        .overlay {
-            if shouldDisplayAddedToFolderToast {
-                VStack {
-                    Spacer()
-
-                    ToastView(
-                        icon: "checkmark",
-                        iconColor: .green,
-                        text: pluralization.getAddedToFolderToastText(folderName: folderName)
-                    )
-                    .padding()
-                }
-                .transition(.moveAndFade)
             }
         }
         .alert(isPresented: $viewModel.showAlert) {
@@ -292,15 +261,6 @@ struct AuthorDetailView: View {
                 )
             }
         }
-        .sheet(isPresented: $showingAddToFolderModal) {
-            AddToFolderView(
-                isBeingShown: $showingAddToFolderModal,
-                hadSuccess: $hadSuccessAddingToFolder,
-                folderName: $folderName,
-                pluralization: $pluralization,
-                selectedSounds: viewModel.selectedSounds ?? [Sound]()
-            )
-        }
         .sheet(isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog) {
             EmailAppPickerView(
                 isBeingShown: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog,
@@ -325,36 +285,7 @@ struct AuthorDetailView: View {
                 afterCopyAddressAction: {}
             )
         }
-        .onChange(of: showingAddToFolderModal) { showingAddToFolderModal in
-            if (showingAddToFolderModal == false) && hadSuccessAddingToFolder {
-                // Need to get count before clearing the Set.
-                let selectedCount: Int = soundListViewModel.selectionKeeper.count
-
-                if currentSoundsListMode.wrappedValue == .selection {
-                    soundListViewModel.stopSelecting()
-                }
-
-                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-                    withAnimation {
-                        shouldDisplayAddedToFolderToast = true
-                    }
-                    TapticFeedback.success()
-                }
-
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    withAnimation {
-                        shouldDisplayAddedToFolderToast = false
-                        folderName = nil
-                        hadSuccessAddingToFolder = false
-                    }
-                }
-
-                if pluralization == .plural {
-                    viewModel.sendUsageMetricToServer(action: "didAddManySoundsToFolder(\(selectedCount))", authorName: author.name)
-                }
-            }
-        }
-        .onChange(of: soundListViewModel.selectionKeeper.count) { selectionKeeperCount in
+        .onChange(of: soundListViewModel.selectionKeeper.count) {
             if navBarTitle.isEmpty == false {
                 DispatchQueue.main.async {
                     navBarTitle = title
@@ -363,6 +294,8 @@ struct AuthorDetailView: View {
         }
         .edgesIgnoringSafeArea(edgesToIgnore)
     }
+
+    // MARK: - Subviews
 
     @ViewBuilder
     private func moreOptionsMenu(isOnToolbar: Bool) -> some View {
@@ -384,7 +317,7 @@ struct AuthorDetailView: View {
                 Button {
                     soundListViewModel.stopSelecting()
                     viewModel.selectedSounds = viewModel.sounds
-                    showingAddToFolderModal = true
+                    // showingAddToFolderModal = true // TODO: Fix - move to ContentList
                 } label: {
                     Label("Adicionar Todos a Pasta", systemImage: "folder.badge.plus")
                 }
@@ -413,9 +346,9 @@ struct AuthorDetailView: View {
                         Text("Mais Recentes no Topo")
                             .tag(1)
                     }
-                    .onChange(of: viewModel.soundSortOption, perform: { sortOption in
-                        viewModel.sortSounds(by: sortOption)
-                    })
+                    .onChange(of: viewModel.soundSortOption) {
+                        viewModel.sortSounds(by: viewModel.soundSortOption)
+                    }
                 }
             }
         } label: {
@@ -442,6 +375,8 @@ struct ViewOffsetKey: PreferenceKey {
         value += nextValue()
     }
 }
+
+// MARK: - Preview
 
 #Preview {
     AuthorDetailView(

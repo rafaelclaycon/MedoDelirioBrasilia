@@ -31,11 +31,6 @@ final class ContentListViewModel<T>: ObservableObject {
     // Share as Video
     @Published var shareAsVideoResult = ShareAsVideoResult()
 
-    // Add to Folder vars
-    @Published var hadSuccessAddingToFolder: Bool = false
-    @Published var folderName: String? = nil
-    @Published var pluralization: WordPluralization = .singular
-
     // Search
     @Published var searchText: String = ""
 
@@ -109,7 +104,7 @@ final class ContentListViewModel<T>: ObservableObject {
 
 extension ContentListViewModel {
 
-    func onContentSelected(_ content: AnyEquatableMedoContent) {
+    public func onContentSelected(_ content: AnyEquatableMedoContent) {
         if currentSoundsListMode.wrappedValue == .regular {
             if nowPlayingKeeper.contains(content.id) {
                 AudioPlayer.shared?.togglePlay()
@@ -125,6 +120,29 @@ extension ContentListViewModel {
             } else {
                 selectionKeeper.insert(content.id)
             }
+        }
+    }
+
+    public func onAddedContentToFolderSuccessfully(
+        folderName: String,
+        pluralization: WordPluralization
+    ) {
+        // Need to get count before clearing the Set.
+        let selectedCount: Int = selectionKeeper.count
+
+        if currentSoundsListMode.wrappedValue == .selection {
+            stopSelecting()
+        }
+
+        displayToast(
+            toastText: pluralization.getAddedToFolderToastText(folderName: folderName)
+        )
+
+        if pluralization == .plural {
+            Analytics().send(
+                originatingScreen: "SoundsView",
+                action: "didAddManySoundsToFolder(\(selectedCount))"
+            )
         }
     }
 }

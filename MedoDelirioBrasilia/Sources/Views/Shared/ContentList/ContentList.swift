@@ -49,6 +49,9 @@ struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, Er
     @State private var multiSelectButtonsEnabled: Bool = false
     @State private var allSelectedAreFavorites: Bool = false
 
+    // Add to Folder details
+    @State private var addToFolderHelper = AddToFolderDetails()
+
     @ScaledMetric private var explicitOffWarningTopPadding = 16
     @ScaledMetric private var explicitOffWarningBottomPadding = 20
 
@@ -284,10 +287,8 @@ struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, Er
                                     case .addToFolder:
                                         AddToFolderView(
                                             isBeingShown: $viewModel.showingModalView,
-                                            hadSuccess: $viewModel.hadSuccessAddingToFolder,
-                                            folderName: $viewModel.folderName,
-                                            pluralization: $viewModel.pluralization,
-                                            selectedContent: viewModel.selectedContentMultiple!
+                                            details: $addToFolderHelper,
+                                            selectedContent: viewModel.selectedContentMultiple ?? []
                                         )
 
                                     case .contentDetail:
@@ -345,28 +346,15 @@ struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, Er
 //                                        }
 //                                    }
 //                                }
-//                                .onChange(of: viewModel.showingModalView) { showingModalView in
-//                                    if (viewModel.showingModalView == false) && viewModel.hadSuccessAddingToFolder {
-//                                        // Need to get count before clearing the Set.
-//                                        let selectedCount: Int = viewModel.selectionKeeper.count
-//
-//                                        if viewModel.currentSoundsListMode.wrappedValue == .selection {
-//                                            viewModel.stopSelecting()
-//                                        }
-//
-//                                        viewModel.displayToast(toastText: viewModel.pluralization.getAddedToFolderToastText(folderName: viewModel.folderName)) {
-//                                            viewModel.folderName = nil
-//                                            viewModel.hadSuccessAddingToFolder = false
-//                                        }
-//
-//                                        if viewModel.pluralization == .plural {
-//                                            Analytics().send(
-//                                                originatingScreen: "SoundsView",
-//                                                action: "didAddManySoundsToFolder(\(selectedCount))"
-//                                            )
-//                                        }
-//                                    }
-//                                }
+                                .onChange(of: viewModel.showingModalView) {
+                                    if (viewModel.showingModalView == false) && addToFolderHelper.hadSuccess {
+                                        viewModel.onAddedContentToFolderSuccessfully(
+                                            folderName: addToFolderHelper.folderName ?? "",
+                                            pluralization: addToFolderHelper.pluralization
+                                        )
+                                        addToFolderHelper = AddToFolderDetails()
+                                    }
+                                }
 //                                .onChange(of: geometry.size.width) { newWidth in
 //                                    updateGridLayout(with: newWidth)
 //                                }
@@ -450,46 +438,43 @@ struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, Er
                 }
             }
         }
-//        .overlay {
-//            if viewModel.showToastView {
-//                VStack {
-//                    Spacer()
-//
-//                    ToastView(
-//                        icon: viewModel.toastIcon,
-//                        iconColor: viewModel.toastIconColor,
-//                        text: viewModel.toastText
-//                    )
-//                    .padding(.horizontal)
-//                    .padding(
-//                        .bottom,
-//                        UIDevice.isiPhone && (soundSearchTextIsEmpty.wrappedValue != nil) ? Shared.Constants.toastViewBottomPaddingPhone : Shared.Constants.toastViewBottomPaddingPad
-//                    )
-//                }
-//                .transition(.moveAndFade)
-//            }
-//            if showMultiSelectButtons {
-//                VStack {
-//                    Spacer()
-//
-//                    FloatingSelectionOptionsView(
-//                        areButtonsEnabled: multiSelectButtonsEnabled,
-//                        allSelectedAreFavorites: allSelectedAreFavorites,
-//                        folderOperation: multiSelectFolderOperation,
-//                        shareIsProcessing: viewModel.shareManyIsProcessing,
-//                        favoriteAction: { viewModel.addRemoveManyFromFavorites() },
-//                        folderAction: {
-//                            if multiSelectFolderOperation == .add {
-//                                viewModel.addManyToFolder()
-//                            } else {
-//                                viewModel.showRemoveMultipleSoundsConfirmation()
-//                            }
-//                        },
-//                        shareAction: { viewModel.shareSelected() }
-//                    )
-//                }
-//            }
-//        }
+        .overlay {
+            if viewModel.showToastView {
+                VStack {
+                    Spacer()
+
+                    ToastView(
+                        icon: viewModel.toastIcon,
+                        iconColor: viewModel.toastIconColor,
+                        text: viewModel.toastText
+                    )
+                    .padding(.horizontal)
+                    .padding(.bottom, Shared.Constants.toastViewBottomPaddingPad)
+                }
+                .transition(.moveAndFade)
+            }
+            if showMultiSelectButtons {
+                VStack {
+                    Spacer()
+
+                    FloatingSelectionOptionsView(
+                        areButtonsEnabled: multiSelectButtonsEnabled,
+                        allSelectedAreFavorites: allSelectedAreFavorites,
+                        folderOperation: multiSelectFolderOperation,
+                        shareIsProcessing: viewModel.shareManyIsProcessing,
+                        favoriteAction: { viewModel.addRemoveManyFromFavorites() },
+                        folderAction: {
+                            if multiSelectFolderOperation == .add {
+                                viewModel.addManyToFolder()
+                            } else {
+                                viewModel.showRemoveMultipleSoundsConfirmation()
+                            }
+                        },
+                        shareAction: { viewModel.shareSelected() }
+                    )
+                }
+            }
+        }
     }
 
     // MARK: - Functions

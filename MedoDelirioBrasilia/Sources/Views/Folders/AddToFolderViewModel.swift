@@ -22,10 +22,12 @@ import SwiftUI
 
     var soundsThatCanBeAdded: [AnyEquatableMedoContent]? = nil
 
+    var folderForSomeSoundsAlreadyInFolder: UserFolder? = nil
+
     // Alerts
     var alertTitle: String = .empty
     var alertMessage: String = .empty
-    var alertType: AlertType = .singleOption
+    var alertType: AddToFolderAlertType = .ok
     var showAlert: Bool = false
 }
 
@@ -33,10 +35,14 @@ import SwiftUI
 
 extension AddToFolderViewModel {
 
+    public func onViewAppeared() {
+        loadFolderList(withFolders: try? database.allFolders())
+    }
+
     public func onExistingFolderSelected(
         folder: UserFolder,
         selectedContent: [AnyEquatableMedoContent]
-    ) {
+    ) -> AddToFolderDetails? {
         do {
             soundsThatCanBeAdded = canBeAddedToFolder(content: selectedContent, folderId: folder.id)
 
@@ -44,14 +50,15 @@ extension AddToFolderViewModel {
 
             if selectedContent.count == soundsThatCanBeAdded?.count {
                 try selectedContent.forEach { item in
-                    try LocalDatabase.shared.insert(contentId: item.id, intoUserFolder: folder.id)
+                    try database.insert(contentId: item.id, intoUserFolder: folder.id)
                 }
                 try UserFolderRepository().update(folder)
 
-                folderName = "\(folder.symbol) \(folder.name)"
-                pluralization = selectedSounds.count > 1 ? .plural : .singular
-                hadSuccess = true
-                isBeingShown = false
+                return AddToFolderDetails(
+                    hadSuccess: true,
+                    folderName: "\(folder.symbol) \(folder.name)",
+                    pluralization: selectedContent.count > 1 ? .plural : .singular
+                )
             } else if soundsAlreadyInFolder == 1, selectedContent.count == 1 {
                 showSingleSoundAlredyInFolderAlert(folderName: folder.name)
             } else if soundsAlreadyInFolder == selectedContent.count {
@@ -63,6 +70,34 @@ extension AddToFolderViewModel {
         } catch {
             showIssueSavingAlert(error.localizedDescription)
         }
+        return nil
+    }
+
+    public func onAddOnlyNonExistingSelected() -> AddToFolderDetails? {
+        do {
+            try soundsThatCanBeAdded?.forEach { sound in
+                try database.insert(contentId: sound.id, intoUserFolder: folderForSomeSoundsAlreadyInFolder?.id ?? .empty)
+            }
+
+            var folderName = ""
+            if let folder = folderForSomeSoundsAlreadyInFolder {
+                try UserFolderRepository().update(folder)
+                folderName = "\(folder.symbol) \(folder.name)"
+            }
+
+            return AddToFolderDetails(
+                hadSuccess: true,
+                folderName: folderName,
+                pluralization: soundsThatCanBeAdded?.count ?? 0 > 1 ? .plural : .singular
+            )
+        } catch {
+            showIssueSavingAlert(error.localizedDescription)
+        }
+        return nil
+    }
+
+    public func onNewFolderCreationSheetDismissed() {
+        loadFolderList(withFolders: try? database.allFolders())
     }
 }
 
@@ -103,7 +138,7 @@ extension AddToFolderViewModel {
     private func showSingleSoundAlredyInFolderAlert(folderName: String) {
         alertTitle = "Já Adicionado"
         alertMessage = "Esse som já está na pasta \"\(folderName)\"."
-        alertType = .singleOption
+        alertType = .ok
         showAlert = true
     }
 
@@ -114,21 +149,21 @@ extension AddToFolderViewModel {
             alertTitle = "\(soundCountAlreadyInFolder) Sons Já Adicionados"
         }
         alertMessage = "Deseja adicionar o restante à pasta \"\(folderName)\"?"
-        alertType = .twoOptions
+        alertType = .addOnlyNonOverlapping
         showAlert = true
     }
 
     private func showAllSoundsAlredyInFolderAlert(folderName: String) {
         alertTitle = "Já Adicionados"
         alertMessage = "Todos os sons já estão na pasta \"\(folderName)\"."
-        alertType = .singleOption
+        alertType = .ok
         showAlert = true
     }
 
     private func showIssueSavingAlert(_ message: String) {
         alertTitle = "Erro Adicionando Sons à Pasta"
         alertMessage = message
-        alertType = .singleOption
+        alertType = .ok
         showAlert = true
     }
 }
