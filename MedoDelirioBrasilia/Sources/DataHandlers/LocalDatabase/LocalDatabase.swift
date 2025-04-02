@@ -9,6 +9,7 @@ internal protocol LocalDatabaseProtocol {
     func update(sound updatedSound: Sound) throws
     func delete(soundId: String) throws
     func setIsFromServer(to value: Bool, onSoundId soundId: String) throws
+    func sounds(withIds soundIds: [String]) throws -> [Sound]
 
     // Author
     func insert(author newAuthor: Author) throws
@@ -20,15 +21,18 @@ internal protocol LocalDatabaseProtocol {
     func allFolders() throws -> [UserFolder]
     func contentsInside(userFolder userFolderId: String) throws -> [UserFolderContent]
     func contentExistsInsideUserFolder(withId folderId: String, contentId: String) throws -> Bool
+    func insert(contentId: String, intoUserFolder userFolderId: String) throws
     func soundIdsInside(userFolder userFolderId: String) throws -> [String]
     func folderHashes() throws -> [String: String]
     func folders(withIds folderIds: [String]) throws -> [UserFolder]
+    func update(userSortPreference: Int, forFolderId userFolderId: String) throws
 
     // Song
     func insert(song newSong: Song) throws
     func update(song updatedSong: Song) throws
     func delete(songId: String) throws
     func setIsFromServer(to value: Bool, onSongId songId: String) throws
+    func songs(withIds songIds: [String]) throws -> [Song]
 
     // MusicGenre
     func insert(genre newGenre: MusicGenre) throws

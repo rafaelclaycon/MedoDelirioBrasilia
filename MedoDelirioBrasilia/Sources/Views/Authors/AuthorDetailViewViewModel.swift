@@ -32,8 +32,10 @@ class AuthorDetailViewViewModel: ObservableObject {
 
     // MARK: - Computed Properties
 
-    var soundsPublisher: AnyPublisher<[Sound], Never> {
-        $sounds.eraseToAnyPublisher()
+    var soundsPublisher: AnyPublisher<[AnyEquatableMedoContent], Never> {
+        $sounds
+            .map { $0.map { AnyEquatableMedoContent($0) } }
+            .eraseToAnyPublisher()
     }
 
     var soundCount: String {

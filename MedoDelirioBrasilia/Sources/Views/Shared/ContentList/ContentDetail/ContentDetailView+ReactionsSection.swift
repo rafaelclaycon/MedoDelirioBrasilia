@@ -1,5 +1,5 @@
 //
-//  SoundDetailView+ReactionsSection.swift
+//  ContentDetailView+ReactionsSection.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 23/11/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension SoundDetailView {
+extension ContentDetailView {
 
     struct ReactionsSection: View {
 
@@ -145,7 +145,7 @@ extension SoundDetailView {
 // MARK: - Preview
 
 #Preview("Loading View") {
-    SoundDetailView.ReactionsSection(
+    ContentDetailView.ReactionsSection(
         state: .loading,
         openReactionAction: { _ in },
         suggestAction: {},
@@ -154,7 +154,7 @@ extension SoundDetailView {
 }
 
 #Preview("No Data View") {
-    SoundDetailView.ReactionsSection(
+    ContentDetailView.ReactionsSection(
         state: .loaded([]),
         openReactionAction: { _ in },
         suggestAction: {},
@@ -163,7 +163,7 @@ extension SoundDetailView {
 }
 
 #Preview("Loading Error") {
-    SoundDetailView.ReactionsSection(
+    ContentDetailView.ReactionsSection(
         state: .error(""),
         openReactionAction: { _ in },
         suggestAction: {},
@@ -172,7 +172,7 @@ extension SoundDetailView {
 }
 
 #Preview("Loaded View") {
-    SoundDetailView.ReactionsSection(
+    ContentDetailView.ReactionsSection(
         state: .loaded(Reaction.allMocks),
         openReactionAction: { _ in },
         suggestAction: {},

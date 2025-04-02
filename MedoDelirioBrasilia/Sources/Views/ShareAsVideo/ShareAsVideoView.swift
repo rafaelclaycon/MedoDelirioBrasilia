@@ -29,6 +29,8 @@ struct ShareAsVideoView: View {
     private let textSocialNetworkTip = "Para responder a uma publicação na sua rede social favorita, escolha Salvar Vídeo e depois adicione o vídeo à resposta a partir do app da rede."
     private let instagramTip = "Para fazer um Story, escolha Salvar Vídeo e depois adicione o vídeo ao seu Story a partir do Instagram."
 
+    // MARK: - Computed Properties
+
     private var isSquare: Bool {
         viewModel.selectedSocialNetwork == IntendedVideoDestination.twitter.rawValue
     }
@@ -36,7 +38,9 @@ struct ShareAsVideoView: View {
     private var is9By16: Bool {
         !isSquare
     }
-    
+
+    // MARK: - View Body
+
     var body: some View {
         let squareImage = squareImageView(contentName: viewModel.content.title, contentAuthor: viewModel.subtitle)
         let nineBySixteenImage = nineBySixteenImageView(contentName: viewModel.content.title, contentAuthor: viewModel.subtitle)
@@ -51,8 +55,8 @@ struct ShareAsVideoView: View {
                         }
                         .pickerStyle(SegmentedPickerStyle())
                         .disabled(viewModel.isShowingProcessingView)
-                        .onChange(of: viewModel.selectedSocialNetwork) { newValue in
-                            tipText = newValue == IntendedVideoDestination.twitter.rawValue ? textSocialNetworkTip : instagramTip
+                        .onChange(of: viewModel.selectedSocialNetwork) {
+                            tipText = viewModel.selectedSocialNetwork == IntendedVideoDestination.twitter.rawValue ? textSocialNetworkTip : instagramTip
                         }
                         
                         if viewModel.selectedSocialNetwork == 0 {
@@ -313,14 +317,16 @@ struct ShareAsVideoView: View {
     
 }
 
-struct ShareAsVideoNewView_Previews: PreviewProvider {
-    static var previews: some View {
-        ShareAsVideoView(
-            viewModel: ShareAsVideoViewViewModel(content: Sound(title: "Você é maluco ou você é idiota, companheiro?"), subtitle: "Lula (Cristiano Botafogo)"),
-            isBeingShown: .constant(true),
-            result: .constant(ShareAsVideoResult()),
-            useLongerGeneratingVideoMessage: false
-        )
-    }
-    
+// MARK: - Preview
+
+#Preview {
+    ShareAsVideoView(
+        viewModel: ShareAsVideoViewViewModel(
+            content: AnyEquatableMedoContent(Sound(title: "Você é maluco ou você é idiota, companheiro?")),
+            subtitle: "Lula (Cristiano Botafogo)"
+        ),
+        isBeingShown: .constant(true),
+        result: .constant(ShareAsVideoResult()),
+        useLongerGeneratingVideoMessage: false
+    )
 }

@@ -1,5 +1,5 @@
 //
-//  SoundListViewModel.swift
+//  ContentListViewModel.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 13/04/24.
@@ -9,33 +9,27 @@ import Combine
 import SwiftUI
 
 @MainActor
-final class SoundListViewModel<T>: ObservableObject {
+final class ContentListViewModel<T>: ObservableObject {
 
-    @Published var state: LoadingState<[Sound]> = .loading
+    @Published var state: LoadingState<[AnyEquatableMedoContent]> = .loading
     @Published var menuOptions: [ContextMenuSection]
     @Published var needsRefreshAfterChange: Bool
     var refreshAction: (() -> Void)?
     var folder: UserFolder?
 
-    @Published var favoritesKeeper = Set<String>()
     @Published var highlightKeeper = Set<String>()
     @Published var nowPlayingKeeper = Set<String>()
     @Published var selectionKeeper = Set<String>()
 
-    @Published var selectedSound: Sound? = nil
-    @Published var selectedSounds: [Sound]? = nil
-    @Published var subviewToOpen: SoundListModalToOpen = .shareAsVideo
+    @Published var selectedContentSingle: AnyEquatableMedoContent? = nil
+    @Published var selectedContentMultiple: [AnyEquatableMedoContent]? = nil
+    @Published var subviewToOpen: ContentListModalToOpen = .shareAsVideo
     @Published var showingModalView = false
 
     @Published var authorToOpen: Author? = nil
 
     // Share as Video
     @Published var shareAsVideoResult = ShareAsVideoResult()
-
-    // Add to Folder vars
-    @Published var hadSuccessAddingToFolder: Bool = false
-    @Published var folderName: String? = nil
-    @Published var pluralization: WordPluralization = .singular
 
     // Search
     @Published var searchText: String = ""
@@ -81,7 +75,7 @@ final class SoundListViewModel<T>: ObservableObject {
     // MARK: - Initializer
 
     init(
-        data: AnyPublisher<[Sound], Never>,
+        data: AnyPublisher<[AnyEquatableMedoContent], Never>,
         menuOptions: [ContextMenuSection],
         currentSoundsListMode: Binding<SoundsListMode>,
         needsRefreshAfterChange: Bool = false,
@@ -95,7 +89,10 @@ final class SoundListViewModel<T>: ObservableObject {
         self.folder = insideFolder
 
         data
-            .map { LoadingState.loaded($0) }
+            .map { content in
+                let wrapped = content.map { AnyEquatableMedoContent($0) }
+                return LoadingState.loaded(wrapped)
+            }
             .receive(on: DispatchQueue.main)
             .assign(to: &$state)
 
@@ -105,39 +102,62 @@ final class SoundListViewModel<T>: ObservableObject {
 
 // MARK: - User Actions
 
-extension SoundListViewModel {
+extension ContentListViewModel {
 
-    func onSoundSelected(sound: Sound) {
+    public func onContentSelected(_ content: AnyEquatableMedoContent) {
         if currentSoundsListMode.wrappedValue == .regular {
-            if nowPlayingKeeper.contains(sound.id) {
+            if nowPlayingKeeper.contains(content.id) {
                 AudioPlayer.shared?.togglePlay()
                 nowPlayingKeeper.removeAll()
                 doPlaylistCleanup() // Needed because user tap a playing sound to stop playing a playlist.
             } else {
                 doPlaylistCleanup() // Needed because user can be playing a playlist and decide to tap another sound.
-                play(sound)
+                play(content)
             }
         } else {
-            if selectionKeeper.contains(sound.id) {
-                selectionKeeper.remove(sound.id)
+            if selectionKeeper.contains(content.id) {
+                selectionKeeper.remove(content.id)
             } else {
-                selectionKeeper.insert(sound.id)
+                selectionKeeper.insert(content.id)
             }
+        }
+    }
+
+    public func onAddedContentToFolderSuccessfully(
+        folderName: String,
+        pluralization: WordPluralization
+    ) {
+        // Need to get count before clearing the Set.
+        let selectedCount: Int = selectionKeeper.count
+
+        if currentSoundsListMode.wrappedValue == .selection {
+            stopSelecting()
+        }
+
+        displayToast(
+            toastText: pluralization.getAddedToFolderToastText(folderName: folderName)
+        )
+
+        if pluralization == .plural {
+            Analytics().send(
+                originatingScreen: "SoundsView",
+                action: "didAddManySoundsToFolder(\(selectedCount))"
+            )
         }
     }
 }
 
 // MARK: - Internal Functions
 
-extension SoundListViewModel {
+extension ContentListViewModel {
 
     func loadFavorites() {
         do {
             let favorites = try LocalDatabase.shared.favorites()
-            favoritesKeeper.removeAll()
-            favorites.forEach { favorite in
-                self.favoritesKeeper.insert(favorite.contentId)
-            }
+//            favoritesKeeper.removeAll()
+//            favorites.forEach { favorite in
+//                self.favoritesKeeper.insert(favorite.contentId)
+//            }
         } catch {
             print("Falha ao carregar favoritos: \(error.localizedDescription)")
         }
@@ -151,7 +171,7 @@ extension SoundListViewModel {
             guard favorteAlreadyExists == false else { return }
 
             try LocalDatabase.shared.insert(favorite: newFavorite)
-            favoritesKeeper.insert(newFavorite.contentId)
+//            favoritesKeeper.insert(newFavorite.contentId)
         } catch {
             print("Problem saving favorite \(newFavorite.contentId): \(error.localizedDescription)")
         }
@@ -160,7 +180,7 @@ extension SoundListViewModel {
     func removeFromFavorites(soundId: String) {
         do {
             try LocalDatabase.shared.deleteFavorite(withId: soundId)
-            favoritesKeeper.remove(soundId)
+//            favoritesKeeper.remove(soundId)
         } catch {
             print("Problem removing favorite \(soundId)")
         }
@@ -238,7 +258,7 @@ extension SoundListViewModel {
 
 // MARK: - Sound Playback
 
-extension SoundListViewModel {
+extension ContentListViewModel {
 
     func playStopPlaylist() {
         if isSelectingSounds {
@@ -252,17 +272,17 @@ extension SoundListViewModel {
     }
 
     func play(
-        _ sound: Sound,
+        _ content: AnyEquatableMedoContent,
         scrollToPlaying: Bool = false
     ) {
         do {
-            let url = try sound.fileURL()
+            let url = try content.fileURL()
 
             nowPlayingKeeper.removeAll()
-            nowPlayingKeeper.insert(sound.id)
+            nowPlayingKeeper.insert(content.id)
 
             if scrollToPlaying {
-                scrollTo = sound.id
+                scrollTo = content.id
             }
 
             AudioPlayer.shared = AudioPlayer(
@@ -277,8 +297,8 @@ extension SoundListViewModel {
 
             AudioPlayer.shared?.togglePlay()
         } catch {
-            if sound.isFromServer ?? false {
-                showServerSoundNotAvailableAlert(sound)
+            if content.isFromServer ?? false {
+                showServerSoundNotAvailableAlert(content)
                 // Disregarding the case of the sound not being in the Bundle as this is highly unlikely since the launch of the sync system.
             }
         }
@@ -336,22 +356,22 @@ extension SoundListViewModel {
 
 // MARK: - ContextMenuOption Communication
 
-extension SoundListViewModel: SoundListDisplaying {
+extension ContentListViewModel: ContentListDisplaying {
 
-    func share(sound: Sound) {
+    func share(content: AnyEquatableMedoContent) {
         if UIDevice.isiPhone {
             do {
-                try SharingUtility.shareSound(from: sound.fileURL(), andContentId: sound.id) { didShare in
+                try SharingUtility.shareSound(from: content.fileURL(), andContentId: content.id) { didShare in
                     if didShare {
                         self.displayToast(toastText: Shared.soundSharedSuccessfullyMessage)
                     }
                 }
             } catch {
-                showUnableToGetSoundAlert(sound.title)
+                showUnableToGetSoundAlert(content.title)
             }
         } else {
             do {
-                let url = try sound.fileURL()
+                let url = try content.fileURL()
                 iPadShareSheet = ActivityViewController(activityItems: [url]) { activity, completed, items, error in
                     if completed {
                         self.isShowingShareSheet = false
@@ -360,7 +380,7 @@ extension SoundListViewModel: SoundListDisplaying {
                             return
                         }
                         let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
-                        Logger.shared.logSharedSound(contentId: sound.id, destination: destination, destinationBundleId: activity.rawValue)
+                        Logger.shared.logSharedSound(contentId: content.id, destination: destination, destinationBundleId: activity.rawValue)
 
                         AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
 
@@ -368,74 +388,76 @@ extension SoundListViewModel: SoundListDisplaying {
                     }
                 }
             } catch {
-                showUnableToGetSoundAlert(sound.title)
+                showUnableToGetSoundAlert(content.title)
             }
 
             isShowingShareSheet = true
         }
     }
 
-    func openShareAsVideoModal(for sound: Sound) {
-        selectedSound = sound
+    func openShareAsVideoModal(for content: AnyEquatableMedoContent) {
+        selectedContentSingle = content
         subviewToOpen = .shareAsVideo
         showingModalView = true
     }
 
-    func toggleFavorite(_ soundId: String) {
-        if favoritesKeeper.contains(soundId) {
-            removeFromFavorites(soundId: soundId)
-            if needsRefreshAfterChange {
-                refreshAction!()
-            }
-        } else {
-            addToFavorites(soundId: soundId)
-        }
+    func toggleFavorite(_ contentId: String) {
+        // TODO: Redo this
+//        if favoritesKeeper.contains(soundId) {
+//            removeFromFavorites(soundId: soundId)
+//            if needsRefreshAfterChange {
+//                refreshAction!()
+//            }
+//        } else {
+//            addToFavorites(soundId: soundId)
+//        }
     }
 
-    func addToFolder(_ sound: Sound) {
-        selectedSounds = [Sound]()
-        selectedSounds?.append(sound)
+    func addToFolder(_ content: AnyEquatableMedoContent) {
+        selectedContentMultiple = [AnyEquatableMedoContent]()
+        selectedContentMultiple?.append(content)
         subviewToOpen = .addToFolder
         showingModalView = true
     }
 
-    func playFrom(sound: Sound) {
-        guard case .loaded(let sounds) = state else { return }
-        guard let soundIndex = sounds.firstIndex(where: { $0.id == sound.id }) else { return }
-        let soundInArray = sounds[soundIndex]
-        currentTrackIndex = soundIndex
-        isPlayingPlaylist = true
-        play(soundInArray, scrollToPlaying: true)
+    func playFrom(content: AnyEquatableMedoContent) {
+        guard case .loaded(let loadedContent) = state else { return }
+        guard let soundIndex = loadedContent.firstIndex(where: { $0.id == content.id }) else { return }
+        // TODO: Figure this out later
+//        let soundInArray = sounds[soundIndex]
+//        currentTrackIndex = soundIndex
+//        isPlayingPlaylist = true
+//        play(soundInArray, scrollToPlaying: true)
     }
 
-    func removeFromFolder(_ sound: Sound) {
-        selectedSound = sound
-        showSoundRemovalConfirmation(soundTitle: sound.title)
+    func removeFromFolder(_ content: AnyEquatableMedoContent) {
+        selectedContentSingle = content
+        showSoundRemovalConfirmation(soundTitle: content.title)
     }
 
-    func showDetails(for sound: Sound) {
-        selectedSound = sound
-        subviewToOpen = .soundDetail
+    func showDetails(for content: AnyEquatableMedoContent) {
+        selectedContentSingle = content
+        subviewToOpen = .contentDetail
         showingModalView = true
     }
 
     func showAuthor(withId authorId: String) {
         guard let author = try? LocalDatabase.shared.author(withId: authorId) else {
-            print("SoundList error: unable to find author with id \(authorId)")
+            print("ContentList error: unable to find author with id \(authorId)")
             return
         }
         authorToOpen = author
     }
 
-    func suggestOtherAuthorName(for sound: Sound) {
-        subviewToOpen = .authorIssueEmailPicker(sound)
+    func suggestOtherAuthorName(for content: AnyEquatableMedoContent) {
+        subviewToOpen = .authorIssueEmailPicker(content)
         showingModalView = true
     }
 }
 
 // MARK: - Toast
 
-extension SoundListViewModel {
+extension ContentListViewModel {
 
     func displayToast(
         _ toastIcon: String,
@@ -491,7 +513,7 @@ extension SoundListViewModel {
 
 // MARK: - Multi-Selection
 
-extension SoundListViewModel {
+extension ContentListViewModel {
 
     func startSelecting() {
         stopPlaying()
@@ -508,23 +530,24 @@ extension SoundListViewModel {
     func stopSelecting() {
         currentSoundsListMode.wrappedValue = .regular
         selectionKeeper.removeAll()
-        selectedSounds = nil
+        selectedContentMultiple = nil
         searchText = ""
         isSelectingSounds = false
     }
 
     private func extractSounds() -> [Sound]? {
-        switch state {
-        case .loaded(let sounds):
-            return sounds
-        default:
-            return nil
-        }
+        return nil // TODO: Fix this
+//        switch state {
+//        case .loaded(let sounds):
+//            return sounds
+//        default:
+//            return nil
+//        }
     }
 
     func allSelectedAreFavorites() -> Bool {
         guard selectionKeeper.count > 0 else { return false }
-        return selectionKeeper.isSubset(of: favoritesKeeper)
+        return false //selectionKeeper.isSubset(of: favoritesKeeper)
     }
 
     func addRemoveManyFromFavorites() {
@@ -567,7 +590,7 @@ extension SoundListViewModel {
     func addManyToFolder() {
         guard selectionKeeper.count > 0 else { return }
         guard let sounds = extractSounds() else { return }
-        selectedSounds = sounds.filter({ selectionKeeper.contains($0.id) })
+        selectedContentMultiple = sounds.filter({ selectionKeeper.contains($0.id) }).map { AnyEquatableMedoContent($0) }
         subviewToOpen = .addToFolder
         showingModalView = true
     }
@@ -603,44 +626,44 @@ extension SoundListViewModel {
     }
 
     func shareSelected() {
-        guard selectionKeeper.count > 0 else { return }
-
-        shareManyIsProcessing = true
-
-        guard let sounds = extractSounds() else { return }
-        selectedSounds = sounds.filter({ selectionKeeper.contains($0.id) })
-        guard selectedSounds?.count ?? 0 > 0 else { return }
-
-        let successfulMessage = selectedSounds!.count > 1 ? Shared.soundsExportedSuccessfullyMessage : Shared.soundExportedSuccessfullyMessage
-
-        do {
-            try SharingUtility.share(sounds: selectedSounds!) { didShareSuccessfully in
-                self.shareManyIsProcessing = false
-                self.stopSelecting()
-                if didShareSuccessfully {
-                    self.displayToast(toastText: successfulMessage)
-                }
-            }
-        } catch SoundError.fileNotFound(let soundTitle) {
-            shareManyIsProcessing = false
-            stopSelecting()
-            showUnableToGetSoundAlert(soundTitle)
-        } catch {
-            shareManyIsProcessing = false
-            stopSelecting()
-            showShareManyIssueAlert(error.localizedDescription)
-        }
+//        guard selectionKeeper.count > 0 else { return }
+//
+//        shareManyIsProcessing = true
+//
+//        guard let sounds = extractSounds() else { return }
+//        selectedSounds = sounds.filter({ selectionKeeper.contains($0.id) })
+//        guard selectedSounds?.count ?? 0 > 0 else { return }
+//
+//        let successfulMessage = selectedSounds!.count > 1 ? Shared.soundsExportedSuccessfullyMessage : Shared.soundExportedSuccessfullyMessage
+//
+//        do {
+//            try SharingUtility.share(sounds: selectedSounds!) { didShareSuccessfully in
+//                self.shareManyIsProcessing = false
+//                self.stopSelecting()
+//                if didShareSuccessfully {
+//                    self.displayToast(toastText: successfulMessage)
+//                }
+//            }
+//        } catch SoundError.fileNotFound(let soundTitle) {
+//            shareManyIsProcessing = false
+//            stopSelecting()
+//            showUnableToGetSoundAlert(soundTitle)
+//        } catch {
+//            shareManyIsProcessing = false
+//            stopSelecting()
+//            showShareManyIssueAlert(error.localizedDescription)
+//        }
     }
 }
 
 // MARK: - Folder
 
-extension SoundListViewModel {
+extension ContentListViewModel {
 
     func removeSingleSoundFromFolder() {
         guard let folder else { return }
         guard let refreshAction else { return }
-        guard let sound = selectedSound else { return }
+        guard let sound = selectedContentSingle else { return }
 
         do {
             try LocalDatabase.shared.deleteUserContentFromFolder(withId: folder.id, contentId: sound.id)
@@ -657,7 +680,7 @@ extension SoundListViewModel {
 
 // MARK: - Scroll To Id
 
-extension SoundListViewModel {
+extension ContentListViewModel {
 
     func cancelSearchAndHighlight(id soundId: String) {
         if !searchText.isEmpty {
@@ -674,7 +697,7 @@ extension SoundListViewModel {
 
 // MARK: - Alerts
 
-extension SoundListViewModel {
+extension ContentListViewModel {
 
     func showUnableToGetSoundAlert(_ soundTitle: String) {
         TapticFeedback.error()
@@ -684,11 +707,11 @@ extension SoundListViewModel {
         showAlert = true
     }
 
-    func showServerSoundNotAvailableAlert(_ sound: Sound) {
-        selectedSound = sound
+    func showServerSoundNotAvailableAlert(_ content: AnyEquatableMedoContent) {
+        selectedContentSingle = content
         TapticFeedback.error()
         alertType = .soundFileNotFound
-        alertTitle = Shared.contentNotFoundAlertTitle(sound.title)
+        alertTitle = Shared.contentNotFoundAlertTitle(content.title)
         alertMessage = Shared.serverContentNotAvailableRedownloadMessage
         showAlert = true
     }

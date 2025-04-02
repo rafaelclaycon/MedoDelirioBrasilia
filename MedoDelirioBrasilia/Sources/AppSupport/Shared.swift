@@ -26,7 +26,7 @@ struct Shared {
     }
     
     static let addToFolderButtonText = "Adicionar a Pasta"
-    static let shareSoundButtonText = "Compartilhar Som"
+    static let shareSoundButtonText = "Compartilhar"
     static let shareSongButtonText = "Compartilhar Música"
     static let shareAsVideoButtonText = "Compartilhar como Vídeo"
     static let addToFavorites = "Adicionar aos Favoritos"

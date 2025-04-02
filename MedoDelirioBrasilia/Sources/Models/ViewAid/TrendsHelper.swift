@@ -11,7 +11,7 @@ import SwiftUI
 ///
 /// - Parameters:
 ///    - notifyMainSoundContainer: Tells `MainSoundContainer` what soundId to scroll to.
-///    - soundIdToGoTo: After making sure it is in the `.allSounds` mode, scrolls to the correct sound.
+///    - soundIdToGoTo: After making sure it is in the `.all` mode, scrolls to the correct sound.
 @Observable class TrendsHelper {
 
     // To Sounds tab

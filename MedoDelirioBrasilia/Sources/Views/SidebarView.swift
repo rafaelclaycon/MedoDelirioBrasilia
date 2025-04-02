@@ -28,7 +28,7 @@ struct SidebarView: View {
                 NavigationLink(
                     destination: MainSoundContainer(
                         viewModel: .init(
-                            currentViewMode: .allSounds,
+                            currentViewMode: .all,
                             soundSortOption: UserSettings().mainSoundListSoundSortOption(),
                             authorSortOption: AuthorSortOption.nameAscending.rawValue,
                             currentSoundsListMode: $currentSoundsListMode,

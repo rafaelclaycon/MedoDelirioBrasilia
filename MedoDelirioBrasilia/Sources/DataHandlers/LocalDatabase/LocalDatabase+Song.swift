@@ -112,4 +112,42 @@ extension LocalDatabase {
         )
         try db.run(updateQuery)
     }
+
+    func songs(withIds songIds: [String]) throws -> [Song] {
+        var queriedSongs = [String: Song]()
+
+        let genre_id = Expression<String>("genreId")
+        let id = Expression<String>("id")
+        let name = Expression<String>("name")
+
+        let query = songTable
+            .select(songTable[*], musicGenreTable[name])
+            .join(musicGenreTable, on: songTable[genre_id] == musicGenreTable[id])
+            .filter(songIds.contains(songTable[id]))
+
+        for queriedSong in try db.prepare(query) {
+            var songData: Song = try queriedSong.decode()
+            if let dateString = try queriedSong.get(Expression<String?>("dateAdded")) {
+                if let date = dateFormatter.date(from: dateString) {
+                    songData.dateAdded = date
+                }
+            }
+            if let isFromServer = try queriedSong.get(Expression<Bool?>("isFromServer")) {
+                songData.isFromServer = isFromServer
+            }
+            songData.genreName = try queriedSong.get(name)
+
+            let songId = try queriedSong.get(id)
+            queriedSongs[songId] = songData
+        }
+
+        var orderedSongs = [Song]()
+        for songId in songIds {
+            if let song = queriedSongs[songId] {
+                orderedSongs.append(song)
+            }
+        }
+
+        return orderedSongs
+    }
 }

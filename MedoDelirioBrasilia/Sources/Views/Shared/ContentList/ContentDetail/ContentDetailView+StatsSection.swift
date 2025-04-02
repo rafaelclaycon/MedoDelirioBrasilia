@@ -1,5 +1,5 @@
 //
-//  SoundDetailView+StatsSection.swift
+//  ContentDetailView+StatsSection.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 23/11/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension SoundDetailView {
+extension ContentDetailView {
 
     struct StatsSection: View {
 

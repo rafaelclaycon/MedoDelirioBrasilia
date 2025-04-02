@@ -13,10 +13,9 @@ class MainSoundContainerViewModel: ObservableObject {
 
     // MARK: - Published Vars
 
-    @Published var allSounds: [Sound]?
-    @Published var favorites: [Sound]?
+    @Published var allContent: [AnyEquatableMedoContent]?
 
-    @Published var currentViewMode: SoundsViewMode
+    @Published var currentViewMode: TopSelectorOption
     @Published var soundSortOption: Int
     @Published var authorSortOption: Int
 
@@ -44,14 +43,8 @@ class MainSoundContainerViewModel: ObservableObject {
 
     // MARK: - Computed Properties
 
-    var allSoundsPublisher: AnyPublisher<[Sound], Never> {
-        $allSounds
-            .compactMap { $0 }
-            .eraseToAnyPublisher()
-    }
-
-    var favoritesPublisher: AnyPublisher<[Sound], Never> {
-        $favorites
+    var allContentPublisher: AnyPublisher<[AnyEquatableMedoContent], Never> {
+        $allContent
             .compactMap { $0 }
             .eraseToAnyPublisher()
     }
@@ -59,7 +52,7 @@ class MainSoundContainerViewModel: ObservableObject {
     // MARK: - Initializer
 
     init(
-        currentViewMode: SoundsViewMode,
+        currentViewMode: TopSelectorOption,
         soundSortOption: Int,
         authorSortOption: Int,
         currentSoundsListMode: Binding<SoundsListMode>,
@@ -83,17 +76,72 @@ class MainSoundContainerViewModel: ObservableObject {
         self.isAllowedToSync = isAllowedToSync
         self.syncManager.delegate = self
     }
+}
 
-    // MARK: - Functions
+// MARK: - User Actions
 
-    func reloadAllSounds() {
+extension MainSoundContainerViewModel {
+
+    public func onViewDidAppear() {
+        print("MAIN SOUND CONTAINER - ON APPEAR")
+
+        if !firstRunSyncHappened {
+            Task {
+                print("WILL START SYNCING")
+                await sync(lastAttempt: AppPersistentMemory().getLastUpdateAttempt())
+                print("DID FINISH SYNCING")
+            }
+        }
+
+        loadContent()
+        //loadFavorites()
+    }
+
+    public func onSelectedViewModeChanged(
+        allSoundsVMAction: () -> Void
+    ) {
+        if currentViewMode == .all {
+            allSoundsVMAction()
+        } else if currentViewMode == .favorites {
+            // Similar names, different functions.
+            //loadFavorites() // This changes SoundList's data source, effectively changing what tiles are shown.
+        }
+    }
+
+    public func onSoundSortOptionChanged() {
+        sortSounds(by: soundSortOption)
+    }
+
+    public func onExplicitContentSettingChanged() {
+        loadContent()
+    }
+
+    public func onSyncRequested() async {
+        await sync(lastAttempt: AppPersistentMemory().getLastUpdateAttempt())
+    }
+
+    public func onScenePhaseChanged(newPhase: ScenePhase) async {
+        if newPhase == .active {
+            await warmOpenSync()
+            print("DID FINISH WARM OPEN SYNC")
+        }
+    }
+}
+
+// MARK: - Internal Functions
+
+extension MainSoundContainerViewModel {
+
+    private func loadContent() {
         do {
-            let sounds = try LocalDatabase.shared.sounds(
-                allowSensitive: UserSettings().getShowExplicitContent(),
-                favoritesOnly: false
-            )
+            let sounds: [AnyEquatableMedoContent] = try LocalDatabase.shared.sounds(
+                allowSensitive: UserSettings().getShowExplicitContent()
+            ).map { AnyEquatableMedoContent($0) }
+            let songs: [AnyEquatableMedoContent] = try LocalDatabase.shared.songs(
+                allowSensitive: UserSettings().getShowExplicitContent()
+            ).map { AnyEquatableMedoContent($0) }
 
-            allSounds = sounds
+            allContent = sounds + songs
 
             guard sounds.count > 0 else { return }
             let sortOption: SoundSortOption = SoundSortOption(rawValue: soundSortOption) ?? .dateAddedDescending
@@ -104,33 +152,39 @@ class MainSoundContainerViewModel: ObservableObject {
         }
     }
 
-    func reloadFavorites() {
-        do {
-            let sounds = try LocalDatabase.shared.sounds(
-                allowSensitive: UserSettings().getShowExplicitContent(),
-                favoritesOnly: true
-            )
-
-            favorites = sounds
-
-            guard sounds.count > 0 else { return }
-            let sortOption: SoundSortOption = SoundSortOption(rawValue: soundSortOption) ?? .dateAddedDescending
-            sortFavorites(by: sortOption)
-        } catch {
-            print("Erro carregando sons: \(error.localizedDescription)")
-            dataLoadingDidFail = true
-        }
-    }
-
-    func sortSounds(by rawSortOption: Int) {
+    private func sortSounds(by rawSortOption: Int) {
         let sortOption = SoundSortOption(rawValue: rawSortOption) ?? .dateAddedDescending
         sortAllSounds(by: sortOption)
-        sortFavorites(by: sortOption)
         UserSettings().saveMainSoundListSoundSortOption(rawSortOption)
+    }
+
+    private func displayToast(
+        _ toastIcon: String,
+        _ toastIconColor: Color,
+        toastText: String,
+        displayTime: DispatchTimeInterval,
+        completion: (() -> Void)? = nil
+    ) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+            withAnimation {
+                self.toastIcon = toastIcon
+                self.toastIconColor = toastIconColor
+                self.toastText = toastText
+                self.showToastView = true
+            }
+            TapticFeedback.success()
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + displayTime) {
+            withAnimation {
+                self.showToastView = false
+                completion?()
+            }
+        }
     }
 }
 
-// MARK: - All Sounds Sorting
+// MARK: - Sorting
 
 extension MainSoundContainerViewModel {
 
@@ -155,109 +209,43 @@ extension MainSoundContainerViewModel {
 
     private func sortAllSoundsByTitleAscending() {
         DispatchQueue.main.async {
-            self.allSounds?.sort(by: { $0.title.withoutDiacritics() < $1.title.withoutDiacritics() })
+            self.allContent?.sort(by: { $0.title.withoutDiacritics() < $1.title.withoutDiacritics() })
         }
     }
 
     private func sortAllSoundsByAuthorNameAscending() {
         DispatchQueue.main.async {
-            self.allSounds?.sort(by: { $0.authorName?.withoutDiacritics() ?? "" < $1.authorName?.withoutDiacritics() ?? "" })
+            self.allContent?.sort(by: { $0.subtitle.withoutDiacritics() < $1.subtitle.withoutDiacritics() })
         }
     }
 
     private func sortAllSoundsByDateAddedDescending() {
         DispatchQueue.main.async {
-            self.allSounds?.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
+            self.allContent?.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
         }
     }
 
     private func sortAllSoundsByDurationAscending() {
         DispatchQueue.main.async {
-            self.allSounds?.sort(by: { $0.duration < $1.duration })
+            self.allContent?.sort(by: { $0.duration < $1.duration })
         }
     }
 
     private func sortAllSoundsByDurationDescending() {
         DispatchQueue.main.async {
-            self.allSounds?.sort(by: { $0.duration > $1.duration })
+            self.allContent?.sort(by: { $0.duration > $1.duration })
         }
     }
 
     private func sortAllSoundsByTitleLengthAscending() {
         DispatchQueue.main.async {
-            self.allSounds?.sort(by: { $0.title.count < $1.title.count })
+            self.allContent?.sort(by: { $0.title.count < $1.title.count })
         }
     }
 
     private func sortAllSoundsByTitleLengthDescending() {
         DispatchQueue.main.async {
-            self.allSounds?.sort(by: { $0.title.count > $1.title.count })
-        }
-    }
-}
-
-// MARK: - Favorites Sorting
-
-extension MainSoundContainerViewModel {
-
-    private func sortFavorites(by sortOption: SoundSortOption) {
-        switch sortOption {
-        case .titleAscending:
-            sortFavoritesByTitleAscending()
-        case .authorNameAscending:
-            sortFavoritesByAuthorNameAscending()
-        case .dateAddedDescending:
-            sortFavoritesByDateAddedDescending()
-        case .shortestFirst:
-            sortFavoritesByDurationAscending()
-        case .longestFirst:
-            sortFavoritesByDurationDescending()
-        case .longestTitleFirst:
-            sortFavoritesByTitleLengthDescending()
-        case .shortestTitleFirst:
-            sortFavoritesByTitleLengthAscending()
-        }
-    }
-
-    private func sortFavoritesByTitleAscending() {
-        DispatchQueue.main.async {
-            self.favorites?.sort(by: { $0.title.withoutDiacritics() < $1.title.withoutDiacritics() })
-        }
-    }
-
-    private func sortFavoritesByAuthorNameAscending() {
-        DispatchQueue.main.async {
-            self.favorites?.sort(by: { $0.authorName?.withoutDiacritics() ?? "" < $1.authorName?.withoutDiacritics() ?? "" })
-        }
-    }
-
-    private func sortFavoritesByDateAddedDescending() {
-        DispatchQueue.main.async {
-            self.favorites?.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
-        }
-    }
-
-    private func sortFavoritesByDurationAscending() {
-        DispatchQueue.main.async {
-            self.favorites?.sort(by: { $0.duration < $1.duration })
-        }
-    }
-
-    private func sortFavoritesByDurationDescending() {
-        DispatchQueue.main.async {
-            self.favorites?.sort(by: { $0.duration > $1.duration })
-        }
-    }
-
-    private func sortFavoritesByTitleLengthAscending() {
-        DispatchQueue.main.async {
-            self.favorites?.sort(by: { $0.title.count < $1.title.count })
-        }
-    }
-
-    private func sortFavoritesByTitleLengthDescending() {
-        DispatchQueue.main.async {
-            self.favorites?.sort(by: { $0.title.count > $1.title.count })
+            self.allContent?.sort(by: { $0.title.count > $1.title.count })
         }
     }
 }
@@ -266,7 +254,7 @@ extension MainSoundContainerViewModel {
 
 extension MainSoundContainerViewModel: SyncManagerDelegate {
 
-    func sync(lastAttempt: String) async {
+    private func sync(lastAttempt: String) async {
         print("lastAttempt: \(lastAttempt)")
 
         guard isAllowedToSync else { return }
@@ -305,7 +293,7 @@ extension MainSoundContainerViewModel: SyncManagerDelegate {
     }
 
     // Warm open means the app was reopened before it left memory.
-    func warmOpenSync() async {
+    private func warmOpenSync() async {
         guard isAllowedToSync else { return }
 
         let lastUpdateAttempt = AppPersistentMemory().getLastUpdateAttempt()
@@ -340,39 +328,9 @@ extension MainSoundContainerViewModel: SyncManagerDelegate {
             self.syncValues.syncStatus = status
 
             if updateSoundList {
-                reloadAllSounds()
+                loadContent()
             }
         }
         print(status)
-    }
-}
-
-// MARK: - Toast
-
-extension MainSoundContainerViewModel {
-
-    func displayToast(
-        _ toastIcon: String,
-        _ toastIconColor: Color,
-        toastText: String,
-        displayTime: DispatchTimeInterval,
-        completion: (() -> Void)? = nil
-    ) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-            withAnimation {
-                self.toastIcon = toastIcon
-                self.toastIconColor = toastIconColor
-                self.toastText = toastText
-                self.showToastView = true
-            }
-            TapticFeedback.success()
-        }
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + displayTime) {
-            withAnimation {
-                self.showToastView = false
-                completion?()
-            }
-        }
     }
 }

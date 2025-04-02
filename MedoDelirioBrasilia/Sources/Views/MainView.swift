@@ -48,7 +48,7 @@ struct MainView: View {
                     NavigationStack(path: $soundsPath) {
                         MainSoundContainer(
                             viewModel: .init(
-                                currentViewMode: .allSounds,
+                                currentViewMode: .all,
                                 soundSortOption: UserSettings().mainSoundListSoundSortOption(),
                                 authorSortOption: UserSettings().authorSortOption(),
                                 currentSoundsListMode: $currentSoundsListMode,
@@ -84,15 +84,15 @@ struct MainView: View {
                     .tag(PhoneTab.reactions)
                     .environment(\.push, PushAction { reactionsPath.append($0) })
 
-                    NavigationView {
-                        SongsView()
-                            .environmentObject(settingsHelper)
-                            .environment(trendsHelper)
-                    }
-                    .tabItem {
-                        Label("Músicas", systemImage: "music.quarternote.3")
-                    }
-                    .tag(PhoneTab.songs)
+//                    NavigationView {
+//                        SongsView()
+//                            .environmentObject(settingsHelper)
+//                            .environment(trendsHelper)
+//                    }
+//                    .tabItem {
+//                        Label("Músicas", systemImage: "music.quarternote.3")
+//                    }
+//                    .tag(PhoneTab.songs)
                     
                     NavigationView {
                         TrendsView(
@@ -138,7 +138,7 @@ struct MainView: View {
                             NavigationStack(path: $soundsPath) {
                                 MainSoundContainer(
                                     viewModel: .init(
-                                        currentViewMode: .allSounds,
+                                        currentViewMode: .all,
                                         soundSortOption: UserSettings().mainSoundListSoundSortOption(),
                                         authorSortOption: UserSettings().authorSortOption(),
                                         currentSoundsListMode: $currentSoundsListMode,
@@ -302,7 +302,7 @@ struct MainView: View {
                         NavigationStack(path: $soundsPath) {
                             MainSoundContainer(
                                 viewModel: .init(
-                                    currentViewMode: .allSounds,
+                                    currentViewMode: .all,
                                     soundSortOption: UserSettings().mainSoundListSoundSortOption(),
                                     authorSortOption: AuthorSortOption.nameAscending.rawValue,
                                     currentSoundsListMode: $currentSoundsListMode,

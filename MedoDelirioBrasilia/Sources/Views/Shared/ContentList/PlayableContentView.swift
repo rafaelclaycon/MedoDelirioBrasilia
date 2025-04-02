@@ -1,5 +1,5 @@
 //
-//  SoundItem.swift
+//  PlayableContentView.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Claycon Schmitt on 19/05/22.
@@ -7,21 +7,17 @@
 
 import SwiftUI
 
-struct SoundItem: View {
+struct PlayableContentView: View {
 
-    let sound: Sound
+    let content: any MedoContentProtocol
     var showNewTag: Bool = true
 
-    @Binding var favorites: Set<String>
     @Binding var highlighted: Set<String>
     @Binding var nowPlaying: Set<String>
     @Binding var selectedItems: Set<String>
     @Binding var currentSoundsListMode: SoundsListMode
     @State private var timeRemaining: Double = 0
-    
-    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    private let unselectedForegroundColor: Color = .gray
-    
+
     enum Background {
         case regular, favorite, highlighted
     }
@@ -29,20 +25,22 @@ struct SoundItem: View {
     enum Mode {
         case regular, playing, upForSelection, selected
     }
-    
+
+    // MARK: - Computed Properties
+
     private var currentMode: Mode {
         if currentSoundsListMode == .selection {
-            return selectedItems.contains(sound.id) ? .selected : .upForSelection
+            return selectedItems.contains(content.id) ? .selected : .upForSelection
         } else {
-            return nowPlaying.contains(sound.id) ? .playing : .regular
+            return nowPlaying.contains(content.id) ? .playing : .regular
         }
     }
     
     private var background: Background {
-        guard highlighted.contains(sound.id) == false else {
+        guard highlighted.contains(content.id) == false else {
             return .highlighted
         }
-        if favorites.contains(sound.id) {
+        if content.isFavorite ?? false {
             return .favorite
         } else {
             return .regular
@@ -74,9 +72,9 @@ struct SoundItem: View {
     }
     
     private var titleFont: Font {
-        if sound.title.count <= 26 {
+        if content.title.count <= 26 {
             return .body
-        } else if (sound.title.count >= 27 && sound.title.count <= 40) && (sound.authorName?.count ?? 0 < 20) {
+        } else if (content.title.count >= 27 && content.title.count <= 40) && (content.subtitle.count < 20) {
             return .callout
         } else {
             return .footnote
@@ -84,9 +82,9 @@ struct SoundItem: View {
     }
     
     private var authorFont: Font {
-        if sound.title.count <= 26 {
+        if content.title.count <= 26 {
             return .subheadline
-        } else if sound.title.count >= 27 && sound.title.count <= 40 {
+        } else if content.title.count >= 27 && content.title.count <= 40 {
             return .callout
         } else {
             return .footnote
@@ -94,7 +92,7 @@ struct SoundItem: View {
     }
     
     private var authorNameLineLimit: Int {
-        if (UIScreen.main.bounds.width <= 390) && (sound.title.count > 20) {
+        if (UIScreen.main.bounds.width <= 390) && (content.title.count > 20) {
             return 1
         } else {
             return 2
@@ -111,23 +109,29 @@ struct SoundItem: View {
     
     private var subtitle: String {
         if currentMode == .playing {
-            if sound.duration < 1.0 {
+            if content.duration < 1.0 {
                 return "< 1 s"
             }
             return timeRemaining.minuteSecondFormatted
         } else {
-            return sound.authorName ?? ""
+            return content.subtitle
         }
     }
     
     private var isNew: Bool {
         guard showNewTag else { return false }
-        return Date.isDateWithinLast7Days(sound.dateAdded)
+        return Date.isDateWithinLast7Days(content.dateAdded)
     }
-    
+
+    // MARK: - Static Properties
+
+    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    private let unselectedForegroundColor: Color = .gray
     private let regularGradient = LinearGradient(gradient: Gradient(colors: [.green, .green, .brightYellow]), startPoint: .topLeading, endPoint: .bottomTrailing)
     private let favoriteGradient = LinearGradient(gradient: Gradient(colors: [.red]), startPoint: .topLeading, endPoint: .bottomTrailing)
     private let highlightGradient = LinearGradient(gradient: Gradient(colors: [.yellow]), startPoint: .topLeading, endPoint: .bottomTrailing)
+
+    // MARK: - View Body
 
     var body: some View {
         ZStack {
@@ -138,21 +142,28 @@ struct SoundItem: View {
             
             HStack {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text(sound.title)
+                    Text(content.title)
                         .foregroundColor(.black)
                         .font(titleFont)
                         .bold()
-                    
-                    Text(subtitle)
-                        .font(UIDevice.isNarrowestWidth ? .footnote : authorFont)
-                        .foregroundColor(.white)
-                        .lineLimit(authorNameLineLimit)
-                        .onReceive(timer) { time in
-                            guard currentMode == .playing else { return }
-                            if timeRemaining > 0 {
-                                timeRemaining -= 1
-                            }
+
+                    HStack(spacing: 10) {
+                        if content.type == .song {
+                            Image(systemName: "music.quarternote.3")
+                                .foregroundStyle(.white)
                         }
+
+                        Text(subtitle)
+                            .font(UIDevice.isNarrowestWidth ? .footnote : authorFont)
+                            .foregroundColor(.white)
+                            .lineLimit(authorNameLineLimit)
+                            .onReceive(timer) { time in
+                                guard currentMode == .playing else { return }
+                                if timeRemaining > 0 {
+                                    timeRemaining -= 1
+                                }
+                            }
+                    }
                 }
                 
                 Spacer()
@@ -235,12 +246,12 @@ struct SoundItem: View {
         }
         .onAppear {
             if currentMode != .playing {
-                timeRemaining = sound.duration
+                timeRemaining = content.duration
             }
         }
-        .onChange(of: currentMode) { currentMode in
+        .onChange(of: currentMode) {
             if currentMode != .playing {
-                timeRemaining = sound.duration
+                timeRemaining = content.duration
             }
         }
     }
@@ -252,30 +263,28 @@ struct SoundItem: View {
 #Preview("Regular") {
     VStack(spacing: 15) {
         HStack(spacing: 15) {
-            SoundItem(
-                sound: Sound(
+            PlayableContentView(
+                content: Sound(
                     id: "ABC",
                     title: "A gente vai cansando",
                     authorName: "Filósofo da CEAGESP",
                     dateAdded: .now - 1_000_000, // 11.6 days
                     duration: 2
                 ),
-                favorites: .constant(Set<String>()),
                 highlighted: .constant(Set<String>()),
                 nowPlaying: .constant(Set<String>()),
                 selectedItems: .constant(Set<String>()),
                 currentSoundsListMode: .constant(.regular)
             )
 
-            SoundItem(
-                sound: Sound(
+            PlayableContentView(
+                content: Sound(
                     id: "DEF",
                     title: "Às vezes o ódio é a única emoção possível",
                     authorName: "Soraya Thronicke",
                     dateAdded: .now - 1_000_000, // 11.6 days
                     duration: 2
                 ),
-                favorites: .constant(Set<String>()),
                 highlighted: .constant(Set<String>()),
                 nowPlaying: .constant(Set<String>()),
                 selectedItems: .constant(Set<String>()),
@@ -283,15 +292,14 @@ struct SoundItem: View {
             )
         }
 
-        SoundItem(
-            sound: Sound(
+        PlayableContentView(
+            content: Sound(
                 id: "DEF",
                 title: "É simples assim, um manda e o outro obedece",
                 authorName: "Soraya Thronicke",
                 dateAdded: .now - 1_000_000, // 11.6 days
                 duration: 2
             ),
-            favorites: .constant(Set<String>()),
             highlighted: .constant(Set<String>()),
             nowPlaying: .constant(Set<String>()),
             selectedItems: .constant(Set<String>()),
@@ -304,28 +312,28 @@ struct SoundItem: View {
 #Preview("Favorite") {
     VStack(spacing: 15) {
         HStack(spacing: 15) {
-            SoundItem(
-                sound: Sound(
+            PlayableContentView(
+                content: Sound(
                     id: "ABC",
                     title: "A gente vai cansando",
                     authorName: "Filósofo da CEAGESP",
-                    duration: 2
+                    duration: 2,
+                    isFavorite: true
                 ),
-                favorites: .constant(Set<String>(arrayLiteral: "ABC")),
                 highlighted: .constant(Set<String>()),
                 nowPlaying: .constant(Set<String>()),
                 selectedItems: .constant(Set<String>()),
                 currentSoundsListMode: .constant(.regular)
             )
 
-            SoundItem(
-                sound: Sound(
+            PlayableContentView(
+                content: Sound(
                     id: "DEF",
                     title: "A gente vai cansando",
                     authorName: "Soraya Thronicke",
-                    duration: 2
+                    duration: 2,
+                    isFavorite: true
                 ),
-                favorites: .constant(Set<String>(arrayLiteral: "DEF")),
                 highlighted: .constant(Set<String>()),
                 nowPlaying: .constant(Set<String>()),
                 selectedItems: .constant(Set<String>()),
@@ -333,14 +341,14 @@ struct SoundItem: View {
             )
         }
 
-        SoundItem(
-            sound: Sound(
+        PlayableContentView(
+            content: Sound(
                 id: "DEF",
                 title: "A gente vai cansando",
                 authorName: "Soraya Thronicke",
-                duration: 2
+                duration: 2,
+                isFavorite: true
             ),
-            favorites: .constant(Set<String>(arrayLiteral: "DEF")),
             highlighted: .constant(Set<String>()),
             nowPlaying: .constant(Set<String>()),
             selectedItems: .constant(Set<String>()),
@@ -353,28 +361,27 @@ struct SoundItem: View {
 #Preview("Playing") {
     VStack(spacing: 15) {
         HStack(spacing: 15) {
-            SoundItem(
-                sound: Sound(
+            PlayableContentView(
+                content: Sound(
                     id: "ABC",
                     title: "A gente vai cansando",
                     authorName: "Filósofo da CEAGESP",
-                    duration: 2
+                    duration: 2,
+                    isFavorite: true
                 ),
-                favorites: .constant(Set<String>(arrayLiteral: "ABC")),
                 highlighted: .constant(Set<String>()),
                 nowPlaying: .constant(Set<String>(arrayLiteral: "ABC")),
                 selectedItems: .constant(Set<String>()),
                 currentSoundsListMode: .constant(.regular)
             )
 
-            SoundItem(
-                sound: Sound(
+            PlayableContentView(
+                content: Sound(
                     id: "DEF",
                     title: "A gente vai cansando",
                     authorName: "Soraya Thronicke",
                     duration: 2
                 ),
-                favorites: .constant(Set<String>()),
                 highlighted: .constant(Set<String>()),
                 nowPlaying: .constant(Set<String>(arrayLiteral: "DEF")),
                 selectedItems: .constant(Set<String>()),
@@ -382,14 +389,13 @@ struct SoundItem: View {
             )
         }
 
-        SoundItem(
-            sound: Sound(
+        PlayableContentView(
+            content: Sound(
                 id: "DEF",
                 title: "A gente vai cansando",
                 authorName: "Soraya Thronicke",
                 duration: 2
             ),
-            favorites: .constant(Set<String>()),
             highlighted: .constant(Set<String>()),
             nowPlaying: .constant(Set<String>(arrayLiteral: "DEF")),
             selectedItems: .constant(Set<String>()),
@@ -400,13 +406,33 @@ struct SoundItem: View {
 }
 
 #Preview("New Tag") {
-    SoundItem(sound: Sound(id: "ABC", title: "A decisão não cabe a gente, cabe ao TSE", authorName: "Paulo Sérgio Nogueira", duration: 2), favorites: .constant(Set<String>()), highlighted: .constant(Set<String>()), nowPlaying: .constant(Set<String>()), selectedItems: .constant(Set<String>()), currentSoundsListMode: .constant(.regular)
+    PlayableContentView(
+        content: Sound(
+            id: "ABC",
+            title: "A decisão não cabe a gente, cabe ao TSE",
+            authorName: "Paulo Sérgio Nogueira",
+            duration: 2
+        ),
+        highlighted: .constant(Set<String>()),
+        nowPlaying: .constant(Set<String>()),
+        selectedItems: .constant(Set<String>()),
+        currentSoundsListMode: .constant(.regular)
     )
     .padding()
 }
 
 #Preview("Highlighted") {
-    SoundItem(sound: Sound(id: "JKL", title: "Bom dia", authorName: "Hamilton Mourão", duration: 2), favorites: .constant(Set<String>()), highlighted: .constant(Set<String>(arrayLiteral: "JKL")), nowPlaying: .constant(Set<String>()), selectedItems: .constant(Set<String>()), currentSoundsListMode: .constant(.regular)
+    PlayableContentView(
+        content: Sound(
+            id: "JKL",
+            title: "Bom dia",
+            authorName: "Hamilton Mourão",
+            duration: 2
+        ),
+        highlighted: .constant(Set<String>(arrayLiteral: "JKL")),
+        nowPlaying: .constant(Set<String>()),
+        selectedItems: .constant(Set<String>()),
+        currentSoundsListMode: .constant(.regular)
     )
     .padding()
 }
