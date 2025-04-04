@@ -11,7 +11,7 @@ import Kingfisher
 struct AuthorDetailView: View {
 
     @StateObject private var viewModel: AuthorDetailViewViewModel
-    @StateObject private var soundListViewModel: ContentListViewModel<[AnyEquatableMedoContent]>
+    @StateObject private var contentListViewModel: ContentListViewModel<[AnyEquatableMedoContent]>
 
     let author: Author
 
@@ -74,14 +74,14 @@ struct AuthorDetailView: View {
 
     private var title: String {
         guard currentSoundsListMode.wrappedValue == .regular else {
-            if soundListViewModel.selectionKeeper.count == 0 {
+            if contentListViewModel.selectionKeeper.count == 0 {
                 return Shared.SoundSelection.selectSounds
-            } else if soundListViewModel.selectionKeeper.count == 1 {
+            } else if contentListViewModel.selectionKeeper.count == 1 {
                 return Shared.SoundSelection.soundSelectedSingular
             } else {
                 return String(
                     format: Shared.SoundSelection.soundsSelectedPlural,
-                    soundListViewModel.selectionKeeper.count
+                    contentListViewModel.selectionKeeper.count
                 )
             }
         }
@@ -117,12 +117,12 @@ struct AuthorDetailView: View {
         self._viewModel = StateObject(wrappedValue: viewModel)
         self.currentSoundsListMode = currentSoundsListMode
 
-        let soundListViewModel = ContentListViewModel<[AnyEquatableMedoContent]>(
+        let contentListViewModel = ContentListViewModel<[AnyEquatableMedoContent]>(
             data: viewModel.soundsPublisher,
             menuOptions: [.sharingOptions(), .organizingOptions(), .playFromThisSound(), .authorOptions()],
             currentSoundsListMode: currentSoundsListMode
         )
-        self._soundListViewModel = StateObject(wrappedValue: soundListViewModel)
+        self._contentListViewModel = StateObject(wrappedValue: contentListViewModel)
     }
 
     // MARK: - View Body
@@ -130,7 +130,7 @@ struct AuthorDetailView: View {
     var body: some View {
         VStack {
             ContentList(
-                viewModel: soundListViewModel,
+                viewModel: contentListViewModel,
                 soundSearchTextIsEmpty: .constant(nil),
                 dataLoadingDidFail: viewModel.dataLoadingDidFail,
                 authorId: author.id,
@@ -233,9 +233,7 @@ struct AuthorDetailView: View {
             viewModel.loadSounds(for: author.id)
         }
         .onDisappear {
-            if currentSoundsListMode.wrappedValue == .selection {
-                soundListViewModel.stopSelecting()
-            }
+            contentListViewModel.onViewDisappeared()
         }
         .alert(isPresented: $viewModel.showAlert) {
             switch viewModel.alertType {
@@ -285,7 +283,7 @@ struct AuthorDetailView: View {
                 afterCopyAddressAction: {}
             )
         }
-        .onChange(of: soundListViewModel.selectionKeeper.count) {
+        .onChange(of: contentListViewModel.selectionKeeper.count) {
             if navBarTitle.isEmpty == false {
                 DispatchQueue.main.async {
                     navBarTitle = title
@@ -303,7 +301,7 @@ struct AuthorDetailView: View {
             if viewModel.sounds.count > 1 {
                 Section {
                     Button {
-                        soundListViewModel.startSelecting()
+                        contentListViewModel.onEnterMultiSelectModeSelected()
                     } label: {
                         Label(
                             currentSoundsListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",
@@ -315,7 +313,7 @@ struct AuthorDetailView: View {
             
             Section {
                 Button {
-                    soundListViewModel.stopSelecting()
+                    contentListViewModel.onExitMultiSelectModeSelected()
                     viewModel.selectedSounds = viewModel.sounds
                     // showingAddToFolderModal = true // TODO: Fix - move to ContentList
                 } label: {
@@ -323,14 +321,14 @@ struct AuthorDetailView: View {
                 }
                 
                 Button {
-                    soundListViewModel.stopSelecting()
+                    contentListViewModel.onExitMultiSelectModeSelected()
                     viewModel.showAskForNewSoundAlert()
                 } label: {
                     Label("Pedir Som Desse Autor", systemImage: "plus.circle")
                 }
                 
                 Button {
-                    soundListViewModel.stopSelecting()
+                    contentListViewModel.onExitMultiSelectModeSelected()
                     viewModel.showEmailAppPicker_reportAuthorDetailIssue = true
                 } label: {
                     Label("Relatar Problema com os Detalhes Desse Autor", systemImage: "person.crop.circle.badge.exclamationmark")

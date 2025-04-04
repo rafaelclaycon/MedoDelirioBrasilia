@@ -180,7 +180,7 @@ struct MainSoundContainer: View {
         .navigationBarItems(
             leading: LeadingToolbarControls(
                 isSelecting: currentSoundsListMode.wrappedValue == .selection,
-                cancelAction: { allSoundsViewModel.stopSelecting() },
+                cancelAction: { allSoundsViewModel.onExitMultiSelectModeSelected() },
                 openSettingsAction: openSettingsAction
             ),
             trailing: trailingToolbarControls()
@@ -331,7 +331,7 @@ extension MainSoundContainer {
                     Menu {
                         Section {
                             Button {
-                                allSoundsViewModel.startSelecting()
+                                allSoundsViewModel.onEnterMultiSelectModeSelected()
                             } label: {
                                 Label(
                                     currentSoundsListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",
@@ -384,9 +384,7 @@ extension MainSoundContainer {
     func topSelectorView() -> some View {
         TopSelector(selected: $viewModel.currentViewMode)
             .onChange(of: viewModel.currentViewMode) {
-                viewModel.onSelectedViewModeChanged(
-                    allSoundsVMAction: { allSoundsViewModel.loadFavorites() }
-                )
+                viewModel.onSelectedViewModeChanged()
             }
     }
 }

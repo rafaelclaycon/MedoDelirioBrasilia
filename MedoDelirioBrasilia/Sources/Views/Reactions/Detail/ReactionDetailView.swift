@@ -89,8 +89,8 @@ struct ReactionDetailView: View {
         .toolbar {
             ToolbarControls(
                 soundSortOption: $viewModel.soundSortOption,
-                playStopAction: { soundListViewModel.playStopPlaylist() },
-                startSelectingAction: { soundListViewModel.startSelecting() },
+                playStopAction: { soundListViewModel.onPlayStopPlaylistSelected() },
+                startSelectingAction: { soundListViewModel.onEnterMultiSelectModeSelected() },
                 isPlayingPlaylist: soundListViewModel.isPlayingPlaylist,
                 soundArrayIsEmpty: soundArrayIsEmpty,
                 isSelecting: soundListViewModel.isSelectingSounds

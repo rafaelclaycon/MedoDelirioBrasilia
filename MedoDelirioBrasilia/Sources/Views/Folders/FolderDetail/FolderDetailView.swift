@@ -121,9 +121,7 @@ struct FolderDetailView: View {
             viewModel.onViewAppeared()
         }
         .onDisappear {
-            if contentListViewModel.isPlayingPlaylist {
-                contentListViewModel.stopPlaying()
-            }
+            contentListViewModel.onViewDisappeared()
         }
         .sheet(isPresented: $showingFolderInfoEditingView) {
             FolderInfoEditingView(
@@ -142,7 +140,7 @@ struct FolderDetailView: View {
         HStack(spacing: 16) {
             if currentSoundsListMode.wrappedValue == .regular {
                 Button {
-                    contentListViewModel.playStopPlaylist()
+                    contentListViewModel.onPlayStopPlaylistSelected()
                 } label: {
                     Image(systemName: contentListViewModel.isPlayingPlaylist ? "stop.fill" : "play.fill")
                 }
@@ -154,7 +152,7 @@ struct FolderDetailView: View {
             Menu {
                 Section {
                     Button {
-                        contentListViewModel.startSelecting()
+                        contentListViewModel.onEnterMultiSelectModeSelected()
                     } label: {
                         Label(
                             currentSoundsListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",

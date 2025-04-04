@@ -97,11 +97,9 @@ extension MainSoundContainerViewModel {
         //loadFavorites()
     }
 
-    public func onSelectedViewModeChanged(
-        allSoundsVMAction: () -> Void
-    ) {
+    public func onSelectedViewModeChanged() {
         if currentViewMode == .all {
-            allSoundsVMAction()
+            //allSoundsVMAction()
         } else if currentViewMode == .favorites {
             // Similar names, different functions.
             //loadFavorites() // This changes SoundList's data source, effectively changing what tiles are shown.

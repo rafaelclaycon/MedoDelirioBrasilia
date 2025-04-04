@@ -16,7 +16,6 @@ enum SoundListAlertType {
 
     case soundFileNotFound
     case issueSharingSound
-    case optionIncompatibleWithWhatsApp
     case issueExportingManySounds
     case removeSingleSound
     case removeMultipleSounds

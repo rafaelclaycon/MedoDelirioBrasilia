@@ -145,13 +145,61 @@ extension ContentListViewModel {
             )
         }
     }
+
+    public func onViewDisappeared() {
+        if isPlayingPlaylist {
+            stopPlaying()
+        }
+    }
+
+    public func onPlayStopPlaylistSelected() {
+        playStopPlaylist()
+    }
+
+    public func onEnterMultiSelectModeSelected() {
+        startSelecting()
+    }
+
+    public func onExitMultiSelectModeSelected() {
+        stopSelecting()
+    }
+
+    public func onShareManySelected() {
+        shareSelected()
+    }
+
+    public func onAddRemoveManyFromFavoritesSelected() {
+        addRemoveManyFromFavorites()
+    }
+
+    public func onAddRemoveManyFromFolderSelected(_ operation: FolderOperation) {
+        if operation == .add {
+            addManyToFolder()
+        } else {
+            showRemoveMultipleSoundsConfirmation()
+        }
+    }
+
+    public func onDidExitShareAsVideoSheet() {
+        if shareAsVideoResult.videoFilepath.isEmpty == false {
+            if shareAsVideoResult.exportMethod == .saveAsVideo {
+                showVideoSavedSuccessfullyToast()
+            } else {
+                shareVideo(
+                    withPath: shareAsVideoResult.videoFilepath,
+                    andContentId: shareAsVideoResult.contentId,
+                    title: selectedContentSingle?.title ?? ""
+                )
+            }
+        }
+    }
 }
 
 // MARK: - Internal Functions
 
 extension ContentListViewModel {
 
-    func loadFavorites() {
+    private func loadFavorites() {
         do {
             let favorites = try LocalDatabase.shared.favorites()
 //            favoritesKeeper.removeAll()
@@ -163,7 +211,7 @@ extension ContentListViewModel {
         }
     }
 
-    func addToFavorites(soundId: String) {
+    private func addToFavorites(soundId: String) {
         let newFavorite = Favorite(contentId: soundId, dateAdded: Date())
 
         do {
@@ -177,7 +225,7 @@ extension ContentListViewModel {
         }
     }
 
-    func removeFromFavorites(soundId: String) {
+    private func removeFromFavorites(soundId: String) {
         do {
             try LocalDatabase.shared.deleteFavorite(withId: soundId)
 //            favoritesKeeper.remove(soundId)
@@ -186,7 +234,7 @@ extension ContentListViewModel {
         }
     }
 
-    func redownloadServerContent(withId contentId: String) {
+    private func redownloadServerContent(withId contentId: String) {
         Task {
             do {
                 try await SyncService.downloadFile(contentId)
@@ -203,13 +251,13 @@ extension ContentListViewModel {
         }
     }
 
-    func showVideoSavedSuccessfullyToast() {
+    private func showVideoSavedSuccessfullyToast() {
         self.displayToast(
             toastText: UIDevice.isMac ? Shared.ShareAsVideo.videoSavedSucessfullyMac : Shared.ShareAsVideo.videoSavedSucessfully
         )
     }
 
-    func shareVideo(
+    private func shareVideo(
         withPath filepath: String,
         andContentId contentId: String,
         title soundTitle: String
@@ -260,7 +308,7 @@ extension ContentListViewModel {
 
 extension ContentListViewModel {
 
-    func playStopPlaylist() {
+    private func playStopPlaylist() {
         if isSelectingSounds {
             stopSelecting()
         }
@@ -271,7 +319,7 @@ extension ContentListViewModel {
         }
     }
 
-    func play(
+    private func play(
         _ content: AnyEquatableMedoContent,
         scrollToPlaying: Bool = false
     ) {
@@ -324,7 +372,7 @@ extension ContentListViewModel {
         play(sounds[currentTrackIndex], scrollToPlaying: scrollToPlaying)
     }
 
-    func stopPlaying() {
+    private func stopPlaying() {
         if nowPlayingKeeper.count > 0 {
             AudioPlayer.shared?.togglePlay()
             nowPlayingKeeper.removeAll()
@@ -344,7 +392,7 @@ extension ContentListViewModel {
         isPlayingPlaylist = false
     }
 
-    func scrollAndPlaySound(withId soundId: String) {
+    public func scrollAndPlaySound(withId soundId: String) {
         guard case .loaded(let sounds) = state else { return }
         guard let sound = sounds.first(where: { $0.id == soundId }) else { return }
         scrollTo = sound.id
@@ -459,7 +507,7 @@ extension ContentListViewModel: ContentListDisplaying {
 
 extension ContentListViewModel {
 
-    func displayToast(
+    private func displayToast(
         _ toastIcon: String,
         _ toastIconColor: Color,
         toastText: String,
@@ -484,7 +532,7 @@ extension ContentListViewModel {
         }
     }
 
-    func displayToast(
+    private func displayToast(
         toastText: String,
         displayTime: DispatchTimeInterval = .seconds(3)
     ) {
@@ -497,7 +545,7 @@ extension ContentListViewModel {
         )
     }
 
-    func displayToast(
+    private func displayToast(
         toastText: String,
         completion: (() -> Void)?
     ) {
@@ -515,7 +563,7 @@ extension ContentListViewModel {
 
 extension ContentListViewModel {
 
-    func startSelecting() {
+    private func startSelecting() {
         stopPlaying()
         if currentSoundsListMode.wrappedValue == .regular {
             currentSoundsListMode.wrappedValue = .selection
@@ -527,7 +575,7 @@ extension ContentListViewModel {
         }
     }
 
-    func stopSelecting() {
+    private func stopSelecting() {
         currentSoundsListMode.wrappedValue = .regular
         selectionKeeper.removeAll()
         selectedContentMultiple = nil
@@ -545,12 +593,12 @@ extension ContentListViewModel {
 //        }
     }
 
-    func allSelectedAreFavorites() -> Bool {
+    public func allSelectedAreFavorites() -> Bool {
         guard selectionKeeper.count > 0 else { return false }
-        return false //selectionKeeper.isSubset(of: favoritesKeeper)
+        return false //selectionKeeper.isSubset(of: favoritesKeeper) // TODO: Fix
     }
 
-    func addRemoveManyFromFavorites() {
+    private func addRemoveManyFromFavorites() {
         // Need to get count before clearing the Set.
         let selectedCount: Int = selectionKeeper.count
 
@@ -573,21 +621,21 @@ extension ContentListViewModel {
         }
     }
 
-    func addSelectedToFavorites() {
+    private func addSelectedToFavorites() {
         guard selectionKeeper.count > 0 else { return }
         selectionKeeper.forEach { selectedSound in
             addToFavorites(soundId: selectedSound)
         }
     }
 
-    func removeSelectedFromFavorites() {
+    private func removeSelectedFromFavorites() {
         guard selectionKeeper.count > 0 else { return }
         selectionKeeper.forEach { selectedSound in
             removeFromFavorites(soundId: selectedSound)
         }
     }
 
-    func addManyToFolder() {
+    private func addManyToFolder() {
         guard selectionKeeper.count > 0 else { return }
         guard let sounds = extractSounds() else { return }
         selectedContentMultiple = sounds.filter({ selectionKeeper.contains($0.id) }).map { AnyEquatableMedoContent($0) }
@@ -595,7 +643,7 @@ extension ContentListViewModel {
         showingModalView = true
     }
 
-    func removeManyFromFolder() {
+    private func removeManyFromFolder() {
         guard let folder else { return }
         guard let refreshAction else { return }
         guard selectionKeeper.count > 0 else { return }
@@ -625,7 +673,7 @@ extension ContentListViewModel {
         }
     }
 
-    func shareSelected() {
+    private func shareSelected() {
 //        guard selectionKeeper.count > 0 else { return }
 //
 //        shareManyIsProcessing = true
@@ -660,7 +708,7 @@ extension ContentListViewModel {
 
 extension ContentListViewModel {
 
-    func removeSingleSoundFromFolder() {
+    private func removeSingleSoundFromFolder() {
         guard let folder else { return }
         guard let refreshAction else { return }
         guard let sound = selectedContentSingle else { return }
@@ -682,7 +730,7 @@ extension ContentListViewModel {
 
 extension ContentListViewModel {
 
-    func cancelSearchAndHighlight(id soundId: String) {
+    public func cancelSearchAndHighlight(id soundId: String) {
         if !searchText.isEmpty {
             searchText = ""
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
@@ -699,7 +747,7 @@ extension ContentListViewModel {
 
 extension ContentListViewModel {
 
-    func showUnableToGetSoundAlert(_ soundTitle: String) {
+    private func showUnableToGetSoundAlert(_ soundTitle: String) {
         TapticFeedback.error()
         alertType = .issueSharingSound
         alertTitle = Shared.contentNotFoundAlertTitle(soundTitle)
@@ -707,7 +755,7 @@ extension ContentListViewModel {
         showAlert = true
     }
 
-    func showServerSoundNotAvailableAlert(_ content: AnyEquatableMedoContent) {
+    private func showServerSoundNotAvailableAlert(_ content: AnyEquatableMedoContent) {
         selectedContentSingle = content
         TapticFeedback.error()
         alertType = .soundFileNotFound
@@ -736,7 +784,7 @@ extension ContentListViewModel {
 //        showAlert = true
 //    }
 
-    func showShareManyIssueAlert(_ localizedError: String) {
+    private func showShareManyIssueAlert(_ localizedError: String) {
         TapticFeedback.error()
         alertType = .issueExportingManySounds
         alertTitle = "Problema ao Tentar Exportar Vários Sons"
@@ -744,28 +792,28 @@ extension ContentListViewModel {
         showAlert = true
     }
 
-    func showSoundRemovalConfirmation(soundTitle: String) {
+    private func showSoundRemovalConfirmation(soundTitle: String) {
         alertTitle = "Remover \"\(soundTitle)\"?"
         alertMessage = "O som continuará disponível fora da pasta."
         alertType = .removeSingleSound
         showAlert = true
     }
 
-    func showRemoveMultipleSoundsConfirmation() {
+    private func showRemoveMultipleSoundsConfirmation() {
         alertTitle = "Remover os sons selecionados?"
         alertMessage = "Os sons continuarão disponíveis fora da pasta."
         alertType = .removeMultipleSounds
         showAlert = true
     }
 
-    func showUnableToRedownloadSoundAlert() {
+    private func showUnableToRedownloadSoundAlert() {
         alertTitle = "Não Foi Possível Baixar o Conteúdo"
         alertMessage = "Tente novamente mais tarde."
         alertType = .unableToRedownloadSound
         showAlert = true
     }
 
-    func showIssueRemovingSoundFromFolderAlert(plural: Bool = false) {
+    private func showIssueRemovingSoundFromFolderAlert(plural: Bool = false) {
         alertTitle = "Não Foi Possível Remover \(plural ? "os Sons" : "o Som") da Pasta"
         alertMessage = "Tente novamente mais tarde."
         alertType = .issueRemovingSoundFromFolder

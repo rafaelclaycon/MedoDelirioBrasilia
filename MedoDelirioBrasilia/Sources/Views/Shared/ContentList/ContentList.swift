@@ -117,7 +117,7 @@ struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, Er
         self.errorView = errorView
     }
 
-    // MARK: - Body
+    // MARK: - View Body
 
     var body: some View {
         GeometryReader { geometry in
@@ -142,8 +142,8 @@ struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, Er
                     .frame(width: geometry.size.width)
                     .frame(minHeight: geometry.size.height)
 
-                case .loaded(let sounds):
-                    if sounds.isEmpty {
+                case .loaded(let loadedContent):
+                    if loadedContent.isEmpty {
                         VStack {
                             if let headerView {
                                 headerView
@@ -214,7 +214,7 @@ struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, Er
 //                                            title: Text(viewModel.alertTitle),
 //                                            message: Text(viewModel.alertMessage),
 //                                            primaryButton: .default(Text("Baixar Conteúdo Novamente"), action: {
-//                                                guard let content = viewModel.selectedSound else { return }
+//                                                guard let content = viewModel.selectedContentSingle else { return }
 //                                                viewModel.redownloadServerContent(withId: content.id)
 //                                            }),
 //                                            secondaryButton: .cancel(Text("Fechar"))
@@ -225,21 +225,10 @@ struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, Er
 //                                            title: Text(viewModel.alertTitle),
 //                                            message: Text(viewModel.alertMessage),
 //                                            primaryButton: .default(Text("Relatar Problema por E-mail"), action: {
-//                                                viewModel.subviewToOpen = .soundIssueEmailPicker
-//                                                viewModel.showingModalView = true
+////                                                viewModel.subviewToOpen = .soundIssueEmailPicker
+////                                                viewModel.showingModalView = true
 //                                            }),
 //                                            secondaryButton: .cancel(Text("Fechar"))
-//                                        )
-//
-//                                    case .optionIncompatibleWithWhatsApp:
-//                                        return Alert(
-//                                            title: Text(viewModel.alertTitle),
-//                                            message: Text(viewModel.alertMessage),
-//                                            primaryButton: .default(Text("Continuar"), action: {
-//                                                AppPersistentMemory().increaseShareManyMessageShowCountByOne()
-//                                                viewModel.shareSelected()
-//                                            }),
-//                                            secondaryButton: .cancel(Text("Cancelar"))
 //                                        )
 //
 //                                    case .issueExportingManySounds, .unableToRedownloadSound, .issueRemovingSoundFromFolder:
@@ -331,19 +320,9 @@ struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, Er
                                 .onChange(of: viewModel.searchText) {
                                     soundSearchTextIsEmpty.wrappedValue = viewModel.searchText.isEmpty
                                 }
-//                                .onChange(of: viewModel.shareAsVideoResult.videoFilepath) { videoResultPath in
-//                                    if videoResultPath.isEmpty == false {
-//                                        if viewModel.shareAsVideoResult.exportMethod == .saveAsVideo {
-//                                            viewModel.showVideoSavedSuccessfullyToast()
-//                                        } else {
-//                                            viewModel.shareVideo(
-//                                                withPath: videoResultPath,
-//                                                andContentId: viewModel.shareAsVideoResult.contentId,
-//                                                title: viewModel.selectedSound?.title ?? ""
-//                                            )
-//                                        }
-//                                    }
-//                                }
+                                .onChange(of: viewModel.shareAsVideoResult.videoFilepath) {
+                                    viewModel.onDidExitShareAsVideoSheet()
+                                }
                                 .onChange(of: viewModel.showingModalView) {
                                     if (viewModel.showingModalView == false) && addToFolderHelper.hadSuccess {
                                         viewModel.onAddedContentToFolderSuccessfully(
@@ -366,32 +345,32 @@ struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, Er
 //                                .onChange(of: viewModel.selectionKeeper.count) {
 //                                    showMultiSelectButtons = viewModel.currentSoundsListMode.wrappedValue == .selection
 //                                    guard viewModel.currentSoundsListMode.wrappedValue == .selection else { return }
-//                                    multiSelectButtonsEnabled = $0 > 0
+//                                    multiSelectButtonsEnabled = viewModel.selectionKeeper.count > 0
 //                                    allSelectedAreFavorites = viewModel.allSelectedAreFavorites()
 //                                }
-//                                .onChange(of: trendsHelper.soundIdToGoTo) {
-//                                    if !trendsHelper.soundIdToGoTo.isEmpty {
-//                                        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-//                                            withAnimation {
-//                                                proxy.scrollTo(trendsHelper.soundIdToGoTo, anchor: .center)
-//                                            }
-//                                            TapticFeedback.warning()
-//                                            trendsHelper.soundIdToGoTo = ""
-//                                        }
-//                                    }
-//                                }
-//                                .onChange(of: viewModel.scrollTo) { soundId in
-//                                    if !soundId.isEmpty {
-//                                        withAnimation {
-//                                            proxy.scrollTo(soundId, anchor: .center)
-//                                        }
-//                                    }
-//                                }
-//                                .onChange(of: viewModel.authorToOpen) { author in
-//                                    guard let author else { return }
-//                                    push(GeneralNavigationDestination.authorDetail(author))
-//                                    viewModel.authorToOpen = nil
-//                                }
+                                .onChange(of: trendsHelper.soundIdToGoTo) {
+                                    if !trendsHelper.soundIdToGoTo.isEmpty {
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                                            withAnimation {
+                                                proxy.scrollTo(trendsHelper.soundIdToGoTo, anchor: .center)
+                                            }
+                                            TapticFeedback.warning()
+                                            trendsHelper.soundIdToGoTo = ""
+                                        }
+                                    }
+                                }
+                                .onChange(of: viewModel.scrollTo) {
+                                    if !viewModel.scrollTo.isEmpty {
+                                        withAnimation {
+                                            proxy.scrollTo(viewModel.scrollTo, anchor: .center)
+                                        }
+                                    }
+                                }
+                                .onChange(of: viewModel.authorToOpen) {
+                                    guard let author = viewModel.authorToOpen else { return }
+                                    push(GeneralNavigationDestination.authorDetail(author))
+                                    viewModel.authorToOpen = nil
+                                }
                                 .onAppear {
                                     updateGridLayout(with: geometry.size.width)
                                 }
@@ -406,7 +385,7 @@ struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, Er
                             }
 
                             if showSoundCountAtTheBottom, viewModel.searchText.isEmpty {
-                                Text("\(sounds.count) SONS")
+                                Text("\(loadedContent.count) ITENS")
                                     .font(.footnote)
                                     .foregroundColor(.gray)
                                     .multilineTextAlignment(.center)
@@ -460,15 +439,9 @@ struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, Er
                         allSelectedAreFavorites: allSelectedAreFavorites,
                         folderOperation: multiSelectFolderOperation,
                         shareIsProcessing: viewModel.shareManyIsProcessing,
-                        favoriteAction: { viewModel.addRemoveManyFromFavorites() },
-                        folderAction: {
-                            if multiSelectFolderOperation == .add {
-                                viewModel.addManyToFolder()
-                            } else {
-                                viewModel.showRemoveMultipleSoundsConfirmation()
-                            }
-                        },
-                        shareAction: { viewModel.shareSelected() }
+                        favoriteAction: { viewModel.onAddRemoveManyFromFavoritesSelected() },
+                        folderAction: { viewModel.onAddRemoveManyFromFolderSelected(multiSelectFolderOperation) },
+                        shareAction: { viewModel.onShareManySelected() }
                     )
                 }
             }
