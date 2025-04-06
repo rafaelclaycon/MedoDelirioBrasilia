@@ -57,15 +57,6 @@ struct AnyEquatableMedoContent: MedoContentProtocol, Equatable, Identifiable {
         base.type
     }
 
-    var isFavorite: Bool? {
-        get {
-            base.isFavorite
-        }
-        set {
-            base.isFavorite = newValue
-        }
-    }
-
     var authorId: String {
         base.authorId
     }

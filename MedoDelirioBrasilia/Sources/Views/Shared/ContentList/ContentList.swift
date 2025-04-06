@@ -169,6 +169,7 @@ struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, Er
                                             PlayableContentView(
                                                 content: content,
                                                 showNewTag: showNewTag,
+                                                favorites: $viewModel.favoritesKeeper,
                                                 highlighted: $viewModel.highlightKeeper,
                                                 nowPlaying: $viewModel.nowPlayingKeeper,
                                                 selectedItems: $viewModel.selectionKeeper,
@@ -188,8 +189,8 @@ struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, Er
                                                                     option.action(content, viewModel)
                                                                 } label: {
                                                                     Label(
-                                                                        option.title(false), // option.title(content.isFavorite),
-                                                                        systemImage: option.symbol(false) // option.symbol(content.isFavorite)
+                                                                        option.title(viewModel.favoritesKeeper.contains(content.id)),
+                                                                        systemImage: option.symbol(viewModel.favoritesKeeper.contains(content.id))
                                                                     )
                                                                 }
                                                             }

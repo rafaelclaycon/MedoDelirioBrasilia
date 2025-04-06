@@ -17,6 +17,7 @@ final class ContentListViewModel<T>: ObservableObject {
     var refreshAction: (() -> Void)?
     var folder: UserFolder?
 
+    @Published var favoritesKeeper = Set<String>()
     @Published var highlightKeeper = Set<String>()
     @Published var nowPlayingKeeper = Set<String>()
     @Published var selectionKeeper = Set<String>()
@@ -202,35 +203,35 @@ extension ContentListViewModel {
     private func loadFavorites() {
         do {
             let favorites = try LocalDatabase.shared.favorites()
-//            favoritesKeeper.removeAll()
-//            favorites.forEach { favorite in
-//                self.favoritesKeeper.insert(favorite.contentId)
-//            }
+            favoritesKeeper.removeAll()
+            favorites.forEach { favorite in
+                self.favoritesKeeper.insert(favorite.contentId)
+            }
         } catch {
             print("Falha ao carregar favoritos: \(error.localizedDescription)")
         }
     }
 
-    private func addToFavorites(soundId: String) {
-        let newFavorite = Favorite(contentId: soundId, dateAdded: Date())
+    private func addToFavorites(contentId: String) {
+        let newFavorite = Favorite(contentId: contentId, dateAdded: Date())
 
         do {
-            let favorteAlreadyExists = try LocalDatabase.shared.exists(contentId: soundId)
+            let favorteAlreadyExists = try LocalDatabase.shared.exists(contentId: contentId)
             guard favorteAlreadyExists == false else { return }
 
             try LocalDatabase.shared.insert(favorite: newFavorite)
-//            favoritesKeeper.insert(newFavorite.contentId)
+            favoritesKeeper.insert(newFavorite.contentId)
         } catch {
-            print("Problem saving favorite \(newFavorite.contentId): \(error.localizedDescription)")
+            print("Issue saving Favorite '\(newFavorite.contentId)': \(error.localizedDescription)")
         }
     }
 
-    private func removeFromFavorites(soundId: String) {
+    private func removeFromFavorites(contentId: String) {
         do {
-            try LocalDatabase.shared.deleteFavorite(withId: soundId)
-//            favoritesKeeper.remove(soundId)
+            try LocalDatabase.shared.deleteFavorite(withId: contentId)
+            favoritesKeeper.remove(contentId)
         } catch {
-            print("Problem removing favorite \(soundId)")
+            print("Issue removing Favorite '\(contentId)'.")
         }
     }
 
@@ -450,15 +451,14 @@ extension ContentListViewModel: ContentListDisplaying {
     }
 
     func toggleFavorite(_ contentId: String) {
-        // TODO: Redo this
-//        if favoritesKeeper.contains(soundId) {
-//            removeFromFavorites(soundId: soundId)
-//            if needsRefreshAfterChange {
-//                refreshAction!()
-//            }
-//        } else {
-//            addToFavorites(soundId: soundId)
-//        }
+        if favoritesKeeper.contains(contentId) {
+            removeFromFavorites(contentId: contentId)
+            if needsRefreshAfterChange {
+                refreshAction!()
+            }
+        } else {
+            addToFavorites(contentId: contentId)
+        }
     }
 
     func addToFolder(_ content: AnyEquatableMedoContent) {
@@ -595,7 +595,7 @@ extension ContentListViewModel {
 
     public func allSelectedAreFavorites() -> Bool {
         guard selectionKeeper.count > 0 else { return false }
-        return false //selectionKeeper.isSubset(of: favoritesKeeper) // TODO: Fix
+        return selectionKeeper.isSubset(of: favoritesKeeper)
     }
 
     private func addRemoveManyFromFavorites() {
@@ -624,14 +624,14 @@ extension ContentListViewModel {
     private func addSelectedToFavorites() {
         guard selectionKeeper.count > 0 else { return }
         selectionKeeper.forEach { selectedSound in
-            addToFavorites(soundId: selectedSound)
+            addToFavorites(contentId: selectedSound)
         }
     }
 
     private func removeSelectedFromFavorites() {
         guard selectionKeeper.count > 0 else { return }
         selectionKeeper.forEach { selectedSound in
-            removeFromFavorites(soundId: selectedSound)
+            removeFromFavorites(contentId: selectedSound)
         }
     }
 

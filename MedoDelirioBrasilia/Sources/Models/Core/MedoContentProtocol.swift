@@ -17,7 +17,6 @@ internal protocol MedoContentProtocol: Equatable {
     var dateAdded: Date? { get set }
     var isFromServer: Bool? { get }
     var type: MediaType { get }
-    var isFavorite: Bool? { get set }
     var authorId: String { get }
     var isOffensive: Bool { get }
 
