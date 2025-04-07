@@ -13,7 +13,7 @@ class MainSoundContainerViewModel: ObservableObject {
 
     // MARK: - Published Vars
 
-    @Published var allContent: [AnyEquatableMedoContent]?
+    @Published var forDisplay: [AnyEquatableMedoContent]?
 
     @Published var currentViewMode: TopSelectorOption
     @Published var soundSortOption: Int
@@ -35,6 +35,7 @@ class MainSoundContainerViewModel: ObservableObject {
     // MARK: - Stored Properties
 
     var currentSoundsListMode: Binding<SoundsListMode>
+    private var allContent = [AnyEquatableMedoContent]()
 
     // Sync
     private let syncManager: SyncManager
@@ -44,7 +45,7 @@ class MainSoundContainerViewModel: ObservableObject {
     // MARK: - Computed Properties
 
     var allContentPublisher: AnyPublisher<[AnyEquatableMedoContent], Never> {
-        $allContent
+        $forDisplay
             .compactMap { $0 }
             .eraseToAnyPublisher()
     }
@@ -97,12 +98,13 @@ extension MainSoundContainerViewModel {
         //loadFavorites()
     }
 
-    public func onSelectedViewModeChanged() {
+    public func onSelectedViewModeChanged(favorites: Set<String>) {
         if currentViewMode == .all {
-            //allSoundsVMAction()
+            forDisplay = allContent
         } else if currentViewMode == .favorites {
-            // Similar names, different functions.
-            //loadFavorites() // This changes SoundList's data source, effectively changing what tiles are shown.
+            forDisplay = allContent.filter { favorites.contains($0.id) }
+        } else if currentViewMode == .songs {
+            forDisplay = allContent.filter { $0.type == .song }
         }
     }
 
@@ -140,6 +142,7 @@ extension MainSoundContainerViewModel {
             ).map { AnyEquatableMedoContent($0) }
 
             allContent = sounds + songs
+            forDisplay = allContent
 
             guard sounds.count > 0 else { return }
             let sortOption: SoundSortOption = SoundSortOption(rawValue: soundSortOption) ?? .dateAddedDescending
@@ -207,43 +210,43 @@ extension MainSoundContainerViewModel {
 
     private func sortAllSoundsByTitleAscending() {
         DispatchQueue.main.async {
-            self.allContent?.sort(by: { $0.title.withoutDiacritics() < $1.title.withoutDiacritics() })
+            self.forDisplay?.sort(by: { $0.title.withoutDiacritics() < $1.title.withoutDiacritics() })
         }
     }
 
     private func sortAllSoundsByAuthorNameAscending() {
         DispatchQueue.main.async {
-            self.allContent?.sort(by: { $0.subtitle.withoutDiacritics() < $1.subtitle.withoutDiacritics() })
+            self.forDisplay?.sort(by: { $0.subtitle.withoutDiacritics() < $1.subtitle.withoutDiacritics() })
         }
     }
 
     private func sortAllSoundsByDateAddedDescending() {
         DispatchQueue.main.async {
-            self.allContent?.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
+            self.forDisplay?.sort(by: { $0.dateAdded ?? Date() > $1.dateAdded ?? Date() })
         }
     }
 
     private func sortAllSoundsByDurationAscending() {
         DispatchQueue.main.async {
-            self.allContent?.sort(by: { $0.duration < $1.duration })
+            self.forDisplay?.sort(by: { $0.duration < $1.duration })
         }
     }
 
     private func sortAllSoundsByDurationDescending() {
         DispatchQueue.main.async {
-            self.allContent?.sort(by: { $0.duration > $1.duration })
+            self.forDisplay?.sort(by: { $0.duration > $1.duration })
         }
     }
 
     private func sortAllSoundsByTitleLengthAscending() {
         DispatchQueue.main.async {
-            self.allContent?.sort(by: { $0.title.count < $1.title.count })
+            self.forDisplay?.sort(by: { $0.title.count < $1.title.count })
         }
     }
 
     private func sortAllSoundsByTitleLengthDescending() {
         DispatchQueue.main.async {
-            self.allContent?.sort(by: { $0.title.count > $1.title.count })
+            self.forDisplay?.sort(by: { $0.title.count > $1.title.count })
         }
     }
 }

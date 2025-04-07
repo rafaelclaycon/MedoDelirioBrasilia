@@ -384,7 +384,7 @@ extension MainSoundContainer {
     func topSelectorView() -> some View {
         TopSelector(selected: $viewModel.currentViewMode)
             .onChange(of: viewModel.currentViewMode) {
-                viewModel.onSelectedViewModeChanged()
+                viewModel.onSelectedViewModeChanged(favorites: allSoundsViewModel.favoritesKeeper)
             }
     }
 }
