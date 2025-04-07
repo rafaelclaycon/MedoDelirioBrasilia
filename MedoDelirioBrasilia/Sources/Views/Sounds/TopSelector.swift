@@ -13,10 +13,12 @@ struct TopSelector: View {
 
     @Environment(\.colorScheme) private var colorScheme
 
+    // MARK: - Computed Properties
+
     private var selectedTextColor: Color {
         switch colorScheme {
         case .light:
-            Color.darkestGreen
+            Color.whatsAppDarkGreen
         case .dark:
             Color.green
         @unknown default:
@@ -27,11 +29,22 @@ struct TopSelector: View {
     private var notSelectedTextColor: Color {
         switch colorScheme {
         case .light:
-            Color.black.opacity(0.5)
+            Color.black.opacity(0.6)
         case .dark:
             Color.white.opacity(0.6)
         @unknown default:
             Color.black.opacity(0.6)
+        }
+    }
+
+    private var selectedBackgroundColor: Color {
+        switch colorScheme {
+        case .light:
+            Color.whatsAppLightGreen
+        case .dark:
+            Color.green.opacity(0.3)
+        @unknown default:
+            Color.gray.opacity(0.15)
         }
     }
 
@@ -46,22 +59,24 @@ struct TopSelector: View {
         }
     }
 
+    // MARK: - View Body
+
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 12) {
+            HStack(spacing: 10) {
                 ForEach(TopSelectorOption.allCases) { kind in
                     Text(kind.displayName)
                         .foregroundStyle(
                             kind == selected ? selectedTextColor : notSelectedTextColor
                         )
                         .font(.callout)
-                        .fontWeight(.medium)
+                        .fontWeight(.semibold)
                         .padding(.vertical, 8)
                         .padding(.horizontal, 16)
                         .background {
                             RoundedRectangle(cornerRadius: 100)
                                 .fill(
-                                    kind == selected ? Color.green.opacity(0.3) : notSelectedBackgroundColor
+                                    kind == selected ? selectedBackgroundColor : notSelectedBackgroundColor
                                 )
                         }
                         .onTapGesture {

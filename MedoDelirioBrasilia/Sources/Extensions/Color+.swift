@@ -32,6 +32,10 @@ public extension Color {
     static let pastelMutedGreen = Color(UIColor(red: 0.64, green: 0.85, blue: 0.83, alpha: 1.00))
     static let pastelRed = Color(UIColor(red: 0.93, green: 0.64, blue: 0.67, alpha: 1.00))
     static let pastelBeige = Color(UIColor(red: 0.91, green: 0.87, blue: 0.84, alpha: 1.00))
+
+    // Main View Selector
+    static let whatsAppLightGreen = Color(UIColor(red: 0.88, green: 0.99, blue: 0.84, alpha: 1.00))
+    static let whatsAppDarkGreen = Color(UIColor(red: 0.18, green: 0.37, blue: 0.25, alpha: 1.00))
 }
 
 extension Color {
