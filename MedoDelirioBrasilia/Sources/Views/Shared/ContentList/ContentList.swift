@@ -18,7 +18,14 @@ import SwiftUI
 ///   - LoadingView: A view shown when data is loading.
 ///   - EmptyStateView: A view displayed when there are no sounds to show.
 ///   - ErrorView: A view displayed when data loading fails.
-struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, ErrorView: View>: View {
+struct ContentList<
+    HeaderView: View,
+    LoadingView: View,
+    EmptyStateView: View,
+    ErrorView: View,
+    FoldersView: View,
+    AuthorsView: View
+>: View {
 
     // MARK: - Dependencies
 
@@ -41,6 +48,8 @@ struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, Er
     @ViewBuilder private let loadingView: LoadingView
     @ViewBuilder private let emptyStateView: EmptyStateView
     @ViewBuilder private let errorView: ErrorView
+    @ViewBuilder private let foldersView: FoldersView?
+    @ViewBuilder private let authorsView: AuthorsView?
 
     // MARK: - Stored Properties
 
@@ -101,7 +110,9 @@ struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, Er
         headerView: (() -> HeaderView)? = nil,
         loadingView: LoadingView,
         emptyStateView: EmptyStateView,
-        errorView: ErrorView
+        errorView: ErrorView,
+        foldersView: (() -> FoldersView)? = nil,
+        authorsView: (() -> AuthorsView)? = nil
     ) {
         self._viewModel = StateObject(wrappedValue: viewModel)
         self.soundSearchTextIsEmpty = soundSearchTextIsEmpty
@@ -121,98 +132,97 @@ struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, Er
         self.loadingView = loadingView
         self.emptyStateView = emptyStateView
         self.errorView = errorView
+        self.foldersView = foldersView?()
+        self.authorsView = authorsView?()
     }
 
     // MARK: - View Body
 
     var body: some View {
-        let topSelector = TopSelector(selected: selectorSelection)
+        VStack {
+            if showTopSelector {
+                TopSelector(selected: selectorSelection)
+            }
 
-        GeometryReader { geometry in
-            if dataLoadingDidFail {
-                VStack {
-                    if showTopSelector {
-                        topSelector
-                    }
-                    if let headerView {
-                        headerView
-                    }
-                    errorView
-                }
-                .frame(width: geometry.size.width)
-                .frame(minHeight: geometry.size.height)
+            if selectorSelection.wrappedValue == .folders, let foldersView {
+                foldersView
+            } else if selectorSelection.wrappedValue == .byAuthor, let authorsView {
+                authorsView
             } else {
-                switch viewModel.state {
-                case .loading:
-                    VStack {
-                        if showTopSelector {
-                            topSelector
-                        }
-                        if let headerView {
-                            headerView
-                        }
-                        loadingView
-                    }
-                    .frame(width: geometry.size.width)
-                    .frame(minHeight: geometry.size.height)
-
-                case .loaded(let loadedContent):
-                    if loadedContent.isEmpty {
+                GeometryReader { geometry in
+                    if dataLoadingDidFail {
                         VStack {
-                            if showTopSelector {
-                                topSelector
-                            }
                             if let headerView {
                                 headerView
                             }
-                            Spacer()
-                            emptyStateView
-                            Spacer()
+                            errorView
                         }
                         .frame(width: geometry.size.width)
                         .frame(minHeight: geometry.size.height)
                     } else {
-                        ScrollView {
-                            ScrollViewReader { proxy in
-                                if showTopSelector {
-                                    topSelector
-                                }
-
+                        switch viewModel.state {
+                        case .loading:
+                            VStack {
                                 if let headerView {
                                     headerView
                                 }
+                                loadingView
+                            }
+                            .frame(width: geometry.size.width)
+                            .frame(minHeight: geometry.size.height)
 
-                                LazyVGrid(columns: columns, spacing: UIDevice.isiPhone ? phoneItemSpacing : padItemSpacing) {
-                                    if searchResults.isEmpty {
-                                        NoSearchResultsView(searchText: $viewModel.searchText)
-                                    } else {
-                                        ForEach(searchResults) { content in
-                                            PlayableContentView(
-                                                content: content,
-                                                showNewTag: showNewTag,
-                                                favorites: $viewModel.favoritesKeeper,
-                                                highlighted: $viewModel.highlightKeeper,
-                                                nowPlaying: $viewModel.nowPlayingKeeper,
-                                                selectedItems: $viewModel.selectionKeeper,
-                                                currentSoundsListMode: viewModel.currentSoundsListMode
-                                            )
-                                            .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
-                                            .padding(.horizontal, UIDevice.isiPhone ? 0 : 5)
-                                            .onTapGesture {
-                                                viewModel.onContentSelected(content)
-                                            }
-                                            .contextMenu {
-                                                if viewModel.currentSoundsListMode.wrappedValue != .selection {
-                                                    ForEach(viewModel.menuOptions, id: \.title) { section in
-                                                        Section {
-                                                            ForEach(section.options(content)) { option in
-                                                                Button {
-                                                                    option.action(content, viewModel)
-                                                                } label: {
-                                                                    Label(
-                                                                        option.title(viewModel.favoritesKeeper.contains(content.id)),
-                                                                        systemImage: option.symbol(viewModel.favoritesKeeper.contains(content.id))
-                                                                    )
+                        case .loaded(let loadedContent):
+                            if loadedContent.isEmpty {
+                                VStack {
+                                    if let headerView {
+                                        headerView
+                                    }
+                                    Spacer()
+                                    emptyStateView
+                                    Spacer()
+                                }
+                                .frame(width: geometry.size.width)
+                                .frame(minHeight: geometry.size.height)
+                            } else {
+                                ScrollView {
+                                    ScrollViewReader { proxy in
+                                        if let headerView {
+                                            headerView
+                                        }
+
+                                        LazyVGrid(columns: columns, spacing: UIDevice.isiPhone ? phoneItemSpacing : padItemSpacing) {
+                                            if searchResults.isEmpty {
+                                                NoSearchResultsView(searchText: $viewModel.searchText)
+                                            } else {
+                                                ForEach(searchResults) { content in
+                                                    PlayableContentView(
+                                                        content: content,
+                                                        showNewTag: showNewTag,
+                                                        favorites: $viewModel.favoritesKeeper,
+                                                        highlighted: $viewModel.highlightKeeper,
+                                                        nowPlaying: $viewModel.nowPlayingKeeper,
+                                                        selectedItems: $viewModel.selectionKeeper,
+                                                        currentSoundsListMode: viewModel.currentSoundsListMode
+                                                    )
+                                                    .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
+                                                    .padding(.horizontal, UIDevice.isiPhone ? 0 : 5)
+                                                    .onTapGesture {
+                                                        viewModel.onContentSelected(content)
+                                                    }
+                                                    .contextMenu {
+                                                        if viewModel.currentSoundsListMode.wrappedValue != .selection {
+                                                            ForEach(viewModel.menuOptions, id: \.title) { section in
+                                                                Section {
+                                                                    ForEach(section.options(content)) { option in
+                                                                        Button {
+                                                                            option.action(content, viewModel)
+                                                                        } label: {
+                                                                            Label(
+                                                                                option.title(viewModel.favoritesKeeper.contains(content.id)),
+                                                                                systemImage: option.symbol(viewModel.favoritesKeeper.contains(content.id))
+                                                                            )
+                                                                        }
+                                                                    }
                                                                 }
                                                             }
                                                         }
@@ -220,254 +230,251 @@ struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, Er
                                                 }
                                             }
                                         }
-                                    }
-                                }
-                                .if(allowSearch) {
-                                    $0
-                                        .searchable(text: $viewModel.searchText)
-                                        .disableAutocorrection(true)
-                                }
-                                .padding(.horizontal)
-                                .padding(.top, 7)
-//                                .alert(isPresented: $viewModel.showAlert) {
-//                                    switch viewModel.alertType {
-//                                    case .soundFileNotFound:
-//                                        return Alert(
-//                                            title: Text(viewModel.alertTitle),
-//                                            message: Text(viewModel.alertMessage),
-//                                            primaryButton: .default(Text("Baixar Conteúdo Novamente"), action: {
-//                                                guard let content = viewModel.selectedContentSingle else { return }
-//                                                viewModel.redownloadServerContent(withId: content.id)
-//                                            }),
-//                                            secondaryButton: .cancel(Text("Fechar"))
-//                                        )
-//
-//                                    case .issueSharingSound:
-//                                        return Alert(
-//                                            title: Text(viewModel.alertTitle),
-//                                            message: Text(viewModel.alertMessage),
-//                                            primaryButton: .default(Text("Relatar Problema por E-mail"), action: {
-////                                                viewModel.subviewToOpen = .soundIssueEmailPicker
-////                                                viewModel.showingModalView = true
-//                                            }),
-//                                            secondaryButton: .cancel(Text("Fechar"))
-//                                        )
-//
-//                                    case .issueExportingManySounds, .unableToRedownloadSound, .issueRemovingSoundFromFolder:
-//                                        return Alert(
-//                                            title: Text(viewModel.alertTitle),
-//                                            message: Text(viewModel.alertMessage),
-//                                            dismissButton: .default(Text("OK"))
-//                                        )
-//
-//                                    case .removeSingleSound:
-//                                        return Alert(
-//                                            title: Text(viewModel.alertTitle),
-//                                            message: Text(viewModel.alertMessage),
-//                                            primaryButton: .destructive(
-//                                                Text("Remover"),
-//                                                action: { viewModel.removeSingleSoundFromFolder() }
-//                                            ),
-//                                            secondaryButton: .cancel(Text("Cancelar"))
-//                                        )
-//
-//                                    case .removeMultipleSounds:
-//                                        return Alert(
-//                                            title: Text(viewModel.alertTitle),
-//                                            message: Text(viewModel.alertMessage),
-//                                            primaryButton: .destructive(Text("Remover"), action: {
-//                                                viewModel.removeManyFromFolder()
-//                                            }),
-//                                            secondaryButton: .cancel(Text("Cancelar"))
-//                                        )
-//                                    }
-//                                }
-                                .sheet(isPresented: $viewModel.showingModalView) {
-                                    switch viewModel.subviewToOpen {
-                                    case .shareAsVideo:
-                                        ShareAsVideoView(
-                                            viewModel: ShareAsVideoViewViewModel(
-                                                content: viewModel.selectedContentSingle!,
-                                                subtitle: viewModel.selectedContentSingle!.subtitle
-                                            ),
-                                            isBeingShown: $viewModel.showingModalView,
-                                            result: $viewModel.shareAsVideoResult,
-                                            useLongerGeneratingVideoMessage: viewModel.selectedContentSingle!.type == .song
-                                        )
+                                        .if(allowSearch) {
+                                            $0
+                                                .searchable(text: $viewModel.searchText)
+                                                .disableAutocorrection(true)
+                                        }
+                                        .padding(.horizontal)
+                                        .padding(.top, 7)
+                                        //                                .alert(isPresented: $viewModel.showAlert) {
+                                        //                                    switch viewModel.alertType {
+                                        //                                    case .soundFileNotFound:
+                                        //                                        return Alert(
+                                        //                                            title: Text(viewModel.alertTitle),
+                                        //                                            message: Text(viewModel.alertMessage),
+                                        //                                            primaryButton: .default(Text("Baixar Conteúdo Novamente"), action: {
+                                        //                                                guard let content = viewModel.selectedContentSingle else { return }
+                                        //                                                viewModel.redownloadServerContent(withId: content.id)
+                                        //                                            }),
+                                        //                                            secondaryButton: .cancel(Text("Fechar"))
+                                        //                                        )
+                                        //
+                                        //                                    case .issueSharingSound:
+                                        //                                        return Alert(
+                                        //                                            title: Text(viewModel.alertTitle),
+                                        //                                            message: Text(viewModel.alertMessage),
+                                        //                                            primaryButton: .default(Text("Relatar Problema por E-mail"), action: {
+                                        ////                                                viewModel.subviewToOpen = .soundIssueEmailPicker
+                                        ////                                                viewModel.showingModalView = true
+                                        //                                            }),
+                                        //                                            secondaryButton: .cancel(Text("Fechar"))
+                                        //                                        )
+                                        //
+                                        //                                    case .issueExportingManySounds, .unableToRedownloadSound, .issueRemovingSoundFromFolder:
+                                        //                                        return Alert(
+                                        //                                            title: Text(viewModel.alertTitle),
+                                        //                                            message: Text(viewModel.alertMessage),
+                                        //                                            dismissButton: .default(Text("OK"))
+                                        //                                        )
+                                        //
+                                        //                                    case .removeSingleSound:
+                                        //                                        return Alert(
+                                        //                                            title: Text(viewModel.alertTitle),
+                                        //                                            message: Text(viewModel.alertMessage),
+                                        //                                            primaryButton: .destructive(
+                                        //                                                Text("Remover"),
+                                        //                                                action: { viewModel.removeSingleSoundFromFolder() }
+                                        //                                            ),
+                                        //                                            secondaryButton: .cancel(Text("Cancelar"))
+                                        //                                        )
+                                        //
+                                        //                                    case .removeMultipleSounds:
+                                        //                                        return Alert(
+                                        //                                            title: Text(viewModel.alertTitle),
+                                        //                                            message: Text(viewModel.alertMessage),
+                                        //                                            primaryButton: .destructive(Text("Remover"), action: {
+                                        //                                                viewModel.removeManyFromFolder()
+                                        //                                            }),
+                                        //                                            secondaryButton: .cancel(Text("Cancelar"))
+                                        //                                        )
+                                        //                                    }
+                                        //                                }
+                                        .sheet(isPresented: $viewModel.showingModalView) {
+                                            switch viewModel.subviewToOpen {
+                                            case .shareAsVideo:
+                                                ShareAsVideoView(
+                                                    viewModel: ShareAsVideoViewViewModel(
+                                                        content: viewModel.selectedContentSingle!,
+                                                        subtitle: viewModel.selectedContentSingle!.subtitle
+                                                    ),
+                                                    isBeingShown: $viewModel.showingModalView,
+                                                    result: $viewModel.shareAsVideoResult,
+                                                    useLongerGeneratingVideoMessage: viewModel.selectedContentSingle!.type == .song
+                                                )
 
-                                    case .addToFolder:
-                                        AddToFolderView(
-                                            isBeingShown: $viewModel.showingModalView,
-                                            details: $addToFolderHelper,
-                                            selectedContent: viewModel.selectedContentMultiple ?? []
-                                        )
+                                            case .addToFolder:
+                                                AddToFolderView(
+                                                    isBeingShown: $viewModel.showingModalView,
+                                                    details: $addToFolderHelper,
+                                                    selectedContent: viewModel.selectedContentMultiple ?? []
+                                                )
 
-                                    case .contentDetail:
-                                        ContentDetailView(
-                                            content: viewModel.selectedContentSingle ?? AnyEquatableMedoContent(Sound(title: "")),
-                                            openAuthorDetailsAction: { author in
-                                                guard author.id != self.authorId else { return }
-                                                viewModel.showingModalView.toggle()
-                                                push(GeneralNavigationDestination.authorDetail(author))
-                                            },
-                                            authorId: authorId,
-                                            openReactionAction: { reaction in
-                                                viewModel.showingModalView.toggle()
-                                                push(GeneralNavigationDestination.reactionDetail(reaction))
-                                            },
-                                            reactionId: reactionId,
-                                            dismissAction: { viewModel.showingModalView = false }
-                                        )
+                                            case .contentDetail:
+                                                ContentDetailView(
+                                                    content: viewModel.selectedContentSingle ?? AnyEquatableMedoContent(Sound(title: "")),
+                                                    openAuthorDetailsAction: { author in
+                                                        guard author.id != self.authorId else { return }
+                                                        viewModel.showingModalView.toggle()
+                                                        push(GeneralNavigationDestination.authorDetail(author))
+                                                    },
+                                                    authorId: authorId,
+                                                    openReactionAction: { reaction in
+                                                        viewModel.showingModalView.toggle()
+                                                        push(GeneralNavigationDestination.reactionDetail(reaction))
+                                                    },
+                                                    reactionId: reactionId,
+                                                    dismissAction: { viewModel.showingModalView = false }
+                                                )
 
-                                    case .soundIssueEmailPicker:
-                                        EmailAppPickerView(
-                                            isBeingShown: $viewModel.showingModalView,
-                                            subject: Shared.issueSuggestionEmailSubject,
-                                            emailBody: Shared.issueSuggestionEmailBody,
-                                            afterCopyAddressAction: {}
-                                        )
+                                            case .soundIssueEmailPicker:
+                                                EmailAppPickerView(
+                                                    isBeingShown: $viewModel.showingModalView,
+                                                    subject: Shared.issueSuggestionEmailSubject,
+                                                    emailBody: Shared.issueSuggestionEmailBody,
+                                                    afterCopyAddressAction: {}
+                                                )
 
-                                    case .authorIssueEmailPicker(let content):
-                                        EmailAppPickerView(
-                                            isBeingShown: $viewModel.showingModalView,
-                                            subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, content.title),
-                                            emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, content.subtitle, content.id),
-                                            afterCopyAddressAction: {}
-                                        )
-                                    }
-                                }
-                                .sheet(isPresented: $viewModel.isShowingShareSheet) {
-                                    viewModel.iPadShareSheet
-                                }
-                                .onChange(of: viewModel.searchText) {
-                                    soundSearchTextIsEmpty.wrappedValue = viewModel.searchText.isEmpty
-                                }
-                                .onChange(of: viewModel.shareAsVideoResult.videoFilepath) {
-                                    viewModel.onDidExitShareAsVideoSheet()
-                                }
-                                .onChange(of: viewModel.showingModalView) {
-                                    if (viewModel.showingModalView == false) && addToFolderHelper.hadSuccess {
-                                        viewModel.onAddedContentToFolderSuccessfully(
-                                            folderName: addToFolderHelper.folderName ?? "",
-                                            pluralization: addToFolderHelper.pluralization
-                                        )
-                                        addToFolderHelper = AddToFolderDetails()
-                                    }
-                                }
-                                .onChange(of: geometry.size.width) {
-                                    updateGridLayout(with: geometry.size.width)
-                                }
-                                .onChange(of: searchResults) {
-                                    if searchResults.isEmpty {
-                                        columns = [GridItem(.flexible())]
-                                    } else {
-                                        updateGridLayout(with: geometry.size.width)
-                                    }
-                                }
-//                                .onChange(of: viewModel.selectionKeeper.count) {
-//                                    showMultiSelectButtons = viewModel.currentSoundsListMode.wrappedValue == .selection
-//                                    guard viewModel.currentSoundsListMode.wrappedValue == .selection else { return }
-//                                    multiSelectButtonsEnabled = viewModel.selectionKeeper.count > 0
-//                                    allSelectedAreFavorites = viewModel.allSelectedAreFavorites()
-//                                }
-                                .onChange(of: trendsHelper.soundIdToGoTo) {
-                                    if !trendsHelper.soundIdToGoTo.isEmpty {
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-                                            withAnimation {
-                                                proxy.scrollTo(trendsHelper.soundIdToGoTo, anchor: .center)
+                                            case .authorIssueEmailPicker(let content):
+                                                EmailAppPickerView(
+                                                    isBeingShown: $viewModel.showingModalView,
+                                                    subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, content.title),
+                                                    emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, content.subtitle, content.id),
+                                                    afterCopyAddressAction: {}
+                                                )
                                             }
-                                            TapticFeedback.warning()
-                                            trendsHelper.soundIdToGoTo = ""
+                                        }
+                                        .sheet(isPresented: $viewModel.isShowingShareSheet) {
+                                            viewModel.iPadShareSheet
+                                        }
+                                        .onChange(of: viewModel.searchText) {
+                                            soundSearchTextIsEmpty.wrappedValue = viewModel.searchText.isEmpty
+                                        }
+                                        .onChange(of: viewModel.shareAsVideoResult.videoFilepath) {
+                                            viewModel.onDidExitShareAsVideoSheet()
+                                        }
+                                        .onChange(of: viewModel.showingModalView) {
+                                            if (viewModel.showingModalView == false) && addToFolderHelper.hadSuccess {
+                                                viewModel.onAddedContentToFolderSuccessfully(
+                                                    folderName: addToFolderHelper.folderName ?? "",
+                                                    pluralization: addToFolderHelper.pluralization
+                                                )
+                                                addToFolderHelper = AddToFolderDetails()
+                                            }
+                                        }
+                                        .onChange(of: geometry.size.width) {
+                                            updateGridLayout(with: geometry.size.width)
+                                        }
+                                        .onChange(of: searchResults) {
+                                            if searchResults.isEmpty {
+                                                columns = [GridItem(.flexible())]
+                                            } else {
+                                                updateGridLayout(with: geometry.size.width)
+                                            }
+                                        }
+                                        //                                .onChange(of: viewModel.selectionKeeper.count) {
+                                        //                                    showMultiSelectButtons = viewModel.currentSoundsListMode.wrappedValue == .selection
+                                        //                                    guard viewModel.currentSoundsListMode.wrappedValue == .selection else { return }
+                                        //                                    multiSelectButtonsEnabled = viewModel.selectionKeeper.count > 0
+                                        //                                    allSelectedAreFavorites = viewModel.allSelectedAreFavorites()
+                                        //                                }
+                                        .onChange(of: trendsHelper.soundIdToGoTo) {
+                                            if !trendsHelper.soundIdToGoTo.isEmpty {
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                                                    withAnimation {
+                                                        proxy.scrollTo(trendsHelper.soundIdToGoTo, anchor: .center)
+                                                    }
+                                                    TapticFeedback.warning()
+                                                    trendsHelper.soundIdToGoTo = ""
+                                                }
+                                            }
+                                        }
+                                        .onChange(of: viewModel.scrollTo) {
+                                            if !viewModel.scrollTo.isEmpty {
+                                                withAnimation {
+                                                    proxy.scrollTo(viewModel.scrollTo, anchor: .center)
+                                                }
+                                            }
+                                        }
+                                        .onChange(of: viewModel.authorToOpen) {
+                                            guard let author = viewModel.authorToOpen else { return }
+                                            push(GeneralNavigationDestination.authorDetail(author))
+                                            viewModel.authorToOpen = nil
+                                        }
+                                        .onAppear {
+                                            updateGridLayout(with: geometry.size.width)
                                         }
                                     }
+
+                                    if showExplicitDisabledWarning, UserSettings().getShowExplicitContent() == false {
+                                        ExplicitDisabledWarning(
+                                            text: UIDevice.isiPhone ? Shared.contentFilterMessageForSoundsiPhone : Shared.contentFilterMessageForSoundsiPadMac
+                                        )
+                                        .padding(.top, explicitOffWarningTopPadding)
+                                        .padding(.horizontal, explicitOffWarningBottomPadding)
+                                    }
+
+                                    if showSoundCountAtTheBottom, viewModel.searchText.isEmpty {
+                                        Text("\(loadedContent.count) ITENS")
+                                            .font(.footnote)
+                                            .foregroundColor(.gray)
+                                            .multilineTextAlignment(.center)
+                                            .padding(.top, 10)
+                                            .padding(.bottom, UIDevice.isiPhone ? Shared.Constants.soundCountPhoneBottomPadding : Shared.Constants.soundCountPadBottomPadding)
+                                    }
+
+                                    Spacer()
+                                        .frame(height: 18)
                                 }
-                                .onChange(of: viewModel.scrollTo) {
-                                    if !viewModel.scrollTo.isEmpty {
-                                        withAnimation {
-                                            proxy.scrollTo(viewModel.scrollTo, anchor: .center)
-                                        }
+                                .if(allowRefresh) {
+                                    $0.refreshable {
+                                        syncAction!()
                                     }
                                 }
-                                .onChange(of: viewModel.authorToOpen) {
-                                    guard let author = viewModel.authorToOpen else { return }
-                                    push(GeneralNavigationDestination.authorDetail(author))
-                                    viewModel.authorToOpen = nil
+                            }
+
+                        case .error(_):
+                            VStack {
+                                if let headerView {
+                                    headerView
                                 }
-                                .onAppear {
-                                    updateGridLayout(with: geometry.size.width)
-                                }
+                                errorView
                             }
-
-                            if showExplicitDisabledWarning, UserSettings().getShowExplicitContent() == false {
-                                ExplicitDisabledWarning(
-                                    text: UIDevice.isiPhone ? Shared.contentFilterMessageForSoundsiPhone : Shared.contentFilterMessageForSoundsiPadMac
-                                )
-                                .padding(.top, explicitOffWarningTopPadding)
-                                .padding(.horizontal, explicitOffWarningBottomPadding)
-                            }
-
-                            if showSoundCountAtTheBottom, viewModel.searchText.isEmpty {
-                                Text("\(loadedContent.count) ITENS")
-                                    .font(.footnote)
-                                    .foregroundColor(.gray)
-                                    .multilineTextAlignment(.center)
-                                    .padding(.top, 10)
-                                    .padding(.bottom, UIDevice.isiPhone ? Shared.Constants.soundCountPhoneBottomPadding : Shared.Constants.soundCountPadBottomPadding)
-                            }
-
+                            .frame(width: geometry.size.width)
+                            .frame(minHeight: geometry.size.height)
+                        }
+                    }
+                }
+                .overlay {
+                    if viewModel.showToastView {
+                        VStack {
                             Spacer()
-                                .frame(height: 18)
+
+                            ToastView(
+                                icon: viewModel.toastIcon,
+                                iconColor: viewModel.toastIconColor,
+                                text: viewModel.toastText
+                            )
+                            .padding(.horizontal)
+                            .padding(.bottom, Shared.Constants.toastViewBottomPaddingPad)
                         }
-                        .if(allowRefresh) {
-                            $0.refreshable {
-                                syncAction!()
-                            }
+                        .transition(.moveAndFade)
+                    }
+                    if showMultiSelectButtons {
+                        VStack {
+                            Spacer()
+
+                            FloatingSelectionOptionsView(
+                                areButtonsEnabled: multiSelectButtonsEnabled,
+                                allSelectedAreFavorites: allSelectedAreFavorites,
+                                folderOperation: multiSelectFolderOperation,
+                                shareIsProcessing: viewModel.shareManyIsProcessing,
+                                favoriteAction: { viewModel.onAddRemoveManyFromFavoritesSelected() },
+                                folderAction: { viewModel.onAddRemoveManyFromFolderSelected(multiSelectFolderOperation) },
+                                shareAction: { viewModel.onShareManySelected() }
+                            )
                         }
                     }
-
-                case .error(_):
-                    VStack {
-                        if showTopSelector {
-                            topSelector
-                        }
-                        if let headerView {
-                            headerView
-                        }
-                        errorView
-                    }
-                    .frame(width: geometry.size.width)
-                    .frame(minHeight: geometry.size.height)
-                }
-            }
-        }
-        .overlay {
-            if viewModel.showToastView {
-                VStack {
-                    Spacer()
-
-                    ToastView(
-                        icon: viewModel.toastIcon,
-                        iconColor: viewModel.toastIconColor,
-                        text: viewModel.toastText
-                    )
-                    .padding(.horizontal)
-                    .padding(.bottom, Shared.Constants.toastViewBottomPaddingPad)
-                }
-                .transition(.moveAndFade)
-            }
-            if showMultiSelectButtons {
-                VStack {
-                    Spacer()
-
-                    FloatingSelectionOptionsView(
-                        areButtonsEnabled: multiSelectButtonsEnabled,
-                        allSelectedAreFavorites: allSelectedAreFavorites,
-                        folderOperation: multiSelectFolderOperation,
-                        shareIsProcessing: viewModel.shareManyIsProcessing,
-                        favoriteAction: { viewModel.onAddRemoveManyFromFavoritesSelected() },
-                        folderAction: { viewModel.onAddRemoveManyFromFolderSelected(multiSelectFolderOperation) },
-                        shareAction: { viewModel.onShareManySelected() }
-                    )
                 }
             }
         }
@@ -487,7 +494,9 @@ struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, Er
 // MARK: - Preview
 
 #Preview {
-    ContentList<EmptyView, ProgressView, Text, Text>(
+    ContentList<
+        EmptyView, ProgressView, Text, Text, EmptyView, EmptyView
+    >(
         viewModel: .init(
             data: MockContentListViewModel().allSoundsPublisher,
             menuOptions: [.sharingOptions()],

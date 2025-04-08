@@ -70,7 +70,7 @@ struct TopSelector: View {
                             kind == selected ? selectedTextColor : notSelectedTextColor
                         )
                         .font(.callout)
-                        .fontWeight(.semibold)
+                        .fontWeight(.medium)
                         .padding(.vertical, 8)
                         .padding(.horizontal, 16)
                         .background {

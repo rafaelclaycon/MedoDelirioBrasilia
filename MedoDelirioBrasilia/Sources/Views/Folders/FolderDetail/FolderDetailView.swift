@@ -68,24 +68,28 @@ struct FolderDetailView: View {
 
     var body: some View {
         VStack {
-            ContentList(
+            ContentList<
+                VStack, VStack, VStack, VStack, EmptyView, EmptyView
+            >(
                 viewModel: contentListViewModel,
                 multiSelectFolderOperation: .remove,
                 showNewTag: false,
                 dataLoadingDidFail: viewModel.dataLoadingDidFail,
                 headerView: {
-                    VStack(alignment: .leading) {
-                        HStack {
-                            Text(viewModel.soundCount)
-                                .font(.callout)
-                                .foregroundColor(.gray)
-                                .bold()
-
-                            Spacer()
+                    VStack {
+                        VStack(alignment: .leading) {
+                            HStack {
+                                Text(viewModel.soundCount)
+                                    .font(.callout)
+                                    .foregroundColor(.gray)
+                                    .bold()
+                                
+                                Spacer()
+                            }
                         }
+                        .padding(.horizontal, 20)
+                        .padding(.top)
                     }
-                    .padding(.horizontal, 20)
-                    .padding(.top)
                 },
                 loadingView:
                     VStack {
@@ -99,8 +103,10 @@ struct FolderDetailView: View {
                     }
                 ,
                 emptyStateView:
-                    EmptyFolderView()
-                        .padding(.horizontal, 30)
+                    VStack {
+                        EmptyFolderView()
+                            .padding(.horizontal, 30)
+                    }
                 ,
                 errorView:
                     VStack {

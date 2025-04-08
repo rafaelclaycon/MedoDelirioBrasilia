@@ -49,22 +49,26 @@ struct ReactionDetailView: View {
 
     var body: some View {
         GeometryReader { geometry in
-            ContentList(
+            ContentList<
+                VStack, LoadingView, EmptyStateView, ErrorView, EmptyView, EmptyView
+            >(
                 viewModel: soundListViewModel,
                 soundSearchTextIsEmpty: .constant(nil),
                 showNewTag: false,
                 dataLoadingDidFail: viewModel.dataLoadingDidFail,
                 reactionId: viewModel.reaction.id,
                 headerView: {
-                    ReactionDetailHeader(
-                        title: viewModel.reaction.title,
-                        subtitle: viewModel.subtitle,
-                        imageUrl: viewModel.reaction.image,
-                        attributionText: viewModel.reaction.attributionText,
-                        attributionURL: viewModel.reaction.attributionURL
-                    )
-                    .frame(height: 260)
-                    .padding(.bottom, 6)
+                    VStack {
+                        ReactionDetailHeader(
+                            title: viewModel.reaction.title,
+                            subtitle: viewModel.subtitle,
+                            imageUrl: viewModel.reaction.image,
+                            attributionText: viewModel.reaction.attributionText,
+                            attributionURL: viewModel.reaction.attributionURL
+                        )
+                        .frame(height: 260)
+                        .padding(.bottom, 6)
+                    }
                 },
                 loadingView: LoadingView(),
                 emptyStateView: EmptyStateView(

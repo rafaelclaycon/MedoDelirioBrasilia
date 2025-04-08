@@ -26,7 +26,7 @@ enum TopSelectorOption: CaseIterable, Identifiable {
         case .folders:
             "Pastas"
         case .byAuthor:
-            "Por Autor"
+            "Autores"
         }
     }
 }

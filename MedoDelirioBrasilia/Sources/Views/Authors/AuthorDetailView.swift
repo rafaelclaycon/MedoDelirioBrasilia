@@ -129,7 +129,9 @@ struct AuthorDetailView: View {
 
     var body: some View {
         VStack {
-            ContentList(
+            ContentList<
+                VStack, VStack, VStack, VStack, EmptyView, EmptyView
+            >(
                 viewModel: contentListViewModel,
                 soundSearchTextIsEmpty: .constant(nil),
                 dataLoadingDidFail: viewModel.dataLoadingDidFail,
@@ -208,8 +210,10 @@ struct AuthorDetailView: View {
                     }
                 ,
                 emptyStateView:
-                    NoSoundsView()
-                        .padding(.horizontal, 25)
+                    VStack {
+                        NoSoundsView()
+                            .padding(.horizontal, 25)
+                    }
                 ,
                 errorView:
                     VStack {

@@ -85,32 +85,32 @@ struct MainSoundContainer: View {
 
     var body: some View {
         VStack {
-            switch viewModel.currentViewMode {
-            case .all, .favorites, .songs:
-                ContentList<VStack, VStack, VStack, VStack>(
-                    viewModel: allSoundsViewModel,
-                    soundSearchTextIsEmpty: $soundSearchTextIsEmpty,
-                    allowSearch: true,
-                    allowRefresh: true,
-                    showTopSelector: true,
-                    selectorSelection: $viewModel.currentViewMode,
-                    showSoundCountAtTheBottom: viewModel.currentViewMode == .all,
-                    showExplicitDisabledWarning: viewModel.currentViewMode == .all,
-                    syncAction: {
-                        Task { // Keep this Task to avoid "cancelled" issue.
-                            await viewModel.onSyncRequested()
+            ContentList<
+                VStack, VStack, VStack, VStack, VStack, VStack
+            >(
+                viewModel: allSoundsViewModel,
+                soundSearchTextIsEmpty: $soundSearchTextIsEmpty,
+                allowSearch: true,
+                allowRefresh: true,
+                showTopSelector: true,
+                selectorSelection: $viewModel.currentViewMode,
+                showSoundCountAtTheBottom: viewModel.currentViewMode == .all,
+                showExplicitDisabledWarning: viewModel.currentViewMode == .all,
+                syncAction: {
+                    Task { // Keep this Task to avoid "cancelled" issue.
+                        await viewModel.onSyncRequested()
+                    }
+                },
+                dataLoadingDidFail: viewModel.dataLoadingDidFail,
+                headerView: {
+                    VStack {
+                        if displayLongUpdateBanner {
+                            LongUpdateBanner(
+                                completedNumber: $viewModel.processedUpdateNumber,
+                                totalUpdateCount: $viewModel.totalUpdateCount
+                            )
+                            .padding(.horizontal, 10)
                         }
-                    },
-                    dataLoadingDidFail: viewModel.dataLoadingDidFail,
-                    headerView: {
-                        VStack {
-                            if displayLongUpdateBanner {
-                                LongUpdateBanner(
-                                    completedNumber: $viewModel.processedUpdateNumber,
-                                    totalUpdateCount: $viewModel.totalUpdateCount
-                                )
-                                .padding(.horizontal, 10)
-                            }
 
 //                            if shouldDisplayRecurringDonationBanner, viewModel.searchText.isEmpty {
 //                                RecurringDonationBanner(
@@ -118,59 +118,59 @@ struct MainSoundContainer: View {
 //                                )
 //                                .padding(.horizontal, 10)
 //                            }
-                        }
-                    },
-                    loadingView:
-                        VStack {
-                            HStack(spacing: 10) {
-                                ProgressView()
+                    }
+                },
+                loadingView:
+                    VStack {
+                        HStack(spacing: 10) {
+                            ProgressView()
 
-                                Text("Carregando sons...")
-                                    .foregroundColor(.gray)
-                            }
-                            .frame(maxWidth: .infinity)
+                            Text("Carregando sons...")
+                                .foregroundColor(.gray)
                         }
-                    ,
-                    emptyStateView:
-                        VStack {
-                            if viewModel.currentViewMode == .favorites {
-                                NoFavoritesView()
-                                    .padding(.horizontal, 25)
-                                    .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? 100 : 15)
-                            } else {
-                                Text("Nenhum som a ser exibido. Isso é esquisito.")
-                                    .foregroundColor(.gray)
-                                    .padding(.horizontal, 20)
-                            }
+                        .frame(maxWidth: .infinity)
+                    }
+                ,
+                emptyStateView:
+                    VStack {
+                        if viewModel.currentViewMode == .favorites {
+                            NoFavoritesView()
+                                .padding(.horizontal, 25)
+                                .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? 100 : 15)
+                        } else {
+                            Text("Nenhum som a ser exibido. Isso é esquisito.")
+                                .foregroundColor(.gray)
+                                .padding(.horizontal, 20)
                         }
-                    ,
-                    errorView:
-                        VStack {
-                            HStack(spacing: 10) {
-                                ProgressView()
+                    }
+                ,
+                errorView:
+                    VStack {
+                        HStack(spacing: 10) {
+                            ProgressView()
 
-                                Text("Erro ao carregar sons.")
-                                    .foregroundColor(.gray)
-                            }
-                            .frame(maxWidth: .infinity)
+                            Text("Erro ao carregar sons.")
+                                .foregroundColor(.gray)
                         }
-                )
-
-            case .folders:
-                VStack {
-                    MyFoldersiPhoneView()
-                        .environmentObject(deleteFolderAide)
+                        .frame(maxWidth: .infinity)
+                    }
+                ,
+                foldersView: {
+                    VStack {
+                        MyFoldersiPhoneView()
+                            .environmentObject(deleteFolderAide)
+                    }
+                },
+                authorsView: {
+                    VStack {
+                        AuthorsView(
+                            sortOption: $viewModel.authorSortOption,
+                            sortAction: $authorSortAction,
+                            searchTextForControl: $authorSearchText
+                        )
+                    }
                 }
-
-            case .byAuthor:
-                VStack {
-                    AuthorsView(
-                        sortOption: $viewModel.authorSortOption,
-                        sortAction: $authorSortAction,
-                        searchTextForControl: $authorSearchText
-                    )
-                }
-            }
+            )
         }
         .navigationTitle(Text(title))
         .navigationBarItems(
