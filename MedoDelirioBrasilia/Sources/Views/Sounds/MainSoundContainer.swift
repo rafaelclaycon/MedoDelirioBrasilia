@@ -92,6 +92,8 @@ struct MainSoundContainer: View {
                     soundSearchTextIsEmpty: $soundSearchTextIsEmpty,
                     allowSearch: true,
                     allowRefresh: true,
+                    showTopSelector: true,
+                    selectorSelection: $viewModel.currentViewMode,
                     showSoundCountAtTheBottom: viewModel.currentViewMode == .all,
                     showExplicitDisabledWarning: viewModel.currentViewMode == .all,
                     syncAction: {
@@ -102,8 +104,6 @@ struct MainSoundContainer: View {
                     dataLoadingDidFail: viewModel.dataLoadingDidFail,
                     headerView: {
                         VStack {
-                            topSelectorView()
-
                             if displayLongUpdateBanner {
                                 LongUpdateBanner(
                                     completedNumber: $viewModel.processedUpdateNumber,
@@ -158,16 +158,12 @@ struct MainSoundContainer: View {
 
             case .folders:
                 VStack {
-                    topSelectorView()
-
                     MyFoldersiPhoneView()
                         .environmentObject(deleteFolderAide)
                 }
 
             case .byAuthor:
                 VStack {
-                    topSelectorView()
-
                     AuthorsView(
                         sortOption: $viewModel.authorSortOption,
                         sortAction: $authorSortAction,
@@ -185,6 +181,9 @@ struct MainSoundContainer: View {
             ),
             trailing: trailingToolbarControls()
         )
+        .onChange(of: viewModel.currentViewMode) {
+            viewModel.onSelectedViewModeChanged(favorites: allSoundsViewModel.favoritesKeeper)
+        }
         .onChange(of: viewModel.processedUpdateNumber) {
             withAnimation {
                 displayLongUpdateBanner = viewModel.totalUpdateCount >= 10 && viewModel.processedUpdateNumber != viewModel.totalUpdateCount
@@ -378,14 +377,6 @@ extension MainSoundContainer {
                 }
             }
         }
-    }
-
-    @ViewBuilder
-    func topSelectorView() -> some View {
-        TopSelector(selected: $viewModel.currentViewMode)
-            .onChange(of: viewModel.currentViewMode) {
-                viewModel.onSelectedViewModeChanged(favorites: allSoundsViewModel.favoritesKeeper)
-            }
     }
 }
 

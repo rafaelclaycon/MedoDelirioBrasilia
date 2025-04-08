@@ -26,6 +26,8 @@ struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, Er
     private var soundSearchTextIsEmpty: Binding<Bool?>
     private var allowSearch: Bool
     private var allowRefresh: Bool
+    private let showTopSelector: Bool
+    private var selectorSelection: Binding<TopSelectorOption>
     private var showSoundCountAtTheBottom: Bool
     private var showExplicitDisabledWarning: Bool
     private var multiSelectFolderOperation: FolderOperation = .add
@@ -86,6 +88,8 @@ struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, Er
         soundSearchTextIsEmpty: Binding<Bool?> = .constant(nil),
         allowSearch: Bool = false,
         allowRefresh: Bool = false,
+        showTopSelector: Bool = false,
+        selectorSelection: Binding<TopSelectorOption> = .constant(.all),
         showSoundCountAtTheBottom: Bool = false,
         showExplicitDisabledWarning: Bool = false,
         syncAction: (() -> Void)? = nil,
@@ -103,6 +107,8 @@ struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, Er
         self.soundSearchTextIsEmpty = soundSearchTextIsEmpty
         self.allowSearch = allowSearch
         self.allowRefresh = allowRefresh
+        self.showTopSelector = showTopSelector
+        self.selectorSelection = selectorSelection
         self.showSoundCountAtTheBottom = showSoundCountAtTheBottom
         self.showExplicitDisabledWarning = showExplicitDisabledWarning
         self.syncAction = syncAction
@@ -120,9 +126,14 @@ struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, Er
     // MARK: - View Body
 
     var body: some View {
+        let topSelector = TopSelector(selected: selectorSelection)
+
         GeometryReader { geometry in
             if dataLoadingDidFail {
                 VStack {
+                    if showTopSelector {
+                        topSelector
+                    }
                     if let headerView {
                         headerView
                     }
@@ -134,6 +145,9 @@ struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, Er
                 switch viewModel.state {
                 case .loading:
                     VStack {
+                        if showTopSelector {
+                            topSelector
+                        }
                         if let headerView {
                             headerView
                         }
@@ -145,6 +159,9 @@ struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, Er
                 case .loaded(let loadedContent):
                     if loadedContent.isEmpty {
                         VStack {
+                            if showTopSelector {
+                                topSelector
+                            }
                             if let headerView {
                                 headerView
                             }
@@ -157,6 +174,10 @@ struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, Er
                     } else {
                         ScrollView {
                             ScrollViewReader { proxy in
+                                if showTopSelector {
+                                    topSelector
+                                }
+
                                 if let headerView {
                                     headerView
                                 }
@@ -406,6 +427,9 @@ struct ContentList<HeaderView: View, LoadingView: View, EmptyStateView: View, Er
 
                 case .error(_):
                     VStack {
+                        if showTopSelector {
+                            topSelector
+                        }
                         if let headerView {
                             headerView
                         }
