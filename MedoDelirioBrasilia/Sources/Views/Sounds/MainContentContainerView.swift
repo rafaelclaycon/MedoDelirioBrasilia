@@ -1,5 +1,5 @@
 //
-//  MainSoundContainer.swift
+//  MainContentContainerView.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 13/04/24.
@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct MainSoundContainer: View {
+/// Main view of the app on iPhone. This is reponsible for showing the main content view and start content sync.
+struct MainContentContainerView: View {
 
     @StateObject private var viewModel: MainSoundContainerViewModel
     @StateObject private var allSoundsViewModel: ContentListViewModel<[AnyEquatableMedoContent]>
@@ -211,7 +212,7 @@ struct MainSoundContainer: View {
 //                    )
 //
 //                    Analytics().send(
-//                        originatingScreen: "MainSoundContainer",
+//                        originatingScreen: "MainContentContainerView",
 //                        action: "didExportRetro2024Images(\(exportAnalytics))"
 //                    )
 //                }
@@ -255,7 +256,7 @@ struct MainSoundContainer: View {
 
 // MARK: - Subviews
 
-extension MainSoundContainer {
+extension MainContentContainerView {
 
     struct LeadingToolbarControls: View {
 
@@ -382,7 +383,7 @@ extension MainSoundContainer {
 
 // MARK: - Functions
 
-extension MainSoundContainer {
+extension MainContentContainerView {
 
     private func selectionNavBarTitle(for viewModel: ContentListViewModel<[AnyEquatableMedoContent]>) -> String {
         if viewModel.selectionKeeper.count == 0 {
@@ -406,7 +407,7 @@ extension MainSoundContainer {
 // MARK: - Preview
 
 #Preview {
-    MainSoundContainer(
+    MainContentContainerView(
         viewModel: .init(
             currentViewMode: .all,
             soundSortOption: SoundSortOption.dateAddedDescending.rawValue,

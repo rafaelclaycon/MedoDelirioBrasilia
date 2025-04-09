@@ -46,7 +46,7 @@ struct MainView: View {
             if UIDevice.isiPhone {
                 TabView(selection: $tabSelection) {
                     NavigationStack(path: $soundsPath) {
-                        MainSoundContainer(
+                        MainContentContainerView(
                             viewModel: .init(
                                 currentViewMode: .all,
                                 soundSortOption: UserSettings().mainSoundListSoundSortOption(),
@@ -136,7 +136,7 @@ struct MainView: View {
                     TabView {
                         Tab("Sons", systemImage: "speaker.wave.2") {
                             NavigationStack(path: $soundsPath) {
-                                MainSoundContainer(
+                                MainContentContainerView(
                                     viewModel: .init(
                                         currentViewMode: .all,
                                         soundSortOption: UserSettings().mainSoundListSoundSortOption(),
@@ -158,7 +158,7 @@ struct MainView: View {
 
                         Tab("Favoritos", systemImage: "star") {
                             NavigationStack(path: $favoritesPath) {
-                                MainSoundContainer(
+                                MainContentContainerView(
                                     viewModel: .init(
                                         currentViewMode: .favorites,
                                         soundSortOption: UserSettings().mainSoundListSoundSortOption(),
@@ -300,7 +300,7 @@ struct MainView: View {
                         .environmentObject(syncValues)
                     } detail: {
                         NavigationStack(path: $soundsPath) {
-                            MainSoundContainer(
+                            MainContentContainerView(
                                 viewModel: .init(
                                     currentViewMode: .all,
                                     soundSortOption: UserSettings().mainSoundListSoundSortOption(),

@@ -10,7 +10,7 @@ import SwiftUI
 /// Class that allows the communication between `TrendsView` and other tabs.
 ///
 /// - Parameters:
-///    - notifyMainSoundContainer: Tells `MainSoundContainer` what soundId to scroll to.
+///    - notifyMainSoundContainer: Tells `MainSoundContainerView` what soundId to scroll to.
 ///    - soundIdToGoTo: After making sure it is in the `.all` mode, scrolls to the correct sound.
 @Observable class TrendsHelper {
 
