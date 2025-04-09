@@ -48,17 +48,15 @@ struct ReactionDetailView: View {
     // MARK: - View Body
 
     var body: some View {
-        GeometryReader { geometry in
-            ContentList<
-                VStack, LoadingView, EmptyStateView, ErrorView, EmptyView, EmptyView
-            >(
-                viewModel: soundListViewModel,
-                soundSearchTextIsEmpty: .constant(nil),
-                showNewTag: false,
-                dataLoadingDidFail: viewModel.dataLoadingDidFail,
-                reactionId: viewModel.reaction.id,
-                headerView: {
-                    VStack {
+        ScrollView {
+            VStack {
+                ContentList(
+                    viewModel: soundListViewModel,
+                    soundSearchTextIsEmpty: .constant(nil),
+                    showNewTag: false,
+                    dataLoadingDidFail: viewModel.dataLoadingDidFail,
+                    reactionId: viewModel.reaction.id,
+                    headerView: {
                         ReactionDetailHeader(
                             title: viewModel.reaction.title,
                             subtitle: viewModel.subtitle,
@@ -68,52 +66,52 @@ struct ReactionDetailView: View {
                         )
                         .frame(height: 260)
                         .padding(.bottom, 6)
-                    }
-                },
-                loadingView: LoadingView(),
-                emptyStateView: EmptyStateView(
-                    reloadAction: {
-                        Task {
-                            await viewModel.loadSounds()
+                    },
+                    loadingView: LoadingView(),
+                    emptyStateView: EmptyStateView(
+                        reloadAction: {
+                            Task {
+                                await viewModel.loadSounds()
+                            }
                         }
-                    }
-                ),
-                errorView: ErrorView(
-                    reactionNoLongerExists: viewModel.state == .reactionNoLongerExists,
-                    errorMessage: viewModel.errorMessage,
-                    tryAgainAction: {
-                        Task {
-                            await viewModel.loadSounds()
+                    ),
+                    errorView: ErrorView(
+                        reactionNoLongerExists: viewModel.state == .reactionNoLongerExists,
+                        errorMessage: viewModel.errorMessage,
+                        tryAgainAction: {
+                            Task {
+                                await viewModel.loadSounds()
+                            }
                         }
-                    }
+                    )
                 )
-            )
-            .environment(TrendsHelper())
-        }
-        .toolbar {
-            ToolbarControls(
-                soundSortOption: $viewModel.soundSortOption,
-                playStopAction: { soundListViewModel.onPlayStopPlaylistSelected() },
-                startSelectingAction: { soundListViewModel.onEnterMultiSelectModeSelected() },
-                isPlayingPlaylist: soundListViewModel.isPlayingPlaylist,
-                soundArrayIsEmpty: soundArrayIsEmpty,
-                isSelecting: soundListViewModel.isSelectingSounds
-            )
-            .foregroundStyle(.white)
-            .opacity(toolbarControlsOpacity)
-            .disabled(soundArrayIsEmpty)
-            .onChange(of: viewModel.soundSortOption) {
-                viewModel.sortSounds(by: viewModel.soundSortOption)
+                .environment(TrendsHelper())
             }
-        }
-        .oneTimeTask {
-            await viewModel.loadSounds()
-        }
-        .onAppear {
-            Analytics().send(
-                originatingScreen: "ReactionDetailView",
-                action: "didViewReaction(\(viewModel.reaction.title))"
-            )
+            .toolbar {
+                ToolbarControls(
+                    soundSortOption: $viewModel.soundSortOption,
+                    playStopAction: { soundListViewModel.onPlayStopPlaylistSelected() },
+                    startSelectingAction: { soundListViewModel.onEnterMultiSelectModeSelected() },
+                    isPlayingPlaylist: soundListViewModel.isPlayingPlaylist,
+                    soundArrayIsEmpty: soundArrayIsEmpty,
+                    isSelecting: soundListViewModel.isSelectingSounds
+                )
+                .foregroundStyle(.white)
+                .opacity(toolbarControlsOpacity)
+                .disabled(soundArrayIsEmpty)
+                .onChange(of: viewModel.soundSortOption) {
+                    viewModel.sortSounds(by: viewModel.soundSortOption)
+                }
+            }
+            .oneTimeTask {
+                await viewModel.loadSounds()
+            }
+            .onAppear {
+                Analytics().send(
+                    originatingScreen: "ReactionDetailView",
+                    action: "didViewReaction(\(viewModel.reaction.title))"
+                )
+            }
         }
         .edgesIgnoringSafeArea(.top)
     }

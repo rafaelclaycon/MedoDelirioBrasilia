@@ -85,170 +85,166 @@ struct MainContentContainerView: View {
     // MARK: - View Body
 
     var body: some View {
-        VStack {
-            ContentList<
-                VStack, VStack, VStack, VStack, VStack, VStack
-            >(
-                viewModel: allSoundsViewModel,
-                soundSearchTextIsEmpty: $soundSearchTextIsEmpty,
-                allowSearch: true,
-                allowRefresh: true,
-                showTopSelector: true,
-                selectorSelection: $viewModel.currentViewMode,
-                showSoundCountAtTheBottom: viewModel.currentViewMode == .all,
-                showExplicitDisabledWarning: viewModel.currentViewMode == .all,
-                syncAction: {
-                    Task { // Keep this Task to avoid "cancelled" issue.
-                        await viewModel.onSyncRequested()
-                    }
-                },
-                dataLoadingDidFail: viewModel.dataLoadingDidFail,
-                headerView: {
-                    VStack {
-                        if displayLongUpdateBanner {
-                            LongUpdateBanner(
-                                completedNumber: $viewModel.processedUpdateNumber,
-                                totalUpdateCount: $viewModel.totalUpdateCount
-                            )
-                            .padding(.horizontal, 10)
-                        }
+        ScrollView {
+            VStack(spacing: 10) {
+                TopSelector(selected: $viewModel.currentViewMode)
 
-//                            if shouldDisplayRecurringDonationBanner, viewModel.searchText.isEmpty {
-//                                RecurringDonationBanner(
-//                                    isBeingShown: $shouldDisplayRecurringDonationBanner
-//                                )
-//                                .padding(.horizontal, 10)
-//                            }
-                    }
-                },
-                loadingView:
-                    VStack {
-                        HStack(spacing: 10) {
-                            ProgressView()
+                switch viewModel.currentViewMode {
+                case .all, .favorites, .songs:
+                    ContentList(
+                        viewModel: allSoundsViewModel,
+                        soundSearchTextIsEmpty: $soundSearchTextIsEmpty,
+                        showSoundCountAtTheBottom: viewModel.currentViewMode == .all,
+                        showExplicitDisabledWarning: viewModel.currentViewMode == .all,
+                        dataLoadingDidFail: viewModel.dataLoadingDidFail,
+                        headerView: {
+                            VStack {
+                                if displayLongUpdateBanner {
+                                    LongUpdateBanner(
+                                        completedNumber: $viewModel.processedUpdateNumber,
+                                        totalUpdateCount: $viewModel.totalUpdateCount
+                                    )
+                                    .padding(.horizontal, 10)
+                                }
 
-                            Text("Carregando sons...")
-                                .foregroundColor(.gray)
-                        }
-                        .frame(maxWidth: .infinity)
-                    }
-                ,
-                emptyStateView:
-                    VStack {
-                        if viewModel.currentViewMode == .favorites {
-                            NoFavoritesView()
-                                .padding(.horizontal, 25)
-                                .padding(.vertical, 50)
-                        } else {
-                            Text("Nenhum som a ser exibido. Isso é esquisito.")
-                                .foregroundColor(.gray)
-                                .padding(.horizontal, 20)
-                        }
-                    }
-                ,
-                errorView:
-                    VStack {
-                        HStack(spacing: 10) {
-                            ProgressView()
+        //                            if shouldDisplayRecurringDonationBanner, viewModel.searchText.isEmpty {
+        //                                RecurringDonationBanner(
+        //                                    isBeingShown: $shouldDisplayRecurringDonationBanner
+        //                                )
+        //                                .padding(.horizontal, 10)
+        //                            }
+                            }
+                        },
+                        loadingView:
+                            VStack {
+                                HStack(spacing: 10) {
+                                    ProgressView()
 
-                            Text("Erro ao carregar sons.")
-                                .foregroundColor(.gray)
-                        }
-                        .frame(maxWidth: .infinity)
-                    }
-                ,
-                foldersView: {
-                    VStack {
-                        MyFoldersiPhoneView()
-                            .environmentObject(deleteFolderAide)
-                    }
-                },
-                authorsView: {
-                    VStack {
-                        AuthorsView(
-                            sortOption: $viewModel.authorSortOption,
-                            sortAction: $authorSortAction,
-                            searchTextForControl: $authorSearchText
-                        )
-                    }
-                }
-            )
-        }
-        .navigationTitle(Text(title))
-        .navigationBarItems(
-            leading: LeadingToolbarControls(
-                isSelecting: currentSoundsListMode.wrappedValue == .selection,
-                cancelAction: { allSoundsViewModel.onExitMultiSelectModeSelected() },
-                openSettingsAction: openSettingsAction
-            ),
-            trailing: trailingToolbarControls()
-        )
-        .onChange(of: viewModel.currentViewMode) {
-            viewModel.onSelectedViewModeChanged(favorites: allSoundsViewModel.favoritesKeeper)
-        }
-        .onChange(of: viewModel.processedUpdateNumber) {
-            withAnimation {
-                displayLongUpdateBanner = viewModel.totalUpdateCount >= 10 && viewModel.processedUpdateNumber != viewModel.totalUpdateCount
-            }
-        }
-        .onChange(of: playRandomSoundHelper.soundIdToPlay) {
-            if !playRandomSoundHelper.soundIdToPlay.isEmpty {
-                viewModel.currentViewMode = .all
-                allSoundsViewModel.scrollAndPlaySound(withId: playRandomSoundHelper.soundIdToPlay)
-                playRandomSoundHelper.soundIdToPlay = ""
-            }
-        }
-        .sheet(isPresented: $showingModalView) {
-            SyncInfoView(
-                lastUpdateAttempt: AppPersistentMemory().getLastUpdateAttempt(),
-                lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
-            )
-        }
-//        .sheet(isPresented: $showClassicRetroView) {
-//            ClassicRetroView(
-//                imageSaveSucceededAction: { exportAnalytics in
-//                    allSoundsViewModel.displayToast(
-//                        toastText: Shared.Retro.successMessage,
-//                        displayTime: .seconds(5)
-//                    )
-//
-//                    Analytics().send(
-//                        originatingScreen: "MainContentContainerView",
-//                        action: "didExportRetro2024Images(\(exportAnalytics))"
-//                    )
-//                }
-//            )
-//        }
-        .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in // iPad - Settings explicit toggle.
-            if shouldUpdate {
-                viewModel.onExplicitContentSettingChanged()
-                settingsHelper.updateSoundsList = false
-            }
-        }
-        .onChange(of: trendsHelper.notifyMainSoundContainer) {
-            highlight(soundId: trendsHelper.notifyMainSoundContainer)
-        }
-        .overlay {
-            if viewModel.showToastView {
-                VStack {
-                    Spacer()
+                                    Text("Carregando sons...")
+                                        .foregroundColor(.gray)
+                                }
+                                .frame(maxWidth: .infinity)
+                            }
+                        ,
+                        emptyStateView:
+                            VStack {
+                                if viewModel.currentViewMode == .favorites {
+                                    NoFavoritesView()
+                                        .padding(.horizontal, 25)
+                                        .padding(.vertical, 50)
+                                } else {
+                                    Text("Nenhum som a ser exibido. Isso é esquisito.")
+                                        .foregroundColor(.gray)
+                                        .padding(.horizontal, 20)
+                                }
+                            }
+                        ,
+                        errorView:
+                            VStack {
+                                HStack(spacing: 10) {
+                                    ProgressView()
 
-                    ToastView(
-                        icon: viewModel.toastIcon,
-                        iconColor: viewModel.toastIconColor,
-                        text: viewModel.toastText
+                                    Text("Erro ao carregar sons.")
+                                        .foregroundColor(.gray)
+                                }
+                                .frame(maxWidth: .infinity)
+                            }
                     )
-                    .padding(.horizontal)
-                    .padding(.bottom, Shared.Constants.toastViewBottomPaddingPad)
+
+                case .folders:
+                    MyFoldersiPhoneView()
+                        .environmentObject(deleteFolderAide)
+
+                case .byAuthor:
+                    AuthorsView(
+                        sortOption: $viewModel.authorSortOption,
+                        sortAction: $authorSortAction,
+                        searchTextForControl: $authorSearchText
+                    )
                 }
-                .transition(.moveAndFade)
+            }
+            .navigationTitle(Text(title))
+            .navigationBarItems(
+                leading: LeadingToolbarControls(
+                    isSelecting: currentSoundsListMode.wrappedValue == .selection,
+                    cancelAction: { allSoundsViewModel.onExitMultiSelectModeSelected() },
+                    openSettingsAction: openSettingsAction
+                ),
+                trailing: trailingToolbarControls()
+            )
+            .onChange(of: viewModel.currentViewMode) {
+                viewModel.onSelectedViewModeChanged(favorites: allSoundsViewModel.favoritesKeeper)
+            }
+            .onChange(of: viewModel.processedUpdateNumber) {
+                withAnimation {
+                    displayLongUpdateBanner = viewModel.totalUpdateCount >= 10 && viewModel.processedUpdateNumber != viewModel.totalUpdateCount
+                }
+            }
+            .onChange(of: playRandomSoundHelper.soundIdToPlay) {
+                if !playRandomSoundHelper.soundIdToPlay.isEmpty {
+                    viewModel.currentViewMode = .all
+                    allSoundsViewModel.scrollAndPlaySound(withId: playRandomSoundHelper.soundIdToPlay)
+                    playRandomSoundHelper.soundIdToPlay = ""
+                }
+            }
+            .sheet(isPresented: $showingModalView) {
+                SyncInfoView(
+                    lastUpdateAttempt: AppPersistentMemory().getLastUpdateAttempt(),
+                    lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
+                )
+            }
+    //        .sheet(isPresented: $showClassicRetroView) {
+    //            ClassicRetroView(
+    //                imageSaveSucceededAction: { exportAnalytics in
+    //                    allSoundsViewModel.displayToast(
+    //                        toastText: Shared.Retro.successMessage,
+    //                        displayTime: .seconds(5)
+    //                    )
+    //
+    //                    Analytics().send(
+    //                        originatingScreen: "MainContentContainerView",
+    //                        action: "didExportRetro2024Images(\(exportAnalytics))"
+    //                    )
+    //                }
+    //            )
+    //        }
+            .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in // iPad - Settings explicit toggle.
+                if shouldUpdate {
+                    viewModel.onExplicitContentSettingChanged()
+                    settingsHelper.updateSoundsList = false
+                }
+            }
+            .onChange(of: trendsHelper.notifyMainSoundContainer) {
+                highlight(soundId: trendsHelper.notifyMainSoundContainer)
+            }
+            .overlay {
+                if viewModel.showToastView {
+                    VStack {
+                        Spacer()
+
+                        ToastView(
+                            icon: viewModel.toastIcon,
+                            iconColor: viewModel.toastIconColor,
+                            text: viewModel.toastText
+                        )
+                        .padding(.horizontal)
+                        .padding(.bottom, Shared.Constants.toastViewBottomPaddingPad)
+                    }
+                    .transition(.moveAndFade)
+                }
+            }
+            .onAppear {
+                viewModel.onViewDidAppear()
+            }
+            .onChange(of: scenePhase) {
+                Task {
+                    await viewModel.onScenePhaseChanged(newPhase: scenePhase)
+                }
             }
         }
-        .onAppear {
-            viewModel.onViewDidAppear()
-        }
-        .onChange(of: scenePhase) {
-            Task {
-                await viewModel.onScenePhaseChanged(newPhase: scenePhase)
+        .refreshable {
+            Task { // Keep this Task to avoid "cancelled" issue.
+                await viewModel.onSyncRequested()
             }
         }
     }

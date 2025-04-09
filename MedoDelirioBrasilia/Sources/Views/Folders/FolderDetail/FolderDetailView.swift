@@ -68,9 +68,7 @@ struct FolderDetailView: View {
 
     var body: some View {
         VStack {
-            ContentList<
-                VStack, VStack, VStack, VStack, EmptyView, EmptyView
-            >(
+            ContentList(
                 viewModel: contentListViewModel,
                 multiSelectFolderOperation: .remove,
                 showNewTag: false,
