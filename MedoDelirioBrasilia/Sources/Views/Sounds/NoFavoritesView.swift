@@ -27,7 +27,7 @@ struct NoFavoritesView: View {
                 .bold()
                 .multilineTextAlignment(.center)
             
-            Text("Para adicionar um som aos Favoritos, volte para os sons, segure em um deles e escolha **Adicionar aos Favoritos**.")
+            Text("Para adicionar um conteúdo aos Favoritos, volte para Tudo, segure em um deles e escolha **Adicionar aos Favoritos**.")
                 .foregroundColor(.gray)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)

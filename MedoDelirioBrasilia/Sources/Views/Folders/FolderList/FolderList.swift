@@ -93,7 +93,7 @@ struct FolderList: View {
                                 Button(role: .destructive, action: {
                                     let folderName = "\(folder.symbol) \(folder.name)"
                                     deleteFolderAide.alertTitle = "Apagar \"\(folderName)\""
-                                    deleteFolderAide.alertMessage = "Tem certeza de que deseja apagar a pasta \"\(folderName)\"? Os sons não serão apagados."
+                                    deleteFolderAide.alertMessage = "Tem certeza de que deseja apagar a pasta \"\(folderName)\"? Os conteúdos não serão apagados."
                                     deleteFolderAide.folderIdForDeletion = folder.id
                                     deleteFolderAide.showAlert = true
                                 }, label: {
