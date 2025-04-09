@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MyFoldersiPhoneView: View {
 
+    private var selectorSelection: Binding<TopSelectorOption>
+
     @State private var folderForEditing: UserFolder?
     @State private var updateFolderList: Bool = false // Does nothing, just here to satisfy FolderList :)
     @State private var currentSoundsListMode: SoundsListMode = .regular
@@ -16,19 +18,31 @@ struct MyFoldersiPhoneView: View {
 
     @EnvironmentObject var deleteFolderAide: DeleteFolderViewAide
 
+    // MARK: - Initializer
+
+    init(
+        selectorSelection: Binding<TopSelectorOption>
+    ) {
+        self.selectorSelection = selectorSelection
+    }
+
     // MARK: - View Body
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .center) {
-                FolderList(
-                    updateFolderList: $updateFolderList,
-                    folderForEditing: $folderForEditing
-                )
+            VStack {
+                TopSelector(selected: selectorSelection)
+
+                VStack(alignment: .center) {
+                    FolderList(
+                        updateFolderList: $updateFolderList,
+                        folderForEditing: $folderForEditing
+                    )
+                }
+                .padding(.horizontal)
+                .padding(.top, 7)
+                .padding(.bottom, 18)
             }
-            .padding(.horizontal)
-            .padding(.top, 7)
-            .padding(.bottom, 18)
         }
         .navigationTitle("Minhas Pastas")
         .toolbar {
@@ -85,5 +99,7 @@ struct MyFoldersiPhoneView: View {
 // MARK: - Preview
 
 #Preview {
-    MyFoldersiPhoneView()
+    MyFoldersiPhoneView(
+        selectorSelection: .constant(.all)
+    )
 }

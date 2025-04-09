@@ -157,8 +157,10 @@ struct MainSoundContainer: View {
                 ,
                 foldersView: {
                     VStack {
-                        MyFoldersiPhoneView()
-                            .environmentObject(deleteFolderAide)
+                        MyFoldersiPhoneView(
+                            selectorSelection: $viewModel.currentViewMode
+                        )
+                        .environmentObject(deleteFolderAide)
                     }
                 },
                 authorsView: {
