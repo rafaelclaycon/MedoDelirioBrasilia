@@ -26,7 +26,7 @@ struct SidebarView: View {
         List {
             Section("Sons") {
                 NavigationLink(
-                    destination: MainContentContainerView(
+                    destination: MainContentView(
                         viewModel: .init(
                             currentViewMode: .all,
                             soundSortOption: UserSettings().mainSoundListSoundSortOption(),
@@ -44,7 +44,7 @@ struct SidebarView: View {
                     })
                 
                 NavigationLink(
-                    destination: MainContentContainerView(
+                    destination: MainContentView(
                         viewModel: .init(
                             currentViewMode: .favorites,
                             soundSortOption: UserSettings().mainSoundListSoundSortOption(),

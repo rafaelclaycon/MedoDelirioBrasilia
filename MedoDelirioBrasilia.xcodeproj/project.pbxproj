@@ -1150,7 +1150,7 @@
 		D992E8262A185C8A00137469 /* InternalFolderNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = D992E8252A185C8A00137469 /* InternalFolderNames.swift */; };
 		D992E8282A1BFF3100137469 /* SyncService+Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = D992E8272A1BFF3100137469 /* SyncService+Sound.swift */; };
 		D992EF562BCB222B0080C892 /* ContextMenuOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = D992EF552BCB222B0080C892 /* ContextMenuOption.swift */; };
-		D992EF582BCB24310080C892 /* MainContentContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D992EF572BCB24310080C892 /* MainContentContainerView.swift */; };
+		D992EF582BCB24310080C892 /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D992EF572BCB24310080C892 /* MainContentView.swift */; };
 		D992EF5A2BCB24FB0080C892 /* ContentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D992EF592BCB24FB0080C892 /* ContentList.swift */; };
 		D992EF5C2BCB25820080C892 /* ContentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D992EF5B2BCB25820080C892 /* ContentListViewModel.swift */; };
 		D9943F152863CC4D002C6B97 /* A impiedosa justica de Deus.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9943F142863CC4D002C6B97 /* A impiedosa justica de Deus.mp3 */; };
@@ -1389,7 +1389,7 @@
 		D9DB6F8328CD6F3600E24BDE /* Edu Santos - Totalmente embriagado.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DB6F8228CD6F3500E24BDE /* Edu Santos - Totalmente embriagado.mp3 */; };
 		D9DB6F8528CD770900E24BDE /* Fernanda Torres - Totalmente drogada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9DB6F8428CD770900E24BDE /* Fernanda Torres - Totalmente drogada.mp3 */; };
 		D9DBCEA42B12888D003B4A46 /* NetworkRabbit+Retro.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DBCEA32B12888D003B4A46 /* NetworkRabbit+Retro.swift */; };
-		D9DBEA9A2BCBFB8600220679 /* MainSoundContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DBEA992BCBFB8600220679 /* MainSoundContainerViewModel.swift */; };
+		D9DBEA9A2BCBFB8600220679 /* MainContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DBEA992BCBFB8600220679 /* MainContentViewModel.swift */; };
 		D9DBEAA12BCC110A00220679 /* MockSoundListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DBEAA02BCC110A00220679 /* MockSoundListViewModel.swift */; };
 		D9DC4D7A2B1D8BC900627555 /* TopChartItem+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DC4D792B1D8BC900627555 /* TopChartItem+.swift */; };
 		D9DC68902AD38648005D3F81 /* RetroBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DC688F2AD38648005D3F81 /* RetroBanner.swift */; };
@@ -2703,7 +2703,7 @@
 		D992E8252A185C8A00137469 /* InternalFolderNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalFolderNames.swift; sourceTree = "<group>"; };
 		D992E8272A1BFF3100137469 /* SyncService+Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SyncService+Sound.swift"; sourceTree = "<group>"; };
 		D992EF552BCB222B0080C892 /* ContextMenuOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuOption.swift; sourceTree = "<group>"; };
-		D992EF572BCB24310080C892 /* MainContentContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentContainerView.swift; sourceTree = "<group>"; };
+		D992EF572BCB24310080C892 /* MainContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentView.swift; sourceTree = "<group>"; };
 		D992EF592BCB24FB0080C892 /* ContentList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentList.swift; sourceTree = "<group>"; };
 		D992EF5B2BCB25820080C892 /* ContentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListViewModel.swift; sourceTree = "<group>"; };
 		D9943F142863CC4D002C6B97 /* A impiedosa justica de Deus.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "A impiedosa justica de Deus.mp3"; sourceTree = "<group>"; };
@@ -2940,7 +2940,7 @@
 		D9DB6F8228CD6F3500E24BDE /* Edu Santos - Totalmente embriagado.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Edu Santos - Totalmente embriagado.mp3"; sourceTree = "<group>"; };
 		D9DB6F8428CD770900E24BDE /* Fernanda Torres - Totalmente drogada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Fernanda Torres - Totalmente drogada.mp3"; sourceTree = "<group>"; };
 		D9DBCEA32B12888D003B4A46 /* NetworkRabbit+Retro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRabbit+Retro.swift"; sourceTree = "<group>"; };
-		D9DBEA992BCBFB8600220679 /* MainSoundContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSoundContainerViewModel.swift; sourceTree = "<group>"; };
+		D9DBEA992BCBFB8600220679 /* MainContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentViewModel.swift; sourceTree = "<group>"; };
 		D9DBEAA02BCC110A00220679 /* MockSoundListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSoundListViewModel.swift; sourceTree = "<group>"; };
 		D9DC4D792B1D8BC900627555 /* TopChartItem+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TopChartItem+.swift"; sourceTree = "<group>"; };
 		D9DC688F2AD38648005D3F81 /* RetroBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetroBanner.swift; sourceTree = "<group>"; };
@@ -5104,8 +5104,8 @@
 		D9B9025C2837485000551239 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				D992EF572BCB24310080C892 /* MainContentContainerView.swift */,
-				D9DBEA992BCBFB8600220679 /* MainSoundContainerViewModel.swift */,
+				D992EF572BCB24310080C892 /* MainContentView.swift */,
+				D9DBEA992BCBFB8600220679 /* MainContentViewModel.swift */,
 				D92C0CA928405B2D009CF19A /* NoFavoritesView.swift */,
 				D9E747FA29A8ED1100009C8D /* NoSearchResultsView.swift */,
 				D94EAB5C29FC4D51004CD604 /* Sync */,
@@ -6809,7 +6809,7 @@
 				D90622C82AB4030600704B70 /* MedoContentProtocol.swift in Sources */,
 				D9F87A9228F6EA51002EE8AA /* RemoveFavoriteLogTable.swift in Sources */,
 				D9DCC5D52875CB59008DD4A3 /* AppPersistentMemory.swift in Sources */,
-				D9DBEA9A2BCBFB8600220679 /* MainSoundContainerViewModel.swift in Sources */,
+				D9DBEA9A2BCBFB8600220679 /* MainContentViewModel.swift in Sources */,
 				D95C3E122A02E6D300172C17 /* SyncEnums.swift in Sources */,
 				D938132F287E12B3009EE24F /* NotificationAide.swift in Sources */,
 				D9AE70442D74AA6800117009 /* NetworkRabbit+ShareStats.swift in Sources */,
@@ -7027,7 +7027,7 @@
 				D9C35D23288713990065F3E7 /* HotWeatherAdBannerView.swift in Sources */,
 				D9BF90972842D3CB00BDDD7D /* NoSoundsView.swift in Sources */,
 				D927C424285245CE0041970A /* SoundOptionsHelper.swift in Sources */,
-				D992EF582BCB24310080C892 /* MainContentContainerView.swift in Sources */,
+				D992EF582BCB24310080C892 /* MainContentView.swift in Sources */,
 				D9A8AB282854436500B5A94B /* Date+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

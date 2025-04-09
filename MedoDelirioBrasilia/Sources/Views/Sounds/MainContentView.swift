@@ -8,9 +8,9 @@
 import SwiftUI
 
 /// Main view of the app on iPhone. This is reponsible for showing the main content view and start content sync.
-struct MainContentContainerView: View {
+struct MainContentView: View {
 
-    @StateObject private var viewModel: MainSoundContainerViewModel
+    @StateObject private var viewModel: MainContentViewModel
     @StateObject private var allSoundsViewModel: ContentListViewModel<[AnyEquatableMedoContent]>
     private var currentSoundsListMode: Binding<SoundsListMode>
     private let openSettingsAction: () -> Void
@@ -68,7 +68,7 @@ struct MainContentContainerView: View {
     // MARK: - Initializer
 
     init(
-        viewModel: MainSoundContainerViewModel,
+        viewModel: MainContentViewModel,
         currentSoundsListMode: Binding<SoundsListMode>,
         openSettingsAction: @escaping () -> Void
     ) {
@@ -202,7 +202,7 @@ struct MainContentContainerView: View {
     //                    )
     //
     //                    Analytics().send(
-    //                        originatingScreen: "MainContentContainerView",
+    //                        originatingScreen: "MainContentView",
     //                        action: "didExportRetro2024Images(\(exportAnalytics))"
     //                    )
     //                }
@@ -252,7 +252,7 @@ struct MainContentContainerView: View {
 
 // MARK: - Subviews
 
-extension MainContentContainerView {
+extension MainContentView {
 
     struct LeadingToolbarControls: View {
 
@@ -379,7 +379,7 @@ extension MainContentContainerView {
 
 // MARK: - Functions
 
-extension MainContentContainerView {
+extension MainContentView {
 
     private func selectionNavBarTitle(for viewModel: ContentListViewModel<[AnyEquatableMedoContent]>) -> String {
         if viewModel.selectionKeeper.count == 0 {
@@ -403,7 +403,7 @@ extension MainContentContainerView {
 // MARK: - Preview
 
 #Preview {
-    MainContentContainerView(
+    MainContentView(
         viewModel: .init(
             currentViewMode: .all,
             soundSortOption: SoundSortOption.dateAddedDescending.rawValue,

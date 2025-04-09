@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 
 @MainActor
-class MainSoundContainerViewModel: ObservableObject {
+class MainContentViewModel: ObservableObject {
 
     // MARK: - Published Vars
 
@@ -81,7 +81,7 @@ class MainSoundContainerViewModel: ObservableObject {
 
 // MARK: - User Actions
 
-extension MainSoundContainerViewModel {
+extension MainContentViewModel {
 
     public func onViewDidAppear() {
         print("MAIN SOUND CONTAINER - ON APPEAR")
@@ -130,7 +130,7 @@ extension MainSoundContainerViewModel {
 
 // MARK: - Internal Functions
 
-extension MainSoundContainerViewModel {
+extension MainContentViewModel {
 
     private func loadContent() {
         do {
@@ -187,7 +187,7 @@ extension MainSoundContainerViewModel {
 
 // MARK: - Sorting
 
-extension MainSoundContainerViewModel {
+extension MainContentViewModel {
 
     private func sortAllSounds(by sortOption: SoundSortOption) {
         switch sortOption {
@@ -253,7 +253,7 @@ extension MainSoundContainerViewModel {
 
 // MARK: - Data Syncing
 
-extension MainSoundContainerViewModel: SyncManagerDelegate {
+extension MainContentViewModel: SyncManagerDelegate {
 
     private func sync(lastAttempt: String) async {
         print("lastAttempt: \(lastAttempt)")
