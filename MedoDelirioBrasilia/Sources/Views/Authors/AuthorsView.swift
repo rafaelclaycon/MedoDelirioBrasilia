@@ -35,69 +35,67 @@ struct AuthorsView: View {
     @Environment(\.sizeCategory) var sizeCategory
 
     var body: some View {
-        GeometryReader { geometry in
-            ScrollView {
-                LazyVGrid(columns: columns, spacing: 20) {
-                    if searchResults.isEmpty {
-                        NoSearchResultsView(searchText: $searchText)
-                    } else {
-                        ForEach(searchResults) { author in
-                            AuthorCell(author: author)
-                                .padding(.horizontal, 5)
-                                .onTapGesture {
-                                    push(GeneralNavigationDestination.authorDetail(author))
-                                }
-                        }
+        VStack {
+            LazyVGrid(columns: columns, spacing: 20) {
+                if searchResults.isEmpty {
+                    NoSearchResultsView(searchText: $searchText)
+                } else {
+                    ForEach(searchResults) { author in
+                        AuthorCell(author: author)
+                            .padding(.horizontal, 5)
+                            .onTapGesture {
+                                push(GeneralNavigationDestination.authorDetail(author))
+                            }
                     }
                 }
-                .searchable(text: $searchText)
-                .disableAutocorrection(true)
-                .padding(.horizontal)
-                .padding(.top, 7)
-                .onAppear {
-                    if viewModel.authors.isEmpty {
-                        viewModel.reloadList(sortedBy: AuthorSortOption(rawValue: sortOption) ?? .nameAscending)
-                    }
-
-                    //viewModel.donateActivity()
-
-                    columns = GridHelper.adaptableColumns(
-                        listWidth: geometry.size.width,
-                        sizeCategory: sizeCategory,
-                        spacing: UIDevice.isiPhone ? 12 : 20,
-                        forceSingleColumnOnPhone: true
-                    )
-                }
-                .onChange(of: geometry.size.width) { newWidth in
-                    columns = GridHelper.adaptableColumns(
-                        listWidth: newWidth,
-                        sizeCategory: sizeCategory,
-                        spacing: UIDevice.isiPhone ? 12 : 20,
-                        forceSingleColumnOnPhone: true
-                    )
-                }
-                .onChange(of: sortAction) { sortAction in
-                    switch sortAction {
-                    case .nameAscending:
-                        viewModel.sortAuthorsInPlaceByNameAscending()
-                    case .soundCountDescending:
-                        viewModel.sortAuthorsInPlaceBySoundCountDescending()
-                    case .soundCountAscending:
-                        viewModel.sortAuthorsInPlaceBySoundCountAscending()
-                    }
-                }
-                .onChange(of: searchText) { searchText in
-                    searchTextForControl = searchText
+            }
+            .searchable(text: $searchText)
+            .disableAutocorrection(true)
+            .padding(.horizontal)
+            .padding(.top, 7)
+            .onAppear {
+                if viewModel.authors.isEmpty {
+                    viewModel.reloadList(sortedBy: AuthorSortOption(rawValue: sortOption) ?? .nameAscending)
                 }
 
-                if searchText.isEmpty {
-                    Text("\(viewModel.authors.count) AUTORES")
-                        .font(.footnote)
-                        .foregroundColor(.gray)
-                        .multilineTextAlignment(.center)
-                        .padding(.top, authorCountTopPadding)
-                        .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? authorCountPhoneBottomPadding : authorCountPadBottomPadding)
+                //viewModel.donateActivity()
+
+                columns = GridHelper.adaptableColumns(
+                    listWidth: UIScreen.main.bounds.width,
+                    sizeCategory: sizeCategory,
+                    spacing: UIDevice.isiPhone ? 12 : 20,
+                    forceSingleColumnOnPhone: true
+                )
+            }
+            //                .onChange(of: geometry.size.width) { newWidth in
+            //                    columns = GridHelper.adaptableColumns(
+            //                        listWidth: newWidth,
+            //                        sizeCategory: sizeCategory,
+            //                        spacing: UIDevice.isiPhone ? 12 : 20,
+            //                        forceSingleColumnOnPhone: true
+            //                    )
+            //                }
+            .onChange(of: sortAction) {
+                switch sortAction {
+                case .nameAscending:
+                    viewModel.sortAuthorsInPlaceByNameAscending()
+                case .soundCountDescending:
+                    viewModel.sortAuthorsInPlaceBySoundCountDescending()
+                case .soundCountAscending:
+                    viewModel.sortAuthorsInPlaceBySoundCountAscending()
                 }
+            }
+            .onChange(of: searchText) {
+                searchTextForControl = searchText
+            }
+
+            if searchText.isEmpty {
+                Text("\(viewModel.authors.count) AUTORES")
+                    .font(.footnote)
+                    .foregroundColor(.gray)
+                    .multilineTextAlignment(.center)
+                    .padding(.top, authorCountTopPadding)
+                    .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? authorCountPhoneBottomPadding : authorCountPadBottomPadding)
             }
         }
     }
