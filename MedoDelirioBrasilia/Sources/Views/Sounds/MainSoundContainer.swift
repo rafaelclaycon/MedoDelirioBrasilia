@@ -136,7 +136,7 @@ struct MainSoundContainer: View {
                         if viewModel.currentViewMode == .favorites {
                             NoFavoritesView()
                                 .padding(.horizontal, 25)
-                                .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? 100 : 15)
+                                .padding(.vertical, 50)
                         } else {
                             Text("Nenhum som a ser exibido. Isso é esquisito.")
                                 .foregroundColor(.gray)
@@ -157,10 +157,8 @@ struct MainSoundContainer: View {
                 ,
                 foldersView: {
                     VStack {
-                        MyFoldersiPhoneView(
-                            selectorSelection: $viewModel.currentViewMode
-                        )
-                        .environmentObject(deleteFolderAide)
+                        MyFoldersiPhoneView()
+                            .environmentObject(deleteFolderAide)
                     }
                 },
                 authorsView: {
