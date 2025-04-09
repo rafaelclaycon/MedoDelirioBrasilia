@@ -93,6 +93,9 @@ struct PlayableContentView: View {
     }
     
     private var authorNameLineLimit: Int {
+        guard content.type == .sound else {
+            return 1
+        }
         if (UIScreen.main.bounds.width <= 390) && (content.title.count > 20) {
             return 1
         } else {
