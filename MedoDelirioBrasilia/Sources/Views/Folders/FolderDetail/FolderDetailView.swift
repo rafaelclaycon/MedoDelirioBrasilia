@@ -67,74 +67,76 @@ struct FolderDetailView: View {
     // MARK: - View Body
 
     var body: some View {
-        VStack {
-            ContentList(
-                viewModel: contentListViewModel,
-                multiSelectFolderOperation: .remove,
-                showNewTag: false,
-                dataLoadingDidFail: viewModel.dataLoadingDidFail,
-                headerView: {
-                    VStack {
-                        VStack(alignment: .leading) {
-                            HStack {
-                                Text(viewModel.soundCount)
-                                    .font(.callout)
-                                    .foregroundColor(.gray)
-                                    .bold()
-                                
-                                Spacer()
+        ScrollView {
+            VStack {
+                ContentList(
+                    viewModel: contentListViewModel,
+                    multiSelectFolderOperation: .remove,
+                    showNewTag: false,
+                    dataLoadingDidFail: viewModel.dataLoadingDidFail,
+                    headerView: {
+                        VStack {
+                            VStack(alignment: .leading) {
+                                HStack {
+                                    Text(viewModel.soundCount)
+                                        .font(.callout)
+                                        .foregroundColor(.gray)
+                                        .bold()
+                                    
+                                    Spacer()
+                                }
                             }
+                            .padding(.horizontal, 20)
+                            .padding(.top)
                         }
-                        .padding(.horizontal, 20)
-                        .padding(.top)
-                    }
-                },
-                loadingView:
-                    VStack {
-                        HStack(spacing: 10) {
-                            ProgressView()
-
-                            Text("Carregando sons...")
-                                .foregroundColor(.gray)
+                    },
+                    loadingView:
+                        VStack {
+                            HStack(spacing: 10) {
+                                ProgressView()
+                                
+                                Text("Carregando sons...")
+                                    .foregroundColor(.gray)
+                            }
+                            .frame(maxWidth: .infinity)
                         }
-                        .frame(maxWidth: .infinity)
-                    }
-                ,
-                emptyStateView:
-                    VStack {
-                        EmptyFolderView()
-                            .padding(.horizontal, 30)
-                    }
-                ,
-                errorView:
-                    VStack {
-                        HStack(spacing: 10) {
-                            ProgressView()
-
-                            Text("Erro ao carregar sons.")
-                                .foregroundColor(.gray)
+                    ,
+                    emptyStateView:
+                        VStack {
+                            EmptyFolderView()
+                                .padding(.horizontal, 30)
                         }
-                        .frame(maxWidth: .infinity)
+                    ,
+                    errorView:
+                        VStack {
+                            HStack(spacing: 10) {
+                                ProgressView()
+                                
+                                Text("Erro ao carregar sons.")
+                                    .foregroundColor(.gray)
+                            }
+                            .frame(maxWidth: .infinity)
+                        }
+                )
+                .environment(TrendsHelper())
+            }
+            .navigationTitle(title)
+            .toolbar { trailingToolbarControls() }
+            .onAppear {
+                viewModel.onViewAppeared()
+            }
+            .onDisappear {
+                contentListViewModel.onViewDisappeared()
+            }
+            .sheet(isPresented: $showingFolderInfoEditingView) {
+                FolderInfoEditingView(
+                    folder: folder,
+                    folderRepository: UserFolderRepository(),
+                    dismissSheet: {
+                        showingFolderInfoEditingView = false
                     }
-            )
-            .environment(TrendsHelper())
-        }
-        .navigationTitle(title)
-        .toolbar { trailingToolbarControls() }
-        .onAppear {
-            viewModel.onViewAppeared()
-        }
-        .onDisappear {
-            contentListViewModel.onViewDisappeared()
-        }
-        .sheet(isPresented: $showingFolderInfoEditingView) {
-            FolderInfoEditingView(
-                folder: folder,
-                folderRepository: UserFolderRepository(),
-                dismissSheet: {
-                    showingFolderInfoEditingView = false
-                }
-            )
+                )
+            }
         }
     }
 
