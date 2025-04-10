@@ -106,6 +106,7 @@ extension MainContentViewModel {
         } else if currentViewMode == .songs {
             forDisplay = allContent.filter { $0.type == .song }
         }
+        sortSounds(by: soundSortOption)
     }
 
     public func onSoundSortOptionChanged() {
