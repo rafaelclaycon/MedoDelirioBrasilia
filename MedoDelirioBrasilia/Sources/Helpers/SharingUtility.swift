@@ -12,6 +12,7 @@ class SharingUtility {
     static func shareSound(
         from url: URL,
         andContentId contentId: String,
+        context contentType: ContentType,
         completionHandler: @escaping (Bool) -> Void
     ) throws {
         let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
@@ -24,8 +25,8 @@ class SharingUtility {
                     return
                 }
                 let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
-                Logger.shared.logSharedSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
-                
+                Logger.shared.logShared(contentType, contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
+
                 AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
                 
                 completionHandler(true)
@@ -69,7 +70,7 @@ class SharingUtility {
 
                     let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
                     sounds.forEach {
-                        Logger.shared.logSharedSound(contentId: $0.id, destination: destination, destinationBundleId: activity.rawValue)
+                        Logger.shared.logShared(.sound, contentId: $0.id, destination: destination, destinationBundleId: activity.rawValue)
                     }
 
                     AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
@@ -81,11 +82,19 @@ class SharingUtility {
             }
     }
 
-    static func shareVideoFromSound(withPath filepath: String, andContentId contentId: String, shareSheetDelayInSeconds: Double, completionHandler: @escaping (Bool) -> Void) throws {
-        guard filepath.isEmpty == false else {
-            return
-        }
-        
+    /// Use for video only.
+    static func share(
+        _ type: ContentType,
+        withPath filepath: String,
+        andContentId contentId: String,
+        shareSheetDelayInSeconds: Double,
+        completionHandler: @escaping (Bool) -> Void
+    ) throws {
+        guard
+            filepath.isEmpty == false,
+            [.videoFromSound, .videoFromSong].contains(type)
+        else { return }
+
         let url = URL(fileURLWithPath: filepath)
         
         let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
@@ -100,8 +109,8 @@ class SharingUtility {
                     return
                 }
                 let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
-                Logger.shared.logSharedVideoFromSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
-                
+                Logger.shared.logShared(type, contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
+
                 AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
                 
                 completionHandler(true)

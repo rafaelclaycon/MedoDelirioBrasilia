@@ -89,7 +89,10 @@ class NetworkRabbit: NetworkRabbitProtocol {
     
     // MARK: - POST
     
-    func post(shareCountStat: ServerShareCountStat, completionHandler: @escaping (Bool, String) -> Void) {
+    func post(
+        shareCountStat: ServerShareCountStat,
+        completionHandler: @escaping (Bool, String) -> Void
+    ) {
         let url = URL(string: serverPath + "v1/share-count-stat")!
 
         var request = URLRequest(url: url)
