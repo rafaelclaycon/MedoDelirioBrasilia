@@ -207,7 +207,170 @@ struct ContentList<
                         }
                         .padding(.horizontal)
                         .padding(.top, 7)
- // Aqui
+//                        .alert(isPresented: $viewModel.showAlert) {
+//                            switch viewModel.alertType {
+//                            case .soundFileNotFound:
+//                                return Alert(
+//                                    title: Text(viewModel.alertTitle),
+//                                    message: Text(viewModel.alertMessage),
+//                                    primaryButton: .default(Text("Baixar Conteúdo Novamente"), action: {
+//                                        guard let content = viewModel.selectedContentSingle else { return }
+//                                        viewModel.redownloadServerContent(withId: content.id)
+//                                    }),
+//                                    secondaryButton: .cancel(Text("Fechar"))
+//                                )
+//
+//                            case .issueSharingSound:
+//                                return Alert(
+//                                    title: Text(viewModel.alertTitle),
+//                                    message: Text(viewModel.alertMessage),
+//                                    primaryButton: .default(Text("Relatar Problema por E-mail"), action: {
+////                                        viewModel.subviewToOpen = .soundIssueEmailPicker
+////                                        viewModel.showingModalView = true
+//                                    }),
+//                                    secondaryButton: .cancel(Text("Fechar"))
+//                                )
+//
+//                            case .issueExportingManySounds, .unableToRedownloadSound, .issueRemovingSoundFromFolder:
+//                                return Alert(
+//                                    title: Text(viewModel.alertTitle),
+//                                    message: Text(viewModel.alertMessage),
+//                                    dismissButton: .default(Text("OK"))
+//                                )
+//
+//                            case .removeSingleSound:
+//                                return Alert(
+//                                    title: Text(viewModel.alertTitle),
+//                                    message: Text(viewModel.alertMessage),
+//                                    primaryButton: .destructive(
+//                                        Text("Remover"),
+//                                        action: { viewModel.removeSingleSoundFromFolder() }
+//                                    ),
+//                                    secondaryButton: .cancel(Text("Cancelar"))
+//                                )
+//
+//                            case .removeMultipleSounds:
+//                                return Alert(
+//                                    title: Text(viewModel.alertTitle),
+//                                    message: Text(viewModel.alertMessage),
+//                                    primaryButton: .destructive(Text("Remover"), action: {
+//                                        viewModel.removeManyFromFolder()
+//                                    }),
+//                                    secondaryButton: .cancel(Text("Cancelar"))
+//                                )
+//                            }
+//                        }
+                        .sheet(isPresented: $viewModel.showingModalView) {
+                            switch viewModel.subviewToOpen {
+                            case .shareAsVideo:
+                                ShareAsVideoView(
+                                    viewModel: ShareAsVideoViewViewModel(
+                                        content: viewModel.selectedContentSingle!,
+                                        subtitle: viewModel.selectedContentSingle!.subtitle
+                                    ),
+                                    isBeingShown: $viewModel.showingModalView,
+                                    result: $viewModel.shareAsVideoResult,
+                                    useLongerGeneratingVideoMessage: viewModel.selectedContentSingle!.type == .song
+                                )
+
+                            case .addToFolder:
+                                AddToFolderView(
+                                    isBeingShown: $viewModel.showingModalView,
+                                    details: $addToFolderHelper,
+                                    selectedContent: viewModel.selectedContentMultiple ?? []
+                                )
+
+                            case .contentDetail:
+                                ContentDetailView(
+                                    content: viewModel.selectedContentSingle ?? AnyEquatableMedoContent(Sound(title: "")),
+                                    openAuthorDetailsAction: { author in
+                                        guard author.id != self.authorId else { return }
+                                        viewModel.showingModalView.toggle()
+                                        push(GeneralNavigationDestination.authorDetail(author))
+                                    },
+                                    authorId: authorId,
+                                    openReactionAction: { reaction in
+                                        viewModel.showingModalView.toggle()
+                                        push(GeneralNavigationDestination.reactionDetail(reaction))
+                                    },
+                                    reactionId: reactionId,
+                                    dismissAction: { viewModel.showingModalView = false }
+                                )
+
+                            case .soundIssueEmailPicker:
+                                EmailAppPickerView(
+                                    isBeingShown: $viewModel.showingModalView,
+                                    subject: Shared.issueSuggestionEmailSubject,
+                                    emailBody: Shared.issueSuggestionEmailBody,
+                                    afterCopyAddressAction: {}
+                                )
+
+                            case .authorIssueEmailPicker(let content):
+                                EmailAppPickerView(
+                                    isBeingShown: $viewModel.showingModalView,
+                                    subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, content.title),
+                                    emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, content.subtitle, content.id),
+                                    afterCopyAddressAction: {}
+                                )
+                            }
+                        }
+                        .sheet(isPresented: $viewModel.isShowingShareSheet) {
+                            viewModel.iPadShareSheet
+                        }
+                        .onChange(of: viewModel.searchText) {
+                            soundSearchTextIsEmpty.wrappedValue = viewModel.searchText.isEmpty
+                        }
+                        .onChange(of: viewModel.shareAsVideoResult.videoFilepath) {
+                            viewModel.onDidExitShareAsVideoSheet()
+                        }
+                        .onChange(of: viewModel.showingModalView) {
+                            if (viewModel.showingModalView == false) && addToFolderHelper.hadSuccess {
+                                viewModel.onAddedContentToFolderSuccessfully(
+                                    folderName: addToFolderHelper.folderName ?? "",
+                                    pluralization: addToFolderHelper.pluralization
+                                )
+                                addToFolderHelper = AddToFolderDetails()
+                            }
+                        }
+//                                        .onChange(of: geometry.size.width) {
+//                                            updateGridLayout(with: geometry.size.width)
+//                                        }
+//                                        .onChange(of: searchResults) {
+//                                            if searchResults.isEmpty {
+//                                                columns = [GridItem(.flexible())]
+//                                            } else {
+//                                                //updateGridLayout(with: geometry.size.width)
+//                                            }
+//                                        }
+                         //                                .onChange(of: viewModel.selectionKeeper.count) {
+                         //                                    showMultiSelectButtons = viewModel.currentSoundsListMode.wrappedValue == .selection
+                         //                                    guard viewModel.currentSoundsListMode.wrappedValue == .selection else { return }
+                         //                                    multiSelectButtonsEnabled = viewModel.selectionKeeper.count > 0
+                         //                                    allSelectedAreFavorites = viewModel.allSelectedAreFavorites()
+                         //                                }
+//                                        .onChange(of: trendsHelper.soundIdToGoTo) {
+//                                            if !trendsHelper.soundIdToGoTo.isEmpty {
+//                                                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+//                                                    withAnimation {
+//                                                        proxy.scrollTo(trendsHelper.soundIdToGoTo, anchor: .center)
+//                                                    }
+//                                                    TapticFeedback.warning()
+//                                                    trendsHelper.soundIdToGoTo = ""
+//                                                }
+//                                            }
+//                                        }
+//                        .onChange(of: viewModel.scrollTo) {
+//                            if !viewModel.scrollTo.isEmpty {
+//                                withAnimation {
+//                                    proxy.scrollTo(viewModel.scrollTo, anchor: .center)
+//                                }
+//                            }
+//                        }
+                        .onChange(of: viewModel.authorToOpen) {
+                            guard let author = viewModel.authorToOpen else { return }
+                            push(GeneralNavigationDestination.authorDetail(author))
+                            viewModel.authorToOpen = nil
+                        }
                         .onAppear {
                             updateGridLayout(with: UIScreen.main.bounds.width) // geometry.size.width
                         }
