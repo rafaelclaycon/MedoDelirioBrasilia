@@ -202,7 +202,7 @@ struct SongsView: View {
             }
             .sheet(item: $viewModel.songToShareAsVideo) { song in
                 ShareAsVideoView(
-                    viewModel: ShareAsVideoViewViewModel(content: song),
+                    viewModel: ShareAsVideoViewViewModel(content: song, contentType: .videoFromSong),
                     result: $shareAsVideo_Result,
                     useLongerGeneratingVideoMessage: true
                 )
