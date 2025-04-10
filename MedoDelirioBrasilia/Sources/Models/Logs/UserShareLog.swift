@@ -17,15 +17,17 @@ struct UserShareLog: Hashable, Codable, Identifiable {
     var destination: Int
     var destinationBundleId: String
     var sentToServer: Bool
-    
-    init(id: String = UUID().uuidString,
-         installId: String,
-         contentId: String,
-         contentType: Int,
-         dateTime: Date,
-         destination: Int,
-         destinationBundleId: String,
-         sentToServer: Bool = false) {
+
+    init(
+        id: String = UUID().uuidString,
+        installId: String,
+        contentId: String,
+        contentType: Int,
+        dateTime: Date,
+        destination: Int,
+        destinationBundleId: String,
+        sentToServer: Bool = false
+    ) {
         self.id = id
         self.installId = installId
         self.contentId = contentId
@@ -35,19 +37,17 @@ struct UserShareLog: Hashable, Codable, Identifiable {
         self.destinationBundleId = destinationBundleId
         self.sentToServer = sentToServer
     }
-
 }
 
 enum ContentType: Int {
 
     case sound, song, videoFromSound, videoFromSong
-
 }
 
 enum ShareDestination: Int {
 
     case whatsApp, telegram, other
-    
+
     static func translateFrom(activityTypeRawValue: String) -> ShareDestination {
         if activityTypeRawValue.contains("WhatsApp") {
             return .whatsApp
@@ -57,5 +57,4 @@ enum ShareDestination: Int {
             return .other
         }
     }
-
 }

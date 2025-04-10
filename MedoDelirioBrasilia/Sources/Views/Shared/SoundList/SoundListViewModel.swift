@@ -196,7 +196,12 @@ extension SoundListViewModel {
     ) {
         if UIDevice.current.userInterfaceIdiom == .phone {
             do {
-                try SharingUtility.shareVideoFromSound(withPath: filepath, andContentId: contentId, shareSheetDelayInSeconds: 0.6) { didShareSuccessfully in
+                try SharingUtility.share(
+                    .videoFromSound,
+                    withPath: filepath,
+                    andContentId: contentId,
+                    shareSheetDelayInSeconds: 0.6
+                ) { didShareSuccessfully in
                     if didShareSuccessfully {
                         self.displayToast(toastText: Shared.videoSharedSuccessfullyMessage)
                     }
@@ -221,7 +226,12 @@ extension SoundListViewModel {
                         return
                     }
                     let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
-                    Logger.shared.logSharedVideoFromSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
+                    Logger.shared.logShared(
+                        .videoFromSound,
+                        contentId: contentId,
+                        destination: destination,
+                        destinationBundleId: activity.rawValue
+                    )
 
                     AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
 
@@ -341,7 +351,11 @@ extension SoundListViewModel: SoundListDisplaying {
     func share(sound: Sound) {
         if UIDevice.isiPhone {
             do {
-                try SharingUtility.shareSound(from: sound.fileURL(), andContentId: sound.id) { didShare in
+                try SharingUtility.shareSound(
+                    from: sound.fileURL(),
+                    andContentId: sound.id,
+                    context: .sound
+                ) { didShare in
                     if didShare {
                         self.displayToast(toastText: Shared.soundSharedSuccessfullyMessage)
                     }
@@ -360,7 +374,7 @@ extension SoundListViewModel: SoundListDisplaying {
                             return
                         }
                         let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
-                        Logger.shared.logSharedSound(contentId: sound.id, destination: destination, destinationBundleId: activity.rawValue)
+                        Logger.shared.logShared(.sound, contentId: sound.id, destination: destination, destinationBundleId: activity.rawValue)
 
                         AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
 

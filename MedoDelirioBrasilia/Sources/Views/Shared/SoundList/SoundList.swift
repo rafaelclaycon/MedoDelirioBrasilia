@@ -274,7 +274,6 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
                                     case .shareAsVideo:
                                         ShareAsVideoView(
                                             viewModel: .init(content: viewModel.selectedSound!, subtitle: viewModel.selectedSound?.authorName ?? .empty),
-                                            isBeingShown: $viewModel.showingModalView,
                                             result: $viewModel.shareAsVideoResult,
                                             useLongerGeneratingVideoMessage: false
                                         )
