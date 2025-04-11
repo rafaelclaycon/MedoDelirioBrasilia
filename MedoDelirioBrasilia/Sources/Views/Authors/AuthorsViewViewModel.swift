@@ -5,16 +5,16 @@
 //  Created by Rafael Claycon Schmitt on 26/05/22.
 //
 
-import Foundation
-import Combine
+import SwiftUI
 
 extension AuthorsView {
 
-    final class ViewModel: ObservableObject {
+    @Observable final class ViewModel {
 
-        @Published var authors: [Author] = []
+        var authors: [Author] = []
+        var currentActivity: NSUserActivity? = nil
 
-        @Published var currentActivity: NSUserActivity? = nil
+        // MARK: - Functions
 
         func reloadList(sortedBy sortOption: AuthorSortOption) {
             guard let allAuthors = try? LocalDatabase.shared.allAuthors() else { return }

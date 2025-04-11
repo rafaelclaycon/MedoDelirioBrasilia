@@ -9,19 +9,22 @@ import SwiftUI
 
 struct AuthorsView: View {
 
-    @StateObject private var viewModel = ViewModel()
-    @State private var searchText = ""
     @Binding var sortOption: Int
     @Binding var sortAction: AuthorSortOption
     @Binding var searchTextForControl: String
-    @State var currentSoundsListMode: SoundsListMode = .regular
+
+    @State private var viewModel = ViewModel()
+    @State private var searchText = ""
+    @State private var currentSoundsListMode: SoundsListMode = .regular
+    @State private var columns: [GridItem] = []
 
     // Dynamic Type
     @ScaledMetric private var authorCountTopPadding = 10
-    @ScaledMetric private var authorCountPhoneBottomPadding = 68
     @ScaledMetric private var authorCountPadBottomPadding = 22
 
-    var searchResults: [Author] {
+    // MARK: - Computed Properties
+
+    private var searchResults: [Author] {
         if searchText.isEmpty {
             return viewModel.authors
         } else {
@@ -29,20 +32,22 @@ struct AuthorsView: View {
         }
     }
 
-    @State private var columns: [GridItem] = []
+    // MARK: - Environment
 
     @Environment(\.push) var push
     @Environment(\.sizeCategory) var sizeCategory
 
+    // MARK: - View Body
+
     var body: some View {
         VStack {
-            LazyVGrid(columns: columns, spacing: 20) {
+            LazyVGrid(columns: columns, spacing: .spacing(.large)) {
                 if searchResults.isEmpty {
                     NoSearchResultsView(searchText: $searchText)
                 } else {
                     ForEach(searchResults) { author in
                         AuthorCell(author: author)
-                            .padding(.horizontal, 5)
+                            .padding(.horizontal, .spacing(.xxSmall))
                             .onTapGesture {
                                 push(GeneralNavigationDestination.authorDetail(author))
                             }
@@ -52,7 +57,7 @@ struct AuthorsView: View {
             .searchable(text: $searchText)
             .disableAutocorrection(true)
             .padding(.horizontal)
-            .padding(.top, 7)
+            .padding(.top, .spacing(.xxSmall))
             .onAppear {
                 if viewModel.authors.isEmpty {
                     viewModel.reloadList(sortedBy: AuthorSortOption(rawValue: sortOption) ?? .nameAscending)
@@ -95,11 +100,13 @@ struct AuthorsView: View {
                     .foregroundColor(.gray)
                     .multilineTextAlignment(.center)
                     .padding(.top, authorCountTopPadding)
-                    .padding(.bottom, UIDevice.current.userInterfaceIdiom == .phone ? authorCountPhoneBottomPadding : authorCountPadBottomPadding)
+                    .padding(.bottom, authorCountPadBottomPadding)
             }
         }
     }
 }
+
+// MARK: - Preview
 
 #Preview {
     AuthorsView(
