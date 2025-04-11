@@ -31,7 +31,7 @@ extension LocalDatabase {
     func markAllUserShareLogsAsSentToServer() throws {
         let sent_to_server = Expression<Bool>("sentToServer")
         let numberOfRecordsUpdated = try db.run(userShareLog.update(sent_to_server <- true))
-        print("\(numberOfRecordsUpdated) record(s) updated.")
+        print("Set \(numberOfRecordsUpdated) user share logs as sent to server.")
     }
     
     func getAllUserShareLogs() throws -> [UserShareLog] {
