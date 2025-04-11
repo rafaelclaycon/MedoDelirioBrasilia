@@ -54,7 +54,7 @@ struct MainContentView: View {
     private var displayFloatingSelectorView: Bool {
         guard UIDevice.current.userInterfaceIdiom == .phone else { return false }
         guard currentSoundsListMode.wrappedValue == .regular else { return false }
-        if viewModel.currentViewMode == .byAuthor {
+        if viewModel.currentViewMode == .authors {
             return authorSearchText.isEmpty
         } else {
             return soundSearchTextIsEmpty ?? false
@@ -155,7 +155,7 @@ struct MainContentView: View {
                     MyFoldersiPhoneView()
                         .environmentObject(deleteFolderAide)
 
-                case .byAuthor:
+                case .authors:
                     AuthorsView(
                         sortOption: $viewModel.authorSortOption,
                         sortAction: $authorSortAction,
@@ -288,7 +288,7 @@ extension MainContentView {
             EmptyView()
         } else {
             HStack(spacing: 15) {
-                if viewModel.currentViewMode == .byAuthor {
+                if viewModel.currentViewMode == .authors {
                     Menu {
                         Section {
                             Picker("Ordenação de Autores", selection: $viewModel.authorSortOption) {

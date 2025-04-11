@@ -9,7 +9,7 @@ import Foundation
 
 enum TopSelectorOption: CaseIterable, Identifiable {
 
-    case all, favorites, songs, folders, byAuthor
+    case all, favorites, songs, folders, authors
 
     var id: String {
         displayName
@@ -25,7 +25,7 @@ enum TopSelectorOption: CaseIterable, Identifiable {
             "Músicas"
         case .folders:
             "Pastas"
-        case .byAuthor:
+        case .authors:
             "Autores"
         }
     }
