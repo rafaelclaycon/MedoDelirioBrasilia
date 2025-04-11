@@ -266,9 +266,9 @@ struct ContentList<
                                 ShareAsVideoView(
                                     viewModel: ShareAsVideoViewViewModel(
                                         content: viewModel.selectedContentSingle!,
-                                        subtitle: viewModel.selectedContentSingle!.subtitle
+                                        subtitle: viewModel.selectedContentSingle!.subtitle,
+                                        contentType: viewModel.typeForShareAsVideo()
                                     ),
-                                    isBeingShown: $viewModel.showingModalView,
                                     result: $viewModel.shareAsVideoResult,
                                     useLongerGeneratingVideoMessage: viewModel.selectedContentSingle!.type == .song
                                 )

@@ -146,4 +146,9 @@ struct Shared {
 
         static let waitMessage = "Atualizado recentemente. Aguarde %@."
     }
+
+    struct BundleIds {
+
+        static let applePhotosApp = "com.apple.mobileslideshow"
+    }
 }

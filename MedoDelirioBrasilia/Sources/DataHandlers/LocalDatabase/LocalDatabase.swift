@@ -33,6 +33,7 @@ internal protocol LocalDatabaseProtocol {
     func delete(songId: String) throws
     func setIsFromServer(to value: Bool, onSongId songId: String) throws
     func songs(withIds songIds: [String]) throws -> [Song]
+    func songs(allowSensitive: Bool) throws -> [Song]
 
     // MusicGenre
     func insert(genre newGenre: MusicGenre) throws

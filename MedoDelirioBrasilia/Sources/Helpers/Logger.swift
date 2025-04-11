@@ -9,6 +9,13 @@ import UIKit
 
 internal protocol LoggerProtocol {
 
+    func logShared(
+        _ type: ContentType,
+        contentId: String,
+        destination: ShareDestination,
+        destinationBundleId: String
+    )
+
     func logSyncError(description: String, updateEventId: String)
     func logSyncError(description: String)
 
@@ -20,7 +27,8 @@ class Logger: LoggerProtocol {
 
     static let shared = Logger()
 
-    func logSharedSound(
+    func logShared(
+        _ type: ContentType,
         contentId: String,
         destination: ShareDestination,
         destinationBundleId: String
@@ -28,42 +36,8 @@ class Logger: LoggerProtocol {
         let shareLog = UserShareLog(
             installId: AppPersistentMemory().customInstallId,
             contentId: contentId,
-            contentType: ContentType.sound.rawValue,
+            contentType: type.rawValue,
             dateTime: .now,
-            destination: destination.rawValue,
-            destinationBundleId: destinationBundleId,
-            sentToServer: false
-        )
-        try? LocalDatabase.shared.insert(userShareLog: shareLog)
-    }
-
-    func logSharedSong(
-        contentId: String,
-        destination: ShareDestination,
-        destinationBundleId: String
-    ) {
-        let shareLog = UserShareLog(
-            installId: AppPersistentMemory().customInstallId,
-            contentId: contentId,
-            contentType: ContentType.song.rawValue,
-            dateTime: Date(),
-            destination: destination.rawValue,
-            destinationBundleId: destinationBundleId,
-            sentToServer: false
-        )
-        try? LocalDatabase.shared.insert(userShareLog: shareLog)
-    }
-
-    func logSharedVideoFromSound(
-        contentId: String,
-        destination: ShareDestination,
-        destinationBundleId: String
-    ) {
-        let shareLog = UserShareLog(
-            installId: AppPersistentMemory().customInstallId,
-            contentId: contentId,
-            contentType: ContentType.videoFromSound.rawValue,
-            dateTime: Date(),
             destination: destination.rawValue,
             destinationBundleId: destinationBundleId,
             sentToServer: false

@@ -9,17 +9,11 @@ import SwiftUI
 
 struct SongsView: View {
 
-    enum SubviewToOpen {
-        case genrePicker, shareAsVideoView
-    }
-    
-    @StateObject private var viewModel = SongsViewViewModel()
+    @State private var viewModel = SongsViewViewModel(database: LocalDatabase.shared, logger: Logger.shared)
 
     @State private var currentGenre: String? = nil
+    @State private var showGenrePicker = false
 
-    @State private var subviewToOpen: SubviewToOpen = .genrePicker
-    @State private var showingModalView = false
-    
     // Share as Video
     @State private var shareAsVideo_Result = ShareAsVideoResult()
 
@@ -31,21 +25,18 @@ struct SongsView: View {
     @ScaledMetric private var explicitOffWarningBottomPadding = 20
     @ScaledMetric private var songCountTopPadding = 10
     @ScaledMetric private var songCountBottomPadding = 22
-    
+
+    // MARK: - Computed Properties
+
     private var columns: [GridItem] {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            return [
-                GridItem(.flexible())
-            ]
+        if UIDevice.isiPhone {
+            return [GridItem(.flexible())]
         } else {
-            return [
-                GridItem(.flexible()),
-                GridItem(.flexible())
-            ]
+            return [GridItem(.flexible()), GridItem(.flexible())]
         }
     }
-    
-    var searchResults: [Song] {
+
+    private var searchResults: [Song] {
         if viewModel.searchText.isEmpty {
             guard let currentGenre else { return viewModel.songs }
             return viewModel.songs.filter({ $0.genreId == currentGenre })
@@ -56,6 +47,8 @@ struct SongsView: View {
             }
         }
     }
+
+    // MARK: - View Body
 
     var body: some View {
         ZStack {
@@ -91,9 +84,7 @@ struct SongsView: View {
                                             }
 
                                             Button {
-                                                viewModel.selectedSong = song
-                                                subviewToOpen = .shareAsVideoView
-                                                showingModalView.toggle()
+                                                viewModel.songToShareAsVideo = song
                                             } label: {
                                                 Label(Shared.shareAsVideoButtonText, systemImage: "film")
                                             }
@@ -175,12 +166,12 @@ struct SongsView: View {
                     viewModel.sortSongs(by: SongSortOption(rawValue: $0) ?? .dateAddedDescending)
                     UserSettings().setSongSortOption(to: $0)
                 }
-                .onChange(of: shareAsVideo_Result.videoFilepath) { videoResultPath in
-                    if videoResultPath.isEmpty == false {
+                .onChange(of: shareAsVideo_Result.videoFilepath) {
+                    if shareAsVideo_Result.videoFilepath.isEmpty == false {
                         if shareAsVideo_Result.exportMethod == .saveAsVideo {
                             viewModel.showVideoSavedSuccessfullyToast()
                         } else {
-                            viewModel.shareVideo(withPath: videoResultPath, andContentId: shareAsVideo_Result.contentId)
+                            viewModel.shareVideo(withPath: shareAsVideo_Result.videoFilepath, andContentId: shareAsVideo_Result.contentId)
                         }
                     }
                 }
@@ -209,21 +200,18 @@ struct SongsView: View {
                     afterCopyAddressAction: {}
                 )
             }
-            .sheet(isPresented: $showingModalView) {
-                switch subviewToOpen {
-                case .genrePicker:
-                    GenrePickerView(selectedId: $currentGenre)
-
-                case .shareAsVideoView:
-                    ShareAsVideoView(
-                        viewModel: ShareAsVideoViewViewModel(
-                            content: AnyEquatableMedoContent(viewModel.selectedSong!)
-                        ),
-                        isBeingShown: $showingModalView,
-                        result: $shareAsVideo_Result,
-                        useLongerGeneratingVideoMessage: true
-                    )
-                }
+            .sheet(item: $viewModel.songToShareAsVideo) { song in
+                ShareAsVideoView(
+                    viewModel: ShareAsVideoViewViewModel(
+                        content: AnyEquatableMedoContent(song),
+                        contentType: .videoFromSong
+                    ),
+                    result: $shareAsVideo_Result,
+                    useLongerGeneratingVideoMessage: true
+                )
+            }
+            .sheet(isPresented: $showGenrePicker) {
+                GenrePickerView(selectedId: $currentGenre)
             }
             .sheet(isPresented: $viewModel.showEmailAppPicker_songUnavailableConfirmationDialog) {
                 EmailAppPickerView(
@@ -292,13 +280,16 @@ struct SongsView: View {
             }
         }
     }
-    
+
+    // MARK: - Subviews
+
     @ViewBuilder func getLeadingToolbarControl() -> some View {
         Button {
-            subviewToOpen = .genrePicker
-            showingModalView.toggle()
+            showGenrePicker.toggle()
         } label: {
-            Image(systemName: currentGenre == nil ? "line.3.horizontal.decrease.circle" : "line.3.horizontal.decrease.circle.fill")
+            Image(
+                systemName: currentGenre == nil ? "line.3.horizontal.decrease.circle" : "line.3.horizontal.decrease.circle.fill"
+            )
         }
     }
 }

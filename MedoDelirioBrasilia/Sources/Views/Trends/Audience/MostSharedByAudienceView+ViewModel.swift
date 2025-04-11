@@ -18,7 +18,7 @@ extension MostSharedByAudienceView {
         var soundsLastCheckString: String = ""
 
         var songsState: LoadingState<[TopChartItem]> = .loading
-        var songsTimeInterval: TrendsTimeInterval = .allTime
+        var songsTimeInterval: TrendsTimeInterval = .lastWeek
         var songsLastCheckDate: Date = Date(timeIntervalSince1970: 0)
         var songsLastCheckString: String = ""
 

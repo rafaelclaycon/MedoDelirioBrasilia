@@ -265,7 +265,12 @@ extension ContentListViewModel {
     ) {
         if UIDevice.current.userInterfaceIdiom == .phone {
             do {
-                try SharingUtility.shareVideoFromSound(withPath: filepath, andContentId: contentId, shareSheetDelayInSeconds: 0.6) { didShareSuccessfully in
+                try SharingUtility.share(
+                    .videoFromSound,
+                    withPath: filepath,
+                    andContentId: contentId,
+                    shareSheetDelayInSeconds: 0.6
+                ) { didShareSuccessfully in
                     if didShareSuccessfully {
                         self.displayToast(toastText: Shared.videoSharedSuccessfullyMessage)
                     }
@@ -290,7 +295,12 @@ extension ContentListViewModel {
                         return
                     }
                     let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
-                    Logger.shared.logSharedVideoFromSound(contentId: contentId, destination: destination, destinationBundleId: activity.rawValue)
+                    Logger.shared.logShared(
+                        .videoFromSound,
+                        contentId: contentId,
+                        destination: destination,
+                        destinationBundleId: activity.rawValue
+                    )
 
                     AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
 
@@ -302,6 +312,13 @@ extension ContentListViewModel {
 
             isShowingShareSheet = true
         }
+    }
+
+    public func typeForShareAsVideo() -> ContentType {
+        guard let content = selectedContentSingle else {
+            return .videoFromSound
+        }
+        return content.type == .sound ? .videoFromSound : .videoFromSong
     }
 }
 
@@ -410,7 +427,11 @@ extension ContentListViewModel: ContentListDisplaying {
     func share(content: AnyEquatableMedoContent) {
         if UIDevice.isiPhone {
             do {
-                try SharingUtility.shareSound(from: content.fileURL(), andContentId: content.id) { didShare in
+                try SharingUtility.shareSound(
+                    from: content.fileURL(),
+                    andContentId: content.id,
+                    context: .sound
+                ) { didShare in
                     if didShare {
                         self.displayToast(toastText: Shared.soundSharedSuccessfullyMessage)
                     }
@@ -429,7 +450,7 @@ extension ContentListViewModel: ContentListDisplaying {
                             return
                         }
                         let destination = ShareDestination.translateFrom(activityTypeRawValue: activity.rawValue)
-                        Logger.shared.logSharedSound(contentId: content.id, destination: destination, destinationBundleId: activity.rawValue)
+                        Logger.shared.logShared(.sound, contentId: content.id, destination: destination, destinationBundleId: activity.rawValue)
 
                         AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
 

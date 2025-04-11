@@ -12,28 +12,34 @@ class ShareAsVideoViewViewModel: ObservableObject {
 
     var content: AnyEquatableMedoContent
     var subtitle: String
+    private let type: ContentType
     
     @Published var includeSoundWarning: Bool = true
-    
     @Published var isShowingProcessingView = false
-    
+
     @Published var shouldCloseView = false
     @Published var pathToVideoFile = String.empty
     @Published var selectedSocialNetwork = IntendedVideoDestination.twitter.rawValue
-    
+
     // Alerts
     @Published var alertTitle: String = .empty
     @Published var alertMessage: String = .empty
     @Published var showAlert: Bool = false
-    
+
+    // MARK: - Initializer
+
     init(
         content: AnyEquatableMedoContent,
-        subtitle: String = ""
+        subtitle: String = "",
+        contentType: ContentType
     ) {
         self.content = content
         self.subtitle = subtitle
+        self.type = contentType
     }
-    
+
+    // MARK: - Functions
+
     func generateVideo(withImage image: UIImage, completion: @escaping (String?, VideoMakerError?) -> Void) {
         DispatchQueue.main.async {
             self.isShowingProcessingView = true
@@ -105,12 +111,18 @@ class ShareAsVideoViewViewModel: ObservableObject {
                 DispatchQueue.main.async {
                     self.isShowingProcessingView = false
                 }
+
+                Logger.shared.logShared(
+                    self.type,
+                    contentId: self.content.id,
+                    destination: .other,
+                    destinationBundleId: Shared.BundleIds.applePhotosApp
+                )
+
                 completion(true, videoPath)
             }
         }
     }
-    
-    // MARK: - Alerts
     
     func showOtherError(errorTitle: String, errorBody: String) {
         alertTitle = errorTitle
