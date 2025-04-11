@@ -41,7 +41,7 @@ class FolderDetailViewViewModel: ObservableObject {
     }
 
     var soundCount: String {
-        guard !content.isEmpty else { return "" }
+        guard !content.isEmpty else { return "PASTA VAZIA" }
         return content.count == 1 ? "1 ITEM" : "\(content.count) ITENS"
     }
 
