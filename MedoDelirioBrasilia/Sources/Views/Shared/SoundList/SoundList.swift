@@ -273,7 +273,11 @@ struct SoundList<HeaderView: View, LoadingView: View, EmptyStateView: View, Erro
                                     switch viewModel.subviewToOpen {
                                     case .shareAsVideo:
                                         ShareAsVideoView(
-                                            viewModel: .init(content: viewModel.selectedSound!, subtitle: viewModel.selectedSound?.authorName ?? .empty),
+                                            viewModel: ShareAsVideoViewViewModel(
+                                                content: viewModel.selectedSound!,
+                                                subtitle: viewModel.selectedSound?.authorName ?? "",
+                                                contentType: .videoFromSound
+                                            ),
                                             result: $viewModel.shareAsVideoResult,
                                             useLongerGeneratingVideoMessage: false
                                         )

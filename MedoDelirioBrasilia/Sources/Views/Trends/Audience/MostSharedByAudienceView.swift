@@ -20,7 +20,7 @@ struct MostSharedByAudienceView: View {
     // MARK: - View Body
 
     var body: some View {
-        VStack(spacing: 30) {
+        VStack(spacing: .spacing(.large)) {
             TitledRankingView(
                 title: "Sons Mais Compartilhados",
                 state: viewModel.soundsState,
@@ -71,11 +71,11 @@ struct MostSharedByAudienceView: View {
                 .font(.subheadline)
                 .multilineTextAlignment(.center)
                 .foregroundColor(.gray)
-                .padding(.horizontal, 30)
-                .padding(.bottom, 30)
-                .padding(.top, -15)
+                .padding(.horizontal, .spacing(.xxLarge))
+                .padding(.bottom, .spacing(.xxLarge))
+                .padding(.top, -5)
         }
-        .padding(.bottom, 10)
+        .padding(.bottom, .spacing(.small))
         .onReceive(timer) { input in
             viewModel.onLastCheckStringUpdatingTimerFired()
         }
@@ -170,7 +170,7 @@ extension MostSharedByAudienceView {
         // MARK: - View Body
 
         var body: some View {
-            VStack(spacing: 10) {
+            VStack(spacing: .spacing(.small)) {
                 HStack {
                     Text(title)
                         .font(.title2)
@@ -178,7 +178,7 @@ extension MostSharedByAudienceView {
                 }
                 .padding(.horizontal)
 
-                HStack(spacing: 20) {
+                HStack(spacing: .spacing(.large)) {
                     timeIntervalSelector()
 
                     Spacer()
@@ -192,7 +192,7 @@ extension MostSharedByAudienceView {
                     LoadingView()
 
                 case .loaded(let items):
-                    VStack {
+                    VStack(spacing: .spacing(.large)) {
                         if items.isEmpty {
                             NoDataToDisplayView()
                         } else {
@@ -216,7 +216,7 @@ extension MostSharedByAudienceView {
                                         }
                                 }
                             }
-                            .padding(.horizontal, 14)
+                            .padding(.horizontal, .spacing(.medium))
                             .padding(.top, -8)
                         }
 
@@ -272,7 +272,7 @@ extension MostSharedByAudienceView {
         //@Environment(\.sizeCategory) var sizeCategory
 
         var body: some View {
-            VStack {
+            VStack(spacing: .spacing(.xxSmall)) {
                 HStack {
                     Text(title)
                         .font(.title2)
@@ -285,10 +285,10 @@ extension MostSharedByAudienceView {
                     LoadingView()
 
                 case .loaded(let items):
-                    VStack(spacing: 10) {
+                    VStack(spacing: .spacing(.xxxSmall)) {
                         LazyVGrid(
                             columns: columns,
-                            spacing: UIDevice.isiPhone ? 12 : 20
+                            spacing: UIDevice.isiPhone ? .spacing(.small) : .spacing(.large)
                         ) {
                             ForEach(items) { item in
                                 RankedReactionItem(
@@ -322,7 +322,7 @@ extension MostSharedByAudienceView {
         let item: TopChartReaction
 
         var body: some View {
-            VStack(spacing: 10) {
+            VStack(spacing: .spacing(.small)) {
                 ReactionItem(reaction: item.reaction)
                     .dynamicTypeSize(...DynamicTypeSize.accessibility2)
 
@@ -341,10 +341,10 @@ extension MostSharedByAudienceView {
             HStack {
                 Spacer()
 
-                VStack(spacing: 10) {
+                VStack(spacing: .spacing(.large)) {
                     Text("Sem Dados para o Período Selecionado")
                         .font(.headline)
-                        .padding(.vertical, 40)
+                        .padding(.vertical, .spacing(.xxxLarge))
                 }
 
                 Spacer()
@@ -355,7 +355,7 @@ extension MostSharedByAudienceView {
     struct LoadingView: View {
 
         var body: some View {
-            VStack(spacing: 20) {
+            VStack(spacing: .spacing(.large)) {
                 ProgressView()
                     .scaleEffect(1.3, anchor: .center)
 
@@ -376,7 +376,7 @@ extension MostSharedByAudienceView {
             HStack {
                 Spacer()
 
-                VStack(spacing: 30) {
+                VStack(spacing: .spacing(.xxLarge)) {
                     Text("Não Foi Possível Obter os Dados Mais Recentes")
                         .font(.headline)
                         .multilineTextAlignment(.center)
@@ -395,7 +395,7 @@ extension MostSharedByAudienceView {
 
                 Spacer()
             }
-            .padding(.vertical, 30)
+            .padding(.vertical, .spacing(.xxLarge))
         }
     }
 }

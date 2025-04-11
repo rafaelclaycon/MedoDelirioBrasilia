@@ -324,7 +324,8 @@ struct ShareAsVideoView: View {
     ShareAsVideoView(
         viewModel: ShareAsVideoViewViewModel(
             content: Sound(title: "Você é maluco ou você é idiota, companheiro?"),
-            subtitle: "Lula (Cristiano Botafogo)"
+            subtitle: "Lula (Cristiano Botafogo)",
+            contentType: .videoFromSound
         ),
         result: .constant(ShareAsVideoResult()),
         useLongerGeneratingVideoMessage: false

@@ -8,13 +8,12 @@
 import Foundation
 
 extension CGFloat {
-    /// Create a spacing value from the Design System
-    ///
+
     /// Spacing values should be used for padding, margins and denoting
     /// space between elements.
     ///
-    /// - Parameter spacing: The core layout spacing value to use
-    /// - Returns: The spacing value in points
+    /// - Parameter spacing: The layout spacing value to use.
+    /// - Returns: The spacing value in points.
     static func spacing(_ spacing: LayoutSpacing) -> CGFloat {
         spacing.value
     }
