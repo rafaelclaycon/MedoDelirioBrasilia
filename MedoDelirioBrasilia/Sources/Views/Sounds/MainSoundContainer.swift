@@ -335,8 +335,8 @@ struct MainSoundContainer: View {
                 showRetroBanner = await ClassicRetroView.ViewModel.shouldDisplayBanner()
             }
         }
-        .onChange(of: scenePhase) { newPhase in
-            if newPhase == .active {
+        .onChange(of: scenePhase) {
+            if scenePhase == .active {
                 Task {
                     await viewModel.warmOpenSync()
                     print("DID FINISH WARM OPEN SYNC")
