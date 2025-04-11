@@ -9,22 +9,29 @@ import SwiftUI
 
 struct SidebarView: View {
 
-    @StateObject private var viewModel = SidebarViewViewModel()
+    // MARK: - External Dependencies
+
     @Binding var state: PadScreen?
     @Binding var isShowingSettingsSheet: Bool
     @Binding var folderForEditing: UserFolder?
     @Binding var updateFolderList: Bool
     @Binding var currentSoundsListMode: SoundsListMode
-    @EnvironmentObject var settingsHelper: SettingsHelper
-    @EnvironmentObject var syncValues: SyncValues
+
+    // MARK: - View State
+
+    @StateObject private var viewModel = SidebarViewViewModel()
+    @EnvironmentObject private var settingsHelper: SettingsHelper
+    @EnvironmentObject private var syncValues: SyncValues
 
     // Trends
     @Environment(TrendsHelper.self) private var trendsHelper
-    @Environment(\.push) var push
+    @Environment(\.push) private var push
+
+    // MARK: - View Body
 
     var body: some View {
         List {
-            Section("Sons") {
+            Section {
                 NavigationLink(
                     destination: MainContentView(
                         viewModel: .init(
@@ -40,7 +47,7 @@ struct SidebarView: View {
                     tag: PadScreen.allSounds,
                     selection: $state,
                     label: {
-                        Label("Todos os Sons", systemImage: "speaker.wave.2")
+                        Label("Sons", systemImage: "speaker.wave.2")
                     })
                 
                 NavigationLink(
@@ -61,34 +68,6 @@ struct SidebarView: View {
                     label: {
                         Label("Favoritos", systemImage: "star")
                     })
-
-                // FIXME: Bring Reactions to iPad in the future.
-//                NavigationLink(
-//                    destination: ReactionsView(),
-//                    tag: PadScreen.reactions,
-//                    selection: $state,
-//                    label: {
-//                        Label("Reações", systemImage: "rectangle.grid.2x2")
-//                    }
-//                )
-
-                // FIXME: Bring Authors back to iPad in the future.
-//                NavigationLink(
-//                    destination: SoundsView(
-//                        viewModel: SoundsViewViewModel(
-//                            currentViewMode: .byAuthor,
-//                            soundSortOption: SoundSortOption.dateAddedDescending.rawValue,
-//                            authorSortOption: AuthorSortOption.nameAscending.rawValue,
-//                            currentSoundsListMode: $currentSoundsListMode,
-//                            syncValues: syncValues
-//                        ),
-//                        currentSoundsListMode: $currentSoundsListMode
-//                        ).environmentObject(trendsHelper).environmentObject(settingsHelper),
-//                    tag: PadScreen.groupedByAuthor,
-//                    selection: $state,
-//                    label: {
-//                        Label("Por Autor", systemImage: "person")
-//                    })
                 
                 NavigationLink(
                     destination: TrendsView(
@@ -99,16 +78,6 @@ struct SidebarView: View {
                     selection: $state,
                     label: {
                         Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
-                    })
-            }
-            
-            Section("Mais") {
-                NavigationLink(
-                    destination: SongsView().environmentObject(settingsHelper).environment(trendsHelper),
-                    tag: PadScreen.songs,
-                    selection: $state,
-                    label: {
-                        Label("Músicas", systemImage: "music.quarternote.3")
                     })
             }
             
@@ -160,8 +129,8 @@ struct SidebarView: View {
         .onAppear {
             viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.allFolders())
         }
-        .onChange(of: updateFolderList) { shouldUpdate in
-            if shouldUpdate {
+        .onChange(of: updateFolderList) {
+            if updateFolderList {
                 viewModel.reloadFolderList(withFolders: try? LocalDatabase.shared.allFolders())
             }
         }

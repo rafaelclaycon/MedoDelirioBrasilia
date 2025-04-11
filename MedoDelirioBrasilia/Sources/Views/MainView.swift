@@ -109,12 +109,12 @@ struct MainView: View {
                 .onContinueUserActivity(Shared.ActivityTypes.playAndShareSounds, perform: { _ in
                     tabSelection = .sounds
                 })
-                //            .onContinueUserActivity(Shared.ActivityTypes.viewCollections, perform: { _ in
-                //                tabSelection = .collections
-                //            })
-                .onContinueUserActivity(Shared.ActivityTypes.playAndShareSongs, perform: { _ in
-                    tabSelection = .songs
-                })
+//                .onContinueUserActivity(Shared.ActivityTypes.viewCollections, perform: { _ in
+//                    tabSelection = .collections
+//                })
+//                .onContinueUserActivity(Shared.ActivityTypes.playAndShareSongs, perform: { _ in
+//                    tabSelection = .songs
+//                })
                 .onContinueUserActivity(Shared.ActivityTypes.viewLast24HoursTopChart, perform: { _ in
                     tabSelection = .trends
                     trendsHelper.timeIntervalToGoTo = .last24Hours
@@ -211,16 +211,6 @@ struct MainView: View {
                                     activePadScreen: .constant(.trends)
                                 )
                                 .environment(trendsHelper)
-                            }
-                        }
-
-                        TabSection("Mais") {
-                            Tab("Músicas", systemImage: "music.quarternote.3") {
-                                NavigationStack {
-                                    SongsView()
-                                        .environmentObject(settingsHelper)
-                                        .environment(trendsHelper)
-                                }
                             }
                         }
 
