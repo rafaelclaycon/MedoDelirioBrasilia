@@ -272,7 +272,7 @@ extension MostSharedByAudienceView {
         //@Environment(\.sizeCategory) var sizeCategory
 
         var body: some View {
-            VStack {
+            VStack(spacing: .spacing(.xxSmall)) {
                 HStack {
                     Text(title)
                         .font(.title2)
@@ -285,7 +285,7 @@ extension MostSharedByAudienceView {
                     LoadingView()
 
                 case .loaded(let items):
-                    VStack(spacing: .spacing(.xxSmall)) {
+                    VStack(spacing: .spacing(.xxxSmall)) {
                         LazyVGrid(
                             columns: columns,
                             spacing: UIDevice.isiPhone ? .spacing(.small) : .spacing(.large)
