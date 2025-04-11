@@ -15,6 +15,11 @@ struct TopSelector: View {
 
     // MARK: - Computed Properties
 
+    private var options: [TopSelectorOption] {
+        guard UIDevice.isiPhone else { return [.all, .songs] }
+        return TopSelectorOption.allCases
+    }
+
     private var selectedTextColor: Color {
         switch colorScheme {
         case .light:
@@ -64,7 +69,7 @@ struct TopSelector: View {
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 10) {
-                ForEach(TopSelectorOption.allCases) { kind in
+                ForEach(options) { kind in
                     Text(kind.displayName)
                         .foregroundStyle(
                             kind == selected ? selectedTextColor : notSelectedTextColor
