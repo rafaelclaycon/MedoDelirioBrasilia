@@ -104,7 +104,8 @@ struct FolderDetailView: View {
                     emptyStateView:
                         VStack {
                             EmptyFolderView()
-                                .padding(.horizontal, 30)
+                                .padding(.horizontal, .spacing(.xxLarge))
+                                .padding(.vertical, .spacing(.huge))
                         }
                     ,
                     errorView:

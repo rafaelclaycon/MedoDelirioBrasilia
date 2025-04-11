@@ -10,7 +10,7 @@ import SwiftUI
 struct EmptyFolderView: View {
 
     var body: some View {
-        VStack(alignment: .center, spacing: 20) {
+        VStack(alignment: .center, spacing: .spacing(.large)) {
             Image(systemName: "speaker.zzz")
                 .font(.system(size: 70))
                 .foregroundColor(.gray)
@@ -29,13 +29,10 @@ struct EmptyFolderView: View {
                 .padding(.horizontal, UIDevice.current.userInterfaceIdiom == .phone ? 15 : 40)
         }
     }
-
 }
 
-struct EmptyFolderView_Previews: PreviewProvider {
+// MARK: - Preview
 
-    static var previews: some View {
-        EmptyFolderView()
-    }
-
+#Preview {
+    EmptyFolderView()
 }
