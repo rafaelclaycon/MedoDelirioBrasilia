@@ -375,7 +375,7 @@ struct ContentList<
                             updateGridLayout(with: UIScreen.main.bounds.width) // geometry.size.width
                         }
 
-                        if showExplicitDisabledWarning, UserSettings().getShowExplicitContent() == false {
+                        if showExplicitDisabledWarning, !UserSettings().getShowExplicitContent() {
                             ExplicitDisabledWarning(
                                 text: UIDevice.isiPhone ? Shared.contentFilterMessageForSoundsiPhone : Shared.contentFilterMessageForSoundsiPadMac
                             )

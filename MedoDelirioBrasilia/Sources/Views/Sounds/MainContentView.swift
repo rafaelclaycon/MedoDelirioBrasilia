@@ -83,17 +83,20 @@ struct MainContentView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: .spacing(.xSmall)) {
-                TopSelector(
-                    options: UIDevice.isiPhone ? TopSelectorOption.allCases : [.all, .songs],
-                    selected: $viewModel.currentViewMode,
-                    allowScrolling: UIDevice.isiPhone
-                )
+                if soundSearchTextIsEmpty ?? true {
+                    TopSelector(
+                        options: UIDevice.isiPhone ? TopSelectorOption.allCases : [.all, .songs],
+                        selected: $viewModel.currentViewMode,
+                        allowScrolling: UIDevice.isiPhone
+                    )
+                }
 
                 switch viewModel.currentViewMode {
                 case .all, .favorites, .songs:
                     ContentList(
                         viewModel: allSoundsViewModel,
                         soundSearchTextIsEmpty: $soundSearchTextIsEmpty,
+                        allowSearch: true,
                         showSoundCountAtTheBottom: viewModel.currentViewMode == .all,
                         showExplicitDisabledWarning: viewModel.currentViewMode == .all,
                         dataLoadingDidFail: viewModel.dataLoadingDidFail,
@@ -193,21 +196,6 @@ struct MainContentView: View {
                     lastUpdateDate: LocalDatabase.shared.dateTimeOfLastUpdate()
                 )
             }
-    //        .sheet(isPresented: $showClassicRetroView) {
-    //            ClassicRetroView(
-    //                imageSaveSucceededAction: { exportAnalytics in
-    //                    allSoundsViewModel.displayToast(
-    //                        toastText: Shared.Retro.successMessage,
-    //                        displayTime: .seconds(5)
-    //                    )
-    //
-    //                    Analytics().send(
-    //                        originatingScreen: "MainContentView",
-    //                        action: "didExportRetro2024Images(\(exportAnalytics))"
-    //                    )
-    //                }
-    //            )
-    //        }
             .onReceive(settingsHelper.$updateSoundsList) { shouldUpdate in // iPad - Settings explicit toggle.
                 if shouldUpdate {
                     viewModel.onExplicitContentSettingChanged()
