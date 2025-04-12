@@ -9,16 +9,13 @@ import SwiftUI
 
 struct TopSelector: View {
 
+    let options: [TopSelectorOption]
     @Binding var selected: TopSelectorOption
+    let allowScrolling: Bool
 
     @Environment(\.colorScheme) private var colorScheme
 
     // MARK: - Computed Properties
-
-    private var options: [TopSelectorOption] {
-        guard UIDevice.isiPhone else { return [.all, .songs] }
-        return TopSelectorOption.allCases
-    }
 
     private var selectedTextColor: Color {
         switch colorScheme {
@@ -99,10 +96,16 @@ struct TopSelector: View {
             .padding(.bottom, 5)
             .dynamicTypeSize(...DynamicTypeSize.accessibility2)
         }
+        .scrollDisabled(!allowScrolling)
     }
 }
 
+// MARK: - Preview
+
 #Preview {
-    TopSelector(selected: .constant(.all))
-        //.border(.blue.opacity(0.2), width: 1)
+    TopSelector(
+        options: TopSelectorOption.allCases,
+        selected: .constant(.all),
+        allowScrolling: true
+    )
 }
