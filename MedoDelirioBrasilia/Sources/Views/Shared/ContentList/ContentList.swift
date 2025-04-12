@@ -208,59 +208,60 @@ struct ContentList<
                         }
                         .padding(.horizontal)
                         .padding(.top, 7)
-//                        .alert(isPresented: $viewModel.showAlert) {
-//                            switch viewModel.alertType {
-//                            case .soundFileNotFound:
-//                                return Alert(
-//                                    title: Text(viewModel.alertTitle),
-//                                    message: Text(viewModel.alertMessage),
-//                                    primaryButton: .default(Text("Baixar Conteúdo Novamente"), action: {
-//                                        guard let content = viewModel.selectedContentSingle else { return }
-//                                        viewModel.redownloadServerContent(withId: content.id)
-//                                    }),
-//                                    secondaryButton: .cancel(Text("Fechar"))
-//                                )
-//
-//                            case .issueSharingSound:
-//                                return Alert(
-//                                    title: Text(viewModel.alertTitle),
-//                                    message: Text(viewModel.alertMessage),
-//                                    primaryButton: .default(Text("Relatar Problema por E-mail"), action: {
-////                                        viewModel.subviewToOpen = .soundIssueEmailPicker
-////                                        viewModel.showingModalView = true
-//                                    }),
-//                                    secondaryButton: .cancel(Text("Fechar"))
-//                                )
-//
-//                            case .issueExportingManySounds, .unableToRedownloadSound, .issueRemovingSoundFromFolder:
-//                                return Alert(
-//                                    title: Text(viewModel.alertTitle),
-//                                    message: Text(viewModel.alertMessage),
-//                                    dismissButton: .default(Text("OK"))
-//                                )
-//
-//                            case .removeSingleSound:
-//                                return Alert(
-//                                    title: Text(viewModel.alertTitle),
-//                                    message: Text(viewModel.alertMessage),
-//                                    primaryButton: .destructive(
-//                                        Text("Remover"),
-//                                        action: { viewModel.removeSingleSoundFromFolder() }
-//                                    ),
-//                                    secondaryButton: .cancel(Text("Cancelar"))
-//                                )
-//
-//                            case .removeMultipleSounds:
-//                                return Alert(
-//                                    title: Text(viewModel.alertTitle),
-//                                    message: Text(viewModel.alertMessage),
-//                                    primaryButton: .destructive(Text("Remover"), action: {
-//                                        viewModel.removeManyFromFolder()
-//                                    }),
-//                                    secondaryButton: .cancel(Text("Cancelar"))
-//                                )
-//                            }
-//                        }
+                        .alert(isPresented: $viewModel.showAlert) {
+                            switch viewModel.alertType {
+                            case .soundFileNotFound:
+                                return Alert(
+                                    title: Text(viewModel.alertTitle),
+                                    message: Text(viewModel.alertMessage),
+                                    primaryButton: .default(
+                                        Text("Baixar Novamente"),
+                                        action: { viewModel.onRedownloadContentOptionSelected() }
+                                    ),
+                                    secondaryButton: .cancel(Text("Fechar"))
+                                )
+
+                            case .issueSharingSound:
+                                return Alert(
+                                    title: Text(viewModel.alertTitle),
+                                    message: Text(viewModel.alertMessage),
+                                    primaryButton: .default(
+                                        Text("Relatar Problema por E-mail"),
+                                        action: { viewModel.onReportContentIssueSelected() }
+                                    ),
+                                    secondaryButton: .cancel(Text("Fechar"))
+                                )
+
+                            case .issueExportingManySounds, .unableToRedownloadSound, .issueRemovingSoundFromFolder:
+                                return Alert(
+                                    title: Text(viewModel.alertTitle),
+                                    message: Text(viewModel.alertMessage),
+                                    dismissButton: .default(Text("OK"))
+                                )
+
+                            case .removeSingleSound:
+                                return Alert(
+                                    title: Text(viewModel.alertTitle),
+                                    message: Text(viewModel.alertMessage),
+                                    primaryButton: .destructive(
+                                        Text("Remover"),
+                                        action: { viewModel.onRemoveSingleContentSelected() }
+                                    ),
+                                    secondaryButton: .cancel(Text("Cancelar"))
+                                )
+
+                            case .removeMultipleSounds:
+                                return Alert(
+                                    title: Text(viewModel.alertTitle),
+                                    message: Text(viewModel.alertMessage),
+                                    primaryButton: .destructive(
+                                        Text("Remover"),
+                                        action: { viewModel.onRemoveMultipleContentSelected() }
+                                    ),
+                                    secondaryButton: .cancel(Text("Cancelar"))
+                                )
+                            }
+                        }
                         .sheet(isPresented: $viewModel.showingModalView) {
                             switch viewModel.subviewToOpen {
                             case .shareAsVideo:

@@ -194,6 +194,24 @@ extension ContentListViewModel {
             }
         }
     }
+
+    public func onRedownloadContentOptionSelected() {
+        guard let content = selectedContentSingle else { return }
+        redownloadServerContent(withId: content.id)
+    }
+
+    public func onReportContentIssueSelected() {
+        subviewToOpen = .soundIssueEmailPicker
+        showingModalView = true
+    }
+
+    public func onRemoveSingleContentSelected() {
+        removeSingleContentFromFolder()
+    }
+
+    public func onRemoveMultipleContentSelected() {
+        removeManyFromFolder()
+    }
 }
 
 // MARK: - Internal Functions
@@ -690,7 +708,7 @@ extension ContentListViewModel {
                 action: "didRemoveManySoundsFromFolder(\(selectedCount))"
             )
         } catch {
-            showIssueRemovingSoundFromFolderAlert(plural: true)
+            showIssueRemovingContentFromFolderAlert(plural: true)
         }
     }
 
@@ -729,7 +747,7 @@ extension ContentListViewModel {
 
 extension ContentListViewModel {
 
-    private func removeSingleSoundFromFolder() {
+    private func removeSingleContentFromFolder() {
         guard let folder else { return }
         guard let refreshAction else { return }
         guard let sound = selectedContentSingle else { return }
@@ -742,7 +760,7 @@ extension ContentListViewModel {
 
             refreshAction()
         } catch {
-            showIssueRemovingSoundFromFolderAlert()
+            showIssueRemovingContentFromFolderAlert()
         }
     }
 }
@@ -772,7 +790,7 @@ extension ContentListViewModel {
         TapticFeedback.error()
         alertType = .issueSharingSound
         alertTitle = Shared.contentNotFoundAlertTitle(soundTitle)
-        alertMessage = Shared.soundNotFoundAlertMessage
+        alertMessage = Shared.contentNotFoundAlertMessage
         showAlert = true
     }
 
@@ -808,21 +826,21 @@ extension ContentListViewModel {
     private func showShareManyIssueAlert(_ localizedError: String) {
         TapticFeedback.error()
         alertType = .issueExportingManySounds
-        alertTitle = "Problema ao Tentar Exportar Vários Sons"
-        alertMessage = "Houve um problema desconhecido ao tentar compartilhar vários sons. Por favor, envie um print desse erro para o desenvolvedor (e-mail nas Configurações):\n\n\(localizedError)"
+        alertTitle = "Problema ao Tentar Exportar Vários Conteúdos"
+        alertMessage = "Houve um problema desconhecido ao tentar compartilhar vários conteúdos. Por favor, envie um print desse erro para o desenvolvedor (e-mail nas Configurações):\n\n\(localizedError)"
         showAlert = true
     }
 
     private func showSoundRemovalConfirmation(soundTitle: String) {
         alertTitle = "Remover \"\(soundTitle)\"?"
-        alertMessage = "O som continuará disponível fora da pasta."
+        alertMessage = "O conteúdo continuará disponível fora da pasta."
         alertType = .removeSingleSound
         showAlert = true
     }
 
     private func showRemoveMultipleSoundsConfirmation() {
-        alertTitle = "Remover os sons selecionados?"
-        alertMessage = "Os sons continuarão disponíveis fora da pasta."
+        alertTitle = "Remover os conteúdos selecionados?"
+        alertMessage = "Os conteúdos continuarão disponíveis fora da pasta."
         alertType = .removeMultipleSounds
         showAlert = true
     }
@@ -834,8 +852,8 @@ extension ContentListViewModel {
         showAlert = true
     }
 
-    private func showIssueRemovingSoundFromFolderAlert(plural: Bool = false) {
-        alertTitle = "Não Foi Possível Remover \(plural ? "os Sons" : "o Som") da Pasta"
+    private func showIssueRemovingContentFromFolderAlert(plural: Bool = false) {
+        alertTitle = "Não Foi Possível Remover \(plural ? "os Conteúdos" : "o Conteúdo") da Pasta"
         alertMessage = "Tente novamente mais tarde."
         alertType = .issueRemovingSoundFromFolder
         showAlert = true
