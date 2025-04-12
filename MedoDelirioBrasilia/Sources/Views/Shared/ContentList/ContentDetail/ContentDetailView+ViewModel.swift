@@ -167,7 +167,7 @@ extension ContentDetailView.ViewModel {
     private func showUnableToGetSoundAlert() {
         TapticFeedback.error()
         alertTitle = Shared.contentNotFoundAlertTitle(content.title)
-        alertMessage = Shared.soundNotFoundAlertMessage
+        alertMessage = Shared.contentNotFoundAlertMessage
         showAlert = true
     }
 

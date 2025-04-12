@@ -61,7 +61,7 @@ class ShareAsVideoViewViewModel: ObservableObject {
                 self.isShowingProcessingView = false
                 self.showOtherError(
                     errorTitle: Shared.contentNotFoundAlertTitle(""),
-                    errorBody: Shared.soundNotFoundAlertMessage
+                    errorBody: Shared.contentNotFoundAlertMessage
                 )
             }
         } catch {
