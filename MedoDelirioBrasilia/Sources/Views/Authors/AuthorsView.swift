@@ -12,6 +12,7 @@ struct AuthorsView: View {
     @Binding var sortOption: Int
     @Binding var sortAction: AuthorSortOption
     @Binding var searchTextForControl: String
+    public let containerWidth: CGFloat
 
     @State private var viewModel = ViewModel()
     @State private var searchText = ""
@@ -65,21 +66,11 @@ struct AuthorsView: View {
 
                 //viewModel.donateActivity()
 
-                columns = GridHelper.adaptableColumns(
-                    listWidth: UIScreen.main.bounds.width,
-                    sizeCategory: sizeCategory,
-                    spacing: UIDevice.isiPhone ? 12 : 20,
-                    forceSingleColumnOnPhone: true
-                )
+                updateColumns()
             }
-            //                .onChange(of: geometry.size.width) { newWidth in
-            //                    columns = GridHelper.adaptableColumns(
-            //                        listWidth: newWidth,
-            //                        sizeCategory: sizeCategory,
-            //                        spacing: UIDevice.isiPhone ? 12 : 20,
-            //                        forceSingleColumnOnPhone: true
-            //                    )
-            //                }
+            .onChange(of: containerWidth) {
+                updateColumns()
+            }
             .onChange(of: sortAction) {
                 switch sortAction {
                 case .nameAscending:
@@ -104,6 +95,15 @@ struct AuthorsView: View {
             }
         }
     }
+
+    private func updateColumns() {
+        columns = GridHelper.adaptableColumns(
+            listWidth: containerWidth,
+            sizeCategory: sizeCategory,
+            spacing: UIDevice.isiPhone ? .spacing(.small) : .spacing(.large),
+            forceSingleColumnOnPhone: true
+        )
+    }
 }
 
 // MARK: - Preview
@@ -112,6 +112,7 @@ struct AuthorsView: View {
     AuthorsView(
         sortOption: .constant(AuthorSortOption.nameAscending.rawValue),
         sortAction: .constant(.nameAscending),
-        searchTextForControl: .constant(.empty)
+        searchTextForControl: .constant(.empty),
+        containerWidth: 390
     )
 }
