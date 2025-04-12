@@ -21,7 +21,7 @@ extension UIDevice {
         return UIScreen.main.bounds.width < 380
     }
 
-    static var isControlCenterAcessibleFromTheTop: Bool {
+    static var isControlCenterAccessibleFromTheTop: Bool {
         guard !isiPad else { return true }
         return !modelName.contains("SE")
     }
