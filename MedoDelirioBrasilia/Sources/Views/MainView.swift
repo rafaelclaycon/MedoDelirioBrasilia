@@ -185,14 +185,10 @@ struct MainView: View {
 
                         Tab("Autores", systemImage: "person") {
                             NavigationStack(path: $authorsPath) {
-                                AuthorsView(
-                                    sortOption: $authorSortOption,
-                                    sortAction: $authorSortAction,
-                                    searchTextForControl: .constant("")
-                                )
-                                .navigationDestination(for: GeneralNavigationDestination.self) { screen in
-                                    GeneralRouter(destination: screen)
-                                }
+                                StandaloneAuthorsView()
+                                    .navigationDestination(for: GeneralNavigationDestination.self) { screen in
+                                        GeneralRouter(destination: screen)
+                                    }
                             }
                             .environment(\.push, PushAction { authorsPath.append($0) })
                         }

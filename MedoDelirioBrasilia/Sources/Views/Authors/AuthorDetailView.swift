@@ -128,173 +128,176 @@ struct AuthorDetailView: View {
     // MARK: - View Body
 
     var body: some View {
-        ScrollView {
-            VStack {
-                ContentList(
-                    viewModel: contentListViewModel,
-                    soundSearchTextIsEmpty: .constant(nil),
-                    dataLoadingDidFail: viewModel.dataLoadingDidFail,
-                    authorId: author.id,
-                    headerView: {
-                        VStack{
-                            if let photo = author.photo {
-                                GeometryReader { headerPhotoGeometry in
-                                    KFImage(URL(string: photo))
-                                        .placeholder {
-                                            Image(systemName: "photo.on.rectangle")
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(height: 100)
-                                                .foregroundColor(.gray)
-                                                .opacity(0.3)
-                                        }
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(width: headerPhotoGeometry.size.width, height: self.getHeightForHeaderImage(headerPhotoGeometry))
-                                        .clipped()
-                                        .offset(x: 0, y: self.getOffsetForHeaderImage(headerPhotoGeometry))
-                                }.frame(height: 250)
-                            }
-
-                            VStack(alignment: .leading, spacing: 15) {
-                                HStack {
-                                    Text(title)
-                                        .font(.title)
-                                        .bold()
-
-                                    Spacer()
-
-                                    moreOptionsMenu(isOnToolbar: false)
+        GeometryReader { geometry in
+            ScrollView {
+                VStack {
+                    ContentList(
+                        viewModel: contentListViewModel,
+                        soundSearchTextIsEmpty: .constant(nil),
+                        dataLoadingDidFail: viewModel.dataLoadingDidFail,
+                        authorId: author.id,
+                        containerSize: geometry.size,
+                        headerView: {
+                            VStack{
+                                if let photo = author.photo {
+                                    GeometryReader { headerPhotoGeometry in
+                                        KFImage(URL(string: photo))
+                                            .placeholder {
+                                                Image(systemName: "photo.on.rectangle")
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(height: 100)
+                                                    .foregroundColor(.gray)
+                                                    .opacity(0.3)
+                                            }
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: headerPhotoGeometry.size.width, height: self.getHeightForHeaderImage(headerPhotoGeometry))
+                                            .clipped()
+                                            .offset(x: 0, y: self.getOffsetForHeaderImage(headerPhotoGeometry))
+                                    }.frame(height: 250)
                                 }
 
-                                if author.description != nil {
-                                    Text(author.description ?? "")
-                                }
+                                VStack(alignment: .leading, spacing: 15) {
+                                    HStack {
+                                        Text(title)
+                                            .font(.title)
+                                            .bold()
 
-                                if !externalLinks.isEmpty {
-                                    ViewThatFits(in: .horizontal) {
-                                        HStack(spacing: 10) {
-                                            ForEach(externalLinks, id: \.title) {
-                                                ExternalLinkButton(externalLink: $0)
-                                            }
-                                        }
-                                        VStack(alignment: .leading, spacing: 15) {
-                                            ForEach(externalLinks, id: \.title) {
-                                                ExternalLinkButton(externalLink: $0)
-                                            }
-                                        }
+                                        Spacer()
+
+                                        moreOptionsMenu(isOnToolbar: false)
                                     }
-                                    .padding(.vertical, 4)
+
+                                    if author.description != nil {
+                                        Text(author.description ?? "")
+                                    }
+
+                                    if !externalLinks.isEmpty {
+                                        ViewThatFits(in: .horizontal) {
+                                            HStack(spacing: 10) {
+                                                ForEach(externalLinks, id: \.title) {
+                                                    ExternalLinkButton(externalLink: $0)
+                                                }
+                                            }
+                                            VStack(alignment: .leading, spacing: 15) {
+                                                ForEach(externalLinks, id: \.title) {
+                                                    ExternalLinkButton(externalLink: $0)
+                                                }
+                                            }
+                                        }
+                                        .padding(.vertical, 4)
+                                    }
+
+                                    Text(viewModel.soundCount)
+                                        .font(.subheadline)
+                                        .foregroundColor(.gray)
+                                        .bold()
                                 }
-
-                                Text(viewModel.soundCount)
-                                    .font(.subheadline)
-                                    .foregroundColor(.gray)
-                                    .bold()
+                                .padding(.horizontal, 20)
+                                .padding(.top, 10)
+                                .padding(.bottom, 5)
                             }
-                            .padding(.horizontal, 20)
-                            .padding(.top, 10)
-                            .padding(.bottom, 5)
-                        }
-                    },
-                    loadingView:
-                        VStack {
-                            HStack(spacing: 10) {
-                                ProgressView()
+                        },
+                        loadingView:
+                            VStack {
+                                HStack(spacing: 10) {
+                                    ProgressView()
 
-                                Text("Carregando sons...")
-                                    .foregroundColor(.gray)
+                                    Text("Carregando sons...")
+                                        .foregroundColor(.gray)
+                                }
+                                .frame(maxWidth: .infinity)
                             }
-                            .frame(maxWidth: .infinity)
-                        }
-                    ,
-                    emptyStateView:
-                        VStack {
-                            NoSoundsView()
-                                .padding(.horizontal, 25)
-                        }
-                    ,
-                    errorView:
-                        VStack {
-                            HStack(spacing: 10) {
-                                ProgressView()
+                        ,
+                        emptyStateView:
+                            VStack {
+                                NoSoundsView()
+                                    .padding(.horizontal, 25)
+                            }
+                        ,
+                        errorView:
+                            VStack {
+                                HStack(spacing: 10) {
+                                    ProgressView()
 
-                                Text("Erro ao carregar sons.")
-                                    .foregroundColor(.gray)
+                                    Text("Erro ao carregar sons.")
+                                        .foregroundColor(.gray)
+                                }
+                                .frame(maxWidth: .infinity)
                             }
-                            .frame(maxWidth: .infinity)
-                        }
-                )
-                .environment(TrendsHelper())
-            }
-            .onPreferenceChange(ViewOffsetKey.self) { offset in
-                updateNavBarContent(offset)
-            }
-            .navigationBarTitleDisplayMode(.inline)
-            .onAppear {
-                // TODO: Refactor this to be closer to SoundsView.
-                viewModel.loadSounds(for: author.id)
-            }
-            .onDisappear {
-                contentListViewModel.onViewDisappeared()
-            }
-            .alert(isPresented: $viewModel.showAlert) {
-                switch viewModel.alertType {
-                case .ok:
-                    return Alert(
-                        title: Text(viewModel.alertTitle),
-                        message: Text(viewModel.alertMessage),
-                        dismissButton: .default(Text("OK"))
                     )
-                case .reportSoundIssue:
-                    return Alert(
-                        title: Text(viewModel.alertTitle),
-                        message: Text(viewModel.alertMessage),
-                        primaryButton: .default(Text("Relatar Problema por E-mail"), action: { viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog = true }),
-                        secondaryButton: .cancel(Text("Fechar"))
-                    )
-                case .askForNewSound:
-                    return Alert(
-                        title: Text(viewModel.alertTitle),
-                        message: Text(viewModel.alertMessage),
-                        primaryButton: .default(Text("Li e Entendi"), action: { viewModel.showEmailAppPicker_askForNewSound = true }),
-                        secondaryButton: .cancel(Text("Cancelar"))
+                    .environment(TrendsHelper())
+                }
+                .onPreferenceChange(ViewOffsetKey.self) { offset in
+                    updateNavBarContent(offset)
+                }
+                .navigationBarTitleDisplayMode(.inline)
+                .onAppear {
+                    // TODO: Refactor this to be closer to SoundsView.
+                    viewModel.loadSounds(for: author.id)
+                }
+                .onDisappear {
+                    contentListViewModel.onViewDisappeared()
+                }
+                .alert(isPresented: $viewModel.showAlert) {
+                    switch viewModel.alertType {
+                    case .ok:
+                        return Alert(
+                            title: Text(viewModel.alertTitle),
+                            message: Text(viewModel.alertMessage),
+                            dismissButton: .default(Text("OK"))
+                        )
+                    case .reportSoundIssue:
+                        return Alert(
+                            title: Text(viewModel.alertTitle),
+                            message: Text(viewModel.alertMessage),
+                            primaryButton: .default(Text("Relatar Problema por E-mail"), action: { viewModel.showEmailAppPicker_soundUnavailableConfirmationDialog = true }),
+                            secondaryButton: .cancel(Text("Fechar"))
+                        )
+                    case .askForNewSound:
+                        return Alert(
+                            title: Text(viewModel.alertTitle),
+                            message: Text(viewModel.alertMessage),
+                            primaryButton: .default(Text("Li e Entendi"), action: { viewModel.showEmailAppPicker_askForNewSound = true }),
+                            secondaryButton: .cancel(Text("Cancelar"))
+                        )
+                    }
+                }
+                .sheet(isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog) {
+                    EmailAppPickerView(
+                        isBeingShown: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog,
+                        subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.selectedSound?.title ?? ""),
+                        emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.selectedSound?.authorName ?? "", viewModel.selectedSound?.id ?? ""),
+                        afterCopyAddressAction: {}
                     )
                 }
-            }
-            .sheet(isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog) {
-                EmailAppPickerView(
-                    isBeingShown: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog,
-                    subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.selectedSound?.title ?? ""),
-                    emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.selectedSound?.authorName ?? "", viewModel.selectedSound?.id ?? ""),
-                    afterCopyAddressAction: {}
-                )
-            }
-            .sheet(isPresented: $viewModel.showEmailAppPicker_askForNewSound) {
-                EmailAppPickerView(
-                    isBeingShown: $viewModel.showEmailAppPicker_askForNewSound,
-                    subject: String(format: Shared.Email.AskForNewSound.subject, self.author.name),
-                    emailBody: Shared.Email.AskForNewSound.body,
-                    afterCopyAddressAction: {}
-                )
-            }
-            .sheet(isPresented: $viewModel.showEmailAppPicker_reportAuthorDetailIssue) {
-                EmailAppPickerView(
-                    isBeingShown: $viewModel.showEmailAppPicker_reportAuthorDetailIssue,
-                    subject: String(format: Shared.Email.AuthorDetailIssue.subject, self.author.name),
-                    emailBody: Shared.Email.AuthorDetailIssue.body,
-                    afterCopyAddressAction: {}
-                )
-            }
-            .onChange(of: contentListViewModel.selectionKeeper.count) {
-                if navBarTitle.isEmpty == false {
-                    DispatchQueue.main.async {
-                        navBarTitle = title
+                .sheet(isPresented: $viewModel.showEmailAppPicker_askForNewSound) {
+                    EmailAppPickerView(
+                        isBeingShown: $viewModel.showEmailAppPicker_askForNewSound,
+                        subject: String(format: Shared.Email.AskForNewSound.subject, self.author.name),
+                        emailBody: Shared.Email.AskForNewSound.body,
+                        afterCopyAddressAction: {}
+                    )
+                }
+                .sheet(isPresented: $viewModel.showEmailAppPicker_reportAuthorDetailIssue) {
+                    EmailAppPickerView(
+                        isBeingShown: $viewModel.showEmailAppPicker_reportAuthorDetailIssue,
+                        subject: String(format: Shared.Email.AuthorDetailIssue.subject, self.author.name),
+                        emailBody: Shared.Email.AuthorDetailIssue.body,
+                        afterCopyAddressAction: {}
+                    )
+                }
+                .onChange(of: contentListViewModel.selectionKeeper.count) {
+                    if navBarTitle.isEmpty == false {
+                        DispatchQueue.main.async {
+                            navBarTitle = title
+                        }
                     }
                 }
             }
+            .edgesIgnoringSafeArea(edgesToIgnore)
         }
-        .edgesIgnoringSafeArea(edgesToIgnore)
     }
 
     // MARK: - Subviews

@@ -484,6 +484,7 @@
 		D964CF3928EEF83A004DECAF /* Casimiro - Eu vou votar no barba, nao tem jeito.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D964CF3728EEF839004DECAF /* Casimiro - Eu vou votar no barba, nao tem jeito.mp3 */; };
 		D964CF3A28EEF83A004DECAF /* Casimiro - Porque se o Bolsonaro ta de um lado, eu to do outro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D964CF3828EEF83A004DECAF /* Casimiro - Porque se o Bolsonaro ta de um lado, eu to do outro.mp3 */; };
 		D96558C42AB2713600E113B1 /* Michele Bolsonaro - Labaxuria.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D96558C32AB2713600E113B1 /* Michele Bolsonaro - Labaxuria.mp3 */; };
+		D965DCD42DAAD06F00BF6920 /* StandaloneAuthorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D965DCD32DAAD06F00BF6920 /* StandaloneAuthorsView.swift */; };
 		D967E2BA290196F900B21C11 /* WallE.swift in Sources */ = {isa = PBXBuildFile; fileRef = D967E2B9290196F900B21C11 /* WallE.swift */; };
 		D967E2BC2901C40700B21C11 /* CustomPhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D967E2BB2901C40700B21C11 /* CustomPhotoAlbum.swift */; };
 		D96892DC2C9F13C00084F646 /* APIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96892DB2C9F13BB0084F646 /* APIConfig.swift */; };
@@ -2036,6 +2037,7 @@
 		D964CF3828EEF83A004DECAF /* Casimiro - Porque se o Bolsonaro ta de um lado, eu to do outro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Casimiro - Porque se o Bolsonaro ta de um lado, eu to do outro.mp3"; sourceTree = "<group>"; };
 		D9653D9C2882749C00C745F4 /* MedoDelirioBrasilia.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MedoDelirioBrasilia.entitlements; sourceTree = "<group>"; };
 		D96558C32AB2713600E113B1 /* Michele Bolsonaro - Labaxuria.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Michele Bolsonaro - Labaxuria.mp3"; sourceTree = "<group>"; };
+		D965DCD32DAAD06F00BF6920 /* StandaloneAuthorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandaloneAuthorsView.swift; sourceTree = "<group>"; };
 		D967E2B9290196F900B21C11 /* WallE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallE.swift; sourceTree = "<group>"; };
 		D967E2BB2901C40700B21C11 /* CustomPhotoAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPhotoAlbum.swift; sourceTree = "<group>"; };
 		D96892DB2C9F13BB0084F646 /* APIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfig.swift; sourceTree = "<group>"; };
@@ -4720,10 +4722,21 @@
 				D94BA9EB2879E964001BD09C /* Banners */,
 				D916627B2874F1E2000A1B23 /* Onboarding */,
 				D9548CE32B0EDF6F000D2FA0 /* Retrospective */,
+				D965DCD22DAAD04500BF6920 /* iPad */,
 				D9759ACA2872B1D1005F9871 /* Shared */,
 				D9C67C112A3E3C3200E74E9D /* Modifiers */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		D965DCD22DAAD04500BF6920 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				D9400DE32DAA992500EFBE20 /* StandaloneFavoritesView.swift */,
+				D9400DE52DAAAF4800EFBE20 /* StandaloneFavoritesViewModel.swift */,
+				D965DCD32DAAD06F00BF6920 /* StandaloneAuthorsView.swift */,
+			);
+			path = iPad;
 			sourceTree = "<group>";
 		};
 		D96892DF2C9F83CC0084F646 /* Resources */ = {
@@ -5110,8 +5123,6 @@
 				D98BB6992AC68769001DE23D /* FloatingSelectionOptionsView.swift */,
 				D96370042B085845002E8838 /* ExplicitDisabledWarning.swift */,
 				D9F82F702D98712600DE3AF2 /* TopSelector.swift */,
-				D9400DE32DAA992500EFBE20 /* StandaloneFavoritesView.swift */,
-				D9400DE52DAAAF4800EFBE20 /* StandaloneFavoritesViewModel.swift */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -6855,6 +6866,7 @@
 				D9DC4D7A2B1D8BC900627555 /* TopChartItem+.swift in Sources */,
 				D9B8DE842BE695B1000C9035 /* AddReactionView.swift in Sources */,
 				D9625E7E28238F9A00080852 /* MedoDelirioBrasiliaApp.swift in Sources */,
+				D965DCD42DAAD06F00BF6920 /* StandaloneAuthorsView.swift in Sources */,
 				D984D55F2CF2190B00680C7D /* ContentDetailView+ViewModel.swift in Sources */,
 				D96892DC2C9F13C00084F646 /* APIConfig.swift in Sources */,
 				D9592C402AA2C01100157F5A /* GenrePickerView.swift in Sources */,

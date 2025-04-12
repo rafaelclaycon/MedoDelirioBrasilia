@@ -37,6 +37,7 @@ struct ContentList<
     private var dataLoadingDidFail: Bool
     private let authorId: String?
     private let reactionId: String?
+    private let containerSize: CGSize
 
     @ViewBuilder private let headerView: HeaderView?
     @ViewBuilder private let loadingView: LoadingView
@@ -95,6 +96,7 @@ struct ContentList<
         dataLoadingDidFail: Bool,
         authorId: String? = nil,
         reactionId: String? = nil,
+        containerSize: CGSize,
         headerView: (() -> HeaderView)? = nil,
         loadingView: LoadingView,
         emptyStateView: EmptyStateView,
@@ -110,6 +112,7 @@ struct ContentList<
         self.dataLoadingDidFail = dataLoadingDidFail
         self.authorId = authorId
         self.reactionId = reactionId
+        self.containerSize = containerSize
         self.headerView = headerView?()
         self.loadingView = loadingView
         self.emptyStateView = emptyStateView
@@ -119,8 +122,6 @@ struct ContentList<
     // MARK: - View Body
 
     var body: some View {
-//        ScrollViewReader { proxy in
-//            GeometryReader { geometry in
         if dataLoadingDidFail {
             VStack {
                 if let headerView {
@@ -128,8 +129,8 @@ struct ContentList<
                 }
                 errorView
             }
-//            .frame(width: geometry.size.width)
-//            .frame(minHeight: geometry.size.height)
+            .frame(width: containerSize.width)
+            .frame(minHeight: containerSize.height)
         } else {
             switch viewModel.state {
             case .loading:
@@ -139,8 +140,8 @@ struct ContentList<
                     }
                     loadingView
                 }
-//                .frame(width: geometry.size.width)
-//                .frame(minHeight: geometry.size.height)
+                .frame(width: containerSize.width)
+                .frame(minHeight: containerSize.height)
 
             case .loaded(let loadedContent):
                 if loadedContent.isEmpty {
@@ -152,8 +153,8 @@ struct ContentList<
                         emptyStateView
                         Spacer()
                     }
-//                    .frame(width: geometry.size.width)
-//                    .frame(minHeight: geometry.size.height)
+                    .frame(width: containerSize.width)
+                    .frame(minHeight: containerSize.height)
                 } else {
                     VStack {
                         if let headerView {
@@ -332,16 +333,16 @@ struct ContentList<
                                 addToFolderHelper = AddToFolderDetails()
                             }
                         }
-//                                        .onChange(of: geometry.size.width) {
-//                                            updateGridLayout(with: geometry.size.width)
-//                                        }
-//                                        .onChange(of: searchResults) {
-//                                            if searchResults.isEmpty {
-//                                                columns = [GridItem(.flexible())]
-//                                            } else {
-//                                                //updateGridLayout(with: geometry.size.width)
-//                                            }
-//                                        }
+                        .onChange(of: containerSize.width) {
+                            updateGridLayout()
+                        }
+                        .onChange(of: searchResults) {
+                            if searchResults.isEmpty {
+                                columns = [GridItem(.flexible())]
+                            } else {
+                                updateGridLayout()
+                            }
+                        }
                          //                                .onChange(of: viewModel.selectionKeeper.count) {
                          //                                    showMultiSelectButtons = viewModel.currentSoundsListMode.wrappedValue == .selection
                          //                                    guard viewModel.currentSoundsListMode.wrappedValue == .selection else { return }
@@ -372,7 +373,7 @@ struct ContentList<
                             viewModel.authorToOpen = nil
                         }
                         .onAppear {
-                            updateGridLayout(with: UIScreen.main.bounds.width) // geometry.size.width
+                            updateGridLayout()
                         }
 
                         if showExplicitDisabledWarning, !UserSettings().getShowExplicitContent() {
@@ -404,17 +405,17 @@ struct ContentList<
                     }
                     errorView
                 }
-//                .frame(width: geometry.size.width)
-//                .frame(minHeight: geometry.size.height)
+                .frame(width: containerSize.width)
+                .frame(minHeight: containerSize.height)
             }
         }
     }
 
     // MARK: - Functions
 
-    private func updateGridLayout(with newWidth: CGFloat) {
+    private func updateGridLayout() {
         columns = GridHelper.adaptableColumns(
-            listWidth: newWidth,
+            listWidth: containerSize.width,
             sizeCategory: sizeCategory,
             spacing: UIDevice.isiPhone ? phoneItemSpacing : padItemSpacing
         )
@@ -433,6 +434,7 @@ struct ContentList<
             currentSoundsListMode: .constant(.regular)
         ),
         dataLoadingDidFail: false,
+        containerSize: CGSize(width: 390, height: 1200),
         loadingView: ProgressView(),
         emptyStateView: Text("No Sounds to Display"),
         errorView: Text("Error")
