@@ -64,6 +64,11 @@ struct TopSelector: View {
         }
     }
 
+    // MARK: - Dynamic Type
+
+    @ScaledMetric private var verticalPadding: CGFloat = .spacing(.xSmall)
+    @ScaledMetric private var horizontalPadding: CGFloat = .spacing(.medium)
+
     // MARK: - View Body
 
     var body: some View {
@@ -76,10 +81,10 @@ struct TopSelector: View {
                         )
                         .font(.callout)
                         .fontWeight(.medium)
-                        .padding(.vertical, 8)
-                        .padding(.horizontal, 16)
+                        .padding(.vertical, verticalPadding)
+                        .padding(.horizontal, horizontalPadding)
                         .background {
-                            RoundedRectangle(cornerRadius: 100)
+                            RoundedRectangle(cornerRadius: .spacing(.huge))
                                 .fill(
                                     kind == selected ? selectedBackgroundColor : notSelectedBackgroundColor
                                 )
@@ -92,6 +97,7 @@ struct TopSelector: View {
             .padding(.horizontal)
             .padding(.top, 8)
             .padding(.bottom, 5)
+            .dynamicTypeSize(...DynamicTypeSize.accessibility2)
         }
     }
 }
