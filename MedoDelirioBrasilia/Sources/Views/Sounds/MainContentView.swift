@@ -109,7 +109,7 @@ struct MainContentView: View {
                                             completedNumber: $viewModel.processedUpdateNumber,
                                             totalUpdateCount: $viewModel.totalUpdateCount
                                         )
-                                        .padding(.horizontal, 10)
+                                        .padding(.horizontal, .spacing(.small))
                                     }
                                     
                                     //                            if shouldDisplayRecurringDonationBanner, viewModel.searchText.isEmpty {
@@ -122,7 +122,7 @@ struct MainContentView: View {
                             },
                             loadingView:
                                 VStack {
-                                    HStack(spacing: 10) {
+                                    HStack(spacing: .spacing(.small)) {
                                         ProgressView()
                                         
                                         Text("Carregando sons...")
@@ -135,18 +135,17 @@ struct MainContentView: View {
                                 VStack {
                                     if viewModel.currentViewMode == .favorites {
                                         NoFavoritesView()
-                                            .padding(.horizontal, 25)
-                                            .padding(.vertical, 50)
+                                            .padding(.horizontal, .spacing(.xLarge))
                                     } else {
                                         Text("Nenhum som a ser exibido. Isso é esquisito.")
                                             .foregroundColor(.gray)
-                                            .padding(.horizontal, 20)
+                                            .padding(.horizontal, .spacing(.large))
                                     }
                                 }
                             ,
                             errorView:
                                 VStack {
-                                    HStack(spacing: 10) {
+                                    HStack(spacing: .spacing(.small)) {
                                         ProgressView()
                                         
                                         Text("Erro ao carregar sons.")
@@ -208,22 +207,6 @@ struct MainContentView: View {
                 .onChange(of: trendsHelper.notifyMainSoundContainer) {
                     highlight(soundId: trendsHelper.notifyMainSoundContainer)
                 }
-                .overlay {
-                    if viewModel.showToastView {
-                        VStack {
-                            Spacer()
-                            
-                            ToastView(
-                                icon: viewModel.toastIcon,
-                                iconColor: viewModel.toastIconColor,
-                                text: viewModel.toastText
-                            )
-                            .padding(.horizontal)
-                            .padding(.bottom, Shared.Constants.toastViewBottomPaddingPad)
-                        }
-                        .transition(.moveAndFade)
-                    }
-                }
                 .onAppear {
                     viewModel.onViewDidAppear()
                 }
@@ -236,6 +219,22 @@ struct MainContentView: View {
             .refreshable {
                 Task { // Keep this Task to avoid "cancelled" issue.
                     await viewModel.onSyncRequested()
+                }
+            }
+            .overlay {
+                if viewModel.showToastView {
+                    VStack {
+                        Spacer()
+
+                        ToastView(
+                            icon: viewModel.toastIcon,
+                            iconColor: viewModel.toastIconColor,
+                            text: viewModel.toastText
+                        )
+                        .padding(.horizontal)
+                        .padding(.bottom, Shared.Constants.toastViewBottomPaddingPad)
+                    }
+                    .transition(.moveAndFade)
                 }
             }
         }
