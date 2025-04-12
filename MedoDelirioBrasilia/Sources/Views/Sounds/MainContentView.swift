@@ -32,10 +32,6 @@ struct MainContentView: View {
     // Temporary banners
     @State private var shouldDisplayRecurringDonationBanner: Bool = false
 
-    // Retro 2024
-    @State private var showRetroBanner: Bool = false
-    @State private var showClassicRetroView: Bool = false
-
     // MARK: - Environment Objects
 
     @Environment(TrendsHelper.self) private var trendsHelper
@@ -87,8 +83,11 @@ struct MainContentView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: .spacing(.xSmall)) {
-                TopSelector(selected: $viewModel.currentViewMode)
-                    //.border(.blue, width: 1)
+                TopSelector(
+                    options: UIDevice.isiPhone ? TopSelectorOption.allCases : [.all, .songs],
+                    selected: $viewModel.currentViewMode,
+                    allowScrolling: UIDevice.isiPhone
+                )
 
                 switch viewModel.currentViewMode {
                 case .all, .favorites, .songs:
