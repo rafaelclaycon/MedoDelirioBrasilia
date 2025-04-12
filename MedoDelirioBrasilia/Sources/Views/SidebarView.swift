@@ -51,18 +51,11 @@ struct SidebarView: View {
                     })
                 
                 NavigationLink(
-                    destination: MainContentView(
-                        viewModel: .init(
-                            currentViewMode: .favorites,
-                            soundSortOption: UserSettings().mainSoundListSoundSortOption(),
-                            authorSortOption: AuthorSortOption.nameAscending.rawValue,
-                            currentSoundsListMode: $currentSoundsListMode,
-                            syncValues: syncValues,
-                            isAllowedToSync: false
-                        ),
-                        currentSoundsListMode: $currentSoundsListMode,
-                        openSettingsAction: {}
-                    ).environment(trendsHelper).environmentObject(settingsHelper),
+                    destination: StandaloneFavoritesView(
+                        viewModel: StandaloneFavoritesViewModel(
+                            contentSortOption: UserSettings().mainSoundListSoundSortOption()
+                        )
+                    ),
                     tag: PadScreen.favorites,
                     selection: $state,
                     label: {

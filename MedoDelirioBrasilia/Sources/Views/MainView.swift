@@ -158,17 +158,10 @@ struct MainView: View {
 
                         Tab("Favoritos", systemImage: "star") {
                             NavigationStack(path: $favoritesPath) {
-                                MainContentView(
-                                    viewModel: .init(
-                                        currentViewMode: .favorites,
-                                        soundSortOption: UserSettings().mainSoundListSoundSortOption(),
-                                        authorSortOption: UserSettings().authorSortOption(),
-                                        currentSoundsListMode: $currentSoundsListMode,
-                                        syncValues: syncValues,
-                                        isAllowedToSync: false
-                                    ),
-                                    currentSoundsListMode: $currentSoundsListMode,
-                                    openSettingsAction: {}
+                                StandaloneFavoritesView(
+                                    viewModel: StandaloneFavoritesViewModel(
+                                        contentSortOption: UserSettings().mainSoundListSoundSortOption()
+                                    )
                                 )
                                 .environment(trendsHelper)
                                 .environmentObject(settingsHelper)
