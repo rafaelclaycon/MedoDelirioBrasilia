@@ -10,7 +10,7 @@ import SwiftUI
 struct StandaloneFavoritesView: View {
 
     @StateObject var viewModel: StandaloneFavoritesViewModel
-    @StateObject private var favoritesViewModel: ContentListViewModel<[AnyEquatableMedoContent]>
+    @StateObject private var favoritesViewModel: ContentGridViewModel<[AnyEquatableMedoContent]>
 
     @State private var soundSearchTextIsEmpty: Bool? = true
 
@@ -23,7 +23,7 @@ struct StandaloneFavoritesView: View {
         toast: Binding<Toast?>
     ) {
         self._viewModel = StateObject(wrappedValue: viewModel)
-        self._favoritesViewModel = StateObject(wrappedValue: ContentListViewModel<[AnyEquatableMedoContent]>(
+        self._favoritesViewModel = StateObject(wrappedValue: ContentGridViewModel<[AnyEquatableMedoContent]>(
             data: viewModel.dataPublisher,
             menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
             currentListMode: .constant(.regular),

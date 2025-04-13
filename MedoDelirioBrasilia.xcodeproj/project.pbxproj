@@ -1152,7 +1152,7 @@
 		D992EF562BCB222B0080C892 /* ContextMenuOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = D992EF552BCB222B0080C892 /* ContextMenuOption.swift */; };
 		D992EF582BCB24310080C892 /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D992EF572BCB24310080C892 /* MainContentView.swift */; };
 		D992EF5A2BCB24FB0080C892 /* ContentGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D992EF592BCB24FB0080C892 /* ContentGrid.swift */; };
-		D992EF5C2BCB25820080C892 /* ContentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D992EF5B2BCB25820080C892 /* ContentListViewModel.swift */; };
+		D992EF5C2BCB25820080C892 /* ContentGridViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D992EF5B2BCB25820080C892 /* ContentGridViewModel.swift */; };
 		D9943F152863CC4D002C6B97 /* A impiedosa justica de Deus.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9943F142863CC4D002C6B97 /* A impiedosa justica de Deus.mp3 */; };
 		D9943F172863DAE1002C6B97 /* FolderDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9943F162863DAE1002C6B97 /* FolderDetailView.swift */; };
 		D9943F1A286406AF002C6B97 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D9943F19286406AF002C6B97 /* Kingfisher */; };
@@ -2704,7 +2704,7 @@
 		D992EF552BCB222B0080C892 /* ContextMenuOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenuOption.swift; sourceTree = "<group>"; };
 		D992EF572BCB24310080C892 /* MainContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentView.swift; sourceTree = "<group>"; };
 		D992EF592BCB24FB0080C892 /* ContentGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentGrid.swift; sourceTree = "<group>"; };
-		D992EF5B2BCB25820080C892 /* ContentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentListViewModel.swift; sourceTree = "<group>"; };
+		D992EF5B2BCB25820080C892 /* ContentGridViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentGridViewModel.swift; sourceTree = "<group>"; };
 		D9943F142863CC4D002C6B97 /* A impiedosa justica de Deus.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "A impiedosa justica de Deus.mp3"; sourceTree = "<group>"; };
 		D9943F162863DAE1002C6B97 /* FolderDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetailView.swift; sourceTree = "<group>"; };
 		D9943F1B28641917002C6B97 /* LocalDatabase+Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalDatabase+Favorite.swift"; sourceTree = "<group>"; };
@@ -5292,7 +5292,7 @@
 			isa = PBXGroup;
 			children = (
 				D992EF592BCB24FB0080C892 /* ContentGrid.swift */,
-				D992EF5B2BCB25820080C892 /* ContentListViewModel.swift */,
+				D992EF5B2BCB25820080C892 /* ContentGridViewModel.swift */,
 				D98EC5DD282596C300340BE5 /* PlayableContentView.swift */,
 				D9DBEAA02BCC110A00220679 /* MockSoundListViewModel.swift */,
 				D984D55D2CF218E100680C7D /* ContentDetail */,
@@ -6884,7 +6884,7 @@
 				D994AD642C9E006B004FAE25 /* ContentShareCountStats.swift in Sources */,
 				D916627D2874F1F9000A1B23 /* FirstOnboardingView.swift in Sources */,
 				D94B5F662A1C9CF600B3A688 /* SyncService+Author.swift in Sources */,
-				D992EF5C2BCB25820080C892 /* ContentListViewModel.swift in Sources */,
+				D992EF5C2BCB25820080C892 /* ContentGridViewModel.swift in Sources */,
 				D99DC19D28423AD7002B03B6 /* AuthorDetailViewModel.swift in Sources */,
 				D967E2BC2901C40700B21C11 /* CustomPhotoAlbum.swift in Sources */,
 				D99BAF762CE1683700250900 /* ReactionsView+LoadedView.swift in Sources */,

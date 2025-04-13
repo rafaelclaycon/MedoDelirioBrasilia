@@ -1,5 +1,5 @@
 //
-//  ContentListViewModel.swift
+//  ContentGridViewModel.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 13/04/24.
@@ -9,7 +9,7 @@ import Combine
 import SwiftUI
 
 @MainActor
-final class ContentListViewModel<T>: ObservableObject {
+final class ContentGridViewModel<T>: ObservableObject {
 
     @Published var state: LoadingState<[AnyEquatableMedoContent]> = .loading
     @Published var menuOptions: [ContextMenuSection]
@@ -100,7 +100,7 @@ final class ContentListViewModel<T>: ObservableObject {
 
 // MARK: - User Actions
 
-extension ContentListViewModel {
+extension ContentGridViewModel {
 
     public func onContentSelected(_ content: AnyEquatableMedoContent) {
         if currentListMode.wrappedValue == .regular {
@@ -211,7 +211,7 @@ extension ContentListViewModel {
 
 // MARK: - Internal Functions
 
-extension ContentListViewModel {
+extension ContentGridViewModel {
 
     private func loadFavorites() {
         do {
@@ -335,7 +335,7 @@ extension ContentListViewModel {
 
 // MARK: - Sound Playback
 
-extension ContentListViewModel {
+extension ContentGridViewModel {
 
     private func playStopPlaylist() {
         if isSelectingSounds {
@@ -433,7 +433,7 @@ extension ContentListViewModel {
 
 // MARK: - ContextMenuOption Communication
 
-extension ContentListViewModel: ContentListDisplaying {
+extension ContentGridViewModel: ContentListDisplaying {
 
     func share(content: AnyEquatableMedoContent) {
         if UIDevice.isiPhone {
@@ -537,7 +537,7 @@ extension ContentListViewModel: ContentListDisplaying {
 
 // MARK: - Multi-Selection
 
-extension ContentListViewModel {
+extension ContentGridViewModel {
 
     private func startSelecting() {
         stopPlaying()
@@ -682,7 +682,7 @@ extension ContentListViewModel {
 
 // MARK: - Folder
 
-extension ContentListViewModel {
+extension ContentGridViewModel {
 
     private func removeSingleContentFromFolder() {
         guard let folder else { return }
@@ -704,7 +704,7 @@ extension ContentListViewModel {
 
 // MARK: - Scroll To Id
 
-extension ContentListViewModel {
+extension ContentGridViewModel {
 
     public func cancelSearchAndHighlight(id soundId: String) {
         if !searchText.isEmpty {
@@ -721,7 +721,7 @@ extension ContentListViewModel {
 
 // MARK: - Alerts
 
-extension ContentListViewModel {
+extension ContentGridViewModel {
 
     private func showUnableToGetSoundAlert(_ soundTitle: String) {
         TapticFeedback.error()

@@ -10,7 +10,7 @@ import SwiftUI
 /// A generic view that displays a list of sounds with customizable states for loading, empty, and error conditions.
 ///
 /// `ContentGrid` supports various customization options, including search functionality, multi-selection, and conditional UI elements like
-/// sound counts, explicit content warnings, and more. It relies on `ContentListViewModel` to manage its data and state.
+/// sound counts, explicit content warnings, and more. It relies on `ContentGridViewModel` to manage its data and state.
 ///
 /// - Parameters:
 ///   - authorId: The author's ID when `ContentGrid` is inside `AuthorDetailView`. This is used to avoid reopening the same author more than once when a user taps the author's name in `ContentDetailView`.
@@ -27,7 +27,7 @@ struct ContentGrid<
 
     // MARK: - Dependencies
 
-    @StateObject private var viewModel: ContentListViewModel<[AnyEquatableMedoContent]>
+    @StateObject private var viewModel: ContentGridViewModel<[AnyEquatableMedoContent]>
     private var soundSearchTextIsEmpty: Binding<Bool?>
     private var allowSearch: Bool
     private var showSoundCountAtTheBottom: Bool
@@ -86,7 +86,7 @@ struct ContentGrid<
     // MARK: - Initializer
 
     init(
-        viewModel: ContentListViewModel<[AnyEquatableMedoContent]>,
+        viewModel: ContentGridViewModel<[AnyEquatableMedoContent]>,
         soundSearchTextIsEmpty: Binding<Bool?> = .constant(nil),
         allowSearch: Bool = false,
         showSoundCountAtTheBottom: Bool = false,

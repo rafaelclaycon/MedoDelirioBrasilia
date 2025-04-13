@@ -11,7 +11,7 @@ import SwiftUI
 struct MainContentView: View {
 
     @StateObject private var viewModel: MainContentViewModel
-    @StateObject private var allSoundsViewModel: ContentListViewModel<[AnyEquatableMedoContent]>
+    @StateObject private var allSoundsViewModel: ContentGridViewModel<[AnyEquatableMedoContent]>
     private var currentContentListMode: Binding<ContentListMode>
     private let openSettingsAction: () -> Void
 
@@ -70,7 +70,7 @@ struct MainContentView: View {
         openSettingsAction: @escaping () -> Void
     ) {
         self._viewModel = StateObject(wrappedValue: viewModel)
-        self._allSoundsViewModel = StateObject(wrappedValue: ContentListViewModel<[AnyEquatableMedoContent]>(
+        self._allSoundsViewModel = StateObject(wrappedValue: ContentGridViewModel<[AnyEquatableMedoContent]>(
             data: viewModel.allContentPublisher,
             menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
             currentListMode: currentContentListMode,
@@ -359,7 +359,7 @@ extension MainContentView {
 
 extension MainContentView {
 
-    private func selectionNavBarTitle(for viewModel: ContentListViewModel<[AnyEquatableMedoContent]>) -> String {
+    private func selectionNavBarTitle(for viewModel: ContentGridViewModel<[AnyEquatableMedoContent]>) -> String {
         if viewModel.selectionKeeper.count == 0 {
             return Shared.SoundSelection.selectSounds
         }
