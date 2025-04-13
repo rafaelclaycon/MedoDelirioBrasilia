@@ -199,7 +199,6 @@ struct AuthorDetailView: View {
 
                     ContentGrid(
                         viewModel: contentListViewModel,
-                        soundSearchTextIsEmpty: .constant(nil),
                         dataLoadingDidFail: viewModel.dataLoadingDidFail,
                         authorId: author.id,
                         containerSize: geometry.size,

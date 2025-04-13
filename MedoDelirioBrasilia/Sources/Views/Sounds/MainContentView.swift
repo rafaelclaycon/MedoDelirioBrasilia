@@ -17,7 +17,7 @@ struct MainContentView: View {
 
     @State private var subviewToOpen: MainSoundContainerModalToOpen = .syncInfo
     @State private var showingModalView = false
-    @State private var soundSearchTextIsEmpty: Bool? = true
+    @State private var contentSearchTextIsEmpty: Bool? = true
 
     // Folders
     @StateObject var deleteFolderAide = DeleteFolderViewAide()
@@ -50,16 +50,6 @@ struct MainContentView: View {
         return "Sons"
     }
 
-    private var displayFloatingSelectorView: Bool {
-        guard UIDevice.current.userInterfaceIdiom == .phone else { return false }
-        guard currentContentListMode.wrappedValue == .regular else { return false }
-        if viewModel.currentViewMode == .authors {
-            return authorSearchText.isEmpty
-        } else {
-            return soundSearchTextIsEmpty ?? false
-        }
-    }
-
     // MARK: - Shared Environment
 
     @Environment(\.scenePhase) var scenePhase
@@ -88,8 +78,8 @@ struct MainContentView: View {
     var body: some View {
         GeometryReader { geometry in
             ScrollView {
-                VStack(spacing: .spacing(.xSmall)) {
-                    if soundSearchTextIsEmpty ?? true {
+                VStack(spacing: .zero) {
+                    if contentSearchTextIsEmpty ?? true {
                         TopSelector(
                             options: UIDevice.isiPhone ? TopSelectorOption.allCases : [.all, .songs],
                             selected: $viewModel.currentViewMode,
@@ -119,7 +109,7 @@ struct MainContentView: View {
 
                             ContentGrid(
                                 viewModel: allSoundsViewModel,
-                                soundSearchTextIsEmpty: $soundSearchTextIsEmpty,
+                                searchTextIsEmpty: $contentSearchTextIsEmpty,
                                 allowSearch: true,
                                 dataLoadingDidFail: viewModel.dataLoadingDidFail,
                                 containerSize: geometry.size,
@@ -166,7 +156,7 @@ struct MainContentView: View {
                                 .padding(.horizontal, explicitOffWarningBottomPadding)
                             }
 
-                            if viewModel.currentViewMode == .all /*viewModel.searchText.isEmpty*/ {
+                            if viewModel.currentViewMode == .all, contentSearchTextIsEmpty ?? true {
                                 Text("\(viewModel.forDisplay?.count ?? 0) ITENS")
                                     .font(.footnote)
                                     .foregroundColor(.gray)

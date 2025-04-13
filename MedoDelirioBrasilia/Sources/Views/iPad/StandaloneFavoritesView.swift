@@ -40,7 +40,7 @@ struct StandaloneFavoritesView: View {
                 VStack(spacing: .spacing(.xSmall)) {
                     ContentGrid(
                         viewModel: favoritesViewModel,
-                        soundSearchTextIsEmpty: $soundSearchTextIsEmpty,
+                        searchTextIsEmpty: $soundSearchTextIsEmpty,
                         dataLoadingDidFail: viewModel.dataLoadingDidFail,
                         containerSize: geometry.size,
                         loadingView:

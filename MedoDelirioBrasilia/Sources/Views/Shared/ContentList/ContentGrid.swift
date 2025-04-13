@@ -14,7 +14,6 @@ import SwiftUI
 ///
 /// - Parameters:
 ///   - authorId: The author's ID when `ContentGrid` is inside `AuthorDetailView`. This is used to avoid reopening the same author more than once when a user taps the author's name in `ContentDetailView`.
-///   - HeaderView: A view displayed at the top of the list, such as a custom header or title.
 ///   - LoadingView: A view shown when data is loading.
 ///   - EmptyStateView: A view displayed when there are no sounds to show.
 ///   - ErrorView: A view displayed when data loading fails.
@@ -27,7 +26,7 @@ struct ContentGrid<
     // MARK: - Dependencies
 
     @StateObject private var viewModel: ContentGridViewModel<[AnyEquatableMedoContent]>
-    private var soundSearchTextIsEmpty: Binding<Bool?>
+    private var searchTextIsEmpty: Binding<Bool?>
     private var allowSearch: Bool
     private var multiSelectFolderOperation: FolderOperation = .add
     private var showNewTag: Bool
@@ -80,7 +79,7 @@ struct ContentGrid<
 
     init(
         viewModel: ContentGridViewModel<[AnyEquatableMedoContent]>,
-        soundSearchTextIsEmpty: Binding<Bool?> = .constant(nil),
+        searchTextIsEmpty: Binding<Bool?> = .constant(nil),
         allowSearch: Bool = false,
         multiSelectFolderOperation: FolderOperation = .add,
         showNewTag: Bool = true,
@@ -93,7 +92,7 @@ struct ContentGrid<
         errorView: ErrorView
     ) {
         self._viewModel = StateObject(wrappedValue: viewModel)
-        self.soundSearchTextIsEmpty = soundSearchTextIsEmpty
+        self.searchTextIsEmpty = searchTextIsEmpty
         self.allowSearch = allowSearch
         self.multiSelectFolderOperation = multiSelectFolderOperation
         self.showNewTag = showNewTag
@@ -285,7 +284,7 @@ struct ContentGrid<
                             viewModel.iPadShareSheet
                         }
                         .onChange(of: viewModel.searchText) {
-                            soundSearchTextIsEmpty.wrappedValue = viewModel.searchText.isEmpty
+                            searchTextIsEmpty.wrappedValue = viewModel.searchText.isEmpty
                         }
                         .onChange(of: viewModel.shareAsVideoResult.videoFilepath) {
                             viewModel.onDidExitShareAsVideoSheet()

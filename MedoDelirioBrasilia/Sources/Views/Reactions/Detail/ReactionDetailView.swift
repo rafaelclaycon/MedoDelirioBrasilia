@@ -65,7 +65,6 @@ struct ReactionDetailView: View {
 
                     ContentGrid(
                         viewModel: soundListViewModel,
-                        soundSearchTextIsEmpty: .constant(nil),
                         showNewTag: false,
                         dataLoadingDidFail: viewModel.dataLoadingDidFail,
                         reactionId: viewModel.reaction.id,
