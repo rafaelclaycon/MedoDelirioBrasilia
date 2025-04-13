@@ -115,21 +115,17 @@ struct ContentDetailView: View {
 //                .sheet(isPresented: $viewModel.showAuthorSuggestionEmailAppPicker) {
 //                    EmailAppPickerView(
 //                        isBeingShown: $viewModel.showAuthorSuggestionEmailAppPicker,
+//            toast: toast,
 //                        subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.sound.title),
-//                        emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.sound.authorName ?? "", viewModel.sound.id),
-//                        afterCopyAddressAction: {
-//                            viewModel.onSupportEmailAddressCopiedSuccessfully()
-//                        }
+//                        emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.sound.authorName ?? "", viewModel.sound.id)
 //                    )
 //                }
 //                .sheet(isPresented: $viewModel.showReactionSuggestionEmailAppPicker) {
 //                    EmailAppPickerView(
 //                        isBeingShown: $viewModel.showReactionSuggestionEmailAppPicker,
+//            toast: toast,
 //                        subject: String(format: "Sugestão Para Adicionar '%@' a Uma Reação", viewModel.sound.title),
-//                        emailBody: String(format: "As Reações expressam emoções, acontecimentos ou personalidades. Qual o nome da Reação nova ou existente na qual você acha que esse som se encaixa?"),
-//                        afterCopyAddressAction: {
-//                            viewModel.onSupportEmailAddressCopiedSuccessfully()
-//                        }
+//                        emailBody: String(format: "As Reações expressam emoções, acontecimentos ou personalidades. Qual o nome da Reação nova ou existente na qual você acha que esse som se encaixa?")
 //                    )
 //                }
             }

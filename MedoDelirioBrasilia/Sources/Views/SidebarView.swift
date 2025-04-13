@@ -15,7 +15,8 @@ struct SidebarView: View {
     @Binding var isShowingSettingsSheet: Bool
     @Binding var folderForEditing: UserFolder?
     @Binding var updateFolderList: Bool
-    @Binding var currentSoundsListMode: SoundsListMode
+    @Binding var currentContentListMode: ContentListMode
+    @Binding var toast: Toast?
 
     // MARK: - View State
 
@@ -34,34 +35,39 @@ struct SidebarView: View {
             Section {
                 NavigationLink(
                     destination: MainContentView(
-                        viewModel: .init(
+                        viewModel: MainContentViewModel(
                             currentViewMode: .all,
                             soundSortOption: UserSettings().mainSoundListSoundSortOption(),
                             authorSortOption: AuthorSortOption.nameAscending.rawValue,
-                            currentSoundsListMode: $currentSoundsListMode,
+                            currentContentListMode: $currentContentListMode,
+                            toast: $toast,
                             syncValues: syncValues
                         ),
-                        currentSoundsListMode: $currentSoundsListMode,
+                        currentContentListMode: $currentContentListMode,
+                        toast: $toast,
                         openSettingsAction: {}
                     ).environment(trendsHelper).environmentObject(settingsHelper),
                     tag: PadScreen.allSounds,
                     selection: $state,
                     label: {
                         Label("Sons", systemImage: "speaker.wave.2")
-                    })
-                
+                    }
+                )
+
                 NavigationLink(
                     destination: StandaloneFavoritesView(
                         viewModel: StandaloneFavoritesViewModel(
                             contentSortOption: UserSettings().mainSoundListSoundSortOption()
-                        )
+                        ),
+                        toast: $toast
                     ),
                     tag: PadScreen.favorites,
                     selection: $state,
                     label: {
                         Label("Favoritos", systemImage: "star")
-                    })
-                
+                    }
+                )
+
                 NavigationLink(
                     destination: TrendsView(
                         tabSelection: .constant(.trends),
@@ -71,7 +77,8 @@ struct SidebarView: View {
                     selection: $state,
                     label: {
                         Label("Tendências", systemImage: "chart.line.uptrend.xyaxis")
-                    })
+                    }
+                )
             }
             
             Section("Minhas Pastas") {
@@ -84,22 +91,29 @@ struct SidebarView: View {
                     selection: $state,
                     label: {
                         Label("Todas as Pastas", systemImage: "folder")
-                    })
-                
+                    }
+                )
+
                 ForEach(viewModel.folders) { folder in
                     NavigationLink(
                         destination: FolderDetailView(
                             folder: folder,
-                            currentSoundsListMode: $currentSoundsListMode
+                            currentContentListMode: $currentContentListMode,
+                            toast: $toast
                         ),
                         tag: .specificFolder,
                         selection: $state,
                         label: {
                             HStack(spacing: 15) {
-                                SidebarFolderIcon(symbol: folder.symbol, backgroundColor: folder.backgroundColor.toPastelColor())
+                                SidebarFolderIcon(
+                                    symbol: folder.symbol,
+                                    backgroundColor: folder.backgroundColor.toPastelColor()
+                                )
+
                                 Text(folder.name)
                             }
-                        })
+                        }
+                    )
                 }
                 
                 Button {
@@ -138,6 +152,7 @@ struct SidebarView: View {
         isShowingSettingsSheet: .constant(false),
         folderForEditing: .constant(nil),
         updateFolderList: .constant(false),
-        currentSoundsListMode: .constant(.regular)
+        currentContentListMode: .constant(.regular),
+        toast: .constant(nil)
     )
 }

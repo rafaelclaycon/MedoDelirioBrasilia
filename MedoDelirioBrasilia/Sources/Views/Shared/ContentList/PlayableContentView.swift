@@ -16,7 +16,7 @@ struct PlayableContentView: View {
     @Binding var highlighted: Set<String>
     @Binding var nowPlaying: Set<String>
     @Binding var selectedItems: Set<String>
-    @Binding var currentSoundsListMode: SoundsListMode
+    @Binding var currentContentListMode: ContentListMode
     @State private var timeRemaining: Double = 0
 
     enum Background {
@@ -30,7 +30,7 @@ struct PlayableContentView: View {
     // MARK: - Computed Properties
 
     private var currentMode: Mode {
-        if currentSoundsListMode == .selection {
+        if currentContentListMode == .selection {
             return selectedItems.contains(content.id) ? .selected : .upForSelection
         } else {
             return nowPlaying.contains(content.id) ? .playing : .regular
@@ -279,7 +279,7 @@ struct PlayableContentView: View {
                 highlighted: .constant(Set<String>()),
                 nowPlaying: .constant(Set<String>()),
                 selectedItems: .constant(Set<String>()),
-                currentSoundsListMode: .constant(.regular)
+                currentContentListMode: .constant(.regular)
             )
 
             PlayableContentView(
@@ -294,7 +294,7 @@ struct PlayableContentView: View {
                 highlighted: .constant(Set<String>()),
                 nowPlaying: .constant(Set<String>()),
                 selectedItems: .constant(Set<String>()),
-                currentSoundsListMode: .constant(.regular)
+                currentContentListMode: .constant(.regular)
             )
         }
 
@@ -310,7 +310,7 @@ struct PlayableContentView: View {
             highlighted: .constant(Set<String>()),
             nowPlaying: .constant(Set<String>()),
             selectedItems: .constant(Set<String>()),
-            currentSoundsListMode: .constant(.regular)
+            currentContentListMode: .constant(.regular)
         )
     }
     .padding()
@@ -330,7 +330,7 @@ struct PlayableContentView: View {
                 highlighted: .constant(Set<String>()),
                 nowPlaying: .constant(Set<String>()),
                 selectedItems: .constant(Set<String>()),
-                currentSoundsListMode: .constant(.regular)
+                currentContentListMode: .constant(.regular)
             )
 
             PlayableContentView(
@@ -344,7 +344,7 @@ struct PlayableContentView: View {
                 highlighted: .constant(Set<String>()),
                 nowPlaying: .constant(Set<String>()),
                 selectedItems: .constant(Set<String>()),
-                currentSoundsListMode: .constant(.regular)
+                currentContentListMode: .constant(.regular)
             )
         }
     }
@@ -365,7 +365,7 @@ struct PlayableContentView: View {
                 highlighted: .constant(Set<String>()),
                 nowPlaying: .constant(Set<String>(arrayLiteral: "ABC")),
                 selectedItems: .constant(Set<String>()),
-                currentSoundsListMode: .constant(.regular)
+                currentContentListMode: .constant(.regular)
             )
 
             PlayableContentView(
@@ -379,7 +379,7 @@ struct PlayableContentView: View {
                 highlighted: .constant(Set<String>()),
                 nowPlaying: .constant(Set<String>(arrayLiteral: "DEF")),
                 selectedItems: .constant(Set<String>()),
-                currentSoundsListMode: .constant(.regular)
+                currentContentListMode: .constant(.regular)
             )
         }
 
@@ -394,7 +394,7 @@ struct PlayableContentView: View {
             highlighted: .constant(Set<String>()),
             nowPlaying: .constant(Set<String>(arrayLiteral: "DEF")),
             selectedItems: .constant(Set<String>()),
-            currentSoundsListMode: .constant(.regular)
+            currentContentListMode: .constant(.regular)
         )
     }
     .padding()
@@ -412,7 +412,7 @@ struct PlayableContentView: View {
         highlighted: .constant(Set<String>()),
         nowPlaying: .constant(Set<String>()),
         selectedItems: .constant(Set<String>()),
-        currentSoundsListMode: .constant(.regular)
+        currentContentListMode: .constant(.regular)
     )
     .padding()
 }
@@ -429,7 +429,7 @@ struct PlayableContentView: View {
         highlighted: .constant(Set<String>(arrayLiteral: "JKL")),
         nowPlaying: .constant(Set<String>()),
         selectedItems: .constant(Set<String>()),
-        currentSoundsListMode: .constant(.regular)
+        currentContentListMode: .constant(.regular)
     )
     .padding()
 }

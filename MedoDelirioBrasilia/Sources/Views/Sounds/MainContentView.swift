@@ -12,7 +12,7 @@ struct MainContentView: View {
 
     @StateObject private var viewModel: MainContentViewModel
     @StateObject private var allSoundsViewModel: ContentListViewModel<[AnyEquatableMedoContent]>
-    private var currentSoundsListMode: Binding<SoundsListMode>
+    private var currentContentListMode: Binding<ContentListMode>
     private let openSettingsAction: () -> Void
 
     @State private var subviewToOpen: MainSoundContainerModalToOpen = .syncInfo
@@ -41,7 +41,7 @@ struct MainContentView: View {
     // MARK: - Computed Properties
 
     private var title: String {
-        guard currentSoundsListMode.wrappedValue == .regular else {
+        guard currentContentListMode.wrappedValue == .regular else {
             return selectionNavBarTitle(for: allSoundsViewModel)
         }
         return "Sons"
@@ -49,7 +49,7 @@ struct MainContentView: View {
 
     private var displayFloatingSelectorView: Bool {
         guard UIDevice.current.userInterfaceIdiom == .phone else { return false }
-        guard currentSoundsListMode.wrappedValue == .regular else { return false }
+        guard currentContentListMode.wrappedValue == .regular else { return false }
         if viewModel.currentViewMode == .authors {
             return authorSearchText.isEmpty
         } else {
@@ -65,16 +65,18 @@ struct MainContentView: View {
 
     init(
         viewModel: MainContentViewModel,
-        currentSoundsListMode: Binding<SoundsListMode>,
+        currentContentListMode: Binding<ContentListMode>,
+        toast: Binding<Toast?>,
         openSettingsAction: @escaping () -> Void
     ) {
         self._viewModel = StateObject(wrappedValue: viewModel)
         self._allSoundsViewModel = StateObject(wrappedValue: ContentListViewModel<[AnyEquatableMedoContent]>(
             data: viewModel.allContentPublisher,
             menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
-            currentSoundsListMode: currentSoundsListMode
+            currentListMode: currentContentListMode,
+            toast: toast
         ))
-        self.currentSoundsListMode = currentSoundsListMode
+        self.currentContentListMode = currentContentListMode
         self.openSettingsAction = openSettingsAction
     }
 
@@ -94,7 +96,7 @@ struct MainContentView: View {
                     
                     switch viewModel.currentViewMode {
                     case .all, .favorites, .songs:
-                        ContentList(
+                        ContentGrid(
                             viewModel: allSoundsViewModel,
                             soundSearchTextIsEmpty: $soundSearchTextIsEmpty,
                             allowSearch: true,
@@ -171,7 +173,7 @@ struct MainContentView: View {
                 .navigationTitle(Text(title))
                 .navigationBarItems(
                     leading: LeadingToolbarControls(
-                        isSelecting: currentSoundsListMode.wrappedValue == .selection,
+                        isSelecting: currentContentListMode.wrappedValue == .selection,
                         cancelAction: { allSoundsViewModel.onExitMultiSelectModeSelected() },
                         openSettingsAction: openSettingsAction
                     ),
@@ -221,22 +223,7 @@ struct MainContentView: View {
                     await viewModel.onSyncRequested()
                 }
             }
-            .overlay {
-                if viewModel.showToastView {
-                    VStack {
-                        Spacer()
-
-                        ToastView(
-                            icon: viewModel.toastIcon,
-                            iconColor: viewModel.toastIconColor,
-                            text: viewModel.toastText
-                        )
-                        .padding(.horizontal)
-                        .padding(.bottom, Shared.Constants.toastViewBottomPaddingPad)
-                    }
-                    .transition(.moveAndFade)
-                }
-            }
+            .toast(viewModel.toast)
         }
     }
 }
@@ -301,7 +288,7 @@ extension MainContentView {
                         UserSettings().saveAuthorSortOption(viewModel.authorSortOption)
                     }
                 } else {
-                    if UIDevice.isiPhone && currentSoundsListMode.wrappedValue == .regular {
+                    if UIDevice.isiPhone && currentContentListMode.wrappedValue == .regular {
                         SyncStatusView()
                             .onTapGesture {
                                 subviewToOpen = .syncInfo
@@ -321,8 +308,8 @@ extension MainContentView {
                                 allSoundsViewModel.onEnterMultiSelectModeSelected()
                             } label: {
                                 Label(
-                                    currentSoundsListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",
-                                    systemImage: currentSoundsListMode.wrappedValue == .selection ? "xmark.circle" : "checkmark.circle"
+                                    currentContentListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",
+                                    systemImage: currentContentListMode.wrappedValue == .selection ? "xmark.circle" : "checkmark.circle"
                                 )
                             }
                         }
@@ -399,10 +386,12 @@ extension MainContentView {
             currentViewMode: .all,
             soundSortOption: SoundSortOption.dateAddedDescending.rawValue,
             authorSortOption: AuthorSortOption.nameAscending.rawValue,
-            currentSoundsListMode: .constant(.regular),
+            currentContentListMode: .constant(.regular),
+            toast: .constant(nil),
             syncValues: SyncValues()
         ),
-        currentSoundsListMode: .constant(.regular),
+        currentContentListMode: .constant(.regular),
+        toast: .constant(nil),
         openSettingsAction: {}
     )
 }

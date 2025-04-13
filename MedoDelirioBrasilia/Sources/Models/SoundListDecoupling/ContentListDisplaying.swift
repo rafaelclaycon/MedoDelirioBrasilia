@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-/// This protocol exists to enable the communication between ContextMenuOption and ContentList.
+/// This protocol exists to enable the communication between ContextMenuOption and ContentGrid.
 protocol ContentListDisplaying {
 
     func share(content: AnyEquatableMedoContent)

@@ -26,15 +26,10 @@ class MainContentViewModel: ObservableObject {
     @Published var totalUpdateCount: Int = 0
     @Published var firstRunSyncHappened: Bool = false
 
-    // Toast
-    @Published var showToastView: Bool = false
-    @Published var toastIcon: String = "checkmark"
-    @Published var toastIconColor: Color = .green
-    @Published var toastText: String = ""
-
     // MARK: - Stored Properties
 
-    var currentSoundsListMode: Binding<SoundsListMode>
+    public var currentContentListMode: Binding<ContentListMode>
+    public var toast: Binding<Toast?>
     private var allContent = [AnyEquatableMedoContent]()
 
     // Sync
@@ -56,14 +51,16 @@ class MainContentViewModel: ObservableObject {
         currentViewMode: TopSelectorOption,
         soundSortOption: Int,
         authorSortOption: Int,
-        currentSoundsListMode: Binding<SoundsListMode>,
+        currentContentListMode: Binding<ContentListMode>,
+        toast: Binding<Toast?>,
         syncValues: SyncValues,
         isAllowedToSync: Bool = true
     ) {
         self.currentViewMode = currentViewMode
         self.soundSortOption = soundSortOption
         self.authorSortOption = authorSortOption
-        self.currentSoundsListMode = currentSoundsListMode
+        self.currentContentListMode = currentContentListMode
+        self.toast = toast
 
         self.syncManager = SyncManager(
             service: SyncService(
@@ -159,31 +156,6 @@ extension MainContentViewModel {
         sortAllSounds(by: sortOption)
         UserSettings().saveMainSoundListSoundSortOption(rawSortOption)
     }
-
-    private func displayToast(
-        _ toastIcon: String,
-        _ toastIconColor: Color,
-        toastText: String,
-        displayTime: DispatchTimeInterval,
-        completion: (() -> Void)? = nil
-    ) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-            withAnimation {
-                self.toastIcon = toastIcon
-                self.toastIconColor = toastIconColor
-                self.toastText = toastText
-                self.showToastView = true
-            }
-            TapticFeedback.success()
-        }
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + displayTime) {
-            withAnimation {
-                self.showToastView = false
-                completion?()
-            }
-        }
-    }
 }
 
 // MARK: - Sorting
@@ -272,12 +244,8 @@ extension MainContentViewModel: SyncManagerDelegate {
 
             let message = String(format: Shared.Sync.waitMessage, lastAttempt.timeUntil(addingMinutes: 1))
 
-            return displayToast(
-                "clock.fill",
-                .orange,
-                toastText: message,
-                displayTime: .seconds(3)
-            )
+            toast.wrappedValue = Toast(message: message, type: .wait)
+            return
         }
 
         await syncManager.sync()
@@ -286,12 +254,7 @@ extension MainContentViewModel: SyncManagerDelegate {
 
         let message = syncValues.syncStatus.description
 
-        displayToast(
-            syncValues.syncStatus == .done ? "checkmark" : "exclamationmark.triangle.fill",
-            syncValues.syncStatus == .done ? .green : .orange,
-            toastText: message,
-            displayTime: .seconds(3)
-        )
+        toast.wrappedValue = Toast(message: message, type: syncValues.syncStatus == .done ? .success : .warning)
     }
 
     // Warm open means the app was reopened before it left memory.

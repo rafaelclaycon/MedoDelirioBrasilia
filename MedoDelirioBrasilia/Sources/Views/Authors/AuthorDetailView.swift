@@ -10,13 +10,15 @@ import Kingfisher
 
 struct AuthorDetailView: View {
 
-    @StateObject private var viewModel: AuthorDetailViewViewModel
+    @StateObject private var viewModel: AuthorDetailViewModel
     @StateObject private var contentListViewModel: ContentListViewModel<[AnyEquatableMedoContent]>
 
     let author: Author
 
     @State private var navBarTitle: String = .empty
-    private var currentSoundsListMode: Binding<SoundsListMode>
+    private var currentContentListMode: Binding<ContentListMode>
+    private var toast: Binding<Toast?>
+
     @State private var showSelectionControlsInToolbar = false
     @State private var showMenuOnToolbarForiOS16AndHigher = false
     
@@ -58,8 +60,8 @@ struct AuthorDetailView: View {
         if offset < getOffsetBeforeShowingTitle() {
             DispatchQueue.main.async {
                 navBarTitle = title
-                showSelectionControlsInToolbar = currentSoundsListMode.wrappedValue == .selection
-                showMenuOnToolbarForiOS16AndHigher = currentSoundsListMode.wrappedValue == .regular
+                showSelectionControlsInToolbar = currentContentListMode.wrappedValue == .selection
+                showMenuOnToolbarForiOS16AndHigher = currentContentListMode.wrappedValue == .regular
             }
         } else {
             DispatchQueue.main.async {
@@ -73,7 +75,7 @@ struct AuthorDetailView: View {
     // MARK: - Computed Properties
 
     private var title: String {
-        guard currentSoundsListMode.wrappedValue == .regular else {
+        guard currentContentListMode.wrappedValue == .regular else {
             if contentListViewModel.selectionKeeper.count == 0 {
                 return Shared.SoundSelection.selectSounds
             } else if contentListViewModel.selectionKeeper.count == 1 {
@@ -109,18 +111,21 @@ struct AuthorDetailView: View {
 
     init(
         author: Author,
-        currentSoundsListMode: Binding<SoundsListMode>
+        currentListMode: Binding<ContentListMode>,
+        toast: Binding<Toast?>
     ) {
         self.author = author
-        let viewModel = AuthorDetailViewViewModel(currentSoundsListMode: currentSoundsListMode)
+        let viewModel = AuthorDetailViewModel(currentContentListMode: currentListMode)
 
         self._viewModel = StateObject(wrappedValue: viewModel)
-        self.currentSoundsListMode = currentSoundsListMode
+        self.currentContentListMode = currentListMode
+        self.toast = toast
 
         let contentListViewModel = ContentListViewModel<[AnyEquatableMedoContent]>(
             data: viewModel.soundsPublisher,
             menuOptions: [.sharingOptions(), .organizingOptions(), .playFromThisSound(), .authorOptions()],
-            currentSoundsListMode: currentSoundsListMode
+            currentListMode: currentListMode,
+            toast: toast
         )
         self._contentListViewModel = StateObject(wrappedValue: contentListViewModel)
     }
@@ -131,7 +136,7 @@ struct AuthorDetailView: View {
         GeometryReader { geometry in
             ScrollView {
                 VStack {
-                    ContentList(
+                    ContentGrid(
                         viewModel: contentListViewModel,
                         soundSearchTextIsEmpty: .constant(nil),
                         dataLoadingDidFail: viewModel.dataLoadingDidFail,
@@ -267,25 +272,25 @@ struct AuthorDetailView: View {
                 .sheet(isPresented: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog) {
                     EmailAppPickerView(
                         isBeingShown: $viewModel.showEmailAppPicker_suggestOtherAuthorNameConfirmationDialog,
+                        toast: toast,
                         subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, viewModel.selectedSound?.title ?? ""),
-                        emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.selectedSound?.authorName ?? "", viewModel.selectedSound?.id ?? ""),
-                        afterCopyAddressAction: {}
+                        emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, viewModel.selectedSound?.authorName ?? "", viewModel.selectedSound?.id ?? "")
                     )
                 }
                 .sheet(isPresented: $viewModel.showEmailAppPicker_askForNewSound) {
                     EmailAppPickerView(
                         isBeingShown: $viewModel.showEmailAppPicker_askForNewSound,
+                        toast: toast,
                         subject: String(format: Shared.Email.AskForNewSound.subject, self.author.name),
-                        emailBody: Shared.Email.AskForNewSound.body,
-                        afterCopyAddressAction: {}
+                        emailBody: Shared.Email.AskForNewSound.body
                     )
                 }
                 .sheet(isPresented: $viewModel.showEmailAppPicker_reportAuthorDetailIssue) {
                     EmailAppPickerView(
                         isBeingShown: $viewModel.showEmailAppPicker_reportAuthorDetailIssue,
+                        toast: toast,
                         subject: String(format: Shared.Email.AuthorDetailIssue.subject, self.author.name),
-                        emailBody: Shared.Email.AuthorDetailIssue.body,
-                        afterCopyAddressAction: {}
+                        emailBody: Shared.Email.AuthorDetailIssue.body
                     )
                 }
                 .onChange(of: contentListViewModel.selectionKeeper.count) {
@@ -297,6 +302,7 @@ struct AuthorDetailView: View {
                 }
             }
             .edgesIgnoringSafeArea(edgesToIgnore)
+            .toast(toast)
         }
     }
 
@@ -311,8 +317,8 @@ struct AuthorDetailView: View {
                         contentListViewModel.onEnterMultiSelectModeSelected()
                     } label: {
                         Label(
-                            currentSoundsListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",
-                            systemImage: currentSoundsListMode.wrappedValue == .selection ? "xmark.circle" : "checkmark.circle"
+                            currentContentListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",
+                            systemImage: currentContentListMode.wrappedValue == .selection ? "xmark.circle" : "checkmark.circle"
                         )
                     }
                 }
@@ -391,6 +397,7 @@ struct ViewOffsetKey: PreferenceKey {
             photo: "https://conteudo.imguol.com.br/c/noticias/fd/2020/06/22/11fev2020---o-entao-ministro-da-educacao-abraham-weintraub-falando-a-comissao-do-senado-sobre-problemas-na-correcao-das-provas-do-enem-1592860563916_v2_3x4.jpg",
             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
         ),
-        currentSoundsListMode: .constant(.regular)
+        currentListMode: .constant(.regular),
+        toast: .constant(nil)
     )
 }

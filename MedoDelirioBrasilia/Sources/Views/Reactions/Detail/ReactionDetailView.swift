@@ -30,7 +30,8 @@ struct ReactionDetailView: View {
 
     init(
         reaction: Reaction,
-        currentSoundsListMode: Binding<SoundsListMode>
+        currentListMode: Binding<ContentListMode>,
+        toast: Binding<Toast?>
     ) {
         let viewModel = ReactionDetailViewModel(reaction: reaction)
 
@@ -39,7 +40,8 @@ struct ReactionDetailView: View {
         let soundListViewModel = ContentListViewModel<[AnyEquatableMedoContent]>(
             data: viewModel.soundsPublisher,
             menuOptions: [.sharingOptions(), .organizingOptions(), .playFromThisSound(), .detailsOptions()],
-            currentSoundsListMode: currentSoundsListMode
+            currentListMode: currentListMode,
+            toast: toast
         )
 
         self._soundListViewModel = StateObject(wrappedValue: soundListViewModel)
@@ -51,7 +53,7 @@ struct ReactionDetailView: View {
         GeometryReader { geometry in
             ScrollView {
                 VStack {
-                    ContentList(
+                    ContentGrid(
                         viewModel: soundListViewModel,
                         soundSearchTextIsEmpty: .constant(nil),
                         showNewTag: false,
@@ -280,6 +282,7 @@ extension ReactionDetailView {
 #Preview {
     ReactionDetailView(
         reaction: .acidMock,
-        currentSoundsListMode: .constant(.regular)
+        currentListMode: .constant(.regular),
+        toast: .constant(nil)
     )
 }

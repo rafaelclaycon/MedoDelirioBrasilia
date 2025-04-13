@@ -58,18 +58,13 @@ final class ContentListViewModel<T>: ObservableObject {
     @Published var showAlert: Bool = false
     @Published var alertType: SoundListAlertType = .soundFileNotFound
 
-    // Toast
-    @Published var showToastView: Bool = false
-    @Published var toastIcon: String = "checkmark"
-    @Published var toastIconColor: Color = .green
-    @Published var toastText: String = ""
-
     // Play Random Sound
     @Published var scrollTo: String = ""
 
     // MARK: - Stored Properties
 
-    var currentSoundsListMode: Binding<SoundsListMode>
+    var currentListMode: Binding<ContentListMode>
+    var toast: Binding<Toast?>
 
     private var cancellables = Set<AnyCancellable>()
 
@@ -78,13 +73,15 @@ final class ContentListViewModel<T>: ObservableObject {
     init(
         data: AnyPublisher<[AnyEquatableMedoContent], Never>,
         menuOptions: [ContextMenuSection],
-        currentSoundsListMode: Binding<SoundsListMode>,
+        currentListMode: Binding<ContentListMode>,
+        toast: Binding<Toast?>,
         needsRefreshAfterChange: Bool = false,
         refreshAction: (() -> Void)? = nil,
         insideFolder: UserFolder? = nil
     ) {
         self.menuOptions = menuOptions
-        self.currentSoundsListMode = currentSoundsListMode
+        self.currentListMode = currentListMode
+        self.toast = toast
         self.needsRefreshAfterChange = needsRefreshAfterChange
         self.refreshAction = refreshAction
         self.folder = insideFolder
@@ -106,7 +103,7 @@ final class ContentListViewModel<T>: ObservableObject {
 extension ContentListViewModel {
 
     public func onContentSelected(_ content: AnyEquatableMedoContent) {
-        if currentSoundsListMode.wrappedValue == .regular {
+        if currentListMode.wrappedValue == .regular {
             if nowPlayingKeeper.contains(content.id) {
                 AudioPlayer.shared?.togglePlay()
                 nowPlayingKeeper.removeAll()
@@ -131,13 +128,11 @@ extension ContentListViewModel {
         // Need to get count before clearing the Set.
         let selectedCount: Int = selectionKeeper.count
 
-        if currentSoundsListMode.wrappedValue == .selection {
+        if currentListMode.wrappedValue == .selection {
             stopSelecting()
         }
 
-        displayToast(
-            toastText: pluralization.getAddedToFolderToastText(folderName: folderName)
-        )
+        toast.wrappedValue = Toast(message: pluralization.getAddedToFolderToastText(folderName: folderName), type: .success)
 
         if pluralization == .plural {
             Analytics().send(
@@ -257,12 +252,9 @@ extension ContentListViewModel {
         Task {
             do {
                 try await SyncService.downloadFile(contentId)
-                displayToast(
-                    "checkmark",
-                    .green,
-                    toastText: "Conteúdo baixado com sucesso. Tente tocá-lo novamente.",
-                    displayTime: .seconds(3),
-                    completion: nil
+                toast.wrappedValue = Toast(
+                    message: "Conteúdo baixado com sucesso. Tente tocá-lo novamente.",
+                    type: .success
                 )
             } catch {
                 showUnableToRedownloadSoundAlert()
@@ -271,8 +263,9 @@ extension ContentListViewModel {
     }
 
     private func showVideoSavedSuccessfullyToast() {
-        self.displayToast(
-            toastText: UIDevice.isMac ? Shared.ShareAsVideo.videoSavedSucessfullyMac : Shared.ShareAsVideo.videoSavedSucessfully
+        toast.wrappedValue = Toast(
+            message: UIDevice.isMac ? Shared.ShareAsVideo.videoSavedSucessfullyMac : Shared.ShareAsVideo.videoSavedSucessfully,
+            type: .success
         )
     }
 
@@ -290,7 +283,7 @@ extension ContentListViewModel {
                     shareSheetDelayInSeconds: 0.6
                 ) { didShareSuccessfully in
                     if didShareSuccessfully {
-                        self.displayToast(toastText: Shared.videoSharedSuccessfullyMessage)
+                        self.toast.wrappedValue = Toast(message: Shared.videoSharedSuccessfullyMessage, type: .success)
                     }
 
                     WallE.deleteAllVideoFilesFromDocumentsDir()
@@ -322,7 +315,7 @@ extension ContentListViewModel {
 
                     AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
 
-                    self.displayToast(toastText: Shared.videoSharedSuccessfullyMessage)
+                    self.toast.wrappedValue = Toast(message: Shared.videoSharedSuccessfullyMessage, type: .success)
                 }
 
                 WallE.deleteAllVideoFilesFromDocumentsDir()
@@ -451,7 +444,7 @@ extension ContentListViewModel: ContentListDisplaying {
                     context: .sound
                 ) { didShare in
                     if didShare {
-                        self.displayToast(toastText: Shared.soundSharedSuccessfullyMessage)
+                        self.toast.wrappedValue = Toast(message: Shared.soundSharedSuccessfullyMessage, type: .success)
                     }
                 }
             } catch {
@@ -472,7 +465,7 @@ extension ContentListViewModel: ContentListDisplaying {
 
                         AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
 
-                        self.displayToast(toastText: Shared.soundSharedSuccessfullyMessage)
+                        self.toast.wrappedValue = Toast(message: Shared.soundSharedSuccessfullyMessage, type: .success)
                     }
                 }
             } catch {
@@ -530,7 +523,7 @@ extension ContentListViewModel: ContentListDisplaying {
 
     func showAuthor(withId authorId: String) {
         guard let author = try? LocalDatabase.shared.author(withId: authorId) else {
-            print("ContentList error: unable to find author with id \(authorId)")
+            print("ContentGrid error: unable to find author with id \(authorId)")
             return
         }
         authorToOpen = author
@@ -542,80 +535,24 @@ extension ContentListViewModel: ContentListDisplaying {
     }
 }
 
-// MARK: - Toast
-
-extension ContentListViewModel {
-
-    private func displayToast(
-        _ toastIcon: String,
-        _ toastIconColor: Color,
-        toastText: String,
-        displayTime: DispatchTimeInterval,
-        completion: (() -> Void)?
-    ) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-            withAnimation {
-                self.toastIcon = toastIcon
-                self.toastIconColor = toastIconColor
-                self.toastText = toastText
-                self.showToastView = true
-            }
-            TapticFeedback.success()
-        }
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + displayTime) {
-            withAnimation {
-                self.showToastView = false
-                completion?()
-            }
-        }
-    }
-
-    private func displayToast(
-        toastText: String,
-        displayTime: DispatchTimeInterval = .seconds(3)
-    ) {
-        displayToast(
-            "checkmark",
-            .green,
-            toastText: toastText,
-            displayTime: .seconds(3),
-            completion: nil
-        )
-    }
-
-    private func displayToast(
-        toastText: String,
-        completion: (() -> Void)?
-    ) {
-        displayToast(
-            "checkmark",
-            .green,
-            toastText: toastText,
-            displayTime: .seconds(3),
-            completion: completion
-        )
-    }
-}
-
 // MARK: - Multi-Selection
 
 extension ContentListViewModel {
 
     private func startSelecting() {
         stopPlaying()
-        if currentSoundsListMode.wrappedValue == .regular {
-            currentSoundsListMode.wrappedValue = .selection
+        if currentListMode.wrappedValue == .regular {
+            currentListMode.wrappedValue = .selection
             isSelectingSounds = true
         } else {
-            currentSoundsListMode.wrappedValue = .regular
+            currentListMode.wrappedValue = .regular
             selectionKeeper.removeAll()
             isSelectingSounds = false
         }
     }
 
     private func stopSelecting() {
-        currentSoundsListMode.wrappedValue = .regular
+        currentListMode.wrappedValue = .regular
         selectionKeeper.removeAll()
         selectedContentMultiple = nil
         searchText = ""

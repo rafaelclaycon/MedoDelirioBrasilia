@@ -22,7 +22,8 @@ struct MainView: View {
     @StateObject private var settingsHelper = SettingsHelper()
     @State private var folderForEditing: UserFolder?
     @State private var updateFolderList: Bool = false
-    @State private var currentSoundsListMode: SoundsListMode = .regular
+    @State private var currentContentListMode: ContentListMode = .regular
+    @State private var toast: Toast?
 
     @State private var subviewToOpen: MainViewModalToOpen = .onboarding
     @State private var showingModalView: Bool = false
@@ -51,10 +52,12 @@ struct MainView: View {
                                 currentViewMode: .all,
                                 soundSortOption: UserSettings().mainSoundListSoundSortOption(),
                                 authorSortOption: UserSettings().authorSortOption(),
-                                currentSoundsListMode: $currentSoundsListMode,
+                                currentContentListMode: $currentContentListMode,
+                                toast: $toast,
                                 syncValues: syncValues
                             ),
-                            currentSoundsListMode: $currentSoundsListMode,
+                            currentContentListMode: $currentContentListMode,
+                            toast: $toast,
                             openSettingsAction: {
                                 isShowingSettingsSheet.toggle()
                             }
@@ -141,10 +144,12 @@ struct MainView: View {
                                         currentViewMode: .all,
                                         soundSortOption: UserSettings().mainSoundListSoundSortOption(),
                                         authorSortOption: UserSettings().authorSortOption(),
-                                        currentSoundsListMode: $currentSoundsListMode,
+                                        currentContentListMode: $currentContentListMode,
+                                        toast: $toast,
                                         syncValues: syncValues
                                     ),
-                                    currentSoundsListMode: $currentSoundsListMode,
+                                    currentContentListMode: $currentContentListMode,
+                                    toast: $toast,
                                     openSettingsAction: {}
                                 )
                                 .environment(trendsHelper)
@@ -161,7 +166,8 @@ struct MainView: View {
                                 StandaloneFavoritesView(
                                     viewModel: StandaloneFavoritesViewModel(
                                         contentSortOption: UserSettings().mainSoundListSoundSortOption()
-                                    )
+                                    ),
+                                    toast: $toast
                                 )
                                 .environment(trendsHelper)
                                 .environmentObject(settingsHelper)
@@ -222,7 +228,8 @@ struct MainView: View {
                                     NavigationStack {
                                         FolderDetailView(
                                             folder: folder,
-                                            currentSoundsListMode: $currentSoundsListMode
+                                            currentContentListMode: $currentContentListMode,
+                                            toast: $toast
                                         )
                                     }
                                 } label: {
@@ -272,7 +279,8 @@ struct MainView: View {
                             isShowingSettingsSheet: $isShowingSettingsSheet,
                             folderForEditing: $folderForEditing,
                             updateFolderList: $updateFolderList,
-                            currentSoundsListMode: $currentSoundsListMode
+                            currentContentListMode: $currentContentListMode,
+                            toast: $toast
                         )
                         .environment(trendsHelper)
                         .environmentObject(settingsHelper)
@@ -284,10 +292,12 @@ struct MainView: View {
                                     currentViewMode: .all,
                                     soundSortOption: UserSettings().mainSoundListSoundSortOption(),
                                     authorSortOption: AuthorSortOption.nameAscending.rawValue,
-                                    currentSoundsListMode: $currentSoundsListMode,
+                                    currentContentListMode: $currentContentListMode,
+                                    toast: $toast,
                                     syncValues: syncValues
                                 ),
-                                currentSoundsListMode: $currentSoundsListMode,
+                                currentContentListMode: $currentContentListMode,
+                                toast: $toast,
                                 openSettingsAction: {}
                             )
                             .environment(trendsHelper)

@@ -13,8 +13,8 @@ struct TrendsView: View {
         case audience, me
     }
 
-    @StateObject private var viewModel = ViewModel()
     @State private var audienceViewModel = MostSharedByAudienceView.ViewModel()
+    @State private var toast: Toast?
 
     @Binding var tabSelection: PhoneTab
     @Binding var activePadScreen: PadScreen?
@@ -26,7 +26,9 @@ struct TrendsView: View {
     @State private var showAlert = false
     @State private var alertTitle = ""
 
-    var showTrends: Bool {
+    // MARK: - Computed Properties
+
+    private var showTrends: Bool {
         UserSettings().getEnableTrends()
     }
 
@@ -38,13 +40,15 @@ struct TrendsView: View {
         UserSettings().getEnableDayOfTheWeekTheUserSharesTheMost()
     }*/
 
-    var showSoundsMostSharedByTheAudience: Bool {
+    private var showSoundsMostSharedByTheAudience: Bool {
         UserSettings().getEnableSoundsMostSharedByTheAudience()
     }
 
     /*var showAppsThroughWhichTheUserSharesTheMost: Bool {
         UserSettings().getEnableAppsThroughWhichTheUserSharesTheMost()
     }*/
+
+    // MARK: - View Body
 
     var body: some View {
         VStack {
@@ -106,12 +110,7 @@ struct TrendsView: View {
         .navigationBarTitleDisplayMode(showTrends ? .large : .inline)
         .onAppear {
             audienceViewModel.displayToast = { message in
-                viewModel.displayToast(
-                    "clock.fill",
-                    .orange,
-                    toastText: message,
-                    displayTime: .seconds(3)
-                )
+                self.toast = Toast(message: message, type: .wait)
             }
 
             Analytics().send(
@@ -119,22 +118,7 @@ struct TrendsView: View {
                 action: "didViewTrendsTab"
             )
         }
-        .overlay {
-            if viewModel.showToastView {
-                VStack {
-                    Spacer()
-
-                    ToastView(
-                        icon: viewModel.toastIcon,
-                        iconColor: viewModel.toastIconColor,
-                        text: viewModel.toastText
-                    )
-                    .padding(.horizontal)
-                    .padding(.bottom, 15)
-                }
-                .transition(.moveAndFade)
-            }
-        }
+        .toast($toast)
     }
 }
 

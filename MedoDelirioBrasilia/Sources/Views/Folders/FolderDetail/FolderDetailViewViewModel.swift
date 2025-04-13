@@ -17,6 +17,8 @@ class FolderDetailViewViewModel: ObservableObject {
 
     @Published var dataLoadingDidFail: Bool = false
 
+    @Published var toast: Toast?
+
     // Playlist
     @Published var isPlayingPlaylist: Bool = false
     private var currentTrackIndex: Int = 0

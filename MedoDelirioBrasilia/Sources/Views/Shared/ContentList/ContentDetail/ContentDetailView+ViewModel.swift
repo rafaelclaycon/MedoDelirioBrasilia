@@ -105,10 +105,6 @@ extension ContentDetailView.ViewModel {
             type: .success
         )
     }
-
-    func onSupportEmailAddressCopiedSuccessfully() {
-        toast = Toast(message: Shared.Email.copyAddressSuccessMessage)
-    }
 }
 
 // MARK: - Internal Functions

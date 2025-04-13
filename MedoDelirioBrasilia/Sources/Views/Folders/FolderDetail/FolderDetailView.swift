@@ -14,7 +14,7 @@ struct FolderDetailView: View {
 
     let folder: UserFolder
 
-    private var currentSoundsListMode: Binding<SoundsListMode>
+    private var currentContentListMode: Binding<ContentListMode>
     @State private var showingFolderInfoEditingView = false
     @State private var showingModalView = false
 
@@ -26,7 +26,7 @@ struct FolderDetailView: View {
     }
     
     private var title: String {
-        guard currentSoundsListMode.wrappedValue == SoundsListMode.regular else {
+        guard currentContentListMode.wrappedValue == .regular else {
             if contentListViewModel.selectionKeeper.count == 0 {
                 return Shared.SoundSelection.selectSounds
             } else if contentListViewModel.selectionKeeper.count == 1 {
@@ -42,7 +42,8 @@ struct FolderDetailView: View {
 
     init(
         folder: UserFolder,
-        currentSoundsListMode: Binding<SoundsListMode>
+        currentContentListMode: Binding<ContentListMode>,
+        toast: Binding<Toast?>
     ) {
         self.folder = folder
         let viewModel = FolderDetailViewViewModel(
@@ -51,12 +52,13 @@ struct FolderDetailView: View {
         )
 
         self._viewModel = StateObject(wrappedValue: viewModel)
-        self.currentSoundsListMode = currentSoundsListMode
+        self.currentContentListMode = currentContentListMode
 
         let soundListViewModel = ContentListViewModel<[AnyEquatableMedoContent]>(
             data: viewModel.soundsPublisher,
             menuOptions: [.sharingOptions(), .playFromThisSound(), .removeFromFolder()],
-            currentSoundsListMode: currentSoundsListMode,
+            currentListMode: currentContentListMode,
+            toast: toast,
             refreshAction: { viewModel.onPulledToRefresh() },
             insideFolder: folder
         )
@@ -70,7 +72,7 @@ struct FolderDetailView: View {
         GeometryReader { geometry in
             ScrollView {
                 VStack {
-                    ContentList(
+                    ContentGrid(
                         viewModel: contentListViewModel,
                         multiSelectFolderOperation: .remove,
                         showNewTag: false,
@@ -148,7 +150,7 @@ struct FolderDetailView: View {
 
     @ViewBuilder func trailingToolbarControls() -> some View {
         HStack(spacing: 16) {
-            if currentSoundsListMode.wrappedValue == .regular {
+            if currentContentListMode.wrappedValue == .regular {
                 Button {
                     contentListViewModel.onPlayStopPlaylistSelected()
                 } label: {
@@ -165,8 +167,8 @@ struct FolderDetailView: View {
                         contentListViewModel.onEnterMultiSelectModeSelected()
                     } label: {
                         Label(
-                            currentSoundsListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",
-                            systemImage: currentSoundsListMode.wrappedValue == .selection ? "xmark.circle" : "checkmark.circle"
+                            currentContentListMode.wrappedValue == .selection ? "Cancelar Seleção" : "Selecionar",
+                            systemImage: currentContentListMode.wrappedValue == .selection ? "xmark.circle" : "checkmark.circle"
                         )
                     }
                 }
@@ -228,12 +230,12 @@ struct FolderDetailView: View {
     }
     
     @ViewBuilder func selectionControls() -> some View {
-        if currentSoundsListMode.wrappedValue == .regular {
+        if currentContentListMode.wrappedValue == .regular {
             EmptyView()
         } else {
             HStack(spacing: 16) {
                 Button {
-                    currentSoundsListMode.wrappedValue = .regular
+                    currentContentListMode.wrappedValue = .regular
                     contentListViewModel.selectionKeeper.removeAll()
                 } label: {
                     Text("Cancelar")
@@ -254,6 +256,7 @@ struct FolderDetailView: View {
             backgroundColor: "pastelBabyBlue",
             changeHash: "abcdefg"
         ),
-        currentSoundsListMode: .constant(.regular)
+        currentContentListMode: .constant(.regular),
+        toast: .constant(nil)
     )
 }

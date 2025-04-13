@@ -18,6 +18,8 @@ class StandaloneFavoritesViewModel: ObservableObject {
     @Published var contentSortOption: Int
     @Published var dataLoadingDidFail: Bool = false
 
+    @Published var toast: Toast?
+
     // MARK: - Computed Properties
 
     var dataPublisher: AnyPublisher<[AnyEquatableMedoContent], Never> {

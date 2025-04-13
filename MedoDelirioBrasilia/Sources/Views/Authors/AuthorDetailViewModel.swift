@@ -8,7 +8,7 @@
 import Combine
 import SwiftUI
 
-class AuthorDetailViewViewModel: ObservableObject {
+class AuthorDetailViewModel: ObservableObject {
 
     @Published var sounds = [Sound]()
 
@@ -22,8 +22,8 @@ class AuthorDetailViewViewModel: ObservableObject {
     @Published var showEmailAppPicker_soundUnavailableConfirmationDialog = false
     @Published var showEmailAppPicker_askForNewSound = false
     @Published var showEmailAppPicker_reportAuthorDetailIssue = false
-    var currentSoundsListMode: Binding<SoundsListMode>
-    
+    var currentContentListMode: Binding<ContentListMode>
+
     // Alerts
     @Published var alertTitle: String = ""
     @Published var alertMessage: String = ""
@@ -45,9 +45,9 @@ class AuthorDetailViewViewModel: ObservableObject {
     // MARK: - Initializer
 
     init(
-        currentSoundsListMode: Binding<SoundsListMode>
+        currentContentListMode: Binding<ContentListMode>
     ) {
-        self.currentSoundsListMode = currentSoundsListMode
+        self.currentContentListMode = currentContentListMode
     }
 
     func loadSounds(for authorId: String) {
@@ -104,7 +104,7 @@ class AuthorDetailViewViewModel: ObservableObject {
 
 // MARK: - Alert
 
-extension AuthorDetailViewViewModel {
+extension AuthorDetailViewModel {
 
     func showAskForNewSoundAlert() {
         TapticFeedback.warning()

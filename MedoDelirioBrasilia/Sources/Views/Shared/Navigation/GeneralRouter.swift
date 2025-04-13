@@ -16,19 +16,22 @@ struct GeneralRouter: View {
 
     let destination: GeneralNavigationDestination
 
-    @State private var currentSoundListMode: SoundsListMode = .regular
+    @State private var currentContentListMode: ContentListMode = .regular
+    @State private var toast: Toast?
 
     var body: some View {
         switch destination {
         case .authorDetail(let author):
             AuthorDetailView(
                 author: author,
-                currentSoundsListMode: $currentSoundListMode
+                currentListMode: $currentContentListMode,
+                toast: $toast
             )
         case .reactionDetail(let reaction):
             ReactionDetailView(
                 reaction: reaction,
-                currentSoundsListMode: $currentSoundListMode
+                currentListMode: $currentContentListMode,
+                toast: $toast
             )
         }
     }

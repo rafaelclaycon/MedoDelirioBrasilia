@@ -14,17 +14,22 @@ struct StandaloneFavoritesView: View {
 
     @State private var soundSearchTextIsEmpty: Bool? = true
 
+    private var toast: Binding<Toast?>
+
     // MARK: - Initializer
 
     init(
-        viewModel: StandaloneFavoritesViewModel
+        viewModel: StandaloneFavoritesViewModel,
+        toast: Binding<Toast?>
     ) {
         self._viewModel = StateObject(wrappedValue: viewModel)
         self._favoritesViewModel = StateObject(wrappedValue: ContentListViewModel<[AnyEquatableMedoContent]>(
             data: viewModel.dataPublisher,
             menuOptions: [.sharingOptions(), .organizingOptions(), .detailsOptions()],
-            currentSoundsListMode: .constant(.regular)
+            currentListMode: .constant(.regular),
+            toast: toast
         ))
+        self.toast = toast
     }
 
     // MARK: - View Body
@@ -33,7 +38,7 @@ struct StandaloneFavoritesView: View {
         GeometryReader { geometry in
             ScrollView {
                 VStack(spacing: .spacing(.xSmall)) {
-                    ContentList<EmptyView, VStack, VStack, VStack>(
+                    ContentGrid<EmptyView, VStack, VStack, VStack>(
                         viewModel: favoritesViewModel,
                         soundSearchTextIsEmpty: $soundSearchTextIsEmpty,
                         dataLoadingDidFail: viewModel.dataLoadingDidFail,
@@ -71,7 +76,7 @@ struct StandaloneFavoritesView: View {
                 .navigationTitle(Text("Favoritos"))
                 //            .navigationBarItems(
                 //                leading: LeadingToolbarControls(
-                //                    isSelecting: currentSoundsListMode.wrappedValue == .selection,
+                //                    isSelecting: currentContentListMode.wrappedValue == .selection,
                 //                    cancelAction: { allSoundsViewModel.onExitMultiSelectModeSelected() },
                 //                    openSettingsAction: openSettingsAction
                 //                ),
@@ -81,6 +86,7 @@ struct StandaloneFavoritesView: View {
                     viewModel.onViewDidAppear()
                 }
             }
+            .toast(toast)
         }
     }
 }

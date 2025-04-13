@@ -11,7 +11,7 @@ struct MyFoldersiPhoneView: View {
 
     @State private var folderForEditing: UserFolder?
     @State private var updateFolderList: Bool = false // Does nothing, just here to satisfy FolderList :)
-    @State private var currentSoundsListMode: SoundsListMode = .regular
+    @State private var currentContentListMode: ContentListMode = .regular
     @State private var showErrorDeletingAlert: Bool = false
 
     @EnvironmentObject var deleteFolderAide: DeleteFolderViewAide

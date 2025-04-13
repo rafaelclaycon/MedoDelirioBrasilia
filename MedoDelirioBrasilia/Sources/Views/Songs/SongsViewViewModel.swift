@@ -41,10 +41,7 @@ import SwiftUI
     var alertType: SongsViewAlert = .ok
 
     // Toast
-    var showToastView: Bool = false
-    var toastIcon: String = "checkmark"
-    var toastIconColor: Color = .green
-    var toastText: String = ""
+    var toast: Toast?
 
     // MARK: - Stored Properties
 
@@ -140,7 +137,7 @@ extension SongsViewViewModel {
                     context: .song
                 ) { didShareSuccessfully in
                     if didShareSuccessfully {
-                        self.displayToast(toastText: Shared.songSharedSuccessfullyMessage)
+                        self.toast = Toast(message: Shared.songSharedSuccessfullyMessage, type: .success)
                     }
                 }
             } catch {
@@ -162,7 +159,7 @@ extension SongsViewViewModel {
 
                         AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
 
-                        self.displayToast(toastText: Shared.songSharedSuccessfullyMessage)
+                        self.toast = Toast(message: Shared.songSharedSuccessfullyMessage, type: .success)
                     }
                 }
             } catch {
@@ -183,7 +180,7 @@ extension SongsViewViewModel {
                     shareSheetDelayInSeconds: 0.6
                 ) { didShareSuccessfully in
                     if didShareSuccessfully {
-                        self.displayToast(toastText: Shared.videoSharedSuccessfullyMessage)
+                        self.toast = Toast(message: Shared.videoSharedSuccessfullyMessage, type: .success)
                     }
                     
                     WallE.deleteAllVideoFilesFromDocumentsDir()
@@ -210,7 +207,7 @@ extension SongsViewViewModel {
 
                     AppStoreReviewSteward.requestReviewBasedOnVersionAndCount()
                     
-                    self.displayToast(toastText: Shared.videoSharedSuccessfullyMessage)
+                    self.toast = Toast(message: Shared.videoSharedSuccessfullyMessage, type: .success)
                 }
                 
                 WallE.deleteAllVideoFilesFromDocumentsDir()
@@ -221,7 +218,10 @@ extension SongsViewViewModel {
     }
     
     func showVideoSavedSuccessfullyToast() {
-        self.displayToast(toastText: ProcessInfo.processInfo.isiOSAppOnMac ? Shared.ShareAsVideo.videoSavedSucessfullyMac : Shared.ShareAsVideo.videoSavedSucessfully)
+        toast = Toast(
+            message: UIDevice.isMac ? Shared.ShareAsVideo.videoSavedSucessfullyMac : Shared.ShareAsVideo.videoSavedSucessfully,
+            type: .success
+        )
     }
     
     func donateActivity() {
@@ -240,18 +240,10 @@ extension SongsViewViewModel {
                     contentId: contentId
                 )
                 isShowingProcessingView = false
-                displayToast(
-                    "checkmark",
-                    .green,
-                    toastText: "Conteúdo baixado com sucesso. Tente tocá-lo novamente."
-                )
+                toast = Toast(message: "Conteúdo baixado com sucesso. Tente tocá-lo novamente.", type: .success)
             } catch {
                 isShowingProcessingView = false
-                displayToast(
-                    "exclamationmark.triangle.fill",
-                    .orange,
-                    toastText: "Erro ao tentar baixar conteúdo novamente."
-                )
+                toast = Toast(message: "Erro ao tentar baixar conteúdo novamente.", type: .warning)
             }
         }
     }
@@ -285,31 +277,5 @@ extension SongsViewViewModel {
         alertTitle = Shared.contentNotFoundAlertTitle(song.title)
         alertMessage = Shared.serverContentNotAvailableRedownloadMessage
         showAlert = true
-    }
-
-    // MARK: - Toast
-
-    func displayToast(
-        _ toastIcon: String = "checkmark",
-        _ toastIconColor: Color = .green,
-        toastText: String,
-        completion: (() -> Void)? = nil
-    ) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
-            withAnimation {
-                self.toastIcon = toastIcon
-                self.toastIconColor = toastIconColor
-                self.toastText = toastText
-                self.showToastView = true
-            }
-            TapticFeedback.success()
-        }
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            withAnimation {
-                self.showToastView = false
-                completion?()
-            }
-        }
     }
 }

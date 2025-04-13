@@ -1,5 +1,5 @@
 //
-//  ContentList.swift
+//  ContentGrid.swift
 //  MedoDelirioBrasilia
 //
 //  Created by Rafael Schmitt on 13/04/24.
@@ -9,16 +9,16 @@ import SwiftUI
 
 /// A generic view that displays a list of sounds with customizable states for loading, empty, and error conditions.
 ///
-/// `ContentList` supports various customization options, including search functionality, multi-selection, and conditional UI elements like
+/// `ContentGrid` supports various customization options, including search functionality, multi-selection, and conditional UI elements like
 /// sound counts, explicit content warnings, and more. It relies on `ContentListViewModel` to manage its data and state.
 ///
 /// - Parameters:
-///   - authorId: The author's ID when `ContentList` is inside `AuthorDetailView`. This is used to avoid reopening the same author more than once when a user taps the author's name in `ContentDetailView`.
+///   - authorId: The author's ID when `ContentGrid` is inside `AuthorDetailView`. This is used to avoid reopening the same author more than once when a user taps the author's name in `ContentDetailView`.
 ///   - HeaderView: A view displayed at the top of the list, such as a custom header or title.
 ///   - LoadingView: A view shown when data is loading.
 ///   - EmptyStateView: A view displayed when there are no sounds to show.
 ///   - ErrorView: A view displayed when data loading fails.
-struct ContentList<
+struct ContentGrid<
     HeaderView: View,
     LoadingView: View,
     EmptyStateView: View,
@@ -173,15 +173,14 @@ struct ContentList<
                                         highlighted: $viewModel.highlightKeeper,
                                         nowPlaying: $viewModel.nowPlayingKeeper,
                                         selectedItems: $viewModel.selectionKeeper,
-                                        currentSoundsListMode: viewModel.currentSoundsListMode
+                                        currentContentListMode: viewModel.currentListMode
                                     )
                                     .contentShape(.contextMenuPreview, RoundedRectangle(cornerRadius: 20, style: .continuous))
-                                    .padding(.horizontal, UIDevice.isiPhone ? 0 : 5)
                                     .onTapGesture {
                                         viewModel.onContentSelected(content)
                                     }
                                     .contextMenu {
-                                        if viewModel.currentSoundsListMode.wrappedValue != .selection {
+                                        if viewModel.currentListMode.wrappedValue != .selection {
                                             ForEach(viewModel.menuOptions, id: \.title) { section in
                                                 Section {
                                                     ForEach(section.options(content)) { option in
@@ -302,17 +301,17 @@ struct ContentList<
                             case .soundIssueEmailPicker:
                                 EmailAppPickerView(
                                     isBeingShown: $viewModel.showingModalView,
+                                    toast: viewModel.toast,
                                     subject: Shared.issueSuggestionEmailSubject,
-                                    emailBody: Shared.issueSuggestionEmailBody,
-                                    afterCopyAddressAction: {}
+                                    emailBody: Shared.issueSuggestionEmailBody
                                 )
 
                             case .authorIssueEmailPicker(let content):
                                 EmailAppPickerView(
                                     isBeingShown: $viewModel.showingModalView,
+                                    toast: viewModel.toast,
                                     subject: String(format: Shared.suggestOtherAuthorNameEmailSubject, content.title),
-                                    emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, content.subtitle, content.id),
-                                    afterCopyAddressAction: {}
+                                    emailBody: String(format: Shared.suggestOtherAuthorNameEmailBody, content.subtitle, content.id)
                                 )
                             }
                         }
@@ -345,8 +344,8 @@ struct ContentList<
                             }
                         }
                          //                                .onChange(of: viewModel.selectionKeeper.count) {
-                         //                                    showMultiSelectButtons = viewModel.currentSoundsListMode.wrappedValue == .selection
-                         //                                    guard viewModel.currentSoundsListMode.wrappedValue == .selection else { return }
+                         //                                    showMultiSelectButtons = viewModel.currentContentListMode.wrappedValue == .selection
+                         //                                    guard viewModel.currentContentListMode.wrappedValue == .selection else { return }
                          //                                    multiSelectButtonsEnabled = viewModel.selectionKeeper.count > 0
                          //                                    allSelectedAreFavorites = viewModel.allSelectedAreFavorites()
                          //                                }
@@ -390,13 +389,30 @@ struct ContentList<
                                 .font(.footnote)
                                 .foregroundColor(.gray)
                                 .multilineTextAlignment(.center)
-                                .padding(.top, 10)
-                                .padding(.bottom, UIDevice.isiPhone ? Shared.Constants.soundCountPhoneBottomPadding : Shared.Constants.soundCountPadBottomPadding)
+                                .padding(.top, .spacing(.small))
+                                .padding(.bottom, Shared.Constants.soundCountPadBottomPadding)
                         }
 
                         Spacer()
-                            .frame(height: 18)
+                            .frame(height: .spacing(.large))
                     }
+//                    .overlay {
+//                        if showMultiSelectButtons {
+//                            VStack {
+//                                Spacer()
+//
+//                                FloatingSelectionOptionsView(
+//                                    areButtonsEnabled: multiSelectButtonsEnabled,
+//                                    allSelectedAreFavorites: allSelectedAreFavorites,
+//                                    folderOperation: multiSelectFolderOperation,
+//                                    shareIsProcessing: viewModel.shareManyIsProcessing,
+//                                    favoriteAction: { viewModel.onAddRemoveManyFromFavoritesSelected() },
+//                                    folderAction: { viewModel.onAddRemoveManyFromFolderSelected(multiSelectFolderOperation) },
+//                                    shareAction: { viewModel.onShareManySelected() }
+//                                )
+//                            }
+//                        }
+//                    }
                 }
 
             case .error(_):
@@ -426,13 +442,14 @@ struct ContentList<
 // MARK: - Preview
 
 #Preview {
-    ContentList<
+    ContentGrid<
         EmptyView, ProgressView, Text, Text
     >(
         viewModel: .init(
             data: MockContentListViewModel().allSoundsPublisher,
             menuOptions: [.sharingOptions()],
-            currentSoundsListMode: .constant(.regular)
+            currentListMode: .constant(.regular),
+            toast: .constant(nil)
         ),
         dataLoadingDidFail: false,
         containerSize: CGSize(width: 390, height: 1200),
