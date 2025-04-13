@@ -38,7 +38,7 @@ struct StandaloneFavoritesView: View {
         GeometryReader { geometry in
             ScrollView {
                 VStack(spacing: .spacing(.xSmall)) {
-                    ContentGrid<EmptyView, VStack, VStack, VStack>(
+                    ContentGrid(
                         viewModel: favoritesViewModel,
                         soundSearchTextIsEmpty: $soundSearchTextIsEmpty,
                         dataLoadingDidFail: viewModel.dataLoadingDidFail,

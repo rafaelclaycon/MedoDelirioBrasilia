@@ -71,29 +71,26 @@ struct FolderDetailView: View {
     var body: some View {
         GeometryReader { geometry in
             ScrollView {
-                VStack {
+                VStack(spacing: .spacing(.xSmall)) {
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Text(viewModel.soundCount)
+                                .font(.callout)
+                                .foregroundColor(.gray)
+                                .bold()
+
+                            Spacer()
+                        }
+                    }
+                    .padding(.horizontal, 20)
+                    .padding(.top)
+
                     ContentGrid(
                         viewModel: contentListViewModel,
                         multiSelectFolderOperation: .remove,
                         showNewTag: false,
                         dataLoadingDidFail: viewModel.dataLoadingDidFail,
                         containerSize: geometry.size,
-                        headerView: {
-                            VStack {
-                                VStack(alignment: .leading) {
-                                    HStack {
-                                        Text(viewModel.soundCount)
-                                            .font(.callout)
-                                            .foregroundColor(.gray)
-                                            .bold()
-
-                                        Spacer()
-                                    }
-                                }
-                                .padding(.horizontal, 20)
-                                .padding(.top)
-                            }
-                        },
                         loadingView:
                             VStack {
                                 HStack(spacing: 10) {

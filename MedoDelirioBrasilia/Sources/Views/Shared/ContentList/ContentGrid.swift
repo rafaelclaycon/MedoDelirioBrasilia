@@ -19,7 +19,6 @@ import SwiftUI
 ///   - EmptyStateView: A view displayed when there are no sounds to show.
 ///   - ErrorView: A view displayed when data loading fails.
 struct ContentGrid<
-    HeaderView: View,
     LoadingView: View,
     EmptyStateView: View,
     ErrorView: View
@@ -30,8 +29,6 @@ struct ContentGrid<
     @StateObject private var viewModel: ContentGridViewModel<[AnyEquatableMedoContent]>
     private var soundSearchTextIsEmpty: Binding<Bool?>
     private var allowSearch: Bool
-    private var showSoundCountAtTheBottom: Bool
-    private var showExplicitDisabledWarning: Bool
     private var multiSelectFolderOperation: FolderOperation = .add
     private var showNewTag: Bool
     private var dataLoadingDidFail: Bool
@@ -39,7 +36,6 @@ struct ContentGrid<
     private let reactionId: String?
     private let containerSize: CGSize
 
-    @ViewBuilder private let headerView: HeaderView?
     @ViewBuilder private let loadingView: LoadingView
     @ViewBuilder private let emptyStateView: EmptyStateView
     @ViewBuilder private let errorView: ErrorView
@@ -55,9 +51,6 @@ struct ContentGrid<
 
     // Add to Folder details
     @State private var addToFolderHelper = AddToFolderDetails()
-
-    @ScaledMetric private var explicitOffWarningTopPadding = 16
-    @ScaledMetric private var explicitOffWarningBottomPadding = 20
 
     // MARK: - Computed Properties
 
@@ -89,15 +82,12 @@ struct ContentGrid<
         viewModel: ContentGridViewModel<[AnyEquatableMedoContent]>,
         soundSearchTextIsEmpty: Binding<Bool?> = .constant(nil),
         allowSearch: Bool = false,
-        showSoundCountAtTheBottom: Bool = false,
-        showExplicitDisabledWarning: Bool = false,
         multiSelectFolderOperation: FolderOperation = .add,
         showNewTag: Bool = true,
         dataLoadingDidFail: Bool,
         authorId: String? = nil,
         reactionId: String? = nil,
         containerSize: CGSize,
-        headerView: (() -> HeaderView)? = nil,
         loadingView: LoadingView,
         emptyStateView: EmptyStateView,
         errorView: ErrorView
@@ -105,15 +95,12 @@ struct ContentGrid<
         self._viewModel = StateObject(wrappedValue: viewModel)
         self.soundSearchTextIsEmpty = soundSearchTextIsEmpty
         self.allowSearch = allowSearch
-        self.showSoundCountAtTheBottom = showSoundCountAtTheBottom
-        self.showExplicitDisabledWarning = showExplicitDisabledWarning
         self.multiSelectFolderOperation = multiSelectFolderOperation
         self.showNewTag = showNewTag
         self.dataLoadingDidFail = dataLoadingDidFail
         self.authorId = authorId
         self.reactionId = reactionId
         self.containerSize = containerSize
-        self.headerView = headerView?()
         self.loadingView = loadingView
         self.emptyStateView = emptyStateView
         self.errorView = errorView
@@ -123,44 +110,23 @@ struct ContentGrid<
 
     var body: some View {
         if dataLoadingDidFail {
-            VStack {
-                if let headerView {
-                    headerView
-                }
-                errorView
-            }
-            .frame(width: containerSize.width)
-            .frame(minHeight: containerSize.height)
+            errorView
+                .frame(width: containerSize.width)
+                .frame(minHeight: containerSize.height)
         } else {
             switch viewModel.state {
             case .loading:
-                VStack {
-                    if let headerView {
-                        headerView
-                    }
-                    loadingView
-                }
-                .frame(width: containerSize.width)
-                .frame(minHeight: containerSize.height)
+                loadingView
+                    .frame(width: containerSize.width)
+                    .frame(minHeight: containerSize.height)
 
             case .loaded(let loadedContent):
                 if loadedContent.isEmpty {
-                    VStack {
-                        if let headerView {
-                            headerView
-                        }
-                        Spacer()
-                        emptyStateView
-                        Spacer()
-                    }
-                    .frame(width: containerSize.width)
-                    .frame(minHeight: containerSize.height)
+                    emptyStateView
+                        .frame(width: containerSize.width)
+                        .frame(minHeight: containerSize.height)
                 } else {
                     VStack {
-                        if let headerView {
-                            headerView
-                        }
-
                         LazyVGrid(columns: columns, spacing: UIDevice.isiPhone ? phoneItemSpacing : padItemSpacing) {
                             if searchResults.isEmpty {
                                 NoSearchResultsView(searchText: $viewModel.searchText)
@@ -375,26 +341,6 @@ struct ContentGrid<
                         .onAppear {
                             updateGridLayout()
                         }
-
-                        if showExplicitDisabledWarning, !UserSettings().getShowExplicitContent() {
-                            ExplicitDisabledWarning(
-                                text: UIDevice.isiPhone ? Shared.contentFilterMessageForSoundsiPhone : Shared.contentFilterMessageForSoundsiPadMac
-                            )
-                            .padding(.top, explicitOffWarningTopPadding)
-                            .padding(.horizontal, explicitOffWarningBottomPadding)
-                        }
-
-                        if showSoundCountAtTheBottom, viewModel.searchText.isEmpty {
-                            Text("\(loadedContent.count) ITENS")
-                                .font(.footnote)
-                                .foregroundColor(.gray)
-                                .multilineTextAlignment(.center)
-                                .padding(.top, .spacing(.small))
-                                .padding(.bottom, Shared.Constants.soundCountPadBottomPadding)
-                        }
-
-                        Spacer()
-                            .frame(height: .spacing(.large))
                     }
 //                    .overlay {
 //                        if showMultiSelectButtons {
@@ -416,14 +362,9 @@ struct ContentGrid<
                 }
 
             case .error(_):
-                VStack {
-                    if let headerView {
-                        headerView
-                    }
-                    errorView
-                }
-                .frame(width: containerSize.width)
-                .frame(minHeight: containerSize.height)
+                errorView
+                    .frame(width: containerSize.width)
+                    .frame(minHeight: containerSize.height)
             }
         }
     }
@@ -442,9 +383,7 @@ struct ContentGrid<
 // MARK: - Preview
 
 #Preview {
-    ContentGrid<
-        EmptyView, ProgressView, Text, Text
-    >(
+    ContentGrid(
         viewModel: .init(
             data: MockContentListViewModel().allSoundsPublisher,
             menuOptions: [.sharingOptions()],

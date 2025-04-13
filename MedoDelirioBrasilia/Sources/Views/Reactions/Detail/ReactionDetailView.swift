@@ -52,7 +52,17 @@ struct ReactionDetailView: View {
     var body: some View {
         GeometryReader { geometry in
             ScrollView {
-                VStack {
+                VStack(spacing: .spacing(.xSmall)) {
+                    ReactionDetailHeader(
+                        title: viewModel.reaction.title,
+                        subtitle: viewModel.subtitle,
+                        imageUrl: viewModel.reaction.image,
+                        attributionText: viewModel.reaction.attributionText,
+                        attributionURL: viewModel.reaction.attributionURL
+                    )
+                    .frame(height: 260)
+                    .padding(.bottom, 6)
+
                     ContentGrid(
                         viewModel: soundListViewModel,
                         soundSearchTextIsEmpty: .constant(nil),
@@ -60,17 +70,6 @@ struct ReactionDetailView: View {
                         dataLoadingDidFail: viewModel.dataLoadingDidFail,
                         reactionId: viewModel.reaction.id,
                         containerSize: geometry.size,
-                        headerView: {
-                            ReactionDetailHeader(
-                                title: viewModel.reaction.title,
-                                subtitle: viewModel.subtitle,
-                                imageUrl: viewModel.reaction.image,
-                                attributionText: viewModel.reaction.attributionText,
-                                attributionURL: viewModel.reaction.attributionURL
-                            )
-                            .frame(height: 260)
-                            .padding(.bottom, 6)
-                        },
                         loadingView: LoadingView(),
                         emptyStateView: EmptyStateView(
                             reloadAction: {

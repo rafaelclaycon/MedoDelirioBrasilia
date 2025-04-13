@@ -135,75 +135,74 @@ struct AuthorDetailView: View {
     var body: some View {
         GeometryReader { geometry in
             ScrollView {
-                VStack {
+                VStack(spacing: .spacing(.xSmall)) {
+                    VStack {
+                        if let photo = author.photo {
+                            GeometryReader { headerPhotoGeometry in
+                                KFImage(URL(string: photo))
+                                    .placeholder {
+                                        Image(systemName: "photo.on.rectangle")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(height: 100)
+                                            .foregroundColor(.gray)
+                                            .opacity(0.3)
+                                    }
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: headerPhotoGeometry.size.width, height: self.getHeightForHeaderImage(headerPhotoGeometry))
+                                    .clipped()
+                                    .offset(x: 0, y: self.getOffsetForHeaderImage(headerPhotoGeometry))
+                            }.frame(height: 250)
+                        }
+
+                        VStack(alignment: .leading, spacing: 15) {
+                            HStack {
+                                Text(title)
+                                    .font(.title)
+                                    .bold()
+
+                                Spacer()
+
+                                moreOptionsMenu(isOnToolbar: false)
+                            }
+
+                            if author.description != nil {
+                                Text(author.description ?? "")
+                            }
+
+                            if !externalLinks.isEmpty {
+                                ViewThatFits(in: .horizontal) {
+                                    HStack(spacing: 10) {
+                                        ForEach(externalLinks, id: \.title) {
+                                            ExternalLinkButton(externalLink: $0)
+                                        }
+                                    }
+                                    VStack(alignment: .leading, spacing: 15) {
+                                        ForEach(externalLinks, id: \.title) {
+                                            ExternalLinkButton(externalLink: $0)
+                                        }
+                                    }
+                                }
+                                .padding(.vertical, 4)
+                            }
+
+                            Text(viewModel.soundCount)
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                                .bold()
+                        }
+                        .padding(.horizontal, 20)
+                        .padding(.top, 10)
+                        .padding(.bottom, 5)
+                    }
+
                     ContentGrid(
                         viewModel: contentListViewModel,
                         soundSearchTextIsEmpty: .constant(nil),
                         dataLoadingDidFail: viewModel.dataLoadingDidFail,
                         authorId: author.id,
                         containerSize: geometry.size,
-                        headerView: {
-                            VStack{
-                                if let photo = author.photo {
-                                    GeometryReader { headerPhotoGeometry in
-                                        KFImage(URL(string: photo))
-                                            .placeholder {
-                                                Image(systemName: "photo.on.rectangle")
-                                                    .resizable()
-                                                    .scaledToFit()
-                                                    .frame(height: 100)
-                                                    .foregroundColor(.gray)
-                                                    .opacity(0.3)
-                                            }
-                                            .resizable()
-                                            .scaledToFill()
-                                            .frame(width: headerPhotoGeometry.size.width, height: self.getHeightForHeaderImage(headerPhotoGeometry))
-                                            .clipped()
-                                            .offset(x: 0, y: self.getOffsetForHeaderImage(headerPhotoGeometry))
-                                    }.frame(height: 250)
-                                }
-
-                                VStack(alignment: .leading, spacing: 15) {
-                                    HStack {
-                                        Text(title)
-                                            .font(.title)
-                                            .bold()
-
-                                        Spacer()
-
-                                        moreOptionsMenu(isOnToolbar: false)
-                                    }
-
-                                    if author.description != nil {
-                                        Text(author.description ?? "")
-                                    }
-
-                                    if !externalLinks.isEmpty {
-                                        ViewThatFits(in: .horizontal) {
-                                            HStack(spacing: 10) {
-                                                ForEach(externalLinks, id: \.title) {
-                                                    ExternalLinkButton(externalLink: $0)
-                                                }
-                                            }
-                                            VStack(alignment: .leading, spacing: 15) {
-                                                ForEach(externalLinks, id: \.title) {
-                                                    ExternalLinkButton(externalLink: $0)
-                                                }
-                                            }
-                                        }
-                                        .padding(.vertical, 4)
-                                    }
-
-                                    Text(viewModel.soundCount)
-                                        .font(.subheadline)
-                                        .foregroundColor(.gray)
-                                        .bold()
-                                }
-                                .padding(.horizontal, 20)
-                                .padding(.top, 10)
-                                .padding(.bottom, 5)
-                            }
-                        },
                         loadingView:
                             VStack {
                                 HStack(spacing: 10) {

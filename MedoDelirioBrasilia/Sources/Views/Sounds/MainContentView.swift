@@ -32,6 +32,9 @@ struct MainContentView: View {
     // Temporary banners
     @State private var shouldDisplayRecurringDonationBanner: Bool = false
 
+    @ScaledMetric private var explicitOffWarningTopPadding = 16
+    @ScaledMetric private var explicitOffWarningBottomPadding = 20
+
     // MARK: - Environment Objects
 
     @Environment(TrendsHelper.self) private var trendsHelper
@@ -93,70 +96,86 @@ struct MainContentView: View {
                             allowScrolling: UIDevice.isiPhone
                         )
                     }
-                    
+
                     switch viewModel.currentViewMode {
                     case .all, .favorites, .songs:
-                        ContentGrid(
-                            viewModel: allSoundsViewModel,
-                            soundSearchTextIsEmpty: $soundSearchTextIsEmpty,
-                            allowSearch: true,
-                            showSoundCountAtTheBottom: viewModel.currentViewMode == .all,
-                            showExplicitDisabledWarning: viewModel.currentViewMode == .all,
-                            dataLoadingDidFail: viewModel.dataLoadingDidFail,
-                            containerSize: geometry.size,
-                            headerView: {
-                                VStack {
-                                    if displayLongUpdateBanner {
-                                        LongUpdateBanner(
-                                            completedNumber: $viewModel.processedUpdateNumber,
-                                            totalUpdateCount: $viewModel.totalUpdateCount
-                                        )
-                                        .padding(.horizontal, .spacing(.small))
-                                    }
-                                    
-                                    //                            if shouldDisplayRecurringDonationBanner, viewModel.searchText.isEmpty {
-                                    //                                RecurringDonationBanner(
-                                    //                                    isBeingShown: $shouldDisplayRecurringDonationBanner
-                                    //                                )
-                                    //                                .padding(.horizontal, 10)
-                                    //                            }
+                        VStack(spacing: .spacing(.xSmall)) {
+                            VStack(spacing: .spacing(.xSmall)) {
+                                if displayLongUpdateBanner {
+                                    LongUpdateBanner(
+                                        completedNumber: $viewModel.processedUpdateNumber,
+                                        totalUpdateCount: $viewModel.totalUpdateCount
+                                    )
+                                    .padding(.horizontal, .spacing(.small))
                                 }
-                            },
-                            loadingView:
-                                VStack {
-                                    HStack(spacing: .spacing(.small)) {
-                                        ProgressView()
-                                        
-                                        Text("Carregando sons...")
-                                            .foregroundColor(.gray)
+
+//                                if shouldDisplayRecurringDonationBanner, viewModel.searchText.isEmpty {
+//                                    RecurringDonationBanner(
+//                                        isBeingShown: $shouldDisplayRecurringDonationBanner
+//                                    )
+//                                    .padding(.horizontal, 10)
+//                                }
+                            }
+
+                            ContentGrid(
+                                viewModel: allSoundsViewModel,
+                                soundSearchTextIsEmpty: $soundSearchTextIsEmpty,
+                                allowSearch: true,
+                                dataLoadingDidFail: viewModel.dataLoadingDidFail,
+                                containerSize: geometry.size,
+                                loadingView:
+                                    VStack {
+                                        HStack(spacing: .spacing(.small)) {
+                                            ProgressView()
+
+                                            Text("Carregando sons...")
+                                                .foregroundColor(.gray)
+                                        }
+                                        .frame(maxWidth: .infinity)
                                     }
-                                    .frame(maxWidth: .infinity)
-                                }
-                            ,
-                            emptyStateView:
-                                VStack {
-                                    if viewModel.currentViewMode == .favorites {
-                                        NoFavoritesView()
-                                            .padding(.horizontal, .spacing(.xLarge))
-                                    } else {
-                                        Text("Nenhum som a ser exibido. Isso é esquisito.")
-                                            .foregroundColor(.gray)
-                                            .padding(.horizontal, .spacing(.large))
+                                ,
+                                emptyStateView:
+                                    VStack {
+                                        if viewModel.currentViewMode == .favorites {
+                                            NoFavoritesView()
+                                                .padding(.horizontal, .spacing(.xLarge))
+                                        } else {
+                                            Text("Nenhum som a ser exibido. Isso é esquisito.")
+                                                .foregroundColor(.gray)
+                                                .padding(.horizontal, .spacing(.large))
+                                        }
                                     }
-                                }
-                            ,
-                            errorView:
-                                VStack {
-                                    HStack(spacing: .spacing(.small)) {
-                                        ProgressView()
-                                        
-                                        Text("Erro ao carregar sons.")
-                                            .foregroundColor(.gray)
+                                ,
+                                errorView:
+                                    VStack {
+                                        HStack(spacing: .spacing(.small)) {
+                                            ProgressView()
+
+                                            Text("Erro ao carregar sons.")
+                                                .foregroundColor(.gray)
+                                        }
+                                        .frame(maxWidth: .infinity)
                                     }
-                                    .frame(maxWidth: .infinity)
-                                }
-                        )
-                        
+                            )
+
+                            if viewModel.currentViewMode == .all, !UserSettings().getShowExplicitContent() {
+                                ExplicitDisabledWarning(
+                                    text: UIDevice.isiPhone ? Shared.contentFilterMessageForSoundsiPhone : Shared.contentFilterMessageForSoundsiPadMac
+                                )
+                                .padding(.top, explicitOffWarningTopPadding)
+                                .padding(.horizontal, explicitOffWarningBottomPadding)
+                            }
+
+                            if viewModel.currentViewMode == .all /*viewModel.searchText.isEmpty*/ {
+                                Text("\(viewModel.forDisplay?.count ?? 0) ITENS")
+                                    .font(.footnote)
+                                    .foregroundColor(.gray)
+                                    .multilineTextAlignment(.center)
+                                    .padding(.top, .spacing(.small))
+                                    .padding(.bottom, Shared.Constants.soundCountPadBottomPadding)
+                            }
+                        }
+
                     case .folders:
                         MyFoldersiPhoneView()
                             .environmentObject(deleteFolderAide)
