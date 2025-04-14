@@ -232,6 +232,9 @@ struct AuthorDetailView: View {
                             }
                     )
                     .environment(TrendsHelper())
+
+                    Spacer()
+                        .frame(height: .spacing(.large))
                 }
                 .onPreferenceChange(ViewOffsetKey.self) { offset in
                     updateNavBarContent(offset)

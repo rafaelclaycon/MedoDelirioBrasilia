@@ -122,6 +122,9 @@ struct FolderDetailView: View {
                             }
                     )
                     .environment(TrendsHelper())
+
+                    Spacer()
+                        .frame(height: .spacing(.large))
                 }
                 .navigationTitle(title)
                 .toolbar { trailingToolbarControls() }

@@ -89,6 +89,9 @@ struct ReactionDetailView: View {
                         )
                     )
                     .environment(TrendsHelper())
+
+                    Spacer()
+                        .frame(height: .spacing(.large))
                 }
                 .toolbar {
                     ToolbarControls(

@@ -73,6 +73,9 @@ struct StandaloneFavoritesView: View {
                                 .frame(maxWidth: .infinity)
                             }
                     )
+
+                    Spacer()
+                        .frame(height: .spacing(.large))
                 }
                 .navigationTitle(Text("Favoritos"))
                 //            .navigationBarItems(

@@ -166,6 +166,9 @@ struct MainContentView: View {
                                     .padding(.top, .spacing(.small))
                                     .padding(.bottom, Shared.Constants.soundCountPadBottomPadding)
                             }
+
+                            Spacer()
+                                .frame(height: .spacing(.large))
                         }
 
                     case .folders:
