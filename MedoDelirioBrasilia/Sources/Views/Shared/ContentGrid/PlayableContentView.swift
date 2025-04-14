@@ -16,7 +16,7 @@ struct PlayableContentView: View {
     let highlighted: Set<String>
     let nowPlaying: Set<String>
     let selectedItems: Set<String>
-    let currentContentListMode: ContentListMode
+    @Binding var currentContentListMode: ContentListMode
 
     @State private var timeRemaining: Double = 0
 
@@ -280,7 +280,7 @@ struct PlayableContentView: View {
                 highlighted: Set<String>(),
                 nowPlaying: Set<String>(),
                 selectedItems: Set<String>(),
-                currentContentListMode: .regular
+                currentContentListMode: .constant(.regular)
             )
 
             PlayableContentView(
@@ -295,7 +295,7 @@ struct PlayableContentView: View {
                 highlighted: Set<String>(),
                 nowPlaying: Set<String>(),
                 selectedItems: Set<String>(),
-                currentContentListMode: .regular
+                currentContentListMode: .constant(.regular)
             )
         }
 
@@ -311,7 +311,7 @@ struct PlayableContentView: View {
             highlighted: Set<String>(),
             nowPlaying: Set<String>(),
             selectedItems: Set<String>(),
-            currentContentListMode: .regular
+            currentContentListMode: .constant(.regular)
         )
     }
     .padding()
@@ -331,7 +331,7 @@ struct PlayableContentView: View {
                 highlighted: Set<String>(),
                 nowPlaying: Set<String>(),
                 selectedItems: Set<String>(),
-                currentContentListMode: .regular
+                currentContentListMode: .constant(.regular)
             )
 
             PlayableContentView(
@@ -345,7 +345,7 @@ struct PlayableContentView: View {
                 highlighted: Set<String>(),
                 nowPlaying: Set<String>(),
                 selectedItems: Set<String>(),
-                currentContentListMode: .regular
+                currentContentListMode: .constant(.regular)
             )
         }
     }
@@ -366,7 +366,7 @@ struct PlayableContentView: View {
                 highlighted: Set<String>(),
                 nowPlaying: Set<String>(arrayLiteral: "ABC"),
                 selectedItems: Set<String>(),
-                currentContentListMode: .regular
+                currentContentListMode: .constant(.regular)
             )
 
             PlayableContentView(
@@ -380,7 +380,7 @@ struct PlayableContentView: View {
                 highlighted: Set<String>(),
                 nowPlaying: Set<String>(arrayLiteral: "DEF"),
                 selectedItems: Set<String>(),
-                currentContentListMode: .regular
+                currentContentListMode: .constant(.regular)
             )
         }
 
@@ -395,7 +395,7 @@ struct PlayableContentView: View {
             highlighted: Set<String>(),
             nowPlaying: Set<String>(arrayLiteral: "DEF"),
             selectedItems: Set<String>(),
-            currentContentListMode: .regular
+            currentContentListMode: .constant(.regular)
         )
     }
     .padding()
@@ -413,7 +413,7 @@ struct PlayableContentView: View {
         highlighted: Set<String>(),
         nowPlaying: Set<String>(),
         selectedItems: Set<String>(),
-        currentContentListMode: .regular
+        currentContentListMode: .constant(.regular)
     )
     .padding()
 }
@@ -430,7 +430,7 @@ struct PlayableContentView: View {
         highlighted: Set<String>(arrayLiteral: "JKL"),
         nowPlaying: Set<String>(),
         selectedItems: Set<String>(),
-        currentContentListMode: .regular
+        currentContentListMode: .constant(.regular)
     )
     .padding()
 }
